@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'GetPrivateZonesResult',
@@ -22,10 +23,13 @@ class GetPrivateZonesResult:
     """
     A collection of values returned by getPrivateZones.
     """
-    def __init__(__self__, id=None, line_mode=None, name_regex=None, output_file=None, private_zones=None, recursion_mode=None, region=None, search_mode=None, total_count=None, vpc_id=None, zid=None, zone_name=None):
+    def __init__(__self__, id=None, key_word=None, line_mode=None, name_regex=None, output_file=None, private_zones=None, project_name=None, recursion_mode=None, region=None, search_mode=None, tag_filters=None, total_count=None, vpc_id=None, zid=None, zone_name=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if key_word and not isinstance(key_word, str):
+            raise TypeError("Expected argument 'key_word' to be a str")
+        pulumi.set(__self__, "key_word", key_word)
         if line_mode and not isinstance(line_mode, int):
             raise TypeError("Expected argument 'line_mode' to be a int")
         pulumi.set(__self__, "line_mode", line_mode)
@@ -38,6 +42,9 @@ class GetPrivateZonesResult:
         if private_zones and not isinstance(private_zones, list):
             raise TypeError("Expected argument 'private_zones' to be a list")
         pulumi.set(__self__, "private_zones", private_zones)
+        if project_name and not isinstance(project_name, str):
+            raise TypeError("Expected argument 'project_name' to be a str")
+        pulumi.set(__self__, "project_name", project_name)
         if recursion_mode and not isinstance(recursion_mode, bool):
             raise TypeError("Expected argument 'recursion_mode' to be a bool")
         pulumi.set(__self__, "recursion_mode", recursion_mode)
@@ -47,6 +54,9 @@ class GetPrivateZonesResult:
         if search_mode and not isinstance(search_mode, str):
             raise TypeError("Expected argument 'search_mode' to be a str")
         pulumi.set(__self__, "search_mode", search_mode)
+        if tag_filters and not isinstance(tag_filters, list):
+            raise TypeError("Expected argument 'tag_filters' to be a list")
+        pulumi.set(__self__, "tag_filters", tag_filters)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
@@ -67,6 +77,11 @@ class GetPrivateZonesResult:
         The provider-assigned unique ID for this managed resource.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="keyWord")
+    def key_word(self) -> Optional[str]:
+        return pulumi.get(self, "key_word")
 
     @property
     @pulumi.getter(name="lineMode")
@@ -95,6 +110,14 @@ class GetPrivateZonesResult:
         return pulumi.get(self, "private_zones")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[str]:
+        """
+        The project name of the private zone.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
     @pulumi.getter(name="recursionMode")
     def recursion_mode(self) -> Optional[bool]:
         """
@@ -114,6 +137,11 @@ class GetPrivateZonesResult:
     @pulumi.getter(name="searchMode")
     def search_mode(self) -> Optional[str]:
         return pulumi.get(self, "search_mode")
+
+    @property
+    @pulumi.getter(name="tagFilters")
+    def tag_filters(self) -> Optional[Sequence['outputs.GetPrivateZonesTagFilterResult']]:
+        return pulumi.get(self, "tag_filters")
 
     @property
     @pulumi.getter(name="totalCount")
@@ -152,25 +180,31 @@ class AwaitableGetPrivateZonesResult(GetPrivateZonesResult):
             yield self
         return GetPrivateZonesResult(
             id=self.id,
+            key_word=self.key_word,
             line_mode=self.line_mode,
             name_regex=self.name_regex,
             output_file=self.output_file,
             private_zones=self.private_zones,
+            project_name=self.project_name,
             recursion_mode=self.recursion_mode,
             region=self.region,
             search_mode=self.search_mode,
+            tag_filters=self.tag_filters,
             total_count=self.total_count,
             vpc_id=self.vpc_id,
             zid=self.zid,
             zone_name=self.zone_name)
 
 
-def get_private_zones(line_mode: Optional[int] = None,
+def get_private_zones(key_word: Optional[str] = None,
+                      line_mode: Optional[int] = None,
                       name_regex: Optional[str] = None,
                       output_file: Optional[str] = None,
+                      project_name: Optional[str] = None,
                       recursion_mode: Optional[bool] = None,
                       region: Optional[str] = None,
                       search_mode: Optional[str] = None,
+                      tag_filters: Optional[Sequence[pulumi.InputType['GetPrivateZonesTagFilterArgs']]] = None,
                       vpc_id: Optional[str] = None,
                       zid: Optional[int] = None,
                       zone_name: Optional[str] = None,
@@ -191,23 +225,29 @@ def get_private_zones(line_mode: Optional[int] = None,
     ```
 
 
+    :param str key_word: The keyword of zone name.
     :param int line_mode: The line mode of Private Zone, specified whether the intelligent mode and the load balance function is enabled.
     :param str name_regex: A Name Regex of Resource.
     :param str output_file: File name where to save data source results.
+    :param str project_name: The project name of the private zone.
     :param bool recursion_mode: Whether the recursion mode of Private Zone is enabled.
     :param str region: The region of Private Zone.
     :param str search_mode: The search mode of query. Valid values: `LIKE`, `EXACT`. Default is `LIKE`.
+    :param Sequence[pulumi.InputType['GetPrivateZonesTagFilterArgs']] tag_filters: List of tag filters.
     :param str vpc_id: The vpc id associated to Private Zone.
     :param int zid: The zid of Private Zone.
     :param str zone_name: The name of Private Zone.
     """
     __args__ = dict()
+    __args__['keyWord'] = key_word
     __args__['lineMode'] = line_mode
     __args__['nameRegex'] = name_regex
     __args__['outputFile'] = output_file
+    __args__['projectName'] = project_name
     __args__['recursionMode'] = recursion_mode
     __args__['region'] = region
     __args__['searchMode'] = search_mode
+    __args__['tagFilters'] = tag_filters
     __args__['vpcId'] = vpc_id
     __args__['zid'] = zid
     __args__['zoneName'] = zone_name
@@ -216,13 +256,16 @@ def get_private_zones(line_mode: Optional[int] = None,
 
     return AwaitableGetPrivateZonesResult(
         id=pulumi.get(__ret__, 'id'),
+        key_word=pulumi.get(__ret__, 'key_word'),
         line_mode=pulumi.get(__ret__, 'line_mode'),
         name_regex=pulumi.get(__ret__, 'name_regex'),
         output_file=pulumi.get(__ret__, 'output_file'),
         private_zones=pulumi.get(__ret__, 'private_zones'),
+        project_name=pulumi.get(__ret__, 'project_name'),
         recursion_mode=pulumi.get(__ret__, 'recursion_mode'),
         region=pulumi.get(__ret__, 'region'),
         search_mode=pulumi.get(__ret__, 'search_mode'),
+        tag_filters=pulumi.get(__ret__, 'tag_filters'),
         total_count=pulumi.get(__ret__, 'total_count'),
         vpc_id=pulumi.get(__ret__, 'vpc_id'),
         zid=pulumi.get(__ret__, 'zid'),
@@ -230,12 +273,15 @@ def get_private_zones(line_mode: Optional[int] = None,
 
 
 @_utilities.lift_output_func(get_private_zones)
-def get_private_zones_output(line_mode: Optional[pulumi.Input[Optional[int]]] = None,
+def get_private_zones_output(key_word: Optional[pulumi.Input[Optional[str]]] = None,
+                             line_mode: Optional[pulumi.Input[Optional[int]]] = None,
                              name_regex: Optional[pulumi.Input[Optional[str]]] = None,
                              output_file: Optional[pulumi.Input[Optional[str]]] = None,
+                             project_name: Optional[pulumi.Input[Optional[str]]] = None,
                              recursion_mode: Optional[pulumi.Input[Optional[bool]]] = None,
                              region: Optional[pulumi.Input[Optional[str]]] = None,
                              search_mode: Optional[pulumi.Input[Optional[str]]] = None,
+                             tag_filters: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetPrivateZonesTagFilterArgs']]]]] = None,
                              vpc_id: Optional[pulumi.Input[Optional[str]]] = None,
                              zid: Optional[pulumi.Input[Optional[int]]] = None,
                              zone_name: Optional[pulumi.Input[Optional[str]]] = None,
@@ -256,12 +302,15 @@ def get_private_zones_output(line_mode: Optional[pulumi.Input[Optional[int]]] = 
     ```
 
 
+    :param str key_word: The keyword of zone name.
     :param int line_mode: The line mode of Private Zone, specified whether the intelligent mode and the load balance function is enabled.
     :param str name_regex: A Name Regex of Resource.
     :param str output_file: File name where to save data source results.
+    :param str project_name: The project name of the private zone.
     :param bool recursion_mode: Whether the recursion mode of Private Zone is enabled.
     :param str region: The region of Private Zone.
     :param str search_mode: The search mode of query. Valid values: `LIKE`, `EXACT`. Default is `LIKE`.
+    :param Sequence[pulumi.InputType['GetPrivateZonesTagFilterArgs']] tag_filters: List of tag filters.
     :param str vpc_id: The vpc id associated to Private Zone.
     :param int zid: The zid of Private Zone.
     :param str zone_name: The name of Private Zone.

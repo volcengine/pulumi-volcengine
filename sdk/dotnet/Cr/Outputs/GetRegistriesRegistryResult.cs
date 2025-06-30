@@ -34,6 +34,14 @@ namespace Pulumi.Volcengine.Cr.Outputs
         /// </summary>
         public readonly string Project;
         /// <summary>
+        /// Whether to enable proxy cache.
+        /// </summary>
+        public readonly bool ProxyCacheEnabled;
+        /// <summary>
+        /// The proxy cache of registry. This field is valid when proxy_cache_enabled is true.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetRegistriesRegistryProxyCachResult> ProxyCaches;
+        /// <summary>
         /// The tags of cr registry.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetRegistriesRegistryResourceTagResult> ResourceTags;
@@ -66,6 +74,10 @@ namespace Pulumi.Volcengine.Cr.Outputs
 
             string project,
 
+            bool proxyCacheEnabled,
+
+            ImmutableArray<Outputs.GetRegistriesRegistryProxyCachResult> proxyCaches,
+
             ImmutableArray<Outputs.GetRegistriesRegistryResourceTagResult> resourceTags,
 
             Outputs.GetRegistriesRegistryStatusResult status,
@@ -81,6 +93,8 @@ namespace Pulumi.Volcengine.Cr.Outputs
             Domains = domains;
             Name = name;
             Project = project;
+            ProxyCacheEnabled = proxyCacheEnabled;
+            ProxyCaches = proxyCaches;
             ResourceTags = resourceTags;
             Status = status;
             Type = type;

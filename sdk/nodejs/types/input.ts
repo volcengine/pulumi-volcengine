@@ -1125,20 +1125,43 @@ export namespace cr {
          */
         domain?: pulumi.Input<string>;
         /**
-         * The type of registry.
+         * The type of registry. Valid values: `Enterprise`, `Micro`. Default is `Enterprise`.
          */
         type?: pulumi.Input<string>;
+    }
+
+    export interface RegistryProxyCache {
+        /**
+         * The endpoint of proxy cache.
+         */
+        endpoint?: pulumi.Input<string>;
+        /**
+         * The password of proxy cache.
+         */
+        password?: pulumi.Input<string>;
+        /**
+         * Whether to skip ssl verify.
+         */
+        skipSslVerify?: pulumi.Input<boolean>;
+        /**
+         * The type of proxy cache. Valid values: `DockerHub`, `DockerRegistry`.
+         */
+        type: pulumi.Input<string>;
+        /**
+         * The username of proxy cache.
+         */
+        username?: pulumi.Input<string>;
     }
 
     export interface RegistryResourceTag {
         /**
          * The Key of Tags.
          */
-        key?: pulumi.Input<string>;
+        key: pulumi.Input<string>;
         /**
          * The Value of Tags.
          */
-        value?: pulumi.Input<string>;
+        value: pulumi.Input<string>;
     }
 
     export interface RegistryStatus {
@@ -2111,6 +2134,7 @@ export namespace escloud_v2 {
          */
         values: pulumi.Input<pulumi.Input<string>[]>;
     }
+
 }
 
 export namespace financial_relation {
@@ -2210,6 +2234,101 @@ export namespace kafka {
          * The min number of sync replica. The default value is the replica number minus 1.
          */
         minInsyncReplicaNumber?: pulumi.Input<number>;
+    }
+
+}
+
+export namespace kms {
+    export interface GetKeysTag {
+        /**
+         * The key of the tag.
+         */
+        key: string;
+        /**
+         * The values of the tag.
+         */
+        values: string[];
+    }
+
+    export interface GetKeysTagArgs {
+        /**
+         * The key of the tag.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The values of the tag.
+         */
+        values: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface KeyMultiRegionConfiguration {
+        /**
+         * The type of the multi-region key.
+         */
+        multiRegionKeyType?: pulumi.Input<string>;
+        /**
+         * Trn and region id of the primary multi-region key.
+         */
+        primaryKey?: pulumi.Input<inputs.kms.KeyMultiRegionConfigurationPrimaryKey>;
+        /**
+         * Trn and region id of replica multi-region keys.
+         */
+        replicaKeys?: pulumi.Input<pulumi.Input<inputs.kms.KeyMultiRegionConfigurationReplicaKey>[]>;
+    }
+
+    export interface KeyMultiRegionConfigurationPrimaryKey {
+        /**
+         * The region id of multi-region key.
+         */
+        region?: pulumi.Input<string>;
+        /**
+         * The name of the resource.
+         */
+        trn?: pulumi.Input<string>;
+    }
+
+    export interface KeyMultiRegionConfigurationReplicaKey {
+        /**
+         * The region id of multi-region key.
+         */
+        region?: pulumi.Input<string>;
+        /**
+         * The name of the resource.
+         */
+        trn?: pulumi.Input<string>;
+    }
+
+    export interface KeyTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface KeysTag {
+        /**
+         * The key of the tag.
+         */
+        key: string;
+        /**
+         * The values of the tag.
+         */
+        values: string[];
+    }
+
+    export interface KeysTagArgs {
+        /**
+         * The key of the tag.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The values of the tag.
+         */
+        values: pulumi.Input<pulumi.Input<string>[]>;
     }
 
 }
@@ -2533,6 +2652,83 @@ export namespace organization {
 }
 
 export namespace private_zone {
+    export interface GetPrivateZonesTagFilter {
+        /**
+         * The key of the tag.
+         */
+        key?: string;
+        /**
+         * The values of the tag.
+         */
+        values?: string[];
+    }
+
+    export interface GetPrivateZonesTagFilterArgs {
+        /**
+         * The key of the tag.
+         */
+        key?: pulumi.Input<string>;
+        /**
+         * The values of the tag.
+         */
+        values?: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface GetResolverEndpointsTagFilter {
+        /**
+         * The key of the tag.
+         */
+        key?: string;
+        /**
+         * The values of the tag.
+         */
+        values?: string[];
+    }
+
+    export interface GetResolverEndpointsTagFilterArgs {
+        /**
+         * The key of the tag.
+         */
+        key?: pulumi.Input<string>;
+        /**
+         * The values of the tag.
+         */
+        values?: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface GetResolverRulesTagFilter {
+        /**
+         * The key of the tag.
+         */
+        key?: string;
+        /**
+         * The values of the tag.
+         */
+        values?: string[];
+    }
+
+    export interface GetResolverRulesTagFilterArgs {
+        /**
+         * The key of the tag.
+         */
+        key?: pulumi.Input<string>;
+        /**
+         * The values of the tag.
+         */
+        values?: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface PrivateZoneTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
     export interface PrivateZoneVpc {
         /**
          * The region of the bind vpc. The default value is the region of the default provider config.
@@ -2542,6 +2738,28 @@ export namespace private_zone {
          * The id of the bind vpc.
          */
         vpcId: pulumi.Input<string>;
+    }
+
+    export interface PrivateZonesTagFilter {
+        /**
+         * The key of the tag.
+         */
+        key?: string;
+        /**
+         * The values of the tag.
+         */
+        values?: string[];
+    }
+
+    export interface PrivateZonesTagFilterArgs {
+        /**
+         * The key of the tag.
+         */
+        key?: pulumi.Input<string>;
+        /**
+         * The values of the tag.
+         */
+        values?: pulumi.Input<pulumi.Input<string>[]>;
     }
 
     export interface ResolverEndpointIpConfig {
@@ -2559,6 +2777,39 @@ export namespace private_zone {
         subnetId: pulumi.Input<string>;
     }
 
+    export interface ResolverEndpointTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface ResolverEndpointsTagFilter {
+        /**
+         * The key of the tag.
+         */
+        key?: string;
+        /**
+         * The values of the tag.
+         */
+        values?: string[];
+    }
+
+    export interface ResolverEndpointsTagFilterArgs {
+        /**
+         * The key of the tag.
+         */
+        key?: pulumi.Input<string>;
+        /**
+         * The values of the tag.
+         */
+        values?: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
     export interface ResolverRuleForwardIp {
         /**
          * IP address of the external DNS server. This parameter is only valid when the Type parameter is OUTBOUND and is a required parameter.
@@ -2568,6 +2819,17 @@ export namespace private_zone {
          * The port of the external DNS server. Default is 53. This parameter is only valid and optional when the Type parameter is OUTBOUND.
          */
         port?: pulumi.Input<number>;
+    }
+
+    export interface ResolverRuleTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
     }
 
     export interface ResolverRuleVpc {
@@ -2581,6 +2843,27 @@ export namespace private_zone {
         vpcId: pulumi.Input<string>;
     }
 
+    export interface ResolverRulesTagFilter {
+        /**
+         * The key of the tag.
+         */
+        key?: string;
+        /**
+         * The values of the tag.
+         */
+        values?: string[];
+    }
+
+    export interface ResolverRulesTagFilterArgs {
+        /**
+         * The key of the tag.
+         */
+        key?: pulumi.Input<string>;
+        /**
+         * The values of the tag.
+         */
+        values?: pulumi.Input<pulumi.Input<string>[]>;
+    }
 }
 
 export namespace privatelink {
@@ -2721,6 +3004,7 @@ export namespace rabbitmq {
          */
         value: pulumi.Input<string>;
     }
+
 }
 
 export namespace rds {
@@ -2895,6 +3179,47 @@ export namespace rds_mysql {
         dbName: pulumi.Input<string>;
     }
 
+    export interface AccountTableColumnPrivilege {
+        /**
+         * Column permission information of the account.
+         */
+        columnPrivileges?: pulumi.Input<pulumi.Input<inputs.rds_mysql.AccountTableColumnPrivilegeColumnPrivilege>[]>;
+        /**
+         * Settings for table column permissions of the account.
+         */
+        dbName: pulumi.Input<string>;
+        /**
+         * Table permission information of the account.
+         */
+        tablePrivileges?: pulumi.Input<pulumi.Input<inputs.rds_mysql.AccountTableColumnPrivilegeTablePrivilege>[]>;
+    }
+
+    export interface AccountTableColumnPrivilegeColumnPrivilege {
+        /**
+         * Table privileges of the account.
+         */
+        accountPrivilegeDetail?: pulumi.Input<string>;
+        /**
+         * The name of the column for setting permissions on the account.
+         */
+        columnName: pulumi.Input<string>;
+        /**
+         * The name of the table for setting permissions on the account.
+         */
+        tableName: pulumi.Input<string>;
+    }
+
+    export interface AccountTableColumnPrivilegeTablePrivilege {
+        /**
+         * Table privileges of the account.
+         */
+        accountPrivilegeDetail?: pulumi.Input<string>;
+        /**
+         * The name of the table for setting permissions on the account.
+         */
+        tableName: pulumi.Input<string>;
+    }
+
     export interface AllowlistSecurityGroupBindInfo {
         /**
          * The schema for the associated security group.
@@ -2918,6 +3243,27 @@ export namespace rds_mysql {
          * Specify the tables to be backed up in the specified database. When this field is empty, it defaults to full database backup.
          */
         tableNames?: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface BackupPolicyCrossBackupPolicy {
+        /**
+         * Whether to enable cross-region backup.
+         * true: Enable.
+         * false: Disable. Default value.
+         */
+        backupEnabled?: pulumi.Input<boolean>;
+        /**
+         * The destination region ID for cross-region backup. When the value of BackupEnabled is true, this parameter is required.
+         */
+        crossBackupRegion?: pulumi.Input<string>;
+        /**
+         * Whether to enable cross-region log backup. true: Enable. false: Disable. Default value. Description: Cross-region log backup can only be enabled when cross-region backup is enabled.
+         */
+        logBackupEnabled?: pulumi.Input<boolean>;
+        /**
+         * The number of days to retain cross - region backups, with a value range of 7 to 1825 days.
+         */
+        retention?: pulumi.Input<number>;
     }
 
     export interface EndpointReadOnlyNodeWeight {
@@ -2955,6 +3301,23 @@ export namespace rds_mysql {
          * The Value of Tags.
          */
         value: pulumi.Input<string>;
+    }
+
+    export interface InstanceAutoStorageScalingConfig {
+        /**
+         * Whether to enable the instance's auto - scaling function. Values:
+         * true: Yes.
+         * false: No. Description: When StorageConfig is used as a request parameter, if the value of EnableStorageAutoScale is false, the StorageThreshold and StorageUpperBound parameters do not need to be passed in.
+         */
+        enableStorageAutoScale: pulumi.Input<boolean>;
+        /**
+         * The proportion of available storage space that triggers automatic expansion. The value range is 10 to 50, and the default value is 10, with the unit being %.
+         */
+        storageThreshold?: pulumi.Input<number>;
+        /**
+         * The upper limit of the storage space that can be automatically expanded. The lower limit of the value of this field is the instance storage space + 20GB; the upper limit of the value is the upper limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value range of different specifications, please refer to Product Specifications.
+         */
+        storageUpperBound?: pulumi.Input<number>;
     }
 
     export interface InstanceChargeDetail {
@@ -3739,7 +4102,45 @@ export namespace redis {
         vpc?: pulumi.Input<string>;
     }
 
-    export interface BackupInstanceDetail {
+    export interface AllowListSecurityGroupBindInfo {
+        /**
+         * Security group association mode. The value range is as follows: IngressDirectionIp: The input direction IP, which is the IP involved in the TCP protocol and ALL protocol in the source address of the secure group input direction to access the database. If the source address is configured as a secure group, it will be ignored. AssociateEcsIp: Associate ECS IP, which allows cloud servers within the security group to access the database. Currently, only the IP information of the main network card is supported for import.
+         */
+        bindMode?: pulumi.Input<string>;
+        /**
+         * The list of ips in the associated security group has been linked.
+         */
+        ipLists?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The associated security group ID.
+         */
+        securityGroupId?: pulumi.Input<string>;
+        /**
+         * The name of the associated security group.
+         */
+        securityGroupName?: pulumi.Input<string>;
+    }
+
+    export interface BackupBackupPointDownloadUrl {
+        /**
+         * The private network download address for RDB files.
+         */
+        privateDownloadUrl?: pulumi.Input<string>;
+        /**
+         * The public network download address for RDB files.
+         */
+        publicDownloadUrl?: pulumi.Input<string>;
+        /**
+         * RDB file size, unit: Byte.
+         */
+        rdbFileSize?: pulumi.Input<number>;
+        /**
+         * The shard ID where the RDB file is located.
+         */
+        shardId?: pulumi.Input<string>;
+    }
+
+    export interface BackupInstanceInfo {
         /**
          * Id of account.
          */
@@ -3752,6 +4153,10 @@ export namespace redis {
          * Charge type of instance(Postpaid/Prepaid).
          */
         chargeType?: pulumi.Input<string>;
+        /**
+         * The status of the deletion protection function of the instance.
+         */
+        deletionProtection?: pulumi.Input<string>;
         /**
          * Engine version of instance.
          */
@@ -3777,10 +4182,6 @@ export namespace redis {
          */
         networkType?: pulumi.Input<string>;
         /**
-         * Project name of instance.
-         */
-        projectName?: pulumi.Input<string>;
-        /**
          * Id of region.
          */
         regionId?: pulumi.Input<string>;
@@ -3789,44 +4190,25 @@ export namespace redis {
          */
         replicas?: pulumi.Input<number>;
         /**
-         * Count of cpu cores of instance.
-         */
-        serverCpu?: pulumi.Input<number>;
-        /**
          * Capacity of shard.
          */
         shardCapacity?: pulumi.Input<number>;
         /**
-         * Count of shard.
+         * The number of shards in the instance.
          */
-        shardCount?: pulumi.Input<number>;
+        shardNumber?: pulumi.Input<number>;
         /**
          * Total capacity of instance.
          */
         totalCapacity?: pulumi.Input<number>;
         /**
-         * Capacity used of this instance.
+         * The private network ID of the instance.
          */
-        usedCapacity?: pulumi.Input<number>;
-        /**
-         * Information of vpc.
-         */
-        vpcInfos?: pulumi.Input<pulumi.Input<inputs.redis.BackupInstanceDetailVpcInfo>[]>;
+        vpcId?: pulumi.Input<string>;
         /**
          * List of id of zone.
          */
         zoneIds?: pulumi.Input<pulumi.Input<string>[]>;
-    }
-
-    export interface BackupInstanceDetailVpcInfo {
-        /**
-         * Id of vpc.
-         */
-        id?: pulumi.Input<string>;
-        /**
-         * Name of vpc.
-         */
-        name?: pulumi.Input<string>;
     }
 
     export interface GetInstancesTag {
@@ -3899,6 +4281,17 @@ export namespace redis {
         key: pulumi.Input<string>;
         /**
          * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface ParameterGroupParamValue {
+        /**
+         * The parameter names that need to be included in the parameter template.
+         */
+        name: pulumi.Input<string>;
+        /**
+         * The parameter values set for the corresponding parameters.
          */
         value: pulumi.Input<string>;
     }
@@ -4159,6 +4552,21 @@ export namespace tls {
         type: pulumi.Input<string>;
     }
 
+    export interface EtlTaskTargetResource {
+        /**
+         * Customize the name of the output target, which needs to be used to refer to the output target in the data processing rules.
+         */
+        alias: pulumi.Input<string>;
+        /**
+         * Cross-account authorized character names.
+         */
+        roleTrn?: pulumi.Input<string>;
+        /**
+         * Log topics used for storing processed logs.
+         */
+        topicId: pulumi.Input<string>;
+    }
+
     export interface GetProjectsTag {
         /**
          * The Key of Tags.
@@ -4201,6 +4609,153 @@ export namespace tls {
          * The Value of Tags.
          */
         value: pulumi.Input<string>;
+    }
+
+    export interface ImportTaskImportSourceInfo {
+        /**
+         * TOS imports source information.
+         */
+        kafkaSourceInfo?: pulumi.Input<inputs.tls.ImportTaskImportSourceInfoKafkaSourceInfo>;
+        /**
+         * TOS imports source information.
+         */
+        tosSourceInfo?: pulumi.Input<inputs.tls.ImportTaskImportSourceInfoTosSourceInfo>;
+    }
+
+    export interface ImportTaskImportSourceInfoKafkaSourceInfo {
+        /**
+         * The encoding format of the data.
+         */
+        encode?: pulumi.Input<string>;
+        /**
+         * Kafka consumer group.
+         */
+        group?: pulumi.Input<string>;
+        /**
+         * The service addresses corresponding to different types of Kafka clusters are different.
+         */
+        host?: pulumi.Input<string>;
+        /**
+         * The starting position of data import.
+         */
+        initialOffset?: pulumi.Input<number>;
+        /**
+         * When you are using the Volcano Engine Message Queue Kafka version, it should be set to the Kafka instance ID.
+         */
+        instanceId?: pulumi.Input<string>;
+        /**
+         * Whether to enable authentication.
+         */
+        isNeedAuth?: pulumi.Input<boolean>;
+        /**
+         * Password authentication mechanism.
+         */
+        mechanism?: pulumi.Input<string>;
+        /**
+         * The Kafka SASL user password used for identity authentication.
+         */
+        password?: pulumi.Input<string>;
+        /**
+         * Secure Transport protocol.
+         */
+        protocol?: pulumi.Input<string>;
+        /**
+         * Specify the log time.
+         */
+        timeSourceDefault?: pulumi.Input<number>;
+        /**
+         * Kafka Topic name.
+         */
+        topic?: pulumi.Input<string>;
+        /**
+         * The Kafka SASL username used for identity authentication.
+         */
+        username?: pulumi.Input<string>;
+    }
+
+    export interface ImportTaskImportSourceInfoTosSourceInfo {
+        /**
+         * The TOS bucket where the log file is located.
+         */
+        bucket?: pulumi.Input<string>;
+        /**
+         * The compression mode of data in the TOS bucket.
+         */
+        compressType?: pulumi.Input<string>;
+        /**
+         * The path of the file to be imported in the TOS bucket.
+         */
+        prefix?: pulumi.Input<string>;
+        /**
+         * The region where the TOS bucket is located. Support cross-regional data import.
+         */
+        region?: pulumi.Input<string>;
+    }
+
+    export interface ImportTaskTargetInfo {
+        /**
+         * Log extraction rules.
+         */
+        extractRule?: pulumi.Input<inputs.tls.ImportTaskTargetInfoExtractRule>;
+        /**
+         * Log sample.
+         */
+        logSample?: pulumi.Input<string>;
+        /**
+         * Specify the log parsing type when importing.
+         */
+        logType: pulumi.Input<string>;
+        /**
+         * Regional ID.
+         */
+        region: pulumi.Input<string>;
+    }
+
+    export interface ImportTaskTargetInfoExtractRule {
+        /**
+         * The regular expression used to identify the first line in each log, and its matching part will serve as the beginning of the log.
+         */
+        beginRegex?: pulumi.Input<string>;
+        /**
+         * Log delimiter.
+         */
+        delimiter?: pulumi.Input<string>;
+        /**
+         * List of log field names (Keys).
+         */
+        keys?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Reference symbol. The content wrapped by the reference will not be separated but will be parsed into a complete field. It is valid if and only if the LogType is delimiter_log.
+         */
+        quote?: pulumi.Input<string>;
+        /**
+         * The number of log lines skipped.
+         */
+        skipLineCount?: pulumi.Input<number>;
+        /**
+         * A regular expression for extracting time, used to extract the time value in the TimeKey field and parse it into the corresponding collection time.
+         */
+        timeExtractRegex?: pulumi.Input<string>;
+        /**
+         * The parsing format of the time field.
+         */
+        timeFormat?: pulumi.Input<string>;
+        /**
+         * The field name of the log time field.
+         */
+        timeKey?: pulumi.Input<string>;
+        /**
+         * Time zone, supporting both machine time zone (default) and custom time zone. Among them, the custom time zone supports GMT and UTC.
+         */
+        timeZone?: pulumi.Input<string>;
+        /**
+         * When uploading a log that failed to parse, the key name of the parse failed log.
+         */
+        unMatchLogKey?: pulumi.Input<string>;
+        /**
+         * Whether to upload the logs of failed parsing.
+         */
+        unMatchUpLoadSwitch?: pulumi.Input<boolean>;
     }
 
     export interface IndexFullText {
@@ -4571,6 +5126,128 @@ export namespace tls {
          * The HashKey of the log group is used to specify the partition (shard) to be written to by the current log group.
          */
         hashKey: pulumi.Input<string>;
+    }
+
+    export interface ScheduleSqlTaskRequestCycle {
+        /**
+         * Cron expression. The log service specifies the timed execution of alarm tasks through the Cron expression. The minimum granularity of Cron expressions is minutes, 24 hours. For example, 0 18 * * * indicates that an alarm task is executed exactly at 18:00 every day.
+         */
+        cronTab?: pulumi.Input<string>;
+        /**
+         * When setting the Type to Cron, the time zone also needs to be set.
+         */
+        cronTimeZone?: pulumi.Input<string>;
+        /**
+         * The scheduling cycle or the time point of regular execution (the number of minutes away from 00:00), with a value range of 1 to 1440, and the unit is minutes.
+         */
+        time: pulumi.Input<number>;
+        /**
+         * The type of Scheduling cycle.
+         */
+        type: pulumi.Input<string>;
+    }
+
+    export interface ShipperContentInfo {
+        /**
+         * CSV format log content configuration.
+         */
+        csvInfo?: pulumi.Input<inputs.tls.ShipperContentInfoCsvInfo>;
+        /**
+         * Log content parsing format.
+         */
+        format?: pulumi.Input<string>;
+        /**
+         * JSON format log content configuration.
+         */
+        jsonInfo?: pulumi.Input<inputs.tls.ShipperContentInfoJsonInfo>;
+    }
+
+    export interface ShipperContentInfoCsvInfo {
+        /**
+         * Delimiters are supported, including commas, tabs, vertical bars, semicolons, and Spaces.
+         */
+        delimiter: pulumi.Input<string>;
+        /**
+         * When the field content contains a delimiter, use an escape character to wrap the field. Currently, only single quotes, double quotes, and null characters are supported.
+         */
+        escapeChar: pulumi.Input<string>;
+        /**
+         * Configure the fields that need to be delivered.
+         */
+        keys: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Invalid field filling content, with a length ranging from 0 to 128.
+         */
+        nonFieldContent: pulumi.Input<string>;
+        /**
+         * Whether to print the Key on the first line.
+         */
+        printHeader: pulumi.Input<boolean>;
+    }
+
+    export interface ShipperContentInfoJsonInfo {
+        /**
+         * Enable the flag.
+         */
+        enable: pulumi.Input<boolean>;
+        /**
+         * Whether to escape or not. It must be configured as true.
+         */
+        escape?: pulumi.Input<boolean>;
+        /**
+         * When delivering in JSON format, if this parameter is not configured, it indicates that all fields have been delivered. Including __content__ (choice), __source__, __path__, __time__, __image_name__, __container_name__, __pod_name__, __pod_uid__, namespace, __tag____client_ip__, __tag____receive_time__.
+         */
+        keys?: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface ShipperKafkaShipperInfo {
+        /**
+         * Compression formats currently supported include snappy, gzip, lz4, and none.
+         */
+        compress: pulumi.Input<string>;
+        /**
+         * Delivery end time, millisecond timestamp. If not configured, it will keep delivering.
+         */
+        endTime?: pulumi.Input<number>;
+        /**
+         * Kafka instance.
+         */
+        instance: pulumi.Input<string>;
+        /**
+         * The name of the Kafka Topic.
+         */
+        kafkaTopic: pulumi.Input<string>;
+        /**
+         * Delivery start time, millisecond timestamp. If not configured, the default is the current time.
+         */
+        startTime?: pulumi.Input<number>;
+    }
+
+    export interface ShipperTosShipperInfo {
+        /**
+         * When choosing a TOS bucket, it must be located in the same region as the source log topic.
+         */
+        bucket: pulumi.Input<string>;
+        /**
+         * Compression formats currently supported include snappy, gzip, lz4, and none.
+         */
+        compress?: pulumi.Input<string>;
+        /**
+         * The delivery time interval, measured in seconds, ranges from 300 to 900.
+         */
+        interval?: pulumi.Input<number>;
+        /**
+         * The maximum size of the original file that can be delivered to each partition (Shard), that is, the size of the uncompressed log file. The unit is MiB, and the value range is 5 to 256.
+         */
+        maxSize?: pulumi.Input<number>;
+        /**
+         * Partition rules for delivering logs.
+         */
+        partitionFormat?: pulumi.Input<string>;
+        /**
+         * The top-level directory name of the storage bucket. All log data delivered through this delivery configuration will be delivered to this directory.
+         */
+        prefix?: pulumi.Input<string>;
     }
 
     export interface TopicTag {
@@ -6117,6 +6794,251 @@ export namespace veenedge {
 
 }
 
+export namespace vefaas {
+    export interface FunctionEnv {
+        /**
+         * The Key of the environment variable.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of the environment variable.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface FunctionNasStorage {
+        /**
+         * Whether to enable NAS storage mounting.
+         */
+        enableNas: pulumi.Input<boolean>;
+        /**
+         * The configuration of NAS.
+         */
+        nasConfigs?: pulumi.Input<pulumi.Input<inputs.vefaas.FunctionNasStorageNasConfig>[]>;
+    }
+
+    export interface FunctionNasStorageNasConfig {
+        /**
+         * The ID of NAS file system.
+         */
+        fileSystemId: pulumi.Input<string>;
+        /**
+         * The directory of Function local mount.
+         */
+        localMountPath: pulumi.Input<string>;
+        /**
+         * The ID of NAS mount point.
+         */
+        mountPointId: pulumi.Input<string>;
+        /**
+         * Remote directory of the file system.
+         */
+        remotePath: pulumi.Input<string>;
+    }
+
+    export interface FunctionSourceAccessConfig {
+        /**
+         * The image repository password.
+         */
+        password: pulumi.Input<boolean>;
+        /**
+         * Mirror repository username.
+         */
+        username: pulumi.Input<string>;
+    }
+
+    export interface FunctionTlsConfig {
+        /**
+         * TLS log function switch.
+         */
+        enableLog: pulumi.Input<boolean>;
+        /**
+         * The project ID of TLS log topic.
+         */
+        tlsProjectId?: pulumi.Input<string>;
+        /**
+         * The topic ID of TLS log topic.
+         */
+        tlsTopicId?: pulumi.Input<string>;
+    }
+
+    export interface FunctionTosMountConfig {
+        /**
+         * After enabling TOS, you need to provide an AKSK with access rights to the TOS domain name. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+         */
+        credentials?: pulumi.Input<inputs.vefaas.FunctionTosMountConfigCredentials>;
+        /**
+         * Whether to enable TOS storage mounting.
+         */
+        enableTos: pulumi.Input<boolean>;
+        /**
+         * After enabling TOS, you need to provide a TOS storage configuration list, with a maximum of 5 items.
+         */
+        mountPoints?: pulumi.Input<pulumi.Input<inputs.vefaas.FunctionTosMountConfigMountPoint>[]>;
+    }
+
+    export interface FunctionTosMountConfigCredentials {
+        /**
+         * The AccessKey ID (AK) of the Volcano Engine account.
+         */
+        accessKeyId: pulumi.Input<string>;
+        /**
+         * The Secret Access Key (SK) of the Volcano Engine account.
+         */
+        secretAccessKey: pulumi.Input<string>;
+    }
+
+    export interface FunctionTosMountConfigMountPoint {
+        /**
+         * TOS bucket.
+         */
+        bucketName: pulumi.Input<string>;
+        /**
+         * The mounted TOS Bucket path.
+         */
+        bucketPath: pulumi.Input<string>;
+        /**
+         * TOS Access domain name.
+         */
+        endpoint: pulumi.Input<string>;
+        /**
+         * Function local mount directory.
+         */
+        localMountPath: pulumi.Input<string>;
+        /**
+         * Function local directory access permissions. After mounting the TOS Bucket, whether the function local mount directory has read-only permissions.
+         */
+        readOnly?: pulumi.Input<boolean>;
+    }
+
+    export interface FunctionVpcConfig {
+        /**
+         * Function access to the public network switch.
+         */
+        enableSharedInternetAccess?: pulumi.Input<boolean>;
+        /**
+         * Whether the function enables private network access.
+         */
+        enableVpc: pulumi.Input<boolean>;
+        /**
+         * The ID of security group.
+         */
+        securityGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The ID of subnet.
+         */
+        subnetIds?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The ID of VPC.
+         */
+        vpcId?: pulumi.Input<string>;
+    }
+
+    export interface GetReleasesFilter {
+        /**
+         * Filter key enumeration.
+         */
+        name?: string;
+        /**
+         * The filtering value of the query.
+         */
+        values?: string[];
+    }
+
+    export interface GetReleasesFilterArgs {
+        /**
+         * Filter key enumeration.
+         */
+        name?: pulumi.Input<string>;
+        /**
+         * The filtering value of the query.
+         */
+        values?: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface GetReleasesOrderBy {
+        /**
+         * Whether the sorting result is sorted in ascending order.
+         */
+        ascend?: boolean;
+        /**
+         * Key names used for sorting.
+         */
+        key?: string;
+    }
+
+    export interface GetReleasesOrderByArgs {
+        /**
+         * Whether the sorting result is sorted in ascending order.
+         */
+        ascend?: pulumi.Input<boolean>;
+        /**
+         * Key names used for sorting.
+         */
+        key?: pulumi.Input<string>;
+    }
+
+    export interface KafkaTriggerKafkaCredentials {
+        /**
+         * Kafka authentication mechanism.
+         */
+        mechanism: pulumi.Input<string>;
+        /**
+         * The SASL/PLAIN user password set when creating a Kafka instance.
+         */
+        password: pulumi.Input<string>;
+        /**
+         * The SASL/PLAIN user name set when creating a Kafka instance.
+         */
+        username: pulumi.Input<string>;
+    }
+
+    export interface ReleasesFilter {
+        /**
+         * Filter key enumeration.
+         */
+        name?: string;
+        /**
+         * The filtering value of the query.
+         */
+        values?: string[];
+    }
+
+    export interface ReleasesFilterArgs {
+        /**
+         * Filter key enumeration.
+         */
+        name?: pulumi.Input<string>;
+        /**
+         * The filtering value of the query.
+         */
+        values?: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface ReleasesOrderBy {
+        /**
+         * Whether the sorting result is sorted in ascending order.
+         */
+        ascend?: boolean;
+        /**
+         * Key names used for sorting.
+         */
+        key?: string;
+    }
+
+    export interface ReleasesOrderByArgs {
+        /**
+         * Whether the sorting result is sorted in ascending order.
+         */
+        ascend?: pulumi.Input<boolean>;
+        /**
+         * Key names used for sorting.
+         */
+        key?: pulumi.Input<string>;
+    }
+
+}
+
 export namespace vepfs {
     export interface FileSystemTag {
         /**
@@ -7167,6 +8089,243 @@ export namespace vke {
          * The Phase of Node, the value is `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Starting` or `Stopping` or `Stopped`.
          */
         phase?: pulumi.Input<string>;
+    }
+
+}
+
+export namespace vmp {
+    export interface AlertingRuleAnnotation {
+        /**
+         * The name of the annotation.
+         */
+        name: pulumi.Input<string>;
+        /**
+         * The value of the annotation.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface AlertingRuleLabel {
+        /**
+         * The name of the label.
+         */
+        name: pulumi.Input<string>;
+        /**
+         * The value of the label.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface AlertingRuleLevel {
+        /**
+         * The comparator of the vmp alerting rule. Valid values: `>`, `>=`, `<`, `<=`, `==`, `!=`.
+         */
+        comparator: pulumi.Input<string>;
+        /**
+         * The duration of the alerting rule. Valid values: `0s`, `1m`, `2m`, `5m`, `10m`.
+         */
+        for: pulumi.Input<string>;
+        /**
+         * The level of the vmp alerting rule. Valid values: `P0`, `P1`, `P2`. The value of this field cannot be duplicate.
+         */
+        level: pulumi.Input<string>;
+        /**
+         * The threshold of the vmp alerting rule.
+         */
+        threshold: pulumi.Input<number>;
+    }
+
+    export interface AlertingRuleQuery {
+        /**
+         * The prom ql of query.
+         */
+        promQl: pulumi.Input<string>;
+        /**
+         * The id of the workspace.
+         */
+        workspaceId: pulumi.Input<string>;
+    }
+
+    export interface ContactDingTalkBotWebhook {
+        /**
+         * The address of webhook.
+         */
+        address: pulumi.Input<string>;
+        /**
+         * The mobiles of user.
+         */
+        atMobiles?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The ids of user.
+         */
+        atUserIds?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The secret key of webhook.
+         */
+        secretKey?: pulumi.Input<string>;
+    }
+
+    export interface ContactLarkBotWebhook {
+        /**
+         * The address of webhook.
+         */
+        address: pulumi.Input<string>;
+        /**
+         * The secret key of webhook.
+         */
+        secretKey?: pulumi.Input<string>;
+    }
+
+    export interface ContactPhoneNumber {
+        /**
+         * The country code of phone number. The value is `+86`.
+         */
+        countryCode: pulumi.Input<string>;
+        /**
+         * The number of phone number.
+         */
+        number: pulumi.Input<string>;
+    }
+
+    export interface ContactWeComBotWebhook {
+        /**
+         * The address of webhook.
+         */
+        address: pulumi.Input<string>;
+        /**
+         * The ids of user.
+         */
+        atUserIds?: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface ContactWebhook {
+        /**
+         * The address of webhook.
+         */
+        address: pulumi.Input<string>;
+        /**
+         * The token of webhook.
+         */
+        token?: pulumi.Input<string>;
+    }
+
+    export interface GetWorkspacesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        values: string[];
+    }
+
+    export interface GetWorkspacesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        values: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface NotifyGroupPolicyLevel {
+        /**
+         * The aggregate dimension, the value can be `__rule__`.
+         */
+        groupBies: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The aggregation cycle. Integer form, unit is second.
+         */
+        groupInterval: pulumi.Input<string>;
+        /**
+         * The wait time. Integer form, unit is second.
+         */
+        groupWait: pulumi.Input<string>;
+        /**
+         * The level of the policy, the value can be one of the following: `P0`, `P1`, `P2`.
+         */
+        level: pulumi.Input<string>;
+        /**
+         * The notification cycle. Integer form, unit is second.
+         */
+        repeatInterval: pulumi.Input<string>;
+    }
+
+    export interface NotifyPolicyLevel {
+        /**
+         * The alarm notification method of the alarm notification policy, the optional value can be `Email`, `Webhook`, `LarkBotWebhook`, `DingTalkBotWebhook`, `WeComBotWebhook`.
+         */
+        channels: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The contact group for the alarm notification policy.
+         */
+        contactGroupIds: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The level of the policy, the value can be one of the following: `P0`, `P1`, `P2`.
+         */
+        level: pulumi.Input<string>;
+        /**
+         * The resolved alarm notification method of the alarm notification policy, the optional value can be `Email`, `Webhook`, `LarkBotWebhook`, `DingTalkBotWebhook`, `WeComBotWebhook`.
+         */
+        resolvedChannels?: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface NotifyTemplateActive {
+        /**
+         * The content of notify template.
+         */
+        content: pulumi.Input<string>;
+        /**
+         * The title of notify template.
+         */
+        title: pulumi.Input<string>;
+    }
+
+    export interface NotifyTemplateResolved {
+        /**
+         * The content of notify template.
+         */
+        content: pulumi.Input<string>;
+        /**
+         * The title of notify template.
+         */
+        title: pulumi.Input<string>;
+    }
+
+    export interface WorkspaceTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface WorkspacesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        values: string[];
+    }
+
+    export interface WorkspacesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        values: pulumi.Input<pulumi.Input<string>[]>;
     }
 
 }

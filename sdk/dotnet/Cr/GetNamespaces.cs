@@ -87,6 +87,18 @@ namespace Pulumi.Volcengine.Cr
         [Input("outputFile")]
         public string? OutputFile { get; set; }
 
+        [Input("projects")]
+        private List<string>? _projects;
+
+        /// <summary>
+        /// The list of project names to query.
+        /// </summary>
+        public List<string> Projects
+        {
+            get => _projects ?? (_projects = new List<string>());
+            set => _projects = value;
+        }
+
         /// <summary>
         /// The target cr instance name.
         /// </summary>
@@ -119,6 +131,18 @@ namespace Pulumi.Volcengine.Cr
         [Input("outputFile")]
         public Input<string>? OutputFile { get; set; }
 
+        [Input("projects")]
+        private InputList<string>? _projects;
+
+        /// <summary>
+        /// The list of project names to query.
+        /// </summary>
+        public InputList<string> Projects
+        {
+            get => _projects ?? (_projects = new InputList<string>());
+            set => _projects = value;
+        }
+
         /// <summary>
         /// The target cr instance name.
         /// </summary>
@@ -145,6 +169,7 @@ namespace Pulumi.Volcengine.Cr
         /// </summary>
         public readonly ImmutableArray<Outputs.GetNamespacesNamespaceResult> Namespaces;
         public readonly string? OutputFile;
+        public readonly ImmutableArray<string> Projects;
         public readonly string Registry;
         /// <summary>
         /// The total count of instance query.
@@ -161,6 +186,8 @@ namespace Pulumi.Volcengine.Cr
 
             string? outputFile,
 
+            ImmutableArray<string> projects,
+
             string registry,
 
             int totalCount)
@@ -169,6 +196,7 @@ namespace Pulumi.Volcengine.Cr
             Names = names;
             Namespaces = namespaces;
             OutputFile = outputFile;
+            Projects = projects;
             Registry = registry;
             TotalCount = totalCount;
         }

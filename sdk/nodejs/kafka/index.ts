@@ -5,6 +5,21 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { AllowListArgs, AllowListState } from "./allowList";
+export type AllowList = import("./allowList").AllowList;
+export const AllowList: typeof import("./allowList").AllowList = null as any;
+utilities.lazyLoad(exports, ["AllowList"], () => require("./allowList"));
+
+export { AllowListAssociateArgs, AllowListAssociateState } from "./allowListAssociate";
+export type AllowListAssociate = import("./allowListAssociate").AllowListAssociate;
+export const AllowListAssociate: typeof import("./allowListAssociate").AllowListAssociate = null as any;
+utilities.lazyLoad(exports, ["AllowListAssociate"], () => require("./allowListAssociate"));
+
+export { AllowListsArgs, AllowListsResult, AllowListsOutputArgs } from "./allowLists";
+export const allowLists: typeof import("./allowLists").allowLists = null as any;
+export const allowListsOutput: typeof import("./allowLists").allowListsOutput = null as any;
+utilities.lazyLoad(exports, ["allowLists","allowListsOutput"], () => require("./allowLists"));
+
 export { ConsumedPartitionsArgs, ConsumedPartitionsResult, ConsumedPartitionsOutputArgs } from "./consumedPartitions";
 export const consumedPartitions: typeof import("./consumedPartitions").consumedPartitions = null as any;
 export const consumedPartitionsOutput: typeof import("./consumedPartitions").consumedPartitionsOutput = null as any;
@@ -14,6 +29,11 @@ export { ConsumedTopicsArgs, ConsumedTopicsResult, ConsumedTopicsOutputArgs } fr
 export const consumedTopics: typeof import("./consumedTopics").consumedTopics = null as any;
 export const consumedTopicsOutput: typeof import("./consumedTopics").consumedTopicsOutput = null as any;
 utilities.lazyLoad(exports, ["consumedTopics","consumedTopicsOutput"], () => require("./consumedTopics"));
+
+export { GetAllowListsArgs, GetAllowListsResult, GetAllowListsOutputArgs } from "./getAllowLists";
+export const getAllowLists: typeof import("./getAllowLists").getAllowLists = null as any;
+export const getAllowListsOutput: typeof import("./getAllowLists").getAllowListsOutput = null as any;
+utilities.lazyLoad(exports, ["getAllowLists","getAllowListsOutput"], () => require("./getAllowLists"));
 
 export { GetConsumedPartitionsArgs, GetConsumedPartitionsResult, GetConsumedPartitionsOutputArgs } from "./getConsumedPartitions";
 export const getConsumedPartitions: typeof import("./getConsumedPartitions").getConsumedPartitions = null as any;
@@ -125,6 +145,10 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "volcengine:kafka/allowList:AllowList":
+                return new AllowList(name, <any>undefined, { urn })
+            case "volcengine:kafka/allowListAssociate:AllowListAssociate":
+                return new AllowListAssociate(name, <any>undefined, { urn })
             case "volcengine:kafka/group:Group":
                 return new Group(name, <any>undefined, { urn })
             case "volcengine:kafka/instance:Instance":
@@ -140,6 +164,8 @@ const _module = {
         }
     },
 };
+pulumi.runtime.registerResourceModule("volcengine", "kafka/allowList", _module)
+pulumi.runtime.registerResourceModule("volcengine", "kafka/allowListAssociate", _module)
 pulumi.runtime.registerResourceModule("volcengine", "kafka/group", _module)
 pulumi.runtime.registerResourceModule("volcengine", "kafka/instance", _module)
 pulumi.runtime.registerResourceModule("volcengine", "kafka/publicAddress", _module)

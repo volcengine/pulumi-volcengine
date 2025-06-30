@@ -13,6 +13,112 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type PrivateZoneTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// PrivateZoneTagInput is an input type that accepts PrivateZoneTagArgs and PrivateZoneTagOutput values.
+// You can construct a concrete instance of `PrivateZoneTagInput` via:
+//
+//	PrivateZoneTagArgs{...}
+type PrivateZoneTagInput interface {
+	pulumi.Input
+
+	ToPrivateZoneTagOutput() PrivateZoneTagOutput
+	ToPrivateZoneTagOutputWithContext(context.Context) PrivateZoneTagOutput
+}
+
+type PrivateZoneTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (PrivateZoneTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrivateZoneTag)(nil)).Elem()
+}
+
+func (i PrivateZoneTagArgs) ToPrivateZoneTagOutput() PrivateZoneTagOutput {
+	return i.ToPrivateZoneTagOutputWithContext(context.Background())
+}
+
+func (i PrivateZoneTagArgs) ToPrivateZoneTagOutputWithContext(ctx context.Context) PrivateZoneTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrivateZoneTagOutput)
+}
+
+// PrivateZoneTagArrayInput is an input type that accepts PrivateZoneTagArray and PrivateZoneTagArrayOutput values.
+// You can construct a concrete instance of `PrivateZoneTagArrayInput` via:
+//
+//	PrivateZoneTagArray{ PrivateZoneTagArgs{...} }
+type PrivateZoneTagArrayInput interface {
+	pulumi.Input
+
+	ToPrivateZoneTagArrayOutput() PrivateZoneTagArrayOutput
+	ToPrivateZoneTagArrayOutputWithContext(context.Context) PrivateZoneTagArrayOutput
+}
+
+type PrivateZoneTagArray []PrivateZoneTagInput
+
+func (PrivateZoneTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PrivateZoneTag)(nil)).Elem()
+}
+
+func (i PrivateZoneTagArray) ToPrivateZoneTagArrayOutput() PrivateZoneTagArrayOutput {
+	return i.ToPrivateZoneTagArrayOutputWithContext(context.Background())
+}
+
+func (i PrivateZoneTagArray) ToPrivateZoneTagArrayOutputWithContext(ctx context.Context) PrivateZoneTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrivateZoneTagArrayOutput)
+}
+
+type PrivateZoneTagOutput struct{ *pulumi.OutputState }
+
+func (PrivateZoneTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrivateZoneTag)(nil)).Elem()
+}
+
+func (o PrivateZoneTagOutput) ToPrivateZoneTagOutput() PrivateZoneTagOutput {
+	return o
+}
+
+func (o PrivateZoneTagOutput) ToPrivateZoneTagOutputWithContext(ctx context.Context) PrivateZoneTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o PrivateZoneTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v PrivateZoneTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o PrivateZoneTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v PrivateZoneTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type PrivateZoneTagArrayOutput struct{ *pulumi.OutputState }
+
+func (PrivateZoneTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PrivateZoneTag)(nil)).Elem()
+}
+
+func (o PrivateZoneTagArrayOutput) ToPrivateZoneTagArrayOutput() PrivateZoneTagArrayOutput {
+	return o
+}
+
+func (o PrivateZoneTagArrayOutput) ToPrivateZoneTagArrayOutputWithContext(ctx context.Context) PrivateZoneTagArrayOutput {
+	return o
+}
+
+func (o PrivateZoneTagArrayOutput) Index(i pulumi.IntInput) PrivateZoneTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) PrivateZoneTag {
+		return vs[0].([]PrivateZoneTag)[vs[1].(int)]
+	}).(PrivateZoneTagOutput)
+}
+
 type PrivateZoneVpc struct {
 	// The region of the bind vpc. The default value is the region of the default provider config.
 	Region *string `pulumi:"region"`
@@ -130,6 +236,8 @@ type PrivateZonesPrivateZone struct {
 	LastOperator string `pulumi:"lastOperator"`
 	// The line mode of Private Zone, specified whether the intelligent mode and the load balance function is enabled.
 	LineMode int `pulumi:"lineMode"`
+	// The project name of the private zone.
+	ProjectName string `pulumi:"projectName"`
 	// The record count of the private zone.
 	RecordCount int `pulumi:"recordCount"`
 	// Whether the recursion mode of Private Zone is enabled.
@@ -138,6 +246,8 @@ type PrivateZonesPrivateZone struct {
 	Regions []string `pulumi:"regions"`
 	// The remark of the private zone.
 	Remark string `pulumi:"remark"`
+	// Tags.
+	Tags []PrivateZonesPrivateZoneTag `pulumi:"tags"`
 	// The updated time of the private zone.
 	UpdatedAt string `pulumi:"updatedAt"`
 	// The zid of Private Zone.
@@ -168,6 +278,8 @@ type PrivateZonesPrivateZoneArgs struct {
 	LastOperator pulumi.StringInput `pulumi:"lastOperator"`
 	// The line mode of Private Zone, specified whether the intelligent mode and the load balance function is enabled.
 	LineMode pulumi.IntInput `pulumi:"lineMode"`
+	// The project name of the private zone.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
 	// The record count of the private zone.
 	RecordCount pulumi.IntInput `pulumi:"recordCount"`
 	// Whether the recursion mode of Private Zone is enabled.
@@ -176,6 +288,8 @@ type PrivateZonesPrivateZoneArgs struct {
 	Regions pulumi.StringArrayInput `pulumi:"regions"`
 	// The remark of the private zone.
 	Remark pulumi.StringInput `pulumi:"remark"`
+	// Tags.
+	Tags PrivateZonesPrivateZoneTagArrayInput `pulumi:"tags"`
 	// The updated time of the private zone.
 	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
 	// The zid of Private Zone.
@@ -260,6 +374,11 @@ func (o PrivateZonesPrivateZoneOutput) LineMode() pulumi.IntOutput {
 	return o.ApplyT(func(v PrivateZonesPrivateZone) int { return v.LineMode }).(pulumi.IntOutput)
 }
 
+// The project name of the private zone.
+func (o PrivateZonesPrivateZoneOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v PrivateZonesPrivateZone) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
 // The record count of the private zone.
 func (o PrivateZonesPrivateZoneOutput) RecordCount() pulumi.IntOutput {
 	return o.ApplyT(func(v PrivateZonesPrivateZone) int { return v.RecordCount }).(pulumi.IntOutput)
@@ -278,6 +397,11 @@ func (o PrivateZonesPrivateZoneOutput) Regions() pulumi.StringArrayOutput {
 // The remark of the private zone.
 func (o PrivateZonesPrivateZoneOutput) Remark() pulumi.StringOutput {
 	return o.ApplyT(func(v PrivateZonesPrivateZone) string { return v.Remark }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o PrivateZonesPrivateZoneOutput) Tags() PrivateZonesPrivateZoneTagArrayOutput {
+	return o.ApplyT(func(v PrivateZonesPrivateZone) []PrivateZonesPrivateZoneTag { return v.Tags }).(PrivateZonesPrivateZoneTagArrayOutput)
 }
 
 // The updated time of the private zone.
@@ -439,6 +563,218 @@ func (o PrivateZonesPrivateZoneBindVpcArrayOutput) Index(i pulumi.IntInput) Priv
 	}).(PrivateZonesPrivateZoneBindVpcOutput)
 }
 
+type PrivateZonesPrivateZoneTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// PrivateZonesPrivateZoneTagInput is an input type that accepts PrivateZonesPrivateZoneTagArgs and PrivateZonesPrivateZoneTagOutput values.
+// You can construct a concrete instance of `PrivateZonesPrivateZoneTagInput` via:
+//
+//	PrivateZonesPrivateZoneTagArgs{...}
+type PrivateZonesPrivateZoneTagInput interface {
+	pulumi.Input
+
+	ToPrivateZonesPrivateZoneTagOutput() PrivateZonesPrivateZoneTagOutput
+	ToPrivateZonesPrivateZoneTagOutputWithContext(context.Context) PrivateZonesPrivateZoneTagOutput
+}
+
+type PrivateZonesPrivateZoneTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (PrivateZonesPrivateZoneTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrivateZonesPrivateZoneTag)(nil)).Elem()
+}
+
+func (i PrivateZonesPrivateZoneTagArgs) ToPrivateZonesPrivateZoneTagOutput() PrivateZonesPrivateZoneTagOutput {
+	return i.ToPrivateZonesPrivateZoneTagOutputWithContext(context.Background())
+}
+
+func (i PrivateZonesPrivateZoneTagArgs) ToPrivateZonesPrivateZoneTagOutputWithContext(ctx context.Context) PrivateZonesPrivateZoneTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrivateZonesPrivateZoneTagOutput)
+}
+
+// PrivateZonesPrivateZoneTagArrayInput is an input type that accepts PrivateZonesPrivateZoneTagArray and PrivateZonesPrivateZoneTagArrayOutput values.
+// You can construct a concrete instance of `PrivateZonesPrivateZoneTagArrayInput` via:
+//
+//	PrivateZonesPrivateZoneTagArray{ PrivateZonesPrivateZoneTagArgs{...} }
+type PrivateZonesPrivateZoneTagArrayInput interface {
+	pulumi.Input
+
+	ToPrivateZonesPrivateZoneTagArrayOutput() PrivateZonesPrivateZoneTagArrayOutput
+	ToPrivateZonesPrivateZoneTagArrayOutputWithContext(context.Context) PrivateZonesPrivateZoneTagArrayOutput
+}
+
+type PrivateZonesPrivateZoneTagArray []PrivateZonesPrivateZoneTagInput
+
+func (PrivateZonesPrivateZoneTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PrivateZonesPrivateZoneTag)(nil)).Elem()
+}
+
+func (i PrivateZonesPrivateZoneTagArray) ToPrivateZonesPrivateZoneTagArrayOutput() PrivateZonesPrivateZoneTagArrayOutput {
+	return i.ToPrivateZonesPrivateZoneTagArrayOutputWithContext(context.Background())
+}
+
+func (i PrivateZonesPrivateZoneTagArray) ToPrivateZonesPrivateZoneTagArrayOutputWithContext(ctx context.Context) PrivateZonesPrivateZoneTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrivateZonesPrivateZoneTagArrayOutput)
+}
+
+type PrivateZonesPrivateZoneTagOutput struct{ *pulumi.OutputState }
+
+func (PrivateZonesPrivateZoneTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrivateZonesPrivateZoneTag)(nil)).Elem()
+}
+
+func (o PrivateZonesPrivateZoneTagOutput) ToPrivateZonesPrivateZoneTagOutput() PrivateZonesPrivateZoneTagOutput {
+	return o
+}
+
+func (o PrivateZonesPrivateZoneTagOutput) ToPrivateZonesPrivateZoneTagOutputWithContext(ctx context.Context) PrivateZonesPrivateZoneTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o PrivateZonesPrivateZoneTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v PrivateZonesPrivateZoneTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o PrivateZonesPrivateZoneTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v PrivateZonesPrivateZoneTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type PrivateZonesPrivateZoneTagArrayOutput struct{ *pulumi.OutputState }
+
+func (PrivateZonesPrivateZoneTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PrivateZonesPrivateZoneTag)(nil)).Elem()
+}
+
+func (o PrivateZonesPrivateZoneTagArrayOutput) ToPrivateZonesPrivateZoneTagArrayOutput() PrivateZonesPrivateZoneTagArrayOutput {
+	return o
+}
+
+func (o PrivateZonesPrivateZoneTagArrayOutput) ToPrivateZonesPrivateZoneTagArrayOutputWithContext(ctx context.Context) PrivateZonesPrivateZoneTagArrayOutput {
+	return o
+}
+
+func (o PrivateZonesPrivateZoneTagArrayOutput) Index(i pulumi.IntInput) PrivateZonesPrivateZoneTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) PrivateZonesPrivateZoneTag {
+		return vs[0].([]PrivateZonesPrivateZoneTag)[vs[1].(int)]
+	}).(PrivateZonesPrivateZoneTagOutput)
+}
+
+type PrivateZonesTagFilter struct {
+	// The key of the tag.
+	Key *string `pulumi:"key"`
+	// The values of the tag.
+	Values []string `pulumi:"values"`
+}
+
+// PrivateZonesTagFilterInput is an input type that accepts PrivateZonesTagFilterArgs and PrivateZonesTagFilterOutput values.
+// You can construct a concrete instance of `PrivateZonesTagFilterInput` via:
+//
+//	PrivateZonesTagFilterArgs{...}
+type PrivateZonesTagFilterInput interface {
+	pulumi.Input
+
+	ToPrivateZonesTagFilterOutput() PrivateZonesTagFilterOutput
+	ToPrivateZonesTagFilterOutputWithContext(context.Context) PrivateZonesTagFilterOutput
+}
+
+type PrivateZonesTagFilterArgs struct {
+	// The key of the tag.
+	Key pulumi.StringPtrInput `pulumi:"key"`
+	// The values of the tag.
+	Values pulumi.StringArrayInput `pulumi:"values"`
+}
+
+func (PrivateZonesTagFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrivateZonesTagFilter)(nil)).Elem()
+}
+
+func (i PrivateZonesTagFilterArgs) ToPrivateZonesTagFilterOutput() PrivateZonesTagFilterOutput {
+	return i.ToPrivateZonesTagFilterOutputWithContext(context.Background())
+}
+
+func (i PrivateZonesTagFilterArgs) ToPrivateZonesTagFilterOutputWithContext(ctx context.Context) PrivateZonesTagFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrivateZonesTagFilterOutput)
+}
+
+// PrivateZonesTagFilterArrayInput is an input type that accepts PrivateZonesTagFilterArray and PrivateZonesTagFilterArrayOutput values.
+// You can construct a concrete instance of `PrivateZonesTagFilterArrayInput` via:
+//
+//	PrivateZonesTagFilterArray{ PrivateZonesTagFilterArgs{...} }
+type PrivateZonesTagFilterArrayInput interface {
+	pulumi.Input
+
+	ToPrivateZonesTagFilterArrayOutput() PrivateZonesTagFilterArrayOutput
+	ToPrivateZonesTagFilterArrayOutputWithContext(context.Context) PrivateZonesTagFilterArrayOutput
+}
+
+type PrivateZonesTagFilterArray []PrivateZonesTagFilterInput
+
+func (PrivateZonesTagFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PrivateZonesTagFilter)(nil)).Elem()
+}
+
+func (i PrivateZonesTagFilterArray) ToPrivateZonesTagFilterArrayOutput() PrivateZonesTagFilterArrayOutput {
+	return i.ToPrivateZonesTagFilterArrayOutputWithContext(context.Background())
+}
+
+func (i PrivateZonesTagFilterArray) ToPrivateZonesTagFilterArrayOutputWithContext(ctx context.Context) PrivateZonesTagFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrivateZonesTagFilterArrayOutput)
+}
+
+type PrivateZonesTagFilterOutput struct{ *pulumi.OutputState }
+
+func (PrivateZonesTagFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrivateZonesTagFilter)(nil)).Elem()
+}
+
+func (o PrivateZonesTagFilterOutput) ToPrivateZonesTagFilterOutput() PrivateZonesTagFilterOutput {
+	return o
+}
+
+func (o PrivateZonesTagFilterOutput) ToPrivateZonesTagFilterOutputWithContext(ctx context.Context) PrivateZonesTagFilterOutput {
+	return o
+}
+
+// The key of the tag.
+func (o PrivateZonesTagFilterOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PrivateZonesTagFilter) *string { return v.Key }).(pulumi.StringPtrOutput)
+}
+
+// The values of the tag.
+func (o PrivateZonesTagFilterOutput) Values() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v PrivateZonesTagFilter) []string { return v.Values }).(pulumi.StringArrayOutput)
+}
+
+type PrivateZonesTagFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (PrivateZonesTagFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PrivateZonesTagFilter)(nil)).Elem()
+}
+
+func (o PrivateZonesTagFilterArrayOutput) ToPrivateZonesTagFilterArrayOutput() PrivateZonesTagFilterArrayOutput {
+	return o
+}
+
+func (o PrivateZonesTagFilterArrayOutput) ToPrivateZonesTagFilterArrayOutputWithContext(ctx context.Context) PrivateZonesTagFilterArrayOutput {
+	return o
+}
+
+func (o PrivateZonesTagFilterArrayOutput) Index(i pulumi.IntInput) PrivateZonesTagFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) PrivateZonesTagFilter {
+		return vs[0].([]PrivateZonesTagFilter)[vs[1].(int)]
+	}).(PrivateZonesTagFilterOutput)
+}
+
 type RecordSetsRecordSet struct {
 	// The Complete domain name of the private zone record.
 	Fqdn string `pulumi:"fqdn"`
@@ -590,9 +926,9 @@ type RecordsRecord struct {
 	Host string `pulumi:"host"`
 	// The last operator account id of Private Zone Record.
 	LastOperator string `pulumi:"lastOperator"`
-	// The subnet id of Private Zone Record. This field is only effected when the `intelligentMode` of the private zone is true.
+	// The subnet id of Private Zone Record.
 	Line string `pulumi:"line"`
-	// The id of Private Zone Record.
+	// This field is deprecated, please use `recordIds` instead. The id of Private Zone Record.
 	RecordId string `pulumi:"recordId"`
 	// The remark of the private zone record.
 	Remark string `pulumi:"remark"`
@@ -630,9 +966,9 @@ type RecordsRecordArgs struct {
 	Host pulumi.StringInput `pulumi:"host"`
 	// The last operator account id of Private Zone Record.
 	LastOperator pulumi.StringInput `pulumi:"lastOperator"`
-	// The subnet id of Private Zone Record. This field is only effected when the `intelligentMode` of the private zone is true.
+	// The subnet id of Private Zone Record.
 	Line pulumi.StringInput `pulumi:"line"`
-	// The id of Private Zone Record.
+	// This field is deprecated, please use `recordIds` instead. The id of Private Zone Record.
 	RecordId pulumi.StringInput `pulumi:"recordId"`
 	// The remark of the private zone record.
 	Remark pulumi.StringInput `pulumi:"remark"`
@@ -721,12 +1057,12 @@ func (o RecordsRecordOutput) LastOperator() pulumi.StringOutput {
 	return o.ApplyT(func(v RecordsRecord) string { return v.LastOperator }).(pulumi.StringOutput)
 }
 
-// The subnet id of Private Zone Record. This field is only effected when the `intelligentMode` of the private zone is true.
+// The subnet id of Private Zone Record.
 func (o RecordsRecordOutput) Line() pulumi.StringOutput {
 	return o.ApplyT(func(v RecordsRecord) string { return v.Line }).(pulumi.StringOutput)
 }
 
-// The id of Private Zone Record.
+// This field is deprecated, please use `recordIds` instead. The id of Private Zone Record.
 func (o RecordsRecordOutput) RecordId() pulumi.StringOutput {
 	return o.ApplyT(func(v RecordsRecord) string { return v.RecordId }).(pulumi.StringOutput)
 }
@@ -901,6 +1237,112 @@ func (o ResolverEndpointIpConfigArrayOutput) Index(i pulumi.IntInput) ResolverEn
 	}).(ResolverEndpointIpConfigOutput)
 }
 
+type ResolverEndpointTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// ResolverEndpointTagInput is an input type that accepts ResolverEndpointTagArgs and ResolverEndpointTagOutput values.
+// You can construct a concrete instance of `ResolverEndpointTagInput` via:
+//
+//	ResolverEndpointTagArgs{...}
+type ResolverEndpointTagInput interface {
+	pulumi.Input
+
+	ToResolverEndpointTagOutput() ResolverEndpointTagOutput
+	ToResolverEndpointTagOutputWithContext(context.Context) ResolverEndpointTagOutput
+}
+
+type ResolverEndpointTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (ResolverEndpointTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResolverEndpointTag)(nil)).Elem()
+}
+
+func (i ResolverEndpointTagArgs) ToResolverEndpointTagOutput() ResolverEndpointTagOutput {
+	return i.ToResolverEndpointTagOutputWithContext(context.Background())
+}
+
+func (i ResolverEndpointTagArgs) ToResolverEndpointTagOutputWithContext(ctx context.Context) ResolverEndpointTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResolverEndpointTagOutput)
+}
+
+// ResolverEndpointTagArrayInput is an input type that accepts ResolverEndpointTagArray and ResolverEndpointTagArrayOutput values.
+// You can construct a concrete instance of `ResolverEndpointTagArrayInput` via:
+//
+//	ResolverEndpointTagArray{ ResolverEndpointTagArgs{...} }
+type ResolverEndpointTagArrayInput interface {
+	pulumi.Input
+
+	ToResolverEndpointTagArrayOutput() ResolverEndpointTagArrayOutput
+	ToResolverEndpointTagArrayOutputWithContext(context.Context) ResolverEndpointTagArrayOutput
+}
+
+type ResolverEndpointTagArray []ResolverEndpointTagInput
+
+func (ResolverEndpointTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ResolverEndpointTag)(nil)).Elem()
+}
+
+func (i ResolverEndpointTagArray) ToResolverEndpointTagArrayOutput() ResolverEndpointTagArrayOutput {
+	return i.ToResolverEndpointTagArrayOutputWithContext(context.Background())
+}
+
+func (i ResolverEndpointTagArray) ToResolverEndpointTagArrayOutputWithContext(ctx context.Context) ResolverEndpointTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResolverEndpointTagArrayOutput)
+}
+
+type ResolverEndpointTagOutput struct{ *pulumi.OutputState }
+
+func (ResolverEndpointTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResolverEndpointTag)(nil)).Elem()
+}
+
+func (o ResolverEndpointTagOutput) ToResolverEndpointTagOutput() ResolverEndpointTagOutput {
+	return o
+}
+
+func (o ResolverEndpointTagOutput) ToResolverEndpointTagOutputWithContext(ctx context.Context) ResolverEndpointTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o ResolverEndpointTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v ResolverEndpointTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o ResolverEndpointTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v ResolverEndpointTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type ResolverEndpointTagArrayOutput struct{ *pulumi.OutputState }
+
+func (ResolverEndpointTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ResolverEndpointTag)(nil)).Elem()
+}
+
+func (o ResolverEndpointTagArrayOutput) ToResolverEndpointTagArrayOutput() ResolverEndpointTagArrayOutput {
+	return o
+}
+
+func (o ResolverEndpointTagArrayOutput) ToResolverEndpointTagArrayOutputWithContext(ctx context.Context) ResolverEndpointTagArrayOutput {
+	return o
+}
+
+func (o ResolverEndpointTagArrayOutput) Index(i pulumi.IntInput) ResolverEndpointTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ResolverEndpointTag {
+		return vs[0].([]ResolverEndpointTag)[vs[1].(int)]
+	}).(ResolverEndpointTagOutput)
+}
+
 type ResolverEndpointsEndpoint struct {
 	// The created time of the endpoint.
 	CreatedAt string `pulumi:"createdAt"`
@@ -914,10 +1356,14 @@ type ResolverEndpointsEndpoint struct {
 	IpConfigs []ResolverEndpointsEndpointIpConfig `pulumi:"ipConfigs"`
 	// The name of the private zone resolver endpoint.
 	Name string `pulumi:"name"`
+	// The project name of the private zone resolver endpoint.
+	ProjectName string `pulumi:"projectName"`
 	// The security group id of the endpoint.
 	SecurityGroupId string `pulumi:"securityGroupId"`
 	// The status of the private zone resolver endpoint.
 	Status string `pulumi:"status"`
+	// Tags.
+	Tags []ResolverEndpointsEndpointTag `pulumi:"tags"`
 	// The updated time of the endpoint.
 	UpdatedAt string `pulumi:"updatedAt"`
 	// The vpc ID of the private zone resolver endpoint.
@@ -950,10 +1396,14 @@ type ResolverEndpointsEndpointArgs struct {
 	IpConfigs ResolverEndpointsEndpointIpConfigArrayInput `pulumi:"ipConfigs"`
 	// The name of the private zone resolver endpoint.
 	Name pulumi.StringInput `pulumi:"name"`
+	// The project name of the private zone resolver endpoint.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
 	// The security group id of the endpoint.
 	SecurityGroupId pulumi.StringInput `pulumi:"securityGroupId"`
 	// The status of the private zone resolver endpoint.
 	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags ResolverEndpointsEndpointTagArrayInput `pulumi:"tags"`
 	// The updated time of the endpoint.
 	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
 	// The vpc ID of the private zone resolver endpoint.
@@ -1043,6 +1493,11 @@ func (o ResolverEndpointsEndpointOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ResolverEndpointsEndpoint) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// The project name of the private zone resolver endpoint.
+func (o ResolverEndpointsEndpointOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v ResolverEndpointsEndpoint) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
 // The security group id of the endpoint.
 func (o ResolverEndpointsEndpointOutput) SecurityGroupId() pulumi.StringOutput {
 	return o.ApplyT(func(v ResolverEndpointsEndpoint) string { return v.SecurityGroupId }).(pulumi.StringOutput)
@@ -1051,6 +1506,11 @@ func (o ResolverEndpointsEndpointOutput) SecurityGroupId() pulumi.StringOutput {
 // The status of the private zone resolver endpoint.
 func (o ResolverEndpointsEndpointOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v ResolverEndpointsEndpoint) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o ResolverEndpointsEndpointOutput) Tags() ResolverEndpointsEndpointTagArrayOutput {
+	return o.ApplyT(func(v ResolverEndpointsEndpoint) []ResolverEndpointsEndpointTag { return v.Tags }).(ResolverEndpointsEndpointTagArrayOutput)
 }
 
 // The updated time of the endpoint.
@@ -1203,6 +1663,218 @@ func (o ResolverEndpointsEndpointIpConfigArrayOutput) Index(i pulumi.IntInput) R
 	}).(ResolverEndpointsEndpointIpConfigOutput)
 }
 
+type ResolverEndpointsEndpointTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// ResolverEndpointsEndpointTagInput is an input type that accepts ResolverEndpointsEndpointTagArgs and ResolverEndpointsEndpointTagOutput values.
+// You can construct a concrete instance of `ResolverEndpointsEndpointTagInput` via:
+//
+//	ResolverEndpointsEndpointTagArgs{...}
+type ResolverEndpointsEndpointTagInput interface {
+	pulumi.Input
+
+	ToResolverEndpointsEndpointTagOutput() ResolverEndpointsEndpointTagOutput
+	ToResolverEndpointsEndpointTagOutputWithContext(context.Context) ResolverEndpointsEndpointTagOutput
+}
+
+type ResolverEndpointsEndpointTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (ResolverEndpointsEndpointTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResolverEndpointsEndpointTag)(nil)).Elem()
+}
+
+func (i ResolverEndpointsEndpointTagArgs) ToResolverEndpointsEndpointTagOutput() ResolverEndpointsEndpointTagOutput {
+	return i.ToResolverEndpointsEndpointTagOutputWithContext(context.Background())
+}
+
+func (i ResolverEndpointsEndpointTagArgs) ToResolverEndpointsEndpointTagOutputWithContext(ctx context.Context) ResolverEndpointsEndpointTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResolverEndpointsEndpointTagOutput)
+}
+
+// ResolverEndpointsEndpointTagArrayInput is an input type that accepts ResolverEndpointsEndpointTagArray and ResolverEndpointsEndpointTagArrayOutput values.
+// You can construct a concrete instance of `ResolverEndpointsEndpointTagArrayInput` via:
+//
+//	ResolverEndpointsEndpointTagArray{ ResolverEndpointsEndpointTagArgs{...} }
+type ResolverEndpointsEndpointTagArrayInput interface {
+	pulumi.Input
+
+	ToResolverEndpointsEndpointTagArrayOutput() ResolverEndpointsEndpointTagArrayOutput
+	ToResolverEndpointsEndpointTagArrayOutputWithContext(context.Context) ResolverEndpointsEndpointTagArrayOutput
+}
+
+type ResolverEndpointsEndpointTagArray []ResolverEndpointsEndpointTagInput
+
+func (ResolverEndpointsEndpointTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ResolverEndpointsEndpointTag)(nil)).Elem()
+}
+
+func (i ResolverEndpointsEndpointTagArray) ToResolverEndpointsEndpointTagArrayOutput() ResolverEndpointsEndpointTagArrayOutput {
+	return i.ToResolverEndpointsEndpointTagArrayOutputWithContext(context.Background())
+}
+
+func (i ResolverEndpointsEndpointTagArray) ToResolverEndpointsEndpointTagArrayOutputWithContext(ctx context.Context) ResolverEndpointsEndpointTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResolverEndpointsEndpointTagArrayOutput)
+}
+
+type ResolverEndpointsEndpointTagOutput struct{ *pulumi.OutputState }
+
+func (ResolverEndpointsEndpointTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResolverEndpointsEndpointTag)(nil)).Elem()
+}
+
+func (o ResolverEndpointsEndpointTagOutput) ToResolverEndpointsEndpointTagOutput() ResolverEndpointsEndpointTagOutput {
+	return o
+}
+
+func (o ResolverEndpointsEndpointTagOutput) ToResolverEndpointsEndpointTagOutputWithContext(ctx context.Context) ResolverEndpointsEndpointTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o ResolverEndpointsEndpointTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v ResolverEndpointsEndpointTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o ResolverEndpointsEndpointTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v ResolverEndpointsEndpointTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type ResolverEndpointsEndpointTagArrayOutput struct{ *pulumi.OutputState }
+
+func (ResolverEndpointsEndpointTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ResolverEndpointsEndpointTag)(nil)).Elem()
+}
+
+func (o ResolverEndpointsEndpointTagArrayOutput) ToResolverEndpointsEndpointTagArrayOutput() ResolverEndpointsEndpointTagArrayOutput {
+	return o
+}
+
+func (o ResolverEndpointsEndpointTagArrayOutput) ToResolverEndpointsEndpointTagArrayOutputWithContext(ctx context.Context) ResolverEndpointsEndpointTagArrayOutput {
+	return o
+}
+
+func (o ResolverEndpointsEndpointTagArrayOutput) Index(i pulumi.IntInput) ResolverEndpointsEndpointTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ResolverEndpointsEndpointTag {
+		return vs[0].([]ResolverEndpointsEndpointTag)[vs[1].(int)]
+	}).(ResolverEndpointsEndpointTagOutput)
+}
+
+type ResolverEndpointsTagFilter struct {
+	// The key of the tag.
+	Key *string `pulumi:"key"`
+	// The values of the tag.
+	Values []string `pulumi:"values"`
+}
+
+// ResolverEndpointsTagFilterInput is an input type that accepts ResolverEndpointsTagFilterArgs and ResolverEndpointsTagFilterOutput values.
+// You can construct a concrete instance of `ResolverEndpointsTagFilterInput` via:
+//
+//	ResolverEndpointsTagFilterArgs{...}
+type ResolverEndpointsTagFilterInput interface {
+	pulumi.Input
+
+	ToResolverEndpointsTagFilterOutput() ResolverEndpointsTagFilterOutput
+	ToResolverEndpointsTagFilterOutputWithContext(context.Context) ResolverEndpointsTagFilterOutput
+}
+
+type ResolverEndpointsTagFilterArgs struct {
+	// The key of the tag.
+	Key pulumi.StringPtrInput `pulumi:"key"`
+	// The values of the tag.
+	Values pulumi.StringArrayInput `pulumi:"values"`
+}
+
+func (ResolverEndpointsTagFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResolverEndpointsTagFilter)(nil)).Elem()
+}
+
+func (i ResolverEndpointsTagFilterArgs) ToResolverEndpointsTagFilterOutput() ResolverEndpointsTagFilterOutput {
+	return i.ToResolverEndpointsTagFilterOutputWithContext(context.Background())
+}
+
+func (i ResolverEndpointsTagFilterArgs) ToResolverEndpointsTagFilterOutputWithContext(ctx context.Context) ResolverEndpointsTagFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResolverEndpointsTagFilterOutput)
+}
+
+// ResolverEndpointsTagFilterArrayInput is an input type that accepts ResolverEndpointsTagFilterArray and ResolverEndpointsTagFilterArrayOutput values.
+// You can construct a concrete instance of `ResolverEndpointsTagFilterArrayInput` via:
+//
+//	ResolverEndpointsTagFilterArray{ ResolverEndpointsTagFilterArgs{...} }
+type ResolverEndpointsTagFilterArrayInput interface {
+	pulumi.Input
+
+	ToResolverEndpointsTagFilterArrayOutput() ResolverEndpointsTagFilterArrayOutput
+	ToResolverEndpointsTagFilterArrayOutputWithContext(context.Context) ResolverEndpointsTagFilterArrayOutput
+}
+
+type ResolverEndpointsTagFilterArray []ResolverEndpointsTagFilterInput
+
+func (ResolverEndpointsTagFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ResolverEndpointsTagFilter)(nil)).Elem()
+}
+
+func (i ResolverEndpointsTagFilterArray) ToResolverEndpointsTagFilterArrayOutput() ResolverEndpointsTagFilterArrayOutput {
+	return i.ToResolverEndpointsTagFilterArrayOutputWithContext(context.Background())
+}
+
+func (i ResolverEndpointsTagFilterArray) ToResolverEndpointsTagFilterArrayOutputWithContext(ctx context.Context) ResolverEndpointsTagFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResolverEndpointsTagFilterArrayOutput)
+}
+
+type ResolverEndpointsTagFilterOutput struct{ *pulumi.OutputState }
+
+func (ResolverEndpointsTagFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResolverEndpointsTagFilter)(nil)).Elem()
+}
+
+func (o ResolverEndpointsTagFilterOutput) ToResolverEndpointsTagFilterOutput() ResolverEndpointsTagFilterOutput {
+	return o
+}
+
+func (o ResolverEndpointsTagFilterOutput) ToResolverEndpointsTagFilterOutputWithContext(ctx context.Context) ResolverEndpointsTagFilterOutput {
+	return o
+}
+
+// The key of the tag.
+func (o ResolverEndpointsTagFilterOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ResolverEndpointsTagFilter) *string { return v.Key }).(pulumi.StringPtrOutput)
+}
+
+// The values of the tag.
+func (o ResolverEndpointsTagFilterOutput) Values() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ResolverEndpointsTagFilter) []string { return v.Values }).(pulumi.StringArrayOutput)
+}
+
+type ResolverEndpointsTagFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (ResolverEndpointsTagFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ResolverEndpointsTagFilter)(nil)).Elem()
+}
+
+func (o ResolverEndpointsTagFilterArrayOutput) ToResolverEndpointsTagFilterArrayOutput() ResolverEndpointsTagFilterArrayOutput {
+	return o
+}
+
+func (o ResolverEndpointsTagFilterArrayOutput) ToResolverEndpointsTagFilterArrayOutputWithContext(ctx context.Context) ResolverEndpointsTagFilterArrayOutput {
+	return o
+}
+
+func (o ResolverEndpointsTagFilterArrayOutput) Index(i pulumi.IntInput) ResolverEndpointsTagFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ResolverEndpointsTagFilter {
+		return vs[0].([]ResolverEndpointsTagFilter)[vs[1].(int)]
+	}).(ResolverEndpointsTagFilterOutput)
+}
+
 type ResolverRuleForwardIp struct {
 	// IP address of the external DNS server. This parameter is only valid when the Type parameter is OUTBOUND and is a required parameter.
 	Ip string `pulumi:"ip"`
@@ -1307,6 +1979,112 @@ func (o ResolverRuleForwardIpArrayOutput) Index(i pulumi.IntInput) ResolverRuleF
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ResolverRuleForwardIp {
 		return vs[0].([]ResolverRuleForwardIp)[vs[1].(int)]
 	}).(ResolverRuleForwardIpOutput)
+}
+
+type ResolverRuleTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// ResolverRuleTagInput is an input type that accepts ResolverRuleTagArgs and ResolverRuleTagOutput values.
+// You can construct a concrete instance of `ResolverRuleTagInput` via:
+//
+//	ResolverRuleTagArgs{...}
+type ResolverRuleTagInput interface {
+	pulumi.Input
+
+	ToResolverRuleTagOutput() ResolverRuleTagOutput
+	ToResolverRuleTagOutputWithContext(context.Context) ResolverRuleTagOutput
+}
+
+type ResolverRuleTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (ResolverRuleTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResolverRuleTag)(nil)).Elem()
+}
+
+func (i ResolverRuleTagArgs) ToResolverRuleTagOutput() ResolverRuleTagOutput {
+	return i.ToResolverRuleTagOutputWithContext(context.Background())
+}
+
+func (i ResolverRuleTagArgs) ToResolverRuleTagOutputWithContext(ctx context.Context) ResolverRuleTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResolverRuleTagOutput)
+}
+
+// ResolverRuleTagArrayInput is an input type that accepts ResolverRuleTagArray and ResolverRuleTagArrayOutput values.
+// You can construct a concrete instance of `ResolverRuleTagArrayInput` via:
+//
+//	ResolverRuleTagArray{ ResolverRuleTagArgs{...} }
+type ResolverRuleTagArrayInput interface {
+	pulumi.Input
+
+	ToResolverRuleTagArrayOutput() ResolverRuleTagArrayOutput
+	ToResolverRuleTagArrayOutputWithContext(context.Context) ResolverRuleTagArrayOutput
+}
+
+type ResolverRuleTagArray []ResolverRuleTagInput
+
+func (ResolverRuleTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ResolverRuleTag)(nil)).Elem()
+}
+
+func (i ResolverRuleTagArray) ToResolverRuleTagArrayOutput() ResolverRuleTagArrayOutput {
+	return i.ToResolverRuleTagArrayOutputWithContext(context.Background())
+}
+
+func (i ResolverRuleTagArray) ToResolverRuleTagArrayOutputWithContext(ctx context.Context) ResolverRuleTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResolverRuleTagArrayOutput)
+}
+
+type ResolverRuleTagOutput struct{ *pulumi.OutputState }
+
+func (ResolverRuleTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResolverRuleTag)(nil)).Elem()
+}
+
+func (o ResolverRuleTagOutput) ToResolverRuleTagOutput() ResolverRuleTagOutput {
+	return o
+}
+
+func (o ResolverRuleTagOutput) ToResolverRuleTagOutputWithContext(ctx context.Context) ResolverRuleTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o ResolverRuleTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v ResolverRuleTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o ResolverRuleTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v ResolverRuleTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type ResolverRuleTagArrayOutput struct{ *pulumi.OutputState }
+
+func (ResolverRuleTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ResolverRuleTag)(nil)).Elem()
+}
+
+func (o ResolverRuleTagArrayOutput) ToResolverRuleTagArrayOutput() ResolverRuleTagArrayOutput {
+	return o
+}
+
+func (o ResolverRuleTagArrayOutput) ToResolverRuleTagArrayOutputWithContext(ctx context.Context) ResolverRuleTagArrayOutput {
+	return o
+}
+
+func (o ResolverRuleTagArrayOutput) Index(i pulumi.IntInput) ResolverRuleTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ResolverRuleTag {
+		return vs[0].([]ResolverRuleTag)[vs[1].(int)]
+	}).(ResolverRuleTagOutput)
 }
 
 type ResolverRuleVpc struct {
@@ -1426,11 +2204,15 @@ type ResolverRulesRule struct {
 	// The id of the rule.
 	Id string `pulumi:"id"`
 	// The ISP of the exit IP address of the recursive DNS server.
-	Line int `pulumi:"line"`
+	Line string `pulumi:"line"`
 	// The name of the rule.
 	Name string `pulumi:"name"`
+	// The project name of the private zone resolver rule.
+	ProjectName string `pulumi:"projectName"`
 	// The id of the rule.
 	RuleId int `pulumi:"ruleId"`
+	// Tags.
+	Tags []ResolverRulesRuleTag `pulumi:"tags"`
 	// The type of the rule.
 	Type string `pulumi:"type"`
 	// The updated time of the rule.
@@ -1461,11 +2243,15 @@ type ResolverRulesRuleArgs struct {
 	// The id of the rule.
 	Id pulumi.StringInput `pulumi:"id"`
 	// The ISP of the exit IP address of the recursive DNS server.
-	Line pulumi.IntInput `pulumi:"line"`
+	Line pulumi.StringInput `pulumi:"line"`
 	// The name of the rule.
 	Name pulumi.StringInput `pulumi:"name"`
+	// The project name of the private zone resolver rule.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
 	// The id of the rule.
 	RuleId pulumi.IntInput `pulumi:"ruleId"`
+	// Tags.
+	Tags ResolverRulesRuleTagArrayInput `pulumi:"tags"`
 	// The type of the rule.
 	Type pulumi.StringInput `pulumi:"type"`
 	// The updated time of the rule.
@@ -1550,8 +2336,8 @@ func (o ResolverRulesRuleOutput) Id() pulumi.StringOutput {
 }
 
 // The ISP of the exit IP address of the recursive DNS server.
-func (o ResolverRulesRuleOutput) Line() pulumi.IntOutput {
-	return o.ApplyT(func(v ResolverRulesRule) int { return v.Line }).(pulumi.IntOutput)
+func (o ResolverRulesRuleOutput) Line() pulumi.StringOutput {
+	return o.ApplyT(func(v ResolverRulesRule) string { return v.Line }).(pulumi.StringOutput)
 }
 
 // The name of the rule.
@@ -1559,9 +2345,19 @@ func (o ResolverRulesRuleOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ResolverRulesRule) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// The project name of the private zone resolver rule.
+func (o ResolverRulesRuleOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v ResolverRulesRule) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
 // The id of the rule.
 func (o ResolverRulesRuleOutput) RuleId() pulumi.IntOutput {
 	return o.ApplyT(func(v ResolverRulesRule) int { return v.RuleId }).(pulumi.IntOutput)
+}
+
+// Tags.
+func (o ResolverRulesRuleOutput) Tags() ResolverRulesRuleTagArrayOutput {
+	return o.ApplyT(func(v ResolverRulesRule) []ResolverRulesRuleTag { return v.Tags }).(ResolverRulesRuleTagArrayOutput)
 }
 
 // The type of the rule.
@@ -1829,6 +2625,218 @@ func (o ResolverRulesRuleForwardIpArrayOutput) Index(i pulumi.IntInput) Resolver
 	}).(ResolverRulesRuleForwardIpOutput)
 }
 
+type ResolverRulesRuleTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// ResolverRulesRuleTagInput is an input type that accepts ResolverRulesRuleTagArgs and ResolverRulesRuleTagOutput values.
+// You can construct a concrete instance of `ResolverRulesRuleTagInput` via:
+//
+//	ResolverRulesRuleTagArgs{...}
+type ResolverRulesRuleTagInput interface {
+	pulumi.Input
+
+	ToResolverRulesRuleTagOutput() ResolverRulesRuleTagOutput
+	ToResolverRulesRuleTagOutputWithContext(context.Context) ResolverRulesRuleTagOutput
+}
+
+type ResolverRulesRuleTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (ResolverRulesRuleTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResolverRulesRuleTag)(nil)).Elem()
+}
+
+func (i ResolverRulesRuleTagArgs) ToResolverRulesRuleTagOutput() ResolverRulesRuleTagOutput {
+	return i.ToResolverRulesRuleTagOutputWithContext(context.Background())
+}
+
+func (i ResolverRulesRuleTagArgs) ToResolverRulesRuleTagOutputWithContext(ctx context.Context) ResolverRulesRuleTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResolverRulesRuleTagOutput)
+}
+
+// ResolverRulesRuleTagArrayInput is an input type that accepts ResolverRulesRuleTagArray and ResolverRulesRuleTagArrayOutput values.
+// You can construct a concrete instance of `ResolverRulesRuleTagArrayInput` via:
+//
+//	ResolverRulesRuleTagArray{ ResolverRulesRuleTagArgs{...} }
+type ResolverRulesRuleTagArrayInput interface {
+	pulumi.Input
+
+	ToResolverRulesRuleTagArrayOutput() ResolverRulesRuleTagArrayOutput
+	ToResolverRulesRuleTagArrayOutputWithContext(context.Context) ResolverRulesRuleTagArrayOutput
+}
+
+type ResolverRulesRuleTagArray []ResolverRulesRuleTagInput
+
+func (ResolverRulesRuleTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ResolverRulesRuleTag)(nil)).Elem()
+}
+
+func (i ResolverRulesRuleTagArray) ToResolverRulesRuleTagArrayOutput() ResolverRulesRuleTagArrayOutput {
+	return i.ToResolverRulesRuleTagArrayOutputWithContext(context.Background())
+}
+
+func (i ResolverRulesRuleTagArray) ToResolverRulesRuleTagArrayOutputWithContext(ctx context.Context) ResolverRulesRuleTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResolverRulesRuleTagArrayOutput)
+}
+
+type ResolverRulesRuleTagOutput struct{ *pulumi.OutputState }
+
+func (ResolverRulesRuleTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResolverRulesRuleTag)(nil)).Elem()
+}
+
+func (o ResolverRulesRuleTagOutput) ToResolverRulesRuleTagOutput() ResolverRulesRuleTagOutput {
+	return o
+}
+
+func (o ResolverRulesRuleTagOutput) ToResolverRulesRuleTagOutputWithContext(ctx context.Context) ResolverRulesRuleTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o ResolverRulesRuleTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v ResolverRulesRuleTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o ResolverRulesRuleTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v ResolverRulesRuleTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type ResolverRulesRuleTagArrayOutput struct{ *pulumi.OutputState }
+
+func (ResolverRulesRuleTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ResolverRulesRuleTag)(nil)).Elem()
+}
+
+func (o ResolverRulesRuleTagArrayOutput) ToResolverRulesRuleTagArrayOutput() ResolverRulesRuleTagArrayOutput {
+	return o
+}
+
+func (o ResolverRulesRuleTagArrayOutput) ToResolverRulesRuleTagArrayOutputWithContext(ctx context.Context) ResolverRulesRuleTagArrayOutput {
+	return o
+}
+
+func (o ResolverRulesRuleTagArrayOutput) Index(i pulumi.IntInput) ResolverRulesRuleTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ResolverRulesRuleTag {
+		return vs[0].([]ResolverRulesRuleTag)[vs[1].(int)]
+	}).(ResolverRulesRuleTagOutput)
+}
+
+type ResolverRulesTagFilter struct {
+	// The key of the tag.
+	Key *string `pulumi:"key"`
+	// The values of the tag.
+	Values []string `pulumi:"values"`
+}
+
+// ResolverRulesTagFilterInput is an input type that accepts ResolverRulesTagFilterArgs and ResolverRulesTagFilterOutput values.
+// You can construct a concrete instance of `ResolverRulesTagFilterInput` via:
+//
+//	ResolverRulesTagFilterArgs{...}
+type ResolverRulesTagFilterInput interface {
+	pulumi.Input
+
+	ToResolverRulesTagFilterOutput() ResolverRulesTagFilterOutput
+	ToResolverRulesTagFilterOutputWithContext(context.Context) ResolverRulesTagFilterOutput
+}
+
+type ResolverRulesTagFilterArgs struct {
+	// The key of the tag.
+	Key pulumi.StringPtrInput `pulumi:"key"`
+	// The values of the tag.
+	Values pulumi.StringArrayInput `pulumi:"values"`
+}
+
+func (ResolverRulesTagFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResolverRulesTagFilter)(nil)).Elem()
+}
+
+func (i ResolverRulesTagFilterArgs) ToResolverRulesTagFilterOutput() ResolverRulesTagFilterOutput {
+	return i.ToResolverRulesTagFilterOutputWithContext(context.Background())
+}
+
+func (i ResolverRulesTagFilterArgs) ToResolverRulesTagFilterOutputWithContext(ctx context.Context) ResolverRulesTagFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResolverRulesTagFilterOutput)
+}
+
+// ResolverRulesTagFilterArrayInput is an input type that accepts ResolverRulesTagFilterArray and ResolverRulesTagFilterArrayOutput values.
+// You can construct a concrete instance of `ResolverRulesTagFilterArrayInput` via:
+//
+//	ResolverRulesTagFilterArray{ ResolverRulesTagFilterArgs{...} }
+type ResolverRulesTagFilterArrayInput interface {
+	pulumi.Input
+
+	ToResolverRulesTagFilterArrayOutput() ResolverRulesTagFilterArrayOutput
+	ToResolverRulesTagFilterArrayOutputWithContext(context.Context) ResolverRulesTagFilterArrayOutput
+}
+
+type ResolverRulesTagFilterArray []ResolverRulesTagFilterInput
+
+func (ResolverRulesTagFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ResolverRulesTagFilter)(nil)).Elem()
+}
+
+func (i ResolverRulesTagFilterArray) ToResolverRulesTagFilterArrayOutput() ResolverRulesTagFilterArrayOutput {
+	return i.ToResolverRulesTagFilterArrayOutputWithContext(context.Background())
+}
+
+func (i ResolverRulesTagFilterArray) ToResolverRulesTagFilterArrayOutputWithContext(ctx context.Context) ResolverRulesTagFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResolverRulesTagFilterArrayOutput)
+}
+
+type ResolverRulesTagFilterOutput struct{ *pulumi.OutputState }
+
+func (ResolverRulesTagFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResolverRulesTagFilter)(nil)).Elem()
+}
+
+func (o ResolverRulesTagFilterOutput) ToResolverRulesTagFilterOutput() ResolverRulesTagFilterOutput {
+	return o
+}
+
+func (o ResolverRulesTagFilterOutput) ToResolverRulesTagFilterOutputWithContext(ctx context.Context) ResolverRulesTagFilterOutput {
+	return o
+}
+
+// The key of the tag.
+func (o ResolverRulesTagFilterOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ResolverRulesTagFilter) *string { return v.Key }).(pulumi.StringPtrOutput)
+}
+
+// The values of the tag.
+func (o ResolverRulesTagFilterOutput) Values() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ResolverRulesTagFilter) []string { return v.Values }).(pulumi.StringArrayOutput)
+}
+
+type ResolverRulesTagFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (ResolverRulesTagFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ResolverRulesTagFilter)(nil)).Elem()
+}
+
+func (o ResolverRulesTagFilterArrayOutput) ToResolverRulesTagFilterArrayOutput() ResolverRulesTagFilterArrayOutput {
+	return o
+}
+
+func (o ResolverRulesTagFilterArrayOutput) ToResolverRulesTagFilterArrayOutputWithContext(ctx context.Context) ResolverRulesTagFilterArrayOutput {
+	return o
+}
+
+func (o ResolverRulesTagFilterArrayOutput) Index(i pulumi.IntInput) ResolverRulesTagFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ResolverRulesTagFilter {
+		return vs[0].([]ResolverRulesTagFilter)[vs[1].(int)]
+	}).(ResolverRulesTagFilterOutput)
+}
+
 type GetPrivateZonesPrivateZone struct {
 	// The Bind vpc info of the private zone.
 	BindVpcs []GetPrivateZonesPrivateZoneBindVpc `pulumi:"bindVpcs"`
@@ -1840,6 +2848,8 @@ type GetPrivateZonesPrivateZone struct {
 	LastOperator string `pulumi:"lastOperator"`
 	// The line mode of Private Zone, specified whether the intelligent mode and the load balance function is enabled.
 	LineMode int `pulumi:"lineMode"`
+	// The project name of the private zone.
+	ProjectName string `pulumi:"projectName"`
 	// The record count of the private zone.
 	RecordCount int `pulumi:"recordCount"`
 	// Whether the recursion mode of Private Zone is enabled.
@@ -1848,6 +2858,8 @@ type GetPrivateZonesPrivateZone struct {
 	Regions []string `pulumi:"regions"`
 	// The remark of the private zone.
 	Remark string `pulumi:"remark"`
+	// Tags.
+	Tags []GetPrivateZonesPrivateZoneTag `pulumi:"tags"`
 	// The updated time of the private zone.
 	UpdatedAt string `pulumi:"updatedAt"`
 	// The zid of Private Zone.
@@ -1878,6 +2890,8 @@ type GetPrivateZonesPrivateZoneArgs struct {
 	LastOperator pulumi.StringInput `pulumi:"lastOperator"`
 	// The line mode of Private Zone, specified whether the intelligent mode and the load balance function is enabled.
 	LineMode pulumi.IntInput `pulumi:"lineMode"`
+	// The project name of the private zone.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
 	// The record count of the private zone.
 	RecordCount pulumi.IntInput `pulumi:"recordCount"`
 	// Whether the recursion mode of Private Zone is enabled.
@@ -1886,6 +2900,8 @@ type GetPrivateZonesPrivateZoneArgs struct {
 	Regions pulumi.StringArrayInput `pulumi:"regions"`
 	// The remark of the private zone.
 	Remark pulumi.StringInput `pulumi:"remark"`
+	// Tags.
+	Tags GetPrivateZonesPrivateZoneTagArrayInput `pulumi:"tags"`
 	// The updated time of the private zone.
 	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
 	// The zid of Private Zone.
@@ -1970,6 +2986,11 @@ func (o GetPrivateZonesPrivateZoneOutput) LineMode() pulumi.IntOutput {
 	return o.ApplyT(func(v GetPrivateZonesPrivateZone) int { return v.LineMode }).(pulumi.IntOutput)
 }
 
+// The project name of the private zone.
+func (o GetPrivateZonesPrivateZoneOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivateZonesPrivateZone) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
 // The record count of the private zone.
 func (o GetPrivateZonesPrivateZoneOutput) RecordCount() pulumi.IntOutput {
 	return o.ApplyT(func(v GetPrivateZonesPrivateZone) int { return v.RecordCount }).(pulumi.IntOutput)
@@ -1988,6 +3009,11 @@ func (o GetPrivateZonesPrivateZoneOutput) Regions() pulumi.StringArrayOutput {
 // The remark of the private zone.
 func (o GetPrivateZonesPrivateZoneOutput) Remark() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPrivateZonesPrivateZone) string { return v.Remark }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o GetPrivateZonesPrivateZoneOutput) Tags() GetPrivateZonesPrivateZoneTagArrayOutput {
+	return o.ApplyT(func(v GetPrivateZonesPrivateZone) []GetPrivateZonesPrivateZoneTag { return v.Tags }).(GetPrivateZonesPrivateZoneTagArrayOutput)
 }
 
 // The updated time of the private zone.
@@ -2149,6 +3175,218 @@ func (o GetPrivateZonesPrivateZoneBindVpcArrayOutput) Index(i pulumi.IntInput) G
 	}).(GetPrivateZonesPrivateZoneBindVpcOutput)
 }
 
+type GetPrivateZonesPrivateZoneTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetPrivateZonesPrivateZoneTagInput is an input type that accepts GetPrivateZonesPrivateZoneTagArgs and GetPrivateZonesPrivateZoneTagOutput values.
+// You can construct a concrete instance of `GetPrivateZonesPrivateZoneTagInput` via:
+//
+//	GetPrivateZonesPrivateZoneTagArgs{...}
+type GetPrivateZonesPrivateZoneTagInput interface {
+	pulumi.Input
+
+	ToGetPrivateZonesPrivateZoneTagOutput() GetPrivateZonesPrivateZoneTagOutput
+	ToGetPrivateZonesPrivateZoneTagOutputWithContext(context.Context) GetPrivateZonesPrivateZoneTagOutput
+}
+
+type GetPrivateZonesPrivateZoneTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetPrivateZonesPrivateZoneTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPrivateZonesPrivateZoneTag)(nil)).Elem()
+}
+
+func (i GetPrivateZonesPrivateZoneTagArgs) ToGetPrivateZonesPrivateZoneTagOutput() GetPrivateZonesPrivateZoneTagOutput {
+	return i.ToGetPrivateZonesPrivateZoneTagOutputWithContext(context.Background())
+}
+
+func (i GetPrivateZonesPrivateZoneTagArgs) ToGetPrivateZonesPrivateZoneTagOutputWithContext(ctx context.Context) GetPrivateZonesPrivateZoneTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPrivateZonesPrivateZoneTagOutput)
+}
+
+// GetPrivateZonesPrivateZoneTagArrayInput is an input type that accepts GetPrivateZonesPrivateZoneTagArray and GetPrivateZonesPrivateZoneTagArrayOutput values.
+// You can construct a concrete instance of `GetPrivateZonesPrivateZoneTagArrayInput` via:
+//
+//	GetPrivateZonesPrivateZoneTagArray{ GetPrivateZonesPrivateZoneTagArgs{...} }
+type GetPrivateZonesPrivateZoneTagArrayInput interface {
+	pulumi.Input
+
+	ToGetPrivateZonesPrivateZoneTagArrayOutput() GetPrivateZonesPrivateZoneTagArrayOutput
+	ToGetPrivateZonesPrivateZoneTagArrayOutputWithContext(context.Context) GetPrivateZonesPrivateZoneTagArrayOutput
+}
+
+type GetPrivateZonesPrivateZoneTagArray []GetPrivateZonesPrivateZoneTagInput
+
+func (GetPrivateZonesPrivateZoneTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPrivateZonesPrivateZoneTag)(nil)).Elem()
+}
+
+func (i GetPrivateZonesPrivateZoneTagArray) ToGetPrivateZonesPrivateZoneTagArrayOutput() GetPrivateZonesPrivateZoneTagArrayOutput {
+	return i.ToGetPrivateZonesPrivateZoneTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetPrivateZonesPrivateZoneTagArray) ToGetPrivateZonesPrivateZoneTagArrayOutputWithContext(ctx context.Context) GetPrivateZonesPrivateZoneTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPrivateZonesPrivateZoneTagArrayOutput)
+}
+
+type GetPrivateZonesPrivateZoneTagOutput struct{ *pulumi.OutputState }
+
+func (GetPrivateZonesPrivateZoneTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPrivateZonesPrivateZoneTag)(nil)).Elem()
+}
+
+func (o GetPrivateZonesPrivateZoneTagOutput) ToGetPrivateZonesPrivateZoneTagOutput() GetPrivateZonesPrivateZoneTagOutput {
+	return o
+}
+
+func (o GetPrivateZonesPrivateZoneTagOutput) ToGetPrivateZonesPrivateZoneTagOutputWithContext(ctx context.Context) GetPrivateZonesPrivateZoneTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetPrivateZonesPrivateZoneTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivateZonesPrivateZoneTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetPrivateZonesPrivateZoneTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivateZonesPrivateZoneTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetPrivateZonesPrivateZoneTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetPrivateZonesPrivateZoneTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPrivateZonesPrivateZoneTag)(nil)).Elem()
+}
+
+func (o GetPrivateZonesPrivateZoneTagArrayOutput) ToGetPrivateZonesPrivateZoneTagArrayOutput() GetPrivateZonesPrivateZoneTagArrayOutput {
+	return o
+}
+
+func (o GetPrivateZonesPrivateZoneTagArrayOutput) ToGetPrivateZonesPrivateZoneTagArrayOutputWithContext(ctx context.Context) GetPrivateZonesPrivateZoneTagArrayOutput {
+	return o
+}
+
+func (o GetPrivateZonesPrivateZoneTagArrayOutput) Index(i pulumi.IntInput) GetPrivateZonesPrivateZoneTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPrivateZonesPrivateZoneTag {
+		return vs[0].([]GetPrivateZonesPrivateZoneTag)[vs[1].(int)]
+	}).(GetPrivateZonesPrivateZoneTagOutput)
+}
+
+type GetPrivateZonesTagFilter struct {
+	// The key of the tag.
+	Key *string `pulumi:"key"`
+	// The values of the tag.
+	Values []string `pulumi:"values"`
+}
+
+// GetPrivateZonesTagFilterInput is an input type that accepts GetPrivateZonesTagFilterArgs and GetPrivateZonesTagFilterOutput values.
+// You can construct a concrete instance of `GetPrivateZonesTagFilterInput` via:
+//
+//	GetPrivateZonesTagFilterArgs{...}
+type GetPrivateZonesTagFilterInput interface {
+	pulumi.Input
+
+	ToGetPrivateZonesTagFilterOutput() GetPrivateZonesTagFilterOutput
+	ToGetPrivateZonesTagFilterOutputWithContext(context.Context) GetPrivateZonesTagFilterOutput
+}
+
+type GetPrivateZonesTagFilterArgs struct {
+	// The key of the tag.
+	Key pulumi.StringPtrInput `pulumi:"key"`
+	// The values of the tag.
+	Values pulumi.StringArrayInput `pulumi:"values"`
+}
+
+func (GetPrivateZonesTagFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPrivateZonesTagFilter)(nil)).Elem()
+}
+
+func (i GetPrivateZonesTagFilterArgs) ToGetPrivateZonesTagFilterOutput() GetPrivateZonesTagFilterOutput {
+	return i.ToGetPrivateZonesTagFilterOutputWithContext(context.Background())
+}
+
+func (i GetPrivateZonesTagFilterArgs) ToGetPrivateZonesTagFilterOutputWithContext(ctx context.Context) GetPrivateZonesTagFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPrivateZonesTagFilterOutput)
+}
+
+// GetPrivateZonesTagFilterArrayInput is an input type that accepts GetPrivateZonesTagFilterArray and GetPrivateZonesTagFilterArrayOutput values.
+// You can construct a concrete instance of `GetPrivateZonesTagFilterArrayInput` via:
+//
+//	GetPrivateZonesTagFilterArray{ GetPrivateZonesTagFilterArgs{...} }
+type GetPrivateZonesTagFilterArrayInput interface {
+	pulumi.Input
+
+	ToGetPrivateZonesTagFilterArrayOutput() GetPrivateZonesTagFilterArrayOutput
+	ToGetPrivateZonesTagFilterArrayOutputWithContext(context.Context) GetPrivateZonesTagFilterArrayOutput
+}
+
+type GetPrivateZonesTagFilterArray []GetPrivateZonesTagFilterInput
+
+func (GetPrivateZonesTagFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPrivateZonesTagFilter)(nil)).Elem()
+}
+
+func (i GetPrivateZonesTagFilterArray) ToGetPrivateZonesTagFilterArrayOutput() GetPrivateZonesTagFilterArrayOutput {
+	return i.ToGetPrivateZonesTagFilterArrayOutputWithContext(context.Background())
+}
+
+func (i GetPrivateZonesTagFilterArray) ToGetPrivateZonesTagFilterArrayOutputWithContext(ctx context.Context) GetPrivateZonesTagFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPrivateZonesTagFilterArrayOutput)
+}
+
+type GetPrivateZonesTagFilterOutput struct{ *pulumi.OutputState }
+
+func (GetPrivateZonesTagFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPrivateZonesTagFilter)(nil)).Elem()
+}
+
+func (o GetPrivateZonesTagFilterOutput) ToGetPrivateZonesTagFilterOutput() GetPrivateZonesTagFilterOutput {
+	return o
+}
+
+func (o GetPrivateZonesTagFilterOutput) ToGetPrivateZonesTagFilterOutputWithContext(ctx context.Context) GetPrivateZonesTagFilterOutput {
+	return o
+}
+
+// The key of the tag.
+func (o GetPrivateZonesTagFilterOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetPrivateZonesTagFilter) *string { return v.Key }).(pulumi.StringPtrOutput)
+}
+
+// The values of the tag.
+func (o GetPrivateZonesTagFilterOutput) Values() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetPrivateZonesTagFilter) []string { return v.Values }).(pulumi.StringArrayOutput)
+}
+
+type GetPrivateZonesTagFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (GetPrivateZonesTagFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPrivateZonesTagFilter)(nil)).Elem()
+}
+
+func (o GetPrivateZonesTagFilterArrayOutput) ToGetPrivateZonesTagFilterArrayOutput() GetPrivateZonesTagFilterArrayOutput {
+	return o
+}
+
+func (o GetPrivateZonesTagFilterArrayOutput) ToGetPrivateZonesTagFilterArrayOutputWithContext(ctx context.Context) GetPrivateZonesTagFilterArrayOutput {
+	return o
+}
+
+func (o GetPrivateZonesTagFilterArrayOutput) Index(i pulumi.IntInput) GetPrivateZonesTagFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPrivateZonesTagFilter {
+		return vs[0].([]GetPrivateZonesTagFilter)[vs[1].(int)]
+	}).(GetPrivateZonesTagFilterOutput)
+}
+
 type GetRecordSetsRecordSet struct {
 	// The Complete domain name of the private zone record.
 	Fqdn string `pulumi:"fqdn"`
@@ -2300,9 +3538,9 @@ type GetRecordsRecord struct {
 	Host string `pulumi:"host"`
 	// The last operator account id of Private Zone Record.
 	LastOperator string `pulumi:"lastOperator"`
-	// The subnet id of Private Zone Record. This field is only effected when the `intelligentMode` of the private zone is true.
+	// The subnet id of Private Zone Record.
 	Line string `pulumi:"line"`
-	// The id of Private Zone Record.
+	// This field is deprecated, please use `recordIds` instead. The id of Private Zone Record.
 	RecordId string `pulumi:"recordId"`
 	// The remark of the private zone record.
 	Remark string `pulumi:"remark"`
@@ -2340,9 +3578,9 @@ type GetRecordsRecordArgs struct {
 	Host pulumi.StringInput `pulumi:"host"`
 	// The last operator account id of Private Zone Record.
 	LastOperator pulumi.StringInput `pulumi:"lastOperator"`
-	// The subnet id of Private Zone Record. This field is only effected when the `intelligentMode` of the private zone is true.
+	// The subnet id of Private Zone Record.
 	Line pulumi.StringInput `pulumi:"line"`
-	// The id of Private Zone Record.
+	// This field is deprecated, please use `recordIds` instead. The id of Private Zone Record.
 	RecordId pulumi.StringInput `pulumi:"recordId"`
 	// The remark of the private zone record.
 	Remark pulumi.StringInput `pulumi:"remark"`
@@ -2431,12 +3669,12 @@ func (o GetRecordsRecordOutput) LastOperator() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRecordsRecord) string { return v.LastOperator }).(pulumi.StringOutput)
 }
 
-// The subnet id of Private Zone Record. This field is only effected when the `intelligentMode` of the private zone is true.
+// The subnet id of Private Zone Record.
 func (o GetRecordsRecordOutput) Line() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRecordsRecord) string { return v.Line }).(pulumi.StringOutput)
 }
 
-// The id of Private Zone Record.
+// This field is deprecated, please use `recordIds` instead. The id of Private Zone Record.
 func (o GetRecordsRecordOutput) RecordId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRecordsRecord) string { return v.RecordId }).(pulumi.StringOutput)
 }
@@ -2509,10 +3747,14 @@ type GetResolverEndpointsEndpoint struct {
 	IpConfigs []GetResolverEndpointsEndpointIpConfig `pulumi:"ipConfigs"`
 	// The name of the private zone resolver endpoint.
 	Name string `pulumi:"name"`
+	// The project name of the private zone resolver endpoint.
+	ProjectName string `pulumi:"projectName"`
 	// The security group id of the endpoint.
 	SecurityGroupId string `pulumi:"securityGroupId"`
 	// The status of the private zone resolver endpoint.
 	Status string `pulumi:"status"`
+	// Tags.
+	Tags []GetResolverEndpointsEndpointTag `pulumi:"tags"`
 	// The updated time of the endpoint.
 	UpdatedAt string `pulumi:"updatedAt"`
 	// The vpc ID of the private zone resolver endpoint.
@@ -2545,10 +3787,14 @@ type GetResolverEndpointsEndpointArgs struct {
 	IpConfigs GetResolverEndpointsEndpointIpConfigArrayInput `pulumi:"ipConfigs"`
 	// The name of the private zone resolver endpoint.
 	Name pulumi.StringInput `pulumi:"name"`
+	// The project name of the private zone resolver endpoint.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
 	// The security group id of the endpoint.
 	SecurityGroupId pulumi.StringInput `pulumi:"securityGroupId"`
 	// The status of the private zone resolver endpoint.
 	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags GetResolverEndpointsEndpointTagArrayInput `pulumi:"tags"`
 	// The updated time of the endpoint.
 	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
 	// The vpc ID of the private zone resolver endpoint.
@@ -2638,6 +3884,11 @@ func (o GetResolverEndpointsEndpointOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetResolverEndpointsEndpoint) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// The project name of the private zone resolver endpoint.
+func (o GetResolverEndpointsEndpointOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResolverEndpointsEndpoint) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
 // The security group id of the endpoint.
 func (o GetResolverEndpointsEndpointOutput) SecurityGroupId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetResolverEndpointsEndpoint) string { return v.SecurityGroupId }).(pulumi.StringOutput)
@@ -2646,6 +3897,11 @@ func (o GetResolverEndpointsEndpointOutput) SecurityGroupId() pulumi.StringOutpu
 // The status of the private zone resolver endpoint.
 func (o GetResolverEndpointsEndpointOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v GetResolverEndpointsEndpoint) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o GetResolverEndpointsEndpointOutput) Tags() GetResolverEndpointsEndpointTagArrayOutput {
+	return o.ApplyT(func(v GetResolverEndpointsEndpoint) []GetResolverEndpointsEndpointTag { return v.Tags }).(GetResolverEndpointsEndpointTagArrayOutput)
 }
 
 // The updated time of the endpoint.
@@ -2798,6 +4054,218 @@ func (o GetResolverEndpointsEndpointIpConfigArrayOutput) Index(i pulumi.IntInput
 	}).(GetResolverEndpointsEndpointIpConfigOutput)
 }
 
+type GetResolverEndpointsEndpointTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetResolverEndpointsEndpointTagInput is an input type that accepts GetResolverEndpointsEndpointTagArgs and GetResolverEndpointsEndpointTagOutput values.
+// You can construct a concrete instance of `GetResolverEndpointsEndpointTagInput` via:
+//
+//	GetResolverEndpointsEndpointTagArgs{...}
+type GetResolverEndpointsEndpointTagInput interface {
+	pulumi.Input
+
+	ToGetResolverEndpointsEndpointTagOutput() GetResolverEndpointsEndpointTagOutput
+	ToGetResolverEndpointsEndpointTagOutputWithContext(context.Context) GetResolverEndpointsEndpointTagOutput
+}
+
+type GetResolverEndpointsEndpointTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetResolverEndpointsEndpointTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetResolverEndpointsEndpointTag)(nil)).Elem()
+}
+
+func (i GetResolverEndpointsEndpointTagArgs) ToGetResolverEndpointsEndpointTagOutput() GetResolverEndpointsEndpointTagOutput {
+	return i.ToGetResolverEndpointsEndpointTagOutputWithContext(context.Background())
+}
+
+func (i GetResolverEndpointsEndpointTagArgs) ToGetResolverEndpointsEndpointTagOutputWithContext(ctx context.Context) GetResolverEndpointsEndpointTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetResolverEndpointsEndpointTagOutput)
+}
+
+// GetResolverEndpointsEndpointTagArrayInput is an input type that accepts GetResolverEndpointsEndpointTagArray and GetResolverEndpointsEndpointTagArrayOutput values.
+// You can construct a concrete instance of `GetResolverEndpointsEndpointTagArrayInput` via:
+//
+//	GetResolverEndpointsEndpointTagArray{ GetResolverEndpointsEndpointTagArgs{...} }
+type GetResolverEndpointsEndpointTagArrayInput interface {
+	pulumi.Input
+
+	ToGetResolverEndpointsEndpointTagArrayOutput() GetResolverEndpointsEndpointTagArrayOutput
+	ToGetResolverEndpointsEndpointTagArrayOutputWithContext(context.Context) GetResolverEndpointsEndpointTagArrayOutput
+}
+
+type GetResolverEndpointsEndpointTagArray []GetResolverEndpointsEndpointTagInput
+
+func (GetResolverEndpointsEndpointTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetResolverEndpointsEndpointTag)(nil)).Elem()
+}
+
+func (i GetResolverEndpointsEndpointTagArray) ToGetResolverEndpointsEndpointTagArrayOutput() GetResolverEndpointsEndpointTagArrayOutput {
+	return i.ToGetResolverEndpointsEndpointTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetResolverEndpointsEndpointTagArray) ToGetResolverEndpointsEndpointTagArrayOutputWithContext(ctx context.Context) GetResolverEndpointsEndpointTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetResolverEndpointsEndpointTagArrayOutput)
+}
+
+type GetResolverEndpointsEndpointTagOutput struct{ *pulumi.OutputState }
+
+func (GetResolverEndpointsEndpointTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetResolverEndpointsEndpointTag)(nil)).Elem()
+}
+
+func (o GetResolverEndpointsEndpointTagOutput) ToGetResolverEndpointsEndpointTagOutput() GetResolverEndpointsEndpointTagOutput {
+	return o
+}
+
+func (o GetResolverEndpointsEndpointTagOutput) ToGetResolverEndpointsEndpointTagOutputWithContext(ctx context.Context) GetResolverEndpointsEndpointTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetResolverEndpointsEndpointTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResolverEndpointsEndpointTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetResolverEndpointsEndpointTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResolverEndpointsEndpointTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetResolverEndpointsEndpointTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetResolverEndpointsEndpointTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetResolverEndpointsEndpointTag)(nil)).Elem()
+}
+
+func (o GetResolverEndpointsEndpointTagArrayOutput) ToGetResolverEndpointsEndpointTagArrayOutput() GetResolverEndpointsEndpointTagArrayOutput {
+	return o
+}
+
+func (o GetResolverEndpointsEndpointTagArrayOutput) ToGetResolverEndpointsEndpointTagArrayOutputWithContext(ctx context.Context) GetResolverEndpointsEndpointTagArrayOutput {
+	return o
+}
+
+func (o GetResolverEndpointsEndpointTagArrayOutput) Index(i pulumi.IntInput) GetResolverEndpointsEndpointTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetResolverEndpointsEndpointTag {
+		return vs[0].([]GetResolverEndpointsEndpointTag)[vs[1].(int)]
+	}).(GetResolverEndpointsEndpointTagOutput)
+}
+
+type GetResolverEndpointsTagFilter struct {
+	// The key of the tag.
+	Key *string `pulumi:"key"`
+	// The values of the tag.
+	Values []string `pulumi:"values"`
+}
+
+// GetResolverEndpointsTagFilterInput is an input type that accepts GetResolverEndpointsTagFilterArgs and GetResolverEndpointsTagFilterOutput values.
+// You can construct a concrete instance of `GetResolverEndpointsTagFilterInput` via:
+//
+//	GetResolverEndpointsTagFilterArgs{...}
+type GetResolverEndpointsTagFilterInput interface {
+	pulumi.Input
+
+	ToGetResolverEndpointsTagFilterOutput() GetResolverEndpointsTagFilterOutput
+	ToGetResolverEndpointsTagFilterOutputWithContext(context.Context) GetResolverEndpointsTagFilterOutput
+}
+
+type GetResolverEndpointsTagFilterArgs struct {
+	// The key of the tag.
+	Key pulumi.StringPtrInput `pulumi:"key"`
+	// The values of the tag.
+	Values pulumi.StringArrayInput `pulumi:"values"`
+}
+
+func (GetResolverEndpointsTagFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetResolverEndpointsTagFilter)(nil)).Elem()
+}
+
+func (i GetResolverEndpointsTagFilterArgs) ToGetResolverEndpointsTagFilterOutput() GetResolverEndpointsTagFilterOutput {
+	return i.ToGetResolverEndpointsTagFilterOutputWithContext(context.Background())
+}
+
+func (i GetResolverEndpointsTagFilterArgs) ToGetResolverEndpointsTagFilterOutputWithContext(ctx context.Context) GetResolverEndpointsTagFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetResolverEndpointsTagFilterOutput)
+}
+
+// GetResolverEndpointsTagFilterArrayInput is an input type that accepts GetResolverEndpointsTagFilterArray and GetResolverEndpointsTagFilterArrayOutput values.
+// You can construct a concrete instance of `GetResolverEndpointsTagFilterArrayInput` via:
+//
+//	GetResolverEndpointsTagFilterArray{ GetResolverEndpointsTagFilterArgs{...} }
+type GetResolverEndpointsTagFilterArrayInput interface {
+	pulumi.Input
+
+	ToGetResolverEndpointsTagFilterArrayOutput() GetResolverEndpointsTagFilterArrayOutput
+	ToGetResolverEndpointsTagFilterArrayOutputWithContext(context.Context) GetResolverEndpointsTagFilterArrayOutput
+}
+
+type GetResolverEndpointsTagFilterArray []GetResolverEndpointsTagFilterInput
+
+func (GetResolverEndpointsTagFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetResolverEndpointsTagFilter)(nil)).Elem()
+}
+
+func (i GetResolverEndpointsTagFilterArray) ToGetResolverEndpointsTagFilterArrayOutput() GetResolverEndpointsTagFilterArrayOutput {
+	return i.ToGetResolverEndpointsTagFilterArrayOutputWithContext(context.Background())
+}
+
+func (i GetResolverEndpointsTagFilterArray) ToGetResolverEndpointsTagFilterArrayOutputWithContext(ctx context.Context) GetResolverEndpointsTagFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetResolverEndpointsTagFilterArrayOutput)
+}
+
+type GetResolverEndpointsTagFilterOutput struct{ *pulumi.OutputState }
+
+func (GetResolverEndpointsTagFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetResolverEndpointsTagFilter)(nil)).Elem()
+}
+
+func (o GetResolverEndpointsTagFilterOutput) ToGetResolverEndpointsTagFilterOutput() GetResolverEndpointsTagFilterOutput {
+	return o
+}
+
+func (o GetResolverEndpointsTagFilterOutput) ToGetResolverEndpointsTagFilterOutputWithContext(ctx context.Context) GetResolverEndpointsTagFilterOutput {
+	return o
+}
+
+// The key of the tag.
+func (o GetResolverEndpointsTagFilterOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetResolverEndpointsTagFilter) *string { return v.Key }).(pulumi.StringPtrOutput)
+}
+
+// The values of the tag.
+func (o GetResolverEndpointsTagFilterOutput) Values() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetResolverEndpointsTagFilter) []string { return v.Values }).(pulumi.StringArrayOutput)
+}
+
+type GetResolverEndpointsTagFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (GetResolverEndpointsTagFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetResolverEndpointsTagFilter)(nil)).Elem()
+}
+
+func (o GetResolverEndpointsTagFilterArrayOutput) ToGetResolverEndpointsTagFilterArrayOutput() GetResolverEndpointsTagFilterArrayOutput {
+	return o
+}
+
+func (o GetResolverEndpointsTagFilterArrayOutput) ToGetResolverEndpointsTagFilterArrayOutputWithContext(ctx context.Context) GetResolverEndpointsTagFilterArrayOutput {
+	return o
+}
+
+func (o GetResolverEndpointsTagFilterArrayOutput) Index(i pulumi.IntInput) GetResolverEndpointsTagFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetResolverEndpointsTagFilter {
+		return vs[0].([]GetResolverEndpointsTagFilter)[vs[1].(int)]
+	}).(GetResolverEndpointsTagFilterOutput)
+}
+
 type GetResolverRulesRule struct {
 	BindVpcs []GetResolverRulesRuleBindVpc `pulumi:"bindVpcs"`
 	// The created time of the rule.
@@ -2809,11 +4277,15 @@ type GetResolverRulesRule struct {
 	// The id of the rule.
 	Id string `pulumi:"id"`
 	// The ISP of the exit IP address of the recursive DNS server.
-	Line int `pulumi:"line"`
+	Line string `pulumi:"line"`
 	// The name of the rule.
 	Name string `pulumi:"name"`
+	// The project name of the private zone resolver rule.
+	ProjectName string `pulumi:"projectName"`
 	// The id of the rule.
 	RuleId int `pulumi:"ruleId"`
+	// Tags.
+	Tags []GetResolverRulesRuleTag `pulumi:"tags"`
 	// The type of the rule.
 	Type string `pulumi:"type"`
 	// The updated time of the rule.
@@ -2844,11 +4316,15 @@ type GetResolverRulesRuleArgs struct {
 	// The id of the rule.
 	Id pulumi.StringInput `pulumi:"id"`
 	// The ISP of the exit IP address of the recursive DNS server.
-	Line pulumi.IntInput `pulumi:"line"`
+	Line pulumi.StringInput `pulumi:"line"`
 	// The name of the rule.
 	Name pulumi.StringInput `pulumi:"name"`
+	// The project name of the private zone resolver rule.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
 	// The id of the rule.
 	RuleId pulumi.IntInput `pulumi:"ruleId"`
+	// Tags.
+	Tags GetResolverRulesRuleTagArrayInput `pulumi:"tags"`
 	// The type of the rule.
 	Type pulumi.StringInput `pulumi:"type"`
 	// The updated time of the rule.
@@ -2933,8 +4409,8 @@ func (o GetResolverRulesRuleOutput) Id() pulumi.StringOutput {
 }
 
 // The ISP of the exit IP address of the recursive DNS server.
-func (o GetResolverRulesRuleOutput) Line() pulumi.IntOutput {
-	return o.ApplyT(func(v GetResolverRulesRule) int { return v.Line }).(pulumi.IntOutput)
+func (o GetResolverRulesRuleOutput) Line() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResolverRulesRule) string { return v.Line }).(pulumi.StringOutput)
 }
 
 // The name of the rule.
@@ -2942,9 +4418,19 @@ func (o GetResolverRulesRuleOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetResolverRulesRule) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// The project name of the private zone resolver rule.
+func (o GetResolverRulesRuleOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResolverRulesRule) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
 // The id of the rule.
 func (o GetResolverRulesRuleOutput) RuleId() pulumi.IntOutput {
 	return o.ApplyT(func(v GetResolverRulesRule) int { return v.RuleId }).(pulumi.IntOutput)
+}
+
+// Tags.
+func (o GetResolverRulesRuleOutput) Tags() GetResolverRulesRuleTagArrayOutput {
+	return o.ApplyT(func(v GetResolverRulesRule) []GetResolverRulesRuleTag { return v.Tags }).(GetResolverRulesRuleTagArrayOutput)
 }
 
 // The type of the rule.
@@ -3212,25 +4698,251 @@ func (o GetResolverRulesRuleForwardIpArrayOutput) Index(i pulumi.IntInput) GetRe
 	}).(GetResolverRulesRuleForwardIpOutput)
 }
 
+type GetResolverRulesRuleTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetResolverRulesRuleTagInput is an input type that accepts GetResolverRulesRuleTagArgs and GetResolverRulesRuleTagOutput values.
+// You can construct a concrete instance of `GetResolverRulesRuleTagInput` via:
+//
+//	GetResolverRulesRuleTagArgs{...}
+type GetResolverRulesRuleTagInput interface {
+	pulumi.Input
+
+	ToGetResolverRulesRuleTagOutput() GetResolverRulesRuleTagOutput
+	ToGetResolverRulesRuleTagOutputWithContext(context.Context) GetResolverRulesRuleTagOutput
+}
+
+type GetResolverRulesRuleTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetResolverRulesRuleTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetResolverRulesRuleTag)(nil)).Elem()
+}
+
+func (i GetResolverRulesRuleTagArgs) ToGetResolverRulesRuleTagOutput() GetResolverRulesRuleTagOutput {
+	return i.ToGetResolverRulesRuleTagOutputWithContext(context.Background())
+}
+
+func (i GetResolverRulesRuleTagArgs) ToGetResolverRulesRuleTagOutputWithContext(ctx context.Context) GetResolverRulesRuleTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetResolverRulesRuleTagOutput)
+}
+
+// GetResolverRulesRuleTagArrayInput is an input type that accepts GetResolverRulesRuleTagArray and GetResolverRulesRuleTagArrayOutput values.
+// You can construct a concrete instance of `GetResolverRulesRuleTagArrayInput` via:
+//
+//	GetResolverRulesRuleTagArray{ GetResolverRulesRuleTagArgs{...} }
+type GetResolverRulesRuleTagArrayInput interface {
+	pulumi.Input
+
+	ToGetResolverRulesRuleTagArrayOutput() GetResolverRulesRuleTagArrayOutput
+	ToGetResolverRulesRuleTagArrayOutputWithContext(context.Context) GetResolverRulesRuleTagArrayOutput
+}
+
+type GetResolverRulesRuleTagArray []GetResolverRulesRuleTagInput
+
+func (GetResolverRulesRuleTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetResolverRulesRuleTag)(nil)).Elem()
+}
+
+func (i GetResolverRulesRuleTagArray) ToGetResolverRulesRuleTagArrayOutput() GetResolverRulesRuleTagArrayOutput {
+	return i.ToGetResolverRulesRuleTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetResolverRulesRuleTagArray) ToGetResolverRulesRuleTagArrayOutputWithContext(ctx context.Context) GetResolverRulesRuleTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetResolverRulesRuleTagArrayOutput)
+}
+
+type GetResolverRulesRuleTagOutput struct{ *pulumi.OutputState }
+
+func (GetResolverRulesRuleTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetResolverRulesRuleTag)(nil)).Elem()
+}
+
+func (o GetResolverRulesRuleTagOutput) ToGetResolverRulesRuleTagOutput() GetResolverRulesRuleTagOutput {
+	return o
+}
+
+func (o GetResolverRulesRuleTagOutput) ToGetResolverRulesRuleTagOutputWithContext(ctx context.Context) GetResolverRulesRuleTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetResolverRulesRuleTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResolverRulesRuleTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetResolverRulesRuleTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResolverRulesRuleTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetResolverRulesRuleTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetResolverRulesRuleTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetResolverRulesRuleTag)(nil)).Elem()
+}
+
+func (o GetResolverRulesRuleTagArrayOutput) ToGetResolverRulesRuleTagArrayOutput() GetResolverRulesRuleTagArrayOutput {
+	return o
+}
+
+func (o GetResolverRulesRuleTagArrayOutput) ToGetResolverRulesRuleTagArrayOutputWithContext(ctx context.Context) GetResolverRulesRuleTagArrayOutput {
+	return o
+}
+
+func (o GetResolverRulesRuleTagArrayOutput) Index(i pulumi.IntInput) GetResolverRulesRuleTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetResolverRulesRuleTag {
+		return vs[0].([]GetResolverRulesRuleTag)[vs[1].(int)]
+	}).(GetResolverRulesRuleTagOutput)
+}
+
+type GetResolverRulesTagFilter struct {
+	// The key of the tag.
+	Key *string `pulumi:"key"`
+	// The values of the tag.
+	Values []string `pulumi:"values"`
+}
+
+// GetResolverRulesTagFilterInput is an input type that accepts GetResolverRulesTagFilterArgs and GetResolverRulesTagFilterOutput values.
+// You can construct a concrete instance of `GetResolverRulesTagFilterInput` via:
+//
+//	GetResolverRulesTagFilterArgs{...}
+type GetResolverRulesTagFilterInput interface {
+	pulumi.Input
+
+	ToGetResolverRulesTagFilterOutput() GetResolverRulesTagFilterOutput
+	ToGetResolverRulesTagFilterOutputWithContext(context.Context) GetResolverRulesTagFilterOutput
+}
+
+type GetResolverRulesTagFilterArgs struct {
+	// The key of the tag.
+	Key pulumi.StringPtrInput `pulumi:"key"`
+	// The values of the tag.
+	Values pulumi.StringArrayInput `pulumi:"values"`
+}
+
+func (GetResolverRulesTagFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetResolverRulesTagFilter)(nil)).Elem()
+}
+
+func (i GetResolverRulesTagFilterArgs) ToGetResolverRulesTagFilterOutput() GetResolverRulesTagFilterOutput {
+	return i.ToGetResolverRulesTagFilterOutputWithContext(context.Background())
+}
+
+func (i GetResolverRulesTagFilterArgs) ToGetResolverRulesTagFilterOutputWithContext(ctx context.Context) GetResolverRulesTagFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetResolverRulesTagFilterOutput)
+}
+
+// GetResolverRulesTagFilterArrayInput is an input type that accepts GetResolverRulesTagFilterArray and GetResolverRulesTagFilterArrayOutput values.
+// You can construct a concrete instance of `GetResolverRulesTagFilterArrayInput` via:
+//
+//	GetResolverRulesTagFilterArray{ GetResolverRulesTagFilterArgs{...} }
+type GetResolverRulesTagFilterArrayInput interface {
+	pulumi.Input
+
+	ToGetResolverRulesTagFilterArrayOutput() GetResolverRulesTagFilterArrayOutput
+	ToGetResolverRulesTagFilterArrayOutputWithContext(context.Context) GetResolverRulesTagFilterArrayOutput
+}
+
+type GetResolverRulesTagFilterArray []GetResolverRulesTagFilterInput
+
+func (GetResolverRulesTagFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetResolverRulesTagFilter)(nil)).Elem()
+}
+
+func (i GetResolverRulesTagFilterArray) ToGetResolverRulesTagFilterArrayOutput() GetResolverRulesTagFilterArrayOutput {
+	return i.ToGetResolverRulesTagFilterArrayOutputWithContext(context.Background())
+}
+
+func (i GetResolverRulesTagFilterArray) ToGetResolverRulesTagFilterArrayOutputWithContext(ctx context.Context) GetResolverRulesTagFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetResolverRulesTagFilterArrayOutput)
+}
+
+type GetResolverRulesTagFilterOutput struct{ *pulumi.OutputState }
+
+func (GetResolverRulesTagFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetResolverRulesTagFilter)(nil)).Elem()
+}
+
+func (o GetResolverRulesTagFilterOutput) ToGetResolverRulesTagFilterOutput() GetResolverRulesTagFilterOutput {
+	return o
+}
+
+func (o GetResolverRulesTagFilterOutput) ToGetResolverRulesTagFilterOutputWithContext(ctx context.Context) GetResolverRulesTagFilterOutput {
+	return o
+}
+
+// The key of the tag.
+func (o GetResolverRulesTagFilterOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetResolverRulesTagFilter) *string { return v.Key }).(pulumi.StringPtrOutput)
+}
+
+// The values of the tag.
+func (o GetResolverRulesTagFilterOutput) Values() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetResolverRulesTagFilter) []string { return v.Values }).(pulumi.StringArrayOutput)
+}
+
+type GetResolverRulesTagFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (GetResolverRulesTagFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetResolverRulesTagFilter)(nil)).Elem()
+}
+
+func (o GetResolverRulesTagFilterArrayOutput) ToGetResolverRulesTagFilterArrayOutput() GetResolverRulesTagFilterArrayOutput {
+	return o
+}
+
+func (o GetResolverRulesTagFilterArrayOutput) ToGetResolverRulesTagFilterArrayOutputWithContext(ctx context.Context) GetResolverRulesTagFilterArrayOutput {
+	return o
+}
+
+func (o GetResolverRulesTagFilterArrayOutput) Index(i pulumi.IntInput) GetResolverRulesTagFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetResolverRulesTagFilter {
+		return vs[0].([]GetResolverRulesTagFilter)[vs[1].(int)]
+	}).(GetResolverRulesTagFilterOutput)
+}
+
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*PrivateZoneTagInput)(nil)).Elem(), PrivateZoneTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PrivateZoneTagArrayInput)(nil)).Elem(), PrivateZoneTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PrivateZoneVpcInput)(nil)).Elem(), PrivateZoneVpcArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PrivateZoneVpcArrayInput)(nil)).Elem(), PrivateZoneVpcArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PrivateZonesPrivateZoneInput)(nil)).Elem(), PrivateZonesPrivateZoneArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PrivateZonesPrivateZoneArrayInput)(nil)).Elem(), PrivateZonesPrivateZoneArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PrivateZonesPrivateZoneBindVpcInput)(nil)).Elem(), PrivateZonesPrivateZoneBindVpcArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PrivateZonesPrivateZoneBindVpcArrayInput)(nil)).Elem(), PrivateZonesPrivateZoneBindVpcArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PrivateZonesPrivateZoneTagInput)(nil)).Elem(), PrivateZonesPrivateZoneTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PrivateZonesPrivateZoneTagArrayInput)(nil)).Elem(), PrivateZonesPrivateZoneTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PrivateZonesTagFilterInput)(nil)).Elem(), PrivateZonesTagFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PrivateZonesTagFilterArrayInput)(nil)).Elem(), PrivateZonesTagFilterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RecordSetsRecordSetInput)(nil)).Elem(), RecordSetsRecordSetArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RecordSetsRecordSetArrayInput)(nil)).Elem(), RecordSetsRecordSetArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RecordsRecordInput)(nil)).Elem(), RecordsRecordArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RecordsRecordArrayInput)(nil)).Elem(), RecordsRecordArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ResolverEndpointIpConfigInput)(nil)).Elem(), ResolverEndpointIpConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ResolverEndpointIpConfigArrayInput)(nil)).Elem(), ResolverEndpointIpConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResolverEndpointTagInput)(nil)).Elem(), ResolverEndpointTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResolverEndpointTagArrayInput)(nil)).Elem(), ResolverEndpointTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ResolverEndpointsEndpointInput)(nil)).Elem(), ResolverEndpointsEndpointArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ResolverEndpointsEndpointArrayInput)(nil)).Elem(), ResolverEndpointsEndpointArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ResolverEndpointsEndpointIpConfigInput)(nil)).Elem(), ResolverEndpointsEndpointIpConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ResolverEndpointsEndpointIpConfigArrayInput)(nil)).Elem(), ResolverEndpointsEndpointIpConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResolverEndpointsEndpointTagInput)(nil)).Elem(), ResolverEndpointsEndpointTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResolverEndpointsEndpointTagArrayInput)(nil)).Elem(), ResolverEndpointsEndpointTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResolverEndpointsTagFilterInput)(nil)).Elem(), ResolverEndpointsTagFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResolverEndpointsTagFilterArrayInput)(nil)).Elem(), ResolverEndpointsTagFilterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ResolverRuleForwardIpInput)(nil)).Elem(), ResolverRuleForwardIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ResolverRuleForwardIpArrayInput)(nil)).Elem(), ResolverRuleForwardIpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResolverRuleTagInput)(nil)).Elem(), ResolverRuleTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResolverRuleTagArrayInput)(nil)).Elem(), ResolverRuleTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ResolverRuleVpcInput)(nil)).Elem(), ResolverRuleVpcArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ResolverRuleVpcArrayInput)(nil)).Elem(), ResolverRuleVpcArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ResolverRulesRuleInput)(nil)).Elem(), ResolverRulesRuleArgs{})
@@ -3239,10 +4951,18 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ResolverRulesRuleBindVpcArrayInput)(nil)).Elem(), ResolverRulesRuleBindVpcArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ResolverRulesRuleForwardIpInput)(nil)).Elem(), ResolverRulesRuleForwardIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ResolverRulesRuleForwardIpArrayInput)(nil)).Elem(), ResolverRulesRuleForwardIpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResolverRulesRuleTagInput)(nil)).Elem(), ResolverRulesRuleTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResolverRulesRuleTagArrayInput)(nil)).Elem(), ResolverRulesRuleTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResolverRulesTagFilterInput)(nil)).Elem(), ResolverRulesTagFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResolverRulesTagFilterArrayInput)(nil)).Elem(), ResolverRulesTagFilterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPrivateZonesPrivateZoneInput)(nil)).Elem(), GetPrivateZonesPrivateZoneArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPrivateZonesPrivateZoneArrayInput)(nil)).Elem(), GetPrivateZonesPrivateZoneArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPrivateZonesPrivateZoneBindVpcInput)(nil)).Elem(), GetPrivateZonesPrivateZoneBindVpcArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPrivateZonesPrivateZoneBindVpcArrayInput)(nil)).Elem(), GetPrivateZonesPrivateZoneBindVpcArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPrivateZonesPrivateZoneTagInput)(nil)).Elem(), GetPrivateZonesPrivateZoneTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPrivateZonesPrivateZoneTagArrayInput)(nil)).Elem(), GetPrivateZonesPrivateZoneTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPrivateZonesTagFilterInput)(nil)).Elem(), GetPrivateZonesTagFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPrivateZonesTagFilterArrayInput)(nil)).Elem(), GetPrivateZonesTagFilterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRecordSetsRecordSetInput)(nil)).Elem(), GetRecordSetsRecordSetArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRecordSetsRecordSetArrayInput)(nil)).Elem(), GetRecordSetsRecordSetArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRecordsRecordInput)(nil)).Elem(), GetRecordsRecordArgs{})
@@ -3251,30 +4971,52 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetResolverEndpointsEndpointArrayInput)(nil)).Elem(), GetResolverEndpointsEndpointArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetResolverEndpointsEndpointIpConfigInput)(nil)).Elem(), GetResolverEndpointsEndpointIpConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetResolverEndpointsEndpointIpConfigArrayInput)(nil)).Elem(), GetResolverEndpointsEndpointIpConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetResolverEndpointsEndpointTagInput)(nil)).Elem(), GetResolverEndpointsEndpointTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetResolverEndpointsEndpointTagArrayInput)(nil)).Elem(), GetResolverEndpointsEndpointTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetResolverEndpointsTagFilterInput)(nil)).Elem(), GetResolverEndpointsTagFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetResolverEndpointsTagFilterArrayInput)(nil)).Elem(), GetResolverEndpointsTagFilterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetResolverRulesRuleInput)(nil)).Elem(), GetResolverRulesRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetResolverRulesRuleArrayInput)(nil)).Elem(), GetResolverRulesRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetResolverRulesRuleBindVpcInput)(nil)).Elem(), GetResolverRulesRuleBindVpcArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetResolverRulesRuleBindVpcArrayInput)(nil)).Elem(), GetResolverRulesRuleBindVpcArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetResolverRulesRuleForwardIpInput)(nil)).Elem(), GetResolverRulesRuleForwardIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetResolverRulesRuleForwardIpArrayInput)(nil)).Elem(), GetResolverRulesRuleForwardIpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetResolverRulesRuleTagInput)(nil)).Elem(), GetResolverRulesRuleTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetResolverRulesRuleTagArrayInput)(nil)).Elem(), GetResolverRulesRuleTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetResolverRulesTagFilterInput)(nil)).Elem(), GetResolverRulesTagFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetResolverRulesTagFilterArrayInput)(nil)).Elem(), GetResolverRulesTagFilterArray{})
+	pulumi.RegisterOutputType(PrivateZoneTagOutput{})
+	pulumi.RegisterOutputType(PrivateZoneTagArrayOutput{})
 	pulumi.RegisterOutputType(PrivateZoneVpcOutput{})
 	pulumi.RegisterOutputType(PrivateZoneVpcArrayOutput{})
 	pulumi.RegisterOutputType(PrivateZonesPrivateZoneOutput{})
 	pulumi.RegisterOutputType(PrivateZonesPrivateZoneArrayOutput{})
 	pulumi.RegisterOutputType(PrivateZonesPrivateZoneBindVpcOutput{})
 	pulumi.RegisterOutputType(PrivateZonesPrivateZoneBindVpcArrayOutput{})
+	pulumi.RegisterOutputType(PrivateZonesPrivateZoneTagOutput{})
+	pulumi.RegisterOutputType(PrivateZonesPrivateZoneTagArrayOutput{})
+	pulumi.RegisterOutputType(PrivateZonesTagFilterOutput{})
+	pulumi.RegisterOutputType(PrivateZonesTagFilterArrayOutput{})
 	pulumi.RegisterOutputType(RecordSetsRecordSetOutput{})
 	pulumi.RegisterOutputType(RecordSetsRecordSetArrayOutput{})
 	pulumi.RegisterOutputType(RecordsRecordOutput{})
 	pulumi.RegisterOutputType(RecordsRecordArrayOutput{})
 	pulumi.RegisterOutputType(ResolverEndpointIpConfigOutput{})
 	pulumi.RegisterOutputType(ResolverEndpointIpConfigArrayOutput{})
+	pulumi.RegisterOutputType(ResolverEndpointTagOutput{})
+	pulumi.RegisterOutputType(ResolverEndpointTagArrayOutput{})
 	pulumi.RegisterOutputType(ResolverEndpointsEndpointOutput{})
 	pulumi.RegisterOutputType(ResolverEndpointsEndpointArrayOutput{})
 	pulumi.RegisterOutputType(ResolverEndpointsEndpointIpConfigOutput{})
 	pulumi.RegisterOutputType(ResolverEndpointsEndpointIpConfigArrayOutput{})
+	pulumi.RegisterOutputType(ResolverEndpointsEndpointTagOutput{})
+	pulumi.RegisterOutputType(ResolverEndpointsEndpointTagArrayOutput{})
+	pulumi.RegisterOutputType(ResolverEndpointsTagFilterOutput{})
+	pulumi.RegisterOutputType(ResolverEndpointsTagFilterArrayOutput{})
 	pulumi.RegisterOutputType(ResolverRuleForwardIpOutput{})
 	pulumi.RegisterOutputType(ResolverRuleForwardIpArrayOutput{})
+	pulumi.RegisterOutputType(ResolverRuleTagOutput{})
+	pulumi.RegisterOutputType(ResolverRuleTagArrayOutput{})
 	pulumi.RegisterOutputType(ResolverRuleVpcOutput{})
 	pulumi.RegisterOutputType(ResolverRuleVpcArrayOutput{})
 	pulumi.RegisterOutputType(ResolverRulesRuleOutput{})
@@ -3283,10 +5025,18 @@ func init() {
 	pulumi.RegisterOutputType(ResolverRulesRuleBindVpcArrayOutput{})
 	pulumi.RegisterOutputType(ResolverRulesRuleForwardIpOutput{})
 	pulumi.RegisterOutputType(ResolverRulesRuleForwardIpArrayOutput{})
+	pulumi.RegisterOutputType(ResolverRulesRuleTagOutput{})
+	pulumi.RegisterOutputType(ResolverRulesRuleTagArrayOutput{})
+	pulumi.RegisterOutputType(ResolverRulesTagFilterOutput{})
+	pulumi.RegisterOutputType(ResolverRulesTagFilterArrayOutput{})
 	pulumi.RegisterOutputType(GetPrivateZonesPrivateZoneOutput{})
 	pulumi.RegisterOutputType(GetPrivateZonesPrivateZoneArrayOutput{})
 	pulumi.RegisterOutputType(GetPrivateZonesPrivateZoneBindVpcOutput{})
 	pulumi.RegisterOutputType(GetPrivateZonesPrivateZoneBindVpcArrayOutput{})
+	pulumi.RegisterOutputType(GetPrivateZonesPrivateZoneTagOutput{})
+	pulumi.RegisterOutputType(GetPrivateZonesPrivateZoneTagArrayOutput{})
+	pulumi.RegisterOutputType(GetPrivateZonesTagFilterOutput{})
+	pulumi.RegisterOutputType(GetPrivateZonesTagFilterArrayOutput{})
 	pulumi.RegisterOutputType(GetRecordSetsRecordSetOutput{})
 	pulumi.RegisterOutputType(GetRecordSetsRecordSetArrayOutput{})
 	pulumi.RegisterOutputType(GetRecordsRecordOutput{})
@@ -3295,10 +5045,18 @@ func init() {
 	pulumi.RegisterOutputType(GetResolverEndpointsEndpointArrayOutput{})
 	pulumi.RegisterOutputType(GetResolverEndpointsEndpointIpConfigOutput{})
 	pulumi.RegisterOutputType(GetResolverEndpointsEndpointIpConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetResolverEndpointsEndpointTagOutput{})
+	pulumi.RegisterOutputType(GetResolverEndpointsEndpointTagArrayOutput{})
+	pulumi.RegisterOutputType(GetResolverEndpointsTagFilterOutput{})
+	pulumi.RegisterOutputType(GetResolverEndpointsTagFilterArrayOutput{})
 	pulumi.RegisterOutputType(GetResolverRulesRuleOutput{})
 	pulumi.RegisterOutputType(GetResolverRulesRuleArrayOutput{})
 	pulumi.RegisterOutputType(GetResolverRulesRuleBindVpcOutput{})
 	pulumi.RegisterOutputType(GetResolverRulesRuleBindVpcArrayOutput{})
 	pulumi.RegisterOutputType(GetResolverRulesRuleForwardIpOutput{})
 	pulumi.RegisterOutputType(GetResolverRulesRuleForwardIpArrayOutput{})
+	pulumi.RegisterOutputType(GetResolverRulesRuleTagOutput{})
+	pulumi.RegisterOutputType(GetResolverRulesRuleTagArrayOutput{})
+	pulumi.RegisterOutputType(GetResolverRulesTagFilterOutput{})
+	pulumi.RegisterOutputType(GetResolverRulesTagFilterArrayOutput{})
 }

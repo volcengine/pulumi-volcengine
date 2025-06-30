@@ -100,6 +100,8 @@ func GetInterRegionBandwidths(ctx *pulumi.Context, args *GetInterRegionBandwidth
 
 // A collection of arguments for invoking getInterRegionBandwidths.
 type GetInterRegionBandwidthsArgs struct {
+	// The ID of the cen.
+	CenId *string `pulumi:"cenId"`
 	// A list of cen inter region bandwidth IDs.
 	Ids []string `pulumi:"ids"`
 	// File name where to save data source results.
@@ -108,6 +110,8 @@ type GetInterRegionBandwidthsArgs struct {
 
 // A collection of values returned by getInterRegionBandwidths.
 type GetInterRegionBandwidthsResult struct {
+	// The cen ID of the cen inter region bandwidth.
+	CenId *string `pulumi:"cenId"`
 	// The provider-assigned unique ID for this managed resource.
 	Id  string   `pulumi:"id"`
 	Ids []string `pulumi:"ids"`
@@ -133,6 +137,8 @@ func GetInterRegionBandwidthsOutput(ctx *pulumi.Context, args GetInterRegionBand
 
 // A collection of arguments for invoking getInterRegionBandwidths.
 type GetInterRegionBandwidthsOutputArgs struct {
+	// The ID of the cen.
+	CenId pulumi.StringPtrInput `pulumi:"cenId"`
 	// A list of cen inter region bandwidth IDs.
 	Ids pulumi.StringArrayInput `pulumi:"ids"`
 	// File name where to save data source results.
@@ -156,6 +162,11 @@ func (o GetInterRegionBandwidthsResultOutput) ToGetInterRegionBandwidthsResultOu
 
 func (o GetInterRegionBandwidthsResultOutput) ToGetInterRegionBandwidthsResultOutputWithContext(ctx context.Context) GetInterRegionBandwidthsResultOutput {
 	return o
+}
+
+// The cen ID of the cen inter region bandwidth.
+func (o GetInterRegionBandwidthsResultOutput) CenId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetInterRegionBandwidthsResult) *string { return v.CenId }).(pulumi.StringPtrOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.

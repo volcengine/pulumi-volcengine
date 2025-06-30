@@ -16,7 +16,8 @@ class DatabaseArgs:
     def __init__(__self__, *,
                  db_name: pulumi.Input[str],
                  instance_id: pulumi.Input[str],
-                 character_set_name: Optional[pulumi.Input[str]] = None):
+                 character_set_name: Optional[pulumi.Input[str]] = None,
+                 db_desc: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Database resource.
         :param pulumi.Input[str] db_name: Name database.
@@ -28,11 +29,14 @@ class DatabaseArgs:
                Database names are disabled [keywords](https://www.volcengine.com/docs/6313/66162).
         :param pulumi.Input[str] instance_id: The ID of the RDS instance.
         :param pulumi.Input[str] character_set_name: Database character set. Currently supported character sets include: utf8, utf8mb4, latin1, ascii.
+        :param pulumi.Input[str] db_desc: The description information of the database, with a length not exceeding 256 characters. This field is optional. If this field is not set, or if this field is set but the length of the description information is 0, then the description information is empty.
         """
         pulumi.set(__self__, "db_name", db_name)
         pulumi.set(__self__, "instance_id", instance_id)
         if character_set_name is not None:
             pulumi.set(__self__, "character_set_name", character_set_name)
+        if db_desc is not None:
+            pulumi.set(__self__, "db_desc", db_desc)
 
     @property
     @pulumi.getter(name="dbName")
@@ -76,16 +80,30 @@ class DatabaseArgs:
     def character_set_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "character_set_name", value)
 
+    @property
+    @pulumi.getter(name="dbDesc")
+    def db_desc(self) -> Optional[pulumi.Input[str]]:
+        """
+        The description information of the database, with a length not exceeding 256 characters. This field is optional. If this field is not set, or if this field is set but the length of the description information is 0, then the description information is empty.
+        """
+        return pulumi.get(self, "db_desc")
+
+    @db_desc.setter
+    def db_desc(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "db_desc", value)
+
 
 @pulumi.input_type
 class _DatabaseState:
     def __init__(__self__, *,
                  character_set_name: Optional[pulumi.Input[str]] = None,
+                 db_desc: Optional[pulumi.Input[str]] = None,
                  db_name: Optional[pulumi.Input[str]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Database resources.
         :param pulumi.Input[str] character_set_name: Database character set. Currently supported character sets include: utf8, utf8mb4, latin1, ascii.
+        :param pulumi.Input[str] db_desc: The description information of the database, with a length not exceeding 256 characters. This field is optional. If this field is not set, or if this field is set but the length of the description information is 0, then the description information is empty.
         :param pulumi.Input[str] db_name: Name database.
                illustrate:
                Unique name.
@@ -97,6 +115,8 @@ class _DatabaseState:
         """
         if character_set_name is not None:
             pulumi.set(__self__, "character_set_name", character_set_name)
+        if db_desc is not None:
+            pulumi.set(__self__, "db_desc", db_desc)
         if db_name is not None:
             pulumi.set(__self__, "db_name", db_name)
         if instance_id is not None:
@@ -113,6 +133,18 @@ class _DatabaseState:
     @character_set_name.setter
     def character_set_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "character_set_name", value)
+
+    @property
+    @pulumi.getter(name="dbDesc")
+    def db_desc(self) -> Optional[pulumi.Input[str]]:
+        """
+        The description information of the database, with a length not exceeding 256 characters. This field is optional. If this field is not set, or if this field is set but the length of the description information is 0, then the description information is empty.
+        """
+        return pulumi.get(self, "db_desc")
+
+    @db_desc.setter
+    def db_desc(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "db_desc", value)
 
     @property
     @pulumi.getter(name="dbName")
@@ -151,6 +183,7 @@ class Database(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  character_set_name: Optional[pulumi.Input[str]] = None,
+                 db_desc: Optional[pulumi.Input[str]] = None,
                  db_name: Optional[pulumi.Input[str]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -195,7 +228,8 @@ class Database(pulumi.CustomResource):
             ])
         foo_database = volcengine.rds_mysql.Database("fooDatabase",
             db_name="acc-test",
-            instance_id=foo_instance.id)
+            instance_id=foo_instance.id,
+            db_desc="test-update")
         ```
 
         ## Import
@@ -209,6 +243,7 @@ class Database(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] character_set_name: Database character set. Currently supported character sets include: utf8, utf8mb4, latin1, ascii.
+        :param pulumi.Input[str] db_desc: The description information of the database, with a length not exceeding 256 characters. This field is optional. If this field is not set, or if this field is set but the length of the description information is 0, then the description information is empty.
         :param pulumi.Input[str] db_name: Name database.
                illustrate:
                Unique name.
@@ -265,7 +300,8 @@ class Database(pulumi.CustomResource):
             ])
         foo_database = volcengine.rds_mysql.Database("fooDatabase",
             db_name="acc-test",
-            instance_id=foo_instance.id)
+            instance_id=foo_instance.id,
+            db_desc="test-update")
         ```
 
         ## Import
@@ -292,6 +328,7 @@ class Database(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  character_set_name: Optional[pulumi.Input[str]] = None,
+                 db_desc: Optional[pulumi.Input[str]] = None,
                  db_name: Optional[pulumi.Input[str]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -304,6 +341,7 @@ class Database(pulumi.CustomResource):
             __props__ = DatabaseArgs.__new__(DatabaseArgs)
 
             __props__.__dict__["character_set_name"] = character_set_name
+            __props__.__dict__["db_desc"] = db_desc
             if db_name is None and not opts.urn:
                 raise TypeError("Missing required property 'db_name'")
             __props__.__dict__["db_name"] = db_name
@@ -321,6 +359,7 @@ class Database(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             character_set_name: Optional[pulumi.Input[str]] = None,
+            db_desc: Optional[pulumi.Input[str]] = None,
             db_name: Optional[pulumi.Input[str]] = None,
             instance_id: Optional[pulumi.Input[str]] = None) -> 'Database':
         """
@@ -331,6 +370,7 @@ class Database(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] character_set_name: Database character set. Currently supported character sets include: utf8, utf8mb4, latin1, ascii.
+        :param pulumi.Input[str] db_desc: The description information of the database, with a length not exceeding 256 characters. This field is optional. If this field is not set, or if this field is set but the length of the description information is 0, then the description information is empty.
         :param pulumi.Input[str] db_name: Name database.
                illustrate:
                Unique name.
@@ -345,6 +385,7 @@ class Database(pulumi.CustomResource):
         __props__ = _DatabaseState.__new__(_DatabaseState)
 
         __props__.__dict__["character_set_name"] = character_set_name
+        __props__.__dict__["db_desc"] = db_desc
         __props__.__dict__["db_name"] = db_name
         __props__.__dict__["instance_id"] = instance_id
         return Database(resource_name, opts=opts, __props__=__props__)
@@ -356,6 +397,14 @@ class Database(pulumi.CustomResource):
         Database character set. Currently supported character sets include: utf8, utf8mb4, latin1, ascii.
         """
         return pulumi.get(self, "character_set_name")
+
+    @property
+    @pulumi.getter(name="dbDesc")
+    def db_desc(self) -> pulumi.Output[Optional[str]]:
+        """
+        The description information of the database, with a length not exceeding 256 characters. This field is optional. If this field is not set, or if this field is set but the length of the description information is 0, then the description information is empty.
+        """
+        return pulumi.get(self, "db_desc")
 
     @property
     @pulumi.getter(name="dbName")

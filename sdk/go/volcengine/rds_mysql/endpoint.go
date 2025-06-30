@@ -30,22 +30,15 @@ import (
 //			_, err := rds_mysql.NewEndpoint(ctx, "foo", &rds_mysql.EndpointArgs{
 //				AutoAddNewNodes: pulumi.Bool(true),
 //				Description:     pulumi.String("tf-test-1"),
-//				Domain:          pulumi.String("mysql-38c3d4f05f6e-te-8c00-private.rds.ivolces.com"),
+//				DnsVisibility:   pulumi.Bool(false),
 //				EndpointName:    pulumi.String("tf-test-1"),
-//				InstanceId:      pulumi.String("mysql-38c3d4f05f6e"),
+//				InstanceId:      pulumi.String("mysql-b51d37110dd1"),
 //				Nodes: pulumi.StringArray{
 //					pulumi.String("Primary"),
-//					pulumi.String("mysql-38c3d4f05f6e-r3b0d"),
 //				},
-//				Port:                         pulumi.Int(3306),
-//				ReadOnlyNodeDistributionType: pulumi.String("Custom"),
+//				ReadOnlyNodeDistributionType: pulumi.String("RoundRobinAuto"),
 //				ReadOnlyNodeMaxDelayTime:     pulumi.Int(30),
 //				ReadOnlyNodeWeights: rds_mysql.EndpointReadOnlyNodeWeightArray{
-//					&rds_mysql.EndpointReadOnlyNodeWeightArgs{
-//						NodeId:   pulumi.String("mysql-38c3d4f05f6e-r3b0d"),
-//						NodeType: pulumi.String("ReadOnly"),
-//						Weight:   pulumi.Int(0),
-//					},
 //					&rds_mysql.EndpointReadOnlyNodeWeightArgs{
 //						NodeType: pulumi.String("Primary"),
 //						Weight:   pulumi.Int(100),
@@ -79,6 +72,10 @@ type Endpoint struct {
 	AutoAddNewNodes pulumi.BoolPtrOutput `pulumi:"autoAddNewNodes"`
 	// The description of the endpoint.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// Values:
+	// false: Volcano Engine private network resolution (default).
+	// true: Volcano Engine private and public network resolution.
+	DnsVisibility pulumi.BoolOutput `pulumi:"dnsVisibility"`
 	// Connection address, Please note that the connection address can only modify the prefix. In one call, it is not possible to modify both the connection address prefix and the port at the same time.
 	Domain pulumi.StringOutput `pulumi:"domain"`
 	// The id of the endpoint. Import an exist endpoint, usually for import a default endpoint generated with instance creating.
@@ -91,9 +88,7 @@ type Endpoint struct {
 	Nodes pulumi.StringArrayOutput `pulumi:"nodes"`
 	// The port. Cannot modify public network port. In one call, it is not possible to modify both the connection address prefix and the port at the same time.
 	Port pulumi.IntOutput `pulumi:"port"`
-	// Read weight allocation mode. This parameter is required when enabling read-write separation setting to TRUE. Possible values:
-	// Default: Automatically allocate weights based on specifications (default).
-	// Custom: Custom weight allocation.
+	// Read weight distribution mode. This parameter needs to be passed in when the read-write separation setting is true. When used as a request parameter in the CreateDBEndpoint and ModifyDBEndpoint interfaces, the value range is as follows: LoadSchedule: Load scheduling. RoundRobinCustom: Polling scheduling with custom weights. RoundRobinAuto: Polling scheduling with automatically allocated weights.
 	ReadOnlyNodeDistributionType pulumi.StringOutput `pulumi:"readOnlyNodeDistributionType"`
 	// The maximum delay threshold for read-only nodes, when the delay time of a read-only node exceeds this value, the read traffic will not be sent to that node, unit: seconds. Value range: 0~3600. Default value: 30.
 	ReadOnlyNodeMaxDelayTime pulumi.IntOutput `pulumi:"readOnlyNodeMaxDelayTime"`
@@ -101,8 +96,7 @@ type Endpoint struct {
 	ReadOnlyNodeWeights EndpointReadOnlyNodeWeightArrayOutput `pulumi:"readOnlyNodeWeights"`
 	// Reading and writing mode: ReadWrite, ReadOnly(Default).
 	ReadWriteMode pulumi.StringPtrOutput `pulumi:"readWriteMode"`
-	// Enable read-write separation. Possible values: TRUE, FALSE.
-	// This setting can be configured when ReadWriteMode is set to read-write, but cannot be configured when ReadWriteMode is set to read-only. This parameter only applies to the default terminal.
+	// Whether to enable read-write splitting. Values: true: Yes. Default value. false: No.
 	ReadWriteSpliting pulumi.BoolOutput `pulumi:"readWriteSpliting"`
 }
 
@@ -148,6 +142,10 @@ type endpointState struct {
 	AutoAddNewNodes *bool `pulumi:"autoAddNewNodes"`
 	// The description of the endpoint.
 	Description *string `pulumi:"description"`
+	// Values:
+	// false: Volcano Engine private network resolution (default).
+	// true: Volcano Engine private and public network resolution.
+	DnsVisibility *bool `pulumi:"dnsVisibility"`
 	// Connection address, Please note that the connection address can only modify the prefix. In one call, it is not possible to modify both the connection address prefix and the port at the same time.
 	Domain *string `pulumi:"domain"`
 	// The id of the endpoint. Import an exist endpoint, usually for import a default endpoint generated with instance creating.
@@ -160,9 +158,7 @@ type endpointState struct {
 	Nodes []string `pulumi:"nodes"`
 	// The port. Cannot modify public network port. In one call, it is not possible to modify both the connection address prefix and the port at the same time.
 	Port *int `pulumi:"port"`
-	// Read weight allocation mode. This parameter is required when enabling read-write separation setting to TRUE. Possible values:
-	// Default: Automatically allocate weights based on specifications (default).
-	// Custom: Custom weight allocation.
+	// Read weight distribution mode. This parameter needs to be passed in when the read-write separation setting is true. When used as a request parameter in the CreateDBEndpoint and ModifyDBEndpoint interfaces, the value range is as follows: LoadSchedule: Load scheduling. RoundRobinCustom: Polling scheduling with custom weights. RoundRobinAuto: Polling scheduling with automatically allocated weights.
 	ReadOnlyNodeDistributionType *string `pulumi:"readOnlyNodeDistributionType"`
 	// The maximum delay threshold for read-only nodes, when the delay time of a read-only node exceeds this value, the read traffic will not be sent to that node, unit: seconds. Value range: 0~3600. Default value: 30.
 	ReadOnlyNodeMaxDelayTime *int `pulumi:"readOnlyNodeMaxDelayTime"`
@@ -170,8 +166,7 @@ type endpointState struct {
 	ReadOnlyNodeWeights []EndpointReadOnlyNodeWeight `pulumi:"readOnlyNodeWeights"`
 	// Reading and writing mode: ReadWrite, ReadOnly(Default).
 	ReadWriteMode *string `pulumi:"readWriteMode"`
-	// Enable read-write separation. Possible values: TRUE, FALSE.
-	// This setting can be configured when ReadWriteMode is set to read-write, but cannot be configured when ReadWriteMode is set to read-only. This parameter only applies to the default terminal.
+	// Whether to enable read-write splitting. Values: true: Yes. Default value. false: No.
 	ReadWriteSpliting *bool `pulumi:"readWriteSpliting"`
 }
 
@@ -182,6 +177,10 @@ type EndpointState struct {
 	AutoAddNewNodes pulumi.BoolPtrInput
 	// The description of the endpoint.
 	Description pulumi.StringPtrInput
+	// Values:
+	// false: Volcano Engine private network resolution (default).
+	// true: Volcano Engine private and public network resolution.
+	DnsVisibility pulumi.BoolPtrInput
 	// Connection address, Please note that the connection address can only modify the prefix. In one call, it is not possible to modify both the connection address prefix and the port at the same time.
 	Domain pulumi.StringPtrInput
 	// The id of the endpoint. Import an exist endpoint, usually for import a default endpoint generated with instance creating.
@@ -194,9 +193,7 @@ type EndpointState struct {
 	Nodes pulumi.StringArrayInput
 	// The port. Cannot modify public network port. In one call, it is not possible to modify both the connection address prefix and the port at the same time.
 	Port pulumi.IntPtrInput
-	// Read weight allocation mode. This parameter is required when enabling read-write separation setting to TRUE. Possible values:
-	// Default: Automatically allocate weights based on specifications (default).
-	// Custom: Custom weight allocation.
+	// Read weight distribution mode. This parameter needs to be passed in when the read-write separation setting is true. When used as a request parameter in the CreateDBEndpoint and ModifyDBEndpoint interfaces, the value range is as follows: LoadSchedule: Load scheduling. RoundRobinCustom: Polling scheduling with custom weights. RoundRobinAuto: Polling scheduling with automatically allocated weights.
 	ReadOnlyNodeDistributionType pulumi.StringPtrInput
 	// The maximum delay threshold for read-only nodes, when the delay time of a read-only node exceeds this value, the read traffic will not be sent to that node, unit: seconds. Value range: 0~3600. Default value: 30.
 	ReadOnlyNodeMaxDelayTime pulumi.IntPtrInput
@@ -204,8 +201,7 @@ type EndpointState struct {
 	ReadOnlyNodeWeights EndpointReadOnlyNodeWeightArrayInput
 	// Reading and writing mode: ReadWrite, ReadOnly(Default).
 	ReadWriteMode pulumi.StringPtrInput
-	// Enable read-write separation. Possible values: TRUE, FALSE.
-	// This setting can be configured when ReadWriteMode is set to read-write, but cannot be configured when ReadWriteMode is set to read-only. This parameter only applies to the default terminal.
+	// Whether to enable read-write splitting. Values: true: Yes. Default value. false: No.
 	ReadWriteSpliting pulumi.BoolPtrInput
 }
 
@@ -220,6 +216,10 @@ type endpointArgs struct {
 	AutoAddNewNodes *bool `pulumi:"autoAddNewNodes"`
 	// The description of the endpoint.
 	Description *string `pulumi:"description"`
+	// Values:
+	// false: Volcano Engine private network resolution (default).
+	// true: Volcano Engine private and public network resolution.
+	DnsVisibility *bool `pulumi:"dnsVisibility"`
 	// Connection address, Please note that the connection address can only modify the prefix. In one call, it is not possible to modify both the connection address prefix and the port at the same time.
 	Domain *string `pulumi:"domain"`
 	// The id of the endpoint. Import an exist endpoint, usually for import a default endpoint generated with instance creating.
@@ -232,9 +232,7 @@ type endpointArgs struct {
 	Nodes []string `pulumi:"nodes"`
 	// The port. Cannot modify public network port. In one call, it is not possible to modify both the connection address prefix and the port at the same time.
 	Port *int `pulumi:"port"`
-	// Read weight allocation mode. This parameter is required when enabling read-write separation setting to TRUE. Possible values:
-	// Default: Automatically allocate weights based on specifications (default).
-	// Custom: Custom weight allocation.
+	// Read weight distribution mode. This parameter needs to be passed in when the read-write separation setting is true. When used as a request parameter in the CreateDBEndpoint and ModifyDBEndpoint interfaces, the value range is as follows: LoadSchedule: Load scheduling. RoundRobinCustom: Polling scheduling with custom weights. RoundRobinAuto: Polling scheduling with automatically allocated weights.
 	ReadOnlyNodeDistributionType *string `pulumi:"readOnlyNodeDistributionType"`
 	// The maximum delay threshold for read-only nodes, when the delay time of a read-only node exceeds this value, the read traffic will not be sent to that node, unit: seconds. Value range: 0~3600. Default value: 30.
 	ReadOnlyNodeMaxDelayTime *int `pulumi:"readOnlyNodeMaxDelayTime"`
@@ -242,8 +240,7 @@ type endpointArgs struct {
 	ReadOnlyNodeWeights []EndpointReadOnlyNodeWeight `pulumi:"readOnlyNodeWeights"`
 	// Reading and writing mode: ReadWrite, ReadOnly(Default).
 	ReadWriteMode *string `pulumi:"readWriteMode"`
-	// Enable read-write separation. Possible values: TRUE, FALSE.
-	// This setting can be configured when ReadWriteMode is set to read-write, but cannot be configured when ReadWriteMode is set to read-only. This parameter only applies to the default terminal.
+	// Whether to enable read-write splitting. Values: true: Yes. Default value. false: No.
 	ReadWriteSpliting *bool `pulumi:"readWriteSpliting"`
 }
 
@@ -255,6 +252,10 @@ type EndpointArgs struct {
 	AutoAddNewNodes pulumi.BoolPtrInput
 	// The description of the endpoint.
 	Description pulumi.StringPtrInput
+	// Values:
+	// false: Volcano Engine private network resolution (default).
+	// true: Volcano Engine private and public network resolution.
+	DnsVisibility pulumi.BoolPtrInput
 	// Connection address, Please note that the connection address can only modify the prefix. In one call, it is not possible to modify both the connection address prefix and the port at the same time.
 	Domain pulumi.StringPtrInput
 	// The id of the endpoint. Import an exist endpoint, usually for import a default endpoint generated with instance creating.
@@ -267,9 +268,7 @@ type EndpointArgs struct {
 	Nodes pulumi.StringArrayInput
 	// The port. Cannot modify public network port. In one call, it is not possible to modify both the connection address prefix and the port at the same time.
 	Port pulumi.IntPtrInput
-	// Read weight allocation mode. This parameter is required when enabling read-write separation setting to TRUE. Possible values:
-	// Default: Automatically allocate weights based on specifications (default).
-	// Custom: Custom weight allocation.
+	// Read weight distribution mode. This parameter needs to be passed in when the read-write separation setting is true. When used as a request parameter in the CreateDBEndpoint and ModifyDBEndpoint interfaces, the value range is as follows: LoadSchedule: Load scheduling. RoundRobinCustom: Polling scheduling with custom weights. RoundRobinAuto: Polling scheduling with automatically allocated weights.
 	ReadOnlyNodeDistributionType pulumi.StringPtrInput
 	// The maximum delay threshold for read-only nodes, when the delay time of a read-only node exceeds this value, the read traffic will not be sent to that node, unit: seconds. Value range: 0~3600. Default value: 30.
 	ReadOnlyNodeMaxDelayTime pulumi.IntPtrInput
@@ -277,8 +276,7 @@ type EndpointArgs struct {
 	ReadOnlyNodeWeights EndpointReadOnlyNodeWeightArrayInput
 	// Reading and writing mode: ReadWrite, ReadOnly(Default).
 	ReadWriteMode pulumi.StringPtrInput
-	// Enable read-write separation. Possible values: TRUE, FALSE.
-	// This setting can be configured when ReadWriteMode is set to read-write, but cannot be configured when ReadWriteMode is set to read-only. This parameter only applies to the default terminal.
+	// Whether to enable read-write splitting. Values: true: Yes. Default value. false: No.
 	ReadWriteSpliting pulumi.BoolPtrInput
 }
 
@@ -381,6 +379,13 @@ func (o EndpointOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Endpoint) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// Values:
+// false: Volcano Engine private network resolution (default).
+// true: Volcano Engine private and public network resolution.
+func (o EndpointOutput) DnsVisibility() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Endpoint) pulumi.BoolOutput { return v.DnsVisibility }).(pulumi.BoolOutput)
+}
+
 // Connection address, Please note that the connection address can only modify the prefix. In one call, it is not possible to modify both the connection address prefix and the port at the same time.
 func (o EndpointOutput) Domain() pulumi.StringOutput {
 	return o.ApplyT(func(v *Endpoint) pulumi.StringOutput { return v.Domain }).(pulumi.StringOutput)
@@ -411,9 +416,7 @@ func (o EndpointOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v *Endpoint) pulumi.IntOutput { return v.Port }).(pulumi.IntOutput)
 }
 
-// Read weight allocation mode. This parameter is required when enabling read-write separation setting to TRUE. Possible values:
-// Default: Automatically allocate weights based on specifications (default).
-// Custom: Custom weight allocation.
+// Read weight distribution mode. This parameter needs to be passed in when the read-write separation setting is true. When used as a request parameter in the CreateDBEndpoint and ModifyDBEndpoint interfaces, the value range is as follows: LoadSchedule: Load scheduling. RoundRobinCustom: Polling scheduling with custom weights. RoundRobinAuto: Polling scheduling with automatically allocated weights.
 func (o EndpointOutput) ReadOnlyNodeDistributionType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Endpoint) pulumi.StringOutput { return v.ReadOnlyNodeDistributionType }).(pulumi.StringOutput)
 }
@@ -433,8 +436,7 @@ func (o EndpointOutput) ReadWriteMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Endpoint) pulumi.StringPtrOutput { return v.ReadWriteMode }).(pulumi.StringPtrOutput)
 }
 
-// Enable read-write separation. Possible values: TRUE, FALSE.
-// This setting can be configured when ReadWriteMode is set to read-write, but cannot be configured when ReadWriteMode is set to read-only. This parameter only applies to the default terminal.
+// Whether to enable read-write splitting. Values: true: Yes. Default value. false: No.
 func (o EndpointOutput) ReadWriteSpliting() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Endpoint) pulumi.BoolOutput { return v.ReadWriteSpliting }).(pulumi.BoolOutput)
 }

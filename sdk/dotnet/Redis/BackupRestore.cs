@@ -85,6 +85,12 @@ namespace Pulumi.Volcengine.Redis
     public partial class BackupRestore : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Backup ID, used to specify the backups to be used when restoring by the backup set. When choosing to restore by backup set (i.e., BackupType is Full), this parameter is required. Use lifecycle and ignore_changes in import.
+        /// </summary>
+        [Output("backupPointId")]
+        public Output<string?> BackupPointId { get; private set; } = null!;
+
+        /// <summary>
         /// The type of backup. The value can be Full or Inc.
         /// </summary>
         [Output("backupType")]
@@ -100,7 +106,7 @@ namespace Pulumi.Volcengine.Redis
         /// Time point of backup, for example: 2021-11-09T06:07:26Z. Use lifecycle and ignore_changes in import.
         /// </summary>
         [Output("timePoint")]
-        public Output<string> TimePoint { get; private set; } = null!;
+        public Output<string?> TimePoint { get; private set; } = null!;
 
 
         /// <summary>
@@ -150,6 +156,12 @@ namespace Pulumi.Volcengine.Redis
     public sealed class BackupRestoreArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Backup ID, used to specify the backups to be used when restoring by the backup set. When choosing to restore by backup set (i.e., BackupType is Full), this parameter is required. Use lifecycle and ignore_changes in import.
+        /// </summary>
+        [Input("backupPointId")]
+        public Input<string>? BackupPointId { get; set; }
+
+        /// <summary>
         /// The type of backup. The value can be Full or Inc.
         /// </summary>
         [Input("backupType")]
@@ -164,8 +176,8 @@ namespace Pulumi.Volcengine.Redis
         /// <summary>
         /// Time point of backup, for example: 2021-11-09T06:07:26Z. Use lifecycle and ignore_changes in import.
         /// </summary>
-        [Input("timePoint", required: true)]
-        public Input<string> TimePoint { get; set; } = null!;
+        [Input("timePoint")]
+        public Input<string>? TimePoint { get; set; }
 
         public BackupRestoreArgs()
         {
@@ -175,6 +187,12 @@ namespace Pulumi.Volcengine.Redis
 
     public sealed class BackupRestoreState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Backup ID, used to specify the backups to be used when restoring by the backup set. When choosing to restore by backup set (i.e., BackupType is Full), this parameter is required. Use lifecycle and ignore_changes in import.
+        /// </summary>
+        [Input("backupPointId")]
+        public Input<string>? BackupPointId { get; set; }
+
         /// <summary>
         /// The type of backup. The value can be Full or Inc.
         /// </summary>

@@ -905,7 +905,7 @@ func (o InstanceNodeAvailabilityZoneArrayOutput) Index(i pulumi.IntInput) Instan
 	}).(InstanceNodeAvailabilityZoneOutput)
 }
 
-type InstanceParameterLogsParameterChangeLogs struct {
+type InstanceParameterLogsParameterChangeLog struct {
 	// The modifying time of parameter.
 	ModifyTime string `pulumi:"modifyTime"`
 	// The new parameter value.
@@ -920,18 +920,18 @@ type InstanceParameterLogsParameterChangeLogs struct {
 	ParameterStatus string `pulumi:"parameterStatus"`
 }
 
-// InstanceParameterLogsParameterChangeLogsInput is an input type that accepts InstanceParameterLogsParameterChangeLogsArgs and InstanceParameterLogsParameterChangeLogsOutput values.
-// You can construct a concrete instance of `InstanceParameterLogsParameterChangeLogsInput` via:
+// InstanceParameterLogsParameterChangeLogInput is an input type that accepts InstanceParameterLogsParameterChangeLogArgs and InstanceParameterLogsParameterChangeLogOutput values.
+// You can construct a concrete instance of `InstanceParameterLogsParameterChangeLogInput` via:
 //
-//	InstanceParameterLogsParameterChangeLogsArgs{...}
-type InstanceParameterLogsParameterChangeLogsInput interface {
+//	InstanceParameterLogsParameterChangeLogArgs{...}
+type InstanceParameterLogsParameterChangeLogInput interface {
 	pulumi.Input
 
-	ToInstanceParameterLogsParameterChangeLogsOutput() InstanceParameterLogsParameterChangeLogsOutput
-	ToInstanceParameterLogsParameterChangeLogsOutputWithContext(context.Context) InstanceParameterLogsParameterChangeLogsOutput
+	ToInstanceParameterLogsParameterChangeLogOutput() InstanceParameterLogsParameterChangeLogOutput
+	ToInstanceParameterLogsParameterChangeLogOutputWithContext(context.Context) InstanceParameterLogsParameterChangeLogOutput
 }
 
-type InstanceParameterLogsParameterChangeLogsArgs struct {
+type InstanceParameterLogsParameterChangeLogArgs struct {
 	// The modifying time of parameter.
 	ModifyTime pulumi.StringInput `pulumi:"modifyTime"`
 	// The new parameter value.
@@ -946,60 +946,105 @@ type InstanceParameterLogsParameterChangeLogsArgs struct {
 	ParameterStatus pulumi.StringInput `pulumi:"parameterStatus"`
 }
 
-func (InstanceParameterLogsParameterChangeLogsArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*InstanceParameterLogsParameterChangeLogs)(nil)).Elem()
+func (InstanceParameterLogsParameterChangeLogArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceParameterLogsParameterChangeLog)(nil)).Elem()
 }
 
-func (i InstanceParameterLogsParameterChangeLogsArgs) ToInstanceParameterLogsParameterChangeLogsOutput() InstanceParameterLogsParameterChangeLogsOutput {
-	return i.ToInstanceParameterLogsParameterChangeLogsOutputWithContext(context.Background())
+func (i InstanceParameterLogsParameterChangeLogArgs) ToInstanceParameterLogsParameterChangeLogOutput() InstanceParameterLogsParameterChangeLogOutput {
+	return i.ToInstanceParameterLogsParameterChangeLogOutputWithContext(context.Background())
 }
 
-func (i InstanceParameterLogsParameterChangeLogsArgs) ToInstanceParameterLogsParameterChangeLogsOutputWithContext(ctx context.Context) InstanceParameterLogsParameterChangeLogsOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceParameterLogsParameterChangeLogsOutput)
+func (i InstanceParameterLogsParameterChangeLogArgs) ToInstanceParameterLogsParameterChangeLogOutputWithContext(ctx context.Context) InstanceParameterLogsParameterChangeLogOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceParameterLogsParameterChangeLogOutput)
 }
 
-type InstanceParameterLogsParameterChangeLogsOutput struct{ *pulumi.OutputState }
+// InstanceParameterLogsParameterChangeLogArrayInput is an input type that accepts InstanceParameterLogsParameterChangeLogArray and InstanceParameterLogsParameterChangeLogArrayOutput values.
+// You can construct a concrete instance of `InstanceParameterLogsParameterChangeLogArrayInput` via:
+//
+//	InstanceParameterLogsParameterChangeLogArray{ InstanceParameterLogsParameterChangeLogArgs{...} }
+type InstanceParameterLogsParameterChangeLogArrayInput interface {
+	pulumi.Input
 
-func (InstanceParameterLogsParameterChangeLogsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*InstanceParameterLogsParameterChangeLogs)(nil)).Elem()
+	ToInstanceParameterLogsParameterChangeLogArrayOutput() InstanceParameterLogsParameterChangeLogArrayOutput
+	ToInstanceParameterLogsParameterChangeLogArrayOutputWithContext(context.Context) InstanceParameterLogsParameterChangeLogArrayOutput
 }
 
-func (o InstanceParameterLogsParameterChangeLogsOutput) ToInstanceParameterLogsParameterChangeLogsOutput() InstanceParameterLogsParameterChangeLogsOutput {
+type InstanceParameterLogsParameterChangeLogArray []InstanceParameterLogsParameterChangeLogInput
+
+func (InstanceParameterLogsParameterChangeLogArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstanceParameterLogsParameterChangeLog)(nil)).Elem()
+}
+
+func (i InstanceParameterLogsParameterChangeLogArray) ToInstanceParameterLogsParameterChangeLogArrayOutput() InstanceParameterLogsParameterChangeLogArrayOutput {
+	return i.ToInstanceParameterLogsParameterChangeLogArrayOutputWithContext(context.Background())
+}
+
+func (i InstanceParameterLogsParameterChangeLogArray) ToInstanceParameterLogsParameterChangeLogArrayOutputWithContext(ctx context.Context) InstanceParameterLogsParameterChangeLogArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceParameterLogsParameterChangeLogArrayOutput)
+}
+
+type InstanceParameterLogsParameterChangeLogOutput struct{ *pulumi.OutputState }
+
+func (InstanceParameterLogsParameterChangeLogOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceParameterLogsParameterChangeLog)(nil)).Elem()
+}
+
+func (o InstanceParameterLogsParameterChangeLogOutput) ToInstanceParameterLogsParameterChangeLogOutput() InstanceParameterLogsParameterChangeLogOutput {
 	return o
 }
 
-func (o InstanceParameterLogsParameterChangeLogsOutput) ToInstanceParameterLogsParameterChangeLogsOutputWithContext(ctx context.Context) InstanceParameterLogsParameterChangeLogsOutput {
+func (o InstanceParameterLogsParameterChangeLogOutput) ToInstanceParameterLogsParameterChangeLogOutputWithContext(ctx context.Context) InstanceParameterLogsParameterChangeLogOutput {
 	return o
 }
 
 // The modifying time of parameter.
-func (o InstanceParameterLogsParameterChangeLogsOutput) ModifyTime() pulumi.StringOutput {
-	return o.ApplyT(func(v InstanceParameterLogsParameterChangeLogs) string { return v.ModifyTime }).(pulumi.StringOutput)
+func (o InstanceParameterLogsParameterChangeLogOutput) ModifyTime() pulumi.StringOutput {
+	return o.ApplyT(func(v InstanceParameterLogsParameterChangeLog) string { return v.ModifyTime }).(pulumi.StringOutput)
 }
 
 // The new parameter value.
-func (o InstanceParameterLogsParameterChangeLogsOutput) NewParameterValue() pulumi.StringOutput {
-	return o.ApplyT(func(v InstanceParameterLogsParameterChangeLogs) string { return v.NewParameterValue }).(pulumi.StringOutput)
+func (o InstanceParameterLogsParameterChangeLogOutput) NewParameterValue() pulumi.StringOutput {
+	return o.ApplyT(func(v InstanceParameterLogsParameterChangeLog) string { return v.NewParameterValue }).(pulumi.StringOutput)
 }
 
 // The old parameter value.
-func (o InstanceParameterLogsParameterChangeLogsOutput) OldParameterValue() pulumi.StringOutput {
-	return o.ApplyT(func(v InstanceParameterLogsParameterChangeLogs) string { return v.OldParameterValue }).(pulumi.StringOutput)
+func (o InstanceParameterLogsParameterChangeLogOutput) OldParameterValue() pulumi.StringOutput {
+	return o.ApplyT(func(v InstanceParameterLogsParameterChangeLog) string { return v.OldParameterValue }).(pulumi.StringOutput)
 }
 
 // The parameter name.
-func (o InstanceParameterLogsParameterChangeLogsOutput) ParameterName() pulumi.StringOutput {
-	return o.ApplyT(func(v InstanceParameterLogsParameterChangeLogs) string { return v.ParameterName }).(pulumi.StringOutput)
+func (o InstanceParameterLogsParameterChangeLogOutput) ParameterName() pulumi.StringOutput {
+	return o.ApplyT(func(v InstanceParameterLogsParameterChangeLog) string { return v.ParameterName }).(pulumi.StringOutput)
 }
 
 // The node type to which the parameter belongs.
-func (o InstanceParameterLogsParameterChangeLogsOutput) ParameterRole() pulumi.StringOutput {
-	return o.ApplyT(func(v InstanceParameterLogsParameterChangeLogs) string { return v.ParameterRole }).(pulumi.StringOutput)
+func (o InstanceParameterLogsParameterChangeLogOutput) ParameterRole() pulumi.StringOutput {
+	return o.ApplyT(func(v InstanceParameterLogsParameterChangeLog) string { return v.ParameterRole }).(pulumi.StringOutput)
 }
 
 // The status of parameter change.
-func (o InstanceParameterLogsParameterChangeLogsOutput) ParameterStatus() pulumi.StringOutput {
-	return o.ApplyT(func(v InstanceParameterLogsParameterChangeLogs) string { return v.ParameterStatus }).(pulumi.StringOutput)
+func (o InstanceParameterLogsParameterChangeLogOutput) ParameterStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v InstanceParameterLogsParameterChangeLog) string { return v.ParameterStatus }).(pulumi.StringOutput)
+}
+
+type InstanceParameterLogsParameterChangeLogArrayOutput struct{ *pulumi.OutputState }
+
+func (InstanceParameterLogsParameterChangeLogArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstanceParameterLogsParameterChangeLog)(nil)).Elem()
+}
+
+func (o InstanceParameterLogsParameterChangeLogArrayOutput) ToInstanceParameterLogsParameterChangeLogArrayOutput() InstanceParameterLogsParameterChangeLogArrayOutput {
+	return o
+}
+
+func (o InstanceParameterLogsParameterChangeLogArrayOutput) ToInstanceParameterLogsParameterChangeLogArrayOutputWithContext(ctx context.Context) InstanceParameterLogsParameterChangeLogArrayOutput {
+	return o
+}
+
+func (o InstanceParameterLogsParameterChangeLogArrayOutput) Index(i pulumi.IntInput) InstanceParameterLogsParameterChangeLogOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) InstanceParameterLogsParameterChangeLog {
+		return vs[0].([]InstanceParameterLogsParameterChangeLog)[vs[1].(int)]
+	}).(InstanceParameterLogsParameterChangeLogOutput)
 }
 
 type InstanceParametersInstanceParameter struct {
@@ -5036,7 +5081,7 @@ func (o GetEndpointsEndpointDbAddressArrayOutput) Index(i pulumi.IntInput) GetEn
 	}).(GetEndpointsEndpointDbAddressOutput)
 }
 
-type GetInstanceParameterLogsParameterChangeLogs struct {
+type GetInstanceParameterLogsParameterChangeLog struct {
 	// The modifying time of parameter.
 	ModifyTime string `pulumi:"modifyTime"`
 	// The new parameter value.
@@ -5051,18 +5096,18 @@ type GetInstanceParameterLogsParameterChangeLogs struct {
 	ParameterStatus string `pulumi:"parameterStatus"`
 }
 
-// GetInstanceParameterLogsParameterChangeLogsInput is an input type that accepts GetInstanceParameterLogsParameterChangeLogsArgs and GetInstanceParameterLogsParameterChangeLogsOutput values.
-// You can construct a concrete instance of `GetInstanceParameterLogsParameterChangeLogsInput` via:
+// GetInstanceParameterLogsParameterChangeLogInput is an input type that accepts GetInstanceParameterLogsParameterChangeLogArgs and GetInstanceParameterLogsParameterChangeLogOutput values.
+// You can construct a concrete instance of `GetInstanceParameterLogsParameterChangeLogInput` via:
 //
-//	GetInstanceParameterLogsParameterChangeLogsArgs{...}
-type GetInstanceParameterLogsParameterChangeLogsInput interface {
+//	GetInstanceParameterLogsParameterChangeLogArgs{...}
+type GetInstanceParameterLogsParameterChangeLogInput interface {
 	pulumi.Input
 
-	ToGetInstanceParameterLogsParameterChangeLogsOutput() GetInstanceParameterLogsParameterChangeLogsOutput
-	ToGetInstanceParameterLogsParameterChangeLogsOutputWithContext(context.Context) GetInstanceParameterLogsParameterChangeLogsOutput
+	ToGetInstanceParameterLogsParameterChangeLogOutput() GetInstanceParameterLogsParameterChangeLogOutput
+	ToGetInstanceParameterLogsParameterChangeLogOutputWithContext(context.Context) GetInstanceParameterLogsParameterChangeLogOutput
 }
 
-type GetInstanceParameterLogsParameterChangeLogsArgs struct {
+type GetInstanceParameterLogsParameterChangeLogArgs struct {
 	// The modifying time of parameter.
 	ModifyTime pulumi.StringInput `pulumi:"modifyTime"`
 	// The new parameter value.
@@ -5077,60 +5122,105 @@ type GetInstanceParameterLogsParameterChangeLogsArgs struct {
 	ParameterStatus pulumi.StringInput `pulumi:"parameterStatus"`
 }
 
-func (GetInstanceParameterLogsParameterChangeLogsArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetInstanceParameterLogsParameterChangeLogs)(nil)).Elem()
+func (GetInstanceParameterLogsParameterChangeLogArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstanceParameterLogsParameterChangeLog)(nil)).Elem()
 }
 
-func (i GetInstanceParameterLogsParameterChangeLogsArgs) ToGetInstanceParameterLogsParameterChangeLogsOutput() GetInstanceParameterLogsParameterChangeLogsOutput {
-	return i.ToGetInstanceParameterLogsParameterChangeLogsOutputWithContext(context.Background())
+func (i GetInstanceParameterLogsParameterChangeLogArgs) ToGetInstanceParameterLogsParameterChangeLogOutput() GetInstanceParameterLogsParameterChangeLogOutput {
+	return i.ToGetInstanceParameterLogsParameterChangeLogOutputWithContext(context.Background())
 }
 
-func (i GetInstanceParameterLogsParameterChangeLogsArgs) ToGetInstanceParameterLogsParameterChangeLogsOutputWithContext(ctx context.Context) GetInstanceParameterLogsParameterChangeLogsOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetInstanceParameterLogsParameterChangeLogsOutput)
+func (i GetInstanceParameterLogsParameterChangeLogArgs) ToGetInstanceParameterLogsParameterChangeLogOutputWithContext(ctx context.Context) GetInstanceParameterLogsParameterChangeLogOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstanceParameterLogsParameterChangeLogOutput)
 }
 
-type GetInstanceParameterLogsParameterChangeLogsOutput struct{ *pulumi.OutputState }
+// GetInstanceParameterLogsParameterChangeLogArrayInput is an input type that accepts GetInstanceParameterLogsParameterChangeLogArray and GetInstanceParameterLogsParameterChangeLogArrayOutput values.
+// You can construct a concrete instance of `GetInstanceParameterLogsParameterChangeLogArrayInput` via:
+//
+//	GetInstanceParameterLogsParameterChangeLogArray{ GetInstanceParameterLogsParameterChangeLogArgs{...} }
+type GetInstanceParameterLogsParameterChangeLogArrayInput interface {
+	pulumi.Input
 
-func (GetInstanceParameterLogsParameterChangeLogsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetInstanceParameterLogsParameterChangeLogs)(nil)).Elem()
+	ToGetInstanceParameterLogsParameterChangeLogArrayOutput() GetInstanceParameterLogsParameterChangeLogArrayOutput
+	ToGetInstanceParameterLogsParameterChangeLogArrayOutputWithContext(context.Context) GetInstanceParameterLogsParameterChangeLogArrayOutput
 }
 
-func (o GetInstanceParameterLogsParameterChangeLogsOutput) ToGetInstanceParameterLogsParameterChangeLogsOutput() GetInstanceParameterLogsParameterChangeLogsOutput {
+type GetInstanceParameterLogsParameterChangeLogArray []GetInstanceParameterLogsParameterChangeLogInput
+
+func (GetInstanceParameterLogsParameterChangeLogArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstanceParameterLogsParameterChangeLog)(nil)).Elem()
+}
+
+func (i GetInstanceParameterLogsParameterChangeLogArray) ToGetInstanceParameterLogsParameterChangeLogArrayOutput() GetInstanceParameterLogsParameterChangeLogArrayOutput {
+	return i.ToGetInstanceParameterLogsParameterChangeLogArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstanceParameterLogsParameterChangeLogArray) ToGetInstanceParameterLogsParameterChangeLogArrayOutputWithContext(ctx context.Context) GetInstanceParameterLogsParameterChangeLogArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstanceParameterLogsParameterChangeLogArrayOutput)
+}
+
+type GetInstanceParameterLogsParameterChangeLogOutput struct{ *pulumi.OutputState }
+
+func (GetInstanceParameterLogsParameterChangeLogOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstanceParameterLogsParameterChangeLog)(nil)).Elem()
+}
+
+func (o GetInstanceParameterLogsParameterChangeLogOutput) ToGetInstanceParameterLogsParameterChangeLogOutput() GetInstanceParameterLogsParameterChangeLogOutput {
 	return o
 }
 
-func (o GetInstanceParameterLogsParameterChangeLogsOutput) ToGetInstanceParameterLogsParameterChangeLogsOutputWithContext(ctx context.Context) GetInstanceParameterLogsParameterChangeLogsOutput {
+func (o GetInstanceParameterLogsParameterChangeLogOutput) ToGetInstanceParameterLogsParameterChangeLogOutputWithContext(ctx context.Context) GetInstanceParameterLogsParameterChangeLogOutput {
 	return o
 }
 
 // The modifying time of parameter.
-func (o GetInstanceParameterLogsParameterChangeLogsOutput) ModifyTime() pulumi.StringOutput {
-	return o.ApplyT(func(v GetInstanceParameterLogsParameterChangeLogs) string { return v.ModifyTime }).(pulumi.StringOutput)
+func (o GetInstanceParameterLogsParameterChangeLogOutput) ModifyTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceParameterLogsParameterChangeLog) string { return v.ModifyTime }).(pulumi.StringOutput)
 }
 
 // The new parameter value.
-func (o GetInstanceParameterLogsParameterChangeLogsOutput) NewParameterValue() pulumi.StringOutput {
-	return o.ApplyT(func(v GetInstanceParameterLogsParameterChangeLogs) string { return v.NewParameterValue }).(pulumi.StringOutput)
+func (o GetInstanceParameterLogsParameterChangeLogOutput) NewParameterValue() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceParameterLogsParameterChangeLog) string { return v.NewParameterValue }).(pulumi.StringOutput)
 }
 
 // The old parameter value.
-func (o GetInstanceParameterLogsParameterChangeLogsOutput) OldParameterValue() pulumi.StringOutput {
-	return o.ApplyT(func(v GetInstanceParameterLogsParameterChangeLogs) string { return v.OldParameterValue }).(pulumi.StringOutput)
+func (o GetInstanceParameterLogsParameterChangeLogOutput) OldParameterValue() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceParameterLogsParameterChangeLog) string { return v.OldParameterValue }).(pulumi.StringOutput)
 }
 
 // The parameter name.
-func (o GetInstanceParameterLogsParameterChangeLogsOutput) ParameterName() pulumi.StringOutput {
-	return o.ApplyT(func(v GetInstanceParameterLogsParameterChangeLogs) string { return v.ParameterName }).(pulumi.StringOutput)
+func (o GetInstanceParameterLogsParameterChangeLogOutput) ParameterName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceParameterLogsParameterChangeLog) string { return v.ParameterName }).(pulumi.StringOutput)
 }
 
 // The node type to which the parameter belongs.
-func (o GetInstanceParameterLogsParameterChangeLogsOutput) ParameterRole() pulumi.StringOutput {
-	return o.ApplyT(func(v GetInstanceParameterLogsParameterChangeLogs) string { return v.ParameterRole }).(pulumi.StringOutput)
+func (o GetInstanceParameterLogsParameterChangeLogOutput) ParameterRole() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceParameterLogsParameterChangeLog) string { return v.ParameterRole }).(pulumi.StringOutput)
 }
 
 // The status of parameter change.
-func (o GetInstanceParameterLogsParameterChangeLogsOutput) ParameterStatus() pulumi.StringOutput {
-	return o.ApplyT(func(v GetInstanceParameterLogsParameterChangeLogs) string { return v.ParameterStatus }).(pulumi.StringOutput)
+func (o GetInstanceParameterLogsParameterChangeLogOutput) ParameterStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceParameterLogsParameterChangeLog) string { return v.ParameterStatus }).(pulumi.StringOutput)
+}
+
+type GetInstanceParameterLogsParameterChangeLogArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstanceParameterLogsParameterChangeLogArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstanceParameterLogsParameterChangeLog)(nil)).Elem()
+}
+
+func (o GetInstanceParameterLogsParameterChangeLogArrayOutput) ToGetInstanceParameterLogsParameterChangeLogArrayOutput() GetInstanceParameterLogsParameterChangeLogArrayOutput {
+	return o
+}
+
+func (o GetInstanceParameterLogsParameterChangeLogArrayOutput) ToGetInstanceParameterLogsParameterChangeLogArrayOutputWithContext(ctx context.Context) GetInstanceParameterLogsParameterChangeLogArrayOutput {
+	return o
+}
+
+func (o GetInstanceParameterLogsParameterChangeLogArrayOutput) Index(i pulumi.IntInput) GetInstanceParameterLogsParameterChangeLogOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstanceParameterLogsParameterChangeLog {
+		return vs[0].([]GetInstanceParameterLogsParameterChangeLog)[vs[1].(int)]
+	}).(GetInstanceParameterLogsParameterChangeLogOutput)
 }
 
 type GetInstanceParametersInstanceParameter struct {
@@ -8296,7 +8386,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceMongoArrayInput)(nil)).Elem(), InstanceMongoArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceNodeAvailabilityZoneInput)(nil)).Elem(), InstanceNodeAvailabilityZoneArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceNodeAvailabilityZoneArrayInput)(nil)).Elem(), InstanceNodeAvailabilityZoneArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*InstanceParameterLogsParameterChangeLogsInput)(nil)).Elem(), InstanceParameterLogsParameterChangeLogsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceParameterLogsParameterChangeLogInput)(nil)).Elem(), InstanceParameterLogsParameterChangeLogArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceParameterLogsParameterChangeLogArrayInput)(nil)).Elem(), InstanceParameterLogsParameterChangeLogArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceParametersInstanceParameterInput)(nil)).Elem(), InstanceParametersInstanceParameterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceParametersInstanceParameterArrayInput)(nil)).Elem(), InstanceParametersInstanceParameterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceParametersParameterInput)(nil)).Elem(), InstanceParametersParameterArgs{})
@@ -8352,7 +8443,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetEndpointsEndpointArrayInput)(nil)).Elem(), GetEndpointsEndpointArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetEndpointsEndpointDbAddressInput)(nil)).Elem(), GetEndpointsEndpointDbAddressArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetEndpointsEndpointDbAddressArrayInput)(nil)).Elem(), GetEndpointsEndpointDbAddressArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceParameterLogsParameterChangeLogsInput)(nil)).Elem(), GetInstanceParameterLogsParameterChangeLogsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceParameterLogsParameterChangeLogInput)(nil)).Elem(), GetInstanceParameterLogsParameterChangeLogArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceParameterLogsParameterChangeLogArrayInput)(nil)).Elem(), GetInstanceParameterLogsParameterChangeLogArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceParametersInstanceParameterInput)(nil)).Elem(), GetInstanceParametersInstanceParameterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceParametersInstanceParameterArrayInput)(nil)).Elem(), GetInstanceParametersInstanceParameterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceParametersParameterInput)(nil)).Elem(), GetInstanceParametersParameterArgs{})
@@ -8408,7 +8500,8 @@ func init() {
 	pulumi.RegisterOutputType(InstanceMongoArrayOutput{})
 	pulumi.RegisterOutputType(InstanceNodeAvailabilityZoneOutput{})
 	pulumi.RegisterOutputType(InstanceNodeAvailabilityZoneArrayOutput{})
-	pulumi.RegisterOutputType(InstanceParameterLogsParameterChangeLogsOutput{})
+	pulumi.RegisterOutputType(InstanceParameterLogsParameterChangeLogOutput{})
+	pulumi.RegisterOutputType(InstanceParameterLogsParameterChangeLogArrayOutput{})
 	pulumi.RegisterOutputType(InstanceParametersInstanceParameterOutput{})
 	pulumi.RegisterOutputType(InstanceParametersInstanceParameterArrayOutput{})
 	pulumi.RegisterOutputType(InstanceParametersParameterOutput{})
@@ -8464,7 +8557,8 @@ func init() {
 	pulumi.RegisterOutputType(GetEndpointsEndpointArrayOutput{})
 	pulumi.RegisterOutputType(GetEndpointsEndpointDbAddressOutput{})
 	pulumi.RegisterOutputType(GetEndpointsEndpointDbAddressArrayOutput{})
-	pulumi.RegisterOutputType(GetInstanceParameterLogsParameterChangeLogsOutput{})
+	pulumi.RegisterOutputType(GetInstanceParameterLogsParameterChangeLogOutput{})
+	pulumi.RegisterOutputType(GetInstanceParameterLogsParameterChangeLogArrayOutput{})
 	pulumi.RegisterOutputType(GetInstanceParametersInstanceParameterOutput{})
 	pulumi.RegisterOutputType(GetInstanceParametersInstanceParameterArrayOutput{})
 	pulumi.RegisterOutputType(GetInstanceParametersParameterOutput{})

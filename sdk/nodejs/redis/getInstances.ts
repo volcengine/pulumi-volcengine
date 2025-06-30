@@ -175,6 +175,9 @@ export interface GetInstancesResult {
      * The vpc ID of the redis instance.
      */
     readonly vpcId?: string;
+    /**
+     * The availability zone where the node is located.
+     */
     readonly zoneId?: string;
 }
 /**

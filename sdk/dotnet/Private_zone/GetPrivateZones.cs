@@ -70,6 +70,12 @@ namespace Pulumi.Volcengine.Private_zone
     public sealed class GetPrivateZonesArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
+        /// The keyword of zone name.
+        /// </summary>
+        [Input("keyWord")]
+        public string? KeyWord { get; set; }
+
+        /// <summary>
         /// The line mode of Private Zone, specified whether the intelligent mode and the load balance function is enabled.
         /// </summary>
         [Input("lineMode")]
@@ -88,6 +94,12 @@ namespace Pulumi.Volcengine.Private_zone
         public string? OutputFile { get; set; }
 
         /// <summary>
+        /// The project name of the private zone.
+        /// </summary>
+        [Input("projectName")]
+        public string? ProjectName { get; set; }
+
+        /// <summary>
         /// Whether the recursion mode of Private Zone is enabled.
         /// </summary>
         [Input("recursionMode")]
@@ -104,6 +116,18 @@ namespace Pulumi.Volcengine.Private_zone
         /// </summary>
         [Input("searchMode")]
         public string? SearchMode { get; set; }
+
+        [Input("tagFilters")]
+        private List<Inputs.GetPrivateZonesTagFilterArgs>? _tagFilters;
+
+        /// <summary>
+        /// List of tag filters.
+        /// </summary>
+        public List<Inputs.GetPrivateZonesTagFilterArgs> TagFilters
+        {
+            get => _tagFilters ?? (_tagFilters = new List<Inputs.GetPrivateZonesTagFilterArgs>());
+            set => _tagFilters = value;
+        }
 
         /// <summary>
         /// The vpc id associated to Private Zone.
@@ -132,6 +156,12 @@ namespace Pulumi.Volcengine.Private_zone
     public sealed class GetPrivateZonesInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
+        /// The keyword of zone name.
+        /// </summary>
+        [Input("keyWord")]
+        public Input<string>? KeyWord { get; set; }
+
+        /// <summary>
         /// The line mode of Private Zone, specified whether the intelligent mode and the load balance function is enabled.
         /// </summary>
         [Input("lineMode")]
@@ -150,6 +180,12 @@ namespace Pulumi.Volcengine.Private_zone
         public Input<string>? OutputFile { get; set; }
 
         /// <summary>
+        /// The project name of the private zone.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        /// <summary>
         /// Whether the recursion mode of Private Zone is enabled.
         /// </summary>
         [Input("recursionMode")]
@@ -166,6 +202,18 @@ namespace Pulumi.Volcengine.Private_zone
         /// </summary>
         [Input("searchMode")]
         public Input<string>? SearchMode { get; set; }
+
+        [Input("tagFilters")]
+        private InputList<Inputs.GetPrivateZonesTagFilterInputArgs>? _tagFilters;
+
+        /// <summary>
+        /// List of tag filters.
+        /// </summary>
+        public InputList<Inputs.GetPrivateZonesTagFilterInputArgs> TagFilters
+        {
+            get => _tagFilters ?? (_tagFilters = new InputList<Inputs.GetPrivateZonesTagFilterInputArgs>());
+            set => _tagFilters = value;
+        }
 
         /// <summary>
         /// The vpc id associated to Private Zone.
@@ -199,6 +247,7 @@ namespace Pulumi.Volcengine.Private_zone
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        public readonly string? KeyWord;
         /// <summary>
         /// The line mode of the private zone, specified whether the intelligent mode and the load balance function is enabled.
         /// </summary>
@@ -210,6 +259,10 @@ namespace Pulumi.Volcengine.Private_zone
         /// </summary>
         public readonly ImmutableArray<Outputs.GetPrivateZonesPrivateZoneResult> PrivateZones;
         /// <summary>
+        /// The project name of the private zone.
+        /// </summary>
+        public readonly string? ProjectName;
+        /// <summary>
         /// Whether the recursion mode of the private zone is enabled.
         /// </summary>
         public readonly bool? RecursionMode;
@@ -218,6 +271,7 @@ namespace Pulumi.Volcengine.Private_zone
         /// </summary>
         public readonly string? Region;
         public readonly string? SearchMode;
+        public readonly ImmutableArray<Outputs.GetPrivateZonesTagFilterResult> TagFilters;
         /// <summary>
         /// The total count of query.
         /// </summary>
@@ -236,6 +290,8 @@ namespace Pulumi.Volcengine.Private_zone
         private GetPrivateZonesResult(
             string id,
 
+            string? keyWord,
+
             int? lineMode,
 
             string? nameRegex,
@@ -244,11 +300,15 @@ namespace Pulumi.Volcengine.Private_zone
 
             ImmutableArray<Outputs.GetPrivateZonesPrivateZoneResult> privateZones,
 
+            string? projectName,
+
             bool? recursionMode,
 
             string? region,
 
             string? searchMode,
+
+            ImmutableArray<Outputs.GetPrivateZonesTagFilterResult> tagFilters,
 
             int totalCount,
 
@@ -259,13 +319,16 @@ namespace Pulumi.Volcengine.Private_zone
             string? zoneName)
         {
             Id = id;
+            KeyWord = keyWord;
             LineMode = lineMode;
             NameRegex = nameRegex;
             OutputFile = outputFile;
             PrivateZones = privateZones;
+            ProjectName = projectName;
             RecursionMode = recursionMode;
             Region = region;
             SearchMode = searchMode;
+            TagFilters = tagFilters;
             TotalCount = totalCount;
             VpcId = vpcId;
             Zid = zid;

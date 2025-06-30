@@ -28,12 +28,15 @@ export function getPrivateZones(args?: GetPrivateZonesArgs, opts?: pulumi.Invoke
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:private_zone/getPrivateZones:getPrivateZones", {
+        "keyWord": args.keyWord,
         "lineMode": args.lineMode,
         "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
+        "projectName": args.projectName,
         "recursionMode": args.recursionMode,
         "region": args.region,
         "searchMode": args.searchMode,
+        "tagFilters": args.tagFilters,
         "vpcId": args.vpcId,
         "zid": args.zid,
         "zoneName": args.zoneName,
@@ -44,6 +47,10 @@ export function getPrivateZones(args?: GetPrivateZonesArgs, opts?: pulumi.Invoke
  * A collection of arguments for invoking getPrivateZones.
  */
 export interface GetPrivateZonesArgs {
+    /**
+     * The keyword of zone name.
+     */
+    keyWord?: string;
     /**
      * The line mode of Private Zone, specified whether the intelligent mode and the load balance function is enabled.
      */
@@ -57,6 +64,10 @@ export interface GetPrivateZonesArgs {
      */
     outputFile?: string;
     /**
+     * The project name of the private zone.
+     */
+    projectName?: string;
+    /**
      * Whether the recursion mode of Private Zone is enabled.
      */
     recursionMode?: boolean;
@@ -68,6 +79,10 @@ export interface GetPrivateZonesArgs {
      * The search mode of query. Valid values: `LIKE`, `EXACT`. Default is `LIKE`.
      */
     searchMode?: string;
+    /**
+     * List of tag filters.
+     */
+    tagFilters?: inputs.private_zone.GetPrivateZonesTagFilter[];
     /**
      * The vpc id associated to Private Zone.
      */
@@ -90,6 +105,7 @@ export interface GetPrivateZonesResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly keyWord?: string;
     /**
      * The line mode of the private zone, specified whether the intelligent mode and the load balance function is enabled.
      */
@@ -101,6 +117,10 @@ export interface GetPrivateZonesResult {
      */
     readonly privateZones: outputs.private_zone.GetPrivateZonesPrivateZone[];
     /**
+     * The project name of the private zone.
+     */
+    readonly projectName?: string;
+    /**
      * Whether the recursion mode of the private zone is enabled.
      */
     readonly recursionMode?: boolean;
@@ -109,6 +129,7 @@ export interface GetPrivateZonesResult {
      */
     readonly region?: string;
     readonly searchMode?: string;
+    readonly tagFilters?: outputs.private_zone.GetPrivateZonesTagFilter[];
     /**
      * The total count of query.
      */
@@ -149,6 +170,10 @@ export function getPrivateZonesOutput(args?: GetPrivateZonesOutputArgs, opts?: p
  */
 export interface GetPrivateZonesOutputArgs {
     /**
+     * The keyword of zone name.
+     */
+    keyWord?: pulumi.Input<string>;
+    /**
      * The line mode of Private Zone, specified whether the intelligent mode and the load balance function is enabled.
      */
     lineMode?: pulumi.Input<number>;
@@ -161,6 +186,10 @@ export interface GetPrivateZonesOutputArgs {
      */
     outputFile?: pulumi.Input<string>;
     /**
+     * The project name of the private zone.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
      * Whether the recursion mode of Private Zone is enabled.
      */
     recursionMode?: pulumi.Input<boolean>;
@@ -172,6 +201,10 @@ export interface GetPrivateZonesOutputArgs {
      * The search mode of query. Valid values: `LIKE`, `EXACT`. Default is `LIKE`.
      */
     searchMode?: pulumi.Input<string>;
+    /**
+     * List of tag filters.
+     */
+    tagFilters?: pulumi.Input<pulumi.Input<inputs.private_zone.GetPrivateZonesTagFilterArgs>[]>;
     /**
      * The vpc id associated to Private Zone.
      */

@@ -37,8 +37,8 @@ class InstanceParameterLogsResult:
         if output_file and not isinstance(output_file, str):
             raise TypeError("Expected argument 'output_file' to be a str")
         pulumi.set(__self__, "output_file", output_file)
-        if parameter_change_logs and not isinstance(parameter_change_logs, dict):
-            raise TypeError("Expected argument 'parameter_change_logs' to be a dict")
+        if parameter_change_logs and not isinstance(parameter_change_logs, list):
+            raise TypeError("Expected argument 'parameter_change_logs' to be a list")
         pulumi.set(__self__, "parameter_change_logs", parameter_change_logs)
         if start_time and not isinstance(start_time, str):
             raise TypeError("Expected argument 'start_time' to be a str")
@@ -72,7 +72,7 @@ class InstanceParameterLogsResult:
 
     @property
     @pulumi.getter(name="parameterChangeLogs")
-    def parameter_change_logs(self) -> 'outputs.InstanceParameterLogsParameterChangeLogsResult':
+    def parameter_change_logs(self) -> Sequence['outputs.InstanceParameterLogsParameterChangeLogResult']:
         """
         The collection of parameter change log query.
         """

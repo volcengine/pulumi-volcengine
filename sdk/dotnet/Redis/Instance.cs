@@ -137,7 +137,13 @@ namespace Pulumi.Volcengine.Redis
         /// Modify the single-shard additional bandwidth of the target Redis instance. Set the additional bandwidth of a single shard, that is, the bandwidth that needs to be additionally increased on the basis of the default bandwidth. Unit: MB/s. The value of additional bandwidth needs to meet the following conditions at the same time: It must be greater than or equal to 0. When the value is 0, it means that no additional bandwidth is added, and the bandwidth of a single shard is the default bandwidth. The sum of additional bandwidth and default bandwidth cannot exceed the upper limit of bandwidth that can be modified for the current instance. Different specification nodes have different upper limits of bandwidth that can be modified. For more details, please refer to bandwidth modification range. The upper limits of the total write bandwidth and the total read bandwidth of an instance are both 2048MB/s.
         /// </summary>
         [Output("additionalBandwidth")]
-        public Output<int?> AdditionalBandwidth { get; private set; } = null!;
+        public Output<int> AdditionalBandwidth { get; private set; } = null!;
+
+        /// <summary>
+        /// The type of connection address that requires an address prefix. Use lifecycle and ignore_changes in import.
+        /// </summary>
+        [Output("addrType")]
+        public Output<string> AddrType { get; private set; } = null!;
 
         /// <summary>
         /// Whether to apply the instance configuration change operation immediately. The value of this field is false, means that the change operation will be applied within maintenance time.
@@ -171,6 +177,12 @@ namespace Pulumi.Volcengine.Redis
         /// </summary>
         [Output("backupPeriods")]
         public Output<ImmutableArray<int>> BackupPeriods { get; private set; } = null!;
+
+        /// <summary>
+        /// Set the backup name for the final backup of the instance to be deleted. If the backup name is not set, the backup ID is used as the name by default. Use lifecycle and ignore_changes in import.
+        /// </summary>
+        [Output("backupPointName")]
+        public Output<string> BackupPointName { get; private set; } = null!;
 
         /// <summary>
         /// The charge type of redis instance. Valid value: `PostPaid`, `PrePaid`.
@@ -209,6 +221,12 @@ namespace Pulumi.Volcengine.Redis
         public Output<string?> InstanceName { get; private set; } = null!;
 
         /// <summary>
+        /// Maximum number of connections per shard.
+        /// </summary>
+        [Output("maxConnections")]
+        public Output<int> MaxConnections { get; private set; } = null!;
+
+        /// <summary>
         /// Set the availability zone deployment scheme for the instance. The value range is as follows: 
         /// disabled: Single availability zone deployment scheme.
         /// enabled: Multi-availability zone deployment scheme.
@@ -217,6 +235,18 @@ namespace Pulumi.Volcengine.Redis
         /// </summary>
         [Output("multiAz")]
         public Output<string> MultiAz { get; private set; } = null!;
+
+        /// <summary>
+        /// The modified connection address prefix. Use lifecycle and ignore_changes in import.
+        /// </summary>
+        [Output("newAddressPrefix")]
+        public Output<string> NewAddressPrefix { get; private set; } = null!;
+
+        /// <summary>
+        /// The modified connection address port number. Use lifecycle and ignore_changes in import.
+        /// </summary>
+        [Output("newPort")]
+        public Output<int> NewPort { get; private set; } = null!;
 
         /// <summary>
         /// The number of nodes in each shard, the valid value range is `1-6`. When the value is 1, it means creating a single node instance, and this field can not be modified. When the value is greater than 1, it means creating a primary and secondary instance, and this field can be modified.
@@ -285,6 +315,18 @@ namespace Pulumi.Volcengine.Redis
         /// </summary>
         [Output("tags")]
         public Output<ImmutableArray<Outputs.InstanceTag>> Tags { get; private set; } = null!;
+
+        /// <summary>
+        /// The maintainable time period of the instance, in the format of HH:mm-HH:mm (UTC+8).
+        /// </summary>
+        [Output("timeScope")]
+        public Output<string> TimeScope { get; private set; } = null!;
+
+        /// <summary>
+        /// Whether to upgrade the domain suffix of the connection address. Use lifecycle and ignore_changes in import.
+        /// </summary>
+        [Output("upgradeRegionDomain")]
+        public Output<bool> UpgradeRegionDomain { get; private set; } = null!;
 
         /// <summary>
         /// Whether to enable password-free access when connecting to an instance through a private network. Valid values: `open`, `close`.
@@ -356,6 +398,12 @@ namespace Pulumi.Volcengine.Redis
         public Input<int>? AdditionalBandwidth { get; set; }
 
         /// <summary>
+        /// The type of connection address that requires an address prefix. Use lifecycle and ignore_changes in import.
+        /// </summary>
+        [Input("addrType")]
+        public Input<string>? AddrType { get; set; }
+
+        /// <summary>
         /// Whether to apply the instance configuration change operation immediately. The value of this field is false, means that the change operation will be applied within maintenance time.
         /// </summary>
         [Input("applyImmediately")]
@@ -393,6 +441,12 @@ namespace Pulumi.Volcengine.Redis
             get => _backupPeriods ?? (_backupPeriods = new InputList<int>());
             set => _backupPeriods = value;
         }
+
+        /// <summary>
+        /// Set the backup name for the final backup of the instance to be deleted. If the backup name is not set, the backup ID is used as the name by default. Use lifecycle and ignore_changes in import.
+        /// </summary>
+        [Input("backupPointName")]
+        public Input<string>? BackupPointName { get; set; }
 
         /// <summary>
         /// The charge type of redis instance. Valid value: `PostPaid`, `PrePaid`.
@@ -437,6 +491,12 @@ namespace Pulumi.Volcengine.Redis
         public Input<string>? InstanceName { get; set; }
 
         /// <summary>
+        /// Maximum number of connections per shard.
+        /// </summary>
+        [Input("maxConnections")]
+        public Input<int>? MaxConnections { get; set; }
+
+        /// <summary>
         /// Set the availability zone deployment scheme for the instance. The value range is as follows: 
         /// disabled: Single availability zone deployment scheme.
         /// enabled: Multi-availability zone deployment scheme.
@@ -445,6 +505,18 @@ namespace Pulumi.Volcengine.Redis
         /// </summary>
         [Input("multiAz")]
         public Input<string>? MultiAz { get; set; }
+
+        /// <summary>
+        /// The modified connection address prefix. Use lifecycle and ignore_changes in import.
+        /// </summary>
+        [Input("newAddressPrefix")]
+        public Input<string>? NewAddressPrefix { get; set; }
+
+        /// <summary>
+        /// The modified connection address port number. Use lifecycle and ignore_changes in import.
+        /// </summary>
+        [Input("newPort")]
+        public Input<int>? NewPort { get; set; }
 
         /// <summary>
         /// The number of nodes in each shard, the valid value range is `1-6`. When the value is 1, it means creating a single node instance, and this field can not be modified. When the value is greater than 1, it means creating a primary and secondary instance, and this field can be modified.
@@ -537,6 +609,18 @@ namespace Pulumi.Volcengine.Redis
         }
 
         /// <summary>
+        /// The maintainable time period of the instance, in the format of HH:mm-HH:mm (UTC+8).
+        /// </summary>
+        [Input("timeScope")]
+        public Input<string>? TimeScope { get; set; }
+
+        /// <summary>
+        /// Whether to upgrade the domain suffix of the connection address. Use lifecycle and ignore_changes in import.
+        /// </summary>
+        [Input("upgradeRegionDomain")]
+        public Input<bool>? UpgradeRegionDomain { get; set; }
+
+        /// <summary>
         /// Whether to enable password-free access when connecting to an instance through a private network. Valid values: `open`, `close`.
         /// </summary>
         [Input("vpcAuthMode")]
@@ -568,6 +652,12 @@ namespace Pulumi.Volcengine.Redis
         /// </summary>
         [Input("additionalBandwidth")]
         public Input<int>? AdditionalBandwidth { get; set; }
+
+        /// <summary>
+        /// The type of connection address that requires an address prefix. Use lifecycle and ignore_changes in import.
+        /// </summary>
+        [Input("addrType")]
+        public Input<string>? AddrType { get; set; }
 
         /// <summary>
         /// Whether to apply the instance configuration change operation immediately. The value of this field is false, means that the change operation will be applied within maintenance time.
@@ -607,6 +697,12 @@ namespace Pulumi.Volcengine.Redis
             get => _backupPeriods ?? (_backupPeriods = new InputList<int>());
             set => _backupPeriods = value;
         }
+
+        /// <summary>
+        /// Set the backup name for the final backup of the instance to be deleted. If the backup name is not set, the backup ID is used as the name by default. Use lifecycle and ignore_changes in import.
+        /// </summary>
+        [Input("backupPointName")]
+        public Input<string>? BackupPointName { get; set; }
 
         /// <summary>
         /// The charge type of redis instance. Valid value: `PostPaid`, `PrePaid`.
@@ -651,6 +747,12 @@ namespace Pulumi.Volcengine.Redis
         public Input<string>? InstanceName { get; set; }
 
         /// <summary>
+        /// Maximum number of connections per shard.
+        /// </summary>
+        [Input("maxConnections")]
+        public Input<int>? MaxConnections { get; set; }
+
+        /// <summary>
         /// Set the availability zone deployment scheme for the instance. The value range is as follows: 
         /// disabled: Single availability zone deployment scheme.
         /// enabled: Multi-availability zone deployment scheme.
@@ -659,6 +761,18 @@ namespace Pulumi.Volcengine.Redis
         /// </summary>
         [Input("multiAz")]
         public Input<string>? MultiAz { get; set; }
+
+        /// <summary>
+        /// The modified connection address prefix. Use lifecycle and ignore_changes in import.
+        /// </summary>
+        [Input("newAddressPrefix")]
+        public Input<string>? NewAddressPrefix { get; set; }
+
+        /// <summary>
+        /// The modified connection address port number. Use lifecycle and ignore_changes in import.
+        /// </summary>
+        [Input("newPort")]
+        public Input<int>? NewPort { get; set; }
 
         /// <summary>
         /// The number of nodes in each shard, the valid value range is `1-6`. When the value is 1, it means creating a single node instance, and this field can not be modified. When the value is greater than 1, it means creating a primary and secondary instance, and this field can be modified.
@@ -749,6 +863,18 @@ namespace Pulumi.Volcengine.Redis
             get => _tags ?? (_tags = new InputList<Inputs.InstanceTagGetArgs>());
             set => _tags = value;
         }
+
+        /// <summary>
+        /// The maintainable time period of the instance, in the format of HH:mm-HH:mm (UTC+8).
+        /// </summary>
+        [Input("timeScope")]
+        public Input<string>? TimeScope { get; set; }
+
+        /// <summary>
+        /// Whether to upgrade the domain suffix of the connection address. Use lifecycle and ignore_changes in import.
+        /// </summary>
+        [Input("upgradeRegionDomain")]
+        public Input<bool>? UpgradeRegionDomain { get; set; }
 
         /// <summary>
         /// Whether to enable password-free access when connecting to an instance through a private network. Valid values: `open`, `close`.

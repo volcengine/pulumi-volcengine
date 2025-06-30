@@ -4629,6 +4629,10 @@ export namespace cen {
          */
         id: string;
         /**
+         * The line operator of the cen bandwidth package.
+         */
+        lineOperator: string;
+        /**
          * A local geographic region set id.
          */
         localGeographicRegionSetId: string;
@@ -4841,6 +4845,10 @@ export namespace cen {
          */
         id: string;
         /**
+         * The line operator of the cen bandwidth package.
+         */
+        lineOperator: string;
+        /**
          * A local geographic region set id.
          */
         localGeographicRegionSetId: string;
@@ -4961,13 +4969,40 @@ export namespace cen {
         value: string;
     }
 
+    export interface GetGrantInstancesGrantRule {
+        /**
+         * The ID of the cen.
+         */
+        cenId: string;
+        /**
+         * The owner ID of the cen.
+         */
+        cenOwnerId: string;
+        /**
+         * The creation time of the grant rule.
+         */
+        creationTime: string;
+        /**
+         * The ID of the instance.
+         */
+        instanceId: string;
+        /**
+         * The region ID of the instance.
+         */
+        instanceRegionId: string;
+        /**
+         * The type of the instance. Valid values: `VPC`, `DCGW`.
+         */
+        instanceType: string;
+    }
+
     export interface GetInterRegionBandwidthsInterRegionBandwidth {
         /**
          * The bandwidth of the cen inter region bandwidth.
          */
         bandwidth: number;
         /**
-         * The cen ID of the cen inter region bandwidth.
+         * The ID of the cen.
          */
         cenId: string;
         /**
@@ -5089,13 +5124,40 @@ export namespace cen {
         instanceType: string;
     }
 
+    export interface GrantInstancesGrantRule {
+        /**
+         * The ID of the cen.
+         */
+        cenId: string;
+        /**
+         * The owner ID of the cen.
+         */
+        cenOwnerId: string;
+        /**
+         * The creation time of the grant rule.
+         */
+        creationTime: string;
+        /**
+         * The ID of the instance.
+         */
+        instanceId: string;
+        /**
+         * The region ID of the instance.
+         */
+        instanceRegionId: string;
+        /**
+         * The type of the instance. Valid values: `VPC`, `DCGW`.
+         */
+        instanceType: string;
+    }
+
     export interface InterRegionBandwidthsInterRegionBandwidth {
         /**
          * The bandwidth of the cen inter region bandwidth.
          */
         bandwidth: number;
         /**
-         * The cen ID of the cen inter region bandwidth.
+         * The ID of the cen.
          */
         cenId: string;
         /**
@@ -9429,6 +9491,10 @@ export namespace cr {
          * The ProjectName of the CrNamespace.
          */
         project: string;
+        /**
+         * The default access level of repository. Valid values: `Private`, `Public`.
+         */
+        repositoryDefaultAccessLevel: string;
     }
 
     export interface GetRegistriesRegistry {
@@ -9452,6 +9518,14 @@ export namespace cr {
          * The ProjectName of the cr registry.
          */
         project: string;
+        /**
+         * Whether to enable proxy cache.
+         */
+        proxyCacheEnabled: boolean;
+        /**
+         * The proxy cache of registry. This field is valid when proxyCacheEnabled is true.
+         */
+        proxyCaches: outputs.cr.GetRegistriesRegistryProxyCach[];
         /**
          * The tags of cr registry.
          */
@@ -9483,6 +9557,25 @@ export namespace cr {
          * The type of registry.
          */
         type: string;
+    }
+
+    export interface GetRegistriesRegistryProxyCach {
+        /**
+         * The endpoint of proxy cache.
+         */
+        endpoint: string;
+        /**
+         * Whether to skip ssl verify.
+         */
+        skipSslVerify: boolean;
+        /**
+         * The type of registry.
+         */
+        type: string;
+        /**
+         * The username of cr instance.
+         */
+        username: string;
     }
 
     export interface GetRegistriesRegistryResourceTag {
@@ -9676,6 +9769,10 @@ export namespace cr {
          * The ProjectName of the CrNamespace.
          */
         project: string;
+        /**
+         * The default access level of repository. Valid values: `Private`, `Public`.
+         */
+        repositoryDefaultAccessLevel: string;
     }
 
     export interface RegistriesRegistry {
@@ -9699,6 +9796,14 @@ export namespace cr {
          * The ProjectName of the cr registry.
          */
         project: string;
+        /**
+         * Whether to enable proxy cache.
+         */
+        proxyCacheEnabled: boolean;
+        /**
+         * The proxy cache of registry. This field is valid when proxyCacheEnabled is true.
+         */
+        proxyCaches: outputs.cr.RegistriesRegistryProxyCach[];
         /**
          * The tags of cr registry.
          */
@@ -9730,6 +9835,25 @@ export namespace cr {
          * The type of registry.
          */
         type: string;
+    }
+
+    export interface RegistriesRegistryProxyCach {
+        /**
+         * The endpoint of proxy cache.
+         */
+        endpoint: string;
+        /**
+         * Whether to skip ssl verify.
+         */
+        skipSslVerify: boolean;
+        /**
+         * The type of registry.
+         */
+        type: string;
+        /**
+         * The username of cr instance.
+         */
+        username: string;
     }
 
     export interface RegistriesRegistryResourceTag {
@@ -9782,9 +9906,32 @@ export namespace cr {
          */
         domain: string;
         /**
-         * The type of registry.
+         * The type of registry. Valid values: `Enterprise`, `Micro`. Default is `Enterprise`.
          */
         type: string;
+    }
+
+    export interface RegistryProxyCache {
+        /**
+         * The endpoint of proxy cache.
+         */
+        endpoint: string;
+        /**
+         * The password of proxy cache.
+         */
+        password?: string;
+        /**
+         * Whether to skip ssl verify.
+         */
+        skipSslVerify: boolean;
+        /**
+         * The type of proxy cache. Valid values: `DockerHub`, `DockerRegistry`.
+         */
+        type: string;
+        /**
+         * The username of proxy cache.
+         */
+        username: string;
     }
 
     export interface RegistryResourceTag {
@@ -16614,6 +16761,128 @@ export namespace escloud_v2 {
         values: string[];
     }
 
+    export interface EscloudNodeAvailableSpecsNodeSpec {
+        /**
+         * The available specs sold out.
+         */
+        azAvailableSpecsSoldOut: {[key: string]: string};
+        /**
+         * The configuration code.
+         */
+        configurationCode: string;
+        /**
+         * The network specs.
+         */
+        networkSpecs: outputs.escloud_v2.EscloudNodeAvailableSpecsNodeSpecNetworkSpec[];
+        /**
+         * The node available specs.
+         */
+        nodeAvailableSpecs: outputs.escloud_v2.EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpec[];
+        /**
+         * The resource specs.
+         */
+        resourceSpecs: outputs.escloud_v2.EscloudNodeAvailableSpecsNodeSpecResourceSpec[];
+        /**
+         * The storage specs.
+         */
+        storageSpecs: outputs.escloud_v2.EscloudNodeAvailableSpecsNodeSpecStorageSpec[];
+    }
+
+    export interface EscloudNodeAvailableSpecsNodeSpecNetworkSpec {
+        /**
+         * The network role.
+         */
+        networkRole: string;
+        /**
+         * The spec name.
+         */
+        specName: string;
+    }
+
+    export interface EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpec {
+        /**
+         * The resource spec names of node.
+         */
+        resourceSpecNames: string[];
+        /**
+         * The storage spec names of node.
+         */
+        storageSpecNames: string[];
+        /**
+         * The type of node.
+         */
+        type: string;
+    }
+
+    export interface EscloudNodeAvailableSpecsNodeSpecResourceSpec {
+        /**
+         * The cpu of resource spec. Unit: Core.
+         */
+        cpu: number;
+        /**
+         * The description of storage spec.
+         */
+        description: string;
+        /**
+         * The display name of storage spec.
+         */
+        displayName: string;
+        /**
+         * The memory of resource spec. Unit: GiB.
+         */
+        memory: number;
+        /**
+         * The name of storage spec.
+         */
+        name: string;
+    }
+
+    export interface EscloudNodeAvailableSpecsNodeSpecStorageSpec {
+        /**
+         * The description of storage spec.
+         */
+        description: string;
+        /**
+         * The display name of storage spec.
+         */
+        displayName: string;
+        /**
+         * The max size of storage spec. Unit: GiB.
+         */
+        maxSize: number;
+        /**
+         * The min size of storage spec. Unit: GiB.
+         */
+        minSize: number;
+        /**
+         * The name of storage spec.
+         */
+        name: string;
+        /**
+         * The size of storage spec.
+         */
+        size: number;
+    }
+
+    export interface EscloudZonesV2Zone {
+        /**
+         * The region ID of zone.
+         */
+        regionId: string;
+        /**
+         * The ID of zone.
+         */
+        zoneId: string;
+        /**
+         * The name of zone.
+         */
+        zoneName: string;
+        /**
+         * The status of zone.
+         */
+        zoneStatus: string;
+    }
+
     export interface GetEscloudInstancesV2Instance {
         /**
          * Whether to enable cerebro.
@@ -17368,6 +17637,128 @@ export namespace escloud_v2 {
         values: string[];
     }
 
+    export interface GetEscloudNodeAvailableSpecsNodeSpec {
+        /**
+         * The available specs sold out.
+         */
+        azAvailableSpecsSoldOut: {[key: string]: string};
+        /**
+         * The configuration code.
+         */
+        configurationCode: string;
+        /**
+         * The network specs.
+         */
+        networkSpecs: outputs.escloud_v2.GetEscloudNodeAvailableSpecsNodeSpecNetworkSpec[];
+        /**
+         * The node available specs.
+         */
+        nodeAvailableSpecs: outputs.escloud_v2.GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpec[];
+        /**
+         * The resource specs.
+         */
+        resourceSpecs: outputs.escloud_v2.GetEscloudNodeAvailableSpecsNodeSpecResourceSpec[];
+        /**
+         * The storage specs.
+         */
+        storageSpecs: outputs.escloud_v2.GetEscloudNodeAvailableSpecsNodeSpecStorageSpec[];
+    }
+
+    export interface GetEscloudNodeAvailableSpecsNodeSpecNetworkSpec {
+        /**
+         * The network role.
+         */
+        networkRole: string;
+        /**
+         * The spec name.
+         */
+        specName: string;
+    }
+
+    export interface GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpec {
+        /**
+         * The resource spec names of node.
+         */
+        resourceSpecNames: string[];
+        /**
+         * The storage spec names of node.
+         */
+        storageSpecNames: string[];
+        /**
+         * The type of node.
+         */
+        type: string;
+    }
+
+    export interface GetEscloudNodeAvailableSpecsNodeSpecResourceSpec {
+        /**
+         * The cpu of resource spec. Unit: Core.
+         */
+        cpu: number;
+        /**
+         * The description of storage spec.
+         */
+        description: string;
+        /**
+         * The display name of storage spec.
+         */
+        displayName: string;
+        /**
+         * The memory of resource spec. Unit: GiB.
+         */
+        memory: number;
+        /**
+         * The name of storage spec.
+         */
+        name: string;
+    }
+
+    export interface GetEscloudNodeAvailableSpecsNodeSpecStorageSpec {
+        /**
+         * The description of storage spec.
+         */
+        description: string;
+        /**
+         * The display name of storage spec.
+         */
+        displayName: string;
+        /**
+         * The max size of storage spec. Unit: GiB.
+         */
+        maxSize: number;
+        /**
+         * The min size of storage spec. Unit: GiB.
+         */
+        minSize: number;
+        /**
+         * The name of storage spec.
+         */
+        name: string;
+        /**
+         * The size of storage spec.
+         */
+        size: number;
+    }
+
+    export interface GetEscloudZonesV2Zone {
+        /**
+         * The region ID of zone.
+         */
+        regionId: string;
+        /**
+         * The ID of zone.
+         */
+        zoneId: string;
+        /**
+         * The name of zone.
+         */
+        zoneName: string;
+        /**
+         * The status of zone.
+         */
+        zoneStatus: string;
+    }
+
 }
 
 export namespace financial_relation {
@@ -17999,6 +18390,48 @@ export namespace iam {
 }
 
 export namespace kafka {
+    export interface AllowListsAllowList {
+        /**
+         * The description of the allow list.
+         */
+        allowListDesc: string;
+        /**
+         * The id of the allow list.
+         */
+        allowListId: string;
+        /**
+         * The number of rules specified in the whitelist.
+         */
+        allowListIpNum: number;
+        /**
+         * The name of the allow list.
+         */
+        allowListName: string;
+        /**
+         * Whitelist rule list.
+         */
+        allowLists: string[];
+        /**
+         * The number of instances bound to the whitelist.
+         */
+        associatedInstanceNum: number;
+        /**
+         * The list of associated instances.
+         */
+        associatedInstances: outputs.kafka.AllowListsAllowListAssociatedInstance[];
+    }
+
+    export interface AllowListsAllowListAssociatedInstance {
+        /**
+         * The instance ID to query.
+         */
+        instanceId: string;
+        /**
+         * The name of the instance.
+         */
+        instanceName: string;
+    }
+
     export interface ConsumedPartitionsConsumedPartition {
         /**
          * The total amount of message accumulation in this topic partition for the consumer group.
@@ -18035,6 +18468,48 @@ export namespace kafka {
          * The name of kafka topic. This field supports fuzzy query.
          */
         topicName: string;
+    }
+
+    export interface GetAllowListsAllowList {
+        /**
+         * The description of the allow list.
+         */
+        allowListDesc: string;
+        /**
+         * The id of the allow list.
+         */
+        allowListId: string;
+        /**
+         * The number of rules specified in the whitelist.
+         */
+        allowListIpNum: number;
+        /**
+         * The name of the allow list.
+         */
+        allowListName: string;
+        /**
+         * Whitelist rule list.
+         */
+        allowLists: string[];
+        /**
+         * The number of instances bound to the whitelist.
+         */
+        associatedInstanceNum: number;
+        /**
+         * The list of associated instances.
+         */
+        associatedInstances: outputs.kafka.GetAllowListsAllowListAssociatedInstance[];
+    }
+
+    export interface GetAllowListsAllowListAssociatedInstance {
+        /**
+         * The instance ID to query.
+         */
+        instanceId: string;
+        /**
+         * The name of the instance.
+         */
+        instanceName: string;
     }
 
     export interface GetConsumedPartitionsConsumedPartition {
@@ -18859,6 +19334,561 @@ export namespace kafka {
 
 }
 
+export namespace kms {
+    export interface GetKeyringsKeyring {
+        /**
+         * The date when the keyring was created.
+         */
+        creationDate: number;
+        /**
+         * The description of the keyring.
+         */
+        description: string;
+        /**
+         * The unique ID of the keyring. The value is in the UUID format.
+         */
+        id: string;
+        /**
+         * Key ring key count.
+         */
+        keyCount: number;
+        /**
+         * The name of the keyring.
+         */
+        keyringName: string;
+        /**
+         * The type of the keyring.
+         */
+        keyringType: string;
+        /**
+         * The information about the tenant resource name (TRN).
+         */
+        trn: string;
+        /**
+         * The tenant ID of the keyring.
+         */
+        uid: string;
+        /**
+         * The date when the keyring was updated.
+         */
+        updateDate: number;
+    }
+
+    export interface GetKeysKey {
+        /**
+         * The date when the keyring was created.
+         */
+        creationDate: number;
+        /**
+         * The description of the key.
+         */
+        description: string;
+        /**
+         * The unique ID of the key.
+         */
+        id: string;
+        /**
+         * The time when the key material will expire.
+         */
+        keyMaterialExpireTime: string;
+        /**
+         * The name of the key.
+         */
+        keyName: string;
+        /**
+         * The algorithm used in the key.
+         */
+        keySpec: string;
+        /**
+         * The state of the key.
+         */
+        keyState: string;
+        /**
+         * The usage of the key.
+         */
+        keyUsage: string;
+        /**
+         * The last time the key was rotated.
+         */
+        lastRotationTime: string;
+        /**
+         * Whether it is the master key of the Multi-region type.
+         */
+        multiRegion: boolean;
+        /**
+         * The configuration of Multi-region key.
+         */
+        multiRegionConfiguration: outputs.kms.GetKeysKeyMultiRegionConfiguration;
+        /**
+         * The origin of the key.
+         */
+        origin: string;
+        /**
+         * The protection level of the key.
+         */
+        protectionLevel: string;
+        /**
+         * The rotation configuration of the key.
+         */
+        rotationState: string;
+        /**
+         * The time when the key will be deleted.
+         */
+        scheduleDeleteTime: string;
+        /**
+         * The next time the key will be rotated.
+         */
+        scheduleRotationTime: string;
+        /**
+         * A list of tags.
+         */
+        tags: outputs.kms.GetKeysKeyTag[];
+        /**
+         * The name of the resource.
+         */
+        trn: string;
+        /**
+         * The date when the keyring was updated.
+         */
+        updateDate: number;
+    }
+
+    export interface GetKeysKeyMultiRegionConfiguration {
+        /**
+         * The type of the multi-region key.
+         */
+        multiRegionKeyType: string;
+        /**
+         * Trn and region id of the primary multi-region key.
+         */
+        primaryKey: outputs.kms.GetKeysKeyMultiRegionConfigurationPrimaryKey;
+        /**
+         * Trn and region id of replica multi-region keys.
+         */
+        replicaKeys: outputs.kms.GetKeysKeyMultiRegionConfigurationReplicaKey[];
+    }
+
+    export interface GetKeysKeyMultiRegionConfigurationPrimaryKey {
+        /**
+         * The region id of multi-region key.
+         */
+        region: string;
+        /**
+         * The name of the resource.
+         */
+        trn: string;
+    }
+
+    export interface GetKeysKeyMultiRegionConfigurationReplicaKey {
+        /**
+         * The region id of multi-region key.
+         */
+        region: string;
+        /**
+         * The name of the resource.
+         */
+        trn: string;
+    }
+
+    export interface GetKeysKeyTag {
+        /**
+         * The key of the tag.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetKeysTag {
+        /**
+         * The key of the tag.
+         */
+        key: string;
+        /**
+         * The values of the tag.
+         */
+        values: string[];
+    }
+
+    export interface GetSecretsSecret {
+        /**
+         * The date when the keyring was created.
+         */
+        creationDate: number;
+        /**
+         * The description of the secret.
+         */
+        description: string;
+        /**
+         * The TRN of the KMS key used to encrypt the secret value.
+         */
+        encryptionKey: string;
+        /**
+         * The extended configurations of the secret.
+         */
+        extendedConfig: string;
+        /**
+         * The unique ID of the secret. The value is in the UUID format.
+         */
+        id: string;
+        /**
+         * The last time the secret was rotated.
+         */
+        lastRotationTime: string;
+        /**
+         * Indicates whether the secret is hosted.
+         */
+        managed: boolean;
+        /**
+         * The name of the project to which the secret belongs.
+         */
+        projectName: string;
+        /**
+         * The interval at which automatic rotation is performed.
+         */
+        rotationInterval: number;
+        /**
+         * The state of the rotation.
+         */
+        rotationState: string;
+        /**
+         * The time when the secret will be deleted.
+         */
+        scheduleDeleteTime: string;
+        /**
+         * The next time the secret will be rotated.
+         */
+        scheduleRotationTime: string;
+        /**
+         * The name of the secret.
+         */
+        secretName: string;
+        /**
+         * The state of the secret.
+         */
+        secretState: string;
+        /**
+         * The type of the secret.
+         */
+        secretType: string;
+        /**
+         * The trn of the secret.
+         */
+        trn: string;
+        /**
+         * The tenant ID of the secret.
+         */
+        uid: string;
+        /**
+         * The date when the keyring was updated.
+         */
+        updateDate: number;
+    }
+
+    export interface KeyMultiRegionConfiguration {
+        /**
+         * The type of the multi-region key.
+         */
+        multiRegionKeyType: string;
+        /**
+         * Trn and region id of the primary multi-region key.
+         */
+        primaryKey: outputs.kms.KeyMultiRegionConfigurationPrimaryKey;
+        /**
+         * Trn and region id of replica multi-region keys.
+         */
+        replicaKeys: outputs.kms.KeyMultiRegionConfigurationReplicaKey[];
+    }
+
+    export interface KeyMultiRegionConfigurationPrimaryKey {
+        /**
+         * The region id of multi-region key.
+         */
+        region: string;
+        /**
+         * The name of the resource.
+         */
+        trn: string;
+    }
+
+    export interface KeyMultiRegionConfigurationReplicaKey {
+        /**
+         * The region id of multi-region key.
+         */
+        region: string;
+        /**
+         * The name of the resource.
+         */
+        trn: string;
+    }
+
+    export interface KeyTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface KeyringsKeyring {
+        /**
+         * The date when the keyring was created.
+         */
+        creationDate: number;
+        /**
+         * The description of the keyring.
+         */
+        description: string;
+        /**
+         * The unique ID of the keyring. The value is in the UUID format.
+         */
+        id: string;
+        /**
+         * Key ring key count.
+         */
+        keyCount: number;
+        /**
+         * The name of the keyring.
+         */
+        keyringName: string;
+        /**
+         * The type of the keyring.
+         */
+        keyringType: string;
+        /**
+         * The information about the tenant resource name (TRN).
+         */
+        trn: string;
+        /**
+         * The tenant ID of the keyring.
+         */
+        uid: string;
+        /**
+         * The date when the keyring was updated.
+         */
+        updateDate: number;
+    }
+
+    export interface KeysKey {
+        /**
+         * The date when the keyring was created.
+         */
+        creationDate: number;
+        /**
+         * The description of the key.
+         */
+        description: string;
+        /**
+         * The unique ID of the key.
+         */
+        id: string;
+        /**
+         * The time when the key material will expire.
+         */
+        keyMaterialExpireTime: string;
+        /**
+         * The name of the key.
+         */
+        keyName: string;
+        /**
+         * The algorithm used in the key.
+         */
+        keySpec: string;
+        /**
+         * The state of the key.
+         */
+        keyState: string;
+        /**
+         * The usage of the key.
+         */
+        keyUsage: string;
+        /**
+         * The last time the key was rotated.
+         */
+        lastRotationTime: string;
+        /**
+         * Whether it is the master key of the Multi-region type.
+         */
+        multiRegion: boolean;
+        /**
+         * The configuration of Multi-region key.
+         */
+        multiRegionConfiguration: outputs.kms.KeysKeyMultiRegionConfiguration;
+        /**
+         * The origin of the key.
+         */
+        origin: string;
+        /**
+         * The protection level of the key.
+         */
+        protectionLevel: string;
+        /**
+         * The rotation configuration of the key.
+         */
+        rotationState: string;
+        /**
+         * The time when the key will be deleted.
+         */
+        scheduleDeleteTime: string;
+        /**
+         * The next time the key will be rotated.
+         */
+        scheduleRotationTime: string;
+        /**
+         * A list of tags.
+         */
+        tags: outputs.kms.KeysKeyTag[];
+        /**
+         * The name of the resource.
+         */
+        trn: string;
+        /**
+         * The date when the keyring was updated.
+         */
+        updateDate: number;
+    }
+
+    export interface KeysKeyMultiRegionConfiguration {
+        /**
+         * The type of the multi-region key.
+         */
+        multiRegionKeyType: string;
+        /**
+         * Trn and region id of the primary multi-region key.
+         */
+        primaryKey: outputs.kms.KeysKeyMultiRegionConfigurationPrimaryKey;
+        /**
+         * Trn and region id of replica multi-region keys.
+         */
+        replicaKeys: outputs.kms.KeysKeyMultiRegionConfigurationReplicaKey[];
+    }
+
+    export interface KeysKeyMultiRegionConfigurationPrimaryKey {
+        /**
+         * The region id of multi-region key.
+         */
+        region: string;
+        /**
+         * The name of the resource.
+         */
+        trn: string;
+    }
+
+    export interface KeysKeyMultiRegionConfigurationReplicaKey {
+        /**
+         * The region id of multi-region key.
+         */
+        region: string;
+        /**
+         * The name of the resource.
+         */
+        trn: string;
+    }
+
+    export interface KeysKeyTag {
+        /**
+         * The key of the tag.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface KeysTag {
+        /**
+         * The key of the tag.
+         */
+        key: string;
+        /**
+         * The values of the tag.
+         */
+        values: string[];
+    }
+
+    export interface SecretsSecret {
+        /**
+         * The date when the keyring was created.
+         */
+        creationDate: number;
+        /**
+         * The description of the secret.
+         */
+        description: string;
+        /**
+         * The TRN of the KMS key used to encrypt the secret value.
+         */
+        encryptionKey: string;
+        /**
+         * The extended configurations of the secret.
+         */
+        extendedConfig: string;
+        /**
+         * The unique ID of the secret. The value is in the UUID format.
+         */
+        id: string;
+        /**
+         * The last time the secret was rotated.
+         */
+        lastRotationTime: string;
+        /**
+         * Indicates whether the secret is hosted.
+         */
+        managed: boolean;
+        /**
+         * The name of the project to which the secret belongs.
+         */
+        projectName: string;
+        /**
+         * The interval at which automatic rotation is performed.
+         */
+        rotationInterval: number;
+        /**
+         * The state of the rotation.
+         */
+        rotationState: string;
+        /**
+         * The time when the secret will be deleted.
+         */
+        scheduleDeleteTime: string;
+        /**
+         * The next time the secret will be rotated.
+         */
+        scheduleRotationTime: string;
+        /**
+         * The name of the secret.
+         */
+        secretName: string;
+        /**
+         * The state of the secret.
+         */
+        secretState: string;
+        /**
+         * The type of the secret.
+         */
+        secretType: string;
+        /**
+         * The trn of the secret.
+         */
+        trn: string;
+        /**
+         * The tenant ID of the secret.
+         */
+        uid: string;
+        /**
+         * The date when the keyring was updated.
+         */
+        updateDate: number;
+    }
+
+}
+
 export namespace mongodb {
     export interface AccountAccountPrivilege {
         /**
@@ -19079,7 +20109,7 @@ export namespace mongodb {
         nodeId: string;
     }
 
-    export interface GetInstanceParameterLogsParameterChangeLogs {
+    export interface GetInstanceParameterLogsParameterChangeLog {
         /**
          * The modifying time of parameter.
          */
@@ -19793,7 +20823,7 @@ export namespace mongodb {
         zoneId: string;
     }
 
-    export interface InstanceParameterLogsParameterChangeLogs {
+    export interface InstanceParameterLogsParameterChangeLog {
         /**
          * The modifying time of parameter.
          */
@@ -20519,6 +21549,45 @@ export namespace mongodb {
 }
 
 export namespace nas {
+    export interface AutoSnapshotPoliciesAutoSnapshotPolice {
+        /**
+         * The id of auto snapshot policy.
+         */
+        autoSnapshotPolicyId: string;
+        /**
+         * The name of auto snapshot policy.
+         */
+        autoSnapshotPolicyName: string;
+        /**
+         * The create time of auto snapshot policy.
+         */
+        createTime: string;
+        /**
+         * The count of file system which auto snapshot policy bind.
+         */
+        fileSystemCount: number;
+        /**
+         * The ID of auto snapshot policy.
+         */
+        id: string;
+        /**
+         * The repeat weekdays of auto snapshot policy. Unit: day.
+         */
+        repeatWeekdays: string;
+        /**
+         * The retention days of auto snapshot policy. Unit: day.
+         */
+        retentionDays: number;
+        /**
+         * The status of auto snapshot policy.
+         */
+        status: string;
+        /**
+         * The time points of auto snapshot policy. Unit: hour.
+         */
+        timePoints: string;
+    }
+
     export interface FileSystemTag {
         /**
          * The Key of Tags.
@@ -20644,6 +21713,45 @@ export namespace nas {
          * The Value of Tags.
          */
         value: string;
+    }
+
+    export interface GetAutoSnapshotPoliciesAutoSnapshotPolice {
+        /**
+         * The id of auto snapshot policy.
+         */
+        autoSnapshotPolicyId: string;
+        /**
+         * The name of auto snapshot policy.
+         */
+        autoSnapshotPolicyName: string;
+        /**
+         * The create time of auto snapshot policy.
+         */
+        createTime: string;
+        /**
+         * The count of file system which auto snapshot policy bind.
+         */
+        fileSystemCount: number;
+        /**
+         * The ID of auto snapshot policy.
+         */
+        id: string;
+        /**
+         * The repeat weekdays of auto snapshot policy. Unit: day.
+         */
+        repeatWeekdays: string;
+        /**
+         * The retention days of auto snapshot policy. Unit: day.
+         */
+        retentionDays: number;
+        /**
+         * The status of auto snapshot policy.
+         */
+        status: string;
+        /**
+         * The time points of auto snapshot policy. Unit: hour.
+         */
+        timePoints: string;
     }
 
     export interface GetFileSystemsFileSystem {
@@ -22296,6 +23404,10 @@ export namespace private_zone {
          */
         lineMode: number;
         /**
+         * The project name of the private zone.
+         */
+        projectName: string;
+        /**
          * The record count of the private zone.
          */
         recordCount: number;
@@ -22311,6 +23423,10 @@ export namespace private_zone {
          * The remark of the private zone.
          */
         remark: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.private_zone.GetPrivateZonesPrivateZoneTag[];
         /**
          * The updated time of the private zone.
          */
@@ -22342,6 +23458,28 @@ export namespace private_zone {
          * The region name of the bind vpc.
          */
         regionName: string;
+    }
+
+    export interface GetPrivateZonesPrivateZoneTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetPrivateZonesTagFilter {
+        /**
+         * The key of the tag.
+         */
+        key?: string;
+        /**
+         * The values of the tag.
+         */
+        values?: string[];
     }
 
     export interface GetRecordSetsRecordSet {
@@ -22389,11 +23527,11 @@ export namespace private_zone {
          */
         lastOperator: string;
         /**
-         * The subnet id of Private Zone Record. This field is only effected when the `intelligentMode` of the private zone is true.
+         * The subnet id of Private Zone Record.
          */
         line: string;
         /**
-         * The id of Private Zone Record.
+         * This field is deprecated, please use `recordIds` instead. The id of Private Zone Record.
          */
         recordId: string;
         /**
@@ -22452,6 +23590,10 @@ export namespace private_zone {
          */
         name: string;
         /**
+         * The project name of the private zone resolver endpoint.
+         */
+        projectName: string;
+        /**
          * The security group id of the endpoint.
          */
         securityGroupId: string;
@@ -22459,6 +23601,10 @@ export namespace private_zone {
          * The status of the private zone resolver endpoint.
          */
         status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.private_zone.GetResolverEndpointsEndpointTag[];
         /**
          * The updated time of the endpoint.
          */
@@ -22488,6 +23634,28 @@ export namespace private_zone {
         subnetId: string;
     }
 
+    export interface GetResolverEndpointsEndpointTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetResolverEndpointsTagFilter {
+        /**
+         * The key of the tag.
+         */
+        key?: string;
+        /**
+         * The values of the tag.
+         */
+        values?: string[];
+    }
+
     export interface GetResolverRulesRule {
         bindVpcs: outputs.private_zone.GetResolverRulesRuleBindVpc[];
         /**
@@ -22509,15 +23677,23 @@ export namespace private_zone {
         /**
          * The ISP of the exit IP address of the recursive DNS server.
          */
-        line: number;
+        line: string;
         /**
          * The name of the rule.
          */
         name: string;
         /**
+         * The project name of the private zone resolver rule.
+         */
+        projectName: string;
+        /**
          * The id of the rule.
          */
         ruleId: number;
+        /**
+         * Tags.
+         */
+        tags: outputs.private_zone.GetResolverRulesRuleTag[];
         /**
          * The type of the rule.
          */
@@ -22562,6 +23738,39 @@ export namespace private_zone {
         port: number;
     }
 
+    export interface GetResolverRulesRuleTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetResolverRulesTagFilter {
+        /**
+         * The key of the tag.
+         */
+        key?: string;
+        /**
+         * The values of the tag.
+         */
+        values?: string[];
+    }
+
+    export interface PrivateZoneTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface PrivateZoneVpc {
         /**
          * The region of the bind vpc. The default value is the region of the default provider config.
@@ -22595,6 +23804,10 @@ export namespace private_zone {
          */
         lineMode: number;
         /**
+         * The project name of the private zone.
+         */
+        projectName: string;
+        /**
          * The record count of the private zone.
          */
         recordCount: number;
@@ -22610,6 +23823,10 @@ export namespace private_zone {
          * The remark of the private zone.
          */
         remark: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.private_zone.PrivateZonesPrivateZoneTag[];
         /**
          * The updated time of the private zone.
          */
@@ -22641,6 +23858,28 @@ export namespace private_zone {
          * The region name of the bind vpc.
          */
         regionName: string;
+    }
+
+    export interface PrivateZonesPrivateZoneTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface PrivateZonesTagFilter {
+        /**
+         * The key of the tag.
+         */
+        key?: string;
+        /**
+         * The values of the tag.
+         */
+        values?: string[];
     }
 
     export interface RecordSetsRecordSet {
@@ -22688,11 +23927,11 @@ export namespace private_zone {
          */
         lastOperator: string;
         /**
-         * The subnet id of Private Zone Record. This field is only effected when the `intelligentMode` of the private zone is true.
+         * The subnet id of Private Zone Record.
          */
         line: string;
         /**
-         * The id of Private Zone Record.
+         * This field is deprecated, please use `recordIds` instead. The id of Private Zone Record.
          */
         recordId: string;
         /**
@@ -22740,6 +23979,17 @@ export namespace private_zone {
         subnetId: string;
     }
 
+    export interface ResolverEndpointTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface ResolverEndpointsEndpoint {
         /**
          * The created time of the endpoint.
@@ -22766,6 +24016,10 @@ export namespace private_zone {
          */
         name: string;
         /**
+         * The project name of the private zone resolver endpoint.
+         */
+        projectName: string;
+        /**
          * The security group id of the endpoint.
          */
         securityGroupId: string;
@@ -22773,6 +24027,10 @@ export namespace private_zone {
          * The status of the private zone resolver endpoint.
          */
         status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.private_zone.ResolverEndpointsEndpointTag[];
         /**
          * The updated time of the endpoint.
          */
@@ -22802,6 +24060,28 @@ export namespace private_zone {
         subnetId: string;
     }
 
+    export interface ResolverEndpointsEndpointTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface ResolverEndpointsTagFilter {
+        /**
+         * The key of the tag.
+         */
+        key?: string;
+        /**
+         * The values of the tag.
+         */
+        values?: string[];
+    }
+
     export interface ResolverRuleForwardIp {
         /**
          * IP address of the external DNS server. This parameter is only valid when the Type parameter is OUTBOUND and is a required parameter.
@@ -22811,6 +24091,17 @@ export namespace private_zone {
          * The port of the external DNS server. Default is 53. This parameter is only valid and optional when the Type parameter is OUTBOUND.
          */
         port: number;
+    }
+
+    export interface ResolverRuleTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface ResolverRuleVpc {
@@ -22845,15 +24136,23 @@ export namespace private_zone {
         /**
          * The ISP of the exit IP address of the recursive DNS server.
          */
-        line: number;
+        line: string;
         /**
          * The name of the rule.
          */
         name: string;
         /**
+         * The project name of the private zone resolver rule.
+         */
+        projectName: string;
+        /**
          * The id of the rule.
          */
         ruleId: number;
+        /**
+         * Tags.
+         */
+        tags: outputs.private_zone.ResolverRulesRuleTag[];
         /**
          * The type of the rule.
          */
@@ -22896,6 +24195,28 @@ export namespace private_zone {
          * The port of the DNS server outside of the VPC.
          */
         port: number;
+    }
+
+    export interface ResolverRulesRuleTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface ResolverRulesTagFilter {
+        /**
+         * The key of the tag.
+         */
+        key?: string;
+        /**
+         * The values of the tag.
+         */
+        values?: string[];
     }
 
 }
@@ -23658,6 +24979,44 @@ export namespace rabbitmq {
         value: string;
     }
 
+    export interface GetRegionsRegion {
+        /**
+         * The description of region.
+         */
+        description: string;
+        /**
+         * The ID of region.
+         */
+        regionId: string;
+        /**
+         * The name of region.
+         */
+        regionName: string;
+        /**
+         * The status of region.
+         */
+        status: string;
+    }
+
+    export interface GetZonesZone {
+        /**
+         * The description of zone.
+         */
+        description: string;
+        /**
+         * The status of zone.
+         */
+        status: string;
+        /**
+         * The ID of zone.
+         */
+        zoneId: string;
+        /**
+         * The name of zone.
+         */
+        zoneName: string;
+    }
+
     export interface InstanceChargeInfo {
         /**
          * Whether to automatically renew in prepaid scenarios. Default is false.
@@ -23919,6 +25278,44 @@ export namespace rabbitmq {
          * The Value of Tags.
          */
         value: string;
+    }
+
+    export interface RegionsRegion {
+        /**
+         * The description of region.
+         */
+        description: string;
+        /**
+         * The ID of region.
+         */
+        regionId: string;
+        /**
+         * The name of region.
+         */
+        regionName: string;
+        /**
+         * The status of region.
+         */
+        status: string;
+    }
+
+    export interface ZonesZone {
+        /**
+         * The description of zone.
+         */
+        description: string;
+        /**
+         * The status of zone.
+         */
+        status: string;
+        /**
+         * The ID of zone.
+         */
+        zoneId: string;
+        /**
+         * The name of zone.
+         */
+        zoneName: string;
     }
 
 }
@@ -25519,7 +26916,78 @@ export namespace rds_mysql {
         dbName: string;
     }
 
+    export interface AccountTableColumnInfosTableInfo {
+        /**
+         * The column privileges of the account.
+         */
+        accountPrivileges: string[];
+        /**
+         * The column permission information of the account.
+         */
+        columnInfos: outputs.rds_mysql.AccountTableColumnInfosTableInfoColumnInfo[];
+        /**
+         * The name of the table.
+         */
+        tableName: string;
+    }
+
+    export interface AccountTableColumnInfosTableInfoColumnInfo {
+        /**
+         * The column privileges of the account.
+         */
+        accountPrivileges: string[];
+        /**
+         * The name of the column.
+         */
+        columnName: string;
+    }
+
+    export interface AccountTableColumnPrivilege {
+        /**
+         * Column permission information of the account.
+         */
+        columnPrivileges?: outputs.rds_mysql.AccountTableColumnPrivilegeColumnPrivilege[];
+        /**
+         * Settings for table column permissions of the account.
+         */
+        dbName: string;
+        /**
+         * Table permission information of the account.
+         */
+        tablePrivileges?: outputs.rds_mysql.AccountTableColumnPrivilegeTablePrivilege[];
+    }
+
+    export interface AccountTableColumnPrivilegeColumnPrivilege {
+        /**
+         * Table privileges of the account.
+         */
+        accountPrivilegeDetail: string;
+        /**
+         * The name of the column for setting permissions on the account.
+         */
+        columnName: string;
+        /**
+         * The name of the table for setting permissions on the account.
+         */
+        tableName: string;
+    }
+
+    export interface AccountTableColumnPrivilegeTablePrivilege {
+        /**
+         * Table privileges of the account.
+         */
+        accountPrivilegeDetail: string;
+        /**
+         * The name of the table for setting permissions on the account.
+         */
+        tableName: string;
+    }
+
     export interface AccountsAccount {
+        /**
+         * The description information of the account.
+         */
+        accountDesc: string;
         /**
          * The name of the database account. This field supports fuzzy query.
          */
@@ -25529,6 +26997,10 @@ export namespace rds_mysql {
          */
         accountPrivileges: outputs.rds_mysql.AccountsAccountAccountPrivilege[];
         /**
+         * The SQL statement of the account privileges.
+         */
+        accountPrivilegesSqls: string[];
+        /**
          * The status of the database account.
          */
         accountStatus: string;
@@ -25536,6 +27008,18 @@ export namespace rds_mysql {
          * The type of the database account.
          */
         accountType: string;
+        /**
+         * The global privileges of the account.
+         */
+        globalAccountPrivileges: string[];
+        /**
+         * The databases to which the table column permissions owned by the account belong. Description: If the account does not have table column permissions, this field will not be returned.
+         */
+        hasTableColumnPrivilegeDbNames: string[];
+        /**
+         * The host of the account.
+         */
+        host: string;
     }
 
     export interface AccountsAccountAccountPrivilege {
@@ -25663,6 +27147,27 @@ export namespace rds_mysql {
         tableNames?: string[];
     }
 
+    export interface BackupPolicyCrossBackupPolicy {
+        /**
+         * Whether to enable cross-region backup.
+         * true: Enable.
+         * false: Disable. Default value.
+         */
+        backupEnabled: boolean;
+        /**
+         * The destination region ID for cross-region backup. When the value of BackupEnabled is true, this parameter is required.
+         */
+        crossBackupRegion?: string;
+        /**
+         * Whether to enable cross-region log backup. true: Enable. false: Disable. Default value. Description: Cross-region log backup can only be enabled when cross-region backup is enabled.
+         */
+        logBackupEnabled: boolean;
+        /**
+         * The number of days to retain cross - region backups, with a value range of 7 to 1825 days.
+         */
+        retention: number;
+    }
+
     export interface BackupsBackup {
         /**
          * The end time of the backup.
@@ -25715,6 +27220,10 @@ export namespace rds_mysql {
          */
         dbTableInfos: outputs.rds_mysql.BackupsBackupDbTableInfo[];
         /**
+         * The decryption key of the backup.
+         */
+        decryptionKey: string;
+        /**
          * Download status. Values:
          * NotDownload: Not downloaded.
          * Success: Downloaded.
@@ -25746,6 +27255,14 @@ export namespace rds_mysql {
          * false: Not expired.
          */
         isExpired: boolean;
+        /**
+         * Initialization Vector.
+         */
+        iv: string;
+        /**
+         * Statistics information about the storage space usage of backups.
+         */
+        usageStats: outputs.rds_mysql.BackupsBackupUsageStat[];
     }
 
     export interface BackupsBackupDbTableInfo {
@@ -25759,6 +27276,21 @@ export namespace rds_mysql {
         tables: string[];
     }
 
+    export interface BackupsBackupUsageStat {
+        /**
+         * Backup size, in bytes.
+         */
+        quantity: number;
+        /**
+         * Statistical time.
+         */
+        startTime: string;
+        /**
+         * Statistical items. TotalBasicSpaceUsage: Storage space usage for basic backups. BasicDataBackupUsage: Storage space usage for local data backups. BasicBinlogBackupUsage: Storage space usage for local log backups. TotalCrossRegionSpaceUsage: Storage space usage for cross-region backups. CrossRegionDataBackupUsage: Storage space usage for cross-region data backups. CrossRegionBinlogBackupUsage: Storage space usage for cross-region log backups.
+         */
+        statItem: string;
+    }
+
     export interface DatabasesDatabase {
         /**
          * The character set of the RDS database.
@@ -25769,9 +27301,17 @@ export namespace rds_mysql {
          */
         databasePrivileges: outputs.rds_mysql.DatabasesDatabaseDatabasePrivilege[];
         /**
+         * The description information of the RDS database.
+         */
+        dbDesc: string;
+        /**
          * The name of the RDS database.
          */
         dbName: string;
+        /**
+         * The status of the RDS database.
+         */
+        dbStatus: string;
     }
 
     export interface DatabasesDatabaseDatabasePrivilege {
@@ -25897,7 +27437,37 @@ export namespace rds_mysql {
         weight: number;
     }
 
+    export interface GetAccountTableColumnInfosTableInfo {
+        /**
+         * The column privileges of the account.
+         */
+        accountPrivileges: string[];
+        /**
+         * The column permission information of the account.
+         */
+        columnInfos: outputs.rds_mysql.GetAccountTableColumnInfosTableInfoColumnInfo[];
+        /**
+         * The name of the table.
+         */
+        tableName: string;
+    }
+
+    export interface GetAccountTableColumnInfosTableInfoColumnInfo {
+        /**
+         * The column privileges of the account.
+         */
+        accountPrivileges: string[];
+        /**
+         * The name of the column.
+         */
+        columnName: string;
+    }
+
     export interface GetAccountsAccount {
+        /**
+         * The description information of the account.
+         */
+        accountDesc: string;
         /**
          * The name of the database account. This field supports fuzzy query.
          */
@@ -25907,6 +27477,10 @@ export namespace rds_mysql {
          */
         accountPrivileges: outputs.rds_mysql.GetAccountsAccountAccountPrivilege[];
         /**
+         * The SQL statement of the account privileges.
+         */
+        accountPrivilegesSqls: string[];
+        /**
          * The status of the database account.
          */
         accountStatus: string;
@@ -25914,6 +27488,18 @@ export namespace rds_mysql {
          * The type of the database account.
          */
         accountType: string;
+        /**
+         * The global privileges of the account.
+         */
+        globalAccountPrivileges: string[];
+        /**
+         * The databases to which the table column permissions owned by the account belong. Description: If the account does not have table column permissions, this field will not be returned.
+         */
+        hasTableColumnPrivilegeDbNames: string[];
+        /**
+         * The host of the account.
+         */
+        host: string;
     }
 
     export interface GetAccountsAccountAccountPrivilege {
@@ -26068,6 +27654,10 @@ export namespace rds_mysql {
          */
         dbTableInfos: outputs.rds_mysql.GetBackupsBackupDbTableInfo[];
         /**
+         * The decryption key of the backup.
+         */
+        decryptionKey: string;
+        /**
          * Download status. Values:
          * NotDownload: Not downloaded.
          * Success: Downloaded.
@@ -26099,6 +27689,14 @@ export namespace rds_mysql {
          * false: Not expired.
          */
         isExpired: boolean;
+        /**
+         * Initialization Vector.
+         */
+        iv: string;
+        /**
+         * Statistics information about the storage space usage of backups.
+         */
+        usageStats: outputs.rds_mysql.GetBackupsBackupUsageStat[];
     }
 
     export interface GetBackupsBackupDbTableInfo {
@@ -26112,6 +27710,21 @@ export namespace rds_mysql {
         tables: string[];
     }
 
+    export interface GetBackupsBackupUsageStat {
+        /**
+         * Backup size, in bytes.
+         */
+        quantity: number;
+        /**
+         * Statistical time.
+         */
+        startTime: string;
+        /**
+         * Statistical items. TotalBasicSpaceUsage: Storage space usage for basic backups. BasicDataBackupUsage: Storage space usage for local data backups. BasicBinlogBackupUsage: Storage space usage for local log backups. TotalCrossRegionSpaceUsage: Storage space usage for cross-region backups. CrossRegionDataBackupUsage: Storage space usage for cross-region data backups. CrossRegionBinlogBackupUsage: Storage space usage for cross-region log backups.
+         */
+        statItem: string;
+    }
+
     export interface GetDatabasesDatabase {
         /**
          * The character set of the RDS database.
@@ -26122,9 +27735,17 @@ export namespace rds_mysql {
          */
         databasePrivileges: outputs.rds_mysql.GetDatabasesDatabaseDatabasePrivilege[];
         /**
+         * The description information of the RDS database.
+         */
+        dbDesc: string;
+        /**
          * The name of the RDS database.
          */
         dbName: string;
+        /**
+         * The status of the RDS database.
+         */
+        dbStatus: string;
     }
 
     export interface GetDatabasesDatabaseDatabasePrivilege {
@@ -26310,6 +27931,16 @@ export namespace rds_mysql {
          */
         allowListVersion: string;
         /**
+         * Auto - storage scaling configuration.
+         */
+        autoStorageScalingConfigs: outputs.rds_mysql.GetInstancesRdsMysqlInstanceAutoStorageScalingConfig[];
+        /**
+         * The upgrade strategy for the minor version of the instance kernel. Values:
+         * Auto: Auto upgrade.
+         * Manual: Manual upgrade.
+         */
+        autoUpgradeMinorVersion: string;
+        /**
          * The instance has used backup space. Unit: GB.
          */
         backupUse: number;
@@ -26348,6 +27979,28 @@ export namespace rds_mysql {
          */
         dbProxyStatus: string;
         /**
+         * Whether to enable the deletion protection function. Values:
+         * Enabled: Yes.
+         * Disabled: No.
+         */
+        deletionProtection: string;
+        /**
+         * The ID of the data synchronization task in DTS for the data synchronization link between the primary instance and the disaster recovery instance.
+         */
+        drDtsTaskId: string;
+        /**
+         * The name of the DTS data synchronization task for the data synchronization link between the primary instance and the disaster recovery instance.
+         */
+        drDtsTaskName: string;
+        /**
+         * The status of the DTS data synchronization task for the data synchronization link between the primary instance and the disaster recovery instance.
+         */
+        drDtsTaskStatus: string;
+        /**
+         * The number of seconds that the disaster recovery instance is behind the primary instance.
+         */
+        drSecondsBehindMaster: number;
+        /**
          * The endpoint info of the RDS instance.
          */
         endpoints: outputs.rds_mysql.GetInstancesRdsMysqlInstanceEndpoint[];
@@ -26378,6 +28031,10 @@ export namespace rds_mysql {
          */
         instanceStatus: string;
         /**
+         * The kernel version of the instance.
+         */
+        kernelVersion: string;
+        /**
          * Whether the table name is case sensitive, the default value is 1.
          * Ranges:
          * 0: Table names are stored as fixed and table names are case-sensitive.
@@ -26388,6 +28045,18 @@ export namespace rds_mysql {
          * Maintenance Window.
          */
         maintenanceWindows: outputs.rds_mysql.GetInstancesRdsMysqlInstanceMaintenanceWindow[];
+        /**
+         * The ID of the primary instance of the disaster recovery instance.
+         */
+        masterInstanceId: string;
+        /**
+         * The name of the primary instance of the disaster recovery instance.
+         */
+        masterInstanceName: string;
+        /**
+         * The region where the primary instance of the disaster recovery instance is located.
+         */
+        masterRegion: string;
         /**
          * Memory size in GB.
          */
@@ -26409,7 +28078,7 @@ export namespace rds_mysql {
          */
         nodeSpaceUsedPercentage: number;
         /**
-         * General instance type, different from Custom instance type.
+         * Primary node specification. For detailed information about the node specifications, please refer to Product Specifications.
          */
         nodeSpec: string;
         /**
@@ -26425,11 +28094,27 @@ export namespace rds_mysql {
          */
         regionId: string;
         /**
+         * The upper limit of the storage space that can be set for automatic expansion. The value is the upper limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value ranges of different specifications, please refer to Product Specifications.
+         */
+        storageMaxCapacity: number;
+        /**
+         * The upper limit of the proportion of available storage space that triggers automatic expansion. When supported, the value is 50%.
+         */
+        storageMaxTriggerThreshold: number;
+        /**
+         * The lower limit of the storage space that can be set for automatic expansion. The value is the lower limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value ranges of different specifications, please refer to Product Specifications.
+         */
+        storageMinCapacity: number;
+        /**
+         * The lower limit of the proportion of available storage space that triggers automatic expansion. When supported, the value is 10%.
+         */
+        storageMinTriggerThreshold: number;
+        /**
          * Total instance storage space. Unit: GB.
          */
         storageSpace: number;
         /**
-         * Instance storage type.
+         * Instance storage type. The value is LocalSSD, indicating a local SSD disk.
          */
         storageType: string;
         /**
@@ -26468,6 +28153,23 @@ export namespace rds_mysql {
          * List of availability zones where each node of the instance is located.
          */
         zoneIds: string[];
+    }
+
+    export interface GetInstancesRdsMysqlInstanceAutoStorageScalingConfig {
+        /**
+         * Whether to enable the instance's auto - scaling function. Values:
+         * true: Yes.
+         * false: No. Description: When StorageConfig is used as a request parameter, if the value of EnableStorageAutoScale is false, the StorageThreshold and StorageUpperBound parameters do not need to be passed in.
+         */
+        enableStorageAutoScale: boolean;
+        /**
+         * The proportion of available storage space that triggers automatic expansion. The value range is 10 to 50, and the default value is 10, with the unit being %.
+         */
+        storageThreshold: number;
+        /**
+         * The upper limit of the storage space that can be automatically expanded. The lower limit of the value of this field is the instance storage space + 20GB; the upper limit of the value is the upper limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value range of different specifications, please refer to Product Specifications.
+         */
+        storageUpperBound: number;
     }
 
     export interface GetInstancesRdsMysqlInstanceChargeDetail {
@@ -26682,7 +28384,7 @@ export namespace rds_mysql {
          */
         nodeId: string;
         /**
-         * General instance type, different from Custom instance type.
+         * Primary node specification. For detailed information about the node specifications, please refer to Product Specifications.
          */
         nodeSpec: string;
         /**
@@ -26825,6 +28527,81 @@ export namespace rds_mysql {
         valueRange: string;
     }
 
+    export interface GetPlannedEventsPlannedEvent {
+        /**
+         * The business impact of the planned event.
+         */
+        businessImpact: string;
+        /**
+         * The database engine of the planned event.
+         */
+        dbEngine: string;
+        /**
+         * The action of the planned event.
+         */
+        eventAction: string;
+        /**
+         * The id of the planned event.
+         */
+        eventId: string;
+        /**
+         * The name of the planned event.
+         */
+        eventName: string;
+        /**
+         * The type of the planned event.
+         */
+        eventType: string;
+        /**
+         * The id of the instance.
+         */
+        instanceId: string;
+        /**
+         * The name of the instance.
+         */
+        instanceName: string;
+        /**
+         * The latest postponable time. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+         */
+        maxDelayTime: string;
+        /**
+         * The initially set start time. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+         */
+        originBeginTime: string;
+        /**
+         * The start time of the planned execution. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+         */
+        plannedBeginTime: string;
+        /**
+         * The end time of the planned execution. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+         */
+        plannedEndTime: string;
+        /**
+         * Description information of the operation and maintenance event.
+         */
+        plannedEventDescription: string;
+        /**
+         * The reasons for the occurrence of the event, which are provided to help you understand the reasons for the occurrence of unexpected events.
+         */
+        plannedEventReason: string;
+        /**
+         * The start time of the planned switch. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+         */
+        plannedSwitchBeginTime: string;
+        /**
+         * The end time of the planned switch. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+         */
+        plannedSwitchEndTime: string;
+        /**
+         * The region.
+         */
+        region: string;
+        /**
+         * The status of the planned event.
+         */
+        status: string;
+    }
+
     export interface GetRegionsRegion {
         /**
          * The id of the region.
@@ -26834,6 +28611,189 @@ export namespace rds_mysql {
          * The name of region.
          */
         regionName: string;
+    }
+
+    export interface GetTasksData {
+        /**
+         * The creation time of the task.
+         */
+        createTime: string;
+        /**
+         * The completion time of the task.
+         */
+        finishTime: string;
+        /**
+         * Task progress. The unit is percentage. Description: Only tasks with a task status of In Progress, that is, tasks with a TaskStatus value of Running, will return the task progress.
+         */
+        progress: number;
+        /**
+         * The deadline for the planned startup. The time format is yyyy-MM-ddTHH:mm:ssZ (UTC time). Description: This field will only be returned for tasks in the "Waiting to Start", "Waiting to Execute", or "Waiting to Switch" states.
+         */
+        scheduledExecuteEndTime: string;
+        /**
+         * The scheduled end time for the switch. The time format is yyyy-MM-ddTHH:mm:ssZ (UTC time). Description: This field will only be returned for tasks in the "Waiting to Start", "Waiting to Execute", or "Waiting to Switch" states.
+         */
+        scheduledSwitchEndTime: string;
+        /**
+         * The start time of the scheduled switch. The time format is yyyy-MM-ddTHH:mm:ssZ (UTC time). Description: This field is returned only for tasks in the "Waiting to Start", "Waiting to Execute", or "Waiting to Switch" state.
+         */
+        scheduledSwitchStartTime: string;
+        /**
+         * The start time of the task.
+         */
+        startTime: string;
+        /**
+         * Task name.
+         */
+        taskAction: string;
+        /**
+         * Task Category. The values are as shown in the following list, and multiple values can be selected: BackupRecoveryManagement: Backup and Recovery Management. DatabaseAdminManagement: Database Administration Management. DatabaseProxy: Database Proxy. HighAvailability: High Availability. InstanceAttribute: Instance Attribute. InstanceManagement: Instance Management. NetworkManagement: Network Management. SecurityManagement: Security Management. SystemMaintainManagement: System Operation and Maintenance Management. VersionUpgrade: Version Upgrade.
+         */
+        taskCategory: string;
+        /**
+         * The description of the task.
+         */
+        taskDesc: string;
+        /**
+         * Detailed information of the task.
+         */
+        taskDetails: outputs.rds_mysql.GetTasksDataTaskDetail[];
+        /**
+         * Task ID. Description: For the two groups of parameters, TaskId and task time (CreationStartTime and CreationEndTime), one of them must be selected.
+         */
+        taskId: string;
+        /**
+         * Task parameters.
+         */
+        taskParams: string;
+        /**
+         * Progress details.
+         */
+        taskProgresses: outputs.rds_mysql.GetTasksDataTaskProgress[];
+        /**
+         * Task status. The values are as shown in the following list, and multiple values can be selected: WaitSwitch: Waiting for switching. WaitStart: Waiting for execution. Canceled: Canceled. Stopped: Terminated. Running_BeforeSwitch: Running (before switching). Timeout: Execution Timeout. Success: Execution Success. Failed: Execution Failed. Running: In Execution. Stopping: In Termination.
+         */
+        taskStatus: string;
+    }
+
+    export interface GetTasksDataTaskDetail {
+        /**
+         * The log of inspection items for the instance major version upgrade.
+         */
+        checkItemLog: string;
+        /**
+         * Check results for major version upgrade.
+         */
+        checkItems: outputs.rds_mysql.GetTasksDataTaskDetailCheckItem[];
+        /**
+         * Details of the task.
+         */
+        taskInfos: outputs.rds_mysql.GetTasksDataTaskDetailTaskInfo[];
+    }
+
+    export interface GetTasksDataTaskDetailCheckItem {
+        /**
+         * Details of the failed check items.
+         */
+        checkDetails: outputs.rds_mysql.GetTasksDataTaskDetailCheckItemCheckDetail[];
+        /**
+         * The description of the check item.
+         */
+        description: string;
+        /**
+         * The name of the check item.
+         */
+        itemName: string;
+        /**
+         * The risk level of the failed check items. Values:
+         * Notice: Attention.
+         * Warning: Warning.
+         * Error: Error.
+         */
+        riskLevel: string;
+    }
+
+    export interface GetTasksDataTaskDetailCheckItemCheckDetail {
+        /**
+         * The impact of the issue that caused the failure of the check item after the upgrade.
+         */
+        impact: string;
+        /**
+         * Problems that caused the failure to pass the check items.
+         */
+        issue: string;
+    }
+
+    export interface GetTasksDataTaskDetailTaskInfo {
+        /**
+         * The creation time of the task.
+         */
+        createTime: string;
+        /**
+         * The completion time of the task.
+         */
+        finishTime: string;
+        /**
+         * Task progress. The unit is percentage. Description: Only tasks with a task status of In Progress, that is, tasks with a TaskStatus value of Running, will return the task progress.
+         */
+        progress: number;
+        /**
+         * Instances related to the task.
+         */
+        relatedInstanceInfos: outputs.rds_mysql.GetTasksDataTaskDetailTaskInfoRelatedInstanceInfo[];
+    }
+
+    export interface GetTasksDataTaskDetailTaskInfoRelatedInstanceInfo {
+        /**
+         * Instance ID.
+         */
+        instanceId: string;
+    }
+
+    export interface GetTasksDataTaskProgress {
+        /**
+         * Step Name. Values:
+         * InstanceInitialization: Task initialization.
+         * InstanceRecoveryPreparation Instance recovery preparation.
+         * DataBackupImport: Cold backup import.
+         * LogBackupBinlogAdd: Binlog playback.
+         * TaskSuccessful: Task success.
+         */
+        name: string;
+        /**
+         * Specific information of the step.
+         */
+        stepExtraInfos: outputs.rds_mysql.GetTasksDataTaskProgressStepExtraInfo[];
+        /**
+         * Step status. Values:
+         * Running: In progress.
+         * Success: Successful.
+         * Failed: Failed.
+         * Unexecuted: Not executed.
+         */
+        stepStatus: string;
+    }
+
+    export interface GetTasksDataTaskProgressStepExtraInfo {
+        /**
+         * Current stage. CostTime: The time taken for the current stage.
+         * CurDataSize: The amount of data imported currently.
+         * CurBinlog: The number of Binlog files being replayed currently.
+         * RemainCostTime: The remaining time taken.
+         * RemainDataSize: The remaining amount of data to be imported. RemainBinlog: The number of Binlog files remaining for playback.
+         */
+        type: string;
+        /**
+         * Unit. Values:
+         * MS: Milliseconds.
+         * Bytes: Bytes.
+         * Files: Number of (files).
+         */
+        unit: string;
+        /**
+         * The specific value corresponding to the Type field.
+         */
+        value: number;
     }
 
     export interface GetZonesZone {
@@ -26853,6 +28813,23 @@ export namespace rds_mysql {
          * The name of the zone.
          */
         zoneName: string;
+    }
+
+    export interface InstanceAutoStorageScalingConfig {
+        /**
+         * Whether to enable the instance's auto - scaling function. Values:
+         * true: Yes.
+         * false: No. Description: When StorageConfig is used as a request parameter, if the value of EnableStorageAutoScale is false, the StorageThreshold and StorageUpperBound parameters do not need to be passed in.
+         */
+        enableStorageAutoScale: boolean;
+        /**
+         * The proportion of available storage space that triggers automatic expansion. The value range is 10 to 50, and the default value is 10, with the unit being %.
+         */
+        storageThreshold: number;
+        /**
+         * The upper limit of the storage space that can be automatically expanded. The lower limit of the value of this field is the instance storage space + 20GB; the upper limit of the value is the upper limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value range of different specifications, please refer to Product Specifications.
+         */
+        storageUpperBound: number;
     }
 
     export interface InstanceChargeDetail {
@@ -27216,6 +29193,16 @@ export namespace rds_mysql {
          */
         allowListVersion: string;
         /**
+         * Auto - storage scaling configuration.
+         */
+        autoStorageScalingConfigs: outputs.rds_mysql.InstancesRdsMysqlInstanceAutoStorageScalingConfig[];
+        /**
+         * The upgrade strategy for the minor version of the instance kernel. Values:
+         * Auto: Auto upgrade.
+         * Manual: Manual upgrade.
+         */
+        autoUpgradeMinorVersion: string;
+        /**
          * The instance has used backup space. Unit: GB.
          */
         backupUse: number;
@@ -27254,6 +29241,28 @@ export namespace rds_mysql {
          */
         dbProxyStatus: string;
         /**
+         * Whether to enable the deletion protection function. Values:
+         * Enabled: Yes.
+         * Disabled: No.
+         */
+        deletionProtection: string;
+        /**
+         * The ID of the data synchronization task in DTS for the data synchronization link between the primary instance and the disaster recovery instance.
+         */
+        drDtsTaskId: string;
+        /**
+         * The name of the DTS data synchronization task for the data synchronization link between the primary instance and the disaster recovery instance.
+         */
+        drDtsTaskName: string;
+        /**
+         * The status of the DTS data synchronization task for the data synchronization link between the primary instance and the disaster recovery instance.
+         */
+        drDtsTaskStatus: string;
+        /**
+         * The number of seconds that the disaster recovery instance is behind the primary instance.
+         */
+        drSecondsBehindMaster: number;
+        /**
          * The endpoint info of the RDS instance.
          */
         endpoints: outputs.rds_mysql.InstancesRdsMysqlInstanceEndpoint[];
@@ -27284,6 +29293,10 @@ export namespace rds_mysql {
          */
         instanceStatus: string;
         /**
+         * The kernel version of the instance.
+         */
+        kernelVersion: string;
+        /**
          * Whether the table name is case sensitive, the default value is 1.
          * Ranges:
          * 0: Table names are stored as fixed and table names are case-sensitive.
@@ -27294,6 +29307,18 @@ export namespace rds_mysql {
          * Maintenance Window.
          */
         maintenanceWindows: outputs.rds_mysql.InstancesRdsMysqlInstanceMaintenanceWindow[];
+        /**
+         * The ID of the primary instance of the disaster recovery instance.
+         */
+        masterInstanceId: string;
+        /**
+         * The name of the primary instance of the disaster recovery instance.
+         */
+        masterInstanceName: string;
+        /**
+         * The region where the primary instance of the disaster recovery instance is located.
+         */
+        masterRegion: string;
         /**
          * Memory size in GB.
          */
@@ -27315,7 +29340,7 @@ export namespace rds_mysql {
          */
         nodeSpaceUsedPercentage: number;
         /**
-         * General instance type, different from Custom instance type.
+         * Primary node specification. For detailed information about the node specifications, please refer to Product Specifications.
          */
         nodeSpec: string;
         /**
@@ -27331,11 +29356,27 @@ export namespace rds_mysql {
          */
         regionId: string;
         /**
+         * The upper limit of the storage space that can be set for automatic expansion. The value is the upper limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value ranges of different specifications, please refer to Product Specifications.
+         */
+        storageMaxCapacity: number;
+        /**
+         * The upper limit of the proportion of available storage space that triggers automatic expansion. When supported, the value is 50%.
+         */
+        storageMaxTriggerThreshold: number;
+        /**
+         * The lower limit of the storage space that can be set for automatic expansion. The value is the lower limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value ranges of different specifications, please refer to Product Specifications.
+         */
+        storageMinCapacity: number;
+        /**
+         * The lower limit of the proportion of available storage space that triggers automatic expansion. When supported, the value is 10%.
+         */
+        storageMinTriggerThreshold: number;
+        /**
          * Total instance storage space. Unit: GB.
          */
         storageSpace: number;
         /**
-         * Instance storage type.
+         * Instance storage type. The value is LocalSSD, indicating a local SSD disk.
          */
         storageType: string;
         /**
@@ -27374,6 +29415,23 @@ export namespace rds_mysql {
          * List of availability zones where each node of the instance is located.
          */
         zoneIds: string[];
+    }
+
+    export interface InstancesRdsMysqlInstanceAutoStorageScalingConfig {
+        /**
+         * Whether to enable the instance's auto - scaling function. Values:
+         * true: Yes.
+         * false: No. Description: When StorageConfig is used as a request parameter, if the value of EnableStorageAutoScale is false, the StorageThreshold and StorageUpperBound parameters do not need to be passed in.
+         */
+        enableStorageAutoScale: boolean;
+        /**
+         * The proportion of available storage space that triggers automatic expansion. The value range is 10 to 50, and the default value is 10, with the unit being %.
+         */
+        storageThreshold: number;
+        /**
+         * The upper limit of the storage space that can be automatically expanded. The lower limit of the value of this field is the instance storage space + 20GB; the upper limit of the value is the upper limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value range of different specifications, please refer to Product Specifications.
+         */
+        storageUpperBound: number;
     }
 
     export interface InstancesRdsMysqlInstanceChargeDetail {
@@ -27588,7 +29646,7 @@ export namespace rds_mysql {
          */
         nodeId: string;
         /**
-         * General instance type, different from Custom instance type.
+         * Primary node specification. For detailed information about the node specifications, please refer to Product Specifications.
          */
         nodeSpec: string;
         /**
@@ -27744,6 +29802,81 @@ export namespace rds_mysql {
         valueRange: string;
     }
 
+    export interface PlannedEventsPlannedEvent {
+        /**
+         * The business impact of the planned event.
+         */
+        businessImpact: string;
+        /**
+         * The database engine of the planned event.
+         */
+        dbEngine: string;
+        /**
+         * The action of the planned event.
+         */
+        eventAction: string;
+        /**
+         * The id of the planned event.
+         */
+        eventId: string;
+        /**
+         * The name of the planned event.
+         */
+        eventName: string;
+        /**
+         * The type of the planned event.
+         */
+        eventType: string;
+        /**
+         * The id of the instance.
+         */
+        instanceId: string;
+        /**
+         * The name of the instance.
+         */
+        instanceName: string;
+        /**
+         * The latest postponable time. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+         */
+        maxDelayTime: string;
+        /**
+         * The initially set start time. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+         */
+        originBeginTime: string;
+        /**
+         * The start time of the planned execution. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+         */
+        plannedBeginTime: string;
+        /**
+         * The end time of the planned execution. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+         */
+        plannedEndTime: string;
+        /**
+         * Description information of the operation and maintenance event.
+         */
+        plannedEventDescription: string;
+        /**
+         * The reasons for the occurrence of the event, which are provided to help you understand the reasons for the occurrence of unexpected events.
+         */
+        plannedEventReason: string;
+        /**
+         * The start time of the planned switch. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+         */
+        plannedSwitchBeginTime: string;
+        /**
+         * The end time of the planned switch. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+         */
+        plannedSwitchEndTime: string;
+        /**
+         * The region.
+         */
+        region: string;
+        /**
+         * The status of the planned event.
+         */
+        status: string;
+    }
+
     export interface RegionsRegion {
         /**
          * The id of the region.
@@ -27753,6 +29886,189 @@ export namespace rds_mysql {
          * The name of region.
          */
         regionName: string;
+    }
+
+    export interface TasksData {
+        /**
+         * The creation time of the task.
+         */
+        createTime: string;
+        /**
+         * The completion time of the task.
+         */
+        finishTime: string;
+        /**
+         * Task progress. The unit is percentage. Description: Only tasks with a task status of In Progress, that is, tasks with a TaskStatus value of Running, will return the task progress.
+         */
+        progress: number;
+        /**
+         * The deadline for the planned startup. The time format is yyyy-MM-ddTHH:mm:ssZ (UTC time). Description: This field will only be returned for tasks in the "Waiting to Start", "Waiting to Execute", or "Waiting to Switch" states.
+         */
+        scheduledExecuteEndTime: string;
+        /**
+         * The scheduled end time for the switch. The time format is yyyy-MM-ddTHH:mm:ssZ (UTC time). Description: This field will only be returned for tasks in the "Waiting to Start", "Waiting to Execute", or "Waiting to Switch" states.
+         */
+        scheduledSwitchEndTime: string;
+        /**
+         * The start time of the scheduled switch. The time format is yyyy-MM-ddTHH:mm:ssZ (UTC time). Description: This field is returned only for tasks in the "Waiting to Start", "Waiting to Execute", or "Waiting to Switch" state.
+         */
+        scheduledSwitchStartTime: string;
+        /**
+         * The start time of the task.
+         */
+        startTime: string;
+        /**
+         * Task name.
+         */
+        taskAction: string;
+        /**
+         * Task Category. The values are as shown in the following list, and multiple values can be selected: BackupRecoveryManagement: Backup and Recovery Management. DatabaseAdminManagement: Database Administration Management. DatabaseProxy: Database Proxy. HighAvailability: High Availability. InstanceAttribute: Instance Attribute. InstanceManagement: Instance Management. NetworkManagement: Network Management. SecurityManagement: Security Management. SystemMaintainManagement: System Operation and Maintenance Management. VersionUpgrade: Version Upgrade.
+         */
+        taskCategory: string;
+        /**
+         * The description of the task.
+         */
+        taskDesc: string;
+        /**
+         * Detailed information of the task.
+         */
+        taskDetails: outputs.rds_mysql.TasksDataTaskDetail[];
+        /**
+         * Task ID. Description: For the two groups of parameters, TaskId and task time (CreationStartTime and CreationEndTime), one of them must be selected.
+         */
+        taskId: string;
+        /**
+         * Task parameters.
+         */
+        taskParams: string;
+        /**
+         * Progress details.
+         */
+        taskProgresses: outputs.rds_mysql.TasksDataTaskProgress[];
+        /**
+         * Task status. The values are as shown in the following list, and multiple values can be selected: WaitSwitch: Waiting for switching. WaitStart: Waiting for execution. Canceled: Canceled. Stopped: Terminated. Running_BeforeSwitch: Running (before switching). Timeout: Execution Timeout. Success: Execution Success. Failed: Execution Failed. Running: In Execution. Stopping: In Termination.
+         */
+        taskStatus: string;
+    }
+
+    export interface TasksDataTaskDetail {
+        /**
+         * The log of inspection items for the instance major version upgrade.
+         */
+        checkItemLog: string;
+        /**
+         * Check results for major version upgrade.
+         */
+        checkItems: outputs.rds_mysql.TasksDataTaskDetailCheckItem[];
+        /**
+         * Details of the task.
+         */
+        taskInfos: outputs.rds_mysql.TasksDataTaskDetailTaskInfo[];
+    }
+
+    export interface TasksDataTaskDetailCheckItem {
+        /**
+         * Details of the failed check items.
+         */
+        checkDetails: outputs.rds_mysql.TasksDataTaskDetailCheckItemCheckDetail[];
+        /**
+         * The description of the check item.
+         */
+        description: string;
+        /**
+         * The name of the check item.
+         */
+        itemName: string;
+        /**
+         * The risk level of the failed check items. Values:
+         * Notice: Attention.
+         * Warning: Warning.
+         * Error: Error.
+         */
+        riskLevel: string;
+    }
+
+    export interface TasksDataTaskDetailCheckItemCheckDetail {
+        /**
+         * The impact of the issue that caused the failure of the check item after the upgrade.
+         */
+        impact: string;
+        /**
+         * Problems that caused the failure to pass the check items.
+         */
+        issue: string;
+    }
+
+    export interface TasksDataTaskDetailTaskInfo {
+        /**
+         * The creation time of the task.
+         */
+        createTime: string;
+        /**
+         * The completion time of the task.
+         */
+        finishTime: string;
+        /**
+         * Task progress. The unit is percentage. Description: Only tasks with a task status of In Progress, that is, tasks with a TaskStatus value of Running, will return the task progress.
+         */
+        progress: number;
+        /**
+         * Instances related to the task.
+         */
+        relatedInstanceInfos: outputs.rds_mysql.TasksDataTaskDetailTaskInfoRelatedInstanceInfo[];
+    }
+
+    export interface TasksDataTaskDetailTaskInfoRelatedInstanceInfo {
+        /**
+         * Instance ID.
+         */
+        instanceId: string;
+    }
+
+    export interface TasksDataTaskProgress {
+        /**
+         * Step Name. Values:
+         * InstanceInitialization: Task initialization.
+         * InstanceRecoveryPreparation Instance recovery preparation.
+         * DataBackupImport: Cold backup import.
+         * LogBackupBinlogAdd: Binlog playback.
+         * TaskSuccessful: Task success.
+         */
+        name: string;
+        /**
+         * Specific information of the step.
+         */
+        stepExtraInfos: outputs.rds_mysql.TasksDataTaskProgressStepExtraInfo[];
+        /**
+         * Step status. Values:
+         * Running: In progress.
+         * Success: Successful.
+         * Failed: Failed.
+         * Unexecuted: Not executed.
+         */
+        stepStatus: string;
+    }
+
+    export interface TasksDataTaskProgressStepExtraInfo {
+        /**
+         * Current stage. CostTime: The time taken for the current stage.
+         * CurDataSize: The amount of data imported currently.
+         * CurBinlog: The number of Binlog files being replayed currently.
+         * RemainCostTime: The remaining time taken.
+         * RemainDataSize: The remaining amount of data to be imported. RemainBinlog: The number of Binlog files remaining for playback.
+         */
+        type: string;
+        /**
+         * Unit. Values:
+         * MS: Milliseconds.
+         * Bytes: Bytes.
+         * Files: Number of (files).
+         */
+        unit: string;
+        /**
+         * The specific value corresponding to the Type field.
+         */
+        value: number;
     }
 
     export interface ZonesZone {
@@ -29752,7 +32068,30 @@ export namespace redis {
         vpc: string;
     }
 
+    export interface AllowListSecurityGroupBindInfo {
+        /**
+         * Security group association mode. The value range is as follows: IngressDirectionIp: The input direction IP, which is the IP involved in the TCP protocol and ALL protocol in the source address of the secure group input direction to access the database. If the source address is configured as a secure group, it will be ignored. AssociateEcsIp: Associate ECS IP, which allows cloud servers within the security group to access the database. Currently, only the IP information of the main network card is supported for import.
+         */
+        bindMode: string;
+        /**
+         * The list of ips in the associated security group has been linked.
+         */
+        ipLists: string[];
+        /**
+         * The associated security group ID.
+         */
+        securityGroupId: string;
+        /**
+         * The name of the associated security group.
+         */
+        securityGroupName: string;
+    }
+
     export interface AllowListsAllowList {
+        /**
+         * The type of the whitelist.
+         */
+        allowListCategory: string;
         /**
          * Description of allow list.
          */
@@ -29785,6 +32124,14 @@ export namespace redis {
          * Instances associated by this allow list.
          */
         associatedInstances: outputs.redis.AllowListsAllowListAssociatedInstance[];
+        /**
+         * The name of the project to which the white list belongs.
+         */
+        projectName: string;
+        /**
+         * The current whitelist is the list of security group information that has been associated.
+         */
+        securityGroupBindInfos: outputs.redis.AllowListsAllowListSecurityGroupBindInfo[];
     }
 
     export interface AllowListsAllowListAssociatedInstance {
@@ -29802,7 +32149,45 @@ export namespace redis {
         vpc: string;
     }
 
-    export interface BackupInstanceDetail {
+    export interface AllowListsAllowListSecurityGroupBindInfo {
+        /**
+         * Security group association mode. The value range is as follows: IngressDirectionIp: The input direction IP, which is the IP involved in the TCP protocol and ALL protocol in the source address of the secure group input direction to access the database. If the source address is configured as a secure group, it will be ignored. AssociateEcsIp: Associate ECS IP, which allows cloud servers within the security group to access the database. Currently, only the IP information of the main network card is supported for import.
+         */
+        bindMode: string;
+        /**
+         * The list of ips in the associated security group has been linked.
+         */
+        ipLists: string[];
+        /**
+         * The associated security group ID.
+         */
+        securityGroupId: string;
+        /**
+         * The name of the associated security group.
+         */
+        securityGroupName: string;
+    }
+
+    export interface BackupBackupPointDownloadUrl {
+        /**
+         * The private network download address for RDB files.
+         */
+        privateDownloadUrl: string;
+        /**
+         * The public network download address for RDB files.
+         */
+        publicDownloadUrl: string;
+        /**
+         * RDB file size, unit: Byte.
+         */
+        rdbFileSize: number;
+        /**
+         * The shard ID where the RDB file is located.
+         */
+        shardId: string;
+    }
+
+    export interface BackupInstanceInfo {
         /**
          * Id of account.
          */
@@ -29815,6 +32200,10 @@ export namespace redis {
          * Charge type of instance(Postpaid/Prepaid).
          */
         chargeType: string;
+        /**
+         * The status of the deletion protection function of the instance.
+         */
+        deletionProtection: string;
         /**
          * Engine version of instance.
          */
@@ -29840,10 +32229,6 @@ export namespace redis {
          */
         networkType: string;
         /**
-         * Project name of instance.
-         */
-        projectName: string;
-        /**
          * Id of region.
          */
         regionId: string;
@@ -29852,47 +32237,32 @@ export namespace redis {
          */
         replicas: number;
         /**
-         * Count of cpu cores of instance.
-         */
-        serverCpu: number;
-        /**
          * Capacity of shard.
          */
         shardCapacity: number;
         /**
-         * Count of shard.
+         * The number of shards in the instance.
          */
-        shardCount: number;
+        shardNumber: number;
         /**
          * Total capacity of instance.
          */
         totalCapacity: number;
         /**
-         * Capacity used of this instance.
+         * The private network ID of the instance.
          */
-        usedCapacity: number;
-        /**
-         * Information of vpc.
-         */
-        vpcInfos: outputs.redis.BackupInstanceDetailVpcInfo[];
+        vpcId: string;
         /**
          * List of id of zone.
          */
         zoneIds: string[];
     }
 
-    export interface BackupInstanceDetailVpcInfo {
-        /**
-         * Id of vpc.
-         */
-        id: string;
-        /**
-         * Name of vpc.
-         */
-        name: string;
-    }
-
     export interface BackupsBackup {
+        /**
+         * The download address information of the backup file to which the current backup point belongs.
+         */
+        backupPointDownloadUrls: outputs.redis.BackupsBackupBackupPointDownloadUrl[];
         /**
          * The id of backup point.
          */
@@ -29910,13 +32280,23 @@ export namespace redis {
          */
         endTime: string;
         /**
-         * Information of instance.
+         * (**Deprecated**) Replaced by instance_info. Information of instance.
+         *
+         * @deprecated Replaced by instance_info.
          */
         instanceDetails: outputs.redis.BackupsBackupInstanceDetail[];
         /**
          * Id of instance.
          */
         instanceId: string;
+        /**
+         * Information of instance.
+         */
+        instanceInfos: outputs.redis.BackupsBackupInstanceInfo[];
+        /**
+         * Back up the project to which it belongs.
+         */
+        projectName: string;
         /**
          * Size in MiB.
          */
@@ -29929,6 +32309,29 @@ export namespace redis {
          * Status of backup (Creating/Available/Unavailable/Deleting).
          */
         status: string;
+        /**
+         * Backup retention days.
+         */
+        ttl: number;
+    }
+
+    export interface BackupsBackupBackupPointDownloadUrl {
+        /**
+         * The private network download address for RDB files.
+         */
+        privateDownloadUrl: string;
+        /**
+         * The public network download address for RDB files.
+         */
+        publicDownloadUrl: string;
+        /**
+         * RDB file size, unit: Byte.
+         */
+        rdbFileSize: number;
+        /**
+         * The shard ID where the RDB file is located.
+         */
+        shardId: string;
     }
 
     export interface BackupsBackupInstanceDetail {
@@ -29969,7 +32372,7 @@ export namespace redis {
          */
         networkType: string;
         /**
-         * Project name of instance.
+         * Back up the project to which it belongs.
          */
         projectName: string;
         /**
@@ -30021,6 +32424,100 @@ export namespace redis {
         name: string;
     }
 
+    export interface BackupsBackupInstanceInfo {
+        /**
+         * Id of account.
+         */
+        accountId: number;
+        /**
+         * Arch type of instance(Standard/Cluster).
+         */
+        archType: string;
+        /**
+         * Charge type of instance(Postpaid/Prepaid).
+         */
+        chargeType: string;
+        /**
+         * The status of the deletion protection function of the instance.
+         */
+        deletionProtection: string;
+        /**
+         * Engine version of instance.
+         */
+        engineVersion: string;
+        /**
+         * Expired time of instance.
+         */
+        expiredTime: string;
+        /**
+         * Id of instance.
+         */
+        instanceId: string;
+        /**
+         * Name of instance.
+         */
+        instanceName: string;
+        /**
+         * The maintainable period (in UTC) of the instance.
+         */
+        maintenanceTime: string;
+        /**
+         * Network type of instance.
+         */
+        networkType: string;
+        /**
+         * Id of region.
+         */
+        regionId: string;
+        /**
+         * Count of replica in which shard.
+         */
+        replicas: number;
+        /**
+         * Capacity of shard.
+         */
+        shardCapacity: number;
+        /**
+         * The number of shards in the instance.
+         */
+        shardNumber: number;
+        /**
+         * Total capacity of instance.
+         */
+        totalCapacity: number;
+        /**
+         * The private network ID of the instance.
+         */
+        vpcId: string;
+        /**
+         * List of id of zone.
+         */
+        zoneIds: string[];
+    }
+
+    export interface BigKeysBigKey {
+        /**
+         * The name of the database to which the big Key belongs.
+         */
+        dbName: string;
+        /**
+         * The name of the big Key.
+         */
+        keyInfo: string;
+        /**
+         * Specify the data type used to filter the query results of hot keys.
+         */
+        keyType: string;
+        /**
+         * The number of elements contained in the large Key.
+         */
+        valueLen: string;
+        /**
+         * The memory usage of large keys, unit: Byte.
+         */
+        valueSize: string;
+    }
+
     export interface GetAccountsAccount {
         /**
          * The name of the redis account.
@@ -30041,6 +32538,10 @@ export namespace redis {
     }
 
     export interface GetAllowListsAllowList {
+        /**
+         * The type of the whitelist.
+         */
+        allowListCategory: string;
         /**
          * Description of allow list.
          */
@@ -30073,6 +32574,14 @@ export namespace redis {
          * Instances associated by this allow list.
          */
         associatedInstances: outputs.redis.GetAllowListsAllowListAssociatedInstance[];
+        /**
+         * The name of the project to which the white list belongs.
+         */
+        projectName: string;
+        /**
+         * The current whitelist is the list of security group information that has been associated.
+         */
+        securityGroupBindInfos: outputs.redis.GetAllowListsAllowListSecurityGroupBindInfo[];
     }
 
     export interface GetAllowListsAllowListAssociatedInstance {
@@ -30090,7 +32599,30 @@ export namespace redis {
         vpc: string;
     }
 
+    export interface GetAllowListsAllowListSecurityGroupBindInfo {
+        /**
+         * Security group association mode. The value range is as follows: IngressDirectionIp: The input direction IP, which is the IP involved in the TCP protocol and ALL protocol in the source address of the secure group input direction to access the database. If the source address is configured as a secure group, it will be ignored. AssociateEcsIp: Associate ECS IP, which allows cloud servers within the security group to access the database. Currently, only the IP information of the main network card is supported for import.
+         */
+        bindMode: string;
+        /**
+         * The list of ips in the associated security group has been linked.
+         */
+        ipLists: string[];
+        /**
+         * The associated security group ID.
+         */
+        securityGroupId: string;
+        /**
+         * The name of the associated security group.
+         */
+        securityGroupName: string;
+    }
+
     export interface GetBackupsBackup {
+        /**
+         * The download address information of the backup file to which the current backup point belongs.
+         */
+        backupPointDownloadUrls: outputs.redis.GetBackupsBackupBackupPointDownloadUrl[];
         /**
          * The id of backup point.
          */
@@ -30108,13 +32640,23 @@ export namespace redis {
          */
         endTime: string;
         /**
-         * Information of instance.
+         * (**Deprecated**) Replaced by instance_info. Information of instance.
+         *
+         * @deprecated Replaced by instance_info.
          */
         instanceDetails: outputs.redis.GetBackupsBackupInstanceDetail[];
         /**
          * Id of instance.
          */
         instanceId: string;
+        /**
+         * Information of instance.
+         */
+        instanceInfos: outputs.redis.GetBackupsBackupInstanceInfo[];
+        /**
+         * Back up the project to which it belongs.
+         */
+        projectName: string;
         /**
          * Size in MiB.
          */
@@ -30127,6 +32669,29 @@ export namespace redis {
          * Status of backup (Creating/Available/Unavailable/Deleting).
          */
         status: string;
+        /**
+         * Backup retention days.
+         */
+        ttl: number;
+    }
+
+    export interface GetBackupsBackupBackupPointDownloadUrl {
+        /**
+         * The private network download address for RDB files.
+         */
+        privateDownloadUrl: string;
+        /**
+         * The public network download address for RDB files.
+         */
+        publicDownloadUrl: string;
+        /**
+         * RDB file size, unit: Byte.
+         */
+        rdbFileSize: number;
+        /**
+         * The shard ID where the RDB file is located.
+         */
+        shardId: string;
     }
 
     export interface GetBackupsBackupInstanceDetail {
@@ -30167,7 +32732,7 @@ export namespace redis {
          */
         networkType: string;
         /**
-         * Project name of instance.
+         * Back up the project to which it belongs.
          */
         projectName: string;
         /**
@@ -30219,7 +32784,147 @@ export namespace redis {
         name: string;
     }
 
+    export interface GetBackupsBackupInstanceInfo {
+        /**
+         * Id of account.
+         */
+        accountId: number;
+        /**
+         * Arch type of instance(Standard/Cluster).
+         */
+        archType: string;
+        /**
+         * Charge type of instance(Postpaid/Prepaid).
+         */
+        chargeType: string;
+        /**
+         * The status of the deletion protection function of the instance.
+         */
+        deletionProtection: string;
+        /**
+         * Engine version of instance.
+         */
+        engineVersion: string;
+        /**
+         * Expired time of instance.
+         */
+        expiredTime: string;
+        /**
+         * Id of instance.
+         */
+        instanceId: string;
+        /**
+         * Name of instance.
+         */
+        instanceName: string;
+        /**
+         * The maintainable period (in UTC) of the instance.
+         */
+        maintenanceTime: string;
+        /**
+         * Network type of instance.
+         */
+        networkType: string;
+        /**
+         * Id of region.
+         */
+        regionId: string;
+        /**
+         * Count of replica in which shard.
+         */
+        replicas: number;
+        /**
+         * Capacity of shard.
+         */
+        shardCapacity: number;
+        /**
+         * The number of shards in the instance.
+         */
+        shardNumber: number;
+        /**
+         * Total capacity of instance.
+         */
+        totalCapacity: number;
+        /**
+         * The private network ID of the instance.
+         */
+        vpcId: string;
+        /**
+         * List of id of zone.
+         */
+        zoneIds: string[];
+    }
+
+    export interface GetBigKeysBigKey {
+        /**
+         * The name of the database to which the big Key belongs.
+         */
+        dbName: string;
+        /**
+         * The name of the big Key.
+         */
+        keyInfo: string;
+        /**
+         * Specify the data type used to filter the query results of hot keys.
+         */
+        keyType: string;
+        /**
+         * The number of elements contained in the large Key.
+         */
+        valueLen: string;
+        /**
+         * The memory usage of large keys, unit: Byte.
+         */
+        valueSize: string;
+    }
+
+    export interface GetInstanceSpecsInstanceSpec {
+        /**
+         * The architecture type of the Redis instance.
+         */
+        archType: string;
+        /**
+         * The type of Redis instance.
+         */
+        instanceClass?: string;
+        /**
+         * The list of the number of nodes allowed to be used per shard. The number of nodes allowed for different instance types varies.
+         */
+        nodeNumbers: number[];
+        /**
+         * The List of capacity specifications for a single shard.
+         */
+        shardCapacitySpecs: outputs.redis.GetInstanceSpecsInstanceSpecShardCapacitySpec[];
+        /**
+         * The list of shards that the instance is allowed to use. The number of shards allowed for use varies among different instance architecture types.
+         */
+        shardNumbers: number[];
+    }
+
+    export interface GetInstanceSpecsInstanceSpecShardCapacitySpec {
+        /**
+         * The default bandwidth of the instance under the current memory capacity.
+         */
+        defaultBandwidthPerShard: number;
+        /**
+         * The upper limit of bandwidth that an instance is allowed to modify under the current memory capacity.
+         */
+        maxAdditionalBandwidthPerShard: number;
+        /**
+         * The default maximum number of connections for a single shard.
+         */
+        maxConnectionsPerShard: number;
+        /**
+         * Single-shard memory capacity.
+         */
+        shardCapacity: number;
+    }
+
     export interface GetInstancesInstance {
+        /**
+         * The additional bandwidth of a single shard, that is, the extra bandwidth that needs to be added on top of the default bandwidth, unit: MB/s.
+         */
+        additionalBandwidthPerShard: number;
         /**
          * The list of backup plans.
          */
@@ -30241,6 +32946,14 @@ export namespace redis {
          */
         createTime: string;
         /**
+         * The data storage form of the instance.
+         */
+        dataLayout: string;
+        /**
+         * The default bandwidth of a single shard in the instance. Both the read bandwidth (i.e., the downlink bandwidth) and the write bandwidth (i.e., the uplink bandwidth) are of this value. Unit: MB/s.
+         */
+        defaultBandwidthPerShard: number;
+        /**
          * whether enable deletion protection.
          */
         deletionProtection: string;
@@ -30257,6 +32970,10 @@ export namespace redis {
          */
         id: string;
         /**
+         * The type of the instance.
+         */
+        instanceClass: string;
+        /**
          * The id of redis instance to query. This field supports fuzzy queries.
          */
         instanceId: string;
@@ -30265,9 +32982,17 @@ export namespace redis {
          */
         instanceName: string;
         /**
+         * A detailed list of all Shard shards in the instance.
+         */
+        instanceShards: outputs.redis.GetInstancesInstanceInstanceShard[];
+        /**
          * The maintainable time of the redis instance.
          */
         maintenanceTime: string;
+        /**
+         * The current maximum number of connections in a single shard for the instance of the instance.
+         */
+        maxConnections: number;
         /**
          * Set the availability zone deployment scheme for the instance. The value range is as follows: 
          * disabled: Single availability zone deployment scheme.
@@ -30297,9 +33022,23 @@ export namespace redis {
          */
         regionId: string;
         /**
-         * The memory capacity of each shard. Unit: GiB.
+         * A detailed list of all Server nodes in the shard.
+         */
+        serverNodes: outputs.redis.GetInstancesInstanceServerNode[];
+        /**
+         * (**Deprecated**) Replaced by shard_capacity_v2. The memory capacity of each shard. Unit: GiB.
+         *
+         * @deprecated Replaced by shard_capacity_v2.
          */
         shardCapacity: number;
+        /**
+         * The memory capacity of each shard in the instance.
+         */
+        shardCapacityV2: number;
+        /**
+         * The ID of the shard.
+         */
+        shardId: string;
         /**
          * The number of shards in the redis instance.
          */
@@ -30392,6 +33131,40 @@ export namespace redis {
         az: string;
     }
 
+    export interface GetInstancesInstanceInstanceShard {
+        /**
+         * The number of nodes in each shard.
+         */
+        nodeNumber: number;
+        /**
+         * A detailed list of all Server nodes in the shard.
+         */
+        serverNodes: outputs.redis.GetInstancesInstanceInstanceShardServerNode[];
+        /**
+         * The ID of the shard.
+         */
+        shardId: string;
+    }
+
+    export interface GetInstancesInstanceInstanceShardServerNode {
+        /**
+         * The current role of the node.
+         */
+        currentRole: string;
+        /**
+         * The ID of node.
+         */
+        nodeId: string;
+        /**
+         * The status of redis instance to query.
+         */
+        status: string;
+        /**
+         * The zone id of redis instance to query. This field supports fuzzy queries.
+         */
+        zoneId: string;
+    }
+
     export interface GetInstancesInstanceParam {
         /**
          * Current value of the configuration parameter.
@@ -30446,6 +33219,25 @@ export namespace redis {
         value: string;
     }
 
+    export interface GetInstancesInstanceServerNode {
+        /**
+         * The current role of the node.
+         */
+        currentRole: string;
+        /**
+         * The ID of node.
+         */
+        nodeId: string;
+        /**
+         * The status of redis instance to query.
+         */
+        status: string;
+        /**
+         * The zone id of redis instance to query. This field supports fuzzy queries.
+         */
+        zoneId: string;
+    }
+
     export interface GetInstancesInstanceTag {
         /**
          * The Key of Tags.
@@ -30495,6 +33287,95 @@ export namespace redis {
         value: string;
     }
 
+    export interface GetParameterGroupsParameterGroup {
+        /**
+         * The creation time of the parameter template, in the format of yyyy-MM-ddTHH:mm:ssZ (UTC).
+         */
+        createTime: string;
+        /**
+         * Whether it is the default parameter template.
+         */
+        default: boolean;
+        /**
+         * The description the Optional parameters.
+         */
+        description: string;
+        /**
+         * The Redis database version applicable to the parameter template.
+         */
+        engineVersion: string;
+        /**
+         * The name of the parameter template.
+         */
+        name: string;
+        /**
+         * The ID of the parameter template.
+         */
+        parameterGroupId: string;
+        /**
+         * The number of parameters contained in the parameter template.
+         */
+        parameterNum: number;
+        /**
+         * The list of parameter information contained in the parameter template.
+         */
+        parameters: outputs.redis.GetParameterGroupsParameterGroupParameter[];
+        /**
+         * The source of creating the parameter template.
+         */
+        source: string;
+        /**
+         * The last update time of the parameter template, in the format of yyyy-MM-ddTHH:mm:ssZ (UTC).
+         */
+        updateTime: string;
+    }
+
+    export interface GetParameterGroupsParameterGroupParameter {
+        /**
+         * The current running value of the parameter.
+         */
+        currentValue: string;
+        /**
+         * The description the Optional parameters.
+         */
+        description: string;
+        /**
+         * Whether to restart the instance to take effect after modifying this parameter.
+         */
+        needReboot: boolean;
+        /**
+         * The optional list of selector type parameters.
+         */
+        options: outputs.redis.GetParameterGroupsParameterGroupParameterOption[];
+        /**
+         * The name of parameter.
+         */
+        paramName: string;
+        /**
+         * The value range of numerical type parameters.
+         */
+        range: string;
+        /**
+         * The type of the parameter.
+         */
+        type: string;
+        /**
+         * The unit of the numerical type parameter.
+         */
+        unit: string;
+    }
+
+    export interface GetParameterGroupsParameterGroupParameterOption {
+        /**
+         * The description the Optional parameters.
+         */
+        description: string;
+        /**
+         * Optional selector type parameters.
+         */
+        value: string;
+    }
+
     export interface GetPitrTimeWindowsPeriod {
         /**
          * Recoverable end time (UTC time) supported when restoring data by point in time.
@@ -30508,6 +33389,53 @@ export namespace redis {
          * The recoverable start time (in UTC time) supported when restoring data by point in time.
          */
         startTime: string;
+    }
+
+    export interface GetPlannedEventsPlannedEvent {
+        /**
+         * Event operation name.
+         */
+        actionName: string;
+        /**
+         * Whether the current event is allowed to be cancelled for execution.
+         */
+        canCancel: boolean;
+        /**
+         * Whether the execution time of the current event can be changed.
+         */
+        canModifyTime: boolean;
+        /**
+         * The ID of Event.
+         */
+        eventId: string;
+        /**
+         * The ID of instance.
+         */
+        instanceId: string;
+        /**
+         * The name of instance.
+         */
+        instanceName: string;
+        /**
+         * The latest execution time at which changes are allowed for the current event.
+         */
+        maxEndTime: string;
+        /**
+         * The latest execution time of the event plan. The format is yyyy-MM-ddTHH:mm:ssZ (UTC).
+         */
+        planEndTime: string;
+        /**
+         * The earliest planned execution time of the event. The format is yyyy-MM-ddTHH:mm:ssZ (UTC).
+         */
+        planStartTime: string;
+        /**
+         * The status of event.
+         */
+        status: string;
+        /**
+         * The type of event.
+         */
+        type: string;
     }
 
     export interface GetRegionsRegion {
@@ -30534,6 +33462,10 @@ export namespace redis {
          * The name of the zone.
          */
         zoneName: string;
+        /**
+         * The status of the zone.
+         */
+        zoneStatus: number;
     }
 
     export interface InstanceConfigureNode {
@@ -30555,6 +33487,48 @@ export namespace redis {
         value: string;
     }
 
+    export interface InstanceSpecsInstanceSpec {
+        /**
+         * The architecture type of the Redis instance.
+         */
+        archType: string;
+        /**
+         * The type of Redis instance.
+         */
+        instanceClass?: string;
+        /**
+         * The list of the number of nodes allowed to be used per shard. The number of nodes allowed for different instance types varies.
+         */
+        nodeNumbers: number[];
+        /**
+         * The List of capacity specifications for a single shard.
+         */
+        shardCapacitySpecs: outputs.redis.InstanceSpecsInstanceSpecShardCapacitySpec[];
+        /**
+         * The list of shards that the instance is allowed to use. The number of shards allowed for use varies among different instance architecture types.
+         */
+        shardNumbers: number[];
+    }
+
+    export interface InstanceSpecsInstanceSpecShardCapacitySpec {
+        /**
+         * The default bandwidth of the instance under the current memory capacity.
+         */
+        defaultBandwidthPerShard: number;
+        /**
+         * The upper limit of bandwidth that an instance is allowed to modify under the current memory capacity.
+         */
+        maxAdditionalBandwidthPerShard: number;
+        /**
+         * The default maximum number of connections for a single shard.
+         */
+        maxConnectionsPerShard: number;
+        /**
+         * Single-shard memory capacity.
+         */
+        shardCapacity: number;
+    }
+
     export interface InstanceTag {
         /**
          * The Key of Tags.
@@ -30567,6 +33541,10 @@ export namespace redis {
     }
 
     export interface InstancesInstance {
+        /**
+         * The additional bandwidth of a single shard, that is, the extra bandwidth that needs to be added on top of the default bandwidth, unit: MB/s.
+         */
+        additionalBandwidthPerShard: number;
         /**
          * The list of backup plans.
          */
@@ -30588,6 +33566,14 @@ export namespace redis {
          */
         createTime: string;
         /**
+         * The data storage form of the instance.
+         */
+        dataLayout: string;
+        /**
+         * The default bandwidth of a single shard in the instance. Both the read bandwidth (i.e., the downlink bandwidth) and the write bandwidth (i.e., the uplink bandwidth) are of this value. Unit: MB/s.
+         */
+        defaultBandwidthPerShard: number;
+        /**
          * whether enable deletion protection.
          */
         deletionProtection: string;
@@ -30604,6 +33590,10 @@ export namespace redis {
          */
         id: string;
         /**
+         * The type of the instance.
+         */
+        instanceClass: string;
+        /**
          * The id of redis instance to query. This field supports fuzzy queries.
          */
         instanceId: string;
@@ -30612,9 +33602,17 @@ export namespace redis {
          */
         instanceName: string;
         /**
+         * A detailed list of all Shard shards in the instance.
+         */
+        instanceShards: outputs.redis.InstancesInstanceInstanceShard[];
+        /**
          * The maintainable time of the redis instance.
          */
         maintenanceTime: string;
+        /**
+         * The current maximum number of connections in a single shard for the instance of the instance.
+         */
+        maxConnections: number;
         /**
          * Set the availability zone deployment scheme for the instance. The value range is as follows: 
          * disabled: Single availability zone deployment scheme.
@@ -30644,9 +33642,23 @@ export namespace redis {
          */
         regionId: string;
         /**
-         * The memory capacity of each shard. Unit: GiB.
+         * A detailed list of all Server nodes in the shard.
+         */
+        serverNodes: outputs.redis.InstancesInstanceServerNode[];
+        /**
+         * (**Deprecated**) Replaced by shard_capacity_v2. The memory capacity of each shard. Unit: GiB.
+         *
+         * @deprecated Replaced by shard_capacity_v2.
          */
         shardCapacity: number;
+        /**
+         * The memory capacity of each shard in the instance.
+         */
+        shardCapacityV2: number;
+        /**
+         * The ID of the shard.
+         */
+        shardId: string;
         /**
          * The number of shards in the redis instance.
          */
@@ -30739,6 +33751,40 @@ export namespace redis {
         az: string;
     }
 
+    export interface InstancesInstanceInstanceShard {
+        /**
+         * The number of nodes in each shard.
+         */
+        nodeNumber: number;
+        /**
+         * A detailed list of all Server nodes in the shard.
+         */
+        serverNodes: outputs.redis.InstancesInstanceInstanceShardServerNode[];
+        /**
+         * The ID of the shard.
+         */
+        shardId: string;
+    }
+
+    export interface InstancesInstanceInstanceShardServerNode {
+        /**
+         * The current role of the node.
+         */
+        currentRole: string;
+        /**
+         * The ID of node.
+         */
+        nodeId: string;
+        /**
+         * The status of redis instance to query.
+         */
+        status: string;
+        /**
+         * The zone id of redis instance to query. This field supports fuzzy queries.
+         */
+        zoneId: string;
+    }
+
     export interface InstancesInstanceParam {
         /**
          * Current value of the configuration parameter.
@@ -30793,6 +33839,25 @@ export namespace redis {
         value: string;
     }
 
+    export interface InstancesInstanceServerNode {
+        /**
+         * The current role of the node.
+         */
+        currentRole: string;
+        /**
+         * The ID of node.
+         */
+        nodeId: string;
+        /**
+         * The status of redis instance to query.
+         */
+        status: string;
+        /**
+         * The zone id of redis instance to query. This field supports fuzzy queries.
+         */
+        zoneId: string;
+    }
+
     export interface InstancesInstanceTag {
         /**
          * The Key of Tags.
@@ -30842,6 +33907,106 @@ export namespace redis {
         value: string;
     }
 
+    export interface ParameterGroupParamValue {
+        /**
+         * The parameter names that need to be included in the parameter template.
+         */
+        name: string;
+        /**
+         * The parameter values set for the corresponding parameters.
+         */
+        value: string;
+    }
+
+    export interface ParameterGroupsParameterGroup {
+        /**
+         * The creation time of the parameter template, in the format of yyyy-MM-ddTHH:mm:ssZ (UTC).
+         */
+        createTime: string;
+        /**
+         * Whether it is the default parameter template.
+         */
+        default: boolean;
+        /**
+         * The description the Optional parameters.
+         */
+        description: string;
+        /**
+         * The Redis database version applicable to the parameter template.
+         */
+        engineVersion: string;
+        /**
+         * The name of the parameter template.
+         */
+        name: string;
+        /**
+         * The ID of the parameter template.
+         */
+        parameterGroupId: string;
+        /**
+         * The number of parameters contained in the parameter template.
+         */
+        parameterNum: number;
+        /**
+         * The list of parameter information contained in the parameter template.
+         */
+        parameters: outputs.redis.ParameterGroupsParameterGroupParameter[];
+        /**
+         * The source of creating the parameter template.
+         */
+        source: string;
+        /**
+         * The last update time of the parameter template, in the format of yyyy-MM-ddTHH:mm:ssZ (UTC).
+         */
+        updateTime: string;
+    }
+
+    export interface ParameterGroupsParameterGroupParameter {
+        /**
+         * The current running value of the parameter.
+         */
+        currentValue: string;
+        /**
+         * The description the Optional parameters.
+         */
+        description: string;
+        /**
+         * Whether to restart the instance to take effect after modifying this parameter.
+         */
+        needReboot: boolean;
+        /**
+         * The optional list of selector type parameters.
+         */
+        options: outputs.redis.ParameterGroupsParameterGroupParameterOption[];
+        /**
+         * The name of parameter.
+         */
+        paramName: string;
+        /**
+         * The value range of numerical type parameters.
+         */
+        range: string;
+        /**
+         * The type of the parameter.
+         */
+        type: string;
+        /**
+         * The unit of the numerical type parameter.
+         */
+        unit: string;
+    }
+
+    export interface ParameterGroupsParameterGroupParameterOption {
+        /**
+         * The description the Optional parameters.
+         */
+        description: string;
+        /**
+         * Optional selector type parameters.
+         */
+        value: string;
+    }
+
     export interface PitrTimeWindowsPeriod {
         /**
          * Recoverable end time (UTC time) supported when restoring data by point in time.
@@ -30855,6 +34020,53 @@ export namespace redis {
          * The recoverable start time (in UTC time) supported when restoring data by point in time.
          */
         startTime: string;
+    }
+
+    export interface PlannedEventsPlannedEvent {
+        /**
+         * Event operation name.
+         */
+        actionName: string;
+        /**
+         * Whether the current event is allowed to be cancelled for execution.
+         */
+        canCancel: boolean;
+        /**
+         * Whether the execution time of the current event can be changed.
+         */
+        canModifyTime: boolean;
+        /**
+         * The ID of Event.
+         */
+        eventId: string;
+        /**
+         * The ID of instance.
+         */
+        instanceId: string;
+        /**
+         * The name of instance.
+         */
+        instanceName: string;
+        /**
+         * The latest execution time at which changes are allowed for the current event.
+         */
+        maxEndTime: string;
+        /**
+         * The latest execution time of the event plan. The format is yyyy-MM-ddTHH:mm:ssZ (UTC).
+         */
+        planEndTime: string;
+        /**
+         * The earliest planned execution time of the event. The format is yyyy-MM-ddTHH:mm:ssZ (UTC).
+         */
+        planStartTime: string;
+        /**
+         * The status of event.
+         */
+        status: string;
+        /**
+         * The type of event.
+         */
+        type: string;
     }
 
     export interface RegionsRegion {
@@ -30881,6 +34093,10 @@ export namespace redis {
          * The name of the zone.
          */
         zoneName: string;
+        /**
+         * The status of the zone.
+         */
+        zoneStatus: number;
     }
 
 }
@@ -32281,6 +35497,146 @@ export namespace tls {
         type: string;
     }
 
+    export interface ConsumerGroupsConsumerGroup {
+        /**
+         * The name of the consumer group.
+         */
+        consumerGroupName: string;
+        /**
+         * The time of heart rate expiration, measured in seconds, has a value range of 1 to 300.
+         */
+        heartbeatTtl: number;
+        /**
+         * Whether to consume in sequence.
+         */
+        orderedConsume: boolean;
+        /**
+         * The log project ID to which the consumption group belongs.
+         */
+        projectId: string;
+        /**
+         * The name of the log item to which the consumption group belongs.
+         */
+        projectName: string;
+        /**
+         * The log topic ID to which the consumer belongs.
+         */
+        topicIds: string[];
+    }
+
+    export interface EtlTaskTargetResource {
+        /**
+         * Customize the name of the output target, which needs to be used to refer to the output target in the data processing rules.
+         */
+        alias: string;
+        /**
+         * Cross-account authorized character names.
+         */
+        roleTrn?: string;
+        /**
+         * Log topics used for storing processed logs.
+         */
+        topicId: string;
+    }
+
+    export interface EtlTasksTask {
+        /**
+         * Processing task creation time.
+         */
+        createTime: string;
+        /**
+         * A simple description of the processing task.
+         */
+        description: string;
+        /**
+         * DSL type, fixed as NORMAL.
+         */
+        dslType: string;
+        /**
+         * The running status of the processing task.
+         */
+        enable: boolean;
+        /**
+         * Task scheduling status.
+         */
+        etlStatus: string;
+        /**
+         * The start time of the data to be processed.
+         */
+        fromTime: number;
+        /**
+         * Recent startup time.
+         */
+        lastEnableTime: string;
+        /**
+         * The most recent modification time of the processing task.
+         */
+        modifyTime: string;
+        /**
+         * The name of the processing task.
+         */
+        name: string;
+        /**
+         * Specify the log item ID for querying the data processing tasks under the specified log item.
+         */
+        projectId: string;
+        /**
+         * Specify the name of the log item for querying the data processing tasks under the specified log item. Support fuzzy query.
+         */
+        projectName: string;
+        /**
+         * Processing rules.
+         */
+        script: string;
+        /**
+         * Specify the log topic ID for querying the data processing tasks related to this log topic.
+         */
+        sourceTopicId: string;
+        /**
+         * Specify the name of the log topic for querying the data processing tasks related to this log topic. Support fuzzy matching.
+         */
+        sourceTopicName: string;
+        /**
+         * Output the relevant information of the target.
+         */
+        targetResources: outputs.tls.EtlTasksTaskTargetResource[];
+        /**
+         * The ID of the processing task.
+         */
+        taskId: string;
+        /**
+         * The task type is fixed as Resident.
+         */
+        taskType: string;
+        /**
+         * The end time of the data to be processed.
+         */
+        toTime: number;
+    }
+
+    export interface EtlTasksTaskTargetResource {
+        /**
+         * Customize the name of the output target, which needs to be used to refer to the output target in the data processing rules.
+         */
+        alias: string;
+        /**
+         * Specify the log item ID for querying the data processing tasks under the specified log item.
+         */
+        projectId: string;
+        /**
+         * Specify the name of the log item for querying the data processing tasks under the specified log item. Support fuzzy query.
+         */
+        projectName: string;
+        /**
+         * Log topics used for storing processed logs.
+         */
+        topicId: string;
+        /**
+         * The name of the log topic used for storing the processed logs.
+         */
+        topicName: string;
+    }
+
     export interface GetAlarmNotifyGroupsGroup {
         /**
          * The id of the alarm notify group.
@@ -32505,6 +35861,131 @@ export namespace tls {
         type: string;
     }
 
+    export interface GetConsumerGroupsConsumerGroup {
+        /**
+         * The name of the consumer group.
+         */
+        consumerGroupName: string;
+        /**
+         * The time of heart rate expiration, measured in seconds, has a value range of 1 to 300.
+         */
+        heartbeatTtl: number;
+        /**
+         * Whether to consume in sequence.
+         */
+        orderedConsume: boolean;
+        /**
+         * The log project ID to which the consumption group belongs.
+         */
+        projectId: string;
+        /**
+         * The name of the log item to which the consumption group belongs.
+         */
+        projectName: string;
+        /**
+         * The log topic ID to which the consumer belongs.
+         */
+        topicIds: string[];
+    }
+
+    export interface GetEtlTasksTask {
+        /**
+         * Processing task creation time.
+         */
+        createTime: string;
+        /**
+         * A simple description of the processing task.
+         */
+        description: string;
+        /**
+         * DSL type, fixed as NORMAL.
+         */
+        dslType: string;
+        /**
+         * The running status of the processing task.
+         */
+        enable: boolean;
+        /**
+         * Task scheduling status.
+         */
+        etlStatus: string;
+        /**
+         * The start time of the data to be processed.
+         */
+        fromTime: number;
+        /**
+         * Recent startup time.
+         */
+        lastEnableTime: string;
+        /**
+         * The most recent modification time of the processing task.
+         */
+        modifyTime: string;
+        /**
+         * The name of the processing task.
+         */
+        name: string;
+        /**
+         * Specify the log item ID for querying the data processing tasks under the specified log item.
+         */
+        projectId: string;
+        /**
+         * Specify the name of the log item for querying the data processing tasks under the specified log item. Support fuzzy query.
+         */
+        projectName: string;
+        /**
+         * Processing rules.
+         */
+        script: string;
+        /**
+         * Specify the log topic ID for querying the data processing tasks related to this log topic.
+         */
+        sourceTopicId: string;
+        /**
+         * Specify the name of the log topic for querying the data processing tasks related to this log topic. Support fuzzy matching.
+         */
+        sourceTopicName: string;
+        /**
+         * Output the relevant information of the target.
+         */
+        targetResources: outputs.tls.GetEtlTasksTaskTargetResource[];
+        /**
+         * The ID of the processing task.
+         */
+        taskId: string;
+        /**
+         * The task type is fixed as Resident.
+         */
+        taskType: string;
+        /**
+         * The end time of the data to be processed.
+         */
+        toTime: number;
+    }
+
+    export interface GetEtlTasksTaskTargetResource {
+        /**
+         * Customize the name of the output target, which needs to be used to refer to the output target in the data processing rules.
+         */
+        alias: string;
+        /**
+         * Specify the log item ID for querying the data processing tasks under the specified log item.
+         */
+        projectId: string;
+        /**
+         * Specify the name of the log item for querying the data processing tasks under the specified log item. Support fuzzy query.
+         */
+        projectName: string;
+        /**
+         * Log topics used for storing processed logs.
+         */
+        topicId: string;
+        /**
+         * The name of the log topic used for storing the processed logs.
+         */
+        topicName: string;
+    }
+
     export interface GetHostGroupsInfo {
         /**
          * The abnormal heartbeat status count of host.
@@ -32593,6 +36074,243 @@ export namespace tls {
          * The version of log collector.
          */
         logCollectorVersion: string;
+    }
+
+    export interface GetImportTasksTaskInfo {
+        /**
+         * The creation time of the data import task.
+         */
+        createTime: string;
+        /**
+         * Data import task description.
+         */
+        description: string;
+        /**
+         * The source information of the data import task.
+         */
+        importSourceInfo: outputs.tls.GetImportTasksTaskInfoImportSourceInfo;
+        /**
+         * Specify the log item ID for querying the data import tasks under the specified log item.
+         */
+        projectId: string;
+        /**
+         * Specify the name of the log item for querying the data import tasks under the specified log item. Support fuzzy query..
+         */
+        projectName: string;
+        /**
+         * Specify the import type for querying the data import tasks related to this import type.
+         */
+        sourceType: string;
+        /**
+         * Specify the status of the import task.
+         */
+        status?: number;
+        /**
+         * The output information of the data import task.
+         */
+        targetInfo: outputs.tls.GetImportTasksTaskInfoTargetInfo;
+        /**
+         * Import the task ID of the data to be queried.
+         */
+        taskId: string;
+        /**
+         * Import the task name of the data to be queried.
+         */
+        taskName: string;
+        /**
+         * The progress of the data import task.
+         */
+        taskStatistics: outputs.tls.GetImportTasksTaskInfoTaskStatistics;
+        /**
+         * Specify the log topic ID for querying the data import tasks related to this log topic.
+         */
+        topicId: string;
+        /**
+         * Specify the name of the log topic for querying the data import tasks related to this log topic. Support fuzzy query.
+         */
+        topicName: string;
+    }
+
+    export interface GetImportTasksTaskInfoImportSourceInfo {
+        /**
+         * TOS imports source information.
+         */
+        kafkaSourceInfo: outputs.tls.GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfo;
+        /**
+         * TOS imports source information.
+         */
+        tosSourceInfo: outputs.tls.GetImportTasksTaskInfoImportSourceInfoTosSourceInfo;
+    }
+
+    export interface GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfo {
+        /**
+         * The encoding format of the data.
+         */
+        encode: string;
+        /**
+         * Kafka consumer group.
+         */
+        group: string;
+        /**
+         * The service addresses corresponding to different types of Kafka clusters are different.
+         */
+        host: string;
+        /**
+         * The starting position of data import.
+         */
+        initialOffset: number;
+        /**
+         * When you are using the Volcano Engine Message Queue Kafka version, it should be set to the Kafka instance ID.
+         */
+        instanceId: string;
+        /**
+         * Whether to enable authentication.
+         */
+        isNeedAuth: boolean;
+        /**
+         * Password authentication mechanism.
+         */
+        mechanism: string;
+        /**
+         * The Kafka SASL user password used for identity authentication.
+         */
+        password: string;
+        /**
+         * Secure Transport protocol.
+         */
+        protocol: string;
+        /**
+         * Specify the log time.
+         */
+        timeSourceDefault: number;
+        /**
+         * Kafka Topic name.
+         */
+        topic: string;
+        /**
+         * The Kafka SASL username used for identity authentication.
+         */
+        username: string;
+    }
+
+    export interface GetImportTasksTaskInfoImportSourceInfoTosSourceInfo {
+        /**
+         * The TOS bucket where the log file is located.
+         */
+        bucket: string;
+        /**
+         * The compression mode of data in the TOS bucket.
+         */
+        compressType: string;
+        /**
+         * The path of the file to be imported in the TOS bucket.
+         */
+        prefix: string;
+        /**
+         * Regional ID.
+         */
+        region: string;
+    }
+
+    export interface GetImportTasksTaskInfoTargetInfo {
+        /**
+         * Log extraction rules.
+         */
+        extractRule: outputs.tls.GetImportTasksTaskInfoTargetInfoExtractRule;
+        /**
+         * Log sample.
+         */
+        logSample: string;
+        /**
+         * Specify the log parsing type when importing.
+         */
+        logType: string;
+        /**
+         * Regional ID.
+         */
+        region: string;
+    }
+
+    export interface GetImportTasksTaskInfoTargetInfoExtractRule {
+        /**
+         * The regular expression used to identify the first line in each log, and its matching part will serve as the beginning of the log.
+         */
+        beginRegex: string;
+        /**
+         * Log delimiter.
+         */
+        delimiter: string;
+        /**
+         * List of log field names (Keys).
+         */
+        keys: string[];
+        /**
+         * Reference symbol. The content wrapped by the reference will not be separated but will be parsed into a complete field. It is valid if and only if the LogType is delimiter_log.
+         */
+        quote: string;
+        /**
+         * The number of log lines skipped.
+         */
+        skipLineCount: number;
+        /**
+         * A regular expression for extracting time, used to extract the time value in the TimeKey field and parse it into the corresponding collection time.
+         */
+        timeExtractRegex: string;
+        /**
+         * The parsing format of the time field.
+         */
+        timeFormat: string;
+        /**
+         * The field name of the log time field.
+         */
+        timeKey: string;
+        /**
+         * Time zone, supporting both machine time zone (default) and custom time zone. Among them, the custom time zone supports GMT and UTC.
+         */
+        timeZone: string;
+        /**
+         * When uploading a log that failed to parse, the key name of the parse failed log.
+         */
+        unMatchLogKey: string;
+        /**
+         * Whether to upload the logs of failed parsing.
+         */
+        unMatchUpLoadSwitch: boolean;
+    }
+
+    export interface GetImportTasksTaskInfoTaskStatistics {
+        /**
+         * The total number of resource bytes that have been listed.
+         */
+        bytesTotal: number;
+        /**
+         * The number of imported bytes.
+         */
+        bytesTransferred: number;
+        /**
+         * The number of resources that failed to import.
+         */
+        failed: number;
+        /**
+         * The number of non-existent resources.
+         */
+        notExist: number;
+        /**
+         * Skip the number of imported resources.
+         */
+        skipped: number;
+        /**
+         * Import the status of the task.
+         */
+        taskStatus: string;
+        /**
+         * The total number of resources that have been listed.
+         */
+        total: number;
+        /**
+         * The number of imported resources.
+         */
+        transferred: number;
     }
 
     export interface GetIndexesTlsIndex {
@@ -33413,6 +37131,108 @@ export namespace tls {
         hashKey: string;
     }
 
+    export interface GetScheduleSqlTasksTask {
+        /**
+         * Set the creation time of timed SQL analysis tasks.
+         */
+        createTimeStamp: number;
+        /**
+         * A simple description of the timed SQL analysis task.
+         */
+        description: string;
+        /**
+         * The log project ID to which the target log topic belongs.
+         */
+        destProjectId: string;
+        /**
+         * The region to which the target log project belongs.
+         */
+        destRegion: string;
+        /**
+         * The target log topic ID used for storing the result data of timed SQL analysis.
+         */
+        destTopicId: string;
+        /**
+         * The name of the target log topic used for storing the data of the timed SQL analysis results.
+         */
+        destTopicName: string;
+        /**
+         * The most recent modification time of the scheduled SQL analysis task.
+         */
+        modifyTimeStamp: number;
+        /**
+         * Schedule the end time of the timed SQL analysis task in the format of a second-level timestamp.
+         */
+        processEndTime: number;
+        /**
+         * The delay time of each scheduling. The value range is from 0 to 120, and the unit is seconds.
+         */
+        processSqlDelay: number;
+        /**
+         * The start time of the scheduled SQL task, that is, the start time when the first instance is scheduled. The format is a timestamp at the second level.
+         */
+        processStartTime: number;
+        /**
+         * SQL time window, which refers to the time range for log retrieval and analysis when a timed SQL analysis task is running, is in a left-closed and right-open format.
+         */
+        processTimeWindow: string;
+        /**
+         * Timed SQL analysis tasks are retrieval and analysis statements that are executed regularly.
+         */
+        query: string;
+        /**
+         * The scheduling cycle of timed SQL analysis tasks.
+         */
+        requestCycle: outputs.tls.GetScheduleSqlTasksTaskRequestCycle;
+        /**
+         * The log project ID to which the source log topic belongs.
+         */
+        sourceProjectId: string;
+        /**
+         * The name of the log item to which the source log topic belongs.
+         */
+        sourceProjectName: string;
+        /**
+         * The source log topic ID where the original log for timed SQL analysis is located.
+         */
+        sourceTopicId: string;
+        /**
+         * Source log topic name.
+         */
+        sourceTopicName: string;
+        /**
+         * Timed SQL analysis task status.
+         */
+        status: number;
+        /**
+         * Timed SQL analysis task ID.
+         */
+        taskId: string;
+        /**
+         * Timed SQL analysis task name.
+         */
+        taskName: string;
+    }
+
+    export interface GetScheduleSqlTasksTaskRequestCycle {
+        /**
+         * Cron expression. The log service specifies the timed execution of alarm tasks through the Cron expression. The minimum granularity of Cron expressions is minutes, 24 hours. For example, 0 18 * * * indicates that an alarm task is executed exactly at 18:00 every day.
+         */
+        cronTab: string;
+        /**
+         * When setting the Type to Cron, the time zone also needs to be set.
+         */
+        cronTimeZone: string;
+        /**
+         * The scheduling cycle or the time point of regular execution (the number of minutes away from 00:00), with a value range of 1 to 1440, and the unit is minutes.
+         */
+        time: number;
+        /**
+         * The type of Scheduling cycle.
+         */
+        type: string;
+    }
+
     export interface GetShardsShard {
         /**
          * The end key info.
@@ -33442,6 +37262,176 @@ export namespace tls {
          * The id of topic.
          */
         topicId: string;
+    }
+
+    export interface GetShippersShipper {
+        /**
+         * The content format configuration of the delivery log.
+         */
+        contentInfo: outputs.tls.GetShippersShipperContentInfo;
+        /**
+         * Processing task creation time.
+         */
+        createTime: string;
+        /**
+         * The default built-in dashboard ID for delivery.
+         */
+        dashboardId: string;
+        /**
+         * JSON format log content configuration.
+         */
+        kafkaShipperInfo: outputs.tls.GetShippersShipperKafkaShipperInfo;
+        /**
+         * The most recent modification time of the processing task.
+         */
+        modifyTime: string;
+        /**
+         * Specify the log item ID for querying the data delivery configuration under the specified log item.
+         */
+        projectId: string;
+        /**
+         * Specify the name of the log item for querying the data delivery configuration under the specified log item. Support fuzzy matching.
+         */
+        projectName: string;
+        /**
+         * Delivery end time, millisecond timestamp. If not configured, it will keep delivering.
+         */
+        shipperEndTime: number;
+        /**
+         * Delivery configuration ID.
+         */
+        shipperId: string;
+        /**
+         * Delivery configuration name.
+         */
+        shipperName: string;
+        /**
+         * Delivery start time, millisecond timestamp. If not configured, it defaults to the current time.
+         */
+        shipperStartTime: number;
+        /**
+         * Specify the delivery type for querying the delivery configuration related to that delivery type.
+         */
+        shipperType: string;
+        /**
+         * Whether to enable the delivery configuration.
+         */
+        status: boolean;
+        /**
+         * Specify the log topic ID for querying the data delivery configuration related to this log topic.
+         */
+        topicId: string;
+        /**
+         * Specify the name of the log topic for querying the data delivery configuration related to this log topic. Support fuzzy matching.
+         */
+        topicName: string;
+        /**
+         * Deliver the relevant configuration to the object storage (TOS).
+         */
+        tosShipperInfo: outputs.tls.GetShippersShipperTosShipperInfo;
+    }
+
+    export interface GetShippersShipperContentInfo {
+        /**
+         * CSV format log content configuration.
+         */
+        csvInfo: outputs.tls.GetShippersShipperContentInfoCsvInfo;
+        /**
+         * Log content parsing format.
+         */
+        format: string;
+        /**
+         * JSON format log content configuration.
+         */
+        jsonInfo: outputs.tls.GetShippersShipperContentInfoJsonInfo;
+    }
+
+    export interface GetShippersShipperContentInfoCsvInfo {
+        /**
+         * Delimiters are supported, including commas, tabs, vertical bars, semicolons, and Spaces.
+         */
+        delimiter: string;
+        /**
+         * When the field content contains a delimiter, use an escape character to wrap the field. Currently, only single quotes, double quotes, and null characters are supported.
+         */
+        escapeChar: string;
+        /**
+         * When delivering in JSON format, if this parameter is not configured, it indicates that all fields have been delivered. Including __content__ (choice), __source__, __path__, __time__, __image_name__, __container_name__, __pod_name__, __pod_uid__, namespace, __tag____client_ip__, __tag____receive_time__.
+         */
+        keys: string[];
+        /**
+         * Invalid field filling content, with a length ranging from 0 to 128.
+         */
+        nonFieldContent: string;
+        /**
+         * Whether to print the Key on the first line.
+         */
+        printHeader: boolean;
+    }
+
+    export interface GetShippersShipperContentInfoJsonInfo {
+        /**
+         * Enable the flag.
+         */
+        enable: boolean;
+        /**
+         * Whether to escape or not. It must be configured as true.
+         */
+        escape: boolean;
+        /**
+         * When delivering in JSON format, if this parameter is not configured, it indicates that all fields have been delivered. Including __content__ (choice), __source__, __path__, __time__, __image_name__, __container_name__, __pod_name__, __pod_uid__, namespace, __tag____client_ip__, __tag____receive_time__.
+         */
+        keys: string[];
+    }
+
+    export interface GetShippersShipperKafkaShipperInfo {
+        /**
+         * Compression formats currently supported include snappy, gzip, lz4, and none.
+         */
+        compress: string;
+        /**
+         * Delivery end time, millisecond timestamp. If not configured, it will keep delivering.
+         */
+        endTime: number;
+        /**
+         * Kafka instance.
+         */
+        instance: string;
+        /**
+         * The name of the Kafka Topic.
+         */
+        kafkaTopic: string;
+        /**
+         * Delivery start time, millisecond timestamp. If not configured, the default is the current time.
+         */
+        startTime: number;
+    }
+
+    export interface GetShippersShipperTosShipperInfo {
+        /**
+         * When choosing a TOS bucket, it must be located in the same region as the source log topic.
+         */
+        bucket: string;
+        /**
+         * Compression formats currently supported include snappy, gzip, lz4, and none.
+         */
+        compress: string;
+        /**
+         * The delivery time interval, measured in seconds, ranges from 300 to 900.
+         */
+        interval: number;
+        /**
+         * The maximum size of the original file that can be delivered to each partition (Shard), that is, the size of the uncompressed log file. The unit is MiB, and the value range is 5 to 256.
+         */
+        maxSize: number;
+        /**
+         * Partition rules for delivering logs.
+         */
+        partitionFormat: string;
+        /**
+         * The top-level directory name of the storage bucket. All log data delivered through this delivery configuration will be delivered to this directory.
+         */
+        prefix: string;
     }
 
     export interface GetTopicsTag {
@@ -33617,6 +37607,390 @@ export namespace tls {
          * The version of log collector.
          */
         logCollectorVersion: string;
+    }
+
+    export interface ImportTaskImportSourceInfo {
+        /**
+         * TOS imports source information.
+         */
+        kafkaSourceInfo: outputs.tls.ImportTaskImportSourceInfoKafkaSourceInfo;
+        /**
+         * TOS imports source information.
+         */
+        tosSourceInfo: outputs.tls.ImportTaskImportSourceInfoTosSourceInfo;
+    }
+
+    export interface ImportTaskImportSourceInfoKafkaSourceInfo {
+        /**
+         * The encoding format of the data.
+         */
+        encode: string;
+        /**
+         * Kafka consumer group.
+         */
+        group: string;
+        /**
+         * The service addresses corresponding to different types of Kafka clusters are different.
+         */
+        host: string;
+        /**
+         * The starting position of data import.
+         */
+        initialOffset: number;
+        /**
+         * When you are using the Volcano Engine Message Queue Kafka version, it should be set to the Kafka instance ID.
+         */
+        instanceId: string;
+        /**
+         * Whether to enable authentication.
+         */
+        isNeedAuth: boolean;
+        /**
+         * Password authentication mechanism.
+         */
+        mechanism: string;
+        /**
+         * The Kafka SASL user password used for identity authentication.
+         */
+        password: string;
+        /**
+         * Secure Transport protocol.
+         */
+        protocol: string;
+        /**
+         * Specify the log time.
+         */
+        timeSourceDefault: number;
+        /**
+         * Kafka Topic name.
+         */
+        topic: string;
+        /**
+         * The Kafka SASL username used for identity authentication.
+         */
+        username: string;
+    }
+
+    export interface ImportTaskImportSourceInfoTosSourceInfo {
+        /**
+         * The TOS bucket where the log file is located.
+         */
+        bucket: string;
+        /**
+         * The compression mode of data in the TOS bucket.
+         */
+        compressType: string;
+        /**
+         * The path of the file to be imported in the TOS bucket.
+         */
+        prefix: string;
+        /**
+         * The region where the TOS bucket is located. Support cross-regional data import.
+         */
+        region: string;
+    }
+
+    export interface ImportTaskTargetInfo {
+        /**
+         * Log extraction rules.
+         */
+        extractRule: outputs.tls.ImportTaskTargetInfoExtractRule;
+        /**
+         * Log sample.
+         */
+        logSample: string;
+        /**
+         * Specify the log parsing type when importing.
+         */
+        logType: string;
+        /**
+         * Regional ID.
+         */
+        region: string;
+    }
+
+    export interface ImportTaskTargetInfoExtractRule {
+        /**
+         * The regular expression used to identify the first line in each log, and its matching part will serve as the beginning of the log.
+         */
+        beginRegex: string;
+        /**
+         * Log delimiter.
+         */
+        delimiter: string;
+        /**
+         * List of log field names (Keys).
+         */
+        keys: string[];
+        /**
+         * Reference symbol. The content wrapped by the reference will not be separated but will be parsed into a complete field. It is valid if and only if the LogType is delimiter_log.
+         */
+        quote: string;
+        /**
+         * The number of log lines skipped.
+         */
+        skipLineCount: number;
+        /**
+         * A regular expression for extracting time, used to extract the time value in the TimeKey field and parse it into the corresponding collection time.
+         */
+        timeExtractRegex: string;
+        /**
+         * The parsing format of the time field.
+         */
+        timeFormat: string;
+        /**
+         * The field name of the log time field.
+         */
+        timeKey: string;
+        /**
+         * Time zone, supporting both machine time zone (default) and custom time zone. Among them, the custom time zone supports GMT and UTC.
+         */
+        timeZone: string;
+        /**
+         * When uploading a log that failed to parse, the key name of the parse failed log.
+         */
+        unMatchLogKey: string;
+        /**
+         * Whether to upload the logs of failed parsing.
+         */
+        unMatchUpLoadSwitch: boolean;
+    }
+
+    export interface ImportTasksTaskInfo {
+        /**
+         * The creation time of the data import task.
+         */
+        createTime: string;
+        /**
+         * Data import task description.
+         */
+        description: string;
+        /**
+         * The source information of the data import task.
+         */
+        importSourceInfo: outputs.tls.ImportTasksTaskInfoImportSourceInfo;
+        /**
+         * Specify the log item ID for querying the data import tasks under the specified log item.
+         */
+        projectId: string;
+        /**
+         * Specify the name of the log item for querying the data import tasks under the specified log item. Support fuzzy query..
+         */
+        projectName: string;
+        /**
+         * Specify the import type for querying the data import tasks related to this import type.
+         */
+        sourceType: string;
+        /**
+         * Specify the status of the import task.
+         */
+        status?: number;
+        /**
+         * The output information of the data import task.
+         */
+        targetInfo: outputs.tls.ImportTasksTaskInfoTargetInfo;
+        /**
+         * Import the task ID of the data to be queried.
+         */
+        taskId: string;
+        /**
+         * Import the task name of the data to be queried.
+         */
+        taskName: string;
+        /**
+         * The progress of the data import task.
+         */
+        taskStatistics: outputs.tls.ImportTasksTaskInfoTaskStatistics;
+        /**
+         * Specify the log topic ID for querying the data import tasks related to this log topic.
+         */
+        topicId: string;
+        /**
+         * Specify the name of the log topic for querying the data import tasks related to this log topic. Support fuzzy query.
+         */
+        topicName: string;
+    }
+
+    export interface ImportTasksTaskInfoImportSourceInfo {
+        /**
+         * TOS imports source information.
+         */
+        kafkaSourceInfo: outputs.tls.ImportTasksTaskInfoImportSourceInfoKafkaSourceInfo;
+        /**
+         * TOS imports source information.
+         */
+        tosSourceInfo: outputs.tls.ImportTasksTaskInfoImportSourceInfoTosSourceInfo;
+    }
+
+    export interface ImportTasksTaskInfoImportSourceInfoKafkaSourceInfo {
+        /**
+         * The encoding format of the data.
+         */
+        encode: string;
+        /**
+         * Kafka consumer group.
+         */
+        group: string;
+        /**
+         * The service addresses corresponding to different types of Kafka clusters are different.
+         */
+        host: string;
+        /**
+         * The starting position of data import.
+         */
+        initialOffset: number;
+        /**
+         * When you are using the Volcano Engine Message Queue Kafka version, it should be set to the Kafka instance ID.
+         */
+        instanceId: string;
+        /**
+         * Whether to enable authentication.
+         */
+        isNeedAuth: boolean;
+        /**
+         * Password authentication mechanism.
+         */
+        mechanism: string;
+        /**
+         * The Kafka SASL user password used for identity authentication.
+         */
+        password: string;
+        /**
+         * Secure Transport protocol.
+         */
+        protocol: string;
+        /**
+         * Specify the log time.
+         */
+        timeSourceDefault: number;
+        /**
+         * Kafka Topic name.
+         */
+        topic: string;
+        /**
+         * The Kafka SASL username used for identity authentication.
+         */
+        username: string;
+    }
+
+    export interface ImportTasksTaskInfoImportSourceInfoTosSourceInfo {
+        /**
+         * The TOS bucket where the log file is located.
+         */
+        bucket: string;
+        /**
+         * The compression mode of data in the TOS bucket.
+         */
+        compressType: string;
+        /**
+         * The path of the file to be imported in the TOS bucket.
+         */
+        prefix: string;
+        /**
+         * Regional ID.
+         */
+        region: string;
+    }
+
+    export interface ImportTasksTaskInfoTargetInfo {
+        /**
+         * Log extraction rules.
+         */
+        extractRule: outputs.tls.ImportTasksTaskInfoTargetInfoExtractRule;
+        /**
+         * Log sample.
+         */
+        logSample: string;
+        /**
+         * Specify the log parsing type when importing.
+         */
+        logType: string;
+        /**
+         * Regional ID.
+         */
+        region: string;
+    }
+
+    export interface ImportTasksTaskInfoTargetInfoExtractRule {
+        /**
+         * The regular expression used to identify the first line in each log, and its matching part will serve as the beginning of the log.
+         */
+        beginRegex: string;
+        /**
+         * Log delimiter.
+         */
+        delimiter: string;
+        /**
+         * List of log field names (Keys).
+         */
+        keys: string[];
+        /**
+         * Reference symbol. The content wrapped by the reference will not be separated but will be parsed into a complete field. It is valid if and only if the LogType is delimiter_log.
+         */
+        quote: string;
+        /**
+         * The number of log lines skipped.
+         */
+        skipLineCount: number;
+        /**
+         * A regular expression for extracting time, used to extract the time value in the TimeKey field and parse it into the corresponding collection time.
+         */
+        timeExtractRegex: string;
+        /**
+         * The parsing format of the time field.
+         */
+        timeFormat: string;
+        /**
+         * The field name of the log time field.
+         */
+        timeKey: string;
+        /**
+         * Time zone, supporting both machine time zone (default) and custom time zone. Among them, the custom time zone supports GMT and UTC.
+         */
+        timeZone: string;
+        /**
+         * When uploading a log that failed to parse, the key name of the parse failed log.
+         */
+        unMatchLogKey: string;
+        /**
+         * Whether to upload the logs of failed parsing.
+         */
+        unMatchUpLoadSwitch: boolean;
+    }
+
+    export interface ImportTasksTaskInfoTaskStatistics {
+        /**
+         * The total number of resource bytes that have been listed.
+         */
+        bytesTotal: number;
+        /**
+         * The number of imported bytes.
+         */
+        bytesTransferred: number;
+        /**
+         * The number of resources that failed to import.
+         */
+        failed: number;
+        /**
+         * The number of non-existent resources.
+         */
+        notExist: number;
+        /**
+         * Skip the number of imported resources.
+         */
+        skipped: number;
+        /**
+         * Import the status of the task.
+         */
+        taskStatus: string;
+        /**
+         * The total number of resources that have been listed.
+         */
+        total: number;
+        /**
+         * The number of imported resources.
+         */
+        transferred: number;
     }
 
     export interface IndexFullText {
@@ -34785,6 +39159,127 @@ export namespace tls {
         hashKey: string;
     }
 
+    export interface ScheduleSqlTaskRequestCycle {
+        /**
+         * Cron expression. The log service specifies the timed execution of alarm tasks through the Cron expression. The minimum granularity of Cron expressions is minutes, 24 hours. For example, 0 18 * * * indicates that an alarm task is executed exactly at 18:00 every day.
+         */
+        cronTab?: string;
+        /**
+         * When setting the Type to Cron, the time zone also needs to be set.
+         */
+        cronTimeZone?: string;
+        /**
+         * The scheduling cycle or the time point of regular execution (the number of minutes away from 00:00), with a value range of 1 to 1440, and the unit is minutes.
+         */
+        time: number;
+        /**
+         * The type of Scheduling cycle.
+         */
+        type: string;
+    }
+
+    export interface ScheduleSqlTasksTask {
+        /**
+         * Set the creation time of timed SQL analysis tasks.
+         */
+        createTimeStamp: number;
+        /**
+         * A simple description of the timed SQL analysis task.
+         */
+        description: string;
+        /**
+         * The log project ID to which the target log topic belongs.
+         */
+        destProjectId: string;
+        /**
+         * The region to which the target log project belongs.
+         */
+        destRegion: string;
+        /**
+         * The target log topic ID used for storing the result data of timed SQL analysis.
+         */
+        destTopicId: string;
+        /**
+         * The name of the target log topic used for storing the data of the timed SQL analysis results.
+         */
+        destTopicName: string;
+        /**
+         * The most recent modification time of the scheduled SQL analysis task.
+         */
+        modifyTimeStamp: number;
+        /**
+         * Schedule the end time of the timed SQL analysis task in the format of a second-level timestamp.
+         */
+        processEndTime: number;
+        /**
+         * The delay time of each scheduling. The value range is from 0 to 120, and the unit is seconds.
+         */
+        processSqlDelay: number;
+        /**
+         * The start time of the scheduled SQL task, that is, the start time when the first instance is scheduled. The format is a timestamp at the second level.
+         */
+        processStartTime: number;
+        /**
+         * SQL time window, which refers to the time range for log retrieval and analysis when a timed SQL analysis task is running, is in a left-closed and right-open format.
+         */
+        processTimeWindow: string;
+        /**
+         * Timed SQL analysis tasks are retrieval and analysis statements that are executed regularly.
+         */
+        query: string;
+        /**
+         * The scheduling cycle of timed SQL analysis tasks.
+         */
+        requestCycle: outputs.tls.ScheduleSqlTasksTaskRequestCycle;
+        /**
+         * The log project ID to which the source log topic belongs.
+         */
+        sourceProjectId: string;
+        /**
+         * The name of the log item to which the source log topic belongs.
+         */
+        sourceProjectName: string;
+        /**
+         * The source log topic ID where the original log for timed SQL analysis is located.
+         */
+        sourceTopicId: string;
+        /**
+         * Source log topic name.
+         */
+        sourceTopicName: string;
+        /**
+         * Timed SQL analysis task status.
+         */
+        status: number;
+        /**
+         * Timed SQL analysis task ID.
+         */
+        taskId: string;
+        /**
+         * Timed SQL analysis task name.
+         */
+        taskName: string;
+    }
+
+    export interface ScheduleSqlTasksTaskRequestCycle {
+        /**
+         * Cron expression. The log service specifies the timed execution of alarm tasks through the Cron expression. The minimum granularity of Cron expressions is minutes, 24 hours. For example, 0 18 * * * indicates that an alarm task is executed exactly at 18:00 every day.
+         */
+        cronTab: string;
+        /**
+         * When setting the Type to Cron, the time zone also needs to be set.
+         */
+        cronTimeZone: string;
+        /**
+         * The scheduling cycle or the time point of regular execution (the number of minutes away from 00:00), with a value range of 1 to 1440, and the unit is minutes.
+         */
+        time: number;
+        /**
+         * The type of Scheduling cycle.
+         */
+        type: string;
+    }
+
     export interface ShardsShard {
         /**
          * The end key info.
@@ -34814,6 +39309,279 @@ export namespace tls {
          * The id of topic.
          */
         topicId: string;
+    }
+
+    export interface ShipperContentInfo {
+        /**
+         * CSV format log content configuration.
+         */
+        csvInfo: outputs.tls.ShipperContentInfoCsvInfo;
+        /**
+         * Log content parsing format.
+         */
+        format: string;
+        /**
+         * JSON format log content configuration.
+         */
+        jsonInfo: outputs.tls.ShipperContentInfoJsonInfo;
+    }
+
+    export interface ShipperContentInfoCsvInfo {
+        /**
+         * Delimiters are supported, including commas, tabs, vertical bars, semicolons, and Spaces.
+         */
+        delimiter: string;
+        /**
+         * When the field content contains a delimiter, use an escape character to wrap the field. Currently, only single quotes, double quotes, and null characters are supported.
+         */
+        escapeChar: string;
+        /**
+         * Configure the fields that need to be delivered.
+         */
+        keys: string[];
+        /**
+         * Invalid field filling content, with a length ranging from 0 to 128.
+         */
+        nonFieldContent: string;
+        /**
+         * Whether to print the Key on the first line.
+         */
+        printHeader: boolean;
+    }
+
+    export interface ShipperContentInfoJsonInfo {
+        /**
+         * Enable the flag.
+         */
+        enable: boolean;
+        /**
+         * Whether to escape or not. It must be configured as true.
+         */
+        escape: boolean;
+        /**
+         * When delivering in JSON format, if this parameter is not configured, it indicates that all fields have been delivered. Including __content__ (choice), __source__, __path__, __time__, __image_name__, __container_name__, __pod_name__, __pod_uid__, namespace, __tag____client_ip__, __tag____receive_time__.
+         */
+        keys: string[];
+    }
+
+    export interface ShipperKafkaShipperInfo {
+        /**
+         * Compression formats currently supported include snappy, gzip, lz4, and none.
+         */
+        compress: string;
+        /**
+         * Delivery end time, millisecond timestamp. If not configured, it will keep delivering.
+         */
+        endTime: number;
+        /**
+         * Kafka instance.
+         */
+        instance: string;
+        /**
+         * The name of the Kafka Topic.
+         */
+        kafkaTopic: string;
+        /**
+         * Delivery start time, millisecond timestamp. If not configured, the default is the current time.
+         */
+        startTime: number;
+    }
+
+    export interface ShipperTosShipperInfo {
+        /**
+         * When choosing a TOS bucket, it must be located in the same region as the source log topic.
+         */
+        bucket: string;
+        /**
+         * Compression formats currently supported include snappy, gzip, lz4, and none.
+         */
+        compress: string;
+        /**
+         * The delivery time interval, measured in seconds, ranges from 300 to 900.
+         */
+        interval: number;
+        /**
+         * The maximum size of the original file that can be delivered to each partition (Shard), that is, the size of the uncompressed log file. The unit is MiB, and the value range is 5 to 256.
+         */
+        maxSize: number;
+        /**
+         * Partition rules for delivering logs.
+         */
+        partitionFormat: string;
+        /**
+         * The top-level directory name of the storage bucket. All log data delivered through this delivery configuration will be delivered to this directory.
+         */
+        prefix: string;
+    }
+
+    export interface ShippersShipper {
+        /**
+         * The content format configuration of the delivery log.
+         */
+        contentInfo: outputs.tls.ShippersShipperContentInfo;
+        /**
+         * Processing task creation time.
+         */
+        createTime: string;
+        /**
+         * The default built-in dashboard ID for delivery.
+         */
+        dashboardId: string;
+        /**
+         * JSON format log content configuration.
+         */
+        kafkaShipperInfo: outputs.tls.ShippersShipperKafkaShipperInfo;
+        /**
+         * The most recent modification time of the processing task.
+         */
+        modifyTime: string;
+        /**
+         * Specify the log item ID for querying the data delivery configuration under the specified log item.
+         */
+        projectId: string;
+        /**
+         * Specify the name of the log item for querying the data delivery configuration under the specified log item. Support fuzzy matching.
+         */
+        projectName: string;
+        /**
+         * Delivery end time, millisecond timestamp. If not configured, it will keep delivering.
+         */
+        shipperEndTime: number;
+        /**
+         * Delivery configuration ID.
+         */
+        shipperId: string;
+        /**
+         * Delivery configuration name.
+         */
+        shipperName: string;
+        /**
+         * Delivery start time, millisecond timestamp. If not configured, it defaults to the current time.
+         */
+        shipperStartTime: number;
+        /**
+         * Specify the delivery type for querying the delivery configuration related to that delivery type.
+         */
+        shipperType: string;
+        /**
+         * Whether to enable the delivery configuration.
+         */
+        status: boolean;
+        /**
+         * Specify the log topic ID for querying the data delivery configuration related to this log topic.
+         */
+        topicId: string;
+        /**
+         * Specify the name of the log topic for querying the data delivery configuration related to this log topic. Support fuzzy matching.
+         */
+        topicName: string;
+        /**
+         * Deliver the relevant configuration to the object storage (TOS).
+         */
+        tosShipperInfo: outputs.tls.ShippersShipperTosShipperInfo;
+    }
+
+    export interface ShippersShipperContentInfo {
+        /**
+         * CSV format log content configuration.
+         */
+        csvInfo: outputs.tls.ShippersShipperContentInfoCsvInfo;
+        /**
+         * Log content parsing format.
+         */
+        format: string;
+        /**
+         * JSON format log content configuration.
+         */
+        jsonInfo: outputs.tls.ShippersShipperContentInfoJsonInfo;
+    }
+
+    export interface ShippersShipperContentInfoCsvInfo {
+        /**
+         * Delimiters are supported, including commas, tabs, vertical bars, semicolons, and Spaces.
+         */
+        delimiter: string;
+        /**
+         * When the field content contains a delimiter, use an escape character to wrap the field. Currently, only single quotes, double quotes, and null characters are supported.
+         */
+        escapeChar: string;
+        /**
+         * When delivering in JSON format, if this parameter is not configured, it indicates that all fields have been delivered. Including __content__ (choice), __source__, __path__, __time__, __image_name__, __container_name__, __pod_name__, __pod_uid__, namespace, __tag____client_ip__, __tag____receive_time__.
+         */
+        keys: string[];
+        /**
+         * Invalid field filling content, with a length ranging from 0 to 128.
+         */
+        nonFieldContent: string;
+        /**
+         * Whether to print the Key on the first line.
+         */
+        printHeader: boolean;
+    }
+
+    export interface ShippersShipperContentInfoJsonInfo {
+        /**
+         * Enable the flag.
+         */
+        enable: boolean;
+        /**
+         * Whether to escape or not. It must be configured as true.
+         */
+        escape: boolean;
+        /**
+         * When delivering in JSON format, if this parameter is not configured, it indicates that all fields have been delivered. Including __content__ (choice), __source__, __path__, __time__, __image_name__, __container_name__, __pod_name__, __pod_uid__, namespace, __tag____client_ip__, __tag____receive_time__.
+         */
+        keys: string[];
+    }
+
+    export interface ShippersShipperKafkaShipperInfo {
+        /**
+         * Compression formats currently supported include snappy, gzip, lz4, and none.
+         */
+        compress: string;
+        /**
+         * Delivery end time, millisecond timestamp. If not configured, it will keep delivering.
+         */
+        endTime: number;
+        /**
+         * Kafka instance.
+         */
+        instance: string;
+        /**
+         * The name of the Kafka Topic.
+         */
+        kafkaTopic: string;
+        /**
+         * Delivery start time, millisecond timestamp. If not configured, the default is the current time.
+         */
+        startTime: number;
+    }
+
+    export interface ShippersShipperTosShipperInfo {
+        /**
+         * When choosing a TOS bucket, it must be located in the same region as the source log topic.
+         */
+        bucket: string;
+        /**
+         * Compression formats currently supported include snappy, gzip, lz4, and none.
+         */
+        compress: string;
+        /**
+         * The delivery time interval, measured in seconds, ranges from 300 to 900.
+         */
+        interval: number;
+        /**
+         * The maximum size of the original file that can be delivered to each partition (Shard), that is, the size of the uncompressed log file. The unit is MiB, and the value range is 5 to 256.
+         */
+        maxSize: number;
+        /**
+         * Partition rules for delivering logs.
+         */
+        partitionFormat: string;
+        /**
+         * The top-level directory name of the storage bucket. All log data delivered through this delivery configuration will be delivered to this directory.
+         */
+        prefix: string;
     }
 
     export interface TopicTag {
@@ -42537,6 +47305,989 @@ export namespace veenedge {
 
 }
 
+export namespace vefaas {
+    export interface FunctionEnv {
+        /**
+         * The Key of the environment variable.
+         */
+        key: string;
+        /**
+         * The Value of the environment variable.
+         */
+        value: string;
+    }
+
+    export interface FunctionNasStorage {
+        /**
+         * Whether to enable NAS storage mounting.
+         */
+        enableNas: boolean;
+        /**
+         * The configuration of NAS.
+         */
+        nasConfigs?: outputs.vefaas.FunctionNasStorageNasConfig[];
+    }
+
+    export interface FunctionNasStorageNasConfig {
+        /**
+         * The ID of NAS file system.
+         */
+        fileSystemId: string;
+        /**
+         * The directory of Function local mount.
+         */
+        localMountPath: string;
+        /**
+         * The ID of NAS mount point.
+         */
+        mountPointId: string;
+        /**
+         * Remote directory of the file system.
+         */
+        remotePath: string;
+    }
+
+    export interface FunctionSourceAccessConfig {
+        /**
+         * The image repository password.
+         */
+        password: boolean;
+        /**
+         * Mirror repository username.
+         */
+        username: string;
+    }
+
+    export interface FunctionTlsConfig {
+        /**
+         * TLS log function switch.
+         */
+        enableLog: boolean;
+        /**
+         * The project ID of TLS log topic.
+         */
+        tlsProjectId?: string;
+        /**
+         * The topic ID of TLS log topic.
+         */
+        tlsTopicId?: string;
+    }
+
+    export interface FunctionTosMountConfig {
+        /**
+         * After enabling TOS, you need to provide an AKSK with access rights to the TOS domain name. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+         */
+        credentials?: outputs.vefaas.FunctionTosMountConfigCredentials;
+        /**
+         * Whether to enable TOS storage mounting.
+         */
+        enableTos: boolean;
+        /**
+         * After enabling TOS, you need to provide a TOS storage configuration list, with a maximum of 5 items.
+         */
+        mountPoints?: outputs.vefaas.FunctionTosMountConfigMountPoint[];
+    }
+
+    export interface FunctionTosMountConfigCredentials {
+        /**
+         * The AccessKey ID (AK) of the Volcano Engine account.
+         */
+        accessKeyId: string;
+        /**
+         * The Secret Access Key (SK) of the Volcano Engine account.
+         */
+        secretAccessKey: string;
+    }
+
+    export interface FunctionTosMountConfigMountPoint {
+        /**
+         * TOS bucket.
+         */
+        bucketName: string;
+        /**
+         * The mounted TOS Bucket path.
+         */
+        bucketPath: string;
+        /**
+         * TOS Access domain name.
+         */
+        endpoint: string;
+        /**
+         * Function local mount directory.
+         */
+        localMountPath: string;
+        /**
+         * Function local directory access permissions. After mounting the TOS Bucket, whether the function local mount directory has read-only permissions.
+         */
+        readOnly?: boolean;
+    }
+
+    export interface FunctionVpcConfig {
+        /**
+         * Function access to the public network switch.
+         */
+        enableSharedInternetAccess?: boolean;
+        /**
+         * Whether the function enables private network access.
+         */
+        enableVpc: boolean;
+        /**
+         * The ID of security group.
+         */
+        securityGroupIds?: string[];
+        /**
+         * The ID of subnet.
+         */
+        subnetIds?: string[];
+        /**
+         * The ID of VPC.
+         */
+        vpcId?: string;
+    }
+
+    export interface FunctionsItem {
+        /**
+         * The size of code package.
+         */
+        codeSize: number;
+        /**
+         * Maximum code package size.
+         */
+        codeSizeLimit: number;
+        /**
+         * The custom startup command for the instance.
+         */
+        command: string;
+        /**
+         * Function CPU charging policy.
+         */
+        cpuStrategy: string;
+        /**
+         * Creation time.
+         */
+        creationTime: string;
+        /**
+         * The description of Function.
+         */
+        description: string;
+        /**
+         * Function environment variable.
+         */
+        envs: outputs.vefaas.FunctionsItemEnv[];
+        /**
+         * Exclusive mode switch.
+         */
+        exclusiveMode: boolean;
+        /**
+         * The ID of Function.
+         */
+        id: string;
+        /**
+         * Function to initialize timeout configuration.
+         */
+        initializerSec: number;
+        /**
+         * The instance type of the function instance.
+         */
+        instanceType: string;
+        /**
+         * Update time.
+         */
+        lastUpdateTime: string;
+        /**
+         * Maximum concurrency of a single instance.
+         */
+        maxConcurrency: number;
+        /**
+         * Maximum memory for a single instance.
+         */
+        memoryMb: number;
+        /**
+         * The name of Function.
+         */
+        name: string;
+        /**
+         * The configuration of file storage NAS mount.
+         */
+        nasStorages: outputs.vefaas.FunctionsItemNasStorage[];
+        /**
+         * The owner of Function.
+         */
+        owner: string;
+        /**
+         * Custom listening port for the instance.
+         */
+        port: number;
+        /**
+         * Request timeout (in seconds).
+         */
+        requestTimeout: number;
+        /**
+         * The runtime of Function.
+         */
+        runtime: string;
+        /**
+         * The source address of the code/image.
+         */
+        sourceLocation: string;
+        /**
+         * Code Source type, supports tos, zip, image (whitelist accounts support native/v1 custom images).
+         */
+        sourceType: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.vefaas.FunctionsItemTag[];
+        /**
+         * Function log configuration.
+         */
+        tlsConfigs: outputs.vefaas.FunctionsItemTlsConfig[];
+        /**
+         * The configuration of Object Storage TOS mount.
+         */
+        tosMountConfigs: outputs.vefaas.FunctionsItemTosMountConfig[];
+        /**
+         * The number of triggers for this Function.
+         */
+        triggersCount: number;
+        /**
+         * The configuration of VPC.
+         */
+        vpcConfigs: outputs.vefaas.FunctionsItemVpcConfig[];
+    }
+
+    export interface FunctionsItemEnv {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface FunctionsItemNasStorage {
+        /**
+         * Whether to enable NAS storage mounting.
+         */
+        enableNas: boolean;
+        /**
+         * The configuration of NAS.
+         */
+        nasConfigs: outputs.vefaas.FunctionsItemNasStorageNasConfig[];
+    }
+
+    export interface FunctionsItemNasStorageNasConfig {
+        /**
+         * The ID of NAS file system.
+         */
+        fileSystemId: string;
+        /**
+         * User groups in the file system. Customization is not supported yet. If this parameter is provided, the parameter value is 1000 (consistent with the function run user gid).
+         */
+        gid: number;
+        /**
+         * Function local mount directory.
+         */
+        localMountPath: string;
+        /**
+         * The ID of NAS mount point.
+         */
+        mountPointId: string;
+        /**
+         * Remote directory of the file system.
+         */
+        remotePath: string;
+        /**
+         * Users in the file system do not support customization yet. If this parameter is provided, its value can only be 1000 (consistent with the function run user uid).
+         */
+        uid: number;
+    }
+
+    export interface FunctionsItemTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface FunctionsItemTlsConfig {
+        /**
+         * TLS log function switch.
+         */
+        enableLog: boolean;
+        /**
+         * The project ID of TLS log topic.
+         */
+        tlsProjectId: string;
+        /**
+         * The topic ID of TLS log topic.
+         */
+        tlsTopicId: string;
+    }
+
+    export interface FunctionsItemTosMountConfig {
+        /**
+         * After enabling TOS, you need to provide an AKSK with access rights to the TOS domain name.
+         */
+        credentials: outputs.vefaas.FunctionsItemTosMountConfigCredential[];
+        /**
+         * Whether to enable TOS storage mounting.
+         */
+        enableTos: boolean;
+        /**
+         * After enabling TOS, you need to provide a TOS storage configuration list, with a maximum of 5 items.
+         */
+        mountPoints: outputs.vefaas.FunctionsItemTosMountConfigMountPoint[];
+    }
+
+    export interface FunctionsItemTosMountConfigCredential {
+        /**
+         * The AccessKey ID (AK) of the Volcano Engine account.
+         */
+        accessKeyId: string;
+        /**
+         * The Secret Access Key (SK) of the Volcano Engine account.
+         */
+        secretAccessKey: string;
+    }
+
+    export interface FunctionsItemTosMountConfigMountPoint {
+        /**
+         * TOS bucket.
+         */
+        bucketName: string;
+        /**
+         * The mounted TOS Bucket path.
+         */
+        bucketPath: string;
+        /**
+         * TOS Access domain name.
+         */
+        endpoint: string;
+        /**
+         * Function local mount directory.
+         */
+        localMountPath: string;
+        /**
+         * Function local directory access permissions. After mounting the TOS Bucket, whether the function local mount directory has read-only permissions.
+         */
+        readOnly: boolean;
+    }
+
+    export interface FunctionsItemVpcConfig {
+        /**
+         * Function access to the public network switch.
+         */
+        enableSharedInternetAccess: boolean;
+        /**
+         * Whether the function enables private network access.
+         */
+        enableVpc: boolean;
+        /**
+         * The ID of security group.
+         */
+        securityGroupIds: string[];
+        /**
+         * The ID of subnet.
+         */
+        subnetIds: string[];
+        /**
+         * The ID of VPC.
+         */
+        vpcId: string;
+    }
+
+    export interface GetFunctionsItem {
+        /**
+         * The size of code package.
+         */
+        codeSize: number;
+        /**
+         * Maximum code package size.
+         */
+        codeSizeLimit: number;
+        /**
+         * The custom startup command for the instance.
+         */
+        command: string;
+        /**
+         * Function CPU charging policy.
+         */
+        cpuStrategy: string;
+        /**
+         * Creation time.
+         */
+        creationTime: string;
+        /**
+         * The description of Function.
+         */
+        description: string;
+        /**
+         * Function environment variable.
+         */
+        envs: outputs.vefaas.GetFunctionsItemEnv[];
+        /**
+         * Exclusive mode switch.
+         */
+        exclusiveMode: boolean;
+        /**
+         * The ID of Function.
+         */
+        id: string;
+        /**
+         * Function to initialize timeout configuration.
+         */
+        initializerSec: number;
+        /**
+         * The instance type of the function instance.
+         */
+        instanceType: string;
+        /**
+         * Update time.
+         */
+        lastUpdateTime: string;
+        /**
+         * Maximum concurrency of a single instance.
+         */
+        maxConcurrency: number;
+        /**
+         * Maximum memory for a single instance.
+         */
+        memoryMb: number;
+        /**
+         * The name of Function.
+         */
+        name: string;
+        /**
+         * The configuration of file storage NAS mount.
+         */
+        nasStorages: outputs.vefaas.GetFunctionsItemNasStorage[];
+        /**
+         * The owner of Function.
+         */
+        owner: string;
+        /**
+         * Custom listening port for the instance.
+         */
+        port: number;
+        /**
+         * Request timeout (in seconds).
+         */
+        requestTimeout: number;
+        /**
+         * The runtime of Function.
+         */
+        runtime: string;
+        /**
+         * The source address of the code/image.
+         */
+        sourceLocation: string;
+        /**
+         * Code Source type, supports tos, zip, image (whitelist accounts support native/v1 custom images).
+         */
+        sourceType: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.vefaas.GetFunctionsItemTag[];
+        /**
+         * Function log configuration.
+         */
+        tlsConfigs: outputs.vefaas.GetFunctionsItemTlsConfig[];
+        /**
+         * The configuration of Object Storage TOS mount.
+         */
+        tosMountConfigs: outputs.vefaas.GetFunctionsItemTosMountConfig[];
+        /**
+         * The number of triggers for this Function.
+         */
+        triggersCount: number;
+        /**
+         * The configuration of VPC.
+         */
+        vpcConfigs: outputs.vefaas.GetFunctionsItemVpcConfig[];
+    }
+
+    export interface GetFunctionsItemEnv {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetFunctionsItemNasStorage {
+        /**
+         * Whether to enable NAS storage mounting.
+         */
+        enableNas: boolean;
+        /**
+         * The configuration of NAS.
+         */
+        nasConfigs: outputs.vefaas.GetFunctionsItemNasStorageNasConfig[];
+    }
+
+    export interface GetFunctionsItemNasStorageNasConfig {
+        /**
+         * The ID of NAS file system.
+         */
+        fileSystemId: string;
+        /**
+         * User groups in the file system. Customization is not supported yet. If this parameter is provided, the parameter value is 1000 (consistent with the function run user gid).
+         */
+        gid: number;
+        /**
+         * Function local mount directory.
+         */
+        localMountPath: string;
+        /**
+         * The ID of NAS mount point.
+         */
+        mountPointId: string;
+        /**
+         * Remote directory of the file system.
+         */
+        remotePath: string;
+        /**
+         * Users in the file system do not support customization yet. If this parameter is provided, its value can only be 1000 (consistent with the function run user uid).
+         */
+        uid: number;
+    }
+
+    export interface GetFunctionsItemTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetFunctionsItemTlsConfig {
+        /**
+         * TLS log function switch.
+         */
+        enableLog: boolean;
+        /**
+         * The project ID of TLS log topic.
+         */
+        tlsProjectId: string;
+        /**
+         * The topic ID of TLS log topic.
+         */
+        tlsTopicId: string;
+    }
+
+    export interface GetFunctionsItemTosMountConfig {
+        /**
+         * After enabling TOS, you need to provide an AKSK with access rights to the TOS domain name.
+         */
+        credentials: outputs.vefaas.GetFunctionsItemTosMountConfigCredential[];
+        /**
+         * Whether to enable TOS storage mounting.
+         */
+        enableTos: boolean;
+        /**
+         * After enabling TOS, you need to provide a TOS storage configuration list, with a maximum of 5 items.
+         */
+        mountPoints: outputs.vefaas.GetFunctionsItemTosMountConfigMountPoint[];
+    }
+
+    export interface GetFunctionsItemTosMountConfigCredential {
+        /**
+         * The AccessKey ID (AK) of the Volcano Engine account.
+         */
+        accessKeyId: string;
+        /**
+         * The Secret Access Key (SK) of the Volcano Engine account.
+         */
+        secretAccessKey: string;
+    }
+
+    export interface GetFunctionsItemTosMountConfigMountPoint {
+        /**
+         * TOS bucket.
+         */
+        bucketName: string;
+        /**
+         * The mounted TOS Bucket path.
+         */
+        bucketPath: string;
+        /**
+         * TOS Access domain name.
+         */
+        endpoint: string;
+        /**
+         * Function local mount directory.
+         */
+        localMountPath: string;
+        /**
+         * Function local directory access permissions. After mounting the TOS Bucket, whether the function local mount directory has read-only permissions.
+         */
+        readOnly: boolean;
+    }
+
+    export interface GetFunctionsItemVpcConfig {
+        /**
+         * Function access to the public network switch.
+         */
+        enableSharedInternetAccess: boolean;
+        /**
+         * Whether the function enables private network access.
+         */
+        enableVpc: boolean;
+        /**
+         * The ID of security group.
+         */
+        securityGroupIds: string[];
+        /**
+         * The ID of subnet.
+         */
+        subnetIds: string[];
+        /**
+         * The ID of VPC.
+         */
+        vpcId: string;
+    }
+
+    export interface GetKafkaTriggersItem {
+        /**
+         * The ID of account.
+         */
+        accountId: string;
+        /**
+         * The creation time of the Timer trigger.
+         */
+        creationTime: string;
+        /**
+         * The description of the Timer trigger.
+         */
+        description: string;
+        /**
+         * The details of trigger configuration.
+         */
+        detailedConfig: string;
+        /**
+         * Whether the Timer trigger is enabled.
+         */
+        enabled: boolean;
+        /**
+         * The ID of Function.
+         */
+        functionId: string;
+        /**
+         * The ID of the Timer trigger.
+         */
+        id: string;
+        /**
+         * The image version of the Timer trigger.
+         */
+        imageVersion: string;
+        /**
+         * The last update time of the Timer trigger.
+         */
+        lastUpdateTime: string;
+        /**
+         * The name of the Timer trigger.
+         */
+        name: string;
+        /**
+         * The category of the Timer trigger.
+         */
+        type: string;
+    }
+
+    export interface GetReleasesFilter {
+        /**
+         * Filter key enumeration.
+         */
+        name?: string;
+        /**
+         * The filtering value of the query.
+         */
+        values?: string[];
+    }
+
+    export interface GetReleasesItem {
+        /**
+         * The create time of the published information.
+         */
+        creationTime: string;
+        /**
+         * The description of the published information.
+         */
+        description: string;
+        /**
+         * Finish time.
+         */
+        finishTime: string;
+        /**
+         * The ID of Function.
+         */
+        functionId: string;
+        /**
+         * The ID of function release.
+         */
+        id: string;
+        /**
+         * The last update time of the published information.
+         */
+        lastUpdateTime: string;
+        /**
+         * The historical version numbers released.
+         */
+        sourceRevisionNumber: number;
+        /**
+         * The status of function release.
+         */
+        status: string;
+        /**
+         * The target version number released.
+         */
+        targetRevisionNumber: number;
+    }
+
+    export interface GetReleasesOrderBy {
+        /**
+         * Whether the sorting result is sorted in ascending order.
+         */
+        ascend?: boolean;
+        /**
+         * Key names used for sorting.
+         */
+        key?: string;
+    }
+
+    export interface GetTimersItem {
+        /**
+         * The ID of account.
+         */
+        accountId: string;
+        /**
+         * The creation time of the Timer trigger.
+         */
+        creationTime: string;
+        /**
+         * The description of the Timer trigger.
+         */
+        description: string;
+        /**
+         * The details of trigger configuration.
+         */
+        detailedConfig: string;
+        /**
+         * Whether the Timer trigger is enabled.
+         */
+        enabled: boolean;
+        /**
+         * The ID of Function.
+         */
+        functionId: string;
+        /**
+         * The ID of the Timer trigger.
+         */
+        id: string;
+        /**
+         * The image version of the Timer trigger.
+         */
+        imageVersion: string;
+        /**
+         * The last update time of the Timer trigger.
+         */
+        lastUpdateTime: string;
+        /**
+         * The name of the Timer trigger.
+         */
+        name: string;
+        /**
+         * The category of the Timer trigger.
+         */
+        type: string;
+    }
+
+    export interface KafkaTriggerKafkaCredentials {
+        /**
+         * Kafka authentication mechanism.
+         */
+        mechanism: string;
+        /**
+         * The SASL/PLAIN user password set when creating a Kafka instance.
+         */
+        password: string;
+        /**
+         * The SASL/PLAIN user name set when creating a Kafka instance.
+         */
+        username: string;
+    }
+
+    export interface KafkaTriggersItem {
+        /**
+         * The ID of account.
+         */
+        accountId: string;
+        /**
+         * The creation time of the Timer trigger.
+         */
+        creationTime: string;
+        /**
+         * The description of the Timer trigger.
+         */
+        description: string;
+        /**
+         * The details of trigger configuration.
+         */
+        detailedConfig: string;
+        /**
+         * Whether the Timer trigger is enabled.
+         */
+        enabled: boolean;
+        /**
+         * The ID of Function.
+         */
+        functionId: string;
+        /**
+         * The ID of the Timer trigger.
+         */
+        id: string;
+        /**
+         * The image version of the Timer trigger.
+         */
+        imageVersion: string;
+        /**
+         * The last update time of the Timer trigger.
+         */
+        lastUpdateTime: string;
+        /**
+         * The name of the Timer trigger.
+         */
+        name: string;
+        /**
+         * The category of the Timer trigger.
+         */
+        type: string;
+    }
+
+    export interface ReleasesFilter {
+        /**
+         * Filter key enumeration.
+         */
+        name?: string;
+        /**
+         * The filtering value of the query.
+         */
+        values?: string[];
+    }
+
+    export interface ReleasesItem {
+        /**
+         * The create time of the published information.
+         */
+        creationTime: string;
+        /**
+         * The description of the published information.
+         */
+        description: string;
+        /**
+         * Finish time.
+         */
+        finishTime: string;
+        /**
+         * The ID of Function.
+         */
+        functionId: string;
+        /**
+         * The ID of function release.
+         */
+        id: string;
+        /**
+         * The last update time of the published information.
+         */
+        lastUpdateTime: string;
+        /**
+         * The historical version numbers released.
+         */
+        sourceRevisionNumber: number;
+        /**
+         * The status of function release.
+         */
+        status: string;
+        /**
+         * The target version number released.
+         */
+        targetRevisionNumber: number;
+    }
+
+    export interface ReleasesOrderBy {
+        /**
+         * Whether the sorting result is sorted in ascending order.
+         */
+        ascend?: boolean;
+        /**
+         * Key names used for sorting.
+         */
+        key?: string;
+    }
+
+    export interface TimersItem {
+        /**
+         * The ID of account.
+         */
+        accountId: string;
+        /**
+         * The creation time of the Timer trigger.
+         */
+        creationTime: string;
+        /**
+         * The description of the Timer trigger.
+         */
+        description: string;
+        /**
+         * The details of trigger configuration.
+         */
+        detailedConfig: string;
+        /**
+         * Whether the Timer trigger is enabled.
+         */
+        enabled: boolean;
+        /**
+         * The ID of Function.
+         */
+        functionId: string;
+        /**
+         * The ID of the Timer trigger.
+         */
+        id: string;
+        /**
+         * The image version of the Timer trigger.
+         */
+        imageVersion: string;
+        /**
+         * The last update time of the Timer trigger.
+         */
+        lastUpdateTime: string;
+        /**
+         * The name of the Timer trigger.
+         */
+        name: string;
+        /**
+         * The category of the Timer trigger.
+         */
+        type: string;
+    }
+
+}
+
 export namespace vepfs {
     export interface FileSystemTag {
         /**
@@ -45955,6 +51706,1593 @@ export namespace vke {
          * The id of zone.
          */
         zoneId: string;
+    }
+
+}
+
+export namespace vmp {
+    export interface AlertingRuleAnnotation {
+        /**
+         * The name of the annotation.
+         */
+        name: string;
+        /**
+         * The value of the annotation.
+         */
+        value: string;
+    }
+
+    export interface AlertingRuleLabel {
+        /**
+         * The name of the label.
+         */
+        name: string;
+        /**
+         * The value of the label.
+         */
+        value: string;
+    }
+
+    export interface AlertingRuleLevel {
+        /**
+         * The comparator of the vmp alerting rule. Valid values: `>`, `>=`, `<`, `<=`, `==`, `!=`.
+         */
+        comparator: string;
+        /**
+         * The duration of the alerting rule. Valid values: `0s`, `1m`, `2m`, `5m`, `10m`.
+         */
+        for: string;
+        /**
+         * The level of the vmp alerting rule. Valid values: `P0`, `P1`, `P2`. The value of this field cannot be duplicate.
+         */
+        level: string;
+        /**
+         * The threshold of the vmp alerting rule.
+         */
+        threshold: number;
+    }
+
+    export interface AlertingRuleQuery {
+        /**
+         * The prom ql of query.
+         */
+        promQl: string;
+        /**
+         * The id of the workspace.
+         */
+        workspaceId: string;
+    }
+
+    export interface AlertingRulesAlertingRule {
+        /**
+         * The annotations of the vmp alerting rule.
+         */
+        annotations: outputs.vmp.AlertingRulesAlertingRuleAnnotation[];
+        /**
+         * The create time of the vmp alerting rule.
+         */
+        createTime: string;
+        /**
+         * The description of the vmp alerting rule.
+         */
+        description: string;
+        /**
+         * The id of the vmp alerting rule.
+         */
+        id: string;
+        /**
+         * The labels of the vmp alerting rule.
+         */
+        labels: outputs.vmp.AlertingRulesAlertingRuleLabel[];
+        /**
+         * The alerting levels of the vmp alerting rule.
+         */
+        levels: outputs.vmp.AlertingRulesAlertingRuleLevel[];
+        /**
+         * The name of vmp alerting rule. This field support fuzzy query.
+         */
+        name: string;
+        /**
+         * The notify group policy id of the vmp alerting rule.
+         */
+        notifyGroupPolicyId: string;
+        /**
+         * The notify policy id of the vmp alerting rule.
+         */
+        notifyPolicyId: string;
+        /**
+         * The alerting query of the vmp alerting rule.
+         */
+        queries: outputs.vmp.AlertingRulesAlertingRuleQuery[];
+        /**
+         * The status of vmp alerting rule. Valid values: `Running`, `Disabled`.
+         */
+        status: string;
+        /**
+         * The type of vmp alerting rule. Valid values: `vmp/PromQL`.
+         */
+        type: string;
+        /**
+         * The update time of the vmp alerting rule.
+         */
+        updateTime: string;
+    }
+
+    export interface AlertingRulesAlertingRuleAnnotation {
+        /**
+         * The name of vmp alerting rule. This field support fuzzy query.
+         */
+        name: string;
+        /**
+         * The value of the label.
+         */
+        value: string;
+    }
+
+    export interface AlertingRulesAlertingRuleLabel {
+        /**
+         * The name of the label.
+         */
+        key: string;
+        /**
+         * The value of the label.
+         */
+        value: string;
+    }
+
+    export interface AlertingRulesAlertingRuleLevel {
+        /**
+         * The comparator of the vmp alerting rule.
+         */
+        comparator: string;
+        /**
+         * The duration of the alerting rule.
+         */
+        for: string;
+        /**
+         * The level of the vmp alerting rule.
+         */
+        level: string;
+        /**
+         * The threshold of the vmp alerting rule.
+         */
+        threshold: number;
+    }
+
+    export interface AlertingRulesAlertingRuleQuery {
+        /**
+         * The prom ql of query.
+         */
+        promQl: string;
+        /**
+         * The workspace id of vmp alerting rule.
+         */
+        workspaceId: string;
+    }
+
+    export interface AlertsAlert {
+        /**
+         * The id of the vmp alerting rule.
+         */
+        alertingRuleId: string;
+        /**
+         * The alerting query of the vmp alerting rule.
+         */
+        alertingRuleQueries: outputs.vmp.AlertsAlertAlertingRuleQuery[];
+        /**
+         * The type of the vmp alerting rule.
+         */
+        alertingRuleType: string;
+        /**
+         * The current level of the vmp alert.
+         */
+        currentLevel: string;
+        /**
+         * The status of vmp alert. Valid values: `Pending`, `Active`, `Resolved`, `Disabled`.
+         */
+        currentPhase: string;
+        /**
+         * The id of the vmp alert.
+         */
+        id: string;
+        /**
+         * The start time of the vmp alert. Format: RFC3339.
+         */
+        initialAlertTimestamp: string;
+        /**
+         * The last time of the vmp alert. Format: RFC3339.
+         */
+        lastAlertTimestamp: string;
+        /**
+         * The alerting levels of the vmp alert.
+         */
+        levels: outputs.vmp.AlertsAlertLevel[];
+        /**
+         * The end time of the vmp alert. Format: RFC3339.
+         */
+        resolveAlertTimestamp: string;
+        /**
+         * The alerting resource of the vmp alert.
+         */
+        resources: outputs.vmp.AlertsAlertResource[];
+    }
+
+    export interface AlertsAlertAlertingRuleQuery {
+        /**
+         * The prom ql of query.
+         */
+        promQl: string;
+        /**
+         * The id of the workspace.
+         */
+        workspaceId: string;
+    }
+
+    export interface AlertsAlertLevel {
+        /**
+         * The comparator of the vmp alerting rule.
+         */
+        comparator: string;
+        /**
+         * The duration of the alerting rule.
+         */
+        for: string;
+        /**
+         * The level of vmp alert. Valid values: `P0`, `P1`, `P2`.
+         */
+        level: string;
+        /**
+         * The threshold of the vmp alerting rule.
+         */
+        threshold: number;
+    }
+
+    export interface AlertsAlertResource {
+        /**
+         * The labels of alerting resource.
+         */
+        labels: outputs.vmp.AlertsAlertResourceLabel[];
+    }
+
+    export interface AlertsAlertResourceLabel {
+        /**
+         * The key of the label.
+         */
+        key: string;
+        /**
+         * The value of the label.
+         */
+        value: string;
+    }
+
+    export interface ContactDingTalkBotWebhook {
+        /**
+         * The address of webhook.
+         */
+        address: string;
+        /**
+         * The mobiles of user.
+         */
+        atMobiles?: string[];
+        /**
+         * The ids of user.
+         */
+        atUserIds?: string[];
+        /**
+         * The secret key of webhook.
+         */
+        secretKey?: string;
+    }
+
+    export interface ContactGroupsContactGroup {
+        /**
+         * A list of contact IDs.
+         */
+        contactIds: string[];
+        /**
+         * The create time of contact group.
+         */
+        createTime: string;
+        /**
+         * The ID of contact group.
+         */
+        id: string;
+        /**
+         * The name of contact group.
+         */
+        name: string;
+    }
+
+    export interface ContactLarkBotWebhook {
+        /**
+         * The address of webhook.
+         */
+        address: string;
+        /**
+         * The secret key of webhook.
+         */
+        secretKey?: string;
+    }
+
+    export interface ContactPhoneNumber {
+        /**
+         * The country code of phone number. The value is `+86`.
+         */
+        countryCode: string;
+        /**
+         * The number of phone number.
+         */
+        number: string;
+    }
+
+    export interface ContactWeComBotWebhook {
+        /**
+         * The address of webhook.
+         */
+        address: string;
+        /**
+         * The ids of user.
+         */
+        atUserIds?: string[];
+    }
+
+    export interface ContactWebhook {
+        /**
+         * The address of webhook.
+         */
+        address: string;
+        /**
+         * The token of webhook.
+         */
+        token?: string;
+    }
+
+    export interface ContactsContact {
+        /**
+         * A list of contact group ids.
+         */
+        contactGroupIds: string[];
+        /**
+         * The create time of contact.
+         */
+        createTime: string;
+        /**
+         * The ding talk bot webhook of contact.
+         */
+        dingTalkBotWebhooks: outputs.vmp.ContactsContactDingTalkBotWebhook[];
+        /**
+         * The email of contact.
+         */
+        email: string;
+        /**
+         * Whether the email of contact active.
+         */
+        emailActive: boolean;
+        /**
+         * The ID of contact.
+         */
+        id: string;
+        /**
+         * The lark bot webhook of contact.
+         */
+        larkBotWebhooks: outputs.vmp.ContactsContactLarkBotWebhook[];
+        /**
+         * The name of contact.
+         */
+        name: string;
+        /**
+         * Whether phone number is active.
+         */
+        phoneNumberActive: boolean;
+        /**
+         * The phone number of contact.
+         */
+        phoneNumbers: outputs.vmp.ContactsContactPhoneNumber[];
+        /**
+         * The we com bot webhook of contact.
+         */
+        weComBotWebhooks: outputs.vmp.ContactsContactWeComBotWebhook[];
+        /**
+         * The webhook of contact.
+         */
+        webhooks: outputs.vmp.ContactsContactWebhook[];
+    }
+
+    export interface ContactsContactDingTalkBotWebhook {
+        /**
+         * The address of webhook.
+         */
+        address: string;
+        /**
+         * The mobiles of user.
+         */
+        atMobiles: string[];
+        /**
+         * The ids of user.
+         */
+        atUserIds: string[];
+        /**
+         * The secret key of webhook.
+         */
+        secretKey: string;
+    }
+
+    export interface ContactsContactLarkBotWebhook {
+        /**
+         * The address of webhook.
+         */
+        address: string;
+        /**
+         * The secret key of webhook.
+         */
+        secretKey: string;
+    }
+
+    export interface ContactsContactPhoneNumber {
+        /**
+         * The country code of phone number.
+         */
+        countryCode: string;
+        /**
+         * The number of phone number.
+         */
+        number: string;
+    }
+
+    export interface ContactsContactWeComBotWebhook {
+        /**
+         * The address of webhook.
+         */
+        address: string;
+        /**
+         * The ids of user.
+         */
+        atUserIds: string[];
+    }
+
+    export interface ContactsContactWebhook {
+        /**
+         * The address of webhook.
+         */
+        address: string;
+        /**
+         * The token of webhook.
+         */
+        token: string;
+    }
+
+    export interface GetAlertingRulesAlertingRule {
+        /**
+         * The annotations of the vmp alerting rule.
+         */
+        annotations: outputs.vmp.GetAlertingRulesAlertingRuleAnnotation[];
+        /**
+         * The create time of the vmp alerting rule.
+         */
+        createTime: string;
+        /**
+         * The description of the vmp alerting rule.
+         */
+        description: string;
+        /**
+         * The id of the vmp alerting rule.
+         */
+        id: string;
+        /**
+         * The labels of the vmp alerting rule.
+         */
+        labels: outputs.vmp.GetAlertingRulesAlertingRuleLabel[];
+        /**
+         * The alerting levels of the vmp alerting rule.
+         */
+        levels: outputs.vmp.GetAlertingRulesAlertingRuleLevel[];
+        /**
+         * The name of vmp alerting rule. This field support fuzzy query.
+         */
+        name: string;
+        /**
+         * The notify group policy id of the vmp alerting rule.
+         */
+        notifyGroupPolicyId: string;
+        /**
+         * The notify policy id of the vmp alerting rule.
+         */
+        notifyPolicyId: string;
+        /**
+         * The alerting query of the vmp alerting rule.
+         */
+        queries: outputs.vmp.GetAlertingRulesAlertingRuleQuery[];
+        /**
+         * The status of vmp alerting rule. Valid values: `Running`, `Disabled`.
+         */
+        status: string;
+        /**
+         * The type of vmp alerting rule. Valid values: `vmp/PromQL`.
+         */
+        type: string;
+        /**
+         * The update time of the vmp alerting rule.
+         */
+        updateTime: string;
+    }
+
+    export interface GetAlertingRulesAlertingRuleAnnotation {
+        /**
+         * The name of vmp alerting rule. This field support fuzzy query.
+         */
+        name: string;
+        /**
+         * The value of the label.
+         */
+        value: string;
+    }
+
+    export interface GetAlertingRulesAlertingRuleLabel {
+        /**
+         * The name of the label.
+         */
+        key: string;
+        /**
+         * The value of the label.
+         */
+        value: string;
+    }
+
+    export interface GetAlertingRulesAlertingRuleLevel {
+        /**
+         * The comparator of the vmp alerting rule.
+         */
+        comparator: string;
+        /**
+         * The duration of the alerting rule.
+         */
+        for: string;
+        /**
+         * The level of the vmp alerting rule.
+         */
+        level: string;
+        /**
+         * The threshold of the vmp alerting rule.
+         */
+        threshold: number;
+    }
+
+    export interface GetAlertingRulesAlertingRuleQuery {
+        /**
+         * The prom ql of query.
+         */
+        promQl: string;
+        /**
+         * The workspace id of vmp alerting rule.
+         */
+        workspaceId: string;
+    }
+
+    export interface GetAlertsAlert {
+        /**
+         * The id of the vmp alerting rule.
+         */
+        alertingRuleId: string;
+        /**
+         * The alerting query of the vmp alerting rule.
+         */
+        alertingRuleQueries: outputs.vmp.GetAlertsAlertAlertingRuleQuery[];
+        /**
+         * The type of the vmp alerting rule.
+         */
+        alertingRuleType: string;
+        /**
+         * The current level of the vmp alert.
+         */
+        currentLevel: string;
+        /**
+         * The status of vmp alert. Valid values: `Pending`, `Active`, `Resolved`, `Disabled`.
+         */
+        currentPhase: string;
+        /**
+         * The id of the vmp alert.
+         */
+        id: string;
+        /**
+         * The start time of the vmp alert. Format: RFC3339.
+         */
+        initialAlertTimestamp: string;
+        /**
+         * The last time of the vmp alert. Format: RFC3339.
+         */
+        lastAlertTimestamp: string;
+        /**
+         * The alerting levels of the vmp alert.
+         */
+        levels: outputs.vmp.GetAlertsAlertLevel[];
+        /**
+         * The end time of the vmp alert. Format: RFC3339.
+         */
+        resolveAlertTimestamp: string;
+        /**
+         * The alerting resource of the vmp alert.
+         */
+        resources: outputs.vmp.GetAlertsAlertResource[];
+    }
+
+    export interface GetAlertsAlertAlertingRuleQuery {
+        /**
+         * The prom ql of query.
+         */
+        promQl: string;
+        /**
+         * The id of the workspace.
+         */
+        workspaceId: string;
+    }
+
+    export interface GetAlertsAlertLevel {
+        /**
+         * The comparator of the vmp alerting rule.
+         */
+        comparator: string;
+        /**
+         * The duration of the alerting rule.
+         */
+        for: string;
+        /**
+         * The level of vmp alert. Valid values: `P0`, `P1`, `P2`.
+         */
+        level: string;
+        /**
+         * The threshold of the vmp alerting rule.
+         */
+        threshold: number;
+    }
+
+    export interface GetAlertsAlertResource {
+        /**
+         * The labels of alerting resource.
+         */
+        labels: outputs.vmp.GetAlertsAlertResourceLabel[];
+    }
+
+    export interface GetAlertsAlertResourceLabel {
+        /**
+         * The key of the label.
+         */
+        key: string;
+        /**
+         * The value of the label.
+         */
+        value: string;
+    }
+
+    export interface GetContactGroupsContactGroup {
+        /**
+         * A list of contact IDs.
+         */
+        contactIds: string[];
+        /**
+         * The create time of contact group.
+         */
+        createTime: string;
+        /**
+         * The ID of contact group.
+         */
+        id: string;
+        /**
+         * The name of contact group.
+         */
+        name: string;
+    }
+
+    export interface GetContactsContact {
+        /**
+         * A list of contact group ids.
+         */
+        contactGroupIds: string[];
+        /**
+         * The create time of contact.
+         */
+        createTime: string;
+        /**
+         * The ding talk bot webhook of contact.
+         */
+        dingTalkBotWebhooks: outputs.vmp.GetContactsContactDingTalkBotWebhook[];
+        /**
+         * The email of contact.
+         */
+        email: string;
+        /**
+         * Whether the email of contact active.
+         */
+        emailActive: boolean;
+        /**
+         * The ID of contact.
+         */
+        id: string;
+        /**
+         * The lark bot webhook of contact.
+         */
+        larkBotWebhooks: outputs.vmp.GetContactsContactLarkBotWebhook[];
+        /**
+         * The name of contact.
+         */
+        name: string;
+        /**
+         * Whether phone number is active.
+         */
+        phoneNumberActive: boolean;
+        /**
+         * The phone number of contact.
+         */
+        phoneNumbers: outputs.vmp.GetContactsContactPhoneNumber[];
+        /**
+         * The we com bot webhook of contact.
+         */
+        weComBotWebhooks: outputs.vmp.GetContactsContactWeComBotWebhook[];
+        /**
+         * The webhook of contact.
+         */
+        webhooks: outputs.vmp.GetContactsContactWebhook[];
+    }
+
+    export interface GetContactsContactDingTalkBotWebhook {
+        /**
+         * The address of webhook.
+         */
+        address: string;
+        /**
+         * The mobiles of user.
+         */
+        atMobiles: string[];
+        /**
+         * The ids of user.
+         */
+        atUserIds: string[];
+        /**
+         * The secret key of webhook.
+         */
+        secretKey: string;
+    }
+
+    export interface GetContactsContactLarkBotWebhook {
+        /**
+         * The address of webhook.
+         */
+        address: string;
+        /**
+         * The secret key of webhook.
+         */
+        secretKey: string;
+    }
+
+    export interface GetContactsContactPhoneNumber {
+        /**
+         * The country code of phone number.
+         */
+        countryCode: string;
+        /**
+         * The number of phone number.
+         */
+        number: string;
+    }
+
+    export interface GetContactsContactWeComBotWebhook {
+        /**
+         * The address of webhook.
+         */
+        address: string;
+        /**
+         * The ids of user.
+         */
+        atUserIds: string[];
+    }
+
+    export interface GetContactsContactWebhook {
+        /**
+         * The address of webhook.
+         */
+        address: string;
+        /**
+         * The token of webhook.
+         */
+        token: string;
+    }
+
+    export interface GetInstanceTypesInstanceType {
+        /**
+         * Maximum number of active sequences.
+         */
+        activeSeries: number;
+        /**
+         * Number of zone.
+         */
+        availabilityZoneReplicas: number;
+        /**
+         * Whether the workspace is exclusive.
+         */
+        dedicated: boolean;
+        /**
+         * The ID of instance type.
+         */
+        id: string;
+        /**
+         * Maximum write samples per second.
+         */
+        ingestSamplesPerSecond: number;
+        /**
+         * Maximum number of concurrent queries.
+         */
+        queryConcurrency: number;
+        /**
+         * Maximum Query QPS.
+         */
+        queryPerSecond: number;
+        /**
+         * Data replicas per az.
+         */
+        replicasPerZone: number;
+        /**
+         * Maximum data retention time.
+         */
+        retentionPeriod: string;
+        /**
+         * Maximum scan samples per second.
+         */
+        scanSamplesPerSecond: number;
+        /**
+         * Maximum number of scan sequences per second.
+         */
+        scanSeriesPerSecond: number;
+    }
+
+    export interface GetNotifyGroupPoliciesNotifyPolicy {
+        /**
+         * The create time of notify group policy.
+         */
+        createTime: string;
+        /**
+         * The description of notify group policy.
+         */
+        description: string;
+        /**
+         * The id of the notify group policy.
+         */
+        id: string;
+        /**
+         * The levels of the notify group policy.
+         */
+        levels: outputs.vmp.GetNotifyGroupPoliciesNotifyPolicyLevel[];
+        /**
+         * The name of notify group policy.
+         */
+        name: string;
+    }
+
+    export interface GetNotifyGroupPoliciesNotifyPolicyLevel {
+        /**
+         * The aggregate dimension.
+         */
+        groupBies: string[];
+        /**
+         * The aggregation cycle.
+         */
+        groupInterval: string;
+        /**
+         * The wait time.
+         */
+        groupWait: string;
+        /**
+         * The level of the policy.
+         */
+        level: string;
+        /**
+         * The notification cycle.
+         */
+        repeatInterval: string;
+    }
+
+    export interface GetNotifyPoliciesNotifyPolicy {
+        /**
+         * The channel notify template for the alarm notification policy.
+         */
+        channelNotifyTemplateIds: string[];
+        /**
+         * The create time of notify policy.
+         */
+        createTime: string;
+        /**
+         * The description of notify policy.
+         */
+        description: string;
+        /**
+         * The id of the notify policy.
+         */
+        id: string;
+        /**
+         * The levels of the notify policy.
+         */
+        levels: outputs.vmp.GetNotifyPoliciesNotifyPolicyLevel[];
+        /**
+         * The name of notify policy.
+         */
+        name: string;
+    }
+
+    export interface GetNotifyPoliciesNotifyPolicyLevel {
+        /**
+         * The alarm notification method of the alarm notification policy.
+         */
+        channels: string[];
+        /**
+         * The contact group for the alarm notification policy.
+         */
+        contactGroupIds: string[];
+        /**
+         * The level of the policy.
+         */
+        level: string;
+        /**
+         * The resolved alarm notification method of the alarm notification policy.
+         */
+        resolvedChannels: string[];
+    }
+
+    export interface GetNotifyTemplatesNotifyTemplate {
+        /**
+         * The active notify template info.
+         */
+        actives: outputs.vmp.GetNotifyTemplatesNotifyTemplateActive[];
+        /**
+         * The channel of notify template. Valid values: `LarkBotWebhook`, `DingTalkBotWebhook`, `WeComBotWebhook`.
+         */
+        channel: string;
+        /**
+         * The create time of notify template.
+         */
+        createTime: string;
+        /**
+         * The description of notify template.
+         */
+        description: string;
+        /**
+         * The ID of notify template.
+         */
+        id: string;
+        /**
+         * The name of notify template. This field support fuzzy query.
+         */
+        name: string;
+        /**
+         * The resolved notify template info.
+         */
+        resolveds: outputs.vmp.GetNotifyTemplatesNotifyTemplateResolved[];
+        /**
+         * The update time of notify template.
+         */
+        updateTime: string;
+    }
+
+    export interface GetNotifyTemplatesNotifyTemplateActive {
+        /**
+         * The content of notify template.
+         */
+        content: string;
+        /**
+         * The title of notify template.
+         */
+        title: string;
+    }
+
+    export interface GetNotifyTemplatesNotifyTemplateResolved {
+        /**
+         * The content of notify template.
+         */
+        content: string;
+        /**
+         * The title of notify template.
+         */
+        title: string;
+    }
+
+    export interface GetRuleFilesFile {
+        /**
+         * The content of rule file.
+         */
+        content: string;
+        /**
+         * The create time of rule file.
+         */
+        createTime: string;
+        /**
+         * The description of rule file.
+         */
+        description: string;
+        /**
+         * The ID of rule file.
+         */
+        id: string;
+        /**
+         * The last update time of rule file.
+         */
+        lastUpdateTime: string;
+        /**
+         * The name of rule file.
+         */
+        name: string;
+        /**
+         * The rule count number of rule file.
+         */
+        ruleCount: number;
+        /**
+         * The status of rule file.
+         */
+        status: string;
+    }
+
+    export interface GetRulesRule {
+        /**
+         * The expr of rule.
+         */
+        expr: string;
+        /**
+         * The kind of rule.
+         */
+        kind: string;
+        /**
+         * The labels of rule.
+         */
+        labels: outputs.vmp.GetRulesRuleLabel[];
+        /**
+         * The last evaluation of rule.
+         */
+        lastEvaluation: string;
+        /**
+         * The name of rule.
+         */
+        name: string;
+        /**
+         * The reason of rule.
+         */
+        reason: string;
+        /**
+         * The name of rule file.
+         */
+        ruleFileName: string;
+        /**
+         * The name of rule group.
+         */
+        ruleGroupName: string;
+        /**
+         * The status of rule.
+         */
+        status: string;
+    }
+
+    export interface GetRulesRuleLabel {
+        /**
+         * The key of label.
+         */
+        key: string;
+        /**
+         * The value of label.
+         */
+        value: string;
+    }
+
+    export interface GetWorkspacesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        values: string[];
+    }
+
+    export interface GetWorkspacesWorkspace {
+        /**
+         * The create time of workspace.
+         */
+        createTime: string;
+        /**
+         * Whether enable delete protection.
+         */
+        deleteProtectionEnabled: boolean;
+        /**
+         * The description of workspace.
+         */
+        description: string;
+        /**
+         * The ID of workspace.
+         */
+        id: string;
+        /**
+         * The id of instance type.
+         */
+        instanceTypeId: string;
+        /**
+         * The name of workspace.
+         */
+        name: string;
+        /**
+         * The overdue reclaim time.
+         */
+        overdueReclaimTime: string;
+        /**
+         * The project name of vmp workspace.
+         */
+        projectName: string;
+        /**
+         * The prometheus push intranet endpoint.
+         */
+        prometheusPushIntranetEndpoint: string;
+        /**
+         * The prometheus query intranet endpoint.
+         */
+        prometheusQueryIntranetEndpoint: string;
+        /**
+         * The prometheus write intranet endpoint.
+         */
+        prometheusWriteIntranetEndpoint: string;
+        /**
+         * The status of workspace.
+         */
+        status: string;
+        /**
+         * The tags of vmp workspace.
+         */
+        tags: outputs.vmp.GetWorkspacesWorkspaceTag[];
+        /**
+         * The username of workspace.
+         */
+        username: string;
+    }
+
+    export interface GetWorkspacesWorkspaceTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface InstanceTypesInstanceType {
+        /**
+         * Maximum number of active sequences.
+         */
+        activeSeries: number;
+        /**
+         * Number of zone.
+         */
+        availabilityZoneReplicas: number;
+        /**
+         * Whether the workspace is exclusive.
+         */
+        dedicated: boolean;
+        /**
+         * The ID of instance type.
+         */
+        id: string;
+        /**
+         * Maximum write samples per second.
+         */
+        ingestSamplesPerSecond: number;
+        /**
+         * Maximum number of concurrent queries.
+         */
+        queryConcurrency: number;
+        /**
+         * Maximum Query QPS.
+         */
+        queryPerSecond: number;
+        /**
+         * Data replicas per az.
+         */
+        replicasPerZone: number;
+        /**
+         * Maximum data retention time.
+         */
+        retentionPeriod: string;
+        /**
+         * Maximum scan samples per second.
+         */
+        scanSamplesPerSecond: number;
+        /**
+         * Maximum number of scan sequences per second.
+         */
+        scanSeriesPerSecond: number;
+    }
+
+    export interface NotifyGroupPoliciesNotifyPolicy {
+        /**
+         * The create time of notify group policy.
+         */
+        createTime: string;
+        /**
+         * The description of notify group policy.
+         */
+        description: string;
+        /**
+         * The id of the notify group policy.
+         */
+        id: string;
+        /**
+         * The levels of the notify group policy.
+         */
+        levels: outputs.vmp.NotifyGroupPoliciesNotifyPolicyLevel[];
+        /**
+         * The name of notify group policy.
+         */
+        name: string;
+    }
+
+    export interface NotifyGroupPoliciesNotifyPolicyLevel {
+        /**
+         * The aggregate dimension.
+         */
+        groupBies: string[];
+        /**
+         * The aggregation cycle.
+         */
+        groupInterval: string;
+        /**
+         * The wait time.
+         */
+        groupWait: string;
+        /**
+         * The level of the policy.
+         */
+        level: string;
+        /**
+         * The notification cycle.
+         */
+        repeatInterval: string;
+    }
+
+    export interface NotifyGroupPolicyLevel {
+        /**
+         * The aggregate dimension, the value can be `__rule__`.
+         */
+        groupBies: string[];
+        /**
+         * The aggregation cycle. Integer form, unit is second.
+         */
+        groupInterval: string;
+        /**
+         * The wait time. Integer form, unit is second.
+         */
+        groupWait: string;
+        /**
+         * The level of the policy, the value can be one of the following: `P0`, `P1`, `P2`.
+         */
+        level: string;
+        /**
+         * The notification cycle. Integer form, unit is second.
+         */
+        repeatInterval: string;
+    }
+
+    export interface NotifyPoliciesNotifyPolicy {
+        /**
+         * The channel notify template for the alarm notification policy.
+         */
+        channelNotifyTemplateIds: string[];
+        /**
+         * The create time of notify policy.
+         */
+        createTime: string;
+        /**
+         * The description of notify policy.
+         */
+        description: string;
+        /**
+         * The id of the notify policy.
+         */
+        id: string;
+        /**
+         * The levels of the notify policy.
+         */
+        levels: outputs.vmp.NotifyPoliciesNotifyPolicyLevel[];
+        /**
+         * The name of notify policy.
+         */
+        name: string;
+    }
+
+    export interface NotifyPoliciesNotifyPolicyLevel {
+        /**
+         * The alarm notification method of the alarm notification policy.
+         */
+        channels: string[];
+        /**
+         * The contact group for the alarm notification policy.
+         */
+        contactGroupIds: string[];
+        /**
+         * The level of the policy.
+         */
+        level: string;
+        /**
+         * The resolved alarm notification method of the alarm notification policy.
+         */
+        resolvedChannels: string[];
+    }
+
+    export interface NotifyPolicyLevel {
+        /**
+         * The alarm notification method of the alarm notification policy, the optional value can be `Email`, `Webhook`, `LarkBotWebhook`, `DingTalkBotWebhook`, `WeComBotWebhook`.
+         */
+        channels: string[];
+        /**
+         * The contact group for the alarm notification policy.
+         */
+        contactGroupIds: string[];
+        /**
+         * The level of the policy, the value can be one of the following: `P0`, `P1`, `P2`.
+         */
+        level: string;
+        /**
+         * The resolved alarm notification method of the alarm notification policy, the optional value can be `Email`, `Webhook`, `LarkBotWebhook`, `DingTalkBotWebhook`, `WeComBotWebhook`.
+         */
+        resolvedChannels?: string[];
+    }
+
+    export interface NotifyTemplateActive {
+        /**
+         * The content of notify template.
+         */
+        content: string;
+        /**
+         * The title of notify template.
+         */
+        title: string;
+    }
+
+    export interface NotifyTemplateResolved {
+        /**
+         * The content of notify template.
+         */
+        content: string;
+        /**
+         * The title of notify template.
+         */
+        title: string;
+    }
+
+    export interface NotifyTemplatesNotifyTemplate {
+        /**
+         * The active notify template info.
+         */
+        actives: outputs.vmp.NotifyTemplatesNotifyTemplateActive[];
+        /**
+         * The channel of notify template. Valid values: `LarkBotWebhook`, `DingTalkBotWebhook`, `WeComBotWebhook`.
+         */
+        channel: string;
+        /**
+         * The create time of notify template.
+         */
+        createTime: string;
+        /**
+         * The description of notify template.
+         */
+        description: string;
+        /**
+         * The ID of notify template.
+         */
+        id: string;
+        /**
+         * The name of notify template. This field support fuzzy query.
+         */
+        name: string;
+        /**
+         * The resolved notify template info.
+         */
+        resolveds: outputs.vmp.NotifyTemplatesNotifyTemplateResolved[];
+        /**
+         * The update time of notify template.
+         */
+        updateTime: string;
+    }
+
+    export interface NotifyTemplatesNotifyTemplateActive {
+        /**
+         * The content of notify template.
+         */
+        content: string;
+        /**
+         * The title of notify template.
+         */
+        title: string;
+    }
+
+    export interface NotifyTemplatesNotifyTemplateResolved {
+        /**
+         * The content of notify template.
+         */
+        content: string;
+        /**
+         * The title of notify template.
+         */
+        title: string;
+    }
+
+    export interface RuleFilesFile {
+        /**
+         * The content of rule file.
+         */
+        content: string;
+        /**
+         * The create time of rule file.
+         */
+        createTime: string;
+        /**
+         * The description of rule file.
+         */
+        description: string;
+        /**
+         * The ID of rule file.
+         */
+        id: string;
+        /**
+         * The last update time of rule file.
+         */
+        lastUpdateTime: string;
+        /**
+         * The name of rule file.
+         */
+        name: string;
+        /**
+         * The rule count number of rule file.
+         */
+        ruleCount: number;
+        /**
+         * The status of rule file.
+         */
+        status: string;
+    }
+
+    export interface RulesRule {
+        /**
+         * The expr of rule.
+         */
+        expr: string;
+        /**
+         * The kind of rule.
+         */
+        kind: string;
+        /**
+         * The labels of rule.
+         */
+        labels: outputs.vmp.RulesRuleLabel[];
+        /**
+         * The last evaluation of rule.
+         */
+        lastEvaluation: string;
+        /**
+         * The name of rule.
+         */
+        name: string;
+        /**
+         * The reason of rule.
+         */
+        reason: string;
+        /**
+         * The name of rule file.
+         */
+        ruleFileName: string;
+        /**
+         * The name of rule group.
+         */
+        ruleGroupName: string;
+        /**
+         * The status of rule.
+         */
+        status: string;
+    }
+
+    export interface RulesRuleLabel {
+        /**
+         * The key of label.
+         */
+        key: string;
+        /**
+         * The value of label.
+         */
+        value: string;
+    }
+
+    export interface WorkspaceTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface WorkspacesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        values: string[];
+    }
+
+    export interface WorkspacesWorkspace {
+        /**
+         * The create time of workspace.
+         */
+        createTime: string;
+        /**
+         * Whether enable delete protection.
+         */
+        deleteProtectionEnabled: boolean;
+        /**
+         * The description of workspace.
+         */
+        description: string;
+        /**
+         * The ID of workspace.
+         */
+        id: string;
+        /**
+         * The id of instance type.
+         */
+        instanceTypeId: string;
+        /**
+         * The name of workspace.
+         */
+        name: string;
+        /**
+         * The overdue reclaim time.
+         */
+        overdueReclaimTime: string;
+        /**
+         * The project name of vmp workspace.
+         */
+        projectName: string;
+        /**
+         * The prometheus push intranet endpoint.
+         */
+        prometheusPushIntranetEndpoint: string;
+        /**
+         * The prometheus query intranet endpoint.
+         */
+        prometheusQueryIntranetEndpoint: string;
+        /**
+         * The prometheus write intranet endpoint.
+         */
+        prometheusWriteIntranetEndpoint: string;
+        /**
+         * The status of workspace.
+         */
+        status: string;
+        /**
+         * The tags of vmp workspace.
+         */
+        tags: outputs.vmp.WorkspacesWorkspaceTag[];
+        /**
+         * The username of workspace.
+         */
+        username: string;
+    }
+
+    export interface WorkspacesWorkspaceTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
 }

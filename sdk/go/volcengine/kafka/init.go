@@ -21,6 +21,10 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "volcengine:kafka/allowList:AllowList":
+		r = &AllowList{}
+	case "volcengine:kafka/allowListAssociate:AllowListAssociate":
+		r = &AllowListAssociate{}
 	case "volcengine:kafka/group:Group":
 		r = &Group{}
 	case "volcengine:kafka/instance:Instance":
@@ -44,6 +48,16 @@ func init() {
 	if err != nil {
 		version = semver.Version{Major: 1}
 	}
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"kafka/allowList",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"kafka/allowListAssociate",
+		&module{version},
+	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
 		"kafka/group",

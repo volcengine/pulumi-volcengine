@@ -25,8 +25,17 @@ namespace Pulumi.Volcengine.Private_zone
     ///     {
     ///         IntelligentMode = true,
     ///         LoadBalanceMode = true,
+    ///         ProjectName = "default",
     ///         RecursionMode = true,
     ///         Remark = "acc-test-new",
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Private_zone.Inputs.PrivateZoneTagArgs
+    ///             {
+    ///                 Key = "k1",
+    ///                 Value = "v1",
+    ///             },
+    ///         },
     ///         Vpcs = new[]
     ///         {
     ///             new Volcengine.Private_zone.Inputs.PrivateZoneVpcArgs
@@ -69,6 +78,12 @@ namespace Pulumi.Volcengine.Private_zone
         public Output<bool?> LoadBalanceMode { get; private set; } = null!;
 
         /// <summary>
+        /// The project name of the private zone.
+        /// </summary>
+        [Output("projectName")]
+        public Output<string> ProjectName { get; private set; } = null!;
+
+        /// <summary>
         /// Whether to enable the recursion mode of the private zone.
         /// </summary>
         [Output("recursionMode")]
@@ -79,6 +94,19 @@ namespace Pulumi.Volcengine.Private_zone
         /// </summary>
         [Output("remark")]
         public Output<string?> Remark { get; private set; } = null!;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<Outputs.PrivateZoneTag>> Tags { get; private set; } = null!;
+
+        /// <summary>
+        /// The vpc trns of the private zone. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource. 
+        /// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        /// </summary>
+        [Output("vpcTrns")]
+        public Output<ImmutableArray<string>> VpcTrns { get; private set; } = null!;
 
         /// <summary>
         /// The bind vpc object of the private zone. If you want to bind another account's VPC, you need to first use resource volcengine.private_zone.UserVpcAuthorization to complete the authorization.
@@ -152,6 +180,12 @@ namespace Pulumi.Volcengine.Private_zone
         public Input<bool>? LoadBalanceMode { get; set; }
 
         /// <summary>
+        /// The project name of the private zone.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        /// <summary>
         /// Whether to enable the recursion mode of the private zone.
         /// </summary>
         [Input("recursionMode")]
@@ -162,6 +196,31 @@ namespace Pulumi.Volcengine.Private_zone
         /// </summary>
         [Input("remark")]
         public Input<string>? Remark { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.PrivateZoneTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.PrivateZoneTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.PrivateZoneTagArgs>());
+            set => _tags = value;
+        }
+
+        [Input("vpcTrns")]
+        private InputList<string>? _vpcTrns;
+
+        /// <summary>
+        /// The vpc trns of the private zone. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource. 
+        /// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        /// </summary>
+        public InputList<string> VpcTrns
+        {
+            get => _vpcTrns ?? (_vpcTrns = new InputList<string>());
+            set => _vpcTrns = value;
+        }
 
         [Input("vpcs", required: true)]
         private InputList<Inputs.PrivateZoneVpcArgs>? _vpcs;
@@ -202,6 +261,12 @@ namespace Pulumi.Volcengine.Private_zone
         public Input<bool>? LoadBalanceMode { get; set; }
 
         /// <summary>
+        /// The project name of the private zone.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        /// <summary>
         /// Whether to enable the recursion mode of the private zone.
         /// </summary>
         [Input("recursionMode")]
@@ -212,6 +277,31 @@ namespace Pulumi.Volcengine.Private_zone
         /// </summary>
         [Input("remark")]
         public Input<string>? Remark { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.PrivateZoneTagGetArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.PrivateZoneTagGetArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.PrivateZoneTagGetArgs>());
+            set => _tags = value;
+        }
+
+        [Input("vpcTrns")]
+        private InputList<string>? _vpcTrns;
+
+        /// <summary>
+        /// The vpc trns of the private zone. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource. 
+        /// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        /// </summary>
+        public InputList<string> VpcTrns
+        {
+            get => _vpcTrns ?? (_vpcTrns = new InputList<string>());
+            set => _vpcTrns = value;
+        }
 
         [Input("vpcs")]
         private InputList<Inputs.PrivateZoneVpcGetArgs>? _vpcs;

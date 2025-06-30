@@ -99,17 +99,25 @@ export class Registry extends pulumi.CustomResource {
      */
     public readonly project!: pulumi.Output<string>;
     /**
+     * The proxy cache of registry. This field is valid when proxyCacheEnabled is true.
+     */
+    public readonly proxyCache!: pulumi.Output<outputs.cr.RegistryProxyCache | undefined>;
+    /**
+     * Whether to enable proxy cache.
+     */
+    public readonly proxyCacheEnabled!: pulumi.Output<boolean>;
+    /**
      * Tags.
      */
-    public /*out*/ readonly resourceTags!: pulumi.Output<outputs.cr.RegistryResourceTag[]>;
+    public readonly resourceTags!: pulumi.Output<outputs.cr.RegistryResourceTag[] | undefined>;
     /**
      * The status of registry.
      */
     public /*out*/ readonly statuses!: pulumi.Output<outputs.cr.RegistryStatus[]>;
     /**
-     * The type of registry.
+     * The type of registry. Valid values: `Enterprise`, `Micro`. Default is `Enterprise`.
      */
-    public /*out*/ readonly type!: pulumi.Output<string>;
+    public readonly type!: pulumi.Output<string>;
     /**
      * The status of user.
      */
@@ -139,6 +147,8 @@ export class Registry extends pulumi.CustomResource {
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["password"] = state ? state.password : undefined;
             resourceInputs["project"] = state ? state.project : undefined;
+            resourceInputs["proxyCache"] = state ? state.proxyCache : undefined;
+            resourceInputs["proxyCacheEnabled"] = state ? state.proxyCacheEnabled : undefined;
             resourceInputs["resourceTags"] = state ? state.resourceTags : undefined;
             resourceInputs["statuses"] = state ? state.statuses : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
@@ -150,12 +160,14 @@ export class Registry extends pulumi.CustomResource {
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
             resourceInputs["project"] = args ? args.project : undefined;
+            resourceInputs["proxyCache"] = args ? args.proxyCache : undefined;
+            resourceInputs["proxyCacheEnabled"] = args ? args.proxyCacheEnabled : undefined;
+            resourceInputs["resourceTags"] = args ? args.resourceTags : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["chargeType"] = undefined /*out*/;
             resourceInputs["createTime"] = undefined /*out*/;
             resourceInputs["domains"] = undefined /*out*/;
-            resourceInputs["resourceTags"] = undefined /*out*/;
             resourceInputs["statuses"] = undefined /*out*/;
-            resourceInputs["type"] = undefined /*out*/;
             resourceInputs["userStatus"] = undefined /*out*/;
             resourceInputs["username"] = undefined /*out*/;
         }
@@ -199,6 +211,14 @@ export interface RegistryState {
      */
     project?: pulumi.Input<string>;
     /**
+     * The proxy cache of registry. This field is valid when proxyCacheEnabled is true.
+     */
+    proxyCache?: pulumi.Input<inputs.cr.RegistryProxyCache>;
+    /**
+     * Whether to enable proxy cache.
+     */
+    proxyCacheEnabled?: pulumi.Input<boolean>;
+    /**
      * Tags.
      */
     resourceTags?: pulumi.Input<pulumi.Input<inputs.cr.RegistryResourceTag>[]>;
@@ -207,7 +227,7 @@ export interface RegistryState {
      */
     statuses?: pulumi.Input<pulumi.Input<inputs.cr.RegistryStatus>[]>;
     /**
-     * The type of registry.
+     * The type of registry. Valid values: `Enterprise`, `Micro`. Default is `Enterprise`.
      */
     type?: pulumi.Input<string>;
     /**
@@ -240,4 +260,20 @@ export interface RegistryArgs {
      * The ProjectName of the cr registry.
      */
     project?: pulumi.Input<string>;
+    /**
+     * The proxy cache of registry. This field is valid when proxyCacheEnabled is true.
+     */
+    proxyCache?: pulumi.Input<inputs.cr.RegistryProxyCache>;
+    /**
+     * Whether to enable proxy cache.
+     */
+    proxyCacheEnabled?: pulumi.Input<boolean>;
+    /**
+     * Tags.
+     */
+    resourceTags?: pulumi.Input<pulumi.Input<inputs.cr.RegistryResourceTag>[]>;
+    /**
+     * The type of registry. Valid values: `Enterprise`, `Micro`. Default is `Enterprise`.
+     */
+    type?: pulumi.Input<string>;
 }

@@ -12,6 +12,11 @@ from . import outputs
 
 __all__ = [
     'AccountAccountPrivilege',
+    'AccountTableColumnInfosTableInfoResult',
+    'AccountTableColumnInfosTableInfoColumnInfoResult',
+    'AccountTableColumnPrivilege',
+    'AccountTableColumnPrivilegeColumnPrivilege',
+    'AccountTableColumnPrivilegeTablePrivilege',
     'AccountsAccountResult',
     'AccountsAccountAccountPrivilegeResult',
     'AllowlistSecurityGroupBindInfo',
@@ -19,14 +24,17 @@ __all__ = [
     'AllowlistsAllowListAssociatedInstanceResult',
     'AllowlistsAllowListSecurityGroupBindInfoResult',
     'BackupBackupMeta',
+    'BackupPolicyCrossBackupPolicy',
     'BackupsBackupResult',
     'BackupsBackupDbTableInfoResult',
+    'BackupsBackupUsageStatResult',
     'DatabasesDatabaseResult',
     'DatabasesDatabaseDatabasePrivilegeResult',
     'EndpointReadOnlyNodeWeight',
     'EndpointsEndpointResult',
     'EndpointsEndpointAddressResult',
     'EndpointsEndpointReadOnlyNodeWeightResult',
+    'InstanceAutoStorageScalingConfig',
     'InstanceChargeDetail',
     'InstanceChargeInfo',
     'InstanceEndpoint',
@@ -39,6 +47,7 @@ __all__ = [
     'InstanceSpecsInstanceSpecResult',
     'InstanceTag',
     'InstancesRdsMysqlInstanceResult',
+    'InstancesRdsMysqlInstanceAutoStorageScalingConfigResult',
     'InstancesRdsMysqlInstanceChargeDetailResult',
     'InstancesRdsMysqlInstanceEndpointResult',
     'InstancesRdsMysqlInstanceEndpointAddressResult',
@@ -51,8 +60,19 @@ __all__ = [
     'ParameterTemplateTemplateParam',
     'ParameterTemplatesTemplateResult',
     'ParameterTemplatesTemplateTemplateParamResult',
+    'PlannedEventsPlannedEventResult',
     'RegionsRegionResult',
+    'TasksDataResult',
+    'TasksDataTaskDetailResult',
+    'TasksDataTaskDetailCheckItemResult',
+    'TasksDataTaskDetailCheckItemCheckDetailResult',
+    'TasksDataTaskDetailTaskInfoResult',
+    'TasksDataTaskDetailTaskInfoRelatedInstanceInfoResult',
+    'TasksDataTaskProgressResult',
+    'TasksDataTaskProgressStepExtraInfoResult',
     'ZonesZoneResult',
+    'GetAccountTableColumnInfosTableInfoResult',
+    'GetAccountTableColumnInfosTableInfoColumnInfoResult',
     'GetAccountsAccountResult',
     'GetAccountsAccountAccountPrivilegeResult',
     'GetAllowlistsAllowListResult',
@@ -60,6 +80,7 @@ __all__ = [
     'GetAllowlistsAllowListSecurityGroupBindInfoResult',
     'GetBackupsBackupResult',
     'GetBackupsBackupDbTableInfoResult',
+    'GetBackupsBackupUsageStatResult',
     'GetDatabasesDatabaseResult',
     'GetDatabasesDatabaseDatabasePrivilegeResult',
     'GetEndpointsEndpointResult',
@@ -67,6 +88,7 @@ __all__ = [
     'GetEndpointsEndpointReadOnlyNodeWeightResult',
     'GetInstanceSpecsInstanceSpecResult',
     'GetInstancesRdsMysqlInstanceResult',
+    'GetInstancesRdsMysqlInstanceAutoStorageScalingConfigResult',
     'GetInstancesRdsMysqlInstanceChargeDetailResult',
     'GetInstancesRdsMysqlInstanceEndpointResult',
     'GetInstancesRdsMysqlInstanceEndpointAddressResult',
@@ -78,7 +100,16 @@ __all__ = [
     'GetInstancesTagResult',
     'GetParameterTemplatesTemplateResult',
     'GetParameterTemplatesTemplateTemplateParamResult',
+    'GetPlannedEventsPlannedEventResult',
     'GetRegionsRegionResult',
+    'GetTasksDataResult',
+    'GetTasksDataTaskDetailResult',
+    'GetTasksDataTaskDetailCheckItemResult',
+    'GetTasksDataTaskDetailCheckItemCheckDetailResult',
+    'GetTasksDataTaskDetailTaskInfoResult',
+    'GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoResult',
+    'GetTasksDataTaskProgressResult',
+    'GetTasksDataTaskProgressStepExtraInfoResult',
     'GetZonesZoneResult',
 ]
 
@@ -145,22 +176,288 @@ class AccountAccountPrivilege(dict):
 
 
 @pulumi.output_type
+class AccountTableColumnInfosTableInfoResult(dict):
+    def __init__(__self__, *,
+                 account_privileges: Sequence[str],
+                 column_infos: Sequence['outputs.AccountTableColumnInfosTableInfoColumnInfoResult'],
+                 table_name: str):
+        """
+        :param Sequence[str] account_privileges: The column privileges of the account.
+        :param Sequence['AccountTableColumnInfosTableInfoColumnInfoArgs'] column_infos: The column permission information of the account.
+        :param str table_name: The name of the table.
+        """
+        pulumi.set(__self__, "account_privileges", account_privileges)
+        pulumi.set(__self__, "column_infos", column_infos)
+        pulumi.set(__self__, "table_name", table_name)
+
+    @property
+    @pulumi.getter(name="accountPrivileges")
+    def account_privileges(self) -> Sequence[str]:
+        """
+        The column privileges of the account.
+        """
+        return pulumi.get(self, "account_privileges")
+
+    @property
+    @pulumi.getter(name="columnInfos")
+    def column_infos(self) -> Sequence['outputs.AccountTableColumnInfosTableInfoColumnInfoResult']:
+        """
+        The column permission information of the account.
+        """
+        return pulumi.get(self, "column_infos")
+
+    @property
+    @pulumi.getter(name="tableName")
+    def table_name(self) -> str:
+        """
+        The name of the table.
+        """
+        return pulumi.get(self, "table_name")
+
+
+@pulumi.output_type
+class AccountTableColumnInfosTableInfoColumnInfoResult(dict):
+    def __init__(__self__, *,
+                 account_privileges: Sequence[str],
+                 column_name: str):
+        """
+        :param Sequence[str] account_privileges: The column privileges of the account.
+        :param str column_name: The name of the column.
+        """
+        pulumi.set(__self__, "account_privileges", account_privileges)
+        pulumi.set(__self__, "column_name", column_name)
+
+    @property
+    @pulumi.getter(name="accountPrivileges")
+    def account_privileges(self) -> Sequence[str]:
+        """
+        The column privileges of the account.
+        """
+        return pulumi.get(self, "account_privileges")
+
+    @property
+    @pulumi.getter(name="columnName")
+    def column_name(self) -> str:
+        """
+        The name of the column.
+        """
+        return pulumi.get(self, "column_name")
+
+
+@pulumi.output_type
+class AccountTableColumnPrivilege(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "dbName":
+            suggest = "db_name"
+        elif key == "columnPrivileges":
+            suggest = "column_privileges"
+        elif key == "tablePrivileges":
+            suggest = "table_privileges"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AccountTableColumnPrivilege. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AccountTableColumnPrivilege.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AccountTableColumnPrivilege.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 db_name: str,
+                 column_privileges: Optional[Sequence['outputs.AccountTableColumnPrivilegeColumnPrivilege']] = None,
+                 table_privileges: Optional[Sequence['outputs.AccountTableColumnPrivilegeTablePrivilege']] = None):
+        """
+        :param str db_name: Settings for table column permissions of the account.
+        :param Sequence['AccountTableColumnPrivilegeColumnPrivilegeArgs'] column_privileges: Column permission information of the account.
+        :param Sequence['AccountTableColumnPrivilegeTablePrivilegeArgs'] table_privileges: Table permission information of the account.
+        """
+        pulumi.set(__self__, "db_name", db_name)
+        if column_privileges is not None:
+            pulumi.set(__self__, "column_privileges", column_privileges)
+        if table_privileges is not None:
+            pulumi.set(__self__, "table_privileges", table_privileges)
+
+    @property
+    @pulumi.getter(name="dbName")
+    def db_name(self) -> str:
+        """
+        Settings for table column permissions of the account.
+        """
+        return pulumi.get(self, "db_name")
+
+    @property
+    @pulumi.getter(name="columnPrivileges")
+    def column_privileges(self) -> Optional[Sequence['outputs.AccountTableColumnPrivilegeColumnPrivilege']]:
+        """
+        Column permission information of the account.
+        """
+        return pulumi.get(self, "column_privileges")
+
+    @property
+    @pulumi.getter(name="tablePrivileges")
+    def table_privileges(self) -> Optional[Sequence['outputs.AccountTableColumnPrivilegeTablePrivilege']]:
+        """
+        Table permission information of the account.
+        """
+        return pulumi.get(self, "table_privileges")
+
+
+@pulumi.output_type
+class AccountTableColumnPrivilegeColumnPrivilege(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "columnName":
+            suggest = "column_name"
+        elif key == "tableName":
+            suggest = "table_name"
+        elif key == "accountPrivilegeDetail":
+            suggest = "account_privilege_detail"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AccountTableColumnPrivilegeColumnPrivilege. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AccountTableColumnPrivilegeColumnPrivilege.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AccountTableColumnPrivilegeColumnPrivilege.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 column_name: str,
+                 table_name: str,
+                 account_privilege_detail: Optional[str] = None):
+        """
+        :param str column_name: The name of the column for setting permissions on the account.
+        :param str table_name: The name of the table for setting permissions on the account.
+        :param str account_privilege_detail: Table privileges of the account.
+        """
+        pulumi.set(__self__, "column_name", column_name)
+        pulumi.set(__self__, "table_name", table_name)
+        if account_privilege_detail is not None:
+            pulumi.set(__self__, "account_privilege_detail", account_privilege_detail)
+
+    @property
+    @pulumi.getter(name="columnName")
+    def column_name(self) -> str:
+        """
+        The name of the column for setting permissions on the account.
+        """
+        return pulumi.get(self, "column_name")
+
+    @property
+    @pulumi.getter(name="tableName")
+    def table_name(self) -> str:
+        """
+        The name of the table for setting permissions on the account.
+        """
+        return pulumi.get(self, "table_name")
+
+    @property
+    @pulumi.getter(name="accountPrivilegeDetail")
+    def account_privilege_detail(self) -> Optional[str]:
+        """
+        Table privileges of the account.
+        """
+        return pulumi.get(self, "account_privilege_detail")
+
+
+@pulumi.output_type
+class AccountTableColumnPrivilegeTablePrivilege(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "tableName":
+            suggest = "table_name"
+        elif key == "accountPrivilegeDetail":
+            suggest = "account_privilege_detail"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AccountTableColumnPrivilegeTablePrivilege. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AccountTableColumnPrivilegeTablePrivilege.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AccountTableColumnPrivilegeTablePrivilege.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 table_name: str,
+                 account_privilege_detail: Optional[str] = None):
+        """
+        :param str table_name: The name of the table for setting permissions on the account.
+        :param str account_privilege_detail: Table privileges of the account.
+        """
+        pulumi.set(__self__, "table_name", table_name)
+        if account_privilege_detail is not None:
+            pulumi.set(__self__, "account_privilege_detail", account_privilege_detail)
+
+    @property
+    @pulumi.getter(name="tableName")
+    def table_name(self) -> str:
+        """
+        The name of the table for setting permissions on the account.
+        """
+        return pulumi.get(self, "table_name")
+
+    @property
+    @pulumi.getter(name="accountPrivilegeDetail")
+    def account_privilege_detail(self) -> Optional[str]:
+        """
+        Table privileges of the account.
+        """
+        return pulumi.get(self, "account_privilege_detail")
+
+
+@pulumi.output_type
 class AccountsAccountResult(dict):
     def __init__(__self__, *,
+                 account_desc: str,
                  account_name: str,
                  account_privileges: Sequence['outputs.AccountsAccountAccountPrivilegeResult'],
+                 account_privileges_sqls: Sequence[str],
                  account_status: str,
-                 account_type: str):
+                 account_type: str,
+                 global_account_privileges: Sequence[str],
+                 has_table_column_privilege_db_names: Sequence[str],
+                 host: str):
         """
+        :param str account_desc: The description information of the account.
         :param str account_name: The name of the database account. This field supports fuzzy query.
         :param Sequence['AccountsAccountAccountPrivilegeArgs'] account_privileges: The privilege detail list of RDS mysql instance account.
+        :param Sequence[str] account_privileges_sqls: The SQL statement of the account privileges.
         :param str account_status: The status of the database account.
         :param str account_type: The type of the database account.
+        :param Sequence[str] global_account_privileges: The global privileges of the account.
+        :param Sequence[str] has_table_column_privilege_db_names: The databases to which the table column permissions owned by the account belong. Description: If the account does not have table column permissions, this field will not be returned.
+        :param str host: The host of the account.
         """
+        pulumi.set(__self__, "account_desc", account_desc)
         pulumi.set(__self__, "account_name", account_name)
         pulumi.set(__self__, "account_privileges", account_privileges)
+        pulumi.set(__self__, "account_privileges_sqls", account_privileges_sqls)
         pulumi.set(__self__, "account_status", account_status)
         pulumi.set(__self__, "account_type", account_type)
+        pulumi.set(__self__, "global_account_privileges", global_account_privileges)
+        pulumi.set(__self__, "has_table_column_privilege_db_names", has_table_column_privilege_db_names)
+        pulumi.set(__self__, "host", host)
+
+    @property
+    @pulumi.getter(name="accountDesc")
+    def account_desc(self) -> str:
+        """
+        The description information of the account.
+        """
+        return pulumi.get(self, "account_desc")
 
     @property
     @pulumi.getter(name="accountName")
@@ -179,6 +476,14 @@ class AccountsAccountResult(dict):
         return pulumi.get(self, "account_privileges")
 
     @property
+    @pulumi.getter(name="accountPrivilegesSqls")
+    def account_privileges_sqls(self) -> Sequence[str]:
+        """
+        The SQL statement of the account privileges.
+        """
+        return pulumi.get(self, "account_privileges_sqls")
+
+    @property
     @pulumi.getter(name="accountStatus")
     def account_status(self) -> str:
         """
@@ -193,6 +498,30 @@ class AccountsAccountResult(dict):
         The type of the database account.
         """
         return pulumi.get(self, "account_type")
+
+    @property
+    @pulumi.getter(name="globalAccountPrivileges")
+    def global_account_privileges(self) -> Sequence[str]:
+        """
+        The global privileges of the account.
+        """
+        return pulumi.get(self, "global_account_privileges")
+
+    @property
+    @pulumi.getter(name="hasTableColumnPrivilegeDbNames")
+    def has_table_column_privilege_db_names(self) -> Sequence[str]:
+        """
+        The databases to which the table column permissions owned by the account belong. Description: If the account does not have table column permissions, this field will not be returned.
+        """
+        return pulumi.get(self, "has_table_column_privilege_db_names")
+
+    @property
+    @pulumi.getter
+    def host(self) -> str:
+        """
+        The host of the account.
+        """
+        return pulumi.get(self, "host")
 
 
 @pulumi.output_type
@@ -566,6 +895,86 @@ class BackupBackupMeta(dict):
 
 
 @pulumi.output_type
+class BackupPolicyCrossBackupPolicy(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "backupEnabled":
+            suggest = "backup_enabled"
+        elif key == "crossBackupRegion":
+            suggest = "cross_backup_region"
+        elif key == "logBackupEnabled":
+            suggest = "log_backup_enabled"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in BackupPolicyCrossBackupPolicy. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        BackupPolicyCrossBackupPolicy.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        BackupPolicyCrossBackupPolicy.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 backup_enabled: Optional[bool] = None,
+                 cross_backup_region: Optional[str] = None,
+                 log_backup_enabled: Optional[bool] = None,
+                 retention: Optional[int] = None):
+        """
+        :param bool backup_enabled: Whether to enable cross-region backup.
+               true: Enable.
+               false: Disable. Default value.
+        :param str cross_backup_region: The destination region ID for cross-region backup. When the value of BackupEnabled is true, this parameter is required.
+        :param bool log_backup_enabled: Whether to enable cross-region log backup. true: Enable. false: Disable. Default value. Description: Cross-region log backup can only be enabled when cross-region backup is enabled.
+        :param int retention: The number of days to retain cross - region backups, with a value range of 7 to 1825 days.
+        """
+        if backup_enabled is not None:
+            pulumi.set(__self__, "backup_enabled", backup_enabled)
+        if cross_backup_region is not None:
+            pulumi.set(__self__, "cross_backup_region", cross_backup_region)
+        if log_backup_enabled is not None:
+            pulumi.set(__self__, "log_backup_enabled", log_backup_enabled)
+        if retention is not None:
+            pulumi.set(__self__, "retention", retention)
+
+    @property
+    @pulumi.getter(name="backupEnabled")
+    def backup_enabled(self) -> Optional[bool]:
+        """
+        Whether to enable cross-region backup.
+        true: Enable.
+        false: Disable. Default value.
+        """
+        return pulumi.get(self, "backup_enabled")
+
+    @property
+    @pulumi.getter(name="crossBackupRegion")
+    def cross_backup_region(self) -> Optional[str]:
+        """
+        The destination region ID for cross-region backup. When the value of BackupEnabled is true, this parameter is required.
+        """
+        return pulumi.get(self, "cross_backup_region")
+
+    @property
+    @pulumi.getter(name="logBackupEnabled")
+    def log_backup_enabled(self) -> Optional[bool]:
+        """
+        Whether to enable cross-region log backup. true: Enable. false: Disable. Default value. Description: Cross-region log backup can only be enabled when cross-region backup is enabled.
+        """
+        return pulumi.get(self, "log_backup_enabled")
+
+    @property
+    @pulumi.getter
+    def retention(self) -> Optional[int]:
+        """
+        The number of days to retain cross - region backups, with a value range of 7 to 1825 days.
+        """
+        return pulumi.get(self, "retention")
+
+
+@pulumi.output_type
 class BackupsBackupResult(dict):
     def __init__(__self__, *,
                  backup_end_time: str,
@@ -580,12 +989,15 @@ class BackupsBackupResult(dict):
                  consistent_time: str,
                  create_type: str,
                  db_table_infos: Sequence['outputs.BackupsBackupDbTableInfoResult'],
+                 decryption_key: str,
                  download_status: str,
                  error_message: str,
                  expired_time: str,
                  id: str,
                  is_encrypted: bool,
-                 is_expired: bool):
+                 is_expired: bool,
+                 iv: str,
+                 usage_stats: Sequence['outputs.BackupsBackupUsageStatResult']):
         """
         :param str backup_end_time: The end time of the backup.
         :param str backup_file_name: Backup file name.
@@ -601,6 +1013,7 @@ class BackupsBackupResult(dict):
         :param Sequence['BackupsBackupDbTableInfoArgs'] db_table_infos: The database table information contained in the backup set can include up to 10,000 tables.
                Explanation:
                When the database is empty, this field is not returned.
+        :param str decryption_key: The decryption key of the backup.
         :param str download_status: Download status. Values:
                NotDownload: Not downloaded.
                Success: Downloaded.
@@ -615,6 +1028,8 @@ class BackupsBackupResult(dict):
         :param bool is_expired: Whether the backup has expired. Value:
                true: Expired.
                false: Not expired.
+        :param str iv: Initialization Vector.
+        :param Sequence['BackupsBackupUsageStatArgs'] usage_stats: Statistics information about the storage space usage of backups.
         """
         pulumi.set(__self__, "backup_end_time", backup_end_time)
         pulumi.set(__self__, "backup_file_name", backup_file_name)
@@ -628,12 +1043,15 @@ class BackupsBackupResult(dict):
         pulumi.set(__self__, "consistent_time", consistent_time)
         pulumi.set(__self__, "create_type", create_type)
         pulumi.set(__self__, "db_table_infos", db_table_infos)
+        pulumi.set(__self__, "decryption_key", decryption_key)
         pulumi.set(__self__, "download_status", download_status)
         pulumi.set(__self__, "error_message", error_message)
         pulumi.set(__self__, "expired_time", expired_time)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "is_encrypted", is_encrypted)
         pulumi.set(__self__, "is_expired", is_expired)
+        pulumi.set(__self__, "iv", iv)
+        pulumi.set(__self__, "usage_stats", usage_stats)
 
     @property
     @pulumi.getter(name="backupEndTime")
@@ -734,6 +1152,14 @@ class BackupsBackupResult(dict):
         return pulumi.get(self, "db_table_infos")
 
     @property
+    @pulumi.getter(name="decryptionKey")
+    def decryption_key(self) -> str:
+        """
+        The decryption key of the backup.
+        """
+        return pulumi.get(self, "decryption_key")
+
+    @property
     @pulumi.getter(name="downloadStatus")
     def download_status(self) -> str:
         """
@@ -789,6 +1215,22 @@ class BackupsBackupResult(dict):
         """
         return pulumi.get(self, "is_expired")
 
+    @property
+    @pulumi.getter
+    def iv(self) -> str:
+        """
+        Initialization Vector.
+        """
+        return pulumi.get(self, "iv")
+
+    @property
+    @pulumi.getter(name="usageStats")
+    def usage_stats(self) -> Sequence['outputs.BackupsBackupUsageStatResult']:
+        """
+        Statistics information about the storage space usage of backups.
+        """
+        return pulumi.get(self, "usage_stats")
+
 
 @pulumi.output_type
 class BackupsBackupDbTableInfoResult(dict):
@@ -820,19 +1262,65 @@ class BackupsBackupDbTableInfoResult(dict):
 
 
 @pulumi.output_type
+class BackupsBackupUsageStatResult(dict):
+    def __init__(__self__, *,
+                 quantity: int,
+                 start_time: str,
+                 stat_item: str):
+        """
+        :param int quantity: Backup size, in bytes.
+        :param str start_time: Statistical time.
+        :param str stat_item: Statistical items. TotalBasicSpaceUsage: Storage space usage for basic backups. BasicDataBackupUsage: Storage space usage for local data backups. BasicBinlogBackupUsage: Storage space usage for local log backups. TotalCrossRegionSpaceUsage: Storage space usage for cross-region backups. CrossRegionDataBackupUsage: Storage space usage for cross-region data backups. CrossRegionBinlogBackupUsage: Storage space usage for cross-region log backups.
+        """
+        pulumi.set(__self__, "quantity", quantity)
+        pulumi.set(__self__, "start_time", start_time)
+        pulumi.set(__self__, "stat_item", stat_item)
+
+    @property
+    @pulumi.getter
+    def quantity(self) -> int:
+        """
+        Backup size, in bytes.
+        """
+        return pulumi.get(self, "quantity")
+
+    @property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> str:
+        """
+        Statistical time.
+        """
+        return pulumi.get(self, "start_time")
+
+    @property
+    @pulumi.getter(name="statItem")
+    def stat_item(self) -> str:
+        """
+        Statistical items. TotalBasicSpaceUsage: Storage space usage for basic backups. BasicDataBackupUsage: Storage space usage for local data backups. BasicBinlogBackupUsage: Storage space usage for local log backups. TotalCrossRegionSpaceUsage: Storage space usage for cross-region backups. CrossRegionDataBackupUsage: Storage space usage for cross-region data backups. CrossRegionBinlogBackupUsage: Storage space usage for cross-region log backups.
+        """
+        return pulumi.get(self, "stat_item")
+
+
+@pulumi.output_type
 class DatabasesDatabaseResult(dict):
     def __init__(__self__, *,
                  character_set_name: str,
                  database_privileges: Sequence['outputs.DatabasesDatabaseDatabasePrivilegeResult'],
-                 db_name: str):
+                 db_desc: str,
+                 db_name: str,
+                 db_status: str):
         """
         :param str character_set_name: The character set of the RDS database.
         :param Sequence['DatabasesDatabaseDatabasePrivilegeArgs'] database_privileges: The privilege detail list of RDS mysql instance database.
+        :param str db_desc: The description information of the RDS database.
         :param str db_name: The name of the RDS database.
+        :param str db_status: The status of the RDS database.
         """
         pulumi.set(__self__, "character_set_name", character_set_name)
         pulumi.set(__self__, "database_privileges", database_privileges)
+        pulumi.set(__self__, "db_desc", db_desc)
         pulumi.set(__self__, "db_name", db_name)
+        pulumi.set(__self__, "db_status", db_status)
 
     @property
     @pulumi.getter(name="characterSetName")
@@ -851,12 +1339,28 @@ class DatabasesDatabaseResult(dict):
         return pulumi.get(self, "database_privileges")
 
     @property
+    @pulumi.getter(name="dbDesc")
+    def db_desc(self) -> str:
+        """
+        The description information of the RDS database.
+        """
+        return pulumi.get(self, "db_desc")
+
+    @property
     @pulumi.getter(name="dbName")
     def db_name(self) -> str:
         """
         The name of the RDS database.
         """
         return pulumi.get(self, "db_name")
+
+    @property
+    @pulumi.getter(name="dbStatus")
+    def db_status(self) -> str:
+        """
+        The status of the RDS database.
+        """
+        return pulumi.get(self, "db_status")
 
 
 @pulumi.output_type
@@ -1210,6 +1714,73 @@ class EndpointsEndpointReadOnlyNodeWeightResult(dict):
         The weight of the node.
         """
         return pulumi.get(self, "weight")
+
+
+@pulumi.output_type
+class InstanceAutoStorageScalingConfig(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "enableStorageAutoScale":
+            suggest = "enable_storage_auto_scale"
+        elif key == "storageThreshold":
+            suggest = "storage_threshold"
+        elif key == "storageUpperBound":
+            suggest = "storage_upper_bound"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in InstanceAutoStorageScalingConfig. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        InstanceAutoStorageScalingConfig.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        InstanceAutoStorageScalingConfig.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 enable_storage_auto_scale: bool,
+                 storage_threshold: Optional[int] = None,
+                 storage_upper_bound: Optional[int] = None):
+        """
+        :param bool enable_storage_auto_scale: Whether to enable the instance's auto - scaling function. Values:
+               true: Yes.
+               false: No. Description: When StorageConfig is used as a request parameter, if the value of EnableStorageAutoScale is false, the StorageThreshold and StorageUpperBound parameters do not need to be passed in.
+        :param int storage_threshold: The proportion of available storage space that triggers automatic expansion. The value range is 10 to 50, and the default value is 10, with the unit being %.
+        :param int storage_upper_bound: The upper limit of the storage space that can be automatically expanded. The lower limit of the value of this field is the instance storage space + 20GB; the upper limit of the value is the upper limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value range of different specifications, please refer to Product Specifications.
+        """
+        pulumi.set(__self__, "enable_storage_auto_scale", enable_storage_auto_scale)
+        if storage_threshold is not None:
+            pulumi.set(__self__, "storage_threshold", storage_threshold)
+        if storage_upper_bound is not None:
+            pulumi.set(__self__, "storage_upper_bound", storage_upper_bound)
+
+    @property
+    @pulumi.getter(name="enableStorageAutoScale")
+    def enable_storage_auto_scale(self) -> bool:
+        """
+        Whether to enable the instance's auto - scaling function. Values:
+        true: Yes.
+        false: No. Description: When StorageConfig is used as a request parameter, if the value of EnableStorageAutoScale is false, the StorageThreshold and StorageUpperBound parameters do not need to be passed in.
+        """
+        return pulumi.get(self, "enable_storage_auto_scale")
+
+    @property
+    @pulumi.getter(name="storageThreshold")
+    def storage_threshold(self) -> Optional[int]:
+        """
+        The proportion of available storage space that triggers automatic expansion. The value range is 10 to 50, and the default value is 10, with the unit being %.
+        """
+        return pulumi.get(self, "storage_threshold")
+
+    @property
+    @pulumi.getter(name="storageUpperBound")
+    def storage_upper_bound(self) -> Optional[int]:
+        """
+        The upper limit of the storage space that can be automatically expanded. The lower limit of the value of this field is the instance storage space + 20GB; the upper limit of the value is the upper limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value range of different specifications, please refer to Product Specifications.
+        """
+        return pulumi.get(self, "storage_upper_bound")
 
 
 @pulumi.output_type
@@ -2430,6 +3001,8 @@ class InstanceTag(dict):
 class InstancesRdsMysqlInstanceResult(dict):
     def __init__(__self__, *,
                  allow_list_version: str,
+                 auto_storage_scaling_configs: Sequence['outputs.InstancesRdsMysqlInstanceAutoStorageScalingConfigResult'],
+                 auto_upgrade_minor_version: str,
                  backup_use: int,
                  binlog_dump: bool,
                  charge_detail: 'outputs.InstancesRdsMysqlInstanceChargeDetailResult',
@@ -2438,6 +3011,11 @@ class InstancesRdsMysqlInstanceResult(dict):
                  data_sync_mode: str,
                  db_engine_version: str,
                  db_proxy_status: str,
+                 deletion_protection: str,
+                 dr_dts_task_id: str,
+                 dr_dts_task_name: str,
+                 dr_dts_task_status: str,
+                 dr_seconds_behind_master: int,
                  endpoints: Sequence['outputs.InstancesRdsMysqlInstanceEndpointResult'],
                  feature_states: Sequence['outputs.InstancesRdsMysqlInstanceFeatureStateResult'],
                  global_read_only: bool,
@@ -2445,8 +3023,12 @@ class InstancesRdsMysqlInstanceResult(dict):
                  instance_id: str,
                  instance_name: str,
                  instance_status: str,
+                 kernel_version: str,
                  lower_case_table_names: str,
                  maintenance_windows: Sequence['outputs.InstancesRdsMysqlInstanceMaintenanceWindowResult'],
+                 master_instance_id: str,
+                 master_instance_name: str,
+                 master_region: str,
                  memory: int,
                  node_cpu_used_percentage: float,
                  node_memory_used_percentage: float,
@@ -2456,6 +3038,10 @@ class InstancesRdsMysqlInstanceResult(dict):
                  nodes: Sequence['outputs.InstancesRdsMysqlInstanceNodeResult'],
                  project_name: str,
                  region_id: str,
+                 storage_max_capacity: int,
+                 storage_max_trigger_threshold: int,
+                 storage_min_capacity: int,
+                 storage_min_trigger_threshold: int,
                  storage_space: int,
                  storage_type: str,
                  storage_use: int,
@@ -2469,6 +3055,10 @@ class InstancesRdsMysqlInstanceResult(dict):
                  zone_ids: Sequence[str]):
         """
         :param str allow_list_version: The version of allow list.
+        :param Sequence['InstancesRdsMysqlInstanceAutoStorageScalingConfigArgs'] auto_storage_scaling_configs: Auto - storage scaling configuration.
+        :param str auto_upgrade_minor_version: The upgrade strategy for the minor version of the instance kernel. Values:
+               Auto: Auto upgrade.
+               Manual: Manual upgrade.
         :param int backup_use: The instance has used backup space. Unit: GB.
         :param bool binlog_dump: Does it support the binlog capability? This parameter is returned only when the database proxy is enabled. Values:
                true: Yes.
@@ -2483,6 +3073,13 @@ class InstancesRdsMysqlInstanceResult(dict):
                Running: The proxy is running.
                Shutdown: The proxy is closed.
                Deleting: The proxy is being closed.
+        :param str deletion_protection: Whether to enable the deletion protection function. Values:
+               Enabled: Yes.
+               Disabled: No.
+        :param str dr_dts_task_id: The ID of the data synchronization task in DTS for the data synchronization link between the primary instance and the disaster recovery instance.
+        :param str dr_dts_task_name: The name of the DTS data synchronization task for the data synchronization link between the primary instance and the disaster recovery instance.
+        :param str dr_dts_task_status: The status of the DTS data synchronization task for the data synchronization link between the primary instance and the disaster recovery instance.
+        :param int dr_seconds_behind_master: The number of seconds that the disaster recovery instance is behind the primary instance.
         :param Sequence['InstancesRdsMysqlInstanceEndpointArgs'] endpoints: The endpoint info of the RDS instance.
         :param Sequence['InstancesRdsMysqlInstanceFeatureStateArgs'] feature_states: Feature status.
         :param bool global_read_only: Whether to enable global read-only.
@@ -2492,22 +3089,30 @@ class InstancesRdsMysqlInstanceResult(dict):
         :param str instance_id: The id of the RDS instance.
         :param str instance_name: The name of the RDS instance.
         :param str instance_status: The status of the RDS instance.
+        :param str kernel_version: The kernel version of the instance.
         :param str lower_case_table_names: Whether the table name is case sensitive, the default value is 1.
                Ranges:
                0: Table names are stored as fixed and table names are case-sensitive.
                1: Table names will be stored in lowercase and table names are not case sensitive.
         :param Sequence['InstancesRdsMysqlInstanceMaintenanceWindowArgs'] maintenance_windows: Maintenance Window.
+        :param str master_instance_id: The ID of the primary instance of the disaster recovery instance.
+        :param str master_instance_name: The name of the primary instance of the disaster recovery instance.
+        :param str master_region: The region where the primary instance of the disaster recovery instance is located.
         :param int memory: Memory size in GB.
         :param float node_cpu_used_percentage: Average CPU usage of the instance master node in nearly one minute.
         :param float node_memory_used_percentage: Average memory usage of the instance master node in nearly one minute.
         :param int node_number: The number of nodes.
         :param float node_space_used_percentage: Average disk usage of the instance master node in nearly one minute.
-        :param str node_spec: General instance type, different from Custom instance type.
+        :param str node_spec: Primary node specification. For detailed information about the node specifications, please refer to Product Specifications.
         :param Sequence['InstancesRdsMysqlInstanceNodeArgs'] nodes: Instance node information.
         :param str project_name: The project name of the RDS instance.
         :param str region_id: The region of the RDS instance.
+        :param int storage_max_capacity: The upper limit of the storage space that can be set for automatic expansion. The value is the upper limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value ranges of different specifications, please refer to Product Specifications.
+        :param int storage_max_trigger_threshold: The upper limit of the proportion of available storage space that triggers automatic expansion. When supported, the value is 50%.
+        :param int storage_min_capacity: The lower limit of the storage space that can be set for automatic expansion. The value is the lower limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value ranges of different specifications, please refer to Product Specifications.
+        :param int storage_min_trigger_threshold: The lower limit of the proportion of available storage space that triggers automatic expansion. When supported, the value is 10%.
         :param int storage_space: Total instance storage space. Unit: GB.
-        :param str storage_type: Instance storage type.
+        :param str storage_type: Instance storage type. The value is LocalSSD, indicating a local SSD disk.
         :param int storage_use: The instance has used storage space. Unit: GB.
         :param str subnet_id: The subnet ID of the RDS instance.
         :param Sequence['InstancesRdsMysqlInstanceTagArgs'] tags: Tags.
@@ -2519,6 +3124,8 @@ class InstancesRdsMysqlInstanceResult(dict):
         :param Sequence[str] zone_ids: List of availability zones where each node of the instance is located.
         """
         pulumi.set(__self__, "allow_list_version", allow_list_version)
+        pulumi.set(__self__, "auto_storage_scaling_configs", auto_storage_scaling_configs)
+        pulumi.set(__self__, "auto_upgrade_minor_version", auto_upgrade_minor_version)
         pulumi.set(__self__, "backup_use", backup_use)
         pulumi.set(__self__, "binlog_dump", binlog_dump)
         pulumi.set(__self__, "charge_detail", charge_detail)
@@ -2527,6 +3134,11 @@ class InstancesRdsMysqlInstanceResult(dict):
         pulumi.set(__self__, "data_sync_mode", data_sync_mode)
         pulumi.set(__self__, "db_engine_version", db_engine_version)
         pulumi.set(__self__, "db_proxy_status", db_proxy_status)
+        pulumi.set(__self__, "deletion_protection", deletion_protection)
+        pulumi.set(__self__, "dr_dts_task_id", dr_dts_task_id)
+        pulumi.set(__self__, "dr_dts_task_name", dr_dts_task_name)
+        pulumi.set(__self__, "dr_dts_task_status", dr_dts_task_status)
+        pulumi.set(__self__, "dr_seconds_behind_master", dr_seconds_behind_master)
         pulumi.set(__self__, "endpoints", endpoints)
         pulumi.set(__self__, "feature_states", feature_states)
         pulumi.set(__self__, "global_read_only", global_read_only)
@@ -2534,8 +3146,12 @@ class InstancesRdsMysqlInstanceResult(dict):
         pulumi.set(__self__, "instance_id", instance_id)
         pulumi.set(__self__, "instance_name", instance_name)
         pulumi.set(__self__, "instance_status", instance_status)
+        pulumi.set(__self__, "kernel_version", kernel_version)
         pulumi.set(__self__, "lower_case_table_names", lower_case_table_names)
         pulumi.set(__self__, "maintenance_windows", maintenance_windows)
+        pulumi.set(__self__, "master_instance_id", master_instance_id)
+        pulumi.set(__self__, "master_instance_name", master_instance_name)
+        pulumi.set(__self__, "master_region", master_region)
         pulumi.set(__self__, "memory", memory)
         pulumi.set(__self__, "node_cpu_used_percentage", node_cpu_used_percentage)
         pulumi.set(__self__, "node_memory_used_percentage", node_memory_used_percentage)
@@ -2545,6 +3161,10 @@ class InstancesRdsMysqlInstanceResult(dict):
         pulumi.set(__self__, "nodes", nodes)
         pulumi.set(__self__, "project_name", project_name)
         pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "storage_max_capacity", storage_max_capacity)
+        pulumi.set(__self__, "storage_max_trigger_threshold", storage_max_trigger_threshold)
+        pulumi.set(__self__, "storage_min_capacity", storage_min_capacity)
+        pulumi.set(__self__, "storage_min_trigger_threshold", storage_min_trigger_threshold)
         pulumi.set(__self__, "storage_space", storage_space)
         pulumi.set(__self__, "storage_type", storage_type)
         pulumi.set(__self__, "storage_use", storage_use)
@@ -2564,6 +3184,24 @@ class InstancesRdsMysqlInstanceResult(dict):
         The version of allow list.
         """
         return pulumi.get(self, "allow_list_version")
+
+    @property
+    @pulumi.getter(name="autoStorageScalingConfigs")
+    def auto_storage_scaling_configs(self) -> Sequence['outputs.InstancesRdsMysqlInstanceAutoStorageScalingConfigResult']:
+        """
+        Auto - storage scaling configuration.
+        """
+        return pulumi.get(self, "auto_storage_scaling_configs")
+
+    @property
+    @pulumi.getter(name="autoUpgradeMinorVersion")
+    def auto_upgrade_minor_version(self) -> str:
+        """
+        The upgrade strategy for the minor version of the instance kernel. Values:
+        Auto: Auto upgrade.
+        Manual: Manual upgrade.
+        """
+        return pulumi.get(self, "auto_upgrade_minor_version")
 
     @property
     @pulumi.getter(name="backupUse")
@@ -2636,6 +3274,48 @@ class InstancesRdsMysqlInstanceResult(dict):
         return pulumi.get(self, "db_proxy_status")
 
     @property
+    @pulumi.getter(name="deletionProtection")
+    def deletion_protection(self) -> str:
+        """
+        Whether to enable the deletion protection function. Values:
+        Enabled: Yes.
+        Disabled: No.
+        """
+        return pulumi.get(self, "deletion_protection")
+
+    @property
+    @pulumi.getter(name="drDtsTaskId")
+    def dr_dts_task_id(self) -> str:
+        """
+        The ID of the data synchronization task in DTS for the data synchronization link between the primary instance and the disaster recovery instance.
+        """
+        return pulumi.get(self, "dr_dts_task_id")
+
+    @property
+    @pulumi.getter(name="drDtsTaskName")
+    def dr_dts_task_name(self) -> str:
+        """
+        The name of the DTS data synchronization task for the data synchronization link between the primary instance and the disaster recovery instance.
+        """
+        return pulumi.get(self, "dr_dts_task_name")
+
+    @property
+    @pulumi.getter(name="drDtsTaskStatus")
+    def dr_dts_task_status(self) -> str:
+        """
+        The status of the DTS data synchronization task for the data synchronization link between the primary instance and the disaster recovery instance.
+        """
+        return pulumi.get(self, "dr_dts_task_status")
+
+    @property
+    @pulumi.getter(name="drSecondsBehindMaster")
+    def dr_seconds_behind_master(self) -> int:
+        """
+        The number of seconds that the disaster recovery instance is behind the primary instance.
+        """
+        return pulumi.get(self, "dr_seconds_behind_master")
+
+    @property
     @pulumi.getter
     def endpoints(self) -> Sequence['outputs.InstancesRdsMysqlInstanceEndpointResult']:
         """
@@ -2694,6 +3374,14 @@ class InstancesRdsMysqlInstanceResult(dict):
         return pulumi.get(self, "instance_status")
 
     @property
+    @pulumi.getter(name="kernelVersion")
+    def kernel_version(self) -> str:
+        """
+        The kernel version of the instance.
+        """
+        return pulumi.get(self, "kernel_version")
+
+    @property
     @pulumi.getter(name="lowerCaseTableNames")
     def lower_case_table_names(self) -> str:
         """
@@ -2711,6 +3399,30 @@ class InstancesRdsMysqlInstanceResult(dict):
         Maintenance Window.
         """
         return pulumi.get(self, "maintenance_windows")
+
+    @property
+    @pulumi.getter(name="masterInstanceId")
+    def master_instance_id(self) -> str:
+        """
+        The ID of the primary instance of the disaster recovery instance.
+        """
+        return pulumi.get(self, "master_instance_id")
+
+    @property
+    @pulumi.getter(name="masterInstanceName")
+    def master_instance_name(self) -> str:
+        """
+        The name of the primary instance of the disaster recovery instance.
+        """
+        return pulumi.get(self, "master_instance_name")
+
+    @property
+    @pulumi.getter(name="masterRegion")
+    def master_region(self) -> str:
+        """
+        The region where the primary instance of the disaster recovery instance is located.
+        """
+        return pulumi.get(self, "master_region")
 
     @property
     @pulumi.getter
@@ -2756,7 +3468,7 @@ class InstancesRdsMysqlInstanceResult(dict):
     @pulumi.getter(name="nodeSpec")
     def node_spec(self) -> str:
         """
-        General instance type, different from Custom instance type.
+        Primary node specification. For detailed information about the node specifications, please refer to Product Specifications.
         """
         return pulumi.get(self, "node_spec")
 
@@ -2785,6 +3497,38 @@ class InstancesRdsMysqlInstanceResult(dict):
         return pulumi.get(self, "region_id")
 
     @property
+    @pulumi.getter(name="storageMaxCapacity")
+    def storage_max_capacity(self) -> int:
+        """
+        The upper limit of the storage space that can be set for automatic expansion. The value is the upper limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value ranges of different specifications, please refer to Product Specifications.
+        """
+        return pulumi.get(self, "storage_max_capacity")
+
+    @property
+    @pulumi.getter(name="storageMaxTriggerThreshold")
+    def storage_max_trigger_threshold(self) -> int:
+        """
+        The upper limit of the proportion of available storage space that triggers automatic expansion. When supported, the value is 50%.
+        """
+        return pulumi.get(self, "storage_max_trigger_threshold")
+
+    @property
+    @pulumi.getter(name="storageMinCapacity")
+    def storage_min_capacity(self) -> int:
+        """
+        The lower limit of the storage space that can be set for automatic expansion. The value is the lower limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value ranges of different specifications, please refer to Product Specifications.
+        """
+        return pulumi.get(self, "storage_min_capacity")
+
+    @property
+    @pulumi.getter(name="storageMinTriggerThreshold")
+    def storage_min_trigger_threshold(self) -> int:
+        """
+        The lower limit of the proportion of available storage space that triggers automatic expansion. When supported, the value is 10%.
+        """
+        return pulumi.get(self, "storage_min_trigger_threshold")
+
+    @property
     @pulumi.getter(name="storageSpace")
     def storage_space(self) -> int:
         """
@@ -2796,7 +3540,7 @@ class InstancesRdsMysqlInstanceResult(dict):
     @pulumi.getter(name="storageType")
     def storage_type(self) -> str:
         """
-        Instance storage type.
+        Instance storage type. The value is LocalSSD, indicating a local SSD disk.
         """
         return pulumi.get(self, "storage_type")
 
@@ -2871,6 +3615,50 @@ class InstancesRdsMysqlInstanceResult(dict):
         List of availability zones where each node of the instance is located.
         """
         return pulumi.get(self, "zone_ids")
+
+
+@pulumi.output_type
+class InstancesRdsMysqlInstanceAutoStorageScalingConfigResult(dict):
+    def __init__(__self__, *,
+                 enable_storage_auto_scale: bool,
+                 storage_threshold: int,
+                 storage_upper_bound: int):
+        """
+        :param bool enable_storage_auto_scale: Whether to enable the instance's auto - scaling function. Values:
+               true: Yes.
+               false: No. Description: When StorageConfig is used as a request parameter, if the value of EnableStorageAutoScale is false, the StorageThreshold and StorageUpperBound parameters do not need to be passed in.
+        :param int storage_threshold: The proportion of available storage space that triggers automatic expansion. The value range is 10 to 50, and the default value is 10, with the unit being %.
+        :param int storage_upper_bound: The upper limit of the storage space that can be automatically expanded. The lower limit of the value of this field is the instance storage space + 20GB; the upper limit of the value is the upper limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value range of different specifications, please refer to Product Specifications.
+        """
+        pulumi.set(__self__, "enable_storage_auto_scale", enable_storage_auto_scale)
+        pulumi.set(__self__, "storage_threshold", storage_threshold)
+        pulumi.set(__self__, "storage_upper_bound", storage_upper_bound)
+
+    @property
+    @pulumi.getter(name="enableStorageAutoScale")
+    def enable_storage_auto_scale(self) -> bool:
+        """
+        Whether to enable the instance's auto - scaling function. Values:
+        true: Yes.
+        false: No. Description: When StorageConfig is used as a request parameter, if the value of EnableStorageAutoScale is false, the StorageThreshold and StorageUpperBound parameters do not need to be passed in.
+        """
+        return pulumi.get(self, "enable_storage_auto_scale")
+
+    @property
+    @pulumi.getter(name="storageThreshold")
+    def storage_threshold(self) -> int:
+        """
+        The proportion of available storage space that triggers automatic expansion. The value range is 10 to 50, and the default value is 10, with the unit being %.
+        """
+        return pulumi.get(self, "storage_threshold")
+
+    @property
+    @pulumi.getter(name="storageUpperBound")
+    def storage_upper_bound(self) -> int:
+        """
+        The upper limit of the storage space that can be automatically expanded. The lower limit of the value of this field is the instance storage space + 20GB; the upper limit of the value is the upper limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value range of different specifications, please refer to Product Specifications.
+        """
+        return pulumi.get(self, "storage_upper_bound")
 
 
 @pulumi.output_type
@@ -3403,7 +4191,7 @@ class InstancesRdsMysqlInstanceNodeResult(dict):
         :param str instance_id: The id of the RDS instance.
         :param int memory: Memory size in GB.
         :param str node_id: Node ID.
-        :param str node_spec: General instance type, different from Custom instance type.
+        :param str node_spec: Primary node specification. For detailed information about the node specifications, please refer to Product Specifications.
         :param str node_status: Node state, value: aligned with instance state.
         :param str node_type: Node type. Value: Primary: Primary node.
                Secondary: Standby node.
@@ -3461,7 +4249,7 @@ class InstancesRdsMysqlInstanceNodeResult(dict):
     @pulumi.getter(name="nodeSpec")
     def node_spec(self) -> str:
         """
-        General instance type, different from Custom instance type.
+        Primary node specification. For detailed information about the node specifications, please refer to Product Specifications.
         """
         return pulumi.get(self, "node_spec")
 
@@ -3867,6 +4655,211 @@ class ParameterTemplatesTemplateTemplateParamResult(dict):
 
 
 @pulumi.output_type
+class PlannedEventsPlannedEventResult(dict):
+    def __init__(__self__, *,
+                 business_impact: str,
+                 db_engine: str,
+                 event_action: str,
+                 event_id: str,
+                 event_name: str,
+                 event_type: str,
+                 instance_id: str,
+                 instance_name: str,
+                 max_delay_time: str,
+                 origin_begin_time: str,
+                 planned_begin_time: str,
+                 planned_end_time: str,
+                 planned_event_description: str,
+                 planned_event_reason: str,
+                 planned_switch_begin_time: str,
+                 planned_switch_end_time: str,
+                 region: str,
+                 status: str):
+        """
+        :param str business_impact: The business impact of the planned event.
+        :param str db_engine: The database engine of the planned event.
+        :param str event_action: The action of the planned event.
+        :param str event_id: The id of the planned event.
+        :param str event_name: The name of the planned event.
+        :param str event_type: The type of the planned event.
+        :param str instance_id: The id of the instance.
+        :param str instance_name: The name of the instance.
+        :param str max_delay_time: The latest postponable time. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+        :param str origin_begin_time: The initially set start time. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+        :param str planned_begin_time: The start time of the planned execution. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+        :param str planned_end_time: The end time of the planned execution. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+        :param str planned_event_description: Description information of the operation and maintenance event.
+        :param str planned_event_reason: The reasons for the occurrence of the event, which are provided to help you understand the reasons for the occurrence of unexpected events.
+        :param str planned_switch_begin_time: The start time of the planned switch. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+        :param str planned_switch_end_time: The end time of the planned switch. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+        :param str region: The region.
+        :param str status: The status of the planned event.
+        """
+        pulumi.set(__self__, "business_impact", business_impact)
+        pulumi.set(__self__, "db_engine", db_engine)
+        pulumi.set(__self__, "event_action", event_action)
+        pulumi.set(__self__, "event_id", event_id)
+        pulumi.set(__self__, "event_name", event_name)
+        pulumi.set(__self__, "event_type", event_type)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "instance_name", instance_name)
+        pulumi.set(__self__, "max_delay_time", max_delay_time)
+        pulumi.set(__self__, "origin_begin_time", origin_begin_time)
+        pulumi.set(__self__, "planned_begin_time", planned_begin_time)
+        pulumi.set(__self__, "planned_end_time", planned_end_time)
+        pulumi.set(__self__, "planned_event_description", planned_event_description)
+        pulumi.set(__self__, "planned_event_reason", planned_event_reason)
+        pulumi.set(__self__, "planned_switch_begin_time", planned_switch_begin_time)
+        pulumi.set(__self__, "planned_switch_end_time", planned_switch_end_time)
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter(name="businessImpact")
+    def business_impact(self) -> str:
+        """
+        The business impact of the planned event.
+        """
+        return pulumi.get(self, "business_impact")
+
+    @property
+    @pulumi.getter(name="dbEngine")
+    def db_engine(self) -> str:
+        """
+        The database engine of the planned event.
+        """
+        return pulumi.get(self, "db_engine")
+
+    @property
+    @pulumi.getter(name="eventAction")
+    def event_action(self) -> str:
+        """
+        The action of the planned event.
+        """
+        return pulumi.get(self, "event_action")
+
+    @property
+    @pulumi.getter(name="eventId")
+    def event_id(self) -> str:
+        """
+        The id of the planned event.
+        """
+        return pulumi.get(self, "event_id")
+
+    @property
+    @pulumi.getter(name="eventName")
+    def event_name(self) -> str:
+        """
+        The name of the planned event.
+        """
+        return pulumi.get(self, "event_name")
+
+    @property
+    @pulumi.getter(name="eventType")
+    def event_type(self) -> str:
+        """
+        The type of the planned event.
+        """
+        return pulumi.get(self, "event_type")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        The id of the instance.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="instanceName")
+    def instance_name(self) -> str:
+        """
+        The name of the instance.
+        """
+        return pulumi.get(self, "instance_name")
+
+    @property
+    @pulumi.getter(name="maxDelayTime")
+    def max_delay_time(self) -> str:
+        """
+        The latest postponable time. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+        """
+        return pulumi.get(self, "max_delay_time")
+
+    @property
+    @pulumi.getter(name="originBeginTime")
+    def origin_begin_time(self) -> str:
+        """
+        The initially set start time. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+        """
+        return pulumi.get(self, "origin_begin_time")
+
+    @property
+    @pulumi.getter(name="plannedBeginTime")
+    def planned_begin_time(self) -> str:
+        """
+        The start time of the planned execution. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+        """
+        return pulumi.get(self, "planned_begin_time")
+
+    @property
+    @pulumi.getter(name="plannedEndTime")
+    def planned_end_time(self) -> str:
+        """
+        The end time of the planned execution. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+        """
+        return pulumi.get(self, "planned_end_time")
+
+    @property
+    @pulumi.getter(name="plannedEventDescription")
+    def planned_event_description(self) -> str:
+        """
+        Description information of the operation and maintenance event.
+        """
+        return pulumi.get(self, "planned_event_description")
+
+    @property
+    @pulumi.getter(name="plannedEventReason")
+    def planned_event_reason(self) -> str:
+        """
+        The reasons for the occurrence of the event, which are provided to help you understand the reasons for the occurrence of unexpected events.
+        """
+        return pulumi.get(self, "planned_event_reason")
+
+    @property
+    @pulumi.getter(name="plannedSwitchBeginTime")
+    def planned_switch_begin_time(self) -> str:
+        """
+        The start time of the planned switch. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+        """
+        return pulumi.get(self, "planned_switch_begin_time")
+
+    @property
+    @pulumi.getter(name="plannedSwitchEndTime")
+    def planned_switch_end_time(self) -> str:
+        """
+        The end time of the planned switch. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+        """
+        return pulumi.get(self, "planned_switch_end_time")
+
+    @property
+    @pulumi.getter
+    def region(self) -> str:
+        """
+        The region.
+        """
+        return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of the planned event.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
 class RegionsRegionResult(dict):
     def __init__(__self__, *,
                  region_id: str,
@@ -3893,6 +4886,485 @@ class RegionsRegionResult(dict):
         The name of region.
         """
         return pulumi.get(self, "region_name")
+
+
+@pulumi.output_type
+class TasksDataResult(dict):
+    def __init__(__self__, *,
+                 create_time: str,
+                 finish_time: str,
+                 progress: int,
+                 scheduled_execute_end_time: str,
+                 scheduled_switch_end_time: str,
+                 scheduled_switch_start_time: str,
+                 start_time: str,
+                 task_action: str,
+                 task_category: str,
+                 task_desc: str,
+                 task_details: Sequence['outputs.TasksDataTaskDetailResult'],
+                 task_id: str,
+                 task_params: str,
+                 task_progresses: Sequence['outputs.TasksDataTaskProgressResult'],
+                 task_status: str):
+        """
+        :param str create_time: The creation time of the task.
+        :param str finish_time: The completion time of the task.
+        :param int progress: Task progress. The unit is percentage. Description: Only tasks with a task status of In Progress, that is, tasks with a TaskStatus value of Running, will return the task progress.
+        :param str scheduled_execute_end_time: The deadline for the planned startup. The time format is yyyy-MM-ddTHH:mm:ssZ (UTC time). Description: This field will only be returned for tasks in the "Waiting to Start", "Waiting to Execute", or "Waiting to Switch" states.
+        :param str scheduled_switch_end_time: The scheduled end time for the switch. The time format is yyyy-MM-ddTHH:mm:ssZ (UTC time). Description: This field will only be returned for tasks in the "Waiting to Start", "Waiting to Execute", or "Waiting to Switch" states.
+        :param str scheduled_switch_start_time: The start time of the scheduled switch. The time format is yyyy-MM-ddTHH:mm:ssZ (UTC time). Description: This field is returned only for tasks in the "Waiting to Start", "Waiting to Execute", or "Waiting to Switch" state.
+        :param str start_time: The start time of the task.
+        :param str task_action: Task name.
+        :param str task_category: Task Category. The values are as shown in the following list, and multiple values can be selected: BackupRecoveryManagement: Backup and Recovery Management. DatabaseAdminManagement: Database Administration Management. DatabaseProxy: Database Proxy. HighAvailability: High Availability. InstanceAttribute: Instance Attribute. InstanceManagement: Instance Management. NetworkManagement: Network Management. SecurityManagement: Security Management. SystemMaintainManagement: System Operation and Maintenance Management. VersionUpgrade: Version Upgrade.
+        :param str task_desc: The description of the task.
+        :param Sequence['TasksDataTaskDetailArgs'] task_details: Detailed information of the task.
+        :param str task_id: Task ID. Description: For the two groups of parameters, TaskId and task time (CreationStartTime and CreationEndTime), one of them must be selected.
+        :param str task_params: Task parameters.
+        :param Sequence['TasksDataTaskProgressArgs'] task_progresses: Progress details.
+        :param str task_status: Task status. The values are as shown in the following list, and multiple values can be selected: WaitSwitch: Waiting for switching. WaitStart: Waiting for execution. Canceled: Canceled. Stopped: Terminated. Running_BeforeSwitch: Running (before switching). Timeout: Execution Timeout. Success: Execution Success. Failed: Execution Failed. Running: In Execution. Stopping: In Termination.
+        """
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "finish_time", finish_time)
+        pulumi.set(__self__, "progress", progress)
+        pulumi.set(__self__, "scheduled_execute_end_time", scheduled_execute_end_time)
+        pulumi.set(__self__, "scheduled_switch_end_time", scheduled_switch_end_time)
+        pulumi.set(__self__, "scheduled_switch_start_time", scheduled_switch_start_time)
+        pulumi.set(__self__, "start_time", start_time)
+        pulumi.set(__self__, "task_action", task_action)
+        pulumi.set(__self__, "task_category", task_category)
+        pulumi.set(__self__, "task_desc", task_desc)
+        pulumi.set(__self__, "task_details", task_details)
+        pulumi.set(__self__, "task_id", task_id)
+        pulumi.set(__self__, "task_params", task_params)
+        pulumi.set(__self__, "task_progresses", task_progresses)
+        pulumi.set(__self__, "task_status", task_status)
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        The creation time of the task.
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter(name="finishTime")
+    def finish_time(self) -> str:
+        """
+        The completion time of the task.
+        """
+        return pulumi.get(self, "finish_time")
+
+    @property
+    @pulumi.getter
+    def progress(self) -> int:
+        """
+        Task progress. The unit is percentage. Description: Only tasks with a task status of In Progress, that is, tasks with a TaskStatus value of Running, will return the task progress.
+        """
+        return pulumi.get(self, "progress")
+
+    @property
+    @pulumi.getter(name="scheduledExecuteEndTime")
+    def scheduled_execute_end_time(self) -> str:
+        """
+        The deadline for the planned startup. The time format is yyyy-MM-ddTHH:mm:ssZ (UTC time). Description: This field will only be returned for tasks in the "Waiting to Start", "Waiting to Execute", or "Waiting to Switch" states.
+        """
+        return pulumi.get(self, "scheduled_execute_end_time")
+
+    @property
+    @pulumi.getter(name="scheduledSwitchEndTime")
+    def scheduled_switch_end_time(self) -> str:
+        """
+        The scheduled end time for the switch. The time format is yyyy-MM-ddTHH:mm:ssZ (UTC time). Description: This field will only be returned for tasks in the "Waiting to Start", "Waiting to Execute", or "Waiting to Switch" states.
+        """
+        return pulumi.get(self, "scheduled_switch_end_time")
+
+    @property
+    @pulumi.getter(name="scheduledSwitchStartTime")
+    def scheduled_switch_start_time(self) -> str:
+        """
+        The start time of the scheduled switch. The time format is yyyy-MM-ddTHH:mm:ssZ (UTC time). Description: This field is returned only for tasks in the "Waiting to Start", "Waiting to Execute", or "Waiting to Switch" state.
+        """
+        return pulumi.get(self, "scheduled_switch_start_time")
+
+    @property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> str:
+        """
+        The start time of the task.
+        """
+        return pulumi.get(self, "start_time")
+
+    @property
+    @pulumi.getter(name="taskAction")
+    def task_action(self) -> str:
+        """
+        Task name.
+        """
+        return pulumi.get(self, "task_action")
+
+    @property
+    @pulumi.getter(name="taskCategory")
+    def task_category(self) -> str:
+        """
+        Task Category. The values are as shown in the following list, and multiple values can be selected: BackupRecoveryManagement: Backup and Recovery Management. DatabaseAdminManagement: Database Administration Management. DatabaseProxy: Database Proxy. HighAvailability: High Availability. InstanceAttribute: Instance Attribute. InstanceManagement: Instance Management. NetworkManagement: Network Management. SecurityManagement: Security Management. SystemMaintainManagement: System Operation and Maintenance Management. VersionUpgrade: Version Upgrade.
+        """
+        return pulumi.get(self, "task_category")
+
+    @property
+    @pulumi.getter(name="taskDesc")
+    def task_desc(self) -> str:
+        """
+        The description of the task.
+        """
+        return pulumi.get(self, "task_desc")
+
+    @property
+    @pulumi.getter(name="taskDetails")
+    def task_details(self) -> Sequence['outputs.TasksDataTaskDetailResult']:
+        """
+        Detailed information of the task.
+        """
+        return pulumi.get(self, "task_details")
+
+    @property
+    @pulumi.getter(name="taskId")
+    def task_id(self) -> str:
+        """
+        Task ID. Description: For the two groups of parameters, TaskId and task time (CreationStartTime and CreationEndTime), one of them must be selected.
+        """
+        return pulumi.get(self, "task_id")
+
+    @property
+    @pulumi.getter(name="taskParams")
+    def task_params(self) -> str:
+        """
+        Task parameters.
+        """
+        return pulumi.get(self, "task_params")
+
+    @property
+    @pulumi.getter(name="taskProgresses")
+    def task_progresses(self) -> Sequence['outputs.TasksDataTaskProgressResult']:
+        """
+        Progress details.
+        """
+        return pulumi.get(self, "task_progresses")
+
+    @property
+    @pulumi.getter(name="taskStatus")
+    def task_status(self) -> str:
+        """
+        Task status. The values are as shown in the following list, and multiple values can be selected: WaitSwitch: Waiting for switching. WaitStart: Waiting for execution. Canceled: Canceled. Stopped: Terminated. Running_BeforeSwitch: Running (before switching). Timeout: Execution Timeout. Success: Execution Success. Failed: Execution Failed. Running: In Execution. Stopping: In Termination.
+        """
+        return pulumi.get(self, "task_status")
+
+
+@pulumi.output_type
+class TasksDataTaskDetailResult(dict):
+    def __init__(__self__, *,
+                 check_item_log: str,
+                 check_items: Sequence['outputs.TasksDataTaskDetailCheckItemResult'],
+                 task_infos: Sequence['outputs.TasksDataTaskDetailTaskInfoResult']):
+        """
+        :param str check_item_log: The log of inspection items for the instance major version upgrade.
+        :param Sequence['TasksDataTaskDetailCheckItemArgs'] check_items: Check results for major version upgrade.
+        :param Sequence['TasksDataTaskDetailTaskInfoArgs'] task_infos: Details of the task.
+        """
+        pulumi.set(__self__, "check_item_log", check_item_log)
+        pulumi.set(__self__, "check_items", check_items)
+        pulumi.set(__self__, "task_infos", task_infos)
+
+    @property
+    @pulumi.getter(name="checkItemLog")
+    def check_item_log(self) -> str:
+        """
+        The log of inspection items for the instance major version upgrade.
+        """
+        return pulumi.get(self, "check_item_log")
+
+    @property
+    @pulumi.getter(name="checkItems")
+    def check_items(self) -> Sequence['outputs.TasksDataTaskDetailCheckItemResult']:
+        """
+        Check results for major version upgrade.
+        """
+        return pulumi.get(self, "check_items")
+
+    @property
+    @pulumi.getter(name="taskInfos")
+    def task_infos(self) -> Sequence['outputs.TasksDataTaskDetailTaskInfoResult']:
+        """
+        Details of the task.
+        """
+        return pulumi.get(self, "task_infos")
+
+
+@pulumi.output_type
+class TasksDataTaskDetailCheckItemResult(dict):
+    def __init__(__self__, *,
+                 check_details: Sequence['outputs.TasksDataTaskDetailCheckItemCheckDetailResult'],
+                 description: str,
+                 item_name: str,
+                 risk_level: str):
+        """
+        :param Sequence['TasksDataTaskDetailCheckItemCheckDetailArgs'] check_details: Details of the failed check items.
+        :param str description: The description of the check item.
+        :param str item_name: The name of the check item.
+        :param str risk_level: The risk level of the failed check items. Values:
+               Notice: Attention.
+               Warning: Warning.
+               Error: Error.
+        """
+        pulumi.set(__self__, "check_details", check_details)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "item_name", item_name)
+        pulumi.set(__self__, "risk_level", risk_level)
+
+    @property
+    @pulumi.getter(name="checkDetails")
+    def check_details(self) -> Sequence['outputs.TasksDataTaskDetailCheckItemCheckDetailResult']:
+        """
+        Details of the failed check items.
+        """
+        return pulumi.get(self, "check_details")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the check item.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="itemName")
+    def item_name(self) -> str:
+        """
+        The name of the check item.
+        """
+        return pulumi.get(self, "item_name")
+
+    @property
+    @pulumi.getter(name="riskLevel")
+    def risk_level(self) -> str:
+        """
+        The risk level of the failed check items. Values:
+        Notice: Attention.
+        Warning: Warning.
+        Error: Error.
+        """
+        return pulumi.get(self, "risk_level")
+
+
+@pulumi.output_type
+class TasksDataTaskDetailCheckItemCheckDetailResult(dict):
+    def __init__(__self__, *,
+                 impact: str,
+                 issue: str):
+        """
+        :param str impact: The impact of the issue that caused the failure of the check item after the upgrade.
+        :param str issue: Problems that caused the failure to pass the check items.
+        """
+        pulumi.set(__self__, "impact", impact)
+        pulumi.set(__self__, "issue", issue)
+
+    @property
+    @pulumi.getter
+    def impact(self) -> str:
+        """
+        The impact of the issue that caused the failure of the check item after the upgrade.
+        """
+        return pulumi.get(self, "impact")
+
+    @property
+    @pulumi.getter
+    def issue(self) -> str:
+        """
+        Problems that caused the failure to pass the check items.
+        """
+        return pulumi.get(self, "issue")
+
+
+@pulumi.output_type
+class TasksDataTaskDetailTaskInfoResult(dict):
+    def __init__(__self__, *,
+                 create_time: str,
+                 finish_time: str,
+                 progress: int,
+                 related_instance_infos: Sequence['outputs.TasksDataTaskDetailTaskInfoRelatedInstanceInfoResult']):
+        """
+        :param str create_time: The creation time of the task.
+        :param str finish_time: The completion time of the task.
+        :param int progress: Task progress. The unit is percentage. Description: Only tasks with a task status of In Progress, that is, tasks with a TaskStatus value of Running, will return the task progress.
+        :param Sequence['TasksDataTaskDetailTaskInfoRelatedInstanceInfoArgs'] related_instance_infos: Instances related to the task.
+        """
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "finish_time", finish_time)
+        pulumi.set(__self__, "progress", progress)
+        pulumi.set(__self__, "related_instance_infos", related_instance_infos)
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        The creation time of the task.
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter(name="finishTime")
+    def finish_time(self) -> str:
+        """
+        The completion time of the task.
+        """
+        return pulumi.get(self, "finish_time")
+
+    @property
+    @pulumi.getter
+    def progress(self) -> int:
+        """
+        Task progress. The unit is percentage. Description: Only tasks with a task status of In Progress, that is, tasks with a TaskStatus value of Running, will return the task progress.
+        """
+        return pulumi.get(self, "progress")
+
+    @property
+    @pulumi.getter(name="relatedInstanceInfos")
+    def related_instance_infos(self) -> Sequence['outputs.TasksDataTaskDetailTaskInfoRelatedInstanceInfoResult']:
+        """
+        Instances related to the task.
+        """
+        return pulumi.get(self, "related_instance_infos")
+
+
+@pulumi.output_type
+class TasksDataTaskDetailTaskInfoRelatedInstanceInfoResult(dict):
+    def __init__(__self__, *,
+                 instance_id: str):
+        """
+        :param str instance_id: Instance ID.
+        """
+        pulumi.set(__self__, "instance_id", instance_id)
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        Instance ID.
+        """
+        return pulumi.get(self, "instance_id")
+
+
+@pulumi.output_type
+class TasksDataTaskProgressResult(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 step_extra_infos: Sequence['outputs.TasksDataTaskProgressStepExtraInfoResult'],
+                 step_status: str):
+        """
+        :param str name: Step Name. Values:
+               InstanceInitialization: Task initialization.
+               InstanceRecoveryPreparation Instance recovery preparation.
+               DataBackupImport: Cold backup import.
+               LogBackupBinlogAdd: Binlog playback.
+               TaskSuccessful: Task success.
+        :param Sequence['TasksDataTaskProgressStepExtraInfoArgs'] step_extra_infos: Specific information of the step.
+        :param str step_status: Step status. Values:
+               Running: In progress.
+               Success: Successful.
+               Failed: Failed.
+               Unexecuted: Not executed.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "step_extra_infos", step_extra_infos)
+        pulumi.set(__self__, "step_status", step_status)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Step Name. Values:
+        InstanceInitialization: Task initialization.
+        InstanceRecoveryPreparation Instance recovery preparation.
+        DataBackupImport: Cold backup import.
+        LogBackupBinlogAdd: Binlog playback.
+        TaskSuccessful: Task success.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="stepExtraInfos")
+    def step_extra_infos(self) -> Sequence['outputs.TasksDataTaskProgressStepExtraInfoResult']:
+        """
+        Specific information of the step.
+        """
+        return pulumi.get(self, "step_extra_infos")
+
+    @property
+    @pulumi.getter(name="stepStatus")
+    def step_status(self) -> str:
+        """
+        Step status. Values:
+        Running: In progress.
+        Success: Successful.
+        Failed: Failed.
+        Unexecuted: Not executed.
+        """
+        return pulumi.get(self, "step_status")
+
+
+@pulumi.output_type
+class TasksDataTaskProgressStepExtraInfoResult(dict):
+    def __init__(__self__, *,
+                 type: str,
+                 unit: str,
+                 value: float):
+        """
+        :param str type: Current stage. CostTime: The time taken for the current stage.
+               CurDataSize: The amount of data imported currently.
+               CurBinlog: The number of Binlog files being replayed currently.
+               RemainCostTime: The remaining time taken.
+               RemainDataSize: The remaining amount of data to be imported. RemainBinlog: The number of Binlog files remaining for playback.
+        :param str unit: Unit. Values:
+               MS: Milliseconds.
+               Bytes: Bytes.
+               Files: Number of (files).
+        :param float value: The specific value corresponding to the Type field.
+        """
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "unit", unit)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        Current stage. CostTime: The time taken for the current stage.
+        CurDataSize: The amount of data imported currently.
+        CurBinlog: The number of Binlog files being replayed currently.
+        RemainCostTime: The remaining time taken.
+        RemainDataSize: The remaining amount of data to be imported. RemainBinlog: The number of Binlog files remaining for playback.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def unit(self) -> str:
+        """
+        Unit. Values:
+        MS: Milliseconds.
+        Bytes: Bytes.
+        Files: Number of (files).
+        """
+        return pulumi.get(self, "unit")
+
+    @property
+    @pulumi.getter
+    def value(self) -> float:
+        """
+        The specific value corresponding to the Type field.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -3947,22 +5419,114 @@ class ZonesZoneResult(dict):
 
 
 @pulumi.output_type
+class GetAccountTableColumnInfosTableInfoResult(dict):
+    def __init__(__self__, *,
+                 account_privileges: Sequence[str],
+                 column_infos: Sequence['outputs.GetAccountTableColumnInfosTableInfoColumnInfoResult'],
+                 table_name: str):
+        """
+        :param Sequence[str] account_privileges: The column privileges of the account.
+        :param Sequence['GetAccountTableColumnInfosTableInfoColumnInfoArgs'] column_infos: The column permission information of the account.
+        :param str table_name: The name of the table.
+        """
+        pulumi.set(__self__, "account_privileges", account_privileges)
+        pulumi.set(__self__, "column_infos", column_infos)
+        pulumi.set(__self__, "table_name", table_name)
+
+    @property
+    @pulumi.getter(name="accountPrivileges")
+    def account_privileges(self) -> Sequence[str]:
+        """
+        The column privileges of the account.
+        """
+        return pulumi.get(self, "account_privileges")
+
+    @property
+    @pulumi.getter(name="columnInfos")
+    def column_infos(self) -> Sequence['outputs.GetAccountTableColumnInfosTableInfoColumnInfoResult']:
+        """
+        The column permission information of the account.
+        """
+        return pulumi.get(self, "column_infos")
+
+    @property
+    @pulumi.getter(name="tableName")
+    def table_name(self) -> str:
+        """
+        The name of the table.
+        """
+        return pulumi.get(self, "table_name")
+
+
+@pulumi.output_type
+class GetAccountTableColumnInfosTableInfoColumnInfoResult(dict):
+    def __init__(__self__, *,
+                 account_privileges: Sequence[str],
+                 column_name: str):
+        """
+        :param Sequence[str] account_privileges: The column privileges of the account.
+        :param str column_name: The name of the column.
+        """
+        pulumi.set(__self__, "account_privileges", account_privileges)
+        pulumi.set(__self__, "column_name", column_name)
+
+    @property
+    @pulumi.getter(name="accountPrivileges")
+    def account_privileges(self) -> Sequence[str]:
+        """
+        The column privileges of the account.
+        """
+        return pulumi.get(self, "account_privileges")
+
+    @property
+    @pulumi.getter(name="columnName")
+    def column_name(self) -> str:
+        """
+        The name of the column.
+        """
+        return pulumi.get(self, "column_name")
+
+
+@pulumi.output_type
 class GetAccountsAccountResult(dict):
     def __init__(__self__, *,
+                 account_desc: str,
                  account_name: str,
                  account_privileges: Sequence['outputs.GetAccountsAccountAccountPrivilegeResult'],
+                 account_privileges_sqls: Sequence[str],
                  account_status: str,
-                 account_type: str):
+                 account_type: str,
+                 global_account_privileges: Sequence[str],
+                 has_table_column_privilege_db_names: Sequence[str],
+                 host: str):
         """
+        :param str account_desc: The description information of the account.
         :param str account_name: The name of the database account. This field supports fuzzy query.
         :param Sequence['GetAccountsAccountAccountPrivilegeArgs'] account_privileges: The privilege detail list of RDS mysql instance account.
+        :param Sequence[str] account_privileges_sqls: The SQL statement of the account privileges.
         :param str account_status: The status of the database account.
         :param str account_type: The type of the database account.
+        :param Sequence[str] global_account_privileges: The global privileges of the account.
+        :param Sequence[str] has_table_column_privilege_db_names: The databases to which the table column permissions owned by the account belong. Description: If the account does not have table column permissions, this field will not be returned.
+        :param str host: The host of the account.
         """
+        pulumi.set(__self__, "account_desc", account_desc)
         pulumi.set(__self__, "account_name", account_name)
         pulumi.set(__self__, "account_privileges", account_privileges)
+        pulumi.set(__self__, "account_privileges_sqls", account_privileges_sqls)
         pulumi.set(__self__, "account_status", account_status)
         pulumi.set(__self__, "account_type", account_type)
+        pulumi.set(__self__, "global_account_privileges", global_account_privileges)
+        pulumi.set(__self__, "has_table_column_privilege_db_names", has_table_column_privilege_db_names)
+        pulumi.set(__self__, "host", host)
+
+    @property
+    @pulumi.getter(name="accountDesc")
+    def account_desc(self) -> str:
+        """
+        The description information of the account.
+        """
+        return pulumi.get(self, "account_desc")
 
     @property
     @pulumi.getter(name="accountName")
@@ -3981,6 +5545,14 @@ class GetAccountsAccountResult(dict):
         return pulumi.get(self, "account_privileges")
 
     @property
+    @pulumi.getter(name="accountPrivilegesSqls")
+    def account_privileges_sqls(self) -> Sequence[str]:
+        """
+        The SQL statement of the account privileges.
+        """
+        return pulumi.get(self, "account_privileges_sqls")
+
+    @property
     @pulumi.getter(name="accountStatus")
     def account_status(self) -> str:
         """
@@ -3995,6 +5567,30 @@ class GetAccountsAccountResult(dict):
         The type of the database account.
         """
         return pulumi.get(self, "account_type")
+
+    @property
+    @pulumi.getter(name="globalAccountPrivileges")
+    def global_account_privileges(self) -> Sequence[str]:
+        """
+        The global privileges of the account.
+        """
+        return pulumi.get(self, "global_account_privileges")
+
+    @property
+    @pulumi.getter(name="hasTableColumnPrivilegeDbNames")
+    def has_table_column_privilege_db_names(self) -> Sequence[str]:
+        """
+        The databases to which the table column permissions owned by the account belong. Description: If the account does not have table column permissions, this field will not be returned.
+        """
+        return pulumi.get(self, "has_table_column_privilege_db_names")
+
+    @property
+    @pulumi.getter
+    def host(self) -> str:
+        """
+        The host of the account.
+        """
+        return pulumi.get(self, "host")
 
 
 @pulumi.output_type
@@ -4279,12 +5875,15 @@ class GetBackupsBackupResult(dict):
                  consistent_time: str,
                  create_type: str,
                  db_table_infos: Sequence['outputs.GetBackupsBackupDbTableInfoResult'],
+                 decryption_key: str,
                  download_status: str,
                  error_message: str,
                  expired_time: str,
                  id: str,
                  is_encrypted: bool,
-                 is_expired: bool):
+                 is_expired: bool,
+                 iv: str,
+                 usage_stats: Sequence['outputs.GetBackupsBackupUsageStatResult']):
         """
         :param str backup_end_time: The end time of the backup.
         :param str backup_file_name: Backup file name.
@@ -4300,6 +5899,7 @@ class GetBackupsBackupResult(dict):
         :param Sequence['GetBackupsBackupDbTableInfoArgs'] db_table_infos: The database table information contained in the backup set can include up to 10,000 tables.
                Explanation:
                When the database is empty, this field is not returned.
+        :param str decryption_key: The decryption key of the backup.
         :param str download_status: Download status. Values:
                NotDownload: Not downloaded.
                Success: Downloaded.
@@ -4314,6 +5914,8 @@ class GetBackupsBackupResult(dict):
         :param bool is_expired: Whether the backup has expired. Value:
                true: Expired.
                false: Not expired.
+        :param str iv: Initialization Vector.
+        :param Sequence['GetBackupsBackupUsageStatArgs'] usage_stats: Statistics information about the storage space usage of backups.
         """
         pulumi.set(__self__, "backup_end_time", backup_end_time)
         pulumi.set(__self__, "backup_file_name", backup_file_name)
@@ -4327,12 +5929,15 @@ class GetBackupsBackupResult(dict):
         pulumi.set(__self__, "consistent_time", consistent_time)
         pulumi.set(__self__, "create_type", create_type)
         pulumi.set(__self__, "db_table_infos", db_table_infos)
+        pulumi.set(__self__, "decryption_key", decryption_key)
         pulumi.set(__self__, "download_status", download_status)
         pulumi.set(__self__, "error_message", error_message)
         pulumi.set(__self__, "expired_time", expired_time)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "is_encrypted", is_encrypted)
         pulumi.set(__self__, "is_expired", is_expired)
+        pulumi.set(__self__, "iv", iv)
+        pulumi.set(__self__, "usage_stats", usage_stats)
 
     @property
     @pulumi.getter(name="backupEndTime")
@@ -4433,6 +6038,14 @@ class GetBackupsBackupResult(dict):
         return pulumi.get(self, "db_table_infos")
 
     @property
+    @pulumi.getter(name="decryptionKey")
+    def decryption_key(self) -> str:
+        """
+        The decryption key of the backup.
+        """
+        return pulumi.get(self, "decryption_key")
+
+    @property
     @pulumi.getter(name="downloadStatus")
     def download_status(self) -> str:
         """
@@ -4488,6 +6101,22 @@ class GetBackupsBackupResult(dict):
         """
         return pulumi.get(self, "is_expired")
 
+    @property
+    @pulumi.getter
+    def iv(self) -> str:
+        """
+        Initialization Vector.
+        """
+        return pulumi.get(self, "iv")
+
+    @property
+    @pulumi.getter(name="usageStats")
+    def usage_stats(self) -> Sequence['outputs.GetBackupsBackupUsageStatResult']:
+        """
+        Statistics information about the storage space usage of backups.
+        """
+        return pulumi.get(self, "usage_stats")
+
 
 @pulumi.output_type
 class GetBackupsBackupDbTableInfoResult(dict):
@@ -4519,19 +6148,65 @@ class GetBackupsBackupDbTableInfoResult(dict):
 
 
 @pulumi.output_type
+class GetBackupsBackupUsageStatResult(dict):
+    def __init__(__self__, *,
+                 quantity: int,
+                 start_time: str,
+                 stat_item: str):
+        """
+        :param int quantity: Backup size, in bytes.
+        :param str start_time: Statistical time.
+        :param str stat_item: Statistical items. TotalBasicSpaceUsage: Storage space usage for basic backups. BasicDataBackupUsage: Storage space usage for local data backups. BasicBinlogBackupUsage: Storage space usage for local log backups. TotalCrossRegionSpaceUsage: Storage space usage for cross-region backups. CrossRegionDataBackupUsage: Storage space usage for cross-region data backups. CrossRegionBinlogBackupUsage: Storage space usage for cross-region log backups.
+        """
+        pulumi.set(__self__, "quantity", quantity)
+        pulumi.set(__self__, "start_time", start_time)
+        pulumi.set(__self__, "stat_item", stat_item)
+
+    @property
+    @pulumi.getter
+    def quantity(self) -> int:
+        """
+        Backup size, in bytes.
+        """
+        return pulumi.get(self, "quantity")
+
+    @property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> str:
+        """
+        Statistical time.
+        """
+        return pulumi.get(self, "start_time")
+
+    @property
+    @pulumi.getter(name="statItem")
+    def stat_item(self) -> str:
+        """
+        Statistical items. TotalBasicSpaceUsage: Storage space usage for basic backups. BasicDataBackupUsage: Storage space usage for local data backups. BasicBinlogBackupUsage: Storage space usage for local log backups. TotalCrossRegionSpaceUsage: Storage space usage for cross-region backups. CrossRegionDataBackupUsage: Storage space usage for cross-region data backups. CrossRegionBinlogBackupUsage: Storage space usage for cross-region log backups.
+        """
+        return pulumi.get(self, "stat_item")
+
+
+@pulumi.output_type
 class GetDatabasesDatabaseResult(dict):
     def __init__(__self__, *,
                  character_set_name: str,
                  database_privileges: Sequence['outputs.GetDatabasesDatabaseDatabasePrivilegeResult'],
-                 db_name: str):
+                 db_desc: str,
+                 db_name: str,
+                 db_status: str):
         """
         :param str character_set_name: The character set of the RDS database.
         :param Sequence['GetDatabasesDatabaseDatabasePrivilegeArgs'] database_privileges: The privilege detail list of RDS mysql instance database.
+        :param str db_desc: The description information of the RDS database.
         :param str db_name: The name of the RDS database.
+        :param str db_status: The status of the RDS database.
         """
         pulumi.set(__self__, "character_set_name", character_set_name)
         pulumi.set(__self__, "database_privileges", database_privileges)
+        pulumi.set(__self__, "db_desc", db_desc)
         pulumi.set(__self__, "db_name", db_name)
+        pulumi.set(__self__, "db_status", db_status)
 
     @property
     @pulumi.getter(name="characterSetName")
@@ -4550,12 +6225,28 @@ class GetDatabasesDatabaseResult(dict):
         return pulumi.get(self, "database_privileges")
 
     @property
+    @pulumi.getter(name="dbDesc")
+    def db_desc(self) -> str:
+        """
+        The description information of the RDS database.
+        """
+        return pulumi.get(self, "db_desc")
+
+    @property
     @pulumi.getter(name="dbName")
     def db_name(self) -> str:
         """
         The name of the RDS database.
         """
         return pulumi.get(self, "db_name")
+
+    @property
+    @pulumi.getter(name="dbStatus")
+    def db_status(self) -> str:
+        """
+        The status of the RDS database.
+        """
+        return pulumi.get(self, "db_status")
 
 
 @pulumi.output_type
@@ -5038,6 +6729,8 @@ class GetInstanceSpecsInstanceSpecResult(dict):
 class GetInstancesRdsMysqlInstanceResult(dict):
     def __init__(__self__, *,
                  allow_list_version: str,
+                 auto_storage_scaling_configs: Sequence['outputs.GetInstancesRdsMysqlInstanceAutoStorageScalingConfigResult'],
+                 auto_upgrade_minor_version: str,
                  backup_use: int,
                  binlog_dump: bool,
                  charge_detail: 'outputs.GetInstancesRdsMysqlInstanceChargeDetailResult',
@@ -5046,6 +6739,11 @@ class GetInstancesRdsMysqlInstanceResult(dict):
                  data_sync_mode: str,
                  db_engine_version: str,
                  db_proxy_status: str,
+                 deletion_protection: str,
+                 dr_dts_task_id: str,
+                 dr_dts_task_name: str,
+                 dr_dts_task_status: str,
+                 dr_seconds_behind_master: int,
                  endpoints: Sequence['outputs.GetInstancesRdsMysqlInstanceEndpointResult'],
                  feature_states: Sequence['outputs.GetInstancesRdsMysqlInstanceFeatureStateResult'],
                  global_read_only: bool,
@@ -5053,8 +6751,12 @@ class GetInstancesRdsMysqlInstanceResult(dict):
                  instance_id: str,
                  instance_name: str,
                  instance_status: str,
+                 kernel_version: str,
                  lower_case_table_names: str,
                  maintenance_windows: Sequence['outputs.GetInstancesRdsMysqlInstanceMaintenanceWindowResult'],
+                 master_instance_id: str,
+                 master_instance_name: str,
+                 master_region: str,
                  memory: int,
                  node_cpu_used_percentage: float,
                  node_memory_used_percentage: float,
@@ -5064,6 +6766,10 @@ class GetInstancesRdsMysqlInstanceResult(dict):
                  nodes: Sequence['outputs.GetInstancesRdsMysqlInstanceNodeResult'],
                  project_name: str,
                  region_id: str,
+                 storage_max_capacity: int,
+                 storage_max_trigger_threshold: int,
+                 storage_min_capacity: int,
+                 storage_min_trigger_threshold: int,
                  storage_space: int,
                  storage_type: str,
                  storage_use: int,
@@ -5077,6 +6783,10 @@ class GetInstancesRdsMysqlInstanceResult(dict):
                  zone_ids: Sequence[str]):
         """
         :param str allow_list_version: The version of allow list.
+        :param Sequence['GetInstancesRdsMysqlInstanceAutoStorageScalingConfigArgs'] auto_storage_scaling_configs: Auto - storage scaling configuration.
+        :param str auto_upgrade_minor_version: The upgrade strategy for the minor version of the instance kernel. Values:
+               Auto: Auto upgrade.
+               Manual: Manual upgrade.
         :param int backup_use: The instance has used backup space. Unit: GB.
         :param bool binlog_dump: Does it support the binlog capability? This parameter is returned only when the database proxy is enabled. Values:
                true: Yes.
@@ -5091,6 +6801,13 @@ class GetInstancesRdsMysqlInstanceResult(dict):
                Running: The proxy is running.
                Shutdown: The proxy is closed.
                Deleting: The proxy is being closed.
+        :param str deletion_protection: Whether to enable the deletion protection function. Values:
+               Enabled: Yes.
+               Disabled: No.
+        :param str dr_dts_task_id: The ID of the data synchronization task in DTS for the data synchronization link between the primary instance and the disaster recovery instance.
+        :param str dr_dts_task_name: The name of the DTS data synchronization task for the data synchronization link between the primary instance and the disaster recovery instance.
+        :param str dr_dts_task_status: The status of the DTS data synchronization task for the data synchronization link between the primary instance and the disaster recovery instance.
+        :param int dr_seconds_behind_master: The number of seconds that the disaster recovery instance is behind the primary instance.
         :param Sequence['GetInstancesRdsMysqlInstanceEndpointArgs'] endpoints: The endpoint info of the RDS instance.
         :param Sequence['GetInstancesRdsMysqlInstanceFeatureStateArgs'] feature_states: Feature status.
         :param bool global_read_only: Whether to enable global read-only.
@@ -5100,22 +6817,30 @@ class GetInstancesRdsMysqlInstanceResult(dict):
         :param str instance_id: The id of the RDS instance.
         :param str instance_name: The name of the RDS instance.
         :param str instance_status: The status of the RDS instance.
+        :param str kernel_version: The kernel version of the instance.
         :param str lower_case_table_names: Whether the table name is case sensitive, the default value is 1.
                Ranges:
                0: Table names are stored as fixed and table names are case-sensitive.
                1: Table names will be stored in lowercase and table names are not case sensitive.
         :param Sequence['GetInstancesRdsMysqlInstanceMaintenanceWindowArgs'] maintenance_windows: Maintenance Window.
+        :param str master_instance_id: The ID of the primary instance of the disaster recovery instance.
+        :param str master_instance_name: The name of the primary instance of the disaster recovery instance.
+        :param str master_region: The region where the primary instance of the disaster recovery instance is located.
         :param int memory: Memory size in GB.
         :param float node_cpu_used_percentage: Average CPU usage of the instance master node in nearly one minute.
         :param float node_memory_used_percentage: Average memory usage of the instance master node in nearly one minute.
         :param int node_number: The number of nodes.
         :param float node_space_used_percentage: Average disk usage of the instance master node in nearly one minute.
-        :param str node_spec: General instance type, different from Custom instance type.
+        :param str node_spec: Primary node specification. For detailed information about the node specifications, please refer to Product Specifications.
         :param Sequence['GetInstancesRdsMysqlInstanceNodeArgs'] nodes: Instance node information.
         :param str project_name: The project name of the RDS instance.
         :param str region_id: The region of the RDS instance.
+        :param int storage_max_capacity: The upper limit of the storage space that can be set for automatic expansion. The value is the upper limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value ranges of different specifications, please refer to Product Specifications.
+        :param int storage_max_trigger_threshold: The upper limit of the proportion of available storage space that triggers automatic expansion. When supported, the value is 50%.
+        :param int storage_min_capacity: The lower limit of the storage space that can be set for automatic expansion. The value is the lower limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value ranges of different specifications, please refer to Product Specifications.
+        :param int storage_min_trigger_threshold: The lower limit of the proportion of available storage space that triggers automatic expansion. When supported, the value is 10%.
         :param int storage_space: Total instance storage space. Unit: GB.
-        :param str storage_type: Instance storage type.
+        :param str storage_type: Instance storage type. The value is LocalSSD, indicating a local SSD disk.
         :param int storage_use: The instance has used storage space. Unit: GB.
         :param str subnet_id: The subnet ID of the RDS instance.
         :param Sequence['GetInstancesRdsMysqlInstanceTagArgs'] tags: Tags.
@@ -5127,6 +6852,8 @@ class GetInstancesRdsMysqlInstanceResult(dict):
         :param Sequence[str] zone_ids: List of availability zones where each node of the instance is located.
         """
         pulumi.set(__self__, "allow_list_version", allow_list_version)
+        pulumi.set(__self__, "auto_storage_scaling_configs", auto_storage_scaling_configs)
+        pulumi.set(__self__, "auto_upgrade_minor_version", auto_upgrade_minor_version)
         pulumi.set(__self__, "backup_use", backup_use)
         pulumi.set(__self__, "binlog_dump", binlog_dump)
         pulumi.set(__self__, "charge_detail", charge_detail)
@@ -5135,6 +6862,11 @@ class GetInstancesRdsMysqlInstanceResult(dict):
         pulumi.set(__self__, "data_sync_mode", data_sync_mode)
         pulumi.set(__self__, "db_engine_version", db_engine_version)
         pulumi.set(__self__, "db_proxy_status", db_proxy_status)
+        pulumi.set(__self__, "deletion_protection", deletion_protection)
+        pulumi.set(__self__, "dr_dts_task_id", dr_dts_task_id)
+        pulumi.set(__self__, "dr_dts_task_name", dr_dts_task_name)
+        pulumi.set(__self__, "dr_dts_task_status", dr_dts_task_status)
+        pulumi.set(__self__, "dr_seconds_behind_master", dr_seconds_behind_master)
         pulumi.set(__self__, "endpoints", endpoints)
         pulumi.set(__self__, "feature_states", feature_states)
         pulumi.set(__self__, "global_read_only", global_read_only)
@@ -5142,8 +6874,12 @@ class GetInstancesRdsMysqlInstanceResult(dict):
         pulumi.set(__self__, "instance_id", instance_id)
         pulumi.set(__self__, "instance_name", instance_name)
         pulumi.set(__self__, "instance_status", instance_status)
+        pulumi.set(__self__, "kernel_version", kernel_version)
         pulumi.set(__self__, "lower_case_table_names", lower_case_table_names)
         pulumi.set(__self__, "maintenance_windows", maintenance_windows)
+        pulumi.set(__self__, "master_instance_id", master_instance_id)
+        pulumi.set(__self__, "master_instance_name", master_instance_name)
+        pulumi.set(__self__, "master_region", master_region)
         pulumi.set(__self__, "memory", memory)
         pulumi.set(__self__, "node_cpu_used_percentage", node_cpu_used_percentage)
         pulumi.set(__self__, "node_memory_used_percentage", node_memory_used_percentage)
@@ -5153,6 +6889,10 @@ class GetInstancesRdsMysqlInstanceResult(dict):
         pulumi.set(__self__, "nodes", nodes)
         pulumi.set(__self__, "project_name", project_name)
         pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "storage_max_capacity", storage_max_capacity)
+        pulumi.set(__self__, "storage_max_trigger_threshold", storage_max_trigger_threshold)
+        pulumi.set(__self__, "storage_min_capacity", storage_min_capacity)
+        pulumi.set(__self__, "storage_min_trigger_threshold", storage_min_trigger_threshold)
         pulumi.set(__self__, "storage_space", storage_space)
         pulumi.set(__self__, "storage_type", storage_type)
         pulumi.set(__self__, "storage_use", storage_use)
@@ -5172,6 +6912,24 @@ class GetInstancesRdsMysqlInstanceResult(dict):
         The version of allow list.
         """
         return pulumi.get(self, "allow_list_version")
+
+    @property
+    @pulumi.getter(name="autoStorageScalingConfigs")
+    def auto_storage_scaling_configs(self) -> Sequence['outputs.GetInstancesRdsMysqlInstanceAutoStorageScalingConfigResult']:
+        """
+        Auto - storage scaling configuration.
+        """
+        return pulumi.get(self, "auto_storage_scaling_configs")
+
+    @property
+    @pulumi.getter(name="autoUpgradeMinorVersion")
+    def auto_upgrade_minor_version(self) -> str:
+        """
+        The upgrade strategy for the minor version of the instance kernel. Values:
+        Auto: Auto upgrade.
+        Manual: Manual upgrade.
+        """
+        return pulumi.get(self, "auto_upgrade_minor_version")
 
     @property
     @pulumi.getter(name="backupUse")
@@ -5244,6 +7002,48 @@ class GetInstancesRdsMysqlInstanceResult(dict):
         return pulumi.get(self, "db_proxy_status")
 
     @property
+    @pulumi.getter(name="deletionProtection")
+    def deletion_protection(self) -> str:
+        """
+        Whether to enable the deletion protection function. Values:
+        Enabled: Yes.
+        Disabled: No.
+        """
+        return pulumi.get(self, "deletion_protection")
+
+    @property
+    @pulumi.getter(name="drDtsTaskId")
+    def dr_dts_task_id(self) -> str:
+        """
+        The ID of the data synchronization task in DTS for the data synchronization link between the primary instance and the disaster recovery instance.
+        """
+        return pulumi.get(self, "dr_dts_task_id")
+
+    @property
+    @pulumi.getter(name="drDtsTaskName")
+    def dr_dts_task_name(self) -> str:
+        """
+        The name of the DTS data synchronization task for the data synchronization link between the primary instance and the disaster recovery instance.
+        """
+        return pulumi.get(self, "dr_dts_task_name")
+
+    @property
+    @pulumi.getter(name="drDtsTaskStatus")
+    def dr_dts_task_status(self) -> str:
+        """
+        The status of the DTS data synchronization task for the data synchronization link between the primary instance and the disaster recovery instance.
+        """
+        return pulumi.get(self, "dr_dts_task_status")
+
+    @property
+    @pulumi.getter(name="drSecondsBehindMaster")
+    def dr_seconds_behind_master(self) -> int:
+        """
+        The number of seconds that the disaster recovery instance is behind the primary instance.
+        """
+        return pulumi.get(self, "dr_seconds_behind_master")
+
+    @property
     @pulumi.getter
     def endpoints(self) -> Sequence['outputs.GetInstancesRdsMysqlInstanceEndpointResult']:
         """
@@ -5302,6 +7102,14 @@ class GetInstancesRdsMysqlInstanceResult(dict):
         return pulumi.get(self, "instance_status")
 
     @property
+    @pulumi.getter(name="kernelVersion")
+    def kernel_version(self) -> str:
+        """
+        The kernel version of the instance.
+        """
+        return pulumi.get(self, "kernel_version")
+
+    @property
     @pulumi.getter(name="lowerCaseTableNames")
     def lower_case_table_names(self) -> str:
         """
@@ -5319,6 +7127,30 @@ class GetInstancesRdsMysqlInstanceResult(dict):
         Maintenance Window.
         """
         return pulumi.get(self, "maintenance_windows")
+
+    @property
+    @pulumi.getter(name="masterInstanceId")
+    def master_instance_id(self) -> str:
+        """
+        The ID of the primary instance of the disaster recovery instance.
+        """
+        return pulumi.get(self, "master_instance_id")
+
+    @property
+    @pulumi.getter(name="masterInstanceName")
+    def master_instance_name(self) -> str:
+        """
+        The name of the primary instance of the disaster recovery instance.
+        """
+        return pulumi.get(self, "master_instance_name")
+
+    @property
+    @pulumi.getter(name="masterRegion")
+    def master_region(self) -> str:
+        """
+        The region where the primary instance of the disaster recovery instance is located.
+        """
+        return pulumi.get(self, "master_region")
 
     @property
     @pulumi.getter
@@ -5364,7 +7196,7 @@ class GetInstancesRdsMysqlInstanceResult(dict):
     @pulumi.getter(name="nodeSpec")
     def node_spec(self) -> str:
         """
-        General instance type, different from Custom instance type.
+        Primary node specification. For detailed information about the node specifications, please refer to Product Specifications.
         """
         return pulumi.get(self, "node_spec")
 
@@ -5393,6 +7225,38 @@ class GetInstancesRdsMysqlInstanceResult(dict):
         return pulumi.get(self, "region_id")
 
     @property
+    @pulumi.getter(name="storageMaxCapacity")
+    def storage_max_capacity(self) -> int:
+        """
+        The upper limit of the storage space that can be set for automatic expansion. The value is the upper limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value ranges of different specifications, please refer to Product Specifications.
+        """
+        return pulumi.get(self, "storage_max_capacity")
+
+    @property
+    @pulumi.getter(name="storageMaxTriggerThreshold")
+    def storage_max_trigger_threshold(self) -> int:
+        """
+        The upper limit of the proportion of available storage space that triggers automatic expansion. When supported, the value is 50%.
+        """
+        return pulumi.get(self, "storage_max_trigger_threshold")
+
+    @property
+    @pulumi.getter(name="storageMinCapacity")
+    def storage_min_capacity(self) -> int:
+        """
+        The lower limit of the storage space that can be set for automatic expansion. The value is the lower limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value ranges of different specifications, please refer to Product Specifications.
+        """
+        return pulumi.get(self, "storage_min_capacity")
+
+    @property
+    @pulumi.getter(name="storageMinTriggerThreshold")
+    def storage_min_trigger_threshold(self) -> int:
+        """
+        The lower limit of the proportion of available storage space that triggers automatic expansion. When supported, the value is 10%.
+        """
+        return pulumi.get(self, "storage_min_trigger_threshold")
+
+    @property
     @pulumi.getter(name="storageSpace")
     def storage_space(self) -> int:
         """
@@ -5404,7 +7268,7 @@ class GetInstancesRdsMysqlInstanceResult(dict):
     @pulumi.getter(name="storageType")
     def storage_type(self) -> str:
         """
-        Instance storage type.
+        Instance storage type. The value is LocalSSD, indicating a local SSD disk.
         """
         return pulumi.get(self, "storage_type")
 
@@ -5479,6 +7343,50 @@ class GetInstancesRdsMysqlInstanceResult(dict):
         List of availability zones where each node of the instance is located.
         """
         return pulumi.get(self, "zone_ids")
+
+
+@pulumi.output_type
+class GetInstancesRdsMysqlInstanceAutoStorageScalingConfigResult(dict):
+    def __init__(__self__, *,
+                 enable_storage_auto_scale: bool,
+                 storage_threshold: int,
+                 storage_upper_bound: int):
+        """
+        :param bool enable_storage_auto_scale: Whether to enable the instance's auto - scaling function. Values:
+               true: Yes.
+               false: No. Description: When StorageConfig is used as a request parameter, if the value of EnableStorageAutoScale is false, the StorageThreshold and StorageUpperBound parameters do not need to be passed in.
+        :param int storage_threshold: The proportion of available storage space that triggers automatic expansion. The value range is 10 to 50, and the default value is 10, with the unit being %.
+        :param int storage_upper_bound: The upper limit of the storage space that can be automatically expanded. The lower limit of the value of this field is the instance storage space + 20GB; the upper limit of the value is the upper limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value range of different specifications, please refer to Product Specifications.
+        """
+        pulumi.set(__self__, "enable_storage_auto_scale", enable_storage_auto_scale)
+        pulumi.set(__self__, "storage_threshold", storage_threshold)
+        pulumi.set(__self__, "storage_upper_bound", storage_upper_bound)
+
+    @property
+    @pulumi.getter(name="enableStorageAutoScale")
+    def enable_storage_auto_scale(self) -> bool:
+        """
+        Whether to enable the instance's auto - scaling function. Values:
+        true: Yes.
+        false: No. Description: When StorageConfig is used as a request parameter, if the value of EnableStorageAutoScale is false, the StorageThreshold and StorageUpperBound parameters do not need to be passed in.
+        """
+        return pulumi.get(self, "enable_storage_auto_scale")
+
+    @property
+    @pulumi.getter(name="storageThreshold")
+    def storage_threshold(self) -> int:
+        """
+        The proportion of available storage space that triggers automatic expansion. The value range is 10 to 50, and the default value is 10, with the unit being %.
+        """
+        return pulumi.get(self, "storage_threshold")
+
+    @property
+    @pulumi.getter(name="storageUpperBound")
+    def storage_upper_bound(self) -> int:
+        """
+        The upper limit of the storage space that can be automatically expanded. The lower limit of the value of this field is the instance storage space + 20GB; the upper limit of the value is the upper limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value range of different specifications, please refer to Product Specifications.
+        """
+        return pulumi.get(self, "storage_upper_bound")
 
 
 @pulumi.output_type
@@ -6011,7 +7919,7 @@ class GetInstancesRdsMysqlInstanceNodeResult(dict):
         :param str instance_id: The id of the RDS instance.
         :param int memory: Memory size in GB.
         :param str node_id: Node ID.
-        :param str node_spec: General instance type, different from Custom instance type.
+        :param str node_spec: Primary node specification. For detailed information about the node specifications, please refer to Product Specifications.
         :param str node_status: Node state, value: aligned with instance state.
         :param str node_type: Node type. Value: Primary: Primary node.
                Secondary: Standby node.
@@ -6069,7 +7977,7 @@ class GetInstancesRdsMysqlInstanceNodeResult(dict):
     @pulumi.getter(name="nodeSpec")
     def node_spec(self) -> str:
         """
-        General instance type, different from Custom instance type.
+        Primary node specification. For detailed information about the node specifications, please refer to Product Specifications.
         """
         return pulumi.get(self, "node_spec")
 
@@ -6425,6 +8333,211 @@ class GetParameterTemplatesTemplateTemplateParamResult(dict):
 
 
 @pulumi.output_type
+class GetPlannedEventsPlannedEventResult(dict):
+    def __init__(__self__, *,
+                 business_impact: str,
+                 db_engine: str,
+                 event_action: str,
+                 event_id: str,
+                 event_name: str,
+                 event_type: str,
+                 instance_id: str,
+                 instance_name: str,
+                 max_delay_time: str,
+                 origin_begin_time: str,
+                 planned_begin_time: str,
+                 planned_end_time: str,
+                 planned_event_description: str,
+                 planned_event_reason: str,
+                 planned_switch_begin_time: str,
+                 planned_switch_end_time: str,
+                 region: str,
+                 status: str):
+        """
+        :param str business_impact: The business impact of the planned event.
+        :param str db_engine: The database engine of the planned event.
+        :param str event_action: The action of the planned event.
+        :param str event_id: The id of the planned event.
+        :param str event_name: The name of the planned event.
+        :param str event_type: The type of the planned event.
+        :param str instance_id: The id of the instance.
+        :param str instance_name: The name of the instance.
+        :param str max_delay_time: The latest postponable time. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+        :param str origin_begin_time: The initially set start time. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+        :param str planned_begin_time: The start time of the planned execution. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+        :param str planned_end_time: The end time of the planned execution. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+        :param str planned_event_description: Description information of the operation and maintenance event.
+        :param str planned_event_reason: The reasons for the occurrence of the event, which are provided to help you understand the reasons for the occurrence of unexpected events.
+        :param str planned_switch_begin_time: The start time of the planned switch. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+        :param str planned_switch_end_time: The end time of the planned switch. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+        :param str region: The region.
+        :param str status: The status of the planned event.
+        """
+        pulumi.set(__self__, "business_impact", business_impact)
+        pulumi.set(__self__, "db_engine", db_engine)
+        pulumi.set(__self__, "event_action", event_action)
+        pulumi.set(__self__, "event_id", event_id)
+        pulumi.set(__self__, "event_name", event_name)
+        pulumi.set(__self__, "event_type", event_type)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "instance_name", instance_name)
+        pulumi.set(__self__, "max_delay_time", max_delay_time)
+        pulumi.set(__self__, "origin_begin_time", origin_begin_time)
+        pulumi.set(__self__, "planned_begin_time", planned_begin_time)
+        pulumi.set(__self__, "planned_end_time", planned_end_time)
+        pulumi.set(__self__, "planned_event_description", planned_event_description)
+        pulumi.set(__self__, "planned_event_reason", planned_event_reason)
+        pulumi.set(__self__, "planned_switch_begin_time", planned_switch_begin_time)
+        pulumi.set(__self__, "planned_switch_end_time", planned_switch_end_time)
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter(name="businessImpact")
+    def business_impact(self) -> str:
+        """
+        The business impact of the planned event.
+        """
+        return pulumi.get(self, "business_impact")
+
+    @property
+    @pulumi.getter(name="dbEngine")
+    def db_engine(self) -> str:
+        """
+        The database engine of the planned event.
+        """
+        return pulumi.get(self, "db_engine")
+
+    @property
+    @pulumi.getter(name="eventAction")
+    def event_action(self) -> str:
+        """
+        The action of the planned event.
+        """
+        return pulumi.get(self, "event_action")
+
+    @property
+    @pulumi.getter(name="eventId")
+    def event_id(self) -> str:
+        """
+        The id of the planned event.
+        """
+        return pulumi.get(self, "event_id")
+
+    @property
+    @pulumi.getter(name="eventName")
+    def event_name(self) -> str:
+        """
+        The name of the planned event.
+        """
+        return pulumi.get(self, "event_name")
+
+    @property
+    @pulumi.getter(name="eventType")
+    def event_type(self) -> str:
+        """
+        The type of the planned event.
+        """
+        return pulumi.get(self, "event_type")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        The id of the instance.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="instanceName")
+    def instance_name(self) -> str:
+        """
+        The name of the instance.
+        """
+        return pulumi.get(self, "instance_name")
+
+    @property
+    @pulumi.getter(name="maxDelayTime")
+    def max_delay_time(self) -> str:
+        """
+        The latest postponable time. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+        """
+        return pulumi.get(self, "max_delay_time")
+
+    @property
+    @pulumi.getter(name="originBeginTime")
+    def origin_begin_time(self) -> str:
+        """
+        The initially set start time. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+        """
+        return pulumi.get(self, "origin_begin_time")
+
+    @property
+    @pulumi.getter(name="plannedBeginTime")
+    def planned_begin_time(self) -> str:
+        """
+        The start time of the planned execution. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+        """
+        return pulumi.get(self, "planned_begin_time")
+
+    @property
+    @pulumi.getter(name="plannedEndTime")
+    def planned_end_time(self) -> str:
+        """
+        The end time of the planned execution. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+        """
+        return pulumi.get(self, "planned_end_time")
+
+    @property
+    @pulumi.getter(name="plannedEventDescription")
+    def planned_event_description(self) -> str:
+        """
+        Description information of the operation and maintenance event.
+        """
+        return pulumi.get(self, "planned_event_description")
+
+    @property
+    @pulumi.getter(name="plannedEventReason")
+    def planned_event_reason(self) -> str:
+        """
+        The reasons for the occurrence of the event, which are provided to help you understand the reasons for the occurrence of unexpected events.
+        """
+        return pulumi.get(self, "planned_event_reason")
+
+    @property
+    @pulumi.getter(name="plannedSwitchBeginTime")
+    def planned_switch_begin_time(self) -> str:
+        """
+        The start time of the planned switch. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+        """
+        return pulumi.get(self, "planned_switch_begin_time")
+
+    @property
+    @pulumi.getter(name="plannedSwitchEndTime")
+    def planned_switch_end_time(self) -> str:
+        """
+        The end time of the planned switch. The format is yyyy-MM-ddTHH:mm:ssZ (UTC time).
+        """
+        return pulumi.get(self, "planned_switch_end_time")
+
+    @property
+    @pulumi.getter
+    def region(self) -> str:
+        """
+        The region.
+        """
+        return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of the planned event.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
 class GetRegionsRegionResult(dict):
     def __init__(__self__, *,
                  region_id: str,
@@ -6451,6 +8564,485 @@ class GetRegionsRegionResult(dict):
         The name of region.
         """
         return pulumi.get(self, "region_name")
+
+
+@pulumi.output_type
+class GetTasksDataResult(dict):
+    def __init__(__self__, *,
+                 create_time: str,
+                 finish_time: str,
+                 progress: int,
+                 scheduled_execute_end_time: str,
+                 scheduled_switch_end_time: str,
+                 scheduled_switch_start_time: str,
+                 start_time: str,
+                 task_action: str,
+                 task_category: str,
+                 task_desc: str,
+                 task_details: Sequence['outputs.GetTasksDataTaskDetailResult'],
+                 task_id: str,
+                 task_params: str,
+                 task_progresses: Sequence['outputs.GetTasksDataTaskProgressResult'],
+                 task_status: str):
+        """
+        :param str create_time: The creation time of the task.
+        :param str finish_time: The completion time of the task.
+        :param int progress: Task progress. The unit is percentage. Description: Only tasks with a task status of In Progress, that is, tasks with a TaskStatus value of Running, will return the task progress.
+        :param str scheduled_execute_end_time: The deadline for the planned startup. The time format is yyyy-MM-ddTHH:mm:ssZ (UTC time). Description: This field will only be returned for tasks in the "Waiting to Start", "Waiting to Execute", or "Waiting to Switch" states.
+        :param str scheduled_switch_end_time: The scheduled end time for the switch. The time format is yyyy-MM-ddTHH:mm:ssZ (UTC time). Description: This field will only be returned for tasks in the "Waiting to Start", "Waiting to Execute", or "Waiting to Switch" states.
+        :param str scheduled_switch_start_time: The start time of the scheduled switch. The time format is yyyy-MM-ddTHH:mm:ssZ (UTC time). Description: This field is returned only for tasks in the "Waiting to Start", "Waiting to Execute", or "Waiting to Switch" state.
+        :param str start_time: The start time of the task.
+        :param str task_action: Task name.
+        :param str task_category: Task Category. The values are as shown in the following list, and multiple values can be selected: BackupRecoveryManagement: Backup and Recovery Management. DatabaseAdminManagement: Database Administration Management. DatabaseProxy: Database Proxy. HighAvailability: High Availability. InstanceAttribute: Instance Attribute. InstanceManagement: Instance Management. NetworkManagement: Network Management. SecurityManagement: Security Management. SystemMaintainManagement: System Operation and Maintenance Management. VersionUpgrade: Version Upgrade.
+        :param str task_desc: The description of the task.
+        :param Sequence['GetTasksDataTaskDetailArgs'] task_details: Detailed information of the task.
+        :param str task_id: Task ID. Description: For the two groups of parameters, TaskId and task time (CreationStartTime and CreationEndTime), one of them must be selected.
+        :param str task_params: Task parameters.
+        :param Sequence['GetTasksDataTaskProgressArgs'] task_progresses: Progress details.
+        :param str task_status: Task status. The values are as shown in the following list, and multiple values can be selected: WaitSwitch: Waiting for switching. WaitStart: Waiting for execution. Canceled: Canceled. Stopped: Terminated. Running_BeforeSwitch: Running (before switching). Timeout: Execution Timeout. Success: Execution Success. Failed: Execution Failed. Running: In Execution. Stopping: In Termination.
+        """
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "finish_time", finish_time)
+        pulumi.set(__self__, "progress", progress)
+        pulumi.set(__self__, "scheduled_execute_end_time", scheduled_execute_end_time)
+        pulumi.set(__self__, "scheduled_switch_end_time", scheduled_switch_end_time)
+        pulumi.set(__self__, "scheduled_switch_start_time", scheduled_switch_start_time)
+        pulumi.set(__self__, "start_time", start_time)
+        pulumi.set(__self__, "task_action", task_action)
+        pulumi.set(__self__, "task_category", task_category)
+        pulumi.set(__self__, "task_desc", task_desc)
+        pulumi.set(__self__, "task_details", task_details)
+        pulumi.set(__self__, "task_id", task_id)
+        pulumi.set(__self__, "task_params", task_params)
+        pulumi.set(__self__, "task_progresses", task_progresses)
+        pulumi.set(__self__, "task_status", task_status)
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        The creation time of the task.
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter(name="finishTime")
+    def finish_time(self) -> str:
+        """
+        The completion time of the task.
+        """
+        return pulumi.get(self, "finish_time")
+
+    @property
+    @pulumi.getter
+    def progress(self) -> int:
+        """
+        Task progress. The unit is percentage. Description: Only tasks with a task status of In Progress, that is, tasks with a TaskStatus value of Running, will return the task progress.
+        """
+        return pulumi.get(self, "progress")
+
+    @property
+    @pulumi.getter(name="scheduledExecuteEndTime")
+    def scheduled_execute_end_time(self) -> str:
+        """
+        The deadline for the planned startup. The time format is yyyy-MM-ddTHH:mm:ssZ (UTC time). Description: This field will only be returned for tasks in the "Waiting to Start", "Waiting to Execute", or "Waiting to Switch" states.
+        """
+        return pulumi.get(self, "scheduled_execute_end_time")
+
+    @property
+    @pulumi.getter(name="scheduledSwitchEndTime")
+    def scheduled_switch_end_time(self) -> str:
+        """
+        The scheduled end time for the switch. The time format is yyyy-MM-ddTHH:mm:ssZ (UTC time). Description: This field will only be returned for tasks in the "Waiting to Start", "Waiting to Execute", or "Waiting to Switch" states.
+        """
+        return pulumi.get(self, "scheduled_switch_end_time")
+
+    @property
+    @pulumi.getter(name="scheduledSwitchStartTime")
+    def scheduled_switch_start_time(self) -> str:
+        """
+        The start time of the scheduled switch. The time format is yyyy-MM-ddTHH:mm:ssZ (UTC time). Description: This field is returned only for tasks in the "Waiting to Start", "Waiting to Execute", or "Waiting to Switch" state.
+        """
+        return pulumi.get(self, "scheduled_switch_start_time")
+
+    @property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> str:
+        """
+        The start time of the task.
+        """
+        return pulumi.get(self, "start_time")
+
+    @property
+    @pulumi.getter(name="taskAction")
+    def task_action(self) -> str:
+        """
+        Task name.
+        """
+        return pulumi.get(self, "task_action")
+
+    @property
+    @pulumi.getter(name="taskCategory")
+    def task_category(self) -> str:
+        """
+        Task Category. The values are as shown in the following list, and multiple values can be selected: BackupRecoveryManagement: Backup and Recovery Management. DatabaseAdminManagement: Database Administration Management. DatabaseProxy: Database Proxy. HighAvailability: High Availability. InstanceAttribute: Instance Attribute. InstanceManagement: Instance Management. NetworkManagement: Network Management. SecurityManagement: Security Management. SystemMaintainManagement: System Operation and Maintenance Management. VersionUpgrade: Version Upgrade.
+        """
+        return pulumi.get(self, "task_category")
+
+    @property
+    @pulumi.getter(name="taskDesc")
+    def task_desc(self) -> str:
+        """
+        The description of the task.
+        """
+        return pulumi.get(self, "task_desc")
+
+    @property
+    @pulumi.getter(name="taskDetails")
+    def task_details(self) -> Sequence['outputs.GetTasksDataTaskDetailResult']:
+        """
+        Detailed information of the task.
+        """
+        return pulumi.get(self, "task_details")
+
+    @property
+    @pulumi.getter(name="taskId")
+    def task_id(self) -> str:
+        """
+        Task ID. Description: For the two groups of parameters, TaskId and task time (CreationStartTime and CreationEndTime), one of them must be selected.
+        """
+        return pulumi.get(self, "task_id")
+
+    @property
+    @pulumi.getter(name="taskParams")
+    def task_params(self) -> str:
+        """
+        Task parameters.
+        """
+        return pulumi.get(self, "task_params")
+
+    @property
+    @pulumi.getter(name="taskProgresses")
+    def task_progresses(self) -> Sequence['outputs.GetTasksDataTaskProgressResult']:
+        """
+        Progress details.
+        """
+        return pulumi.get(self, "task_progresses")
+
+    @property
+    @pulumi.getter(name="taskStatus")
+    def task_status(self) -> str:
+        """
+        Task status. The values are as shown in the following list, and multiple values can be selected: WaitSwitch: Waiting for switching. WaitStart: Waiting for execution. Canceled: Canceled. Stopped: Terminated. Running_BeforeSwitch: Running (before switching). Timeout: Execution Timeout. Success: Execution Success. Failed: Execution Failed. Running: In Execution. Stopping: In Termination.
+        """
+        return pulumi.get(self, "task_status")
+
+
+@pulumi.output_type
+class GetTasksDataTaskDetailResult(dict):
+    def __init__(__self__, *,
+                 check_item_log: str,
+                 check_items: Sequence['outputs.GetTasksDataTaskDetailCheckItemResult'],
+                 task_infos: Sequence['outputs.GetTasksDataTaskDetailTaskInfoResult']):
+        """
+        :param str check_item_log: The log of inspection items for the instance major version upgrade.
+        :param Sequence['GetTasksDataTaskDetailCheckItemArgs'] check_items: Check results for major version upgrade.
+        :param Sequence['GetTasksDataTaskDetailTaskInfoArgs'] task_infos: Details of the task.
+        """
+        pulumi.set(__self__, "check_item_log", check_item_log)
+        pulumi.set(__self__, "check_items", check_items)
+        pulumi.set(__self__, "task_infos", task_infos)
+
+    @property
+    @pulumi.getter(name="checkItemLog")
+    def check_item_log(self) -> str:
+        """
+        The log of inspection items for the instance major version upgrade.
+        """
+        return pulumi.get(self, "check_item_log")
+
+    @property
+    @pulumi.getter(name="checkItems")
+    def check_items(self) -> Sequence['outputs.GetTasksDataTaskDetailCheckItemResult']:
+        """
+        Check results for major version upgrade.
+        """
+        return pulumi.get(self, "check_items")
+
+    @property
+    @pulumi.getter(name="taskInfos")
+    def task_infos(self) -> Sequence['outputs.GetTasksDataTaskDetailTaskInfoResult']:
+        """
+        Details of the task.
+        """
+        return pulumi.get(self, "task_infos")
+
+
+@pulumi.output_type
+class GetTasksDataTaskDetailCheckItemResult(dict):
+    def __init__(__self__, *,
+                 check_details: Sequence['outputs.GetTasksDataTaskDetailCheckItemCheckDetailResult'],
+                 description: str,
+                 item_name: str,
+                 risk_level: str):
+        """
+        :param Sequence['GetTasksDataTaskDetailCheckItemCheckDetailArgs'] check_details: Details of the failed check items.
+        :param str description: The description of the check item.
+        :param str item_name: The name of the check item.
+        :param str risk_level: The risk level of the failed check items. Values:
+               Notice: Attention.
+               Warning: Warning.
+               Error: Error.
+        """
+        pulumi.set(__self__, "check_details", check_details)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "item_name", item_name)
+        pulumi.set(__self__, "risk_level", risk_level)
+
+    @property
+    @pulumi.getter(name="checkDetails")
+    def check_details(self) -> Sequence['outputs.GetTasksDataTaskDetailCheckItemCheckDetailResult']:
+        """
+        Details of the failed check items.
+        """
+        return pulumi.get(self, "check_details")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the check item.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="itemName")
+    def item_name(self) -> str:
+        """
+        The name of the check item.
+        """
+        return pulumi.get(self, "item_name")
+
+    @property
+    @pulumi.getter(name="riskLevel")
+    def risk_level(self) -> str:
+        """
+        The risk level of the failed check items. Values:
+        Notice: Attention.
+        Warning: Warning.
+        Error: Error.
+        """
+        return pulumi.get(self, "risk_level")
+
+
+@pulumi.output_type
+class GetTasksDataTaskDetailCheckItemCheckDetailResult(dict):
+    def __init__(__self__, *,
+                 impact: str,
+                 issue: str):
+        """
+        :param str impact: The impact of the issue that caused the failure of the check item after the upgrade.
+        :param str issue: Problems that caused the failure to pass the check items.
+        """
+        pulumi.set(__self__, "impact", impact)
+        pulumi.set(__self__, "issue", issue)
+
+    @property
+    @pulumi.getter
+    def impact(self) -> str:
+        """
+        The impact of the issue that caused the failure of the check item after the upgrade.
+        """
+        return pulumi.get(self, "impact")
+
+    @property
+    @pulumi.getter
+    def issue(self) -> str:
+        """
+        Problems that caused the failure to pass the check items.
+        """
+        return pulumi.get(self, "issue")
+
+
+@pulumi.output_type
+class GetTasksDataTaskDetailTaskInfoResult(dict):
+    def __init__(__self__, *,
+                 create_time: str,
+                 finish_time: str,
+                 progress: int,
+                 related_instance_infos: Sequence['outputs.GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoResult']):
+        """
+        :param str create_time: The creation time of the task.
+        :param str finish_time: The completion time of the task.
+        :param int progress: Task progress. The unit is percentage. Description: Only tasks with a task status of In Progress, that is, tasks with a TaskStatus value of Running, will return the task progress.
+        :param Sequence['GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoArgs'] related_instance_infos: Instances related to the task.
+        """
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "finish_time", finish_time)
+        pulumi.set(__self__, "progress", progress)
+        pulumi.set(__self__, "related_instance_infos", related_instance_infos)
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        The creation time of the task.
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter(name="finishTime")
+    def finish_time(self) -> str:
+        """
+        The completion time of the task.
+        """
+        return pulumi.get(self, "finish_time")
+
+    @property
+    @pulumi.getter
+    def progress(self) -> int:
+        """
+        Task progress. The unit is percentage. Description: Only tasks with a task status of In Progress, that is, tasks with a TaskStatus value of Running, will return the task progress.
+        """
+        return pulumi.get(self, "progress")
+
+    @property
+    @pulumi.getter(name="relatedInstanceInfos")
+    def related_instance_infos(self) -> Sequence['outputs.GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoResult']:
+        """
+        Instances related to the task.
+        """
+        return pulumi.get(self, "related_instance_infos")
+
+
+@pulumi.output_type
+class GetTasksDataTaskDetailTaskInfoRelatedInstanceInfoResult(dict):
+    def __init__(__self__, *,
+                 instance_id: str):
+        """
+        :param str instance_id: Instance ID.
+        """
+        pulumi.set(__self__, "instance_id", instance_id)
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        Instance ID.
+        """
+        return pulumi.get(self, "instance_id")
+
+
+@pulumi.output_type
+class GetTasksDataTaskProgressResult(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 step_extra_infos: Sequence['outputs.GetTasksDataTaskProgressStepExtraInfoResult'],
+                 step_status: str):
+        """
+        :param str name: Step Name. Values:
+               InstanceInitialization: Task initialization.
+               InstanceRecoveryPreparation Instance recovery preparation.
+               DataBackupImport: Cold backup import.
+               LogBackupBinlogAdd: Binlog playback.
+               TaskSuccessful: Task success.
+        :param Sequence['GetTasksDataTaskProgressStepExtraInfoArgs'] step_extra_infos: Specific information of the step.
+        :param str step_status: Step status. Values:
+               Running: In progress.
+               Success: Successful.
+               Failed: Failed.
+               Unexecuted: Not executed.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "step_extra_infos", step_extra_infos)
+        pulumi.set(__self__, "step_status", step_status)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Step Name. Values:
+        InstanceInitialization: Task initialization.
+        InstanceRecoveryPreparation Instance recovery preparation.
+        DataBackupImport: Cold backup import.
+        LogBackupBinlogAdd: Binlog playback.
+        TaskSuccessful: Task success.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="stepExtraInfos")
+    def step_extra_infos(self) -> Sequence['outputs.GetTasksDataTaskProgressStepExtraInfoResult']:
+        """
+        Specific information of the step.
+        """
+        return pulumi.get(self, "step_extra_infos")
+
+    @property
+    @pulumi.getter(name="stepStatus")
+    def step_status(self) -> str:
+        """
+        Step status. Values:
+        Running: In progress.
+        Success: Successful.
+        Failed: Failed.
+        Unexecuted: Not executed.
+        """
+        return pulumi.get(self, "step_status")
+
+
+@pulumi.output_type
+class GetTasksDataTaskProgressStepExtraInfoResult(dict):
+    def __init__(__self__, *,
+                 type: str,
+                 unit: str,
+                 value: float):
+        """
+        :param str type: Current stage. CostTime: The time taken for the current stage.
+               CurDataSize: The amount of data imported currently.
+               CurBinlog: The number of Binlog files being replayed currently.
+               RemainCostTime: The remaining time taken.
+               RemainDataSize: The remaining amount of data to be imported. RemainBinlog: The number of Binlog files remaining for playback.
+        :param str unit: Unit. Values:
+               MS: Milliseconds.
+               Bytes: Bytes.
+               Files: Number of (files).
+        :param float value: The specific value corresponding to the Type field.
+        """
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "unit", unit)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        Current stage. CostTime: The time taken for the current stage.
+        CurDataSize: The amount of data imported currently.
+        CurBinlog: The number of Binlog files being replayed currently.
+        RemainCostTime: The remaining time taken.
+        RemainDataSize: The remaining amount of data to be imported. RemainBinlog: The number of Binlog files remaining for playback.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def unit(self) -> str:
+        """
+        Unit. Values:
+        MS: Milliseconds.
+        Bytes: Bytes.
+        Files: Number of (files).
+        """
+        return pulumi.get(self, "unit")
+
+    @property
+    @pulumi.getter
+    def value(self) -> float:
+        """
+        The specific value corresponding to the Type field.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type

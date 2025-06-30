@@ -93,7 +93,7 @@ namespace Pulumi.Volcengine.Vpc
         public Output<string> NextHopId { get; private set; } = null!;
 
         /// <summary>
-        /// The type of the next hop, Optional choice contains `Instance`, `NetworkInterface`, `NatGW`, `VpnGW`, `TransitRouter`.
+        /// The type of the next hop, Optional choice contains `Instance`, `HaVip`, `NetworkInterface`, `NatGW`, `VpnGW`, `TransitRouter`.
         /// </summary>
         [Output("nextHopType")]
         public Output<string> NextHopType { get; private set; } = null!;
@@ -188,7 +188,7 @@ namespace Pulumi.Volcengine.Vpc
         public Input<string> NextHopId { get; set; } = null!;
 
         /// <summary>
-        /// The type of the next hop, Optional choice contains `Instance`, `NetworkInterface`, `NatGW`, `VpnGW`, `TransitRouter`.
+        /// The type of the next hop, Optional choice contains `Instance`, `HaVip`, `NetworkInterface`, `NatGW`, `VpnGW`, `TransitRouter`.
         /// </summary>
         [Input("nextHopType", required: true)]
         public Input<string> NextHopType { get; set; } = null!;
@@ -232,7 +232,7 @@ namespace Pulumi.Volcengine.Vpc
         public Input<string>? NextHopId { get; set; }
 
         /// <summary>
-        /// The type of the next hop, Optional choice contains `Instance`, `NetworkInterface`, `NatGW`, `VpnGW`, `TransitRouter`.
+        /// The type of the next hop, Optional choice contains `Instance`, `HaVip`, `NetworkInterface`, `NatGW`, `VpnGW`, `TransitRouter`.
         /// </summary>
         [Input("nextHopType")]
         public Input<string>? NextHopType { get; set; }

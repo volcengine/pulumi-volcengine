@@ -49,6 +49,12 @@ namespace Pulumi.Volcengine.Redis
     public partial class AllowList : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// The type of the whitelist.
+        /// </summary>
+        [Output("allowListCategory")]
+        public Output<string> AllowListCategory { get; private set; } = null!;
+
+        /// <summary>
         /// Description of allow list.
         /// </summary>
         [Output("allowListDesc")]
@@ -95,6 +101,18 @@ namespace Pulumi.Volcengine.Redis
         /// </summary>
         [Output("associatedInstances")]
         public Output<ImmutableArray<Outputs.AllowListAssociatedInstance>> AssociatedInstances { get; private set; } = null!;
+
+        /// <summary>
+        /// The name of the project to which the white list belongs.
+        /// </summary>
+        [Output("projectName")]
+        public Output<string> ProjectName { get; private set; } = null!;
+
+        /// <summary>
+        /// The current whitelist is the list of security group information that has been associated.
+        /// </summary>
+        [Output("securityGroupBindInfos")]
+        public Output<ImmutableArray<Outputs.AllowListSecurityGroupBindInfo>> SecurityGroupBindInfos { get; private set; } = null!;
 
 
         /// <summary>
@@ -176,6 +194,12 @@ namespace Pulumi.Volcengine.Redis
     public sealed class AllowListState : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The type of the whitelist.
+        /// </summary>
+        [Input("allowListCategory")]
+        public Input<string>? AllowListCategory { get; set; }
+
+        /// <summary>
         /// Description of allow list.
         /// </summary>
         [Input("allowListDesc")]
@@ -233,6 +257,24 @@ namespace Pulumi.Volcengine.Redis
         {
             get => _associatedInstances ?? (_associatedInstances = new InputList<Inputs.AllowListAssociatedInstanceGetArgs>());
             set => _associatedInstances = value;
+        }
+
+        /// <summary>
+        /// The name of the project to which the white list belongs.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        [Input("securityGroupBindInfos")]
+        private InputList<Inputs.AllowListSecurityGroupBindInfoGetArgs>? _securityGroupBindInfos;
+
+        /// <summary>
+        /// The current whitelist is the list of security group information that has been associated.
+        /// </summary>
+        public InputList<Inputs.AllowListSecurityGroupBindInfoGetArgs> SecurityGroupBindInfos
+        {
+            get => _securityGroupBindInfos ?? (_securityGroupBindInfos = new InputList<Inputs.AllowListSecurityGroupBindInfoGetArgs>());
+            set => _securityGroupBindInfos = value;
         }
 
         public AllowListState()

@@ -25,6 +25,10 @@ namespace Pulumi.Volcengine.Cr.Outputs
         /// The ProjectName of the CrNamespace.
         /// </summary>
         public readonly string Project;
+        /// <summary>
+        /// The default access level of repository. Valid values: `Private`, `Public`.
+        /// </summary>
+        public readonly string RepositoryDefaultAccessLevel;
 
         [OutputConstructor]
         private GetNamespacesNamespaceResult(
@@ -32,11 +36,14 @@ namespace Pulumi.Volcengine.Cr.Outputs
 
             string name,
 
-            string project)
+            string project,
+
+            string repositoryDefaultAccessLevel)
         {
             CreateTime = createTime;
             Name = name;
             Project = project;
+            RepositoryDefaultAccessLevel = repositoryDefaultAccessLevel;
         }
     }
 }

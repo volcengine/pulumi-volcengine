@@ -42,7 +42,10 @@ import * as utilities from "../utilities";
  *     port: 6381,
  *     projectName: "default",
  * });
- * const fooBackup = new volcengine.redis.Backup("fooBackup", {instanceId: fooInstance.id});
+ * const fooBackup = new volcengine.redis.Backup("fooBackup", {
+ *     instanceId: fooInstance.id,
+ *     backupPointName: "acc-test-tf-redis-backup",
+ * });
  * ```
  *
  * ## Import
@@ -82,9 +85,17 @@ export class Backup extends pulumi.CustomResource {
     }
 
     /**
+     * The download address information of the backup file to which the current backup point belongs.
+     */
+    public /*out*/ readonly backupPointDownloadUrls!: pulumi.Output<outputs.redis.BackupBackupPointDownloadUrl[]>;
+    /**
      * The id of backup point.
      */
     public /*out*/ readonly backupPointId!: pulumi.Output<string>;
+    /**
+     * Set the backup name for the manually created backup.
+     */
+    public readonly backupPointName!: pulumi.Output<string>;
     /**
      * Backup strategy.
      */
@@ -98,13 +109,17 @@ export class Backup extends pulumi.CustomResource {
      */
     public /*out*/ readonly endTime!: pulumi.Output<string>;
     /**
-     * Information of instance.
-     */
-    public /*out*/ readonly instanceDetails!: pulumi.Output<outputs.redis.BackupInstanceDetail[]>;
-    /**
      * Id of instance to create backup.
      */
     public readonly instanceId!: pulumi.Output<string>;
+    /**
+     * Information of instance.
+     */
+    public /*out*/ readonly instanceInfos!: pulumi.Output<outputs.redis.BackupInstanceInfo[]>;
+    /**
+     * Project name of instance.
+     */
+    public /*out*/ readonly projectName!: pulumi.Output<string>;
     /**
      * Size in MiB.
      */
@@ -117,6 +132,10 @@ export class Backup extends pulumi.CustomResource {
      * Status of backup (Creating/Available/Unavailable/Deleting).
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
+    /**
+     * Backup retention days.
+     */
+    public /*out*/ readonly ttl!: pulumi.Output<number>;
 
     /**
      * Create a Backup resource with the given unique name, arguments, and options.
@@ -131,29 +150,37 @@ export class Backup extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as BackupState | undefined;
+            resourceInputs["backupPointDownloadUrls"] = state ? state.backupPointDownloadUrls : undefined;
             resourceInputs["backupPointId"] = state ? state.backupPointId : undefined;
+            resourceInputs["backupPointName"] = state ? state.backupPointName : undefined;
             resourceInputs["backupStrategy"] = state ? state.backupStrategy : undefined;
             resourceInputs["backupType"] = state ? state.backupType : undefined;
             resourceInputs["endTime"] = state ? state.endTime : undefined;
-            resourceInputs["instanceDetails"] = state ? state.instanceDetails : undefined;
             resourceInputs["instanceId"] = state ? state.instanceId : undefined;
+            resourceInputs["instanceInfos"] = state ? state.instanceInfos : undefined;
+            resourceInputs["projectName"] = state ? state.projectName : undefined;
             resourceInputs["size"] = state ? state.size : undefined;
             resourceInputs["startTime"] = state ? state.startTime : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["ttl"] = state ? state.ttl : undefined;
         } else {
             const args = argsOrState as BackupArgs | undefined;
             if ((!args || args.instanceId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'instanceId'");
             }
+            resourceInputs["backupPointName"] = args ? args.backupPointName : undefined;
             resourceInputs["instanceId"] = args ? args.instanceId : undefined;
+            resourceInputs["backupPointDownloadUrls"] = undefined /*out*/;
             resourceInputs["backupPointId"] = undefined /*out*/;
             resourceInputs["backupStrategy"] = undefined /*out*/;
             resourceInputs["backupType"] = undefined /*out*/;
             resourceInputs["endTime"] = undefined /*out*/;
-            resourceInputs["instanceDetails"] = undefined /*out*/;
+            resourceInputs["instanceInfos"] = undefined /*out*/;
+            resourceInputs["projectName"] = undefined /*out*/;
             resourceInputs["size"] = undefined /*out*/;
             resourceInputs["startTime"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
+            resourceInputs["ttl"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Backup.__pulumiType, name, resourceInputs, opts);
@@ -165,9 +192,17 @@ export class Backup extends pulumi.CustomResource {
  */
 export interface BackupState {
     /**
+     * The download address information of the backup file to which the current backup point belongs.
+     */
+    backupPointDownloadUrls?: pulumi.Input<pulumi.Input<inputs.redis.BackupBackupPointDownloadUrl>[]>;
+    /**
      * The id of backup point.
      */
     backupPointId?: pulumi.Input<string>;
+    /**
+     * Set the backup name for the manually created backup.
+     */
+    backupPointName?: pulumi.Input<string>;
     /**
      * Backup strategy.
      */
@@ -181,13 +216,17 @@ export interface BackupState {
      */
     endTime?: pulumi.Input<string>;
     /**
-     * Information of instance.
-     */
-    instanceDetails?: pulumi.Input<pulumi.Input<inputs.redis.BackupInstanceDetail>[]>;
-    /**
      * Id of instance to create backup.
      */
     instanceId?: pulumi.Input<string>;
+    /**
+     * Information of instance.
+     */
+    instanceInfos?: pulumi.Input<pulumi.Input<inputs.redis.BackupInstanceInfo>[]>;
+    /**
+     * Project name of instance.
+     */
+    projectName?: pulumi.Input<string>;
     /**
      * Size in MiB.
      */
@@ -200,12 +239,20 @@ export interface BackupState {
      * Status of backup (Creating/Available/Unavailable/Deleting).
      */
     status?: pulumi.Input<string>;
+    /**
+     * Backup retention days.
+     */
+    ttl?: pulumi.Input<number>;
 }
 
 /**
  * The set of arguments for constructing a Backup resource.
  */
 export interface BackupArgs {
+    /**
+     * Set the backup name for the manually created backup.
+     */
+    backupPointName?: pulumi.Input<string>;
     /**
      * Id of instance to create backup.
      */

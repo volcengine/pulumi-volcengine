@@ -55,6 +55,11 @@ export const getCens: typeof import("./getCens").getCens = null as any;
 export const getCensOutput: typeof import("./getCens").getCensOutput = null as any;
 utilities.lazyLoad(exports, ["getCens","getCensOutput"], () => require("./getCens"));
 
+export { GetGrantInstancesArgs, GetGrantInstancesResult, GetGrantInstancesOutputArgs } from "./getGrantInstances";
+export const getGrantInstances: typeof import("./getGrantInstances").getGrantInstances = null as any;
+export const getGrantInstancesOutput: typeof import("./getGrantInstances").getGrantInstancesOutput = null as any;
+utilities.lazyLoad(exports, ["getGrantInstances","getGrantInstancesOutput"], () => require("./getGrantInstances"));
+
 export { GetInterRegionBandwidthsArgs, GetInterRegionBandwidthsResult, GetInterRegionBandwidthsOutputArgs } from "./getInterRegionBandwidths";
 export const getInterRegionBandwidths: typeof import("./getInterRegionBandwidths").getInterRegionBandwidths = null as any;
 export const getInterRegionBandwidthsOutput: typeof import("./getInterRegionBandwidths").getInterRegionBandwidthsOutput = null as any;
@@ -74,6 +79,11 @@ export { GrantInstanceArgs, GrantInstanceState } from "./grantInstance";
 export type GrantInstance = import("./grantInstance").GrantInstance;
 export const GrantInstance: typeof import("./grantInstance").GrantInstance = null as any;
 utilities.lazyLoad(exports, ["GrantInstance"], () => require("./grantInstance"));
+
+export { GrantInstancesArgs, GrantInstancesResult, GrantInstancesOutputArgs } from "./grantInstances";
+export const grantInstances: typeof import("./grantInstances").grantInstances = null as any;
+export const grantInstancesOutput: typeof import("./grantInstances").grantInstancesOutput = null as any;
+utilities.lazyLoad(exports, ["grantInstances","grantInstancesOutput"], () => require("./grantInstances"));
 
 export { InterRegionBandwidthArgs, InterRegionBandwidthState } from "./interRegionBandwidth";
 export type InterRegionBandwidth = import("./interRegionBandwidth").InterRegionBandwidth;

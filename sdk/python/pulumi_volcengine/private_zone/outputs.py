@@ -11,29 +11,73 @@ from .. import _utilities
 from . import outputs
 
 __all__ = [
+    'PrivateZoneTag',
     'PrivateZoneVpc',
     'PrivateZonesPrivateZoneResult',
     'PrivateZonesPrivateZoneBindVpcResult',
+    'PrivateZonesPrivateZoneTagResult',
+    'PrivateZonesTagFilterResult',
     'RecordSetsRecordSetResult',
     'RecordsRecordResult',
     'ResolverEndpointIpConfig',
+    'ResolverEndpointTag',
     'ResolverEndpointsEndpointResult',
     'ResolverEndpointsEndpointIpConfigResult',
+    'ResolverEndpointsEndpointTagResult',
+    'ResolverEndpointsTagFilterResult',
     'ResolverRuleForwardIp',
+    'ResolverRuleTag',
     'ResolverRuleVpc',
     'ResolverRulesRuleResult',
     'ResolverRulesRuleBindVpcResult',
     'ResolverRulesRuleForwardIpResult',
+    'ResolverRulesRuleTagResult',
+    'ResolverRulesTagFilterResult',
     'GetPrivateZonesPrivateZoneResult',
     'GetPrivateZonesPrivateZoneBindVpcResult',
+    'GetPrivateZonesPrivateZoneTagResult',
+    'GetPrivateZonesTagFilterResult',
     'GetRecordSetsRecordSetResult',
     'GetRecordsRecordResult',
     'GetResolverEndpointsEndpointResult',
     'GetResolverEndpointsEndpointIpConfigResult',
+    'GetResolverEndpointsEndpointTagResult',
+    'GetResolverEndpointsTagFilterResult',
     'GetResolverRulesRuleResult',
     'GetResolverRulesRuleBindVpcResult',
     'GetResolverRulesRuleForwardIpResult',
+    'GetResolverRulesRuleTagResult',
+    'GetResolverRulesTagFilterResult',
 ]
+
+@pulumi.output_type
+class PrivateZoneTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
 
 @pulumi.output_type
 class PrivateZoneVpc(dict):
@@ -90,10 +134,12 @@ class PrivateZonesPrivateZoneResult(dict):
                  id: str,
                  last_operator: str,
                  line_mode: int,
+                 project_name: str,
                  record_count: int,
                  recursion_mode: bool,
                  regions: Sequence[str],
                  remark: str,
+                 tags: Sequence['outputs.PrivateZonesPrivateZoneTagResult'],
                  updated_at: str,
                  zid: int,
                  zone_name: str):
@@ -103,10 +149,12 @@ class PrivateZonesPrivateZoneResult(dict):
         :param str id: The id of the private zone.
         :param str last_operator: The account id of the last operator who created the private zone.
         :param int line_mode: The line mode of Private Zone, specified whether the intelligent mode and the load balance function is enabled.
+        :param str project_name: The project name of the private zone.
         :param int record_count: The record count of the private zone.
         :param bool recursion_mode: Whether the recursion mode of Private Zone is enabled.
         :param Sequence[str] regions: The region of Private Zone.
         :param str remark: The remark of the private zone.
+        :param Sequence['PrivateZonesPrivateZoneTagArgs'] tags: Tags.
         :param str updated_at: The updated time of the private zone.
         :param int zid: The zid of Private Zone.
         :param str zone_name: The name of Private Zone.
@@ -116,10 +164,12 @@ class PrivateZonesPrivateZoneResult(dict):
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "last_operator", last_operator)
         pulumi.set(__self__, "line_mode", line_mode)
+        pulumi.set(__self__, "project_name", project_name)
         pulumi.set(__self__, "record_count", record_count)
         pulumi.set(__self__, "recursion_mode", recursion_mode)
         pulumi.set(__self__, "regions", regions)
         pulumi.set(__self__, "remark", remark)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "updated_at", updated_at)
         pulumi.set(__self__, "zid", zid)
         pulumi.set(__self__, "zone_name", zone_name)
@@ -165,6 +215,14 @@ class PrivateZonesPrivateZoneResult(dict):
         return pulumi.get(self, "line_mode")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of the private zone.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
     @pulumi.getter(name="recordCount")
     def record_count(self) -> int:
         """
@@ -195,6 +253,14 @@ class PrivateZonesPrivateZoneResult(dict):
         The remark of the private zone.
         """
         return pulumi.get(self, "remark")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.PrivateZonesPrivateZoneTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="updatedAt")
@@ -270,6 +336,66 @@ class PrivateZonesPrivateZoneBindVpcResult(dict):
         The region name of the bind vpc.
         """
         return pulumi.get(self, "region_name")
+
+
+@pulumi.output_type
+class PrivateZonesPrivateZoneTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class PrivateZonesTagFilterResult(dict):
+    def __init__(__self__, *,
+                 key: Optional[str] = None,
+                 values: Optional[Sequence[str]] = None):
+        """
+        :param str key: The key of the tag.
+        :param Sequence[str] values: The values of the tag.
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[str]:
+        """
+        The key of the tag.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def values(self) -> Optional[Sequence[str]]:
+        """
+        The values of the tag.
+        """
+        return pulumi.get(self, "values")
 
 
 @pulumi.output_type
@@ -366,8 +492,8 @@ class RecordsRecordResult(dict):
         :param bool enable: Whether the private zone record is enabling.
         :param str host: The host of Private Zone Record.
         :param str last_operator: The last operator account id of Private Zone Record.
-        :param str line: The subnet id of Private Zone Record. This field is only effected when the `intelligent_mode` of the private zone is true.
-        :param str record_id: The id of Private Zone Record.
+        :param str line: The subnet id of Private Zone Record.
+        :param str record_id: This field is deprecated, please use `record_ids` instead. The id of Private Zone Record.
         :param str remark: The remark of the private zone record.
         :param int ttl: The ttl of the private zone record. Unit: second.
         :param str type: The type of Private Zone Record.
@@ -426,7 +552,7 @@ class RecordsRecordResult(dict):
     @pulumi.getter
     def line(self) -> str:
         """
-        The subnet id of Private Zone Record. This field is only effected when the `intelligent_mode` of the private zone is true.
+        The subnet id of Private Zone Record.
         """
         return pulumi.get(self, "line")
 
@@ -434,7 +560,7 @@ class RecordsRecordResult(dict):
     @pulumi.getter(name="recordId")
     def record_id(self) -> str:
         """
-        The id of Private Zone Record.
+        This field is deprecated, please use `record_ids` instead. The id of Private Zone Record.
         """
         return pulumi.get(self, "record_id")
 
@@ -555,6 +681,35 @@ class ResolverEndpointIpConfig(dict):
 
 
 @pulumi.output_type
+class ResolverEndpointTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class ResolverEndpointsEndpointResult(dict):
     def __init__(__self__, *,
                  created_at: str,
@@ -563,8 +718,10 @@ class ResolverEndpointsEndpointResult(dict):
                  id: str,
                  ip_configs: Sequence['outputs.ResolverEndpointsEndpointIpConfigResult'],
                  name: str,
+                 project_name: str,
                  security_group_id: str,
                  status: str,
+                 tags: Sequence['outputs.ResolverEndpointsEndpointTagResult'],
                  updated_at: str,
                  vpc_id: str,
                  vpc_region: str):
@@ -575,8 +732,10 @@ class ResolverEndpointsEndpointResult(dict):
         :param str id: The id of the endpoint.
         :param Sequence['ResolverEndpointsEndpointIpConfigArgs'] ip_configs: List of IP configurations.
         :param str name: The name of the private zone resolver endpoint.
+        :param str project_name: The project name of the private zone resolver endpoint.
         :param str security_group_id: The security group id of the endpoint.
         :param str status: The status of the private zone resolver endpoint.
+        :param Sequence['ResolverEndpointsEndpointTagArgs'] tags: Tags.
         :param str updated_at: The updated time of the endpoint.
         :param str vpc_id: The vpc ID of the private zone resolver endpoint.
         :param str vpc_region: The vpc region of the endpoint.
@@ -587,8 +746,10 @@ class ResolverEndpointsEndpointResult(dict):
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "ip_configs", ip_configs)
         pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_name", project_name)
         pulumi.set(__self__, "security_group_id", security_group_id)
         pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "updated_at", updated_at)
         pulumi.set(__self__, "vpc_id", vpc_id)
         pulumi.set(__self__, "vpc_region", vpc_region)
@@ -642,6 +803,14 @@ class ResolverEndpointsEndpointResult(dict):
         return pulumi.get(self, "name")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of the private zone resolver endpoint.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
     @pulumi.getter(name="securityGroupId")
     def security_group_id(self) -> str:
         """
@@ -656,6 +825,14 @@ class ResolverEndpointsEndpointResult(dict):
         The status of the private zone resolver endpoint.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.ResolverEndpointsEndpointTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="updatedAt")
@@ -723,6 +900,66 @@ class ResolverEndpointsEndpointIpConfigResult(dict):
 
 
 @pulumi.output_type
+class ResolverEndpointsEndpointTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ResolverEndpointsTagFilterResult(dict):
+    def __init__(__self__, *,
+                 key: Optional[str] = None,
+                 values: Optional[Sequence[str]] = None):
+        """
+        :param str key: The key of the tag.
+        :param Sequence[str] values: The values of the tag.
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[str]:
+        """
+        The key of the tag.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def values(self) -> Optional[Sequence[str]]:
+        """
+        The values of the tag.
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
 class ResolverRuleForwardIp(dict):
     def __init__(__self__, *,
                  ip: str,
@@ -750,6 +987,35 @@ class ResolverRuleForwardIp(dict):
         The port of the external DNS server. Default is 53. This parameter is only valid and optional when the Type parameter is OUTBOUND.
         """
         return pulumi.get(self, "port")
+
+
+@pulumi.output_type
+class ResolverRuleTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -807,9 +1073,11 @@ class ResolverRulesRuleResult(dict):
                  endpoint_id: int,
                  forward_ips: Sequence['outputs.ResolverRulesRuleForwardIpResult'],
                  id: str,
-                 line: int,
+                 line: str,
                  name: str,
+                 project_name: str,
                  rule_id: int,
+                 tags: Sequence['outputs.ResolverRulesRuleTagResult'],
                  type: str,
                  updated_at: str,
                  zone_names: Sequence[str]):
@@ -818,9 +1086,11 @@ class ResolverRulesRuleResult(dict):
         :param int endpoint_id: ID of the exit terminal node.
         :param Sequence['ResolverRulesRuleForwardIpArgs'] forward_ips: The IP address and port of the DNS server outside of the VPC.
         :param str id: The id of the rule.
-        :param int line: The ISP of the exit IP address of the recursive DNS server.
+        :param str line: The ISP of the exit IP address of the recursive DNS server.
         :param str name: The name of the rule.
+        :param str project_name: The project name of the private zone resolver rule.
         :param int rule_id: The id of the rule.
+        :param Sequence['ResolverRulesRuleTagArgs'] tags: Tags.
         :param str type: The type of the rule.
         :param str updated_at: The updated time of the rule.
         :param Sequence[str] zone_names: The main domain associated with the forwarding rule. For example, if you set this parameter to example.com, DNS requests for example.com and all subdomains of example.com will be forwarded.
@@ -832,7 +1102,9 @@ class ResolverRulesRuleResult(dict):
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "line", line)
         pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_name", project_name)
         pulumi.set(__self__, "rule_id", rule_id)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "type", type)
         pulumi.set(__self__, "updated_at", updated_at)
         pulumi.set(__self__, "zone_names", zone_names)
@@ -876,7 +1148,7 @@ class ResolverRulesRuleResult(dict):
 
     @property
     @pulumi.getter
-    def line(self) -> int:
+    def line(self) -> str:
         """
         The ISP of the exit IP address of the recursive DNS server.
         """
@@ -891,12 +1163,28 @@ class ResolverRulesRuleResult(dict):
         return pulumi.get(self, "name")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of the private zone resolver rule.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
     @pulumi.getter(name="ruleId")
     def rule_id(self) -> int:
         """
         The id of the rule.
         """
         return pulumi.get(self, "rule_id")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.ResolverRulesRuleTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
@@ -1004,6 +1292,66 @@ class ResolverRulesRuleForwardIpResult(dict):
 
 
 @pulumi.output_type
+class ResolverRulesRuleTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ResolverRulesTagFilterResult(dict):
+    def __init__(__self__, *,
+                 key: Optional[str] = None,
+                 values: Optional[Sequence[str]] = None):
+        """
+        :param str key: The key of the tag.
+        :param Sequence[str] values: The values of the tag.
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[str]:
+        """
+        The key of the tag.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def values(self) -> Optional[Sequence[str]]:
+        """
+        The values of the tag.
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
 class GetPrivateZonesPrivateZoneResult(dict):
     def __init__(__self__, *,
                  bind_vpcs: Sequence['outputs.GetPrivateZonesPrivateZoneBindVpcResult'],
@@ -1011,10 +1359,12 @@ class GetPrivateZonesPrivateZoneResult(dict):
                  id: str,
                  last_operator: str,
                  line_mode: int,
+                 project_name: str,
                  record_count: int,
                  recursion_mode: bool,
                  regions: Sequence[str],
                  remark: str,
+                 tags: Sequence['outputs.GetPrivateZonesPrivateZoneTagResult'],
                  updated_at: str,
                  zid: int,
                  zone_name: str):
@@ -1024,10 +1374,12 @@ class GetPrivateZonesPrivateZoneResult(dict):
         :param str id: The id of the private zone.
         :param str last_operator: The account id of the last operator who created the private zone.
         :param int line_mode: The line mode of Private Zone, specified whether the intelligent mode and the load balance function is enabled.
+        :param str project_name: The project name of the private zone.
         :param int record_count: The record count of the private zone.
         :param bool recursion_mode: Whether the recursion mode of Private Zone is enabled.
         :param Sequence[str] regions: The region of Private Zone.
         :param str remark: The remark of the private zone.
+        :param Sequence['GetPrivateZonesPrivateZoneTagArgs'] tags: Tags.
         :param str updated_at: The updated time of the private zone.
         :param int zid: The zid of Private Zone.
         :param str zone_name: The name of Private Zone.
@@ -1037,10 +1389,12 @@ class GetPrivateZonesPrivateZoneResult(dict):
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "last_operator", last_operator)
         pulumi.set(__self__, "line_mode", line_mode)
+        pulumi.set(__self__, "project_name", project_name)
         pulumi.set(__self__, "record_count", record_count)
         pulumi.set(__self__, "recursion_mode", recursion_mode)
         pulumi.set(__self__, "regions", regions)
         pulumi.set(__self__, "remark", remark)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "updated_at", updated_at)
         pulumi.set(__self__, "zid", zid)
         pulumi.set(__self__, "zone_name", zone_name)
@@ -1086,6 +1440,14 @@ class GetPrivateZonesPrivateZoneResult(dict):
         return pulumi.get(self, "line_mode")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of the private zone.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
     @pulumi.getter(name="recordCount")
     def record_count(self) -> int:
         """
@@ -1116,6 +1478,14 @@ class GetPrivateZonesPrivateZoneResult(dict):
         The remark of the private zone.
         """
         return pulumi.get(self, "remark")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetPrivateZonesPrivateZoneTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="updatedAt")
@@ -1191,6 +1561,66 @@ class GetPrivateZonesPrivateZoneBindVpcResult(dict):
         The region name of the bind vpc.
         """
         return pulumi.get(self, "region_name")
+
+
+@pulumi.output_type
+class GetPrivateZonesPrivateZoneTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetPrivateZonesTagFilterResult(dict):
+    def __init__(__self__, *,
+                 key: Optional[str] = None,
+                 values: Optional[Sequence[str]] = None):
+        """
+        :param str key: The key of the tag.
+        :param Sequence[str] values: The values of the tag.
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[str]:
+        """
+        The key of the tag.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def values(self) -> Optional[Sequence[str]]:
+        """
+        The values of the tag.
+        """
+        return pulumi.get(self, "values")
 
 
 @pulumi.output_type
@@ -1287,8 +1717,8 @@ class GetRecordsRecordResult(dict):
         :param bool enable: Whether the private zone record is enabling.
         :param str host: The host of Private Zone Record.
         :param str last_operator: The last operator account id of Private Zone Record.
-        :param str line: The subnet id of Private Zone Record. This field is only effected when the `intelligent_mode` of the private zone is true.
-        :param str record_id: The id of Private Zone Record.
+        :param str line: The subnet id of Private Zone Record.
+        :param str record_id: This field is deprecated, please use `record_ids` instead. The id of Private Zone Record.
         :param str remark: The remark of the private zone record.
         :param int ttl: The ttl of the private zone record. Unit: second.
         :param str type: The type of Private Zone Record.
@@ -1347,7 +1777,7 @@ class GetRecordsRecordResult(dict):
     @pulumi.getter
     def line(self) -> str:
         """
-        The subnet id of Private Zone Record. This field is only effected when the `intelligent_mode` of the private zone is true.
+        The subnet id of Private Zone Record.
         """
         return pulumi.get(self, "line")
 
@@ -1355,7 +1785,7 @@ class GetRecordsRecordResult(dict):
     @pulumi.getter(name="recordId")
     def record_id(self) -> str:
         """
-        The id of Private Zone Record.
+        This field is deprecated, please use `record_ids` instead. The id of Private Zone Record.
         """
         return pulumi.get(self, "record_id")
 
@@ -1425,8 +1855,10 @@ class GetResolverEndpointsEndpointResult(dict):
                  id: str,
                  ip_configs: Sequence['outputs.GetResolverEndpointsEndpointIpConfigResult'],
                  name: str,
+                 project_name: str,
                  security_group_id: str,
                  status: str,
+                 tags: Sequence['outputs.GetResolverEndpointsEndpointTagResult'],
                  updated_at: str,
                  vpc_id: str,
                  vpc_region: str):
@@ -1437,8 +1869,10 @@ class GetResolverEndpointsEndpointResult(dict):
         :param str id: The id of the endpoint.
         :param Sequence['GetResolverEndpointsEndpointIpConfigArgs'] ip_configs: List of IP configurations.
         :param str name: The name of the private zone resolver endpoint.
+        :param str project_name: The project name of the private zone resolver endpoint.
         :param str security_group_id: The security group id of the endpoint.
         :param str status: The status of the private zone resolver endpoint.
+        :param Sequence['GetResolverEndpointsEndpointTagArgs'] tags: Tags.
         :param str updated_at: The updated time of the endpoint.
         :param str vpc_id: The vpc ID of the private zone resolver endpoint.
         :param str vpc_region: The vpc region of the endpoint.
@@ -1449,8 +1883,10 @@ class GetResolverEndpointsEndpointResult(dict):
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "ip_configs", ip_configs)
         pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_name", project_name)
         pulumi.set(__self__, "security_group_id", security_group_id)
         pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "updated_at", updated_at)
         pulumi.set(__self__, "vpc_id", vpc_id)
         pulumi.set(__self__, "vpc_region", vpc_region)
@@ -1504,6 +1940,14 @@ class GetResolverEndpointsEndpointResult(dict):
         return pulumi.get(self, "name")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of the private zone resolver endpoint.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
     @pulumi.getter(name="securityGroupId")
     def security_group_id(self) -> str:
         """
@@ -1518,6 +1962,14 @@ class GetResolverEndpointsEndpointResult(dict):
         The status of the private zone resolver endpoint.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetResolverEndpointsEndpointTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="updatedAt")
@@ -1585,6 +2037,66 @@ class GetResolverEndpointsEndpointIpConfigResult(dict):
 
 
 @pulumi.output_type
+class GetResolverEndpointsEndpointTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetResolverEndpointsTagFilterResult(dict):
+    def __init__(__self__, *,
+                 key: Optional[str] = None,
+                 values: Optional[Sequence[str]] = None):
+        """
+        :param str key: The key of the tag.
+        :param Sequence[str] values: The values of the tag.
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[str]:
+        """
+        The key of the tag.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def values(self) -> Optional[Sequence[str]]:
+        """
+        The values of the tag.
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
 class GetResolverRulesRuleResult(dict):
     def __init__(__self__, *,
                  bind_vpcs: Sequence['outputs.GetResolverRulesRuleBindVpcResult'],
@@ -1592,9 +2104,11 @@ class GetResolverRulesRuleResult(dict):
                  endpoint_id: int,
                  forward_ips: Sequence['outputs.GetResolverRulesRuleForwardIpResult'],
                  id: str,
-                 line: int,
+                 line: str,
                  name: str,
+                 project_name: str,
                  rule_id: int,
+                 tags: Sequence['outputs.GetResolverRulesRuleTagResult'],
                  type: str,
                  updated_at: str,
                  zone_names: Sequence[str]):
@@ -1603,9 +2117,11 @@ class GetResolverRulesRuleResult(dict):
         :param int endpoint_id: ID of the exit terminal node.
         :param Sequence['GetResolverRulesRuleForwardIpArgs'] forward_ips: The IP address and port of the DNS server outside of the VPC.
         :param str id: The id of the rule.
-        :param int line: The ISP of the exit IP address of the recursive DNS server.
+        :param str line: The ISP of the exit IP address of the recursive DNS server.
         :param str name: The name of the rule.
+        :param str project_name: The project name of the private zone resolver rule.
         :param int rule_id: The id of the rule.
+        :param Sequence['GetResolverRulesRuleTagArgs'] tags: Tags.
         :param str type: The type of the rule.
         :param str updated_at: The updated time of the rule.
         :param Sequence[str] zone_names: The main domain associated with the forwarding rule. For example, if you set this parameter to example.com, DNS requests for example.com and all subdomains of example.com will be forwarded.
@@ -1617,7 +2133,9 @@ class GetResolverRulesRuleResult(dict):
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "line", line)
         pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_name", project_name)
         pulumi.set(__self__, "rule_id", rule_id)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "type", type)
         pulumi.set(__self__, "updated_at", updated_at)
         pulumi.set(__self__, "zone_names", zone_names)
@@ -1661,7 +2179,7 @@ class GetResolverRulesRuleResult(dict):
 
     @property
     @pulumi.getter
-    def line(self) -> int:
+    def line(self) -> str:
         """
         The ISP of the exit IP address of the recursive DNS server.
         """
@@ -1676,12 +2194,28 @@ class GetResolverRulesRuleResult(dict):
         return pulumi.get(self, "name")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of the private zone resolver rule.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
     @pulumi.getter(name="ruleId")
     def rule_id(self) -> int:
         """
         The id of the rule.
         """
         return pulumi.get(self, "rule_id")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetResolverRulesRuleTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
@@ -1786,5 +2320,65 @@ class GetResolverRulesRuleForwardIpResult(dict):
         The port of the DNS server outside of the VPC.
         """
         return pulumi.get(self, "port")
+
+
+@pulumi.output_type
+class GetResolverRulesRuleTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetResolverRulesTagFilterResult(dict):
+    def __init__(__self__, *,
+                 key: Optional[str] = None,
+                 values: Optional[Sequence[str]] = None):
+        """
+        :param str key: The key of the tag.
+        :param Sequence[str] values: The values of the tag.
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[str]:
+        """
+        The key of the tag.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def values(self) -> Optional[Sequence[str]]:
+        """
+        The values of the tag.
+        """
+        return pulumi.get(self, "values")
 
 

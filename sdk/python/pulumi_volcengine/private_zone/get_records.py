@@ -22,7 +22,7 @@ class GetRecordsResult:
     """
     A collection of values returned by getRecords.
     """
-    def __init__(__self__, host=None, id=None, last_operator=None, line=None, name=None, output_file=None, record_id=None, records=None, search_mode=None, total_count=None, type=None, value=None, zid=None):
+    def __init__(__self__, host=None, id=None, last_operator=None, line=None, name=None, output_file=None, record_id=None, record_ids=None, records=None, search_mode=None, total_count=None, type=None, value=None, zid=None):
         if host and not isinstance(host, str):
             raise TypeError("Expected argument 'host' to be a str")
         pulumi.set(__self__, "host", host)
@@ -44,6 +44,9 @@ class GetRecordsResult:
         if record_id and not isinstance(record_id, str):
             raise TypeError("Expected argument 'record_id' to be a str")
         pulumi.set(__self__, "record_id", record_id)
+        if record_ids and not isinstance(record_ids, list):
+            raise TypeError("Expected argument 'record_ids' to be a list")
+        pulumi.set(__self__, "record_ids", record_ids)
         if records and not isinstance(records, list):
             raise TypeError("Expected argument 'records' to be a list")
         pulumi.set(__self__, "records", records)
@@ -111,7 +114,15 @@ class GetRecordsResult:
         """
         The id of the private zone record.
         """
+        warnings.warn("""This field is deprecated, please use `record_ids` instead.""", DeprecationWarning)
+        pulumi.log.warn("""record_id is deprecated: This field is deprecated, please use `record_ids` instead.""")
+
         return pulumi.get(self, "record_id")
+
+    @property
+    @pulumi.getter(name="recordIds")
+    def record_ids(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "record_ids")
 
     @property
     @pulumi.getter
@@ -172,6 +183,7 @@ class AwaitableGetRecordsResult(GetRecordsResult):
             name=self.name,
             output_file=self.output_file,
             record_id=self.record_id,
+            record_ids=self.record_ids,
             records=self.records,
             search_mode=self.search_mode,
             total_count=self.total_count,
@@ -186,6 +198,7 @@ def get_records(host: Optional[str] = None,
                 name: Optional[str] = None,
                 output_file: Optional[str] = None,
                 record_id: Optional[str] = None,
+                record_ids: Optional[Sequence[str]] = None,
                 search_mode: Optional[str] = None,
                 type: Optional[str] = None,
                 value: Optional[str] = None,
@@ -206,10 +219,11 @@ def get_records(host: Optional[str] = None,
 
     :param str host: The host of Private Zone Record.
     :param str last_operator: The last operator account id of Private Zone Record.
-    :param str line: The subnet id of Private Zone Record. This field is only effected when the `intelligent_mode` of the private zone is true.
+    :param str line: The subnet id of Private Zone Record.
     :param str name: The domain name of Private Zone Record.
     :param str output_file: File name where to save data source results.
-    :param str record_id: The id of Private Zone Record.
+    :param str record_id: This field is deprecated, please use `record_ids` instead. The id of Private Zone Record.
+    :param Sequence[str] record_ids: The ids of Private Zone Record.
     :param str search_mode: The search mode of query `host`. Valid values: `LIKE`, `EXACT`. Default is `LIKE`.
     :param str type: The type of Private Zone Record.
     :param str value: The value of Private Zone Record.
@@ -222,6 +236,7 @@ def get_records(host: Optional[str] = None,
     __args__['name'] = name
     __args__['outputFile'] = output_file
     __args__['recordId'] = record_id
+    __args__['recordIds'] = record_ids
     __args__['searchMode'] = search_mode
     __args__['type'] = type
     __args__['value'] = value
@@ -237,6 +252,7 @@ def get_records(host: Optional[str] = None,
         name=pulumi.get(__ret__, 'name'),
         output_file=pulumi.get(__ret__, 'output_file'),
         record_id=pulumi.get(__ret__, 'record_id'),
+        record_ids=pulumi.get(__ret__, 'record_ids'),
         records=pulumi.get(__ret__, 'records'),
         search_mode=pulumi.get(__ret__, 'search_mode'),
         total_count=pulumi.get(__ret__, 'total_count'),
@@ -252,6 +268,7 @@ def get_records_output(host: Optional[pulumi.Input[Optional[str]]] = None,
                        name: Optional[pulumi.Input[Optional[str]]] = None,
                        output_file: Optional[pulumi.Input[Optional[str]]] = None,
                        record_id: Optional[pulumi.Input[Optional[str]]] = None,
+                       record_ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                        search_mode: Optional[pulumi.Input[Optional[str]]] = None,
                        type: Optional[pulumi.Input[Optional[str]]] = None,
                        value: Optional[pulumi.Input[Optional[str]]] = None,
@@ -272,10 +289,11 @@ def get_records_output(host: Optional[pulumi.Input[Optional[str]]] = None,
 
     :param str host: The host of Private Zone Record.
     :param str last_operator: The last operator account id of Private Zone Record.
-    :param str line: The subnet id of Private Zone Record. This field is only effected when the `intelligent_mode` of the private zone is true.
+    :param str line: The subnet id of Private Zone Record.
     :param str name: The domain name of Private Zone Record.
     :param str output_file: File name where to save data source results.
-    :param str record_id: The id of Private Zone Record.
+    :param str record_id: This field is deprecated, please use `record_ids` instead. The id of Private Zone Record.
+    :param Sequence[str] record_ids: The ids of Private Zone Record.
     :param str search_mode: The search mode of query `host`. Valid values: `LIKE`, `EXACT`. Default is `LIKE`.
     :param str type: The type of Private Zone Record.
     :param str value: The value of Private Zone Record.

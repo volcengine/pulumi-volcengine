@@ -14,6 +14,10 @@ namespace Pulumi.Volcengine.Redis.Outputs
     public sealed class GetAllowListsAllowListResult
     {
         /// <summary>
+        /// The type of the whitelist.
+        /// </summary>
+        public readonly string AllowListCategory;
+        /// <summary>
         /// Description of allow list.
         /// </summary>
         public readonly string AllowListDesc;
@@ -45,9 +49,19 @@ namespace Pulumi.Volcengine.Redis.Outputs
         /// Instances associated by this allow list.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetAllowListsAllowListAssociatedInstanceResult> AssociatedInstances;
+        /// <summary>
+        /// The name of the project to which the white list belongs.
+        /// </summary>
+        public readonly string ProjectName;
+        /// <summary>
+        /// The current whitelist is the list of security group information that has been associated.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetAllowListsAllowListSecurityGroupBindInfoResult> SecurityGroupBindInfos;
 
         [OutputConstructor]
         private GetAllowListsAllowListResult(
+            string allowListCategory,
+
             string allowListDesc,
 
             string allowListId,
@@ -62,8 +76,13 @@ namespace Pulumi.Volcengine.Redis.Outputs
 
             int associatedInstanceNum,
 
-            ImmutableArray<Outputs.GetAllowListsAllowListAssociatedInstanceResult> associatedInstances)
+            ImmutableArray<Outputs.GetAllowListsAllowListAssociatedInstanceResult> associatedInstances,
+
+            string projectName,
+
+            ImmutableArray<Outputs.GetAllowListsAllowListSecurityGroupBindInfoResult> securityGroupBindInfos)
         {
+            AllowListCategory = allowListCategory;
             AllowListDesc = allowListDesc;
             AllowListId = allowListId;
             AllowListIpNum = allowListIpNum;
@@ -72,6 +91,8 @@ namespace Pulumi.Volcengine.Redis.Outputs
             AllowLists = allowLists;
             AssociatedInstanceNum = associatedInstanceNum;
             AssociatedInstances = associatedInstances;
+            ProjectName = projectName;
+            SecurityGroupBindInfos = securityGroupBindInfos;
         }
     }
 }

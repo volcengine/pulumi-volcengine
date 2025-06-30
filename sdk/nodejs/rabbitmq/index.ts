@@ -15,6 +15,16 @@ export const getInstances: typeof import("./getInstances").getInstances = null a
 export const getInstancesOutput: typeof import("./getInstances").getInstancesOutput = null as any;
 utilities.lazyLoad(exports, ["getInstances","getInstancesOutput"], () => require("./getInstances"));
 
+export { GetRegionsArgs, GetRegionsResult, GetRegionsOutputArgs } from "./getRegions";
+export const getRegions: typeof import("./getRegions").getRegions = null as any;
+export const getRegionsOutput: typeof import("./getRegions").getRegionsOutput = null as any;
+utilities.lazyLoad(exports, ["getRegions","getRegionsOutput"], () => require("./getRegions"));
+
+export { GetZonesArgs, GetZonesResult, GetZonesOutputArgs } from "./getZones";
+export const getZones: typeof import("./getZones").getZones = null as any;
+export const getZonesOutput: typeof import("./getZones").getZonesOutput = null as any;
+utilities.lazyLoad(exports, ["getZones","getZonesOutput"], () => require("./getZones"));
+
 export { InstanceArgs, InstanceState } from "./instance";
 export type Instance = import("./instance").Instance;
 export const Instance: typeof import("./instance").Instance = null as any;
@@ -39,6 +49,16 @@ export { PublicAddressArgs, PublicAddressState } from "./publicAddress";
 export type PublicAddress = import("./publicAddress").PublicAddress;
 export const PublicAddress: typeof import("./publicAddress").PublicAddress = null as any;
 utilities.lazyLoad(exports, ["PublicAddress"], () => require("./publicAddress"));
+
+export { RegionsArgs, RegionsResult, RegionsOutputArgs } from "./regions";
+export const regions: typeof import("./regions").regions = null as any;
+export const regionsOutput: typeof import("./regions").regionsOutput = null as any;
+utilities.lazyLoad(exports, ["regions","regionsOutput"], () => require("./regions"));
+
+export { ZonesArgs, ZonesResult, ZonesOutputArgs } from "./zones";
+export const zones: typeof import("./zones").zones = null as any;
+export const zonesOutput: typeof import("./zones").zonesOutput = null as any;
+utilities.lazyLoad(exports, ["zones","zonesOutput"], () => require("./zones"));
 
 
 const _module = {

@@ -61,6 +61,7 @@ namespace Pulumi.Volcengine.Redis
     ///     var fooBackup = new Volcengine.Redis.Backup("fooBackup", new()
     ///     {
     ///         InstanceId = fooInstance.Id,
+    ///         BackupPointName = "acc-test-tf-redis-backup",
     ///     });
     /// 
     /// });
@@ -78,10 +79,22 @@ namespace Pulumi.Volcengine.Redis
     public partial class Backup : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// The download address information of the backup file to which the current backup point belongs.
+        /// </summary>
+        [Output("backupPointDownloadUrls")]
+        public Output<ImmutableArray<Outputs.BackupBackupPointDownloadUrl>> BackupPointDownloadUrls { get; private set; } = null!;
+
+        /// <summary>
         /// The id of backup point.
         /// </summary>
         [Output("backupPointId")]
         public Output<string> BackupPointId { get; private set; } = null!;
+
+        /// <summary>
+        /// Set the backup name for the manually created backup.
+        /// </summary>
+        [Output("backupPointName")]
+        public Output<string> BackupPointName { get; private set; } = null!;
 
         /// <summary>
         /// Backup strategy.
@@ -102,16 +115,22 @@ namespace Pulumi.Volcengine.Redis
         public Output<string> EndTime { get; private set; } = null!;
 
         /// <summary>
-        /// Information of instance.
-        /// </summary>
-        [Output("instanceDetails")]
-        public Output<ImmutableArray<Outputs.BackupInstanceDetail>> InstanceDetails { get; private set; } = null!;
-
-        /// <summary>
         /// Id of instance to create backup.
         /// </summary>
         [Output("instanceId")]
         public Output<string> InstanceId { get; private set; } = null!;
+
+        /// <summary>
+        /// Information of instance.
+        /// </summary>
+        [Output("instanceInfos")]
+        public Output<ImmutableArray<Outputs.BackupInstanceInfo>> InstanceInfos { get; private set; } = null!;
+
+        /// <summary>
+        /// Project name of instance.
+        /// </summary>
+        [Output("projectName")]
+        public Output<string> ProjectName { get; private set; } = null!;
 
         /// <summary>
         /// Size in MiB.
@@ -130,6 +149,12 @@ namespace Pulumi.Volcengine.Redis
         /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
+
+        /// <summary>
+        /// Backup retention days.
+        /// </summary>
+        [Output("ttl")]
+        public Output<int> Ttl { get; private set; } = null!;
 
 
         /// <summary>
@@ -179,6 +204,12 @@ namespace Pulumi.Volcengine.Redis
     public sealed class BackupArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Set the backup name for the manually created backup.
+        /// </summary>
+        [Input("backupPointName")]
+        public Input<string>? BackupPointName { get; set; }
+
+        /// <summary>
         /// Id of instance to create backup.
         /// </summary>
         [Input("instanceId", required: true)]
@@ -192,11 +223,29 @@ namespace Pulumi.Volcengine.Redis
 
     public sealed class BackupState : global::Pulumi.ResourceArgs
     {
+        [Input("backupPointDownloadUrls")]
+        private InputList<Inputs.BackupBackupPointDownloadUrlGetArgs>? _backupPointDownloadUrls;
+
+        /// <summary>
+        /// The download address information of the backup file to which the current backup point belongs.
+        /// </summary>
+        public InputList<Inputs.BackupBackupPointDownloadUrlGetArgs> BackupPointDownloadUrls
+        {
+            get => _backupPointDownloadUrls ?? (_backupPointDownloadUrls = new InputList<Inputs.BackupBackupPointDownloadUrlGetArgs>());
+            set => _backupPointDownloadUrls = value;
+        }
+
         /// <summary>
         /// The id of backup point.
         /// </summary>
         [Input("backupPointId")]
         public Input<string>? BackupPointId { get; set; }
+
+        /// <summary>
+        /// Set the backup name for the manually created backup.
+        /// </summary>
+        [Input("backupPointName")]
+        public Input<string>? BackupPointName { get; set; }
 
         /// <summary>
         /// Backup strategy.
@@ -216,23 +265,29 @@ namespace Pulumi.Volcengine.Redis
         [Input("endTime")]
         public Input<string>? EndTime { get; set; }
 
-        [Input("instanceDetails")]
-        private InputList<Inputs.BackupInstanceDetailGetArgs>? _instanceDetails;
-
-        /// <summary>
-        /// Information of instance.
-        /// </summary>
-        public InputList<Inputs.BackupInstanceDetailGetArgs> InstanceDetails
-        {
-            get => _instanceDetails ?? (_instanceDetails = new InputList<Inputs.BackupInstanceDetailGetArgs>());
-            set => _instanceDetails = value;
-        }
-
         /// <summary>
         /// Id of instance to create backup.
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }
+
+        [Input("instanceInfos")]
+        private InputList<Inputs.BackupInstanceInfoGetArgs>? _instanceInfos;
+
+        /// <summary>
+        /// Information of instance.
+        /// </summary>
+        public InputList<Inputs.BackupInstanceInfoGetArgs> InstanceInfos
+        {
+            get => _instanceInfos ?? (_instanceInfos = new InputList<Inputs.BackupInstanceInfoGetArgs>());
+            set => _instanceInfos = value;
+        }
+
+        /// <summary>
+        /// Project name of instance.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
 
         /// <summary>
         /// Size in MiB.
@@ -251,6 +306,12 @@ namespace Pulumi.Volcengine.Redis
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
+
+        /// <summary>
+        /// Backup retention days.
+        /// </summary>
+        [Input("ttl")]
+        public Input<int>? Ttl { get; set; }
 
         public BackupState()
         {

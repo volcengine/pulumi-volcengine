@@ -14,6 +14,10 @@ namespace Pulumi.Volcengine.Rds_mysql.Outputs
     public sealed class GetAccountsAccountResult
     {
         /// <summary>
+        /// The description information of the account.
+        /// </summary>
+        public readonly string AccountDesc;
+        /// <summary>
         /// The name of the database account. This field supports fuzzy query.
         /// </summary>
         public readonly string AccountName;
@@ -22,6 +26,10 @@ namespace Pulumi.Volcengine.Rds_mysql.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.GetAccountsAccountAccountPrivilegeResult> AccountPrivileges;
         /// <summary>
+        /// The SQL statement of the account privileges.
+        /// </summary>
+        public readonly ImmutableArray<string> AccountPrivilegesSqls;
+        /// <summary>
         /// The status of the database account.
         /// </summary>
         public readonly string AccountStatus;
@@ -29,21 +37,48 @@ namespace Pulumi.Volcengine.Rds_mysql.Outputs
         /// The type of the database account.
         /// </summary>
         public readonly string AccountType;
+        /// <summary>
+        /// The global privileges of the account.
+        /// </summary>
+        public readonly ImmutableArray<string> GlobalAccountPrivileges;
+        /// <summary>
+        /// The databases to which the table column permissions owned by the account belong. Description: If the account does not have table column permissions, this field will not be returned.
+        /// </summary>
+        public readonly ImmutableArray<string> HasTableColumnPrivilegeDbNames;
+        /// <summary>
+        /// The host of the account.
+        /// </summary>
+        public readonly string Host;
 
         [OutputConstructor]
         private GetAccountsAccountResult(
+            string accountDesc,
+
             string accountName,
 
             ImmutableArray<Outputs.GetAccountsAccountAccountPrivilegeResult> accountPrivileges,
 
+            ImmutableArray<string> accountPrivilegesSqls,
+
             string accountStatus,
 
-            string accountType)
+            string accountType,
+
+            ImmutableArray<string> globalAccountPrivileges,
+
+            ImmutableArray<string> hasTableColumnPrivilegeDbNames,
+
+            string host)
         {
+            AccountDesc = accountDesc;
             AccountName = accountName;
             AccountPrivileges = accountPrivileges;
+            AccountPrivilegesSqls = accountPrivilegesSqls;
             AccountStatus = accountStatus;
             AccountType = accountType;
+            GlobalAccountPrivileges = globalAccountPrivileges;
+            HasTableColumnPrivilegeDbNames = hasTableColumnPrivilegeDbNames;
+            Host = host;
         }
     }
 }

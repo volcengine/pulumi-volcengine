@@ -14,6 +14,7 @@ __all__ = [
     'RegistriesResourceTagArgs',
     'RegistriesStatusArgs',
     'RegistryDomainArgs',
+    'RegistryProxyCacheArgs',
     'RegistryResourceTagArgs',
     'RegistryStatusArgs',
     'StateStatusArgs',
@@ -146,7 +147,7 @@ class RegistryDomainArgs:
                  type: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] domain: The domain of registry.
-        :param pulumi.Input[str] type: The type of registry.
+        :param pulumi.Input[str] type: The type of registry. Valid values: `Enterprise`, `Micro`. Default is `Enterprise`.
         """
         if domain is not None:
             pulumi.set(__self__, "domain", domain)
@@ -169,7 +170,7 @@ class RegistryDomainArgs:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of registry.
+        The type of registry. Valid values: `Enterprise`, `Micro`. Default is `Enterprise`.
         """
         return pulumi.get(self, "type")
 
@@ -179,41 +180,125 @@ class RegistryDomainArgs:
 
 
 @pulumi.input_type
+class RegistryProxyCacheArgs:
+    def __init__(__self__, *,
+                 type: pulumi.Input[str],
+                 endpoint: Optional[pulumi.Input[str]] = None,
+                 password: Optional[pulumi.Input[str]] = None,
+                 skip_ssl_verify: Optional[pulumi.Input[bool]] = None,
+                 username: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] type: The type of proxy cache. Valid values: `DockerHub`, `DockerRegistry`.
+        :param pulumi.Input[str] endpoint: The endpoint of proxy cache.
+        :param pulumi.Input[str] password: The password of proxy cache.
+        :param pulumi.Input[bool] skip_ssl_verify: Whether to skip ssl verify.
+        :param pulumi.Input[str] username: The username of proxy cache.
+        """
+        pulumi.set(__self__, "type", type)
+        if endpoint is not None:
+            pulumi.set(__self__, "endpoint", endpoint)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if skip_ssl_verify is not None:
+            pulumi.set(__self__, "skip_ssl_verify", skip_ssl_verify)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[str]:
+        """
+        The type of proxy cache. Valid values: `DockerHub`, `DockerRegistry`.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter
+    def endpoint(self) -> Optional[pulumi.Input[str]]:
+        """
+        The endpoint of proxy cache.
+        """
+        return pulumi.get(self, "endpoint")
+
+    @endpoint.setter
+    def endpoint(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "endpoint", value)
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        The password of proxy cache.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "password", value)
+
+    @property
+    @pulumi.getter(name="skipSslVerify")
+    def skip_ssl_verify(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to skip ssl verify.
+        """
+        return pulumi.get(self, "skip_ssl_verify")
+
+    @skip_ssl_verify.setter
+    def skip_ssl_verify(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "skip_ssl_verify", value)
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[pulumi.Input[str]]:
+        """
+        The username of proxy cache.
+        """
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "username", value)
+
+
+@pulumi.input_type
 class RegistryResourceTagArgs:
     def __init__(__self__, *,
-                 key: Optional[pulumi.Input[str]] = None,
-                 value: Optional[pulumi.Input[str]] = None):
+                 key: pulumi.Input[str],
+                 value: pulumi.Input[str]):
         """
         :param pulumi.Input[str] key: The Key of Tags.
         :param pulumi.Input[str] value: The Value of Tags.
         """
-        if key is not None:
-            pulumi.set(__self__, "key", key)
-        if value is not None:
-            pulumi.set(__self__, "value", value)
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
-    def key(self) -> Optional[pulumi.Input[str]]:
+    def key(self) -> pulumi.Input[str]:
         """
         The Key of Tags.
         """
         return pulumi.get(self, "key")
 
     @key.setter
-    def key(self, value: Optional[pulumi.Input[str]]):
+    def key(self, value: pulumi.Input[str]):
         pulumi.set(self, "key", value)
 
     @property
     @pulumi.getter
-    def value(self) -> Optional[pulumi.Input[str]]:
+    def value(self) -> pulumi.Input[str]:
         """
         The Value of Tags.
         """
         return pulumi.get(self, "value")
 
     @value.setter
-    def value(self, value: Optional[pulumi.Input[str]]):
+    def value(self, value: pulumi.Input[str]):
         pulumi.set(self, "value", value)
 
 

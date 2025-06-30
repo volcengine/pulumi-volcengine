@@ -71,6 +71,12 @@ namespace Pulumi.Volcengine.Cr
         [Output("registry")]
         public Output<string> Registry { get; private set; } = null!;
 
+        /// <summary>
+        /// The default access level of repository. Valid values: `Private`, `Public`. Default is `Private`.
+        /// </summary>
+        [Output("repositoryDefaultAccessLevel")]
+        public Output<string> RepositoryDefaultAccessLevel { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a Namespace resource with the given unique name, arguments, and options.
@@ -136,6 +142,12 @@ namespace Pulumi.Volcengine.Cr
         [Input("registry", required: true)]
         public Input<string> Registry { get; set; } = null!;
 
+        /// <summary>
+        /// The default access level of repository. Valid values: `Private`, `Public`. Default is `Private`.
+        /// </summary>
+        [Input("repositoryDefaultAccessLevel")]
+        public Input<string>? RepositoryDefaultAccessLevel { get; set; }
+
         public NamespaceArgs()
         {
         }
@@ -167,6 +179,12 @@ namespace Pulumi.Volcengine.Cr
         /// </summary>
         [Input("registry")]
         public Input<string>? Registry { get; set; }
+
+        /// <summary>
+        /// The default access level of repository. Valid values: `Private`, `Public`. Default is `Private`.
+        /// </summary>
+        [Input("repositoryDefaultAccessLevel")]
+        public Input<string>? RepositoryDefaultAccessLevel { get; set; }
 
         public NamespaceState()
         {

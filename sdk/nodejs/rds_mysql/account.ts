@@ -53,6 +53,7 @@ import * as utilities from "../utilities";
  *     dbName: "acc-test-db1",
  *     instanceId: fooInstance.id,
  * });
+ * //instance_id = "mysql-b51d37110dd1"
  * const fooDatabase = new volcengine.rds_mysql.Database("fooDatabase", {
  *     dbName: "acc-test-db",
  *     instanceId: fooInstance.id,
@@ -73,7 +74,20 @@ import * as utilities from "../utilities";
  *             accountPrivilege: "DDLOnly",
  *         },
  *     ],
+ *     host: "192.10.10.%",
  * });
+ * //     table_column_privileges {
+ * //          db_name = volcengine_rds_mysql_database.foo.db_name
+ * //          table_privileges {
+ * //               table_name = "test"
+ * //               account_privilege_detail = "SELECT,INSERT,UPDATE"
+ * //          }
+ * //          column_privileges {
+ * //               table_name = "test"
+ * //               column_name = "test"
+ * //               account_privilege_detail = "SELECT,INSERT,UPDATE"
+ * //          }
+ * //     }
  * ```
  *
  * ## Import
@@ -113,6 +127,10 @@ export class Account extends pulumi.CustomResource {
     }
 
     /**
+     * Account information description. The length should not exceed 256 characters.
+     */
+    public readonly accountDesc!: pulumi.Output<string | undefined>;
+    /**
      * Database account name. The rules are as follows:
      * Unique name.
      * Start with a letter and end with a letter or number.
@@ -131,7 +149,7 @@ export class Account extends pulumi.CustomResource {
      */
     public readonly accountPassword!: pulumi.Output<string>;
     /**
-     * The privilege information of account.
+     * The privilege information of account. Due to differences in the return structure of the query interface, it is necessary to use lifecycleIgnore to suppress changes when creating Global permissions.
      */
     public readonly accountPrivileges!: pulumi.Output<outputs.rds_mysql.AccountAccountPrivilege[] | undefined>;
     /**
@@ -141,9 +159,17 @@ export class Account extends pulumi.CustomResource {
      */
     public readonly accountType!: pulumi.Output<string>;
     /**
+     * Specify the IP address for the account to access the database. The default value is %. If the Host is specified as %, the account is allowed to access the database from any IP address. Wildcards are supported for setting the IP address range that can access the database. For example, if the Host is specified as 192.10.10.%, it means the account can access the database from IP addresses between 192.10.10.0 and 192.10.10.255. The specified Host needs to be added to the whitelist bound to the instance, otherwise the instance cannot be accessed normally. The ModifyAllowList interface can be called to add the Host to the whitelist. Note: If the created account type is a high-privilege account, the host IP can only be specified as %. That is, when the value of AccountType is Super, the value of Host can only be %.
+     */
+    public readonly host!: pulumi.Output<string>;
+    /**
      * The ID of the RDS instance.
      */
     public readonly instanceId!: pulumi.Output<string>;
+    /**
+     * Settings for table column permissions of the account.
+     */
+    public readonly tableColumnPrivileges!: pulumi.Output<outputs.rds_mysql.AccountTableColumnPrivilege[] | undefined>;
 
     /**
      * Create a Account resource with the given unique name, arguments, and options.
@@ -158,11 +184,14 @@ export class Account extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AccountState | undefined;
+            resourceInputs["accountDesc"] = state ? state.accountDesc : undefined;
             resourceInputs["accountName"] = state ? state.accountName : undefined;
             resourceInputs["accountPassword"] = state ? state.accountPassword : undefined;
             resourceInputs["accountPrivileges"] = state ? state.accountPrivileges : undefined;
             resourceInputs["accountType"] = state ? state.accountType : undefined;
+            resourceInputs["host"] = state ? state.host : undefined;
             resourceInputs["instanceId"] = state ? state.instanceId : undefined;
+            resourceInputs["tableColumnPrivileges"] = state ? state.tableColumnPrivileges : undefined;
         } else {
             const args = argsOrState as AccountArgs | undefined;
             if ((!args || args.accountName === undefined) && !opts.urn) {
@@ -177,11 +206,14 @@ export class Account extends pulumi.CustomResource {
             if ((!args || args.instanceId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'instanceId'");
             }
+            resourceInputs["accountDesc"] = args ? args.accountDesc : undefined;
             resourceInputs["accountName"] = args ? args.accountName : undefined;
             resourceInputs["accountPassword"] = args?.accountPassword ? pulumi.secret(args.accountPassword) : undefined;
             resourceInputs["accountPrivileges"] = args ? args.accountPrivileges : undefined;
             resourceInputs["accountType"] = args ? args.accountType : undefined;
+            resourceInputs["host"] = args ? args.host : undefined;
             resourceInputs["instanceId"] = args ? args.instanceId : undefined;
+            resourceInputs["tableColumnPrivileges"] = args ? args.tableColumnPrivileges : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["accountPassword"] };
@@ -194,6 +226,10 @@ export class Account extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Account resources.
  */
 export interface AccountState {
+    /**
+     * Account information description. The length should not exceed 256 characters.
+     */
+    accountDesc?: pulumi.Input<string>;
     /**
      * Database account name. The rules are as follows:
      * Unique name.
@@ -213,7 +249,7 @@ export interface AccountState {
      */
     accountPassword?: pulumi.Input<string>;
     /**
-     * The privilege information of account.
+     * The privilege information of account. Due to differences in the return structure of the query interface, it is necessary to use lifecycleIgnore to suppress changes when creating Global permissions.
      */
     accountPrivileges?: pulumi.Input<pulumi.Input<inputs.rds_mysql.AccountAccountPrivilege>[]>;
     /**
@@ -223,15 +259,27 @@ export interface AccountState {
      */
     accountType?: pulumi.Input<string>;
     /**
+     * Specify the IP address for the account to access the database. The default value is %. If the Host is specified as %, the account is allowed to access the database from any IP address. Wildcards are supported for setting the IP address range that can access the database. For example, if the Host is specified as 192.10.10.%, it means the account can access the database from IP addresses between 192.10.10.0 and 192.10.10.255. The specified Host needs to be added to the whitelist bound to the instance, otherwise the instance cannot be accessed normally. The ModifyAllowList interface can be called to add the Host to the whitelist. Note: If the created account type is a high-privilege account, the host IP can only be specified as %. That is, when the value of AccountType is Super, the value of Host can only be %.
+     */
+    host?: pulumi.Input<string>;
+    /**
      * The ID of the RDS instance.
      */
     instanceId?: pulumi.Input<string>;
+    /**
+     * Settings for table column permissions of the account.
+     */
+    tableColumnPrivileges?: pulumi.Input<pulumi.Input<inputs.rds_mysql.AccountTableColumnPrivilege>[]>;
 }
 
 /**
  * The set of arguments for constructing a Account resource.
  */
 export interface AccountArgs {
+    /**
+     * Account information description. The length should not exceed 256 characters.
+     */
+    accountDesc?: pulumi.Input<string>;
     /**
      * Database account name. The rules are as follows:
      * Unique name.
@@ -251,7 +299,7 @@ export interface AccountArgs {
      */
     accountPassword: pulumi.Input<string>;
     /**
-     * The privilege information of account.
+     * The privilege information of account. Due to differences in the return structure of the query interface, it is necessary to use lifecycleIgnore to suppress changes when creating Global permissions.
      */
     accountPrivileges?: pulumi.Input<pulumi.Input<inputs.rds_mysql.AccountAccountPrivilege>[]>;
     /**
@@ -261,7 +309,15 @@ export interface AccountArgs {
      */
     accountType: pulumi.Input<string>;
     /**
+     * Specify the IP address for the account to access the database. The default value is %. If the Host is specified as %, the account is allowed to access the database from any IP address. Wildcards are supported for setting the IP address range that can access the database. For example, if the Host is specified as 192.10.10.%, it means the account can access the database from IP addresses between 192.10.10.0 and 192.10.10.255. The specified Host needs to be added to the whitelist bound to the instance, otherwise the instance cannot be accessed normally. The ModifyAllowList interface can be called to add the Host to the whitelist. Note: If the created account type is a high-privilege account, the host IP can only be specified as %. That is, when the value of AccountType is Super, the value of Host can only be %.
+     */
+    host?: pulumi.Input<string>;
+    /**
      * The ID of the RDS instance.
      */
     instanceId: pulumi.Input<string>;
+    /**
+     * Settings for table column permissions of the account.
+     */
+    tableColumnPrivileges?: pulumi.Input<pulumi.Input<inputs.rds_mysql.AccountTableColumnPrivilege>[]>;
 }

@@ -80,6 +80,10 @@ export class Record extends pulumi.CustomResource {
      */
     public readonly host!: pulumi.Output<string>;
     /**
+     * The subnet id of the private zone record. This field is only effected when the `intelligentMode` of the private zone is true. Default is `Default`.
+     */
+    public readonly line!: pulumi.Output<string>;
+    /**
      * The remark of the private zone record.
      */
     public readonly remark!: pulumi.Output<string | undefined>;
@@ -91,6 +95,10 @@ export class Record extends pulumi.CustomResource {
      * The type of the private zone record. Valid values: `A`, `AAAA`, `CNAME`, `MX`, `PTR`.
      */
     public readonly type!: pulumi.Output<string>;
+    /**
+     * The user account of the private zone record. This field is only effected when creating this resource.
+     */
+    public readonly userAccount!: pulumi.Output<string | undefined>;
     /**
      * The value of the private zone record. Record values need to be set based on the value of the `type`.
      */
@@ -119,9 +127,11 @@ export class Record extends pulumi.CustomResource {
             const state = argsOrState as RecordState | undefined;
             resourceInputs["enable"] = state ? state.enable : undefined;
             resourceInputs["host"] = state ? state.host : undefined;
+            resourceInputs["line"] = state ? state.line : undefined;
             resourceInputs["remark"] = state ? state.remark : undefined;
             resourceInputs["ttl"] = state ? state.ttl : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["userAccount"] = state ? state.userAccount : undefined;
             resourceInputs["value"] = state ? state.value : undefined;
             resourceInputs["weight"] = state ? state.weight : undefined;
             resourceInputs["zid"] = state ? state.zid : undefined;
@@ -141,9 +151,11 @@ export class Record extends pulumi.CustomResource {
             }
             resourceInputs["enable"] = args ? args.enable : undefined;
             resourceInputs["host"] = args ? args.host : undefined;
+            resourceInputs["line"] = args ? args.line : undefined;
             resourceInputs["remark"] = args ? args.remark : undefined;
             resourceInputs["ttl"] = args ? args.ttl : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["userAccount"] = args ? args.userAccount : undefined;
             resourceInputs["value"] = args ? args.value : undefined;
             resourceInputs["weight"] = args ? args.weight : undefined;
             resourceInputs["zid"] = args ? args.zid : undefined;
@@ -166,6 +178,10 @@ export interface RecordState {
      */
     host?: pulumi.Input<string>;
     /**
+     * The subnet id of the private zone record. This field is only effected when the `intelligentMode` of the private zone is true. Default is `Default`.
+     */
+    line?: pulumi.Input<string>;
+    /**
      * The remark of the private zone record.
      */
     remark?: pulumi.Input<string>;
@@ -177,6 +193,10 @@ export interface RecordState {
      * The type of the private zone record. Valid values: `A`, `AAAA`, `CNAME`, `MX`, `PTR`.
      */
     type?: pulumi.Input<string>;
+    /**
+     * The user account of the private zone record. This field is only effected when creating this resource.
+     */
+    userAccount?: pulumi.Input<string>;
     /**
      * The value of the private zone record. Record values need to be set based on the value of the `type`.
      */
@@ -204,6 +224,10 @@ export interface RecordArgs {
      */
     host: pulumi.Input<string>;
     /**
+     * The subnet id of the private zone record. This field is only effected when the `intelligentMode` of the private zone is true. Default is `Default`.
+     */
+    line?: pulumi.Input<string>;
+    /**
      * The remark of the private zone record.
      */
     remark?: pulumi.Input<string>;
@@ -215,6 +239,10 @@ export interface RecordArgs {
      * The type of the private zone record. Valid values: `A`, `AAAA`, `CNAME`, `MX`, `PTR`.
      */
     type: pulumi.Input<string>;
+    /**
+     * The user account of the private zone record. This field is only effected when creating this resource.
+     */
+    userAccount?: pulumi.Input<string>;
     /**
      * The value of the private zone record. Record values need to be set based on the value of the `type`.
      */

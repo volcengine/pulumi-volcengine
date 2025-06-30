@@ -14,6 +14,12 @@ __all__ = [
     'AlarmNotifyGroupReceiverArgs',
     'AlarmQueryRequestArgs',
     'AlarmRequestCycleArgs',
+    'EtlTaskTargetResourceArgs',
+    'ImportTaskImportSourceInfoArgs',
+    'ImportTaskImportSourceInfoKafkaSourceInfoArgs',
+    'ImportTaskImportSourceInfoTosSourceInfoArgs',
+    'ImportTaskTargetInfoArgs',
+    'ImportTaskTargetInfoExtractRuleArgs',
     'IndexFullTextArgs',
     'IndexKeyValueArgs',
     'IndexKeyValueJsonKeyArgs',
@@ -32,6 +38,12 @@ __all__ = [
     'RuleUserDefineRuleParsePathRuleArgs',
     'RuleUserDefineRulePluginArgs',
     'RuleUserDefineRuleShardHashKeyArgs',
+    'ScheduleSqlTaskRequestCycleArgs',
+    'ShipperContentInfoArgs',
+    'ShipperContentInfoCsvInfoArgs',
+    'ShipperContentInfoJsonInfoArgs',
+    'ShipperKafkaShipperInfoArgs',
+    'ShipperTosShipperInfoArgs',
     'TopicTagArgs',
     'TopicsTagArgs',
     'GetProjectsTagArgs',
@@ -308,6 +320,620 @@ class AlarmRequestCycleArgs:
     @type.setter
     def type(self, value: pulumi.Input[str]):
         pulumi.set(self, "type", value)
+
+
+@pulumi.input_type
+class EtlTaskTargetResourceArgs:
+    def __init__(__self__, *,
+                 alias: pulumi.Input[str],
+                 topic_id: pulumi.Input[str],
+                 role_trn: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] alias: Customize the name of the output target, which needs to be used to refer to the output target in the data processing rules.
+        :param pulumi.Input[str] topic_id: Log topics used for storing processed logs.
+        :param pulumi.Input[str] role_trn: Cross-account authorized character names.
+        """
+        pulumi.set(__self__, "alias", alias)
+        pulumi.set(__self__, "topic_id", topic_id)
+        if role_trn is not None:
+            pulumi.set(__self__, "role_trn", role_trn)
+
+    @property
+    @pulumi.getter
+    def alias(self) -> pulumi.Input[str]:
+        """
+        Customize the name of the output target, which needs to be used to refer to the output target in the data processing rules.
+        """
+        return pulumi.get(self, "alias")
+
+    @alias.setter
+    def alias(self, value: pulumi.Input[str]):
+        pulumi.set(self, "alias", value)
+
+    @property
+    @pulumi.getter(name="topicId")
+    def topic_id(self) -> pulumi.Input[str]:
+        """
+        Log topics used for storing processed logs.
+        """
+        return pulumi.get(self, "topic_id")
+
+    @topic_id.setter
+    def topic_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "topic_id", value)
+
+    @property
+    @pulumi.getter(name="roleTrn")
+    def role_trn(self) -> Optional[pulumi.Input[str]]:
+        """
+        Cross-account authorized character names.
+        """
+        return pulumi.get(self, "role_trn")
+
+    @role_trn.setter
+    def role_trn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "role_trn", value)
+
+
+@pulumi.input_type
+class ImportTaskImportSourceInfoArgs:
+    def __init__(__self__, *,
+                 kafka_source_info: Optional[pulumi.Input['ImportTaskImportSourceInfoKafkaSourceInfoArgs']] = None,
+                 tos_source_info: Optional[pulumi.Input['ImportTaskImportSourceInfoTosSourceInfoArgs']] = None):
+        """
+        :param pulumi.Input['ImportTaskImportSourceInfoKafkaSourceInfoArgs'] kafka_source_info: TOS imports source information.
+        :param pulumi.Input['ImportTaskImportSourceInfoTosSourceInfoArgs'] tos_source_info: TOS imports source information.
+        """
+        if kafka_source_info is not None:
+            pulumi.set(__self__, "kafka_source_info", kafka_source_info)
+        if tos_source_info is not None:
+            pulumi.set(__self__, "tos_source_info", tos_source_info)
+
+    @property
+    @pulumi.getter(name="kafkaSourceInfo")
+    def kafka_source_info(self) -> Optional[pulumi.Input['ImportTaskImportSourceInfoKafkaSourceInfoArgs']]:
+        """
+        TOS imports source information.
+        """
+        return pulumi.get(self, "kafka_source_info")
+
+    @kafka_source_info.setter
+    def kafka_source_info(self, value: Optional[pulumi.Input['ImportTaskImportSourceInfoKafkaSourceInfoArgs']]):
+        pulumi.set(self, "kafka_source_info", value)
+
+    @property
+    @pulumi.getter(name="tosSourceInfo")
+    def tos_source_info(self) -> Optional[pulumi.Input['ImportTaskImportSourceInfoTosSourceInfoArgs']]:
+        """
+        TOS imports source information.
+        """
+        return pulumi.get(self, "tos_source_info")
+
+    @tos_source_info.setter
+    def tos_source_info(self, value: Optional[pulumi.Input['ImportTaskImportSourceInfoTosSourceInfoArgs']]):
+        pulumi.set(self, "tos_source_info", value)
+
+
+@pulumi.input_type
+class ImportTaskImportSourceInfoKafkaSourceInfoArgs:
+    def __init__(__self__, *,
+                 encode: Optional[pulumi.Input[str]] = None,
+                 group: Optional[pulumi.Input[str]] = None,
+                 host: Optional[pulumi.Input[str]] = None,
+                 initial_offset: Optional[pulumi.Input[int]] = None,
+                 instance_id: Optional[pulumi.Input[str]] = None,
+                 is_need_auth: Optional[pulumi.Input[bool]] = None,
+                 mechanism: Optional[pulumi.Input[str]] = None,
+                 password: Optional[pulumi.Input[str]] = None,
+                 protocol: Optional[pulumi.Input[str]] = None,
+                 time_source_default: Optional[pulumi.Input[int]] = None,
+                 topic: Optional[pulumi.Input[str]] = None,
+                 username: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] encode: The encoding format of the data.
+        :param pulumi.Input[str] group: Kafka consumer group.
+        :param pulumi.Input[str] host: The service addresses corresponding to different types of Kafka clusters are different.
+        :param pulumi.Input[int] initial_offset: The starting position of data import.
+        :param pulumi.Input[str] instance_id: When you are using the Volcano Engine Message Queue Kafka version, it should be set to the Kafka instance ID.
+        :param pulumi.Input[bool] is_need_auth: Whether to enable authentication.
+        :param pulumi.Input[str] mechanism: Password authentication mechanism.
+        :param pulumi.Input[str] password: The Kafka SASL user password used for identity authentication.
+        :param pulumi.Input[str] protocol: Secure Transport protocol.
+        :param pulumi.Input[int] time_source_default: Specify the log time.
+        :param pulumi.Input[str] topic: Kafka Topic name.
+        :param pulumi.Input[str] username: The Kafka SASL username used for identity authentication.
+        """
+        if encode is not None:
+            pulumi.set(__self__, "encode", encode)
+        if group is not None:
+            pulumi.set(__self__, "group", group)
+        if host is not None:
+            pulumi.set(__self__, "host", host)
+        if initial_offset is not None:
+            pulumi.set(__self__, "initial_offset", initial_offset)
+        if instance_id is not None:
+            pulumi.set(__self__, "instance_id", instance_id)
+        if is_need_auth is not None:
+            pulumi.set(__self__, "is_need_auth", is_need_auth)
+        if mechanism is not None:
+            pulumi.set(__self__, "mechanism", mechanism)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if protocol is not None:
+            pulumi.set(__self__, "protocol", protocol)
+        if time_source_default is not None:
+            pulumi.set(__self__, "time_source_default", time_source_default)
+        if topic is not None:
+            pulumi.set(__self__, "topic", topic)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter
+    def encode(self) -> Optional[pulumi.Input[str]]:
+        """
+        The encoding format of the data.
+        """
+        return pulumi.get(self, "encode")
+
+    @encode.setter
+    def encode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "encode", value)
+
+    @property
+    @pulumi.getter
+    def group(self) -> Optional[pulumi.Input[str]]:
+        """
+        Kafka consumer group.
+        """
+        return pulumi.get(self, "group")
+
+    @group.setter
+    def group(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "group", value)
+
+    @property
+    @pulumi.getter
+    def host(self) -> Optional[pulumi.Input[str]]:
+        """
+        The service addresses corresponding to different types of Kafka clusters are different.
+        """
+        return pulumi.get(self, "host")
+
+    @host.setter
+    def host(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "host", value)
+
+    @property
+    @pulumi.getter(name="initialOffset")
+    def initial_offset(self) -> Optional[pulumi.Input[int]]:
+        """
+        The starting position of data import.
+        """
+        return pulumi.get(self, "initial_offset")
+
+    @initial_offset.setter
+    def initial_offset(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "initial_offset", value)
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        When you are using the Volcano Engine Message Queue Kafka version, it should be set to the Kafka instance ID.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @instance_id.setter
+    def instance_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "instance_id", value)
+
+    @property
+    @pulumi.getter(name="isNeedAuth")
+    def is_need_auth(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to enable authentication.
+        """
+        return pulumi.get(self, "is_need_auth")
+
+    @is_need_auth.setter
+    def is_need_auth(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "is_need_auth", value)
+
+    @property
+    @pulumi.getter
+    def mechanism(self) -> Optional[pulumi.Input[str]]:
+        """
+        Password authentication mechanism.
+        """
+        return pulumi.get(self, "mechanism")
+
+    @mechanism.setter
+    def mechanism(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mechanism", value)
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Kafka SASL user password used for identity authentication.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "password", value)
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> Optional[pulumi.Input[str]]:
+        """
+        Secure Transport protocol.
+        """
+        return pulumi.get(self, "protocol")
+
+    @protocol.setter
+    def protocol(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "protocol", value)
+
+    @property
+    @pulumi.getter(name="timeSourceDefault")
+    def time_source_default(self) -> Optional[pulumi.Input[int]]:
+        """
+        Specify the log time.
+        """
+        return pulumi.get(self, "time_source_default")
+
+    @time_source_default.setter
+    def time_source_default(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "time_source_default", value)
+
+    @property
+    @pulumi.getter
+    def topic(self) -> Optional[pulumi.Input[str]]:
+        """
+        Kafka Topic name.
+        """
+        return pulumi.get(self, "topic")
+
+    @topic.setter
+    def topic(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "topic", value)
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Kafka SASL username used for identity authentication.
+        """
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "username", value)
+
+
+@pulumi.input_type
+class ImportTaskImportSourceInfoTosSourceInfoArgs:
+    def __init__(__self__, *,
+                 bucket: Optional[pulumi.Input[str]] = None,
+                 compress_type: Optional[pulumi.Input[str]] = None,
+                 prefix: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] bucket: The TOS bucket where the log file is located.
+        :param pulumi.Input[str] compress_type: The compression mode of data in the TOS bucket.
+        :param pulumi.Input[str] prefix: The path of the file to be imported in the TOS bucket.
+        :param pulumi.Input[str] region: The region where the TOS bucket is located. Support cross-regional data import.
+        """
+        if bucket is not None:
+            pulumi.set(__self__, "bucket", bucket)
+        if compress_type is not None:
+            pulumi.set(__self__, "compress_type", compress_type)
+        if prefix is not None:
+            pulumi.set(__self__, "prefix", prefix)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter
+    def bucket(self) -> Optional[pulumi.Input[str]]:
+        """
+        The TOS bucket where the log file is located.
+        """
+        return pulumi.get(self, "bucket")
+
+    @bucket.setter
+    def bucket(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "bucket", value)
+
+    @property
+    @pulumi.getter(name="compressType")
+    def compress_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The compression mode of data in the TOS bucket.
+        """
+        return pulumi.get(self, "compress_type")
+
+    @compress_type.setter
+    def compress_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "compress_type", value)
+
+    @property
+    @pulumi.getter
+    def prefix(self) -> Optional[pulumi.Input[str]]:
+        """
+        The path of the file to be imported in the TOS bucket.
+        """
+        return pulumi.get(self, "prefix")
+
+    @prefix.setter
+    def prefix(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "prefix", value)
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[pulumi.Input[str]]:
+        """
+        The region where the TOS bucket is located. Support cross-regional data import.
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "region", value)
+
+
+@pulumi.input_type
+class ImportTaskTargetInfoArgs:
+    def __init__(__self__, *,
+                 log_type: pulumi.Input[str],
+                 region: pulumi.Input[str],
+                 extract_rule: Optional[pulumi.Input['ImportTaskTargetInfoExtractRuleArgs']] = None,
+                 log_sample: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] log_type: Specify the log parsing type when importing.
+        :param pulumi.Input[str] region: Regional ID.
+        :param pulumi.Input['ImportTaskTargetInfoExtractRuleArgs'] extract_rule: Log extraction rules.
+        :param pulumi.Input[str] log_sample: Log sample.
+        """
+        pulumi.set(__self__, "log_type", log_type)
+        pulumi.set(__self__, "region", region)
+        if extract_rule is not None:
+            pulumi.set(__self__, "extract_rule", extract_rule)
+        if log_sample is not None:
+            pulumi.set(__self__, "log_sample", log_sample)
+
+    @property
+    @pulumi.getter(name="logType")
+    def log_type(self) -> pulumi.Input[str]:
+        """
+        Specify the log parsing type when importing.
+        """
+        return pulumi.get(self, "log_type")
+
+    @log_type.setter
+    def log_type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "log_type", value)
+
+    @property
+    @pulumi.getter
+    def region(self) -> pulumi.Input[str]:
+        """
+        Regional ID.
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: pulumi.Input[str]):
+        pulumi.set(self, "region", value)
+
+    @property
+    @pulumi.getter(name="extractRule")
+    def extract_rule(self) -> Optional[pulumi.Input['ImportTaskTargetInfoExtractRuleArgs']]:
+        """
+        Log extraction rules.
+        """
+        return pulumi.get(self, "extract_rule")
+
+    @extract_rule.setter
+    def extract_rule(self, value: Optional[pulumi.Input['ImportTaskTargetInfoExtractRuleArgs']]):
+        pulumi.set(self, "extract_rule", value)
+
+    @property
+    @pulumi.getter(name="logSample")
+    def log_sample(self) -> Optional[pulumi.Input[str]]:
+        """
+        Log sample.
+        """
+        return pulumi.get(self, "log_sample")
+
+    @log_sample.setter
+    def log_sample(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "log_sample", value)
+
+
+@pulumi.input_type
+class ImportTaskTargetInfoExtractRuleArgs:
+    def __init__(__self__, *,
+                 begin_regex: Optional[pulumi.Input[str]] = None,
+                 delimiter: Optional[pulumi.Input[str]] = None,
+                 keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 quote: Optional[pulumi.Input[str]] = None,
+                 skip_line_count: Optional[pulumi.Input[int]] = None,
+                 time_extract_regex: Optional[pulumi.Input[str]] = None,
+                 time_format: Optional[pulumi.Input[str]] = None,
+                 time_key: Optional[pulumi.Input[str]] = None,
+                 time_zone: Optional[pulumi.Input[str]] = None,
+                 un_match_log_key: Optional[pulumi.Input[str]] = None,
+                 un_match_up_load_switch: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[str] begin_regex: The regular expression used to identify the first line in each log, and its matching part will serve as the beginning of the log.
+        :param pulumi.Input[str] delimiter: Log delimiter.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] keys: List of log field names (Keys).
+        :param pulumi.Input[str] quote: Reference symbol. The content wrapped by the reference will not be separated but will be parsed into a complete field. It is valid if and only if the LogType is delimiter_log.
+        :param pulumi.Input[int] skip_line_count: The number of log lines skipped.
+        :param pulumi.Input[str] time_extract_regex: A regular expression for extracting time, used to extract the time value in the TimeKey field and parse it into the corresponding collection time.
+        :param pulumi.Input[str] time_format: The parsing format of the time field.
+        :param pulumi.Input[str] time_key: The field name of the log time field.
+        :param pulumi.Input[str] time_zone: Time zone, supporting both machine time zone (default) and custom time zone. Among them, the custom time zone supports GMT and UTC.
+        :param pulumi.Input[str] un_match_log_key: When uploading a log that failed to parse, the key name of the parse failed log.
+        :param pulumi.Input[bool] un_match_up_load_switch: Whether to upload the logs of failed parsing.
+        """
+        if begin_regex is not None:
+            pulumi.set(__self__, "begin_regex", begin_regex)
+        if delimiter is not None:
+            pulumi.set(__self__, "delimiter", delimiter)
+        if keys is not None:
+            pulumi.set(__self__, "keys", keys)
+        if quote is not None:
+            pulumi.set(__self__, "quote", quote)
+        if skip_line_count is not None:
+            pulumi.set(__self__, "skip_line_count", skip_line_count)
+        if time_extract_regex is not None:
+            pulumi.set(__self__, "time_extract_regex", time_extract_regex)
+        if time_format is not None:
+            pulumi.set(__self__, "time_format", time_format)
+        if time_key is not None:
+            pulumi.set(__self__, "time_key", time_key)
+        if time_zone is not None:
+            pulumi.set(__self__, "time_zone", time_zone)
+        if un_match_log_key is not None:
+            pulumi.set(__self__, "un_match_log_key", un_match_log_key)
+        if un_match_up_load_switch is not None:
+            pulumi.set(__self__, "un_match_up_load_switch", un_match_up_load_switch)
+
+    @property
+    @pulumi.getter(name="beginRegex")
+    def begin_regex(self) -> Optional[pulumi.Input[str]]:
+        """
+        The regular expression used to identify the first line in each log, and its matching part will serve as the beginning of the log.
+        """
+        return pulumi.get(self, "begin_regex")
+
+    @begin_regex.setter
+    def begin_regex(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "begin_regex", value)
+
+    @property
+    @pulumi.getter
+    def delimiter(self) -> Optional[pulumi.Input[str]]:
+        """
+        Log delimiter.
+        """
+        return pulumi.get(self, "delimiter")
+
+    @delimiter.setter
+    def delimiter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "delimiter", value)
+
+    @property
+    @pulumi.getter
+    def keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of log field names (Keys).
+        """
+        return pulumi.get(self, "keys")
+
+    @keys.setter
+    def keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "keys", value)
+
+    @property
+    @pulumi.getter
+    def quote(self) -> Optional[pulumi.Input[str]]:
+        """
+        Reference symbol. The content wrapped by the reference will not be separated but will be parsed into a complete field. It is valid if and only if the LogType is delimiter_log.
+        """
+        return pulumi.get(self, "quote")
+
+    @quote.setter
+    def quote(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "quote", value)
+
+    @property
+    @pulumi.getter(name="skipLineCount")
+    def skip_line_count(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of log lines skipped.
+        """
+        return pulumi.get(self, "skip_line_count")
+
+    @skip_line_count.setter
+    def skip_line_count(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "skip_line_count", value)
+
+    @property
+    @pulumi.getter(name="timeExtractRegex")
+    def time_extract_regex(self) -> Optional[pulumi.Input[str]]:
+        """
+        A regular expression for extracting time, used to extract the time value in the TimeKey field and parse it into the corresponding collection time.
+        """
+        return pulumi.get(self, "time_extract_regex")
+
+    @time_extract_regex.setter
+    def time_extract_regex(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "time_extract_regex", value)
+
+    @property
+    @pulumi.getter(name="timeFormat")
+    def time_format(self) -> Optional[pulumi.Input[str]]:
+        """
+        The parsing format of the time field.
+        """
+        return pulumi.get(self, "time_format")
+
+    @time_format.setter
+    def time_format(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "time_format", value)
+
+    @property
+    @pulumi.getter(name="timeKey")
+    def time_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The field name of the log time field.
+        """
+        return pulumi.get(self, "time_key")
+
+    @time_key.setter
+    def time_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "time_key", value)
+
+    @property
+    @pulumi.getter(name="timeZone")
+    def time_zone(self) -> Optional[pulumi.Input[str]]:
+        """
+        Time zone, supporting both machine time zone (default) and custom time zone. Among them, the custom time zone supports GMT and UTC.
+        """
+        return pulumi.get(self, "time_zone")
+
+    @time_zone.setter
+    def time_zone(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "time_zone", value)
+
+    @property
+    @pulumi.getter(name="unMatchLogKey")
+    def un_match_log_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        When uploading a log that failed to parse, the key name of the parse failed log.
+        """
+        return pulumi.get(self, "un_match_log_key")
+
+    @un_match_log_key.setter
+    def un_match_log_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "un_match_log_key", value)
+
+    @property
+    @pulumi.getter(name="unMatchUpLoadSwitch")
+    def un_match_up_load_switch(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to upload the logs of failed parsing.
+        """
+        return pulumi.get(self, "un_match_up_load_switch")
+
+    @un_match_up_load_switch.setter
+    def un_match_up_load_switch(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "un_match_up_load_switch", value)
 
 
 @pulumi.input_type
@@ -1622,6 +2248,452 @@ class RuleUserDefineRuleShardHashKeyArgs:
     @hash_key.setter
     def hash_key(self, value: pulumi.Input[str]):
         pulumi.set(self, "hash_key", value)
+
+
+@pulumi.input_type
+class ScheduleSqlTaskRequestCycleArgs:
+    def __init__(__self__, *,
+                 time: pulumi.Input[int],
+                 type: pulumi.Input[str],
+                 cron_tab: Optional[pulumi.Input[str]] = None,
+                 cron_time_zone: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[int] time: The scheduling cycle or the time point of regular execution (the number of minutes away from 00:00), with a value range of 1 to 1440, and the unit is minutes.
+        :param pulumi.Input[str] type: The type of Scheduling cycle.
+        :param pulumi.Input[str] cron_tab: Cron expression. The log service specifies the timed execution of alarm tasks through the Cron expression. The minimum granularity of Cron expressions is minutes, 24 hours. For example, 0 18 * * * indicates that an alarm task is executed exactly at 18:00 every day.
+        :param pulumi.Input[str] cron_time_zone: When setting the Type to Cron, the time zone also needs to be set.
+        """
+        pulumi.set(__self__, "time", time)
+        pulumi.set(__self__, "type", type)
+        if cron_tab is not None:
+            pulumi.set(__self__, "cron_tab", cron_tab)
+        if cron_time_zone is not None:
+            pulumi.set(__self__, "cron_time_zone", cron_time_zone)
+
+    @property
+    @pulumi.getter
+    def time(self) -> pulumi.Input[int]:
+        """
+        The scheduling cycle or the time point of regular execution (the number of minutes away from 00:00), with a value range of 1 to 1440, and the unit is minutes.
+        """
+        return pulumi.get(self, "time")
+
+    @time.setter
+    def time(self, value: pulumi.Input[int]):
+        pulumi.set(self, "time", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[str]:
+        """
+        The type of Scheduling cycle.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter(name="cronTab")
+    def cron_tab(self) -> Optional[pulumi.Input[str]]:
+        """
+        Cron expression. The log service specifies the timed execution of alarm tasks through the Cron expression. The minimum granularity of Cron expressions is minutes, 24 hours. For example, 0 18 * * * indicates that an alarm task is executed exactly at 18:00 every day.
+        """
+        return pulumi.get(self, "cron_tab")
+
+    @cron_tab.setter
+    def cron_tab(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cron_tab", value)
+
+    @property
+    @pulumi.getter(name="cronTimeZone")
+    def cron_time_zone(self) -> Optional[pulumi.Input[str]]:
+        """
+        When setting the Type to Cron, the time zone also needs to be set.
+        """
+        return pulumi.get(self, "cron_time_zone")
+
+    @cron_time_zone.setter
+    def cron_time_zone(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cron_time_zone", value)
+
+
+@pulumi.input_type
+class ShipperContentInfoArgs:
+    def __init__(__self__, *,
+                 csv_info: Optional[pulumi.Input['ShipperContentInfoCsvInfoArgs']] = None,
+                 format: Optional[pulumi.Input[str]] = None,
+                 json_info: Optional[pulumi.Input['ShipperContentInfoJsonInfoArgs']] = None):
+        """
+        :param pulumi.Input['ShipperContentInfoCsvInfoArgs'] csv_info: CSV format log content configuration.
+        :param pulumi.Input[str] format: Log content parsing format.
+        :param pulumi.Input['ShipperContentInfoJsonInfoArgs'] json_info: JSON format log content configuration.
+        """
+        if csv_info is not None:
+            pulumi.set(__self__, "csv_info", csv_info)
+        if format is not None:
+            pulumi.set(__self__, "format", format)
+        if json_info is not None:
+            pulumi.set(__self__, "json_info", json_info)
+
+    @property
+    @pulumi.getter(name="csvInfo")
+    def csv_info(self) -> Optional[pulumi.Input['ShipperContentInfoCsvInfoArgs']]:
+        """
+        CSV format log content configuration.
+        """
+        return pulumi.get(self, "csv_info")
+
+    @csv_info.setter
+    def csv_info(self, value: Optional[pulumi.Input['ShipperContentInfoCsvInfoArgs']]):
+        pulumi.set(self, "csv_info", value)
+
+    @property
+    @pulumi.getter
+    def format(self) -> Optional[pulumi.Input[str]]:
+        """
+        Log content parsing format.
+        """
+        return pulumi.get(self, "format")
+
+    @format.setter
+    def format(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "format", value)
+
+    @property
+    @pulumi.getter(name="jsonInfo")
+    def json_info(self) -> Optional[pulumi.Input['ShipperContentInfoJsonInfoArgs']]:
+        """
+        JSON format log content configuration.
+        """
+        return pulumi.get(self, "json_info")
+
+    @json_info.setter
+    def json_info(self, value: Optional[pulumi.Input['ShipperContentInfoJsonInfoArgs']]):
+        pulumi.set(self, "json_info", value)
+
+
+@pulumi.input_type
+class ShipperContentInfoCsvInfoArgs:
+    def __init__(__self__, *,
+                 delimiter: pulumi.Input[str],
+                 escape_char: pulumi.Input[str],
+                 keys: pulumi.Input[Sequence[pulumi.Input[str]]],
+                 non_field_content: pulumi.Input[str],
+                 print_header: pulumi.Input[bool]):
+        """
+        :param pulumi.Input[str] delimiter: Delimiters are supported, including commas, tabs, vertical bars, semicolons, and Spaces.
+        :param pulumi.Input[str] escape_char: When the field content contains a delimiter, use an escape character to wrap the field. Currently, only single quotes, double quotes, and null characters are supported.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] keys: Configure the fields that need to be delivered.
+        :param pulumi.Input[str] non_field_content: Invalid field filling content, with a length ranging from 0 to 128.
+        :param pulumi.Input[bool] print_header: Whether to print the Key on the first line.
+        """
+        pulumi.set(__self__, "delimiter", delimiter)
+        pulumi.set(__self__, "escape_char", escape_char)
+        pulumi.set(__self__, "keys", keys)
+        pulumi.set(__self__, "non_field_content", non_field_content)
+        pulumi.set(__self__, "print_header", print_header)
+
+    @property
+    @pulumi.getter
+    def delimiter(self) -> pulumi.Input[str]:
+        """
+        Delimiters are supported, including commas, tabs, vertical bars, semicolons, and Spaces.
+        """
+        return pulumi.get(self, "delimiter")
+
+    @delimiter.setter
+    def delimiter(self, value: pulumi.Input[str]):
+        pulumi.set(self, "delimiter", value)
+
+    @property
+    @pulumi.getter(name="escapeChar")
+    def escape_char(self) -> pulumi.Input[str]:
+        """
+        When the field content contains a delimiter, use an escape character to wrap the field. Currently, only single quotes, double quotes, and null characters are supported.
+        """
+        return pulumi.get(self, "escape_char")
+
+    @escape_char.setter
+    def escape_char(self, value: pulumi.Input[str]):
+        pulumi.set(self, "escape_char", value)
+
+    @property
+    @pulumi.getter
+    def keys(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        Configure the fields that need to be delivered.
+        """
+        return pulumi.get(self, "keys")
+
+    @keys.setter
+    def keys(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        pulumi.set(self, "keys", value)
+
+    @property
+    @pulumi.getter(name="nonFieldContent")
+    def non_field_content(self) -> pulumi.Input[str]:
+        """
+        Invalid field filling content, with a length ranging from 0 to 128.
+        """
+        return pulumi.get(self, "non_field_content")
+
+    @non_field_content.setter
+    def non_field_content(self, value: pulumi.Input[str]):
+        pulumi.set(self, "non_field_content", value)
+
+    @property
+    @pulumi.getter(name="printHeader")
+    def print_header(self) -> pulumi.Input[bool]:
+        """
+        Whether to print the Key on the first line.
+        """
+        return pulumi.get(self, "print_header")
+
+    @print_header.setter
+    def print_header(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "print_header", value)
+
+
+@pulumi.input_type
+class ShipperContentInfoJsonInfoArgs:
+    def __init__(__self__, *,
+                 enable: pulumi.Input[bool],
+                 escape: Optional[pulumi.Input[bool]] = None,
+                 keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[bool] enable: Enable the flag.
+        :param pulumi.Input[bool] escape: Whether to escape or not. It must be configured as true.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] keys: When delivering in JSON format, if this parameter is not configured, it indicates that all fields have been delivered. Including __content__ (choice), __source__, __path__, __time__, __image_name__, __container_name__, __pod_name__, __pod_uid__, namespace, __tag____client_ip__, __tag____receive_time__.
+        """
+        pulumi.set(__self__, "enable", enable)
+        if escape is not None:
+            pulumi.set(__self__, "escape", escape)
+        if keys is not None:
+            pulumi.set(__self__, "keys", keys)
+
+    @property
+    @pulumi.getter
+    def enable(self) -> pulumi.Input[bool]:
+        """
+        Enable the flag.
+        """
+        return pulumi.get(self, "enable")
+
+    @enable.setter
+    def enable(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "enable", value)
+
+    @property
+    @pulumi.getter
+    def escape(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to escape or not. It must be configured as true.
+        """
+        return pulumi.get(self, "escape")
+
+    @escape.setter
+    def escape(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "escape", value)
+
+    @property
+    @pulumi.getter
+    def keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        When delivering in JSON format, if this parameter is not configured, it indicates that all fields have been delivered. Including __content__ (choice), __source__, __path__, __time__, __image_name__, __container_name__, __pod_name__, __pod_uid__, namespace, __tag____client_ip__, __tag____receive_time__.
+        """
+        return pulumi.get(self, "keys")
+
+    @keys.setter
+    def keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "keys", value)
+
+
+@pulumi.input_type
+class ShipperKafkaShipperInfoArgs:
+    def __init__(__self__, *,
+                 compress: pulumi.Input[str],
+                 instance: pulumi.Input[str],
+                 kafka_topic: pulumi.Input[str],
+                 end_time: Optional[pulumi.Input[int]] = None,
+                 start_time: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] compress: Compression formats currently supported include snappy, gzip, lz4, and none.
+        :param pulumi.Input[str] instance: Kafka instance.
+        :param pulumi.Input[str] kafka_topic: The name of the Kafka Topic.
+        :param pulumi.Input[int] end_time: Delivery end time, millisecond timestamp. If not configured, it will keep delivering.
+        :param pulumi.Input[int] start_time: Delivery start time, millisecond timestamp. If not configured, the default is the current time.
+        """
+        pulumi.set(__self__, "compress", compress)
+        pulumi.set(__self__, "instance", instance)
+        pulumi.set(__self__, "kafka_topic", kafka_topic)
+        if end_time is not None:
+            pulumi.set(__self__, "end_time", end_time)
+        if start_time is not None:
+            pulumi.set(__self__, "start_time", start_time)
+
+    @property
+    @pulumi.getter
+    def compress(self) -> pulumi.Input[str]:
+        """
+        Compression formats currently supported include snappy, gzip, lz4, and none.
+        """
+        return pulumi.get(self, "compress")
+
+    @compress.setter
+    def compress(self, value: pulumi.Input[str]):
+        pulumi.set(self, "compress", value)
+
+    @property
+    @pulumi.getter
+    def instance(self) -> pulumi.Input[str]:
+        """
+        Kafka instance.
+        """
+        return pulumi.get(self, "instance")
+
+    @instance.setter
+    def instance(self, value: pulumi.Input[str]):
+        pulumi.set(self, "instance", value)
+
+    @property
+    @pulumi.getter(name="kafkaTopic")
+    def kafka_topic(self) -> pulumi.Input[str]:
+        """
+        The name of the Kafka Topic.
+        """
+        return pulumi.get(self, "kafka_topic")
+
+    @kafka_topic.setter
+    def kafka_topic(self, value: pulumi.Input[str]):
+        pulumi.set(self, "kafka_topic", value)
+
+    @property
+    @pulumi.getter(name="endTime")
+    def end_time(self) -> Optional[pulumi.Input[int]]:
+        """
+        Delivery end time, millisecond timestamp. If not configured, it will keep delivering.
+        """
+        return pulumi.get(self, "end_time")
+
+    @end_time.setter
+    def end_time(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "end_time", value)
+
+    @property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> Optional[pulumi.Input[int]]:
+        """
+        Delivery start time, millisecond timestamp. If not configured, the default is the current time.
+        """
+        return pulumi.get(self, "start_time")
+
+    @start_time.setter
+    def start_time(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "start_time", value)
+
+
+@pulumi.input_type
+class ShipperTosShipperInfoArgs:
+    def __init__(__self__, *,
+                 bucket: pulumi.Input[str],
+                 compress: Optional[pulumi.Input[str]] = None,
+                 interval: Optional[pulumi.Input[int]] = None,
+                 max_size: Optional[pulumi.Input[int]] = None,
+                 partition_format: Optional[pulumi.Input[str]] = None,
+                 prefix: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] bucket: When choosing a TOS bucket, it must be located in the same region as the source log topic.
+        :param pulumi.Input[str] compress: Compression formats currently supported include snappy, gzip, lz4, and none.
+        :param pulumi.Input[int] interval: The delivery time interval, measured in seconds, ranges from 300 to 900.
+        :param pulumi.Input[int] max_size: The maximum size of the original file that can be delivered to each partition (Shard), that is, the size of the uncompressed log file. The unit is MiB, and the value range is 5 to 256.
+        :param pulumi.Input[str] partition_format: Partition rules for delivering logs.
+        :param pulumi.Input[str] prefix: The top-level directory name of the storage bucket. All log data delivered through this delivery configuration will be delivered to this directory.
+        """
+        pulumi.set(__self__, "bucket", bucket)
+        if compress is not None:
+            pulumi.set(__self__, "compress", compress)
+        if interval is not None:
+            pulumi.set(__self__, "interval", interval)
+        if max_size is not None:
+            pulumi.set(__self__, "max_size", max_size)
+        if partition_format is not None:
+            pulumi.set(__self__, "partition_format", partition_format)
+        if prefix is not None:
+            pulumi.set(__self__, "prefix", prefix)
+
+    @property
+    @pulumi.getter
+    def bucket(self) -> pulumi.Input[str]:
+        """
+        When choosing a TOS bucket, it must be located in the same region as the source log topic.
+        """
+        return pulumi.get(self, "bucket")
+
+    @bucket.setter
+    def bucket(self, value: pulumi.Input[str]):
+        pulumi.set(self, "bucket", value)
+
+    @property
+    @pulumi.getter
+    def compress(self) -> Optional[pulumi.Input[str]]:
+        """
+        Compression formats currently supported include snappy, gzip, lz4, and none.
+        """
+        return pulumi.get(self, "compress")
+
+    @compress.setter
+    def compress(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "compress", value)
+
+    @property
+    @pulumi.getter
+    def interval(self) -> Optional[pulumi.Input[int]]:
+        """
+        The delivery time interval, measured in seconds, ranges from 300 to 900.
+        """
+        return pulumi.get(self, "interval")
+
+    @interval.setter
+    def interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "interval", value)
+
+    @property
+    @pulumi.getter(name="maxSize")
+    def max_size(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum size of the original file that can be delivered to each partition (Shard), that is, the size of the uncompressed log file. The unit is MiB, and the value range is 5 to 256.
+        """
+        return pulumi.get(self, "max_size")
+
+    @max_size.setter
+    def max_size(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_size", value)
+
+    @property
+    @pulumi.getter(name="partitionFormat")
+    def partition_format(self) -> Optional[pulumi.Input[str]]:
+        """
+        Partition rules for delivering logs.
+        """
+        return pulumi.get(self, "partition_format")
+
+    @partition_format.setter
+    def partition_format(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "partition_format", value)
+
+    @property
+    @pulumi.getter
+    def prefix(self) -> Optional[pulumi.Input[str]]:
+        """
+        The top-level directory name of the storage bucket. All log data delivered through this delivery configuration will be delivered to this directory.
+        """
+        return pulumi.get(self, "prefix")
+
+    @prefix.setter
+    def prefix(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "prefix", value)
 
 
 @pulumi.input_type

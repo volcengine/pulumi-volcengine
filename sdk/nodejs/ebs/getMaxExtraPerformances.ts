@@ -8,6 +8,17 @@ import * as utilities from "../utilities";
 
 /**
  * Use this data source to query detailed information of ebs max extra performances
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const foo = volcengine.ebs.getMaxExtraPerformances({
+ *     size: 60,
+ *     volumeType: "TSSD_TL0",
+ * });
+ * ```
  */
 export function getMaxExtraPerformances(args?: GetMaxExtraPerformancesArgs, opts?: pulumi.InvokeOptions): Promise<GetMaxExtraPerformancesResult> {
     args = args || {};
@@ -72,6 +83,17 @@ export interface GetMaxExtraPerformancesResult {
 }
 /**
  * Use this data source to query detailed information of ebs max extra performances
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const foo = volcengine.ebs.getMaxExtraPerformances({
+ *     size: 60,
+ *     volumeType: "TSSD_TL0",
+ * });
+ * ```
  */
 export function getMaxExtraPerformancesOutput(args?: GetMaxExtraPerformancesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetMaxExtraPerformancesResult> {
     return pulumi.output(args).apply((a: any) => getMaxExtraPerformances(a, opts))

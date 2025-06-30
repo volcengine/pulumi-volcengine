@@ -1791,6 +1791,646 @@ func (o AlarmsAlarmRequestCycleArrayOutput) Index(i pulumi.IntInput) AlarmsAlarm
 	}).(AlarmsAlarmRequestCycleOutput)
 }
 
+type ConsumerGroupsConsumerGroup struct {
+	// The name of the consumer group.
+	ConsumerGroupName string `pulumi:"consumerGroupName"`
+	// The time of heart rate expiration, measured in seconds, has a value range of 1 to 300.
+	HeartbeatTtl int `pulumi:"heartbeatTtl"`
+	// Whether to consume in sequence.
+	OrderedConsume bool `pulumi:"orderedConsume"`
+	// The log project ID to which the consumption group belongs.
+	ProjectId string `pulumi:"projectId"`
+	// The name of the log item to which the consumption group belongs.
+	ProjectName string `pulumi:"projectName"`
+	// The log topic ID to which the consumer belongs.
+	TopicIds []string `pulumi:"topicIds"`
+}
+
+// ConsumerGroupsConsumerGroupInput is an input type that accepts ConsumerGroupsConsumerGroupArgs and ConsumerGroupsConsumerGroupOutput values.
+// You can construct a concrete instance of `ConsumerGroupsConsumerGroupInput` via:
+//
+//	ConsumerGroupsConsumerGroupArgs{...}
+type ConsumerGroupsConsumerGroupInput interface {
+	pulumi.Input
+
+	ToConsumerGroupsConsumerGroupOutput() ConsumerGroupsConsumerGroupOutput
+	ToConsumerGroupsConsumerGroupOutputWithContext(context.Context) ConsumerGroupsConsumerGroupOutput
+}
+
+type ConsumerGroupsConsumerGroupArgs struct {
+	// The name of the consumer group.
+	ConsumerGroupName pulumi.StringInput `pulumi:"consumerGroupName"`
+	// The time of heart rate expiration, measured in seconds, has a value range of 1 to 300.
+	HeartbeatTtl pulumi.IntInput `pulumi:"heartbeatTtl"`
+	// Whether to consume in sequence.
+	OrderedConsume pulumi.BoolInput `pulumi:"orderedConsume"`
+	// The log project ID to which the consumption group belongs.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// The name of the log item to which the consumption group belongs.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The log topic ID to which the consumer belongs.
+	TopicIds pulumi.StringArrayInput `pulumi:"topicIds"`
+}
+
+func (ConsumerGroupsConsumerGroupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumerGroupsConsumerGroup)(nil)).Elem()
+}
+
+func (i ConsumerGroupsConsumerGroupArgs) ToConsumerGroupsConsumerGroupOutput() ConsumerGroupsConsumerGroupOutput {
+	return i.ToConsumerGroupsConsumerGroupOutputWithContext(context.Background())
+}
+
+func (i ConsumerGroupsConsumerGroupArgs) ToConsumerGroupsConsumerGroupOutputWithContext(ctx context.Context) ConsumerGroupsConsumerGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumerGroupsConsumerGroupOutput)
+}
+
+// ConsumerGroupsConsumerGroupArrayInput is an input type that accepts ConsumerGroupsConsumerGroupArray and ConsumerGroupsConsumerGroupArrayOutput values.
+// You can construct a concrete instance of `ConsumerGroupsConsumerGroupArrayInput` via:
+//
+//	ConsumerGroupsConsumerGroupArray{ ConsumerGroupsConsumerGroupArgs{...} }
+type ConsumerGroupsConsumerGroupArrayInput interface {
+	pulumi.Input
+
+	ToConsumerGroupsConsumerGroupArrayOutput() ConsumerGroupsConsumerGroupArrayOutput
+	ToConsumerGroupsConsumerGroupArrayOutputWithContext(context.Context) ConsumerGroupsConsumerGroupArrayOutput
+}
+
+type ConsumerGroupsConsumerGroupArray []ConsumerGroupsConsumerGroupInput
+
+func (ConsumerGroupsConsumerGroupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ConsumerGroupsConsumerGroup)(nil)).Elem()
+}
+
+func (i ConsumerGroupsConsumerGroupArray) ToConsumerGroupsConsumerGroupArrayOutput() ConsumerGroupsConsumerGroupArrayOutput {
+	return i.ToConsumerGroupsConsumerGroupArrayOutputWithContext(context.Background())
+}
+
+func (i ConsumerGroupsConsumerGroupArray) ToConsumerGroupsConsumerGroupArrayOutputWithContext(ctx context.Context) ConsumerGroupsConsumerGroupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumerGroupsConsumerGroupArrayOutput)
+}
+
+type ConsumerGroupsConsumerGroupOutput struct{ *pulumi.OutputState }
+
+func (ConsumerGroupsConsumerGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumerGroupsConsumerGroup)(nil)).Elem()
+}
+
+func (o ConsumerGroupsConsumerGroupOutput) ToConsumerGroupsConsumerGroupOutput() ConsumerGroupsConsumerGroupOutput {
+	return o
+}
+
+func (o ConsumerGroupsConsumerGroupOutput) ToConsumerGroupsConsumerGroupOutputWithContext(ctx context.Context) ConsumerGroupsConsumerGroupOutput {
+	return o
+}
+
+// The name of the consumer group.
+func (o ConsumerGroupsConsumerGroupOutput) ConsumerGroupName() pulumi.StringOutput {
+	return o.ApplyT(func(v ConsumerGroupsConsumerGroup) string { return v.ConsumerGroupName }).(pulumi.StringOutput)
+}
+
+// The time of heart rate expiration, measured in seconds, has a value range of 1 to 300.
+func (o ConsumerGroupsConsumerGroupOutput) HeartbeatTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v ConsumerGroupsConsumerGroup) int { return v.HeartbeatTtl }).(pulumi.IntOutput)
+}
+
+// Whether to consume in sequence.
+func (o ConsumerGroupsConsumerGroupOutput) OrderedConsume() pulumi.BoolOutput {
+	return o.ApplyT(func(v ConsumerGroupsConsumerGroup) bool { return v.OrderedConsume }).(pulumi.BoolOutput)
+}
+
+// The log project ID to which the consumption group belongs.
+func (o ConsumerGroupsConsumerGroupOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v ConsumerGroupsConsumerGroup) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// The name of the log item to which the consumption group belongs.
+func (o ConsumerGroupsConsumerGroupOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v ConsumerGroupsConsumerGroup) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The log topic ID to which the consumer belongs.
+func (o ConsumerGroupsConsumerGroupOutput) TopicIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ConsumerGroupsConsumerGroup) []string { return v.TopicIds }).(pulumi.StringArrayOutput)
+}
+
+type ConsumerGroupsConsumerGroupArrayOutput struct{ *pulumi.OutputState }
+
+func (ConsumerGroupsConsumerGroupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ConsumerGroupsConsumerGroup)(nil)).Elem()
+}
+
+func (o ConsumerGroupsConsumerGroupArrayOutput) ToConsumerGroupsConsumerGroupArrayOutput() ConsumerGroupsConsumerGroupArrayOutput {
+	return o
+}
+
+func (o ConsumerGroupsConsumerGroupArrayOutput) ToConsumerGroupsConsumerGroupArrayOutputWithContext(ctx context.Context) ConsumerGroupsConsumerGroupArrayOutput {
+	return o
+}
+
+func (o ConsumerGroupsConsumerGroupArrayOutput) Index(i pulumi.IntInput) ConsumerGroupsConsumerGroupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ConsumerGroupsConsumerGroup {
+		return vs[0].([]ConsumerGroupsConsumerGroup)[vs[1].(int)]
+	}).(ConsumerGroupsConsumerGroupOutput)
+}
+
+type EtlTaskTargetResource struct {
+	// Customize the name of the output target, which needs to be used to refer to the output target in the data processing rules.
+	Alias string `pulumi:"alias"`
+	// Cross-account authorized character names.
+	RoleTrn *string `pulumi:"roleTrn"`
+	// Log topics used for storing processed logs.
+	TopicId string `pulumi:"topicId"`
+}
+
+// EtlTaskTargetResourceInput is an input type that accepts EtlTaskTargetResourceArgs and EtlTaskTargetResourceOutput values.
+// You can construct a concrete instance of `EtlTaskTargetResourceInput` via:
+//
+//	EtlTaskTargetResourceArgs{...}
+type EtlTaskTargetResourceInput interface {
+	pulumi.Input
+
+	ToEtlTaskTargetResourceOutput() EtlTaskTargetResourceOutput
+	ToEtlTaskTargetResourceOutputWithContext(context.Context) EtlTaskTargetResourceOutput
+}
+
+type EtlTaskTargetResourceArgs struct {
+	// Customize the name of the output target, which needs to be used to refer to the output target in the data processing rules.
+	Alias pulumi.StringInput `pulumi:"alias"`
+	// Cross-account authorized character names.
+	RoleTrn pulumi.StringPtrInput `pulumi:"roleTrn"`
+	// Log topics used for storing processed logs.
+	TopicId pulumi.StringInput `pulumi:"topicId"`
+}
+
+func (EtlTaskTargetResourceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EtlTaskTargetResource)(nil)).Elem()
+}
+
+func (i EtlTaskTargetResourceArgs) ToEtlTaskTargetResourceOutput() EtlTaskTargetResourceOutput {
+	return i.ToEtlTaskTargetResourceOutputWithContext(context.Background())
+}
+
+func (i EtlTaskTargetResourceArgs) ToEtlTaskTargetResourceOutputWithContext(ctx context.Context) EtlTaskTargetResourceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EtlTaskTargetResourceOutput)
+}
+
+// EtlTaskTargetResourceArrayInput is an input type that accepts EtlTaskTargetResourceArray and EtlTaskTargetResourceArrayOutput values.
+// You can construct a concrete instance of `EtlTaskTargetResourceArrayInput` via:
+//
+//	EtlTaskTargetResourceArray{ EtlTaskTargetResourceArgs{...} }
+type EtlTaskTargetResourceArrayInput interface {
+	pulumi.Input
+
+	ToEtlTaskTargetResourceArrayOutput() EtlTaskTargetResourceArrayOutput
+	ToEtlTaskTargetResourceArrayOutputWithContext(context.Context) EtlTaskTargetResourceArrayOutput
+}
+
+type EtlTaskTargetResourceArray []EtlTaskTargetResourceInput
+
+func (EtlTaskTargetResourceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EtlTaskTargetResource)(nil)).Elem()
+}
+
+func (i EtlTaskTargetResourceArray) ToEtlTaskTargetResourceArrayOutput() EtlTaskTargetResourceArrayOutput {
+	return i.ToEtlTaskTargetResourceArrayOutputWithContext(context.Background())
+}
+
+func (i EtlTaskTargetResourceArray) ToEtlTaskTargetResourceArrayOutputWithContext(ctx context.Context) EtlTaskTargetResourceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EtlTaskTargetResourceArrayOutput)
+}
+
+type EtlTaskTargetResourceOutput struct{ *pulumi.OutputState }
+
+func (EtlTaskTargetResourceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EtlTaskTargetResource)(nil)).Elem()
+}
+
+func (o EtlTaskTargetResourceOutput) ToEtlTaskTargetResourceOutput() EtlTaskTargetResourceOutput {
+	return o
+}
+
+func (o EtlTaskTargetResourceOutput) ToEtlTaskTargetResourceOutputWithContext(ctx context.Context) EtlTaskTargetResourceOutput {
+	return o
+}
+
+// Customize the name of the output target, which needs to be used to refer to the output target in the data processing rules.
+func (o EtlTaskTargetResourceOutput) Alias() pulumi.StringOutput {
+	return o.ApplyT(func(v EtlTaskTargetResource) string { return v.Alias }).(pulumi.StringOutput)
+}
+
+// Cross-account authorized character names.
+func (o EtlTaskTargetResourceOutput) RoleTrn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EtlTaskTargetResource) *string { return v.RoleTrn }).(pulumi.StringPtrOutput)
+}
+
+// Log topics used for storing processed logs.
+func (o EtlTaskTargetResourceOutput) TopicId() pulumi.StringOutput {
+	return o.ApplyT(func(v EtlTaskTargetResource) string { return v.TopicId }).(pulumi.StringOutput)
+}
+
+type EtlTaskTargetResourceArrayOutput struct{ *pulumi.OutputState }
+
+func (EtlTaskTargetResourceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EtlTaskTargetResource)(nil)).Elem()
+}
+
+func (o EtlTaskTargetResourceArrayOutput) ToEtlTaskTargetResourceArrayOutput() EtlTaskTargetResourceArrayOutput {
+	return o
+}
+
+func (o EtlTaskTargetResourceArrayOutput) ToEtlTaskTargetResourceArrayOutputWithContext(ctx context.Context) EtlTaskTargetResourceArrayOutput {
+	return o
+}
+
+func (o EtlTaskTargetResourceArrayOutput) Index(i pulumi.IntInput) EtlTaskTargetResourceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EtlTaskTargetResource {
+		return vs[0].([]EtlTaskTargetResource)[vs[1].(int)]
+	}).(EtlTaskTargetResourceOutput)
+}
+
+type EtlTasksTask struct {
+	// Processing task creation time.
+	CreateTime string `pulumi:"createTime"`
+	// A simple description of the processing task.
+	Description string `pulumi:"description"`
+	// DSL type, fixed as NORMAL.
+	DslType string `pulumi:"dslType"`
+	// The running status of the processing task.
+	Enable bool `pulumi:"enable"`
+	// Task scheduling status.
+	EtlStatus string `pulumi:"etlStatus"`
+	// The start time of the data to be processed.
+	FromTime int `pulumi:"fromTime"`
+	// Recent startup time.
+	LastEnableTime string `pulumi:"lastEnableTime"`
+	// The most recent modification time of the processing task.
+	ModifyTime string `pulumi:"modifyTime"`
+	// The name of the processing task.
+	Name string `pulumi:"name"`
+	// Specify the log item ID for querying the data processing tasks under the specified log item.
+	ProjectId string `pulumi:"projectId"`
+	// Specify the name of the log item for querying the data processing tasks under the specified log item. Support fuzzy query.
+	ProjectName string `pulumi:"projectName"`
+	// Processing rules.
+	Script string `pulumi:"script"`
+	// Specify the log topic ID for querying the data processing tasks related to this log topic.
+	SourceTopicId string `pulumi:"sourceTopicId"`
+	// Specify the name of the log topic for querying the data processing tasks related to this log topic. Support fuzzy matching.
+	SourceTopicName string `pulumi:"sourceTopicName"`
+	// Output the relevant information of the target.
+	TargetResources []EtlTasksTaskTargetResource `pulumi:"targetResources"`
+	// The ID of the processing task.
+	TaskId string `pulumi:"taskId"`
+	// The task type is fixed as Resident.
+	TaskType string `pulumi:"taskType"`
+	// The end time of the data to be processed.
+	ToTime int `pulumi:"toTime"`
+}
+
+// EtlTasksTaskInput is an input type that accepts EtlTasksTaskArgs and EtlTasksTaskOutput values.
+// You can construct a concrete instance of `EtlTasksTaskInput` via:
+//
+//	EtlTasksTaskArgs{...}
+type EtlTasksTaskInput interface {
+	pulumi.Input
+
+	ToEtlTasksTaskOutput() EtlTasksTaskOutput
+	ToEtlTasksTaskOutputWithContext(context.Context) EtlTasksTaskOutput
+}
+
+type EtlTasksTaskArgs struct {
+	// Processing task creation time.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// A simple description of the processing task.
+	Description pulumi.StringInput `pulumi:"description"`
+	// DSL type, fixed as NORMAL.
+	DslType pulumi.StringInput `pulumi:"dslType"`
+	// The running status of the processing task.
+	Enable pulumi.BoolInput `pulumi:"enable"`
+	// Task scheduling status.
+	EtlStatus pulumi.StringInput `pulumi:"etlStatus"`
+	// The start time of the data to be processed.
+	FromTime pulumi.IntInput `pulumi:"fromTime"`
+	// Recent startup time.
+	LastEnableTime pulumi.StringInput `pulumi:"lastEnableTime"`
+	// The most recent modification time of the processing task.
+	ModifyTime pulumi.StringInput `pulumi:"modifyTime"`
+	// The name of the processing task.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Specify the log item ID for querying the data processing tasks under the specified log item.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Specify the name of the log item for querying the data processing tasks under the specified log item. Support fuzzy query.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// Processing rules.
+	Script pulumi.StringInput `pulumi:"script"`
+	// Specify the log topic ID for querying the data processing tasks related to this log topic.
+	SourceTopicId pulumi.StringInput `pulumi:"sourceTopicId"`
+	// Specify the name of the log topic for querying the data processing tasks related to this log topic. Support fuzzy matching.
+	SourceTopicName pulumi.StringInput `pulumi:"sourceTopicName"`
+	// Output the relevant information of the target.
+	TargetResources EtlTasksTaskTargetResourceArrayInput `pulumi:"targetResources"`
+	// The ID of the processing task.
+	TaskId pulumi.StringInput `pulumi:"taskId"`
+	// The task type is fixed as Resident.
+	TaskType pulumi.StringInput `pulumi:"taskType"`
+	// The end time of the data to be processed.
+	ToTime pulumi.IntInput `pulumi:"toTime"`
+}
+
+func (EtlTasksTaskArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EtlTasksTask)(nil)).Elem()
+}
+
+func (i EtlTasksTaskArgs) ToEtlTasksTaskOutput() EtlTasksTaskOutput {
+	return i.ToEtlTasksTaskOutputWithContext(context.Background())
+}
+
+func (i EtlTasksTaskArgs) ToEtlTasksTaskOutputWithContext(ctx context.Context) EtlTasksTaskOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EtlTasksTaskOutput)
+}
+
+// EtlTasksTaskArrayInput is an input type that accepts EtlTasksTaskArray and EtlTasksTaskArrayOutput values.
+// You can construct a concrete instance of `EtlTasksTaskArrayInput` via:
+//
+//	EtlTasksTaskArray{ EtlTasksTaskArgs{...} }
+type EtlTasksTaskArrayInput interface {
+	pulumi.Input
+
+	ToEtlTasksTaskArrayOutput() EtlTasksTaskArrayOutput
+	ToEtlTasksTaskArrayOutputWithContext(context.Context) EtlTasksTaskArrayOutput
+}
+
+type EtlTasksTaskArray []EtlTasksTaskInput
+
+func (EtlTasksTaskArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EtlTasksTask)(nil)).Elem()
+}
+
+func (i EtlTasksTaskArray) ToEtlTasksTaskArrayOutput() EtlTasksTaskArrayOutput {
+	return i.ToEtlTasksTaskArrayOutputWithContext(context.Background())
+}
+
+func (i EtlTasksTaskArray) ToEtlTasksTaskArrayOutputWithContext(ctx context.Context) EtlTasksTaskArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EtlTasksTaskArrayOutput)
+}
+
+type EtlTasksTaskOutput struct{ *pulumi.OutputState }
+
+func (EtlTasksTaskOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EtlTasksTask)(nil)).Elem()
+}
+
+func (o EtlTasksTaskOutput) ToEtlTasksTaskOutput() EtlTasksTaskOutput {
+	return o
+}
+
+func (o EtlTasksTaskOutput) ToEtlTasksTaskOutputWithContext(ctx context.Context) EtlTasksTaskOutput {
+	return o
+}
+
+// Processing task creation time.
+func (o EtlTasksTaskOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v EtlTasksTask) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// A simple description of the processing task.
+func (o EtlTasksTaskOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v EtlTasksTask) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// DSL type, fixed as NORMAL.
+func (o EtlTasksTaskOutput) DslType() pulumi.StringOutput {
+	return o.ApplyT(func(v EtlTasksTask) string { return v.DslType }).(pulumi.StringOutput)
+}
+
+// The running status of the processing task.
+func (o EtlTasksTaskOutput) Enable() pulumi.BoolOutput {
+	return o.ApplyT(func(v EtlTasksTask) bool { return v.Enable }).(pulumi.BoolOutput)
+}
+
+// Task scheduling status.
+func (o EtlTasksTaskOutput) EtlStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v EtlTasksTask) string { return v.EtlStatus }).(pulumi.StringOutput)
+}
+
+// The start time of the data to be processed.
+func (o EtlTasksTaskOutput) FromTime() pulumi.IntOutput {
+	return o.ApplyT(func(v EtlTasksTask) int { return v.FromTime }).(pulumi.IntOutput)
+}
+
+// Recent startup time.
+func (o EtlTasksTaskOutput) LastEnableTime() pulumi.StringOutput {
+	return o.ApplyT(func(v EtlTasksTask) string { return v.LastEnableTime }).(pulumi.StringOutput)
+}
+
+// The most recent modification time of the processing task.
+func (o EtlTasksTaskOutput) ModifyTime() pulumi.StringOutput {
+	return o.ApplyT(func(v EtlTasksTask) string { return v.ModifyTime }).(pulumi.StringOutput)
+}
+
+// The name of the processing task.
+func (o EtlTasksTaskOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v EtlTasksTask) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Specify the log item ID for querying the data processing tasks under the specified log item.
+func (o EtlTasksTaskOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v EtlTasksTask) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Specify the name of the log item for querying the data processing tasks under the specified log item. Support fuzzy query.
+func (o EtlTasksTaskOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v EtlTasksTask) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// Processing rules.
+func (o EtlTasksTaskOutput) Script() pulumi.StringOutput {
+	return o.ApplyT(func(v EtlTasksTask) string { return v.Script }).(pulumi.StringOutput)
+}
+
+// Specify the log topic ID for querying the data processing tasks related to this log topic.
+func (o EtlTasksTaskOutput) SourceTopicId() pulumi.StringOutput {
+	return o.ApplyT(func(v EtlTasksTask) string { return v.SourceTopicId }).(pulumi.StringOutput)
+}
+
+// Specify the name of the log topic for querying the data processing tasks related to this log topic. Support fuzzy matching.
+func (o EtlTasksTaskOutput) SourceTopicName() pulumi.StringOutput {
+	return o.ApplyT(func(v EtlTasksTask) string { return v.SourceTopicName }).(pulumi.StringOutput)
+}
+
+// Output the relevant information of the target.
+func (o EtlTasksTaskOutput) TargetResources() EtlTasksTaskTargetResourceArrayOutput {
+	return o.ApplyT(func(v EtlTasksTask) []EtlTasksTaskTargetResource { return v.TargetResources }).(EtlTasksTaskTargetResourceArrayOutput)
+}
+
+// The ID of the processing task.
+func (o EtlTasksTaskOutput) TaskId() pulumi.StringOutput {
+	return o.ApplyT(func(v EtlTasksTask) string { return v.TaskId }).(pulumi.StringOutput)
+}
+
+// The task type is fixed as Resident.
+func (o EtlTasksTaskOutput) TaskType() pulumi.StringOutput {
+	return o.ApplyT(func(v EtlTasksTask) string { return v.TaskType }).(pulumi.StringOutput)
+}
+
+// The end time of the data to be processed.
+func (o EtlTasksTaskOutput) ToTime() pulumi.IntOutput {
+	return o.ApplyT(func(v EtlTasksTask) int { return v.ToTime }).(pulumi.IntOutput)
+}
+
+type EtlTasksTaskArrayOutput struct{ *pulumi.OutputState }
+
+func (EtlTasksTaskArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EtlTasksTask)(nil)).Elem()
+}
+
+func (o EtlTasksTaskArrayOutput) ToEtlTasksTaskArrayOutput() EtlTasksTaskArrayOutput {
+	return o
+}
+
+func (o EtlTasksTaskArrayOutput) ToEtlTasksTaskArrayOutputWithContext(ctx context.Context) EtlTasksTaskArrayOutput {
+	return o
+}
+
+func (o EtlTasksTaskArrayOutput) Index(i pulumi.IntInput) EtlTasksTaskOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EtlTasksTask {
+		return vs[0].([]EtlTasksTask)[vs[1].(int)]
+	}).(EtlTasksTaskOutput)
+}
+
+type EtlTasksTaskTargetResource struct {
+	// Customize the name of the output target, which needs to be used to refer to the output target in the data processing rules.
+	Alias string `pulumi:"alias"`
+	// Specify the log item ID for querying the data processing tasks under the specified log item.
+	ProjectId string `pulumi:"projectId"`
+	// Specify the name of the log item for querying the data processing tasks under the specified log item. Support fuzzy query.
+	ProjectName string `pulumi:"projectName"`
+	// Log topics used for storing processed logs.
+	TopicId string `pulumi:"topicId"`
+	// The name of the log topic used for storing the processed logs.
+	TopicName string `pulumi:"topicName"`
+}
+
+// EtlTasksTaskTargetResourceInput is an input type that accepts EtlTasksTaskTargetResourceArgs and EtlTasksTaskTargetResourceOutput values.
+// You can construct a concrete instance of `EtlTasksTaskTargetResourceInput` via:
+//
+//	EtlTasksTaskTargetResourceArgs{...}
+type EtlTasksTaskTargetResourceInput interface {
+	pulumi.Input
+
+	ToEtlTasksTaskTargetResourceOutput() EtlTasksTaskTargetResourceOutput
+	ToEtlTasksTaskTargetResourceOutputWithContext(context.Context) EtlTasksTaskTargetResourceOutput
+}
+
+type EtlTasksTaskTargetResourceArgs struct {
+	// Customize the name of the output target, which needs to be used to refer to the output target in the data processing rules.
+	Alias pulumi.StringInput `pulumi:"alias"`
+	// Specify the log item ID for querying the data processing tasks under the specified log item.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Specify the name of the log item for querying the data processing tasks under the specified log item. Support fuzzy query.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// Log topics used for storing processed logs.
+	TopicId pulumi.StringInput `pulumi:"topicId"`
+	// The name of the log topic used for storing the processed logs.
+	TopicName pulumi.StringInput `pulumi:"topicName"`
+}
+
+func (EtlTasksTaskTargetResourceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EtlTasksTaskTargetResource)(nil)).Elem()
+}
+
+func (i EtlTasksTaskTargetResourceArgs) ToEtlTasksTaskTargetResourceOutput() EtlTasksTaskTargetResourceOutput {
+	return i.ToEtlTasksTaskTargetResourceOutputWithContext(context.Background())
+}
+
+func (i EtlTasksTaskTargetResourceArgs) ToEtlTasksTaskTargetResourceOutputWithContext(ctx context.Context) EtlTasksTaskTargetResourceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EtlTasksTaskTargetResourceOutput)
+}
+
+// EtlTasksTaskTargetResourceArrayInput is an input type that accepts EtlTasksTaskTargetResourceArray and EtlTasksTaskTargetResourceArrayOutput values.
+// You can construct a concrete instance of `EtlTasksTaskTargetResourceArrayInput` via:
+//
+//	EtlTasksTaskTargetResourceArray{ EtlTasksTaskTargetResourceArgs{...} }
+type EtlTasksTaskTargetResourceArrayInput interface {
+	pulumi.Input
+
+	ToEtlTasksTaskTargetResourceArrayOutput() EtlTasksTaskTargetResourceArrayOutput
+	ToEtlTasksTaskTargetResourceArrayOutputWithContext(context.Context) EtlTasksTaskTargetResourceArrayOutput
+}
+
+type EtlTasksTaskTargetResourceArray []EtlTasksTaskTargetResourceInput
+
+func (EtlTasksTaskTargetResourceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EtlTasksTaskTargetResource)(nil)).Elem()
+}
+
+func (i EtlTasksTaskTargetResourceArray) ToEtlTasksTaskTargetResourceArrayOutput() EtlTasksTaskTargetResourceArrayOutput {
+	return i.ToEtlTasksTaskTargetResourceArrayOutputWithContext(context.Background())
+}
+
+func (i EtlTasksTaskTargetResourceArray) ToEtlTasksTaskTargetResourceArrayOutputWithContext(ctx context.Context) EtlTasksTaskTargetResourceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EtlTasksTaskTargetResourceArrayOutput)
+}
+
+type EtlTasksTaskTargetResourceOutput struct{ *pulumi.OutputState }
+
+func (EtlTasksTaskTargetResourceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EtlTasksTaskTargetResource)(nil)).Elem()
+}
+
+func (o EtlTasksTaskTargetResourceOutput) ToEtlTasksTaskTargetResourceOutput() EtlTasksTaskTargetResourceOutput {
+	return o
+}
+
+func (o EtlTasksTaskTargetResourceOutput) ToEtlTasksTaskTargetResourceOutputWithContext(ctx context.Context) EtlTasksTaskTargetResourceOutput {
+	return o
+}
+
+// Customize the name of the output target, which needs to be used to refer to the output target in the data processing rules.
+func (o EtlTasksTaskTargetResourceOutput) Alias() pulumi.StringOutput {
+	return o.ApplyT(func(v EtlTasksTaskTargetResource) string { return v.Alias }).(pulumi.StringOutput)
+}
+
+// Specify the log item ID for querying the data processing tasks under the specified log item.
+func (o EtlTasksTaskTargetResourceOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v EtlTasksTaskTargetResource) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Specify the name of the log item for querying the data processing tasks under the specified log item. Support fuzzy query.
+func (o EtlTasksTaskTargetResourceOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v EtlTasksTaskTargetResource) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// Log topics used for storing processed logs.
+func (o EtlTasksTaskTargetResourceOutput) TopicId() pulumi.StringOutput {
+	return o.ApplyT(func(v EtlTasksTaskTargetResource) string { return v.TopicId }).(pulumi.StringOutput)
+}
+
+// The name of the log topic used for storing the processed logs.
+func (o EtlTasksTaskTargetResourceOutput) TopicName() pulumi.StringOutput {
+	return o.ApplyT(func(v EtlTasksTaskTargetResource) string { return v.TopicName }).(pulumi.StringOutput)
+}
+
+type EtlTasksTaskTargetResourceArrayOutput struct{ *pulumi.OutputState }
+
+func (EtlTasksTaskTargetResourceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EtlTasksTaskTargetResource)(nil)).Elem()
+}
+
+func (o EtlTasksTaskTargetResourceArrayOutput) ToEtlTasksTaskTargetResourceArrayOutput() EtlTasksTaskTargetResourceArrayOutput {
+	return o
+}
+
+func (o EtlTasksTaskTargetResourceArrayOutput) ToEtlTasksTaskTargetResourceArrayOutputWithContext(ctx context.Context) EtlTasksTaskTargetResourceArrayOutput {
+	return o
+}
+
+func (o EtlTasksTaskTargetResourceArrayOutput) Index(i pulumi.IntInput) EtlTasksTaskTargetResourceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EtlTasksTaskTargetResource {
+		return vs[0].([]EtlTasksTaskTargetResource)[vs[1].(int)]
+	}).(EtlTasksTaskTargetResourceOutput)
+}
+
 type HostGroupsInfo struct {
 	// The abnormal heartbeat status count of host.
 	AbnormalHeartbeatStatusCount int `pulumi:"abnormalHeartbeatStatusCount"`
@@ -2154,6 +2794,2061 @@ func (o HostsHostInfoArrayOutput) Index(i pulumi.IntInput) HostsHostInfoOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) HostsHostInfo {
 		return vs[0].([]HostsHostInfo)[vs[1].(int)]
 	}).(HostsHostInfoOutput)
+}
+
+type ImportTaskImportSourceInfo struct {
+	// TOS imports source information.
+	KafkaSourceInfo *ImportTaskImportSourceInfoKafkaSourceInfo `pulumi:"kafkaSourceInfo"`
+	// TOS imports source information.
+	TosSourceInfo *ImportTaskImportSourceInfoTosSourceInfo `pulumi:"tosSourceInfo"`
+}
+
+// ImportTaskImportSourceInfoInput is an input type that accepts ImportTaskImportSourceInfoArgs and ImportTaskImportSourceInfoOutput values.
+// You can construct a concrete instance of `ImportTaskImportSourceInfoInput` via:
+//
+//	ImportTaskImportSourceInfoArgs{...}
+type ImportTaskImportSourceInfoInput interface {
+	pulumi.Input
+
+	ToImportTaskImportSourceInfoOutput() ImportTaskImportSourceInfoOutput
+	ToImportTaskImportSourceInfoOutputWithContext(context.Context) ImportTaskImportSourceInfoOutput
+}
+
+type ImportTaskImportSourceInfoArgs struct {
+	// TOS imports source information.
+	KafkaSourceInfo ImportTaskImportSourceInfoKafkaSourceInfoPtrInput `pulumi:"kafkaSourceInfo"`
+	// TOS imports source information.
+	TosSourceInfo ImportTaskImportSourceInfoTosSourceInfoPtrInput `pulumi:"tosSourceInfo"`
+}
+
+func (ImportTaskImportSourceInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ImportTaskImportSourceInfo)(nil)).Elem()
+}
+
+func (i ImportTaskImportSourceInfoArgs) ToImportTaskImportSourceInfoOutput() ImportTaskImportSourceInfoOutput {
+	return i.ToImportTaskImportSourceInfoOutputWithContext(context.Background())
+}
+
+func (i ImportTaskImportSourceInfoArgs) ToImportTaskImportSourceInfoOutputWithContext(ctx context.Context) ImportTaskImportSourceInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ImportTaskImportSourceInfoOutput)
+}
+
+func (i ImportTaskImportSourceInfoArgs) ToImportTaskImportSourceInfoPtrOutput() ImportTaskImportSourceInfoPtrOutput {
+	return i.ToImportTaskImportSourceInfoPtrOutputWithContext(context.Background())
+}
+
+func (i ImportTaskImportSourceInfoArgs) ToImportTaskImportSourceInfoPtrOutputWithContext(ctx context.Context) ImportTaskImportSourceInfoPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ImportTaskImportSourceInfoOutput).ToImportTaskImportSourceInfoPtrOutputWithContext(ctx)
+}
+
+// ImportTaskImportSourceInfoPtrInput is an input type that accepts ImportTaskImportSourceInfoArgs, ImportTaskImportSourceInfoPtr and ImportTaskImportSourceInfoPtrOutput values.
+// You can construct a concrete instance of `ImportTaskImportSourceInfoPtrInput` via:
+//
+//	        ImportTaskImportSourceInfoArgs{...}
+//
+//	or:
+//
+//	        nil
+type ImportTaskImportSourceInfoPtrInput interface {
+	pulumi.Input
+
+	ToImportTaskImportSourceInfoPtrOutput() ImportTaskImportSourceInfoPtrOutput
+	ToImportTaskImportSourceInfoPtrOutputWithContext(context.Context) ImportTaskImportSourceInfoPtrOutput
+}
+
+type importTaskImportSourceInfoPtrType ImportTaskImportSourceInfoArgs
+
+func ImportTaskImportSourceInfoPtr(v *ImportTaskImportSourceInfoArgs) ImportTaskImportSourceInfoPtrInput {
+	return (*importTaskImportSourceInfoPtrType)(v)
+}
+
+func (*importTaskImportSourceInfoPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ImportTaskImportSourceInfo)(nil)).Elem()
+}
+
+func (i *importTaskImportSourceInfoPtrType) ToImportTaskImportSourceInfoPtrOutput() ImportTaskImportSourceInfoPtrOutput {
+	return i.ToImportTaskImportSourceInfoPtrOutputWithContext(context.Background())
+}
+
+func (i *importTaskImportSourceInfoPtrType) ToImportTaskImportSourceInfoPtrOutputWithContext(ctx context.Context) ImportTaskImportSourceInfoPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ImportTaskImportSourceInfoPtrOutput)
+}
+
+type ImportTaskImportSourceInfoOutput struct{ *pulumi.OutputState }
+
+func (ImportTaskImportSourceInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ImportTaskImportSourceInfo)(nil)).Elem()
+}
+
+func (o ImportTaskImportSourceInfoOutput) ToImportTaskImportSourceInfoOutput() ImportTaskImportSourceInfoOutput {
+	return o
+}
+
+func (o ImportTaskImportSourceInfoOutput) ToImportTaskImportSourceInfoOutputWithContext(ctx context.Context) ImportTaskImportSourceInfoOutput {
+	return o
+}
+
+func (o ImportTaskImportSourceInfoOutput) ToImportTaskImportSourceInfoPtrOutput() ImportTaskImportSourceInfoPtrOutput {
+	return o.ToImportTaskImportSourceInfoPtrOutputWithContext(context.Background())
+}
+
+func (o ImportTaskImportSourceInfoOutput) ToImportTaskImportSourceInfoPtrOutputWithContext(ctx context.Context) ImportTaskImportSourceInfoPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ImportTaskImportSourceInfo) *ImportTaskImportSourceInfo {
+		return &v
+	}).(ImportTaskImportSourceInfoPtrOutput)
+}
+
+// TOS imports source information.
+func (o ImportTaskImportSourceInfoOutput) KafkaSourceInfo() ImportTaskImportSourceInfoKafkaSourceInfoPtrOutput {
+	return o.ApplyT(func(v ImportTaskImportSourceInfo) *ImportTaskImportSourceInfoKafkaSourceInfo {
+		return v.KafkaSourceInfo
+	}).(ImportTaskImportSourceInfoKafkaSourceInfoPtrOutput)
+}
+
+// TOS imports source information.
+func (o ImportTaskImportSourceInfoOutput) TosSourceInfo() ImportTaskImportSourceInfoTosSourceInfoPtrOutput {
+	return o.ApplyT(func(v ImportTaskImportSourceInfo) *ImportTaskImportSourceInfoTosSourceInfo { return v.TosSourceInfo }).(ImportTaskImportSourceInfoTosSourceInfoPtrOutput)
+}
+
+type ImportTaskImportSourceInfoPtrOutput struct{ *pulumi.OutputState }
+
+func (ImportTaskImportSourceInfoPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ImportTaskImportSourceInfo)(nil)).Elem()
+}
+
+func (o ImportTaskImportSourceInfoPtrOutput) ToImportTaskImportSourceInfoPtrOutput() ImportTaskImportSourceInfoPtrOutput {
+	return o
+}
+
+func (o ImportTaskImportSourceInfoPtrOutput) ToImportTaskImportSourceInfoPtrOutputWithContext(ctx context.Context) ImportTaskImportSourceInfoPtrOutput {
+	return o
+}
+
+func (o ImportTaskImportSourceInfoPtrOutput) Elem() ImportTaskImportSourceInfoOutput {
+	return o.ApplyT(func(v *ImportTaskImportSourceInfo) ImportTaskImportSourceInfo {
+		if v != nil {
+			return *v
+		}
+		var ret ImportTaskImportSourceInfo
+		return ret
+	}).(ImportTaskImportSourceInfoOutput)
+}
+
+// TOS imports source information.
+func (o ImportTaskImportSourceInfoPtrOutput) KafkaSourceInfo() ImportTaskImportSourceInfoKafkaSourceInfoPtrOutput {
+	return o.ApplyT(func(v *ImportTaskImportSourceInfo) *ImportTaskImportSourceInfoKafkaSourceInfo {
+		if v == nil {
+			return nil
+		}
+		return v.KafkaSourceInfo
+	}).(ImportTaskImportSourceInfoKafkaSourceInfoPtrOutput)
+}
+
+// TOS imports source information.
+func (o ImportTaskImportSourceInfoPtrOutput) TosSourceInfo() ImportTaskImportSourceInfoTosSourceInfoPtrOutput {
+	return o.ApplyT(func(v *ImportTaskImportSourceInfo) *ImportTaskImportSourceInfoTosSourceInfo {
+		if v == nil {
+			return nil
+		}
+		return v.TosSourceInfo
+	}).(ImportTaskImportSourceInfoTosSourceInfoPtrOutput)
+}
+
+type ImportTaskImportSourceInfoKafkaSourceInfo struct {
+	// The encoding format of the data.
+	Encode *string `pulumi:"encode"`
+	// Kafka consumer group.
+	Group *string `pulumi:"group"`
+	// The service addresses corresponding to different types of Kafka clusters are different.
+	Host *string `pulumi:"host"`
+	// The starting position of data import.
+	InitialOffset *int `pulumi:"initialOffset"`
+	// When you are using the Volcano Engine Message Queue Kafka version, it should be set to the Kafka instance ID.
+	InstanceId *string `pulumi:"instanceId"`
+	// Whether to enable authentication.
+	IsNeedAuth *bool `pulumi:"isNeedAuth"`
+	// Password authentication mechanism.
+	Mechanism *string `pulumi:"mechanism"`
+	// The Kafka SASL user password used for identity authentication.
+	Password *string `pulumi:"password"`
+	// Secure Transport protocol.
+	Protocol *string `pulumi:"protocol"`
+	// Specify the log time.
+	TimeSourceDefault *int `pulumi:"timeSourceDefault"`
+	// Kafka Topic name.
+	Topic *string `pulumi:"topic"`
+	// The Kafka SASL username used for identity authentication.
+	Username *string `pulumi:"username"`
+}
+
+// ImportTaskImportSourceInfoKafkaSourceInfoInput is an input type that accepts ImportTaskImportSourceInfoKafkaSourceInfoArgs and ImportTaskImportSourceInfoKafkaSourceInfoOutput values.
+// You can construct a concrete instance of `ImportTaskImportSourceInfoKafkaSourceInfoInput` via:
+//
+//	ImportTaskImportSourceInfoKafkaSourceInfoArgs{...}
+type ImportTaskImportSourceInfoKafkaSourceInfoInput interface {
+	pulumi.Input
+
+	ToImportTaskImportSourceInfoKafkaSourceInfoOutput() ImportTaskImportSourceInfoKafkaSourceInfoOutput
+	ToImportTaskImportSourceInfoKafkaSourceInfoOutputWithContext(context.Context) ImportTaskImportSourceInfoKafkaSourceInfoOutput
+}
+
+type ImportTaskImportSourceInfoKafkaSourceInfoArgs struct {
+	// The encoding format of the data.
+	Encode pulumi.StringPtrInput `pulumi:"encode"`
+	// Kafka consumer group.
+	Group pulumi.StringPtrInput `pulumi:"group"`
+	// The service addresses corresponding to different types of Kafka clusters are different.
+	Host pulumi.StringPtrInput `pulumi:"host"`
+	// The starting position of data import.
+	InitialOffset pulumi.IntPtrInput `pulumi:"initialOffset"`
+	// When you are using the Volcano Engine Message Queue Kafka version, it should be set to the Kafka instance ID.
+	InstanceId pulumi.StringPtrInput `pulumi:"instanceId"`
+	// Whether to enable authentication.
+	IsNeedAuth pulumi.BoolPtrInput `pulumi:"isNeedAuth"`
+	// Password authentication mechanism.
+	Mechanism pulumi.StringPtrInput `pulumi:"mechanism"`
+	// The Kafka SASL user password used for identity authentication.
+	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Secure Transport protocol.
+	Protocol pulumi.StringPtrInput `pulumi:"protocol"`
+	// Specify the log time.
+	TimeSourceDefault pulumi.IntPtrInput `pulumi:"timeSourceDefault"`
+	// Kafka Topic name.
+	Topic pulumi.StringPtrInput `pulumi:"topic"`
+	// The Kafka SASL username used for identity authentication.
+	Username pulumi.StringPtrInput `pulumi:"username"`
+}
+
+func (ImportTaskImportSourceInfoKafkaSourceInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ImportTaskImportSourceInfoKafkaSourceInfo)(nil)).Elem()
+}
+
+func (i ImportTaskImportSourceInfoKafkaSourceInfoArgs) ToImportTaskImportSourceInfoKafkaSourceInfoOutput() ImportTaskImportSourceInfoKafkaSourceInfoOutput {
+	return i.ToImportTaskImportSourceInfoKafkaSourceInfoOutputWithContext(context.Background())
+}
+
+func (i ImportTaskImportSourceInfoKafkaSourceInfoArgs) ToImportTaskImportSourceInfoKafkaSourceInfoOutputWithContext(ctx context.Context) ImportTaskImportSourceInfoKafkaSourceInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ImportTaskImportSourceInfoKafkaSourceInfoOutput)
+}
+
+func (i ImportTaskImportSourceInfoKafkaSourceInfoArgs) ToImportTaskImportSourceInfoKafkaSourceInfoPtrOutput() ImportTaskImportSourceInfoKafkaSourceInfoPtrOutput {
+	return i.ToImportTaskImportSourceInfoKafkaSourceInfoPtrOutputWithContext(context.Background())
+}
+
+func (i ImportTaskImportSourceInfoKafkaSourceInfoArgs) ToImportTaskImportSourceInfoKafkaSourceInfoPtrOutputWithContext(ctx context.Context) ImportTaskImportSourceInfoKafkaSourceInfoPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ImportTaskImportSourceInfoKafkaSourceInfoOutput).ToImportTaskImportSourceInfoKafkaSourceInfoPtrOutputWithContext(ctx)
+}
+
+// ImportTaskImportSourceInfoKafkaSourceInfoPtrInput is an input type that accepts ImportTaskImportSourceInfoKafkaSourceInfoArgs, ImportTaskImportSourceInfoKafkaSourceInfoPtr and ImportTaskImportSourceInfoKafkaSourceInfoPtrOutput values.
+// You can construct a concrete instance of `ImportTaskImportSourceInfoKafkaSourceInfoPtrInput` via:
+//
+//	        ImportTaskImportSourceInfoKafkaSourceInfoArgs{...}
+//
+//	or:
+//
+//	        nil
+type ImportTaskImportSourceInfoKafkaSourceInfoPtrInput interface {
+	pulumi.Input
+
+	ToImportTaskImportSourceInfoKafkaSourceInfoPtrOutput() ImportTaskImportSourceInfoKafkaSourceInfoPtrOutput
+	ToImportTaskImportSourceInfoKafkaSourceInfoPtrOutputWithContext(context.Context) ImportTaskImportSourceInfoKafkaSourceInfoPtrOutput
+}
+
+type importTaskImportSourceInfoKafkaSourceInfoPtrType ImportTaskImportSourceInfoKafkaSourceInfoArgs
+
+func ImportTaskImportSourceInfoKafkaSourceInfoPtr(v *ImportTaskImportSourceInfoKafkaSourceInfoArgs) ImportTaskImportSourceInfoKafkaSourceInfoPtrInput {
+	return (*importTaskImportSourceInfoKafkaSourceInfoPtrType)(v)
+}
+
+func (*importTaskImportSourceInfoKafkaSourceInfoPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ImportTaskImportSourceInfoKafkaSourceInfo)(nil)).Elem()
+}
+
+func (i *importTaskImportSourceInfoKafkaSourceInfoPtrType) ToImportTaskImportSourceInfoKafkaSourceInfoPtrOutput() ImportTaskImportSourceInfoKafkaSourceInfoPtrOutput {
+	return i.ToImportTaskImportSourceInfoKafkaSourceInfoPtrOutputWithContext(context.Background())
+}
+
+func (i *importTaskImportSourceInfoKafkaSourceInfoPtrType) ToImportTaskImportSourceInfoKafkaSourceInfoPtrOutputWithContext(ctx context.Context) ImportTaskImportSourceInfoKafkaSourceInfoPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ImportTaskImportSourceInfoKafkaSourceInfoPtrOutput)
+}
+
+type ImportTaskImportSourceInfoKafkaSourceInfoOutput struct{ *pulumi.OutputState }
+
+func (ImportTaskImportSourceInfoKafkaSourceInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ImportTaskImportSourceInfoKafkaSourceInfo)(nil)).Elem()
+}
+
+func (o ImportTaskImportSourceInfoKafkaSourceInfoOutput) ToImportTaskImportSourceInfoKafkaSourceInfoOutput() ImportTaskImportSourceInfoKafkaSourceInfoOutput {
+	return o
+}
+
+func (o ImportTaskImportSourceInfoKafkaSourceInfoOutput) ToImportTaskImportSourceInfoKafkaSourceInfoOutputWithContext(ctx context.Context) ImportTaskImportSourceInfoKafkaSourceInfoOutput {
+	return o
+}
+
+func (o ImportTaskImportSourceInfoKafkaSourceInfoOutput) ToImportTaskImportSourceInfoKafkaSourceInfoPtrOutput() ImportTaskImportSourceInfoKafkaSourceInfoPtrOutput {
+	return o.ToImportTaskImportSourceInfoKafkaSourceInfoPtrOutputWithContext(context.Background())
+}
+
+func (o ImportTaskImportSourceInfoKafkaSourceInfoOutput) ToImportTaskImportSourceInfoKafkaSourceInfoPtrOutputWithContext(ctx context.Context) ImportTaskImportSourceInfoKafkaSourceInfoPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ImportTaskImportSourceInfoKafkaSourceInfo) *ImportTaskImportSourceInfoKafkaSourceInfo {
+		return &v
+	}).(ImportTaskImportSourceInfoKafkaSourceInfoPtrOutput)
+}
+
+// The encoding format of the data.
+func (o ImportTaskImportSourceInfoKafkaSourceInfoOutput) Encode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ImportTaskImportSourceInfoKafkaSourceInfo) *string { return v.Encode }).(pulumi.StringPtrOutput)
+}
+
+// Kafka consumer group.
+func (o ImportTaskImportSourceInfoKafkaSourceInfoOutput) Group() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ImportTaskImportSourceInfoKafkaSourceInfo) *string { return v.Group }).(pulumi.StringPtrOutput)
+}
+
+// The service addresses corresponding to different types of Kafka clusters are different.
+func (o ImportTaskImportSourceInfoKafkaSourceInfoOutput) Host() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ImportTaskImportSourceInfoKafkaSourceInfo) *string { return v.Host }).(pulumi.StringPtrOutput)
+}
+
+// The starting position of data import.
+func (o ImportTaskImportSourceInfoKafkaSourceInfoOutput) InitialOffset() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ImportTaskImportSourceInfoKafkaSourceInfo) *int { return v.InitialOffset }).(pulumi.IntPtrOutput)
+}
+
+// When you are using the Volcano Engine Message Queue Kafka version, it should be set to the Kafka instance ID.
+func (o ImportTaskImportSourceInfoKafkaSourceInfoOutput) InstanceId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ImportTaskImportSourceInfoKafkaSourceInfo) *string { return v.InstanceId }).(pulumi.StringPtrOutput)
+}
+
+// Whether to enable authentication.
+func (o ImportTaskImportSourceInfoKafkaSourceInfoOutput) IsNeedAuth() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ImportTaskImportSourceInfoKafkaSourceInfo) *bool { return v.IsNeedAuth }).(pulumi.BoolPtrOutput)
+}
+
+// Password authentication mechanism.
+func (o ImportTaskImportSourceInfoKafkaSourceInfoOutput) Mechanism() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ImportTaskImportSourceInfoKafkaSourceInfo) *string { return v.Mechanism }).(pulumi.StringPtrOutput)
+}
+
+// The Kafka SASL user password used for identity authentication.
+func (o ImportTaskImportSourceInfoKafkaSourceInfoOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ImportTaskImportSourceInfoKafkaSourceInfo) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// Secure Transport protocol.
+func (o ImportTaskImportSourceInfoKafkaSourceInfoOutput) Protocol() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ImportTaskImportSourceInfoKafkaSourceInfo) *string { return v.Protocol }).(pulumi.StringPtrOutput)
+}
+
+// Specify the log time.
+func (o ImportTaskImportSourceInfoKafkaSourceInfoOutput) TimeSourceDefault() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ImportTaskImportSourceInfoKafkaSourceInfo) *int { return v.TimeSourceDefault }).(pulumi.IntPtrOutput)
+}
+
+// Kafka Topic name.
+func (o ImportTaskImportSourceInfoKafkaSourceInfoOutput) Topic() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ImportTaskImportSourceInfoKafkaSourceInfo) *string { return v.Topic }).(pulumi.StringPtrOutput)
+}
+
+// The Kafka SASL username used for identity authentication.
+func (o ImportTaskImportSourceInfoKafkaSourceInfoOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ImportTaskImportSourceInfoKafkaSourceInfo) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+type ImportTaskImportSourceInfoKafkaSourceInfoPtrOutput struct{ *pulumi.OutputState }
+
+func (ImportTaskImportSourceInfoKafkaSourceInfoPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ImportTaskImportSourceInfoKafkaSourceInfo)(nil)).Elem()
+}
+
+func (o ImportTaskImportSourceInfoKafkaSourceInfoPtrOutput) ToImportTaskImportSourceInfoKafkaSourceInfoPtrOutput() ImportTaskImportSourceInfoKafkaSourceInfoPtrOutput {
+	return o
+}
+
+func (o ImportTaskImportSourceInfoKafkaSourceInfoPtrOutput) ToImportTaskImportSourceInfoKafkaSourceInfoPtrOutputWithContext(ctx context.Context) ImportTaskImportSourceInfoKafkaSourceInfoPtrOutput {
+	return o
+}
+
+func (o ImportTaskImportSourceInfoKafkaSourceInfoPtrOutput) Elem() ImportTaskImportSourceInfoKafkaSourceInfoOutput {
+	return o.ApplyT(func(v *ImportTaskImportSourceInfoKafkaSourceInfo) ImportTaskImportSourceInfoKafkaSourceInfo {
+		if v != nil {
+			return *v
+		}
+		var ret ImportTaskImportSourceInfoKafkaSourceInfo
+		return ret
+	}).(ImportTaskImportSourceInfoKafkaSourceInfoOutput)
+}
+
+// The encoding format of the data.
+func (o ImportTaskImportSourceInfoKafkaSourceInfoPtrOutput) Encode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ImportTaskImportSourceInfoKafkaSourceInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Encode
+	}).(pulumi.StringPtrOutput)
+}
+
+// Kafka consumer group.
+func (o ImportTaskImportSourceInfoKafkaSourceInfoPtrOutput) Group() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ImportTaskImportSourceInfoKafkaSourceInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Group
+	}).(pulumi.StringPtrOutput)
+}
+
+// The service addresses corresponding to different types of Kafka clusters are different.
+func (o ImportTaskImportSourceInfoKafkaSourceInfoPtrOutput) Host() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ImportTaskImportSourceInfoKafkaSourceInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Host
+	}).(pulumi.StringPtrOutput)
+}
+
+// The starting position of data import.
+func (o ImportTaskImportSourceInfoKafkaSourceInfoPtrOutput) InitialOffset() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ImportTaskImportSourceInfoKafkaSourceInfo) *int {
+		if v == nil {
+			return nil
+		}
+		return v.InitialOffset
+	}).(pulumi.IntPtrOutput)
+}
+
+// When you are using the Volcano Engine Message Queue Kafka version, it should be set to the Kafka instance ID.
+func (o ImportTaskImportSourceInfoKafkaSourceInfoPtrOutput) InstanceId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ImportTaskImportSourceInfoKafkaSourceInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return v.InstanceId
+	}).(pulumi.StringPtrOutput)
+}
+
+// Whether to enable authentication.
+func (o ImportTaskImportSourceInfoKafkaSourceInfoPtrOutput) IsNeedAuth() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ImportTaskImportSourceInfoKafkaSourceInfo) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.IsNeedAuth
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Password authentication mechanism.
+func (o ImportTaskImportSourceInfoKafkaSourceInfoPtrOutput) Mechanism() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ImportTaskImportSourceInfoKafkaSourceInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Mechanism
+	}).(pulumi.StringPtrOutput)
+}
+
+// The Kafka SASL user password used for identity authentication.
+func (o ImportTaskImportSourceInfoKafkaSourceInfoPtrOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ImportTaskImportSourceInfoKafkaSourceInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Password
+	}).(pulumi.StringPtrOutput)
+}
+
+// Secure Transport protocol.
+func (o ImportTaskImportSourceInfoKafkaSourceInfoPtrOutput) Protocol() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ImportTaskImportSourceInfoKafkaSourceInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Protocol
+	}).(pulumi.StringPtrOutput)
+}
+
+// Specify the log time.
+func (o ImportTaskImportSourceInfoKafkaSourceInfoPtrOutput) TimeSourceDefault() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ImportTaskImportSourceInfoKafkaSourceInfo) *int {
+		if v == nil {
+			return nil
+		}
+		return v.TimeSourceDefault
+	}).(pulumi.IntPtrOutput)
+}
+
+// Kafka Topic name.
+func (o ImportTaskImportSourceInfoKafkaSourceInfoPtrOutput) Topic() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ImportTaskImportSourceInfoKafkaSourceInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Topic
+	}).(pulumi.StringPtrOutput)
+}
+
+// The Kafka SASL username used for identity authentication.
+func (o ImportTaskImportSourceInfoKafkaSourceInfoPtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ImportTaskImportSourceInfoKafkaSourceInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Username
+	}).(pulumi.StringPtrOutput)
+}
+
+type ImportTaskImportSourceInfoTosSourceInfo struct {
+	// The TOS bucket where the log file is located.
+	Bucket *string `pulumi:"bucket"`
+	// The compression mode of data in the TOS bucket.
+	CompressType *string `pulumi:"compressType"`
+	// The path of the file to be imported in the TOS bucket.
+	Prefix *string `pulumi:"prefix"`
+	// The region where the TOS bucket is located. Support cross-regional data import.
+	Region *string `pulumi:"region"`
+}
+
+// ImportTaskImportSourceInfoTosSourceInfoInput is an input type that accepts ImportTaskImportSourceInfoTosSourceInfoArgs and ImportTaskImportSourceInfoTosSourceInfoOutput values.
+// You can construct a concrete instance of `ImportTaskImportSourceInfoTosSourceInfoInput` via:
+//
+//	ImportTaskImportSourceInfoTosSourceInfoArgs{...}
+type ImportTaskImportSourceInfoTosSourceInfoInput interface {
+	pulumi.Input
+
+	ToImportTaskImportSourceInfoTosSourceInfoOutput() ImportTaskImportSourceInfoTosSourceInfoOutput
+	ToImportTaskImportSourceInfoTosSourceInfoOutputWithContext(context.Context) ImportTaskImportSourceInfoTosSourceInfoOutput
+}
+
+type ImportTaskImportSourceInfoTosSourceInfoArgs struct {
+	// The TOS bucket where the log file is located.
+	Bucket pulumi.StringPtrInput `pulumi:"bucket"`
+	// The compression mode of data in the TOS bucket.
+	CompressType pulumi.StringPtrInput `pulumi:"compressType"`
+	// The path of the file to be imported in the TOS bucket.
+	Prefix pulumi.StringPtrInput `pulumi:"prefix"`
+	// The region where the TOS bucket is located. Support cross-regional data import.
+	Region pulumi.StringPtrInput `pulumi:"region"`
+}
+
+func (ImportTaskImportSourceInfoTosSourceInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ImportTaskImportSourceInfoTosSourceInfo)(nil)).Elem()
+}
+
+func (i ImportTaskImportSourceInfoTosSourceInfoArgs) ToImportTaskImportSourceInfoTosSourceInfoOutput() ImportTaskImportSourceInfoTosSourceInfoOutput {
+	return i.ToImportTaskImportSourceInfoTosSourceInfoOutputWithContext(context.Background())
+}
+
+func (i ImportTaskImportSourceInfoTosSourceInfoArgs) ToImportTaskImportSourceInfoTosSourceInfoOutputWithContext(ctx context.Context) ImportTaskImportSourceInfoTosSourceInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ImportTaskImportSourceInfoTosSourceInfoOutput)
+}
+
+func (i ImportTaskImportSourceInfoTosSourceInfoArgs) ToImportTaskImportSourceInfoTosSourceInfoPtrOutput() ImportTaskImportSourceInfoTosSourceInfoPtrOutput {
+	return i.ToImportTaskImportSourceInfoTosSourceInfoPtrOutputWithContext(context.Background())
+}
+
+func (i ImportTaskImportSourceInfoTosSourceInfoArgs) ToImportTaskImportSourceInfoTosSourceInfoPtrOutputWithContext(ctx context.Context) ImportTaskImportSourceInfoTosSourceInfoPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ImportTaskImportSourceInfoTosSourceInfoOutput).ToImportTaskImportSourceInfoTosSourceInfoPtrOutputWithContext(ctx)
+}
+
+// ImportTaskImportSourceInfoTosSourceInfoPtrInput is an input type that accepts ImportTaskImportSourceInfoTosSourceInfoArgs, ImportTaskImportSourceInfoTosSourceInfoPtr and ImportTaskImportSourceInfoTosSourceInfoPtrOutput values.
+// You can construct a concrete instance of `ImportTaskImportSourceInfoTosSourceInfoPtrInput` via:
+//
+//	        ImportTaskImportSourceInfoTosSourceInfoArgs{...}
+//
+//	or:
+//
+//	        nil
+type ImportTaskImportSourceInfoTosSourceInfoPtrInput interface {
+	pulumi.Input
+
+	ToImportTaskImportSourceInfoTosSourceInfoPtrOutput() ImportTaskImportSourceInfoTosSourceInfoPtrOutput
+	ToImportTaskImportSourceInfoTosSourceInfoPtrOutputWithContext(context.Context) ImportTaskImportSourceInfoTosSourceInfoPtrOutput
+}
+
+type importTaskImportSourceInfoTosSourceInfoPtrType ImportTaskImportSourceInfoTosSourceInfoArgs
+
+func ImportTaskImportSourceInfoTosSourceInfoPtr(v *ImportTaskImportSourceInfoTosSourceInfoArgs) ImportTaskImportSourceInfoTosSourceInfoPtrInput {
+	return (*importTaskImportSourceInfoTosSourceInfoPtrType)(v)
+}
+
+func (*importTaskImportSourceInfoTosSourceInfoPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ImportTaskImportSourceInfoTosSourceInfo)(nil)).Elem()
+}
+
+func (i *importTaskImportSourceInfoTosSourceInfoPtrType) ToImportTaskImportSourceInfoTosSourceInfoPtrOutput() ImportTaskImportSourceInfoTosSourceInfoPtrOutput {
+	return i.ToImportTaskImportSourceInfoTosSourceInfoPtrOutputWithContext(context.Background())
+}
+
+func (i *importTaskImportSourceInfoTosSourceInfoPtrType) ToImportTaskImportSourceInfoTosSourceInfoPtrOutputWithContext(ctx context.Context) ImportTaskImportSourceInfoTosSourceInfoPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ImportTaskImportSourceInfoTosSourceInfoPtrOutput)
+}
+
+type ImportTaskImportSourceInfoTosSourceInfoOutput struct{ *pulumi.OutputState }
+
+func (ImportTaskImportSourceInfoTosSourceInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ImportTaskImportSourceInfoTosSourceInfo)(nil)).Elem()
+}
+
+func (o ImportTaskImportSourceInfoTosSourceInfoOutput) ToImportTaskImportSourceInfoTosSourceInfoOutput() ImportTaskImportSourceInfoTosSourceInfoOutput {
+	return o
+}
+
+func (o ImportTaskImportSourceInfoTosSourceInfoOutput) ToImportTaskImportSourceInfoTosSourceInfoOutputWithContext(ctx context.Context) ImportTaskImportSourceInfoTosSourceInfoOutput {
+	return o
+}
+
+func (o ImportTaskImportSourceInfoTosSourceInfoOutput) ToImportTaskImportSourceInfoTosSourceInfoPtrOutput() ImportTaskImportSourceInfoTosSourceInfoPtrOutput {
+	return o.ToImportTaskImportSourceInfoTosSourceInfoPtrOutputWithContext(context.Background())
+}
+
+func (o ImportTaskImportSourceInfoTosSourceInfoOutput) ToImportTaskImportSourceInfoTosSourceInfoPtrOutputWithContext(ctx context.Context) ImportTaskImportSourceInfoTosSourceInfoPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ImportTaskImportSourceInfoTosSourceInfo) *ImportTaskImportSourceInfoTosSourceInfo {
+		return &v
+	}).(ImportTaskImportSourceInfoTosSourceInfoPtrOutput)
+}
+
+// The TOS bucket where the log file is located.
+func (o ImportTaskImportSourceInfoTosSourceInfoOutput) Bucket() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ImportTaskImportSourceInfoTosSourceInfo) *string { return v.Bucket }).(pulumi.StringPtrOutput)
+}
+
+// The compression mode of data in the TOS bucket.
+func (o ImportTaskImportSourceInfoTosSourceInfoOutput) CompressType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ImportTaskImportSourceInfoTosSourceInfo) *string { return v.CompressType }).(pulumi.StringPtrOutput)
+}
+
+// The path of the file to be imported in the TOS bucket.
+func (o ImportTaskImportSourceInfoTosSourceInfoOutput) Prefix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ImportTaskImportSourceInfoTosSourceInfo) *string { return v.Prefix }).(pulumi.StringPtrOutput)
+}
+
+// The region where the TOS bucket is located. Support cross-regional data import.
+func (o ImportTaskImportSourceInfoTosSourceInfoOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ImportTaskImportSourceInfoTosSourceInfo) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+type ImportTaskImportSourceInfoTosSourceInfoPtrOutput struct{ *pulumi.OutputState }
+
+func (ImportTaskImportSourceInfoTosSourceInfoPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ImportTaskImportSourceInfoTosSourceInfo)(nil)).Elem()
+}
+
+func (o ImportTaskImportSourceInfoTosSourceInfoPtrOutput) ToImportTaskImportSourceInfoTosSourceInfoPtrOutput() ImportTaskImportSourceInfoTosSourceInfoPtrOutput {
+	return o
+}
+
+func (o ImportTaskImportSourceInfoTosSourceInfoPtrOutput) ToImportTaskImportSourceInfoTosSourceInfoPtrOutputWithContext(ctx context.Context) ImportTaskImportSourceInfoTosSourceInfoPtrOutput {
+	return o
+}
+
+func (o ImportTaskImportSourceInfoTosSourceInfoPtrOutput) Elem() ImportTaskImportSourceInfoTosSourceInfoOutput {
+	return o.ApplyT(func(v *ImportTaskImportSourceInfoTosSourceInfo) ImportTaskImportSourceInfoTosSourceInfo {
+		if v != nil {
+			return *v
+		}
+		var ret ImportTaskImportSourceInfoTosSourceInfo
+		return ret
+	}).(ImportTaskImportSourceInfoTosSourceInfoOutput)
+}
+
+// The TOS bucket where the log file is located.
+func (o ImportTaskImportSourceInfoTosSourceInfoPtrOutput) Bucket() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ImportTaskImportSourceInfoTosSourceInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Bucket
+	}).(pulumi.StringPtrOutput)
+}
+
+// The compression mode of data in the TOS bucket.
+func (o ImportTaskImportSourceInfoTosSourceInfoPtrOutput) CompressType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ImportTaskImportSourceInfoTosSourceInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CompressType
+	}).(pulumi.StringPtrOutput)
+}
+
+// The path of the file to be imported in the TOS bucket.
+func (o ImportTaskImportSourceInfoTosSourceInfoPtrOutput) Prefix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ImportTaskImportSourceInfoTosSourceInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Prefix
+	}).(pulumi.StringPtrOutput)
+}
+
+// The region where the TOS bucket is located. Support cross-regional data import.
+func (o ImportTaskImportSourceInfoTosSourceInfoPtrOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ImportTaskImportSourceInfoTosSourceInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Region
+	}).(pulumi.StringPtrOutput)
+}
+
+type ImportTaskTargetInfo struct {
+	// Log extraction rules.
+	ExtractRule *ImportTaskTargetInfoExtractRule `pulumi:"extractRule"`
+	// Log sample.
+	LogSample *string `pulumi:"logSample"`
+	// Specify the log parsing type when importing.
+	LogType string `pulumi:"logType"`
+	// Regional ID.
+	Region string `pulumi:"region"`
+}
+
+// ImportTaskTargetInfoInput is an input type that accepts ImportTaskTargetInfoArgs and ImportTaskTargetInfoOutput values.
+// You can construct a concrete instance of `ImportTaskTargetInfoInput` via:
+//
+//	ImportTaskTargetInfoArgs{...}
+type ImportTaskTargetInfoInput interface {
+	pulumi.Input
+
+	ToImportTaskTargetInfoOutput() ImportTaskTargetInfoOutput
+	ToImportTaskTargetInfoOutputWithContext(context.Context) ImportTaskTargetInfoOutput
+}
+
+type ImportTaskTargetInfoArgs struct {
+	// Log extraction rules.
+	ExtractRule ImportTaskTargetInfoExtractRulePtrInput `pulumi:"extractRule"`
+	// Log sample.
+	LogSample pulumi.StringPtrInput `pulumi:"logSample"`
+	// Specify the log parsing type when importing.
+	LogType pulumi.StringInput `pulumi:"logType"`
+	// Regional ID.
+	Region pulumi.StringInput `pulumi:"region"`
+}
+
+func (ImportTaskTargetInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ImportTaskTargetInfo)(nil)).Elem()
+}
+
+func (i ImportTaskTargetInfoArgs) ToImportTaskTargetInfoOutput() ImportTaskTargetInfoOutput {
+	return i.ToImportTaskTargetInfoOutputWithContext(context.Background())
+}
+
+func (i ImportTaskTargetInfoArgs) ToImportTaskTargetInfoOutputWithContext(ctx context.Context) ImportTaskTargetInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ImportTaskTargetInfoOutput)
+}
+
+func (i ImportTaskTargetInfoArgs) ToImportTaskTargetInfoPtrOutput() ImportTaskTargetInfoPtrOutput {
+	return i.ToImportTaskTargetInfoPtrOutputWithContext(context.Background())
+}
+
+func (i ImportTaskTargetInfoArgs) ToImportTaskTargetInfoPtrOutputWithContext(ctx context.Context) ImportTaskTargetInfoPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ImportTaskTargetInfoOutput).ToImportTaskTargetInfoPtrOutputWithContext(ctx)
+}
+
+// ImportTaskTargetInfoPtrInput is an input type that accepts ImportTaskTargetInfoArgs, ImportTaskTargetInfoPtr and ImportTaskTargetInfoPtrOutput values.
+// You can construct a concrete instance of `ImportTaskTargetInfoPtrInput` via:
+//
+//	        ImportTaskTargetInfoArgs{...}
+//
+//	or:
+//
+//	        nil
+type ImportTaskTargetInfoPtrInput interface {
+	pulumi.Input
+
+	ToImportTaskTargetInfoPtrOutput() ImportTaskTargetInfoPtrOutput
+	ToImportTaskTargetInfoPtrOutputWithContext(context.Context) ImportTaskTargetInfoPtrOutput
+}
+
+type importTaskTargetInfoPtrType ImportTaskTargetInfoArgs
+
+func ImportTaskTargetInfoPtr(v *ImportTaskTargetInfoArgs) ImportTaskTargetInfoPtrInput {
+	return (*importTaskTargetInfoPtrType)(v)
+}
+
+func (*importTaskTargetInfoPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ImportTaskTargetInfo)(nil)).Elem()
+}
+
+func (i *importTaskTargetInfoPtrType) ToImportTaskTargetInfoPtrOutput() ImportTaskTargetInfoPtrOutput {
+	return i.ToImportTaskTargetInfoPtrOutputWithContext(context.Background())
+}
+
+func (i *importTaskTargetInfoPtrType) ToImportTaskTargetInfoPtrOutputWithContext(ctx context.Context) ImportTaskTargetInfoPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ImportTaskTargetInfoPtrOutput)
+}
+
+type ImportTaskTargetInfoOutput struct{ *pulumi.OutputState }
+
+func (ImportTaskTargetInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ImportTaskTargetInfo)(nil)).Elem()
+}
+
+func (o ImportTaskTargetInfoOutput) ToImportTaskTargetInfoOutput() ImportTaskTargetInfoOutput {
+	return o
+}
+
+func (o ImportTaskTargetInfoOutput) ToImportTaskTargetInfoOutputWithContext(ctx context.Context) ImportTaskTargetInfoOutput {
+	return o
+}
+
+func (o ImportTaskTargetInfoOutput) ToImportTaskTargetInfoPtrOutput() ImportTaskTargetInfoPtrOutput {
+	return o.ToImportTaskTargetInfoPtrOutputWithContext(context.Background())
+}
+
+func (o ImportTaskTargetInfoOutput) ToImportTaskTargetInfoPtrOutputWithContext(ctx context.Context) ImportTaskTargetInfoPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ImportTaskTargetInfo) *ImportTaskTargetInfo {
+		return &v
+	}).(ImportTaskTargetInfoPtrOutput)
+}
+
+// Log extraction rules.
+func (o ImportTaskTargetInfoOutput) ExtractRule() ImportTaskTargetInfoExtractRulePtrOutput {
+	return o.ApplyT(func(v ImportTaskTargetInfo) *ImportTaskTargetInfoExtractRule { return v.ExtractRule }).(ImportTaskTargetInfoExtractRulePtrOutput)
+}
+
+// Log sample.
+func (o ImportTaskTargetInfoOutput) LogSample() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ImportTaskTargetInfo) *string { return v.LogSample }).(pulumi.StringPtrOutput)
+}
+
+// Specify the log parsing type when importing.
+func (o ImportTaskTargetInfoOutput) LogType() pulumi.StringOutput {
+	return o.ApplyT(func(v ImportTaskTargetInfo) string { return v.LogType }).(pulumi.StringOutput)
+}
+
+// Regional ID.
+func (o ImportTaskTargetInfoOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v ImportTaskTargetInfo) string { return v.Region }).(pulumi.StringOutput)
+}
+
+type ImportTaskTargetInfoPtrOutput struct{ *pulumi.OutputState }
+
+func (ImportTaskTargetInfoPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ImportTaskTargetInfo)(nil)).Elem()
+}
+
+func (o ImportTaskTargetInfoPtrOutput) ToImportTaskTargetInfoPtrOutput() ImportTaskTargetInfoPtrOutput {
+	return o
+}
+
+func (o ImportTaskTargetInfoPtrOutput) ToImportTaskTargetInfoPtrOutputWithContext(ctx context.Context) ImportTaskTargetInfoPtrOutput {
+	return o
+}
+
+func (o ImportTaskTargetInfoPtrOutput) Elem() ImportTaskTargetInfoOutput {
+	return o.ApplyT(func(v *ImportTaskTargetInfo) ImportTaskTargetInfo {
+		if v != nil {
+			return *v
+		}
+		var ret ImportTaskTargetInfo
+		return ret
+	}).(ImportTaskTargetInfoOutput)
+}
+
+// Log extraction rules.
+func (o ImportTaskTargetInfoPtrOutput) ExtractRule() ImportTaskTargetInfoExtractRulePtrOutput {
+	return o.ApplyT(func(v *ImportTaskTargetInfo) *ImportTaskTargetInfoExtractRule {
+		if v == nil {
+			return nil
+		}
+		return v.ExtractRule
+	}).(ImportTaskTargetInfoExtractRulePtrOutput)
+}
+
+// Log sample.
+func (o ImportTaskTargetInfoPtrOutput) LogSample() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ImportTaskTargetInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return v.LogSample
+	}).(pulumi.StringPtrOutput)
+}
+
+// Specify the log parsing type when importing.
+func (o ImportTaskTargetInfoPtrOutput) LogType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ImportTaskTargetInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.LogType
+	}).(pulumi.StringPtrOutput)
+}
+
+// Regional ID.
+func (o ImportTaskTargetInfoPtrOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ImportTaskTargetInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Region
+	}).(pulumi.StringPtrOutput)
+}
+
+type ImportTaskTargetInfoExtractRule struct {
+	// The regular expression used to identify the first line in each log, and its matching part will serve as the beginning of the log.
+	BeginRegex *string `pulumi:"beginRegex"`
+	// Log delimiter.
+	Delimiter *string `pulumi:"delimiter"`
+	// List of log field names (Keys).
+	Keys []string `pulumi:"keys"`
+	// Reference symbol. The content wrapped by the reference will not be separated but will be parsed into a complete field. It is valid if and only if the LogType is delimiter_log.
+	Quote *string `pulumi:"quote"`
+	// The number of log lines skipped.
+	SkipLineCount *int `pulumi:"skipLineCount"`
+	// A regular expression for extracting time, used to extract the time value in the TimeKey field and parse it into the corresponding collection time.
+	TimeExtractRegex *string `pulumi:"timeExtractRegex"`
+	// The parsing format of the time field.
+	TimeFormat *string `pulumi:"timeFormat"`
+	// The field name of the log time field.
+	TimeKey *string `pulumi:"timeKey"`
+	// Time zone, supporting both machine time zone (default) and custom time zone. Among them, the custom time zone supports GMT and UTC.
+	TimeZone *string `pulumi:"timeZone"`
+	// When uploading a log that failed to parse, the key name of the parse failed log.
+	UnMatchLogKey *string `pulumi:"unMatchLogKey"`
+	// Whether to upload the logs of failed parsing.
+	UnMatchUpLoadSwitch *bool `pulumi:"unMatchUpLoadSwitch"`
+}
+
+// ImportTaskTargetInfoExtractRuleInput is an input type that accepts ImportTaskTargetInfoExtractRuleArgs and ImportTaskTargetInfoExtractRuleOutput values.
+// You can construct a concrete instance of `ImportTaskTargetInfoExtractRuleInput` via:
+//
+//	ImportTaskTargetInfoExtractRuleArgs{...}
+type ImportTaskTargetInfoExtractRuleInput interface {
+	pulumi.Input
+
+	ToImportTaskTargetInfoExtractRuleOutput() ImportTaskTargetInfoExtractRuleOutput
+	ToImportTaskTargetInfoExtractRuleOutputWithContext(context.Context) ImportTaskTargetInfoExtractRuleOutput
+}
+
+type ImportTaskTargetInfoExtractRuleArgs struct {
+	// The regular expression used to identify the first line in each log, and its matching part will serve as the beginning of the log.
+	BeginRegex pulumi.StringPtrInput `pulumi:"beginRegex"`
+	// Log delimiter.
+	Delimiter pulumi.StringPtrInput `pulumi:"delimiter"`
+	// List of log field names (Keys).
+	Keys pulumi.StringArrayInput `pulumi:"keys"`
+	// Reference symbol. The content wrapped by the reference will not be separated but will be parsed into a complete field. It is valid if and only if the LogType is delimiter_log.
+	Quote pulumi.StringPtrInput `pulumi:"quote"`
+	// The number of log lines skipped.
+	SkipLineCount pulumi.IntPtrInput `pulumi:"skipLineCount"`
+	// A regular expression for extracting time, used to extract the time value in the TimeKey field and parse it into the corresponding collection time.
+	TimeExtractRegex pulumi.StringPtrInput `pulumi:"timeExtractRegex"`
+	// The parsing format of the time field.
+	TimeFormat pulumi.StringPtrInput `pulumi:"timeFormat"`
+	// The field name of the log time field.
+	TimeKey pulumi.StringPtrInput `pulumi:"timeKey"`
+	// Time zone, supporting both machine time zone (default) and custom time zone. Among them, the custom time zone supports GMT and UTC.
+	TimeZone pulumi.StringPtrInput `pulumi:"timeZone"`
+	// When uploading a log that failed to parse, the key name of the parse failed log.
+	UnMatchLogKey pulumi.StringPtrInput `pulumi:"unMatchLogKey"`
+	// Whether to upload the logs of failed parsing.
+	UnMatchUpLoadSwitch pulumi.BoolPtrInput `pulumi:"unMatchUpLoadSwitch"`
+}
+
+func (ImportTaskTargetInfoExtractRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ImportTaskTargetInfoExtractRule)(nil)).Elem()
+}
+
+func (i ImportTaskTargetInfoExtractRuleArgs) ToImportTaskTargetInfoExtractRuleOutput() ImportTaskTargetInfoExtractRuleOutput {
+	return i.ToImportTaskTargetInfoExtractRuleOutputWithContext(context.Background())
+}
+
+func (i ImportTaskTargetInfoExtractRuleArgs) ToImportTaskTargetInfoExtractRuleOutputWithContext(ctx context.Context) ImportTaskTargetInfoExtractRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ImportTaskTargetInfoExtractRuleOutput)
+}
+
+func (i ImportTaskTargetInfoExtractRuleArgs) ToImportTaskTargetInfoExtractRulePtrOutput() ImportTaskTargetInfoExtractRulePtrOutput {
+	return i.ToImportTaskTargetInfoExtractRulePtrOutputWithContext(context.Background())
+}
+
+func (i ImportTaskTargetInfoExtractRuleArgs) ToImportTaskTargetInfoExtractRulePtrOutputWithContext(ctx context.Context) ImportTaskTargetInfoExtractRulePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ImportTaskTargetInfoExtractRuleOutput).ToImportTaskTargetInfoExtractRulePtrOutputWithContext(ctx)
+}
+
+// ImportTaskTargetInfoExtractRulePtrInput is an input type that accepts ImportTaskTargetInfoExtractRuleArgs, ImportTaskTargetInfoExtractRulePtr and ImportTaskTargetInfoExtractRulePtrOutput values.
+// You can construct a concrete instance of `ImportTaskTargetInfoExtractRulePtrInput` via:
+//
+//	        ImportTaskTargetInfoExtractRuleArgs{...}
+//
+//	or:
+//
+//	        nil
+type ImportTaskTargetInfoExtractRulePtrInput interface {
+	pulumi.Input
+
+	ToImportTaskTargetInfoExtractRulePtrOutput() ImportTaskTargetInfoExtractRulePtrOutput
+	ToImportTaskTargetInfoExtractRulePtrOutputWithContext(context.Context) ImportTaskTargetInfoExtractRulePtrOutput
+}
+
+type importTaskTargetInfoExtractRulePtrType ImportTaskTargetInfoExtractRuleArgs
+
+func ImportTaskTargetInfoExtractRulePtr(v *ImportTaskTargetInfoExtractRuleArgs) ImportTaskTargetInfoExtractRulePtrInput {
+	return (*importTaskTargetInfoExtractRulePtrType)(v)
+}
+
+func (*importTaskTargetInfoExtractRulePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ImportTaskTargetInfoExtractRule)(nil)).Elem()
+}
+
+func (i *importTaskTargetInfoExtractRulePtrType) ToImportTaskTargetInfoExtractRulePtrOutput() ImportTaskTargetInfoExtractRulePtrOutput {
+	return i.ToImportTaskTargetInfoExtractRulePtrOutputWithContext(context.Background())
+}
+
+func (i *importTaskTargetInfoExtractRulePtrType) ToImportTaskTargetInfoExtractRulePtrOutputWithContext(ctx context.Context) ImportTaskTargetInfoExtractRulePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ImportTaskTargetInfoExtractRulePtrOutput)
+}
+
+type ImportTaskTargetInfoExtractRuleOutput struct{ *pulumi.OutputState }
+
+func (ImportTaskTargetInfoExtractRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ImportTaskTargetInfoExtractRule)(nil)).Elem()
+}
+
+func (o ImportTaskTargetInfoExtractRuleOutput) ToImportTaskTargetInfoExtractRuleOutput() ImportTaskTargetInfoExtractRuleOutput {
+	return o
+}
+
+func (o ImportTaskTargetInfoExtractRuleOutput) ToImportTaskTargetInfoExtractRuleOutputWithContext(ctx context.Context) ImportTaskTargetInfoExtractRuleOutput {
+	return o
+}
+
+func (o ImportTaskTargetInfoExtractRuleOutput) ToImportTaskTargetInfoExtractRulePtrOutput() ImportTaskTargetInfoExtractRulePtrOutput {
+	return o.ToImportTaskTargetInfoExtractRulePtrOutputWithContext(context.Background())
+}
+
+func (o ImportTaskTargetInfoExtractRuleOutput) ToImportTaskTargetInfoExtractRulePtrOutputWithContext(ctx context.Context) ImportTaskTargetInfoExtractRulePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ImportTaskTargetInfoExtractRule) *ImportTaskTargetInfoExtractRule {
+		return &v
+	}).(ImportTaskTargetInfoExtractRulePtrOutput)
+}
+
+// The regular expression used to identify the first line in each log, and its matching part will serve as the beginning of the log.
+func (o ImportTaskTargetInfoExtractRuleOutput) BeginRegex() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ImportTaskTargetInfoExtractRule) *string { return v.BeginRegex }).(pulumi.StringPtrOutput)
+}
+
+// Log delimiter.
+func (o ImportTaskTargetInfoExtractRuleOutput) Delimiter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ImportTaskTargetInfoExtractRule) *string { return v.Delimiter }).(pulumi.StringPtrOutput)
+}
+
+// List of log field names (Keys).
+func (o ImportTaskTargetInfoExtractRuleOutput) Keys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ImportTaskTargetInfoExtractRule) []string { return v.Keys }).(pulumi.StringArrayOutput)
+}
+
+// Reference symbol. The content wrapped by the reference will not be separated but will be parsed into a complete field. It is valid if and only if the LogType is delimiter_log.
+func (o ImportTaskTargetInfoExtractRuleOutput) Quote() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ImportTaskTargetInfoExtractRule) *string { return v.Quote }).(pulumi.StringPtrOutput)
+}
+
+// The number of log lines skipped.
+func (o ImportTaskTargetInfoExtractRuleOutput) SkipLineCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ImportTaskTargetInfoExtractRule) *int { return v.SkipLineCount }).(pulumi.IntPtrOutput)
+}
+
+// A regular expression for extracting time, used to extract the time value in the TimeKey field and parse it into the corresponding collection time.
+func (o ImportTaskTargetInfoExtractRuleOutput) TimeExtractRegex() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ImportTaskTargetInfoExtractRule) *string { return v.TimeExtractRegex }).(pulumi.StringPtrOutput)
+}
+
+// The parsing format of the time field.
+func (o ImportTaskTargetInfoExtractRuleOutput) TimeFormat() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ImportTaskTargetInfoExtractRule) *string { return v.TimeFormat }).(pulumi.StringPtrOutput)
+}
+
+// The field name of the log time field.
+func (o ImportTaskTargetInfoExtractRuleOutput) TimeKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ImportTaskTargetInfoExtractRule) *string { return v.TimeKey }).(pulumi.StringPtrOutput)
+}
+
+// Time zone, supporting both machine time zone (default) and custom time zone. Among them, the custom time zone supports GMT and UTC.
+func (o ImportTaskTargetInfoExtractRuleOutput) TimeZone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ImportTaskTargetInfoExtractRule) *string { return v.TimeZone }).(pulumi.StringPtrOutput)
+}
+
+// When uploading a log that failed to parse, the key name of the parse failed log.
+func (o ImportTaskTargetInfoExtractRuleOutput) UnMatchLogKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ImportTaskTargetInfoExtractRule) *string { return v.UnMatchLogKey }).(pulumi.StringPtrOutput)
+}
+
+// Whether to upload the logs of failed parsing.
+func (o ImportTaskTargetInfoExtractRuleOutput) UnMatchUpLoadSwitch() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ImportTaskTargetInfoExtractRule) *bool { return v.UnMatchUpLoadSwitch }).(pulumi.BoolPtrOutput)
+}
+
+type ImportTaskTargetInfoExtractRulePtrOutput struct{ *pulumi.OutputState }
+
+func (ImportTaskTargetInfoExtractRulePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ImportTaskTargetInfoExtractRule)(nil)).Elem()
+}
+
+func (o ImportTaskTargetInfoExtractRulePtrOutput) ToImportTaskTargetInfoExtractRulePtrOutput() ImportTaskTargetInfoExtractRulePtrOutput {
+	return o
+}
+
+func (o ImportTaskTargetInfoExtractRulePtrOutput) ToImportTaskTargetInfoExtractRulePtrOutputWithContext(ctx context.Context) ImportTaskTargetInfoExtractRulePtrOutput {
+	return o
+}
+
+func (o ImportTaskTargetInfoExtractRulePtrOutput) Elem() ImportTaskTargetInfoExtractRuleOutput {
+	return o.ApplyT(func(v *ImportTaskTargetInfoExtractRule) ImportTaskTargetInfoExtractRule {
+		if v != nil {
+			return *v
+		}
+		var ret ImportTaskTargetInfoExtractRule
+		return ret
+	}).(ImportTaskTargetInfoExtractRuleOutput)
+}
+
+// The regular expression used to identify the first line in each log, and its matching part will serve as the beginning of the log.
+func (o ImportTaskTargetInfoExtractRulePtrOutput) BeginRegex() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ImportTaskTargetInfoExtractRule) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BeginRegex
+	}).(pulumi.StringPtrOutput)
+}
+
+// Log delimiter.
+func (o ImportTaskTargetInfoExtractRulePtrOutput) Delimiter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ImportTaskTargetInfoExtractRule) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Delimiter
+	}).(pulumi.StringPtrOutput)
+}
+
+// List of log field names (Keys).
+func (o ImportTaskTargetInfoExtractRulePtrOutput) Keys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ImportTaskTargetInfoExtractRule) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Keys
+	}).(pulumi.StringArrayOutput)
+}
+
+// Reference symbol. The content wrapped by the reference will not be separated but will be parsed into a complete field. It is valid if and only if the LogType is delimiter_log.
+func (o ImportTaskTargetInfoExtractRulePtrOutput) Quote() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ImportTaskTargetInfoExtractRule) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Quote
+	}).(pulumi.StringPtrOutput)
+}
+
+// The number of log lines skipped.
+func (o ImportTaskTargetInfoExtractRulePtrOutput) SkipLineCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ImportTaskTargetInfoExtractRule) *int {
+		if v == nil {
+			return nil
+		}
+		return v.SkipLineCount
+	}).(pulumi.IntPtrOutput)
+}
+
+// A regular expression for extracting time, used to extract the time value in the TimeKey field and parse it into the corresponding collection time.
+func (o ImportTaskTargetInfoExtractRulePtrOutput) TimeExtractRegex() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ImportTaskTargetInfoExtractRule) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TimeExtractRegex
+	}).(pulumi.StringPtrOutput)
+}
+
+// The parsing format of the time field.
+func (o ImportTaskTargetInfoExtractRulePtrOutput) TimeFormat() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ImportTaskTargetInfoExtractRule) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TimeFormat
+	}).(pulumi.StringPtrOutput)
+}
+
+// The field name of the log time field.
+func (o ImportTaskTargetInfoExtractRulePtrOutput) TimeKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ImportTaskTargetInfoExtractRule) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TimeKey
+	}).(pulumi.StringPtrOutput)
+}
+
+// Time zone, supporting both machine time zone (default) and custom time zone. Among them, the custom time zone supports GMT and UTC.
+func (o ImportTaskTargetInfoExtractRulePtrOutput) TimeZone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ImportTaskTargetInfoExtractRule) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TimeZone
+	}).(pulumi.StringPtrOutput)
+}
+
+// When uploading a log that failed to parse, the key name of the parse failed log.
+func (o ImportTaskTargetInfoExtractRulePtrOutput) UnMatchLogKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ImportTaskTargetInfoExtractRule) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UnMatchLogKey
+	}).(pulumi.StringPtrOutput)
+}
+
+// Whether to upload the logs of failed parsing.
+func (o ImportTaskTargetInfoExtractRulePtrOutput) UnMatchUpLoadSwitch() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ImportTaskTargetInfoExtractRule) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.UnMatchUpLoadSwitch
+	}).(pulumi.BoolPtrOutput)
+}
+
+type ImportTasksTaskInfo struct {
+	// The creation time of the data import task.
+	CreateTime string `pulumi:"createTime"`
+	// Data import task description.
+	Description string `pulumi:"description"`
+	// The source information of the data import task.
+	ImportSourceInfo ImportTasksTaskInfoImportSourceInfo `pulumi:"importSourceInfo"`
+	// Specify the log item ID for querying the data import tasks under the specified log item.
+	ProjectId string `pulumi:"projectId"`
+	// Specify the name of the log item for querying the data import tasks under the specified log item. Support fuzzy query..
+	ProjectName string `pulumi:"projectName"`
+	// Specify the import type for querying the data import tasks related to this import type.
+	SourceType string `pulumi:"sourceType"`
+	// Specify the status of the import task.
+	Status *int `pulumi:"status"`
+	// The output information of the data import task.
+	TargetInfo ImportTasksTaskInfoTargetInfo `pulumi:"targetInfo"`
+	// Import the task ID of the data to be queried.
+	TaskId string `pulumi:"taskId"`
+	// Import the task name of the data to be queried.
+	TaskName string `pulumi:"taskName"`
+	// The progress of the data import task.
+	TaskStatistics ImportTasksTaskInfoTaskStatistics `pulumi:"taskStatistics"`
+	// Specify the log topic ID for querying the data import tasks related to this log topic.
+	TopicId string `pulumi:"topicId"`
+	// Specify the name of the log topic for querying the data import tasks related to this log topic. Support fuzzy query.
+	TopicName string `pulumi:"topicName"`
+}
+
+// ImportTasksTaskInfoInput is an input type that accepts ImportTasksTaskInfoArgs and ImportTasksTaskInfoOutput values.
+// You can construct a concrete instance of `ImportTasksTaskInfoInput` via:
+//
+//	ImportTasksTaskInfoArgs{...}
+type ImportTasksTaskInfoInput interface {
+	pulumi.Input
+
+	ToImportTasksTaskInfoOutput() ImportTasksTaskInfoOutput
+	ToImportTasksTaskInfoOutputWithContext(context.Context) ImportTasksTaskInfoOutput
+}
+
+type ImportTasksTaskInfoArgs struct {
+	// The creation time of the data import task.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// Data import task description.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The source information of the data import task.
+	ImportSourceInfo ImportTasksTaskInfoImportSourceInfoInput `pulumi:"importSourceInfo"`
+	// Specify the log item ID for querying the data import tasks under the specified log item.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Specify the name of the log item for querying the data import tasks under the specified log item. Support fuzzy query..
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// Specify the import type for querying the data import tasks related to this import type.
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// Specify the status of the import task.
+	Status pulumi.IntPtrInput `pulumi:"status"`
+	// The output information of the data import task.
+	TargetInfo ImportTasksTaskInfoTargetInfoInput `pulumi:"targetInfo"`
+	// Import the task ID of the data to be queried.
+	TaskId pulumi.StringInput `pulumi:"taskId"`
+	// Import the task name of the data to be queried.
+	TaskName pulumi.StringInput `pulumi:"taskName"`
+	// The progress of the data import task.
+	TaskStatistics ImportTasksTaskInfoTaskStatisticsInput `pulumi:"taskStatistics"`
+	// Specify the log topic ID for querying the data import tasks related to this log topic.
+	TopicId pulumi.StringInput `pulumi:"topicId"`
+	// Specify the name of the log topic for querying the data import tasks related to this log topic. Support fuzzy query.
+	TopicName pulumi.StringInput `pulumi:"topicName"`
+}
+
+func (ImportTasksTaskInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ImportTasksTaskInfo)(nil)).Elem()
+}
+
+func (i ImportTasksTaskInfoArgs) ToImportTasksTaskInfoOutput() ImportTasksTaskInfoOutput {
+	return i.ToImportTasksTaskInfoOutputWithContext(context.Background())
+}
+
+func (i ImportTasksTaskInfoArgs) ToImportTasksTaskInfoOutputWithContext(ctx context.Context) ImportTasksTaskInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ImportTasksTaskInfoOutput)
+}
+
+// ImportTasksTaskInfoArrayInput is an input type that accepts ImportTasksTaskInfoArray and ImportTasksTaskInfoArrayOutput values.
+// You can construct a concrete instance of `ImportTasksTaskInfoArrayInput` via:
+//
+//	ImportTasksTaskInfoArray{ ImportTasksTaskInfoArgs{...} }
+type ImportTasksTaskInfoArrayInput interface {
+	pulumi.Input
+
+	ToImportTasksTaskInfoArrayOutput() ImportTasksTaskInfoArrayOutput
+	ToImportTasksTaskInfoArrayOutputWithContext(context.Context) ImportTasksTaskInfoArrayOutput
+}
+
+type ImportTasksTaskInfoArray []ImportTasksTaskInfoInput
+
+func (ImportTasksTaskInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ImportTasksTaskInfo)(nil)).Elem()
+}
+
+func (i ImportTasksTaskInfoArray) ToImportTasksTaskInfoArrayOutput() ImportTasksTaskInfoArrayOutput {
+	return i.ToImportTasksTaskInfoArrayOutputWithContext(context.Background())
+}
+
+func (i ImportTasksTaskInfoArray) ToImportTasksTaskInfoArrayOutputWithContext(ctx context.Context) ImportTasksTaskInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ImportTasksTaskInfoArrayOutput)
+}
+
+type ImportTasksTaskInfoOutput struct{ *pulumi.OutputState }
+
+func (ImportTasksTaskInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ImportTasksTaskInfo)(nil)).Elem()
+}
+
+func (o ImportTasksTaskInfoOutput) ToImportTasksTaskInfoOutput() ImportTasksTaskInfoOutput {
+	return o
+}
+
+func (o ImportTasksTaskInfoOutput) ToImportTasksTaskInfoOutputWithContext(ctx context.Context) ImportTasksTaskInfoOutput {
+	return o
+}
+
+// The creation time of the data import task.
+func (o ImportTasksTaskInfoOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfo) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// Data import task description.
+func (o ImportTasksTaskInfoOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfo) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The source information of the data import task.
+func (o ImportTasksTaskInfoOutput) ImportSourceInfo() ImportTasksTaskInfoImportSourceInfoOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfo) ImportTasksTaskInfoImportSourceInfo { return v.ImportSourceInfo }).(ImportTasksTaskInfoImportSourceInfoOutput)
+}
+
+// Specify the log item ID for querying the data import tasks under the specified log item.
+func (o ImportTasksTaskInfoOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfo) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Specify the name of the log item for querying the data import tasks under the specified log item. Support fuzzy query..
+func (o ImportTasksTaskInfoOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfo) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// Specify the import type for querying the data import tasks related to this import type.
+func (o ImportTasksTaskInfoOutput) SourceType() pulumi.StringOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfo) string { return v.SourceType }).(pulumi.StringOutput)
+}
+
+// Specify the status of the import task.
+func (o ImportTasksTaskInfoOutput) Status() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfo) *int { return v.Status }).(pulumi.IntPtrOutput)
+}
+
+// The output information of the data import task.
+func (o ImportTasksTaskInfoOutput) TargetInfo() ImportTasksTaskInfoTargetInfoOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfo) ImportTasksTaskInfoTargetInfo { return v.TargetInfo }).(ImportTasksTaskInfoTargetInfoOutput)
+}
+
+// Import the task ID of the data to be queried.
+func (o ImportTasksTaskInfoOutput) TaskId() pulumi.StringOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfo) string { return v.TaskId }).(pulumi.StringOutput)
+}
+
+// Import the task name of the data to be queried.
+func (o ImportTasksTaskInfoOutput) TaskName() pulumi.StringOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfo) string { return v.TaskName }).(pulumi.StringOutput)
+}
+
+// The progress of the data import task.
+func (o ImportTasksTaskInfoOutput) TaskStatistics() ImportTasksTaskInfoTaskStatisticsOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfo) ImportTasksTaskInfoTaskStatistics { return v.TaskStatistics }).(ImportTasksTaskInfoTaskStatisticsOutput)
+}
+
+// Specify the log topic ID for querying the data import tasks related to this log topic.
+func (o ImportTasksTaskInfoOutput) TopicId() pulumi.StringOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfo) string { return v.TopicId }).(pulumi.StringOutput)
+}
+
+// Specify the name of the log topic for querying the data import tasks related to this log topic. Support fuzzy query.
+func (o ImportTasksTaskInfoOutput) TopicName() pulumi.StringOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfo) string { return v.TopicName }).(pulumi.StringOutput)
+}
+
+type ImportTasksTaskInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (ImportTasksTaskInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ImportTasksTaskInfo)(nil)).Elem()
+}
+
+func (o ImportTasksTaskInfoArrayOutput) ToImportTasksTaskInfoArrayOutput() ImportTasksTaskInfoArrayOutput {
+	return o
+}
+
+func (o ImportTasksTaskInfoArrayOutput) ToImportTasksTaskInfoArrayOutputWithContext(ctx context.Context) ImportTasksTaskInfoArrayOutput {
+	return o
+}
+
+func (o ImportTasksTaskInfoArrayOutput) Index(i pulumi.IntInput) ImportTasksTaskInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ImportTasksTaskInfo {
+		return vs[0].([]ImportTasksTaskInfo)[vs[1].(int)]
+	}).(ImportTasksTaskInfoOutput)
+}
+
+type ImportTasksTaskInfoImportSourceInfo struct {
+	// TOS imports source information.
+	KafkaSourceInfo ImportTasksTaskInfoImportSourceInfoKafkaSourceInfo `pulumi:"kafkaSourceInfo"`
+	// TOS imports source information.
+	TosSourceInfo ImportTasksTaskInfoImportSourceInfoTosSourceInfo `pulumi:"tosSourceInfo"`
+}
+
+// ImportTasksTaskInfoImportSourceInfoInput is an input type that accepts ImportTasksTaskInfoImportSourceInfoArgs and ImportTasksTaskInfoImportSourceInfoOutput values.
+// You can construct a concrete instance of `ImportTasksTaskInfoImportSourceInfoInput` via:
+//
+//	ImportTasksTaskInfoImportSourceInfoArgs{...}
+type ImportTasksTaskInfoImportSourceInfoInput interface {
+	pulumi.Input
+
+	ToImportTasksTaskInfoImportSourceInfoOutput() ImportTasksTaskInfoImportSourceInfoOutput
+	ToImportTasksTaskInfoImportSourceInfoOutputWithContext(context.Context) ImportTasksTaskInfoImportSourceInfoOutput
+}
+
+type ImportTasksTaskInfoImportSourceInfoArgs struct {
+	// TOS imports source information.
+	KafkaSourceInfo ImportTasksTaskInfoImportSourceInfoKafkaSourceInfoInput `pulumi:"kafkaSourceInfo"`
+	// TOS imports source information.
+	TosSourceInfo ImportTasksTaskInfoImportSourceInfoTosSourceInfoInput `pulumi:"tosSourceInfo"`
+}
+
+func (ImportTasksTaskInfoImportSourceInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ImportTasksTaskInfoImportSourceInfo)(nil)).Elem()
+}
+
+func (i ImportTasksTaskInfoImportSourceInfoArgs) ToImportTasksTaskInfoImportSourceInfoOutput() ImportTasksTaskInfoImportSourceInfoOutput {
+	return i.ToImportTasksTaskInfoImportSourceInfoOutputWithContext(context.Background())
+}
+
+func (i ImportTasksTaskInfoImportSourceInfoArgs) ToImportTasksTaskInfoImportSourceInfoOutputWithContext(ctx context.Context) ImportTasksTaskInfoImportSourceInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ImportTasksTaskInfoImportSourceInfoOutput)
+}
+
+type ImportTasksTaskInfoImportSourceInfoOutput struct{ *pulumi.OutputState }
+
+func (ImportTasksTaskInfoImportSourceInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ImportTasksTaskInfoImportSourceInfo)(nil)).Elem()
+}
+
+func (o ImportTasksTaskInfoImportSourceInfoOutput) ToImportTasksTaskInfoImportSourceInfoOutput() ImportTasksTaskInfoImportSourceInfoOutput {
+	return o
+}
+
+func (o ImportTasksTaskInfoImportSourceInfoOutput) ToImportTasksTaskInfoImportSourceInfoOutputWithContext(ctx context.Context) ImportTasksTaskInfoImportSourceInfoOutput {
+	return o
+}
+
+// TOS imports source information.
+func (o ImportTasksTaskInfoImportSourceInfoOutput) KafkaSourceInfo() ImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfoImportSourceInfo) ImportTasksTaskInfoImportSourceInfoKafkaSourceInfo {
+		return v.KafkaSourceInfo
+	}).(ImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput)
+}
+
+// TOS imports source information.
+func (o ImportTasksTaskInfoImportSourceInfoOutput) TosSourceInfo() ImportTasksTaskInfoImportSourceInfoTosSourceInfoOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfoImportSourceInfo) ImportTasksTaskInfoImportSourceInfoTosSourceInfo {
+		return v.TosSourceInfo
+	}).(ImportTasksTaskInfoImportSourceInfoTosSourceInfoOutput)
+}
+
+type ImportTasksTaskInfoImportSourceInfoKafkaSourceInfo struct {
+	// The encoding format of the data.
+	Encode string `pulumi:"encode"`
+	// Kafka consumer group.
+	Group string `pulumi:"group"`
+	// The service addresses corresponding to different types of Kafka clusters are different.
+	Host string `pulumi:"host"`
+	// The starting position of data import.
+	InitialOffset int `pulumi:"initialOffset"`
+	// When you are using the Volcano Engine Message Queue Kafka version, it should be set to the Kafka instance ID.
+	InstanceId string `pulumi:"instanceId"`
+	// Whether to enable authentication.
+	IsNeedAuth bool `pulumi:"isNeedAuth"`
+	// Password authentication mechanism.
+	Mechanism string `pulumi:"mechanism"`
+	// The Kafka SASL user password used for identity authentication.
+	Password string `pulumi:"password"`
+	// Secure Transport protocol.
+	Protocol string `pulumi:"protocol"`
+	// Specify the log time.
+	TimeSourceDefault int `pulumi:"timeSourceDefault"`
+	// Kafka Topic name.
+	Topic string `pulumi:"topic"`
+	// The Kafka SASL username used for identity authentication.
+	Username string `pulumi:"username"`
+}
+
+// ImportTasksTaskInfoImportSourceInfoKafkaSourceInfoInput is an input type that accepts ImportTasksTaskInfoImportSourceInfoKafkaSourceInfoArgs and ImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput values.
+// You can construct a concrete instance of `ImportTasksTaskInfoImportSourceInfoKafkaSourceInfoInput` via:
+//
+//	ImportTasksTaskInfoImportSourceInfoKafkaSourceInfoArgs{...}
+type ImportTasksTaskInfoImportSourceInfoKafkaSourceInfoInput interface {
+	pulumi.Input
+
+	ToImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput() ImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput
+	ToImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutputWithContext(context.Context) ImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput
+}
+
+type ImportTasksTaskInfoImportSourceInfoKafkaSourceInfoArgs struct {
+	// The encoding format of the data.
+	Encode pulumi.StringInput `pulumi:"encode"`
+	// Kafka consumer group.
+	Group pulumi.StringInput `pulumi:"group"`
+	// The service addresses corresponding to different types of Kafka clusters are different.
+	Host pulumi.StringInput `pulumi:"host"`
+	// The starting position of data import.
+	InitialOffset pulumi.IntInput `pulumi:"initialOffset"`
+	// When you are using the Volcano Engine Message Queue Kafka version, it should be set to the Kafka instance ID.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// Whether to enable authentication.
+	IsNeedAuth pulumi.BoolInput `pulumi:"isNeedAuth"`
+	// Password authentication mechanism.
+	Mechanism pulumi.StringInput `pulumi:"mechanism"`
+	// The Kafka SASL user password used for identity authentication.
+	Password pulumi.StringInput `pulumi:"password"`
+	// Secure Transport protocol.
+	Protocol pulumi.StringInput `pulumi:"protocol"`
+	// Specify the log time.
+	TimeSourceDefault pulumi.IntInput `pulumi:"timeSourceDefault"`
+	// Kafka Topic name.
+	Topic pulumi.StringInput `pulumi:"topic"`
+	// The Kafka SASL username used for identity authentication.
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (ImportTasksTaskInfoImportSourceInfoKafkaSourceInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ImportTasksTaskInfoImportSourceInfoKafkaSourceInfo)(nil)).Elem()
+}
+
+func (i ImportTasksTaskInfoImportSourceInfoKafkaSourceInfoArgs) ToImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput() ImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput {
+	return i.ToImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutputWithContext(context.Background())
+}
+
+func (i ImportTasksTaskInfoImportSourceInfoKafkaSourceInfoArgs) ToImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutputWithContext(ctx context.Context) ImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput)
+}
+
+type ImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput struct{ *pulumi.OutputState }
+
+func (ImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ImportTasksTaskInfoImportSourceInfoKafkaSourceInfo)(nil)).Elem()
+}
+
+func (o ImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput) ToImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput() ImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput {
+	return o
+}
+
+func (o ImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput) ToImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutputWithContext(ctx context.Context) ImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput {
+	return o
+}
+
+// The encoding format of the data.
+func (o ImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput) Encode() pulumi.StringOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfoImportSourceInfoKafkaSourceInfo) string { return v.Encode }).(pulumi.StringOutput)
+}
+
+// Kafka consumer group.
+func (o ImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput) Group() pulumi.StringOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfoImportSourceInfoKafkaSourceInfo) string { return v.Group }).(pulumi.StringOutput)
+}
+
+// The service addresses corresponding to different types of Kafka clusters are different.
+func (o ImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput) Host() pulumi.StringOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfoImportSourceInfoKafkaSourceInfo) string { return v.Host }).(pulumi.StringOutput)
+}
+
+// The starting position of data import.
+func (o ImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput) InitialOffset() pulumi.IntOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfoImportSourceInfoKafkaSourceInfo) int { return v.InitialOffset }).(pulumi.IntOutput)
+}
+
+// When you are using the Volcano Engine Message Queue Kafka version, it should be set to the Kafka instance ID.
+func (o ImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfoImportSourceInfoKafkaSourceInfo) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// Whether to enable authentication.
+func (o ImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput) IsNeedAuth() pulumi.BoolOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfoImportSourceInfoKafkaSourceInfo) bool { return v.IsNeedAuth }).(pulumi.BoolOutput)
+}
+
+// Password authentication mechanism.
+func (o ImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput) Mechanism() pulumi.StringOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfoImportSourceInfoKafkaSourceInfo) string { return v.Mechanism }).(pulumi.StringOutput)
+}
+
+// The Kafka SASL user password used for identity authentication.
+func (o ImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput) Password() pulumi.StringOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfoImportSourceInfoKafkaSourceInfo) string { return v.Password }).(pulumi.StringOutput)
+}
+
+// Secure Transport protocol.
+func (o ImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput) Protocol() pulumi.StringOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfoImportSourceInfoKafkaSourceInfo) string { return v.Protocol }).(pulumi.StringOutput)
+}
+
+// Specify the log time.
+func (o ImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput) TimeSourceDefault() pulumi.IntOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfoImportSourceInfoKafkaSourceInfo) int { return v.TimeSourceDefault }).(pulumi.IntOutput)
+}
+
+// Kafka Topic name.
+func (o ImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput) Topic() pulumi.StringOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfoImportSourceInfoKafkaSourceInfo) string { return v.Topic }).(pulumi.StringOutput)
+}
+
+// The Kafka SASL username used for identity authentication.
+func (o ImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfoImportSourceInfoKafkaSourceInfo) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type ImportTasksTaskInfoImportSourceInfoTosSourceInfo struct {
+	// The TOS bucket where the log file is located.
+	Bucket string `pulumi:"bucket"`
+	// The compression mode of data in the TOS bucket.
+	CompressType string `pulumi:"compressType"`
+	// The path of the file to be imported in the TOS bucket.
+	Prefix string `pulumi:"prefix"`
+	// Regional ID.
+	Region string `pulumi:"region"`
+}
+
+// ImportTasksTaskInfoImportSourceInfoTosSourceInfoInput is an input type that accepts ImportTasksTaskInfoImportSourceInfoTosSourceInfoArgs and ImportTasksTaskInfoImportSourceInfoTosSourceInfoOutput values.
+// You can construct a concrete instance of `ImportTasksTaskInfoImportSourceInfoTosSourceInfoInput` via:
+//
+//	ImportTasksTaskInfoImportSourceInfoTosSourceInfoArgs{...}
+type ImportTasksTaskInfoImportSourceInfoTosSourceInfoInput interface {
+	pulumi.Input
+
+	ToImportTasksTaskInfoImportSourceInfoTosSourceInfoOutput() ImportTasksTaskInfoImportSourceInfoTosSourceInfoOutput
+	ToImportTasksTaskInfoImportSourceInfoTosSourceInfoOutputWithContext(context.Context) ImportTasksTaskInfoImportSourceInfoTosSourceInfoOutput
+}
+
+type ImportTasksTaskInfoImportSourceInfoTosSourceInfoArgs struct {
+	// The TOS bucket where the log file is located.
+	Bucket pulumi.StringInput `pulumi:"bucket"`
+	// The compression mode of data in the TOS bucket.
+	CompressType pulumi.StringInput `pulumi:"compressType"`
+	// The path of the file to be imported in the TOS bucket.
+	Prefix pulumi.StringInput `pulumi:"prefix"`
+	// Regional ID.
+	Region pulumi.StringInput `pulumi:"region"`
+}
+
+func (ImportTasksTaskInfoImportSourceInfoTosSourceInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ImportTasksTaskInfoImportSourceInfoTosSourceInfo)(nil)).Elem()
+}
+
+func (i ImportTasksTaskInfoImportSourceInfoTosSourceInfoArgs) ToImportTasksTaskInfoImportSourceInfoTosSourceInfoOutput() ImportTasksTaskInfoImportSourceInfoTosSourceInfoOutput {
+	return i.ToImportTasksTaskInfoImportSourceInfoTosSourceInfoOutputWithContext(context.Background())
+}
+
+func (i ImportTasksTaskInfoImportSourceInfoTosSourceInfoArgs) ToImportTasksTaskInfoImportSourceInfoTosSourceInfoOutputWithContext(ctx context.Context) ImportTasksTaskInfoImportSourceInfoTosSourceInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ImportTasksTaskInfoImportSourceInfoTosSourceInfoOutput)
+}
+
+type ImportTasksTaskInfoImportSourceInfoTosSourceInfoOutput struct{ *pulumi.OutputState }
+
+func (ImportTasksTaskInfoImportSourceInfoTosSourceInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ImportTasksTaskInfoImportSourceInfoTosSourceInfo)(nil)).Elem()
+}
+
+func (o ImportTasksTaskInfoImportSourceInfoTosSourceInfoOutput) ToImportTasksTaskInfoImportSourceInfoTosSourceInfoOutput() ImportTasksTaskInfoImportSourceInfoTosSourceInfoOutput {
+	return o
+}
+
+func (o ImportTasksTaskInfoImportSourceInfoTosSourceInfoOutput) ToImportTasksTaskInfoImportSourceInfoTosSourceInfoOutputWithContext(ctx context.Context) ImportTasksTaskInfoImportSourceInfoTosSourceInfoOutput {
+	return o
+}
+
+// The TOS bucket where the log file is located.
+func (o ImportTasksTaskInfoImportSourceInfoTosSourceInfoOutput) Bucket() pulumi.StringOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfoImportSourceInfoTosSourceInfo) string { return v.Bucket }).(pulumi.StringOutput)
+}
+
+// The compression mode of data in the TOS bucket.
+func (o ImportTasksTaskInfoImportSourceInfoTosSourceInfoOutput) CompressType() pulumi.StringOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfoImportSourceInfoTosSourceInfo) string { return v.CompressType }).(pulumi.StringOutput)
+}
+
+// The path of the file to be imported in the TOS bucket.
+func (o ImportTasksTaskInfoImportSourceInfoTosSourceInfoOutput) Prefix() pulumi.StringOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfoImportSourceInfoTosSourceInfo) string { return v.Prefix }).(pulumi.StringOutput)
+}
+
+// Regional ID.
+func (o ImportTasksTaskInfoImportSourceInfoTosSourceInfoOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfoImportSourceInfoTosSourceInfo) string { return v.Region }).(pulumi.StringOutput)
+}
+
+type ImportTasksTaskInfoTargetInfo struct {
+	// Log extraction rules.
+	ExtractRule ImportTasksTaskInfoTargetInfoExtractRule `pulumi:"extractRule"`
+	// Log sample.
+	LogSample string `pulumi:"logSample"`
+	// Specify the log parsing type when importing.
+	LogType string `pulumi:"logType"`
+	// Regional ID.
+	Region string `pulumi:"region"`
+}
+
+// ImportTasksTaskInfoTargetInfoInput is an input type that accepts ImportTasksTaskInfoTargetInfoArgs and ImportTasksTaskInfoTargetInfoOutput values.
+// You can construct a concrete instance of `ImportTasksTaskInfoTargetInfoInput` via:
+//
+//	ImportTasksTaskInfoTargetInfoArgs{...}
+type ImportTasksTaskInfoTargetInfoInput interface {
+	pulumi.Input
+
+	ToImportTasksTaskInfoTargetInfoOutput() ImportTasksTaskInfoTargetInfoOutput
+	ToImportTasksTaskInfoTargetInfoOutputWithContext(context.Context) ImportTasksTaskInfoTargetInfoOutput
+}
+
+type ImportTasksTaskInfoTargetInfoArgs struct {
+	// Log extraction rules.
+	ExtractRule ImportTasksTaskInfoTargetInfoExtractRuleInput `pulumi:"extractRule"`
+	// Log sample.
+	LogSample pulumi.StringInput `pulumi:"logSample"`
+	// Specify the log parsing type when importing.
+	LogType pulumi.StringInput `pulumi:"logType"`
+	// Regional ID.
+	Region pulumi.StringInput `pulumi:"region"`
+}
+
+func (ImportTasksTaskInfoTargetInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ImportTasksTaskInfoTargetInfo)(nil)).Elem()
+}
+
+func (i ImportTasksTaskInfoTargetInfoArgs) ToImportTasksTaskInfoTargetInfoOutput() ImportTasksTaskInfoTargetInfoOutput {
+	return i.ToImportTasksTaskInfoTargetInfoOutputWithContext(context.Background())
+}
+
+func (i ImportTasksTaskInfoTargetInfoArgs) ToImportTasksTaskInfoTargetInfoOutputWithContext(ctx context.Context) ImportTasksTaskInfoTargetInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ImportTasksTaskInfoTargetInfoOutput)
+}
+
+type ImportTasksTaskInfoTargetInfoOutput struct{ *pulumi.OutputState }
+
+func (ImportTasksTaskInfoTargetInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ImportTasksTaskInfoTargetInfo)(nil)).Elem()
+}
+
+func (o ImportTasksTaskInfoTargetInfoOutput) ToImportTasksTaskInfoTargetInfoOutput() ImportTasksTaskInfoTargetInfoOutput {
+	return o
+}
+
+func (o ImportTasksTaskInfoTargetInfoOutput) ToImportTasksTaskInfoTargetInfoOutputWithContext(ctx context.Context) ImportTasksTaskInfoTargetInfoOutput {
+	return o
+}
+
+// Log extraction rules.
+func (o ImportTasksTaskInfoTargetInfoOutput) ExtractRule() ImportTasksTaskInfoTargetInfoExtractRuleOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfoTargetInfo) ImportTasksTaskInfoTargetInfoExtractRule { return v.ExtractRule }).(ImportTasksTaskInfoTargetInfoExtractRuleOutput)
+}
+
+// Log sample.
+func (o ImportTasksTaskInfoTargetInfoOutput) LogSample() pulumi.StringOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfoTargetInfo) string { return v.LogSample }).(pulumi.StringOutput)
+}
+
+// Specify the log parsing type when importing.
+func (o ImportTasksTaskInfoTargetInfoOutput) LogType() pulumi.StringOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfoTargetInfo) string { return v.LogType }).(pulumi.StringOutput)
+}
+
+// Regional ID.
+func (o ImportTasksTaskInfoTargetInfoOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfoTargetInfo) string { return v.Region }).(pulumi.StringOutput)
+}
+
+type ImportTasksTaskInfoTargetInfoExtractRule struct {
+	// The regular expression used to identify the first line in each log, and its matching part will serve as the beginning of the log.
+	BeginRegex string `pulumi:"beginRegex"`
+	// Log delimiter.
+	Delimiter string `pulumi:"delimiter"`
+	// List of log field names (Keys).
+	Keys []string `pulumi:"keys"`
+	// Reference symbol. The content wrapped by the reference will not be separated but will be parsed into a complete field. It is valid if and only if the LogType is delimiter_log.
+	Quote string `pulumi:"quote"`
+	// The number of log lines skipped.
+	SkipLineCount int `pulumi:"skipLineCount"`
+	// A regular expression for extracting time, used to extract the time value in the TimeKey field and parse it into the corresponding collection time.
+	TimeExtractRegex string `pulumi:"timeExtractRegex"`
+	// The parsing format of the time field.
+	TimeFormat string `pulumi:"timeFormat"`
+	// The field name of the log time field.
+	TimeKey string `pulumi:"timeKey"`
+	// Time zone, supporting both machine time zone (default) and custom time zone. Among them, the custom time zone supports GMT and UTC.
+	TimeZone string `pulumi:"timeZone"`
+	// When uploading a log that failed to parse, the key name of the parse failed log.
+	UnMatchLogKey string `pulumi:"unMatchLogKey"`
+	// Whether to upload the logs of failed parsing.
+	UnMatchUpLoadSwitch bool `pulumi:"unMatchUpLoadSwitch"`
+}
+
+// ImportTasksTaskInfoTargetInfoExtractRuleInput is an input type that accepts ImportTasksTaskInfoTargetInfoExtractRuleArgs and ImportTasksTaskInfoTargetInfoExtractRuleOutput values.
+// You can construct a concrete instance of `ImportTasksTaskInfoTargetInfoExtractRuleInput` via:
+//
+//	ImportTasksTaskInfoTargetInfoExtractRuleArgs{...}
+type ImportTasksTaskInfoTargetInfoExtractRuleInput interface {
+	pulumi.Input
+
+	ToImportTasksTaskInfoTargetInfoExtractRuleOutput() ImportTasksTaskInfoTargetInfoExtractRuleOutput
+	ToImportTasksTaskInfoTargetInfoExtractRuleOutputWithContext(context.Context) ImportTasksTaskInfoTargetInfoExtractRuleOutput
+}
+
+type ImportTasksTaskInfoTargetInfoExtractRuleArgs struct {
+	// The regular expression used to identify the first line in each log, and its matching part will serve as the beginning of the log.
+	BeginRegex pulumi.StringInput `pulumi:"beginRegex"`
+	// Log delimiter.
+	Delimiter pulumi.StringInput `pulumi:"delimiter"`
+	// List of log field names (Keys).
+	Keys pulumi.StringArrayInput `pulumi:"keys"`
+	// Reference symbol. The content wrapped by the reference will not be separated but will be parsed into a complete field. It is valid if and only if the LogType is delimiter_log.
+	Quote pulumi.StringInput `pulumi:"quote"`
+	// The number of log lines skipped.
+	SkipLineCount pulumi.IntInput `pulumi:"skipLineCount"`
+	// A regular expression for extracting time, used to extract the time value in the TimeKey field and parse it into the corresponding collection time.
+	TimeExtractRegex pulumi.StringInput `pulumi:"timeExtractRegex"`
+	// The parsing format of the time field.
+	TimeFormat pulumi.StringInput `pulumi:"timeFormat"`
+	// The field name of the log time field.
+	TimeKey pulumi.StringInput `pulumi:"timeKey"`
+	// Time zone, supporting both machine time zone (default) and custom time zone. Among them, the custom time zone supports GMT and UTC.
+	TimeZone pulumi.StringInput `pulumi:"timeZone"`
+	// When uploading a log that failed to parse, the key name of the parse failed log.
+	UnMatchLogKey pulumi.StringInput `pulumi:"unMatchLogKey"`
+	// Whether to upload the logs of failed parsing.
+	UnMatchUpLoadSwitch pulumi.BoolInput `pulumi:"unMatchUpLoadSwitch"`
+}
+
+func (ImportTasksTaskInfoTargetInfoExtractRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ImportTasksTaskInfoTargetInfoExtractRule)(nil)).Elem()
+}
+
+func (i ImportTasksTaskInfoTargetInfoExtractRuleArgs) ToImportTasksTaskInfoTargetInfoExtractRuleOutput() ImportTasksTaskInfoTargetInfoExtractRuleOutput {
+	return i.ToImportTasksTaskInfoTargetInfoExtractRuleOutputWithContext(context.Background())
+}
+
+func (i ImportTasksTaskInfoTargetInfoExtractRuleArgs) ToImportTasksTaskInfoTargetInfoExtractRuleOutputWithContext(ctx context.Context) ImportTasksTaskInfoTargetInfoExtractRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ImportTasksTaskInfoTargetInfoExtractRuleOutput)
+}
+
+type ImportTasksTaskInfoTargetInfoExtractRuleOutput struct{ *pulumi.OutputState }
+
+func (ImportTasksTaskInfoTargetInfoExtractRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ImportTasksTaskInfoTargetInfoExtractRule)(nil)).Elem()
+}
+
+func (o ImportTasksTaskInfoTargetInfoExtractRuleOutput) ToImportTasksTaskInfoTargetInfoExtractRuleOutput() ImportTasksTaskInfoTargetInfoExtractRuleOutput {
+	return o
+}
+
+func (o ImportTasksTaskInfoTargetInfoExtractRuleOutput) ToImportTasksTaskInfoTargetInfoExtractRuleOutputWithContext(ctx context.Context) ImportTasksTaskInfoTargetInfoExtractRuleOutput {
+	return o
+}
+
+// The regular expression used to identify the first line in each log, and its matching part will serve as the beginning of the log.
+func (o ImportTasksTaskInfoTargetInfoExtractRuleOutput) BeginRegex() pulumi.StringOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfoTargetInfoExtractRule) string { return v.BeginRegex }).(pulumi.StringOutput)
+}
+
+// Log delimiter.
+func (o ImportTasksTaskInfoTargetInfoExtractRuleOutput) Delimiter() pulumi.StringOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfoTargetInfoExtractRule) string { return v.Delimiter }).(pulumi.StringOutput)
+}
+
+// List of log field names (Keys).
+func (o ImportTasksTaskInfoTargetInfoExtractRuleOutput) Keys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfoTargetInfoExtractRule) []string { return v.Keys }).(pulumi.StringArrayOutput)
+}
+
+// Reference symbol. The content wrapped by the reference will not be separated but will be parsed into a complete field. It is valid if and only if the LogType is delimiter_log.
+func (o ImportTasksTaskInfoTargetInfoExtractRuleOutput) Quote() pulumi.StringOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfoTargetInfoExtractRule) string { return v.Quote }).(pulumi.StringOutput)
+}
+
+// The number of log lines skipped.
+func (o ImportTasksTaskInfoTargetInfoExtractRuleOutput) SkipLineCount() pulumi.IntOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfoTargetInfoExtractRule) int { return v.SkipLineCount }).(pulumi.IntOutput)
+}
+
+// A regular expression for extracting time, used to extract the time value in the TimeKey field and parse it into the corresponding collection time.
+func (o ImportTasksTaskInfoTargetInfoExtractRuleOutput) TimeExtractRegex() pulumi.StringOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfoTargetInfoExtractRule) string { return v.TimeExtractRegex }).(pulumi.StringOutput)
+}
+
+// The parsing format of the time field.
+func (o ImportTasksTaskInfoTargetInfoExtractRuleOutput) TimeFormat() pulumi.StringOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfoTargetInfoExtractRule) string { return v.TimeFormat }).(pulumi.StringOutput)
+}
+
+// The field name of the log time field.
+func (o ImportTasksTaskInfoTargetInfoExtractRuleOutput) TimeKey() pulumi.StringOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfoTargetInfoExtractRule) string { return v.TimeKey }).(pulumi.StringOutput)
+}
+
+// Time zone, supporting both machine time zone (default) and custom time zone. Among them, the custom time zone supports GMT and UTC.
+func (o ImportTasksTaskInfoTargetInfoExtractRuleOutput) TimeZone() pulumi.StringOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfoTargetInfoExtractRule) string { return v.TimeZone }).(pulumi.StringOutput)
+}
+
+// When uploading a log that failed to parse, the key name of the parse failed log.
+func (o ImportTasksTaskInfoTargetInfoExtractRuleOutput) UnMatchLogKey() pulumi.StringOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfoTargetInfoExtractRule) string { return v.UnMatchLogKey }).(pulumi.StringOutput)
+}
+
+// Whether to upload the logs of failed parsing.
+func (o ImportTasksTaskInfoTargetInfoExtractRuleOutput) UnMatchUpLoadSwitch() pulumi.BoolOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfoTargetInfoExtractRule) bool { return v.UnMatchUpLoadSwitch }).(pulumi.BoolOutput)
+}
+
+type ImportTasksTaskInfoTaskStatistics struct {
+	// The total number of resource bytes that have been listed.
+	BytesTotal int `pulumi:"bytesTotal"`
+	// The number of imported bytes.
+	BytesTransferred int `pulumi:"bytesTransferred"`
+	// The number of resources that failed to import.
+	Failed int `pulumi:"failed"`
+	// The number of non-existent resources.
+	NotExist int `pulumi:"notExist"`
+	// Skip the number of imported resources.
+	Skipped int `pulumi:"skipped"`
+	// Import the status of the task.
+	TaskStatus string `pulumi:"taskStatus"`
+	// The total number of resources that have been listed.
+	Total int `pulumi:"total"`
+	// The number of imported resources.
+	Transferred int `pulumi:"transferred"`
+}
+
+// ImportTasksTaskInfoTaskStatisticsInput is an input type that accepts ImportTasksTaskInfoTaskStatisticsArgs and ImportTasksTaskInfoTaskStatisticsOutput values.
+// You can construct a concrete instance of `ImportTasksTaskInfoTaskStatisticsInput` via:
+//
+//	ImportTasksTaskInfoTaskStatisticsArgs{...}
+type ImportTasksTaskInfoTaskStatisticsInput interface {
+	pulumi.Input
+
+	ToImportTasksTaskInfoTaskStatisticsOutput() ImportTasksTaskInfoTaskStatisticsOutput
+	ToImportTasksTaskInfoTaskStatisticsOutputWithContext(context.Context) ImportTasksTaskInfoTaskStatisticsOutput
+}
+
+type ImportTasksTaskInfoTaskStatisticsArgs struct {
+	// The total number of resource bytes that have been listed.
+	BytesTotal pulumi.IntInput `pulumi:"bytesTotal"`
+	// The number of imported bytes.
+	BytesTransferred pulumi.IntInput `pulumi:"bytesTransferred"`
+	// The number of resources that failed to import.
+	Failed pulumi.IntInput `pulumi:"failed"`
+	// The number of non-existent resources.
+	NotExist pulumi.IntInput `pulumi:"notExist"`
+	// Skip the number of imported resources.
+	Skipped pulumi.IntInput `pulumi:"skipped"`
+	// Import the status of the task.
+	TaskStatus pulumi.StringInput `pulumi:"taskStatus"`
+	// The total number of resources that have been listed.
+	Total pulumi.IntInput `pulumi:"total"`
+	// The number of imported resources.
+	Transferred pulumi.IntInput `pulumi:"transferred"`
+}
+
+func (ImportTasksTaskInfoTaskStatisticsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ImportTasksTaskInfoTaskStatistics)(nil)).Elem()
+}
+
+func (i ImportTasksTaskInfoTaskStatisticsArgs) ToImportTasksTaskInfoTaskStatisticsOutput() ImportTasksTaskInfoTaskStatisticsOutput {
+	return i.ToImportTasksTaskInfoTaskStatisticsOutputWithContext(context.Background())
+}
+
+func (i ImportTasksTaskInfoTaskStatisticsArgs) ToImportTasksTaskInfoTaskStatisticsOutputWithContext(ctx context.Context) ImportTasksTaskInfoTaskStatisticsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ImportTasksTaskInfoTaskStatisticsOutput)
+}
+
+type ImportTasksTaskInfoTaskStatisticsOutput struct{ *pulumi.OutputState }
+
+func (ImportTasksTaskInfoTaskStatisticsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ImportTasksTaskInfoTaskStatistics)(nil)).Elem()
+}
+
+func (o ImportTasksTaskInfoTaskStatisticsOutput) ToImportTasksTaskInfoTaskStatisticsOutput() ImportTasksTaskInfoTaskStatisticsOutput {
+	return o
+}
+
+func (o ImportTasksTaskInfoTaskStatisticsOutput) ToImportTasksTaskInfoTaskStatisticsOutputWithContext(ctx context.Context) ImportTasksTaskInfoTaskStatisticsOutput {
+	return o
+}
+
+// The total number of resource bytes that have been listed.
+func (o ImportTasksTaskInfoTaskStatisticsOutput) BytesTotal() pulumi.IntOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfoTaskStatistics) int { return v.BytesTotal }).(pulumi.IntOutput)
+}
+
+// The number of imported bytes.
+func (o ImportTasksTaskInfoTaskStatisticsOutput) BytesTransferred() pulumi.IntOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfoTaskStatistics) int { return v.BytesTransferred }).(pulumi.IntOutput)
+}
+
+// The number of resources that failed to import.
+func (o ImportTasksTaskInfoTaskStatisticsOutput) Failed() pulumi.IntOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfoTaskStatistics) int { return v.Failed }).(pulumi.IntOutput)
+}
+
+// The number of non-existent resources.
+func (o ImportTasksTaskInfoTaskStatisticsOutput) NotExist() pulumi.IntOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfoTaskStatistics) int { return v.NotExist }).(pulumi.IntOutput)
+}
+
+// Skip the number of imported resources.
+func (o ImportTasksTaskInfoTaskStatisticsOutput) Skipped() pulumi.IntOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfoTaskStatistics) int { return v.Skipped }).(pulumi.IntOutput)
+}
+
+// Import the status of the task.
+func (o ImportTasksTaskInfoTaskStatisticsOutput) TaskStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfoTaskStatistics) string { return v.TaskStatus }).(pulumi.StringOutput)
+}
+
+// The total number of resources that have been listed.
+func (o ImportTasksTaskInfoTaskStatisticsOutput) Total() pulumi.IntOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfoTaskStatistics) int { return v.Total }).(pulumi.IntOutput)
+}
+
+// The number of imported resources.
+func (o ImportTasksTaskInfoTaskStatisticsOutput) Transferred() pulumi.IntOutput {
+	return o.ApplyT(func(v ImportTasksTaskInfoTaskStatistics) int { return v.Transferred }).(pulumi.IntOutput)
 }
 
 type IndexFullText struct {
@@ -9679,6 +12374,547 @@ func (o RulesRuleUserDefineRuleShardHashKeyArrayOutput) Index(i pulumi.IntInput)
 	}).(RulesRuleUserDefineRuleShardHashKeyOutput)
 }
 
+type ScheduleSqlTaskRequestCycle struct {
+	// Cron expression. The log service specifies the timed execution of alarm tasks through the Cron expression. The minimum granularity of Cron expressions is minutes, 24 hours. For example, 0 18 * * * indicates that an alarm task is executed exactly at 18:00 every day.
+	CronTab *string `pulumi:"cronTab"`
+	// When setting the Type to Cron, the time zone also needs to be set.
+	CronTimeZone *string `pulumi:"cronTimeZone"`
+	// The scheduling cycle or the time point of regular execution (the number of minutes away from 00:00), with a value range of 1 to 1440, and the unit is minutes.
+	Time int `pulumi:"time"`
+	// The type of Scheduling cycle.
+	Type string `pulumi:"type"`
+}
+
+// ScheduleSqlTaskRequestCycleInput is an input type that accepts ScheduleSqlTaskRequestCycleArgs and ScheduleSqlTaskRequestCycleOutput values.
+// You can construct a concrete instance of `ScheduleSqlTaskRequestCycleInput` via:
+//
+//	ScheduleSqlTaskRequestCycleArgs{...}
+type ScheduleSqlTaskRequestCycleInput interface {
+	pulumi.Input
+
+	ToScheduleSqlTaskRequestCycleOutput() ScheduleSqlTaskRequestCycleOutput
+	ToScheduleSqlTaskRequestCycleOutputWithContext(context.Context) ScheduleSqlTaskRequestCycleOutput
+}
+
+type ScheduleSqlTaskRequestCycleArgs struct {
+	// Cron expression. The log service specifies the timed execution of alarm tasks through the Cron expression. The minimum granularity of Cron expressions is minutes, 24 hours. For example, 0 18 * * * indicates that an alarm task is executed exactly at 18:00 every day.
+	CronTab pulumi.StringPtrInput `pulumi:"cronTab"`
+	// When setting the Type to Cron, the time zone also needs to be set.
+	CronTimeZone pulumi.StringPtrInput `pulumi:"cronTimeZone"`
+	// The scheduling cycle or the time point of regular execution (the number of minutes away from 00:00), with a value range of 1 to 1440, and the unit is minutes.
+	Time pulumi.IntInput `pulumi:"time"`
+	// The type of Scheduling cycle.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (ScheduleSqlTaskRequestCycleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ScheduleSqlTaskRequestCycle)(nil)).Elem()
+}
+
+func (i ScheduleSqlTaskRequestCycleArgs) ToScheduleSqlTaskRequestCycleOutput() ScheduleSqlTaskRequestCycleOutput {
+	return i.ToScheduleSqlTaskRequestCycleOutputWithContext(context.Background())
+}
+
+func (i ScheduleSqlTaskRequestCycleArgs) ToScheduleSqlTaskRequestCycleOutputWithContext(ctx context.Context) ScheduleSqlTaskRequestCycleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ScheduleSqlTaskRequestCycleOutput)
+}
+
+func (i ScheduleSqlTaskRequestCycleArgs) ToScheduleSqlTaskRequestCyclePtrOutput() ScheduleSqlTaskRequestCyclePtrOutput {
+	return i.ToScheduleSqlTaskRequestCyclePtrOutputWithContext(context.Background())
+}
+
+func (i ScheduleSqlTaskRequestCycleArgs) ToScheduleSqlTaskRequestCyclePtrOutputWithContext(ctx context.Context) ScheduleSqlTaskRequestCyclePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ScheduleSqlTaskRequestCycleOutput).ToScheduleSqlTaskRequestCyclePtrOutputWithContext(ctx)
+}
+
+// ScheduleSqlTaskRequestCyclePtrInput is an input type that accepts ScheduleSqlTaskRequestCycleArgs, ScheduleSqlTaskRequestCyclePtr and ScheduleSqlTaskRequestCyclePtrOutput values.
+// You can construct a concrete instance of `ScheduleSqlTaskRequestCyclePtrInput` via:
+//
+//	        ScheduleSqlTaskRequestCycleArgs{...}
+//
+//	or:
+//
+//	        nil
+type ScheduleSqlTaskRequestCyclePtrInput interface {
+	pulumi.Input
+
+	ToScheduleSqlTaskRequestCyclePtrOutput() ScheduleSqlTaskRequestCyclePtrOutput
+	ToScheduleSqlTaskRequestCyclePtrOutputWithContext(context.Context) ScheduleSqlTaskRequestCyclePtrOutput
+}
+
+type scheduleSqlTaskRequestCyclePtrType ScheduleSqlTaskRequestCycleArgs
+
+func ScheduleSqlTaskRequestCyclePtr(v *ScheduleSqlTaskRequestCycleArgs) ScheduleSqlTaskRequestCyclePtrInput {
+	return (*scheduleSqlTaskRequestCyclePtrType)(v)
+}
+
+func (*scheduleSqlTaskRequestCyclePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ScheduleSqlTaskRequestCycle)(nil)).Elem()
+}
+
+func (i *scheduleSqlTaskRequestCyclePtrType) ToScheduleSqlTaskRequestCyclePtrOutput() ScheduleSqlTaskRequestCyclePtrOutput {
+	return i.ToScheduleSqlTaskRequestCyclePtrOutputWithContext(context.Background())
+}
+
+func (i *scheduleSqlTaskRequestCyclePtrType) ToScheduleSqlTaskRequestCyclePtrOutputWithContext(ctx context.Context) ScheduleSqlTaskRequestCyclePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ScheduleSqlTaskRequestCyclePtrOutput)
+}
+
+type ScheduleSqlTaskRequestCycleOutput struct{ *pulumi.OutputState }
+
+func (ScheduleSqlTaskRequestCycleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ScheduleSqlTaskRequestCycle)(nil)).Elem()
+}
+
+func (o ScheduleSqlTaskRequestCycleOutput) ToScheduleSqlTaskRequestCycleOutput() ScheduleSqlTaskRequestCycleOutput {
+	return o
+}
+
+func (o ScheduleSqlTaskRequestCycleOutput) ToScheduleSqlTaskRequestCycleOutputWithContext(ctx context.Context) ScheduleSqlTaskRequestCycleOutput {
+	return o
+}
+
+func (o ScheduleSqlTaskRequestCycleOutput) ToScheduleSqlTaskRequestCyclePtrOutput() ScheduleSqlTaskRequestCyclePtrOutput {
+	return o.ToScheduleSqlTaskRequestCyclePtrOutputWithContext(context.Background())
+}
+
+func (o ScheduleSqlTaskRequestCycleOutput) ToScheduleSqlTaskRequestCyclePtrOutputWithContext(ctx context.Context) ScheduleSqlTaskRequestCyclePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ScheduleSqlTaskRequestCycle) *ScheduleSqlTaskRequestCycle {
+		return &v
+	}).(ScheduleSqlTaskRequestCyclePtrOutput)
+}
+
+// Cron expression. The log service specifies the timed execution of alarm tasks through the Cron expression. The minimum granularity of Cron expressions is minutes, 24 hours. For example, 0 18 * * * indicates that an alarm task is executed exactly at 18:00 every day.
+func (o ScheduleSqlTaskRequestCycleOutput) CronTab() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ScheduleSqlTaskRequestCycle) *string { return v.CronTab }).(pulumi.StringPtrOutput)
+}
+
+// When setting the Type to Cron, the time zone also needs to be set.
+func (o ScheduleSqlTaskRequestCycleOutput) CronTimeZone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ScheduleSqlTaskRequestCycle) *string { return v.CronTimeZone }).(pulumi.StringPtrOutput)
+}
+
+// The scheduling cycle or the time point of regular execution (the number of minutes away from 00:00), with a value range of 1 to 1440, and the unit is minutes.
+func (o ScheduleSqlTaskRequestCycleOutput) Time() pulumi.IntOutput {
+	return o.ApplyT(func(v ScheduleSqlTaskRequestCycle) int { return v.Time }).(pulumi.IntOutput)
+}
+
+// The type of Scheduling cycle.
+func (o ScheduleSqlTaskRequestCycleOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v ScheduleSqlTaskRequestCycle) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type ScheduleSqlTaskRequestCyclePtrOutput struct{ *pulumi.OutputState }
+
+func (ScheduleSqlTaskRequestCyclePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ScheduleSqlTaskRequestCycle)(nil)).Elem()
+}
+
+func (o ScheduleSqlTaskRequestCyclePtrOutput) ToScheduleSqlTaskRequestCyclePtrOutput() ScheduleSqlTaskRequestCyclePtrOutput {
+	return o
+}
+
+func (o ScheduleSqlTaskRequestCyclePtrOutput) ToScheduleSqlTaskRequestCyclePtrOutputWithContext(ctx context.Context) ScheduleSqlTaskRequestCyclePtrOutput {
+	return o
+}
+
+func (o ScheduleSqlTaskRequestCyclePtrOutput) Elem() ScheduleSqlTaskRequestCycleOutput {
+	return o.ApplyT(func(v *ScheduleSqlTaskRequestCycle) ScheduleSqlTaskRequestCycle {
+		if v != nil {
+			return *v
+		}
+		var ret ScheduleSqlTaskRequestCycle
+		return ret
+	}).(ScheduleSqlTaskRequestCycleOutput)
+}
+
+// Cron expression. The log service specifies the timed execution of alarm tasks through the Cron expression. The minimum granularity of Cron expressions is minutes, 24 hours. For example, 0 18 * * * indicates that an alarm task is executed exactly at 18:00 every day.
+func (o ScheduleSqlTaskRequestCyclePtrOutput) CronTab() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ScheduleSqlTaskRequestCycle) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CronTab
+	}).(pulumi.StringPtrOutput)
+}
+
+// When setting the Type to Cron, the time zone also needs to be set.
+func (o ScheduleSqlTaskRequestCyclePtrOutput) CronTimeZone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ScheduleSqlTaskRequestCycle) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CronTimeZone
+	}).(pulumi.StringPtrOutput)
+}
+
+// The scheduling cycle or the time point of regular execution (the number of minutes away from 00:00), with a value range of 1 to 1440, and the unit is minutes.
+func (o ScheduleSqlTaskRequestCyclePtrOutput) Time() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ScheduleSqlTaskRequestCycle) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.Time
+	}).(pulumi.IntPtrOutput)
+}
+
+// The type of Scheduling cycle.
+func (o ScheduleSqlTaskRequestCyclePtrOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ScheduleSqlTaskRequestCycle) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Type
+	}).(pulumi.StringPtrOutput)
+}
+
+type ScheduleSqlTasksTask struct {
+	// Set the creation time of timed SQL analysis tasks.
+	CreateTimeStamp int `pulumi:"createTimeStamp"`
+	// A simple description of the timed SQL analysis task.
+	Description string `pulumi:"description"`
+	// The log project ID to which the target log topic belongs.
+	DestProjectId string `pulumi:"destProjectId"`
+	// The region to which the target log project belongs.
+	DestRegion string `pulumi:"destRegion"`
+	// The target log topic ID used for storing the result data of timed SQL analysis.
+	DestTopicId string `pulumi:"destTopicId"`
+	// The name of the target log topic used for storing the data of the timed SQL analysis results.
+	DestTopicName string `pulumi:"destTopicName"`
+	// The most recent modification time of the scheduled SQL analysis task.
+	ModifyTimeStamp int `pulumi:"modifyTimeStamp"`
+	// Schedule the end time of the timed SQL analysis task in the format of a second-level timestamp.
+	ProcessEndTime int `pulumi:"processEndTime"`
+	// The delay time of each scheduling. The value range is from 0 to 120, and the unit is seconds.
+	ProcessSqlDelay int `pulumi:"processSqlDelay"`
+	// The start time of the scheduled SQL task, that is, the start time when the first instance is scheduled. The format is a timestamp at the second level.
+	ProcessStartTime int `pulumi:"processStartTime"`
+	// SQL time window, which refers to the time range for log retrieval and analysis when a timed SQL analysis task is running, is in a left-closed and right-open format.
+	ProcessTimeWindow string `pulumi:"processTimeWindow"`
+	// Timed SQL analysis tasks are retrieval and analysis statements that are executed regularly.
+	Query string `pulumi:"query"`
+	// The scheduling cycle of timed SQL analysis tasks.
+	RequestCycle ScheduleSqlTasksTaskRequestCycle `pulumi:"requestCycle"`
+	// The log project ID to which the source log topic belongs.
+	SourceProjectId string `pulumi:"sourceProjectId"`
+	// The name of the log item to which the source log topic belongs.
+	SourceProjectName string `pulumi:"sourceProjectName"`
+	// The source log topic ID where the original log for timed SQL analysis is located.
+	SourceTopicId string `pulumi:"sourceTopicId"`
+	// Source log topic name.
+	SourceTopicName string `pulumi:"sourceTopicName"`
+	// Timed SQL analysis task status.
+	Status int `pulumi:"status"`
+	// Timed SQL analysis task ID.
+	TaskId string `pulumi:"taskId"`
+	// Timed SQL analysis task name.
+	TaskName string `pulumi:"taskName"`
+}
+
+// ScheduleSqlTasksTaskInput is an input type that accepts ScheduleSqlTasksTaskArgs and ScheduleSqlTasksTaskOutput values.
+// You can construct a concrete instance of `ScheduleSqlTasksTaskInput` via:
+//
+//	ScheduleSqlTasksTaskArgs{...}
+type ScheduleSqlTasksTaskInput interface {
+	pulumi.Input
+
+	ToScheduleSqlTasksTaskOutput() ScheduleSqlTasksTaskOutput
+	ToScheduleSqlTasksTaskOutputWithContext(context.Context) ScheduleSqlTasksTaskOutput
+}
+
+type ScheduleSqlTasksTaskArgs struct {
+	// Set the creation time of timed SQL analysis tasks.
+	CreateTimeStamp pulumi.IntInput `pulumi:"createTimeStamp"`
+	// A simple description of the timed SQL analysis task.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The log project ID to which the target log topic belongs.
+	DestProjectId pulumi.StringInput `pulumi:"destProjectId"`
+	// The region to which the target log project belongs.
+	DestRegion pulumi.StringInput `pulumi:"destRegion"`
+	// The target log topic ID used for storing the result data of timed SQL analysis.
+	DestTopicId pulumi.StringInput `pulumi:"destTopicId"`
+	// The name of the target log topic used for storing the data of the timed SQL analysis results.
+	DestTopicName pulumi.StringInput `pulumi:"destTopicName"`
+	// The most recent modification time of the scheduled SQL analysis task.
+	ModifyTimeStamp pulumi.IntInput `pulumi:"modifyTimeStamp"`
+	// Schedule the end time of the timed SQL analysis task in the format of a second-level timestamp.
+	ProcessEndTime pulumi.IntInput `pulumi:"processEndTime"`
+	// The delay time of each scheduling. The value range is from 0 to 120, and the unit is seconds.
+	ProcessSqlDelay pulumi.IntInput `pulumi:"processSqlDelay"`
+	// The start time of the scheduled SQL task, that is, the start time when the first instance is scheduled. The format is a timestamp at the second level.
+	ProcessStartTime pulumi.IntInput `pulumi:"processStartTime"`
+	// SQL time window, which refers to the time range for log retrieval and analysis when a timed SQL analysis task is running, is in a left-closed and right-open format.
+	ProcessTimeWindow pulumi.StringInput `pulumi:"processTimeWindow"`
+	// Timed SQL analysis tasks are retrieval and analysis statements that are executed regularly.
+	Query pulumi.StringInput `pulumi:"query"`
+	// The scheduling cycle of timed SQL analysis tasks.
+	RequestCycle ScheduleSqlTasksTaskRequestCycleInput `pulumi:"requestCycle"`
+	// The log project ID to which the source log topic belongs.
+	SourceProjectId pulumi.StringInput `pulumi:"sourceProjectId"`
+	// The name of the log item to which the source log topic belongs.
+	SourceProjectName pulumi.StringInput `pulumi:"sourceProjectName"`
+	// The source log topic ID where the original log for timed SQL analysis is located.
+	SourceTopicId pulumi.StringInput `pulumi:"sourceTopicId"`
+	// Source log topic name.
+	SourceTopicName pulumi.StringInput `pulumi:"sourceTopicName"`
+	// Timed SQL analysis task status.
+	Status pulumi.IntInput `pulumi:"status"`
+	// Timed SQL analysis task ID.
+	TaskId pulumi.StringInput `pulumi:"taskId"`
+	// Timed SQL analysis task name.
+	TaskName pulumi.StringInput `pulumi:"taskName"`
+}
+
+func (ScheduleSqlTasksTaskArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ScheduleSqlTasksTask)(nil)).Elem()
+}
+
+func (i ScheduleSqlTasksTaskArgs) ToScheduleSqlTasksTaskOutput() ScheduleSqlTasksTaskOutput {
+	return i.ToScheduleSqlTasksTaskOutputWithContext(context.Background())
+}
+
+func (i ScheduleSqlTasksTaskArgs) ToScheduleSqlTasksTaskOutputWithContext(ctx context.Context) ScheduleSqlTasksTaskOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ScheduleSqlTasksTaskOutput)
+}
+
+// ScheduleSqlTasksTaskArrayInput is an input type that accepts ScheduleSqlTasksTaskArray and ScheduleSqlTasksTaskArrayOutput values.
+// You can construct a concrete instance of `ScheduleSqlTasksTaskArrayInput` via:
+//
+//	ScheduleSqlTasksTaskArray{ ScheduleSqlTasksTaskArgs{...} }
+type ScheduleSqlTasksTaskArrayInput interface {
+	pulumi.Input
+
+	ToScheduleSqlTasksTaskArrayOutput() ScheduleSqlTasksTaskArrayOutput
+	ToScheduleSqlTasksTaskArrayOutputWithContext(context.Context) ScheduleSqlTasksTaskArrayOutput
+}
+
+type ScheduleSqlTasksTaskArray []ScheduleSqlTasksTaskInput
+
+func (ScheduleSqlTasksTaskArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ScheduleSqlTasksTask)(nil)).Elem()
+}
+
+func (i ScheduleSqlTasksTaskArray) ToScheduleSqlTasksTaskArrayOutput() ScheduleSqlTasksTaskArrayOutput {
+	return i.ToScheduleSqlTasksTaskArrayOutputWithContext(context.Background())
+}
+
+func (i ScheduleSqlTasksTaskArray) ToScheduleSqlTasksTaskArrayOutputWithContext(ctx context.Context) ScheduleSqlTasksTaskArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ScheduleSqlTasksTaskArrayOutput)
+}
+
+type ScheduleSqlTasksTaskOutput struct{ *pulumi.OutputState }
+
+func (ScheduleSqlTasksTaskOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ScheduleSqlTasksTask)(nil)).Elem()
+}
+
+func (o ScheduleSqlTasksTaskOutput) ToScheduleSqlTasksTaskOutput() ScheduleSqlTasksTaskOutput {
+	return o
+}
+
+func (o ScheduleSqlTasksTaskOutput) ToScheduleSqlTasksTaskOutputWithContext(ctx context.Context) ScheduleSqlTasksTaskOutput {
+	return o
+}
+
+// Set the creation time of timed SQL analysis tasks.
+func (o ScheduleSqlTasksTaskOutput) CreateTimeStamp() pulumi.IntOutput {
+	return o.ApplyT(func(v ScheduleSqlTasksTask) int { return v.CreateTimeStamp }).(pulumi.IntOutput)
+}
+
+// A simple description of the timed SQL analysis task.
+func (o ScheduleSqlTasksTaskOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v ScheduleSqlTasksTask) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The log project ID to which the target log topic belongs.
+func (o ScheduleSqlTasksTaskOutput) DestProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v ScheduleSqlTasksTask) string { return v.DestProjectId }).(pulumi.StringOutput)
+}
+
+// The region to which the target log project belongs.
+func (o ScheduleSqlTasksTaskOutput) DestRegion() pulumi.StringOutput {
+	return o.ApplyT(func(v ScheduleSqlTasksTask) string { return v.DestRegion }).(pulumi.StringOutput)
+}
+
+// The target log topic ID used for storing the result data of timed SQL analysis.
+func (o ScheduleSqlTasksTaskOutput) DestTopicId() pulumi.StringOutput {
+	return o.ApplyT(func(v ScheduleSqlTasksTask) string { return v.DestTopicId }).(pulumi.StringOutput)
+}
+
+// The name of the target log topic used for storing the data of the timed SQL analysis results.
+func (o ScheduleSqlTasksTaskOutput) DestTopicName() pulumi.StringOutput {
+	return o.ApplyT(func(v ScheduleSqlTasksTask) string { return v.DestTopicName }).(pulumi.StringOutput)
+}
+
+// The most recent modification time of the scheduled SQL analysis task.
+func (o ScheduleSqlTasksTaskOutput) ModifyTimeStamp() pulumi.IntOutput {
+	return o.ApplyT(func(v ScheduleSqlTasksTask) int { return v.ModifyTimeStamp }).(pulumi.IntOutput)
+}
+
+// Schedule the end time of the timed SQL analysis task in the format of a second-level timestamp.
+func (o ScheduleSqlTasksTaskOutput) ProcessEndTime() pulumi.IntOutput {
+	return o.ApplyT(func(v ScheduleSqlTasksTask) int { return v.ProcessEndTime }).(pulumi.IntOutput)
+}
+
+// The delay time of each scheduling. The value range is from 0 to 120, and the unit is seconds.
+func (o ScheduleSqlTasksTaskOutput) ProcessSqlDelay() pulumi.IntOutput {
+	return o.ApplyT(func(v ScheduleSqlTasksTask) int { return v.ProcessSqlDelay }).(pulumi.IntOutput)
+}
+
+// The start time of the scheduled SQL task, that is, the start time when the first instance is scheduled. The format is a timestamp at the second level.
+func (o ScheduleSqlTasksTaskOutput) ProcessStartTime() pulumi.IntOutput {
+	return o.ApplyT(func(v ScheduleSqlTasksTask) int { return v.ProcessStartTime }).(pulumi.IntOutput)
+}
+
+// SQL time window, which refers to the time range for log retrieval and analysis when a timed SQL analysis task is running, is in a left-closed and right-open format.
+func (o ScheduleSqlTasksTaskOutput) ProcessTimeWindow() pulumi.StringOutput {
+	return o.ApplyT(func(v ScheduleSqlTasksTask) string { return v.ProcessTimeWindow }).(pulumi.StringOutput)
+}
+
+// Timed SQL analysis tasks are retrieval and analysis statements that are executed regularly.
+func (o ScheduleSqlTasksTaskOutput) Query() pulumi.StringOutput {
+	return o.ApplyT(func(v ScheduleSqlTasksTask) string { return v.Query }).(pulumi.StringOutput)
+}
+
+// The scheduling cycle of timed SQL analysis tasks.
+func (o ScheduleSqlTasksTaskOutput) RequestCycle() ScheduleSqlTasksTaskRequestCycleOutput {
+	return o.ApplyT(func(v ScheduleSqlTasksTask) ScheduleSqlTasksTaskRequestCycle { return v.RequestCycle }).(ScheduleSqlTasksTaskRequestCycleOutput)
+}
+
+// The log project ID to which the source log topic belongs.
+func (o ScheduleSqlTasksTaskOutput) SourceProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v ScheduleSqlTasksTask) string { return v.SourceProjectId }).(pulumi.StringOutput)
+}
+
+// The name of the log item to which the source log topic belongs.
+func (o ScheduleSqlTasksTaskOutput) SourceProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v ScheduleSqlTasksTask) string { return v.SourceProjectName }).(pulumi.StringOutput)
+}
+
+// The source log topic ID where the original log for timed SQL analysis is located.
+func (o ScheduleSqlTasksTaskOutput) SourceTopicId() pulumi.StringOutput {
+	return o.ApplyT(func(v ScheduleSqlTasksTask) string { return v.SourceTopicId }).(pulumi.StringOutput)
+}
+
+// Source log topic name.
+func (o ScheduleSqlTasksTaskOutput) SourceTopicName() pulumi.StringOutput {
+	return o.ApplyT(func(v ScheduleSqlTasksTask) string { return v.SourceTopicName }).(pulumi.StringOutput)
+}
+
+// Timed SQL analysis task status.
+func (o ScheduleSqlTasksTaskOutput) Status() pulumi.IntOutput {
+	return o.ApplyT(func(v ScheduleSqlTasksTask) int { return v.Status }).(pulumi.IntOutput)
+}
+
+// Timed SQL analysis task ID.
+func (o ScheduleSqlTasksTaskOutput) TaskId() pulumi.StringOutput {
+	return o.ApplyT(func(v ScheduleSqlTasksTask) string { return v.TaskId }).(pulumi.StringOutput)
+}
+
+// Timed SQL analysis task name.
+func (o ScheduleSqlTasksTaskOutput) TaskName() pulumi.StringOutput {
+	return o.ApplyT(func(v ScheduleSqlTasksTask) string { return v.TaskName }).(pulumi.StringOutput)
+}
+
+type ScheduleSqlTasksTaskArrayOutput struct{ *pulumi.OutputState }
+
+func (ScheduleSqlTasksTaskArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ScheduleSqlTasksTask)(nil)).Elem()
+}
+
+func (o ScheduleSqlTasksTaskArrayOutput) ToScheduleSqlTasksTaskArrayOutput() ScheduleSqlTasksTaskArrayOutput {
+	return o
+}
+
+func (o ScheduleSqlTasksTaskArrayOutput) ToScheduleSqlTasksTaskArrayOutputWithContext(ctx context.Context) ScheduleSqlTasksTaskArrayOutput {
+	return o
+}
+
+func (o ScheduleSqlTasksTaskArrayOutput) Index(i pulumi.IntInput) ScheduleSqlTasksTaskOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ScheduleSqlTasksTask {
+		return vs[0].([]ScheduleSqlTasksTask)[vs[1].(int)]
+	}).(ScheduleSqlTasksTaskOutput)
+}
+
+type ScheduleSqlTasksTaskRequestCycle struct {
+	// Cron expression. The log service specifies the timed execution of alarm tasks through the Cron expression. The minimum granularity of Cron expressions is minutes, 24 hours. For example, 0 18 * * * indicates that an alarm task is executed exactly at 18:00 every day.
+	CronTab string `pulumi:"cronTab"`
+	// When setting the Type to Cron, the time zone also needs to be set.
+	CronTimeZone string `pulumi:"cronTimeZone"`
+	// The scheduling cycle or the time point of regular execution (the number of minutes away from 00:00), with a value range of 1 to 1440, and the unit is minutes.
+	Time int `pulumi:"time"`
+	// The type of Scheduling cycle.
+	Type string `pulumi:"type"`
+}
+
+// ScheduleSqlTasksTaskRequestCycleInput is an input type that accepts ScheduleSqlTasksTaskRequestCycleArgs and ScheduleSqlTasksTaskRequestCycleOutput values.
+// You can construct a concrete instance of `ScheduleSqlTasksTaskRequestCycleInput` via:
+//
+//	ScheduleSqlTasksTaskRequestCycleArgs{...}
+type ScheduleSqlTasksTaskRequestCycleInput interface {
+	pulumi.Input
+
+	ToScheduleSqlTasksTaskRequestCycleOutput() ScheduleSqlTasksTaskRequestCycleOutput
+	ToScheduleSqlTasksTaskRequestCycleOutputWithContext(context.Context) ScheduleSqlTasksTaskRequestCycleOutput
+}
+
+type ScheduleSqlTasksTaskRequestCycleArgs struct {
+	// Cron expression. The log service specifies the timed execution of alarm tasks through the Cron expression. The minimum granularity of Cron expressions is minutes, 24 hours. For example, 0 18 * * * indicates that an alarm task is executed exactly at 18:00 every day.
+	CronTab pulumi.StringInput `pulumi:"cronTab"`
+	// When setting the Type to Cron, the time zone also needs to be set.
+	CronTimeZone pulumi.StringInput `pulumi:"cronTimeZone"`
+	// The scheduling cycle or the time point of regular execution (the number of minutes away from 00:00), with a value range of 1 to 1440, and the unit is minutes.
+	Time pulumi.IntInput `pulumi:"time"`
+	// The type of Scheduling cycle.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (ScheduleSqlTasksTaskRequestCycleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ScheduleSqlTasksTaskRequestCycle)(nil)).Elem()
+}
+
+func (i ScheduleSqlTasksTaskRequestCycleArgs) ToScheduleSqlTasksTaskRequestCycleOutput() ScheduleSqlTasksTaskRequestCycleOutput {
+	return i.ToScheduleSqlTasksTaskRequestCycleOutputWithContext(context.Background())
+}
+
+func (i ScheduleSqlTasksTaskRequestCycleArgs) ToScheduleSqlTasksTaskRequestCycleOutputWithContext(ctx context.Context) ScheduleSqlTasksTaskRequestCycleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ScheduleSqlTasksTaskRequestCycleOutput)
+}
+
+type ScheduleSqlTasksTaskRequestCycleOutput struct{ *pulumi.OutputState }
+
+func (ScheduleSqlTasksTaskRequestCycleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ScheduleSqlTasksTaskRequestCycle)(nil)).Elem()
+}
+
+func (o ScheduleSqlTasksTaskRequestCycleOutput) ToScheduleSqlTasksTaskRequestCycleOutput() ScheduleSqlTasksTaskRequestCycleOutput {
+	return o
+}
+
+func (o ScheduleSqlTasksTaskRequestCycleOutput) ToScheduleSqlTasksTaskRequestCycleOutputWithContext(ctx context.Context) ScheduleSqlTasksTaskRequestCycleOutput {
+	return o
+}
+
+// Cron expression. The log service specifies the timed execution of alarm tasks through the Cron expression. The minimum granularity of Cron expressions is minutes, 24 hours. For example, 0 18 * * * indicates that an alarm task is executed exactly at 18:00 every day.
+func (o ScheduleSqlTasksTaskRequestCycleOutput) CronTab() pulumi.StringOutput {
+	return o.ApplyT(func(v ScheduleSqlTasksTaskRequestCycle) string { return v.CronTab }).(pulumi.StringOutput)
+}
+
+// When setting the Type to Cron, the time zone also needs to be set.
+func (o ScheduleSqlTasksTaskRequestCycleOutput) CronTimeZone() pulumi.StringOutput {
+	return o.ApplyT(func(v ScheduleSqlTasksTaskRequestCycle) string { return v.CronTimeZone }).(pulumi.StringOutput)
+}
+
+// The scheduling cycle or the time point of regular execution (the number of minutes away from 00:00), with a value range of 1 to 1440, and the unit is minutes.
+func (o ScheduleSqlTasksTaskRequestCycleOutput) Time() pulumi.IntOutput {
+	return o.ApplyT(func(v ScheduleSqlTasksTaskRequestCycle) int { return v.Time }).(pulumi.IntOutput)
+}
+
+// The type of Scheduling cycle.
+func (o ScheduleSqlTasksTaskRequestCycleOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v ScheduleSqlTasksTaskRequestCycle) string { return v.Type }).(pulumi.StringOutput)
+}
+
 type ShardsShard struct {
 	// The end key info.
 	ExclusiveEndKey string `pulumi:"exclusiveEndKey"`
@@ -9828,6 +13064,1659 @@ func (o ShardsShardArrayOutput) Index(i pulumi.IntInput) ShardsShardOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ShardsShard {
 		return vs[0].([]ShardsShard)[vs[1].(int)]
 	}).(ShardsShardOutput)
+}
+
+type ShipperContentInfo struct {
+	// CSV format log content configuration.
+	CsvInfo *ShipperContentInfoCsvInfo `pulumi:"csvInfo"`
+	// Log content parsing format.
+	Format *string `pulumi:"format"`
+	// JSON format log content configuration.
+	JsonInfo *ShipperContentInfoJsonInfo `pulumi:"jsonInfo"`
+}
+
+// ShipperContentInfoInput is an input type that accepts ShipperContentInfoArgs and ShipperContentInfoOutput values.
+// You can construct a concrete instance of `ShipperContentInfoInput` via:
+//
+//	ShipperContentInfoArgs{...}
+type ShipperContentInfoInput interface {
+	pulumi.Input
+
+	ToShipperContentInfoOutput() ShipperContentInfoOutput
+	ToShipperContentInfoOutputWithContext(context.Context) ShipperContentInfoOutput
+}
+
+type ShipperContentInfoArgs struct {
+	// CSV format log content configuration.
+	CsvInfo ShipperContentInfoCsvInfoPtrInput `pulumi:"csvInfo"`
+	// Log content parsing format.
+	Format pulumi.StringPtrInput `pulumi:"format"`
+	// JSON format log content configuration.
+	JsonInfo ShipperContentInfoJsonInfoPtrInput `pulumi:"jsonInfo"`
+}
+
+func (ShipperContentInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ShipperContentInfo)(nil)).Elem()
+}
+
+func (i ShipperContentInfoArgs) ToShipperContentInfoOutput() ShipperContentInfoOutput {
+	return i.ToShipperContentInfoOutputWithContext(context.Background())
+}
+
+func (i ShipperContentInfoArgs) ToShipperContentInfoOutputWithContext(ctx context.Context) ShipperContentInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ShipperContentInfoOutput)
+}
+
+func (i ShipperContentInfoArgs) ToShipperContentInfoPtrOutput() ShipperContentInfoPtrOutput {
+	return i.ToShipperContentInfoPtrOutputWithContext(context.Background())
+}
+
+func (i ShipperContentInfoArgs) ToShipperContentInfoPtrOutputWithContext(ctx context.Context) ShipperContentInfoPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ShipperContentInfoOutput).ToShipperContentInfoPtrOutputWithContext(ctx)
+}
+
+// ShipperContentInfoPtrInput is an input type that accepts ShipperContentInfoArgs, ShipperContentInfoPtr and ShipperContentInfoPtrOutput values.
+// You can construct a concrete instance of `ShipperContentInfoPtrInput` via:
+//
+//	        ShipperContentInfoArgs{...}
+//
+//	or:
+//
+//	        nil
+type ShipperContentInfoPtrInput interface {
+	pulumi.Input
+
+	ToShipperContentInfoPtrOutput() ShipperContentInfoPtrOutput
+	ToShipperContentInfoPtrOutputWithContext(context.Context) ShipperContentInfoPtrOutput
+}
+
+type shipperContentInfoPtrType ShipperContentInfoArgs
+
+func ShipperContentInfoPtr(v *ShipperContentInfoArgs) ShipperContentInfoPtrInput {
+	return (*shipperContentInfoPtrType)(v)
+}
+
+func (*shipperContentInfoPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ShipperContentInfo)(nil)).Elem()
+}
+
+func (i *shipperContentInfoPtrType) ToShipperContentInfoPtrOutput() ShipperContentInfoPtrOutput {
+	return i.ToShipperContentInfoPtrOutputWithContext(context.Background())
+}
+
+func (i *shipperContentInfoPtrType) ToShipperContentInfoPtrOutputWithContext(ctx context.Context) ShipperContentInfoPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ShipperContentInfoPtrOutput)
+}
+
+type ShipperContentInfoOutput struct{ *pulumi.OutputState }
+
+func (ShipperContentInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ShipperContentInfo)(nil)).Elem()
+}
+
+func (o ShipperContentInfoOutput) ToShipperContentInfoOutput() ShipperContentInfoOutput {
+	return o
+}
+
+func (o ShipperContentInfoOutput) ToShipperContentInfoOutputWithContext(ctx context.Context) ShipperContentInfoOutput {
+	return o
+}
+
+func (o ShipperContentInfoOutput) ToShipperContentInfoPtrOutput() ShipperContentInfoPtrOutput {
+	return o.ToShipperContentInfoPtrOutputWithContext(context.Background())
+}
+
+func (o ShipperContentInfoOutput) ToShipperContentInfoPtrOutputWithContext(ctx context.Context) ShipperContentInfoPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ShipperContentInfo) *ShipperContentInfo {
+		return &v
+	}).(ShipperContentInfoPtrOutput)
+}
+
+// CSV format log content configuration.
+func (o ShipperContentInfoOutput) CsvInfo() ShipperContentInfoCsvInfoPtrOutput {
+	return o.ApplyT(func(v ShipperContentInfo) *ShipperContentInfoCsvInfo { return v.CsvInfo }).(ShipperContentInfoCsvInfoPtrOutput)
+}
+
+// Log content parsing format.
+func (o ShipperContentInfoOutput) Format() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ShipperContentInfo) *string { return v.Format }).(pulumi.StringPtrOutput)
+}
+
+// JSON format log content configuration.
+func (o ShipperContentInfoOutput) JsonInfo() ShipperContentInfoJsonInfoPtrOutput {
+	return o.ApplyT(func(v ShipperContentInfo) *ShipperContentInfoJsonInfo { return v.JsonInfo }).(ShipperContentInfoJsonInfoPtrOutput)
+}
+
+type ShipperContentInfoPtrOutput struct{ *pulumi.OutputState }
+
+func (ShipperContentInfoPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ShipperContentInfo)(nil)).Elem()
+}
+
+func (o ShipperContentInfoPtrOutput) ToShipperContentInfoPtrOutput() ShipperContentInfoPtrOutput {
+	return o
+}
+
+func (o ShipperContentInfoPtrOutput) ToShipperContentInfoPtrOutputWithContext(ctx context.Context) ShipperContentInfoPtrOutput {
+	return o
+}
+
+func (o ShipperContentInfoPtrOutput) Elem() ShipperContentInfoOutput {
+	return o.ApplyT(func(v *ShipperContentInfo) ShipperContentInfo {
+		if v != nil {
+			return *v
+		}
+		var ret ShipperContentInfo
+		return ret
+	}).(ShipperContentInfoOutput)
+}
+
+// CSV format log content configuration.
+func (o ShipperContentInfoPtrOutput) CsvInfo() ShipperContentInfoCsvInfoPtrOutput {
+	return o.ApplyT(func(v *ShipperContentInfo) *ShipperContentInfoCsvInfo {
+		if v == nil {
+			return nil
+		}
+		return v.CsvInfo
+	}).(ShipperContentInfoCsvInfoPtrOutput)
+}
+
+// Log content parsing format.
+func (o ShipperContentInfoPtrOutput) Format() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ShipperContentInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Format
+	}).(pulumi.StringPtrOutput)
+}
+
+// JSON format log content configuration.
+func (o ShipperContentInfoPtrOutput) JsonInfo() ShipperContentInfoJsonInfoPtrOutput {
+	return o.ApplyT(func(v *ShipperContentInfo) *ShipperContentInfoJsonInfo {
+		if v == nil {
+			return nil
+		}
+		return v.JsonInfo
+	}).(ShipperContentInfoJsonInfoPtrOutput)
+}
+
+type ShipperContentInfoCsvInfo struct {
+	// Delimiters are supported, including commas, tabs, vertical bars, semicolons, and Spaces.
+	Delimiter string `pulumi:"delimiter"`
+	// When the field content contains a delimiter, use an escape character to wrap the field. Currently, only single quotes, double quotes, and null characters are supported.
+	EscapeChar string `pulumi:"escapeChar"`
+	// Configure the fields that need to be delivered.
+	Keys []string `pulumi:"keys"`
+	// Invalid field filling content, with a length ranging from 0 to 128.
+	NonFieldContent string `pulumi:"nonFieldContent"`
+	// Whether to print the Key on the first line.
+	PrintHeader bool `pulumi:"printHeader"`
+}
+
+// ShipperContentInfoCsvInfoInput is an input type that accepts ShipperContentInfoCsvInfoArgs and ShipperContentInfoCsvInfoOutput values.
+// You can construct a concrete instance of `ShipperContentInfoCsvInfoInput` via:
+//
+//	ShipperContentInfoCsvInfoArgs{...}
+type ShipperContentInfoCsvInfoInput interface {
+	pulumi.Input
+
+	ToShipperContentInfoCsvInfoOutput() ShipperContentInfoCsvInfoOutput
+	ToShipperContentInfoCsvInfoOutputWithContext(context.Context) ShipperContentInfoCsvInfoOutput
+}
+
+type ShipperContentInfoCsvInfoArgs struct {
+	// Delimiters are supported, including commas, tabs, vertical bars, semicolons, and Spaces.
+	Delimiter pulumi.StringInput `pulumi:"delimiter"`
+	// When the field content contains a delimiter, use an escape character to wrap the field. Currently, only single quotes, double quotes, and null characters are supported.
+	EscapeChar pulumi.StringInput `pulumi:"escapeChar"`
+	// Configure the fields that need to be delivered.
+	Keys pulumi.StringArrayInput `pulumi:"keys"`
+	// Invalid field filling content, with a length ranging from 0 to 128.
+	NonFieldContent pulumi.StringInput `pulumi:"nonFieldContent"`
+	// Whether to print the Key on the first line.
+	PrintHeader pulumi.BoolInput `pulumi:"printHeader"`
+}
+
+func (ShipperContentInfoCsvInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ShipperContentInfoCsvInfo)(nil)).Elem()
+}
+
+func (i ShipperContentInfoCsvInfoArgs) ToShipperContentInfoCsvInfoOutput() ShipperContentInfoCsvInfoOutput {
+	return i.ToShipperContentInfoCsvInfoOutputWithContext(context.Background())
+}
+
+func (i ShipperContentInfoCsvInfoArgs) ToShipperContentInfoCsvInfoOutputWithContext(ctx context.Context) ShipperContentInfoCsvInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ShipperContentInfoCsvInfoOutput)
+}
+
+func (i ShipperContentInfoCsvInfoArgs) ToShipperContentInfoCsvInfoPtrOutput() ShipperContentInfoCsvInfoPtrOutput {
+	return i.ToShipperContentInfoCsvInfoPtrOutputWithContext(context.Background())
+}
+
+func (i ShipperContentInfoCsvInfoArgs) ToShipperContentInfoCsvInfoPtrOutputWithContext(ctx context.Context) ShipperContentInfoCsvInfoPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ShipperContentInfoCsvInfoOutput).ToShipperContentInfoCsvInfoPtrOutputWithContext(ctx)
+}
+
+// ShipperContentInfoCsvInfoPtrInput is an input type that accepts ShipperContentInfoCsvInfoArgs, ShipperContentInfoCsvInfoPtr and ShipperContentInfoCsvInfoPtrOutput values.
+// You can construct a concrete instance of `ShipperContentInfoCsvInfoPtrInput` via:
+//
+//	        ShipperContentInfoCsvInfoArgs{...}
+//
+//	or:
+//
+//	        nil
+type ShipperContentInfoCsvInfoPtrInput interface {
+	pulumi.Input
+
+	ToShipperContentInfoCsvInfoPtrOutput() ShipperContentInfoCsvInfoPtrOutput
+	ToShipperContentInfoCsvInfoPtrOutputWithContext(context.Context) ShipperContentInfoCsvInfoPtrOutput
+}
+
+type shipperContentInfoCsvInfoPtrType ShipperContentInfoCsvInfoArgs
+
+func ShipperContentInfoCsvInfoPtr(v *ShipperContentInfoCsvInfoArgs) ShipperContentInfoCsvInfoPtrInput {
+	return (*shipperContentInfoCsvInfoPtrType)(v)
+}
+
+func (*shipperContentInfoCsvInfoPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ShipperContentInfoCsvInfo)(nil)).Elem()
+}
+
+func (i *shipperContentInfoCsvInfoPtrType) ToShipperContentInfoCsvInfoPtrOutput() ShipperContentInfoCsvInfoPtrOutput {
+	return i.ToShipperContentInfoCsvInfoPtrOutputWithContext(context.Background())
+}
+
+func (i *shipperContentInfoCsvInfoPtrType) ToShipperContentInfoCsvInfoPtrOutputWithContext(ctx context.Context) ShipperContentInfoCsvInfoPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ShipperContentInfoCsvInfoPtrOutput)
+}
+
+type ShipperContentInfoCsvInfoOutput struct{ *pulumi.OutputState }
+
+func (ShipperContentInfoCsvInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ShipperContentInfoCsvInfo)(nil)).Elem()
+}
+
+func (o ShipperContentInfoCsvInfoOutput) ToShipperContentInfoCsvInfoOutput() ShipperContentInfoCsvInfoOutput {
+	return o
+}
+
+func (o ShipperContentInfoCsvInfoOutput) ToShipperContentInfoCsvInfoOutputWithContext(ctx context.Context) ShipperContentInfoCsvInfoOutput {
+	return o
+}
+
+func (o ShipperContentInfoCsvInfoOutput) ToShipperContentInfoCsvInfoPtrOutput() ShipperContentInfoCsvInfoPtrOutput {
+	return o.ToShipperContentInfoCsvInfoPtrOutputWithContext(context.Background())
+}
+
+func (o ShipperContentInfoCsvInfoOutput) ToShipperContentInfoCsvInfoPtrOutputWithContext(ctx context.Context) ShipperContentInfoCsvInfoPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ShipperContentInfoCsvInfo) *ShipperContentInfoCsvInfo {
+		return &v
+	}).(ShipperContentInfoCsvInfoPtrOutput)
+}
+
+// Delimiters are supported, including commas, tabs, vertical bars, semicolons, and Spaces.
+func (o ShipperContentInfoCsvInfoOutput) Delimiter() pulumi.StringOutput {
+	return o.ApplyT(func(v ShipperContentInfoCsvInfo) string { return v.Delimiter }).(pulumi.StringOutput)
+}
+
+// When the field content contains a delimiter, use an escape character to wrap the field. Currently, only single quotes, double quotes, and null characters are supported.
+func (o ShipperContentInfoCsvInfoOutput) EscapeChar() pulumi.StringOutput {
+	return o.ApplyT(func(v ShipperContentInfoCsvInfo) string { return v.EscapeChar }).(pulumi.StringOutput)
+}
+
+// Configure the fields that need to be delivered.
+func (o ShipperContentInfoCsvInfoOutput) Keys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ShipperContentInfoCsvInfo) []string { return v.Keys }).(pulumi.StringArrayOutput)
+}
+
+// Invalid field filling content, with a length ranging from 0 to 128.
+func (o ShipperContentInfoCsvInfoOutput) NonFieldContent() pulumi.StringOutput {
+	return o.ApplyT(func(v ShipperContentInfoCsvInfo) string { return v.NonFieldContent }).(pulumi.StringOutput)
+}
+
+// Whether to print the Key on the first line.
+func (o ShipperContentInfoCsvInfoOutput) PrintHeader() pulumi.BoolOutput {
+	return o.ApplyT(func(v ShipperContentInfoCsvInfo) bool { return v.PrintHeader }).(pulumi.BoolOutput)
+}
+
+type ShipperContentInfoCsvInfoPtrOutput struct{ *pulumi.OutputState }
+
+func (ShipperContentInfoCsvInfoPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ShipperContentInfoCsvInfo)(nil)).Elem()
+}
+
+func (o ShipperContentInfoCsvInfoPtrOutput) ToShipperContentInfoCsvInfoPtrOutput() ShipperContentInfoCsvInfoPtrOutput {
+	return o
+}
+
+func (o ShipperContentInfoCsvInfoPtrOutput) ToShipperContentInfoCsvInfoPtrOutputWithContext(ctx context.Context) ShipperContentInfoCsvInfoPtrOutput {
+	return o
+}
+
+func (o ShipperContentInfoCsvInfoPtrOutput) Elem() ShipperContentInfoCsvInfoOutput {
+	return o.ApplyT(func(v *ShipperContentInfoCsvInfo) ShipperContentInfoCsvInfo {
+		if v != nil {
+			return *v
+		}
+		var ret ShipperContentInfoCsvInfo
+		return ret
+	}).(ShipperContentInfoCsvInfoOutput)
+}
+
+// Delimiters are supported, including commas, tabs, vertical bars, semicolons, and Spaces.
+func (o ShipperContentInfoCsvInfoPtrOutput) Delimiter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ShipperContentInfoCsvInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Delimiter
+	}).(pulumi.StringPtrOutput)
+}
+
+// When the field content contains a delimiter, use an escape character to wrap the field. Currently, only single quotes, double quotes, and null characters are supported.
+func (o ShipperContentInfoCsvInfoPtrOutput) EscapeChar() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ShipperContentInfoCsvInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.EscapeChar
+	}).(pulumi.StringPtrOutput)
+}
+
+// Configure the fields that need to be delivered.
+func (o ShipperContentInfoCsvInfoPtrOutput) Keys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ShipperContentInfoCsvInfo) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Keys
+	}).(pulumi.StringArrayOutput)
+}
+
+// Invalid field filling content, with a length ranging from 0 to 128.
+func (o ShipperContentInfoCsvInfoPtrOutput) NonFieldContent() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ShipperContentInfoCsvInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.NonFieldContent
+	}).(pulumi.StringPtrOutput)
+}
+
+// Whether to print the Key on the first line.
+func (o ShipperContentInfoCsvInfoPtrOutput) PrintHeader() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ShipperContentInfoCsvInfo) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.PrintHeader
+	}).(pulumi.BoolPtrOutput)
+}
+
+type ShipperContentInfoJsonInfo struct {
+	// Enable the flag.
+	Enable bool `pulumi:"enable"`
+	// Whether to escape or not. It must be configured as true.
+	Escape *bool `pulumi:"escape"`
+	// When delivering in JSON format, if this parameter is not configured, it indicates that all fields have been delivered. Including __content__ (choice), __source__, __path__, __time__, __image_name__, __container_name__, __pod_name__, __pod_uid__, namespace, __tag____client_ip__, __tag____receive_time__.
+	Keys []string `pulumi:"keys"`
+}
+
+// ShipperContentInfoJsonInfoInput is an input type that accepts ShipperContentInfoJsonInfoArgs and ShipperContentInfoJsonInfoOutput values.
+// You can construct a concrete instance of `ShipperContentInfoJsonInfoInput` via:
+//
+//	ShipperContentInfoJsonInfoArgs{...}
+type ShipperContentInfoJsonInfoInput interface {
+	pulumi.Input
+
+	ToShipperContentInfoJsonInfoOutput() ShipperContentInfoJsonInfoOutput
+	ToShipperContentInfoJsonInfoOutputWithContext(context.Context) ShipperContentInfoJsonInfoOutput
+}
+
+type ShipperContentInfoJsonInfoArgs struct {
+	// Enable the flag.
+	Enable pulumi.BoolInput `pulumi:"enable"`
+	// Whether to escape or not. It must be configured as true.
+	Escape pulumi.BoolPtrInput `pulumi:"escape"`
+	// When delivering in JSON format, if this parameter is not configured, it indicates that all fields have been delivered. Including __content__ (choice), __source__, __path__, __time__, __image_name__, __container_name__, __pod_name__, __pod_uid__, namespace, __tag____client_ip__, __tag____receive_time__.
+	Keys pulumi.StringArrayInput `pulumi:"keys"`
+}
+
+func (ShipperContentInfoJsonInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ShipperContentInfoJsonInfo)(nil)).Elem()
+}
+
+func (i ShipperContentInfoJsonInfoArgs) ToShipperContentInfoJsonInfoOutput() ShipperContentInfoJsonInfoOutput {
+	return i.ToShipperContentInfoJsonInfoOutputWithContext(context.Background())
+}
+
+func (i ShipperContentInfoJsonInfoArgs) ToShipperContentInfoJsonInfoOutputWithContext(ctx context.Context) ShipperContentInfoJsonInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ShipperContentInfoJsonInfoOutput)
+}
+
+func (i ShipperContentInfoJsonInfoArgs) ToShipperContentInfoJsonInfoPtrOutput() ShipperContentInfoJsonInfoPtrOutput {
+	return i.ToShipperContentInfoJsonInfoPtrOutputWithContext(context.Background())
+}
+
+func (i ShipperContentInfoJsonInfoArgs) ToShipperContentInfoJsonInfoPtrOutputWithContext(ctx context.Context) ShipperContentInfoJsonInfoPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ShipperContentInfoJsonInfoOutput).ToShipperContentInfoJsonInfoPtrOutputWithContext(ctx)
+}
+
+// ShipperContentInfoJsonInfoPtrInput is an input type that accepts ShipperContentInfoJsonInfoArgs, ShipperContentInfoJsonInfoPtr and ShipperContentInfoJsonInfoPtrOutput values.
+// You can construct a concrete instance of `ShipperContentInfoJsonInfoPtrInput` via:
+//
+//	        ShipperContentInfoJsonInfoArgs{...}
+//
+//	or:
+//
+//	        nil
+type ShipperContentInfoJsonInfoPtrInput interface {
+	pulumi.Input
+
+	ToShipperContentInfoJsonInfoPtrOutput() ShipperContentInfoJsonInfoPtrOutput
+	ToShipperContentInfoJsonInfoPtrOutputWithContext(context.Context) ShipperContentInfoJsonInfoPtrOutput
+}
+
+type shipperContentInfoJsonInfoPtrType ShipperContentInfoJsonInfoArgs
+
+func ShipperContentInfoJsonInfoPtr(v *ShipperContentInfoJsonInfoArgs) ShipperContentInfoJsonInfoPtrInput {
+	return (*shipperContentInfoJsonInfoPtrType)(v)
+}
+
+func (*shipperContentInfoJsonInfoPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ShipperContentInfoJsonInfo)(nil)).Elem()
+}
+
+func (i *shipperContentInfoJsonInfoPtrType) ToShipperContentInfoJsonInfoPtrOutput() ShipperContentInfoJsonInfoPtrOutput {
+	return i.ToShipperContentInfoJsonInfoPtrOutputWithContext(context.Background())
+}
+
+func (i *shipperContentInfoJsonInfoPtrType) ToShipperContentInfoJsonInfoPtrOutputWithContext(ctx context.Context) ShipperContentInfoJsonInfoPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ShipperContentInfoJsonInfoPtrOutput)
+}
+
+type ShipperContentInfoJsonInfoOutput struct{ *pulumi.OutputState }
+
+func (ShipperContentInfoJsonInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ShipperContentInfoJsonInfo)(nil)).Elem()
+}
+
+func (o ShipperContentInfoJsonInfoOutput) ToShipperContentInfoJsonInfoOutput() ShipperContentInfoJsonInfoOutput {
+	return o
+}
+
+func (o ShipperContentInfoJsonInfoOutput) ToShipperContentInfoJsonInfoOutputWithContext(ctx context.Context) ShipperContentInfoJsonInfoOutput {
+	return o
+}
+
+func (o ShipperContentInfoJsonInfoOutput) ToShipperContentInfoJsonInfoPtrOutput() ShipperContentInfoJsonInfoPtrOutput {
+	return o.ToShipperContentInfoJsonInfoPtrOutputWithContext(context.Background())
+}
+
+func (o ShipperContentInfoJsonInfoOutput) ToShipperContentInfoJsonInfoPtrOutputWithContext(ctx context.Context) ShipperContentInfoJsonInfoPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ShipperContentInfoJsonInfo) *ShipperContentInfoJsonInfo {
+		return &v
+	}).(ShipperContentInfoJsonInfoPtrOutput)
+}
+
+// Enable the flag.
+func (o ShipperContentInfoJsonInfoOutput) Enable() pulumi.BoolOutput {
+	return o.ApplyT(func(v ShipperContentInfoJsonInfo) bool { return v.Enable }).(pulumi.BoolOutput)
+}
+
+// Whether to escape or not. It must be configured as true.
+func (o ShipperContentInfoJsonInfoOutput) Escape() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ShipperContentInfoJsonInfo) *bool { return v.Escape }).(pulumi.BoolPtrOutput)
+}
+
+// When delivering in JSON format, if this parameter is not configured, it indicates that all fields have been delivered. Including __content__ (choice), __source__, __path__, __time__, __image_name__, __container_name__, __pod_name__, __pod_uid__, namespace, __tag____client_ip__, __tag____receive_time__.
+func (o ShipperContentInfoJsonInfoOutput) Keys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ShipperContentInfoJsonInfo) []string { return v.Keys }).(pulumi.StringArrayOutput)
+}
+
+type ShipperContentInfoJsonInfoPtrOutput struct{ *pulumi.OutputState }
+
+func (ShipperContentInfoJsonInfoPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ShipperContentInfoJsonInfo)(nil)).Elem()
+}
+
+func (o ShipperContentInfoJsonInfoPtrOutput) ToShipperContentInfoJsonInfoPtrOutput() ShipperContentInfoJsonInfoPtrOutput {
+	return o
+}
+
+func (o ShipperContentInfoJsonInfoPtrOutput) ToShipperContentInfoJsonInfoPtrOutputWithContext(ctx context.Context) ShipperContentInfoJsonInfoPtrOutput {
+	return o
+}
+
+func (o ShipperContentInfoJsonInfoPtrOutput) Elem() ShipperContentInfoJsonInfoOutput {
+	return o.ApplyT(func(v *ShipperContentInfoJsonInfo) ShipperContentInfoJsonInfo {
+		if v != nil {
+			return *v
+		}
+		var ret ShipperContentInfoJsonInfo
+		return ret
+	}).(ShipperContentInfoJsonInfoOutput)
+}
+
+// Enable the flag.
+func (o ShipperContentInfoJsonInfoPtrOutput) Enable() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ShipperContentInfoJsonInfo) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.Enable
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Whether to escape or not. It must be configured as true.
+func (o ShipperContentInfoJsonInfoPtrOutput) Escape() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ShipperContentInfoJsonInfo) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Escape
+	}).(pulumi.BoolPtrOutput)
+}
+
+// When delivering in JSON format, if this parameter is not configured, it indicates that all fields have been delivered. Including __content__ (choice), __source__, __path__, __time__, __image_name__, __container_name__, __pod_name__, __pod_uid__, namespace, __tag____client_ip__, __tag____receive_time__.
+func (o ShipperContentInfoJsonInfoPtrOutput) Keys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ShipperContentInfoJsonInfo) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Keys
+	}).(pulumi.StringArrayOutput)
+}
+
+type ShipperKafkaShipperInfo struct {
+	// Compression formats currently supported include snappy, gzip, lz4, and none.
+	Compress string `pulumi:"compress"`
+	// Delivery end time, millisecond timestamp. If not configured, it will keep delivering.
+	EndTime *int `pulumi:"endTime"`
+	// Kafka instance.
+	Instance string `pulumi:"instance"`
+	// The name of the Kafka Topic.
+	KafkaTopic string `pulumi:"kafkaTopic"`
+	// Delivery start time, millisecond timestamp. If not configured, the default is the current time.
+	StartTime *int `pulumi:"startTime"`
+}
+
+// ShipperKafkaShipperInfoInput is an input type that accepts ShipperKafkaShipperInfoArgs and ShipperKafkaShipperInfoOutput values.
+// You can construct a concrete instance of `ShipperKafkaShipperInfoInput` via:
+//
+//	ShipperKafkaShipperInfoArgs{...}
+type ShipperKafkaShipperInfoInput interface {
+	pulumi.Input
+
+	ToShipperKafkaShipperInfoOutput() ShipperKafkaShipperInfoOutput
+	ToShipperKafkaShipperInfoOutputWithContext(context.Context) ShipperKafkaShipperInfoOutput
+}
+
+type ShipperKafkaShipperInfoArgs struct {
+	// Compression formats currently supported include snappy, gzip, lz4, and none.
+	Compress pulumi.StringInput `pulumi:"compress"`
+	// Delivery end time, millisecond timestamp. If not configured, it will keep delivering.
+	EndTime pulumi.IntPtrInput `pulumi:"endTime"`
+	// Kafka instance.
+	Instance pulumi.StringInput `pulumi:"instance"`
+	// The name of the Kafka Topic.
+	KafkaTopic pulumi.StringInput `pulumi:"kafkaTopic"`
+	// Delivery start time, millisecond timestamp. If not configured, the default is the current time.
+	StartTime pulumi.IntPtrInput `pulumi:"startTime"`
+}
+
+func (ShipperKafkaShipperInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ShipperKafkaShipperInfo)(nil)).Elem()
+}
+
+func (i ShipperKafkaShipperInfoArgs) ToShipperKafkaShipperInfoOutput() ShipperKafkaShipperInfoOutput {
+	return i.ToShipperKafkaShipperInfoOutputWithContext(context.Background())
+}
+
+func (i ShipperKafkaShipperInfoArgs) ToShipperKafkaShipperInfoOutputWithContext(ctx context.Context) ShipperKafkaShipperInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ShipperKafkaShipperInfoOutput)
+}
+
+func (i ShipperKafkaShipperInfoArgs) ToShipperKafkaShipperInfoPtrOutput() ShipperKafkaShipperInfoPtrOutput {
+	return i.ToShipperKafkaShipperInfoPtrOutputWithContext(context.Background())
+}
+
+func (i ShipperKafkaShipperInfoArgs) ToShipperKafkaShipperInfoPtrOutputWithContext(ctx context.Context) ShipperKafkaShipperInfoPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ShipperKafkaShipperInfoOutput).ToShipperKafkaShipperInfoPtrOutputWithContext(ctx)
+}
+
+// ShipperKafkaShipperInfoPtrInput is an input type that accepts ShipperKafkaShipperInfoArgs, ShipperKafkaShipperInfoPtr and ShipperKafkaShipperInfoPtrOutput values.
+// You can construct a concrete instance of `ShipperKafkaShipperInfoPtrInput` via:
+//
+//	        ShipperKafkaShipperInfoArgs{...}
+//
+//	or:
+//
+//	        nil
+type ShipperKafkaShipperInfoPtrInput interface {
+	pulumi.Input
+
+	ToShipperKafkaShipperInfoPtrOutput() ShipperKafkaShipperInfoPtrOutput
+	ToShipperKafkaShipperInfoPtrOutputWithContext(context.Context) ShipperKafkaShipperInfoPtrOutput
+}
+
+type shipperKafkaShipperInfoPtrType ShipperKafkaShipperInfoArgs
+
+func ShipperKafkaShipperInfoPtr(v *ShipperKafkaShipperInfoArgs) ShipperKafkaShipperInfoPtrInput {
+	return (*shipperKafkaShipperInfoPtrType)(v)
+}
+
+func (*shipperKafkaShipperInfoPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ShipperKafkaShipperInfo)(nil)).Elem()
+}
+
+func (i *shipperKafkaShipperInfoPtrType) ToShipperKafkaShipperInfoPtrOutput() ShipperKafkaShipperInfoPtrOutput {
+	return i.ToShipperKafkaShipperInfoPtrOutputWithContext(context.Background())
+}
+
+func (i *shipperKafkaShipperInfoPtrType) ToShipperKafkaShipperInfoPtrOutputWithContext(ctx context.Context) ShipperKafkaShipperInfoPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ShipperKafkaShipperInfoPtrOutput)
+}
+
+type ShipperKafkaShipperInfoOutput struct{ *pulumi.OutputState }
+
+func (ShipperKafkaShipperInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ShipperKafkaShipperInfo)(nil)).Elem()
+}
+
+func (o ShipperKafkaShipperInfoOutput) ToShipperKafkaShipperInfoOutput() ShipperKafkaShipperInfoOutput {
+	return o
+}
+
+func (o ShipperKafkaShipperInfoOutput) ToShipperKafkaShipperInfoOutputWithContext(ctx context.Context) ShipperKafkaShipperInfoOutput {
+	return o
+}
+
+func (o ShipperKafkaShipperInfoOutput) ToShipperKafkaShipperInfoPtrOutput() ShipperKafkaShipperInfoPtrOutput {
+	return o.ToShipperKafkaShipperInfoPtrOutputWithContext(context.Background())
+}
+
+func (o ShipperKafkaShipperInfoOutput) ToShipperKafkaShipperInfoPtrOutputWithContext(ctx context.Context) ShipperKafkaShipperInfoPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ShipperKafkaShipperInfo) *ShipperKafkaShipperInfo {
+		return &v
+	}).(ShipperKafkaShipperInfoPtrOutput)
+}
+
+// Compression formats currently supported include snappy, gzip, lz4, and none.
+func (o ShipperKafkaShipperInfoOutput) Compress() pulumi.StringOutput {
+	return o.ApplyT(func(v ShipperKafkaShipperInfo) string { return v.Compress }).(pulumi.StringOutput)
+}
+
+// Delivery end time, millisecond timestamp. If not configured, it will keep delivering.
+func (o ShipperKafkaShipperInfoOutput) EndTime() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ShipperKafkaShipperInfo) *int { return v.EndTime }).(pulumi.IntPtrOutput)
+}
+
+// Kafka instance.
+func (o ShipperKafkaShipperInfoOutput) Instance() pulumi.StringOutput {
+	return o.ApplyT(func(v ShipperKafkaShipperInfo) string { return v.Instance }).(pulumi.StringOutput)
+}
+
+// The name of the Kafka Topic.
+func (o ShipperKafkaShipperInfoOutput) KafkaTopic() pulumi.StringOutput {
+	return o.ApplyT(func(v ShipperKafkaShipperInfo) string { return v.KafkaTopic }).(pulumi.StringOutput)
+}
+
+// Delivery start time, millisecond timestamp. If not configured, the default is the current time.
+func (o ShipperKafkaShipperInfoOutput) StartTime() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ShipperKafkaShipperInfo) *int { return v.StartTime }).(pulumi.IntPtrOutput)
+}
+
+type ShipperKafkaShipperInfoPtrOutput struct{ *pulumi.OutputState }
+
+func (ShipperKafkaShipperInfoPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ShipperKafkaShipperInfo)(nil)).Elem()
+}
+
+func (o ShipperKafkaShipperInfoPtrOutput) ToShipperKafkaShipperInfoPtrOutput() ShipperKafkaShipperInfoPtrOutput {
+	return o
+}
+
+func (o ShipperKafkaShipperInfoPtrOutput) ToShipperKafkaShipperInfoPtrOutputWithContext(ctx context.Context) ShipperKafkaShipperInfoPtrOutput {
+	return o
+}
+
+func (o ShipperKafkaShipperInfoPtrOutput) Elem() ShipperKafkaShipperInfoOutput {
+	return o.ApplyT(func(v *ShipperKafkaShipperInfo) ShipperKafkaShipperInfo {
+		if v != nil {
+			return *v
+		}
+		var ret ShipperKafkaShipperInfo
+		return ret
+	}).(ShipperKafkaShipperInfoOutput)
+}
+
+// Compression formats currently supported include snappy, gzip, lz4, and none.
+func (o ShipperKafkaShipperInfoPtrOutput) Compress() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ShipperKafkaShipperInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Compress
+	}).(pulumi.StringPtrOutput)
+}
+
+// Delivery end time, millisecond timestamp. If not configured, it will keep delivering.
+func (o ShipperKafkaShipperInfoPtrOutput) EndTime() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ShipperKafkaShipperInfo) *int {
+		if v == nil {
+			return nil
+		}
+		return v.EndTime
+	}).(pulumi.IntPtrOutput)
+}
+
+// Kafka instance.
+func (o ShipperKafkaShipperInfoPtrOutput) Instance() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ShipperKafkaShipperInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Instance
+	}).(pulumi.StringPtrOutput)
+}
+
+// The name of the Kafka Topic.
+func (o ShipperKafkaShipperInfoPtrOutput) KafkaTopic() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ShipperKafkaShipperInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.KafkaTopic
+	}).(pulumi.StringPtrOutput)
+}
+
+// Delivery start time, millisecond timestamp. If not configured, the default is the current time.
+func (o ShipperKafkaShipperInfoPtrOutput) StartTime() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ShipperKafkaShipperInfo) *int {
+		if v == nil {
+			return nil
+		}
+		return v.StartTime
+	}).(pulumi.IntPtrOutput)
+}
+
+type ShipperTosShipperInfo struct {
+	// When choosing a TOS bucket, it must be located in the same region as the source log topic.
+	Bucket string `pulumi:"bucket"`
+	// Compression formats currently supported include snappy, gzip, lz4, and none.
+	Compress *string `pulumi:"compress"`
+	// The delivery time interval, measured in seconds, ranges from 300 to 900.
+	Interval *int `pulumi:"interval"`
+	// The maximum size of the original file that can be delivered to each partition (Shard), that is, the size of the uncompressed log file. The unit is MiB, and the value range is 5 to 256.
+	MaxSize *int `pulumi:"maxSize"`
+	// Partition rules for delivering logs.
+	PartitionFormat *string `pulumi:"partitionFormat"`
+	// The top-level directory name of the storage bucket. All log data delivered through this delivery configuration will be delivered to this directory.
+	Prefix *string `pulumi:"prefix"`
+}
+
+// ShipperTosShipperInfoInput is an input type that accepts ShipperTosShipperInfoArgs and ShipperTosShipperInfoOutput values.
+// You can construct a concrete instance of `ShipperTosShipperInfoInput` via:
+//
+//	ShipperTosShipperInfoArgs{...}
+type ShipperTosShipperInfoInput interface {
+	pulumi.Input
+
+	ToShipperTosShipperInfoOutput() ShipperTosShipperInfoOutput
+	ToShipperTosShipperInfoOutputWithContext(context.Context) ShipperTosShipperInfoOutput
+}
+
+type ShipperTosShipperInfoArgs struct {
+	// When choosing a TOS bucket, it must be located in the same region as the source log topic.
+	Bucket pulumi.StringInput `pulumi:"bucket"`
+	// Compression formats currently supported include snappy, gzip, lz4, and none.
+	Compress pulumi.StringPtrInput `pulumi:"compress"`
+	// The delivery time interval, measured in seconds, ranges from 300 to 900.
+	Interval pulumi.IntPtrInput `pulumi:"interval"`
+	// The maximum size of the original file that can be delivered to each partition (Shard), that is, the size of the uncompressed log file. The unit is MiB, and the value range is 5 to 256.
+	MaxSize pulumi.IntPtrInput `pulumi:"maxSize"`
+	// Partition rules for delivering logs.
+	PartitionFormat pulumi.StringPtrInput `pulumi:"partitionFormat"`
+	// The top-level directory name of the storage bucket. All log data delivered through this delivery configuration will be delivered to this directory.
+	Prefix pulumi.StringPtrInput `pulumi:"prefix"`
+}
+
+func (ShipperTosShipperInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ShipperTosShipperInfo)(nil)).Elem()
+}
+
+func (i ShipperTosShipperInfoArgs) ToShipperTosShipperInfoOutput() ShipperTosShipperInfoOutput {
+	return i.ToShipperTosShipperInfoOutputWithContext(context.Background())
+}
+
+func (i ShipperTosShipperInfoArgs) ToShipperTosShipperInfoOutputWithContext(ctx context.Context) ShipperTosShipperInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ShipperTosShipperInfoOutput)
+}
+
+func (i ShipperTosShipperInfoArgs) ToShipperTosShipperInfoPtrOutput() ShipperTosShipperInfoPtrOutput {
+	return i.ToShipperTosShipperInfoPtrOutputWithContext(context.Background())
+}
+
+func (i ShipperTosShipperInfoArgs) ToShipperTosShipperInfoPtrOutputWithContext(ctx context.Context) ShipperTosShipperInfoPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ShipperTosShipperInfoOutput).ToShipperTosShipperInfoPtrOutputWithContext(ctx)
+}
+
+// ShipperTosShipperInfoPtrInput is an input type that accepts ShipperTosShipperInfoArgs, ShipperTosShipperInfoPtr and ShipperTosShipperInfoPtrOutput values.
+// You can construct a concrete instance of `ShipperTosShipperInfoPtrInput` via:
+//
+//	        ShipperTosShipperInfoArgs{...}
+//
+//	or:
+//
+//	        nil
+type ShipperTosShipperInfoPtrInput interface {
+	pulumi.Input
+
+	ToShipperTosShipperInfoPtrOutput() ShipperTosShipperInfoPtrOutput
+	ToShipperTosShipperInfoPtrOutputWithContext(context.Context) ShipperTosShipperInfoPtrOutput
+}
+
+type shipperTosShipperInfoPtrType ShipperTosShipperInfoArgs
+
+func ShipperTosShipperInfoPtr(v *ShipperTosShipperInfoArgs) ShipperTosShipperInfoPtrInput {
+	return (*shipperTosShipperInfoPtrType)(v)
+}
+
+func (*shipperTosShipperInfoPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ShipperTosShipperInfo)(nil)).Elem()
+}
+
+func (i *shipperTosShipperInfoPtrType) ToShipperTosShipperInfoPtrOutput() ShipperTosShipperInfoPtrOutput {
+	return i.ToShipperTosShipperInfoPtrOutputWithContext(context.Background())
+}
+
+func (i *shipperTosShipperInfoPtrType) ToShipperTosShipperInfoPtrOutputWithContext(ctx context.Context) ShipperTosShipperInfoPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ShipperTosShipperInfoPtrOutput)
+}
+
+type ShipperTosShipperInfoOutput struct{ *pulumi.OutputState }
+
+func (ShipperTosShipperInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ShipperTosShipperInfo)(nil)).Elem()
+}
+
+func (o ShipperTosShipperInfoOutput) ToShipperTosShipperInfoOutput() ShipperTosShipperInfoOutput {
+	return o
+}
+
+func (o ShipperTosShipperInfoOutput) ToShipperTosShipperInfoOutputWithContext(ctx context.Context) ShipperTosShipperInfoOutput {
+	return o
+}
+
+func (o ShipperTosShipperInfoOutput) ToShipperTosShipperInfoPtrOutput() ShipperTosShipperInfoPtrOutput {
+	return o.ToShipperTosShipperInfoPtrOutputWithContext(context.Background())
+}
+
+func (o ShipperTosShipperInfoOutput) ToShipperTosShipperInfoPtrOutputWithContext(ctx context.Context) ShipperTosShipperInfoPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ShipperTosShipperInfo) *ShipperTosShipperInfo {
+		return &v
+	}).(ShipperTosShipperInfoPtrOutput)
+}
+
+// When choosing a TOS bucket, it must be located in the same region as the source log topic.
+func (o ShipperTosShipperInfoOutput) Bucket() pulumi.StringOutput {
+	return o.ApplyT(func(v ShipperTosShipperInfo) string { return v.Bucket }).(pulumi.StringOutput)
+}
+
+// Compression formats currently supported include snappy, gzip, lz4, and none.
+func (o ShipperTosShipperInfoOutput) Compress() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ShipperTosShipperInfo) *string { return v.Compress }).(pulumi.StringPtrOutput)
+}
+
+// The delivery time interval, measured in seconds, ranges from 300 to 900.
+func (o ShipperTosShipperInfoOutput) Interval() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ShipperTosShipperInfo) *int { return v.Interval }).(pulumi.IntPtrOutput)
+}
+
+// The maximum size of the original file that can be delivered to each partition (Shard), that is, the size of the uncompressed log file. The unit is MiB, and the value range is 5 to 256.
+func (o ShipperTosShipperInfoOutput) MaxSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ShipperTosShipperInfo) *int { return v.MaxSize }).(pulumi.IntPtrOutput)
+}
+
+// Partition rules for delivering logs.
+func (o ShipperTosShipperInfoOutput) PartitionFormat() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ShipperTosShipperInfo) *string { return v.PartitionFormat }).(pulumi.StringPtrOutput)
+}
+
+// The top-level directory name of the storage bucket. All log data delivered through this delivery configuration will be delivered to this directory.
+func (o ShipperTosShipperInfoOutput) Prefix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ShipperTosShipperInfo) *string { return v.Prefix }).(pulumi.StringPtrOutput)
+}
+
+type ShipperTosShipperInfoPtrOutput struct{ *pulumi.OutputState }
+
+func (ShipperTosShipperInfoPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ShipperTosShipperInfo)(nil)).Elem()
+}
+
+func (o ShipperTosShipperInfoPtrOutput) ToShipperTosShipperInfoPtrOutput() ShipperTosShipperInfoPtrOutput {
+	return o
+}
+
+func (o ShipperTosShipperInfoPtrOutput) ToShipperTosShipperInfoPtrOutputWithContext(ctx context.Context) ShipperTosShipperInfoPtrOutput {
+	return o
+}
+
+func (o ShipperTosShipperInfoPtrOutput) Elem() ShipperTosShipperInfoOutput {
+	return o.ApplyT(func(v *ShipperTosShipperInfo) ShipperTosShipperInfo {
+		if v != nil {
+			return *v
+		}
+		var ret ShipperTosShipperInfo
+		return ret
+	}).(ShipperTosShipperInfoOutput)
+}
+
+// When choosing a TOS bucket, it must be located in the same region as the source log topic.
+func (o ShipperTosShipperInfoPtrOutput) Bucket() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ShipperTosShipperInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Bucket
+	}).(pulumi.StringPtrOutput)
+}
+
+// Compression formats currently supported include snappy, gzip, lz4, and none.
+func (o ShipperTosShipperInfoPtrOutput) Compress() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ShipperTosShipperInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Compress
+	}).(pulumi.StringPtrOutput)
+}
+
+// The delivery time interval, measured in seconds, ranges from 300 to 900.
+func (o ShipperTosShipperInfoPtrOutput) Interval() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ShipperTosShipperInfo) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Interval
+	}).(pulumi.IntPtrOutput)
+}
+
+// The maximum size of the original file that can be delivered to each partition (Shard), that is, the size of the uncompressed log file. The unit is MiB, and the value range is 5 to 256.
+func (o ShipperTosShipperInfoPtrOutput) MaxSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ShipperTosShipperInfo) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxSize
+	}).(pulumi.IntPtrOutput)
+}
+
+// Partition rules for delivering logs.
+func (o ShipperTosShipperInfoPtrOutput) PartitionFormat() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ShipperTosShipperInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PartitionFormat
+	}).(pulumi.StringPtrOutput)
+}
+
+// The top-level directory name of the storage bucket. All log data delivered through this delivery configuration will be delivered to this directory.
+func (o ShipperTosShipperInfoPtrOutput) Prefix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ShipperTosShipperInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Prefix
+	}).(pulumi.StringPtrOutput)
+}
+
+type ShippersShipper struct {
+	// The content format configuration of the delivery log.
+	ContentInfo ShippersShipperContentInfo `pulumi:"contentInfo"`
+	// Processing task creation time.
+	CreateTime string `pulumi:"createTime"`
+	// The default built-in dashboard ID for delivery.
+	DashboardId string `pulumi:"dashboardId"`
+	// JSON format log content configuration.
+	KafkaShipperInfo ShippersShipperKafkaShipperInfo `pulumi:"kafkaShipperInfo"`
+	// The most recent modification time of the processing task.
+	ModifyTime string `pulumi:"modifyTime"`
+	// Specify the log item ID for querying the data delivery configuration under the specified log item.
+	ProjectId string `pulumi:"projectId"`
+	// Specify the name of the log item for querying the data delivery configuration under the specified log item. Support fuzzy matching.
+	ProjectName string `pulumi:"projectName"`
+	// Delivery end time, millisecond timestamp. If not configured, it will keep delivering.
+	ShipperEndTime int `pulumi:"shipperEndTime"`
+	// Delivery configuration ID.
+	ShipperId string `pulumi:"shipperId"`
+	// Delivery configuration name.
+	ShipperName string `pulumi:"shipperName"`
+	// Delivery start time, millisecond timestamp. If not configured, it defaults to the current time.
+	ShipperStartTime int `pulumi:"shipperStartTime"`
+	// Specify the delivery type for querying the delivery configuration related to that delivery type.
+	ShipperType string `pulumi:"shipperType"`
+	// Whether to enable the delivery configuration.
+	Status bool `pulumi:"status"`
+	// Specify the log topic ID for querying the data delivery configuration related to this log topic.
+	TopicId string `pulumi:"topicId"`
+	// Specify the name of the log topic for querying the data delivery configuration related to this log topic. Support fuzzy matching.
+	TopicName string `pulumi:"topicName"`
+	// Deliver the relevant configuration to the object storage (TOS).
+	TosShipperInfo ShippersShipperTosShipperInfo `pulumi:"tosShipperInfo"`
+}
+
+// ShippersShipperInput is an input type that accepts ShippersShipperArgs and ShippersShipperOutput values.
+// You can construct a concrete instance of `ShippersShipperInput` via:
+//
+//	ShippersShipperArgs{...}
+type ShippersShipperInput interface {
+	pulumi.Input
+
+	ToShippersShipperOutput() ShippersShipperOutput
+	ToShippersShipperOutputWithContext(context.Context) ShippersShipperOutput
+}
+
+type ShippersShipperArgs struct {
+	// The content format configuration of the delivery log.
+	ContentInfo ShippersShipperContentInfoInput `pulumi:"contentInfo"`
+	// Processing task creation time.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The default built-in dashboard ID for delivery.
+	DashboardId pulumi.StringInput `pulumi:"dashboardId"`
+	// JSON format log content configuration.
+	KafkaShipperInfo ShippersShipperKafkaShipperInfoInput `pulumi:"kafkaShipperInfo"`
+	// The most recent modification time of the processing task.
+	ModifyTime pulumi.StringInput `pulumi:"modifyTime"`
+	// Specify the log item ID for querying the data delivery configuration under the specified log item.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Specify the name of the log item for querying the data delivery configuration under the specified log item. Support fuzzy matching.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// Delivery end time, millisecond timestamp. If not configured, it will keep delivering.
+	ShipperEndTime pulumi.IntInput `pulumi:"shipperEndTime"`
+	// Delivery configuration ID.
+	ShipperId pulumi.StringInput `pulumi:"shipperId"`
+	// Delivery configuration name.
+	ShipperName pulumi.StringInput `pulumi:"shipperName"`
+	// Delivery start time, millisecond timestamp. If not configured, it defaults to the current time.
+	ShipperStartTime pulumi.IntInput `pulumi:"shipperStartTime"`
+	// Specify the delivery type for querying the delivery configuration related to that delivery type.
+	ShipperType pulumi.StringInput `pulumi:"shipperType"`
+	// Whether to enable the delivery configuration.
+	Status pulumi.BoolInput `pulumi:"status"`
+	// Specify the log topic ID for querying the data delivery configuration related to this log topic.
+	TopicId pulumi.StringInput `pulumi:"topicId"`
+	// Specify the name of the log topic for querying the data delivery configuration related to this log topic. Support fuzzy matching.
+	TopicName pulumi.StringInput `pulumi:"topicName"`
+	// Deliver the relevant configuration to the object storage (TOS).
+	TosShipperInfo ShippersShipperTosShipperInfoInput `pulumi:"tosShipperInfo"`
+}
+
+func (ShippersShipperArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ShippersShipper)(nil)).Elem()
+}
+
+func (i ShippersShipperArgs) ToShippersShipperOutput() ShippersShipperOutput {
+	return i.ToShippersShipperOutputWithContext(context.Background())
+}
+
+func (i ShippersShipperArgs) ToShippersShipperOutputWithContext(ctx context.Context) ShippersShipperOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ShippersShipperOutput)
+}
+
+// ShippersShipperArrayInput is an input type that accepts ShippersShipperArray and ShippersShipperArrayOutput values.
+// You can construct a concrete instance of `ShippersShipperArrayInput` via:
+//
+//	ShippersShipperArray{ ShippersShipperArgs{...} }
+type ShippersShipperArrayInput interface {
+	pulumi.Input
+
+	ToShippersShipperArrayOutput() ShippersShipperArrayOutput
+	ToShippersShipperArrayOutputWithContext(context.Context) ShippersShipperArrayOutput
+}
+
+type ShippersShipperArray []ShippersShipperInput
+
+func (ShippersShipperArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ShippersShipper)(nil)).Elem()
+}
+
+func (i ShippersShipperArray) ToShippersShipperArrayOutput() ShippersShipperArrayOutput {
+	return i.ToShippersShipperArrayOutputWithContext(context.Background())
+}
+
+func (i ShippersShipperArray) ToShippersShipperArrayOutputWithContext(ctx context.Context) ShippersShipperArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ShippersShipperArrayOutput)
+}
+
+type ShippersShipperOutput struct{ *pulumi.OutputState }
+
+func (ShippersShipperOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ShippersShipper)(nil)).Elem()
+}
+
+func (o ShippersShipperOutput) ToShippersShipperOutput() ShippersShipperOutput {
+	return o
+}
+
+func (o ShippersShipperOutput) ToShippersShipperOutputWithContext(ctx context.Context) ShippersShipperOutput {
+	return o
+}
+
+// The content format configuration of the delivery log.
+func (o ShippersShipperOutput) ContentInfo() ShippersShipperContentInfoOutput {
+	return o.ApplyT(func(v ShippersShipper) ShippersShipperContentInfo { return v.ContentInfo }).(ShippersShipperContentInfoOutput)
+}
+
+// Processing task creation time.
+func (o ShippersShipperOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v ShippersShipper) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The default built-in dashboard ID for delivery.
+func (o ShippersShipperOutput) DashboardId() pulumi.StringOutput {
+	return o.ApplyT(func(v ShippersShipper) string { return v.DashboardId }).(pulumi.StringOutput)
+}
+
+// JSON format log content configuration.
+func (o ShippersShipperOutput) KafkaShipperInfo() ShippersShipperKafkaShipperInfoOutput {
+	return o.ApplyT(func(v ShippersShipper) ShippersShipperKafkaShipperInfo { return v.KafkaShipperInfo }).(ShippersShipperKafkaShipperInfoOutput)
+}
+
+// The most recent modification time of the processing task.
+func (o ShippersShipperOutput) ModifyTime() pulumi.StringOutput {
+	return o.ApplyT(func(v ShippersShipper) string { return v.ModifyTime }).(pulumi.StringOutput)
+}
+
+// Specify the log item ID for querying the data delivery configuration under the specified log item.
+func (o ShippersShipperOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v ShippersShipper) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Specify the name of the log item for querying the data delivery configuration under the specified log item. Support fuzzy matching.
+func (o ShippersShipperOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v ShippersShipper) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// Delivery end time, millisecond timestamp. If not configured, it will keep delivering.
+func (o ShippersShipperOutput) ShipperEndTime() pulumi.IntOutput {
+	return o.ApplyT(func(v ShippersShipper) int { return v.ShipperEndTime }).(pulumi.IntOutput)
+}
+
+// Delivery configuration ID.
+func (o ShippersShipperOutput) ShipperId() pulumi.StringOutput {
+	return o.ApplyT(func(v ShippersShipper) string { return v.ShipperId }).(pulumi.StringOutput)
+}
+
+// Delivery configuration name.
+func (o ShippersShipperOutput) ShipperName() pulumi.StringOutput {
+	return o.ApplyT(func(v ShippersShipper) string { return v.ShipperName }).(pulumi.StringOutput)
+}
+
+// Delivery start time, millisecond timestamp. If not configured, it defaults to the current time.
+func (o ShippersShipperOutput) ShipperStartTime() pulumi.IntOutput {
+	return o.ApplyT(func(v ShippersShipper) int { return v.ShipperStartTime }).(pulumi.IntOutput)
+}
+
+// Specify the delivery type for querying the delivery configuration related to that delivery type.
+func (o ShippersShipperOutput) ShipperType() pulumi.StringOutput {
+	return o.ApplyT(func(v ShippersShipper) string { return v.ShipperType }).(pulumi.StringOutput)
+}
+
+// Whether to enable the delivery configuration.
+func (o ShippersShipperOutput) Status() pulumi.BoolOutput {
+	return o.ApplyT(func(v ShippersShipper) bool { return v.Status }).(pulumi.BoolOutput)
+}
+
+// Specify the log topic ID for querying the data delivery configuration related to this log topic.
+func (o ShippersShipperOutput) TopicId() pulumi.StringOutput {
+	return o.ApplyT(func(v ShippersShipper) string { return v.TopicId }).(pulumi.StringOutput)
+}
+
+// Specify the name of the log topic for querying the data delivery configuration related to this log topic. Support fuzzy matching.
+func (o ShippersShipperOutput) TopicName() pulumi.StringOutput {
+	return o.ApplyT(func(v ShippersShipper) string { return v.TopicName }).(pulumi.StringOutput)
+}
+
+// Deliver the relevant configuration to the object storage (TOS).
+func (o ShippersShipperOutput) TosShipperInfo() ShippersShipperTosShipperInfoOutput {
+	return o.ApplyT(func(v ShippersShipper) ShippersShipperTosShipperInfo { return v.TosShipperInfo }).(ShippersShipperTosShipperInfoOutput)
+}
+
+type ShippersShipperArrayOutput struct{ *pulumi.OutputState }
+
+func (ShippersShipperArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ShippersShipper)(nil)).Elem()
+}
+
+func (o ShippersShipperArrayOutput) ToShippersShipperArrayOutput() ShippersShipperArrayOutput {
+	return o
+}
+
+func (o ShippersShipperArrayOutput) ToShippersShipperArrayOutputWithContext(ctx context.Context) ShippersShipperArrayOutput {
+	return o
+}
+
+func (o ShippersShipperArrayOutput) Index(i pulumi.IntInput) ShippersShipperOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ShippersShipper {
+		return vs[0].([]ShippersShipper)[vs[1].(int)]
+	}).(ShippersShipperOutput)
+}
+
+type ShippersShipperContentInfo struct {
+	// CSV format log content configuration.
+	CsvInfo ShippersShipperContentInfoCsvInfo `pulumi:"csvInfo"`
+	// Log content parsing format.
+	Format string `pulumi:"format"`
+	// JSON format log content configuration.
+	JsonInfo ShippersShipperContentInfoJsonInfo `pulumi:"jsonInfo"`
+}
+
+// ShippersShipperContentInfoInput is an input type that accepts ShippersShipperContentInfoArgs and ShippersShipperContentInfoOutput values.
+// You can construct a concrete instance of `ShippersShipperContentInfoInput` via:
+//
+//	ShippersShipperContentInfoArgs{...}
+type ShippersShipperContentInfoInput interface {
+	pulumi.Input
+
+	ToShippersShipperContentInfoOutput() ShippersShipperContentInfoOutput
+	ToShippersShipperContentInfoOutputWithContext(context.Context) ShippersShipperContentInfoOutput
+}
+
+type ShippersShipperContentInfoArgs struct {
+	// CSV format log content configuration.
+	CsvInfo ShippersShipperContentInfoCsvInfoInput `pulumi:"csvInfo"`
+	// Log content parsing format.
+	Format pulumi.StringInput `pulumi:"format"`
+	// JSON format log content configuration.
+	JsonInfo ShippersShipperContentInfoJsonInfoInput `pulumi:"jsonInfo"`
+}
+
+func (ShippersShipperContentInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ShippersShipperContentInfo)(nil)).Elem()
+}
+
+func (i ShippersShipperContentInfoArgs) ToShippersShipperContentInfoOutput() ShippersShipperContentInfoOutput {
+	return i.ToShippersShipperContentInfoOutputWithContext(context.Background())
+}
+
+func (i ShippersShipperContentInfoArgs) ToShippersShipperContentInfoOutputWithContext(ctx context.Context) ShippersShipperContentInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ShippersShipperContentInfoOutput)
+}
+
+type ShippersShipperContentInfoOutput struct{ *pulumi.OutputState }
+
+func (ShippersShipperContentInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ShippersShipperContentInfo)(nil)).Elem()
+}
+
+func (o ShippersShipperContentInfoOutput) ToShippersShipperContentInfoOutput() ShippersShipperContentInfoOutput {
+	return o
+}
+
+func (o ShippersShipperContentInfoOutput) ToShippersShipperContentInfoOutputWithContext(ctx context.Context) ShippersShipperContentInfoOutput {
+	return o
+}
+
+// CSV format log content configuration.
+func (o ShippersShipperContentInfoOutput) CsvInfo() ShippersShipperContentInfoCsvInfoOutput {
+	return o.ApplyT(func(v ShippersShipperContentInfo) ShippersShipperContentInfoCsvInfo { return v.CsvInfo }).(ShippersShipperContentInfoCsvInfoOutput)
+}
+
+// Log content parsing format.
+func (o ShippersShipperContentInfoOutput) Format() pulumi.StringOutput {
+	return o.ApplyT(func(v ShippersShipperContentInfo) string { return v.Format }).(pulumi.StringOutput)
+}
+
+// JSON format log content configuration.
+func (o ShippersShipperContentInfoOutput) JsonInfo() ShippersShipperContentInfoJsonInfoOutput {
+	return o.ApplyT(func(v ShippersShipperContentInfo) ShippersShipperContentInfoJsonInfo { return v.JsonInfo }).(ShippersShipperContentInfoJsonInfoOutput)
+}
+
+type ShippersShipperContentInfoCsvInfo struct {
+	// Delimiters are supported, including commas, tabs, vertical bars, semicolons, and Spaces.
+	Delimiter string `pulumi:"delimiter"`
+	// When the field content contains a delimiter, use an escape character to wrap the field. Currently, only single quotes, double quotes, and null characters are supported.
+	EscapeChar string `pulumi:"escapeChar"`
+	// When delivering in JSON format, if this parameter is not configured, it indicates that all fields have been delivered. Including __content__ (choice), __source__, __path__, __time__, __image_name__, __container_name__, __pod_name__, __pod_uid__, namespace, __tag____client_ip__, __tag____receive_time__.
+	Keys []string `pulumi:"keys"`
+	// Invalid field filling content, with a length ranging from 0 to 128.
+	NonFieldContent string `pulumi:"nonFieldContent"`
+	// Whether to print the Key on the first line.
+	PrintHeader bool `pulumi:"printHeader"`
+}
+
+// ShippersShipperContentInfoCsvInfoInput is an input type that accepts ShippersShipperContentInfoCsvInfoArgs and ShippersShipperContentInfoCsvInfoOutput values.
+// You can construct a concrete instance of `ShippersShipperContentInfoCsvInfoInput` via:
+//
+//	ShippersShipperContentInfoCsvInfoArgs{...}
+type ShippersShipperContentInfoCsvInfoInput interface {
+	pulumi.Input
+
+	ToShippersShipperContentInfoCsvInfoOutput() ShippersShipperContentInfoCsvInfoOutput
+	ToShippersShipperContentInfoCsvInfoOutputWithContext(context.Context) ShippersShipperContentInfoCsvInfoOutput
+}
+
+type ShippersShipperContentInfoCsvInfoArgs struct {
+	// Delimiters are supported, including commas, tabs, vertical bars, semicolons, and Spaces.
+	Delimiter pulumi.StringInput `pulumi:"delimiter"`
+	// When the field content contains a delimiter, use an escape character to wrap the field. Currently, only single quotes, double quotes, and null characters are supported.
+	EscapeChar pulumi.StringInput `pulumi:"escapeChar"`
+	// When delivering in JSON format, if this parameter is not configured, it indicates that all fields have been delivered. Including __content__ (choice), __source__, __path__, __time__, __image_name__, __container_name__, __pod_name__, __pod_uid__, namespace, __tag____client_ip__, __tag____receive_time__.
+	Keys pulumi.StringArrayInput `pulumi:"keys"`
+	// Invalid field filling content, with a length ranging from 0 to 128.
+	NonFieldContent pulumi.StringInput `pulumi:"nonFieldContent"`
+	// Whether to print the Key on the first line.
+	PrintHeader pulumi.BoolInput `pulumi:"printHeader"`
+}
+
+func (ShippersShipperContentInfoCsvInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ShippersShipperContentInfoCsvInfo)(nil)).Elem()
+}
+
+func (i ShippersShipperContentInfoCsvInfoArgs) ToShippersShipperContentInfoCsvInfoOutput() ShippersShipperContentInfoCsvInfoOutput {
+	return i.ToShippersShipperContentInfoCsvInfoOutputWithContext(context.Background())
+}
+
+func (i ShippersShipperContentInfoCsvInfoArgs) ToShippersShipperContentInfoCsvInfoOutputWithContext(ctx context.Context) ShippersShipperContentInfoCsvInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ShippersShipperContentInfoCsvInfoOutput)
+}
+
+type ShippersShipperContentInfoCsvInfoOutput struct{ *pulumi.OutputState }
+
+func (ShippersShipperContentInfoCsvInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ShippersShipperContentInfoCsvInfo)(nil)).Elem()
+}
+
+func (o ShippersShipperContentInfoCsvInfoOutput) ToShippersShipperContentInfoCsvInfoOutput() ShippersShipperContentInfoCsvInfoOutput {
+	return o
+}
+
+func (o ShippersShipperContentInfoCsvInfoOutput) ToShippersShipperContentInfoCsvInfoOutputWithContext(ctx context.Context) ShippersShipperContentInfoCsvInfoOutput {
+	return o
+}
+
+// Delimiters are supported, including commas, tabs, vertical bars, semicolons, and Spaces.
+func (o ShippersShipperContentInfoCsvInfoOutput) Delimiter() pulumi.StringOutput {
+	return o.ApplyT(func(v ShippersShipperContentInfoCsvInfo) string { return v.Delimiter }).(pulumi.StringOutput)
+}
+
+// When the field content contains a delimiter, use an escape character to wrap the field. Currently, only single quotes, double quotes, and null characters are supported.
+func (o ShippersShipperContentInfoCsvInfoOutput) EscapeChar() pulumi.StringOutput {
+	return o.ApplyT(func(v ShippersShipperContentInfoCsvInfo) string { return v.EscapeChar }).(pulumi.StringOutput)
+}
+
+// When delivering in JSON format, if this parameter is not configured, it indicates that all fields have been delivered. Including __content__ (choice), __source__, __path__, __time__, __image_name__, __container_name__, __pod_name__, __pod_uid__, namespace, __tag____client_ip__, __tag____receive_time__.
+func (o ShippersShipperContentInfoCsvInfoOutput) Keys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ShippersShipperContentInfoCsvInfo) []string { return v.Keys }).(pulumi.StringArrayOutput)
+}
+
+// Invalid field filling content, with a length ranging from 0 to 128.
+func (o ShippersShipperContentInfoCsvInfoOutput) NonFieldContent() pulumi.StringOutput {
+	return o.ApplyT(func(v ShippersShipperContentInfoCsvInfo) string { return v.NonFieldContent }).(pulumi.StringOutput)
+}
+
+// Whether to print the Key on the first line.
+func (o ShippersShipperContentInfoCsvInfoOutput) PrintHeader() pulumi.BoolOutput {
+	return o.ApplyT(func(v ShippersShipperContentInfoCsvInfo) bool { return v.PrintHeader }).(pulumi.BoolOutput)
+}
+
+type ShippersShipperContentInfoJsonInfo struct {
+	// Enable the flag.
+	Enable bool `pulumi:"enable"`
+	// Whether to escape or not. It must be configured as true.
+	Escape bool `pulumi:"escape"`
+	// When delivering in JSON format, if this parameter is not configured, it indicates that all fields have been delivered. Including __content__ (choice), __source__, __path__, __time__, __image_name__, __container_name__, __pod_name__, __pod_uid__, namespace, __tag____client_ip__, __tag____receive_time__.
+	Keys []string `pulumi:"keys"`
+}
+
+// ShippersShipperContentInfoJsonInfoInput is an input type that accepts ShippersShipperContentInfoJsonInfoArgs and ShippersShipperContentInfoJsonInfoOutput values.
+// You can construct a concrete instance of `ShippersShipperContentInfoJsonInfoInput` via:
+//
+//	ShippersShipperContentInfoJsonInfoArgs{...}
+type ShippersShipperContentInfoJsonInfoInput interface {
+	pulumi.Input
+
+	ToShippersShipperContentInfoJsonInfoOutput() ShippersShipperContentInfoJsonInfoOutput
+	ToShippersShipperContentInfoJsonInfoOutputWithContext(context.Context) ShippersShipperContentInfoJsonInfoOutput
+}
+
+type ShippersShipperContentInfoJsonInfoArgs struct {
+	// Enable the flag.
+	Enable pulumi.BoolInput `pulumi:"enable"`
+	// Whether to escape or not. It must be configured as true.
+	Escape pulumi.BoolInput `pulumi:"escape"`
+	// When delivering in JSON format, if this parameter is not configured, it indicates that all fields have been delivered. Including __content__ (choice), __source__, __path__, __time__, __image_name__, __container_name__, __pod_name__, __pod_uid__, namespace, __tag____client_ip__, __tag____receive_time__.
+	Keys pulumi.StringArrayInput `pulumi:"keys"`
+}
+
+func (ShippersShipperContentInfoJsonInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ShippersShipperContentInfoJsonInfo)(nil)).Elem()
+}
+
+func (i ShippersShipperContentInfoJsonInfoArgs) ToShippersShipperContentInfoJsonInfoOutput() ShippersShipperContentInfoJsonInfoOutput {
+	return i.ToShippersShipperContentInfoJsonInfoOutputWithContext(context.Background())
+}
+
+func (i ShippersShipperContentInfoJsonInfoArgs) ToShippersShipperContentInfoJsonInfoOutputWithContext(ctx context.Context) ShippersShipperContentInfoJsonInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ShippersShipperContentInfoJsonInfoOutput)
+}
+
+type ShippersShipperContentInfoJsonInfoOutput struct{ *pulumi.OutputState }
+
+func (ShippersShipperContentInfoJsonInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ShippersShipperContentInfoJsonInfo)(nil)).Elem()
+}
+
+func (o ShippersShipperContentInfoJsonInfoOutput) ToShippersShipperContentInfoJsonInfoOutput() ShippersShipperContentInfoJsonInfoOutput {
+	return o
+}
+
+func (o ShippersShipperContentInfoJsonInfoOutput) ToShippersShipperContentInfoJsonInfoOutputWithContext(ctx context.Context) ShippersShipperContentInfoJsonInfoOutput {
+	return o
+}
+
+// Enable the flag.
+func (o ShippersShipperContentInfoJsonInfoOutput) Enable() pulumi.BoolOutput {
+	return o.ApplyT(func(v ShippersShipperContentInfoJsonInfo) bool { return v.Enable }).(pulumi.BoolOutput)
+}
+
+// Whether to escape or not. It must be configured as true.
+func (o ShippersShipperContentInfoJsonInfoOutput) Escape() pulumi.BoolOutput {
+	return o.ApplyT(func(v ShippersShipperContentInfoJsonInfo) bool { return v.Escape }).(pulumi.BoolOutput)
+}
+
+// When delivering in JSON format, if this parameter is not configured, it indicates that all fields have been delivered. Including __content__ (choice), __source__, __path__, __time__, __image_name__, __container_name__, __pod_name__, __pod_uid__, namespace, __tag____client_ip__, __tag____receive_time__.
+func (o ShippersShipperContentInfoJsonInfoOutput) Keys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ShippersShipperContentInfoJsonInfo) []string { return v.Keys }).(pulumi.StringArrayOutput)
+}
+
+type ShippersShipperKafkaShipperInfo struct {
+	// Compression formats currently supported include snappy, gzip, lz4, and none.
+	Compress string `pulumi:"compress"`
+	// Delivery end time, millisecond timestamp. If not configured, it will keep delivering.
+	EndTime int `pulumi:"endTime"`
+	// Kafka instance.
+	Instance string `pulumi:"instance"`
+	// The name of the Kafka Topic.
+	KafkaTopic string `pulumi:"kafkaTopic"`
+	// Delivery start time, millisecond timestamp. If not configured, the default is the current time.
+	StartTime int `pulumi:"startTime"`
+}
+
+// ShippersShipperKafkaShipperInfoInput is an input type that accepts ShippersShipperKafkaShipperInfoArgs and ShippersShipperKafkaShipperInfoOutput values.
+// You can construct a concrete instance of `ShippersShipperKafkaShipperInfoInput` via:
+//
+//	ShippersShipperKafkaShipperInfoArgs{...}
+type ShippersShipperKafkaShipperInfoInput interface {
+	pulumi.Input
+
+	ToShippersShipperKafkaShipperInfoOutput() ShippersShipperKafkaShipperInfoOutput
+	ToShippersShipperKafkaShipperInfoOutputWithContext(context.Context) ShippersShipperKafkaShipperInfoOutput
+}
+
+type ShippersShipperKafkaShipperInfoArgs struct {
+	// Compression formats currently supported include snappy, gzip, lz4, and none.
+	Compress pulumi.StringInput `pulumi:"compress"`
+	// Delivery end time, millisecond timestamp. If not configured, it will keep delivering.
+	EndTime pulumi.IntInput `pulumi:"endTime"`
+	// Kafka instance.
+	Instance pulumi.StringInput `pulumi:"instance"`
+	// The name of the Kafka Topic.
+	KafkaTopic pulumi.StringInput `pulumi:"kafkaTopic"`
+	// Delivery start time, millisecond timestamp. If not configured, the default is the current time.
+	StartTime pulumi.IntInput `pulumi:"startTime"`
+}
+
+func (ShippersShipperKafkaShipperInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ShippersShipperKafkaShipperInfo)(nil)).Elem()
+}
+
+func (i ShippersShipperKafkaShipperInfoArgs) ToShippersShipperKafkaShipperInfoOutput() ShippersShipperKafkaShipperInfoOutput {
+	return i.ToShippersShipperKafkaShipperInfoOutputWithContext(context.Background())
+}
+
+func (i ShippersShipperKafkaShipperInfoArgs) ToShippersShipperKafkaShipperInfoOutputWithContext(ctx context.Context) ShippersShipperKafkaShipperInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ShippersShipperKafkaShipperInfoOutput)
+}
+
+type ShippersShipperKafkaShipperInfoOutput struct{ *pulumi.OutputState }
+
+func (ShippersShipperKafkaShipperInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ShippersShipperKafkaShipperInfo)(nil)).Elem()
+}
+
+func (o ShippersShipperKafkaShipperInfoOutput) ToShippersShipperKafkaShipperInfoOutput() ShippersShipperKafkaShipperInfoOutput {
+	return o
+}
+
+func (o ShippersShipperKafkaShipperInfoOutput) ToShippersShipperKafkaShipperInfoOutputWithContext(ctx context.Context) ShippersShipperKafkaShipperInfoOutput {
+	return o
+}
+
+// Compression formats currently supported include snappy, gzip, lz4, and none.
+func (o ShippersShipperKafkaShipperInfoOutput) Compress() pulumi.StringOutput {
+	return o.ApplyT(func(v ShippersShipperKafkaShipperInfo) string { return v.Compress }).(pulumi.StringOutput)
+}
+
+// Delivery end time, millisecond timestamp. If not configured, it will keep delivering.
+func (o ShippersShipperKafkaShipperInfoOutput) EndTime() pulumi.IntOutput {
+	return o.ApplyT(func(v ShippersShipperKafkaShipperInfo) int { return v.EndTime }).(pulumi.IntOutput)
+}
+
+// Kafka instance.
+func (o ShippersShipperKafkaShipperInfoOutput) Instance() pulumi.StringOutput {
+	return o.ApplyT(func(v ShippersShipperKafkaShipperInfo) string { return v.Instance }).(pulumi.StringOutput)
+}
+
+// The name of the Kafka Topic.
+func (o ShippersShipperKafkaShipperInfoOutput) KafkaTopic() pulumi.StringOutput {
+	return o.ApplyT(func(v ShippersShipperKafkaShipperInfo) string { return v.KafkaTopic }).(pulumi.StringOutput)
+}
+
+// Delivery start time, millisecond timestamp. If not configured, the default is the current time.
+func (o ShippersShipperKafkaShipperInfoOutput) StartTime() pulumi.IntOutput {
+	return o.ApplyT(func(v ShippersShipperKafkaShipperInfo) int { return v.StartTime }).(pulumi.IntOutput)
+}
+
+type ShippersShipperTosShipperInfo struct {
+	// When choosing a TOS bucket, it must be located in the same region as the source log topic.
+	Bucket string `pulumi:"bucket"`
+	// Compression formats currently supported include snappy, gzip, lz4, and none.
+	Compress string `pulumi:"compress"`
+	// The delivery time interval, measured in seconds, ranges from 300 to 900.
+	Interval int `pulumi:"interval"`
+	// The maximum size of the original file that can be delivered to each partition (Shard), that is, the size of the uncompressed log file. The unit is MiB, and the value range is 5 to 256.
+	MaxSize int `pulumi:"maxSize"`
+	// Partition rules for delivering logs.
+	PartitionFormat string `pulumi:"partitionFormat"`
+	// The top-level directory name of the storage bucket. All log data delivered through this delivery configuration will be delivered to this directory.
+	Prefix string `pulumi:"prefix"`
+}
+
+// ShippersShipperTosShipperInfoInput is an input type that accepts ShippersShipperTosShipperInfoArgs and ShippersShipperTosShipperInfoOutput values.
+// You can construct a concrete instance of `ShippersShipperTosShipperInfoInput` via:
+//
+//	ShippersShipperTosShipperInfoArgs{...}
+type ShippersShipperTosShipperInfoInput interface {
+	pulumi.Input
+
+	ToShippersShipperTosShipperInfoOutput() ShippersShipperTosShipperInfoOutput
+	ToShippersShipperTosShipperInfoOutputWithContext(context.Context) ShippersShipperTosShipperInfoOutput
+}
+
+type ShippersShipperTosShipperInfoArgs struct {
+	// When choosing a TOS bucket, it must be located in the same region as the source log topic.
+	Bucket pulumi.StringInput `pulumi:"bucket"`
+	// Compression formats currently supported include snappy, gzip, lz4, and none.
+	Compress pulumi.StringInput `pulumi:"compress"`
+	// The delivery time interval, measured in seconds, ranges from 300 to 900.
+	Interval pulumi.IntInput `pulumi:"interval"`
+	// The maximum size of the original file that can be delivered to each partition (Shard), that is, the size of the uncompressed log file. The unit is MiB, and the value range is 5 to 256.
+	MaxSize pulumi.IntInput `pulumi:"maxSize"`
+	// Partition rules for delivering logs.
+	PartitionFormat pulumi.StringInput `pulumi:"partitionFormat"`
+	// The top-level directory name of the storage bucket. All log data delivered through this delivery configuration will be delivered to this directory.
+	Prefix pulumi.StringInput `pulumi:"prefix"`
+}
+
+func (ShippersShipperTosShipperInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ShippersShipperTosShipperInfo)(nil)).Elem()
+}
+
+func (i ShippersShipperTosShipperInfoArgs) ToShippersShipperTosShipperInfoOutput() ShippersShipperTosShipperInfoOutput {
+	return i.ToShippersShipperTosShipperInfoOutputWithContext(context.Background())
+}
+
+func (i ShippersShipperTosShipperInfoArgs) ToShippersShipperTosShipperInfoOutputWithContext(ctx context.Context) ShippersShipperTosShipperInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ShippersShipperTosShipperInfoOutput)
+}
+
+type ShippersShipperTosShipperInfoOutput struct{ *pulumi.OutputState }
+
+func (ShippersShipperTosShipperInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ShippersShipperTosShipperInfo)(nil)).Elem()
+}
+
+func (o ShippersShipperTosShipperInfoOutput) ToShippersShipperTosShipperInfoOutput() ShippersShipperTosShipperInfoOutput {
+	return o
+}
+
+func (o ShippersShipperTosShipperInfoOutput) ToShippersShipperTosShipperInfoOutputWithContext(ctx context.Context) ShippersShipperTosShipperInfoOutput {
+	return o
+}
+
+// When choosing a TOS bucket, it must be located in the same region as the source log topic.
+func (o ShippersShipperTosShipperInfoOutput) Bucket() pulumi.StringOutput {
+	return o.ApplyT(func(v ShippersShipperTosShipperInfo) string { return v.Bucket }).(pulumi.StringOutput)
+}
+
+// Compression formats currently supported include snappy, gzip, lz4, and none.
+func (o ShippersShipperTosShipperInfoOutput) Compress() pulumi.StringOutput {
+	return o.ApplyT(func(v ShippersShipperTosShipperInfo) string { return v.Compress }).(pulumi.StringOutput)
+}
+
+// The delivery time interval, measured in seconds, ranges from 300 to 900.
+func (o ShippersShipperTosShipperInfoOutput) Interval() pulumi.IntOutput {
+	return o.ApplyT(func(v ShippersShipperTosShipperInfo) int { return v.Interval }).(pulumi.IntOutput)
+}
+
+// The maximum size of the original file that can be delivered to each partition (Shard), that is, the size of the uncompressed log file. The unit is MiB, and the value range is 5 to 256.
+func (o ShippersShipperTosShipperInfoOutput) MaxSize() pulumi.IntOutput {
+	return o.ApplyT(func(v ShippersShipperTosShipperInfo) int { return v.MaxSize }).(pulumi.IntOutput)
+}
+
+// Partition rules for delivering logs.
+func (o ShippersShipperTosShipperInfoOutput) PartitionFormat() pulumi.StringOutput {
+	return o.ApplyT(func(v ShippersShipperTosShipperInfo) string { return v.PartitionFormat }).(pulumi.StringOutput)
+}
+
+// The top-level directory name of the storage bucket. All log data delivered through this delivery configuration will be delivered to this directory.
+func (o ShippersShipperTosShipperInfoOutput) Prefix() pulumi.StringOutput {
+	return o.ApplyT(func(v ShippersShipperTosShipperInfo) string { return v.Prefix }).(pulumi.StringOutput)
 }
 
 type TopicTag struct {
@@ -11525,6 +16414,531 @@ func (o GetAlarmsAlarmRequestCycleArrayOutput) Index(i pulumi.IntInput) GetAlarm
 	}).(GetAlarmsAlarmRequestCycleOutput)
 }
 
+type GetConsumerGroupsConsumerGroup struct {
+	// The name of the consumer group.
+	ConsumerGroupName string `pulumi:"consumerGroupName"`
+	// The time of heart rate expiration, measured in seconds, has a value range of 1 to 300.
+	HeartbeatTtl int `pulumi:"heartbeatTtl"`
+	// Whether to consume in sequence.
+	OrderedConsume bool `pulumi:"orderedConsume"`
+	// The log project ID to which the consumption group belongs.
+	ProjectId string `pulumi:"projectId"`
+	// The name of the log item to which the consumption group belongs.
+	ProjectName string `pulumi:"projectName"`
+	// The log topic ID to which the consumer belongs.
+	TopicIds []string `pulumi:"topicIds"`
+}
+
+// GetConsumerGroupsConsumerGroupInput is an input type that accepts GetConsumerGroupsConsumerGroupArgs and GetConsumerGroupsConsumerGroupOutput values.
+// You can construct a concrete instance of `GetConsumerGroupsConsumerGroupInput` via:
+//
+//	GetConsumerGroupsConsumerGroupArgs{...}
+type GetConsumerGroupsConsumerGroupInput interface {
+	pulumi.Input
+
+	ToGetConsumerGroupsConsumerGroupOutput() GetConsumerGroupsConsumerGroupOutput
+	ToGetConsumerGroupsConsumerGroupOutputWithContext(context.Context) GetConsumerGroupsConsumerGroupOutput
+}
+
+type GetConsumerGroupsConsumerGroupArgs struct {
+	// The name of the consumer group.
+	ConsumerGroupName pulumi.StringInput `pulumi:"consumerGroupName"`
+	// The time of heart rate expiration, measured in seconds, has a value range of 1 to 300.
+	HeartbeatTtl pulumi.IntInput `pulumi:"heartbeatTtl"`
+	// Whether to consume in sequence.
+	OrderedConsume pulumi.BoolInput `pulumi:"orderedConsume"`
+	// The log project ID to which the consumption group belongs.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// The name of the log item to which the consumption group belongs.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The log topic ID to which the consumer belongs.
+	TopicIds pulumi.StringArrayInput `pulumi:"topicIds"`
+}
+
+func (GetConsumerGroupsConsumerGroupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetConsumerGroupsConsumerGroup)(nil)).Elem()
+}
+
+func (i GetConsumerGroupsConsumerGroupArgs) ToGetConsumerGroupsConsumerGroupOutput() GetConsumerGroupsConsumerGroupOutput {
+	return i.ToGetConsumerGroupsConsumerGroupOutputWithContext(context.Background())
+}
+
+func (i GetConsumerGroupsConsumerGroupArgs) ToGetConsumerGroupsConsumerGroupOutputWithContext(ctx context.Context) GetConsumerGroupsConsumerGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetConsumerGroupsConsumerGroupOutput)
+}
+
+// GetConsumerGroupsConsumerGroupArrayInput is an input type that accepts GetConsumerGroupsConsumerGroupArray and GetConsumerGroupsConsumerGroupArrayOutput values.
+// You can construct a concrete instance of `GetConsumerGroupsConsumerGroupArrayInput` via:
+//
+//	GetConsumerGroupsConsumerGroupArray{ GetConsumerGroupsConsumerGroupArgs{...} }
+type GetConsumerGroupsConsumerGroupArrayInput interface {
+	pulumi.Input
+
+	ToGetConsumerGroupsConsumerGroupArrayOutput() GetConsumerGroupsConsumerGroupArrayOutput
+	ToGetConsumerGroupsConsumerGroupArrayOutputWithContext(context.Context) GetConsumerGroupsConsumerGroupArrayOutput
+}
+
+type GetConsumerGroupsConsumerGroupArray []GetConsumerGroupsConsumerGroupInput
+
+func (GetConsumerGroupsConsumerGroupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetConsumerGroupsConsumerGroup)(nil)).Elem()
+}
+
+func (i GetConsumerGroupsConsumerGroupArray) ToGetConsumerGroupsConsumerGroupArrayOutput() GetConsumerGroupsConsumerGroupArrayOutput {
+	return i.ToGetConsumerGroupsConsumerGroupArrayOutputWithContext(context.Background())
+}
+
+func (i GetConsumerGroupsConsumerGroupArray) ToGetConsumerGroupsConsumerGroupArrayOutputWithContext(ctx context.Context) GetConsumerGroupsConsumerGroupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetConsumerGroupsConsumerGroupArrayOutput)
+}
+
+type GetConsumerGroupsConsumerGroupOutput struct{ *pulumi.OutputState }
+
+func (GetConsumerGroupsConsumerGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetConsumerGroupsConsumerGroup)(nil)).Elem()
+}
+
+func (o GetConsumerGroupsConsumerGroupOutput) ToGetConsumerGroupsConsumerGroupOutput() GetConsumerGroupsConsumerGroupOutput {
+	return o
+}
+
+func (o GetConsumerGroupsConsumerGroupOutput) ToGetConsumerGroupsConsumerGroupOutputWithContext(ctx context.Context) GetConsumerGroupsConsumerGroupOutput {
+	return o
+}
+
+// The name of the consumer group.
+func (o GetConsumerGroupsConsumerGroupOutput) ConsumerGroupName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConsumerGroupsConsumerGroup) string { return v.ConsumerGroupName }).(pulumi.StringOutput)
+}
+
+// The time of heart rate expiration, measured in seconds, has a value range of 1 to 300.
+func (o GetConsumerGroupsConsumerGroupOutput) HeartbeatTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v GetConsumerGroupsConsumerGroup) int { return v.HeartbeatTtl }).(pulumi.IntOutput)
+}
+
+// Whether to consume in sequence.
+func (o GetConsumerGroupsConsumerGroupOutput) OrderedConsume() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetConsumerGroupsConsumerGroup) bool { return v.OrderedConsume }).(pulumi.BoolOutput)
+}
+
+// The log project ID to which the consumption group belongs.
+func (o GetConsumerGroupsConsumerGroupOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConsumerGroupsConsumerGroup) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// The name of the log item to which the consumption group belongs.
+func (o GetConsumerGroupsConsumerGroupOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConsumerGroupsConsumerGroup) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The log topic ID to which the consumer belongs.
+func (o GetConsumerGroupsConsumerGroupOutput) TopicIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetConsumerGroupsConsumerGroup) []string { return v.TopicIds }).(pulumi.StringArrayOutput)
+}
+
+type GetConsumerGroupsConsumerGroupArrayOutput struct{ *pulumi.OutputState }
+
+func (GetConsumerGroupsConsumerGroupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetConsumerGroupsConsumerGroup)(nil)).Elem()
+}
+
+func (o GetConsumerGroupsConsumerGroupArrayOutput) ToGetConsumerGroupsConsumerGroupArrayOutput() GetConsumerGroupsConsumerGroupArrayOutput {
+	return o
+}
+
+func (o GetConsumerGroupsConsumerGroupArrayOutput) ToGetConsumerGroupsConsumerGroupArrayOutputWithContext(ctx context.Context) GetConsumerGroupsConsumerGroupArrayOutput {
+	return o
+}
+
+func (o GetConsumerGroupsConsumerGroupArrayOutput) Index(i pulumi.IntInput) GetConsumerGroupsConsumerGroupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetConsumerGroupsConsumerGroup {
+		return vs[0].([]GetConsumerGroupsConsumerGroup)[vs[1].(int)]
+	}).(GetConsumerGroupsConsumerGroupOutput)
+}
+
+type GetEtlTasksTask struct {
+	// Processing task creation time.
+	CreateTime string `pulumi:"createTime"`
+	// A simple description of the processing task.
+	Description string `pulumi:"description"`
+	// DSL type, fixed as NORMAL.
+	DslType string `pulumi:"dslType"`
+	// The running status of the processing task.
+	Enable bool `pulumi:"enable"`
+	// Task scheduling status.
+	EtlStatus string `pulumi:"etlStatus"`
+	// The start time of the data to be processed.
+	FromTime int `pulumi:"fromTime"`
+	// Recent startup time.
+	LastEnableTime string `pulumi:"lastEnableTime"`
+	// The most recent modification time of the processing task.
+	ModifyTime string `pulumi:"modifyTime"`
+	// The name of the processing task.
+	Name string `pulumi:"name"`
+	// Specify the log item ID for querying the data processing tasks under the specified log item.
+	ProjectId string `pulumi:"projectId"`
+	// Specify the name of the log item for querying the data processing tasks under the specified log item. Support fuzzy query.
+	ProjectName string `pulumi:"projectName"`
+	// Processing rules.
+	Script string `pulumi:"script"`
+	// Specify the log topic ID for querying the data processing tasks related to this log topic.
+	SourceTopicId string `pulumi:"sourceTopicId"`
+	// Specify the name of the log topic for querying the data processing tasks related to this log topic. Support fuzzy matching.
+	SourceTopicName string `pulumi:"sourceTopicName"`
+	// Output the relevant information of the target.
+	TargetResources []GetEtlTasksTaskTargetResource `pulumi:"targetResources"`
+	// The ID of the processing task.
+	TaskId string `pulumi:"taskId"`
+	// The task type is fixed as Resident.
+	TaskType string `pulumi:"taskType"`
+	// The end time of the data to be processed.
+	ToTime int `pulumi:"toTime"`
+}
+
+// GetEtlTasksTaskInput is an input type that accepts GetEtlTasksTaskArgs and GetEtlTasksTaskOutput values.
+// You can construct a concrete instance of `GetEtlTasksTaskInput` via:
+//
+//	GetEtlTasksTaskArgs{...}
+type GetEtlTasksTaskInput interface {
+	pulumi.Input
+
+	ToGetEtlTasksTaskOutput() GetEtlTasksTaskOutput
+	ToGetEtlTasksTaskOutputWithContext(context.Context) GetEtlTasksTaskOutput
+}
+
+type GetEtlTasksTaskArgs struct {
+	// Processing task creation time.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// A simple description of the processing task.
+	Description pulumi.StringInput `pulumi:"description"`
+	// DSL type, fixed as NORMAL.
+	DslType pulumi.StringInput `pulumi:"dslType"`
+	// The running status of the processing task.
+	Enable pulumi.BoolInput `pulumi:"enable"`
+	// Task scheduling status.
+	EtlStatus pulumi.StringInput `pulumi:"etlStatus"`
+	// The start time of the data to be processed.
+	FromTime pulumi.IntInput `pulumi:"fromTime"`
+	// Recent startup time.
+	LastEnableTime pulumi.StringInput `pulumi:"lastEnableTime"`
+	// The most recent modification time of the processing task.
+	ModifyTime pulumi.StringInput `pulumi:"modifyTime"`
+	// The name of the processing task.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Specify the log item ID for querying the data processing tasks under the specified log item.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Specify the name of the log item for querying the data processing tasks under the specified log item. Support fuzzy query.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// Processing rules.
+	Script pulumi.StringInput `pulumi:"script"`
+	// Specify the log topic ID for querying the data processing tasks related to this log topic.
+	SourceTopicId pulumi.StringInput `pulumi:"sourceTopicId"`
+	// Specify the name of the log topic for querying the data processing tasks related to this log topic. Support fuzzy matching.
+	SourceTopicName pulumi.StringInput `pulumi:"sourceTopicName"`
+	// Output the relevant information of the target.
+	TargetResources GetEtlTasksTaskTargetResourceArrayInput `pulumi:"targetResources"`
+	// The ID of the processing task.
+	TaskId pulumi.StringInput `pulumi:"taskId"`
+	// The task type is fixed as Resident.
+	TaskType pulumi.StringInput `pulumi:"taskType"`
+	// The end time of the data to be processed.
+	ToTime pulumi.IntInput `pulumi:"toTime"`
+}
+
+func (GetEtlTasksTaskArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEtlTasksTask)(nil)).Elem()
+}
+
+func (i GetEtlTasksTaskArgs) ToGetEtlTasksTaskOutput() GetEtlTasksTaskOutput {
+	return i.ToGetEtlTasksTaskOutputWithContext(context.Background())
+}
+
+func (i GetEtlTasksTaskArgs) ToGetEtlTasksTaskOutputWithContext(ctx context.Context) GetEtlTasksTaskOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEtlTasksTaskOutput)
+}
+
+// GetEtlTasksTaskArrayInput is an input type that accepts GetEtlTasksTaskArray and GetEtlTasksTaskArrayOutput values.
+// You can construct a concrete instance of `GetEtlTasksTaskArrayInput` via:
+//
+//	GetEtlTasksTaskArray{ GetEtlTasksTaskArgs{...} }
+type GetEtlTasksTaskArrayInput interface {
+	pulumi.Input
+
+	ToGetEtlTasksTaskArrayOutput() GetEtlTasksTaskArrayOutput
+	ToGetEtlTasksTaskArrayOutputWithContext(context.Context) GetEtlTasksTaskArrayOutput
+}
+
+type GetEtlTasksTaskArray []GetEtlTasksTaskInput
+
+func (GetEtlTasksTaskArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEtlTasksTask)(nil)).Elem()
+}
+
+func (i GetEtlTasksTaskArray) ToGetEtlTasksTaskArrayOutput() GetEtlTasksTaskArrayOutput {
+	return i.ToGetEtlTasksTaskArrayOutputWithContext(context.Background())
+}
+
+func (i GetEtlTasksTaskArray) ToGetEtlTasksTaskArrayOutputWithContext(ctx context.Context) GetEtlTasksTaskArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEtlTasksTaskArrayOutput)
+}
+
+type GetEtlTasksTaskOutput struct{ *pulumi.OutputState }
+
+func (GetEtlTasksTaskOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEtlTasksTask)(nil)).Elem()
+}
+
+func (o GetEtlTasksTaskOutput) ToGetEtlTasksTaskOutput() GetEtlTasksTaskOutput {
+	return o
+}
+
+func (o GetEtlTasksTaskOutput) ToGetEtlTasksTaskOutputWithContext(ctx context.Context) GetEtlTasksTaskOutput {
+	return o
+}
+
+// Processing task creation time.
+func (o GetEtlTasksTaskOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEtlTasksTask) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// A simple description of the processing task.
+func (o GetEtlTasksTaskOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEtlTasksTask) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// DSL type, fixed as NORMAL.
+func (o GetEtlTasksTaskOutput) DslType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEtlTasksTask) string { return v.DslType }).(pulumi.StringOutput)
+}
+
+// The running status of the processing task.
+func (o GetEtlTasksTaskOutput) Enable() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetEtlTasksTask) bool { return v.Enable }).(pulumi.BoolOutput)
+}
+
+// Task scheduling status.
+func (o GetEtlTasksTaskOutput) EtlStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEtlTasksTask) string { return v.EtlStatus }).(pulumi.StringOutput)
+}
+
+// The start time of the data to be processed.
+func (o GetEtlTasksTaskOutput) FromTime() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEtlTasksTask) int { return v.FromTime }).(pulumi.IntOutput)
+}
+
+// Recent startup time.
+func (o GetEtlTasksTaskOutput) LastEnableTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEtlTasksTask) string { return v.LastEnableTime }).(pulumi.StringOutput)
+}
+
+// The most recent modification time of the processing task.
+func (o GetEtlTasksTaskOutput) ModifyTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEtlTasksTask) string { return v.ModifyTime }).(pulumi.StringOutput)
+}
+
+// The name of the processing task.
+func (o GetEtlTasksTaskOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEtlTasksTask) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Specify the log item ID for querying the data processing tasks under the specified log item.
+func (o GetEtlTasksTaskOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEtlTasksTask) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Specify the name of the log item for querying the data processing tasks under the specified log item. Support fuzzy query.
+func (o GetEtlTasksTaskOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEtlTasksTask) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// Processing rules.
+func (o GetEtlTasksTaskOutput) Script() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEtlTasksTask) string { return v.Script }).(pulumi.StringOutput)
+}
+
+// Specify the log topic ID for querying the data processing tasks related to this log topic.
+func (o GetEtlTasksTaskOutput) SourceTopicId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEtlTasksTask) string { return v.SourceTopicId }).(pulumi.StringOutput)
+}
+
+// Specify the name of the log topic for querying the data processing tasks related to this log topic. Support fuzzy matching.
+func (o GetEtlTasksTaskOutput) SourceTopicName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEtlTasksTask) string { return v.SourceTopicName }).(pulumi.StringOutput)
+}
+
+// Output the relevant information of the target.
+func (o GetEtlTasksTaskOutput) TargetResources() GetEtlTasksTaskTargetResourceArrayOutput {
+	return o.ApplyT(func(v GetEtlTasksTask) []GetEtlTasksTaskTargetResource { return v.TargetResources }).(GetEtlTasksTaskTargetResourceArrayOutput)
+}
+
+// The ID of the processing task.
+func (o GetEtlTasksTaskOutput) TaskId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEtlTasksTask) string { return v.TaskId }).(pulumi.StringOutput)
+}
+
+// The task type is fixed as Resident.
+func (o GetEtlTasksTaskOutput) TaskType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEtlTasksTask) string { return v.TaskType }).(pulumi.StringOutput)
+}
+
+// The end time of the data to be processed.
+func (o GetEtlTasksTaskOutput) ToTime() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEtlTasksTask) int { return v.ToTime }).(pulumi.IntOutput)
+}
+
+type GetEtlTasksTaskArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEtlTasksTaskArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEtlTasksTask)(nil)).Elem()
+}
+
+func (o GetEtlTasksTaskArrayOutput) ToGetEtlTasksTaskArrayOutput() GetEtlTasksTaskArrayOutput {
+	return o
+}
+
+func (o GetEtlTasksTaskArrayOutput) ToGetEtlTasksTaskArrayOutputWithContext(ctx context.Context) GetEtlTasksTaskArrayOutput {
+	return o
+}
+
+func (o GetEtlTasksTaskArrayOutput) Index(i pulumi.IntInput) GetEtlTasksTaskOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEtlTasksTask {
+		return vs[0].([]GetEtlTasksTask)[vs[1].(int)]
+	}).(GetEtlTasksTaskOutput)
+}
+
+type GetEtlTasksTaskTargetResource struct {
+	// Customize the name of the output target, which needs to be used to refer to the output target in the data processing rules.
+	Alias string `pulumi:"alias"`
+	// Specify the log item ID for querying the data processing tasks under the specified log item.
+	ProjectId string `pulumi:"projectId"`
+	// Specify the name of the log item for querying the data processing tasks under the specified log item. Support fuzzy query.
+	ProjectName string `pulumi:"projectName"`
+	// Log topics used for storing processed logs.
+	TopicId string `pulumi:"topicId"`
+	// The name of the log topic used for storing the processed logs.
+	TopicName string `pulumi:"topicName"`
+}
+
+// GetEtlTasksTaskTargetResourceInput is an input type that accepts GetEtlTasksTaskTargetResourceArgs and GetEtlTasksTaskTargetResourceOutput values.
+// You can construct a concrete instance of `GetEtlTasksTaskTargetResourceInput` via:
+//
+//	GetEtlTasksTaskTargetResourceArgs{...}
+type GetEtlTasksTaskTargetResourceInput interface {
+	pulumi.Input
+
+	ToGetEtlTasksTaskTargetResourceOutput() GetEtlTasksTaskTargetResourceOutput
+	ToGetEtlTasksTaskTargetResourceOutputWithContext(context.Context) GetEtlTasksTaskTargetResourceOutput
+}
+
+type GetEtlTasksTaskTargetResourceArgs struct {
+	// Customize the name of the output target, which needs to be used to refer to the output target in the data processing rules.
+	Alias pulumi.StringInput `pulumi:"alias"`
+	// Specify the log item ID for querying the data processing tasks under the specified log item.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Specify the name of the log item for querying the data processing tasks under the specified log item. Support fuzzy query.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// Log topics used for storing processed logs.
+	TopicId pulumi.StringInput `pulumi:"topicId"`
+	// The name of the log topic used for storing the processed logs.
+	TopicName pulumi.StringInput `pulumi:"topicName"`
+}
+
+func (GetEtlTasksTaskTargetResourceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEtlTasksTaskTargetResource)(nil)).Elem()
+}
+
+func (i GetEtlTasksTaskTargetResourceArgs) ToGetEtlTasksTaskTargetResourceOutput() GetEtlTasksTaskTargetResourceOutput {
+	return i.ToGetEtlTasksTaskTargetResourceOutputWithContext(context.Background())
+}
+
+func (i GetEtlTasksTaskTargetResourceArgs) ToGetEtlTasksTaskTargetResourceOutputWithContext(ctx context.Context) GetEtlTasksTaskTargetResourceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEtlTasksTaskTargetResourceOutput)
+}
+
+// GetEtlTasksTaskTargetResourceArrayInput is an input type that accepts GetEtlTasksTaskTargetResourceArray and GetEtlTasksTaskTargetResourceArrayOutput values.
+// You can construct a concrete instance of `GetEtlTasksTaskTargetResourceArrayInput` via:
+//
+//	GetEtlTasksTaskTargetResourceArray{ GetEtlTasksTaskTargetResourceArgs{...} }
+type GetEtlTasksTaskTargetResourceArrayInput interface {
+	pulumi.Input
+
+	ToGetEtlTasksTaskTargetResourceArrayOutput() GetEtlTasksTaskTargetResourceArrayOutput
+	ToGetEtlTasksTaskTargetResourceArrayOutputWithContext(context.Context) GetEtlTasksTaskTargetResourceArrayOutput
+}
+
+type GetEtlTasksTaskTargetResourceArray []GetEtlTasksTaskTargetResourceInput
+
+func (GetEtlTasksTaskTargetResourceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEtlTasksTaskTargetResource)(nil)).Elem()
+}
+
+func (i GetEtlTasksTaskTargetResourceArray) ToGetEtlTasksTaskTargetResourceArrayOutput() GetEtlTasksTaskTargetResourceArrayOutput {
+	return i.ToGetEtlTasksTaskTargetResourceArrayOutputWithContext(context.Background())
+}
+
+func (i GetEtlTasksTaskTargetResourceArray) ToGetEtlTasksTaskTargetResourceArrayOutputWithContext(ctx context.Context) GetEtlTasksTaskTargetResourceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEtlTasksTaskTargetResourceArrayOutput)
+}
+
+type GetEtlTasksTaskTargetResourceOutput struct{ *pulumi.OutputState }
+
+func (GetEtlTasksTaskTargetResourceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEtlTasksTaskTargetResource)(nil)).Elem()
+}
+
+func (o GetEtlTasksTaskTargetResourceOutput) ToGetEtlTasksTaskTargetResourceOutput() GetEtlTasksTaskTargetResourceOutput {
+	return o
+}
+
+func (o GetEtlTasksTaskTargetResourceOutput) ToGetEtlTasksTaskTargetResourceOutputWithContext(ctx context.Context) GetEtlTasksTaskTargetResourceOutput {
+	return o
+}
+
+// Customize the name of the output target, which needs to be used to refer to the output target in the data processing rules.
+func (o GetEtlTasksTaskTargetResourceOutput) Alias() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEtlTasksTaskTargetResource) string { return v.Alias }).(pulumi.StringOutput)
+}
+
+// Specify the log item ID for querying the data processing tasks under the specified log item.
+func (o GetEtlTasksTaskTargetResourceOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEtlTasksTaskTargetResource) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Specify the name of the log item for querying the data processing tasks under the specified log item. Support fuzzy query.
+func (o GetEtlTasksTaskTargetResourceOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEtlTasksTaskTargetResource) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// Log topics used for storing processed logs.
+func (o GetEtlTasksTaskTargetResourceOutput) TopicId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEtlTasksTaskTargetResource) string { return v.TopicId }).(pulumi.StringOutput)
+}
+
+// The name of the log topic used for storing the processed logs.
+func (o GetEtlTasksTaskTargetResourceOutput) TopicName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEtlTasksTaskTargetResource) string { return v.TopicName }).(pulumi.StringOutput)
+}
+
+type GetEtlTasksTaskTargetResourceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEtlTasksTaskTargetResourceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEtlTasksTaskTargetResource)(nil)).Elem()
+}
+
+func (o GetEtlTasksTaskTargetResourceArrayOutput) ToGetEtlTasksTaskTargetResourceArrayOutput() GetEtlTasksTaskTargetResourceArrayOutput {
+	return o
+}
+
+func (o GetEtlTasksTaskTargetResourceArrayOutput) ToGetEtlTasksTaskTargetResourceArrayOutputWithContext(ctx context.Context) GetEtlTasksTaskTargetResourceArrayOutput {
+	return o
+}
+
+func (o GetEtlTasksTaskTargetResourceArrayOutput) Index(i pulumi.IntInput) GetEtlTasksTaskTargetResourceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEtlTasksTaskTargetResource {
+		return vs[0].([]GetEtlTasksTaskTargetResource)[vs[1].(int)]
+	}).(GetEtlTasksTaskTargetResourceOutput)
+}
+
 type GetHostGroupsInfo struct {
 	// The abnormal heartbeat status count of host.
 	AbnormalHeartbeatStatusCount int `pulumi:"abnormalHeartbeatStatusCount"`
@@ -11888,6 +17302,844 @@ func (o GetHostsHostInfoArrayOutput) Index(i pulumi.IntInput) GetHostsHostInfoOu
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetHostsHostInfo {
 		return vs[0].([]GetHostsHostInfo)[vs[1].(int)]
 	}).(GetHostsHostInfoOutput)
+}
+
+type GetImportTasksTaskInfo struct {
+	// The creation time of the data import task.
+	CreateTime string `pulumi:"createTime"`
+	// Data import task description.
+	Description string `pulumi:"description"`
+	// The source information of the data import task.
+	ImportSourceInfo GetImportTasksTaskInfoImportSourceInfo `pulumi:"importSourceInfo"`
+	// Specify the log item ID for querying the data import tasks under the specified log item.
+	ProjectId string `pulumi:"projectId"`
+	// Specify the name of the log item for querying the data import tasks under the specified log item. Support fuzzy query..
+	ProjectName string `pulumi:"projectName"`
+	// Specify the import type for querying the data import tasks related to this import type.
+	SourceType string `pulumi:"sourceType"`
+	// Specify the status of the import task.
+	Status *int `pulumi:"status"`
+	// The output information of the data import task.
+	TargetInfo GetImportTasksTaskInfoTargetInfo `pulumi:"targetInfo"`
+	// Import the task ID of the data to be queried.
+	TaskId string `pulumi:"taskId"`
+	// Import the task name of the data to be queried.
+	TaskName string `pulumi:"taskName"`
+	// The progress of the data import task.
+	TaskStatistics GetImportTasksTaskInfoTaskStatistics `pulumi:"taskStatistics"`
+	// Specify the log topic ID for querying the data import tasks related to this log topic.
+	TopicId string `pulumi:"topicId"`
+	// Specify the name of the log topic for querying the data import tasks related to this log topic. Support fuzzy query.
+	TopicName string `pulumi:"topicName"`
+}
+
+// GetImportTasksTaskInfoInput is an input type that accepts GetImportTasksTaskInfoArgs and GetImportTasksTaskInfoOutput values.
+// You can construct a concrete instance of `GetImportTasksTaskInfoInput` via:
+//
+//	GetImportTasksTaskInfoArgs{...}
+type GetImportTasksTaskInfoInput interface {
+	pulumi.Input
+
+	ToGetImportTasksTaskInfoOutput() GetImportTasksTaskInfoOutput
+	ToGetImportTasksTaskInfoOutputWithContext(context.Context) GetImportTasksTaskInfoOutput
+}
+
+type GetImportTasksTaskInfoArgs struct {
+	// The creation time of the data import task.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// Data import task description.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The source information of the data import task.
+	ImportSourceInfo GetImportTasksTaskInfoImportSourceInfoInput `pulumi:"importSourceInfo"`
+	// Specify the log item ID for querying the data import tasks under the specified log item.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Specify the name of the log item for querying the data import tasks under the specified log item. Support fuzzy query..
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// Specify the import type for querying the data import tasks related to this import type.
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// Specify the status of the import task.
+	Status pulumi.IntPtrInput `pulumi:"status"`
+	// The output information of the data import task.
+	TargetInfo GetImportTasksTaskInfoTargetInfoInput `pulumi:"targetInfo"`
+	// Import the task ID of the data to be queried.
+	TaskId pulumi.StringInput `pulumi:"taskId"`
+	// Import the task name of the data to be queried.
+	TaskName pulumi.StringInput `pulumi:"taskName"`
+	// The progress of the data import task.
+	TaskStatistics GetImportTasksTaskInfoTaskStatisticsInput `pulumi:"taskStatistics"`
+	// Specify the log topic ID for querying the data import tasks related to this log topic.
+	TopicId pulumi.StringInput `pulumi:"topicId"`
+	// Specify the name of the log topic for querying the data import tasks related to this log topic. Support fuzzy query.
+	TopicName pulumi.StringInput `pulumi:"topicName"`
+}
+
+func (GetImportTasksTaskInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetImportTasksTaskInfo)(nil)).Elem()
+}
+
+func (i GetImportTasksTaskInfoArgs) ToGetImportTasksTaskInfoOutput() GetImportTasksTaskInfoOutput {
+	return i.ToGetImportTasksTaskInfoOutputWithContext(context.Background())
+}
+
+func (i GetImportTasksTaskInfoArgs) ToGetImportTasksTaskInfoOutputWithContext(ctx context.Context) GetImportTasksTaskInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetImportTasksTaskInfoOutput)
+}
+
+// GetImportTasksTaskInfoArrayInput is an input type that accepts GetImportTasksTaskInfoArray and GetImportTasksTaskInfoArrayOutput values.
+// You can construct a concrete instance of `GetImportTasksTaskInfoArrayInput` via:
+//
+//	GetImportTasksTaskInfoArray{ GetImportTasksTaskInfoArgs{...} }
+type GetImportTasksTaskInfoArrayInput interface {
+	pulumi.Input
+
+	ToGetImportTasksTaskInfoArrayOutput() GetImportTasksTaskInfoArrayOutput
+	ToGetImportTasksTaskInfoArrayOutputWithContext(context.Context) GetImportTasksTaskInfoArrayOutput
+}
+
+type GetImportTasksTaskInfoArray []GetImportTasksTaskInfoInput
+
+func (GetImportTasksTaskInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetImportTasksTaskInfo)(nil)).Elem()
+}
+
+func (i GetImportTasksTaskInfoArray) ToGetImportTasksTaskInfoArrayOutput() GetImportTasksTaskInfoArrayOutput {
+	return i.ToGetImportTasksTaskInfoArrayOutputWithContext(context.Background())
+}
+
+func (i GetImportTasksTaskInfoArray) ToGetImportTasksTaskInfoArrayOutputWithContext(ctx context.Context) GetImportTasksTaskInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetImportTasksTaskInfoArrayOutput)
+}
+
+type GetImportTasksTaskInfoOutput struct{ *pulumi.OutputState }
+
+func (GetImportTasksTaskInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetImportTasksTaskInfo)(nil)).Elem()
+}
+
+func (o GetImportTasksTaskInfoOutput) ToGetImportTasksTaskInfoOutput() GetImportTasksTaskInfoOutput {
+	return o
+}
+
+func (o GetImportTasksTaskInfoOutput) ToGetImportTasksTaskInfoOutputWithContext(ctx context.Context) GetImportTasksTaskInfoOutput {
+	return o
+}
+
+// The creation time of the data import task.
+func (o GetImportTasksTaskInfoOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfo) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// Data import task description.
+func (o GetImportTasksTaskInfoOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfo) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The source information of the data import task.
+func (o GetImportTasksTaskInfoOutput) ImportSourceInfo() GetImportTasksTaskInfoImportSourceInfoOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfo) GetImportTasksTaskInfoImportSourceInfo { return v.ImportSourceInfo }).(GetImportTasksTaskInfoImportSourceInfoOutput)
+}
+
+// Specify the log item ID for querying the data import tasks under the specified log item.
+func (o GetImportTasksTaskInfoOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfo) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Specify the name of the log item for querying the data import tasks under the specified log item. Support fuzzy query..
+func (o GetImportTasksTaskInfoOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfo) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// Specify the import type for querying the data import tasks related to this import type.
+func (o GetImportTasksTaskInfoOutput) SourceType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfo) string { return v.SourceType }).(pulumi.StringOutput)
+}
+
+// Specify the status of the import task.
+func (o GetImportTasksTaskInfoOutput) Status() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfo) *int { return v.Status }).(pulumi.IntPtrOutput)
+}
+
+// The output information of the data import task.
+func (o GetImportTasksTaskInfoOutput) TargetInfo() GetImportTasksTaskInfoTargetInfoOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfo) GetImportTasksTaskInfoTargetInfo { return v.TargetInfo }).(GetImportTasksTaskInfoTargetInfoOutput)
+}
+
+// Import the task ID of the data to be queried.
+func (o GetImportTasksTaskInfoOutput) TaskId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfo) string { return v.TaskId }).(pulumi.StringOutput)
+}
+
+// Import the task name of the data to be queried.
+func (o GetImportTasksTaskInfoOutput) TaskName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfo) string { return v.TaskName }).(pulumi.StringOutput)
+}
+
+// The progress of the data import task.
+func (o GetImportTasksTaskInfoOutput) TaskStatistics() GetImportTasksTaskInfoTaskStatisticsOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfo) GetImportTasksTaskInfoTaskStatistics { return v.TaskStatistics }).(GetImportTasksTaskInfoTaskStatisticsOutput)
+}
+
+// Specify the log topic ID for querying the data import tasks related to this log topic.
+func (o GetImportTasksTaskInfoOutput) TopicId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfo) string { return v.TopicId }).(pulumi.StringOutput)
+}
+
+// Specify the name of the log topic for querying the data import tasks related to this log topic. Support fuzzy query.
+func (o GetImportTasksTaskInfoOutput) TopicName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfo) string { return v.TopicName }).(pulumi.StringOutput)
+}
+
+type GetImportTasksTaskInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (GetImportTasksTaskInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetImportTasksTaskInfo)(nil)).Elem()
+}
+
+func (o GetImportTasksTaskInfoArrayOutput) ToGetImportTasksTaskInfoArrayOutput() GetImportTasksTaskInfoArrayOutput {
+	return o
+}
+
+func (o GetImportTasksTaskInfoArrayOutput) ToGetImportTasksTaskInfoArrayOutputWithContext(ctx context.Context) GetImportTasksTaskInfoArrayOutput {
+	return o
+}
+
+func (o GetImportTasksTaskInfoArrayOutput) Index(i pulumi.IntInput) GetImportTasksTaskInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetImportTasksTaskInfo {
+		return vs[0].([]GetImportTasksTaskInfo)[vs[1].(int)]
+	}).(GetImportTasksTaskInfoOutput)
+}
+
+type GetImportTasksTaskInfoImportSourceInfo struct {
+	// TOS imports source information.
+	KafkaSourceInfo GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfo `pulumi:"kafkaSourceInfo"`
+	// TOS imports source information.
+	TosSourceInfo GetImportTasksTaskInfoImportSourceInfoTosSourceInfo `pulumi:"tosSourceInfo"`
+}
+
+// GetImportTasksTaskInfoImportSourceInfoInput is an input type that accepts GetImportTasksTaskInfoImportSourceInfoArgs and GetImportTasksTaskInfoImportSourceInfoOutput values.
+// You can construct a concrete instance of `GetImportTasksTaskInfoImportSourceInfoInput` via:
+//
+//	GetImportTasksTaskInfoImportSourceInfoArgs{...}
+type GetImportTasksTaskInfoImportSourceInfoInput interface {
+	pulumi.Input
+
+	ToGetImportTasksTaskInfoImportSourceInfoOutput() GetImportTasksTaskInfoImportSourceInfoOutput
+	ToGetImportTasksTaskInfoImportSourceInfoOutputWithContext(context.Context) GetImportTasksTaskInfoImportSourceInfoOutput
+}
+
+type GetImportTasksTaskInfoImportSourceInfoArgs struct {
+	// TOS imports source information.
+	KafkaSourceInfo GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfoInput `pulumi:"kafkaSourceInfo"`
+	// TOS imports source information.
+	TosSourceInfo GetImportTasksTaskInfoImportSourceInfoTosSourceInfoInput `pulumi:"tosSourceInfo"`
+}
+
+func (GetImportTasksTaskInfoImportSourceInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetImportTasksTaskInfoImportSourceInfo)(nil)).Elem()
+}
+
+func (i GetImportTasksTaskInfoImportSourceInfoArgs) ToGetImportTasksTaskInfoImportSourceInfoOutput() GetImportTasksTaskInfoImportSourceInfoOutput {
+	return i.ToGetImportTasksTaskInfoImportSourceInfoOutputWithContext(context.Background())
+}
+
+func (i GetImportTasksTaskInfoImportSourceInfoArgs) ToGetImportTasksTaskInfoImportSourceInfoOutputWithContext(ctx context.Context) GetImportTasksTaskInfoImportSourceInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetImportTasksTaskInfoImportSourceInfoOutput)
+}
+
+type GetImportTasksTaskInfoImportSourceInfoOutput struct{ *pulumi.OutputState }
+
+func (GetImportTasksTaskInfoImportSourceInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetImportTasksTaskInfoImportSourceInfo)(nil)).Elem()
+}
+
+func (o GetImportTasksTaskInfoImportSourceInfoOutput) ToGetImportTasksTaskInfoImportSourceInfoOutput() GetImportTasksTaskInfoImportSourceInfoOutput {
+	return o
+}
+
+func (o GetImportTasksTaskInfoImportSourceInfoOutput) ToGetImportTasksTaskInfoImportSourceInfoOutputWithContext(ctx context.Context) GetImportTasksTaskInfoImportSourceInfoOutput {
+	return o
+}
+
+// TOS imports source information.
+func (o GetImportTasksTaskInfoImportSourceInfoOutput) KafkaSourceInfo() GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfoImportSourceInfo) GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfo {
+		return v.KafkaSourceInfo
+	}).(GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput)
+}
+
+// TOS imports source information.
+func (o GetImportTasksTaskInfoImportSourceInfoOutput) TosSourceInfo() GetImportTasksTaskInfoImportSourceInfoTosSourceInfoOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfoImportSourceInfo) GetImportTasksTaskInfoImportSourceInfoTosSourceInfo {
+		return v.TosSourceInfo
+	}).(GetImportTasksTaskInfoImportSourceInfoTosSourceInfoOutput)
+}
+
+type GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfo struct {
+	// The encoding format of the data.
+	Encode string `pulumi:"encode"`
+	// Kafka consumer group.
+	Group string `pulumi:"group"`
+	// The service addresses corresponding to different types of Kafka clusters are different.
+	Host string `pulumi:"host"`
+	// The starting position of data import.
+	InitialOffset int `pulumi:"initialOffset"`
+	// When you are using the Volcano Engine Message Queue Kafka version, it should be set to the Kafka instance ID.
+	InstanceId string `pulumi:"instanceId"`
+	// Whether to enable authentication.
+	IsNeedAuth bool `pulumi:"isNeedAuth"`
+	// Password authentication mechanism.
+	Mechanism string `pulumi:"mechanism"`
+	// The Kafka SASL user password used for identity authentication.
+	Password string `pulumi:"password"`
+	// Secure Transport protocol.
+	Protocol string `pulumi:"protocol"`
+	// Specify the log time.
+	TimeSourceDefault int `pulumi:"timeSourceDefault"`
+	// Kafka Topic name.
+	Topic string `pulumi:"topic"`
+	// The Kafka SASL username used for identity authentication.
+	Username string `pulumi:"username"`
+}
+
+// GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfoInput is an input type that accepts GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfoArgs and GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput values.
+// You can construct a concrete instance of `GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfoInput` via:
+//
+//	GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfoArgs{...}
+type GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfoInput interface {
+	pulumi.Input
+
+	ToGetImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput() GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput
+	ToGetImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutputWithContext(context.Context) GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput
+}
+
+type GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfoArgs struct {
+	// The encoding format of the data.
+	Encode pulumi.StringInput `pulumi:"encode"`
+	// Kafka consumer group.
+	Group pulumi.StringInput `pulumi:"group"`
+	// The service addresses corresponding to different types of Kafka clusters are different.
+	Host pulumi.StringInput `pulumi:"host"`
+	// The starting position of data import.
+	InitialOffset pulumi.IntInput `pulumi:"initialOffset"`
+	// When you are using the Volcano Engine Message Queue Kafka version, it should be set to the Kafka instance ID.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// Whether to enable authentication.
+	IsNeedAuth pulumi.BoolInput `pulumi:"isNeedAuth"`
+	// Password authentication mechanism.
+	Mechanism pulumi.StringInput `pulumi:"mechanism"`
+	// The Kafka SASL user password used for identity authentication.
+	Password pulumi.StringInput `pulumi:"password"`
+	// Secure Transport protocol.
+	Protocol pulumi.StringInput `pulumi:"protocol"`
+	// Specify the log time.
+	TimeSourceDefault pulumi.IntInput `pulumi:"timeSourceDefault"`
+	// Kafka Topic name.
+	Topic pulumi.StringInput `pulumi:"topic"`
+	// The Kafka SASL username used for identity authentication.
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfo)(nil)).Elem()
+}
+
+func (i GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfoArgs) ToGetImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput() GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput {
+	return i.ToGetImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutputWithContext(context.Background())
+}
+
+func (i GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfoArgs) ToGetImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutputWithContext(ctx context.Context) GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput)
+}
+
+type GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput struct{ *pulumi.OutputState }
+
+func (GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfo)(nil)).Elem()
+}
+
+func (o GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput) ToGetImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput() GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput {
+	return o
+}
+
+func (o GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput) ToGetImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutputWithContext(ctx context.Context) GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput {
+	return o
+}
+
+// The encoding format of the data.
+func (o GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput) Encode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfo) string { return v.Encode }).(pulumi.StringOutput)
+}
+
+// Kafka consumer group.
+func (o GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput) Group() pulumi.StringOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfo) string { return v.Group }).(pulumi.StringOutput)
+}
+
+// The service addresses corresponding to different types of Kafka clusters are different.
+func (o GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput) Host() pulumi.StringOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfo) string { return v.Host }).(pulumi.StringOutput)
+}
+
+// The starting position of data import.
+func (o GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput) InitialOffset() pulumi.IntOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfo) int { return v.InitialOffset }).(pulumi.IntOutput)
+}
+
+// When you are using the Volcano Engine Message Queue Kafka version, it should be set to the Kafka instance ID.
+func (o GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfo) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// Whether to enable authentication.
+func (o GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput) IsNeedAuth() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfo) bool { return v.IsNeedAuth }).(pulumi.BoolOutput)
+}
+
+// Password authentication mechanism.
+func (o GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput) Mechanism() pulumi.StringOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfo) string { return v.Mechanism }).(pulumi.StringOutput)
+}
+
+// The Kafka SASL user password used for identity authentication.
+func (o GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput) Password() pulumi.StringOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfo) string { return v.Password }).(pulumi.StringOutput)
+}
+
+// Secure Transport protocol.
+func (o GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput) Protocol() pulumi.StringOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfo) string { return v.Protocol }).(pulumi.StringOutput)
+}
+
+// Specify the log time.
+func (o GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput) TimeSourceDefault() pulumi.IntOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfo) int { return v.TimeSourceDefault }).(pulumi.IntOutput)
+}
+
+// Kafka Topic name.
+func (o GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput) Topic() pulumi.StringOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfo) string { return v.Topic }).(pulumi.StringOutput)
+}
+
+// The Kafka SASL username used for identity authentication.
+func (o GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfo) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetImportTasksTaskInfoImportSourceInfoTosSourceInfo struct {
+	// The TOS bucket where the log file is located.
+	Bucket string `pulumi:"bucket"`
+	// The compression mode of data in the TOS bucket.
+	CompressType string `pulumi:"compressType"`
+	// The path of the file to be imported in the TOS bucket.
+	Prefix string `pulumi:"prefix"`
+	// Regional ID.
+	Region string `pulumi:"region"`
+}
+
+// GetImportTasksTaskInfoImportSourceInfoTosSourceInfoInput is an input type that accepts GetImportTasksTaskInfoImportSourceInfoTosSourceInfoArgs and GetImportTasksTaskInfoImportSourceInfoTosSourceInfoOutput values.
+// You can construct a concrete instance of `GetImportTasksTaskInfoImportSourceInfoTosSourceInfoInput` via:
+//
+//	GetImportTasksTaskInfoImportSourceInfoTosSourceInfoArgs{...}
+type GetImportTasksTaskInfoImportSourceInfoTosSourceInfoInput interface {
+	pulumi.Input
+
+	ToGetImportTasksTaskInfoImportSourceInfoTosSourceInfoOutput() GetImportTasksTaskInfoImportSourceInfoTosSourceInfoOutput
+	ToGetImportTasksTaskInfoImportSourceInfoTosSourceInfoOutputWithContext(context.Context) GetImportTasksTaskInfoImportSourceInfoTosSourceInfoOutput
+}
+
+type GetImportTasksTaskInfoImportSourceInfoTosSourceInfoArgs struct {
+	// The TOS bucket where the log file is located.
+	Bucket pulumi.StringInput `pulumi:"bucket"`
+	// The compression mode of data in the TOS bucket.
+	CompressType pulumi.StringInput `pulumi:"compressType"`
+	// The path of the file to be imported in the TOS bucket.
+	Prefix pulumi.StringInput `pulumi:"prefix"`
+	// Regional ID.
+	Region pulumi.StringInput `pulumi:"region"`
+}
+
+func (GetImportTasksTaskInfoImportSourceInfoTosSourceInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetImportTasksTaskInfoImportSourceInfoTosSourceInfo)(nil)).Elem()
+}
+
+func (i GetImportTasksTaskInfoImportSourceInfoTosSourceInfoArgs) ToGetImportTasksTaskInfoImportSourceInfoTosSourceInfoOutput() GetImportTasksTaskInfoImportSourceInfoTosSourceInfoOutput {
+	return i.ToGetImportTasksTaskInfoImportSourceInfoTosSourceInfoOutputWithContext(context.Background())
+}
+
+func (i GetImportTasksTaskInfoImportSourceInfoTosSourceInfoArgs) ToGetImportTasksTaskInfoImportSourceInfoTosSourceInfoOutputWithContext(ctx context.Context) GetImportTasksTaskInfoImportSourceInfoTosSourceInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetImportTasksTaskInfoImportSourceInfoTosSourceInfoOutput)
+}
+
+type GetImportTasksTaskInfoImportSourceInfoTosSourceInfoOutput struct{ *pulumi.OutputState }
+
+func (GetImportTasksTaskInfoImportSourceInfoTosSourceInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetImportTasksTaskInfoImportSourceInfoTosSourceInfo)(nil)).Elem()
+}
+
+func (o GetImportTasksTaskInfoImportSourceInfoTosSourceInfoOutput) ToGetImportTasksTaskInfoImportSourceInfoTosSourceInfoOutput() GetImportTasksTaskInfoImportSourceInfoTosSourceInfoOutput {
+	return o
+}
+
+func (o GetImportTasksTaskInfoImportSourceInfoTosSourceInfoOutput) ToGetImportTasksTaskInfoImportSourceInfoTosSourceInfoOutputWithContext(ctx context.Context) GetImportTasksTaskInfoImportSourceInfoTosSourceInfoOutput {
+	return o
+}
+
+// The TOS bucket where the log file is located.
+func (o GetImportTasksTaskInfoImportSourceInfoTosSourceInfoOutput) Bucket() pulumi.StringOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfoImportSourceInfoTosSourceInfo) string { return v.Bucket }).(pulumi.StringOutput)
+}
+
+// The compression mode of data in the TOS bucket.
+func (o GetImportTasksTaskInfoImportSourceInfoTosSourceInfoOutput) CompressType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfoImportSourceInfoTosSourceInfo) string { return v.CompressType }).(pulumi.StringOutput)
+}
+
+// The path of the file to be imported in the TOS bucket.
+func (o GetImportTasksTaskInfoImportSourceInfoTosSourceInfoOutput) Prefix() pulumi.StringOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfoImportSourceInfoTosSourceInfo) string { return v.Prefix }).(pulumi.StringOutput)
+}
+
+// Regional ID.
+func (o GetImportTasksTaskInfoImportSourceInfoTosSourceInfoOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfoImportSourceInfoTosSourceInfo) string { return v.Region }).(pulumi.StringOutput)
+}
+
+type GetImportTasksTaskInfoTargetInfo struct {
+	// Log extraction rules.
+	ExtractRule GetImportTasksTaskInfoTargetInfoExtractRule `pulumi:"extractRule"`
+	// Log sample.
+	LogSample string `pulumi:"logSample"`
+	// Specify the log parsing type when importing.
+	LogType string `pulumi:"logType"`
+	// Regional ID.
+	Region string `pulumi:"region"`
+}
+
+// GetImportTasksTaskInfoTargetInfoInput is an input type that accepts GetImportTasksTaskInfoTargetInfoArgs and GetImportTasksTaskInfoTargetInfoOutput values.
+// You can construct a concrete instance of `GetImportTasksTaskInfoTargetInfoInput` via:
+//
+//	GetImportTasksTaskInfoTargetInfoArgs{...}
+type GetImportTasksTaskInfoTargetInfoInput interface {
+	pulumi.Input
+
+	ToGetImportTasksTaskInfoTargetInfoOutput() GetImportTasksTaskInfoTargetInfoOutput
+	ToGetImportTasksTaskInfoTargetInfoOutputWithContext(context.Context) GetImportTasksTaskInfoTargetInfoOutput
+}
+
+type GetImportTasksTaskInfoTargetInfoArgs struct {
+	// Log extraction rules.
+	ExtractRule GetImportTasksTaskInfoTargetInfoExtractRuleInput `pulumi:"extractRule"`
+	// Log sample.
+	LogSample pulumi.StringInput `pulumi:"logSample"`
+	// Specify the log parsing type when importing.
+	LogType pulumi.StringInput `pulumi:"logType"`
+	// Regional ID.
+	Region pulumi.StringInput `pulumi:"region"`
+}
+
+func (GetImportTasksTaskInfoTargetInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetImportTasksTaskInfoTargetInfo)(nil)).Elem()
+}
+
+func (i GetImportTasksTaskInfoTargetInfoArgs) ToGetImportTasksTaskInfoTargetInfoOutput() GetImportTasksTaskInfoTargetInfoOutput {
+	return i.ToGetImportTasksTaskInfoTargetInfoOutputWithContext(context.Background())
+}
+
+func (i GetImportTasksTaskInfoTargetInfoArgs) ToGetImportTasksTaskInfoTargetInfoOutputWithContext(ctx context.Context) GetImportTasksTaskInfoTargetInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetImportTasksTaskInfoTargetInfoOutput)
+}
+
+type GetImportTasksTaskInfoTargetInfoOutput struct{ *pulumi.OutputState }
+
+func (GetImportTasksTaskInfoTargetInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetImportTasksTaskInfoTargetInfo)(nil)).Elem()
+}
+
+func (o GetImportTasksTaskInfoTargetInfoOutput) ToGetImportTasksTaskInfoTargetInfoOutput() GetImportTasksTaskInfoTargetInfoOutput {
+	return o
+}
+
+func (o GetImportTasksTaskInfoTargetInfoOutput) ToGetImportTasksTaskInfoTargetInfoOutputWithContext(ctx context.Context) GetImportTasksTaskInfoTargetInfoOutput {
+	return o
+}
+
+// Log extraction rules.
+func (o GetImportTasksTaskInfoTargetInfoOutput) ExtractRule() GetImportTasksTaskInfoTargetInfoExtractRuleOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfoTargetInfo) GetImportTasksTaskInfoTargetInfoExtractRule {
+		return v.ExtractRule
+	}).(GetImportTasksTaskInfoTargetInfoExtractRuleOutput)
+}
+
+// Log sample.
+func (o GetImportTasksTaskInfoTargetInfoOutput) LogSample() pulumi.StringOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfoTargetInfo) string { return v.LogSample }).(pulumi.StringOutput)
+}
+
+// Specify the log parsing type when importing.
+func (o GetImportTasksTaskInfoTargetInfoOutput) LogType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfoTargetInfo) string { return v.LogType }).(pulumi.StringOutput)
+}
+
+// Regional ID.
+func (o GetImportTasksTaskInfoTargetInfoOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfoTargetInfo) string { return v.Region }).(pulumi.StringOutput)
+}
+
+type GetImportTasksTaskInfoTargetInfoExtractRule struct {
+	// The regular expression used to identify the first line in each log, and its matching part will serve as the beginning of the log.
+	BeginRegex string `pulumi:"beginRegex"`
+	// Log delimiter.
+	Delimiter string `pulumi:"delimiter"`
+	// List of log field names (Keys).
+	Keys []string `pulumi:"keys"`
+	// Reference symbol. The content wrapped by the reference will not be separated but will be parsed into a complete field. It is valid if and only if the LogType is delimiter_log.
+	Quote string `pulumi:"quote"`
+	// The number of log lines skipped.
+	SkipLineCount int `pulumi:"skipLineCount"`
+	// A regular expression for extracting time, used to extract the time value in the TimeKey field and parse it into the corresponding collection time.
+	TimeExtractRegex string `pulumi:"timeExtractRegex"`
+	// The parsing format of the time field.
+	TimeFormat string `pulumi:"timeFormat"`
+	// The field name of the log time field.
+	TimeKey string `pulumi:"timeKey"`
+	// Time zone, supporting both machine time zone (default) and custom time zone. Among them, the custom time zone supports GMT and UTC.
+	TimeZone string `pulumi:"timeZone"`
+	// When uploading a log that failed to parse, the key name of the parse failed log.
+	UnMatchLogKey string `pulumi:"unMatchLogKey"`
+	// Whether to upload the logs of failed parsing.
+	UnMatchUpLoadSwitch bool `pulumi:"unMatchUpLoadSwitch"`
+}
+
+// GetImportTasksTaskInfoTargetInfoExtractRuleInput is an input type that accepts GetImportTasksTaskInfoTargetInfoExtractRuleArgs and GetImportTasksTaskInfoTargetInfoExtractRuleOutput values.
+// You can construct a concrete instance of `GetImportTasksTaskInfoTargetInfoExtractRuleInput` via:
+//
+//	GetImportTasksTaskInfoTargetInfoExtractRuleArgs{...}
+type GetImportTasksTaskInfoTargetInfoExtractRuleInput interface {
+	pulumi.Input
+
+	ToGetImportTasksTaskInfoTargetInfoExtractRuleOutput() GetImportTasksTaskInfoTargetInfoExtractRuleOutput
+	ToGetImportTasksTaskInfoTargetInfoExtractRuleOutputWithContext(context.Context) GetImportTasksTaskInfoTargetInfoExtractRuleOutput
+}
+
+type GetImportTasksTaskInfoTargetInfoExtractRuleArgs struct {
+	// The regular expression used to identify the first line in each log, and its matching part will serve as the beginning of the log.
+	BeginRegex pulumi.StringInput `pulumi:"beginRegex"`
+	// Log delimiter.
+	Delimiter pulumi.StringInput `pulumi:"delimiter"`
+	// List of log field names (Keys).
+	Keys pulumi.StringArrayInput `pulumi:"keys"`
+	// Reference symbol. The content wrapped by the reference will not be separated but will be parsed into a complete field. It is valid if and only if the LogType is delimiter_log.
+	Quote pulumi.StringInput `pulumi:"quote"`
+	// The number of log lines skipped.
+	SkipLineCount pulumi.IntInput `pulumi:"skipLineCount"`
+	// A regular expression for extracting time, used to extract the time value in the TimeKey field and parse it into the corresponding collection time.
+	TimeExtractRegex pulumi.StringInput `pulumi:"timeExtractRegex"`
+	// The parsing format of the time field.
+	TimeFormat pulumi.StringInput `pulumi:"timeFormat"`
+	// The field name of the log time field.
+	TimeKey pulumi.StringInput `pulumi:"timeKey"`
+	// Time zone, supporting both machine time zone (default) and custom time zone. Among them, the custom time zone supports GMT and UTC.
+	TimeZone pulumi.StringInput `pulumi:"timeZone"`
+	// When uploading a log that failed to parse, the key name of the parse failed log.
+	UnMatchLogKey pulumi.StringInput `pulumi:"unMatchLogKey"`
+	// Whether to upload the logs of failed parsing.
+	UnMatchUpLoadSwitch pulumi.BoolInput `pulumi:"unMatchUpLoadSwitch"`
+}
+
+func (GetImportTasksTaskInfoTargetInfoExtractRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetImportTasksTaskInfoTargetInfoExtractRule)(nil)).Elem()
+}
+
+func (i GetImportTasksTaskInfoTargetInfoExtractRuleArgs) ToGetImportTasksTaskInfoTargetInfoExtractRuleOutput() GetImportTasksTaskInfoTargetInfoExtractRuleOutput {
+	return i.ToGetImportTasksTaskInfoTargetInfoExtractRuleOutputWithContext(context.Background())
+}
+
+func (i GetImportTasksTaskInfoTargetInfoExtractRuleArgs) ToGetImportTasksTaskInfoTargetInfoExtractRuleOutputWithContext(ctx context.Context) GetImportTasksTaskInfoTargetInfoExtractRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetImportTasksTaskInfoTargetInfoExtractRuleOutput)
+}
+
+type GetImportTasksTaskInfoTargetInfoExtractRuleOutput struct{ *pulumi.OutputState }
+
+func (GetImportTasksTaskInfoTargetInfoExtractRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetImportTasksTaskInfoTargetInfoExtractRule)(nil)).Elem()
+}
+
+func (o GetImportTasksTaskInfoTargetInfoExtractRuleOutput) ToGetImportTasksTaskInfoTargetInfoExtractRuleOutput() GetImportTasksTaskInfoTargetInfoExtractRuleOutput {
+	return o
+}
+
+func (o GetImportTasksTaskInfoTargetInfoExtractRuleOutput) ToGetImportTasksTaskInfoTargetInfoExtractRuleOutputWithContext(ctx context.Context) GetImportTasksTaskInfoTargetInfoExtractRuleOutput {
+	return o
+}
+
+// The regular expression used to identify the first line in each log, and its matching part will serve as the beginning of the log.
+func (o GetImportTasksTaskInfoTargetInfoExtractRuleOutput) BeginRegex() pulumi.StringOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfoTargetInfoExtractRule) string { return v.BeginRegex }).(pulumi.StringOutput)
+}
+
+// Log delimiter.
+func (o GetImportTasksTaskInfoTargetInfoExtractRuleOutput) Delimiter() pulumi.StringOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfoTargetInfoExtractRule) string { return v.Delimiter }).(pulumi.StringOutput)
+}
+
+// List of log field names (Keys).
+func (o GetImportTasksTaskInfoTargetInfoExtractRuleOutput) Keys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfoTargetInfoExtractRule) []string { return v.Keys }).(pulumi.StringArrayOutput)
+}
+
+// Reference symbol. The content wrapped by the reference will not be separated but will be parsed into a complete field. It is valid if and only if the LogType is delimiter_log.
+func (o GetImportTasksTaskInfoTargetInfoExtractRuleOutput) Quote() pulumi.StringOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfoTargetInfoExtractRule) string { return v.Quote }).(pulumi.StringOutput)
+}
+
+// The number of log lines skipped.
+func (o GetImportTasksTaskInfoTargetInfoExtractRuleOutput) SkipLineCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfoTargetInfoExtractRule) int { return v.SkipLineCount }).(pulumi.IntOutput)
+}
+
+// A regular expression for extracting time, used to extract the time value in the TimeKey field and parse it into the corresponding collection time.
+func (o GetImportTasksTaskInfoTargetInfoExtractRuleOutput) TimeExtractRegex() pulumi.StringOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfoTargetInfoExtractRule) string { return v.TimeExtractRegex }).(pulumi.StringOutput)
+}
+
+// The parsing format of the time field.
+func (o GetImportTasksTaskInfoTargetInfoExtractRuleOutput) TimeFormat() pulumi.StringOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfoTargetInfoExtractRule) string { return v.TimeFormat }).(pulumi.StringOutput)
+}
+
+// The field name of the log time field.
+func (o GetImportTasksTaskInfoTargetInfoExtractRuleOutput) TimeKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfoTargetInfoExtractRule) string { return v.TimeKey }).(pulumi.StringOutput)
+}
+
+// Time zone, supporting both machine time zone (default) and custom time zone. Among them, the custom time zone supports GMT and UTC.
+func (o GetImportTasksTaskInfoTargetInfoExtractRuleOutput) TimeZone() pulumi.StringOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfoTargetInfoExtractRule) string { return v.TimeZone }).(pulumi.StringOutput)
+}
+
+// When uploading a log that failed to parse, the key name of the parse failed log.
+func (o GetImportTasksTaskInfoTargetInfoExtractRuleOutput) UnMatchLogKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfoTargetInfoExtractRule) string { return v.UnMatchLogKey }).(pulumi.StringOutput)
+}
+
+// Whether to upload the logs of failed parsing.
+func (o GetImportTasksTaskInfoTargetInfoExtractRuleOutput) UnMatchUpLoadSwitch() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfoTargetInfoExtractRule) bool { return v.UnMatchUpLoadSwitch }).(pulumi.BoolOutput)
+}
+
+type GetImportTasksTaskInfoTaskStatistics struct {
+	// The total number of resource bytes that have been listed.
+	BytesTotal int `pulumi:"bytesTotal"`
+	// The number of imported bytes.
+	BytesTransferred int `pulumi:"bytesTransferred"`
+	// The number of resources that failed to import.
+	Failed int `pulumi:"failed"`
+	// The number of non-existent resources.
+	NotExist int `pulumi:"notExist"`
+	// Skip the number of imported resources.
+	Skipped int `pulumi:"skipped"`
+	// Import the status of the task.
+	TaskStatus string `pulumi:"taskStatus"`
+	// The total number of resources that have been listed.
+	Total int `pulumi:"total"`
+	// The number of imported resources.
+	Transferred int `pulumi:"transferred"`
+}
+
+// GetImportTasksTaskInfoTaskStatisticsInput is an input type that accepts GetImportTasksTaskInfoTaskStatisticsArgs and GetImportTasksTaskInfoTaskStatisticsOutput values.
+// You can construct a concrete instance of `GetImportTasksTaskInfoTaskStatisticsInput` via:
+//
+//	GetImportTasksTaskInfoTaskStatisticsArgs{...}
+type GetImportTasksTaskInfoTaskStatisticsInput interface {
+	pulumi.Input
+
+	ToGetImportTasksTaskInfoTaskStatisticsOutput() GetImportTasksTaskInfoTaskStatisticsOutput
+	ToGetImportTasksTaskInfoTaskStatisticsOutputWithContext(context.Context) GetImportTasksTaskInfoTaskStatisticsOutput
+}
+
+type GetImportTasksTaskInfoTaskStatisticsArgs struct {
+	// The total number of resource bytes that have been listed.
+	BytesTotal pulumi.IntInput `pulumi:"bytesTotal"`
+	// The number of imported bytes.
+	BytesTransferred pulumi.IntInput `pulumi:"bytesTransferred"`
+	// The number of resources that failed to import.
+	Failed pulumi.IntInput `pulumi:"failed"`
+	// The number of non-existent resources.
+	NotExist pulumi.IntInput `pulumi:"notExist"`
+	// Skip the number of imported resources.
+	Skipped pulumi.IntInput `pulumi:"skipped"`
+	// Import the status of the task.
+	TaskStatus pulumi.StringInput `pulumi:"taskStatus"`
+	// The total number of resources that have been listed.
+	Total pulumi.IntInput `pulumi:"total"`
+	// The number of imported resources.
+	Transferred pulumi.IntInput `pulumi:"transferred"`
+}
+
+func (GetImportTasksTaskInfoTaskStatisticsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetImportTasksTaskInfoTaskStatistics)(nil)).Elem()
+}
+
+func (i GetImportTasksTaskInfoTaskStatisticsArgs) ToGetImportTasksTaskInfoTaskStatisticsOutput() GetImportTasksTaskInfoTaskStatisticsOutput {
+	return i.ToGetImportTasksTaskInfoTaskStatisticsOutputWithContext(context.Background())
+}
+
+func (i GetImportTasksTaskInfoTaskStatisticsArgs) ToGetImportTasksTaskInfoTaskStatisticsOutputWithContext(ctx context.Context) GetImportTasksTaskInfoTaskStatisticsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetImportTasksTaskInfoTaskStatisticsOutput)
+}
+
+type GetImportTasksTaskInfoTaskStatisticsOutput struct{ *pulumi.OutputState }
+
+func (GetImportTasksTaskInfoTaskStatisticsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetImportTasksTaskInfoTaskStatistics)(nil)).Elem()
+}
+
+func (o GetImportTasksTaskInfoTaskStatisticsOutput) ToGetImportTasksTaskInfoTaskStatisticsOutput() GetImportTasksTaskInfoTaskStatisticsOutput {
+	return o
+}
+
+func (o GetImportTasksTaskInfoTaskStatisticsOutput) ToGetImportTasksTaskInfoTaskStatisticsOutputWithContext(ctx context.Context) GetImportTasksTaskInfoTaskStatisticsOutput {
+	return o
+}
+
+// The total number of resource bytes that have been listed.
+func (o GetImportTasksTaskInfoTaskStatisticsOutput) BytesTotal() pulumi.IntOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfoTaskStatistics) int { return v.BytesTotal }).(pulumi.IntOutput)
+}
+
+// The number of imported bytes.
+func (o GetImportTasksTaskInfoTaskStatisticsOutput) BytesTransferred() pulumi.IntOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfoTaskStatistics) int { return v.BytesTransferred }).(pulumi.IntOutput)
+}
+
+// The number of resources that failed to import.
+func (o GetImportTasksTaskInfoTaskStatisticsOutput) Failed() pulumi.IntOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfoTaskStatistics) int { return v.Failed }).(pulumi.IntOutput)
+}
+
+// The number of non-existent resources.
+func (o GetImportTasksTaskInfoTaskStatisticsOutput) NotExist() pulumi.IntOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfoTaskStatistics) int { return v.NotExist }).(pulumi.IntOutput)
+}
+
+// Skip the number of imported resources.
+func (o GetImportTasksTaskInfoTaskStatisticsOutput) Skipped() pulumi.IntOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfoTaskStatistics) int { return v.Skipped }).(pulumi.IntOutput)
+}
+
+// Import the status of the task.
+func (o GetImportTasksTaskInfoTaskStatisticsOutput) TaskStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfoTaskStatistics) string { return v.TaskStatus }).(pulumi.StringOutput)
+}
+
+// The total number of resources that have been listed.
+func (o GetImportTasksTaskInfoTaskStatisticsOutput) Total() pulumi.IntOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfoTaskStatistics) int { return v.Total }).(pulumi.IntOutput)
+}
+
+// The number of imported resources.
+func (o GetImportTasksTaskInfoTaskStatisticsOutput) Transferred() pulumi.IntOutput {
+	return o.ApplyT(func(v GetImportTasksTaskInfoTaskStatistics) int { return v.Transferred }).(pulumi.IntOutput)
 }
 
 type GetIndexesTlsIndex struct {
@@ -16466,6 +22718,353 @@ func (o GetRulesRuleUserDefineRuleShardHashKeyArrayOutput) Index(i pulumi.IntInp
 	}).(GetRulesRuleUserDefineRuleShardHashKeyOutput)
 }
 
+type GetScheduleSqlTasksTask struct {
+	// Set the creation time of timed SQL analysis tasks.
+	CreateTimeStamp int `pulumi:"createTimeStamp"`
+	// A simple description of the timed SQL analysis task.
+	Description string `pulumi:"description"`
+	// The log project ID to which the target log topic belongs.
+	DestProjectId string `pulumi:"destProjectId"`
+	// The region to which the target log project belongs.
+	DestRegion string `pulumi:"destRegion"`
+	// The target log topic ID used for storing the result data of timed SQL analysis.
+	DestTopicId string `pulumi:"destTopicId"`
+	// The name of the target log topic used for storing the data of the timed SQL analysis results.
+	DestTopicName string `pulumi:"destTopicName"`
+	// The most recent modification time of the scheduled SQL analysis task.
+	ModifyTimeStamp int `pulumi:"modifyTimeStamp"`
+	// Schedule the end time of the timed SQL analysis task in the format of a second-level timestamp.
+	ProcessEndTime int `pulumi:"processEndTime"`
+	// The delay time of each scheduling. The value range is from 0 to 120, and the unit is seconds.
+	ProcessSqlDelay int `pulumi:"processSqlDelay"`
+	// The start time of the scheduled SQL task, that is, the start time when the first instance is scheduled. The format is a timestamp at the second level.
+	ProcessStartTime int `pulumi:"processStartTime"`
+	// SQL time window, which refers to the time range for log retrieval and analysis when a timed SQL analysis task is running, is in a left-closed and right-open format.
+	ProcessTimeWindow string `pulumi:"processTimeWindow"`
+	// Timed SQL analysis tasks are retrieval and analysis statements that are executed regularly.
+	Query string `pulumi:"query"`
+	// The scheduling cycle of timed SQL analysis tasks.
+	RequestCycle GetScheduleSqlTasksTaskRequestCycle `pulumi:"requestCycle"`
+	// The log project ID to which the source log topic belongs.
+	SourceProjectId string `pulumi:"sourceProjectId"`
+	// The name of the log item to which the source log topic belongs.
+	SourceProjectName string `pulumi:"sourceProjectName"`
+	// The source log topic ID where the original log for timed SQL analysis is located.
+	SourceTopicId string `pulumi:"sourceTopicId"`
+	// Source log topic name.
+	SourceTopicName string `pulumi:"sourceTopicName"`
+	// Timed SQL analysis task status.
+	Status int `pulumi:"status"`
+	// Timed SQL analysis task ID.
+	TaskId string `pulumi:"taskId"`
+	// Timed SQL analysis task name.
+	TaskName string `pulumi:"taskName"`
+}
+
+// GetScheduleSqlTasksTaskInput is an input type that accepts GetScheduleSqlTasksTaskArgs and GetScheduleSqlTasksTaskOutput values.
+// You can construct a concrete instance of `GetScheduleSqlTasksTaskInput` via:
+//
+//	GetScheduleSqlTasksTaskArgs{...}
+type GetScheduleSqlTasksTaskInput interface {
+	pulumi.Input
+
+	ToGetScheduleSqlTasksTaskOutput() GetScheduleSqlTasksTaskOutput
+	ToGetScheduleSqlTasksTaskOutputWithContext(context.Context) GetScheduleSqlTasksTaskOutput
+}
+
+type GetScheduleSqlTasksTaskArgs struct {
+	// Set the creation time of timed SQL analysis tasks.
+	CreateTimeStamp pulumi.IntInput `pulumi:"createTimeStamp"`
+	// A simple description of the timed SQL analysis task.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The log project ID to which the target log topic belongs.
+	DestProjectId pulumi.StringInput `pulumi:"destProjectId"`
+	// The region to which the target log project belongs.
+	DestRegion pulumi.StringInput `pulumi:"destRegion"`
+	// The target log topic ID used for storing the result data of timed SQL analysis.
+	DestTopicId pulumi.StringInput `pulumi:"destTopicId"`
+	// The name of the target log topic used for storing the data of the timed SQL analysis results.
+	DestTopicName pulumi.StringInput `pulumi:"destTopicName"`
+	// The most recent modification time of the scheduled SQL analysis task.
+	ModifyTimeStamp pulumi.IntInput `pulumi:"modifyTimeStamp"`
+	// Schedule the end time of the timed SQL analysis task in the format of a second-level timestamp.
+	ProcessEndTime pulumi.IntInput `pulumi:"processEndTime"`
+	// The delay time of each scheduling. The value range is from 0 to 120, and the unit is seconds.
+	ProcessSqlDelay pulumi.IntInput `pulumi:"processSqlDelay"`
+	// The start time of the scheduled SQL task, that is, the start time when the first instance is scheduled. The format is a timestamp at the second level.
+	ProcessStartTime pulumi.IntInput `pulumi:"processStartTime"`
+	// SQL time window, which refers to the time range for log retrieval and analysis when a timed SQL analysis task is running, is in a left-closed and right-open format.
+	ProcessTimeWindow pulumi.StringInput `pulumi:"processTimeWindow"`
+	// Timed SQL analysis tasks are retrieval and analysis statements that are executed regularly.
+	Query pulumi.StringInput `pulumi:"query"`
+	// The scheduling cycle of timed SQL analysis tasks.
+	RequestCycle GetScheduleSqlTasksTaskRequestCycleInput `pulumi:"requestCycle"`
+	// The log project ID to which the source log topic belongs.
+	SourceProjectId pulumi.StringInput `pulumi:"sourceProjectId"`
+	// The name of the log item to which the source log topic belongs.
+	SourceProjectName pulumi.StringInput `pulumi:"sourceProjectName"`
+	// The source log topic ID where the original log for timed SQL analysis is located.
+	SourceTopicId pulumi.StringInput `pulumi:"sourceTopicId"`
+	// Source log topic name.
+	SourceTopicName pulumi.StringInput `pulumi:"sourceTopicName"`
+	// Timed SQL analysis task status.
+	Status pulumi.IntInput `pulumi:"status"`
+	// Timed SQL analysis task ID.
+	TaskId pulumi.StringInput `pulumi:"taskId"`
+	// Timed SQL analysis task name.
+	TaskName pulumi.StringInput `pulumi:"taskName"`
+}
+
+func (GetScheduleSqlTasksTaskArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetScheduleSqlTasksTask)(nil)).Elem()
+}
+
+func (i GetScheduleSqlTasksTaskArgs) ToGetScheduleSqlTasksTaskOutput() GetScheduleSqlTasksTaskOutput {
+	return i.ToGetScheduleSqlTasksTaskOutputWithContext(context.Background())
+}
+
+func (i GetScheduleSqlTasksTaskArgs) ToGetScheduleSqlTasksTaskOutputWithContext(ctx context.Context) GetScheduleSqlTasksTaskOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetScheduleSqlTasksTaskOutput)
+}
+
+// GetScheduleSqlTasksTaskArrayInput is an input type that accepts GetScheduleSqlTasksTaskArray and GetScheduleSqlTasksTaskArrayOutput values.
+// You can construct a concrete instance of `GetScheduleSqlTasksTaskArrayInput` via:
+//
+//	GetScheduleSqlTasksTaskArray{ GetScheduleSqlTasksTaskArgs{...} }
+type GetScheduleSqlTasksTaskArrayInput interface {
+	pulumi.Input
+
+	ToGetScheduleSqlTasksTaskArrayOutput() GetScheduleSqlTasksTaskArrayOutput
+	ToGetScheduleSqlTasksTaskArrayOutputWithContext(context.Context) GetScheduleSqlTasksTaskArrayOutput
+}
+
+type GetScheduleSqlTasksTaskArray []GetScheduleSqlTasksTaskInput
+
+func (GetScheduleSqlTasksTaskArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetScheduleSqlTasksTask)(nil)).Elem()
+}
+
+func (i GetScheduleSqlTasksTaskArray) ToGetScheduleSqlTasksTaskArrayOutput() GetScheduleSqlTasksTaskArrayOutput {
+	return i.ToGetScheduleSqlTasksTaskArrayOutputWithContext(context.Background())
+}
+
+func (i GetScheduleSqlTasksTaskArray) ToGetScheduleSqlTasksTaskArrayOutputWithContext(ctx context.Context) GetScheduleSqlTasksTaskArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetScheduleSqlTasksTaskArrayOutput)
+}
+
+type GetScheduleSqlTasksTaskOutput struct{ *pulumi.OutputState }
+
+func (GetScheduleSqlTasksTaskOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetScheduleSqlTasksTask)(nil)).Elem()
+}
+
+func (o GetScheduleSqlTasksTaskOutput) ToGetScheduleSqlTasksTaskOutput() GetScheduleSqlTasksTaskOutput {
+	return o
+}
+
+func (o GetScheduleSqlTasksTaskOutput) ToGetScheduleSqlTasksTaskOutputWithContext(ctx context.Context) GetScheduleSqlTasksTaskOutput {
+	return o
+}
+
+// Set the creation time of timed SQL analysis tasks.
+func (o GetScheduleSqlTasksTaskOutput) CreateTimeStamp() pulumi.IntOutput {
+	return o.ApplyT(func(v GetScheduleSqlTasksTask) int { return v.CreateTimeStamp }).(pulumi.IntOutput)
+}
+
+// A simple description of the timed SQL analysis task.
+func (o GetScheduleSqlTasksTaskOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScheduleSqlTasksTask) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The log project ID to which the target log topic belongs.
+func (o GetScheduleSqlTasksTaskOutput) DestProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScheduleSqlTasksTask) string { return v.DestProjectId }).(pulumi.StringOutput)
+}
+
+// The region to which the target log project belongs.
+func (o GetScheduleSqlTasksTaskOutput) DestRegion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScheduleSqlTasksTask) string { return v.DestRegion }).(pulumi.StringOutput)
+}
+
+// The target log topic ID used for storing the result data of timed SQL analysis.
+func (o GetScheduleSqlTasksTaskOutput) DestTopicId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScheduleSqlTasksTask) string { return v.DestTopicId }).(pulumi.StringOutput)
+}
+
+// The name of the target log topic used for storing the data of the timed SQL analysis results.
+func (o GetScheduleSqlTasksTaskOutput) DestTopicName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScheduleSqlTasksTask) string { return v.DestTopicName }).(pulumi.StringOutput)
+}
+
+// The most recent modification time of the scheduled SQL analysis task.
+func (o GetScheduleSqlTasksTaskOutput) ModifyTimeStamp() pulumi.IntOutput {
+	return o.ApplyT(func(v GetScheduleSqlTasksTask) int { return v.ModifyTimeStamp }).(pulumi.IntOutput)
+}
+
+// Schedule the end time of the timed SQL analysis task in the format of a second-level timestamp.
+func (o GetScheduleSqlTasksTaskOutput) ProcessEndTime() pulumi.IntOutput {
+	return o.ApplyT(func(v GetScheduleSqlTasksTask) int { return v.ProcessEndTime }).(pulumi.IntOutput)
+}
+
+// The delay time of each scheduling. The value range is from 0 to 120, and the unit is seconds.
+func (o GetScheduleSqlTasksTaskOutput) ProcessSqlDelay() pulumi.IntOutput {
+	return o.ApplyT(func(v GetScheduleSqlTasksTask) int { return v.ProcessSqlDelay }).(pulumi.IntOutput)
+}
+
+// The start time of the scheduled SQL task, that is, the start time when the first instance is scheduled. The format is a timestamp at the second level.
+func (o GetScheduleSqlTasksTaskOutput) ProcessStartTime() pulumi.IntOutput {
+	return o.ApplyT(func(v GetScheduleSqlTasksTask) int { return v.ProcessStartTime }).(pulumi.IntOutput)
+}
+
+// SQL time window, which refers to the time range for log retrieval and analysis when a timed SQL analysis task is running, is in a left-closed and right-open format.
+func (o GetScheduleSqlTasksTaskOutput) ProcessTimeWindow() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScheduleSqlTasksTask) string { return v.ProcessTimeWindow }).(pulumi.StringOutput)
+}
+
+// Timed SQL analysis tasks are retrieval and analysis statements that are executed regularly.
+func (o GetScheduleSqlTasksTaskOutput) Query() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScheduleSqlTasksTask) string { return v.Query }).(pulumi.StringOutput)
+}
+
+// The scheduling cycle of timed SQL analysis tasks.
+func (o GetScheduleSqlTasksTaskOutput) RequestCycle() GetScheduleSqlTasksTaskRequestCycleOutput {
+	return o.ApplyT(func(v GetScheduleSqlTasksTask) GetScheduleSqlTasksTaskRequestCycle { return v.RequestCycle }).(GetScheduleSqlTasksTaskRequestCycleOutput)
+}
+
+// The log project ID to which the source log topic belongs.
+func (o GetScheduleSqlTasksTaskOutput) SourceProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScheduleSqlTasksTask) string { return v.SourceProjectId }).(pulumi.StringOutput)
+}
+
+// The name of the log item to which the source log topic belongs.
+func (o GetScheduleSqlTasksTaskOutput) SourceProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScheduleSqlTasksTask) string { return v.SourceProjectName }).(pulumi.StringOutput)
+}
+
+// The source log topic ID where the original log for timed SQL analysis is located.
+func (o GetScheduleSqlTasksTaskOutput) SourceTopicId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScheduleSqlTasksTask) string { return v.SourceTopicId }).(pulumi.StringOutput)
+}
+
+// Source log topic name.
+func (o GetScheduleSqlTasksTaskOutput) SourceTopicName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScheduleSqlTasksTask) string { return v.SourceTopicName }).(pulumi.StringOutput)
+}
+
+// Timed SQL analysis task status.
+func (o GetScheduleSqlTasksTaskOutput) Status() pulumi.IntOutput {
+	return o.ApplyT(func(v GetScheduleSqlTasksTask) int { return v.Status }).(pulumi.IntOutput)
+}
+
+// Timed SQL analysis task ID.
+func (o GetScheduleSqlTasksTaskOutput) TaskId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScheduleSqlTasksTask) string { return v.TaskId }).(pulumi.StringOutput)
+}
+
+// Timed SQL analysis task name.
+func (o GetScheduleSqlTasksTaskOutput) TaskName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScheduleSqlTasksTask) string { return v.TaskName }).(pulumi.StringOutput)
+}
+
+type GetScheduleSqlTasksTaskArrayOutput struct{ *pulumi.OutputState }
+
+func (GetScheduleSqlTasksTaskArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetScheduleSqlTasksTask)(nil)).Elem()
+}
+
+func (o GetScheduleSqlTasksTaskArrayOutput) ToGetScheduleSqlTasksTaskArrayOutput() GetScheduleSqlTasksTaskArrayOutput {
+	return o
+}
+
+func (o GetScheduleSqlTasksTaskArrayOutput) ToGetScheduleSqlTasksTaskArrayOutputWithContext(ctx context.Context) GetScheduleSqlTasksTaskArrayOutput {
+	return o
+}
+
+func (o GetScheduleSqlTasksTaskArrayOutput) Index(i pulumi.IntInput) GetScheduleSqlTasksTaskOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetScheduleSqlTasksTask {
+		return vs[0].([]GetScheduleSqlTasksTask)[vs[1].(int)]
+	}).(GetScheduleSqlTasksTaskOutput)
+}
+
+type GetScheduleSqlTasksTaskRequestCycle struct {
+	// Cron expression. The log service specifies the timed execution of alarm tasks through the Cron expression. The minimum granularity of Cron expressions is minutes, 24 hours. For example, 0 18 * * * indicates that an alarm task is executed exactly at 18:00 every day.
+	CronTab string `pulumi:"cronTab"`
+	// When setting the Type to Cron, the time zone also needs to be set.
+	CronTimeZone string `pulumi:"cronTimeZone"`
+	// The scheduling cycle or the time point of regular execution (the number of minutes away from 00:00), with a value range of 1 to 1440, and the unit is minutes.
+	Time int `pulumi:"time"`
+	// The type of Scheduling cycle.
+	Type string `pulumi:"type"`
+}
+
+// GetScheduleSqlTasksTaskRequestCycleInput is an input type that accepts GetScheduleSqlTasksTaskRequestCycleArgs and GetScheduleSqlTasksTaskRequestCycleOutput values.
+// You can construct a concrete instance of `GetScheduleSqlTasksTaskRequestCycleInput` via:
+//
+//	GetScheduleSqlTasksTaskRequestCycleArgs{...}
+type GetScheduleSqlTasksTaskRequestCycleInput interface {
+	pulumi.Input
+
+	ToGetScheduleSqlTasksTaskRequestCycleOutput() GetScheduleSqlTasksTaskRequestCycleOutput
+	ToGetScheduleSqlTasksTaskRequestCycleOutputWithContext(context.Context) GetScheduleSqlTasksTaskRequestCycleOutput
+}
+
+type GetScheduleSqlTasksTaskRequestCycleArgs struct {
+	// Cron expression. The log service specifies the timed execution of alarm tasks through the Cron expression. The minimum granularity of Cron expressions is minutes, 24 hours. For example, 0 18 * * * indicates that an alarm task is executed exactly at 18:00 every day.
+	CronTab pulumi.StringInput `pulumi:"cronTab"`
+	// When setting the Type to Cron, the time zone also needs to be set.
+	CronTimeZone pulumi.StringInput `pulumi:"cronTimeZone"`
+	// The scheduling cycle or the time point of regular execution (the number of minutes away from 00:00), with a value range of 1 to 1440, and the unit is minutes.
+	Time pulumi.IntInput `pulumi:"time"`
+	// The type of Scheduling cycle.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetScheduleSqlTasksTaskRequestCycleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetScheduleSqlTasksTaskRequestCycle)(nil)).Elem()
+}
+
+func (i GetScheduleSqlTasksTaskRequestCycleArgs) ToGetScheduleSqlTasksTaskRequestCycleOutput() GetScheduleSqlTasksTaskRequestCycleOutput {
+	return i.ToGetScheduleSqlTasksTaskRequestCycleOutputWithContext(context.Background())
+}
+
+func (i GetScheduleSqlTasksTaskRequestCycleArgs) ToGetScheduleSqlTasksTaskRequestCycleOutputWithContext(ctx context.Context) GetScheduleSqlTasksTaskRequestCycleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetScheduleSqlTasksTaskRequestCycleOutput)
+}
+
+type GetScheduleSqlTasksTaskRequestCycleOutput struct{ *pulumi.OutputState }
+
+func (GetScheduleSqlTasksTaskRequestCycleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetScheduleSqlTasksTaskRequestCycle)(nil)).Elem()
+}
+
+func (o GetScheduleSqlTasksTaskRequestCycleOutput) ToGetScheduleSqlTasksTaskRequestCycleOutput() GetScheduleSqlTasksTaskRequestCycleOutput {
+	return o
+}
+
+func (o GetScheduleSqlTasksTaskRequestCycleOutput) ToGetScheduleSqlTasksTaskRequestCycleOutputWithContext(ctx context.Context) GetScheduleSqlTasksTaskRequestCycleOutput {
+	return o
+}
+
+// Cron expression. The log service specifies the timed execution of alarm tasks through the Cron expression. The minimum granularity of Cron expressions is minutes, 24 hours. For example, 0 18 * * * indicates that an alarm task is executed exactly at 18:00 every day.
+func (o GetScheduleSqlTasksTaskRequestCycleOutput) CronTab() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScheduleSqlTasksTaskRequestCycle) string { return v.CronTab }).(pulumi.StringOutput)
+}
+
+// When setting the Type to Cron, the time zone also needs to be set.
+func (o GetScheduleSqlTasksTaskRequestCycleOutput) CronTimeZone() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScheduleSqlTasksTaskRequestCycle) string { return v.CronTimeZone }).(pulumi.StringOutput)
+}
+
+// The scheduling cycle or the time point of regular execution (the number of minutes away from 00:00), with a value range of 1 to 1440, and the unit is minutes.
+func (o GetScheduleSqlTasksTaskRequestCycleOutput) Time() pulumi.IntOutput {
+	return o.ApplyT(func(v GetScheduleSqlTasksTaskRequestCycle) int { return v.Time }).(pulumi.IntOutput)
+}
+
+// The type of Scheduling cycle.
+func (o GetScheduleSqlTasksTaskRequestCycleOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScheduleSqlTasksTaskRequestCycle) string { return v.Type }).(pulumi.StringOutput)
+}
+
 type GetShardsShard struct {
 	// The end key info.
 	ExclusiveEndKey string `pulumi:"exclusiveEndKey"`
@@ -16615,6 +23214,651 @@ func (o GetShardsShardArrayOutput) Index(i pulumi.IntInput) GetShardsShardOutput
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetShardsShard {
 		return vs[0].([]GetShardsShard)[vs[1].(int)]
 	}).(GetShardsShardOutput)
+}
+
+type GetShippersShipper struct {
+	// The content format configuration of the delivery log.
+	ContentInfo GetShippersShipperContentInfo `pulumi:"contentInfo"`
+	// Processing task creation time.
+	CreateTime string `pulumi:"createTime"`
+	// The default built-in dashboard ID for delivery.
+	DashboardId string `pulumi:"dashboardId"`
+	// JSON format log content configuration.
+	KafkaShipperInfo GetShippersShipperKafkaShipperInfo `pulumi:"kafkaShipperInfo"`
+	// The most recent modification time of the processing task.
+	ModifyTime string `pulumi:"modifyTime"`
+	// Specify the log item ID for querying the data delivery configuration under the specified log item.
+	ProjectId string `pulumi:"projectId"`
+	// Specify the name of the log item for querying the data delivery configuration under the specified log item. Support fuzzy matching.
+	ProjectName string `pulumi:"projectName"`
+	// Delivery end time, millisecond timestamp. If not configured, it will keep delivering.
+	ShipperEndTime int `pulumi:"shipperEndTime"`
+	// Delivery configuration ID.
+	ShipperId string `pulumi:"shipperId"`
+	// Delivery configuration name.
+	ShipperName string `pulumi:"shipperName"`
+	// Delivery start time, millisecond timestamp. If not configured, it defaults to the current time.
+	ShipperStartTime int `pulumi:"shipperStartTime"`
+	// Specify the delivery type for querying the delivery configuration related to that delivery type.
+	ShipperType string `pulumi:"shipperType"`
+	// Whether to enable the delivery configuration.
+	Status bool `pulumi:"status"`
+	// Specify the log topic ID for querying the data delivery configuration related to this log topic.
+	TopicId string `pulumi:"topicId"`
+	// Specify the name of the log topic for querying the data delivery configuration related to this log topic. Support fuzzy matching.
+	TopicName string `pulumi:"topicName"`
+	// Deliver the relevant configuration to the object storage (TOS).
+	TosShipperInfo GetShippersShipperTosShipperInfo `pulumi:"tosShipperInfo"`
+}
+
+// GetShippersShipperInput is an input type that accepts GetShippersShipperArgs and GetShippersShipperOutput values.
+// You can construct a concrete instance of `GetShippersShipperInput` via:
+//
+//	GetShippersShipperArgs{...}
+type GetShippersShipperInput interface {
+	pulumi.Input
+
+	ToGetShippersShipperOutput() GetShippersShipperOutput
+	ToGetShippersShipperOutputWithContext(context.Context) GetShippersShipperOutput
+}
+
+type GetShippersShipperArgs struct {
+	// The content format configuration of the delivery log.
+	ContentInfo GetShippersShipperContentInfoInput `pulumi:"contentInfo"`
+	// Processing task creation time.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The default built-in dashboard ID for delivery.
+	DashboardId pulumi.StringInput `pulumi:"dashboardId"`
+	// JSON format log content configuration.
+	KafkaShipperInfo GetShippersShipperKafkaShipperInfoInput `pulumi:"kafkaShipperInfo"`
+	// The most recent modification time of the processing task.
+	ModifyTime pulumi.StringInput `pulumi:"modifyTime"`
+	// Specify the log item ID for querying the data delivery configuration under the specified log item.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Specify the name of the log item for querying the data delivery configuration under the specified log item. Support fuzzy matching.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// Delivery end time, millisecond timestamp. If not configured, it will keep delivering.
+	ShipperEndTime pulumi.IntInput `pulumi:"shipperEndTime"`
+	// Delivery configuration ID.
+	ShipperId pulumi.StringInput `pulumi:"shipperId"`
+	// Delivery configuration name.
+	ShipperName pulumi.StringInput `pulumi:"shipperName"`
+	// Delivery start time, millisecond timestamp. If not configured, it defaults to the current time.
+	ShipperStartTime pulumi.IntInput `pulumi:"shipperStartTime"`
+	// Specify the delivery type for querying the delivery configuration related to that delivery type.
+	ShipperType pulumi.StringInput `pulumi:"shipperType"`
+	// Whether to enable the delivery configuration.
+	Status pulumi.BoolInput `pulumi:"status"`
+	// Specify the log topic ID for querying the data delivery configuration related to this log topic.
+	TopicId pulumi.StringInput `pulumi:"topicId"`
+	// Specify the name of the log topic for querying the data delivery configuration related to this log topic. Support fuzzy matching.
+	TopicName pulumi.StringInput `pulumi:"topicName"`
+	// Deliver the relevant configuration to the object storage (TOS).
+	TosShipperInfo GetShippersShipperTosShipperInfoInput `pulumi:"tosShipperInfo"`
+}
+
+func (GetShippersShipperArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetShippersShipper)(nil)).Elem()
+}
+
+func (i GetShippersShipperArgs) ToGetShippersShipperOutput() GetShippersShipperOutput {
+	return i.ToGetShippersShipperOutputWithContext(context.Background())
+}
+
+func (i GetShippersShipperArgs) ToGetShippersShipperOutputWithContext(ctx context.Context) GetShippersShipperOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetShippersShipperOutput)
+}
+
+// GetShippersShipperArrayInput is an input type that accepts GetShippersShipperArray and GetShippersShipperArrayOutput values.
+// You can construct a concrete instance of `GetShippersShipperArrayInput` via:
+//
+//	GetShippersShipperArray{ GetShippersShipperArgs{...} }
+type GetShippersShipperArrayInput interface {
+	pulumi.Input
+
+	ToGetShippersShipperArrayOutput() GetShippersShipperArrayOutput
+	ToGetShippersShipperArrayOutputWithContext(context.Context) GetShippersShipperArrayOutput
+}
+
+type GetShippersShipperArray []GetShippersShipperInput
+
+func (GetShippersShipperArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetShippersShipper)(nil)).Elem()
+}
+
+func (i GetShippersShipperArray) ToGetShippersShipperArrayOutput() GetShippersShipperArrayOutput {
+	return i.ToGetShippersShipperArrayOutputWithContext(context.Background())
+}
+
+func (i GetShippersShipperArray) ToGetShippersShipperArrayOutputWithContext(ctx context.Context) GetShippersShipperArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetShippersShipperArrayOutput)
+}
+
+type GetShippersShipperOutput struct{ *pulumi.OutputState }
+
+func (GetShippersShipperOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetShippersShipper)(nil)).Elem()
+}
+
+func (o GetShippersShipperOutput) ToGetShippersShipperOutput() GetShippersShipperOutput {
+	return o
+}
+
+func (o GetShippersShipperOutput) ToGetShippersShipperOutputWithContext(ctx context.Context) GetShippersShipperOutput {
+	return o
+}
+
+// The content format configuration of the delivery log.
+func (o GetShippersShipperOutput) ContentInfo() GetShippersShipperContentInfoOutput {
+	return o.ApplyT(func(v GetShippersShipper) GetShippersShipperContentInfo { return v.ContentInfo }).(GetShippersShipperContentInfoOutput)
+}
+
+// Processing task creation time.
+func (o GetShippersShipperOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetShippersShipper) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The default built-in dashboard ID for delivery.
+func (o GetShippersShipperOutput) DashboardId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetShippersShipper) string { return v.DashboardId }).(pulumi.StringOutput)
+}
+
+// JSON format log content configuration.
+func (o GetShippersShipperOutput) KafkaShipperInfo() GetShippersShipperKafkaShipperInfoOutput {
+	return o.ApplyT(func(v GetShippersShipper) GetShippersShipperKafkaShipperInfo { return v.KafkaShipperInfo }).(GetShippersShipperKafkaShipperInfoOutput)
+}
+
+// The most recent modification time of the processing task.
+func (o GetShippersShipperOutput) ModifyTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetShippersShipper) string { return v.ModifyTime }).(pulumi.StringOutput)
+}
+
+// Specify the log item ID for querying the data delivery configuration under the specified log item.
+func (o GetShippersShipperOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetShippersShipper) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Specify the name of the log item for querying the data delivery configuration under the specified log item. Support fuzzy matching.
+func (o GetShippersShipperOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetShippersShipper) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// Delivery end time, millisecond timestamp. If not configured, it will keep delivering.
+func (o GetShippersShipperOutput) ShipperEndTime() pulumi.IntOutput {
+	return o.ApplyT(func(v GetShippersShipper) int { return v.ShipperEndTime }).(pulumi.IntOutput)
+}
+
+// Delivery configuration ID.
+func (o GetShippersShipperOutput) ShipperId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetShippersShipper) string { return v.ShipperId }).(pulumi.StringOutput)
+}
+
+// Delivery configuration name.
+func (o GetShippersShipperOutput) ShipperName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetShippersShipper) string { return v.ShipperName }).(pulumi.StringOutput)
+}
+
+// Delivery start time, millisecond timestamp. If not configured, it defaults to the current time.
+func (o GetShippersShipperOutput) ShipperStartTime() pulumi.IntOutput {
+	return o.ApplyT(func(v GetShippersShipper) int { return v.ShipperStartTime }).(pulumi.IntOutput)
+}
+
+// Specify the delivery type for querying the delivery configuration related to that delivery type.
+func (o GetShippersShipperOutput) ShipperType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetShippersShipper) string { return v.ShipperType }).(pulumi.StringOutput)
+}
+
+// Whether to enable the delivery configuration.
+func (o GetShippersShipperOutput) Status() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetShippersShipper) bool { return v.Status }).(pulumi.BoolOutput)
+}
+
+// Specify the log topic ID for querying the data delivery configuration related to this log topic.
+func (o GetShippersShipperOutput) TopicId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetShippersShipper) string { return v.TopicId }).(pulumi.StringOutput)
+}
+
+// Specify the name of the log topic for querying the data delivery configuration related to this log topic. Support fuzzy matching.
+func (o GetShippersShipperOutput) TopicName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetShippersShipper) string { return v.TopicName }).(pulumi.StringOutput)
+}
+
+// Deliver the relevant configuration to the object storage (TOS).
+func (o GetShippersShipperOutput) TosShipperInfo() GetShippersShipperTosShipperInfoOutput {
+	return o.ApplyT(func(v GetShippersShipper) GetShippersShipperTosShipperInfo { return v.TosShipperInfo }).(GetShippersShipperTosShipperInfoOutput)
+}
+
+type GetShippersShipperArrayOutput struct{ *pulumi.OutputState }
+
+func (GetShippersShipperArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetShippersShipper)(nil)).Elem()
+}
+
+func (o GetShippersShipperArrayOutput) ToGetShippersShipperArrayOutput() GetShippersShipperArrayOutput {
+	return o
+}
+
+func (o GetShippersShipperArrayOutput) ToGetShippersShipperArrayOutputWithContext(ctx context.Context) GetShippersShipperArrayOutput {
+	return o
+}
+
+func (o GetShippersShipperArrayOutput) Index(i pulumi.IntInput) GetShippersShipperOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetShippersShipper {
+		return vs[0].([]GetShippersShipper)[vs[1].(int)]
+	}).(GetShippersShipperOutput)
+}
+
+type GetShippersShipperContentInfo struct {
+	// CSV format log content configuration.
+	CsvInfo GetShippersShipperContentInfoCsvInfo `pulumi:"csvInfo"`
+	// Log content parsing format.
+	Format string `pulumi:"format"`
+	// JSON format log content configuration.
+	JsonInfo GetShippersShipperContentInfoJsonInfo `pulumi:"jsonInfo"`
+}
+
+// GetShippersShipperContentInfoInput is an input type that accepts GetShippersShipperContentInfoArgs and GetShippersShipperContentInfoOutput values.
+// You can construct a concrete instance of `GetShippersShipperContentInfoInput` via:
+//
+//	GetShippersShipperContentInfoArgs{...}
+type GetShippersShipperContentInfoInput interface {
+	pulumi.Input
+
+	ToGetShippersShipperContentInfoOutput() GetShippersShipperContentInfoOutput
+	ToGetShippersShipperContentInfoOutputWithContext(context.Context) GetShippersShipperContentInfoOutput
+}
+
+type GetShippersShipperContentInfoArgs struct {
+	// CSV format log content configuration.
+	CsvInfo GetShippersShipperContentInfoCsvInfoInput `pulumi:"csvInfo"`
+	// Log content parsing format.
+	Format pulumi.StringInput `pulumi:"format"`
+	// JSON format log content configuration.
+	JsonInfo GetShippersShipperContentInfoJsonInfoInput `pulumi:"jsonInfo"`
+}
+
+func (GetShippersShipperContentInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetShippersShipperContentInfo)(nil)).Elem()
+}
+
+func (i GetShippersShipperContentInfoArgs) ToGetShippersShipperContentInfoOutput() GetShippersShipperContentInfoOutput {
+	return i.ToGetShippersShipperContentInfoOutputWithContext(context.Background())
+}
+
+func (i GetShippersShipperContentInfoArgs) ToGetShippersShipperContentInfoOutputWithContext(ctx context.Context) GetShippersShipperContentInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetShippersShipperContentInfoOutput)
+}
+
+type GetShippersShipperContentInfoOutput struct{ *pulumi.OutputState }
+
+func (GetShippersShipperContentInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetShippersShipperContentInfo)(nil)).Elem()
+}
+
+func (o GetShippersShipperContentInfoOutput) ToGetShippersShipperContentInfoOutput() GetShippersShipperContentInfoOutput {
+	return o
+}
+
+func (o GetShippersShipperContentInfoOutput) ToGetShippersShipperContentInfoOutputWithContext(ctx context.Context) GetShippersShipperContentInfoOutput {
+	return o
+}
+
+// CSV format log content configuration.
+func (o GetShippersShipperContentInfoOutput) CsvInfo() GetShippersShipperContentInfoCsvInfoOutput {
+	return o.ApplyT(func(v GetShippersShipperContentInfo) GetShippersShipperContentInfoCsvInfo { return v.CsvInfo }).(GetShippersShipperContentInfoCsvInfoOutput)
+}
+
+// Log content parsing format.
+func (o GetShippersShipperContentInfoOutput) Format() pulumi.StringOutput {
+	return o.ApplyT(func(v GetShippersShipperContentInfo) string { return v.Format }).(pulumi.StringOutput)
+}
+
+// JSON format log content configuration.
+func (o GetShippersShipperContentInfoOutput) JsonInfo() GetShippersShipperContentInfoJsonInfoOutput {
+	return o.ApplyT(func(v GetShippersShipperContentInfo) GetShippersShipperContentInfoJsonInfo { return v.JsonInfo }).(GetShippersShipperContentInfoJsonInfoOutput)
+}
+
+type GetShippersShipperContentInfoCsvInfo struct {
+	// Delimiters are supported, including commas, tabs, vertical bars, semicolons, and Spaces.
+	Delimiter string `pulumi:"delimiter"`
+	// When the field content contains a delimiter, use an escape character to wrap the field. Currently, only single quotes, double quotes, and null characters are supported.
+	EscapeChar string `pulumi:"escapeChar"`
+	// When delivering in JSON format, if this parameter is not configured, it indicates that all fields have been delivered. Including __content__ (choice), __source__, __path__, __time__, __image_name__, __container_name__, __pod_name__, __pod_uid__, namespace, __tag____client_ip__, __tag____receive_time__.
+	Keys []string `pulumi:"keys"`
+	// Invalid field filling content, with a length ranging from 0 to 128.
+	NonFieldContent string `pulumi:"nonFieldContent"`
+	// Whether to print the Key on the first line.
+	PrintHeader bool `pulumi:"printHeader"`
+}
+
+// GetShippersShipperContentInfoCsvInfoInput is an input type that accepts GetShippersShipperContentInfoCsvInfoArgs and GetShippersShipperContentInfoCsvInfoOutput values.
+// You can construct a concrete instance of `GetShippersShipperContentInfoCsvInfoInput` via:
+//
+//	GetShippersShipperContentInfoCsvInfoArgs{...}
+type GetShippersShipperContentInfoCsvInfoInput interface {
+	pulumi.Input
+
+	ToGetShippersShipperContentInfoCsvInfoOutput() GetShippersShipperContentInfoCsvInfoOutput
+	ToGetShippersShipperContentInfoCsvInfoOutputWithContext(context.Context) GetShippersShipperContentInfoCsvInfoOutput
+}
+
+type GetShippersShipperContentInfoCsvInfoArgs struct {
+	// Delimiters are supported, including commas, tabs, vertical bars, semicolons, and Spaces.
+	Delimiter pulumi.StringInput `pulumi:"delimiter"`
+	// When the field content contains a delimiter, use an escape character to wrap the field. Currently, only single quotes, double quotes, and null characters are supported.
+	EscapeChar pulumi.StringInput `pulumi:"escapeChar"`
+	// When delivering in JSON format, if this parameter is not configured, it indicates that all fields have been delivered. Including __content__ (choice), __source__, __path__, __time__, __image_name__, __container_name__, __pod_name__, __pod_uid__, namespace, __tag____client_ip__, __tag____receive_time__.
+	Keys pulumi.StringArrayInput `pulumi:"keys"`
+	// Invalid field filling content, with a length ranging from 0 to 128.
+	NonFieldContent pulumi.StringInput `pulumi:"nonFieldContent"`
+	// Whether to print the Key on the first line.
+	PrintHeader pulumi.BoolInput `pulumi:"printHeader"`
+}
+
+func (GetShippersShipperContentInfoCsvInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetShippersShipperContentInfoCsvInfo)(nil)).Elem()
+}
+
+func (i GetShippersShipperContentInfoCsvInfoArgs) ToGetShippersShipperContentInfoCsvInfoOutput() GetShippersShipperContentInfoCsvInfoOutput {
+	return i.ToGetShippersShipperContentInfoCsvInfoOutputWithContext(context.Background())
+}
+
+func (i GetShippersShipperContentInfoCsvInfoArgs) ToGetShippersShipperContentInfoCsvInfoOutputWithContext(ctx context.Context) GetShippersShipperContentInfoCsvInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetShippersShipperContentInfoCsvInfoOutput)
+}
+
+type GetShippersShipperContentInfoCsvInfoOutput struct{ *pulumi.OutputState }
+
+func (GetShippersShipperContentInfoCsvInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetShippersShipperContentInfoCsvInfo)(nil)).Elem()
+}
+
+func (o GetShippersShipperContentInfoCsvInfoOutput) ToGetShippersShipperContentInfoCsvInfoOutput() GetShippersShipperContentInfoCsvInfoOutput {
+	return o
+}
+
+func (o GetShippersShipperContentInfoCsvInfoOutput) ToGetShippersShipperContentInfoCsvInfoOutputWithContext(ctx context.Context) GetShippersShipperContentInfoCsvInfoOutput {
+	return o
+}
+
+// Delimiters are supported, including commas, tabs, vertical bars, semicolons, and Spaces.
+func (o GetShippersShipperContentInfoCsvInfoOutput) Delimiter() pulumi.StringOutput {
+	return o.ApplyT(func(v GetShippersShipperContentInfoCsvInfo) string { return v.Delimiter }).(pulumi.StringOutput)
+}
+
+// When the field content contains a delimiter, use an escape character to wrap the field. Currently, only single quotes, double quotes, and null characters are supported.
+func (o GetShippersShipperContentInfoCsvInfoOutput) EscapeChar() pulumi.StringOutput {
+	return o.ApplyT(func(v GetShippersShipperContentInfoCsvInfo) string { return v.EscapeChar }).(pulumi.StringOutput)
+}
+
+// When delivering in JSON format, if this parameter is not configured, it indicates that all fields have been delivered. Including __content__ (choice), __source__, __path__, __time__, __image_name__, __container_name__, __pod_name__, __pod_uid__, namespace, __tag____client_ip__, __tag____receive_time__.
+func (o GetShippersShipperContentInfoCsvInfoOutput) Keys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetShippersShipperContentInfoCsvInfo) []string { return v.Keys }).(pulumi.StringArrayOutput)
+}
+
+// Invalid field filling content, with a length ranging from 0 to 128.
+func (o GetShippersShipperContentInfoCsvInfoOutput) NonFieldContent() pulumi.StringOutput {
+	return o.ApplyT(func(v GetShippersShipperContentInfoCsvInfo) string { return v.NonFieldContent }).(pulumi.StringOutput)
+}
+
+// Whether to print the Key on the first line.
+func (o GetShippersShipperContentInfoCsvInfoOutput) PrintHeader() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetShippersShipperContentInfoCsvInfo) bool { return v.PrintHeader }).(pulumi.BoolOutput)
+}
+
+type GetShippersShipperContentInfoJsonInfo struct {
+	// Enable the flag.
+	Enable bool `pulumi:"enable"`
+	// Whether to escape or not. It must be configured as true.
+	Escape bool `pulumi:"escape"`
+	// When delivering in JSON format, if this parameter is not configured, it indicates that all fields have been delivered. Including __content__ (choice), __source__, __path__, __time__, __image_name__, __container_name__, __pod_name__, __pod_uid__, namespace, __tag____client_ip__, __tag____receive_time__.
+	Keys []string `pulumi:"keys"`
+}
+
+// GetShippersShipperContentInfoJsonInfoInput is an input type that accepts GetShippersShipperContentInfoJsonInfoArgs and GetShippersShipperContentInfoJsonInfoOutput values.
+// You can construct a concrete instance of `GetShippersShipperContentInfoJsonInfoInput` via:
+//
+//	GetShippersShipperContentInfoJsonInfoArgs{...}
+type GetShippersShipperContentInfoJsonInfoInput interface {
+	pulumi.Input
+
+	ToGetShippersShipperContentInfoJsonInfoOutput() GetShippersShipperContentInfoJsonInfoOutput
+	ToGetShippersShipperContentInfoJsonInfoOutputWithContext(context.Context) GetShippersShipperContentInfoJsonInfoOutput
+}
+
+type GetShippersShipperContentInfoJsonInfoArgs struct {
+	// Enable the flag.
+	Enable pulumi.BoolInput `pulumi:"enable"`
+	// Whether to escape or not. It must be configured as true.
+	Escape pulumi.BoolInput `pulumi:"escape"`
+	// When delivering in JSON format, if this parameter is not configured, it indicates that all fields have been delivered. Including __content__ (choice), __source__, __path__, __time__, __image_name__, __container_name__, __pod_name__, __pod_uid__, namespace, __tag____client_ip__, __tag____receive_time__.
+	Keys pulumi.StringArrayInput `pulumi:"keys"`
+}
+
+func (GetShippersShipperContentInfoJsonInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetShippersShipperContentInfoJsonInfo)(nil)).Elem()
+}
+
+func (i GetShippersShipperContentInfoJsonInfoArgs) ToGetShippersShipperContentInfoJsonInfoOutput() GetShippersShipperContentInfoJsonInfoOutput {
+	return i.ToGetShippersShipperContentInfoJsonInfoOutputWithContext(context.Background())
+}
+
+func (i GetShippersShipperContentInfoJsonInfoArgs) ToGetShippersShipperContentInfoJsonInfoOutputWithContext(ctx context.Context) GetShippersShipperContentInfoJsonInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetShippersShipperContentInfoJsonInfoOutput)
+}
+
+type GetShippersShipperContentInfoJsonInfoOutput struct{ *pulumi.OutputState }
+
+func (GetShippersShipperContentInfoJsonInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetShippersShipperContentInfoJsonInfo)(nil)).Elem()
+}
+
+func (o GetShippersShipperContentInfoJsonInfoOutput) ToGetShippersShipperContentInfoJsonInfoOutput() GetShippersShipperContentInfoJsonInfoOutput {
+	return o
+}
+
+func (o GetShippersShipperContentInfoJsonInfoOutput) ToGetShippersShipperContentInfoJsonInfoOutputWithContext(ctx context.Context) GetShippersShipperContentInfoJsonInfoOutput {
+	return o
+}
+
+// Enable the flag.
+func (o GetShippersShipperContentInfoJsonInfoOutput) Enable() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetShippersShipperContentInfoJsonInfo) bool { return v.Enable }).(pulumi.BoolOutput)
+}
+
+// Whether to escape or not. It must be configured as true.
+func (o GetShippersShipperContentInfoJsonInfoOutput) Escape() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetShippersShipperContentInfoJsonInfo) bool { return v.Escape }).(pulumi.BoolOutput)
+}
+
+// When delivering in JSON format, if this parameter is not configured, it indicates that all fields have been delivered. Including __content__ (choice), __source__, __path__, __time__, __image_name__, __container_name__, __pod_name__, __pod_uid__, namespace, __tag____client_ip__, __tag____receive_time__.
+func (o GetShippersShipperContentInfoJsonInfoOutput) Keys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetShippersShipperContentInfoJsonInfo) []string { return v.Keys }).(pulumi.StringArrayOutput)
+}
+
+type GetShippersShipperKafkaShipperInfo struct {
+	// Compression formats currently supported include snappy, gzip, lz4, and none.
+	Compress string `pulumi:"compress"`
+	// Delivery end time, millisecond timestamp. If not configured, it will keep delivering.
+	EndTime int `pulumi:"endTime"`
+	// Kafka instance.
+	Instance string `pulumi:"instance"`
+	// The name of the Kafka Topic.
+	KafkaTopic string `pulumi:"kafkaTopic"`
+	// Delivery start time, millisecond timestamp. If not configured, the default is the current time.
+	StartTime int `pulumi:"startTime"`
+}
+
+// GetShippersShipperKafkaShipperInfoInput is an input type that accepts GetShippersShipperKafkaShipperInfoArgs and GetShippersShipperKafkaShipperInfoOutput values.
+// You can construct a concrete instance of `GetShippersShipperKafkaShipperInfoInput` via:
+//
+//	GetShippersShipperKafkaShipperInfoArgs{...}
+type GetShippersShipperKafkaShipperInfoInput interface {
+	pulumi.Input
+
+	ToGetShippersShipperKafkaShipperInfoOutput() GetShippersShipperKafkaShipperInfoOutput
+	ToGetShippersShipperKafkaShipperInfoOutputWithContext(context.Context) GetShippersShipperKafkaShipperInfoOutput
+}
+
+type GetShippersShipperKafkaShipperInfoArgs struct {
+	// Compression formats currently supported include snappy, gzip, lz4, and none.
+	Compress pulumi.StringInput `pulumi:"compress"`
+	// Delivery end time, millisecond timestamp. If not configured, it will keep delivering.
+	EndTime pulumi.IntInput `pulumi:"endTime"`
+	// Kafka instance.
+	Instance pulumi.StringInput `pulumi:"instance"`
+	// The name of the Kafka Topic.
+	KafkaTopic pulumi.StringInput `pulumi:"kafkaTopic"`
+	// Delivery start time, millisecond timestamp. If not configured, the default is the current time.
+	StartTime pulumi.IntInput `pulumi:"startTime"`
+}
+
+func (GetShippersShipperKafkaShipperInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetShippersShipperKafkaShipperInfo)(nil)).Elem()
+}
+
+func (i GetShippersShipperKafkaShipperInfoArgs) ToGetShippersShipperKafkaShipperInfoOutput() GetShippersShipperKafkaShipperInfoOutput {
+	return i.ToGetShippersShipperKafkaShipperInfoOutputWithContext(context.Background())
+}
+
+func (i GetShippersShipperKafkaShipperInfoArgs) ToGetShippersShipperKafkaShipperInfoOutputWithContext(ctx context.Context) GetShippersShipperKafkaShipperInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetShippersShipperKafkaShipperInfoOutput)
+}
+
+type GetShippersShipperKafkaShipperInfoOutput struct{ *pulumi.OutputState }
+
+func (GetShippersShipperKafkaShipperInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetShippersShipperKafkaShipperInfo)(nil)).Elem()
+}
+
+func (o GetShippersShipperKafkaShipperInfoOutput) ToGetShippersShipperKafkaShipperInfoOutput() GetShippersShipperKafkaShipperInfoOutput {
+	return o
+}
+
+func (o GetShippersShipperKafkaShipperInfoOutput) ToGetShippersShipperKafkaShipperInfoOutputWithContext(ctx context.Context) GetShippersShipperKafkaShipperInfoOutput {
+	return o
+}
+
+// Compression formats currently supported include snappy, gzip, lz4, and none.
+func (o GetShippersShipperKafkaShipperInfoOutput) Compress() pulumi.StringOutput {
+	return o.ApplyT(func(v GetShippersShipperKafkaShipperInfo) string { return v.Compress }).(pulumi.StringOutput)
+}
+
+// Delivery end time, millisecond timestamp. If not configured, it will keep delivering.
+func (o GetShippersShipperKafkaShipperInfoOutput) EndTime() pulumi.IntOutput {
+	return o.ApplyT(func(v GetShippersShipperKafkaShipperInfo) int { return v.EndTime }).(pulumi.IntOutput)
+}
+
+// Kafka instance.
+func (o GetShippersShipperKafkaShipperInfoOutput) Instance() pulumi.StringOutput {
+	return o.ApplyT(func(v GetShippersShipperKafkaShipperInfo) string { return v.Instance }).(pulumi.StringOutput)
+}
+
+// The name of the Kafka Topic.
+func (o GetShippersShipperKafkaShipperInfoOutput) KafkaTopic() pulumi.StringOutput {
+	return o.ApplyT(func(v GetShippersShipperKafkaShipperInfo) string { return v.KafkaTopic }).(pulumi.StringOutput)
+}
+
+// Delivery start time, millisecond timestamp. If not configured, the default is the current time.
+func (o GetShippersShipperKafkaShipperInfoOutput) StartTime() pulumi.IntOutput {
+	return o.ApplyT(func(v GetShippersShipperKafkaShipperInfo) int { return v.StartTime }).(pulumi.IntOutput)
+}
+
+type GetShippersShipperTosShipperInfo struct {
+	// When choosing a TOS bucket, it must be located in the same region as the source log topic.
+	Bucket string `pulumi:"bucket"`
+	// Compression formats currently supported include snappy, gzip, lz4, and none.
+	Compress string `pulumi:"compress"`
+	// The delivery time interval, measured in seconds, ranges from 300 to 900.
+	Interval int `pulumi:"interval"`
+	// The maximum size of the original file that can be delivered to each partition (Shard), that is, the size of the uncompressed log file. The unit is MiB, and the value range is 5 to 256.
+	MaxSize int `pulumi:"maxSize"`
+	// Partition rules for delivering logs.
+	PartitionFormat string `pulumi:"partitionFormat"`
+	// The top-level directory name of the storage bucket. All log data delivered through this delivery configuration will be delivered to this directory.
+	Prefix string `pulumi:"prefix"`
+}
+
+// GetShippersShipperTosShipperInfoInput is an input type that accepts GetShippersShipperTosShipperInfoArgs and GetShippersShipperTosShipperInfoOutput values.
+// You can construct a concrete instance of `GetShippersShipperTosShipperInfoInput` via:
+//
+//	GetShippersShipperTosShipperInfoArgs{...}
+type GetShippersShipperTosShipperInfoInput interface {
+	pulumi.Input
+
+	ToGetShippersShipperTosShipperInfoOutput() GetShippersShipperTosShipperInfoOutput
+	ToGetShippersShipperTosShipperInfoOutputWithContext(context.Context) GetShippersShipperTosShipperInfoOutput
+}
+
+type GetShippersShipperTosShipperInfoArgs struct {
+	// When choosing a TOS bucket, it must be located in the same region as the source log topic.
+	Bucket pulumi.StringInput `pulumi:"bucket"`
+	// Compression formats currently supported include snappy, gzip, lz4, and none.
+	Compress pulumi.StringInput `pulumi:"compress"`
+	// The delivery time interval, measured in seconds, ranges from 300 to 900.
+	Interval pulumi.IntInput `pulumi:"interval"`
+	// The maximum size of the original file that can be delivered to each partition (Shard), that is, the size of the uncompressed log file. The unit is MiB, and the value range is 5 to 256.
+	MaxSize pulumi.IntInput `pulumi:"maxSize"`
+	// Partition rules for delivering logs.
+	PartitionFormat pulumi.StringInput `pulumi:"partitionFormat"`
+	// The top-level directory name of the storage bucket. All log data delivered through this delivery configuration will be delivered to this directory.
+	Prefix pulumi.StringInput `pulumi:"prefix"`
+}
+
+func (GetShippersShipperTosShipperInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetShippersShipperTosShipperInfo)(nil)).Elem()
+}
+
+func (i GetShippersShipperTosShipperInfoArgs) ToGetShippersShipperTosShipperInfoOutput() GetShippersShipperTosShipperInfoOutput {
+	return i.ToGetShippersShipperTosShipperInfoOutputWithContext(context.Background())
+}
+
+func (i GetShippersShipperTosShipperInfoArgs) ToGetShippersShipperTosShipperInfoOutputWithContext(ctx context.Context) GetShippersShipperTosShipperInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetShippersShipperTosShipperInfoOutput)
+}
+
+type GetShippersShipperTosShipperInfoOutput struct{ *pulumi.OutputState }
+
+func (GetShippersShipperTosShipperInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetShippersShipperTosShipperInfo)(nil)).Elem()
+}
+
+func (o GetShippersShipperTosShipperInfoOutput) ToGetShippersShipperTosShipperInfoOutput() GetShippersShipperTosShipperInfoOutput {
+	return o
+}
+
+func (o GetShippersShipperTosShipperInfoOutput) ToGetShippersShipperTosShipperInfoOutputWithContext(ctx context.Context) GetShippersShipperTosShipperInfoOutput {
+	return o
+}
+
+// When choosing a TOS bucket, it must be located in the same region as the source log topic.
+func (o GetShippersShipperTosShipperInfoOutput) Bucket() pulumi.StringOutput {
+	return o.ApplyT(func(v GetShippersShipperTosShipperInfo) string { return v.Bucket }).(pulumi.StringOutput)
+}
+
+// Compression formats currently supported include snappy, gzip, lz4, and none.
+func (o GetShippersShipperTosShipperInfoOutput) Compress() pulumi.StringOutput {
+	return o.ApplyT(func(v GetShippersShipperTosShipperInfo) string { return v.Compress }).(pulumi.StringOutput)
+}
+
+// The delivery time interval, measured in seconds, ranges from 300 to 900.
+func (o GetShippersShipperTosShipperInfoOutput) Interval() pulumi.IntOutput {
+	return o.ApplyT(func(v GetShippersShipperTosShipperInfo) int { return v.Interval }).(pulumi.IntOutput)
+}
+
+// The maximum size of the original file that can be delivered to each partition (Shard), that is, the size of the uncompressed log file. The unit is MiB, and the value range is 5 to 256.
+func (o GetShippersShipperTosShipperInfoOutput) MaxSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetShippersShipperTosShipperInfo) int { return v.MaxSize }).(pulumi.IntOutput)
+}
+
+// Partition rules for delivering logs.
+func (o GetShippersShipperTosShipperInfoOutput) PartitionFormat() pulumi.StringOutput {
+	return o.ApplyT(func(v GetShippersShipperTosShipperInfo) string { return v.PartitionFormat }).(pulumi.StringOutput)
+}
+
+// The top-level directory name of the storage bucket. All log data delivered through this delivery configuration will be delivered to this directory.
+func (o GetShippersShipperTosShipperInfoOutput) Prefix() pulumi.StringOutput {
+	return o.ApplyT(func(v GetShippersShipperTosShipperInfo) string { return v.Prefix }).(pulumi.StringOutput)
 }
 
 type GetTopicsTag struct {
@@ -17077,10 +24321,36 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AlarmsAlarmQueryRequestArrayInput)(nil)).Elem(), AlarmsAlarmQueryRequestArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlarmsAlarmRequestCycleInput)(nil)).Elem(), AlarmsAlarmRequestCycleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlarmsAlarmRequestCycleArrayInput)(nil)).Elem(), AlarmsAlarmRequestCycleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumerGroupsConsumerGroupInput)(nil)).Elem(), ConsumerGroupsConsumerGroupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumerGroupsConsumerGroupArrayInput)(nil)).Elem(), ConsumerGroupsConsumerGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EtlTaskTargetResourceInput)(nil)).Elem(), EtlTaskTargetResourceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EtlTaskTargetResourceArrayInput)(nil)).Elem(), EtlTaskTargetResourceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EtlTasksTaskInput)(nil)).Elem(), EtlTasksTaskArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EtlTasksTaskArrayInput)(nil)).Elem(), EtlTasksTaskArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EtlTasksTaskTargetResourceInput)(nil)).Elem(), EtlTasksTaskTargetResourceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EtlTasksTaskTargetResourceArrayInput)(nil)).Elem(), EtlTasksTaskTargetResourceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*HostGroupsInfoInput)(nil)).Elem(), HostGroupsInfoArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*HostGroupsInfoArrayInput)(nil)).Elem(), HostGroupsInfoArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*HostsHostInfoInput)(nil)).Elem(), HostsHostInfoArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*HostsHostInfoArrayInput)(nil)).Elem(), HostsHostInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ImportTaskImportSourceInfoInput)(nil)).Elem(), ImportTaskImportSourceInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ImportTaskImportSourceInfoPtrInput)(nil)).Elem(), ImportTaskImportSourceInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ImportTaskImportSourceInfoKafkaSourceInfoInput)(nil)).Elem(), ImportTaskImportSourceInfoKafkaSourceInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ImportTaskImportSourceInfoKafkaSourceInfoPtrInput)(nil)).Elem(), ImportTaskImportSourceInfoKafkaSourceInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ImportTaskImportSourceInfoTosSourceInfoInput)(nil)).Elem(), ImportTaskImportSourceInfoTosSourceInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ImportTaskImportSourceInfoTosSourceInfoPtrInput)(nil)).Elem(), ImportTaskImportSourceInfoTosSourceInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ImportTaskTargetInfoInput)(nil)).Elem(), ImportTaskTargetInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ImportTaskTargetInfoPtrInput)(nil)).Elem(), ImportTaskTargetInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ImportTaskTargetInfoExtractRuleInput)(nil)).Elem(), ImportTaskTargetInfoExtractRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ImportTaskTargetInfoExtractRulePtrInput)(nil)).Elem(), ImportTaskTargetInfoExtractRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ImportTasksTaskInfoInput)(nil)).Elem(), ImportTasksTaskInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ImportTasksTaskInfoArrayInput)(nil)).Elem(), ImportTasksTaskInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ImportTasksTaskInfoImportSourceInfoInput)(nil)).Elem(), ImportTasksTaskInfoImportSourceInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ImportTasksTaskInfoImportSourceInfoKafkaSourceInfoInput)(nil)).Elem(), ImportTasksTaskInfoImportSourceInfoKafkaSourceInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ImportTasksTaskInfoImportSourceInfoTosSourceInfoInput)(nil)).Elem(), ImportTasksTaskInfoImportSourceInfoTosSourceInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ImportTasksTaskInfoTargetInfoInput)(nil)).Elem(), ImportTasksTaskInfoTargetInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ImportTasksTaskInfoTargetInfoExtractRuleInput)(nil)).Elem(), ImportTasksTaskInfoTargetInfoExtractRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ImportTasksTaskInfoTaskStatisticsInput)(nil)).Elem(), ImportTasksTaskInfoTaskStatisticsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IndexFullTextInput)(nil)).Elem(), IndexFullTextArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IndexFullTextPtrInput)(nil)).Elem(), IndexFullTextArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IndexKeyValueInput)(nil)).Elem(), IndexKeyValueArgs{})
@@ -17182,8 +24452,30 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleUserDefineRulePluginArrayInput)(nil)).Elem(), RulesRuleUserDefineRulePluginArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleUserDefineRuleShardHashKeyInput)(nil)).Elem(), RulesRuleUserDefineRuleShardHashKeyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleUserDefineRuleShardHashKeyArrayInput)(nil)).Elem(), RulesRuleUserDefineRuleShardHashKeyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ScheduleSqlTaskRequestCycleInput)(nil)).Elem(), ScheduleSqlTaskRequestCycleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ScheduleSqlTaskRequestCyclePtrInput)(nil)).Elem(), ScheduleSqlTaskRequestCycleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ScheduleSqlTasksTaskInput)(nil)).Elem(), ScheduleSqlTasksTaskArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ScheduleSqlTasksTaskArrayInput)(nil)).Elem(), ScheduleSqlTasksTaskArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ScheduleSqlTasksTaskRequestCycleInput)(nil)).Elem(), ScheduleSqlTasksTaskRequestCycleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ShardsShardInput)(nil)).Elem(), ShardsShardArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ShardsShardArrayInput)(nil)).Elem(), ShardsShardArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ShipperContentInfoInput)(nil)).Elem(), ShipperContentInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ShipperContentInfoPtrInput)(nil)).Elem(), ShipperContentInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ShipperContentInfoCsvInfoInput)(nil)).Elem(), ShipperContentInfoCsvInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ShipperContentInfoCsvInfoPtrInput)(nil)).Elem(), ShipperContentInfoCsvInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ShipperContentInfoJsonInfoInput)(nil)).Elem(), ShipperContentInfoJsonInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ShipperContentInfoJsonInfoPtrInput)(nil)).Elem(), ShipperContentInfoJsonInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ShipperKafkaShipperInfoInput)(nil)).Elem(), ShipperKafkaShipperInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ShipperKafkaShipperInfoPtrInput)(nil)).Elem(), ShipperKafkaShipperInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ShipperTosShipperInfoInput)(nil)).Elem(), ShipperTosShipperInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ShipperTosShipperInfoPtrInput)(nil)).Elem(), ShipperTosShipperInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ShippersShipperInput)(nil)).Elem(), ShippersShipperArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ShippersShipperArrayInput)(nil)).Elem(), ShippersShipperArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ShippersShipperContentInfoInput)(nil)).Elem(), ShippersShipperContentInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ShippersShipperContentInfoCsvInfoInput)(nil)).Elem(), ShippersShipperContentInfoCsvInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ShippersShipperContentInfoJsonInfoInput)(nil)).Elem(), ShippersShipperContentInfoJsonInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ShippersShipperKafkaShipperInfoInput)(nil)).Elem(), ShippersShipperKafkaShipperInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ShippersShipperTosShipperInfoInput)(nil)).Elem(), ShippersShipperTosShipperInfoArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TopicTagInput)(nil)).Elem(), TopicTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TopicTagArrayInput)(nil)).Elem(), TopicTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TopicsTagInput)(nil)).Elem(), TopicsTagArgs{})
@@ -17208,10 +24500,24 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAlarmsAlarmQueryRequestArrayInput)(nil)).Elem(), GetAlarmsAlarmQueryRequestArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAlarmsAlarmRequestCycleInput)(nil)).Elem(), GetAlarmsAlarmRequestCycleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAlarmsAlarmRequestCycleArrayInput)(nil)).Elem(), GetAlarmsAlarmRequestCycleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetConsumerGroupsConsumerGroupInput)(nil)).Elem(), GetConsumerGroupsConsumerGroupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetConsumerGroupsConsumerGroupArrayInput)(nil)).Elem(), GetConsumerGroupsConsumerGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEtlTasksTaskInput)(nil)).Elem(), GetEtlTasksTaskArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEtlTasksTaskArrayInput)(nil)).Elem(), GetEtlTasksTaskArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEtlTasksTaskTargetResourceInput)(nil)).Elem(), GetEtlTasksTaskTargetResourceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEtlTasksTaskTargetResourceArrayInput)(nil)).Elem(), GetEtlTasksTaskTargetResourceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetHostGroupsInfoInput)(nil)).Elem(), GetHostGroupsInfoArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetHostGroupsInfoArrayInput)(nil)).Elem(), GetHostGroupsInfoArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetHostsHostInfoInput)(nil)).Elem(), GetHostsHostInfoArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetHostsHostInfoArrayInput)(nil)).Elem(), GetHostsHostInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetImportTasksTaskInfoInput)(nil)).Elem(), GetImportTasksTaskInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetImportTasksTaskInfoArrayInput)(nil)).Elem(), GetImportTasksTaskInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetImportTasksTaskInfoImportSourceInfoInput)(nil)).Elem(), GetImportTasksTaskInfoImportSourceInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfoInput)(nil)).Elem(), GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetImportTasksTaskInfoImportSourceInfoTosSourceInfoInput)(nil)).Elem(), GetImportTasksTaskInfoImportSourceInfoTosSourceInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetImportTasksTaskInfoTargetInfoInput)(nil)).Elem(), GetImportTasksTaskInfoTargetInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetImportTasksTaskInfoTargetInfoExtractRuleInput)(nil)).Elem(), GetImportTasksTaskInfoTargetInfoExtractRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetImportTasksTaskInfoTaskStatisticsInput)(nil)).Elem(), GetImportTasksTaskInfoTaskStatisticsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetIndexesTlsIndexInput)(nil)).Elem(), GetIndexesTlsIndexArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetIndexesTlsIndexArrayInput)(nil)).Elem(), GetIndexesTlsIndexArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetIndexesTlsIndexFullTextInput)(nil)).Elem(), GetIndexesTlsIndexFullTextArgs{})
@@ -17279,8 +24585,18 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleUserDefineRulePluginArrayInput)(nil)).Elem(), GetRulesRuleUserDefineRulePluginArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleUserDefineRuleShardHashKeyInput)(nil)).Elem(), GetRulesRuleUserDefineRuleShardHashKeyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleUserDefineRuleShardHashKeyArrayInput)(nil)).Elem(), GetRulesRuleUserDefineRuleShardHashKeyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetScheduleSqlTasksTaskInput)(nil)).Elem(), GetScheduleSqlTasksTaskArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetScheduleSqlTasksTaskArrayInput)(nil)).Elem(), GetScheduleSqlTasksTaskArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetScheduleSqlTasksTaskRequestCycleInput)(nil)).Elem(), GetScheduleSqlTasksTaskRequestCycleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetShardsShardInput)(nil)).Elem(), GetShardsShardArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetShardsShardArrayInput)(nil)).Elem(), GetShardsShardArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetShippersShipperInput)(nil)).Elem(), GetShippersShipperArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetShippersShipperArrayInput)(nil)).Elem(), GetShippersShipperArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetShippersShipperContentInfoInput)(nil)).Elem(), GetShippersShipperContentInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetShippersShipperContentInfoCsvInfoInput)(nil)).Elem(), GetShippersShipperContentInfoCsvInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetShippersShipperContentInfoJsonInfoInput)(nil)).Elem(), GetShippersShipperContentInfoJsonInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetShippersShipperKafkaShipperInfoInput)(nil)).Elem(), GetShippersShipperKafkaShipperInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetShippersShipperTosShipperInfoInput)(nil)).Elem(), GetShippersShipperTosShipperInfoArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTopicsTagInput)(nil)).Elem(), GetTopicsTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTopicsTagArrayInput)(nil)).Elem(), GetTopicsTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTopicsTlsTopicInput)(nil)).Elem(), GetTopicsTlsTopicArgs{})
@@ -17311,10 +24627,36 @@ func init() {
 	pulumi.RegisterOutputType(AlarmsAlarmQueryRequestArrayOutput{})
 	pulumi.RegisterOutputType(AlarmsAlarmRequestCycleOutput{})
 	pulumi.RegisterOutputType(AlarmsAlarmRequestCycleArrayOutput{})
+	pulumi.RegisterOutputType(ConsumerGroupsConsumerGroupOutput{})
+	pulumi.RegisterOutputType(ConsumerGroupsConsumerGroupArrayOutput{})
+	pulumi.RegisterOutputType(EtlTaskTargetResourceOutput{})
+	pulumi.RegisterOutputType(EtlTaskTargetResourceArrayOutput{})
+	pulumi.RegisterOutputType(EtlTasksTaskOutput{})
+	pulumi.RegisterOutputType(EtlTasksTaskArrayOutput{})
+	pulumi.RegisterOutputType(EtlTasksTaskTargetResourceOutput{})
+	pulumi.RegisterOutputType(EtlTasksTaskTargetResourceArrayOutput{})
 	pulumi.RegisterOutputType(HostGroupsInfoOutput{})
 	pulumi.RegisterOutputType(HostGroupsInfoArrayOutput{})
 	pulumi.RegisterOutputType(HostsHostInfoOutput{})
 	pulumi.RegisterOutputType(HostsHostInfoArrayOutput{})
+	pulumi.RegisterOutputType(ImportTaskImportSourceInfoOutput{})
+	pulumi.RegisterOutputType(ImportTaskImportSourceInfoPtrOutput{})
+	pulumi.RegisterOutputType(ImportTaskImportSourceInfoKafkaSourceInfoOutput{})
+	pulumi.RegisterOutputType(ImportTaskImportSourceInfoKafkaSourceInfoPtrOutput{})
+	pulumi.RegisterOutputType(ImportTaskImportSourceInfoTosSourceInfoOutput{})
+	pulumi.RegisterOutputType(ImportTaskImportSourceInfoTosSourceInfoPtrOutput{})
+	pulumi.RegisterOutputType(ImportTaskTargetInfoOutput{})
+	pulumi.RegisterOutputType(ImportTaskTargetInfoPtrOutput{})
+	pulumi.RegisterOutputType(ImportTaskTargetInfoExtractRuleOutput{})
+	pulumi.RegisterOutputType(ImportTaskTargetInfoExtractRulePtrOutput{})
+	pulumi.RegisterOutputType(ImportTasksTaskInfoOutput{})
+	pulumi.RegisterOutputType(ImportTasksTaskInfoArrayOutput{})
+	pulumi.RegisterOutputType(ImportTasksTaskInfoImportSourceInfoOutput{})
+	pulumi.RegisterOutputType(ImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput{})
+	pulumi.RegisterOutputType(ImportTasksTaskInfoImportSourceInfoTosSourceInfoOutput{})
+	pulumi.RegisterOutputType(ImportTasksTaskInfoTargetInfoOutput{})
+	pulumi.RegisterOutputType(ImportTasksTaskInfoTargetInfoExtractRuleOutput{})
+	pulumi.RegisterOutputType(ImportTasksTaskInfoTaskStatisticsOutput{})
 	pulumi.RegisterOutputType(IndexFullTextOutput{})
 	pulumi.RegisterOutputType(IndexFullTextPtrOutput{})
 	pulumi.RegisterOutputType(IndexKeyValueOutput{})
@@ -17416,8 +24758,30 @@ func init() {
 	pulumi.RegisterOutputType(RulesRuleUserDefineRulePluginArrayOutput{})
 	pulumi.RegisterOutputType(RulesRuleUserDefineRuleShardHashKeyOutput{})
 	pulumi.RegisterOutputType(RulesRuleUserDefineRuleShardHashKeyArrayOutput{})
+	pulumi.RegisterOutputType(ScheduleSqlTaskRequestCycleOutput{})
+	pulumi.RegisterOutputType(ScheduleSqlTaskRequestCyclePtrOutput{})
+	pulumi.RegisterOutputType(ScheduleSqlTasksTaskOutput{})
+	pulumi.RegisterOutputType(ScheduleSqlTasksTaskArrayOutput{})
+	pulumi.RegisterOutputType(ScheduleSqlTasksTaskRequestCycleOutput{})
 	pulumi.RegisterOutputType(ShardsShardOutput{})
 	pulumi.RegisterOutputType(ShardsShardArrayOutput{})
+	pulumi.RegisterOutputType(ShipperContentInfoOutput{})
+	pulumi.RegisterOutputType(ShipperContentInfoPtrOutput{})
+	pulumi.RegisterOutputType(ShipperContentInfoCsvInfoOutput{})
+	pulumi.RegisterOutputType(ShipperContentInfoCsvInfoPtrOutput{})
+	pulumi.RegisterOutputType(ShipperContentInfoJsonInfoOutput{})
+	pulumi.RegisterOutputType(ShipperContentInfoJsonInfoPtrOutput{})
+	pulumi.RegisterOutputType(ShipperKafkaShipperInfoOutput{})
+	pulumi.RegisterOutputType(ShipperKafkaShipperInfoPtrOutput{})
+	pulumi.RegisterOutputType(ShipperTosShipperInfoOutput{})
+	pulumi.RegisterOutputType(ShipperTosShipperInfoPtrOutput{})
+	pulumi.RegisterOutputType(ShippersShipperOutput{})
+	pulumi.RegisterOutputType(ShippersShipperArrayOutput{})
+	pulumi.RegisterOutputType(ShippersShipperContentInfoOutput{})
+	pulumi.RegisterOutputType(ShippersShipperContentInfoCsvInfoOutput{})
+	pulumi.RegisterOutputType(ShippersShipperContentInfoJsonInfoOutput{})
+	pulumi.RegisterOutputType(ShippersShipperKafkaShipperInfoOutput{})
+	pulumi.RegisterOutputType(ShippersShipperTosShipperInfoOutput{})
 	pulumi.RegisterOutputType(TopicTagOutput{})
 	pulumi.RegisterOutputType(TopicTagArrayOutput{})
 	pulumi.RegisterOutputType(TopicsTagOutput{})
@@ -17442,10 +24806,24 @@ func init() {
 	pulumi.RegisterOutputType(GetAlarmsAlarmQueryRequestArrayOutput{})
 	pulumi.RegisterOutputType(GetAlarmsAlarmRequestCycleOutput{})
 	pulumi.RegisterOutputType(GetAlarmsAlarmRequestCycleArrayOutput{})
+	pulumi.RegisterOutputType(GetConsumerGroupsConsumerGroupOutput{})
+	pulumi.RegisterOutputType(GetConsumerGroupsConsumerGroupArrayOutput{})
+	pulumi.RegisterOutputType(GetEtlTasksTaskOutput{})
+	pulumi.RegisterOutputType(GetEtlTasksTaskArrayOutput{})
+	pulumi.RegisterOutputType(GetEtlTasksTaskTargetResourceOutput{})
+	pulumi.RegisterOutputType(GetEtlTasksTaskTargetResourceArrayOutput{})
 	pulumi.RegisterOutputType(GetHostGroupsInfoOutput{})
 	pulumi.RegisterOutputType(GetHostGroupsInfoArrayOutput{})
 	pulumi.RegisterOutputType(GetHostsHostInfoOutput{})
 	pulumi.RegisterOutputType(GetHostsHostInfoArrayOutput{})
+	pulumi.RegisterOutputType(GetImportTasksTaskInfoOutput{})
+	pulumi.RegisterOutputType(GetImportTasksTaskInfoArrayOutput{})
+	pulumi.RegisterOutputType(GetImportTasksTaskInfoImportSourceInfoOutput{})
+	pulumi.RegisterOutputType(GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfoOutput{})
+	pulumi.RegisterOutputType(GetImportTasksTaskInfoImportSourceInfoTosSourceInfoOutput{})
+	pulumi.RegisterOutputType(GetImportTasksTaskInfoTargetInfoOutput{})
+	pulumi.RegisterOutputType(GetImportTasksTaskInfoTargetInfoExtractRuleOutput{})
+	pulumi.RegisterOutputType(GetImportTasksTaskInfoTaskStatisticsOutput{})
 	pulumi.RegisterOutputType(GetIndexesTlsIndexOutput{})
 	pulumi.RegisterOutputType(GetIndexesTlsIndexArrayOutput{})
 	pulumi.RegisterOutputType(GetIndexesTlsIndexFullTextOutput{})
@@ -17513,8 +24891,18 @@ func init() {
 	pulumi.RegisterOutputType(GetRulesRuleUserDefineRulePluginArrayOutput{})
 	pulumi.RegisterOutputType(GetRulesRuleUserDefineRuleShardHashKeyOutput{})
 	pulumi.RegisterOutputType(GetRulesRuleUserDefineRuleShardHashKeyArrayOutput{})
+	pulumi.RegisterOutputType(GetScheduleSqlTasksTaskOutput{})
+	pulumi.RegisterOutputType(GetScheduleSqlTasksTaskArrayOutput{})
+	pulumi.RegisterOutputType(GetScheduleSqlTasksTaskRequestCycleOutput{})
 	pulumi.RegisterOutputType(GetShardsShardOutput{})
 	pulumi.RegisterOutputType(GetShardsShardArrayOutput{})
+	pulumi.RegisterOutputType(GetShippersShipperOutput{})
+	pulumi.RegisterOutputType(GetShippersShipperArrayOutput{})
+	pulumi.RegisterOutputType(GetShippersShipperContentInfoOutput{})
+	pulumi.RegisterOutputType(GetShippersShipperContentInfoCsvInfoOutput{})
+	pulumi.RegisterOutputType(GetShippersShipperContentInfoJsonInfoOutput{})
+	pulumi.RegisterOutputType(GetShippersShipperKafkaShipperInfoOutput{})
+	pulumi.RegisterOutputType(GetShippersShipperTosShipperInfoOutput{})
 	pulumi.RegisterOutputType(GetTopicsTagOutput{})
 	pulumi.RegisterOutputType(GetTopicsTagArrayOutput{})
 	pulumi.RegisterOutputType(GetTopicsTlsTopicOutput{})

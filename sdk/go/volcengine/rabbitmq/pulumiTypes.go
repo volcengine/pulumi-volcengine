@@ -1406,6 +1406,254 @@ func (o InstancesTagArrayOutput) Index(i pulumi.IntInput) InstancesTagOutput {
 	}).(InstancesTagOutput)
 }
 
+type RegionsRegion struct {
+	// The description of region.
+	Description string `pulumi:"description"`
+	// The ID of region.
+	RegionId string `pulumi:"regionId"`
+	// The name of region.
+	RegionName string `pulumi:"regionName"`
+	// The status of region.
+	Status string `pulumi:"status"`
+}
+
+// RegionsRegionInput is an input type that accepts RegionsRegionArgs and RegionsRegionOutput values.
+// You can construct a concrete instance of `RegionsRegionInput` via:
+//
+//	RegionsRegionArgs{...}
+type RegionsRegionInput interface {
+	pulumi.Input
+
+	ToRegionsRegionOutput() RegionsRegionOutput
+	ToRegionsRegionOutputWithContext(context.Context) RegionsRegionOutput
+}
+
+type RegionsRegionArgs struct {
+	// The description of region.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The ID of region.
+	RegionId pulumi.StringInput `pulumi:"regionId"`
+	// The name of region.
+	RegionName pulumi.StringInput `pulumi:"regionName"`
+	// The status of region.
+	Status pulumi.StringInput `pulumi:"status"`
+}
+
+func (RegionsRegionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionsRegion)(nil)).Elem()
+}
+
+func (i RegionsRegionArgs) ToRegionsRegionOutput() RegionsRegionOutput {
+	return i.ToRegionsRegionOutputWithContext(context.Background())
+}
+
+func (i RegionsRegionArgs) ToRegionsRegionOutputWithContext(ctx context.Context) RegionsRegionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegionsRegionOutput)
+}
+
+// RegionsRegionArrayInput is an input type that accepts RegionsRegionArray and RegionsRegionArrayOutput values.
+// You can construct a concrete instance of `RegionsRegionArrayInput` via:
+//
+//	RegionsRegionArray{ RegionsRegionArgs{...} }
+type RegionsRegionArrayInput interface {
+	pulumi.Input
+
+	ToRegionsRegionArrayOutput() RegionsRegionArrayOutput
+	ToRegionsRegionArrayOutputWithContext(context.Context) RegionsRegionArrayOutput
+}
+
+type RegionsRegionArray []RegionsRegionInput
+
+func (RegionsRegionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RegionsRegion)(nil)).Elem()
+}
+
+func (i RegionsRegionArray) ToRegionsRegionArrayOutput() RegionsRegionArrayOutput {
+	return i.ToRegionsRegionArrayOutputWithContext(context.Background())
+}
+
+func (i RegionsRegionArray) ToRegionsRegionArrayOutputWithContext(ctx context.Context) RegionsRegionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegionsRegionArrayOutput)
+}
+
+type RegionsRegionOutput struct{ *pulumi.OutputState }
+
+func (RegionsRegionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionsRegion)(nil)).Elem()
+}
+
+func (o RegionsRegionOutput) ToRegionsRegionOutput() RegionsRegionOutput {
+	return o
+}
+
+func (o RegionsRegionOutput) ToRegionsRegionOutputWithContext(ctx context.Context) RegionsRegionOutput {
+	return o
+}
+
+// The description of region.
+func (o RegionsRegionOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v RegionsRegion) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The ID of region.
+func (o RegionsRegionOutput) RegionId() pulumi.StringOutput {
+	return o.ApplyT(func(v RegionsRegion) string { return v.RegionId }).(pulumi.StringOutput)
+}
+
+// The name of region.
+func (o RegionsRegionOutput) RegionName() pulumi.StringOutput {
+	return o.ApplyT(func(v RegionsRegion) string { return v.RegionName }).(pulumi.StringOutput)
+}
+
+// The status of region.
+func (o RegionsRegionOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v RegionsRegion) string { return v.Status }).(pulumi.StringOutput)
+}
+
+type RegionsRegionArrayOutput struct{ *pulumi.OutputState }
+
+func (RegionsRegionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RegionsRegion)(nil)).Elem()
+}
+
+func (o RegionsRegionArrayOutput) ToRegionsRegionArrayOutput() RegionsRegionArrayOutput {
+	return o
+}
+
+func (o RegionsRegionArrayOutput) ToRegionsRegionArrayOutputWithContext(ctx context.Context) RegionsRegionArrayOutput {
+	return o
+}
+
+func (o RegionsRegionArrayOutput) Index(i pulumi.IntInput) RegionsRegionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RegionsRegion {
+		return vs[0].([]RegionsRegion)[vs[1].(int)]
+	}).(RegionsRegionOutput)
+}
+
+type ZonesZone struct {
+	// The description of zone.
+	Description string `pulumi:"description"`
+	// The status of zone.
+	Status string `pulumi:"status"`
+	// The ID of zone.
+	ZoneId string `pulumi:"zoneId"`
+	// The name of zone.
+	ZoneName string `pulumi:"zoneName"`
+}
+
+// ZonesZoneInput is an input type that accepts ZonesZoneArgs and ZonesZoneOutput values.
+// You can construct a concrete instance of `ZonesZoneInput` via:
+//
+//	ZonesZoneArgs{...}
+type ZonesZoneInput interface {
+	pulumi.Input
+
+	ToZonesZoneOutput() ZonesZoneOutput
+	ToZonesZoneOutputWithContext(context.Context) ZonesZoneOutput
+}
+
+type ZonesZoneArgs struct {
+	// The description of zone.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The status of zone.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The ID of zone.
+	ZoneId pulumi.StringInput `pulumi:"zoneId"`
+	// The name of zone.
+	ZoneName pulumi.StringInput `pulumi:"zoneName"`
+}
+
+func (ZonesZoneArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ZonesZone)(nil)).Elem()
+}
+
+func (i ZonesZoneArgs) ToZonesZoneOutput() ZonesZoneOutput {
+	return i.ToZonesZoneOutputWithContext(context.Background())
+}
+
+func (i ZonesZoneArgs) ToZonesZoneOutputWithContext(ctx context.Context) ZonesZoneOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ZonesZoneOutput)
+}
+
+// ZonesZoneArrayInput is an input type that accepts ZonesZoneArray and ZonesZoneArrayOutput values.
+// You can construct a concrete instance of `ZonesZoneArrayInput` via:
+//
+//	ZonesZoneArray{ ZonesZoneArgs{...} }
+type ZonesZoneArrayInput interface {
+	pulumi.Input
+
+	ToZonesZoneArrayOutput() ZonesZoneArrayOutput
+	ToZonesZoneArrayOutputWithContext(context.Context) ZonesZoneArrayOutput
+}
+
+type ZonesZoneArray []ZonesZoneInput
+
+func (ZonesZoneArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ZonesZone)(nil)).Elem()
+}
+
+func (i ZonesZoneArray) ToZonesZoneArrayOutput() ZonesZoneArrayOutput {
+	return i.ToZonesZoneArrayOutputWithContext(context.Background())
+}
+
+func (i ZonesZoneArray) ToZonesZoneArrayOutputWithContext(ctx context.Context) ZonesZoneArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ZonesZoneArrayOutput)
+}
+
+type ZonesZoneOutput struct{ *pulumi.OutputState }
+
+func (ZonesZoneOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ZonesZone)(nil)).Elem()
+}
+
+func (o ZonesZoneOutput) ToZonesZoneOutput() ZonesZoneOutput {
+	return o
+}
+
+func (o ZonesZoneOutput) ToZonesZoneOutputWithContext(ctx context.Context) ZonesZoneOutput {
+	return o
+}
+
+// The description of zone.
+func (o ZonesZoneOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v ZonesZone) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The status of zone.
+func (o ZonesZoneOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v ZonesZone) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The ID of zone.
+func (o ZonesZoneOutput) ZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v ZonesZone) string { return v.ZoneId }).(pulumi.StringOutput)
+}
+
+// The name of zone.
+func (o ZonesZoneOutput) ZoneName() pulumi.StringOutput {
+	return o.ApplyT(func(v ZonesZone) string { return v.ZoneName }).(pulumi.StringOutput)
+}
+
+type ZonesZoneArrayOutput struct{ *pulumi.OutputState }
+
+func (ZonesZoneArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ZonesZone)(nil)).Elem()
+}
+
+func (o ZonesZoneArrayOutput) ToZonesZoneArrayOutput() ZonesZoneArrayOutput {
+	return o
+}
+
+func (o ZonesZoneArrayOutput) ToZonesZoneArrayOutputWithContext(ctx context.Context) ZonesZoneArrayOutput {
+	return o
+}
+
+func (o ZonesZoneArrayOutput) Index(i pulumi.IntInput) ZonesZoneOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ZonesZone {
+		return vs[0].([]ZonesZone)[vs[1].(int)]
+	}).(ZonesZoneOutput)
+}
+
 type GetInstancePluginsPlugin struct {
 	// The description of plugin.
 	Description string `pulumi:"description"`
@@ -2377,6 +2625,254 @@ func (o GetInstancesTagArrayOutput) Index(i pulumi.IntInput) GetInstancesTagOutp
 	}).(GetInstancesTagOutput)
 }
 
+type GetRegionsRegion struct {
+	// The description of region.
+	Description string `pulumi:"description"`
+	// The ID of region.
+	RegionId string `pulumi:"regionId"`
+	// The name of region.
+	RegionName string `pulumi:"regionName"`
+	// The status of region.
+	Status string `pulumi:"status"`
+}
+
+// GetRegionsRegionInput is an input type that accepts GetRegionsRegionArgs and GetRegionsRegionOutput values.
+// You can construct a concrete instance of `GetRegionsRegionInput` via:
+//
+//	GetRegionsRegionArgs{...}
+type GetRegionsRegionInput interface {
+	pulumi.Input
+
+	ToGetRegionsRegionOutput() GetRegionsRegionOutput
+	ToGetRegionsRegionOutputWithContext(context.Context) GetRegionsRegionOutput
+}
+
+type GetRegionsRegionArgs struct {
+	// The description of region.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The ID of region.
+	RegionId pulumi.StringInput `pulumi:"regionId"`
+	// The name of region.
+	RegionName pulumi.StringInput `pulumi:"regionName"`
+	// The status of region.
+	Status pulumi.StringInput `pulumi:"status"`
+}
+
+func (GetRegionsRegionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegionsRegion)(nil)).Elem()
+}
+
+func (i GetRegionsRegionArgs) ToGetRegionsRegionOutput() GetRegionsRegionOutput {
+	return i.ToGetRegionsRegionOutputWithContext(context.Background())
+}
+
+func (i GetRegionsRegionArgs) ToGetRegionsRegionOutputWithContext(ctx context.Context) GetRegionsRegionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegionsRegionOutput)
+}
+
+// GetRegionsRegionArrayInput is an input type that accepts GetRegionsRegionArray and GetRegionsRegionArrayOutput values.
+// You can construct a concrete instance of `GetRegionsRegionArrayInput` via:
+//
+//	GetRegionsRegionArray{ GetRegionsRegionArgs{...} }
+type GetRegionsRegionArrayInput interface {
+	pulumi.Input
+
+	ToGetRegionsRegionArrayOutput() GetRegionsRegionArrayOutput
+	ToGetRegionsRegionArrayOutputWithContext(context.Context) GetRegionsRegionArrayOutput
+}
+
+type GetRegionsRegionArray []GetRegionsRegionInput
+
+func (GetRegionsRegionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegionsRegion)(nil)).Elem()
+}
+
+func (i GetRegionsRegionArray) ToGetRegionsRegionArrayOutput() GetRegionsRegionArrayOutput {
+	return i.ToGetRegionsRegionArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegionsRegionArray) ToGetRegionsRegionArrayOutputWithContext(ctx context.Context) GetRegionsRegionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegionsRegionArrayOutput)
+}
+
+type GetRegionsRegionOutput struct{ *pulumi.OutputState }
+
+func (GetRegionsRegionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegionsRegion)(nil)).Elem()
+}
+
+func (o GetRegionsRegionOutput) ToGetRegionsRegionOutput() GetRegionsRegionOutput {
+	return o
+}
+
+func (o GetRegionsRegionOutput) ToGetRegionsRegionOutputWithContext(ctx context.Context) GetRegionsRegionOutput {
+	return o
+}
+
+// The description of region.
+func (o GetRegionsRegionOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegionsRegion) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The ID of region.
+func (o GetRegionsRegionOutput) RegionId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegionsRegion) string { return v.RegionId }).(pulumi.StringOutput)
+}
+
+// The name of region.
+func (o GetRegionsRegionOutput) RegionName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegionsRegion) string { return v.RegionName }).(pulumi.StringOutput)
+}
+
+// The status of region.
+func (o GetRegionsRegionOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegionsRegion) string { return v.Status }).(pulumi.StringOutput)
+}
+
+type GetRegionsRegionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegionsRegionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegionsRegion)(nil)).Elem()
+}
+
+func (o GetRegionsRegionArrayOutput) ToGetRegionsRegionArrayOutput() GetRegionsRegionArrayOutput {
+	return o
+}
+
+func (o GetRegionsRegionArrayOutput) ToGetRegionsRegionArrayOutputWithContext(ctx context.Context) GetRegionsRegionArrayOutput {
+	return o
+}
+
+func (o GetRegionsRegionArrayOutput) Index(i pulumi.IntInput) GetRegionsRegionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegionsRegion {
+		return vs[0].([]GetRegionsRegion)[vs[1].(int)]
+	}).(GetRegionsRegionOutput)
+}
+
+type GetZonesZone struct {
+	// The description of zone.
+	Description string `pulumi:"description"`
+	// The status of zone.
+	Status string `pulumi:"status"`
+	// The ID of zone.
+	ZoneId string `pulumi:"zoneId"`
+	// The name of zone.
+	ZoneName string `pulumi:"zoneName"`
+}
+
+// GetZonesZoneInput is an input type that accepts GetZonesZoneArgs and GetZonesZoneOutput values.
+// You can construct a concrete instance of `GetZonesZoneInput` via:
+//
+//	GetZonesZoneArgs{...}
+type GetZonesZoneInput interface {
+	pulumi.Input
+
+	ToGetZonesZoneOutput() GetZonesZoneOutput
+	ToGetZonesZoneOutputWithContext(context.Context) GetZonesZoneOutput
+}
+
+type GetZonesZoneArgs struct {
+	// The description of zone.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The status of zone.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The ID of zone.
+	ZoneId pulumi.StringInput `pulumi:"zoneId"`
+	// The name of zone.
+	ZoneName pulumi.StringInput `pulumi:"zoneName"`
+}
+
+func (GetZonesZoneArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetZonesZone)(nil)).Elem()
+}
+
+func (i GetZonesZoneArgs) ToGetZonesZoneOutput() GetZonesZoneOutput {
+	return i.ToGetZonesZoneOutputWithContext(context.Background())
+}
+
+func (i GetZonesZoneArgs) ToGetZonesZoneOutputWithContext(ctx context.Context) GetZonesZoneOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetZonesZoneOutput)
+}
+
+// GetZonesZoneArrayInput is an input type that accepts GetZonesZoneArray and GetZonesZoneArrayOutput values.
+// You can construct a concrete instance of `GetZonesZoneArrayInput` via:
+//
+//	GetZonesZoneArray{ GetZonesZoneArgs{...} }
+type GetZonesZoneArrayInput interface {
+	pulumi.Input
+
+	ToGetZonesZoneArrayOutput() GetZonesZoneArrayOutput
+	ToGetZonesZoneArrayOutputWithContext(context.Context) GetZonesZoneArrayOutput
+}
+
+type GetZonesZoneArray []GetZonesZoneInput
+
+func (GetZonesZoneArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetZonesZone)(nil)).Elem()
+}
+
+func (i GetZonesZoneArray) ToGetZonesZoneArrayOutput() GetZonesZoneArrayOutput {
+	return i.ToGetZonesZoneArrayOutputWithContext(context.Background())
+}
+
+func (i GetZonesZoneArray) ToGetZonesZoneArrayOutputWithContext(ctx context.Context) GetZonesZoneArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetZonesZoneArrayOutput)
+}
+
+type GetZonesZoneOutput struct{ *pulumi.OutputState }
+
+func (GetZonesZoneOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetZonesZone)(nil)).Elem()
+}
+
+func (o GetZonesZoneOutput) ToGetZonesZoneOutput() GetZonesZoneOutput {
+	return o
+}
+
+func (o GetZonesZoneOutput) ToGetZonesZoneOutputWithContext(ctx context.Context) GetZonesZoneOutput {
+	return o
+}
+
+// The description of zone.
+func (o GetZonesZoneOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetZonesZone) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The status of zone.
+func (o GetZonesZoneOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetZonesZone) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The ID of zone.
+func (o GetZonesZoneOutput) ZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetZonesZone) string { return v.ZoneId }).(pulumi.StringOutput)
+}
+
+// The name of zone.
+func (o GetZonesZoneOutput) ZoneName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetZonesZone) string { return v.ZoneName }).(pulumi.StringOutput)
+}
+
+type GetZonesZoneArrayOutput struct{ *pulumi.OutputState }
+
+func (GetZonesZoneArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetZonesZone)(nil)).Elem()
+}
+
+func (o GetZonesZoneArrayOutput) ToGetZonesZoneArrayOutput() GetZonesZoneArrayOutput {
+	return o
+}
+
+func (o GetZonesZoneArrayOutput) ToGetZonesZoneArrayOutputWithContext(ctx context.Context) GetZonesZoneArrayOutput {
+	return o
+}
+
+func (o GetZonesZoneArrayOutput) Index(i pulumi.IntInput) GetZonesZoneOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetZonesZone {
+		return vs[0].([]GetZonesZone)[vs[1].(int)]
+	}).(GetZonesZoneOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceChargeInfoInput)(nil)).Elem(), InstanceChargeInfoArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceChargeInfoPtrInput)(nil)).Elem(), InstanceChargeInfoArgs{})
@@ -2396,6 +2892,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancesRabbitmqInstanceTagArrayInput)(nil)).Elem(), InstancesRabbitmqInstanceTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancesTagInput)(nil)).Elem(), InstancesTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancesTagArrayInput)(nil)).Elem(), InstancesTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RegionsRegionInput)(nil)).Elem(), RegionsRegionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RegionsRegionArrayInput)(nil)).Elem(), RegionsRegionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ZonesZoneInput)(nil)).Elem(), ZonesZoneArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ZonesZoneArrayInput)(nil)).Elem(), ZonesZoneArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancePluginsPluginInput)(nil)).Elem(), GetInstancePluginsPluginArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancePluginsPluginArrayInput)(nil)).Elem(), GetInstancePluginsPluginArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesRabbitmqInstanceInput)(nil)).Elem(), GetInstancesRabbitmqInstanceArgs{})
@@ -2408,6 +2908,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesRabbitmqInstanceTagArrayInput)(nil)).Elem(), GetInstancesRabbitmqInstanceTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesTagInput)(nil)).Elem(), GetInstancesTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesTagArrayInput)(nil)).Elem(), GetInstancesTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegionsRegionInput)(nil)).Elem(), GetRegionsRegionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegionsRegionArrayInput)(nil)).Elem(), GetRegionsRegionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetZonesZoneInput)(nil)).Elem(), GetZonesZoneArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetZonesZoneArrayInput)(nil)).Elem(), GetZonesZoneArray{})
 	pulumi.RegisterOutputType(InstanceChargeInfoOutput{})
 	pulumi.RegisterOutputType(InstanceChargeInfoPtrOutput{})
 	pulumi.RegisterOutputType(InstanceEndpointOutput{})
@@ -2426,6 +2930,10 @@ func init() {
 	pulumi.RegisterOutputType(InstancesRabbitmqInstanceTagArrayOutput{})
 	pulumi.RegisterOutputType(InstancesTagOutput{})
 	pulumi.RegisterOutputType(InstancesTagArrayOutput{})
+	pulumi.RegisterOutputType(RegionsRegionOutput{})
+	pulumi.RegisterOutputType(RegionsRegionArrayOutput{})
+	pulumi.RegisterOutputType(ZonesZoneOutput{})
+	pulumi.RegisterOutputType(ZonesZoneArrayOutput{})
 	pulumi.RegisterOutputType(GetInstancePluginsPluginOutput{})
 	pulumi.RegisterOutputType(GetInstancePluginsPluginArrayOutput{})
 	pulumi.RegisterOutputType(GetInstancesRabbitmqInstanceOutput{})
@@ -2438,4 +2946,8 @@ func init() {
 	pulumi.RegisterOutputType(GetInstancesRabbitmqInstanceTagArrayOutput{})
 	pulumi.RegisterOutputType(GetInstancesTagOutput{})
 	pulumi.RegisterOutputType(GetInstancesTagArrayOutput{})
+	pulumi.RegisterOutputType(GetRegionsRegionOutput{})
+	pulumi.RegisterOutputType(GetRegionsRegionArrayOutput{})
+	pulumi.RegisterOutputType(GetZonesZoneOutput{})
+	pulumi.RegisterOutputType(GetZonesZoneArrayOutput{})
 }

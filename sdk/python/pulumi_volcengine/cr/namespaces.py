@@ -24,7 +24,7 @@ class NamespacesResult:
     """
     A collection of values returned by Namespaces.
     """
-    def __init__(__self__, id=None, names=None, namespaces=None, output_file=None, registry=None, total_count=None):
+    def __init__(__self__, id=None, names=None, namespaces=None, output_file=None, projects=None, registry=None, total_count=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -37,6 +37,9 @@ class NamespacesResult:
         if output_file and not isinstance(output_file, str):
             raise TypeError("Expected argument 'output_file' to be a str")
         pulumi.set(__self__, "output_file", output_file)
+        if projects and not isinstance(projects, list):
+            raise TypeError("Expected argument 'projects' to be a list")
+        pulumi.set(__self__, "projects", projects)
         if registry and not isinstance(registry, str):
             raise TypeError("Expected argument 'registry' to be a str")
         pulumi.set(__self__, "registry", registry)
@@ -72,6 +75,11 @@ class NamespacesResult:
 
     @property
     @pulumi.getter
+    def projects(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "projects")
+
+    @property
+    @pulumi.getter
     def registry(self) -> str:
         return pulumi.get(self, "registry")
 
@@ -94,12 +102,14 @@ class AwaitableNamespacesResult(NamespacesResult):
             names=self.names,
             namespaces=self.namespaces,
             output_file=self.output_file,
+            projects=self.projects,
             registry=self.registry,
             total_count=self.total_count)
 
 
 def namespaces(names: Optional[Sequence[str]] = None,
                output_file: Optional[str] = None,
+               projects: Optional[Sequence[str]] = None,
                registry: Optional[str] = None,
                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableNamespacesResult:
     """
@@ -117,12 +127,14 @@ def namespaces(names: Optional[Sequence[str]] = None,
 
     :param Sequence[str] names: The list of instance IDs.
     :param str output_file: File name where to save data source results.
+    :param Sequence[str] projects: The list of project names to query.
     :param str registry: The target cr instance name.
     """
     pulumi.log.warn("""namespaces is deprecated: volcengine.cr.Namespaces has been deprecated in favor of volcengine.cr.getNamespaces""")
     __args__ = dict()
     __args__['names'] = names
     __args__['outputFile'] = output_file
+    __args__['projects'] = projects
     __args__['registry'] = registry
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('volcengine:cr/namespaces:Namespaces', __args__, opts=opts, typ=NamespacesResult).value
@@ -132,6 +144,7 @@ def namespaces(names: Optional[Sequence[str]] = None,
         names=pulumi.get(__ret__, 'names'),
         namespaces=pulumi.get(__ret__, 'namespaces'),
         output_file=pulumi.get(__ret__, 'output_file'),
+        projects=pulumi.get(__ret__, 'projects'),
         registry=pulumi.get(__ret__, 'registry'),
         total_count=pulumi.get(__ret__, 'total_count'))
 
@@ -139,6 +152,7 @@ def namespaces(names: Optional[Sequence[str]] = None,
 @_utilities.lift_output_func(namespaces)
 def namespaces_output(names: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                       output_file: Optional[pulumi.Input[Optional[str]]] = None,
+                      projects: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                       registry: Optional[pulumi.Input[str]] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[NamespacesResult]:
     """
@@ -156,6 +170,7 @@ def namespaces_output(names: Optional[pulumi.Input[Optional[Sequence[str]]]] = N
 
     :param Sequence[str] names: The list of instance IDs.
     :param str output_file: File name where to save data source results.
+    :param Sequence[str] projects: The list of project names to query.
     :param str registry: The target cr instance name.
     """
     pulumi.log.warn("""namespaces is deprecated: volcengine.cr.Namespaces has been deprecated in favor of volcengine.cr.getNamespaces""")

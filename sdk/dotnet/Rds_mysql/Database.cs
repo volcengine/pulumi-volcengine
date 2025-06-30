@@ -70,6 +70,7 @@ namespace Pulumi.Volcengine.Rds_mysql
     ///     {
     ///         DbName = "acc-test",
     ///         InstanceId = fooInstance.Id,
+    ///         DbDesc = "test-update",
     ///     });
     /// 
     /// });
@@ -91,6 +92,12 @@ namespace Pulumi.Volcengine.Rds_mysql
         /// </summary>
         [Output("characterSetName")]
         public Output<string?> CharacterSetName { get; private set; } = null!;
+
+        /// <summary>
+        /// The description information of the database, with a length not exceeding 256 characters. This field is optional. If this field is not set, or if this field is set but the length of the description information is 0, then the description information is empty.
+        /// </summary>
+        [Output("dbDesc")]
+        public Output<string?> DbDesc { get; private set; } = null!;
 
         /// <summary>
         /// Name database.
@@ -164,6 +171,12 @@ namespace Pulumi.Volcengine.Rds_mysql
         public Input<string>? CharacterSetName { get; set; }
 
         /// <summary>
+        /// The description information of the database, with a length not exceeding 256 characters. This field is optional. If this field is not set, or if this field is set but the length of the description information is 0, then the description information is empty.
+        /// </summary>
+        [Input("dbDesc")]
+        public Input<string>? DbDesc { get; set; }
+
+        /// <summary>
         /// Name database.
         /// illustrate:
         /// Unique name.
@@ -194,6 +207,12 @@ namespace Pulumi.Volcengine.Rds_mysql
         /// </summary>
         [Input("characterSetName")]
         public Input<string>? CharacterSetName { get; set; }
+
+        /// <summary>
+        /// The description information of the database, with a length not exceeding 256 characters. This field is optional. If this field is not set, or if this field is set but the length of the description information is 0, then the description information is empty.
+        /// </summary>
+        [Input("dbDesc")]
+        public Input<string>? DbDesc { get; set; }
 
         /// <summary>
         /// Name database.

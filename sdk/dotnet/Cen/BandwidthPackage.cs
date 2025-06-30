@@ -68,7 +68,7 @@ namespace Pulumi.Volcengine.Cen
         public Output<int> Bandwidth { get; private set; } = null!;
 
         /// <summary>
-        /// The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`.
+        /// The billing type of the cen bandwidth package. Only support `PrePaid` and `PayBy95Peak`, default value is `PrePaid`.
         /// </summary>
         [Output("billingType")]
         public Output<string?> BillingType { get; private set; } = null!;
@@ -120,6 +120,12 @@ namespace Pulumi.Volcengine.Cen
         /// </summary>
         [Output("expiredTime")]
         public Output<string> ExpiredTime { get; private set; } = null!;
+
+        /// <summary>
+        /// The line operator of the cen bandwidth package. Valid value: `ChinaUnicom`, `ChinaTelecom`. This field is only valid when `local_geographic_region_set_id` and `peer_geographic_region_set_id` are different.
+        /// </summary>
+        [Output("lineOperator")]
+        public Output<string?> LineOperator { get; private set; } = null!;
 
         /// <summary>
         /// The local geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
@@ -229,7 +235,7 @@ namespace Pulumi.Volcengine.Cen
         public Input<int>? Bandwidth { get; set; }
 
         /// <summary>
-        /// The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`.
+        /// The billing type of the cen bandwidth package. Only support `PrePaid` and `PayBy95Peak`, default value is `PrePaid`.
         /// </summary>
         [Input("billingType")]
         public Input<string>? BillingType { get; set; }
@@ -245,6 +251,12 @@ namespace Pulumi.Volcengine.Cen
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
+
+        /// <summary>
+        /// The line operator of the cen bandwidth package. Valid value: `ChinaUnicom`, `ChinaTelecom`. This field is only valid when `local_geographic_region_set_id` and `peer_geographic_region_set_id` are different.
+        /// </summary>
+        [Input("lineOperator")]
+        public Input<string>? LineOperator { get; set; }
 
         /// <summary>
         /// The local geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
@@ -309,7 +321,7 @@ namespace Pulumi.Volcengine.Cen
         public Input<int>? Bandwidth { get; set; }
 
         /// <summary>
-        /// The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`.
+        /// The billing type of the cen bandwidth package. Only support `PrePaid` and `PayBy95Peak`, default value is `PrePaid`.
         /// </summary>
         [Input("billingType")]
         public Input<string>? BillingType { get; set; }
@@ -367,6 +379,12 @@ namespace Pulumi.Volcengine.Cen
         /// </summary>
         [Input("expiredTime")]
         public Input<string>? ExpiredTime { get; set; }
+
+        /// <summary>
+        /// The line operator of the cen bandwidth package. Valid value: `ChinaUnicom`, `ChinaTelecom`. This field is only valid when `local_geographic_region_set_id` and `peer_geographic_region_set_id` are different.
+        /// </summary>
+        [Input("lineOperator")]
+        public Input<string>? LineOperator { get; set; }
 
         /// <summary>
         /// The local geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.

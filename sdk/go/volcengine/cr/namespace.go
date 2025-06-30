@@ -65,6 +65,8 @@ type Namespace struct {
 	Project pulumi.StringOutput `pulumi:"project"`
 	// The registry name.
 	Registry pulumi.StringOutput `pulumi:"registry"`
+	// The default access level of repository. Valid values: `Private`, `Public`. Default is `Private`.
+	RepositoryDefaultAccessLevel pulumi.StringOutput `pulumi:"repositoryDefaultAccessLevel"`
 }
 
 // NewNamespace registers a new resource with the given unique name, arguments, and options.
@@ -108,6 +110,8 @@ type namespaceState struct {
 	Project *string `pulumi:"project"`
 	// The registry name.
 	Registry *string `pulumi:"registry"`
+	// The default access level of repository. Valid values: `Private`, `Public`. Default is `Private`.
+	RepositoryDefaultAccessLevel *string `pulumi:"repositoryDefaultAccessLevel"`
 }
 
 type NamespaceState struct {
@@ -119,6 +123,8 @@ type NamespaceState struct {
 	Project pulumi.StringPtrInput
 	// The registry name.
 	Registry pulumi.StringPtrInput
+	// The default access level of repository. Valid values: `Private`, `Public`. Default is `Private`.
+	RepositoryDefaultAccessLevel pulumi.StringPtrInput
 }
 
 func (NamespaceState) ElementType() reflect.Type {
@@ -132,6 +138,8 @@ type namespaceArgs struct {
 	Project *string `pulumi:"project"`
 	// The registry name.
 	Registry string `pulumi:"registry"`
+	// The default access level of repository. Valid values: `Private`, `Public`. Default is `Private`.
+	RepositoryDefaultAccessLevel *string `pulumi:"repositoryDefaultAccessLevel"`
 }
 
 // The set of arguments for constructing a Namespace resource.
@@ -142,6 +150,8 @@ type NamespaceArgs struct {
 	Project pulumi.StringPtrInput
 	// The registry name.
 	Registry pulumi.StringInput
+	// The default access level of repository. Valid values: `Private`, `Public`. Default is `Private`.
+	RepositoryDefaultAccessLevel pulumi.StringPtrInput
 }
 
 func (NamespaceArgs) ElementType() reflect.Type {
@@ -249,6 +259,11 @@ func (o NamespaceOutput) Project() pulumi.StringOutput {
 // The registry name.
 func (o NamespaceOutput) Registry() pulumi.StringOutput {
 	return o.ApplyT(func(v *Namespace) pulumi.StringOutput { return v.Registry }).(pulumi.StringOutput)
+}
+
+// The default access level of repository. Valid values: `Private`, `Public`. Default is `Private`.
+func (o NamespaceOutput) RepositoryDefaultAccessLevel() pulumi.StringOutput {
+	return o.ApplyT(func(v *Namespace) pulumi.StringOutput { return v.RepositoryDefaultAccessLevel }).(pulumi.StringOutput)
 }
 
 type NamespaceArrayOutput struct{ *pulumi.OutputState }

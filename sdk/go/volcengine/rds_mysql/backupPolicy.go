@@ -30,11 +30,18 @@ import (
 //			_, err := rds_mysql.NewBackupPolicy(ctx, "foo", &rds_mysql.BackupPolicyArgs{
 //				BinlogFileCountsEnable: pulumi.Bool(true),
 //				BinlogSpaceLimitEnable: pulumi.Bool(true),
+//				CrossBackupPolicy: &rds_mysql.BackupPolicyCrossBackupPolicyArgs{
+//					BackupEnabled:     pulumi.Bool(true),
+//					CrossBackupRegion: pulumi.String("cn-chongqing-sdv"),
+//					LogBackupEnabled:  pulumi.Bool(true),
+//					Retention:         pulumi.Int(10),
+//				},
 //				DataFullBackupPeriods: pulumi.StringArray{
 //					pulumi.String("Monday"),
 //					pulumi.String("Sunday"),
+//					pulumi.String("Tuesday"),
 //				},
-//				InstanceId:  pulumi.String("mysql-c8c3f45c4b07"),
+//				InstanceId:  pulumi.String("mysql-b51d37110dd1"),
 //				LockDdlTime: pulumi.Int(80),
 //			})
 //			if err != nil {
@@ -57,6 +64,8 @@ import (
 type BackupPolicy struct {
 	pulumi.CustomResourceState
 
+	// List of destination regions for cross - region backup.
+	AvailableCrossRegions pulumi.StringArrayOutput `pulumi:"availableCrossRegions"`
 	// Whether to retain all log backups before releasing an instance. Values:
 	// true: Yes.
 	// false: No. Description: BinlogBackupAllRetention is ineffective when the value of RetentionPolicySynced is true.
@@ -79,6 +88,8 @@ type BackupPolicy struct {
 	BinlogSpaceLimitEnable pulumi.BoolOutput `pulumi:"binlogSpaceLimitEnable"`
 	// Maximum storage space usage rate can be set to 20% - 50%. After exceeding this limit, the earliest Binlog file will be automatically deleted until the space usage rate is lower than this ratio. Local Binlog space usage rate = Local Binlog size / Total available (purchased) instance space size. When modifying the log backup policy, this parameter needs to be passed in. Explanation: When modifying the log backup policy, this parameter needs to be passed in.
 	BinlogStoragePercentage pulumi.IntOutput `pulumi:"binlogStoragePercentage"`
+	// Cross - region backup strategy.
+	CrossBackupPolicy BackupPolicyCrossBackupPolicyOutput `pulumi:"crossBackupPolicy"`
 	// Whether to retain all data backups before releasing the instance. Values:
 	// true: Yes.
 	// false: No.
@@ -151,6 +162,8 @@ func GetBackupPolicy(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering BackupPolicy resources.
 type backupPolicyState struct {
+	// List of destination regions for cross - region backup.
+	AvailableCrossRegions []string `pulumi:"availableCrossRegions"`
 	// Whether to retain all log backups before releasing an instance. Values:
 	// true: Yes.
 	// false: No. Description: BinlogBackupAllRetention is ineffective when the value of RetentionPolicySynced is true.
@@ -173,6 +186,8 @@ type backupPolicyState struct {
 	BinlogSpaceLimitEnable *bool `pulumi:"binlogSpaceLimitEnable"`
 	// Maximum storage space usage rate can be set to 20% - 50%. After exceeding this limit, the earliest Binlog file will be automatically deleted until the space usage rate is lower than this ratio. Local Binlog space usage rate = Local Binlog size / Total available (purchased) instance space size. When modifying the log backup policy, this parameter needs to be passed in. Explanation: When modifying the log backup policy, this parameter needs to be passed in.
 	BinlogStoragePercentage *int `pulumi:"binlogStoragePercentage"`
+	// Cross - region backup strategy.
+	CrossBackupPolicy *BackupPolicyCrossBackupPolicy `pulumi:"crossBackupPolicy"`
 	// Whether to retain all data backups before releasing the instance. Values:
 	// true: Yes.
 	// false: No.
@@ -213,6 +228,8 @@ type backupPolicyState struct {
 }
 
 type BackupPolicyState struct {
+	// List of destination regions for cross - region backup.
+	AvailableCrossRegions pulumi.StringArrayInput
 	// Whether to retain all log backups before releasing an instance. Values:
 	// true: Yes.
 	// false: No. Description: BinlogBackupAllRetention is ineffective when the value of RetentionPolicySynced is true.
@@ -235,6 +252,8 @@ type BackupPolicyState struct {
 	BinlogSpaceLimitEnable pulumi.BoolPtrInput
 	// Maximum storage space usage rate can be set to 20% - 50%. After exceeding this limit, the earliest Binlog file will be automatically deleted until the space usage rate is lower than this ratio. Local Binlog space usage rate = Local Binlog size / Total available (purchased) instance space size. When modifying the log backup policy, this parameter needs to be passed in. Explanation: When modifying the log backup policy, this parameter needs to be passed in.
 	BinlogStoragePercentage pulumi.IntPtrInput
+	// Cross - region backup strategy.
+	CrossBackupPolicy BackupPolicyCrossBackupPolicyPtrInput
 	// Whether to retain all data backups before releasing the instance. Values:
 	// true: Yes.
 	// false: No.
@@ -301,6 +320,8 @@ type backupPolicyArgs struct {
 	BinlogSpaceLimitEnable *bool `pulumi:"binlogSpaceLimitEnable"`
 	// Maximum storage space usage rate can be set to 20% - 50%. After exceeding this limit, the earliest Binlog file will be automatically deleted until the space usage rate is lower than this ratio. Local Binlog space usage rate = Local Binlog size / Total available (purchased) instance space size. When modifying the log backup policy, this parameter needs to be passed in. Explanation: When modifying the log backup policy, this parameter needs to be passed in.
 	BinlogStoragePercentage *int `pulumi:"binlogStoragePercentage"`
+	// Cross - region backup strategy.
+	CrossBackupPolicy *BackupPolicyCrossBackupPolicy `pulumi:"crossBackupPolicy"`
 	// Whether to retain all data backups before releasing the instance. Values:
 	// true: Yes.
 	// false: No.
@@ -364,6 +385,8 @@ type BackupPolicyArgs struct {
 	BinlogSpaceLimitEnable pulumi.BoolPtrInput
 	// Maximum storage space usage rate can be set to 20% - 50%. After exceeding this limit, the earliest Binlog file will be automatically deleted until the space usage rate is lower than this ratio. Local Binlog space usage rate = Local Binlog size / Total available (purchased) instance space size. When modifying the log backup policy, this parameter needs to be passed in. Explanation: When modifying the log backup policy, this parameter needs to be passed in.
 	BinlogStoragePercentage pulumi.IntPtrInput
+	// Cross - region backup strategy.
+	CrossBackupPolicy BackupPolicyCrossBackupPolicyPtrInput
 	// Whether to retain all data backups before releasing the instance. Values:
 	// true: Yes.
 	// false: No.
@@ -490,6 +513,11 @@ func (o BackupPolicyOutput) ToBackupPolicyOutputWithContext(ctx context.Context)
 	return o
 }
 
+// List of destination regions for cross - region backup.
+func (o BackupPolicyOutput) AvailableCrossRegions() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *BackupPolicy) pulumi.StringArrayOutput { return v.AvailableCrossRegions }).(pulumi.StringArrayOutput)
+}
+
 // Whether to retain all log backups before releasing an instance. Values:
 // true: Yes.
 // false: No. Description: BinlogBackupAllRetention is ineffective when the value of RetentionPolicySynced is true.
@@ -534,6 +562,11 @@ func (o BackupPolicyOutput) BinlogSpaceLimitEnable() pulumi.BoolOutput {
 // Maximum storage space usage rate can be set to 20% - 50%. After exceeding this limit, the earliest Binlog file will be automatically deleted until the space usage rate is lower than this ratio. Local Binlog space usage rate = Local Binlog size / Total available (purchased) instance space size. When modifying the log backup policy, this parameter needs to be passed in. Explanation: When modifying the log backup policy, this parameter needs to be passed in.
 func (o BackupPolicyOutput) BinlogStoragePercentage() pulumi.IntOutput {
 	return o.ApplyT(func(v *BackupPolicy) pulumi.IntOutput { return v.BinlogStoragePercentage }).(pulumi.IntOutput)
+}
+
+// Cross - region backup strategy.
+func (o BackupPolicyOutput) CrossBackupPolicy() BackupPolicyCrossBackupPolicyOutput {
+	return o.ApplyT(func(v *BackupPolicy) BackupPolicyCrossBackupPolicyOutput { return v.CrossBackupPolicy }).(BackupPolicyCrossBackupPolicyOutput)
 }
 
 // Whether to retain all data backups before releasing the instance. Values:

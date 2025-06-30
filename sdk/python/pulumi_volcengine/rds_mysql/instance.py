@@ -23,8 +23,12 @@ class InstanceArgs:
                  secondary_zone_id: pulumi.Input[str],
                  subnet_id: pulumi.Input[str],
                  allow_list_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 auto_storage_scaling_config: Optional[pulumi.Input['InstanceAutoStorageScalingConfigArgs']] = None,
                  connection_pool_type: Optional[pulumi.Input[str]] = None,
+                 data_sync_mode: Optional[pulumi.Input[str]] = None,
                  db_time_zone: Optional[pulumi.Input[str]] = None,
+                 deletion_protection: Optional[pulumi.Input[str]] = None,
+                 global_read_only: Optional[pulumi.Input[bool]] = None,
                  instance_name: Optional[pulumi.Input[str]] = None,
                  lower_case_table_names: Optional[pulumi.Input[str]] = None,
                  maintenance_window: Optional[pulumi.Input['InstanceMaintenanceWindowArgs']] = None,
@@ -43,10 +47,18 @@ class InstanceArgs:
         :param pulumi.Input[str] secondary_zone_id: The available zone of secondary node.
         :param pulumi.Input[str] subnet_id: Subnet ID of the RDS instance.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_list_ids: Allow list Ids of the RDS instance.
+        :param pulumi.Input['InstanceAutoStorageScalingConfigArgs'] auto_storage_scaling_config: Auto - storage scaling configuration.
         :param pulumi.Input[str] connection_pool_type: Connection pool type. Value range:
                Direct: Direct connection mode.
                Transaction: Transaction-level connection pool (default).
+        :param pulumi.Input[str] data_sync_mode: Data synchronization methods:
+               SemiSync: Semi - synchronous(Default).
+               Async: Asynchronous.
         :param pulumi.Input[str] db_time_zone: Time zone. Support UTC -12:00 ~ +13:00. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        :param pulumi.Input[str] deletion_protection: Whether to enable the deletion protection function. Values:
+               Enabled: Yes.
+               Disabled: No.
+        :param pulumi.Input[bool] global_read_only: Whether to enable global read-only for the instance.
         :param pulumi.Input[str] instance_name: Instance name. Cannot start with a number or a dash
                Can only contain Chinese characters, letters, numbers, underscores and dashes
                The length is limited between 1 ~ 128.
@@ -68,10 +80,18 @@ class InstanceArgs:
         pulumi.set(__self__, "subnet_id", subnet_id)
         if allow_list_ids is not None:
             pulumi.set(__self__, "allow_list_ids", allow_list_ids)
+        if auto_storage_scaling_config is not None:
+            pulumi.set(__self__, "auto_storage_scaling_config", auto_storage_scaling_config)
         if connection_pool_type is not None:
             pulumi.set(__self__, "connection_pool_type", connection_pool_type)
+        if data_sync_mode is not None:
+            pulumi.set(__self__, "data_sync_mode", data_sync_mode)
         if db_time_zone is not None:
             pulumi.set(__self__, "db_time_zone", db_time_zone)
+        if deletion_protection is not None:
+            pulumi.set(__self__, "deletion_protection", deletion_protection)
+        if global_read_only is not None:
+            pulumi.set(__self__, "global_read_only", global_read_only)
         if instance_name is not None:
             pulumi.set(__self__, "instance_name", instance_name)
         if lower_case_table_names is not None:
@@ -174,6 +194,18 @@ class InstanceArgs:
         pulumi.set(self, "allow_list_ids", value)
 
     @property
+    @pulumi.getter(name="autoStorageScalingConfig")
+    def auto_storage_scaling_config(self) -> Optional[pulumi.Input['InstanceAutoStorageScalingConfigArgs']]:
+        """
+        Auto - storage scaling configuration.
+        """
+        return pulumi.get(self, "auto_storage_scaling_config")
+
+    @auto_storage_scaling_config.setter
+    def auto_storage_scaling_config(self, value: Optional[pulumi.Input['InstanceAutoStorageScalingConfigArgs']]):
+        pulumi.set(self, "auto_storage_scaling_config", value)
+
+    @property
     @pulumi.getter(name="connectionPoolType")
     def connection_pool_type(self) -> Optional[pulumi.Input[str]]:
         """
@@ -188,6 +220,20 @@ class InstanceArgs:
         pulumi.set(self, "connection_pool_type", value)
 
     @property
+    @pulumi.getter(name="dataSyncMode")
+    def data_sync_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Data synchronization methods:
+        SemiSync: Semi - synchronous(Default).
+        Async: Asynchronous.
+        """
+        return pulumi.get(self, "data_sync_mode")
+
+    @data_sync_mode.setter
+    def data_sync_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "data_sync_mode", value)
+
+    @property
     @pulumi.getter(name="dbTimeZone")
     def db_time_zone(self) -> Optional[pulumi.Input[str]]:
         """
@@ -198,6 +244,32 @@ class InstanceArgs:
     @db_time_zone.setter
     def db_time_zone(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "db_time_zone", value)
+
+    @property
+    @pulumi.getter(name="deletionProtection")
+    def deletion_protection(self) -> Optional[pulumi.Input[str]]:
+        """
+        Whether to enable the deletion protection function. Values:
+        Enabled: Yes.
+        Disabled: No.
+        """
+        return pulumi.get(self, "deletion_protection")
+
+    @deletion_protection.setter
+    def deletion_protection(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "deletion_protection", value)
+
+    @property
+    @pulumi.getter(name="globalReadOnly")
+    def global_read_only(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to enable global read-only for the instance.
+        """
+        return pulumi.get(self, "global_read_only")
+
+    @global_read_only.setter
+    def global_read_only(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "global_read_only", value)
 
     @property
     @pulumi.getter(name="instanceName")
@@ -294,6 +366,8 @@ class _InstanceState:
     def __init__(__self__, *,
                  allow_list_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allow_list_version: Optional[pulumi.Input[str]] = None,
+                 auto_storage_scaling_config: Optional[pulumi.Input['InstanceAutoStorageScalingConfigArgs']] = None,
+                 auto_upgrade_minor_version: Optional[pulumi.Input[str]] = None,
                  backup_use: Optional[pulumi.Input[int]] = None,
                  binlog_dump: Optional[pulumi.Input[bool]] = None,
                  charge_details: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceChargeDetailArgs']]]] = None,
@@ -304,14 +378,23 @@ class _InstanceState:
                  db_engine_version: Optional[pulumi.Input[str]] = None,
                  db_proxy_status: Optional[pulumi.Input[str]] = None,
                  db_time_zone: Optional[pulumi.Input[str]] = None,
+                 deletion_protection: Optional[pulumi.Input[str]] = None,
+                 dr_dts_task_id: Optional[pulumi.Input[str]] = None,
+                 dr_dts_task_name: Optional[pulumi.Input[str]] = None,
+                 dr_dts_task_status: Optional[pulumi.Input[str]] = None,
+                 dr_seconds_behind_master: Optional[pulumi.Input[int]] = None,
                  endpoints: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceEndpointArgs']]]] = None,
                  feature_states: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceFeatureStateArgs']]]] = None,
                  global_read_only: Optional[pulumi.Input[bool]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
                  instance_name: Optional[pulumi.Input[str]] = None,
                  instance_status: Optional[pulumi.Input[str]] = None,
+                 kernel_version: Optional[pulumi.Input[str]] = None,
                  lower_case_table_names: Optional[pulumi.Input[str]] = None,
                  maintenance_window: Optional[pulumi.Input['InstanceMaintenanceWindowArgs']] = None,
+                 master_instance_id: Optional[pulumi.Input[str]] = None,
+                 master_instance_name: Optional[pulumi.Input[str]] = None,
+                 master_region: Optional[pulumi.Input[str]] = None,
                  memory: Optional[pulumi.Input[int]] = None,
                  node_cpu_used_percentage: Optional[pulumi.Input[float]] = None,
                  node_memory_used_percentage: Optional[pulumi.Input[float]] = None,
@@ -324,6 +407,10 @@ class _InstanceState:
                  project_name: Optional[pulumi.Input[str]] = None,
                  region_id: Optional[pulumi.Input[str]] = None,
                  secondary_zone_id: Optional[pulumi.Input[str]] = None,
+                 storage_max_capacity: Optional[pulumi.Input[int]] = None,
+                 storage_max_trigger_threshold: Optional[pulumi.Input[int]] = None,
+                 storage_min_capacity: Optional[pulumi.Input[int]] = None,
+                 storage_min_trigger_threshold: Optional[pulumi.Input[int]] = None,
                  storage_space: Optional[pulumi.Input[int]] = None,
                  storage_type: Optional[pulumi.Input[str]] = None,
                  storage_use: Optional[pulumi.Input[int]] = None,
@@ -339,6 +426,10 @@ class _InstanceState:
         Input properties used for looking up and filtering Instance resources.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_list_ids: Allow list Ids of the RDS instance.
         :param pulumi.Input[str] allow_list_version: The version of allow list.
+        :param pulumi.Input['InstanceAutoStorageScalingConfigArgs'] auto_storage_scaling_config: Auto - storage scaling configuration.
+        :param pulumi.Input[str] auto_upgrade_minor_version: The upgrade strategy for the minor version of the instance kernel. Values:
+               Auto: Auto upgrade.
+               Manual: Manual upgrade.
         :param pulumi.Input[int] backup_use: The instance has used backup space. Unit: GB.
         :param pulumi.Input[bool] binlog_dump: Does it support the binlog capability? This parameter is returned only when the database proxy is enabled. Values:
                true: Yes.
@@ -349,7 +440,9 @@ class _InstanceState:
                Direct: Direct connection mode.
                Transaction: Transaction-level connection pool (default).
         :param pulumi.Input[str] create_time: Node creation local time.
-        :param pulumi.Input[str] data_sync_mode: Data synchronization mode.
+        :param pulumi.Input[str] data_sync_mode: Data synchronization methods:
+               SemiSync: Semi - synchronous(Default).
+               Async: Asynchronous.
         :param pulumi.Input[str] db_engine_version: Instance type. Value:
                MySQL_5_7
                MySQL_8_0.
@@ -359,21 +452,30 @@ class _InstanceState:
                Shutdown: The proxy is closed.
                Deleting: The proxy is being closed.
         :param pulumi.Input[str] db_time_zone: Time zone. Support UTC -12:00 ~ +13:00. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        :param pulumi.Input[str] deletion_protection: Whether to enable the deletion protection function. Values:
+               Enabled: Yes.
+               Disabled: No.
+        :param pulumi.Input[str] dr_dts_task_id: The ID of the data synchronization task in DTS for the data synchronization link between the primary instance and the disaster recovery instance.
+        :param pulumi.Input[str] dr_dts_task_name: The name of the DTS data synchronization task for the data synchronization link between the primary instance and the disaster recovery instance.
+        :param pulumi.Input[str] dr_dts_task_status: The status of the DTS data synchronization task for the data synchronization link between the primary instance and the disaster recovery instance.
+        :param pulumi.Input[int] dr_seconds_behind_master: The number of seconds that the disaster recovery instance is behind the primary instance.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceEndpointArgs']]] endpoints: The endpoint info of the RDS instance.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceFeatureStateArgs']]] feature_states: Feature status.
-        :param pulumi.Input[bool] global_read_only: Whether to enable global read-only.
-               true: Yes.
-               false: No.
+        :param pulumi.Input[bool] global_read_only: Whether to enable global read-only for the instance.
         :param pulumi.Input[str] instance_id: Instance ID.
         :param pulumi.Input[str] instance_name: Instance name. Cannot start with a number or a dash
                Can only contain Chinese characters, letters, numbers, underscores and dashes
                The length is limited between 1 ~ 128.
         :param pulumi.Input[str] instance_status: The status of the RDS instance.
+        :param pulumi.Input[str] kernel_version: The current kernel version of the RDS instance.
         :param pulumi.Input[str] lower_case_table_names: Whether the table name is case sensitive, the default value is 1.
                Ranges:
                0: Table names are stored as fixed and table names are case-sensitive.
                1: Table names will be stored in lowercase and table names are not case sensitive.
         :param pulumi.Input['InstanceMaintenanceWindowArgs'] maintenance_window: Specify the maintainable time period of the instance when creating the instance. This field is optional. If not set, it defaults to 18:00Z - 21:59Z of every day within a week (that is, 02:00 - 05:59 Beijing time).
+        :param pulumi.Input[str] master_instance_id: The ID of the primary instance of the disaster recovery instance.
+        :param pulumi.Input[str] master_instance_name: The name of the primary instance of the disaster recovery instance.
+        :param pulumi.Input[str] master_region: The region where the primary instance of the disaster recovery instance is located.
         :param pulumi.Input[int] memory: Memory size in GB.
         :param pulumi.Input[float] node_cpu_used_percentage: Average CPU usage of the instance master node in nearly one minute.
         :param pulumi.Input[float] node_memory_used_percentage: Average memory usage of the instance master node in nearly one minute.
@@ -386,6 +488,10 @@ class _InstanceState:
         :param pulumi.Input[str] project_name: The project name of the RDS instance.
         :param pulumi.Input[str] region_id: The region of the RDS instance.
         :param pulumi.Input[str] secondary_zone_id: The available zone of secondary node.
+        :param pulumi.Input[int] storage_max_capacity: The upper limit of the storage space that can be set for automatic expansion. The value is the upper limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value ranges of different specifications, please refer to Product Specifications.
+        :param pulumi.Input[int] storage_max_trigger_threshold: The upper limit of the proportion of available storage space that triggers automatic expansion. When supported, the value is 50%.
+        :param pulumi.Input[int] storage_min_capacity: The lower limit of the storage space that can be set for automatic expansion. The value is the lower limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value ranges of different specifications, please refer to Product Specifications.
+        :param pulumi.Input[int] storage_min_trigger_threshold: The lower limit of the proportion of available storage space that triggers automatic expansion. When supported, the value is 10%.
         :param pulumi.Input[int] storage_space: Instance storage space. Value range: [20, 3000], unit: GB, increments every 100GB. Default value: 100.
         :param pulumi.Input[str] storage_type: Instance storage type.
         :param pulumi.Input[int] storage_use: The instance has used storage space. Unit: GB.
@@ -402,6 +508,10 @@ class _InstanceState:
             pulumi.set(__self__, "allow_list_ids", allow_list_ids)
         if allow_list_version is not None:
             pulumi.set(__self__, "allow_list_version", allow_list_version)
+        if auto_storage_scaling_config is not None:
+            pulumi.set(__self__, "auto_storage_scaling_config", auto_storage_scaling_config)
+        if auto_upgrade_minor_version is not None:
+            pulumi.set(__self__, "auto_upgrade_minor_version", auto_upgrade_minor_version)
         if backup_use is not None:
             pulumi.set(__self__, "backup_use", backup_use)
         if binlog_dump is not None:
@@ -422,6 +532,16 @@ class _InstanceState:
             pulumi.set(__self__, "db_proxy_status", db_proxy_status)
         if db_time_zone is not None:
             pulumi.set(__self__, "db_time_zone", db_time_zone)
+        if deletion_protection is not None:
+            pulumi.set(__self__, "deletion_protection", deletion_protection)
+        if dr_dts_task_id is not None:
+            pulumi.set(__self__, "dr_dts_task_id", dr_dts_task_id)
+        if dr_dts_task_name is not None:
+            pulumi.set(__self__, "dr_dts_task_name", dr_dts_task_name)
+        if dr_dts_task_status is not None:
+            pulumi.set(__self__, "dr_dts_task_status", dr_dts_task_status)
+        if dr_seconds_behind_master is not None:
+            pulumi.set(__self__, "dr_seconds_behind_master", dr_seconds_behind_master)
         if endpoints is not None:
             pulumi.set(__self__, "endpoints", endpoints)
         if feature_states is not None:
@@ -434,10 +554,18 @@ class _InstanceState:
             pulumi.set(__self__, "instance_name", instance_name)
         if instance_status is not None:
             pulumi.set(__self__, "instance_status", instance_status)
+        if kernel_version is not None:
+            pulumi.set(__self__, "kernel_version", kernel_version)
         if lower_case_table_names is not None:
             pulumi.set(__self__, "lower_case_table_names", lower_case_table_names)
         if maintenance_window is not None:
             pulumi.set(__self__, "maintenance_window", maintenance_window)
+        if master_instance_id is not None:
+            pulumi.set(__self__, "master_instance_id", master_instance_id)
+        if master_instance_name is not None:
+            pulumi.set(__self__, "master_instance_name", master_instance_name)
+        if master_region is not None:
+            pulumi.set(__self__, "master_region", master_region)
         if memory is not None:
             pulumi.set(__self__, "memory", memory)
         if node_cpu_used_percentage is not None:
@@ -462,6 +590,14 @@ class _InstanceState:
             pulumi.set(__self__, "region_id", region_id)
         if secondary_zone_id is not None:
             pulumi.set(__self__, "secondary_zone_id", secondary_zone_id)
+        if storage_max_capacity is not None:
+            pulumi.set(__self__, "storage_max_capacity", storage_max_capacity)
+        if storage_max_trigger_threshold is not None:
+            pulumi.set(__self__, "storage_max_trigger_threshold", storage_max_trigger_threshold)
+        if storage_min_capacity is not None:
+            pulumi.set(__self__, "storage_min_capacity", storage_min_capacity)
+        if storage_min_trigger_threshold is not None:
+            pulumi.set(__self__, "storage_min_trigger_threshold", storage_min_trigger_threshold)
         if storage_space is not None:
             pulumi.set(__self__, "storage_space", storage_space)
         if storage_type is not None:
@@ -508,6 +644,32 @@ class _InstanceState:
     @allow_list_version.setter
     def allow_list_version(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "allow_list_version", value)
+
+    @property
+    @pulumi.getter(name="autoStorageScalingConfig")
+    def auto_storage_scaling_config(self) -> Optional[pulumi.Input['InstanceAutoStorageScalingConfigArgs']]:
+        """
+        Auto - storage scaling configuration.
+        """
+        return pulumi.get(self, "auto_storage_scaling_config")
+
+    @auto_storage_scaling_config.setter
+    def auto_storage_scaling_config(self, value: Optional[pulumi.Input['InstanceAutoStorageScalingConfigArgs']]):
+        pulumi.set(self, "auto_storage_scaling_config", value)
+
+    @property
+    @pulumi.getter(name="autoUpgradeMinorVersion")
+    def auto_upgrade_minor_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        The upgrade strategy for the minor version of the instance kernel. Values:
+        Auto: Auto upgrade.
+        Manual: Manual upgrade.
+        """
+        return pulumi.get(self, "auto_upgrade_minor_version")
+
+    @auto_upgrade_minor_version.setter
+    def auto_upgrade_minor_version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "auto_upgrade_minor_version", value)
 
     @property
     @pulumi.getter(name="backupUse")
@@ -589,7 +751,9 @@ class _InstanceState:
     @pulumi.getter(name="dataSyncMode")
     def data_sync_mode(self) -> Optional[pulumi.Input[str]]:
         """
-        Data synchronization mode.
+        Data synchronization methods:
+        SemiSync: Semi - synchronous(Default).
+        Async: Asynchronous.
         """
         return pulumi.get(self, "data_sync_mode")
 
@@ -640,6 +804,68 @@ class _InstanceState:
         pulumi.set(self, "db_time_zone", value)
 
     @property
+    @pulumi.getter(name="deletionProtection")
+    def deletion_protection(self) -> Optional[pulumi.Input[str]]:
+        """
+        Whether to enable the deletion protection function. Values:
+        Enabled: Yes.
+        Disabled: No.
+        """
+        return pulumi.get(self, "deletion_protection")
+
+    @deletion_protection.setter
+    def deletion_protection(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "deletion_protection", value)
+
+    @property
+    @pulumi.getter(name="drDtsTaskId")
+    def dr_dts_task_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the data synchronization task in DTS for the data synchronization link between the primary instance and the disaster recovery instance.
+        """
+        return pulumi.get(self, "dr_dts_task_id")
+
+    @dr_dts_task_id.setter
+    def dr_dts_task_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dr_dts_task_id", value)
+
+    @property
+    @pulumi.getter(name="drDtsTaskName")
+    def dr_dts_task_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the DTS data synchronization task for the data synchronization link between the primary instance and the disaster recovery instance.
+        """
+        return pulumi.get(self, "dr_dts_task_name")
+
+    @dr_dts_task_name.setter
+    def dr_dts_task_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dr_dts_task_name", value)
+
+    @property
+    @pulumi.getter(name="drDtsTaskStatus")
+    def dr_dts_task_status(self) -> Optional[pulumi.Input[str]]:
+        """
+        The status of the DTS data synchronization task for the data synchronization link between the primary instance and the disaster recovery instance.
+        """
+        return pulumi.get(self, "dr_dts_task_status")
+
+    @dr_dts_task_status.setter
+    def dr_dts_task_status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dr_dts_task_status", value)
+
+    @property
+    @pulumi.getter(name="drSecondsBehindMaster")
+    def dr_seconds_behind_master(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of seconds that the disaster recovery instance is behind the primary instance.
+        """
+        return pulumi.get(self, "dr_seconds_behind_master")
+
+    @dr_seconds_behind_master.setter
+    def dr_seconds_behind_master(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "dr_seconds_behind_master", value)
+
+    @property
     @pulumi.getter
     def endpoints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceEndpointArgs']]]]:
         """
@@ -667,9 +893,7 @@ class _InstanceState:
     @pulumi.getter(name="globalReadOnly")
     def global_read_only(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether to enable global read-only.
-        true: Yes.
-        false: No.
+        Whether to enable global read-only for the instance.
         """
         return pulumi.get(self, "global_read_only")
 
@@ -716,6 +940,18 @@ class _InstanceState:
         pulumi.set(self, "instance_status", value)
 
     @property
+    @pulumi.getter(name="kernelVersion")
+    def kernel_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        The current kernel version of the RDS instance.
+        """
+        return pulumi.get(self, "kernel_version")
+
+    @kernel_version.setter
+    def kernel_version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "kernel_version", value)
+
+    @property
     @pulumi.getter(name="lowerCaseTableNames")
     def lower_case_table_names(self) -> Optional[pulumi.Input[str]]:
         """
@@ -741,6 +977,42 @@ class _InstanceState:
     @maintenance_window.setter
     def maintenance_window(self, value: Optional[pulumi.Input['InstanceMaintenanceWindowArgs']]):
         pulumi.set(self, "maintenance_window", value)
+
+    @property
+    @pulumi.getter(name="masterInstanceId")
+    def master_instance_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the primary instance of the disaster recovery instance.
+        """
+        return pulumi.get(self, "master_instance_id")
+
+    @master_instance_id.setter
+    def master_instance_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "master_instance_id", value)
+
+    @property
+    @pulumi.getter(name="masterInstanceName")
+    def master_instance_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the primary instance of the disaster recovery instance.
+        """
+        return pulumi.get(self, "master_instance_name")
+
+    @master_instance_name.setter
+    def master_instance_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "master_instance_name", value)
+
+    @property
+    @pulumi.getter(name="masterRegion")
+    def master_region(self) -> Optional[pulumi.Input[str]]:
+        """
+        The region where the primary instance of the disaster recovery instance is located.
+        """
+        return pulumi.get(self, "master_region")
+
+    @master_region.setter
+    def master_region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "master_region", value)
 
     @property
     @pulumi.getter
@@ -887,6 +1159,54 @@ class _InstanceState:
         pulumi.set(self, "secondary_zone_id", value)
 
     @property
+    @pulumi.getter(name="storageMaxCapacity")
+    def storage_max_capacity(self) -> Optional[pulumi.Input[int]]:
+        """
+        The upper limit of the storage space that can be set for automatic expansion. The value is the upper limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value ranges of different specifications, please refer to Product Specifications.
+        """
+        return pulumi.get(self, "storage_max_capacity")
+
+    @storage_max_capacity.setter
+    def storage_max_capacity(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "storage_max_capacity", value)
+
+    @property
+    @pulumi.getter(name="storageMaxTriggerThreshold")
+    def storage_max_trigger_threshold(self) -> Optional[pulumi.Input[int]]:
+        """
+        The upper limit of the proportion of available storage space that triggers automatic expansion. When supported, the value is 50%.
+        """
+        return pulumi.get(self, "storage_max_trigger_threshold")
+
+    @storage_max_trigger_threshold.setter
+    def storage_max_trigger_threshold(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "storage_max_trigger_threshold", value)
+
+    @property
+    @pulumi.getter(name="storageMinCapacity")
+    def storage_min_capacity(self) -> Optional[pulumi.Input[int]]:
+        """
+        The lower limit of the storage space that can be set for automatic expansion. The value is the lower limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value ranges of different specifications, please refer to Product Specifications.
+        """
+        return pulumi.get(self, "storage_min_capacity")
+
+    @storage_min_capacity.setter
+    def storage_min_capacity(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "storage_min_capacity", value)
+
+    @property
+    @pulumi.getter(name="storageMinTriggerThreshold")
+    def storage_min_trigger_threshold(self) -> Optional[pulumi.Input[int]]:
+        """
+        The lower limit of the proportion of available storage space that triggers automatic expansion. When supported, the value is 10%.
+        """
+        return pulumi.get(self, "storage_min_trigger_threshold")
+
+    @storage_min_trigger_threshold.setter
+    def storage_min_trigger_threshold(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "storage_min_trigger_threshold", value)
+
+    @property
     @pulumi.getter(name="storageSpace")
     def storage_space(self) -> Optional[pulumi.Input[int]]:
         """
@@ -1025,10 +1345,14 @@ class Instance(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  allow_list_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 auto_storage_scaling_config: Optional[pulumi.Input[pulumi.InputType['InstanceAutoStorageScalingConfigArgs']]] = None,
                  charge_info: Optional[pulumi.Input[pulumi.InputType['InstanceChargeInfoArgs']]] = None,
                  connection_pool_type: Optional[pulumi.Input[str]] = None,
+                 data_sync_mode: Optional[pulumi.Input[str]] = None,
                  db_engine_version: Optional[pulumi.Input[str]] = None,
                  db_time_zone: Optional[pulumi.Input[str]] = None,
+                 deletion_protection: Optional[pulumi.Input[str]] = None,
+                 global_read_only: Optional[pulumi.Input[bool]] = None,
                  instance_name: Optional[pulumi.Input[str]] = None,
                  lower_case_table_names: Optional[pulumi.Input[str]] = None,
                  maintenance_window: Optional[pulumi.Input[pulumi.InputType['InstanceMaintenanceWindowArgs']]] = None,
@@ -1068,7 +1392,7 @@ class Instance(pulumi.CustomResource):
         # create mysql instance
         foo_instance = volcengine.rds_mysql.Instance("fooInstance",
             db_engine_version="MySQL_5_7",
-            node_spec="rds.mysql.1c2g",
+            node_spec="rds.mysql.2c4g",
             primary_zone_id=foo_zones.zones[0].id,
             secondary_zone_id=foo_zones.zones[0].id,
             storage_space=80,
@@ -1092,7 +1416,14 @@ class Instance(pulumi.CustomResource):
                     parameter_name="auto_increment_offset",
                     parameter_value="5",
                 ),
-            ])
+            ],
+            deletion_protection="Disabled",
+            data_sync_mode="SemiSync",
+            auto_storage_scaling_config=volcengine.rds_mysql.InstanceAutoStorageScalingConfigArgs(
+                enable_storage_auto_scale=True,
+                storage_threshold=40,
+                storage_upper_bound=110,
+            ))
         # create mysql instance readonly node
         foo_instance_readonly_node = volcengine.rds_mysql.InstanceReadonlyNode("fooInstanceReadonlyNode",
             instance_id=foo_instance.id,
@@ -1128,14 +1459,22 @@ class Instance(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_list_ids: Allow list Ids of the RDS instance.
+        :param pulumi.Input[pulumi.InputType['InstanceAutoStorageScalingConfigArgs']] auto_storage_scaling_config: Auto - storage scaling configuration.
         :param pulumi.Input[pulumi.InputType['InstanceChargeInfoArgs']] charge_info: Payment methods.
         :param pulumi.Input[str] connection_pool_type: Connection pool type. Value range:
                Direct: Direct connection mode.
                Transaction: Transaction-level connection pool (default).
+        :param pulumi.Input[str] data_sync_mode: Data synchronization methods:
+               SemiSync: Semi - synchronous(Default).
+               Async: Asynchronous.
         :param pulumi.Input[str] db_engine_version: Instance type. Value:
                MySQL_5_7
                MySQL_8_0.
         :param pulumi.Input[str] db_time_zone: Time zone. Support UTC -12:00 ~ +13:00. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        :param pulumi.Input[str] deletion_protection: Whether to enable the deletion protection function. Values:
+               Enabled: Yes.
+               Disabled: No.
+        :param pulumi.Input[bool] global_read_only: Whether to enable global read-only for the instance.
         :param pulumi.Input[str] instance_name: Instance name. Cannot start with a number or a dash
                Can only contain Chinese characters, letters, numbers, underscores and dashes
                The length is limited between 1 ~ 128.
@@ -1186,7 +1525,7 @@ class Instance(pulumi.CustomResource):
         # create mysql instance
         foo_instance = volcengine.rds_mysql.Instance("fooInstance",
             db_engine_version="MySQL_5_7",
-            node_spec="rds.mysql.1c2g",
+            node_spec="rds.mysql.2c4g",
             primary_zone_id=foo_zones.zones[0].id,
             secondary_zone_id=foo_zones.zones[0].id,
             storage_space=80,
@@ -1210,7 +1549,14 @@ class Instance(pulumi.CustomResource):
                     parameter_name="auto_increment_offset",
                     parameter_value="5",
                 ),
-            ])
+            ],
+            deletion_protection="Disabled",
+            data_sync_mode="SemiSync",
+            auto_storage_scaling_config=volcengine.rds_mysql.InstanceAutoStorageScalingConfigArgs(
+                enable_storage_auto_scale=True,
+                storage_threshold=40,
+                storage_upper_bound=110,
+            ))
         # create mysql instance readonly node
         foo_instance_readonly_node = volcengine.rds_mysql.InstanceReadonlyNode("fooInstanceReadonlyNode",
             instance_id=foo_instance.id,
@@ -1259,10 +1605,14 @@ class Instance(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  allow_list_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 auto_storage_scaling_config: Optional[pulumi.Input[pulumi.InputType['InstanceAutoStorageScalingConfigArgs']]] = None,
                  charge_info: Optional[pulumi.Input[pulumi.InputType['InstanceChargeInfoArgs']]] = None,
                  connection_pool_type: Optional[pulumi.Input[str]] = None,
+                 data_sync_mode: Optional[pulumi.Input[str]] = None,
                  db_engine_version: Optional[pulumi.Input[str]] = None,
                  db_time_zone: Optional[pulumi.Input[str]] = None,
+                 deletion_protection: Optional[pulumi.Input[str]] = None,
+                 global_read_only: Optional[pulumi.Input[bool]] = None,
                  instance_name: Optional[pulumi.Input[str]] = None,
                  lower_case_table_names: Optional[pulumi.Input[str]] = None,
                  maintenance_window: Optional[pulumi.Input[pulumi.InputType['InstanceMaintenanceWindowArgs']]] = None,
@@ -1284,14 +1634,18 @@ class Instance(pulumi.CustomResource):
             __props__ = InstanceArgs.__new__(InstanceArgs)
 
             __props__.__dict__["allow_list_ids"] = allow_list_ids
+            __props__.__dict__["auto_storage_scaling_config"] = auto_storage_scaling_config
             if charge_info is None and not opts.urn:
                 raise TypeError("Missing required property 'charge_info'")
             __props__.__dict__["charge_info"] = charge_info
             __props__.__dict__["connection_pool_type"] = connection_pool_type
+            __props__.__dict__["data_sync_mode"] = data_sync_mode
             if db_engine_version is None and not opts.urn:
                 raise TypeError("Missing required property 'db_engine_version'")
             __props__.__dict__["db_engine_version"] = db_engine_version
             __props__.__dict__["db_time_zone"] = db_time_zone
+            __props__.__dict__["deletion_protection"] = deletion_protection
+            __props__.__dict__["global_read_only"] = global_read_only
             __props__.__dict__["instance_name"] = instance_name
             __props__.__dict__["lower_case_table_names"] = lower_case_table_names
             __props__.__dict__["maintenance_window"] = maintenance_window
@@ -1312,17 +1666,24 @@ class Instance(pulumi.CustomResource):
             __props__.__dict__["subnet_id"] = subnet_id
             __props__.__dict__["tags"] = tags
             __props__.__dict__["allow_list_version"] = None
+            __props__.__dict__["auto_upgrade_minor_version"] = None
             __props__.__dict__["backup_use"] = None
             __props__.__dict__["binlog_dump"] = None
             __props__.__dict__["charge_details"] = None
             __props__.__dict__["create_time"] = None
-            __props__.__dict__["data_sync_mode"] = None
             __props__.__dict__["db_proxy_status"] = None
+            __props__.__dict__["dr_dts_task_id"] = None
+            __props__.__dict__["dr_dts_task_name"] = None
+            __props__.__dict__["dr_dts_task_status"] = None
+            __props__.__dict__["dr_seconds_behind_master"] = None
             __props__.__dict__["endpoints"] = None
             __props__.__dict__["feature_states"] = None
-            __props__.__dict__["global_read_only"] = None
             __props__.__dict__["instance_id"] = None
             __props__.__dict__["instance_status"] = None
+            __props__.__dict__["kernel_version"] = None
+            __props__.__dict__["master_instance_id"] = None
+            __props__.__dict__["master_instance_name"] = None
+            __props__.__dict__["master_region"] = None
             __props__.__dict__["memory"] = None
             __props__.__dict__["node_cpu_used_percentage"] = None
             __props__.__dict__["node_memory_used_percentage"] = None
@@ -1330,6 +1691,10 @@ class Instance(pulumi.CustomResource):
             __props__.__dict__["node_space_used_percentage"] = None
             __props__.__dict__["nodes"] = None
             __props__.__dict__["region_id"] = None
+            __props__.__dict__["storage_max_capacity"] = None
+            __props__.__dict__["storage_max_trigger_threshold"] = None
+            __props__.__dict__["storage_min_capacity"] = None
+            __props__.__dict__["storage_min_trigger_threshold"] = None
             __props__.__dict__["storage_type"] = None
             __props__.__dict__["storage_use"] = None
             __props__.__dict__["time_zone"] = None
@@ -1350,6 +1715,8 @@ class Instance(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             allow_list_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             allow_list_version: Optional[pulumi.Input[str]] = None,
+            auto_storage_scaling_config: Optional[pulumi.Input[pulumi.InputType['InstanceAutoStorageScalingConfigArgs']]] = None,
+            auto_upgrade_minor_version: Optional[pulumi.Input[str]] = None,
             backup_use: Optional[pulumi.Input[int]] = None,
             binlog_dump: Optional[pulumi.Input[bool]] = None,
             charge_details: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceChargeDetailArgs']]]]] = None,
@@ -1360,14 +1727,23 @@ class Instance(pulumi.CustomResource):
             db_engine_version: Optional[pulumi.Input[str]] = None,
             db_proxy_status: Optional[pulumi.Input[str]] = None,
             db_time_zone: Optional[pulumi.Input[str]] = None,
+            deletion_protection: Optional[pulumi.Input[str]] = None,
+            dr_dts_task_id: Optional[pulumi.Input[str]] = None,
+            dr_dts_task_name: Optional[pulumi.Input[str]] = None,
+            dr_dts_task_status: Optional[pulumi.Input[str]] = None,
+            dr_seconds_behind_master: Optional[pulumi.Input[int]] = None,
             endpoints: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceEndpointArgs']]]]] = None,
             feature_states: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceFeatureStateArgs']]]]] = None,
             global_read_only: Optional[pulumi.Input[bool]] = None,
             instance_id: Optional[pulumi.Input[str]] = None,
             instance_name: Optional[pulumi.Input[str]] = None,
             instance_status: Optional[pulumi.Input[str]] = None,
+            kernel_version: Optional[pulumi.Input[str]] = None,
             lower_case_table_names: Optional[pulumi.Input[str]] = None,
             maintenance_window: Optional[pulumi.Input[pulumi.InputType['InstanceMaintenanceWindowArgs']]] = None,
+            master_instance_id: Optional[pulumi.Input[str]] = None,
+            master_instance_name: Optional[pulumi.Input[str]] = None,
+            master_region: Optional[pulumi.Input[str]] = None,
             memory: Optional[pulumi.Input[int]] = None,
             node_cpu_used_percentage: Optional[pulumi.Input[float]] = None,
             node_memory_used_percentage: Optional[pulumi.Input[float]] = None,
@@ -1380,6 +1756,10 @@ class Instance(pulumi.CustomResource):
             project_name: Optional[pulumi.Input[str]] = None,
             region_id: Optional[pulumi.Input[str]] = None,
             secondary_zone_id: Optional[pulumi.Input[str]] = None,
+            storage_max_capacity: Optional[pulumi.Input[int]] = None,
+            storage_max_trigger_threshold: Optional[pulumi.Input[int]] = None,
+            storage_min_capacity: Optional[pulumi.Input[int]] = None,
+            storage_min_trigger_threshold: Optional[pulumi.Input[int]] = None,
             storage_space: Optional[pulumi.Input[int]] = None,
             storage_type: Optional[pulumi.Input[str]] = None,
             storage_use: Optional[pulumi.Input[int]] = None,
@@ -1400,6 +1780,10 @@ class Instance(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_list_ids: Allow list Ids of the RDS instance.
         :param pulumi.Input[str] allow_list_version: The version of allow list.
+        :param pulumi.Input[pulumi.InputType['InstanceAutoStorageScalingConfigArgs']] auto_storage_scaling_config: Auto - storage scaling configuration.
+        :param pulumi.Input[str] auto_upgrade_minor_version: The upgrade strategy for the minor version of the instance kernel. Values:
+               Auto: Auto upgrade.
+               Manual: Manual upgrade.
         :param pulumi.Input[int] backup_use: The instance has used backup space. Unit: GB.
         :param pulumi.Input[bool] binlog_dump: Does it support the binlog capability? This parameter is returned only when the database proxy is enabled. Values:
                true: Yes.
@@ -1410,7 +1794,9 @@ class Instance(pulumi.CustomResource):
                Direct: Direct connection mode.
                Transaction: Transaction-level connection pool (default).
         :param pulumi.Input[str] create_time: Node creation local time.
-        :param pulumi.Input[str] data_sync_mode: Data synchronization mode.
+        :param pulumi.Input[str] data_sync_mode: Data synchronization methods:
+               SemiSync: Semi - synchronous(Default).
+               Async: Asynchronous.
         :param pulumi.Input[str] db_engine_version: Instance type. Value:
                MySQL_5_7
                MySQL_8_0.
@@ -1420,21 +1806,30 @@ class Instance(pulumi.CustomResource):
                Shutdown: The proxy is closed.
                Deleting: The proxy is being closed.
         :param pulumi.Input[str] db_time_zone: Time zone. Support UTC -12:00 ~ +13:00. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        :param pulumi.Input[str] deletion_protection: Whether to enable the deletion protection function. Values:
+               Enabled: Yes.
+               Disabled: No.
+        :param pulumi.Input[str] dr_dts_task_id: The ID of the data synchronization task in DTS for the data synchronization link between the primary instance and the disaster recovery instance.
+        :param pulumi.Input[str] dr_dts_task_name: The name of the DTS data synchronization task for the data synchronization link between the primary instance and the disaster recovery instance.
+        :param pulumi.Input[str] dr_dts_task_status: The status of the DTS data synchronization task for the data synchronization link between the primary instance and the disaster recovery instance.
+        :param pulumi.Input[int] dr_seconds_behind_master: The number of seconds that the disaster recovery instance is behind the primary instance.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceEndpointArgs']]]] endpoints: The endpoint info of the RDS instance.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceFeatureStateArgs']]]] feature_states: Feature status.
-        :param pulumi.Input[bool] global_read_only: Whether to enable global read-only.
-               true: Yes.
-               false: No.
+        :param pulumi.Input[bool] global_read_only: Whether to enable global read-only for the instance.
         :param pulumi.Input[str] instance_id: Instance ID.
         :param pulumi.Input[str] instance_name: Instance name. Cannot start with a number or a dash
                Can only contain Chinese characters, letters, numbers, underscores and dashes
                The length is limited between 1 ~ 128.
         :param pulumi.Input[str] instance_status: The status of the RDS instance.
+        :param pulumi.Input[str] kernel_version: The current kernel version of the RDS instance.
         :param pulumi.Input[str] lower_case_table_names: Whether the table name is case sensitive, the default value is 1.
                Ranges:
                0: Table names are stored as fixed and table names are case-sensitive.
                1: Table names will be stored in lowercase and table names are not case sensitive.
         :param pulumi.Input[pulumi.InputType['InstanceMaintenanceWindowArgs']] maintenance_window: Specify the maintainable time period of the instance when creating the instance. This field is optional. If not set, it defaults to 18:00Z - 21:59Z of every day within a week (that is, 02:00 - 05:59 Beijing time).
+        :param pulumi.Input[str] master_instance_id: The ID of the primary instance of the disaster recovery instance.
+        :param pulumi.Input[str] master_instance_name: The name of the primary instance of the disaster recovery instance.
+        :param pulumi.Input[str] master_region: The region where the primary instance of the disaster recovery instance is located.
         :param pulumi.Input[int] memory: Memory size in GB.
         :param pulumi.Input[float] node_cpu_used_percentage: Average CPU usage of the instance master node in nearly one minute.
         :param pulumi.Input[float] node_memory_used_percentage: Average memory usage of the instance master node in nearly one minute.
@@ -1447,6 +1842,10 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] project_name: The project name of the RDS instance.
         :param pulumi.Input[str] region_id: The region of the RDS instance.
         :param pulumi.Input[str] secondary_zone_id: The available zone of secondary node.
+        :param pulumi.Input[int] storage_max_capacity: The upper limit of the storage space that can be set for automatic expansion. The value is the upper limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value ranges of different specifications, please refer to Product Specifications.
+        :param pulumi.Input[int] storage_max_trigger_threshold: The upper limit of the proportion of available storage space that triggers automatic expansion. When supported, the value is 50%.
+        :param pulumi.Input[int] storage_min_capacity: The lower limit of the storage space that can be set for automatic expansion. The value is the lower limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value ranges of different specifications, please refer to Product Specifications.
+        :param pulumi.Input[int] storage_min_trigger_threshold: The lower limit of the proportion of available storage space that triggers automatic expansion. When supported, the value is 10%.
         :param pulumi.Input[int] storage_space: Instance storage space. Value range: [20, 3000], unit: GB, increments every 100GB. Default value: 100.
         :param pulumi.Input[str] storage_type: Instance storage type.
         :param pulumi.Input[int] storage_use: The instance has used storage space. Unit: GB.
@@ -1465,6 +1864,8 @@ class Instance(pulumi.CustomResource):
 
         __props__.__dict__["allow_list_ids"] = allow_list_ids
         __props__.__dict__["allow_list_version"] = allow_list_version
+        __props__.__dict__["auto_storage_scaling_config"] = auto_storage_scaling_config
+        __props__.__dict__["auto_upgrade_minor_version"] = auto_upgrade_minor_version
         __props__.__dict__["backup_use"] = backup_use
         __props__.__dict__["binlog_dump"] = binlog_dump
         __props__.__dict__["charge_details"] = charge_details
@@ -1475,14 +1876,23 @@ class Instance(pulumi.CustomResource):
         __props__.__dict__["db_engine_version"] = db_engine_version
         __props__.__dict__["db_proxy_status"] = db_proxy_status
         __props__.__dict__["db_time_zone"] = db_time_zone
+        __props__.__dict__["deletion_protection"] = deletion_protection
+        __props__.__dict__["dr_dts_task_id"] = dr_dts_task_id
+        __props__.__dict__["dr_dts_task_name"] = dr_dts_task_name
+        __props__.__dict__["dr_dts_task_status"] = dr_dts_task_status
+        __props__.__dict__["dr_seconds_behind_master"] = dr_seconds_behind_master
         __props__.__dict__["endpoints"] = endpoints
         __props__.__dict__["feature_states"] = feature_states
         __props__.__dict__["global_read_only"] = global_read_only
         __props__.__dict__["instance_id"] = instance_id
         __props__.__dict__["instance_name"] = instance_name
         __props__.__dict__["instance_status"] = instance_status
+        __props__.__dict__["kernel_version"] = kernel_version
         __props__.__dict__["lower_case_table_names"] = lower_case_table_names
         __props__.__dict__["maintenance_window"] = maintenance_window
+        __props__.__dict__["master_instance_id"] = master_instance_id
+        __props__.__dict__["master_instance_name"] = master_instance_name
+        __props__.__dict__["master_region"] = master_region
         __props__.__dict__["memory"] = memory
         __props__.__dict__["node_cpu_used_percentage"] = node_cpu_used_percentage
         __props__.__dict__["node_memory_used_percentage"] = node_memory_used_percentage
@@ -1495,6 +1905,10 @@ class Instance(pulumi.CustomResource):
         __props__.__dict__["project_name"] = project_name
         __props__.__dict__["region_id"] = region_id
         __props__.__dict__["secondary_zone_id"] = secondary_zone_id
+        __props__.__dict__["storage_max_capacity"] = storage_max_capacity
+        __props__.__dict__["storage_max_trigger_threshold"] = storage_max_trigger_threshold
+        __props__.__dict__["storage_min_capacity"] = storage_min_capacity
+        __props__.__dict__["storage_min_trigger_threshold"] = storage_min_trigger_threshold
         __props__.__dict__["storage_space"] = storage_space
         __props__.__dict__["storage_type"] = storage_type
         __props__.__dict__["storage_use"] = storage_use
@@ -1523,6 +1937,24 @@ class Instance(pulumi.CustomResource):
         The version of allow list.
         """
         return pulumi.get(self, "allow_list_version")
+
+    @property
+    @pulumi.getter(name="autoStorageScalingConfig")
+    def auto_storage_scaling_config(self) -> pulumi.Output['outputs.InstanceAutoStorageScalingConfig']:
+        """
+        Auto - storage scaling configuration.
+        """
+        return pulumi.get(self, "auto_storage_scaling_config")
+
+    @property
+    @pulumi.getter(name="autoUpgradeMinorVersion")
+    def auto_upgrade_minor_version(self) -> pulumi.Output[str]:
+        """
+        The upgrade strategy for the minor version of the instance kernel. Values:
+        Auto: Auto upgrade.
+        Manual: Manual upgrade.
+        """
+        return pulumi.get(self, "auto_upgrade_minor_version")
 
     @property
     @pulumi.getter(name="backupUse")
@@ -1578,9 +2010,11 @@ class Instance(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="dataSyncMode")
-    def data_sync_mode(self) -> pulumi.Output[str]:
+    def data_sync_mode(self) -> pulumi.Output[Optional[str]]:
         """
-        Data synchronization mode.
+        Data synchronization methods:
+        SemiSync: Semi - synchronous(Default).
+        Async: Asynchronous.
         """
         return pulumi.get(self, "data_sync_mode")
 
@@ -1615,6 +2049,48 @@ class Instance(pulumi.CustomResource):
         return pulumi.get(self, "db_time_zone")
 
     @property
+    @pulumi.getter(name="deletionProtection")
+    def deletion_protection(self) -> pulumi.Output[str]:
+        """
+        Whether to enable the deletion protection function. Values:
+        Enabled: Yes.
+        Disabled: No.
+        """
+        return pulumi.get(self, "deletion_protection")
+
+    @property
+    @pulumi.getter(name="drDtsTaskId")
+    def dr_dts_task_id(self) -> pulumi.Output[str]:
+        """
+        The ID of the data synchronization task in DTS for the data synchronization link between the primary instance and the disaster recovery instance.
+        """
+        return pulumi.get(self, "dr_dts_task_id")
+
+    @property
+    @pulumi.getter(name="drDtsTaskName")
+    def dr_dts_task_name(self) -> pulumi.Output[str]:
+        """
+        The name of the DTS data synchronization task for the data synchronization link between the primary instance and the disaster recovery instance.
+        """
+        return pulumi.get(self, "dr_dts_task_name")
+
+    @property
+    @pulumi.getter(name="drDtsTaskStatus")
+    def dr_dts_task_status(self) -> pulumi.Output[str]:
+        """
+        The status of the DTS data synchronization task for the data synchronization link between the primary instance and the disaster recovery instance.
+        """
+        return pulumi.get(self, "dr_dts_task_status")
+
+    @property
+    @pulumi.getter(name="drSecondsBehindMaster")
+    def dr_seconds_behind_master(self) -> pulumi.Output[int]:
+        """
+        The number of seconds that the disaster recovery instance is behind the primary instance.
+        """
+        return pulumi.get(self, "dr_seconds_behind_master")
+
+    @property
     @pulumi.getter
     def endpoints(self) -> pulumi.Output[Sequence['outputs.InstanceEndpoint']]:
         """
@@ -1632,11 +2108,9 @@ class Instance(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="globalReadOnly")
-    def global_read_only(self) -> pulumi.Output[bool]:
+    def global_read_only(self) -> pulumi.Output[Optional[bool]]:
         """
-        Whether to enable global read-only.
-        true: Yes.
-        false: No.
+        Whether to enable global read-only for the instance.
         """
         return pulumi.get(self, "global_read_only")
 
@@ -1667,8 +2141,16 @@ class Instance(pulumi.CustomResource):
         return pulumi.get(self, "instance_status")
 
     @property
+    @pulumi.getter(name="kernelVersion")
+    def kernel_version(self) -> pulumi.Output[str]:
+        """
+        The current kernel version of the RDS instance.
+        """
+        return pulumi.get(self, "kernel_version")
+
+    @property
     @pulumi.getter(name="lowerCaseTableNames")
-    def lower_case_table_names(self) -> pulumi.Output[Optional[str]]:
+    def lower_case_table_names(self) -> pulumi.Output[str]:
         """
         Whether the table name is case sensitive, the default value is 1.
         Ranges:
@@ -1684,6 +2166,30 @@ class Instance(pulumi.CustomResource):
         Specify the maintainable time period of the instance when creating the instance. This field is optional. If not set, it defaults to 18:00Z - 21:59Z of every day within a week (that is, 02:00 - 05:59 Beijing time).
         """
         return pulumi.get(self, "maintenance_window")
+
+    @property
+    @pulumi.getter(name="masterInstanceId")
+    def master_instance_id(self) -> pulumi.Output[str]:
+        """
+        The ID of the primary instance of the disaster recovery instance.
+        """
+        return pulumi.get(self, "master_instance_id")
+
+    @property
+    @pulumi.getter(name="masterInstanceName")
+    def master_instance_name(self) -> pulumi.Output[str]:
+        """
+        The name of the primary instance of the disaster recovery instance.
+        """
+        return pulumi.get(self, "master_instance_name")
+
+    @property
+    @pulumi.getter(name="masterRegion")
+    def master_region(self) -> pulumi.Output[str]:
+        """
+        The region where the primary instance of the disaster recovery instance is located.
+        """
+        return pulumi.get(self, "master_region")
 
     @property
     @pulumi.getter
@@ -1780,6 +2286,38 @@ class Instance(pulumi.CustomResource):
         The available zone of secondary node.
         """
         return pulumi.get(self, "secondary_zone_id")
+
+    @property
+    @pulumi.getter(name="storageMaxCapacity")
+    def storage_max_capacity(self) -> pulumi.Output[int]:
+        """
+        The upper limit of the storage space that can be set for automatic expansion. The value is the upper limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value ranges of different specifications, please refer to Product Specifications.
+        """
+        return pulumi.get(self, "storage_max_capacity")
+
+    @property
+    @pulumi.getter(name="storageMaxTriggerThreshold")
+    def storage_max_trigger_threshold(self) -> pulumi.Output[int]:
+        """
+        The upper limit of the proportion of available storage space that triggers automatic expansion. When supported, the value is 50%.
+        """
+        return pulumi.get(self, "storage_max_trigger_threshold")
+
+    @property
+    @pulumi.getter(name="storageMinCapacity")
+    def storage_min_capacity(self) -> pulumi.Output[int]:
+        """
+        The lower limit of the storage space that can be set for automatic expansion. The value is the lower limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value ranges of different specifications, please refer to Product Specifications.
+        """
+        return pulumi.get(self, "storage_min_capacity")
+
+    @property
+    @pulumi.getter(name="storageMinTriggerThreshold")
+    def storage_min_trigger_threshold(self) -> pulumi.Output[int]:
+        """
+        The lower limit of the proportion of available storage space that triggers automatic expansion. When supported, the value is 10%.
+        """
+        return pulumi.get(self, "storage_min_trigger_threshold")
 
     @property
     @pulumi.getter(name="storageSpace")

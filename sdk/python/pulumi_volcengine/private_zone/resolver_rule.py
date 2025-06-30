@@ -19,30 +19,48 @@ class ResolverRuleArgs:
                  type: pulumi.Input[str],
                  vpcs: pulumi.Input[Sequence[pulumi.Input['ResolverRuleVpcArgs']]],
                  endpoint_id: Optional[pulumi.Input[int]] = None,
+                 endpoint_trn: Optional[pulumi.Input[str]] = None,
                  forward_ips: Optional[pulumi.Input[Sequence[pulumi.Input['ResolverRuleForwardIpArgs']]]] = None,
-                 line: Optional[pulumi.Input[int]] = None,
+                 line: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['ResolverRuleTagArgs']]]] = None,
+                 vpc_trns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  zone_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a ResolverRule resource.
         :param pulumi.Input[str] type: Forwarding rule types. OUTBOUND: Forward to external DNS servers. LINE: Set the recursive DNS server used for recursive resolution to the recursive DNS server of the Volcano Engine PublicDNS, and customize the operator's exit IP address for the recursive DNS server.
         :param pulumi.Input[Sequence[pulumi.Input['ResolverRuleVpcArgs']]] vpcs: The parameter name <region> is a variable that represents the region where the VPC is located, such as cn-beijing. The parameter value can include one or more VPC IDs, such as vpc-2750bd1. For example, if you associate a VPC in the cn-beijing region with a domain name and the VPC ID is vpc-2d6si87atfh1c58ozfd0nzq8k, the parameter would be "cn-beijing":["vpc-2d6si87atfh1c58ozfd0nzq8k"]. You can add one or more regions. When the Type parameter is OUTBOUND, the VPC region must be the same as the region where the endpoint is located.
         :param pulumi.Input[int] endpoint_id: Terminal node ID. This parameter is only valid and required when the Type parameter is OUTBOUND.
+        :param pulumi.Input[str] endpoint_trn: The endpoint trn of the private zone resolver rule. Format: trn:private_zone::accountId:endpoint/endpointId. This field is only effected when creating resource. 
+               When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[Sequence[pulumi.Input['ResolverRuleForwardIpArgs']]] forward_ips: IP address and port of external DNS server. You can add up to 10 IP addresses. This parameter is only valid when the Type parameter is OUTBOUND and is a required parameter.
-        :param pulumi.Input[int] line: The operator of the exit IP address of the recursive DNS server. This parameter is only valid when the Type parameter is LINE and is a required parameter. MOBILE, TELECOM, UNICOM.
+        :param pulumi.Input[str] line: The operator of the exit IP address of the recursive DNS server. This parameter is only valid when the Type parameter is LINE and is a required parameter. MOBILE, TELECOM, UNICOM.
         :param pulumi.Input[str] name: The name of the rule.
+        :param pulumi.Input[str] project_name: The project name of the private zone resolver rule.
+        :param pulumi.Input[Sequence[pulumi.Input['ResolverRuleTagArgs']]] tags: Tags.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] vpc_trns: The vpc trns of the private zone resolver rule. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource. 
+               When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] zone_names: Domain names associated with forwarding rules. You can enter one or more domain names. Up to 500 domain names are supported. This parameter is only valid when the Type parameter is OUTBOUND and is a required parameter.
         """
         pulumi.set(__self__, "type", type)
         pulumi.set(__self__, "vpcs", vpcs)
         if endpoint_id is not None:
             pulumi.set(__self__, "endpoint_id", endpoint_id)
+        if endpoint_trn is not None:
+            pulumi.set(__self__, "endpoint_trn", endpoint_trn)
         if forward_ips is not None:
             pulumi.set(__self__, "forward_ips", forward_ips)
         if line is not None:
             pulumi.set(__self__, "line", line)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+        if vpc_trns is not None:
+            pulumi.set(__self__, "vpc_trns", vpc_trns)
         if zone_names is not None:
             pulumi.set(__self__, "zone_names", zone_names)
 
@@ -83,6 +101,19 @@ class ResolverRuleArgs:
         pulumi.set(self, "endpoint_id", value)
 
     @property
+    @pulumi.getter(name="endpointTrn")
+    def endpoint_trn(self) -> Optional[pulumi.Input[str]]:
+        """
+        The endpoint trn of the private zone resolver rule. Format: trn:private_zone::accountId:endpoint/endpointId. This field is only effected when creating resource. 
+        When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        """
+        return pulumi.get(self, "endpoint_trn")
+
+    @endpoint_trn.setter
+    def endpoint_trn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "endpoint_trn", value)
+
+    @property
     @pulumi.getter(name="forwardIps")
     def forward_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ResolverRuleForwardIpArgs']]]]:
         """
@@ -96,14 +127,14 @@ class ResolverRuleArgs:
 
     @property
     @pulumi.getter
-    def line(self) -> Optional[pulumi.Input[int]]:
+    def line(self) -> Optional[pulumi.Input[str]]:
         """
         The operator of the exit IP address of the recursive DNS server. This parameter is only valid when the Type parameter is LINE and is a required parameter. MOBILE, TELECOM, UNICOM.
         """
         return pulumi.get(self, "line")
 
     @line.setter
-    def line(self, value: Optional[pulumi.Input[int]]):
+    def line(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "line", value)
 
     @property
@@ -117,6 +148,43 @@ class ResolverRuleArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The project name of the private zone resolver rule.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ResolverRuleTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ResolverRuleTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
+    @pulumi.getter(name="vpcTrns")
+    def vpc_trns(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The vpc trns of the private zone resolver rule. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource. 
+        When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        """
+        return pulumi.get(self, "vpc_trns")
+
+    @vpc_trns.setter
+    def vpc_trns(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "vpc_trns", value)
 
     @property
     @pulumi.getter(name="zoneNames")
@@ -135,32 +203,50 @@ class ResolverRuleArgs:
 class _ResolverRuleState:
     def __init__(__self__, *,
                  endpoint_id: Optional[pulumi.Input[int]] = None,
+                 endpoint_trn: Optional[pulumi.Input[str]] = None,
                  forward_ips: Optional[pulumi.Input[Sequence[pulumi.Input['ResolverRuleForwardIpArgs']]]] = None,
-                 line: Optional[pulumi.Input[int]] = None,
+                 line: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['ResolverRuleTagArgs']]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
+                 vpc_trns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  vpcs: Optional[pulumi.Input[Sequence[pulumi.Input['ResolverRuleVpcArgs']]]] = None,
                  zone_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering ResolverRule resources.
         :param pulumi.Input[int] endpoint_id: Terminal node ID. This parameter is only valid and required when the Type parameter is OUTBOUND.
+        :param pulumi.Input[str] endpoint_trn: The endpoint trn of the private zone resolver rule. Format: trn:private_zone::accountId:endpoint/endpointId. This field is only effected when creating resource. 
+               When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[Sequence[pulumi.Input['ResolverRuleForwardIpArgs']]] forward_ips: IP address and port of external DNS server. You can add up to 10 IP addresses. This parameter is only valid when the Type parameter is OUTBOUND and is a required parameter.
-        :param pulumi.Input[int] line: The operator of the exit IP address of the recursive DNS server. This parameter is only valid when the Type parameter is LINE and is a required parameter. MOBILE, TELECOM, UNICOM.
+        :param pulumi.Input[str] line: The operator of the exit IP address of the recursive DNS server. This parameter is only valid when the Type parameter is LINE and is a required parameter. MOBILE, TELECOM, UNICOM.
         :param pulumi.Input[str] name: The name of the rule.
+        :param pulumi.Input[str] project_name: The project name of the private zone resolver rule.
+        :param pulumi.Input[Sequence[pulumi.Input['ResolverRuleTagArgs']]] tags: Tags.
         :param pulumi.Input[str] type: Forwarding rule types. OUTBOUND: Forward to external DNS servers. LINE: Set the recursive DNS server used for recursive resolution to the recursive DNS server of the Volcano Engine PublicDNS, and customize the operator's exit IP address for the recursive DNS server.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] vpc_trns: The vpc trns of the private zone resolver rule. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource. 
+               When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[Sequence[pulumi.Input['ResolverRuleVpcArgs']]] vpcs: The parameter name <region> is a variable that represents the region where the VPC is located, such as cn-beijing. The parameter value can include one or more VPC IDs, such as vpc-2750bd1. For example, if you associate a VPC in the cn-beijing region with a domain name and the VPC ID is vpc-2d6si87atfh1c58ozfd0nzq8k, the parameter would be "cn-beijing":["vpc-2d6si87atfh1c58ozfd0nzq8k"]. You can add one or more regions. When the Type parameter is OUTBOUND, the VPC region must be the same as the region where the endpoint is located.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] zone_names: Domain names associated with forwarding rules. You can enter one or more domain names. Up to 500 domain names are supported. This parameter is only valid when the Type parameter is OUTBOUND and is a required parameter.
         """
         if endpoint_id is not None:
             pulumi.set(__self__, "endpoint_id", endpoint_id)
+        if endpoint_trn is not None:
+            pulumi.set(__self__, "endpoint_trn", endpoint_trn)
         if forward_ips is not None:
             pulumi.set(__self__, "forward_ips", forward_ips)
         if line is not None:
             pulumi.set(__self__, "line", line)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if type is not None:
             pulumi.set(__self__, "type", type)
+        if vpc_trns is not None:
+            pulumi.set(__self__, "vpc_trns", vpc_trns)
         if vpcs is not None:
             pulumi.set(__self__, "vpcs", vpcs)
         if zone_names is not None:
@@ -179,6 +265,19 @@ class _ResolverRuleState:
         pulumi.set(self, "endpoint_id", value)
 
     @property
+    @pulumi.getter(name="endpointTrn")
+    def endpoint_trn(self) -> Optional[pulumi.Input[str]]:
+        """
+        The endpoint trn of the private zone resolver rule. Format: trn:private_zone::accountId:endpoint/endpointId. This field is only effected when creating resource. 
+        When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        """
+        return pulumi.get(self, "endpoint_trn")
+
+    @endpoint_trn.setter
+    def endpoint_trn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "endpoint_trn", value)
+
+    @property
     @pulumi.getter(name="forwardIps")
     def forward_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ResolverRuleForwardIpArgs']]]]:
         """
@@ -192,14 +291,14 @@ class _ResolverRuleState:
 
     @property
     @pulumi.getter
-    def line(self) -> Optional[pulumi.Input[int]]:
+    def line(self) -> Optional[pulumi.Input[str]]:
         """
         The operator of the exit IP address of the recursive DNS server. This parameter is only valid when the Type parameter is LINE and is a required parameter. MOBILE, TELECOM, UNICOM.
         """
         return pulumi.get(self, "line")
 
     @line.setter
-    def line(self, value: Optional[pulumi.Input[int]]):
+    def line(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "line", value)
 
     @property
@@ -215,6 +314,30 @@ class _ResolverRuleState:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The project name of the private zone resolver rule.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ResolverRuleTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ResolverRuleTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
@@ -225,6 +348,19 @@ class _ResolverRuleState:
     @type.setter
     def type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter(name="vpcTrns")
+    def vpc_trns(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The vpc trns of the private zone resolver rule. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource. 
+        When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        """
+        return pulumi.get(self, "vpc_trns")
+
+    @vpc_trns.setter
+    def vpc_trns(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "vpc_trns", value)
 
     @property
     @pulumi.getter
@@ -257,10 +393,14 @@ class ResolverRule(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  endpoint_id: Optional[pulumi.Input[int]] = None,
+                 endpoint_trn: Optional[pulumi.Input[str]] = None,
                  forward_ips: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ResolverRuleForwardIpArgs']]]]] = None,
-                 line: Optional[pulumi.Input[int]] = None,
+                 line: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ResolverRuleTagArgs']]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
+                 vpc_trns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  vpcs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ResolverRuleVpcArgs']]]]] = None,
                  zone_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
@@ -277,6 +417,11 @@ class ResolverRule(pulumi.CustomResource):
             forward_ips=[volcengine.private_zone.ResolverRuleForwardIpArgs(
                 ip="10.199.38.19",
                 port=33,
+            )],
+            project_name="default",
+            tags=[volcengine.private_zone.ResolverRuleTagArgs(
+                key="k1",
+                value="v1",
             )],
             type="OUTBOUND",
             vpcs=[volcengine.private_zone.ResolverRuleVpcArgs(
@@ -297,10 +442,16 @@ class ResolverRule(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] endpoint_id: Terminal node ID. This parameter is only valid and required when the Type parameter is OUTBOUND.
+        :param pulumi.Input[str] endpoint_trn: The endpoint trn of the private zone resolver rule. Format: trn:private_zone::accountId:endpoint/endpointId. This field is only effected when creating resource. 
+               When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ResolverRuleForwardIpArgs']]]] forward_ips: IP address and port of external DNS server. You can add up to 10 IP addresses. This parameter is only valid when the Type parameter is OUTBOUND and is a required parameter.
-        :param pulumi.Input[int] line: The operator of the exit IP address of the recursive DNS server. This parameter is only valid when the Type parameter is LINE and is a required parameter. MOBILE, TELECOM, UNICOM.
+        :param pulumi.Input[str] line: The operator of the exit IP address of the recursive DNS server. This parameter is only valid when the Type parameter is LINE and is a required parameter. MOBILE, TELECOM, UNICOM.
         :param pulumi.Input[str] name: The name of the rule.
+        :param pulumi.Input[str] project_name: The project name of the private zone resolver rule.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ResolverRuleTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] type: Forwarding rule types. OUTBOUND: Forward to external DNS servers. LINE: Set the recursive DNS server used for recursive resolution to the recursive DNS server of the Volcano Engine PublicDNS, and customize the operator's exit IP address for the recursive DNS server.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] vpc_trns: The vpc trns of the private zone resolver rule. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource. 
+               When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ResolverRuleVpcArgs']]]] vpcs: The parameter name <region> is a variable that represents the region where the VPC is located, such as cn-beijing. The parameter value can include one or more VPC IDs, such as vpc-2750bd1. For example, if you associate a VPC in the cn-beijing region with a domain name and the VPC ID is vpc-2d6si87atfh1c58ozfd0nzq8k, the parameter would be "cn-beijing":["vpc-2d6si87atfh1c58ozfd0nzq8k"]. You can add one or more regions. When the Type parameter is OUTBOUND, the VPC region must be the same as the region where the endpoint is located.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] zone_names: Domain names associated with forwarding rules. You can enter one or more domain names. Up to 500 domain names are supported. This parameter is only valid when the Type parameter is OUTBOUND and is a required parameter.
         """
@@ -323,6 +474,11 @@ class ResolverRule(pulumi.CustomResource):
             forward_ips=[volcengine.private_zone.ResolverRuleForwardIpArgs(
                 ip="10.199.38.19",
                 port=33,
+            )],
+            project_name="default",
+            tags=[volcengine.private_zone.ResolverRuleTagArgs(
+                key="k1",
+                value="v1",
             )],
             type="OUTBOUND",
             vpcs=[volcengine.private_zone.ResolverRuleVpcArgs(
@@ -356,10 +512,14 @@ class ResolverRule(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  endpoint_id: Optional[pulumi.Input[int]] = None,
+                 endpoint_trn: Optional[pulumi.Input[str]] = None,
                  forward_ips: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ResolverRuleForwardIpArgs']]]]] = None,
-                 line: Optional[pulumi.Input[int]] = None,
+                 line: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ResolverRuleTagArgs']]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
+                 vpc_trns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  vpcs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ResolverRuleVpcArgs']]]]] = None,
                  zone_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
@@ -372,12 +532,16 @@ class ResolverRule(pulumi.CustomResource):
             __props__ = ResolverRuleArgs.__new__(ResolverRuleArgs)
 
             __props__.__dict__["endpoint_id"] = endpoint_id
+            __props__.__dict__["endpoint_trn"] = endpoint_trn
             __props__.__dict__["forward_ips"] = forward_ips
             __props__.__dict__["line"] = line
             __props__.__dict__["name"] = name
+            __props__.__dict__["project_name"] = project_name
+            __props__.__dict__["tags"] = tags
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
             __props__.__dict__["type"] = type
+            __props__.__dict__["vpc_trns"] = vpc_trns
             if vpcs is None and not opts.urn:
                 raise TypeError("Missing required property 'vpcs'")
             __props__.__dict__["vpcs"] = vpcs
@@ -393,10 +557,14 @@ class ResolverRule(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             endpoint_id: Optional[pulumi.Input[int]] = None,
+            endpoint_trn: Optional[pulumi.Input[str]] = None,
             forward_ips: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ResolverRuleForwardIpArgs']]]]] = None,
-            line: Optional[pulumi.Input[int]] = None,
+            line: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            project_name: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ResolverRuleTagArgs']]]]] = None,
             type: Optional[pulumi.Input[str]] = None,
+            vpc_trns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             vpcs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ResolverRuleVpcArgs']]]]] = None,
             zone_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'ResolverRule':
         """
@@ -407,10 +575,16 @@ class ResolverRule(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] endpoint_id: Terminal node ID. This parameter is only valid and required when the Type parameter is OUTBOUND.
+        :param pulumi.Input[str] endpoint_trn: The endpoint trn of the private zone resolver rule. Format: trn:private_zone::accountId:endpoint/endpointId. This field is only effected when creating resource. 
+               When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ResolverRuleForwardIpArgs']]]] forward_ips: IP address and port of external DNS server. You can add up to 10 IP addresses. This parameter is only valid when the Type parameter is OUTBOUND and is a required parameter.
-        :param pulumi.Input[int] line: The operator of the exit IP address of the recursive DNS server. This parameter is only valid when the Type parameter is LINE and is a required parameter. MOBILE, TELECOM, UNICOM.
+        :param pulumi.Input[str] line: The operator of the exit IP address of the recursive DNS server. This parameter is only valid when the Type parameter is LINE and is a required parameter. MOBILE, TELECOM, UNICOM.
         :param pulumi.Input[str] name: The name of the rule.
+        :param pulumi.Input[str] project_name: The project name of the private zone resolver rule.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ResolverRuleTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] type: Forwarding rule types. OUTBOUND: Forward to external DNS servers. LINE: Set the recursive DNS server used for recursive resolution to the recursive DNS server of the Volcano Engine PublicDNS, and customize the operator's exit IP address for the recursive DNS server.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] vpc_trns: The vpc trns of the private zone resolver rule. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource. 
+               When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ResolverRuleVpcArgs']]]] vpcs: The parameter name <region> is a variable that represents the region where the VPC is located, such as cn-beijing. The parameter value can include one or more VPC IDs, such as vpc-2750bd1. For example, if you associate a VPC in the cn-beijing region with a domain name and the VPC ID is vpc-2d6si87atfh1c58ozfd0nzq8k, the parameter would be "cn-beijing":["vpc-2d6si87atfh1c58ozfd0nzq8k"]. You can add one or more regions. When the Type parameter is OUTBOUND, the VPC region must be the same as the region where the endpoint is located.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] zone_names: Domain names associated with forwarding rules. You can enter one or more domain names. Up to 500 domain names are supported. This parameter is only valid when the Type parameter is OUTBOUND and is a required parameter.
         """
@@ -419,10 +593,14 @@ class ResolverRule(pulumi.CustomResource):
         __props__ = _ResolverRuleState.__new__(_ResolverRuleState)
 
         __props__.__dict__["endpoint_id"] = endpoint_id
+        __props__.__dict__["endpoint_trn"] = endpoint_trn
         __props__.__dict__["forward_ips"] = forward_ips
         __props__.__dict__["line"] = line
         __props__.__dict__["name"] = name
+        __props__.__dict__["project_name"] = project_name
+        __props__.__dict__["tags"] = tags
         __props__.__dict__["type"] = type
+        __props__.__dict__["vpc_trns"] = vpc_trns
         __props__.__dict__["vpcs"] = vpcs
         __props__.__dict__["zone_names"] = zone_names
         return ResolverRule(resource_name, opts=opts, __props__=__props__)
@@ -436,6 +614,15 @@ class ResolverRule(pulumi.CustomResource):
         return pulumi.get(self, "endpoint_id")
 
     @property
+    @pulumi.getter(name="endpointTrn")
+    def endpoint_trn(self) -> pulumi.Output[Optional[str]]:
+        """
+        The endpoint trn of the private zone resolver rule. Format: trn:private_zone::accountId:endpoint/endpointId. This field is only effected when creating resource. 
+        When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        """
+        return pulumi.get(self, "endpoint_trn")
+
+    @property
     @pulumi.getter(name="forwardIps")
     def forward_ips(self) -> pulumi.Output[Optional[Sequence['outputs.ResolverRuleForwardIp']]]:
         """
@@ -445,7 +632,7 @@ class ResolverRule(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def line(self) -> pulumi.Output[Optional[int]]:
+    def line(self) -> pulumi.Output[Optional[str]]:
         """
         The operator of the exit IP address of the recursive DNS server. This parameter is only valid when the Type parameter is LINE and is a required parameter. MOBILE, TELECOM, UNICOM.
         """
@@ -460,12 +647,37 @@ class ResolverRule(pulumi.CustomResource):
         return pulumi.get(self, "name")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> pulumi.Output[str]:
+        """
+        The project name of the private zone resolver rule.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.ResolverRuleTag']]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter
     def type(self) -> pulumi.Output[str]:
         """
         Forwarding rule types. OUTBOUND: Forward to external DNS servers. LINE: Set the recursive DNS server used for recursive resolution to the recursive DNS server of the Volcano Engine PublicDNS, and customize the operator's exit IP address for the recursive DNS server.
         """
         return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="vpcTrns")
+    def vpc_trns(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        The vpc trns of the private zone resolver rule. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource. 
+        When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        """
+        return pulumi.get(self, "vpc_trns")
 
     @property
     @pulumi.getter

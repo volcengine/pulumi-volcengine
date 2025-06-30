@@ -105,6 +105,7 @@ import (
 //						AccountPrivilege: pulumi.String("DDLOnly"),
 //					},
 //				},
+//				Host: pulumi.String("192.10.10.%"),
 //			})
 //			if err != nil {
 //				return err
@@ -125,6 +126,8 @@ import (
 type Account struct {
 	pulumi.CustomResourceState
 
+	// Account information description. The length should not exceed 256 characters.
+	AccountDesc pulumi.StringPtrOutput `pulumi:"accountDesc"`
 	// Database account name. The rules are as follows:
 	// Unique name.
 	// Start with a letter and end with a letter or number.
@@ -139,14 +142,18 @@ type Account struct {
 	// It consists of any three of uppercase letters, lowercase letters, numbers, and special characters.
 	// The special characters are `!@#$%^*()_+-=`. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	AccountPassword pulumi.StringOutput `pulumi:"accountPassword"`
-	// The privilege information of account.
+	// The privilege information of account. Due to differences in the return structure of the query interface, it is necessary to use lifecycleIgnore to suppress changes when creating Global permissions.
 	AccountPrivileges AccountAccountPrivilegeArrayOutput `pulumi:"accountPrivileges"`
 	// Database account type, value:
 	// Super: A high-privilege account. Only one database account can be created for an instance.
 	// Normal: An account with ordinary privileges.
 	AccountType pulumi.StringOutput `pulumi:"accountType"`
+	// Specify the IP address for the account to access the database. The default value is %. If the Host is specified as %, the account is allowed to access the database from any IP address. Wildcards are supported for setting the IP address range that can access the database. For example, if the Host is specified as 192.10.10.%, it means the account can access the database from IP addresses between 192.10.10.0 and 192.10.10.255. The specified Host needs to be added to the whitelist bound to the instance, otherwise the instance cannot be accessed normally. The ModifyAllowList interface can be called to add the Host to the whitelist. Note: If the created account type is a high-privilege account, the host IP can only be specified as %. That is, when the value of AccountType is Super, the value of Host can only be %.
+	Host pulumi.StringOutput `pulumi:"host"`
 	// The ID of the RDS instance.
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
+	// Settings for table column permissions of the account.
+	TableColumnPrivileges AccountTableColumnPrivilegeArrayOutput `pulumi:"tableColumnPrivileges"`
 }
 
 // NewAccount registers a new resource with the given unique name, arguments, and options.
@@ -198,6 +205,8 @@ func GetAccount(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Account resources.
 type accountState struct {
+	// Account information description. The length should not exceed 256 characters.
+	AccountDesc *string `pulumi:"accountDesc"`
 	// Database account name. The rules are as follows:
 	// Unique name.
 	// Start with a letter and end with a letter or number.
@@ -212,17 +221,23 @@ type accountState struct {
 	// It consists of any three of uppercase letters, lowercase letters, numbers, and special characters.
 	// The special characters are `!@#$%^*()_+-=`. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	AccountPassword *string `pulumi:"accountPassword"`
-	// The privilege information of account.
+	// The privilege information of account. Due to differences in the return structure of the query interface, it is necessary to use lifecycleIgnore to suppress changes when creating Global permissions.
 	AccountPrivileges []AccountAccountPrivilege `pulumi:"accountPrivileges"`
 	// Database account type, value:
 	// Super: A high-privilege account. Only one database account can be created for an instance.
 	// Normal: An account with ordinary privileges.
 	AccountType *string `pulumi:"accountType"`
+	// Specify the IP address for the account to access the database. The default value is %. If the Host is specified as %, the account is allowed to access the database from any IP address. Wildcards are supported for setting the IP address range that can access the database. For example, if the Host is specified as 192.10.10.%, it means the account can access the database from IP addresses between 192.10.10.0 and 192.10.10.255. The specified Host needs to be added to the whitelist bound to the instance, otherwise the instance cannot be accessed normally. The ModifyAllowList interface can be called to add the Host to the whitelist. Note: If the created account type is a high-privilege account, the host IP can only be specified as %. That is, when the value of AccountType is Super, the value of Host can only be %.
+	Host *string `pulumi:"host"`
 	// The ID of the RDS instance.
 	InstanceId *string `pulumi:"instanceId"`
+	// Settings for table column permissions of the account.
+	TableColumnPrivileges []AccountTableColumnPrivilege `pulumi:"tableColumnPrivileges"`
 }
 
 type AccountState struct {
+	// Account information description. The length should not exceed 256 characters.
+	AccountDesc pulumi.StringPtrInput
 	// Database account name. The rules are as follows:
 	// Unique name.
 	// Start with a letter and end with a letter or number.
@@ -237,14 +252,18 @@ type AccountState struct {
 	// It consists of any three of uppercase letters, lowercase letters, numbers, and special characters.
 	// The special characters are `!@#$%^*()_+-=`. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	AccountPassword pulumi.StringPtrInput
-	// The privilege information of account.
+	// The privilege information of account. Due to differences in the return structure of the query interface, it is necessary to use lifecycleIgnore to suppress changes when creating Global permissions.
 	AccountPrivileges AccountAccountPrivilegeArrayInput
 	// Database account type, value:
 	// Super: A high-privilege account. Only one database account can be created for an instance.
 	// Normal: An account with ordinary privileges.
 	AccountType pulumi.StringPtrInput
+	// Specify the IP address for the account to access the database. The default value is %. If the Host is specified as %, the account is allowed to access the database from any IP address. Wildcards are supported for setting the IP address range that can access the database. For example, if the Host is specified as 192.10.10.%, it means the account can access the database from IP addresses between 192.10.10.0 and 192.10.10.255. The specified Host needs to be added to the whitelist bound to the instance, otherwise the instance cannot be accessed normally. The ModifyAllowList interface can be called to add the Host to the whitelist. Note: If the created account type is a high-privilege account, the host IP can only be specified as %. That is, when the value of AccountType is Super, the value of Host can only be %.
+	Host pulumi.StringPtrInput
 	// The ID of the RDS instance.
 	InstanceId pulumi.StringPtrInput
+	// Settings for table column permissions of the account.
+	TableColumnPrivileges AccountTableColumnPrivilegeArrayInput
 }
 
 func (AccountState) ElementType() reflect.Type {
@@ -252,6 +271,8 @@ func (AccountState) ElementType() reflect.Type {
 }
 
 type accountArgs struct {
+	// Account information description. The length should not exceed 256 characters.
+	AccountDesc *string `pulumi:"accountDesc"`
 	// Database account name. The rules are as follows:
 	// Unique name.
 	// Start with a letter and end with a letter or number.
@@ -266,18 +287,24 @@ type accountArgs struct {
 	// It consists of any three of uppercase letters, lowercase letters, numbers, and special characters.
 	// The special characters are `!@#$%^*()_+-=`. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	AccountPassword string `pulumi:"accountPassword"`
-	// The privilege information of account.
+	// The privilege information of account. Due to differences in the return structure of the query interface, it is necessary to use lifecycleIgnore to suppress changes when creating Global permissions.
 	AccountPrivileges []AccountAccountPrivilege `pulumi:"accountPrivileges"`
 	// Database account type, value:
 	// Super: A high-privilege account. Only one database account can be created for an instance.
 	// Normal: An account with ordinary privileges.
 	AccountType string `pulumi:"accountType"`
+	// Specify the IP address for the account to access the database. The default value is %. If the Host is specified as %, the account is allowed to access the database from any IP address. Wildcards are supported for setting the IP address range that can access the database. For example, if the Host is specified as 192.10.10.%, it means the account can access the database from IP addresses between 192.10.10.0 and 192.10.10.255. The specified Host needs to be added to the whitelist bound to the instance, otherwise the instance cannot be accessed normally. The ModifyAllowList interface can be called to add the Host to the whitelist. Note: If the created account type is a high-privilege account, the host IP can only be specified as %. That is, when the value of AccountType is Super, the value of Host can only be %.
+	Host *string `pulumi:"host"`
 	// The ID of the RDS instance.
 	InstanceId string `pulumi:"instanceId"`
+	// Settings for table column permissions of the account.
+	TableColumnPrivileges []AccountTableColumnPrivilege `pulumi:"tableColumnPrivileges"`
 }
 
 // The set of arguments for constructing a Account resource.
 type AccountArgs struct {
+	// Account information description. The length should not exceed 256 characters.
+	AccountDesc pulumi.StringPtrInput
 	// Database account name. The rules are as follows:
 	// Unique name.
 	// Start with a letter and end with a letter or number.
@@ -292,14 +319,18 @@ type AccountArgs struct {
 	// It consists of any three of uppercase letters, lowercase letters, numbers, and special characters.
 	// The special characters are `!@#$%^*()_+-=`. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	AccountPassword pulumi.StringInput
-	// The privilege information of account.
+	// The privilege information of account. Due to differences in the return structure of the query interface, it is necessary to use lifecycleIgnore to suppress changes when creating Global permissions.
 	AccountPrivileges AccountAccountPrivilegeArrayInput
 	// Database account type, value:
 	// Super: A high-privilege account. Only one database account can be created for an instance.
 	// Normal: An account with ordinary privileges.
 	AccountType pulumi.StringInput
+	// Specify the IP address for the account to access the database. The default value is %. If the Host is specified as %, the account is allowed to access the database from any IP address. Wildcards are supported for setting the IP address range that can access the database. For example, if the Host is specified as 192.10.10.%, it means the account can access the database from IP addresses between 192.10.10.0 and 192.10.10.255. The specified Host needs to be added to the whitelist bound to the instance, otherwise the instance cannot be accessed normally. The ModifyAllowList interface can be called to add the Host to the whitelist. Note: If the created account type is a high-privilege account, the host IP can only be specified as %. That is, when the value of AccountType is Super, the value of Host can only be %.
+	Host pulumi.StringPtrInput
 	// The ID of the RDS instance.
 	InstanceId pulumi.StringInput
+	// Settings for table column permissions of the account.
+	TableColumnPrivileges AccountTableColumnPrivilegeArrayInput
 }
 
 func (AccountArgs) ElementType() reflect.Type {
@@ -389,6 +420,11 @@ func (o AccountOutput) ToAccountOutputWithContext(ctx context.Context) AccountOu
 	return o
 }
 
+// Account information description. The length should not exceed 256 characters.
+func (o AccountOutput) AccountDesc() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Account) pulumi.StringPtrOutput { return v.AccountDesc }).(pulumi.StringPtrOutput)
+}
+
 // Database account name. The rules are as follows:
 // Unique name.
 // Start with a letter and end with a letter or number.
@@ -409,7 +445,7 @@ func (o AccountOutput) AccountPassword() pulumi.StringOutput {
 	return o.ApplyT(func(v *Account) pulumi.StringOutput { return v.AccountPassword }).(pulumi.StringOutput)
 }
 
-// The privilege information of account.
+// The privilege information of account. Due to differences in the return structure of the query interface, it is necessary to use lifecycleIgnore to suppress changes when creating Global permissions.
 func (o AccountOutput) AccountPrivileges() AccountAccountPrivilegeArrayOutput {
 	return o.ApplyT(func(v *Account) AccountAccountPrivilegeArrayOutput { return v.AccountPrivileges }).(AccountAccountPrivilegeArrayOutput)
 }
@@ -421,9 +457,19 @@ func (o AccountOutput) AccountType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Account) pulumi.StringOutput { return v.AccountType }).(pulumi.StringOutput)
 }
 
+// Specify the IP address for the account to access the database. The default value is %. If the Host is specified as %, the account is allowed to access the database from any IP address. Wildcards are supported for setting the IP address range that can access the database. For example, if the Host is specified as 192.10.10.%, it means the account can access the database from IP addresses between 192.10.10.0 and 192.10.10.255. The specified Host needs to be added to the whitelist bound to the instance, otherwise the instance cannot be accessed normally. The ModifyAllowList interface can be called to add the Host to the whitelist. Note: If the created account type is a high-privilege account, the host IP can only be specified as %. That is, when the value of AccountType is Super, the value of Host can only be %.
+func (o AccountOutput) Host() pulumi.StringOutput {
+	return o.ApplyT(func(v *Account) pulumi.StringOutput { return v.Host }).(pulumi.StringOutput)
+}
+
 // The ID of the RDS instance.
 func (o AccountOutput) InstanceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Account) pulumi.StringOutput { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// Settings for table column permissions of the account.
+func (o AccountOutput) TableColumnPrivileges() AccountTableColumnPrivilegeArrayOutput {
+	return o.ApplyT(func(v *Account) AccountTableColumnPrivilegeArrayOutput { return v.TableColumnPrivileges }).(AccountTableColumnPrivilegeArrayOutput)
 }
 
 type AccountArrayOutput struct{ *pulumi.OutputState }

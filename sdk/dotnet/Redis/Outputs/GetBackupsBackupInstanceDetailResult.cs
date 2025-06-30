@@ -50,7 +50,7 @@ namespace Pulumi.Volcengine.Redis.Outputs
         /// </summary>
         public readonly string NetworkType;
         /// <summary>
-        /// Project name of instance.
+        /// Back up the project to which it belongs.
         /// </summary>
         public readonly string ProjectName;
         /// <summary>

@@ -49,7 +49,7 @@ namespace Pulumi.Volcengine.Rds_mysql
     ///     var fooInstance = new Volcengine.Rds_mysql.Instance("fooInstance", new()
     ///     {
     ///         DbEngineVersion = "MySQL_5_7",
-    ///         NodeSpec = "rds.mysql.1c2g",
+    ///         NodeSpec = "rds.mysql.2c4g",
     ///         PrimaryZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
     ///         SecondaryZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
     ///         StorageSpace = 80,
@@ -81,6 +81,14 @@ namespace Pulumi.Volcengine.Rds_mysql
     ///                 ParameterName = "auto_increment_offset",
     ///                 ParameterValue = "5",
     ///             },
+    ///         },
+    ///         DeletionProtection = "Disabled",
+    ///         DataSyncMode = "SemiSync",
+    ///         AutoStorageScalingConfig = new Volcengine.Rds_mysql.Inputs.InstanceAutoStorageScalingConfigArgs
+    ///         {
+    ///             EnableStorageAutoScale = true,
+    ///             StorageThreshold = 40,
+    ///             StorageUpperBound = 110,
     ///         },
     ///     });
     /// 
@@ -146,6 +154,20 @@ namespace Pulumi.Volcengine.Rds_mysql
         public Output<string> AllowListVersion { get; private set; } = null!;
 
         /// <summary>
+        /// Auto - storage scaling configuration.
+        /// </summary>
+        [Output("autoStorageScalingConfig")]
+        public Output<Outputs.InstanceAutoStorageScalingConfig> AutoStorageScalingConfig { get; private set; } = null!;
+
+        /// <summary>
+        /// The upgrade strategy for the minor version of the instance kernel. Values:
+        /// Auto: Auto upgrade.
+        /// Manual: Manual upgrade.
+        /// </summary>
+        [Output("autoUpgradeMinorVersion")]
+        public Output<string> AutoUpgradeMinorVersion { get; private set; } = null!;
+
+        /// <summary>
         /// The instance has used backup space. Unit: GB.
         /// </summary>
         [Output("backupUse")]
@@ -186,10 +208,12 @@ namespace Pulumi.Volcengine.Rds_mysql
         public Output<string> CreateTime { get; private set; } = null!;
 
         /// <summary>
-        /// Data synchronization mode.
+        /// Data synchronization methods:
+        /// SemiSync: Semi - synchronous(Default).
+        /// Async: Asynchronous.
         /// </summary>
         [Output("dataSyncMode")]
-        public Output<string> DataSyncMode { get; private set; } = null!;
+        public Output<string?> DataSyncMode { get; private set; } = null!;
 
         /// <summary>
         /// Instance type. Value:
@@ -216,6 +240,38 @@ namespace Pulumi.Volcengine.Rds_mysql
         public Output<string> DbTimeZone { get; private set; } = null!;
 
         /// <summary>
+        /// Whether to enable the deletion protection function. Values:
+        /// Enabled: Yes.
+        /// Disabled: No.
+        /// </summary>
+        [Output("deletionProtection")]
+        public Output<string> DeletionProtection { get; private set; } = null!;
+
+        /// <summary>
+        /// The ID of the data synchronization task in DTS for the data synchronization link between the primary instance and the disaster recovery instance.
+        /// </summary>
+        [Output("drDtsTaskId")]
+        public Output<string> DrDtsTaskId { get; private set; } = null!;
+
+        /// <summary>
+        /// The name of the DTS data synchronization task for the data synchronization link between the primary instance and the disaster recovery instance.
+        /// </summary>
+        [Output("drDtsTaskName")]
+        public Output<string> DrDtsTaskName { get; private set; } = null!;
+
+        /// <summary>
+        /// The status of the DTS data synchronization task for the data synchronization link between the primary instance and the disaster recovery instance.
+        /// </summary>
+        [Output("drDtsTaskStatus")]
+        public Output<string> DrDtsTaskStatus { get; private set; } = null!;
+
+        /// <summary>
+        /// The number of seconds that the disaster recovery instance is behind the primary instance.
+        /// </summary>
+        [Output("drSecondsBehindMaster")]
+        public Output<int> DrSecondsBehindMaster { get; private set; } = null!;
+
+        /// <summary>
         /// The endpoint info of the RDS instance.
         /// </summary>
         [Output("endpoints")]
@@ -228,12 +284,10 @@ namespace Pulumi.Volcengine.Rds_mysql
         public Output<ImmutableArray<Outputs.InstanceFeatureState>> FeatureStates { get; private set; } = null!;
 
         /// <summary>
-        /// Whether to enable global read-only.
-        /// true: Yes.
-        /// false: No.
+        /// Whether to enable global read-only for the instance.
         /// </summary>
         [Output("globalReadOnly")]
-        public Output<bool> GlobalReadOnly { get; private set; } = null!;
+        public Output<bool?> GlobalReadOnly { get; private set; } = null!;
 
         /// <summary>
         /// Instance ID.
@@ -256,19 +310,43 @@ namespace Pulumi.Volcengine.Rds_mysql
         public Output<string> InstanceStatus { get; private set; } = null!;
 
         /// <summary>
+        /// The current kernel version of the RDS instance.
+        /// </summary>
+        [Output("kernelVersion")]
+        public Output<string> KernelVersion { get; private set; } = null!;
+
+        /// <summary>
         /// Whether the table name is case sensitive, the default value is 1.
         /// Ranges:
         /// 0: Table names are stored as fixed and table names are case-sensitive.
         /// 1: Table names will be stored in lowercase and table names are not case sensitive.
         /// </summary>
         [Output("lowerCaseTableNames")]
-        public Output<string?> LowerCaseTableNames { get; private set; } = null!;
+        public Output<string> LowerCaseTableNames { get; private set; } = null!;
 
         /// <summary>
         /// Specify the maintainable time period of the instance when creating the instance. This field is optional. If not set, it defaults to 18:00Z - 21:59Z of every day within a week (that is, 02:00 - 05:59 Beijing time).
         /// </summary>
         [Output("maintenanceWindow")]
         public Output<Outputs.InstanceMaintenanceWindow> MaintenanceWindow { get; private set; } = null!;
+
+        /// <summary>
+        /// The ID of the primary instance of the disaster recovery instance.
+        /// </summary>
+        [Output("masterInstanceId")]
+        public Output<string> MasterInstanceId { get; private set; } = null!;
+
+        /// <summary>
+        /// The name of the primary instance of the disaster recovery instance.
+        /// </summary>
+        [Output("masterInstanceName")]
+        public Output<string> MasterInstanceName { get; private set; } = null!;
+
+        /// <summary>
+        /// The region where the primary instance of the disaster recovery instance is located.
+        /// </summary>
+        [Output("masterRegion")]
+        public Output<string> MasterRegion { get; private set; } = null!;
 
         /// <summary>
         /// Memory size in GB.
@@ -341,6 +419,30 @@ namespace Pulumi.Volcengine.Rds_mysql
         /// </summary>
         [Output("secondaryZoneId")]
         public Output<string> SecondaryZoneId { get; private set; } = null!;
+
+        /// <summary>
+        /// The upper limit of the storage space that can be set for automatic expansion. The value is the upper limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value ranges of different specifications, please refer to Product Specifications.
+        /// </summary>
+        [Output("storageMaxCapacity")]
+        public Output<int> StorageMaxCapacity { get; private set; } = null!;
+
+        /// <summary>
+        /// The upper limit of the proportion of available storage space that triggers automatic expansion. When supported, the value is 50%.
+        /// </summary>
+        [Output("storageMaxTriggerThreshold")]
+        public Output<int> StorageMaxTriggerThreshold { get; private set; } = null!;
+
+        /// <summary>
+        /// The lower limit of the storage space that can be set for automatic expansion. The value is the lower limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value ranges of different specifications, please refer to Product Specifications.
+        /// </summary>
+        [Output("storageMinCapacity")]
+        public Output<int> StorageMinCapacity { get; private set; } = null!;
+
+        /// <summary>
+        /// The lower limit of the proportion of available storage space that triggers automatic expansion. When supported, the value is 10%.
+        /// </summary>
+        [Output("storageMinTriggerThreshold")]
+        public Output<int> StorageMinTriggerThreshold { get; private set; } = null!;
 
         /// <summary>
         /// Instance storage space. Value range: [20, 3000], unit: GB, increments every 100GB. Default value: 100.
@@ -468,6 +570,12 @@ namespace Pulumi.Volcengine.Rds_mysql
         }
 
         /// <summary>
+        /// Auto - storage scaling configuration.
+        /// </summary>
+        [Input("autoStorageScalingConfig")]
+        public Input<Inputs.InstanceAutoStorageScalingConfigArgs>? AutoStorageScalingConfig { get; set; }
+
+        /// <summary>
         /// Payment methods.
         /// </summary>
         [Input("chargeInfo", required: true)]
@@ -482,6 +590,14 @@ namespace Pulumi.Volcengine.Rds_mysql
         public Input<string>? ConnectionPoolType { get; set; }
 
         /// <summary>
+        /// Data synchronization methods:
+        /// SemiSync: Semi - synchronous(Default).
+        /// Async: Asynchronous.
+        /// </summary>
+        [Input("dataSyncMode")]
+        public Input<string>? DataSyncMode { get; set; }
+
+        /// <summary>
         /// Instance type. Value:
         /// MySQL_5_7
         /// MySQL_8_0.
@@ -494,6 +610,20 @@ namespace Pulumi.Volcengine.Rds_mysql
         /// </summary>
         [Input("dbTimeZone")]
         public Input<string>? DbTimeZone { get; set; }
+
+        /// <summary>
+        /// Whether to enable the deletion protection function. Values:
+        /// Enabled: Yes.
+        /// Disabled: No.
+        /// </summary>
+        [Input("deletionProtection")]
+        public Input<string>? DeletionProtection { get; set; }
+
+        /// <summary>
+        /// Whether to enable global read-only for the instance.
+        /// </summary>
+        [Input("globalReadOnly")]
+        public Input<bool>? GlobalReadOnly { get; set; }
 
         /// <summary>
         /// Instance name. Cannot start with a number or a dash
@@ -605,6 +735,20 @@ namespace Pulumi.Volcengine.Rds_mysql
         public Input<string>? AllowListVersion { get; set; }
 
         /// <summary>
+        /// Auto - storage scaling configuration.
+        /// </summary>
+        [Input("autoStorageScalingConfig")]
+        public Input<Inputs.InstanceAutoStorageScalingConfigGetArgs>? AutoStorageScalingConfig { get; set; }
+
+        /// <summary>
+        /// The upgrade strategy for the minor version of the instance kernel. Values:
+        /// Auto: Auto upgrade.
+        /// Manual: Manual upgrade.
+        /// </summary>
+        [Input("autoUpgradeMinorVersion")]
+        public Input<string>? AutoUpgradeMinorVersion { get; set; }
+
+        /// <summary>
         /// The instance has used backup space. Unit: GB.
         /// </summary>
         [Input("backupUse")]
@@ -651,7 +795,9 @@ namespace Pulumi.Volcengine.Rds_mysql
         public Input<string>? CreateTime { get; set; }
 
         /// <summary>
-        /// Data synchronization mode.
+        /// Data synchronization methods:
+        /// SemiSync: Semi - synchronous(Default).
+        /// Async: Asynchronous.
         /// </summary>
         [Input("dataSyncMode")]
         public Input<string>? DataSyncMode { get; set; }
@@ -680,6 +826,38 @@ namespace Pulumi.Volcengine.Rds_mysql
         [Input("dbTimeZone")]
         public Input<string>? DbTimeZone { get; set; }
 
+        /// <summary>
+        /// Whether to enable the deletion protection function. Values:
+        /// Enabled: Yes.
+        /// Disabled: No.
+        /// </summary>
+        [Input("deletionProtection")]
+        public Input<string>? DeletionProtection { get; set; }
+
+        /// <summary>
+        /// The ID of the data synchronization task in DTS for the data synchronization link between the primary instance and the disaster recovery instance.
+        /// </summary>
+        [Input("drDtsTaskId")]
+        public Input<string>? DrDtsTaskId { get; set; }
+
+        /// <summary>
+        /// The name of the DTS data synchronization task for the data synchronization link between the primary instance and the disaster recovery instance.
+        /// </summary>
+        [Input("drDtsTaskName")]
+        public Input<string>? DrDtsTaskName { get; set; }
+
+        /// <summary>
+        /// The status of the DTS data synchronization task for the data synchronization link between the primary instance and the disaster recovery instance.
+        /// </summary>
+        [Input("drDtsTaskStatus")]
+        public Input<string>? DrDtsTaskStatus { get; set; }
+
+        /// <summary>
+        /// The number of seconds that the disaster recovery instance is behind the primary instance.
+        /// </summary>
+        [Input("drSecondsBehindMaster")]
+        public Input<int>? DrSecondsBehindMaster { get; set; }
+
         [Input("endpoints")]
         private InputList<Inputs.InstanceEndpointGetArgs>? _endpoints;
 
@@ -705,9 +883,7 @@ namespace Pulumi.Volcengine.Rds_mysql
         }
 
         /// <summary>
-        /// Whether to enable global read-only.
-        /// true: Yes.
-        /// false: No.
+        /// Whether to enable global read-only for the instance.
         /// </summary>
         [Input("globalReadOnly")]
         public Input<bool>? GlobalReadOnly { get; set; }
@@ -733,6 +909,12 @@ namespace Pulumi.Volcengine.Rds_mysql
         public Input<string>? InstanceStatus { get; set; }
 
         /// <summary>
+        /// The current kernel version of the RDS instance.
+        /// </summary>
+        [Input("kernelVersion")]
+        public Input<string>? KernelVersion { get; set; }
+
+        /// <summary>
         /// Whether the table name is case sensitive, the default value is 1.
         /// Ranges:
         /// 0: Table names are stored as fixed and table names are case-sensitive.
@@ -746,6 +928,24 @@ namespace Pulumi.Volcengine.Rds_mysql
         /// </summary>
         [Input("maintenanceWindow")]
         public Input<Inputs.InstanceMaintenanceWindowGetArgs>? MaintenanceWindow { get; set; }
+
+        /// <summary>
+        /// The ID of the primary instance of the disaster recovery instance.
+        /// </summary>
+        [Input("masterInstanceId")]
+        public Input<string>? MasterInstanceId { get; set; }
+
+        /// <summary>
+        /// The name of the primary instance of the disaster recovery instance.
+        /// </summary>
+        [Input("masterInstanceName")]
+        public Input<string>? MasterInstanceName { get; set; }
+
+        /// <summary>
+        /// The region where the primary instance of the disaster recovery instance is located.
+        /// </summary>
+        [Input("masterRegion")]
+        public Input<string>? MasterRegion { get; set; }
 
         /// <summary>
         /// Memory size in GB.
@@ -830,6 +1030,30 @@ namespace Pulumi.Volcengine.Rds_mysql
         /// </summary>
         [Input("secondaryZoneId")]
         public Input<string>? SecondaryZoneId { get; set; }
+
+        /// <summary>
+        /// The upper limit of the storage space that can be set for automatic expansion. The value is the upper limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value ranges of different specifications, please refer to Product Specifications.
+        /// </summary>
+        [Input("storageMaxCapacity")]
+        public Input<int>? StorageMaxCapacity { get; set; }
+
+        /// <summary>
+        /// The upper limit of the proportion of available storage space that triggers automatic expansion. When supported, the value is 50%.
+        /// </summary>
+        [Input("storageMaxTriggerThreshold")]
+        public Input<int>? StorageMaxTriggerThreshold { get; set; }
+
+        /// <summary>
+        /// The lower limit of the storage space that can be set for automatic expansion. The value is the lower limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value ranges of different specifications, please refer to Product Specifications.
+        /// </summary>
+        [Input("storageMinCapacity")]
+        public Input<int>? StorageMinCapacity { get; set; }
+
+        /// <summary>
+        /// The lower limit of the proportion of available storage space that triggers automatic expansion. When supported, the value is 10%.
+        /// </summary>
+        [Input("storageMinTriggerThreshold")]
+        public Input<int>? StorageMinTriggerThreshold { get; set; }
 
         /// <summary>
         /// Instance storage space. Value range: [20, 3000], unit: GB, increments every 100GB. Default value: 100.

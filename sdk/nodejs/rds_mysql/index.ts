@@ -10,6 +10,11 @@ export type Account = import("./account").Account;
 export const Account: typeof import("./account").Account = null as any;
 utilities.lazyLoad(exports, ["Account"], () => require("./account"));
 
+export { AccountTableColumnInfosArgs, AccountTableColumnInfosResult, AccountTableColumnInfosOutputArgs } from "./accountTableColumnInfos";
+export const accountTableColumnInfos: typeof import("./accountTableColumnInfos").accountTableColumnInfos = null as any;
+export const accountTableColumnInfosOutput: typeof import("./accountTableColumnInfos").accountTableColumnInfosOutput = null as any;
+utilities.lazyLoad(exports, ["accountTableColumnInfos","accountTableColumnInfosOutput"], () => require("./accountTableColumnInfos"));
+
 export { AccountsArgs, AccountsResult, AccountsOutputArgs } from "./accounts";
 export const accounts: typeof import("./accounts").accounts = null as any;
 export const accountsOutput: typeof import("./accounts").accountsOutput = null as any;
@@ -70,6 +75,11 @@ export const endpoints: typeof import("./endpoints").endpoints = null as any;
 export const endpointsOutput: typeof import("./endpoints").endpointsOutput = null as any;
 utilities.lazyLoad(exports, ["endpoints","endpointsOutput"], () => require("./endpoints"));
 
+export { GetAccountTableColumnInfosArgs, GetAccountTableColumnInfosResult, GetAccountTableColumnInfosOutputArgs } from "./getAccountTableColumnInfos";
+export const getAccountTableColumnInfos: typeof import("./getAccountTableColumnInfos").getAccountTableColumnInfos = null as any;
+export const getAccountTableColumnInfosOutput: typeof import("./getAccountTableColumnInfos").getAccountTableColumnInfosOutput = null as any;
+utilities.lazyLoad(exports, ["getAccountTableColumnInfos","getAccountTableColumnInfosOutput"], () => require("./getAccountTableColumnInfos"));
+
 export { GetAccountsArgs, GetAccountsResult, GetAccountsOutputArgs } from "./getAccounts";
 export const getAccounts: typeof import("./getAccounts").getAccounts = null as any;
 export const getAccountsOutput: typeof import("./getAccounts").getAccountsOutput = null as any;
@@ -110,10 +120,20 @@ export const getParameterTemplates: typeof import("./getParameterTemplates").get
 export const getParameterTemplatesOutput: typeof import("./getParameterTemplates").getParameterTemplatesOutput = null as any;
 utilities.lazyLoad(exports, ["getParameterTemplates","getParameterTemplatesOutput"], () => require("./getParameterTemplates"));
 
+export { GetPlannedEventsArgs, GetPlannedEventsResult, GetPlannedEventsOutputArgs } from "./getPlannedEvents";
+export const getPlannedEvents: typeof import("./getPlannedEvents").getPlannedEvents = null as any;
+export const getPlannedEventsOutput: typeof import("./getPlannedEvents").getPlannedEventsOutput = null as any;
+utilities.lazyLoad(exports, ["getPlannedEvents","getPlannedEventsOutput"], () => require("./getPlannedEvents"));
+
 export { GetRegionsArgs, GetRegionsResult, GetRegionsOutputArgs } from "./getRegions";
 export const getRegions: typeof import("./getRegions").getRegions = null as any;
 export const getRegionsOutput: typeof import("./getRegions").getRegionsOutput = null as any;
 utilities.lazyLoad(exports, ["getRegions","getRegionsOutput"], () => require("./getRegions"));
+
+export { GetTasksArgs, GetTasksResult, GetTasksOutputArgs } from "./getTasks";
+export const getTasks: typeof import("./getTasks").getTasks = null as any;
+export const getTasksOutput: typeof import("./getTasks").getTasksOutput = null as any;
+utilities.lazyLoad(exports, ["getTasks","getTasksOutput"], () => require("./getTasks"));
 
 export { GetZonesArgs, GetZonesResult, GetZonesOutputArgs } from "./getZones";
 export const getZones: typeof import("./getZones").getZones = null as any;
@@ -150,10 +170,20 @@ export const parameterTemplates: typeof import("./parameterTemplates").parameter
 export const parameterTemplatesOutput: typeof import("./parameterTemplates").parameterTemplatesOutput = null as any;
 utilities.lazyLoad(exports, ["parameterTemplates","parameterTemplatesOutput"], () => require("./parameterTemplates"));
 
+export { PlannedEventsArgs, PlannedEventsResult, PlannedEventsOutputArgs } from "./plannedEvents";
+export const plannedEvents: typeof import("./plannedEvents").plannedEvents = null as any;
+export const plannedEventsOutput: typeof import("./plannedEvents").plannedEventsOutput = null as any;
+utilities.lazyLoad(exports, ["plannedEvents","plannedEventsOutput"], () => require("./plannedEvents"));
+
 export { RegionsArgs, RegionsResult, RegionsOutputArgs } from "./regions";
 export const regions: typeof import("./regions").regions = null as any;
 export const regionsOutput: typeof import("./regions").regionsOutput = null as any;
 utilities.lazyLoad(exports, ["regions","regionsOutput"], () => require("./regions"));
+
+export { TasksArgs, TasksResult, TasksOutputArgs } from "./tasks";
+export const tasks: typeof import("./tasks").tasks = null as any;
+export const tasksOutput: typeof import("./tasks").tasksOutput = null as any;
+utilities.lazyLoad(exports, ["tasks","tasksOutput"], () => require("./tasks"));
 
 export { ZonesArgs, ZonesResult, ZonesOutputArgs } from "./zones";
 export const zones: typeof import("./zones").zones = null as any;

@@ -15,18 +15,23 @@ __all__ = ['BackupRestoreArgs', 'BackupRestore']
 class BackupRestoreArgs:
     def __init__(__self__, *,
                  instance_id: pulumi.Input[str],
-                 time_point: pulumi.Input[str],
-                 backup_type: Optional[pulumi.Input[str]] = None):
+                 backup_point_id: Optional[pulumi.Input[str]] = None,
+                 backup_type: Optional[pulumi.Input[str]] = None,
+                 time_point: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a BackupRestore resource.
         :param pulumi.Input[str] instance_id: Id of instance.
-        :param pulumi.Input[str] time_point: Time point of backup, for example: 2021-11-09T06:07:26Z. Use lifecycle and ignore_changes in import.
+        :param pulumi.Input[str] backup_point_id: Backup ID, used to specify the backups to be used when restoring by the backup set. When choosing to restore by backup set (i.e., BackupType is Full), this parameter is required. Use lifecycle and ignore_changes in import.
         :param pulumi.Input[str] backup_type: The type of backup. The value can be Full or Inc.
+        :param pulumi.Input[str] time_point: Time point of backup, for example: 2021-11-09T06:07:26Z. Use lifecycle and ignore_changes in import.
         """
         pulumi.set(__self__, "instance_id", instance_id)
-        pulumi.set(__self__, "time_point", time_point)
+        if backup_point_id is not None:
+            pulumi.set(__self__, "backup_point_id", backup_point_id)
         if backup_type is not None:
             pulumi.set(__self__, "backup_type", backup_type)
+        if time_point is not None:
+            pulumi.set(__self__, "time_point", time_point)
 
     @property
     @pulumi.getter(name="instanceId")
@@ -41,16 +46,16 @@ class BackupRestoreArgs:
         pulumi.set(self, "instance_id", value)
 
     @property
-    @pulumi.getter(name="timePoint")
-    def time_point(self) -> pulumi.Input[str]:
+    @pulumi.getter(name="backupPointId")
+    def backup_point_id(self) -> Optional[pulumi.Input[str]]:
         """
-        Time point of backup, for example: 2021-11-09T06:07:26Z. Use lifecycle and ignore_changes in import.
+        Backup ID, used to specify the backups to be used when restoring by the backup set. When choosing to restore by backup set (i.e., BackupType is Full), this parameter is required. Use lifecycle and ignore_changes in import.
         """
-        return pulumi.get(self, "time_point")
+        return pulumi.get(self, "backup_point_id")
 
-    @time_point.setter
-    def time_point(self, value: pulumi.Input[str]):
-        pulumi.set(self, "time_point", value)
+    @backup_point_id.setter
+    def backup_point_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backup_point_id", value)
 
     @property
     @pulumi.getter(name="backupType")
@@ -64,25 +69,53 @@ class BackupRestoreArgs:
     def backup_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "backup_type", value)
 
+    @property
+    @pulumi.getter(name="timePoint")
+    def time_point(self) -> Optional[pulumi.Input[str]]:
+        """
+        Time point of backup, for example: 2021-11-09T06:07:26Z. Use lifecycle and ignore_changes in import.
+        """
+        return pulumi.get(self, "time_point")
+
+    @time_point.setter
+    def time_point(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "time_point", value)
+
 
 @pulumi.input_type
 class _BackupRestoreState:
     def __init__(__self__, *,
+                 backup_point_id: Optional[pulumi.Input[str]] = None,
                  backup_type: Optional[pulumi.Input[str]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
                  time_point: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering BackupRestore resources.
+        :param pulumi.Input[str] backup_point_id: Backup ID, used to specify the backups to be used when restoring by the backup set. When choosing to restore by backup set (i.e., BackupType is Full), this parameter is required. Use lifecycle and ignore_changes in import.
         :param pulumi.Input[str] backup_type: The type of backup. The value can be Full or Inc.
         :param pulumi.Input[str] instance_id: Id of instance.
         :param pulumi.Input[str] time_point: Time point of backup, for example: 2021-11-09T06:07:26Z. Use lifecycle and ignore_changes in import.
         """
+        if backup_point_id is not None:
+            pulumi.set(__self__, "backup_point_id", backup_point_id)
         if backup_type is not None:
             pulumi.set(__self__, "backup_type", backup_type)
         if instance_id is not None:
             pulumi.set(__self__, "instance_id", instance_id)
         if time_point is not None:
             pulumi.set(__self__, "time_point", time_point)
+
+    @property
+    @pulumi.getter(name="backupPointId")
+    def backup_point_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Backup ID, used to specify the backups to be used when restoring by the backup set. When choosing to restore by backup set (i.e., BackupType is Full), this parameter is required. Use lifecycle and ignore_changes in import.
+        """
+        return pulumi.get(self, "backup_point_id")
+
+    @backup_point_id.setter
+    def backup_point_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backup_point_id", value)
 
     @property
     @pulumi.getter(name="backupType")
@@ -126,6 +159,7 @@ class BackupRestore(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 backup_point_id: Optional[pulumi.Input[str]] = None,
                  backup_type: Optional[pulumi.Input[str]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
                  time_point: Optional[pulumi.Input[str]] = None,
@@ -179,6 +213,7 @@ class BackupRestore(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] backup_point_id: Backup ID, used to specify the backups to be used when restoring by the backup set. When choosing to restore by backup set (i.e., BackupType is Full), this parameter is required. Use lifecycle and ignore_changes in import.
         :param pulumi.Input[str] backup_type: The type of backup. The value can be Full or Inc.
         :param pulumi.Input[str] instance_id: Id of instance.
         :param pulumi.Input[str] time_point: Time point of backup, for example: 2021-11-09T06:07:26Z. Use lifecycle and ignore_changes in import.
@@ -251,6 +286,7 @@ class BackupRestore(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 backup_point_id: Optional[pulumi.Input[str]] = None,
                  backup_type: Optional[pulumi.Input[str]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
                  time_point: Optional[pulumi.Input[str]] = None,
@@ -263,12 +299,11 @@ class BackupRestore(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = BackupRestoreArgs.__new__(BackupRestoreArgs)
 
+            __props__.__dict__["backup_point_id"] = backup_point_id
             __props__.__dict__["backup_type"] = backup_type
             if instance_id is None and not opts.urn:
                 raise TypeError("Missing required property 'instance_id'")
             __props__.__dict__["instance_id"] = instance_id
-            if time_point is None and not opts.urn:
-                raise TypeError("Missing required property 'time_point'")
             __props__.__dict__["time_point"] = time_point
         super(BackupRestore, __self__).__init__(
             'volcengine:redis/backupRestore:BackupRestore',
@@ -280,6 +315,7 @@ class BackupRestore(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            backup_point_id: Optional[pulumi.Input[str]] = None,
             backup_type: Optional[pulumi.Input[str]] = None,
             instance_id: Optional[pulumi.Input[str]] = None,
             time_point: Optional[pulumi.Input[str]] = None) -> 'BackupRestore':
@@ -290,6 +326,7 @@ class BackupRestore(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] backup_point_id: Backup ID, used to specify the backups to be used when restoring by the backup set. When choosing to restore by backup set (i.e., BackupType is Full), this parameter is required. Use lifecycle and ignore_changes in import.
         :param pulumi.Input[str] backup_type: The type of backup. The value can be Full or Inc.
         :param pulumi.Input[str] instance_id: Id of instance.
         :param pulumi.Input[str] time_point: Time point of backup, for example: 2021-11-09T06:07:26Z. Use lifecycle and ignore_changes in import.
@@ -298,10 +335,19 @@ class BackupRestore(pulumi.CustomResource):
 
         __props__ = _BackupRestoreState.__new__(_BackupRestoreState)
 
+        __props__.__dict__["backup_point_id"] = backup_point_id
         __props__.__dict__["backup_type"] = backup_type
         __props__.__dict__["instance_id"] = instance_id
         __props__.__dict__["time_point"] = time_point
         return BackupRestore(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="backupPointId")
+    def backup_point_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        Backup ID, used to specify the backups to be used when restoring by the backup set. When choosing to restore by backup set (i.e., BackupType is Full), this parameter is required. Use lifecycle and ignore_changes in import.
+        """
+        return pulumi.get(self, "backup_point_id")
 
     @property
     @pulumi.getter(name="backupType")
@@ -321,7 +367,7 @@ class BackupRestore(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="timePoint")
-    def time_point(self) -> pulumi.Output[str]:
+    def time_point(self) -> pulumi.Output[Optional[str]]:
         """
         Time point of backup, for example: 2021-11-09T06:07:26Z. Use lifecycle and ignore_changes in import.
         """

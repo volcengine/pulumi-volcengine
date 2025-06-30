@@ -18,7 +18,7 @@ __all__ = [
     'EndpointsEndpointDbAddressResult',
     'InstanceMongo',
     'InstanceNodeAvailabilityZone',
-    'InstanceParameterLogsParameterChangeLogsResult',
+    'InstanceParameterLogsParameterChangeLogResult',
     'InstanceParametersInstanceParameterResult',
     'InstanceParametersParameterResult',
     'InstanceParametersParameterInstanceParameterResult',
@@ -47,7 +47,7 @@ __all__ = [
     'GetAccountsAccountAccountPrivilegeResult',
     'GetEndpointsEndpointResult',
     'GetEndpointsEndpointDbAddressResult',
-    'GetInstanceParameterLogsParameterChangeLogsResult',
+    'GetInstanceParameterLogsParameterChangeLogResult',
     'GetInstanceParametersInstanceParameterResult',
     'GetInstanceParametersParameterResult',
     'GetInstanceParametersParameterInstanceParameterResult',
@@ -517,7 +517,7 @@ class InstanceNodeAvailabilityZone(dict):
 
 
 @pulumi.output_type
-class InstanceParameterLogsParameterChangeLogsResult(dict):
+class InstanceParameterLogsParameterChangeLogResult(dict):
     def __init__(__self__, *,
                  modify_time: str,
                  new_parameter_value: str,
@@ -2798,7 +2798,7 @@ class GetEndpointsEndpointDbAddressResult(dict):
 
 
 @pulumi.output_type
-class GetInstanceParameterLogsParameterChangeLogsResult(dict):
+class GetInstanceParameterLogsParameterChangeLogResult(dict):
     def __init__(__self__, *,
                  modify_time: str,
                  new_parameter_value: str,

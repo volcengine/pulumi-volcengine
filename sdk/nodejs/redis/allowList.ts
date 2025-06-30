@@ -63,6 +63,10 @@ export class AllowList extends pulumi.CustomResource {
     }
 
     /**
+     * The type of the whitelist.
+     */
+    public /*out*/ readonly allowListCategory!: pulumi.Output<string>;
+    /**
      * Description of allow list.
      */
     public readonly allowListDesc!: pulumi.Output<string | undefined>;
@@ -94,6 +98,14 @@ export class AllowList extends pulumi.CustomResource {
      * Instances associated by this allow list.
      */
     public /*out*/ readonly associatedInstances!: pulumi.Output<outputs.redis.AllowListAssociatedInstance[]>;
+    /**
+     * The name of the project to which the white list belongs.
+     */
+    public /*out*/ readonly projectName!: pulumi.Output<string>;
+    /**
+     * The current whitelist is the list of security group information that has been associated.
+     */
+    public /*out*/ readonly securityGroupBindInfos!: pulumi.Output<outputs.redis.AllowListSecurityGroupBindInfo[]>;
 
     /**
      * Create a AllowList resource with the given unique name, arguments, and options.
@@ -108,6 +120,7 @@ export class AllowList extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AllowListState | undefined;
+            resourceInputs["allowListCategory"] = state ? state.allowListCategory : undefined;
             resourceInputs["allowListDesc"] = state ? state.allowListDesc : undefined;
             resourceInputs["allowListId"] = state ? state.allowListId : undefined;
             resourceInputs["allowListIpNum"] = state ? state.allowListIpNum : undefined;
@@ -116,6 +129,8 @@ export class AllowList extends pulumi.CustomResource {
             resourceInputs["allowLists"] = state ? state.allowLists : undefined;
             resourceInputs["associatedInstanceNum"] = state ? state.associatedInstanceNum : undefined;
             resourceInputs["associatedInstances"] = state ? state.associatedInstances : undefined;
+            resourceInputs["projectName"] = state ? state.projectName : undefined;
+            resourceInputs["securityGroupBindInfos"] = state ? state.securityGroupBindInfos : undefined;
         } else {
             const args = argsOrState as AllowListArgs | undefined;
             if ((!args || args.allowListName === undefined) && !opts.urn) {
@@ -127,11 +142,14 @@ export class AllowList extends pulumi.CustomResource {
             resourceInputs["allowListDesc"] = args ? args.allowListDesc : undefined;
             resourceInputs["allowListName"] = args ? args.allowListName : undefined;
             resourceInputs["allowLists"] = args ? args.allowLists : undefined;
+            resourceInputs["allowListCategory"] = undefined /*out*/;
             resourceInputs["allowListId"] = undefined /*out*/;
             resourceInputs["allowListIpNum"] = undefined /*out*/;
             resourceInputs["allowListType"] = undefined /*out*/;
             resourceInputs["associatedInstanceNum"] = undefined /*out*/;
             resourceInputs["associatedInstances"] = undefined /*out*/;
+            resourceInputs["projectName"] = undefined /*out*/;
+            resourceInputs["securityGroupBindInfos"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(AllowList.__pulumiType, name, resourceInputs, opts);
@@ -142,6 +160,10 @@ export class AllowList extends pulumi.CustomResource {
  * Input properties used for looking up and filtering AllowList resources.
  */
 export interface AllowListState {
+    /**
+     * The type of the whitelist.
+     */
+    allowListCategory?: pulumi.Input<string>;
     /**
      * Description of allow list.
      */
@@ -174,6 +196,14 @@ export interface AllowListState {
      * Instances associated by this allow list.
      */
     associatedInstances?: pulumi.Input<pulumi.Input<inputs.redis.AllowListAssociatedInstance>[]>;
+    /**
+     * The name of the project to which the white list belongs.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
+     * The current whitelist is the list of security group information that has been associated.
+     */
+    securityGroupBindInfos?: pulumi.Input<pulumi.Input<inputs.redis.AllowListSecurityGroupBindInfo>[]>;
 }
 
 /**

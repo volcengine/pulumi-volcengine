@@ -5,8 +5,12 @@
 from .. import _utilities
 import typing
 # Export this package's modules as members:
+from .auto_snapshot_policies import *
+from .auto_snapshot_policy import *
+from .auto_snapshot_policy_apply import *
 from .file_system import *
 from .file_systems import *
+from .get_auto_snapshot_policies import *
 from .get_file_systems import *
 from .get_mount_points import *
 from .get_permission_groups import *

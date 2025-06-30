@@ -11,9 +11,14 @@ from .. import _utilities
 
 __all__ = [
     'AccountAccountPrivilegeArgs',
+    'AccountTableColumnPrivilegeArgs',
+    'AccountTableColumnPrivilegeColumnPrivilegeArgs',
+    'AccountTableColumnPrivilegeTablePrivilegeArgs',
     'AllowlistSecurityGroupBindInfoArgs',
     'BackupBackupMetaArgs',
+    'BackupPolicyCrossBackupPolicyArgs',
     'EndpointReadOnlyNodeWeightArgs',
+    'InstanceAutoStorageScalingConfigArgs',
     'InstanceChargeDetailArgs',
     'InstanceChargeInfoArgs',
     'InstanceEndpointArgs',
@@ -74,6 +79,151 @@ class AccountAccountPrivilegeArgs:
     def account_privilege_detail(self) -> Optional[pulumi.Input[str]]:
         """
         The privilege detail of the account.
+        """
+        return pulumi.get(self, "account_privilege_detail")
+
+    @account_privilege_detail.setter
+    def account_privilege_detail(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "account_privilege_detail", value)
+
+
+@pulumi.input_type
+class AccountTableColumnPrivilegeArgs:
+    def __init__(__self__, *,
+                 db_name: pulumi.Input[str],
+                 column_privileges: Optional[pulumi.Input[Sequence[pulumi.Input['AccountTableColumnPrivilegeColumnPrivilegeArgs']]]] = None,
+                 table_privileges: Optional[pulumi.Input[Sequence[pulumi.Input['AccountTableColumnPrivilegeTablePrivilegeArgs']]]] = None):
+        """
+        :param pulumi.Input[str] db_name: Settings for table column permissions of the account.
+        :param pulumi.Input[Sequence[pulumi.Input['AccountTableColumnPrivilegeColumnPrivilegeArgs']]] column_privileges: Column permission information of the account.
+        :param pulumi.Input[Sequence[pulumi.Input['AccountTableColumnPrivilegeTablePrivilegeArgs']]] table_privileges: Table permission information of the account.
+        """
+        pulumi.set(__self__, "db_name", db_name)
+        if column_privileges is not None:
+            pulumi.set(__self__, "column_privileges", column_privileges)
+        if table_privileges is not None:
+            pulumi.set(__self__, "table_privileges", table_privileges)
+
+    @property
+    @pulumi.getter(name="dbName")
+    def db_name(self) -> pulumi.Input[str]:
+        """
+        Settings for table column permissions of the account.
+        """
+        return pulumi.get(self, "db_name")
+
+    @db_name.setter
+    def db_name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "db_name", value)
+
+    @property
+    @pulumi.getter(name="columnPrivileges")
+    def column_privileges(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AccountTableColumnPrivilegeColumnPrivilegeArgs']]]]:
+        """
+        Column permission information of the account.
+        """
+        return pulumi.get(self, "column_privileges")
+
+    @column_privileges.setter
+    def column_privileges(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AccountTableColumnPrivilegeColumnPrivilegeArgs']]]]):
+        pulumi.set(self, "column_privileges", value)
+
+    @property
+    @pulumi.getter(name="tablePrivileges")
+    def table_privileges(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AccountTableColumnPrivilegeTablePrivilegeArgs']]]]:
+        """
+        Table permission information of the account.
+        """
+        return pulumi.get(self, "table_privileges")
+
+    @table_privileges.setter
+    def table_privileges(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AccountTableColumnPrivilegeTablePrivilegeArgs']]]]):
+        pulumi.set(self, "table_privileges", value)
+
+
+@pulumi.input_type
+class AccountTableColumnPrivilegeColumnPrivilegeArgs:
+    def __init__(__self__, *,
+                 column_name: pulumi.Input[str],
+                 table_name: pulumi.Input[str],
+                 account_privilege_detail: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] column_name: The name of the column for setting permissions on the account.
+        :param pulumi.Input[str] table_name: The name of the table for setting permissions on the account.
+        :param pulumi.Input[str] account_privilege_detail: Table privileges of the account.
+        """
+        pulumi.set(__self__, "column_name", column_name)
+        pulumi.set(__self__, "table_name", table_name)
+        if account_privilege_detail is not None:
+            pulumi.set(__self__, "account_privilege_detail", account_privilege_detail)
+
+    @property
+    @pulumi.getter(name="columnName")
+    def column_name(self) -> pulumi.Input[str]:
+        """
+        The name of the column for setting permissions on the account.
+        """
+        return pulumi.get(self, "column_name")
+
+    @column_name.setter
+    def column_name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "column_name", value)
+
+    @property
+    @pulumi.getter(name="tableName")
+    def table_name(self) -> pulumi.Input[str]:
+        """
+        The name of the table for setting permissions on the account.
+        """
+        return pulumi.get(self, "table_name")
+
+    @table_name.setter
+    def table_name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "table_name", value)
+
+    @property
+    @pulumi.getter(name="accountPrivilegeDetail")
+    def account_privilege_detail(self) -> Optional[pulumi.Input[str]]:
+        """
+        Table privileges of the account.
+        """
+        return pulumi.get(self, "account_privilege_detail")
+
+    @account_privilege_detail.setter
+    def account_privilege_detail(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "account_privilege_detail", value)
+
+
+@pulumi.input_type
+class AccountTableColumnPrivilegeTablePrivilegeArgs:
+    def __init__(__self__, *,
+                 table_name: pulumi.Input[str],
+                 account_privilege_detail: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] table_name: The name of the table for setting permissions on the account.
+        :param pulumi.Input[str] account_privilege_detail: Table privileges of the account.
+        """
+        pulumi.set(__self__, "table_name", table_name)
+        if account_privilege_detail is not None:
+            pulumi.set(__self__, "account_privilege_detail", account_privilege_detail)
+
+    @property
+    @pulumi.getter(name="tableName")
+    def table_name(self) -> pulumi.Input[str]:
+        """
+        The name of the table for setting permissions on the account.
+        """
+        return pulumi.get(self, "table_name")
+
+    @table_name.setter
+    def table_name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "table_name", value)
+
+    @property
+    @pulumi.getter(name="accountPrivilegeDetail")
+    def account_privilege_detail(self) -> Optional[pulumi.Input[str]]:
+        """
+        Table privileges of the account.
         """
         return pulumi.get(self, "account_privilege_detail")
 
@@ -164,6 +314,81 @@ class BackupBackupMetaArgs:
 
 
 @pulumi.input_type
+class BackupPolicyCrossBackupPolicyArgs:
+    def __init__(__self__, *,
+                 backup_enabled: Optional[pulumi.Input[bool]] = None,
+                 cross_backup_region: Optional[pulumi.Input[str]] = None,
+                 log_backup_enabled: Optional[pulumi.Input[bool]] = None,
+                 retention: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[bool] backup_enabled: Whether to enable cross-region backup.
+               true: Enable.
+               false: Disable. Default value.
+        :param pulumi.Input[str] cross_backup_region: The destination region ID for cross-region backup. When the value of BackupEnabled is true, this parameter is required.
+        :param pulumi.Input[bool] log_backup_enabled: Whether to enable cross-region log backup. true: Enable. false: Disable. Default value. Description: Cross-region log backup can only be enabled when cross-region backup is enabled.
+        :param pulumi.Input[int] retention: The number of days to retain cross - region backups, with a value range of 7 to 1825 days.
+        """
+        if backup_enabled is not None:
+            pulumi.set(__self__, "backup_enabled", backup_enabled)
+        if cross_backup_region is not None:
+            pulumi.set(__self__, "cross_backup_region", cross_backup_region)
+        if log_backup_enabled is not None:
+            pulumi.set(__self__, "log_backup_enabled", log_backup_enabled)
+        if retention is not None:
+            pulumi.set(__self__, "retention", retention)
+
+    @property
+    @pulumi.getter(name="backupEnabled")
+    def backup_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to enable cross-region backup.
+        true: Enable.
+        false: Disable. Default value.
+        """
+        return pulumi.get(self, "backup_enabled")
+
+    @backup_enabled.setter
+    def backup_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "backup_enabled", value)
+
+    @property
+    @pulumi.getter(name="crossBackupRegion")
+    def cross_backup_region(self) -> Optional[pulumi.Input[str]]:
+        """
+        The destination region ID for cross-region backup. When the value of BackupEnabled is true, this parameter is required.
+        """
+        return pulumi.get(self, "cross_backup_region")
+
+    @cross_backup_region.setter
+    def cross_backup_region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cross_backup_region", value)
+
+    @property
+    @pulumi.getter(name="logBackupEnabled")
+    def log_backup_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to enable cross-region log backup. true: Enable. false: Disable. Default value. Description: Cross-region log backup can only be enabled when cross-region backup is enabled.
+        """
+        return pulumi.get(self, "log_backup_enabled")
+
+    @log_backup_enabled.setter
+    def log_backup_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "log_backup_enabled", value)
+
+    @property
+    @pulumi.getter
+    def retention(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of days to retain cross - region backups, with a value range of 7 to 1825 days.
+        """
+        return pulumi.get(self, "retention")
+
+    @retention.setter
+    def retention(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "retention", value)
+
+
+@pulumi.input_type
 class EndpointReadOnlyNodeWeightArgs:
     def __init__(__self__, *,
                  weight: pulumi.Input[int],
@@ -215,6 +440,64 @@ class EndpointReadOnlyNodeWeightArgs:
     @node_type.setter
     def node_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "node_type", value)
+
+
+@pulumi.input_type
+class InstanceAutoStorageScalingConfigArgs:
+    def __init__(__self__, *,
+                 enable_storage_auto_scale: pulumi.Input[bool],
+                 storage_threshold: Optional[pulumi.Input[int]] = None,
+                 storage_upper_bound: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[bool] enable_storage_auto_scale: Whether to enable the instance's auto - scaling function. Values:
+               true: Yes.
+               false: No. Description: When StorageConfig is used as a request parameter, if the value of EnableStorageAutoScale is false, the StorageThreshold and StorageUpperBound parameters do not need to be passed in.
+        :param pulumi.Input[int] storage_threshold: The proportion of available storage space that triggers automatic expansion. The value range is 10 to 50, and the default value is 10, with the unit being %.
+        :param pulumi.Input[int] storage_upper_bound: The upper limit of the storage space that can be automatically expanded. The lower limit of the value of this field is the instance storage space + 20GB; the upper limit of the value is the upper limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value range of different specifications, please refer to Product Specifications.
+        """
+        pulumi.set(__self__, "enable_storage_auto_scale", enable_storage_auto_scale)
+        if storage_threshold is not None:
+            pulumi.set(__self__, "storage_threshold", storage_threshold)
+        if storage_upper_bound is not None:
+            pulumi.set(__self__, "storage_upper_bound", storage_upper_bound)
+
+    @property
+    @pulumi.getter(name="enableStorageAutoScale")
+    def enable_storage_auto_scale(self) -> pulumi.Input[bool]:
+        """
+        Whether to enable the instance's auto - scaling function. Values:
+        true: Yes.
+        false: No. Description: When StorageConfig is used as a request parameter, if the value of EnableStorageAutoScale is false, the StorageThreshold and StorageUpperBound parameters do not need to be passed in.
+        """
+        return pulumi.get(self, "enable_storage_auto_scale")
+
+    @enable_storage_auto_scale.setter
+    def enable_storage_auto_scale(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "enable_storage_auto_scale", value)
+
+    @property
+    @pulumi.getter(name="storageThreshold")
+    def storage_threshold(self) -> Optional[pulumi.Input[int]]:
+        """
+        The proportion of available storage space that triggers automatic expansion. The value range is 10 to 50, and the default value is 10, with the unit being %.
+        """
+        return pulumi.get(self, "storage_threshold")
+
+    @storage_threshold.setter
+    def storage_threshold(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "storage_threshold", value)
+
+    @property
+    @pulumi.getter(name="storageUpperBound")
+    def storage_upper_bound(self) -> Optional[pulumi.Input[int]]:
+        """
+        The upper limit of the storage space that can be automatically expanded. The lower limit of the value of this field is the instance storage space + 20GB; the upper limit of the value is the upper limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value range of different specifications, please refer to Product Specifications.
+        """
+        return pulumi.get(self, "storage_upper_bound")
+
+    @storage_upper_bound.setter
+    def storage_upper_bound(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "storage_upper_bound", value)
 
 
 @pulumi.input_type

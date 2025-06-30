@@ -72,6 +72,7 @@ namespace Pulumi.Volcengine.Rds_mysql
     ///         InstanceId = fooInstance.Id,
     ///     });
     /// 
+    ///     //instance_id = "mysql-b51d37110dd1"
     ///     var fooDatabase = new Volcengine.Rds_mysql.Database("fooDatabase", new()
     ///     {
     ///         DbName = "acc-test-db",
@@ -98,8 +99,21 @@ namespace Pulumi.Volcengine.Rds_mysql
     ///                 AccountPrivilege = "DDLOnly",
     ///             },
     ///         },
+    ///         Host = "192.10.10.%",
     ///     });
     /// 
+    ///     //     table_column_privileges {
+    ///     //          db_name = volcengine_rds_mysql_database.foo.db_name
+    ///     //          table_privileges {
+    ///     //               table_name = "test"
+    ///     //               account_privilege_detail = "SELECT,INSERT,UPDATE"
+    ///     //          }
+    ///     //          column_privileges {
+    ///     //               table_name = "test"
+    ///     //               column_name = "test"
+    ///     //               account_privilege_detail = "SELECT,INSERT,UPDATE"
+    ///     //          }
+    ///     //     }
     /// });
     /// ```
     /// 
@@ -114,6 +128,12 @@ namespace Pulumi.Volcengine.Rds_mysql
     [VolcengineResourceType("volcengine:rds_mysql/account:Account")]
     public partial class Account : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Account information description. The length should not exceed 256 characters.
+        /// </summary>
+        [Output("accountDesc")]
+        public Output<string?> AccountDesc { get; private set; } = null!;
+
         /// <summary>
         /// Database account name. The rules are as follows:
         /// Unique name.
@@ -137,7 +157,7 @@ namespace Pulumi.Volcengine.Rds_mysql
         public Output<string> AccountPassword { get; private set; } = null!;
 
         /// <summary>
-        /// The privilege information of account.
+        /// The privilege information of account. Due to differences in the return structure of the query interface, it is necessary to use lifecycle_ignore to suppress changes when creating Global permissions.
         /// </summary>
         [Output("accountPrivileges")]
         public Output<ImmutableArray<Outputs.AccountAccountPrivilege>> AccountPrivileges { get; private set; } = null!;
@@ -151,10 +171,22 @@ namespace Pulumi.Volcengine.Rds_mysql
         public Output<string> AccountType { get; private set; } = null!;
 
         /// <summary>
+        /// Specify the IP address for the account to access the database. The default value is %. If the Host is specified as %, the account is allowed to access the database from any IP address. Wildcards are supported for setting the IP address range that can access the database. For example, if the Host is specified as 192.10.10.%, it means the account can access the database from IP addresses between 192.10.10.0 and 192.10.10.255. The specified Host needs to be added to the whitelist bound to the instance, otherwise the instance cannot be accessed normally. The ModifyAllowList interface can be called to add the Host to the whitelist. Note: If the created account type is a high-privilege account, the host IP can only be specified as %. That is, when the value of AccountType is Super, the value of Host can only be %.
+        /// </summary>
+        [Output("host")]
+        public Output<string> Host { get; private set; } = null!;
+
+        /// <summary>
         /// The ID of the RDS instance.
         /// </summary>
         [Output("instanceId")]
         public Output<string> InstanceId { get; private set; } = null!;
+
+        /// <summary>
+        /// Settings for table column permissions of the account.
+        /// </summary>
+        [Output("tableColumnPrivileges")]
+        public Output<ImmutableArray<Outputs.AccountTableColumnPrivilege>> TableColumnPrivileges { get; private set; } = null!;
 
 
         /// <summary>
@@ -208,6 +240,12 @@ namespace Pulumi.Volcengine.Rds_mysql
     public sealed class AccountArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Account information description. The length should not exceed 256 characters.
+        /// </summary>
+        [Input("accountDesc")]
+        public Input<string>? AccountDesc { get; set; }
+
+        /// <summary>
         /// Database account name. The rules are as follows:
         /// Unique name.
         /// Start with a letter and end with a letter or number.
@@ -243,7 +281,7 @@ namespace Pulumi.Volcengine.Rds_mysql
         private InputList<Inputs.AccountAccountPrivilegeArgs>? _accountPrivileges;
 
         /// <summary>
-        /// The privilege information of account.
+        /// The privilege information of account. Due to differences in the return structure of the query interface, it is necessary to use lifecycle_ignore to suppress changes when creating Global permissions.
         /// </summary>
         public InputList<Inputs.AccountAccountPrivilegeArgs> AccountPrivileges
         {
@@ -260,10 +298,28 @@ namespace Pulumi.Volcengine.Rds_mysql
         public Input<string> AccountType { get; set; } = null!;
 
         /// <summary>
+        /// Specify the IP address for the account to access the database. The default value is %. If the Host is specified as %, the account is allowed to access the database from any IP address. Wildcards are supported for setting the IP address range that can access the database. For example, if the Host is specified as 192.10.10.%, it means the account can access the database from IP addresses between 192.10.10.0 and 192.10.10.255. The specified Host needs to be added to the whitelist bound to the instance, otherwise the instance cannot be accessed normally. The ModifyAllowList interface can be called to add the Host to the whitelist. Note: If the created account type is a high-privilege account, the host IP can only be specified as %. That is, when the value of AccountType is Super, the value of Host can only be %.
+        /// </summary>
+        [Input("host")]
+        public Input<string>? Host { get; set; }
+
+        /// <summary>
         /// The ID of the RDS instance.
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<string> InstanceId { get; set; } = null!;
+
+        [Input("tableColumnPrivileges")]
+        private InputList<Inputs.AccountTableColumnPrivilegeArgs>? _tableColumnPrivileges;
+
+        /// <summary>
+        /// Settings for table column permissions of the account.
+        /// </summary>
+        public InputList<Inputs.AccountTableColumnPrivilegeArgs> TableColumnPrivileges
+        {
+            get => _tableColumnPrivileges ?? (_tableColumnPrivileges = new InputList<Inputs.AccountTableColumnPrivilegeArgs>());
+            set => _tableColumnPrivileges = value;
+        }
 
         public AccountArgs()
         {
@@ -273,6 +329,12 @@ namespace Pulumi.Volcengine.Rds_mysql
 
     public sealed class AccountState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Account information description. The length should not exceed 256 characters.
+        /// </summary>
+        [Input("accountDesc")]
+        public Input<string>? AccountDesc { get; set; }
+
         /// <summary>
         /// Database account name. The rules are as follows:
         /// Unique name.
@@ -309,7 +371,7 @@ namespace Pulumi.Volcengine.Rds_mysql
         private InputList<Inputs.AccountAccountPrivilegeGetArgs>? _accountPrivileges;
 
         /// <summary>
-        /// The privilege information of account.
+        /// The privilege information of account. Due to differences in the return structure of the query interface, it is necessary to use lifecycle_ignore to suppress changes when creating Global permissions.
         /// </summary>
         public InputList<Inputs.AccountAccountPrivilegeGetArgs> AccountPrivileges
         {
@@ -326,10 +388,28 @@ namespace Pulumi.Volcengine.Rds_mysql
         public Input<string>? AccountType { get; set; }
 
         /// <summary>
+        /// Specify the IP address for the account to access the database. The default value is %. If the Host is specified as %, the account is allowed to access the database from any IP address. Wildcards are supported for setting the IP address range that can access the database. For example, if the Host is specified as 192.10.10.%, it means the account can access the database from IP addresses between 192.10.10.0 and 192.10.10.255. The specified Host needs to be added to the whitelist bound to the instance, otherwise the instance cannot be accessed normally. The ModifyAllowList interface can be called to add the Host to the whitelist. Note: If the created account type is a high-privilege account, the host IP can only be specified as %. That is, when the value of AccountType is Super, the value of Host can only be %.
+        /// </summary>
+        [Input("host")]
+        public Input<string>? Host { get; set; }
+
+        /// <summary>
         /// The ID of the RDS instance.
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }
+
+        [Input("tableColumnPrivileges")]
+        private InputList<Inputs.AccountTableColumnPrivilegeGetArgs>? _tableColumnPrivileges;
+
+        /// <summary>
+        /// Settings for table column permissions of the account.
+        /// </summary>
+        public InputList<Inputs.AccountTableColumnPrivilegeGetArgs> TableColumnPrivileges
+        {
+            get => _tableColumnPrivileges ?? (_tableColumnPrivileges = new InputList<Inputs.AccountTableColumnPrivilegeGetArgs>());
+            set => _tableColumnPrivileges = value;
+        }
 
         public AccountState()
         {

@@ -136,7 +136,9 @@ type Instance struct {
 	pulumi.CustomResourceState
 
 	// Modify the single-shard additional bandwidth of the target Redis instance. Set the additional bandwidth of a single shard, that is, the bandwidth that needs to be additionally increased on the basis of the default bandwidth. Unit: MB/s. The value of additional bandwidth needs to meet the following conditions at the same time: It must be greater than or equal to 0. When the value is 0, it means that no additional bandwidth is added, and the bandwidth of a single shard is the default bandwidth. The sum of additional bandwidth and default bandwidth cannot exceed the upper limit of bandwidth that can be modified for the current instance. Different specification nodes have different upper limits of bandwidth that can be modified. For more details, please refer to bandwidth modification range. The upper limits of the total write bandwidth and the total read bandwidth of an instance are both 2048MB/s.
-	AdditionalBandwidth pulumi.IntPtrOutput `pulumi:"additionalBandwidth"`
+	AdditionalBandwidth pulumi.IntOutput `pulumi:"additionalBandwidth"`
+	// The type of connection address that requires an address prefix. Use lifecycle and ignoreChanges in import.
+	AddrType pulumi.StringOutput `pulumi:"addrType"`
 	// Whether to apply the instance configuration change operation immediately. The value of this field is false, means that the change operation will be applied within maintenance time.
 	ApplyImmediately pulumi.BoolPtrOutput `pulumi:"applyImmediately"`
 	// Whether to enable automatic renewal. This field is valid only when `ChargeType` is `PrePaid`, the default value is false.
@@ -150,6 +152,8 @@ type Instance struct {
 	// The backup period. The valid value can be any integer between 1 and 7. Among them, 1 means backup every Monday, 2 means backup every Tuesday, and so on.
 	// This field is valid and required when updating the backup plan of primary and secondary instance.
 	BackupPeriods pulumi.IntArrayOutput `pulumi:"backupPeriods"`
+	// Set the backup name for the final backup of the instance to be deleted. If the backup name is not set, the backup ID is used as the name by default. Use lifecycle and ignoreChanges in import.
+	BackupPointName pulumi.StringOutput `pulumi:"backupPointName"`
 	// The charge type of redis instance. Valid value: `PostPaid`, `PrePaid`.
 	ChargeType pulumi.StringPtrOutput `pulumi:"chargeType"`
 	// Set the list of available zones to which the node belongs.
@@ -162,12 +166,18 @@ type Instance struct {
 	EngineVersion pulumi.StringOutput `pulumi:"engineVersion"`
 	// The name of the redis instance.
 	InstanceName pulumi.StringPtrOutput `pulumi:"instanceName"`
+	// Maximum number of connections per shard.
+	MaxConnections pulumi.IntOutput `pulumi:"maxConnections"`
 	// Set the availability zone deployment scheme for the instance. The value range is as follows:
 	// disabled: Single availability zone deployment scheme.
 	// enabled: Multi-availability zone deployment scheme.
 	// Description:
 	// When the newly created instance is a single-node instance (that is, when the value of NodeNumber is 1), only the single availability zone deployment scheme is allowed. At this time, the value of MultiAZ must be disabled.
 	MultiAz pulumi.StringOutput `pulumi:"multiAz"`
+	// The modified connection address prefix. Use lifecycle and ignoreChanges in import.
+	NewAddressPrefix pulumi.StringOutput `pulumi:"newAddressPrefix"`
+	// The modified connection address port number. Use lifecycle and ignoreChanges in import.
+	NewPort pulumi.IntOutput `pulumi:"newPort"`
 	// The number of nodes in each shard, the valid value range is `1-6`. When the value is 1, it means creating a single node instance, and this field can not be modified. When the value is greater than 1, it means creating a primary and secondary instance, and this field can be modified.
 	NodeNumber pulumi.IntOutput `pulumi:"nodeNumber"`
 	// The configuration item information to be modified. This field can only be added or modified. Deleting this field is invalid.
@@ -192,6 +202,10 @@ type Instance struct {
 	SubnetId pulumi.StringOutput `pulumi:"subnetId"`
 	// Tags.
 	Tags InstanceTagArrayOutput `pulumi:"tags"`
+	// The maintainable time period of the instance, in the format of HH:mm-HH:mm (UTC+8).
+	TimeScope pulumi.StringOutput `pulumi:"timeScope"`
+	// Whether to upgrade the domain suffix of the connection address. Use lifecycle and ignoreChanges in import.
+	UpgradeRegionDomain pulumi.BoolOutput `pulumi:"upgradeRegionDomain"`
 	// Whether to enable password-free access when connecting to an instance through a private network. Valid values: `open`, `close`.
 	VpcAuthMode pulumi.StringOutput `pulumi:"vpcAuthMode"`
 	// This field has been deprecated after version-0.0.152. Please use multiAz and configureNodes to specify the availability zone. The list of zone IDs of instance. When creating a single node instance, only one zone id can be specified.
@@ -254,6 +268,8 @@ func GetInstance(ctx *pulumi.Context,
 type instanceState struct {
 	// Modify the single-shard additional bandwidth of the target Redis instance. Set the additional bandwidth of a single shard, that is, the bandwidth that needs to be additionally increased on the basis of the default bandwidth. Unit: MB/s. The value of additional bandwidth needs to meet the following conditions at the same time: It must be greater than or equal to 0. When the value is 0, it means that no additional bandwidth is added, and the bandwidth of a single shard is the default bandwidth. The sum of additional bandwidth and default bandwidth cannot exceed the upper limit of bandwidth that can be modified for the current instance. Different specification nodes have different upper limits of bandwidth that can be modified. For more details, please refer to bandwidth modification range. The upper limits of the total write bandwidth and the total read bandwidth of an instance are both 2048MB/s.
 	AdditionalBandwidth *int `pulumi:"additionalBandwidth"`
+	// The type of connection address that requires an address prefix. Use lifecycle and ignoreChanges in import.
+	AddrType *string `pulumi:"addrType"`
 	// Whether to apply the instance configuration change operation immediately. The value of this field is false, means that the change operation will be applied within maintenance time.
 	ApplyImmediately *bool `pulumi:"applyImmediately"`
 	// Whether to enable automatic renewal. This field is valid only when `ChargeType` is `PrePaid`, the default value is false.
@@ -267,6 +283,8 @@ type instanceState struct {
 	// The backup period. The valid value can be any integer between 1 and 7. Among them, 1 means backup every Monday, 2 means backup every Tuesday, and so on.
 	// This field is valid and required when updating the backup plan of primary and secondary instance.
 	BackupPeriods []int `pulumi:"backupPeriods"`
+	// Set the backup name for the final backup of the instance to be deleted. If the backup name is not set, the backup ID is used as the name by default. Use lifecycle and ignoreChanges in import.
+	BackupPointName *string `pulumi:"backupPointName"`
 	// The charge type of redis instance. Valid value: `PostPaid`, `PrePaid`.
 	ChargeType *string `pulumi:"chargeType"`
 	// Set the list of available zones to which the node belongs.
@@ -279,12 +297,18 @@ type instanceState struct {
 	EngineVersion *string `pulumi:"engineVersion"`
 	// The name of the redis instance.
 	InstanceName *string `pulumi:"instanceName"`
+	// Maximum number of connections per shard.
+	MaxConnections *int `pulumi:"maxConnections"`
 	// Set the availability zone deployment scheme for the instance. The value range is as follows:
 	// disabled: Single availability zone deployment scheme.
 	// enabled: Multi-availability zone deployment scheme.
 	// Description:
 	// When the newly created instance is a single-node instance (that is, when the value of NodeNumber is 1), only the single availability zone deployment scheme is allowed. At this time, the value of MultiAZ must be disabled.
 	MultiAz *string `pulumi:"multiAz"`
+	// The modified connection address prefix. Use lifecycle and ignoreChanges in import.
+	NewAddressPrefix *string `pulumi:"newAddressPrefix"`
+	// The modified connection address port number. Use lifecycle and ignoreChanges in import.
+	NewPort *int `pulumi:"newPort"`
 	// The number of nodes in each shard, the valid value range is `1-6`. When the value is 1, it means creating a single node instance, and this field can not be modified. When the value is greater than 1, it means creating a primary and secondary instance, and this field can be modified.
 	NodeNumber *int `pulumi:"nodeNumber"`
 	// The configuration item information to be modified. This field can only be added or modified. Deleting this field is invalid.
@@ -309,6 +333,10 @@ type instanceState struct {
 	SubnetId *string `pulumi:"subnetId"`
 	// Tags.
 	Tags []InstanceTag `pulumi:"tags"`
+	// The maintainable time period of the instance, in the format of HH:mm-HH:mm (UTC+8).
+	TimeScope *string `pulumi:"timeScope"`
+	// Whether to upgrade the domain suffix of the connection address. Use lifecycle and ignoreChanges in import.
+	UpgradeRegionDomain *bool `pulumi:"upgradeRegionDomain"`
 	// Whether to enable password-free access when connecting to an instance through a private network. Valid values: `open`, `close`.
 	VpcAuthMode *string `pulumi:"vpcAuthMode"`
 	// This field has been deprecated after version-0.0.152. Please use multiAz and configureNodes to specify the availability zone. The list of zone IDs of instance. When creating a single node instance, only one zone id can be specified.
@@ -320,6 +348,8 @@ type instanceState struct {
 type InstanceState struct {
 	// Modify the single-shard additional bandwidth of the target Redis instance. Set the additional bandwidth of a single shard, that is, the bandwidth that needs to be additionally increased on the basis of the default bandwidth. Unit: MB/s. The value of additional bandwidth needs to meet the following conditions at the same time: It must be greater than or equal to 0. When the value is 0, it means that no additional bandwidth is added, and the bandwidth of a single shard is the default bandwidth. The sum of additional bandwidth and default bandwidth cannot exceed the upper limit of bandwidth that can be modified for the current instance. Different specification nodes have different upper limits of bandwidth that can be modified. For more details, please refer to bandwidth modification range. The upper limits of the total write bandwidth and the total read bandwidth of an instance are both 2048MB/s.
 	AdditionalBandwidth pulumi.IntPtrInput
+	// The type of connection address that requires an address prefix. Use lifecycle and ignoreChanges in import.
+	AddrType pulumi.StringPtrInput
 	// Whether to apply the instance configuration change operation immediately. The value of this field is false, means that the change operation will be applied within maintenance time.
 	ApplyImmediately pulumi.BoolPtrInput
 	// Whether to enable automatic renewal. This field is valid only when `ChargeType` is `PrePaid`, the default value is false.
@@ -333,6 +363,8 @@ type InstanceState struct {
 	// The backup period. The valid value can be any integer between 1 and 7. Among them, 1 means backup every Monday, 2 means backup every Tuesday, and so on.
 	// This field is valid and required when updating the backup plan of primary and secondary instance.
 	BackupPeriods pulumi.IntArrayInput
+	// Set the backup name for the final backup of the instance to be deleted. If the backup name is not set, the backup ID is used as the name by default. Use lifecycle and ignoreChanges in import.
+	BackupPointName pulumi.StringPtrInput
 	// The charge type of redis instance. Valid value: `PostPaid`, `PrePaid`.
 	ChargeType pulumi.StringPtrInput
 	// Set the list of available zones to which the node belongs.
@@ -345,12 +377,18 @@ type InstanceState struct {
 	EngineVersion pulumi.StringPtrInput
 	// The name of the redis instance.
 	InstanceName pulumi.StringPtrInput
+	// Maximum number of connections per shard.
+	MaxConnections pulumi.IntPtrInput
 	// Set the availability zone deployment scheme for the instance. The value range is as follows:
 	// disabled: Single availability zone deployment scheme.
 	// enabled: Multi-availability zone deployment scheme.
 	// Description:
 	// When the newly created instance is a single-node instance (that is, when the value of NodeNumber is 1), only the single availability zone deployment scheme is allowed. At this time, the value of MultiAZ must be disabled.
 	MultiAz pulumi.StringPtrInput
+	// The modified connection address prefix. Use lifecycle and ignoreChanges in import.
+	NewAddressPrefix pulumi.StringPtrInput
+	// The modified connection address port number. Use lifecycle and ignoreChanges in import.
+	NewPort pulumi.IntPtrInput
 	// The number of nodes in each shard, the valid value range is `1-6`. When the value is 1, it means creating a single node instance, and this field can not be modified. When the value is greater than 1, it means creating a primary and secondary instance, and this field can be modified.
 	NodeNumber pulumi.IntPtrInput
 	// The configuration item information to be modified. This field can only be added or modified. Deleting this field is invalid.
@@ -375,6 +413,10 @@ type InstanceState struct {
 	SubnetId pulumi.StringPtrInput
 	// Tags.
 	Tags InstanceTagArrayInput
+	// The maintainable time period of the instance, in the format of HH:mm-HH:mm (UTC+8).
+	TimeScope pulumi.StringPtrInput
+	// Whether to upgrade the domain suffix of the connection address. Use lifecycle and ignoreChanges in import.
+	UpgradeRegionDomain pulumi.BoolPtrInput
 	// Whether to enable password-free access when connecting to an instance through a private network. Valid values: `open`, `close`.
 	VpcAuthMode pulumi.StringPtrInput
 	// This field has been deprecated after version-0.0.152. Please use multiAz and configureNodes to specify the availability zone. The list of zone IDs of instance. When creating a single node instance, only one zone id can be specified.
@@ -390,6 +432,8 @@ func (InstanceState) ElementType() reflect.Type {
 type instanceArgs struct {
 	// Modify the single-shard additional bandwidth of the target Redis instance. Set the additional bandwidth of a single shard, that is, the bandwidth that needs to be additionally increased on the basis of the default bandwidth. Unit: MB/s. The value of additional bandwidth needs to meet the following conditions at the same time: It must be greater than or equal to 0. When the value is 0, it means that no additional bandwidth is added, and the bandwidth of a single shard is the default bandwidth. The sum of additional bandwidth and default bandwidth cannot exceed the upper limit of bandwidth that can be modified for the current instance. Different specification nodes have different upper limits of bandwidth that can be modified. For more details, please refer to bandwidth modification range. The upper limits of the total write bandwidth and the total read bandwidth of an instance are both 2048MB/s.
 	AdditionalBandwidth *int `pulumi:"additionalBandwidth"`
+	// The type of connection address that requires an address prefix. Use lifecycle and ignoreChanges in import.
+	AddrType *string `pulumi:"addrType"`
 	// Whether to apply the instance configuration change operation immediately. The value of this field is false, means that the change operation will be applied within maintenance time.
 	ApplyImmediately *bool `pulumi:"applyImmediately"`
 	// Whether to enable automatic renewal. This field is valid only when `ChargeType` is `PrePaid`, the default value is false.
@@ -403,6 +447,8 @@ type instanceArgs struct {
 	// The backup period. The valid value can be any integer between 1 and 7. Among them, 1 means backup every Monday, 2 means backup every Tuesday, and so on.
 	// This field is valid and required when updating the backup plan of primary and secondary instance.
 	BackupPeriods []int `pulumi:"backupPeriods"`
+	// Set the backup name for the final backup of the instance to be deleted. If the backup name is not set, the backup ID is used as the name by default. Use lifecycle and ignoreChanges in import.
+	BackupPointName *string `pulumi:"backupPointName"`
 	// The charge type of redis instance. Valid value: `PostPaid`, `PrePaid`.
 	ChargeType *string `pulumi:"chargeType"`
 	// Set the list of available zones to which the node belongs.
@@ -415,12 +461,18 @@ type instanceArgs struct {
 	EngineVersion string `pulumi:"engineVersion"`
 	// The name of the redis instance.
 	InstanceName *string `pulumi:"instanceName"`
+	// Maximum number of connections per shard.
+	MaxConnections *int `pulumi:"maxConnections"`
 	// Set the availability zone deployment scheme for the instance. The value range is as follows:
 	// disabled: Single availability zone deployment scheme.
 	// enabled: Multi-availability zone deployment scheme.
 	// Description:
 	// When the newly created instance is a single-node instance (that is, when the value of NodeNumber is 1), only the single availability zone deployment scheme is allowed. At this time, the value of MultiAZ must be disabled.
 	MultiAz *string `pulumi:"multiAz"`
+	// The modified connection address prefix. Use lifecycle and ignoreChanges in import.
+	NewAddressPrefix *string `pulumi:"newAddressPrefix"`
+	// The modified connection address port number. Use lifecycle and ignoreChanges in import.
+	NewPort *int `pulumi:"newPort"`
 	// The number of nodes in each shard, the valid value range is `1-6`. When the value is 1, it means creating a single node instance, and this field can not be modified. When the value is greater than 1, it means creating a primary and secondary instance, and this field can be modified.
 	NodeNumber int `pulumi:"nodeNumber"`
 	// The configuration item information to be modified. This field can only be added or modified. Deleting this field is invalid.
@@ -445,6 +497,10 @@ type instanceArgs struct {
 	SubnetId string `pulumi:"subnetId"`
 	// Tags.
 	Tags []InstanceTag `pulumi:"tags"`
+	// The maintainable time period of the instance, in the format of HH:mm-HH:mm (UTC+8).
+	TimeScope *string `pulumi:"timeScope"`
+	// Whether to upgrade the domain suffix of the connection address. Use lifecycle and ignoreChanges in import.
+	UpgradeRegionDomain *bool `pulumi:"upgradeRegionDomain"`
 	// Whether to enable password-free access when connecting to an instance through a private network. Valid values: `open`, `close`.
 	VpcAuthMode *string `pulumi:"vpcAuthMode"`
 	// This field has been deprecated after version-0.0.152. Please use multiAz and configureNodes to specify the availability zone. The list of zone IDs of instance. When creating a single node instance, only one zone id can be specified.
@@ -457,6 +513,8 @@ type instanceArgs struct {
 type InstanceArgs struct {
 	// Modify the single-shard additional bandwidth of the target Redis instance. Set the additional bandwidth of a single shard, that is, the bandwidth that needs to be additionally increased on the basis of the default bandwidth. Unit: MB/s. The value of additional bandwidth needs to meet the following conditions at the same time: It must be greater than or equal to 0. When the value is 0, it means that no additional bandwidth is added, and the bandwidth of a single shard is the default bandwidth. The sum of additional bandwidth and default bandwidth cannot exceed the upper limit of bandwidth that can be modified for the current instance. Different specification nodes have different upper limits of bandwidth that can be modified. For more details, please refer to bandwidth modification range. The upper limits of the total write bandwidth and the total read bandwidth of an instance are both 2048MB/s.
 	AdditionalBandwidth pulumi.IntPtrInput
+	// The type of connection address that requires an address prefix. Use lifecycle and ignoreChanges in import.
+	AddrType pulumi.StringPtrInput
 	// Whether to apply the instance configuration change operation immediately. The value of this field is false, means that the change operation will be applied within maintenance time.
 	ApplyImmediately pulumi.BoolPtrInput
 	// Whether to enable automatic renewal. This field is valid only when `ChargeType` is `PrePaid`, the default value is false.
@@ -470,6 +528,8 @@ type InstanceArgs struct {
 	// The backup period. The valid value can be any integer between 1 and 7. Among them, 1 means backup every Monday, 2 means backup every Tuesday, and so on.
 	// This field is valid and required when updating the backup plan of primary and secondary instance.
 	BackupPeriods pulumi.IntArrayInput
+	// Set the backup name for the final backup of the instance to be deleted. If the backup name is not set, the backup ID is used as the name by default. Use lifecycle and ignoreChanges in import.
+	BackupPointName pulumi.StringPtrInput
 	// The charge type of redis instance. Valid value: `PostPaid`, `PrePaid`.
 	ChargeType pulumi.StringPtrInput
 	// Set the list of available zones to which the node belongs.
@@ -482,12 +542,18 @@ type InstanceArgs struct {
 	EngineVersion pulumi.StringInput
 	// The name of the redis instance.
 	InstanceName pulumi.StringPtrInput
+	// Maximum number of connections per shard.
+	MaxConnections pulumi.IntPtrInput
 	// Set the availability zone deployment scheme for the instance. The value range is as follows:
 	// disabled: Single availability zone deployment scheme.
 	// enabled: Multi-availability zone deployment scheme.
 	// Description:
 	// When the newly created instance is a single-node instance (that is, when the value of NodeNumber is 1), only the single availability zone deployment scheme is allowed. At this time, the value of MultiAZ must be disabled.
 	MultiAz pulumi.StringPtrInput
+	// The modified connection address prefix. Use lifecycle and ignoreChanges in import.
+	NewAddressPrefix pulumi.StringPtrInput
+	// The modified connection address port number. Use lifecycle and ignoreChanges in import.
+	NewPort pulumi.IntPtrInput
 	// The number of nodes in each shard, the valid value range is `1-6`. When the value is 1, it means creating a single node instance, and this field can not be modified. When the value is greater than 1, it means creating a primary and secondary instance, and this field can be modified.
 	NodeNumber pulumi.IntInput
 	// The configuration item information to be modified. This field can only be added or modified. Deleting this field is invalid.
@@ -512,6 +578,10 @@ type InstanceArgs struct {
 	SubnetId pulumi.StringInput
 	// Tags.
 	Tags InstanceTagArrayInput
+	// The maintainable time period of the instance, in the format of HH:mm-HH:mm (UTC+8).
+	TimeScope pulumi.StringPtrInput
+	// Whether to upgrade the domain suffix of the connection address. Use lifecycle and ignoreChanges in import.
+	UpgradeRegionDomain pulumi.BoolPtrInput
 	// Whether to enable password-free access when connecting to an instance through a private network. Valid values: `open`, `close`.
 	VpcAuthMode pulumi.StringPtrInput
 	// This field has been deprecated after version-0.0.152. Please use multiAz and configureNodes to specify the availability zone. The list of zone IDs of instance. When creating a single node instance, only one zone id can be specified.
@@ -608,8 +678,13 @@ func (o InstanceOutput) ToInstanceOutputWithContext(ctx context.Context) Instanc
 }
 
 // Modify the single-shard additional bandwidth of the target Redis instance. Set the additional bandwidth of a single shard, that is, the bandwidth that needs to be additionally increased on the basis of the default bandwidth. Unit: MB/s. The value of additional bandwidth needs to meet the following conditions at the same time: It must be greater than or equal to 0. When the value is 0, it means that no additional bandwidth is added, and the bandwidth of a single shard is the default bandwidth. The sum of additional bandwidth and default bandwidth cannot exceed the upper limit of bandwidth that can be modified for the current instance. Different specification nodes have different upper limits of bandwidth that can be modified. For more details, please refer to bandwidth modification range. The upper limits of the total write bandwidth and the total read bandwidth of an instance are both 2048MB/s.
-func (o InstanceOutput) AdditionalBandwidth() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *Instance) pulumi.IntPtrOutput { return v.AdditionalBandwidth }).(pulumi.IntPtrOutput)
+func (o InstanceOutput) AdditionalBandwidth() pulumi.IntOutput {
+	return o.ApplyT(func(v *Instance) pulumi.IntOutput { return v.AdditionalBandwidth }).(pulumi.IntOutput)
+}
+
+// The type of connection address that requires an address prefix. Use lifecycle and ignoreChanges in import.
+func (o InstanceOutput) AddrType() pulumi.StringOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.AddrType }).(pulumi.StringOutput)
 }
 
 // Whether to apply the instance configuration change operation immediately. The value of this field is false, means that the change operation will be applied within maintenance time.
@@ -638,6 +713,11 @@ func (o InstanceOutput) BackupHour() pulumi.IntOutput {
 // This field is valid and required when updating the backup plan of primary and secondary instance.
 func (o InstanceOutput) BackupPeriods() pulumi.IntArrayOutput {
 	return o.ApplyT(func(v *Instance) pulumi.IntArrayOutput { return v.BackupPeriods }).(pulumi.IntArrayOutput)
+}
+
+// Set the backup name for the final backup of the instance to be deleted. If the backup name is not set, the backup ID is used as the name by default. Use lifecycle and ignoreChanges in import.
+func (o InstanceOutput) BackupPointName() pulumi.StringOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.BackupPointName }).(pulumi.StringOutput)
 }
 
 // The charge type of redis instance. Valid value: `PostPaid`, `PrePaid`.
@@ -670,6 +750,11 @@ func (o InstanceOutput) InstanceName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringPtrOutput { return v.InstanceName }).(pulumi.StringPtrOutput)
 }
 
+// Maximum number of connections per shard.
+func (o InstanceOutput) MaxConnections() pulumi.IntOutput {
+	return o.ApplyT(func(v *Instance) pulumi.IntOutput { return v.MaxConnections }).(pulumi.IntOutput)
+}
+
 // Set the availability zone deployment scheme for the instance. The value range is as follows:
 // disabled: Single availability zone deployment scheme.
 // enabled: Multi-availability zone deployment scheme.
@@ -677,6 +762,16 @@ func (o InstanceOutput) InstanceName() pulumi.StringPtrOutput {
 // When the newly created instance is a single-node instance (that is, when the value of NodeNumber is 1), only the single availability zone deployment scheme is allowed. At this time, the value of MultiAZ must be disabled.
 func (o InstanceOutput) MultiAz() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.MultiAz }).(pulumi.StringOutput)
+}
+
+// The modified connection address prefix. Use lifecycle and ignoreChanges in import.
+func (o InstanceOutput) NewAddressPrefix() pulumi.StringOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.NewAddressPrefix }).(pulumi.StringOutput)
+}
+
+// The modified connection address port number. Use lifecycle and ignoreChanges in import.
+func (o InstanceOutput) NewPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *Instance) pulumi.IntOutput { return v.NewPort }).(pulumi.IntOutput)
 }
 
 // The number of nodes in each shard, the valid value range is `1-6`. When the value is 1, it means creating a single node instance, and this field can not be modified. When the value is greater than 1, it means creating a primary and secondary instance, and this field can be modified.
@@ -734,6 +829,16 @@ func (o InstanceOutput) SubnetId() pulumi.StringOutput {
 // Tags.
 func (o InstanceOutput) Tags() InstanceTagArrayOutput {
 	return o.ApplyT(func(v *Instance) InstanceTagArrayOutput { return v.Tags }).(InstanceTagArrayOutput)
+}
+
+// The maintainable time period of the instance, in the format of HH:mm-HH:mm (UTC+8).
+func (o InstanceOutput) TimeScope() pulumi.StringOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.TimeScope }).(pulumi.StringOutput)
+}
+
+// Whether to upgrade the domain suffix of the connection address. Use lifecycle and ignoreChanges in import.
+func (o InstanceOutput) UpgradeRegionDomain() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Instance) pulumi.BoolOutput { return v.UpgradeRegionDomain }).(pulumi.BoolOutput)
 }
 
 // Whether to enable password-free access when connecting to an instance through a private network. Valid values: `open`, `close`.

@@ -142,7 +142,7 @@ namespace Pulumi.Volcengine.Mongodb
         /// <summary>
         /// The collection of parameter change log query.
         /// </summary>
-        public readonly Outputs.InstanceParameterLogsParameterChangeLogsResult ParameterChangeLogs;
+        public readonly ImmutableArray<Outputs.InstanceParameterLogsParameterChangeLogResult> ParameterChangeLogs;
         public readonly string StartTime;
         /// <summary>
         /// The total count of mongodb instance parameter log query.
@@ -159,7 +159,7 @@ namespace Pulumi.Volcengine.Mongodb
 
             string? outputFile,
 
-            Outputs.InstanceParameterLogsParameterChangeLogsResult parameterChangeLogs,
+            ImmutableArray<Outputs.InstanceParameterLogsParameterChangeLogResult> parameterChangeLogs,
 
             string startTime,
 

@@ -15,14 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  *
  * const foo = volcengine.rds_mysql.getBackups({
- *     backupEndTime: "",
- *     backupId: "",
- *     backupMethod: "",
- *     backupStartTime: "",
- *     backupStatus: "",
- *     backupType: "",
- *     createType: "",
- *     instanceId: "",
+ *     instanceId: "mysql-b51d37110dd1",
  * });
  * ```
  */
@@ -148,14 +141,7 @@ export interface BackupsResult {
  * import * as volcengine from "@pulumi/volcengine";
  *
  * const foo = volcengine.rds_mysql.getBackups({
- *     backupEndTime: "",
- *     backupId: "",
- *     backupMethod: "",
- *     backupStartTime: "",
- *     backupStatus: "",
- *     backupType: "",
- *     createType: "",
- *     instanceId: "",
+ *     instanceId: "mysql-b51d37110dd1",
  * });
  * ```
  */

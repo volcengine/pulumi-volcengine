@@ -56,6 +56,8 @@ if typing.TYPE_CHECKING:
     iam = __iam
     import pulumi_volcengine.kafka as __kafka
     kafka = __kafka
+    import pulumi_volcengine.kms as __kms
+    kms = __kms
     import pulumi_volcengine.mongodb as __mongodb
     mongodb = __mongodb
     import pulumi_volcengine.nas as __nas
@@ -96,10 +98,14 @@ if typing.TYPE_CHECKING:
     veecp = __veecp
     import pulumi_volcengine.veenedge as __veenedge
     veenedge = __veenedge
+    import pulumi_volcengine.vefaas as __vefaas
+    vefaas = __vefaas
     import pulumi_volcengine.vepfs as __vepfs
     vepfs = __vepfs
     import pulumi_volcengine.vke as __vke
     vke = __vke
+    import pulumi_volcengine.vmp as __vmp
+    vmp = __vmp
     import pulumi_volcengine.vpc as __vpc
     vpc = __vpc
     import pulumi_volcengine.vpn as __vpn
@@ -128,6 +134,7 @@ else:
     financial_relation = _utilities.lazy_import('pulumi_volcengine.financial_relation')
     iam = _utilities.lazy_import('pulumi_volcengine.iam')
     kafka = _utilities.lazy_import('pulumi_volcengine.kafka')
+    kms = _utilities.lazy_import('pulumi_volcengine.kms')
     mongodb = _utilities.lazy_import('pulumi_volcengine.mongodb')
     nas = _utilities.lazy_import('pulumi_volcengine.nas')
     nat = _utilities.lazy_import('pulumi_volcengine.nat')
@@ -148,8 +155,10 @@ else:
     vedb_mysql = _utilities.lazy_import('pulumi_volcengine.vedb_mysql')
     veecp = _utilities.lazy_import('pulumi_volcengine.veecp')
     veenedge = _utilities.lazy_import('pulumi_volcengine.veenedge')
+    vefaas = _utilities.lazy_import('pulumi_volcengine.vefaas')
     vepfs = _utilities.lazy_import('pulumi_volcengine.vepfs')
     vke = _utilities.lazy_import('pulumi_volcengine.vke')
+    vmp = _utilities.lazy_import('pulumi_volcengine.vmp')
     vpc = _utilities.lazy_import('pulumi_volcengine.vpc')
     vpn = _utilities.lazy_import('pulumi_volcengine.vpn')
 
@@ -1102,6 +1111,22 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "kafka/allowList",
+  "fqn": "pulumi_volcengine.kafka",
+  "classes": {
+   "volcengine:kafka/allowList:AllowList": "AllowList"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "kafka/allowListAssociate",
+  "fqn": "pulumi_volcengine.kafka",
+  "classes": {
+   "volcengine:kafka/allowListAssociate:AllowListAssociate": "AllowListAssociate"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "kafka/group",
   "fqn": "pulumi_volcengine.kafka",
   "classes": {
@@ -1138,6 +1163,54 @@ _utilities.register(
   "fqn": "pulumi_volcengine.kafka",
   "classes": {
    "volcengine:kafka/topic:Topic": "Topic"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "kms/key",
+  "fqn": "pulumi_volcengine.kms",
+  "classes": {
+   "volcengine:kms/key:Key": "Key"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "kms/keyArchive",
+  "fqn": "pulumi_volcengine.kms",
+  "classes": {
+   "volcengine:kms/keyArchive:KeyArchive": "KeyArchive"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "kms/keyEnable",
+  "fqn": "pulumi_volcengine.kms",
+  "classes": {
+   "volcengine:kms/keyEnable:KeyEnable": "KeyEnable"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "kms/keyRotation",
+  "fqn": "pulumi_volcengine.kms",
+  "classes": {
+   "volcengine:kms/keyRotation:KeyRotation": "KeyRotation"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "kms/keyring",
+  "fqn": "pulumi_volcengine.kms",
+  "classes": {
+   "volcengine:kms/keyring:Keyring": "Keyring"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "kms/secret",
+  "fqn": "pulumi_volcengine.kms",
+  "classes": {
+   "volcengine:kms/secret:Secret": "Secret"
   }
  },
  {
@@ -1194,6 +1267,22 @@ _utilities.register(
   "fqn": "pulumi_volcengine.mongodb",
   "classes": {
    "volcengine:mongodb/sslState:SslState": "SslState"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "nas/autoSnapshotPolicy",
+  "fqn": "pulumi_volcengine.nas",
+  "classes": {
+   "volcengine:nas/autoSnapshotPolicy:AutoSnapshotPolicy": "AutoSnapshotPolicy"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "nas/autoSnapshotPolicyApply",
+  "fqn": "pulumi_volcengine.nas",
+  "classes": {
+   "volcengine:nas/autoSnapshotPolicyApply:AutoSnapshotPolicyApply": "AutoSnapshotPolicyApply"
   }
  },
  {
@@ -1710,6 +1799,14 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "redis/parameterGroup",
+  "fqn": "pulumi_volcengine.redis",
+  "classes": {
+   "volcengine:redis/parameterGroup:ParameterGroup": "ParameterGroup"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "redis/state",
   "fqn": "pulumi_volcengine.redis",
   "classes": {
@@ -1790,6 +1887,22 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "tls/consumerGroup",
+  "fqn": "pulumi_volcengine.tls",
+  "classes": {
+   "volcengine:tls/consumerGroup:ConsumerGroup": "ConsumerGroup"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "tls/etlTask",
+  "fqn": "pulumi_volcengine.tls",
+  "classes": {
+   "volcengine:tls/etlTask:EtlTask": "EtlTask"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "tls/host",
   "fqn": "pulumi_volcengine.tls",
   "classes": {
@@ -1802,6 +1915,14 @@ _utilities.register(
   "fqn": "pulumi_volcengine.tls",
   "classes": {
    "volcengine:tls/hostGroup:HostGroup": "HostGroup"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "tls/importTask",
+  "fqn": "pulumi_volcengine.tls",
+  "classes": {
+   "volcengine:tls/importTask:ImportTask": "ImportTask"
   }
  },
  {
@@ -1842,6 +1963,22 @@ _utilities.register(
   "fqn": "pulumi_volcengine.tls",
   "classes": {
    "volcengine:tls/ruleApplier:RuleApplier": "RuleApplier"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "tls/scheduleSqlTask",
+  "fqn": "pulumi_volcengine.tls",
+  "classes": {
+   "volcengine:tls/scheduleSqlTask:ScheduleSqlTask": "ScheduleSqlTask"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "tls/shipper",
+  "fqn": "pulumi_volcengine.tls",
+  "classes": {
+   "volcengine:tls/shipper:Shipper": "Shipper"
   }
  },
  {
@@ -2126,6 +2263,38 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "vefaas/function",
+  "fqn": "pulumi_volcengine.vefaas",
+  "classes": {
+   "volcengine:vefaas/function:Function": "Function"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "vefaas/kafkaTrigger",
+  "fqn": "pulumi_volcengine.vefaas",
+  "classes": {
+   "volcengine:vefaas/kafkaTrigger:KafkaTrigger": "KafkaTrigger"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "vefaas/release",
+  "fqn": "pulumi_volcengine.vefaas",
+  "classes": {
+   "volcengine:vefaas/release:Release": "Release"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "vefaas/timer",
+  "fqn": "pulumi_volcengine.vefaas",
+  "classes": {
+   "volcengine:vefaas/timer:Timer": "Timer"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "vepfs/fileSystem",
   "fqn": "pulumi_volcengine.vepfs",
   "classes": {
@@ -2218,6 +2387,70 @@ _utilities.register(
   "fqn": "pulumi_volcengine.vke",
   "classes": {
    "volcengine:vke/permission:Permission": "Permission"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "vmp/alertingRule",
+  "fqn": "pulumi_volcengine.vmp",
+  "classes": {
+   "volcengine:vmp/alertingRule:AlertingRule": "AlertingRule"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "vmp/contact",
+  "fqn": "pulumi_volcengine.vmp",
+  "classes": {
+   "volcengine:vmp/contact:Contact": "Contact"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "vmp/contactGroup",
+  "fqn": "pulumi_volcengine.vmp",
+  "classes": {
+   "volcengine:vmp/contactGroup:ContactGroup": "ContactGroup"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "vmp/notifyGroupPolicy",
+  "fqn": "pulumi_volcengine.vmp",
+  "classes": {
+   "volcengine:vmp/notifyGroupPolicy:NotifyGroupPolicy": "NotifyGroupPolicy"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "vmp/notifyPolicy",
+  "fqn": "pulumi_volcengine.vmp",
+  "classes": {
+   "volcengine:vmp/notifyPolicy:NotifyPolicy": "NotifyPolicy"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "vmp/notifyTemplate",
+  "fqn": "pulumi_volcengine.vmp",
+  "classes": {
+   "volcengine:vmp/notifyTemplate:NotifyTemplate": "NotifyTemplate"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "vmp/ruleFile",
+  "fqn": "pulumi_volcengine.vmp",
+  "classes": {
+   "volcengine:vmp/ruleFile:RuleFile": "RuleFile"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "vmp/workspace",
+  "fqn": "pulumi_volcengine.vmp",
+  "classes": {
+   "volcengine:vmp/workspace:Workspace": "Workspace"
   }
  },
  {

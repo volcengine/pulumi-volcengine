@@ -18,7 +18,7 @@ namespace Pulumi.Volcengine.Cr.Outputs
         /// </summary>
         public readonly string? Domain;
         /// <summary>
-        /// The type of registry.
+        /// The type of registry. Valid values: `Enterprise`, `Micro`. Default is `Enterprise`.
         /// </summary>
         public readonly string? Type;
 

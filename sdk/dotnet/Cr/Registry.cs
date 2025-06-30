@@ -102,6 +102,18 @@ namespace Pulumi.Volcengine.Cr
         public Output<string> Project { get; private set; } = null!;
 
         /// <summary>
+        /// The proxy cache of registry. This field is valid when proxy_cache_enabled is true.
+        /// </summary>
+        [Output("proxyCache")]
+        public Output<Outputs.RegistryProxyCache?> ProxyCache { get; private set; } = null!;
+
+        /// <summary>
+        /// Whether to enable proxy cache.
+        /// </summary>
+        [Output("proxyCacheEnabled")]
+        public Output<bool> ProxyCacheEnabled { get; private set; } = null!;
+
+        /// <summary>
         /// Tags.
         /// </summary>
         [Output("resourceTags")]
@@ -114,7 +126,7 @@ namespace Pulumi.Volcengine.Cr
         public Output<ImmutableArray<Outputs.RegistryStatus>> Statuses { get; private set; } = null!;
 
         /// <summary>
-        /// The type of registry.
+        /// The type of registry. Valid values: `Enterprise`, `Micro`. Default is `Enterprise`.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -216,6 +228,36 @@ namespace Pulumi.Volcengine.Cr
         [Input("project")]
         public Input<string>? Project { get; set; }
 
+        /// <summary>
+        /// The proxy cache of registry. This field is valid when proxy_cache_enabled is true.
+        /// </summary>
+        [Input("proxyCache")]
+        public Input<Inputs.RegistryProxyCacheArgs>? ProxyCache { get; set; }
+
+        /// <summary>
+        /// Whether to enable proxy cache.
+        /// </summary>
+        [Input("proxyCacheEnabled")]
+        public Input<bool>? ProxyCacheEnabled { get; set; }
+
+        [Input("resourceTags")]
+        private InputList<Inputs.RegistryResourceTagArgs>? _resourceTags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.RegistryResourceTagArgs> ResourceTags
+        {
+            get => _resourceTags ?? (_resourceTags = new InputList<Inputs.RegistryResourceTagArgs>());
+            set => _resourceTags = value;
+        }
+
+        /// <summary>
+        /// The type of registry. Valid values: `Enterprise`, `Micro`. Default is `Enterprise`.
+        /// </summary>
+        [Input("type")]
+        public Input<string>? Type { get; set; }
+
         public RegistryArgs()
         {
         }
@@ -282,6 +324,18 @@ namespace Pulumi.Volcengine.Cr
         [Input("project")]
         public Input<string>? Project { get; set; }
 
+        /// <summary>
+        /// The proxy cache of registry. This field is valid when proxy_cache_enabled is true.
+        /// </summary>
+        [Input("proxyCache")]
+        public Input<Inputs.RegistryProxyCacheGetArgs>? ProxyCache { get; set; }
+
+        /// <summary>
+        /// Whether to enable proxy cache.
+        /// </summary>
+        [Input("proxyCacheEnabled")]
+        public Input<bool>? ProxyCacheEnabled { get; set; }
+
         [Input("resourceTags")]
         private InputList<Inputs.RegistryResourceTagGetArgs>? _resourceTags;
 
@@ -307,7 +361,7 @@ namespace Pulumi.Volcengine.Cr
         }
 
         /// <summary>
-        /// The type of registry.
+        /// The type of registry. Valid values: `Enterprise`, `Micro`. Default is `Enterprise`.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

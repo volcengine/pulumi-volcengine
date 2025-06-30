@@ -124,6 +124,15 @@ def max_extra_performances(name_regex: Optional[str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableMaxExtraPerformancesResult:
     """
     Use this data source to query detailed information of ebs max extra performances
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_volcengine as volcengine
+
+    foo = volcengine.ebs.get_max_extra_performances(size=60,
+        volume_type="TSSD_TL0")
+    ```
 
 
     :param str name_regex: A Name Regex of Resource.
@@ -162,6 +171,15 @@ def max_extra_performances_output(name_regex: Optional[pulumi.Input[Optional[str
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[MaxExtraPerformancesResult]:
     """
     Use this data source to query detailed information of ebs max extra performances
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_volcengine as volcengine
+
+    foo = volcengine.ebs.get_max_extra_performances(size=60,
+        volume_type="TSSD_TL0")
+    ```
 
 
     :param str name_regex: A Name Regex of Resource.

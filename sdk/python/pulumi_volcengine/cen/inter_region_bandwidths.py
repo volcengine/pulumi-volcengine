@@ -24,7 +24,10 @@ class InterRegionBandwidthsResult:
     """
     A collection of values returned by InterRegionBandwidths.
     """
-    def __init__(__self__, id=None, ids=None, inter_region_bandwidths=None, output_file=None, total_count=None):
+    def __init__(__self__, cen_id=None, id=None, ids=None, inter_region_bandwidths=None, output_file=None, total_count=None):
+        if cen_id and not isinstance(cen_id, str):
+            raise TypeError("Expected argument 'cen_id' to be a str")
+        pulumi.set(__self__, "cen_id", cen_id)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -40,6 +43,14 @@ class InterRegionBandwidthsResult:
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
+
+    @property
+    @pulumi.getter(name="cenId")
+    def cen_id(self) -> Optional[str]:
+        """
+        The cen ID of the cen inter region bandwidth.
+        """
+        return pulumi.get(self, "cen_id")
 
     @property
     @pulumi.getter
@@ -82,6 +93,7 @@ class AwaitableInterRegionBandwidthsResult(InterRegionBandwidthsResult):
         if False:
             yield self
         return InterRegionBandwidthsResult(
+            cen_id=self.cen_id,
             id=self.id,
             ids=self.ids,
             inter_region_bandwidths=self.inter_region_bandwidths,
@@ -89,7 +101,8 @@ class AwaitableInterRegionBandwidthsResult(InterRegionBandwidthsResult):
             total_count=self.total_count)
 
 
-def inter_region_bandwidths(ids: Optional[Sequence[str]] = None,
+def inter_region_bandwidths(cen_id: Optional[str] = None,
+                            ids: Optional[Sequence[str]] = None,
                             output_file: Optional[str] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableInterRegionBandwidthsResult:
     """
@@ -135,17 +148,20 @@ def inter_region_bandwidths(ids: Optional[Sequence[str]] = None,
     ```
 
 
+    :param str cen_id: The ID of the cen.
     :param Sequence[str] ids: A list of cen inter region bandwidth IDs.
     :param str output_file: File name where to save data source results.
     """
     pulumi.log.warn("""inter_region_bandwidths is deprecated: volcengine.cen.InterRegionBandwidths has been deprecated in favor of volcengine.cen.getInterRegionBandwidths""")
     __args__ = dict()
+    __args__['cenId'] = cen_id
     __args__['ids'] = ids
     __args__['outputFile'] = output_file
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('volcengine:cen/interRegionBandwidths:InterRegionBandwidths', __args__, opts=opts, typ=InterRegionBandwidthsResult).value
 
     return AwaitableInterRegionBandwidthsResult(
+        cen_id=pulumi.get(__ret__, 'cen_id'),
         id=pulumi.get(__ret__, 'id'),
         ids=pulumi.get(__ret__, 'ids'),
         inter_region_bandwidths=pulumi.get(__ret__, 'inter_region_bandwidths'),
@@ -154,7 +170,8 @@ def inter_region_bandwidths(ids: Optional[Sequence[str]] = None,
 
 
 @_utilities.lift_output_func(inter_region_bandwidths)
-def inter_region_bandwidths_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
+def inter_region_bandwidths_output(cen_id: Optional[pulumi.Input[Optional[str]]] = None,
+                                   ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                                    output_file: Optional[pulumi.Input[Optional[str]]] = None,
                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[InterRegionBandwidthsResult]:
     """
@@ -200,6 +217,7 @@ def inter_region_bandwidths_output(ids: Optional[pulumi.Input[Optional[Sequence[
     ```
 
 
+    :param str cen_id: The ID of the cen.
     :param Sequence[str] ids: A list of cen inter region bandwidth IDs.
     :param str output_file: File name where to save data source results.
     """

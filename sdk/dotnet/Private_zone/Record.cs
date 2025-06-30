@@ -82,6 +82,12 @@ namespace Pulumi.Volcengine.Private_zone
         public Output<string> Host { get; private set; } = null!;
 
         /// <summary>
+        /// The subnet id of the private zone record. This field is only effected when the `intelligent_mode` of the private zone is true. Default is `Default`.
+        /// </summary>
+        [Output("line")]
+        public Output<string> Line { get; private set; } = null!;
+
+        /// <summary>
         /// The remark of the private zone record.
         /// </summary>
         [Output("remark")]
@@ -98,6 +104,12 @@ namespace Pulumi.Volcengine.Private_zone
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
+
+        /// <summary>
+        /// The user account of the private zone record. This field is only effected when creating this resource.
+        /// </summary>
+        [Output("userAccount")]
+        public Output<string?> UserAccount { get; private set; } = null!;
 
         /// <summary>
         /// The value of the private zone record. Record values need to be set based on the value of the `type`.
@@ -177,6 +189,12 @@ namespace Pulumi.Volcengine.Private_zone
         public Input<string> Host { get; set; } = null!;
 
         /// <summary>
+        /// The subnet id of the private zone record. This field is only effected when the `intelligent_mode` of the private zone is true. Default is `Default`.
+        /// </summary>
+        [Input("line")]
+        public Input<string>? Line { get; set; }
+
+        /// <summary>
         /// The remark of the private zone record.
         /// </summary>
         [Input("remark")]
@@ -193,6 +211,12 @@ namespace Pulumi.Volcengine.Private_zone
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
+
+        /// <summary>
+        /// The user account of the private zone record. This field is only effected when creating this resource.
+        /// </summary>
+        [Input("userAccount")]
+        public Input<string>? UserAccount { get; set; }
 
         /// <summary>
         /// The value of the private zone record. Record values need to be set based on the value of the `type`.
@@ -233,6 +257,12 @@ namespace Pulumi.Volcengine.Private_zone
         public Input<string>? Host { get; set; }
 
         /// <summary>
+        /// The subnet id of the private zone record. This field is only effected when the `intelligent_mode` of the private zone is true. Default is `Default`.
+        /// </summary>
+        [Input("line")]
+        public Input<string>? Line { get; set; }
+
+        /// <summary>
         /// The remark of the private zone record.
         /// </summary>
         [Input("remark")]
@@ -249,6 +279,12 @@ namespace Pulumi.Volcengine.Private_zone
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
+
+        /// <summary>
+        /// The user account of the private zone record. This field is only effected when creating this resource.
+        /// </summary>
+        [Input("userAccount")]
+        public Input<string>? UserAccount { get; set; }
 
         /// <summary>
         /// The value of the private zone record. Record values need to be set based on the value of the `type`.
