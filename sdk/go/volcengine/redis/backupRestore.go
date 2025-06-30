@@ -100,12 +100,14 @@ import (
 type BackupRestore struct {
 	pulumi.CustomResourceState
 
+	// Backup ID, used to specify the backups to be used when restoring by the backup set. When choosing to restore by backup set (i.e., BackupType is Full), this parameter is required. Use lifecycle and ignoreChanges in import.
+	BackupPointId pulumi.StringPtrOutput `pulumi:"backupPointId"`
 	// The type of backup. The value can be Full or Inc.
 	BackupType pulumi.StringPtrOutput `pulumi:"backupType"`
 	// Id of instance.
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
 	// Time point of backup, for example: 2021-11-09T06:07:26Z. Use lifecycle and ignoreChanges in import.
-	TimePoint pulumi.StringOutput `pulumi:"timePoint"`
+	TimePoint pulumi.StringPtrOutput `pulumi:"timePoint"`
 }
 
 // NewBackupRestore registers a new resource with the given unique name, arguments, and options.
@@ -117,9 +119,6 @@ func NewBackupRestore(ctx *pulumi.Context,
 
 	if args.InstanceId == nil {
 		return nil, errors.New("invalid value for required argument 'InstanceId'")
-	}
-	if args.TimePoint == nil {
-		return nil, errors.New("invalid value for required argument 'TimePoint'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource BackupRestore
@@ -144,6 +143,8 @@ func GetBackupRestore(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering BackupRestore resources.
 type backupRestoreState struct {
+	// Backup ID, used to specify the backups to be used when restoring by the backup set. When choosing to restore by backup set (i.e., BackupType is Full), this parameter is required. Use lifecycle and ignoreChanges in import.
+	BackupPointId *string `pulumi:"backupPointId"`
 	// The type of backup. The value can be Full or Inc.
 	BackupType *string `pulumi:"backupType"`
 	// Id of instance.
@@ -153,6 +154,8 @@ type backupRestoreState struct {
 }
 
 type BackupRestoreState struct {
+	// Backup ID, used to specify the backups to be used when restoring by the backup set. When choosing to restore by backup set (i.e., BackupType is Full), this parameter is required. Use lifecycle and ignoreChanges in import.
+	BackupPointId pulumi.StringPtrInput
 	// The type of backup. The value can be Full or Inc.
 	BackupType pulumi.StringPtrInput
 	// Id of instance.
@@ -166,22 +169,26 @@ func (BackupRestoreState) ElementType() reflect.Type {
 }
 
 type backupRestoreArgs struct {
+	// Backup ID, used to specify the backups to be used when restoring by the backup set. When choosing to restore by backup set (i.e., BackupType is Full), this parameter is required. Use lifecycle and ignoreChanges in import.
+	BackupPointId *string `pulumi:"backupPointId"`
 	// The type of backup. The value can be Full or Inc.
 	BackupType *string `pulumi:"backupType"`
 	// Id of instance.
 	InstanceId string `pulumi:"instanceId"`
 	// Time point of backup, for example: 2021-11-09T06:07:26Z. Use lifecycle and ignoreChanges in import.
-	TimePoint string `pulumi:"timePoint"`
+	TimePoint *string `pulumi:"timePoint"`
 }
 
 // The set of arguments for constructing a BackupRestore resource.
 type BackupRestoreArgs struct {
+	// Backup ID, used to specify the backups to be used when restoring by the backup set. When choosing to restore by backup set (i.e., BackupType is Full), this parameter is required. Use lifecycle and ignoreChanges in import.
+	BackupPointId pulumi.StringPtrInput
 	// The type of backup. The value can be Full or Inc.
 	BackupType pulumi.StringPtrInput
 	// Id of instance.
 	InstanceId pulumi.StringInput
 	// Time point of backup, for example: 2021-11-09T06:07:26Z. Use lifecycle and ignoreChanges in import.
-	TimePoint pulumi.StringInput
+	TimePoint pulumi.StringPtrInput
 }
 
 func (BackupRestoreArgs) ElementType() reflect.Type {
@@ -271,6 +278,11 @@ func (o BackupRestoreOutput) ToBackupRestoreOutputWithContext(ctx context.Contex
 	return o
 }
 
+// Backup ID, used to specify the backups to be used when restoring by the backup set. When choosing to restore by backup set (i.e., BackupType is Full), this parameter is required. Use lifecycle and ignoreChanges in import.
+func (o BackupRestoreOutput) BackupPointId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BackupRestore) pulumi.StringPtrOutput { return v.BackupPointId }).(pulumi.StringPtrOutput)
+}
+
 // The type of backup. The value can be Full or Inc.
 func (o BackupRestoreOutput) BackupType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BackupRestore) pulumi.StringPtrOutput { return v.BackupType }).(pulumi.StringPtrOutput)
@@ -282,8 +294,8 @@ func (o BackupRestoreOutput) InstanceId() pulumi.StringOutput {
 }
 
 // Time point of backup, for example: 2021-11-09T06:07:26Z. Use lifecycle and ignoreChanges in import.
-func (o BackupRestoreOutput) TimePoint() pulumi.StringOutput {
-	return o.ApplyT(func(v *BackupRestore) pulumi.StringOutput { return v.TimePoint }).(pulumi.StringOutput)
+func (o BackupRestoreOutput) TimePoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BackupRestore) pulumi.StringPtrOutput { return v.TimePoint }).(pulumi.StringPtrOutput)
 }
 
 type BackupRestoreArrayOutput struct{ *pulumi.OutputState }

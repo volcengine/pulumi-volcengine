@@ -359,6 +359,9 @@ namespace Pulumi.Volcengine.Redis
         /// The vpc ID of the redis instance.
         /// </summary>
         public readonly string? VpcId;
+        /// <summary>
+        /// The availability zone where the node is located.
+        /// </summary>
         public readonly string? ZoneId;
 
         [OutputConstructor]

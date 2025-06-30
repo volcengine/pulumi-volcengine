@@ -30,8 +30,15 @@ import (
 //			_, err := private_zone.NewPrivateZone(ctx, "foo", &private_zone.PrivateZoneArgs{
 //				IntelligentMode: pulumi.Bool(true),
 //				LoadBalanceMode: pulumi.Bool(true),
+//				ProjectName:     pulumi.String("default"),
 //				RecursionMode:   pulumi.Bool(true),
 //				Remark:          pulumi.String("acc-test-new"),
+//				Tags: private_zone.PrivateZoneTagArray{
+//					&private_zone.PrivateZoneTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
 //				Vpcs: private_zone.PrivateZoneVpcArray{
 //					&private_zone.PrivateZoneVpcArgs{
 //						VpcId: pulumi.String("vpc-rs4mi0jedipsv0x57pf****"),
@@ -66,10 +73,17 @@ type PrivateZone struct {
 	IntelligentMode pulumi.BoolPtrOutput `pulumi:"intelligentMode"`
 	// Whether to enable the load balance mode of the private zone.
 	LoadBalanceMode pulumi.BoolPtrOutput `pulumi:"loadBalanceMode"`
+	// The project name of the private zone.
+	ProjectName pulumi.StringOutput `pulumi:"projectName"`
 	// Whether to enable the recursion mode of the private zone.
 	RecursionMode pulumi.BoolPtrOutput `pulumi:"recursionMode"`
 	// The remark of the private zone.
 	Remark pulumi.StringPtrOutput `pulumi:"remark"`
+	// Tags.
+	Tags PrivateZoneTagArrayOutput `pulumi:"tags"`
+	// The vpc trns of the private zone. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	VpcTrns pulumi.StringArrayOutput `pulumi:"vpcTrns"`
 	// The bind vpc object of the private zone. If you want to bind another account's VPC, you need to first use resource private_zone.UserVpcAuthorization to complete the authorization.
 	Vpcs PrivateZoneVpcArrayOutput `pulumi:"vpcs"`
 	// The name of the private zone.
@@ -116,10 +130,17 @@ type privateZoneState struct {
 	IntelligentMode *bool `pulumi:"intelligentMode"`
 	// Whether to enable the load balance mode of the private zone.
 	LoadBalanceMode *bool `pulumi:"loadBalanceMode"`
+	// The project name of the private zone.
+	ProjectName *string `pulumi:"projectName"`
 	// Whether to enable the recursion mode of the private zone.
 	RecursionMode *bool `pulumi:"recursionMode"`
 	// The remark of the private zone.
 	Remark *string `pulumi:"remark"`
+	// Tags.
+	Tags []PrivateZoneTag `pulumi:"tags"`
+	// The vpc trns of the private zone. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	VpcTrns []string `pulumi:"vpcTrns"`
 	// The bind vpc object of the private zone. If you want to bind another account's VPC, you need to first use resource private_zone.UserVpcAuthorization to complete the authorization.
 	Vpcs []PrivateZoneVpc `pulumi:"vpcs"`
 	// The name of the private zone.
@@ -131,10 +152,17 @@ type PrivateZoneState struct {
 	IntelligentMode pulumi.BoolPtrInput
 	// Whether to enable the load balance mode of the private zone.
 	LoadBalanceMode pulumi.BoolPtrInput
+	// The project name of the private zone.
+	ProjectName pulumi.StringPtrInput
 	// Whether to enable the recursion mode of the private zone.
 	RecursionMode pulumi.BoolPtrInput
 	// The remark of the private zone.
 	Remark pulumi.StringPtrInput
+	// Tags.
+	Tags PrivateZoneTagArrayInput
+	// The vpc trns of the private zone. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	VpcTrns pulumi.StringArrayInput
 	// The bind vpc object of the private zone. If you want to bind another account's VPC, you need to first use resource private_zone.UserVpcAuthorization to complete the authorization.
 	Vpcs PrivateZoneVpcArrayInput
 	// The name of the private zone.
@@ -150,10 +178,17 @@ type privateZoneArgs struct {
 	IntelligentMode *bool `pulumi:"intelligentMode"`
 	// Whether to enable the load balance mode of the private zone.
 	LoadBalanceMode *bool `pulumi:"loadBalanceMode"`
+	// The project name of the private zone.
+	ProjectName *string `pulumi:"projectName"`
 	// Whether to enable the recursion mode of the private zone.
 	RecursionMode *bool `pulumi:"recursionMode"`
 	// The remark of the private zone.
 	Remark *string `pulumi:"remark"`
+	// Tags.
+	Tags []PrivateZoneTag `pulumi:"tags"`
+	// The vpc trns of the private zone. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	VpcTrns []string `pulumi:"vpcTrns"`
 	// The bind vpc object of the private zone. If you want to bind another account's VPC, you need to first use resource private_zone.UserVpcAuthorization to complete the authorization.
 	Vpcs []PrivateZoneVpc `pulumi:"vpcs"`
 	// The name of the private zone.
@@ -166,10 +201,17 @@ type PrivateZoneArgs struct {
 	IntelligentMode pulumi.BoolPtrInput
 	// Whether to enable the load balance mode of the private zone.
 	LoadBalanceMode pulumi.BoolPtrInput
+	// The project name of the private zone.
+	ProjectName pulumi.StringPtrInput
 	// Whether to enable the recursion mode of the private zone.
 	RecursionMode pulumi.BoolPtrInput
 	// The remark of the private zone.
 	Remark pulumi.StringPtrInput
+	// Tags.
+	Tags PrivateZoneTagArrayInput
+	// The vpc trns of the private zone. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	VpcTrns pulumi.StringArrayInput
 	// The bind vpc object of the private zone. If you want to bind another account's VPC, you need to first use resource private_zone.UserVpcAuthorization to complete the authorization.
 	Vpcs PrivateZoneVpcArrayInput
 	// The name of the private zone.
@@ -273,6 +315,11 @@ func (o PrivateZoneOutput) LoadBalanceMode() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *PrivateZone) pulumi.BoolPtrOutput { return v.LoadBalanceMode }).(pulumi.BoolPtrOutput)
 }
 
+// The project name of the private zone.
+func (o PrivateZoneOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v *PrivateZone) pulumi.StringOutput { return v.ProjectName }).(pulumi.StringOutput)
+}
+
 // Whether to enable the recursion mode of the private zone.
 func (o PrivateZoneOutput) RecursionMode() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *PrivateZone) pulumi.BoolPtrOutput { return v.RecursionMode }).(pulumi.BoolPtrOutput)
@@ -281,6 +328,17 @@ func (o PrivateZoneOutput) RecursionMode() pulumi.BoolPtrOutput {
 // The remark of the private zone.
 func (o PrivateZoneOutput) Remark() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PrivateZone) pulumi.StringPtrOutput { return v.Remark }).(pulumi.StringPtrOutput)
+}
+
+// Tags.
+func (o PrivateZoneOutput) Tags() PrivateZoneTagArrayOutput {
+	return o.ApplyT(func(v *PrivateZone) PrivateZoneTagArrayOutput { return v.Tags }).(PrivateZoneTagArrayOutput)
+}
+
+// The vpc trns of the private zone. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource.
+// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+func (o PrivateZoneOutput) VpcTrns() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *PrivateZone) pulumi.StringArrayOutput { return v.VpcTrns }).(pulumi.StringArrayOutput)
 }
 
 // The bind vpc object of the private zone. If you want to bind another account's VPC, you need to first use resource private_zone.UserVpcAuthorization to complete the authorization.

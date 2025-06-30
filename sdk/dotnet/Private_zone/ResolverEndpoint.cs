@@ -50,7 +50,15 @@ namespace Pulumi.Volcengine.Private_zone
     ///                 SubnetId = "subnet-mj2o4co2m2v45smt1bx1****",
     ///             },
     ///         },
-    ///         SecurityGroupId = "sg-mj2nsckay29s5smt1b0d****",
+    ///         ProjectName = "default",
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Private_zone.Inputs.ResolverEndpointTagArgs
+    ///             {
+    ///                 Key = "k1",
+    ///                 Value = "v1",
+    ///             },
+    ///         },
     ///         VpcId = "vpc-13f9uuuqfdjb43n6nu5p1****",
     ///         VpcRegion = "cn-beijing",
     ///     });
@@ -88,10 +96,22 @@ namespace Pulumi.Volcengine.Private_zone
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
+        /// The project name of the private zone resolver endpoint.
+        /// </summary>
+        [Output("projectName")]
+        public Output<string> ProjectName { get; private set; } = null!;
+
+        /// <summary>
         /// The security group ID of the endpoint.
         /// </summary>
         [Output("securityGroupId")]
         public Output<string> SecurityGroupId { get; private set; } = null!;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<Outputs.ResolverEndpointTag>> Tags { get; private set; } = null!;
 
         /// <summary>
         /// The VPC ID of the endpoint.
@@ -104,6 +124,13 @@ namespace Pulumi.Volcengine.Private_zone
         /// </summary>
         [Output("vpcRegion")]
         public Output<string> VpcRegion { get; private set; } = null!;
+
+        /// <summary>
+        /// The vpc trns of the private zone resolver endpoint. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource. 
+        /// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        /// </summary>
+        [Output("vpcTrns")]
+        public Output<ImmutableArray<string>> VpcTrns { get; private set; } = null!;
 
 
         /// <summary>
@@ -177,10 +204,28 @@ namespace Pulumi.Volcengine.Private_zone
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// The project name of the private zone resolver endpoint.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        /// <summary>
         /// The security group ID of the endpoint.
         /// </summary>
-        [Input("securityGroupId", required: true)]
-        public Input<string> SecurityGroupId { get; set; } = null!;
+        [Input("securityGroupId")]
+        public Input<string>? SecurityGroupId { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.ResolverEndpointTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.ResolverEndpointTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.ResolverEndpointTagArgs>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// The VPC ID of the endpoint.
@@ -193,6 +238,19 @@ namespace Pulumi.Volcengine.Private_zone
         /// </summary>
         [Input("vpcRegion", required: true)]
         public Input<string> VpcRegion { get; set; } = null!;
+
+        [Input("vpcTrns")]
+        private InputList<string>? _vpcTrns;
+
+        /// <summary>
+        /// The vpc trns of the private zone resolver endpoint. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource. 
+        /// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        /// </summary>
+        public InputList<string> VpcTrns
+        {
+            get => _vpcTrns ?? (_vpcTrns = new InputList<string>());
+            set => _vpcTrns = value;
+        }
 
         public ResolverEndpointArgs()
         {
@@ -227,10 +285,28 @@ namespace Pulumi.Volcengine.Private_zone
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// The project name of the private zone resolver endpoint.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        /// <summary>
         /// The security group ID of the endpoint.
         /// </summary>
         [Input("securityGroupId")]
         public Input<string>? SecurityGroupId { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.ResolverEndpointTagGetArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.ResolverEndpointTagGetArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.ResolverEndpointTagGetArgs>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// The VPC ID of the endpoint.
@@ -243,6 +319,19 @@ namespace Pulumi.Volcengine.Private_zone
         /// </summary>
         [Input("vpcRegion")]
         public Input<string>? VpcRegion { get; set; }
+
+        [Input("vpcTrns")]
+        private InputList<string>? _vpcTrns;
+
+        /// <summary>
+        /// The vpc trns of the private zone resolver endpoint. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource. 
+        /// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        /// </summary>
+        public InputList<string> VpcTrns
+        {
+            get => _vpcTrns ?? (_vpcTrns = new InputList<string>());
+            set => _vpcTrns = value;
+        }
 
         public ResolverEndpointState()
         {

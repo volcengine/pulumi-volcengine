@@ -27,14 +27,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := rds_mysql.GetBackups(ctx, &rds_mysql.GetBackupsArgs{
-//				BackupEndTime:   pulumi.StringRef(""),
-//				BackupId:        pulumi.StringRef(""),
-//				BackupMethod:    pulumi.StringRef(""),
-//				BackupStartTime: pulumi.StringRef(""),
-//				BackupStatus:    pulumi.StringRef(""),
-//				BackupType:      pulumi.StringRef(""),
-//				CreateType:      pulumi.StringRef(""),
-//				InstanceId:      pulumi.StringRef(""),
+//				InstanceId: pulumi.StringRef("mysql-b51d37110dd1"),
 //			}, nil)
 //			if err != nil {
 //				return err

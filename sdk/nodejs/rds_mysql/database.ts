@@ -50,6 +50,7 @@ import * as utilities from "../utilities";
  * const fooDatabase = new volcengine.rds_mysql.Database("fooDatabase", {
  *     dbName: "acc-test",
  *     instanceId: fooInstance.id,
+ *     dbDesc: "test-update",
  * });
  * ```
  *
@@ -94,6 +95,10 @@ export class Database extends pulumi.CustomResource {
      */
     public readonly characterSetName!: pulumi.Output<string | undefined>;
     /**
+     * The description information of the database, with a length not exceeding 256 characters. This field is optional. If this field is not set, or if this field is set but the length of the description information is 0, then the description information is empty.
+     */
+    public readonly dbDesc!: pulumi.Output<string | undefined>;
+    /**
      * Name database.
      * illustrate:
      * Unique name.
@@ -122,6 +127,7 @@ export class Database extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as DatabaseState | undefined;
             resourceInputs["characterSetName"] = state ? state.characterSetName : undefined;
+            resourceInputs["dbDesc"] = state ? state.dbDesc : undefined;
             resourceInputs["dbName"] = state ? state.dbName : undefined;
             resourceInputs["instanceId"] = state ? state.instanceId : undefined;
         } else {
@@ -133,6 +139,7 @@ export class Database extends pulumi.CustomResource {
                 throw new Error("Missing required property 'instanceId'");
             }
             resourceInputs["characterSetName"] = args ? args.characterSetName : undefined;
+            resourceInputs["dbDesc"] = args ? args.dbDesc : undefined;
             resourceInputs["dbName"] = args ? args.dbName : undefined;
             resourceInputs["instanceId"] = args ? args.instanceId : undefined;
         }
@@ -149,6 +156,10 @@ export interface DatabaseState {
      * Database character set. Currently supported character sets include: utf8, utf8mb4, latin1, ascii.
      */
     characterSetName?: pulumi.Input<string>;
+    /**
+     * The description information of the database, with a length not exceeding 256 characters. This field is optional. If this field is not set, or if this field is set but the length of the description information is 0, then the description information is empty.
+     */
+    dbDesc?: pulumi.Input<string>;
     /**
      * Name database.
      * illustrate:
@@ -173,6 +184,10 @@ export interface DatabaseArgs {
      * Database character set. Currently supported character sets include: utf8, utf8mb4, latin1, ascii.
      */
     characterSetName?: pulumi.Input<string>;
+    /**
+     * The description information of the database, with a length not exceeding 256 characters. This field is optional. If this field is not set, or if this field is set but the length of the description information is 0, then the description information is empty.
+     */
+    dbDesc?: pulumi.Input<string>;
     /**
      * Name database.
      * illustrate:

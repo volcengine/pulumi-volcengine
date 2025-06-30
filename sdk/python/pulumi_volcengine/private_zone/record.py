@@ -19,8 +19,10 @@ class RecordArgs:
                  value: pulumi.Input[str],
                  zid: pulumi.Input[int],
                  enable: Optional[pulumi.Input[bool]] = None,
+                 line: Optional[pulumi.Input[str]] = None,
                  remark: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[int]] = None,
+                 user_account: Optional[pulumi.Input[str]] = None,
                  weight: Optional[pulumi.Input[int]] = None):
         """
         The set of arguments for constructing a Record resource.
@@ -29,8 +31,10 @@ class RecordArgs:
         :param pulumi.Input[str] value: The value of the private zone record. Record values need to be set based on the value of the `type`.
         :param pulumi.Input[int] zid: The zid of the private zone record.
         :param pulumi.Input[bool] enable: Whether to enable the private zone record. This field is only effected when modify this resource.
+        :param pulumi.Input[str] line: The subnet id of the private zone record. This field is only effected when the `intelligent_mode` of the private zone is true. Default is `Default`.
         :param pulumi.Input[str] remark: The remark of the private zone record.
         :param pulumi.Input[int] ttl: The ttl of the private zone record. Unit: second. Default is 600.
+        :param pulumi.Input[str] user_account: The user account of the private zone record. This field is only effected when creating this resource.
         :param pulumi.Input[int] weight: The weight of the private zone record. This field is only effected when the `load_balance_mode` of the private zone is true and the `weight_enabled` of the record_set is true. Default is 1.
         """
         pulumi.set(__self__, "host", host)
@@ -39,10 +43,14 @@ class RecordArgs:
         pulumi.set(__self__, "zid", zid)
         if enable is not None:
             pulumi.set(__self__, "enable", enable)
+        if line is not None:
+            pulumi.set(__self__, "line", line)
         if remark is not None:
             pulumi.set(__self__, "remark", remark)
         if ttl is not None:
             pulumi.set(__self__, "ttl", ttl)
+        if user_account is not None:
+            pulumi.set(__self__, "user_account", user_account)
         if weight is not None:
             pulumi.set(__self__, "weight", weight)
 
@@ -108,6 +116,18 @@ class RecordArgs:
 
     @property
     @pulumi.getter
+    def line(self) -> Optional[pulumi.Input[str]]:
+        """
+        The subnet id of the private zone record. This field is only effected when the `intelligent_mode` of the private zone is true. Default is `Default`.
+        """
+        return pulumi.get(self, "line")
+
+    @line.setter
+    def line(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "line", value)
+
+    @property
+    @pulumi.getter
     def remark(self) -> Optional[pulumi.Input[str]]:
         """
         The remark of the private zone record.
@@ -131,6 +151,18 @@ class RecordArgs:
         pulumi.set(self, "ttl", value)
 
     @property
+    @pulumi.getter(name="userAccount")
+    def user_account(self) -> Optional[pulumi.Input[str]]:
+        """
+        The user account of the private zone record. This field is only effected when creating this resource.
+        """
+        return pulumi.get(self, "user_account")
+
+    @user_account.setter
+    def user_account(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "user_account", value)
+
+    @property
     @pulumi.getter
     def weight(self) -> Optional[pulumi.Input[int]]:
         """
@@ -148,9 +180,11 @@ class _RecordState:
     def __init__(__self__, *,
                  enable: Optional[pulumi.Input[bool]] = None,
                  host: Optional[pulumi.Input[str]] = None,
+                 line: Optional[pulumi.Input[str]] = None,
                  remark: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[int]] = None,
                  type: Optional[pulumi.Input[str]] = None,
+                 user_account: Optional[pulumi.Input[str]] = None,
                  value: Optional[pulumi.Input[str]] = None,
                  weight: Optional[pulumi.Input[int]] = None,
                  zid: Optional[pulumi.Input[int]] = None):
@@ -158,9 +192,11 @@ class _RecordState:
         Input properties used for looking up and filtering Record resources.
         :param pulumi.Input[bool] enable: Whether to enable the private zone record. This field is only effected when modify this resource.
         :param pulumi.Input[str] host: The host of the private zone record.
+        :param pulumi.Input[str] line: The subnet id of the private zone record. This field is only effected when the `intelligent_mode` of the private zone is true. Default is `Default`.
         :param pulumi.Input[str] remark: The remark of the private zone record.
         :param pulumi.Input[int] ttl: The ttl of the private zone record. Unit: second. Default is 600.
         :param pulumi.Input[str] type: The type of the private zone record. Valid values: `A`, `AAAA`, `CNAME`, `MX`, `PTR`.
+        :param pulumi.Input[str] user_account: The user account of the private zone record. This field is only effected when creating this resource.
         :param pulumi.Input[str] value: The value of the private zone record. Record values need to be set based on the value of the `type`.
         :param pulumi.Input[int] weight: The weight of the private zone record. This field is only effected when the `load_balance_mode` of the private zone is true and the `weight_enabled` of the record_set is true. Default is 1.
         :param pulumi.Input[int] zid: The zid of the private zone record.
@@ -169,12 +205,16 @@ class _RecordState:
             pulumi.set(__self__, "enable", enable)
         if host is not None:
             pulumi.set(__self__, "host", host)
+        if line is not None:
+            pulumi.set(__self__, "line", line)
         if remark is not None:
             pulumi.set(__self__, "remark", remark)
         if ttl is not None:
             pulumi.set(__self__, "ttl", ttl)
         if type is not None:
             pulumi.set(__self__, "type", type)
+        if user_account is not None:
+            pulumi.set(__self__, "user_account", user_account)
         if value is not None:
             pulumi.set(__self__, "value", value)
         if weight is not None:
@@ -205,6 +245,18 @@ class _RecordState:
     @host.setter
     def host(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "host", value)
+
+    @property
+    @pulumi.getter
+    def line(self) -> Optional[pulumi.Input[str]]:
+        """
+        The subnet id of the private zone record. This field is only effected when the `intelligent_mode` of the private zone is true. Default is `Default`.
+        """
+        return pulumi.get(self, "line")
+
+    @line.setter
+    def line(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "line", value)
 
     @property
     @pulumi.getter
@@ -241,6 +293,18 @@ class _RecordState:
     @type.setter
     def type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter(name="userAccount")
+    def user_account(self) -> Optional[pulumi.Input[str]]:
+        """
+        The user account of the private zone record. This field is only effected when creating this resource.
+        """
+        return pulumi.get(self, "user_account")
+
+    @user_account.setter
+    def user_account(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "user_account", value)
 
     @property
     @pulumi.getter
@@ -286,9 +350,11 @@ class Record(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  enable: Optional[pulumi.Input[bool]] = None,
                  host: Optional[pulumi.Input[str]] = None,
+                 line: Optional[pulumi.Input[str]] = None,
                  remark: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[int]] = None,
                  type: Optional[pulumi.Input[str]] = None,
+                 user_account: Optional[pulumi.Input[str]] = None,
                  value: Optional[pulumi.Input[str]] = None,
                  weight: Optional[pulumi.Input[int]] = None,
                  zid: Optional[pulumi.Input[int]] = None,
@@ -331,9 +397,11 @@ class Record(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] enable: Whether to enable the private zone record. This field is only effected when modify this resource.
         :param pulumi.Input[str] host: The host of the private zone record.
+        :param pulumi.Input[str] line: The subnet id of the private zone record. This field is only effected when the `intelligent_mode` of the private zone is true. Default is `Default`.
         :param pulumi.Input[str] remark: The remark of the private zone record.
         :param pulumi.Input[int] ttl: The ttl of the private zone record. Unit: second. Default is 600.
         :param pulumi.Input[str] type: The type of the private zone record. Valid values: `A`, `AAAA`, `CNAME`, `MX`, `PTR`.
+        :param pulumi.Input[str] user_account: The user account of the private zone record. This field is only effected when creating this resource.
         :param pulumi.Input[str] value: The value of the private zone record. Record values need to be set based on the value of the `type`.
         :param pulumi.Input[int] weight: The weight of the private zone record. This field is only effected when the `load_balance_mode` of the private zone is true and the `weight_enabled` of the record_set is true. Default is 1.
         :param pulumi.Input[int] zid: The zid of the private zone record.
@@ -395,9 +463,11 @@ class Record(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  enable: Optional[pulumi.Input[bool]] = None,
                  host: Optional[pulumi.Input[str]] = None,
+                 line: Optional[pulumi.Input[str]] = None,
                  remark: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[int]] = None,
                  type: Optional[pulumi.Input[str]] = None,
+                 user_account: Optional[pulumi.Input[str]] = None,
                  value: Optional[pulumi.Input[str]] = None,
                  weight: Optional[pulumi.Input[int]] = None,
                  zid: Optional[pulumi.Input[int]] = None,
@@ -414,11 +484,13 @@ class Record(pulumi.CustomResource):
             if host is None and not opts.urn:
                 raise TypeError("Missing required property 'host'")
             __props__.__dict__["host"] = host
+            __props__.__dict__["line"] = line
             __props__.__dict__["remark"] = remark
             __props__.__dict__["ttl"] = ttl
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
             __props__.__dict__["type"] = type
+            __props__.__dict__["user_account"] = user_account
             if value is None and not opts.urn:
                 raise TypeError("Missing required property 'value'")
             __props__.__dict__["value"] = value
@@ -438,9 +510,11 @@ class Record(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             enable: Optional[pulumi.Input[bool]] = None,
             host: Optional[pulumi.Input[str]] = None,
+            line: Optional[pulumi.Input[str]] = None,
             remark: Optional[pulumi.Input[str]] = None,
             ttl: Optional[pulumi.Input[int]] = None,
             type: Optional[pulumi.Input[str]] = None,
+            user_account: Optional[pulumi.Input[str]] = None,
             value: Optional[pulumi.Input[str]] = None,
             weight: Optional[pulumi.Input[int]] = None,
             zid: Optional[pulumi.Input[int]] = None) -> 'Record':
@@ -453,9 +527,11 @@ class Record(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] enable: Whether to enable the private zone record. This field is only effected when modify this resource.
         :param pulumi.Input[str] host: The host of the private zone record.
+        :param pulumi.Input[str] line: The subnet id of the private zone record. This field is only effected when the `intelligent_mode` of the private zone is true. Default is `Default`.
         :param pulumi.Input[str] remark: The remark of the private zone record.
         :param pulumi.Input[int] ttl: The ttl of the private zone record. Unit: second. Default is 600.
         :param pulumi.Input[str] type: The type of the private zone record. Valid values: `A`, `AAAA`, `CNAME`, `MX`, `PTR`.
+        :param pulumi.Input[str] user_account: The user account of the private zone record. This field is only effected when creating this resource.
         :param pulumi.Input[str] value: The value of the private zone record. Record values need to be set based on the value of the `type`.
         :param pulumi.Input[int] weight: The weight of the private zone record. This field is only effected when the `load_balance_mode` of the private zone is true and the `weight_enabled` of the record_set is true. Default is 1.
         :param pulumi.Input[int] zid: The zid of the private zone record.
@@ -466,9 +542,11 @@ class Record(pulumi.CustomResource):
 
         __props__.__dict__["enable"] = enable
         __props__.__dict__["host"] = host
+        __props__.__dict__["line"] = line
         __props__.__dict__["remark"] = remark
         __props__.__dict__["ttl"] = ttl
         __props__.__dict__["type"] = type
+        __props__.__dict__["user_account"] = user_account
         __props__.__dict__["value"] = value
         __props__.__dict__["weight"] = weight
         __props__.__dict__["zid"] = zid
@@ -489,6 +567,14 @@ class Record(pulumi.CustomResource):
         The host of the private zone record.
         """
         return pulumi.get(self, "host")
+
+    @property
+    @pulumi.getter
+    def line(self) -> pulumi.Output[str]:
+        """
+        The subnet id of the private zone record. This field is only effected when the `intelligent_mode` of the private zone is true. Default is `Default`.
+        """
+        return pulumi.get(self, "line")
 
     @property
     @pulumi.getter
@@ -513,6 +599,14 @@ class Record(pulumi.CustomResource):
         The type of the private zone record. Valid values: `A`, `AAAA`, `CNAME`, `MX`, `PTR`.
         """
         return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="userAccount")
+    def user_account(self) -> pulumi.Output[Optional[str]]:
+        """
+        The user account of the private zone record. This field is only effected when creating this resource.
+        """
+        return pulumi.get(self, "user_account")
 
     @property
     @pulumi.getter

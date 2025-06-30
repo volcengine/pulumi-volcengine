@@ -51,14 +51,19 @@ import * as utilities from "../utilities";
  * });
  * ```
  */
-export function getBackups(args: GetBackupsArgs, opts?: pulumi.InvokeOptions): Promise<GetBackupsResult> {
+export function getBackups(args?: GetBackupsArgs, opts?: pulumi.InvokeOptions): Promise<GetBackupsResult> {
+    args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:redis/getBackups:getBackups", {
+        "backupPointId": args.backupPointId,
+        "backupPointName": args.backupPointName,
         "backupStrategyLists": args.backupStrategyLists,
         "endTime": args.endTime,
         "instanceId": args.instanceId,
         "outputFile": args.outputFile,
+        "projectName": args.projectName,
+        "scope": args.scope,
         "startTime": args.startTime,
     }, opts);
 }
@@ -67,6 +72,14 @@ export function getBackups(args: GetBackupsArgs, opts?: pulumi.InvokeOptions): P
  * A collection of arguments for invoking getBackups.
  */
 export interface GetBackupsArgs {
+    /**
+     * The id of backup point.
+     */
+    backupPointId?: string;
+    /**
+     * Backup name, supporting fuzzy query.
+     */
+    backupPointName?: string;
     /**
      * The list of backup strategy, support AutomatedBackup and ManualBackup.
      */
@@ -78,11 +91,19 @@ export interface GetBackupsArgs {
     /**
      * Id of instance.
      */
-    instanceId: string;
+    instanceId?: string;
     /**
      * File name where to save data source results.
      */
     outputFile?: string;
+    /**
+     * Back up the project to which it belongs.
+     */
+    projectName?: string;
+    /**
+     * The query scope of the backup.
+     */
+    scope?: string;
     /**
      * Query start time.
      */
@@ -93,6 +114,11 @@ export interface GetBackupsArgs {
  * A collection of values returned by getBackups.
  */
 export interface GetBackupsResult {
+    /**
+     * The id of backup point.
+     */
+    readonly backupPointId?: string;
+    readonly backupPointName?: string;
     readonly backupStrategyLists?: string[];
     /**
      * Information of backups.
@@ -109,8 +135,13 @@ export interface GetBackupsResult {
     /**
      * Id of instance.
      */
-    readonly instanceId: string;
+    readonly instanceId?: string;
     readonly outputFile?: string;
+    /**
+     * Project name of instance.
+     */
+    readonly projectName?: string;
+    readonly scope?: string;
     /**
      * Start time of backup.
      */
@@ -165,7 +196,7 @@ export interface GetBackupsResult {
  * });
  * ```
  */
-export function getBackupsOutput(args: GetBackupsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBackupsResult> {
+export function getBackupsOutput(args?: GetBackupsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBackupsResult> {
     return pulumi.output(args).apply((a: any) => getBackups(a, opts))
 }
 
@@ -173,6 +204,14 @@ export function getBackupsOutput(args: GetBackupsOutputArgs, opts?: pulumi.Invok
  * A collection of arguments for invoking getBackups.
  */
 export interface GetBackupsOutputArgs {
+    /**
+     * The id of backup point.
+     */
+    backupPointId?: pulumi.Input<string>;
+    /**
+     * Backup name, supporting fuzzy query.
+     */
+    backupPointName?: pulumi.Input<string>;
     /**
      * The list of backup strategy, support AutomatedBackup and ManualBackup.
      */
@@ -184,11 +223,19 @@ export interface GetBackupsOutputArgs {
     /**
      * Id of instance.
      */
-    instanceId: pulumi.Input<string>;
+    instanceId?: pulumi.Input<string>;
     /**
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
+    /**
+     * Back up the project to which it belongs.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
+     * The query scope of the backup.
+     */
+    scope?: pulumi.Input<string>;
     /**
      * Query start time.
      */

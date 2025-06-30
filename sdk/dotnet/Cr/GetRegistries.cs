@@ -93,6 +93,18 @@ namespace Pulumi.Volcengine.Cr
         [Input("outputFile")]
         public string? OutputFile { get; set; }
 
+        [Input("projects")]
+        private List<string>? _projects;
+
+        /// <summary>
+        /// The list of project names to query.
+        /// </summary>
+        public List<string> Projects
+        {
+            get => _projects ?? (_projects = new List<string>());
+            set => _projects = value;
+        }
+
         [Input("resourceTags")]
         private List<Inputs.GetRegistriesResourceTagArgs>? _resourceTags;
 
@@ -155,6 +167,18 @@ namespace Pulumi.Volcengine.Cr
         [Input("outputFile")]
         public Input<string>? OutputFile { get; set; }
 
+        [Input("projects")]
+        private InputList<string>? _projects;
+
+        /// <summary>
+        /// The list of project names to query.
+        /// </summary>
+        public InputList<string> Projects
+        {
+            get => _projects ?? (_projects = new InputList<string>());
+            set => _projects = value;
+        }
+
         [Input("resourceTags")]
         private InputList<Inputs.GetRegistriesResourceTagInputArgs>? _resourceTags;
 
@@ -207,6 +231,7 @@ namespace Pulumi.Volcengine.Cr
         public readonly string Id;
         public readonly ImmutableArray<string> Names;
         public readonly string? OutputFile;
+        public readonly ImmutableArray<string> Projects;
         /// <summary>
         /// The collection of registry query.
         /// </summary>
@@ -230,6 +255,8 @@ namespace Pulumi.Volcengine.Cr
 
             string? outputFile,
 
+            ImmutableArray<string> projects,
+
             ImmutableArray<Outputs.GetRegistriesRegistryResult> registries,
 
             ImmutableArray<Outputs.GetRegistriesResourceTagResult> resourceTags,
@@ -243,6 +270,7 @@ namespace Pulumi.Volcengine.Cr
             Id = id;
             Names = names;
             OutputFile = outputFile;
+            Projects = projects;
             Registries = registries;
             ResourceTags = resourceTags;
             Statuses = statuses;

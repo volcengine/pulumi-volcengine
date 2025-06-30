@@ -196,14 +196,7 @@ def backups(backup_end_time: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.rds_mysql.get_backups(backup_end_time="",
-        backup_id="",
-        backup_method="",
-        backup_start_time="",
-        backup_status="",
-        backup_type="",
-        create_type="",
-        instance_id="")
+    foo = volcengine.rds_mysql.get_backups(instance_id="mysql-b51d37110dd1")
     ```
 
 
@@ -265,14 +258,7 @@ def backups_output(backup_end_time: Optional[pulumi.Input[Optional[str]]] = None
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.rds_mysql.get_backups(backup_end_time="",
-        backup_id="",
-        backup_method="",
-        backup_start_time="",
-        backup_status="",
-        backup_type="",
-        create_type="",
-        instance_id="")
+    foo = volcengine.rds_mysql.get_backups(instance_id="mysql-b51d37110dd1")
     ```
 
 

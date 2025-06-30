@@ -62,6 +62,10 @@ namespace Pulumi.Volcengine.Cen.Outputs
         /// </summary>
         public readonly string Id;
         /// <summary>
+        /// The line operator of the cen bandwidth package.
+        /// </summary>
+        public readonly string LineOperator;
+        /// <summary>
         /// A local geographic region set id.
         /// </summary>
         public readonly string LocalGeographicRegionSetId;
@@ -116,6 +120,8 @@ namespace Pulumi.Volcengine.Cen.Outputs
 
             string id,
 
+            string lineOperator,
+
             string localGeographicRegionSetId,
 
             string peerGeographicRegionSetId,
@@ -142,6 +148,7 @@ namespace Pulumi.Volcengine.Cen.Outputs
             Description = description;
             ExpiredTime = expiredTime;
             Id = id;
+            LineOperator = lineOperator;
             LocalGeographicRegionSetId = localGeographicRegionSetId;
             PeerGeographicRegionSetId = peerGeographicRegionSetId;
             ProjectName = projectName;

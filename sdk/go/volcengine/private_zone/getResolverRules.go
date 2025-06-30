@@ -55,6 +55,10 @@ type GetResolverRulesArgs struct {
 	NameRegex *string `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
+	// The project name of the private zone resolver rule.
+	ProjectName *string `pulumi:"projectName"`
+	// List of tag filters.
+	TagFilters []GetResolverRulesTagFilter `pulumi:"tagFilters"`
 	// The main domain associated with the forwarding rule. For example, if you set this parameter to example.com, DNS requests for example.com and all subdomains of example.com will be forwarded.
 	ZoneName *string `pulumi:"zoneName"`
 }
@@ -69,8 +73,11 @@ type GetResolverRulesResult struct {
 	Name       *string `pulumi:"name"`
 	NameRegex  *string `pulumi:"nameRegex"`
 	OutputFile *string `pulumi:"outputFile"`
+	// The project name of the rule.
+	ProjectName *string `pulumi:"projectName"`
 	// The collection of query.
-	Rules []GetResolverRulesRule `pulumi:"rules"`
+	Rules      []GetResolverRulesRule      `pulumi:"rules"`
+	TagFilters []GetResolverRulesTagFilter `pulumi:"tagFilters"`
 	// The total count of query.
 	TotalCount int `pulumi:"totalCount"`
 	// The zone name of the rule.
@@ -100,6 +107,10 @@ type GetResolverRulesOutputArgs struct {
 	NameRegex pulumi.StringPtrInput `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// The project name of the private zone resolver rule.
+	ProjectName pulumi.StringPtrInput `pulumi:"projectName"`
+	// List of tag filters.
+	TagFilters GetResolverRulesTagFilterArrayInput `pulumi:"tagFilters"`
 	// The main domain associated with the forwarding rule. For example, if you set this parameter to example.com, DNS requests for example.com and all subdomains of example.com will be forwarded.
 	ZoneName pulumi.StringPtrInput `pulumi:"zoneName"`
 }
@@ -146,9 +157,18 @@ func (o GetResolverRulesResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetResolverRulesResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
 }
 
+// The project name of the rule.
+func (o GetResolverRulesResultOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetResolverRulesResult) *string { return v.ProjectName }).(pulumi.StringPtrOutput)
+}
+
 // The collection of query.
 func (o GetResolverRulesResultOutput) Rules() GetResolverRulesRuleArrayOutput {
 	return o.ApplyT(func(v GetResolverRulesResult) []GetResolverRulesRule { return v.Rules }).(GetResolverRulesRuleArrayOutput)
+}
+
+func (o GetResolverRulesResultOutput) TagFilters() GetResolverRulesTagFilterArrayOutput {
+	return o.ApplyT(func(v GetResolverRulesResult) []GetResolverRulesTagFilter { return v.TagFilters }).(GetResolverRulesTagFilterArrayOutput)
 }
 
 // The total count of query.

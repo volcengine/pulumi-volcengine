@@ -33,15 +33,23 @@ namespace Pulumi.Volcengine.Private_zone.Outputs
         /// <summary>
         /// The ISP of the exit IP address of the recursive DNS server.
         /// </summary>
-        public readonly int Line;
+        public readonly string Line;
         /// <summary>
         /// The name of the rule.
         /// </summary>
         public readonly string Name;
         /// <summary>
+        /// The project name of the private zone resolver rule.
+        /// </summary>
+        public readonly string ProjectName;
+        /// <summary>
         /// The id of the rule.
         /// </summary>
         public readonly int RuleId;
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.ResolverRulesRuleTagResult> Tags;
         /// <summary>
         /// The type of the rule.
         /// </summary>
@@ -67,11 +75,15 @@ namespace Pulumi.Volcengine.Private_zone.Outputs
 
             string id,
 
-            int line,
+            string line,
 
             string name,
 
+            string projectName,
+
             int ruleId,
+
+            ImmutableArray<Outputs.ResolverRulesRuleTagResult> tags,
 
             string type,
 
@@ -86,7 +98,9 @@ namespace Pulumi.Volcengine.Private_zone.Outputs
             Id = id;
             Line = line;
             Name = name;
+            ProjectName = projectName;
             RuleId = ruleId;
+            Tags = tags;
             Type = type;
             UpdatedAt = updatedAt;
             ZoneNames = zoneNames;

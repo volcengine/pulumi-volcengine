@@ -51,6 +51,10 @@ type UserVpcAuthorization struct {
 
 	// The account Id which authorizes the private zone resource.
 	AccountId pulumi.StringOutput `pulumi:"accountId"`
+	// The auth type of the private zone resource. 0: authorized by organization, 1: authorized by verify code. Default is 0.
+	AuthType pulumi.IntPtrOutput `pulumi:"authType"`
+	// The verify code of the private zone resource. This field is required when the authType is 1.
+	VerifyCode pulumi.StringPtrOutput `pulumi:"verifyCode"`
 }
 
 // NewUserVpcAuthorization registers a new resource with the given unique name, arguments, and options.
@@ -88,11 +92,19 @@ func GetUserVpcAuthorization(ctx *pulumi.Context,
 type userVpcAuthorizationState struct {
 	// The account Id which authorizes the private zone resource.
 	AccountId *string `pulumi:"accountId"`
+	// The auth type of the private zone resource. 0: authorized by organization, 1: authorized by verify code. Default is 0.
+	AuthType *int `pulumi:"authType"`
+	// The verify code of the private zone resource. This field is required when the authType is 1.
+	VerifyCode *string `pulumi:"verifyCode"`
 }
 
 type UserVpcAuthorizationState struct {
 	// The account Id which authorizes the private zone resource.
 	AccountId pulumi.StringPtrInput
+	// The auth type of the private zone resource. 0: authorized by organization, 1: authorized by verify code. Default is 0.
+	AuthType pulumi.IntPtrInput
+	// The verify code of the private zone resource. This field is required when the authType is 1.
+	VerifyCode pulumi.StringPtrInput
 }
 
 func (UserVpcAuthorizationState) ElementType() reflect.Type {
@@ -102,12 +114,20 @@ func (UserVpcAuthorizationState) ElementType() reflect.Type {
 type userVpcAuthorizationArgs struct {
 	// The account Id which authorizes the private zone resource.
 	AccountId string `pulumi:"accountId"`
+	// The auth type of the private zone resource. 0: authorized by organization, 1: authorized by verify code. Default is 0.
+	AuthType *int `pulumi:"authType"`
+	// The verify code of the private zone resource. This field is required when the authType is 1.
+	VerifyCode *string `pulumi:"verifyCode"`
 }
 
 // The set of arguments for constructing a UserVpcAuthorization resource.
 type UserVpcAuthorizationArgs struct {
 	// The account Id which authorizes the private zone resource.
 	AccountId pulumi.StringInput
+	// The auth type of the private zone resource. 0: authorized by organization, 1: authorized by verify code. Default is 0.
+	AuthType pulumi.IntPtrInput
+	// The verify code of the private zone resource. This field is required when the authType is 1.
+	VerifyCode pulumi.StringPtrInput
 }
 
 func (UserVpcAuthorizationArgs) ElementType() reflect.Type {
@@ -200,6 +220,16 @@ func (o UserVpcAuthorizationOutput) ToUserVpcAuthorizationOutputWithContext(ctx 
 // The account Id which authorizes the private zone resource.
 func (o UserVpcAuthorizationOutput) AccountId() pulumi.StringOutput {
 	return o.ApplyT(func(v *UserVpcAuthorization) pulumi.StringOutput { return v.AccountId }).(pulumi.StringOutput)
+}
+
+// The auth type of the private zone resource. 0: authorized by organization, 1: authorized by verify code. Default is 0.
+func (o UserVpcAuthorizationOutput) AuthType() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *UserVpcAuthorization) pulumi.IntPtrOutput { return v.AuthType }).(pulumi.IntPtrOutput)
+}
+
+// The verify code of the private zone resource. This field is required when the authType is 1.
+func (o UserVpcAuthorizationOutput) VerifyCode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserVpcAuthorization) pulumi.StringPtrOutput { return v.VerifyCode }).(pulumi.StringPtrOutput)
 }
 
 type UserVpcAuthorizationArrayOutput struct{ *pulumi.OutputState }

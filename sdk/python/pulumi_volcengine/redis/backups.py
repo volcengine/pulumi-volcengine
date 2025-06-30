@@ -24,7 +24,13 @@ class BackupsResult:
     """
     A collection of values returned by Backups.
     """
-    def __init__(__self__, backup_strategy_lists=None, backups=None, end_time=None, id=None, instance_id=None, output_file=None, start_time=None, total_count=None):
+    def __init__(__self__, backup_point_id=None, backup_point_name=None, backup_strategy_lists=None, backups=None, end_time=None, id=None, instance_id=None, output_file=None, project_name=None, scope=None, start_time=None, total_count=None):
+        if backup_point_id and not isinstance(backup_point_id, str):
+            raise TypeError("Expected argument 'backup_point_id' to be a str")
+        pulumi.set(__self__, "backup_point_id", backup_point_id)
+        if backup_point_name and not isinstance(backup_point_name, str):
+            raise TypeError("Expected argument 'backup_point_name' to be a str")
+        pulumi.set(__self__, "backup_point_name", backup_point_name)
         if backup_strategy_lists and not isinstance(backup_strategy_lists, list):
             raise TypeError("Expected argument 'backup_strategy_lists' to be a list")
         pulumi.set(__self__, "backup_strategy_lists", backup_strategy_lists)
@@ -43,12 +49,31 @@ class BackupsResult:
         if output_file and not isinstance(output_file, str):
             raise TypeError("Expected argument 'output_file' to be a str")
         pulumi.set(__self__, "output_file", output_file)
+        if project_name and not isinstance(project_name, str):
+            raise TypeError("Expected argument 'project_name' to be a str")
+        pulumi.set(__self__, "project_name", project_name)
+        if scope and not isinstance(scope, str):
+            raise TypeError("Expected argument 'scope' to be a str")
+        pulumi.set(__self__, "scope", scope)
         if start_time and not isinstance(start_time, str):
             raise TypeError("Expected argument 'start_time' to be a str")
         pulumi.set(__self__, "start_time", start_time)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
+
+    @property
+    @pulumi.getter(name="backupPointId")
+    def backup_point_id(self) -> Optional[str]:
+        """
+        The id of backup point.
+        """
+        return pulumi.get(self, "backup_point_id")
+
+    @property
+    @pulumi.getter(name="backupPointName")
+    def backup_point_name(self) -> Optional[str]:
+        return pulumi.get(self, "backup_point_name")
 
     @property
     @pulumi.getter(name="backupStrategyLists")
@@ -81,7 +106,7 @@ class BackupsResult:
 
     @property
     @pulumi.getter(name="instanceId")
-    def instance_id(self) -> str:
+    def instance_id(self) -> Optional[str]:
         """
         Id of instance.
         """
@@ -91,6 +116,19 @@ class BackupsResult:
     @pulumi.getter(name="outputFile")
     def output_file(self) -> Optional[str]:
         return pulumi.get(self, "output_file")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[str]:
+        """
+        Project name of instance.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter
+    def scope(self) -> Optional[str]:
+        return pulumi.get(self, "scope")
 
     @property
     @pulumi.getter(name="startTime")
@@ -115,20 +153,28 @@ class AwaitableBackupsResult(BackupsResult):
         if False:
             yield self
         return BackupsResult(
+            backup_point_id=self.backup_point_id,
+            backup_point_name=self.backup_point_name,
             backup_strategy_lists=self.backup_strategy_lists,
             backups=self.backups,
             end_time=self.end_time,
             id=self.id,
             instance_id=self.instance_id,
             output_file=self.output_file,
+            project_name=self.project_name,
+            scope=self.scope,
             start_time=self.start_time,
             total_count=self.total_count)
 
 
-def backups(backup_strategy_lists: Optional[Sequence[str]] = None,
+def backups(backup_point_id: Optional[str] = None,
+            backup_point_name: Optional[str] = None,
+            backup_strategy_lists: Optional[Sequence[str]] = None,
             end_time: Optional[str] = None,
             instance_id: Optional[str] = None,
             output_file: Optional[str] = None,
+            project_name: Optional[str] = None,
+            scope: Optional[str] = None,
             start_time: Optional[str] = None,
             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableBackupsResult:
     """
@@ -170,38 +216,54 @@ def backups(backup_strategy_lists: Optional[Sequence[str]] = None,
     ```
 
 
+    :param str backup_point_id: The id of backup point.
+    :param str backup_point_name: Backup name, supporting fuzzy query.
     :param Sequence[str] backup_strategy_lists: The list of backup strategy, support AutomatedBackup and ManualBackup.
     :param str end_time: Query end time.
     :param str instance_id: Id of instance.
     :param str output_file: File name where to save data source results.
+    :param str project_name: Back up the project to which it belongs.
+    :param str scope: The query scope of the backup.
     :param str start_time: Query start time.
     """
     pulumi.log.warn("""backups is deprecated: volcengine.redis.Backups has been deprecated in favor of volcengine.redis.getBackups""")
     __args__ = dict()
+    __args__['backupPointId'] = backup_point_id
+    __args__['backupPointName'] = backup_point_name
     __args__['backupStrategyLists'] = backup_strategy_lists
     __args__['endTime'] = end_time
     __args__['instanceId'] = instance_id
     __args__['outputFile'] = output_file
+    __args__['projectName'] = project_name
+    __args__['scope'] = scope
     __args__['startTime'] = start_time
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('volcengine:redis/backups:Backups', __args__, opts=opts, typ=BackupsResult).value
 
     return AwaitableBackupsResult(
+        backup_point_id=pulumi.get(__ret__, 'backup_point_id'),
+        backup_point_name=pulumi.get(__ret__, 'backup_point_name'),
         backup_strategy_lists=pulumi.get(__ret__, 'backup_strategy_lists'),
         backups=pulumi.get(__ret__, 'backups'),
         end_time=pulumi.get(__ret__, 'end_time'),
         id=pulumi.get(__ret__, 'id'),
         instance_id=pulumi.get(__ret__, 'instance_id'),
         output_file=pulumi.get(__ret__, 'output_file'),
+        project_name=pulumi.get(__ret__, 'project_name'),
+        scope=pulumi.get(__ret__, 'scope'),
         start_time=pulumi.get(__ret__, 'start_time'),
         total_count=pulumi.get(__ret__, 'total_count'))
 
 
 @_utilities.lift_output_func(backups)
-def backups_output(backup_strategy_lists: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
+def backups_output(backup_point_id: Optional[pulumi.Input[Optional[str]]] = None,
+                   backup_point_name: Optional[pulumi.Input[Optional[str]]] = None,
+                   backup_strategy_lists: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                    end_time: Optional[pulumi.Input[Optional[str]]] = None,
-                   instance_id: Optional[pulumi.Input[str]] = None,
+                   instance_id: Optional[pulumi.Input[Optional[str]]] = None,
                    output_file: Optional[pulumi.Input[Optional[str]]] = None,
+                   project_name: Optional[pulumi.Input[Optional[str]]] = None,
+                   scope: Optional[pulumi.Input[Optional[str]]] = None,
                    start_time: Optional[pulumi.Input[Optional[str]]] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[BackupsResult]:
     """
@@ -243,10 +305,14 @@ def backups_output(backup_strategy_lists: Optional[pulumi.Input[Optional[Sequenc
     ```
 
 
+    :param str backup_point_id: The id of backup point.
+    :param str backup_point_name: Backup name, supporting fuzzy query.
     :param Sequence[str] backup_strategy_lists: The list of backup strategy, support AutomatedBackup and ManualBackup.
     :param str end_time: Query end time.
     :param str instance_id: Id of instance.
     :param str output_file: File name where to save data source results.
+    :param str project_name: Back up the project to which it belongs.
+    :param str scope: The query scope of the backup.
     :param str start_time: Query start time.
     """
     pulumi.log.warn("""backups is deprecated: volcengine.redis.Backups has been deprecated in favor of volcengine.redis.getBackups""")

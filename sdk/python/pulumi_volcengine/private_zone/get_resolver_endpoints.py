@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'GetResolverEndpointsResult',
@@ -22,7 +23,7 @@ class GetResolverEndpointsResult:
     """
     A collection of values returned by getResolverEndpoints.
     """
-    def __init__(__self__, direction=None, endpoints=None, id=None, name=None, name_regex=None, output_file=None, status=None, total_count=None, vpc_id=None):
+    def __init__(__self__, direction=None, endpoints=None, id=None, name=None, name_regex=None, output_file=None, project_name=None, status=None, tag_filters=None, total_count=None, vpc_id=None):
         if direction and not isinstance(direction, str):
             raise TypeError("Expected argument 'direction' to be a str")
         pulumi.set(__self__, "direction", direction)
@@ -41,9 +42,15 @@ class GetResolverEndpointsResult:
         if output_file and not isinstance(output_file, str):
             raise TypeError("Expected argument 'output_file' to be a str")
         pulumi.set(__self__, "output_file", output_file)
+        if project_name and not isinstance(project_name, str):
+            raise TypeError("Expected argument 'project_name' to be a str")
+        pulumi.set(__self__, "project_name", project_name)
         if status and not isinstance(status, str):
             raise TypeError("Expected argument 'status' to be a str")
         pulumi.set(__self__, "status", status)
+        if tag_filters and not isinstance(tag_filters, list):
+            raise TypeError("Expected argument 'tag_filters' to be a list")
+        pulumi.set(__self__, "tag_filters", tag_filters)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
@@ -94,12 +101,25 @@ class GetResolverEndpointsResult:
         return pulumi.get(self, "output_file")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[str]:
+        """
+        The project name of the endpoint.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
     @pulumi.getter
     def status(self) -> Optional[str]:
         """
         The status of the endpoint.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="tagFilters")
+    def tag_filters(self) -> Optional[Sequence['outputs.GetResolverEndpointsTagFilterResult']]:
+        return pulumi.get(self, "tag_filters")
 
     @property
     @pulumi.getter(name="totalCount")
@@ -130,7 +150,9 @@ class AwaitableGetResolverEndpointsResult(GetResolverEndpointsResult):
             name=self.name,
             name_regex=self.name_regex,
             output_file=self.output_file,
+            project_name=self.project_name,
             status=self.status,
+            tag_filters=self.tag_filters,
             total_count=self.total_count,
             vpc_id=self.vpc_id)
 
@@ -139,7 +161,9 @@ def get_resolver_endpoints(direction: Optional[str] = None,
                            name: Optional[str] = None,
                            name_regex: Optional[str] = None,
                            output_file: Optional[str] = None,
+                           project_name: Optional[str] = None,
                            status: Optional[str] = None,
+                           tag_filters: Optional[Sequence[pulumi.InputType['GetResolverEndpointsTagFilterArgs']]] = None,
                            vpc_id: Optional[str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetResolverEndpointsResult:
     """
@@ -158,7 +182,9 @@ def get_resolver_endpoints(direction: Optional[str] = None,
     :param str name: The name of the private zone resolver endpoint.
     :param str name_regex: A Name Regex of Resource.
     :param str output_file: File name where to save data source results.
+    :param str project_name: The project name of the private zone resolver endpoint.
     :param str status: The status of the private zone resolver endpoint.
+    :param Sequence[pulumi.InputType['GetResolverEndpointsTagFilterArgs']] tag_filters: List of tag filters.
     :param str vpc_id: The vpc ID of the private zone resolver endpoint.
     """
     __args__ = dict()
@@ -166,7 +192,9 @@ def get_resolver_endpoints(direction: Optional[str] = None,
     __args__['name'] = name
     __args__['nameRegex'] = name_regex
     __args__['outputFile'] = output_file
+    __args__['projectName'] = project_name
     __args__['status'] = status
+    __args__['tagFilters'] = tag_filters
     __args__['vpcId'] = vpc_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('volcengine:private_zone/getResolverEndpoints:getResolverEndpoints', __args__, opts=opts, typ=GetResolverEndpointsResult).value
@@ -178,7 +206,9 @@ def get_resolver_endpoints(direction: Optional[str] = None,
         name=pulumi.get(__ret__, 'name'),
         name_regex=pulumi.get(__ret__, 'name_regex'),
         output_file=pulumi.get(__ret__, 'output_file'),
+        project_name=pulumi.get(__ret__, 'project_name'),
         status=pulumi.get(__ret__, 'status'),
+        tag_filters=pulumi.get(__ret__, 'tag_filters'),
         total_count=pulumi.get(__ret__, 'total_count'),
         vpc_id=pulumi.get(__ret__, 'vpc_id'))
 
@@ -188,7 +218,9 @@ def get_resolver_endpoints_output(direction: Optional[pulumi.Input[Optional[str]
                                   name: Optional[pulumi.Input[Optional[str]]] = None,
                                   name_regex: Optional[pulumi.Input[Optional[str]]] = None,
                                   output_file: Optional[pulumi.Input[Optional[str]]] = None,
+                                  project_name: Optional[pulumi.Input[Optional[str]]] = None,
                                   status: Optional[pulumi.Input[Optional[str]]] = None,
+                                  tag_filters: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetResolverEndpointsTagFilterArgs']]]]] = None,
                                   vpc_id: Optional[pulumi.Input[Optional[str]]] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetResolverEndpointsResult]:
     """
@@ -207,7 +239,9 @@ def get_resolver_endpoints_output(direction: Optional[pulumi.Input[Optional[str]
     :param str name: The name of the private zone resolver endpoint.
     :param str name_regex: A Name Regex of Resource.
     :param str output_file: File name where to save data source results.
+    :param str project_name: The project name of the private zone resolver endpoint.
     :param str status: The status of the private zone resolver endpoint.
+    :param Sequence[pulumi.InputType['GetResolverEndpointsTagFilterArgs']] tag_filters: List of tag filters.
     :param str vpc_id: The vpc ID of the private zone resolver endpoint.
     """
     ...

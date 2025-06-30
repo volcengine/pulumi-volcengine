@@ -75,12 +75,16 @@ type Record struct {
 	Enable pulumi.BoolOutput `pulumi:"enable"`
 	// The host of the private zone record.
 	Host pulumi.StringOutput `pulumi:"host"`
+	// The subnet id of the private zone record. This field is only effected when the `intelligentMode` of the private zone is true. Default is `Default`.
+	Line pulumi.StringOutput `pulumi:"line"`
 	// The remark of the private zone record.
 	Remark pulumi.StringPtrOutput `pulumi:"remark"`
 	// The ttl of the private zone record. Unit: second. Default is 600.
 	Ttl pulumi.IntOutput `pulumi:"ttl"`
 	// The type of the private zone record. Valid values: `A`, `AAAA`, `CNAME`, `MX`, `PTR`.
 	Type pulumi.StringOutput `pulumi:"type"`
+	// The user account of the private zone record. This field is only effected when creating this resource.
+	UserAccount pulumi.StringPtrOutput `pulumi:"userAccount"`
 	// The value of the private zone record. Record values need to be set based on the value of the `type`.
 	Value pulumi.StringOutput `pulumi:"value"`
 	// The weight of the private zone record. This field is only effected when the `loadBalanceMode` of the private zone is true and the `weightEnabled` of the recordSet is true. Default is 1.
@@ -135,12 +139,16 @@ type recordState struct {
 	Enable *bool `pulumi:"enable"`
 	// The host of the private zone record.
 	Host *string `pulumi:"host"`
+	// The subnet id of the private zone record. This field is only effected when the `intelligentMode` of the private zone is true. Default is `Default`.
+	Line *string `pulumi:"line"`
 	// The remark of the private zone record.
 	Remark *string `pulumi:"remark"`
 	// The ttl of the private zone record. Unit: second. Default is 600.
 	Ttl *int `pulumi:"ttl"`
 	// The type of the private zone record. Valid values: `A`, `AAAA`, `CNAME`, `MX`, `PTR`.
 	Type *string `pulumi:"type"`
+	// The user account of the private zone record. This field is only effected when creating this resource.
+	UserAccount *string `pulumi:"userAccount"`
 	// The value of the private zone record. Record values need to be set based on the value of the `type`.
 	Value *string `pulumi:"value"`
 	// The weight of the private zone record. This field is only effected when the `loadBalanceMode` of the private zone is true and the `weightEnabled` of the recordSet is true. Default is 1.
@@ -154,12 +162,16 @@ type RecordState struct {
 	Enable pulumi.BoolPtrInput
 	// The host of the private zone record.
 	Host pulumi.StringPtrInput
+	// The subnet id of the private zone record. This field is only effected when the `intelligentMode` of the private zone is true. Default is `Default`.
+	Line pulumi.StringPtrInput
 	// The remark of the private zone record.
 	Remark pulumi.StringPtrInput
 	// The ttl of the private zone record. Unit: second. Default is 600.
 	Ttl pulumi.IntPtrInput
 	// The type of the private zone record. Valid values: `A`, `AAAA`, `CNAME`, `MX`, `PTR`.
 	Type pulumi.StringPtrInput
+	// The user account of the private zone record. This field is only effected when creating this resource.
+	UserAccount pulumi.StringPtrInput
 	// The value of the private zone record. Record values need to be set based on the value of the `type`.
 	Value pulumi.StringPtrInput
 	// The weight of the private zone record. This field is only effected when the `loadBalanceMode` of the private zone is true and the `weightEnabled` of the recordSet is true. Default is 1.
@@ -177,12 +189,16 @@ type recordArgs struct {
 	Enable *bool `pulumi:"enable"`
 	// The host of the private zone record.
 	Host string `pulumi:"host"`
+	// The subnet id of the private zone record. This field is only effected when the `intelligentMode` of the private zone is true. Default is `Default`.
+	Line *string `pulumi:"line"`
 	// The remark of the private zone record.
 	Remark *string `pulumi:"remark"`
 	// The ttl of the private zone record. Unit: second. Default is 600.
 	Ttl *int `pulumi:"ttl"`
 	// The type of the private zone record. Valid values: `A`, `AAAA`, `CNAME`, `MX`, `PTR`.
 	Type string `pulumi:"type"`
+	// The user account of the private zone record. This field is only effected when creating this resource.
+	UserAccount *string `pulumi:"userAccount"`
 	// The value of the private zone record. Record values need to be set based on the value of the `type`.
 	Value string `pulumi:"value"`
 	// The weight of the private zone record. This field is only effected when the `loadBalanceMode` of the private zone is true and the `weightEnabled` of the recordSet is true. Default is 1.
@@ -197,12 +213,16 @@ type RecordArgs struct {
 	Enable pulumi.BoolPtrInput
 	// The host of the private zone record.
 	Host pulumi.StringInput
+	// The subnet id of the private zone record. This field is only effected when the `intelligentMode` of the private zone is true. Default is `Default`.
+	Line pulumi.StringPtrInput
 	// The remark of the private zone record.
 	Remark pulumi.StringPtrInput
 	// The ttl of the private zone record. Unit: second. Default is 600.
 	Ttl pulumi.IntPtrInput
 	// The type of the private zone record. Valid values: `A`, `AAAA`, `CNAME`, `MX`, `PTR`.
 	Type pulumi.StringInput
+	// The user account of the private zone record. This field is only effected when creating this resource.
+	UserAccount pulumi.StringPtrInput
 	// The value of the private zone record. Record values need to be set based on the value of the `type`.
 	Value pulumi.StringInput
 	// The weight of the private zone record. This field is only effected when the `loadBalanceMode` of the private zone is true and the `weightEnabled` of the recordSet is true. Default is 1.
@@ -308,6 +328,11 @@ func (o RecordOutput) Host() pulumi.StringOutput {
 	return o.ApplyT(func(v *Record) pulumi.StringOutput { return v.Host }).(pulumi.StringOutput)
 }
 
+// The subnet id of the private zone record. This field is only effected when the `intelligentMode` of the private zone is true. Default is `Default`.
+func (o RecordOutput) Line() pulumi.StringOutput {
+	return o.ApplyT(func(v *Record) pulumi.StringOutput { return v.Line }).(pulumi.StringOutput)
+}
+
 // The remark of the private zone record.
 func (o RecordOutput) Remark() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Record) pulumi.StringPtrOutput { return v.Remark }).(pulumi.StringPtrOutput)
@@ -321,6 +346,11 @@ func (o RecordOutput) Ttl() pulumi.IntOutput {
 // The type of the private zone record. Valid values: `A`, `AAAA`, `CNAME`, `MX`, `PTR`.
 func (o RecordOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *Record) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
+// The user account of the private zone record. This field is only effected when creating this resource.
+func (o RecordOutput) UserAccount() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Record) pulumi.StringPtrOutput { return v.UserAccount }).(pulumi.StringPtrOutput)
 }
 
 // The value of the private zone record. Record values need to be set based on the value of the `type`.

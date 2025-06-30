@@ -33,6 +33,7 @@ export function records(args?: RecordsArgs, opts?: pulumi.InvokeOptions): Promis
         "name": args.name,
         "outputFile": args.outputFile,
         "recordId": args.recordId,
+        "recordIds": args.recordIds,
         "searchMode": args.searchMode,
         "type": args.type,
         "value": args.value,
@@ -53,7 +54,7 @@ export interface RecordsArgs {
      */
     lastOperator?: string;
     /**
-     * The subnet id of Private Zone Record. This field is only effected when the `intelligentMode` of the private zone is true.
+     * The subnet id of Private Zone Record.
      */
     line?: string;
     /**
@@ -65,9 +66,15 @@ export interface RecordsArgs {
      */
     outputFile?: string;
     /**
-     * The id of Private Zone Record.
+     * This field is deprecated, please use `recordIds` instead. The id of Private Zone Record.
+     *
+     * @deprecated This field is deprecated, please use `recordIds` instead.
      */
     recordId?: string;
+    /**
+     * The ids of Private Zone Record.
+     */
+    recordIds?: string[];
     /**
      * The search mode of query `host`. Valid values: `LIKE`, `EXACT`. Default is `LIKE`.
      */
@@ -110,8 +117,11 @@ export interface RecordsResult {
     readonly outputFile?: string;
     /**
      * The id of the private zone record.
+     *
+     * @deprecated This field is deprecated, please use `recordIds` instead.
      */
     readonly recordId?: string;
+    readonly recordIds?: string[];
     /**
      * The collection of query.
      */
@@ -166,7 +176,7 @@ export interface RecordsOutputArgs {
      */
     lastOperator?: pulumi.Input<string>;
     /**
-     * The subnet id of Private Zone Record. This field is only effected when the `intelligentMode` of the private zone is true.
+     * The subnet id of Private Zone Record.
      */
     line?: pulumi.Input<string>;
     /**
@@ -178,9 +188,15 @@ export interface RecordsOutputArgs {
      */
     outputFile?: pulumi.Input<string>;
     /**
-     * The id of Private Zone Record.
+     * This field is deprecated, please use `recordIds` instead. The id of Private Zone Record.
+     *
+     * @deprecated This field is deprecated, please use `recordIds` instead.
      */
     recordId?: pulumi.Input<string>;
+    /**
+     * The ids of Private Zone Record.
+     */
+    recordIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The search mode of query `host`. Valid values: `LIKE`, `EXACT`. Default is `LIKE`.
      */

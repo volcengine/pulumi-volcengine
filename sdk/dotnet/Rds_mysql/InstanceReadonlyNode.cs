@@ -88,6 +88,12 @@ namespace Pulumi.Volcengine.Rds_mysql
     public partial class InstanceReadonlyNode : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// The delay time of the readonly node.
+        /// </summary>
+        [Output("delayReplicationTime")]
+        public Output<int> DelayReplicationTime { get; private set; } = null!;
+
+        /// <summary>
         /// The RDS mysql instance id of the readonly node.
         /// </summary>
         [Output("instanceId")]
@@ -184,6 +190,12 @@ namespace Pulumi.Volcengine.Rds_mysql
 
     public sealed class InstanceReadonlyNodeState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The delay time of the readonly node.
+        /// </summary>
+        [Input("delayReplicationTime")]
+        public Input<int>? DelayReplicationTime { get; set; }
+
         /// <summary>
         /// The RDS mysql instance id of the readonly node.
         /// </summary>

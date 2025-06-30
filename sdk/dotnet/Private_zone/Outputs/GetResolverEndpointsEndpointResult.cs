@@ -38,6 +38,10 @@ namespace Pulumi.Volcengine.Private_zone.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
+        /// The project name of the private zone resolver endpoint.
+        /// </summary>
+        public readonly string ProjectName;
+        /// <summary>
         /// The security group id of the endpoint.
         /// </summary>
         public readonly string SecurityGroupId;
@@ -45,6 +49,10 @@ namespace Pulumi.Volcengine.Private_zone.Outputs
         /// The status of the private zone resolver endpoint.
         /// </summary>
         public readonly string Status;
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetResolverEndpointsEndpointTagResult> Tags;
         /// <summary>
         /// The updated time of the endpoint.
         /// </summary>
@@ -72,9 +80,13 @@ namespace Pulumi.Volcengine.Private_zone.Outputs
 
             string name,
 
+            string projectName,
+
             string securityGroupId,
 
             string status,
+
+            ImmutableArray<Outputs.GetResolverEndpointsEndpointTagResult> tags,
 
             string updatedAt,
 
@@ -88,8 +100,10 @@ namespace Pulumi.Volcengine.Private_zone.Outputs
             Id = id;
             IpConfigs = ipConfigs;
             Name = name;
+            ProjectName = projectName;
             SecurityGroupId = securityGroupId;
             Status = status;
+            Tags = tags;
             UpdatedAt = updatedAt;
             VpcId = vpcId;
             VpcRegion = vpcRegion;

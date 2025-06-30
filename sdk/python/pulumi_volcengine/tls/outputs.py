@@ -23,8 +23,24 @@ __all__ = [
     'AlarmsAlarmAlarmPeriodDetailResult',
     'AlarmsAlarmQueryRequestResult',
     'AlarmsAlarmRequestCycleResult',
+    'ConsumerGroupsConsumerGroupResult',
+    'EtlTaskTargetResource',
+    'EtlTasksTaskResult',
+    'EtlTasksTaskTargetResourceResult',
     'HostGroupsInfoResult',
     'HostsHostInfoResult',
+    'ImportTaskImportSourceInfo',
+    'ImportTaskImportSourceInfoKafkaSourceInfo',
+    'ImportTaskImportSourceInfoTosSourceInfo',
+    'ImportTaskTargetInfo',
+    'ImportTaskTargetInfoExtractRule',
+    'ImportTasksTaskInfoResult',
+    'ImportTasksTaskInfoImportSourceInfoResult',
+    'ImportTasksTaskInfoImportSourceInfoKafkaSourceInfoResult',
+    'ImportTasksTaskInfoImportSourceInfoTosSourceInfoResult',
+    'ImportTasksTaskInfoTargetInfoResult',
+    'ImportTasksTaskInfoTargetInfoExtractRuleResult',
+    'ImportTasksTaskInfoTaskStatisticsResult',
     'IndexFullText',
     'IndexKeyValue',
     'IndexKeyValueJsonKey',
@@ -76,7 +92,21 @@ __all__ = [
     'RulesRuleUserDefineRuleParsePathRuleResult',
     'RulesRuleUserDefineRulePluginResult',
     'RulesRuleUserDefineRuleShardHashKeyResult',
+    'ScheduleSqlTaskRequestCycle',
+    'ScheduleSqlTasksTaskResult',
+    'ScheduleSqlTasksTaskRequestCycleResult',
     'ShardsShardResult',
+    'ShipperContentInfo',
+    'ShipperContentInfoCsvInfo',
+    'ShipperContentInfoJsonInfo',
+    'ShipperKafkaShipperInfo',
+    'ShipperTosShipperInfo',
+    'ShippersShipperResult',
+    'ShippersShipperContentInfoResult',
+    'ShippersShipperContentInfoCsvInfoResult',
+    'ShippersShipperContentInfoJsonInfoResult',
+    'ShippersShipperKafkaShipperInfoResult',
+    'ShippersShipperTosShipperInfoResult',
     'TopicTag',
     'TopicsTagResult',
     'TopicsTlsTopicResult',
@@ -89,8 +119,18 @@ __all__ = [
     'GetAlarmsAlarmAlarmPeriodDetailResult',
     'GetAlarmsAlarmQueryRequestResult',
     'GetAlarmsAlarmRequestCycleResult',
+    'GetConsumerGroupsConsumerGroupResult',
+    'GetEtlTasksTaskResult',
+    'GetEtlTasksTaskTargetResourceResult',
     'GetHostGroupsInfoResult',
     'GetHostsHostInfoResult',
+    'GetImportTasksTaskInfoResult',
+    'GetImportTasksTaskInfoImportSourceInfoResult',
+    'GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfoResult',
+    'GetImportTasksTaskInfoImportSourceInfoTosSourceInfoResult',
+    'GetImportTasksTaskInfoTargetInfoResult',
+    'GetImportTasksTaskInfoTargetInfoExtractRuleResult',
+    'GetImportTasksTaskInfoTaskStatisticsResult',
     'GetIndexesTlsIndexResult',
     'GetIndexesTlsIndexFullTextResult',
     'GetIndexesTlsIndexKeyValueResult',
@@ -125,7 +165,15 @@ __all__ = [
     'GetRulesRuleUserDefineRuleParsePathRuleResult',
     'GetRulesRuleUserDefineRulePluginResult',
     'GetRulesRuleUserDefineRuleShardHashKeyResult',
+    'GetScheduleSqlTasksTaskResult',
+    'GetScheduleSqlTasksTaskRequestCycleResult',
     'GetShardsShardResult',
+    'GetShippersShipperResult',
+    'GetShippersShipperContentInfoResult',
+    'GetShippersShipperContentInfoCsvInfoResult',
+    'GetShippersShipperContentInfoJsonInfoResult',
+    'GetShippersShipperKafkaShipperInfoResult',
+    'GetShippersShipperTosShipperInfoResult',
     'GetTopicsTagResult',
     'GetTopicsTlsTopicResult',
     'GetTopicsTlsTopicTagResult',
@@ -1009,6 +1057,406 @@ class AlarmsAlarmRequestCycleResult(dict):
 
 
 @pulumi.output_type
+class ConsumerGroupsConsumerGroupResult(dict):
+    def __init__(__self__, *,
+                 consumer_group_name: str,
+                 heartbeat_ttl: int,
+                 ordered_consume: bool,
+                 project_id: str,
+                 project_name: str,
+                 topic_ids: Sequence[str]):
+        """
+        :param str consumer_group_name: The name of the consumer group.
+        :param int heartbeat_ttl: The time of heart rate expiration, measured in seconds, has a value range of 1 to 300.
+        :param bool ordered_consume: Whether to consume in sequence.
+        :param str project_id: The log project ID to which the consumption group belongs.
+        :param str project_name: The name of the log item to which the consumption group belongs.
+        :param Sequence[str] topic_ids: The log topic ID to which the consumer belongs.
+        """
+        pulumi.set(__self__, "consumer_group_name", consumer_group_name)
+        pulumi.set(__self__, "heartbeat_ttl", heartbeat_ttl)
+        pulumi.set(__self__, "ordered_consume", ordered_consume)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "topic_ids", topic_ids)
+
+    @property
+    @pulumi.getter(name="consumerGroupName")
+    def consumer_group_name(self) -> str:
+        """
+        The name of the consumer group.
+        """
+        return pulumi.get(self, "consumer_group_name")
+
+    @property
+    @pulumi.getter(name="heartbeatTtl")
+    def heartbeat_ttl(self) -> int:
+        """
+        The time of heart rate expiration, measured in seconds, has a value range of 1 to 300.
+        """
+        return pulumi.get(self, "heartbeat_ttl")
+
+    @property
+    @pulumi.getter(name="orderedConsume")
+    def ordered_consume(self) -> bool:
+        """
+        Whether to consume in sequence.
+        """
+        return pulumi.get(self, "ordered_consume")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        """
+        The log project ID to which the consumption group belongs.
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The name of the log item to which the consumption group belongs.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="topicIds")
+    def topic_ids(self) -> Sequence[str]:
+        """
+        The log topic ID to which the consumer belongs.
+        """
+        return pulumi.get(self, "topic_ids")
+
+
+@pulumi.output_type
+class EtlTaskTargetResource(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "topicId":
+            suggest = "topic_id"
+        elif key == "roleTrn":
+            suggest = "role_trn"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in EtlTaskTargetResource. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        EtlTaskTargetResource.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        EtlTaskTargetResource.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 alias: str,
+                 topic_id: str,
+                 role_trn: Optional[str] = None):
+        """
+        :param str alias: Customize the name of the output target, which needs to be used to refer to the output target in the data processing rules.
+        :param str topic_id: Log topics used for storing processed logs.
+        :param str role_trn: Cross-account authorized character names.
+        """
+        pulumi.set(__self__, "alias", alias)
+        pulumi.set(__self__, "topic_id", topic_id)
+        if role_trn is not None:
+            pulumi.set(__self__, "role_trn", role_trn)
+
+    @property
+    @pulumi.getter
+    def alias(self) -> str:
+        """
+        Customize the name of the output target, which needs to be used to refer to the output target in the data processing rules.
+        """
+        return pulumi.get(self, "alias")
+
+    @property
+    @pulumi.getter(name="topicId")
+    def topic_id(self) -> str:
+        """
+        Log topics used for storing processed logs.
+        """
+        return pulumi.get(self, "topic_id")
+
+    @property
+    @pulumi.getter(name="roleTrn")
+    def role_trn(self) -> Optional[str]:
+        """
+        Cross-account authorized character names.
+        """
+        return pulumi.get(self, "role_trn")
+
+
+@pulumi.output_type
+class EtlTasksTaskResult(dict):
+    def __init__(__self__, *,
+                 create_time: str,
+                 description: str,
+                 dsl_type: str,
+                 enable: bool,
+                 etl_status: str,
+                 from_time: int,
+                 last_enable_time: str,
+                 modify_time: str,
+                 name: str,
+                 project_id: str,
+                 project_name: str,
+                 script: str,
+                 source_topic_id: str,
+                 source_topic_name: str,
+                 target_resources: Sequence['outputs.EtlTasksTaskTargetResourceResult'],
+                 task_id: str,
+                 task_type: str,
+                 to_time: int):
+        """
+        :param str create_time: Processing task creation time.
+        :param str description: A simple description of the processing task.
+        :param str dsl_type: DSL type, fixed as NORMAL.
+        :param bool enable: The running status of the processing task.
+        :param str etl_status: Task scheduling status.
+        :param int from_time: The start time of the data to be processed.
+        :param str last_enable_time: Recent startup time.
+        :param str modify_time: The most recent modification time of the processing task.
+        :param str name: The name of the processing task.
+        :param str project_id: Specify the log item ID for querying the data processing tasks under the specified log item.
+        :param str project_name: Specify the name of the log item for querying the data processing tasks under the specified log item. Support fuzzy query.
+        :param str script: Processing rules.
+        :param str source_topic_id: Specify the log topic ID for querying the data processing tasks related to this log topic.
+        :param str source_topic_name: Specify the name of the log topic for querying the data processing tasks related to this log topic. Support fuzzy matching.
+        :param Sequence['EtlTasksTaskTargetResourceArgs'] target_resources: Output the relevant information of the target.
+        :param str task_id: The ID of the processing task.
+        :param str task_type: The task type is fixed as Resident.
+        :param int to_time: The end time of the data to be processed.
+        """
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "dsl_type", dsl_type)
+        pulumi.set(__self__, "enable", enable)
+        pulumi.set(__self__, "etl_status", etl_status)
+        pulumi.set(__self__, "from_time", from_time)
+        pulumi.set(__self__, "last_enable_time", last_enable_time)
+        pulumi.set(__self__, "modify_time", modify_time)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "script", script)
+        pulumi.set(__self__, "source_topic_id", source_topic_id)
+        pulumi.set(__self__, "source_topic_name", source_topic_name)
+        pulumi.set(__self__, "target_resources", target_resources)
+        pulumi.set(__self__, "task_id", task_id)
+        pulumi.set(__self__, "task_type", task_type)
+        pulumi.set(__self__, "to_time", to_time)
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        Processing task creation time.
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        A simple description of the processing task.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="dslType")
+    def dsl_type(self) -> str:
+        """
+        DSL type, fixed as NORMAL.
+        """
+        return pulumi.get(self, "dsl_type")
+
+    @property
+    @pulumi.getter
+    def enable(self) -> bool:
+        """
+        The running status of the processing task.
+        """
+        return pulumi.get(self, "enable")
+
+    @property
+    @pulumi.getter(name="etlStatus")
+    def etl_status(self) -> str:
+        """
+        Task scheduling status.
+        """
+        return pulumi.get(self, "etl_status")
+
+    @property
+    @pulumi.getter(name="fromTime")
+    def from_time(self) -> int:
+        """
+        The start time of the data to be processed.
+        """
+        return pulumi.get(self, "from_time")
+
+    @property
+    @pulumi.getter(name="lastEnableTime")
+    def last_enable_time(self) -> str:
+        """
+        Recent startup time.
+        """
+        return pulumi.get(self, "last_enable_time")
+
+    @property
+    @pulumi.getter(name="modifyTime")
+    def modify_time(self) -> str:
+        """
+        The most recent modification time of the processing task.
+        """
+        return pulumi.get(self, "modify_time")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the processing task.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        """
+        Specify the log item ID for querying the data processing tasks under the specified log item.
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        Specify the name of the log item for querying the data processing tasks under the specified log item. Support fuzzy query.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter
+    def script(self) -> str:
+        """
+        Processing rules.
+        """
+        return pulumi.get(self, "script")
+
+    @property
+    @pulumi.getter(name="sourceTopicId")
+    def source_topic_id(self) -> str:
+        """
+        Specify the log topic ID for querying the data processing tasks related to this log topic.
+        """
+        return pulumi.get(self, "source_topic_id")
+
+    @property
+    @pulumi.getter(name="sourceTopicName")
+    def source_topic_name(self) -> str:
+        """
+        Specify the name of the log topic for querying the data processing tasks related to this log topic. Support fuzzy matching.
+        """
+        return pulumi.get(self, "source_topic_name")
+
+    @property
+    @pulumi.getter(name="targetResources")
+    def target_resources(self) -> Sequence['outputs.EtlTasksTaskTargetResourceResult']:
+        """
+        Output the relevant information of the target.
+        """
+        return pulumi.get(self, "target_resources")
+
+    @property
+    @pulumi.getter(name="taskId")
+    def task_id(self) -> str:
+        """
+        The ID of the processing task.
+        """
+        return pulumi.get(self, "task_id")
+
+    @property
+    @pulumi.getter(name="taskType")
+    def task_type(self) -> str:
+        """
+        The task type is fixed as Resident.
+        """
+        return pulumi.get(self, "task_type")
+
+    @property
+    @pulumi.getter(name="toTime")
+    def to_time(self) -> int:
+        """
+        The end time of the data to be processed.
+        """
+        return pulumi.get(self, "to_time")
+
+
+@pulumi.output_type
+class EtlTasksTaskTargetResourceResult(dict):
+    def __init__(__self__, *,
+                 alias: str,
+                 project_id: str,
+                 project_name: str,
+                 topic_id: str,
+                 topic_name: str):
+        """
+        :param str alias: Customize the name of the output target, which needs to be used to refer to the output target in the data processing rules.
+        :param str project_id: Specify the log item ID for querying the data processing tasks under the specified log item.
+        :param str project_name: Specify the name of the log item for querying the data processing tasks under the specified log item. Support fuzzy query.
+        :param str topic_id: Log topics used for storing processed logs.
+        :param str topic_name: The name of the log topic used for storing the processed logs.
+        """
+        pulumi.set(__self__, "alias", alias)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "topic_id", topic_id)
+        pulumi.set(__self__, "topic_name", topic_name)
+
+    @property
+    @pulumi.getter
+    def alias(self) -> str:
+        """
+        Customize the name of the output target, which needs to be used to refer to the output target in the data processing rules.
+        """
+        return pulumi.get(self, "alias")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        """
+        Specify the log item ID for querying the data processing tasks under the specified log item.
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        Specify the name of the log item for querying the data processing tasks under the specified log item. Support fuzzy query.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="topicId")
+    def topic_id(self) -> str:
+        """
+        Log topics used for storing processed logs.
+        """
+        return pulumi.get(self, "topic_id")
+
+    @property
+    @pulumi.getter(name="topicName")
+    def topic_name(self) -> str:
+        """
+        The name of the log topic used for storing the processed logs.
+        """
+        return pulumi.get(self, "topic_name")
+
+
+@pulumi.output_type
 class HostGroupsInfoResult(dict):
     def __init__(__self__, *,
                  abnormal_heartbeat_status_count: int,
@@ -1251,6 +1699,1190 @@ class HostsHostInfoResult(dict):
         The version of log collector.
         """
         return pulumi.get(self, "log_collector_version")
+
+
+@pulumi.output_type
+class ImportTaskImportSourceInfo(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "kafkaSourceInfo":
+            suggest = "kafka_source_info"
+        elif key == "tosSourceInfo":
+            suggest = "tos_source_info"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ImportTaskImportSourceInfo. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ImportTaskImportSourceInfo.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ImportTaskImportSourceInfo.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 kafka_source_info: Optional['outputs.ImportTaskImportSourceInfoKafkaSourceInfo'] = None,
+                 tos_source_info: Optional['outputs.ImportTaskImportSourceInfoTosSourceInfo'] = None):
+        """
+        :param 'ImportTaskImportSourceInfoKafkaSourceInfoArgs' kafka_source_info: TOS imports source information.
+        :param 'ImportTaskImportSourceInfoTosSourceInfoArgs' tos_source_info: TOS imports source information.
+        """
+        if kafka_source_info is not None:
+            pulumi.set(__self__, "kafka_source_info", kafka_source_info)
+        if tos_source_info is not None:
+            pulumi.set(__self__, "tos_source_info", tos_source_info)
+
+    @property
+    @pulumi.getter(name="kafkaSourceInfo")
+    def kafka_source_info(self) -> Optional['outputs.ImportTaskImportSourceInfoKafkaSourceInfo']:
+        """
+        TOS imports source information.
+        """
+        return pulumi.get(self, "kafka_source_info")
+
+    @property
+    @pulumi.getter(name="tosSourceInfo")
+    def tos_source_info(self) -> Optional['outputs.ImportTaskImportSourceInfoTosSourceInfo']:
+        """
+        TOS imports source information.
+        """
+        return pulumi.get(self, "tos_source_info")
+
+
+@pulumi.output_type
+class ImportTaskImportSourceInfoKafkaSourceInfo(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "initialOffset":
+            suggest = "initial_offset"
+        elif key == "instanceId":
+            suggest = "instance_id"
+        elif key == "isNeedAuth":
+            suggest = "is_need_auth"
+        elif key == "timeSourceDefault":
+            suggest = "time_source_default"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ImportTaskImportSourceInfoKafkaSourceInfo. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ImportTaskImportSourceInfoKafkaSourceInfo.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ImportTaskImportSourceInfoKafkaSourceInfo.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 encode: Optional[str] = None,
+                 group: Optional[str] = None,
+                 host: Optional[str] = None,
+                 initial_offset: Optional[int] = None,
+                 instance_id: Optional[str] = None,
+                 is_need_auth: Optional[bool] = None,
+                 mechanism: Optional[str] = None,
+                 password: Optional[str] = None,
+                 protocol: Optional[str] = None,
+                 time_source_default: Optional[int] = None,
+                 topic: Optional[str] = None,
+                 username: Optional[str] = None):
+        """
+        :param str encode: The encoding format of the data.
+        :param str group: Kafka consumer group.
+        :param str host: The service addresses corresponding to different types of Kafka clusters are different.
+        :param int initial_offset: The starting position of data import.
+        :param str instance_id: When you are using the Volcano Engine Message Queue Kafka version, it should be set to the Kafka instance ID.
+        :param bool is_need_auth: Whether to enable authentication.
+        :param str mechanism: Password authentication mechanism.
+        :param str password: The Kafka SASL user password used for identity authentication.
+        :param str protocol: Secure Transport protocol.
+        :param int time_source_default: Specify the log time.
+        :param str topic: Kafka Topic name.
+        :param str username: The Kafka SASL username used for identity authentication.
+        """
+        if encode is not None:
+            pulumi.set(__self__, "encode", encode)
+        if group is not None:
+            pulumi.set(__self__, "group", group)
+        if host is not None:
+            pulumi.set(__self__, "host", host)
+        if initial_offset is not None:
+            pulumi.set(__self__, "initial_offset", initial_offset)
+        if instance_id is not None:
+            pulumi.set(__self__, "instance_id", instance_id)
+        if is_need_auth is not None:
+            pulumi.set(__self__, "is_need_auth", is_need_auth)
+        if mechanism is not None:
+            pulumi.set(__self__, "mechanism", mechanism)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if protocol is not None:
+            pulumi.set(__self__, "protocol", protocol)
+        if time_source_default is not None:
+            pulumi.set(__self__, "time_source_default", time_source_default)
+        if topic is not None:
+            pulumi.set(__self__, "topic", topic)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter
+    def encode(self) -> Optional[str]:
+        """
+        The encoding format of the data.
+        """
+        return pulumi.get(self, "encode")
+
+    @property
+    @pulumi.getter
+    def group(self) -> Optional[str]:
+        """
+        Kafka consumer group.
+        """
+        return pulumi.get(self, "group")
+
+    @property
+    @pulumi.getter
+    def host(self) -> Optional[str]:
+        """
+        The service addresses corresponding to different types of Kafka clusters are different.
+        """
+        return pulumi.get(self, "host")
+
+    @property
+    @pulumi.getter(name="initialOffset")
+    def initial_offset(self) -> Optional[int]:
+        """
+        The starting position of data import.
+        """
+        return pulumi.get(self, "initial_offset")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> Optional[str]:
+        """
+        When you are using the Volcano Engine Message Queue Kafka version, it should be set to the Kafka instance ID.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="isNeedAuth")
+    def is_need_auth(self) -> Optional[bool]:
+        """
+        Whether to enable authentication.
+        """
+        return pulumi.get(self, "is_need_auth")
+
+    @property
+    @pulumi.getter
+    def mechanism(self) -> Optional[str]:
+        """
+        Password authentication mechanism.
+        """
+        return pulumi.get(self, "mechanism")
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[str]:
+        """
+        The Kafka SASL user password used for identity authentication.
+        """
+        return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> Optional[str]:
+        """
+        Secure Transport protocol.
+        """
+        return pulumi.get(self, "protocol")
+
+    @property
+    @pulumi.getter(name="timeSourceDefault")
+    def time_source_default(self) -> Optional[int]:
+        """
+        Specify the log time.
+        """
+        return pulumi.get(self, "time_source_default")
+
+    @property
+    @pulumi.getter
+    def topic(self) -> Optional[str]:
+        """
+        Kafka Topic name.
+        """
+        return pulumi.get(self, "topic")
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[str]:
+        """
+        The Kafka SASL username used for identity authentication.
+        """
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class ImportTaskImportSourceInfoTosSourceInfo(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "compressType":
+            suggest = "compress_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ImportTaskImportSourceInfoTosSourceInfo. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ImportTaskImportSourceInfoTosSourceInfo.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ImportTaskImportSourceInfoTosSourceInfo.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 bucket: Optional[str] = None,
+                 compress_type: Optional[str] = None,
+                 prefix: Optional[str] = None,
+                 region: Optional[str] = None):
+        """
+        :param str bucket: The TOS bucket where the log file is located.
+        :param str compress_type: The compression mode of data in the TOS bucket.
+        :param str prefix: The path of the file to be imported in the TOS bucket.
+        :param str region: The region where the TOS bucket is located. Support cross-regional data import.
+        """
+        if bucket is not None:
+            pulumi.set(__self__, "bucket", bucket)
+        if compress_type is not None:
+            pulumi.set(__self__, "compress_type", compress_type)
+        if prefix is not None:
+            pulumi.set(__self__, "prefix", prefix)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter
+    def bucket(self) -> Optional[str]:
+        """
+        The TOS bucket where the log file is located.
+        """
+        return pulumi.get(self, "bucket")
+
+    @property
+    @pulumi.getter(name="compressType")
+    def compress_type(self) -> Optional[str]:
+        """
+        The compression mode of data in the TOS bucket.
+        """
+        return pulumi.get(self, "compress_type")
+
+    @property
+    @pulumi.getter
+    def prefix(self) -> Optional[str]:
+        """
+        The path of the file to be imported in the TOS bucket.
+        """
+        return pulumi.get(self, "prefix")
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[str]:
+        """
+        The region where the TOS bucket is located. Support cross-regional data import.
+        """
+        return pulumi.get(self, "region")
+
+
+@pulumi.output_type
+class ImportTaskTargetInfo(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "logType":
+            suggest = "log_type"
+        elif key == "extractRule":
+            suggest = "extract_rule"
+        elif key == "logSample":
+            suggest = "log_sample"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ImportTaskTargetInfo. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ImportTaskTargetInfo.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ImportTaskTargetInfo.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 log_type: str,
+                 region: str,
+                 extract_rule: Optional['outputs.ImportTaskTargetInfoExtractRule'] = None,
+                 log_sample: Optional[str] = None):
+        """
+        :param str log_type: Specify the log parsing type when importing.
+        :param str region: Regional ID.
+        :param 'ImportTaskTargetInfoExtractRuleArgs' extract_rule: Log extraction rules.
+        :param str log_sample: Log sample.
+        """
+        pulumi.set(__self__, "log_type", log_type)
+        pulumi.set(__self__, "region", region)
+        if extract_rule is not None:
+            pulumi.set(__self__, "extract_rule", extract_rule)
+        if log_sample is not None:
+            pulumi.set(__self__, "log_sample", log_sample)
+
+    @property
+    @pulumi.getter(name="logType")
+    def log_type(self) -> str:
+        """
+        Specify the log parsing type when importing.
+        """
+        return pulumi.get(self, "log_type")
+
+    @property
+    @pulumi.getter
+    def region(self) -> str:
+        """
+        Regional ID.
+        """
+        return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter(name="extractRule")
+    def extract_rule(self) -> Optional['outputs.ImportTaskTargetInfoExtractRule']:
+        """
+        Log extraction rules.
+        """
+        return pulumi.get(self, "extract_rule")
+
+    @property
+    @pulumi.getter(name="logSample")
+    def log_sample(self) -> Optional[str]:
+        """
+        Log sample.
+        """
+        return pulumi.get(self, "log_sample")
+
+
+@pulumi.output_type
+class ImportTaskTargetInfoExtractRule(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "beginRegex":
+            suggest = "begin_regex"
+        elif key == "skipLineCount":
+            suggest = "skip_line_count"
+        elif key == "timeExtractRegex":
+            suggest = "time_extract_regex"
+        elif key == "timeFormat":
+            suggest = "time_format"
+        elif key == "timeKey":
+            suggest = "time_key"
+        elif key == "timeZone":
+            suggest = "time_zone"
+        elif key == "unMatchLogKey":
+            suggest = "un_match_log_key"
+        elif key == "unMatchUpLoadSwitch":
+            suggest = "un_match_up_load_switch"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ImportTaskTargetInfoExtractRule. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ImportTaskTargetInfoExtractRule.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ImportTaskTargetInfoExtractRule.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 begin_regex: Optional[str] = None,
+                 delimiter: Optional[str] = None,
+                 keys: Optional[Sequence[str]] = None,
+                 quote: Optional[str] = None,
+                 skip_line_count: Optional[int] = None,
+                 time_extract_regex: Optional[str] = None,
+                 time_format: Optional[str] = None,
+                 time_key: Optional[str] = None,
+                 time_zone: Optional[str] = None,
+                 un_match_log_key: Optional[str] = None,
+                 un_match_up_load_switch: Optional[bool] = None):
+        """
+        :param str begin_regex: The regular expression used to identify the first line in each log, and its matching part will serve as the beginning of the log.
+        :param str delimiter: Log delimiter.
+        :param Sequence[str] keys: List of log field names (Keys).
+        :param str quote: Reference symbol. The content wrapped by the reference will not be separated but will be parsed into a complete field. It is valid if and only if the LogType is delimiter_log.
+        :param int skip_line_count: The number of log lines skipped.
+        :param str time_extract_regex: A regular expression for extracting time, used to extract the time value in the TimeKey field and parse it into the corresponding collection time.
+        :param str time_format: The parsing format of the time field.
+        :param str time_key: The field name of the log time field.
+        :param str time_zone: Time zone, supporting both machine time zone (default) and custom time zone. Among them, the custom time zone supports GMT and UTC.
+        :param str un_match_log_key: When uploading a log that failed to parse, the key name of the parse failed log.
+        :param bool un_match_up_load_switch: Whether to upload the logs of failed parsing.
+        """
+        if begin_regex is not None:
+            pulumi.set(__self__, "begin_regex", begin_regex)
+        if delimiter is not None:
+            pulumi.set(__self__, "delimiter", delimiter)
+        if keys is not None:
+            pulumi.set(__self__, "keys", keys)
+        if quote is not None:
+            pulumi.set(__self__, "quote", quote)
+        if skip_line_count is not None:
+            pulumi.set(__self__, "skip_line_count", skip_line_count)
+        if time_extract_regex is not None:
+            pulumi.set(__self__, "time_extract_regex", time_extract_regex)
+        if time_format is not None:
+            pulumi.set(__self__, "time_format", time_format)
+        if time_key is not None:
+            pulumi.set(__self__, "time_key", time_key)
+        if time_zone is not None:
+            pulumi.set(__self__, "time_zone", time_zone)
+        if un_match_log_key is not None:
+            pulumi.set(__self__, "un_match_log_key", un_match_log_key)
+        if un_match_up_load_switch is not None:
+            pulumi.set(__self__, "un_match_up_load_switch", un_match_up_load_switch)
+
+    @property
+    @pulumi.getter(name="beginRegex")
+    def begin_regex(self) -> Optional[str]:
+        """
+        The regular expression used to identify the first line in each log, and its matching part will serve as the beginning of the log.
+        """
+        return pulumi.get(self, "begin_regex")
+
+    @property
+    @pulumi.getter
+    def delimiter(self) -> Optional[str]:
+        """
+        Log delimiter.
+        """
+        return pulumi.get(self, "delimiter")
+
+    @property
+    @pulumi.getter
+    def keys(self) -> Optional[Sequence[str]]:
+        """
+        List of log field names (Keys).
+        """
+        return pulumi.get(self, "keys")
+
+    @property
+    @pulumi.getter
+    def quote(self) -> Optional[str]:
+        """
+        Reference symbol. The content wrapped by the reference will not be separated but will be parsed into a complete field. It is valid if and only if the LogType is delimiter_log.
+        """
+        return pulumi.get(self, "quote")
+
+    @property
+    @pulumi.getter(name="skipLineCount")
+    def skip_line_count(self) -> Optional[int]:
+        """
+        The number of log lines skipped.
+        """
+        return pulumi.get(self, "skip_line_count")
+
+    @property
+    @pulumi.getter(name="timeExtractRegex")
+    def time_extract_regex(self) -> Optional[str]:
+        """
+        A regular expression for extracting time, used to extract the time value in the TimeKey field and parse it into the corresponding collection time.
+        """
+        return pulumi.get(self, "time_extract_regex")
+
+    @property
+    @pulumi.getter(name="timeFormat")
+    def time_format(self) -> Optional[str]:
+        """
+        The parsing format of the time field.
+        """
+        return pulumi.get(self, "time_format")
+
+    @property
+    @pulumi.getter(name="timeKey")
+    def time_key(self) -> Optional[str]:
+        """
+        The field name of the log time field.
+        """
+        return pulumi.get(self, "time_key")
+
+    @property
+    @pulumi.getter(name="timeZone")
+    def time_zone(self) -> Optional[str]:
+        """
+        Time zone, supporting both machine time zone (default) and custom time zone. Among them, the custom time zone supports GMT and UTC.
+        """
+        return pulumi.get(self, "time_zone")
+
+    @property
+    @pulumi.getter(name="unMatchLogKey")
+    def un_match_log_key(self) -> Optional[str]:
+        """
+        When uploading a log that failed to parse, the key name of the parse failed log.
+        """
+        return pulumi.get(self, "un_match_log_key")
+
+    @property
+    @pulumi.getter(name="unMatchUpLoadSwitch")
+    def un_match_up_load_switch(self) -> Optional[bool]:
+        """
+        Whether to upload the logs of failed parsing.
+        """
+        return pulumi.get(self, "un_match_up_load_switch")
+
+
+@pulumi.output_type
+class ImportTasksTaskInfoResult(dict):
+    def __init__(__self__, *,
+                 create_time: str,
+                 description: str,
+                 import_source_info: 'outputs.ImportTasksTaskInfoImportSourceInfoResult',
+                 project_id: str,
+                 project_name: str,
+                 source_type: str,
+                 target_info: 'outputs.ImportTasksTaskInfoTargetInfoResult',
+                 task_id: str,
+                 task_name: str,
+                 task_statistics: 'outputs.ImportTasksTaskInfoTaskStatisticsResult',
+                 topic_id: str,
+                 topic_name: str,
+                 status: Optional[int] = None):
+        """
+        :param str create_time: The creation time of the data import task.
+        :param str description: Data import task description.
+        :param 'ImportTasksTaskInfoImportSourceInfoArgs' import_source_info: The source information of the data import task.
+        :param str project_id: Specify the log item ID for querying the data import tasks under the specified log item.
+        :param str project_name: Specify the name of the log item for querying the data import tasks under the specified log item. Support fuzzy query..
+        :param str source_type: Specify the import type for querying the data import tasks related to this import type.
+        :param 'ImportTasksTaskInfoTargetInfoArgs' target_info: The output information of the data import task.
+        :param str task_id: Import the task ID of the data to be queried.
+        :param str task_name: Import the task name of the data to be queried.
+        :param 'ImportTasksTaskInfoTaskStatisticsArgs' task_statistics: The progress of the data import task.
+        :param str topic_id: Specify the log topic ID for querying the data import tasks related to this log topic.
+        :param str topic_name: Specify the name of the log topic for querying the data import tasks related to this log topic. Support fuzzy query.
+        :param int status: Specify the status of the import task.
+        """
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "import_source_info", import_source_info)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "source_type", source_type)
+        pulumi.set(__self__, "target_info", target_info)
+        pulumi.set(__self__, "task_id", task_id)
+        pulumi.set(__self__, "task_name", task_name)
+        pulumi.set(__self__, "task_statistics", task_statistics)
+        pulumi.set(__self__, "topic_id", topic_id)
+        pulumi.set(__self__, "topic_name", topic_name)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        The creation time of the data import task.
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        Data import task description.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="importSourceInfo")
+    def import_source_info(self) -> 'outputs.ImportTasksTaskInfoImportSourceInfoResult':
+        """
+        The source information of the data import task.
+        """
+        return pulumi.get(self, "import_source_info")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        """
+        Specify the log item ID for querying the data import tasks under the specified log item.
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        Specify the name of the log item for querying the data import tasks under the specified log item. Support fuzzy query..
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="sourceType")
+    def source_type(self) -> str:
+        """
+        Specify the import type for querying the data import tasks related to this import type.
+        """
+        return pulumi.get(self, "source_type")
+
+    @property
+    @pulumi.getter(name="targetInfo")
+    def target_info(self) -> 'outputs.ImportTasksTaskInfoTargetInfoResult':
+        """
+        The output information of the data import task.
+        """
+        return pulumi.get(self, "target_info")
+
+    @property
+    @pulumi.getter(name="taskId")
+    def task_id(self) -> str:
+        """
+        Import the task ID of the data to be queried.
+        """
+        return pulumi.get(self, "task_id")
+
+    @property
+    @pulumi.getter(name="taskName")
+    def task_name(self) -> str:
+        """
+        Import the task name of the data to be queried.
+        """
+        return pulumi.get(self, "task_name")
+
+    @property
+    @pulumi.getter(name="taskStatistics")
+    def task_statistics(self) -> 'outputs.ImportTasksTaskInfoTaskStatisticsResult':
+        """
+        The progress of the data import task.
+        """
+        return pulumi.get(self, "task_statistics")
+
+    @property
+    @pulumi.getter(name="topicId")
+    def topic_id(self) -> str:
+        """
+        Specify the log topic ID for querying the data import tasks related to this log topic.
+        """
+        return pulumi.get(self, "topic_id")
+
+    @property
+    @pulumi.getter(name="topicName")
+    def topic_name(self) -> str:
+        """
+        Specify the name of the log topic for querying the data import tasks related to this log topic. Support fuzzy query.
+        """
+        return pulumi.get(self, "topic_name")
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[int]:
+        """
+        Specify the status of the import task.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class ImportTasksTaskInfoImportSourceInfoResult(dict):
+    def __init__(__self__, *,
+                 kafka_source_info: 'outputs.ImportTasksTaskInfoImportSourceInfoKafkaSourceInfoResult',
+                 tos_source_info: 'outputs.ImportTasksTaskInfoImportSourceInfoTosSourceInfoResult'):
+        """
+        :param 'ImportTasksTaskInfoImportSourceInfoKafkaSourceInfoArgs' kafka_source_info: TOS imports source information.
+        :param 'ImportTasksTaskInfoImportSourceInfoTosSourceInfoArgs' tos_source_info: TOS imports source information.
+        """
+        pulumi.set(__self__, "kafka_source_info", kafka_source_info)
+        pulumi.set(__self__, "tos_source_info", tos_source_info)
+
+    @property
+    @pulumi.getter(name="kafkaSourceInfo")
+    def kafka_source_info(self) -> 'outputs.ImportTasksTaskInfoImportSourceInfoKafkaSourceInfoResult':
+        """
+        TOS imports source information.
+        """
+        return pulumi.get(self, "kafka_source_info")
+
+    @property
+    @pulumi.getter(name="tosSourceInfo")
+    def tos_source_info(self) -> 'outputs.ImportTasksTaskInfoImportSourceInfoTosSourceInfoResult':
+        """
+        TOS imports source information.
+        """
+        return pulumi.get(self, "tos_source_info")
+
+
+@pulumi.output_type
+class ImportTasksTaskInfoImportSourceInfoKafkaSourceInfoResult(dict):
+    def __init__(__self__, *,
+                 encode: str,
+                 group: str,
+                 host: str,
+                 initial_offset: int,
+                 instance_id: str,
+                 is_need_auth: bool,
+                 mechanism: str,
+                 password: str,
+                 protocol: str,
+                 time_source_default: int,
+                 topic: str,
+                 username: str):
+        """
+        :param str encode: The encoding format of the data.
+        :param str group: Kafka consumer group.
+        :param str host: The service addresses corresponding to different types of Kafka clusters are different.
+        :param int initial_offset: The starting position of data import.
+        :param str instance_id: When you are using the Volcano Engine Message Queue Kafka version, it should be set to the Kafka instance ID.
+        :param bool is_need_auth: Whether to enable authentication.
+        :param str mechanism: Password authentication mechanism.
+        :param str password: The Kafka SASL user password used for identity authentication.
+        :param str protocol: Secure Transport protocol.
+        :param int time_source_default: Specify the log time.
+        :param str topic: Kafka Topic name.
+        :param str username: The Kafka SASL username used for identity authentication.
+        """
+        pulumi.set(__self__, "encode", encode)
+        pulumi.set(__self__, "group", group)
+        pulumi.set(__self__, "host", host)
+        pulumi.set(__self__, "initial_offset", initial_offset)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "is_need_auth", is_need_auth)
+        pulumi.set(__self__, "mechanism", mechanism)
+        pulumi.set(__self__, "password", password)
+        pulumi.set(__self__, "protocol", protocol)
+        pulumi.set(__self__, "time_source_default", time_source_default)
+        pulumi.set(__self__, "topic", topic)
+        pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter
+    def encode(self) -> str:
+        """
+        The encoding format of the data.
+        """
+        return pulumi.get(self, "encode")
+
+    @property
+    @pulumi.getter
+    def group(self) -> str:
+        """
+        Kafka consumer group.
+        """
+        return pulumi.get(self, "group")
+
+    @property
+    @pulumi.getter
+    def host(self) -> str:
+        """
+        The service addresses corresponding to different types of Kafka clusters are different.
+        """
+        return pulumi.get(self, "host")
+
+    @property
+    @pulumi.getter(name="initialOffset")
+    def initial_offset(self) -> int:
+        """
+        The starting position of data import.
+        """
+        return pulumi.get(self, "initial_offset")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        When you are using the Volcano Engine Message Queue Kafka version, it should be set to the Kafka instance ID.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="isNeedAuth")
+    def is_need_auth(self) -> bool:
+        """
+        Whether to enable authentication.
+        """
+        return pulumi.get(self, "is_need_auth")
+
+    @property
+    @pulumi.getter
+    def mechanism(self) -> str:
+        """
+        Password authentication mechanism.
+        """
+        return pulumi.get(self, "mechanism")
+
+    @property
+    @pulumi.getter
+    def password(self) -> str:
+        """
+        The Kafka SASL user password used for identity authentication.
+        """
+        return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> str:
+        """
+        Secure Transport protocol.
+        """
+        return pulumi.get(self, "protocol")
+
+    @property
+    @pulumi.getter(name="timeSourceDefault")
+    def time_source_default(self) -> int:
+        """
+        Specify the log time.
+        """
+        return pulumi.get(self, "time_source_default")
+
+    @property
+    @pulumi.getter
+    def topic(self) -> str:
+        """
+        Kafka Topic name.
+        """
+        return pulumi.get(self, "topic")
+
+    @property
+    @pulumi.getter
+    def username(self) -> str:
+        """
+        The Kafka SASL username used for identity authentication.
+        """
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class ImportTasksTaskInfoImportSourceInfoTosSourceInfoResult(dict):
+    def __init__(__self__, *,
+                 bucket: str,
+                 compress_type: str,
+                 prefix: str,
+                 region: str):
+        """
+        :param str bucket: The TOS bucket where the log file is located.
+        :param str compress_type: The compression mode of data in the TOS bucket.
+        :param str prefix: The path of the file to be imported in the TOS bucket.
+        :param str region: Regional ID.
+        """
+        pulumi.set(__self__, "bucket", bucket)
+        pulumi.set(__self__, "compress_type", compress_type)
+        pulumi.set(__self__, "prefix", prefix)
+        pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter
+    def bucket(self) -> str:
+        """
+        The TOS bucket where the log file is located.
+        """
+        return pulumi.get(self, "bucket")
+
+    @property
+    @pulumi.getter(name="compressType")
+    def compress_type(self) -> str:
+        """
+        The compression mode of data in the TOS bucket.
+        """
+        return pulumi.get(self, "compress_type")
+
+    @property
+    @pulumi.getter
+    def prefix(self) -> str:
+        """
+        The path of the file to be imported in the TOS bucket.
+        """
+        return pulumi.get(self, "prefix")
+
+    @property
+    @pulumi.getter
+    def region(self) -> str:
+        """
+        Regional ID.
+        """
+        return pulumi.get(self, "region")
+
+
+@pulumi.output_type
+class ImportTasksTaskInfoTargetInfoResult(dict):
+    def __init__(__self__, *,
+                 extract_rule: 'outputs.ImportTasksTaskInfoTargetInfoExtractRuleResult',
+                 log_sample: str,
+                 log_type: str,
+                 region: str):
+        """
+        :param 'ImportTasksTaskInfoTargetInfoExtractRuleArgs' extract_rule: Log extraction rules.
+        :param str log_sample: Log sample.
+        :param str log_type: Specify the log parsing type when importing.
+        :param str region: Regional ID.
+        """
+        pulumi.set(__self__, "extract_rule", extract_rule)
+        pulumi.set(__self__, "log_sample", log_sample)
+        pulumi.set(__self__, "log_type", log_type)
+        pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter(name="extractRule")
+    def extract_rule(self) -> 'outputs.ImportTasksTaskInfoTargetInfoExtractRuleResult':
+        """
+        Log extraction rules.
+        """
+        return pulumi.get(self, "extract_rule")
+
+    @property
+    @pulumi.getter(name="logSample")
+    def log_sample(self) -> str:
+        """
+        Log sample.
+        """
+        return pulumi.get(self, "log_sample")
+
+    @property
+    @pulumi.getter(name="logType")
+    def log_type(self) -> str:
+        """
+        Specify the log parsing type when importing.
+        """
+        return pulumi.get(self, "log_type")
+
+    @property
+    @pulumi.getter
+    def region(self) -> str:
+        """
+        Regional ID.
+        """
+        return pulumi.get(self, "region")
+
+
+@pulumi.output_type
+class ImportTasksTaskInfoTargetInfoExtractRuleResult(dict):
+    def __init__(__self__, *,
+                 begin_regex: str,
+                 delimiter: str,
+                 keys: Sequence[str],
+                 quote: str,
+                 skip_line_count: int,
+                 time_extract_regex: str,
+                 time_format: str,
+                 time_key: str,
+                 time_zone: str,
+                 un_match_log_key: str,
+                 un_match_up_load_switch: bool):
+        """
+        :param str begin_regex: The regular expression used to identify the first line in each log, and its matching part will serve as the beginning of the log.
+        :param str delimiter: Log delimiter.
+        :param Sequence[str] keys: List of log field names (Keys).
+        :param str quote: Reference symbol. The content wrapped by the reference will not be separated but will be parsed into a complete field. It is valid if and only if the LogType is delimiter_log.
+        :param int skip_line_count: The number of log lines skipped.
+        :param str time_extract_regex: A regular expression for extracting time, used to extract the time value in the TimeKey field and parse it into the corresponding collection time.
+        :param str time_format: The parsing format of the time field.
+        :param str time_key: The field name of the log time field.
+        :param str time_zone: Time zone, supporting both machine time zone (default) and custom time zone. Among them, the custom time zone supports GMT and UTC.
+        :param str un_match_log_key: When uploading a log that failed to parse, the key name of the parse failed log.
+        :param bool un_match_up_load_switch: Whether to upload the logs of failed parsing.
+        """
+        pulumi.set(__self__, "begin_regex", begin_regex)
+        pulumi.set(__self__, "delimiter", delimiter)
+        pulumi.set(__self__, "keys", keys)
+        pulumi.set(__self__, "quote", quote)
+        pulumi.set(__self__, "skip_line_count", skip_line_count)
+        pulumi.set(__self__, "time_extract_regex", time_extract_regex)
+        pulumi.set(__self__, "time_format", time_format)
+        pulumi.set(__self__, "time_key", time_key)
+        pulumi.set(__self__, "time_zone", time_zone)
+        pulumi.set(__self__, "un_match_log_key", un_match_log_key)
+        pulumi.set(__self__, "un_match_up_load_switch", un_match_up_load_switch)
+
+    @property
+    @pulumi.getter(name="beginRegex")
+    def begin_regex(self) -> str:
+        """
+        The regular expression used to identify the first line in each log, and its matching part will serve as the beginning of the log.
+        """
+        return pulumi.get(self, "begin_regex")
+
+    @property
+    @pulumi.getter
+    def delimiter(self) -> str:
+        """
+        Log delimiter.
+        """
+        return pulumi.get(self, "delimiter")
+
+    @property
+    @pulumi.getter
+    def keys(self) -> Sequence[str]:
+        """
+        List of log field names (Keys).
+        """
+        return pulumi.get(self, "keys")
+
+    @property
+    @pulumi.getter
+    def quote(self) -> str:
+        """
+        Reference symbol. The content wrapped by the reference will not be separated but will be parsed into a complete field. It is valid if and only if the LogType is delimiter_log.
+        """
+        return pulumi.get(self, "quote")
+
+    @property
+    @pulumi.getter(name="skipLineCount")
+    def skip_line_count(self) -> int:
+        """
+        The number of log lines skipped.
+        """
+        return pulumi.get(self, "skip_line_count")
+
+    @property
+    @pulumi.getter(name="timeExtractRegex")
+    def time_extract_regex(self) -> str:
+        """
+        A regular expression for extracting time, used to extract the time value in the TimeKey field and parse it into the corresponding collection time.
+        """
+        return pulumi.get(self, "time_extract_regex")
+
+    @property
+    @pulumi.getter(name="timeFormat")
+    def time_format(self) -> str:
+        """
+        The parsing format of the time field.
+        """
+        return pulumi.get(self, "time_format")
+
+    @property
+    @pulumi.getter(name="timeKey")
+    def time_key(self) -> str:
+        """
+        The field name of the log time field.
+        """
+        return pulumi.get(self, "time_key")
+
+    @property
+    @pulumi.getter(name="timeZone")
+    def time_zone(self) -> str:
+        """
+        Time zone, supporting both machine time zone (default) and custom time zone. Among them, the custom time zone supports GMT and UTC.
+        """
+        return pulumi.get(self, "time_zone")
+
+    @property
+    @pulumi.getter(name="unMatchLogKey")
+    def un_match_log_key(self) -> str:
+        """
+        When uploading a log that failed to parse, the key name of the parse failed log.
+        """
+        return pulumi.get(self, "un_match_log_key")
+
+    @property
+    @pulumi.getter(name="unMatchUpLoadSwitch")
+    def un_match_up_load_switch(self) -> bool:
+        """
+        Whether to upload the logs of failed parsing.
+        """
+        return pulumi.get(self, "un_match_up_load_switch")
+
+
+@pulumi.output_type
+class ImportTasksTaskInfoTaskStatisticsResult(dict):
+    def __init__(__self__, *,
+                 bytes_total: int,
+                 bytes_transferred: int,
+                 failed: int,
+                 not_exist: int,
+                 skipped: int,
+                 task_status: str,
+                 total: int,
+                 transferred: int):
+        """
+        :param int bytes_total: The total number of resource bytes that have been listed.
+        :param int bytes_transferred: The number of imported bytes.
+        :param int failed: The number of resources that failed to import.
+        :param int not_exist: The number of non-existent resources.
+        :param int skipped: Skip the number of imported resources.
+        :param str task_status: Import the status of the task.
+        :param int total: The total number of resources that have been listed.
+        :param int transferred: The number of imported resources.
+        """
+        pulumi.set(__self__, "bytes_total", bytes_total)
+        pulumi.set(__self__, "bytes_transferred", bytes_transferred)
+        pulumi.set(__self__, "failed", failed)
+        pulumi.set(__self__, "not_exist", not_exist)
+        pulumi.set(__self__, "skipped", skipped)
+        pulumi.set(__self__, "task_status", task_status)
+        pulumi.set(__self__, "total", total)
+        pulumi.set(__self__, "transferred", transferred)
+
+    @property
+    @pulumi.getter(name="bytesTotal")
+    def bytes_total(self) -> int:
+        """
+        The total number of resource bytes that have been listed.
+        """
+        return pulumi.get(self, "bytes_total")
+
+    @property
+    @pulumi.getter(name="bytesTransferred")
+    def bytes_transferred(self) -> int:
+        """
+        The number of imported bytes.
+        """
+        return pulumi.get(self, "bytes_transferred")
+
+    @property
+    @pulumi.getter
+    def failed(self) -> int:
+        """
+        The number of resources that failed to import.
+        """
+        return pulumi.get(self, "failed")
+
+    @property
+    @pulumi.getter(name="notExist")
+    def not_exist(self) -> int:
+        """
+        The number of non-existent resources.
+        """
+        return pulumi.get(self, "not_exist")
+
+    @property
+    @pulumi.getter
+    def skipped(self) -> int:
+        """
+        Skip the number of imported resources.
+        """
+        return pulumi.get(self, "skipped")
+
+    @property
+    @pulumi.getter(name="taskStatus")
+    def task_status(self) -> str:
+        """
+        Import the status of the task.
+        """
+        return pulumi.get(self, "task_status")
+
+    @property
+    @pulumi.getter
+    def total(self) -> int:
+        """
+        The total number of resources that have been listed.
+        """
+        return pulumi.get(self, "total")
+
+    @property
+    @pulumi.getter
+    def transferred(self) -> int:
+        """
+        The number of imported resources.
+        """
+        return pulumi.get(self, "transferred")
 
 
 @pulumi.output_type
@@ -4724,6 +6356,356 @@ class RulesRuleUserDefineRuleShardHashKeyResult(dict):
 
 
 @pulumi.output_type
+class ScheduleSqlTaskRequestCycle(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "cronTab":
+            suggest = "cron_tab"
+        elif key == "cronTimeZone":
+            suggest = "cron_time_zone"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ScheduleSqlTaskRequestCycle. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ScheduleSqlTaskRequestCycle.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ScheduleSqlTaskRequestCycle.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 time: int,
+                 type: str,
+                 cron_tab: Optional[str] = None,
+                 cron_time_zone: Optional[str] = None):
+        """
+        :param int time: The scheduling cycle or the time point of regular execution (the number of minutes away from 00:00), with a value range of 1 to 1440, and the unit is minutes.
+        :param str type: The type of Scheduling cycle.
+        :param str cron_tab: Cron expression. The log service specifies the timed execution of alarm tasks through the Cron expression. The minimum granularity of Cron expressions is minutes, 24 hours. For example, 0 18 * * * indicates that an alarm task is executed exactly at 18:00 every day.
+        :param str cron_time_zone: When setting the Type to Cron, the time zone also needs to be set.
+        """
+        pulumi.set(__self__, "time", time)
+        pulumi.set(__self__, "type", type)
+        if cron_tab is not None:
+            pulumi.set(__self__, "cron_tab", cron_tab)
+        if cron_time_zone is not None:
+            pulumi.set(__self__, "cron_time_zone", cron_time_zone)
+
+    @property
+    @pulumi.getter
+    def time(self) -> int:
+        """
+        The scheduling cycle or the time point of regular execution (the number of minutes away from 00:00), with a value range of 1 to 1440, and the unit is minutes.
+        """
+        return pulumi.get(self, "time")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of Scheduling cycle.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="cronTab")
+    def cron_tab(self) -> Optional[str]:
+        """
+        Cron expression. The log service specifies the timed execution of alarm tasks through the Cron expression. The minimum granularity of Cron expressions is minutes, 24 hours. For example, 0 18 * * * indicates that an alarm task is executed exactly at 18:00 every day.
+        """
+        return pulumi.get(self, "cron_tab")
+
+    @property
+    @pulumi.getter(name="cronTimeZone")
+    def cron_time_zone(self) -> Optional[str]:
+        """
+        When setting the Type to Cron, the time zone also needs to be set.
+        """
+        return pulumi.get(self, "cron_time_zone")
+
+
+@pulumi.output_type
+class ScheduleSqlTasksTaskResult(dict):
+    def __init__(__self__, *,
+                 create_time_stamp: int,
+                 description: str,
+                 dest_project_id: str,
+                 dest_region: str,
+                 dest_topic_id: str,
+                 dest_topic_name: str,
+                 modify_time_stamp: int,
+                 process_end_time: int,
+                 process_sql_delay: int,
+                 process_start_time: int,
+                 process_time_window: str,
+                 query: str,
+                 request_cycle: 'outputs.ScheduleSqlTasksTaskRequestCycleResult',
+                 source_project_id: str,
+                 source_project_name: str,
+                 source_topic_id: str,
+                 source_topic_name: str,
+                 status: int,
+                 task_id: str,
+                 task_name: str):
+        """
+        :param int create_time_stamp: Set the creation time of timed SQL analysis tasks.
+        :param str description: A simple description of the timed SQL analysis task.
+        :param str dest_project_id: The log project ID to which the target log topic belongs.
+        :param str dest_region: The region to which the target log project belongs.
+        :param str dest_topic_id: The target log topic ID used for storing the result data of timed SQL analysis.
+        :param str dest_topic_name: The name of the target log topic used for storing the data of the timed SQL analysis results.
+        :param int modify_time_stamp: The most recent modification time of the scheduled SQL analysis task.
+        :param int process_end_time: Schedule the end time of the timed SQL analysis task in the format of a second-level timestamp.
+        :param int process_sql_delay: The delay time of each scheduling. The value range is from 0 to 120, and the unit is seconds.
+        :param int process_start_time: The start time of the scheduled SQL task, that is, the start time when the first instance is scheduled. The format is a timestamp at the second level.
+        :param str process_time_window: SQL time window, which refers to the time range for log retrieval and analysis when a timed SQL analysis task is running, is in a left-closed and right-open format.
+        :param str query: Timed SQL analysis tasks are retrieval and analysis statements that are executed regularly.
+        :param 'ScheduleSqlTasksTaskRequestCycleArgs' request_cycle: The scheduling cycle of timed SQL analysis tasks.
+        :param str source_project_id: The log project ID to which the source log topic belongs.
+        :param str source_project_name: The name of the log item to which the source log topic belongs.
+        :param str source_topic_id: The source log topic ID where the original log for timed SQL analysis is located.
+        :param str source_topic_name: Source log topic name.
+        :param int status: Timed SQL analysis task status.
+        :param str task_id: Timed SQL analysis task ID.
+        :param str task_name: Timed SQL analysis task name.
+        """
+        pulumi.set(__self__, "create_time_stamp", create_time_stamp)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "dest_project_id", dest_project_id)
+        pulumi.set(__self__, "dest_region", dest_region)
+        pulumi.set(__self__, "dest_topic_id", dest_topic_id)
+        pulumi.set(__self__, "dest_topic_name", dest_topic_name)
+        pulumi.set(__self__, "modify_time_stamp", modify_time_stamp)
+        pulumi.set(__self__, "process_end_time", process_end_time)
+        pulumi.set(__self__, "process_sql_delay", process_sql_delay)
+        pulumi.set(__self__, "process_start_time", process_start_time)
+        pulumi.set(__self__, "process_time_window", process_time_window)
+        pulumi.set(__self__, "query", query)
+        pulumi.set(__self__, "request_cycle", request_cycle)
+        pulumi.set(__self__, "source_project_id", source_project_id)
+        pulumi.set(__self__, "source_project_name", source_project_name)
+        pulumi.set(__self__, "source_topic_id", source_topic_id)
+        pulumi.set(__self__, "source_topic_name", source_topic_name)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "task_id", task_id)
+        pulumi.set(__self__, "task_name", task_name)
+
+    @property
+    @pulumi.getter(name="createTimeStamp")
+    def create_time_stamp(self) -> int:
+        """
+        Set the creation time of timed SQL analysis tasks.
+        """
+        return pulumi.get(self, "create_time_stamp")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        A simple description of the timed SQL analysis task.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="destProjectId")
+    def dest_project_id(self) -> str:
+        """
+        The log project ID to which the target log topic belongs.
+        """
+        return pulumi.get(self, "dest_project_id")
+
+    @property
+    @pulumi.getter(name="destRegion")
+    def dest_region(self) -> str:
+        """
+        The region to which the target log project belongs.
+        """
+        return pulumi.get(self, "dest_region")
+
+    @property
+    @pulumi.getter(name="destTopicId")
+    def dest_topic_id(self) -> str:
+        """
+        The target log topic ID used for storing the result data of timed SQL analysis.
+        """
+        return pulumi.get(self, "dest_topic_id")
+
+    @property
+    @pulumi.getter(name="destTopicName")
+    def dest_topic_name(self) -> str:
+        """
+        The name of the target log topic used for storing the data of the timed SQL analysis results.
+        """
+        return pulumi.get(self, "dest_topic_name")
+
+    @property
+    @pulumi.getter(name="modifyTimeStamp")
+    def modify_time_stamp(self) -> int:
+        """
+        The most recent modification time of the scheduled SQL analysis task.
+        """
+        return pulumi.get(self, "modify_time_stamp")
+
+    @property
+    @pulumi.getter(name="processEndTime")
+    def process_end_time(self) -> int:
+        """
+        Schedule the end time of the timed SQL analysis task in the format of a second-level timestamp.
+        """
+        return pulumi.get(self, "process_end_time")
+
+    @property
+    @pulumi.getter(name="processSqlDelay")
+    def process_sql_delay(self) -> int:
+        """
+        The delay time of each scheduling. The value range is from 0 to 120, and the unit is seconds.
+        """
+        return pulumi.get(self, "process_sql_delay")
+
+    @property
+    @pulumi.getter(name="processStartTime")
+    def process_start_time(self) -> int:
+        """
+        The start time of the scheduled SQL task, that is, the start time when the first instance is scheduled. The format is a timestamp at the second level.
+        """
+        return pulumi.get(self, "process_start_time")
+
+    @property
+    @pulumi.getter(name="processTimeWindow")
+    def process_time_window(self) -> str:
+        """
+        SQL time window, which refers to the time range for log retrieval and analysis when a timed SQL analysis task is running, is in a left-closed and right-open format.
+        """
+        return pulumi.get(self, "process_time_window")
+
+    @property
+    @pulumi.getter
+    def query(self) -> str:
+        """
+        Timed SQL analysis tasks are retrieval and analysis statements that are executed regularly.
+        """
+        return pulumi.get(self, "query")
+
+    @property
+    @pulumi.getter(name="requestCycle")
+    def request_cycle(self) -> 'outputs.ScheduleSqlTasksTaskRequestCycleResult':
+        """
+        The scheduling cycle of timed SQL analysis tasks.
+        """
+        return pulumi.get(self, "request_cycle")
+
+    @property
+    @pulumi.getter(name="sourceProjectId")
+    def source_project_id(self) -> str:
+        """
+        The log project ID to which the source log topic belongs.
+        """
+        return pulumi.get(self, "source_project_id")
+
+    @property
+    @pulumi.getter(name="sourceProjectName")
+    def source_project_name(self) -> str:
+        """
+        The name of the log item to which the source log topic belongs.
+        """
+        return pulumi.get(self, "source_project_name")
+
+    @property
+    @pulumi.getter(name="sourceTopicId")
+    def source_topic_id(self) -> str:
+        """
+        The source log topic ID where the original log for timed SQL analysis is located.
+        """
+        return pulumi.get(self, "source_topic_id")
+
+    @property
+    @pulumi.getter(name="sourceTopicName")
+    def source_topic_name(self) -> str:
+        """
+        Source log topic name.
+        """
+        return pulumi.get(self, "source_topic_name")
+
+    @property
+    @pulumi.getter
+    def status(self) -> int:
+        """
+        Timed SQL analysis task status.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="taskId")
+    def task_id(self) -> str:
+        """
+        Timed SQL analysis task ID.
+        """
+        return pulumi.get(self, "task_id")
+
+    @property
+    @pulumi.getter(name="taskName")
+    def task_name(self) -> str:
+        """
+        Timed SQL analysis task name.
+        """
+        return pulumi.get(self, "task_name")
+
+
+@pulumi.output_type
+class ScheduleSqlTasksTaskRequestCycleResult(dict):
+    def __init__(__self__, *,
+                 cron_tab: str,
+                 cron_time_zone: str,
+                 time: int,
+                 type: str):
+        """
+        :param str cron_tab: Cron expression. The log service specifies the timed execution of alarm tasks through the Cron expression. The minimum granularity of Cron expressions is minutes, 24 hours. For example, 0 18 * * * indicates that an alarm task is executed exactly at 18:00 every day.
+        :param str cron_time_zone: When setting the Type to Cron, the time zone also needs to be set.
+        :param int time: The scheduling cycle or the time point of regular execution (the number of minutes away from 00:00), with a value range of 1 to 1440, and the unit is minutes.
+        :param str type: The type of Scheduling cycle.
+        """
+        pulumi.set(__self__, "cron_tab", cron_tab)
+        pulumi.set(__self__, "cron_time_zone", cron_time_zone)
+        pulumi.set(__self__, "time", time)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="cronTab")
+    def cron_tab(self) -> str:
+        """
+        Cron expression. The log service specifies the timed execution of alarm tasks through the Cron expression. The minimum granularity of Cron expressions is minutes, 24 hours. For example, 0 18 * * * indicates that an alarm task is executed exactly at 18:00 every day.
+        """
+        return pulumi.get(self, "cron_tab")
+
+    @property
+    @pulumi.getter(name="cronTimeZone")
+    def cron_time_zone(self) -> str:
+        """
+        When setting the Type to Cron, the time zone also needs to be set.
+        """
+        return pulumi.get(self, "cron_time_zone")
+
+    @property
+    @pulumi.getter
+    def time(self) -> int:
+        """
+        The scheduling cycle or the time point of regular execution (the number of minutes away from 00:00), with a value range of 1 to 1440, and the unit is minutes.
+        """
+        return pulumi.get(self, "time")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of Scheduling cycle.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
 class ShardsShardResult(dict):
     def __init__(__self__, *,
                  exclusive_end_key: str,
@@ -4805,6 +6787,835 @@ class ShardsShardResult(dict):
         The id of topic.
         """
         return pulumi.get(self, "topic_id")
+
+
+@pulumi.output_type
+class ShipperContentInfo(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "csvInfo":
+            suggest = "csv_info"
+        elif key == "jsonInfo":
+            suggest = "json_info"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ShipperContentInfo. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ShipperContentInfo.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ShipperContentInfo.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 csv_info: Optional['outputs.ShipperContentInfoCsvInfo'] = None,
+                 format: Optional[str] = None,
+                 json_info: Optional['outputs.ShipperContentInfoJsonInfo'] = None):
+        """
+        :param 'ShipperContentInfoCsvInfoArgs' csv_info: CSV format log content configuration.
+        :param str format: Log content parsing format.
+        :param 'ShipperContentInfoJsonInfoArgs' json_info: JSON format log content configuration.
+        """
+        if csv_info is not None:
+            pulumi.set(__self__, "csv_info", csv_info)
+        if format is not None:
+            pulumi.set(__self__, "format", format)
+        if json_info is not None:
+            pulumi.set(__self__, "json_info", json_info)
+
+    @property
+    @pulumi.getter(name="csvInfo")
+    def csv_info(self) -> Optional['outputs.ShipperContentInfoCsvInfo']:
+        """
+        CSV format log content configuration.
+        """
+        return pulumi.get(self, "csv_info")
+
+    @property
+    @pulumi.getter
+    def format(self) -> Optional[str]:
+        """
+        Log content parsing format.
+        """
+        return pulumi.get(self, "format")
+
+    @property
+    @pulumi.getter(name="jsonInfo")
+    def json_info(self) -> Optional['outputs.ShipperContentInfoJsonInfo']:
+        """
+        JSON format log content configuration.
+        """
+        return pulumi.get(self, "json_info")
+
+
+@pulumi.output_type
+class ShipperContentInfoCsvInfo(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "escapeChar":
+            suggest = "escape_char"
+        elif key == "nonFieldContent":
+            suggest = "non_field_content"
+        elif key == "printHeader":
+            suggest = "print_header"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ShipperContentInfoCsvInfo. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ShipperContentInfoCsvInfo.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ShipperContentInfoCsvInfo.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 delimiter: str,
+                 escape_char: str,
+                 keys: Sequence[str],
+                 non_field_content: str,
+                 print_header: bool):
+        """
+        :param str delimiter: Delimiters are supported, including commas, tabs, vertical bars, semicolons, and Spaces.
+        :param str escape_char: When the field content contains a delimiter, use an escape character to wrap the field. Currently, only single quotes, double quotes, and null characters are supported.
+        :param Sequence[str] keys: Configure the fields that need to be delivered.
+        :param str non_field_content: Invalid field filling content, with a length ranging from 0 to 128.
+        :param bool print_header: Whether to print the Key on the first line.
+        """
+        pulumi.set(__self__, "delimiter", delimiter)
+        pulumi.set(__self__, "escape_char", escape_char)
+        pulumi.set(__self__, "keys", keys)
+        pulumi.set(__self__, "non_field_content", non_field_content)
+        pulumi.set(__self__, "print_header", print_header)
+
+    @property
+    @pulumi.getter
+    def delimiter(self) -> str:
+        """
+        Delimiters are supported, including commas, tabs, vertical bars, semicolons, and Spaces.
+        """
+        return pulumi.get(self, "delimiter")
+
+    @property
+    @pulumi.getter(name="escapeChar")
+    def escape_char(self) -> str:
+        """
+        When the field content contains a delimiter, use an escape character to wrap the field. Currently, only single quotes, double quotes, and null characters are supported.
+        """
+        return pulumi.get(self, "escape_char")
+
+    @property
+    @pulumi.getter
+    def keys(self) -> Sequence[str]:
+        """
+        Configure the fields that need to be delivered.
+        """
+        return pulumi.get(self, "keys")
+
+    @property
+    @pulumi.getter(name="nonFieldContent")
+    def non_field_content(self) -> str:
+        """
+        Invalid field filling content, with a length ranging from 0 to 128.
+        """
+        return pulumi.get(self, "non_field_content")
+
+    @property
+    @pulumi.getter(name="printHeader")
+    def print_header(self) -> bool:
+        """
+        Whether to print the Key on the first line.
+        """
+        return pulumi.get(self, "print_header")
+
+
+@pulumi.output_type
+class ShipperContentInfoJsonInfo(dict):
+    def __init__(__self__, *,
+                 enable: bool,
+                 escape: Optional[bool] = None,
+                 keys: Optional[Sequence[str]] = None):
+        """
+        :param bool enable: Enable the flag.
+        :param bool escape: Whether to escape or not. It must be configured as true.
+        :param Sequence[str] keys: When delivering in JSON format, if this parameter is not configured, it indicates that all fields have been delivered. Including __content__ (choice), __source__, __path__, __time__, __image_name__, __container_name__, __pod_name__, __pod_uid__, namespace, __tag____client_ip__, __tag____receive_time__.
+        """
+        pulumi.set(__self__, "enable", enable)
+        if escape is not None:
+            pulumi.set(__self__, "escape", escape)
+        if keys is not None:
+            pulumi.set(__self__, "keys", keys)
+
+    @property
+    @pulumi.getter
+    def enable(self) -> bool:
+        """
+        Enable the flag.
+        """
+        return pulumi.get(self, "enable")
+
+    @property
+    @pulumi.getter
+    def escape(self) -> Optional[bool]:
+        """
+        Whether to escape or not. It must be configured as true.
+        """
+        return pulumi.get(self, "escape")
+
+    @property
+    @pulumi.getter
+    def keys(self) -> Optional[Sequence[str]]:
+        """
+        When delivering in JSON format, if this parameter is not configured, it indicates that all fields have been delivered. Including __content__ (choice), __source__, __path__, __time__, __image_name__, __container_name__, __pod_name__, __pod_uid__, namespace, __tag____client_ip__, __tag____receive_time__.
+        """
+        return pulumi.get(self, "keys")
+
+
+@pulumi.output_type
+class ShipperKafkaShipperInfo(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "kafkaTopic":
+            suggest = "kafka_topic"
+        elif key == "endTime":
+            suggest = "end_time"
+        elif key == "startTime":
+            suggest = "start_time"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ShipperKafkaShipperInfo. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ShipperKafkaShipperInfo.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ShipperKafkaShipperInfo.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 compress: str,
+                 instance: str,
+                 kafka_topic: str,
+                 end_time: Optional[int] = None,
+                 start_time: Optional[int] = None):
+        """
+        :param str compress: Compression formats currently supported include snappy, gzip, lz4, and none.
+        :param str instance: Kafka instance.
+        :param str kafka_topic: The name of the Kafka Topic.
+        :param int end_time: Delivery end time, millisecond timestamp. If not configured, it will keep delivering.
+        :param int start_time: Delivery start time, millisecond timestamp. If not configured, the default is the current time.
+        """
+        pulumi.set(__self__, "compress", compress)
+        pulumi.set(__self__, "instance", instance)
+        pulumi.set(__self__, "kafka_topic", kafka_topic)
+        if end_time is not None:
+            pulumi.set(__self__, "end_time", end_time)
+        if start_time is not None:
+            pulumi.set(__self__, "start_time", start_time)
+
+    @property
+    @pulumi.getter
+    def compress(self) -> str:
+        """
+        Compression formats currently supported include snappy, gzip, lz4, and none.
+        """
+        return pulumi.get(self, "compress")
+
+    @property
+    @pulumi.getter
+    def instance(self) -> str:
+        """
+        Kafka instance.
+        """
+        return pulumi.get(self, "instance")
+
+    @property
+    @pulumi.getter(name="kafkaTopic")
+    def kafka_topic(self) -> str:
+        """
+        The name of the Kafka Topic.
+        """
+        return pulumi.get(self, "kafka_topic")
+
+    @property
+    @pulumi.getter(name="endTime")
+    def end_time(self) -> Optional[int]:
+        """
+        Delivery end time, millisecond timestamp. If not configured, it will keep delivering.
+        """
+        return pulumi.get(self, "end_time")
+
+    @property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> Optional[int]:
+        """
+        Delivery start time, millisecond timestamp. If not configured, the default is the current time.
+        """
+        return pulumi.get(self, "start_time")
+
+
+@pulumi.output_type
+class ShipperTosShipperInfo(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "maxSize":
+            suggest = "max_size"
+        elif key == "partitionFormat":
+            suggest = "partition_format"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ShipperTosShipperInfo. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ShipperTosShipperInfo.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ShipperTosShipperInfo.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 bucket: str,
+                 compress: Optional[str] = None,
+                 interval: Optional[int] = None,
+                 max_size: Optional[int] = None,
+                 partition_format: Optional[str] = None,
+                 prefix: Optional[str] = None):
+        """
+        :param str bucket: When choosing a TOS bucket, it must be located in the same region as the source log topic.
+        :param str compress: Compression formats currently supported include snappy, gzip, lz4, and none.
+        :param int interval: The delivery time interval, measured in seconds, ranges from 300 to 900.
+        :param int max_size: The maximum size of the original file that can be delivered to each partition (Shard), that is, the size of the uncompressed log file. The unit is MiB, and the value range is 5 to 256.
+        :param str partition_format: Partition rules for delivering logs.
+        :param str prefix: The top-level directory name of the storage bucket. All log data delivered through this delivery configuration will be delivered to this directory.
+        """
+        pulumi.set(__self__, "bucket", bucket)
+        if compress is not None:
+            pulumi.set(__self__, "compress", compress)
+        if interval is not None:
+            pulumi.set(__self__, "interval", interval)
+        if max_size is not None:
+            pulumi.set(__self__, "max_size", max_size)
+        if partition_format is not None:
+            pulumi.set(__self__, "partition_format", partition_format)
+        if prefix is not None:
+            pulumi.set(__self__, "prefix", prefix)
+
+    @property
+    @pulumi.getter
+    def bucket(self) -> str:
+        """
+        When choosing a TOS bucket, it must be located in the same region as the source log topic.
+        """
+        return pulumi.get(self, "bucket")
+
+    @property
+    @pulumi.getter
+    def compress(self) -> Optional[str]:
+        """
+        Compression formats currently supported include snappy, gzip, lz4, and none.
+        """
+        return pulumi.get(self, "compress")
+
+    @property
+    @pulumi.getter
+    def interval(self) -> Optional[int]:
+        """
+        The delivery time interval, measured in seconds, ranges from 300 to 900.
+        """
+        return pulumi.get(self, "interval")
+
+    @property
+    @pulumi.getter(name="maxSize")
+    def max_size(self) -> Optional[int]:
+        """
+        The maximum size of the original file that can be delivered to each partition (Shard), that is, the size of the uncompressed log file. The unit is MiB, and the value range is 5 to 256.
+        """
+        return pulumi.get(self, "max_size")
+
+    @property
+    @pulumi.getter(name="partitionFormat")
+    def partition_format(self) -> Optional[str]:
+        """
+        Partition rules for delivering logs.
+        """
+        return pulumi.get(self, "partition_format")
+
+    @property
+    @pulumi.getter
+    def prefix(self) -> Optional[str]:
+        """
+        The top-level directory name of the storage bucket. All log data delivered through this delivery configuration will be delivered to this directory.
+        """
+        return pulumi.get(self, "prefix")
+
+
+@pulumi.output_type
+class ShippersShipperResult(dict):
+    def __init__(__self__, *,
+                 content_info: 'outputs.ShippersShipperContentInfoResult',
+                 create_time: str,
+                 dashboard_id: str,
+                 kafka_shipper_info: 'outputs.ShippersShipperKafkaShipperInfoResult',
+                 modify_time: str,
+                 project_id: str,
+                 project_name: str,
+                 shipper_end_time: int,
+                 shipper_id: str,
+                 shipper_name: str,
+                 shipper_start_time: int,
+                 shipper_type: str,
+                 status: bool,
+                 topic_id: str,
+                 topic_name: str,
+                 tos_shipper_info: 'outputs.ShippersShipperTosShipperInfoResult'):
+        """
+        :param 'ShippersShipperContentInfoArgs' content_info: The content format configuration of the delivery log.
+        :param str create_time: Processing task creation time.
+        :param str dashboard_id: The default built-in dashboard ID for delivery.
+        :param 'ShippersShipperKafkaShipperInfoArgs' kafka_shipper_info: JSON format log content configuration.
+        :param str modify_time: The most recent modification time of the processing task.
+        :param str project_id: Specify the log item ID for querying the data delivery configuration under the specified log item.
+        :param str project_name: Specify the name of the log item for querying the data delivery configuration under the specified log item. Support fuzzy matching.
+        :param int shipper_end_time: Delivery end time, millisecond timestamp. If not configured, it will keep delivering.
+        :param str shipper_id: Delivery configuration ID.
+        :param str shipper_name: Delivery configuration name.
+        :param int shipper_start_time: Delivery start time, millisecond timestamp. If not configured, it defaults to the current time.
+        :param str shipper_type: Specify the delivery type for querying the delivery configuration related to that delivery type.
+        :param bool status: Whether to enable the delivery configuration.
+        :param str topic_id: Specify the log topic ID for querying the data delivery configuration related to this log topic.
+        :param str topic_name: Specify the name of the log topic for querying the data delivery configuration related to this log topic. Support fuzzy matching.
+        :param 'ShippersShipperTosShipperInfoArgs' tos_shipper_info: Deliver the relevant configuration to the object storage (TOS).
+        """
+        pulumi.set(__self__, "content_info", content_info)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "dashboard_id", dashboard_id)
+        pulumi.set(__self__, "kafka_shipper_info", kafka_shipper_info)
+        pulumi.set(__self__, "modify_time", modify_time)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "shipper_end_time", shipper_end_time)
+        pulumi.set(__self__, "shipper_id", shipper_id)
+        pulumi.set(__self__, "shipper_name", shipper_name)
+        pulumi.set(__self__, "shipper_start_time", shipper_start_time)
+        pulumi.set(__self__, "shipper_type", shipper_type)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "topic_id", topic_id)
+        pulumi.set(__self__, "topic_name", topic_name)
+        pulumi.set(__self__, "tos_shipper_info", tos_shipper_info)
+
+    @property
+    @pulumi.getter(name="contentInfo")
+    def content_info(self) -> 'outputs.ShippersShipperContentInfoResult':
+        """
+        The content format configuration of the delivery log.
+        """
+        return pulumi.get(self, "content_info")
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        Processing task creation time.
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter(name="dashboardId")
+    def dashboard_id(self) -> str:
+        """
+        The default built-in dashboard ID for delivery.
+        """
+        return pulumi.get(self, "dashboard_id")
+
+    @property
+    @pulumi.getter(name="kafkaShipperInfo")
+    def kafka_shipper_info(self) -> 'outputs.ShippersShipperKafkaShipperInfoResult':
+        """
+        JSON format log content configuration.
+        """
+        return pulumi.get(self, "kafka_shipper_info")
+
+    @property
+    @pulumi.getter(name="modifyTime")
+    def modify_time(self) -> str:
+        """
+        The most recent modification time of the processing task.
+        """
+        return pulumi.get(self, "modify_time")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        """
+        Specify the log item ID for querying the data delivery configuration under the specified log item.
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        Specify the name of the log item for querying the data delivery configuration under the specified log item. Support fuzzy matching.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="shipperEndTime")
+    def shipper_end_time(self) -> int:
+        """
+        Delivery end time, millisecond timestamp. If not configured, it will keep delivering.
+        """
+        return pulumi.get(self, "shipper_end_time")
+
+    @property
+    @pulumi.getter(name="shipperId")
+    def shipper_id(self) -> str:
+        """
+        Delivery configuration ID.
+        """
+        return pulumi.get(self, "shipper_id")
+
+    @property
+    @pulumi.getter(name="shipperName")
+    def shipper_name(self) -> str:
+        """
+        Delivery configuration name.
+        """
+        return pulumi.get(self, "shipper_name")
+
+    @property
+    @pulumi.getter(name="shipperStartTime")
+    def shipper_start_time(self) -> int:
+        """
+        Delivery start time, millisecond timestamp. If not configured, it defaults to the current time.
+        """
+        return pulumi.get(self, "shipper_start_time")
+
+    @property
+    @pulumi.getter(name="shipperType")
+    def shipper_type(self) -> str:
+        """
+        Specify the delivery type for querying the delivery configuration related to that delivery type.
+        """
+        return pulumi.get(self, "shipper_type")
+
+    @property
+    @pulumi.getter
+    def status(self) -> bool:
+        """
+        Whether to enable the delivery configuration.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="topicId")
+    def topic_id(self) -> str:
+        """
+        Specify the log topic ID for querying the data delivery configuration related to this log topic.
+        """
+        return pulumi.get(self, "topic_id")
+
+    @property
+    @pulumi.getter(name="topicName")
+    def topic_name(self) -> str:
+        """
+        Specify the name of the log topic for querying the data delivery configuration related to this log topic. Support fuzzy matching.
+        """
+        return pulumi.get(self, "topic_name")
+
+    @property
+    @pulumi.getter(name="tosShipperInfo")
+    def tos_shipper_info(self) -> 'outputs.ShippersShipperTosShipperInfoResult':
+        """
+        Deliver the relevant configuration to the object storage (TOS).
+        """
+        return pulumi.get(self, "tos_shipper_info")
+
+
+@pulumi.output_type
+class ShippersShipperContentInfoResult(dict):
+    def __init__(__self__, *,
+                 csv_info: 'outputs.ShippersShipperContentInfoCsvInfoResult',
+                 format: str,
+                 json_info: 'outputs.ShippersShipperContentInfoJsonInfoResult'):
+        """
+        :param 'ShippersShipperContentInfoCsvInfoArgs' csv_info: CSV format log content configuration.
+        :param str format: Log content parsing format.
+        :param 'ShippersShipperContentInfoJsonInfoArgs' json_info: JSON format log content configuration.
+        """
+        pulumi.set(__self__, "csv_info", csv_info)
+        pulumi.set(__self__, "format", format)
+        pulumi.set(__self__, "json_info", json_info)
+
+    @property
+    @pulumi.getter(name="csvInfo")
+    def csv_info(self) -> 'outputs.ShippersShipperContentInfoCsvInfoResult':
+        """
+        CSV format log content configuration.
+        """
+        return pulumi.get(self, "csv_info")
+
+    @property
+    @pulumi.getter
+    def format(self) -> str:
+        """
+        Log content parsing format.
+        """
+        return pulumi.get(self, "format")
+
+    @property
+    @pulumi.getter(name="jsonInfo")
+    def json_info(self) -> 'outputs.ShippersShipperContentInfoJsonInfoResult':
+        """
+        JSON format log content configuration.
+        """
+        return pulumi.get(self, "json_info")
+
+
+@pulumi.output_type
+class ShippersShipperContentInfoCsvInfoResult(dict):
+    def __init__(__self__, *,
+                 delimiter: str,
+                 escape_char: str,
+                 keys: Sequence[str],
+                 non_field_content: str,
+                 print_header: bool):
+        """
+        :param str delimiter: Delimiters are supported, including commas, tabs, vertical bars, semicolons, and Spaces.
+        :param str escape_char: When the field content contains a delimiter, use an escape character to wrap the field. Currently, only single quotes, double quotes, and null characters are supported.
+        :param Sequence[str] keys: When delivering in JSON format, if this parameter is not configured, it indicates that all fields have been delivered. Including __content__ (choice), __source__, __path__, __time__, __image_name__, __container_name__, __pod_name__, __pod_uid__, namespace, __tag____client_ip__, __tag____receive_time__.
+        :param str non_field_content: Invalid field filling content, with a length ranging from 0 to 128.
+        :param bool print_header: Whether to print the Key on the first line.
+        """
+        pulumi.set(__self__, "delimiter", delimiter)
+        pulumi.set(__self__, "escape_char", escape_char)
+        pulumi.set(__self__, "keys", keys)
+        pulumi.set(__self__, "non_field_content", non_field_content)
+        pulumi.set(__self__, "print_header", print_header)
+
+    @property
+    @pulumi.getter
+    def delimiter(self) -> str:
+        """
+        Delimiters are supported, including commas, tabs, vertical bars, semicolons, and Spaces.
+        """
+        return pulumi.get(self, "delimiter")
+
+    @property
+    @pulumi.getter(name="escapeChar")
+    def escape_char(self) -> str:
+        """
+        When the field content contains a delimiter, use an escape character to wrap the field. Currently, only single quotes, double quotes, and null characters are supported.
+        """
+        return pulumi.get(self, "escape_char")
+
+    @property
+    @pulumi.getter
+    def keys(self) -> Sequence[str]:
+        """
+        When delivering in JSON format, if this parameter is not configured, it indicates that all fields have been delivered. Including __content__ (choice), __source__, __path__, __time__, __image_name__, __container_name__, __pod_name__, __pod_uid__, namespace, __tag____client_ip__, __tag____receive_time__.
+        """
+        return pulumi.get(self, "keys")
+
+    @property
+    @pulumi.getter(name="nonFieldContent")
+    def non_field_content(self) -> str:
+        """
+        Invalid field filling content, with a length ranging from 0 to 128.
+        """
+        return pulumi.get(self, "non_field_content")
+
+    @property
+    @pulumi.getter(name="printHeader")
+    def print_header(self) -> bool:
+        """
+        Whether to print the Key on the first line.
+        """
+        return pulumi.get(self, "print_header")
+
+
+@pulumi.output_type
+class ShippersShipperContentInfoJsonInfoResult(dict):
+    def __init__(__self__, *,
+                 enable: bool,
+                 escape: bool,
+                 keys: Sequence[str]):
+        """
+        :param bool enable: Enable the flag.
+        :param bool escape: Whether to escape or not. It must be configured as true.
+        :param Sequence[str] keys: When delivering in JSON format, if this parameter is not configured, it indicates that all fields have been delivered. Including __content__ (choice), __source__, __path__, __time__, __image_name__, __container_name__, __pod_name__, __pod_uid__, namespace, __tag____client_ip__, __tag____receive_time__.
+        """
+        pulumi.set(__self__, "enable", enable)
+        pulumi.set(__self__, "escape", escape)
+        pulumi.set(__self__, "keys", keys)
+
+    @property
+    @pulumi.getter
+    def enable(self) -> bool:
+        """
+        Enable the flag.
+        """
+        return pulumi.get(self, "enable")
+
+    @property
+    @pulumi.getter
+    def escape(self) -> bool:
+        """
+        Whether to escape or not. It must be configured as true.
+        """
+        return pulumi.get(self, "escape")
+
+    @property
+    @pulumi.getter
+    def keys(self) -> Sequence[str]:
+        """
+        When delivering in JSON format, if this parameter is not configured, it indicates that all fields have been delivered. Including __content__ (choice), __source__, __path__, __time__, __image_name__, __container_name__, __pod_name__, __pod_uid__, namespace, __tag____client_ip__, __tag____receive_time__.
+        """
+        return pulumi.get(self, "keys")
+
+
+@pulumi.output_type
+class ShippersShipperKafkaShipperInfoResult(dict):
+    def __init__(__self__, *,
+                 compress: str,
+                 end_time: int,
+                 instance: str,
+                 kafka_topic: str,
+                 start_time: int):
+        """
+        :param str compress: Compression formats currently supported include snappy, gzip, lz4, and none.
+        :param int end_time: Delivery end time, millisecond timestamp. If not configured, it will keep delivering.
+        :param str instance: Kafka instance.
+        :param str kafka_topic: The name of the Kafka Topic.
+        :param int start_time: Delivery start time, millisecond timestamp. If not configured, the default is the current time.
+        """
+        pulumi.set(__self__, "compress", compress)
+        pulumi.set(__self__, "end_time", end_time)
+        pulumi.set(__self__, "instance", instance)
+        pulumi.set(__self__, "kafka_topic", kafka_topic)
+        pulumi.set(__self__, "start_time", start_time)
+
+    @property
+    @pulumi.getter
+    def compress(self) -> str:
+        """
+        Compression formats currently supported include snappy, gzip, lz4, and none.
+        """
+        return pulumi.get(self, "compress")
+
+    @property
+    @pulumi.getter(name="endTime")
+    def end_time(self) -> int:
+        """
+        Delivery end time, millisecond timestamp. If not configured, it will keep delivering.
+        """
+        return pulumi.get(self, "end_time")
+
+    @property
+    @pulumi.getter
+    def instance(self) -> str:
+        """
+        Kafka instance.
+        """
+        return pulumi.get(self, "instance")
+
+    @property
+    @pulumi.getter(name="kafkaTopic")
+    def kafka_topic(self) -> str:
+        """
+        The name of the Kafka Topic.
+        """
+        return pulumi.get(self, "kafka_topic")
+
+    @property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> int:
+        """
+        Delivery start time, millisecond timestamp. If not configured, the default is the current time.
+        """
+        return pulumi.get(self, "start_time")
+
+
+@pulumi.output_type
+class ShippersShipperTosShipperInfoResult(dict):
+    def __init__(__self__, *,
+                 bucket: str,
+                 compress: str,
+                 interval: int,
+                 max_size: int,
+                 partition_format: str,
+                 prefix: str):
+        """
+        :param str bucket: When choosing a TOS bucket, it must be located in the same region as the source log topic.
+        :param str compress: Compression formats currently supported include snappy, gzip, lz4, and none.
+        :param int interval: The delivery time interval, measured in seconds, ranges from 300 to 900.
+        :param int max_size: The maximum size of the original file that can be delivered to each partition (Shard), that is, the size of the uncompressed log file. The unit is MiB, and the value range is 5 to 256.
+        :param str partition_format: Partition rules for delivering logs.
+        :param str prefix: The top-level directory name of the storage bucket. All log data delivered through this delivery configuration will be delivered to this directory.
+        """
+        pulumi.set(__self__, "bucket", bucket)
+        pulumi.set(__self__, "compress", compress)
+        pulumi.set(__self__, "interval", interval)
+        pulumi.set(__self__, "max_size", max_size)
+        pulumi.set(__self__, "partition_format", partition_format)
+        pulumi.set(__self__, "prefix", prefix)
+
+    @property
+    @pulumi.getter
+    def bucket(self) -> str:
+        """
+        When choosing a TOS bucket, it must be located in the same region as the source log topic.
+        """
+        return pulumi.get(self, "bucket")
+
+    @property
+    @pulumi.getter
+    def compress(self) -> str:
+        """
+        Compression formats currently supported include snappy, gzip, lz4, and none.
+        """
+        return pulumi.get(self, "compress")
+
+    @property
+    @pulumi.getter
+    def interval(self) -> int:
+        """
+        The delivery time interval, measured in seconds, ranges from 300 to 900.
+        """
+        return pulumi.get(self, "interval")
+
+    @property
+    @pulumi.getter(name="maxSize")
+    def max_size(self) -> int:
+        """
+        The maximum size of the original file that can be delivered to each partition (Shard), that is, the size of the uncompressed log file. The unit is MiB, and the value range is 5 to 256.
+        """
+        return pulumi.get(self, "max_size")
+
+    @property
+    @pulumi.getter(name="partitionFormat")
+    def partition_format(self) -> str:
+        """
+        Partition rules for delivering logs.
+        """
+        return pulumi.get(self, "partition_format")
+
+    @property
+    @pulumi.getter
+    def prefix(self) -> str:
+        """
+        The top-level directory name of the storage bucket. All log data delivered through this delivery configuration will be delivered to this directory.
+        """
+        return pulumi.get(self, "prefix")
 
 
 @pulumi.output_type
@@ -5673,6 +8484,346 @@ class GetAlarmsAlarmRequestCycleResult(dict):
 
 
 @pulumi.output_type
+class GetConsumerGroupsConsumerGroupResult(dict):
+    def __init__(__self__, *,
+                 consumer_group_name: str,
+                 heartbeat_ttl: int,
+                 ordered_consume: bool,
+                 project_id: str,
+                 project_name: str,
+                 topic_ids: Sequence[str]):
+        """
+        :param str consumer_group_name: The name of the consumer group.
+        :param int heartbeat_ttl: The time of heart rate expiration, measured in seconds, has a value range of 1 to 300.
+        :param bool ordered_consume: Whether to consume in sequence.
+        :param str project_id: The log project ID to which the consumption group belongs.
+        :param str project_name: The name of the log item to which the consumption group belongs.
+        :param Sequence[str] topic_ids: The log topic ID to which the consumer belongs.
+        """
+        pulumi.set(__self__, "consumer_group_name", consumer_group_name)
+        pulumi.set(__self__, "heartbeat_ttl", heartbeat_ttl)
+        pulumi.set(__self__, "ordered_consume", ordered_consume)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "topic_ids", topic_ids)
+
+    @property
+    @pulumi.getter(name="consumerGroupName")
+    def consumer_group_name(self) -> str:
+        """
+        The name of the consumer group.
+        """
+        return pulumi.get(self, "consumer_group_name")
+
+    @property
+    @pulumi.getter(name="heartbeatTtl")
+    def heartbeat_ttl(self) -> int:
+        """
+        The time of heart rate expiration, measured in seconds, has a value range of 1 to 300.
+        """
+        return pulumi.get(self, "heartbeat_ttl")
+
+    @property
+    @pulumi.getter(name="orderedConsume")
+    def ordered_consume(self) -> bool:
+        """
+        Whether to consume in sequence.
+        """
+        return pulumi.get(self, "ordered_consume")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        """
+        The log project ID to which the consumption group belongs.
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The name of the log item to which the consumption group belongs.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="topicIds")
+    def topic_ids(self) -> Sequence[str]:
+        """
+        The log topic ID to which the consumer belongs.
+        """
+        return pulumi.get(self, "topic_ids")
+
+
+@pulumi.output_type
+class GetEtlTasksTaskResult(dict):
+    def __init__(__self__, *,
+                 create_time: str,
+                 description: str,
+                 dsl_type: str,
+                 enable: bool,
+                 etl_status: str,
+                 from_time: int,
+                 last_enable_time: str,
+                 modify_time: str,
+                 name: str,
+                 project_id: str,
+                 project_name: str,
+                 script: str,
+                 source_topic_id: str,
+                 source_topic_name: str,
+                 target_resources: Sequence['outputs.GetEtlTasksTaskTargetResourceResult'],
+                 task_id: str,
+                 task_type: str,
+                 to_time: int):
+        """
+        :param str create_time: Processing task creation time.
+        :param str description: A simple description of the processing task.
+        :param str dsl_type: DSL type, fixed as NORMAL.
+        :param bool enable: The running status of the processing task.
+        :param str etl_status: Task scheduling status.
+        :param int from_time: The start time of the data to be processed.
+        :param str last_enable_time: Recent startup time.
+        :param str modify_time: The most recent modification time of the processing task.
+        :param str name: The name of the processing task.
+        :param str project_id: Specify the log item ID for querying the data processing tasks under the specified log item.
+        :param str project_name: Specify the name of the log item for querying the data processing tasks under the specified log item. Support fuzzy query.
+        :param str script: Processing rules.
+        :param str source_topic_id: Specify the log topic ID for querying the data processing tasks related to this log topic.
+        :param str source_topic_name: Specify the name of the log topic for querying the data processing tasks related to this log topic. Support fuzzy matching.
+        :param Sequence['GetEtlTasksTaskTargetResourceArgs'] target_resources: Output the relevant information of the target.
+        :param str task_id: The ID of the processing task.
+        :param str task_type: The task type is fixed as Resident.
+        :param int to_time: The end time of the data to be processed.
+        """
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "dsl_type", dsl_type)
+        pulumi.set(__self__, "enable", enable)
+        pulumi.set(__self__, "etl_status", etl_status)
+        pulumi.set(__self__, "from_time", from_time)
+        pulumi.set(__self__, "last_enable_time", last_enable_time)
+        pulumi.set(__self__, "modify_time", modify_time)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "script", script)
+        pulumi.set(__self__, "source_topic_id", source_topic_id)
+        pulumi.set(__self__, "source_topic_name", source_topic_name)
+        pulumi.set(__self__, "target_resources", target_resources)
+        pulumi.set(__self__, "task_id", task_id)
+        pulumi.set(__self__, "task_type", task_type)
+        pulumi.set(__self__, "to_time", to_time)
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        Processing task creation time.
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        A simple description of the processing task.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="dslType")
+    def dsl_type(self) -> str:
+        """
+        DSL type, fixed as NORMAL.
+        """
+        return pulumi.get(self, "dsl_type")
+
+    @property
+    @pulumi.getter
+    def enable(self) -> bool:
+        """
+        The running status of the processing task.
+        """
+        return pulumi.get(self, "enable")
+
+    @property
+    @pulumi.getter(name="etlStatus")
+    def etl_status(self) -> str:
+        """
+        Task scheduling status.
+        """
+        return pulumi.get(self, "etl_status")
+
+    @property
+    @pulumi.getter(name="fromTime")
+    def from_time(self) -> int:
+        """
+        The start time of the data to be processed.
+        """
+        return pulumi.get(self, "from_time")
+
+    @property
+    @pulumi.getter(name="lastEnableTime")
+    def last_enable_time(self) -> str:
+        """
+        Recent startup time.
+        """
+        return pulumi.get(self, "last_enable_time")
+
+    @property
+    @pulumi.getter(name="modifyTime")
+    def modify_time(self) -> str:
+        """
+        The most recent modification time of the processing task.
+        """
+        return pulumi.get(self, "modify_time")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the processing task.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        """
+        Specify the log item ID for querying the data processing tasks under the specified log item.
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        Specify the name of the log item for querying the data processing tasks under the specified log item. Support fuzzy query.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter
+    def script(self) -> str:
+        """
+        Processing rules.
+        """
+        return pulumi.get(self, "script")
+
+    @property
+    @pulumi.getter(name="sourceTopicId")
+    def source_topic_id(self) -> str:
+        """
+        Specify the log topic ID for querying the data processing tasks related to this log topic.
+        """
+        return pulumi.get(self, "source_topic_id")
+
+    @property
+    @pulumi.getter(name="sourceTopicName")
+    def source_topic_name(self) -> str:
+        """
+        Specify the name of the log topic for querying the data processing tasks related to this log topic. Support fuzzy matching.
+        """
+        return pulumi.get(self, "source_topic_name")
+
+    @property
+    @pulumi.getter(name="targetResources")
+    def target_resources(self) -> Sequence['outputs.GetEtlTasksTaskTargetResourceResult']:
+        """
+        Output the relevant information of the target.
+        """
+        return pulumi.get(self, "target_resources")
+
+    @property
+    @pulumi.getter(name="taskId")
+    def task_id(self) -> str:
+        """
+        The ID of the processing task.
+        """
+        return pulumi.get(self, "task_id")
+
+    @property
+    @pulumi.getter(name="taskType")
+    def task_type(self) -> str:
+        """
+        The task type is fixed as Resident.
+        """
+        return pulumi.get(self, "task_type")
+
+    @property
+    @pulumi.getter(name="toTime")
+    def to_time(self) -> int:
+        """
+        The end time of the data to be processed.
+        """
+        return pulumi.get(self, "to_time")
+
+
+@pulumi.output_type
+class GetEtlTasksTaskTargetResourceResult(dict):
+    def __init__(__self__, *,
+                 alias: str,
+                 project_id: str,
+                 project_name: str,
+                 topic_id: str,
+                 topic_name: str):
+        """
+        :param str alias: Customize the name of the output target, which needs to be used to refer to the output target in the data processing rules.
+        :param str project_id: Specify the log item ID for querying the data processing tasks under the specified log item.
+        :param str project_name: Specify the name of the log item for querying the data processing tasks under the specified log item. Support fuzzy query.
+        :param str topic_id: Log topics used for storing processed logs.
+        :param str topic_name: The name of the log topic used for storing the processed logs.
+        """
+        pulumi.set(__self__, "alias", alias)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "topic_id", topic_id)
+        pulumi.set(__self__, "topic_name", topic_name)
+
+    @property
+    @pulumi.getter
+    def alias(self) -> str:
+        """
+        Customize the name of the output target, which needs to be used to refer to the output target in the data processing rules.
+        """
+        return pulumi.get(self, "alias")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        """
+        Specify the log item ID for querying the data processing tasks under the specified log item.
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        Specify the name of the log item for querying the data processing tasks under the specified log item. Support fuzzy query.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="topicId")
+    def topic_id(self) -> str:
+        """
+        Log topics used for storing processed logs.
+        """
+        return pulumi.get(self, "topic_id")
+
+    @property
+    @pulumi.getter(name="topicName")
+    def topic_name(self) -> str:
+        """
+        The name of the log topic used for storing the processed logs.
+        """
+        return pulumi.get(self, "topic_name")
+
+
+@pulumi.output_type
 class GetHostGroupsInfoResult(dict):
     def __init__(__self__, *,
                  abnormal_heartbeat_status_count: int,
@@ -5915,6 +9066,650 @@ class GetHostsHostInfoResult(dict):
         The version of log collector.
         """
         return pulumi.get(self, "log_collector_version")
+
+
+@pulumi.output_type
+class GetImportTasksTaskInfoResult(dict):
+    def __init__(__self__, *,
+                 create_time: str,
+                 description: str,
+                 import_source_info: 'outputs.GetImportTasksTaskInfoImportSourceInfoResult',
+                 project_id: str,
+                 project_name: str,
+                 source_type: str,
+                 target_info: 'outputs.GetImportTasksTaskInfoTargetInfoResult',
+                 task_id: str,
+                 task_name: str,
+                 task_statistics: 'outputs.GetImportTasksTaskInfoTaskStatisticsResult',
+                 topic_id: str,
+                 topic_name: str,
+                 status: Optional[int] = None):
+        """
+        :param str create_time: The creation time of the data import task.
+        :param str description: Data import task description.
+        :param 'GetImportTasksTaskInfoImportSourceInfoArgs' import_source_info: The source information of the data import task.
+        :param str project_id: Specify the log item ID for querying the data import tasks under the specified log item.
+        :param str project_name: Specify the name of the log item for querying the data import tasks under the specified log item. Support fuzzy query..
+        :param str source_type: Specify the import type for querying the data import tasks related to this import type.
+        :param 'GetImportTasksTaskInfoTargetInfoArgs' target_info: The output information of the data import task.
+        :param str task_id: Import the task ID of the data to be queried.
+        :param str task_name: Import the task name of the data to be queried.
+        :param 'GetImportTasksTaskInfoTaskStatisticsArgs' task_statistics: The progress of the data import task.
+        :param str topic_id: Specify the log topic ID for querying the data import tasks related to this log topic.
+        :param str topic_name: Specify the name of the log topic for querying the data import tasks related to this log topic. Support fuzzy query.
+        :param int status: Specify the status of the import task.
+        """
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "import_source_info", import_source_info)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "source_type", source_type)
+        pulumi.set(__self__, "target_info", target_info)
+        pulumi.set(__self__, "task_id", task_id)
+        pulumi.set(__self__, "task_name", task_name)
+        pulumi.set(__self__, "task_statistics", task_statistics)
+        pulumi.set(__self__, "topic_id", topic_id)
+        pulumi.set(__self__, "topic_name", topic_name)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        The creation time of the data import task.
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        Data import task description.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="importSourceInfo")
+    def import_source_info(self) -> 'outputs.GetImportTasksTaskInfoImportSourceInfoResult':
+        """
+        The source information of the data import task.
+        """
+        return pulumi.get(self, "import_source_info")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        """
+        Specify the log item ID for querying the data import tasks under the specified log item.
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        Specify the name of the log item for querying the data import tasks under the specified log item. Support fuzzy query..
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="sourceType")
+    def source_type(self) -> str:
+        """
+        Specify the import type for querying the data import tasks related to this import type.
+        """
+        return pulumi.get(self, "source_type")
+
+    @property
+    @pulumi.getter(name="targetInfo")
+    def target_info(self) -> 'outputs.GetImportTasksTaskInfoTargetInfoResult':
+        """
+        The output information of the data import task.
+        """
+        return pulumi.get(self, "target_info")
+
+    @property
+    @pulumi.getter(name="taskId")
+    def task_id(self) -> str:
+        """
+        Import the task ID of the data to be queried.
+        """
+        return pulumi.get(self, "task_id")
+
+    @property
+    @pulumi.getter(name="taskName")
+    def task_name(self) -> str:
+        """
+        Import the task name of the data to be queried.
+        """
+        return pulumi.get(self, "task_name")
+
+    @property
+    @pulumi.getter(name="taskStatistics")
+    def task_statistics(self) -> 'outputs.GetImportTasksTaskInfoTaskStatisticsResult':
+        """
+        The progress of the data import task.
+        """
+        return pulumi.get(self, "task_statistics")
+
+    @property
+    @pulumi.getter(name="topicId")
+    def topic_id(self) -> str:
+        """
+        Specify the log topic ID for querying the data import tasks related to this log topic.
+        """
+        return pulumi.get(self, "topic_id")
+
+    @property
+    @pulumi.getter(name="topicName")
+    def topic_name(self) -> str:
+        """
+        Specify the name of the log topic for querying the data import tasks related to this log topic. Support fuzzy query.
+        """
+        return pulumi.get(self, "topic_name")
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[int]:
+        """
+        Specify the status of the import task.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetImportTasksTaskInfoImportSourceInfoResult(dict):
+    def __init__(__self__, *,
+                 kafka_source_info: 'outputs.GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfoResult',
+                 tos_source_info: 'outputs.GetImportTasksTaskInfoImportSourceInfoTosSourceInfoResult'):
+        """
+        :param 'GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfoArgs' kafka_source_info: TOS imports source information.
+        :param 'GetImportTasksTaskInfoImportSourceInfoTosSourceInfoArgs' tos_source_info: TOS imports source information.
+        """
+        pulumi.set(__self__, "kafka_source_info", kafka_source_info)
+        pulumi.set(__self__, "tos_source_info", tos_source_info)
+
+    @property
+    @pulumi.getter(name="kafkaSourceInfo")
+    def kafka_source_info(self) -> 'outputs.GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfoResult':
+        """
+        TOS imports source information.
+        """
+        return pulumi.get(self, "kafka_source_info")
+
+    @property
+    @pulumi.getter(name="tosSourceInfo")
+    def tos_source_info(self) -> 'outputs.GetImportTasksTaskInfoImportSourceInfoTosSourceInfoResult':
+        """
+        TOS imports source information.
+        """
+        return pulumi.get(self, "tos_source_info")
+
+
+@pulumi.output_type
+class GetImportTasksTaskInfoImportSourceInfoKafkaSourceInfoResult(dict):
+    def __init__(__self__, *,
+                 encode: str,
+                 group: str,
+                 host: str,
+                 initial_offset: int,
+                 instance_id: str,
+                 is_need_auth: bool,
+                 mechanism: str,
+                 password: str,
+                 protocol: str,
+                 time_source_default: int,
+                 topic: str,
+                 username: str):
+        """
+        :param str encode: The encoding format of the data.
+        :param str group: Kafka consumer group.
+        :param str host: The service addresses corresponding to different types of Kafka clusters are different.
+        :param int initial_offset: The starting position of data import.
+        :param str instance_id: When you are using the Volcano Engine Message Queue Kafka version, it should be set to the Kafka instance ID.
+        :param bool is_need_auth: Whether to enable authentication.
+        :param str mechanism: Password authentication mechanism.
+        :param str password: The Kafka SASL user password used for identity authentication.
+        :param str protocol: Secure Transport protocol.
+        :param int time_source_default: Specify the log time.
+        :param str topic: Kafka Topic name.
+        :param str username: The Kafka SASL username used for identity authentication.
+        """
+        pulumi.set(__self__, "encode", encode)
+        pulumi.set(__self__, "group", group)
+        pulumi.set(__self__, "host", host)
+        pulumi.set(__self__, "initial_offset", initial_offset)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "is_need_auth", is_need_auth)
+        pulumi.set(__self__, "mechanism", mechanism)
+        pulumi.set(__self__, "password", password)
+        pulumi.set(__self__, "protocol", protocol)
+        pulumi.set(__self__, "time_source_default", time_source_default)
+        pulumi.set(__self__, "topic", topic)
+        pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter
+    def encode(self) -> str:
+        """
+        The encoding format of the data.
+        """
+        return pulumi.get(self, "encode")
+
+    @property
+    @pulumi.getter
+    def group(self) -> str:
+        """
+        Kafka consumer group.
+        """
+        return pulumi.get(self, "group")
+
+    @property
+    @pulumi.getter
+    def host(self) -> str:
+        """
+        The service addresses corresponding to different types of Kafka clusters are different.
+        """
+        return pulumi.get(self, "host")
+
+    @property
+    @pulumi.getter(name="initialOffset")
+    def initial_offset(self) -> int:
+        """
+        The starting position of data import.
+        """
+        return pulumi.get(self, "initial_offset")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        When you are using the Volcano Engine Message Queue Kafka version, it should be set to the Kafka instance ID.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="isNeedAuth")
+    def is_need_auth(self) -> bool:
+        """
+        Whether to enable authentication.
+        """
+        return pulumi.get(self, "is_need_auth")
+
+    @property
+    @pulumi.getter
+    def mechanism(self) -> str:
+        """
+        Password authentication mechanism.
+        """
+        return pulumi.get(self, "mechanism")
+
+    @property
+    @pulumi.getter
+    def password(self) -> str:
+        """
+        The Kafka SASL user password used for identity authentication.
+        """
+        return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> str:
+        """
+        Secure Transport protocol.
+        """
+        return pulumi.get(self, "protocol")
+
+    @property
+    @pulumi.getter(name="timeSourceDefault")
+    def time_source_default(self) -> int:
+        """
+        Specify the log time.
+        """
+        return pulumi.get(self, "time_source_default")
+
+    @property
+    @pulumi.getter
+    def topic(self) -> str:
+        """
+        Kafka Topic name.
+        """
+        return pulumi.get(self, "topic")
+
+    @property
+    @pulumi.getter
+    def username(self) -> str:
+        """
+        The Kafka SASL username used for identity authentication.
+        """
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class GetImportTasksTaskInfoImportSourceInfoTosSourceInfoResult(dict):
+    def __init__(__self__, *,
+                 bucket: str,
+                 compress_type: str,
+                 prefix: str,
+                 region: str):
+        """
+        :param str bucket: The TOS bucket where the log file is located.
+        :param str compress_type: The compression mode of data in the TOS bucket.
+        :param str prefix: The path of the file to be imported in the TOS bucket.
+        :param str region: Regional ID.
+        """
+        pulumi.set(__self__, "bucket", bucket)
+        pulumi.set(__self__, "compress_type", compress_type)
+        pulumi.set(__self__, "prefix", prefix)
+        pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter
+    def bucket(self) -> str:
+        """
+        The TOS bucket where the log file is located.
+        """
+        return pulumi.get(self, "bucket")
+
+    @property
+    @pulumi.getter(name="compressType")
+    def compress_type(self) -> str:
+        """
+        The compression mode of data in the TOS bucket.
+        """
+        return pulumi.get(self, "compress_type")
+
+    @property
+    @pulumi.getter
+    def prefix(self) -> str:
+        """
+        The path of the file to be imported in the TOS bucket.
+        """
+        return pulumi.get(self, "prefix")
+
+    @property
+    @pulumi.getter
+    def region(self) -> str:
+        """
+        Regional ID.
+        """
+        return pulumi.get(self, "region")
+
+
+@pulumi.output_type
+class GetImportTasksTaskInfoTargetInfoResult(dict):
+    def __init__(__self__, *,
+                 extract_rule: 'outputs.GetImportTasksTaskInfoTargetInfoExtractRuleResult',
+                 log_sample: str,
+                 log_type: str,
+                 region: str):
+        """
+        :param 'GetImportTasksTaskInfoTargetInfoExtractRuleArgs' extract_rule: Log extraction rules.
+        :param str log_sample: Log sample.
+        :param str log_type: Specify the log parsing type when importing.
+        :param str region: Regional ID.
+        """
+        pulumi.set(__self__, "extract_rule", extract_rule)
+        pulumi.set(__self__, "log_sample", log_sample)
+        pulumi.set(__self__, "log_type", log_type)
+        pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter(name="extractRule")
+    def extract_rule(self) -> 'outputs.GetImportTasksTaskInfoTargetInfoExtractRuleResult':
+        """
+        Log extraction rules.
+        """
+        return pulumi.get(self, "extract_rule")
+
+    @property
+    @pulumi.getter(name="logSample")
+    def log_sample(self) -> str:
+        """
+        Log sample.
+        """
+        return pulumi.get(self, "log_sample")
+
+    @property
+    @pulumi.getter(name="logType")
+    def log_type(self) -> str:
+        """
+        Specify the log parsing type when importing.
+        """
+        return pulumi.get(self, "log_type")
+
+    @property
+    @pulumi.getter
+    def region(self) -> str:
+        """
+        Regional ID.
+        """
+        return pulumi.get(self, "region")
+
+
+@pulumi.output_type
+class GetImportTasksTaskInfoTargetInfoExtractRuleResult(dict):
+    def __init__(__self__, *,
+                 begin_regex: str,
+                 delimiter: str,
+                 keys: Sequence[str],
+                 quote: str,
+                 skip_line_count: int,
+                 time_extract_regex: str,
+                 time_format: str,
+                 time_key: str,
+                 time_zone: str,
+                 un_match_log_key: str,
+                 un_match_up_load_switch: bool):
+        """
+        :param str begin_regex: The regular expression used to identify the first line in each log, and its matching part will serve as the beginning of the log.
+        :param str delimiter: Log delimiter.
+        :param Sequence[str] keys: List of log field names (Keys).
+        :param str quote: Reference symbol. The content wrapped by the reference will not be separated but will be parsed into a complete field. It is valid if and only if the LogType is delimiter_log.
+        :param int skip_line_count: The number of log lines skipped.
+        :param str time_extract_regex: A regular expression for extracting time, used to extract the time value in the TimeKey field and parse it into the corresponding collection time.
+        :param str time_format: The parsing format of the time field.
+        :param str time_key: The field name of the log time field.
+        :param str time_zone: Time zone, supporting both machine time zone (default) and custom time zone. Among them, the custom time zone supports GMT and UTC.
+        :param str un_match_log_key: When uploading a log that failed to parse, the key name of the parse failed log.
+        :param bool un_match_up_load_switch: Whether to upload the logs of failed parsing.
+        """
+        pulumi.set(__self__, "begin_regex", begin_regex)
+        pulumi.set(__self__, "delimiter", delimiter)
+        pulumi.set(__self__, "keys", keys)
+        pulumi.set(__self__, "quote", quote)
+        pulumi.set(__self__, "skip_line_count", skip_line_count)
+        pulumi.set(__self__, "time_extract_regex", time_extract_regex)
+        pulumi.set(__self__, "time_format", time_format)
+        pulumi.set(__self__, "time_key", time_key)
+        pulumi.set(__self__, "time_zone", time_zone)
+        pulumi.set(__self__, "un_match_log_key", un_match_log_key)
+        pulumi.set(__self__, "un_match_up_load_switch", un_match_up_load_switch)
+
+    @property
+    @pulumi.getter(name="beginRegex")
+    def begin_regex(self) -> str:
+        """
+        The regular expression used to identify the first line in each log, and its matching part will serve as the beginning of the log.
+        """
+        return pulumi.get(self, "begin_regex")
+
+    @property
+    @pulumi.getter
+    def delimiter(self) -> str:
+        """
+        Log delimiter.
+        """
+        return pulumi.get(self, "delimiter")
+
+    @property
+    @pulumi.getter
+    def keys(self) -> Sequence[str]:
+        """
+        List of log field names (Keys).
+        """
+        return pulumi.get(self, "keys")
+
+    @property
+    @pulumi.getter
+    def quote(self) -> str:
+        """
+        Reference symbol. The content wrapped by the reference will not be separated but will be parsed into a complete field. It is valid if and only if the LogType is delimiter_log.
+        """
+        return pulumi.get(self, "quote")
+
+    @property
+    @pulumi.getter(name="skipLineCount")
+    def skip_line_count(self) -> int:
+        """
+        The number of log lines skipped.
+        """
+        return pulumi.get(self, "skip_line_count")
+
+    @property
+    @pulumi.getter(name="timeExtractRegex")
+    def time_extract_regex(self) -> str:
+        """
+        A regular expression for extracting time, used to extract the time value in the TimeKey field and parse it into the corresponding collection time.
+        """
+        return pulumi.get(self, "time_extract_regex")
+
+    @property
+    @pulumi.getter(name="timeFormat")
+    def time_format(self) -> str:
+        """
+        The parsing format of the time field.
+        """
+        return pulumi.get(self, "time_format")
+
+    @property
+    @pulumi.getter(name="timeKey")
+    def time_key(self) -> str:
+        """
+        The field name of the log time field.
+        """
+        return pulumi.get(self, "time_key")
+
+    @property
+    @pulumi.getter(name="timeZone")
+    def time_zone(self) -> str:
+        """
+        Time zone, supporting both machine time zone (default) and custom time zone. Among them, the custom time zone supports GMT and UTC.
+        """
+        return pulumi.get(self, "time_zone")
+
+    @property
+    @pulumi.getter(name="unMatchLogKey")
+    def un_match_log_key(self) -> str:
+        """
+        When uploading a log that failed to parse, the key name of the parse failed log.
+        """
+        return pulumi.get(self, "un_match_log_key")
+
+    @property
+    @pulumi.getter(name="unMatchUpLoadSwitch")
+    def un_match_up_load_switch(self) -> bool:
+        """
+        Whether to upload the logs of failed parsing.
+        """
+        return pulumi.get(self, "un_match_up_load_switch")
+
+
+@pulumi.output_type
+class GetImportTasksTaskInfoTaskStatisticsResult(dict):
+    def __init__(__self__, *,
+                 bytes_total: int,
+                 bytes_transferred: int,
+                 failed: int,
+                 not_exist: int,
+                 skipped: int,
+                 task_status: str,
+                 total: int,
+                 transferred: int):
+        """
+        :param int bytes_total: The total number of resource bytes that have been listed.
+        :param int bytes_transferred: The number of imported bytes.
+        :param int failed: The number of resources that failed to import.
+        :param int not_exist: The number of non-existent resources.
+        :param int skipped: Skip the number of imported resources.
+        :param str task_status: Import the status of the task.
+        :param int total: The total number of resources that have been listed.
+        :param int transferred: The number of imported resources.
+        """
+        pulumi.set(__self__, "bytes_total", bytes_total)
+        pulumi.set(__self__, "bytes_transferred", bytes_transferred)
+        pulumi.set(__self__, "failed", failed)
+        pulumi.set(__self__, "not_exist", not_exist)
+        pulumi.set(__self__, "skipped", skipped)
+        pulumi.set(__self__, "task_status", task_status)
+        pulumi.set(__self__, "total", total)
+        pulumi.set(__self__, "transferred", transferred)
+
+    @property
+    @pulumi.getter(name="bytesTotal")
+    def bytes_total(self) -> int:
+        """
+        The total number of resource bytes that have been listed.
+        """
+        return pulumi.get(self, "bytes_total")
+
+    @property
+    @pulumi.getter(name="bytesTransferred")
+    def bytes_transferred(self) -> int:
+        """
+        The number of imported bytes.
+        """
+        return pulumi.get(self, "bytes_transferred")
+
+    @property
+    @pulumi.getter
+    def failed(self) -> int:
+        """
+        The number of resources that failed to import.
+        """
+        return pulumi.get(self, "failed")
+
+    @property
+    @pulumi.getter(name="notExist")
+    def not_exist(self) -> int:
+        """
+        The number of non-existent resources.
+        """
+        return pulumi.get(self, "not_exist")
+
+    @property
+    @pulumi.getter
+    def skipped(self) -> int:
+        """
+        Skip the number of imported resources.
+        """
+        return pulumi.get(self, "skipped")
+
+    @property
+    @pulumi.getter(name="taskStatus")
+    def task_status(self) -> str:
+        """
+        Import the status of the task.
+        """
+        return pulumi.get(self, "task_status")
+
+    @property
+    @pulumi.getter
+    def total(self) -> int:
+        """
+        The total number of resources that have been listed.
+        """
+        return pulumi.get(self, "total")
+
+    @property
+    @pulumi.getter
+    def transferred(self) -> int:
+        """
+        The number of imported resources.
+        """
+        return pulumi.get(self, "transferred")
 
 
 @pulumi.output_type
@@ -8125,6 +11920,284 @@ class GetRulesRuleUserDefineRuleShardHashKeyResult(dict):
 
 
 @pulumi.output_type
+class GetScheduleSqlTasksTaskResult(dict):
+    def __init__(__self__, *,
+                 create_time_stamp: int,
+                 description: str,
+                 dest_project_id: str,
+                 dest_region: str,
+                 dest_topic_id: str,
+                 dest_topic_name: str,
+                 modify_time_stamp: int,
+                 process_end_time: int,
+                 process_sql_delay: int,
+                 process_start_time: int,
+                 process_time_window: str,
+                 query: str,
+                 request_cycle: 'outputs.GetScheduleSqlTasksTaskRequestCycleResult',
+                 source_project_id: str,
+                 source_project_name: str,
+                 source_topic_id: str,
+                 source_topic_name: str,
+                 status: int,
+                 task_id: str,
+                 task_name: str):
+        """
+        :param int create_time_stamp: Set the creation time of timed SQL analysis tasks.
+        :param str description: A simple description of the timed SQL analysis task.
+        :param str dest_project_id: The log project ID to which the target log topic belongs.
+        :param str dest_region: The region to which the target log project belongs.
+        :param str dest_topic_id: The target log topic ID used for storing the result data of timed SQL analysis.
+        :param str dest_topic_name: The name of the target log topic used for storing the data of the timed SQL analysis results.
+        :param int modify_time_stamp: The most recent modification time of the scheduled SQL analysis task.
+        :param int process_end_time: Schedule the end time of the timed SQL analysis task in the format of a second-level timestamp.
+        :param int process_sql_delay: The delay time of each scheduling. The value range is from 0 to 120, and the unit is seconds.
+        :param int process_start_time: The start time of the scheduled SQL task, that is, the start time when the first instance is scheduled. The format is a timestamp at the second level.
+        :param str process_time_window: SQL time window, which refers to the time range for log retrieval and analysis when a timed SQL analysis task is running, is in a left-closed and right-open format.
+        :param str query: Timed SQL analysis tasks are retrieval and analysis statements that are executed regularly.
+        :param 'GetScheduleSqlTasksTaskRequestCycleArgs' request_cycle: The scheduling cycle of timed SQL analysis tasks.
+        :param str source_project_id: The log project ID to which the source log topic belongs.
+        :param str source_project_name: The name of the log item to which the source log topic belongs.
+        :param str source_topic_id: The source log topic ID where the original log for timed SQL analysis is located.
+        :param str source_topic_name: Source log topic name.
+        :param int status: Timed SQL analysis task status.
+        :param str task_id: Timed SQL analysis task ID.
+        :param str task_name: Timed SQL analysis task name.
+        """
+        pulumi.set(__self__, "create_time_stamp", create_time_stamp)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "dest_project_id", dest_project_id)
+        pulumi.set(__self__, "dest_region", dest_region)
+        pulumi.set(__self__, "dest_topic_id", dest_topic_id)
+        pulumi.set(__self__, "dest_topic_name", dest_topic_name)
+        pulumi.set(__self__, "modify_time_stamp", modify_time_stamp)
+        pulumi.set(__self__, "process_end_time", process_end_time)
+        pulumi.set(__self__, "process_sql_delay", process_sql_delay)
+        pulumi.set(__self__, "process_start_time", process_start_time)
+        pulumi.set(__self__, "process_time_window", process_time_window)
+        pulumi.set(__self__, "query", query)
+        pulumi.set(__self__, "request_cycle", request_cycle)
+        pulumi.set(__self__, "source_project_id", source_project_id)
+        pulumi.set(__self__, "source_project_name", source_project_name)
+        pulumi.set(__self__, "source_topic_id", source_topic_id)
+        pulumi.set(__self__, "source_topic_name", source_topic_name)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "task_id", task_id)
+        pulumi.set(__self__, "task_name", task_name)
+
+    @property
+    @pulumi.getter(name="createTimeStamp")
+    def create_time_stamp(self) -> int:
+        """
+        Set the creation time of timed SQL analysis tasks.
+        """
+        return pulumi.get(self, "create_time_stamp")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        A simple description of the timed SQL analysis task.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="destProjectId")
+    def dest_project_id(self) -> str:
+        """
+        The log project ID to which the target log topic belongs.
+        """
+        return pulumi.get(self, "dest_project_id")
+
+    @property
+    @pulumi.getter(name="destRegion")
+    def dest_region(self) -> str:
+        """
+        The region to which the target log project belongs.
+        """
+        return pulumi.get(self, "dest_region")
+
+    @property
+    @pulumi.getter(name="destTopicId")
+    def dest_topic_id(self) -> str:
+        """
+        The target log topic ID used for storing the result data of timed SQL analysis.
+        """
+        return pulumi.get(self, "dest_topic_id")
+
+    @property
+    @pulumi.getter(name="destTopicName")
+    def dest_topic_name(self) -> str:
+        """
+        The name of the target log topic used for storing the data of the timed SQL analysis results.
+        """
+        return pulumi.get(self, "dest_topic_name")
+
+    @property
+    @pulumi.getter(name="modifyTimeStamp")
+    def modify_time_stamp(self) -> int:
+        """
+        The most recent modification time of the scheduled SQL analysis task.
+        """
+        return pulumi.get(self, "modify_time_stamp")
+
+    @property
+    @pulumi.getter(name="processEndTime")
+    def process_end_time(self) -> int:
+        """
+        Schedule the end time of the timed SQL analysis task in the format of a second-level timestamp.
+        """
+        return pulumi.get(self, "process_end_time")
+
+    @property
+    @pulumi.getter(name="processSqlDelay")
+    def process_sql_delay(self) -> int:
+        """
+        The delay time of each scheduling. The value range is from 0 to 120, and the unit is seconds.
+        """
+        return pulumi.get(self, "process_sql_delay")
+
+    @property
+    @pulumi.getter(name="processStartTime")
+    def process_start_time(self) -> int:
+        """
+        The start time of the scheduled SQL task, that is, the start time when the first instance is scheduled. The format is a timestamp at the second level.
+        """
+        return pulumi.get(self, "process_start_time")
+
+    @property
+    @pulumi.getter(name="processTimeWindow")
+    def process_time_window(self) -> str:
+        """
+        SQL time window, which refers to the time range for log retrieval and analysis when a timed SQL analysis task is running, is in a left-closed and right-open format.
+        """
+        return pulumi.get(self, "process_time_window")
+
+    @property
+    @pulumi.getter
+    def query(self) -> str:
+        """
+        Timed SQL analysis tasks are retrieval and analysis statements that are executed regularly.
+        """
+        return pulumi.get(self, "query")
+
+    @property
+    @pulumi.getter(name="requestCycle")
+    def request_cycle(self) -> 'outputs.GetScheduleSqlTasksTaskRequestCycleResult':
+        """
+        The scheduling cycle of timed SQL analysis tasks.
+        """
+        return pulumi.get(self, "request_cycle")
+
+    @property
+    @pulumi.getter(name="sourceProjectId")
+    def source_project_id(self) -> str:
+        """
+        The log project ID to which the source log topic belongs.
+        """
+        return pulumi.get(self, "source_project_id")
+
+    @property
+    @pulumi.getter(name="sourceProjectName")
+    def source_project_name(self) -> str:
+        """
+        The name of the log item to which the source log topic belongs.
+        """
+        return pulumi.get(self, "source_project_name")
+
+    @property
+    @pulumi.getter(name="sourceTopicId")
+    def source_topic_id(self) -> str:
+        """
+        The source log topic ID where the original log for timed SQL analysis is located.
+        """
+        return pulumi.get(self, "source_topic_id")
+
+    @property
+    @pulumi.getter(name="sourceTopicName")
+    def source_topic_name(self) -> str:
+        """
+        Source log topic name.
+        """
+        return pulumi.get(self, "source_topic_name")
+
+    @property
+    @pulumi.getter
+    def status(self) -> int:
+        """
+        Timed SQL analysis task status.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="taskId")
+    def task_id(self) -> str:
+        """
+        Timed SQL analysis task ID.
+        """
+        return pulumi.get(self, "task_id")
+
+    @property
+    @pulumi.getter(name="taskName")
+    def task_name(self) -> str:
+        """
+        Timed SQL analysis task name.
+        """
+        return pulumi.get(self, "task_name")
+
+
+@pulumi.output_type
+class GetScheduleSqlTasksTaskRequestCycleResult(dict):
+    def __init__(__self__, *,
+                 cron_tab: str,
+                 cron_time_zone: str,
+                 time: int,
+                 type: str):
+        """
+        :param str cron_tab: Cron expression. The log service specifies the timed execution of alarm tasks through the Cron expression. The minimum granularity of Cron expressions is minutes, 24 hours. For example, 0 18 * * * indicates that an alarm task is executed exactly at 18:00 every day.
+        :param str cron_time_zone: When setting the Type to Cron, the time zone also needs to be set.
+        :param int time: The scheduling cycle or the time point of regular execution (the number of minutes away from 00:00), with a value range of 1 to 1440, and the unit is minutes.
+        :param str type: The type of Scheduling cycle.
+        """
+        pulumi.set(__self__, "cron_tab", cron_tab)
+        pulumi.set(__self__, "cron_time_zone", cron_time_zone)
+        pulumi.set(__self__, "time", time)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="cronTab")
+    def cron_tab(self) -> str:
+        """
+        Cron expression. The log service specifies the timed execution of alarm tasks through the Cron expression. The minimum granularity of Cron expressions is minutes, 24 hours. For example, 0 18 * * * indicates that an alarm task is executed exactly at 18:00 every day.
+        """
+        return pulumi.get(self, "cron_tab")
+
+    @property
+    @pulumi.getter(name="cronTimeZone")
+    def cron_time_zone(self) -> str:
+        """
+        When setting the Type to Cron, the time zone also needs to be set.
+        """
+        return pulumi.get(self, "cron_time_zone")
+
+    @property
+    @pulumi.getter
+    def time(self) -> int:
+        """
+        The scheduling cycle or the time point of regular execution (the number of minutes away from 00:00), with a value range of 1 to 1440, and the unit is minutes.
+        """
+        return pulumi.get(self, "time")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of Scheduling cycle.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
 class GetShardsShardResult(dict):
     def __init__(__self__, *,
                  exclusive_end_key: str,
@@ -8206,6 +12279,466 @@ class GetShardsShardResult(dict):
         The id of topic.
         """
         return pulumi.get(self, "topic_id")
+
+
+@pulumi.output_type
+class GetShippersShipperResult(dict):
+    def __init__(__self__, *,
+                 content_info: 'outputs.GetShippersShipperContentInfoResult',
+                 create_time: str,
+                 dashboard_id: str,
+                 kafka_shipper_info: 'outputs.GetShippersShipperKafkaShipperInfoResult',
+                 modify_time: str,
+                 project_id: str,
+                 project_name: str,
+                 shipper_end_time: int,
+                 shipper_id: str,
+                 shipper_name: str,
+                 shipper_start_time: int,
+                 shipper_type: str,
+                 status: bool,
+                 topic_id: str,
+                 topic_name: str,
+                 tos_shipper_info: 'outputs.GetShippersShipperTosShipperInfoResult'):
+        """
+        :param 'GetShippersShipperContentInfoArgs' content_info: The content format configuration of the delivery log.
+        :param str create_time: Processing task creation time.
+        :param str dashboard_id: The default built-in dashboard ID for delivery.
+        :param 'GetShippersShipperKafkaShipperInfoArgs' kafka_shipper_info: JSON format log content configuration.
+        :param str modify_time: The most recent modification time of the processing task.
+        :param str project_id: Specify the log item ID for querying the data delivery configuration under the specified log item.
+        :param str project_name: Specify the name of the log item for querying the data delivery configuration under the specified log item. Support fuzzy matching.
+        :param int shipper_end_time: Delivery end time, millisecond timestamp. If not configured, it will keep delivering.
+        :param str shipper_id: Delivery configuration ID.
+        :param str shipper_name: Delivery configuration name.
+        :param int shipper_start_time: Delivery start time, millisecond timestamp. If not configured, it defaults to the current time.
+        :param str shipper_type: Specify the delivery type for querying the delivery configuration related to that delivery type.
+        :param bool status: Whether to enable the delivery configuration.
+        :param str topic_id: Specify the log topic ID for querying the data delivery configuration related to this log topic.
+        :param str topic_name: Specify the name of the log topic for querying the data delivery configuration related to this log topic. Support fuzzy matching.
+        :param 'GetShippersShipperTosShipperInfoArgs' tos_shipper_info: Deliver the relevant configuration to the object storage (TOS).
+        """
+        pulumi.set(__self__, "content_info", content_info)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "dashboard_id", dashboard_id)
+        pulumi.set(__self__, "kafka_shipper_info", kafka_shipper_info)
+        pulumi.set(__self__, "modify_time", modify_time)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "shipper_end_time", shipper_end_time)
+        pulumi.set(__self__, "shipper_id", shipper_id)
+        pulumi.set(__self__, "shipper_name", shipper_name)
+        pulumi.set(__self__, "shipper_start_time", shipper_start_time)
+        pulumi.set(__self__, "shipper_type", shipper_type)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "topic_id", topic_id)
+        pulumi.set(__self__, "topic_name", topic_name)
+        pulumi.set(__self__, "tos_shipper_info", tos_shipper_info)
+
+    @property
+    @pulumi.getter(name="contentInfo")
+    def content_info(self) -> 'outputs.GetShippersShipperContentInfoResult':
+        """
+        The content format configuration of the delivery log.
+        """
+        return pulumi.get(self, "content_info")
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        Processing task creation time.
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter(name="dashboardId")
+    def dashboard_id(self) -> str:
+        """
+        The default built-in dashboard ID for delivery.
+        """
+        return pulumi.get(self, "dashboard_id")
+
+    @property
+    @pulumi.getter(name="kafkaShipperInfo")
+    def kafka_shipper_info(self) -> 'outputs.GetShippersShipperKafkaShipperInfoResult':
+        """
+        JSON format log content configuration.
+        """
+        return pulumi.get(self, "kafka_shipper_info")
+
+    @property
+    @pulumi.getter(name="modifyTime")
+    def modify_time(self) -> str:
+        """
+        The most recent modification time of the processing task.
+        """
+        return pulumi.get(self, "modify_time")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        """
+        Specify the log item ID for querying the data delivery configuration under the specified log item.
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        Specify the name of the log item for querying the data delivery configuration under the specified log item. Support fuzzy matching.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="shipperEndTime")
+    def shipper_end_time(self) -> int:
+        """
+        Delivery end time, millisecond timestamp. If not configured, it will keep delivering.
+        """
+        return pulumi.get(self, "shipper_end_time")
+
+    @property
+    @pulumi.getter(name="shipperId")
+    def shipper_id(self) -> str:
+        """
+        Delivery configuration ID.
+        """
+        return pulumi.get(self, "shipper_id")
+
+    @property
+    @pulumi.getter(name="shipperName")
+    def shipper_name(self) -> str:
+        """
+        Delivery configuration name.
+        """
+        return pulumi.get(self, "shipper_name")
+
+    @property
+    @pulumi.getter(name="shipperStartTime")
+    def shipper_start_time(self) -> int:
+        """
+        Delivery start time, millisecond timestamp. If not configured, it defaults to the current time.
+        """
+        return pulumi.get(self, "shipper_start_time")
+
+    @property
+    @pulumi.getter(name="shipperType")
+    def shipper_type(self) -> str:
+        """
+        Specify the delivery type for querying the delivery configuration related to that delivery type.
+        """
+        return pulumi.get(self, "shipper_type")
+
+    @property
+    @pulumi.getter
+    def status(self) -> bool:
+        """
+        Whether to enable the delivery configuration.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="topicId")
+    def topic_id(self) -> str:
+        """
+        Specify the log topic ID for querying the data delivery configuration related to this log topic.
+        """
+        return pulumi.get(self, "topic_id")
+
+    @property
+    @pulumi.getter(name="topicName")
+    def topic_name(self) -> str:
+        """
+        Specify the name of the log topic for querying the data delivery configuration related to this log topic. Support fuzzy matching.
+        """
+        return pulumi.get(self, "topic_name")
+
+    @property
+    @pulumi.getter(name="tosShipperInfo")
+    def tos_shipper_info(self) -> 'outputs.GetShippersShipperTosShipperInfoResult':
+        """
+        Deliver the relevant configuration to the object storage (TOS).
+        """
+        return pulumi.get(self, "tos_shipper_info")
+
+
+@pulumi.output_type
+class GetShippersShipperContentInfoResult(dict):
+    def __init__(__self__, *,
+                 csv_info: 'outputs.GetShippersShipperContentInfoCsvInfoResult',
+                 format: str,
+                 json_info: 'outputs.GetShippersShipperContentInfoJsonInfoResult'):
+        """
+        :param 'GetShippersShipperContentInfoCsvInfoArgs' csv_info: CSV format log content configuration.
+        :param str format: Log content parsing format.
+        :param 'GetShippersShipperContentInfoJsonInfoArgs' json_info: JSON format log content configuration.
+        """
+        pulumi.set(__self__, "csv_info", csv_info)
+        pulumi.set(__self__, "format", format)
+        pulumi.set(__self__, "json_info", json_info)
+
+    @property
+    @pulumi.getter(name="csvInfo")
+    def csv_info(self) -> 'outputs.GetShippersShipperContentInfoCsvInfoResult':
+        """
+        CSV format log content configuration.
+        """
+        return pulumi.get(self, "csv_info")
+
+    @property
+    @pulumi.getter
+    def format(self) -> str:
+        """
+        Log content parsing format.
+        """
+        return pulumi.get(self, "format")
+
+    @property
+    @pulumi.getter(name="jsonInfo")
+    def json_info(self) -> 'outputs.GetShippersShipperContentInfoJsonInfoResult':
+        """
+        JSON format log content configuration.
+        """
+        return pulumi.get(self, "json_info")
+
+
+@pulumi.output_type
+class GetShippersShipperContentInfoCsvInfoResult(dict):
+    def __init__(__self__, *,
+                 delimiter: str,
+                 escape_char: str,
+                 keys: Sequence[str],
+                 non_field_content: str,
+                 print_header: bool):
+        """
+        :param str delimiter: Delimiters are supported, including commas, tabs, vertical bars, semicolons, and Spaces.
+        :param str escape_char: When the field content contains a delimiter, use an escape character to wrap the field. Currently, only single quotes, double quotes, and null characters are supported.
+        :param Sequence[str] keys: When delivering in JSON format, if this parameter is not configured, it indicates that all fields have been delivered. Including __content__ (choice), __source__, __path__, __time__, __image_name__, __container_name__, __pod_name__, __pod_uid__, namespace, __tag____client_ip__, __tag____receive_time__.
+        :param str non_field_content: Invalid field filling content, with a length ranging from 0 to 128.
+        :param bool print_header: Whether to print the Key on the first line.
+        """
+        pulumi.set(__self__, "delimiter", delimiter)
+        pulumi.set(__self__, "escape_char", escape_char)
+        pulumi.set(__self__, "keys", keys)
+        pulumi.set(__self__, "non_field_content", non_field_content)
+        pulumi.set(__self__, "print_header", print_header)
+
+    @property
+    @pulumi.getter
+    def delimiter(self) -> str:
+        """
+        Delimiters are supported, including commas, tabs, vertical bars, semicolons, and Spaces.
+        """
+        return pulumi.get(self, "delimiter")
+
+    @property
+    @pulumi.getter(name="escapeChar")
+    def escape_char(self) -> str:
+        """
+        When the field content contains a delimiter, use an escape character to wrap the field. Currently, only single quotes, double quotes, and null characters are supported.
+        """
+        return pulumi.get(self, "escape_char")
+
+    @property
+    @pulumi.getter
+    def keys(self) -> Sequence[str]:
+        """
+        When delivering in JSON format, if this parameter is not configured, it indicates that all fields have been delivered. Including __content__ (choice), __source__, __path__, __time__, __image_name__, __container_name__, __pod_name__, __pod_uid__, namespace, __tag____client_ip__, __tag____receive_time__.
+        """
+        return pulumi.get(self, "keys")
+
+    @property
+    @pulumi.getter(name="nonFieldContent")
+    def non_field_content(self) -> str:
+        """
+        Invalid field filling content, with a length ranging from 0 to 128.
+        """
+        return pulumi.get(self, "non_field_content")
+
+    @property
+    @pulumi.getter(name="printHeader")
+    def print_header(self) -> bool:
+        """
+        Whether to print the Key on the first line.
+        """
+        return pulumi.get(self, "print_header")
+
+
+@pulumi.output_type
+class GetShippersShipperContentInfoJsonInfoResult(dict):
+    def __init__(__self__, *,
+                 enable: bool,
+                 escape: bool,
+                 keys: Sequence[str]):
+        """
+        :param bool enable: Enable the flag.
+        :param bool escape: Whether to escape or not. It must be configured as true.
+        :param Sequence[str] keys: When delivering in JSON format, if this parameter is not configured, it indicates that all fields have been delivered. Including __content__ (choice), __source__, __path__, __time__, __image_name__, __container_name__, __pod_name__, __pod_uid__, namespace, __tag____client_ip__, __tag____receive_time__.
+        """
+        pulumi.set(__self__, "enable", enable)
+        pulumi.set(__self__, "escape", escape)
+        pulumi.set(__self__, "keys", keys)
+
+    @property
+    @pulumi.getter
+    def enable(self) -> bool:
+        """
+        Enable the flag.
+        """
+        return pulumi.get(self, "enable")
+
+    @property
+    @pulumi.getter
+    def escape(self) -> bool:
+        """
+        Whether to escape or not. It must be configured as true.
+        """
+        return pulumi.get(self, "escape")
+
+    @property
+    @pulumi.getter
+    def keys(self) -> Sequence[str]:
+        """
+        When delivering in JSON format, if this parameter is not configured, it indicates that all fields have been delivered. Including __content__ (choice), __source__, __path__, __time__, __image_name__, __container_name__, __pod_name__, __pod_uid__, namespace, __tag____client_ip__, __tag____receive_time__.
+        """
+        return pulumi.get(self, "keys")
+
+
+@pulumi.output_type
+class GetShippersShipperKafkaShipperInfoResult(dict):
+    def __init__(__self__, *,
+                 compress: str,
+                 end_time: int,
+                 instance: str,
+                 kafka_topic: str,
+                 start_time: int):
+        """
+        :param str compress: Compression formats currently supported include snappy, gzip, lz4, and none.
+        :param int end_time: Delivery end time, millisecond timestamp. If not configured, it will keep delivering.
+        :param str instance: Kafka instance.
+        :param str kafka_topic: The name of the Kafka Topic.
+        :param int start_time: Delivery start time, millisecond timestamp. If not configured, the default is the current time.
+        """
+        pulumi.set(__self__, "compress", compress)
+        pulumi.set(__self__, "end_time", end_time)
+        pulumi.set(__self__, "instance", instance)
+        pulumi.set(__self__, "kafka_topic", kafka_topic)
+        pulumi.set(__self__, "start_time", start_time)
+
+    @property
+    @pulumi.getter
+    def compress(self) -> str:
+        """
+        Compression formats currently supported include snappy, gzip, lz4, and none.
+        """
+        return pulumi.get(self, "compress")
+
+    @property
+    @pulumi.getter(name="endTime")
+    def end_time(self) -> int:
+        """
+        Delivery end time, millisecond timestamp. If not configured, it will keep delivering.
+        """
+        return pulumi.get(self, "end_time")
+
+    @property
+    @pulumi.getter
+    def instance(self) -> str:
+        """
+        Kafka instance.
+        """
+        return pulumi.get(self, "instance")
+
+    @property
+    @pulumi.getter(name="kafkaTopic")
+    def kafka_topic(self) -> str:
+        """
+        The name of the Kafka Topic.
+        """
+        return pulumi.get(self, "kafka_topic")
+
+    @property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> int:
+        """
+        Delivery start time, millisecond timestamp. If not configured, the default is the current time.
+        """
+        return pulumi.get(self, "start_time")
+
+
+@pulumi.output_type
+class GetShippersShipperTosShipperInfoResult(dict):
+    def __init__(__self__, *,
+                 bucket: str,
+                 compress: str,
+                 interval: int,
+                 max_size: int,
+                 partition_format: str,
+                 prefix: str):
+        """
+        :param str bucket: When choosing a TOS bucket, it must be located in the same region as the source log topic.
+        :param str compress: Compression formats currently supported include snappy, gzip, lz4, and none.
+        :param int interval: The delivery time interval, measured in seconds, ranges from 300 to 900.
+        :param int max_size: The maximum size of the original file that can be delivered to each partition (Shard), that is, the size of the uncompressed log file. The unit is MiB, and the value range is 5 to 256.
+        :param str partition_format: Partition rules for delivering logs.
+        :param str prefix: The top-level directory name of the storage bucket. All log data delivered through this delivery configuration will be delivered to this directory.
+        """
+        pulumi.set(__self__, "bucket", bucket)
+        pulumi.set(__self__, "compress", compress)
+        pulumi.set(__self__, "interval", interval)
+        pulumi.set(__self__, "max_size", max_size)
+        pulumi.set(__self__, "partition_format", partition_format)
+        pulumi.set(__self__, "prefix", prefix)
+
+    @property
+    @pulumi.getter
+    def bucket(self) -> str:
+        """
+        When choosing a TOS bucket, it must be located in the same region as the source log topic.
+        """
+        return pulumi.get(self, "bucket")
+
+    @property
+    @pulumi.getter
+    def compress(self) -> str:
+        """
+        Compression formats currently supported include snappy, gzip, lz4, and none.
+        """
+        return pulumi.get(self, "compress")
+
+    @property
+    @pulumi.getter
+    def interval(self) -> int:
+        """
+        The delivery time interval, measured in seconds, ranges from 300 to 900.
+        """
+        return pulumi.get(self, "interval")
+
+    @property
+    @pulumi.getter(name="maxSize")
+    def max_size(self) -> int:
+        """
+        The maximum size of the original file that can be delivered to each partition (Shard), that is, the size of the uncompressed log file. The unit is MiB, and the value range is 5 to 256.
+        """
+        return pulumi.get(self, "max_size")
+
+    @property
+    @pulumi.getter(name="partitionFormat")
+    def partition_format(self) -> str:
+        """
+        Partition rules for delivering logs.
+        """
+        return pulumi.get(self, "partition_format")
+
+    @property
+    @pulumi.getter
+    def prefix(self) -> str:
+        """
+        The top-level directory name of the storage bucket. All log data delivered through this delivery configuration will be delivered to this directory.
+        """
+        return pulumi.get(self, "prefix")
 
 
 @pulumi.output_type

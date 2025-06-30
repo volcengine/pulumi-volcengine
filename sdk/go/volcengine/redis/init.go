@@ -37,6 +37,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Endpoint{}
 	case "volcengine:redis/instance:Instance":
 		r = &Instance{}
+	case "volcengine:redis/parameterGroup:ParameterGroup":
+		r = &ParameterGroup{}
 	case "volcengine:redis/state:State":
 		r = &State{}
 	default:
@@ -90,6 +92,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"volcengine",
 		"redis/instance",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"redis/parameterGroup",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

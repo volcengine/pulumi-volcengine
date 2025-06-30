@@ -46,6 +46,18 @@ namespace Pulumi.Volcengine.Private_zone
         [Output("accountId")]
         public Output<string> AccountId { get; private set; } = null!;
 
+        /// <summary>
+        /// The auth type of the private zone resource. 0: authorized by organization, 1: authorized by verify code. Default is 0.
+        /// </summary>
+        [Output("authType")]
+        public Output<int?> AuthType { get; private set; } = null!;
+
+        /// <summary>
+        /// The verify code of the private zone resource. This field is required when the auth_type is 1.
+        /// </summary>
+        [Output("verifyCode")]
+        public Output<string?> VerifyCode { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a UserVpcAuthorization resource with the given unique name, arguments, and options.
@@ -99,6 +111,18 @@ namespace Pulumi.Volcengine.Private_zone
         [Input("accountId", required: true)]
         public Input<string> AccountId { get; set; } = null!;
 
+        /// <summary>
+        /// The auth type of the private zone resource. 0: authorized by organization, 1: authorized by verify code. Default is 0.
+        /// </summary>
+        [Input("authType")]
+        public Input<int>? AuthType { get; set; }
+
+        /// <summary>
+        /// The verify code of the private zone resource. This field is required when the auth_type is 1.
+        /// </summary>
+        [Input("verifyCode")]
+        public Input<string>? VerifyCode { get; set; }
+
         public UserVpcAuthorizationArgs()
         {
         }
@@ -112,6 +136,18 @@ namespace Pulumi.Volcengine.Private_zone
         /// </summary>
         [Input("accountId")]
         public Input<string>? AccountId { get; set; }
+
+        /// <summary>
+        /// The auth type of the private zone resource. 0: authorized by organization, 1: authorized by verify code. Default is 0.
+        /// </summary>
+        [Input("authType")]
+        public Input<int>? AuthType { get; set; }
+
+        /// <summary>
+        /// The verify code of the private zone resource. This field is required when the auth_type is 1.
+        /// </summary>
+        [Input("verifyCode")]
+        public Input<string>? VerifyCode { get; set; }
 
         public UserVpcAuthorizationState()
         {

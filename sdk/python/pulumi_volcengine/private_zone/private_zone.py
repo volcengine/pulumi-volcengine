@@ -20,16 +20,23 @@ class PrivateZoneArgs:
                  zone_name: pulumi.Input[str],
                  intelligent_mode: Optional[pulumi.Input[bool]] = None,
                  load_balance_mode: Optional[pulumi.Input[bool]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  recursion_mode: Optional[pulumi.Input[bool]] = None,
-                 remark: Optional[pulumi.Input[str]] = None):
+                 remark: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['PrivateZoneTagArgs']]]] = None,
+                 vpc_trns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a PrivateZone resource.
         :param pulumi.Input[Sequence[pulumi.Input['PrivateZoneVpcArgs']]] vpcs: The bind vpc object of the private zone. If you want to bind another account's VPC, you need to first use resource private_zone.UserVpcAuthorization to complete the authorization.
         :param pulumi.Input[str] zone_name: The name of the private zone.
         :param pulumi.Input[bool] intelligent_mode: Whether to enable the intelligent mode of the private zone.
         :param pulumi.Input[bool] load_balance_mode: Whether to enable the load balance mode of the private zone.
+        :param pulumi.Input[str] project_name: The project name of the private zone.
         :param pulumi.Input[bool] recursion_mode: Whether to enable the recursion mode of the private zone.
         :param pulumi.Input[str] remark: The remark of the private zone.
+        :param pulumi.Input[Sequence[pulumi.Input['PrivateZoneTagArgs']]] tags: Tags.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] vpc_trns: The vpc trns of the private zone. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource. 
+               When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         """
         pulumi.set(__self__, "vpcs", vpcs)
         pulumi.set(__self__, "zone_name", zone_name)
@@ -37,10 +44,16 @@ class PrivateZoneArgs:
             pulumi.set(__self__, "intelligent_mode", intelligent_mode)
         if load_balance_mode is not None:
             pulumi.set(__self__, "load_balance_mode", load_balance_mode)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
         if recursion_mode is not None:
             pulumi.set(__self__, "recursion_mode", recursion_mode)
         if remark is not None:
             pulumi.set(__self__, "remark", remark)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+        if vpc_trns is not None:
+            pulumi.set(__self__, "vpc_trns", vpc_trns)
 
     @property
     @pulumi.getter
@@ -91,6 +104,18 @@ class PrivateZoneArgs:
         pulumi.set(self, "load_balance_mode", value)
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The project name of the private zone.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
+    @property
     @pulumi.getter(name="recursionMode")
     def recursion_mode(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -114,22 +139,54 @@ class PrivateZoneArgs:
     def remark(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "remark", value)
 
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['PrivateZoneTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['PrivateZoneTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
+    @pulumi.getter(name="vpcTrns")
+    def vpc_trns(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The vpc trns of the private zone. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource. 
+        When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        """
+        return pulumi.get(self, "vpc_trns")
+
+    @vpc_trns.setter
+    def vpc_trns(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "vpc_trns", value)
+
 
 @pulumi.input_type
 class _PrivateZoneState:
     def __init__(__self__, *,
                  intelligent_mode: Optional[pulumi.Input[bool]] = None,
                  load_balance_mode: Optional[pulumi.Input[bool]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  recursion_mode: Optional[pulumi.Input[bool]] = None,
                  remark: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['PrivateZoneTagArgs']]]] = None,
+                 vpc_trns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  vpcs: Optional[pulumi.Input[Sequence[pulumi.Input['PrivateZoneVpcArgs']]]] = None,
                  zone_name: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering PrivateZone resources.
         :param pulumi.Input[bool] intelligent_mode: Whether to enable the intelligent mode of the private zone.
         :param pulumi.Input[bool] load_balance_mode: Whether to enable the load balance mode of the private zone.
+        :param pulumi.Input[str] project_name: The project name of the private zone.
         :param pulumi.Input[bool] recursion_mode: Whether to enable the recursion mode of the private zone.
         :param pulumi.Input[str] remark: The remark of the private zone.
+        :param pulumi.Input[Sequence[pulumi.Input['PrivateZoneTagArgs']]] tags: Tags.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] vpc_trns: The vpc trns of the private zone. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource. 
+               When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[Sequence[pulumi.Input['PrivateZoneVpcArgs']]] vpcs: The bind vpc object of the private zone. If you want to bind another account's VPC, you need to first use resource private_zone.UserVpcAuthorization to complete the authorization.
         :param pulumi.Input[str] zone_name: The name of the private zone.
         """
@@ -137,10 +194,16 @@ class _PrivateZoneState:
             pulumi.set(__self__, "intelligent_mode", intelligent_mode)
         if load_balance_mode is not None:
             pulumi.set(__self__, "load_balance_mode", load_balance_mode)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
         if recursion_mode is not None:
             pulumi.set(__self__, "recursion_mode", recursion_mode)
         if remark is not None:
             pulumi.set(__self__, "remark", remark)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+        if vpc_trns is not None:
+            pulumi.set(__self__, "vpc_trns", vpc_trns)
         if vpcs is not None:
             pulumi.set(__self__, "vpcs", vpcs)
         if zone_name is not None:
@@ -171,6 +234,18 @@ class _PrivateZoneState:
         pulumi.set(self, "load_balance_mode", value)
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The project name of the private zone.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
+    @property
     @pulumi.getter(name="recursionMode")
     def recursion_mode(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -193,6 +268,31 @@ class _PrivateZoneState:
     @remark.setter
     def remark(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "remark", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['PrivateZoneTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['PrivateZoneTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
+    @pulumi.getter(name="vpcTrns")
+    def vpc_trns(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The vpc trns of the private zone. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource. 
+        When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        """
+        return pulumi.get(self, "vpc_trns")
+
+    @vpc_trns.setter
+    def vpc_trns(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "vpc_trns", value)
 
     @property
     @pulumi.getter
@@ -226,8 +326,11 @@ class PrivateZone(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  intelligent_mode: Optional[pulumi.Input[bool]] = None,
                  load_balance_mode: Optional[pulumi.Input[bool]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  recursion_mode: Optional[pulumi.Input[bool]] = None,
                  remark: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PrivateZoneTagArgs']]]]] = None,
+                 vpc_trns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  vpcs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PrivateZoneVpcArgs']]]]] = None,
                  zone_name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -242,8 +345,13 @@ class PrivateZone(pulumi.CustomResource):
         foo = volcengine.private_zone.PrivateZone("foo",
             intelligent_mode=True,
             load_balance_mode=True,
+            project_name="default",
             recursion_mode=True,
             remark="acc-test-new",
+            tags=[volcengine.private_zone.PrivateZoneTagArgs(
+                key="k1",
+                value="v1",
+            )],
             vpcs=[
                 volcengine.private_zone.PrivateZoneVpcArgs(
                     vpc_id="vpc-rs4mi0jedipsv0x57pf****",
@@ -268,8 +376,12 @@ class PrivateZone(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] intelligent_mode: Whether to enable the intelligent mode of the private zone.
         :param pulumi.Input[bool] load_balance_mode: Whether to enable the load balance mode of the private zone.
+        :param pulumi.Input[str] project_name: The project name of the private zone.
         :param pulumi.Input[bool] recursion_mode: Whether to enable the recursion mode of the private zone.
         :param pulumi.Input[str] remark: The remark of the private zone.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PrivateZoneTagArgs']]]] tags: Tags.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] vpc_trns: The vpc trns of the private zone. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource. 
+               When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PrivateZoneVpcArgs']]]] vpcs: The bind vpc object of the private zone. If you want to bind another account's VPC, you need to first use resource private_zone.UserVpcAuthorization to complete the authorization.
         :param pulumi.Input[str] zone_name: The name of the private zone.
         """
@@ -290,8 +402,13 @@ class PrivateZone(pulumi.CustomResource):
         foo = volcengine.private_zone.PrivateZone("foo",
             intelligent_mode=True,
             load_balance_mode=True,
+            project_name="default",
             recursion_mode=True,
             remark="acc-test-new",
+            tags=[volcengine.private_zone.PrivateZoneTagArgs(
+                key="k1",
+                value="v1",
+            )],
             vpcs=[
                 volcengine.private_zone.PrivateZoneVpcArgs(
                     vpc_id="vpc-rs4mi0jedipsv0x57pf****",
@@ -329,8 +446,11 @@ class PrivateZone(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  intelligent_mode: Optional[pulumi.Input[bool]] = None,
                  load_balance_mode: Optional[pulumi.Input[bool]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  recursion_mode: Optional[pulumi.Input[bool]] = None,
                  remark: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PrivateZoneTagArgs']]]]] = None,
+                 vpc_trns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  vpcs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PrivateZoneVpcArgs']]]]] = None,
                  zone_name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -344,8 +464,11 @@ class PrivateZone(pulumi.CustomResource):
 
             __props__.__dict__["intelligent_mode"] = intelligent_mode
             __props__.__dict__["load_balance_mode"] = load_balance_mode
+            __props__.__dict__["project_name"] = project_name
             __props__.__dict__["recursion_mode"] = recursion_mode
             __props__.__dict__["remark"] = remark
+            __props__.__dict__["tags"] = tags
+            __props__.__dict__["vpc_trns"] = vpc_trns
             if vpcs is None and not opts.urn:
                 raise TypeError("Missing required property 'vpcs'")
             __props__.__dict__["vpcs"] = vpcs
@@ -364,8 +487,11 @@ class PrivateZone(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             intelligent_mode: Optional[pulumi.Input[bool]] = None,
             load_balance_mode: Optional[pulumi.Input[bool]] = None,
+            project_name: Optional[pulumi.Input[str]] = None,
             recursion_mode: Optional[pulumi.Input[bool]] = None,
             remark: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PrivateZoneTagArgs']]]]] = None,
+            vpc_trns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             vpcs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PrivateZoneVpcArgs']]]]] = None,
             zone_name: Optional[pulumi.Input[str]] = None) -> 'PrivateZone':
         """
@@ -377,8 +503,12 @@ class PrivateZone(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] intelligent_mode: Whether to enable the intelligent mode of the private zone.
         :param pulumi.Input[bool] load_balance_mode: Whether to enable the load balance mode of the private zone.
+        :param pulumi.Input[str] project_name: The project name of the private zone.
         :param pulumi.Input[bool] recursion_mode: Whether to enable the recursion mode of the private zone.
         :param pulumi.Input[str] remark: The remark of the private zone.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PrivateZoneTagArgs']]]] tags: Tags.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] vpc_trns: The vpc trns of the private zone. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource. 
+               When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PrivateZoneVpcArgs']]]] vpcs: The bind vpc object of the private zone. If you want to bind another account's VPC, you need to first use resource private_zone.UserVpcAuthorization to complete the authorization.
         :param pulumi.Input[str] zone_name: The name of the private zone.
         """
@@ -388,8 +518,11 @@ class PrivateZone(pulumi.CustomResource):
 
         __props__.__dict__["intelligent_mode"] = intelligent_mode
         __props__.__dict__["load_balance_mode"] = load_balance_mode
+        __props__.__dict__["project_name"] = project_name
         __props__.__dict__["recursion_mode"] = recursion_mode
         __props__.__dict__["remark"] = remark
+        __props__.__dict__["tags"] = tags
+        __props__.__dict__["vpc_trns"] = vpc_trns
         __props__.__dict__["vpcs"] = vpcs
         __props__.__dict__["zone_name"] = zone_name
         return PrivateZone(resource_name, opts=opts, __props__=__props__)
@@ -411,6 +544,14 @@ class PrivateZone(pulumi.CustomResource):
         return pulumi.get(self, "load_balance_mode")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> pulumi.Output[str]:
+        """
+        The project name of the private zone.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
     @pulumi.getter(name="recursionMode")
     def recursion_mode(self) -> pulumi.Output[Optional[bool]]:
         """
@@ -425,6 +566,23 @@ class PrivateZone(pulumi.CustomResource):
         The remark of the private zone.
         """
         return pulumi.get(self, "remark")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.PrivateZoneTag']]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="vpcTrns")
+    def vpc_trns(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        The vpc trns of the private zone. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource. 
+        When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        """
+        return pulumi.get(self, "vpc_trns")
 
     @property
     @pulumi.getter

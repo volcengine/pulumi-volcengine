@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -15,11 +17,18 @@ import * as utilities from "../utilities";
  * const foo = new volcengine.rds_mysql.BackupPolicy("foo", {
  *     binlogFileCountsEnable: true,
  *     binlogSpaceLimitEnable: true,
+ *     crossBackupPolicy: {
+ *         backupEnabled: true,
+ *         crossBackupRegion: "cn-chongqing-sdv",
+ *         logBackupEnabled: true,
+ *         retention: 10,
+ *     },
  *     dataFullBackupPeriods: [
  *         "Monday",
  *         "Sunday",
+ *         "Tuesday",
  *     ],
- *     instanceId: "mysql-c8c3f45c4b07",
+ *     instanceId: "mysql-b51d37110dd1",
  *     lockDdlTime: 80,
  * });
  * ```
@@ -62,6 +71,10 @@ export class BackupPolicy extends pulumi.CustomResource {
     }
 
     /**
+     * List of destination regions for cross - region backup.
+     */
+    public /*out*/ readonly availableCrossRegions!: pulumi.Output<string[]>;
+    /**
      * Whether to retain all log backups before releasing an instance. Values:
      * true: Yes.
      * false: No. Description: BinlogBackupAllRetention is ineffective when the value of RetentionPolicySynced is true.
@@ -99,6 +112,10 @@ export class BackupPolicy extends pulumi.CustomResource {
      * Maximum storage space usage rate can be set to 20% - 50%. After exceeding this limit, the earliest Binlog file will be automatically deleted until the space usage rate is lower than this ratio. Local Binlog space usage rate = Local Binlog size / Total available (purchased) instance space size. When modifying the log backup policy, this parameter needs to be passed in. Explanation: When modifying the log backup policy, this parameter needs to be passed in.
      */
     public readonly binlogStoragePercentage!: pulumi.Output<number>;
+    /**
+     * Cross - region backup strategy.
+     */
+    public readonly crossBackupPolicy!: pulumi.Output<outputs.rds_mysql.BackupPolicyCrossBackupPolicy>;
     /**
      * Whether to retain all data backups before releasing the instance. Values:
      * true: Yes.
@@ -180,6 +197,7 @@ export class BackupPolicy extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as BackupPolicyState | undefined;
+            resourceInputs["availableCrossRegions"] = state ? state.availableCrossRegions : undefined;
             resourceInputs["binlogBackupAllRetention"] = state ? state.binlogBackupAllRetention : undefined;
             resourceInputs["binlogBackupEnabled"] = state ? state.binlogBackupEnabled : undefined;
             resourceInputs["binlogBackupEncryptionEnabled"] = state ? state.binlogBackupEncryptionEnabled : undefined;
@@ -188,6 +206,7 @@ export class BackupPolicy extends pulumi.CustomResource {
             resourceInputs["binlogLocalRetentionHour"] = state ? state.binlogLocalRetentionHour : undefined;
             resourceInputs["binlogSpaceLimitEnable"] = state ? state.binlogSpaceLimitEnable : undefined;
             resourceInputs["binlogStoragePercentage"] = state ? state.binlogStoragePercentage : undefined;
+            resourceInputs["crossBackupPolicy"] = state ? state.crossBackupPolicy : undefined;
             resourceInputs["dataBackupAllRetention"] = state ? state.dataBackupAllRetention : undefined;
             resourceInputs["dataBackupEncryptionEnabled"] = state ? state.dataBackupEncryptionEnabled : undefined;
             resourceInputs["dataBackupRetentionDay"] = state ? state.dataBackupRetentionDay : undefined;
@@ -216,6 +235,7 @@ export class BackupPolicy extends pulumi.CustomResource {
             resourceInputs["binlogLocalRetentionHour"] = args ? args.binlogLocalRetentionHour : undefined;
             resourceInputs["binlogSpaceLimitEnable"] = args ? args.binlogSpaceLimitEnable : undefined;
             resourceInputs["binlogStoragePercentage"] = args ? args.binlogStoragePercentage : undefined;
+            resourceInputs["crossBackupPolicy"] = args ? args.crossBackupPolicy : undefined;
             resourceInputs["dataBackupAllRetention"] = args ? args.dataBackupAllRetention : undefined;
             resourceInputs["dataBackupEncryptionEnabled"] = args ? args.dataBackupEncryptionEnabled : undefined;
             resourceInputs["dataBackupRetentionDay"] = args ? args.dataBackupRetentionDay : undefined;
@@ -231,6 +251,7 @@ export class BackupPolicy extends pulumi.CustomResource {
             resourceInputs["lockDdlTime"] = args ? args.lockDdlTime : undefined;
             resourceInputs["logBackupRetentionDay"] = args ? args.logBackupRetentionDay : undefined;
             resourceInputs["retentionPolicySynced"] = args ? args.retentionPolicySynced : undefined;
+            resourceInputs["availableCrossRegions"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(BackupPolicy.__pulumiType, name, resourceInputs, opts);
@@ -241,6 +262,10 @@ export class BackupPolicy extends pulumi.CustomResource {
  * Input properties used for looking up and filtering BackupPolicy resources.
  */
 export interface BackupPolicyState {
+    /**
+     * List of destination regions for cross - region backup.
+     */
+    availableCrossRegions?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Whether to retain all log backups before releasing an instance. Values:
      * true: Yes.
@@ -279,6 +304,10 @@ export interface BackupPolicyState {
      * Maximum storage space usage rate can be set to 20% - 50%. After exceeding this limit, the earliest Binlog file will be automatically deleted until the space usage rate is lower than this ratio. Local Binlog space usage rate = Local Binlog size / Total available (purchased) instance space size. When modifying the log backup policy, this parameter needs to be passed in. Explanation: When modifying the log backup policy, this parameter needs to be passed in.
      */
     binlogStoragePercentage?: pulumi.Input<number>;
+    /**
+     * Cross - region backup strategy.
+     */
+    crossBackupPolicy?: pulumi.Input<inputs.rds_mysql.BackupPolicyCrossBackupPolicy>;
     /**
      * Whether to retain all data backups before releasing the instance. Values:
      * true: Yes.
@@ -390,6 +419,10 @@ export interface BackupPolicyArgs {
      * Maximum storage space usage rate can be set to 20% - 50%. After exceeding this limit, the earliest Binlog file will be automatically deleted until the space usage rate is lower than this ratio. Local Binlog space usage rate = Local Binlog size / Total available (purchased) instance space size. When modifying the log backup policy, this parameter needs to be passed in. Explanation: When modifying the log backup policy, this parameter needs to be passed in.
      */
     binlogStoragePercentage?: pulumi.Input<number>;
+    /**
+     * Cross - region backup strategy.
+     */
+    crossBackupPolicy?: pulumi.Input<inputs.rds_mysql.BackupPolicyCrossBackupPolicy>;
     /**
      * Whether to retain all data backups before releasing the instance. Values:
      * true: Yes.

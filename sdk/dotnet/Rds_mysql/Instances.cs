@@ -195,16 +195,64 @@ namespace Pulumi.Volcengine.Rds_mysql
         public string? InstanceStatus { get; set; }
 
         /// <summary>
+        /// Instance type. The value is DoubleNode.
+        /// </summary>
+        [Input("instanceType")]
+        public string? InstanceType { get; set; }
+
+        [Input("kernelVersions")]
+        private List<string>? _kernelVersions;
+
+        /// <summary>
+        /// The kernel version of the instance.
+        /// </summary>
+        public List<string> KernelVersions
+        {
+            get => _kernelVersions ?? (_kernelVersions = new List<string>());
+            set => _kernelVersions = value;
+        }
+
+        /// <summary>
         /// A Name Regex of RDS instance.
         /// </summary>
         [Input("nameRegex")]
         public string? NameRegex { get; set; }
 
         /// <summary>
+        /// Primary node specification. For detailed information about the node specifications, please refer to Product Specifications.
+        /// </summary>
+        [Input("nodeSpec")]
+        public string? NodeSpec { get; set; }
+
+        /// <summary>
         /// File name where to save data source results.
         /// </summary>
         [Input("outputFile")]
         public string? OutputFile { get; set; }
+
+        /// <summary>
+        /// The IP address of the instance's default terminal, used to query the instance by IP address.
+        /// </summary>
+        [Input("privateNetworkIpAddress")]
+        public string? PrivateNetworkIpAddress { get; set; }
+
+        /// <summary>
+        /// The ID of the private network. Instances using the specified private network can be filtered by this field.
+        /// </summary>
+        [Input("privateNetworkVpcId")]
+        public string? PrivateNetworkVpcId { get; set; }
+
+        /// <summary>
+        /// The project name of the RDS instance.
+        /// </summary>
+        [Input("projectName")]
+        public string? ProjectName { get; set; }
+
+        /// <summary>
+        /// Instance storage type. The value is LocalSSD, indicating a local SSD disk.
+        /// </summary>
+        [Input("storageType")]
+        public string? StorageType { get; set; }
 
         [Input("tags")]
         private List<Inputs.InstancesTagArgs>? _tags;
@@ -275,16 +323,64 @@ namespace Pulumi.Volcengine.Rds_mysql
         public Input<string>? InstanceStatus { get; set; }
 
         /// <summary>
+        /// Instance type. The value is DoubleNode.
+        /// </summary>
+        [Input("instanceType")]
+        public Input<string>? InstanceType { get; set; }
+
+        [Input("kernelVersions")]
+        private InputList<string>? _kernelVersions;
+
+        /// <summary>
+        /// The kernel version of the instance.
+        /// </summary>
+        public InputList<string> KernelVersions
+        {
+            get => _kernelVersions ?? (_kernelVersions = new InputList<string>());
+            set => _kernelVersions = value;
+        }
+
+        /// <summary>
         /// A Name Regex of RDS instance.
         /// </summary>
         [Input("nameRegex")]
         public Input<string>? NameRegex { get; set; }
 
         /// <summary>
+        /// Primary node specification. For detailed information about the node specifications, please refer to Product Specifications.
+        /// </summary>
+        [Input("nodeSpec")]
+        public Input<string>? NodeSpec { get; set; }
+
+        /// <summary>
         /// File name where to save data source results.
         /// </summary>
         [Input("outputFile")]
         public Input<string>? OutputFile { get; set; }
+
+        /// <summary>
+        /// The IP address of the instance's default terminal, used to query the instance by IP address.
+        /// </summary>
+        [Input("privateNetworkIpAddress")]
+        public Input<string>? PrivateNetworkIpAddress { get; set; }
+
+        /// <summary>
+        /// The ID of the private network. Instances using the specified private network can be filtered by this field.
+        /// </summary>
+        [Input("privateNetworkVpcId")]
+        public Input<string>? PrivateNetworkVpcId { get; set; }
+
+        /// <summary>
+        /// The project name of the RDS instance.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        /// <summary>
+        /// Instance storage type. The value is LocalSSD, indicating a local SSD disk.
+        /// </summary>
+        [Input("storageType")]
+        public Input<string>? StorageType { get; set; }
 
         [Input("tags")]
         private InputList<Inputs.InstancesTagInputArgs>? _tags;
@@ -342,12 +438,31 @@ namespace Pulumi.Volcengine.Rds_mysql
         /// The status of the RDS instance.
         /// </summary>
         public readonly string? InstanceStatus;
+        public readonly string? InstanceType;
+        /// <summary>
+        /// The current kernel version of the RDS instance.
+        /// </summary>
+        public readonly ImmutableArray<string> KernelVersions;
         public readonly string? NameRegex;
+        /// <summary>
+        /// General instance type, different from Custom instance type.
+        /// </summary>
+        public readonly string? NodeSpec;
         public readonly string? OutputFile;
+        public readonly string? PrivateNetworkIpAddress;
+        public readonly string? PrivateNetworkVpcId;
+        /// <summary>
+        /// The project name of the RDS instance.
+        /// </summary>
+        public readonly string? ProjectName;
         /// <summary>
         /// The collection of RDS instance query.
         /// </summary>
         public readonly ImmutableArray<Outputs.InstancesRdsMysqlInstanceResult> RdsMysqlInstances;
+        /// <summary>
+        /// Instance storage type.
+        /// </summary>
+        public readonly string? StorageType;
         /// <summary>
         /// Tags.
         /// </summary>
@@ -379,11 +494,25 @@ namespace Pulumi.Volcengine.Rds_mysql
 
             string? instanceStatus,
 
+            string? instanceType,
+
+            ImmutableArray<string> kernelVersions,
+
             string? nameRegex,
+
+            string? nodeSpec,
 
             string? outputFile,
 
+            string? privateNetworkIpAddress,
+
+            string? privateNetworkVpcId,
+
+            string? projectName,
+
             ImmutableArray<Outputs.InstancesRdsMysqlInstanceResult> rdsMysqlInstances,
+
+            string? storageType,
 
             ImmutableArray<Outputs.InstancesTagResult> tags,
 
@@ -399,9 +528,16 @@ namespace Pulumi.Volcengine.Rds_mysql
             InstanceId = instanceId;
             InstanceName = instanceName;
             InstanceStatus = instanceStatus;
+            InstanceType = instanceType;
+            KernelVersions = kernelVersions;
             NameRegex = nameRegex;
+            NodeSpec = nodeSpec;
             OutputFile = outputFile;
+            PrivateNetworkIpAddress = privateNetworkIpAddress;
+            PrivateNetworkVpcId = privateNetworkVpcId;
+            ProjectName = projectName;
             RdsMysqlInstances = rdsMysqlInstances;
+            StorageType = storageType;
             Tags = tags;
             TotalCount = totalCount;
             ZoneId = zoneId;

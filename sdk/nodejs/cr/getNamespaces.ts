@@ -26,6 +26,7 @@ export function getNamespaces(args: GetNamespacesArgs, opts?: pulumi.InvokeOptio
     return pulumi.runtime.invoke("volcengine:cr/getNamespaces:getNamespaces", {
         "names": args.names,
         "outputFile": args.outputFile,
+        "projects": args.projects,
         "registry": args.registry,
     }, opts);
 }
@@ -42,6 +43,10 @@ export interface GetNamespacesArgs {
      * File name where to save data source results.
      */
     outputFile?: string;
+    /**
+     * The list of project names to query.
+     */
+    projects?: string[];
     /**
      * The target cr instance name.
      */
@@ -62,6 +67,7 @@ export interface GetNamespacesResult {
      */
     readonly namespaces: outputs.cr.GetNamespacesNamespace[];
     readonly outputFile?: string;
+    readonly projects?: string[];
     readonly registry: string;
     /**
      * The total count of instance query.
@@ -98,6 +104,10 @@ export interface GetNamespacesOutputArgs {
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
+    /**
+     * The list of project names to query.
+     */
+    projects?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The target cr instance name.
      */

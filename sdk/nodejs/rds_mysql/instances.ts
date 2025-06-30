@@ -68,8 +68,15 @@ export function instances(args?: InstancesArgs, opts?: pulumi.InvokeOptions): Pr
         "instanceId": args.instanceId,
         "instanceName": args.instanceName,
         "instanceStatus": args.instanceStatus,
+        "instanceType": args.instanceType,
+        "kernelVersions": args.kernelVersions,
         "nameRegex": args.nameRegex,
+        "nodeSpec": args.nodeSpec,
         "outputFile": args.outputFile,
+        "privateNetworkIpAddress": args.privateNetworkIpAddress,
+        "privateNetworkVpcId": args.privateNetworkVpcId,
+        "projectName": args.projectName,
+        "storageType": args.storageType,
         "tags": args.tags,
         "zoneId": args.zoneId,
     }, opts);
@@ -108,13 +115,41 @@ export interface InstancesArgs {
      */
     instanceStatus?: string;
     /**
+     * Instance type. The value is DoubleNode.
+     */
+    instanceType?: string;
+    /**
+     * The kernel version of the instance.
+     */
+    kernelVersions?: string[];
+    /**
      * A Name Regex of RDS instance.
      */
     nameRegex?: string;
     /**
+     * Primary node specification. For detailed information about the node specifications, please refer to Product Specifications.
+     */
+    nodeSpec?: string;
+    /**
      * File name where to save data source results.
      */
     outputFile?: string;
+    /**
+     * The IP address of the instance's default terminal, used to query the instance by IP address.
+     */
+    privateNetworkIpAddress?: string;
+    /**
+     * The ID of the private network. Instances using the specified private network can be filtered by this field.
+     */
+    privateNetworkVpcId?: string;
+    /**
+     * The project name of the RDS instance.
+     */
+    projectName?: string;
+    /**
+     * Instance storage type. The value is LocalSSD, indicating a local SSD disk.
+     */
+    storageType?: string;
     /**
      * Tags.
      */
@@ -157,12 +192,31 @@ export interface InstancesResult {
      * The status of the RDS instance.
      */
     readonly instanceStatus?: string;
+    readonly instanceType?: string;
+    /**
+     * The current kernel version of the RDS instance.
+     */
+    readonly kernelVersions?: string[];
     readonly nameRegex?: string;
+    /**
+     * General instance type, different from Custom instance type.
+     */
+    readonly nodeSpec?: string;
     readonly outputFile?: string;
+    readonly privateNetworkIpAddress?: string;
+    readonly privateNetworkVpcId?: string;
+    /**
+     * The project name of the RDS instance.
+     */
+    readonly projectName?: string;
     /**
      * The collection of RDS instance query.
      */
     readonly rdsMysqlInstances: outputs.rds_mysql.InstancesRdsMysqlInstance[];
+    /**
+     * Instance storage type.
+     */
+    readonly storageType?: string;
     /**
      * Tags.
      */
@@ -262,13 +316,41 @@ export interface InstancesOutputArgs {
      */
     instanceStatus?: pulumi.Input<string>;
     /**
+     * Instance type. The value is DoubleNode.
+     */
+    instanceType?: pulumi.Input<string>;
+    /**
+     * The kernel version of the instance.
+     */
+    kernelVersions?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * A Name Regex of RDS instance.
      */
     nameRegex?: pulumi.Input<string>;
     /**
+     * Primary node specification. For detailed information about the node specifications, please refer to Product Specifications.
+     */
+    nodeSpec?: pulumi.Input<string>;
+    /**
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
+    /**
+     * The IP address of the instance's default terminal, used to query the instance by IP address.
+     */
+    privateNetworkIpAddress?: pulumi.Input<string>;
+    /**
+     * The ID of the private network. Instances using the specified private network can be filtered by this field.
+     */
+    privateNetworkVpcId?: pulumi.Input<string>;
+    /**
+     * The project name of the RDS instance.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
+     * Instance storage type. The value is LocalSSD, indicating a local SSD disk.
+     */
+    storageType?: pulumi.Input<string>;
     /**
      * Tags.
      */

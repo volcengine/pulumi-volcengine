@@ -14,6 +14,10 @@ namespace Pulumi.Volcengine.Redis.Outputs
     public sealed class BackupsBackupResult
     {
         /// <summary>
+        /// The download address information of the backup file to which the current backup point belongs.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.BackupsBackupBackupPointDownloadUrlResult> BackupPointDownloadUrls;
+        /// <summary>
         /// The id of backup point.
         /// </summary>
         public readonly string BackupPointId;
@@ -30,13 +34,21 @@ namespace Pulumi.Volcengine.Redis.Outputs
         /// </summary>
         public readonly string EndTime;
         /// <summary>
-        /// Information of instance.
+        /// (**Deprecated**) Replaced by instance_info. Information of instance.
         /// </summary>
         public readonly ImmutableArray<Outputs.BackupsBackupInstanceDetailResult> InstanceDetails;
         /// <summary>
         /// Id of instance.
         /// </summary>
         public readonly string InstanceId;
+        /// <summary>
+        /// Information of instance.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.BackupsBackupInstanceInfoResult> InstanceInfos;
+        /// <summary>
+        /// Back up the project to which it belongs.
+        /// </summary>
+        public readonly string ProjectName;
         /// <summary>
         /// Size in MiB.
         /// </summary>
@@ -49,9 +61,15 @@ namespace Pulumi.Volcengine.Redis.Outputs
         /// Status of backup (Creating/Available/Unavailable/Deleting).
         /// </summary>
         public readonly string Status;
+        /// <summary>
+        /// Backup retention days.
+        /// </summary>
+        public readonly int Ttl;
 
         [OutputConstructor]
         private BackupsBackupResult(
+            ImmutableArray<Outputs.BackupsBackupBackupPointDownloadUrlResult> backupPointDownloadUrls,
+
             string backupPointId,
 
             string backupStrategy,
@@ -64,21 +82,31 @@ namespace Pulumi.Volcengine.Redis.Outputs
 
             string instanceId,
 
+            ImmutableArray<Outputs.BackupsBackupInstanceInfoResult> instanceInfos,
+
+            string projectName,
+
             int size,
 
             string startTime,
 
-            string status)
+            string status,
+
+            int ttl)
         {
+            BackupPointDownloadUrls = backupPointDownloadUrls;
             BackupPointId = backupPointId;
             BackupStrategy = backupStrategy;
             BackupType = backupType;
             EndTime = endTime;
             InstanceDetails = instanceDetails;
             InstanceId = instanceId;
+            InstanceInfos = instanceInfos;
+            ProjectName = projectName;
             Size = size;
             StartTime = startTime;
             Status = status;
+            Ttl = ttl;
         }
     }
 }

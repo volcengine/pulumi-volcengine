@@ -70,7 +70,7 @@ export interface InstanceParameterLogsResult {
     /**
      * The collection of parameter change log query.
      */
-    readonly parameterChangeLogs: outputs.mongodb.InstanceParameterLogsParameterChangeLogs;
+    readonly parameterChangeLogs: outputs.mongodb.InstanceParameterLogsParameterChangeLog[];
     readonly startTime: string;
     /**
      * The total count of mongodb instance parameter log query.

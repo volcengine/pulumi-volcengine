@@ -71,7 +71,8 @@ import (
 //				return err
 //			}
 //			_, err = redis.NewBackup(ctx, "fooBackup", &redis.BackupArgs{
-//				InstanceId: fooInstance.ID(),
+//				InstanceId:      fooInstance.ID(),
+//				BackupPointName: pulumi.String("acc-test-tf-redis-backup"),
 //			})
 //			if err != nil {
 //				return err
@@ -92,24 +93,32 @@ import (
 type Backup struct {
 	pulumi.CustomResourceState
 
+	// The download address information of the backup file to which the current backup point belongs.
+	BackupPointDownloadUrls BackupBackupPointDownloadUrlArrayOutput `pulumi:"backupPointDownloadUrls"`
 	// The id of backup point.
 	BackupPointId pulumi.StringOutput `pulumi:"backupPointId"`
+	// Set the backup name for the manually created backup.
+	BackupPointName pulumi.StringOutput `pulumi:"backupPointName"`
 	// Backup strategy.
 	BackupStrategy pulumi.StringOutput `pulumi:"backupStrategy"`
 	// Backup type.
 	BackupType pulumi.StringOutput `pulumi:"backupType"`
 	// End time of backup.
 	EndTime pulumi.StringOutput `pulumi:"endTime"`
-	// Information of instance.
-	InstanceDetails BackupInstanceDetailArrayOutput `pulumi:"instanceDetails"`
 	// Id of instance to create backup.
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
+	// Information of instance.
+	InstanceInfos BackupInstanceInfoArrayOutput `pulumi:"instanceInfos"`
+	// Project name of instance.
+	ProjectName pulumi.StringOutput `pulumi:"projectName"`
 	// Size in MiB.
 	Size pulumi.IntOutput `pulumi:"size"`
 	// Start time of backup.
 	StartTime pulumi.StringOutput `pulumi:"startTime"`
 	// Status of backup (Creating/Available/Unavailable/Deleting).
 	Status pulumi.StringOutput `pulumi:"status"`
+	// Backup retention days.
+	Ttl pulumi.IntOutput `pulumi:"ttl"`
 }
 
 // NewBackup registers a new resource with the given unique name, arguments, and options.
@@ -145,45 +154,61 @@ func GetBackup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Backup resources.
 type backupState struct {
+	// The download address information of the backup file to which the current backup point belongs.
+	BackupPointDownloadUrls []BackupBackupPointDownloadUrl `pulumi:"backupPointDownloadUrls"`
 	// The id of backup point.
 	BackupPointId *string `pulumi:"backupPointId"`
+	// Set the backup name for the manually created backup.
+	BackupPointName *string `pulumi:"backupPointName"`
 	// Backup strategy.
 	BackupStrategy *string `pulumi:"backupStrategy"`
 	// Backup type.
 	BackupType *string `pulumi:"backupType"`
 	// End time of backup.
 	EndTime *string `pulumi:"endTime"`
-	// Information of instance.
-	InstanceDetails []BackupInstanceDetail `pulumi:"instanceDetails"`
 	// Id of instance to create backup.
 	InstanceId *string `pulumi:"instanceId"`
+	// Information of instance.
+	InstanceInfos []BackupInstanceInfo `pulumi:"instanceInfos"`
+	// Project name of instance.
+	ProjectName *string `pulumi:"projectName"`
 	// Size in MiB.
 	Size *int `pulumi:"size"`
 	// Start time of backup.
 	StartTime *string `pulumi:"startTime"`
 	// Status of backup (Creating/Available/Unavailable/Deleting).
 	Status *string `pulumi:"status"`
+	// Backup retention days.
+	Ttl *int `pulumi:"ttl"`
 }
 
 type BackupState struct {
+	// The download address information of the backup file to which the current backup point belongs.
+	BackupPointDownloadUrls BackupBackupPointDownloadUrlArrayInput
 	// The id of backup point.
 	BackupPointId pulumi.StringPtrInput
+	// Set the backup name for the manually created backup.
+	BackupPointName pulumi.StringPtrInput
 	// Backup strategy.
 	BackupStrategy pulumi.StringPtrInput
 	// Backup type.
 	BackupType pulumi.StringPtrInput
 	// End time of backup.
 	EndTime pulumi.StringPtrInput
-	// Information of instance.
-	InstanceDetails BackupInstanceDetailArrayInput
 	// Id of instance to create backup.
 	InstanceId pulumi.StringPtrInput
+	// Information of instance.
+	InstanceInfos BackupInstanceInfoArrayInput
+	// Project name of instance.
+	ProjectName pulumi.StringPtrInput
 	// Size in MiB.
 	Size pulumi.IntPtrInput
 	// Start time of backup.
 	StartTime pulumi.StringPtrInput
 	// Status of backup (Creating/Available/Unavailable/Deleting).
 	Status pulumi.StringPtrInput
+	// Backup retention days.
+	Ttl pulumi.IntPtrInput
 }
 
 func (BackupState) ElementType() reflect.Type {
@@ -191,12 +216,16 @@ func (BackupState) ElementType() reflect.Type {
 }
 
 type backupArgs struct {
+	// Set the backup name for the manually created backup.
+	BackupPointName *string `pulumi:"backupPointName"`
 	// Id of instance to create backup.
 	InstanceId string `pulumi:"instanceId"`
 }
 
 // The set of arguments for constructing a Backup resource.
 type BackupArgs struct {
+	// Set the backup name for the manually created backup.
+	BackupPointName pulumi.StringPtrInput
 	// Id of instance to create backup.
 	InstanceId pulumi.StringInput
 }
@@ -288,9 +317,19 @@ func (o BackupOutput) ToBackupOutputWithContext(ctx context.Context) BackupOutpu
 	return o
 }
 
+// The download address information of the backup file to which the current backup point belongs.
+func (o BackupOutput) BackupPointDownloadUrls() BackupBackupPointDownloadUrlArrayOutput {
+	return o.ApplyT(func(v *Backup) BackupBackupPointDownloadUrlArrayOutput { return v.BackupPointDownloadUrls }).(BackupBackupPointDownloadUrlArrayOutput)
+}
+
 // The id of backup point.
 func (o BackupOutput) BackupPointId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Backup) pulumi.StringOutput { return v.BackupPointId }).(pulumi.StringOutput)
+}
+
+// Set the backup name for the manually created backup.
+func (o BackupOutput) BackupPointName() pulumi.StringOutput {
+	return o.ApplyT(func(v *Backup) pulumi.StringOutput { return v.BackupPointName }).(pulumi.StringOutput)
 }
 
 // Backup strategy.
@@ -308,14 +347,19 @@ func (o BackupOutput) EndTime() pulumi.StringOutput {
 	return o.ApplyT(func(v *Backup) pulumi.StringOutput { return v.EndTime }).(pulumi.StringOutput)
 }
 
-// Information of instance.
-func (o BackupOutput) InstanceDetails() BackupInstanceDetailArrayOutput {
-	return o.ApplyT(func(v *Backup) BackupInstanceDetailArrayOutput { return v.InstanceDetails }).(BackupInstanceDetailArrayOutput)
-}
-
 // Id of instance to create backup.
 func (o BackupOutput) InstanceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Backup) pulumi.StringOutput { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// Information of instance.
+func (o BackupOutput) InstanceInfos() BackupInstanceInfoArrayOutput {
+	return o.ApplyT(func(v *Backup) BackupInstanceInfoArrayOutput { return v.InstanceInfos }).(BackupInstanceInfoArrayOutput)
+}
+
+// Project name of instance.
+func (o BackupOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v *Backup) pulumi.StringOutput { return v.ProjectName }).(pulumi.StringOutput)
 }
 
 // Size in MiB.
@@ -331,6 +375,11 @@ func (o BackupOutput) StartTime() pulumi.StringOutput {
 // Status of backup (Creating/Available/Unavailable/Deleting).
 func (o BackupOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *Backup) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+// Backup retention days.
+func (o BackupOutput) Ttl() pulumi.IntOutput {
+	return o.ApplyT(func(v *Backup) pulumi.IntOutput { return v.Ttl }).(pulumi.IntOutput)
 }
 
 type BackupArrayOutput struct{ *pulumi.OutputState }

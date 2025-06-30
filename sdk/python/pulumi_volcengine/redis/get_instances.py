@@ -179,6 +179,9 @@ class GetInstancesResult:
     @property
     @pulumi.getter(name="zoneId")
     def zone_id(self) -> Optional[str]:
+        """
+        The availability zone where the node is located.
+        """
         return pulumi.get(self, "zone_id")
 
 

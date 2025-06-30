@@ -35,6 +35,7 @@ import * as escloud_v2 from "./escloud_v2";
 import * as financial_relation from "./financial_relation";
 import * as iam from "./iam";
 import * as kafka from "./kafka";
+import * as kms from "./kms";
 import * as mongodb from "./mongodb";
 import * as nas from "./nas";
 import * as nat from "./nat";
@@ -56,8 +57,10 @@ import * as types from "./types";
 import * as vedb_mysql from "./vedb_mysql";
 import * as veecp from "./veecp";
 import * as veenedge from "./veenedge";
+import * as vefaas from "./vefaas";
 import * as vepfs from "./vepfs";
 import * as vke from "./vke";
+import * as vmp from "./vmp";
 import * as vpc from "./vpc";
 import * as vpn from "./vpn";
 
@@ -85,6 +88,7 @@ export {
     financial_relation,
     iam,
     kafka,
+    kms,
     mongodb,
     nas,
     nat,
@@ -106,8 +110,10 @@ export {
     vedb_mysql,
     veecp,
     veenedge,
+    vefaas,
     vepfs,
     vke,
+    vmp,
     vpc,
     vpn,
 };

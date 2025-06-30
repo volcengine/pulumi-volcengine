@@ -18,11 +18,13 @@ __all__ = [
     'NamespacesNamespaceResult',
     'RegistriesRegistryResult',
     'RegistriesRegistryDomainResult',
+    'RegistriesRegistryProxyCachResult',
     'RegistriesRegistryResourceTagResult',
     'RegistriesRegistryStatusResult',
     'RegistriesResourceTagResult',
     'RegistriesStatusResult',
     'RegistryDomain',
+    'RegistryProxyCache',
     'RegistryResourceTag',
     'RegistryStatus',
     'RepositoriesRepositoryResult',
@@ -41,6 +43,7 @@ __all__ = [
     'GetNamespacesNamespaceResult',
     'GetRegistriesRegistryResult',
     'GetRegistriesRegistryDomainResult',
+    'GetRegistriesRegistryProxyCachResult',
     'GetRegistriesRegistryResourceTagResult',
     'GetRegistriesRegistryStatusResult',
     'GetRegistriesResourceTagResult',
@@ -209,15 +212,18 @@ class NamespacesNamespaceResult(dict):
     def __init__(__self__, *,
                  create_time: str,
                  name: str,
-                 project: str):
+                 project: str,
+                 repository_default_access_level: str):
         """
         :param str create_time: The time when namespace created.
         :param str name: The name of OCI repository.
         :param str project: The ProjectName of the CrNamespace.
+        :param str repository_default_access_level: The default access level of repository. Valid values: `Private`, `Public`.
         """
         pulumi.set(__self__, "create_time", create_time)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "project", project)
+        pulumi.set(__self__, "repository_default_access_level", repository_default_access_level)
 
     @property
     @pulumi.getter(name="createTime")
@@ -243,6 +249,14 @@ class NamespacesNamespaceResult(dict):
         """
         return pulumi.get(self, "project")
 
+    @property
+    @pulumi.getter(name="repositoryDefaultAccessLevel")
+    def repository_default_access_level(self) -> str:
+        """
+        The default access level of repository. Valid values: `Private`, `Public`.
+        """
+        return pulumi.get(self, "repository_default_access_level")
+
 
 @pulumi.output_type
 class RegistriesRegistryResult(dict):
@@ -252,6 +266,8 @@ class RegistriesRegistryResult(dict):
                  domains: Sequence['outputs.RegistriesRegistryDomainResult'],
                  name: str,
                  project: str,
+                 proxy_cache_enabled: bool,
+                 proxy_caches: Sequence['outputs.RegistriesRegistryProxyCachResult'],
                  resource_tags: Sequence['outputs.RegistriesRegistryResourceTagResult'],
                  status: 'outputs.RegistriesRegistryStatusResult',
                  type: str,
@@ -263,6 +279,8 @@ class RegistriesRegistryResult(dict):
         :param Sequence['RegistriesRegistryDomainArgs'] domains: The domain of registry.
         :param str name: The name of registry.
         :param str project: The ProjectName of the cr registry.
+        :param bool proxy_cache_enabled: Whether to enable proxy cache.
+        :param Sequence['RegistriesRegistryProxyCachArgs'] proxy_caches: The proxy cache of registry. This field is valid when proxy_cache_enabled is true.
         :param Sequence['RegistriesRegistryResourceTagArgs'] resource_tags: The tags of cr registry.
         :param 'RegistriesRegistryStatusArgs' status: The status of registry.
         :param str type: The type of registry.
@@ -274,6 +292,8 @@ class RegistriesRegistryResult(dict):
         pulumi.set(__self__, "domains", domains)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "project", project)
+        pulumi.set(__self__, "proxy_cache_enabled", proxy_cache_enabled)
+        pulumi.set(__self__, "proxy_caches", proxy_caches)
         pulumi.set(__self__, "resource_tags", resource_tags)
         pulumi.set(__self__, "status", status)
         pulumi.set(__self__, "type", type)
@@ -319,6 +339,22 @@ class RegistriesRegistryResult(dict):
         The ProjectName of the cr registry.
         """
         return pulumi.get(self, "project")
+
+    @property
+    @pulumi.getter(name="proxyCacheEnabled")
+    def proxy_cache_enabled(self) -> bool:
+        """
+        Whether to enable proxy cache.
+        """
+        return pulumi.get(self, "proxy_cache_enabled")
+
+    @property
+    @pulumi.getter(name="proxyCaches")
+    def proxy_caches(self) -> Sequence['outputs.RegistriesRegistryProxyCachResult']:
+        """
+        The proxy cache of registry. This field is valid when proxy_cache_enabled is true.
+        """
+        return pulumi.get(self, "proxy_caches")
 
     @property
     @pulumi.getter(name="resourceTags")
@@ -388,6 +424,57 @@ class RegistriesRegistryDomainResult(dict):
         The type of registry.
         """
         return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class RegistriesRegistryProxyCachResult(dict):
+    def __init__(__self__, *,
+                 endpoint: str,
+                 skip_ssl_verify: bool,
+                 type: str,
+                 username: str):
+        """
+        :param str endpoint: The endpoint of proxy cache.
+        :param bool skip_ssl_verify: Whether to skip ssl verify.
+        :param str type: The type of registry.
+        :param str username: The username of cr instance.
+        """
+        pulumi.set(__self__, "endpoint", endpoint)
+        pulumi.set(__self__, "skip_ssl_verify", skip_ssl_verify)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter
+    def endpoint(self) -> str:
+        """
+        The endpoint of proxy cache.
+        """
+        return pulumi.get(self, "endpoint")
+
+    @property
+    @pulumi.getter(name="skipSslVerify")
+    def skip_ssl_verify(self) -> bool:
+        """
+        Whether to skip ssl verify.
+        """
+        return pulumi.get(self, "skip_ssl_verify")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of registry.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def username(self) -> str:
+        """
+        The username of cr instance.
+        """
+        return pulumi.get(self, "username")
 
 
 @pulumi.output_type
@@ -515,7 +602,7 @@ class RegistryDomain(dict):
                  type: Optional[str] = None):
         """
         :param str domain: The domain of registry.
-        :param str type: The type of registry.
+        :param str type: The type of registry. Valid values: `Enterprise`, `Micro`. Default is `Enterprise`.
         """
         if domain is not None:
             pulumi.set(__self__, "domain", domain)
@@ -534,28 +621,109 @@ class RegistryDomain(dict):
     @pulumi.getter
     def type(self) -> Optional[str]:
         """
-        The type of registry.
+        The type of registry. Valid values: `Enterprise`, `Micro`. Default is `Enterprise`.
         """
         return pulumi.get(self, "type")
 
 
 @pulumi.output_type
+class RegistryProxyCache(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "skipSslVerify":
+            suggest = "skip_ssl_verify"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in RegistryProxyCache. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        RegistryProxyCache.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        RegistryProxyCache.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 type: str,
+                 endpoint: Optional[str] = None,
+                 password: Optional[str] = None,
+                 skip_ssl_verify: Optional[bool] = None,
+                 username: Optional[str] = None):
+        """
+        :param str type: The type of proxy cache. Valid values: `DockerHub`, `DockerRegistry`.
+        :param str endpoint: The endpoint of proxy cache.
+        :param str password: The password of proxy cache.
+        :param bool skip_ssl_verify: Whether to skip ssl verify.
+        :param str username: The username of proxy cache.
+        """
+        pulumi.set(__self__, "type", type)
+        if endpoint is not None:
+            pulumi.set(__self__, "endpoint", endpoint)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if skip_ssl_verify is not None:
+            pulumi.set(__self__, "skip_ssl_verify", skip_ssl_verify)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of proxy cache. Valid values: `DockerHub`, `DockerRegistry`.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def endpoint(self) -> Optional[str]:
+        """
+        The endpoint of proxy cache.
+        """
+        return pulumi.get(self, "endpoint")
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[str]:
+        """
+        The password of proxy cache.
+        """
+        return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter(name="skipSslVerify")
+    def skip_ssl_verify(self) -> Optional[bool]:
+        """
+        Whether to skip ssl verify.
+        """
+        return pulumi.get(self, "skip_ssl_verify")
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[str]:
+        """
+        The username of proxy cache.
+        """
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
 class RegistryResourceTag(dict):
     def __init__(__self__, *,
-                 key: Optional[str] = None,
-                 value: Optional[str] = None):
+                 key: str,
+                 value: str):
         """
         :param str key: The Key of Tags.
         :param str value: The Value of Tags.
         """
-        if key is not None:
-            pulumi.set(__self__, "key", key)
-        if value is not None:
-            pulumi.set(__self__, "value", value)
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
-    def key(self) -> Optional[str]:
+    def key(self) -> str:
         """
         The Key of Tags.
         """
@@ -563,7 +731,7 @@ class RegistryResourceTag(dict):
 
     @property
     @pulumi.getter
-    def value(self) -> Optional[str]:
+    def value(self) -> str:
         """
         The Value of Tags.
         """
@@ -1297,15 +1465,18 @@ class GetNamespacesNamespaceResult(dict):
     def __init__(__self__, *,
                  create_time: str,
                  name: str,
-                 project: str):
+                 project: str,
+                 repository_default_access_level: str):
         """
         :param str create_time: The time when namespace created.
         :param str name: The name of OCI repository.
         :param str project: The ProjectName of the CrNamespace.
+        :param str repository_default_access_level: The default access level of repository. Valid values: `Private`, `Public`.
         """
         pulumi.set(__self__, "create_time", create_time)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "project", project)
+        pulumi.set(__self__, "repository_default_access_level", repository_default_access_level)
 
     @property
     @pulumi.getter(name="createTime")
@@ -1331,6 +1502,14 @@ class GetNamespacesNamespaceResult(dict):
         """
         return pulumi.get(self, "project")
 
+    @property
+    @pulumi.getter(name="repositoryDefaultAccessLevel")
+    def repository_default_access_level(self) -> str:
+        """
+        The default access level of repository. Valid values: `Private`, `Public`.
+        """
+        return pulumi.get(self, "repository_default_access_level")
+
 
 @pulumi.output_type
 class GetRegistriesRegistryResult(dict):
@@ -1340,6 +1519,8 @@ class GetRegistriesRegistryResult(dict):
                  domains: Sequence['outputs.GetRegistriesRegistryDomainResult'],
                  name: str,
                  project: str,
+                 proxy_cache_enabled: bool,
+                 proxy_caches: Sequence['outputs.GetRegistriesRegistryProxyCachResult'],
                  resource_tags: Sequence['outputs.GetRegistriesRegistryResourceTagResult'],
                  status: 'outputs.GetRegistriesRegistryStatusResult',
                  type: str,
@@ -1351,6 +1532,8 @@ class GetRegistriesRegistryResult(dict):
         :param Sequence['GetRegistriesRegistryDomainArgs'] domains: The domain of registry.
         :param str name: The name of registry.
         :param str project: The ProjectName of the cr registry.
+        :param bool proxy_cache_enabled: Whether to enable proxy cache.
+        :param Sequence['GetRegistriesRegistryProxyCachArgs'] proxy_caches: The proxy cache of registry. This field is valid when proxy_cache_enabled is true.
         :param Sequence['GetRegistriesRegistryResourceTagArgs'] resource_tags: The tags of cr registry.
         :param 'GetRegistriesRegistryStatusArgs' status: The status of registry.
         :param str type: The type of registry.
@@ -1362,6 +1545,8 @@ class GetRegistriesRegistryResult(dict):
         pulumi.set(__self__, "domains", domains)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "project", project)
+        pulumi.set(__self__, "proxy_cache_enabled", proxy_cache_enabled)
+        pulumi.set(__self__, "proxy_caches", proxy_caches)
         pulumi.set(__self__, "resource_tags", resource_tags)
         pulumi.set(__self__, "status", status)
         pulumi.set(__self__, "type", type)
@@ -1407,6 +1592,22 @@ class GetRegistriesRegistryResult(dict):
         The ProjectName of the cr registry.
         """
         return pulumi.get(self, "project")
+
+    @property
+    @pulumi.getter(name="proxyCacheEnabled")
+    def proxy_cache_enabled(self) -> bool:
+        """
+        Whether to enable proxy cache.
+        """
+        return pulumi.get(self, "proxy_cache_enabled")
+
+    @property
+    @pulumi.getter(name="proxyCaches")
+    def proxy_caches(self) -> Sequence['outputs.GetRegistriesRegistryProxyCachResult']:
+        """
+        The proxy cache of registry. This field is valid when proxy_cache_enabled is true.
+        """
+        return pulumi.get(self, "proxy_caches")
 
     @property
     @pulumi.getter(name="resourceTags")
@@ -1476,6 +1677,57 @@ class GetRegistriesRegistryDomainResult(dict):
         The type of registry.
         """
         return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetRegistriesRegistryProxyCachResult(dict):
+    def __init__(__self__, *,
+                 endpoint: str,
+                 skip_ssl_verify: bool,
+                 type: str,
+                 username: str):
+        """
+        :param str endpoint: The endpoint of proxy cache.
+        :param bool skip_ssl_verify: Whether to skip ssl verify.
+        :param str type: The type of registry.
+        :param str username: The username of cr instance.
+        """
+        pulumi.set(__self__, "endpoint", endpoint)
+        pulumi.set(__self__, "skip_ssl_verify", skip_ssl_verify)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter
+    def endpoint(self) -> str:
+        """
+        The endpoint of proxy cache.
+        """
+        return pulumi.get(self, "endpoint")
+
+    @property
+    @pulumi.getter(name="skipSslVerify")
+    def skip_ssl_verify(self) -> bool:
+        """
+        Whether to skip ssl verify.
+        """
+        return pulumi.get(self, "skip_ssl_verify")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of registry.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def username(self) -> str:
+        """
+        The username of cr instance.
+        """
+        return pulumi.get(self, "username")
 
 
 @pulumi.output_type

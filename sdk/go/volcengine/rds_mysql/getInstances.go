@@ -108,10 +108,24 @@ type GetInstancesArgs struct {
 	InstanceName *string `pulumi:"instanceName"`
 	// The status of the RDS instance.
 	InstanceStatus *string `pulumi:"instanceStatus"`
+	// Instance type. The value is DoubleNode.
+	InstanceType *string `pulumi:"instanceType"`
+	// The kernel version of the instance.
+	KernelVersions []string `pulumi:"kernelVersions"`
 	// A Name Regex of RDS instance.
 	NameRegex *string `pulumi:"nameRegex"`
+	// Primary node specification. For detailed information about the node specifications, please refer to Product Specifications.
+	NodeSpec *string `pulumi:"nodeSpec"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
+	// The IP address of the instance's default terminal, used to query the instance by IP address.
+	PrivateNetworkIpAddress *string `pulumi:"privateNetworkIpAddress"`
+	// The ID of the private network. Instances using the specified private network can be filtered by this field.
+	PrivateNetworkVpcId *string `pulumi:"privateNetworkVpcId"`
+	// The project name of the RDS instance.
+	ProjectName *string `pulumi:"projectName"`
+	// Instance storage type. The value is LocalSSD, indicating a local SSD disk.
+	StorageType *string `pulumi:"storageType"`
 	// Tags.
 	Tags []GetInstancesTag `pulumi:"tags"`
 	// The available zone of the RDS instance.
@@ -136,10 +150,21 @@ type GetInstancesResult struct {
 	InstanceName *string `pulumi:"instanceName"`
 	// The status of the RDS instance.
 	InstanceStatus *string `pulumi:"instanceStatus"`
-	NameRegex      *string `pulumi:"nameRegex"`
-	OutputFile     *string `pulumi:"outputFile"`
+	InstanceType   *string `pulumi:"instanceType"`
+	// The current kernel version of the RDS instance.
+	KernelVersions []string `pulumi:"kernelVersions"`
+	NameRegex      *string  `pulumi:"nameRegex"`
+	// General instance type, different from Custom instance type.
+	NodeSpec                *string `pulumi:"nodeSpec"`
+	OutputFile              *string `pulumi:"outputFile"`
+	PrivateNetworkIpAddress *string `pulumi:"privateNetworkIpAddress"`
+	PrivateNetworkVpcId     *string `pulumi:"privateNetworkVpcId"`
+	// The project name of the RDS instance.
+	ProjectName *string `pulumi:"projectName"`
 	// The collection of RDS instance query.
 	RdsMysqlInstances []GetInstancesRdsMysqlInstance `pulumi:"rdsMysqlInstances"`
+	// Instance storage type.
+	StorageType *string `pulumi:"storageType"`
 	// Tags.
 	Tags []GetInstancesTag `pulumi:"tags"`
 	// The total count of RDS instance query.
@@ -177,10 +202,24 @@ type GetInstancesOutputArgs struct {
 	InstanceName pulumi.StringPtrInput `pulumi:"instanceName"`
 	// The status of the RDS instance.
 	InstanceStatus pulumi.StringPtrInput `pulumi:"instanceStatus"`
+	// Instance type. The value is DoubleNode.
+	InstanceType pulumi.StringPtrInput `pulumi:"instanceType"`
+	// The kernel version of the instance.
+	KernelVersions pulumi.StringArrayInput `pulumi:"kernelVersions"`
 	// A Name Regex of RDS instance.
 	NameRegex pulumi.StringPtrInput `pulumi:"nameRegex"`
+	// Primary node specification. For detailed information about the node specifications, please refer to Product Specifications.
+	NodeSpec pulumi.StringPtrInput `pulumi:"nodeSpec"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// The IP address of the instance's default terminal, used to query the instance by IP address.
+	PrivateNetworkIpAddress pulumi.StringPtrInput `pulumi:"privateNetworkIpAddress"`
+	// The ID of the private network. Instances using the specified private network can be filtered by this field.
+	PrivateNetworkVpcId pulumi.StringPtrInput `pulumi:"privateNetworkVpcId"`
+	// The project name of the RDS instance.
+	ProjectName pulumi.StringPtrInput `pulumi:"projectName"`
+	// Instance storage type. The value is LocalSSD, indicating a local SSD disk.
+	StorageType pulumi.StringPtrInput `pulumi:"storageType"`
 	// Tags.
 	Tags GetInstancesTagArrayInput `pulumi:"tags"`
 	// The available zone of the RDS instance.
@@ -246,17 +285,49 @@ func (o GetInstancesResultOutput) InstanceStatus() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetInstancesResult) *string { return v.InstanceStatus }).(pulumi.StringPtrOutput)
 }
 
+func (o GetInstancesResultOutput) InstanceType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetInstancesResult) *string { return v.InstanceType }).(pulumi.StringPtrOutput)
+}
+
+// The current kernel version of the RDS instance.
+func (o GetInstancesResultOutput) KernelVersions() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetInstancesResult) []string { return v.KernelVersions }).(pulumi.StringArrayOutput)
+}
+
 func (o GetInstancesResultOutput) NameRegex() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetInstancesResult) *string { return v.NameRegex }).(pulumi.StringPtrOutput)
+}
+
+// General instance type, different from Custom instance type.
+func (o GetInstancesResultOutput) NodeSpec() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetInstancesResult) *string { return v.NodeSpec }).(pulumi.StringPtrOutput)
 }
 
 func (o GetInstancesResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetInstancesResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
 }
 
+func (o GetInstancesResultOutput) PrivateNetworkIpAddress() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetInstancesResult) *string { return v.PrivateNetworkIpAddress }).(pulumi.StringPtrOutput)
+}
+
+func (o GetInstancesResultOutput) PrivateNetworkVpcId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetInstancesResult) *string { return v.PrivateNetworkVpcId }).(pulumi.StringPtrOutput)
+}
+
+// The project name of the RDS instance.
+func (o GetInstancesResultOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetInstancesResult) *string { return v.ProjectName }).(pulumi.StringPtrOutput)
+}
+
 // The collection of RDS instance query.
 func (o GetInstancesResultOutput) RdsMysqlInstances() GetInstancesRdsMysqlInstanceArrayOutput {
 	return o.ApplyT(func(v GetInstancesResult) []GetInstancesRdsMysqlInstance { return v.RdsMysqlInstances }).(GetInstancesRdsMysqlInstanceArrayOutput)
+}
+
+// Instance storage type.
+func (o GetInstancesResultOutput) StorageType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetInstancesResult) *string { return v.StorageType }).(pulumi.StringPtrOutput)
 }
 
 // Tags.

@@ -25,25 +25,17 @@ namespace Pulumi.Volcengine.Rds_mysql
     ///     {
     ///         AutoAddNewNodes = true,
     ///         Description = "tf-test-1",
-    ///         Domain = "mysql-38c3d4f05f6e-te-8c00-private.rds.ivolces.com",
+    ///         DnsVisibility = false,
     ///         EndpointName = "tf-test-1",
-    ///         InstanceId = "mysql-38c3d4f05f6e",
+    ///         InstanceId = "mysql-b51d37110dd1",
     ///         Nodes = new[]
     ///         {
     ///             "Primary",
-    ///             "mysql-38c3d4f05f6e-r3b0d",
     ///         },
-    ///         Port = 3306,
-    ///         ReadOnlyNodeDistributionType = "Custom",
+    ///         ReadOnlyNodeDistributionType = "RoundRobinAuto",
     ///         ReadOnlyNodeMaxDelayTime = 30,
     ///         ReadOnlyNodeWeights = new[]
     ///         {
-    ///             new Volcengine.Rds_mysql.Inputs.EndpointReadOnlyNodeWeightArgs
-    ///             {
-    ///                 NodeId = "mysql-38c3d4f05f6e-r3b0d",
-    ///                 NodeType = "ReadOnly",
-    ///                 Weight = 0,
-    ///             },
     ///             new Volcengine.Rds_mysql.Inputs.EndpointReadOnlyNodeWeightArgs
     ///             {
     ///                 NodeType = "Primary",
@@ -83,6 +75,14 @@ namespace Pulumi.Volcengine.Rds_mysql
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
+        /// Values:
+        /// false: Volcano Engine private network resolution (default).
+        /// true: Volcano Engine private and public network resolution.
+        /// </summary>
+        [Output("dnsVisibility")]
+        public Output<bool> DnsVisibility { get; private set; } = null!;
+
+        /// <summary>
         /// Connection address, Please note that the connection address can only modify the prefix. In one call, it is not possible to modify both the connection address prefix and the port at the same time.
         /// </summary>
         [Output("domain")]
@@ -119,9 +119,7 @@ namespace Pulumi.Volcengine.Rds_mysql
         public Output<int> Port { get; private set; } = null!;
 
         /// <summary>
-        /// Read weight allocation mode. This parameter is required when enabling read-write separation setting to TRUE. Possible values:
-        /// Default: Automatically allocate weights based on specifications (default).
-        /// Custom: Custom weight allocation.
+        /// Read weight distribution mode. This parameter needs to be passed in when the read-write separation setting is true. When used as a request parameter in the CreateDBEndpoint and ModifyDBEndpoint interfaces, the value range is as follows: LoadSchedule: Load scheduling. RoundRobinCustom: Polling scheduling with custom weights. RoundRobinAuto: Polling scheduling with automatically allocated weights.
         /// </summary>
         [Output("readOnlyNodeDistributionType")]
         public Output<string> ReadOnlyNodeDistributionType { get; private set; } = null!;
@@ -145,8 +143,7 @@ namespace Pulumi.Volcengine.Rds_mysql
         public Output<string?> ReadWriteMode { get; private set; } = null!;
 
         /// <summary>
-        /// Enable read-write separation. Possible values: TRUE, FALSE.
-        /// This setting can be configured when ReadWriteMode is set to read-write, but cannot be configured when ReadWriteMode is set to read-only. This parameter only applies to the default terminal.
+        /// Whether to enable read-write splitting. Values: true: Yes. Default value. false: No.
         /// </summary>
         [Output("readWriteSpliting")]
         public Output<bool> ReadWriteSpliting { get; private set; } = null!;
@@ -213,6 +210,14 @@ namespace Pulumi.Volcengine.Rds_mysql
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// Values:
+        /// false: Volcano Engine private network resolution (default).
+        /// true: Volcano Engine private and public network resolution.
+        /// </summary>
+        [Input("dnsVisibility")]
+        public Input<bool>? DnsVisibility { get; set; }
+
+        /// <summary>
         /// Connection address, Please note that the connection address can only modify the prefix. In one call, it is not possible to modify both the connection address prefix and the port at the same time.
         /// </summary>
         [Input("domain")]
@@ -255,9 +260,7 @@ namespace Pulumi.Volcengine.Rds_mysql
         public Input<int>? Port { get; set; }
 
         /// <summary>
-        /// Read weight allocation mode. This parameter is required when enabling read-write separation setting to TRUE. Possible values:
-        /// Default: Automatically allocate weights based on specifications (default).
-        /// Custom: Custom weight allocation.
+        /// Read weight distribution mode. This parameter needs to be passed in when the read-write separation setting is true. When used as a request parameter in the CreateDBEndpoint and ModifyDBEndpoint interfaces, the value range is as follows: LoadSchedule: Load scheduling. RoundRobinCustom: Polling scheduling with custom weights. RoundRobinAuto: Polling scheduling with automatically allocated weights.
         /// </summary>
         [Input("readOnlyNodeDistributionType")]
         public Input<string>? ReadOnlyNodeDistributionType { get; set; }
@@ -287,8 +290,7 @@ namespace Pulumi.Volcengine.Rds_mysql
         public Input<string>? ReadWriteMode { get; set; }
 
         /// <summary>
-        /// Enable read-write separation. Possible values: TRUE, FALSE.
-        /// This setting can be configured when ReadWriteMode is set to read-write, but cannot be configured when ReadWriteMode is set to read-only. This parameter only applies to the default terminal.
+        /// Whether to enable read-write splitting. Values: true: Yes. Default value. false: No.
         /// </summary>
         [Input("readWriteSpliting")]
         public Input<bool>? ReadWriteSpliting { get; set; }
@@ -314,6 +316,14 @@ namespace Pulumi.Volcengine.Rds_mysql
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
+
+        /// <summary>
+        /// Values:
+        /// false: Volcano Engine private network resolution (default).
+        /// true: Volcano Engine private and public network resolution.
+        /// </summary>
+        [Input("dnsVisibility")]
+        public Input<bool>? DnsVisibility { get; set; }
 
         /// <summary>
         /// Connection address, Please note that the connection address can only modify the prefix. In one call, it is not possible to modify both the connection address prefix and the port at the same time.
@@ -358,9 +368,7 @@ namespace Pulumi.Volcengine.Rds_mysql
         public Input<int>? Port { get; set; }
 
         /// <summary>
-        /// Read weight allocation mode. This parameter is required when enabling read-write separation setting to TRUE. Possible values:
-        /// Default: Automatically allocate weights based on specifications (default).
-        /// Custom: Custom weight allocation.
+        /// Read weight distribution mode. This parameter needs to be passed in when the read-write separation setting is true. When used as a request parameter in the CreateDBEndpoint and ModifyDBEndpoint interfaces, the value range is as follows: LoadSchedule: Load scheduling. RoundRobinCustom: Polling scheduling with custom weights. RoundRobinAuto: Polling scheduling with automatically allocated weights.
         /// </summary>
         [Input("readOnlyNodeDistributionType")]
         public Input<string>? ReadOnlyNodeDistributionType { get; set; }
@@ -390,8 +398,7 @@ namespace Pulumi.Volcengine.Rds_mysql
         public Input<string>? ReadWriteMode { get; set; }
 
         /// <summary>
-        /// Enable read-write separation. Possible values: TRUE, FALSE.
-        /// This setting can be configured when ReadWriteMode is set to read-write, but cannot be configured when ReadWriteMode is set to read-only. This parameter only applies to the default terminal.
+        /// Whether to enable read-write splitting. Values: true: Yes. Default value. false: No.
         /// </summary>
         [Input("readWriteSpliting")]
         public Input<bool>? ReadWriteSpliting { get; set; }

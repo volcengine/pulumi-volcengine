@@ -17,27 +17,16 @@ import * as utilities from "../utilities";
  * const foo = new volcengine.rds_mysql.Endpoint("foo", {
  *     autoAddNewNodes: true,
  *     description: "tf-test-1",
- *     domain: "mysql-38c3d4f05f6e-te-8c00-private.rds.ivolces.com",
+ *     dnsVisibility: false,
  *     endpointName: "tf-test-1",
- *     instanceId: "mysql-38c3d4f05f6e",
- *     nodes: [
- *         "Primary",
- *         "mysql-38c3d4f05f6e-r3b0d",
- *     ],
- *     port: 3306,
- *     readOnlyNodeDistributionType: "Custom",
+ *     instanceId: "mysql-b51d37110dd1",
+ *     nodes: ["Primary"],
+ *     readOnlyNodeDistributionType: "RoundRobinAuto",
  *     readOnlyNodeMaxDelayTime: 30,
- *     readOnlyNodeWeights: [
- *         {
- *             nodeId: "mysql-38c3d4f05f6e-r3b0d",
- *             nodeType: "ReadOnly",
- *             weight: 0,
- *         },
- *         {
- *             nodeType: "Primary",
- *             weight: 100,
- *         },
- *     ],
+ *     readOnlyNodeWeights: [{
+ *         nodeType: "Primary",
+ *         weight: 100,
+ *     }],
  *     readWriteMode: "ReadWrite",
  *     readWriteSpliting: true,
  * });
@@ -90,6 +79,12 @@ export class Endpoint extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
+     * Values:
+     * false: Volcano Engine private network resolution (default).
+     * true: Volcano Engine private and public network resolution.
+     */
+    public readonly dnsVisibility!: pulumi.Output<boolean>;
+    /**
      * Connection address, Please note that the connection address can only modify the prefix. In one call, it is not possible to modify both the connection address prefix and the port at the same time.
      */
     public readonly domain!: pulumi.Output<string>;
@@ -114,9 +109,7 @@ export class Endpoint extends pulumi.CustomResource {
      */
     public readonly port!: pulumi.Output<number>;
     /**
-     * Read weight allocation mode. This parameter is required when enabling read-write separation setting to TRUE. Possible values:
-     * Default: Automatically allocate weights based on specifications (default).
-     * Custom: Custom weight allocation.
+     * Read weight distribution mode. This parameter needs to be passed in when the read-write separation setting is true. When used as a request parameter in the CreateDBEndpoint and ModifyDBEndpoint interfaces, the value range is as follows: LoadSchedule: Load scheduling. RoundRobinCustom: Polling scheduling with custom weights. RoundRobinAuto: Polling scheduling with automatically allocated weights.
      */
     public readonly readOnlyNodeDistributionType!: pulumi.Output<string>;
     /**
@@ -132,8 +125,7 @@ export class Endpoint extends pulumi.CustomResource {
      */
     public readonly readWriteMode!: pulumi.Output<string | undefined>;
     /**
-     * Enable read-write separation. Possible values: TRUE, FALSE.
-     * This setting can be configured when ReadWriteMode is set to read-write, but cannot be configured when ReadWriteMode is set to read-only. This parameter only applies to the default terminal.
+     * Whether to enable read-write splitting. Values: true: Yes. Default value. false: No.
      */
     public readonly readWriteSpliting!: pulumi.Output<boolean>;
 
@@ -152,6 +144,7 @@ export class Endpoint extends pulumi.CustomResource {
             const state = argsOrState as EndpointState | undefined;
             resourceInputs["autoAddNewNodes"] = state ? state.autoAddNewNodes : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["dnsVisibility"] = state ? state.dnsVisibility : undefined;
             resourceInputs["domain"] = state ? state.domain : undefined;
             resourceInputs["endpointId"] = state ? state.endpointId : undefined;
             resourceInputs["endpointName"] = state ? state.endpointName : undefined;
@@ -173,6 +166,7 @@ export class Endpoint extends pulumi.CustomResource {
             }
             resourceInputs["autoAddNewNodes"] = args ? args.autoAddNewNodes : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["dnsVisibility"] = args ? args.dnsVisibility : undefined;
             resourceInputs["domain"] = args ? args.domain : undefined;
             resourceInputs["endpointId"] = args ? args.endpointId : undefined;
             resourceInputs["endpointName"] = args ? args.endpointName : undefined;
@@ -205,6 +199,12 @@ export interface EndpointState {
      */
     description?: pulumi.Input<string>;
     /**
+     * Values:
+     * false: Volcano Engine private network resolution (default).
+     * true: Volcano Engine private and public network resolution.
+     */
+    dnsVisibility?: pulumi.Input<boolean>;
+    /**
      * Connection address, Please note that the connection address can only modify the prefix. In one call, it is not possible to modify both the connection address prefix and the port at the same time.
      */
     domain?: pulumi.Input<string>;
@@ -229,9 +229,7 @@ export interface EndpointState {
      */
     port?: pulumi.Input<number>;
     /**
-     * Read weight allocation mode. This parameter is required when enabling read-write separation setting to TRUE. Possible values:
-     * Default: Automatically allocate weights based on specifications (default).
-     * Custom: Custom weight allocation.
+     * Read weight distribution mode. This parameter needs to be passed in when the read-write separation setting is true. When used as a request parameter in the CreateDBEndpoint and ModifyDBEndpoint interfaces, the value range is as follows: LoadSchedule: Load scheduling. RoundRobinCustom: Polling scheduling with custom weights. RoundRobinAuto: Polling scheduling with automatically allocated weights.
      */
     readOnlyNodeDistributionType?: pulumi.Input<string>;
     /**
@@ -247,8 +245,7 @@ export interface EndpointState {
      */
     readWriteMode?: pulumi.Input<string>;
     /**
-     * Enable read-write separation. Possible values: TRUE, FALSE.
-     * This setting can be configured when ReadWriteMode is set to read-write, but cannot be configured when ReadWriteMode is set to read-only. This parameter only applies to the default terminal.
+     * Whether to enable read-write splitting. Values: true: Yes. Default value. false: No.
      */
     readWriteSpliting?: pulumi.Input<boolean>;
 }
@@ -267,6 +264,12 @@ export interface EndpointArgs {
      * The description of the endpoint.
      */
     description?: pulumi.Input<string>;
+    /**
+     * Values:
+     * false: Volcano Engine private network resolution (default).
+     * true: Volcano Engine private and public network resolution.
+     */
+    dnsVisibility?: pulumi.Input<boolean>;
     /**
      * Connection address, Please note that the connection address can only modify the prefix. In one call, it is not possible to modify both the connection address prefix and the port at the same time.
      */
@@ -292,9 +295,7 @@ export interface EndpointArgs {
      */
     port?: pulumi.Input<number>;
     /**
-     * Read weight allocation mode. This parameter is required when enabling read-write separation setting to TRUE. Possible values:
-     * Default: Automatically allocate weights based on specifications (default).
-     * Custom: Custom weight allocation.
+     * Read weight distribution mode. This parameter needs to be passed in when the read-write separation setting is true. When used as a request parameter in the CreateDBEndpoint and ModifyDBEndpoint interfaces, the value range is as follows: LoadSchedule: Load scheduling. RoundRobinCustom: Polling scheduling with custom weights. RoundRobinAuto: Polling scheduling with automatically allocated weights.
      */
     readOnlyNodeDistributionType?: pulumi.Input<string>;
     /**
@@ -310,8 +311,7 @@ export interface EndpointArgs {
      */
     readWriteMode?: pulumi.Input<string>;
     /**
-     * Enable read-write separation. Possible values: TRUE, FALSE.
-     * This setting can be configured when ReadWriteMode is set to read-write, but cannot be configured when ReadWriteMode is set to read-only. This parameter only applies to the default terminal.
+     * Whether to enable read-write splitting. Values: true: Yes. Default value. false: No.
      */
     readWriteSpliting?: pulumi.Input<boolean>;
 }

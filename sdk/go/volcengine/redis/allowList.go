@@ -56,6 +56,8 @@ import (
 type AllowList struct {
 	pulumi.CustomResourceState
 
+	// The type of the whitelist.
+	AllowListCategory pulumi.StringOutput `pulumi:"allowListCategory"`
 	// Description of allow list.
 	AllowListDesc pulumi.StringPtrOutput `pulumi:"allowListDesc"`
 	// Id of allow list.
@@ -72,6 +74,10 @@ type AllowList struct {
 	AssociatedInstanceNum pulumi.IntOutput `pulumi:"associatedInstanceNum"`
 	// Instances associated by this allow list.
 	AssociatedInstances AllowListAssociatedInstanceArrayOutput `pulumi:"associatedInstances"`
+	// The name of the project to which the white list belongs.
+	ProjectName pulumi.StringOutput `pulumi:"projectName"`
+	// The current whitelist is the list of security group information that has been associated.
+	SecurityGroupBindInfos AllowListSecurityGroupBindInfoArrayOutput `pulumi:"securityGroupBindInfos"`
 }
 
 // NewAllowList registers a new resource with the given unique name, arguments, and options.
@@ -110,6 +116,8 @@ func GetAllowList(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering AllowList resources.
 type allowListState struct {
+	// The type of the whitelist.
+	AllowListCategory *string `pulumi:"allowListCategory"`
 	// Description of allow list.
 	AllowListDesc *string `pulumi:"allowListDesc"`
 	// Id of allow list.
@@ -126,9 +134,15 @@ type allowListState struct {
 	AssociatedInstanceNum *int `pulumi:"associatedInstanceNum"`
 	// Instances associated by this allow list.
 	AssociatedInstances []AllowListAssociatedInstance `pulumi:"associatedInstances"`
+	// The name of the project to which the white list belongs.
+	ProjectName *string `pulumi:"projectName"`
+	// The current whitelist is the list of security group information that has been associated.
+	SecurityGroupBindInfos []AllowListSecurityGroupBindInfo `pulumi:"securityGroupBindInfos"`
 }
 
 type AllowListState struct {
+	// The type of the whitelist.
+	AllowListCategory pulumi.StringPtrInput
 	// Description of allow list.
 	AllowListDesc pulumi.StringPtrInput
 	// Id of allow list.
@@ -145,6 +159,10 @@ type AllowListState struct {
 	AssociatedInstanceNum pulumi.IntPtrInput
 	// Instances associated by this allow list.
 	AssociatedInstances AllowListAssociatedInstanceArrayInput
+	// The name of the project to which the white list belongs.
+	ProjectName pulumi.StringPtrInput
+	// The current whitelist is the list of security group information that has been associated.
+	SecurityGroupBindInfos AllowListSecurityGroupBindInfoArrayInput
 }
 
 func (AllowListState) ElementType() reflect.Type {
@@ -257,6 +275,11 @@ func (o AllowListOutput) ToAllowListOutputWithContext(ctx context.Context) Allow
 	return o
 }
 
+// The type of the whitelist.
+func (o AllowListOutput) AllowListCategory() pulumi.StringOutput {
+	return o.ApplyT(func(v *AllowList) pulumi.StringOutput { return v.AllowListCategory }).(pulumi.StringOutput)
+}
+
 // Description of allow list.
 func (o AllowListOutput) AllowListDesc() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AllowList) pulumi.StringPtrOutput { return v.AllowListDesc }).(pulumi.StringPtrOutput)
@@ -295,6 +318,16 @@ func (o AllowListOutput) AssociatedInstanceNum() pulumi.IntOutput {
 // Instances associated by this allow list.
 func (o AllowListOutput) AssociatedInstances() AllowListAssociatedInstanceArrayOutput {
 	return o.ApplyT(func(v *AllowList) AllowListAssociatedInstanceArrayOutput { return v.AssociatedInstances }).(AllowListAssociatedInstanceArrayOutput)
+}
+
+// The name of the project to which the white list belongs.
+func (o AllowListOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v *AllowList) pulumi.StringOutput { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The current whitelist is the list of security group information that has been associated.
+func (o AllowListOutput) SecurityGroupBindInfos() AllowListSecurityGroupBindInfoArrayOutput {
+	return o.ApplyT(func(v *AllowList) AllowListSecurityGroupBindInfoArrayOutput { return v.SecurityGroupBindInfos }).(AllowListSecurityGroupBindInfoArrayOutput)
 }
 
 type AllowListArrayOutput struct{ *pulumi.OutputState }

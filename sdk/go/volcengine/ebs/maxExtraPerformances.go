@@ -12,6 +12,32 @@ import (
 )
 
 // Use this data source to query detailed information of ebs max extra performances
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ebs"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := ebs.GetMaxExtraPerformances(ctx, &ebs.GetMaxExtraPerformancesArgs{
+//				Size:       pulumi.IntRef(60),
+//				VolumeType: pulumi.StringRef("TSSD_TL0"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 //
 // Deprecated: volcengine.ebs.MaxExtraPerformances has been deprecated in favor of volcengine.ebs.getMaxExtraPerformances
 func MaxExtraPerformances(ctx *pulumi.Context, args *MaxExtraPerformancesArgs, opts ...pulumi.InvokeOption) (*MaxExtraPerformancesResult, error) {

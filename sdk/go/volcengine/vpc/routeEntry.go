@@ -97,7 +97,7 @@ type RouteEntry struct {
 	DestinationCidrBlock pulumi.StringOutput `pulumi:"destinationCidrBlock"`
 	// The id of the next hop.
 	NextHopId pulumi.StringOutput `pulumi:"nextHopId"`
-	// The type of the next hop, Optional choice contains `Instance`, `NetworkInterface`, `NatGW`, `VpnGW`, `TransitRouter`.
+	// The type of the next hop, Optional choice contains `Instance`, `HaVip`, `NetworkInterface`, `NatGW`, `VpnGW`, `TransitRouter`.
 	NextHopType pulumi.StringOutput `pulumi:"nextHopType"`
 	// The id of the route entry.
 	RouteEntryId pulumi.StringOutput `pulumi:"routeEntryId"`
@@ -157,7 +157,7 @@ type routeEntryState struct {
 	DestinationCidrBlock *string `pulumi:"destinationCidrBlock"`
 	// The id of the next hop.
 	NextHopId *string `pulumi:"nextHopId"`
-	// The type of the next hop, Optional choice contains `Instance`, `NetworkInterface`, `NatGW`, `VpnGW`, `TransitRouter`.
+	// The type of the next hop, Optional choice contains `Instance`, `HaVip`, `NetworkInterface`, `NatGW`, `VpnGW`, `TransitRouter`.
 	NextHopType *string `pulumi:"nextHopType"`
 	// The id of the route entry.
 	RouteEntryId *string `pulumi:"routeEntryId"`
@@ -176,7 +176,7 @@ type RouteEntryState struct {
 	DestinationCidrBlock pulumi.StringPtrInput
 	// The id of the next hop.
 	NextHopId pulumi.StringPtrInput
-	// The type of the next hop, Optional choice contains `Instance`, `NetworkInterface`, `NatGW`, `VpnGW`, `TransitRouter`.
+	// The type of the next hop, Optional choice contains `Instance`, `HaVip`, `NetworkInterface`, `NatGW`, `VpnGW`, `TransitRouter`.
 	NextHopType pulumi.StringPtrInput
 	// The id of the route entry.
 	RouteEntryId pulumi.StringPtrInput
@@ -199,7 +199,7 @@ type routeEntryArgs struct {
 	DestinationCidrBlock string `pulumi:"destinationCidrBlock"`
 	// The id of the next hop.
 	NextHopId string `pulumi:"nextHopId"`
-	// The type of the next hop, Optional choice contains `Instance`, `NetworkInterface`, `NatGW`, `VpnGW`, `TransitRouter`.
+	// The type of the next hop, Optional choice contains `Instance`, `HaVip`, `NetworkInterface`, `NatGW`, `VpnGW`, `TransitRouter`.
 	NextHopType string `pulumi:"nextHopType"`
 	// The name of the route entry.
 	RouteEntryName *string `pulumi:"routeEntryName"`
@@ -215,7 +215,7 @@ type RouteEntryArgs struct {
 	DestinationCidrBlock pulumi.StringInput
 	// The id of the next hop.
 	NextHopId pulumi.StringInput
-	// The type of the next hop, Optional choice contains `Instance`, `NetworkInterface`, `NatGW`, `VpnGW`, `TransitRouter`.
+	// The type of the next hop, Optional choice contains `Instance`, `HaVip`, `NetworkInterface`, `NatGW`, `VpnGW`, `TransitRouter`.
 	NextHopType pulumi.StringInput
 	// The name of the route entry.
 	RouteEntryName pulumi.StringPtrInput
@@ -325,7 +325,7 @@ func (o RouteEntryOutput) NextHopId() pulumi.StringOutput {
 	return o.ApplyT(func(v *RouteEntry) pulumi.StringOutput { return v.NextHopId }).(pulumi.StringOutput)
 }
 
-// The type of the next hop, Optional choice contains `Instance`, `NetworkInterface`, `NatGW`, `VpnGW`, `TransitRouter`.
+// The type of the next hop, Optional choice contains `Instance`, `HaVip`, `NetworkInterface`, `NatGW`, `VpnGW`, `TransitRouter`.
 func (o RouteEntryOutput) NextHopType() pulumi.StringOutput {
 	return o.ApplyT(func(v *RouteEntry) pulumi.StringOutput { return v.NextHopType }).(pulumi.StringOutput)
 }

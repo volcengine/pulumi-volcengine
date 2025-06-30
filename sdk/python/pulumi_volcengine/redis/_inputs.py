@@ -11,12 +11,14 @@ from .. import _utilities
 
 __all__ = [
     'AllowListAssociatedInstanceArgs',
-    'BackupInstanceDetailArgs',
-    'BackupInstanceDetailVpcInfoArgs',
+    'AllowListSecurityGroupBindInfoArgs',
+    'BackupBackupPointDownloadUrlArgs',
+    'BackupInstanceInfoArgs',
     'InstanceConfigureNodeArgs',
     'InstanceParamValueArgs',
     'InstanceTagArgs',
     'InstancesTagArgs',
+    'ParameterGroupParamValueArgs',
     'GetInstancesTagArgs',
 ]
 
@@ -76,46 +78,184 @@ class AllowListAssociatedInstanceArgs:
 
 
 @pulumi.input_type
-class BackupInstanceDetailArgs:
+class AllowListSecurityGroupBindInfoArgs:
+    def __init__(__self__, *,
+                 bind_mode: Optional[pulumi.Input[str]] = None,
+                 ip_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 security_group_id: Optional[pulumi.Input[str]] = None,
+                 security_group_name: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] bind_mode: Security group association mode. The value range is as follows: IngressDirectionIp: The input direction IP, which is the IP involved in the TCP protocol and ALL protocol in the source address of the secure group input direction to access the database. If the source address is configured as a secure group, it will be ignored. AssociateEcsIp: Associate ECS IP, which allows cloud servers within the security group to access the database. Currently, only the IP information of the main network card is supported for import.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_lists: The list of ips in the associated security group has been linked.
+        :param pulumi.Input[str] security_group_id: The associated security group ID.
+        :param pulumi.Input[str] security_group_name: The name of the associated security group.
+        """
+        if bind_mode is not None:
+            pulumi.set(__self__, "bind_mode", bind_mode)
+        if ip_lists is not None:
+            pulumi.set(__self__, "ip_lists", ip_lists)
+        if security_group_id is not None:
+            pulumi.set(__self__, "security_group_id", security_group_id)
+        if security_group_name is not None:
+            pulumi.set(__self__, "security_group_name", security_group_name)
+
+    @property
+    @pulumi.getter(name="bindMode")
+    def bind_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Security group association mode. The value range is as follows: IngressDirectionIp: The input direction IP, which is the IP involved in the TCP protocol and ALL protocol in the source address of the secure group input direction to access the database. If the source address is configured as a secure group, it will be ignored. AssociateEcsIp: Associate ECS IP, which allows cloud servers within the security group to access the database. Currently, only the IP information of the main network card is supported for import.
+        """
+        return pulumi.get(self, "bind_mode")
+
+    @bind_mode.setter
+    def bind_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "bind_mode", value)
+
+    @property
+    @pulumi.getter(name="ipLists")
+    def ip_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The list of ips in the associated security group has been linked.
+        """
+        return pulumi.get(self, "ip_lists")
+
+    @ip_lists.setter
+    def ip_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "ip_lists", value)
+
+    @property
+    @pulumi.getter(name="securityGroupId")
+    def security_group_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The associated security group ID.
+        """
+        return pulumi.get(self, "security_group_id")
+
+    @security_group_id.setter
+    def security_group_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "security_group_id", value)
+
+    @property
+    @pulumi.getter(name="securityGroupName")
+    def security_group_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the associated security group.
+        """
+        return pulumi.get(self, "security_group_name")
+
+    @security_group_name.setter
+    def security_group_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "security_group_name", value)
+
+
+@pulumi.input_type
+class BackupBackupPointDownloadUrlArgs:
+    def __init__(__self__, *,
+                 private_download_url: Optional[pulumi.Input[str]] = None,
+                 public_download_url: Optional[pulumi.Input[str]] = None,
+                 rdb_file_size: Optional[pulumi.Input[int]] = None,
+                 shard_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] private_download_url: The private network download address for RDB files.
+        :param pulumi.Input[str] public_download_url: The public network download address for RDB files.
+        :param pulumi.Input[int] rdb_file_size: RDB file size, unit: Byte.
+        :param pulumi.Input[str] shard_id: The shard ID where the RDB file is located.
+        """
+        if private_download_url is not None:
+            pulumi.set(__self__, "private_download_url", private_download_url)
+        if public_download_url is not None:
+            pulumi.set(__self__, "public_download_url", public_download_url)
+        if rdb_file_size is not None:
+            pulumi.set(__self__, "rdb_file_size", rdb_file_size)
+        if shard_id is not None:
+            pulumi.set(__self__, "shard_id", shard_id)
+
+    @property
+    @pulumi.getter(name="privateDownloadUrl")
+    def private_download_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        The private network download address for RDB files.
+        """
+        return pulumi.get(self, "private_download_url")
+
+    @private_download_url.setter
+    def private_download_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "private_download_url", value)
+
+    @property
+    @pulumi.getter(name="publicDownloadUrl")
+    def public_download_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        The public network download address for RDB files.
+        """
+        return pulumi.get(self, "public_download_url")
+
+    @public_download_url.setter
+    def public_download_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "public_download_url", value)
+
+    @property
+    @pulumi.getter(name="rdbFileSize")
+    def rdb_file_size(self) -> Optional[pulumi.Input[int]]:
+        """
+        RDB file size, unit: Byte.
+        """
+        return pulumi.get(self, "rdb_file_size")
+
+    @rdb_file_size.setter
+    def rdb_file_size(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rdb_file_size", value)
+
+    @property
+    @pulumi.getter(name="shardId")
+    def shard_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The shard ID where the RDB file is located.
+        """
+        return pulumi.get(self, "shard_id")
+
+    @shard_id.setter
+    def shard_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "shard_id", value)
+
+
+@pulumi.input_type
+class BackupInstanceInfoArgs:
     def __init__(__self__, *,
                  account_id: Optional[pulumi.Input[int]] = None,
                  arch_type: Optional[pulumi.Input[str]] = None,
                  charge_type: Optional[pulumi.Input[str]] = None,
+                 deletion_protection: Optional[pulumi.Input[str]] = None,
                  engine_version: Optional[pulumi.Input[str]] = None,
                  expired_time: Optional[pulumi.Input[str]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
                  instance_name: Optional[pulumi.Input[str]] = None,
                  maintenance_time: Optional[pulumi.Input[str]] = None,
                  network_type: Optional[pulumi.Input[str]] = None,
-                 project_name: Optional[pulumi.Input[str]] = None,
                  region_id: Optional[pulumi.Input[str]] = None,
                  replicas: Optional[pulumi.Input[int]] = None,
-                 server_cpu: Optional[pulumi.Input[int]] = None,
                  shard_capacity: Optional[pulumi.Input[int]] = None,
-                 shard_count: Optional[pulumi.Input[int]] = None,
+                 shard_number: Optional[pulumi.Input[int]] = None,
                  total_capacity: Optional[pulumi.Input[int]] = None,
-                 used_capacity: Optional[pulumi.Input[int]] = None,
-                 vpc_infos: Optional[pulumi.Input[Sequence[pulumi.Input['BackupInstanceDetailVpcInfoArgs']]]] = None,
+                 vpc_id: Optional[pulumi.Input[str]] = None,
                  zone_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         :param pulumi.Input[int] account_id: Id of account.
         :param pulumi.Input[str] arch_type: Arch type of instance(Standard/Cluster).
         :param pulumi.Input[str] charge_type: Charge type of instance(Postpaid/Prepaid).
+        :param pulumi.Input[str] deletion_protection: The status of the deletion protection function of the instance.
         :param pulumi.Input[str] engine_version: Engine version of instance.
         :param pulumi.Input[str] expired_time: Expired time of instance.
         :param pulumi.Input[str] instance_id: Id of instance to create backup.
         :param pulumi.Input[str] instance_name: Name of instance.
         :param pulumi.Input[str] maintenance_time: The maintainable period (in UTC) of the instance.
         :param pulumi.Input[str] network_type: Network type of instance.
-        :param pulumi.Input[str] project_name: Project name of instance.
         :param pulumi.Input[str] region_id: Id of region.
         :param pulumi.Input[int] replicas: Count of replica in which shard.
-        :param pulumi.Input[int] server_cpu: Count of cpu cores of instance.
         :param pulumi.Input[int] shard_capacity: Capacity of shard.
-        :param pulumi.Input[int] shard_count: Count of shard.
+        :param pulumi.Input[int] shard_number: The number of shards in the instance.
         :param pulumi.Input[int] total_capacity: Total capacity of instance.
-        :param pulumi.Input[int] used_capacity: Capacity used of this instance.
-        :param pulumi.Input[Sequence[pulumi.Input['BackupInstanceDetailVpcInfoArgs']]] vpc_infos: Information of vpc.
+        :param pulumi.Input[str] vpc_id: The private network ID of the instance.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] zone_ids: List of id of zone.
         """
         if account_id is not None:
@@ -124,6 +264,8 @@ class BackupInstanceDetailArgs:
             pulumi.set(__self__, "arch_type", arch_type)
         if charge_type is not None:
             pulumi.set(__self__, "charge_type", charge_type)
+        if deletion_protection is not None:
+            pulumi.set(__self__, "deletion_protection", deletion_protection)
         if engine_version is not None:
             pulumi.set(__self__, "engine_version", engine_version)
         if expired_time is not None:
@@ -136,24 +278,18 @@ class BackupInstanceDetailArgs:
             pulumi.set(__self__, "maintenance_time", maintenance_time)
         if network_type is not None:
             pulumi.set(__self__, "network_type", network_type)
-        if project_name is not None:
-            pulumi.set(__self__, "project_name", project_name)
         if region_id is not None:
             pulumi.set(__self__, "region_id", region_id)
         if replicas is not None:
             pulumi.set(__self__, "replicas", replicas)
-        if server_cpu is not None:
-            pulumi.set(__self__, "server_cpu", server_cpu)
         if shard_capacity is not None:
             pulumi.set(__self__, "shard_capacity", shard_capacity)
-        if shard_count is not None:
-            pulumi.set(__self__, "shard_count", shard_count)
+        if shard_number is not None:
+            pulumi.set(__self__, "shard_number", shard_number)
         if total_capacity is not None:
             pulumi.set(__self__, "total_capacity", total_capacity)
-        if used_capacity is not None:
-            pulumi.set(__self__, "used_capacity", used_capacity)
-        if vpc_infos is not None:
-            pulumi.set(__self__, "vpc_infos", vpc_infos)
+        if vpc_id is not None:
+            pulumi.set(__self__, "vpc_id", vpc_id)
         if zone_ids is not None:
             pulumi.set(__self__, "zone_ids", zone_ids)
 
@@ -192,6 +328,18 @@ class BackupInstanceDetailArgs:
     @charge_type.setter
     def charge_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "charge_type", value)
+
+    @property
+    @pulumi.getter(name="deletionProtection")
+    def deletion_protection(self) -> Optional[pulumi.Input[str]]:
+        """
+        The status of the deletion protection function of the instance.
+        """
+        return pulumi.get(self, "deletion_protection")
+
+    @deletion_protection.setter
+    def deletion_protection(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "deletion_protection", value)
 
     @property
     @pulumi.getter(name="engineVersion")
@@ -266,18 +414,6 @@ class BackupInstanceDetailArgs:
         pulumi.set(self, "network_type", value)
 
     @property
-    @pulumi.getter(name="projectName")
-    def project_name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Project name of instance.
-        """
-        return pulumi.get(self, "project_name")
-
-    @project_name.setter
-    def project_name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "project_name", value)
-
-    @property
     @pulumi.getter(name="regionId")
     def region_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -302,18 +438,6 @@ class BackupInstanceDetailArgs:
         pulumi.set(self, "replicas", value)
 
     @property
-    @pulumi.getter(name="serverCpu")
-    def server_cpu(self) -> Optional[pulumi.Input[int]]:
-        """
-        Count of cpu cores of instance.
-        """
-        return pulumi.get(self, "server_cpu")
-
-    @server_cpu.setter
-    def server_cpu(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "server_cpu", value)
-
-    @property
     @pulumi.getter(name="shardCapacity")
     def shard_capacity(self) -> Optional[pulumi.Input[int]]:
         """
@@ -326,16 +450,16 @@ class BackupInstanceDetailArgs:
         pulumi.set(self, "shard_capacity", value)
 
     @property
-    @pulumi.getter(name="shardCount")
-    def shard_count(self) -> Optional[pulumi.Input[int]]:
+    @pulumi.getter(name="shardNumber")
+    def shard_number(self) -> Optional[pulumi.Input[int]]:
         """
-        Count of shard.
+        The number of shards in the instance.
         """
-        return pulumi.get(self, "shard_count")
+        return pulumi.get(self, "shard_number")
 
-    @shard_count.setter
-    def shard_count(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "shard_count", value)
+    @shard_number.setter
+    def shard_number(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "shard_number", value)
 
     @property
     @pulumi.getter(name="totalCapacity")
@@ -350,28 +474,16 @@ class BackupInstanceDetailArgs:
         pulumi.set(self, "total_capacity", value)
 
     @property
-    @pulumi.getter(name="usedCapacity")
-    def used_capacity(self) -> Optional[pulumi.Input[int]]:
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> Optional[pulumi.Input[str]]:
         """
-        Capacity used of this instance.
+        The private network ID of the instance.
         """
-        return pulumi.get(self, "used_capacity")
+        return pulumi.get(self, "vpc_id")
 
-    @used_capacity.setter
-    def used_capacity(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "used_capacity", value)
-
-    @property
-    @pulumi.getter(name="vpcInfos")
-    def vpc_infos(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BackupInstanceDetailVpcInfoArgs']]]]:
-        """
-        Information of vpc.
-        """
-        return pulumi.get(self, "vpc_infos")
-
-    @vpc_infos.setter
-    def vpc_infos(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['BackupInstanceDetailVpcInfoArgs']]]]):
-        pulumi.set(self, "vpc_infos", value)
+    @vpc_id.setter
+    def vpc_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "vpc_id", value)
 
     @property
     @pulumi.getter(name="zoneIds")
@@ -384,45 +496,6 @@ class BackupInstanceDetailArgs:
     @zone_ids.setter
     def zone_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "zone_ids", value)
-
-
-@pulumi.input_type
-class BackupInstanceDetailVpcInfoArgs:
-    def __init__(__self__, *,
-                 id: Optional[pulumi.Input[str]] = None,
-                 name: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] id: Id of vpc.
-        :param pulumi.Input[str] name: Name of vpc.
-        """
-        if id is not None:
-            pulumi.set(__self__, "id", id)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[str]]:
-        """
-        Id of vpc.
-        """
-        return pulumi.get(self, "id")
-
-    @id.setter
-    def id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "id", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Name of vpc.
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
@@ -557,6 +630,43 @@ class InstancesTagArgs:
 
     @value.setter
     def value(self, value: str):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ParameterGroupParamValueArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] name: The parameter names that need to be included in the parameter template.
+        :param pulumi.Input[str] value: The parameter values set for the corresponding parameters.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        """
+        The parameter names that need to be included in the parameter template.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        """
+        The parameter values set for the corresponding parameters.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
         pulumi.set(self, "value", value)
 
 

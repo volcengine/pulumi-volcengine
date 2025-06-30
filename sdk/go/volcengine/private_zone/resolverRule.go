@@ -35,6 +35,13 @@ import (
 //						Port: pulumi.Int(33),
 //					},
 //				},
+//				ProjectName: pulumi.String("default"),
+//				Tags: private_zone.ResolverRuleTagArray{
+//					&private_zone.ResolverRuleTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
 //				Type: pulumi.String("OUTBOUND"),
 //				Vpcs: private_zone.ResolverRuleVpcArray{
 //					&private_zone.ResolverRuleVpcArgs{
@@ -67,14 +74,24 @@ type ResolverRule struct {
 
 	// Terminal node ID. This parameter is only valid and required when the Type parameter is OUTBOUND.
 	EndpointId pulumi.IntPtrOutput `pulumi:"endpointId"`
+	// The endpoint trn of the private zone resolver rule. Format: trn:private_zone::accountId:endpoint/endpointId. This field is only effected when creating resource.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	EndpointTrn pulumi.StringPtrOutput `pulumi:"endpointTrn"`
 	// IP address and port of external DNS server. You can add up to 10 IP addresses. This parameter is only valid when the Type parameter is OUTBOUND and is a required parameter.
 	ForwardIps ResolverRuleForwardIpArrayOutput `pulumi:"forwardIps"`
 	// The operator of the exit IP address of the recursive DNS server. This parameter is only valid when the Type parameter is LINE and is a required parameter. MOBILE, TELECOM, UNICOM.
-	Line pulumi.IntPtrOutput `pulumi:"line"`
+	Line pulumi.StringPtrOutput `pulumi:"line"`
 	// The name of the rule.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The project name of the private zone resolver rule.
+	ProjectName pulumi.StringOutput `pulumi:"projectName"`
+	// Tags.
+	Tags ResolverRuleTagArrayOutput `pulumi:"tags"`
 	// Forwarding rule types. OUTBOUND: Forward to external DNS servers. LINE: Set the recursive DNS server used for recursive resolution to the recursive DNS server of the Volcano Engine PublicDNS, and customize the operator's exit IP address for the recursive DNS server.
 	Type pulumi.StringOutput `pulumi:"type"`
+	// The vpc trns of the private zone resolver rule. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	VpcTrns pulumi.StringArrayOutput `pulumi:"vpcTrns"`
 	// The parameter name <region> is a variable that represents the region where the VPC is located, such as cn-beijing. The parameter value can include one or more VPC IDs, such as vpc-2750bd1. For example, if you associate a VPC in the cn-beijing region with a domain name and the VPC ID is vpc-2d6si87atfh1c58ozfd0nzq8k, the parameter would be "cn-beijing":["vpc-2d6si87atfh1c58ozfd0nzq8k"]. You can add one or more regions. When the Type parameter is OUTBOUND, the VPC region must be the same as the region where the endpoint is located.
 	Vpcs ResolverRuleVpcArrayOutput `pulumi:"vpcs"`
 	// Domain names associated with forwarding rules. You can enter one or more domain names. Up to 500 domain names are supported. This parameter is only valid when the Type parameter is OUTBOUND and is a required parameter.
@@ -119,14 +136,24 @@ func GetResolverRule(ctx *pulumi.Context,
 type resolverRuleState struct {
 	// Terminal node ID. This parameter is only valid and required when the Type parameter is OUTBOUND.
 	EndpointId *int `pulumi:"endpointId"`
+	// The endpoint trn of the private zone resolver rule. Format: trn:private_zone::accountId:endpoint/endpointId. This field is only effected when creating resource.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	EndpointTrn *string `pulumi:"endpointTrn"`
 	// IP address and port of external DNS server. You can add up to 10 IP addresses. This parameter is only valid when the Type parameter is OUTBOUND and is a required parameter.
 	ForwardIps []ResolverRuleForwardIp `pulumi:"forwardIps"`
 	// The operator of the exit IP address of the recursive DNS server. This parameter is only valid when the Type parameter is LINE and is a required parameter. MOBILE, TELECOM, UNICOM.
-	Line *int `pulumi:"line"`
+	Line *string `pulumi:"line"`
 	// The name of the rule.
 	Name *string `pulumi:"name"`
+	// The project name of the private zone resolver rule.
+	ProjectName *string `pulumi:"projectName"`
+	// Tags.
+	Tags []ResolverRuleTag `pulumi:"tags"`
 	// Forwarding rule types. OUTBOUND: Forward to external DNS servers. LINE: Set the recursive DNS server used for recursive resolution to the recursive DNS server of the Volcano Engine PublicDNS, and customize the operator's exit IP address for the recursive DNS server.
 	Type *string `pulumi:"type"`
+	// The vpc trns of the private zone resolver rule. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	VpcTrns []string `pulumi:"vpcTrns"`
 	// The parameter name <region> is a variable that represents the region where the VPC is located, such as cn-beijing. The parameter value can include one or more VPC IDs, such as vpc-2750bd1. For example, if you associate a VPC in the cn-beijing region with a domain name and the VPC ID is vpc-2d6si87atfh1c58ozfd0nzq8k, the parameter would be "cn-beijing":["vpc-2d6si87atfh1c58ozfd0nzq8k"]. You can add one or more regions. When the Type parameter is OUTBOUND, the VPC region must be the same as the region where the endpoint is located.
 	Vpcs []ResolverRuleVpc `pulumi:"vpcs"`
 	// Domain names associated with forwarding rules. You can enter one or more domain names. Up to 500 domain names are supported. This parameter is only valid when the Type parameter is OUTBOUND and is a required parameter.
@@ -136,14 +163,24 @@ type resolverRuleState struct {
 type ResolverRuleState struct {
 	// Terminal node ID. This parameter is only valid and required when the Type parameter is OUTBOUND.
 	EndpointId pulumi.IntPtrInput
+	// The endpoint trn of the private zone resolver rule. Format: trn:private_zone::accountId:endpoint/endpointId. This field is only effected when creating resource.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	EndpointTrn pulumi.StringPtrInput
 	// IP address and port of external DNS server. You can add up to 10 IP addresses. This parameter is only valid when the Type parameter is OUTBOUND and is a required parameter.
 	ForwardIps ResolverRuleForwardIpArrayInput
 	// The operator of the exit IP address of the recursive DNS server. This parameter is only valid when the Type parameter is LINE and is a required parameter. MOBILE, TELECOM, UNICOM.
-	Line pulumi.IntPtrInput
+	Line pulumi.StringPtrInput
 	// The name of the rule.
 	Name pulumi.StringPtrInput
+	// The project name of the private zone resolver rule.
+	ProjectName pulumi.StringPtrInput
+	// Tags.
+	Tags ResolverRuleTagArrayInput
 	// Forwarding rule types. OUTBOUND: Forward to external DNS servers. LINE: Set the recursive DNS server used for recursive resolution to the recursive DNS server of the Volcano Engine PublicDNS, and customize the operator's exit IP address for the recursive DNS server.
 	Type pulumi.StringPtrInput
+	// The vpc trns of the private zone resolver rule. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	VpcTrns pulumi.StringArrayInput
 	// The parameter name <region> is a variable that represents the region where the VPC is located, such as cn-beijing. The parameter value can include one or more VPC IDs, such as vpc-2750bd1. For example, if you associate a VPC in the cn-beijing region with a domain name and the VPC ID is vpc-2d6si87atfh1c58ozfd0nzq8k, the parameter would be "cn-beijing":["vpc-2d6si87atfh1c58ozfd0nzq8k"]. You can add one or more regions. When the Type parameter is OUTBOUND, the VPC region must be the same as the region where the endpoint is located.
 	Vpcs ResolverRuleVpcArrayInput
 	// Domain names associated with forwarding rules. You can enter one or more domain names. Up to 500 domain names are supported. This parameter is only valid when the Type parameter is OUTBOUND and is a required parameter.
@@ -157,14 +194,24 @@ func (ResolverRuleState) ElementType() reflect.Type {
 type resolverRuleArgs struct {
 	// Terminal node ID. This parameter is only valid and required when the Type parameter is OUTBOUND.
 	EndpointId *int `pulumi:"endpointId"`
+	// The endpoint trn of the private zone resolver rule. Format: trn:private_zone::accountId:endpoint/endpointId. This field is only effected when creating resource.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	EndpointTrn *string `pulumi:"endpointTrn"`
 	// IP address and port of external DNS server. You can add up to 10 IP addresses. This parameter is only valid when the Type parameter is OUTBOUND and is a required parameter.
 	ForwardIps []ResolverRuleForwardIp `pulumi:"forwardIps"`
 	// The operator of the exit IP address of the recursive DNS server. This parameter is only valid when the Type parameter is LINE and is a required parameter. MOBILE, TELECOM, UNICOM.
-	Line *int `pulumi:"line"`
+	Line *string `pulumi:"line"`
 	// The name of the rule.
 	Name *string `pulumi:"name"`
+	// The project name of the private zone resolver rule.
+	ProjectName *string `pulumi:"projectName"`
+	// Tags.
+	Tags []ResolverRuleTag `pulumi:"tags"`
 	// Forwarding rule types. OUTBOUND: Forward to external DNS servers. LINE: Set the recursive DNS server used for recursive resolution to the recursive DNS server of the Volcano Engine PublicDNS, and customize the operator's exit IP address for the recursive DNS server.
 	Type string `pulumi:"type"`
+	// The vpc trns of the private zone resolver rule. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	VpcTrns []string `pulumi:"vpcTrns"`
 	// The parameter name <region> is a variable that represents the region where the VPC is located, such as cn-beijing. The parameter value can include one or more VPC IDs, such as vpc-2750bd1. For example, if you associate a VPC in the cn-beijing region with a domain name and the VPC ID is vpc-2d6si87atfh1c58ozfd0nzq8k, the parameter would be "cn-beijing":["vpc-2d6si87atfh1c58ozfd0nzq8k"]. You can add one or more regions. When the Type parameter is OUTBOUND, the VPC region must be the same as the region where the endpoint is located.
 	Vpcs []ResolverRuleVpc `pulumi:"vpcs"`
 	// Domain names associated with forwarding rules. You can enter one or more domain names. Up to 500 domain names are supported. This parameter is only valid when the Type parameter is OUTBOUND and is a required parameter.
@@ -175,14 +222,24 @@ type resolverRuleArgs struct {
 type ResolverRuleArgs struct {
 	// Terminal node ID. This parameter is only valid and required when the Type parameter is OUTBOUND.
 	EndpointId pulumi.IntPtrInput
+	// The endpoint trn of the private zone resolver rule. Format: trn:private_zone::accountId:endpoint/endpointId. This field is only effected when creating resource.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	EndpointTrn pulumi.StringPtrInput
 	// IP address and port of external DNS server. You can add up to 10 IP addresses. This parameter is only valid when the Type parameter is OUTBOUND and is a required parameter.
 	ForwardIps ResolverRuleForwardIpArrayInput
 	// The operator of the exit IP address of the recursive DNS server. This parameter is only valid when the Type parameter is LINE and is a required parameter. MOBILE, TELECOM, UNICOM.
-	Line pulumi.IntPtrInput
+	Line pulumi.StringPtrInput
 	// The name of the rule.
 	Name pulumi.StringPtrInput
+	// The project name of the private zone resolver rule.
+	ProjectName pulumi.StringPtrInput
+	// Tags.
+	Tags ResolverRuleTagArrayInput
 	// Forwarding rule types. OUTBOUND: Forward to external DNS servers. LINE: Set the recursive DNS server used for recursive resolution to the recursive DNS server of the Volcano Engine PublicDNS, and customize the operator's exit IP address for the recursive DNS server.
 	Type pulumi.StringInput
+	// The vpc trns of the private zone resolver rule. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	VpcTrns pulumi.StringArrayInput
 	// The parameter name <region> is a variable that represents the region where the VPC is located, such as cn-beijing. The parameter value can include one or more VPC IDs, such as vpc-2750bd1. For example, if you associate a VPC in the cn-beijing region with a domain name and the VPC ID is vpc-2d6si87atfh1c58ozfd0nzq8k, the parameter would be "cn-beijing":["vpc-2d6si87atfh1c58ozfd0nzq8k"]. You can add one or more regions. When the Type parameter is OUTBOUND, the VPC region must be the same as the region where the endpoint is located.
 	Vpcs ResolverRuleVpcArrayInput
 	// Domain names associated with forwarding rules. You can enter one or more domain names. Up to 500 domain names are supported. This parameter is only valid when the Type parameter is OUTBOUND and is a required parameter.
@@ -281,14 +338,20 @@ func (o ResolverRuleOutput) EndpointId() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ResolverRule) pulumi.IntPtrOutput { return v.EndpointId }).(pulumi.IntPtrOutput)
 }
 
+// The endpoint trn of the private zone resolver rule. Format: trn:private_zone::accountId:endpoint/endpointId. This field is only effected when creating resource.
+// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+func (o ResolverRuleOutput) EndpointTrn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ResolverRule) pulumi.StringPtrOutput { return v.EndpointTrn }).(pulumi.StringPtrOutput)
+}
+
 // IP address and port of external DNS server. You can add up to 10 IP addresses. This parameter is only valid when the Type parameter is OUTBOUND and is a required parameter.
 func (o ResolverRuleOutput) ForwardIps() ResolverRuleForwardIpArrayOutput {
 	return o.ApplyT(func(v *ResolverRule) ResolverRuleForwardIpArrayOutput { return v.ForwardIps }).(ResolverRuleForwardIpArrayOutput)
 }
 
 // The operator of the exit IP address of the recursive DNS server. This parameter is only valid when the Type parameter is LINE and is a required parameter. MOBILE, TELECOM, UNICOM.
-func (o ResolverRuleOutput) Line() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *ResolverRule) pulumi.IntPtrOutput { return v.Line }).(pulumi.IntPtrOutput)
+func (o ResolverRuleOutput) Line() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ResolverRule) pulumi.StringPtrOutput { return v.Line }).(pulumi.StringPtrOutput)
 }
 
 // The name of the rule.
@@ -296,9 +359,25 @@ func (o ResolverRuleOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *ResolverRule) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// The project name of the private zone resolver rule.
+func (o ResolverRuleOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v *ResolverRule) pulumi.StringOutput { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o ResolverRuleOutput) Tags() ResolverRuleTagArrayOutput {
+	return o.ApplyT(func(v *ResolverRule) ResolverRuleTagArrayOutput { return v.Tags }).(ResolverRuleTagArrayOutput)
+}
+
 // Forwarding rule types. OUTBOUND: Forward to external DNS servers. LINE: Set the recursive DNS server used for recursive resolution to the recursive DNS server of the Volcano Engine PublicDNS, and customize the operator's exit IP address for the recursive DNS server.
 func (o ResolverRuleOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *ResolverRule) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
+// The vpc trns of the private zone resolver rule. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource.
+// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+func (o ResolverRuleOutput) VpcTrns() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ResolverRule) pulumi.StringArrayOutput { return v.VpcTrns }).(pulumi.StringArrayOutput)
 }
 
 // The parameter name <region> is a variable that represents the region where the VPC is located, such as cn-beijing. The parameter value can include one or more VPC IDs, such as vpc-2750bd1. For example, if you associate a VPC in the cn-beijing region with a domain name and the VPC ID is vpc-2d6si87atfh1c58ozfd0nzq8k, the parameter would be "cn-beijing":["vpc-2d6si87atfh1c58ozfd0nzq8k"]. You can add one or more regions. When the Type parameter is OUTBOUND, the VPC region must be the same as the region where the endpoint is located.

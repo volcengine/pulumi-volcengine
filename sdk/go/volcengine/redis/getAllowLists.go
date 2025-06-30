@@ -109,10 +109,18 @@ func GetAllowLists(ctx *pulumi.Context, args *GetAllowListsArgs, opts ...pulumi.
 type GetAllowListsArgs struct {
 	// The Id of instance.
 	InstanceId *string `pulumi:"instanceId"`
+	// Filter out the whitelist that meets the conditions based on the IP address. When using IPAddress query, it will precisely match this IP address and filter the IP address segments containing this IP address.
+	IpAddress *string `pulumi:"ipAddress"`
+	// Screen out the whitelist that meets the conditions based on the IP address segment. When using IPSegment queries, the IP address segment will be precisely matched for filtering.
+	IpSegment *string `pulumi:"ipSegment"`
 	// A Name Regex of Allow List.
 	NameRegex *string `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
+	// The name of the project to which the white list belongs.
+	ProjectName *string `pulumi:"projectName"`
+	// Filter whether to query only the default whitelist based on the type of whitelist.
+	QueryDefault *bool `pulumi:"queryDefault"`
 	// The Id of region.
 	RegionId string `pulumi:"regionId"`
 }
@@ -125,9 +133,14 @@ type GetAllowListsResult struct {
 	Id string `pulumi:"id"`
 	// Id of instance.
 	InstanceId *string `pulumi:"instanceId"`
+	IpAddress  *string `pulumi:"ipAddress"`
+	IpSegment  *string `pulumi:"ipSegment"`
 	NameRegex  *string `pulumi:"nameRegex"`
 	OutputFile *string `pulumi:"outputFile"`
-	RegionId   string  `pulumi:"regionId"`
+	// The name of the project to which the white list belongs.
+	ProjectName  *string `pulumi:"projectName"`
+	QueryDefault *bool   `pulumi:"queryDefault"`
+	RegionId     string  `pulumi:"regionId"`
 	// The total count of allow list query.
 	TotalCount int `pulumi:"totalCount"`
 }
@@ -149,10 +162,18 @@ func GetAllowListsOutput(ctx *pulumi.Context, args GetAllowListsOutputArgs, opts
 type GetAllowListsOutputArgs struct {
 	// The Id of instance.
 	InstanceId pulumi.StringPtrInput `pulumi:"instanceId"`
+	// Filter out the whitelist that meets the conditions based on the IP address. When using IPAddress query, it will precisely match this IP address and filter the IP address segments containing this IP address.
+	IpAddress pulumi.StringPtrInput `pulumi:"ipAddress"`
+	// Screen out the whitelist that meets the conditions based on the IP address segment. When using IPSegment queries, the IP address segment will be precisely matched for filtering.
+	IpSegment pulumi.StringPtrInput `pulumi:"ipSegment"`
 	// A Name Regex of Allow List.
 	NameRegex pulumi.StringPtrInput `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// The name of the project to which the white list belongs.
+	ProjectName pulumi.StringPtrInput `pulumi:"projectName"`
+	// Filter whether to query only the default whitelist based on the type of whitelist.
+	QueryDefault pulumi.BoolPtrInput `pulumi:"queryDefault"`
 	// The Id of region.
 	RegionId pulumi.StringInput `pulumi:"regionId"`
 }
@@ -191,12 +212,29 @@ func (o GetAllowListsResultOutput) InstanceId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetAllowListsResult) *string { return v.InstanceId }).(pulumi.StringPtrOutput)
 }
 
+func (o GetAllowListsResultOutput) IpAddress() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetAllowListsResult) *string { return v.IpAddress }).(pulumi.StringPtrOutput)
+}
+
+func (o GetAllowListsResultOutput) IpSegment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetAllowListsResult) *string { return v.IpSegment }).(pulumi.StringPtrOutput)
+}
+
 func (o GetAllowListsResultOutput) NameRegex() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetAllowListsResult) *string { return v.NameRegex }).(pulumi.StringPtrOutput)
 }
 
 func (o GetAllowListsResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetAllowListsResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
+}
+
+// The name of the project to which the white list belongs.
+func (o GetAllowListsResultOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetAllowListsResult) *string { return v.ProjectName }).(pulumi.StringPtrOutput)
+}
+
+func (o GetAllowListsResultOutput) QueryDefault() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetAllowListsResult) *bool { return v.QueryDefault }).(pulumi.BoolPtrOutput)
 }
 
 func (o GetAllowListsResultOutput) RegionId() pulumi.StringOutput {

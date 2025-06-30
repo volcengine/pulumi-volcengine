@@ -71,8 +71,8 @@ type InstanceParameterLogsResult struct {
 	InstanceId string  `pulumi:"instanceId"`
 	OutputFile *string `pulumi:"outputFile"`
 	// The collection of parameter change log query.
-	ParameterChangeLogs InstanceParameterLogsParameterChangeLogs `pulumi:"parameterChangeLogs"`
-	StartTime           string                                   `pulumi:"startTime"`
+	ParameterChangeLogs []InstanceParameterLogsParameterChangeLog `pulumi:"parameterChangeLogs"`
+	StartTime           string                                    `pulumi:"startTime"`
 	// The total count of mongodb instance parameter log query.
 	TotalCount int `pulumi:"totalCount"`
 }
@@ -139,10 +139,10 @@ func (o InstanceParameterLogsResultOutput) OutputFile() pulumi.StringPtrOutput {
 }
 
 // The collection of parameter change log query.
-func (o InstanceParameterLogsResultOutput) ParameterChangeLogs() InstanceParameterLogsParameterChangeLogsOutput {
-	return o.ApplyT(func(v InstanceParameterLogsResult) InstanceParameterLogsParameterChangeLogs {
+func (o InstanceParameterLogsResultOutput) ParameterChangeLogs() InstanceParameterLogsParameterChangeLogArrayOutput {
+	return o.ApplyT(func(v InstanceParameterLogsResult) []InstanceParameterLogsParameterChangeLog {
 		return v.ParameterChangeLogs
-	}).(InstanceParameterLogsParameterChangeLogsOutput)
+	}).(InstanceParameterLogsParameterChangeLogArrayOutput)
 }
 
 func (o InstanceParameterLogsResultOutput) StartTime() pulumi.StringOutput {

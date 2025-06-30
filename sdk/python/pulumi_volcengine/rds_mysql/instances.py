@@ -25,7 +25,7 @@ class InstancesResult:
     """
     A collection of values returned by Instances.
     """
-    def __init__(__self__, charge_type=None, create_time_end=None, create_time_start=None, db_engine_version=None, id=None, instance_id=None, instance_name=None, instance_status=None, name_regex=None, output_file=None, rds_mysql_instances=None, tags=None, total_count=None, zone_id=None):
+    def __init__(__self__, charge_type=None, create_time_end=None, create_time_start=None, db_engine_version=None, id=None, instance_id=None, instance_name=None, instance_status=None, instance_type=None, kernel_versions=None, name_regex=None, node_spec=None, output_file=None, private_network_ip_address=None, private_network_vpc_id=None, project_name=None, rds_mysql_instances=None, storage_type=None, tags=None, total_count=None, zone_id=None):
         if charge_type and not isinstance(charge_type, str):
             raise TypeError("Expected argument 'charge_type' to be a str")
         pulumi.set(__self__, "charge_type", charge_type)
@@ -50,15 +50,36 @@ class InstancesResult:
         if instance_status and not isinstance(instance_status, str):
             raise TypeError("Expected argument 'instance_status' to be a str")
         pulumi.set(__self__, "instance_status", instance_status)
+        if instance_type and not isinstance(instance_type, str):
+            raise TypeError("Expected argument 'instance_type' to be a str")
+        pulumi.set(__self__, "instance_type", instance_type)
+        if kernel_versions and not isinstance(kernel_versions, list):
+            raise TypeError("Expected argument 'kernel_versions' to be a list")
+        pulumi.set(__self__, "kernel_versions", kernel_versions)
         if name_regex and not isinstance(name_regex, str):
             raise TypeError("Expected argument 'name_regex' to be a str")
         pulumi.set(__self__, "name_regex", name_regex)
+        if node_spec and not isinstance(node_spec, str):
+            raise TypeError("Expected argument 'node_spec' to be a str")
+        pulumi.set(__self__, "node_spec", node_spec)
         if output_file and not isinstance(output_file, str):
             raise TypeError("Expected argument 'output_file' to be a str")
         pulumi.set(__self__, "output_file", output_file)
+        if private_network_ip_address and not isinstance(private_network_ip_address, str):
+            raise TypeError("Expected argument 'private_network_ip_address' to be a str")
+        pulumi.set(__self__, "private_network_ip_address", private_network_ip_address)
+        if private_network_vpc_id and not isinstance(private_network_vpc_id, str):
+            raise TypeError("Expected argument 'private_network_vpc_id' to be a str")
+        pulumi.set(__self__, "private_network_vpc_id", private_network_vpc_id)
+        if project_name and not isinstance(project_name, str):
+            raise TypeError("Expected argument 'project_name' to be a str")
+        pulumi.set(__self__, "project_name", project_name)
         if rds_mysql_instances and not isinstance(rds_mysql_instances, list):
             raise TypeError("Expected argument 'rds_mysql_instances' to be a list")
         pulumi.set(__self__, "rds_mysql_instances", rds_mysql_instances)
+        if storage_type and not isinstance(storage_type, str):
+            raise TypeError("Expected argument 'storage_type' to be a str")
+        pulumi.set(__self__, "storage_type", storage_type)
         if tags and not isinstance(tags, list):
             raise TypeError("Expected argument 'tags' to be a list")
         pulumi.set(__self__, "tags", tags)
@@ -130,14 +151,53 @@ class InstancesResult:
         return pulumi.get(self, "instance_status")
 
     @property
+    @pulumi.getter(name="instanceType")
+    def instance_type(self) -> Optional[str]:
+        return pulumi.get(self, "instance_type")
+
+    @property
+    @pulumi.getter(name="kernelVersions")
+    def kernel_versions(self) -> Optional[Sequence[str]]:
+        """
+        The current kernel version of the RDS instance.
+        """
+        return pulumi.get(self, "kernel_versions")
+
+    @property
     @pulumi.getter(name="nameRegex")
     def name_regex(self) -> Optional[str]:
         return pulumi.get(self, "name_regex")
 
     @property
+    @pulumi.getter(name="nodeSpec")
+    def node_spec(self) -> Optional[str]:
+        """
+        General instance type, different from Custom instance type.
+        """
+        return pulumi.get(self, "node_spec")
+
+    @property
     @pulumi.getter(name="outputFile")
     def output_file(self) -> Optional[str]:
         return pulumi.get(self, "output_file")
+
+    @property
+    @pulumi.getter(name="privateNetworkIpAddress")
+    def private_network_ip_address(self) -> Optional[str]:
+        return pulumi.get(self, "private_network_ip_address")
+
+    @property
+    @pulumi.getter(name="privateNetworkVpcId")
+    def private_network_vpc_id(self) -> Optional[str]:
+        return pulumi.get(self, "private_network_vpc_id")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[str]:
+        """
+        The project name of the RDS instance.
+        """
+        return pulumi.get(self, "project_name")
 
     @property
     @pulumi.getter(name="rdsMysqlInstances")
@@ -146,6 +206,14 @@ class InstancesResult:
         The collection of RDS instance query.
         """
         return pulumi.get(self, "rds_mysql_instances")
+
+    @property
+    @pulumi.getter(name="storageType")
+    def storage_type(self) -> Optional[str]:
+        """
+        Instance storage type.
+        """
+        return pulumi.get(self, "storage_type")
 
     @property
     @pulumi.getter
@@ -186,9 +254,16 @@ class AwaitableInstancesResult(InstancesResult):
             instance_id=self.instance_id,
             instance_name=self.instance_name,
             instance_status=self.instance_status,
+            instance_type=self.instance_type,
+            kernel_versions=self.kernel_versions,
             name_regex=self.name_regex,
+            node_spec=self.node_spec,
             output_file=self.output_file,
+            private_network_ip_address=self.private_network_ip_address,
+            private_network_vpc_id=self.private_network_vpc_id,
+            project_name=self.project_name,
             rds_mysql_instances=self.rds_mysql_instances,
+            storage_type=self.storage_type,
             tags=self.tags,
             total_count=self.total_count,
             zone_id=self.zone_id)
@@ -201,8 +276,15 @@ def instances(charge_type: Optional[str] = None,
               instance_id: Optional[str] = None,
               instance_name: Optional[str] = None,
               instance_status: Optional[str] = None,
+              instance_type: Optional[str] = None,
+              kernel_versions: Optional[Sequence[str]] = None,
               name_regex: Optional[str] = None,
+              node_spec: Optional[str] = None,
               output_file: Optional[str] = None,
+              private_network_ip_address: Optional[str] = None,
+              private_network_vpc_id: Optional[str] = None,
+              project_name: Optional[str] = None,
+              storage_type: Optional[str] = None,
               tags: Optional[Sequence[pulumi.InputType['InstancesTagArgs']]] = None,
               zone_id: Optional[str] = None,
               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableInstancesResult:
@@ -256,8 +338,15 @@ def instances(charge_type: Optional[str] = None,
     :param str instance_id: The id of the RDS instance.
     :param str instance_name: The name of the RDS instance.
     :param str instance_status: The status of the RDS instance.
+    :param str instance_type: Instance type. The value is DoubleNode.
+    :param Sequence[str] kernel_versions: The kernel version of the instance.
     :param str name_regex: A Name Regex of RDS instance.
+    :param str node_spec: Primary node specification. For detailed information about the node specifications, please refer to Product Specifications.
     :param str output_file: File name where to save data source results.
+    :param str private_network_ip_address: The IP address of the instance's default terminal, used to query the instance by IP address.
+    :param str private_network_vpc_id: The ID of the private network. Instances using the specified private network can be filtered by this field.
+    :param str project_name: The project name of the RDS instance.
+    :param str storage_type: Instance storage type. The value is LocalSSD, indicating a local SSD disk.
     :param Sequence[pulumi.InputType['InstancesTagArgs']] tags: Tags.
     :param str zone_id: The available zone of the RDS instance.
     """
@@ -270,8 +359,15 @@ def instances(charge_type: Optional[str] = None,
     __args__['instanceId'] = instance_id
     __args__['instanceName'] = instance_name
     __args__['instanceStatus'] = instance_status
+    __args__['instanceType'] = instance_type
+    __args__['kernelVersions'] = kernel_versions
     __args__['nameRegex'] = name_regex
+    __args__['nodeSpec'] = node_spec
     __args__['outputFile'] = output_file
+    __args__['privateNetworkIpAddress'] = private_network_ip_address
+    __args__['privateNetworkVpcId'] = private_network_vpc_id
+    __args__['projectName'] = project_name
+    __args__['storageType'] = storage_type
     __args__['tags'] = tags
     __args__['zoneId'] = zone_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -286,9 +382,16 @@ def instances(charge_type: Optional[str] = None,
         instance_id=pulumi.get(__ret__, 'instance_id'),
         instance_name=pulumi.get(__ret__, 'instance_name'),
         instance_status=pulumi.get(__ret__, 'instance_status'),
+        instance_type=pulumi.get(__ret__, 'instance_type'),
+        kernel_versions=pulumi.get(__ret__, 'kernel_versions'),
         name_regex=pulumi.get(__ret__, 'name_regex'),
+        node_spec=pulumi.get(__ret__, 'node_spec'),
         output_file=pulumi.get(__ret__, 'output_file'),
+        private_network_ip_address=pulumi.get(__ret__, 'private_network_ip_address'),
+        private_network_vpc_id=pulumi.get(__ret__, 'private_network_vpc_id'),
+        project_name=pulumi.get(__ret__, 'project_name'),
         rds_mysql_instances=pulumi.get(__ret__, 'rds_mysql_instances'),
+        storage_type=pulumi.get(__ret__, 'storage_type'),
         tags=pulumi.get(__ret__, 'tags'),
         total_count=pulumi.get(__ret__, 'total_count'),
         zone_id=pulumi.get(__ret__, 'zone_id'))
@@ -302,8 +405,15 @@ def instances_output(charge_type: Optional[pulumi.Input[Optional[str]]] = None,
                      instance_id: Optional[pulumi.Input[Optional[str]]] = None,
                      instance_name: Optional[pulumi.Input[Optional[str]]] = None,
                      instance_status: Optional[pulumi.Input[Optional[str]]] = None,
+                     instance_type: Optional[pulumi.Input[Optional[str]]] = None,
+                     kernel_versions: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                      name_regex: Optional[pulumi.Input[Optional[str]]] = None,
+                     node_spec: Optional[pulumi.Input[Optional[str]]] = None,
                      output_file: Optional[pulumi.Input[Optional[str]]] = None,
+                     private_network_ip_address: Optional[pulumi.Input[Optional[str]]] = None,
+                     private_network_vpc_id: Optional[pulumi.Input[Optional[str]]] = None,
+                     project_name: Optional[pulumi.Input[Optional[str]]] = None,
+                     storage_type: Optional[pulumi.Input[Optional[str]]] = None,
                      tags: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['InstancesTagArgs']]]]] = None,
                      zone_id: Optional[pulumi.Input[Optional[str]]] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[InstancesResult]:
@@ -357,8 +467,15 @@ def instances_output(charge_type: Optional[pulumi.Input[Optional[str]]] = None,
     :param str instance_id: The id of the RDS instance.
     :param str instance_name: The name of the RDS instance.
     :param str instance_status: The status of the RDS instance.
+    :param str instance_type: Instance type. The value is DoubleNode.
+    :param Sequence[str] kernel_versions: The kernel version of the instance.
     :param str name_regex: A Name Regex of RDS instance.
+    :param str node_spec: Primary node specification. For detailed information about the node specifications, please refer to Product Specifications.
     :param str output_file: File name where to save data source results.
+    :param str private_network_ip_address: The IP address of the instance's default terminal, used to query the instance by IP address.
+    :param str private_network_vpc_id: The ID of the private network. Instances using the specified private network can be filtered by this field.
+    :param str project_name: The project name of the RDS instance.
+    :param str storage_type: Instance storage type. The value is LocalSSD, indicating a local SSD disk.
     :param Sequence[pulumi.InputType['InstancesTagArgs']] tags: Tags.
     :param str zone_id: The available zone of the RDS instance.
     """

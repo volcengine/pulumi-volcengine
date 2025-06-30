@@ -91,6 +91,10 @@ export class InstanceReadonlyNode extends pulumi.CustomResource {
     }
 
     /**
+     * The delay time of the readonly node.
+     */
+    public /*out*/ readonly delayReplicationTime!: pulumi.Output<number>;
+    /**
      * The RDS mysql instance id of the readonly node.
      */
     public readonly instanceId!: pulumi.Output<string>;
@@ -120,6 +124,7 @@ export class InstanceReadonlyNode extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as InstanceReadonlyNodeState | undefined;
+            resourceInputs["delayReplicationTime"] = state ? state.delayReplicationTime : undefined;
             resourceInputs["instanceId"] = state ? state.instanceId : undefined;
             resourceInputs["nodeId"] = state ? state.nodeId : undefined;
             resourceInputs["nodeSpec"] = state ? state.nodeSpec : undefined;
@@ -138,6 +143,7 @@ export class InstanceReadonlyNode extends pulumi.CustomResource {
             resourceInputs["instanceId"] = args ? args.instanceId : undefined;
             resourceInputs["nodeSpec"] = args ? args.nodeSpec : undefined;
             resourceInputs["zoneId"] = args ? args.zoneId : undefined;
+            resourceInputs["delayReplicationTime"] = undefined /*out*/;
             resourceInputs["nodeId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -149,6 +155,10 @@ export class InstanceReadonlyNode extends pulumi.CustomResource {
  * Input properties used for looking up and filtering InstanceReadonlyNode resources.
  */
 export interface InstanceReadonlyNodeState {
+    /**
+     * The delay time of the readonly node.
+     */
+    delayReplicationTime?: pulumi.Input<number>;
     /**
      * The RDS mysql instance id of the readonly node.
      */

@@ -30,7 +30,7 @@ namespace Pulumi.Volcengine.Rds_mysql.Outputs
         /// </summary>
         public readonly string NodeId;
         /// <summary>
-        /// General instance type, different from Custom instance type.
+        /// Primary node specification. For detailed information about the node specifications, please refer to Product Specifications.
         /// </summary>
         public readonly string NodeSpec;
         /// <summary>

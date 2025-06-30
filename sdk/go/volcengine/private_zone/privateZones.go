@@ -55,18 +55,24 @@ func PrivateZones(ctx *pulumi.Context, args *PrivateZonesArgs, opts ...pulumi.In
 
 // A collection of arguments for invoking PrivateZones.
 type PrivateZonesArgs struct {
+	// The keyword of zone name.
+	KeyWord *string `pulumi:"keyWord"`
 	// The line mode of Private Zone, specified whether the intelligent mode and the load balance function is enabled.
 	LineMode *int `pulumi:"lineMode"`
 	// A Name Regex of Resource.
 	NameRegex *string `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
+	// The project name of the private zone.
+	ProjectName *string `pulumi:"projectName"`
 	// Whether the recursion mode of Private Zone is enabled.
 	RecursionMode *bool `pulumi:"recursionMode"`
 	// The region of Private Zone.
 	Region *string `pulumi:"region"`
 	// The search mode of query. Valid values: `LIKE`, `EXACT`. Default is `LIKE`.
 	SearchMode *string `pulumi:"searchMode"`
+	// List of tag filters.
+	TagFilters []PrivateZonesTagFilter `pulumi:"tagFilters"`
 	// The vpc id associated to Private Zone.
 	VpcId *string `pulumi:"vpcId"`
 	// The zid of Private Zone.
@@ -78,18 +84,22 @@ type PrivateZonesArgs struct {
 // A collection of values returned by PrivateZones.
 type PrivateZonesResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
+	Id      string  `pulumi:"id"`
+	KeyWord *string `pulumi:"keyWord"`
 	// The line mode of the private zone, specified whether the intelligent mode and the load balance function is enabled.
 	LineMode   *int    `pulumi:"lineMode"`
 	NameRegex  *string `pulumi:"nameRegex"`
 	OutputFile *string `pulumi:"outputFile"`
 	// The collection of query.
 	PrivateZones []PrivateZonesPrivateZone `pulumi:"privateZones"`
+	// The project name of the private zone.
+	ProjectName *string `pulumi:"projectName"`
 	// Whether the recursion mode of the private zone is enabled.
 	RecursionMode *bool `pulumi:"recursionMode"`
 	// The region of the private zone.
-	Region     *string `pulumi:"region"`
-	SearchMode *string `pulumi:"searchMode"`
+	Region     *string                 `pulumi:"region"`
+	SearchMode *string                 `pulumi:"searchMode"`
+	TagFilters []PrivateZonesTagFilter `pulumi:"tagFilters"`
 	// The total count of query.
 	TotalCount int     `pulumi:"totalCount"`
 	VpcId      *string `pulumi:"vpcId"`
@@ -114,18 +124,24 @@ func PrivateZonesOutput(ctx *pulumi.Context, args PrivateZonesOutputArgs, opts .
 
 // A collection of arguments for invoking PrivateZones.
 type PrivateZonesOutputArgs struct {
+	// The keyword of zone name.
+	KeyWord pulumi.StringPtrInput `pulumi:"keyWord"`
 	// The line mode of Private Zone, specified whether the intelligent mode and the load balance function is enabled.
 	LineMode pulumi.IntPtrInput `pulumi:"lineMode"`
 	// A Name Regex of Resource.
 	NameRegex pulumi.StringPtrInput `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// The project name of the private zone.
+	ProjectName pulumi.StringPtrInput `pulumi:"projectName"`
 	// Whether the recursion mode of Private Zone is enabled.
 	RecursionMode pulumi.BoolPtrInput `pulumi:"recursionMode"`
 	// The region of Private Zone.
 	Region pulumi.StringPtrInput `pulumi:"region"`
 	// The search mode of query. Valid values: `LIKE`, `EXACT`. Default is `LIKE`.
 	SearchMode pulumi.StringPtrInput `pulumi:"searchMode"`
+	// List of tag filters.
+	TagFilters PrivateZonesTagFilterArrayInput `pulumi:"tagFilters"`
 	// The vpc id associated to Private Zone.
 	VpcId pulumi.StringPtrInput `pulumi:"vpcId"`
 	// The zid of Private Zone.
@@ -158,6 +174,10 @@ func (o PrivateZonesResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v PrivateZonesResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+func (o PrivateZonesResultOutput) KeyWord() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PrivateZonesResult) *string { return v.KeyWord }).(pulumi.StringPtrOutput)
+}
+
 // The line mode of the private zone, specified whether the intelligent mode and the load balance function is enabled.
 func (o PrivateZonesResultOutput) LineMode() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v PrivateZonesResult) *int { return v.LineMode }).(pulumi.IntPtrOutput)
@@ -176,6 +196,11 @@ func (o PrivateZonesResultOutput) PrivateZones() PrivateZonesPrivateZoneArrayOut
 	return o.ApplyT(func(v PrivateZonesResult) []PrivateZonesPrivateZone { return v.PrivateZones }).(PrivateZonesPrivateZoneArrayOutput)
 }
 
+// The project name of the private zone.
+func (o PrivateZonesResultOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PrivateZonesResult) *string { return v.ProjectName }).(pulumi.StringPtrOutput)
+}
+
 // Whether the recursion mode of the private zone is enabled.
 func (o PrivateZonesResultOutput) RecursionMode() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v PrivateZonesResult) *bool { return v.RecursionMode }).(pulumi.BoolPtrOutput)
@@ -188,6 +213,10 @@ func (o PrivateZonesResultOutput) Region() pulumi.StringPtrOutput {
 
 func (o PrivateZonesResultOutput) SearchMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v PrivateZonesResult) *string { return v.SearchMode }).(pulumi.StringPtrOutput)
+}
+
+func (o PrivateZonesResultOutput) TagFilters() PrivateZonesTagFilterArrayOutput {
+	return o.ApplyT(func(v PrivateZonesResult) []PrivateZonesTagFilter { return v.TagFilters }).(PrivateZonesTagFilterArrayOutput)
 }
 
 // The total count of query.

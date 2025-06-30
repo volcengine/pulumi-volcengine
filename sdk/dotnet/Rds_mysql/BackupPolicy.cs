@@ -25,12 +25,20 @@ namespace Pulumi.Volcengine.Rds_mysql
     ///     {
     ///         BinlogFileCountsEnable = true,
     ///         BinlogSpaceLimitEnable = true,
+    ///         CrossBackupPolicy = new Volcengine.Rds_mysql.Inputs.BackupPolicyCrossBackupPolicyArgs
+    ///         {
+    ///             BackupEnabled = true,
+    ///             CrossBackupRegion = "cn-chongqing-sdv",
+    ///             LogBackupEnabled = true,
+    ///             Retention = 10,
+    ///         },
     ///         DataFullBackupPeriods = new[]
     ///         {
     ///             "Monday",
     ///             "Sunday",
+    ///             "Tuesday",
     ///         },
-    ///         InstanceId = "mysql-c8c3f45c4b07",
+    ///         InstanceId = "mysql-b51d37110dd1",
     ///         LockDdlTime = 80,
     ///     });
     /// 
@@ -49,6 +57,12 @@ namespace Pulumi.Volcengine.Rds_mysql
     [VolcengineResourceType("volcengine:rds_mysql/backupPolicy:BackupPolicy")]
     public partial class BackupPolicy : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// List of destination regions for cross - region backup.
+        /// </summary>
+        [Output("availableCrossRegions")]
+        public Output<ImmutableArray<string>> AvailableCrossRegions { get; private set; } = null!;
+
         /// <summary>
         /// Whether to retain all log backups before releasing an instance. Values:
         /// true: Yes.
@@ -102,6 +116,12 @@ namespace Pulumi.Volcengine.Rds_mysql
         /// </summary>
         [Output("binlogStoragePercentage")]
         public Output<int> BinlogStoragePercentage { get; private set; } = null!;
+
+        /// <summary>
+        /// Cross - region backup strategy.
+        /// </summary>
+        [Output("crossBackupPolicy")]
+        public Output<Outputs.BackupPolicyCrossBackupPolicy> CrossBackupPolicy { get; private set; } = null!;
 
         /// <summary>
         /// Whether to retain all data backups before releasing the instance. Values:
@@ -302,6 +322,12 @@ namespace Pulumi.Volcengine.Rds_mysql
         public Input<int>? BinlogStoragePercentage { get; set; }
 
         /// <summary>
+        /// Cross - region backup strategy.
+        /// </summary>
+        [Input("crossBackupPolicy")]
+        public Input<Inputs.BackupPolicyCrossBackupPolicyArgs>? CrossBackupPolicy { get; set; }
+
+        /// <summary>
         /// Whether to retain all data backups before releasing the instance. Values:
         /// true: Yes.
         /// false: No.
@@ -418,6 +444,18 @@ namespace Pulumi.Volcengine.Rds_mysql
 
     public sealed class BackupPolicyState : global::Pulumi.ResourceArgs
     {
+        [Input("availableCrossRegions")]
+        private InputList<string>? _availableCrossRegions;
+
+        /// <summary>
+        /// List of destination regions for cross - region backup.
+        /// </summary>
+        public InputList<string> AvailableCrossRegions
+        {
+            get => _availableCrossRegions ?? (_availableCrossRegions = new InputList<string>());
+            set => _availableCrossRegions = value;
+        }
+
         /// <summary>
         /// Whether to retain all log backups before releasing an instance. Values:
         /// true: Yes.
@@ -471,6 +509,12 @@ namespace Pulumi.Volcengine.Rds_mysql
         /// </summary>
         [Input("binlogStoragePercentage")]
         public Input<int>? BinlogStoragePercentage { get; set; }
+
+        /// <summary>
+        /// Cross - region backup strategy.
+        /// </summary>
+        [Input("crossBackupPolicy")]
+        public Input<Inputs.BackupPolicyCrossBackupPolicyGetArgs>? CrossBackupPolicy { get; set; }
 
         /// <summary>
         /// Whether to retain all data backups before releasing the instance. Values:

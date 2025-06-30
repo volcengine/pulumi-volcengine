@@ -19,7 +19,7 @@ namespace Pulumi.Volcengine.Cr.Inputs
         public Input<string>? Domain { get; set; }
 
         /// <summary>
-        /// The type of registry.
+        /// The type of registry. Valid values: `Enterprise`, `Micro`. Default is `Enterprise`.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

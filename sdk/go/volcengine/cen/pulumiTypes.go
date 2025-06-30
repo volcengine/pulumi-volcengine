@@ -295,6 +295,8 @@ type BandwidthPackagesBandwidthPackage struct {
 	ExpiredTime string `pulumi:"expiredTime"`
 	// The ID of the cen bandwidth package.
 	Id string `pulumi:"id"`
+	// The line operator of the cen bandwidth package.
+	LineOperator string `pulumi:"lineOperator"`
 	// A local geographic region set id.
 	LocalGeographicRegionSetId string `pulumi:"localGeographicRegionSetId"`
 	// A peer geographic region set id.
@@ -347,6 +349,8 @@ type BandwidthPackagesBandwidthPackageArgs struct {
 	ExpiredTime pulumi.StringInput `pulumi:"expiredTime"`
 	// The ID of the cen bandwidth package.
 	Id pulumi.StringInput `pulumi:"id"`
+	// The line operator of the cen bandwidth package.
+	LineOperator pulumi.StringInput `pulumi:"lineOperator"`
 	// A local geographic region set id.
 	LocalGeographicRegionSetId pulumi.StringInput `pulumi:"localGeographicRegionSetId"`
 	// A peer geographic region set id.
@@ -472,6 +476,11 @@ func (o BandwidthPackagesBandwidthPackageOutput) ExpiredTime() pulumi.StringOutp
 // The ID of the cen bandwidth package.
 func (o BandwidthPackagesBandwidthPackageOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v BandwidthPackagesBandwidthPackage) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The line operator of the cen bandwidth package.
+func (o BandwidthPackagesBandwidthPackageOutput) LineOperator() pulumi.StringOutput {
+	return o.ApplyT(func(v BandwidthPackagesBandwidthPackage) string { return v.LineOperator }).(pulumi.StringOutput)
 }
 
 // A local geographic region set id.
@@ -1246,10 +1255,152 @@ func (o CensTagArrayOutput) Index(i pulumi.IntInput) CensTagOutput {
 	}).(CensTagOutput)
 }
 
+type GrantInstancesGrantRule struct {
+	// The ID of the cen.
+	CenId string `pulumi:"cenId"`
+	// The owner ID of the cen.
+	CenOwnerId string `pulumi:"cenOwnerId"`
+	// The creation time of the grant rule.
+	CreationTime string `pulumi:"creationTime"`
+	// The ID of the instance.
+	InstanceId string `pulumi:"instanceId"`
+	// The region ID of the instance.
+	InstanceRegionId string `pulumi:"instanceRegionId"`
+	// The type of the instance. Valid values: `VPC`, `DCGW`.
+	InstanceType string `pulumi:"instanceType"`
+}
+
+// GrantInstancesGrantRuleInput is an input type that accepts GrantInstancesGrantRuleArgs and GrantInstancesGrantRuleOutput values.
+// You can construct a concrete instance of `GrantInstancesGrantRuleInput` via:
+//
+//	GrantInstancesGrantRuleArgs{...}
+type GrantInstancesGrantRuleInput interface {
+	pulumi.Input
+
+	ToGrantInstancesGrantRuleOutput() GrantInstancesGrantRuleOutput
+	ToGrantInstancesGrantRuleOutputWithContext(context.Context) GrantInstancesGrantRuleOutput
+}
+
+type GrantInstancesGrantRuleArgs struct {
+	// The ID of the cen.
+	CenId pulumi.StringInput `pulumi:"cenId"`
+	// The owner ID of the cen.
+	CenOwnerId pulumi.StringInput `pulumi:"cenOwnerId"`
+	// The creation time of the grant rule.
+	CreationTime pulumi.StringInput `pulumi:"creationTime"`
+	// The ID of the instance.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// The region ID of the instance.
+	InstanceRegionId pulumi.StringInput `pulumi:"instanceRegionId"`
+	// The type of the instance. Valid values: `VPC`, `DCGW`.
+	InstanceType pulumi.StringInput `pulumi:"instanceType"`
+}
+
+func (GrantInstancesGrantRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GrantInstancesGrantRule)(nil)).Elem()
+}
+
+func (i GrantInstancesGrantRuleArgs) ToGrantInstancesGrantRuleOutput() GrantInstancesGrantRuleOutput {
+	return i.ToGrantInstancesGrantRuleOutputWithContext(context.Background())
+}
+
+func (i GrantInstancesGrantRuleArgs) ToGrantInstancesGrantRuleOutputWithContext(ctx context.Context) GrantInstancesGrantRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GrantInstancesGrantRuleOutput)
+}
+
+// GrantInstancesGrantRuleArrayInput is an input type that accepts GrantInstancesGrantRuleArray and GrantInstancesGrantRuleArrayOutput values.
+// You can construct a concrete instance of `GrantInstancesGrantRuleArrayInput` via:
+//
+//	GrantInstancesGrantRuleArray{ GrantInstancesGrantRuleArgs{...} }
+type GrantInstancesGrantRuleArrayInput interface {
+	pulumi.Input
+
+	ToGrantInstancesGrantRuleArrayOutput() GrantInstancesGrantRuleArrayOutput
+	ToGrantInstancesGrantRuleArrayOutputWithContext(context.Context) GrantInstancesGrantRuleArrayOutput
+}
+
+type GrantInstancesGrantRuleArray []GrantInstancesGrantRuleInput
+
+func (GrantInstancesGrantRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GrantInstancesGrantRule)(nil)).Elem()
+}
+
+func (i GrantInstancesGrantRuleArray) ToGrantInstancesGrantRuleArrayOutput() GrantInstancesGrantRuleArrayOutput {
+	return i.ToGrantInstancesGrantRuleArrayOutputWithContext(context.Background())
+}
+
+func (i GrantInstancesGrantRuleArray) ToGrantInstancesGrantRuleArrayOutputWithContext(ctx context.Context) GrantInstancesGrantRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GrantInstancesGrantRuleArrayOutput)
+}
+
+type GrantInstancesGrantRuleOutput struct{ *pulumi.OutputState }
+
+func (GrantInstancesGrantRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GrantInstancesGrantRule)(nil)).Elem()
+}
+
+func (o GrantInstancesGrantRuleOutput) ToGrantInstancesGrantRuleOutput() GrantInstancesGrantRuleOutput {
+	return o
+}
+
+func (o GrantInstancesGrantRuleOutput) ToGrantInstancesGrantRuleOutputWithContext(ctx context.Context) GrantInstancesGrantRuleOutput {
+	return o
+}
+
+// The ID of the cen.
+func (o GrantInstancesGrantRuleOutput) CenId() pulumi.StringOutput {
+	return o.ApplyT(func(v GrantInstancesGrantRule) string { return v.CenId }).(pulumi.StringOutput)
+}
+
+// The owner ID of the cen.
+func (o GrantInstancesGrantRuleOutput) CenOwnerId() pulumi.StringOutput {
+	return o.ApplyT(func(v GrantInstancesGrantRule) string { return v.CenOwnerId }).(pulumi.StringOutput)
+}
+
+// The creation time of the grant rule.
+func (o GrantInstancesGrantRuleOutput) CreationTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GrantInstancesGrantRule) string { return v.CreationTime }).(pulumi.StringOutput)
+}
+
+// The ID of the instance.
+func (o GrantInstancesGrantRuleOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GrantInstancesGrantRule) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// The region ID of the instance.
+func (o GrantInstancesGrantRuleOutput) InstanceRegionId() pulumi.StringOutput {
+	return o.ApplyT(func(v GrantInstancesGrantRule) string { return v.InstanceRegionId }).(pulumi.StringOutput)
+}
+
+// The type of the instance. Valid values: `VPC`, `DCGW`.
+func (o GrantInstancesGrantRuleOutput) InstanceType() pulumi.StringOutput {
+	return o.ApplyT(func(v GrantInstancesGrantRule) string { return v.InstanceType }).(pulumi.StringOutput)
+}
+
+type GrantInstancesGrantRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (GrantInstancesGrantRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GrantInstancesGrantRule)(nil)).Elem()
+}
+
+func (o GrantInstancesGrantRuleArrayOutput) ToGrantInstancesGrantRuleArrayOutput() GrantInstancesGrantRuleArrayOutput {
+	return o
+}
+
+func (o GrantInstancesGrantRuleArrayOutput) ToGrantInstancesGrantRuleArrayOutputWithContext(ctx context.Context) GrantInstancesGrantRuleArrayOutput {
+	return o
+}
+
+func (o GrantInstancesGrantRuleArrayOutput) Index(i pulumi.IntInput) GrantInstancesGrantRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GrantInstancesGrantRule {
+		return vs[0].([]GrantInstancesGrantRule)[vs[1].(int)]
+	}).(GrantInstancesGrantRuleOutput)
+}
+
 type InterRegionBandwidthsInterRegionBandwidth struct {
 	// The bandwidth of the cen inter region bandwidth.
 	Bandwidth int `pulumi:"bandwidth"`
-	// The cen ID of the cen inter region bandwidth.
+	// The ID of the cen.
 	CenId string `pulumi:"cenId"`
 	// The create time of the cen inter region bandwidth.
 	CreationTime string `pulumi:"creationTime"`
@@ -1281,7 +1432,7 @@ type InterRegionBandwidthsInterRegionBandwidthInput interface {
 type InterRegionBandwidthsInterRegionBandwidthArgs struct {
 	// The bandwidth of the cen inter region bandwidth.
 	Bandwidth pulumi.IntInput `pulumi:"bandwidth"`
-	// The cen ID of the cen inter region bandwidth.
+	// The ID of the cen.
 	CenId pulumi.StringInput `pulumi:"cenId"`
 	// The create time of the cen inter region bandwidth.
 	CreationTime pulumi.StringInput `pulumi:"creationTime"`
@@ -1355,7 +1506,7 @@ func (o InterRegionBandwidthsInterRegionBandwidthOutput) Bandwidth() pulumi.IntO
 	return o.ApplyT(func(v InterRegionBandwidthsInterRegionBandwidth) int { return v.Bandwidth }).(pulumi.IntOutput)
 }
 
-// The cen ID of the cen inter region bandwidth.
+// The ID of the cen.
 func (o InterRegionBandwidthsInterRegionBandwidthOutput) CenId() pulumi.StringOutput {
 	return o.ApplyT(func(v InterRegionBandwidthsInterRegionBandwidth) string { return v.CenId }).(pulumi.StringOutput)
 }
@@ -2152,6 +2303,8 @@ type GetBandwidthPackagesBandwidthPackage struct {
 	ExpiredTime string `pulumi:"expiredTime"`
 	// The ID of the cen bandwidth package.
 	Id string `pulumi:"id"`
+	// The line operator of the cen bandwidth package.
+	LineOperator string `pulumi:"lineOperator"`
 	// A local geographic region set id.
 	LocalGeographicRegionSetId string `pulumi:"localGeographicRegionSetId"`
 	// A peer geographic region set id.
@@ -2204,6 +2357,8 @@ type GetBandwidthPackagesBandwidthPackageArgs struct {
 	ExpiredTime pulumi.StringInput `pulumi:"expiredTime"`
 	// The ID of the cen bandwidth package.
 	Id pulumi.StringInput `pulumi:"id"`
+	// The line operator of the cen bandwidth package.
+	LineOperator pulumi.StringInput `pulumi:"lineOperator"`
 	// A local geographic region set id.
 	LocalGeographicRegionSetId pulumi.StringInput `pulumi:"localGeographicRegionSetId"`
 	// A peer geographic region set id.
@@ -2329,6 +2484,11 @@ func (o GetBandwidthPackagesBandwidthPackageOutput) ExpiredTime() pulumi.StringO
 // The ID of the cen bandwidth package.
 func (o GetBandwidthPackagesBandwidthPackageOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBandwidthPackagesBandwidthPackage) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The line operator of the cen bandwidth package.
+func (o GetBandwidthPackagesBandwidthPackageOutput) LineOperator() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBandwidthPackagesBandwidthPackage) string { return v.LineOperator }).(pulumi.StringOutput)
 }
 
 // A local geographic region set id.
@@ -2997,10 +3157,152 @@ func (o GetCensTagArrayOutput) Index(i pulumi.IntInput) GetCensTagOutput {
 	}).(GetCensTagOutput)
 }
 
+type GetGrantInstancesGrantRule struct {
+	// The ID of the cen.
+	CenId string `pulumi:"cenId"`
+	// The owner ID of the cen.
+	CenOwnerId string `pulumi:"cenOwnerId"`
+	// The creation time of the grant rule.
+	CreationTime string `pulumi:"creationTime"`
+	// The ID of the instance.
+	InstanceId string `pulumi:"instanceId"`
+	// The region ID of the instance.
+	InstanceRegionId string `pulumi:"instanceRegionId"`
+	// The type of the instance. Valid values: `VPC`, `DCGW`.
+	InstanceType string `pulumi:"instanceType"`
+}
+
+// GetGrantInstancesGrantRuleInput is an input type that accepts GetGrantInstancesGrantRuleArgs and GetGrantInstancesGrantRuleOutput values.
+// You can construct a concrete instance of `GetGrantInstancesGrantRuleInput` via:
+//
+//	GetGrantInstancesGrantRuleArgs{...}
+type GetGrantInstancesGrantRuleInput interface {
+	pulumi.Input
+
+	ToGetGrantInstancesGrantRuleOutput() GetGrantInstancesGrantRuleOutput
+	ToGetGrantInstancesGrantRuleOutputWithContext(context.Context) GetGrantInstancesGrantRuleOutput
+}
+
+type GetGrantInstancesGrantRuleArgs struct {
+	// The ID of the cen.
+	CenId pulumi.StringInput `pulumi:"cenId"`
+	// The owner ID of the cen.
+	CenOwnerId pulumi.StringInput `pulumi:"cenOwnerId"`
+	// The creation time of the grant rule.
+	CreationTime pulumi.StringInput `pulumi:"creationTime"`
+	// The ID of the instance.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// The region ID of the instance.
+	InstanceRegionId pulumi.StringInput `pulumi:"instanceRegionId"`
+	// The type of the instance. Valid values: `VPC`, `DCGW`.
+	InstanceType pulumi.StringInput `pulumi:"instanceType"`
+}
+
+func (GetGrantInstancesGrantRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGrantInstancesGrantRule)(nil)).Elem()
+}
+
+func (i GetGrantInstancesGrantRuleArgs) ToGetGrantInstancesGrantRuleOutput() GetGrantInstancesGrantRuleOutput {
+	return i.ToGetGrantInstancesGrantRuleOutputWithContext(context.Background())
+}
+
+func (i GetGrantInstancesGrantRuleArgs) ToGetGrantInstancesGrantRuleOutputWithContext(ctx context.Context) GetGrantInstancesGrantRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGrantInstancesGrantRuleOutput)
+}
+
+// GetGrantInstancesGrantRuleArrayInput is an input type that accepts GetGrantInstancesGrantRuleArray and GetGrantInstancesGrantRuleArrayOutput values.
+// You can construct a concrete instance of `GetGrantInstancesGrantRuleArrayInput` via:
+//
+//	GetGrantInstancesGrantRuleArray{ GetGrantInstancesGrantRuleArgs{...} }
+type GetGrantInstancesGrantRuleArrayInput interface {
+	pulumi.Input
+
+	ToGetGrantInstancesGrantRuleArrayOutput() GetGrantInstancesGrantRuleArrayOutput
+	ToGetGrantInstancesGrantRuleArrayOutputWithContext(context.Context) GetGrantInstancesGrantRuleArrayOutput
+}
+
+type GetGrantInstancesGrantRuleArray []GetGrantInstancesGrantRuleInput
+
+func (GetGrantInstancesGrantRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGrantInstancesGrantRule)(nil)).Elem()
+}
+
+func (i GetGrantInstancesGrantRuleArray) ToGetGrantInstancesGrantRuleArrayOutput() GetGrantInstancesGrantRuleArrayOutput {
+	return i.ToGetGrantInstancesGrantRuleArrayOutputWithContext(context.Background())
+}
+
+func (i GetGrantInstancesGrantRuleArray) ToGetGrantInstancesGrantRuleArrayOutputWithContext(ctx context.Context) GetGrantInstancesGrantRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGrantInstancesGrantRuleArrayOutput)
+}
+
+type GetGrantInstancesGrantRuleOutput struct{ *pulumi.OutputState }
+
+func (GetGrantInstancesGrantRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGrantInstancesGrantRule)(nil)).Elem()
+}
+
+func (o GetGrantInstancesGrantRuleOutput) ToGetGrantInstancesGrantRuleOutput() GetGrantInstancesGrantRuleOutput {
+	return o
+}
+
+func (o GetGrantInstancesGrantRuleOutput) ToGetGrantInstancesGrantRuleOutputWithContext(ctx context.Context) GetGrantInstancesGrantRuleOutput {
+	return o
+}
+
+// The ID of the cen.
+func (o GetGrantInstancesGrantRuleOutput) CenId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGrantInstancesGrantRule) string { return v.CenId }).(pulumi.StringOutput)
+}
+
+// The owner ID of the cen.
+func (o GetGrantInstancesGrantRuleOutput) CenOwnerId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGrantInstancesGrantRule) string { return v.CenOwnerId }).(pulumi.StringOutput)
+}
+
+// The creation time of the grant rule.
+func (o GetGrantInstancesGrantRuleOutput) CreationTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGrantInstancesGrantRule) string { return v.CreationTime }).(pulumi.StringOutput)
+}
+
+// The ID of the instance.
+func (o GetGrantInstancesGrantRuleOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGrantInstancesGrantRule) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// The region ID of the instance.
+func (o GetGrantInstancesGrantRuleOutput) InstanceRegionId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGrantInstancesGrantRule) string { return v.InstanceRegionId }).(pulumi.StringOutput)
+}
+
+// The type of the instance. Valid values: `VPC`, `DCGW`.
+func (o GetGrantInstancesGrantRuleOutput) InstanceType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGrantInstancesGrantRule) string { return v.InstanceType }).(pulumi.StringOutput)
+}
+
+type GetGrantInstancesGrantRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetGrantInstancesGrantRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGrantInstancesGrantRule)(nil)).Elem()
+}
+
+func (o GetGrantInstancesGrantRuleArrayOutput) ToGetGrantInstancesGrantRuleArrayOutput() GetGrantInstancesGrantRuleArrayOutput {
+	return o
+}
+
+func (o GetGrantInstancesGrantRuleArrayOutput) ToGetGrantInstancesGrantRuleArrayOutputWithContext(ctx context.Context) GetGrantInstancesGrantRuleArrayOutput {
+	return o
+}
+
+func (o GetGrantInstancesGrantRuleArrayOutput) Index(i pulumi.IntInput) GetGrantInstancesGrantRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetGrantInstancesGrantRule {
+		return vs[0].([]GetGrantInstancesGrantRule)[vs[1].(int)]
+	}).(GetGrantInstancesGrantRuleOutput)
+}
+
 type GetInterRegionBandwidthsInterRegionBandwidth struct {
 	// The bandwidth of the cen inter region bandwidth.
 	Bandwidth int `pulumi:"bandwidth"`
-	// The cen ID of the cen inter region bandwidth.
+	// The ID of the cen.
 	CenId string `pulumi:"cenId"`
 	// The create time of the cen inter region bandwidth.
 	CreationTime string `pulumi:"creationTime"`
@@ -3032,7 +3334,7 @@ type GetInterRegionBandwidthsInterRegionBandwidthInput interface {
 type GetInterRegionBandwidthsInterRegionBandwidthArgs struct {
 	// The bandwidth of the cen inter region bandwidth.
 	Bandwidth pulumi.IntInput `pulumi:"bandwidth"`
-	// The cen ID of the cen inter region bandwidth.
+	// The ID of the cen.
 	CenId pulumi.StringInput `pulumi:"cenId"`
 	// The create time of the cen inter region bandwidth.
 	CreationTime pulumi.StringInput `pulumi:"creationTime"`
@@ -3106,7 +3408,7 @@ func (o GetInterRegionBandwidthsInterRegionBandwidthOutput) Bandwidth() pulumi.I
 	return o.ApplyT(func(v GetInterRegionBandwidthsInterRegionBandwidth) int { return v.Bandwidth }).(pulumi.IntOutput)
 }
 
-// The cen ID of the cen inter region bandwidth.
+// The ID of the cen.
 func (o GetInterRegionBandwidthsInterRegionBandwidthOutput) CenId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInterRegionBandwidthsInterRegionBandwidth) string { return v.CenId }).(pulumi.StringOutput)
 }
@@ -3631,6 +3933,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*CensCenTagArrayInput)(nil)).Elem(), CensCenTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CensTagInput)(nil)).Elem(), CensTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CensTagArrayInput)(nil)).Elem(), CensTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GrantInstancesGrantRuleInput)(nil)).Elem(), GrantInstancesGrantRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GrantInstancesGrantRuleArrayInput)(nil)).Elem(), GrantInstancesGrantRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InterRegionBandwidthsInterRegionBandwidthInput)(nil)).Elem(), InterRegionBandwidthsInterRegionBandwidthArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InterRegionBandwidthsInterRegionBandwidthArrayInput)(nil)).Elem(), InterRegionBandwidthsInterRegionBandwidthArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RouteEntriesCenRouteEntryInput)(nil)).Elem(), RouteEntriesCenRouteEntryArgs{})
@@ -3655,6 +3959,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCensCenTagArrayInput)(nil)).Elem(), GetCensCenTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCensTagInput)(nil)).Elem(), GetCensTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCensTagArrayInput)(nil)).Elem(), GetCensTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGrantInstancesGrantRuleInput)(nil)).Elem(), GetGrantInstancesGrantRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGrantInstancesGrantRuleArrayInput)(nil)).Elem(), GetGrantInstancesGrantRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInterRegionBandwidthsInterRegionBandwidthInput)(nil)).Elem(), GetInterRegionBandwidthsInterRegionBandwidthArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInterRegionBandwidthsInterRegionBandwidthArrayInput)(nil)).Elem(), GetInterRegionBandwidthsInterRegionBandwidthArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRouteEntriesCenRouteEntryInput)(nil)).Elem(), GetRouteEntriesCenRouteEntryArgs{})
@@ -3681,6 +3987,8 @@ func init() {
 	pulumi.RegisterOutputType(CensCenTagArrayOutput{})
 	pulumi.RegisterOutputType(CensTagOutput{})
 	pulumi.RegisterOutputType(CensTagArrayOutput{})
+	pulumi.RegisterOutputType(GrantInstancesGrantRuleOutput{})
+	pulumi.RegisterOutputType(GrantInstancesGrantRuleArrayOutput{})
 	pulumi.RegisterOutputType(InterRegionBandwidthsInterRegionBandwidthOutput{})
 	pulumi.RegisterOutputType(InterRegionBandwidthsInterRegionBandwidthArrayOutput{})
 	pulumi.RegisterOutputType(RouteEntriesCenRouteEntryOutput{})
@@ -3705,6 +4013,8 @@ func init() {
 	pulumi.RegisterOutputType(GetCensCenTagArrayOutput{})
 	pulumi.RegisterOutputType(GetCensTagOutput{})
 	pulumi.RegisterOutputType(GetCensTagArrayOutput{})
+	pulumi.RegisterOutputType(GetGrantInstancesGrantRuleOutput{})
+	pulumi.RegisterOutputType(GetGrantInstancesGrantRuleArrayOutput{})
 	pulumi.RegisterOutputType(GetInterRegionBandwidthsInterRegionBandwidthOutput{})
 	pulumi.RegisterOutputType(GetInterRegionBandwidthsInterRegionBandwidthArrayOutput{})
 	pulumi.RegisterOutputType(GetRouteEntriesCenRouteEntryOutput{})

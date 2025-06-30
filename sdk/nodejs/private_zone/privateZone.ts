@@ -17,8 +17,13 @@ import * as utilities from "../utilities";
  * const foo = new volcengine.private_zone.PrivateZone("foo", {
  *     intelligentMode: true,
  *     loadBalanceMode: true,
+ *     projectName: "default",
  *     recursionMode: true,
  *     remark: "acc-test-new",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
  *     vpcs: [
  *         {
  *             vpcId: "vpc-rs4mi0jedipsv0x57pf****",
@@ -77,6 +82,10 @@ export class PrivateZone extends pulumi.CustomResource {
      */
     public readonly loadBalanceMode!: pulumi.Output<boolean | undefined>;
     /**
+     * The project name of the private zone.
+     */
+    public readonly projectName!: pulumi.Output<string>;
+    /**
      * Whether to enable the recursion mode of the private zone.
      */
     public readonly recursionMode!: pulumi.Output<boolean | undefined>;
@@ -84,6 +93,15 @@ export class PrivateZone extends pulumi.CustomResource {
      * The remark of the private zone.
      */
     public readonly remark!: pulumi.Output<string | undefined>;
+    /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.private_zone.PrivateZoneTag[] | undefined>;
+    /**
+     * The vpc trns of the private zone. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource. 
+     * When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+     */
+    public readonly vpcTrns!: pulumi.Output<string[] | undefined>;
     /**
      * The bind vpc object of the private zone. If you want to bind another account's VPC, you need to first use resource volcengine.private_zone.UserVpcAuthorization to complete the authorization.
      */
@@ -108,8 +126,11 @@ export class PrivateZone extends pulumi.CustomResource {
             const state = argsOrState as PrivateZoneState | undefined;
             resourceInputs["intelligentMode"] = state ? state.intelligentMode : undefined;
             resourceInputs["loadBalanceMode"] = state ? state.loadBalanceMode : undefined;
+            resourceInputs["projectName"] = state ? state.projectName : undefined;
             resourceInputs["recursionMode"] = state ? state.recursionMode : undefined;
             resourceInputs["remark"] = state ? state.remark : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
+            resourceInputs["vpcTrns"] = state ? state.vpcTrns : undefined;
             resourceInputs["vpcs"] = state ? state.vpcs : undefined;
             resourceInputs["zoneName"] = state ? state.zoneName : undefined;
         } else {
@@ -122,8 +143,11 @@ export class PrivateZone extends pulumi.CustomResource {
             }
             resourceInputs["intelligentMode"] = args ? args.intelligentMode : undefined;
             resourceInputs["loadBalanceMode"] = args ? args.loadBalanceMode : undefined;
+            resourceInputs["projectName"] = args ? args.projectName : undefined;
             resourceInputs["recursionMode"] = args ? args.recursionMode : undefined;
             resourceInputs["remark"] = args ? args.remark : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
+            resourceInputs["vpcTrns"] = args ? args.vpcTrns : undefined;
             resourceInputs["vpcs"] = args ? args.vpcs : undefined;
             resourceInputs["zoneName"] = args ? args.zoneName : undefined;
         }
@@ -145,6 +169,10 @@ export interface PrivateZoneState {
      */
     loadBalanceMode?: pulumi.Input<boolean>;
     /**
+     * The project name of the private zone.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
      * Whether to enable the recursion mode of the private zone.
      */
     recursionMode?: pulumi.Input<boolean>;
@@ -152,6 +180,15 @@ export interface PrivateZoneState {
      * The remark of the private zone.
      */
     remark?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.private_zone.PrivateZoneTag>[]>;
+    /**
+     * The vpc trns of the private zone. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource. 
+     * When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+     */
+    vpcTrns?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The bind vpc object of the private zone. If you want to bind another account's VPC, you need to first use resource volcengine.private_zone.UserVpcAuthorization to complete the authorization.
      */
@@ -175,6 +212,10 @@ export interface PrivateZoneArgs {
      */
     loadBalanceMode?: pulumi.Input<boolean>;
     /**
+     * The project name of the private zone.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
      * Whether to enable the recursion mode of the private zone.
      */
     recursionMode?: pulumi.Input<boolean>;
@@ -182,6 +223,15 @@ export interface PrivateZoneArgs {
      * The remark of the private zone.
      */
     remark?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.private_zone.PrivateZoneTag>[]>;
+    /**
+     * The vpc trns of the private zone. Format: trn:vpc:region:accountId:vpc/vpcId. This field is only effected when creating resource. 
+     * When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+     */
+    vpcTrns?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The bind vpc object of the private zone. If you want to bind another account's VPC, you need to first use resource volcengine.private_zone.UserVpcAuthorization to complete the authorization.
      */

@@ -37,6 +37,12 @@ __all__ = [
     'EscloudInstancesV2InstancePluginResult',
     'EscloudInstancesV2InstanceTagResult',
     'EscloudInstancesV2TagResult',
+    'EscloudNodeAvailableSpecsNodeSpecResult',
+    'EscloudNodeAvailableSpecsNodeSpecNetworkSpecResult',
+    'EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecResult',
+    'EscloudNodeAvailableSpecsNodeSpecResourceSpecResult',
+    'EscloudNodeAvailableSpecsNodeSpecStorageSpecResult',
+    'EscloudZonesV2ZoneResult',
     'GetEscloudInstancesV2InstanceResult',
     'GetEscloudInstancesV2InstanceInstanceConfigurationResult',
     'GetEscloudInstancesV2InstanceInstanceConfigurationColdNodeResourceSpecResult',
@@ -59,6 +65,12 @@ __all__ = [
     'GetEscloudInstancesV2InstancePluginResult',
     'GetEscloudInstancesV2InstanceTagResult',
     'GetEscloudInstancesV2TagResult',
+    'GetEscloudNodeAvailableSpecsNodeSpecResult',
+    'GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecResult',
+    'GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecResult',
+    'GetEscloudNodeAvailableSpecsNodeSpecResourceSpecResult',
+    'GetEscloudNodeAvailableSpecsNodeSpecStorageSpecResult',
+    'GetEscloudZonesV2ZoneResult',
 ]
 
 @pulumi.output_type
@@ -2324,6 +2336,334 @@ class EscloudInstancesV2TagResult(dict):
 
 
 @pulumi.output_type
+class EscloudNodeAvailableSpecsNodeSpecResult(dict):
+    def __init__(__self__, *,
+                 az_available_specs_sold_out: Mapping[str, str],
+                 configuration_code: str,
+                 network_specs: Sequence['outputs.EscloudNodeAvailableSpecsNodeSpecNetworkSpecResult'],
+                 node_available_specs: Sequence['outputs.EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecResult'],
+                 resource_specs: Sequence['outputs.EscloudNodeAvailableSpecsNodeSpecResourceSpecResult'],
+                 storage_specs: Sequence['outputs.EscloudNodeAvailableSpecsNodeSpecStorageSpecResult']):
+        """
+        :param Mapping[str, str] az_available_specs_sold_out: The available specs sold out.
+        :param str configuration_code: The configuration code.
+        :param Sequence['EscloudNodeAvailableSpecsNodeSpecNetworkSpecArgs'] network_specs: The network specs.
+        :param Sequence['EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArgs'] node_available_specs: The node available specs.
+        :param Sequence['EscloudNodeAvailableSpecsNodeSpecResourceSpecArgs'] resource_specs: The resource specs.
+        :param Sequence['EscloudNodeAvailableSpecsNodeSpecStorageSpecArgs'] storage_specs: The storage specs.
+        """
+        pulumi.set(__self__, "az_available_specs_sold_out", az_available_specs_sold_out)
+        pulumi.set(__self__, "configuration_code", configuration_code)
+        pulumi.set(__self__, "network_specs", network_specs)
+        pulumi.set(__self__, "node_available_specs", node_available_specs)
+        pulumi.set(__self__, "resource_specs", resource_specs)
+        pulumi.set(__self__, "storage_specs", storage_specs)
+
+    @property
+    @pulumi.getter(name="azAvailableSpecsSoldOut")
+    def az_available_specs_sold_out(self) -> Mapping[str, str]:
+        """
+        The available specs sold out.
+        """
+        return pulumi.get(self, "az_available_specs_sold_out")
+
+    @property
+    @pulumi.getter(name="configurationCode")
+    def configuration_code(self) -> str:
+        """
+        The configuration code.
+        """
+        return pulumi.get(self, "configuration_code")
+
+    @property
+    @pulumi.getter(name="networkSpecs")
+    def network_specs(self) -> Sequence['outputs.EscloudNodeAvailableSpecsNodeSpecNetworkSpecResult']:
+        """
+        The network specs.
+        """
+        return pulumi.get(self, "network_specs")
+
+    @property
+    @pulumi.getter(name="nodeAvailableSpecs")
+    def node_available_specs(self) -> Sequence['outputs.EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecResult']:
+        """
+        The node available specs.
+        """
+        return pulumi.get(self, "node_available_specs")
+
+    @property
+    @pulumi.getter(name="resourceSpecs")
+    def resource_specs(self) -> Sequence['outputs.EscloudNodeAvailableSpecsNodeSpecResourceSpecResult']:
+        """
+        The resource specs.
+        """
+        return pulumi.get(self, "resource_specs")
+
+    @property
+    @pulumi.getter(name="storageSpecs")
+    def storage_specs(self) -> Sequence['outputs.EscloudNodeAvailableSpecsNodeSpecStorageSpecResult']:
+        """
+        The storage specs.
+        """
+        return pulumi.get(self, "storage_specs")
+
+
+@pulumi.output_type
+class EscloudNodeAvailableSpecsNodeSpecNetworkSpecResult(dict):
+    def __init__(__self__, *,
+                 network_role: str,
+                 spec_name: str):
+        """
+        :param str network_role: The network role.
+        :param str spec_name: The spec name.
+        """
+        pulumi.set(__self__, "network_role", network_role)
+        pulumi.set(__self__, "spec_name", spec_name)
+
+    @property
+    @pulumi.getter(name="networkRole")
+    def network_role(self) -> str:
+        """
+        The network role.
+        """
+        return pulumi.get(self, "network_role")
+
+    @property
+    @pulumi.getter(name="specName")
+    def spec_name(self) -> str:
+        """
+        The spec name.
+        """
+        return pulumi.get(self, "spec_name")
+
+
+@pulumi.output_type
+class EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecResult(dict):
+    def __init__(__self__, *,
+                 resource_spec_names: Sequence[str],
+                 storage_spec_names: Sequence[str],
+                 type: str):
+        """
+        :param Sequence[str] resource_spec_names: The resource spec names of node.
+        :param Sequence[str] storage_spec_names: The storage spec names of node.
+        :param str type: The type of node.
+        """
+        pulumi.set(__self__, "resource_spec_names", resource_spec_names)
+        pulumi.set(__self__, "storage_spec_names", storage_spec_names)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="resourceSpecNames")
+    def resource_spec_names(self) -> Sequence[str]:
+        """
+        The resource spec names of node.
+        """
+        return pulumi.get(self, "resource_spec_names")
+
+    @property
+    @pulumi.getter(name="storageSpecNames")
+    def storage_spec_names(self) -> Sequence[str]:
+        """
+        The storage spec names of node.
+        """
+        return pulumi.get(self, "storage_spec_names")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of node.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class EscloudNodeAvailableSpecsNodeSpecResourceSpecResult(dict):
+    def __init__(__self__, *,
+                 cpu: int,
+                 description: str,
+                 display_name: str,
+                 memory: int,
+                 name: str):
+        """
+        :param int cpu: The cpu of resource spec. Unit: Core.
+        :param str description: The description of storage spec.
+        :param str display_name: The display name of storage spec.
+        :param int memory: The memory of resource spec. Unit: GiB.
+        :param str name: The name of storage spec.
+        """
+        pulumi.set(__self__, "cpu", cpu)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "memory", memory)
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def cpu(self) -> int:
+        """
+        The cpu of resource spec. Unit: Core.
+        """
+        return pulumi.get(self, "cpu")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of storage spec.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> str:
+        """
+        The display name of storage spec.
+        """
+        return pulumi.get(self, "display_name")
+
+    @property
+    @pulumi.getter
+    def memory(self) -> int:
+        """
+        The memory of resource spec. Unit: GiB.
+        """
+        return pulumi.get(self, "memory")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of storage spec.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class EscloudNodeAvailableSpecsNodeSpecStorageSpecResult(dict):
+    def __init__(__self__, *,
+                 description: str,
+                 display_name: str,
+                 max_size: int,
+                 min_size: int,
+                 name: str,
+                 size: int):
+        """
+        :param str description: The description of storage spec.
+        :param str display_name: The display name of storage spec.
+        :param int max_size: The max size of storage spec. Unit: GiB.
+        :param int min_size: The min size of storage spec. Unit: GiB.
+        :param str name: The name of storage spec.
+        :param int size: The size of storage spec.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "max_size", max_size)
+        pulumi.set(__self__, "min_size", min_size)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "size", size)
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of storage spec.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> str:
+        """
+        The display name of storage spec.
+        """
+        return pulumi.get(self, "display_name")
+
+    @property
+    @pulumi.getter(name="maxSize")
+    def max_size(self) -> int:
+        """
+        The max size of storage spec. Unit: GiB.
+        """
+        return pulumi.get(self, "max_size")
+
+    @property
+    @pulumi.getter(name="minSize")
+    def min_size(self) -> int:
+        """
+        The min size of storage spec. Unit: GiB.
+        """
+        return pulumi.get(self, "min_size")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of storage spec.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def size(self) -> int:
+        """
+        The size of storage spec.
+        """
+        return pulumi.get(self, "size")
+
+
+@pulumi.output_type
+class EscloudZonesV2ZoneResult(dict):
+    def __init__(__self__, *,
+                 region_id: str,
+                 zone_id: str,
+                 zone_name: str,
+                 zone_status: str):
+        """
+        :param str region_id: The region ID of zone.
+        :param str zone_id: The ID of zone.
+        :param str zone_name: The name of zone.
+        :param str zone_status: The status of zone.
+        """
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "zone_id", zone_id)
+        pulumi.set(__self__, "zone_name", zone_name)
+        pulumi.set(__self__, "zone_status", zone_status)
+
+    @property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> str:
+        """
+        The region ID of zone.
+        """
+        return pulumi.get(self, "region_id")
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> str:
+        """
+        The ID of zone.
+        """
+        return pulumi.get(self, "zone_id")
+
+    @property
+    @pulumi.getter(name="zoneName")
+    def zone_name(self) -> str:
+        """
+        The name of zone.
+        """
+        return pulumi.get(self, "zone_name")
+
+    @property
+    @pulumi.getter(name="zoneStatus")
+    def zone_status(self) -> str:
+        """
+        The status of zone.
+        """
+        return pulumi.get(self, "zone_status")
+
+
+@pulumi.output_type
 class GetEscloudInstancesV2InstanceResult(dict):
     def __init__(__self__, *,
                  cerebro_enabled: bool,
@@ -4367,5 +4707,333 @@ class GetEscloudInstancesV2TagResult(dict):
         The Value of Tags.
         """
         return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetEscloudNodeAvailableSpecsNodeSpecResult(dict):
+    def __init__(__self__, *,
+                 az_available_specs_sold_out: Mapping[str, str],
+                 configuration_code: str,
+                 network_specs: Sequence['outputs.GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecResult'],
+                 node_available_specs: Sequence['outputs.GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecResult'],
+                 resource_specs: Sequence['outputs.GetEscloudNodeAvailableSpecsNodeSpecResourceSpecResult'],
+                 storage_specs: Sequence['outputs.GetEscloudNodeAvailableSpecsNodeSpecStorageSpecResult']):
+        """
+        :param Mapping[str, str] az_available_specs_sold_out: The available specs sold out.
+        :param str configuration_code: The configuration code.
+        :param Sequence['GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecArgs'] network_specs: The network specs.
+        :param Sequence['GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArgs'] node_available_specs: The node available specs.
+        :param Sequence['GetEscloudNodeAvailableSpecsNodeSpecResourceSpecArgs'] resource_specs: The resource specs.
+        :param Sequence['GetEscloudNodeAvailableSpecsNodeSpecStorageSpecArgs'] storage_specs: The storage specs.
+        """
+        pulumi.set(__self__, "az_available_specs_sold_out", az_available_specs_sold_out)
+        pulumi.set(__self__, "configuration_code", configuration_code)
+        pulumi.set(__self__, "network_specs", network_specs)
+        pulumi.set(__self__, "node_available_specs", node_available_specs)
+        pulumi.set(__self__, "resource_specs", resource_specs)
+        pulumi.set(__self__, "storage_specs", storage_specs)
+
+    @property
+    @pulumi.getter(name="azAvailableSpecsSoldOut")
+    def az_available_specs_sold_out(self) -> Mapping[str, str]:
+        """
+        The available specs sold out.
+        """
+        return pulumi.get(self, "az_available_specs_sold_out")
+
+    @property
+    @pulumi.getter(name="configurationCode")
+    def configuration_code(self) -> str:
+        """
+        The configuration code.
+        """
+        return pulumi.get(self, "configuration_code")
+
+    @property
+    @pulumi.getter(name="networkSpecs")
+    def network_specs(self) -> Sequence['outputs.GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecResult']:
+        """
+        The network specs.
+        """
+        return pulumi.get(self, "network_specs")
+
+    @property
+    @pulumi.getter(name="nodeAvailableSpecs")
+    def node_available_specs(self) -> Sequence['outputs.GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecResult']:
+        """
+        The node available specs.
+        """
+        return pulumi.get(self, "node_available_specs")
+
+    @property
+    @pulumi.getter(name="resourceSpecs")
+    def resource_specs(self) -> Sequence['outputs.GetEscloudNodeAvailableSpecsNodeSpecResourceSpecResult']:
+        """
+        The resource specs.
+        """
+        return pulumi.get(self, "resource_specs")
+
+    @property
+    @pulumi.getter(name="storageSpecs")
+    def storage_specs(self) -> Sequence['outputs.GetEscloudNodeAvailableSpecsNodeSpecStorageSpecResult']:
+        """
+        The storage specs.
+        """
+        return pulumi.get(self, "storage_specs")
+
+
+@pulumi.output_type
+class GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecResult(dict):
+    def __init__(__self__, *,
+                 network_role: str,
+                 spec_name: str):
+        """
+        :param str network_role: The network role.
+        :param str spec_name: The spec name.
+        """
+        pulumi.set(__self__, "network_role", network_role)
+        pulumi.set(__self__, "spec_name", spec_name)
+
+    @property
+    @pulumi.getter(name="networkRole")
+    def network_role(self) -> str:
+        """
+        The network role.
+        """
+        return pulumi.get(self, "network_role")
+
+    @property
+    @pulumi.getter(name="specName")
+    def spec_name(self) -> str:
+        """
+        The spec name.
+        """
+        return pulumi.get(self, "spec_name")
+
+
+@pulumi.output_type
+class GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecResult(dict):
+    def __init__(__self__, *,
+                 resource_spec_names: Sequence[str],
+                 storage_spec_names: Sequence[str],
+                 type: str):
+        """
+        :param Sequence[str] resource_spec_names: The resource spec names of node.
+        :param Sequence[str] storage_spec_names: The storage spec names of node.
+        :param str type: The type of node.
+        """
+        pulumi.set(__self__, "resource_spec_names", resource_spec_names)
+        pulumi.set(__self__, "storage_spec_names", storage_spec_names)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="resourceSpecNames")
+    def resource_spec_names(self) -> Sequence[str]:
+        """
+        The resource spec names of node.
+        """
+        return pulumi.get(self, "resource_spec_names")
+
+    @property
+    @pulumi.getter(name="storageSpecNames")
+    def storage_spec_names(self) -> Sequence[str]:
+        """
+        The storage spec names of node.
+        """
+        return pulumi.get(self, "storage_spec_names")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of node.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetEscloudNodeAvailableSpecsNodeSpecResourceSpecResult(dict):
+    def __init__(__self__, *,
+                 cpu: int,
+                 description: str,
+                 display_name: str,
+                 memory: int,
+                 name: str):
+        """
+        :param int cpu: The cpu of resource spec. Unit: Core.
+        :param str description: The description of storage spec.
+        :param str display_name: The display name of storage spec.
+        :param int memory: The memory of resource spec. Unit: GiB.
+        :param str name: The name of storage spec.
+        """
+        pulumi.set(__self__, "cpu", cpu)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "memory", memory)
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def cpu(self) -> int:
+        """
+        The cpu of resource spec. Unit: Core.
+        """
+        return pulumi.get(self, "cpu")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of storage spec.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> str:
+        """
+        The display name of storage spec.
+        """
+        return pulumi.get(self, "display_name")
+
+    @property
+    @pulumi.getter
+    def memory(self) -> int:
+        """
+        The memory of resource spec. Unit: GiB.
+        """
+        return pulumi.get(self, "memory")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of storage spec.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetEscloudNodeAvailableSpecsNodeSpecStorageSpecResult(dict):
+    def __init__(__self__, *,
+                 description: str,
+                 display_name: str,
+                 max_size: int,
+                 min_size: int,
+                 name: str,
+                 size: int):
+        """
+        :param str description: The description of storage spec.
+        :param str display_name: The display name of storage spec.
+        :param int max_size: The max size of storage spec. Unit: GiB.
+        :param int min_size: The min size of storage spec. Unit: GiB.
+        :param str name: The name of storage spec.
+        :param int size: The size of storage spec.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "max_size", max_size)
+        pulumi.set(__self__, "min_size", min_size)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "size", size)
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of storage spec.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> str:
+        """
+        The display name of storage spec.
+        """
+        return pulumi.get(self, "display_name")
+
+    @property
+    @pulumi.getter(name="maxSize")
+    def max_size(self) -> int:
+        """
+        The max size of storage spec. Unit: GiB.
+        """
+        return pulumi.get(self, "max_size")
+
+    @property
+    @pulumi.getter(name="minSize")
+    def min_size(self) -> int:
+        """
+        The min size of storage spec. Unit: GiB.
+        """
+        return pulumi.get(self, "min_size")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of storage spec.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def size(self) -> int:
+        """
+        The size of storage spec.
+        """
+        return pulumi.get(self, "size")
+
+
+@pulumi.output_type
+class GetEscloudZonesV2ZoneResult(dict):
+    def __init__(__self__, *,
+                 region_id: str,
+                 zone_id: str,
+                 zone_name: str,
+                 zone_status: str):
+        """
+        :param str region_id: The region ID of zone.
+        :param str zone_id: The ID of zone.
+        :param str zone_name: The name of zone.
+        :param str zone_status: The status of zone.
+        """
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "zone_id", zone_id)
+        pulumi.set(__self__, "zone_name", zone_name)
+        pulumi.set(__self__, "zone_status", zone_status)
+
+    @property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> str:
+        """
+        The region ID of zone.
+        """
+        return pulumi.get(self, "region_id")
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> str:
+        """
+        The ID of zone.
+        """
+        return pulumi.get(self, "zone_id")
+
+    @property
+    @pulumi.getter(name="zoneName")
+    def zone_name(self) -> str:
+        """
+        The name of zone.
+        """
+        return pulumi.get(self, "zone_name")
+
+    @property
+    @pulumi.getter(name="zoneStatus")
+    def zone_status(self) -> str:
+        """
+        The status of zone.
+        """
+        return pulumi.get(self, "zone_status")
 
 

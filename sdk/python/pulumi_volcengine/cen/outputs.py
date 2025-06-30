@@ -20,6 +20,7 @@ __all__ = [
     'CensCenResult',
     'CensCenTagResult',
     'CensTagResult',
+    'GrantInstancesGrantRuleResult',
     'InterRegionBandwidthsInterRegionBandwidthResult',
     'RouteEntriesCenRouteEntryResult',
     'ServiceRouteEntriesServiceRouteEntryResult',
@@ -32,6 +33,7 @@ __all__ = [
     'GetCensCenResult',
     'GetCensCenTagResult',
     'GetCensTagResult',
+    'GetGrantInstancesGrantRuleResult',
     'GetInterRegionBandwidthsInterRegionBandwidthResult',
     'GetRouteEntriesCenRouteEntryResult',
     'GetServiceRouteEntriesServiceRouteEntryResult',
@@ -166,6 +168,7 @@ class BandwidthPackagesBandwidthPackageResult(dict):
                  description: str,
                  expired_time: str,
                  id: str,
+                 line_operator: str,
                  local_geographic_region_set_id: str,
                  peer_geographic_region_set_id: str,
                  project_name: str,
@@ -186,6 +189,7 @@ class BandwidthPackagesBandwidthPackageResult(dict):
         :param str description: The description of the cen bandwidth package.
         :param str expired_time: The expired time of the cen bandwidth package.
         :param str id: The ID of the cen bandwidth package.
+        :param str line_operator: The line operator of the cen bandwidth package.
         :param str local_geographic_region_set_id: A local geographic region set id.
         :param str peer_geographic_region_set_id: A peer geographic region set id.
         :param str project_name: The ProjectName of the cen bandwidth package.
@@ -206,6 +210,7 @@ class BandwidthPackagesBandwidthPackageResult(dict):
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "expired_time", expired_time)
         pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "line_operator", line_operator)
         pulumi.set(__self__, "local_geographic_region_set_id", local_geographic_region_set_id)
         pulumi.set(__self__, "peer_geographic_region_set_id", peer_geographic_region_set_id)
         pulumi.set(__self__, "project_name", project_name)
@@ -309,6 +314,14 @@ class BandwidthPackagesBandwidthPackageResult(dict):
         The ID of the cen bandwidth package.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="lineOperator")
+    def line_operator(self) -> str:
+        """
+        The line operator of the cen bandwidth package.
+        """
+        return pulumi.get(self, "line_operator")
 
     @property
     @pulumi.getter(name="localGeographicRegionSetId")
@@ -641,6 +654,79 @@ class CensTagResult(dict):
 
 
 @pulumi.output_type
+class GrantInstancesGrantRuleResult(dict):
+    def __init__(__self__, *,
+                 cen_id: str,
+                 cen_owner_id: str,
+                 creation_time: str,
+                 instance_id: str,
+                 instance_region_id: str,
+                 instance_type: str):
+        """
+        :param str cen_id: The ID of the cen.
+        :param str cen_owner_id: The owner ID of the cen.
+        :param str creation_time: The creation time of the grant rule.
+        :param str instance_id: The ID of the instance.
+        :param str instance_region_id: The region ID of the instance.
+        :param str instance_type: The type of the instance. Valid values: `VPC`, `DCGW`.
+        """
+        pulumi.set(__self__, "cen_id", cen_id)
+        pulumi.set(__self__, "cen_owner_id", cen_owner_id)
+        pulumi.set(__self__, "creation_time", creation_time)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "instance_region_id", instance_region_id)
+        pulumi.set(__self__, "instance_type", instance_type)
+
+    @property
+    @pulumi.getter(name="cenId")
+    def cen_id(self) -> str:
+        """
+        The ID of the cen.
+        """
+        return pulumi.get(self, "cen_id")
+
+    @property
+    @pulumi.getter(name="cenOwnerId")
+    def cen_owner_id(self) -> str:
+        """
+        The owner ID of the cen.
+        """
+        return pulumi.get(self, "cen_owner_id")
+
+    @property
+    @pulumi.getter(name="creationTime")
+    def creation_time(self) -> str:
+        """
+        The creation time of the grant rule.
+        """
+        return pulumi.get(self, "creation_time")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        The ID of the instance.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="instanceRegionId")
+    def instance_region_id(self) -> str:
+        """
+        The region ID of the instance.
+        """
+        return pulumi.get(self, "instance_region_id")
+
+    @property
+    @pulumi.getter(name="instanceType")
+    def instance_type(self) -> str:
+        """
+        The type of the instance. Valid values: `VPC`, `DCGW`.
+        """
+        return pulumi.get(self, "instance_type")
+
+
+@pulumi.output_type
 class InterRegionBandwidthsInterRegionBandwidthResult(dict):
     def __init__(__self__, *,
                  bandwidth: int,
@@ -654,7 +740,7 @@ class InterRegionBandwidthsInterRegionBandwidthResult(dict):
                  update_time: str):
         """
         :param int bandwidth: The bandwidth of the cen inter region bandwidth.
-        :param str cen_id: The cen ID of the cen inter region bandwidth.
+        :param str cen_id: The ID of the cen.
         :param str creation_time: The create time of the cen inter region bandwidth.
         :param str id: The ID of the cen inter region bandwidth.
         :param str inter_region_bandwidth_id: The ID of the cen inter region bandwidth.
@@ -685,7 +771,7 @@ class InterRegionBandwidthsInterRegionBandwidthResult(dict):
     @pulumi.getter(name="cenId")
     def cen_id(self) -> str:
         """
-        The cen ID of the cen inter region bandwidth.
+        The ID of the cen.
         """
         return pulumi.get(self, "cen_id")
 
@@ -1150,6 +1236,7 @@ class GetBandwidthPackagesBandwidthPackageResult(dict):
                  description: str,
                  expired_time: str,
                  id: str,
+                 line_operator: str,
                  local_geographic_region_set_id: str,
                  peer_geographic_region_set_id: str,
                  project_name: str,
@@ -1170,6 +1257,7 @@ class GetBandwidthPackagesBandwidthPackageResult(dict):
         :param str description: The description of the cen bandwidth package.
         :param str expired_time: The expired time of the cen bandwidth package.
         :param str id: The ID of the cen bandwidth package.
+        :param str line_operator: The line operator of the cen bandwidth package.
         :param str local_geographic_region_set_id: A local geographic region set id.
         :param str peer_geographic_region_set_id: A peer geographic region set id.
         :param str project_name: The ProjectName of the cen bandwidth package.
@@ -1190,6 +1278,7 @@ class GetBandwidthPackagesBandwidthPackageResult(dict):
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "expired_time", expired_time)
         pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "line_operator", line_operator)
         pulumi.set(__self__, "local_geographic_region_set_id", local_geographic_region_set_id)
         pulumi.set(__self__, "peer_geographic_region_set_id", peer_geographic_region_set_id)
         pulumi.set(__self__, "project_name", project_name)
@@ -1293,6 +1382,14 @@ class GetBandwidthPackagesBandwidthPackageResult(dict):
         The ID of the cen bandwidth package.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="lineOperator")
+    def line_operator(self) -> str:
+        """
+        The line operator of the cen bandwidth package.
+        """
+        return pulumi.get(self, "line_operator")
 
     @property
     @pulumi.getter(name="localGeographicRegionSetId")
@@ -1596,6 +1693,79 @@ class GetCensTagResult(dict):
 
 
 @pulumi.output_type
+class GetGrantInstancesGrantRuleResult(dict):
+    def __init__(__self__, *,
+                 cen_id: str,
+                 cen_owner_id: str,
+                 creation_time: str,
+                 instance_id: str,
+                 instance_region_id: str,
+                 instance_type: str):
+        """
+        :param str cen_id: The ID of the cen.
+        :param str cen_owner_id: The owner ID of the cen.
+        :param str creation_time: The creation time of the grant rule.
+        :param str instance_id: The ID of the instance.
+        :param str instance_region_id: The region ID of the instance.
+        :param str instance_type: The type of the instance. Valid values: `VPC`, `DCGW`.
+        """
+        pulumi.set(__self__, "cen_id", cen_id)
+        pulumi.set(__self__, "cen_owner_id", cen_owner_id)
+        pulumi.set(__self__, "creation_time", creation_time)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "instance_region_id", instance_region_id)
+        pulumi.set(__self__, "instance_type", instance_type)
+
+    @property
+    @pulumi.getter(name="cenId")
+    def cen_id(self) -> str:
+        """
+        The ID of the cen.
+        """
+        return pulumi.get(self, "cen_id")
+
+    @property
+    @pulumi.getter(name="cenOwnerId")
+    def cen_owner_id(self) -> str:
+        """
+        The owner ID of the cen.
+        """
+        return pulumi.get(self, "cen_owner_id")
+
+    @property
+    @pulumi.getter(name="creationTime")
+    def creation_time(self) -> str:
+        """
+        The creation time of the grant rule.
+        """
+        return pulumi.get(self, "creation_time")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        The ID of the instance.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="instanceRegionId")
+    def instance_region_id(self) -> str:
+        """
+        The region ID of the instance.
+        """
+        return pulumi.get(self, "instance_region_id")
+
+    @property
+    @pulumi.getter(name="instanceType")
+    def instance_type(self) -> str:
+        """
+        The type of the instance. Valid values: `VPC`, `DCGW`.
+        """
+        return pulumi.get(self, "instance_type")
+
+
+@pulumi.output_type
 class GetInterRegionBandwidthsInterRegionBandwidthResult(dict):
     def __init__(__self__, *,
                  bandwidth: int,
@@ -1609,7 +1779,7 @@ class GetInterRegionBandwidthsInterRegionBandwidthResult(dict):
                  update_time: str):
         """
         :param int bandwidth: The bandwidth of the cen inter region bandwidth.
-        :param str cen_id: The cen ID of the cen inter region bandwidth.
+        :param str cen_id: The ID of the cen.
         :param str creation_time: The create time of the cen inter region bandwidth.
         :param str id: The ID of the cen inter region bandwidth.
         :param str inter_region_bandwidth_id: The ID of the cen inter region bandwidth.
@@ -1640,7 +1810,7 @@ class GetInterRegionBandwidthsInterRegionBandwidthResult(dict):
     @pulumi.getter(name="cenId")
     def cen_id(self) -> str:
         """
-        The cen ID of the cen inter region bandwidth.
+        The ID of the cen.
         """
         return pulumi.get(self, "cen_id")
 

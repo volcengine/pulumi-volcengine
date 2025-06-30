@@ -65,7 +65,7 @@ type BandwidthPackage struct {
 	AccountId pulumi.StringOutput `pulumi:"accountId"`
 	// The bandwidth of the cen bandwidth package. Value: 2~10000.
 	Bandwidth pulumi.IntOutput `pulumi:"bandwidth"`
-	// The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`.
+	// The billing type of the cen bandwidth package. Only support `PrePaid` and `PayBy95Peak`, default value is `PrePaid`.
 	BillingType pulumi.StringPtrOutput `pulumi:"billingType"`
 	// The business status of the cen bandwidth package.
 	BusinessStatus pulumi.StringOutput `pulumi:"businessStatus"`
@@ -83,6 +83,8 @@ type BandwidthPackage struct {
 	Description pulumi.StringOutput `pulumi:"description"`
 	// The expired time of the cen bandwidth package.
 	ExpiredTime pulumi.StringOutput `pulumi:"expiredTime"`
+	// The line operator of the cen bandwidth package. Valid value: `ChinaUnicom`, `ChinaTelecom`. This field is only valid when `localGeographicRegionSetId` and `peerGeographicRegionSetId` are different.
+	LineOperator pulumi.StringPtrOutput `pulumi:"lineOperator"`
 	// The local geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
 	LocalGeographicRegionSetId pulumi.StringPtrOutput `pulumi:"localGeographicRegionSetId"`
 	// The peer geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
@@ -137,7 +139,7 @@ type bandwidthPackageState struct {
 	AccountId *string `pulumi:"accountId"`
 	// The bandwidth of the cen bandwidth package. Value: 2~10000.
 	Bandwidth *int `pulumi:"bandwidth"`
-	// The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`.
+	// The billing type of the cen bandwidth package. Only support `PrePaid` and `PayBy95Peak`, default value is `PrePaid`.
 	BillingType *string `pulumi:"billingType"`
 	// The business status of the cen bandwidth package.
 	BusinessStatus *string `pulumi:"businessStatus"`
@@ -155,6 +157,8 @@ type bandwidthPackageState struct {
 	Description *string `pulumi:"description"`
 	// The expired time of the cen bandwidth package.
 	ExpiredTime *string `pulumi:"expiredTime"`
+	// The line operator of the cen bandwidth package. Valid value: `ChinaUnicom`, `ChinaTelecom`. This field is only valid when `localGeographicRegionSetId` and `peerGeographicRegionSetId` are different.
+	LineOperator *string `pulumi:"lineOperator"`
 	// The local geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
 	LocalGeographicRegionSetId *string `pulumi:"localGeographicRegionSetId"`
 	// The peer geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
@@ -180,7 +184,7 @@ type BandwidthPackageState struct {
 	AccountId pulumi.StringPtrInput
 	// The bandwidth of the cen bandwidth package. Value: 2~10000.
 	Bandwidth pulumi.IntPtrInput
-	// The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`.
+	// The billing type of the cen bandwidth package. Only support `PrePaid` and `PayBy95Peak`, default value is `PrePaid`.
 	BillingType pulumi.StringPtrInput
 	// The business status of the cen bandwidth package.
 	BusinessStatus pulumi.StringPtrInput
@@ -198,6 +202,8 @@ type BandwidthPackageState struct {
 	Description pulumi.StringPtrInput
 	// The expired time of the cen bandwidth package.
 	ExpiredTime pulumi.StringPtrInput
+	// The line operator of the cen bandwidth package. Valid value: `ChinaUnicom`, `ChinaTelecom`. This field is only valid when `localGeographicRegionSetId` and `peerGeographicRegionSetId` are different.
+	LineOperator pulumi.StringPtrInput
 	// The local geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
 	LocalGeographicRegionSetId pulumi.StringPtrInput
 	// The peer geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
@@ -225,12 +231,14 @@ func (BandwidthPackageState) ElementType() reflect.Type {
 type bandwidthPackageArgs struct {
 	// The bandwidth of the cen bandwidth package. Value: 2~10000.
 	Bandwidth *int `pulumi:"bandwidth"`
-	// The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`.
+	// The billing type of the cen bandwidth package. Only support `PrePaid` and `PayBy95Peak`, default value is `PrePaid`.
 	BillingType *string `pulumi:"billingType"`
 	// The name of the cen bandwidth package.
 	CenBandwidthPackageName *string `pulumi:"cenBandwidthPackageName"`
 	// The description of the cen bandwidth package.
 	Description *string `pulumi:"description"`
+	// The line operator of the cen bandwidth package. Valid value: `ChinaUnicom`, `ChinaTelecom`. This field is only valid when `localGeographicRegionSetId` and `peerGeographicRegionSetId` are different.
+	LineOperator *string `pulumi:"lineOperator"`
 	// The local geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
 	LocalGeographicRegionSetId *string `pulumi:"localGeographicRegionSetId"`
 	// The peer geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
@@ -249,12 +257,14 @@ type bandwidthPackageArgs struct {
 type BandwidthPackageArgs struct {
 	// The bandwidth of the cen bandwidth package. Value: 2~10000.
 	Bandwidth pulumi.IntPtrInput
-	// The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`.
+	// The billing type of the cen bandwidth package. Only support `PrePaid` and `PayBy95Peak`, default value is `PrePaid`.
 	BillingType pulumi.StringPtrInput
 	// The name of the cen bandwidth package.
 	CenBandwidthPackageName pulumi.StringPtrInput
 	// The description of the cen bandwidth package.
 	Description pulumi.StringPtrInput
+	// The line operator of the cen bandwidth package. Valid value: `ChinaUnicom`, `ChinaTelecom`. This field is only valid when `localGeographicRegionSetId` and `peerGeographicRegionSetId` are different.
+	LineOperator pulumi.StringPtrInput
 	// The local geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
 	LocalGeographicRegionSetId pulumi.StringPtrInput
 	// The peer geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
@@ -366,7 +376,7 @@ func (o BandwidthPackageOutput) Bandwidth() pulumi.IntOutput {
 	return o.ApplyT(func(v *BandwidthPackage) pulumi.IntOutput { return v.Bandwidth }).(pulumi.IntOutput)
 }
 
-// The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`.
+// The billing type of the cen bandwidth package. Only support `PrePaid` and `PayBy95Peak`, default value is `PrePaid`.
 func (o BandwidthPackageOutput) BillingType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BandwidthPackage) pulumi.StringPtrOutput { return v.BillingType }).(pulumi.StringPtrOutput)
 }
@@ -409,6 +419,11 @@ func (o BandwidthPackageOutput) Description() pulumi.StringOutput {
 // The expired time of the cen bandwidth package.
 func (o BandwidthPackageOutput) ExpiredTime() pulumi.StringOutput {
 	return o.ApplyT(func(v *BandwidthPackage) pulumi.StringOutput { return v.ExpiredTime }).(pulumi.StringOutput)
+}
+
+// The line operator of the cen bandwidth package. Valid value: `ChinaUnicom`, `ChinaTelecom`. This field is only valid when `localGeographicRegionSetId` and `peerGeographicRegionSetId` are different.
+func (o BandwidthPackageOutput) LineOperator() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BandwidthPackage) pulumi.StringPtrOutput { return v.LineOperator }).(pulumi.StringPtrOutput)
 }
 
 // The local geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.

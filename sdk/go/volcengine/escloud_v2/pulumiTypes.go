@@ -4100,6 +4100,776 @@ func (o EscloudInstancesV2TagArrayOutput) Index(i pulumi.IntInput) EscloudInstan
 	}).(EscloudInstancesV2TagOutput)
 }
 
+type EscloudNodeAvailableSpecsNodeSpec struct {
+	// The available specs sold out.
+	AzAvailableSpecsSoldOut map[string]string `pulumi:"azAvailableSpecsSoldOut"`
+	// The configuration code.
+	ConfigurationCode string `pulumi:"configurationCode"`
+	// The network specs.
+	NetworkSpecs []EscloudNodeAvailableSpecsNodeSpecNetworkSpec `pulumi:"networkSpecs"`
+	// The node available specs.
+	NodeAvailableSpecs []EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpec `pulumi:"nodeAvailableSpecs"`
+	// The resource specs.
+	ResourceSpecs []EscloudNodeAvailableSpecsNodeSpecResourceSpec `pulumi:"resourceSpecs"`
+	// The storage specs.
+	StorageSpecs []EscloudNodeAvailableSpecsNodeSpecStorageSpec `pulumi:"storageSpecs"`
+}
+
+// EscloudNodeAvailableSpecsNodeSpecInput is an input type that accepts EscloudNodeAvailableSpecsNodeSpecArgs and EscloudNodeAvailableSpecsNodeSpecOutput values.
+// You can construct a concrete instance of `EscloudNodeAvailableSpecsNodeSpecInput` via:
+//
+//	EscloudNodeAvailableSpecsNodeSpecArgs{...}
+type EscloudNodeAvailableSpecsNodeSpecInput interface {
+	pulumi.Input
+
+	ToEscloudNodeAvailableSpecsNodeSpecOutput() EscloudNodeAvailableSpecsNodeSpecOutput
+	ToEscloudNodeAvailableSpecsNodeSpecOutputWithContext(context.Context) EscloudNodeAvailableSpecsNodeSpecOutput
+}
+
+type EscloudNodeAvailableSpecsNodeSpecArgs struct {
+	// The available specs sold out.
+	AzAvailableSpecsSoldOut pulumi.StringMapInput `pulumi:"azAvailableSpecsSoldOut"`
+	// The configuration code.
+	ConfigurationCode pulumi.StringInput `pulumi:"configurationCode"`
+	// The network specs.
+	NetworkSpecs EscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayInput `pulumi:"networkSpecs"`
+	// The node available specs.
+	NodeAvailableSpecs EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayInput `pulumi:"nodeAvailableSpecs"`
+	// The resource specs.
+	ResourceSpecs EscloudNodeAvailableSpecsNodeSpecResourceSpecArrayInput `pulumi:"resourceSpecs"`
+	// The storage specs.
+	StorageSpecs EscloudNodeAvailableSpecsNodeSpecStorageSpecArrayInput `pulumi:"storageSpecs"`
+}
+
+func (EscloudNodeAvailableSpecsNodeSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EscloudNodeAvailableSpecsNodeSpec)(nil)).Elem()
+}
+
+func (i EscloudNodeAvailableSpecsNodeSpecArgs) ToEscloudNodeAvailableSpecsNodeSpecOutput() EscloudNodeAvailableSpecsNodeSpecOutput {
+	return i.ToEscloudNodeAvailableSpecsNodeSpecOutputWithContext(context.Background())
+}
+
+func (i EscloudNodeAvailableSpecsNodeSpecArgs) ToEscloudNodeAvailableSpecsNodeSpecOutputWithContext(ctx context.Context) EscloudNodeAvailableSpecsNodeSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EscloudNodeAvailableSpecsNodeSpecOutput)
+}
+
+// EscloudNodeAvailableSpecsNodeSpecArrayInput is an input type that accepts EscloudNodeAvailableSpecsNodeSpecArray and EscloudNodeAvailableSpecsNodeSpecArrayOutput values.
+// You can construct a concrete instance of `EscloudNodeAvailableSpecsNodeSpecArrayInput` via:
+//
+//	EscloudNodeAvailableSpecsNodeSpecArray{ EscloudNodeAvailableSpecsNodeSpecArgs{...} }
+type EscloudNodeAvailableSpecsNodeSpecArrayInput interface {
+	pulumi.Input
+
+	ToEscloudNodeAvailableSpecsNodeSpecArrayOutput() EscloudNodeAvailableSpecsNodeSpecArrayOutput
+	ToEscloudNodeAvailableSpecsNodeSpecArrayOutputWithContext(context.Context) EscloudNodeAvailableSpecsNodeSpecArrayOutput
+}
+
+type EscloudNodeAvailableSpecsNodeSpecArray []EscloudNodeAvailableSpecsNodeSpecInput
+
+func (EscloudNodeAvailableSpecsNodeSpecArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EscloudNodeAvailableSpecsNodeSpec)(nil)).Elem()
+}
+
+func (i EscloudNodeAvailableSpecsNodeSpecArray) ToEscloudNodeAvailableSpecsNodeSpecArrayOutput() EscloudNodeAvailableSpecsNodeSpecArrayOutput {
+	return i.ToEscloudNodeAvailableSpecsNodeSpecArrayOutputWithContext(context.Background())
+}
+
+func (i EscloudNodeAvailableSpecsNodeSpecArray) ToEscloudNodeAvailableSpecsNodeSpecArrayOutputWithContext(ctx context.Context) EscloudNodeAvailableSpecsNodeSpecArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EscloudNodeAvailableSpecsNodeSpecArrayOutput)
+}
+
+type EscloudNodeAvailableSpecsNodeSpecOutput struct{ *pulumi.OutputState }
+
+func (EscloudNodeAvailableSpecsNodeSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EscloudNodeAvailableSpecsNodeSpec)(nil)).Elem()
+}
+
+func (o EscloudNodeAvailableSpecsNodeSpecOutput) ToEscloudNodeAvailableSpecsNodeSpecOutput() EscloudNodeAvailableSpecsNodeSpecOutput {
+	return o
+}
+
+func (o EscloudNodeAvailableSpecsNodeSpecOutput) ToEscloudNodeAvailableSpecsNodeSpecOutputWithContext(ctx context.Context) EscloudNodeAvailableSpecsNodeSpecOutput {
+	return o
+}
+
+// The available specs sold out.
+func (o EscloudNodeAvailableSpecsNodeSpecOutput) AzAvailableSpecsSoldOut() pulumi.StringMapOutput {
+	return o.ApplyT(func(v EscloudNodeAvailableSpecsNodeSpec) map[string]string { return v.AzAvailableSpecsSoldOut }).(pulumi.StringMapOutput)
+}
+
+// The configuration code.
+func (o EscloudNodeAvailableSpecsNodeSpecOutput) ConfigurationCode() pulumi.StringOutput {
+	return o.ApplyT(func(v EscloudNodeAvailableSpecsNodeSpec) string { return v.ConfigurationCode }).(pulumi.StringOutput)
+}
+
+// The network specs.
+func (o EscloudNodeAvailableSpecsNodeSpecOutput) NetworkSpecs() EscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayOutput {
+	return o.ApplyT(func(v EscloudNodeAvailableSpecsNodeSpec) []EscloudNodeAvailableSpecsNodeSpecNetworkSpec {
+		return v.NetworkSpecs
+	}).(EscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayOutput)
+}
+
+// The node available specs.
+func (o EscloudNodeAvailableSpecsNodeSpecOutput) NodeAvailableSpecs() EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayOutput {
+	return o.ApplyT(func(v EscloudNodeAvailableSpecsNodeSpec) []EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpec {
+		return v.NodeAvailableSpecs
+	}).(EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayOutput)
+}
+
+// The resource specs.
+func (o EscloudNodeAvailableSpecsNodeSpecOutput) ResourceSpecs() EscloudNodeAvailableSpecsNodeSpecResourceSpecArrayOutput {
+	return o.ApplyT(func(v EscloudNodeAvailableSpecsNodeSpec) []EscloudNodeAvailableSpecsNodeSpecResourceSpec {
+		return v.ResourceSpecs
+	}).(EscloudNodeAvailableSpecsNodeSpecResourceSpecArrayOutput)
+}
+
+// The storage specs.
+func (o EscloudNodeAvailableSpecsNodeSpecOutput) StorageSpecs() EscloudNodeAvailableSpecsNodeSpecStorageSpecArrayOutput {
+	return o.ApplyT(func(v EscloudNodeAvailableSpecsNodeSpec) []EscloudNodeAvailableSpecsNodeSpecStorageSpec {
+		return v.StorageSpecs
+	}).(EscloudNodeAvailableSpecsNodeSpecStorageSpecArrayOutput)
+}
+
+type EscloudNodeAvailableSpecsNodeSpecArrayOutput struct{ *pulumi.OutputState }
+
+func (EscloudNodeAvailableSpecsNodeSpecArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EscloudNodeAvailableSpecsNodeSpec)(nil)).Elem()
+}
+
+func (o EscloudNodeAvailableSpecsNodeSpecArrayOutput) ToEscloudNodeAvailableSpecsNodeSpecArrayOutput() EscloudNodeAvailableSpecsNodeSpecArrayOutput {
+	return o
+}
+
+func (o EscloudNodeAvailableSpecsNodeSpecArrayOutput) ToEscloudNodeAvailableSpecsNodeSpecArrayOutputWithContext(ctx context.Context) EscloudNodeAvailableSpecsNodeSpecArrayOutput {
+	return o
+}
+
+func (o EscloudNodeAvailableSpecsNodeSpecArrayOutput) Index(i pulumi.IntInput) EscloudNodeAvailableSpecsNodeSpecOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EscloudNodeAvailableSpecsNodeSpec {
+		return vs[0].([]EscloudNodeAvailableSpecsNodeSpec)[vs[1].(int)]
+	}).(EscloudNodeAvailableSpecsNodeSpecOutput)
+}
+
+type EscloudNodeAvailableSpecsNodeSpecNetworkSpec struct {
+	// The network role.
+	NetworkRole string `pulumi:"networkRole"`
+	// The spec name.
+	SpecName string `pulumi:"specName"`
+}
+
+// EscloudNodeAvailableSpecsNodeSpecNetworkSpecInput is an input type that accepts EscloudNodeAvailableSpecsNodeSpecNetworkSpecArgs and EscloudNodeAvailableSpecsNodeSpecNetworkSpecOutput values.
+// You can construct a concrete instance of `EscloudNodeAvailableSpecsNodeSpecNetworkSpecInput` via:
+//
+//	EscloudNodeAvailableSpecsNodeSpecNetworkSpecArgs{...}
+type EscloudNodeAvailableSpecsNodeSpecNetworkSpecInput interface {
+	pulumi.Input
+
+	ToEscloudNodeAvailableSpecsNodeSpecNetworkSpecOutput() EscloudNodeAvailableSpecsNodeSpecNetworkSpecOutput
+	ToEscloudNodeAvailableSpecsNodeSpecNetworkSpecOutputWithContext(context.Context) EscloudNodeAvailableSpecsNodeSpecNetworkSpecOutput
+}
+
+type EscloudNodeAvailableSpecsNodeSpecNetworkSpecArgs struct {
+	// The network role.
+	NetworkRole pulumi.StringInput `pulumi:"networkRole"`
+	// The spec name.
+	SpecName pulumi.StringInput `pulumi:"specName"`
+}
+
+func (EscloudNodeAvailableSpecsNodeSpecNetworkSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EscloudNodeAvailableSpecsNodeSpecNetworkSpec)(nil)).Elem()
+}
+
+func (i EscloudNodeAvailableSpecsNodeSpecNetworkSpecArgs) ToEscloudNodeAvailableSpecsNodeSpecNetworkSpecOutput() EscloudNodeAvailableSpecsNodeSpecNetworkSpecOutput {
+	return i.ToEscloudNodeAvailableSpecsNodeSpecNetworkSpecOutputWithContext(context.Background())
+}
+
+func (i EscloudNodeAvailableSpecsNodeSpecNetworkSpecArgs) ToEscloudNodeAvailableSpecsNodeSpecNetworkSpecOutputWithContext(ctx context.Context) EscloudNodeAvailableSpecsNodeSpecNetworkSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EscloudNodeAvailableSpecsNodeSpecNetworkSpecOutput)
+}
+
+// EscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayInput is an input type that accepts EscloudNodeAvailableSpecsNodeSpecNetworkSpecArray and EscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayOutput values.
+// You can construct a concrete instance of `EscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayInput` via:
+//
+//	EscloudNodeAvailableSpecsNodeSpecNetworkSpecArray{ EscloudNodeAvailableSpecsNodeSpecNetworkSpecArgs{...} }
+type EscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayInput interface {
+	pulumi.Input
+
+	ToEscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayOutput() EscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayOutput
+	ToEscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayOutputWithContext(context.Context) EscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayOutput
+}
+
+type EscloudNodeAvailableSpecsNodeSpecNetworkSpecArray []EscloudNodeAvailableSpecsNodeSpecNetworkSpecInput
+
+func (EscloudNodeAvailableSpecsNodeSpecNetworkSpecArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EscloudNodeAvailableSpecsNodeSpecNetworkSpec)(nil)).Elem()
+}
+
+func (i EscloudNodeAvailableSpecsNodeSpecNetworkSpecArray) ToEscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayOutput() EscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayOutput {
+	return i.ToEscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayOutputWithContext(context.Background())
+}
+
+func (i EscloudNodeAvailableSpecsNodeSpecNetworkSpecArray) ToEscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayOutputWithContext(ctx context.Context) EscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayOutput)
+}
+
+type EscloudNodeAvailableSpecsNodeSpecNetworkSpecOutput struct{ *pulumi.OutputState }
+
+func (EscloudNodeAvailableSpecsNodeSpecNetworkSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EscloudNodeAvailableSpecsNodeSpecNetworkSpec)(nil)).Elem()
+}
+
+func (o EscloudNodeAvailableSpecsNodeSpecNetworkSpecOutput) ToEscloudNodeAvailableSpecsNodeSpecNetworkSpecOutput() EscloudNodeAvailableSpecsNodeSpecNetworkSpecOutput {
+	return o
+}
+
+func (o EscloudNodeAvailableSpecsNodeSpecNetworkSpecOutput) ToEscloudNodeAvailableSpecsNodeSpecNetworkSpecOutputWithContext(ctx context.Context) EscloudNodeAvailableSpecsNodeSpecNetworkSpecOutput {
+	return o
+}
+
+// The network role.
+func (o EscloudNodeAvailableSpecsNodeSpecNetworkSpecOutput) NetworkRole() pulumi.StringOutput {
+	return o.ApplyT(func(v EscloudNodeAvailableSpecsNodeSpecNetworkSpec) string { return v.NetworkRole }).(pulumi.StringOutput)
+}
+
+// The spec name.
+func (o EscloudNodeAvailableSpecsNodeSpecNetworkSpecOutput) SpecName() pulumi.StringOutput {
+	return o.ApplyT(func(v EscloudNodeAvailableSpecsNodeSpecNetworkSpec) string { return v.SpecName }).(pulumi.StringOutput)
+}
+
+type EscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayOutput struct{ *pulumi.OutputState }
+
+func (EscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EscloudNodeAvailableSpecsNodeSpecNetworkSpec)(nil)).Elem()
+}
+
+func (o EscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayOutput) ToEscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayOutput() EscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayOutput {
+	return o
+}
+
+func (o EscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayOutput) ToEscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayOutputWithContext(ctx context.Context) EscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayOutput {
+	return o
+}
+
+func (o EscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayOutput) Index(i pulumi.IntInput) EscloudNodeAvailableSpecsNodeSpecNetworkSpecOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EscloudNodeAvailableSpecsNodeSpecNetworkSpec {
+		return vs[0].([]EscloudNodeAvailableSpecsNodeSpecNetworkSpec)[vs[1].(int)]
+	}).(EscloudNodeAvailableSpecsNodeSpecNetworkSpecOutput)
+}
+
+type EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpec struct {
+	// The resource spec names of node.
+	ResourceSpecNames []string `pulumi:"resourceSpecNames"`
+	// The storage spec names of node.
+	StorageSpecNames []string `pulumi:"storageSpecNames"`
+	// The type of node.
+	Type string `pulumi:"type"`
+}
+
+// EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecInput is an input type that accepts EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArgs and EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecOutput values.
+// You can construct a concrete instance of `EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecInput` via:
+//
+//	EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArgs{...}
+type EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecInput interface {
+	pulumi.Input
+
+	ToEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecOutput() EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecOutput
+	ToEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecOutputWithContext(context.Context) EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecOutput
+}
+
+type EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArgs struct {
+	// The resource spec names of node.
+	ResourceSpecNames pulumi.StringArrayInput `pulumi:"resourceSpecNames"`
+	// The storage spec names of node.
+	StorageSpecNames pulumi.StringArrayInput `pulumi:"storageSpecNames"`
+	// The type of node.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpec)(nil)).Elem()
+}
+
+func (i EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArgs) ToEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecOutput() EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecOutput {
+	return i.ToEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecOutputWithContext(context.Background())
+}
+
+func (i EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArgs) ToEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecOutputWithContext(ctx context.Context) EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecOutput)
+}
+
+// EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayInput is an input type that accepts EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArray and EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayOutput values.
+// You can construct a concrete instance of `EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayInput` via:
+//
+//	EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArray{ EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArgs{...} }
+type EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayInput interface {
+	pulumi.Input
+
+	ToEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayOutput() EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayOutput
+	ToEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayOutputWithContext(context.Context) EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayOutput
+}
+
+type EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArray []EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecInput
+
+func (EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpec)(nil)).Elem()
+}
+
+func (i EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArray) ToEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayOutput() EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayOutput {
+	return i.ToEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayOutputWithContext(context.Background())
+}
+
+func (i EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArray) ToEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayOutputWithContext(ctx context.Context) EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayOutput)
+}
+
+type EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecOutput struct{ *pulumi.OutputState }
+
+func (EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpec)(nil)).Elem()
+}
+
+func (o EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecOutput) ToEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecOutput() EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecOutput {
+	return o
+}
+
+func (o EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecOutput) ToEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecOutputWithContext(ctx context.Context) EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecOutput {
+	return o
+}
+
+// The resource spec names of node.
+func (o EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecOutput) ResourceSpecNames() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpec) []string { return v.ResourceSpecNames }).(pulumi.StringArrayOutput)
+}
+
+// The storage spec names of node.
+func (o EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecOutput) StorageSpecNames() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpec) []string { return v.StorageSpecNames }).(pulumi.StringArrayOutput)
+}
+
+// The type of node.
+func (o EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpec) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayOutput struct{ *pulumi.OutputState }
+
+func (EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpec)(nil)).Elem()
+}
+
+func (o EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayOutput) ToEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayOutput() EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayOutput {
+	return o
+}
+
+func (o EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayOutput) ToEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayOutputWithContext(ctx context.Context) EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayOutput {
+	return o
+}
+
+func (o EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayOutput) Index(i pulumi.IntInput) EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpec {
+		return vs[0].([]EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpec)[vs[1].(int)]
+	}).(EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecOutput)
+}
+
+type EscloudNodeAvailableSpecsNodeSpecResourceSpec struct {
+	// The cpu of resource spec. Unit: Core.
+	Cpu int `pulumi:"cpu"`
+	// The description of storage spec.
+	Description string `pulumi:"description"`
+	// The display name of storage spec.
+	DisplayName string `pulumi:"displayName"`
+	// The memory of resource spec. Unit: GiB.
+	Memory int `pulumi:"memory"`
+	// The name of storage spec.
+	Name string `pulumi:"name"`
+}
+
+// EscloudNodeAvailableSpecsNodeSpecResourceSpecInput is an input type that accepts EscloudNodeAvailableSpecsNodeSpecResourceSpecArgs and EscloudNodeAvailableSpecsNodeSpecResourceSpecOutput values.
+// You can construct a concrete instance of `EscloudNodeAvailableSpecsNodeSpecResourceSpecInput` via:
+//
+//	EscloudNodeAvailableSpecsNodeSpecResourceSpecArgs{...}
+type EscloudNodeAvailableSpecsNodeSpecResourceSpecInput interface {
+	pulumi.Input
+
+	ToEscloudNodeAvailableSpecsNodeSpecResourceSpecOutput() EscloudNodeAvailableSpecsNodeSpecResourceSpecOutput
+	ToEscloudNodeAvailableSpecsNodeSpecResourceSpecOutputWithContext(context.Context) EscloudNodeAvailableSpecsNodeSpecResourceSpecOutput
+}
+
+type EscloudNodeAvailableSpecsNodeSpecResourceSpecArgs struct {
+	// The cpu of resource spec. Unit: Core.
+	Cpu pulumi.IntInput `pulumi:"cpu"`
+	// The description of storage spec.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The display name of storage spec.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The memory of resource spec. Unit: GiB.
+	Memory pulumi.IntInput `pulumi:"memory"`
+	// The name of storage spec.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (EscloudNodeAvailableSpecsNodeSpecResourceSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EscloudNodeAvailableSpecsNodeSpecResourceSpec)(nil)).Elem()
+}
+
+func (i EscloudNodeAvailableSpecsNodeSpecResourceSpecArgs) ToEscloudNodeAvailableSpecsNodeSpecResourceSpecOutput() EscloudNodeAvailableSpecsNodeSpecResourceSpecOutput {
+	return i.ToEscloudNodeAvailableSpecsNodeSpecResourceSpecOutputWithContext(context.Background())
+}
+
+func (i EscloudNodeAvailableSpecsNodeSpecResourceSpecArgs) ToEscloudNodeAvailableSpecsNodeSpecResourceSpecOutputWithContext(ctx context.Context) EscloudNodeAvailableSpecsNodeSpecResourceSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EscloudNodeAvailableSpecsNodeSpecResourceSpecOutput)
+}
+
+// EscloudNodeAvailableSpecsNodeSpecResourceSpecArrayInput is an input type that accepts EscloudNodeAvailableSpecsNodeSpecResourceSpecArray and EscloudNodeAvailableSpecsNodeSpecResourceSpecArrayOutput values.
+// You can construct a concrete instance of `EscloudNodeAvailableSpecsNodeSpecResourceSpecArrayInput` via:
+//
+//	EscloudNodeAvailableSpecsNodeSpecResourceSpecArray{ EscloudNodeAvailableSpecsNodeSpecResourceSpecArgs{...} }
+type EscloudNodeAvailableSpecsNodeSpecResourceSpecArrayInput interface {
+	pulumi.Input
+
+	ToEscloudNodeAvailableSpecsNodeSpecResourceSpecArrayOutput() EscloudNodeAvailableSpecsNodeSpecResourceSpecArrayOutput
+	ToEscloudNodeAvailableSpecsNodeSpecResourceSpecArrayOutputWithContext(context.Context) EscloudNodeAvailableSpecsNodeSpecResourceSpecArrayOutput
+}
+
+type EscloudNodeAvailableSpecsNodeSpecResourceSpecArray []EscloudNodeAvailableSpecsNodeSpecResourceSpecInput
+
+func (EscloudNodeAvailableSpecsNodeSpecResourceSpecArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EscloudNodeAvailableSpecsNodeSpecResourceSpec)(nil)).Elem()
+}
+
+func (i EscloudNodeAvailableSpecsNodeSpecResourceSpecArray) ToEscloudNodeAvailableSpecsNodeSpecResourceSpecArrayOutput() EscloudNodeAvailableSpecsNodeSpecResourceSpecArrayOutput {
+	return i.ToEscloudNodeAvailableSpecsNodeSpecResourceSpecArrayOutputWithContext(context.Background())
+}
+
+func (i EscloudNodeAvailableSpecsNodeSpecResourceSpecArray) ToEscloudNodeAvailableSpecsNodeSpecResourceSpecArrayOutputWithContext(ctx context.Context) EscloudNodeAvailableSpecsNodeSpecResourceSpecArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EscloudNodeAvailableSpecsNodeSpecResourceSpecArrayOutput)
+}
+
+type EscloudNodeAvailableSpecsNodeSpecResourceSpecOutput struct{ *pulumi.OutputState }
+
+func (EscloudNodeAvailableSpecsNodeSpecResourceSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EscloudNodeAvailableSpecsNodeSpecResourceSpec)(nil)).Elem()
+}
+
+func (o EscloudNodeAvailableSpecsNodeSpecResourceSpecOutput) ToEscloudNodeAvailableSpecsNodeSpecResourceSpecOutput() EscloudNodeAvailableSpecsNodeSpecResourceSpecOutput {
+	return o
+}
+
+func (o EscloudNodeAvailableSpecsNodeSpecResourceSpecOutput) ToEscloudNodeAvailableSpecsNodeSpecResourceSpecOutputWithContext(ctx context.Context) EscloudNodeAvailableSpecsNodeSpecResourceSpecOutput {
+	return o
+}
+
+// The cpu of resource spec. Unit: Core.
+func (o EscloudNodeAvailableSpecsNodeSpecResourceSpecOutput) Cpu() pulumi.IntOutput {
+	return o.ApplyT(func(v EscloudNodeAvailableSpecsNodeSpecResourceSpec) int { return v.Cpu }).(pulumi.IntOutput)
+}
+
+// The description of storage spec.
+func (o EscloudNodeAvailableSpecsNodeSpecResourceSpecOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v EscloudNodeAvailableSpecsNodeSpecResourceSpec) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The display name of storage spec.
+func (o EscloudNodeAvailableSpecsNodeSpecResourceSpecOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v EscloudNodeAvailableSpecsNodeSpecResourceSpec) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The memory of resource spec. Unit: GiB.
+func (o EscloudNodeAvailableSpecsNodeSpecResourceSpecOutput) Memory() pulumi.IntOutput {
+	return o.ApplyT(func(v EscloudNodeAvailableSpecsNodeSpecResourceSpec) int { return v.Memory }).(pulumi.IntOutput)
+}
+
+// The name of storage spec.
+func (o EscloudNodeAvailableSpecsNodeSpecResourceSpecOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v EscloudNodeAvailableSpecsNodeSpecResourceSpec) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type EscloudNodeAvailableSpecsNodeSpecResourceSpecArrayOutput struct{ *pulumi.OutputState }
+
+func (EscloudNodeAvailableSpecsNodeSpecResourceSpecArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EscloudNodeAvailableSpecsNodeSpecResourceSpec)(nil)).Elem()
+}
+
+func (o EscloudNodeAvailableSpecsNodeSpecResourceSpecArrayOutput) ToEscloudNodeAvailableSpecsNodeSpecResourceSpecArrayOutput() EscloudNodeAvailableSpecsNodeSpecResourceSpecArrayOutput {
+	return o
+}
+
+func (o EscloudNodeAvailableSpecsNodeSpecResourceSpecArrayOutput) ToEscloudNodeAvailableSpecsNodeSpecResourceSpecArrayOutputWithContext(ctx context.Context) EscloudNodeAvailableSpecsNodeSpecResourceSpecArrayOutput {
+	return o
+}
+
+func (o EscloudNodeAvailableSpecsNodeSpecResourceSpecArrayOutput) Index(i pulumi.IntInput) EscloudNodeAvailableSpecsNodeSpecResourceSpecOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EscloudNodeAvailableSpecsNodeSpecResourceSpec {
+		return vs[0].([]EscloudNodeAvailableSpecsNodeSpecResourceSpec)[vs[1].(int)]
+	}).(EscloudNodeAvailableSpecsNodeSpecResourceSpecOutput)
+}
+
+type EscloudNodeAvailableSpecsNodeSpecStorageSpec struct {
+	// The description of storage spec.
+	Description string `pulumi:"description"`
+	// The display name of storage spec.
+	DisplayName string `pulumi:"displayName"`
+	// The max size of storage spec. Unit: GiB.
+	MaxSize int `pulumi:"maxSize"`
+	// The min size of storage spec. Unit: GiB.
+	MinSize int `pulumi:"minSize"`
+	// The name of storage spec.
+	Name string `pulumi:"name"`
+	// The size of storage spec.
+	Size int `pulumi:"size"`
+}
+
+// EscloudNodeAvailableSpecsNodeSpecStorageSpecInput is an input type that accepts EscloudNodeAvailableSpecsNodeSpecStorageSpecArgs and EscloudNodeAvailableSpecsNodeSpecStorageSpecOutput values.
+// You can construct a concrete instance of `EscloudNodeAvailableSpecsNodeSpecStorageSpecInput` via:
+//
+//	EscloudNodeAvailableSpecsNodeSpecStorageSpecArgs{...}
+type EscloudNodeAvailableSpecsNodeSpecStorageSpecInput interface {
+	pulumi.Input
+
+	ToEscloudNodeAvailableSpecsNodeSpecStorageSpecOutput() EscloudNodeAvailableSpecsNodeSpecStorageSpecOutput
+	ToEscloudNodeAvailableSpecsNodeSpecStorageSpecOutputWithContext(context.Context) EscloudNodeAvailableSpecsNodeSpecStorageSpecOutput
+}
+
+type EscloudNodeAvailableSpecsNodeSpecStorageSpecArgs struct {
+	// The description of storage spec.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The display name of storage spec.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The max size of storage spec. Unit: GiB.
+	MaxSize pulumi.IntInput `pulumi:"maxSize"`
+	// The min size of storage spec. Unit: GiB.
+	MinSize pulumi.IntInput `pulumi:"minSize"`
+	// The name of storage spec.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The size of storage spec.
+	Size pulumi.IntInput `pulumi:"size"`
+}
+
+func (EscloudNodeAvailableSpecsNodeSpecStorageSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EscloudNodeAvailableSpecsNodeSpecStorageSpec)(nil)).Elem()
+}
+
+func (i EscloudNodeAvailableSpecsNodeSpecStorageSpecArgs) ToEscloudNodeAvailableSpecsNodeSpecStorageSpecOutput() EscloudNodeAvailableSpecsNodeSpecStorageSpecOutput {
+	return i.ToEscloudNodeAvailableSpecsNodeSpecStorageSpecOutputWithContext(context.Background())
+}
+
+func (i EscloudNodeAvailableSpecsNodeSpecStorageSpecArgs) ToEscloudNodeAvailableSpecsNodeSpecStorageSpecOutputWithContext(ctx context.Context) EscloudNodeAvailableSpecsNodeSpecStorageSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EscloudNodeAvailableSpecsNodeSpecStorageSpecOutput)
+}
+
+// EscloudNodeAvailableSpecsNodeSpecStorageSpecArrayInput is an input type that accepts EscloudNodeAvailableSpecsNodeSpecStorageSpecArray and EscloudNodeAvailableSpecsNodeSpecStorageSpecArrayOutput values.
+// You can construct a concrete instance of `EscloudNodeAvailableSpecsNodeSpecStorageSpecArrayInput` via:
+//
+//	EscloudNodeAvailableSpecsNodeSpecStorageSpecArray{ EscloudNodeAvailableSpecsNodeSpecStorageSpecArgs{...} }
+type EscloudNodeAvailableSpecsNodeSpecStorageSpecArrayInput interface {
+	pulumi.Input
+
+	ToEscloudNodeAvailableSpecsNodeSpecStorageSpecArrayOutput() EscloudNodeAvailableSpecsNodeSpecStorageSpecArrayOutput
+	ToEscloudNodeAvailableSpecsNodeSpecStorageSpecArrayOutputWithContext(context.Context) EscloudNodeAvailableSpecsNodeSpecStorageSpecArrayOutput
+}
+
+type EscloudNodeAvailableSpecsNodeSpecStorageSpecArray []EscloudNodeAvailableSpecsNodeSpecStorageSpecInput
+
+func (EscloudNodeAvailableSpecsNodeSpecStorageSpecArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EscloudNodeAvailableSpecsNodeSpecStorageSpec)(nil)).Elem()
+}
+
+func (i EscloudNodeAvailableSpecsNodeSpecStorageSpecArray) ToEscloudNodeAvailableSpecsNodeSpecStorageSpecArrayOutput() EscloudNodeAvailableSpecsNodeSpecStorageSpecArrayOutput {
+	return i.ToEscloudNodeAvailableSpecsNodeSpecStorageSpecArrayOutputWithContext(context.Background())
+}
+
+func (i EscloudNodeAvailableSpecsNodeSpecStorageSpecArray) ToEscloudNodeAvailableSpecsNodeSpecStorageSpecArrayOutputWithContext(ctx context.Context) EscloudNodeAvailableSpecsNodeSpecStorageSpecArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EscloudNodeAvailableSpecsNodeSpecStorageSpecArrayOutput)
+}
+
+type EscloudNodeAvailableSpecsNodeSpecStorageSpecOutput struct{ *pulumi.OutputState }
+
+func (EscloudNodeAvailableSpecsNodeSpecStorageSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EscloudNodeAvailableSpecsNodeSpecStorageSpec)(nil)).Elem()
+}
+
+func (o EscloudNodeAvailableSpecsNodeSpecStorageSpecOutput) ToEscloudNodeAvailableSpecsNodeSpecStorageSpecOutput() EscloudNodeAvailableSpecsNodeSpecStorageSpecOutput {
+	return o
+}
+
+func (o EscloudNodeAvailableSpecsNodeSpecStorageSpecOutput) ToEscloudNodeAvailableSpecsNodeSpecStorageSpecOutputWithContext(ctx context.Context) EscloudNodeAvailableSpecsNodeSpecStorageSpecOutput {
+	return o
+}
+
+// The description of storage spec.
+func (o EscloudNodeAvailableSpecsNodeSpecStorageSpecOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v EscloudNodeAvailableSpecsNodeSpecStorageSpec) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The display name of storage spec.
+func (o EscloudNodeAvailableSpecsNodeSpecStorageSpecOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v EscloudNodeAvailableSpecsNodeSpecStorageSpec) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The max size of storage spec. Unit: GiB.
+func (o EscloudNodeAvailableSpecsNodeSpecStorageSpecOutput) MaxSize() pulumi.IntOutput {
+	return o.ApplyT(func(v EscloudNodeAvailableSpecsNodeSpecStorageSpec) int { return v.MaxSize }).(pulumi.IntOutput)
+}
+
+// The min size of storage spec. Unit: GiB.
+func (o EscloudNodeAvailableSpecsNodeSpecStorageSpecOutput) MinSize() pulumi.IntOutput {
+	return o.ApplyT(func(v EscloudNodeAvailableSpecsNodeSpecStorageSpec) int { return v.MinSize }).(pulumi.IntOutput)
+}
+
+// The name of storage spec.
+func (o EscloudNodeAvailableSpecsNodeSpecStorageSpecOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v EscloudNodeAvailableSpecsNodeSpecStorageSpec) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The size of storage spec.
+func (o EscloudNodeAvailableSpecsNodeSpecStorageSpecOutput) Size() pulumi.IntOutput {
+	return o.ApplyT(func(v EscloudNodeAvailableSpecsNodeSpecStorageSpec) int { return v.Size }).(pulumi.IntOutput)
+}
+
+type EscloudNodeAvailableSpecsNodeSpecStorageSpecArrayOutput struct{ *pulumi.OutputState }
+
+func (EscloudNodeAvailableSpecsNodeSpecStorageSpecArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EscloudNodeAvailableSpecsNodeSpecStorageSpec)(nil)).Elem()
+}
+
+func (o EscloudNodeAvailableSpecsNodeSpecStorageSpecArrayOutput) ToEscloudNodeAvailableSpecsNodeSpecStorageSpecArrayOutput() EscloudNodeAvailableSpecsNodeSpecStorageSpecArrayOutput {
+	return o
+}
+
+func (o EscloudNodeAvailableSpecsNodeSpecStorageSpecArrayOutput) ToEscloudNodeAvailableSpecsNodeSpecStorageSpecArrayOutputWithContext(ctx context.Context) EscloudNodeAvailableSpecsNodeSpecStorageSpecArrayOutput {
+	return o
+}
+
+func (o EscloudNodeAvailableSpecsNodeSpecStorageSpecArrayOutput) Index(i pulumi.IntInput) EscloudNodeAvailableSpecsNodeSpecStorageSpecOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EscloudNodeAvailableSpecsNodeSpecStorageSpec {
+		return vs[0].([]EscloudNodeAvailableSpecsNodeSpecStorageSpec)[vs[1].(int)]
+	}).(EscloudNodeAvailableSpecsNodeSpecStorageSpecOutput)
+}
+
+type EscloudZonesV2Zone struct {
+	// The region ID of zone.
+	RegionId string `pulumi:"regionId"`
+	// The ID of zone.
+	ZoneId string `pulumi:"zoneId"`
+	// The name of zone.
+	ZoneName string `pulumi:"zoneName"`
+	// The status of zone.
+	ZoneStatus string `pulumi:"zoneStatus"`
+}
+
+// EscloudZonesV2ZoneInput is an input type that accepts EscloudZonesV2ZoneArgs and EscloudZonesV2ZoneOutput values.
+// You can construct a concrete instance of `EscloudZonesV2ZoneInput` via:
+//
+//	EscloudZonesV2ZoneArgs{...}
+type EscloudZonesV2ZoneInput interface {
+	pulumi.Input
+
+	ToEscloudZonesV2ZoneOutput() EscloudZonesV2ZoneOutput
+	ToEscloudZonesV2ZoneOutputWithContext(context.Context) EscloudZonesV2ZoneOutput
+}
+
+type EscloudZonesV2ZoneArgs struct {
+	// The region ID of zone.
+	RegionId pulumi.StringInput `pulumi:"regionId"`
+	// The ID of zone.
+	ZoneId pulumi.StringInput `pulumi:"zoneId"`
+	// The name of zone.
+	ZoneName pulumi.StringInput `pulumi:"zoneName"`
+	// The status of zone.
+	ZoneStatus pulumi.StringInput `pulumi:"zoneStatus"`
+}
+
+func (EscloudZonesV2ZoneArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EscloudZonesV2Zone)(nil)).Elem()
+}
+
+func (i EscloudZonesV2ZoneArgs) ToEscloudZonesV2ZoneOutput() EscloudZonesV2ZoneOutput {
+	return i.ToEscloudZonesV2ZoneOutputWithContext(context.Background())
+}
+
+func (i EscloudZonesV2ZoneArgs) ToEscloudZonesV2ZoneOutputWithContext(ctx context.Context) EscloudZonesV2ZoneOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EscloudZonesV2ZoneOutput)
+}
+
+// EscloudZonesV2ZoneArrayInput is an input type that accepts EscloudZonesV2ZoneArray and EscloudZonesV2ZoneArrayOutput values.
+// You can construct a concrete instance of `EscloudZonesV2ZoneArrayInput` via:
+//
+//	EscloudZonesV2ZoneArray{ EscloudZonesV2ZoneArgs{...} }
+type EscloudZonesV2ZoneArrayInput interface {
+	pulumi.Input
+
+	ToEscloudZonesV2ZoneArrayOutput() EscloudZonesV2ZoneArrayOutput
+	ToEscloudZonesV2ZoneArrayOutputWithContext(context.Context) EscloudZonesV2ZoneArrayOutput
+}
+
+type EscloudZonesV2ZoneArray []EscloudZonesV2ZoneInput
+
+func (EscloudZonesV2ZoneArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EscloudZonesV2Zone)(nil)).Elem()
+}
+
+func (i EscloudZonesV2ZoneArray) ToEscloudZonesV2ZoneArrayOutput() EscloudZonesV2ZoneArrayOutput {
+	return i.ToEscloudZonesV2ZoneArrayOutputWithContext(context.Background())
+}
+
+func (i EscloudZonesV2ZoneArray) ToEscloudZonesV2ZoneArrayOutputWithContext(ctx context.Context) EscloudZonesV2ZoneArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EscloudZonesV2ZoneArrayOutput)
+}
+
+type EscloudZonesV2ZoneOutput struct{ *pulumi.OutputState }
+
+func (EscloudZonesV2ZoneOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EscloudZonesV2Zone)(nil)).Elem()
+}
+
+func (o EscloudZonesV2ZoneOutput) ToEscloudZonesV2ZoneOutput() EscloudZonesV2ZoneOutput {
+	return o
+}
+
+func (o EscloudZonesV2ZoneOutput) ToEscloudZonesV2ZoneOutputWithContext(ctx context.Context) EscloudZonesV2ZoneOutput {
+	return o
+}
+
+// The region ID of zone.
+func (o EscloudZonesV2ZoneOutput) RegionId() pulumi.StringOutput {
+	return o.ApplyT(func(v EscloudZonesV2Zone) string { return v.RegionId }).(pulumi.StringOutput)
+}
+
+// The ID of zone.
+func (o EscloudZonesV2ZoneOutput) ZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v EscloudZonesV2Zone) string { return v.ZoneId }).(pulumi.StringOutput)
+}
+
+// The name of zone.
+func (o EscloudZonesV2ZoneOutput) ZoneName() pulumi.StringOutput {
+	return o.ApplyT(func(v EscloudZonesV2Zone) string { return v.ZoneName }).(pulumi.StringOutput)
+}
+
+// The status of zone.
+func (o EscloudZonesV2ZoneOutput) ZoneStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v EscloudZonesV2Zone) string { return v.ZoneStatus }).(pulumi.StringOutput)
+}
+
+type EscloudZonesV2ZoneArrayOutput struct{ *pulumi.OutputState }
+
+func (EscloudZonesV2ZoneArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EscloudZonesV2Zone)(nil)).Elem()
+}
+
+func (o EscloudZonesV2ZoneArrayOutput) ToEscloudZonesV2ZoneArrayOutput() EscloudZonesV2ZoneArrayOutput {
+	return o
+}
+
+func (o EscloudZonesV2ZoneArrayOutput) ToEscloudZonesV2ZoneArrayOutputWithContext(ctx context.Context) EscloudZonesV2ZoneArrayOutput {
+	return o
+}
+
+func (o EscloudZonesV2ZoneArrayOutput) Index(i pulumi.IntInput) EscloudZonesV2ZoneOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EscloudZonesV2Zone {
+		return vs[0].([]EscloudZonesV2Zone)[vs[1].(int)]
+	}).(EscloudZonesV2ZoneOutput)
+}
+
 type GetEscloudInstancesV2Instance struct {
 	// Whether to enable cerebro.
 	CerebroEnabled bool `pulumi:"cerebroEnabled"`
@@ -7680,6 +8450,776 @@ func (o GetEscloudInstancesV2TagArrayOutput) Index(i pulumi.IntInput) GetEscloud
 	}).(GetEscloudInstancesV2TagOutput)
 }
 
+type GetEscloudNodeAvailableSpecsNodeSpec struct {
+	// The available specs sold out.
+	AzAvailableSpecsSoldOut map[string]string `pulumi:"azAvailableSpecsSoldOut"`
+	// The configuration code.
+	ConfigurationCode string `pulumi:"configurationCode"`
+	// The network specs.
+	NetworkSpecs []GetEscloudNodeAvailableSpecsNodeSpecNetworkSpec `pulumi:"networkSpecs"`
+	// The node available specs.
+	NodeAvailableSpecs []GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpec `pulumi:"nodeAvailableSpecs"`
+	// The resource specs.
+	ResourceSpecs []GetEscloudNodeAvailableSpecsNodeSpecResourceSpec `pulumi:"resourceSpecs"`
+	// The storage specs.
+	StorageSpecs []GetEscloudNodeAvailableSpecsNodeSpecStorageSpec `pulumi:"storageSpecs"`
+}
+
+// GetEscloudNodeAvailableSpecsNodeSpecInput is an input type that accepts GetEscloudNodeAvailableSpecsNodeSpecArgs and GetEscloudNodeAvailableSpecsNodeSpecOutput values.
+// You can construct a concrete instance of `GetEscloudNodeAvailableSpecsNodeSpecInput` via:
+//
+//	GetEscloudNodeAvailableSpecsNodeSpecArgs{...}
+type GetEscloudNodeAvailableSpecsNodeSpecInput interface {
+	pulumi.Input
+
+	ToGetEscloudNodeAvailableSpecsNodeSpecOutput() GetEscloudNodeAvailableSpecsNodeSpecOutput
+	ToGetEscloudNodeAvailableSpecsNodeSpecOutputWithContext(context.Context) GetEscloudNodeAvailableSpecsNodeSpecOutput
+}
+
+type GetEscloudNodeAvailableSpecsNodeSpecArgs struct {
+	// The available specs sold out.
+	AzAvailableSpecsSoldOut pulumi.StringMapInput `pulumi:"azAvailableSpecsSoldOut"`
+	// The configuration code.
+	ConfigurationCode pulumi.StringInput `pulumi:"configurationCode"`
+	// The network specs.
+	NetworkSpecs GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayInput `pulumi:"networkSpecs"`
+	// The node available specs.
+	NodeAvailableSpecs GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayInput `pulumi:"nodeAvailableSpecs"`
+	// The resource specs.
+	ResourceSpecs GetEscloudNodeAvailableSpecsNodeSpecResourceSpecArrayInput `pulumi:"resourceSpecs"`
+	// The storage specs.
+	StorageSpecs GetEscloudNodeAvailableSpecsNodeSpecStorageSpecArrayInput `pulumi:"storageSpecs"`
+}
+
+func (GetEscloudNodeAvailableSpecsNodeSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudNodeAvailableSpecsNodeSpec)(nil)).Elem()
+}
+
+func (i GetEscloudNodeAvailableSpecsNodeSpecArgs) ToGetEscloudNodeAvailableSpecsNodeSpecOutput() GetEscloudNodeAvailableSpecsNodeSpecOutput {
+	return i.ToGetEscloudNodeAvailableSpecsNodeSpecOutputWithContext(context.Background())
+}
+
+func (i GetEscloudNodeAvailableSpecsNodeSpecArgs) ToGetEscloudNodeAvailableSpecsNodeSpecOutputWithContext(ctx context.Context) GetEscloudNodeAvailableSpecsNodeSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudNodeAvailableSpecsNodeSpecOutput)
+}
+
+// GetEscloudNodeAvailableSpecsNodeSpecArrayInput is an input type that accepts GetEscloudNodeAvailableSpecsNodeSpecArray and GetEscloudNodeAvailableSpecsNodeSpecArrayOutput values.
+// You can construct a concrete instance of `GetEscloudNodeAvailableSpecsNodeSpecArrayInput` via:
+//
+//	GetEscloudNodeAvailableSpecsNodeSpecArray{ GetEscloudNodeAvailableSpecsNodeSpecArgs{...} }
+type GetEscloudNodeAvailableSpecsNodeSpecArrayInput interface {
+	pulumi.Input
+
+	ToGetEscloudNodeAvailableSpecsNodeSpecArrayOutput() GetEscloudNodeAvailableSpecsNodeSpecArrayOutput
+	ToGetEscloudNodeAvailableSpecsNodeSpecArrayOutputWithContext(context.Context) GetEscloudNodeAvailableSpecsNodeSpecArrayOutput
+}
+
+type GetEscloudNodeAvailableSpecsNodeSpecArray []GetEscloudNodeAvailableSpecsNodeSpecInput
+
+func (GetEscloudNodeAvailableSpecsNodeSpecArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudNodeAvailableSpecsNodeSpec)(nil)).Elem()
+}
+
+func (i GetEscloudNodeAvailableSpecsNodeSpecArray) ToGetEscloudNodeAvailableSpecsNodeSpecArrayOutput() GetEscloudNodeAvailableSpecsNodeSpecArrayOutput {
+	return i.ToGetEscloudNodeAvailableSpecsNodeSpecArrayOutputWithContext(context.Background())
+}
+
+func (i GetEscloudNodeAvailableSpecsNodeSpecArray) ToGetEscloudNodeAvailableSpecsNodeSpecArrayOutputWithContext(ctx context.Context) GetEscloudNodeAvailableSpecsNodeSpecArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudNodeAvailableSpecsNodeSpecArrayOutput)
+}
+
+type GetEscloudNodeAvailableSpecsNodeSpecOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudNodeAvailableSpecsNodeSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudNodeAvailableSpecsNodeSpec)(nil)).Elem()
+}
+
+func (o GetEscloudNodeAvailableSpecsNodeSpecOutput) ToGetEscloudNodeAvailableSpecsNodeSpecOutput() GetEscloudNodeAvailableSpecsNodeSpecOutput {
+	return o
+}
+
+func (o GetEscloudNodeAvailableSpecsNodeSpecOutput) ToGetEscloudNodeAvailableSpecsNodeSpecOutputWithContext(ctx context.Context) GetEscloudNodeAvailableSpecsNodeSpecOutput {
+	return o
+}
+
+// The available specs sold out.
+func (o GetEscloudNodeAvailableSpecsNodeSpecOutput) AzAvailableSpecsSoldOut() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetEscloudNodeAvailableSpecsNodeSpec) map[string]string { return v.AzAvailableSpecsSoldOut }).(pulumi.StringMapOutput)
+}
+
+// The configuration code.
+func (o GetEscloudNodeAvailableSpecsNodeSpecOutput) ConfigurationCode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudNodeAvailableSpecsNodeSpec) string { return v.ConfigurationCode }).(pulumi.StringOutput)
+}
+
+// The network specs.
+func (o GetEscloudNodeAvailableSpecsNodeSpecOutput) NetworkSpecs() GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayOutput {
+	return o.ApplyT(func(v GetEscloudNodeAvailableSpecsNodeSpec) []GetEscloudNodeAvailableSpecsNodeSpecNetworkSpec {
+		return v.NetworkSpecs
+	}).(GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayOutput)
+}
+
+// The node available specs.
+func (o GetEscloudNodeAvailableSpecsNodeSpecOutput) NodeAvailableSpecs() GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayOutput {
+	return o.ApplyT(func(v GetEscloudNodeAvailableSpecsNodeSpec) []GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpec {
+		return v.NodeAvailableSpecs
+	}).(GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayOutput)
+}
+
+// The resource specs.
+func (o GetEscloudNodeAvailableSpecsNodeSpecOutput) ResourceSpecs() GetEscloudNodeAvailableSpecsNodeSpecResourceSpecArrayOutput {
+	return o.ApplyT(func(v GetEscloudNodeAvailableSpecsNodeSpec) []GetEscloudNodeAvailableSpecsNodeSpecResourceSpec {
+		return v.ResourceSpecs
+	}).(GetEscloudNodeAvailableSpecsNodeSpecResourceSpecArrayOutput)
+}
+
+// The storage specs.
+func (o GetEscloudNodeAvailableSpecsNodeSpecOutput) StorageSpecs() GetEscloudNodeAvailableSpecsNodeSpecStorageSpecArrayOutput {
+	return o.ApplyT(func(v GetEscloudNodeAvailableSpecsNodeSpec) []GetEscloudNodeAvailableSpecsNodeSpecStorageSpec {
+		return v.StorageSpecs
+	}).(GetEscloudNodeAvailableSpecsNodeSpecStorageSpecArrayOutput)
+}
+
+type GetEscloudNodeAvailableSpecsNodeSpecArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudNodeAvailableSpecsNodeSpecArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudNodeAvailableSpecsNodeSpec)(nil)).Elem()
+}
+
+func (o GetEscloudNodeAvailableSpecsNodeSpecArrayOutput) ToGetEscloudNodeAvailableSpecsNodeSpecArrayOutput() GetEscloudNodeAvailableSpecsNodeSpecArrayOutput {
+	return o
+}
+
+func (o GetEscloudNodeAvailableSpecsNodeSpecArrayOutput) ToGetEscloudNodeAvailableSpecsNodeSpecArrayOutputWithContext(ctx context.Context) GetEscloudNodeAvailableSpecsNodeSpecArrayOutput {
+	return o
+}
+
+func (o GetEscloudNodeAvailableSpecsNodeSpecArrayOutput) Index(i pulumi.IntInput) GetEscloudNodeAvailableSpecsNodeSpecOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEscloudNodeAvailableSpecsNodeSpec {
+		return vs[0].([]GetEscloudNodeAvailableSpecsNodeSpec)[vs[1].(int)]
+	}).(GetEscloudNodeAvailableSpecsNodeSpecOutput)
+}
+
+type GetEscloudNodeAvailableSpecsNodeSpecNetworkSpec struct {
+	// The network role.
+	NetworkRole string `pulumi:"networkRole"`
+	// The spec name.
+	SpecName string `pulumi:"specName"`
+}
+
+// GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecInput is an input type that accepts GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecArgs and GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecOutput values.
+// You can construct a concrete instance of `GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecInput` via:
+//
+//	GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecArgs{...}
+type GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecInput interface {
+	pulumi.Input
+
+	ToGetEscloudNodeAvailableSpecsNodeSpecNetworkSpecOutput() GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecOutput
+	ToGetEscloudNodeAvailableSpecsNodeSpecNetworkSpecOutputWithContext(context.Context) GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecOutput
+}
+
+type GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecArgs struct {
+	// The network role.
+	NetworkRole pulumi.StringInput `pulumi:"networkRole"`
+	// The spec name.
+	SpecName pulumi.StringInput `pulumi:"specName"`
+}
+
+func (GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudNodeAvailableSpecsNodeSpecNetworkSpec)(nil)).Elem()
+}
+
+func (i GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecArgs) ToGetEscloudNodeAvailableSpecsNodeSpecNetworkSpecOutput() GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecOutput {
+	return i.ToGetEscloudNodeAvailableSpecsNodeSpecNetworkSpecOutputWithContext(context.Background())
+}
+
+func (i GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecArgs) ToGetEscloudNodeAvailableSpecsNodeSpecNetworkSpecOutputWithContext(ctx context.Context) GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecOutput)
+}
+
+// GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayInput is an input type that accepts GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecArray and GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayOutput values.
+// You can construct a concrete instance of `GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayInput` via:
+//
+//	GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecArray{ GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecArgs{...} }
+type GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayInput interface {
+	pulumi.Input
+
+	ToGetEscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayOutput() GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayOutput
+	ToGetEscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayOutputWithContext(context.Context) GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayOutput
+}
+
+type GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecArray []GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecInput
+
+func (GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudNodeAvailableSpecsNodeSpecNetworkSpec)(nil)).Elem()
+}
+
+func (i GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecArray) ToGetEscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayOutput() GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayOutput {
+	return i.ToGetEscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayOutputWithContext(context.Background())
+}
+
+func (i GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecArray) ToGetEscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayOutputWithContext(ctx context.Context) GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayOutput)
+}
+
+type GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudNodeAvailableSpecsNodeSpecNetworkSpec)(nil)).Elem()
+}
+
+func (o GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecOutput) ToGetEscloudNodeAvailableSpecsNodeSpecNetworkSpecOutput() GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecOutput {
+	return o
+}
+
+func (o GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecOutput) ToGetEscloudNodeAvailableSpecsNodeSpecNetworkSpecOutputWithContext(ctx context.Context) GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecOutput {
+	return o
+}
+
+// The network role.
+func (o GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecOutput) NetworkRole() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudNodeAvailableSpecsNodeSpecNetworkSpec) string { return v.NetworkRole }).(pulumi.StringOutput)
+}
+
+// The spec name.
+func (o GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecOutput) SpecName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudNodeAvailableSpecsNodeSpecNetworkSpec) string { return v.SpecName }).(pulumi.StringOutput)
+}
+
+type GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudNodeAvailableSpecsNodeSpecNetworkSpec)(nil)).Elem()
+}
+
+func (o GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayOutput) ToGetEscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayOutput() GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayOutput {
+	return o
+}
+
+func (o GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayOutput) ToGetEscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayOutputWithContext(ctx context.Context) GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayOutput {
+	return o
+}
+
+func (o GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayOutput) Index(i pulumi.IntInput) GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEscloudNodeAvailableSpecsNodeSpecNetworkSpec {
+		return vs[0].([]GetEscloudNodeAvailableSpecsNodeSpecNetworkSpec)[vs[1].(int)]
+	}).(GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecOutput)
+}
+
+type GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpec struct {
+	// The resource spec names of node.
+	ResourceSpecNames []string `pulumi:"resourceSpecNames"`
+	// The storage spec names of node.
+	StorageSpecNames []string `pulumi:"storageSpecNames"`
+	// The type of node.
+	Type string `pulumi:"type"`
+}
+
+// GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecInput is an input type that accepts GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArgs and GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecOutput values.
+// You can construct a concrete instance of `GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecInput` via:
+//
+//	GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArgs{...}
+type GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecInput interface {
+	pulumi.Input
+
+	ToGetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecOutput() GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecOutput
+	ToGetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecOutputWithContext(context.Context) GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecOutput
+}
+
+type GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArgs struct {
+	// The resource spec names of node.
+	ResourceSpecNames pulumi.StringArrayInput `pulumi:"resourceSpecNames"`
+	// The storage spec names of node.
+	StorageSpecNames pulumi.StringArrayInput `pulumi:"storageSpecNames"`
+	// The type of node.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpec)(nil)).Elem()
+}
+
+func (i GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArgs) ToGetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecOutput() GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecOutput {
+	return i.ToGetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecOutputWithContext(context.Background())
+}
+
+func (i GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArgs) ToGetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecOutputWithContext(ctx context.Context) GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecOutput)
+}
+
+// GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayInput is an input type that accepts GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArray and GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayOutput values.
+// You can construct a concrete instance of `GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayInput` via:
+//
+//	GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArray{ GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArgs{...} }
+type GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayInput interface {
+	pulumi.Input
+
+	ToGetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayOutput() GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayOutput
+	ToGetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayOutputWithContext(context.Context) GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayOutput
+}
+
+type GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArray []GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecInput
+
+func (GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpec)(nil)).Elem()
+}
+
+func (i GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArray) ToGetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayOutput() GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayOutput {
+	return i.ToGetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayOutputWithContext(context.Background())
+}
+
+func (i GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArray) ToGetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayOutputWithContext(ctx context.Context) GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayOutput)
+}
+
+type GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpec)(nil)).Elem()
+}
+
+func (o GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecOutput) ToGetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecOutput() GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecOutput {
+	return o
+}
+
+func (o GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecOutput) ToGetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecOutputWithContext(ctx context.Context) GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecOutput {
+	return o
+}
+
+// The resource spec names of node.
+func (o GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecOutput) ResourceSpecNames() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpec) []string { return v.ResourceSpecNames }).(pulumi.StringArrayOutput)
+}
+
+// The storage spec names of node.
+func (o GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecOutput) StorageSpecNames() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpec) []string { return v.StorageSpecNames }).(pulumi.StringArrayOutput)
+}
+
+// The type of node.
+func (o GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpec) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpec)(nil)).Elem()
+}
+
+func (o GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayOutput) ToGetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayOutput() GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayOutput {
+	return o
+}
+
+func (o GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayOutput) ToGetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayOutputWithContext(ctx context.Context) GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayOutput {
+	return o
+}
+
+func (o GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayOutput) Index(i pulumi.IntInput) GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpec {
+		return vs[0].([]GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpec)[vs[1].(int)]
+	}).(GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecOutput)
+}
+
+type GetEscloudNodeAvailableSpecsNodeSpecResourceSpec struct {
+	// The cpu of resource spec. Unit: Core.
+	Cpu int `pulumi:"cpu"`
+	// The description of storage spec.
+	Description string `pulumi:"description"`
+	// The display name of storage spec.
+	DisplayName string `pulumi:"displayName"`
+	// The memory of resource spec. Unit: GiB.
+	Memory int `pulumi:"memory"`
+	// The name of storage spec.
+	Name string `pulumi:"name"`
+}
+
+// GetEscloudNodeAvailableSpecsNodeSpecResourceSpecInput is an input type that accepts GetEscloudNodeAvailableSpecsNodeSpecResourceSpecArgs and GetEscloudNodeAvailableSpecsNodeSpecResourceSpecOutput values.
+// You can construct a concrete instance of `GetEscloudNodeAvailableSpecsNodeSpecResourceSpecInput` via:
+//
+//	GetEscloudNodeAvailableSpecsNodeSpecResourceSpecArgs{...}
+type GetEscloudNodeAvailableSpecsNodeSpecResourceSpecInput interface {
+	pulumi.Input
+
+	ToGetEscloudNodeAvailableSpecsNodeSpecResourceSpecOutput() GetEscloudNodeAvailableSpecsNodeSpecResourceSpecOutput
+	ToGetEscloudNodeAvailableSpecsNodeSpecResourceSpecOutputWithContext(context.Context) GetEscloudNodeAvailableSpecsNodeSpecResourceSpecOutput
+}
+
+type GetEscloudNodeAvailableSpecsNodeSpecResourceSpecArgs struct {
+	// The cpu of resource spec. Unit: Core.
+	Cpu pulumi.IntInput `pulumi:"cpu"`
+	// The description of storage spec.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The display name of storage spec.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The memory of resource spec. Unit: GiB.
+	Memory pulumi.IntInput `pulumi:"memory"`
+	// The name of storage spec.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetEscloudNodeAvailableSpecsNodeSpecResourceSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudNodeAvailableSpecsNodeSpecResourceSpec)(nil)).Elem()
+}
+
+func (i GetEscloudNodeAvailableSpecsNodeSpecResourceSpecArgs) ToGetEscloudNodeAvailableSpecsNodeSpecResourceSpecOutput() GetEscloudNodeAvailableSpecsNodeSpecResourceSpecOutput {
+	return i.ToGetEscloudNodeAvailableSpecsNodeSpecResourceSpecOutputWithContext(context.Background())
+}
+
+func (i GetEscloudNodeAvailableSpecsNodeSpecResourceSpecArgs) ToGetEscloudNodeAvailableSpecsNodeSpecResourceSpecOutputWithContext(ctx context.Context) GetEscloudNodeAvailableSpecsNodeSpecResourceSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudNodeAvailableSpecsNodeSpecResourceSpecOutput)
+}
+
+// GetEscloudNodeAvailableSpecsNodeSpecResourceSpecArrayInput is an input type that accepts GetEscloudNodeAvailableSpecsNodeSpecResourceSpecArray and GetEscloudNodeAvailableSpecsNodeSpecResourceSpecArrayOutput values.
+// You can construct a concrete instance of `GetEscloudNodeAvailableSpecsNodeSpecResourceSpecArrayInput` via:
+//
+//	GetEscloudNodeAvailableSpecsNodeSpecResourceSpecArray{ GetEscloudNodeAvailableSpecsNodeSpecResourceSpecArgs{...} }
+type GetEscloudNodeAvailableSpecsNodeSpecResourceSpecArrayInput interface {
+	pulumi.Input
+
+	ToGetEscloudNodeAvailableSpecsNodeSpecResourceSpecArrayOutput() GetEscloudNodeAvailableSpecsNodeSpecResourceSpecArrayOutput
+	ToGetEscloudNodeAvailableSpecsNodeSpecResourceSpecArrayOutputWithContext(context.Context) GetEscloudNodeAvailableSpecsNodeSpecResourceSpecArrayOutput
+}
+
+type GetEscloudNodeAvailableSpecsNodeSpecResourceSpecArray []GetEscloudNodeAvailableSpecsNodeSpecResourceSpecInput
+
+func (GetEscloudNodeAvailableSpecsNodeSpecResourceSpecArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudNodeAvailableSpecsNodeSpecResourceSpec)(nil)).Elem()
+}
+
+func (i GetEscloudNodeAvailableSpecsNodeSpecResourceSpecArray) ToGetEscloudNodeAvailableSpecsNodeSpecResourceSpecArrayOutput() GetEscloudNodeAvailableSpecsNodeSpecResourceSpecArrayOutput {
+	return i.ToGetEscloudNodeAvailableSpecsNodeSpecResourceSpecArrayOutputWithContext(context.Background())
+}
+
+func (i GetEscloudNodeAvailableSpecsNodeSpecResourceSpecArray) ToGetEscloudNodeAvailableSpecsNodeSpecResourceSpecArrayOutputWithContext(ctx context.Context) GetEscloudNodeAvailableSpecsNodeSpecResourceSpecArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudNodeAvailableSpecsNodeSpecResourceSpecArrayOutput)
+}
+
+type GetEscloudNodeAvailableSpecsNodeSpecResourceSpecOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudNodeAvailableSpecsNodeSpecResourceSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudNodeAvailableSpecsNodeSpecResourceSpec)(nil)).Elem()
+}
+
+func (o GetEscloudNodeAvailableSpecsNodeSpecResourceSpecOutput) ToGetEscloudNodeAvailableSpecsNodeSpecResourceSpecOutput() GetEscloudNodeAvailableSpecsNodeSpecResourceSpecOutput {
+	return o
+}
+
+func (o GetEscloudNodeAvailableSpecsNodeSpecResourceSpecOutput) ToGetEscloudNodeAvailableSpecsNodeSpecResourceSpecOutputWithContext(ctx context.Context) GetEscloudNodeAvailableSpecsNodeSpecResourceSpecOutput {
+	return o
+}
+
+// The cpu of resource spec. Unit: Core.
+func (o GetEscloudNodeAvailableSpecsNodeSpecResourceSpecOutput) Cpu() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEscloudNodeAvailableSpecsNodeSpecResourceSpec) int { return v.Cpu }).(pulumi.IntOutput)
+}
+
+// The description of storage spec.
+func (o GetEscloudNodeAvailableSpecsNodeSpecResourceSpecOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudNodeAvailableSpecsNodeSpecResourceSpec) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The display name of storage spec.
+func (o GetEscloudNodeAvailableSpecsNodeSpecResourceSpecOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudNodeAvailableSpecsNodeSpecResourceSpec) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The memory of resource spec. Unit: GiB.
+func (o GetEscloudNodeAvailableSpecsNodeSpecResourceSpecOutput) Memory() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEscloudNodeAvailableSpecsNodeSpecResourceSpec) int { return v.Memory }).(pulumi.IntOutput)
+}
+
+// The name of storage spec.
+func (o GetEscloudNodeAvailableSpecsNodeSpecResourceSpecOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudNodeAvailableSpecsNodeSpecResourceSpec) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetEscloudNodeAvailableSpecsNodeSpecResourceSpecArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudNodeAvailableSpecsNodeSpecResourceSpecArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudNodeAvailableSpecsNodeSpecResourceSpec)(nil)).Elem()
+}
+
+func (o GetEscloudNodeAvailableSpecsNodeSpecResourceSpecArrayOutput) ToGetEscloudNodeAvailableSpecsNodeSpecResourceSpecArrayOutput() GetEscloudNodeAvailableSpecsNodeSpecResourceSpecArrayOutput {
+	return o
+}
+
+func (o GetEscloudNodeAvailableSpecsNodeSpecResourceSpecArrayOutput) ToGetEscloudNodeAvailableSpecsNodeSpecResourceSpecArrayOutputWithContext(ctx context.Context) GetEscloudNodeAvailableSpecsNodeSpecResourceSpecArrayOutput {
+	return o
+}
+
+func (o GetEscloudNodeAvailableSpecsNodeSpecResourceSpecArrayOutput) Index(i pulumi.IntInput) GetEscloudNodeAvailableSpecsNodeSpecResourceSpecOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEscloudNodeAvailableSpecsNodeSpecResourceSpec {
+		return vs[0].([]GetEscloudNodeAvailableSpecsNodeSpecResourceSpec)[vs[1].(int)]
+	}).(GetEscloudNodeAvailableSpecsNodeSpecResourceSpecOutput)
+}
+
+type GetEscloudNodeAvailableSpecsNodeSpecStorageSpec struct {
+	// The description of storage spec.
+	Description string `pulumi:"description"`
+	// The display name of storage spec.
+	DisplayName string `pulumi:"displayName"`
+	// The max size of storage spec. Unit: GiB.
+	MaxSize int `pulumi:"maxSize"`
+	// The min size of storage spec. Unit: GiB.
+	MinSize int `pulumi:"minSize"`
+	// The name of storage spec.
+	Name string `pulumi:"name"`
+	// The size of storage spec.
+	Size int `pulumi:"size"`
+}
+
+// GetEscloudNodeAvailableSpecsNodeSpecStorageSpecInput is an input type that accepts GetEscloudNodeAvailableSpecsNodeSpecStorageSpecArgs and GetEscloudNodeAvailableSpecsNodeSpecStorageSpecOutput values.
+// You can construct a concrete instance of `GetEscloudNodeAvailableSpecsNodeSpecStorageSpecInput` via:
+//
+//	GetEscloudNodeAvailableSpecsNodeSpecStorageSpecArgs{...}
+type GetEscloudNodeAvailableSpecsNodeSpecStorageSpecInput interface {
+	pulumi.Input
+
+	ToGetEscloudNodeAvailableSpecsNodeSpecStorageSpecOutput() GetEscloudNodeAvailableSpecsNodeSpecStorageSpecOutput
+	ToGetEscloudNodeAvailableSpecsNodeSpecStorageSpecOutputWithContext(context.Context) GetEscloudNodeAvailableSpecsNodeSpecStorageSpecOutput
+}
+
+type GetEscloudNodeAvailableSpecsNodeSpecStorageSpecArgs struct {
+	// The description of storage spec.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The display name of storage spec.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The max size of storage spec. Unit: GiB.
+	MaxSize pulumi.IntInput `pulumi:"maxSize"`
+	// The min size of storage spec. Unit: GiB.
+	MinSize pulumi.IntInput `pulumi:"minSize"`
+	// The name of storage spec.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The size of storage spec.
+	Size pulumi.IntInput `pulumi:"size"`
+}
+
+func (GetEscloudNodeAvailableSpecsNodeSpecStorageSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudNodeAvailableSpecsNodeSpecStorageSpec)(nil)).Elem()
+}
+
+func (i GetEscloudNodeAvailableSpecsNodeSpecStorageSpecArgs) ToGetEscloudNodeAvailableSpecsNodeSpecStorageSpecOutput() GetEscloudNodeAvailableSpecsNodeSpecStorageSpecOutput {
+	return i.ToGetEscloudNodeAvailableSpecsNodeSpecStorageSpecOutputWithContext(context.Background())
+}
+
+func (i GetEscloudNodeAvailableSpecsNodeSpecStorageSpecArgs) ToGetEscloudNodeAvailableSpecsNodeSpecStorageSpecOutputWithContext(ctx context.Context) GetEscloudNodeAvailableSpecsNodeSpecStorageSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudNodeAvailableSpecsNodeSpecStorageSpecOutput)
+}
+
+// GetEscloudNodeAvailableSpecsNodeSpecStorageSpecArrayInput is an input type that accepts GetEscloudNodeAvailableSpecsNodeSpecStorageSpecArray and GetEscloudNodeAvailableSpecsNodeSpecStorageSpecArrayOutput values.
+// You can construct a concrete instance of `GetEscloudNodeAvailableSpecsNodeSpecStorageSpecArrayInput` via:
+//
+//	GetEscloudNodeAvailableSpecsNodeSpecStorageSpecArray{ GetEscloudNodeAvailableSpecsNodeSpecStorageSpecArgs{...} }
+type GetEscloudNodeAvailableSpecsNodeSpecStorageSpecArrayInput interface {
+	pulumi.Input
+
+	ToGetEscloudNodeAvailableSpecsNodeSpecStorageSpecArrayOutput() GetEscloudNodeAvailableSpecsNodeSpecStorageSpecArrayOutput
+	ToGetEscloudNodeAvailableSpecsNodeSpecStorageSpecArrayOutputWithContext(context.Context) GetEscloudNodeAvailableSpecsNodeSpecStorageSpecArrayOutput
+}
+
+type GetEscloudNodeAvailableSpecsNodeSpecStorageSpecArray []GetEscloudNodeAvailableSpecsNodeSpecStorageSpecInput
+
+func (GetEscloudNodeAvailableSpecsNodeSpecStorageSpecArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudNodeAvailableSpecsNodeSpecStorageSpec)(nil)).Elem()
+}
+
+func (i GetEscloudNodeAvailableSpecsNodeSpecStorageSpecArray) ToGetEscloudNodeAvailableSpecsNodeSpecStorageSpecArrayOutput() GetEscloudNodeAvailableSpecsNodeSpecStorageSpecArrayOutput {
+	return i.ToGetEscloudNodeAvailableSpecsNodeSpecStorageSpecArrayOutputWithContext(context.Background())
+}
+
+func (i GetEscloudNodeAvailableSpecsNodeSpecStorageSpecArray) ToGetEscloudNodeAvailableSpecsNodeSpecStorageSpecArrayOutputWithContext(ctx context.Context) GetEscloudNodeAvailableSpecsNodeSpecStorageSpecArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudNodeAvailableSpecsNodeSpecStorageSpecArrayOutput)
+}
+
+type GetEscloudNodeAvailableSpecsNodeSpecStorageSpecOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudNodeAvailableSpecsNodeSpecStorageSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudNodeAvailableSpecsNodeSpecStorageSpec)(nil)).Elem()
+}
+
+func (o GetEscloudNodeAvailableSpecsNodeSpecStorageSpecOutput) ToGetEscloudNodeAvailableSpecsNodeSpecStorageSpecOutput() GetEscloudNodeAvailableSpecsNodeSpecStorageSpecOutput {
+	return o
+}
+
+func (o GetEscloudNodeAvailableSpecsNodeSpecStorageSpecOutput) ToGetEscloudNodeAvailableSpecsNodeSpecStorageSpecOutputWithContext(ctx context.Context) GetEscloudNodeAvailableSpecsNodeSpecStorageSpecOutput {
+	return o
+}
+
+// The description of storage spec.
+func (o GetEscloudNodeAvailableSpecsNodeSpecStorageSpecOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudNodeAvailableSpecsNodeSpecStorageSpec) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The display name of storage spec.
+func (o GetEscloudNodeAvailableSpecsNodeSpecStorageSpecOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudNodeAvailableSpecsNodeSpecStorageSpec) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The max size of storage spec. Unit: GiB.
+func (o GetEscloudNodeAvailableSpecsNodeSpecStorageSpecOutput) MaxSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEscloudNodeAvailableSpecsNodeSpecStorageSpec) int { return v.MaxSize }).(pulumi.IntOutput)
+}
+
+// The min size of storage spec. Unit: GiB.
+func (o GetEscloudNodeAvailableSpecsNodeSpecStorageSpecOutput) MinSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEscloudNodeAvailableSpecsNodeSpecStorageSpec) int { return v.MinSize }).(pulumi.IntOutput)
+}
+
+// The name of storage spec.
+func (o GetEscloudNodeAvailableSpecsNodeSpecStorageSpecOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudNodeAvailableSpecsNodeSpecStorageSpec) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The size of storage spec.
+func (o GetEscloudNodeAvailableSpecsNodeSpecStorageSpecOutput) Size() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEscloudNodeAvailableSpecsNodeSpecStorageSpec) int { return v.Size }).(pulumi.IntOutput)
+}
+
+type GetEscloudNodeAvailableSpecsNodeSpecStorageSpecArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudNodeAvailableSpecsNodeSpecStorageSpecArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudNodeAvailableSpecsNodeSpecStorageSpec)(nil)).Elem()
+}
+
+func (o GetEscloudNodeAvailableSpecsNodeSpecStorageSpecArrayOutput) ToGetEscloudNodeAvailableSpecsNodeSpecStorageSpecArrayOutput() GetEscloudNodeAvailableSpecsNodeSpecStorageSpecArrayOutput {
+	return o
+}
+
+func (o GetEscloudNodeAvailableSpecsNodeSpecStorageSpecArrayOutput) ToGetEscloudNodeAvailableSpecsNodeSpecStorageSpecArrayOutputWithContext(ctx context.Context) GetEscloudNodeAvailableSpecsNodeSpecStorageSpecArrayOutput {
+	return o
+}
+
+func (o GetEscloudNodeAvailableSpecsNodeSpecStorageSpecArrayOutput) Index(i pulumi.IntInput) GetEscloudNodeAvailableSpecsNodeSpecStorageSpecOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEscloudNodeAvailableSpecsNodeSpecStorageSpec {
+		return vs[0].([]GetEscloudNodeAvailableSpecsNodeSpecStorageSpec)[vs[1].(int)]
+	}).(GetEscloudNodeAvailableSpecsNodeSpecStorageSpecOutput)
+}
+
+type GetEscloudZonesV2Zone struct {
+	// The region ID of zone.
+	RegionId string `pulumi:"regionId"`
+	// The ID of zone.
+	ZoneId string `pulumi:"zoneId"`
+	// The name of zone.
+	ZoneName string `pulumi:"zoneName"`
+	// The status of zone.
+	ZoneStatus string `pulumi:"zoneStatus"`
+}
+
+// GetEscloudZonesV2ZoneInput is an input type that accepts GetEscloudZonesV2ZoneArgs and GetEscloudZonesV2ZoneOutput values.
+// You can construct a concrete instance of `GetEscloudZonesV2ZoneInput` via:
+//
+//	GetEscloudZonesV2ZoneArgs{...}
+type GetEscloudZonesV2ZoneInput interface {
+	pulumi.Input
+
+	ToGetEscloudZonesV2ZoneOutput() GetEscloudZonesV2ZoneOutput
+	ToGetEscloudZonesV2ZoneOutputWithContext(context.Context) GetEscloudZonesV2ZoneOutput
+}
+
+type GetEscloudZonesV2ZoneArgs struct {
+	// The region ID of zone.
+	RegionId pulumi.StringInput `pulumi:"regionId"`
+	// The ID of zone.
+	ZoneId pulumi.StringInput `pulumi:"zoneId"`
+	// The name of zone.
+	ZoneName pulumi.StringInput `pulumi:"zoneName"`
+	// The status of zone.
+	ZoneStatus pulumi.StringInput `pulumi:"zoneStatus"`
+}
+
+func (GetEscloudZonesV2ZoneArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudZonesV2Zone)(nil)).Elem()
+}
+
+func (i GetEscloudZonesV2ZoneArgs) ToGetEscloudZonesV2ZoneOutput() GetEscloudZonesV2ZoneOutput {
+	return i.ToGetEscloudZonesV2ZoneOutputWithContext(context.Background())
+}
+
+func (i GetEscloudZonesV2ZoneArgs) ToGetEscloudZonesV2ZoneOutputWithContext(ctx context.Context) GetEscloudZonesV2ZoneOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudZonesV2ZoneOutput)
+}
+
+// GetEscloudZonesV2ZoneArrayInput is an input type that accepts GetEscloudZonesV2ZoneArray and GetEscloudZonesV2ZoneArrayOutput values.
+// You can construct a concrete instance of `GetEscloudZonesV2ZoneArrayInput` via:
+//
+//	GetEscloudZonesV2ZoneArray{ GetEscloudZonesV2ZoneArgs{...} }
+type GetEscloudZonesV2ZoneArrayInput interface {
+	pulumi.Input
+
+	ToGetEscloudZonesV2ZoneArrayOutput() GetEscloudZonesV2ZoneArrayOutput
+	ToGetEscloudZonesV2ZoneArrayOutputWithContext(context.Context) GetEscloudZonesV2ZoneArrayOutput
+}
+
+type GetEscloudZonesV2ZoneArray []GetEscloudZonesV2ZoneInput
+
+func (GetEscloudZonesV2ZoneArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudZonesV2Zone)(nil)).Elem()
+}
+
+func (i GetEscloudZonesV2ZoneArray) ToGetEscloudZonesV2ZoneArrayOutput() GetEscloudZonesV2ZoneArrayOutput {
+	return i.ToGetEscloudZonesV2ZoneArrayOutputWithContext(context.Background())
+}
+
+func (i GetEscloudZonesV2ZoneArray) ToGetEscloudZonesV2ZoneArrayOutputWithContext(ctx context.Context) GetEscloudZonesV2ZoneArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEscloudZonesV2ZoneArrayOutput)
+}
+
+type GetEscloudZonesV2ZoneOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudZonesV2ZoneOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEscloudZonesV2Zone)(nil)).Elem()
+}
+
+func (o GetEscloudZonesV2ZoneOutput) ToGetEscloudZonesV2ZoneOutput() GetEscloudZonesV2ZoneOutput {
+	return o
+}
+
+func (o GetEscloudZonesV2ZoneOutput) ToGetEscloudZonesV2ZoneOutputWithContext(ctx context.Context) GetEscloudZonesV2ZoneOutput {
+	return o
+}
+
+// The region ID of zone.
+func (o GetEscloudZonesV2ZoneOutput) RegionId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudZonesV2Zone) string { return v.RegionId }).(pulumi.StringOutput)
+}
+
+// The ID of zone.
+func (o GetEscloudZonesV2ZoneOutput) ZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudZonesV2Zone) string { return v.ZoneId }).(pulumi.StringOutput)
+}
+
+// The name of zone.
+func (o GetEscloudZonesV2ZoneOutput) ZoneName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudZonesV2Zone) string { return v.ZoneName }).(pulumi.StringOutput)
+}
+
+// The status of zone.
+func (o GetEscloudZonesV2ZoneOutput) ZoneStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEscloudZonesV2Zone) string { return v.ZoneStatus }).(pulumi.StringOutput)
+}
+
+type GetEscloudZonesV2ZoneArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEscloudZonesV2ZoneArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEscloudZonesV2Zone)(nil)).Elem()
+}
+
+func (o GetEscloudZonesV2ZoneArrayOutput) ToGetEscloudZonesV2ZoneArrayOutput() GetEscloudZonesV2ZoneArrayOutput {
+	return o
+}
+
+func (o GetEscloudZonesV2ZoneArrayOutput) ToGetEscloudZonesV2ZoneArrayOutputWithContext(ctx context.Context) GetEscloudZonesV2ZoneArrayOutput {
+	return o
+}
+
+func (o GetEscloudZonesV2ZoneArrayOutput) Index(i pulumi.IntInput) GetEscloudZonesV2ZoneOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEscloudZonesV2Zone {
+		return vs[0].([]GetEscloudZonesV2Zone)[vs[1].(int)]
+	}).(GetEscloudZonesV2ZoneOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*EscloudInstanceV2NetworkSpecInput)(nil)).Elem(), EscloudInstanceV2NetworkSpecArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*EscloudInstanceV2NetworkSpecArrayInput)(nil)).Elem(), EscloudInstanceV2NetworkSpecArray{})
@@ -7733,6 +9273,18 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*EscloudInstancesV2InstanceTagArrayInput)(nil)).Elem(), EscloudInstancesV2InstanceTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*EscloudInstancesV2TagInput)(nil)).Elem(), EscloudInstancesV2TagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*EscloudInstancesV2TagArrayInput)(nil)).Elem(), EscloudInstancesV2TagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EscloudNodeAvailableSpecsNodeSpecInput)(nil)).Elem(), EscloudNodeAvailableSpecsNodeSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EscloudNodeAvailableSpecsNodeSpecArrayInput)(nil)).Elem(), EscloudNodeAvailableSpecsNodeSpecArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EscloudNodeAvailableSpecsNodeSpecNetworkSpecInput)(nil)).Elem(), EscloudNodeAvailableSpecsNodeSpecNetworkSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayInput)(nil)).Elem(), EscloudNodeAvailableSpecsNodeSpecNetworkSpecArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecInput)(nil)).Elem(), EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayInput)(nil)).Elem(), EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EscloudNodeAvailableSpecsNodeSpecResourceSpecInput)(nil)).Elem(), EscloudNodeAvailableSpecsNodeSpecResourceSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EscloudNodeAvailableSpecsNodeSpecResourceSpecArrayInput)(nil)).Elem(), EscloudNodeAvailableSpecsNodeSpecResourceSpecArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EscloudNodeAvailableSpecsNodeSpecStorageSpecInput)(nil)).Elem(), EscloudNodeAvailableSpecsNodeSpecStorageSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EscloudNodeAvailableSpecsNodeSpecStorageSpecArrayInput)(nil)).Elem(), EscloudNodeAvailableSpecsNodeSpecStorageSpecArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EscloudZonesV2ZoneInput)(nil)).Elem(), EscloudZonesV2ZoneArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EscloudZonesV2ZoneArrayInput)(nil)).Elem(), EscloudZonesV2ZoneArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudInstancesV2InstanceInput)(nil)).Elem(), GetEscloudInstancesV2InstanceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudInstancesV2InstanceArrayInput)(nil)).Elem(), GetEscloudInstancesV2InstanceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudInstancesV2InstanceInstanceConfigurationInput)(nil)).Elem(), GetEscloudInstancesV2InstanceInstanceConfigurationArgs{})
@@ -7777,6 +9329,18 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudInstancesV2InstanceTagArrayInput)(nil)).Elem(), GetEscloudInstancesV2InstanceTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudInstancesV2TagInput)(nil)).Elem(), GetEscloudInstancesV2TagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudInstancesV2TagArrayInput)(nil)).Elem(), GetEscloudInstancesV2TagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudNodeAvailableSpecsNodeSpecInput)(nil)).Elem(), GetEscloudNodeAvailableSpecsNodeSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudNodeAvailableSpecsNodeSpecArrayInput)(nil)).Elem(), GetEscloudNodeAvailableSpecsNodeSpecArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecInput)(nil)).Elem(), GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayInput)(nil)).Elem(), GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecInput)(nil)).Elem(), GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayInput)(nil)).Elem(), GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudNodeAvailableSpecsNodeSpecResourceSpecInput)(nil)).Elem(), GetEscloudNodeAvailableSpecsNodeSpecResourceSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudNodeAvailableSpecsNodeSpecResourceSpecArrayInput)(nil)).Elem(), GetEscloudNodeAvailableSpecsNodeSpecResourceSpecArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudNodeAvailableSpecsNodeSpecStorageSpecInput)(nil)).Elem(), GetEscloudNodeAvailableSpecsNodeSpecStorageSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudNodeAvailableSpecsNodeSpecStorageSpecArrayInput)(nil)).Elem(), GetEscloudNodeAvailableSpecsNodeSpecStorageSpecArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudZonesV2ZoneInput)(nil)).Elem(), GetEscloudZonesV2ZoneArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEscloudZonesV2ZoneArrayInput)(nil)).Elem(), GetEscloudZonesV2ZoneArray{})
 	pulumi.RegisterOutputType(EscloudInstanceV2NetworkSpecOutput{})
 	pulumi.RegisterOutputType(EscloudInstanceV2NetworkSpecArrayOutput{})
 	pulumi.RegisterOutputType(EscloudInstanceV2NodeSpecsAssignOutput{})
@@ -7829,6 +9393,18 @@ func init() {
 	pulumi.RegisterOutputType(EscloudInstancesV2InstanceTagArrayOutput{})
 	pulumi.RegisterOutputType(EscloudInstancesV2TagOutput{})
 	pulumi.RegisterOutputType(EscloudInstancesV2TagArrayOutput{})
+	pulumi.RegisterOutputType(EscloudNodeAvailableSpecsNodeSpecOutput{})
+	pulumi.RegisterOutputType(EscloudNodeAvailableSpecsNodeSpecArrayOutput{})
+	pulumi.RegisterOutputType(EscloudNodeAvailableSpecsNodeSpecNetworkSpecOutput{})
+	pulumi.RegisterOutputType(EscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayOutput{})
+	pulumi.RegisterOutputType(EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecOutput{})
+	pulumi.RegisterOutputType(EscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayOutput{})
+	pulumi.RegisterOutputType(EscloudNodeAvailableSpecsNodeSpecResourceSpecOutput{})
+	pulumi.RegisterOutputType(EscloudNodeAvailableSpecsNodeSpecResourceSpecArrayOutput{})
+	pulumi.RegisterOutputType(EscloudNodeAvailableSpecsNodeSpecStorageSpecOutput{})
+	pulumi.RegisterOutputType(EscloudNodeAvailableSpecsNodeSpecStorageSpecArrayOutput{})
+	pulumi.RegisterOutputType(EscloudZonesV2ZoneOutput{})
+	pulumi.RegisterOutputType(EscloudZonesV2ZoneArrayOutput{})
 	pulumi.RegisterOutputType(GetEscloudInstancesV2InstanceOutput{})
 	pulumi.RegisterOutputType(GetEscloudInstancesV2InstanceArrayOutput{})
 	pulumi.RegisterOutputType(GetEscloudInstancesV2InstanceInstanceConfigurationOutput{})
@@ -7873,4 +9449,16 @@ func init() {
 	pulumi.RegisterOutputType(GetEscloudInstancesV2InstanceTagArrayOutput{})
 	pulumi.RegisterOutputType(GetEscloudInstancesV2TagOutput{})
 	pulumi.RegisterOutputType(GetEscloudInstancesV2TagArrayOutput{})
+	pulumi.RegisterOutputType(GetEscloudNodeAvailableSpecsNodeSpecOutput{})
+	pulumi.RegisterOutputType(GetEscloudNodeAvailableSpecsNodeSpecArrayOutput{})
+	pulumi.RegisterOutputType(GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecOutput{})
+	pulumi.RegisterOutputType(GetEscloudNodeAvailableSpecsNodeSpecNetworkSpecArrayOutput{})
+	pulumi.RegisterOutputType(GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecOutput{})
+	pulumi.RegisterOutputType(GetEscloudNodeAvailableSpecsNodeSpecNodeAvailableSpecArrayOutput{})
+	pulumi.RegisterOutputType(GetEscloudNodeAvailableSpecsNodeSpecResourceSpecOutput{})
+	pulumi.RegisterOutputType(GetEscloudNodeAvailableSpecsNodeSpecResourceSpecArrayOutput{})
+	pulumi.RegisterOutputType(GetEscloudNodeAvailableSpecsNodeSpecStorageSpecOutput{})
+	pulumi.RegisterOutputType(GetEscloudNodeAvailableSpecsNodeSpecStorageSpecArrayOutput{})
+	pulumi.RegisterOutputType(GetEscloudZonesV2ZoneOutput{})
+	pulumi.RegisterOutputType(GetEscloudZonesV2ZoneArrayOutput{})
 }

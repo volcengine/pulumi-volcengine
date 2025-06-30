@@ -177,6 +177,18 @@ namespace Pulumi.Volcengine.Redis
         public string? InstanceId { get; set; }
 
         /// <summary>
+        /// Filter out the whitelist that meets the conditions based on the IP address. When using IPAddress query, it will precisely match this IP address and filter the IP address segments containing this IP address.
+        /// </summary>
+        [Input("ipAddress")]
+        public string? IpAddress { get; set; }
+
+        /// <summary>
+        /// Screen out the whitelist that meets the conditions based on the IP address segment. When using IPSegment queries, the IP address segment will be precisely matched for filtering.
+        /// </summary>
+        [Input("ipSegment")]
+        public string? IpSegment { get; set; }
+
+        /// <summary>
         /// A Name Regex of Allow List.
         /// </summary>
         [Input("nameRegex")]
@@ -187,6 +199,18 @@ namespace Pulumi.Volcengine.Redis
         /// </summary>
         [Input("outputFile")]
         public string? OutputFile { get; set; }
+
+        /// <summary>
+        /// The name of the project to which the white list belongs.
+        /// </summary>
+        [Input("projectName")]
+        public string? ProjectName { get; set; }
+
+        /// <summary>
+        /// Filter whether to query only the default whitelist based on the type of whitelist.
+        /// </summary>
+        [Input("queryDefault")]
+        public bool? QueryDefault { get; set; }
 
         /// <summary>
         /// The Id of region.
@@ -209,6 +233,18 @@ namespace Pulumi.Volcengine.Redis
         public Input<string>? InstanceId { get; set; }
 
         /// <summary>
+        /// Filter out the whitelist that meets the conditions based on the IP address. When using IPAddress query, it will precisely match this IP address and filter the IP address segments containing this IP address.
+        /// </summary>
+        [Input("ipAddress")]
+        public Input<string>? IpAddress { get; set; }
+
+        /// <summary>
+        /// Screen out the whitelist that meets the conditions based on the IP address segment. When using IPSegment queries, the IP address segment will be precisely matched for filtering.
+        /// </summary>
+        [Input("ipSegment")]
+        public Input<string>? IpSegment { get; set; }
+
+        /// <summary>
         /// A Name Regex of Allow List.
         /// </summary>
         [Input("nameRegex")]
@@ -219,6 +255,18 @@ namespace Pulumi.Volcengine.Redis
         /// </summary>
         [Input("outputFile")]
         public Input<string>? OutputFile { get; set; }
+
+        /// <summary>
+        /// The name of the project to which the white list belongs.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        /// <summary>
+        /// Filter whether to query only the default whitelist based on the type of whitelist.
+        /// </summary>
+        [Input("queryDefault")]
+        public Input<bool>? QueryDefault { get; set; }
 
         /// <summary>
         /// The Id of region.
@@ -248,8 +296,15 @@ namespace Pulumi.Volcengine.Redis
         /// Id of instance.
         /// </summary>
         public readonly string? InstanceId;
+        public readonly string? IpAddress;
+        public readonly string? IpSegment;
         public readonly string? NameRegex;
         public readonly string? OutputFile;
+        /// <summary>
+        /// The name of the project to which the white list belongs.
+        /// </summary>
+        public readonly string? ProjectName;
+        public readonly bool? QueryDefault;
         public readonly string RegionId;
         /// <summary>
         /// The total count of allow list query.
@@ -264,9 +319,17 @@ namespace Pulumi.Volcengine.Redis
 
             string? instanceId,
 
+            string? ipAddress,
+
+            string? ipSegment,
+
             string? nameRegex,
 
             string? outputFile,
+
+            string? projectName,
+
+            bool? queryDefault,
 
             string regionId,
 
@@ -275,8 +338,12 @@ namespace Pulumi.Volcengine.Redis
             AllowLists = allowLists;
             Id = id;
             InstanceId = instanceId;
+            IpAddress = ipAddress;
+            IpSegment = ipSegment;
             NameRegex = nameRegex;
             OutputFile = outputFile;
+            ProjectName = projectName;
+            QueryDefault = queryDefault;
             RegionId = regionId;
             TotalCount = totalCount;
         }

@@ -85,6 +85,10 @@ export class BackupRestore extends pulumi.CustomResource {
     }
 
     /**
+     * Backup ID, used to specify the backups to be used when restoring by the backup set. When choosing to restore by backup set (i.e., BackupType is Full), this parameter is required. Use lifecycle and ignoreChanges in import.
+     */
+    public readonly backupPointId!: pulumi.Output<string | undefined>;
+    /**
      * The type of backup. The value can be Full or Inc.
      */
     public readonly backupType!: pulumi.Output<string | undefined>;
@@ -95,7 +99,7 @@ export class BackupRestore extends pulumi.CustomResource {
     /**
      * Time point of backup, for example: 2021-11-09T06:07:26Z. Use lifecycle and ignoreChanges in import.
      */
-    public readonly timePoint!: pulumi.Output<string>;
+    public readonly timePoint!: pulumi.Output<string | undefined>;
 
     /**
      * Create a BackupRestore resource with the given unique name, arguments, and options.
@@ -110,6 +114,7 @@ export class BackupRestore extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as BackupRestoreState | undefined;
+            resourceInputs["backupPointId"] = state ? state.backupPointId : undefined;
             resourceInputs["backupType"] = state ? state.backupType : undefined;
             resourceInputs["instanceId"] = state ? state.instanceId : undefined;
             resourceInputs["timePoint"] = state ? state.timePoint : undefined;
@@ -118,9 +123,7 @@ export class BackupRestore extends pulumi.CustomResource {
             if ((!args || args.instanceId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'instanceId'");
             }
-            if ((!args || args.timePoint === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'timePoint'");
-            }
+            resourceInputs["backupPointId"] = args ? args.backupPointId : undefined;
             resourceInputs["backupType"] = args ? args.backupType : undefined;
             resourceInputs["instanceId"] = args ? args.instanceId : undefined;
             resourceInputs["timePoint"] = args ? args.timePoint : undefined;
@@ -134,6 +137,10 @@ export class BackupRestore extends pulumi.CustomResource {
  * Input properties used for looking up and filtering BackupRestore resources.
  */
 export interface BackupRestoreState {
+    /**
+     * Backup ID, used to specify the backups to be used when restoring by the backup set. When choosing to restore by backup set (i.e., BackupType is Full), this parameter is required. Use lifecycle and ignoreChanges in import.
+     */
+    backupPointId?: pulumi.Input<string>;
     /**
      * The type of backup. The value can be Full or Inc.
      */
@@ -153,6 +160,10 @@ export interface BackupRestoreState {
  */
 export interface BackupRestoreArgs {
     /**
+     * Backup ID, used to specify the backups to be used when restoring by the backup set. When choosing to restore by backup set (i.e., BackupType is Full), this parameter is required. Use lifecycle and ignoreChanges in import.
+     */
+    backupPointId?: pulumi.Input<string>;
+    /**
      * The type of backup. The value can be Full or Inc.
      */
     backupType?: pulumi.Input<string>;
@@ -163,5 +174,5 @@ export interface BackupRestoreArgs {
     /**
      * Time point of backup, for example: 2021-11-09T06:07:26Z. Use lifecycle and ignoreChanges in import.
      */
-    timePoint: pulumi.Input<string>;
+    timePoint?: pulumi.Input<string>;
 }

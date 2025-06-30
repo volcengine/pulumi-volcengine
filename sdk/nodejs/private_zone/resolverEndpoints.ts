@@ -28,7 +28,9 @@ export function resolverEndpoints(args?: ResolverEndpointsArgs, opts?: pulumi.In
         "name": args.name,
         "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
+        "projectName": args.projectName,
         "status": args.status,
+        "tagFilters": args.tagFilters,
         "vpcId": args.vpcId,
     }, opts);
 }
@@ -54,9 +56,17 @@ export interface ResolverEndpointsArgs {
      */
     outputFile?: string;
     /**
+     * The project name of the private zone resolver endpoint.
+     */
+    projectName?: string;
+    /**
      * The status of the private zone resolver endpoint.
      */
     status?: string;
+    /**
+     * List of tag filters.
+     */
+    tagFilters?: inputs.private_zone.ResolverEndpointsTagFilter[];
     /**
      * The vpc ID of the private zone resolver endpoint.
      */
@@ -86,9 +96,14 @@ export interface ResolverEndpointsResult {
     readonly nameRegex?: string;
     readonly outputFile?: string;
     /**
+     * The project name of the endpoint.
+     */
+    readonly projectName?: string;
+    /**
      * The status of the endpoint.
      */
     readonly status?: string;
+    readonly tagFilters?: outputs.private_zone.ResolverEndpointsTagFilter[];
     /**
      * The total count of query.
      */
@@ -135,9 +150,17 @@ export interface ResolverEndpointsOutputArgs {
      */
     outputFile?: pulumi.Input<string>;
     /**
+     * The project name of the private zone resolver endpoint.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
      * The status of the private zone resolver endpoint.
      */
     status?: pulumi.Input<string>;
+    /**
+     * List of tag filters.
+     */
+    tagFilters?: pulumi.Input<pulumi.Input<inputs.private_zone.ResolverEndpointsTagFilterArgs>[]>;
     /**
      * The vpc ID of the private zone resolver endpoint.
      */

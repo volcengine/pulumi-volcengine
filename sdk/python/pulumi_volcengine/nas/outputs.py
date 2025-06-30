@@ -11,6 +11,7 @@ from .. import _utilities
 from . import outputs
 
 __all__ = [
+    'AutoSnapshotPoliciesAutoSnapshotPoliceResult',
     'FileSystemTag',
     'FileSystemsFileSystemResult',
     'FileSystemsFileSystemCapacityResult',
@@ -28,6 +29,7 @@ __all__ = [
     'SnapshotsSnapshotResult',
     'ZonesZoneResult',
     'ZonesZoneSaleResult',
+    'GetAutoSnapshotPoliciesAutoSnapshotPoliceResult',
     'GetFileSystemsFileSystemResult',
     'GetFileSystemsFileSystemCapacityResult',
     'GetFileSystemsFileSystemTagResult',
@@ -44,6 +46,112 @@ __all__ = [
     'GetZonesZoneResult',
     'GetZonesZoneSaleResult',
 ]
+
+@pulumi.output_type
+class AutoSnapshotPoliciesAutoSnapshotPoliceResult(dict):
+    def __init__(__self__, *,
+                 auto_snapshot_policy_id: str,
+                 auto_snapshot_policy_name: str,
+                 create_time: str,
+                 file_system_count: int,
+                 id: str,
+                 repeat_weekdays: str,
+                 retention_days: int,
+                 status: str,
+                 time_points: str):
+        """
+        :param str auto_snapshot_policy_id: The id of auto snapshot policy.
+        :param str auto_snapshot_policy_name: The name of auto snapshot policy.
+        :param str create_time: The create time of auto snapshot policy.
+        :param int file_system_count: The count of file system which auto snapshot policy bind.
+        :param str id: The ID of auto snapshot policy.
+        :param str repeat_weekdays: The repeat weekdays of auto snapshot policy. Unit: day.
+        :param int retention_days: The retention days of auto snapshot policy. Unit: day.
+        :param str status: The status of auto snapshot policy.
+        :param str time_points: The time points of auto snapshot policy. Unit: hour.
+        """
+        pulumi.set(__self__, "auto_snapshot_policy_id", auto_snapshot_policy_id)
+        pulumi.set(__self__, "auto_snapshot_policy_name", auto_snapshot_policy_name)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "file_system_count", file_system_count)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "repeat_weekdays", repeat_weekdays)
+        pulumi.set(__self__, "retention_days", retention_days)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "time_points", time_points)
+
+    @property
+    @pulumi.getter(name="autoSnapshotPolicyId")
+    def auto_snapshot_policy_id(self) -> str:
+        """
+        The id of auto snapshot policy.
+        """
+        return pulumi.get(self, "auto_snapshot_policy_id")
+
+    @property
+    @pulumi.getter(name="autoSnapshotPolicyName")
+    def auto_snapshot_policy_name(self) -> str:
+        """
+        The name of auto snapshot policy.
+        """
+        return pulumi.get(self, "auto_snapshot_policy_name")
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        The create time of auto snapshot policy.
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter(name="fileSystemCount")
+    def file_system_count(self) -> int:
+        """
+        The count of file system which auto snapshot policy bind.
+        """
+        return pulumi.get(self, "file_system_count")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of auto snapshot policy.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="repeatWeekdays")
+    def repeat_weekdays(self) -> str:
+        """
+        The repeat weekdays of auto snapshot policy. Unit: day.
+        """
+        return pulumi.get(self, "repeat_weekdays")
+
+    @property
+    @pulumi.getter(name="retentionDays")
+    def retention_days(self) -> int:
+        """
+        The retention days of auto snapshot policy. Unit: day.
+        """
+        return pulumi.get(self, "retention_days")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of auto snapshot policy.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="timePoints")
+    def time_points(self) -> str:
+        """
+        The time points of auto snapshot policy. Unit: hour.
+        """
+        return pulumi.get(self, "time_points")
+
 
 @pulumi.output_type
 class FileSystemTag(dict):
@@ -1284,6 +1392,112 @@ class ZonesZoneSaleResult(dict):
         The type of storage.
         """
         return pulumi.get(self, "storage_type")
+
+
+@pulumi.output_type
+class GetAutoSnapshotPoliciesAutoSnapshotPoliceResult(dict):
+    def __init__(__self__, *,
+                 auto_snapshot_policy_id: str,
+                 auto_snapshot_policy_name: str,
+                 create_time: str,
+                 file_system_count: int,
+                 id: str,
+                 repeat_weekdays: str,
+                 retention_days: int,
+                 status: str,
+                 time_points: str):
+        """
+        :param str auto_snapshot_policy_id: The id of auto snapshot policy.
+        :param str auto_snapshot_policy_name: The name of auto snapshot policy.
+        :param str create_time: The create time of auto snapshot policy.
+        :param int file_system_count: The count of file system which auto snapshot policy bind.
+        :param str id: The ID of auto snapshot policy.
+        :param str repeat_weekdays: The repeat weekdays of auto snapshot policy. Unit: day.
+        :param int retention_days: The retention days of auto snapshot policy. Unit: day.
+        :param str status: The status of auto snapshot policy.
+        :param str time_points: The time points of auto snapshot policy. Unit: hour.
+        """
+        pulumi.set(__self__, "auto_snapshot_policy_id", auto_snapshot_policy_id)
+        pulumi.set(__self__, "auto_snapshot_policy_name", auto_snapshot_policy_name)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "file_system_count", file_system_count)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "repeat_weekdays", repeat_weekdays)
+        pulumi.set(__self__, "retention_days", retention_days)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "time_points", time_points)
+
+    @property
+    @pulumi.getter(name="autoSnapshotPolicyId")
+    def auto_snapshot_policy_id(self) -> str:
+        """
+        The id of auto snapshot policy.
+        """
+        return pulumi.get(self, "auto_snapshot_policy_id")
+
+    @property
+    @pulumi.getter(name="autoSnapshotPolicyName")
+    def auto_snapshot_policy_name(self) -> str:
+        """
+        The name of auto snapshot policy.
+        """
+        return pulumi.get(self, "auto_snapshot_policy_name")
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        The create time of auto snapshot policy.
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter(name="fileSystemCount")
+    def file_system_count(self) -> int:
+        """
+        The count of file system which auto snapshot policy bind.
+        """
+        return pulumi.get(self, "file_system_count")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of auto snapshot policy.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="repeatWeekdays")
+    def repeat_weekdays(self) -> str:
+        """
+        The repeat weekdays of auto snapshot policy. Unit: day.
+        """
+        return pulumi.get(self, "repeat_weekdays")
+
+    @property
+    @pulumi.getter(name="retentionDays")
+    def retention_days(self) -> int:
+        """
+        The retention days of auto snapshot policy. Unit: day.
+        """
+        return pulumi.get(self, "retention_days")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of auto snapshot policy.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="timePoints")
+    def time_points(self) -> str:
+        """
+        The time points of auto snapshot policy. Unit: hour.
+        """
+        return pulumi.get(self, "time_points")
 
 
 @pulumi.output_type

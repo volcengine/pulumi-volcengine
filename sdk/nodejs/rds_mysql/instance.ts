@@ -36,7 +36,7 @@ import * as utilities from "../utilities";
  * // create mysql instance
  * const fooInstance = new volcengine.rds_mysql.Instance("fooInstance", {
  *     dbEngineVersion: "MySQL_5_7",
- *     nodeSpec: "rds.mysql.1c2g",
+ *     nodeSpec: "rds.mysql.2c4g",
  *     primaryZoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
  *     secondaryZoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
  *     storageSpace: 80,
@@ -61,6 +61,13 @@ import * as utilities from "../utilities";
  *             parameterValue: "5",
  *         },
  *     ],
+ *     deletionProtection: "Disabled",
+ *     dataSyncMode: "SemiSync",
+ *     autoStorageScalingConfig: {
+ *         enableStorageAutoScale: true,
+ *         storageThreshold: 40,
+ *         storageUpperBound: 110,
+ *     },
  * });
  * // create mysql instance readonly node
  * const fooInstanceReadonlyNode = new volcengine.rds_mysql.InstanceReadonlyNode("fooInstanceReadonlyNode", {
@@ -135,6 +142,16 @@ export class Instance extends pulumi.CustomResource {
      */
     public /*out*/ readonly allowListVersion!: pulumi.Output<string>;
     /**
+     * Auto - storage scaling configuration.
+     */
+    public readonly autoStorageScalingConfig!: pulumi.Output<outputs.rds_mysql.InstanceAutoStorageScalingConfig>;
+    /**
+     * The upgrade strategy for the minor version of the instance kernel. Values:
+     * Auto: Auto upgrade.
+     * Manual: Manual upgrade.
+     */
+    public /*out*/ readonly autoUpgradeMinorVersion!: pulumi.Output<string>;
+    /**
      * The instance has used backup space. Unit: GB.
      */
     public /*out*/ readonly backupUse!: pulumi.Output<number>;
@@ -163,9 +180,11 @@ export class Instance extends pulumi.CustomResource {
      */
     public /*out*/ readonly createTime!: pulumi.Output<string>;
     /**
-     * Data synchronization mode.
+     * Data synchronization methods:
+     * SemiSync: Semi - synchronous(Default).
+     * Async: Asynchronous.
      */
-    public /*out*/ readonly dataSyncMode!: pulumi.Output<string>;
+    public readonly dataSyncMode!: pulumi.Output<string | undefined>;
     /**
      * Instance type. Value:
      * MySQL_5_7
@@ -185,6 +204,28 @@ export class Instance extends pulumi.CustomResource {
      */
     public readonly dbTimeZone!: pulumi.Output<string>;
     /**
+     * Whether to enable the deletion protection function. Values:
+     * Enabled: Yes.
+     * Disabled: No.
+     */
+    public readonly deletionProtection!: pulumi.Output<string>;
+    /**
+     * The ID of the data synchronization task in DTS for the data synchronization link between the primary instance and the disaster recovery instance.
+     */
+    public /*out*/ readonly drDtsTaskId!: pulumi.Output<string>;
+    /**
+     * The name of the DTS data synchronization task for the data synchronization link between the primary instance and the disaster recovery instance.
+     */
+    public /*out*/ readonly drDtsTaskName!: pulumi.Output<string>;
+    /**
+     * The status of the DTS data synchronization task for the data synchronization link between the primary instance and the disaster recovery instance.
+     */
+    public /*out*/ readonly drDtsTaskStatus!: pulumi.Output<string>;
+    /**
+     * The number of seconds that the disaster recovery instance is behind the primary instance.
+     */
+    public /*out*/ readonly drSecondsBehindMaster!: pulumi.Output<number>;
+    /**
      * The endpoint info of the RDS instance.
      */
     public /*out*/ readonly endpoints!: pulumi.Output<outputs.rds_mysql.InstanceEndpoint[]>;
@@ -193,11 +234,9 @@ export class Instance extends pulumi.CustomResource {
      */
     public /*out*/ readonly featureStates!: pulumi.Output<outputs.rds_mysql.InstanceFeatureState[]>;
     /**
-     * Whether to enable global read-only.
-     * true: Yes.
-     * false: No.
+     * Whether to enable global read-only for the instance.
      */
-    public /*out*/ readonly globalReadOnly!: pulumi.Output<boolean>;
+    public readonly globalReadOnly!: pulumi.Output<boolean | undefined>;
     /**
      * Instance ID.
      */
@@ -213,16 +252,32 @@ export class Instance extends pulumi.CustomResource {
      */
     public /*out*/ readonly instanceStatus!: pulumi.Output<string>;
     /**
+     * The current kernel version of the RDS instance.
+     */
+    public /*out*/ readonly kernelVersion!: pulumi.Output<string>;
+    /**
      * Whether the table name is case sensitive, the default value is 1.
      * Ranges:
      * 0: Table names are stored as fixed and table names are case-sensitive.
      * 1: Table names will be stored in lowercase and table names are not case sensitive.
      */
-    public readonly lowerCaseTableNames!: pulumi.Output<string | undefined>;
+    public readonly lowerCaseTableNames!: pulumi.Output<string>;
     /**
      * Specify the maintainable time period of the instance when creating the instance. This field is optional. If not set, it defaults to 18:00Z - 21:59Z of every day within a week (that is, 02:00 - 05:59 Beijing time).
      */
     public readonly maintenanceWindow!: pulumi.Output<outputs.rds_mysql.InstanceMaintenanceWindow>;
+    /**
+     * The ID of the primary instance of the disaster recovery instance.
+     */
+    public /*out*/ readonly masterInstanceId!: pulumi.Output<string>;
+    /**
+     * The name of the primary instance of the disaster recovery instance.
+     */
+    public /*out*/ readonly masterInstanceName!: pulumi.Output<string>;
+    /**
+     * The region where the primary instance of the disaster recovery instance is located.
+     */
+    public /*out*/ readonly masterRegion!: pulumi.Output<string>;
     /**
      * Memory size in GB.
      */
@@ -271,6 +326,22 @@ export class Instance extends pulumi.CustomResource {
      * The available zone of secondary node.
      */
     public readonly secondaryZoneId!: pulumi.Output<string>;
+    /**
+     * The upper limit of the storage space that can be set for automatic expansion. The value is the upper limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value ranges of different specifications, please refer to Product Specifications.
+     */
+    public /*out*/ readonly storageMaxCapacity!: pulumi.Output<number>;
+    /**
+     * The upper limit of the proportion of available storage space that triggers automatic expansion. When supported, the value is 50%.
+     */
+    public /*out*/ readonly storageMaxTriggerThreshold!: pulumi.Output<number>;
+    /**
+     * The lower limit of the storage space that can be set for automatic expansion. The value is the lower limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value ranges of different specifications, please refer to Product Specifications.
+     */
+    public /*out*/ readonly storageMinCapacity!: pulumi.Output<number>;
+    /**
+     * The lower limit of the proportion of available storage space that triggers automatic expansion. When supported, the value is 10%.
+     */
+    public /*out*/ readonly storageMinTriggerThreshold!: pulumi.Output<number>;
     /**
      * Instance storage space. Value range: [20, 3000], unit: GB, increments every 100GB. Default value: 100.
      */
@@ -331,6 +402,8 @@ export class Instance extends pulumi.CustomResource {
             const state = argsOrState as InstanceState | undefined;
             resourceInputs["allowListIds"] = state ? state.allowListIds : undefined;
             resourceInputs["allowListVersion"] = state ? state.allowListVersion : undefined;
+            resourceInputs["autoStorageScalingConfig"] = state ? state.autoStorageScalingConfig : undefined;
+            resourceInputs["autoUpgradeMinorVersion"] = state ? state.autoUpgradeMinorVersion : undefined;
             resourceInputs["backupUse"] = state ? state.backupUse : undefined;
             resourceInputs["binlogDump"] = state ? state.binlogDump : undefined;
             resourceInputs["chargeDetails"] = state ? state.chargeDetails : undefined;
@@ -341,14 +414,23 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["dbEngineVersion"] = state ? state.dbEngineVersion : undefined;
             resourceInputs["dbProxyStatus"] = state ? state.dbProxyStatus : undefined;
             resourceInputs["dbTimeZone"] = state ? state.dbTimeZone : undefined;
+            resourceInputs["deletionProtection"] = state ? state.deletionProtection : undefined;
+            resourceInputs["drDtsTaskId"] = state ? state.drDtsTaskId : undefined;
+            resourceInputs["drDtsTaskName"] = state ? state.drDtsTaskName : undefined;
+            resourceInputs["drDtsTaskStatus"] = state ? state.drDtsTaskStatus : undefined;
+            resourceInputs["drSecondsBehindMaster"] = state ? state.drSecondsBehindMaster : undefined;
             resourceInputs["endpoints"] = state ? state.endpoints : undefined;
             resourceInputs["featureStates"] = state ? state.featureStates : undefined;
             resourceInputs["globalReadOnly"] = state ? state.globalReadOnly : undefined;
             resourceInputs["instanceId"] = state ? state.instanceId : undefined;
             resourceInputs["instanceName"] = state ? state.instanceName : undefined;
             resourceInputs["instanceStatus"] = state ? state.instanceStatus : undefined;
+            resourceInputs["kernelVersion"] = state ? state.kernelVersion : undefined;
             resourceInputs["lowerCaseTableNames"] = state ? state.lowerCaseTableNames : undefined;
             resourceInputs["maintenanceWindow"] = state ? state.maintenanceWindow : undefined;
+            resourceInputs["masterInstanceId"] = state ? state.masterInstanceId : undefined;
+            resourceInputs["masterInstanceName"] = state ? state.masterInstanceName : undefined;
+            resourceInputs["masterRegion"] = state ? state.masterRegion : undefined;
             resourceInputs["memory"] = state ? state.memory : undefined;
             resourceInputs["nodeCpuUsedPercentage"] = state ? state.nodeCpuUsedPercentage : undefined;
             resourceInputs["nodeMemoryUsedPercentage"] = state ? state.nodeMemoryUsedPercentage : undefined;
@@ -361,6 +443,10 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["projectName"] = state ? state.projectName : undefined;
             resourceInputs["regionId"] = state ? state.regionId : undefined;
             resourceInputs["secondaryZoneId"] = state ? state.secondaryZoneId : undefined;
+            resourceInputs["storageMaxCapacity"] = state ? state.storageMaxCapacity : undefined;
+            resourceInputs["storageMaxTriggerThreshold"] = state ? state.storageMaxTriggerThreshold : undefined;
+            resourceInputs["storageMinCapacity"] = state ? state.storageMinCapacity : undefined;
+            resourceInputs["storageMinTriggerThreshold"] = state ? state.storageMinTriggerThreshold : undefined;
             resourceInputs["storageSpace"] = state ? state.storageSpace : undefined;
             resourceInputs["storageType"] = state ? state.storageType : undefined;
             resourceInputs["storageUse"] = state ? state.storageUse : undefined;
@@ -393,10 +479,14 @@ export class Instance extends pulumi.CustomResource {
                 throw new Error("Missing required property 'subnetId'");
             }
             resourceInputs["allowListIds"] = args ? args.allowListIds : undefined;
+            resourceInputs["autoStorageScalingConfig"] = args ? args.autoStorageScalingConfig : undefined;
             resourceInputs["chargeInfo"] = args ? args.chargeInfo : undefined;
             resourceInputs["connectionPoolType"] = args ? args.connectionPoolType : undefined;
+            resourceInputs["dataSyncMode"] = args ? args.dataSyncMode : undefined;
             resourceInputs["dbEngineVersion"] = args ? args.dbEngineVersion : undefined;
             resourceInputs["dbTimeZone"] = args ? args.dbTimeZone : undefined;
+            resourceInputs["deletionProtection"] = args ? args.deletionProtection : undefined;
+            resourceInputs["globalReadOnly"] = args ? args.globalReadOnly : undefined;
             resourceInputs["instanceName"] = args ? args.instanceName : undefined;
             resourceInputs["lowerCaseTableNames"] = args ? args.lowerCaseTableNames : undefined;
             resourceInputs["maintenanceWindow"] = args ? args.maintenanceWindow : undefined;
@@ -409,17 +499,24 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["subnetId"] = args ? args.subnetId : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["allowListVersion"] = undefined /*out*/;
+            resourceInputs["autoUpgradeMinorVersion"] = undefined /*out*/;
             resourceInputs["backupUse"] = undefined /*out*/;
             resourceInputs["binlogDump"] = undefined /*out*/;
             resourceInputs["chargeDetails"] = undefined /*out*/;
             resourceInputs["createTime"] = undefined /*out*/;
-            resourceInputs["dataSyncMode"] = undefined /*out*/;
             resourceInputs["dbProxyStatus"] = undefined /*out*/;
+            resourceInputs["drDtsTaskId"] = undefined /*out*/;
+            resourceInputs["drDtsTaskName"] = undefined /*out*/;
+            resourceInputs["drDtsTaskStatus"] = undefined /*out*/;
+            resourceInputs["drSecondsBehindMaster"] = undefined /*out*/;
             resourceInputs["endpoints"] = undefined /*out*/;
             resourceInputs["featureStates"] = undefined /*out*/;
-            resourceInputs["globalReadOnly"] = undefined /*out*/;
             resourceInputs["instanceId"] = undefined /*out*/;
             resourceInputs["instanceStatus"] = undefined /*out*/;
+            resourceInputs["kernelVersion"] = undefined /*out*/;
+            resourceInputs["masterInstanceId"] = undefined /*out*/;
+            resourceInputs["masterInstanceName"] = undefined /*out*/;
+            resourceInputs["masterRegion"] = undefined /*out*/;
             resourceInputs["memory"] = undefined /*out*/;
             resourceInputs["nodeCpuUsedPercentage"] = undefined /*out*/;
             resourceInputs["nodeMemoryUsedPercentage"] = undefined /*out*/;
@@ -427,6 +524,10 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["nodeSpaceUsedPercentage"] = undefined /*out*/;
             resourceInputs["nodes"] = undefined /*out*/;
             resourceInputs["regionId"] = undefined /*out*/;
+            resourceInputs["storageMaxCapacity"] = undefined /*out*/;
+            resourceInputs["storageMaxTriggerThreshold"] = undefined /*out*/;
+            resourceInputs["storageMinCapacity"] = undefined /*out*/;
+            resourceInputs["storageMinTriggerThreshold"] = undefined /*out*/;
             resourceInputs["storageType"] = undefined /*out*/;
             resourceInputs["storageUse"] = undefined /*out*/;
             resourceInputs["timeZone"] = undefined /*out*/;
@@ -453,6 +554,16 @@ export interface InstanceState {
      * The version of allow list.
      */
     allowListVersion?: pulumi.Input<string>;
+    /**
+     * Auto - storage scaling configuration.
+     */
+    autoStorageScalingConfig?: pulumi.Input<inputs.rds_mysql.InstanceAutoStorageScalingConfig>;
+    /**
+     * The upgrade strategy for the minor version of the instance kernel. Values:
+     * Auto: Auto upgrade.
+     * Manual: Manual upgrade.
+     */
+    autoUpgradeMinorVersion?: pulumi.Input<string>;
     /**
      * The instance has used backup space. Unit: GB.
      */
@@ -482,7 +593,9 @@ export interface InstanceState {
      */
     createTime?: pulumi.Input<string>;
     /**
-     * Data synchronization mode.
+     * Data synchronization methods:
+     * SemiSync: Semi - synchronous(Default).
+     * Async: Asynchronous.
      */
     dataSyncMode?: pulumi.Input<string>;
     /**
@@ -504,6 +617,28 @@ export interface InstanceState {
      */
     dbTimeZone?: pulumi.Input<string>;
     /**
+     * Whether to enable the deletion protection function. Values:
+     * Enabled: Yes.
+     * Disabled: No.
+     */
+    deletionProtection?: pulumi.Input<string>;
+    /**
+     * The ID of the data synchronization task in DTS for the data synchronization link between the primary instance and the disaster recovery instance.
+     */
+    drDtsTaskId?: pulumi.Input<string>;
+    /**
+     * The name of the DTS data synchronization task for the data synchronization link between the primary instance and the disaster recovery instance.
+     */
+    drDtsTaskName?: pulumi.Input<string>;
+    /**
+     * The status of the DTS data synchronization task for the data synchronization link between the primary instance and the disaster recovery instance.
+     */
+    drDtsTaskStatus?: pulumi.Input<string>;
+    /**
+     * The number of seconds that the disaster recovery instance is behind the primary instance.
+     */
+    drSecondsBehindMaster?: pulumi.Input<number>;
+    /**
      * The endpoint info of the RDS instance.
      */
     endpoints?: pulumi.Input<pulumi.Input<inputs.rds_mysql.InstanceEndpoint>[]>;
@@ -512,9 +647,7 @@ export interface InstanceState {
      */
     featureStates?: pulumi.Input<pulumi.Input<inputs.rds_mysql.InstanceFeatureState>[]>;
     /**
-     * Whether to enable global read-only.
-     * true: Yes.
-     * false: No.
+     * Whether to enable global read-only for the instance.
      */
     globalReadOnly?: pulumi.Input<boolean>;
     /**
@@ -532,6 +665,10 @@ export interface InstanceState {
      */
     instanceStatus?: pulumi.Input<string>;
     /**
+     * The current kernel version of the RDS instance.
+     */
+    kernelVersion?: pulumi.Input<string>;
+    /**
      * Whether the table name is case sensitive, the default value is 1.
      * Ranges:
      * 0: Table names are stored as fixed and table names are case-sensitive.
@@ -542,6 +679,18 @@ export interface InstanceState {
      * Specify the maintainable time period of the instance when creating the instance. This field is optional. If not set, it defaults to 18:00Z - 21:59Z of every day within a week (that is, 02:00 - 05:59 Beijing time).
      */
     maintenanceWindow?: pulumi.Input<inputs.rds_mysql.InstanceMaintenanceWindow>;
+    /**
+     * The ID of the primary instance of the disaster recovery instance.
+     */
+    masterInstanceId?: pulumi.Input<string>;
+    /**
+     * The name of the primary instance of the disaster recovery instance.
+     */
+    masterInstanceName?: pulumi.Input<string>;
+    /**
+     * The region where the primary instance of the disaster recovery instance is located.
+     */
+    masterRegion?: pulumi.Input<string>;
     /**
      * Memory size in GB.
      */
@@ -590,6 +739,22 @@ export interface InstanceState {
      * The available zone of secondary node.
      */
     secondaryZoneId?: pulumi.Input<string>;
+    /**
+     * The upper limit of the storage space that can be set for automatic expansion. The value is the upper limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value ranges of different specifications, please refer to Product Specifications.
+     */
+    storageMaxCapacity?: pulumi.Input<number>;
+    /**
+     * The upper limit of the proportion of available storage space that triggers automatic expansion. When supported, the value is 50%.
+     */
+    storageMaxTriggerThreshold?: pulumi.Input<number>;
+    /**
+     * The lower limit of the storage space that can be set for automatic expansion. The value is the lower limit of the storage space value range corresponding to the instance master node specification, with the unit being GB. For detailed information on the selectable storage space value ranges of different specifications, please refer to Product Specifications.
+     */
+    storageMinCapacity?: pulumi.Input<number>;
+    /**
+     * The lower limit of the proportion of available storage space that triggers automatic expansion. When supported, the value is 10%.
+     */
+    storageMinTriggerThreshold?: pulumi.Input<number>;
     /**
      * Instance storage space. Value range: [20, 3000], unit: GB, increments every 100GB. Default value: 100.
      */
@@ -645,6 +810,10 @@ export interface InstanceArgs {
      */
     allowListIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
+     * Auto - storage scaling configuration.
+     */
+    autoStorageScalingConfig?: pulumi.Input<inputs.rds_mysql.InstanceAutoStorageScalingConfig>;
+    /**
      * Payment methods.
      */
     chargeInfo: pulumi.Input<inputs.rds_mysql.InstanceChargeInfo>;
@@ -655,6 +824,12 @@ export interface InstanceArgs {
      */
     connectionPoolType?: pulumi.Input<string>;
     /**
+     * Data synchronization methods:
+     * SemiSync: Semi - synchronous(Default).
+     * Async: Asynchronous.
+     */
+    dataSyncMode?: pulumi.Input<string>;
+    /**
      * Instance type. Value:
      * MySQL_5_7
      * MySQL_8_0.
@@ -664,6 +839,16 @@ export interface InstanceArgs {
      * Time zone. Support UTC -12:00 ~ +13:00. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
      */
     dbTimeZone?: pulumi.Input<string>;
+    /**
+     * Whether to enable the deletion protection function. Values:
+     * Enabled: Yes.
+     * Disabled: No.
+     */
+    deletionProtection?: pulumi.Input<string>;
+    /**
+     * Whether to enable global read-only for the instance.
+     */
+    globalReadOnly?: pulumi.Input<boolean>;
     /**
      * Instance name. Cannot start with a number or a dash
      * Can only contain Chinese characters, letters, numbers, underscores and dashes

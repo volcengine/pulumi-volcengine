@@ -28,6 +28,7 @@ export function namespaces(args: NamespacesArgs, opts?: pulumi.InvokeOptions): P
     return pulumi.runtime.invoke("volcengine:cr/namespaces:Namespaces", {
         "names": args.names,
         "outputFile": args.outputFile,
+        "projects": args.projects,
         "registry": args.registry,
     }, opts);
 }
@@ -44,6 +45,10 @@ export interface NamespacesArgs {
      * File name where to save data source results.
      */
     outputFile?: string;
+    /**
+     * The list of project names to query.
+     */
+    projects?: string[];
     /**
      * The target cr instance name.
      */
@@ -64,6 +69,7 @@ export interface NamespacesResult {
      */
     readonly namespaces: outputs.cr.NamespacesNamespace[];
     readonly outputFile?: string;
+    readonly projects?: string[];
     readonly registry: string;
     /**
      * The total count of instance query.
@@ -101,6 +107,10 @@ export interface NamespacesOutputArgs {
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
+    /**
+     * The list of project names to query.
+     */
+    projects?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The target cr instance name.
      */

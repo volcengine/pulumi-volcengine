@@ -14,12 +14,48 @@ namespace Pulumi.Volcengine.Ebs
     {
         /// <summary>
         /// Use this data source to query detailed information of ebs max extra performances
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Volcengine = Pulumi.Volcengine;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var foo = Volcengine.Ebs.GetMaxExtraPerformances.Invoke(new()
+        ///     {
+        ///         Size = 60,
+        ///         VolumeType = "TSSD_TL0",
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Task<MaxExtraPerformancesResult> InvokeAsync(MaxExtraPerformancesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<MaxExtraPerformancesResult>("volcengine:ebs/maxExtraPerformances:MaxExtraPerformances", args ?? new MaxExtraPerformancesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of ebs max extra performances
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Volcengine = Pulumi.Volcengine;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var foo = Volcengine.Ebs.GetMaxExtraPerformances.Invoke(new()
+        ///     {
+        ///         Size = 60,
+        ///         VolumeType = "TSSD_TL0",
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<MaxExtraPerformancesResult> Invoke(MaxExtraPerformancesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<MaxExtraPerformancesResult>("volcengine:ebs/maxExtraPerformances:MaxExtraPerformances", args ?? new MaxExtraPerformancesInvokeArgs(), options.WithDefaults());

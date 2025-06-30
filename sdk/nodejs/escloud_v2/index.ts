@@ -20,10 +20,30 @@ export type EscloudIpWhiteList = import("./escloudIpWhiteList").EscloudIpWhiteLi
 export const EscloudIpWhiteList: typeof import("./escloudIpWhiteList").EscloudIpWhiteList = null as any;
 utilities.lazyLoad(exports, ["EscloudIpWhiteList"], () => require("./escloudIpWhiteList"));
 
+export { EscloudNodeAvailableSpecsArgs, EscloudNodeAvailableSpecsResult, EscloudNodeAvailableSpecsOutputArgs } from "./escloudNodeAvailableSpecs";
+export const escloudNodeAvailableSpecs: typeof import("./escloudNodeAvailableSpecs").escloudNodeAvailableSpecs = null as any;
+export const escloudNodeAvailableSpecsOutput: typeof import("./escloudNodeAvailableSpecs").escloudNodeAvailableSpecsOutput = null as any;
+utilities.lazyLoad(exports, ["escloudNodeAvailableSpecs","escloudNodeAvailableSpecsOutput"], () => require("./escloudNodeAvailableSpecs"));
+
+export { EscloudZonesV2Args, EscloudZonesV2Result, EscloudZonesV2OutputArgs } from "./escloudZonesV2";
+export const escloudZonesV2: typeof import("./escloudZonesV2").escloudZonesV2 = null as any;
+export const escloudZonesV2Output: typeof import("./escloudZonesV2").escloudZonesV2Output = null as any;
+utilities.lazyLoad(exports, ["escloudZonesV2","escloudZonesV2Output"], () => require("./escloudZonesV2"));
+
 export { GetEscloudInstancesV2Args, GetEscloudInstancesV2Result, GetEscloudInstancesV2OutputArgs } from "./getEscloudInstancesV2";
 export const getEscloudInstancesV2: typeof import("./getEscloudInstancesV2").getEscloudInstancesV2 = null as any;
 export const getEscloudInstancesV2Output: typeof import("./getEscloudInstancesV2").getEscloudInstancesV2Output = null as any;
 utilities.lazyLoad(exports, ["getEscloudInstancesV2","getEscloudInstancesV2Output"], () => require("./getEscloudInstancesV2"));
+
+export { GetEscloudNodeAvailableSpecsArgs, GetEscloudNodeAvailableSpecsResult, GetEscloudNodeAvailableSpecsOutputArgs } from "./getEscloudNodeAvailableSpecs";
+export const getEscloudNodeAvailableSpecs: typeof import("./getEscloudNodeAvailableSpecs").getEscloudNodeAvailableSpecs = null as any;
+export const getEscloudNodeAvailableSpecsOutput: typeof import("./getEscloudNodeAvailableSpecs").getEscloudNodeAvailableSpecsOutput = null as any;
+utilities.lazyLoad(exports, ["getEscloudNodeAvailableSpecs","getEscloudNodeAvailableSpecsOutput"], () => require("./getEscloudNodeAvailableSpecs"));
+
+export { GetEscloudZonesV2Args, GetEscloudZonesV2Result, GetEscloudZonesV2OutputArgs } from "./getEscloudZonesV2";
+export const getEscloudZonesV2: typeof import("./getEscloudZonesV2").getEscloudZonesV2 = null as any;
+export const getEscloudZonesV2Output: typeof import("./getEscloudZonesV2").getEscloudZonesV2Output = null as any;
+utilities.lazyLoad(exports, ["getEscloudZonesV2","getEscloudZonesV2Output"], () => require("./getEscloudZonesV2"));
 
 
 const _module = {

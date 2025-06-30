@@ -20,6 +20,7 @@ class BandwidthPackageArgs:
                  billing_type: Optional[pulumi.Input[str]] = None,
                  cen_bandwidth_package_name: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 line_operator: Optional[pulumi.Input[str]] = None,
                  local_geographic_region_set_id: Optional[pulumi.Input[str]] = None,
                  peer_geographic_region_set_id: Optional[pulumi.Input[str]] = None,
                  period: Optional[pulumi.Input[int]] = None,
@@ -29,9 +30,10 @@ class BandwidthPackageArgs:
         """
         The set of arguments for constructing a BandwidthPackage resource.
         :param pulumi.Input[int] bandwidth: The bandwidth of the cen bandwidth package. Value: 2~10000.
-        :param pulumi.Input[str] billing_type: The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`.
+        :param pulumi.Input[str] billing_type: The billing type of the cen bandwidth package. Only support `PrePaid` and `PayBy95Peak`, default value is `PrePaid`.
         :param pulumi.Input[str] cen_bandwidth_package_name: The name of the cen bandwidth package.
         :param pulumi.Input[str] description: The description of the cen bandwidth package.
+        :param pulumi.Input[str] line_operator: The line operator of the cen bandwidth package. Valid value: `ChinaUnicom`, `ChinaTelecom`. This field is only valid when `local_geographic_region_set_id` and `peer_geographic_region_set_id` are different.
         :param pulumi.Input[str] local_geographic_region_set_id: The local geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
         :param pulumi.Input[str] peer_geographic_region_set_id: The peer geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
         :param pulumi.Input[int] period: The period of the cen bandwidth package. Default value is 1.
@@ -47,6 +49,8 @@ class BandwidthPackageArgs:
             pulumi.set(__self__, "cen_bandwidth_package_name", cen_bandwidth_package_name)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if line_operator is not None:
+            pulumi.set(__self__, "line_operator", line_operator)
         if local_geographic_region_set_id is not None:
             pulumi.set(__self__, "local_geographic_region_set_id", local_geographic_region_set_id)
         if peer_geographic_region_set_id is not None:
@@ -76,7 +80,7 @@ class BandwidthPackageArgs:
     @pulumi.getter(name="billingType")
     def billing_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`.
+        The billing type of the cen bandwidth package. Only support `PrePaid` and `PayBy95Peak`, default value is `PrePaid`.
         """
         return pulumi.get(self, "billing_type")
 
@@ -107,6 +111,18 @@ class BandwidthPackageArgs:
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="lineOperator")
+    def line_operator(self) -> Optional[pulumi.Input[str]]:
+        """
+        The line operator of the cen bandwidth package. Valid value: `ChinaUnicom`, `ChinaTelecom`. This field is only valid when `local_geographic_region_set_id` and `peer_geographic_region_set_id` are different.
+        """
+        return pulumi.get(self, "line_operator")
+
+    @line_operator.setter
+    def line_operator(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "line_operator", value)
 
     @property
     @pulumi.getter(name="localGeographicRegionSetId")
@@ -195,6 +211,7 @@ class _BandwidthPackageState:
                  deleted_time: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  expired_time: Optional[pulumi.Input[str]] = None,
+                 line_operator: Optional[pulumi.Input[str]] = None,
                  local_geographic_region_set_id: Optional[pulumi.Input[str]] = None,
                  peer_geographic_region_set_id: Optional[pulumi.Input[str]] = None,
                  period: Optional[pulumi.Input[int]] = None,
@@ -208,7 +225,7 @@ class _BandwidthPackageState:
         Input properties used for looking up and filtering BandwidthPackage resources.
         :param pulumi.Input[str] account_id: The account ID of the cen bandwidth package.
         :param pulumi.Input[int] bandwidth: The bandwidth of the cen bandwidth package. Value: 2~10000.
-        :param pulumi.Input[str] billing_type: The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`.
+        :param pulumi.Input[str] billing_type: The billing type of the cen bandwidth package. Only support `PrePaid` and `PayBy95Peak`, default value is `PrePaid`.
         :param pulumi.Input[str] business_status: The business status of the cen bandwidth package.
         :param pulumi.Input[str] cen_bandwidth_package_id: The ID of the cen bandwidth package.
         :param pulumi.Input[str] cen_bandwidth_package_name: The name of the cen bandwidth package.
@@ -217,6 +234,7 @@ class _BandwidthPackageState:
         :param pulumi.Input[str] deleted_time: The deleted time of the cen bandwidth package.
         :param pulumi.Input[str] description: The description of the cen bandwidth package.
         :param pulumi.Input[str] expired_time: The expired time of the cen bandwidth package.
+        :param pulumi.Input[str] line_operator: The line operator of the cen bandwidth package. Valid value: `ChinaUnicom`, `ChinaTelecom`. This field is only valid when `local_geographic_region_set_id` and `peer_geographic_region_set_id` are different.
         :param pulumi.Input[str] local_geographic_region_set_id: The local geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
         :param pulumi.Input[str] peer_geographic_region_set_id: The peer geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
         :param pulumi.Input[int] period: The period of the cen bandwidth package. Default value is 1.
@@ -249,6 +267,8 @@ class _BandwidthPackageState:
             pulumi.set(__self__, "description", description)
         if expired_time is not None:
             pulumi.set(__self__, "expired_time", expired_time)
+        if line_operator is not None:
+            pulumi.set(__self__, "line_operator", line_operator)
         if local_geographic_region_set_id is not None:
             pulumi.set(__self__, "local_geographic_region_set_id", local_geographic_region_set_id)
         if peer_geographic_region_set_id is not None:
@@ -296,7 +316,7 @@ class _BandwidthPackageState:
     @pulumi.getter(name="billingType")
     def billing_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`.
+        The billing type of the cen bandwidth package. Only support `PrePaid` and `PayBy95Peak`, default value is `PrePaid`.
         """
         return pulumi.get(self, "billing_type")
 
@@ -399,6 +419,18 @@ class _BandwidthPackageState:
     @expired_time.setter
     def expired_time(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "expired_time", value)
+
+    @property
+    @pulumi.getter(name="lineOperator")
+    def line_operator(self) -> Optional[pulumi.Input[str]]:
+        """
+        The line operator of the cen bandwidth package. Valid value: `ChinaUnicom`, `ChinaTelecom`. This field is only valid when `local_geographic_region_set_id` and `peer_geographic_region_set_id` are different.
+        """
+        return pulumi.get(self, "line_operator")
+
+    @line_operator.setter
+    def line_operator(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "line_operator", value)
 
     @property
     @pulumi.getter(name="localGeographicRegionSetId")
@@ -518,6 +550,7 @@ class BandwidthPackage(pulumi.CustomResource):
                  billing_type: Optional[pulumi.Input[str]] = None,
                  cen_bandwidth_package_name: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 line_operator: Optional[pulumi.Input[str]] = None,
                  local_geographic_region_set_id: Optional[pulumi.Input[str]] = None,
                  peer_geographic_region_set_id: Optional[pulumi.Input[str]] = None,
                  period: Optional[pulumi.Input[int]] = None,
@@ -559,9 +592,10 @@ class BandwidthPackage(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] bandwidth: The bandwidth of the cen bandwidth package. Value: 2~10000.
-        :param pulumi.Input[str] billing_type: The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`.
+        :param pulumi.Input[str] billing_type: The billing type of the cen bandwidth package. Only support `PrePaid` and `PayBy95Peak`, default value is `PrePaid`.
         :param pulumi.Input[str] cen_bandwidth_package_name: The name of the cen bandwidth package.
         :param pulumi.Input[str] description: The description of the cen bandwidth package.
+        :param pulumi.Input[str] line_operator: The line operator of the cen bandwidth package. Valid value: `ChinaUnicom`, `ChinaTelecom`. This field is only valid when `local_geographic_region_set_id` and `peer_geographic_region_set_id` are different.
         :param pulumi.Input[str] local_geographic_region_set_id: The local geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
         :param pulumi.Input[str] peer_geographic_region_set_id: The peer geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
         :param pulumi.Input[int] period: The period of the cen bandwidth package. Default value is 1.
@@ -625,6 +659,7 @@ class BandwidthPackage(pulumi.CustomResource):
                  billing_type: Optional[pulumi.Input[str]] = None,
                  cen_bandwidth_package_name: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 line_operator: Optional[pulumi.Input[str]] = None,
                  local_geographic_region_set_id: Optional[pulumi.Input[str]] = None,
                  peer_geographic_region_set_id: Optional[pulumi.Input[str]] = None,
                  period: Optional[pulumi.Input[int]] = None,
@@ -644,6 +679,7 @@ class BandwidthPackage(pulumi.CustomResource):
             __props__.__dict__["billing_type"] = billing_type
             __props__.__dict__["cen_bandwidth_package_name"] = cen_bandwidth_package_name
             __props__.__dict__["description"] = description
+            __props__.__dict__["line_operator"] = line_operator
             __props__.__dict__["local_geographic_region_set_id"] = local_geographic_region_set_id
             __props__.__dict__["peer_geographic_region_set_id"] = peer_geographic_region_set_id
             __props__.__dict__["period"] = period
@@ -681,6 +717,7 @@ class BandwidthPackage(pulumi.CustomResource):
             deleted_time: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             expired_time: Optional[pulumi.Input[str]] = None,
+            line_operator: Optional[pulumi.Input[str]] = None,
             local_geographic_region_set_id: Optional[pulumi.Input[str]] = None,
             peer_geographic_region_set_id: Optional[pulumi.Input[str]] = None,
             period: Optional[pulumi.Input[int]] = None,
@@ -699,7 +736,7 @@ class BandwidthPackage(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] account_id: The account ID of the cen bandwidth package.
         :param pulumi.Input[int] bandwidth: The bandwidth of the cen bandwidth package. Value: 2~10000.
-        :param pulumi.Input[str] billing_type: The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`.
+        :param pulumi.Input[str] billing_type: The billing type of the cen bandwidth package. Only support `PrePaid` and `PayBy95Peak`, default value is `PrePaid`.
         :param pulumi.Input[str] business_status: The business status of the cen bandwidth package.
         :param pulumi.Input[str] cen_bandwidth_package_id: The ID of the cen bandwidth package.
         :param pulumi.Input[str] cen_bandwidth_package_name: The name of the cen bandwidth package.
@@ -708,6 +745,7 @@ class BandwidthPackage(pulumi.CustomResource):
         :param pulumi.Input[str] deleted_time: The deleted time of the cen bandwidth package.
         :param pulumi.Input[str] description: The description of the cen bandwidth package.
         :param pulumi.Input[str] expired_time: The expired time of the cen bandwidth package.
+        :param pulumi.Input[str] line_operator: The line operator of the cen bandwidth package. Valid value: `ChinaUnicom`, `ChinaTelecom`. This field is only valid when `local_geographic_region_set_id` and `peer_geographic_region_set_id` are different.
         :param pulumi.Input[str] local_geographic_region_set_id: The local geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
         :param pulumi.Input[str] peer_geographic_region_set_id: The peer geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
         :param pulumi.Input[int] period: The period of the cen bandwidth package. Default value is 1.
@@ -733,6 +771,7 @@ class BandwidthPackage(pulumi.CustomResource):
         __props__.__dict__["deleted_time"] = deleted_time
         __props__.__dict__["description"] = description
         __props__.__dict__["expired_time"] = expired_time
+        __props__.__dict__["line_operator"] = line_operator
         __props__.__dict__["local_geographic_region_set_id"] = local_geographic_region_set_id
         __props__.__dict__["peer_geographic_region_set_id"] = peer_geographic_region_set_id
         __props__.__dict__["period"] = period
@@ -764,7 +803,7 @@ class BandwidthPackage(pulumi.CustomResource):
     @pulumi.getter(name="billingType")
     def billing_type(self) -> pulumi.Output[Optional[str]]:
         """
-        The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`.
+        The billing type of the cen bandwidth package. Only support `PrePaid` and `PayBy95Peak`, default value is `PrePaid`.
         """
         return pulumi.get(self, "billing_type")
 
@@ -831,6 +870,14 @@ class BandwidthPackage(pulumi.CustomResource):
         The expired time of the cen bandwidth package.
         """
         return pulumi.get(self, "expired_time")
+
+    @property
+    @pulumi.getter(name="lineOperator")
+    def line_operator(self) -> pulumi.Output[Optional[str]]:
+        """
+        The line operator of the cen bandwidth package. Valid value: `ChinaUnicom`, `ChinaTelecom`. This field is only valid when `local_geographic_region_set_id` and `peer_geographic_region_set_id` are different.
+        """
+        return pulumi.get(self, "line_operator")
 
     @property
     @pulumi.getter(name="localGeographicRegionSetId")

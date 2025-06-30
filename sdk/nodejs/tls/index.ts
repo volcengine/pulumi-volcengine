@@ -25,6 +25,26 @@ export const alarms: typeof import("./alarms").alarms = null as any;
 export const alarmsOutput: typeof import("./alarms").alarmsOutput = null as any;
 utilities.lazyLoad(exports, ["alarms","alarmsOutput"], () => require("./alarms"));
 
+export { ConsumerGroupArgs, ConsumerGroupState } from "./consumerGroup";
+export type ConsumerGroup = import("./consumerGroup").ConsumerGroup;
+export const ConsumerGroup: typeof import("./consumerGroup").ConsumerGroup = null as any;
+utilities.lazyLoad(exports, ["ConsumerGroup"], () => require("./consumerGroup"));
+
+export { ConsumerGroupsArgs, ConsumerGroupsResult, ConsumerGroupsOutputArgs } from "./consumerGroups";
+export const consumerGroups: typeof import("./consumerGroups").consumerGroups = null as any;
+export const consumerGroupsOutput: typeof import("./consumerGroups").consumerGroupsOutput = null as any;
+utilities.lazyLoad(exports, ["consumerGroups","consumerGroupsOutput"], () => require("./consumerGroups"));
+
+export { EtlTaskArgs, EtlTaskState } from "./etlTask";
+export type EtlTask = import("./etlTask").EtlTask;
+export const EtlTask: typeof import("./etlTask").EtlTask = null as any;
+utilities.lazyLoad(exports, ["EtlTask"], () => require("./etlTask"));
+
+export { EtlTasksArgs, EtlTasksResult, EtlTasksOutputArgs } from "./etlTasks";
+export const etlTasks: typeof import("./etlTasks").etlTasks = null as any;
+export const etlTasksOutput: typeof import("./etlTasks").etlTasksOutput = null as any;
+utilities.lazyLoad(exports, ["etlTasks","etlTasksOutput"], () => require("./etlTasks"));
+
 export { GetAlarmNotifyGroupsArgs, GetAlarmNotifyGroupsResult, GetAlarmNotifyGroupsOutputArgs } from "./getAlarmNotifyGroups";
 export const getAlarmNotifyGroups: typeof import("./getAlarmNotifyGroups").getAlarmNotifyGroups = null as any;
 export const getAlarmNotifyGroupsOutput: typeof import("./getAlarmNotifyGroups").getAlarmNotifyGroupsOutput = null as any;
@@ -35,6 +55,16 @@ export const getAlarms: typeof import("./getAlarms").getAlarms = null as any;
 export const getAlarmsOutput: typeof import("./getAlarms").getAlarmsOutput = null as any;
 utilities.lazyLoad(exports, ["getAlarms","getAlarmsOutput"], () => require("./getAlarms"));
 
+export { GetConsumerGroupsArgs, GetConsumerGroupsResult, GetConsumerGroupsOutputArgs } from "./getConsumerGroups";
+export const getConsumerGroups: typeof import("./getConsumerGroups").getConsumerGroups = null as any;
+export const getConsumerGroupsOutput: typeof import("./getConsumerGroups").getConsumerGroupsOutput = null as any;
+utilities.lazyLoad(exports, ["getConsumerGroups","getConsumerGroupsOutput"], () => require("./getConsumerGroups"));
+
+export { GetEtlTasksArgs, GetEtlTasksResult, GetEtlTasksOutputArgs } from "./getEtlTasks";
+export const getEtlTasks: typeof import("./getEtlTasks").getEtlTasks = null as any;
+export const getEtlTasksOutput: typeof import("./getEtlTasks").getEtlTasksOutput = null as any;
+utilities.lazyLoad(exports, ["getEtlTasks","getEtlTasksOutput"], () => require("./getEtlTasks"));
+
 export { GetHostGroupsArgs, GetHostGroupsResult, GetHostGroupsOutputArgs } from "./getHostGroups";
 export const getHostGroups: typeof import("./getHostGroups").getHostGroups = null as any;
 export const getHostGroupsOutput: typeof import("./getHostGroups").getHostGroupsOutput = null as any;
@@ -44,6 +74,11 @@ export { GetHostsArgs, GetHostsResult, GetHostsOutputArgs } from "./getHosts";
 export const getHosts: typeof import("./getHosts").getHosts = null as any;
 export const getHostsOutput: typeof import("./getHosts").getHostsOutput = null as any;
 utilities.lazyLoad(exports, ["getHosts","getHostsOutput"], () => require("./getHosts"));
+
+export { GetImportTasksArgs, GetImportTasksResult, GetImportTasksOutputArgs } from "./getImportTasks";
+export const getImportTasks: typeof import("./getImportTasks").getImportTasks = null as any;
+export const getImportTasksOutput: typeof import("./getImportTasks").getImportTasksOutput = null as any;
+utilities.lazyLoad(exports, ["getImportTasks","getImportTasksOutput"], () => require("./getImportTasks"));
 
 export { GetIndexesArgs, GetIndexesResult, GetIndexesOutputArgs } from "./getIndexes";
 export const getIndexes: typeof import("./getIndexes").getIndexes = null as any;
@@ -70,10 +105,20 @@ export const getRules: typeof import("./getRules").getRules = null as any;
 export const getRulesOutput: typeof import("./getRules").getRulesOutput = null as any;
 utilities.lazyLoad(exports, ["getRules","getRulesOutput"], () => require("./getRules"));
 
+export { GetScheduleSqlTasksArgs, GetScheduleSqlTasksResult, GetScheduleSqlTasksOutputArgs } from "./getScheduleSqlTasks";
+export const getScheduleSqlTasks: typeof import("./getScheduleSqlTasks").getScheduleSqlTasks = null as any;
+export const getScheduleSqlTasksOutput: typeof import("./getScheduleSqlTasks").getScheduleSqlTasksOutput = null as any;
+utilities.lazyLoad(exports, ["getScheduleSqlTasks","getScheduleSqlTasksOutput"], () => require("./getScheduleSqlTasks"));
+
 export { GetShardsArgs, GetShardsResult, GetShardsOutputArgs } from "./getShards";
 export const getShards: typeof import("./getShards").getShards = null as any;
 export const getShardsOutput: typeof import("./getShards").getShardsOutput = null as any;
 utilities.lazyLoad(exports, ["getShards","getShardsOutput"], () => require("./getShards"));
+
+export { GetShippersArgs, GetShippersResult, GetShippersOutputArgs } from "./getShippers";
+export const getShippers: typeof import("./getShippers").getShippers = null as any;
+export const getShippersOutput: typeof import("./getShippers").getShippersOutput = null as any;
+utilities.lazyLoad(exports, ["getShippers","getShippersOutput"], () => require("./getShippers"));
 
 export { GetTopicsArgs, GetTopicsResult, GetTopicsOutputArgs } from "./getTopics";
 export const getTopics: typeof import("./getTopics").getTopics = null as any;
@@ -99,6 +144,16 @@ export { HostsArgs, HostsResult, HostsOutputArgs } from "./hosts";
 export const hosts: typeof import("./hosts").hosts = null as any;
 export const hostsOutput: typeof import("./hosts").hostsOutput = null as any;
 utilities.lazyLoad(exports, ["hosts","hostsOutput"], () => require("./hosts"));
+
+export { ImportTaskArgs, ImportTaskState } from "./importTask";
+export type ImportTask = import("./importTask").ImportTask;
+export const ImportTask: typeof import("./importTask").ImportTask = null as any;
+utilities.lazyLoad(exports, ["ImportTask"], () => require("./importTask"));
+
+export { ImportTasksArgs, ImportTasksResult, ImportTasksOutputArgs } from "./importTasks";
+export const importTasks: typeof import("./importTasks").importTasks = null as any;
+export const importTasksOutput: typeof import("./importTasks").importTasksOutput = null as any;
+utilities.lazyLoad(exports, ["importTasks","importTasksOutput"], () => require("./importTasks"));
 
 export { IndexArgs, IndexState } from "./index_";
 export type Index = import("./index_").Index;
@@ -150,10 +205,30 @@ export const rules: typeof import("./rules").rules = null as any;
 export const rulesOutput: typeof import("./rules").rulesOutput = null as any;
 utilities.lazyLoad(exports, ["rules","rulesOutput"], () => require("./rules"));
 
+export { ScheduleSqlTaskArgs, ScheduleSqlTaskState } from "./scheduleSqlTask";
+export type ScheduleSqlTask = import("./scheduleSqlTask").ScheduleSqlTask;
+export const ScheduleSqlTask: typeof import("./scheduleSqlTask").ScheduleSqlTask = null as any;
+utilities.lazyLoad(exports, ["ScheduleSqlTask"], () => require("./scheduleSqlTask"));
+
+export { ScheduleSqlTasksArgs, ScheduleSqlTasksResult, ScheduleSqlTasksOutputArgs } from "./scheduleSqlTasks";
+export const scheduleSqlTasks: typeof import("./scheduleSqlTasks").scheduleSqlTasks = null as any;
+export const scheduleSqlTasksOutput: typeof import("./scheduleSqlTasks").scheduleSqlTasksOutput = null as any;
+utilities.lazyLoad(exports, ["scheduleSqlTasks","scheduleSqlTasksOutput"], () => require("./scheduleSqlTasks"));
+
 export { ShardsArgs, ShardsResult, ShardsOutputArgs } from "./shards";
 export const shards: typeof import("./shards").shards = null as any;
 export const shardsOutput: typeof import("./shards").shardsOutput = null as any;
 utilities.lazyLoad(exports, ["shards","shardsOutput"], () => require("./shards"));
+
+export { ShipperArgs, ShipperState } from "./shipper";
+export type Shipper = import("./shipper").Shipper;
+export const Shipper: typeof import("./shipper").Shipper = null as any;
+utilities.lazyLoad(exports, ["Shipper"], () => require("./shipper"));
+
+export { ShippersArgs, ShippersResult, ShippersOutputArgs } from "./shippers";
+export const shippers: typeof import("./shippers").shippers = null as any;
+export const shippersOutput: typeof import("./shippers").shippersOutput = null as any;
+utilities.lazyLoad(exports, ["shippers","shippersOutput"], () => require("./shippers"));
 
 export { TopicArgs, TopicState } from "./topic";
 export type Topic = import("./topic").Topic;
@@ -174,10 +249,16 @@ const _module = {
                 return new Alarm(name, <any>undefined, { urn })
             case "volcengine:tls/alarmNotifyGroup:AlarmNotifyGroup":
                 return new AlarmNotifyGroup(name, <any>undefined, { urn })
+            case "volcengine:tls/consumerGroup:ConsumerGroup":
+                return new ConsumerGroup(name, <any>undefined, { urn })
+            case "volcengine:tls/etlTask:EtlTask":
+                return new EtlTask(name, <any>undefined, { urn })
             case "volcengine:tls/host:Host":
                 return new Host(name, <any>undefined, { urn })
             case "volcengine:tls/hostGroup:HostGroup":
                 return new HostGroup(name, <any>undefined, { urn })
+            case "volcengine:tls/importTask:ImportTask":
+                return new ImportTask(name, <any>undefined, { urn })
             case "volcengine:tls/index:Index":
                 return new Index(name, <any>undefined, { urn })
             case "volcengine:tls/kafkaConsumer:KafkaConsumer":
@@ -188,6 +269,10 @@ const _module = {
                 return new Rule(name, <any>undefined, { urn })
             case "volcengine:tls/ruleApplier:RuleApplier":
                 return new RuleApplier(name, <any>undefined, { urn })
+            case "volcengine:tls/scheduleSqlTask:ScheduleSqlTask":
+                return new ScheduleSqlTask(name, <any>undefined, { urn })
+            case "volcengine:tls/shipper:Shipper":
+                return new Shipper(name, <any>undefined, { urn })
             case "volcengine:tls/topic:Topic":
                 return new Topic(name, <any>undefined, { urn })
             default:
@@ -197,11 +282,16 @@ const _module = {
 };
 pulumi.runtime.registerResourceModule("volcengine", "tls/alarm", _module)
 pulumi.runtime.registerResourceModule("volcengine", "tls/alarmNotifyGroup", _module)
+pulumi.runtime.registerResourceModule("volcengine", "tls/consumerGroup", _module)
+pulumi.runtime.registerResourceModule("volcengine", "tls/etlTask", _module)
 pulumi.runtime.registerResourceModule("volcengine", "tls/host", _module)
 pulumi.runtime.registerResourceModule("volcengine", "tls/hostGroup", _module)
+pulumi.runtime.registerResourceModule("volcengine", "tls/importTask", _module)
 pulumi.runtime.registerResourceModule("volcengine", "tls/index", _module)
 pulumi.runtime.registerResourceModule("volcengine", "tls/kafkaConsumer", _module)
 pulumi.runtime.registerResourceModule("volcengine", "tls/project", _module)
 pulumi.runtime.registerResourceModule("volcengine", "tls/rule", _module)
 pulumi.runtime.registerResourceModule("volcengine", "tls/ruleApplier", _module)
+pulumi.runtime.registerResourceModule("volcengine", "tls/scheduleSqlTask", _module)
+pulumi.runtime.registerResourceModule("volcengine", "tls/shipper", _module)
 pulumi.runtime.registerResourceModule("volcengine", "tls/topic", _module)
