@@ -139,6 +139,12 @@ namespace Pulumi.Volcengine.Vpc
         public Output<ImmutableArray<string>> RouteTableIds { get; private set; } = null!;
 
         /// <summary>
+        /// The secondary cidr block list of VPC.
+        /// </summary>
+        [Output("secondaryCidrBlocks")]
+        public Output<ImmutableArray<string>> SecondaryCidrBlocks { get; private set; } = null!;
+
+        /// <summary>
         /// The security group ID list of VPC.
         /// </summary>
         [Output("securityGroupIds")]
@@ -395,6 +401,18 @@ namespace Pulumi.Volcengine.Vpc
         {
             get => _routeTableIds ?? (_routeTableIds = new InputList<string>());
             set => _routeTableIds = value;
+        }
+
+        [Input("secondaryCidrBlocks")]
+        private InputList<string>? _secondaryCidrBlocks;
+
+        /// <summary>
+        /// The secondary cidr block list of VPC.
+        /// </summary>
+        public InputList<string> SecondaryCidrBlocks
+        {
+            get => _secondaryCidrBlocks ?? (_secondaryCidrBlocks = new InputList<string>());
+            set => _secondaryCidrBlocks = value;
         }
 
         [Input("securityGroupIds")]

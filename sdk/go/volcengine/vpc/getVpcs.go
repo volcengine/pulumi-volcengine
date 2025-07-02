@@ -63,6 +63,8 @@ type GetVpcsArgs struct {
 	Tags []GetVpcsTag `pulumi:"tags"`
 	// The vpc name to query.
 	VpcName *string `pulumi:"vpcName"`
+	// The owner ID of the vpc.
+	VpcOwnerId *int `pulumi:"vpcOwnerId"`
 }
 
 // A collection of values returned by getVpcs.
@@ -79,7 +81,8 @@ type GetVpcsResult struct {
 	// The total count of Vpc query.
 	TotalCount int `pulumi:"totalCount"`
 	// The name of VPC.
-	VpcName *string `pulumi:"vpcName"`
+	VpcName    *string `pulumi:"vpcName"`
+	VpcOwnerId *int    `pulumi:"vpcOwnerId"`
 	// The collection of Vpc query.
 	Vpcs []GetVpcsVpc `pulumi:"vpcs"`
 }
@@ -111,6 +114,8 @@ type GetVpcsOutputArgs struct {
 	Tags GetVpcsTagArrayInput `pulumi:"tags"`
 	// The vpc name to query.
 	VpcName pulumi.StringPtrInput `pulumi:"vpcName"`
+	// The owner ID of the vpc.
+	VpcOwnerId pulumi.IntPtrInput `pulumi:"vpcOwnerId"`
 }
 
 func (GetVpcsOutputArgs) ElementType() reflect.Type {
@@ -167,6 +172,10 @@ func (o GetVpcsResultOutput) TotalCount() pulumi.IntOutput {
 // The name of VPC.
 func (o GetVpcsResultOutput) VpcName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetVpcsResult) *string { return v.VpcName }).(pulumi.StringPtrOutput)
+}
+
+func (o GetVpcsResultOutput) VpcOwnerId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetVpcsResult) *int { return v.VpcOwnerId }).(pulumi.IntPtrOutput)
 }
 
 // The collection of Vpc query.

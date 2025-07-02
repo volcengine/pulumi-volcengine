@@ -18,6 +18,10 @@ namespace Pulumi.Volcengine.Cen.Outputs
         /// </summary>
         public readonly int Bandwidth;
         /// <summary>
+        /// The ID of the cen bandwidth package.
+        /// </summary>
+        public readonly string CenBandwidthPackageId;
+        /// <summary>
         /// The ID of the cen.
         /// </summary>
         public readonly string CenId;
@@ -54,6 +58,8 @@ namespace Pulumi.Volcengine.Cen.Outputs
         private InterRegionBandwidthsInterRegionBandwidthResult(
             int bandwidth,
 
+            string cenBandwidthPackageId,
+
             string cenId,
 
             string creationTime,
@@ -71,6 +77,7 @@ namespace Pulumi.Volcengine.Cen.Outputs
             string updateTime)
         {
             Bandwidth = bandwidth;
+            CenBandwidthPackageId = cenBandwidthPackageId;
             CenId = cenId;
             CreationTime = creationTime;
             Id = id;

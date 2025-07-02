@@ -58,6 +58,10 @@ namespace Pulumi.Volcengine.Vpc.Outputs
         /// </summary>
         public readonly ImmutableArray<string> RouteTableIds;
         /// <summary>
+        /// The secondary cidr block list of VPC.
+        /// </summary>
+        public readonly ImmutableArray<string> SecondaryCidrBlocks;
+        /// <summary>
         /// The security group ID list of VPC.
         /// </summary>
         public readonly ImmutableArray<string> SecurityGroupIds;
@@ -110,6 +114,8 @@ namespace Pulumi.Volcengine.Vpc.Outputs
 
             ImmutableArray<string> routeTableIds,
 
+            ImmutableArray<string> secondaryCidrBlocks,
+
             ImmutableArray<string> securityGroupIds,
 
             string status,
@@ -135,6 +141,7 @@ namespace Pulumi.Volcengine.Vpc.Outputs
             NatGatewayIds = natGatewayIds;
             ProjectName = projectName;
             RouteTableIds = routeTableIds;
+            SecondaryCidrBlocks = secondaryCidrBlocks;
             SecurityGroupIds = securityGroupIds;
             Status = status;
             SubnetIds = subnetIds;

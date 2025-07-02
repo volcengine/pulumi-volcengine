@@ -12,6 +12,8 @@ from ._inputs import *
 if typing.TYPE_CHECKING:
     import pulumi_volcengine.alb as __alb
     alb = __alb
+    import pulumi_volcengine.apig as __apig
+    apig = __apig
     import pulumi_volcengine.autoscaling as __autoscaling
     autoscaling = __autoscaling
     import pulumi_volcengine.bandwidth_package as __bandwidth_package
@@ -110,8 +112,11 @@ if typing.TYPE_CHECKING:
     vpc = __vpc
     import pulumi_volcengine.vpn as __vpn
     vpn = __vpn
+    import pulumi_volcengine.waf as __waf
+    waf = __waf
 else:
     alb = _utilities.lazy_import('pulumi_volcengine.alb')
+    apig = _utilities.lazy_import('pulumi_volcengine.apig')
     autoscaling = _utilities.lazy_import('pulumi_volcengine.autoscaling')
     bandwidth_package = _utilities.lazy_import('pulumi_volcengine.bandwidth_package')
     bioos = _utilities.lazy_import('pulumi_volcengine.bioos')
@@ -161,6 +166,7 @@ else:
     vmp = _utilities.lazy_import('pulumi_volcengine.vmp')
     vpc = _utilities.lazy_import('pulumi_volcengine.vpc')
     vpn = _utilities.lazy_import('pulumi_volcengine.vpn')
+    waf = _utilities.lazy_import('pulumi_volcengine.waf')
 
 _utilities.register(
     resource_modules="""
@@ -251,6 +257,62 @@ _utilities.register(
   "fqn": "pulumi_volcengine.alb",
   "classes": {
    "volcengine:alb/serverGroupServer:ServerGroupServer": "ServerGroupServer"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "apig/apigCustomDomain",
+  "fqn": "pulumi_volcengine.apig",
+  "classes": {
+   "volcengine:apig/apigCustomDomain:ApigCustomDomain": "ApigCustomDomain"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "apig/apigGateway",
+  "fqn": "pulumi_volcengine.apig",
+  "classes": {
+   "volcengine:apig/apigGateway:ApigGateway": "ApigGateway"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "apig/apigGatewayService",
+  "fqn": "pulumi_volcengine.apig",
+  "classes": {
+   "volcengine:apig/apigGatewayService:ApigGatewayService": "ApigGatewayService"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "apig/apigRoute",
+  "fqn": "pulumi_volcengine.apig",
+  "classes": {
+   "volcengine:apig/apigRoute:ApigRoute": "ApigRoute"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "apig/apigUpstream",
+  "fqn": "pulumi_volcengine.apig",
+  "classes": {
+   "volcengine:apig/apigUpstream:ApigUpstream": "ApigUpstream"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "apig/apigUpstreamSource",
+  "fqn": "pulumi_volcengine.apig",
+  "classes": {
+   "volcengine:apig/apigUpstreamSource:ApigUpstreamSource": "ApigUpstreamSource"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "apig/apigUpstreamVersion",
+  "fqn": "pulumi_volcengine.apig",
+  "classes": {
+   "volcengine:apig/apigUpstreamVersion:ApigUpstreamVersion": "ApigUpstreamVersion"
   }
  },
  {
@@ -2455,6 +2517,30 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "vpc/cidrBlockAssociate",
+  "fqn": "pulumi_volcengine.vpc",
+  "classes": {
+   "volcengine:vpc/cidrBlockAssociate:CidrBlockAssociate": "CidrBlockAssociate"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "vpc/flowLog",
+  "fqn": "pulumi_volcengine.vpc",
+  "classes": {
+   "volcengine:vpc/flowLog:FlowLog": "FlowLog"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "vpc/flowLogActive",
+  "fqn": "pulumi_volcengine.vpc",
+  "classes": {
+   "volcengine:vpc/flowLogActive:FlowLogActive": "FlowLogActive"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "vpc/haVip",
   "fqn": "pulumi_volcengine.vpc",
   "classes": {
@@ -2575,6 +2661,38 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "vpc/trafficMirrorFilter",
+  "fqn": "pulumi_volcengine.vpc",
+  "classes": {
+   "volcengine:vpc/trafficMirrorFilter:TrafficMirrorFilter": "TrafficMirrorFilter"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "vpc/trafficMirrorFilterRule",
+  "fqn": "pulumi_volcengine.vpc",
+  "classes": {
+   "volcengine:vpc/trafficMirrorFilterRule:TrafficMirrorFilterRule": "TrafficMirrorFilterRule"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "vpc/trafficMirrorSession",
+  "fqn": "pulumi_volcengine.vpc",
+  "classes": {
+   "volcengine:vpc/trafficMirrorSession:TrafficMirrorSession": "TrafficMirrorSession"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "vpc/trafficMirrorTarget",
+  "fqn": "pulumi_volcengine.vpc",
+  "classes": {
+   "volcengine:vpc/trafficMirrorTarget:TrafficMirrorTarget": "TrafficMirrorTarget"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "vpc/vpc",
   "fqn": "pulumi_volcengine.vpc",
   "classes": {
@@ -2627,6 +2745,94 @@ _utilities.register(
   "fqn": "pulumi_volcengine.vpn",
   "classes": {
    "volcengine:vpn/sslVpnServer:SslVpnServer": "SslVpnServer"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "waf/aclRule",
+  "fqn": "pulumi_volcengine.waf",
+  "classes": {
+   "volcengine:waf/aclRule:AclRule": "AclRule"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "waf/botAnalyseProtectRule",
+  "fqn": "pulumi_volcengine.waf",
+  "classes": {
+   "volcengine:waf/botAnalyseProtectRule:BotAnalyseProtectRule": "BotAnalyseProtectRule"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "waf/ccRule",
+  "fqn": "pulumi_volcengine.waf",
+  "classes": {
+   "volcengine:waf/ccRule:CcRule": "CcRule"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "waf/customBot",
+  "fqn": "pulumi_volcengine.waf",
+  "classes": {
+   "volcengine:waf/customBot:CustomBot": "CustomBot"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "waf/customPage",
+  "fqn": "pulumi_volcengine.waf",
+  "classes": {
+   "volcengine:waf/customPage:CustomPage": "CustomPage"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "waf/hostGroup",
+  "fqn": "pulumi_volcengine.waf",
+  "classes": {
+   "volcengine:waf/hostGroup:HostGroup": "HostGroup"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "waf/instanceCtl",
+  "fqn": "pulumi_volcengine.waf",
+  "classes": {
+   "volcengine:waf/instanceCtl:InstanceCtl": "InstanceCtl"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "waf/ipGroup",
+  "fqn": "pulumi_volcengine.waf",
+  "classes": {
+   "volcengine:waf/ipGroup:IpGroup": "IpGroup"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "waf/systemBot",
+  "fqn": "pulumi_volcengine.waf",
+  "classes": {
+   "volcengine:waf/systemBot:SystemBot": "SystemBot"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "waf/vulnerability",
+  "fqn": "pulumi_volcengine.waf",
+  "classes": {
+   "volcengine:waf/vulnerability:Vulnerability": "Vulnerability"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "waf/wafDomain",
+  "fqn": "pulumi_volcengine.waf",
+  "classes": {
+   "volcengine:waf/wafDomain:WafDomain": "WafDomain"
   }
  }
 ]

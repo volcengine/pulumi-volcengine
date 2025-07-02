@@ -125,6 +125,10 @@ export class Vpc extends pulumi.CustomResource {
      */
     public /*out*/ readonly routeTableIds!: pulumi.Output<string[]>;
     /**
+     * The secondary cidr block list of VPC.
+     */
+    public /*out*/ readonly secondaryCidrBlocks!: pulumi.Output<string[]>;
+    /**
      * The security group ID list of VPC.
      */
     public /*out*/ readonly securityGroupIds!: pulumi.Output<string[]>;
@@ -178,6 +182,7 @@ export class Vpc extends pulumi.CustomResource {
             resourceInputs["natGatewayIds"] = state ? state.natGatewayIds : undefined;
             resourceInputs["projectName"] = state ? state.projectName : undefined;
             resourceInputs["routeTableIds"] = state ? state.routeTableIds : undefined;
+            resourceInputs["secondaryCidrBlocks"] = state ? state.secondaryCidrBlocks : undefined;
             resourceInputs["securityGroupIds"] = state ? state.securityGroupIds : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["subnetIds"] = state ? state.subnetIds : undefined;
@@ -204,6 +209,7 @@ export class Vpc extends pulumi.CustomResource {
             resourceInputs["creationTime"] = undefined /*out*/;
             resourceInputs["natGatewayIds"] = undefined /*out*/;
             resourceInputs["routeTableIds"] = undefined /*out*/;
+            resourceInputs["secondaryCidrBlocks"] = undefined /*out*/;
             resourceInputs["securityGroupIds"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["subnetIds"] = undefined /*out*/;
@@ -267,6 +273,10 @@ export interface VpcState {
      * The route table ID list of VPC.
      */
     routeTableIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The secondary cidr block list of VPC.
+     */
+    secondaryCidrBlocks?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The security group ID list of VPC.
      */

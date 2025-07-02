@@ -730,6 +730,7 @@ class GrantInstancesGrantRuleResult(dict):
 class InterRegionBandwidthsInterRegionBandwidthResult(dict):
     def __init__(__self__, *,
                  bandwidth: int,
+                 cen_bandwidth_package_id: str,
                  cen_id: str,
                  creation_time: str,
                  id: str,
@@ -740,6 +741,7 @@ class InterRegionBandwidthsInterRegionBandwidthResult(dict):
                  update_time: str):
         """
         :param int bandwidth: The bandwidth of the cen inter region bandwidth.
+        :param str cen_bandwidth_package_id: The ID of the cen bandwidth package.
         :param str cen_id: The ID of the cen.
         :param str creation_time: The create time of the cen inter region bandwidth.
         :param str id: The ID of the cen inter region bandwidth.
@@ -750,6 +752,7 @@ class InterRegionBandwidthsInterRegionBandwidthResult(dict):
         :param str update_time: The update time of the cen inter region bandwidth.
         """
         pulumi.set(__self__, "bandwidth", bandwidth)
+        pulumi.set(__self__, "cen_bandwidth_package_id", cen_bandwidth_package_id)
         pulumi.set(__self__, "cen_id", cen_id)
         pulumi.set(__self__, "creation_time", creation_time)
         pulumi.set(__self__, "id", id)
@@ -766,6 +769,14 @@ class InterRegionBandwidthsInterRegionBandwidthResult(dict):
         The bandwidth of the cen inter region bandwidth.
         """
         return pulumi.get(self, "bandwidth")
+
+    @property
+    @pulumi.getter(name="cenBandwidthPackageId")
+    def cen_bandwidth_package_id(self) -> str:
+        """
+        The ID of the cen bandwidth package.
+        """
+        return pulumi.get(self, "cen_bandwidth_package_id")
 
     @property
     @pulumi.getter(name="cenId")
@@ -1769,6 +1780,7 @@ class GetGrantInstancesGrantRuleResult(dict):
 class GetInterRegionBandwidthsInterRegionBandwidthResult(dict):
     def __init__(__self__, *,
                  bandwidth: int,
+                 cen_bandwidth_package_id: str,
                  cen_id: str,
                  creation_time: str,
                  id: str,
@@ -1779,6 +1791,7 @@ class GetInterRegionBandwidthsInterRegionBandwidthResult(dict):
                  update_time: str):
         """
         :param int bandwidth: The bandwidth of the cen inter region bandwidth.
+        :param str cen_bandwidth_package_id: The ID of the cen bandwidth package.
         :param str cen_id: The ID of the cen.
         :param str creation_time: The create time of the cen inter region bandwidth.
         :param str id: The ID of the cen inter region bandwidth.
@@ -1789,6 +1802,7 @@ class GetInterRegionBandwidthsInterRegionBandwidthResult(dict):
         :param str update_time: The update time of the cen inter region bandwidth.
         """
         pulumi.set(__self__, "bandwidth", bandwidth)
+        pulumi.set(__self__, "cen_bandwidth_package_id", cen_bandwidth_package_id)
         pulumi.set(__self__, "cen_id", cen_id)
         pulumi.set(__self__, "creation_time", creation_time)
         pulumi.set(__self__, "id", id)
@@ -1805,6 +1819,14 @@ class GetInterRegionBandwidthsInterRegionBandwidthResult(dict):
         The bandwidth of the cen inter region bandwidth.
         """
         return pulumi.get(self, "bandwidth")
+
+    @property
+    @pulumi.getter(name="cenBandwidthPackageId")
+    def cen_bandwidth_package_id(self) -> str:
+        """
+        The ID of the cen bandwidth package.
+        """
+        return pulumi.get(self, "cen_bandwidth_package_id")
 
     @property
     @pulumi.getter(name="cenId")

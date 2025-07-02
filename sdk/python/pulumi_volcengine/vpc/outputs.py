@@ -11,6 +11,10 @@ from .. import _utilities
 from . import outputs
 
 __all__ = [
+    'FlowLogTag',
+    'FlowLogsFlowLogResult',
+    'FlowLogsFlowLogTagResult',
+    'FlowLogsTagResult',
     'HaVipTag',
     'HaVipsHaVipResult',
     'HaVipsHaVipTagResult',
@@ -55,12 +59,31 @@ __all__ = [
     'SubnetsSubnetRouteTableResult',
     'SubnetsSubnetTagResult',
     'SubnetsTagResult',
+    'TrafficMirrorFilterRulesTagResult',
+    'TrafficMirrorFilterRulesTrafficMirrorFilterRuleResult',
+    'TrafficMirrorFilterTag',
+    'TrafficMirrorFiltersTagResult',
+    'TrafficMirrorFiltersTrafficMirrorFilterResult',
+    'TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleResult',
+    'TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleResult',
+    'TrafficMirrorFiltersTrafficMirrorFilterTagResult',
+    'TrafficMirrorSessionTag',
+    'TrafficMirrorSessionsTagResult',
+    'TrafficMirrorSessionsTrafficMirrorSessionResult',
+    'TrafficMirrorSessionsTrafficMirrorSessionTagResult',
+    'TrafficMirrorTargetTag',
+    'TrafficMirrorTargetsTagResult',
+    'TrafficMirrorTargetsTrafficMirrorTargetResult',
+    'TrafficMirrorTargetsTrafficMirrorTargetTagResult',
     'VpcAssociateCen',
     'VpcTag',
     'VpcsTagResult',
     'VpcsVpcResult',
     'VpcsVpcAssociateCenResult',
     'VpcsVpcTagResult',
+    'GetFlowLogsFlowLogResult',
+    'GetFlowLogsFlowLogTagResult',
+    'GetFlowLogsTagResult',
     'GetHaVipsHaVipResult',
     'GetHaVipsHaVipTagResult',
     'GetHaVipsTagResult',
@@ -94,11 +117,316 @@ __all__ = [
     'GetSubnetsSubnetRouteTableResult',
     'GetSubnetsSubnetTagResult',
     'GetSubnetsTagResult',
+    'GetTrafficMirrorFilterRulesTagResult',
+    'GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleResult',
+    'GetTrafficMirrorFiltersTagResult',
+    'GetTrafficMirrorFiltersTrafficMirrorFilterResult',
+    'GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleResult',
+    'GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleResult',
+    'GetTrafficMirrorFiltersTrafficMirrorFilterTagResult',
+    'GetTrafficMirrorSessionsTagResult',
+    'GetTrafficMirrorSessionsTrafficMirrorSessionResult',
+    'GetTrafficMirrorSessionsTrafficMirrorSessionTagResult',
+    'GetTrafficMirrorTargetsTagResult',
+    'GetTrafficMirrorTargetsTrafficMirrorTargetResult',
+    'GetTrafficMirrorTargetsTrafficMirrorTargetTagResult',
     'GetVpcsTagResult',
     'GetVpcsVpcResult',
     'GetVpcsVpcAssociateCenResult',
     'GetVpcsVpcTagResult',
 ]
+
+@pulumi.output_type
+class FlowLogTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class FlowLogsFlowLogResult(dict):
+    def __init__(__self__, *,
+                 aggregation_interval: int,
+                 business_status: str,
+                 created_at: str,
+                 description: str,
+                 flow_log_id: str,
+                 flow_log_name: str,
+                 id: str,
+                 lock_reason: str,
+                 log_project_id: str,
+                 log_topic_id: str,
+                 project_name: str,
+                 resource_id: str,
+                 resource_type: str,
+                 status: str,
+                 tags: Sequence['outputs.FlowLogsFlowLogTagResult'],
+                 traffic_type: str,
+                 updated_at: str,
+                 vpc_id: str):
+        """
+        :param int aggregation_interval: The aggregation interval of flow log. Unit: minute. Valid values: `1`, `5`, `10`.
+        :param str business_status: The business status of flow log.
+        :param str created_at: The created time of flow log.
+        :param str description: The description of flow log.
+        :param str flow_log_id: The ID of flow log.
+        :param str flow_log_name: The name of flow log.
+        :param str id: The ID of flow log.
+        :param str lock_reason: The reason why flow log is locked.
+        :param str log_project_id: The ID of log project.
+        :param str log_topic_id: The ID of log topic.
+        :param str project_name: The project name of flow log.
+        :param str resource_id: The ID of resource.
+        :param str resource_type: The type of resource. Valid values: `vpc`, `subnet`, `eni`.
+        :param str status: The status of flow log. Valid values: `Active`, `Pending`, `Inactive`, `Creating`, `Deleting`.
+        :param Sequence['FlowLogsFlowLogTagArgs'] tags: Tags.
+        :param str traffic_type: The type of traffic. Valid values: `All`, `Allow`, `Drop`.
+        :param str updated_at: The updated time of flow log.
+        :param str vpc_id: The ID of VPC.
+        """
+        pulumi.set(__self__, "aggregation_interval", aggregation_interval)
+        pulumi.set(__self__, "business_status", business_status)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "flow_log_id", flow_log_id)
+        pulumi.set(__self__, "flow_log_name", flow_log_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "lock_reason", lock_reason)
+        pulumi.set(__self__, "log_project_id", log_project_id)
+        pulumi.set(__self__, "log_topic_id", log_topic_id)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "resource_id", resource_id)
+        pulumi.set(__self__, "resource_type", resource_type)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "traffic_type", traffic_type)
+        pulumi.set(__self__, "updated_at", updated_at)
+        pulumi.set(__self__, "vpc_id", vpc_id)
+
+    @property
+    @pulumi.getter(name="aggregationInterval")
+    def aggregation_interval(self) -> int:
+        """
+        The aggregation interval of flow log. Unit: minute. Valid values: `1`, `5`, `10`.
+        """
+        return pulumi.get(self, "aggregation_interval")
+
+    @property
+    @pulumi.getter(name="businessStatus")
+    def business_status(self) -> str:
+        """
+        The business status of flow log.
+        """
+        return pulumi.get(self, "business_status")
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        """
+        The created time of flow log.
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of flow log.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="flowLogId")
+    def flow_log_id(self) -> str:
+        """
+        The ID of flow log.
+        """
+        return pulumi.get(self, "flow_log_id")
+
+    @property
+    @pulumi.getter(name="flowLogName")
+    def flow_log_name(self) -> str:
+        """
+        The name of flow log.
+        """
+        return pulumi.get(self, "flow_log_name")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of flow log.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="lockReason")
+    def lock_reason(self) -> str:
+        """
+        The reason why flow log is locked.
+        """
+        return pulumi.get(self, "lock_reason")
+
+    @property
+    @pulumi.getter(name="logProjectId")
+    def log_project_id(self) -> str:
+        """
+        The ID of log project.
+        """
+        return pulumi.get(self, "log_project_id")
+
+    @property
+    @pulumi.getter(name="logTopicId")
+    def log_topic_id(self) -> str:
+        """
+        The ID of log topic.
+        """
+        return pulumi.get(self, "log_topic_id")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of flow log.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> str:
+        """
+        The ID of resource.
+        """
+        return pulumi.get(self, "resource_id")
+
+    @property
+    @pulumi.getter(name="resourceType")
+    def resource_type(self) -> str:
+        """
+        The type of resource. Valid values: `vpc`, `subnet`, `eni`.
+        """
+        return pulumi.get(self, "resource_type")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of flow log. Valid values: `Active`, `Pending`, `Inactive`, `Creating`, `Deleting`.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.FlowLogsFlowLogTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="trafficType")
+    def traffic_type(self) -> str:
+        """
+        The type of traffic. Valid values: `All`, `Allow`, `Drop`.
+        """
+        return pulumi.get(self, "traffic_type")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        """
+        The updated time of flow log.
+        """
+        return pulumi.get(self, "updated_at")
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        """
+        The ID of VPC.
+        """
+        return pulumi.get(self, "vpc_id")
+
+
+@pulumi.output_type
+class FlowLogsFlowLogTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class FlowLogsTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
 
 @pulumi.output_type
 class HaVipTag(dict):
@@ -3242,6 +3570,1240 @@ class SubnetsTagResult(dict):
 
 
 @pulumi.output_type
+class TrafficMirrorFilterRulesTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class TrafficMirrorFilterRulesTrafficMirrorFilterRuleResult(dict):
+    def __init__(__self__, *,
+                 created_at: str,
+                 description: str,
+                 destination_cidr_block: str,
+                 destination_port_range: str,
+                 id: str,
+                 policy: str,
+                 priority: int,
+                 protocol: str,
+                 source_cidr_block: str,
+                 source_port_range: str,
+                 status: str,
+                 traffic_direction: str,
+                 traffic_mirror_filter_id: str,
+                 traffic_mirror_filter_rule_id: str,
+                 updated_at: str):
+        """
+        :param str created_at: The create time of traffic mirror filter rule.
+        :param str description: The description of traffic mirror filter rule.
+        :param str destination_cidr_block: The destination cidr block of traffic mirror filter rule.
+        :param str destination_port_range: The destination port range of traffic mirror filter rule.
+        :param str id: The ID of traffic mirror filter rule.
+        :param str policy: The policy of traffic mirror filter rule.
+        :param int priority: The priority of traffic mirror filter rule.
+        :param str protocol: The protocol of traffic mirror filter rule.
+        :param str source_cidr_block: The source cidr block of traffic mirror filter rule.
+        :param str source_port_range: The source port range of traffic mirror filter rule.
+        :param str status: The status of traffic mirror filter rule.
+        :param str traffic_direction: The traffic direction of traffic mirror filter rule.
+        :param str traffic_mirror_filter_id: The ID of traffic mirror filter.
+        :param str traffic_mirror_filter_rule_id: The ID of traffic mirror filter rule.
+        :param str updated_at: The last update time of traffic mirror filter rule.
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "destination_cidr_block", destination_cidr_block)
+        pulumi.set(__self__, "destination_port_range", destination_port_range)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "policy", policy)
+        pulumi.set(__self__, "priority", priority)
+        pulumi.set(__self__, "protocol", protocol)
+        pulumi.set(__self__, "source_cidr_block", source_cidr_block)
+        pulumi.set(__self__, "source_port_range", source_port_range)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "traffic_direction", traffic_direction)
+        pulumi.set(__self__, "traffic_mirror_filter_id", traffic_mirror_filter_id)
+        pulumi.set(__self__, "traffic_mirror_filter_rule_id", traffic_mirror_filter_rule_id)
+        pulumi.set(__self__, "updated_at", updated_at)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        """
+        The create time of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="destinationCidrBlock")
+    def destination_cidr_block(self) -> str:
+        """
+        The destination cidr block of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "destination_cidr_block")
+
+    @property
+    @pulumi.getter(name="destinationPortRange")
+    def destination_port_range(self) -> str:
+        """
+        The destination port range of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "destination_port_range")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def policy(self) -> str:
+        """
+        The policy of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "policy")
+
+    @property
+    @pulumi.getter
+    def priority(self) -> int:
+        """
+        The priority of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "priority")
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> str:
+        """
+        The protocol of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "protocol")
+
+    @property
+    @pulumi.getter(name="sourceCidrBlock")
+    def source_cidr_block(self) -> str:
+        """
+        The source cidr block of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "source_cidr_block")
+
+    @property
+    @pulumi.getter(name="sourcePortRange")
+    def source_port_range(self) -> str:
+        """
+        The source port range of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "source_port_range")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="trafficDirection")
+    def traffic_direction(self) -> str:
+        """
+        The traffic direction of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "traffic_direction")
+
+    @property
+    @pulumi.getter(name="trafficMirrorFilterId")
+    def traffic_mirror_filter_id(self) -> str:
+        """
+        The ID of traffic mirror filter.
+        """
+        return pulumi.get(self, "traffic_mirror_filter_id")
+
+    @property
+    @pulumi.getter(name="trafficMirrorFilterRuleId")
+    def traffic_mirror_filter_rule_id(self) -> str:
+        """
+        The ID of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "traffic_mirror_filter_rule_id")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        """
+        The last update time of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class TrafficMirrorFilterTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class TrafficMirrorFiltersTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class TrafficMirrorFiltersTrafficMirrorFilterResult(dict):
+    def __init__(__self__, *,
+                 created_at: str,
+                 description: str,
+                 egress_filter_rules: Sequence['outputs.TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleResult'],
+                 id: str,
+                 ingress_filter_rules: Sequence['outputs.TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleResult'],
+                 project_name: str,
+                 status: str,
+                 tags: Sequence['outputs.TrafficMirrorFiltersTrafficMirrorFilterTagResult'],
+                 traffic_mirror_filter_id: str,
+                 traffic_mirror_filter_name: str,
+                 updated_at: str):
+        """
+        :param str created_at: The create time of traffic mirror filter rule.
+        :param str description: The description of traffic mirror filter rule.
+        :param Sequence['TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArgs'] egress_filter_rules: The ingress filter rules of traffic mirror filter.
+        :param str id: The ID of traffic mirror filter.
+        :param Sequence['TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArgs'] ingress_filter_rules: The ingress filter rules of traffic mirror filter.
+        :param str project_name: The project name of traffic mirror filter.
+        :param str status: The status of traffic mirror filter.
+        :param Sequence['TrafficMirrorFiltersTrafficMirrorFilterTagArgs'] tags: Tags.
+        :param str traffic_mirror_filter_id: The ID of traffic mirror filter.
+        :param str traffic_mirror_filter_name: The name of traffic mirror filter.
+        :param str updated_at: The last update time of traffic mirror filter.
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "egress_filter_rules", egress_filter_rules)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "ingress_filter_rules", ingress_filter_rules)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "traffic_mirror_filter_id", traffic_mirror_filter_id)
+        pulumi.set(__self__, "traffic_mirror_filter_name", traffic_mirror_filter_name)
+        pulumi.set(__self__, "updated_at", updated_at)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        """
+        The create time of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="egressFilterRules")
+    def egress_filter_rules(self) -> Sequence['outputs.TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleResult']:
+        """
+        The ingress filter rules of traffic mirror filter.
+        """
+        return pulumi.get(self, "egress_filter_rules")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of traffic mirror filter.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="ingressFilterRules")
+    def ingress_filter_rules(self) -> Sequence['outputs.TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleResult']:
+        """
+        The ingress filter rules of traffic mirror filter.
+        """
+        return pulumi.get(self, "ingress_filter_rules")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of traffic mirror filter.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of traffic mirror filter.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.TrafficMirrorFiltersTrafficMirrorFilterTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="trafficMirrorFilterId")
+    def traffic_mirror_filter_id(self) -> str:
+        """
+        The ID of traffic mirror filter.
+        """
+        return pulumi.get(self, "traffic_mirror_filter_id")
+
+    @property
+    @pulumi.getter(name="trafficMirrorFilterName")
+    def traffic_mirror_filter_name(self) -> str:
+        """
+        The name of traffic mirror filter.
+        """
+        return pulumi.get(self, "traffic_mirror_filter_name")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        """
+        The last update time of traffic mirror filter.
+        """
+        return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleResult(dict):
+    def __init__(__self__, *,
+                 created_at: str,
+                 description: str,
+                 destination_cidr_block: str,
+                 destination_port_range: str,
+                 policy: str,
+                 priority: int,
+                 protocol: str,
+                 source_cidr_block: str,
+                 source_port_range: str,
+                 status: str,
+                 traffic_direction: str,
+                 traffic_mirror_filter_id: str,
+                 traffic_mirror_filter_rule_id: str,
+                 updated_at: str):
+        """
+        :param str created_at: The create time of traffic mirror filter rule.
+        :param str description: The description of traffic mirror filter rule.
+        :param str destination_cidr_block: The destination cidr block of traffic mirror filter rule.
+        :param str destination_port_range: The destination port range of traffic mirror filter rule.
+        :param str policy: The policy of traffic mirror filter rule.
+        :param int priority: The priority of traffic mirror filter rule.
+        :param str protocol: The protocol of traffic mirror filter rule.
+        :param str source_cidr_block: The source cidr block of traffic mirror filter rule.
+        :param str source_port_range: The source port range of traffic mirror filter rule.
+        :param str status: The status of traffic mirror filter.
+        :param str traffic_direction: The traffic direction of traffic mirror filter rule.
+        :param str traffic_mirror_filter_id: The ID of traffic mirror filter.
+        :param str traffic_mirror_filter_rule_id: The ID of traffic mirror filter rule.
+        :param str updated_at: The last update time of traffic mirror filter.
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "destination_cidr_block", destination_cidr_block)
+        pulumi.set(__self__, "destination_port_range", destination_port_range)
+        pulumi.set(__self__, "policy", policy)
+        pulumi.set(__self__, "priority", priority)
+        pulumi.set(__self__, "protocol", protocol)
+        pulumi.set(__self__, "source_cidr_block", source_cidr_block)
+        pulumi.set(__self__, "source_port_range", source_port_range)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "traffic_direction", traffic_direction)
+        pulumi.set(__self__, "traffic_mirror_filter_id", traffic_mirror_filter_id)
+        pulumi.set(__self__, "traffic_mirror_filter_rule_id", traffic_mirror_filter_rule_id)
+        pulumi.set(__self__, "updated_at", updated_at)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        """
+        The create time of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="destinationCidrBlock")
+    def destination_cidr_block(self) -> str:
+        """
+        The destination cidr block of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "destination_cidr_block")
+
+    @property
+    @pulumi.getter(name="destinationPortRange")
+    def destination_port_range(self) -> str:
+        """
+        The destination port range of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "destination_port_range")
+
+    @property
+    @pulumi.getter
+    def policy(self) -> str:
+        """
+        The policy of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "policy")
+
+    @property
+    @pulumi.getter
+    def priority(self) -> int:
+        """
+        The priority of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "priority")
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> str:
+        """
+        The protocol of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "protocol")
+
+    @property
+    @pulumi.getter(name="sourceCidrBlock")
+    def source_cidr_block(self) -> str:
+        """
+        The source cidr block of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "source_cidr_block")
+
+    @property
+    @pulumi.getter(name="sourcePortRange")
+    def source_port_range(self) -> str:
+        """
+        The source port range of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "source_port_range")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of traffic mirror filter.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="trafficDirection")
+    def traffic_direction(self) -> str:
+        """
+        The traffic direction of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "traffic_direction")
+
+    @property
+    @pulumi.getter(name="trafficMirrorFilterId")
+    def traffic_mirror_filter_id(self) -> str:
+        """
+        The ID of traffic mirror filter.
+        """
+        return pulumi.get(self, "traffic_mirror_filter_id")
+
+    @property
+    @pulumi.getter(name="trafficMirrorFilterRuleId")
+    def traffic_mirror_filter_rule_id(self) -> str:
+        """
+        The ID of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "traffic_mirror_filter_rule_id")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        """
+        The last update time of traffic mirror filter.
+        """
+        return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleResult(dict):
+    def __init__(__self__, *,
+                 created_at: str,
+                 description: str,
+                 destination_cidr_block: str,
+                 destination_port_range: str,
+                 policy: str,
+                 priority: int,
+                 protocol: str,
+                 source_cidr_block: str,
+                 source_port_range: str,
+                 status: str,
+                 traffic_direction: str,
+                 traffic_mirror_filter_id: str,
+                 traffic_mirror_filter_rule_id: str,
+                 updated_at: str):
+        """
+        :param str created_at: The create time of traffic mirror filter rule.
+        :param str description: The description of traffic mirror filter rule.
+        :param str destination_cidr_block: The destination cidr block of traffic mirror filter rule.
+        :param str destination_port_range: The destination port range of traffic mirror filter rule.
+        :param str policy: The policy of traffic mirror filter rule.
+        :param int priority: The priority of traffic mirror filter rule.
+        :param str protocol: The protocol of traffic mirror filter rule.
+        :param str source_cidr_block: The source cidr block of traffic mirror filter rule.
+        :param str source_port_range: The source port range of traffic mirror filter rule.
+        :param str status: The status of traffic mirror filter.
+        :param str traffic_direction: The traffic direction of traffic mirror filter rule.
+        :param str traffic_mirror_filter_id: The ID of traffic mirror filter.
+        :param str traffic_mirror_filter_rule_id: The ID of traffic mirror filter rule.
+        :param str updated_at: The last update time of traffic mirror filter.
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "destination_cidr_block", destination_cidr_block)
+        pulumi.set(__self__, "destination_port_range", destination_port_range)
+        pulumi.set(__self__, "policy", policy)
+        pulumi.set(__self__, "priority", priority)
+        pulumi.set(__self__, "protocol", protocol)
+        pulumi.set(__self__, "source_cidr_block", source_cidr_block)
+        pulumi.set(__self__, "source_port_range", source_port_range)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "traffic_direction", traffic_direction)
+        pulumi.set(__self__, "traffic_mirror_filter_id", traffic_mirror_filter_id)
+        pulumi.set(__self__, "traffic_mirror_filter_rule_id", traffic_mirror_filter_rule_id)
+        pulumi.set(__self__, "updated_at", updated_at)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        """
+        The create time of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="destinationCidrBlock")
+    def destination_cidr_block(self) -> str:
+        """
+        The destination cidr block of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "destination_cidr_block")
+
+    @property
+    @pulumi.getter(name="destinationPortRange")
+    def destination_port_range(self) -> str:
+        """
+        The destination port range of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "destination_port_range")
+
+    @property
+    @pulumi.getter
+    def policy(self) -> str:
+        """
+        The policy of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "policy")
+
+    @property
+    @pulumi.getter
+    def priority(self) -> int:
+        """
+        The priority of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "priority")
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> str:
+        """
+        The protocol of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "protocol")
+
+    @property
+    @pulumi.getter(name="sourceCidrBlock")
+    def source_cidr_block(self) -> str:
+        """
+        The source cidr block of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "source_cidr_block")
+
+    @property
+    @pulumi.getter(name="sourcePortRange")
+    def source_port_range(self) -> str:
+        """
+        The source port range of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "source_port_range")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of traffic mirror filter.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="trafficDirection")
+    def traffic_direction(self) -> str:
+        """
+        The traffic direction of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "traffic_direction")
+
+    @property
+    @pulumi.getter(name="trafficMirrorFilterId")
+    def traffic_mirror_filter_id(self) -> str:
+        """
+        The ID of traffic mirror filter.
+        """
+        return pulumi.get(self, "traffic_mirror_filter_id")
+
+    @property
+    @pulumi.getter(name="trafficMirrorFilterRuleId")
+    def traffic_mirror_filter_rule_id(self) -> str:
+        """
+        The ID of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "traffic_mirror_filter_rule_id")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        """
+        The last update time of traffic mirror filter.
+        """
+        return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class TrafficMirrorFiltersTrafficMirrorFilterTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class TrafficMirrorSessionTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class TrafficMirrorSessionsTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class TrafficMirrorSessionsTrafficMirrorSessionResult(dict):
+    def __init__(__self__, *,
+                 business_status: str,
+                 created_at: str,
+                 description: str,
+                 id: str,
+                 lock_reason: str,
+                 packet_length: int,
+                 priority: int,
+                 project_name: str,
+                 status: str,
+                 tags: Sequence['outputs.TrafficMirrorSessionsTrafficMirrorSessionTagResult'],
+                 traffic_mirror_filter_id: str,
+                 traffic_mirror_session_id: str,
+                 traffic_mirror_session_name: str,
+                 traffic_mirror_source_ids: Sequence[str],
+                 traffic_mirror_target_id: str,
+                 updated_at: str,
+                 virtual_network_id: int):
+        """
+        :param str business_status: The business status of traffic mirror session.
+        :param str created_at: The create time of traffic mirror session.
+        :param str description: The description of traffic mirror session.
+        :param str id: The ID of traffic mirror session.
+        :param str lock_reason: The lock reason of traffic mirror session.
+        :param int packet_length: The packet length of traffic mirror session.
+        :param int priority: The priority of traffic mirror session.
+        :param str project_name: The project name of traffic mirror session.
+        :param str status: The status of traffic mirror session.
+        :param Sequence['TrafficMirrorSessionsTrafficMirrorSessionTagArgs'] tags: Tags.
+        :param str traffic_mirror_filter_id: The ID of traffic mirror filter.
+        :param str traffic_mirror_session_id: The ID of traffic mirror session.
+        :param str traffic_mirror_session_name: The name of traffic mirror session.
+        :param Sequence[str] traffic_mirror_source_ids: The IDs of traffic mirror source.
+        :param str traffic_mirror_target_id: The ID of traffic mirror target.
+        :param str updated_at: The update time of traffic mirror session.
+        :param int virtual_network_id: The ID of virtual network.
+        """
+        pulumi.set(__self__, "business_status", business_status)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "lock_reason", lock_reason)
+        pulumi.set(__self__, "packet_length", packet_length)
+        pulumi.set(__self__, "priority", priority)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "traffic_mirror_filter_id", traffic_mirror_filter_id)
+        pulumi.set(__self__, "traffic_mirror_session_id", traffic_mirror_session_id)
+        pulumi.set(__self__, "traffic_mirror_session_name", traffic_mirror_session_name)
+        pulumi.set(__self__, "traffic_mirror_source_ids", traffic_mirror_source_ids)
+        pulumi.set(__self__, "traffic_mirror_target_id", traffic_mirror_target_id)
+        pulumi.set(__self__, "updated_at", updated_at)
+        pulumi.set(__self__, "virtual_network_id", virtual_network_id)
+
+    @property
+    @pulumi.getter(name="businessStatus")
+    def business_status(self) -> str:
+        """
+        The business status of traffic mirror session.
+        """
+        return pulumi.get(self, "business_status")
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        """
+        The create time of traffic mirror session.
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of traffic mirror session.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of traffic mirror session.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="lockReason")
+    def lock_reason(self) -> str:
+        """
+        The lock reason of traffic mirror session.
+        """
+        return pulumi.get(self, "lock_reason")
+
+    @property
+    @pulumi.getter(name="packetLength")
+    def packet_length(self) -> int:
+        """
+        The packet length of traffic mirror session.
+        """
+        return pulumi.get(self, "packet_length")
+
+    @property
+    @pulumi.getter
+    def priority(self) -> int:
+        """
+        The priority of traffic mirror session.
+        """
+        return pulumi.get(self, "priority")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of traffic mirror session.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of traffic mirror session.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.TrafficMirrorSessionsTrafficMirrorSessionTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="trafficMirrorFilterId")
+    def traffic_mirror_filter_id(self) -> str:
+        """
+        The ID of traffic mirror filter.
+        """
+        return pulumi.get(self, "traffic_mirror_filter_id")
+
+    @property
+    @pulumi.getter(name="trafficMirrorSessionId")
+    def traffic_mirror_session_id(self) -> str:
+        """
+        The ID of traffic mirror session.
+        """
+        return pulumi.get(self, "traffic_mirror_session_id")
+
+    @property
+    @pulumi.getter(name="trafficMirrorSessionName")
+    def traffic_mirror_session_name(self) -> str:
+        """
+        The name of traffic mirror session.
+        """
+        return pulumi.get(self, "traffic_mirror_session_name")
+
+    @property
+    @pulumi.getter(name="trafficMirrorSourceIds")
+    def traffic_mirror_source_ids(self) -> Sequence[str]:
+        """
+        The IDs of traffic mirror source.
+        """
+        return pulumi.get(self, "traffic_mirror_source_ids")
+
+    @property
+    @pulumi.getter(name="trafficMirrorTargetId")
+    def traffic_mirror_target_id(self) -> str:
+        """
+        The ID of traffic mirror target.
+        """
+        return pulumi.get(self, "traffic_mirror_target_id")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        """
+        The update time of traffic mirror session.
+        """
+        return pulumi.get(self, "updated_at")
+
+    @property
+    @pulumi.getter(name="virtualNetworkId")
+    def virtual_network_id(self) -> int:
+        """
+        The ID of virtual network.
+        """
+        return pulumi.get(self, "virtual_network_id")
+
+
+@pulumi.output_type
+class TrafficMirrorSessionsTrafficMirrorSessionTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class TrafficMirrorTargetTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class TrafficMirrorTargetsTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class TrafficMirrorTargetsTrafficMirrorTargetResult(dict):
+    def __init__(__self__, *,
+                 created_at: str,
+                 description: str,
+                 id: str,
+                 instance_id: str,
+                 instance_type: str,
+                 project_name: str,
+                 status: str,
+                 tags: Sequence['outputs.TrafficMirrorTargetsTrafficMirrorTargetTagResult'],
+                 traffic_mirror_target_id: str,
+                 traffic_mirror_target_name: str,
+                 updated_at: str):
+        """
+        :param str created_at: The create time of traffic mirror target.
+        :param str description: The description of traffic mirror target.
+        :param str id: The ID of traffic mirror target.
+        :param str instance_id: The instance id of traffic mirror target.
+        :param str instance_type: The instance type of traffic mirror target.
+        :param str project_name: The project name of traffic mirror target.
+        :param str status: The status of traffic mirror target.
+        :param Sequence['TrafficMirrorTargetsTrafficMirrorTargetTagArgs'] tags: Tags.
+        :param str traffic_mirror_target_id: The ID of traffic mirror target.
+        :param str traffic_mirror_target_name: The name of traffic mirror target.
+        :param str updated_at: The update time of traffic mirror target.
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "instance_type", instance_type)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "traffic_mirror_target_id", traffic_mirror_target_id)
+        pulumi.set(__self__, "traffic_mirror_target_name", traffic_mirror_target_name)
+        pulumi.set(__self__, "updated_at", updated_at)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        """
+        The create time of traffic mirror target.
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of traffic mirror target.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of traffic mirror target.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        The instance id of traffic mirror target.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="instanceType")
+    def instance_type(self) -> str:
+        """
+        The instance type of traffic mirror target.
+        """
+        return pulumi.get(self, "instance_type")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of traffic mirror target.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of traffic mirror target.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.TrafficMirrorTargetsTrafficMirrorTargetTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="trafficMirrorTargetId")
+    def traffic_mirror_target_id(self) -> str:
+        """
+        The ID of traffic mirror target.
+        """
+        return pulumi.get(self, "traffic_mirror_target_id")
+
+    @property
+    @pulumi.getter(name="trafficMirrorTargetName")
+    def traffic_mirror_target_name(self) -> str:
+        """
+        The name of traffic mirror target.
+        """
+        return pulumi.get(self, "traffic_mirror_target_name")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        """
+        The update time of traffic mirror target.
+        """
+        return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class TrafficMirrorTargetsTrafficMirrorTargetTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class VpcAssociateCen(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -3377,6 +4939,7 @@ class VpcsVpcResult(dict):
                  nat_gateway_ids: Sequence[str],
                  project_name: str,
                  route_table_ids: Sequence[str],
+                 secondary_cidr_blocks: Sequence[str],
                  security_group_ids: Sequence[str],
                  status: str,
                  subnet_ids: Sequence[str],
@@ -3396,6 +4959,7 @@ class VpcsVpcResult(dict):
         :param Sequence[str] nat_gateway_ids: The nat gateway ID list of VPC.
         :param str project_name: The ProjectName of the VPC.
         :param Sequence[str] route_table_ids: The route table ID list of VPC.
+        :param Sequence[str] secondary_cidr_blocks: The secondary cidr block list of VPC.
         :param Sequence[str] security_group_ids: The security group ID list of VPC.
         :param str status: The status of VPC.
         :param Sequence[str] subnet_ids: The subnet ID list of VPC.
@@ -3415,6 +4979,7 @@ class VpcsVpcResult(dict):
         pulumi.set(__self__, "nat_gateway_ids", nat_gateway_ids)
         pulumi.set(__self__, "project_name", project_name)
         pulumi.set(__self__, "route_table_ids", route_table_ids)
+        pulumi.set(__self__, "secondary_cidr_blocks", secondary_cidr_blocks)
         pulumi.set(__self__, "security_group_ids", security_group_ids)
         pulumi.set(__self__, "status", status)
         pulumi.set(__self__, "subnet_ids", subnet_ids)
@@ -3510,6 +5075,14 @@ class VpcsVpcResult(dict):
         The route table ID list of VPC.
         """
         return pulumi.get(self, "route_table_ids")
+
+    @property
+    @pulumi.getter(name="secondaryCidrBlocks")
+    def secondary_cidr_blocks(self) -> Sequence[str]:
+        """
+        The secondary cidr block list of VPC.
+        """
+        return pulumi.get(self, "secondary_cidr_blocks")
 
     @property
     @pulumi.getter(name="securityGroupIds")
@@ -3610,6 +5183,269 @@ class VpcsVpcAssociateCenResult(dict):
 
 @pulumi.output_type
 class VpcsVpcTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetFlowLogsFlowLogResult(dict):
+    def __init__(__self__, *,
+                 aggregation_interval: int,
+                 business_status: str,
+                 created_at: str,
+                 description: str,
+                 flow_log_id: str,
+                 flow_log_name: str,
+                 id: str,
+                 lock_reason: str,
+                 log_project_id: str,
+                 log_topic_id: str,
+                 project_name: str,
+                 resource_id: str,
+                 resource_type: str,
+                 status: str,
+                 tags: Sequence['outputs.GetFlowLogsFlowLogTagResult'],
+                 traffic_type: str,
+                 updated_at: str,
+                 vpc_id: str):
+        """
+        :param int aggregation_interval: The aggregation interval of flow log. Unit: minute. Valid values: `1`, `5`, `10`.
+        :param str business_status: The business status of flow log.
+        :param str created_at: The created time of flow log.
+        :param str description: The description of flow log.
+        :param str flow_log_id: The ID of flow log.
+        :param str flow_log_name: The name of flow log.
+        :param str id: The ID of flow log.
+        :param str lock_reason: The reason why flow log is locked.
+        :param str log_project_id: The ID of log project.
+        :param str log_topic_id: The ID of log topic.
+        :param str project_name: The project name of flow log.
+        :param str resource_id: The ID of resource.
+        :param str resource_type: The type of resource. Valid values: `vpc`, `subnet`, `eni`.
+        :param str status: The status of flow log. Valid values: `Active`, `Pending`, `Inactive`, `Creating`, `Deleting`.
+        :param Sequence['GetFlowLogsFlowLogTagArgs'] tags: Tags.
+        :param str traffic_type: The type of traffic. Valid values: `All`, `Allow`, `Drop`.
+        :param str updated_at: The updated time of flow log.
+        :param str vpc_id: The ID of VPC.
+        """
+        pulumi.set(__self__, "aggregation_interval", aggregation_interval)
+        pulumi.set(__self__, "business_status", business_status)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "flow_log_id", flow_log_id)
+        pulumi.set(__self__, "flow_log_name", flow_log_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "lock_reason", lock_reason)
+        pulumi.set(__self__, "log_project_id", log_project_id)
+        pulumi.set(__self__, "log_topic_id", log_topic_id)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "resource_id", resource_id)
+        pulumi.set(__self__, "resource_type", resource_type)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "traffic_type", traffic_type)
+        pulumi.set(__self__, "updated_at", updated_at)
+        pulumi.set(__self__, "vpc_id", vpc_id)
+
+    @property
+    @pulumi.getter(name="aggregationInterval")
+    def aggregation_interval(self) -> int:
+        """
+        The aggregation interval of flow log. Unit: minute. Valid values: `1`, `5`, `10`.
+        """
+        return pulumi.get(self, "aggregation_interval")
+
+    @property
+    @pulumi.getter(name="businessStatus")
+    def business_status(self) -> str:
+        """
+        The business status of flow log.
+        """
+        return pulumi.get(self, "business_status")
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        """
+        The created time of flow log.
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of flow log.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="flowLogId")
+    def flow_log_id(self) -> str:
+        """
+        The ID of flow log.
+        """
+        return pulumi.get(self, "flow_log_id")
+
+    @property
+    @pulumi.getter(name="flowLogName")
+    def flow_log_name(self) -> str:
+        """
+        The name of flow log.
+        """
+        return pulumi.get(self, "flow_log_name")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of flow log.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="lockReason")
+    def lock_reason(self) -> str:
+        """
+        The reason why flow log is locked.
+        """
+        return pulumi.get(self, "lock_reason")
+
+    @property
+    @pulumi.getter(name="logProjectId")
+    def log_project_id(self) -> str:
+        """
+        The ID of log project.
+        """
+        return pulumi.get(self, "log_project_id")
+
+    @property
+    @pulumi.getter(name="logTopicId")
+    def log_topic_id(self) -> str:
+        """
+        The ID of log topic.
+        """
+        return pulumi.get(self, "log_topic_id")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of flow log.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> str:
+        """
+        The ID of resource.
+        """
+        return pulumi.get(self, "resource_id")
+
+    @property
+    @pulumi.getter(name="resourceType")
+    def resource_type(self) -> str:
+        """
+        The type of resource. Valid values: `vpc`, `subnet`, `eni`.
+        """
+        return pulumi.get(self, "resource_type")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of flow log. Valid values: `Active`, `Pending`, `Inactive`, `Creating`, `Deleting`.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetFlowLogsFlowLogTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="trafficType")
+    def traffic_type(self) -> str:
+        """
+        The type of traffic. Valid values: `All`, `Allow`, `Drop`.
+        """
+        return pulumi.get(self, "traffic_type")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        """
+        The updated time of flow log.
+        """
+        return pulumi.get(self, "updated_at")
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        """
+        The ID of VPC.
+        """
+        return pulumi.get(self, "vpc_id")
+
+
+@pulumi.output_type
+class GetFlowLogsFlowLogTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetFlowLogsTagResult(dict):
     def __init__(__self__, *,
                  key: str,
                  value: str):
@@ -6247,6 +8083,1153 @@ class GetSubnetsTagResult(dict):
 
 
 @pulumi.output_type
+class GetTrafficMirrorFilterRulesTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleResult(dict):
+    def __init__(__self__, *,
+                 created_at: str,
+                 description: str,
+                 destination_cidr_block: str,
+                 destination_port_range: str,
+                 id: str,
+                 policy: str,
+                 priority: int,
+                 protocol: str,
+                 source_cidr_block: str,
+                 source_port_range: str,
+                 status: str,
+                 traffic_direction: str,
+                 traffic_mirror_filter_id: str,
+                 traffic_mirror_filter_rule_id: str,
+                 updated_at: str):
+        """
+        :param str created_at: The create time of traffic mirror filter rule.
+        :param str description: The description of traffic mirror filter rule.
+        :param str destination_cidr_block: The destination cidr block of traffic mirror filter rule.
+        :param str destination_port_range: The destination port range of traffic mirror filter rule.
+        :param str id: The ID of traffic mirror filter rule.
+        :param str policy: The policy of traffic mirror filter rule.
+        :param int priority: The priority of traffic mirror filter rule.
+        :param str protocol: The protocol of traffic mirror filter rule.
+        :param str source_cidr_block: The source cidr block of traffic mirror filter rule.
+        :param str source_port_range: The source port range of traffic mirror filter rule.
+        :param str status: The status of traffic mirror filter rule.
+        :param str traffic_direction: The traffic direction of traffic mirror filter rule.
+        :param str traffic_mirror_filter_id: The ID of traffic mirror filter.
+        :param str traffic_mirror_filter_rule_id: The ID of traffic mirror filter rule.
+        :param str updated_at: The last update time of traffic mirror filter rule.
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "destination_cidr_block", destination_cidr_block)
+        pulumi.set(__self__, "destination_port_range", destination_port_range)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "policy", policy)
+        pulumi.set(__self__, "priority", priority)
+        pulumi.set(__self__, "protocol", protocol)
+        pulumi.set(__self__, "source_cidr_block", source_cidr_block)
+        pulumi.set(__self__, "source_port_range", source_port_range)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "traffic_direction", traffic_direction)
+        pulumi.set(__self__, "traffic_mirror_filter_id", traffic_mirror_filter_id)
+        pulumi.set(__self__, "traffic_mirror_filter_rule_id", traffic_mirror_filter_rule_id)
+        pulumi.set(__self__, "updated_at", updated_at)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        """
+        The create time of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="destinationCidrBlock")
+    def destination_cidr_block(self) -> str:
+        """
+        The destination cidr block of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "destination_cidr_block")
+
+    @property
+    @pulumi.getter(name="destinationPortRange")
+    def destination_port_range(self) -> str:
+        """
+        The destination port range of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "destination_port_range")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def policy(self) -> str:
+        """
+        The policy of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "policy")
+
+    @property
+    @pulumi.getter
+    def priority(self) -> int:
+        """
+        The priority of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "priority")
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> str:
+        """
+        The protocol of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "protocol")
+
+    @property
+    @pulumi.getter(name="sourceCidrBlock")
+    def source_cidr_block(self) -> str:
+        """
+        The source cidr block of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "source_cidr_block")
+
+    @property
+    @pulumi.getter(name="sourcePortRange")
+    def source_port_range(self) -> str:
+        """
+        The source port range of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "source_port_range")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="trafficDirection")
+    def traffic_direction(self) -> str:
+        """
+        The traffic direction of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "traffic_direction")
+
+    @property
+    @pulumi.getter(name="trafficMirrorFilterId")
+    def traffic_mirror_filter_id(self) -> str:
+        """
+        The ID of traffic mirror filter.
+        """
+        return pulumi.get(self, "traffic_mirror_filter_id")
+
+    @property
+    @pulumi.getter(name="trafficMirrorFilterRuleId")
+    def traffic_mirror_filter_rule_id(self) -> str:
+        """
+        The ID of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "traffic_mirror_filter_rule_id")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        """
+        The last update time of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class GetTrafficMirrorFiltersTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetTrafficMirrorFiltersTrafficMirrorFilterResult(dict):
+    def __init__(__self__, *,
+                 created_at: str,
+                 description: str,
+                 egress_filter_rules: Sequence['outputs.GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleResult'],
+                 id: str,
+                 ingress_filter_rules: Sequence['outputs.GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleResult'],
+                 project_name: str,
+                 status: str,
+                 tags: Sequence['outputs.GetTrafficMirrorFiltersTrafficMirrorFilterTagResult'],
+                 traffic_mirror_filter_id: str,
+                 traffic_mirror_filter_name: str,
+                 updated_at: str):
+        """
+        :param str created_at: The create time of traffic mirror filter rule.
+        :param str description: The description of traffic mirror filter rule.
+        :param Sequence['GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArgs'] egress_filter_rules: The ingress filter rules of traffic mirror filter.
+        :param str id: The ID of traffic mirror filter.
+        :param Sequence['GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArgs'] ingress_filter_rules: The ingress filter rules of traffic mirror filter.
+        :param str project_name: The project name of traffic mirror filter.
+        :param str status: The status of traffic mirror filter.
+        :param Sequence['GetTrafficMirrorFiltersTrafficMirrorFilterTagArgs'] tags: Tags.
+        :param str traffic_mirror_filter_id: The ID of traffic mirror filter.
+        :param str traffic_mirror_filter_name: The name of traffic mirror filter.
+        :param str updated_at: The last update time of traffic mirror filter.
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "egress_filter_rules", egress_filter_rules)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "ingress_filter_rules", ingress_filter_rules)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "traffic_mirror_filter_id", traffic_mirror_filter_id)
+        pulumi.set(__self__, "traffic_mirror_filter_name", traffic_mirror_filter_name)
+        pulumi.set(__self__, "updated_at", updated_at)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        """
+        The create time of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="egressFilterRules")
+    def egress_filter_rules(self) -> Sequence['outputs.GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleResult']:
+        """
+        The ingress filter rules of traffic mirror filter.
+        """
+        return pulumi.get(self, "egress_filter_rules")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of traffic mirror filter.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="ingressFilterRules")
+    def ingress_filter_rules(self) -> Sequence['outputs.GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleResult']:
+        """
+        The ingress filter rules of traffic mirror filter.
+        """
+        return pulumi.get(self, "ingress_filter_rules")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of traffic mirror filter.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of traffic mirror filter.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetTrafficMirrorFiltersTrafficMirrorFilterTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="trafficMirrorFilterId")
+    def traffic_mirror_filter_id(self) -> str:
+        """
+        The ID of traffic mirror filter.
+        """
+        return pulumi.get(self, "traffic_mirror_filter_id")
+
+    @property
+    @pulumi.getter(name="trafficMirrorFilterName")
+    def traffic_mirror_filter_name(self) -> str:
+        """
+        The name of traffic mirror filter.
+        """
+        return pulumi.get(self, "traffic_mirror_filter_name")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        """
+        The last update time of traffic mirror filter.
+        """
+        return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleResult(dict):
+    def __init__(__self__, *,
+                 created_at: str,
+                 description: str,
+                 destination_cidr_block: str,
+                 destination_port_range: str,
+                 policy: str,
+                 priority: int,
+                 protocol: str,
+                 source_cidr_block: str,
+                 source_port_range: str,
+                 status: str,
+                 traffic_direction: str,
+                 traffic_mirror_filter_id: str,
+                 traffic_mirror_filter_rule_id: str,
+                 updated_at: str):
+        """
+        :param str created_at: The create time of traffic mirror filter rule.
+        :param str description: The description of traffic mirror filter rule.
+        :param str destination_cidr_block: The destination cidr block of traffic mirror filter rule.
+        :param str destination_port_range: The destination port range of traffic mirror filter rule.
+        :param str policy: The policy of traffic mirror filter rule.
+        :param int priority: The priority of traffic mirror filter rule.
+        :param str protocol: The protocol of traffic mirror filter rule.
+        :param str source_cidr_block: The source cidr block of traffic mirror filter rule.
+        :param str source_port_range: The source port range of traffic mirror filter rule.
+        :param str status: The status of traffic mirror filter.
+        :param str traffic_direction: The traffic direction of traffic mirror filter rule.
+        :param str traffic_mirror_filter_id: The ID of traffic mirror filter.
+        :param str traffic_mirror_filter_rule_id: The ID of traffic mirror filter rule.
+        :param str updated_at: The last update time of traffic mirror filter.
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "destination_cidr_block", destination_cidr_block)
+        pulumi.set(__self__, "destination_port_range", destination_port_range)
+        pulumi.set(__self__, "policy", policy)
+        pulumi.set(__self__, "priority", priority)
+        pulumi.set(__self__, "protocol", protocol)
+        pulumi.set(__self__, "source_cidr_block", source_cidr_block)
+        pulumi.set(__self__, "source_port_range", source_port_range)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "traffic_direction", traffic_direction)
+        pulumi.set(__self__, "traffic_mirror_filter_id", traffic_mirror_filter_id)
+        pulumi.set(__self__, "traffic_mirror_filter_rule_id", traffic_mirror_filter_rule_id)
+        pulumi.set(__self__, "updated_at", updated_at)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        """
+        The create time of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="destinationCidrBlock")
+    def destination_cidr_block(self) -> str:
+        """
+        The destination cidr block of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "destination_cidr_block")
+
+    @property
+    @pulumi.getter(name="destinationPortRange")
+    def destination_port_range(self) -> str:
+        """
+        The destination port range of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "destination_port_range")
+
+    @property
+    @pulumi.getter
+    def policy(self) -> str:
+        """
+        The policy of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "policy")
+
+    @property
+    @pulumi.getter
+    def priority(self) -> int:
+        """
+        The priority of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "priority")
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> str:
+        """
+        The protocol of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "protocol")
+
+    @property
+    @pulumi.getter(name="sourceCidrBlock")
+    def source_cidr_block(self) -> str:
+        """
+        The source cidr block of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "source_cidr_block")
+
+    @property
+    @pulumi.getter(name="sourcePortRange")
+    def source_port_range(self) -> str:
+        """
+        The source port range of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "source_port_range")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of traffic mirror filter.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="trafficDirection")
+    def traffic_direction(self) -> str:
+        """
+        The traffic direction of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "traffic_direction")
+
+    @property
+    @pulumi.getter(name="trafficMirrorFilterId")
+    def traffic_mirror_filter_id(self) -> str:
+        """
+        The ID of traffic mirror filter.
+        """
+        return pulumi.get(self, "traffic_mirror_filter_id")
+
+    @property
+    @pulumi.getter(name="trafficMirrorFilterRuleId")
+    def traffic_mirror_filter_rule_id(self) -> str:
+        """
+        The ID of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "traffic_mirror_filter_rule_id")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        """
+        The last update time of traffic mirror filter.
+        """
+        return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleResult(dict):
+    def __init__(__self__, *,
+                 created_at: str,
+                 description: str,
+                 destination_cidr_block: str,
+                 destination_port_range: str,
+                 policy: str,
+                 priority: int,
+                 protocol: str,
+                 source_cidr_block: str,
+                 source_port_range: str,
+                 status: str,
+                 traffic_direction: str,
+                 traffic_mirror_filter_id: str,
+                 traffic_mirror_filter_rule_id: str,
+                 updated_at: str):
+        """
+        :param str created_at: The create time of traffic mirror filter rule.
+        :param str description: The description of traffic mirror filter rule.
+        :param str destination_cidr_block: The destination cidr block of traffic mirror filter rule.
+        :param str destination_port_range: The destination port range of traffic mirror filter rule.
+        :param str policy: The policy of traffic mirror filter rule.
+        :param int priority: The priority of traffic mirror filter rule.
+        :param str protocol: The protocol of traffic mirror filter rule.
+        :param str source_cidr_block: The source cidr block of traffic mirror filter rule.
+        :param str source_port_range: The source port range of traffic mirror filter rule.
+        :param str status: The status of traffic mirror filter.
+        :param str traffic_direction: The traffic direction of traffic mirror filter rule.
+        :param str traffic_mirror_filter_id: The ID of traffic mirror filter.
+        :param str traffic_mirror_filter_rule_id: The ID of traffic mirror filter rule.
+        :param str updated_at: The last update time of traffic mirror filter.
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "destination_cidr_block", destination_cidr_block)
+        pulumi.set(__self__, "destination_port_range", destination_port_range)
+        pulumi.set(__self__, "policy", policy)
+        pulumi.set(__self__, "priority", priority)
+        pulumi.set(__self__, "protocol", protocol)
+        pulumi.set(__self__, "source_cidr_block", source_cidr_block)
+        pulumi.set(__self__, "source_port_range", source_port_range)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "traffic_direction", traffic_direction)
+        pulumi.set(__self__, "traffic_mirror_filter_id", traffic_mirror_filter_id)
+        pulumi.set(__self__, "traffic_mirror_filter_rule_id", traffic_mirror_filter_rule_id)
+        pulumi.set(__self__, "updated_at", updated_at)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        """
+        The create time of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="destinationCidrBlock")
+    def destination_cidr_block(self) -> str:
+        """
+        The destination cidr block of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "destination_cidr_block")
+
+    @property
+    @pulumi.getter(name="destinationPortRange")
+    def destination_port_range(self) -> str:
+        """
+        The destination port range of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "destination_port_range")
+
+    @property
+    @pulumi.getter
+    def policy(self) -> str:
+        """
+        The policy of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "policy")
+
+    @property
+    @pulumi.getter
+    def priority(self) -> int:
+        """
+        The priority of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "priority")
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> str:
+        """
+        The protocol of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "protocol")
+
+    @property
+    @pulumi.getter(name="sourceCidrBlock")
+    def source_cidr_block(self) -> str:
+        """
+        The source cidr block of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "source_cidr_block")
+
+    @property
+    @pulumi.getter(name="sourcePortRange")
+    def source_port_range(self) -> str:
+        """
+        The source port range of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "source_port_range")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of traffic mirror filter.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="trafficDirection")
+    def traffic_direction(self) -> str:
+        """
+        The traffic direction of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "traffic_direction")
+
+    @property
+    @pulumi.getter(name="trafficMirrorFilterId")
+    def traffic_mirror_filter_id(self) -> str:
+        """
+        The ID of traffic mirror filter.
+        """
+        return pulumi.get(self, "traffic_mirror_filter_id")
+
+    @property
+    @pulumi.getter(name="trafficMirrorFilterRuleId")
+    def traffic_mirror_filter_rule_id(self) -> str:
+        """
+        The ID of traffic mirror filter rule.
+        """
+        return pulumi.get(self, "traffic_mirror_filter_rule_id")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        """
+        The last update time of traffic mirror filter.
+        """
+        return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class GetTrafficMirrorFiltersTrafficMirrorFilterTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetTrafficMirrorSessionsTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetTrafficMirrorSessionsTrafficMirrorSessionResult(dict):
+    def __init__(__self__, *,
+                 business_status: str,
+                 created_at: str,
+                 description: str,
+                 id: str,
+                 lock_reason: str,
+                 packet_length: int,
+                 priority: int,
+                 project_name: str,
+                 status: str,
+                 tags: Sequence['outputs.GetTrafficMirrorSessionsTrafficMirrorSessionTagResult'],
+                 traffic_mirror_filter_id: str,
+                 traffic_mirror_session_id: str,
+                 traffic_mirror_session_name: str,
+                 traffic_mirror_source_ids: Sequence[str],
+                 traffic_mirror_target_id: str,
+                 updated_at: str,
+                 virtual_network_id: int):
+        """
+        :param str business_status: The business status of traffic mirror session.
+        :param str created_at: The create time of traffic mirror session.
+        :param str description: The description of traffic mirror session.
+        :param str id: The ID of traffic mirror session.
+        :param str lock_reason: The lock reason of traffic mirror session.
+        :param int packet_length: The packet length of traffic mirror session.
+        :param int priority: The priority of traffic mirror session.
+        :param str project_name: The project name of traffic mirror session.
+        :param str status: The status of traffic mirror session.
+        :param Sequence['GetTrafficMirrorSessionsTrafficMirrorSessionTagArgs'] tags: Tags.
+        :param str traffic_mirror_filter_id: The ID of traffic mirror filter.
+        :param str traffic_mirror_session_id: The ID of traffic mirror session.
+        :param str traffic_mirror_session_name: The name of traffic mirror session.
+        :param Sequence[str] traffic_mirror_source_ids: The IDs of traffic mirror source.
+        :param str traffic_mirror_target_id: The ID of traffic mirror target.
+        :param str updated_at: The update time of traffic mirror session.
+        :param int virtual_network_id: The ID of virtual network.
+        """
+        pulumi.set(__self__, "business_status", business_status)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "lock_reason", lock_reason)
+        pulumi.set(__self__, "packet_length", packet_length)
+        pulumi.set(__self__, "priority", priority)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "traffic_mirror_filter_id", traffic_mirror_filter_id)
+        pulumi.set(__self__, "traffic_mirror_session_id", traffic_mirror_session_id)
+        pulumi.set(__self__, "traffic_mirror_session_name", traffic_mirror_session_name)
+        pulumi.set(__self__, "traffic_mirror_source_ids", traffic_mirror_source_ids)
+        pulumi.set(__self__, "traffic_mirror_target_id", traffic_mirror_target_id)
+        pulumi.set(__self__, "updated_at", updated_at)
+        pulumi.set(__self__, "virtual_network_id", virtual_network_id)
+
+    @property
+    @pulumi.getter(name="businessStatus")
+    def business_status(self) -> str:
+        """
+        The business status of traffic mirror session.
+        """
+        return pulumi.get(self, "business_status")
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        """
+        The create time of traffic mirror session.
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of traffic mirror session.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of traffic mirror session.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="lockReason")
+    def lock_reason(self) -> str:
+        """
+        The lock reason of traffic mirror session.
+        """
+        return pulumi.get(self, "lock_reason")
+
+    @property
+    @pulumi.getter(name="packetLength")
+    def packet_length(self) -> int:
+        """
+        The packet length of traffic mirror session.
+        """
+        return pulumi.get(self, "packet_length")
+
+    @property
+    @pulumi.getter
+    def priority(self) -> int:
+        """
+        The priority of traffic mirror session.
+        """
+        return pulumi.get(self, "priority")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of traffic mirror session.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of traffic mirror session.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetTrafficMirrorSessionsTrafficMirrorSessionTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="trafficMirrorFilterId")
+    def traffic_mirror_filter_id(self) -> str:
+        """
+        The ID of traffic mirror filter.
+        """
+        return pulumi.get(self, "traffic_mirror_filter_id")
+
+    @property
+    @pulumi.getter(name="trafficMirrorSessionId")
+    def traffic_mirror_session_id(self) -> str:
+        """
+        The ID of traffic mirror session.
+        """
+        return pulumi.get(self, "traffic_mirror_session_id")
+
+    @property
+    @pulumi.getter(name="trafficMirrorSessionName")
+    def traffic_mirror_session_name(self) -> str:
+        """
+        The name of traffic mirror session.
+        """
+        return pulumi.get(self, "traffic_mirror_session_name")
+
+    @property
+    @pulumi.getter(name="trafficMirrorSourceIds")
+    def traffic_mirror_source_ids(self) -> Sequence[str]:
+        """
+        The IDs of traffic mirror source.
+        """
+        return pulumi.get(self, "traffic_mirror_source_ids")
+
+    @property
+    @pulumi.getter(name="trafficMirrorTargetId")
+    def traffic_mirror_target_id(self) -> str:
+        """
+        The ID of traffic mirror target.
+        """
+        return pulumi.get(self, "traffic_mirror_target_id")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        """
+        The update time of traffic mirror session.
+        """
+        return pulumi.get(self, "updated_at")
+
+    @property
+    @pulumi.getter(name="virtualNetworkId")
+    def virtual_network_id(self) -> int:
+        """
+        The ID of virtual network.
+        """
+        return pulumi.get(self, "virtual_network_id")
+
+
+@pulumi.output_type
+class GetTrafficMirrorSessionsTrafficMirrorSessionTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetTrafficMirrorTargetsTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetTrafficMirrorTargetsTrafficMirrorTargetResult(dict):
+    def __init__(__self__, *,
+                 created_at: str,
+                 description: str,
+                 id: str,
+                 instance_id: str,
+                 instance_type: str,
+                 project_name: str,
+                 status: str,
+                 tags: Sequence['outputs.GetTrafficMirrorTargetsTrafficMirrorTargetTagResult'],
+                 traffic_mirror_target_id: str,
+                 traffic_mirror_target_name: str,
+                 updated_at: str):
+        """
+        :param str created_at: The create time of traffic mirror target.
+        :param str description: The description of traffic mirror target.
+        :param str id: The ID of traffic mirror target.
+        :param str instance_id: The instance id of traffic mirror target.
+        :param str instance_type: The instance type of traffic mirror target.
+        :param str project_name: The project name of traffic mirror target.
+        :param str status: The status of traffic mirror target.
+        :param Sequence['GetTrafficMirrorTargetsTrafficMirrorTargetTagArgs'] tags: Tags.
+        :param str traffic_mirror_target_id: The ID of traffic mirror target.
+        :param str traffic_mirror_target_name: The name of traffic mirror target.
+        :param str updated_at: The update time of traffic mirror target.
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "instance_type", instance_type)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "traffic_mirror_target_id", traffic_mirror_target_id)
+        pulumi.set(__self__, "traffic_mirror_target_name", traffic_mirror_target_name)
+        pulumi.set(__self__, "updated_at", updated_at)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        """
+        The create time of traffic mirror target.
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of traffic mirror target.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of traffic mirror target.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        The instance id of traffic mirror target.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="instanceType")
+    def instance_type(self) -> str:
+        """
+        The instance type of traffic mirror target.
+        """
+        return pulumi.get(self, "instance_type")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of traffic mirror target.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of traffic mirror target.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetTrafficMirrorTargetsTrafficMirrorTargetTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="trafficMirrorTargetId")
+    def traffic_mirror_target_id(self) -> str:
+        """
+        The ID of traffic mirror target.
+        """
+        return pulumi.get(self, "traffic_mirror_target_id")
+
+    @property
+    @pulumi.getter(name="trafficMirrorTargetName")
+    def traffic_mirror_target_name(self) -> str:
+        """
+        The name of traffic mirror target.
+        """
+        return pulumi.get(self, "traffic_mirror_target_name")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        """
+        The update time of traffic mirror target.
+        """
+        return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class GetTrafficMirrorTargetsTrafficMirrorTargetTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class GetVpcsTagResult(dict):
     def __init__(__self__, *,
                  key: str,
@@ -6289,6 +9272,7 @@ class GetVpcsVpcResult(dict):
                  nat_gateway_ids: Sequence[str],
                  project_name: str,
                  route_table_ids: Sequence[str],
+                 secondary_cidr_blocks: Sequence[str],
                  security_group_ids: Sequence[str],
                  status: str,
                  subnet_ids: Sequence[str],
@@ -6308,6 +9292,7 @@ class GetVpcsVpcResult(dict):
         :param Sequence[str] nat_gateway_ids: The nat gateway ID list of VPC.
         :param str project_name: The ProjectName of the VPC.
         :param Sequence[str] route_table_ids: The route table ID list of VPC.
+        :param Sequence[str] secondary_cidr_blocks: The secondary cidr block list of VPC.
         :param Sequence[str] security_group_ids: The security group ID list of VPC.
         :param str status: The status of VPC.
         :param Sequence[str] subnet_ids: The subnet ID list of VPC.
@@ -6327,6 +9312,7 @@ class GetVpcsVpcResult(dict):
         pulumi.set(__self__, "nat_gateway_ids", nat_gateway_ids)
         pulumi.set(__self__, "project_name", project_name)
         pulumi.set(__self__, "route_table_ids", route_table_ids)
+        pulumi.set(__self__, "secondary_cidr_blocks", secondary_cidr_blocks)
         pulumi.set(__self__, "security_group_ids", security_group_ids)
         pulumi.set(__self__, "status", status)
         pulumi.set(__self__, "subnet_ids", subnet_ids)
@@ -6422,6 +9408,14 @@ class GetVpcsVpcResult(dict):
         The route table ID list of VPC.
         """
         return pulumi.get(self, "route_table_ids")
+
+    @property
+    @pulumi.getter(name="secondaryCidrBlocks")
+    def secondary_cidr_blocks(self) -> Sequence[str]:
+        """
+        The secondary cidr block list of VPC.
+        """
+        return pulumi.get(self, "secondary_cidr_blocks")
 
     @property
     @pulumi.getter(name="securityGroupIds")
