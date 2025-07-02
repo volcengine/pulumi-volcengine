@@ -115,6 +115,12 @@ namespace Pulumi.Volcengine.Vpc
         [Input("vpcName")]
         public string? VpcName { get; set; }
 
+        /// <summary>
+        /// The owner ID of the vpc.
+        /// </summary>
+        [Input("vpcOwnerId")]
+        public int? VpcOwnerId { get; set; }
+
         public GetVpcsArgs()
         {
         }
@@ -171,6 +177,12 @@ namespace Pulumi.Volcengine.Vpc
         [Input("vpcName")]
         public Input<string>? VpcName { get; set; }
 
+        /// <summary>
+        /// The owner ID of the vpc.
+        /// </summary>
+        [Input("vpcOwnerId")]
+        public Input<int>? VpcOwnerId { get; set; }
+
         public GetVpcsInvokeArgs()
         {
         }
@@ -204,6 +216,7 @@ namespace Pulumi.Volcengine.Vpc
         /// The name of VPC.
         /// </summary>
         public readonly string? VpcName;
+        public readonly int? VpcOwnerId;
         /// <summary>
         /// The collection of Vpc query.
         /// </summary>
@@ -227,6 +240,8 @@ namespace Pulumi.Volcengine.Vpc
 
             string? vpcName,
 
+            int? vpcOwnerId,
+
             ImmutableArray<Outputs.GetVpcsVpcResult> vpcs)
         {
             Id = id;
@@ -237,6 +252,7 @@ namespace Pulumi.Volcengine.Vpc
             Tags = tags;
             TotalCount = totalCount;
             VpcName = vpcName;
+            VpcOwnerId = vpcOwnerId;
             Vpcs = vpcs;
         }
     }

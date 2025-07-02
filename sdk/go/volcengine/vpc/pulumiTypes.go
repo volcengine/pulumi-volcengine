@@ -13,6 +13,574 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type FlowLogTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// FlowLogTagInput is an input type that accepts FlowLogTagArgs and FlowLogTagOutput values.
+// You can construct a concrete instance of `FlowLogTagInput` via:
+//
+//	FlowLogTagArgs{...}
+type FlowLogTagInput interface {
+	pulumi.Input
+
+	ToFlowLogTagOutput() FlowLogTagOutput
+	ToFlowLogTagOutputWithContext(context.Context) FlowLogTagOutput
+}
+
+type FlowLogTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (FlowLogTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*FlowLogTag)(nil)).Elem()
+}
+
+func (i FlowLogTagArgs) ToFlowLogTagOutput() FlowLogTagOutput {
+	return i.ToFlowLogTagOutputWithContext(context.Background())
+}
+
+func (i FlowLogTagArgs) ToFlowLogTagOutputWithContext(ctx context.Context) FlowLogTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FlowLogTagOutput)
+}
+
+// FlowLogTagArrayInput is an input type that accepts FlowLogTagArray and FlowLogTagArrayOutput values.
+// You can construct a concrete instance of `FlowLogTagArrayInput` via:
+//
+//	FlowLogTagArray{ FlowLogTagArgs{...} }
+type FlowLogTagArrayInput interface {
+	pulumi.Input
+
+	ToFlowLogTagArrayOutput() FlowLogTagArrayOutput
+	ToFlowLogTagArrayOutputWithContext(context.Context) FlowLogTagArrayOutput
+}
+
+type FlowLogTagArray []FlowLogTagInput
+
+func (FlowLogTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FlowLogTag)(nil)).Elem()
+}
+
+func (i FlowLogTagArray) ToFlowLogTagArrayOutput() FlowLogTagArrayOutput {
+	return i.ToFlowLogTagArrayOutputWithContext(context.Background())
+}
+
+func (i FlowLogTagArray) ToFlowLogTagArrayOutputWithContext(ctx context.Context) FlowLogTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FlowLogTagArrayOutput)
+}
+
+type FlowLogTagOutput struct{ *pulumi.OutputState }
+
+func (FlowLogTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FlowLogTag)(nil)).Elem()
+}
+
+func (o FlowLogTagOutput) ToFlowLogTagOutput() FlowLogTagOutput {
+	return o
+}
+
+func (o FlowLogTagOutput) ToFlowLogTagOutputWithContext(ctx context.Context) FlowLogTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o FlowLogTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v FlowLogTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o FlowLogTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v FlowLogTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type FlowLogTagArrayOutput struct{ *pulumi.OutputState }
+
+func (FlowLogTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FlowLogTag)(nil)).Elem()
+}
+
+func (o FlowLogTagArrayOutput) ToFlowLogTagArrayOutput() FlowLogTagArrayOutput {
+	return o
+}
+
+func (o FlowLogTagArrayOutput) ToFlowLogTagArrayOutputWithContext(ctx context.Context) FlowLogTagArrayOutput {
+	return o
+}
+
+func (o FlowLogTagArrayOutput) Index(i pulumi.IntInput) FlowLogTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FlowLogTag {
+		return vs[0].([]FlowLogTag)[vs[1].(int)]
+	}).(FlowLogTagOutput)
+}
+
+type FlowLogsFlowLog struct {
+	// The aggregation interval of flow log. Unit: minute. Valid values: `1`, `5`, `10`.
+	AggregationInterval int `pulumi:"aggregationInterval"`
+	// The business status of flow log.
+	BusinessStatus string `pulumi:"businessStatus"`
+	// The created time of flow log.
+	CreatedAt string `pulumi:"createdAt"`
+	// The description of flow log.
+	Description string `pulumi:"description"`
+	// The ID of flow log.
+	FlowLogId string `pulumi:"flowLogId"`
+	// The name of flow log.
+	FlowLogName string `pulumi:"flowLogName"`
+	// The ID of flow log.
+	Id string `pulumi:"id"`
+	// The reason why flow log is locked.
+	LockReason string `pulumi:"lockReason"`
+	// The ID of log project.
+	LogProjectId string `pulumi:"logProjectId"`
+	// The ID of log topic.
+	LogTopicId string `pulumi:"logTopicId"`
+	// The project name of flow log.
+	ProjectName string `pulumi:"projectName"`
+	// The ID of resource.
+	ResourceId string `pulumi:"resourceId"`
+	// The type of resource. Valid values: `vpc`, `subnet`, `eni`.
+	ResourceType string `pulumi:"resourceType"`
+	// The status of flow log. Valid values: `Active`, `Pending`, `Inactive`, `Creating`, `Deleting`.
+	Status string `pulumi:"status"`
+	// Tags.
+	Tags []FlowLogsFlowLogTag `pulumi:"tags"`
+	// The type of traffic. Valid values: `All`, `Allow`, `Drop`.
+	TrafficType string `pulumi:"trafficType"`
+	// The updated time of flow log.
+	UpdatedAt string `pulumi:"updatedAt"`
+	// The ID of VPC.
+	VpcId string `pulumi:"vpcId"`
+}
+
+// FlowLogsFlowLogInput is an input type that accepts FlowLogsFlowLogArgs and FlowLogsFlowLogOutput values.
+// You can construct a concrete instance of `FlowLogsFlowLogInput` via:
+//
+//	FlowLogsFlowLogArgs{...}
+type FlowLogsFlowLogInput interface {
+	pulumi.Input
+
+	ToFlowLogsFlowLogOutput() FlowLogsFlowLogOutput
+	ToFlowLogsFlowLogOutputWithContext(context.Context) FlowLogsFlowLogOutput
+}
+
+type FlowLogsFlowLogArgs struct {
+	// The aggregation interval of flow log. Unit: minute. Valid values: `1`, `5`, `10`.
+	AggregationInterval pulumi.IntInput `pulumi:"aggregationInterval"`
+	// The business status of flow log.
+	BusinessStatus pulumi.StringInput `pulumi:"businessStatus"`
+	// The created time of flow log.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The description of flow log.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The ID of flow log.
+	FlowLogId pulumi.StringInput `pulumi:"flowLogId"`
+	// The name of flow log.
+	FlowLogName pulumi.StringInput `pulumi:"flowLogName"`
+	// The ID of flow log.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The reason why flow log is locked.
+	LockReason pulumi.StringInput `pulumi:"lockReason"`
+	// The ID of log project.
+	LogProjectId pulumi.StringInput `pulumi:"logProjectId"`
+	// The ID of log topic.
+	LogTopicId pulumi.StringInput `pulumi:"logTopicId"`
+	// The project name of flow log.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The ID of resource.
+	ResourceId pulumi.StringInput `pulumi:"resourceId"`
+	// The type of resource. Valid values: `vpc`, `subnet`, `eni`.
+	ResourceType pulumi.StringInput `pulumi:"resourceType"`
+	// The status of flow log. Valid values: `Active`, `Pending`, `Inactive`, `Creating`, `Deleting`.
+	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags FlowLogsFlowLogTagArrayInput `pulumi:"tags"`
+	// The type of traffic. Valid values: `All`, `Allow`, `Drop`.
+	TrafficType pulumi.StringInput `pulumi:"trafficType"`
+	// The updated time of flow log.
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+	// The ID of VPC.
+	VpcId pulumi.StringInput `pulumi:"vpcId"`
+}
+
+func (FlowLogsFlowLogArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*FlowLogsFlowLog)(nil)).Elem()
+}
+
+func (i FlowLogsFlowLogArgs) ToFlowLogsFlowLogOutput() FlowLogsFlowLogOutput {
+	return i.ToFlowLogsFlowLogOutputWithContext(context.Background())
+}
+
+func (i FlowLogsFlowLogArgs) ToFlowLogsFlowLogOutputWithContext(ctx context.Context) FlowLogsFlowLogOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FlowLogsFlowLogOutput)
+}
+
+// FlowLogsFlowLogArrayInput is an input type that accepts FlowLogsFlowLogArray and FlowLogsFlowLogArrayOutput values.
+// You can construct a concrete instance of `FlowLogsFlowLogArrayInput` via:
+//
+//	FlowLogsFlowLogArray{ FlowLogsFlowLogArgs{...} }
+type FlowLogsFlowLogArrayInput interface {
+	pulumi.Input
+
+	ToFlowLogsFlowLogArrayOutput() FlowLogsFlowLogArrayOutput
+	ToFlowLogsFlowLogArrayOutputWithContext(context.Context) FlowLogsFlowLogArrayOutput
+}
+
+type FlowLogsFlowLogArray []FlowLogsFlowLogInput
+
+func (FlowLogsFlowLogArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FlowLogsFlowLog)(nil)).Elem()
+}
+
+func (i FlowLogsFlowLogArray) ToFlowLogsFlowLogArrayOutput() FlowLogsFlowLogArrayOutput {
+	return i.ToFlowLogsFlowLogArrayOutputWithContext(context.Background())
+}
+
+func (i FlowLogsFlowLogArray) ToFlowLogsFlowLogArrayOutputWithContext(ctx context.Context) FlowLogsFlowLogArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FlowLogsFlowLogArrayOutput)
+}
+
+type FlowLogsFlowLogOutput struct{ *pulumi.OutputState }
+
+func (FlowLogsFlowLogOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FlowLogsFlowLog)(nil)).Elem()
+}
+
+func (o FlowLogsFlowLogOutput) ToFlowLogsFlowLogOutput() FlowLogsFlowLogOutput {
+	return o
+}
+
+func (o FlowLogsFlowLogOutput) ToFlowLogsFlowLogOutputWithContext(ctx context.Context) FlowLogsFlowLogOutput {
+	return o
+}
+
+// The aggregation interval of flow log. Unit: minute. Valid values: `1`, `5`, `10`.
+func (o FlowLogsFlowLogOutput) AggregationInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v FlowLogsFlowLog) int { return v.AggregationInterval }).(pulumi.IntOutput)
+}
+
+// The business status of flow log.
+func (o FlowLogsFlowLogOutput) BusinessStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v FlowLogsFlowLog) string { return v.BusinessStatus }).(pulumi.StringOutput)
+}
+
+// The created time of flow log.
+func (o FlowLogsFlowLogOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v FlowLogsFlowLog) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The description of flow log.
+func (o FlowLogsFlowLogOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v FlowLogsFlowLog) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The ID of flow log.
+func (o FlowLogsFlowLogOutput) FlowLogId() pulumi.StringOutput {
+	return o.ApplyT(func(v FlowLogsFlowLog) string { return v.FlowLogId }).(pulumi.StringOutput)
+}
+
+// The name of flow log.
+func (o FlowLogsFlowLogOutput) FlowLogName() pulumi.StringOutput {
+	return o.ApplyT(func(v FlowLogsFlowLog) string { return v.FlowLogName }).(pulumi.StringOutput)
+}
+
+// The ID of flow log.
+func (o FlowLogsFlowLogOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v FlowLogsFlowLog) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The reason why flow log is locked.
+func (o FlowLogsFlowLogOutput) LockReason() pulumi.StringOutput {
+	return o.ApplyT(func(v FlowLogsFlowLog) string { return v.LockReason }).(pulumi.StringOutput)
+}
+
+// The ID of log project.
+func (o FlowLogsFlowLogOutput) LogProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v FlowLogsFlowLog) string { return v.LogProjectId }).(pulumi.StringOutput)
+}
+
+// The ID of log topic.
+func (o FlowLogsFlowLogOutput) LogTopicId() pulumi.StringOutput {
+	return o.ApplyT(func(v FlowLogsFlowLog) string { return v.LogTopicId }).(pulumi.StringOutput)
+}
+
+// The project name of flow log.
+func (o FlowLogsFlowLogOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v FlowLogsFlowLog) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The ID of resource.
+func (o FlowLogsFlowLogOutput) ResourceId() pulumi.StringOutput {
+	return o.ApplyT(func(v FlowLogsFlowLog) string { return v.ResourceId }).(pulumi.StringOutput)
+}
+
+// The type of resource. Valid values: `vpc`, `subnet`, `eni`.
+func (o FlowLogsFlowLogOutput) ResourceType() pulumi.StringOutput {
+	return o.ApplyT(func(v FlowLogsFlowLog) string { return v.ResourceType }).(pulumi.StringOutput)
+}
+
+// The status of flow log. Valid values: `Active`, `Pending`, `Inactive`, `Creating`, `Deleting`.
+func (o FlowLogsFlowLogOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v FlowLogsFlowLog) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o FlowLogsFlowLogOutput) Tags() FlowLogsFlowLogTagArrayOutput {
+	return o.ApplyT(func(v FlowLogsFlowLog) []FlowLogsFlowLogTag { return v.Tags }).(FlowLogsFlowLogTagArrayOutput)
+}
+
+// The type of traffic. Valid values: `All`, `Allow`, `Drop`.
+func (o FlowLogsFlowLogOutput) TrafficType() pulumi.StringOutput {
+	return o.ApplyT(func(v FlowLogsFlowLog) string { return v.TrafficType }).(pulumi.StringOutput)
+}
+
+// The updated time of flow log.
+func (o FlowLogsFlowLogOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v FlowLogsFlowLog) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// The ID of VPC.
+func (o FlowLogsFlowLogOutput) VpcId() pulumi.StringOutput {
+	return o.ApplyT(func(v FlowLogsFlowLog) string { return v.VpcId }).(pulumi.StringOutput)
+}
+
+type FlowLogsFlowLogArrayOutput struct{ *pulumi.OutputState }
+
+func (FlowLogsFlowLogArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FlowLogsFlowLog)(nil)).Elem()
+}
+
+func (o FlowLogsFlowLogArrayOutput) ToFlowLogsFlowLogArrayOutput() FlowLogsFlowLogArrayOutput {
+	return o
+}
+
+func (o FlowLogsFlowLogArrayOutput) ToFlowLogsFlowLogArrayOutputWithContext(ctx context.Context) FlowLogsFlowLogArrayOutput {
+	return o
+}
+
+func (o FlowLogsFlowLogArrayOutput) Index(i pulumi.IntInput) FlowLogsFlowLogOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FlowLogsFlowLog {
+		return vs[0].([]FlowLogsFlowLog)[vs[1].(int)]
+	}).(FlowLogsFlowLogOutput)
+}
+
+type FlowLogsFlowLogTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// FlowLogsFlowLogTagInput is an input type that accepts FlowLogsFlowLogTagArgs and FlowLogsFlowLogTagOutput values.
+// You can construct a concrete instance of `FlowLogsFlowLogTagInput` via:
+//
+//	FlowLogsFlowLogTagArgs{...}
+type FlowLogsFlowLogTagInput interface {
+	pulumi.Input
+
+	ToFlowLogsFlowLogTagOutput() FlowLogsFlowLogTagOutput
+	ToFlowLogsFlowLogTagOutputWithContext(context.Context) FlowLogsFlowLogTagOutput
+}
+
+type FlowLogsFlowLogTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (FlowLogsFlowLogTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*FlowLogsFlowLogTag)(nil)).Elem()
+}
+
+func (i FlowLogsFlowLogTagArgs) ToFlowLogsFlowLogTagOutput() FlowLogsFlowLogTagOutput {
+	return i.ToFlowLogsFlowLogTagOutputWithContext(context.Background())
+}
+
+func (i FlowLogsFlowLogTagArgs) ToFlowLogsFlowLogTagOutputWithContext(ctx context.Context) FlowLogsFlowLogTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FlowLogsFlowLogTagOutput)
+}
+
+// FlowLogsFlowLogTagArrayInput is an input type that accepts FlowLogsFlowLogTagArray and FlowLogsFlowLogTagArrayOutput values.
+// You can construct a concrete instance of `FlowLogsFlowLogTagArrayInput` via:
+//
+//	FlowLogsFlowLogTagArray{ FlowLogsFlowLogTagArgs{...} }
+type FlowLogsFlowLogTagArrayInput interface {
+	pulumi.Input
+
+	ToFlowLogsFlowLogTagArrayOutput() FlowLogsFlowLogTagArrayOutput
+	ToFlowLogsFlowLogTagArrayOutputWithContext(context.Context) FlowLogsFlowLogTagArrayOutput
+}
+
+type FlowLogsFlowLogTagArray []FlowLogsFlowLogTagInput
+
+func (FlowLogsFlowLogTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FlowLogsFlowLogTag)(nil)).Elem()
+}
+
+func (i FlowLogsFlowLogTagArray) ToFlowLogsFlowLogTagArrayOutput() FlowLogsFlowLogTagArrayOutput {
+	return i.ToFlowLogsFlowLogTagArrayOutputWithContext(context.Background())
+}
+
+func (i FlowLogsFlowLogTagArray) ToFlowLogsFlowLogTagArrayOutputWithContext(ctx context.Context) FlowLogsFlowLogTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FlowLogsFlowLogTagArrayOutput)
+}
+
+type FlowLogsFlowLogTagOutput struct{ *pulumi.OutputState }
+
+func (FlowLogsFlowLogTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FlowLogsFlowLogTag)(nil)).Elem()
+}
+
+func (o FlowLogsFlowLogTagOutput) ToFlowLogsFlowLogTagOutput() FlowLogsFlowLogTagOutput {
+	return o
+}
+
+func (o FlowLogsFlowLogTagOutput) ToFlowLogsFlowLogTagOutputWithContext(ctx context.Context) FlowLogsFlowLogTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o FlowLogsFlowLogTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v FlowLogsFlowLogTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o FlowLogsFlowLogTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v FlowLogsFlowLogTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type FlowLogsFlowLogTagArrayOutput struct{ *pulumi.OutputState }
+
+func (FlowLogsFlowLogTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FlowLogsFlowLogTag)(nil)).Elem()
+}
+
+func (o FlowLogsFlowLogTagArrayOutput) ToFlowLogsFlowLogTagArrayOutput() FlowLogsFlowLogTagArrayOutput {
+	return o
+}
+
+func (o FlowLogsFlowLogTagArrayOutput) ToFlowLogsFlowLogTagArrayOutputWithContext(ctx context.Context) FlowLogsFlowLogTagArrayOutput {
+	return o
+}
+
+func (o FlowLogsFlowLogTagArrayOutput) Index(i pulumi.IntInput) FlowLogsFlowLogTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FlowLogsFlowLogTag {
+		return vs[0].([]FlowLogsFlowLogTag)[vs[1].(int)]
+	}).(FlowLogsFlowLogTagOutput)
+}
+
+type FlowLogsTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// FlowLogsTagInput is an input type that accepts FlowLogsTagArgs and FlowLogsTagOutput values.
+// You can construct a concrete instance of `FlowLogsTagInput` via:
+//
+//	FlowLogsTagArgs{...}
+type FlowLogsTagInput interface {
+	pulumi.Input
+
+	ToFlowLogsTagOutput() FlowLogsTagOutput
+	ToFlowLogsTagOutputWithContext(context.Context) FlowLogsTagOutput
+}
+
+type FlowLogsTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (FlowLogsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*FlowLogsTag)(nil)).Elem()
+}
+
+func (i FlowLogsTagArgs) ToFlowLogsTagOutput() FlowLogsTagOutput {
+	return i.ToFlowLogsTagOutputWithContext(context.Background())
+}
+
+func (i FlowLogsTagArgs) ToFlowLogsTagOutputWithContext(ctx context.Context) FlowLogsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FlowLogsTagOutput)
+}
+
+// FlowLogsTagArrayInput is an input type that accepts FlowLogsTagArray and FlowLogsTagArrayOutput values.
+// You can construct a concrete instance of `FlowLogsTagArrayInput` via:
+//
+//	FlowLogsTagArray{ FlowLogsTagArgs{...} }
+type FlowLogsTagArrayInput interface {
+	pulumi.Input
+
+	ToFlowLogsTagArrayOutput() FlowLogsTagArrayOutput
+	ToFlowLogsTagArrayOutputWithContext(context.Context) FlowLogsTagArrayOutput
+}
+
+type FlowLogsTagArray []FlowLogsTagInput
+
+func (FlowLogsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FlowLogsTag)(nil)).Elem()
+}
+
+func (i FlowLogsTagArray) ToFlowLogsTagArrayOutput() FlowLogsTagArrayOutput {
+	return i.ToFlowLogsTagArrayOutputWithContext(context.Background())
+}
+
+func (i FlowLogsTagArray) ToFlowLogsTagArrayOutputWithContext(ctx context.Context) FlowLogsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FlowLogsTagArrayOutput)
+}
+
+type FlowLogsTagOutput struct{ *pulumi.OutputState }
+
+func (FlowLogsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FlowLogsTag)(nil)).Elem()
+}
+
+func (o FlowLogsTagOutput) ToFlowLogsTagOutput() FlowLogsTagOutput {
+	return o
+}
+
+func (o FlowLogsTagOutput) ToFlowLogsTagOutputWithContext(ctx context.Context) FlowLogsTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o FlowLogsTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v FlowLogsTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o FlowLogsTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v FlowLogsTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type FlowLogsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (FlowLogsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FlowLogsTag)(nil)).Elem()
+}
+
+func (o FlowLogsTagArrayOutput) ToFlowLogsTagArrayOutput() FlowLogsTagArrayOutput {
+	return o
+}
+
+func (o FlowLogsTagArrayOutput) ToFlowLogsTagArrayOutputWithContext(ctx context.Context) FlowLogsTagArrayOutput {
+	return o
+}
+
+func (o FlowLogsTagArrayOutput) Index(i pulumi.IntInput) FlowLogsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FlowLogsTag {
+		return vs[0].([]FlowLogsTag)[vs[1].(int)]
+	}).(FlowLogsTagOutput)
+}
+
 type HaVipTag struct {
 	// The Key of Tags.
 	Key string `pulumi:"key"`
@@ -6096,6 +6664,2348 @@ func (o SubnetsTagArrayOutput) Index(i pulumi.IntInput) SubnetsTagOutput {
 	}).(SubnetsTagOutput)
 }
 
+type TrafficMirrorFilterRulesTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// TrafficMirrorFilterRulesTagInput is an input type that accepts TrafficMirrorFilterRulesTagArgs and TrafficMirrorFilterRulesTagOutput values.
+// You can construct a concrete instance of `TrafficMirrorFilterRulesTagInput` via:
+//
+//	TrafficMirrorFilterRulesTagArgs{...}
+type TrafficMirrorFilterRulesTagInput interface {
+	pulumi.Input
+
+	ToTrafficMirrorFilterRulesTagOutput() TrafficMirrorFilterRulesTagOutput
+	ToTrafficMirrorFilterRulesTagOutputWithContext(context.Context) TrafficMirrorFilterRulesTagOutput
+}
+
+type TrafficMirrorFilterRulesTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (TrafficMirrorFilterRulesTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TrafficMirrorFilterRulesTag)(nil)).Elem()
+}
+
+func (i TrafficMirrorFilterRulesTagArgs) ToTrafficMirrorFilterRulesTagOutput() TrafficMirrorFilterRulesTagOutput {
+	return i.ToTrafficMirrorFilterRulesTagOutputWithContext(context.Background())
+}
+
+func (i TrafficMirrorFilterRulesTagArgs) ToTrafficMirrorFilterRulesTagOutputWithContext(ctx context.Context) TrafficMirrorFilterRulesTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TrafficMirrorFilterRulesTagOutput)
+}
+
+// TrafficMirrorFilterRulesTagArrayInput is an input type that accepts TrafficMirrorFilterRulesTagArray and TrafficMirrorFilterRulesTagArrayOutput values.
+// You can construct a concrete instance of `TrafficMirrorFilterRulesTagArrayInput` via:
+//
+//	TrafficMirrorFilterRulesTagArray{ TrafficMirrorFilterRulesTagArgs{...} }
+type TrafficMirrorFilterRulesTagArrayInput interface {
+	pulumi.Input
+
+	ToTrafficMirrorFilterRulesTagArrayOutput() TrafficMirrorFilterRulesTagArrayOutput
+	ToTrafficMirrorFilterRulesTagArrayOutputWithContext(context.Context) TrafficMirrorFilterRulesTagArrayOutput
+}
+
+type TrafficMirrorFilterRulesTagArray []TrafficMirrorFilterRulesTagInput
+
+func (TrafficMirrorFilterRulesTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TrafficMirrorFilterRulesTag)(nil)).Elem()
+}
+
+func (i TrafficMirrorFilterRulesTagArray) ToTrafficMirrorFilterRulesTagArrayOutput() TrafficMirrorFilterRulesTagArrayOutput {
+	return i.ToTrafficMirrorFilterRulesTagArrayOutputWithContext(context.Background())
+}
+
+func (i TrafficMirrorFilterRulesTagArray) ToTrafficMirrorFilterRulesTagArrayOutputWithContext(ctx context.Context) TrafficMirrorFilterRulesTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TrafficMirrorFilterRulesTagArrayOutput)
+}
+
+type TrafficMirrorFilterRulesTagOutput struct{ *pulumi.OutputState }
+
+func (TrafficMirrorFilterRulesTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TrafficMirrorFilterRulesTag)(nil)).Elem()
+}
+
+func (o TrafficMirrorFilterRulesTagOutput) ToTrafficMirrorFilterRulesTagOutput() TrafficMirrorFilterRulesTagOutput {
+	return o
+}
+
+func (o TrafficMirrorFilterRulesTagOutput) ToTrafficMirrorFilterRulesTagOutputWithContext(ctx context.Context) TrafficMirrorFilterRulesTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o TrafficMirrorFilterRulesTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFilterRulesTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o TrafficMirrorFilterRulesTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFilterRulesTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type TrafficMirrorFilterRulesTagArrayOutput struct{ *pulumi.OutputState }
+
+func (TrafficMirrorFilterRulesTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TrafficMirrorFilterRulesTag)(nil)).Elem()
+}
+
+func (o TrafficMirrorFilterRulesTagArrayOutput) ToTrafficMirrorFilterRulesTagArrayOutput() TrafficMirrorFilterRulesTagArrayOutput {
+	return o
+}
+
+func (o TrafficMirrorFilterRulesTagArrayOutput) ToTrafficMirrorFilterRulesTagArrayOutputWithContext(ctx context.Context) TrafficMirrorFilterRulesTagArrayOutput {
+	return o
+}
+
+func (o TrafficMirrorFilterRulesTagArrayOutput) Index(i pulumi.IntInput) TrafficMirrorFilterRulesTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TrafficMirrorFilterRulesTag {
+		return vs[0].([]TrafficMirrorFilterRulesTag)[vs[1].(int)]
+	}).(TrafficMirrorFilterRulesTagOutput)
+}
+
+type TrafficMirrorFilterRulesTrafficMirrorFilterRule struct {
+	// The create time of traffic mirror filter rule.
+	CreatedAt string `pulumi:"createdAt"`
+	// The description of traffic mirror filter rule.
+	Description string `pulumi:"description"`
+	// The destination cidr block of traffic mirror filter rule.
+	DestinationCidrBlock string `pulumi:"destinationCidrBlock"`
+	// The destination port range of traffic mirror filter rule.
+	DestinationPortRange string `pulumi:"destinationPortRange"`
+	// The ID of traffic mirror filter rule.
+	Id string `pulumi:"id"`
+	// The policy of traffic mirror filter rule.
+	Policy string `pulumi:"policy"`
+	// The priority of traffic mirror filter rule.
+	Priority int `pulumi:"priority"`
+	// The protocol of traffic mirror filter rule.
+	Protocol string `pulumi:"protocol"`
+	// The source cidr block of traffic mirror filter rule.
+	SourceCidrBlock string `pulumi:"sourceCidrBlock"`
+	// The source port range of traffic mirror filter rule.
+	SourcePortRange string `pulumi:"sourcePortRange"`
+	// The status of traffic mirror filter rule.
+	Status string `pulumi:"status"`
+	// The traffic direction of traffic mirror filter rule.
+	TrafficDirection string `pulumi:"trafficDirection"`
+	// The ID of traffic mirror filter.
+	TrafficMirrorFilterId string `pulumi:"trafficMirrorFilterId"`
+	// The ID of traffic mirror filter rule.
+	TrafficMirrorFilterRuleId string `pulumi:"trafficMirrorFilterRuleId"`
+	// The last update time of traffic mirror filter rule.
+	UpdatedAt string `pulumi:"updatedAt"`
+}
+
+// TrafficMirrorFilterRulesTrafficMirrorFilterRuleInput is an input type that accepts TrafficMirrorFilterRulesTrafficMirrorFilterRuleArgs and TrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput values.
+// You can construct a concrete instance of `TrafficMirrorFilterRulesTrafficMirrorFilterRuleInput` via:
+//
+//	TrafficMirrorFilterRulesTrafficMirrorFilterRuleArgs{...}
+type TrafficMirrorFilterRulesTrafficMirrorFilterRuleInput interface {
+	pulumi.Input
+
+	ToTrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput() TrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput
+	ToTrafficMirrorFilterRulesTrafficMirrorFilterRuleOutputWithContext(context.Context) TrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput
+}
+
+type TrafficMirrorFilterRulesTrafficMirrorFilterRuleArgs struct {
+	// The create time of traffic mirror filter rule.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The description of traffic mirror filter rule.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The destination cidr block of traffic mirror filter rule.
+	DestinationCidrBlock pulumi.StringInput `pulumi:"destinationCidrBlock"`
+	// The destination port range of traffic mirror filter rule.
+	DestinationPortRange pulumi.StringInput `pulumi:"destinationPortRange"`
+	// The ID of traffic mirror filter rule.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The policy of traffic mirror filter rule.
+	Policy pulumi.StringInput `pulumi:"policy"`
+	// The priority of traffic mirror filter rule.
+	Priority pulumi.IntInput `pulumi:"priority"`
+	// The protocol of traffic mirror filter rule.
+	Protocol pulumi.StringInput `pulumi:"protocol"`
+	// The source cidr block of traffic mirror filter rule.
+	SourceCidrBlock pulumi.StringInput `pulumi:"sourceCidrBlock"`
+	// The source port range of traffic mirror filter rule.
+	SourcePortRange pulumi.StringInput `pulumi:"sourcePortRange"`
+	// The status of traffic mirror filter rule.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The traffic direction of traffic mirror filter rule.
+	TrafficDirection pulumi.StringInput `pulumi:"trafficDirection"`
+	// The ID of traffic mirror filter.
+	TrafficMirrorFilterId pulumi.StringInput `pulumi:"trafficMirrorFilterId"`
+	// The ID of traffic mirror filter rule.
+	TrafficMirrorFilterRuleId pulumi.StringInput `pulumi:"trafficMirrorFilterRuleId"`
+	// The last update time of traffic mirror filter rule.
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+}
+
+func (TrafficMirrorFilterRulesTrafficMirrorFilterRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TrafficMirrorFilterRulesTrafficMirrorFilterRule)(nil)).Elem()
+}
+
+func (i TrafficMirrorFilterRulesTrafficMirrorFilterRuleArgs) ToTrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput() TrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput {
+	return i.ToTrafficMirrorFilterRulesTrafficMirrorFilterRuleOutputWithContext(context.Background())
+}
+
+func (i TrafficMirrorFilterRulesTrafficMirrorFilterRuleArgs) ToTrafficMirrorFilterRulesTrafficMirrorFilterRuleOutputWithContext(ctx context.Context) TrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput)
+}
+
+// TrafficMirrorFilterRulesTrafficMirrorFilterRuleArrayInput is an input type that accepts TrafficMirrorFilterRulesTrafficMirrorFilterRuleArray and TrafficMirrorFilterRulesTrafficMirrorFilterRuleArrayOutput values.
+// You can construct a concrete instance of `TrafficMirrorFilterRulesTrafficMirrorFilterRuleArrayInput` via:
+//
+//	TrafficMirrorFilterRulesTrafficMirrorFilterRuleArray{ TrafficMirrorFilterRulesTrafficMirrorFilterRuleArgs{...} }
+type TrafficMirrorFilterRulesTrafficMirrorFilterRuleArrayInput interface {
+	pulumi.Input
+
+	ToTrafficMirrorFilterRulesTrafficMirrorFilterRuleArrayOutput() TrafficMirrorFilterRulesTrafficMirrorFilterRuleArrayOutput
+	ToTrafficMirrorFilterRulesTrafficMirrorFilterRuleArrayOutputWithContext(context.Context) TrafficMirrorFilterRulesTrafficMirrorFilterRuleArrayOutput
+}
+
+type TrafficMirrorFilterRulesTrafficMirrorFilterRuleArray []TrafficMirrorFilterRulesTrafficMirrorFilterRuleInput
+
+func (TrafficMirrorFilterRulesTrafficMirrorFilterRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TrafficMirrorFilterRulesTrafficMirrorFilterRule)(nil)).Elem()
+}
+
+func (i TrafficMirrorFilterRulesTrafficMirrorFilterRuleArray) ToTrafficMirrorFilterRulesTrafficMirrorFilterRuleArrayOutput() TrafficMirrorFilterRulesTrafficMirrorFilterRuleArrayOutput {
+	return i.ToTrafficMirrorFilterRulesTrafficMirrorFilterRuleArrayOutputWithContext(context.Background())
+}
+
+func (i TrafficMirrorFilterRulesTrafficMirrorFilterRuleArray) ToTrafficMirrorFilterRulesTrafficMirrorFilterRuleArrayOutputWithContext(ctx context.Context) TrafficMirrorFilterRulesTrafficMirrorFilterRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TrafficMirrorFilterRulesTrafficMirrorFilterRuleArrayOutput)
+}
+
+type TrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput struct{ *pulumi.OutputState }
+
+func (TrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TrafficMirrorFilterRulesTrafficMirrorFilterRule)(nil)).Elem()
+}
+
+func (o TrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput) ToTrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput() TrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput {
+	return o
+}
+
+func (o TrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput) ToTrafficMirrorFilterRulesTrafficMirrorFilterRuleOutputWithContext(ctx context.Context) TrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput {
+	return o
+}
+
+// The create time of traffic mirror filter rule.
+func (o TrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFilterRulesTrafficMirrorFilterRule) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The description of traffic mirror filter rule.
+func (o TrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFilterRulesTrafficMirrorFilterRule) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The destination cidr block of traffic mirror filter rule.
+func (o TrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput) DestinationCidrBlock() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFilterRulesTrafficMirrorFilterRule) string { return v.DestinationCidrBlock }).(pulumi.StringOutput)
+}
+
+// The destination port range of traffic mirror filter rule.
+func (o TrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput) DestinationPortRange() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFilterRulesTrafficMirrorFilterRule) string { return v.DestinationPortRange }).(pulumi.StringOutput)
+}
+
+// The ID of traffic mirror filter rule.
+func (o TrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFilterRulesTrafficMirrorFilterRule) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The policy of traffic mirror filter rule.
+func (o TrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput) Policy() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFilterRulesTrafficMirrorFilterRule) string { return v.Policy }).(pulumi.StringOutput)
+}
+
+// The priority of traffic mirror filter rule.
+func (o TrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput) Priority() pulumi.IntOutput {
+	return o.ApplyT(func(v TrafficMirrorFilterRulesTrafficMirrorFilterRule) int { return v.Priority }).(pulumi.IntOutput)
+}
+
+// The protocol of traffic mirror filter rule.
+func (o TrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput) Protocol() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFilterRulesTrafficMirrorFilterRule) string { return v.Protocol }).(pulumi.StringOutput)
+}
+
+// The source cidr block of traffic mirror filter rule.
+func (o TrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput) SourceCidrBlock() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFilterRulesTrafficMirrorFilterRule) string { return v.SourceCidrBlock }).(pulumi.StringOutput)
+}
+
+// The source port range of traffic mirror filter rule.
+func (o TrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput) SourcePortRange() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFilterRulesTrafficMirrorFilterRule) string { return v.SourcePortRange }).(pulumi.StringOutput)
+}
+
+// The status of traffic mirror filter rule.
+func (o TrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFilterRulesTrafficMirrorFilterRule) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The traffic direction of traffic mirror filter rule.
+func (o TrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput) TrafficDirection() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFilterRulesTrafficMirrorFilterRule) string { return v.TrafficDirection }).(pulumi.StringOutput)
+}
+
+// The ID of traffic mirror filter.
+func (o TrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput) TrafficMirrorFilterId() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFilterRulesTrafficMirrorFilterRule) string { return v.TrafficMirrorFilterId }).(pulumi.StringOutput)
+}
+
+// The ID of traffic mirror filter rule.
+func (o TrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput) TrafficMirrorFilterRuleId() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFilterRulesTrafficMirrorFilterRule) string { return v.TrafficMirrorFilterRuleId }).(pulumi.StringOutput)
+}
+
+// The last update time of traffic mirror filter rule.
+func (o TrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFilterRulesTrafficMirrorFilterRule) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+type TrafficMirrorFilterRulesTrafficMirrorFilterRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (TrafficMirrorFilterRulesTrafficMirrorFilterRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TrafficMirrorFilterRulesTrafficMirrorFilterRule)(nil)).Elem()
+}
+
+func (o TrafficMirrorFilterRulesTrafficMirrorFilterRuleArrayOutput) ToTrafficMirrorFilterRulesTrafficMirrorFilterRuleArrayOutput() TrafficMirrorFilterRulesTrafficMirrorFilterRuleArrayOutput {
+	return o
+}
+
+func (o TrafficMirrorFilterRulesTrafficMirrorFilterRuleArrayOutput) ToTrafficMirrorFilterRulesTrafficMirrorFilterRuleArrayOutputWithContext(ctx context.Context) TrafficMirrorFilterRulesTrafficMirrorFilterRuleArrayOutput {
+	return o
+}
+
+func (o TrafficMirrorFilterRulesTrafficMirrorFilterRuleArrayOutput) Index(i pulumi.IntInput) TrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TrafficMirrorFilterRulesTrafficMirrorFilterRule {
+		return vs[0].([]TrafficMirrorFilterRulesTrafficMirrorFilterRule)[vs[1].(int)]
+	}).(TrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput)
+}
+
+type TrafficMirrorFilterTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// TrafficMirrorFilterTagInput is an input type that accepts TrafficMirrorFilterTagArgs and TrafficMirrorFilterTagOutput values.
+// You can construct a concrete instance of `TrafficMirrorFilterTagInput` via:
+//
+//	TrafficMirrorFilterTagArgs{...}
+type TrafficMirrorFilterTagInput interface {
+	pulumi.Input
+
+	ToTrafficMirrorFilterTagOutput() TrafficMirrorFilterTagOutput
+	ToTrafficMirrorFilterTagOutputWithContext(context.Context) TrafficMirrorFilterTagOutput
+}
+
+type TrafficMirrorFilterTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (TrafficMirrorFilterTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TrafficMirrorFilterTag)(nil)).Elem()
+}
+
+func (i TrafficMirrorFilterTagArgs) ToTrafficMirrorFilterTagOutput() TrafficMirrorFilterTagOutput {
+	return i.ToTrafficMirrorFilterTagOutputWithContext(context.Background())
+}
+
+func (i TrafficMirrorFilterTagArgs) ToTrafficMirrorFilterTagOutputWithContext(ctx context.Context) TrafficMirrorFilterTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TrafficMirrorFilterTagOutput)
+}
+
+// TrafficMirrorFilterTagArrayInput is an input type that accepts TrafficMirrorFilterTagArray and TrafficMirrorFilterTagArrayOutput values.
+// You can construct a concrete instance of `TrafficMirrorFilterTagArrayInput` via:
+//
+//	TrafficMirrorFilterTagArray{ TrafficMirrorFilterTagArgs{...} }
+type TrafficMirrorFilterTagArrayInput interface {
+	pulumi.Input
+
+	ToTrafficMirrorFilterTagArrayOutput() TrafficMirrorFilterTagArrayOutput
+	ToTrafficMirrorFilterTagArrayOutputWithContext(context.Context) TrafficMirrorFilterTagArrayOutput
+}
+
+type TrafficMirrorFilterTagArray []TrafficMirrorFilterTagInput
+
+func (TrafficMirrorFilterTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TrafficMirrorFilterTag)(nil)).Elem()
+}
+
+func (i TrafficMirrorFilterTagArray) ToTrafficMirrorFilterTagArrayOutput() TrafficMirrorFilterTagArrayOutput {
+	return i.ToTrafficMirrorFilterTagArrayOutputWithContext(context.Background())
+}
+
+func (i TrafficMirrorFilterTagArray) ToTrafficMirrorFilterTagArrayOutputWithContext(ctx context.Context) TrafficMirrorFilterTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TrafficMirrorFilterTagArrayOutput)
+}
+
+type TrafficMirrorFilterTagOutput struct{ *pulumi.OutputState }
+
+func (TrafficMirrorFilterTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TrafficMirrorFilterTag)(nil)).Elem()
+}
+
+func (o TrafficMirrorFilterTagOutput) ToTrafficMirrorFilterTagOutput() TrafficMirrorFilterTagOutput {
+	return o
+}
+
+func (o TrafficMirrorFilterTagOutput) ToTrafficMirrorFilterTagOutputWithContext(ctx context.Context) TrafficMirrorFilterTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o TrafficMirrorFilterTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFilterTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o TrafficMirrorFilterTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFilterTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type TrafficMirrorFilterTagArrayOutput struct{ *pulumi.OutputState }
+
+func (TrafficMirrorFilterTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TrafficMirrorFilterTag)(nil)).Elem()
+}
+
+func (o TrafficMirrorFilterTagArrayOutput) ToTrafficMirrorFilterTagArrayOutput() TrafficMirrorFilterTagArrayOutput {
+	return o
+}
+
+func (o TrafficMirrorFilterTagArrayOutput) ToTrafficMirrorFilterTagArrayOutputWithContext(ctx context.Context) TrafficMirrorFilterTagArrayOutput {
+	return o
+}
+
+func (o TrafficMirrorFilterTagArrayOutput) Index(i pulumi.IntInput) TrafficMirrorFilterTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TrafficMirrorFilterTag {
+		return vs[0].([]TrafficMirrorFilterTag)[vs[1].(int)]
+	}).(TrafficMirrorFilterTagOutput)
+}
+
+type TrafficMirrorFiltersTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// TrafficMirrorFiltersTagInput is an input type that accepts TrafficMirrorFiltersTagArgs and TrafficMirrorFiltersTagOutput values.
+// You can construct a concrete instance of `TrafficMirrorFiltersTagInput` via:
+//
+//	TrafficMirrorFiltersTagArgs{...}
+type TrafficMirrorFiltersTagInput interface {
+	pulumi.Input
+
+	ToTrafficMirrorFiltersTagOutput() TrafficMirrorFiltersTagOutput
+	ToTrafficMirrorFiltersTagOutputWithContext(context.Context) TrafficMirrorFiltersTagOutput
+}
+
+type TrafficMirrorFiltersTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (TrafficMirrorFiltersTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TrafficMirrorFiltersTag)(nil)).Elem()
+}
+
+func (i TrafficMirrorFiltersTagArgs) ToTrafficMirrorFiltersTagOutput() TrafficMirrorFiltersTagOutput {
+	return i.ToTrafficMirrorFiltersTagOutputWithContext(context.Background())
+}
+
+func (i TrafficMirrorFiltersTagArgs) ToTrafficMirrorFiltersTagOutputWithContext(ctx context.Context) TrafficMirrorFiltersTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TrafficMirrorFiltersTagOutput)
+}
+
+// TrafficMirrorFiltersTagArrayInput is an input type that accepts TrafficMirrorFiltersTagArray and TrafficMirrorFiltersTagArrayOutput values.
+// You can construct a concrete instance of `TrafficMirrorFiltersTagArrayInput` via:
+//
+//	TrafficMirrorFiltersTagArray{ TrafficMirrorFiltersTagArgs{...} }
+type TrafficMirrorFiltersTagArrayInput interface {
+	pulumi.Input
+
+	ToTrafficMirrorFiltersTagArrayOutput() TrafficMirrorFiltersTagArrayOutput
+	ToTrafficMirrorFiltersTagArrayOutputWithContext(context.Context) TrafficMirrorFiltersTagArrayOutput
+}
+
+type TrafficMirrorFiltersTagArray []TrafficMirrorFiltersTagInput
+
+func (TrafficMirrorFiltersTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TrafficMirrorFiltersTag)(nil)).Elem()
+}
+
+func (i TrafficMirrorFiltersTagArray) ToTrafficMirrorFiltersTagArrayOutput() TrafficMirrorFiltersTagArrayOutput {
+	return i.ToTrafficMirrorFiltersTagArrayOutputWithContext(context.Background())
+}
+
+func (i TrafficMirrorFiltersTagArray) ToTrafficMirrorFiltersTagArrayOutputWithContext(ctx context.Context) TrafficMirrorFiltersTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TrafficMirrorFiltersTagArrayOutput)
+}
+
+type TrafficMirrorFiltersTagOutput struct{ *pulumi.OutputState }
+
+func (TrafficMirrorFiltersTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TrafficMirrorFiltersTag)(nil)).Elem()
+}
+
+func (o TrafficMirrorFiltersTagOutput) ToTrafficMirrorFiltersTagOutput() TrafficMirrorFiltersTagOutput {
+	return o
+}
+
+func (o TrafficMirrorFiltersTagOutput) ToTrafficMirrorFiltersTagOutputWithContext(ctx context.Context) TrafficMirrorFiltersTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o TrafficMirrorFiltersTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFiltersTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o TrafficMirrorFiltersTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFiltersTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type TrafficMirrorFiltersTagArrayOutput struct{ *pulumi.OutputState }
+
+func (TrafficMirrorFiltersTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TrafficMirrorFiltersTag)(nil)).Elem()
+}
+
+func (o TrafficMirrorFiltersTagArrayOutput) ToTrafficMirrorFiltersTagArrayOutput() TrafficMirrorFiltersTagArrayOutput {
+	return o
+}
+
+func (o TrafficMirrorFiltersTagArrayOutput) ToTrafficMirrorFiltersTagArrayOutputWithContext(ctx context.Context) TrafficMirrorFiltersTagArrayOutput {
+	return o
+}
+
+func (o TrafficMirrorFiltersTagArrayOutput) Index(i pulumi.IntInput) TrafficMirrorFiltersTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TrafficMirrorFiltersTag {
+		return vs[0].([]TrafficMirrorFiltersTag)[vs[1].(int)]
+	}).(TrafficMirrorFiltersTagOutput)
+}
+
+type TrafficMirrorFiltersTrafficMirrorFilter struct {
+	// The create time of traffic mirror filter rule.
+	CreatedAt string `pulumi:"createdAt"`
+	// The description of traffic mirror filter rule.
+	Description string `pulumi:"description"`
+	// The ingress filter rules of traffic mirror filter.
+	EgressFilterRules []TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRule `pulumi:"egressFilterRules"`
+	// The ID of traffic mirror filter.
+	Id string `pulumi:"id"`
+	// The ingress filter rules of traffic mirror filter.
+	IngressFilterRules []TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRule `pulumi:"ingressFilterRules"`
+	// The project name of traffic mirror filter.
+	ProjectName string `pulumi:"projectName"`
+	// The status of traffic mirror filter.
+	Status string `pulumi:"status"`
+	// Tags.
+	Tags []TrafficMirrorFiltersTrafficMirrorFilterTag `pulumi:"tags"`
+	// The ID of traffic mirror filter.
+	TrafficMirrorFilterId string `pulumi:"trafficMirrorFilterId"`
+	// The name of traffic mirror filter.
+	TrafficMirrorFilterName string `pulumi:"trafficMirrorFilterName"`
+	// The last update time of traffic mirror filter.
+	UpdatedAt string `pulumi:"updatedAt"`
+}
+
+// TrafficMirrorFiltersTrafficMirrorFilterInput is an input type that accepts TrafficMirrorFiltersTrafficMirrorFilterArgs and TrafficMirrorFiltersTrafficMirrorFilterOutput values.
+// You can construct a concrete instance of `TrafficMirrorFiltersTrafficMirrorFilterInput` via:
+//
+//	TrafficMirrorFiltersTrafficMirrorFilterArgs{...}
+type TrafficMirrorFiltersTrafficMirrorFilterInput interface {
+	pulumi.Input
+
+	ToTrafficMirrorFiltersTrafficMirrorFilterOutput() TrafficMirrorFiltersTrafficMirrorFilterOutput
+	ToTrafficMirrorFiltersTrafficMirrorFilterOutputWithContext(context.Context) TrafficMirrorFiltersTrafficMirrorFilterOutput
+}
+
+type TrafficMirrorFiltersTrafficMirrorFilterArgs struct {
+	// The create time of traffic mirror filter rule.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The description of traffic mirror filter rule.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The ingress filter rules of traffic mirror filter.
+	EgressFilterRules TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayInput `pulumi:"egressFilterRules"`
+	// The ID of traffic mirror filter.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The ingress filter rules of traffic mirror filter.
+	IngressFilterRules TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayInput `pulumi:"ingressFilterRules"`
+	// The project name of traffic mirror filter.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The status of traffic mirror filter.
+	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags TrafficMirrorFiltersTrafficMirrorFilterTagArrayInput `pulumi:"tags"`
+	// The ID of traffic mirror filter.
+	TrafficMirrorFilterId pulumi.StringInput `pulumi:"trafficMirrorFilterId"`
+	// The name of traffic mirror filter.
+	TrafficMirrorFilterName pulumi.StringInput `pulumi:"trafficMirrorFilterName"`
+	// The last update time of traffic mirror filter.
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+}
+
+func (TrafficMirrorFiltersTrafficMirrorFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TrafficMirrorFiltersTrafficMirrorFilter)(nil)).Elem()
+}
+
+func (i TrafficMirrorFiltersTrafficMirrorFilterArgs) ToTrafficMirrorFiltersTrafficMirrorFilterOutput() TrafficMirrorFiltersTrafficMirrorFilterOutput {
+	return i.ToTrafficMirrorFiltersTrafficMirrorFilterOutputWithContext(context.Background())
+}
+
+func (i TrafficMirrorFiltersTrafficMirrorFilterArgs) ToTrafficMirrorFiltersTrafficMirrorFilterOutputWithContext(ctx context.Context) TrafficMirrorFiltersTrafficMirrorFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TrafficMirrorFiltersTrafficMirrorFilterOutput)
+}
+
+// TrafficMirrorFiltersTrafficMirrorFilterArrayInput is an input type that accepts TrafficMirrorFiltersTrafficMirrorFilterArray and TrafficMirrorFiltersTrafficMirrorFilterArrayOutput values.
+// You can construct a concrete instance of `TrafficMirrorFiltersTrafficMirrorFilterArrayInput` via:
+//
+//	TrafficMirrorFiltersTrafficMirrorFilterArray{ TrafficMirrorFiltersTrafficMirrorFilterArgs{...} }
+type TrafficMirrorFiltersTrafficMirrorFilterArrayInput interface {
+	pulumi.Input
+
+	ToTrafficMirrorFiltersTrafficMirrorFilterArrayOutput() TrafficMirrorFiltersTrafficMirrorFilterArrayOutput
+	ToTrafficMirrorFiltersTrafficMirrorFilterArrayOutputWithContext(context.Context) TrafficMirrorFiltersTrafficMirrorFilterArrayOutput
+}
+
+type TrafficMirrorFiltersTrafficMirrorFilterArray []TrafficMirrorFiltersTrafficMirrorFilterInput
+
+func (TrafficMirrorFiltersTrafficMirrorFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TrafficMirrorFiltersTrafficMirrorFilter)(nil)).Elem()
+}
+
+func (i TrafficMirrorFiltersTrafficMirrorFilterArray) ToTrafficMirrorFiltersTrafficMirrorFilterArrayOutput() TrafficMirrorFiltersTrafficMirrorFilterArrayOutput {
+	return i.ToTrafficMirrorFiltersTrafficMirrorFilterArrayOutputWithContext(context.Background())
+}
+
+func (i TrafficMirrorFiltersTrafficMirrorFilterArray) ToTrafficMirrorFiltersTrafficMirrorFilterArrayOutputWithContext(ctx context.Context) TrafficMirrorFiltersTrafficMirrorFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TrafficMirrorFiltersTrafficMirrorFilterArrayOutput)
+}
+
+type TrafficMirrorFiltersTrafficMirrorFilterOutput struct{ *pulumi.OutputState }
+
+func (TrafficMirrorFiltersTrafficMirrorFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TrafficMirrorFiltersTrafficMirrorFilter)(nil)).Elem()
+}
+
+func (o TrafficMirrorFiltersTrafficMirrorFilterOutput) ToTrafficMirrorFiltersTrafficMirrorFilterOutput() TrafficMirrorFiltersTrafficMirrorFilterOutput {
+	return o
+}
+
+func (o TrafficMirrorFiltersTrafficMirrorFilterOutput) ToTrafficMirrorFiltersTrafficMirrorFilterOutputWithContext(ctx context.Context) TrafficMirrorFiltersTrafficMirrorFilterOutput {
+	return o
+}
+
+// The create time of traffic mirror filter rule.
+func (o TrafficMirrorFiltersTrafficMirrorFilterOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFiltersTrafficMirrorFilter) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The description of traffic mirror filter rule.
+func (o TrafficMirrorFiltersTrafficMirrorFilterOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFiltersTrafficMirrorFilter) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The ingress filter rules of traffic mirror filter.
+func (o TrafficMirrorFiltersTrafficMirrorFilterOutput) EgressFilterRules() TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayOutput {
+	return o.ApplyT(func(v TrafficMirrorFiltersTrafficMirrorFilter) []TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRule {
+		return v.EgressFilterRules
+	}).(TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayOutput)
+}
+
+// The ID of traffic mirror filter.
+func (o TrafficMirrorFiltersTrafficMirrorFilterOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFiltersTrafficMirrorFilter) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The ingress filter rules of traffic mirror filter.
+func (o TrafficMirrorFiltersTrafficMirrorFilterOutput) IngressFilterRules() TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayOutput {
+	return o.ApplyT(func(v TrafficMirrorFiltersTrafficMirrorFilter) []TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRule {
+		return v.IngressFilterRules
+	}).(TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayOutput)
+}
+
+// The project name of traffic mirror filter.
+func (o TrafficMirrorFiltersTrafficMirrorFilterOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFiltersTrafficMirrorFilter) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The status of traffic mirror filter.
+func (o TrafficMirrorFiltersTrafficMirrorFilterOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFiltersTrafficMirrorFilter) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o TrafficMirrorFiltersTrafficMirrorFilterOutput) Tags() TrafficMirrorFiltersTrafficMirrorFilterTagArrayOutput {
+	return o.ApplyT(func(v TrafficMirrorFiltersTrafficMirrorFilter) []TrafficMirrorFiltersTrafficMirrorFilterTag {
+		return v.Tags
+	}).(TrafficMirrorFiltersTrafficMirrorFilterTagArrayOutput)
+}
+
+// The ID of traffic mirror filter.
+func (o TrafficMirrorFiltersTrafficMirrorFilterOutput) TrafficMirrorFilterId() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFiltersTrafficMirrorFilter) string { return v.TrafficMirrorFilterId }).(pulumi.StringOutput)
+}
+
+// The name of traffic mirror filter.
+func (o TrafficMirrorFiltersTrafficMirrorFilterOutput) TrafficMirrorFilterName() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFiltersTrafficMirrorFilter) string { return v.TrafficMirrorFilterName }).(pulumi.StringOutput)
+}
+
+// The last update time of traffic mirror filter.
+func (o TrafficMirrorFiltersTrafficMirrorFilterOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFiltersTrafficMirrorFilter) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+type TrafficMirrorFiltersTrafficMirrorFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (TrafficMirrorFiltersTrafficMirrorFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TrafficMirrorFiltersTrafficMirrorFilter)(nil)).Elem()
+}
+
+func (o TrafficMirrorFiltersTrafficMirrorFilterArrayOutput) ToTrafficMirrorFiltersTrafficMirrorFilterArrayOutput() TrafficMirrorFiltersTrafficMirrorFilterArrayOutput {
+	return o
+}
+
+func (o TrafficMirrorFiltersTrafficMirrorFilterArrayOutput) ToTrafficMirrorFiltersTrafficMirrorFilterArrayOutputWithContext(ctx context.Context) TrafficMirrorFiltersTrafficMirrorFilterArrayOutput {
+	return o
+}
+
+func (o TrafficMirrorFiltersTrafficMirrorFilterArrayOutput) Index(i pulumi.IntInput) TrafficMirrorFiltersTrafficMirrorFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TrafficMirrorFiltersTrafficMirrorFilter {
+		return vs[0].([]TrafficMirrorFiltersTrafficMirrorFilter)[vs[1].(int)]
+	}).(TrafficMirrorFiltersTrafficMirrorFilterOutput)
+}
+
+type TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRule struct {
+	// The create time of traffic mirror filter rule.
+	CreatedAt string `pulumi:"createdAt"`
+	// The description of traffic mirror filter rule.
+	Description string `pulumi:"description"`
+	// The destination cidr block of traffic mirror filter rule.
+	DestinationCidrBlock string `pulumi:"destinationCidrBlock"`
+	// The destination port range of traffic mirror filter rule.
+	DestinationPortRange string `pulumi:"destinationPortRange"`
+	// The policy of traffic mirror filter rule.
+	Policy string `pulumi:"policy"`
+	// The priority of traffic mirror filter rule.
+	Priority int `pulumi:"priority"`
+	// The protocol of traffic mirror filter rule.
+	Protocol string `pulumi:"protocol"`
+	// The source cidr block of traffic mirror filter rule.
+	SourceCidrBlock string `pulumi:"sourceCidrBlock"`
+	// The source port range of traffic mirror filter rule.
+	SourcePortRange string `pulumi:"sourcePortRange"`
+	// The status of traffic mirror filter.
+	Status string `pulumi:"status"`
+	// The traffic direction of traffic mirror filter rule.
+	TrafficDirection string `pulumi:"trafficDirection"`
+	// The ID of traffic mirror filter.
+	TrafficMirrorFilterId string `pulumi:"trafficMirrorFilterId"`
+	// The ID of traffic mirror filter rule.
+	TrafficMirrorFilterRuleId string `pulumi:"trafficMirrorFilterRuleId"`
+	// The last update time of traffic mirror filter.
+	UpdatedAt string `pulumi:"updatedAt"`
+}
+
+// TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleInput is an input type that accepts TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArgs and TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput values.
+// You can construct a concrete instance of `TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleInput` via:
+//
+//	TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArgs{...}
+type TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleInput interface {
+	pulumi.Input
+
+	ToTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput() TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput
+	ToTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutputWithContext(context.Context) TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput
+}
+
+type TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArgs struct {
+	// The create time of traffic mirror filter rule.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The description of traffic mirror filter rule.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The destination cidr block of traffic mirror filter rule.
+	DestinationCidrBlock pulumi.StringInput `pulumi:"destinationCidrBlock"`
+	// The destination port range of traffic mirror filter rule.
+	DestinationPortRange pulumi.StringInput `pulumi:"destinationPortRange"`
+	// The policy of traffic mirror filter rule.
+	Policy pulumi.StringInput `pulumi:"policy"`
+	// The priority of traffic mirror filter rule.
+	Priority pulumi.IntInput `pulumi:"priority"`
+	// The protocol of traffic mirror filter rule.
+	Protocol pulumi.StringInput `pulumi:"protocol"`
+	// The source cidr block of traffic mirror filter rule.
+	SourceCidrBlock pulumi.StringInput `pulumi:"sourceCidrBlock"`
+	// The source port range of traffic mirror filter rule.
+	SourcePortRange pulumi.StringInput `pulumi:"sourcePortRange"`
+	// The status of traffic mirror filter.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The traffic direction of traffic mirror filter rule.
+	TrafficDirection pulumi.StringInput `pulumi:"trafficDirection"`
+	// The ID of traffic mirror filter.
+	TrafficMirrorFilterId pulumi.StringInput `pulumi:"trafficMirrorFilterId"`
+	// The ID of traffic mirror filter rule.
+	TrafficMirrorFilterRuleId pulumi.StringInput `pulumi:"trafficMirrorFilterRuleId"`
+	// The last update time of traffic mirror filter.
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+}
+
+func (TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRule)(nil)).Elem()
+}
+
+func (i TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArgs) ToTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput() TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput {
+	return i.ToTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutputWithContext(context.Background())
+}
+
+func (i TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArgs) ToTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutputWithContext(ctx context.Context) TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput)
+}
+
+// TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayInput is an input type that accepts TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArray and TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayOutput values.
+// You can construct a concrete instance of `TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayInput` via:
+//
+//	TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArray{ TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArgs{...} }
+type TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayInput interface {
+	pulumi.Input
+
+	ToTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayOutput() TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayOutput
+	ToTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayOutputWithContext(context.Context) TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayOutput
+}
+
+type TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArray []TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleInput
+
+func (TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRule)(nil)).Elem()
+}
+
+func (i TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArray) ToTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayOutput() TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayOutput {
+	return i.ToTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayOutputWithContext(context.Background())
+}
+
+func (i TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArray) ToTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayOutputWithContext(ctx context.Context) TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayOutput)
+}
+
+type TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput struct{ *pulumi.OutputState }
+
+func (TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRule)(nil)).Elem()
+}
+
+func (o TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput) ToTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput() TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput {
+	return o
+}
+
+func (o TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput) ToTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutputWithContext(ctx context.Context) TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput {
+	return o
+}
+
+// The create time of traffic mirror filter rule.
+func (o TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRule) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The description of traffic mirror filter rule.
+func (o TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRule) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The destination cidr block of traffic mirror filter rule.
+func (o TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput) DestinationCidrBlock() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRule) string { return v.DestinationCidrBlock }).(pulumi.StringOutput)
+}
+
+// The destination port range of traffic mirror filter rule.
+func (o TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput) DestinationPortRange() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRule) string { return v.DestinationPortRange }).(pulumi.StringOutput)
+}
+
+// The policy of traffic mirror filter rule.
+func (o TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput) Policy() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRule) string { return v.Policy }).(pulumi.StringOutput)
+}
+
+// The priority of traffic mirror filter rule.
+func (o TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput) Priority() pulumi.IntOutput {
+	return o.ApplyT(func(v TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRule) int { return v.Priority }).(pulumi.IntOutput)
+}
+
+// The protocol of traffic mirror filter rule.
+func (o TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput) Protocol() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRule) string { return v.Protocol }).(pulumi.StringOutput)
+}
+
+// The source cidr block of traffic mirror filter rule.
+func (o TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput) SourceCidrBlock() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRule) string { return v.SourceCidrBlock }).(pulumi.StringOutput)
+}
+
+// The source port range of traffic mirror filter rule.
+func (o TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput) SourcePortRange() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRule) string { return v.SourcePortRange }).(pulumi.StringOutput)
+}
+
+// The status of traffic mirror filter.
+func (o TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRule) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The traffic direction of traffic mirror filter rule.
+func (o TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput) TrafficDirection() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRule) string { return v.TrafficDirection }).(pulumi.StringOutput)
+}
+
+// The ID of traffic mirror filter.
+func (o TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput) TrafficMirrorFilterId() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRule) string { return v.TrafficMirrorFilterId }).(pulumi.StringOutput)
+}
+
+// The ID of traffic mirror filter rule.
+func (o TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput) TrafficMirrorFilterRuleId() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRule) string {
+		return v.TrafficMirrorFilterRuleId
+	}).(pulumi.StringOutput)
+}
+
+// The last update time of traffic mirror filter.
+func (o TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRule) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+type TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRule)(nil)).Elem()
+}
+
+func (o TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayOutput) ToTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayOutput() TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayOutput {
+	return o
+}
+
+func (o TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayOutput) ToTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayOutputWithContext(ctx context.Context) TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayOutput {
+	return o
+}
+
+func (o TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayOutput) Index(i pulumi.IntInput) TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRule {
+		return vs[0].([]TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRule)[vs[1].(int)]
+	}).(TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput)
+}
+
+type TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRule struct {
+	// The create time of traffic mirror filter rule.
+	CreatedAt string `pulumi:"createdAt"`
+	// The description of traffic mirror filter rule.
+	Description string `pulumi:"description"`
+	// The destination cidr block of traffic mirror filter rule.
+	DestinationCidrBlock string `pulumi:"destinationCidrBlock"`
+	// The destination port range of traffic mirror filter rule.
+	DestinationPortRange string `pulumi:"destinationPortRange"`
+	// The policy of traffic mirror filter rule.
+	Policy string `pulumi:"policy"`
+	// The priority of traffic mirror filter rule.
+	Priority int `pulumi:"priority"`
+	// The protocol of traffic mirror filter rule.
+	Protocol string `pulumi:"protocol"`
+	// The source cidr block of traffic mirror filter rule.
+	SourceCidrBlock string `pulumi:"sourceCidrBlock"`
+	// The source port range of traffic mirror filter rule.
+	SourcePortRange string `pulumi:"sourcePortRange"`
+	// The status of traffic mirror filter.
+	Status string `pulumi:"status"`
+	// The traffic direction of traffic mirror filter rule.
+	TrafficDirection string `pulumi:"trafficDirection"`
+	// The ID of traffic mirror filter.
+	TrafficMirrorFilterId string `pulumi:"trafficMirrorFilterId"`
+	// The ID of traffic mirror filter rule.
+	TrafficMirrorFilterRuleId string `pulumi:"trafficMirrorFilterRuleId"`
+	// The last update time of traffic mirror filter.
+	UpdatedAt string `pulumi:"updatedAt"`
+}
+
+// TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleInput is an input type that accepts TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArgs and TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput values.
+// You can construct a concrete instance of `TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleInput` via:
+//
+//	TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArgs{...}
+type TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleInput interface {
+	pulumi.Input
+
+	ToTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput() TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput
+	ToTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutputWithContext(context.Context) TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput
+}
+
+type TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArgs struct {
+	// The create time of traffic mirror filter rule.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The description of traffic mirror filter rule.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The destination cidr block of traffic mirror filter rule.
+	DestinationCidrBlock pulumi.StringInput `pulumi:"destinationCidrBlock"`
+	// The destination port range of traffic mirror filter rule.
+	DestinationPortRange pulumi.StringInput `pulumi:"destinationPortRange"`
+	// The policy of traffic mirror filter rule.
+	Policy pulumi.StringInput `pulumi:"policy"`
+	// The priority of traffic mirror filter rule.
+	Priority pulumi.IntInput `pulumi:"priority"`
+	// The protocol of traffic mirror filter rule.
+	Protocol pulumi.StringInput `pulumi:"protocol"`
+	// The source cidr block of traffic mirror filter rule.
+	SourceCidrBlock pulumi.StringInput `pulumi:"sourceCidrBlock"`
+	// The source port range of traffic mirror filter rule.
+	SourcePortRange pulumi.StringInput `pulumi:"sourcePortRange"`
+	// The status of traffic mirror filter.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The traffic direction of traffic mirror filter rule.
+	TrafficDirection pulumi.StringInput `pulumi:"trafficDirection"`
+	// The ID of traffic mirror filter.
+	TrafficMirrorFilterId pulumi.StringInput `pulumi:"trafficMirrorFilterId"`
+	// The ID of traffic mirror filter rule.
+	TrafficMirrorFilterRuleId pulumi.StringInput `pulumi:"trafficMirrorFilterRuleId"`
+	// The last update time of traffic mirror filter.
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+}
+
+func (TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRule)(nil)).Elem()
+}
+
+func (i TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArgs) ToTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput() TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput {
+	return i.ToTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutputWithContext(context.Background())
+}
+
+func (i TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArgs) ToTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutputWithContext(ctx context.Context) TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput)
+}
+
+// TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayInput is an input type that accepts TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArray and TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayOutput values.
+// You can construct a concrete instance of `TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayInput` via:
+//
+//	TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArray{ TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArgs{...} }
+type TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayInput interface {
+	pulumi.Input
+
+	ToTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayOutput() TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayOutput
+	ToTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayOutputWithContext(context.Context) TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayOutput
+}
+
+type TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArray []TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleInput
+
+func (TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRule)(nil)).Elem()
+}
+
+func (i TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArray) ToTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayOutput() TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayOutput {
+	return i.ToTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayOutputWithContext(context.Background())
+}
+
+func (i TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArray) ToTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayOutputWithContext(ctx context.Context) TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayOutput)
+}
+
+type TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput struct{ *pulumi.OutputState }
+
+func (TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRule)(nil)).Elem()
+}
+
+func (o TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput) ToTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput() TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput {
+	return o
+}
+
+func (o TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput) ToTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutputWithContext(ctx context.Context) TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput {
+	return o
+}
+
+// The create time of traffic mirror filter rule.
+func (o TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRule) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The description of traffic mirror filter rule.
+func (o TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRule) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The destination cidr block of traffic mirror filter rule.
+func (o TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput) DestinationCidrBlock() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRule) string { return v.DestinationCidrBlock }).(pulumi.StringOutput)
+}
+
+// The destination port range of traffic mirror filter rule.
+func (o TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput) DestinationPortRange() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRule) string { return v.DestinationPortRange }).(pulumi.StringOutput)
+}
+
+// The policy of traffic mirror filter rule.
+func (o TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput) Policy() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRule) string { return v.Policy }).(pulumi.StringOutput)
+}
+
+// The priority of traffic mirror filter rule.
+func (o TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput) Priority() pulumi.IntOutput {
+	return o.ApplyT(func(v TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRule) int { return v.Priority }).(pulumi.IntOutput)
+}
+
+// The protocol of traffic mirror filter rule.
+func (o TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput) Protocol() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRule) string { return v.Protocol }).(pulumi.StringOutput)
+}
+
+// The source cidr block of traffic mirror filter rule.
+func (o TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput) SourceCidrBlock() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRule) string { return v.SourceCidrBlock }).(pulumi.StringOutput)
+}
+
+// The source port range of traffic mirror filter rule.
+func (o TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput) SourcePortRange() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRule) string { return v.SourcePortRange }).(pulumi.StringOutput)
+}
+
+// The status of traffic mirror filter.
+func (o TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRule) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The traffic direction of traffic mirror filter rule.
+func (o TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput) TrafficDirection() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRule) string { return v.TrafficDirection }).(pulumi.StringOutput)
+}
+
+// The ID of traffic mirror filter.
+func (o TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput) TrafficMirrorFilterId() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRule) string {
+		return v.TrafficMirrorFilterId
+	}).(pulumi.StringOutput)
+}
+
+// The ID of traffic mirror filter rule.
+func (o TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput) TrafficMirrorFilterRuleId() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRule) string {
+		return v.TrafficMirrorFilterRuleId
+	}).(pulumi.StringOutput)
+}
+
+// The last update time of traffic mirror filter.
+func (o TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRule) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+type TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRule)(nil)).Elem()
+}
+
+func (o TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayOutput) ToTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayOutput() TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayOutput {
+	return o
+}
+
+func (o TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayOutput) ToTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayOutputWithContext(ctx context.Context) TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayOutput {
+	return o
+}
+
+func (o TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayOutput) Index(i pulumi.IntInput) TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRule {
+		return vs[0].([]TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRule)[vs[1].(int)]
+	}).(TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput)
+}
+
+type TrafficMirrorFiltersTrafficMirrorFilterTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// TrafficMirrorFiltersTrafficMirrorFilterTagInput is an input type that accepts TrafficMirrorFiltersTrafficMirrorFilterTagArgs and TrafficMirrorFiltersTrafficMirrorFilterTagOutput values.
+// You can construct a concrete instance of `TrafficMirrorFiltersTrafficMirrorFilterTagInput` via:
+//
+//	TrafficMirrorFiltersTrafficMirrorFilterTagArgs{...}
+type TrafficMirrorFiltersTrafficMirrorFilterTagInput interface {
+	pulumi.Input
+
+	ToTrafficMirrorFiltersTrafficMirrorFilterTagOutput() TrafficMirrorFiltersTrafficMirrorFilterTagOutput
+	ToTrafficMirrorFiltersTrafficMirrorFilterTagOutputWithContext(context.Context) TrafficMirrorFiltersTrafficMirrorFilterTagOutput
+}
+
+type TrafficMirrorFiltersTrafficMirrorFilterTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (TrafficMirrorFiltersTrafficMirrorFilterTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TrafficMirrorFiltersTrafficMirrorFilterTag)(nil)).Elem()
+}
+
+func (i TrafficMirrorFiltersTrafficMirrorFilterTagArgs) ToTrafficMirrorFiltersTrafficMirrorFilterTagOutput() TrafficMirrorFiltersTrafficMirrorFilterTagOutput {
+	return i.ToTrafficMirrorFiltersTrafficMirrorFilterTagOutputWithContext(context.Background())
+}
+
+func (i TrafficMirrorFiltersTrafficMirrorFilterTagArgs) ToTrafficMirrorFiltersTrafficMirrorFilterTagOutputWithContext(ctx context.Context) TrafficMirrorFiltersTrafficMirrorFilterTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TrafficMirrorFiltersTrafficMirrorFilterTagOutput)
+}
+
+// TrafficMirrorFiltersTrafficMirrorFilterTagArrayInput is an input type that accepts TrafficMirrorFiltersTrafficMirrorFilterTagArray and TrafficMirrorFiltersTrafficMirrorFilterTagArrayOutput values.
+// You can construct a concrete instance of `TrafficMirrorFiltersTrafficMirrorFilterTagArrayInput` via:
+//
+//	TrafficMirrorFiltersTrafficMirrorFilterTagArray{ TrafficMirrorFiltersTrafficMirrorFilterTagArgs{...} }
+type TrafficMirrorFiltersTrafficMirrorFilterTagArrayInput interface {
+	pulumi.Input
+
+	ToTrafficMirrorFiltersTrafficMirrorFilterTagArrayOutput() TrafficMirrorFiltersTrafficMirrorFilterTagArrayOutput
+	ToTrafficMirrorFiltersTrafficMirrorFilterTagArrayOutputWithContext(context.Context) TrafficMirrorFiltersTrafficMirrorFilterTagArrayOutput
+}
+
+type TrafficMirrorFiltersTrafficMirrorFilterTagArray []TrafficMirrorFiltersTrafficMirrorFilterTagInput
+
+func (TrafficMirrorFiltersTrafficMirrorFilterTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TrafficMirrorFiltersTrafficMirrorFilterTag)(nil)).Elem()
+}
+
+func (i TrafficMirrorFiltersTrafficMirrorFilterTagArray) ToTrafficMirrorFiltersTrafficMirrorFilterTagArrayOutput() TrafficMirrorFiltersTrafficMirrorFilterTagArrayOutput {
+	return i.ToTrafficMirrorFiltersTrafficMirrorFilterTagArrayOutputWithContext(context.Background())
+}
+
+func (i TrafficMirrorFiltersTrafficMirrorFilterTagArray) ToTrafficMirrorFiltersTrafficMirrorFilterTagArrayOutputWithContext(ctx context.Context) TrafficMirrorFiltersTrafficMirrorFilterTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TrafficMirrorFiltersTrafficMirrorFilterTagArrayOutput)
+}
+
+type TrafficMirrorFiltersTrafficMirrorFilterTagOutput struct{ *pulumi.OutputState }
+
+func (TrafficMirrorFiltersTrafficMirrorFilterTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TrafficMirrorFiltersTrafficMirrorFilterTag)(nil)).Elem()
+}
+
+func (o TrafficMirrorFiltersTrafficMirrorFilterTagOutput) ToTrafficMirrorFiltersTrafficMirrorFilterTagOutput() TrafficMirrorFiltersTrafficMirrorFilterTagOutput {
+	return o
+}
+
+func (o TrafficMirrorFiltersTrafficMirrorFilterTagOutput) ToTrafficMirrorFiltersTrafficMirrorFilterTagOutputWithContext(ctx context.Context) TrafficMirrorFiltersTrafficMirrorFilterTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o TrafficMirrorFiltersTrafficMirrorFilterTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFiltersTrafficMirrorFilterTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o TrafficMirrorFiltersTrafficMirrorFilterTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorFiltersTrafficMirrorFilterTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type TrafficMirrorFiltersTrafficMirrorFilterTagArrayOutput struct{ *pulumi.OutputState }
+
+func (TrafficMirrorFiltersTrafficMirrorFilterTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TrafficMirrorFiltersTrafficMirrorFilterTag)(nil)).Elem()
+}
+
+func (o TrafficMirrorFiltersTrafficMirrorFilterTagArrayOutput) ToTrafficMirrorFiltersTrafficMirrorFilterTagArrayOutput() TrafficMirrorFiltersTrafficMirrorFilterTagArrayOutput {
+	return o
+}
+
+func (o TrafficMirrorFiltersTrafficMirrorFilterTagArrayOutput) ToTrafficMirrorFiltersTrafficMirrorFilterTagArrayOutputWithContext(ctx context.Context) TrafficMirrorFiltersTrafficMirrorFilterTagArrayOutput {
+	return o
+}
+
+func (o TrafficMirrorFiltersTrafficMirrorFilterTagArrayOutput) Index(i pulumi.IntInput) TrafficMirrorFiltersTrafficMirrorFilterTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TrafficMirrorFiltersTrafficMirrorFilterTag {
+		return vs[0].([]TrafficMirrorFiltersTrafficMirrorFilterTag)[vs[1].(int)]
+	}).(TrafficMirrorFiltersTrafficMirrorFilterTagOutput)
+}
+
+type TrafficMirrorSessionTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// TrafficMirrorSessionTagInput is an input type that accepts TrafficMirrorSessionTagArgs and TrafficMirrorSessionTagOutput values.
+// You can construct a concrete instance of `TrafficMirrorSessionTagInput` via:
+//
+//	TrafficMirrorSessionTagArgs{...}
+type TrafficMirrorSessionTagInput interface {
+	pulumi.Input
+
+	ToTrafficMirrorSessionTagOutput() TrafficMirrorSessionTagOutput
+	ToTrafficMirrorSessionTagOutputWithContext(context.Context) TrafficMirrorSessionTagOutput
+}
+
+type TrafficMirrorSessionTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (TrafficMirrorSessionTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TrafficMirrorSessionTag)(nil)).Elem()
+}
+
+func (i TrafficMirrorSessionTagArgs) ToTrafficMirrorSessionTagOutput() TrafficMirrorSessionTagOutput {
+	return i.ToTrafficMirrorSessionTagOutputWithContext(context.Background())
+}
+
+func (i TrafficMirrorSessionTagArgs) ToTrafficMirrorSessionTagOutputWithContext(ctx context.Context) TrafficMirrorSessionTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TrafficMirrorSessionTagOutput)
+}
+
+// TrafficMirrorSessionTagArrayInput is an input type that accepts TrafficMirrorSessionTagArray and TrafficMirrorSessionTagArrayOutput values.
+// You can construct a concrete instance of `TrafficMirrorSessionTagArrayInput` via:
+//
+//	TrafficMirrorSessionTagArray{ TrafficMirrorSessionTagArgs{...} }
+type TrafficMirrorSessionTagArrayInput interface {
+	pulumi.Input
+
+	ToTrafficMirrorSessionTagArrayOutput() TrafficMirrorSessionTagArrayOutput
+	ToTrafficMirrorSessionTagArrayOutputWithContext(context.Context) TrafficMirrorSessionTagArrayOutput
+}
+
+type TrafficMirrorSessionTagArray []TrafficMirrorSessionTagInput
+
+func (TrafficMirrorSessionTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TrafficMirrorSessionTag)(nil)).Elem()
+}
+
+func (i TrafficMirrorSessionTagArray) ToTrafficMirrorSessionTagArrayOutput() TrafficMirrorSessionTagArrayOutput {
+	return i.ToTrafficMirrorSessionTagArrayOutputWithContext(context.Background())
+}
+
+func (i TrafficMirrorSessionTagArray) ToTrafficMirrorSessionTagArrayOutputWithContext(ctx context.Context) TrafficMirrorSessionTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TrafficMirrorSessionTagArrayOutput)
+}
+
+type TrafficMirrorSessionTagOutput struct{ *pulumi.OutputState }
+
+func (TrafficMirrorSessionTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TrafficMirrorSessionTag)(nil)).Elem()
+}
+
+func (o TrafficMirrorSessionTagOutput) ToTrafficMirrorSessionTagOutput() TrafficMirrorSessionTagOutput {
+	return o
+}
+
+func (o TrafficMirrorSessionTagOutput) ToTrafficMirrorSessionTagOutputWithContext(ctx context.Context) TrafficMirrorSessionTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o TrafficMirrorSessionTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorSessionTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o TrafficMirrorSessionTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorSessionTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type TrafficMirrorSessionTagArrayOutput struct{ *pulumi.OutputState }
+
+func (TrafficMirrorSessionTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TrafficMirrorSessionTag)(nil)).Elem()
+}
+
+func (o TrafficMirrorSessionTagArrayOutput) ToTrafficMirrorSessionTagArrayOutput() TrafficMirrorSessionTagArrayOutput {
+	return o
+}
+
+func (o TrafficMirrorSessionTagArrayOutput) ToTrafficMirrorSessionTagArrayOutputWithContext(ctx context.Context) TrafficMirrorSessionTagArrayOutput {
+	return o
+}
+
+func (o TrafficMirrorSessionTagArrayOutput) Index(i pulumi.IntInput) TrafficMirrorSessionTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TrafficMirrorSessionTag {
+		return vs[0].([]TrafficMirrorSessionTag)[vs[1].(int)]
+	}).(TrafficMirrorSessionTagOutput)
+}
+
+type TrafficMirrorSessionsTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// TrafficMirrorSessionsTagInput is an input type that accepts TrafficMirrorSessionsTagArgs and TrafficMirrorSessionsTagOutput values.
+// You can construct a concrete instance of `TrafficMirrorSessionsTagInput` via:
+//
+//	TrafficMirrorSessionsTagArgs{...}
+type TrafficMirrorSessionsTagInput interface {
+	pulumi.Input
+
+	ToTrafficMirrorSessionsTagOutput() TrafficMirrorSessionsTagOutput
+	ToTrafficMirrorSessionsTagOutputWithContext(context.Context) TrafficMirrorSessionsTagOutput
+}
+
+type TrafficMirrorSessionsTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (TrafficMirrorSessionsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TrafficMirrorSessionsTag)(nil)).Elem()
+}
+
+func (i TrafficMirrorSessionsTagArgs) ToTrafficMirrorSessionsTagOutput() TrafficMirrorSessionsTagOutput {
+	return i.ToTrafficMirrorSessionsTagOutputWithContext(context.Background())
+}
+
+func (i TrafficMirrorSessionsTagArgs) ToTrafficMirrorSessionsTagOutputWithContext(ctx context.Context) TrafficMirrorSessionsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TrafficMirrorSessionsTagOutput)
+}
+
+// TrafficMirrorSessionsTagArrayInput is an input type that accepts TrafficMirrorSessionsTagArray and TrafficMirrorSessionsTagArrayOutput values.
+// You can construct a concrete instance of `TrafficMirrorSessionsTagArrayInput` via:
+//
+//	TrafficMirrorSessionsTagArray{ TrafficMirrorSessionsTagArgs{...} }
+type TrafficMirrorSessionsTagArrayInput interface {
+	pulumi.Input
+
+	ToTrafficMirrorSessionsTagArrayOutput() TrafficMirrorSessionsTagArrayOutput
+	ToTrafficMirrorSessionsTagArrayOutputWithContext(context.Context) TrafficMirrorSessionsTagArrayOutput
+}
+
+type TrafficMirrorSessionsTagArray []TrafficMirrorSessionsTagInput
+
+func (TrafficMirrorSessionsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TrafficMirrorSessionsTag)(nil)).Elem()
+}
+
+func (i TrafficMirrorSessionsTagArray) ToTrafficMirrorSessionsTagArrayOutput() TrafficMirrorSessionsTagArrayOutput {
+	return i.ToTrafficMirrorSessionsTagArrayOutputWithContext(context.Background())
+}
+
+func (i TrafficMirrorSessionsTagArray) ToTrafficMirrorSessionsTagArrayOutputWithContext(ctx context.Context) TrafficMirrorSessionsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TrafficMirrorSessionsTagArrayOutput)
+}
+
+type TrafficMirrorSessionsTagOutput struct{ *pulumi.OutputState }
+
+func (TrafficMirrorSessionsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TrafficMirrorSessionsTag)(nil)).Elem()
+}
+
+func (o TrafficMirrorSessionsTagOutput) ToTrafficMirrorSessionsTagOutput() TrafficMirrorSessionsTagOutput {
+	return o
+}
+
+func (o TrafficMirrorSessionsTagOutput) ToTrafficMirrorSessionsTagOutputWithContext(ctx context.Context) TrafficMirrorSessionsTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o TrafficMirrorSessionsTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorSessionsTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o TrafficMirrorSessionsTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorSessionsTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type TrafficMirrorSessionsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (TrafficMirrorSessionsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TrafficMirrorSessionsTag)(nil)).Elem()
+}
+
+func (o TrafficMirrorSessionsTagArrayOutput) ToTrafficMirrorSessionsTagArrayOutput() TrafficMirrorSessionsTagArrayOutput {
+	return o
+}
+
+func (o TrafficMirrorSessionsTagArrayOutput) ToTrafficMirrorSessionsTagArrayOutputWithContext(ctx context.Context) TrafficMirrorSessionsTagArrayOutput {
+	return o
+}
+
+func (o TrafficMirrorSessionsTagArrayOutput) Index(i pulumi.IntInput) TrafficMirrorSessionsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TrafficMirrorSessionsTag {
+		return vs[0].([]TrafficMirrorSessionsTag)[vs[1].(int)]
+	}).(TrafficMirrorSessionsTagOutput)
+}
+
+type TrafficMirrorSessionsTrafficMirrorSession struct {
+	// The business status of traffic mirror session.
+	BusinessStatus string `pulumi:"businessStatus"`
+	// The create time of traffic mirror session.
+	CreatedAt string `pulumi:"createdAt"`
+	// The description of traffic mirror session.
+	Description string `pulumi:"description"`
+	// The ID of traffic mirror session.
+	Id string `pulumi:"id"`
+	// The lock reason of traffic mirror session.
+	LockReason string `pulumi:"lockReason"`
+	// The packet length of traffic mirror session.
+	PacketLength int `pulumi:"packetLength"`
+	// The priority of traffic mirror session.
+	Priority int `pulumi:"priority"`
+	// The project name of traffic mirror session.
+	ProjectName string `pulumi:"projectName"`
+	// The status of traffic mirror session.
+	Status string `pulumi:"status"`
+	// Tags.
+	Tags []TrafficMirrorSessionsTrafficMirrorSessionTag `pulumi:"tags"`
+	// The ID of traffic mirror filter.
+	TrafficMirrorFilterId string `pulumi:"trafficMirrorFilterId"`
+	// The ID of traffic mirror session.
+	TrafficMirrorSessionId string `pulumi:"trafficMirrorSessionId"`
+	// The name of traffic mirror session.
+	TrafficMirrorSessionName string `pulumi:"trafficMirrorSessionName"`
+	// The IDs of traffic mirror source.
+	TrafficMirrorSourceIds []string `pulumi:"trafficMirrorSourceIds"`
+	// The ID of traffic mirror target.
+	TrafficMirrorTargetId string `pulumi:"trafficMirrorTargetId"`
+	// The update time of traffic mirror session.
+	UpdatedAt string `pulumi:"updatedAt"`
+	// The ID of virtual network.
+	VirtualNetworkId int `pulumi:"virtualNetworkId"`
+}
+
+// TrafficMirrorSessionsTrafficMirrorSessionInput is an input type that accepts TrafficMirrorSessionsTrafficMirrorSessionArgs and TrafficMirrorSessionsTrafficMirrorSessionOutput values.
+// You can construct a concrete instance of `TrafficMirrorSessionsTrafficMirrorSessionInput` via:
+//
+//	TrafficMirrorSessionsTrafficMirrorSessionArgs{...}
+type TrafficMirrorSessionsTrafficMirrorSessionInput interface {
+	pulumi.Input
+
+	ToTrafficMirrorSessionsTrafficMirrorSessionOutput() TrafficMirrorSessionsTrafficMirrorSessionOutput
+	ToTrafficMirrorSessionsTrafficMirrorSessionOutputWithContext(context.Context) TrafficMirrorSessionsTrafficMirrorSessionOutput
+}
+
+type TrafficMirrorSessionsTrafficMirrorSessionArgs struct {
+	// The business status of traffic mirror session.
+	BusinessStatus pulumi.StringInput `pulumi:"businessStatus"`
+	// The create time of traffic mirror session.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The description of traffic mirror session.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The ID of traffic mirror session.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The lock reason of traffic mirror session.
+	LockReason pulumi.StringInput `pulumi:"lockReason"`
+	// The packet length of traffic mirror session.
+	PacketLength pulumi.IntInput `pulumi:"packetLength"`
+	// The priority of traffic mirror session.
+	Priority pulumi.IntInput `pulumi:"priority"`
+	// The project name of traffic mirror session.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The status of traffic mirror session.
+	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags TrafficMirrorSessionsTrafficMirrorSessionTagArrayInput `pulumi:"tags"`
+	// The ID of traffic mirror filter.
+	TrafficMirrorFilterId pulumi.StringInput `pulumi:"trafficMirrorFilterId"`
+	// The ID of traffic mirror session.
+	TrafficMirrorSessionId pulumi.StringInput `pulumi:"trafficMirrorSessionId"`
+	// The name of traffic mirror session.
+	TrafficMirrorSessionName pulumi.StringInput `pulumi:"trafficMirrorSessionName"`
+	// The IDs of traffic mirror source.
+	TrafficMirrorSourceIds pulumi.StringArrayInput `pulumi:"trafficMirrorSourceIds"`
+	// The ID of traffic mirror target.
+	TrafficMirrorTargetId pulumi.StringInput `pulumi:"trafficMirrorTargetId"`
+	// The update time of traffic mirror session.
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+	// The ID of virtual network.
+	VirtualNetworkId pulumi.IntInput `pulumi:"virtualNetworkId"`
+}
+
+func (TrafficMirrorSessionsTrafficMirrorSessionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TrafficMirrorSessionsTrafficMirrorSession)(nil)).Elem()
+}
+
+func (i TrafficMirrorSessionsTrafficMirrorSessionArgs) ToTrafficMirrorSessionsTrafficMirrorSessionOutput() TrafficMirrorSessionsTrafficMirrorSessionOutput {
+	return i.ToTrafficMirrorSessionsTrafficMirrorSessionOutputWithContext(context.Background())
+}
+
+func (i TrafficMirrorSessionsTrafficMirrorSessionArgs) ToTrafficMirrorSessionsTrafficMirrorSessionOutputWithContext(ctx context.Context) TrafficMirrorSessionsTrafficMirrorSessionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TrafficMirrorSessionsTrafficMirrorSessionOutput)
+}
+
+// TrafficMirrorSessionsTrafficMirrorSessionArrayInput is an input type that accepts TrafficMirrorSessionsTrafficMirrorSessionArray and TrafficMirrorSessionsTrafficMirrorSessionArrayOutput values.
+// You can construct a concrete instance of `TrafficMirrorSessionsTrafficMirrorSessionArrayInput` via:
+//
+//	TrafficMirrorSessionsTrafficMirrorSessionArray{ TrafficMirrorSessionsTrafficMirrorSessionArgs{...} }
+type TrafficMirrorSessionsTrafficMirrorSessionArrayInput interface {
+	pulumi.Input
+
+	ToTrafficMirrorSessionsTrafficMirrorSessionArrayOutput() TrafficMirrorSessionsTrafficMirrorSessionArrayOutput
+	ToTrafficMirrorSessionsTrafficMirrorSessionArrayOutputWithContext(context.Context) TrafficMirrorSessionsTrafficMirrorSessionArrayOutput
+}
+
+type TrafficMirrorSessionsTrafficMirrorSessionArray []TrafficMirrorSessionsTrafficMirrorSessionInput
+
+func (TrafficMirrorSessionsTrafficMirrorSessionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TrafficMirrorSessionsTrafficMirrorSession)(nil)).Elem()
+}
+
+func (i TrafficMirrorSessionsTrafficMirrorSessionArray) ToTrafficMirrorSessionsTrafficMirrorSessionArrayOutput() TrafficMirrorSessionsTrafficMirrorSessionArrayOutput {
+	return i.ToTrafficMirrorSessionsTrafficMirrorSessionArrayOutputWithContext(context.Background())
+}
+
+func (i TrafficMirrorSessionsTrafficMirrorSessionArray) ToTrafficMirrorSessionsTrafficMirrorSessionArrayOutputWithContext(ctx context.Context) TrafficMirrorSessionsTrafficMirrorSessionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TrafficMirrorSessionsTrafficMirrorSessionArrayOutput)
+}
+
+type TrafficMirrorSessionsTrafficMirrorSessionOutput struct{ *pulumi.OutputState }
+
+func (TrafficMirrorSessionsTrafficMirrorSessionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TrafficMirrorSessionsTrafficMirrorSession)(nil)).Elem()
+}
+
+func (o TrafficMirrorSessionsTrafficMirrorSessionOutput) ToTrafficMirrorSessionsTrafficMirrorSessionOutput() TrafficMirrorSessionsTrafficMirrorSessionOutput {
+	return o
+}
+
+func (o TrafficMirrorSessionsTrafficMirrorSessionOutput) ToTrafficMirrorSessionsTrafficMirrorSessionOutputWithContext(ctx context.Context) TrafficMirrorSessionsTrafficMirrorSessionOutput {
+	return o
+}
+
+// The business status of traffic mirror session.
+func (o TrafficMirrorSessionsTrafficMirrorSessionOutput) BusinessStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorSessionsTrafficMirrorSession) string { return v.BusinessStatus }).(pulumi.StringOutput)
+}
+
+// The create time of traffic mirror session.
+func (o TrafficMirrorSessionsTrafficMirrorSessionOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorSessionsTrafficMirrorSession) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The description of traffic mirror session.
+func (o TrafficMirrorSessionsTrafficMirrorSessionOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorSessionsTrafficMirrorSession) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The ID of traffic mirror session.
+func (o TrafficMirrorSessionsTrafficMirrorSessionOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorSessionsTrafficMirrorSession) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The lock reason of traffic mirror session.
+func (o TrafficMirrorSessionsTrafficMirrorSessionOutput) LockReason() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorSessionsTrafficMirrorSession) string { return v.LockReason }).(pulumi.StringOutput)
+}
+
+// The packet length of traffic mirror session.
+func (o TrafficMirrorSessionsTrafficMirrorSessionOutput) PacketLength() pulumi.IntOutput {
+	return o.ApplyT(func(v TrafficMirrorSessionsTrafficMirrorSession) int { return v.PacketLength }).(pulumi.IntOutput)
+}
+
+// The priority of traffic mirror session.
+func (o TrafficMirrorSessionsTrafficMirrorSessionOutput) Priority() pulumi.IntOutput {
+	return o.ApplyT(func(v TrafficMirrorSessionsTrafficMirrorSession) int { return v.Priority }).(pulumi.IntOutput)
+}
+
+// The project name of traffic mirror session.
+func (o TrafficMirrorSessionsTrafficMirrorSessionOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorSessionsTrafficMirrorSession) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The status of traffic mirror session.
+func (o TrafficMirrorSessionsTrafficMirrorSessionOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorSessionsTrafficMirrorSession) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o TrafficMirrorSessionsTrafficMirrorSessionOutput) Tags() TrafficMirrorSessionsTrafficMirrorSessionTagArrayOutput {
+	return o.ApplyT(func(v TrafficMirrorSessionsTrafficMirrorSession) []TrafficMirrorSessionsTrafficMirrorSessionTag {
+		return v.Tags
+	}).(TrafficMirrorSessionsTrafficMirrorSessionTagArrayOutput)
+}
+
+// The ID of traffic mirror filter.
+func (o TrafficMirrorSessionsTrafficMirrorSessionOutput) TrafficMirrorFilterId() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorSessionsTrafficMirrorSession) string { return v.TrafficMirrorFilterId }).(pulumi.StringOutput)
+}
+
+// The ID of traffic mirror session.
+func (o TrafficMirrorSessionsTrafficMirrorSessionOutput) TrafficMirrorSessionId() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorSessionsTrafficMirrorSession) string { return v.TrafficMirrorSessionId }).(pulumi.StringOutput)
+}
+
+// The name of traffic mirror session.
+func (o TrafficMirrorSessionsTrafficMirrorSessionOutput) TrafficMirrorSessionName() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorSessionsTrafficMirrorSession) string { return v.TrafficMirrorSessionName }).(pulumi.StringOutput)
+}
+
+// The IDs of traffic mirror source.
+func (o TrafficMirrorSessionsTrafficMirrorSessionOutput) TrafficMirrorSourceIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v TrafficMirrorSessionsTrafficMirrorSession) []string { return v.TrafficMirrorSourceIds }).(pulumi.StringArrayOutput)
+}
+
+// The ID of traffic mirror target.
+func (o TrafficMirrorSessionsTrafficMirrorSessionOutput) TrafficMirrorTargetId() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorSessionsTrafficMirrorSession) string { return v.TrafficMirrorTargetId }).(pulumi.StringOutput)
+}
+
+// The update time of traffic mirror session.
+func (o TrafficMirrorSessionsTrafficMirrorSessionOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorSessionsTrafficMirrorSession) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// The ID of virtual network.
+func (o TrafficMirrorSessionsTrafficMirrorSessionOutput) VirtualNetworkId() pulumi.IntOutput {
+	return o.ApplyT(func(v TrafficMirrorSessionsTrafficMirrorSession) int { return v.VirtualNetworkId }).(pulumi.IntOutput)
+}
+
+type TrafficMirrorSessionsTrafficMirrorSessionArrayOutput struct{ *pulumi.OutputState }
+
+func (TrafficMirrorSessionsTrafficMirrorSessionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TrafficMirrorSessionsTrafficMirrorSession)(nil)).Elem()
+}
+
+func (o TrafficMirrorSessionsTrafficMirrorSessionArrayOutput) ToTrafficMirrorSessionsTrafficMirrorSessionArrayOutput() TrafficMirrorSessionsTrafficMirrorSessionArrayOutput {
+	return o
+}
+
+func (o TrafficMirrorSessionsTrafficMirrorSessionArrayOutput) ToTrafficMirrorSessionsTrafficMirrorSessionArrayOutputWithContext(ctx context.Context) TrafficMirrorSessionsTrafficMirrorSessionArrayOutput {
+	return o
+}
+
+func (o TrafficMirrorSessionsTrafficMirrorSessionArrayOutput) Index(i pulumi.IntInput) TrafficMirrorSessionsTrafficMirrorSessionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TrafficMirrorSessionsTrafficMirrorSession {
+		return vs[0].([]TrafficMirrorSessionsTrafficMirrorSession)[vs[1].(int)]
+	}).(TrafficMirrorSessionsTrafficMirrorSessionOutput)
+}
+
+type TrafficMirrorSessionsTrafficMirrorSessionTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// TrafficMirrorSessionsTrafficMirrorSessionTagInput is an input type that accepts TrafficMirrorSessionsTrafficMirrorSessionTagArgs and TrafficMirrorSessionsTrafficMirrorSessionTagOutput values.
+// You can construct a concrete instance of `TrafficMirrorSessionsTrafficMirrorSessionTagInput` via:
+//
+//	TrafficMirrorSessionsTrafficMirrorSessionTagArgs{...}
+type TrafficMirrorSessionsTrafficMirrorSessionTagInput interface {
+	pulumi.Input
+
+	ToTrafficMirrorSessionsTrafficMirrorSessionTagOutput() TrafficMirrorSessionsTrafficMirrorSessionTagOutput
+	ToTrafficMirrorSessionsTrafficMirrorSessionTagOutputWithContext(context.Context) TrafficMirrorSessionsTrafficMirrorSessionTagOutput
+}
+
+type TrafficMirrorSessionsTrafficMirrorSessionTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (TrafficMirrorSessionsTrafficMirrorSessionTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TrafficMirrorSessionsTrafficMirrorSessionTag)(nil)).Elem()
+}
+
+func (i TrafficMirrorSessionsTrafficMirrorSessionTagArgs) ToTrafficMirrorSessionsTrafficMirrorSessionTagOutput() TrafficMirrorSessionsTrafficMirrorSessionTagOutput {
+	return i.ToTrafficMirrorSessionsTrafficMirrorSessionTagOutputWithContext(context.Background())
+}
+
+func (i TrafficMirrorSessionsTrafficMirrorSessionTagArgs) ToTrafficMirrorSessionsTrafficMirrorSessionTagOutputWithContext(ctx context.Context) TrafficMirrorSessionsTrafficMirrorSessionTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TrafficMirrorSessionsTrafficMirrorSessionTagOutput)
+}
+
+// TrafficMirrorSessionsTrafficMirrorSessionTagArrayInput is an input type that accepts TrafficMirrorSessionsTrafficMirrorSessionTagArray and TrafficMirrorSessionsTrafficMirrorSessionTagArrayOutput values.
+// You can construct a concrete instance of `TrafficMirrorSessionsTrafficMirrorSessionTagArrayInput` via:
+//
+//	TrafficMirrorSessionsTrafficMirrorSessionTagArray{ TrafficMirrorSessionsTrafficMirrorSessionTagArgs{...} }
+type TrafficMirrorSessionsTrafficMirrorSessionTagArrayInput interface {
+	pulumi.Input
+
+	ToTrafficMirrorSessionsTrafficMirrorSessionTagArrayOutput() TrafficMirrorSessionsTrafficMirrorSessionTagArrayOutput
+	ToTrafficMirrorSessionsTrafficMirrorSessionTagArrayOutputWithContext(context.Context) TrafficMirrorSessionsTrafficMirrorSessionTagArrayOutput
+}
+
+type TrafficMirrorSessionsTrafficMirrorSessionTagArray []TrafficMirrorSessionsTrafficMirrorSessionTagInput
+
+func (TrafficMirrorSessionsTrafficMirrorSessionTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TrafficMirrorSessionsTrafficMirrorSessionTag)(nil)).Elem()
+}
+
+func (i TrafficMirrorSessionsTrafficMirrorSessionTagArray) ToTrafficMirrorSessionsTrafficMirrorSessionTagArrayOutput() TrafficMirrorSessionsTrafficMirrorSessionTagArrayOutput {
+	return i.ToTrafficMirrorSessionsTrafficMirrorSessionTagArrayOutputWithContext(context.Background())
+}
+
+func (i TrafficMirrorSessionsTrafficMirrorSessionTagArray) ToTrafficMirrorSessionsTrafficMirrorSessionTagArrayOutputWithContext(ctx context.Context) TrafficMirrorSessionsTrafficMirrorSessionTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TrafficMirrorSessionsTrafficMirrorSessionTagArrayOutput)
+}
+
+type TrafficMirrorSessionsTrafficMirrorSessionTagOutput struct{ *pulumi.OutputState }
+
+func (TrafficMirrorSessionsTrafficMirrorSessionTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TrafficMirrorSessionsTrafficMirrorSessionTag)(nil)).Elem()
+}
+
+func (o TrafficMirrorSessionsTrafficMirrorSessionTagOutput) ToTrafficMirrorSessionsTrafficMirrorSessionTagOutput() TrafficMirrorSessionsTrafficMirrorSessionTagOutput {
+	return o
+}
+
+func (o TrafficMirrorSessionsTrafficMirrorSessionTagOutput) ToTrafficMirrorSessionsTrafficMirrorSessionTagOutputWithContext(ctx context.Context) TrafficMirrorSessionsTrafficMirrorSessionTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o TrafficMirrorSessionsTrafficMirrorSessionTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorSessionsTrafficMirrorSessionTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o TrafficMirrorSessionsTrafficMirrorSessionTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorSessionsTrafficMirrorSessionTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type TrafficMirrorSessionsTrafficMirrorSessionTagArrayOutput struct{ *pulumi.OutputState }
+
+func (TrafficMirrorSessionsTrafficMirrorSessionTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TrafficMirrorSessionsTrafficMirrorSessionTag)(nil)).Elem()
+}
+
+func (o TrafficMirrorSessionsTrafficMirrorSessionTagArrayOutput) ToTrafficMirrorSessionsTrafficMirrorSessionTagArrayOutput() TrafficMirrorSessionsTrafficMirrorSessionTagArrayOutput {
+	return o
+}
+
+func (o TrafficMirrorSessionsTrafficMirrorSessionTagArrayOutput) ToTrafficMirrorSessionsTrafficMirrorSessionTagArrayOutputWithContext(ctx context.Context) TrafficMirrorSessionsTrafficMirrorSessionTagArrayOutput {
+	return o
+}
+
+func (o TrafficMirrorSessionsTrafficMirrorSessionTagArrayOutput) Index(i pulumi.IntInput) TrafficMirrorSessionsTrafficMirrorSessionTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TrafficMirrorSessionsTrafficMirrorSessionTag {
+		return vs[0].([]TrafficMirrorSessionsTrafficMirrorSessionTag)[vs[1].(int)]
+	}).(TrafficMirrorSessionsTrafficMirrorSessionTagOutput)
+}
+
+type TrafficMirrorTargetTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// TrafficMirrorTargetTagInput is an input type that accepts TrafficMirrorTargetTagArgs and TrafficMirrorTargetTagOutput values.
+// You can construct a concrete instance of `TrafficMirrorTargetTagInput` via:
+//
+//	TrafficMirrorTargetTagArgs{...}
+type TrafficMirrorTargetTagInput interface {
+	pulumi.Input
+
+	ToTrafficMirrorTargetTagOutput() TrafficMirrorTargetTagOutput
+	ToTrafficMirrorTargetTagOutputWithContext(context.Context) TrafficMirrorTargetTagOutput
+}
+
+type TrafficMirrorTargetTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (TrafficMirrorTargetTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TrafficMirrorTargetTag)(nil)).Elem()
+}
+
+func (i TrafficMirrorTargetTagArgs) ToTrafficMirrorTargetTagOutput() TrafficMirrorTargetTagOutput {
+	return i.ToTrafficMirrorTargetTagOutputWithContext(context.Background())
+}
+
+func (i TrafficMirrorTargetTagArgs) ToTrafficMirrorTargetTagOutputWithContext(ctx context.Context) TrafficMirrorTargetTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TrafficMirrorTargetTagOutput)
+}
+
+// TrafficMirrorTargetTagArrayInput is an input type that accepts TrafficMirrorTargetTagArray and TrafficMirrorTargetTagArrayOutput values.
+// You can construct a concrete instance of `TrafficMirrorTargetTagArrayInput` via:
+//
+//	TrafficMirrorTargetTagArray{ TrafficMirrorTargetTagArgs{...} }
+type TrafficMirrorTargetTagArrayInput interface {
+	pulumi.Input
+
+	ToTrafficMirrorTargetTagArrayOutput() TrafficMirrorTargetTagArrayOutput
+	ToTrafficMirrorTargetTagArrayOutputWithContext(context.Context) TrafficMirrorTargetTagArrayOutput
+}
+
+type TrafficMirrorTargetTagArray []TrafficMirrorTargetTagInput
+
+func (TrafficMirrorTargetTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TrafficMirrorTargetTag)(nil)).Elem()
+}
+
+func (i TrafficMirrorTargetTagArray) ToTrafficMirrorTargetTagArrayOutput() TrafficMirrorTargetTagArrayOutput {
+	return i.ToTrafficMirrorTargetTagArrayOutputWithContext(context.Background())
+}
+
+func (i TrafficMirrorTargetTagArray) ToTrafficMirrorTargetTagArrayOutputWithContext(ctx context.Context) TrafficMirrorTargetTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TrafficMirrorTargetTagArrayOutput)
+}
+
+type TrafficMirrorTargetTagOutput struct{ *pulumi.OutputState }
+
+func (TrafficMirrorTargetTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TrafficMirrorTargetTag)(nil)).Elem()
+}
+
+func (o TrafficMirrorTargetTagOutput) ToTrafficMirrorTargetTagOutput() TrafficMirrorTargetTagOutput {
+	return o
+}
+
+func (o TrafficMirrorTargetTagOutput) ToTrafficMirrorTargetTagOutputWithContext(ctx context.Context) TrafficMirrorTargetTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o TrafficMirrorTargetTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorTargetTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o TrafficMirrorTargetTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorTargetTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type TrafficMirrorTargetTagArrayOutput struct{ *pulumi.OutputState }
+
+func (TrafficMirrorTargetTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TrafficMirrorTargetTag)(nil)).Elem()
+}
+
+func (o TrafficMirrorTargetTagArrayOutput) ToTrafficMirrorTargetTagArrayOutput() TrafficMirrorTargetTagArrayOutput {
+	return o
+}
+
+func (o TrafficMirrorTargetTagArrayOutput) ToTrafficMirrorTargetTagArrayOutputWithContext(ctx context.Context) TrafficMirrorTargetTagArrayOutput {
+	return o
+}
+
+func (o TrafficMirrorTargetTagArrayOutput) Index(i pulumi.IntInput) TrafficMirrorTargetTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TrafficMirrorTargetTag {
+		return vs[0].([]TrafficMirrorTargetTag)[vs[1].(int)]
+	}).(TrafficMirrorTargetTagOutput)
+}
+
+type TrafficMirrorTargetsTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// TrafficMirrorTargetsTagInput is an input type that accepts TrafficMirrorTargetsTagArgs and TrafficMirrorTargetsTagOutput values.
+// You can construct a concrete instance of `TrafficMirrorTargetsTagInput` via:
+//
+//	TrafficMirrorTargetsTagArgs{...}
+type TrafficMirrorTargetsTagInput interface {
+	pulumi.Input
+
+	ToTrafficMirrorTargetsTagOutput() TrafficMirrorTargetsTagOutput
+	ToTrafficMirrorTargetsTagOutputWithContext(context.Context) TrafficMirrorTargetsTagOutput
+}
+
+type TrafficMirrorTargetsTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (TrafficMirrorTargetsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TrafficMirrorTargetsTag)(nil)).Elem()
+}
+
+func (i TrafficMirrorTargetsTagArgs) ToTrafficMirrorTargetsTagOutput() TrafficMirrorTargetsTagOutput {
+	return i.ToTrafficMirrorTargetsTagOutputWithContext(context.Background())
+}
+
+func (i TrafficMirrorTargetsTagArgs) ToTrafficMirrorTargetsTagOutputWithContext(ctx context.Context) TrafficMirrorTargetsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TrafficMirrorTargetsTagOutput)
+}
+
+// TrafficMirrorTargetsTagArrayInput is an input type that accepts TrafficMirrorTargetsTagArray and TrafficMirrorTargetsTagArrayOutput values.
+// You can construct a concrete instance of `TrafficMirrorTargetsTagArrayInput` via:
+//
+//	TrafficMirrorTargetsTagArray{ TrafficMirrorTargetsTagArgs{...} }
+type TrafficMirrorTargetsTagArrayInput interface {
+	pulumi.Input
+
+	ToTrafficMirrorTargetsTagArrayOutput() TrafficMirrorTargetsTagArrayOutput
+	ToTrafficMirrorTargetsTagArrayOutputWithContext(context.Context) TrafficMirrorTargetsTagArrayOutput
+}
+
+type TrafficMirrorTargetsTagArray []TrafficMirrorTargetsTagInput
+
+func (TrafficMirrorTargetsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TrafficMirrorTargetsTag)(nil)).Elem()
+}
+
+func (i TrafficMirrorTargetsTagArray) ToTrafficMirrorTargetsTagArrayOutput() TrafficMirrorTargetsTagArrayOutput {
+	return i.ToTrafficMirrorTargetsTagArrayOutputWithContext(context.Background())
+}
+
+func (i TrafficMirrorTargetsTagArray) ToTrafficMirrorTargetsTagArrayOutputWithContext(ctx context.Context) TrafficMirrorTargetsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TrafficMirrorTargetsTagArrayOutput)
+}
+
+type TrafficMirrorTargetsTagOutput struct{ *pulumi.OutputState }
+
+func (TrafficMirrorTargetsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TrafficMirrorTargetsTag)(nil)).Elem()
+}
+
+func (o TrafficMirrorTargetsTagOutput) ToTrafficMirrorTargetsTagOutput() TrafficMirrorTargetsTagOutput {
+	return o
+}
+
+func (o TrafficMirrorTargetsTagOutput) ToTrafficMirrorTargetsTagOutputWithContext(ctx context.Context) TrafficMirrorTargetsTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o TrafficMirrorTargetsTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorTargetsTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o TrafficMirrorTargetsTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorTargetsTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type TrafficMirrorTargetsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (TrafficMirrorTargetsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TrafficMirrorTargetsTag)(nil)).Elem()
+}
+
+func (o TrafficMirrorTargetsTagArrayOutput) ToTrafficMirrorTargetsTagArrayOutput() TrafficMirrorTargetsTagArrayOutput {
+	return o
+}
+
+func (o TrafficMirrorTargetsTagArrayOutput) ToTrafficMirrorTargetsTagArrayOutputWithContext(ctx context.Context) TrafficMirrorTargetsTagArrayOutput {
+	return o
+}
+
+func (o TrafficMirrorTargetsTagArrayOutput) Index(i pulumi.IntInput) TrafficMirrorTargetsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TrafficMirrorTargetsTag {
+		return vs[0].([]TrafficMirrorTargetsTag)[vs[1].(int)]
+	}).(TrafficMirrorTargetsTagOutput)
+}
+
+type TrafficMirrorTargetsTrafficMirrorTarget struct {
+	// The create time of traffic mirror target.
+	CreatedAt string `pulumi:"createdAt"`
+	// The description of traffic mirror target.
+	Description string `pulumi:"description"`
+	// The ID of traffic mirror target.
+	Id string `pulumi:"id"`
+	// The instance id of traffic mirror target.
+	InstanceId string `pulumi:"instanceId"`
+	// The instance type of traffic mirror target.
+	InstanceType string `pulumi:"instanceType"`
+	// The project name of traffic mirror target.
+	ProjectName string `pulumi:"projectName"`
+	// The status of traffic mirror target.
+	Status string `pulumi:"status"`
+	// Tags.
+	Tags []TrafficMirrorTargetsTrafficMirrorTargetTag `pulumi:"tags"`
+	// The ID of traffic mirror target.
+	TrafficMirrorTargetId string `pulumi:"trafficMirrorTargetId"`
+	// The name of traffic mirror target.
+	TrafficMirrorTargetName string `pulumi:"trafficMirrorTargetName"`
+	// The update time of traffic mirror target.
+	UpdatedAt string `pulumi:"updatedAt"`
+}
+
+// TrafficMirrorTargetsTrafficMirrorTargetInput is an input type that accepts TrafficMirrorTargetsTrafficMirrorTargetArgs and TrafficMirrorTargetsTrafficMirrorTargetOutput values.
+// You can construct a concrete instance of `TrafficMirrorTargetsTrafficMirrorTargetInput` via:
+//
+//	TrafficMirrorTargetsTrafficMirrorTargetArgs{...}
+type TrafficMirrorTargetsTrafficMirrorTargetInput interface {
+	pulumi.Input
+
+	ToTrafficMirrorTargetsTrafficMirrorTargetOutput() TrafficMirrorTargetsTrafficMirrorTargetOutput
+	ToTrafficMirrorTargetsTrafficMirrorTargetOutputWithContext(context.Context) TrafficMirrorTargetsTrafficMirrorTargetOutput
+}
+
+type TrafficMirrorTargetsTrafficMirrorTargetArgs struct {
+	// The create time of traffic mirror target.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The description of traffic mirror target.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The ID of traffic mirror target.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The instance id of traffic mirror target.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// The instance type of traffic mirror target.
+	InstanceType pulumi.StringInput `pulumi:"instanceType"`
+	// The project name of traffic mirror target.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The status of traffic mirror target.
+	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags TrafficMirrorTargetsTrafficMirrorTargetTagArrayInput `pulumi:"tags"`
+	// The ID of traffic mirror target.
+	TrafficMirrorTargetId pulumi.StringInput `pulumi:"trafficMirrorTargetId"`
+	// The name of traffic mirror target.
+	TrafficMirrorTargetName pulumi.StringInput `pulumi:"trafficMirrorTargetName"`
+	// The update time of traffic mirror target.
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+}
+
+func (TrafficMirrorTargetsTrafficMirrorTargetArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TrafficMirrorTargetsTrafficMirrorTarget)(nil)).Elem()
+}
+
+func (i TrafficMirrorTargetsTrafficMirrorTargetArgs) ToTrafficMirrorTargetsTrafficMirrorTargetOutput() TrafficMirrorTargetsTrafficMirrorTargetOutput {
+	return i.ToTrafficMirrorTargetsTrafficMirrorTargetOutputWithContext(context.Background())
+}
+
+func (i TrafficMirrorTargetsTrafficMirrorTargetArgs) ToTrafficMirrorTargetsTrafficMirrorTargetOutputWithContext(ctx context.Context) TrafficMirrorTargetsTrafficMirrorTargetOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TrafficMirrorTargetsTrafficMirrorTargetOutput)
+}
+
+// TrafficMirrorTargetsTrafficMirrorTargetArrayInput is an input type that accepts TrafficMirrorTargetsTrafficMirrorTargetArray and TrafficMirrorTargetsTrafficMirrorTargetArrayOutput values.
+// You can construct a concrete instance of `TrafficMirrorTargetsTrafficMirrorTargetArrayInput` via:
+//
+//	TrafficMirrorTargetsTrafficMirrorTargetArray{ TrafficMirrorTargetsTrafficMirrorTargetArgs{...} }
+type TrafficMirrorTargetsTrafficMirrorTargetArrayInput interface {
+	pulumi.Input
+
+	ToTrafficMirrorTargetsTrafficMirrorTargetArrayOutput() TrafficMirrorTargetsTrafficMirrorTargetArrayOutput
+	ToTrafficMirrorTargetsTrafficMirrorTargetArrayOutputWithContext(context.Context) TrafficMirrorTargetsTrafficMirrorTargetArrayOutput
+}
+
+type TrafficMirrorTargetsTrafficMirrorTargetArray []TrafficMirrorTargetsTrafficMirrorTargetInput
+
+func (TrafficMirrorTargetsTrafficMirrorTargetArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TrafficMirrorTargetsTrafficMirrorTarget)(nil)).Elem()
+}
+
+func (i TrafficMirrorTargetsTrafficMirrorTargetArray) ToTrafficMirrorTargetsTrafficMirrorTargetArrayOutput() TrafficMirrorTargetsTrafficMirrorTargetArrayOutput {
+	return i.ToTrafficMirrorTargetsTrafficMirrorTargetArrayOutputWithContext(context.Background())
+}
+
+func (i TrafficMirrorTargetsTrafficMirrorTargetArray) ToTrafficMirrorTargetsTrafficMirrorTargetArrayOutputWithContext(ctx context.Context) TrafficMirrorTargetsTrafficMirrorTargetArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TrafficMirrorTargetsTrafficMirrorTargetArrayOutput)
+}
+
+type TrafficMirrorTargetsTrafficMirrorTargetOutput struct{ *pulumi.OutputState }
+
+func (TrafficMirrorTargetsTrafficMirrorTargetOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TrafficMirrorTargetsTrafficMirrorTarget)(nil)).Elem()
+}
+
+func (o TrafficMirrorTargetsTrafficMirrorTargetOutput) ToTrafficMirrorTargetsTrafficMirrorTargetOutput() TrafficMirrorTargetsTrafficMirrorTargetOutput {
+	return o
+}
+
+func (o TrafficMirrorTargetsTrafficMirrorTargetOutput) ToTrafficMirrorTargetsTrafficMirrorTargetOutputWithContext(ctx context.Context) TrafficMirrorTargetsTrafficMirrorTargetOutput {
+	return o
+}
+
+// The create time of traffic mirror target.
+func (o TrafficMirrorTargetsTrafficMirrorTargetOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorTargetsTrafficMirrorTarget) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The description of traffic mirror target.
+func (o TrafficMirrorTargetsTrafficMirrorTargetOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorTargetsTrafficMirrorTarget) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The ID of traffic mirror target.
+func (o TrafficMirrorTargetsTrafficMirrorTargetOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorTargetsTrafficMirrorTarget) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The instance id of traffic mirror target.
+func (o TrafficMirrorTargetsTrafficMirrorTargetOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorTargetsTrafficMirrorTarget) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// The instance type of traffic mirror target.
+func (o TrafficMirrorTargetsTrafficMirrorTargetOutput) InstanceType() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorTargetsTrafficMirrorTarget) string { return v.InstanceType }).(pulumi.StringOutput)
+}
+
+// The project name of traffic mirror target.
+func (o TrafficMirrorTargetsTrafficMirrorTargetOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorTargetsTrafficMirrorTarget) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The status of traffic mirror target.
+func (o TrafficMirrorTargetsTrafficMirrorTargetOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorTargetsTrafficMirrorTarget) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o TrafficMirrorTargetsTrafficMirrorTargetOutput) Tags() TrafficMirrorTargetsTrafficMirrorTargetTagArrayOutput {
+	return o.ApplyT(func(v TrafficMirrorTargetsTrafficMirrorTarget) []TrafficMirrorTargetsTrafficMirrorTargetTag {
+		return v.Tags
+	}).(TrafficMirrorTargetsTrafficMirrorTargetTagArrayOutput)
+}
+
+// The ID of traffic mirror target.
+func (o TrafficMirrorTargetsTrafficMirrorTargetOutput) TrafficMirrorTargetId() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorTargetsTrafficMirrorTarget) string { return v.TrafficMirrorTargetId }).(pulumi.StringOutput)
+}
+
+// The name of traffic mirror target.
+func (o TrafficMirrorTargetsTrafficMirrorTargetOutput) TrafficMirrorTargetName() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorTargetsTrafficMirrorTarget) string { return v.TrafficMirrorTargetName }).(pulumi.StringOutput)
+}
+
+// The update time of traffic mirror target.
+func (o TrafficMirrorTargetsTrafficMirrorTargetOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorTargetsTrafficMirrorTarget) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+type TrafficMirrorTargetsTrafficMirrorTargetArrayOutput struct{ *pulumi.OutputState }
+
+func (TrafficMirrorTargetsTrafficMirrorTargetArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TrafficMirrorTargetsTrafficMirrorTarget)(nil)).Elem()
+}
+
+func (o TrafficMirrorTargetsTrafficMirrorTargetArrayOutput) ToTrafficMirrorTargetsTrafficMirrorTargetArrayOutput() TrafficMirrorTargetsTrafficMirrorTargetArrayOutput {
+	return o
+}
+
+func (o TrafficMirrorTargetsTrafficMirrorTargetArrayOutput) ToTrafficMirrorTargetsTrafficMirrorTargetArrayOutputWithContext(ctx context.Context) TrafficMirrorTargetsTrafficMirrorTargetArrayOutput {
+	return o
+}
+
+func (o TrafficMirrorTargetsTrafficMirrorTargetArrayOutput) Index(i pulumi.IntInput) TrafficMirrorTargetsTrafficMirrorTargetOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TrafficMirrorTargetsTrafficMirrorTarget {
+		return vs[0].([]TrafficMirrorTargetsTrafficMirrorTarget)[vs[1].(int)]
+	}).(TrafficMirrorTargetsTrafficMirrorTargetOutput)
+}
+
+type TrafficMirrorTargetsTrafficMirrorTargetTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// TrafficMirrorTargetsTrafficMirrorTargetTagInput is an input type that accepts TrafficMirrorTargetsTrafficMirrorTargetTagArgs and TrafficMirrorTargetsTrafficMirrorTargetTagOutput values.
+// You can construct a concrete instance of `TrafficMirrorTargetsTrafficMirrorTargetTagInput` via:
+//
+//	TrafficMirrorTargetsTrafficMirrorTargetTagArgs{...}
+type TrafficMirrorTargetsTrafficMirrorTargetTagInput interface {
+	pulumi.Input
+
+	ToTrafficMirrorTargetsTrafficMirrorTargetTagOutput() TrafficMirrorTargetsTrafficMirrorTargetTagOutput
+	ToTrafficMirrorTargetsTrafficMirrorTargetTagOutputWithContext(context.Context) TrafficMirrorTargetsTrafficMirrorTargetTagOutput
+}
+
+type TrafficMirrorTargetsTrafficMirrorTargetTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (TrafficMirrorTargetsTrafficMirrorTargetTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TrafficMirrorTargetsTrafficMirrorTargetTag)(nil)).Elem()
+}
+
+func (i TrafficMirrorTargetsTrafficMirrorTargetTagArgs) ToTrafficMirrorTargetsTrafficMirrorTargetTagOutput() TrafficMirrorTargetsTrafficMirrorTargetTagOutput {
+	return i.ToTrafficMirrorTargetsTrafficMirrorTargetTagOutputWithContext(context.Background())
+}
+
+func (i TrafficMirrorTargetsTrafficMirrorTargetTagArgs) ToTrafficMirrorTargetsTrafficMirrorTargetTagOutputWithContext(ctx context.Context) TrafficMirrorTargetsTrafficMirrorTargetTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TrafficMirrorTargetsTrafficMirrorTargetTagOutput)
+}
+
+// TrafficMirrorTargetsTrafficMirrorTargetTagArrayInput is an input type that accepts TrafficMirrorTargetsTrafficMirrorTargetTagArray and TrafficMirrorTargetsTrafficMirrorTargetTagArrayOutput values.
+// You can construct a concrete instance of `TrafficMirrorTargetsTrafficMirrorTargetTagArrayInput` via:
+//
+//	TrafficMirrorTargetsTrafficMirrorTargetTagArray{ TrafficMirrorTargetsTrafficMirrorTargetTagArgs{...} }
+type TrafficMirrorTargetsTrafficMirrorTargetTagArrayInput interface {
+	pulumi.Input
+
+	ToTrafficMirrorTargetsTrafficMirrorTargetTagArrayOutput() TrafficMirrorTargetsTrafficMirrorTargetTagArrayOutput
+	ToTrafficMirrorTargetsTrafficMirrorTargetTagArrayOutputWithContext(context.Context) TrafficMirrorTargetsTrafficMirrorTargetTagArrayOutput
+}
+
+type TrafficMirrorTargetsTrafficMirrorTargetTagArray []TrafficMirrorTargetsTrafficMirrorTargetTagInput
+
+func (TrafficMirrorTargetsTrafficMirrorTargetTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TrafficMirrorTargetsTrafficMirrorTargetTag)(nil)).Elem()
+}
+
+func (i TrafficMirrorTargetsTrafficMirrorTargetTagArray) ToTrafficMirrorTargetsTrafficMirrorTargetTagArrayOutput() TrafficMirrorTargetsTrafficMirrorTargetTagArrayOutput {
+	return i.ToTrafficMirrorTargetsTrafficMirrorTargetTagArrayOutputWithContext(context.Background())
+}
+
+func (i TrafficMirrorTargetsTrafficMirrorTargetTagArray) ToTrafficMirrorTargetsTrafficMirrorTargetTagArrayOutputWithContext(ctx context.Context) TrafficMirrorTargetsTrafficMirrorTargetTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TrafficMirrorTargetsTrafficMirrorTargetTagArrayOutput)
+}
+
+type TrafficMirrorTargetsTrafficMirrorTargetTagOutput struct{ *pulumi.OutputState }
+
+func (TrafficMirrorTargetsTrafficMirrorTargetTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TrafficMirrorTargetsTrafficMirrorTargetTag)(nil)).Elem()
+}
+
+func (o TrafficMirrorTargetsTrafficMirrorTargetTagOutput) ToTrafficMirrorTargetsTrafficMirrorTargetTagOutput() TrafficMirrorTargetsTrafficMirrorTargetTagOutput {
+	return o
+}
+
+func (o TrafficMirrorTargetsTrafficMirrorTargetTagOutput) ToTrafficMirrorTargetsTrafficMirrorTargetTagOutputWithContext(ctx context.Context) TrafficMirrorTargetsTrafficMirrorTargetTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o TrafficMirrorTargetsTrafficMirrorTargetTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorTargetsTrafficMirrorTargetTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o TrafficMirrorTargetsTrafficMirrorTargetTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v TrafficMirrorTargetsTrafficMirrorTargetTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type TrafficMirrorTargetsTrafficMirrorTargetTagArrayOutput struct{ *pulumi.OutputState }
+
+func (TrafficMirrorTargetsTrafficMirrorTargetTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TrafficMirrorTargetsTrafficMirrorTargetTag)(nil)).Elem()
+}
+
+func (o TrafficMirrorTargetsTrafficMirrorTargetTagArrayOutput) ToTrafficMirrorTargetsTrafficMirrorTargetTagArrayOutput() TrafficMirrorTargetsTrafficMirrorTargetTagArrayOutput {
+	return o
+}
+
+func (o TrafficMirrorTargetsTrafficMirrorTargetTagArrayOutput) ToTrafficMirrorTargetsTrafficMirrorTargetTagArrayOutputWithContext(ctx context.Context) TrafficMirrorTargetsTrafficMirrorTargetTagArrayOutput {
+	return o
+}
+
+func (o TrafficMirrorTargetsTrafficMirrorTargetTagArrayOutput) Index(i pulumi.IntInput) TrafficMirrorTargetsTrafficMirrorTargetTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TrafficMirrorTargetsTrafficMirrorTargetTag {
+		return vs[0].([]TrafficMirrorTargetsTrafficMirrorTargetTag)[vs[1].(int)]
+	}).(TrafficMirrorTargetsTrafficMirrorTargetTagOutput)
+}
+
 type VpcAssociateCen struct {
 	// The ID of CEN.
 	CenId *string `pulumi:"cenId"`
@@ -6446,6 +9356,8 @@ type VpcsVpc struct {
 	ProjectName string `pulumi:"projectName"`
 	// The route table ID list of VPC.
 	RouteTableIds []string `pulumi:"routeTableIds"`
+	// The secondary cidr block list of VPC.
+	SecondaryCidrBlocks []string `pulumi:"secondaryCidrBlocks"`
 	// The security group ID list of VPC.
 	SecurityGroupIds []string `pulumi:"securityGroupIds"`
 	// The status of VPC.
@@ -6496,6 +9408,8 @@ type VpcsVpcArgs struct {
 	ProjectName pulumi.StringInput `pulumi:"projectName"`
 	// The route table ID list of VPC.
 	RouteTableIds pulumi.StringArrayInput `pulumi:"routeTableIds"`
+	// The secondary cidr block list of VPC.
+	SecondaryCidrBlocks pulumi.StringArrayInput `pulumi:"secondaryCidrBlocks"`
 	// The security group ID list of VPC.
 	SecurityGroupIds pulumi.StringArrayInput `pulumi:"securityGroupIds"`
 	// The status of VPC.
@@ -6616,6 +9530,11 @@ func (o VpcsVpcOutput) ProjectName() pulumi.StringOutput {
 // The route table ID list of VPC.
 func (o VpcsVpcOutput) RouteTableIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v VpcsVpc) []string { return v.RouteTableIds }).(pulumi.StringArrayOutput)
+}
+
+// The secondary cidr block list of VPC.
+func (o VpcsVpcOutput) SecondaryCidrBlocks() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v VpcsVpc) []string { return v.SecondaryCidrBlocks }).(pulumi.StringArrayOutput)
 }
 
 // The security group ID list of VPC.
@@ -6892,6 +9811,468 @@ func (o VpcsVpcTagArrayOutput) Index(i pulumi.IntInput) VpcsVpcTagOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpcsVpcTag {
 		return vs[0].([]VpcsVpcTag)[vs[1].(int)]
 	}).(VpcsVpcTagOutput)
+}
+
+type GetFlowLogsFlowLog struct {
+	// The aggregation interval of flow log. Unit: minute. Valid values: `1`, `5`, `10`.
+	AggregationInterval int `pulumi:"aggregationInterval"`
+	// The business status of flow log.
+	BusinessStatus string `pulumi:"businessStatus"`
+	// The created time of flow log.
+	CreatedAt string `pulumi:"createdAt"`
+	// The description of flow log.
+	Description string `pulumi:"description"`
+	// The ID of flow log.
+	FlowLogId string `pulumi:"flowLogId"`
+	// The name of flow log.
+	FlowLogName string `pulumi:"flowLogName"`
+	// The ID of flow log.
+	Id string `pulumi:"id"`
+	// The reason why flow log is locked.
+	LockReason string `pulumi:"lockReason"`
+	// The ID of log project.
+	LogProjectId string `pulumi:"logProjectId"`
+	// The ID of log topic.
+	LogTopicId string `pulumi:"logTopicId"`
+	// The project name of flow log.
+	ProjectName string `pulumi:"projectName"`
+	// The ID of resource.
+	ResourceId string `pulumi:"resourceId"`
+	// The type of resource. Valid values: `vpc`, `subnet`, `eni`.
+	ResourceType string `pulumi:"resourceType"`
+	// The status of flow log. Valid values: `Active`, `Pending`, `Inactive`, `Creating`, `Deleting`.
+	Status string `pulumi:"status"`
+	// Tags.
+	Tags []GetFlowLogsFlowLogTag `pulumi:"tags"`
+	// The type of traffic. Valid values: `All`, `Allow`, `Drop`.
+	TrafficType string `pulumi:"trafficType"`
+	// The updated time of flow log.
+	UpdatedAt string `pulumi:"updatedAt"`
+	// The ID of VPC.
+	VpcId string `pulumi:"vpcId"`
+}
+
+// GetFlowLogsFlowLogInput is an input type that accepts GetFlowLogsFlowLogArgs and GetFlowLogsFlowLogOutput values.
+// You can construct a concrete instance of `GetFlowLogsFlowLogInput` via:
+//
+//	GetFlowLogsFlowLogArgs{...}
+type GetFlowLogsFlowLogInput interface {
+	pulumi.Input
+
+	ToGetFlowLogsFlowLogOutput() GetFlowLogsFlowLogOutput
+	ToGetFlowLogsFlowLogOutputWithContext(context.Context) GetFlowLogsFlowLogOutput
+}
+
+type GetFlowLogsFlowLogArgs struct {
+	// The aggregation interval of flow log. Unit: minute. Valid values: `1`, `5`, `10`.
+	AggregationInterval pulumi.IntInput `pulumi:"aggregationInterval"`
+	// The business status of flow log.
+	BusinessStatus pulumi.StringInput `pulumi:"businessStatus"`
+	// The created time of flow log.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The description of flow log.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The ID of flow log.
+	FlowLogId pulumi.StringInput `pulumi:"flowLogId"`
+	// The name of flow log.
+	FlowLogName pulumi.StringInput `pulumi:"flowLogName"`
+	// The ID of flow log.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The reason why flow log is locked.
+	LockReason pulumi.StringInput `pulumi:"lockReason"`
+	// The ID of log project.
+	LogProjectId pulumi.StringInput `pulumi:"logProjectId"`
+	// The ID of log topic.
+	LogTopicId pulumi.StringInput `pulumi:"logTopicId"`
+	// The project name of flow log.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The ID of resource.
+	ResourceId pulumi.StringInput `pulumi:"resourceId"`
+	// The type of resource. Valid values: `vpc`, `subnet`, `eni`.
+	ResourceType pulumi.StringInput `pulumi:"resourceType"`
+	// The status of flow log. Valid values: `Active`, `Pending`, `Inactive`, `Creating`, `Deleting`.
+	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags GetFlowLogsFlowLogTagArrayInput `pulumi:"tags"`
+	// The type of traffic. Valid values: `All`, `Allow`, `Drop`.
+	TrafficType pulumi.StringInput `pulumi:"trafficType"`
+	// The updated time of flow log.
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+	// The ID of VPC.
+	VpcId pulumi.StringInput `pulumi:"vpcId"`
+}
+
+func (GetFlowLogsFlowLogArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFlowLogsFlowLog)(nil)).Elem()
+}
+
+func (i GetFlowLogsFlowLogArgs) ToGetFlowLogsFlowLogOutput() GetFlowLogsFlowLogOutput {
+	return i.ToGetFlowLogsFlowLogOutputWithContext(context.Background())
+}
+
+func (i GetFlowLogsFlowLogArgs) ToGetFlowLogsFlowLogOutputWithContext(ctx context.Context) GetFlowLogsFlowLogOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFlowLogsFlowLogOutput)
+}
+
+// GetFlowLogsFlowLogArrayInput is an input type that accepts GetFlowLogsFlowLogArray and GetFlowLogsFlowLogArrayOutput values.
+// You can construct a concrete instance of `GetFlowLogsFlowLogArrayInput` via:
+//
+//	GetFlowLogsFlowLogArray{ GetFlowLogsFlowLogArgs{...} }
+type GetFlowLogsFlowLogArrayInput interface {
+	pulumi.Input
+
+	ToGetFlowLogsFlowLogArrayOutput() GetFlowLogsFlowLogArrayOutput
+	ToGetFlowLogsFlowLogArrayOutputWithContext(context.Context) GetFlowLogsFlowLogArrayOutput
+}
+
+type GetFlowLogsFlowLogArray []GetFlowLogsFlowLogInput
+
+func (GetFlowLogsFlowLogArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFlowLogsFlowLog)(nil)).Elem()
+}
+
+func (i GetFlowLogsFlowLogArray) ToGetFlowLogsFlowLogArrayOutput() GetFlowLogsFlowLogArrayOutput {
+	return i.ToGetFlowLogsFlowLogArrayOutputWithContext(context.Background())
+}
+
+func (i GetFlowLogsFlowLogArray) ToGetFlowLogsFlowLogArrayOutputWithContext(ctx context.Context) GetFlowLogsFlowLogArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFlowLogsFlowLogArrayOutput)
+}
+
+type GetFlowLogsFlowLogOutput struct{ *pulumi.OutputState }
+
+func (GetFlowLogsFlowLogOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFlowLogsFlowLog)(nil)).Elem()
+}
+
+func (o GetFlowLogsFlowLogOutput) ToGetFlowLogsFlowLogOutput() GetFlowLogsFlowLogOutput {
+	return o
+}
+
+func (o GetFlowLogsFlowLogOutput) ToGetFlowLogsFlowLogOutputWithContext(ctx context.Context) GetFlowLogsFlowLogOutput {
+	return o
+}
+
+// The aggregation interval of flow log. Unit: minute. Valid values: `1`, `5`, `10`.
+func (o GetFlowLogsFlowLogOutput) AggregationInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v GetFlowLogsFlowLog) int { return v.AggregationInterval }).(pulumi.IntOutput)
+}
+
+// The business status of flow log.
+func (o GetFlowLogsFlowLogOutput) BusinessStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlowLogsFlowLog) string { return v.BusinessStatus }).(pulumi.StringOutput)
+}
+
+// The created time of flow log.
+func (o GetFlowLogsFlowLogOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlowLogsFlowLog) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The description of flow log.
+func (o GetFlowLogsFlowLogOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlowLogsFlowLog) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The ID of flow log.
+func (o GetFlowLogsFlowLogOutput) FlowLogId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlowLogsFlowLog) string { return v.FlowLogId }).(pulumi.StringOutput)
+}
+
+// The name of flow log.
+func (o GetFlowLogsFlowLogOutput) FlowLogName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlowLogsFlowLog) string { return v.FlowLogName }).(pulumi.StringOutput)
+}
+
+// The ID of flow log.
+func (o GetFlowLogsFlowLogOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlowLogsFlowLog) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The reason why flow log is locked.
+func (o GetFlowLogsFlowLogOutput) LockReason() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlowLogsFlowLog) string { return v.LockReason }).(pulumi.StringOutput)
+}
+
+// The ID of log project.
+func (o GetFlowLogsFlowLogOutput) LogProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlowLogsFlowLog) string { return v.LogProjectId }).(pulumi.StringOutput)
+}
+
+// The ID of log topic.
+func (o GetFlowLogsFlowLogOutput) LogTopicId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlowLogsFlowLog) string { return v.LogTopicId }).(pulumi.StringOutput)
+}
+
+// The project name of flow log.
+func (o GetFlowLogsFlowLogOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlowLogsFlowLog) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The ID of resource.
+func (o GetFlowLogsFlowLogOutput) ResourceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlowLogsFlowLog) string { return v.ResourceId }).(pulumi.StringOutput)
+}
+
+// The type of resource. Valid values: `vpc`, `subnet`, `eni`.
+func (o GetFlowLogsFlowLogOutput) ResourceType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlowLogsFlowLog) string { return v.ResourceType }).(pulumi.StringOutput)
+}
+
+// The status of flow log. Valid values: `Active`, `Pending`, `Inactive`, `Creating`, `Deleting`.
+func (o GetFlowLogsFlowLogOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlowLogsFlowLog) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o GetFlowLogsFlowLogOutput) Tags() GetFlowLogsFlowLogTagArrayOutput {
+	return o.ApplyT(func(v GetFlowLogsFlowLog) []GetFlowLogsFlowLogTag { return v.Tags }).(GetFlowLogsFlowLogTagArrayOutput)
+}
+
+// The type of traffic. Valid values: `All`, `Allow`, `Drop`.
+func (o GetFlowLogsFlowLogOutput) TrafficType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlowLogsFlowLog) string { return v.TrafficType }).(pulumi.StringOutput)
+}
+
+// The updated time of flow log.
+func (o GetFlowLogsFlowLogOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlowLogsFlowLog) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// The ID of VPC.
+func (o GetFlowLogsFlowLogOutput) VpcId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlowLogsFlowLog) string { return v.VpcId }).(pulumi.StringOutput)
+}
+
+type GetFlowLogsFlowLogArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFlowLogsFlowLogArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFlowLogsFlowLog)(nil)).Elem()
+}
+
+func (o GetFlowLogsFlowLogArrayOutput) ToGetFlowLogsFlowLogArrayOutput() GetFlowLogsFlowLogArrayOutput {
+	return o
+}
+
+func (o GetFlowLogsFlowLogArrayOutput) ToGetFlowLogsFlowLogArrayOutputWithContext(ctx context.Context) GetFlowLogsFlowLogArrayOutput {
+	return o
+}
+
+func (o GetFlowLogsFlowLogArrayOutput) Index(i pulumi.IntInput) GetFlowLogsFlowLogOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFlowLogsFlowLog {
+		return vs[0].([]GetFlowLogsFlowLog)[vs[1].(int)]
+	}).(GetFlowLogsFlowLogOutput)
+}
+
+type GetFlowLogsFlowLogTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetFlowLogsFlowLogTagInput is an input type that accepts GetFlowLogsFlowLogTagArgs and GetFlowLogsFlowLogTagOutput values.
+// You can construct a concrete instance of `GetFlowLogsFlowLogTagInput` via:
+//
+//	GetFlowLogsFlowLogTagArgs{...}
+type GetFlowLogsFlowLogTagInput interface {
+	pulumi.Input
+
+	ToGetFlowLogsFlowLogTagOutput() GetFlowLogsFlowLogTagOutput
+	ToGetFlowLogsFlowLogTagOutputWithContext(context.Context) GetFlowLogsFlowLogTagOutput
+}
+
+type GetFlowLogsFlowLogTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetFlowLogsFlowLogTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFlowLogsFlowLogTag)(nil)).Elem()
+}
+
+func (i GetFlowLogsFlowLogTagArgs) ToGetFlowLogsFlowLogTagOutput() GetFlowLogsFlowLogTagOutput {
+	return i.ToGetFlowLogsFlowLogTagOutputWithContext(context.Background())
+}
+
+func (i GetFlowLogsFlowLogTagArgs) ToGetFlowLogsFlowLogTagOutputWithContext(ctx context.Context) GetFlowLogsFlowLogTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFlowLogsFlowLogTagOutput)
+}
+
+// GetFlowLogsFlowLogTagArrayInput is an input type that accepts GetFlowLogsFlowLogTagArray and GetFlowLogsFlowLogTagArrayOutput values.
+// You can construct a concrete instance of `GetFlowLogsFlowLogTagArrayInput` via:
+//
+//	GetFlowLogsFlowLogTagArray{ GetFlowLogsFlowLogTagArgs{...} }
+type GetFlowLogsFlowLogTagArrayInput interface {
+	pulumi.Input
+
+	ToGetFlowLogsFlowLogTagArrayOutput() GetFlowLogsFlowLogTagArrayOutput
+	ToGetFlowLogsFlowLogTagArrayOutputWithContext(context.Context) GetFlowLogsFlowLogTagArrayOutput
+}
+
+type GetFlowLogsFlowLogTagArray []GetFlowLogsFlowLogTagInput
+
+func (GetFlowLogsFlowLogTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFlowLogsFlowLogTag)(nil)).Elem()
+}
+
+func (i GetFlowLogsFlowLogTagArray) ToGetFlowLogsFlowLogTagArrayOutput() GetFlowLogsFlowLogTagArrayOutput {
+	return i.ToGetFlowLogsFlowLogTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetFlowLogsFlowLogTagArray) ToGetFlowLogsFlowLogTagArrayOutputWithContext(ctx context.Context) GetFlowLogsFlowLogTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFlowLogsFlowLogTagArrayOutput)
+}
+
+type GetFlowLogsFlowLogTagOutput struct{ *pulumi.OutputState }
+
+func (GetFlowLogsFlowLogTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFlowLogsFlowLogTag)(nil)).Elem()
+}
+
+func (o GetFlowLogsFlowLogTagOutput) ToGetFlowLogsFlowLogTagOutput() GetFlowLogsFlowLogTagOutput {
+	return o
+}
+
+func (o GetFlowLogsFlowLogTagOutput) ToGetFlowLogsFlowLogTagOutputWithContext(ctx context.Context) GetFlowLogsFlowLogTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetFlowLogsFlowLogTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlowLogsFlowLogTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetFlowLogsFlowLogTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlowLogsFlowLogTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetFlowLogsFlowLogTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFlowLogsFlowLogTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFlowLogsFlowLogTag)(nil)).Elem()
+}
+
+func (o GetFlowLogsFlowLogTagArrayOutput) ToGetFlowLogsFlowLogTagArrayOutput() GetFlowLogsFlowLogTagArrayOutput {
+	return o
+}
+
+func (o GetFlowLogsFlowLogTagArrayOutput) ToGetFlowLogsFlowLogTagArrayOutputWithContext(ctx context.Context) GetFlowLogsFlowLogTagArrayOutput {
+	return o
+}
+
+func (o GetFlowLogsFlowLogTagArrayOutput) Index(i pulumi.IntInput) GetFlowLogsFlowLogTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFlowLogsFlowLogTag {
+		return vs[0].([]GetFlowLogsFlowLogTag)[vs[1].(int)]
+	}).(GetFlowLogsFlowLogTagOutput)
+}
+
+type GetFlowLogsTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetFlowLogsTagInput is an input type that accepts GetFlowLogsTagArgs and GetFlowLogsTagOutput values.
+// You can construct a concrete instance of `GetFlowLogsTagInput` via:
+//
+//	GetFlowLogsTagArgs{...}
+type GetFlowLogsTagInput interface {
+	pulumi.Input
+
+	ToGetFlowLogsTagOutput() GetFlowLogsTagOutput
+	ToGetFlowLogsTagOutputWithContext(context.Context) GetFlowLogsTagOutput
+}
+
+type GetFlowLogsTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetFlowLogsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFlowLogsTag)(nil)).Elem()
+}
+
+func (i GetFlowLogsTagArgs) ToGetFlowLogsTagOutput() GetFlowLogsTagOutput {
+	return i.ToGetFlowLogsTagOutputWithContext(context.Background())
+}
+
+func (i GetFlowLogsTagArgs) ToGetFlowLogsTagOutputWithContext(ctx context.Context) GetFlowLogsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFlowLogsTagOutput)
+}
+
+// GetFlowLogsTagArrayInput is an input type that accepts GetFlowLogsTagArray and GetFlowLogsTagArrayOutput values.
+// You can construct a concrete instance of `GetFlowLogsTagArrayInput` via:
+//
+//	GetFlowLogsTagArray{ GetFlowLogsTagArgs{...} }
+type GetFlowLogsTagArrayInput interface {
+	pulumi.Input
+
+	ToGetFlowLogsTagArrayOutput() GetFlowLogsTagArrayOutput
+	ToGetFlowLogsTagArrayOutputWithContext(context.Context) GetFlowLogsTagArrayOutput
+}
+
+type GetFlowLogsTagArray []GetFlowLogsTagInput
+
+func (GetFlowLogsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFlowLogsTag)(nil)).Elem()
+}
+
+func (i GetFlowLogsTagArray) ToGetFlowLogsTagArrayOutput() GetFlowLogsTagArrayOutput {
+	return i.ToGetFlowLogsTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetFlowLogsTagArray) ToGetFlowLogsTagArrayOutputWithContext(ctx context.Context) GetFlowLogsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFlowLogsTagArrayOutput)
+}
+
+type GetFlowLogsTagOutput struct{ *pulumi.OutputState }
+
+func (GetFlowLogsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFlowLogsTag)(nil)).Elem()
+}
+
+func (o GetFlowLogsTagOutput) ToGetFlowLogsTagOutput() GetFlowLogsTagOutput {
+	return o
+}
+
+func (o GetFlowLogsTagOutput) ToGetFlowLogsTagOutputWithContext(ctx context.Context) GetFlowLogsTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetFlowLogsTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlowLogsTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetFlowLogsTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlowLogsTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetFlowLogsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFlowLogsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFlowLogsTag)(nil)).Elem()
+}
+
+func (o GetFlowLogsTagArrayOutput) ToGetFlowLogsTagArrayOutput() GetFlowLogsTagArrayOutput {
+	return o
+}
+
+func (o GetFlowLogsTagArrayOutput) ToGetFlowLogsTagArrayOutputWithContext(ctx context.Context) GetFlowLogsTagArrayOutput {
+	return o
+}
+
+func (o GetFlowLogsTagArrayOutput) Index(i pulumi.IntInput) GetFlowLogsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFlowLogsTag {
+		return vs[0].([]GetFlowLogsTag)[vs[1].(int)]
+	}).(GetFlowLogsTagOutput)
 }
 
 type GetHaVipsHaVip struct {
@@ -11707,6 +15088,2040 @@ func (o GetSubnetsTagArrayOutput) Index(i pulumi.IntInput) GetSubnetsTagOutput {
 	}).(GetSubnetsTagOutput)
 }
 
+type GetTrafficMirrorFilterRulesTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetTrafficMirrorFilterRulesTagInput is an input type that accepts GetTrafficMirrorFilterRulesTagArgs and GetTrafficMirrorFilterRulesTagOutput values.
+// You can construct a concrete instance of `GetTrafficMirrorFilterRulesTagInput` via:
+//
+//	GetTrafficMirrorFilterRulesTagArgs{...}
+type GetTrafficMirrorFilterRulesTagInput interface {
+	pulumi.Input
+
+	ToGetTrafficMirrorFilterRulesTagOutput() GetTrafficMirrorFilterRulesTagOutput
+	ToGetTrafficMirrorFilterRulesTagOutputWithContext(context.Context) GetTrafficMirrorFilterRulesTagOutput
+}
+
+type GetTrafficMirrorFilterRulesTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetTrafficMirrorFilterRulesTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTrafficMirrorFilterRulesTag)(nil)).Elem()
+}
+
+func (i GetTrafficMirrorFilterRulesTagArgs) ToGetTrafficMirrorFilterRulesTagOutput() GetTrafficMirrorFilterRulesTagOutput {
+	return i.ToGetTrafficMirrorFilterRulesTagOutputWithContext(context.Background())
+}
+
+func (i GetTrafficMirrorFilterRulesTagArgs) ToGetTrafficMirrorFilterRulesTagOutputWithContext(ctx context.Context) GetTrafficMirrorFilterRulesTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTrafficMirrorFilterRulesTagOutput)
+}
+
+// GetTrafficMirrorFilterRulesTagArrayInput is an input type that accepts GetTrafficMirrorFilterRulesTagArray and GetTrafficMirrorFilterRulesTagArrayOutput values.
+// You can construct a concrete instance of `GetTrafficMirrorFilterRulesTagArrayInput` via:
+//
+//	GetTrafficMirrorFilterRulesTagArray{ GetTrafficMirrorFilterRulesTagArgs{...} }
+type GetTrafficMirrorFilterRulesTagArrayInput interface {
+	pulumi.Input
+
+	ToGetTrafficMirrorFilterRulesTagArrayOutput() GetTrafficMirrorFilterRulesTagArrayOutput
+	ToGetTrafficMirrorFilterRulesTagArrayOutputWithContext(context.Context) GetTrafficMirrorFilterRulesTagArrayOutput
+}
+
+type GetTrafficMirrorFilterRulesTagArray []GetTrafficMirrorFilterRulesTagInput
+
+func (GetTrafficMirrorFilterRulesTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTrafficMirrorFilterRulesTag)(nil)).Elem()
+}
+
+func (i GetTrafficMirrorFilterRulesTagArray) ToGetTrafficMirrorFilterRulesTagArrayOutput() GetTrafficMirrorFilterRulesTagArrayOutput {
+	return i.ToGetTrafficMirrorFilterRulesTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetTrafficMirrorFilterRulesTagArray) ToGetTrafficMirrorFilterRulesTagArrayOutputWithContext(ctx context.Context) GetTrafficMirrorFilterRulesTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTrafficMirrorFilterRulesTagArrayOutput)
+}
+
+type GetTrafficMirrorFilterRulesTagOutput struct{ *pulumi.OutputState }
+
+func (GetTrafficMirrorFilterRulesTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTrafficMirrorFilterRulesTag)(nil)).Elem()
+}
+
+func (o GetTrafficMirrorFilterRulesTagOutput) ToGetTrafficMirrorFilterRulesTagOutput() GetTrafficMirrorFilterRulesTagOutput {
+	return o
+}
+
+func (o GetTrafficMirrorFilterRulesTagOutput) ToGetTrafficMirrorFilterRulesTagOutputWithContext(ctx context.Context) GetTrafficMirrorFilterRulesTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetTrafficMirrorFilterRulesTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFilterRulesTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetTrafficMirrorFilterRulesTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFilterRulesTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetTrafficMirrorFilterRulesTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTrafficMirrorFilterRulesTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTrafficMirrorFilterRulesTag)(nil)).Elem()
+}
+
+func (o GetTrafficMirrorFilterRulesTagArrayOutput) ToGetTrafficMirrorFilterRulesTagArrayOutput() GetTrafficMirrorFilterRulesTagArrayOutput {
+	return o
+}
+
+func (o GetTrafficMirrorFilterRulesTagArrayOutput) ToGetTrafficMirrorFilterRulesTagArrayOutputWithContext(ctx context.Context) GetTrafficMirrorFilterRulesTagArrayOutput {
+	return o
+}
+
+func (o GetTrafficMirrorFilterRulesTagArrayOutput) Index(i pulumi.IntInput) GetTrafficMirrorFilterRulesTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTrafficMirrorFilterRulesTag {
+		return vs[0].([]GetTrafficMirrorFilterRulesTag)[vs[1].(int)]
+	}).(GetTrafficMirrorFilterRulesTagOutput)
+}
+
+type GetTrafficMirrorFilterRulesTrafficMirrorFilterRule struct {
+	// The create time of traffic mirror filter rule.
+	CreatedAt string `pulumi:"createdAt"`
+	// The description of traffic mirror filter rule.
+	Description string `pulumi:"description"`
+	// The destination cidr block of traffic mirror filter rule.
+	DestinationCidrBlock string `pulumi:"destinationCidrBlock"`
+	// The destination port range of traffic mirror filter rule.
+	DestinationPortRange string `pulumi:"destinationPortRange"`
+	// The ID of traffic mirror filter rule.
+	Id string `pulumi:"id"`
+	// The policy of traffic mirror filter rule.
+	Policy string `pulumi:"policy"`
+	// The priority of traffic mirror filter rule.
+	Priority int `pulumi:"priority"`
+	// The protocol of traffic mirror filter rule.
+	Protocol string `pulumi:"protocol"`
+	// The source cidr block of traffic mirror filter rule.
+	SourceCidrBlock string `pulumi:"sourceCidrBlock"`
+	// The source port range of traffic mirror filter rule.
+	SourcePortRange string `pulumi:"sourcePortRange"`
+	// The status of traffic mirror filter rule.
+	Status string `pulumi:"status"`
+	// The traffic direction of traffic mirror filter rule.
+	TrafficDirection string `pulumi:"trafficDirection"`
+	// The ID of traffic mirror filter.
+	TrafficMirrorFilterId string `pulumi:"trafficMirrorFilterId"`
+	// The ID of traffic mirror filter rule.
+	TrafficMirrorFilterRuleId string `pulumi:"trafficMirrorFilterRuleId"`
+	// The last update time of traffic mirror filter rule.
+	UpdatedAt string `pulumi:"updatedAt"`
+}
+
+// GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleInput is an input type that accepts GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleArgs and GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput values.
+// You can construct a concrete instance of `GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleInput` via:
+//
+//	GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleArgs{...}
+type GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleInput interface {
+	pulumi.Input
+
+	ToGetTrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput() GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput
+	ToGetTrafficMirrorFilterRulesTrafficMirrorFilterRuleOutputWithContext(context.Context) GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput
+}
+
+type GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleArgs struct {
+	// The create time of traffic mirror filter rule.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The description of traffic mirror filter rule.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The destination cidr block of traffic mirror filter rule.
+	DestinationCidrBlock pulumi.StringInput `pulumi:"destinationCidrBlock"`
+	// The destination port range of traffic mirror filter rule.
+	DestinationPortRange pulumi.StringInput `pulumi:"destinationPortRange"`
+	// The ID of traffic mirror filter rule.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The policy of traffic mirror filter rule.
+	Policy pulumi.StringInput `pulumi:"policy"`
+	// The priority of traffic mirror filter rule.
+	Priority pulumi.IntInput `pulumi:"priority"`
+	// The protocol of traffic mirror filter rule.
+	Protocol pulumi.StringInput `pulumi:"protocol"`
+	// The source cidr block of traffic mirror filter rule.
+	SourceCidrBlock pulumi.StringInput `pulumi:"sourceCidrBlock"`
+	// The source port range of traffic mirror filter rule.
+	SourcePortRange pulumi.StringInput `pulumi:"sourcePortRange"`
+	// The status of traffic mirror filter rule.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The traffic direction of traffic mirror filter rule.
+	TrafficDirection pulumi.StringInput `pulumi:"trafficDirection"`
+	// The ID of traffic mirror filter.
+	TrafficMirrorFilterId pulumi.StringInput `pulumi:"trafficMirrorFilterId"`
+	// The ID of traffic mirror filter rule.
+	TrafficMirrorFilterRuleId pulumi.StringInput `pulumi:"trafficMirrorFilterRuleId"`
+	// The last update time of traffic mirror filter rule.
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+}
+
+func (GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTrafficMirrorFilterRulesTrafficMirrorFilterRule)(nil)).Elem()
+}
+
+func (i GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleArgs) ToGetTrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput() GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput {
+	return i.ToGetTrafficMirrorFilterRulesTrafficMirrorFilterRuleOutputWithContext(context.Background())
+}
+
+func (i GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleArgs) ToGetTrafficMirrorFilterRulesTrafficMirrorFilterRuleOutputWithContext(ctx context.Context) GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput)
+}
+
+// GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleArrayInput is an input type that accepts GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleArray and GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleArrayOutput values.
+// You can construct a concrete instance of `GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleArrayInput` via:
+//
+//	GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleArray{ GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleArgs{...} }
+type GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleArrayInput interface {
+	pulumi.Input
+
+	ToGetTrafficMirrorFilterRulesTrafficMirrorFilterRuleArrayOutput() GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleArrayOutput
+	ToGetTrafficMirrorFilterRulesTrafficMirrorFilterRuleArrayOutputWithContext(context.Context) GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleArrayOutput
+}
+
+type GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleArray []GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleInput
+
+func (GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTrafficMirrorFilterRulesTrafficMirrorFilterRule)(nil)).Elem()
+}
+
+func (i GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleArray) ToGetTrafficMirrorFilterRulesTrafficMirrorFilterRuleArrayOutput() GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleArrayOutput {
+	return i.ToGetTrafficMirrorFilterRulesTrafficMirrorFilterRuleArrayOutputWithContext(context.Background())
+}
+
+func (i GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleArray) ToGetTrafficMirrorFilterRulesTrafficMirrorFilterRuleArrayOutputWithContext(ctx context.Context) GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleArrayOutput)
+}
+
+type GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput struct{ *pulumi.OutputState }
+
+func (GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTrafficMirrorFilterRulesTrafficMirrorFilterRule)(nil)).Elem()
+}
+
+func (o GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput) ToGetTrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput() GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput {
+	return o
+}
+
+func (o GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput) ToGetTrafficMirrorFilterRulesTrafficMirrorFilterRuleOutputWithContext(ctx context.Context) GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput {
+	return o
+}
+
+// The create time of traffic mirror filter rule.
+func (o GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFilterRulesTrafficMirrorFilterRule) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The description of traffic mirror filter rule.
+func (o GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFilterRulesTrafficMirrorFilterRule) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The destination cidr block of traffic mirror filter rule.
+func (o GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput) DestinationCidrBlock() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFilterRulesTrafficMirrorFilterRule) string { return v.DestinationCidrBlock }).(pulumi.StringOutput)
+}
+
+// The destination port range of traffic mirror filter rule.
+func (o GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput) DestinationPortRange() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFilterRulesTrafficMirrorFilterRule) string { return v.DestinationPortRange }).(pulumi.StringOutput)
+}
+
+// The ID of traffic mirror filter rule.
+func (o GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFilterRulesTrafficMirrorFilterRule) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The policy of traffic mirror filter rule.
+func (o GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput) Policy() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFilterRulesTrafficMirrorFilterRule) string { return v.Policy }).(pulumi.StringOutput)
+}
+
+// The priority of traffic mirror filter rule.
+func (o GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput) Priority() pulumi.IntOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFilterRulesTrafficMirrorFilterRule) int { return v.Priority }).(pulumi.IntOutput)
+}
+
+// The protocol of traffic mirror filter rule.
+func (o GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput) Protocol() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFilterRulesTrafficMirrorFilterRule) string { return v.Protocol }).(pulumi.StringOutput)
+}
+
+// The source cidr block of traffic mirror filter rule.
+func (o GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput) SourceCidrBlock() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFilterRulesTrafficMirrorFilterRule) string { return v.SourceCidrBlock }).(pulumi.StringOutput)
+}
+
+// The source port range of traffic mirror filter rule.
+func (o GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput) SourcePortRange() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFilterRulesTrafficMirrorFilterRule) string { return v.SourcePortRange }).(pulumi.StringOutput)
+}
+
+// The status of traffic mirror filter rule.
+func (o GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFilterRulesTrafficMirrorFilterRule) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The traffic direction of traffic mirror filter rule.
+func (o GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput) TrafficDirection() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFilterRulesTrafficMirrorFilterRule) string { return v.TrafficDirection }).(pulumi.StringOutput)
+}
+
+// The ID of traffic mirror filter.
+func (o GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput) TrafficMirrorFilterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFilterRulesTrafficMirrorFilterRule) string { return v.TrafficMirrorFilterId }).(pulumi.StringOutput)
+}
+
+// The ID of traffic mirror filter rule.
+func (o GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput) TrafficMirrorFilterRuleId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFilterRulesTrafficMirrorFilterRule) string { return v.TrafficMirrorFilterRuleId }).(pulumi.StringOutput)
+}
+
+// The last update time of traffic mirror filter rule.
+func (o GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFilterRulesTrafficMirrorFilterRule) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+type GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTrafficMirrorFilterRulesTrafficMirrorFilterRule)(nil)).Elem()
+}
+
+func (o GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleArrayOutput) ToGetTrafficMirrorFilterRulesTrafficMirrorFilterRuleArrayOutput() GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleArrayOutput {
+	return o
+}
+
+func (o GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleArrayOutput) ToGetTrafficMirrorFilterRulesTrafficMirrorFilterRuleArrayOutputWithContext(ctx context.Context) GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleArrayOutput {
+	return o
+}
+
+func (o GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleArrayOutput) Index(i pulumi.IntInput) GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTrafficMirrorFilterRulesTrafficMirrorFilterRule {
+		return vs[0].([]GetTrafficMirrorFilterRulesTrafficMirrorFilterRule)[vs[1].(int)]
+	}).(GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput)
+}
+
+type GetTrafficMirrorFiltersTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetTrafficMirrorFiltersTagInput is an input type that accepts GetTrafficMirrorFiltersTagArgs and GetTrafficMirrorFiltersTagOutput values.
+// You can construct a concrete instance of `GetTrafficMirrorFiltersTagInput` via:
+//
+//	GetTrafficMirrorFiltersTagArgs{...}
+type GetTrafficMirrorFiltersTagInput interface {
+	pulumi.Input
+
+	ToGetTrafficMirrorFiltersTagOutput() GetTrafficMirrorFiltersTagOutput
+	ToGetTrafficMirrorFiltersTagOutputWithContext(context.Context) GetTrafficMirrorFiltersTagOutput
+}
+
+type GetTrafficMirrorFiltersTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetTrafficMirrorFiltersTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTrafficMirrorFiltersTag)(nil)).Elem()
+}
+
+func (i GetTrafficMirrorFiltersTagArgs) ToGetTrafficMirrorFiltersTagOutput() GetTrafficMirrorFiltersTagOutput {
+	return i.ToGetTrafficMirrorFiltersTagOutputWithContext(context.Background())
+}
+
+func (i GetTrafficMirrorFiltersTagArgs) ToGetTrafficMirrorFiltersTagOutputWithContext(ctx context.Context) GetTrafficMirrorFiltersTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTrafficMirrorFiltersTagOutput)
+}
+
+// GetTrafficMirrorFiltersTagArrayInput is an input type that accepts GetTrafficMirrorFiltersTagArray and GetTrafficMirrorFiltersTagArrayOutput values.
+// You can construct a concrete instance of `GetTrafficMirrorFiltersTagArrayInput` via:
+//
+//	GetTrafficMirrorFiltersTagArray{ GetTrafficMirrorFiltersTagArgs{...} }
+type GetTrafficMirrorFiltersTagArrayInput interface {
+	pulumi.Input
+
+	ToGetTrafficMirrorFiltersTagArrayOutput() GetTrafficMirrorFiltersTagArrayOutput
+	ToGetTrafficMirrorFiltersTagArrayOutputWithContext(context.Context) GetTrafficMirrorFiltersTagArrayOutput
+}
+
+type GetTrafficMirrorFiltersTagArray []GetTrafficMirrorFiltersTagInput
+
+func (GetTrafficMirrorFiltersTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTrafficMirrorFiltersTag)(nil)).Elem()
+}
+
+func (i GetTrafficMirrorFiltersTagArray) ToGetTrafficMirrorFiltersTagArrayOutput() GetTrafficMirrorFiltersTagArrayOutput {
+	return i.ToGetTrafficMirrorFiltersTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetTrafficMirrorFiltersTagArray) ToGetTrafficMirrorFiltersTagArrayOutputWithContext(ctx context.Context) GetTrafficMirrorFiltersTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTrafficMirrorFiltersTagArrayOutput)
+}
+
+type GetTrafficMirrorFiltersTagOutput struct{ *pulumi.OutputState }
+
+func (GetTrafficMirrorFiltersTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTrafficMirrorFiltersTag)(nil)).Elem()
+}
+
+func (o GetTrafficMirrorFiltersTagOutput) ToGetTrafficMirrorFiltersTagOutput() GetTrafficMirrorFiltersTagOutput {
+	return o
+}
+
+func (o GetTrafficMirrorFiltersTagOutput) ToGetTrafficMirrorFiltersTagOutputWithContext(ctx context.Context) GetTrafficMirrorFiltersTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetTrafficMirrorFiltersTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFiltersTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetTrafficMirrorFiltersTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFiltersTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetTrafficMirrorFiltersTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTrafficMirrorFiltersTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTrafficMirrorFiltersTag)(nil)).Elem()
+}
+
+func (o GetTrafficMirrorFiltersTagArrayOutput) ToGetTrafficMirrorFiltersTagArrayOutput() GetTrafficMirrorFiltersTagArrayOutput {
+	return o
+}
+
+func (o GetTrafficMirrorFiltersTagArrayOutput) ToGetTrafficMirrorFiltersTagArrayOutputWithContext(ctx context.Context) GetTrafficMirrorFiltersTagArrayOutput {
+	return o
+}
+
+func (o GetTrafficMirrorFiltersTagArrayOutput) Index(i pulumi.IntInput) GetTrafficMirrorFiltersTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTrafficMirrorFiltersTag {
+		return vs[0].([]GetTrafficMirrorFiltersTag)[vs[1].(int)]
+	}).(GetTrafficMirrorFiltersTagOutput)
+}
+
+type GetTrafficMirrorFiltersTrafficMirrorFilter struct {
+	// The create time of traffic mirror filter rule.
+	CreatedAt string `pulumi:"createdAt"`
+	// The description of traffic mirror filter rule.
+	Description string `pulumi:"description"`
+	// The ingress filter rules of traffic mirror filter.
+	EgressFilterRules []GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRule `pulumi:"egressFilterRules"`
+	// The ID of traffic mirror filter.
+	Id string `pulumi:"id"`
+	// The ingress filter rules of traffic mirror filter.
+	IngressFilterRules []GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRule `pulumi:"ingressFilterRules"`
+	// The project name of traffic mirror filter.
+	ProjectName string `pulumi:"projectName"`
+	// The status of traffic mirror filter.
+	Status string `pulumi:"status"`
+	// Tags.
+	Tags []GetTrafficMirrorFiltersTrafficMirrorFilterTag `pulumi:"tags"`
+	// The ID of traffic mirror filter.
+	TrafficMirrorFilterId string `pulumi:"trafficMirrorFilterId"`
+	// The name of traffic mirror filter.
+	TrafficMirrorFilterName string `pulumi:"trafficMirrorFilterName"`
+	// The last update time of traffic mirror filter.
+	UpdatedAt string `pulumi:"updatedAt"`
+}
+
+// GetTrafficMirrorFiltersTrafficMirrorFilterInput is an input type that accepts GetTrafficMirrorFiltersTrafficMirrorFilterArgs and GetTrafficMirrorFiltersTrafficMirrorFilterOutput values.
+// You can construct a concrete instance of `GetTrafficMirrorFiltersTrafficMirrorFilterInput` via:
+//
+//	GetTrafficMirrorFiltersTrafficMirrorFilterArgs{...}
+type GetTrafficMirrorFiltersTrafficMirrorFilterInput interface {
+	pulumi.Input
+
+	ToGetTrafficMirrorFiltersTrafficMirrorFilterOutput() GetTrafficMirrorFiltersTrafficMirrorFilterOutput
+	ToGetTrafficMirrorFiltersTrafficMirrorFilterOutputWithContext(context.Context) GetTrafficMirrorFiltersTrafficMirrorFilterOutput
+}
+
+type GetTrafficMirrorFiltersTrafficMirrorFilterArgs struct {
+	// The create time of traffic mirror filter rule.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The description of traffic mirror filter rule.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The ingress filter rules of traffic mirror filter.
+	EgressFilterRules GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayInput `pulumi:"egressFilterRules"`
+	// The ID of traffic mirror filter.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The ingress filter rules of traffic mirror filter.
+	IngressFilterRules GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayInput `pulumi:"ingressFilterRules"`
+	// The project name of traffic mirror filter.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The status of traffic mirror filter.
+	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags GetTrafficMirrorFiltersTrafficMirrorFilterTagArrayInput `pulumi:"tags"`
+	// The ID of traffic mirror filter.
+	TrafficMirrorFilterId pulumi.StringInput `pulumi:"trafficMirrorFilterId"`
+	// The name of traffic mirror filter.
+	TrafficMirrorFilterName pulumi.StringInput `pulumi:"trafficMirrorFilterName"`
+	// The last update time of traffic mirror filter.
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+}
+
+func (GetTrafficMirrorFiltersTrafficMirrorFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTrafficMirrorFiltersTrafficMirrorFilter)(nil)).Elem()
+}
+
+func (i GetTrafficMirrorFiltersTrafficMirrorFilterArgs) ToGetTrafficMirrorFiltersTrafficMirrorFilterOutput() GetTrafficMirrorFiltersTrafficMirrorFilterOutput {
+	return i.ToGetTrafficMirrorFiltersTrafficMirrorFilterOutputWithContext(context.Background())
+}
+
+func (i GetTrafficMirrorFiltersTrafficMirrorFilterArgs) ToGetTrafficMirrorFiltersTrafficMirrorFilterOutputWithContext(ctx context.Context) GetTrafficMirrorFiltersTrafficMirrorFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTrafficMirrorFiltersTrafficMirrorFilterOutput)
+}
+
+// GetTrafficMirrorFiltersTrafficMirrorFilterArrayInput is an input type that accepts GetTrafficMirrorFiltersTrafficMirrorFilterArray and GetTrafficMirrorFiltersTrafficMirrorFilterArrayOutput values.
+// You can construct a concrete instance of `GetTrafficMirrorFiltersTrafficMirrorFilterArrayInput` via:
+//
+//	GetTrafficMirrorFiltersTrafficMirrorFilterArray{ GetTrafficMirrorFiltersTrafficMirrorFilterArgs{...} }
+type GetTrafficMirrorFiltersTrafficMirrorFilterArrayInput interface {
+	pulumi.Input
+
+	ToGetTrafficMirrorFiltersTrafficMirrorFilterArrayOutput() GetTrafficMirrorFiltersTrafficMirrorFilterArrayOutput
+	ToGetTrafficMirrorFiltersTrafficMirrorFilterArrayOutputWithContext(context.Context) GetTrafficMirrorFiltersTrafficMirrorFilterArrayOutput
+}
+
+type GetTrafficMirrorFiltersTrafficMirrorFilterArray []GetTrafficMirrorFiltersTrafficMirrorFilterInput
+
+func (GetTrafficMirrorFiltersTrafficMirrorFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTrafficMirrorFiltersTrafficMirrorFilter)(nil)).Elem()
+}
+
+func (i GetTrafficMirrorFiltersTrafficMirrorFilterArray) ToGetTrafficMirrorFiltersTrafficMirrorFilterArrayOutput() GetTrafficMirrorFiltersTrafficMirrorFilterArrayOutput {
+	return i.ToGetTrafficMirrorFiltersTrafficMirrorFilterArrayOutputWithContext(context.Background())
+}
+
+func (i GetTrafficMirrorFiltersTrafficMirrorFilterArray) ToGetTrafficMirrorFiltersTrafficMirrorFilterArrayOutputWithContext(ctx context.Context) GetTrafficMirrorFiltersTrafficMirrorFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTrafficMirrorFiltersTrafficMirrorFilterArrayOutput)
+}
+
+type GetTrafficMirrorFiltersTrafficMirrorFilterOutput struct{ *pulumi.OutputState }
+
+func (GetTrafficMirrorFiltersTrafficMirrorFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTrafficMirrorFiltersTrafficMirrorFilter)(nil)).Elem()
+}
+
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterOutput) ToGetTrafficMirrorFiltersTrafficMirrorFilterOutput() GetTrafficMirrorFiltersTrafficMirrorFilterOutput {
+	return o
+}
+
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterOutput) ToGetTrafficMirrorFiltersTrafficMirrorFilterOutputWithContext(ctx context.Context) GetTrafficMirrorFiltersTrafficMirrorFilterOutput {
+	return o
+}
+
+// The create time of traffic mirror filter rule.
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFiltersTrafficMirrorFilter) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The description of traffic mirror filter rule.
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFiltersTrafficMirrorFilter) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The ingress filter rules of traffic mirror filter.
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterOutput) EgressFilterRules() GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFiltersTrafficMirrorFilter) []GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRule {
+		return v.EgressFilterRules
+	}).(GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayOutput)
+}
+
+// The ID of traffic mirror filter.
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFiltersTrafficMirrorFilter) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The ingress filter rules of traffic mirror filter.
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterOutput) IngressFilterRules() GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFiltersTrafficMirrorFilter) []GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRule {
+		return v.IngressFilterRules
+	}).(GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayOutput)
+}
+
+// The project name of traffic mirror filter.
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFiltersTrafficMirrorFilter) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The status of traffic mirror filter.
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFiltersTrafficMirrorFilter) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterOutput) Tags() GetTrafficMirrorFiltersTrafficMirrorFilterTagArrayOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFiltersTrafficMirrorFilter) []GetTrafficMirrorFiltersTrafficMirrorFilterTag {
+		return v.Tags
+	}).(GetTrafficMirrorFiltersTrafficMirrorFilterTagArrayOutput)
+}
+
+// The ID of traffic mirror filter.
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterOutput) TrafficMirrorFilterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFiltersTrafficMirrorFilter) string { return v.TrafficMirrorFilterId }).(pulumi.StringOutput)
+}
+
+// The name of traffic mirror filter.
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterOutput) TrafficMirrorFilterName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFiltersTrafficMirrorFilter) string { return v.TrafficMirrorFilterName }).(pulumi.StringOutput)
+}
+
+// The last update time of traffic mirror filter.
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFiltersTrafficMirrorFilter) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+type GetTrafficMirrorFiltersTrafficMirrorFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTrafficMirrorFiltersTrafficMirrorFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTrafficMirrorFiltersTrafficMirrorFilter)(nil)).Elem()
+}
+
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterArrayOutput) ToGetTrafficMirrorFiltersTrafficMirrorFilterArrayOutput() GetTrafficMirrorFiltersTrafficMirrorFilterArrayOutput {
+	return o
+}
+
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterArrayOutput) ToGetTrafficMirrorFiltersTrafficMirrorFilterArrayOutputWithContext(ctx context.Context) GetTrafficMirrorFiltersTrafficMirrorFilterArrayOutput {
+	return o
+}
+
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterArrayOutput) Index(i pulumi.IntInput) GetTrafficMirrorFiltersTrafficMirrorFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTrafficMirrorFiltersTrafficMirrorFilter {
+		return vs[0].([]GetTrafficMirrorFiltersTrafficMirrorFilter)[vs[1].(int)]
+	}).(GetTrafficMirrorFiltersTrafficMirrorFilterOutput)
+}
+
+type GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRule struct {
+	// The create time of traffic mirror filter rule.
+	CreatedAt string `pulumi:"createdAt"`
+	// The description of traffic mirror filter rule.
+	Description string `pulumi:"description"`
+	// The destination cidr block of traffic mirror filter rule.
+	DestinationCidrBlock string `pulumi:"destinationCidrBlock"`
+	// The destination port range of traffic mirror filter rule.
+	DestinationPortRange string `pulumi:"destinationPortRange"`
+	// The policy of traffic mirror filter rule.
+	Policy string `pulumi:"policy"`
+	// The priority of traffic mirror filter rule.
+	Priority int `pulumi:"priority"`
+	// The protocol of traffic mirror filter rule.
+	Protocol string `pulumi:"protocol"`
+	// The source cidr block of traffic mirror filter rule.
+	SourceCidrBlock string `pulumi:"sourceCidrBlock"`
+	// The source port range of traffic mirror filter rule.
+	SourcePortRange string `pulumi:"sourcePortRange"`
+	// The status of traffic mirror filter.
+	Status string `pulumi:"status"`
+	// The traffic direction of traffic mirror filter rule.
+	TrafficDirection string `pulumi:"trafficDirection"`
+	// The ID of traffic mirror filter.
+	TrafficMirrorFilterId string `pulumi:"trafficMirrorFilterId"`
+	// The ID of traffic mirror filter rule.
+	TrafficMirrorFilterRuleId string `pulumi:"trafficMirrorFilterRuleId"`
+	// The last update time of traffic mirror filter.
+	UpdatedAt string `pulumi:"updatedAt"`
+}
+
+// GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleInput is an input type that accepts GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArgs and GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput values.
+// You can construct a concrete instance of `GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleInput` via:
+//
+//	GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArgs{...}
+type GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleInput interface {
+	pulumi.Input
+
+	ToGetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput() GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput
+	ToGetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutputWithContext(context.Context) GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput
+}
+
+type GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArgs struct {
+	// The create time of traffic mirror filter rule.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The description of traffic mirror filter rule.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The destination cidr block of traffic mirror filter rule.
+	DestinationCidrBlock pulumi.StringInput `pulumi:"destinationCidrBlock"`
+	// The destination port range of traffic mirror filter rule.
+	DestinationPortRange pulumi.StringInput `pulumi:"destinationPortRange"`
+	// The policy of traffic mirror filter rule.
+	Policy pulumi.StringInput `pulumi:"policy"`
+	// The priority of traffic mirror filter rule.
+	Priority pulumi.IntInput `pulumi:"priority"`
+	// The protocol of traffic mirror filter rule.
+	Protocol pulumi.StringInput `pulumi:"protocol"`
+	// The source cidr block of traffic mirror filter rule.
+	SourceCidrBlock pulumi.StringInput `pulumi:"sourceCidrBlock"`
+	// The source port range of traffic mirror filter rule.
+	SourcePortRange pulumi.StringInput `pulumi:"sourcePortRange"`
+	// The status of traffic mirror filter.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The traffic direction of traffic mirror filter rule.
+	TrafficDirection pulumi.StringInput `pulumi:"trafficDirection"`
+	// The ID of traffic mirror filter.
+	TrafficMirrorFilterId pulumi.StringInput `pulumi:"trafficMirrorFilterId"`
+	// The ID of traffic mirror filter rule.
+	TrafficMirrorFilterRuleId pulumi.StringInput `pulumi:"trafficMirrorFilterRuleId"`
+	// The last update time of traffic mirror filter.
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+}
+
+func (GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRule)(nil)).Elem()
+}
+
+func (i GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArgs) ToGetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput() GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput {
+	return i.ToGetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutputWithContext(context.Background())
+}
+
+func (i GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArgs) ToGetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutputWithContext(ctx context.Context) GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput)
+}
+
+// GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayInput is an input type that accepts GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArray and GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayOutput values.
+// You can construct a concrete instance of `GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayInput` via:
+//
+//	GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArray{ GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArgs{...} }
+type GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayInput interface {
+	pulumi.Input
+
+	ToGetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayOutput() GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayOutput
+	ToGetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayOutputWithContext(context.Context) GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayOutput
+}
+
+type GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArray []GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleInput
+
+func (GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRule)(nil)).Elem()
+}
+
+func (i GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArray) ToGetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayOutput() GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayOutput {
+	return i.ToGetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayOutputWithContext(context.Background())
+}
+
+func (i GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArray) ToGetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayOutputWithContext(ctx context.Context) GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayOutput)
+}
+
+type GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput struct{ *pulumi.OutputState }
+
+func (GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRule)(nil)).Elem()
+}
+
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput) ToGetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput() GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput {
+	return o
+}
+
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput) ToGetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutputWithContext(ctx context.Context) GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput {
+	return o
+}
+
+// The create time of traffic mirror filter rule.
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRule) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The description of traffic mirror filter rule.
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRule) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The destination cidr block of traffic mirror filter rule.
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput) DestinationCidrBlock() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRule) string {
+		return v.DestinationCidrBlock
+	}).(pulumi.StringOutput)
+}
+
+// The destination port range of traffic mirror filter rule.
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput) DestinationPortRange() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRule) string {
+		return v.DestinationPortRange
+	}).(pulumi.StringOutput)
+}
+
+// The policy of traffic mirror filter rule.
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput) Policy() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRule) string { return v.Policy }).(pulumi.StringOutput)
+}
+
+// The priority of traffic mirror filter rule.
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput) Priority() pulumi.IntOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRule) int { return v.Priority }).(pulumi.IntOutput)
+}
+
+// The protocol of traffic mirror filter rule.
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput) Protocol() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRule) string { return v.Protocol }).(pulumi.StringOutput)
+}
+
+// The source cidr block of traffic mirror filter rule.
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput) SourceCidrBlock() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRule) string { return v.SourceCidrBlock }).(pulumi.StringOutput)
+}
+
+// The source port range of traffic mirror filter rule.
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput) SourcePortRange() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRule) string { return v.SourcePortRange }).(pulumi.StringOutput)
+}
+
+// The status of traffic mirror filter.
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRule) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The traffic direction of traffic mirror filter rule.
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput) TrafficDirection() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRule) string { return v.TrafficDirection }).(pulumi.StringOutput)
+}
+
+// The ID of traffic mirror filter.
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput) TrafficMirrorFilterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRule) string {
+		return v.TrafficMirrorFilterId
+	}).(pulumi.StringOutput)
+}
+
+// The ID of traffic mirror filter rule.
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput) TrafficMirrorFilterRuleId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRule) string {
+		return v.TrafficMirrorFilterRuleId
+	}).(pulumi.StringOutput)
+}
+
+// The last update time of traffic mirror filter.
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRule) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+type GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRule)(nil)).Elem()
+}
+
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayOutput) ToGetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayOutput() GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayOutput {
+	return o
+}
+
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayOutput) ToGetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayOutputWithContext(ctx context.Context) GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayOutput {
+	return o
+}
+
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayOutput) Index(i pulumi.IntInput) GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRule {
+		return vs[0].([]GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRule)[vs[1].(int)]
+	}).(GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput)
+}
+
+type GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRule struct {
+	// The create time of traffic mirror filter rule.
+	CreatedAt string `pulumi:"createdAt"`
+	// The description of traffic mirror filter rule.
+	Description string `pulumi:"description"`
+	// The destination cidr block of traffic mirror filter rule.
+	DestinationCidrBlock string `pulumi:"destinationCidrBlock"`
+	// The destination port range of traffic mirror filter rule.
+	DestinationPortRange string `pulumi:"destinationPortRange"`
+	// The policy of traffic mirror filter rule.
+	Policy string `pulumi:"policy"`
+	// The priority of traffic mirror filter rule.
+	Priority int `pulumi:"priority"`
+	// The protocol of traffic mirror filter rule.
+	Protocol string `pulumi:"protocol"`
+	// The source cidr block of traffic mirror filter rule.
+	SourceCidrBlock string `pulumi:"sourceCidrBlock"`
+	// The source port range of traffic mirror filter rule.
+	SourcePortRange string `pulumi:"sourcePortRange"`
+	// The status of traffic mirror filter.
+	Status string `pulumi:"status"`
+	// The traffic direction of traffic mirror filter rule.
+	TrafficDirection string `pulumi:"trafficDirection"`
+	// The ID of traffic mirror filter.
+	TrafficMirrorFilterId string `pulumi:"trafficMirrorFilterId"`
+	// The ID of traffic mirror filter rule.
+	TrafficMirrorFilterRuleId string `pulumi:"trafficMirrorFilterRuleId"`
+	// The last update time of traffic mirror filter.
+	UpdatedAt string `pulumi:"updatedAt"`
+}
+
+// GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleInput is an input type that accepts GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArgs and GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput values.
+// You can construct a concrete instance of `GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleInput` via:
+//
+//	GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArgs{...}
+type GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleInput interface {
+	pulumi.Input
+
+	ToGetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput() GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput
+	ToGetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutputWithContext(context.Context) GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput
+}
+
+type GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArgs struct {
+	// The create time of traffic mirror filter rule.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The description of traffic mirror filter rule.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The destination cidr block of traffic mirror filter rule.
+	DestinationCidrBlock pulumi.StringInput `pulumi:"destinationCidrBlock"`
+	// The destination port range of traffic mirror filter rule.
+	DestinationPortRange pulumi.StringInput `pulumi:"destinationPortRange"`
+	// The policy of traffic mirror filter rule.
+	Policy pulumi.StringInput `pulumi:"policy"`
+	// The priority of traffic mirror filter rule.
+	Priority pulumi.IntInput `pulumi:"priority"`
+	// The protocol of traffic mirror filter rule.
+	Protocol pulumi.StringInput `pulumi:"protocol"`
+	// The source cidr block of traffic mirror filter rule.
+	SourceCidrBlock pulumi.StringInput `pulumi:"sourceCidrBlock"`
+	// The source port range of traffic mirror filter rule.
+	SourcePortRange pulumi.StringInput `pulumi:"sourcePortRange"`
+	// The status of traffic mirror filter.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The traffic direction of traffic mirror filter rule.
+	TrafficDirection pulumi.StringInput `pulumi:"trafficDirection"`
+	// The ID of traffic mirror filter.
+	TrafficMirrorFilterId pulumi.StringInput `pulumi:"trafficMirrorFilterId"`
+	// The ID of traffic mirror filter rule.
+	TrafficMirrorFilterRuleId pulumi.StringInput `pulumi:"trafficMirrorFilterRuleId"`
+	// The last update time of traffic mirror filter.
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+}
+
+func (GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRule)(nil)).Elem()
+}
+
+func (i GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArgs) ToGetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput() GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput {
+	return i.ToGetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutputWithContext(context.Background())
+}
+
+func (i GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArgs) ToGetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutputWithContext(ctx context.Context) GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput)
+}
+
+// GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayInput is an input type that accepts GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArray and GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayOutput values.
+// You can construct a concrete instance of `GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayInput` via:
+//
+//	GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArray{ GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArgs{...} }
+type GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayInput interface {
+	pulumi.Input
+
+	ToGetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayOutput() GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayOutput
+	ToGetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayOutputWithContext(context.Context) GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayOutput
+}
+
+type GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArray []GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleInput
+
+func (GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRule)(nil)).Elem()
+}
+
+func (i GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArray) ToGetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayOutput() GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayOutput {
+	return i.ToGetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayOutputWithContext(context.Background())
+}
+
+func (i GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArray) ToGetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayOutputWithContext(ctx context.Context) GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayOutput)
+}
+
+type GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput struct{ *pulumi.OutputState }
+
+func (GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRule)(nil)).Elem()
+}
+
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput) ToGetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput() GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput {
+	return o
+}
+
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput) ToGetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutputWithContext(ctx context.Context) GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput {
+	return o
+}
+
+// The create time of traffic mirror filter rule.
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRule) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The description of traffic mirror filter rule.
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRule) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The destination cidr block of traffic mirror filter rule.
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput) DestinationCidrBlock() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRule) string {
+		return v.DestinationCidrBlock
+	}).(pulumi.StringOutput)
+}
+
+// The destination port range of traffic mirror filter rule.
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput) DestinationPortRange() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRule) string {
+		return v.DestinationPortRange
+	}).(pulumi.StringOutput)
+}
+
+// The policy of traffic mirror filter rule.
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput) Policy() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRule) string { return v.Policy }).(pulumi.StringOutput)
+}
+
+// The priority of traffic mirror filter rule.
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput) Priority() pulumi.IntOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRule) int { return v.Priority }).(pulumi.IntOutput)
+}
+
+// The protocol of traffic mirror filter rule.
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput) Protocol() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRule) string { return v.Protocol }).(pulumi.StringOutput)
+}
+
+// The source cidr block of traffic mirror filter rule.
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput) SourceCidrBlock() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRule) string { return v.SourceCidrBlock }).(pulumi.StringOutput)
+}
+
+// The source port range of traffic mirror filter rule.
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput) SourcePortRange() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRule) string { return v.SourcePortRange }).(pulumi.StringOutput)
+}
+
+// The status of traffic mirror filter.
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRule) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The traffic direction of traffic mirror filter rule.
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput) TrafficDirection() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRule) string { return v.TrafficDirection }).(pulumi.StringOutput)
+}
+
+// The ID of traffic mirror filter.
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput) TrafficMirrorFilterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRule) string {
+		return v.TrafficMirrorFilterId
+	}).(pulumi.StringOutput)
+}
+
+// The ID of traffic mirror filter rule.
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput) TrafficMirrorFilterRuleId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRule) string {
+		return v.TrafficMirrorFilterRuleId
+	}).(pulumi.StringOutput)
+}
+
+// The last update time of traffic mirror filter.
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRule) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+type GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRule)(nil)).Elem()
+}
+
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayOutput) ToGetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayOutput() GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayOutput {
+	return o
+}
+
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayOutput) ToGetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayOutputWithContext(ctx context.Context) GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayOutput {
+	return o
+}
+
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayOutput) Index(i pulumi.IntInput) GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRule {
+		return vs[0].([]GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRule)[vs[1].(int)]
+	}).(GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput)
+}
+
+type GetTrafficMirrorFiltersTrafficMirrorFilterTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetTrafficMirrorFiltersTrafficMirrorFilterTagInput is an input type that accepts GetTrafficMirrorFiltersTrafficMirrorFilterTagArgs and GetTrafficMirrorFiltersTrafficMirrorFilterTagOutput values.
+// You can construct a concrete instance of `GetTrafficMirrorFiltersTrafficMirrorFilterTagInput` via:
+//
+//	GetTrafficMirrorFiltersTrafficMirrorFilterTagArgs{...}
+type GetTrafficMirrorFiltersTrafficMirrorFilterTagInput interface {
+	pulumi.Input
+
+	ToGetTrafficMirrorFiltersTrafficMirrorFilterTagOutput() GetTrafficMirrorFiltersTrafficMirrorFilterTagOutput
+	ToGetTrafficMirrorFiltersTrafficMirrorFilterTagOutputWithContext(context.Context) GetTrafficMirrorFiltersTrafficMirrorFilterTagOutput
+}
+
+type GetTrafficMirrorFiltersTrafficMirrorFilterTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetTrafficMirrorFiltersTrafficMirrorFilterTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTrafficMirrorFiltersTrafficMirrorFilterTag)(nil)).Elem()
+}
+
+func (i GetTrafficMirrorFiltersTrafficMirrorFilterTagArgs) ToGetTrafficMirrorFiltersTrafficMirrorFilterTagOutput() GetTrafficMirrorFiltersTrafficMirrorFilterTagOutput {
+	return i.ToGetTrafficMirrorFiltersTrafficMirrorFilterTagOutputWithContext(context.Background())
+}
+
+func (i GetTrafficMirrorFiltersTrafficMirrorFilterTagArgs) ToGetTrafficMirrorFiltersTrafficMirrorFilterTagOutputWithContext(ctx context.Context) GetTrafficMirrorFiltersTrafficMirrorFilterTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTrafficMirrorFiltersTrafficMirrorFilterTagOutput)
+}
+
+// GetTrafficMirrorFiltersTrafficMirrorFilterTagArrayInput is an input type that accepts GetTrafficMirrorFiltersTrafficMirrorFilterTagArray and GetTrafficMirrorFiltersTrafficMirrorFilterTagArrayOutput values.
+// You can construct a concrete instance of `GetTrafficMirrorFiltersTrafficMirrorFilterTagArrayInput` via:
+//
+//	GetTrafficMirrorFiltersTrafficMirrorFilterTagArray{ GetTrafficMirrorFiltersTrafficMirrorFilterTagArgs{...} }
+type GetTrafficMirrorFiltersTrafficMirrorFilterTagArrayInput interface {
+	pulumi.Input
+
+	ToGetTrafficMirrorFiltersTrafficMirrorFilterTagArrayOutput() GetTrafficMirrorFiltersTrafficMirrorFilterTagArrayOutput
+	ToGetTrafficMirrorFiltersTrafficMirrorFilterTagArrayOutputWithContext(context.Context) GetTrafficMirrorFiltersTrafficMirrorFilterTagArrayOutput
+}
+
+type GetTrafficMirrorFiltersTrafficMirrorFilterTagArray []GetTrafficMirrorFiltersTrafficMirrorFilterTagInput
+
+func (GetTrafficMirrorFiltersTrafficMirrorFilterTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTrafficMirrorFiltersTrafficMirrorFilterTag)(nil)).Elem()
+}
+
+func (i GetTrafficMirrorFiltersTrafficMirrorFilterTagArray) ToGetTrafficMirrorFiltersTrafficMirrorFilterTagArrayOutput() GetTrafficMirrorFiltersTrafficMirrorFilterTagArrayOutput {
+	return i.ToGetTrafficMirrorFiltersTrafficMirrorFilterTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetTrafficMirrorFiltersTrafficMirrorFilterTagArray) ToGetTrafficMirrorFiltersTrafficMirrorFilterTagArrayOutputWithContext(ctx context.Context) GetTrafficMirrorFiltersTrafficMirrorFilterTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTrafficMirrorFiltersTrafficMirrorFilterTagArrayOutput)
+}
+
+type GetTrafficMirrorFiltersTrafficMirrorFilterTagOutput struct{ *pulumi.OutputState }
+
+func (GetTrafficMirrorFiltersTrafficMirrorFilterTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTrafficMirrorFiltersTrafficMirrorFilterTag)(nil)).Elem()
+}
+
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterTagOutput) ToGetTrafficMirrorFiltersTrafficMirrorFilterTagOutput() GetTrafficMirrorFiltersTrafficMirrorFilterTagOutput {
+	return o
+}
+
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterTagOutput) ToGetTrafficMirrorFiltersTrafficMirrorFilterTagOutputWithContext(ctx context.Context) GetTrafficMirrorFiltersTrafficMirrorFilterTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFiltersTrafficMirrorFilterTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorFiltersTrafficMirrorFilterTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetTrafficMirrorFiltersTrafficMirrorFilterTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTrafficMirrorFiltersTrafficMirrorFilterTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTrafficMirrorFiltersTrafficMirrorFilterTag)(nil)).Elem()
+}
+
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterTagArrayOutput) ToGetTrafficMirrorFiltersTrafficMirrorFilterTagArrayOutput() GetTrafficMirrorFiltersTrafficMirrorFilterTagArrayOutput {
+	return o
+}
+
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterTagArrayOutput) ToGetTrafficMirrorFiltersTrafficMirrorFilterTagArrayOutputWithContext(ctx context.Context) GetTrafficMirrorFiltersTrafficMirrorFilterTagArrayOutput {
+	return o
+}
+
+func (o GetTrafficMirrorFiltersTrafficMirrorFilterTagArrayOutput) Index(i pulumi.IntInput) GetTrafficMirrorFiltersTrafficMirrorFilterTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTrafficMirrorFiltersTrafficMirrorFilterTag {
+		return vs[0].([]GetTrafficMirrorFiltersTrafficMirrorFilterTag)[vs[1].(int)]
+	}).(GetTrafficMirrorFiltersTrafficMirrorFilterTagOutput)
+}
+
+type GetTrafficMirrorSessionsTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetTrafficMirrorSessionsTagInput is an input type that accepts GetTrafficMirrorSessionsTagArgs and GetTrafficMirrorSessionsTagOutput values.
+// You can construct a concrete instance of `GetTrafficMirrorSessionsTagInput` via:
+//
+//	GetTrafficMirrorSessionsTagArgs{...}
+type GetTrafficMirrorSessionsTagInput interface {
+	pulumi.Input
+
+	ToGetTrafficMirrorSessionsTagOutput() GetTrafficMirrorSessionsTagOutput
+	ToGetTrafficMirrorSessionsTagOutputWithContext(context.Context) GetTrafficMirrorSessionsTagOutput
+}
+
+type GetTrafficMirrorSessionsTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetTrafficMirrorSessionsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTrafficMirrorSessionsTag)(nil)).Elem()
+}
+
+func (i GetTrafficMirrorSessionsTagArgs) ToGetTrafficMirrorSessionsTagOutput() GetTrafficMirrorSessionsTagOutput {
+	return i.ToGetTrafficMirrorSessionsTagOutputWithContext(context.Background())
+}
+
+func (i GetTrafficMirrorSessionsTagArgs) ToGetTrafficMirrorSessionsTagOutputWithContext(ctx context.Context) GetTrafficMirrorSessionsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTrafficMirrorSessionsTagOutput)
+}
+
+// GetTrafficMirrorSessionsTagArrayInput is an input type that accepts GetTrafficMirrorSessionsTagArray and GetTrafficMirrorSessionsTagArrayOutput values.
+// You can construct a concrete instance of `GetTrafficMirrorSessionsTagArrayInput` via:
+//
+//	GetTrafficMirrorSessionsTagArray{ GetTrafficMirrorSessionsTagArgs{...} }
+type GetTrafficMirrorSessionsTagArrayInput interface {
+	pulumi.Input
+
+	ToGetTrafficMirrorSessionsTagArrayOutput() GetTrafficMirrorSessionsTagArrayOutput
+	ToGetTrafficMirrorSessionsTagArrayOutputWithContext(context.Context) GetTrafficMirrorSessionsTagArrayOutput
+}
+
+type GetTrafficMirrorSessionsTagArray []GetTrafficMirrorSessionsTagInput
+
+func (GetTrafficMirrorSessionsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTrafficMirrorSessionsTag)(nil)).Elem()
+}
+
+func (i GetTrafficMirrorSessionsTagArray) ToGetTrafficMirrorSessionsTagArrayOutput() GetTrafficMirrorSessionsTagArrayOutput {
+	return i.ToGetTrafficMirrorSessionsTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetTrafficMirrorSessionsTagArray) ToGetTrafficMirrorSessionsTagArrayOutputWithContext(ctx context.Context) GetTrafficMirrorSessionsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTrafficMirrorSessionsTagArrayOutput)
+}
+
+type GetTrafficMirrorSessionsTagOutput struct{ *pulumi.OutputState }
+
+func (GetTrafficMirrorSessionsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTrafficMirrorSessionsTag)(nil)).Elem()
+}
+
+func (o GetTrafficMirrorSessionsTagOutput) ToGetTrafficMirrorSessionsTagOutput() GetTrafficMirrorSessionsTagOutput {
+	return o
+}
+
+func (o GetTrafficMirrorSessionsTagOutput) ToGetTrafficMirrorSessionsTagOutputWithContext(ctx context.Context) GetTrafficMirrorSessionsTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetTrafficMirrorSessionsTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorSessionsTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetTrafficMirrorSessionsTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorSessionsTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetTrafficMirrorSessionsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTrafficMirrorSessionsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTrafficMirrorSessionsTag)(nil)).Elem()
+}
+
+func (o GetTrafficMirrorSessionsTagArrayOutput) ToGetTrafficMirrorSessionsTagArrayOutput() GetTrafficMirrorSessionsTagArrayOutput {
+	return o
+}
+
+func (o GetTrafficMirrorSessionsTagArrayOutput) ToGetTrafficMirrorSessionsTagArrayOutputWithContext(ctx context.Context) GetTrafficMirrorSessionsTagArrayOutput {
+	return o
+}
+
+func (o GetTrafficMirrorSessionsTagArrayOutput) Index(i pulumi.IntInput) GetTrafficMirrorSessionsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTrafficMirrorSessionsTag {
+		return vs[0].([]GetTrafficMirrorSessionsTag)[vs[1].(int)]
+	}).(GetTrafficMirrorSessionsTagOutput)
+}
+
+type GetTrafficMirrorSessionsTrafficMirrorSession struct {
+	// The business status of traffic mirror session.
+	BusinessStatus string `pulumi:"businessStatus"`
+	// The create time of traffic mirror session.
+	CreatedAt string `pulumi:"createdAt"`
+	// The description of traffic mirror session.
+	Description string `pulumi:"description"`
+	// The ID of traffic mirror session.
+	Id string `pulumi:"id"`
+	// The lock reason of traffic mirror session.
+	LockReason string `pulumi:"lockReason"`
+	// The packet length of traffic mirror session.
+	PacketLength int `pulumi:"packetLength"`
+	// The priority of traffic mirror session.
+	Priority int `pulumi:"priority"`
+	// The project name of traffic mirror session.
+	ProjectName string `pulumi:"projectName"`
+	// The status of traffic mirror session.
+	Status string `pulumi:"status"`
+	// Tags.
+	Tags []GetTrafficMirrorSessionsTrafficMirrorSessionTag `pulumi:"tags"`
+	// The ID of traffic mirror filter.
+	TrafficMirrorFilterId string `pulumi:"trafficMirrorFilterId"`
+	// The ID of traffic mirror session.
+	TrafficMirrorSessionId string `pulumi:"trafficMirrorSessionId"`
+	// The name of traffic mirror session.
+	TrafficMirrorSessionName string `pulumi:"trafficMirrorSessionName"`
+	// The IDs of traffic mirror source.
+	TrafficMirrorSourceIds []string `pulumi:"trafficMirrorSourceIds"`
+	// The ID of traffic mirror target.
+	TrafficMirrorTargetId string `pulumi:"trafficMirrorTargetId"`
+	// The update time of traffic mirror session.
+	UpdatedAt string `pulumi:"updatedAt"`
+	// The ID of virtual network.
+	VirtualNetworkId int `pulumi:"virtualNetworkId"`
+}
+
+// GetTrafficMirrorSessionsTrafficMirrorSessionInput is an input type that accepts GetTrafficMirrorSessionsTrafficMirrorSessionArgs and GetTrafficMirrorSessionsTrafficMirrorSessionOutput values.
+// You can construct a concrete instance of `GetTrafficMirrorSessionsTrafficMirrorSessionInput` via:
+//
+//	GetTrafficMirrorSessionsTrafficMirrorSessionArgs{...}
+type GetTrafficMirrorSessionsTrafficMirrorSessionInput interface {
+	pulumi.Input
+
+	ToGetTrafficMirrorSessionsTrafficMirrorSessionOutput() GetTrafficMirrorSessionsTrafficMirrorSessionOutput
+	ToGetTrafficMirrorSessionsTrafficMirrorSessionOutputWithContext(context.Context) GetTrafficMirrorSessionsTrafficMirrorSessionOutput
+}
+
+type GetTrafficMirrorSessionsTrafficMirrorSessionArgs struct {
+	// The business status of traffic mirror session.
+	BusinessStatus pulumi.StringInput `pulumi:"businessStatus"`
+	// The create time of traffic mirror session.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The description of traffic mirror session.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The ID of traffic mirror session.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The lock reason of traffic mirror session.
+	LockReason pulumi.StringInput `pulumi:"lockReason"`
+	// The packet length of traffic mirror session.
+	PacketLength pulumi.IntInput `pulumi:"packetLength"`
+	// The priority of traffic mirror session.
+	Priority pulumi.IntInput `pulumi:"priority"`
+	// The project name of traffic mirror session.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The status of traffic mirror session.
+	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags GetTrafficMirrorSessionsTrafficMirrorSessionTagArrayInput `pulumi:"tags"`
+	// The ID of traffic mirror filter.
+	TrafficMirrorFilterId pulumi.StringInput `pulumi:"trafficMirrorFilterId"`
+	// The ID of traffic mirror session.
+	TrafficMirrorSessionId pulumi.StringInput `pulumi:"trafficMirrorSessionId"`
+	// The name of traffic mirror session.
+	TrafficMirrorSessionName pulumi.StringInput `pulumi:"trafficMirrorSessionName"`
+	// The IDs of traffic mirror source.
+	TrafficMirrorSourceIds pulumi.StringArrayInput `pulumi:"trafficMirrorSourceIds"`
+	// The ID of traffic mirror target.
+	TrafficMirrorTargetId pulumi.StringInput `pulumi:"trafficMirrorTargetId"`
+	// The update time of traffic mirror session.
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+	// The ID of virtual network.
+	VirtualNetworkId pulumi.IntInput `pulumi:"virtualNetworkId"`
+}
+
+func (GetTrafficMirrorSessionsTrafficMirrorSessionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTrafficMirrorSessionsTrafficMirrorSession)(nil)).Elem()
+}
+
+func (i GetTrafficMirrorSessionsTrafficMirrorSessionArgs) ToGetTrafficMirrorSessionsTrafficMirrorSessionOutput() GetTrafficMirrorSessionsTrafficMirrorSessionOutput {
+	return i.ToGetTrafficMirrorSessionsTrafficMirrorSessionOutputWithContext(context.Background())
+}
+
+func (i GetTrafficMirrorSessionsTrafficMirrorSessionArgs) ToGetTrafficMirrorSessionsTrafficMirrorSessionOutputWithContext(ctx context.Context) GetTrafficMirrorSessionsTrafficMirrorSessionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTrafficMirrorSessionsTrafficMirrorSessionOutput)
+}
+
+// GetTrafficMirrorSessionsTrafficMirrorSessionArrayInput is an input type that accepts GetTrafficMirrorSessionsTrafficMirrorSessionArray and GetTrafficMirrorSessionsTrafficMirrorSessionArrayOutput values.
+// You can construct a concrete instance of `GetTrafficMirrorSessionsTrafficMirrorSessionArrayInput` via:
+//
+//	GetTrafficMirrorSessionsTrafficMirrorSessionArray{ GetTrafficMirrorSessionsTrafficMirrorSessionArgs{...} }
+type GetTrafficMirrorSessionsTrafficMirrorSessionArrayInput interface {
+	pulumi.Input
+
+	ToGetTrafficMirrorSessionsTrafficMirrorSessionArrayOutput() GetTrafficMirrorSessionsTrafficMirrorSessionArrayOutput
+	ToGetTrafficMirrorSessionsTrafficMirrorSessionArrayOutputWithContext(context.Context) GetTrafficMirrorSessionsTrafficMirrorSessionArrayOutput
+}
+
+type GetTrafficMirrorSessionsTrafficMirrorSessionArray []GetTrafficMirrorSessionsTrafficMirrorSessionInput
+
+func (GetTrafficMirrorSessionsTrafficMirrorSessionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTrafficMirrorSessionsTrafficMirrorSession)(nil)).Elem()
+}
+
+func (i GetTrafficMirrorSessionsTrafficMirrorSessionArray) ToGetTrafficMirrorSessionsTrafficMirrorSessionArrayOutput() GetTrafficMirrorSessionsTrafficMirrorSessionArrayOutput {
+	return i.ToGetTrafficMirrorSessionsTrafficMirrorSessionArrayOutputWithContext(context.Background())
+}
+
+func (i GetTrafficMirrorSessionsTrafficMirrorSessionArray) ToGetTrafficMirrorSessionsTrafficMirrorSessionArrayOutputWithContext(ctx context.Context) GetTrafficMirrorSessionsTrafficMirrorSessionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTrafficMirrorSessionsTrafficMirrorSessionArrayOutput)
+}
+
+type GetTrafficMirrorSessionsTrafficMirrorSessionOutput struct{ *pulumi.OutputState }
+
+func (GetTrafficMirrorSessionsTrafficMirrorSessionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTrafficMirrorSessionsTrafficMirrorSession)(nil)).Elem()
+}
+
+func (o GetTrafficMirrorSessionsTrafficMirrorSessionOutput) ToGetTrafficMirrorSessionsTrafficMirrorSessionOutput() GetTrafficMirrorSessionsTrafficMirrorSessionOutput {
+	return o
+}
+
+func (o GetTrafficMirrorSessionsTrafficMirrorSessionOutput) ToGetTrafficMirrorSessionsTrafficMirrorSessionOutputWithContext(ctx context.Context) GetTrafficMirrorSessionsTrafficMirrorSessionOutput {
+	return o
+}
+
+// The business status of traffic mirror session.
+func (o GetTrafficMirrorSessionsTrafficMirrorSessionOutput) BusinessStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorSessionsTrafficMirrorSession) string { return v.BusinessStatus }).(pulumi.StringOutput)
+}
+
+// The create time of traffic mirror session.
+func (o GetTrafficMirrorSessionsTrafficMirrorSessionOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorSessionsTrafficMirrorSession) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The description of traffic mirror session.
+func (o GetTrafficMirrorSessionsTrafficMirrorSessionOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorSessionsTrafficMirrorSession) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The ID of traffic mirror session.
+func (o GetTrafficMirrorSessionsTrafficMirrorSessionOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorSessionsTrafficMirrorSession) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The lock reason of traffic mirror session.
+func (o GetTrafficMirrorSessionsTrafficMirrorSessionOutput) LockReason() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorSessionsTrafficMirrorSession) string { return v.LockReason }).(pulumi.StringOutput)
+}
+
+// The packet length of traffic mirror session.
+func (o GetTrafficMirrorSessionsTrafficMirrorSessionOutput) PacketLength() pulumi.IntOutput {
+	return o.ApplyT(func(v GetTrafficMirrorSessionsTrafficMirrorSession) int { return v.PacketLength }).(pulumi.IntOutput)
+}
+
+// The priority of traffic mirror session.
+func (o GetTrafficMirrorSessionsTrafficMirrorSessionOutput) Priority() pulumi.IntOutput {
+	return o.ApplyT(func(v GetTrafficMirrorSessionsTrafficMirrorSession) int { return v.Priority }).(pulumi.IntOutput)
+}
+
+// The project name of traffic mirror session.
+func (o GetTrafficMirrorSessionsTrafficMirrorSessionOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorSessionsTrafficMirrorSession) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The status of traffic mirror session.
+func (o GetTrafficMirrorSessionsTrafficMirrorSessionOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorSessionsTrafficMirrorSession) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o GetTrafficMirrorSessionsTrafficMirrorSessionOutput) Tags() GetTrafficMirrorSessionsTrafficMirrorSessionTagArrayOutput {
+	return o.ApplyT(func(v GetTrafficMirrorSessionsTrafficMirrorSession) []GetTrafficMirrorSessionsTrafficMirrorSessionTag {
+		return v.Tags
+	}).(GetTrafficMirrorSessionsTrafficMirrorSessionTagArrayOutput)
+}
+
+// The ID of traffic mirror filter.
+func (o GetTrafficMirrorSessionsTrafficMirrorSessionOutput) TrafficMirrorFilterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorSessionsTrafficMirrorSession) string { return v.TrafficMirrorFilterId }).(pulumi.StringOutput)
+}
+
+// The ID of traffic mirror session.
+func (o GetTrafficMirrorSessionsTrafficMirrorSessionOutput) TrafficMirrorSessionId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorSessionsTrafficMirrorSession) string { return v.TrafficMirrorSessionId }).(pulumi.StringOutput)
+}
+
+// The name of traffic mirror session.
+func (o GetTrafficMirrorSessionsTrafficMirrorSessionOutput) TrafficMirrorSessionName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorSessionsTrafficMirrorSession) string { return v.TrafficMirrorSessionName }).(pulumi.StringOutput)
+}
+
+// The IDs of traffic mirror source.
+func (o GetTrafficMirrorSessionsTrafficMirrorSessionOutput) TrafficMirrorSourceIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetTrafficMirrorSessionsTrafficMirrorSession) []string { return v.TrafficMirrorSourceIds }).(pulumi.StringArrayOutput)
+}
+
+// The ID of traffic mirror target.
+func (o GetTrafficMirrorSessionsTrafficMirrorSessionOutput) TrafficMirrorTargetId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorSessionsTrafficMirrorSession) string { return v.TrafficMirrorTargetId }).(pulumi.StringOutput)
+}
+
+// The update time of traffic mirror session.
+func (o GetTrafficMirrorSessionsTrafficMirrorSessionOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorSessionsTrafficMirrorSession) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// The ID of virtual network.
+func (o GetTrafficMirrorSessionsTrafficMirrorSessionOutput) VirtualNetworkId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetTrafficMirrorSessionsTrafficMirrorSession) int { return v.VirtualNetworkId }).(pulumi.IntOutput)
+}
+
+type GetTrafficMirrorSessionsTrafficMirrorSessionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTrafficMirrorSessionsTrafficMirrorSessionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTrafficMirrorSessionsTrafficMirrorSession)(nil)).Elem()
+}
+
+func (o GetTrafficMirrorSessionsTrafficMirrorSessionArrayOutput) ToGetTrafficMirrorSessionsTrafficMirrorSessionArrayOutput() GetTrafficMirrorSessionsTrafficMirrorSessionArrayOutput {
+	return o
+}
+
+func (o GetTrafficMirrorSessionsTrafficMirrorSessionArrayOutput) ToGetTrafficMirrorSessionsTrafficMirrorSessionArrayOutputWithContext(ctx context.Context) GetTrafficMirrorSessionsTrafficMirrorSessionArrayOutput {
+	return o
+}
+
+func (o GetTrafficMirrorSessionsTrafficMirrorSessionArrayOutput) Index(i pulumi.IntInput) GetTrafficMirrorSessionsTrafficMirrorSessionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTrafficMirrorSessionsTrafficMirrorSession {
+		return vs[0].([]GetTrafficMirrorSessionsTrafficMirrorSession)[vs[1].(int)]
+	}).(GetTrafficMirrorSessionsTrafficMirrorSessionOutput)
+}
+
+type GetTrafficMirrorSessionsTrafficMirrorSessionTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetTrafficMirrorSessionsTrafficMirrorSessionTagInput is an input type that accepts GetTrafficMirrorSessionsTrafficMirrorSessionTagArgs and GetTrafficMirrorSessionsTrafficMirrorSessionTagOutput values.
+// You can construct a concrete instance of `GetTrafficMirrorSessionsTrafficMirrorSessionTagInput` via:
+//
+//	GetTrafficMirrorSessionsTrafficMirrorSessionTagArgs{...}
+type GetTrafficMirrorSessionsTrafficMirrorSessionTagInput interface {
+	pulumi.Input
+
+	ToGetTrafficMirrorSessionsTrafficMirrorSessionTagOutput() GetTrafficMirrorSessionsTrafficMirrorSessionTagOutput
+	ToGetTrafficMirrorSessionsTrafficMirrorSessionTagOutputWithContext(context.Context) GetTrafficMirrorSessionsTrafficMirrorSessionTagOutput
+}
+
+type GetTrafficMirrorSessionsTrafficMirrorSessionTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetTrafficMirrorSessionsTrafficMirrorSessionTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTrafficMirrorSessionsTrafficMirrorSessionTag)(nil)).Elem()
+}
+
+func (i GetTrafficMirrorSessionsTrafficMirrorSessionTagArgs) ToGetTrafficMirrorSessionsTrafficMirrorSessionTagOutput() GetTrafficMirrorSessionsTrafficMirrorSessionTagOutput {
+	return i.ToGetTrafficMirrorSessionsTrafficMirrorSessionTagOutputWithContext(context.Background())
+}
+
+func (i GetTrafficMirrorSessionsTrafficMirrorSessionTagArgs) ToGetTrafficMirrorSessionsTrafficMirrorSessionTagOutputWithContext(ctx context.Context) GetTrafficMirrorSessionsTrafficMirrorSessionTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTrafficMirrorSessionsTrafficMirrorSessionTagOutput)
+}
+
+// GetTrafficMirrorSessionsTrafficMirrorSessionTagArrayInput is an input type that accepts GetTrafficMirrorSessionsTrafficMirrorSessionTagArray and GetTrafficMirrorSessionsTrafficMirrorSessionTagArrayOutput values.
+// You can construct a concrete instance of `GetTrafficMirrorSessionsTrafficMirrorSessionTagArrayInput` via:
+//
+//	GetTrafficMirrorSessionsTrafficMirrorSessionTagArray{ GetTrafficMirrorSessionsTrafficMirrorSessionTagArgs{...} }
+type GetTrafficMirrorSessionsTrafficMirrorSessionTagArrayInput interface {
+	pulumi.Input
+
+	ToGetTrafficMirrorSessionsTrafficMirrorSessionTagArrayOutput() GetTrafficMirrorSessionsTrafficMirrorSessionTagArrayOutput
+	ToGetTrafficMirrorSessionsTrafficMirrorSessionTagArrayOutputWithContext(context.Context) GetTrafficMirrorSessionsTrafficMirrorSessionTagArrayOutput
+}
+
+type GetTrafficMirrorSessionsTrafficMirrorSessionTagArray []GetTrafficMirrorSessionsTrafficMirrorSessionTagInput
+
+func (GetTrafficMirrorSessionsTrafficMirrorSessionTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTrafficMirrorSessionsTrafficMirrorSessionTag)(nil)).Elem()
+}
+
+func (i GetTrafficMirrorSessionsTrafficMirrorSessionTagArray) ToGetTrafficMirrorSessionsTrafficMirrorSessionTagArrayOutput() GetTrafficMirrorSessionsTrafficMirrorSessionTagArrayOutput {
+	return i.ToGetTrafficMirrorSessionsTrafficMirrorSessionTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetTrafficMirrorSessionsTrafficMirrorSessionTagArray) ToGetTrafficMirrorSessionsTrafficMirrorSessionTagArrayOutputWithContext(ctx context.Context) GetTrafficMirrorSessionsTrafficMirrorSessionTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTrafficMirrorSessionsTrafficMirrorSessionTagArrayOutput)
+}
+
+type GetTrafficMirrorSessionsTrafficMirrorSessionTagOutput struct{ *pulumi.OutputState }
+
+func (GetTrafficMirrorSessionsTrafficMirrorSessionTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTrafficMirrorSessionsTrafficMirrorSessionTag)(nil)).Elem()
+}
+
+func (o GetTrafficMirrorSessionsTrafficMirrorSessionTagOutput) ToGetTrafficMirrorSessionsTrafficMirrorSessionTagOutput() GetTrafficMirrorSessionsTrafficMirrorSessionTagOutput {
+	return o
+}
+
+func (o GetTrafficMirrorSessionsTrafficMirrorSessionTagOutput) ToGetTrafficMirrorSessionsTrafficMirrorSessionTagOutputWithContext(ctx context.Context) GetTrafficMirrorSessionsTrafficMirrorSessionTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetTrafficMirrorSessionsTrafficMirrorSessionTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorSessionsTrafficMirrorSessionTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetTrafficMirrorSessionsTrafficMirrorSessionTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorSessionsTrafficMirrorSessionTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetTrafficMirrorSessionsTrafficMirrorSessionTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTrafficMirrorSessionsTrafficMirrorSessionTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTrafficMirrorSessionsTrafficMirrorSessionTag)(nil)).Elem()
+}
+
+func (o GetTrafficMirrorSessionsTrafficMirrorSessionTagArrayOutput) ToGetTrafficMirrorSessionsTrafficMirrorSessionTagArrayOutput() GetTrafficMirrorSessionsTrafficMirrorSessionTagArrayOutput {
+	return o
+}
+
+func (o GetTrafficMirrorSessionsTrafficMirrorSessionTagArrayOutput) ToGetTrafficMirrorSessionsTrafficMirrorSessionTagArrayOutputWithContext(ctx context.Context) GetTrafficMirrorSessionsTrafficMirrorSessionTagArrayOutput {
+	return o
+}
+
+func (o GetTrafficMirrorSessionsTrafficMirrorSessionTagArrayOutput) Index(i pulumi.IntInput) GetTrafficMirrorSessionsTrafficMirrorSessionTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTrafficMirrorSessionsTrafficMirrorSessionTag {
+		return vs[0].([]GetTrafficMirrorSessionsTrafficMirrorSessionTag)[vs[1].(int)]
+	}).(GetTrafficMirrorSessionsTrafficMirrorSessionTagOutput)
+}
+
+type GetTrafficMirrorTargetsTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetTrafficMirrorTargetsTagInput is an input type that accepts GetTrafficMirrorTargetsTagArgs and GetTrafficMirrorTargetsTagOutput values.
+// You can construct a concrete instance of `GetTrafficMirrorTargetsTagInput` via:
+//
+//	GetTrafficMirrorTargetsTagArgs{...}
+type GetTrafficMirrorTargetsTagInput interface {
+	pulumi.Input
+
+	ToGetTrafficMirrorTargetsTagOutput() GetTrafficMirrorTargetsTagOutput
+	ToGetTrafficMirrorTargetsTagOutputWithContext(context.Context) GetTrafficMirrorTargetsTagOutput
+}
+
+type GetTrafficMirrorTargetsTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetTrafficMirrorTargetsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTrafficMirrorTargetsTag)(nil)).Elem()
+}
+
+func (i GetTrafficMirrorTargetsTagArgs) ToGetTrafficMirrorTargetsTagOutput() GetTrafficMirrorTargetsTagOutput {
+	return i.ToGetTrafficMirrorTargetsTagOutputWithContext(context.Background())
+}
+
+func (i GetTrafficMirrorTargetsTagArgs) ToGetTrafficMirrorTargetsTagOutputWithContext(ctx context.Context) GetTrafficMirrorTargetsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTrafficMirrorTargetsTagOutput)
+}
+
+// GetTrafficMirrorTargetsTagArrayInput is an input type that accepts GetTrafficMirrorTargetsTagArray and GetTrafficMirrorTargetsTagArrayOutput values.
+// You can construct a concrete instance of `GetTrafficMirrorTargetsTagArrayInput` via:
+//
+//	GetTrafficMirrorTargetsTagArray{ GetTrafficMirrorTargetsTagArgs{...} }
+type GetTrafficMirrorTargetsTagArrayInput interface {
+	pulumi.Input
+
+	ToGetTrafficMirrorTargetsTagArrayOutput() GetTrafficMirrorTargetsTagArrayOutput
+	ToGetTrafficMirrorTargetsTagArrayOutputWithContext(context.Context) GetTrafficMirrorTargetsTagArrayOutput
+}
+
+type GetTrafficMirrorTargetsTagArray []GetTrafficMirrorTargetsTagInput
+
+func (GetTrafficMirrorTargetsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTrafficMirrorTargetsTag)(nil)).Elem()
+}
+
+func (i GetTrafficMirrorTargetsTagArray) ToGetTrafficMirrorTargetsTagArrayOutput() GetTrafficMirrorTargetsTagArrayOutput {
+	return i.ToGetTrafficMirrorTargetsTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetTrafficMirrorTargetsTagArray) ToGetTrafficMirrorTargetsTagArrayOutputWithContext(ctx context.Context) GetTrafficMirrorTargetsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTrafficMirrorTargetsTagArrayOutput)
+}
+
+type GetTrafficMirrorTargetsTagOutput struct{ *pulumi.OutputState }
+
+func (GetTrafficMirrorTargetsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTrafficMirrorTargetsTag)(nil)).Elem()
+}
+
+func (o GetTrafficMirrorTargetsTagOutput) ToGetTrafficMirrorTargetsTagOutput() GetTrafficMirrorTargetsTagOutput {
+	return o
+}
+
+func (o GetTrafficMirrorTargetsTagOutput) ToGetTrafficMirrorTargetsTagOutputWithContext(ctx context.Context) GetTrafficMirrorTargetsTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetTrafficMirrorTargetsTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorTargetsTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetTrafficMirrorTargetsTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorTargetsTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetTrafficMirrorTargetsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTrafficMirrorTargetsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTrafficMirrorTargetsTag)(nil)).Elem()
+}
+
+func (o GetTrafficMirrorTargetsTagArrayOutput) ToGetTrafficMirrorTargetsTagArrayOutput() GetTrafficMirrorTargetsTagArrayOutput {
+	return o
+}
+
+func (o GetTrafficMirrorTargetsTagArrayOutput) ToGetTrafficMirrorTargetsTagArrayOutputWithContext(ctx context.Context) GetTrafficMirrorTargetsTagArrayOutput {
+	return o
+}
+
+func (o GetTrafficMirrorTargetsTagArrayOutput) Index(i pulumi.IntInput) GetTrafficMirrorTargetsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTrafficMirrorTargetsTag {
+		return vs[0].([]GetTrafficMirrorTargetsTag)[vs[1].(int)]
+	}).(GetTrafficMirrorTargetsTagOutput)
+}
+
+type GetTrafficMirrorTargetsTrafficMirrorTarget struct {
+	// The create time of traffic mirror target.
+	CreatedAt string `pulumi:"createdAt"`
+	// The description of traffic mirror target.
+	Description string `pulumi:"description"`
+	// The ID of traffic mirror target.
+	Id string `pulumi:"id"`
+	// The instance id of traffic mirror target.
+	InstanceId string `pulumi:"instanceId"`
+	// The instance type of traffic mirror target.
+	InstanceType string `pulumi:"instanceType"`
+	// The project name of traffic mirror target.
+	ProjectName string `pulumi:"projectName"`
+	// The status of traffic mirror target.
+	Status string `pulumi:"status"`
+	// Tags.
+	Tags []GetTrafficMirrorTargetsTrafficMirrorTargetTag `pulumi:"tags"`
+	// The ID of traffic mirror target.
+	TrafficMirrorTargetId string `pulumi:"trafficMirrorTargetId"`
+	// The name of traffic mirror target.
+	TrafficMirrorTargetName string `pulumi:"trafficMirrorTargetName"`
+	// The update time of traffic mirror target.
+	UpdatedAt string `pulumi:"updatedAt"`
+}
+
+// GetTrafficMirrorTargetsTrafficMirrorTargetInput is an input type that accepts GetTrafficMirrorTargetsTrafficMirrorTargetArgs and GetTrafficMirrorTargetsTrafficMirrorTargetOutput values.
+// You can construct a concrete instance of `GetTrafficMirrorTargetsTrafficMirrorTargetInput` via:
+//
+//	GetTrafficMirrorTargetsTrafficMirrorTargetArgs{...}
+type GetTrafficMirrorTargetsTrafficMirrorTargetInput interface {
+	pulumi.Input
+
+	ToGetTrafficMirrorTargetsTrafficMirrorTargetOutput() GetTrafficMirrorTargetsTrafficMirrorTargetOutput
+	ToGetTrafficMirrorTargetsTrafficMirrorTargetOutputWithContext(context.Context) GetTrafficMirrorTargetsTrafficMirrorTargetOutput
+}
+
+type GetTrafficMirrorTargetsTrafficMirrorTargetArgs struct {
+	// The create time of traffic mirror target.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The description of traffic mirror target.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The ID of traffic mirror target.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The instance id of traffic mirror target.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// The instance type of traffic mirror target.
+	InstanceType pulumi.StringInput `pulumi:"instanceType"`
+	// The project name of traffic mirror target.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The status of traffic mirror target.
+	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags GetTrafficMirrorTargetsTrafficMirrorTargetTagArrayInput `pulumi:"tags"`
+	// The ID of traffic mirror target.
+	TrafficMirrorTargetId pulumi.StringInput `pulumi:"trafficMirrorTargetId"`
+	// The name of traffic mirror target.
+	TrafficMirrorTargetName pulumi.StringInput `pulumi:"trafficMirrorTargetName"`
+	// The update time of traffic mirror target.
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+}
+
+func (GetTrafficMirrorTargetsTrafficMirrorTargetArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTrafficMirrorTargetsTrafficMirrorTarget)(nil)).Elem()
+}
+
+func (i GetTrafficMirrorTargetsTrafficMirrorTargetArgs) ToGetTrafficMirrorTargetsTrafficMirrorTargetOutput() GetTrafficMirrorTargetsTrafficMirrorTargetOutput {
+	return i.ToGetTrafficMirrorTargetsTrafficMirrorTargetOutputWithContext(context.Background())
+}
+
+func (i GetTrafficMirrorTargetsTrafficMirrorTargetArgs) ToGetTrafficMirrorTargetsTrafficMirrorTargetOutputWithContext(ctx context.Context) GetTrafficMirrorTargetsTrafficMirrorTargetOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTrafficMirrorTargetsTrafficMirrorTargetOutput)
+}
+
+// GetTrafficMirrorTargetsTrafficMirrorTargetArrayInput is an input type that accepts GetTrafficMirrorTargetsTrafficMirrorTargetArray and GetTrafficMirrorTargetsTrafficMirrorTargetArrayOutput values.
+// You can construct a concrete instance of `GetTrafficMirrorTargetsTrafficMirrorTargetArrayInput` via:
+//
+//	GetTrafficMirrorTargetsTrafficMirrorTargetArray{ GetTrafficMirrorTargetsTrafficMirrorTargetArgs{...} }
+type GetTrafficMirrorTargetsTrafficMirrorTargetArrayInput interface {
+	pulumi.Input
+
+	ToGetTrafficMirrorTargetsTrafficMirrorTargetArrayOutput() GetTrafficMirrorTargetsTrafficMirrorTargetArrayOutput
+	ToGetTrafficMirrorTargetsTrafficMirrorTargetArrayOutputWithContext(context.Context) GetTrafficMirrorTargetsTrafficMirrorTargetArrayOutput
+}
+
+type GetTrafficMirrorTargetsTrafficMirrorTargetArray []GetTrafficMirrorTargetsTrafficMirrorTargetInput
+
+func (GetTrafficMirrorTargetsTrafficMirrorTargetArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTrafficMirrorTargetsTrafficMirrorTarget)(nil)).Elem()
+}
+
+func (i GetTrafficMirrorTargetsTrafficMirrorTargetArray) ToGetTrafficMirrorTargetsTrafficMirrorTargetArrayOutput() GetTrafficMirrorTargetsTrafficMirrorTargetArrayOutput {
+	return i.ToGetTrafficMirrorTargetsTrafficMirrorTargetArrayOutputWithContext(context.Background())
+}
+
+func (i GetTrafficMirrorTargetsTrafficMirrorTargetArray) ToGetTrafficMirrorTargetsTrafficMirrorTargetArrayOutputWithContext(ctx context.Context) GetTrafficMirrorTargetsTrafficMirrorTargetArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTrafficMirrorTargetsTrafficMirrorTargetArrayOutput)
+}
+
+type GetTrafficMirrorTargetsTrafficMirrorTargetOutput struct{ *pulumi.OutputState }
+
+func (GetTrafficMirrorTargetsTrafficMirrorTargetOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTrafficMirrorTargetsTrafficMirrorTarget)(nil)).Elem()
+}
+
+func (o GetTrafficMirrorTargetsTrafficMirrorTargetOutput) ToGetTrafficMirrorTargetsTrafficMirrorTargetOutput() GetTrafficMirrorTargetsTrafficMirrorTargetOutput {
+	return o
+}
+
+func (o GetTrafficMirrorTargetsTrafficMirrorTargetOutput) ToGetTrafficMirrorTargetsTrafficMirrorTargetOutputWithContext(ctx context.Context) GetTrafficMirrorTargetsTrafficMirrorTargetOutput {
+	return o
+}
+
+// The create time of traffic mirror target.
+func (o GetTrafficMirrorTargetsTrafficMirrorTargetOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorTargetsTrafficMirrorTarget) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The description of traffic mirror target.
+func (o GetTrafficMirrorTargetsTrafficMirrorTargetOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorTargetsTrafficMirrorTarget) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The ID of traffic mirror target.
+func (o GetTrafficMirrorTargetsTrafficMirrorTargetOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorTargetsTrafficMirrorTarget) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The instance id of traffic mirror target.
+func (o GetTrafficMirrorTargetsTrafficMirrorTargetOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorTargetsTrafficMirrorTarget) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// The instance type of traffic mirror target.
+func (o GetTrafficMirrorTargetsTrafficMirrorTargetOutput) InstanceType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorTargetsTrafficMirrorTarget) string { return v.InstanceType }).(pulumi.StringOutput)
+}
+
+// The project name of traffic mirror target.
+func (o GetTrafficMirrorTargetsTrafficMirrorTargetOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorTargetsTrafficMirrorTarget) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The status of traffic mirror target.
+func (o GetTrafficMirrorTargetsTrafficMirrorTargetOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorTargetsTrafficMirrorTarget) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o GetTrafficMirrorTargetsTrafficMirrorTargetOutput) Tags() GetTrafficMirrorTargetsTrafficMirrorTargetTagArrayOutput {
+	return o.ApplyT(func(v GetTrafficMirrorTargetsTrafficMirrorTarget) []GetTrafficMirrorTargetsTrafficMirrorTargetTag {
+		return v.Tags
+	}).(GetTrafficMirrorTargetsTrafficMirrorTargetTagArrayOutput)
+}
+
+// The ID of traffic mirror target.
+func (o GetTrafficMirrorTargetsTrafficMirrorTargetOutput) TrafficMirrorTargetId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorTargetsTrafficMirrorTarget) string { return v.TrafficMirrorTargetId }).(pulumi.StringOutput)
+}
+
+// The name of traffic mirror target.
+func (o GetTrafficMirrorTargetsTrafficMirrorTargetOutput) TrafficMirrorTargetName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorTargetsTrafficMirrorTarget) string { return v.TrafficMirrorTargetName }).(pulumi.StringOutput)
+}
+
+// The update time of traffic mirror target.
+func (o GetTrafficMirrorTargetsTrafficMirrorTargetOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorTargetsTrafficMirrorTarget) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+type GetTrafficMirrorTargetsTrafficMirrorTargetArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTrafficMirrorTargetsTrafficMirrorTargetArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTrafficMirrorTargetsTrafficMirrorTarget)(nil)).Elem()
+}
+
+func (o GetTrafficMirrorTargetsTrafficMirrorTargetArrayOutput) ToGetTrafficMirrorTargetsTrafficMirrorTargetArrayOutput() GetTrafficMirrorTargetsTrafficMirrorTargetArrayOutput {
+	return o
+}
+
+func (o GetTrafficMirrorTargetsTrafficMirrorTargetArrayOutput) ToGetTrafficMirrorTargetsTrafficMirrorTargetArrayOutputWithContext(ctx context.Context) GetTrafficMirrorTargetsTrafficMirrorTargetArrayOutput {
+	return o
+}
+
+func (o GetTrafficMirrorTargetsTrafficMirrorTargetArrayOutput) Index(i pulumi.IntInput) GetTrafficMirrorTargetsTrafficMirrorTargetOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTrafficMirrorTargetsTrafficMirrorTarget {
+		return vs[0].([]GetTrafficMirrorTargetsTrafficMirrorTarget)[vs[1].(int)]
+	}).(GetTrafficMirrorTargetsTrafficMirrorTargetOutput)
+}
+
+type GetTrafficMirrorTargetsTrafficMirrorTargetTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetTrafficMirrorTargetsTrafficMirrorTargetTagInput is an input type that accepts GetTrafficMirrorTargetsTrafficMirrorTargetTagArgs and GetTrafficMirrorTargetsTrafficMirrorTargetTagOutput values.
+// You can construct a concrete instance of `GetTrafficMirrorTargetsTrafficMirrorTargetTagInput` via:
+//
+//	GetTrafficMirrorTargetsTrafficMirrorTargetTagArgs{...}
+type GetTrafficMirrorTargetsTrafficMirrorTargetTagInput interface {
+	pulumi.Input
+
+	ToGetTrafficMirrorTargetsTrafficMirrorTargetTagOutput() GetTrafficMirrorTargetsTrafficMirrorTargetTagOutput
+	ToGetTrafficMirrorTargetsTrafficMirrorTargetTagOutputWithContext(context.Context) GetTrafficMirrorTargetsTrafficMirrorTargetTagOutput
+}
+
+type GetTrafficMirrorTargetsTrafficMirrorTargetTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetTrafficMirrorTargetsTrafficMirrorTargetTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTrafficMirrorTargetsTrafficMirrorTargetTag)(nil)).Elem()
+}
+
+func (i GetTrafficMirrorTargetsTrafficMirrorTargetTagArgs) ToGetTrafficMirrorTargetsTrafficMirrorTargetTagOutput() GetTrafficMirrorTargetsTrafficMirrorTargetTagOutput {
+	return i.ToGetTrafficMirrorTargetsTrafficMirrorTargetTagOutputWithContext(context.Background())
+}
+
+func (i GetTrafficMirrorTargetsTrafficMirrorTargetTagArgs) ToGetTrafficMirrorTargetsTrafficMirrorTargetTagOutputWithContext(ctx context.Context) GetTrafficMirrorTargetsTrafficMirrorTargetTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTrafficMirrorTargetsTrafficMirrorTargetTagOutput)
+}
+
+// GetTrafficMirrorTargetsTrafficMirrorTargetTagArrayInput is an input type that accepts GetTrafficMirrorTargetsTrafficMirrorTargetTagArray and GetTrafficMirrorTargetsTrafficMirrorTargetTagArrayOutput values.
+// You can construct a concrete instance of `GetTrafficMirrorTargetsTrafficMirrorTargetTagArrayInput` via:
+//
+//	GetTrafficMirrorTargetsTrafficMirrorTargetTagArray{ GetTrafficMirrorTargetsTrafficMirrorTargetTagArgs{...} }
+type GetTrafficMirrorTargetsTrafficMirrorTargetTagArrayInput interface {
+	pulumi.Input
+
+	ToGetTrafficMirrorTargetsTrafficMirrorTargetTagArrayOutput() GetTrafficMirrorTargetsTrafficMirrorTargetTagArrayOutput
+	ToGetTrafficMirrorTargetsTrafficMirrorTargetTagArrayOutputWithContext(context.Context) GetTrafficMirrorTargetsTrafficMirrorTargetTagArrayOutput
+}
+
+type GetTrafficMirrorTargetsTrafficMirrorTargetTagArray []GetTrafficMirrorTargetsTrafficMirrorTargetTagInput
+
+func (GetTrafficMirrorTargetsTrafficMirrorTargetTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTrafficMirrorTargetsTrafficMirrorTargetTag)(nil)).Elem()
+}
+
+func (i GetTrafficMirrorTargetsTrafficMirrorTargetTagArray) ToGetTrafficMirrorTargetsTrafficMirrorTargetTagArrayOutput() GetTrafficMirrorTargetsTrafficMirrorTargetTagArrayOutput {
+	return i.ToGetTrafficMirrorTargetsTrafficMirrorTargetTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetTrafficMirrorTargetsTrafficMirrorTargetTagArray) ToGetTrafficMirrorTargetsTrafficMirrorTargetTagArrayOutputWithContext(ctx context.Context) GetTrafficMirrorTargetsTrafficMirrorTargetTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTrafficMirrorTargetsTrafficMirrorTargetTagArrayOutput)
+}
+
+type GetTrafficMirrorTargetsTrafficMirrorTargetTagOutput struct{ *pulumi.OutputState }
+
+func (GetTrafficMirrorTargetsTrafficMirrorTargetTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTrafficMirrorTargetsTrafficMirrorTargetTag)(nil)).Elem()
+}
+
+func (o GetTrafficMirrorTargetsTrafficMirrorTargetTagOutput) ToGetTrafficMirrorTargetsTrafficMirrorTargetTagOutput() GetTrafficMirrorTargetsTrafficMirrorTargetTagOutput {
+	return o
+}
+
+func (o GetTrafficMirrorTargetsTrafficMirrorTargetTagOutput) ToGetTrafficMirrorTargetsTrafficMirrorTargetTagOutputWithContext(ctx context.Context) GetTrafficMirrorTargetsTrafficMirrorTargetTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetTrafficMirrorTargetsTrafficMirrorTargetTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorTargetsTrafficMirrorTargetTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetTrafficMirrorTargetsTrafficMirrorTargetTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficMirrorTargetsTrafficMirrorTargetTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetTrafficMirrorTargetsTrafficMirrorTargetTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTrafficMirrorTargetsTrafficMirrorTargetTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTrafficMirrorTargetsTrafficMirrorTargetTag)(nil)).Elem()
+}
+
+func (o GetTrafficMirrorTargetsTrafficMirrorTargetTagArrayOutput) ToGetTrafficMirrorTargetsTrafficMirrorTargetTagArrayOutput() GetTrafficMirrorTargetsTrafficMirrorTargetTagArrayOutput {
+	return o
+}
+
+func (o GetTrafficMirrorTargetsTrafficMirrorTargetTagArrayOutput) ToGetTrafficMirrorTargetsTrafficMirrorTargetTagArrayOutputWithContext(ctx context.Context) GetTrafficMirrorTargetsTrafficMirrorTargetTagArrayOutput {
+	return o
+}
+
+func (o GetTrafficMirrorTargetsTrafficMirrorTargetTagArrayOutput) Index(i pulumi.IntInput) GetTrafficMirrorTargetsTrafficMirrorTargetTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTrafficMirrorTargetsTrafficMirrorTargetTag {
+		return vs[0].([]GetTrafficMirrorTargetsTrafficMirrorTargetTag)[vs[1].(int)]
+	}).(GetTrafficMirrorTargetsTrafficMirrorTargetTagOutput)
+}
+
 type GetVpcsTag struct {
 	// The Key of Tags.
 	Key string `pulumi:"key"`
@@ -11836,6 +17251,8 @@ type GetVpcsVpc struct {
 	ProjectName string `pulumi:"projectName"`
 	// The route table ID list of VPC.
 	RouteTableIds []string `pulumi:"routeTableIds"`
+	// The secondary cidr block list of VPC.
+	SecondaryCidrBlocks []string `pulumi:"secondaryCidrBlocks"`
 	// The security group ID list of VPC.
 	SecurityGroupIds []string `pulumi:"securityGroupIds"`
 	// The status of VPC.
@@ -11886,6 +17303,8 @@ type GetVpcsVpcArgs struct {
 	ProjectName pulumi.StringInput `pulumi:"projectName"`
 	// The route table ID list of VPC.
 	RouteTableIds pulumi.StringArrayInput `pulumi:"routeTableIds"`
+	// The secondary cidr block list of VPC.
+	SecondaryCidrBlocks pulumi.StringArrayInput `pulumi:"secondaryCidrBlocks"`
 	// The security group ID list of VPC.
 	SecurityGroupIds pulumi.StringArrayInput `pulumi:"securityGroupIds"`
 	// The status of VPC.
@@ -12006,6 +17425,11 @@ func (o GetVpcsVpcOutput) ProjectName() pulumi.StringOutput {
 // The route table ID list of VPC.
 func (o GetVpcsVpcOutput) RouteTableIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetVpcsVpc) []string { return v.RouteTableIds }).(pulumi.StringArrayOutput)
+}
+
+// The secondary cidr block list of VPC.
+func (o GetVpcsVpcOutput) SecondaryCidrBlocks() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetVpcsVpc) []string { return v.SecondaryCidrBlocks }).(pulumi.StringArrayOutput)
 }
 
 // The security group ID list of VPC.
@@ -12285,6 +17709,14 @@ func (o GetVpcsVpcTagArrayOutput) Index(i pulumi.IntInput) GetVpcsVpcTagOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FlowLogTagInput)(nil)).Elem(), FlowLogTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FlowLogTagArrayInput)(nil)).Elem(), FlowLogTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FlowLogsFlowLogInput)(nil)).Elem(), FlowLogsFlowLogArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FlowLogsFlowLogArrayInput)(nil)).Elem(), FlowLogsFlowLogArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FlowLogsFlowLogTagInput)(nil)).Elem(), FlowLogsFlowLogTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FlowLogsFlowLogTagArrayInput)(nil)).Elem(), FlowLogsFlowLogTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FlowLogsTagInput)(nil)).Elem(), FlowLogsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FlowLogsTagArrayInput)(nil)).Elem(), FlowLogsTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*HaVipTagInput)(nil)).Elem(), HaVipTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*HaVipTagArrayInput)(nil)).Elem(), HaVipTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*HaVipsHaVipInput)(nil)).Elem(), HaVipsHaVipArgs{})
@@ -12372,6 +17804,38 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SubnetsSubnetTagArrayInput)(nil)).Elem(), SubnetsSubnetTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SubnetsTagInput)(nil)).Elem(), SubnetsTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SubnetsTagArrayInput)(nil)).Elem(), SubnetsTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TrafficMirrorFilterRulesTagInput)(nil)).Elem(), TrafficMirrorFilterRulesTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TrafficMirrorFilterRulesTagArrayInput)(nil)).Elem(), TrafficMirrorFilterRulesTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TrafficMirrorFilterRulesTrafficMirrorFilterRuleInput)(nil)).Elem(), TrafficMirrorFilterRulesTrafficMirrorFilterRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TrafficMirrorFilterRulesTrafficMirrorFilterRuleArrayInput)(nil)).Elem(), TrafficMirrorFilterRulesTrafficMirrorFilterRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TrafficMirrorFilterTagInput)(nil)).Elem(), TrafficMirrorFilterTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TrafficMirrorFilterTagArrayInput)(nil)).Elem(), TrafficMirrorFilterTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TrafficMirrorFiltersTagInput)(nil)).Elem(), TrafficMirrorFiltersTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TrafficMirrorFiltersTagArrayInput)(nil)).Elem(), TrafficMirrorFiltersTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TrafficMirrorFiltersTrafficMirrorFilterInput)(nil)).Elem(), TrafficMirrorFiltersTrafficMirrorFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TrafficMirrorFiltersTrafficMirrorFilterArrayInput)(nil)).Elem(), TrafficMirrorFiltersTrafficMirrorFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleInput)(nil)).Elem(), TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayInput)(nil)).Elem(), TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleInput)(nil)).Elem(), TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayInput)(nil)).Elem(), TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TrafficMirrorFiltersTrafficMirrorFilterTagInput)(nil)).Elem(), TrafficMirrorFiltersTrafficMirrorFilterTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TrafficMirrorFiltersTrafficMirrorFilterTagArrayInput)(nil)).Elem(), TrafficMirrorFiltersTrafficMirrorFilterTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TrafficMirrorSessionTagInput)(nil)).Elem(), TrafficMirrorSessionTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TrafficMirrorSessionTagArrayInput)(nil)).Elem(), TrafficMirrorSessionTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TrafficMirrorSessionsTagInput)(nil)).Elem(), TrafficMirrorSessionsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TrafficMirrorSessionsTagArrayInput)(nil)).Elem(), TrafficMirrorSessionsTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TrafficMirrorSessionsTrafficMirrorSessionInput)(nil)).Elem(), TrafficMirrorSessionsTrafficMirrorSessionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TrafficMirrorSessionsTrafficMirrorSessionArrayInput)(nil)).Elem(), TrafficMirrorSessionsTrafficMirrorSessionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TrafficMirrorSessionsTrafficMirrorSessionTagInput)(nil)).Elem(), TrafficMirrorSessionsTrafficMirrorSessionTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TrafficMirrorSessionsTrafficMirrorSessionTagArrayInput)(nil)).Elem(), TrafficMirrorSessionsTrafficMirrorSessionTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TrafficMirrorTargetTagInput)(nil)).Elem(), TrafficMirrorTargetTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TrafficMirrorTargetTagArrayInput)(nil)).Elem(), TrafficMirrorTargetTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TrafficMirrorTargetsTagInput)(nil)).Elem(), TrafficMirrorTargetsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TrafficMirrorTargetsTagArrayInput)(nil)).Elem(), TrafficMirrorTargetsTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TrafficMirrorTargetsTrafficMirrorTargetInput)(nil)).Elem(), TrafficMirrorTargetsTrafficMirrorTargetArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TrafficMirrorTargetsTrafficMirrorTargetArrayInput)(nil)).Elem(), TrafficMirrorTargetsTrafficMirrorTargetArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TrafficMirrorTargetsTrafficMirrorTargetTagInput)(nil)).Elem(), TrafficMirrorTargetsTrafficMirrorTargetTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TrafficMirrorTargetsTrafficMirrorTargetTagArrayInput)(nil)).Elem(), TrafficMirrorTargetsTrafficMirrorTargetTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcAssociateCenInput)(nil)).Elem(), VpcAssociateCenArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcAssociateCenArrayInput)(nil)).Elem(), VpcAssociateCenArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcTagInput)(nil)).Elem(), VpcTagArgs{})
@@ -12384,6 +17848,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcsVpcAssociateCenArrayInput)(nil)).Elem(), VpcsVpcAssociateCenArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcsVpcTagInput)(nil)).Elem(), VpcsVpcTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcsVpcTagArrayInput)(nil)).Elem(), VpcsVpcTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFlowLogsFlowLogInput)(nil)).Elem(), GetFlowLogsFlowLogArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFlowLogsFlowLogArrayInput)(nil)).Elem(), GetFlowLogsFlowLogArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFlowLogsFlowLogTagInput)(nil)).Elem(), GetFlowLogsFlowLogTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFlowLogsFlowLogTagArrayInput)(nil)).Elem(), GetFlowLogsFlowLogTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFlowLogsTagInput)(nil)).Elem(), GetFlowLogsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFlowLogsTagArrayInput)(nil)).Elem(), GetFlowLogsTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetHaVipsHaVipInput)(nil)).Elem(), GetHaVipsHaVipArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetHaVipsHaVipArrayInput)(nil)).Elem(), GetHaVipsHaVipArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetHaVipsHaVipTagInput)(nil)).Elem(), GetHaVipsHaVipTagArgs{})
@@ -12449,6 +17919,32 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSubnetsSubnetTagArrayInput)(nil)).Elem(), GetSubnetsSubnetTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSubnetsTagInput)(nil)).Elem(), GetSubnetsTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSubnetsTagArrayInput)(nil)).Elem(), GetSubnetsTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTrafficMirrorFilterRulesTagInput)(nil)).Elem(), GetTrafficMirrorFilterRulesTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTrafficMirrorFilterRulesTagArrayInput)(nil)).Elem(), GetTrafficMirrorFilterRulesTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleInput)(nil)).Elem(), GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleArrayInput)(nil)).Elem(), GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTrafficMirrorFiltersTagInput)(nil)).Elem(), GetTrafficMirrorFiltersTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTrafficMirrorFiltersTagArrayInput)(nil)).Elem(), GetTrafficMirrorFiltersTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTrafficMirrorFiltersTrafficMirrorFilterInput)(nil)).Elem(), GetTrafficMirrorFiltersTrafficMirrorFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTrafficMirrorFiltersTrafficMirrorFilterArrayInput)(nil)).Elem(), GetTrafficMirrorFiltersTrafficMirrorFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleInput)(nil)).Elem(), GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayInput)(nil)).Elem(), GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleInput)(nil)).Elem(), GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayInput)(nil)).Elem(), GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTrafficMirrorFiltersTrafficMirrorFilterTagInput)(nil)).Elem(), GetTrafficMirrorFiltersTrafficMirrorFilterTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTrafficMirrorFiltersTrafficMirrorFilterTagArrayInput)(nil)).Elem(), GetTrafficMirrorFiltersTrafficMirrorFilterTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTrafficMirrorSessionsTagInput)(nil)).Elem(), GetTrafficMirrorSessionsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTrafficMirrorSessionsTagArrayInput)(nil)).Elem(), GetTrafficMirrorSessionsTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTrafficMirrorSessionsTrafficMirrorSessionInput)(nil)).Elem(), GetTrafficMirrorSessionsTrafficMirrorSessionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTrafficMirrorSessionsTrafficMirrorSessionArrayInput)(nil)).Elem(), GetTrafficMirrorSessionsTrafficMirrorSessionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTrafficMirrorSessionsTrafficMirrorSessionTagInput)(nil)).Elem(), GetTrafficMirrorSessionsTrafficMirrorSessionTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTrafficMirrorSessionsTrafficMirrorSessionTagArrayInput)(nil)).Elem(), GetTrafficMirrorSessionsTrafficMirrorSessionTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTrafficMirrorTargetsTagInput)(nil)).Elem(), GetTrafficMirrorTargetsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTrafficMirrorTargetsTagArrayInput)(nil)).Elem(), GetTrafficMirrorTargetsTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTrafficMirrorTargetsTrafficMirrorTargetInput)(nil)).Elem(), GetTrafficMirrorTargetsTrafficMirrorTargetArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTrafficMirrorTargetsTrafficMirrorTargetArrayInput)(nil)).Elem(), GetTrafficMirrorTargetsTrafficMirrorTargetArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTrafficMirrorTargetsTrafficMirrorTargetTagInput)(nil)).Elem(), GetTrafficMirrorTargetsTrafficMirrorTargetTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTrafficMirrorTargetsTrafficMirrorTargetTagArrayInput)(nil)).Elem(), GetTrafficMirrorTargetsTrafficMirrorTargetTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcsTagInput)(nil)).Elem(), GetVpcsTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcsTagArrayInput)(nil)).Elem(), GetVpcsTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcsVpcInput)(nil)).Elem(), GetVpcsVpcArgs{})
@@ -12457,6 +17953,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcsVpcAssociateCenArrayInput)(nil)).Elem(), GetVpcsVpcAssociateCenArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcsVpcTagInput)(nil)).Elem(), GetVpcsVpcTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcsVpcTagArrayInput)(nil)).Elem(), GetVpcsVpcTagArray{})
+	pulumi.RegisterOutputType(FlowLogTagOutput{})
+	pulumi.RegisterOutputType(FlowLogTagArrayOutput{})
+	pulumi.RegisterOutputType(FlowLogsFlowLogOutput{})
+	pulumi.RegisterOutputType(FlowLogsFlowLogArrayOutput{})
+	pulumi.RegisterOutputType(FlowLogsFlowLogTagOutput{})
+	pulumi.RegisterOutputType(FlowLogsFlowLogTagArrayOutput{})
+	pulumi.RegisterOutputType(FlowLogsTagOutput{})
+	pulumi.RegisterOutputType(FlowLogsTagArrayOutput{})
 	pulumi.RegisterOutputType(HaVipTagOutput{})
 	pulumi.RegisterOutputType(HaVipTagArrayOutput{})
 	pulumi.RegisterOutputType(HaVipsHaVipOutput{})
@@ -12544,6 +18048,38 @@ func init() {
 	pulumi.RegisterOutputType(SubnetsSubnetTagArrayOutput{})
 	pulumi.RegisterOutputType(SubnetsTagOutput{})
 	pulumi.RegisterOutputType(SubnetsTagArrayOutput{})
+	pulumi.RegisterOutputType(TrafficMirrorFilterRulesTagOutput{})
+	pulumi.RegisterOutputType(TrafficMirrorFilterRulesTagArrayOutput{})
+	pulumi.RegisterOutputType(TrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput{})
+	pulumi.RegisterOutputType(TrafficMirrorFilterRulesTrafficMirrorFilterRuleArrayOutput{})
+	pulumi.RegisterOutputType(TrafficMirrorFilterTagOutput{})
+	pulumi.RegisterOutputType(TrafficMirrorFilterTagArrayOutput{})
+	pulumi.RegisterOutputType(TrafficMirrorFiltersTagOutput{})
+	pulumi.RegisterOutputType(TrafficMirrorFiltersTagArrayOutput{})
+	pulumi.RegisterOutputType(TrafficMirrorFiltersTrafficMirrorFilterOutput{})
+	pulumi.RegisterOutputType(TrafficMirrorFiltersTrafficMirrorFilterArrayOutput{})
+	pulumi.RegisterOutputType(TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput{})
+	pulumi.RegisterOutputType(TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayOutput{})
+	pulumi.RegisterOutputType(TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput{})
+	pulumi.RegisterOutputType(TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayOutput{})
+	pulumi.RegisterOutputType(TrafficMirrorFiltersTrafficMirrorFilterTagOutput{})
+	pulumi.RegisterOutputType(TrafficMirrorFiltersTrafficMirrorFilterTagArrayOutput{})
+	pulumi.RegisterOutputType(TrafficMirrorSessionTagOutput{})
+	pulumi.RegisterOutputType(TrafficMirrorSessionTagArrayOutput{})
+	pulumi.RegisterOutputType(TrafficMirrorSessionsTagOutput{})
+	pulumi.RegisterOutputType(TrafficMirrorSessionsTagArrayOutput{})
+	pulumi.RegisterOutputType(TrafficMirrorSessionsTrafficMirrorSessionOutput{})
+	pulumi.RegisterOutputType(TrafficMirrorSessionsTrafficMirrorSessionArrayOutput{})
+	pulumi.RegisterOutputType(TrafficMirrorSessionsTrafficMirrorSessionTagOutput{})
+	pulumi.RegisterOutputType(TrafficMirrorSessionsTrafficMirrorSessionTagArrayOutput{})
+	pulumi.RegisterOutputType(TrafficMirrorTargetTagOutput{})
+	pulumi.RegisterOutputType(TrafficMirrorTargetTagArrayOutput{})
+	pulumi.RegisterOutputType(TrafficMirrorTargetsTagOutput{})
+	pulumi.RegisterOutputType(TrafficMirrorTargetsTagArrayOutput{})
+	pulumi.RegisterOutputType(TrafficMirrorTargetsTrafficMirrorTargetOutput{})
+	pulumi.RegisterOutputType(TrafficMirrorTargetsTrafficMirrorTargetArrayOutput{})
+	pulumi.RegisterOutputType(TrafficMirrorTargetsTrafficMirrorTargetTagOutput{})
+	pulumi.RegisterOutputType(TrafficMirrorTargetsTrafficMirrorTargetTagArrayOutput{})
 	pulumi.RegisterOutputType(VpcAssociateCenOutput{})
 	pulumi.RegisterOutputType(VpcAssociateCenArrayOutput{})
 	pulumi.RegisterOutputType(VpcTagOutput{})
@@ -12556,6 +18092,12 @@ func init() {
 	pulumi.RegisterOutputType(VpcsVpcAssociateCenArrayOutput{})
 	pulumi.RegisterOutputType(VpcsVpcTagOutput{})
 	pulumi.RegisterOutputType(VpcsVpcTagArrayOutput{})
+	pulumi.RegisterOutputType(GetFlowLogsFlowLogOutput{})
+	pulumi.RegisterOutputType(GetFlowLogsFlowLogArrayOutput{})
+	pulumi.RegisterOutputType(GetFlowLogsFlowLogTagOutput{})
+	pulumi.RegisterOutputType(GetFlowLogsFlowLogTagArrayOutput{})
+	pulumi.RegisterOutputType(GetFlowLogsTagOutput{})
+	pulumi.RegisterOutputType(GetFlowLogsTagArrayOutput{})
 	pulumi.RegisterOutputType(GetHaVipsHaVipOutput{})
 	pulumi.RegisterOutputType(GetHaVipsHaVipArrayOutput{})
 	pulumi.RegisterOutputType(GetHaVipsHaVipTagOutput{})
@@ -12621,6 +18163,32 @@ func init() {
 	pulumi.RegisterOutputType(GetSubnetsSubnetTagArrayOutput{})
 	pulumi.RegisterOutputType(GetSubnetsTagOutput{})
 	pulumi.RegisterOutputType(GetSubnetsTagArrayOutput{})
+	pulumi.RegisterOutputType(GetTrafficMirrorFilterRulesTagOutput{})
+	pulumi.RegisterOutputType(GetTrafficMirrorFilterRulesTagArrayOutput{})
+	pulumi.RegisterOutputType(GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleOutput{})
+	pulumi.RegisterOutputType(GetTrafficMirrorFilterRulesTrafficMirrorFilterRuleArrayOutput{})
+	pulumi.RegisterOutputType(GetTrafficMirrorFiltersTagOutput{})
+	pulumi.RegisterOutputType(GetTrafficMirrorFiltersTagArrayOutput{})
+	pulumi.RegisterOutputType(GetTrafficMirrorFiltersTrafficMirrorFilterOutput{})
+	pulumi.RegisterOutputType(GetTrafficMirrorFiltersTrafficMirrorFilterArrayOutput{})
+	pulumi.RegisterOutputType(GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleOutput{})
+	pulumi.RegisterOutputType(GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRuleArrayOutput{})
+	pulumi.RegisterOutputType(GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleOutput{})
+	pulumi.RegisterOutputType(GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRuleArrayOutput{})
+	pulumi.RegisterOutputType(GetTrafficMirrorFiltersTrafficMirrorFilterTagOutput{})
+	pulumi.RegisterOutputType(GetTrafficMirrorFiltersTrafficMirrorFilterTagArrayOutput{})
+	pulumi.RegisterOutputType(GetTrafficMirrorSessionsTagOutput{})
+	pulumi.RegisterOutputType(GetTrafficMirrorSessionsTagArrayOutput{})
+	pulumi.RegisterOutputType(GetTrafficMirrorSessionsTrafficMirrorSessionOutput{})
+	pulumi.RegisterOutputType(GetTrafficMirrorSessionsTrafficMirrorSessionArrayOutput{})
+	pulumi.RegisterOutputType(GetTrafficMirrorSessionsTrafficMirrorSessionTagOutput{})
+	pulumi.RegisterOutputType(GetTrafficMirrorSessionsTrafficMirrorSessionTagArrayOutput{})
+	pulumi.RegisterOutputType(GetTrafficMirrorTargetsTagOutput{})
+	pulumi.RegisterOutputType(GetTrafficMirrorTargetsTagArrayOutput{})
+	pulumi.RegisterOutputType(GetTrafficMirrorTargetsTrafficMirrorTargetOutput{})
+	pulumi.RegisterOutputType(GetTrafficMirrorTargetsTrafficMirrorTargetArrayOutput{})
+	pulumi.RegisterOutputType(GetTrafficMirrorTargetsTrafficMirrorTargetTagOutput{})
+	pulumi.RegisterOutputType(GetTrafficMirrorTargetsTrafficMirrorTargetTagArrayOutput{})
 	pulumi.RegisterOutputType(GetVpcsTagOutput{})
 	pulumi.RegisterOutputType(GetVpcsTagArrayOutput{})
 	pulumi.RegisterOutputType(GetVpcsVpcOutput{})

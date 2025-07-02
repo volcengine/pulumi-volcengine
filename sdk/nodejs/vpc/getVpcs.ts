@@ -30,6 +30,7 @@ export function getVpcs(args?: GetVpcsArgs, opts?: pulumi.InvokeOptions): Promis
         "projectName": args.projectName,
         "tags": args.tags,
         "vpcName": args.vpcName,
+        "vpcOwnerId": args.vpcOwnerId,
     }, opts);
 }
 
@@ -61,6 +62,10 @@ export interface GetVpcsArgs {
      * The vpc name to query.
      */
     vpcName?: string;
+    /**
+     * The owner ID of the vpc.
+     */
+    vpcOwnerId?: number;
 }
 
 /**
@@ -90,6 +95,7 @@ export interface GetVpcsResult {
      * The name of VPC.
      */
     readonly vpcName?: string;
+    readonly vpcOwnerId?: number;
     /**
      * The collection of Vpc query.
      */
@@ -140,4 +146,8 @@ export interface GetVpcsOutputArgs {
      * The vpc name to query.
      */
     vpcName?: pulumi.Input<string>;
+    /**
+     * The owner ID of the vpc.
+     */
+    vpcOwnerId?: pulumi.Input<number>;
 }

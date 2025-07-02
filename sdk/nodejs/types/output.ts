@@ -2256,6 +2256,3300 @@ export namespace alb {
 
 }
 
+export namespace apig {
+    export interface ApigGatewayBackendSpec {
+        /**
+         * Whether the api gateway support vke flannel cni.
+         */
+        isVkeWithFlannelCniSupported: boolean;
+        /**
+         * The vke pod cidr of the api gateway.
+         */
+        vkePodCidr: string;
+    }
+
+    export interface ApigGatewayLogSpec {
+        /**
+         * Whether the api gateway enable tls log.
+         */
+        enable: boolean;
+        /**
+         * The project id of the tls. This field is required when `enable` is true.
+         */
+        projectId?: string;
+        /**
+         * The topic id of the tls.
+         */
+        topicId: string;
+    }
+
+    export interface ApigGatewayMonitorSpec {
+        /**
+         * Whether the api gateway enable monitor.
+         */
+        enable: boolean;
+        /**
+         * The workspace id of the monitor. This field is required when `enable` is true.
+         */
+        workspaceId?: string;
+    }
+
+    export interface ApigGatewayNetworkSpec {
+        /**
+         * The subnet ids of the network spec.
+         */
+        subnetIds: string[];
+        /**
+         * The vpc id of the network spec.
+         */
+        vpcId: string;
+    }
+
+    export interface ApigGatewayResourceSpec {
+        /**
+         * The clb spec code of the resource spec. Valid values: `small1`, `small2`, `medium1`, `medium2`, `large1`, `large2`.
+         */
+        clbSpecCode: string;
+        /**
+         * The instance spec code of the resource spec. Valid values: `1c2g`, `2c4g`, `4c8g`, `8c16g`.
+         */
+        instanceSpecCode: string;
+        /**
+         * The network type of the resource spec. The default values for both `enablePublicNetwork` and `enablePrivateNetwork` are true.
+         */
+        networkType: outputs.apig.ApigGatewayResourceSpecNetworkType;
+        /**
+         * The public network bandwidth of the resource spec.
+         */
+        publicNetworkBandwidth: number;
+        /**
+         * The public network billing type of the resource spec. Valid values: `traffic`, `bandwidth`.
+         */
+        publicNetworkBillingType: string;
+        /**
+         * The replicas of the resource spec.
+         */
+        replicas: number;
+    }
+
+    export interface ApigGatewayResourceSpecNetworkType {
+        /**
+         * Whether the api gateway enable private network.
+         */
+        enablePrivateNetwork: boolean;
+        /**
+         * Whether the api gateway enable public network.
+         */
+        enablePublicNetwork: boolean;
+    }
+
+    export interface ApigGatewayServiceAuthSpec {
+        /**
+         * Whether the api gateway service enable auth.
+         */
+        enable: boolean;
+    }
+
+    export interface ApigGatewayTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface ApigRouteAdvancedSetting {
+        /**
+         * The cors policy setting of the api gateway route.
+         */
+        corsPolicySetting?: outputs.apig.ApigRouteAdvancedSettingCorsPolicySetting;
+        /**
+         * The header operations of the api gateway route.
+         */
+        headerOperations?: outputs.apig.ApigRouteAdvancedSettingHeaderOperation[];
+        /**
+         * The mirror policies of the api gateway route.
+         */
+        mirrorPolicies?: outputs.apig.ApigRouteAdvancedSettingMirrorPolicy[];
+        /**
+         * The retry policy setting of the api gateway route.
+         */
+        retryPolicySetting?: outputs.apig.ApigRouteAdvancedSettingRetryPolicySetting;
+        /**
+         * The timeout setting of the api gateway route.
+         */
+        timeoutSetting?: outputs.apig.ApigRouteAdvancedSettingTimeoutSetting;
+        /**
+         * The url rewrite setting of the api gateway route.
+         */
+        urlRewriteSetting?: outputs.apig.ApigRouteAdvancedSettingUrlRewriteSetting;
+    }
+
+    export interface ApigRouteAdvancedSettingCorsPolicySetting {
+        /**
+         * Whether the cors policy setting is enabled.
+         */
+        enable?: boolean;
+    }
+
+    export interface ApigRouteAdvancedSettingHeaderOperation {
+        /**
+         * The direction type of the header. Valid values: `request`, `response`.
+         */
+        directionType?: string;
+        /**
+         * The key of the header.
+         */
+        key: string;
+        /**
+         * The operation of the header. Valid values: `set`, `add`, `remove`.
+         */
+        operation: string;
+        /**
+         * The value of the header.
+         */
+        value?: string;
+    }
+
+    export interface ApigRouteAdvancedSettingMirrorPolicy {
+        /**
+         * The percent of the mirror policy.
+         */
+        percent?: outputs.apig.ApigRouteAdvancedSettingMirrorPolicyPercent;
+        /**
+         * The upstream of the mirror policy.
+         */
+        upstream: outputs.apig.ApigRouteAdvancedSettingMirrorPolicyUpstream;
+    }
+
+    export interface ApigRouteAdvancedSettingMirrorPolicyPercent {
+        /**
+         * The percent value of the mirror policy.
+         */
+        value: number;
+    }
+
+    export interface ApigRouteAdvancedSettingMirrorPolicyUpstream {
+        /**
+         * The type of the api gateway upstream.
+         */
+        type: string;
+        /**
+         * The id of the api gateway upstream.
+         */
+        upstreamId: string;
+        /**
+         * The version of the api gateway upstream.
+         */
+        version?: string;
+    }
+
+    export interface ApigRouteAdvancedSettingRetryPolicySetting {
+        /**
+         * The attempts of the api gateway route.
+         */
+        attempts?: number;
+        /**
+         * Whether the retry policy setting is enabled.
+         */
+        enable?: boolean;
+        /**
+         * The http codes of the api gateway route.
+         */
+        httpCodes?: string[];
+        /**
+         * The per try timeout of the api gateway route.
+         */
+        perTryTimeout?: number;
+        /**
+         * The retry on of the api gateway route. Valid values: `5xx`, `reset`, `connect-failure`, `refused-stream`, `cancelled`, `deadline-exceeded`, `internal`, `resource-exhausted`, `unavailable`.
+         */
+        retryOns?: string[];
+    }
+
+    export interface ApigRouteAdvancedSettingTimeoutSetting {
+        /**
+         * Whether the timeout setting is enabled.
+         */
+        enable?: boolean;
+        /**
+         * The timeout of the api gateway route. Unit: s.
+         */
+        timeout?: number;
+    }
+
+    export interface ApigRouteAdvancedSettingUrlRewriteSetting {
+        /**
+         * Whether the url rewrite setting is enabled.
+         */
+        enable?: boolean;
+        /**
+         * The url rewrite path of the api gateway route.
+         */
+        urlRewrite?: string;
+    }
+
+    export interface ApigRouteCustomDomain {
+        /**
+         * The domain of the api gateway route.
+         */
+        domain: string;
+        /**
+         * The id of the custom domain.
+         */
+        id: string;
+    }
+
+    export interface ApigRouteDomain {
+        /**
+         * The domain of the api gateway route.
+         */
+        domain: string;
+        /**
+         * The type of the domain.
+         */
+        type: string;
+    }
+
+    export interface ApigRouteMatchRule {
+        /**
+         * The header of the api gateway route.
+         */
+        headers?: outputs.apig.ApigRouteMatchRuleHeader[];
+        /**
+         * The method of the api gateway route. Valid values: `GET`, `POST`, `PUT`, `DELETE`, `HEAD`, `OPTIONS`, `CONNECT`.
+         */
+        methods?: string[];
+        /**
+         * The path of the api gateway route.
+         */
+        path: outputs.apig.ApigRouteMatchRulePath;
+        /**
+         * The query string of the api gateway route.
+         */
+        queryStrings?: outputs.apig.ApigRouteMatchRuleQueryString[];
+    }
+
+    export interface ApigRouteMatchRuleHeader {
+        /**
+         * The key of the header.
+         */
+        key: string;
+        /**
+         * The path of the api gateway route.
+         */
+        value: outputs.apig.ApigRouteMatchRuleHeaderValue;
+    }
+
+    export interface ApigRouteMatchRuleHeaderValue {
+        /**
+         * The match content of the api gateway route.
+         */
+        matchContent: string;
+        /**
+         * The match type of the api gateway route. Valid values: `Prefix`, `Exact`, `Regex`.
+         */
+        matchType: string;
+    }
+
+    export interface ApigRouteMatchRulePath {
+        /**
+         * The match content of the api gateway route.
+         */
+        matchContent: string;
+        /**
+         * The match type of the api gateway route. Valid values: `Prefix`, `Exact`, `Regex`.
+         */
+        matchType: string;
+    }
+
+    export interface ApigRouteMatchRuleQueryString {
+        /**
+         * The key of the query string.
+         */
+        key: string;
+        /**
+         * The path of the api gateway route.
+         */
+        value: outputs.apig.ApigRouteMatchRuleQueryStringValue;
+    }
+
+    export interface ApigRouteMatchRuleQueryStringValue {
+        /**
+         * The match content of the api gateway route.
+         */
+        matchContent: string;
+        /**
+         * The match type of the api gateway route. Valid values: `Prefix`, `Exact`, `Regex`.
+         */
+        matchType: string;
+    }
+
+    export interface ApigRouteUpstreamList {
+        /**
+         * The ai provider settings of the api gateway route.
+         */
+        aiProviderSettings?: outputs.apig.ApigRouteUpstreamListAiProviderSettings;
+        /**
+         * The id of the api gateway upstream.
+         */
+        upstreamId: string;
+        /**
+         * The version of the api gateway upstream.
+         */
+        version?: string;
+        /**
+         * The weight of the api gateway upstream. Valid values: 0~10000.
+         */
+        weight: number;
+    }
+
+    export interface ApigRouteUpstreamListAiProviderSettings {
+        /**
+         * The model of the ai provider.
+         */
+        model: string;
+        /**
+         * The target path of the ai provider.
+         */
+        targetPath: string;
+    }
+
+    export interface ApigUpstreamCircuitBreakingSettings {
+        /**
+         * The base ejection time of circuit breaking. Unit: ms. Default is 10s.
+         */
+        baseEjectionTime: number;
+        /**
+         * The consecutive errors of circuit breaking. Default is 5.
+         */
+        consecutiveErrors: number;
+        /**
+         * Whether the circuit breaking is enabled.
+         */
+        enable: boolean;
+        /**
+         * The interval of circuit breaking. Unit: ms. Default is 10s.
+         */
+        interval: number;
+        /**
+         * The max ejection percent of circuit breaking. Default is 20%.
+         */
+        maxEjectionPercent: number;
+        /**
+         * The min health percent of circuit breaking. Default is 60%.
+         */
+        minHealthPercent: number;
+    }
+
+    export interface ApigUpstreamLoadBalancerSettings {
+        /**
+         * The consistent hash lb of apig upstream.
+         */
+        consistentHashLb?: outputs.apig.ApigUpstreamLoadBalancerSettingsConsistentHashLb;
+        /**
+         * The load balancer policy of apig upstream. Valid values: `SimpleLB`, `ConsistentHashLB`.
+         */
+        lbPolicy: string;
+        /**
+         * The simple load balancer of apig upstream. Valid values: `ROUND_ROBIN`, `LEAST_CONN`, `RANDOM`.
+         */
+        simpleLb?: string;
+        /**
+         * The warmup duration of apig upstream lb. This field is valid when the simpleLb is `ROUND_ROBIN` or `LEAST_CONN`.
+         */
+        warmupDuration?: number;
+    }
+
+    export interface ApigUpstreamLoadBalancerSettingsConsistentHashLb {
+        /**
+         * The hash key of apig upstream consistent hash lb. Valid values: `HTTPCookie`, `HttpHeaderName`, `HttpQueryParameterName`, `UseSourceIp`.
+         */
+        hashKey: string;
+        /**
+         * The http cookie of apig upstream consistent hash lb.
+         */
+        httpCookie?: outputs.apig.ApigUpstreamLoadBalancerSettingsConsistentHashLbHttpCookie;
+        /**
+         * The http header name of apig upstream consistent hash lb.
+         */
+        httpHeaderName?: string;
+        /**
+         * The http query parameter name of apig upstream consistent hash lb.
+         */
+        httpQueryParameterName?: string;
+        /**
+         * The use source ip of apig upstream consistent hash lb.
+         */
+        useSourceIp?: boolean;
+    }
+
+    export interface ApigUpstreamLoadBalancerSettingsConsistentHashLbHttpCookie {
+        /**
+         * The name of apig upstream consistent hash lb http cookie.
+         */
+        name: string;
+        /**
+         * The path of apig upstream consistent hash lb http cookie.
+         */
+        path: string;
+        /**
+         * The ttl of apig upstream consistent hash lb http cookie.
+         */
+        ttl: number;
+    }
+
+    export interface ApigUpstreamSourceIngressSetting {
+        /**
+         * Whether to enable all ingress classes.
+         */
+        enableAllIngressClasses: boolean;
+        /**
+         * Whether to enable all namespaces.
+         */
+        enableAllNamespaces: boolean;
+        /**
+         * Whether to enable ingress.
+         */
+        enableIngress: boolean;
+        /**
+         * Whether to enable ingress without ingress class.
+         */
+        enableIngressWithoutIngressClass: boolean;
+        /**
+         * The ingress classes of ingress settings.
+         */
+        ingressClasses: string[];
+        /**
+         * The update status of ingress settings.
+         */
+        updateStatus: boolean;
+        /**
+         * The watch namespaces of ingress settings.
+         */
+        watchNamespaces: string[];
+    }
+
+    export interface ApigUpstreamSourceSourceSpec {
+        /**
+         * The k8s source of apig upstream source.
+         */
+        k8sSource?: outputs.apig.ApigUpstreamSourceSourceSpecK8sSource;
+        /**
+         * The nacos source of apig upstream source.
+         */
+        nacosSource?: outputs.apig.ApigUpstreamSourceSourceSpecNacosSource;
+    }
+
+    export interface ApigUpstreamSourceSourceSpecK8sSource {
+        /**
+         * The cluster id of k8s source.
+         */
+        clusterId: string;
+        /**
+         * The cluster type of k8s source.
+         */
+        clusterType: string;
+    }
+
+    export interface ApigUpstreamSourceSourceSpecNacosSource {
+        /**
+         * The address of nacos source.
+         */
+        address: string;
+        /**
+         * The auth config of nacos source.
+         */
+        authConfig?: outputs.apig.ApigUpstreamSourceSourceSpecNacosSourceAuthConfig;
+        /**
+         * The context path of nacos source.
+         */
+        contextPath: string;
+        /**
+         * The grpc port of nacos source.
+         */
+        grpcPort: number;
+        /**
+         * The http port of nacos source.
+         */
+        httpPort: number;
+        /**
+         * The nacos id of nacos source.
+         */
+        nacosId: string;
+        /**
+         * The nacos name of nacos source.
+         */
+        nacosName: string;
+    }
+
+    export interface ApigUpstreamSourceSourceSpecNacosSourceAuthConfig {
+        /**
+         * The basic auth config of nacos source.
+         */
+        basic?: outputs.apig.ApigUpstreamSourceSourceSpecNacosSourceAuthConfigBasic;
+    }
+
+    export interface ApigUpstreamSourceSourceSpecNacosSourceAuthConfigBasic {
+        /**
+         * The password of basic auth config of nacos source.
+         */
+        password: string;
+        /**
+         * The username of basic auth config of nacos source.
+         */
+        username: string;
+    }
+
+    export interface ApigUpstreamTlsSettings {
+        /**
+         * The sni of apig upstream tls setting.
+         */
+        sni: string;
+        /**
+         * The tls mode of apig upstream tls setting. Valid values: `DISABLE`, `SIMPLE`.
+         */
+        tlsMode: string;
+    }
+
+    export interface ApigUpstreamUpstreamSpec {
+        /**
+         * The ai provider of apig upstream.
+         */
+        aiProvider?: outputs.apig.ApigUpstreamUpstreamSpecAiProvider;
+        /**
+         * The domain of apig upstream.
+         */
+        domain?: outputs.apig.ApigUpstreamUpstreamSpecDomain;
+        /**
+         * The ecs list of apig upstream.
+         */
+        ecsLists?: outputs.apig.ApigUpstreamUpstreamSpecEcsList[];
+        /**
+         * The fixed ip list of apig upstream.
+         */
+        fixedIpLists?: outputs.apig.ApigUpstreamUpstreamSpecFixedIpList[];
+        /**
+         * The k8s service of apig upstream.
+         */
+        k8sService?: outputs.apig.ApigUpstreamUpstreamSpecK8sService;
+        /**
+         * The nacos service of apig upstream.
+         */
+        nacosService?: outputs.apig.ApigUpstreamUpstreamSpecNacosService;
+        /**
+         * The vefaas of apig upstream.
+         */
+        veFaas?: outputs.apig.ApigUpstreamUpstreamSpecVeFaas;
+        /**
+         * The mlp of apig upstream.
+         */
+        veMlp?: outputs.apig.ApigUpstreamUpstreamSpecVeMlp;
+    }
+
+    export interface ApigUpstreamUpstreamSpecAiProvider {
+        /**
+         * The base url of ai provider.
+         */
+        baseUrl: string;
+        /**
+         * The custom body params of ai provider.
+         */
+        customBodyParams?: {[key: string]: string};
+        /**
+         * The custom header params of ai provider.
+         */
+        customHeaderParams?: {[key: string]: string};
+        /**
+         * The custom model service of ai provider.
+         */
+        customModelService?: outputs.apig.ApigUpstreamUpstreamSpecAiProviderCustomModelService;
+        /**
+         * The name of ai provider.
+         */
+        name: string;
+        /**
+         * The token of ai provider.
+         */
+        token: string;
+    }
+
+    export interface ApigUpstreamUpstreamSpecAiProviderCustomModelService {
+        /**
+         * The name of custom model service.
+         */
+        name: string;
+        /**
+         * The namespace of custom model service.
+         */
+        namespace: string;
+        /**
+         * The port of custom model service.
+         */
+        port: number;
+    }
+
+    export interface ApigUpstreamUpstreamSpecDomain {
+        /**
+         * The domain list of apig upstream.
+         */
+        domainList: outputs.apig.ApigUpstreamUpstreamSpecDomainDomainList;
+        /**
+         * The protocol of apig upstream. Valid values: `HTTP`, `HTTPS`.
+         */
+        protocol: string;
+    }
+
+    export interface ApigUpstreamUpstreamSpecDomainDomainList {
+        /**
+         * The domain of apig upstream.
+         */
+        domain: string;
+        /**
+         * The port of domain. Default is 80 for HTTP, 443 for HTTPS.
+         */
+        port: number;
+    }
+
+    export interface ApigUpstreamUpstreamSpecEcsList {
+        /**
+         * The instance id of ecs.
+         */
+        ecsId: string;
+        /**
+         * The ip of ecs.
+         */
+        ip: string;
+        /**
+         * The port of ecs.
+         */
+        port: number;
+    }
+
+    export interface ApigUpstreamUpstreamSpecFixedIpList {
+        /**
+         * The ip of apig upstream.
+         */
+        ip: string;
+        /**
+         * The port of apig upstream.
+         */
+        port: number;
+    }
+
+    export interface ApigUpstreamUpstreamSpecK8sService {
+        /**
+         * The name of k8s service.
+         */
+        name: string;
+        /**
+         * The namespace of k8s service.
+         */
+        namespace: string;
+        /**
+         * The port of k8s service.
+         */
+        port: number;
+    }
+
+    export interface ApigUpstreamUpstreamSpecNacosService {
+        /**
+         * The group of nacos service.
+         */
+        group: string;
+        /**
+         * The namespace of nacos service.
+         */
+        namespace: string;
+        /**
+         * The namespace id of nacos service.
+         */
+        namespaceId: string;
+        /**
+         * The service of nacos service.
+         */
+        service: string;
+        /**
+         * The upstream source id.
+         */
+        upstreamSourceId: string;
+    }
+
+    export interface ApigUpstreamUpstreamSpecVeFaas {
+        /**
+         * The function id of vefaas.
+         */
+        functionId: string;
+    }
+
+    export interface ApigUpstreamUpstreamSpecVeMlp {
+        /**
+         * The k8s service of mlp.
+         */
+        k8sService: outputs.apig.ApigUpstreamUpstreamSpecVeMlpK8sService;
+        /**
+         * The service discover type of mlp.
+         */
+        serviceDiscoverType: string;
+        /**
+         * The service id of mlp.
+         */
+        serviceId: string;
+        /**
+         * The service name of mlp.
+         */
+        serviceName: string;
+        /**
+         * The service url of mlp.
+         */
+        serviceUrl: string;
+        /**
+         * The upstream source id.
+         */
+        upstreamSourceId: string;
+    }
+
+    export interface ApigUpstreamUpstreamSpecVeMlpK8sService {
+        /**
+         * The cluster info of k8s service.
+         */
+        clusterInfo: outputs.apig.ApigUpstreamUpstreamSpecVeMlpK8sServiceClusterInfo;
+        /**
+         * The name of k8s service.
+         */
+        name: string;
+        /**
+         * The namespace of k8s service.
+         */
+        namespace: string;
+        /**
+         * The port of k8s service.
+         */
+        port: number;
+    }
+
+    export interface ApigUpstreamUpstreamSpecVeMlpK8sServiceClusterInfo {
+        /**
+         * The account id of k8s service.
+         */
+        accountId: number;
+        /**
+         * The cluster name of k8s service.
+         */
+        clusterName: string;
+    }
+
+    export interface ApigUpstreamVersionDetail {
+        /**
+         * The labels of apig upstream version.
+         */
+        labels: outputs.apig.ApigUpstreamVersionDetailLabel[];
+        /**
+         * The name of the apig upstream.
+         */
+        name: string;
+        /**
+         * The update time of apig upstream version.
+         */
+        updateTime: string;
+    }
+
+    export interface ApigUpstreamVersionDetailLabel {
+        /**
+         * The key of apig upstream version label.
+         */
+        key: string;
+        /**
+         * The value of apig upstream version label.
+         */
+        value: string;
+    }
+
+    export interface ApigUpstreamVersionUpstreamVersion {
+        /**
+         * The labels of apig upstream version.
+         */
+        labels?: outputs.apig.ApigUpstreamVersionUpstreamVersionLabel[];
+        /**
+         * The name of apig upstream version.
+         */
+        name: string;
+        /**
+         * The update time of apig upstream version.
+         */
+        updateTime: string;
+    }
+
+    export interface ApigUpstreamVersionUpstreamVersionLabel {
+        /**
+         * The key of apig upstream version label.
+         */
+        key: string;
+        /**
+         * The value of apig upstream version label.
+         */
+        value: string;
+    }
+
+    export interface CustomDomainsCustomDomain {
+        /**
+         * The id of the certificate.
+         */
+        certificateId: string;
+        /**
+         * The comments of the custom domain.
+         */
+        comments: string;
+        /**
+         * The create time of the custom domain.
+         */
+        createTime: string;
+        /**
+         * The custom domain of the api gateway service.
+         */
+        domain: string;
+        /**
+         * The id of the custom domain.
+         */
+        id: string;
+        /**
+         * The protocol of the custom domain.
+         */
+        protocols: string[];
+        /**
+         * The resource type of domain. Valid values: `Console`, `Ingress`.
+         */
+        resourceType: string;
+        /**
+         * The id of api gateway service.
+         */
+        serviceId: string;
+        /**
+         * Whether to redirect https.
+         */
+        sslRedirect: boolean;
+        /**
+         * The status of the custom domain.
+         */
+        status: string;
+        /**
+         * The type of the domain.
+         */
+        type: string;
+        /**
+         * The update time of the custom domain.
+         */
+        updateTime: string;
+    }
+
+    export interface GatewayServicesGatewayService {
+        /**
+         * The auth spec of the api gateway service.
+         */
+        authSpecs: outputs.apig.GatewayServicesGatewayServiceAuthSpec[];
+        /**
+         * The comments of the api gateway service.
+         */
+        comments: string;
+        /**
+         * The create time of the api gateway service.
+         */
+        createTime: string;
+        /**
+         * The custom domains of the api gateway service.
+         */
+        customDomains: outputs.apig.GatewayServicesGatewayServiceCustomDomain[];
+        /**
+         * The domains of the api gateway service.
+         */
+        domains: outputs.apig.GatewayServicesGatewayServiceDomain[];
+        /**
+         * The gateway id of api gateway service.
+         */
+        gatewayId: string;
+        /**
+         * The gateway name of the api gateway service.
+         */
+        gatewayName: string;
+        /**
+         * The Id of the api gateway service.
+         */
+        id: string;
+        /**
+         * The error message of the api gateway service.
+         */
+        message: string;
+        /**
+         * The name of api gateway service. This field support fuzzy query.
+         */
+        name: string;
+        /**
+         * The protocol of the api gateway service.
+         */
+        protocols: string[];
+        /**
+         * The status of api gateway service.
+         */
+        status: string;
+    }
+
+    export interface GatewayServicesGatewayServiceAuthSpec {
+        /**
+         * Whether the api gateway service enable auth.
+         */
+        enable: boolean;
+    }
+
+    export interface GatewayServicesGatewayServiceCustomDomain {
+        /**
+         * The domain of the api gateway service.
+         */
+        domain: string;
+        /**
+         * The Id of the api gateway service.
+         */
+        id: string;
+    }
+
+    export interface GatewayServicesGatewayServiceDomain {
+        /**
+         * The domain of the api gateway service.
+         */
+        domain: string;
+        /**
+         * The type of the domain.
+         */
+        type: string;
+    }
+
+    export interface GatewaysGateway {
+        /**
+         * The backend spec of the api gateway.
+         */
+        backendSpecs: outputs.apig.GatewaysGatewayBackendSpec[];
+        /**
+         * The comments of the api gateway.
+         */
+        comments: string;
+        /**
+         * The create time of the api gateway.
+         */
+        createTime: string;
+        /**
+         * The Id of the api gateway.
+         */
+        id: string;
+        /**
+         * The log spec of the api gateway.
+         */
+        logSpecs: outputs.apig.GatewaysGatewayLogSpec[];
+        /**
+         * The error message of the api gateway.
+         */
+        message: string;
+        /**
+         * The monitor spec of the api gateway.
+         */
+        monitorSpecs: outputs.apig.GatewaysGatewayMonitorSpec[];
+        /**
+         * The name of api gateway. This field support fuzzy query.
+         */
+        name: string;
+        /**
+         * The network spec of the api gateway.
+         */
+        networkSpecs: outputs.apig.GatewaysGatewayNetworkSpec[];
+        /**
+         * The project name of api gateway.
+         */
+        projectName: string;
+        /**
+         * The region of the api gateway.
+         */
+        region: string;
+        /**
+         * The resource spec of the api gateway.
+         */
+        resourceSpecs: outputs.apig.GatewaysGatewayResourceSpec[];
+        /**
+         * The status of api gateway.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.apig.GatewaysGatewayTag[];
+        /**
+         * The type of api gateway.
+         */
+        type: string;
+        /**
+         * The version of the api gateway.
+         */
+        version: string;
+    }
+
+    export interface GatewaysGatewayBackendSpec {
+        /**
+         * Whether the api gateway support vke flannel cni.
+         */
+        isVkeWithFlannelCniSupported: boolean;
+        /**
+         * The vke pod cidr of the api gateway.
+         */
+        vkePodCidr: string;
+    }
+
+    export interface GatewaysGatewayLogSpec {
+        /**
+         * Whether the api gateway enable monitor.
+         */
+        enable: boolean;
+        /**
+         * The project id of the tls.
+         */
+        projectId: string;
+        /**
+         * The topic id of the tls.
+         */
+        topicId: string;
+    }
+
+    export interface GatewaysGatewayMonitorSpec {
+        /**
+         * Whether the api gateway enable monitor.
+         */
+        enable: boolean;
+        /**
+         * The workspace id of the monitor.
+         */
+        workspaceId: string;
+    }
+
+    export interface GatewaysGatewayNetworkSpec {
+        /**
+         * The subnet ids of the api gateway.
+         */
+        subnetIds: string[];
+        /**
+         * The vpc id of the api gateway.
+         */
+        vpcId: string;
+    }
+
+    export interface GatewaysGatewayResourceSpec {
+        /**
+         * The clb spec code of the resource spec.
+         */
+        clbSpecCode: string;
+        /**
+         * The instance spec code of the resource spec.
+         */
+        instanceSpecCode: string;
+        /**
+         * The network type of the api gateway.
+         */
+        networkTypes: outputs.apig.GatewaysGatewayResourceSpecNetworkType[];
+        /**
+         * The public network bandwidth of the resource spec.
+         */
+        publicNetworkBandwidth: number;
+        /**
+         * The public network billing type of the resource spec.
+         */
+        publicNetworkBillingType: string;
+        /**
+         * The replicas of the resource spec.
+         */
+        replicas: number;
+    }
+
+    export interface GatewaysGatewayResourceSpecNetworkType {
+        /**
+         * Whether the api gateway enable private network.
+         */
+        enablePrivateNetwork: boolean;
+        /**
+         * Whether the api gateway enable public network.
+         */
+        enablePublicNetwork: boolean;
+    }
+
+    export interface GatewaysGatewayTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GatewaysTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetCustomDomainsCustomDomain {
+        /**
+         * The id of the certificate.
+         */
+        certificateId: string;
+        /**
+         * The comments of the custom domain.
+         */
+        comments: string;
+        /**
+         * The create time of the custom domain.
+         */
+        createTime: string;
+        /**
+         * The custom domain of the api gateway service.
+         */
+        domain: string;
+        /**
+         * The id of the custom domain.
+         */
+        id: string;
+        /**
+         * The protocol of the custom domain.
+         */
+        protocols: string[];
+        /**
+         * The resource type of domain. Valid values: `Console`, `Ingress`.
+         */
+        resourceType: string;
+        /**
+         * The id of api gateway service.
+         */
+        serviceId: string;
+        /**
+         * Whether to redirect https.
+         */
+        sslRedirect: boolean;
+        /**
+         * The status of the custom domain.
+         */
+        status: string;
+        /**
+         * The type of the domain.
+         */
+        type: string;
+        /**
+         * The update time of the custom domain.
+         */
+        updateTime: string;
+    }
+
+    export interface GetGatewayServicesGatewayService {
+        /**
+         * The auth spec of the api gateway service.
+         */
+        authSpecs: outputs.apig.GetGatewayServicesGatewayServiceAuthSpec[];
+        /**
+         * The comments of the api gateway service.
+         */
+        comments: string;
+        /**
+         * The create time of the api gateway service.
+         */
+        createTime: string;
+        /**
+         * The custom domains of the api gateway service.
+         */
+        customDomains: outputs.apig.GetGatewayServicesGatewayServiceCustomDomain[];
+        /**
+         * The domains of the api gateway service.
+         */
+        domains: outputs.apig.GetGatewayServicesGatewayServiceDomain[];
+        /**
+         * The gateway id of api gateway service.
+         */
+        gatewayId: string;
+        /**
+         * The gateway name of the api gateway service.
+         */
+        gatewayName: string;
+        /**
+         * The Id of the api gateway service.
+         */
+        id: string;
+        /**
+         * The error message of the api gateway service.
+         */
+        message: string;
+        /**
+         * The name of api gateway service. This field support fuzzy query.
+         */
+        name: string;
+        /**
+         * The protocol of the api gateway service.
+         */
+        protocols: string[];
+        /**
+         * The status of api gateway service.
+         */
+        status: string;
+    }
+
+    export interface GetGatewayServicesGatewayServiceAuthSpec {
+        /**
+         * Whether the api gateway service enable auth.
+         */
+        enable: boolean;
+    }
+
+    export interface GetGatewayServicesGatewayServiceCustomDomain {
+        /**
+         * The domain of the api gateway service.
+         */
+        domain: string;
+        /**
+         * The Id of the api gateway service.
+         */
+        id: string;
+    }
+
+    export interface GetGatewayServicesGatewayServiceDomain {
+        /**
+         * The domain of the api gateway service.
+         */
+        domain: string;
+        /**
+         * The type of the domain.
+         */
+        type: string;
+    }
+
+    export interface GetGatewaysGateway {
+        /**
+         * The backend spec of the api gateway.
+         */
+        backendSpecs: outputs.apig.GetGatewaysGatewayBackendSpec[];
+        /**
+         * The comments of the api gateway.
+         */
+        comments: string;
+        /**
+         * The create time of the api gateway.
+         */
+        createTime: string;
+        /**
+         * The Id of the api gateway.
+         */
+        id: string;
+        /**
+         * The log spec of the api gateway.
+         */
+        logSpecs: outputs.apig.GetGatewaysGatewayLogSpec[];
+        /**
+         * The error message of the api gateway.
+         */
+        message: string;
+        /**
+         * The monitor spec of the api gateway.
+         */
+        monitorSpecs: outputs.apig.GetGatewaysGatewayMonitorSpec[];
+        /**
+         * The name of api gateway. This field support fuzzy query.
+         */
+        name: string;
+        /**
+         * The network spec of the api gateway.
+         */
+        networkSpecs: outputs.apig.GetGatewaysGatewayNetworkSpec[];
+        /**
+         * The project name of api gateway.
+         */
+        projectName: string;
+        /**
+         * The region of the api gateway.
+         */
+        region: string;
+        /**
+         * The resource spec of the api gateway.
+         */
+        resourceSpecs: outputs.apig.GetGatewaysGatewayResourceSpec[];
+        /**
+         * The status of api gateway.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.apig.GetGatewaysGatewayTag[];
+        /**
+         * The type of api gateway.
+         */
+        type: string;
+        /**
+         * The version of the api gateway.
+         */
+        version: string;
+    }
+
+    export interface GetGatewaysGatewayBackendSpec {
+        /**
+         * Whether the api gateway support vke flannel cni.
+         */
+        isVkeWithFlannelCniSupported: boolean;
+        /**
+         * The vke pod cidr of the api gateway.
+         */
+        vkePodCidr: string;
+    }
+
+    export interface GetGatewaysGatewayLogSpec {
+        /**
+         * Whether the api gateway enable monitor.
+         */
+        enable: boolean;
+        /**
+         * The project id of the tls.
+         */
+        projectId: string;
+        /**
+         * The topic id of the tls.
+         */
+        topicId: string;
+    }
+
+    export interface GetGatewaysGatewayMonitorSpec {
+        /**
+         * Whether the api gateway enable monitor.
+         */
+        enable: boolean;
+        /**
+         * The workspace id of the monitor.
+         */
+        workspaceId: string;
+    }
+
+    export interface GetGatewaysGatewayNetworkSpec {
+        /**
+         * The subnet ids of the api gateway.
+         */
+        subnetIds: string[];
+        /**
+         * The vpc id of the api gateway.
+         */
+        vpcId: string;
+    }
+
+    export interface GetGatewaysGatewayResourceSpec {
+        /**
+         * The clb spec code of the resource spec.
+         */
+        clbSpecCode: string;
+        /**
+         * The instance spec code of the resource spec.
+         */
+        instanceSpecCode: string;
+        /**
+         * The network type of the api gateway.
+         */
+        networkTypes: outputs.apig.GetGatewaysGatewayResourceSpecNetworkType[];
+        /**
+         * The public network bandwidth of the resource spec.
+         */
+        publicNetworkBandwidth: number;
+        /**
+         * The public network billing type of the resource spec.
+         */
+        publicNetworkBillingType: string;
+        /**
+         * The replicas of the resource spec.
+         */
+        replicas: number;
+    }
+
+    export interface GetGatewaysGatewayResourceSpecNetworkType {
+        /**
+         * Whether the api gateway enable private network.
+         */
+        enablePrivateNetwork: boolean;
+        /**
+         * Whether the api gateway enable public network.
+         */
+        enablePublicNetwork: boolean;
+    }
+
+    export interface GetGatewaysGatewayTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetGatewaysTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetRoutesRoute {
+        /**
+         * The advanced setting of the api gateway route.
+         */
+        advancedSettings: outputs.apig.GetRoutesRouteAdvancedSetting[];
+        /**
+         * The create time of the api gateway route.
+         */
+        createTime: string;
+        /**
+         * The custom domains of the api gateway route.
+         */
+        customDomains: outputs.apig.GetRoutesRouteCustomDomain[];
+        /**
+         * The domains of the api gateway route.
+         */
+        domains: outputs.apig.GetRoutesRouteDomain[];
+        /**
+         * Whether the api gateway route is enabled.
+         */
+        enable: boolean;
+        /**
+         * The id of the api gateway route.
+         */
+        id: string;
+        /**
+         * The match rule of the api gateway route.
+         */
+        matchRules: outputs.apig.GetRoutesRouteMatchRule[];
+        /**
+         * The name of api gateway route. This field support fuzzy query.
+         */
+        name: string;
+        /**
+         * The priority of the api gateway route.
+         */
+        priority: number;
+        /**
+         * The reason of the api gateway route.
+         */
+        reason: string;
+        /**
+         * The resource type of route. Valid values: `Console`, `Ingress`.
+         */
+        resourceType: string;
+        /**
+         * The id of api gateway service.
+         */
+        serviceId: string;
+        /**
+         * The name of the api gateway service.
+         */
+        serviceName: string;
+        /**
+         * The status of the api gateway route.
+         */
+        status: string;
+        /**
+         * The update time of the api gateway route.
+         */
+        updateTime: string;
+        /**
+         * The upstream list of the api gateway route.
+         */
+        upstreamLists: outputs.apig.GetRoutesRouteUpstreamList[];
+    }
+
+    export interface GetRoutesRouteAdvancedSetting {
+        /**
+         * The cors policy setting of the api gateway route.
+         */
+        corsPolicySettings: outputs.apig.GetRoutesRouteAdvancedSettingCorsPolicySetting[];
+        /**
+         * The header operations of the api gateway route.
+         */
+        headerOperations: outputs.apig.GetRoutesRouteAdvancedSettingHeaderOperation[];
+        /**
+         * The mirror policies of the api gateway route.
+         */
+        mirrorPolicies: outputs.apig.GetRoutesRouteAdvancedSettingMirrorPolicy[];
+        /**
+         * The retry policy setting of the api gateway route.
+         */
+        retryPolicySettings: outputs.apig.GetRoutesRouteAdvancedSettingRetryPolicySetting[];
+        /**
+         * The timeout setting of the api gateway route.
+         */
+        timeoutSettings: outputs.apig.GetRoutesRouteAdvancedSettingTimeoutSetting[];
+        /**
+         * The url rewrite setting of the api gateway route.
+         */
+        urlRewriteSettings: outputs.apig.GetRoutesRouteAdvancedSettingUrlRewriteSetting[];
+    }
+
+    export interface GetRoutesRouteAdvancedSettingCorsPolicySetting {
+        /**
+         * Whether the api gateway route is enabled.
+         */
+        enable: boolean;
+    }
+
+    export interface GetRoutesRouteAdvancedSettingHeaderOperation {
+        /**
+         * The direction type of the header.
+         */
+        directionType: string;
+        /**
+         * The key of the query string.
+         */
+        key: string;
+        /**
+         * The operation of the header.
+         */
+        operation: string;
+        /**
+         * The path of the api gateway route.
+         */
+        value: string;
+    }
+
+    export interface GetRoutesRouteAdvancedSettingMirrorPolicy {
+        /**
+         * The percent of the mirror policy.
+         */
+        percents: outputs.apig.GetRoutesRouteAdvancedSettingMirrorPolicyPercent[];
+        /**
+         * The upstream of the mirror policy.
+         */
+        upstreams: outputs.apig.GetRoutesRouteAdvancedSettingMirrorPolicyUpstream[];
+    }
+
+    export interface GetRoutesRouteAdvancedSettingMirrorPolicyPercent {
+        /**
+         * The path of the api gateway route.
+         */
+        value: number;
+    }
+
+    export interface GetRoutesRouteAdvancedSettingMirrorPolicyUpstream {
+        /**
+         * The type of the domain.
+         */
+        type: string;
+        /**
+         * The id of api gateway upstream.
+         */
+        upstreamId: string;
+        /**
+         * The version of the api gateway upstream.
+         */
+        version: string;
+    }
+
+    export interface GetRoutesRouteAdvancedSettingRetryPolicySetting {
+        /**
+         * The attempts of the api gateway route.
+         */
+        attempts: number;
+        /**
+         * Whether the api gateway route is enabled.
+         */
+        enable: boolean;
+        /**
+         * The http codes of the api gateway route.
+         */
+        httpCodes: string[];
+        /**
+         * The per try timeout of the api gateway route.
+         */
+        perTryTimeout: number;
+        /**
+         * The retry on of the api gateway route.
+         */
+        retryOns: string[];
+    }
+
+    export interface GetRoutesRouteAdvancedSettingTimeoutSetting {
+        /**
+         * Whether the api gateway route is enabled.
+         */
+        enable: boolean;
+        /**
+         * The timeout of the api gateway route.
+         */
+        timeout: number;
+    }
+
+    export interface GetRoutesRouteAdvancedSettingUrlRewriteSetting {
+        /**
+         * Whether the api gateway route is enabled.
+         */
+        enable: boolean;
+        /**
+         * The url rewrite path of the api gateway route.
+         */
+        urlRewrite: string;
+    }
+
+    export interface GetRoutesRouteCustomDomain {
+        /**
+         * The domain of the api gateway route.
+         */
+        domain: string;
+        /**
+         * The id of the api gateway route.
+         */
+        id: string;
+    }
+
+    export interface GetRoutesRouteDomain {
+        /**
+         * The domain of the api gateway route.
+         */
+        domain: string;
+        /**
+         * The type of the domain.
+         */
+        type: string;
+    }
+
+    export interface GetRoutesRouteMatchRule {
+        /**
+         * The header of the api gateway route.
+         */
+        headers: outputs.apig.GetRoutesRouteMatchRuleHeader[];
+        /**
+         * The method of the api gateway route.
+         */
+        methods: string[];
+        /**
+         * The path of api gateway route.
+         */
+        paths: outputs.apig.GetRoutesRouteMatchRulePath[];
+        /**
+         * The query string of the api gateway route.
+         */
+        queryStrings: outputs.apig.GetRoutesRouteMatchRuleQueryString[];
+    }
+
+    export interface GetRoutesRouteMatchRuleHeader {
+        /**
+         * The key of the query string.
+         */
+        key: string;
+        /**
+         * The path of the api gateway route.
+         */
+        values: outputs.apig.GetRoutesRouteMatchRuleHeaderValue[];
+    }
+
+    export interface GetRoutesRouteMatchRuleHeaderValue {
+        /**
+         * The match content of the api gateway route.
+         */
+        matchContent: string;
+        /**
+         * The match type of the api gateway route.
+         */
+        matchType: string;
+    }
+
+    export interface GetRoutesRouteMatchRulePath {
+        /**
+         * The match content of the api gateway route.
+         */
+        matchContent: string;
+        /**
+         * The match type of the api gateway route.
+         */
+        matchType: string;
+    }
+
+    export interface GetRoutesRouteMatchRuleQueryString {
+        /**
+         * The key of the query string.
+         */
+        key: string;
+        /**
+         * The path of the api gateway route.
+         */
+        values: outputs.apig.GetRoutesRouteMatchRuleQueryStringValue[];
+    }
+
+    export interface GetRoutesRouteMatchRuleQueryStringValue {
+        /**
+         * The match content of the api gateway route.
+         */
+        matchContent: string;
+        /**
+         * The match type of the api gateway route.
+         */
+        matchType: string;
+    }
+
+    export interface GetRoutesRouteUpstreamList {
+        /**
+         * The ai provider settings of the api gateway route.
+         */
+        aiProviderSettings: outputs.apig.GetRoutesRouteUpstreamListAiProviderSetting[];
+        /**
+         * The id of api gateway upstream.
+         */
+        upstreamId: string;
+        /**
+         * The version of the api gateway upstream.
+         */
+        version: string;
+        /**
+         * The weight of the api gateway upstream.
+         */
+        weight: number;
+    }
+
+    export interface GetRoutesRouteUpstreamListAiProviderSetting {
+        /**
+         * The model of the ai provider.
+         */
+        model: string;
+        /**
+         * The target path of the ai provider.
+         */
+        targetPath: string;
+    }
+
+    export interface GetUpstreamSourcesUpstreamSource {
+        /**
+         * The comments of apig upstream source.
+         */
+        comments: string;
+        /**
+         * The create time of apig upstream source.
+         */
+        createTime: string;
+        /**
+         * The id of api gateway.
+         */
+        gatewayId: string;
+        /**
+         * The id of apig upstream source.
+         */
+        id: string;
+        /**
+         * The ingress settings of apig upstream source.
+         */
+        ingressSettings: outputs.apig.GetUpstreamSourcesUpstreamSourceIngressSetting[];
+        /**
+         * The source spec of apig upstream source.
+         */
+        sourceSpecs: outputs.apig.GetUpstreamSourcesUpstreamSourceSourceSpec[];
+        /**
+         * The source type of apig upstream source. Valid values: `K8S`, `Nacos`.
+         */
+        sourceType: string;
+        /**
+         * The status of apig upstream source. Valid values: `Syncing`, `SyncedSucceed`, `SyncedFailed`.
+         */
+        status: string;
+        /**
+         * The status message of apig upstream source.
+         */
+        statusMessage: string;
+        /**
+         * The update time of apig upstream source.
+         */
+        updateTime: string;
+    }
+
+    export interface GetUpstreamSourcesUpstreamSourceIngressSetting {
+        /**
+         * Whether to enable all ingress classes.
+         */
+        enableAllIngressClasses: boolean;
+        /**
+         * Whether to enable all namespaces.
+         */
+        enableAllNamespaces: boolean;
+        /**
+         * The enable ingress of apig upstream source.
+         */
+        enableIngress: boolean;
+        /**
+         * Whether to enable ingress without ingress class.
+         */
+        enableIngressWithoutIngressClass: boolean;
+        /**
+         * The ingress classes of ingress settings.
+         */
+        ingressClasses: string[];
+        /**
+         * The update status of ingress settings.
+         */
+        updateStatus: boolean;
+        /**
+         * The watch namespaces of ingress settings.
+         */
+        watchNamespaces: string[];
+    }
+
+    export interface GetUpstreamSourcesUpstreamSourceSourceSpec {
+        /**
+         * The k8s source of apig upstream source.
+         */
+        k8sSources: outputs.apig.GetUpstreamSourcesUpstreamSourceSourceSpecK8sSource[];
+        /**
+         * The nacos source of apig upstream source.
+         */
+        nacosSources: outputs.apig.GetUpstreamSourcesUpstreamSourceSourceSpecNacosSource[];
+    }
+
+    export interface GetUpstreamSourcesUpstreamSourceSourceSpecK8sSource {
+        /**
+         * The cluster id of k8s source.
+         */
+        clusterId: string;
+        /**
+         * The cluster type of k8s source.
+         */
+        clusterType: string;
+    }
+
+    export interface GetUpstreamSourcesUpstreamSourceSourceSpecNacosSource {
+        /**
+         * The address of nacos source.
+         */
+        address: string;
+        /**
+         * The auth config of nacos source.
+         */
+        authConfigs: outputs.apig.GetUpstreamSourcesUpstreamSourceSourceSpecNacosSourceAuthConfig[];
+        /**
+         * The context path of nacos source.
+         */
+        contextPath: string;
+        /**
+         * The grpc port of nacos source.
+         */
+        grpcPort: number;
+        /**
+         * The http port of nacos source.
+         */
+        httpPort: number;
+        /**
+         * The nacos id of nacos source.
+         */
+        nacosId: string;
+        /**
+         * The nacos name of nacos source.
+         */
+        nacosName: string;
+    }
+
+    export interface GetUpstreamSourcesUpstreamSourceSourceSpecNacosSourceAuthConfig {
+        /**
+         * The basic auth config of nacos source.
+         */
+        basics: outputs.apig.GetUpstreamSourcesUpstreamSourceSourceSpecNacosSourceAuthConfigBasic[];
+    }
+
+    export interface GetUpstreamSourcesUpstreamSourceSourceSpecNacosSourceAuthConfigBasic {
+        /**
+         * The password of basic auth config.
+         */
+        password: string;
+        /**
+         * The username of basic auth config.
+         */
+        username: string;
+    }
+
+    export interface GetUpstreamVersionsVersion {
+        /**
+         * The labels of apig upstream version.
+         */
+        labels: outputs.apig.GetUpstreamVersionsVersionLabel[];
+        /**
+         * The name of apig upstream version.
+         */
+        name: string;
+        /**
+         * The update time of apig upstream version.
+         */
+        updateTime: string;
+    }
+
+    export interface GetUpstreamVersionsVersionLabel {
+        /**
+         * The key of apig upstream version label.
+         */
+        key: string;
+        /**
+         * The value of apig upstream version label.
+         */
+        value: string;
+    }
+
+    export interface GetUpstreamsUpstream {
+        /**
+         * The backend target list of apig upstream.
+         */
+        backendTargetLists: outputs.apig.GetUpstreamsUpstreamBackendTargetList[];
+        /**
+         * The circuit breaking settings of apig upstream.
+         */
+        circuitBreakingSettings: outputs.apig.GetUpstreamsUpstreamCircuitBreakingSetting[];
+        /**
+         * The comments of apig upstream.
+         */
+        comments: string;
+        /**
+         * The create time of apig upstream.
+         */
+        createTime: string;
+        /**
+         * The id of api gateway.
+         */
+        gatewayId: string;
+        /**
+         * The id of apig upstream.
+         */
+        id: string;
+        /**
+         * The load balancer settings of apig upstream.
+         */
+        loadBalancerSettings: outputs.apig.GetUpstreamsUpstreamLoadBalancerSetting[];
+        /**
+         * The name of apig upstream. This field support fuzzy query.
+         */
+        name: string;
+        /**
+         * The protocol of apig upstream.
+         */
+        protocol: string;
+        /**
+         * The resource type of apig upstream. Valid values: `Console`, `Ingress`.
+         */
+        resourceType: string;
+        /**
+         * The source type of apig upstream. Valid values: `VeFaas`, `ECS`, `FixedIP`, `K8S`, `Nacos`, `Domain`, `AIProvider`, `VeMLP`.
+         */
+        sourceType: string;
+        /**
+         * The tls settings of apig upstream.
+         */
+        tlsSettings: outputs.apig.GetUpstreamsUpstreamTlsSetting[];
+        /**
+         * The update time of apig upstream version.
+         */
+        updateTime: string;
+        /**
+         * The upstream spec of apig upstream.
+         */
+        upstreamSpecs: outputs.apig.GetUpstreamsUpstreamUpstreamSpec[];
+        /**
+         * The version details of apig upstream.
+         */
+        versionDetails: outputs.apig.GetUpstreamsUpstreamVersionDetail[];
+    }
+
+    export interface GetUpstreamsUpstreamBackendTargetList {
+        /**
+         * The health status of apig upstream backend.
+         */
+        healthStatus: string;
+        /**
+         * The ip of apig upstream.
+         */
+        ip: string;
+        /**
+         * The port of k8s service.
+         */
+        port: number;
+    }
+
+    export interface GetUpstreamsUpstreamCircuitBreakingSetting {
+        /**
+         * The base ejection time of circuit breaking. Unit: ms.
+         */
+        baseEjectionTime: number;
+        /**
+         * The consecutive errors of circuit breaking.
+         */
+        consecutiveErrors: number;
+        /**
+         * Whether the circuit breaking is enabled.
+         */
+        enable: boolean;
+        /**
+         * The interval of circuit breaking. Unit: ms.
+         */
+        interval: number;
+        /**
+         * The max ejection percent of circuit breaking.
+         */
+        maxEjectionPercent: number;
+        /**
+         * The min health percent of circuit breaking.
+         */
+        minHealthPercent: number;
+    }
+
+    export interface GetUpstreamsUpstreamLoadBalancerSetting {
+        /**
+         * The consistent hash lb of apig upstream.
+         */
+        consistentHashLbs: outputs.apig.GetUpstreamsUpstreamLoadBalancerSettingConsistentHashLb[];
+        /**
+         * The load balancer policy of apig upstream.
+         */
+        lbPolicy: string;
+        /**
+         * The simple load balancer of apig upstream.
+         */
+        simpleLb: string;
+        /**
+         * The warmup duration of apig upstream lb.
+         */
+        warmupDuration: number;
+    }
+
+    export interface GetUpstreamsUpstreamLoadBalancerSettingConsistentHashLb {
+        /**
+         * The hash key of apig upstream consistent hash lb.
+         */
+        hashKey: string;
+        /**
+         * The http cookie of apig upstream consistent hash lb.
+         */
+        httpCookies: outputs.apig.GetUpstreamsUpstreamLoadBalancerSettingConsistentHashLbHttpCooky[];
+        /**
+         * The http header name of apig upstream consistent hash lb.
+         */
+        httpHeaderName: string;
+        /**
+         * The http query parameter name of apig upstream consistent hash lb.
+         */
+        httpQueryParameterName: string;
+        /**
+         * The use source ip of apig upstream consistent hash lb.
+         */
+        useSourceIp: boolean;
+    }
+
+    export interface GetUpstreamsUpstreamLoadBalancerSettingConsistentHashLbHttpCooky {
+        /**
+         * The name of apig upstream. This field support fuzzy query.
+         */
+        name: string;
+        /**
+         * The path of apig upstream consistent hash lb http cookie.
+         */
+        path: string;
+        /**
+         * The ttl of apig upstream consistent hash lb http cookie.
+         */
+        ttl: number;
+    }
+
+    export interface GetUpstreamsUpstreamTlsSetting {
+        /**
+         * The sni of apig upstream tls setting.
+         */
+        sni: string;
+        /**
+         * The tls mode of apig upstream tls setting.
+         */
+        tlsMode: string;
+    }
+
+    export interface GetUpstreamsUpstreamUpstreamSpec {
+        /**
+         * The ai provider of apig upstream.
+         */
+        aiProviders: outputs.apig.GetUpstreamsUpstreamUpstreamSpecAiProvider[];
+        /**
+         * The domain of apig upstream.
+         */
+        domains: outputs.apig.GetUpstreamsUpstreamUpstreamSpecDomain[];
+        /**
+         * The ecs list of apig upstream.
+         */
+        ecsLists: outputs.apig.GetUpstreamsUpstreamUpstreamSpecEcsList[];
+        /**
+         * The fixed ip list of apig upstream.
+         */
+        fixedIpLists: outputs.apig.GetUpstreamsUpstreamUpstreamSpecFixedIpList[];
+        /**
+         * The k8s service of mlp.
+         */
+        k8sServices: outputs.apig.GetUpstreamsUpstreamUpstreamSpecK8sService[];
+        /**
+         * The nacos service of apig upstream.
+         */
+        nacosServices: outputs.apig.GetUpstreamsUpstreamUpstreamSpecNacosService[];
+        /**
+         * The vefaas of apig upstream.
+         */
+        veFaas: outputs.apig.GetUpstreamsUpstreamUpstreamSpecVeFaa[];
+        /**
+         * The mlp of apig upstream.
+         */
+        veMlps: outputs.apig.GetUpstreamsUpstreamUpstreamSpecVeMlp[];
+    }
+
+    export interface GetUpstreamsUpstreamUpstreamSpecAiProvider {
+        /**
+         * The base url of ai provider.
+         */
+        baseUrl: string;
+        /**
+         * The custom body params of ai provider.
+         */
+        customBodyParams: {[key: string]: any};
+        /**
+         * The custom header params of ai provider.
+         */
+        customHeaderParams: {[key: string]: any};
+        /**
+         * The custom model service of ai provider.
+         */
+        customModelServices: outputs.apig.GetUpstreamsUpstreamUpstreamSpecAiProviderCustomModelService[];
+        /**
+         * The name of apig upstream. This field support fuzzy query.
+         */
+        name: string;
+        /**
+         * The token of ai provider.
+         */
+        token: string;
+    }
+
+    export interface GetUpstreamsUpstreamUpstreamSpecAiProviderCustomModelService {
+        /**
+         * The name of apig upstream. This field support fuzzy query.
+         */
+        name: string;
+        /**
+         * The namespace of k8s service.
+         */
+        namespace: string;
+        /**
+         * The port of k8s service.
+         */
+        port: number;
+    }
+
+    export interface GetUpstreamsUpstreamUpstreamSpecDomain {
+        /**
+         * The domain list of apig upstream.
+         */
+        domainLists: outputs.apig.GetUpstreamsUpstreamUpstreamSpecDomainDomainList[];
+        /**
+         * The protocol of apig upstream.
+         */
+        protocol: string;
+    }
+
+    export interface GetUpstreamsUpstreamUpstreamSpecDomainDomainList {
+        /**
+         * The domain of apig upstream.
+         */
+        domain: string;
+        /**
+         * The port of k8s service.
+         */
+        port: number;
+    }
+
+    export interface GetUpstreamsUpstreamUpstreamSpecEcsList {
+        /**
+         * The instance id of ecs.
+         */
+        ecsId: string;
+        /**
+         * The ip of apig upstream.
+         */
+        ip: string;
+        /**
+         * The port of k8s service.
+         */
+        port: number;
+    }
+
+    export interface GetUpstreamsUpstreamUpstreamSpecFixedIpList {
+        /**
+         * The ip of apig upstream.
+         */
+        ip: string;
+        /**
+         * The port of k8s service.
+         */
+        port: number;
+    }
+
+    export interface GetUpstreamsUpstreamUpstreamSpecK8sService {
+        /**
+         * The name of apig upstream. This field support fuzzy query.
+         */
+        name: string;
+        /**
+         * The namespace of k8s service.
+         */
+        namespace: string;
+        /**
+         * The port of k8s service.
+         */
+        port: number;
+    }
+
+    export interface GetUpstreamsUpstreamUpstreamSpecNacosService {
+        /**
+         * The group of nacos service.
+         */
+        group: string;
+        /**
+         * The namespace of k8s service.
+         */
+        namespace: string;
+        /**
+         * The namespace id of nacos service.
+         */
+        namespaceId: string;
+        /**
+         * The service of nacos service.
+         */
+        service: string;
+        /**
+         * The upstream source id.
+         */
+        upstreamSourceId: string;
+    }
+
+    export interface GetUpstreamsUpstreamUpstreamSpecVeFaa {
+        /**
+         * The function id of vefaas.
+         */
+        functionId: string;
+    }
+
+    export interface GetUpstreamsUpstreamUpstreamSpecVeMlp {
+        /**
+         * The k8s service of mlp.
+         */
+        k8sServices: outputs.apig.GetUpstreamsUpstreamUpstreamSpecVeMlpK8sService[];
+        /**
+         * The service discover type of mlp.
+         */
+        serviceDiscoverType: string;
+        /**
+         * The service id of mlp.
+         */
+        serviceId: string;
+        /**
+         * The service name of mlp.
+         */
+        serviceName: string;
+        /**
+         * The service url of mlp.
+         */
+        serviceUrl: string;
+        /**
+         * The upstream source id.
+         */
+        upstreamSourceId: string;
+    }
+
+    export interface GetUpstreamsUpstreamUpstreamSpecVeMlpK8sService {
+        /**
+         * The cluster info of k8s service.
+         */
+        clusterInfos: outputs.apig.GetUpstreamsUpstreamUpstreamSpecVeMlpK8sServiceClusterInfo[];
+        /**
+         * The name of apig upstream. This field support fuzzy query.
+         */
+        name: string;
+        /**
+         * The namespace of k8s service.
+         */
+        namespace: string;
+        /**
+         * The port of k8s service.
+         */
+        port: number;
+    }
+
+    export interface GetUpstreamsUpstreamUpstreamSpecVeMlpK8sServiceClusterInfo {
+        /**
+         * The account id of k8s service.
+         */
+        accountId: number;
+        /**
+         * The cluster name of k8s service.
+         */
+        clusterName: string;
+    }
+
+    export interface GetUpstreamsUpstreamVersionDetail {
+        /**
+         * The labels of apig upstream version.
+         */
+        labels: outputs.apig.GetUpstreamsUpstreamVersionDetailLabel[];
+        /**
+         * The name of apig upstream. This field support fuzzy query.
+         */
+        name: string;
+        /**
+         * The update time of apig upstream version.
+         */
+        updateTime: string;
+    }
+
+    export interface GetUpstreamsUpstreamVersionDetailLabel {
+        /**
+         * The key of apig upstream version label.
+         */
+        key: string;
+        /**
+         * The value of apig upstream version label.
+         */
+        value: string;
+    }
+
+    export interface RoutesRoute {
+        /**
+         * The advanced setting of the api gateway route.
+         */
+        advancedSettings: outputs.apig.RoutesRouteAdvancedSetting[];
+        /**
+         * The create time of the api gateway route.
+         */
+        createTime: string;
+        /**
+         * The custom domains of the api gateway route.
+         */
+        customDomains: outputs.apig.RoutesRouteCustomDomain[];
+        /**
+         * The domains of the api gateway route.
+         */
+        domains: outputs.apig.RoutesRouteDomain[];
+        /**
+         * Whether the api gateway route is enabled.
+         */
+        enable: boolean;
+        /**
+         * The id of the api gateway route.
+         */
+        id: string;
+        /**
+         * The match rule of the api gateway route.
+         */
+        matchRules: outputs.apig.RoutesRouteMatchRule[];
+        /**
+         * The name of api gateway route. This field support fuzzy query.
+         */
+        name: string;
+        /**
+         * The priority of the api gateway route.
+         */
+        priority: number;
+        /**
+         * The reason of the api gateway route.
+         */
+        reason: string;
+        /**
+         * The resource type of route. Valid values: `Console`, `Ingress`.
+         */
+        resourceType: string;
+        /**
+         * The id of api gateway service.
+         */
+        serviceId: string;
+        /**
+         * The name of the api gateway service.
+         */
+        serviceName: string;
+        /**
+         * The status of the api gateway route.
+         */
+        status: string;
+        /**
+         * The update time of the api gateway route.
+         */
+        updateTime: string;
+        /**
+         * The upstream list of the api gateway route.
+         */
+        upstreamLists: outputs.apig.RoutesRouteUpstreamList[];
+    }
+
+    export interface RoutesRouteAdvancedSetting {
+        /**
+         * The cors policy setting of the api gateway route.
+         */
+        corsPolicySettings: outputs.apig.RoutesRouteAdvancedSettingCorsPolicySetting[];
+        /**
+         * The header operations of the api gateway route.
+         */
+        headerOperations: outputs.apig.RoutesRouteAdvancedSettingHeaderOperation[];
+        /**
+         * The mirror policies of the api gateway route.
+         */
+        mirrorPolicies: outputs.apig.RoutesRouteAdvancedSettingMirrorPolicy[];
+        /**
+         * The retry policy setting of the api gateway route.
+         */
+        retryPolicySettings: outputs.apig.RoutesRouteAdvancedSettingRetryPolicySetting[];
+        /**
+         * The timeout setting of the api gateway route.
+         */
+        timeoutSettings: outputs.apig.RoutesRouteAdvancedSettingTimeoutSetting[];
+        /**
+         * The url rewrite setting of the api gateway route.
+         */
+        urlRewriteSettings: outputs.apig.RoutesRouteAdvancedSettingUrlRewriteSetting[];
+    }
+
+    export interface RoutesRouteAdvancedSettingCorsPolicySetting {
+        /**
+         * Whether the api gateway route is enabled.
+         */
+        enable: boolean;
+    }
+
+    export interface RoutesRouteAdvancedSettingHeaderOperation {
+        /**
+         * The direction type of the header.
+         */
+        directionType: string;
+        /**
+         * The key of the query string.
+         */
+        key: string;
+        /**
+         * The operation of the header.
+         */
+        operation: string;
+        /**
+         * The path of the api gateway route.
+         */
+        value: string;
+    }
+
+    export interface RoutesRouteAdvancedSettingMirrorPolicy {
+        /**
+         * The percent of the mirror policy.
+         */
+        percents: outputs.apig.RoutesRouteAdvancedSettingMirrorPolicyPercent[];
+        /**
+         * The upstream of the mirror policy.
+         */
+        upstreams: outputs.apig.RoutesRouteAdvancedSettingMirrorPolicyUpstream[];
+    }
+
+    export interface RoutesRouteAdvancedSettingMirrorPolicyPercent {
+        /**
+         * The path of the api gateway route.
+         */
+        value: number;
+    }
+
+    export interface RoutesRouteAdvancedSettingMirrorPolicyUpstream {
+        /**
+         * The type of the domain.
+         */
+        type: string;
+        /**
+         * The id of api gateway upstream.
+         */
+        upstreamId: string;
+        /**
+         * The version of the api gateway upstream.
+         */
+        version: string;
+    }
+
+    export interface RoutesRouteAdvancedSettingRetryPolicySetting {
+        /**
+         * The attempts of the api gateway route.
+         */
+        attempts: number;
+        /**
+         * Whether the api gateway route is enabled.
+         */
+        enable: boolean;
+        /**
+         * The http codes of the api gateway route.
+         */
+        httpCodes: string[];
+        /**
+         * The per try timeout of the api gateway route.
+         */
+        perTryTimeout: number;
+        /**
+         * The retry on of the api gateway route.
+         */
+        retryOns: string[];
+    }
+
+    export interface RoutesRouteAdvancedSettingTimeoutSetting {
+        /**
+         * Whether the api gateway route is enabled.
+         */
+        enable: boolean;
+        /**
+         * The timeout of the api gateway route.
+         */
+        timeout: number;
+    }
+
+    export interface RoutesRouteAdvancedSettingUrlRewriteSetting {
+        /**
+         * Whether the api gateway route is enabled.
+         */
+        enable: boolean;
+        /**
+         * The url rewrite path of the api gateway route.
+         */
+        urlRewrite: string;
+    }
+
+    export interface RoutesRouteCustomDomain {
+        /**
+         * The domain of the api gateway route.
+         */
+        domain: string;
+        /**
+         * The id of the api gateway route.
+         */
+        id: string;
+    }
+
+    export interface RoutesRouteDomain {
+        /**
+         * The domain of the api gateway route.
+         */
+        domain: string;
+        /**
+         * The type of the domain.
+         */
+        type: string;
+    }
+
+    export interface RoutesRouteMatchRule {
+        /**
+         * The header of the api gateway route.
+         */
+        headers: outputs.apig.RoutesRouteMatchRuleHeader[];
+        /**
+         * The method of the api gateway route.
+         */
+        methods: string[];
+        /**
+         * The path of api gateway route.
+         */
+        paths: outputs.apig.RoutesRouteMatchRulePath[];
+        /**
+         * The query string of the api gateway route.
+         */
+        queryStrings: outputs.apig.RoutesRouteMatchRuleQueryString[];
+    }
+
+    export interface RoutesRouteMatchRuleHeader {
+        /**
+         * The key of the query string.
+         */
+        key: string;
+        /**
+         * The path of the api gateway route.
+         */
+        values: outputs.apig.RoutesRouteMatchRuleHeaderValue[];
+    }
+
+    export interface RoutesRouteMatchRuleHeaderValue {
+        /**
+         * The match content of the api gateway route.
+         */
+        matchContent: string;
+        /**
+         * The match type of the api gateway route.
+         */
+        matchType: string;
+    }
+
+    export interface RoutesRouteMatchRulePath {
+        /**
+         * The match content of the api gateway route.
+         */
+        matchContent: string;
+        /**
+         * The match type of the api gateway route.
+         */
+        matchType: string;
+    }
+
+    export interface RoutesRouteMatchRuleQueryString {
+        /**
+         * The key of the query string.
+         */
+        key: string;
+        /**
+         * The path of the api gateway route.
+         */
+        values: outputs.apig.RoutesRouteMatchRuleQueryStringValue[];
+    }
+
+    export interface RoutesRouteMatchRuleQueryStringValue {
+        /**
+         * The match content of the api gateway route.
+         */
+        matchContent: string;
+        /**
+         * The match type of the api gateway route.
+         */
+        matchType: string;
+    }
+
+    export interface RoutesRouteUpstreamList {
+        /**
+         * The ai provider settings of the api gateway route.
+         */
+        aiProviderSettings: outputs.apig.RoutesRouteUpstreamListAiProviderSetting[];
+        /**
+         * The id of api gateway upstream.
+         */
+        upstreamId: string;
+        /**
+         * The version of the api gateway upstream.
+         */
+        version: string;
+        /**
+         * The weight of the api gateway upstream.
+         */
+        weight: number;
+    }
+
+    export interface RoutesRouteUpstreamListAiProviderSetting {
+        /**
+         * The model of the ai provider.
+         */
+        model: string;
+        /**
+         * The target path of the ai provider.
+         */
+        targetPath: string;
+    }
+
+    export interface UpstreamSourcesUpstreamSource {
+        /**
+         * The comments of apig upstream source.
+         */
+        comments: string;
+        /**
+         * The create time of apig upstream source.
+         */
+        createTime: string;
+        /**
+         * The id of api gateway.
+         */
+        gatewayId: string;
+        /**
+         * The id of apig upstream source.
+         */
+        id: string;
+        /**
+         * The ingress settings of apig upstream source.
+         */
+        ingressSettings: outputs.apig.UpstreamSourcesUpstreamSourceIngressSetting[];
+        /**
+         * The source spec of apig upstream source.
+         */
+        sourceSpecs: outputs.apig.UpstreamSourcesUpstreamSourceSourceSpec[];
+        /**
+         * The source type of apig upstream source. Valid values: `K8S`, `Nacos`.
+         */
+        sourceType: string;
+        /**
+         * The status of apig upstream source. Valid values: `Syncing`, `SyncedSucceed`, `SyncedFailed`.
+         */
+        status: string;
+        /**
+         * The status message of apig upstream source.
+         */
+        statusMessage: string;
+        /**
+         * The update time of apig upstream source.
+         */
+        updateTime: string;
+    }
+
+    export interface UpstreamSourcesUpstreamSourceIngressSetting {
+        /**
+         * Whether to enable all ingress classes.
+         */
+        enableAllIngressClasses: boolean;
+        /**
+         * Whether to enable all namespaces.
+         */
+        enableAllNamespaces: boolean;
+        /**
+         * The enable ingress of apig upstream source.
+         */
+        enableIngress: boolean;
+        /**
+         * Whether to enable ingress without ingress class.
+         */
+        enableIngressWithoutIngressClass: boolean;
+        /**
+         * The ingress classes of ingress settings.
+         */
+        ingressClasses: string[];
+        /**
+         * The update status of ingress settings.
+         */
+        updateStatus: boolean;
+        /**
+         * The watch namespaces of ingress settings.
+         */
+        watchNamespaces: string[];
+    }
+
+    export interface UpstreamSourcesUpstreamSourceSourceSpec {
+        /**
+         * The k8s source of apig upstream source.
+         */
+        k8sSources: outputs.apig.UpstreamSourcesUpstreamSourceSourceSpecK8sSource[];
+        /**
+         * The nacos source of apig upstream source.
+         */
+        nacosSources: outputs.apig.UpstreamSourcesUpstreamSourceSourceSpecNacosSource[];
+    }
+
+    export interface UpstreamSourcesUpstreamSourceSourceSpecK8sSource {
+        /**
+         * The cluster id of k8s source.
+         */
+        clusterId: string;
+        /**
+         * The cluster type of k8s source.
+         */
+        clusterType: string;
+    }
+
+    export interface UpstreamSourcesUpstreamSourceSourceSpecNacosSource {
+        /**
+         * The address of nacos source.
+         */
+        address: string;
+        /**
+         * The auth config of nacos source.
+         */
+        authConfigs: outputs.apig.UpstreamSourcesUpstreamSourceSourceSpecNacosSourceAuthConfig[];
+        /**
+         * The context path of nacos source.
+         */
+        contextPath: string;
+        /**
+         * The grpc port of nacos source.
+         */
+        grpcPort: number;
+        /**
+         * The http port of nacos source.
+         */
+        httpPort: number;
+        /**
+         * The nacos id of nacos source.
+         */
+        nacosId: string;
+        /**
+         * The nacos name of nacos source.
+         */
+        nacosName: string;
+    }
+
+    export interface UpstreamSourcesUpstreamSourceSourceSpecNacosSourceAuthConfig {
+        /**
+         * The basic auth config of nacos source.
+         */
+        basics: outputs.apig.UpstreamSourcesUpstreamSourceSourceSpecNacosSourceAuthConfigBasic[];
+    }
+
+    export interface UpstreamSourcesUpstreamSourceSourceSpecNacosSourceAuthConfigBasic {
+        /**
+         * The password of basic auth config.
+         */
+        password: string;
+        /**
+         * The username of basic auth config.
+         */
+        username: string;
+    }
+
+    export interface UpstreamVersionsVersion {
+        /**
+         * The labels of apig upstream version.
+         */
+        labels: outputs.apig.UpstreamVersionsVersionLabel[];
+        /**
+         * The name of apig upstream version.
+         */
+        name: string;
+        /**
+         * The update time of apig upstream version.
+         */
+        updateTime: string;
+    }
+
+    export interface UpstreamVersionsVersionLabel {
+        /**
+         * The key of apig upstream version label.
+         */
+        key: string;
+        /**
+         * The value of apig upstream version label.
+         */
+        value: string;
+    }
+
+    export interface UpstreamsUpstream {
+        /**
+         * The backend target list of apig upstream.
+         */
+        backendTargetLists: outputs.apig.UpstreamsUpstreamBackendTargetList[];
+        /**
+         * The circuit breaking settings of apig upstream.
+         */
+        circuitBreakingSettings: outputs.apig.UpstreamsUpstreamCircuitBreakingSetting[];
+        /**
+         * The comments of apig upstream.
+         */
+        comments: string;
+        /**
+         * The create time of apig upstream.
+         */
+        createTime: string;
+        /**
+         * The id of api gateway.
+         */
+        gatewayId: string;
+        /**
+         * The id of apig upstream.
+         */
+        id: string;
+        /**
+         * The load balancer settings of apig upstream.
+         */
+        loadBalancerSettings: outputs.apig.UpstreamsUpstreamLoadBalancerSetting[];
+        /**
+         * The name of apig upstream. This field support fuzzy query.
+         */
+        name: string;
+        /**
+         * The protocol of apig upstream.
+         */
+        protocol: string;
+        /**
+         * The resource type of apig upstream. Valid values: `Console`, `Ingress`.
+         */
+        resourceType: string;
+        /**
+         * The source type of apig upstream. Valid values: `VeFaas`, `ECS`, `FixedIP`, `K8S`, `Nacos`, `Domain`, `AIProvider`, `VeMLP`.
+         */
+        sourceType: string;
+        /**
+         * The tls settings of apig upstream.
+         */
+        tlsSettings: outputs.apig.UpstreamsUpstreamTlsSetting[];
+        /**
+         * The update time of apig upstream version.
+         */
+        updateTime: string;
+        /**
+         * The upstream spec of apig upstream.
+         */
+        upstreamSpecs: outputs.apig.UpstreamsUpstreamUpstreamSpec[];
+        /**
+         * The version details of apig upstream.
+         */
+        versionDetails: outputs.apig.UpstreamsUpstreamVersionDetail[];
+    }
+
+    export interface UpstreamsUpstreamBackendTargetList {
+        /**
+         * The health status of apig upstream backend.
+         */
+        healthStatus: string;
+        /**
+         * The ip of apig upstream.
+         */
+        ip: string;
+        /**
+         * The port of k8s service.
+         */
+        port: number;
+    }
+
+    export interface UpstreamsUpstreamCircuitBreakingSetting {
+        /**
+         * The base ejection time of circuit breaking. Unit: ms.
+         */
+        baseEjectionTime: number;
+        /**
+         * The consecutive errors of circuit breaking.
+         */
+        consecutiveErrors: number;
+        /**
+         * Whether the circuit breaking is enabled.
+         */
+        enable: boolean;
+        /**
+         * The interval of circuit breaking. Unit: ms.
+         */
+        interval: number;
+        /**
+         * The max ejection percent of circuit breaking.
+         */
+        maxEjectionPercent: number;
+        /**
+         * The min health percent of circuit breaking.
+         */
+        minHealthPercent: number;
+    }
+
+    export interface UpstreamsUpstreamLoadBalancerSetting {
+        /**
+         * The consistent hash lb of apig upstream.
+         */
+        consistentHashLbs: outputs.apig.UpstreamsUpstreamLoadBalancerSettingConsistentHashLb[];
+        /**
+         * The load balancer policy of apig upstream.
+         */
+        lbPolicy: string;
+        /**
+         * The simple load balancer of apig upstream.
+         */
+        simpleLb: string;
+        /**
+         * The warmup duration of apig upstream lb.
+         */
+        warmupDuration: number;
+    }
+
+    export interface UpstreamsUpstreamLoadBalancerSettingConsistentHashLb {
+        /**
+         * The hash key of apig upstream consistent hash lb.
+         */
+        hashKey: string;
+        /**
+         * The http cookie of apig upstream consistent hash lb.
+         */
+        httpCookies: outputs.apig.UpstreamsUpstreamLoadBalancerSettingConsistentHashLbHttpCooky[];
+        /**
+         * The http header name of apig upstream consistent hash lb.
+         */
+        httpHeaderName: string;
+        /**
+         * The http query parameter name of apig upstream consistent hash lb.
+         */
+        httpQueryParameterName: string;
+        /**
+         * The use source ip of apig upstream consistent hash lb.
+         */
+        useSourceIp: boolean;
+    }
+
+    export interface UpstreamsUpstreamLoadBalancerSettingConsistentHashLbHttpCooky {
+        /**
+         * The name of apig upstream. This field support fuzzy query.
+         */
+        name: string;
+        /**
+         * The path of apig upstream consistent hash lb http cookie.
+         */
+        path: string;
+        /**
+         * The ttl of apig upstream consistent hash lb http cookie.
+         */
+        ttl: number;
+    }
+
+    export interface UpstreamsUpstreamTlsSetting {
+        /**
+         * The sni of apig upstream tls setting.
+         */
+        sni: string;
+        /**
+         * The tls mode of apig upstream tls setting.
+         */
+        tlsMode: string;
+    }
+
+    export interface UpstreamsUpstreamUpstreamSpec {
+        /**
+         * The ai provider of apig upstream.
+         */
+        aiProviders: outputs.apig.UpstreamsUpstreamUpstreamSpecAiProvider[];
+        /**
+         * The domain of apig upstream.
+         */
+        domains: outputs.apig.UpstreamsUpstreamUpstreamSpecDomain[];
+        /**
+         * The ecs list of apig upstream.
+         */
+        ecsLists: outputs.apig.UpstreamsUpstreamUpstreamSpecEcsList[];
+        /**
+         * The fixed ip list of apig upstream.
+         */
+        fixedIpLists: outputs.apig.UpstreamsUpstreamUpstreamSpecFixedIpList[];
+        /**
+         * The k8s service of mlp.
+         */
+        k8sServices: outputs.apig.UpstreamsUpstreamUpstreamSpecK8sService[];
+        /**
+         * The nacos service of apig upstream.
+         */
+        nacosServices: outputs.apig.UpstreamsUpstreamUpstreamSpecNacosService[];
+        /**
+         * The vefaas of apig upstream.
+         */
+        veFaas: outputs.apig.UpstreamsUpstreamUpstreamSpecVeFaa[];
+        /**
+         * The mlp of apig upstream.
+         */
+        veMlps: outputs.apig.UpstreamsUpstreamUpstreamSpecVeMlp[];
+    }
+
+    export interface UpstreamsUpstreamUpstreamSpecAiProvider {
+        /**
+         * The base url of ai provider.
+         */
+        baseUrl: string;
+        /**
+         * The custom body params of ai provider.
+         */
+        customBodyParams: {[key: string]: any};
+        /**
+         * The custom header params of ai provider.
+         */
+        customHeaderParams: {[key: string]: any};
+        /**
+         * The custom model service of ai provider.
+         */
+        customModelServices: outputs.apig.UpstreamsUpstreamUpstreamSpecAiProviderCustomModelService[];
+        /**
+         * The name of apig upstream. This field support fuzzy query.
+         */
+        name: string;
+        /**
+         * The token of ai provider.
+         */
+        token: string;
+    }
+
+    export interface UpstreamsUpstreamUpstreamSpecAiProviderCustomModelService {
+        /**
+         * The name of apig upstream. This field support fuzzy query.
+         */
+        name: string;
+        /**
+         * The namespace of k8s service.
+         */
+        namespace: string;
+        /**
+         * The port of k8s service.
+         */
+        port: number;
+    }
+
+    export interface UpstreamsUpstreamUpstreamSpecDomain {
+        /**
+         * The domain list of apig upstream.
+         */
+        domainLists: outputs.apig.UpstreamsUpstreamUpstreamSpecDomainDomainList[];
+        /**
+         * The protocol of apig upstream.
+         */
+        protocol: string;
+    }
+
+    export interface UpstreamsUpstreamUpstreamSpecDomainDomainList {
+        /**
+         * The domain of apig upstream.
+         */
+        domain: string;
+        /**
+         * The port of k8s service.
+         */
+        port: number;
+    }
+
+    export interface UpstreamsUpstreamUpstreamSpecEcsList {
+        /**
+         * The instance id of ecs.
+         */
+        ecsId: string;
+        /**
+         * The ip of apig upstream.
+         */
+        ip: string;
+        /**
+         * The port of k8s service.
+         */
+        port: number;
+    }
+
+    export interface UpstreamsUpstreamUpstreamSpecFixedIpList {
+        /**
+         * The ip of apig upstream.
+         */
+        ip: string;
+        /**
+         * The port of k8s service.
+         */
+        port: number;
+    }
+
+    export interface UpstreamsUpstreamUpstreamSpecK8sService {
+        /**
+         * The name of apig upstream. This field support fuzzy query.
+         */
+        name: string;
+        /**
+         * The namespace of k8s service.
+         */
+        namespace: string;
+        /**
+         * The port of k8s service.
+         */
+        port: number;
+    }
+
+    export interface UpstreamsUpstreamUpstreamSpecNacosService {
+        /**
+         * The group of nacos service.
+         */
+        group: string;
+        /**
+         * The namespace of k8s service.
+         */
+        namespace: string;
+        /**
+         * The namespace id of nacos service.
+         */
+        namespaceId: string;
+        /**
+         * The service of nacos service.
+         */
+        service: string;
+        /**
+         * The upstream source id.
+         */
+        upstreamSourceId: string;
+    }
+
+    export interface UpstreamsUpstreamUpstreamSpecVeFaa {
+        /**
+         * The function id of vefaas.
+         */
+        functionId: string;
+    }
+
+    export interface UpstreamsUpstreamUpstreamSpecVeMlp {
+        /**
+         * The k8s service of mlp.
+         */
+        k8sServices: outputs.apig.UpstreamsUpstreamUpstreamSpecVeMlpK8sService[];
+        /**
+         * The service discover type of mlp.
+         */
+        serviceDiscoverType: string;
+        /**
+         * The service id of mlp.
+         */
+        serviceId: string;
+        /**
+         * The service name of mlp.
+         */
+        serviceName: string;
+        /**
+         * The service url of mlp.
+         */
+        serviceUrl: string;
+        /**
+         * The upstream source id.
+         */
+        upstreamSourceId: string;
+    }
+
+    export interface UpstreamsUpstreamUpstreamSpecVeMlpK8sService {
+        /**
+         * The cluster info of k8s service.
+         */
+        clusterInfos: outputs.apig.UpstreamsUpstreamUpstreamSpecVeMlpK8sServiceClusterInfo[];
+        /**
+         * The name of apig upstream. This field support fuzzy query.
+         */
+        name: string;
+        /**
+         * The namespace of k8s service.
+         */
+        namespace: string;
+        /**
+         * The port of k8s service.
+         */
+        port: number;
+    }
+
+    export interface UpstreamsUpstreamUpstreamSpecVeMlpK8sServiceClusterInfo {
+        /**
+         * The account id of k8s service.
+         */
+        accountId: number;
+        /**
+         * The cluster name of k8s service.
+         */
+        clusterName: string;
+    }
+
+    export interface UpstreamsUpstreamVersionDetail {
+        /**
+         * The labels of apig upstream version.
+         */
+        labels: outputs.apig.UpstreamsUpstreamVersionDetailLabel[];
+        /**
+         * The name of apig upstream. This field support fuzzy query.
+         */
+        name: string;
+        /**
+         * The update time of apig upstream version.
+         */
+        updateTime: string;
+    }
+
+    export interface UpstreamsUpstreamVersionDetailLabel {
+        /**
+         * The key of apig upstream version label.
+         */
+        key: string;
+        /**
+         * The value of apig upstream version label.
+         */
+        value: string;
+    }
+
+}
+
 export namespace autoscaling {
     export interface GetScalingActivitiesActivity {
         /**
@@ -5002,6 +8296,10 @@ export namespace cen {
          */
         bandwidth: number;
         /**
+         * The ID of the cen bandwidth package.
+         */
+        cenBandwidthPackageId: string;
+        /**
          * The ID of the cen.
          */
         cenId: string;
@@ -5156,6 +8454,10 @@ export namespace cen {
          * The bandwidth of the cen inter region bandwidth.
          */
         bandwidth: number;
+        /**
+         * The ID of the cen bandwidth package.
+         */
+        cenBandwidthPackageId: string;
         /**
          * The ID of the cen.
          */
@@ -53298,6 +56600,211 @@ export namespace vmp {
 }
 
 export namespace vpc {
+    export interface FlowLogTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface FlowLogsFlowLog {
+        /**
+         * The aggregation interval of flow log. Unit: minute. Valid values: `1`, `5`, `10`.
+         */
+        aggregationInterval: number;
+        /**
+         * The business status of flow log.
+         */
+        businessStatus: string;
+        /**
+         * The created time of flow log.
+         */
+        createdAt: string;
+        /**
+         * The description of flow log.
+         */
+        description: string;
+        /**
+         * The ID of flow log.
+         */
+        flowLogId: string;
+        /**
+         * The name of flow log.
+         */
+        flowLogName: string;
+        /**
+         * The ID of flow log.
+         */
+        id: string;
+        /**
+         * The reason why flow log is locked.
+         */
+        lockReason: string;
+        /**
+         * The ID of log project.
+         */
+        logProjectId: string;
+        /**
+         * The ID of log topic.
+         */
+        logTopicId: string;
+        /**
+         * The project name of flow log.
+         */
+        projectName: string;
+        /**
+         * The ID of resource.
+         */
+        resourceId: string;
+        /**
+         * The type of resource. Valid values: `vpc`, `subnet`, `eni`.
+         */
+        resourceType: string;
+        /**
+         * The status of flow log. Valid values: `Active`, `Pending`, `Inactive`, `Creating`, `Deleting`.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.vpc.FlowLogsFlowLogTag[];
+        /**
+         * The type of traffic. Valid values: `All`, `Allow`, `Drop`.
+         */
+        trafficType: string;
+        /**
+         * The updated time of flow log.
+         */
+        updatedAt: string;
+        /**
+         * The ID of VPC.
+         */
+        vpcId: string;
+    }
+
+    export interface FlowLogsFlowLogTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface FlowLogsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetFlowLogsFlowLog {
+        /**
+         * The aggregation interval of flow log. Unit: minute. Valid values: `1`, `5`, `10`.
+         */
+        aggregationInterval: number;
+        /**
+         * The business status of flow log.
+         */
+        businessStatus: string;
+        /**
+         * The created time of flow log.
+         */
+        createdAt: string;
+        /**
+         * The description of flow log.
+         */
+        description: string;
+        /**
+         * The ID of flow log.
+         */
+        flowLogId: string;
+        /**
+         * The name of flow log.
+         */
+        flowLogName: string;
+        /**
+         * The ID of flow log.
+         */
+        id: string;
+        /**
+         * The reason why flow log is locked.
+         */
+        lockReason: string;
+        /**
+         * The ID of log project.
+         */
+        logProjectId: string;
+        /**
+         * The ID of log topic.
+         */
+        logTopicId: string;
+        /**
+         * The project name of flow log.
+         */
+        projectName: string;
+        /**
+         * The ID of resource.
+         */
+        resourceId: string;
+        /**
+         * The type of resource. Valid values: `vpc`, `subnet`, `eni`.
+         */
+        resourceType: string;
+        /**
+         * The status of flow log. Valid values: `Active`, `Pending`, `Inactive`, `Creating`, `Deleting`.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.vpc.GetFlowLogsFlowLogTag[];
+        /**
+         * The type of traffic. Valid values: `All`, `Allow`, `Drop`.
+         */
+        trafficType: string;
+        /**
+         * The updated time of flow log.
+         */
+        updatedAt: string;
+        /**
+         * The ID of VPC.
+         */
+        vpcId: string;
+    }
+
+    export interface GetFlowLogsFlowLogTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetFlowLogsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface GetHaVipsHaVip {
         /**
          * The account id of the Ha Vip.
@@ -54261,6 +57768,429 @@ export namespace vpc {
         value: string;
     }
 
+    export interface GetTrafficMirrorFilterRulesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetTrafficMirrorFilterRulesTrafficMirrorFilterRule {
+        /**
+         * The create time of traffic mirror filter rule.
+         */
+        createdAt: string;
+        /**
+         * The description of traffic mirror filter rule.
+         */
+        description: string;
+        /**
+         * The destination cidr block of traffic mirror filter rule.
+         */
+        destinationCidrBlock: string;
+        /**
+         * The destination port range of traffic mirror filter rule.
+         */
+        destinationPortRange: string;
+        /**
+         * The ID of traffic mirror filter rule.
+         */
+        id: string;
+        /**
+         * The policy of traffic mirror filter rule.
+         */
+        policy: string;
+        /**
+         * The priority of traffic mirror filter rule.
+         */
+        priority: number;
+        /**
+         * The protocol of traffic mirror filter rule.
+         */
+        protocol: string;
+        /**
+         * The source cidr block of traffic mirror filter rule.
+         */
+        sourceCidrBlock: string;
+        /**
+         * The source port range of traffic mirror filter rule.
+         */
+        sourcePortRange: string;
+        /**
+         * The status of traffic mirror filter rule.
+         */
+        status: string;
+        /**
+         * The traffic direction of traffic mirror filter rule.
+         */
+        trafficDirection: string;
+        /**
+         * The ID of traffic mirror filter.
+         */
+        trafficMirrorFilterId: string;
+        /**
+         * The ID of traffic mirror filter rule.
+         */
+        trafficMirrorFilterRuleId: string;
+        /**
+         * The last update time of traffic mirror filter rule.
+         */
+        updatedAt: string;
+    }
+
+    export interface GetTrafficMirrorFiltersTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetTrafficMirrorFiltersTrafficMirrorFilter {
+        /**
+         * The create time of traffic mirror filter rule.
+         */
+        createdAt: string;
+        /**
+         * The description of traffic mirror filter rule.
+         */
+        description: string;
+        /**
+         * The ingress filter rules of traffic mirror filter.
+         */
+        egressFilterRules: outputs.vpc.GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRule[];
+        /**
+         * The ID of traffic mirror filter.
+         */
+        id: string;
+        /**
+         * The ingress filter rules of traffic mirror filter.
+         */
+        ingressFilterRules: outputs.vpc.GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRule[];
+        /**
+         * The project name of traffic mirror filter.
+         */
+        projectName: string;
+        /**
+         * The status of traffic mirror filter.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.vpc.GetTrafficMirrorFiltersTrafficMirrorFilterTag[];
+        /**
+         * The ID of traffic mirror filter.
+         */
+        trafficMirrorFilterId: string;
+        /**
+         * The name of traffic mirror filter.
+         */
+        trafficMirrorFilterName: string;
+        /**
+         * The last update time of traffic mirror filter.
+         */
+        updatedAt: string;
+    }
+
+    export interface GetTrafficMirrorFiltersTrafficMirrorFilterEgressFilterRule {
+        /**
+         * The create time of traffic mirror filter rule.
+         */
+        createdAt: string;
+        /**
+         * The description of traffic mirror filter rule.
+         */
+        description: string;
+        /**
+         * The destination cidr block of traffic mirror filter rule.
+         */
+        destinationCidrBlock: string;
+        /**
+         * The destination port range of traffic mirror filter rule.
+         */
+        destinationPortRange: string;
+        /**
+         * The policy of traffic mirror filter rule.
+         */
+        policy: string;
+        /**
+         * The priority of traffic mirror filter rule.
+         */
+        priority: number;
+        /**
+         * The protocol of traffic mirror filter rule.
+         */
+        protocol: string;
+        /**
+         * The source cidr block of traffic mirror filter rule.
+         */
+        sourceCidrBlock: string;
+        /**
+         * The source port range of traffic mirror filter rule.
+         */
+        sourcePortRange: string;
+        /**
+         * The status of traffic mirror filter.
+         */
+        status: string;
+        /**
+         * The traffic direction of traffic mirror filter rule.
+         */
+        trafficDirection: string;
+        /**
+         * The ID of traffic mirror filter.
+         */
+        trafficMirrorFilterId: string;
+        /**
+         * The ID of traffic mirror filter rule.
+         */
+        trafficMirrorFilterRuleId: string;
+        /**
+         * The last update time of traffic mirror filter.
+         */
+        updatedAt: string;
+    }
+
+    export interface GetTrafficMirrorFiltersTrafficMirrorFilterIngressFilterRule {
+        /**
+         * The create time of traffic mirror filter rule.
+         */
+        createdAt: string;
+        /**
+         * The description of traffic mirror filter rule.
+         */
+        description: string;
+        /**
+         * The destination cidr block of traffic mirror filter rule.
+         */
+        destinationCidrBlock: string;
+        /**
+         * The destination port range of traffic mirror filter rule.
+         */
+        destinationPortRange: string;
+        /**
+         * The policy of traffic mirror filter rule.
+         */
+        policy: string;
+        /**
+         * The priority of traffic mirror filter rule.
+         */
+        priority: number;
+        /**
+         * The protocol of traffic mirror filter rule.
+         */
+        protocol: string;
+        /**
+         * The source cidr block of traffic mirror filter rule.
+         */
+        sourceCidrBlock: string;
+        /**
+         * The source port range of traffic mirror filter rule.
+         */
+        sourcePortRange: string;
+        /**
+         * The status of traffic mirror filter.
+         */
+        status: string;
+        /**
+         * The traffic direction of traffic mirror filter rule.
+         */
+        trafficDirection: string;
+        /**
+         * The ID of traffic mirror filter.
+         */
+        trafficMirrorFilterId: string;
+        /**
+         * The ID of traffic mirror filter rule.
+         */
+        trafficMirrorFilterRuleId: string;
+        /**
+         * The last update time of traffic mirror filter.
+         */
+        updatedAt: string;
+    }
+
+    export interface GetTrafficMirrorFiltersTrafficMirrorFilterTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetTrafficMirrorSessionsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetTrafficMirrorSessionsTrafficMirrorSession {
+        /**
+         * The business status of traffic mirror session.
+         */
+        businessStatus: string;
+        /**
+         * The create time of traffic mirror session.
+         */
+        createdAt: string;
+        /**
+         * The description of traffic mirror session.
+         */
+        description: string;
+        /**
+         * The ID of traffic mirror session.
+         */
+        id: string;
+        /**
+         * The lock reason of traffic mirror session.
+         */
+        lockReason: string;
+        /**
+         * The packet length of traffic mirror session.
+         */
+        packetLength: number;
+        /**
+         * The priority of traffic mirror session.
+         */
+        priority: number;
+        /**
+         * The project name of traffic mirror session.
+         */
+        projectName: string;
+        /**
+         * The status of traffic mirror session.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.vpc.GetTrafficMirrorSessionsTrafficMirrorSessionTag[];
+        /**
+         * The ID of traffic mirror filter.
+         */
+        trafficMirrorFilterId: string;
+        /**
+         * The ID of traffic mirror session.
+         */
+        trafficMirrorSessionId: string;
+        /**
+         * The name of traffic mirror session.
+         */
+        trafficMirrorSessionName: string;
+        /**
+         * The IDs of traffic mirror source.
+         */
+        trafficMirrorSourceIds: string[];
+        /**
+         * The ID of traffic mirror target.
+         */
+        trafficMirrorTargetId: string;
+        /**
+         * The update time of traffic mirror session.
+         */
+        updatedAt: string;
+        /**
+         * The ID of virtual network.
+         */
+        virtualNetworkId: number;
+    }
+
+    export interface GetTrafficMirrorSessionsTrafficMirrorSessionTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetTrafficMirrorTargetsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetTrafficMirrorTargetsTrafficMirrorTarget {
+        /**
+         * The create time of traffic mirror target.
+         */
+        createdAt: string;
+        /**
+         * The description of traffic mirror target.
+         */
+        description: string;
+        /**
+         * The ID of traffic mirror target.
+         */
+        id: string;
+        /**
+         * The instance id of traffic mirror target.
+         */
+        instanceId: string;
+        /**
+         * The instance type of traffic mirror target.
+         */
+        instanceType: string;
+        /**
+         * The project name of traffic mirror target.
+         */
+        projectName: string;
+        /**
+         * The status of traffic mirror target.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.vpc.GetTrafficMirrorTargetsTrafficMirrorTargetTag[];
+        /**
+         * The ID of traffic mirror target.
+         */
+        trafficMirrorTargetId: string;
+        /**
+         * The name of traffic mirror target.
+         */
+        trafficMirrorTargetName: string;
+        /**
+         * The update time of traffic mirror target.
+         */
+        updatedAt: string;
+    }
+
+    export interface GetTrafficMirrorTargetsTrafficMirrorTargetTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface GetVpcsTag {
         /**
          * The Key of Tags.
@@ -54317,6 +58247,10 @@ export namespace vpc {
          * The route table ID list of VPC.
          */
         routeTableIds: string[];
+        /**
+         * The secondary cidr block list of VPC.
+         */
+        secondaryCidrBlocks: string[];
         /**
          * The security group ID list of VPC.
          */
@@ -55505,6 +59439,462 @@ export namespace vpc {
         value: string;
     }
 
+    export interface TrafficMirrorFilterRulesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface TrafficMirrorFilterRulesTrafficMirrorFilterRule {
+        /**
+         * The create time of traffic mirror filter rule.
+         */
+        createdAt: string;
+        /**
+         * The description of traffic mirror filter rule.
+         */
+        description: string;
+        /**
+         * The destination cidr block of traffic mirror filter rule.
+         */
+        destinationCidrBlock: string;
+        /**
+         * The destination port range of traffic mirror filter rule.
+         */
+        destinationPortRange: string;
+        /**
+         * The ID of traffic mirror filter rule.
+         */
+        id: string;
+        /**
+         * The policy of traffic mirror filter rule.
+         */
+        policy: string;
+        /**
+         * The priority of traffic mirror filter rule.
+         */
+        priority: number;
+        /**
+         * The protocol of traffic mirror filter rule.
+         */
+        protocol: string;
+        /**
+         * The source cidr block of traffic mirror filter rule.
+         */
+        sourceCidrBlock: string;
+        /**
+         * The source port range of traffic mirror filter rule.
+         */
+        sourcePortRange: string;
+        /**
+         * The status of traffic mirror filter rule.
+         */
+        status: string;
+        /**
+         * The traffic direction of traffic mirror filter rule.
+         */
+        trafficDirection: string;
+        /**
+         * The ID of traffic mirror filter.
+         */
+        trafficMirrorFilterId: string;
+        /**
+         * The ID of traffic mirror filter rule.
+         */
+        trafficMirrorFilterRuleId: string;
+        /**
+         * The last update time of traffic mirror filter rule.
+         */
+        updatedAt: string;
+    }
+
+    export interface TrafficMirrorFilterTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface TrafficMirrorFiltersTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface TrafficMirrorFiltersTrafficMirrorFilter {
+        /**
+         * The create time of traffic mirror filter rule.
+         */
+        createdAt: string;
+        /**
+         * The description of traffic mirror filter rule.
+         */
+        description: string;
+        /**
+         * The ingress filter rules of traffic mirror filter.
+         */
+        egressFilterRules: outputs.vpc.TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRule[];
+        /**
+         * The ID of traffic mirror filter.
+         */
+        id: string;
+        /**
+         * The ingress filter rules of traffic mirror filter.
+         */
+        ingressFilterRules: outputs.vpc.TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRule[];
+        /**
+         * The project name of traffic mirror filter.
+         */
+        projectName: string;
+        /**
+         * The status of traffic mirror filter.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.vpc.TrafficMirrorFiltersTrafficMirrorFilterTag[];
+        /**
+         * The ID of traffic mirror filter.
+         */
+        trafficMirrorFilterId: string;
+        /**
+         * The name of traffic mirror filter.
+         */
+        trafficMirrorFilterName: string;
+        /**
+         * The last update time of traffic mirror filter.
+         */
+        updatedAt: string;
+    }
+
+    export interface TrafficMirrorFiltersTrafficMirrorFilterEgressFilterRule {
+        /**
+         * The create time of traffic mirror filter rule.
+         */
+        createdAt: string;
+        /**
+         * The description of traffic mirror filter rule.
+         */
+        description: string;
+        /**
+         * The destination cidr block of traffic mirror filter rule.
+         */
+        destinationCidrBlock: string;
+        /**
+         * The destination port range of traffic mirror filter rule.
+         */
+        destinationPortRange: string;
+        /**
+         * The policy of traffic mirror filter rule.
+         */
+        policy: string;
+        /**
+         * The priority of traffic mirror filter rule.
+         */
+        priority: number;
+        /**
+         * The protocol of traffic mirror filter rule.
+         */
+        protocol: string;
+        /**
+         * The source cidr block of traffic mirror filter rule.
+         */
+        sourceCidrBlock: string;
+        /**
+         * The source port range of traffic mirror filter rule.
+         */
+        sourcePortRange: string;
+        /**
+         * The status of traffic mirror filter.
+         */
+        status: string;
+        /**
+         * The traffic direction of traffic mirror filter rule.
+         */
+        trafficDirection: string;
+        /**
+         * The ID of traffic mirror filter.
+         */
+        trafficMirrorFilterId: string;
+        /**
+         * The ID of traffic mirror filter rule.
+         */
+        trafficMirrorFilterRuleId: string;
+        /**
+         * The last update time of traffic mirror filter.
+         */
+        updatedAt: string;
+    }
+
+    export interface TrafficMirrorFiltersTrafficMirrorFilterIngressFilterRule {
+        /**
+         * The create time of traffic mirror filter rule.
+         */
+        createdAt: string;
+        /**
+         * The description of traffic mirror filter rule.
+         */
+        description: string;
+        /**
+         * The destination cidr block of traffic mirror filter rule.
+         */
+        destinationCidrBlock: string;
+        /**
+         * The destination port range of traffic mirror filter rule.
+         */
+        destinationPortRange: string;
+        /**
+         * The policy of traffic mirror filter rule.
+         */
+        policy: string;
+        /**
+         * The priority of traffic mirror filter rule.
+         */
+        priority: number;
+        /**
+         * The protocol of traffic mirror filter rule.
+         */
+        protocol: string;
+        /**
+         * The source cidr block of traffic mirror filter rule.
+         */
+        sourceCidrBlock: string;
+        /**
+         * The source port range of traffic mirror filter rule.
+         */
+        sourcePortRange: string;
+        /**
+         * The status of traffic mirror filter.
+         */
+        status: string;
+        /**
+         * The traffic direction of traffic mirror filter rule.
+         */
+        trafficDirection: string;
+        /**
+         * The ID of traffic mirror filter.
+         */
+        trafficMirrorFilterId: string;
+        /**
+         * The ID of traffic mirror filter rule.
+         */
+        trafficMirrorFilterRuleId: string;
+        /**
+         * The last update time of traffic mirror filter.
+         */
+        updatedAt: string;
+    }
+
+    export interface TrafficMirrorFiltersTrafficMirrorFilterTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface TrafficMirrorSessionTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface TrafficMirrorSessionsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface TrafficMirrorSessionsTrafficMirrorSession {
+        /**
+         * The business status of traffic mirror session.
+         */
+        businessStatus: string;
+        /**
+         * The create time of traffic mirror session.
+         */
+        createdAt: string;
+        /**
+         * The description of traffic mirror session.
+         */
+        description: string;
+        /**
+         * The ID of traffic mirror session.
+         */
+        id: string;
+        /**
+         * The lock reason of traffic mirror session.
+         */
+        lockReason: string;
+        /**
+         * The packet length of traffic mirror session.
+         */
+        packetLength: number;
+        /**
+         * The priority of traffic mirror session.
+         */
+        priority: number;
+        /**
+         * The project name of traffic mirror session.
+         */
+        projectName: string;
+        /**
+         * The status of traffic mirror session.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.vpc.TrafficMirrorSessionsTrafficMirrorSessionTag[];
+        /**
+         * The ID of traffic mirror filter.
+         */
+        trafficMirrorFilterId: string;
+        /**
+         * The ID of traffic mirror session.
+         */
+        trafficMirrorSessionId: string;
+        /**
+         * The name of traffic mirror session.
+         */
+        trafficMirrorSessionName: string;
+        /**
+         * The IDs of traffic mirror source.
+         */
+        trafficMirrorSourceIds: string[];
+        /**
+         * The ID of traffic mirror target.
+         */
+        trafficMirrorTargetId: string;
+        /**
+         * The update time of traffic mirror session.
+         */
+        updatedAt: string;
+        /**
+         * The ID of virtual network.
+         */
+        virtualNetworkId: number;
+    }
+
+    export interface TrafficMirrorSessionsTrafficMirrorSessionTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface TrafficMirrorTargetTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface TrafficMirrorTargetsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface TrafficMirrorTargetsTrafficMirrorTarget {
+        /**
+         * The create time of traffic mirror target.
+         */
+        createdAt: string;
+        /**
+         * The description of traffic mirror target.
+         */
+        description: string;
+        /**
+         * The ID of traffic mirror target.
+         */
+        id: string;
+        /**
+         * The instance id of traffic mirror target.
+         */
+        instanceId: string;
+        /**
+         * The instance type of traffic mirror target.
+         */
+        instanceType: string;
+        /**
+         * The project name of traffic mirror target.
+         */
+        projectName: string;
+        /**
+         * The status of traffic mirror target.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.vpc.TrafficMirrorTargetsTrafficMirrorTargetTag[];
+        /**
+         * The ID of traffic mirror target.
+         */
+        trafficMirrorTargetId: string;
+        /**
+         * The name of traffic mirror target.
+         */
+        trafficMirrorTargetName: string;
+        /**
+         * The update time of traffic mirror target.
+         */
+        updatedAt: string;
+    }
+
+    export interface TrafficMirrorTargetsTrafficMirrorTargetTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface VpcAssociateCen {
         /**
          * The ID of CEN.
@@ -55587,6 +59977,10 @@ export namespace vpc {
          * The route table ID list of VPC.
          */
         routeTableIds: string[];
+        /**
+         * The secondary cidr block list of VPC.
+         */
+        secondaryCidrBlocks: string[];
         /**
          * The security group ID list of VPC.
          */
@@ -56633,6 +61027,3349 @@ export namespace vpn {
          * The id of the vpn gateway.
          */
         vpnGatewayId: string;
+    }
+
+}
+
+export namespace waf {
+    export interface AclRuleAccurateGroup {
+        /**
+         * Details of advanced conditions.
+         */
+        accurateRules: outputs.waf.AclRuleAccurateGroupAccurateRule[];
+        /**
+         * The logical relationship of advanced conditions.
+         */
+        logic: number;
+    }
+
+    export interface AclRuleAccurateGroupAccurateRule {
+        /**
+         * The HTTP object to be added to the advanced conditions.
+         */
+        httpObj: string;
+        /**
+         * The matching field for HTTP objects.
+         */
+        objType: number;
+        /**
+         * The logical operator for the condition.
+         */
+        opretar: number;
+        /**
+         * Operate the properties of the http object.
+         */
+        property: number;
+        /**
+         * The value to be matched.
+         */
+        valueString: string;
+    }
+
+    export interface AclRuleHostGroup {
+        /**
+         * The ID of the domain group.
+         */
+        hostGroupId: number;
+        /**
+         * Rule name.
+         */
+        name: string;
+    }
+
+    export interface AclRuleIpGroup {
+        /**
+         * Required if IpAddType = 2.
+         */
+        ipGroupId: number;
+        /**
+         * Rule name.
+         */
+        name: string;
+    }
+
+    export interface AclRulesRule {
+        /**
+         * Advanced conditions.
+         */
+        accurateGroup: outputs.waf.AclRulesRuleAccurateGroup;
+        /**
+         * Action to be taken on requests that match the rule.
+         */
+        action: string;
+        /**
+         * Whether to set advanced conditions.
+         */
+        advanced: number;
+        /**
+         * IP address.
+         */
+        clientIp: string;
+        /**
+         * Rule description.
+         */
+        description: string;
+        /**
+         * The enabled status of the rule.
+         */
+        enable: number;
+        /**
+         * Type of domain name addition.
+         */
+        hostAddType: number;
+        /**
+         * The ID of host group.
+         */
+        hostGroupIds: number[];
+        /**
+         * The list of domain name groups.
+         */
+        hostGroups: outputs.waf.AclRulesRuleHostGroup[];
+        /**
+         * Single or multiple domain names are supported.
+         */
+        hostLists: string[];
+        /**
+         * Rule ID.
+         */
+        id: number;
+        /**
+         * Type of IP address addition.
+         */
+        ipAddType: number;
+        /**
+         * The ID of the IP address group.
+         */
+        ipGroupIds: number[];
+        /**
+         * The list of domain name groups.
+         */
+        ipGroups: outputs.waf.AclRulesRuleIpGroup[];
+        /**
+         * Single or multiple IP addresses are supported.
+         */
+        ipLists: string[];
+        /**
+         * Country or region code.
+         */
+        ipLocationCountries: string[];
+        /**
+         * Domestic region code.
+         */
+        ipLocationSubregions: string[];
+        /**
+         * Rule name.
+         */
+        name: string;
+        /**
+         * Rule unique identifier, precise search.
+         */
+        ruleTag: string;
+        /**
+         * Update time of the rule.
+         */
+        updateTime: string;
+        /**
+         * The path of Matching.
+         */
+        url: string;
+    }
+
+    export interface AclRulesRuleAccurateGroup {
+        /**
+         * Details of advanced conditions.
+         */
+        accurateRules: outputs.waf.AclRulesRuleAccurateGroupAccurateRule[];
+        /**
+         * The logical relationship of advanced conditions.
+         */
+        logic: number;
+    }
+
+    export interface AclRulesRuleAccurateGroupAccurateRule {
+        /**
+         * The HTTP object to be added to the advanced conditions.
+         */
+        httpObj: string;
+        /**
+         * The matching field for HTTP objects.
+         */
+        objType: number;
+        /**
+         * The logical operator for the condition.
+         */
+        opretar: number;
+        /**
+         * Operate the properties of the http object.
+         */
+        property: number;
+        /**
+         * The value to be matched.
+         */
+        valueString: string;
+    }
+
+    export interface AclRulesRuleHostGroup {
+        /**
+         * The ID of host group.
+         */
+        hostGroupId: number;
+        /**
+         * Rule name.
+         */
+        name: string;
+    }
+
+    export interface AclRulesRuleIpGroup {
+        /**
+         * The ID of the IP address group.
+         */
+        ipGroupId: number;
+        /**
+         * Rule name.
+         */
+        name: string;
+    }
+
+    export interface BotAnalyseProtectRuleAccurateGroup {
+        /**
+         * Request characteristic information of the rule group.
+         */
+        accurateRules?: outputs.waf.BotAnalyseProtectRuleAccurateGroupAccurateRule[];
+        /**
+         * In the rule group, the high-level conditional operation relationships corresponding to each rule.
+         */
+        logic?: number;
+    }
+
+    export interface BotAnalyseProtectRuleAccurateGroupAccurateRule {
+        /**
+         * Custom object.
+         */
+        httpObj?: string;
+        /**
+         * matching field.
+         */
+        objType?: number;
+        /**
+         * The logical operator for the condition.
+         */
+        opretar?: number;
+        /**
+         * Operate the properties of the http object.
+         */
+        property?: number;
+        /**
+         * The value to be matched.
+         */
+        valueString?: string;
+    }
+
+    export interface BotAnalyseProtectRuleRuleGroup {
+        /**
+         * Rule group information.
+         */
+        group: outputs.waf.BotAnalyseProtectRuleRuleGroupGroup;
+        /**
+         * Specific rule information within the rule group.
+         */
+        rules: outputs.waf.BotAnalyseProtectRuleRuleGroupRule[];
+    }
+
+    export interface BotAnalyseProtectRuleRuleGroupGroup {
+        /**
+         * After the rule creation is completed, the priority of the automatically generated rule group.
+         */
+        accurateGroupPriority: number;
+        /**
+         * Request characteristic information of the rule group.
+         */
+        accurateRules: outputs.waf.BotAnalyseProtectRuleRuleGroupGroupAccurateRule[];
+        /**
+         * Rule unique identifier.
+         */
+        id: number;
+        /**
+         * In the rule group, the high-level conditional operation relationships corresponding to each rule.
+         */
+        logic: number;
+    }
+
+    export interface BotAnalyseProtectRuleRuleGroupGroupAccurateRule {
+        /**
+         * Custom object.
+         */
+        httpObj: string;
+        /**
+         * matching field.
+         */
+        objType: number;
+        /**
+         * The logical operator for the condition.
+         */
+        opretar: number;
+        /**
+         * Operate the properties of the http object.
+         */
+        property: number;
+        /**
+         * The value to be matched.
+         */
+        valueString: string;
+    }
+
+    export interface BotAnalyseProtectRuleRuleGroupRule {
+        /**
+         * Advanced conditions.
+         */
+        accurateGroup: outputs.waf.BotAnalyseProtectRuleRuleGroupRuleAccurateGroup;
+        /**
+         * After the rule creation is completed, the priority of the automatically generated rule group.
+         */
+        accurateGroupPriority: number;
+        /**
+         * Perform the action after verification/challenge.
+         */
+        actionAfterVerification: number;
+        /**
+         * perform the action.
+         */
+        actionType: number;
+        /**
+         * Limit the duration.
+         */
+        effectTime: number;
+        /**
+         * Whether to enable the rules.
+         */
+        enable: number;
+        /**
+         * Exemption time takes effect when the execution action is human-machine challenge /JS/ Proof of work.
+         */
+        exemptionTime: number;
+        /**
+         * Statistical objects, with multiple objects separated by commas.
+         */
+        field: string;
+        /**
+         * Website domain names that require the setting of protection rules.
+         */
+        host: string;
+        /**
+         * Rule unique identifier.
+         */
+        id: number;
+        /**
+         * The name of rule.
+         */
+        name: string;
+        /**
+         * JS challenge/human-machine verification pass rate.
+         */
+        passRatio: number;
+        /**
+         * The requested path.
+         */
+        path: string;
+        /**
+         * The path access frequency threshold is enabled when StatisticalType=1.
+         */
+        pathThreshold: number;
+        /**
+         * Priority of rule effectiveness.
+         */
+        rulePriority: number;
+        /**
+         * Rule label, that is, the complete rule ID.
+         */
+        ruleTag: string;
+        /**
+         * The IP proportion of the same statistical object needs to be configured when StatisticalType=3.
+         */
+        singleProportion: number;
+        /**
+         * The maximum number of ips of the same statistical object is enabled when StatisticalType=2.
+         */
+        singleThreshold: number;
+        /**
+         * The duration of statistics.
+         */
+        statisticalDuration: number;
+        /**
+         * Statistical content and methods.
+         */
+        statisticalType: number;
+        /**
+         * Rule update time.
+         */
+        updateTime: string;
+    }
+
+    export interface BotAnalyseProtectRuleRuleGroupRuleAccurateGroup {
+        /**
+         * After the rule creation is completed, the priority of the automatically generated rule group.
+         */
+        accurateGroupPriority: number;
+        /**
+         * Request characteristic information of the rule group.
+         */
+        accurateRules: outputs.waf.BotAnalyseProtectRuleRuleGroupRuleAccurateGroupAccurateRule[];
+        /**
+         * Rule unique identifier.
+         */
+        id: number;
+        /**
+         * In the rule group, the high-level conditional operation relationships corresponding to each rule.
+         */
+        logic: number;
+    }
+
+    export interface BotAnalyseProtectRuleRuleGroupRuleAccurateGroupAccurateRule {
+        /**
+         * Custom object.
+         */
+        httpObj: string;
+        /**
+         * matching field.
+         */
+        objType: number;
+        /**
+         * The logical operator for the condition.
+         */
+        opretar: number;
+        /**
+         * Operate the properties of the http object.
+         */
+        property: number;
+        /**
+         * The value to be matched.
+         */
+        valueString: string;
+    }
+
+    export interface BotAnalyseProtectRulesData {
+        /**
+         * The number of statistical protection rules enabled under the current domain name.
+         */
+        enableCount: number;
+        /**
+         * Protective path.
+         */
+        path: string;
+        /**
+         * Details of the rule group.
+         */
+        ruleGroups: outputs.waf.BotAnalyseProtectRulesDataRuleGroup[];
+        /**
+         * The total count of query.
+         */
+        totalCount: number;
+    }
+
+    export interface BotAnalyseProtectRulesDataRuleGroup {
+        /**
+         * Rule group information.
+         */
+        group: outputs.waf.BotAnalyseProtectRulesDataRuleGroupGroup;
+        /**
+         * Specific rule information within the rule group.
+         */
+        rules: outputs.waf.BotAnalyseProtectRulesDataRuleGroupRule[];
+    }
+
+    export interface BotAnalyseProtectRulesDataRuleGroupGroup {
+        /**
+         * After the rule creation is completed, the priority of the automatically generated rule group.
+         */
+        accurateGroupPriority: number;
+        /**
+         * Request characteristic information of the rule group.
+         */
+        accurateRules: outputs.waf.BotAnalyseProtectRulesDataRuleGroupGroupAccurateRule[];
+        /**
+         * Rule unique identifier.
+         */
+        id: number;
+        /**
+         * In the rule group, the high-level conditional operation relationships corresponding to each rule.
+         */
+        logic: number;
+    }
+
+    export interface BotAnalyseProtectRulesDataRuleGroupGroupAccurateRule {
+        /**
+         * Custom object.
+         */
+        httpObj: string;
+        /**
+         * matching field.
+         */
+        objType: number;
+        /**
+         * The logical operator for the condition.
+         */
+        opretar: number;
+        /**
+         * Operate the properties of the http object.
+         */
+        property: number;
+        /**
+         * The value to be matched.
+         */
+        valueString: string;
+    }
+
+    export interface BotAnalyseProtectRulesDataRuleGroupRule {
+        /**
+         * Advanced conditions.
+         */
+        accurateGroup: outputs.waf.BotAnalyseProtectRulesDataRuleGroupRuleAccurateGroup;
+        /**
+         * After the rule creation is completed, the priority of the automatically generated rule group.
+         */
+        accurateGroupPriority: number;
+        /**
+         * Perform actions after human-machine verification /JS challenges.
+         */
+        actionAfterVerification: number;
+        /**
+         * perform the action.
+         */
+        actionType: number;
+        /**
+         * Limit the duration.
+         */
+        effectTime: number;
+        /**
+         * Whether to enable the rules.
+         */
+        enable: number;
+        /**
+         * Exemption time.
+         */
+        exemptionTime: number;
+        /**
+         * statistical object.
+         */
+        field: string;
+        /**
+         * Website domain names that require the setting of protection rules.
+         */
+        host: string;
+        /**
+         * Rule unique identifier.
+         */
+        id: number;
+        /**
+         * The name of the rule.
+         */
+        name: string;
+        /**
+         * JS challenge/human-machine verification pass rate.
+         */
+        passRatio: number;
+        /**
+         * Protective path.
+         */
+        path: string;
+        /**
+         * Threshold of path access times.
+         */
+        pathThreshold: number;
+        /**
+         * Rule execution priority.
+         */
+        rulePriority: number;
+        /**
+         * Unique identification of rules.
+         */
+        ruleTag: string;
+        /**
+         * The IP proportion of the same statistical object.
+         */
+        singleProportion: number;
+        /**
+         * The maximum number of ips for the same statistical object.
+         */
+        singleThreshold: number;
+        /**
+         * The duration of the statistics.
+         */
+        statisticalDuration: number;
+        /**
+         * Statistical content method.
+         */
+        statisticalType: number;
+        /**
+         * Rule update time.
+         */
+        updateTime: string;
+    }
+
+    export interface BotAnalyseProtectRulesDataRuleGroupRuleAccurateGroup {
+        /**
+         * After the rule creation is completed, the priority of the automatically generated rule group.
+         */
+        accurateGroupPriority: number;
+        /**
+         * Request characteristic information of the rule group.
+         */
+        accurateRules: outputs.waf.BotAnalyseProtectRulesDataRuleGroupRuleAccurateGroupAccurateRule[];
+        /**
+         * Rule unique identifier.
+         */
+        id: number;
+        /**
+         * In the rule group, the high-level conditional operation relationships corresponding to each rule.
+         */
+        logic: number;
+    }
+
+    export interface BotAnalyseProtectRulesDataRuleGroupRuleAccurateGroupAccurateRule {
+        /**
+         * Custom object.
+         */
+        httpObj: string;
+        /**
+         * matching field.
+         */
+        objType: number;
+        /**
+         * The logical operator for the condition.
+         */
+        opretar: number;
+        /**
+         * Operate the properties of the http object.
+         */
+        property: number;
+        /**
+         * The value to be matched.
+         */
+        valueString: string;
+    }
+
+    export interface CcRuleAccurateGroup {
+        /**
+         * Details of advanced conditions.
+         */
+        accurateRules: outputs.waf.CcRuleAccurateGroupAccurateRule[];
+        /**
+         * The logical relationship of advanced conditions.
+         */
+        logic: number;
+    }
+
+    export interface CcRuleAccurateGroupAccurateRule {
+        /**
+         * The HTTP object to be added to the advanced conditions.
+         */
+        httpObj: string;
+        /**
+         * The matching field for HTTP objects.
+         */
+        objType: number;
+        /**
+         * The logical operator for the condition.
+         */
+        opretar: number;
+        /**
+         * Operate the properties of the http object.
+         */
+        property: number;
+        /**
+         * The value to be matched.
+         */
+        valueString: string;
+    }
+
+    export interface CcRuleCronConf {
+        /**
+         * The weekly cycle days and cycle time periods.
+         */
+        crontab: string;
+        /**
+         * The threshold of the number of requests for path access.
+         */
+        pathThreshold: number;
+        /**
+         * The threshold of the number of visits to each statistical object.
+         */
+        singleThreshold: number;
+    }
+
+    export interface CcRuleRuleGroup {
+        /**
+         * Rule group information.
+         */
+        group: outputs.waf.CcRuleRuleGroupGroup;
+        /**
+         * Specific rule information within the rule group.
+         */
+        rules: outputs.waf.CcRuleRuleGroupRule[];
+    }
+
+    export interface CcRuleRuleGroupGroup {
+        /**
+         * After the rule creation is completed, the priority of the automatically generated rule group.
+         */
+        accurateGroupPriority: number;
+        /**
+         * Request characteristic information of the rule group.
+         */
+        accurateRules: outputs.waf.CcRuleRuleGroupGroupAccurateRule[];
+        /**
+         * The ID of Rule group.
+         */
+        id: number;
+        /**
+         * In the rule group, the high-level conditional operation relationships corresponding to each rule.
+         */
+        logic: number;
+    }
+
+    export interface CcRuleRuleGroupGroupAccurateRule {
+        /**
+         * The HTTP object to be added to the advanced conditions.
+         */
+        httpObj: string;
+        /**
+         * The matching field for HTTP objects.
+         */
+        objType: number;
+        /**
+         * The logical operator for the condition.
+         */
+        opretar: number;
+        /**
+         * Operate the properties of the http object.
+         */
+        property: number;
+        /**
+         * The value to be matched.
+         */
+        valueString: string;
+    }
+
+    export interface CcRuleRuleGroupRule {
+        /**
+         * Advanced conditions.
+         */
+        accurateGroup: outputs.waf.CcRuleRuleGroupRuleAccurateGroup;
+        /**
+         * After the rule creation is completed, the priority of the automatically generated rule group.
+         */
+        accurateGroupPriority: number;
+        /**
+         * The actions performed on subsequent requests after meeting the statistical conditions.
+         */
+        ccType: number;
+        /**
+         * The statistical period of the strategy.
+         */
+        countTime: number;
+        /**
+         * Details of the periodic loop configuration.
+         */
+        cronConfs: outputs.waf.CcRuleRuleGroupRuleCronConf[];
+        /**
+         * Whether to set the cycle to take effect.
+         */
+        cronEnable: number;
+        /**
+         * Limit the duration, that is, the effective duration of the action.
+         */
+        effectTime: number;
+        /**
+         * Whether to enable the rules.
+         */
+        enable: number;
+        /**
+         * Strategy exemption time.
+         */
+        exemptionTime: number;
+        /**
+         * statistical object.
+         */
+        field: string;
+        /**
+         * Website domain names that require the setting of protection rules.
+         */
+        host: string;
+        /**
+         * The ID of Rule group.
+         */
+        id: number;
+        /**
+         * The name of cc rule.
+         */
+        name: string;
+        /**
+         * The threshold of the total number of times the request path is accessed.
+         */
+        pathThreshold: number;
+        /**
+         * Rule execution priority.
+         */
+        rulePriority: number;
+        /**
+         * Rule label, that is, the complete rule ID.
+         */
+        ruleTag: string;
+        /**
+         * The threshold of the number of times each statistical object accesses the request path.
+         */
+        singleThreshold: number;
+        /**
+         * Rule update time.
+         */
+        updateTime: string;
+        /**
+         * The website request path that needs protection.
+         */
+        url: string;
+    }
+
+    export interface CcRuleRuleGroupRuleAccurateGroup {
+        /**
+         * After the rule creation is completed, the priority of the automatically generated rule group.
+         */
+        accurateGroupPriority: number;
+        /**
+         * Details of advanced conditions.
+         */
+        accurateRules: outputs.waf.CcRuleRuleGroupRuleAccurateGroupAccurateRule[];
+        /**
+         * The ID of Rule group.
+         */
+        id: number;
+        /**
+         * The logical relationship of advanced conditions.
+         */
+        logic: number;
+    }
+
+    export interface CcRuleRuleGroupRuleAccurateGroupAccurateRule {
+        /**
+         * The HTTP object to be added to the advanced conditions.
+         */
+        httpObj: string;
+        /**
+         * The matching field for HTTP objects.
+         */
+        objType: number;
+        /**
+         * The logical operator for the condition.
+         */
+        opretar: number;
+        /**
+         * Operate the properties of the http object.
+         */
+        property: number;
+        /**
+         * The value to be matched.
+         */
+        valueString: string;
+    }
+
+    export interface CcRuleRuleGroupRuleCronConf {
+        /**
+         * The weekly cycle days and cycle time periods.
+         */
+        crontab: string;
+        /**
+         * The threshold of the number of requests for path access.
+         */
+        pathThreshold: number;
+        /**
+         * The threshold of the number of visits to each statistical object.
+         */
+        singleThreshold: number;
+    }
+
+    export interface CcRulesData {
+        /**
+         * The total number of enabled rules within the rule group.
+         */
+        enableCount: number;
+        /**
+         * The creation time of the rule group.
+         */
+        insertTime: string;
+        /**
+         * Details of the rule group.
+         */
+        ruleGroups: outputs.waf.CcRulesDataRuleGroup[];
+        /**
+         * The total count of query.
+         */
+        totalCount: number;
+        /**
+         * Fuzzy search by the requested path.
+         */
+        url: string;
+    }
+
+    export interface CcRulesDataRuleGroup {
+        /**
+         * Rule group information.
+         */
+        group: outputs.waf.CcRulesDataRuleGroupGroup;
+        /**
+         * Specific rule information within the rule group.
+         */
+        rules: outputs.waf.CcRulesDataRuleGroupRule[];
+    }
+
+    export interface CcRulesDataRuleGroupGroup {
+        /**
+         * After the rule creation is completed, the priority of the automatically generated rule group.
+         */
+        accurateGroupPriority: number;
+        /**
+         * Request characteristic information of the rule group.
+         */
+        accurateRules: outputs.waf.CcRulesDataRuleGroupGroupAccurateRule[];
+        /**
+         * The ID of Rule group.
+         */
+        id: number;
+        /**
+         * In the rule group, the high-level conditional operation relationships corresponding to each rule.
+         */
+        logic: number;
+    }
+
+    export interface CcRulesDataRuleGroupGroupAccurateRule {
+        /**
+         * Custom object.
+         */
+        httpObj: string;
+        /**
+         * matching field.
+         */
+        objType: number;
+        /**
+         * The logical operator for the condition.
+         */
+        opretar: number;
+        /**
+         * Operate the properties of the http object.
+         */
+        property: number;
+        /**
+         * The value to be matched.
+         */
+        valueString: string;
+    }
+
+    export interface CcRulesDataRuleGroupRule {
+        /**
+         * Advanced conditions.
+         */
+        accurateGroup: outputs.waf.CcRulesDataRuleGroupRuleAccurateGroup;
+        /**
+         * After the rule creation is completed, the priority of the automatically generated rule group.
+         */
+        accurateGroupPriority: number;
+        /**
+         * The actions performed on subsequent requests after meeting the statistical conditions.
+         */
+        ccType: number;
+        /**
+         * The statistical period of the strategy.
+         */
+        countTime: number;
+        /**
+         * Details of the periodic loop configuration.
+         */
+        cronConfs: outputs.waf.CcRulesDataRuleGroupRuleCronConf[];
+        /**
+         * Whether to set the cycle to take effect.
+         */
+        cronEnable: number;
+        /**
+         * Limit the duration, that is, the effective duration of the action.
+         */
+        effectTime: number;
+        /**
+         * Whether the rule is enabled.
+         */
+        enable: number;
+        /**
+         * Strategy exemption time.
+         */
+        exemptionTime: number;
+        /**
+         * statistical object.
+         */
+        field: string;
+        /**
+         * Website domain names that require the setting of protection rules.
+         */
+        host: string;
+        /**
+         * The ID of Rule group.
+         */
+        id: number;
+        /**
+         * The Name of Rule group.
+         */
+        name: string;
+        /**
+         * The threshold of the number of requests for path access.
+         */
+        pathThreshold: number;
+        /**
+         * Rule execution priority.
+         */
+        rulePriority: number;
+        /**
+         * Search precisely according to the rule ID.
+         */
+        ruleTag: string;
+        /**
+         * The threshold of the number of visits to each statistical object.
+         */
+        singleThreshold: number;
+        /**
+         * Rule update time.
+         */
+        updateTime: string;
+        /**
+         * Fuzzy search by the requested path.
+         */
+        url: string;
+    }
+
+    export interface CcRulesDataRuleGroupRuleAccurateGroup {
+        /**
+         * After the rule creation is completed, the priority of the automatically generated rule group.
+         */
+        accurateGroupPriority: number;
+        /**
+         * Request characteristic information of the rule group.
+         */
+        accurateRules: outputs.waf.CcRulesDataRuleGroupRuleAccurateGroupAccurateRule[];
+        /**
+         * The ID of Rule group.
+         */
+        id: number;
+        /**
+         * In the rule group, the high-level conditional operation relationships corresponding to each rule.
+         */
+        logic: number;
+    }
+
+    export interface CcRulesDataRuleGroupRuleAccurateGroupAccurateRule {
+        /**
+         * Custom object.
+         */
+        httpObj: string;
+        /**
+         * matching field.
+         */
+        objType: number;
+        /**
+         * The logical operator for the condition.
+         */
+        opretar: number;
+        /**
+         * Operate the properties of the http object.
+         */
+        property: number;
+        /**
+         * The value to be matched.
+         */
+        valueString: string;
+    }
+
+    export interface CcRulesDataRuleGroupRuleCronConf {
+        /**
+         * The weekly cycle days and cycle time periods.
+         */
+        crontab: string;
+        /**
+         * The threshold of the number of requests for path access.
+         */
+        pathThreshold: number;
+        /**
+         * The threshold of the number of visits to each statistical object.
+         */
+        singleThreshold: number;
+    }
+
+    export interface CustomBotAccurate {
+        /**
+         * Details of advanced conditions.
+         */
+        accurateRules: outputs.waf.CustomBotAccurateAccurateRule[];
+        /**
+         * The logical relationship of advanced conditions.
+         */
+        logic: number;
+    }
+
+    export interface CustomBotAccurateAccurateRule {
+        /**
+         * The HTTP object to be added to the advanced conditions.
+         */
+        httpObj: string;
+        /**
+         * The matching field for HTTP objects.
+         */
+        objType: number;
+        /**
+         * The logical operator for the condition.
+         */
+        opretar: number;
+        /**
+         * Operate the properties of the http object.
+         */
+        property: number;
+        /**
+         * The value to be matched.
+         */
+        valueString: string;
+    }
+
+    export interface CustomBotsData {
+        /**
+         * Advanced conditions.
+         */
+        accurate: outputs.waf.CustomBotsDataAccurate;
+        /**
+         * The execution action of the Bot.
+         */
+        action: string;
+        /**
+         * Whether to set advanced conditions.
+         */
+        advanced: number;
+        /**
+         * bot name.
+         */
+        botType: string;
+        /**
+         * The description of bot.
+         */
+        description: string;
+        /**
+         * Whether to enable bot.
+         */
+        enable: number;
+        /**
+         * The actual count bits of the rule unique identifier (corresponding to the RuleTag).
+         */
+        id: number;
+        /**
+         * Rule unique identifier.
+         */
+        ruleTag: string;
+        /**
+         * The update time.
+         */
+        updateTime: string;
+    }
+
+    export interface CustomBotsDataAccurate {
+        /**
+         * Details of advanced conditions.
+         */
+        accurateRules: outputs.waf.CustomBotsDataAccurateAccurateRule[];
+        /**
+         * The logical relationship of advanced conditions.
+         */
+        logic: number;
+    }
+
+    export interface CustomBotsDataAccurateAccurateRule {
+        /**
+         * The HTTP object to be added to the advanced conditions.
+         */
+        httpObj: string;
+        /**
+         * The matching field for HTTP objects.
+         */
+        objType: number;
+        /**
+         * The logical operator for the condition.
+         */
+        opretar: number;
+        /**
+         * Operate the properties of the http object.
+         */
+        property: number;
+        /**
+         * The value to be matched.
+         */
+        valueString: string;
+    }
+
+    export interface CustomPageAccurate {
+        /**
+         * Details of advanced conditions.
+         */
+        accurateRules: outputs.waf.CustomPageAccurateAccurateRule[];
+        /**
+         * The logical relationship of advanced conditions.
+         */
+        logic: number;
+    }
+
+    export interface CustomPageAccurateAccurateRule {
+        /**
+         * The HTTP object to be added to the advanced conditions.
+         */
+        httpObj: string;
+        /**
+         * The matching field for HTTP objects.
+         */
+        objType: number;
+        /**
+         * The logical operator for the condition.
+         */
+        opretar: number;
+        /**
+         * Operate the properties of the http object.
+         */
+        property: number;
+        /**
+         * The value to be matched.
+         */
+        valueString: string;
+    }
+
+    export interface CustomPagesData {
+        /**
+         * Advanced conditions.
+         */
+        accurate: outputs.waf.CustomPagesDataAccurate;
+        /**
+         * Whether to configure advanced conditions.
+         */
+        advanced: number;
+        /**
+         * The layout content of the response page.
+         */
+        body: string;
+        /**
+         * Fill in ALL, which means this rule will take effect on all IP addresses.
+         */
+        clientIp: string;
+        /**
+         * Custom HTTP code returned when the request is blocked. Required if PageMode=0 or 1.
+         */
+        code: string;
+        /**
+         * The layout template of the response page. Required if PageMode=0 or 1.
+         */
+        contentType: string;
+        /**
+         * Rule description.
+         */
+        description: string;
+        /**
+         * Whether to enable the rule.
+         */
+        enable: number;
+        /**
+         * The ID of the advanced conditional rule group.
+         */
+        groupId: number;
+        /**
+         * Request header information.
+         */
+        header: string;
+        /**
+         * The domain names that need to be viewed.
+         */
+        host: string;
+        /**
+         * The ID of rule.
+         */
+        id: number;
+        /**
+         * The ID of Region.
+         */
+        isolationId: string;
+        /**
+         * Rule name.
+         */
+        name: string;
+        /**
+         * The layout template of the response page.
+         */
+        pageMode: number;
+        /**
+         * Action to be taken on requests that match the rule.
+         */
+        policy: number;
+        /**
+         * The path where users should be redirected.
+         */
+        redirectUrl: string;
+        /**
+         * Unique identification of the rules.
+         */
+        ruleTag: string;
+        /**
+         * Rule update time.
+         */
+        updateTime: string;
+        /**
+         * Match the path.
+         */
+        url: string;
+    }
+
+    export interface CustomPagesDataAccurate {
+        /**
+         * Details of advanced conditions.
+         */
+        accurateRules: outputs.waf.CustomPagesDataAccurateAccurateRule[];
+        /**
+         * The logical relationship of advanced conditions.
+         */
+        logic: number;
+    }
+
+    export interface CustomPagesDataAccurateAccurateRule {
+        /**
+         * The HTTP object to be added to the advanced conditions.
+         */
+        httpObj: string;
+        /**
+         * The matching field for HTTP objects.
+         */
+        objType: number;
+        /**
+         * The logical operator for the condition.
+         */
+        opretar: number;
+        /**
+         * Operate the properties of the http object.
+         */
+        property: number;
+        /**
+         * The value to be matched.
+         */
+        valueString: string;
+    }
+
+    export interface DomainsData {
+        /**
+         * Access mode.
+         */
+        accessMode: number;
+        /**
+         * High-defense instance IP.
+         */
+        advancedDefenseIp: string;
+        /**
+         * Whether the API protection policy has been enabled.
+         */
+        apiEnable: number;
+        /**
+         * The status of the attack.
+         */
+        attackStatus: number;
+        /**
+         * Whether to enable the intelligent CC protection strategy.
+         */
+        autoCcEnable: number;
+        /**
+         * The configuration of source station.
+         */
+        backendGroups: outputs.waf.DomainsDataBackendGroup[];
+        /**
+         * Whether the blacklist strategy has been enabled.
+         */
+        blackIpEnable: number;
+        /**
+         * Whether the regional ban strategy has been activated.
+         */
+        blackLctEnable: number;
+        /**
+         * Whether the cc protection strategy has been enabled.
+         */
+        ccEnable: number;
+        /**
+         * When the protocol type is HTTPS, the bound certificate ID needs to be entered.
+         */
+        certificateId: number;
+        /**
+         * The name of the certificate.
+         */
+        certificateName: string;
+        /**
+         * The method of obtaining the client IP.
+         */
+        clientIpLocation: number;
+        /**
+         * The client requests the maximum value of body.
+         */
+        clientMaxBodySize: number;
+        /**
+         * Access port information.
+         */
+        cloudAccessConfigs: outputs.waf.DomainsDataCloudAccessConfig[];
+        /**
+         * The CNAME value generated by the WAF instance.
+         */
+        cname: string;
+        /**
+         * Whether the custom Bot classification strategy has been enabled.
+         */
+        customBotEnable: number;
+        /**
+         * Custom Header.
+         */
+        customHeaders: string[];
+        /**
+         * Whether the custom response interception strategy has been enabled.
+         */
+        customRspEnable: number;
+        /**
+         * The protection mode of the instance.
+         */
+        defenceMode: number;
+        /**
+         * Whether to activate the strategy for preventing the leakage of sensitive information.
+         */
+        dlpEnable: number;
+        /**
+         * The domain name of the protected website that needs to be queried.
+         */
+        domain: string;
+        /**
+         * Whether to enable HTTP 2.0.
+         */
+        enableHttp2: number;
+        /**
+         * Whether it supports protecting IPv6 requests.
+         */
+        enableIpv6: number;
+        /**
+         * The number of long connection multiplexes.
+         */
+        keepAliveRequest: number;
+        /**
+         * Long connection retention time.
+         */
+        keepAliveTimeOut: number;
+        /**
+         * The types of load balancing algorithms.
+         */
+        lbAlgorithm: string;
+        /**
+         * Whether to enable protocol following.
+         */
+        protocolFollow: number;
+        /**
+         * Access port information.
+         */
+        protocolPorts: outputs.waf.DomainsDataProtocolPorts;
+        /**
+         * Access protocol types.
+         */
+        protocols: string;
+        /**
+         * Whether to enable proxy configuration.
+         */
+        proxyConfig: number;
+        /**
+         * The timeout period for establishing a connection between the WAF and the backend server.
+         */
+        proxyConnectTimeOut: number;
+        /**
+         * The number of reusable WAF origin long connections.
+         */
+        proxyKeepAlive: number;
+        /**
+         * Idle long connection timeout period.
+         */
+        proxyKeepAliveTimeOut: number;
+        /**
+         * The timeout period during which WAF reads the response from the backend server.
+         */
+        proxyReadTimeOut: number;
+        /**
+         * The number of retries for WAF back to source.
+         */
+        proxyRetry: number;
+        /**
+         * The timeout period during which the WAF transmits the request to the backend server.
+         */
+        proxyWriteTimeOut: number;
+        /**
+         * Connect to the source return mode.
+         */
+        publicRealServer: number;
+        /**
+         * domain region that need to be protected by WAF.
+         */
+        region: string;
+        /**
+         * The IP of the WAF protection instance.
+         */
+        serverIps: string;
+        /**
+         * WAF source IP.
+         */
+        srcIps: string;
+        /**
+         * Encryption kit.
+         */
+        sslCiphers: string[];
+        /**
+         * TLS protocol version.
+         */
+        sslProtocols: string[];
+        /**
+         * The status of access.
+         */
+        status: number;
+        /**
+         * Whether the managed Bot classification strategy has been enabled.
+         */
+        systemBotEnable: number;
+        /**
+         * Whether to enable the page tamper proof policy.
+         */
+        tamperProofEnable: number;
+        /**
+         * Whether to enable the log service.
+         */
+        tlsEnable: number;
+        /**
+         * The update time.
+         */
+        updateTime: string;
+        /**
+         * The ID of vpc.
+         */
+        vpcId: string;
+        /**
+         * Whether the vulnerability protection strategy has been enabled.
+         */
+        wafEnable: number;
+        /**
+         * Whether to enable the whitening strategy for vulnerability protection requests.
+         */
+        wafWhiteReqEnable: number;
+        /**
+         * Whether the whitelist strategy has been enabled.
+         */
+        whiteEnable: number;
+        /**
+         * Whether to enable the whitening strategy for vulnerability protection fields.
+         */
+        whiteFieldEnable: number;
+    }
+
+    export interface DomainsDataBackendGroup {
+        /**
+         * Access port number.
+         */
+        accessPorts: number[];
+        /**
+         * The details of the source station group.
+         */
+        backends: outputs.waf.DomainsDataBackendGroupBackend[];
+        /**
+         * Source station group name. Works only on modified scenes.
+         */
+        name: string;
+    }
+
+    export interface DomainsDataBackendGroupBackend {
+        /**
+         * Source station IP address.
+         */
+        ip: string;
+        /**
+         * The port number corresponding to the listener.
+         */
+        port: number;
+        /**
+         * The type of Listener protocol.
+         */
+        protocol: string;
+        /**
+         * The weight of the source station rules.
+         */
+        weight: number;
+    }
+
+    export interface DomainsDataCloudAccessConfig {
+        /**
+         * The access protocol needs to be consistent with the monitoring protocol.
+         */
+        accessProtocol: string;
+        /**
+         * The ID of instance.
+         */
+        instanceId: string;
+        /**
+         * The ID of listener.
+         */
+        listenerId: string;
+        /**
+         * The port number corresponding to the listener.
+         */
+        port: string;
+        /**
+         * The type of Listener protocol.
+         */
+        protocol: string;
+    }
+
+    export interface DomainsDataProtocolPorts {
+        /**
+         * Ports supported by the HTTP protocol.
+         */
+        http: number[];
+        /**
+         * Ports supported by the HTTPs protocol.
+         */
+        https: number[];
+    }
+
+    export interface GetAclRulesRule {
+        /**
+         * Advanced conditions.
+         */
+        accurateGroup: outputs.waf.GetAclRulesRuleAccurateGroup;
+        /**
+         * Action to be taken on requests that match the rule.
+         */
+        action: string;
+        /**
+         * Whether to set advanced conditions.
+         */
+        advanced: number;
+        /**
+         * IP address.
+         */
+        clientIp: string;
+        /**
+         * Rule description.
+         */
+        description: string;
+        /**
+         * The enabled status of the rule.
+         */
+        enable: number;
+        /**
+         * Type of domain name addition.
+         */
+        hostAddType: number;
+        /**
+         * The ID of host group.
+         */
+        hostGroupIds: number[];
+        /**
+         * The list of domain name groups.
+         */
+        hostGroups: outputs.waf.GetAclRulesRuleHostGroup[];
+        /**
+         * Single or multiple domain names are supported.
+         */
+        hostLists: string[];
+        /**
+         * Rule ID.
+         */
+        id: number;
+        /**
+         * Type of IP address addition.
+         */
+        ipAddType: number;
+        /**
+         * The ID of the IP address group.
+         */
+        ipGroupIds: number[];
+        /**
+         * The list of domain name groups.
+         */
+        ipGroups: outputs.waf.GetAclRulesRuleIpGroup[];
+        /**
+         * Single or multiple IP addresses are supported.
+         */
+        ipLists: string[];
+        /**
+         * Country or region code.
+         */
+        ipLocationCountries: string[];
+        /**
+         * Domestic region code.
+         */
+        ipLocationSubregions: string[];
+        /**
+         * Rule name.
+         */
+        name: string;
+        /**
+         * Rule unique identifier, precise search.
+         */
+        ruleTag: string;
+        /**
+         * Update time of the rule.
+         */
+        updateTime: string;
+        /**
+         * The path of Matching.
+         */
+        url: string;
+    }
+
+    export interface GetAclRulesRuleAccurateGroup {
+        /**
+         * Details of advanced conditions.
+         */
+        accurateRules: outputs.waf.GetAclRulesRuleAccurateGroupAccurateRule[];
+        /**
+         * The logical relationship of advanced conditions.
+         */
+        logic: number;
+    }
+
+    export interface GetAclRulesRuleAccurateGroupAccurateRule {
+        /**
+         * The HTTP object to be added to the advanced conditions.
+         */
+        httpObj: string;
+        /**
+         * The matching field for HTTP objects.
+         */
+        objType: number;
+        /**
+         * The logical operator for the condition.
+         */
+        opretar: number;
+        /**
+         * Operate the properties of the http object.
+         */
+        property: number;
+        /**
+         * The value to be matched.
+         */
+        valueString: string;
+    }
+
+    export interface GetAclRulesRuleHostGroup {
+        /**
+         * The ID of host group.
+         */
+        hostGroupId: number;
+        /**
+         * Rule name.
+         */
+        name: string;
+    }
+
+    export interface GetAclRulesRuleIpGroup {
+        /**
+         * The ID of the IP address group.
+         */
+        ipGroupId: number;
+        /**
+         * Rule name.
+         */
+        name: string;
+    }
+
+    export interface GetBotAnalyseProtectRulesData {
+        /**
+         * The number of statistical protection rules enabled under the current domain name.
+         */
+        enableCount: number;
+        /**
+         * Protective path.
+         */
+        path: string;
+        /**
+         * Details of the rule group.
+         */
+        ruleGroups: outputs.waf.GetBotAnalyseProtectRulesDataRuleGroup[];
+        /**
+         * The total count of query.
+         */
+        totalCount: number;
+    }
+
+    export interface GetBotAnalyseProtectRulesDataRuleGroup {
+        /**
+         * Rule group information.
+         */
+        group: outputs.waf.GetBotAnalyseProtectRulesDataRuleGroupGroup;
+        /**
+         * Specific rule information within the rule group.
+         */
+        rules: outputs.waf.GetBotAnalyseProtectRulesDataRuleGroupRule[];
+    }
+
+    export interface GetBotAnalyseProtectRulesDataRuleGroupGroup {
+        /**
+         * After the rule creation is completed, the priority of the automatically generated rule group.
+         */
+        accurateGroupPriority: number;
+        /**
+         * Request characteristic information of the rule group.
+         */
+        accurateRules: outputs.waf.GetBotAnalyseProtectRulesDataRuleGroupGroupAccurateRule[];
+        /**
+         * Rule unique identifier.
+         */
+        id: number;
+        /**
+         * In the rule group, the high-level conditional operation relationships corresponding to each rule.
+         */
+        logic: number;
+    }
+
+    export interface GetBotAnalyseProtectRulesDataRuleGroupGroupAccurateRule {
+        /**
+         * Custom object.
+         */
+        httpObj: string;
+        /**
+         * matching field.
+         */
+        objType: number;
+        /**
+         * The logical operator for the condition.
+         */
+        opretar: number;
+        /**
+         * Operate the properties of the http object.
+         */
+        property: number;
+        /**
+         * The value to be matched.
+         */
+        valueString: string;
+    }
+
+    export interface GetBotAnalyseProtectRulesDataRuleGroupRule {
+        /**
+         * Advanced conditions.
+         */
+        accurateGroup: outputs.waf.GetBotAnalyseProtectRulesDataRuleGroupRuleAccurateGroup;
+        /**
+         * After the rule creation is completed, the priority of the automatically generated rule group.
+         */
+        accurateGroupPriority: number;
+        /**
+         * Perform actions after human-machine verification /JS challenges.
+         */
+        actionAfterVerification: number;
+        /**
+         * perform the action.
+         */
+        actionType: number;
+        /**
+         * Limit the duration.
+         */
+        effectTime: number;
+        /**
+         * Whether to enable the rules.
+         */
+        enable: number;
+        /**
+         * Exemption time.
+         */
+        exemptionTime: number;
+        /**
+         * statistical object.
+         */
+        field: string;
+        /**
+         * Website domain names that require the setting of protection rules.
+         */
+        host: string;
+        /**
+         * Rule unique identifier.
+         */
+        id: number;
+        /**
+         * The name of the rule.
+         */
+        name: string;
+        /**
+         * JS challenge/human-machine verification pass rate.
+         */
+        passRatio: number;
+        /**
+         * Protective path.
+         */
+        path: string;
+        /**
+         * Threshold of path access times.
+         */
+        pathThreshold: number;
+        /**
+         * Rule execution priority.
+         */
+        rulePriority: number;
+        /**
+         * Unique identification of rules.
+         */
+        ruleTag: string;
+        /**
+         * The IP proportion of the same statistical object.
+         */
+        singleProportion: number;
+        /**
+         * The maximum number of ips for the same statistical object.
+         */
+        singleThreshold: number;
+        /**
+         * The duration of the statistics.
+         */
+        statisticalDuration: number;
+        /**
+         * Statistical content method.
+         */
+        statisticalType: number;
+        /**
+         * Rule update time.
+         */
+        updateTime: string;
+    }
+
+    export interface GetBotAnalyseProtectRulesDataRuleGroupRuleAccurateGroup {
+        /**
+         * After the rule creation is completed, the priority of the automatically generated rule group.
+         */
+        accurateGroupPriority: number;
+        /**
+         * Request characteristic information of the rule group.
+         */
+        accurateRules: outputs.waf.GetBotAnalyseProtectRulesDataRuleGroupRuleAccurateGroupAccurateRule[];
+        /**
+         * Rule unique identifier.
+         */
+        id: number;
+        /**
+         * In the rule group, the high-level conditional operation relationships corresponding to each rule.
+         */
+        logic: number;
+    }
+
+    export interface GetBotAnalyseProtectRulesDataRuleGroupRuleAccurateGroupAccurateRule {
+        /**
+         * Custom object.
+         */
+        httpObj: string;
+        /**
+         * matching field.
+         */
+        objType: number;
+        /**
+         * The logical operator for the condition.
+         */
+        opretar: number;
+        /**
+         * Operate the properties of the http object.
+         */
+        property: number;
+        /**
+         * The value to be matched.
+         */
+        valueString: string;
+    }
+
+    export interface GetCcRulesData {
+        /**
+         * The total number of enabled rules within the rule group.
+         */
+        enableCount: number;
+        /**
+         * The creation time of the rule group.
+         */
+        insertTime: string;
+        /**
+         * Details of the rule group.
+         */
+        ruleGroups: outputs.waf.GetCcRulesDataRuleGroup[];
+        /**
+         * The total count of query.
+         */
+        totalCount: number;
+        /**
+         * Fuzzy search by the requested path.
+         */
+        url: string;
+    }
+
+    export interface GetCcRulesDataRuleGroup {
+        /**
+         * Rule group information.
+         */
+        group: outputs.waf.GetCcRulesDataRuleGroupGroup;
+        /**
+         * Specific rule information within the rule group.
+         */
+        rules: outputs.waf.GetCcRulesDataRuleGroupRule[];
+    }
+
+    export interface GetCcRulesDataRuleGroupGroup {
+        /**
+         * After the rule creation is completed, the priority of the automatically generated rule group.
+         */
+        accurateGroupPriority: number;
+        /**
+         * Request characteristic information of the rule group.
+         */
+        accurateRules: outputs.waf.GetCcRulesDataRuleGroupGroupAccurateRule[];
+        /**
+         * The ID of Rule group.
+         */
+        id: number;
+        /**
+         * In the rule group, the high-level conditional operation relationships corresponding to each rule.
+         */
+        logic: number;
+    }
+
+    export interface GetCcRulesDataRuleGroupGroupAccurateRule {
+        /**
+         * Custom object.
+         */
+        httpObj: string;
+        /**
+         * matching field.
+         */
+        objType: number;
+        /**
+         * The logical operator for the condition.
+         */
+        opretar: number;
+        /**
+         * Operate the properties of the http object.
+         */
+        property: number;
+        /**
+         * The value to be matched.
+         */
+        valueString: string;
+    }
+
+    export interface GetCcRulesDataRuleGroupRule {
+        /**
+         * Advanced conditions.
+         */
+        accurateGroup: outputs.waf.GetCcRulesDataRuleGroupRuleAccurateGroup;
+        /**
+         * After the rule creation is completed, the priority of the automatically generated rule group.
+         */
+        accurateGroupPriority: number;
+        /**
+         * The actions performed on subsequent requests after meeting the statistical conditions.
+         */
+        ccType: number;
+        /**
+         * The statistical period of the strategy.
+         */
+        countTime: number;
+        /**
+         * Details of the periodic loop configuration.
+         */
+        cronConfs: outputs.waf.GetCcRulesDataRuleGroupRuleCronConf[];
+        /**
+         * Whether to set the cycle to take effect.
+         */
+        cronEnable: number;
+        /**
+         * Limit the duration, that is, the effective duration of the action.
+         */
+        effectTime: number;
+        /**
+         * Whether the rule is enabled.
+         */
+        enable: number;
+        /**
+         * Strategy exemption time.
+         */
+        exemptionTime: number;
+        /**
+         * statistical object.
+         */
+        field: string;
+        /**
+         * Website domain names that require the setting of protection rules.
+         */
+        host: string;
+        /**
+         * The ID of Rule group.
+         */
+        id: number;
+        /**
+         * The Name of Rule group.
+         */
+        name: string;
+        /**
+         * The threshold of the number of requests for path access.
+         */
+        pathThreshold: number;
+        /**
+         * Rule execution priority.
+         */
+        rulePriority: number;
+        /**
+         * Search precisely according to the rule ID.
+         */
+        ruleTag: string;
+        /**
+         * The threshold of the number of visits to each statistical object.
+         */
+        singleThreshold: number;
+        /**
+         * Rule update time.
+         */
+        updateTime: string;
+        /**
+         * Fuzzy search by the requested path.
+         */
+        url: string;
+    }
+
+    export interface GetCcRulesDataRuleGroupRuleAccurateGroup {
+        /**
+         * After the rule creation is completed, the priority of the automatically generated rule group.
+         */
+        accurateGroupPriority: number;
+        /**
+         * Request characteristic information of the rule group.
+         */
+        accurateRules: outputs.waf.GetCcRulesDataRuleGroupRuleAccurateGroupAccurateRule[];
+        /**
+         * The ID of Rule group.
+         */
+        id: number;
+        /**
+         * In the rule group, the high-level conditional operation relationships corresponding to each rule.
+         */
+        logic: number;
+    }
+
+    export interface GetCcRulesDataRuleGroupRuleAccurateGroupAccurateRule {
+        /**
+         * Custom object.
+         */
+        httpObj: string;
+        /**
+         * matching field.
+         */
+        objType: number;
+        /**
+         * The logical operator for the condition.
+         */
+        opretar: number;
+        /**
+         * Operate the properties of the http object.
+         */
+        property: number;
+        /**
+         * The value to be matched.
+         */
+        valueString: string;
+    }
+
+    export interface GetCcRulesDataRuleGroupRuleCronConf {
+        /**
+         * The weekly cycle days and cycle time periods.
+         */
+        crontab: string;
+        /**
+         * The threshold of the number of requests for path access.
+         */
+        pathThreshold: number;
+        /**
+         * The threshold of the number of visits to each statistical object.
+         */
+        singleThreshold: number;
+    }
+
+    export interface GetCustomBotsData {
+        /**
+         * Advanced conditions.
+         */
+        accurate: outputs.waf.GetCustomBotsDataAccurate;
+        /**
+         * The execution action of the Bot.
+         */
+        action: string;
+        /**
+         * Whether to set advanced conditions.
+         */
+        advanced: number;
+        /**
+         * bot name.
+         */
+        botType: string;
+        /**
+         * The description of bot.
+         */
+        description: string;
+        /**
+         * Whether to enable bot.
+         */
+        enable: number;
+        /**
+         * The actual count bits of the rule unique identifier (corresponding to the RuleTag).
+         */
+        id: number;
+        /**
+         * Rule unique identifier.
+         */
+        ruleTag: string;
+        /**
+         * The update time.
+         */
+        updateTime: string;
+    }
+
+    export interface GetCustomBotsDataAccurate {
+        /**
+         * Details of advanced conditions.
+         */
+        accurateRules: outputs.waf.GetCustomBotsDataAccurateAccurateRule[];
+        /**
+         * The logical relationship of advanced conditions.
+         */
+        logic: number;
+    }
+
+    export interface GetCustomBotsDataAccurateAccurateRule {
+        /**
+         * The HTTP object to be added to the advanced conditions.
+         */
+        httpObj: string;
+        /**
+         * The matching field for HTTP objects.
+         */
+        objType: number;
+        /**
+         * The logical operator for the condition.
+         */
+        opretar: number;
+        /**
+         * Operate the properties of the http object.
+         */
+        property: number;
+        /**
+         * The value to be matched.
+         */
+        valueString: string;
+    }
+
+    export interface GetCustomPagesData {
+        /**
+         * Advanced conditions.
+         */
+        accurate: outputs.waf.GetCustomPagesDataAccurate;
+        /**
+         * Whether to configure advanced conditions.
+         */
+        advanced: number;
+        /**
+         * The layout content of the response page.
+         */
+        body: string;
+        /**
+         * Fill in ALL, which means this rule will take effect on all IP addresses.
+         */
+        clientIp: string;
+        /**
+         * Custom HTTP code returned when the request is blocked. Required if PageMode=0 or 1.
+         */
+        code: string;
+        /**
+         * The layout template of the response page. Required if PageMode=0 or 1.
+         */
+        contentType: string;
+        /**
+         * Rule description.
+         */
+        description: string;
+        /**
+         * Whether to enable the rule.
+         */
+        enable: number;
+        /**
+         * The ID of the advanced conditional rule group.
+         */
+        groupId: number;
+        /**
+         * Request header information.
+         */
+        header: string;
+        /**
+         * The domain names that need to be viewed.
+         */
+        host: string;
+        /**
+         * The ID of rule.
+         */
+        id: number;
+        /**
+         * The ID of Region.
+         */
+        isolationId: string;
+        /**
+         * Rule name.
+         */
+        name: string;
+        /**
+         * The layout template of the response page.
+         */
+        pageMode: number;
+        /**
+         * Action to be taken on requests that match the rule.
+         */
+        policy: number;
+        /**
+         * The path where users should be redirected.
+         */
+        redirectUrl: string;
+        /**
+         * Unique identification of the rules.
+         */
+        ruleTag: string;
+        /**
+         * Rule update time.
+         */
+        updateTime: string;
+        /**
+         * Match the path.
+         */
+        url: string;
+    }
+
+    export interface GetCustomPagesDataAccurate {
+        /**
+         * Details of advanced conditions.
+         */
+        accurateRules: outputs.waf.GetCustomPagesDataAccurateAccurateRule[];
+        /**
+         * The logical relationship of advanced conditions.
+         */
+        logic: number;
+    }
+
+    export interface GetCustomPagesDataAccurateAccurateRule {
+        /**
+         * The HTTP object to be added to the advanced conditions.
+         */
+        httpObj: string;
+        /**
+         * The matching field for HTTP objects.
+         */
+        objType: number;
+        /**
+         * The logical operator for the condition.
+         */
+        opretar: number;
+        /**
+         * Operate the properties of the http object.
+         */
+        property: number;
+        /**
+         * The value to be matched.
+         */
+        valueString: string;
+    }
+
+    export interface GetDomainsData {
+        /**
+         * Access mode.
+         */
+        accessMode: number;
+        /**
+         * High-defense instance IP.
+         */
+        advancedDefenseIp: string;
+        /**
+         * Whether the API protection policy has been enabled.
+         */
+        apiEnable: number;
+        /**
+         * The status of the attack.
+         */
+        attackStatus: number;
+        /**
+         * Whether to enable the intelligent CC protection strategy.
+         */
+        autoCcEnable: number;
+        /**
+         * The configuration of source station.
+         */
+        backendGroups: outputs.waf.GetDomainsDataBackendGroup[];
+        /**
+         * Whether the blacklist strategy has been enabled.
+         */
+        blackIpEnable: number;
+        /**
+         * Whether the regional ban strategy has been activated.
+         */
+        blackLctEnable: number;
+        /**
+         * Whether the cc protection strategy has been enabled.
+         */
+        ccEnable: number;
+        /**
+         * When the protocol type is HTTPS, the bound certificate ID needs to be entered.
+         */
+        certificateId: number;
+        /**
+         * The name of the certificate.
+         */
+        certificateName: string;
+        /**
+         * The method of obtaining the client IP.
+         */
+        clientIpLocation: number;
+        /**
+         * The client requests the maximum value of body.
+         */
+        clientMaxBodySize: number;
+        /**
+         * Access port information.
+         */
+        cloudAccessConfigs: outputs.waf.GetDomainsDataCloudAccessConfig[];
+        /**
+         * The CNAME value generated by the WAF instance.
+         */
+        cname: string;
+        /**
+         * Whether the custom Bot classification strategy has been enabled.
+         */
+        customBotEnable: number;
+        /**
+         * Custom Header.
+         */
+        customHeaders: string[];
+        /**
+         * Whether the custom response interception strategy has been enabled.
+         */
+        customRspEnable: number;
+        /**
+         * The protection mode of the instance.
+         */
+        defenceMode: number;
+        /**
+         * Whether to activate the strategy for preventing the leakage of sensitive information.
+         */
+        dlpEnable: number;
+        /**
+         * The domain name of the protected website that needs to be queried.
+         */
+        domain: string;
+        /**
+         * Whether to enable HTTP 2.0.
+         */
+        enableHttp2: number;
+        /**
+         * Whether it supports protecting IPv6 requests.
+         */
+        enableIpv6: number;
+        /**
+         * The number of long connection multiplexes.
+         */
+        keepAliveRequest: number;
+        /**
+         * Long connection retention time.
+         */
+        keepAliveTimeOut: number;
+        /**
+         * The types of load balancing algorithms.
+         */
+        lbAlgorithm: string;
+        /**
+         * Whether to enable protocol following.
+         */
+        protocolFollow: number;
+        /**
+         * Access port information.
+         */
+        protocolPorts: outputs.waf.GetDomainsDataProtocolPorts;
+        /**
+         * Access protocol types.
+         */
+        protocols: string;
+        /**
+         * Whether to enable proxy configuration.
+         */
+        proxyConfig: number;
+        /**
+         * The timeout period for establishing a connection between the WAF and the backend server.
+         */
+        proxyConnectTimeOut: number;
+        /**
+         * The number of reusable WAF origin long connections.
+         */
+        proxyKeepAlive: number;
+        /**
+         * Idle long connection timeout period.
+         */
+        proxyKeepAliveTimeOut: number;
+        /**
+         * The timeout period during which WAF reads the response from the backend server.
+         */
+        proxyReadTimeOut: number;
+        /**
+         * The number of retries for WAF back to source.
+         */
+        proxyRetry: number;
+        /**
+         * The timeout period during which the WAF transmits the request to the backend server.
+         */
+        proxyWriteTimeOut: number;
+        /**
+         * Connect to the source return mode.
+         */
+        publicRealServer: number;
+        /**
+         * domain region that need to be protected by WAF.
+         */
+        region: string;
+        /**
+         * The IP of the WAF protection instance.
+         */
+        serverIps: string;
+        /**
+         * WAF source IP.
+         */
+        srcIps: string;
+        /**
+         * Encryption kit.
+         */
+        sslCiphers: string[];
+        /**
+         * TLS protocol version.
+         */
+        sslProtocols: string[];
+        /**
+         * The status of access.
+         */
+        status: number;
+        /**
+         * Whether the managed Bot classification strategy has been enabled.
+         */
+        systemBotEnable: number;
+        /**
+         * Whether to enable the page tamper proof policy.
+         */
+        tamperProofEnable: number;
+        /**
+         * Whether to enable the log service.
+         */
+        tlsEnable: number;
+        /**
+         * The update time.
+         */
+        updateTime: string;
+        /**
+         * The ID of vpc.
+         */
+        vpcId: string;
+        /**
+         * Whether the vulnerability protection strategy has been enabled.
+         */
+        wafEnable: number;
+        /**
+         * Whether to enable the whitening strategy for vulnerability protection requests.
+         */
+        wafWhiteReqEnable: number;
+        /**
+         * Whether the whitelist strategy has been enabled.
+         */
+        whiteEnable: number;
+        /**
+         * Whether to enable the whitening strategy for vulnerability protection fields.
+         */
+        whiteFieldEnable: number;
+    }
+
+    export interface GetDomainsDataBackendGroup {
+        /**
+         * Access port number.
+         */
+        accessPorts: number[];
+        /**
+         * The details of the source station group.
+         */
+        backends: outputs.waf.GetDomainsDataBackendGroupBackend[];
+        /**
+         * Source station group name. Works only on modified scenes.
+         */
+        name: string;
+    }
+
+    export interface GetDomainsDataBackendGroupBackend {
+        /**
+         * Source station IP address.
+         */
+        ip: string;
+        /**
+         * The port number corresponding to the listener.
+         */
+        port: number;
+        /**
+         * The type of Listener protocol.
+         */
+        protocol: string;
+        /**
+         * The weight of the source station rules.
+         */
+        weight: number;
+    }
+
+    export interface GetDomainsDataCloudAccessConfig {
+        /**
+         * The access protocol needs to be consistent with the monitoring protocol.
+         */
+        accessProtocol: string;
+        /**
+         * The ID of instance.
+         */
+        instanceId: string;
+        /**
+         * The ID of listener.
+         */
+        listenerId: string;
+        /**
+         * The port number corresponding to the listener.
+         */
+        port: string;
+        /**
+         * The type of Listener protocol.
+         */
+        protocol: string;
+    }
+
+    export interface GetDomainsDataProtocolPorts {
+        /**
+         * Ports supported by the HTTP protocol.
+         */
+        http: number[];
+        /**
+         * Ports supported by the HTTPs protocol.
+         */
+        https: number[];
+    }
+
+    export interface GetHostGroupsHostGroupList {
+        /**
+         * Domain name group description.
+         */
+        description: string;
+        /**
+         * The number of domain names contained in the domain name group.
+         */
+        hostCount: number;
+        /**
+         * The ID of the domain name group.
+         */
+        hostGroupId: number;
+        /**
+         * Domain names that need to be added to this domain name group.
+         */
+        hostLists: string[];
+        /**
+         * The name of the domain name group.
+         */
+        name: string;
+        /**
+         * The list of associated rules.
+         */
+        relatedRules: outputs.waf.GetHostGroupsHostGroupListRelatedRule[];
+        /**
+         * Domain name group update time.
+         */
+        updateTime: string;
+    }
+
+    export interface GetHostGroupsHostGroupListRelatedRule {
+        /**
+         * The name of the rule.
+         */
+        ruleName: string;
+        /**
+         * The rule ID associated with domain name groups.
+         */
+        ruleTag: string;
+        /**
+         * The type of the rule.
+         */
+        ruleType: string;
+    }
+
+    export interface GetIpGroupsIpGroupList {
+        /**
+         * The number of IP addresses within the address group.
+         */
+        ipCount: number;
+        /**
+         * The ID of the ip group.
+         */
+        ipGroupId: number;
+        /**
+         * The IP address to be added.
+         */
+        ipLists: string[];
+        /**
+         * The name of the ip group.
+         */
+        name: string;
+        /**
+         * The list of associated rules.
+         */
+        relatedRules: outputs.waf.GetIpGroupsIpGroupListRelatedRule[];
+        /**
+         * ip group update time.
+         */
+        updateTime: string;
+    }
+
+    export interface GetIpGroupsIpGroupListRelatedRule {
+        /**
+         * The information of the protected domain names associated with the rules.
+         */
+        host: string;
+        /**
+         * The name of the rule.
+         */
+        ruleName: string;
+        /**
+         * Query the association rule ID.
+         */
+        ruleTag: string;
+        /**
+         * The type of the rule.
+         */
+        ruleType: string;
+    }
+
+    export interface GetProhibitionsIpAggGroup {
+        /**
+         * The number of attacks on the source IP of this attack.
+         */
+        dropCount: number;
+        /**
+         * Attack source IP.
+         */
+        ip: string;
+        /**
+         * Attack type filtering.
+         */
+        reason: outputs.waf.GetProhibitionsIpAggGroupReason;
+        /**
+         * Name of the ban rule.
+         */
+        ruleName: string;
+        /**
+         * Ban rule ID.
+         */
+        ruleTag: string;
+        /**
+         * IP banned status.
+         */
+        status: number;
+        /**
+         * Status update time.
+         */
+        updateTime: string;
+    }
+
+    export interface GetProhibitionsIpAggGroupReason {
+        /**
+         * The number of visits to the blacklist.
+         */
+        black: number;
+        /**
+         * The number of Bot attacks.
+         */
+        bot: number;
+        /**
+         * The number of geographical location access control.
+         */
+        geoBlack: number;
+        /**
+         * The number of CC attacks.
+         */
+        httpFlood: number;
+        /**
+         * The number of API parameter exceptions.
+         */
+        paramAbnormal: number;
+        /**
+         * The number of API routing exceptions.
+         */
+        routeAbnormal: number;
+        /**
+         * The number of times sensitive information is leaked.
+         */
+        sensitiveInfo: number;
+        /**
+         * The number of Web vulnerability attacks.
+         */
+        webVulnerability: number;
+    }
+
+    export interface GetServiceCertificatesData {
+        /**
+         * Associate the domain name of this certificate.
+         */
+        applicableDomains: string;
+        /**
+         * The description of the certificate.
+         */
+        description: string;
+        /**
+         * The expiration time of the certificate.
+         */
+        expireTime: string;
+        /**
+         * The ID of the certificate.
+         */
+        id: number;
+        /**
+         * The time when the certificate was added.
+         */
+        insertTime: string;
+        /**
+         * The name of the certificate.
+         */
+        name: string;
+    }
+
+    export interface GetSystemBotsData {
+        /**
+         * The execution action of the Bot.
+         */
+        action: string;
+        /**
+         * The name of Bot.
+         */
+        botType: string;
+        /**
+         * The description of Bot.
+         */
+        description: string;
+        /**
+         * Whether to enable Bot.
+         */
+        enable: number;
+        /**
+         * The rule ID corresponding to Bot.
+         */
+        ruleTag: string;
+    }
+
+    export interface HostGroupRelatedRule {
+        /**
+         * The name of the rule.
+         */
+        ruleName: string;
+        /**
+         * The ID of the rule.
+         */
+        ruleTag: string;
+        /**
+         * The type of the rule.
+         */
+        ruleType: string;
+    }
+
+    export interface HostGroupsHostGroupList {
+        /**
+         * Domain name group description.
+         */
+        description: string;
+        /**
+         * The number of domain names contained in the domain name group.
+         */
+        hostCount: number;
+        /**
+         * The ID of the domain name group.
+         */
+        hostGroupId: number;
+        /**
+         * Domain names that need to be added to this domain name group.
+         */
+        hostLists: string[];
+        /**
+         * The name of the domain name group.
+         */
+        name: string;
+        /**
+         * The list of associated rules.
+         */
+        relatedRules: outputs.waf.HostGroupsHostGroupListRelatedRule[];
+        /**
+         * Domain name group update time.
+         */
+        updateTime: string;
+    }
+
+    export interface HostGroupsHostGroupListRelatedRule {
+        /**
+         * The name of the rule.
+         */
+        ruleName: string;
+        /**
+         * The rule ID associated with domain name groups.
+         */
+        ruleTag: string;
+        /**
+         * The type of the rule.
+         */
+        ruleType: string;
+    }
+
+    export interface IpGroupRelatedRule {
+        /**
+         * The information of the protected domain names associated with the rules.
+         */
+        host: string;
+        /**
+         * The name of the rule.
+         */
+        ruleName: string;
+        /**
+         * The ID of the rule.
+         */
+        ruleTag: string;
+        /**
+         * The type of the rule.
+         */
+        ruleType: string;
+    }
+
+    export interface IpGroupsIpGroupList {
+        /**
+         * The number of IP addresses within the address group.
+         */
+        ipCount: number;
+        /**
+         * The ID of the ip group.
+         */
+        ipGroupId: number;
+        /**
+         * The IP address to be added.
+         */
+        ipLists: string[];
+        /**
+         * The name of the ip group.
+         */
+        name: string;
+        /**
+         * The list of associated rules.
+         */
+        relatedRules: outputs.waf.IpGroupsIpGroupListRelatedRule[];
+        /**
+         * ip group update time.
+         */
+        updateTime: string;
+    }
+
+    export interface IpGroupsIpGroupListRelatedRule {
+        /**
+         * The information of the protected domain names associated with the rules.
+         */
+        host: string;
+        /**
+         * The name of the rule.
+         */
+        ruleName: string;
+        /**
+         * Query the association rule ID.
+         */
+        ruleTag: string;
+        /**
+         * The type of the rule.
+         */
+        ruleType: string;
+    }
+
+    export interface ProhibitionsIpAggGroup {
+        /**
+         * The number of attacks on the source IP of this attack.
+         */
+        dropCount: number;
+        /**
+         * Attack source IP.
+         */
+        ip: string;
+        /**
+         * Attack type filtering.
+         */
+        reason: outputs.waf.ProhibitionsIpAggGroupReason;
+        /**
+         * Name of the ban rule.
+         */
+        ruleName: string;
+        /**
+         * Ban rule ID.
+         */
+        ruleTag: string;
+        /**
+         * IP banned status.
+         */
+        status: number;
+        /**
+         * Status update time.
+         */
+        updateTime: string;
+    }
+
+    export interface ProhibitionsIpAggGroupReason {
+        /**
+         * The number of visits to the blacklist.
+         */
+        black: number;
+        /**
+         * The number of Bot attacks.
+         */
+        bot: number;
+        /**
+         * The number of geographical location access control.
+         */
+        geoBlack: number;
+        /**
+         * The number of CC attacks.
+         */
+        httpFlood: number;
+        /**
+         * The number of API parameter exceptions.
+         */
+        paramAbnormal: number;
+        /**
+         * The number of API routing exceptions.
+         */
+        routeAbnormal: number;
+        /**
+         * The number of times sensitive information is leaked.
+         */
+        sensitiveInfo: number;
+        /**
+         * The number of Web vulnerability attacks.
+         */
+        webVulnerability: number;
+    }
+
+    export interface ServiceCertificatesData {
+        /**
+         * Associate the domain name of this certificate.
+         */
+        applicableDomains: string;
+        /**
+         * The description of the certificate.
+         */
+        description: string;
+        /**
+         * The expiration time of the certificate.
+         */
+        expireTime: string;
+        /**
+         * The ID of the certificate.
+         */
+        id: number;
+        /**
+         * The time when the certificate was added.
+         */
+        insertTime: string;
+        /**
+         * The name of the certificate.
+         */
+        name: string;
+    }
+
+    export interface SystemBotsData {
+        /**
+         * The execution action of the Bot.
+         */
+        action: string;
+        /**
+         * The name of Bot.
+         */
+        botType: string;
+        /**
+         * The description of Bot.
+         */
+        description: string;
+        /**
+         * Whether to enable Bot.
+         */
+        enable: number;
+        /**
+         * The rule ID corresponding to Bot.
+         */
+        ruleTag: string;
+    }
+
+    export interface VulnerabilityAdvanceConfig {
+        /**
+         * Configuration of the automatic blocking capability for directory traversal.
+         */
+        autoTraversal: outputs.waf.VulnerabilityAdvanceConfigAutoTraversal;
+        /**
+         * Configuration of high-frequency scanning automatic blocking capability.
+         */
+        freqScan: outputs.waf.VulnerabilityAdvanceConfigFreqScan;
+    }
+
+    export interface VulnerabilityAdvanceConfigAutoTraversal {
+        /**
+         * Rule switch, controlling whether the current rule takes effect.
+         */
+        enable?: boolean;
+        /**
+         * Rule detail.
+         */
+        rule?: outputs.waf.VulnerabilityAdvanceConfigAutoTraversalRule;
+        /**
+         * Directory traversal automatically blocks the rule label, that is, the complete rule ID.
+         */
+        ruleTag?: string;
+    }
+
+    export interface VulnerabilityAdvanceConfigAutoTraversalRule {
+        /**
+         * Disposal action.
+         */
+        action: number;
+        /**
+         * Disposal action.
+         */
+        countTime: number;
+        /**
+         * Ban time (seconds).
+         */
+        effectTime: number;
+        /**
+         * The body records the units displayed at the front end of the length: s, min, hour, and day.
+         */
+        effectTimeViewUnit: string;
+        /**
+         * statistical object.
+         */
+        field: string;
+        /**
+         * The number of request triggers.
+         */
+        hitRequestCount: number;
+        /**
+         * Hit percentage: 0-99.
+         */
+        responseHttpStatusHitPercent: number;
+        /**
+         * Response status code.
+         */
+        responseHttpStatuses: number[];
+    }
+
+    export interface VulnerabilityAdvanceConfigFreqScan {
+        /**
+         * Rule switch, controlling whether the current rule takes effect.
+         */
+        enable?: boolean;
+        /**
+         * Rule detail.
+         */
+        rule?: outputs.waf.VulnerabilityAdvanceConfigFreqScanRule;
+        /**
+         * Directory traversal automatically blocks the rule label, that is, the complete rule ID.
+         */
+        ruleTag?: string;
+    }
+
+    export interface VulnerabilityAdvanceConfigFreqScanRule {
+        /**
+         * Disposal action.
+         */
+        action: number;
+        /**
+         * Disposal action.
+         */
+        countTime: number;
+        /**
+         * Ban time (seconds).
+         */
+        effectTime: number;
+        /**
+         * The body records the units displayed at the front end of the length: s, min, hour, and day.
+         */
+        effectTimeViewUnit: string;
+        /**
+         * statistical object.
+         */
+        field: string;
+        /**
+         * The number of request triggers.
+         */
+        hitRequestCount: number;
+    }
+
+    export interface VulnerabilityRuleDetail {
+        /**
+         * The accuracy of the rules. Only when updating the custom vulnerability rules.
+         */
+        accuracy: number;
+        /**
+         * The ID of CVE. Only when updating the custom vulnerability rules.
+         */
+        cveId: string;
+        /**
+         * The description of the rules. Only when updating the custom vulnerability rules.
+         */
+        description: string;
+        /**
+         * Risk grade. Only when updating the custom vulnerability rules.
+         */
+        riskLevel: number;
+        /**
+         * The name of rule. Only when updating the custom vulnerability rules.
+         */
+        ruleName: string;
+        /**
+         * First-level rule category. Only when updating the custom vulnerability rules.
+         */
+        ruleSetName: string;
+        /**
+         * Rule label, that is, the complete rule ID. Only when updating the custom vulnerability rules.
+         */
+        ruleTag: string;
+        /**
+         * Secondary rule category. Only when updating the custom vulnerability rules.
+         */
+        subcategory: string;
+        /**
+         * The update time of the rules. Only when updating the custom vulnerability rules.
+         */
+        updateTime: string;
+    }
+
+    export interface VulnerabilitySystemRuleSwitch {
+        /**
+         * Custom rule switch.
+         */
+        customSystemRuleSwitch?: number;
+        /**
+         * The ID of rule.
+         */
+        ruleId?: number;
+    }
+
+    export interface WafDomainBackendGroup {
+        /**
+         * Access port number.
+         */
+        accessPorts: number[];
+        /**
+         * The details of the source station group.
+         */
+        backends: outputs.waf.WafDomainBackendGroupBackend[];
+        /**
+         * Source station group name.
+         */
+        name: string;
+    }
+
+    export interface WafDomainBackendGroupBackend {
+        /**
+         * Source station IP address.
+         */
+        ip: string;
+        /**
+         * Source station port number.
+         */
+        port: number;
+        /**
+         * The agreement of Source Station.
+         */
+        protocol: string;
+        /**
+         * The weight of the source station rules.
+         */
+        weight: number;
+    }
+
+    export interface WafDomainCloudAccessConfig {
+        /**
+         * The access protocol needs to be consistent with the monitoring protocol.
+         */
+        accessProtocol: string;
+        /**
+         * The ID of instance.
+         */
+        instanceId: string;
+        /**
+         * The name of instance. Works only on modified scenes.
+         */
+        instanceName: string;
+        /**
+         * The ID of listener.
+         */
+        listenerId: string;
+        /**
+         * Whether the instance is unbound from the alb and is unbound on the ALB side. Works only on modified scenes.
+         */
+        lostAssociationFromAlb: number;
+        /**
+         * The port number corresponding to the listener.
+         */
+        port: string;
+        /**
+         * The type of Listener protocol.
+         */
+        protocol: string;
+    }
+
+    export interface WafDomainExtraDefenceModeLbInstance {
+        /**
+         * Set the protection mode for exceptional ALB instances. Works only on modified scenes.
+         */
+        defenceMode?: number;
+        /**
+         * The Id of ALB instance. Works only on modified scenes.
+         */
+        instanceId?: string;
+    }
+
+    export interface WafDomainProtocolPorts {
+        /**
+         * Ports supported by the HTTP protocol.
+         */
+        http: number[];
+        /**
+         * Ports supported by the HTTPs protocol.
+         */
+        https: number[];
+    }
+
+    export interface WafDomainTlsFieldsConfig {
+        /**
+         * The configuration of Headers. Works only on modified scenes.
+         */
+        headersConfig?: outputs.waf.WafDomainTlsFieldsConfigHeadersConfig;
+    }
+
+    export interface WafDomainTlsFieldsConfigHeadersConfig {
+        /**
+         * Whether the log contains this field. Works only on modified scenes.
+         */
+        enable?: number;
+        /**
+         * For the use of composite fields, exclude the fields in the keyword list from the JSON of the fields. Works only on modified scenes.
+         */
+        excludedKeyLists?: string[];
+        /**
+         * Create statistical indexes for the fields of the list. Works only on modified scenes.
+         */
+        statisticalKeyLists?: string[];
     }
 
 }

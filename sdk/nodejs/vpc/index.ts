@@ -5,6 +5,31 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { CidrBlockAssociateArgs, CidrBlockAssociateState } from "./cidrBlockAssociate";
+export type CidrBlockAssociate = import("./cidrBlockAssociate").CidrBlockAssociate;
+export const CidrBlockAssociate: typeof import("./cidrBlockAssociate").CidrBlockAssociate = null as any;
+utilities.lazyLoad(exports, ["CidrBlockAssociate"], () => require("./cidrBlockAssociate"));
+
+export { FlowLogArgs, FlowLogState } from "./flowLog";
+export type FlowLog = import("./flowLog").FlowLog;
+export const FlowLog: typeof import("./flowLog").FlowLog = null as any;
+utilities.lazyLoad(exports, ["FlowLog"], () => require("./flowLog"));
+
+export { FlowLogActiveArgs, FlowLogActiveState } from "./flowLogActive";
+export type FlowLogActive = import("./flowLogActive").FlowLogActive;
+export const FlowLogActive: typeof import("./flowLogActive").FlowLogActive = null as any;
+utilities.lazyLoad(exports, ["FlowLogActive"], () => require("./flowLogActive"));
+
+export { FlowLogsArgs, FlowLogsResult, FlowLogsOutputArgs } from "./flowLogs";
+export const flowLogs: typeof import("./flowLogs").flowLogs = null as any;
+export const flowLogsOutput: typeof import("./flowLogs").flowLogsOutput = null as any;
+utilities.lazyLoad(exports, ["flowLogs","flowLogsOutput"], () => require("./flowLogs"));
+
+export { GetFlowLogsArgs, GetFlowLogsResult, GetFlowLogsOutputArgs } from "./getFlowLogs";
+export const getFlowLogs: typeof import("./getFlowLogs").getFlowLogs = null as any;
+export const getFlowLogsOutput: typeof import("./getFlowLogs").getFlowLogsOutput = null as any;
+utilities.lazyLoad(exports, ["getFlowLogs","getFlowLogsOutput"], () => require("./getFlowLogs"));
+
 export { GetHaVipsArgs, GetHaVipsResult, GetHaVipsOutputArgs } from "./getHaVips";
 export const getHaVips: typeof import("./getHaVips").getHaVips = null as any;
 export const getHaVipsOutput: typeof import("./getHaVips").getHaVipsOutput = null as any;
@@ -64,6 +89,26 @@ export { GetSubnetsArgs, GetSubnetsResult, GetSubnetsOutputArgs } from "./getSub
 export const getSubnets: typeof import("./getSubnets").getSubnets = null as any;
 export const getSubnetsOutput: typeof import("./getSubnets").getSubnetsOutput = null as any;
 utilities.lazyLoad(exports, ["getSubnets","getSubnetsOutput"], () => require("./getSubnets"));
+
+export { GetTrafficMirrorFilterRulesArgs, GetTrafficMirrorFilterRulesResult, GetTrafficMirrorFilterRulesOutputArgs } from "./getTrafficMirrorFilterRules";
+export const getTrafficMirrorFilterRules: typeof import("./getTrafficMirrorFilterRules").getTrafficMirrorFilterRules = null as any;
+export const getTrafficMirrorFilterRulesOutput: typeof import("./getTrafficMirrorFilterRules").getTrafficMirrorFilterRulesOutput = null as any;
+utilities.lazyLoad(exports, ["getTrafficMirrorFilterRules","getTrafficMirrorFilterRulesOutput"], () => require("./getTrafficMirrorFilterRules"));
+
+export { GetTrafficMirrorFiltersArgs, GetTrafficMirrorFiltersResult, GetTrafficMirrorFiltersOutputArgs } from "./getTrafficMirrorFilters";
+export const getTrafficMirrorFilters: typeof import("./getTrafficMirrorFilters").getTrafficMirrorFilters = null as any;
+export const getTrafficMirrorFiltersOutput: typeof import("./getTrafficMirrorFilters").getTrafficMirrorFiltersOutput = null as any;
+utilities.lazyLoad(exports, ["getTrafficMirrorFilters","getTrafficMirrorFiltersOutput"], () => require("./getTrafficMirrorFilters"));
+
+export { GetTrafficMirrorSessionsArgs, GetTrafficMirrorSessionsResult, GetTrafficMirrorSessionsOutputArgs } from "./getTrafficMirrorSessions";
+export const getTrafficMirrorSessions: typeof import("./getTrafficMirrorSessions").getTrafficMirrorSessions = null as any;
+export const getTrafficMirrorSessionsOutput: typeof import("./getTrafficMirrorSessions").getTrafficMirrorSessionsOutput = null as any;
+utilities.lazyLoad(exports, ["getTrafficMirrorSessions","getTrafficMirrorSessionsOutput"], () => require("./getTrafficMirrorSessions"));
+
+export { GetTrafficMirrorTargetsArgs, GetTrafficMirrorTargetsResult, GetTrafficMirrorTargetsOutputArgs } from "./getTrafficMirrorTargets";
+export const getTrafficMirrorTargets: typeof import("./getTrafficMirrorTargets").getTrafficMirrorTargets = null as any;
+export const getTrafficMirrorTargetsOutput: typeof import("./getTrafficMirrorTargets").getTrafficMirrorTargetsOutput = null as any;
+utilities.lazyLoad(exports, ["getTrafficMirrorTargets","getTrafficMirrorTargetsOutput"], () => require("./getTrafficMirrorTargets"));
 
 export { GetVpcsArgs, GetVpcsResult, GetVpcsOutputArgs } from "./getVpcs";
 export const getVpcs: typeof import("./getVpcs").getVpcs = null as any;
@@ -205,6 +250,46 @@ export const subnets: typeof import("./subnets").subnets = null as any;
 export const subnetsOutput: typeof import("./subnets").subnetsOutput = null as any;
 utilities.lazyLoad(exports, ["subnets","subnetsOutput"], () => require("./subnets"));
 
+export { TrafficMirrorFilterArgs, TrafficMirrorFilterState } from "./trafficMirrorFilter";
+export type TrafficMirrorFilter = import("./trafficMirrorFilter").TrafficMirrorFilter;
+export const TrafficMirrorFilter: typeof import("./trafficMirrorFilter").TrafficMirrorFilter = null as any;
+utilities.lazyLoad(exports, ["TrafficMirrorFilter"], () => require("./trafficMirrorFilter"));
+
+export { TrafficMirrorFilterRuleArgs, TrafficMirrorFilterRuleState } from "./trafficMirrorFilterRule";
+export type TrafficMirrorFilterRule = import("./trafficMirrorFilterRule").TrafficMirrorFilterRule;
+export const TrafficMirrorFilterRule: typeof import("./trafficMirrorFilterRule").TrafficMirrorFilterRule = null as any;
+utilities.lazyLoad(exports, ["TrafficMirrorFilterRule"], () => require("./trafficMirrorFilterRule"));
+
+export { TrafficMirrorFilterRulesArgs, TrafficMirrorFilterRulesResult, TrafficMirrorFilterRulesOutputArgs } from "./trafficMirrorFilterRules";
+export const trafficMirrorFilterRules: typeof import("./trafficMirrorFilterRules").trafficMirrorFilterRules = null as any;
+export const trafficMirrorFilterRulesOutput: typeof import("./trafficMirrorFilterRules").trafficMirrorFilterRulesOutput = null as any;
+utilities.lazyLoad(exports, ["trafficMirrorFilterRules","trafficMirrorFilterRulesOutput"], () => require("./trafficMirrorFilterRules"));
+
+export { TrafficMirrorFiltersArgs, TrafficMirrorFiltersResult, TrafficMirrorFiltersOutputArgs } from "./trafficMirrorFilters";
+export const trafficMirrorFilters: typeof import("./trafficMirrorFilters").trafficMirrorFilters = null as any;
+export const trafficMirrorFiltersOutput: typeof import("./trafficMirrorFilters").trafficMirrorFiltersOutput = null as any;
+utilities.lazyLoad(exports, ["trafficMirrorFilters","trafficMirrorFiltersOutput"], () => require("./trafficMirrorFilters"));
+
+export { TrafficMirrorSessionArgs, TrafficMirrorSessionState } from "./trafficMirrorSession";
+export type TrafficMirrorSession = import("./trafficMirrorSession").TrafficMirrorSession;
+export const TrafficMirrorSession: typeof import("./trafficMirrorSession").TrafficMirrorSession = null as any;
+utilities.lazyLoad(exports, ["TrafficMirrorSession"], () => require("./trafficMirrorSession"));
+
+export { TrafficMirrorSessionsArgs, TrafficMirrorSessionsResult, TrafficMirrorSessionsOutputArgs } from "./trafficMirrorSessions";
+export const trafficMirrorSessions: typeof import("./trafficMirrorSessions").trafficMirrorSessions = null as any;
+export const trafficMirrorSessionsOutput: typeof import("./trafficMirrorSessions").trafficMirrorSessionsOutput = null as any;
+utilities.lazyLoad(exports, ["trafficMirrorSessions","trafficMirrorSessionsOutput"], () => require("./trafficMirrorSessions"));
+
+export { TrafficMirrorTargetArgs, TrafficMirrorTargetState } from "./trafficMirrorTarget";
+export type TrafficMirrorTarget = import("./trafficMirrorTarget").TrafficMirrorTarget;
+export const TrafficMirrorTarget: typeof import("./trafficMirrorTarget").TrafficMirrorTarget = null as any;
+utilities.lazyLoad(exports, ["TrafficMirrorTarget"], () => require("./trafficMirrorTarget"));
+
+export { TrafficMirrorTargetsArgs, TrafficMirrorTargetsResult, TrafficMirrorTargetsOutputArgs } from "./trafficMirrorTargets";
+export const trafficMirrorTargets: typeof import("./trafficMirrorTargets").trafficMirrorTargets = null as any;
+export const trafficMirrorTargetsOutput: typeof import("./trafficMirrorTargets").trafficMirrorTargetsOutput = null as any;
+utilities.lazyLoad(exports, ["trafficMirrorTargets","trafficMirrorTargetsOutput"], () => require("./trafficMirrorTargets"));
+
 export { VpcArgs, VpcState } from "./vpc";
 export type Vpc = import("./vpc").Vpc;
 export const Vpc: typeof import("./vpc").Vpc = null as any;
@@ -220,6 +305,12 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "volcengine:vpc/cidrBlockAssociate:CidrBlockAssociate":
+                return new CidrBlockAssociate(name, <any>undefined, { urn })
+            case "volcengine:vpc/flowLog:FlowLog":
+                return new FlowLog(name, <any>undefined, { urn })
+            case "volcengine:vpc/flowLogActive:FlowLogActive":
+                return new FlowLogActive(name, <any>undefined, { urn })
             case "volcengine:vpc/haVip:HaVip":
                 return new HaVip(name, <any>undefined, { urn })
             case "volcengine:vpc/haVipAssociate:HaVipAssociate":
@@ -250,6 +341,14 @@ const _module = {
                 return new SecurityGroupRule(name, <any>undefined, { urn })
             case "volcengine:vpc/subnet:Subnet":
                 return new Subnet(name, <any>undefined, { urn })
+            case "volcengine:vpc/trafficMirrorFilter:TrafficMirrorFilter":
+                return new TrafficMirrorFilter(name, <any>undefined, { urn })
+            case "volcengine:vpc/trafficMirrorFilterRule:TrafficMirrorFilterRule":
+                return new TrafficMirrorFilterRule(name, <any>undefined, { urn })
+            case "volcengine:vpc/trafficMirrorSession:TrafficMirrorSession":
+                return new TrafficMirrorSession(name, <any>undefined, { urn })
+            case "volcengine:vpc/trafficMirrorTarget:TrafficMirrorTarget":
+                return new TrafficMirrorTarget(name, <any>undefined, { urn })
             case "volcengine:vpc/vpc:Vpc":
                 return new Vpc(name, <any>undefined, { urn })
             default:
@@ -257,6 +356,9 @@ const _module = {
         }
     },
 };
+pulumi.runtime.registerResourceModule("volcengine", "vpc/cidrBlockAssociate", _module)
+pulumi.runtime.registerResourceModule("volcengine", "vpc/flowLog", _module)
+pulumi.runtime.registerResourceModule("volcengine", "vpc/flowLogActive", _module)
 pulumi.runtime.registerResourceModule("volcengine", "vpc/haVip", _module)
 pulumi.runtime.registerResourceModule("volcengine", "vpc/haVipAssociate", _module)
 pulumi.runtime.registerResourceModule("volcengine", "vpc/ipv6AddressBandwidth", _module)
@@ -272,4 +374,8 @@ pulumi.runtime.registerResourceModule("volcengine", "vpc/routeTableAssociate", _
 pulumi.runtime.registerResourceModule("volcengine", "vpc/securityGroup", _module)
 pulumi.runtime.registerResourceModule("volcengine", "vpc/securityGroupRule", _module)
 pulumi.runtime.registerResourceModule("volcengine", "vpc/subnet", _module)
+pulumi.runtime.registerResourceModule("volcengine", "vpc/trafficMirrorFilter", _module)
+pulumi.runtime.registerResourceModule("volcengine", "vpc/trafficMirrorFilterRule", _module)
+pulumi.runtime.registerResourceModule("volcengine", "vpc/trafficMirrorSession", _module)
+pulumi.runtime.registerResourceModule("volcengine", "vpc/trafficMirrorTarget", _module)
 pulumi.runtime.registerResourceModule("volcengine", "vpc/vpc", _module)

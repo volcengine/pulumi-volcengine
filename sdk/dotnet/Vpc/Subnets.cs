@@ -104,6 +104,12 @@ namespace Pulumi.Volcengine.Vpc
         [Input("subnetName")]
         public string? SubnetName { get; set; }
 
+        /// <summary>
+        /// The owner ID of the subnet.
+        /// </summary>
+        [Input("subnetOwnerId")]
+        public int? SubnetOwnerId { get; set; }
+
         [Input("tags")]
         private List<Inputs.SubnetsTagArgs>? _tags;
 
@@ -172,6 +178,12 @@ namespace Pulumi.Volcengine.Vpc
         [Input("subnetName")]
         public Input<string>? SubnetName { get; set; }
 
+        /// <summary>
+        /// The owner ID of the subnet.
+        /// </summary>
+        [Input("subnetOwnerId")]
+        public Input<int>? SubnetOwnerId { get; set; }
+
         [Input("tags")]
         private InputList<Inputs.SubnetsTagInputArgs>? _tags;
 
@@ -221,6 +233,7 @@ namespace Pulumi.Volcengine.Vpc
         /// The Name of Subnet.
         /// </summary>
         public readonly string? SubnetName;
+        public readonly int? SubnetOwnerId;
         /// <summary>
         /// The collection of Subnet query.
         /// </summary>
@@ -256,6 +269,8 @@ namespace Pulumi.Volcengine.Vpc
 
             string? subnetName,
 
+            int? subnetOwnerId,
+
             ImmutableArray<Outputs.SubnetsSubnetResult> subnets,
 
             ImmutableArray<Outputs.SubnetsTagResult> tags,
@@ -272,6 +287,7 @@ namespace Pulumi.Volcengine.Vpc
             OutputFile = outputFile;
             RouteTableId = routeTableId;
             SubnetName = subnetName;
+            SubnetOwnerId = subnetOwnerId;
             Subnets = subnets;
             Tags = tags;
             TotalCount = totalCount;

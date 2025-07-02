@@ -98,6 +98,12 @@ namespace Pulumi.Volcengine.Cen
         public Output<int> Bandwidth { get; private set; } = null!;
 
         /// <summary>
+        /// The cen bandwidth package id of the cen inter region bandwidth.
+        /// </summary>
+        [Output("cenBandwidthPackageId")]
+        public Output<string> CenBandwidthPackageId { get; private set; } = null!;
+
+        /// <summary>
         /// The cen ID of the cen inter region bandwidth.
         /// </summary>
         [Output("cenId")]
@@ -193,6 +199,12 @@ namespace Pulumi.Volcengine.Cen
         public Input<int> Bandwidth { get; set; } = null!;
 
         /// <summary>
+        /// The cen bandwidth package id of the cen inter region bandwidth.
+        /// </summary>
+        [Input("cenBandwidthPackageId")]
+        public Input<string>? CenBandwidthPackageId { get; set; }
+
+        /// <summary>
         /// The cen ID of the cen inter region bandwidth.
         /// </summary>
         [Input("cenId", required: true)]
@@ -223,6 +235,12 @@ namespace Pulumi.Volcengine.Cen
         /// </summary>
         [Input("bandwidth")]
         public Input<int>? Bandwidth { get; set; }
+
+        /// <summary>
+        /// The cen bandwidth package id of the cen inter region bandwidth.
+        /// </summary>
+        [Input("cenBandwidthPackageId")]
+        public Input<string>? CenBandwidthPackageId { get; set; }
 
         /// <summary>
         /// The cen ID of the cen inter region bandwidth.

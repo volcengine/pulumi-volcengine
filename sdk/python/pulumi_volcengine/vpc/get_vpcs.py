@@ -23,7 +23,7 @@ class GetVpcsResult:
     """
     A collection of values returned by getVpcs.
     """
-    def __init__(__self__, id=None, ids=None, name_regex=None, output_file=None, project_name=None, tags=None, total_count=None, vpc_name=None, vpcs=None):
+    def __init__(__self__, id=None, ids=None, name_regex=None, output_file=None, project_name=None, tags=None, total_count=None, vpc_name=None, vpc_owner_id=None, vpcs=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -48,6 +48,9 @@ class GetVpcsResult:
         if vpc_name and not isinstance(vpc_name, str):
             raise TypeError("Expected argument 'vpc_name' to be a str")
         pulumi.set(__self__, "vpc_name", vpc_name)
+        if vpc_owner_id and not isinstance(vpc_owner_id, int):
+            raise TypeError("Expected argument 'vpc_owner_id' to be a int")
+        pulumi.set(__self__, "vpc_owner_id", vpc_owner_id)
         if vpcs and not isinstance(vpcs, list):
             raise TypeError("Expected argument 'vpcs' to be a list")
         pulumi.set(__self__, "vpcs", vpcs)
@@ -108,6 +111,11 @@ class GetVpcsResult:
         return pulumi.get(self, "vpc_name")
 
     @property
+    @pulumi.getter(name="vpcOwnerId")
+    def vpc_owner_id(self) -> Optional[int]:
+        return pulumi.get(self, "vpc_owner_id")
+
+    @property
     @pulumi.getter
     def vpcs(self) -> Sequence['outputs.GetVpcsVpcResult']:
         """
@@ -130,6 +138,7 @@ class AwaitableGetVpcsResult(GetVpcsResult):
             tags=self.tags,
             total_count=self.total_count,
             vpc_name=self.vpc_name,
+            vpc_owner_id=self.vpc_owner_id,
             vpcs=self.vpcs)
 
 
@@ -139,6 +148,7 @@ def get_vpcs(ids: Optional[Sequence[str]] = None,
              project_name: Optional[str] = None,
              tags: Optional[Sequence[pulumi.InputType['GetVpcsTagArgs']]] = None,
              vpc_name: Optional[str] = None,
+             vpc_owner_id: Optional[int] = None,
              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcsResult:
     """
     Use this data source to query detailed information of vpcs
@@ -158,6 +168,7 @@ def get_vpcs(ids: Optional[Sequence[str]] = None,
     :param str project_name: The ProjectName of the VPC.
     :param Sequence[pulumi.InputType['GetVpcsTagArgs']] tags: Tags.
     :param str vpc_name: The vpc name to query.
+    :param int vpc_owner_id: The owner ID of the vpc.
     """
     __args__ = dict()
     __args__['ids'] = ids
@@ -166,6 +177,7 @@ def get_vpcs(ids: Optional[Sequence[str]] = None,
     __args__['projectName'] = project_name
     __args__['tags'] = tags
     __args__['vpcName'] = vpc_name
+    __args__['vpcOwnerId'] = vpc_owner_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('volcengine:vpc/getVpcs:getVpcs', __args__, opts=opts, typ=GetVpcsResult).value
 
@@ -178,6 +190,7 @@ def get_vpcs(ids: Optional[Sequence[str]] = None,
         tags=pulumi.get(__ret__, 'tags'),
         total_count=pulumi.get(__ret__, 'total_count'),
         vpc_name=pulumi.get(__ret__, 'vpc_name'),
+        vpc_owner_id=pulumi.get(__ret__, 'vpc_owner_id'),
         vpcs=pulumi.get(__ret__, 'vpcs'))
 
 
@@ -188,6 +201,7 @@ def get_vpcs_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                     project_name: Optional[pulumi.Input[Optional[str]]] = None,
                     tags: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetVpcsTagArgs']]]]] = None,
                     vpc_name: Optional[pulumi.Input[Optional[str]]] = None,
+                    vpc_owner_id: Optional[pulumi.Input[Optional[int]]] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVpcsResult]:
     """
     Use this data source to query detailed information of vpcs
@@ -207,5 +221,6 @@ def get_vpcs_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
     :param str project_name: The ProjectName of the VPC.
     :param Sequence[pulumi.InputType['GetVpcsTagArgs']] tags: Tags.
     :param str vpc_name: The vpc name to query.
+    :param int vpc_owner_id: The owner ID of the vpc.
     """
     ...

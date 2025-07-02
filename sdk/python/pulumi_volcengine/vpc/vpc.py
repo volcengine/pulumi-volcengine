@@ -163,6 +163,7 @@ class _VpcState:
                  nat_gateway_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  route_table_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 secondary_cidr_blocks: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  subnet_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -184,6 +185,7 @@ class _VpcState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] nat_gateway_ids: The nat gateway ID list of VPC.
         :param pulumi.Input[str] project_name: The ProjectName of the VPC.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] route_table_ids: The route table ID list of VPC.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] secondary_cidr_blocks: The secondary cidr block list of VPC.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: The security group ID list of VPC.
         :param pulumi.Input[str] status: Status of VPC.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] subnet_ids: The subnet ID list of VPC.
@@ -216,6 +218,8 @@ class _VpcState:
             pulumi.set(__self__, "project_name", project_name)
         if route_table_ids is not None:
             pulumi.set(__self__, "route_table_ids", route_table_ids)
+        if secondary_cidr_blocks is not None:
+            pulumi.set(__self__, "secondary_cidr_blocks", secondary_cidr_blocks)
         if security_group_ids is not None:
             pulumi.set(__self__, "security_group_ids", security_group_ids)
         if status is not None:
@@ -374,6 +378,18 @@ class _VpcState:
     @route_table_ids.setter
     def route_table_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "route_table_ids", value)
+
+    @property
+    @pulumi.getter(name="secondaryCidrBlocks")
+    def secondary_cidr_blocks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The secondary cidr block list of VPC.
+        """
+        return pulumi.get(self, "secondary_cidr_blocks")
+
+    @secondary_cidr_blocks.setter
+    def secondary_cidr_blocks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "secondary_cidr_blocks", value)
 
     @property
     @pulumi.getter(name="securityGroupIds")
@@ -615,6 +631,7 @@ class Vpc(pulumi.CustomResource):
             __props__.__dict__["creation_time"] = None
             __props__.__dict__["nat_gateway_ids"] = None
             __props__.__dict__["route_table_ids"] = None
+            __props__.__dict__["secondary_cidr_blocks"] = None
             __props__.__dict__["security_group_ids"] = None
             __props__.__dict__["status"] = None
             __props__.__dict__["subnet_ids"] = None
@@ -642,6 +659,7 @@ class Vpc(pulumi.CustomResource):
             nat_gateway_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             project_name: Optional[pulumi.Input[str]] = None,
             route_table_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            secondary_cidr_blocks: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             status: Optional[pulumi.Input[str]] = None,
             subnet_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -668,6 +686,7 @@ class Vpc(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] nat_gateway_ids: The nat gateway ID list of VPC.
         :param pulumi.Input[str] project_name: The ProjectName of the VPC.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] route_table_ids: The route table ID list of VPC.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] secondary_cidr_blocks: The secondary cidr block list of VPC.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: The security group ID list of VPC.
         :param pulumi.Input[str] status: Status of VPC.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] subnet_ids: The subnet ID list of VPC.
@@ -692,6 +711,7 @@ class Vpc(pulumi.CustomResource):
         __props__.__dict__["nat_gateway_ids"] = nat_gateway_ids
         __props__.__dict__["project_name"] = project_name
         __props__.__dict__["route_table_ids"] = route_table_ids
+        __props__.__dict__["secondary_cidr_blocks"] = secondary_cidr_blocks
         __props__.__dict__["security_group_ids"] = security_group_ids
         __props__.__dict__["status"] = status
         __props__.__dict__["subnet_ids"] = subnet_ids
@@ -796,6 +816,14 @@ class Vpc(pulumi.CustomResource):
         The route table ID list of VPC.
         """
         return pulumi.get(self, "route_table_ids")
+
+    @property
+    @pulumi.getter(name="secondaryCidrBlocks")
+    def secondary_cidr_blocks(self) -> pulumi.Output[Sequence[str]]:
+        """
+        The secondary cidr block list of VPC.
+        """
+        return pulumi.get(self, "secondary_cidr_blocks")
 
     @property
     @pulumi.getter(name="securityGroupIds")
