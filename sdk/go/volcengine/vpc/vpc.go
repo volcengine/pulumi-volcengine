@@ -103,6 +103,8 @@ type Vpc struct {
 	ProjectName pulumi.StringOutput `pulumi:"projectName"`
 	// The route table ID list of VPC.
 	RouteTableIds pulumi.StringArrayOutput `pulumi:"routeTableIds"`
+	// The secondary cidr block list of VPC.
+	SecondaryCidrBlocks pulumi.StringArrayOutput `pulumi:"secondaryCidrBlocks"`
 	// The security group ID list of VPC.
 	SecurityGroupIds pulumi.StringArrayOutput `pulumi:"securityGroupIds"`
 	// Status of VPC.
@@ -176,6 +178,8 @@ type vpcState struct {
 	ProjectName *string `pulumi:"projectName"`
 	// The route table ID list of VPC.
 	RouteTableIds []string `pulumi:"routeTableIds"`
+	// The secondary cidr block list of VPC.
+	SecondaryCidrBlocks []string `pulumi:"secondaryCidrBlocks"`
 	// The security group ID list of VPC.
 	SecurityGroupIds []string `pulumi:"securityGroupIds"`
 	// Status of VPC.
@@ -217,6 +221,8 @@ type VpcState struct {
 	ProjectName pulumi.StringPtrInput
 	// The route table ID list of VPC.
 	RouteTableIds pulumi.StringArrayInput
+	// The secondary cidr block list of VPC.
+	SecondaryCidrBlocks pulumi.StringArrayInput
 	// The security group ID list of VPC.
 	SecurityGroupIds pulumi.StringArrayInput
 	// Status of VPC.
@@ -421,6 +427,11 @@ func (o VpcOutput) ProjectName() pulumi.StringOutput {
 // The route table ID list of VPC.
 func (o VpcOutput) RouteTableIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Vpc) pulumi.StringArrayOutput { return v.RouteTableIds }).(pulumi.StringArrayOutput)
+}
+
+// The secondary cidr block list of VPC.
+func (o VpcOutput) SecondaryCidrBlocks() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Vpc) pulumi.StringArrayOutput { return v.SecondaryCidrBlocks }).(pulumi.StringArrayOutput)
 }
 
 // The security group ID list of VPC.

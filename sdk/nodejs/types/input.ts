@@ -256,6 +256,890 @@ export namespace alb {
 
 }
 
+export namespace apig {
+    export interface ApigGatewayBackendSpec {
+        /**
+         * Whether the api gateway support vke flannel cni.
+         */
+        isVkeWithFlannelCniSupported: pulumi.Input<boolean>;
+        /**
+         * The vke pod cidr of the api gateway.
+         */
+        vkePodCidr: pulumi.Input<string>;
+    }
+
+    export interface ApigGatewayLogSpec {
+        /**
+         * Whether the api gateway enable tls log.
+         */
+        enable: pulumi.Input<boolean>;
+        /**
+         * The project id of the tls. This field is required when `enable` is true.
+         */
+        projectId?: pulumi.Input<string>;
+        /**
+         * The topic id of the tls.
+         */
+        topicId?: pulumi.Input<string>;
+    }
+
+    export interface ApigGatewayMonitorSpec {
+        /**
+         * Whether the api gateway enable monitor.
+         */
+        enable: pulumi.Input<boolean>;
+        /**
+         * The workspace id of the monitor. This field is required when `enable` is true.
+         */
+        workspaceId?: pulumi.Input<string>;
+    }
+
+    export interface ApigGatewayNetworkSpec {
+        /**
+         * The subnet ids of the network spec.
+         */
+        subnetIds: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The vpc id of the network spec.
+         */
+        vpcId: pulumi.Input<string>;
+    }
+
+    export interface ApigGatewayResourceSpec {
+        /**
+         * The clb spec code of the resource spec. Valid values: `small1`, `small2`, `medium1`, `medium2`, `large1`, `large2`.
+         */
+        clbSpecCode?: pulumi.Input<string>;
+        /**
+         * The instance spec code of the resource spec. Valid values: `1c2g`, `2c4g`, `4c8g`, `8c16g`.
+         */
+        instanceSpecCode: pulumi.Input<string>;
+        /**
+         * The network type of the resource spec. The default values for both `enablePublicNetwork` and `enablePrivateNetwork` are true.
+         */
+        networkType?: pulumi.Input<inputs.apig.ApigGatewayResourceSpecNetworkType>;
+        /**
+         * The public network bandwidth of the resource spec.
+         */
+        publicNetworkBandwidth?: pulumi.Input<number>;
+        /**
+         * The public network billing type of the resource spec. Valid values: `traffic`, `bandwidth`.
+         */
+        publicNetworkBillingType?: pulumi.Input<string>;
+        /**
+         * The replicas of the resource spec.
+         */
+        replicas: pulumi.Input<number>;
+    }
+
+    export interface ApigGatewayResourceSpecNetworkType {
+        /**
+         * Whether the api gateway enable private network.
+         */
+        enablePrivateNetwork: pulumi.Input<boolean>;
+        /**
+         * Whether the api gateway enable public network.
+         */
+        enablePublicNetwork: pulumi.Input<boolean>;
+    }
+
+    export interface ApigGatewayServiceAuthSpec {
+        /**
+         * Whether the api gateway service enable auth.
+         */
+        enable: pulumi.Input<boolean>;
+    }
+
+    export interface ApigGatewayTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface ApigRouteAdvancedSetting {
+        /**
+         * The cors policy setting of the api gateway route.
+         */
+        corsPolicySetting?: pulumi.Input<inputs.apig.ApigRouteAdvancedSettingCorsPolicySetting>;
+        /**
+         * The header operations of the api gateway route.
+         */
+        headerOperations?: pulumi.Input<pulumi.Input<inputs.apig.ApigRouteAdvancedSettingHeaderOperation>[]>;
+        /**
+         * The mirror policies of the api gateway route.
+         */
+        mirrorPolicies?: pulumi.Input<pulumi.Input<inputs.apig.ApigRouteAdvancedSettingMirrorPolicy>[]>;
+        /**
+         * The retry policy setting of the api gateway route.
+         */
+        retryPolicySetting?: pulumi.Input<inputs.apig.ApigRouteAdvancedSettingRetryPolicySetting>;
+        /**
+         * The timeout setting of the api gateway route.
+         */
+        timeoutSetting?: pulumi.Input<inputs.apig.ApigRouteAdvancedSettingTimeoutSetting>;
+        /**
+         * The url rewrite setting of the api gateway route.
+         */
+        urlRewriteSetting?: pulumi.Input<inputs.apig.ApigRouteAdvancedSettingUrlRewriteSetting>;
+    }
+
+    export interface ApigRouteAdvancedSettingCorsPolicySetting {
+        /**
+         * Whether the cors policy setting is enabled.
+         */
+        enable?: pulumi.Input<boolean>;
+    }
+
+    export interface ApigRouteAdvancedSettingHeaderOperation {
+        /**
+         * The direction type of the header. Valid values: `request`, `response`.
+         */
+        directionType?: pulumi.Input<string>;
+        /**
+         * The key of the header.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The operation of the header. Valid values: `set`, `add`, `remove`.
+         */
+        operation: pulumi.Input<string>;
+        /**
+         * The value of the header.
+         */
+        value?: pulumi.Input<string>;
+    }
+
+    export interface ApigRouteAdvancedSettingMirrorPolicy {
+        /**
+         * The percent of the mirror policy.
+         */
+        percent?: pulumi.Input<inputs.apig.ApigRouteAdvancedSettingMirrorPolicyPercent>;
+        /**
+         * The upstream of the mirror policy.
+         */
+        upstream: pulumi.Input<inputs.apig.ApigRouteAdvancedSettingMirrorPolicyUpstream>;
+    }
+
+    export interface ApigRouteAdvancedSettingMirrorPolicyPercent {
+        /**
+         * The percent value of the mirror policy.
+         */
+        value: pulumi.Input<number>;
+    }
+
+    export interface ApigRouteAdvancedSettingMirrorPolicyUpstream {
+        /**
+         * The type of the api gateway upstream.
+         */
+        type: pulumi.Input<string>;
+        /**
+         * The id of the api gateway upstream.
+         */
+        upstreamId: pulumi.Input<string>;
+        /**
+         * The version of the api gateway upstream.
+         */
+        version?: pulumi.Input<string>;
+    }
+
+    export interface ApigRouteAdvancedSettingRetryPolicySetting {
+        /**
+         * The attempts of the api gateway route.
+         */
+        attempts?: pulumi.Input<number>;
+        /**
+         * Whether the retry policy setting is enabled.
+         */
+        enable?: pulumi.Input<boolean>;
+        /**
+         * The http codes of the api gateway route.
+         */
+        httpCodes?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The per try timeout of the api gateway route.
+         */
+        perTryTimeout?: pulumi.Input<number>;
+        /**
+         * The retry on of the api gateway route. Valid values: `5xx`, `reset`, `connect-failure`, `refused-stream`, `cancelled`, `deadline-exceeded`, `internal`, `resource-exhausted`, `unavailable`.
+         */
+        retryOns?: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface ApigRouteAdvancedSettingTimeoutSetting {
+        /**
+         * Whether the timeout setting is enabled.
+         */
+        enable?: pulumi.Input<boolean>;
+        /**
+         * The timeout of the api gateway route. Unit: s.
+         */
+        timeout?: pulumi.Input<number>;
+    }
+
+    export interface ApigRouteAdvancedSettingUrlRewriteSetting {
+        /**
+         * Whether the url rewrite setting is enabled.
+         */
+        enable?: pulumi.Input<boolean>;
+        /**
+         * The url rewrite path of the api gateway route.
+         */
+        urlRewrite?: pulumi.Input<string>;
+    }
+
+    export interface ApigRouteCustomDomain {
+        /**
+         * The domain of the api gateway route.
+         */
+        domain?: pulumi.Input<string>;
+        /**
+         * The id of the custom domain.
+         */
+        id?: pulumi.Input<string>;
+    }
+
+    export interface ApigRouteDomain {
+        /**
+         * The domain of the api gateway route.
+         */
+        domain?: pulumi.Input<string>;
+        /**
+         * The type of the domain.
+         */
+        type?: pulumi.Input<string>;
+    }
+
+    export interface ApigRouteMatchRule {
+        /**
+         * The header of the api gateway route.
+         */
+        headers?: pulumi.Input<pulumi.Input<inputs.apig.ApigRouteMatchRuleHeader>[]>;
+        /**
+         * The method of the api gateway route. Valid values: `GET`, `POST`, `PUT`, `DELETE`, `HEAD`, `OPTIONS`, `CONNECT`.
+         */
+        methods?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The path of the api gateway route.
+         */
+        path: pulumi.Input<inputs.apig.ApigRouteMatchRulePath>;
+        /**
+         * The query string of the api gateway route.
+         */
+        queryStrings?: pulumi.Input<pulumi.Input<inputs.apig.ApigRouteMatchRuleQueryString>[]>;
+    }
+
+    export interface ApigRouteMatchRuleHeader {
+        /**
+         * The key of the header.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The path of the api gateway route.
+         */
+        value: pulumi.Input<inputs.apig.ApigRouteMatchRuleHeaderValue>;
+    }
+
+    export interface ApigRouteMatchRuleHeaderValue {
+        /**
+         * The match content of the api gateway route.
+         */
+        matchContent: pulumi.Input<string>;
+        /**
+         * The match type of the api gateway route. Valid values: `Prefix`, `Exact`, `Regex`.
+         */
+        matchType: pulumi.Input<string>;
+    }
+
+    export interface ApigRouteMatchRulePath {
+        /**
+         * The match content of the api gateway route.
+         */
+        matchContent: pulumi.Input<string>;
+        /**
+         * The match type of the api gateway route. Valid values: `Prefix`, `Exact`, `Regex`.
+         */
+        matchType: pulumi.Input<string>;
+    }
+
+    export interface ApigRouteMatchRuleQueryString {
+        /**
+         * The key of the query string.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The path of the api gateway route.
+         */
+        value: pulumi.Input<inputs.apig.ApigRouteMatchRuleQueryStringValue>;
+    }
+
+    export interface ApigRouteMatchRuleQueryStringValue {
+        /**
+         * The match content of the api gateway route.
+         */
+        matchContent: pulumi.Input<string>;
+        /**
+         * The match type of the api gateway route. Valid values: `Prefix`, `Exact`, `Regex`.
+         */
+        matchType: pulumi.Input<string>;
+    }
+
+    export interface ApigRouteUpstreamList {
+        /**
+         * The ai provider settings of the api gateway route.
+         */
+        aiProviderSettings?: pulumi.Input<inputs.apig.ApigRouteUpstreamListAiProviderSettings>;
+        /**
+         * The id of the api gateway upstream.
+         */
+        upstreamId: pulumi.Input<string>;
+        /**
+         * The version of the api gateway upstream.
+         */
+        version?: pulumi.Input<string>;
+        /**
+         * The weight of the api gateway upstream. Valid values: 0~10000.
+         */
+        weight: pulumi.Input<number>;
+    }
+
+    export interface ApigRouteUpstreamListAiProviderSettings {
+        /**
+         * The model of the ai provider.
+         */
+        model: pulumi.Input<string>;
+        /**
+         * The target path of the ai provider.
+         */
+        targetPath: pulumi.Input<string>;
+    }
+
+    export interface ApigUpstreamCircuitBreakingSettings {
+        /**
+         * The base ejection time of circuit breaking. Unit: ms. Default is 10s.
+         */
+        baseEjectionTime?: pulumi.Input<number>;
+        /**
+         * The consecutive errors of circuit breaking. Default is 5.
+         */
+        consecutiveErrors?: pulumi.Input<number>;
+        /**
+         * Whether the circuit breaking is enabled.
+         */
+        enable: pulumi.Input<boolean>;
+        /**
+         * The interval of circuit breaking. Unit: ms. Default is 10s.
+         */
+        interval?: pulumi.Input<number>;
+        /**
+         * The max ejection percent of circuit breaking. Default is 20%.
+         */
+        maxEjectionPercent?: pulumi.Input<number>;
+        /**
+         * The min health percent of circuit breaking. Default is 60%.
+         */
+        minHealthPercent?: pulumi.Input<number>;
+    }
+
+    export interface ApigUpstreamLoadBalancerSettings {
+        /**
+         * The consistent hash lb of apig upstream.
+         */
+        consistentHashLb?: pulumi.Input<inputs.apig.ApigUpstreamLoadBalancerSettingsConsistentHashLb>;
+        /**
+         * The load balancer policy of apig upstream. Valid values: `SimpleLB`, `ConsistentHashLB`.
+         */
+        lbPolicy: pulumi.Input<string>;
+        /**
+         * The simple load balancer of apig upstream. Valid values: `ROUND_ROBIN`, `LEAST_CONN`, `RANDOM`.
+         */
+        simpleLb?: pulumi.Input<string>;
+        /**
+         * The warmup duration of apig upstream lb. This field is valid when the simpleLb is `ROUND_ROBIN` or `LEAST_CONN`.
+         */
+        warmupDuration?: pulumi.Input<number>;
+    }
+
+    export interface ApigUpstreamLoadBalancerSettingsConsistentHashLb {
+        /**
+         * The hash key of apig upstream consistent hash lb. Valid values: `HTTPCookie`, `HttpHeaderName`, `HttpQueryParameterName`, `UseSourceIp`.
+         */
+        hashKey: pulumi.Input<string>;
+        /**
+         * The http cookie of apig upstream consistent hash lb.
+         */
+        httpCookie?: pulumi.Input<inputs.apig.ApigUpstreamLoadBalancerSettingsConsistentHashLbHttpCookie>;
+        /**
+         * The http header name of apig upstream consistent hash lb.
+         */
+        httpHeaderName?: pulumi.Input<string>;
+        /**
+         * The http query parameter name of apig upstream consistent hash lb.
+         */
+        httpQueryParameterName?: pulumi.Input<string>;
+        /**
+         * The use source ip of apig upstream consistent hash lb.
+         */
+        useSourceIp?: pulumi.Input<boolean>;
+    }
+
+    export interface ApigUpstreamLoadBalancerSettingsConsistentHashLbHttpCookie {
+        /**
+         * The name of apig upstream consistent hash lb http cookie.
+         */
+        name: pulumi.Input<string>;
+        /**
+         * The path of apig upstream consistent hash lb http cookie.
+         */
+        path: pulumi.Input<string>;
+        /**
+         * The ttl of apig upstream consistent hash lb http cookie.
+         */
+        ttl: pulumi.Input<number>;
+    }
+
+    export interface ApigUpstreamSourceIngressSetting {
+        /**
+         * Whether to enable all ingress classes.
+         */
+        enableAllIngressClasses?: pulumi.Input<boolean>;
+        /**
+         * Whether to enable all namespaces.
+         */
+        enableAllNamespaces?: pulumi.Input<boolean>;
+        /**
+         * Whether to enable ingress.
+         */
+        enableIngress?: pulumi.Input<boolean>;
+        /**
+         * Whether to enable ingress without ingress class.
+         */
+        enableIngressWithoutIngressClass?: pulumi.Input<boolean>;
+        /**
+         * The ingress classes of ingress settings.
+         */
+        ingressClasses?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The update status of ingress settings.
+         */
+        updateStatus?: pulumi.Input<boolean>;
+        /**
+         * The watch namespaces of ingress settings.
+         */
+        watchNamespaces?: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface ApigUpstreamSourceSourceSpec {
+        /**
+         * The k8s source of apig upstream source.
+         */
+        k8sSource?: pulumi.Input<inputs.apig.ApigUpstreamSourceSourceSpecK8sSource>;
+        /**
+         * The nacos source of apig upstream source.
+         */
+        nacosSource?: pulumi.Input<inputs.apig.ApigUpstreamSourceSourceSpecNacosSource>;
+    }
+
+    export interface ApigUpstreamSourceSourceSpecK8sSource {
+        /**
+         * The cluster id of k8s source.
+         */
+        clusterId: pulumi.Input<string>;
+        /**
+         * The cluster type of k8s source.
+         */
+        clusterType?: pulumi.Input<string>;
+    }
+
+    export interface ApigUpstreamSourceSourceSpecNacosSource {
+        /**
+         * The address of nacos source.
+         */
+        address?: pulumi.Input<string>;
+        /**
+         * The auth config of nacos source.
+         */
+        authConfig?: pulumi.Input<inputs.apig.ApigUpstreamSourceSourceSpecNacosSourceAuthConfig>;
+        /**
+         * The context path of nacos source.
+         */
+        contextPath?: pulumi.Input<string>;
+        /**
+         * The grpc port of nacos source.
+         */
+        grpcPort?: pulumi.Input<number>;
+        /**
+         * The http port of nacos source.
+         */
+        httpPort?: pulumi.Input<number>;
+        /**
+         * The nacos id of nacos source.
+         */
+        nacosId: pulumi.Input<string>;
+        /**
+         * The nacos name of nacos source.
+         */
+        nacosName?: pulumi.Input<string>;
+    }
+
+    export interface ApigUpstreamSourceSourceSpecNacosSourceAuthConfig {
+        /**
+         * The basic auth config of nacos source.
+         */
+        basic?: pulumi.Input<inputs.apig.ApigUpstreamSourceSourceSpecNacosSourceAuthConfigBasic>;
+    }
+
+    export interface ApigUpstreamSourceSourceSpecNacosSourceAuthConfigBasic {
+        /**
+         * The password of basic auth config of nacos source.
+         */
+        password: pulumi.Input<string>;
+        /**
+         * The username of basic auth config of nacos source.
+         */
+        username: pulumi.Input<string>;
+    }
+
+    export interface ApigUpstreamTlsSettings {
+        /**
+         * The sni of apig upstream tls setting.
+         */
+        sni?: pulumi.Input<string>;
+        /**
+         * The tls mode of apig upstream tls setting. Valid values: `DISABLE`, `SIMPLE`.
+         */
+        tlsMode: pulumi.Input<string>;
+    }
+
+    export interface ApigUpstreamUpstreamSpec {
+        /**
+         * The ai provider of apig upstream.
+         */
+        aiProvider?: pulumi.Input<inputs.apig.ApigUpstreamUpstreamSpecAiProvider>;
+        /**
+         * The domain of apig upstream.
+         */
+        domain?: pulumi.Input<inputs.apig.ApigUpstreamUpstreamSpecDomain>;
+        /**
+         * The ecs list of apig upstream.
+         */
+        ecsLists?: pulumi.Input<pulumi.Input<inputs.apig.ApigUpstreamUpstreamSpecEcsList>[]>;
+        /**
+         * The fixed ip list of apig upstream.
+         */
+        fixedIpLists?: pulumi.Input<pulumi.Input<inputs.apig.ApigUpstreamUpstreamSpecFixedIpList>[]>;
+        /**
+         * The k8s service of apig upstream.
+         */
+        k8sService?: pulumi.Input<inputs.apig.ApigUpstreamUpstreamSpecK8sService>;
+        /**
+         * The nacos service of apig upstream.
+         */
+        nacosService?: pulumi.Input<inputs.apig.ApigUpstreamUpstreamSpecNacosService>;
+        /**
+         * The vefaas of apig upstream.
+         */
+        veFaas?: pulumi.Input<inputs.apig.ApigUpstreamUpstreamSpecVeFaas>;
+        /**
+         * The mlp of apig upstream.
+         */
+        veMlp?: pulumi.Input<inputs.apig.ApigUpstreamUpstreamSpecVeMlp>;
+    }
+
+    export interface ApigUpstreamUpstreamSpecAiProvider {
+        /**
+         * The base url of ai provider.
+         */
+        baseUrl: pulumi.Input<string>;
+        /**
+         * The custom body params of ai provider.
+         */
+        customBodyParams?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * The custom header params of ai provider.
+         */
+        customHeaderParams?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * The custom model service of ai provider.
+         */
+        customModelService?: pulumi.Input<inputs.apig.ApigUpstreamUpstreamSpecAiProviderCustomModelService>;
+        /**
+         * The name of ai provider.
+         */
+        name: pulumi.Input<string>;
+        /**
+         * The token of ai provider.
+         */
+        token: pulumi.Input<string>;
+    }
+
+    export interface ApigUpstreamUpstreamSpecAiProviderCustomModelService {
+        /**
+         * The name of custom model service.
+         */
+        name: pulumi.Input<string>;
+        /**
+         * The namespace of custom model service.
+         */
+        namespace: pulumi.Input<string>;
+        /**
+         * The port of custom model service.
+         */
+        port: pulumi.Input<number>;
+    }
+
+    export interface ApigUpstreamUpstreamSpecDomain {
+        /**
+         * The domain list of apig upstream.
+         */
+        domainList: pulumi.Input<inputs.apig.ApigUpstreamUpstreamSpecDomainDomainList>;
+        /**
+         * The protocol of apig upstream. Valid values: `HTTP`, `HTTPS`.
+         */
+        protocol?: pulumi.Input<string>;
+    }
+
+    export interface ApigUpstreamUpstreamSpecDomainDomainList {
+        /**
+         * The domain of apig upstream.
+         */
+        domain: pulumi.Input<string>;
+        /**
+         * The port of domain. Default is 80 for HTTP, 443 for HTTPS.
+         */
+        port?: pulumi.Input<number>;
+    }
+
+    export interface ApigUpstreamUpstreamSpecEcsList {
+        /**
+         * The instance id of ecs.
+         */
+        ecsId: pulumi.Input<string>;
+        /**
+         * The ip of ecs.
+         */
+        ip: pulumi.Input<string>;
+        /**
+         * The port of ecs.
+         */
+        port: pulumi.Input<number>;
+    }
+
+    export interface ApigUpstreamUpstreamSpecFixedIpList {
+        /**
+         * The ip of apig upstream.
+         */
+        ip: pulumi.Input<string>;
+        /**
+         * The port of apig upstream.
+         */
+        port: pulumi.Input<number>;
+    }
+
+    export interface ApigUpstreamUpstreamSpecK8sService {
+        /**
+         * The name of k8s service.
+         */
+        name: pulumi.Input<string>;
+        /**
+         * The namespace of k8s service.
+         */
+        namespace: pulumi.Input<string>;
+        /**
+         * The port of k8s service.
+         */
+        port: pulumi.Input<number>;
+    }
+
+    export interface ApigUpstreamUpstreamSpecNacosService {
+        /**
+         * The group of nacos service.
+         */
+        group: pulumi.Input<string>;
+        /**
+         * The namespace of nacos service.
+         */
+        namespace: pulumi.Input<string>;
+        /**
+         * The namespace id of nacos service.
+         */
+        namespaceId?: pulumi.Input<string>;
+        /**
+         * The service of nacos service.
+         */
+        service: pulumi.Input<string>;
+        /**
+         * The upstream source id.
+         */
+        upstreamSourceId: pulumi.Input<string>;
+    }
+
+    export interface ApigUpstreamUpstreamSpecVeFaas {
+        /**
+         * The function id of vefaas.
+         */
+        functionId: pulumi.Input<string>;
+    }
+
+    export interface ApigUpstreamUpstreamSpecVeMlp {
+        /**
+         * The k8s service of mlp.
+         */
+        k8sService: pulumi.Input<inputs.apig.ApigUpstreamUpstreamSpecVeMlpK8sService>;
+        /**
+         * The service discover type of mlp.
+         */
+        serviceDiscoverType: pulumi.Input<string>;
+        /**
+         * The service id of mlp.
+         */
+        serviceId: pulumi.Input<string>;
+        /**
+         * The service name of mlp.
+         */
+        serviceName?: pulumi.Input<string>;
+        /**
+         * The service url of mlp.
+         */
+        serviceUrl?: pulumi.Input<string>;
+        /**
+         * The upstream source id.
+         */
+        upstreamSourceId?: pulumi.Input<string>;
+    }
+
+    export interface ApigUpstreamUpstreamSpecVeMlpK8sService {
+        /**
+         * The cluster info of k8s service.
+         */
+        clusterInfo: pulumi.Input<inputs.apig.ApigUpstreamUpstreamSpecVeMlpK8sServiceClusterInfo>;
+        /**
+         * The name of k8s service.
+         */
+        name: pulumi.Input<string>;
+        /**
+         * The namespace of k8s service.
+         */
+        namespace: pulumi.Input<string>;
+        /**
+         * The port of k8s service.
+         */
+        port: pulumi.Input<number>;
+    }
+
+    export interface ApigUpstreamUpstreamSpecVeMlpK8sServiceClusterInfo {
+        /**
+         * The account id of k8s service.
+         */
+        accountId: pulumi.Input<number>;
+        /**
+         * The cluster name of k8s service.
+         */
+        clusterName: pulumi.Input<string>;
+    }
+
+    export interface ApigUpstreamVersionDetail {
+        /**
+         * The labels of apig upstream version.
+         */
+        labels?: pulumi.Input<pulumi.Input<inputs.apig.ApigUpstreamVersionDetailLabel>[]>;
+        /**
+         * The name of the apig upstream.
+         */
+        name?: pulumi.Input<string>;
+        /**
+         * The update time of apig upstream version.
+         */
+        updateTime?: pulumi.Input<string>;
+    }
+
+    export interface ApigUpstreamVersionDetailLabel {
+        /**
+         * The key of apig upstream version label.
+         */
+        key?: pulumi.Input<string>;
+        /**
+         * The value of apig upstream version label.
+         */
+        value?: pulumi.Input<string>;
+    }
+
+    export interface ApigUpstreamVersionUpstreamVersion {
+        /**
+         * The labels of apig upstream version.
+         */
+        labels?: pulumi.Input<pulumi.Input<inputs.apig.ApigUpstreamVersionUpstreamVersionLabel>[]>;
+        /**
+         * The name of apig upstream version.
+         */
+        name: pulumi.Input<string>;
+        /**
+         * The update time of apig upstream version.
+         */
+        updateTime?: pulumi.Input<string>;
+    }
+
+    export interface ApigUpstreamVersionUpstreamVersionLabel {
+        /**
+         * The key of apig upstream version label.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The value of apig upstream version label.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GatewaysTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GatewaysTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetGatewaysTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetGatewaysTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+}
+
 export namespace autoscaling {
     export interface ScalingConfigurationTag {
         /**
@@ -8331,6 +9215,61 @@ export namespace vmp {
 }
 
 export namespace vpc {
+    export interface FlowLogTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface FlowLogsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface FlowLogsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetFlowLogsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetFlowLogsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
     export interface GetHaVipsTag {
         /**
          * The Key of Tags.
@@ -8475,6 +9414,94 @@ export namespace vpc {
     }
 
     export interface GetSubnetsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetTrafficMirrorFilterRulesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetTrafficMirrorFilterRulesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetTrafficMirrorFiltersTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetTrafficMirrorFiltersTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetTrafficMirrorSessionsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetTrafficMirrorSessionsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetTrafficMirrorTargetsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetTrafficMirrorTargetsTagArgs {
         /**
          * The Key of Tags.
          */
@@ -8830,6 +9857,127 @@ export namespace vpc {
         value: pulumi.Input<string>;
     }
 
+    export interface TrafficMirrorFilterRulesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface TrafficMirrorFilterRulesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface TrafficMirrorFilterTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface TrafficMirrorFiltersTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface TrafficMirrorFiltersTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface TrafficMirrorSessionTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface TrafficMirrorSessionsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface TrafficMirrorSessionsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface TrafficMirrorTargetTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface TrafficMirrorTargetsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface TrafficMirrorTargetsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
     export interface VpcAssociateCen {
         /**
          * The ID of CEN.
@@ -8936,4 +10084,880 @@ export namespace vpn {
         value: pulumi.Input<string>;
     }
 
+}
+
+export namespace waf {
+    export interface AclRuleAccurateGroup {
+        /**
+         * Details of advanced conditions.
+         */
+        accurateRules: pulumi.Input<pulumi.Input<inputs.waf.AclRuleAccurateGroupAccurateRule>[]>;
+        /**
+         * The logical relationship of advanced conditions.
+         */
+        logic: pulumi.Input<number>;
+    }
+
+    export interface AclRuleAccurateGroupAccurateRule {
+        /**
+         * The HTTP object to be added to the advanced conditions.
+         */
+        httpObj: pulumi.Input<string>;
+        /**
+         * The matching field for HTTP objects.
+         */
+        objType: pulumi.Input<number>;
+        /**
+         * The logical operator for the condition.
+         */
+        opretar: pulumi.Input<number>;
+        /**
+         * Operate the properties of the http object.
+         */
+        property: pulumi.Input<number>;
+        /**
+         * The value to be matched.
+         */
+        valueString: pulumi.Input<string>;
+    }
+
+    export interface AclRuleHostGroup {
+        /**
+         * The ID of the domain group.
+         */
+        hostGroupId?: pulumi.Input<number>;
+        /**
+         * Rule name.
+         */
+        name?: pulumi.Input<string>;
+    }
+
+    export interface AclRuleIpGroup {
+        /**
+         * Required if IpAddType = 2.
+         */
+        ipGroupId?: pulumi.Input<number>;
+        /**
+         * Rule name.
+         */
+        name?: pulumi.Input<string>;
+    }
+
+    export interface BotAnalyseProtectRuleAccurateGroup {
+        /**
+         * Request characteristic information of the rule group.
+         */
+        accurateRules?: pulumi.Input<pulumi.Input<inputs.waf.BotAnalyseProtectRuleAccurateGroupAccurateRule>[]>;
+        /**
+         * In the rule group, the high-level conditional operation relationships corresponding to each rule.
+         */
+        logic?: pulumi.Input<number>;
+    }
+
+    export interface BotAnalyseProtectRuleAccurateGroupAccurateRule {
+        /**
+         * Custom object.
+         */
+        httpObj?: pulumi.Input<string>;
+        /**
+         * matching field.
+         */
+        objType?: pulumi.Input<number>;
+        /**
+         * The logical operator for the condition.
+         */
+        opretar?: pulumi.Input<number>;
+        /**
+         * Operate the properties of the http object.
+         */
+        property?: pulumi.Input<number>;
+        /**
+         * The value to be matched.
+         */
+        valueString?: pulumi.Input<string>;
+    }
+
+    export interface BotAnalyseProtectRuleRuleGroup {
+        /**
+         * Rule group information.
+         */
+        group?: pulumi.Input<inputs.waf.BotAnalyseProtectRuleRuleGroupGroup>;
+        /**
+         * Specific rule information within the rule group.
+         */
+        rules?: pulumi.Input<pulumi.Input<inputs.waf.BotAnalyseProtectRuleRuleGroupRule>[]>;
+    }
+
+    export interface BotAnalyseProtectRuleRuleGroupGroup {
+        /**
+         * After the rule creation is completed, the priority of the automatically generated rule group.
+         */
+        accurateGroupPriority?: pulumi.Input<number>;
+        /**
+         * Request characteristic information of the rule group.
+         */
+        accurateRules?: pulumi.Input<pulumi.Input<inputs.waf.BotAnalyseProtectRuleRuleGroupGroupAccurateRule>[]>;
+        /**
+         * Rule unique identifier.
+         */
+        id?: pulumi.Input<number>;
+        /**
+         * In the rule group, the high-level conditional operation relationships corresponding to each rule.
+         */
+        logic?: pulumi.Input<number>;
+    }
+
+    export interface BotAnalyseProtectRuleRuleGroupGroupAccurateRule {
+        /**
+         * Custom object.
+         */
+        httpObj?: pulumi.Input<string>;
+        /**
+         * matching field.
+         */
+        objType?: pulumi.Input<number>;
+        /**
+         * The logical operator for the condition.
+         */
+        opretar?: pulumi.Input<number>;
+        /**
+         * Operate the properties of the http object.
+         */
+        property?: pulumi.Input<number>;
+        /**
+         * The value to be matched.
+         */
+        valueString?: pulumi.Input<string>;
+    }
+
+    export interface BotAnalyseProtectRuleRuleGroupRule {
+        /**
+         * Advanced conditions.
+         */
+        accurateGroup?: pulumi.Input<inputs.waf.BotAnalyseProtectRuleRuleGroupRuleAccurateGroup>;
+        /**
+         * After the rule creation is completed, the priority of the automatically generated rule group.
+         */
+        accurateGroupPriority?: pulumi.Input<number>;
+        /**
+         * Perform the action after verification/challenge.
+         */
+        actionAfterVerification?: pulumi.Input<number>;
+        /**
+         * perform the action.
+         */
+        actionType?: pulumi.Input<number>;
+        /**
+         * Limit the duration.
+         */
+        effectTime?: pulumi.Input<number>;
+        /**
+         * Whether to enable the rules.
+         */
+        enable?: pulumi.Input<number>;
+        /**
+         * Exemption time takes effect when the execution action is human-machine challenge /JS/ Proof of work.
+         */
+        exemptionTime?: pulumi.Input<number>;
+        /**
+         * Statistical objects, with multiple objects separated by commas.
+         */
+        field?: pulumi.Input<string>;
+        /**
+         * Website domain names that require the setting of protection rules.
+         */
+        host?: pulumi.Input<string>;
+        /**
+         * Rule unique identifier.
+         */
+        id?: pulumi.Input<number>;
+        /**
+         * The name of rule.
+         */
+        name?: pulumi.Input<string>;
+        /**
+         * JS challenge/human-machine verification pass rate.
+         */
+        passRatio?: pulumi.Input<number>;
+        /**
+         * The requested path.
+         */
+        path?: pulumi.Input<string>;
+        /**
+         * The path access frequency threshold is enabled when StatisticalType=1.
+         */
+        pathThreshold?: pulumi.Input<number>;
+        /**
+         * Priority of rule effectiveness.
+         */
+        rulePriority?: pulumi.Input<number>;
+        /**
+         * Rule label, that is, the complete rule ID.
+         */
+        ruleTag?: pulumi.Input<string>;
+        /**
+         * The IP proportion of the same statistical object needs to be configured when StatisticalType=3.
+         */
+        singleProportion?: pulumi.Input<number>;
+        /**
+         * The maximum number of ips of the same statistical object is enabled when StatisticalType=2.
+         */
+        singleThreshold?: pulumi.Input<number>;
+        /**
+         * The duration of statistics.
+         */
+        statisticalDuration?: pulumi.Input<number>;
+        /**
+         * Statistical content and methods.
+         */
+        statisticalType?: pulumi.Input<number>;
+        /**
+         * Rule update time.
+         */
+        updateTime?: pulumi.Input<string>;
+    }
+
+    export interface BotAnalyseProtectRuleRuleGroupRuleAccurateGroup {
+        /**
+         * After the rule creation is completed, the priority of the automatically generated rule group.
+         */
+        accurateGroupPriority?: pulumi.Input<number>;
+        /**
+         * Request characteristic information of the rule group.
+         */
+        accurateRules?: pulumi.Input<pulumi.Input<inputs.waf.BotAnalyseProtectRuleRuleGroupRuleAccurateGroupAccurateRule>[]>;
+        /**
+         * Rule unique identifier.
+         */
+        id?: pulumi.Input<number>;
+        /**
+         * In the rule group, the high-level conditional operation relationships corresponding to each rule.
+         */
+        logic?: pulumi.Input<number>;
+    }
+
+    export interface BotAnalyseProtectRuleRuleGroupRuleAccurateGroupAccurateRule {
+        /**
+         * Custom object.
+         */
+        httpObj?: pulumi.Input<string>;
+        /**
+         * matching field.
+         */
+        objType?: pulumi.Input<number>;
+        /**
+         * The logical operator for the condition.
+         */
+        opretar?: pulumi.Input<number>;
+        /**
+         * Operate the properties of the http object.
+         */
+        property?: pulumi.Input<number>;
+        /**
+         * The value to be matched.
+         */
+        valueString?: pulumi.Input<string>;
+    }
+
+    export interface CcRuleAccurateGroup {
+        /**
+         * Details of advanced conditions.
+         */
+        accurateRules: pulumi.Input<pulumi.Input<inputs.waf.CcRuleAccurateGroupAccurateRule>[]>;
+        /**
+         * The logical relationship of advanced conditions.
+         */
+        logic: pulumi.Input<number>;
+    }
+
+    export interface CcRuleAccurateGroupAccurateRule {
+        /**
+         * The HTTP object to be added to the advanced conditions.
+         */
+        httpObj: pulumi.Input<string>;
+        /**
+         * The matching field for HTTP objects.
+         */
+        objType: pulumi.Input<number>;
+        /**
+         * The logical operator for the condition.
+         */
+        opretar: pulumi.Input<number>;
+        /**
+         * Operate the properties of the http object.
+         */
+        property: pulumi.Input<number>;
+        /**
+         * The value to be matched.
+         */
+        valueString: pulumi.Input<string>;
+    }
+
+    export interface CcRuleCronConf {
+        /**
+         * The weekly cycle days and cycle time periods.
+         */
+        crontab: pulumi.Input<string>;
+        /**
+         * The threshold of the number of requests for path access.
+         */
+        pathThreshold: pulumi.Input<number>;
+        /**
+         * The threshold of the number of visits to each statistical object.
+         */
+        singleThreshold: pulumi.Input<number>;
+    }
+
+    export interface CcRuleRuleGroup {
+        /**
+         * Rule group information.
+         */
+        group?: pulumi.Input<inputs.waf.CcRuleRuleGroupGroup>;
+        /**
+         * Specific rule information within the rule group.
+         */
+        rules?: pulumi.Input<pulumi.Input<inputs.waf.CcRuleRuleGroupRule>[]>;
+    }
+
+    export interface CcRuleRuleGroupGroup {
+        /**
+         * After the rule creation is completed, the priority of the automatically generated rule group.
+         */
+        accurateGroupPriority?: pulumi.Input<number>;
+        /**
+         * Request characteristic information of the rule group.
+         */
+        accurateRules?: pulumi.Input<pulumi.Input<inputs.waf.CcRuleRuleGroupGroupAccurateRule>[]>;
+        /**
+         * The ID of Rule group.
+         */
+        id?: pulumi.Input<number>;
+        /**
+         * In the rule group, the high-level conditional operation relationships corresponding to each rule.
+         */
+        logic?: pulumi.Input<number>;
+    }
+
+    export interface CcRuleRuleGroupGroupAccurateRule {
+        /**
+         * The HTTP object to be added to the advanced conditions.
+         */
+        httpObj?: pulumi.Input<string>;
+        /**
+         * The matching field for HTTP objects.
+         */
+        objType?: pulumi.Input<number>;
+        /**
+         * The logical operator for the condition.
+         */
+        opretar?: pulumi.Input<number>;
+        /**
+         * Operate the properties of the http object.
+         */
+        property?: pulumi.Input<number>;
+        /**
+         * The value to be matched.
+         */
+        valueString?: pulumi.Input<string>;
+    }
+
+    export interface CcRuleRuleGroupRule {
+        /**
+         * Advanced conditions.
+         */
+        accurateGroup?: pulumi.Input<inputs.waf.CcRuleRuleGroupRuleAccurateGroup>;
+        /**
+         * After the rule creation is completed, the priority of the automatically generated rule group.
+         */
+        accurateGroupPriority?: pulumi.Input<number>;
+        /**
+         * The actions performed on subsequent requests after meeting the statistical conditions.
+         */
+        ccType?: pulumi.Input<number>;
+        /**
+         * The statistical period of the strategy.
+         */
+        countTime?: pulumi.Input<number>;
+        /**
+         * Details of the periodic loop configuration.
+         */
+        cronConfs?: pulumi.Input<pulumi.Input<inputs.waf.CcRuleRuleGroupRuleCronConf>[]>;
+        /**
+         * Whether to set the cycle to take effect.
+         */
+        cronEnable?: pulumi.Input<number>;
+        /**
+         * Limit the duration, that is, the effective duration of the action.
+         */
+        effectTime?: pulumi.Input<number>;
+        /**
+         * Whether to enable the rules.
+         */
+        enable?: pulumi.Input<number>;
+        /**
+         * Strategy exemption time.
+         */
+        exemptionTime?: pulumi.Input<number>;
+        /**
+         * statistical object.
+         */
+        field?: pulumi.Input<string>;
+        /**
+         * Website domain names that require the setting of protection rules.
+         */
+        host?: pulumi.Input<string>;
+        /**
+         * The ID of Rule group.
+         */
+        id?: pulumi.Input<number>;
+        /**
+         * The name of cc rule.
+         */
+        name?: pulumi.Input<string>;
+        /**
+         * The threshold of the total number of times the request path is accessed.
+         */
+        pathThreshold?: pulumi.Input<number>;
+        /**
+         * Rule execution priority.
+         */
+        rulePriority?: pulumi.Input<number>;
+        /**
+         * Rule label, that is, the complete rule ID.
+         */
+        ruleTag?: pulumi.Input<string>;
+        /**
+         * The threshold of the number of times each statistical object accesses the request path.
+         */
+        singleThreshold?: pulumi.Input<number>;
+        /**
+         * Rule update time.
+         */
+        updateTime?: pulumi.Input<string>;
+        /**
+         * The website request path that needs protection.
+         */
+        url?: pulumi.Input<string>;
+    }
+
+    export interface CcRuleRuleGroupRuleAccurateGroup {
+        /**
+         * After the rule creation is completed, the priority of the automatically generated rule group.
+         */
+        accurateGroupPriority?: pulumi.Input<number>;
+        /**
+         * Details of advanced conditions.
+         */
+        accurateRules?: pulumi.Input<pulumi.Input<inputs.waf.CcRuleRuleGroupRuleAccurateGroupAccurateRule>[]>;
+        /**
+         * The ID of Rule group.
+         */
+        id?: pulumi.Input<number>;
+        /**
+         * The logical relationship of advanced conditions.
+         */
+        logic?: pulumi.Input<number>;
+    }
+
+    export interface CcRuleRuleGroupRuleAccurateGroupAccurateRule {
+        /**
+         * The HTTP object to be added to the advanced conditions.
+         */
+        httpObj?: pulumi.Input<string>;
+        /**
+         * The matching field for HTTP objects.
+         */
+        objType?: pulumi.Input<number>;
+        /**
+         * The logical operator for the condition.
+         */
+        opretar?: pulumi.Input<number>;
+        /**
+         * Operate the properties of the http object.
+         */
+        property?: pulumi.Input<number>;
+        /**
+         * The value to be matched.
+         */
+        valueString?: pulumi.Input<string>;
+    }
+
+    export interface CcRuleRuleGroupRuleCronConf {
+        /**
+         * The weekly cycle days and cycle time periods.
+         */
+        crontab?: pulumi.Input<string>;
+        /**
+         * The threshold of the number of requests for path access.
+         */
+        pathThreshold?: pulumi.Input<number>;
+        /**
+         * The threshold of the number of visits to each statistical object.
+         */
+        singleThreshold?: pulumi.Input<number>;
+    }
+
+    export interface CustomBotAccurate {
+        /**
+         * Details of advanced conditions.
+         */
+        accurateRules?: pulumi.Input<pulumi.Input<inputs.waf.CustomBotAccurateAccurateRule>[]>;
+        /**
+         * The logical relationship of advanced conditions.
+         */
+        logic?: pulumi.Input<number>;
+    }
+
+    export interface CustomBotAccurateAccurateRule {
+        /**
+         * The HTTP object to be added to the advanced conditions.
+         */
+        httpObj?: pulumi.Input<string>;
+        /**
+         * The matching field for HTTP objects.
+         */
+        objType?: pulumi.Input<number>;
+        /**
+         * The logical operator for the condition.
+         */
+        opretar?: pulumi.Input<number>;
+        /**
+         * Operate the properties of the http object.
+         */
+        property?: pulumi.Input<number>;
+        /**
+         * The value to be matched.
+         */
+        valueString?: pulumi.Input<string>;
+    }
+
+    export interface CustomPageAccurate {
+        /**
+         * Details of advanced conditions.
+         */
+        accurateRules: pulumi.Input<pulumi.Input<inputs.waf.CustomPageAccurateAccurateRule>[]>;
+        /**
+         * The logical relationship of advanced conditions.
+         */
+        logic: pulumi.Input<number>;
+    }
+
+    export interface CustomPageAccurateAccurateRule {
+        /**
+         * The HTTP object to be added to the advanced conditions.
+         */
+        httpObj: pulumi.Input<string>;
+        /**
+         * The matching field for HTTP objects.
+         */
+        objType: pulumi.Input<number>;
+        /**
+         * The logical operator for the condition.
+         */
+        opretar: pulumi.Input<number>;
+        /**
+         * Operate the properties of the http object.
+         */
+        property: pulumi.Input<number>;
+        /**
+         * The value to be matched.
+         */
+        valueString: pulumi.Input<string>;
+    }
+
+    export interface HostGroupRelatedRule {
+        /**
+         * The name of the rule.
+         */
+        ruleName?: pulumi.Input<string>;
+        /**
+         * The ID of the rule.
+         */
+        ruleTag?: pulumi.Input<string>;
+        /**
+         * The type of the rule.
+         */
+        ruleType?: pulumi.Input<string>;
+    }
+
+    export interface IpGroupRelatedRule {
+        /**
+         * The information of the protected domain names associated with the rules.
+         */
+        host?: pulumi.Input<string>;
+        /**
+         * The name of the rule.
+         */
+        ruleName?: pulumi.Input<string>;
+        /**
+         * The ID of the rule.
+         */
+        ruleTag?: pulumi.Input<string>;
+        /**
+         * The type of the rule.
+         */
+        ruleType?: pulumi.Input<string>;
+    }
+
+    export interface VulnerabilityAdvanceConfig {
+        /**
+         * Configuration of the automatic blocking capability for directory traversal.
+         */
+        autoTraversal: pulumi.Input<inputs.waf.VulnerabilityAdvanceConfigAutoTraversal>;
+        /**
+         * Configuration of high-frequency scanning automatic blocking capability.
+         */
+        freqScan: pulumi.Input<inputs.waf.VulnerabilityAdvanceConfigFreqScan>;
+    }
+
+    export interface VulnerabilityAdvanceConfigAutoTraversal {
+        /**
+         * Rule switch, controlling whether the current rule takes effect.
+         */
+        enable?: pulumi.Input<boolean>;
+        /**
+         * Rule detail.
+         */
+        rule?: pulumi.Input<inputs.waf.VulnerabilityAdvanceConfigAutoTraversalRule>;
+        /**
+         * Directory traversal automatically blocks the rule label, that is, the complete rule ID.
+         */
+        ruleTag?: pulumi.Input<string>;
+    }
+
+    export interface VulnerabilityAdvanceConfigAutoTraversalRule {
+        /**
+         * Disposal action.
+         */
+        action: pulumi.Input<number>;
+        /**
+         * Disposal action.
+         */
+        countTime: pulumi.Input<number>;
+        /**
+         * Ban time (seconds).
+         */
+        effectTime: pulumi.Input<number>;
+        /**
+         * The body records the units displayed at the front end of the length: s, min, hour, and day.
+         */
+        effectTimeViewUnit: pulumi.Input<string>;
+        /**
+         * statistical object.
+         */
+        field: pulumi.Input<string>;
+        /**
+         * The number of request triggers.
+         */
+        hitRequestCount: pulumi.Input<number>;
+        /**
+         * Hit percentage: 0-99.
+         */
+        responseHttpStatusHitPercent: pulumi.Input<number>;
+        /**
+         * Response status code.
+         */
+        responseHttpStatuses: pulumi.Input<pulumi.Input<number>[]>;
+    }
+
+    export interface VulnerabilityAdvanceConfigFreqScan {
+        /**
+         * Rule switch, controlling whether the current rule takes effect.
+         */
+        enable?: pulumi.Input<boolean>;
+        /**
+         * Rule detail.
+         */
+        rule?: pulumi.Input<inputs.waf.VulnerabilityAdvanceConfigFreqScanRule>;
+        /**
+         * Directory traversal automatically blocks the rule label, that is, the complete rule ID.
+         */
+        ruleTag?: pulumi.Input<string>;
+    }
+
+    export interface VulnerabilityAdvanceConfigFreqScanRule {
+        /**
+         * Disposal action.
+         */
+        action: pulumi.Input<number>;
+        /**
+         * Disposal action.
+         */
+        countTime: pulumi.Input<number>;
+        /**
+         * Ban time (seconds).
+         */
+        effectTime: pulumi.Input<number>;
+        /**
+         * The body records the units displayed at the front end of the length: s, min, hour, and day.
+         */
+        effectTimeViewUnit: pulumi.Input<string>;
+        /**
+         * statistical object.
+         */
+        field: pulumi.Input<string>;
+        /**
+         * The number of request triggers.
+         */
+        hitRequestCount: pulumi.Input<number>;
+    }
+
+    export interface VulnerabilityRuleDetail {
+        /**
+         * The accuracy of the rules. Only when updating the custom vulnerability rules.
+         */
+        accuracy?: pulumi.Input<number>;
+        /**
+         * The ID of CVE. Only when updating the custom vulnerability rules.
+         */
+        cveId?: pulumi.Input<string>;
+        /**
+         * The description of the rules. Only when updating the custom vulnerability rules.
+         */
+        description?: pulumi.Input<string>;
+        /**
+         * Risk grade. Only when updating the custom vulnerability rules.
+         */
+        riskLevel?: pulumi.Input<number>;
+        /**
+         * The name of rule. Only when updating the custom vulnerability rules.
+         */
+        ruleName?: pulumi.Input<string>;
+        /**
+         * First-level rule category. Only when updating the custom vulnerability rules.
+         */
+        ruleSetName?: pulumi.Input<string>;
+        /**
+         * Rule label, that is, the complete rule ID. Only when updating the custom vulnerability rules.
+         */
+        ruleTag?: pulumi.Input<string>;
+        /**
+         * Secondary rule category. Only when updating the custom vulnerability rules.
+         */
+        subcategory?: pulumi.Input<string>;
+        /**
+         * The update time of the rules. Only when updating the custom vulnerability rules.
+         */
+        updateTime?: pulumi.Input<string>;
+    }
+
+    export interface VulnerabilitySystemRuleSwitch {
+        /**
+         * Custom rule switch.
+         */
+        customSystemRuleSwitch?: pulumi.Input<number>;
+        /**
+         * The ID of rule.
+         */
+        ruleId?: pulumi.Input<number>;
+    }
+
+    export interface WafDomainBackendGroup {
+        /**
+         * Access port number.
+         */
+        accessPorts?: pulumi.Input<pulumi.Input<number>[]>;
+        /**
+         * The details of the source station group.
+         */
+        backends?: pulumi.Input<pulumi.Input<inputs.waf.WafDomainBackendGroupBackend>[]>;
+        /**
+         * Source station group name.
+         */
+        name?: pulumi.Input<string>;
+    }
+
+    export interface WafDomainBackendGroupBackend {
+        /**
+         * Source station IP address.
+         */
+        ip?: pulumi.Input<string>;
+        /**
+         * Source station port number.
+         */
+        port?: pulumi.Input<number>;
+        /**
+         * The agreement of Source Station.
+         */
+        protocol?: pulumi.Input<string>;
+        /**
+         * The weight of the source station rules.
+         */
+        weight?: pulumi.Input<number>;
+    }
+
+    export interface WafDomainCloudAccessConfig {
+        /**
+         * The access protocol needs to be consistent with the monitoring protocol.
+         */
+        accessProtocol?: pulumi.Input<string>;
+        /**
+         * The ID of instance.
+         */
+        instanceId: pulumi.Input<string>;
+        /**
+         * The name of instance. Works only on modified scenes.
+         */
+        instanceName?: pulumi.Input<string>;
+        /**
+         * The ID of listener.
+         */
+        listenerId?: pulumi.Input<string>;
+        /**
+         * Whether the instance is unbound from the alb and is unbound on the ALB side. Works only on modified scenes.
+         */
+        lostAssociationFromAlb?: pulumi.Input<number>;
+        /**
+         * The port number corresponding to the listener.
+         */
+        port?: pulumi.Input<string>;
+        /**
+         * The type of Listener protocol.
+         */
+        protocol?: pulumi.Input<string>;
+    }
+
+    export interface WafDomainExtraDefenceModeLbInstance {
+        /**
+         * Set the protection mode for exceptional ALB instances. Works only on modified scenes.
+         */
+        defenceMode?: pulumi.Input<number>;
+        /**
+         * The Id of ALB instance. Works only on modified scenes.
+         */
+        instanceId?: pulumi.Input<string>;
+    }
+
+    export interface WafDomainProtocolPorts {
+        /**
+         * Ports supported by the HTTP protocol.
+         */
+        http?: pulumi.Input<pulumi.Input<number>[]>;
+        /**
+         * Ports supported by the HTTPs protocol.
+         */
+        https?: pulumi.Input<pulumi.Input<number>[]>;
+    }
+
+    export interface WafDomainTlsFieldsConfig {
+        /**
+         * The configuration of Headers. Works only on modified scenes.
+         */
+        headersConfig?: pulumi.Input<inputs.waf.WafDomainTlsFieldsConfigHeadersConfig>;
+    }
+
+    export interface WafDomainTlsFieldsConfigHeadersConfig {
+        /**
+         * Whether the log contains this field. Works only on modified scenes.
+         */
+        enable?: pulumi.Input<number>;
+        /**
+         * For the use of composite fields, exclude the fields in the keyword list from the JSON of the fields. Works only on modified scenes.
+         */
+        excludedKeyLists?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Create statistical indexes for the fields of the list. Works only on modified scenes.
+         */
+        statisticalKeyLists?: pulumi.Input<pulumi.Input<string>[]>;
+    }
 }

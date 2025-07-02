@@ -29,6 +29,7 @@ export function getSubnets(args?: GetSubnetsArgs, opts?: pulumi.InvokeOptions): 
         "outputFile": args.outputFile,
         "routeTableId": args.routeTableId,
         "subnetName": args.subnetName,
+        "subnetOwnerId": args.subnetOwnerId,
         "tags": args.tags,
         "vpcId": args.vpcId,
         "zoneId": args.zoneId,
@@ -59,6 +60,10 @@ export interface GetSubnetsArgs {
      * The subnet name to query.
      */
     subnetName?: string;
+    /**
+     * The owner ID of the subnet.
+     */
+    subnetOwnerId?: number;
     /**
      * Tags.
      */
@@ -92,6 +97,7 @@ export interface GetSubnetsResult {
      * The Name of Subnet.
      */
     readonly subnetName?: string;
+    readonly subnetOwnerId?: number;
     /**
      * The collection of Subnet query.
      */
@@ -154,6 +160,10 @@ export interface GetSubnetsOutputArgs {
      * The subnet name to query.
      */
     subnetName?: pulumi.Input<string>;
+    /**
+     * The owner ID of the subnet.
+     */
+    subnetOwnerId?: pulumi.Input<number>;
     /**
      * Tags.
      */

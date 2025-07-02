@@ -17,18 +17,22 @@ class InterRegionBandwidthArgs:
                  bandwidth: pulumi.Input[int],
                  cen_id: pulumi.Input[str],
                  local_region_id: pulumi.Input[str],
-                 peer_region_id: pulumi.Input[str]):
+                 peer_region_id: pulumi.Input[str],
+                 cen_bandwidth_package_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a InterRegionBandwidth resource.
         :param pulumi.Input[int] bandwidth: The bandwidth of the cen inter region bandwidth.
         :param pulumi.Input[str] cen_id: The cen ID of the cen inter region bandwidth.
         :param pulumi.Input[str] local_region_id: The local region id of the cen inter region bandwidth.
         :param pulumi.Input[str] peer_region_id: The peer region id of the cen inter region bandwidth.
+        :param pulumi.Input[str] cen_bandwidth_package_id: The cen bandwidth package id of the cen inter region bandwidth.
         """
         pulumi.set(__self__, "bandwidth", bandwidth)
         pulumi.set(__self__, "cen_id", cen_id)
         pulumi.set(__self__, "local_region_id", local_region_id)
         pulumi.set(__self__, "peer_region_id", peer_region_id)
+        if cen_bandwidth_package_id is not None:
+            pulumi.set(__self__, "cen_bandwidth_package_id", cen_bandwidth_package_id)
 
     @property
     @pulumi.getter
@@ -78,11 +82,24 @@ class InterRegionBandwidthArgs:
     def peer_region_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "peer_region_id", value)
 
+    @property
+    @pulumi.getter(name="cenBandwidthPackageId")
+    def cen_bandwidth_package_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The cen bandwidth package id of the cen inter region bandwidth.
+        """
+        return pulumi.get(self, "cen_bandwidth_package_id")
+
+    @cen_bandwidth_package_id.setter
+    def cen_bandwidth_package_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cen_bandwidth_package_id", value)
+
 
 @pulumi.input_type
 class _InterRegionBandwidthState:
     def __init__(__self__, *,
                  bandwidth: Optional[pulumi.Input[int]] = None,
+                 cen_bandwidth_package_id: Optional[pulumi.Input[str]] = None,
                  cen_id: Optional[pulumi.Input[str]] = None,
                  creation_time: Optional[pulumi.Input[str]] = None,
                  inter_region_bandwidth_id: Optional[pulumi.Input[str]] = None,
@@ -93,6 +110,7 @@ class _InterRegionBandwidthState:
         """
         Input properties used for looking up and filtering InterRegionBandwidth resources.
         :param pulumi.Input[int] bandwidth: The bandwidth of the cen inter region bandwidth.
+        :param pulumi.Input[str] cen_bandwidth_package_id: The cen bandwidth package id of the cen inter region bandwidth.
         :param pulumi.Input[str] cen_id: The cen ID of the cen inter region bandwidth.
         :param pulumi.Input[str] creation_time: The create time of the cen inter region bandwidth.
         :param pulumi.Input[str] inter_region_bandwidth_id: The ID of the cen inter region bandwidth.
@@ -103,6 +121,8 @@ class _InterRegionBandwidthState:
         """
         if bandwidth is not None:
             pulumi.set(__self__, "bandwidth", bandwidth)
+        if cen_bandwidth_package_id is not None:
+            pulumi.set(__self__, "cen_bandwidth_package_id", cen_bandwidth_package_id)
         if cen_id is not None:
             pulumi.set(__self__, "cen_id", cen_id)
         if creation_time is not None:
@@ -129,6 +149,18 @@ class _InterRegionBandwidthState:
     @bandwidth.setter
     def bandwidth(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "bandwidth", value)
+
+    @property
+    @pulumi.getter(name="cenBandwidthPackageId")
+    def cen_bandwidth_package_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The cen bandwidth package id of the cen inter region bandwidth.
+        """
+        return pulumi.get(self, "cen_bandwidth_package_id")
+
+    @cen_bandwidth_package_id.setter
+    def cen_bandwidth_package_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cen_bandwidth_package_id", value)
 
     @property
     @pulumi.getter(name="cenId")
@@ -221,6 +253,7 @@ class InterRegionBandwidth(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  bandwidth: Optional[pulumi.Input[int]] = None,
+                 cen_bandwidth_package_id: Optional[pulumi.Input[str]] = None,
                  cen_id: Optional[pulumi.Input[str]] = None,
                  local_region_id: Optional[pulumi.Input[str]] = None,
                  peer_region_id: Optional[pulumi.Input[str]] = None,
@@ -277,6 +310,7 @@ class InterRegionBandwidth(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] bandwidth: The bandwidth of the cen inter region bandwidth.
+        :param pulumi.Input[str] cen_bandwidth_package_id: The cen bandwidth package id of the cen inter region bandwidth.
         :param pulumi.Input[str] cen_id: The cen ID of the cen inter region bandwidth.
         :param pulumi.Input[str] local_region_id: The local region id of the cen inter region bandwidth.
         :param pulumi.Input[str] peer_region_id: The peer region id of the cen inter region bandwidth.
@@ -352,6 +386,7 @@ class InterRegionBandwidth(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  bandwidth: Optional[pulumi.Input[int]] = None,
+                 cen_bandwidth_package_id: Optional[pulumi.Input[str]] = None,
                  cen_id: Optional[pulumi.Input[str]] = None,
                  local_region_id: Optional[pulumi.Input[str]] = None,
                  peer_region_id: Optional[pulumi.Input[str]] = None,
@@ -367,6 +402,7 @@ class InterRegionBandwidth(pulumi.CustomResource):
             if bandwidth is None and not opts.urn:
                 raise TypeError("Missing required property 'bandwidth'")
             __props__.__dict__["bandwidth"] = bandwidth
+            __props__.__dict__["cen_bandwidth_package_id"] = cen_bandwidth_package_id
             if cen_id is None and not opts.urn:
                 raise TypeError("Missing required property 'cen_id'")
             __props__.__dict__["cen_id"] = cen_id
@@ -391,6 +427,7 @@ class InterRegionBandwidth(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             bandwidth: Optional[pulumi.Input[int]] = None,
+            cen_bandwidth_package_id: Optional[pulumi.Input[str]] = None,
             cen_id: Optional[pulumi.Input[str]] = None,
             creation_time: Optional[pulumi.Input[str]] = None,
             inter_region_bandwidth_id: Optional[pulumi.Input[str]] = None,
@@ -406,6 +443,7 @@ class InterRegionBandwidth(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] bandwidth: The bandwidth of the cen inter region bandwidth.
+        :param pulumi.Input[str] cen_bandwidth_package_id: The cen bandwidth package id of the cen inter region bandwidth.
         :param pulumi.Input[str] cen_id: The cen ID of the cen inter region bandwidth.
         :param pulumi.Input[str] creation_time: The create time of the cen inter region bandwidth.
         :param pulumi.Input[str] inter_region_bandwidth_id: The ID of the cen inter region bandwidth.
@@ -419,6 +457,7 @@ class InterRegionBandwidth(pulumi.CustomResource):
         __props__ = _InterRegionBandwidthState.__new__(_InterRegionBandwidthState)
 
         __props__.__dict__["bandwidth"] = bandwidth
+        __props__.__dict__["cen_bandwidth_package_id"] = cen_bandwidth_package_id
         __props__.__dict__["cen_id"] = cen_id
         __props__.__dict__["creation_time"] = creation_time
         __props__.__dict__["inter_region_bandwidth_id"] = inter_region_bandwidth_id
@@ -435,6 +474,14 @@ class InterRegionBandwidth(pulumi.CustomResource):
         The bandwidth of the cen inter region bandwidth.
         """
         return pulumi.get(self, "bandwidth")
+
+    @property
+    @pulumi.getter(name="cenBandwidthPackageId")
+    def cen_bandwidth_package_id(self) -> pulumi.Output[str]:
+        """
+        The cen bandwidth package id of the cen inter region bandwidth.
+        """
+        return pulumi.get(self, "cen_bandwidth_package_id")
 
     @property
     @pulumi.getter(name="cenId")

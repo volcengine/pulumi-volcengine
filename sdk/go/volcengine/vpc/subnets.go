@@ -63,6 +63,8 @@ type SubnetsArgs struct {
 	RouteTableId *string `pulumi:"routeTableId"`
 	// The subnet name to query.
 	SubnetName *string `pulumi:"subnetName"`
+	// The owner ID of the subnet.
+	SubnetOwnerId *int `pulumi:"subnetOwnerId"`
 	// Tags.
 	Tags []SubnetsTag `pulumi:"tags"`
 	// The ID of VPC which subnet belongs to.
@@ -81,7 +83,8 @@ type SubnetsResult struct {
 	// The route table ID.
 	RouteTableId *string `pulumi:"routeTableId"`
 	// The Name of Subnet.
-	SubnetName *string `pulumi:"subnetName"`
+	SubnetName    *string `pulumi:"subnetName"`
+	SubnetOwnerId *int    `pulumi:"subnetOwnerId"`
 	// The collection of Subnet query.
 	Subnets []SubnetsSubnet `pulumi:"subnets"`
 	// Tags.
@@ -119,6 +122,8 @@ type SubnetsOutputArgs struct {
 	RouteTableId pulumi.StringPtrInput `pulumi:"routeTableId"`
 	// The subnet name to query.
 	SubnetName pulumi.StringPtrInput `pulumi:"subnetName"`
+	// The owner ID of the subnet.
+	SubnetOwnerId pulumi.IntPtrInput `pulumi:"subnetOwnerId"`
 	// Tags.
 	Tags SubnetsTagArrayInput `pulumi:"tags"`
 	// The ID of VPC which subnet belongs to.
@@ -171,6 +176,10 @@ func (o SubnetsResultOutput) RouteTableId() pulumi.StringPtrOutput {
 // The Name of Subnet.
 func (o SubnetsResultOutput) SubnetName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SubnetsResult) *string { return v.SubnetName }).(pulumi.StringPtrOutput)
+}
+
+func (o SubnetsResultOutput) SubnetOwnerId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SubnetsResult) *int { return v.SubnetOwnerId }).(pulumi.IntPtrOutput)
 }
 
 // The collection of Subnet query.

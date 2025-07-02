@@ -91,6 +91,10 @@ export class InterRegionBandwidth extends pulumi.CustomResource {
      */
     public readonly bandwidth!: pulumi.Output<number>;
     /**
+     * The cen bandwidth package id of the cen inter region bandwidth.
+     */
+    public readonly cenBandwidthPackageId!: pulumi.Output<string>;
+    /**
      * The cen ID of the cen inter region bandwidth.
      */
     public readonly cenId!: pulumi.Output<string>;
@@ -133,6 +137,7 @@ export class InterRegionBandwidth extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as InterRegionBandwidthState | undefined;
             resourceInputs["bandwidth"] = state ? state.bandwidth : undefined;
+            resourceInputs["cenBandwidthPackageId"] = state ? state.cenBandwidthPackageId : undefined;
             resourceInputs["cenId"] = state ? state.cenId : undefined;
             resourceInputs["creationTime"] = state ? state.creationTime : undefined;
             resourceInputs["interRegionBandwidthId"] = state ? state.interRegionBandwidthId : undefined;
@@ -155,6 +160,7 @@ export class InterRegionBandwidth extends pulumi.CustomResource {
                 throw new Error("Missing required property 'peerRegionId'");
             }
             resourceInputs["bandwidth"] = args ? args.bandwidth : undefined;
+            resourceInputs["cenBandwidthPackageId"] = args ? args.cenBandwidthPackageId : undefined;
             resourceInputs["cenId"] = args ? args.cenId : undefined;
             resourceInputs["localRegionId"] = args ? args.localRegionId : undefined;
             resourceInputs["peerRegionId"] = args ? args.peerRegionId : undefined;
@@ -176,6 +182,10 @@ export interface InterRegionBandwidthState {
      * The bandwidth of the cen inter region bandwidth.
      */
     bandwidth?: pulumi.Input<number>;
+    /**
+     * The cen bandwidth package id of the cen inter region bandwidth.
+     */
+    cenBandwidthPackageId?: pulumi.Input<string>;
     /**
      * The cen ID of the cen inter region bandwidth.
      */
@@ -214,6 +224,10 @@ export interface InterRegionBandwidthArgs {
      * The bandwidth of the cen inter region bandwidth.
      */
     bandwidth: pulumi.Input<number>;
+    /**
+     * The cen bandwidth package id of the cen inter region bandwidth.
+     */
+    cenBandwidthPackageId?: pulumi.Input<string>;
     /**
      * The cen ID of the cen inter region bandwidth.
      */

@@ -13,6 +13,7 @@ utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
 
 // Export sub-modules:
 import * as alb from "./alb";
+import * as apig from "./apig";
 import * as autoscaling from "./autoscaling";
 import * as bandwidth_package from "./bandwidth_package";
 import * as bioos from "./bioos";
@@ -63,9 +64,11 @@ import * as vke from "./vke";
 import * as vmp from "./vmp";
 import * as vpc from "./vpc";
 import * as vpn from "./vpn";
+import * as waf from "./waf";
 
 export {
     alb,
+    apig,
     autoscaling,
     bandwidth_package,
     bioos,
@@ -116,6 +119,7 @@ export {
     vmp,
     vpc,
     vpn,
+    waf,
 };
 pulumi.runtime.registerResourcePackage("volcengine", {
     version: utilities.getVersion(),

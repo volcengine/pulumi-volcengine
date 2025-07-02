@@ -5,6 +5,11 @@
 from .. import _utilities
 import typing
 # Export this package's modules as members:
+from .cidr_block_associate import *
+from .flow_log import *
+from .flow_log_active import *
+from .flow_logs import *
+from .get_flow_logs import *
 from .get_ha_vips import *
 from .get_ipv6_address_bandwidths import *
 from .get_ipv6_addresses import *
@@ -17,6 +22,10 @@ from .get_route_tables import *
 from .get_security_group_rules import *
 from .get_security_groups import *
 from .get_subnets import *
+from .get_traffic_mirror_filter_rules import *
+from .get_traffic_mirror_filters import *
+from .get_traffic_mirror_sessions import *
+from .get_traffic_mirror_targets import *
 from .get_vpcs import *
 from .ha_vip import *
 from .ha_vip_associate import *
@@ -45,6 +54,14 @@ from .security_group_rules import *
 from .security_groups import *
 from .subnet import *
 from .subnets import *
+from .traffic_mirror_filter import *
+from .traffic_mirror_filter_rule import *
+from .traffic_mirror_filter_rules import *
+from .traffic_mirror_filters import *
+from .traffic_mirror_session import *
+from .traffic_mirror_sessions import *
+from .traffic_mirror_target import *
+from .traffic_mirror_targets import *
 from .vpc import *
 from .vpcs import *
 from ._inputs import *

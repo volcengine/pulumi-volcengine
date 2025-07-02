@@ -97,6 +97,8 @@ type InterRegionBandwidth struct {
 
 	// The bandwidth of the cen inter region bandwidth.
 	Bandwidth pulumi.IntOutput `pulumi:"bandwidth"`
+	// The cen bandwidth package id of the cen inter region bandwidth.
+	CenBandwidthPackageId pulumi.StringOutput `pulumi:"cenBandwidthPackageId"`
 	// The cen ID of the cen inter region bandwidth.
 	CenId pulumi.StringOutput `pulumi:"cenId"`
 	// The create time of the cen inter region bandwidth.
@@ -157,6 +159,8 @@ func GetInterRegionBandwidth(ctx *pulumi.Context,
 type interRegionBandwidthState struct {
 	// The bandwidth of the cen inter region bandwidth.
 	Bandwidth *int `pulumi:"bandwidth"`
+	// The cen bandwidth package id of the cen inter region bandwidth.
+	CenBandwidthPackageId *string `pulumi:"cenBandwidthPackageId"`
 	// The cen ID of the cen inter region bandwidth.
 	CenId *string `pulumi:"cenId"`
 	// The create time of the cen inter region bandwidth.
@@ -176,6 +180,8 @@ type interRegionBandwidthState struct {
 type InterRegionBandwidthState struct {
 	// The bandwidth of the cen inter region bandwidth.
 	Bandwidth pulumi.IntPtrInput
+	// The cen bandwidth package id of the cen inter region bandwidth.
+	CenBandwidthPackageId pulumi.StringPtrInput
 	// The cen ID of the cen inter region bandwidth.
 	CenId pulumi.StringPtrInput
 	// The create time of the cen inter region bandwidth.
@@ -199,6 +205,8 @@ func (InterRegionBandwidthState) ElementType() reflect.Type {
 type interRegionBandwidthArgs struct {
 	// The bandwidth of the cen inter region bandwidth.
 	Bandwidth int `pulumi:"bandwidth"`
+	// The cen bandwidth package id of the cen inter region bandwidth.
+	CenBandwidthPackageId *string `pulumi:"cenBandwidthPackageId"`
 	// The cen ID of the cen inter region bandwidth.
 	CenId string `pulumi:"cenId"`
 	// The local region id of the cen inter region bandwidth.
@@ -211,6 +219,8 @@ type interRegionBandwidthArgs struct {
 type InterRegionBandwidthArgs struct {
 	// The bandwidth of the cen inter region bandwidth.
 	Bandwidth pulumi.IntInput
+	// The cen bandwidth package id of the cen inter region bandwidth.
+	CenBandwidthPackageId pulumi.StringPtrInput
 	// The cen ID of the cen inter region bandwidth.
 	CenId pulumi.StringInput
 	// The local region id of the cen inter region bandwidth.
@@ -309,6 +319,11 @@ func (o InterRegionBandwidthOutput) ToInterRegionBandwidthOutputWithContext(ctx 
 // The bandwidth of the cen inter region bandwidth.
 func (o InterRegionBandwidthOutput) Bandwidth() pulumi.IntOutput {
 	return o.ApplyT(func(v *InterRegionBandwidth) pulumi.IntOutput { return v.Bandwidth }).(pulumi.IntOutput)
+}
+
+// The cen bandwidth package id of the cen inter region bandwidth.
+func (o InterRegionBandwidthOutput) CenBandwidthPackageId() pulumi.StringOutput {
+	return o.ApplyT(func(v *InterRegionBandwidth) pulumi.StringOutput { return v.CenBandwidthPackageId }).(pulumi.StringOutput)
 }
 
 // The cen ID of the cen inter region bandwidth.
