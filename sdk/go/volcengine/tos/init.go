@@ -23,8 +23,14 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "volcengine:tos/bucket:Bucket":
 		r = &Bucket{}
+	case "volcengine:tos/bucketCors:BucketCors":
+		r = &BucketCors{}
+	case "volcengine:tos/bucketEncryption:BucketEncryption":
+		r = &BucketEncryption{}
 	case "volcengine:tos/bucketInventory:BucketInventory":
 		r = &BucketInventory{}
+	case "volcengine:tos/bucketNotification:BucketNotification":
+		r = &BucketNotification{}
 	case "volcengine:tos/bucketObject:BucketObject":
 		r = &BucketObject{}
 	case "volcengine:tos/bucketPolicy:BucketPolicy":
@@ -51,7 +57,22 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
+		"tos/bucketCors",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"tos/bucketEncryption",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
 		"tos/bucketInventory",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"tos/bucketNotification",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

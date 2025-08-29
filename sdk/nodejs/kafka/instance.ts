@@ -211,6 +211,10 @@ export class Instance extends pulumi.CustomResource {
      * The version of instance, the value can be `2.2.2` or `2.8.2`.
      */
     public readonly version!: pulumi.Output<string>;
+    /**
+     * The list of zone ids. If you need to deploy multiple availability zones for a newly created instance, you can specify three availability zone IDs at the same time.
+     */
+    public readonly zoneIds!: pulumi.Output<string[]>;
 
     /**
      * Create a Instance resource with the given unique name, arguments, and options.
@@ -243,6 +247,7 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["userName"] = state ? state.userName : undefined;
             resourceInputs["userPassword"] = state ? state.userPassword : undefined;
             resourceInputs["version"] = state ? state.version : undefined;
+            resourceInputs["zoneIds"] = state ? state.zoneIds : undefined;
         } else {
             const args = argsOrState as InstanceArgs | undefined;
             if ((!args || args.chargeType === undefined) && !opts.urn) {
@@ -281,6 +286,7 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["userName"] = args ? args.userName : undefined;
             resourceInputs["userPassword"] = args?.userPassword ? pulumi.secret(args.userPassword) : undefined;
             resourceInputs["version"] = args ? args.version : undefined;
+            resourceInputs["zoneIds"] = args ? args.zoneIds : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["userPassword"] };
@@ -365,6 +371,10 @@ export interface InstanceState {
      * The version of instance, the value can be `2.2.2` or `2.8.2`.
      */
     version?: pulumi.Input<string>;
+    /**
+     * The list of zone ids. If you need to deploy multiple availability zones for a newly created instance, you can specify three availability zone IDs at the same time.
+     */
+    zoneIds?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 /**
@@ -443,4 +453,8 @@ export interface InstanceArgs {
      * The version of instance, the value can be `2.2.2` or `2.8.2`.
      */
     version: pulumi.Input<string>;
+    /**
+     * The list of zone ids. If you need to deploy multiple availability zones for a newly created instance, you can specify three availability zone IDs at the same time.
+     */
+    zoneIds?: pulumi.Input<pulumi.Input<string>[]>;
 }

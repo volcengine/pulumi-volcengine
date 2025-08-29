@@ -110,6 +110,8 @@ type ScalingGroup struct {
 	DesireInstanceNumber pulumi.IntOutput `pulumi:"desireInstanceNumber"`
 	// The health check type of the scaling group.
 	HealthCheckType pulumi.StringOutput `pulumi:"healthCheckType"`
+	// Whether to ignore failed ASG scaling activities while waiting for capacity. Default is false.
+	IgnoreFailedScalingActivities pulumi.BoolPtrOutput `pulumi:"ignoreFailedScalingActivities"`
 	// The instance terminate policy of the scaling group. Valid values: OldestInstance, NewestInstance, OldestScalingConfigurationWithOldestInstance, OldestScalingConfigurationWithNewestInstance. Default value: OldestScalingConfigurationWithOldestInstance.
 	InstanceTerminatePolicy pulumi.StringOutput `pulumi:"instanceTerminatePolicy"`
 	// The ID of the launch template bound to the scaling group. The launch template and scaling configuration cannot take effect at the same time.
@@ -152,6 +154,8 @@ type ScalingGroup struct {
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 	// The VPC id of the scaling group.
 	VpcId pulumi.StringOutput `pulumi:"vpcId"`
+	// Maximum duration that Provider should wait for ASG instances to be InService before timing out. Setting this to "0" causes Provider to skip all Capacity Waiting behavior. Default is "0".
+	WaitForCapacityTimeout pulumi.StringPtrOutput `pulumi:"waitForCapacityTimeout"`
 }
 
 // NewScalingGroup registers a new resource with the given unique name, arguments, and options.
@@ -208,6 +212,8 @@ type scalingGroupState struct {
 	DesireInstanceNumber *int `pulumi:"desireInstanceNumber"`
 	// The health check type of the scaling group.
 	HealthCheckType *string `pulumi:"healthCheckType"`
+	// Whether to ignore failed ASG scaling activities while waiting for capacity. Default is false.
+	IgnoreFailedScalingActivities *bool `pulumi:"ignoreFailedScalingActivities"`
 	// The instance terminate policy of the scaling group. Valid values: OldestInstance, NewestInstance, OldestScalingConfigurationWithOldestInstance, OldestScalingConfigurationWithNewestInstance. Default value: OldestScalingConfigurationWithOldestInstance.
 	InstanceTerminatePolicy *string `pulumi:"instanceTerminatePolicy"`
 	// The ID of the launch template bound to the scaling group. The launch template and scaling configuration cannot take effect at the same time.
@@ -250,6 +256,8 @@ type scalingGroupState struct {
 	UpdatedAt *string `pulumi:"updatedAt"`
 	// The VPC id of the scaling group.
 	VpcId *string `pulumi:"vpcId"`
+	// Maximum duration that Provider should wait for ASG instances to be InService before timing out. Setting this to "0" causes Provider to skip all Capacity Waiting behavior. Default is "0".
+	WaitForCapacityTimeout *string `pulumi:"waitForCapacityTimeout"`
 }
 
 type ScalingGroupState struct {
@@ -265,6 +273,8 @@ type ScalingGroupState struct {
 	DesireInstanceNumber pulumi.IntPtrInput
 	// The health check type of the scaling group.
 	HealthCheckType pulumi.StringPtrInput
+	// Whether to ignore failed ASG scaling activities while waiting for capacity. Default is false.
+	IgnoreFailedScalingActivities pulumi.BoolPtrInput
 	// The instance terminate policy of the scaling group. Valid values: OldestInstance, NewestInstance, OldestScalingConfigurationWithOldestInstance, OldestScalingConfigurationWithNewestInstance. Default value: OldestScalingConfigurationWithOldestInstance.
 	InstanceTerminatePolicy pulumi.StringPtrInput
 	// The ID of the launch template bound to the scaling group. The launch template and scaling configuration cannot take effect at the same time.
@@ -307,6 +317,8 @@ type ScalingGroupState struct {
 	UpdatedAt pulumi.StringPtrInput
 	// The VPC id of the scaling group.
 	VpcId pulumi.StringPtrInput
+	// Maximum duration that Provider should wait for ASG instances to be InService before timing out. Setting this to "0" causes Provider to skip all Capacity Waiting behavior. Default is "0".
+	WaitForCapacityTimeout pulumi.StringPtrInput
 }
 
 func (ScalingGroupState) ElementType() reflect.Type {
@@ -320,6 +332,8 @@ type scalingGroupArgs struct {
 	DefaultCooldown *int `pulumi:"defaultCooldown"`
 	// The desire instance number of the scaling group.
 	DesireInstanceNumber *int `pulumi:"desireInstanceNumber"`
+	// Whether to ignore failed ASG scaling activities while waiting for capacity. Default is false.
+	IgnoreFailedScalingActivities *bool `pulumi:"ignoreFailedScalingActivities"`
 	// The instance terminate policy of the scaling group. Valid values: OldestInstance, NewestInstance, OldestScalingConfigurationWithOldestInstance, OldestScalingConfigurationWithNewestInstance. Default value: OldestScalingConfigurationWithOldestInstance.
 	InstanceTerminatePolicy *string `pulumi:"instanceTerminatePolicy"`
 	// The ID of the launch template bound to the scaling group. The launch template and scaling configuration cannot take effect at the same time.
@@ -348,6 +362,8 @@ type scalingGroupArgs struct {
 	SubnetIds []string `pulumi:"subnetIds"`
 	// Tags.
 	Tags []ScalingGroupTag `pulumi:"tags"`
+	// Maximum duration that Provider should wait for ASG instances to be InService before timing out. Setting this to "0" causes Provider to skip all Capacity Waiting behavior. Default is "0".
+	WaitForCapacityTimeout *string `pulumi:"waitForCapacityTimeout"`
 }
 
 // The set of arguments for constructing a ScalingGroup resource.
@@ -358,6 +374,8 @@ type ScalingGroupArgs struct {
 	DefaultCooldown pulumi.IntPtrInput
 	// The desire instance number of the scaling group.
 	DesireInstanceNumber pulumi.IntPtrInput
+	// Whether to ignore failed ASG scaling activities while waiting for capacity. Default is false.
+	IgnoreFailedScalingActivities pulumi.BoolPtrInput
 	// The instance terminate policy of the scaling group. Valid values: OldestInstance, NewestInstance, OldestScalingConfigurationWithOldestInstance, OldestScalingConfigurationWithNewestInstance. Default value: OldestScalingConfigurationWithOldestInstance.
 	InstanceTerminatePolicy pulumi.StringPtrInput
 	// The ID of the launch template bound to the scaling group. The launch template and scaling configuration cannot take effect at the same time.
@@ -386,6 +404,8 @@ type ScalingGroupArgs struct {
 	SubnetIds pulumi.StringArrayInput
 	// Tags.
 	Tags ScalingGroupTagArrayInput
+	// Maximum duration that Provider should wait for ASG instances to be InService before timing out. Setting this to "0" causes Provider to skip all Capacity Waiting behavior. Default is "0".
+	WaitForCapacityTimeout pulumi.StringPtrInput
 }
 
 func (ScalingGroupArgs) ElementType() reflect.Type {
@@ -505,6 +525,11 @@ func (o ScalingGroupOutput) HealthCheckType() pulumi.StringOutput {
 	return o.ApplyT(func(v *ScalingGroup) pulumi.StringOutput { return v.HealthCheckType }).(pulumi.StringOutput)
 }
 
+// Whether to ignore failed ASG scaling activities while waiting for capacity. Default is false.
+func (o ScalingGroupOutput) IgnoreFailedScalingActivities() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ScalingGroup) pulumi.BoolPtrOutput { return v.IgnoreFailedScalingActivities }).(pulumi.BoolPtrOutput)
+}
+
 // The instance terminate policy of the scaling group. Valid values: OldestInstance, NewestInstance, OldestScalingConfigurationWithOldestInstance, OldestScalingConfigurationWithNewestInstance. Default value: OldestScalingConfigurationWithOldestInstance.
 func (o ScalingGroupOutput) InstanceTerminatePolicy() pulumi.StringOutput {
 	return o.ApplyT(func(v *ScalingGroup) pulumi.StringOutput { return v.InstanceTerminatePolicy }).(pulumi.StringOutput)
@@ -605,6 +630,11 @@ func (o ScalingGroupOutput) UpdatedAt() pulumi.StringOutput {
 // The VPC id of the scaling group.
 func (o ScalingGroupOutput) VpcId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ScalingGroup) pulumi.StringOutput { return v.VpcId }).(pulumi.StringOutput)
+}
+
+// Maximum duration that Provider should wait for ASG instances to be InService before timing out. Setting this to "0" causes Provider to skip all Capacity Waiting behavior. Default is "0".
+func (o ScalingGroupOutput) WaitForCapacityTimeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ScalingGroup) pulumi.StringPtrOutput { return v.WaitForCapacityTimeout }).(pulumi.StringPtrOutput)
 }
 
 type ScalingGroupArrayOutput struct{ *pulumi.OutputState }

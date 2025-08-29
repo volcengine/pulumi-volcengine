@@ -6,8 +6,11 @@ from .. import _utilities
 import typing
 # Export this package's modules as members:
 from .bucket import *
+from .bucket_cors import *
+from .bucket_encryption import *
 from .bucket_inventories import *
 from .bucket_inventory import *
+from .bucket_notification import *
 from .bucket_object import *
 from .bucket_objects import *
 from .bucket_policy import *

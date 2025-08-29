@@ -47,6 +47,11 @@ func GetDisableSsl(ctx *pulumi.Context) bool {
 	return config.GetBool(ctx, "volcengine:disableSsl")
 }
 
+// ENABLE STANDARD ENDPOINT for Volcengine Provider
+func GetEnableStandardEndpoint(ctx *pulumi.Context) bool {
+	return config.GetBool(ctx, "volcengine:enableStandardEndpoint")
+}
+
 // The Customer Endpoint for Volcengine Provider
 func GetEndpoint(ctx *pulumi.Context) string {
 	v, err := config.Try(ctx, "volcengine:endpoint")

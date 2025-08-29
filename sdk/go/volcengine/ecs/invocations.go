@@ -70,8 +70,12 @@ type InvocationsArgs struct {
 	NameRegex *string `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
+	// The project name of ecs invocation.
+	ProjectName *string `pulumi:"projectName"`
 	// The repeat mode of ecs invocation. Valid values: `Once`, `Rate`, `Fixed`.
 	RepeatMode *string `pulumi:"repeatMode"`
+	// Tags.
+	Tags []InvocationsTag `pulumi:"tags"`
 }
 
 // A collection of values returned by Invocations.
@@ -94,8 +98,12 @@ type InvocationsResult struct {
 	Invocations []InvocationsInvocation `pulumi:"invocations"`
 	NameRegex   *string                 `pulumi:"nameRegex"`
 	OutputFile  *string                 `pulumi:"outputFile"`
+	// The project name of the ecs invocation.
+	ProjectName *string `pulumi:"projectName"`
 	// The repeat mode of the ecs invocation.
 	RepeatMode *string `pulumi:"repeatMode"`
+	// Tags.
+	Tags []InvocationsTag `pulumi:"tags"`
 	// The total count of query.
 	TotalCount int `pulumi:"totalCount"`
 }
@@ -131,8 +139,12 @@ type InvocationsOutputArgs struct {
 	NameRegex pulumi.StringPtrInput `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// The project name of ecs invocation.
+	ProjectName pulumi.StringPtrInput `pulumi:"projectName"`
 	// The repeat mode of ecs invocation. Valid values: `Once`, `Rate`, `Fixed`.
 	RepeatMode pulumi.StringPtrInput `pulumi:"repeatMode"`
+	// Tags.
+	Tags InvocationsTagArrayInput `pulumi:"tags"`
 }
 
 func (InvocationsOutputArgs) ElementType() reflect.Type {
@@ -202,9 +214,19 @@ func (o InvocationsResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InvocationsResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
 }
 
+// The project name of the ecs invocation.
+func (o InvocationsResultOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InvocationsResult) *string { return v.ProjectName }).(pulumi.StringPtrOutput)
+}
+
 // The repeat mode of the ecs invocation.
 func (o InvocationsResultOutput) RepeatMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InvocationsResult) *string { return v.RepeatMode }).(pulumi.StringPtrOutput)
+}
+
+// Tags.
+func (o InvocationsResultOutput) Tags() InvocationsTagArrayOutput {
+	return o.ApplyT(func(v InvocationsResult) []InvocationsTag { return v.Tags }).(InvocationsTagArrayOutput)
 }
 
 // The total count of query.

@@ -33,7 +33,8 @@ class InstanceArgs:
                  rebalance_time: Optional[pulumi.Input[str]] = None,
                  storage_space: Optional[pulumi.Input[int]] = None,
                  storage_type: Optional[pulumi.Input[str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceTagArgs']]]] = None):
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceTagArgs']]]] = None,
+                 zone_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a Instance resource.
         :param pulumi.Input[str] charge_type: The charge type of instance, the value can be `PrePaid` or `PostPaid`.
@@ -54,6 +55,7 @@ class InstanceArgs:
         :param pulumi.Input[int] storage_space: The storage space of instance.
         :param pulumi.Input[str] storage_type: The storage type of instance. The value can be ESSD_FlexPL or ESSD_PL0.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceTagArgs']]] tags: The tags of instance.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] zone_ids: The list of zone ids. If you need to deploy multiple availability zones for a newly created instance, you can specify three availability zone IDs at the same time.
         """
         pulumi.set(__self__, "charge_type", charge_type)
         pulumi.set(__self__, "compute_spec", compute_spec)
@@ -85,6 +87,8 @@ class InstanceArgs:
             pulumi.set(__self__, "storage_type", storage_type)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
+        if zone_ids is not None:
+            pulumi.set(__self__, "zone_ids", zone_ids)
 
     @property
     @pulumi.getter(name="chargeType")
@@ -302,6 +306,18 @@ class InstanceArgs:
     def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceTagArgs']]]]):
         pulumi.set(self, "tags", value)
 
+    @property
+    @pulumi.getter(name="zoneIds")
+    def zone_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The list of zone ids. If you need to deploy multiple availability zones for a newly created instance, you can specify three availability zone IDs at the same time.
+        """
+        return pulumi.get(self, "zone_ids")
+
+    @zone_ids.setter
+    def zone_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "zone_ids", value)
+
 
 @pulumi.input_type
 class _InstanceState:
@@ -323,7 +339,8 @@ class _InstanceState:
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceTagArgs']]]] = None,
                  user_name: Optional[pulumi.Input[str]] = None,
                  user_password: Optional[pulumi.Input[str]] = None,
-                 version: Optional[pulumi.Input[str]] = None):
+                 version: Optional[pulumi.Input[str]] = None,
+                 zone_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering Instance resources.
         :param pulumi.Input[bool] auto_renew: The auto renew flag of instance. Only effective when instance_charge_type is PrePaid. Default is false.
@@ -344,6 +361,7 @@ class _InstanceState:
         :param pulumi.Input[str] user_name: The user name of instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] user_password: The user password of instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] version: The version of instance, the value can be `2.2.2` or `2.8.2`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] zone_ids: The list of zone ids. If you need to deploy multiple availability zones for a newly created instance, you can specify three availability zone IDs at the same time.
         """
         if auto_renew is not None:
             pulumi.set(__self__, "auto_renew", auto_renew)
@@ -381,6 +399,8 @@ class _InstanceState:
             pulumi.set(__self__, "user_password", user_password)
         if version is not None:
             pulumi.set(__self__, "version", version)
+        if zone_ids is not None:
+            pulumi.set(__self__, "zone_ids", zone_ids)
 
     @property
     @pulumi.getter(name="autoRenew")
@@ -598,6 +618,18 @@ class _InstanceState:
     def version(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "version", value)
 
+    @property
+    @pulumi.getter(name="zoneIds")
+    def zone_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The list of zone ids. If you need to deploy multiple availability zones for a newly created instance, you can specify three availability zone IDs at the same time.
+        """
+        return pulumi.get(self, "zone_ids")
+
+    @zone_ids.setter
+    def zone_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "zone_ids", value)
+
 
 class Instance(pulumi.CustomResource):
     @overload
@@ -622,6 +654,7 @@ class Instance(pulumi.CustomResource):
                  user_name: Optional[pulumi.Input[str]] = None,
                  user_password: Optional[pulumi.Input[str]] = None,
                  version: Optional[pulumi.Input[str]] = None,
+                 zone_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
         ## Example Usage
@@ -740,6 +773,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] user_name: The user name of instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] user_password: The user password of instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] version: The version of instance, the value can be `2.2.2` or `2.8.2`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] zone_ids: The list of zone ids. If you need to deploy multiple availability zones for a newly created instance, you can specify three availability zone IDs at the same time.
         """
         ...
     @overload
@@ -877,6 +911,7 @@ class Instance(pulumi.CustomResource):
                  user_name: Optional[pulumi.Input[str]] = None,
                  user_password: Optional[pulumi.Input[str]] = None,
                  version: Optional[pulumi.Input[str]] = None,
+                 zone_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -916,6 +951,7 @@ class Instance(pulumi.CustomResource):
             if version is None and not opts.urn:
                 raise TypeError("Missing required property 'version'")
             __props__.__dict__["version"] = version
+            __props__.__dict__["zone_ids"] = zone_ids
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["userPassword"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Instance, __self__).__init__(
@@ -945,7 +981,8 @@ class Instance(pulumi.CustomResource):
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceTagArgs']]]]] = None,
             user_name: Optional[pulumi.Input[str]] = None,
             user_password: Optional[pulumi.Input[str]] = None,
-            version: Optional[pulumi.Input[str]] = None) -> 'Instance':
+            version: Optional[pulumi.Input[str]] = None,
+            zone_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'Instance':
         """
         Get an existing Instance resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -971,6 +1008,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] user_name: The user name of instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] user_password: The user password of instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] version: The version of instance, the value can be `2.2.2` or `2.8.2`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] zone_ids: The list of zone ids. If you need to deploy multiple availability zones for a newly created instance, you can specify three availability zone IDs at the same time.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -994,6 +1032,7 @@ class Instance(pulumi.CustomResource):
         __props__.__dict__["user_name"] = user_name
         __props__.__dict__["user_password"] = user_password
         __props__.__dict__["version"] = version
+        __props__.__dict__["zone_ids"] = zone_ids
         return Instance(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -1139,4 +1178,12 @@ class Instance(pulumi.CustomResource):
         The version of instance, the value can be `2.2.2` or `2.8.2`.
         """
         return pulumi.get(self, "version")
+
+    @property
+    @pulumi.getter(name="zoneIds")
+    def zone_ids(self) -> pulumi.Output[Sequence[str]]:
+        """
+        The list of zone ids. If you need to deploy multiple availability zones for a newly created instance, you can specify three availability zone IDs at the same time.
+        """
+        return pulumi.get(self, "zone_ids")
 

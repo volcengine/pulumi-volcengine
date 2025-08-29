@@ -78,6 +78,14 @@ namespace Pulumi.Volcengine.Ecs.Outputs
         /// </summary>
         public readonly string LaunchTime;
         /// <summary>
+        /// The custom parameters of the ecs invocation.
+        /// </summary>
+        public readonly string Parameters;
+        /// <summary>
+        /// The project name of ecs invocation.
+        /// </summary>
+        public readonly string ProjectName;
+        /// <summary>
         /// The recurrence end time of the ecs invocation.
         /// </summary>
         public readonly string RecurrenceEndTime;
@@ -89,6 +97,10 @@ namespace Pulumi.Volcengine.Ecs.Outputs
         /// The start time of the ecs invocation.
         /// </summary>
         public readonly string StartTime;
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetInvocationsInvocationTagResult> Tags;
         /// <summary>
         /// The timeout of the ecs command.
         /// </summary>
@@ -136,11 +148,17 @@ namespace Pulumi.Volcengine.Ecs.Outputs
 
             string launchTime,
 
+            string parameters,
+
+            string projectName,
+
             string recurrenceEndTime,
 
             string repeatMode,
 
             string startTime,
+
+            ImmutableArray<Outputs.GetInvocationsInvocationTagResult> tags,
 
             int timeout,
 
@@ -164,9 +182,12 @@ namespace Pulumi.Volcengine.Ecs.Outputs
             InvocationName = invocationName;
             InvocationStatus = invocationStatus;
             LaunchTime = launchTime;
+            Parameters = parameters;
+            ProjectName = projectName;
             RecurrenceEndTime = recurrenceEndTime;
             RepeatMode = repeatMode;
             StartTime = startTime;
+            Tags = tags;
             Timeout = timeout;
             Username = username;
             WorkingDir = workingDir;

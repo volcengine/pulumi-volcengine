@@ -14,12 +14,48 @@ namespace Pulumi.Volcengine.Redis
     {
         /// <summary>
         /// Use this data source to query detailed information of redis parameter groups
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Volcengine = Pulumi.Volcengine;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var foo = Volcengine.Redis.GetParameterGroups.Invoke(new()
+        ///     {
+        ///         EngineVersion = "5.0",
+        ///         Source = "User",
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Task<ParameterGroupsResult> InvokeAsync(ParameterGroupsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<ParameterGroupsResult>("volcengine:redis/parameterGroups:ParameterGroups", args ?? new ParameterGroupsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of redis parameter groups
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Volcengine = Pulumi.Volcengine;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var foo = Volcengine.Redis.GetParameterGroups.Invoke(new()
+        ///     {
+        ///         EngineVersion = "5.0",
+        ///         Source = "User",
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<ParameterGroupsResult> Invoke(ParameterGroupsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<ParameterGroupsResult>("volcengine:redis/parameterGroups:ParameterGroups", args ?? new ParameterGroupsInvokeArgs(), options.WithDefaults());

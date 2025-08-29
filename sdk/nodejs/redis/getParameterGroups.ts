@@ -8,6 +8,17 @@ import * as utilities from "../utilities";
 
 /**
  * Use this data source to query detailed information of redis parameter groups
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const foo = volcengine.redis.getParameterGroups({
+ *     engineVersion: "5.0",
+ *     source: "User",
+ * });
+ * ```
  */
 export function getParameterGroups(args?: GetParameterGroupsArgs, opts?: pulumi.InvokeOptions): Promise<GetParameterGroupsResult> {
     args = args || {};
@@ -72,6 +83,17 @@ export interface GetParameterGroupsResult {
 }
 /**
  * Use this data source to query detailed information of redis parameter groups
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const foo = volcengine.redis.getParameterGroups({
+ *     engineVersion: "5.0",
+ *     source: "User",
+ * });
+ * ```
  */
 export function getParameterGroupsOutput(args?: GetParameterGroupsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetParameterGroupsResult> {
     return pulumi.output(args).apply((a: any) => getParameterGroups(a, opts))

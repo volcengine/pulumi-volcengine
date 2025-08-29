@@ -26,6 +26,10 @@ namespace Pulumi.Volcengine.Vke.Outputs
         /// </summary>
         public readonly string? NamePrefix;
         /// <summary>
+        /// The PreScript of NodeConfig.
+        /// </summary>
+        public readonly string? PreScript;
+        /// <summary>
         /// The Security of NodeConfig.
         /// </summary>
         public readonly Outputs.DefaultNodePoolNodeConfigSecurity Security;
@@ -38,11 +42,14 @@ namespace Pulumi.Volcengine.Vke.Outputs
 
             string? namePrefix,
 
+            string? preScript,
+
             Outputs.DefaultNodePoolNodeConfigSecurity security)
         {
             EcsTags = ecsTags;
             InitializeScript = initializeScript;
             NamePrefix = namePrefix;
+            PreScript = preScript;
             Security = security;
         }
     }

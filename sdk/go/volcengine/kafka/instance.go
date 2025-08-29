@@ -194,6 +194,8 @@ type Instance struct {
 	UserPassword pulumi.StringOutput `pulumi:"userPassword"`
 	// The version of instance, the value can be `2.2.2` or `2.8.2`.
 	Version pulumi.StringOutput `pulumi:"version"`
+	// The list of zone ids. If you need to deploy multiple availability zones for a newly created instance, you can specify three availability zone IDs at the same time.
+	ZoneIds pulumi.StringArrayOutput `pulumi:"zoneIds"`
 }
 
 // NewInstance registers a new resource with the given unique name, arguments, and options.
@@ -287,6 +289,8 @@ type instanceState struct {
 	UserPassword *string `pulumi:"userPassword"`
 	// The version of instance, the value can be `2.2.2` or `2.8.2`.
 	Version *string `pulumi:"version"`
+	// The list of zone ids. If you need to deploy multiple availability zones for a newly created instance, you can specify three availability zone IDs at the same time.
+	ZoneIds []string `pulumi:"zoneIds"`
 }
 
 type InstanceState struct {
@@ -326,6 +330,8 @@ type InstanceState struct {
 	UserPassword pulumi.StringPtrInput
 	// The version of instance, the value can be `2.2.2` or `2.8.2`.
 	Version pulumi.StringPtrInput
+	// The list of zone ids. If you need to deploy multiple availability zones for a newly created instance, you can specify three availability zone IDs at the same time.
+	ZoneIds pulumi.StringArrayInput
 }
 
 func (InstanceState) ElementType() reflect.Type {
@@ -369,6 +375,8 @@ type instanceArgs struct {
 	UserPassword string `pulumi:"userPassword"`
 	// The version of instance, the value can be `2.2.2` or `2.8.2`.
 	Version string `pulumi:"version"`
+	// The list of zone ids. If you need to deploy multiple availability zones for a newly created instance, you can specify three availability zone IDs at the same time.
+	ZoneIds []string `pulumi:"zoneIds"`
 }
 
 // The set of arguments for constructing a Instance resource.
@@ -409,6 +417,8 @@ type InstanceArgs struct {
 	UserPassword pulumi.StringInput
 	// The version of instance, the value can be `2.2.2` or `2.8.2`.
 	Version pulumi.StringInput
+	// The list of zone ids. If you need to deploy multiple availability zones for a newly created instance, you can specify three availability zone IDs at the same time.
+	ZoneIds pulumi.StringArrayInput
 }
 
 func (InstanceArgs) ElementType() reflect.Type {
@@ -586,6 +596,11 @@ func (o InstanceOutput) UserPassword() pulumi.StringOutput {
 // The version of instance, the value can be `2.2.2` or `2.8.2`.
 func (o InstanceOutput) Version() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.Version }).(pulumi.StringOutput)
+}
+
+// The list of zone ids. If you need to deploy multiple availability zones for a newly created instance, you can specify three availability zone IDs at the same time.
+func (o InstanceOutput) ZoneIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringArrayOutput { return v.ZoneIds }).(pulumi.StringArrayOutput)
 }
 
 type InstanceArrayOutput struct{ *pulumi.OutputState }

@@ -256,6 +256,12 @@ namespace Pulumi.Volcengine.Kafka
         [Output("version")]
         public Output<string> Version { get; private set; } = null!;
 
+        /// <summary>
+        /// The list of zone ids. If you need to deploy multiple availability zones for a newly created instance, you can specify three availability zone IDs at the same time.
+        /// </summary>
+        [Output("zoneIds")]
+        public Output<ImmutableArray<string>> ZoneIds { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a Instance resource with the given unique name, arguments, and options.
@@ -437,6 +443,18 @@ namespace Pulumi.Volcengine.Kafka
         [Input("version", required: true)]
         public Input<string> Version { get; set; } = null!;
 
+        [Input("zoneIds")]
+        private InputList<string>? _zoneIds;
+
+        /// <summary>
+        /// The list of zone ids. If you need to deploy multiple availability zones for a newly created instance, you can specify three availability zone IDs at the same time.
+        /// </summary>
+        public InputList<string> ZoneIds
+        {
+            get => _zoneIds ?? (_zoneIds = new InputList<string>());
+            set => _zoneIds = value;
+        }
+
         public InstanceArgs()
         {
         }
@@ -574,6 +592,18 @@ namespace Pulumi.Volcengine.Kafka
         /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }
+
+        [Input("zoneIds")]
+        private InputList<string>? _zoneIds;
+
+        /// <summary>
+        /// The list of zone ids. If you need to deploy multiple availability zones for a newly created instance, you can specify three availability zone IDs at the same time.
+        /// </summary>
+        public InputList<string> ZoneIds
+        {
+            get => _zoneIds ?? (_zoneIds = new InputList<string>());
+            set => _zoneIds = value;
+        }
 
         public InstanceState()
         {

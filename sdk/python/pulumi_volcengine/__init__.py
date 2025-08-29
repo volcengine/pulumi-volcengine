@@ -2061,10 +2061,34 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "tos/bucketCors",
+  "fqn": "pulumi_volcengine.tos",
+  "classes": {
+   "volcengine:tos/bucketCors:BucketCors": "BucketCors"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "tos/bucketEncryption",
+  "fqn": "pulumi_volcengine.tos",
+  "classes": {
+   "volcengine:tos/bucketEncryption:BucketEncryption": "BucketEncryption"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "tos/bucketInventory",
   "fqn": "pulumi_volcengine.tos",
   "classes": {
    "volcengine:tos/bucketInventory:BucketInventory": "BucketInventory"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "tos/bucketNotification",
+  "fqn": "pulumi_volcengine.tos",
+  "classes": {
+   "volcengine:tos/bucketNotification:BucketNotification": "BucketNotification"
   }
  },
  {

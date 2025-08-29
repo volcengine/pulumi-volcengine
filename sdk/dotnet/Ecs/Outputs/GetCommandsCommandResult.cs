@@ -26,6 +26,10 @@ namespace Pulumi.Volcengine.Ecs.Outputs
         /// </summary>
         public readonly string CommandProvider;
         /// <summary>
+        /// Whether the command content is base64 encoded. Valid values: `Base64`, `PlainText`. Default is `Base64`.
+        /// </summary>
+        public readonly string ContentEncoding;
+        /// <summary>
         /// The create time of the ecs command.
         /// </summary>
         public readonly string CreatedAt;
@@ -33,6 +37,10 @@ namespace Pulumi.Volcengine.Ecs.Outputs
         /// The description of the ecs command.
         /// </summary>
         public readonly string Description;
+        /// <summary>
+        /// Whether to enable custom parameter. Default is `false`.
+        /// </summary>
+        public readonly bool EnableParameter;
         /// <summary>
         /// The id of the ecs command.
         /// </summary>
@@ -45,6 +53,18 @@ namespace Pulumi.Volcengine.Ecs.Outputs
         /// The name of ecs command. This field support fuzzy query.
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// The custom parameter definitions of the ecs command.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetCommandsCommandParameterDefinitionResult> ParameterDefinitions;
+        /// <summary>
+        /// The project name of ecs command.
+        /// </summary>
+        public readonly string ProjectName;
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetCommandsCommandTagResult> Tags;
         /// <summary>
         /// The timeout of the ecs command.
         /// </summary>
@@ -74,15 +94,25 @@ namespace Pulumi.Volcengine.Ecs.Outputs
 
             string commandProvider,
 
+            string contentEncoding,
+
             string createdAt,
 
             string description,
+
+            bool enableParameter,
 
             string id,
 
             int invocationTimes,
 
             string name,
+
+            ImmutableArray<Outputs.GetCommandsCommandParameterDefinitionResult> parameterDefinitions,
+
+            string projectName,
+
+            ImmutableArray<Outputs.GetCommandsCommandTagResult> tags,
 
             int timeout,
 
@@ -97,11 +127,16 @@ namespace Pulumi.Volcengine.Ecs.Outputs
             CommandContent = commandContent;
             CommandId = commandId;
             CommandProvider = commandProvider;
+            ContentEncoding = contentEncoding;
             CreatedAt = createdAt;
             Description = description;
+            EnableParameter = enableParameter;
             Id = id;
             InvocationTimes = invocationTimes;
             Name = name;
+            ParameterDefinitions = parameterDefinitions;
+            ProjectName = projectName;
+            Tags = tags;
             Timeout = timeout;
             Type = type;
             UpdatedAt = updatedAt;

@@ -4314,6 +4314,8 @@ type DefaultNodePoolBatchAttachNodeConfig struct {
 	InitializeScript *string `pulumi:"initializeScript"`
 	// The NamePrefix of NodeConfig.
 	NamePrefix *string `pulumi:"namePrefix"`
+	// The PreScript of NodeConfig.
+	PreScript *string `pulumi:"preScript"`
 	// The Security of NodeConfig.
 	Securities []DefaultNodePoolBatchAttachNodeConfigSecurity `pulumi:"securities"`
 }
@@ -4336,6 +4338,8 @@ type DefaultNodePoolBatchAttachNodeConfigArgs struct {
 	InitializeScript pulumi.StringPtrInput `pulumi:"initializeScript"`
 	// The NamePrefix of NodeConfig.
 	NamePrefix pulumi.StringPtrInput `pulumi:"namePrefix"`
+	// The PreScript of NodeConfig.
+	PreScript pulumi.StringPtrInput `pulumi:"preScript"`
 	// The Security of NodeConfig.
 	Securities DefaultNodePoolBatchAttachNodeConfigSecurityArrayInput `pulumi:"securities"`
 }
@@ -4406,6 +4410,11 @@ func (o DefaultNodePoolBatchAttachNodeConfigOutput) InitializeScript() pulumi.St
 // The NamePrefix of NodeConfig.
 func (o DefaultNodePoolBatchAttachNodeConfigOutput) NamePrefix() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DefaultNodePoolBatchAttachNodeConfig) *string { return v.NamePrefix }).(pulumi.StringPtrOutput)
+}
+
+// The PreScript of NodeConfig.
+func (o DefaultNodePoolBatchAttachNodeConfigOutput) PreScript() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DefaultNodePoolBatchAttachNodeConfig) *string { return v.PreScript }).(pulumi.StringPtrOutput)
 }
 
 // The Security of NodeConfig.
@@ -5443,6 +5452,8 @@ type DefaultNodePoolNodeConfig struct {
 	InitializeScript *string `pulumi:"initializeScript"`
 	// The NamePrefix of NodeConfig.
 	NamePrefix *string `pulumi:"namePrefix"`
+	// The PreScript of NodeConfig.
+	PreScript *string `pulumi:"preScript"`
 	// The Security of NodeConfig.
 	Security DefaultNodePoolNodeConfigSecurity `pulumi:"security"`
 }
@@ -5465,6 +5476,8 @@ type DefaultNodePoolNodeConfigArgs struct {
 	InitializeScript pulumi.StringPtrInput `pulumi:"initializeScript"`
 	// The NamePrefix of NodeConfig.
 	NamePrefix pulumi.StringPtrInput `pulumi:"namePrefix"`
+	// The PreScript of NodeConfig.
+	PreScript pulumi.StringPtrInput `pulumi:"preScript"`
 	// The Security of NodeConfig.
 	Security DefaultNodePoolNodeConfigSecurityInput `pulumi:"security"`
 }
@@ -5561,6 +5574,11 @@ func (o DefaultNodePoolNodeConfigOutput) NamePrefix() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DefaultNodePoolNodeConfig) *string { return v.NamePrefix }).(pulumi.StringPtrOutput)
 }
 
+// The PreScript of NodeConfig.
+func (o DefaultNodePoolNodeConfigOutput) PreScript() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DefaultNodePoolNodeConfig) *string { return v.PreScript }).(pulumi.StringPtrOutput)
+}
+
 // The Security of NodeConfig.
 func (o DefaultNodePoolNodeConfigOutput) Security() DefaultNodePoolNodeConfigSecurityOutput {
 	return o.ApplyT(func(v DefaultNodePoolNodeConfig) DefaultNodePoolNodeConfigSecurity { return v.Security }).(DefaultNodePoolNodeConfigSecurityOutput)
@@ -5617,6 +5635,16 @@ func (o DefaultNodePoolNodeConfigPtrOutput) NamePrefix() pulumi.StringPtrOutput 
 			return nil
 		}
 		return v.NamePrefix
+	}).(pulumi.StringPtrOutput)
+}
+
+// The PreScript of NodeConfig.
+func (o DefaultNodePoolNodeConfigPtrOutput) PreScript() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DefaultNodePoolNodeConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PreScript
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -7753,6 +7781,8 @@ type NodePoolNodeConfig struct {
 	NamePrefix *string `pulumi:"namePrefix"`
 	// The Period of PrePaid instance of NodeConfig. Valid values: 1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 24, 36. Unit: month. when InstanceChargeType is PrePaid, default value is 12.
 	Period *int `pulumi:"period"`
+	// The PreScript of NodeConfig.
+	PreScript *string `pulumi:"preScript"`
 	// The project name of the ecs instance.
 	ProjectName *string `pulumi:"projectName"`
 	// The Security of NodeConfig.
@@ -7799,6 +7829,8 @@ type NodePoolNodeConfigArgs struct {
 	NamePrefix pulumi.StringPtrInput `pulumi:"namePrefix"`
 	// The Period of PrePaid instance of NodeConfig. Valid values: 1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 24, 36. Unit: month. when InstanceChargeType is PrePaid, default value is 12.
 	Period pulumi.IntPtrInput `pulumi:"period"`
+	// The PreScript of NodeConfig.
+	PreScript pulumi.StringPtrInput `pulumi:"preScript"`
 	// The project name of the ecs instance.
 	ProjectName pulumi.StringPtrInput `pulumi:"projectName"`
 	// The Security of NodeConfig.
@@ -7944,6 +7976,11 @@ func (o NodePoolNodeConfigOutput) NamePrefix() pulumi.StringPtrOutput {
 // The Period of PrePaid instance of NodeConfig. Valid values: 1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 24, 36. Unit: month. when InstanceChargeType is PrePaid, default value is 12.
 func (o NodePoolNodeConfigOutput) Period() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v NodePoolNodeConfig) *int { return v.Period }).(pulumi.IntPtrOutput)
+}
+
+// The PreScript of NodeConfig.
+func (o NodePoolNodeConfigOutput) PreScript() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NodePoolNodeConfig) *string { return v.PreScript }).(pulumi.StringPtrOutput)
 }
 
 // The project name of the ecs instance.
@@ -8108,6 +8145,16 @@ func (o NodePoolNodeConfigPtrOutput) Period() pulumi.IntPtrOutput {
 		}
 		return v.Period
 	}).(pulumi.IntPtrOutput)
+}
+
+// The PreScript of NodeConfig.
+func (o NodePoolNodeConfigPtrOutput) PreScript() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NodePoolNodeConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PreScript
+	}).(pulumi.StringPtrOutput)
 }
 
 // The project name of the ecs instance.
@@ -9214,6 +9261,8 @@ type NodePoolsNodePool struct {
 	Period int `pulumi:"period"`
 	// The Phase of Status.
 	Phase string `pulumi:"phase"`
+	// The PreScript of NodeConfig.
+	PreScript string `pulumi:"preScript"`
 	// The Priority of AutoScaling.
 	Priority int `pulumi:"priority"`
 	// The project name of NodeConfig.
@@ -9314,6 +9363,8 @@ type NodePoolsNodePoolArgs struct {
 	Period pulumi.IntInput `pulumi:"period"`
 	// The Phase of Status.
 	Phase pulumi.StringInput `pulumi:"phase"`
+	// The PreScript of NodeConfig.
+	PreScript pulumi.StringInput `pulumi:"preScript"`
 	// The Priority of AutoScaling.
 	Priority pulumi.IntInput `pulumi:"priority"`
 	// The project name of NodeConfig.
@@ -9544,6 +9595,11 @@ func (o NodePoolsNodePoolOutput) Period() pulumi.IntOutput {
 // The Phase of Status.
 func (o NodePoolsNodePoolOutput) Phase() pulumi.StringOutput {
 	return o.ApplyT(func(v NodePoolsNodePool) string { return v.Phase }).(pulumi.StringOutput)
+}
+
+// The PreScript of NodeConfig.
+func (o NodePoolsNodePoolOutput) PreScript() pulumi.StringOutput {
+	return o.ApplyT(func(v NodePoolsNodePool) string { return v.PreScript }).(pulumi.StringOutput)
 }
 
 // The Priority of AutoScaling.
@@ -10935,6 +10991,8 @@ type NodesNode struct {
 	NodePoolId string `pulumi:"nodePoolId"`
 	// The Phase of Node.
 	Phase string `pulumi:"phase"`
+	// The PreScript of NodeConfig.
+	PreScript string `pulumi:"preScript"`
 	// The roles of node.
 	Roles []string `pulumi:"roles"`
 	// The Taint of KubernetesConfig.
@@ -10989,6 +11047,8 @@ type NodesNodeArgs struct {
 	NodePoolId pulumi.StringInput `pulumi:"nodePoolId"`
 	// The Phase of Node.
 	Phase pulumi.StringInput `pulumi:"phase"`
+	// The PreScript of NodeConfig.
+	PreScript pulumi.StringInput `pulumi:"preScript"`
 	// The roles of node.
 	Roles pulumi.StringArrayInput `pulumi:"roles"`
 	// The Taint of KubernetesConfig.
@@ -11128,6 +11188,11 @@ func (o NodesNodeOutput) NodePoolId() pulumi.StringOutput {
 // The Phase of Node.
 func (o NodesNodeOutput) Phase() pulumi.StringOutput {
 	return o.ApplyT(func(v NodesNode) string { return v.Phase }).(pulumi.StringOutput)
+}
+
+// The PreScript of NodeConfig.
+func (o NodesNodeOutput) PreScript() pulumi.StringOutput {
+	return o.ApplyT(func(v NodesNode) string { return v.PreScript }).(pulumi.StringOutput)
 }
 
 // The roles of node.
@@ -14649,6 +14714,8 @@ type GetNodePoolsNodePool struct {
 	Period int `pulumi:"period"`
 	// The Phase of Status.
 	Phase string `pulumi:"phase"`
+	// The PreScript of NodeConfig.
+	PreScript string `pulumi:"preScript"`
 	// The Priority of AutoScaling.
 	Priority int `pulumi:"priority"`
 	// The project name of NodeConfig.
@@ -14749,6 +14816,8 @@ type GetNodePoolsNodePoolArgs struct {
 	Period pulumi.IntInput `pulumi:"period"`
 	// The Phase of Status.
 	Phase pulumi.StringInput `pulumi:"phase"`
+	// The PreScript of NodeConfig.
+	PreScript pulumi.StringInput `pulumi:"preScript"`
 	// The Priority of AutoScaling.
 	Priority pulumi.IntInput `pulumi:"priority"`
 	// The project name of NodeConfig.
@@ -14979,6 +15048,11 @@ func (o GetNodePoolsNodePoolOutput) Period() pulumi.IntOutput {
 // The Phase of Status.
 func (o GetNodePoolsNodePoolOutput) Phase() pulumi.StringOutput {
 	return o.ApplyT(func(v GetNodePoolsNodePool) string { return v.Phase }).(pulumi.StringOutput)
+}
+
+// The PreScript of NodeConfig.
+func (o GetNodePoolsNodePoolOutput) PreScript() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) string { return v.PreScript }).(pulumi.StringOutput)
 }
 
 // The Priority of AutoScaling.
@@ -16370,6 +16444,8 @@ type GetNodesNode struct {
 	NodePoolId string `pulumi:"nodePoolId"`
 	// The Phase of Node.
 	Phase string `pulumi:"phase"`
+	// The PreScript of NodeConfig.
+	PreScript string `pulumi:"preScript"`
 	// The roles of node.
 	Roles []string `pulumi:"roles"`
 	// The Taint of KubernetesConfig.
@@ -16424,6 +16500,8 @@ type GetNodesNodeArgs struct {
 	NodePoolId pulumi.StringInput `pulumi:"nodePoolId"`
 	// The Phase of Node.
 	Phase pulumi.StringInput `pulumi:"phase"`
+	// The PreScript of NodeConfig.
+	PreScript pulumi.StringInput `pulumi:"preScript"`
 	// The roles of node.
 	Roles pulumi.StringArrayInput `pulumi:"roles"`
 	// The Taint of KubernetesConfig.
@@ -16563,6 +16641,11 @@ func (o GetNodesNodeOutput) NodePoolId() pulumi.StringOutput {
 // The Phase of Node.
 func (o GetNodesNodeOutput) Phase() pulumi.StringOutput {
 	return o.ApplyT(func(v GetNodesNode) string { return v.Phase }).(pulumi.StringOutput)
+}
+
+// The PreScript of NodeConfig.
+func (o GetNodesNodeOutput) PreScript() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodesNode) string { return v.PreScript }).(pulumi.StringOutput)
 }
 
 // The roles of node.

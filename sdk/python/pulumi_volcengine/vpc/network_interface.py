@@ -461,15 +461,31 @@ class NetworkInterface(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.vpc.NetworkInterface("foo",
-            description="tf-test-up",
-            network_interface_name="tf-test-up",
+        foo_zones = volcengine.ecs.get_zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
+            security_group_name="acc-test-sg",
+            vpc_id=foo_vpc.id)
+        foo_network_interface = volcengine.vpc.NetworkInterface("fooNetworkInterface",
+            network_interface_name="acc-test-eni",
+            description="acc-test",
+            subnet_id=foo_subnet.id,
+            security_group_ids=[foo_security_group.id],
+            primary_ip_address="172.16.0.253",
             port_security_enabled=False,
-            primary_ip_address="192.168.5.253",
-            private_ip_addresses=["192.168.5.2"],
+            private_ip_addresses=["172.16.0.2"],
             project_name="default",
-            security_group_ids=["sg-2fepz3c793g1s59gp67y21r34"],
-            subnet_id="subnet-2fe79j7c8o5c059gp68ksxr93")
+            tags=[volcengine.vpc.NetworkInterfaceTagArgs(
+                key="k1",
+                value="v1",
+            )])
         ```
 
         ## Import
@@ -511,15 +527,31 @@ class NetworkInterface(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.vpc.NetworkInterface("foo",
-            description="tf-test-up",
-            network_interface_name="tf-test-up",
+        foo_zones = volcengine.ecs.get_zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
+            security_group_name="acc-test-sg",
+            vpc_id=foo_vpc.id)
+        foo_network_interface = volcengine.vpc.NetworkInterface("fooNetworkInterface",
+            network_interface_name="acc-test-eni",
+            description="acc-test",
+            subnet_id=foo_subnet.id,
+            security_group_ids=[foo_security_group.id],
+            primary_ip_address="172.16.0.253",
             port_security_enabled=False,
-            primary_ip_address="192.168.5.253",
-            private_ip_addresses=["192.168.5.2"],
+            private_ip_addresses=["172.16.0.2"],
             project_name="default",
-            security_group_ids=["sg-2fepz3c793g1s59gp67y21r34"],
-            subnet_id="subnet-2fe79j7c8o5c059gp68ksxr93")
+            tags=[volcengine.vpc.NetworkInterfaceTagArgs(
+                key="k1",
+                value="v1",
+            )])
         ```
 
         ## Import

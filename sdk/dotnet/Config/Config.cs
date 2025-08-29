@@ -89,6 +89,16 @@ namespace Pulumi.Volcengine
             set => _disableSsl.Set(value);
         }
 
+        private static readonly __Value<bool?> _enableStandardEndpoint = new __Value<bool?>(() => __config.GetBoolean("enableStandardEndpoint"));
+        /// <summary>
+        /// ENABLE STANDARD ENDPOINT for Volcengine Provider
+        /// </summary>
+        public static bool? EnableStandardEndpoint
+        {
+            get => _enableStandardEndpoint.Get();
+            set => _enableStandardEndpoint.Set(value);
+        }
+
         private static readonly __Value<string?> _endpoint = new __Value<string?>(() => __config.Get("endpoint") ?? Utilities.GetEnv("VOLCENGINE_ENDPOINT"));
         /// <summary>
         /// The Customer Endpoint for Volcengine Provider

@@ -353,6 +353,281 @@ func (o AvailableResourcesAvailableZoneAvailableResourceSupportedResourceArrayOu
 	}).(AvailableResourcesAvailableZoneAvailableResourceSupportedResourceOutput)
 }
 
+type CommandParameterDefinition struct {
+	// The decimal precision of the custom parameter. This field is required when the parameter type is `Digit`.
+	DecimalPrecision *int `pulumi:"decimalPrecision"`
+	// The default value of the custom parameter.
+	DefaultValue *string `pulumi:"defaultValue"`
+	// The maximum length of the custom parameter. This field is required when the parameter type is `String`.
+	MaxLength *int `pulumi:"maxLength"`
+	// The maximum value of the custom parameter. This field is required when the parameter type is `Digit`.
+	MaxValue *string `pulumi:"maxValue"`
+	// The minimum length of the custom parameter. This field is required when the parameter type is `String`.
+	MinLength *int `pulumi:"minLength"`
+	// The minimum value of the custom parameter. This field is required when the parameter type is `Digit`.
+	MinValue *string `pulumi:"minValue"`
+	// The name of the custom parameter.
+	Name string `pulumi:"name"`
+	// Whether the custom parameter is required.
+	Required *bool `pulumi:"required"`
+	// The type of the custom parameter. Valid values: `String`, `Digit`.
+	Type string `pulumi:"type"`
+}
+
+// CommandParameterDefinitionInput is an input type that accepts CommandParameterDefinitionArgs and CommandParameterDefinitionOutput values.
+// You can construct a concrete instance of `CommandParameterDefinitionInput` via:
+//
+//	CommandParameterDefinitionArgs{...}
+type CommandParameterDefinitionInput interface {
+	pulumi.Input
+
+	ToCommandParameterDefinitionOutput() CommandParameterDefinitionOutput
+	ToCommandParameterDefinitionOutputWithContext(context.Context) CommandParameterDefinitionOutput
+}
+
+type CommandParameterDefinitionArgs struct {
+	// The decimal precision of the custom parameter. This field is required when the parameter type is `Digit`.
+	DecimalPrecision pulumi.IntPtrInput `pulumi:"decimalPrecision"`
+	// The default value of the custom parameter.
+	DefaultValue pulumi.StringPtrInput `pulumi:"defaultValue"`
+	// The maximum length of the custom parameter. This field is required when the parameter type is `String`.
+	MaxLength pulumi.IntPtrInput `pulumi:"maxLength"`
+	// The maximum value of the custom parameter. This field is required when the parameter type is `Digit`.
+	MaxValue pulumi.StringPtrInput `pulumi:"maxValue"`
+	// The minimum length of the custom parameter. This field is required when the parameter type is `String`.
+	MinLength pulumi.IntPtrInput `pulumi:"minLength"`
+	// The minimum value of the custom parameter. This field is required when the parameter type is `Digit`.
+	MinValue pulumi.StringPtrInput `pulumi:"minValue"`
+	// The name of the custom parameter.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Whether the custom parameter is required.
+	Required pulumi.BoolPtrInput `pulumi:"required"`
+	// The type of the custom parameter. Valid values: `String`, `Digit`.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (CommandParameterDefinitionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CommandParameterDefinition)(nil)).Elem()
+}
+
+func (i CommandParameterDefinitionArgs) ToCommandParameterDefinitionOutput() CommandParameterDefinitionOutput {
+	return i.ToCommandParameterDefinitionOutputWithContext(context.Background())
+}
+
+func (i CommandParameterDefinitionArgs) ToCommandParameterDefinitionOutputWithContext(ctx context.Context) CommandParameterDefinitionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CommandParameterDefinitionOutput)
+}
+
+// CommandParameterDefinitionArrayInput is an input type that accepts CommandParameterDefinitionArray and CommandParameterDefinitionArrayOutput values.
+// You can construct a concrete instance of `CommandParameterDefinitionArrayInput` via:
+//
+//	CommandParameterDefinitionArray{ CommandParameterDefinitionArgs{...} }
+type CommandParameterDefinitionArrayInput interface {
+	pulumi.Input
+
+	ToCommandParameterDefinitionArrayOutput() CommandParameterDefinitionArrayOutput
+	ToCommandParameterDefinitionArrayOutputWithContext(context.Context) CommandParameterDefinitionArrayOutput
+}
+
+type CommandParameterDefinitionArray []CommandParameterDefinitionInput
+
+func (CommandParameterDefinitionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CommandParameterDefinition)(nil)).Elem()
+}
+
+func (i CommandParameterDefinitionArray) ToCommandParameterDefinitionArrayOutput() CommandParameterDefinitionArrayOutput {
+	return i.ToCommandParameterDefinitionArrayOutputWithContext(context.Background())
+}
+
+func (i CommandParameterDefinitionArray) ToCommandParameterDefinitionArrayOutputWithContext(ctx context.Context) CommandParameterDefinitionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CommandParameterDefinitionArrayOutput)
+}
+
+type CommandParameterDefinitionOutput struct{ *pulumi.OutputState }
+
+func (CommandParameterDefinitionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CommandParameterDefinition)(nil)).Elem()
+}
+
+func (o CommandParameterDefinitionOutput) ToCommandParameterDefinitionOutput() CommandParameterDefinitionOutput {
+	return o
+}
+
+func (o CommandParameterDefinitionOutput) ToCommandParameterDefinitionOutputWithContext(ctx context.Context) CommandParameterDefinitionOutput {
+	return o
+}
+
+// The decimal precision of the custom parameter. This field is required when the parameter type is `Digit`.
+func (o CommandParameterDefinitionOutput) DecimalPrecision() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v CommandParameterDefinition) *int { return v.DecimalPrecision }).(pulumi.IntPtrOutput)
+}
+
+// The default value of the custom parameter.
+func (o CommandParameterDefinitionOutput) DefaultValue() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CommandParameterDefinition) *string { return v.DefaultValue }).(pulumi.StringPtrOutput)
+}
+
+// The maximum length of the custom parameter. This field is required when the parameter type is `String`.
+func (o CommandParameterDefinitionOutput) MaxLength() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v CommandParameterDefinition) *int { return v.MaxLength }).(pulumi.IntPtrOutput)
+}
+
+// The maximum value of the custom parameter. This field is required when the parameter type is `Digit`.
+func (o CommandParameterDefinitionOutput) MaxValue() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CommandParameterDefinition) *string { return v.MaxValue }).(pulumi.StringPtrOutput)
+}
+
+// The minimum length of the custom parameter. This field is required when the parameter type is `String`.
+func (o CommandParameterDefinitionOutput) MinLength() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v CommandParameterDefinition) *int { return v.MinLength }).(pulumi.IntPtrOutput)
+}
+
+// The minimum value of the custom parameter. This field is required when the parameter type is `Digit`.
+func (o CommandParameterDefinitionOutput) MinValue() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CommandParameterDefinition) *string { return v.MinValue }).(pulumi.StringPtrOutput)
+}
+
+// The name of the custom parameter.
+func (o CommandParameterDefinitionOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v CommandParameterDefinition) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Whether the custom parameter is required.
+func (o CommandParameterDefinitionOutput) Required() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v CommandParameterDefinition) *bool { return v.Required }).(pulumi.BoolPtrOutput)
+}
+
+// The type of the custom parameter. Valid values: `String`, `Digit`.
+func (o CommandParameterDefinitionOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v CommandParameterDefinition) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type CommandParameterDefinitionArrayOutput struct{ *pulumi.OutputState }
+
+func (CommandParameterDefinitionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CommandParameterDefinition)(nil)).Elem()
+}
+
+func (o CommandParameterDefinitionArrayOutput) ToCommandParameterDefinitionArrayOutput() CommandParameterDefinitionArrayOutput {
+	return o
+}
+
+func (o CommandParameterDefinitionArrayOutput) ToCommandParameterDefinitionArrayOutputWithContext(ctx context.Context) CommandParameterDefinitionArrayOutput {
+	return o
+}
+
+func (o CommandParameterDefinitionArrayOutput) Index(i pulumi.IntInput) CommandParameterDefinitionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CommandParameterDefinition {
+		return vs[0].([]CommandParameterDefinition)[vs[1].(int)]
+	}).(CommandParameterDefinitionOutput)
+}
+
+type CommandTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// CommandTagInput is an input type that accepts CommandTagArgs and CommandTagOutput values.
+// You can construct a concrete instance of `CommandTagInput` via:
+//
+//	CommandTagArgs{...}
+type CommandTagInput interface {
+	pulumi.Input
+
+	ToCommandTagOutput() CommandTagOutput
+	ToCommandTagOutputWithContext(context.Context) CommandTagOutput
+}
+
+type CommandTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (CommandTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CommandTag)(nil)).Elem()
+}
+
+func (i CommandTagArgs) ToCommandTagOutput() CommandTagOutput {
+	return i.ToCommandTagOutputWithContext(context.Background())
+}
+
+func (i CommandTagArgs) ToCommandTagOutputWithContext(ctx context.Context) CommandTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CommandTagOutput)
+}
+
+// CommandTagArrayInput is an input type that accepts CommandTagArray and CommandTagArrayOutput values.
+// You can construct a concrete instance of `CommandTagArrayInput` via:
+//
+//	CommandTagArray{ CommandTagArgs{...} }
+type CommandTagArrayInput interface {
+	pulumi.Input
+
+	ToCommandTagArrayOutput() CommandTagArrayOutput
+	ToCommandTagArrayOutputWithContext(context.Context) CommandTagArrayOutput
+}
+
+type CommandTagArray []CommandTagInput
+
+func (CommandTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CommandTag)(nil)).Elem()
+}
+
+func (i CommandTagArray) ToCommandTagArrayOutput() CommandTagArrayOutput {
+	return i.ToCommandTagArrayOutputWithContext(context.Background())
+}
+
+func (i CommandTagArray) ToCommandTagArrayOutputWithContext(ctx context.Context) CommandTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CommandTagArrayOutput)
+}
+
+type CommandTagOutput struct{ *pulumi.OutputState }
+
+func (CommandTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CommandTag)(nil)).Elem()
+}
+
+func (o CommandTagOutput) ToCommandTagOutput() CommandTagOutput {
+	return o
+}
+
+func (o CommandTagOutput) ToCommandTagOutputWithContext(ctx context.Context) CommandTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o CommandTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v CommandTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o CommandTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v CommandTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type CommandTagArrayOutput struct{ *pulumi.OutputState }
+
+func (CommandTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CommandTag)(nil)).Elem()
+}
+
+func (o CommandTagArrayOutput) ToCommandTagArrayOutput() CommandTagArrayOutput {
+	return o
+}
+
+func (o CommandTagArrayOutput) ToCommandTagArrayOutputWithContext(ctx context.Context) CommandTagArrayOutput {
+	return o
+}
+
+func (o CommandTagArrayOutput) Index(i pulumi.IntInput) CommandTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CommandTag {
+		return vs[0].([]CommandTag)[vs[1].(int)]
+	}).(CommandTagOutput)
+}
+
 type CommandsCommand struct {
 	// The base64 encoded content of the ecs command.
 	CommandContent string `pulumi:"commandContent"`
@@ -360,16 +635,26 @@ type CommandsCommand struct {
 	CommandId string `pulumi:"commandId"`
 	// The provider of public command. When this field is not specified, query for custom commands.
 	CommandProvider string `pulumi:"commandProvider"`
+	// Whether the command content is base64 encoded. Valid values: `Base64`, `PlainText`. Default is `Base64`.
+	ContentEncoding string `pulumi:"contentEncoding"`
 	// The create time of the ecs command.
 	CreatedAt string `pulumi:"createdAt"`
 	// The description of the ecs command.
 	Description string `pulumi:"description"`
+	// Whether to enable custom parameter. Default is `false`.
+	EnableParameter bool `pulumi:"enableParameter"`
 	// The id of the ecs command.
 	Id string `pulumi:"id"`
 	// The invocation times of the ecs command. Public commands do not display the invocation times.
 	InvocationTimes int `pulumi:"invocationTimes"`
 	// The name of ecs command. This field support fuzzy query.
 	Name string `pulumi:"name"`
+	// The custom parameter definitions of the ecs command.
+	ParameterDefinitions []CommandsCommandParameterDefinition `pulumi:"parameterDefinitions"`
+	// The project name of ecs command.
+	ProjectName string `pulumi:"projectName"`
+	// Tags.
+	Tags []CommandsCommandTag `pulumi:"tags"`
 	// The timeout of the ecs command.
 	Timeout int `pulumi:"timeout"`
 	// The type of ecs command. Valid values: `Shell`.
@@ -400,16 +685,26 @@ type CommandsCommandArgs struct {
 	CommandId pulumi.StringInput `pulumi:"commandId"`
 	// The provider of public command. When this field is not specified, query for custom commands.
 	CommandProvider pulumi.StringInput `pulumi:"commandProvider"`
+	// Whether the command content is base64 encoded. Valid values: `Base64`, `PlainText`. Default is `Base64`.
+	ContentEncoding pulumi.StringInput `pulumi:"contentEncoding"`
 	// The create time of the ecs command.
 	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
 	// The description of the ecs command.
 	Description pulumi.StringInput `pulumi:"description"`
+	// Whether to enable custom parameter. Default is `false`.
+	EnableParameter pulumi.BoolInput `pulumi:"enableParameter"`
 	// The id of the ecs command.
 	Id pulumi.StringInput `pulumi:"id"`
 	// The invocation times of the ecs command. Public commands do not display the invocation times.
 	InvocationTimes pulumi.IntInput `pulumi:"invocationTimes"`
 	// The name of ecs command. This field support fuzzy query.
 	Name pulumi.StringInput `pulumi:"name"`
+	// The custom parameter definitions of the ecs command.
+	ParameterDefinitions CommandsCommandParameterDefinitionArrayInput `pulumi:"parameterDefinitions"`
+	// The project name of ecs command.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// Tags.
+	Tags CommandsCommandTagArrayInput `pulumi:"tags"`
 	// The timeout of the ecs command.
 	Timeout pulumi.IntInput `pulumi:"timeout"`
 	// The type of ecs command. Valid values: `Shell`.
@@ -488,6 +783,11 @@ func (o CommandsCommandOutput) CommandProvider() pulumi.StringOutput {
 	return o.ApplyT(func(v CommandsCommand) string { return v.CommandProvider }).(pulumi.StringOutput)
 }
 
+// Whether the command content is base64 encoded. Valid values: `Base64`, `PlainText`. Default is `Base64`.
+func (o CommandsCommandOutput) ContentEncoding() pulumi.StringOutput {
+	return o.ApplyT(func(v CommandsCommand) string { return v.ContentEncoding }).(pulumi.StringOutput)
+}
+
 // The create time of the ecs command.
 func (o CommandsCommandOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v CommandsCommand) string { return v.CreatedAt }).(pulumi.StringOutput)
@@ -496,6 +796,11 @@ func (o CommandsCommandOutput) CreatedAt() pulumi.StringOutput {
 // The description of the ecs command.
 func (o CommandsCommandOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v CommandsCommand) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Whether to enable custom parameter. Default is `false`.
+func (o CommandsCommandOutput) EnableParameter() pulumi.BoolOutput {
+	return o.ApplyT(func(v CommandsCommand) bool { return v.EnableParameter }).(pulumi.BoolOutput)
 }
 
 // The id of the ecs command.
@@ -511,6 +816,21 @@ func (o CommandsCommandOutput) InvocationTimes() pulumi.IntOutput {
 // The name of ecs command. This field support fuzzy query.
 func (o CommandsCommandOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v CommandsCommand) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The custom parameter definitions of the ecs command.
+func (o CommandsCommandOutput) ParameterDefinitions() CommandsCommandParameterDefinitionArrayOutput {
+	return o.ApplyT(func(v CommandsCommand) []CommandsCommandParameterDefinition { return v.ParameterDefinitions }).(CommandsCommandParameterDefinitionArrayOutput)
+}
+
+// The project name of ecs command.
+func (o CommandsCommandOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v CommandsCommand) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o CommandsCommandOutput) Tags() CommandsCommandTagArrayOutput {
+	return o.ApplyT(func(v CommandsCommand) []CommandsCommandTag { return v.Tags }).(CommandsCommandTagArrayOutput)
 }
 
 // The timeout of the ecs command.
@@ -556,6 +876,387 @@ func (o CommandsCommandArrayOutput) Index(i pulumi.IntInput) CommandsCommandOutp
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CommandsCommand {
 		return vs[0].([]CommandsCommand)[vs[1].(int)]
 	}).(CommandsCommandOutput)
+}
+
+type CommandsCommandParameterDefinition struct {
+	// The decimal precision of the custom parameter. This field is required when the parameter type is `Digit`.
+	DecimalPrecision int `pulumi:"decimalPrecision"`
+	// The default value of the custom parameter.
+	DefaultValue string `pulumi:"defaultValue"`
+	// The maximum length of the custom parameter. This field is required when the parameter type is `String`.
+	MaxLength int `pulumi:"maxLength"`
+	// The maximum value of the custom parameter. This field is required when the parameter type is `Digit`.
+	MaxValue string `pulumi:"maxValue"`
+	// The minimum length of the custom parameter. This field is required when the parameter type is `String`.
+	MinLength int `pulumi:"minLength"`
+	// The minimum value of the custom parameter. This field is required when the parameter type is `Digit`.
+	MinValue string `pulumi:"minValue"`
+	// The name of ecs command. This field support fuzzy query.
+	Name string `pulumi:"name"`
+	// Whether the custom parameter is required.
+	Required bool `pulumi:"required"`
+	// The type of ecs command. Valid values: `Shell`.
+	Type string `pulumi:"type"`
+}
+
+// CommandsCommandParameterDefinitionInput is an input type that accepts CommandsCommandParameterDefinitionArgs and CommandsCommandParameterDefinitionOutput values.
+// You can construct a concrete instance of `CommandsCommandParameterDefinitionInput` via:
+//
+//	CommandsCommandParameterDefinitionArgs{...}
+type CommandsCommandParameterDefinitionInput interface {
+	pulumi.Input
+
+	ToCommandsCommandParameterDefinitionOutput() CommandsCommandParameterDefinitionOutput
+	ToCommandsCommandParameterDefinitionOutputWithContext(context.Context) CommandsCommandParameterDefinitionOutput
+}
+
+type CommandsCommandParameterDefinitionArgs struct {
+	// The decimal precision of the custom parameter. This field is required when the parameter type is `Digit`.
+	DecimalPrecision pulumi.IntInput `pulumi:"decimalPrecision"`
+	// The default value of the custom parameter.
+	DefaultValue pulumi.StringInput `pulumi:"defaultValue"`
+	// The maximum length of the custom parameter. This field is required when the parameter type is `String`.
+	MaxLength pulumi.IntInput `pulumi:"maxLength"`
+	// The maximum value of the custom parameter. This field is required when the parameter type is `Digit`.
+	MaxValue pulumi.StringInput `pulumi:"maxValue"`
+	// The minimum length of the custom parameter. This field is required when the parameter type is `String`.
+	MinLength pulumi.IntInput `pulumi:"minLength"`
+	// The minimum value of the custom parameter. This field is required when the parameter type is `Digit`.
+	MinValue pulumi.StringInput `pulumi:"minValue"`
+	// The name of ecs command. This field support fuzzy query.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Whether the custom parameter is required.
+	Required pulumi.BoolInput `pulumi:"required"`
+	// The type of ecs command. Valid values: `Shell`.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (CommandsCommandParameterDefinitionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CommandsCommandParameterDefinition)(nil)).Elem()
+}
+
+func (i CommandsCommandParameterDefinitionArgs) ToCommandsCommandParameterDefinitionOutput() CommandsCommandParameterDefinitionOutput {
+	return i.ToCommandsCommandParameterDefinitionOutputWithContext(context.Background())
+}
+
+func (i CommandsCommandParameterDefinitionArgs) ToCommandsCommandParameterDefinitionOutputWithContext(ctx context.Context) CommandsCommandParameterDefinitionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CommandsCommandParameterDefinitionOutput)
+}
+
+// CommandsCommandParameterDefinitionArrayInput is an input type that accepts CommandsCommandParameterDefinitionArray and CommandsCommandParameterDefinitionArrayOutput values.
+// You can construct a concrete instance of `CommandsCommandParameterDefinitionArrayInput` via:
+//
+//	CommandsCommandParameterDefinitionArray{ CommandsCommandParameterDefinitionArgs{...} }
+type CommandsCommandParameterDefinitionArrayInput interface {
+	pulumi.Input
+
+	ToCommandsCommandParameterDefinitionArrayOutput() CommandsCommandParameterDefinitionArrayOutput
+	ToCommandsCommandParameterDefinitionArrayOutputWithContext(context.Context) CommandsCommandParameterDefinitionArrayOutput
+}
+
+type CommandsCommandParameterDefinitionArray []CommandsCommandParameterDefinitionInput
+
+func (CommandsCommandParameterDefinitionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CommandsCommandParameterDefinition)(nil)).Elem()
+}
+
+func (i CommandsCommandParameterDefinitionArray) ToCommandsCommandParameterDefinitionArrayOutput() CommandsCommandParameterDefinitionArrayOutput {
+	return i.ToCommandsCommandParameterDefinitionArrayOutputWithContext(context.Background())
+}
+
+func (i CommandsCommandParameterDefinitionArray) ToCommandsCommandParameterDefinitionArrayOutputWithContext(ctx context.Context) CommandsCommandParameterDefinitionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CommandsCommandParameterDefinitionArrayOutput)
+}
+
+type CommandsCommandParameterDefinitionOutput struct{ *pulumi.OutputState }
+
+func (CommandsCommandParameterDefinitionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CommandsCommandParameterDefinition)(nil)).Elem()
+}
+
+func (o CommandsCommandParameterDefinitionOutput) ToCommandsCommandParameterDefinitionOutput() CommandsCommandParameterDefinitionOutput {
+	return o
+}
+
+func (o CommandsCommandParameterDefinitionOutput) ToCommandsCommandParameterDefinitionOutputWithContext(ctx context.Context) CommandsCommandParameterDefinitionOutput {
+	return o
+}
+
+// The decimal precision of the custom parameter. This field is required when the parameter type is `Digit`.
+func (o CommandsCommandParameterDefinitionOutput) DecimalPrecision() pulumi.IntOutput {
+	return o.ApplyT(func(v CommandsCommandParameterDefinition) int { return v.DecimalPrecision }).(pulumi.IntOutput)
+}
+
+// The default value of the custom parameter.
+func (o CommandsCommandParameterDefinitionOutput) DefaultValue() pulumi.StringOutput {
+	return o.ApplyT(func(v CommandsCommandParameterDefinition) string { return v.DefaultValue }).(pulumi.StringOutput)
+}
+
+// The maximum length of the custom parameter. This field is required when the parameter type is `String`.
+func (o CommandsCommandParameterDefinitionOutput) MaxLength() pulumi.IntOutput {
+	return o.ApplyT(func(v CommandsCommandParameterDefinition) int { return v.MaxLength }).(pulumi.IntOutput)
+}
+
+// The maximum value of the custom parameter. This field is required when the parameter type is `Digit`.
+func (o CommandsCommandParameterDefinitionOutput) MaxValue() pulumi.StringOutput {
+	return o.ApplyT(func(v CommandsCommandParameterDefinition) string { return v.MaxValue }).(pulumi.StringOutput)
+}
+
+// The minimum length of the custom parameter. This field is required when the parameter type is `String`.
+func (o CommandsCommandParameterDefinitionOutput) MinLength() pulumi.IntOutput {
+	return o.ApplyT(func(v CommandsCommandParameterDefinition) int { return v.MinLength }).(pulumi.IntOutput)
+}
+
+// The minimum value of the custom parameter. This field is required when the parameter type is `Digit`.
+func (o CommandsCommandParameterDefinitionOutput) MinValue() pulumi.StringOutput {
+	return o.ApplyT(func(v CommandsCommandParameterDefinition) string { return v.MinValue }).(pulumi.StringOutput)
+}
+
+// The name of ecs command. This field support fuzzy query.
+func (o CommandsCommandParameterDefinitionOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v CommandsCommandParameterDefinition) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Whether the custom parameter is required.
+func (o CommandsCommandParameterDefinitionOutput) Required() pulumi.BoolOutput {
+	return o.ApplyT(func(v CommandsCommandParameterDefinition) bool { return v.Required }).(pulumi.BoolOutput)
+}
+
+// The type of ecs command. Valid values: `Shell`.
+func (o CommandsCommandParameterDefinitionOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v CommandsCommandParameterDefinition) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type CommandsCommandParameterDefinitionArrayOutput struct{ *pulumi.OutputState }
+
+func (CommandsCommandParameterDefinitionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CommandsCommandParameterDefinition)(nil)).Elem()
+}
+
+func (o CommandsCommandParameterDefinitionArrayOutput) ToCommandsCommandParameterDefinitionArrayOutput() CommandsCommandParameterDefinitionArrayOutput {
+	return o
+}
+
+func (o CommandsCommandParameterDefinitionArrayOutput) ToCommandsCommandParameterDefinitionArrayOutputWithContext(ctx context.Context) CommandsCommandParameterDefinitionArrayOutput {
+	return o
+}
+
+func (o CommandsCommandParameterDefinitionArrayOutput) Index(i pulumi.IntInput) CommandsCommandParameterDefinitionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CommandsCommandParameterDefinition {
+		return vs[0].([]CommandsCommandParameterDefinition)[vs[1].(int)]
+	}).(CommandsCommandParameterDefinitionOutput)
+}
+
+type CommandsCommandTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// CommandsCommandTagInput is an input type that accepts CommandsCommandTagArgs and CommandsCommandTagOutput values.
+// You can construct a concrete instance of `CommandsCommandTagInput` via:
+//
+//	CommandsCommandTagArgs{...}
+type CommandsCommandTagInput interface {
+	pulumi.Input
+
+	ToCommandsCommandTagOutput() CommandsCommandTagOutput
+	ToCommandsCommandTagOutputWithContext(context.Context) CommandsCommandTagOutput
+}
+
+type CommandsCommandTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (CommandsCommandTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CommandsCommandTag)(nil)).Elem()
+}
+
+func (i CommandsCommandTagArgs) ToCommandsCommandTagOutput() CommandsCommandTagOutput {
+	return i.ToCommandsCommandTagOutputWithContext(context.Background())
+}
+
+func (i CommandsCommandTagArgs) ToCommandsCommandTagOutputWithContext(ctx context.Context) CommandsCommandTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CommandsCommandTagOutput)
+}
+
+// CommandsCommandTagArrayInput is an input type that accepts CommandsCommandTagArray and CommandsCommandTagArrayOutput values.
+// You can construct a concrete instance of `CommandsCommandTagArrayInput` via:
+//
+//	CommandsCommandTagArray{ CommandsCommandTagArgs{...} }
+type CommandsCommandTagArrayInput interface {
+	pulumi.Input
+
+	ToCommandsCommandTagArrayOutput() CommandsCommandTagArrayOutput
+	ToCommandsCommandTagArrayOutputWithContext(context.Context) CommandsCommandTagArrayOutput
+}
+
+type CommandsCommandTagArray []CommandsCommandTagInput
+
+func (CommandsCommandTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CommandsCommandTag)(nil)).Elem()
+}
+
+func (i CommandsCommandTagArray) ToCommandsCommandTagArrayOutput() CommandsCommandTagArrayOutput {
+	return i.ToCommandsCommandTagArrayOutputWithContext(context.Background())
+}
+
+func (i CommandsCommandTagArray) ToCommandsCommandTagArrayOutputWithContext(ctx context.Context) CommandsCommandTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CommandsCommandTagArrayOutput)
+}
+
+type CommandsCommandTagOutput struct{ *pulumi.OutputState }
+
+func (CommandsCommandTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CommandsCommandTag)(nil)).Elem()
+}
+
+func (o CommandsCommandTagOutput) ToCommandsCommandTagOutput() CommandsCommandTagOutput {
+	return o
+}
+
+func (o CommandsCommandTagOutput) ToCommandsCommandTagOutputWithContext(ctx context.Context) CommandsCommandTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o CommandsCommandTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v CommandsCommandTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o CommandsCommandTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v CommandsCommandTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type CommandsCommandTagArrayOutput struct{ *pulumi.OutputState }
+
+func (CommandsCommandTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CommandsCommandTag)(nil)).Elem()
+}
+
+func (o CommandsCommandTagArrayOutput) ToCommandsCommandTagArrayOutput() CommandsCommandTagArrayOutput {
+	return o
+}
+
+func (o CommandsCommandTagArrayOutput) ToCommandsCommandTagArrayOutputWithContext(ctx context.Context) CommandsCommandTagArrayOutput {
+	return o
+}
+
+func (o CommandsCommandTagArrayOutput) Index(i pulumi.IntInput) CommandsCommandTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CommandsCommandTag {
+		return vs[0].([]CommandsCommandTag)[vs[1].(int)]
+	}).(CommandsCommandTagOutput)
+}
+
+type CommandsTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// CommandsTagInput is an input type that accepts CommandsTagArgs and CommandsTagOutput values.
+// You can construct a concrete instance of `CommandsTagInput` via:
+//
+//	CommandsTagArgs{...}
+type CommandsTagInput interface {
+	pulumi.Input
+
+	ToCommandsTagOutput() CommandsTagOutput
+	ToCommandsTagOutputWithContext(context.Context) CommandsTagOutput
+}
+
+type CommandsTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (CommandsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CommandsTag)(nil)).Elem()
+}
+
+func (i CommandsTagArgs) ToCommandsTagOutput() CommandsTagOutput {
+	return i.ToCommandsTagOutputWithContext(context.Background())
+}
+
+func (i CommandsTagArgs) ToCommandsTagOutputWithContext(ctx context.Context) CommandsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CommandsTagOutput)
+}
+
+// CommandsTagArrayInput is an input type that accepts CommandsTagArray and CommandsTagArrayOutput values.
+// You can construct a concrete instance of `CommandsTagArrayInput` via:
+//
+//	CommandsTagArray{ CommandsTagArgs{...} }
+type CommandsTagArrayInput interface {
+	pulumi.Input
+
+	ToCommandsTagArrayOutput() CommandsTagArrayOutput
+	ToCommandsTagArrayOutputWithContext(context.Context) CommandsTagArrayOutput
+}
+
+type CommandsTagArray []CommandsTagInput
+
+func (CommandsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CommandsTag)(nil)).Elem()
+}
+
+func (i CommandsTagArray) ToCommandsTagArrayOutput() CommandsTagArrayOutput {
+	return i.ToCommandsTagArrayOutputWithContext(context.Background())
+}
+
+func (i CommandsTagArray) ToCommandsTagArrayOutputWithContext(ctx context.Context) CommandsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CommandsTagArrayOutput)
+}
+
+type CommandsTagOutput struct{ *pulumi.OutputState }
+
+func (CommandsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CommandsTag)(nil)).Elem()
+}
+
+func (o CommandsTagOutput) ToCommandsTagOutput() CommandsTagOutput {
+	return o
+}
+
+func (o CommandsTagOutput) ToCommandsTagOutputWithContext(ctx context.Context) CommandsTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o CommandsTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v CommandsTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o CommandsTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v CommandsTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type CommandsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (CommandsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CommandsTag)(nil)).Elem()
+}
+
+func (o CommandsTagArrayOutput) ToCommandsTagArrayOutput() CommandsTagArrayOutput {
+	return o
+}
+
+func (o CommandsTagArrayOutput) ToCommandsTagArrayOutputWithContext(ctx context.Context) CommandsTagArrayOutput {
+	return o
+}
+
+func (o CommandsTagArrayOutput) Index(i pulumi.IntInput) CommandsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CommandsTag {
+		return vs[0].([]CommandsTag)[vs[1].(int)]
+	}).(CommandsTagOutput)
 }
 
 type DeploymentSetsDeploymentSet struct {
@@ -3629,6 +4330,8 @@ type InstancesInstance struct {
 	DeploymentSetId string `pulumi:"deploymentSetId"`
 	// The description of ECS instance.
 	Description string `pulumi:"description"`
+	// The EIP address of the ECS instance.
+	EipAddresses []InstancesInstanceEipAddress `pulumi:"eipAddresses"`
 	// The GPU device info of Instance.
 	GpuDevices []InstancesInstanceGpuDevice `pulumi:"gpuDevices"`
 	// The host name of ECS instance.
@@ -3675,6 +4378,8 @@ type InstancesInstance struct {
 	Tags []InstancesInstanceTag `pulumi:"tags"`
 	// The update time of ECS instance.
 	UpdatedAt string `pulumi:"updatedAt"`
+	// The volume ID list of ECS instance.
+	VolumeIds []string `pulumi:"volumeIds"`
 	// The volume detail collection of volume.
 	Volumes []InstancesInstanceVolume `pulumi:"volumes"`
 	// The VPC ID of ECS instance.
@@ -3703,6 +4408,8 @@ type InstancesInstanceArgs struct {
 	DeploymentSetId pulumi.StringInput `pulumi:"deploymentSetId"`
 	// The description of ECS instance.
 	Description pulumi.StringInput `pulumi:"description"`
+	// The EIP address of the ECS instance.
+	EipAddresses InstancesInstanceEipAddressArrayInput `pulumi:"eipAddresses"`
 	// The GPU device info of Instance.
 	GpuDevices InstancesInstanceGpuDeviceArrayInput `pulumi:"gpuDevices"`
 	// The host name of ECS instance.
@@ -3749,6 +4456,8 @@ type InstancesInstanceArgs struct {
 	Tags InstancesInstanceTagArrayInput `pulumi:"tags"`
 	// The update time of ECS instance.
 	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+	// The volume ID list of ECS instance.
+	VolumeIds pulumi.StringArrayInput `pulumi:"volumeIds"`
 	// The volume detail collection of volume.
 	Volumes InstancesInstanceVolumeArrayInput `pulumi:"volumes"`
 	// The VPC ID of ECS instance.
@@ -3826,6 +4535,11 @@ func (o InstancesInstanceOutput) DeploymentSetId() pulumi.StringOutput {
 // The description of ECS instance.
 func (o InstancesInstanceOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v InstancesInstance) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The EIP address of the ECS instance.
+func (o InstancesInstanceOutput) EipAddresses() InstancesInstanceEipAddressArrayOutput {
+	return o.ApplyT(func(v InstancesInstance) []InstancesInstanceEipAddress { return v.EipAddresses }).(InstancesInstanceEipAddressArrayOutput)
 }
 
 // The GPU device info of Instance.
@@ -3943,6 +4657,11 @@ func (o InstancesInstanceOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v InstancesInstance) string { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
+// The volume ID list of ECS instance.
+func (o InstancesInstanceOutput) VolumeIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v InstancesInstance) []string { return v.VolumeIds }).(pulumi.StringArrayOutput)
+}
+
 // The volume detail collection of volume.
 func (o InstancesInstanceOutput) Volumes() InstancesInstanceVolumeArrayOutput {
 	return o.ApplyT(func(v InstancesInstance) []InstancesInstanceVolume { return v.Volumes }).(InstancesInstanceVolumeArrayOutput)
@@ -3976,6 +4695,112 @@ func (o InstancesInstanceArrayOutput) Index(i pulumi.IntInput) InstancesInstance
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) InstancesInstance {
 		return vs[0].([]InstancesInstance)[vs[1].(int)]
 	}).(InstancesInstanceOutput)
+}
+
+type InstancesInstanceEipAddress struct {
+	// The EIP ID of the ECS instance.
+	AllocationId string `pulumi:"allocationId"`
+	// The EIP address of the ECS instance.
+	IpAddress string `pulumi:"ipAddress"`
+}
+
+// InstancesInstanceEipAddressInput is an input type that accepts InstancesInstanceEipAddressArgs and InstancesInstanceEipAddressOutput values.
+// You can construct a concrete instance of `InstancesInstanceEipAddressInput` via:
+//
+//	InstancesInstanceEipAddressArgs{...}
+type InstancesInstanceEipAddressInput interface {
+	pulumi.Input
+
+	ToInstancesInstanceEipAddressOutput() InstancesInstanceEipAddressOutput
+	ToInstancesInstanceEipAddressOutputWithContext(context.Context) InstancesInstanceEipAddressOutput
+}
+
+type InstancesInstanceEipAddressArgs struct {
+	// The EIP ID of the ECS instance.
+	AllocationId pulumi.StringInput `pulumi:"allocationId"`
+	// The EIP address of the ECS instance.
+	IpAddress pulumi.StringInput `pulumi:"ipAddress"`
+}
+
+func (InstancesInstanceEipAddressArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstancesInstanceEipAddress)(nil)).Elem()
+}
+
+func (i InstancesInstanceEipAddressArgs) ToInstancesInstanceEipAddressOutput() InstancesInstanceEipAddressOutput {
+	return i.ToInstancesInstanceEipAddressOutputWithContext(context.Background())
+}
+
+func (i InstancesInstanceEipAddressArgs) ToInstancesInstanceEipAddressOutputWithContext(ctx context.Context) InstancesInstanceEipAddressOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstancesInstanceEipAddressOutput)
+}
+
+// InstancesInstanceEipAddressArrayInput is an input type that accepts InstancesInstanceEipAddressArray and InstancesInstanceEipAddressArrayOutput values.
+// You can construct a concrete instance of `InstancesInstanceEipAddressArrayInput` via:
+//
+//	InstancesInstanceEipAddressArray{ InstancesInstanceEipAddressArgs{...} }
+type InstancesInstanceEipAddressArrayInput interface {
+	pulumi.Input
+
+	ToInstancesInstanceEipAddressArrayOutput() InstancesInstanceEipAddressArrayOutput
+	ToInstancesInstanceEipAddressArrayOutputWithContext(context.Context) InstancesInstanceEipAddressArrayOutput
+}
+
+type InstancesInstanceEipAddressArray []InstancesInstanceEipAddressInput
+
+func (InstancesInstanceEipAddressArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstancesInstanceEipAddress)(nil)).Elem()
+}
+
+func (i InstancesInstanceEipAddressArray) ToInstancesInstanceEipAddressArrayOutput() InstancesInstanceEipAddressArrayOutput {
+	return i.ToInstancesInstanceEipAddressArrayOutputWithContext(context.Background())
+}
+
+func (i InstancesInstanceEipAddressArray) ToInstancesInstanceEipAddressArrayOutputWithContext(ctx context.Context) InstancesInstanceEipAddressArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstancesInstanceEipAddressArrayOutput)
+}
+
+type InstancesInstanceEipAddressOutput struct{ *pulumi.OutputState }
+
+func (InstancesInstanceEipAddressOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstancesInstanceEipAddress)(nil)).Elem()
+}
+
+func (o InstancesInstanceEipAddressOutput) ToInstancesInstanceEipAddressOutput() InstancesInstanceEipAddressOutput {
+	return o
+}
+
+func (o InstancesInstanceEipAddressOutput) ToInstancesInstanceEipAddressOutputWithContext(ctx context.Context) InstancesInstanceEipAddressOutput {
+	return o
+}
+
+// The EIP ID of the ECS instance.
+func (o InstancesInstanceEipAddressOutput) AllocationId() pulumi.StringOutput {
+	return o.ApplyT(func(v InstancesInstanceEipAddress) string { return v.AllocationId }).(pulumi.StringOutput)
+}
+
+// The EIP address of the ECS instance.
+func (o InstancesInstanceEipAddressOutput) IpAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v InstancesInstanceEipAddress) string { return v.IpAddress }).(pulumi.StringOutput)
+}
+
+type InstancesInstanceEipAddressArrayOutput struct{ *pulumi.OutputState }
+
+func (InstancesInstanceEipAddressArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstancesInstanceEipAddress)(nil)).Elem()
+}
+
+func (o InstancesInstanceEipAddressArrayOutput) ToInstancesInstanceEipAddressArrayOutput() InstancesInstanceEipAddressArrayOutput {
+	return o
+}
+
+func (o InstancesInstanceEipAddressArrayOutput) ToInstancesInstanceEipAddressArrayOutputWithContext(ctx context.Context) InstancesInstanceEipAddressArrayOutput {
+	return o
+}
+
+func (o InstancesInstanceEipAddressArrayOutput) Index(i pulumi.IntInput) InstancesInstanceEipAddressOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) InstancesInstanceEipAddress {
+		return vs[0].([]InstancesInstanceEipAddress)[vs[1].(int)]
+	}).(InstancesInstanceEipAddressOutput)
 }
 
 type InstancesInstanceGpuDevice struct {
@@ -4589,6 +5414,112 @@ func (o InstancesTagArrayOutput) Index(i pulumi.IntInput) InstancesTagOutput {
 	}).(InstancesTagOutput)
 }
 
+type InvocationParameter struct {
+	// The name of the parameter.
+	Name string `pulumi:"name"`
+	// The value of the parameter.
+	Value string `pulumi:"value"`
+}
+
+// InvocationParameterInput is an input type that accepts InvocationParameterArgs and InvocationParameterOutput values.
+// You can construct a concrete instance of `InvocationParameterInput` via:
+//
+//	InvocationParameterArgs{...}
+type InvocationParameterInput interface {
+	pulumi.Input
+
+	ToInvocationParameterOutput() InvocationParameterOutput
+	ToInvocationParameterOutputWithContext(context.Context) InvocationParameterOutput
+}
+
+type InvocationParameterArgs struct {
+	// The name of the parameter.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The value of the parameter.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (InvocationParameterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InvocationParameter)(nil)).Elem()
+}
+
+func (i InvocationParameterArgs) ToInvocationParameterOutput() InvocationParameterOutput {
+	return i.ToInvocationParameterOutputWithContext(context.Background())
+}
+
+func (i InvocationParameterArgs) ToInvocationParameterOutputWithContext(ctx context.Context) InvocationParameterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InvocationParameterOutput)
+}
+
+// InvocationParameterArrayInput is an input type that accepts InvocationParameterArray and InvocationParameterArrayOutput values.
+// You can construct a concrete instance of `InvocationParameterArrayInput` via:
+//
+//	InvocationParameterArray{ InvocationParameterArgs{...} }
+type InvocationParameterArrayInput interface {
+	pulumi.Input
+
+	ToInvocationParameterArrayOutput() InvocationParameterArrayOutput
+	ToInvocationParameterArrayOutputWithContext(context.Context) InvocationParameterArrayOutput
+}
+
+type InvocationParameterArray []InvocationParameterInput
+
+func (InvocationParameterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InvocationParameter)(nil)).Elem()
+}
+
+func (i InvocationParameterArray) ToInvocationParameterArrayOutput() InvocationParameterArrayOutput {
+	return i.ToInvocationParameterArrayOutputWithContext(context.Background())
+}
+
+func (i InvocationParameterArray) ToInvocationParameterArrayOutputWithContext(ctx context.Context) InvocationParameterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InvocationParameterArrayOutput)
+}
+
+type InvocationParameterOutput struct{ *pulumi.OutputState }
+
+func (InvocationParameterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InvocationParameter)(nil)).Elem()
+}
+
+func (o InvocationParameterOutput) ToInvocationParameterOutput() InvocationParameterOutput {
+	return o
+}
+
+func (o InvocationParameterOutput) ToInvocationParameterOutputWithContext(ctx context.Context) InvocationParameterOutput {
+	return o
+}
+
+// The name of the parameter.
+func (o InvocationParameterOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v InvocationParameter) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The value of the parameter.
+func (o InvocationParameterOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v InvocationParameter) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type InvocationParameterArrayOutput struct{ *pulumi.OutputState }
+
+func (InvocationParameterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InvocationParameter)(nil)).Elem()
+}
+
+func (o InvocationParameterArrayOutput) ToInvocationParameterArrayOutput() InvocationParameterArrayOutput {
+	return o
+}
+
+func (o InvocationParameterArrayOutput) ToInvocationParameterArrayOutputWithContext(ctx context.Context) InvocationParameterArrayOutput {
+	return o
+}
+
+func (o InvocationParameterArrayOutput) Index(i pulumi.IntInput) InvocationParameterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) InvocationParameter {
+		return vs[0].([]InvocationParameter)[vs[1].(int)]
+	}).(InvocationParameterOutput)
+}
+
 type InvocationResultsInvocationResult struct {
 	// The id of ecs command.
 	CommandId string `pulumi:"commandId"`
@@ -4794,6 +5725,112 @@ func (o InvocationResultsInvocationResultArrayOutput) Index(i pulumi.IntInput) I
 	}).(InvocationResultsInvocationResultOutput)
 }
 
+type InvocationTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// InvocationTagInput is an input type that accepts InvocationTagArgs and InvocationTagOutput values.
+// You can construct a concrete instance of `InvocationTagInput` via:
+//
+//	InvocationTagArgs{...}
+type InvocationTagInput interface {
+	pulumi.Input
+
+	ToInvocationTagOutput() InvocationTagOutput
+	ToInvocationTagOutputWithContext(context.Context) InvocationTagOutput
+}
+
+type InvocationTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (InvocationTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InvocationTag)(nil)).Elem()
+}
+
+func (i InvocationTagArgs) ToInvocationTagOutput() InvocationTagOutput {
+	return i.ToInvocationTagOutputWithContext(context.Background())
+}
+
+func (i InvocationTagArgs) ToInvocationTagOutputWithContext(ctx context.Context) InvocationTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InvocationTagOutput)
+}
+
+// InvocationTagArrayInput is an input type that accepts InvocationTagArray and InvocationTagArrayOutput values.
+// You can construct a concrete instance of `InvocationTagArrayInput` via:
+//
+//	InvocationTagArray{ InvocationTagArgs{...} }
+type InvocationTagArrayInput interface {
+	pulumi.Input
+
+	ToInvocationTagArrayOutput() InvocationTagArrayOutput
+	ToInvocationTagArrayOutputWithContext(context.Context) InvocationTagArrayOutput
+}
+
+type InvocationTagArray []InvocationTagInput
+
+func (InvocationTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InvocationTag)(nil)).Elem()
+}
+
+func (i InvocationTagArray) ToInvocationTagArrayOutput() InvocationTagArrayOutput {
+	return i.ToInvocationTagArrayOutputWithContext(context.Background())
+}
+
+func (i InvocationTagArray) ToInvocationTagArrayOutputWithContext(ctx context.Context) InvocationTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InvocationTagArrayOutput)
+}
+
+type InvocationTagOutput struct{ *pulumi.OutputState }
+
+func (InvocationTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InvocationTag)(nil)).Elem()
+}
+
+func (o InvocationTagOutput) ToInvocationTagOutput() InvocationTagOutput {
+	return o
+}
+
+func (o InvocationTagOutput) ToInvocationTagOutputWithContext(ctx context.Context) InvocationTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o InvocationTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v InvocationTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o InvocationTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v InvocationTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type InvocationTagArrayOutput struct{ *pulumi.OutputState }
+
+func (InvocationTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InvocationTag)(nil)).Elem()
+}
+
+func (o InvocationTagArrayOutput) ToInvocationTagArrayOutput() InvocationTagArrayOutput {
+	return o
+}
+
+func (o InvocationTagArrayOutput) ToInvocationTagArrayOutputWithContext(ctx context.Context) InvocationTagArrayOutput {
+	return o
+}
+
+func (o InvocationTagArrayOutput) Index(i pulumi.IntInput) InvocationTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) InvocationTag {
+		return vs[0].([]InvocationTag)[vs[1].(int)]
+	}).(InvocationTagOutput)
+}
+
 type InvocationsInvocation struct {
 	// The base64 encoded content of the ecs command.
 	CommandContent string `pulumi:"commandContent"`
@@ -4827,12 +5864,18 @@ type InvocationsInvocation struct {
 	InvocationStatus string `pulumi:"invocationStatus"`
 	// The launch time of the ecs invocation.
 	LaunchTime string `pulumi:"launchTime"`
+	// The custom parameters of the ecs invocation.
+	Parameters string `pulumi:"parameters"`
+	// The project name of ecs invocation.
+	ProjectName string `pulumi:"projectName"`
 	// The recurrence end time of the ecs invocation.
 	RecurrenceEndTime string `pulumi:"recurrenceEndTime"`
 	// The repeat mode of ecs invocation. Valid values: `Once`, `Rate`, `Fixed`.
 	RepeatMode string `pulumi:"repeatMode"`
 	// The start time of the ecs invocation.
 	StartTime string `pulumi:"startTime"`
+	// Tags.
+	Tags []InvocationsInvocationTag `pulumi:"tags"`
 	// The timeout of the ecs command.
 	Timeout int `pulumi:"timeout"`
 	// The username of the ecs command.
@@ -4885,12 +5928,18 @@ type InvocationsInvocationArgs struct {
 	InvocationStatus pulumi.StringInput `pulumi:"invocationStatus"`
 	// The launch time of the ecs invocation.
 	LaunchTime pulumi.StringInput `pulumi:"launchTime"`
+	// The custom parameters of the ecs invocation.
+	Parameters pulumi.StringInput `pulumi:"parameters"`
+	// The project name of ecs invocation.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
 	// The recurrence end time of the ecs invocation.
 	RecurrenceEndTime pulumi.StringInput `pulumi:"recurrenceEndTime"`
 	// The repeat mode of ecs invocation. Valid values: `Once`, `Rate`, `Fixed`.
 	RepeatMode pulumi.StringInput `pulumi:"repeatMode"`
 	// The start time of the ecs invocation.
 	StartTime pulumi.StringInput `pulumi:"startTime"`
+	// Tags.
+	Tags InvocationsInvocationTagArrayInput `pulumi:"tags"`
 	// The timeout of the ecs command.
 	Timeout pulumi.IntInput `pulumi:"timeout"`
 	// The username of the ecs command.
@@ -5030,6 +6079,16 @@ func (o InvocationsInvocationOutput) LaunchTime() pulumi.StringOutput {
 	return o.ApplyT(func(v InvocationsInvocation) string { return v.LaunchTime }).(pulumi.StringOutput)
 }
 
+// The custom parameters of the ecs invocation.
+func (o InvocationsInvocationOutput) Parameters() pulumi.StringOutput {
+	return o.ApplyT(func(v InvocationsInvocation) string { return v.Parameters }).(pulumi.StringOutput)
+}
+
+// The project name of ecs invocation.
+func (o InvocationsInvocationOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v InvocationsInvocation) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
 // The recurrence end time of the ecs invocation.
 func (o InvocationsInvocationOutput) RecurrenceEndTime() pulumi.StringOutput {
 	return o.ApplyT(func(v InvocationsInvocation) string { return v.RecurrenceEndTime }).(pulumi.StringOutput)
@@ -5043,6 +6102,11 @@ func (o InvocationsInvocationOutput) RepeatMode() pulumi.StringOutput {
 // The start time of the ecs invocation.
 func (o InvocationsInvocationOutput) StartTime() pulumi.StringOutput {
 	return o.ApplyT(func(v InvocationsInvocation) string { return v.StartTime }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o InvocationsInvocationOutput) Tags() InvocationsInvocationTagArrayOutput {
+	return o.ApplyT(func(v InvocationsInvocation) []InvocationsInvocationTag { return v.Tags }).(InvocationsInvocationTagArrayOutput)
 }
 
 // The timeout of the ecs command.
@@ -5078,6 +6142,218 @@ func (o InvocationsInvocationArrayOutput) Index(i pulumi.IntInput) InvocationsIn
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) InvocationsInvocation {
 		return vs[0].([]InvocationsInvocation)[vs[1].(int)]
 	}).(InvocationsInvocationOutput)
+}
+
+type InvocationsInvocationTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// InvocationsInvocationTagInput is an input type that accepts InvocationsInvocationTagArgs and InvocationsInvocationTagOutput values.
+// You can construct a concrete instance of `InvocationsInvocationTagInput` via:
+//
+//	InvocationsInvocationTagArgs{...}
+type InvocationsInvocationTagInput interface {
+	pulumi.Input
+
+	ToInvocationsInvocationTagOutput() InvocationsInvocationTagOutput
+	ToInvocationsInvocationTagOutputWithContext(context.Context) InvocationsInvocationTagOutput
+}
+
+type InvocationsInvocationTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (InvocationsInvocationTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InvocationsInvocationTag)(nil)).Elem()
+}
+
+func (i InvocationsInvocationTagArgs) ToInvocationsInvocationTagOutput() InvocationsInvocationTagOutput {
+	return i.ToInvocationsInvocationTagOutputWithContext(context.Background())
+}
+
+func (i InvocationsInvocationTagArgs) ToInvocationsInvocationTagOutputWithContext(ctx context.Context) InvocationsInvocationTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InvocationsInvocationTagOutput)
+}
+
+// InvocationsInvocationTagArrayInput is an input type that accepts InvocationsInvocationTagArray and InvocationsInvocationTagArrayOutput values.
+// You can construct a concrete instance of `InvocationsInvocationTagArrayInput` via:
+//
+//	InvocationsInvocationTagArray{ InvocationsInvocationTagArgs{...} }
+type InvocationsInvocationTagArrayInput interface {
+	pulumi.Input
+
+	ToInvocationsInvocationTagArrayOutput() InvocationsInvocationTagArrayOutput
+	ToInvocationsInvocationTagArrayOutputWithContext(context.Context) InvocationsInvocationTagArrayOutput
+}
+
+type InvocationsInvocationTagArray []InvocationsInvocationTagInput
+
+func (InvocationsInvocationTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InvocationsInvocationTag)(nil)).Elem()
+}
+
+func (i InvocationsInvocationTagArray) ToInvocationsInvocationTagArrayOutput() InvocationsInvocationTagArrayOutput {
+	return i.ToInvocationsInvocationTagArrayOutputWithContext(context.Background())
+}
+
+func (i InvocationsInvocationTagArray) ToInvocationsInvocationTagArrayOutputWithContext(ctx context.Context) InvocationsInvocationTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InvocationsInvocationTagArrayOutput)
+}
+
+type InvocationsInvocationTagOutput struct{ *pulumi.OutputState }
+
+func (InvocationsInvocationTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InvocationsInvocationTag)(nil)).Elem()
+}
+
+func (o InvocationsInvocationTagOutput) ToInvocationsInvocationTagOutput() InvocationsInvocationTagOutput {
+	return o
+}
+
+func (o InvocationsInvocationTagOutput) ToInvocationsInvocationTagOutputWithContext(ctx context.Context) InvocationsInvocationTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o InvocationsInvocationTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v InvocationsInvocationTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o InvocationsInvocationTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v InvocationsInvocationTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type InvocationsInvocationTagArrayOutput struct{ *pulumi.OutputState }
+
+func (InvocationsInvocationTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InvocationsInvocationTag)(nil)).Elem()
+}
+
+func (o InvocationsInvocationTagArrayOutput) ToInvocationsInvocationTagArrayOutput() InvocationsInvocationTagArrayOutput {
+	return o
+}
+
+func (o InvocationsInvocationTagArrayOutput) ToInvocationsInvocationTagArrayOutputWithContext(ctx context.Context) InvocationsInvocationTagArrayOutput {
+	return o
+}
+
+func (o InvocationsInvocationTagArrayOutput) Index(i pulumi.IntInput) InvocationsInvocationTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) InvocationsInvocationTag {
+		return vs[0].([]InvocationsInvocationTag)[vs[1].(int)]
+	}).(InvocationsInvocationTagOutput)
+}
+
+type InvocationsTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// InvocationsTagInput is an input type that accepts InvocationsTagArgs and InvocationsTagOutput values.
+// You can construct a concrete instance of `InvocationsTagInput` via:
+//
+//	InvocationsTagArgs{...}
+type InvocationsTagInput interface {
+	pulumi.Input
+
+	ToInvocationsTagOutput() InvocationsTagOutput
+	ToInvocationsTagOutputWithContext(context.Context) InvocationsTagOutput
+}
+
+type InvocationsTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (InvocationsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InvocationsTag)(nil)).Elem()
+}
+
+func (i InvocationsTagArgs) ToInvocationsTagOutput() InvocationsTagOutput {
+	return i.ToInvocationsTagOutputWithContext(context.Background())
+}
+
+func (i InvocationsTagArgs) ToInvocationsTagOutputWithContext(ctx context.Context) InvocationsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InvocationsTagOutput)
+}
+
+// InvocationsTagArrayInput is an input type that accepts InvocationsTagArray and InvocationsTagArrayOutput values.
+// You can construct a concrete instance of `InvocationsTagArrayInput` via:
+//
+//	InvocationsTagArray{ InvocationsTagArgs{...} }
+type InvocationsTagArrayInput interface {
+	pulumi.Input
+
+	ToInvocationsTagArrayOutput() InvocationsTagArrayOutput
+	ToInvocationsTagArrayOutputWithContext(context.Context) InvocationsTagArrayOutput
+}
+
+type InvocationsTagArray []InvocationsTagInput
+
+func (InvocationsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InvocationsTag)(nil)).Elem()
+}
+
+func (i InvocationsTagArray) ToInvocationsTagArrayOutput() InvocationsTagArrayOutput {
+	return i.ToInvocationsTagArrayOutputWithContext(context.Background())
+}
+
+func (i InvocationsTagArray) ToInvocationsTagArrayOutputWithContext(ctx context.Context) InvocationsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InvocationsTagArrayOutput)
+}
+
+type InvocationsTagOutput struct{ *pulumi.OutputState }
+
+func (InvocationsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InvocationsTag)(nil)).Elem()
+}
+
+func (o InvocationsTagOutput) ToInvocationsTagOutput() InvocationsTagOutput {
+	return o
+}
+
+func (o InvocationsTagOutput) ToInvocationsTagOutputWithContext(ctx context.Context) InvocationsTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o InvocationsTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v InvocationsTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o InvocationsTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v InvocationsTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type InvocationsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (InvocationsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InvocationsTag)(nil)).Elem()
+}
+
+func (o InvocationsTagArrayOutput) ToInvocationsTagArrayOutput() InvocationsTagArrayOutput {
+	return o
+}
+
+func (o InvocationsTagArrayOutput) ToInvocationsTagArrayOutputWithContext(ctx context.Context) InvocationsTagArrayOutput {
+	return o
+}
+
+func (o InvocationsTagArrayOutput) Index(i pulumi.IntInput) InvocationsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) InvocationsTag {
+		return vs[0].([]InvocationsTag)[vs[1].(int)]
+	}).(InvocationsTagOutput)
 }
 
 type KeyPairsKeyPair struct {
@@ -6547,16 +7823,26 @@ type GetCommandsCommand struct {
 	CommandId string `pulumi:"commandId"`
 	// The provider of public command. When this field is not specified, query for custom commands.
 	CommandProvider string `pulumi:"commandProvider"`
+	// Whether the command content is base64 encoded. Valid values: `Base64`, `PlainText`. Default is `Base64`.
+	ContentEncoding string `pulumi:"contentEncoding"`
 	// The create time of the ecs command.
 	CreatedAt string `pulumi:"createdAt"`
 	// The description of the ecs command.
 	Description string `pulumi:"description"`
+	// Whether to enable custom parameter. Default is `false`.
+	EnableParameter bool `pulumi:"enableParameter"`
 	// The id of the ecs command.
 	Id string `pulumi:"id"`
 	// The invocation times of the ecs command. Public commands do not display the invocation times.
 	InvocationTimes int `pulumi:"invocationTimes"`
 	// The name of ecs command. This field support fuzzy query.
 	Name string `pulumi:"name"`
+	// The custom parameter definitions of the ecs command.
+	ParameterDefinitions []GetCommandsCommandParameterDefinition `pulumi:"parameterDefinitions"`
+	// The project name of ecs command.
+	ProjectName string `pulumi:"projectName"`
+	// Tags.
+	Tags []GetCommandsCommandTag `pulumi:"tags"`
 	// The timeout of the ecs command.
 	Timeout int `pulumi:"timeout"`
 	// The type of ecs command. Valid values: `Shell`.
@@ -6587,16 +7873,26 @@ type GetCommandsCommandArgs struct {
 	CommandId pulumi.StringInput `pulumi:"commandId"`
 	// The provider of public command. When this field is not specified, query for custom commands.
 	CommandProvider pulumi.StringInput `pulumi:"commandProvider"`
+	// Whether the command content is base64 encoded. Valid values: `Base64`, `PlainText`. Default is `Base64`.
+	ContentEncoding pulumi.StringInput `pulumi:"contentEncoding"`
 	// The create time of the ecs command.
 	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
 	// The description of the ecs command.
 	Description pulumi.StringInput `pulumi:"description"`
+	// Whether to enable custom parameter. Default is `false`.
+	EnableParameter pulumi.BoolInput `pulumi:"enableParameter"`
 	// The id of the ecs command.
 	Id pulumi.StringInput `pulumi:"id"`
 	// The invocation times of the ecs command. Public commands do not display the invocation times.
 	InvocationTimes pulumi.IntInput `pulumi:"invocationTimes"`
 	// The name of ecs command. This field support fuzzy query.
 	Name pulumi.StringInput `pulumi:"name"`
+	// The custom parameter definitions of the ecs command.
+	ParameterDefinitions GetCommandsCommandParameterDefinitionArrayInput `pulumi:"parameterDefinitions"`
+	// The project name of ecs command.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// Tags.
+	Tags GetCommandsCommandTagArrayInput `pulumi:"tags"`
 	// The timeout of the ecs command.
 	Timeout pulumi.IntInput `pulumi:"timeout"`
 	// The type of ecs command. Valid values: `Shell`.
@@ -6675,6 +7971,11 @@ func (o GetCommandsCommandOutput) CommandProvider() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCommandsCommand) string { return v.CommandProvider }).(pulumi.StringOutput)
 }
 
+// Whether the command content is base64 encoded. Valid values: `Base64`, `PlainText`. Default is `Base64`.
+func (o GetCommandsCommandOutput) ContentEncoding() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCommandsCommand) string { return v.ContentEncoding }).(pulumi.StringOutput)
+}
+
 // The create time of the ecs command.
 func (o GetCommandsCommandOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCommandsCommand) string { return v.CreatedAt }).(pulumi.StringOutput)
@@ -6683,6 +7984,11 @@ func (o GetCommandsCommandOutput) CreatedAt() pulumi.StringOutput {
 // The description of the ecs command.
 func (o GetCommandsCommandOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCommandsCommand) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Whether to enable custom parameter. Default is `false`.
+func (o GetCommandsCommandOutput) EnableParameter() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetCommandsCommand) bool { return v.EnableParameter }).(pulumi.BoolOutput)
 }
 
 // The id of the ecs command.
@@ -6698,6 +8004,21 @@ func (o GetCommandsCommandOutput) InvocationTimes() pulumi.IntOutput {
 // The name of ecs command. This field support fuzzy query.
 func (o GetCommandsCommandOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCommandsCommand) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The custom parameter definitions of the ecs command.
+func (o GetCommandsCommandOutput) ParameterDefinitions() GetCommandsCommandParameterDefinitionArrayOutput {
+	return o.ApplyT(func(v GetCommandsCommand) []GetCommandsCommandParameterDefinition { return v.ParameterDefinitions }).(GetCommandsCommandParameterDefinitionArrayOutput)
+}
+
+// The project name of ecs command.
+func (o GetCommandsCommandOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCommandsCommand) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o GetCommandsCommandOutput) Tags() GetCommandsCommandTagArrayOutput {
+	return o.ApplyT(func(v GetCommandsCommand) []GetCommandsCommandTag { return v.Tags }).(GetCommandsCommandTagArrayOutput)
 }
 
 // The timeout of the ecs command.
@@ -6743,6 +8064,387 @@ func (o GetCommandsCommandArrayOutput) Index(i pulumi.IntInput) GetCommandsComma
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCommandsCommand {
 		return vs[0].([]GetCommandsCommand)[vs[1].(int)]
 	}).(GetCommandsCommandOutput)
+}
+
+type GetCommandsCommandParameterDefinition struct {
+	// The decimal precision of the custom parameter. This field is required when the parameter type is `Digit`.
+	DecimalPrecision int `pulumi:"decimalPrecision"`
+	// The default value of the custom parameter.
+	DefaultValue string `pulumi:"defaultValue"`
+	// The maximum length of the custom parameter. This field is required when the parameter type is `String`.
+	MaxLength int `pulumi:"maxLength"`
+	// The maximum value of the custom parameter. This field is required when the parameter type is `Digit`.
+	MaxValue string `pulumi:"maxValue"`
+	// The minimum length of the custom parameter. This field is required when the parameter type is `String`.
+	MinLength int `pulumi:"minLength"`
+	// The minimum value of the custom parameter. This field is required when the parameter type is `Digit`.
+	MinValue string `pulumi:"minValue"`
+	// The name of ecs command. This field support fuzzy query.
+	Name string `pulumi:"name"`
+	// Whether the custom parameter is required.
+	Required bool `pulumi:"required"`
+	// The type of ecs command. Valid values: `Shell`.
+	Type string `pulumi:"type"`
+}
+
+// GetCommandsCommandParameterDefinitionInput is an input type that accepts GetCommandsCommandParameterDefinitionArgs and GetCommandsCommandParameterDefinitionOutput values.
+// You can construct a concrete instance of `GetCommandsCommandParameterDefinitionInput` via:
+//
+//	GetCommandsCommandParameterDefinitionArgs{...}
+type GetCommandsCommandParameterDefinitionInput interface {
+	pulumi.Input
+
+	ToGetCommandsCommandParameterDefinitionOutput() GetCommandsCommandParameterDefinitionOutput
+	ToGetCommandsCommandParameterDefinitionOutputWithContext(context.Context) GetCommandsCommandParameterDefinitionOutput
+}
+
+type GetCommandsCommandParameterDefinitionArgs struct {
+	// The decimal precision of the custom parameter. This field is required when the parameter type is `Digit`.
+	DecimalPrecision pulumi.IntInput `pulumi:"decimalPrecision"`
+	// The default value of the custom parameter.
+	DefaultValue pulumi.StringInput `pulumi:"defaultValue"`
+	// The maximum length of the custom parameter. This field is required when the parameter type is `String`.
+	MaxLength pulumi.IntInput `pulumi:"maxLength"`
+	// The maximum value of the custom parameter. This field is required when the parameter type is `Digit`.
+	MaxValue pulumi.StringInput `pulumi:"maxValue"`
+	// The minimum length of the custom parameter. This field is required when the parameter type is `String`.
+	MinLength pulumi.IntInput `pulumi:"minLength"`
+	// The minimum value of the custom parameter. This field is required when the parameter type is `Digit`.
+	MinValue pulumi.StringInput `pulumi:"minValue"`
+	// The name of ecs command. This field support fuzzy query.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Whether the custom parameter is required.
+	Required pulumi.BoolInput `pulumi:"required"`
+	// The type of ecs command. Valid values: `Shell`.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetCommandsCommandParameterDefinitionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCommandsCommandParameterDefinition)(nil)).Elem()
+}
+
+func (i GetCommandsCommandParameterDefinitionArgs) ToGetCommandsCommandParameterDefinitionOutput() GetCommandsCommandParameterDefinitionOutput {
+	return i.ToGetCommandsCommandParameterDefinitionOutputWithContext(context.Background())
+}
+
+func (i GetCommandsCommandParameterDefinitionArgs) ToGetCommandsCommandParameterDefinitionOutputWithContext(ctx context.Context) GetCommandsCommandParameterDefinitionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCommandsCommandParameterDefinitionOutput)
+}
+
+// GetCommandsCommandParameterDefinitionArrayInput is an input type that accepts GetCommandsCommandParameterDefinitionArray and GetCommandsCommandParameterDefinitionArrayOutput values.
+// You can construct a concrete instance of `GetCommandsCommandParameterDefinitionArrayInput` via:
+//
+//	GetCommandsCommandParameterDefinitionArray{ GetCommandsCommandParameterDefinitionArgs{...} }
+type GetCommandsCommandParameterDefinitionArrayInput interface {
+	pulumi.Input
+
+	ToGetCommandsCommandParameterDefinitionArrayOutput() GetCommandsCommandParameterDefinitionArrayOutput
+	ToGetCommandsCommandParameterDefinitionArrayOutputWithContext(context.Context) GetCommandsCommandParameterDefinitionArrayOutput
+}
+
+type GetCommandsCommandParameterDefinitionArray []GetCommandsCommandParameterDefinitionInput
+
+func (GetCommandsCommandParameterDefinitionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCommandsCommandParameterDefinition)(nil)).Elem()
+}
+
+func (i GetCommandsCommandParameterDefinitionArray) ToGetCommandsCommandParameterDefinitionArrayOutput() GetCommandsCommandParameterDefinitionArrayOutput {
+	return i.ToGetCommandsCommandParameterDefinitionArrayOutputWithContext(context.Background())
+}
+
+func (i GetCommandsCommandParameterDefinitionArray) ToGetCommandsCommandParameterDefinitionArrayOutputWithContext(ctx context.Context) GetCommandsCommandParameterDefinitionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCommandsCommandParameterDefinitionArrayOutput)
+}
+
+type GetCommandsCommandParameterDefinitionOutput struct{ *pulumi.OutputState }
+
+func (GetCommandsCommandParameterDefinitionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCommandsCommandParameterDefinition)(nil)).Elem()
+}
+
+func (o GetCommandsCommandParameterDefinitionOutput) ToGetCommandsCommandParameterDefinitionOutput() GetCommandsCommandParameterDefinitionOutput {
+	return o
+}
+
+func (o GetCommandsCommandParameterDefinitionOutput) ToGetCommandsCommandParameterDefinitionOutputWithContext(ctx context.Context) GetCommandsCommandParameterDefinitionOutput {
+	return o
+}
+
+// The decimal precision of the custom parameter. This field is required when the parameter type is `Digit`.
+func (o GetCommandsCommandParameterDefinitionOutput) DecimalPrecision() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCommandsCommandParameterDefinition) int { return v.DecimalPrecision }).(pulumi.IntOutput)
+}
+
+// The default value of the custom parameter.
+func (o GetCommandsCommandParameterDefinitionOutput) DefaultValue() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCommandsCommandParameterDefinition) string { return v.DefaultValue }).(pulumi.StringOutput)
+}
+
+// The maximum length of the custom parameter. This field is required when the parameter type is `String`.
+func (o GetCommandsCommandParameterDefinitionOutput) MaxLength() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCommandsCommandParameterDefinition) int { return v.MaxLength }).(pulumi.IntOutput)
+}
+
+// The maximum value of the custom parameter. This field is required when the parameter type is `Digit`.
+func (o GetCommandsCommandParameterDefinitionOutput) MaxValue() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCommandsCommandParameterDefinition) string { return v.MaxValue }).(pulumi.StringOutput)
+}
+
+// The minimum length of the custom parameter. This field is required when the parameter type is `String`.
+func (o GetCommandsCommandParameterDefinitionOutput) MinLength() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCommandsCommandParameterDefinition) int { return v.MinLength }).(pulumi.IntOutput)
+}
+
+// The minimum value of the custom parameter. This field is required when the parameter type is `Digit`.
+func (o GetCommandsCommandParameterDefinitionOutput) MinValue() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCommandsCommandParameterDefinition) string { return v.MinValue }).(pulumi.StringOutput)
+}
+
+// The name of ecs command. This field support fuzzy query.
+func (o GetCommandsCommandParameterDefinitionOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCommandsCommandParameterDefinition) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Whether the custom parameter is required.
+func (o GetCommandsCommandParameterDefinitionOutput) Required() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetCommandsCommandParameterDefinition) bool { return v.Required }).(pulumi.BoolOutput)
+}
+
+// The type of ecs command. Valid values: `Shell`.
+func (o GetCommandsCommandParameterDefinitionOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCommandsCommandParameterDefinition) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetCommandsCommandParameterDefinitionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCommandsCommandParameterDefinitionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCommandsCommandParameterDefinition)(nil)).Elem()
+}
+
+func (o GetCommandsCommandParameterDefinitionArrayOutput) ToGetCommandsCommandParameterDefinitionArrayOutput() GetCommandsCommandParameterDefinitionArrayOutput {
+	return o
+}
+
+func (o GetCommandsCommandParameterDefinitionArrayOutput) ToGetCommandsCommandParameterDefinitionArrayOutputWithContext(ctx context.Context) GetCommandsCommandParameterDefinitionArrayOutput {
+	return o
+}
+
+func (o GetCommandsCommandParameterDefinitionArrayOutput) Index(i pulumi.IntInput) GetCommandsCommandParameterDefinitionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCommandsCommandParameterDefinition {
+		return vs[0].([]GetCommandsCommandParameterDefinition)[vs[1].(int)]
+	}).(GetCommandsCommandParameterDefinitionOutput)
+}
+
+type GetCommandsCommandTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetCommandsCommandTagInput is an input type that accepts GetCommandsCommandTagArgs and GetCommandsCommandTagOutput values.
+// You can construct a concrete instance of `GetCommandsCommandTagInput` via:
+//
+//	GetCommandsCommandTagArgs{...}
+type GetCommandsCommandTagInput interface {
+	pulumi.Input
+
+	ToGetCommandsCommandTagOutput() GetCommandsCommandTagOutput
+	ToGetCommandsCommandTagOutputWithContext(context.Context) GetCommandsCommandTagOutput
+}
+
+type GetCommandsCommandTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetCommandsCommandTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCommandsCommandTag)(nil)).Elem()
+}
+
+func (i GetCommandsCommandTagArgs) ToGetCommandsCommandTagOutput() GetCommandsCommandTagOutput {
+	return i.ToGetCommandsCommandTagOutputWithContext(context.Background())
+}
+
+func (i GetCommandsCommandTagArgs) ToGetCommandsCommandTagOutputWithContext(ctx context.Context) GetCommandsCommandTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCommandsCommandTagOutput)
+}
+
+// GetCommandsCommandTagArrayInput is an input type that accepts GetCommandsCommandTagArray and GetCommandsCommandTagArrayOutput values.
+// You can construct a concrete instance of `GetCommandsCommandTagArrayInput` via:
+//
+//	GetCommandsCommandTagArray{ GetCommandsCommandTagArgs{...} }
+type GetCommandsCommandTagArrayInput interface {
+	pulumi.Input
+
+	ToGetCommandsCommandTagArrayOutput() GetCommandsCommandTagArrayOutput
+	ToGetCommandsCommandTagArrayOutputWithContext(context.Context) GetCommandsCommandTagArrayOutput
+}
+
+type GetCommandsCommandTagArray []GetCommandsCommandTagInput
+
+func (GetCommandsCommandTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCommandsCommandTag)(nil)).Elem()
+}
+
+func (i GetCommandsCommandTagArray) ToGetCommandsCommandTagArrayOutput() GetCommandsCommandTagArrayOutput {
+	return i.ToGetCommandsCommandTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetCommandsCommandTagArray) ToGetCommandsCommandTagArrayOutputWithContext(ctx context.Context) GetCommandsCommandTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCommandsCommandTagArrayOutput)
+}
+
+type GetCommandsCommandTagOutput struct{ *pulumi.OutputState }
+
+func (GetCommandsCommandTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCommandsCommandTag)(nil)).Elem()
+}
+
+func (o GetCommandsCommandTagOutput) ToGetCommandsCommandTagOutput() GetCommandsCommandTagOutput {
+	return o
+}
+
+func (o GetCommandsCommandTagOutput) ToGetCommandsCommandTagOutputWithContext(ctx context.Context) GetCommandsCommandTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetCommandsCommandTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCommandsCommandTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetCommandsCommandTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCommandsCommandTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetCommandsCommandTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCommandsCommandTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCommandsCommandTag)(nil)).Elem()
+}
+
+func (o GetCommandsCommandTagArrayOutput) ToGetCommandsCommandTagArrayOutput() GetCommandsCommandTagArrayOutput {
+	return o
+}
+
+func (o GetCommandsCommandTagArrayOutput) ToGetCommandsCommandTagArrayOutputWithContext(ctx context.Context) GetCommandsCommandTagArrayOutput {
+	return o
+}
+
+func (o GetCommandsCommandTagArrayOutput) Index(i pulumi.IntInput) GetCommandsCommandTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCommandsCommandTag {
+		return vs[0].([]GetCommandsCommandTag)[vs[1].(int)]
+	}).(GetCommandsCommandTagOutput)
+}
+
+type GetCommandsTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetCommandsTagInput is an input type that accepts GetCommandsTagArgs and GetCommandsTagOutput values.
+// You can construct a concrete instance of `GetCommandsTagInput` via:
+//
+//	GetCommandsTagArgs{...}
+type GetCommandsTagInput interface {
+	pulumi.Input
+
+	ToGetCommandsTagOutput() GetCommandsTagOutput
+	ToGetCommandsTagOutputWithContext(context.Context) GetCommandsTagOutput
+}
+
+type GetCommandsTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetCommandsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCommandsTag)(nil)).Elem()
+}
+
+func (i GetCommandsTagArgs) ToGetCommandsTagOutput() GetCommandsTagOutput {
+	return i.ToGetCommandsTagOutputWithContext(context.Background())
+}
+
+func (i GetCommandsTagArgs) ToGetCommandsTagOutputWithContext(ctx context.Context) GetCommandsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCommandsTagOutput)
+}
+
+// GetCommandsTagArrayInput is an input type that accepts GetCommandsTagArray and GetCommandsTagArrayOutput values.
+// You can construct a concrete instance of `GetCommandsTagArrayInput` via:
+//
+//	GetCommandsTagArray{ GetCommandsTagArgs{...} }
+type GetCommandsTagArrayInput interface {
+	pulumi.Input
+
+	ToGetCommandsTagArrayOutput() GetCommandsTagArrayOutput
+	ToGetCommandsTagArrayOutputWithContext(context.Context) GetCommandsTagArrayOutput
+}
+
+type GetCommandsTagArray []GetCommandsTagInput
+
+func (GetCommandsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCommandsTag)(nil)).Elem()
+}
+
+func (i GetCommandsTagArray) ToGetCommandsTagArrayOutput() GetCommandsTagArrayOutput {
+	return i.ToGetCommandsTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetCommandsTagArray) ToGetCommandsTagArrayOutputWithContext(ctx context.Context) GetCommandsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCommandsTagArrayOutput)
+}
+
+type GetCommandsTagOutput struct{ *pulumi.OutputState }
+
+func (GetCommandsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCommandsTag)(nil)).Elem()
+}
+
+func (o GetCommandsTagOutput) ToGetCommandsTagOutput() GetCommandsTagOutput {
+	return o
+}
+
+func (o GetCommandsTagOutput) ToGetCommandsTagOutputWithContext(ctx context.Context) GetCommandsTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetCommandsTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCommandsTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetCommandsTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCommandsTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetCommandsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCommandsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCommandsTag)(nil)).Elem()
+}
+
+func (o GetCommandsTagArrayOutput) ToGetCommandsTagArrayOutput() GetCommandsTagArrayOutput {
+	return o
+}
+
+func (o GetCommandsTagArrayOutput) ToGetCommandsTagArrayOutputWithContext(ctx context.Context) GetCommandsTagArrayOutput {
+	return o
+}
+
+func (o GetCommandsTagArrayOutput) Index(i pulumi.IntInput) GetCommandsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCommandsTag {
+		return vs[0].([]GetCommandsTag)[vs[1].(int)]
+	}).(GetCommandsTagOutput)
 }
 
 type GetDeploymentSetsDeploymentSet struct {
@@ -8798,6 +10500,8 @@ type GetInstancesInstance struct {
 	DeploymentSetId string `pulumi:"deploymentSetId"`
 	// The description of ECS instance.
 	Description string `pulumi:"description"`
+	// The EIP address of the ECS instance.
+	EipAddresses []GetInstancesInstanceEipAddress `pulumi:"eipAddresses"`
 	// The GPU device info of Instance.
 	GpuDevices []GetInstancesInstanceGpuDevice `pulumi:"gpuDevices"`
 	// The host name of ECS instance.
@@ -8844,6 +10548,8 @@ type GetInstancesInstance struct {
 	Tags []GetInstancesInstanceTag `pulumi:"tags"`
 	// The update time of ECS instance.
 	UpdatedAt string `pulumi:"updatedAt"`
+	// The volume ID list of ECS instance.
+	VolumeIds []string `pulumi:"volumeIds"`
 	// The volume detail collection of volume.
 	Volumes []GetInstancesInstanceVolume `pulumi:"volumes"`
 	// The VPC ID of ECS instance.
@@ -8872,6 +10578,8 @@ type GetInstancesInstanceArgs struct {
 	DeploymentSetId pulumi.StringInput `pulumi:"deploymentSetId"`
 	// The description of ECS instance.
 	Description pulumi.StringInput `pulumi:"description"`
+	// The EIP address of the ECS instance.
+	EipAddresses GetInstancesInstanceEipAddressArrayInput `pulumi:"eipAddresses"`
 	// The GPU device info of Instance.
 	GpuDevices GetInstancesInstanceGpuDeviceArrayInput `pulumi:"gpuDevices"`
 	// The host name of ECS instance.
@@ -8918,6 +10626,8 @@ type GetInstancesInstanceArgs struct {
 	Tags GetInstancesInstanceTagArrayInput `pulumi:"tags"`
 	// The update time of ECS instance.
 	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+	// The volume ID list of ECS instance.
+	VolumeIds pulumi.StringArrayInput `pulumi:"volumeIds"`
 	// The volume detail collection of volume.
 	Volumes GetInstancesInstanceVolumeArrayInput `pulumi:"volumes"`
 	// The VPC ID of ECS instance.
@@ -8995,6 +10705,11 @@ func (o GetInstancesInstanceOutput) DeploymentSetId() pulumi.StringOutput {
 // The description of ECS instance.
 func (o GetInstancesInstanceOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstancesInstance) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The EIP address of the ECS instance.
+func (o GetInstancesInstanceOutput) EipAddresses() GetInstancesInstanceEipAddressArrayOutput {
+	return o.ApplyT(func(v GetInstancesInstance) []GetInstancesInstanceEipAddress { return v.EipAddresses }).(GetInstancesInstanceEipAddressArrayOutput)
 }
 
 // The GPU device info of Instance.
@@ -9112,6 +10827,11 @@ func (o GetInstancesInstanceOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstancesInstance) string { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
+// The volume ID list of ECS instance.
+func (o GetInstancesInstanceOutput) VolumeIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetInstancesInstance) []string { return v.VolumeIds }).(pulumi.StringArrayOutput)
+}
+
 // The volume detail collection of volume.
 func (o GetInstancesInstanceOutput) Volumes() GetInstancesInstanceVolumeArrayOutput {
 	return o.ApplyT(func(v GetInstancesInstance) []GetInstancesInstanceVolume { return v.Volumes }).(GetInstancesInstanceVolumeArrayOutput)
@@ -9145,6 +10865,112 @@ func (o GetInstancesInstanceArrayOutput) Index(i pulumi.IntInput) GetInstancesIn
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesInstance {
 		return vs[0].([]GetInstancesInstance)[vs[1].(int)]
 	}).(GetInstancesInstanceOutput)
+}
+
+type GetInstancesInstanceEipAddress struct {
+	// The EIP ID of the ECS instance.
+	AllocationId string `pulumi:"allocationId"`
+	// The EIP address of the ECS instance.
+	IpAddress string `pulumi:"ipAddress"`
+}
+
+// GetInstancesInstanceEipAddressInput is an input type that accepts GetInstancesInstanceEipAddressArgs and GetInstancesInstanceEipAddressOutput values.
+// You can construct a concrete instance of `GetInstancesInstanceEipAddressInput` via:
+//
+//	GetInstancesInstanceEipAddressArgs{...}
+type GetInstancesInstanceEipAddressInput interface {
+	pulumi.Input
+
+	ToGetInstancesInstanceEipAddressOutput() GetInstancesInstanceEipAddressOutput
+	ToGetInstancesInstanceEipAddressOutputWithContext(context.Context) GetInstancesInstanceEipAddressOutput
+}
+
+type GetInstancesInstanceEipAddressArgs struct {
+	// The EIP ID of the ECS instance.
+	AllocationId pulumi.StringInput `pulumi:"allocationId"`
+	// The EIP address of the ECS instance.
+	IpAddress pulumi.StringInput `pulumi:"ipAddress"`
+}
+
+func (GetInstancesInstanceEipAddressArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstanceEipAddress)(nil)).Elem()
+}
+
+func (i GetInstancesInstanceEipAddressArgs) ToGetInstancesInstanceEipAddressOutput() GetInstancesInstanceEipAddressOutput {
+	return i.ToGetInstancesInstanceEipAddressOutputWithContext(context.Background())
+}
+
+func (i GetInstancesInstanceEipAddressArgs) ToGetInstancesInstanceEipAddressOutputWithContext(ctx context.Context) GetInstancesInstanceEipAddressOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesInstanceEipAddressOutput)
+}
+
+// GetInstancesInstanceEipAddressArrayInput is an input type that accepts GetInstancesInstanceEipAddressArray and GetInstancesInstanceEipAddressArrayOutput values.
+// You can construct a concrete instance of `GetInstancesInstanceEipAddressArrayInput` via:
+//
+//	GetInstancesInstanceEipAddressArray{ GetInstancesInstanceEipAddressArgs{...} }
+type GetInstancesInstanceEipAddressArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancesInstanceEipAddressArrayOutput() GetInstancesInstanceEipAddressArrayOutput
+	ToGetInstancesInstanceEipAddressArrayOutputWithContext(context.Context) GetInstancesInstanceEipAddressArrayOutput
+}
+
+type GetInstancesInstanceEipAddressArray []GetInstancesInstanceEipAddressInput
+
+func (GetInstancesInstanceEipAddressArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesInstanceEipAddress)(nil)).Elem()
+}
+
+func (i GetInstancesInstanceEipAddressArray) ToGetInstancesInstanceEipAddressArrayOutput() GetInstancesInstanceEipAddressArrayOutput {
+	return i.ToGetInstancesInstanceEipAddressArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancesInstanceEipAddressArray) ToGetInstancesInstanceEipAddressArrayOutputWithContext(ctx context.Context) GetInstancesInstanceEipAddressArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesInstanceEipAddressArrayOutput)
+}
+
+type GetInstancesInstanceEipAddressOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesInstanceEipAddressOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesInstanceEipAddress)(nil)).Elem()
+}
+
+func (o GetInstancesInstanceEipAddressOutput) ToGetInstancesInstanceEipAddressOutput() GetInstancesInstanceEipAddressOutput {
+	return o
+}
+
+func (o GetInstancesInstanceEipAddressOutput) ToGetInstancesInstanceEipAddressOutputWithContext(ctx context.Context) GetInstancesInstanceEipAddressOutput {
+	return o
+}
+
+// The EIP ID of the ECS instance.
+func (o GetInstancesInstanceEipAddressOutput) AllocationId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceEipAddress) string { return v.AllocationId }).(pulumi.StringOutput)
+}
+
+// The EIP address of the ECS instance.
+func (o GetInstancesInstanceEipAddressOutput) IpAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstanceEipAddress) string { return v.IpAddress }).(pulumi.StringOutput)
+}
+
+type GetInstancesInstanceEipAddressArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesInstanceEipAddressArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancesInstanceEipAddress)(nil)).Elem()
+}
+
+func (o GetInstancesInstanceEipAddressArrayOutput) ToGetInstancesInstanceEipAddressArrayOutput() GetInstancesInstanceEipAddressArrayOutput {
+	return o
+}
+
+func (o GetInstancesInstanceEipAddressArrayOutput) ToGetInstancesInstanceEipAddressArrayOutputWithContext(ctx context.Context) GetInstancesInstanceEipAddressArrayOutput {
+	return o
+}
+
+func (o GetInstancesInstanceEipAddressArrayOutput) Index(i pulumi.IntInput) GetInstancesInstanceEipAddressOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesInstanceEipAddress {
+		return vs[0].([]GetInstancesInstanceEipAddress)[vs[1].(int)]
+	}).(GetInstancesInstanceEipAddressOutput)
 }
 
 type GetInstancesInstanceGpuDevice struct {
@@ -9996,12 +11822,18 @@ type GetInvocationsInvocation struct {
 	InvocationStatus string `pulumi:"invocationStatus"`
 	// The launch time of the ecs invocation.
 	LaunchTime string `pulumi:"launchTime"`
+	// The custom parameters of the ecs invocation.
+	Parameters string `pulumi:"parameters"`
+	// The project name of ecs invocation.
+	ProjectName string `pulumi:"projectName"`
 	// The recurrence end time of the ecs invocation.
 	RecurrenceEndTime string `pulumi:"recurrenceEndTime"`
 	// The repeat mode of ecs invocation. Valid values: `Once`, `Rate`, `Fixed`.
 	RepeatMode string `pulumi:"repeatMode"`
 	// The start time of the ecs invocation.
 	StartTime string `pulumi:"startTime"`
+	// Tags.
+	Tags []GetInvocationsInvocationTag `pulumi:"tags"`
 	// The timeout of the ecs command.
 	Timeout int `pulumi:"timeout"`
 	// The username of the ecs command.
@@ -10054,12 +11886,18 @@ type GetInvocationsInvocationArgs struct {
 	InvocationStatus pulumi.StringInput `pulumi:"invocationStatus"`
 	// The launch time of the ecs invocation.
 	LaunchTime pulumi.StringInput `pulumi:"launchTime"`
+	// The custom parameters of the ecs invocation.
+	Parameters pulumi.StringInput `pulumi:"parameters"`
+	// The project name of ecs invocation.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
 	// The recurrence end time of the ecs invocation.
 	RecurrenceEndTime pulumi.StringInput `pulumi:"recurrenceEndTime"`
 	// The repeat mode of ecs invocation. Valid values: `Once`, `Rate`, `Fixed`.
 	RepeatMode pulumi.StringInput `pulumi:"repeatMode"`
 	// The start time of the ecs invocation.
 	StartTime pulumi.StringInput `pulumi:"startTime"`
+	// Tags.
+	Tags GetInvocationsInvocationTagArrayInput `pulumi:"tags"`
 	// The timeout of the ecs command.
 	Timeout pulumi.IntInput `pulumi:"timeout"`
 	// The username of the ecs command.
@@ -10199,6 +12037,16 @@ func (o GetInvocationsInvocationOutput) LaunchTime() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInvocationsInvocation) string { return v.LaunchTime }).(pulumi.StringOutput)
 }
 
+// The custom parameters of the ecs invocation.
+func (o GetInvocationsInvocationOutput) Parameters() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInvocationsInvocation) string { return v.Parameters }).(pulumi.StringOutput)
+}
+
+// The project name of ecs invocation.
+func (o GetInvocationsInvocationOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInvocationsInvocation) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
 // The recurrence end time of the ecs invocation.
 func (o GetInvocationsInvocationOutput) RecurrenceEndTime() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInvocationsInvocation) string { return v.RecurrenceEndTime }).(pulumi.StringOutput)
@@ -10212,6 +12060,11 @@ func (o GetInvocationsInvocationOutput) RepeatMode() pulumi.StringOutput {
 // The start time of the ecs invocation.
 func (o GetInvocationsInvocationOutput) StartTime() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInvocationsInvocation) string { return v.StartTime }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o GetInvocationsInvocationOutput) Tags() GetInvocationsInvocationTagArrayOutput {
+	return o.ApplyT(func(v GetInvocationsInvocation) []GetInvocationsInvocationTag { return v.Tags }).(GetInvocationsInvocationTagArrayOutput)
 }
 
 // The timeout of the ecs command.
@@ -10247,6 +12100,218 @@ func (o GetInvocationsInvocationArrayOutput) Index(i pulumi.IntInput) GetInvocat
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInvocationsInvocation {
 		return vs[0].([]GetInvocationsInvocation)[vs[1].(int)]
 	}).(GetInvocationsInvocationOutput)
+}
+
+type GetInvocationsInvocationTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetInvocationsInvocationTagInput is an input type that accepts GetInvocationsInvocationTagArgs and GetInvocationsInvocationTagOutput values.
+// You can construct a concrete instance of `GetInvocationsInvocationTagInput` via:
+//
+//	GetInvocationsInvocationTagArgs{...}
+type GetInvocationsInvocationTagInput interface {
+	pulumi.Input
+
+	ToGetInvocationsInvocationTagOutput() GetInvocationsInvocationTagOutput
+	ToGetInvocationsInvocationTagOutputWithContext(context.Context) GetInvocationsInvocationTagOutput
+}
+
+type GetInvocationsInvocationTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetInvocationsInvocationTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInvocationsInvocationTag)(nil)).Elem()
+}
+
+func (i GetInvocationsInvocationTagArgs) ToGetInvocationsInvocationTagOutput() GetInvocationsInvocationTagOutput {
+	return i.ToGetInvocationsInvocationTagOutputWithContext(context.Background())
+}
+
+func (i GetInvocationsInvocationTagArgs) ToGetInvocationsInvocationTagOutputWithContext(ctx context.Context) GetInvocationsInvocationTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInvocationsInvocationTagOutput)
+}
+
+// GetInvocationsInvocationTagArrayInput is an input type that accepts GetInvocationsInvocationTagArray and GetInvocationsInvocationTagArrayOutput values.
+// You can construct a concrete instance of `GetInvocationsInvocationTagArrayInput` via:
+//
+//	GetInvocationsInvocationTagArray{ GetInvocationsInvocationTagArgs{...} }
+type GetInvocationsInvocationTagArrayInput interface {
+	pulumi.Input
+
+	ToGetInvocationsInvocationTagArrayOutput() GetInvocationsInvocationTagArrayOutput
+	ToGetInvocationsInvocationTagArrayOutputWithContext(context.Context) GetInvocationsInvocationTagArrayOutput
+}
+
+type GetInvocationsInvocationTagArray []GetInvocationsInvocationTagInput
+
+func (GetInvocationsInvocationTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInvocationsInvocationTag)(nil)).Elem()
+}
+
+func (i GetInvocationsInvocationTagArray) ToGetInvocationsInvocationTagArrayOutput() GetInvocationsInvocationTagArrayOutput {
+	return i.ToGetInvocationsInvocationTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetInvocationsInvocationTagArray) ToGetInvocationsInvocationTagArrayOutputWithContext(ctx context.Context) GetInvocationsInvocationTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInvocationsInvocationTagArrayOutput)
+}
+
+type GetInvocationsInvocationTagOutput struct{ *pulumi.OutputState }
+
+func (GetInvocationsInvocationTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInvocationsInvocationTag)(nil)).Elem()
+}
+
+func (o GetInvocationsInvocationTagOutput) ToGetInvocationsInvocationTagOutput() GetInvocationsInvocationTagOutput {
+	return o
+}
+
+func (o GetInvocationsInvocationTagOutput) ToGetInvocationsInvocationTagOutputWithContext(ctx context.Context) GetInvocationsInvocationTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetInvocationsInvocationTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInvocationsInvocationTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetInvocationsInvocationTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInvocationsInvocationTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetInvocationsInvocationTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInvocationsInvocationTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInvocationsInvocationTag)(nil)).Elem()
+}
+
+func (o GetInvocationsInvocationTagArrayOutput) ToGetInvocationsInvocationTagArrayOutput() GetInvocationsInvocationTagArrayOutput {
+	return o
+}
+
+func (o GetInvocationsInvocationTagArrayOutput) ToGetInvocationsInvocationTagArrayOutputWithContext(ctx context.Context) GetInvocationsInvocationTagArrayOutput {
+	return o
+}
+
+func (o GetInvocationsInvocationTagArrayOutput) Index(i pulumi.IntInput) GetInvocationsInvocationTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInvocationsInvocationTag {
+		return vs[0].([]GetInvocationsInvocationTag)[vs[1].(int)]
+	}).(GetInvocationsInvocationTagOutput)
+}
+
+type GetInvocationsTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetInvocationsTagInput is an input type that accepts GetInvocationsTagArgs and GetInvocationsTagOutput values.
+// You can construct a concrete instance of `GetInvocationsTagInput` via:
+//
+//	GetInvocationsTagArgs{...}
+type GetInvocationsTagInput interface {
+	pulumi.Input
+
+	ToGetInvocationsTagOutput() GetInvocationsTagOutput
+	ToGetInvocationsTagOutputWithContext(context.Context) GetInvocationsTagOutput
+}
+
+type GetInvocationsTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetInvocationsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInvocationsTag)(nil)).Elem()
+}
+
+func (i GetInvocationsTagArgs) ToGetInvocationsTagOutput() GetInvocationsTagOutput {
+	return i.ToGetInvocationsTagOutputWithContext(context.Background())
+}
+
+func (i GetInvocationsTagArgs) ToGetInvocationsTagOutputWithContext(ctx context.Context) GetInvocationsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInvocationsTagOutput)
+}
+
+// GetInvocationsTagArrayInput is an input type that accepts GetInvocationsTagArray and GetInvocationsTagArrayOutput values.
+// You can construct a concrete instance of `GetInvocationsTagArrayInput` via:
+//
+//	GetInvocationsTagArray{ GetInvocationsTagArgs{...} }
+type GetInvocationsTagArrayInput interface {
+	pulumi.Input
+
+	ToGetInvocationsTagArrayOutput() GetInvocationsTagArrayOutput
+	ToGetInvocationsTagArrayOutputWithContext(context.Context) GetInvocationsTagArrayOutput
+}
+
+type GetInvocationsTagArray []GetInvocationsTagInput
+
+func (GetInvocationsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInvocationsTag)(nil)).Elem()
+}
+
+func (i GetInvocationsTagArray) ToGetInvocationsTagArrayOutput() GetInvocationsTagArrayOutput {
+	return i.ToGetInvocationsTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetInvocationsTagArray) ToGetInvocationsTagArrayOutputWithContext(ctx context.Context) GetInvocationsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInvocationsTagArrayOutput)
+}
+
+type GetInvocationsTagOutput struct{ *pulumi.OutputState }
+
+func (GetInvocationsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInvocationsTag)(nil)).Elem()
+}
+
+func (o GetInvocationsTagOutput) ToGetInvocationsTagOutput() GetInvocationsTagOutput {
+	return o
+}
+
+func (o GetInvocationsTagOutput) ToGetInvocationsTagOutputWithContext(ctx context.Context) GetInvocationsTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetInvocationsTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInvocationsTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetInvocationsTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInvocationsTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetInvocationsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInvocationsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInvocationsTag)(nil)).Elem()
+}
+
+func (o GetInvocationsTagArrayOutput) ToGetInvocationsTagArrayOutput() GetInvocationsTagArrayOutput {
+	return o
+}
+
+func (o GetInvocationsTagArrayOutput) ToGetInvocationsTagArrayOutputWithContext(ctx context.Context) GetInvocationsTagArrayOutput {
+	return o
+}
+
+func (o GetInvocationsTagArrayOutput) Index(i pulumi.IntInput) GetInvocationsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInvocationsTag {
+		return vs[0].([]GetInvocationsTag)[vs[1].(int)]
+	}).(GetInvocationsTagOutput)
 }
 
 type GetKeyPairsKeyPair struct {
@@ -11155,8 +13220,18 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AvailableResourcesAvailableZoneAvailableResourceArrayInput)(nil)).Elem(), AvailableResourcesAvailableZoneAvailableResourceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AvailableResourcesAvailableZoneAvailableResourceSupportedResourceInput)(nil)).Elem(), AvailableResourcesAvailableZoneAvailableResourceSupportedResourceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AvailableResourcesAvailableZoneAvailableResourceSupportedResourceArrayInput)(nil)).Elem(), AvailableResourcesAvailableZoneAvailableResourceSupportedResourceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CommandParameterDefinitionInput)(nil)).Elem(), CommandParameterDefinitionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CommandParameterDefinitionArrayInput)(nil)).Elem(), CommandParameterDefinitionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CommandTagInput)(nil)).Elem(), CommandTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CommandTagArrayInput)(nil)).Elem(), CommandTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CommandsCommandInput)(nil)).Elem(), CommandsCommandArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CommandsCommandArrayInput)(nil)).Elem(), CommandsCommandArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CommandsCommandParameterDefinitionInput)(nil)).Elem(), CommandsCommandParameterDefinitionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CommandsCommandParameterDefinitionArrayInput)(nil)).Elem(), CommandsCommandParameterDefinitionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CommandsCommandTagInput)(nil)).Elem(), CommandsCommandTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CommandsCommandTagArrayInput)(nil)).Elem(), CommandsCommandTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CommandsTagInput)(nil)).Elem(), CommandsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CommandsTagArrayInput)(nil)).Elem(), CommandsTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentSetsDeploymentSetInput)(nil)).Elem(), DeploymentSetsDeploymentSetArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentSetsDeploymentSetArrayInput)(nil)).Elem(), DeploymentSetsDeploymentSetArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*HpcClustersHpcClusterInput)(nil)).Elem(), HpcClustersHpcClusterArgs{})
@@ -11207,6 +13282,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceTypesInstanceTypeVolumeArrayInput)(nil)).Elem(), InstanceTypesInstanceTypeVolumeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancesInstanceInput)(nil)).Elem(), InstancesInstanceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancesInstanceArrayInput)(nil)).Elem(), InstancesInstanceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstancesInstanceEipAddressInput)(nil)).Elem(), InstancesInstanceEipAddressArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstancesInstanceEipAddressArrayInput)(nil)).Elem(), InstancesInstanceEipAddressArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancesInstanceGpuDeviceInput)(nil)).Elem(), InstancesInstanceGpuDeviceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancesInstanceGpuDeviceArrayInput)(nil)).Elem(), InstancesInstanceGpuDeviceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancesInstanceNetworkInterfaceInput)(nil)).Elem(), InstancesInstanceNetworkInterfaceArgs{})
@@ -11217,10 +13294,18 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancesInstanceVolumeArrayInput)(nil)).Elem(), InstancesInstanceVolumeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancesTagInput)(nil)).Elem(), InstancesTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancesTagArrayInput)(nil)).Elem(), InstancesTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InvocationParameterInput)(nil)).Elem(), InvocationParameterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InvocationParameterArrayInput)(nil)).Elem(), InvocationParameterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InvocationResultsInvocationResultInput)(nil)).Elem(), InvocationResultsInvocationResultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InvocationResultsInvocationResultArrayInput)(nil)).Elem(), InvocationResultsInvocationResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InvocationTagInput)(nil)).Elem(), InvocationTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InvocationTagArrayInput)(nil)).Elem(), InvocationTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InvocationsInvocationInput)(nil)).Elem(), InvocationsInvocationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InvocationsInvocationArrayInput)(nil)).Elem(), InvocationsInvocationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InvocationsInvocationTagInput)(nil)).Elem(), InvocationsInvocationTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InvocationsInvocationTagArrayInput)(nil)).Elem(), InvocationsInvocationTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InvocationsTagInput)(nil)).Elem(), InvocationsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InvocationsTagArrayInput)(nil)).Elem(), InvocationsTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KeyPairsKeyPairInput)(nil)).Elem(), KeyPairsKeyPairArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KeyPairsKeyPairArrayInput)(nil)).Elem(), KeyPairsKeyPairArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LaunchTemplateNetworkInterfaceInput)(nil)).Elem(), LaunchTemplateNetworkInterfaceArgs{})
@@ -11245,6 +13330,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAvailableResourcesAvailableZoneAvailableResourceSupportedResourceArrayInput)(nil)).Elem(), GetAvailableResourcesAvailableZoneAvailableResourceSupportedResourceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCommandsCommandInput)(nil)).Elem(), GetCommandsCommandArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCommandsCommandArrayInput)(nil)).Elem(), GetCommandsCommandArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCommandsCommandParameterDefinitionInput)(nil)).Elem(), GetCommandsCommandParameterDefinitionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCommandsCommandParameterDefinitionArrayInput)(nil)).Elem(), GetCommandsCommandParameterDefinitionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCommandsCommandTagInput)(nil)).Elem(), GetCommandsCommandTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCommandsCommandTagArrayInput)(nil)).Elem(), GetCommandsCommandTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCommandsTagInput)(nil)).Elem(), GetCommandsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCommandsTagArrayInput)(nil)).Elem(), GetCommandsTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentSetsDeploymentSetInput)(nil)).Elem(), GetDeploymentSetsDeploymentSetArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentSetsDeploymentSetArrayInput)(nil)).Elem(), GetDeploymentSetsDeploymentSetArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetHpcClustersHpcClusterInput)(nil)).Elem(), GetHpcClustersHpcClusterArgs{})
@@ -11279,6 +13370,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceTypesInstanceTypeVolumeArrayInput)(nil)).Elem(), GetInstanceTypesInstanceTypeVolumeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstanceInput)(nil)).Elem(), GetInstancesInstanceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstanceArrayInput)(nil)).Elem(), GetInstancesInstanceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstanceEipAddressInput)(nil)).Elem(), GetInstancesInstanceEipAddressArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstanceEipAddressArrayInput)(nil)).Elem(), GetInstancesInstanceEipAddressArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstanceGpuDeviceInput)(nil)).Elem(), GetInstancesInstanceGpuDeviceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstanceGpuDeviceArrayInput)(nil)).Elem(), GetInstancesInstanceGpuDeviceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstanceNetworkInterfaceInput)(nil)).Elem(), GetInstancesInstanceNetworkInterfaceArgs{})
@@ -11293,6 +13386,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInvocationResultsInvocationResultArrayInput)(nil)).Elem(), GetInvocationResultsInvocationResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInvocationsInvocationInput)(nil)).Elem(), GetInvocationsInvocationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInvocationsInvocationArrayInput)(nil)).Elem(), GetInvocationsInvocationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInvocationsInvocationTagInput)(nil)).Elem(), GetInvocationsInvocationTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInvocationsInvocationTagArrayInput)(nil)).Elem(), GetInvocationsInvocationTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInvocationsTagInput)(nil)).Elem(), GetInvocationsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInvocationsTagArrayInput)(nil)).Elem(), GetInvocationsTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKeyPairsKeyPairInput)(nil)).Elem(), GetKeyPairsKeyPairArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKeyPairsKeyPairArrayInput)(nil)).Elem(), GetKeyPairsKeyPairArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLaunchTemplatesLaunchTemplateInput)(nil)).Elem(), GetLaunchTemplatesLaunchTemplateArgs{})
@@ -11311,8 +13408,18 @@ func init() {
 	pulumi.RegisterOutputType(AvailableResourcesAvailableZoneAvailableResourceArrayOutput{})
 	pulumi.RegisterOutputType(AvailableResourcesAvailableZoneAvailableResourceSupportedResourceOutput{})
 	pulumi.RegisterOutputType(AvailableResourcesAvailableZoneAvailableResourceSupportedResourceArrayOutput{})
+	pulumi.RegisterOutputType(CommandParameterDefinitionOutput{})
+	pulumi.RegisterOutputType(CommandParameterDefinitionArrayOutput{})
+	pulumi.RegisterOutputType(CommandTagOutput{})
+	pulumi.RegisterOutputType(CommandTagArrayOutput{})
 	pulumi.RegisterOutputType(CommandsCommandOutput{})
 	pulumi.RegisterOutputType(CommandsCommandArrayOutput{})
+	pulumi.RegisterOutputType(CommandsCommandParameterDefinitionOutput{})
+	pulumi.RegisterOutputType(CommandsCommandParameterDefinitionArrayOutput{})
+	pulumi.RegisterOutputType(CommandsCommandTagOutput{})
+	pulumi.RegisterOutputType(CommandsCommandTagArrayOutput{})
+	pulumi.RegisterOutputType(CommandsTagOutput{})
+	pulumi.RegisterOutputType(CommandsTagArrayOutput{})
 	pulumi.RegisterOutputType(DeploymentSetsDeploymentSetOutput{})
 	pulumi.RegisterOutputType(DeploymentSetsDeploymentSetArrayOutput{})
 	pulumi.RegisterOutputType(HpcClustersHpcClusterOutput{})
@@ -11363,6 +13470,8 @@ func init() {
 	pulumi.RegisterOutputType(InstanceTypesInstanceTypeVolumeArrayOutput{})
 	pulumi.RegisterOutputType(InstancesInstanceOutput{})
 	pulumi.RegisterOutputType(InstancesInstanceArrayOutput{})
+	pulumi.RegisterOutputType(InstancesInstanceEipAddressOutput{})
+	pulumi.RegisterOutputType(InstancesInstanceEipAddressArrayOutput{})
 	pulumi.RegisterOutputType(InstancesInstanceGpuDeviceOutput{})
 	pulumi.RegisterOutputType(InstancesInstanceGpuDeviceArrayOutput{})
 	pulumi.RegisterOutputType(InstancesInstanceNetworkInterfaceOutput{})
@@ -11373,10 +13482,18 @@ func init() {
 	pulumi.RegisterOutputType(InstancesInstanceVolumeArrayOutput{})
 	pulumi.RegisterOutputType(InstancesTagOutput{})
 	pulumi.RegisterOutputType(InstancesTagArrayOutput{})
+	pulumi.RegisterOutputType(InvocationParameterOutput{})
+	pulumi.RegisterOutputType(InvocationParameterArrayOutput{})
 	pulumi.RegisterOutputType(InvocationResultsInvocationResultOutput{})
 	pulumi.RegisterOutputType(InvocationResultsInvocationResultArrayOutput{})
+	pulumi.RegisterOutputType(InvocationTagOutput{})
+	pulumi.RegisterOutputType(InvocationTagArrayOutput{})
 	pulumi.RegisterOutputType(InvocationsInvocationOutput{})
 	pulumi.RegisterOutputType(InvocationsInvocationArrayOutput{})
+	pulumi.RegisterOutputType(InvocationsInvocationTagOutput{})
+	pulumi.RegisterOutputType(InvocationsInvocationTagArrayOutput{})
+	pulumi.RegisterOutputType(InvocationsTagOutput{})
+	pulumi.RegisterOutputType(InvocationsTagArrayOutput{})
 	pulumi.RegisterOutputType(KeyPairsKeyPairOutput{})
 	pulumi.RegisterOutputType(KeyPairsKeyPairArrayOutput{})
 	pulumi.RegisterOutputType(LaunchTemplateNetworkInterfaceOutput{})
@@ -11401,6 +13518,12 @@ func init() {
 	pulumi.RegisterOutputType(GetAvailableResourcesAvailableZoneAvailableResourceSupportedResourceArrayOutput{})
 	pulumi.RegisterOutputType(GetCommandsCommandOutput{})
 	pulumi.RegisterOutputType(GetCommandsCommandArrayOutput{})
+	pulumi.RegisterOutputType(GetCommandsCommandParameterDefinitionOutput{})
+	pulumi.RegisterOutputType(GetCommandsCommandParameterDefinitionArrayOutput{})
+	pulumi.RegisterOutputType(GetCommandsCommandTagOutput{})
+	pulumi.RegisterOutputType(GetCommandsCommandTagArrayOutput{})
+	pulumi.RegisterOutputType(GetCommandsTagOutput{})
+	pulumi.RegisterOutputType(GetCommandsTagArrayOutput{})
 	pulumi.RegisterOutputType(GetDeploymentSetsDeploymentSetOutput{})
 	pulumi.RegisterOutputType(GetDeploymentSetsDeploymentSetArrayOutput{})
 	pulumi.RegisterOutputType(GetHpcClustersHpcClusterOutput{})
@@ -11435,6 +13558,8 @@ func init() {
 	pulumi.RegisterOutputType(GetInstanceTypesInstanceTypeVolumeArrayOutput{})
 	pulumi.RegisterOutputType(GetInstancesInstanceOutput{})
 	pulumi.RegisterOutputType(GetInstancesInstanceArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancesInstanceEipAddressOutput{})
+	pulumi.RegisterOutputType(GetInstancesInstanceEipAddressArrayOutput{})
 	pulumi.RegisterOutputType(GetInstancesInstanceGpuDeviceOutput{})
 	pulumi.RegisterOutputType(GetInstancesInstanceGpuDeviceArrayOutput{})
 	pulumi.RegisterOutputType(GetInstancesInstanceNetworkInterfaceOutput{})
@@ -11449,6 +13574,10 @@ func init() {
 	pulumi.RegisterOutputType(GetInvocationResultsInvocationResultArrayOutput{})
 	pulumi.RegisterOutputType(GetInvocationsInvocationOutput{})
 	pulumi.RegisterOutputType(GetInvocationsInvocationArrayOutput{})
+	pulumi.RegisterOutputType(GetInvocationsInvocationTagOutput{})
+	pulumi.RegisterOutputType(GetInvocationsInvocationTagArrayOutput{})
+	pulumi.RegisterOutputType(GetInvocationsTagOutput{})
+	pulumi.RegisterOutputType(GetInvocationsTagArrayOutput{})
 	pulumi.RegisterOutputType(GetKeyPairsKeyPairOutput{})
 	pulumi.RegisterOutputType(GetKeyPairsKeyPairArrayOutput{})
 	pulumi.RegisterOutputType(GetLaunchTemplatesLaunchTemplateOutput{})

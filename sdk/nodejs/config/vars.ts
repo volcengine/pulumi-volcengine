@@ -73,6 +73,17 @@ Object.defineProperty(exports, "disableSsl", {
 });
 
 /**
+ * ENABLE STANDARD ENDPOINT for Volcengine Provider
+ */
+export declare const enableStandardEndpoint: boolean | undefined;
+Object.defineProperty(exports, "enableStandardEndpoint", {
+    get() {
+        return __config.getObject<boolean>("enableStandardEndpoint");
+    },
+    enumerable: true,
+});
+
+/**
  * The Customer Endpoint for Volcengine Provider
  */
 export declare const endpoint: string | undefined;

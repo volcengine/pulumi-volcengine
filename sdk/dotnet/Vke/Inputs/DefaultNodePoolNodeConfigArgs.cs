@@ -37,6 +37,12 @@ namespace Pulumi.Volcengine.Vke.Inputs
         public Input<string>? NamePrefix { get; set; }
 
         /// <summary>
+        /// The PreScript of NodeConfig.
+        /// </summary>
+        [Input("preScript")]
+        public Input<string>? PreScript { get; set; }
+
+        /// <summary>
         /// The Security of NodeConfig.
         /// </summary>
         [Input("security", required: true)]

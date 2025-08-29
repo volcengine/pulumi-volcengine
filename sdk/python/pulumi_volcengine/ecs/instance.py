@@ -33,6 +33,7 @@ class InstanceArgs:
                  host_name: Optional[pulumi.Input[str]] = None,
                  hpc_cluster_id: Optional[pulumi.Input[str]] = None,
                  include_data_volumes: Optional[pulumi.Input[bool]] = None,
+                 install_run_command_agent: Optional[pulumi.Input[bool]] = None,
                  instance_charge_type: Optional[pulumi.Input[str]] = None,
                  instance_name: Optional[pulumi.Input[str]] = None,
                  ipv6_address_count: Optional[pulumi.Input[int]] = None,
@@ -72,6 +73,7 @@ class InstanceArgs:
         :param pulumi.Input[str] host_name: The host name of ECS instance.
         :param pulumi.Input[str] hpc_cluster_id: The hpc cluster ID of ECS instance.
         :param pulumi.Input[bool] include_data_volumes: The include data volumes flag of ECS instance.Only effective when change instance charge type.include_data_volumes.
+        :param pulumi.Input[bool] install_run_command_agent: Whether to install the Run Command Agent. Default is false. This field is only effective when creating a new instance.
         :param pulumi.Input[str] instance_charge_type: The charge type of ECS instance, the value can be `PrePaid` or `PostPaid`.
         :param pulumi.Input[str] instance_name: The name of ECS instance.
         :param pulumi.Input[int] ipv6_address_count: The number of IPv6 addresses to be automatically assigned from within the CIDR block of the subnet that hosts the ENI. Valid values: 1 to 10.
@@ -124,6 +126,8 @@ class InstanceArgs:
             pulumi.set(__self__, "hpc_cluster_id", hpc_cluster_id)
         if include_data_volumes is not None:
             pulumi.set(__self__, "include_data_volumes", include_data_volumes)
+        if install_run_command_agent is not None:
+            pulumi.set(__self__, "install_run_command_agent", install_run_command_agent)
         if instance_charge_type is not None:
             pulumi.set(__self__, "instance_charge_type", instance_charge_type)
         if instance_name is not None:
@@ -367,6 +371,18 @@ class InstanceArgs:
         pulumi.set(self, "include_data_volumes", value)
 
     @property
+    @pulumi.getter(name="installRunCommandAgent")
+    def install_run_command_agent(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to install the Run Command Agent. Default is false. This field is only effective when creating a new instance.
+        """
+        return pulumi.get(self, "install_run_command_agent")
+
+    @install_run_command_agent.setter
+    def install_run_command_agent(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "install_run_command_agent", value)
+
+    @property
     @pulumi.getter(name="instanceChargeType")
     def instance_charge_type(self) -> Optional[pulumi.Input[str]]:
         """
@@ -596,6 +612,7 @@ class _InstanceState:
                  hpc_cluster_id: Optional[pulumi.Input[str]] = None,
                  image_id: Optional[pulumi.Input[str]] = None,
                  include_data_volumes: Optional[pulumi.Input[bool]] = None,
+                 install_run_command_agent: Optional[pulumi.Input[bool]] = None,
                  instance_charge_type: Optional[pulumi.Input[str]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
                  instance_name: Optional[pulumi.Input[str]] = None,
@@ -628,6 +645,7 @@ class _InstanceState:
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceTagArgs']]]] = None,
                  updated_at: Optional[pulumi.Input[str]] = None,
                  user_data: Optional[pulumi.Input[str]] = None,
+                 volume_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None,
                  zone_id: Optional[pulumi.Input[str]] = None):
         """
@@ -651,6 +669,7 @@ class _InstanceState:
         :param pulumi.Input[str] hpc_cluster_id: The hpc cluster ID of ECS instance.
         :param pulumi.Input[str] image_id: The Image ID of ECS instance.
         :param pulumi.Input[bool] include_data_volumes: The include data volumes flag of ECS instance.Only effective when change instance charge type.include_data_volumes.
+        :param pulumi.Input[bool] install_run_command_agent: Whether to install the Run Command Agent. Default is false. This field is only effective when creating a new instance.
         :param pulumi.Input[str] instance_charge_type: The charge type of ECS instance, the value can be `PrePaid` or `PostPaid`.
         :param pulumi.Input[str] instance_id: The ID of ECS instance.
         :param pulumi.Input[str] instance_name: The name of ECS instance.
@@ -689,6 +708,7 @@ class _InstanceState:
         :param pulumi.Input[Sequence[pulumi.Input['InstanceTagArgs']]] tags: Tags.
         :param pulumi.Input[str] updated_at: The update time of ECS instance.
         :param pulumi.Input[str] user_data: The user data of ECS instance, this field must be encrypted with base64.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] volume_ids: The volume ID list of ECS instance.
         :param pulumi.Input[str] vpc_id: The VPC ID of ECS instance.
         :param pulumi.Input[str] zone_id: The available zone ID of ECS instance.
         """
@@ -724,6 +744,8 @@ class _InstanceState:
             pulumi.set(__self__, "image_id", image_id)
         if include_data_volumes is not None:
             pulumi.set(__self__, "include_data_volumes", include_data_volumes)
+        if install_run_command_agent is not None:
+            pulumi.set(__self__, "install_run_command_agent", install_run_command_agent)
         if instance_charge_type is not None:
             pulumi.set(__self__, "instance_charge_type", instance_charge_type)
         if instance_id is not None:
@@ -788,6 +810,8 @@ class _InstanceState:
             pulumi.set(__self__, "updated_at", updated_at)
         if user_data is not None:
             pulumi.set(__self__, "user_data", user_data)
+        if volume_ids is not None:
+            pulumi.set(__self__, "volume_ids", volume_ids)
         if vpc_id is not None:
             pulumi.set(__self__, "vpc_id", vpc_id)
         if zone_id is not None:
@@ -987,6 +1011,18 @@ class _InstanceState:
     @include_data_volumes.setter
     def include_data_volumes(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "include_data_volumes", value)
+
+    @property
+    @pulumi.getter(name="installRunCommandAgent")
+    def install_run_command_agent(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to install the Run Command Agent. Default is false. This field is only effective when creating a new instance.
+        """
+        return pulumi.get(self, "install_run_command_agent")
+
+    @install_run_command_agent.setter
+    def install_run_command_agent(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "install_run_command_agent", value)
 
     @property
     @pulumi.getter(name="instanceChargeType")
@@ -1379,6 +1415,18 @@ class _InstanceState:
         pulumi.set(self, "user_data", value)
 
     @property
+    @pulumi.getter(name="volumeIds")
+    def volume_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The volume ID list of ECS instance.
+        """
+        return pulumi.get(self, "volume_ids")
+
+    @volume_ids.setter
+    def volume_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "volume_ids", value)
+
+    @property
     @pulumi.getter(name="vpcId")
     def vpc_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1420,6 +1468,7 @@ class Instance(pulumi.CustomResource):
                  hpc_cluster_id: Optional[pulumi.Input[str]] = None,
                  image_id: Optional[pulumi.Input[str]] = None,
                  include_data_volumes: Optional[pulumi.Input[bool]] = None,
+                 install_run_command_agent: Optional[pulumi.Input[bool]] = None,
                  instance_charge_type: Optional[pulumi.Input[str]] = None,
                  instance_name: Optional[pulumi.Input[str]] = None,
                  instance_type: Optional[pulumi.Input[str]] = None,
@@ -1535,6 +1584,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] hpc_cluster_id: The hpc cluster ID of ECS instance.
         :param pulumi.Input[str] image_id: The Image ID of ECS instance.
         :param pulumi.Input[bool] include_data_volumes: The include data volumes flag of ECS instance.Only effective when change instance charge type.include_data_volumes.
+        :param pulumi.Input[bool] install_run_command_agent: Whether to install the Run Command Agent. Default is false. This field is only effective when creating a new instance.
         :param pulumi.Input[str] instance_charge_type: The charge type of ECS instance, the value can be `PrePaid` or `PostPaid`.
         :param pulumi.Input[str] instance_name: The name of ECS instance.
         :param pulumi.Input[str] instance_type: The instance type of ECS instance.
@@ -1672,6 +1722,7 @@ class Instance(pulumi.CustomResource):
                  hpc_cluster_id: Optional[pulumi.Input[str]] = None,
                  image_id: Optional[pulumi.Input[str]] = None,
                  include_data_volumes: Optional[pulumi.Input[bool]] = None,
+                 install_run_command_agent: Optional[pulumi.Input[bool]] = None,
                  instance_charge_type: Optional[pulumi.Input[str]] = None,
                  instance_name: Optional[pulumi.Input[str]] = None,
                  instance_type: Optional[pulumi.Input[str]] = None,
@@ -1717,6 +1768,7 @@ class Instance(pulumi.CustomResource):
                 raise TypeError("Missing required property 'image_id'")
             __props__.__dict__["image_id"] = image_id
             __props__.__dict__["include_data_volumes"] = include_data_volumes
+            __props__.__dict__["install_run_command_agent"] = install_run_command_agent
             __props__.__dict__["instance_charge_type"] = instance_charge_type
             __props__.__dict__["instance_name"] = instance_name
             if instance_type is None and not opts.urn:
@@ -1764,6 +1816,7 @@ class Instance(pulumi.CustomResource):
             __props__.__dict__["stopped_mode"] = None
             __props__.__dict__["system_volume_id"] = None
             __props__.__dict__["updated_at"] = None
+            __props__.__dict__["volume_ids"] = None
             __props__.__dict__["vpc_id"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
@@ -1793,6 +1846,7 @@ class Instance(pulumi.CustomResource):
             hpc_cluster_id: Optional[pulumi.Input[str]] = None,
             image_id: Optional[pulumi.Input[str]] = None,
             include_data_volumes: Optional[pulumi.Input[bool]] = None,
+            install_run_command_agent: Optional[pulumi.Input[bool]] = None,
             instance_charge_type: Optional[pulumi.Input[str]] = None,
             instance_id: Optional[pulumi.Input[str]] = None,
             instance_name: Optional[pulumi.Input[str]] = None,
@@ -1825,6 +1879,7 @@ class Instance(pulumi.CustomResource):
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceTagArgs']]]]] = None,
             updated_at: Optional[pulumi.Input[str]] = None,
             user_data: Optional[pulumi.Input[str]] = None,
+            volume_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             vpc_id: Optional[pulumi.Input[str]] = None,
             zone_id: Optional[pulumi.Input[str]] = None) -> 'Instance':
         """
@@ -1853,6 +1908,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] hpc_cluster_id: The hpc cluster ID of ECS instance.
         :param pulumi.Input[str] image_id: The Image ID of ECS instance.
         :param pulumi.Input[bool] include_data_volumes: The include data volumes flag of ECS instance.Only effective when change instance charge type.include_data_volumes.
+        :param pulumi.Input[bool] install_run_command_agent: Whether to install the Run Command Agent. Default is false. This field is only effective when creating a new instance.
         :param pulumi.Input[str] instance_charge_type: The charge type of ECS instance, the value can be `PrePaid` or `PostPaid`.
         :param pulumi.Input[str] instance_id: The ID of ECS instance.
         :param pulumi.Input[str] instance_name: The name of ECS instance.
@@ -1891,6 +1947,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] updated_at: The update time of ECS instance.
         :param pulumi.Input[str] user_data: The user data of ECS instance, this field must be encrypted with base64.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] volume_ids: The volume ID list of ECS instance.
         :param pulumi.Input[str] vpc_id: The VPC ID of ECS instance.
         :param pulumi.Input[str] zone_id: The available zone ID of ECS instance.
         """
@@ -1914,6 +1971,7 @@ class Instance(pulumi.CustomResource):
         __props__.__dict__["hpc_cluster_id"] = hpc_cluster_id
         __props__.__dict__["image_id"] = image_id
         __props__.__dict__["include_data_volumes"] = include_data_volumes
+        __props__.__dict__["install_run_command_agent"] = install_run_command_agent
         __props__.__dict__["instance_charge_type"] = instance_charge_type
         __props__.__dict__["instance_id"] = instance_id
         __props__.__dict__["instance_name"] = instance_name
@@ -1946,6 +2004,7 @@ class Instance(pulumi.CustomResource):
         __props__.__dict__["tags"] = tags
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["user_data"] = user_data
+        __props__.__dict__["volume_ids"] = volume_ids
         __props__.__dict__["vpc_id"] = vpc_id
         __props__.__dict__["zone_id"] = zone_id
         return Instance(resource_name, opts=opts, __props__=__props__)
@@ -2080,6 +2139,14 @@ class Instance(pulumi.CustomResource):
         The include data volumes flag of ECS instance.Only effective when change instance charge type.include_data_volumes.
         """
         return pulumi.get(self, "include_data_volumes")
+
+    @property
+    @pulumi.getter(name="installRunCommandAgent")
+    def install_run_command_agent(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Whether to install the Run Command Agent. Default is false. This field is only effective when creating a new instance.
+        """
+        return pulumi.get(self, "install_run_command_agent")
 
     @property
     @pulumi.getter(name="instanceChargeType")
@@ -2342,6 +2409,14 @@ class Instance(pulumi.CustomResource):
         The user data of ECS instance, this field must be encrypted with base64.
         """
         return pulumi.get(self, "user_data")
+
+    @property
+    @pulumi.getter(name="volumeIds")
+    def volume_ids(self) -> pulumi.Output[Sequence[str]]:
+        """
+        The volume ID list of ECS instance.
+        """
+        return pulumi.get(self, "volume_ids")
 
     @property
     @pulumi.getter(name="vpcId")

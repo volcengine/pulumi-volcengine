@@ -61,6 +61,10 @@ type GetCommandsArgs struct {
 	Order *string `pulumi:"order"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
+	// The project name of ecs command.
+	ProjectName *string `pulumi:"projectName"`
+	// Tags.
+	Tags []GetCommandsTag `pulumi:"tags"`
 	// The type of ecs command. Valid values: `Shell`.
 	Type *string `pulumi:"type"`
 }
@@ -75,11 +79,15 @@ type GetCommandsResult struct {
 	Commands []GetCommandsCommand `pulumi:"commands"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
-	// The name of the ecs command.
+	// The name of the custom parameter.
 	Name       *string `pulumi:"name"`
 	NameRegex  *string `pulumi:"nameRegex"`
 	Order      *string `pulumi:"order"`
 	OutputFile *string `pulumi:"outputFile"`
+	// The project name of the ecs command.
+	ProjectName *string `pulumi:"projectName"`
+	// Tags.
+	Tags []GetCommandsTag `pulumi:"tags"`
 	// The total count of query.
 	TotalCount int `pulumi:"totalCount"`
 	// The type of the ecs command.
@@ -113,6 +121,10 @@ type GetCommandsOutputArgs struct {
 	Order pulumi.StringPtrInput `pulumi:"order"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// The project name of ecs command.
+	ProjectName pulumi.StringPtrInput `pulumi:"projectName"`
+	// Tags.
+	Tags GetCommandsTagArrayInput `pulumi:"tags"`
 	// The type of ecs command. Valid values: `Shell`.
 	Type pulumi.StringPtrInput `pulumi:"type"`
 }
@@ -156,7 +168,7 @@ func (o GetCommandsResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCommandsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// The name of the ecs command.
+// The name of the custom parameter.
 func (o GetCommandsResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetCommandsResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -171,6 +183,16 @@ func (o GetCommandsResultOutput) Order() pulumi.StringPtrOutput {
 
 func (o GetCommandsResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetCommandsResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
+}
+
+// The project name of the ecs command.
+func (o GetCommandsResultOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetCommandsResult) *string { return v.ProjectName }).(pulumi.StringPtrOutput)
+}
+
+// Tags.
+func (o GetCommandsResultOutput) Tags() GetCommandsTagArrayOutput {
+	return o.ApplyT(func(v GetCommandsResult) []GetCommandsTag { return v.Tags }).(GetCommandsTagArrayOutput)
 }
 
 // The total count of query.
