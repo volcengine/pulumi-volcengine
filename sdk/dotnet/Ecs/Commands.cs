@@ -99,6 +99,24 @@ namespace Pulumi.Volcengine.Ecs
         public string? OutputFile { get; set; }
 
         /// <summary>
+        /// The project name of ecs command.
+        /// </summary>
+        [Input("projectName")]
+        public string? ProjectName { get; set; }
+
+        [Input("tags")]
+        private List<Inputs.CommandsTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public List<Inputs.CommandsTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new List<Inputs.CommandsTagArgs>());
+            set => _tags = value;
+        }
+
+        /// <summary>
         /// The type of ecs command. Valid values: `Shell`.
         /// </summary>
         [Input("type")]
@@ -149,6 +167,24 @@ namespace Pulumi.Volcengine.Ecs
         public Input<string>? OutputFile { get; set; }
 
         /// <summary>
+        /// The project name of ecs command.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.CommandsTagInputArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.CommandsTagInputArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.CommandsTagInputArgs>());
+            set => _tags = value;
+        }
+
+        /// <summary>
         /// The type of ecs command. Valid values: `Shell`.
         /// </summary>
         [Input("type")]
@@ -181,12 +217,20 @@ namespace Pulumi.Volcengine.Ecs
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// The name of the ecs command.
+        /// The name of the custom parameter.
         /// </summary>
         public readonly string? Name;
         public readonly string? NameRegex;
         public readonly string? Order;
         public readonly string? OutputFile;
+        /// <summary>
+        /// The project name of the ecs command.
+        /// </summary>
+        public readonly string? ProjectName;
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.CommandsTagResult> Tags;
         /// <summary>
         /// The total count of query.
         /// </summary>
@@ -214,6 +258,10 @@ namespace Pulumi.Volcengine.Ecs
 
             string? outputFile,
 
+            string? projectName,
+
+            ImmutableArray<Outputs.CommandsTagResult> tags,
+
             int totalCount,
 
             string? type)
@@ -226,6 +274,8 @@ namespace Pulumi.Volcengine.Ecs
             NameRegex = nameRegex;
             Order = order;
             OutputFile = outputFile;
+            ProjectName = projectName;
+            Tags = tags;
             TotalCount = totalCount;
             Type = type;
         }

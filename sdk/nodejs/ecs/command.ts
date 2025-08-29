@@ -2,25 +2,12 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
  * Provides a resource to manage ecs command
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as volcengine from "@volcengine/pulumi";
- *
- * const foo = new volcengine.ecs.Command("foo", {
- *     commandContent: "IyEvYmluL2Jhc2gKCgplY2hvICJvcGVyYXRpb24gc3VjY2VzcyEi",
- *     description: "tf",
- *     timeout: 100,
- *     username: "root",
- *     workingDir: "/home",
- * });
- * ```
- *
  * ## Import
  *
  * EcsCommand can be imported using the id, e.g.
@@ -70,6 +57,10 @@ export class Command extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string>;
     /**
+     * Whether to enable custom parameter. Default is `false`.
+     */
+    public readonly enableParameter!: pulumi.Output<boolean>;
+    /**
      * The invocation times of the ecs command. Public commands do not display the invocation times.
      */
     public /*out*/ readonly invocationTimes!: pulumi.Output<number>;
@@ -78,9 +69,25 @@ export class Command extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The timeout of the ecs command. Valid value range: 10-600.
+     * The custom parameter definitions of the ecs command.
+     */
+    public readonly parameterDefinitions!: pulumi.Output<outputs.ecs.CommandParameterDefinition[] | undefined>;
+    /**
+     * The project name of the ecs command.
+     */
+    public readonly projectName!: pulumi.Output<string>;
+    /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.ecs.CommandTag[] | undefined>;
+    /**
+     * The timeout of the ecs command. Unit: seconds. Valid value range: 30~86400. Default is 300.
      */
     public readonly timeout!: pulumi.Output<number>;
+    /**
+     * The type of the ecs command. Valid values: `Shell`, `Python`, `PowerShell`, `Bat`. Default is `Shell`.
+     */
+    public readonly type!: pulumi.Output<string | undefined>;
     /**
      * The update time of the ecs command.
      */
@@ -110,9 +117,14 @@ export class Command extends pulumi.CustomResource {
             resourceInputs["commandContent"] = state ? state.commandContent : undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["enableParameter"] = state ? state.enableParameter : undefined;
             resourceInputs["invocationTimes"] = state ? state.invocationTimes : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["parameterDefinitions"] = state ? state.parameterDefinitions : undefined;
+            resourceInputs["projectName"] = state ? state.projectName : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["timeout"] = state ? state.timeout : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
             resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
             resourceInputs["username"] = state ? state.username : undefined;
             resourceInputs["workingDir"] = state ? state.workingDir : undefined;
@@ -123,8 +135,13 @@ export class Command extends pulumi.CustomResource {
             }
             resourceInputs["commandContent"] = args ? args.commandContent : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["enableParameter"] = args ? args.enableParameter : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["parameterDefinitions"] = args ? args.parameterDefinitions : undefined;
+            resourceInputs["projectName"] = args ? args.projectName : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["timeout"] = args ? args.timeout : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["username"] = args ? args.username : undefined;
             resourceInputs["workingDir"] = args ? args.workingDir : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
@@ -153,6 +170,10 @@ export interface CommandState {
      */
     description?: pulumi.Input<string>;
     /**
+     * Whether to enable custom parameter. Default is `false`.
+     */
+    enableParameter?: pulumi.Input<boolean>;
+    /**
      * The invocation times of the ecs command. Public commands do not display the invocation times.
      */
     invocationTimes?: pulumi.Input<number>;
@@ -161,9 +182,25 @@ export interface CommandState {
      */
     name?: pulumi.Input<string>;
     /**
-     * The timeout of the ecs command. Valid value range: 10-600.
+     * The custom parameter definitions of the ecs command.
+     */
+    parameterDefinitions?: pulumi.Input<pulumi.Input<inputs.ecs.CommandParameterDefinition>[]>;
+    /**
+     * The project name of the ecs command.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.ecs.CommandTag>[]>;
+    /**
+     * The timeout of the ecs command. Unit: seconds. Valid value range: 30~86400. Default is 300.
      */
     timeout?: pulumi.Input<number>;
+    /**
+     * The type of the ecs command. Valid values: `Shell`, `Python`, `PowerShell`, `Bat`. Default is `Shell`.
+     */
+    type?: pulumi.Input<string>;
     /**
      * The update time of the ecs command.
      */
@@ -191,13 +228,33 @@ export interface CommandArgs {
      */
     description?: pulumi.Input<string>;
     /**
+     * Whether to enable custom parameter. Default is `false`.
+     */
+    enableParameter?: pulumi.Input<boolean>;
+    /**
      * The name of the ecs command.
      */
     name?: pulumi.Input<string>;
     /**
-     * The timeout of the ecs command. Valid value range: 10-600.
+     * The custom parameter definitions of the ecs command.
+     */
+    parameterDefinitions?: pulumi.Input<pulumi.Input<inputs.ecs.CommandParameterDefinition>[]>;
+    /**
+     * The project name of the ecs command.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.ecs.CommandTag>[]>;
+    /**
+     * The timeout of the ecs command. Unit: seconds. Valid value range: 30~86400. Default is 300.
      */
     timeout?: pulumi.Input<number>;
+    /**
+     * The type of the ecs command. Valid values: `Shell`, `Python`, `PowerShell`, `Bat`. Default is `Shell`.
+     */
+    type?: pulumi.Input<string>;
     /**
      * The username of the ecs command.
      */

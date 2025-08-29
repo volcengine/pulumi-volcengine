@@ -11,28 +11,6 @@ namespace Pulumi.Volcengine.Ecs
 {
     /// <summary>
     /// Provides a resource to manage ecs command
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Volcengine = Pulumi.Volcengine;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var foo = new Volcengine.Ecs.Command("foo", new()
-    ///     {
-    ///         CommandContent = "IyEvYmluL2Jhc2gKCgplY2hvICJvcGVyYXRpb24gc3VjY2VzcyEi",
-    ///         Description = "tf",
-    ///         Timeout = 100,
-    ///         Username = "root",
-    ///         WorkingDir = "/home",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// EcsCommand can be imported using the id, e.g.
@@ -63,6 +41,12 @@ namespace Pulumi.Volcengine.Ecs
         public Output<string> Description { get; private set; } = null!;
 
         /// <summary>
+        /// Whether to enable custom parameter. Default is `false`.
+        /// </summary>
+        [Output("enableParameter")]
+        public Output<bool> EnableParameter { get; private set; } = null!;
+
+        /// <summary>
         /// The invocation times of the ecs command. Public commands do not display the invocation times.
         /// </summary>
         [Output("invocationTimes")]
@@ -75,10 +59,34 @@ namespace Pulumi.Volcengine.Ecs
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The timeout of the ecs command. Valid value range: 10-600.
+        /// The custom parameter definitions of the ecs command.
+        /// </summary>
+        [Output("parameterDefinitions")]
+        public Output<ImmutableArray<Outputs.CommandParameterDefinition>> ParameterDefinitions { get; private set; } = null!;
+
+        /// <summary>
+        /// The project name of the ecs command.
+        /// </summary>
+        [Output("projectName")]
+        public Output<string> ProjectName { get; private set; } = null!;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<Outputs.CommandTag>> Tags { get; private set; } = null!;
+
+        /// <summary>
+        /// The timeout of the ecs command. Unit: seconds. Valid value range: 30~86400. Default is 300.
         /// </summary>
         [Output("timeout")]
         public Output<int> Timeout { get; private set; } = null!;
+
+        /// <summary>
+        /// The type of the ecs command. Valid values: `Shell`, `Python`, `PowerShell`, `Bat`. Default is `Shell`.
+        /// </summary>
+        [Output("type")]
+        public Output<string?> Type { get; private set; } = null!;
 
         /// <summary>
         /// The update time of the ecs command.
@@ -158,16 +166,58 @@ namespace Pulumi.Volcengine.Ecs
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// Whether to enable custom parameter. Default is `false`.
+        /// </summary>
+        [Input("enableParameter")]
+        public Input<bool>? EnableParameter { get; set; }
+
+        /// <summary>
         /// The name of the ecs command.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        [Input("parameterDefinitions")]
+        private InputList<Inputs.CommandParameterDefinitionArgs>? _parameterDefinitions;
+
         /// <summary>
-        /// The timeout of the ecs command. Valid value range: 10-600.
+        /// The custom parameter definitions of the ecs command.
+        /// </summary>
+        public InputList<Inputs.CommandParameterDefinitionArgs> ParameterDefinitions
+        {
+            get => _parameterDefinitions ?? (_parameterDefinitions = new InputList<Inputs.CommandParameterDefinitionArgs>());
+            set => _parameterDefinitions = value;
+        }
+
+        /// <summary>
+        /// The project name of the ecs command.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.CommandTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.CommandTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.CommandTagArgs>());
+            set => _tags = value;
+        }
+
+        /// <summary>
+        /// The timeout of the ecs command. Unit: seconds. Valid value range: 30~86400. Default is 300.
         /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }
+
+        /// <summary>
+        /// The type of the ecs command. Valid values: `Shell`, `Python`, `PowerShell`, `Bat`. Default is `Shell`.
+        /// </summary>
+        [Input("type")]
+        public Input<string>? Type { get; set; }
 
         /// <summary>
         /// The username of the ecs command.
@@ -208,6 +258,12 @@ namespace Pulumi.Volcengine.Ecs
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// Whether to enable custom parameter. Default is `false`.
+        /// </summary>
+        [Input("enableParameter")]
+        public Input<bool>? EnableParameter { get; set; }
+
+        /// <summary>
         /// The invocation times of the ecs command. Public commands do not display the invocation times.
         /// </summary>
         [Input("invocationTimes")]
@@ -219,11 +275,47 @@ namespace Pulumi.Volcengine.Ecs
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        [Input("parameterDefinitions")]
+        private InputList<Inputs.CommandParameterDefinitionGetArgs>? _parameterDefinitions;
+
         /// <summary>
-        /// The timeout of the ecs command. Valid value range: 10-600.
+        /// The custom parameter definitions of the ecs command.
+        /// </summary>
+        public InputList<Inputs.CommandParameterDefinitionGetArgs> ParameterDefinitions
+        {
+            get => _parameterDefinitions ?? (_parameterDefinitions = new InputList<Inputs.CommandParameterDefinitionGetArgs>());
+            set => _parameterDefinitions = value;
+        }
+
+        /// <summary>
+        /// The project name of the ecs command.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.CommandTagGetArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.CommandTagGetArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.CommandTagGetArgs>());
+            set => _tags = value;
+        }
+
+        /// <summary>
+        /// The timeout of the ecs command. Unit: seconds. Valid value range: 30~86400. Default is 300.
         /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }
+
+        /// <summary>
+        /// The type of the ecs command. Valid values: `Shell`, `Python`, `PowerShell`, `Bat`. Default is `Shell`.
+        /// </summary>
+        [Input("type")]
+        public Input<string>? Type { get; set; }
 
         /// <summary>
         /// The update time of the ecs command.

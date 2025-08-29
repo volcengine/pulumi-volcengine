@@ -56,6 +56,13 @@ class _ExportableConfig(types.ModuleType):
         return __config__.get_bool('disableSsl')
 
     @property
+    def enable_standard_endpoint(self) -> Optional[bool]:
+        """
+        ENABLE STANDARD ENDPOINT for Volcengine Provider
+        """
+        return __config__.get_bool('enableStandardEndpoint')
+
+    @property
     def endpoint(self) -> Optional[str]:
         """
         The Customer Endpoint for Volcengine Provider

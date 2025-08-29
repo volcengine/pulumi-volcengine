@@ -30,6 +30,10 @@ namespace Pulumi.Volcengine.Ecs.Outputs
         /// </summary>
         public readonly string Description;
         /// <summary>
+        /// The EIP address of the ECS instance.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.InstancesInstanceEipAddressResult> EipAddresses;
+        /// <summary>
         /// The GPU device info of Instance.
         /// </summary>
         public readonly ImmutableArray<Outputs.InstancesInstanceGpuDeviceResult> GpuDevices;
@@ -122,6 +126,10 @@ namespace Pulumi.Volcengine.Ecs.Outputs
         /// </summary>
         public readonly string UpdatedAt;
         /// <summary>
+        /// The volume ID list of ECS instance.
+        /// </summary>
+        public readonly ImmutableArray<string> VolumeIds;
+        /// <summary>
         /// The volume detail collection of volume.
         /// </summary>
         public readonly ImmutableArray<Outputs.InstancesInstanceVolumeResult> Volumes;
@@ -143,6 +151,8 @@ namespace Pulumi.Volcengine.Ecs.Outputs
             string deploymentSetId,
 
             string description,
+
+            ImmutableArray<Outputs.InstancesInstanceEipAddressResult> eipAddresses,
 
             ImmutableArray<Outputs.InstancesInstanceGpuDeviceResult> gpuDevices,
 
@@ -190,6 +200,8 @@ namespace Pulumi.Volcengine.Ecs.Outputs
 
             string updatedAt,
 
+            ImmutableArray<string> volumeIds,
+
             ImmutableArray<Outputs.InstancesInstanceVolumeResult> volumes,
 
             string vpcId,
@@ -200,6 +212,7 @@ namespace Pulumi.Volcengine.Ecs.Outputs
             CreatedAt = createdAt;
             DeploymentSetId = deploymentSetId;
             Description = description;
+            EipAddresses = eipAddresses;
             GpuDevices = gpuDevices;
             HostName = hostName;
             ImageId = imageId;
@@ -223,6 +236,7 @@ namespace Pulumi.Volcengine.Ecs.Outputs
             StoppedMode = stoppedMode;
             Tags = tags;
             UpdatedAt = updatedAt;
+            VolumeIds = volumeIds;
             Volumes = volumes;
             VpcId = vpcId;
             ZoneId = zoneId;

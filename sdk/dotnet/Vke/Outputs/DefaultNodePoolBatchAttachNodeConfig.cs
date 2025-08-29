@@ -26,6 +26,10 @@ namespace Pulumi.Volcengine.Vke.Outputs
         /// </summary>
         public readonly string? NamePrefix;
         /// <summary>
+        /// The PreScript of NodeConfig.
+        /// </summary>
+        public readonly string? PreScript;
+        /// <summary>
         /// The Security of NodeConfig.
         /// </summary>
         public readonly ImmutableArray<Outputs.DefaultNodePoolBatchAttachNodeConfigSecurity> Securities;
@@ -38,11 +42,14 @@ namespace Pulumi.Volcengine.Vke.Outputs
 
             string? namePrefix,
 
+            string? preScript,
+
             ImmutableArray<Outputs.DefaultNodePoolBatchAttachNodeConfigSecurity> securities)
         {
             EcsTags = ecsTags;
             InitializeScript = initializeScript;
             NamePrefix = namePrefix;
+            PreScript = preScript;
             Securities = securities;
         }
     }

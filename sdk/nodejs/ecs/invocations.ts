@@ -35,7 +35,9 @@ export function invocations(args?: InvocationsArgs, opts?: pulumi.InvokeOptions)
         "invocationStatuses": args.invocationStatuses,
         "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
+        "projectName": args.projectName,
         "repeatMode": args.repeatMode,
+        "tags": args.tags,
     }, opts);
 }
 
@@ -76,9 +78,17 @@ export interface InvocationsArgs {
      */
     outputFile?: string;
     /**
+     * The project name of ecs invocation.
+     */
+    projectName?: string;
+    /**
      * The repeat mode of ecs invocation. Valid values: `Once`, `Rate`, `Fixed`.
      */
     repeatMode?: string;
+    /**
+     * Tags.
+     */
+    tags?: inputs.ecs.InvocationsTag[];
 }
 
 /**
@@ -120,9 +130,17 @@ export interface InvocationsResult {
     readonly nameRegex?: string;
     readonly outputFile?: string;
     /**
+     * The project name of the ecs invocation.
+     */
+    readonly projectName?: string;
+    /**
      * The repeat mode of the ecs invocation.
      */
     readonly repeatMode?: string;
+    /**
+     * Tags.
+     */
+    readonly tags?: outputs.ecs.InvocationsTag[];
     /**
      * The total count of query.
      */
@@ -184,7 +202,15 @@ export interface InvocationsOutputArgs {
      */
     outputFile?: pulumi.Input<string>;
     /**
+     * The project name of ecs invocation.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
      * The repeat mode of ecs invocation. Valid values: `Once`, `Rate`, `Fixed`.
      */
     repeatMode?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.ecs.InvocationsTagArgs>[]>;
 }

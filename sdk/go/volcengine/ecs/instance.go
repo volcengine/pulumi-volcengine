@@ -183,6 +183,8 @@ type Instance struct {
 	ImageId pulumi.StringOutput `pulumi:"imageId"`
 	// The include data volumes flag of ECS instance.Only effective when change instance charge type.include_data_volumes.
 	IncludeDataVolumes pulumi.BoolPtrOutput `pulumi:"includeDataVolumes"`
+	// Whether to install the Run Command Agent. Default is false. This field is only effective when creating a new instance.
+	InstallRunCommandAgent pulumi.BoolPtrOutput `pulumi:"installRunCommandAgent"`
 	// The charge type of ECS instance, the value can be `PrePaid` or `PostPaid`.
 	InstanceChargeType pulumi.StringOutput `pulumi:"instanceChargeType"`
 	// The ID of ECS instance.
@@ -253,6 +255,8 @@ type Instance struct {
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 	// The user data of ECS instance, this field must be encrypted with base64.
 	UserData pulumi.StringOutput `pulumi:"userData"`
+	// The volume ID list of ECS instance.
+	VolumeIds pulumi.StringArrayOutput `pulumi:"volumeIds"`
 	// The VPC ID of ECS instance.
 	VpcId pulumi.StringOutput `pulumi:"vpcId"`
 	// The available zone ID of ECS instance.
@@ -349,6 +353,8 @@ type instanceState struct {
 	ImageId *string `pulumi:"imageId"`
 	// The include data volumes flag of ECS instance.Only effective when change instance charge type.include_data_volumes.
 	IncludeDataVolumes *bool `pulumi:"includeDataVolumes"`
+	// Whether to install the Run Command Agent. Default is false. This field is only effective when creating a new instance.
+	InstallRunCommandAgent *bool `pulumi:"installRunCommandAgent"`
 	// The charge type of ECS instance, the value can be `PrePaid` or `PostPaid`.
 	InstanceChargeType *string `pulumi:"instanceChargeType"`
 	// The ID of ECS instance.
@@ -419,6 +425,8 @@ type instanceState struct {
 	UpdatedAt *string `pulumi:"updatedAt"`
 	// The user data of ECS instance, this field must be encrypted with base64.
 	UserData *string `pulumi:"userData"`
+	// The volume ID list of ECS instance.
+	VolumeIds []string `pulumi:"volumeIds"`
 	// The VPC ID of ECS instance.
 	VpcId *string `pulumi:"vpcId"`
 	// The available zone ID of ECS instance.
@@ -461,6 +469,8 @@ type InstanceState struct {
 	ImageId pulumi.StringPtrInput
 	// The include data volumes flag of ECS instance.Only effective when change instance charge type.include_data_volumes.
 	IncludeDataVolumes pulumi.BoolPtrInput
+	// Whether to install the Run Command Agent. Default is false. This field is only effective when creating a new instance.
+	InstallRunCommandAgent pulumi.BoolPtrInput
 	// The charge type of ECS instance, the value can be `PrePaid` or `PostPaid`.
 	InstanceChargeType pulumi.StringPtrInput
 	// The ID of ECS instance.
@@ -531,6 +541,8 @@ type InstanceState struct {
 	UpdatedAt pulumi.StringPtrInput
 	// The user data of ECS instance, this field must be encrypted with base64.
 	UserData pulumi.StringPtrInput
+	// The volume ID list of ECS instance.
+	VolumeIds pulumi.StringArrayInput
 	// The VPC ID of ECS instance.
 	VpcId pulumi.StringPtrInput
 	// The available zone ID of ECS instance.
@@ -569,6 +581,8 @@ type instanceArgs struct {
 	ImageId string `pulumi:"imageId"`
 	// The include data volumes flag of ECS instance.Only effective when change instance charge type.include_data_volumes.
 	IncludeDataVolumes *bool `pulumi:"includeDataVolumes"`
+	// Whether to install the Run Command Agent. Default is false. This field is only effective when creating a new instance.
+	InstallRunCommandAgent *bool `pulumi:"installRunCommandAgent"`
 	// The charge type of ECS instance, the value can be `PrePaid` or `PostPaid`.
 	InstanceChargeType *string `pulumi:"instanceChargeType"`
 	// The name of ECS instance.
@@ -650,6 +664,8 @@ type InstanceArgs struct {
 	ImageId pulumi.StringInput
 	// The include data volumes flag of ECS instance.Only effective when change instance charge type.include_data_volumes.
 	IncludeDataVolumes pulumi.BoolPtrInput
+	// Whether to install the Run Command Agent. Default is false. This field is only effective when creating a new instance.
+	InstallRunCommandAgent pulumi.BoolPtrInput
 	// The charge type of ECS instance, the value can be `PrePaid` or `PostPaid`.
 	InstanceChargeType pulumi.StringPtrInput
 	// The name of ECS instance.
@@ -872,6 +888,11 @@ func (o InstanceOutput) IncludeDataVolumes() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Instance) pulumi.BoolPtrOutput { return v.IncludeDataVolumes }).(pulumi.BoolPtrOutput)
 }
 
+// Whether to install the Run Command Agent. Default is false. This field is only effective when creating a new instance.
+func (o InstanceOutput) InstallRunCommandAgent() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Instance) pulumi.BoolPtrOutput { return v.InstallRunCommandAgent }).(pulumi.BoolPtrOutput)
+}
+
 // The charge type of ECS instance, the value can be `PrePaid` or `PostPaid`.
 func (o InstanceOutput) InstanceChargeType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.InstanceChargeType }).(pulumi.StringOutput)
@@ -1036,6 +1057,11 @@ func (o InstanceOutput) UpdatedAt() pulumi.StringOutput {
 // The user data of ECS instance, this field must be encrypted with base64.
 func (o InstanceOutput) UserData() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.UserData }).(pulumi.StringOutput)
+}
+
+// The volume ID list of ECS instance.
+func (o InstanceOutput) VolumeIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringArrayOutput { return v.VolumeIds }).(pulumi.StringArrayOutput)
 }
 
 // The VPC ID of ECS instance.

@@ -12,6 +12,32 @@ import (
 )
 
 // Use this data source to query detailed information of redis parameter groups
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/redis"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := redis.GetParameterGroups(ctx, &redis.GetParameterGroupsArgs{
+//				EngineVersion: pulumi.StringRef("5.0"),
+//				Source:        pulumi.StringRef("User"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 //
 // Deprecated: volcengine.redis.ParameterGroups has been deprecated in favor of volcengine.redis.getParameterGroups
 func ParameterGroups(ctx *pulumi.Context, args *ParameterGroupsArgs, opts ...pulumi.InvokeOption) (*ParameterGroupsResult, error) {

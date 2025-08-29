@@ -124,10 +124,28 @@ namespace Pulumi.Volcengine.Ecs
         public string? OutputFile { get; set; }
 
         /// <summary>
+        /// The project name of ecs invocation.
+        /// </summary>
+        [Input("projectName")]
+        public string? ProjectName { get; set; }
+
+        /// <summary>
         /// The repeat mode of ecs invocation. Valid values: `Once`, `Rate`, `Fixed`.
         /// </summary>
         [Input("repeatMode")]
         public string? RepeatMode { get; set; }
+
+        [Input("tags")]
+        private List<Inputs.GetInvocationsTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public List<Inputs.GetInvocationsTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new List<Inputs.GetInvocationsTagArgs>());
+            set => _tags = value;
+        }
 
         public GetInvocationsArgs()
         {
@@ -192,10 +210,28 @@ namespace Pulumi.Volcengine.Ecs
         public Input<string>? OutputFile { get; set; }
 
         /// <summary>
+        /// The project name of ecs invocation.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        /// <summary>
         /// The repeat mode of ecs invocation. Valid values: `Once`, `Rate`, `Fixed`.
         /// </summary>
         [Input("repeatMode")]
         public Input<string>? RepeatMode { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.GetInvocationsTagInputArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.GetInvocationsTagInputArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.GetInvocationsTagInputArgs>());
+            set => _tags = value;
+        }
 
         public GetInvocationsInvokeArgs()
         {
@@ -242,9 +278,17 @@ namespace Pulumi.Volcengine.Ecs
         public readonly string? NameRegex;
         public readonly string? OutputFile;
         /// <summary>
+        /// The project name of the ecs invocation.
+        /// </summary>
+        public readonly string? ProjectName;
+        /// <summary>
         /// The repeat mode of the ecs invocation.
         /// </summary>
         public readonly string? RepeatMode;
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetInvocationsTagResult> Tags;
         /// <summary>
         /// The total count of query.
         /// </summary>
@@ -272,7 +316,11 @@ namespace Pulumi.Volcengine.Ecs
 
             string? outputFile,
 
+            string? projectName,
+
             string? repeatMode,
+
+            ImmutableArray<Outputs.GetInvocationsTagResult> tags,
 
             int totalCount)
         {
@@ -286,7 +334,9 @@ namespace Pulumi.Volcengine.Ecs
             Invocations = invocations;
             NameRegex = nameRegex;
             OutputFile = outputFile;
+            ProjectName = projectName;
             RepeatMode = repeatMode;
+            Tags = tags;
             TotalCount = totalCount;
         }
     }

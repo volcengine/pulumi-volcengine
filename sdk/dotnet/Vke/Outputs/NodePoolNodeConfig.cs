@@ -62,6 +62,10 @@ namespace Pulumi.Volcengine.Vke.Outputs
         /// </summary>
         public readonly int? Period;
         /// <summary>
+        /// The PreScript of NodeConfig.
+        /// </summary>
+        public readonly string? PreScript;
+        /// <summary>
         /// The project name of the ecs instance.
         /// </summary>
         public readonly string? ProjectName;
@@ -104,6 +108,8 @@ namespace Pulumi.Volcengine.Vke.Outputs
 
             int? period,
 
+            string? preScript,
+
             string? projectName,
 
             Outputs.NodePoolNodeConfigSecurity security,
@@ -124,6 +130,7 @@ namespace Pulumi.Volcengine.Vke.Outputs
             InstanceTypeIds = instanceTypeIds;
             NamePrefix = namePrefix;
             Period = period;
+            PreScript = preScript;
             ProjectName = projectName;
             Security = security;
             SubnetIds = subnetIds;

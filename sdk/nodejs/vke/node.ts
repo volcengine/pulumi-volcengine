@@ -217,6 +217,10 @@ export class Node extends pulumi.CustomResource {
      * The node pool id. This field is used to specify the custom node pool to which you want to add nodes. If not filled in, it means added to the default node pool.
      */
     public readonly nodePoolId!: pulumi.Output<string>;
+    /**
+     * The PreScript of Node. This field is valid only when adding an existing instance to the default node pool.
+     */
+    public readonly preScript!: pulumi.Output<string>;
 
     /**
      * Create a Node resource with the given unique name, arguments, and options.
@@ -241,6 +245,7 @@ export class Node extends pulumi.CustomResource {
             resourceInputs["keepInstanceName"] = state ? state.keepInstanceName : undefined;
             resourceInputs["kubernetesConfig"] = state ? state.kubernetesConfig : undefined;
             resourceInputs["nodePoolId"] = state ? state.nodePoolId : undefined;
+            resourceInputs["preScript"] = state ? state.preScript : undefined;
         } else {
             const args = argsOrState as NodeArgs | undefined;
             if ((!args || args.clusterId === undefined) && !opts.urn) {
@@ -259,6 +264,7 @@ export class Node extends pulumi.CustomResource {
             resourceInputs["keepInstanceName"] = args ? args.keepInstanceName : undefined;
             resourceInputs["kubernetesConfig"] = args ? args.kubernetesConfig : undefined;
             resourceInputs["nodePoolId"] = args ? args.nodePoolId : undefined;
+            resourceInputs["preScript"] = args ? args.preScript : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Node.__pulumiType, name, resourceInputs, opts);
@@ -309,6 +315,10 @@ export interface NodeState {
      * The node pool id. This field is used to specify the custom node pool to which you want to add nodes. If not filled in, it means added to the default node pool.
      */
     nodePoolId?: pulumi.Input<string>;
+    /**
+     * The PreScript of Node. This field is valid only when adding an existing instance to the default node pool.
+     */
+    preScript?: pulumi.Input<string>;
 }
 
 /**
@@ -355,4 +365,8 @@ export interface NodeArgs {
      * The node pool id. This field is used to specify the custom node pool to which you want to add nodes. If not filled in, it means added to the default node pool.
      */
     nodePoolId?: pulumi.Input<string>;
+    /**
+     * The PreScript of Node. This field is valid only when adding an existing instance to the default node pool.
+     */
+    preScript?: pulumi.Input<string>;
 }

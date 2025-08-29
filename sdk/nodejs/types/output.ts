@@ -15827,6 +15827,56 @@ export namespace ecs {
         value: string;
     }
 
+    export interface CommandParameterDefinition {
+        /**
+         * The decimal precision of the custom parameter. This field is required when the parameter type is `Digit`.
+         */
+        decimalPrecision: number;
+        /**
+         * The default value of the custom parameter.
+         */
+        defaultValue: string;
+        /**
+         * The maximum length of the custom parameter. This field is required when the parameter type is `String`.
+         */
+        maxLength: number;
+        /**
+         * The maximum value of the custom parameter. This field is required when the parameter type is `Digit`.
+         */
+        maxValue: string;
+        /**
+         * The minimum length of the custom parameter. This field is required when the parameter type is `String`.
+         */
+        minLength: number;
+        /**
+         * The minimum value of the custom parameter. This field is required when the parameter type is `Digit`.
+         */
+        minValue: string;
+        /**
+         * The name of the custom parameter.
+         */
+        name: string;
+        /**
+         * Whether the custom parameter is required.
+         */
+        required: boolean;
+        /**
+         * The type of the custom parameter. Valid values: `String`, `Digit`.
+         */
+        type: string;
+    }
+
+    export interface CommandTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface CommandsCommand {
         /**
          * The base64 encoded content of the ecs command.
@@ -15841,6 +15891,10 @@ export namespace ecs {
          */
         commandProvider: string;
         /**
+         * Whether the command content is base64 encoded. Valid values: `Base64`, `PlainText`. Default is `Base64`.
+         */
+        contentEncoding: string;
+        /**
          * The create time of the ecs command.
          */
         createdAt: string;
@@ -15848,6 +15902,10 @@ export namespace ecs {
          * The description of the ecs command.
          */
         description: string;
+        /**
+         * Whether to enable custom parameter. Default is `false`.
+         */
+        enableParameter: boolean;
         /**
          * The id of the ecs command.
          */
@@ -15860,6 +15918,18 @@ export namespace ecs {
          * The name of ecs command. This field support fuzzy query.
          */
         name: string;
+        /**
+         * The custom parameter definitions of the ecs command.
+         */
+        parameterDefinitions: outputs.ecs.CommandsCommandParameterDefinition[];
+        /**
+         * The project name of ecs command.
+         */
+        projectName: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.ecs.CommandsCommandTag[];
         /**
          * The timeout of the ecs command.
          */
@@ -15880,6 +15950,67 @@ export namespace ecs {
          * The working directory of the ecs command.
          */
         workingDir: string;
+    }
+
+    export interface CommandsCommandParameterDefinition {
+        /**
+         * The decimal precision of the custom parameter. This field is required when the parameter type is `Digit`.
+         */
+        decimalPrecision: number;
+        /**
+         * The default value of the custom parameter.
+         */
+        defaultValue: string;
+        /**
+         * The maximum length of the custom parameter. This field is required when the parameter type is `String`.
+         */
+        maxLength: number;
+        /**
+         * The maximum value of the custom parameter. This field is required when the parameter type is `Digit`.
+         */
+        maxValue: string;
+        /**
+         * The minimum length of the custom parameter. This field is required when the parameter type is `String`.
+         */
+        minLength: number;
+        /**
+         * The minimum value of the custom parameter. This field is required when the parameter type is `Digit`.
+         */
+        minValue: string;
+        /**
+         * The name of ecs command. This field support fuzzy query.
+         */
+        name: string;
+        /**
+         * Whether the custom parameter is required.
+         */
+        required: boolean;
+        /**
+         * The type of ecs command. Valid values: `Shell`.
+         */
+        type: string;
+    }
+
+    export interface CommandsCommandTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface CommandsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface DeploymentSetsDeploymentSet {
@@ -15960,6 +16091,10 @@ export namespace ecs {
          */
         commandProvider: string;
         /**
+         * Whether the command content is base64 encoded. Valid values: `Base64`, `PlainText`. Default is `Base64`.
+         */
+        contentEncoding: string;
+        /**
          * The create time of the ecs command.
          */
         createdAt: string;
@@ -15967,6 +16102,10 @@ export namespace ecs {
          * The description of the ecs command.
          */
         description: string;
+        /**
+         * Whether to enable custom parameter. Default is `false`.
+         */
+        enableParameter: boolean;
         /**
          * The id of the ecs command.
          */
@@ -15979,6 +16118,18 @@ export namespace ecs {
          * The name of ecs command. This field support fuzzy query.
          */
         name: string;
+        /**
+         * The custom parameter definitions of the ecs command.
+         */
+        parameterDefinitions: outputs.ecs.GetCommandsCommandParameterDefinition[];
+        /**
+         * The project name of ecs command.
+         */
+        projectName: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.ecs.GetCommandsCommandTag[];
         /**
          * The timeout of the ecs command.
          */
@@ -15999,6 +16150,67 @@ export namespace ecs {
          * The working directory of the ecs command.
          */
         workingDir: string;
+    }
+
+    export interface GetCommandsCommandParameterDefinition {
+        /**
+         * The decimal precision of the custom parameter. This field is required when the parameter type is `Digit`.
+         */
+        decimalPrecision: number;
+        /**
+         * The default value of the custom parameter.
+         */
+        defaultValue: string;
+        /**
+         * The maximum length of the custom parameter. This field is required when the parameter type is `String`.
+         */
+        maxLength: number;
+        /**
+         * The maximum value of the custom parameter. This field is required when the parameter type is `Digit`.
+         */
+        maxValue: string;
+        /**
+         * The minimum length of the custom parameter. This field is required when the parameter type is `String`.
+         */
+        minLength: number;
+        /**
+         * The minimum value of the custom parameter. This field is required when the parameter type is `Digit`.
+         */
+        minValue: string;
+        /**
+         * The name of ecs command. This field support fuzzy query.
+         */
+        name: string;
+        /**
+         * Whether the custom parameter is required.
+         */
+        required: boolean;
+        /**
+         * The type of ecs command. Valid values: `Shell`.
+         */
+        type: string;
+    }
+
+    export interface GetCommandsCommandTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetCommandsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface GetDeploymentSetsDeploymentSet {
@@ -16347,6 +16559,10 @@ export namespace ecs {
          */
         description: string;
         /**
+         * The EIP address of the ECS instance.
+         */
+        eipAddresses: outputs.ecs.GetInstancesInstanceEipAddress[];
+        /**
          * The GPU device info of Instance.
          */
         gpuDevices: outputs.ecs.GetInstancesInstanceGpuDevice[];
@@ -16439,6 +16655,10 @@ export namespace ecs {
          */
         updatedAt: string;
         /**
+         * The volume ID list of ECS instance.
+         */
+        volumeIds: string[];
+        /**
          * The volume detail collection of volume.
          */
         volumes: outputs.ecs.GetInstancesInstanceVolume[];
@@ -16450,6 +16670,17 @@ export namespace ecs {
          * The available zone ID of ECS instance.
          */
         zoneId: string;
+    }
+
+    export interface GetInstancesInstanceEipAddress {
+        /**
+         * The EIP ID of the ECS instance.
+         */
+        allocationId: string;
+        /**
+         * The EIP address of the ECS instance.
+         */
+        ipAddress: string;
     }
 
     export interface GetInstancesInstanceGpuDevice {
@@ -16664,6 +16895,14 @@ export namespace ecs {
          */
         launchTime: string;
         /**
+         * The custom parameters of the ecs invocation.
+         */
+        parameters: string;
+        /**
+         * The project name of ecs invocation.
+         */
+        projectName: string;
+        /**
          * The recurrence end time of the ecs invocation.
          */
         recurrenceEndTime: string;
@@ -16676,6 +16915,10 @@ export namespace ecs {
          */
         startTime: string;
         /**
+         * Tags.
+         */
+        tags: outputs.ecs.GetInvocationsInvocationTag[];
+        /**
          * The timeout of the ecs command.
          */
         timeout: number;
@@ -16687,6 +16930,28 @@ export namespace ecs {
          * The working directory of the ecs command.
          */
         workingDir: string;
+    }
+
+    export interface GetInvocationsInvocationTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetInvocationsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface GetKeyPairsKeyPair {
@@ -17306,6 +17571,10 @@ export namespace ecs {
          */
         description: string;
         /**
+         * The EIP address of the ECS instance.
+         */
+        eipAddresses: outputs.ecs.InstancesInstanceEipAddress[];
+        /**
          * The GPU device info of Instance.
          */
         gpuDevices: outputs.ecs.InstancesInstanceGpuDevice[];
@@ -17398,6 +17667,10 @@ export namespace ecs {
          */
         updatedAt: string;
         /**
+         * The volume ID list of ECS instance.
+         */
+        volumeIds: string[];
+        /**
          * The volume detail collection of volume.
          */
         volumes: outputs.ecs.InstancesInstanceVolume[];
@@ -17409,6 +17682,17 @@ export namespace ecs {
          * The available zone ID of ECS instance.
          */
         zoneId: string;
+    }
+
+    export interface InstancesInstanceEipAddress {
+        /**
+         * The EIP ID of the ECS instance.
+         */
+        allocationId: string;
+        /**
+         * The EIP address of the ECS instance.
+         */
+        ipAddress: string;
     }
 
     export interface InstancesInstanceGpuDevice {
@@ -17502,6 +17786,17 @@ export namespace ecs {
         value: string;
     }
 
+    export interface InvocationParameter {
+        /**
+         * The name of the parameter.
+         */
+        name: string;
+        /**
+         * The value of the parameter.
+         */
+        value: string;
+    }
+
     export interface InvocationResultsInvocationResult {
         /**
          * The id of ecs command.
@@ -17555,6 +17850,17 @@ export namespace ecs {
          * The username of the ecs command.
          */
         username: string;
+    }
+
+    export interface InvocationTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface InvocationsInvocation {
@@ -17623,6 +17929,14 @@ export namespace ecs {
          */
         launchTime: string;
         /**
+         * The custom parameters of the ecs invocation.
+         */
+        parameters: string;
+        /**
+         * The project name of ecs invocation.
+         */
+        projectName: string;
+        /**
          * The recurrence end time of the ecs invocation.
          */
         recurrenceEndTime: string;
@@ -17635,6 +17949,10 @@ export namespace ecs {
          */
         startTime: string;
         /**
+         * Tags.
+         */
+        tags: outputs.ecs.InvocationsInvocationTag[];
+        /**
          * The timeout of the ecs command.
          */
         timeout: number;
@@ -17646,6 +17964,28 @@ export namespace ecs {
          * The working directory of the ecs command.
          */
         workingDir: string;
+    }
+
+    export interface InvocationsInvocationTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface InvocationsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface KeyPairsKeyPair {
@@ -43000,6 +43340,55 @@ export namespace tos {
         permission: string;
     }
 
+    export interface BucketCorsCorsRule {
+        /**
+         * The list of headers that are allowed in a preflight request.
+         */
+        allowedHeaders?: string[];
+        /**
+         * The list of HTTP methods that are allowed in a preflight request. Valid values: `PUT`, `POST`, `DELETE`, `GET`, `HEAD`.
+         */
+        allowedMethods: string[];
+        /**
+         * The list of origins that are allowed to make requests to the bucket.
+         */
+        allowedOrigins: string[];
+        /**
+         * The list of headers that are exposed in the response to a preflight request. It is recommended to add two expose headers, X-Tos-Request-Id and ETag.
+         */
+        exposeHeaders?: string[];
+        /**
+         * The maximum amount of time that a preflight request can be cached. Unit: second. Default value: 3600.
+         */
+        maxAgeSeconds: number;
+        /**
+         * Indicates whether the bucket returns the 'Vary: Origin' header in the response to preflight requests. Default value: false.
+         */
+        responseVary: boolean;
+    }
+
+    export interface BucketEncryptionRule {
+        /**
+         * The server side encryption configuration.
+         */
+        applyServerSideEncryptionByDefault: outputs.tos.BucketEncryptionRuleApplyServerSideEncryptionByDefault;
+    }
+
+    export interface BucketEncryptionRuleApplyServerSideEncryptionByDefault {
+        /**
+         * The kms data encryption. Valid values: `AES256`, `SM4`. Default is `AES256`.
+         */
+        kmsDataEncryption: string;
+        /**
+         * The kms master key id. This field is required when `sseAlgorithm` is `kms`. The format is `trn:kms:<region>:<accountID>:keyrings/<keyring>/keys/<key>`.
+         */
+        kmsMasterKeyId: string;
+        /**
+         * The server side encryption algorithm. Valid values: `kms`, `AES256`, `SM4`.
+         */
+        sseAlgorithm: string;
+    }
+
     export interface BucketInventoriesInventoryConfiguration {
         /**
          * The name the TOS bucket.
@@ -43135,6 +43524,64 @@ export namespace tos {
          * The export schedule of the bucket inventory. Valid values: `Daily`, `Weekly`.
          */
         frequency: string;
+    }
+
+    export interface BucketNotificationRules {
+        /**
+         * The destination info of the notification.
+         */
+        destination: outputs.tos.BucketNotificationRulesDestination;
+        /**
+         * The event type of the notification.
+         */
+        events: string[];
+        /**
+         * The filter of the notification.
+         */
+        filter?: outputs.tos.BucketNotificationRulesFilter;
+        /**
+         * The rule name of the notification.
+         */
+        ruleId: string;
+    }
+
+    export interface BucketNotificationRulesDestination {
+        /**
+         * The VeFaas info of the destination.
+         */
+        veFaas?: outputs.tos.BucketNotificationRulesDestinationVeFaa[];
+    }
+
+    export interface BucketNotificationRulesDestinationVeFaa {
+        /**
+         * The function id of the destination.
+         */
+        functionId: string;
+    }
+
+    export interface BucketNotificationRulesFilter {
+        /**
+         * The tos filter of the notification.
+         */
+        tosKey?: outputs.tos.BucketNotificationRulesFilterTosKey;
+    }
+
+    export interface BucketNotificationRulesFilterTosKey {
+        /**
+         * The filter rules of the notification.
+         */
+        filterRules?: outputs.tos.BucketNotificationRulesFilterTosKeyFilterRule[];
+    }
+
+    export interface BucketNotificationRulesFilterTosKeyFilterRule {
+        /**
+         * The name of the filter rule. Valid values: `prefix`, `suffix`.
+         */
+        name?: string;
+        /**
+         * The value of the filter rule.
+         */
+        value?: string;
     }
 
     export interface BucketObjectAccountAcl {
@@ -52810,6 +53257,10 @@ export namespace vke {
          */
         namePrefix: string;
         /**
+         * The PreScript of NodeConfig.
+         */
+        preScript: string;
+        /**
          * The Security of NodeConfig.
          */
         securities: outputs.vke.DefaultNodePoolBatchAttachNodeConfigSecurity[];
@@ -52952,6 +53403,10 @@ export namespace vke {
          * The NamePrefix of NodeConfig.
          */
         namePrefix?: string;
+        /**
+         * The PreScript of NodeConfig.
+         */
+        preScript?: string;
         /**
          * The Security of NodeConfig.
          */
@@ -53570,6 +54025,10 @@ export namespace vke {
          */
         phase: string;
         /**
+         * The PreScript of NodeConfig.
+         */
+        preScript: string;
+        /**
          * The Priority of AutoScaling.
          */
         priority: number;
@@ -53851,6 +54310,10 @@ export namespace vke {
          * The Phase of Node.
          */
         phase: string;
+        /**
+         * The PreScript of NodeConfig.
+         */
+        preScript: string;
         /**
          * The roles of node.
          */
@@ -54273,6 +54736,10 @@ export namespace vke {
          */
         period: number;
         /**
+         * The PreScript of NodeConfig.
+         */
+        preScript?: string;
+        /**
          * The project name of the ecs instance.
          */
         projectName: string;
@@ -54534,6 +55001,10 @@ export namespace vke {
          * The Phase of Status.
          */
         phase: string;
+        /**
+         * The PreScript of NodeConfig.
+         */
+        preScript: string;
         /**
          * The Priority of AutoScaling.
          */
@@ -54816,6 +55287,10 @@ export namespace vke {
          * The Phase of Node.
          */
         phase: string;
+        /**
+         * The PreScript of NodeConfig.
+         */
+        preScript: string;
         /**
          * The roles of node.
          */

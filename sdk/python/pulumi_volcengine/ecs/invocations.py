@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'InvocationsResult',
@@ -24,7 +25,7 @@ class InvocationsResult:
     """
     A collection of values returned by Invocations.
     """
-    def __init__(__self__, command_id=None, command_name=None, command_type=None, id=None, invocation_id=None, invocation_name=None, invocation_statuses=None, invocations=None, name_regex=None, output_file=None, repeat_mode=None, total_count=None):
+    def __init__(__self__, command_id=None, command_name=None, command_type=None, id=None, invocation_id=None, invocation_name=None, invocation_statuses=None, invocations=None, name_regex=None, output_file=None, project_name=None, repeat_mode=None, tags=None, total_count=None):
         if command_id and not isinstance(command_id, str):
             raise TypeError("Expected argument 'command_id' to be a str")
         pulumi.set(__self__, "command_id", command_id)
@@ -55,9 +56,15 @@ class InvocationsResult:
         if output_file and not isinstance(output_file, str):
             raise TypeError("Expected argument 'output_file' to be a str")
         pulumi.set(__self__, "output_file", output_file)
+        if project_name and not isinstance(project_name, str):
+            raise TypeError("Expected argument 'project_name' to be a str")
+        pulumi.set(__self__, "project_name", project_name)
         if repeat_mode and not isinstance(repeat_mode, str):
             raise TypeError("Expected argument 'repeat_mode' to be a str")
         pulumi.set(__self__, "repeat_mode", repeat_mode)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
@@ -137,12 +144,28 @@ class InvocationsResult:
         return pulumi.get(self, "output_file")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[str]:
+        """
+        The project name of the ecs invocation.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
     @pulumi.getter(name="repeatMode")
     def repeat_mode(self) -> Optional[str]:
         """
         The repeat mode of the ecs invocation.
         """
         return pulumi.get(self, "repeat_mode")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.InvocationsTagResult']]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="totalCount")
@@ -169,7 +192,9 @@ class AwaitableInvocationsResult(InvocationsResult):
             invocations=self.invocations,
             name_regex=self.name_regex,
             output_file=self.output_file,
+            project_name=self.project_name,
             repeat_mode=self.repeat_mode,
+            tags=self.tags,
             total_count=self.total_count)
 
 
@@ -181,7 +206,9 @@ def invocations(command_id: Optional[str] = None,
                 invocation_statuses: Optional[Sequence[str]] = None,
                 name_regex: Optional[str] = None,
                 output_file: Optional[str] = None,
+                project_name: Optional[str] = None,
                 repeat_mode: Optional[str] = None,
+                tags: Optional[Sequence[pulumi.InputType['InvocationsTagArgs']]] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableInvocationsResult:
     """
     Use this data source to query detailed information of ecs invocations
@@ -204,7 +231,9 @@ def invocations(command_id: Optional[str] = None,
     :param Sequence[str] invocation_statuses: The list of status of ecs invocation. Valid values: `Pending`, `Scheduled`, `Running`, `Success`, `Failed`, `Stopped`, `PartialFailed`, `Finished`.
     :param str name_regex: A Name Regex of Resource.
     :param str output_file: File name where to save data source results.
+    :param str project_name: The project name of ecs invocation.
     :param str repeat_mode: The repeat mode of ecs invocation. Valid values: `Once`, `Rate`, `Fixed`.
+    :param Sequence[pulumi.InputType['InvocationsTagArgs']] tags: Tags.
     """
     pulumi.log.warn("""invocations is deprecated: volcengine.ecs.Invocations has been deprecated in favor of volcengine.ecs.getInvocations""")
     __args__ = dict()
@@ -216,7 +245,9 @@ def invocations(command_id: Optional[str] = None,
     __args__['invocationStatuses'] = invocation_statuses
     __args__['nameRegex'] = name_regex
     __args__['outputFile'] = output_file
+    __args__['projectName'] = project_name
     __args__['repeatMode'] = repeat_mode
+    __args__['tags'] = tags
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('volcengine:ecs/invocations:Invocations', __args__, opts=opts, typ=InvocationsResult).value
 
@@ -231,7 +262,9 @@ def invocations(command_id: Optional[str] = None,
         invocations=pulumi.get(__ret__, 'invocations'),
         name_regex=pulumi.get(__ret__, 'name_regex'),
         output_file=pulumi.get(__ret__, 'output_file'),
+        project_name=pulumi.get(__ret__, 'project_name'),
         repeat_mode=pulumi.get(__ret__, 'repeat_mode'),
+        tags=pulumi.get(__ret__, 'tags'),
         total_count=pulumi.get(__ret__, 'total_count'))
 
 
@@ -244,7 +277,9 @@ def invocations_output(command_id: Optional[pulumi.Input[Optional[str]]] = None,
                        invocation_statuses: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                        name_regex: Optional[pulumi.Input[Optional[str]]] = None,
                        output_file: Optional[pulumi.Input[Optional[str]]] = None,
+                       project_name: Optional[pulumi.Input[Optional[str]]] = None,
                        repeat_mode: Optional[pulumi.Input[Optional[str]]] = None,
+                       tags: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['InvocationsTagArgs']]]]] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[InvocationsResult]:
     """
     Use this data source to query detailed information of ecs invocations
@@ -267,7 +302,9 @@ def invocations_output(command_id: Optional[pulumi.Input[Optional[str]]] = None,
     :param Sequence[str] invocation_statuses: The list of status of ecs invocation. Valid values: `Pending`, `Scheduled`, `Running`, `Success`, `Failed`, `Stopped`, `PartialFailed`, `Finished`.
     :param str name_regex: A Name Regex of Resource.
     :param str output_file: File name where to save data source results.
+    :param str project_name: The project name of ecs invocation.
     :param str repeat_mode: The repeat mode of ecs invocation. Valid values: `Once`, `Rate`, `Fixed`.
+    :param Sequence[pulumi.InputType['InvocationsTagArgs']] tags: Tags.
     """
     pulumi.log.warn("""invocations is deprecated: volcengine.ecs.Invocations has been deprecated in favor of volcengine.ecs.getInvocations""")
     ...

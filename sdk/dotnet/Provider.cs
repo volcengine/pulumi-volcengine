@@ -139,6 +139,12 @@ namespace Pulumi.Volcengine
         public Input<bool>? DisableSsl { get; set; }
 
         /// <summary>
+        /// ENABLE STANDARD ENDPOINT for Volcengine Provider
+        /// </summary>
+        [Input("enableStandardEndpoint", json: true)]
+        public Input<bool>? EnableStandardEndpoint { get; set; }
+
+        /// <summary>
         /// The Customer Endpoint for Volcengine Provider
         /// </summary>
         [Input("endpoint")]

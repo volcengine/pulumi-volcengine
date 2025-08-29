@@ -310,6 +310,12 @@ namespace Pulumi.Volcengine.Vke
         [Output("nodePoolId")]
         public Output<string> NodePoolId { get; private set; } = null!;
 
+        /// <summary>
+        /// The PreScript of Node. This field is valid only when adding an existing instance to the default node pool.
+        /// </summary>
+        [Output("preScript")]
+        public Output<string> PreScript { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a Node resource with the given unique name, arguments, and options.
@@ -417,6 +423,12 @@ namespace Pulumi.Volcengine.Vke
         [Input("nodePoolId")]
         public Input<string>? NodePoolId { get; set; }
 
+        /// <summary>
+        /// The PreScript of Node. This field is valid only when adding an existing instance to the default node pool.
+        /// </summary>
+        [Input("preScript")]
+        public Input<string>? PreScript { get; set; }
+
         public NodeArgs()
         {
         }
@@ -484,6 +496,12 @@ namespace Pulumi.Volcengine.Vke
         /// </summary>
         [Input("nodePoolId")]
         public Input<string>? NodePoolId { get; set; }
+
+        /// <summary>
+        /// The PreScript of Node. This field is valid only when adding an existing instance to the default node pool.
+        /// </summary>
+        [Input("preScript")]
+        public Input<string>? PreScript { get; set; }
 
         public NodeState()
         {

@@ -21,22 +21,52 @@ namespace Pulumi.Volcengine.Vpc
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var foo = new Volcengine.Vpc.NetworkInterface("foo", new()
+    ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
+    /// 
+    ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
     ///     {
-    ///         Description = "tf-test-up",
-    ///         NetworkInterfaceName = "tf-test-up",
-    ///         PortSecurityEnabled = false,
-    ///         PrimaryIpAddress = "192.168.5.253",
-    ///         PrivateIpAddresses = new[]
-    ///         {
-    ///             "192.168.5.2",
-    ///         },
-    ///         ProjectName = "default",
+    ///         VpcName = "acc-test-vpc",
+    ///         CidrBlock = "172.16.0.0/16",
+    ///     });
+    /// 
+    ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+    ///     {
+    ///         SubnetName = "acc-test-subnet",
+    ///         CidrBlock = "172.16.0.0/24",
+    ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
+    ///         VpcId = fooVpc.Id,
+    ///     });
+    /// 
+    ///     var fooSecurityGroup = new Volcengine.Vpc.SecurityGroup("fooSecurityGroup", new()
+    ///     {
+    ///         SecurityGroupName = "acc-test-sg",
+    ///         VpcId = fooVpc.Id,
+    ///     });
+    /// 
+    ///     var fooNetworkInterface = new Volcengine.Vpc.NetworkInterface("fooNetworkInterface", new()
+    ///     {
+    ///         NetworkInterfaceName = "acc-test-eni",
+    ///         Description = "acc-test",
+    ///         SubnetId = fooSubnet.Id,
     ///         SecurityGroupIds = new[]
     ///         {
-    ///             "sg-2fepz3c793g1s59gp67y21r34",
+    ///             fooSecurityGroup.Id,
     ///         },
-    ///         SubnetId = "subnet-2fe79j7c8o5c059gp68ksxr93",
+    ///         PrimaryIpAddress = "172.16.0.253",
+    ///         PortSecurityEnabled = false,
+    ///         PrivateIpAddresses = new[]
+    ///         {
+    ///             "172.16.0.2",
+    ///         },
+    ///         ProjectName = "default",
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Vpc.Inputs.NetworkInterfaceTagArgs
+    ///             {
+    ///                 Key = "k1",
+    ///                 Value = "v1",
+    ///             },
+    ///         },
     ///     });
     /// 
     /// });

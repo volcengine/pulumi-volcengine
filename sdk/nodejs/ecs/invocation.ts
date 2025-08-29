@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -19,8 +21,17 @@ import * as utilities from "../utilities";
  *     invocationDescription: "tf",
  *     invocationName: "tf-test",
  *     launchTime: "2023-06-20T09:48:00Z",
+ *     parameters: [{
+ *         name: "test_str",
+ *         value: "tf",
+ *     }],
+ *     projectName: "default",
  *     recurrenceEndTime: "2023-06-20T09:59:00Z",
  *     repeatMode: "Rate",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
  *     timeout: 90,
  *     username: "root",
  *     workingDir: "/home",
@@ -96,11 +107,19 @@ export class Invocation extends pulumi.CustomResource {
      */
     public readonly launchTime!: pulumi.Output<string | undefined>;
     /**
+     * The custom parameters of the ecs command. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+     */
+    public readonly parameters!: pulumi.Output<outputs.ecs.InvocationParameter[] | undefined>;
+    /**
+     * The project name of the ecs command.
+     */
+    public readonly projectName!: pulumi.Output<string>;
+    /**
      * The recurrence end time of the ecs invocation. RFC3339 format. This field is valid and required when the value of the repeatMode field is `Rate`.
      */
     public readonly recurrenceEndTime!: pulumi.Output<string | undefined>;
     /**
-     * The repeat mode of the ecs invocation. Valid values: `Once`, `Rate`, `Fixed`.
+     * The repeat mode of the ecs invocation. Valid values: `Once`, `Rate`, `Fixed`. Default is `Once`.
      */
     public readonly repeatMode!: pulumi.Output<string | undefined>;
     /**
@@ -108,7 +127,11 @@ export class Invocation extends pulumi.CustomResource {
      */
     public /*out*/ readonly startTime!: pulumi.Output<string>;
     /**
-     * The timeout of the ecs command. Valid value range: 10-600. When this field is not specified, use the value of the field with the same name in ecs command as the default value.
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.ecs.InvocationTag[] | undefined>;
+    /**
+     * The timeout of the ecs command. Unit: seconds. Valid value range: 30~86400. Default is 60.
      */
     public readonly timeout!: pulumi.Output<number>;
     /**
@@ -141,9 +164,12 @@ export class Invocation extends pulumi.CustomResource {
             resourceInputs["invocationName"] = state ? state.invocationName : undefined;
             resourceInputs["invocationStatus"] = state ? state.invocationStatus : undefined;
             resourceInputs["launchTime"] = state ? state.launchTime : undefined;
+            resourceInputs["parameters"] = state ? state.parameters : undefined;
+            resourceInputs["projectName"] = state ? state.projectName : undefined;
             resourceInputs["recurrenceEndTime"] = state ? state.recurrenceEndTime : undefined;
             resourceInputs["repeatMode"] = state ? state.repeatMode : undefined;
             resourceInputs["startTime"] = state ? state.startTime : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["timeout"] = state ? state.timeout : undefined;
             resourceInputs["username"] = state ? state.username : undefined;
             resourceInputs["workingDir"] = state ? state.workingDir : undefined;
@@ -167,8 +193,11 @@ export class Invocation extends pulumi.CustomResource {
             resourceInputs["invocationDescription"] = args ? args.invocationDescription : undefined;
             resourceInputs["invocationName"] = args ? args.invocationName : undefined;
             resourceInputs["launchTime"] = args ? args.launchTime : undefined;
+            resourceInputs["parameters"] = args ? args.parameters : undefined;
+            resourceInputs["projectName"] = args ? args.projectName : undefined;
             resourceInputs["recurrenceEndTime"] = args ? args.recurrenceEndTime : undefined;
             resourceInputs["repeatMode"] = args ? args.repeatMode : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["timeout"] = args ? args.timeout : undefined;
             resourceInputs["username"] = args ? args.username : undefined;
             resourceInputs["workingDir"] = args ? args.workingDir : undefined;
@@ -218,11 +247,19 @@ export interface InvocationState {
      */
     launchTime?: pulumi.Input<string>;
     /**
+     * The custom parameters of the ecs command. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+     */
+    parameters?: pulumi.Input<pulumi.Input<inputs.ecs.InvocationParameter>[]>;
+    /**
+     * The project name of the ecs command.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
      * The recurrence end time of the ecs invocation. RFC3339 format. This field is valid and required when the value of the repeatMode field is `Rate`.
      */
     recurrenceEndTime?: pulumi.Input<string>;
     /**
-     * The repeat mode of the ecs invocation. Valid values: `Once`, `Rate`, `Fixed`.
+     * The repeat mode of the ecs invocation. Valid values: `Once`, `Rate`, `Fixed`. Default is `Once`.
      */
     repeatMode?: pulumi.Input<string>;
     /**
@@ -230,7 +267,11 @@ export interface InvocationState {
      */
     startTime?: pulumi.Input<string>;
     /**
-     * The timeout of the ecs command. Valid value range: 10-600. When this field is not specified, use the value of the field with the same name in ecs command as the default value.
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.ecs.InvocationTag>[]>;
+    /**
+     * The timeout of the ecs command. Unit: seconds. Valid value range: 30~86400. Default is 60.
      */
     timeout?: pulumi.Input<number>;
     /**
@@ -272,15 +313,27 @@ export interface InvocationArgs {
      */
     launchTime?: pulumi.Input<string>;
     /**
+     * The custom parameters of the ecs command. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+     */
+    parameters?: pulumi.Input<pulumi.Input<inputs.ecs.InvocationParameter>[]>;
+    /**
+     * The project name of the ecs command.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
      * The recurrence end time of the ecs invocation. RFC3339 format. This field is valid and required when the value of the repeatMode field is `Rate`.
      */
     recurrenceEndTime?: pulumi.Input<string>;
     /**
-     * The repeat mode of the ecs invocation. Valid values: `Once`, `Rate`, `Fixed`.
+     * The repeat mode of the ecs invocation. Valid values: `Once`, `Rate`, `Fixed`. Default is `Once`.
      */
     repeatMode?: pulumi.Input<string>;
     /**
-     * The timeout of the ecs command. Valid value range: 10-600. When this field is not specified, use the value of the field with the same name in ecs command as the default value.
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.ecs.InvocationTag>[]>;
+    /**
+     * The timeout of the ecs command. Unit: seconds. Valid value range: 30~86400. Default is 60.
      */
     timeout?: pulumi.Input<number>;
     /**

@@ -187,6 +187,10 @@ export class Instance extends pulumi.CustomResource {
      */
     public readonly includeDataVolumes!: pulumi.Output<boolean | undefined>;
     /**
+     * Whether to install the Run Command Agent. Default is false. This field is only effective when creating a new instance.
+     */
+    public readonly installRunCommandAgent!: pulumi.Output<boolean | undefined>;
+    /**
      * The charge type of ECS instance, the value can be `PrePaid` or `PostPaid`.
      */
     public readonly instanceChargeType!: pulumi.Output<string>;
@@ -321,6 +325,10 @@ export class Instance extends pulumi.CustomResource {
      */
     public readonly userData!: pulumi.Output<string>;
     /**
+     * The volume ID list of ECS instance.
+     */
+    public /*out*/ readonly volumeIds!: pulumi.Output<string[]>;
+    /**
      * The VPC ID of ECS instance.
      */
     public /*out*/ readonly vpcId!: pulumi.Output<string>;
@@ -358,6 +366,7 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["hpcClusterId"] = state ? state.hpcClusterId : undefined;
             resourceInputs["imageId"] = state ? state.imageId : undefined;
             resourceInputs["includeDataVolumes"] = state ? state.includeDataVolumes : undefined;
+            resourceInputs["installRunCommandAgent"] = state ? state.installRunCommandAgent : undefined;
             resourceInputs["instanceChargeType"] = state ? state.instanceChargeType : undefined;
             resourceInputs["instanceId"] = state ? state.instanceId : undefined;
             resourceInputs["instanceName"] = state ? state.instanceName : undefined;
@@ -390,6 +399,7 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
             resourceInputs["userData"] = state ? state.userData : undefined;
+            resourceInputs["volumeIds"] = state ? state.volumeIds : undefined;
             resourceInputs["vpcId"] = state ? state.vpcId : undefined;
             resourceInputs["zoneId"] = state ? state.zoneId : undefined;
         } else {
@@ -424,6 +434,7 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["hpcClusterId"] = args ? args.hpcClusterId : undefined;
             resourceInputs["imageId"] = args ? args.imageId : undefined;
             resourceInputs["includeDataVolumes"] = args ? args.includeDataVolumes : undefined;
+            resourceInputs["installRunCommandAgent"] = args ? args.installRunCommandAgent : undefined;
             resourceInputs["instanceChargeType"] = args ? args.instanceChargeType : undefined;
             resourceInputs["instanceName"] = args ? args.instanceName : undefined;
             resourceInputs["instanceType"] = args ? args.instanceType : undefined;
@@ -461,6 +472,7 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["stoppedMode"] = undefined /*out*/;
             resourceInputs["systemVolumeId"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
+            resourceInputs["volumeIds"] = undefined /*out*/;
             resourceInputs["vpcId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -541,6 +553,10 @@ export interface InstanceState {
      * The include data volumes flag of ECS instance.Only effective when change instance charge type.include_data_volumes.
      */
     includeDataVolumes?: pulumi.Input<boolean>;
+    /**
+     * Whether to install the Run Command Agent. Default is false. This field is only effective when creating a new instance.
+     */
+    installRunCommandAgent?: pulumi.Input<boolean>;
     /**
      * The charge type of ECS instance, the value can be `PrePaid` or `PostPaid`.
      */
@@ -676,6 +692,10 @@ export interface InstanceState {
      */
     userData?: pulumi.Input<string>;
     /**
+     * The volume ID list of ECS instance.
+     */
+    volumeIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * The VPC ID of ECS instance.
      */
     vpcId?: pulumi.Input<string>;
@@ -740,6 +760,10 @@ export interface InstanceArgs {
      * The include data volumes flag of ECS instance.Only effective when change instance charge type.include_data_volumes.
      */
     includeDataVolumes?: pulumi.Input<boolean>;
+    /**
+     * Whether to install the Run Command Agent. Default is false. This field is only effective when creating a new instance.
+     */
+    installRunCommandAgent?: pulumi.Input<boolean>;
     /**
      * The charge type of ECS instance, the value can be `PrePaid` or `PostPaid`.
      */

@@ -138,6 +138,10 @@ namespace Pulumi.Volcengine.Vke.Outputs
         /// </summary>
         public readonly string Phase;
         /// <summary>
+        /// The PreScript of NodeConfig.
+        /// </summary>
+        public readonly string PreScript;
+        /// <summary>
         /// The Priority of AutoScaling.
         /// </summary>
         public readonly int Priority;
@@ -250,6 +254,8 @@ namespace Pulumi.Volcengine.Vke.Outputs
 
             string phase,
 
+            string preScript,
+
             int priority,
 
             string projectName,
@@ -305,6 +311,7 @@ namespace Pulumi.Volcengine.Vke.Outputs
             NodeStatistics = nodeStatistics;
             Period = period;
             Phase = phase;
+            PreScript = preScript;
             Priority = priority;
             ProjectName = projectName;
             SecurityGroupIds = securityGroupIds;

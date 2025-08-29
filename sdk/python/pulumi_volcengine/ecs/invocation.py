@@ -8,6 +8,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['InvocationArgs', 'Invocation']
 
@@ -21,8 +23,11 @@ class InvocationArgs:
                  frequency: Optional[pulumi.Input[str]] = None,
                  invocation_description: Optional[pulumi.Input[str]] = None,
                  launch_time: Optional[pulumi.Input[str]] = None,
+                 parameters: Optional[pulumi.Input[Sequence[pulumi.Input['InvocationParameterArgs']]]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  recurrence_end_time: Optional[pulumi.Input[str]] = None,
                  repeat_mode: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['InvocationTagArgs']]]] = None,
                  timeout: Optional[pulumi.Input[int]] = None,
                  working_dir: Optional[pulumi.Input[str]] = None):
         """
@@ -34,9 +39,12 @@ class InvocationArgs:
         :param pulumi.Input[str] frequency: The frequency of the ecs invocation. This field is valid and required when the value of the repeat_mode field is `Rate`.
         :param pulumi.Input[str] invocation_description: The description of the ecs invocation.
         :param pulumi.Input[str] launch_time: The launch time of the ecs invocation. RFC3339 format. This field is valid and required when the value of the repeat_mode field is `Rate` or `Fixed`.
+        :param pulumi.Input[Sequence[pulumi.Input['InvocationParameterArgs']]] parameters: The custom parameters of the ecs command. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        :param pulumi.Input[str] project_name: The project name of the ecs command.
         :param pulumi.Input[str] recurrence_end_time: The recurrence end time of the ecs invocation. RFC3339 format. This field is valid and required when the value of the repeat_mode field is `Rate`.
-        :param pulumi.Input[str] repeat_mode: The repeat mode of the ecs invocation. Valid values: `Once`, `Rate`, `Fixed`.
-        :param pulumi.Input[int] timeout: The timeout of the ecs command. Valid value range: 10-600. When this field is not specified, use the value of the field with the same name in ecs command as the default value.
+        :param pulumi.Input[str] repeat_mode: The repeat mode of the ecs invocation. Valid values: `Once`, `Rate`, `Fixed`. Default is `Once`.
+        :param pulumi.Input[Sequence[pulumi.Input['InvocationTagArgs']]] tags: Tags.
+        :param pulumi.Input[int] timeout: The timeout of the ecs command. Unit: seconds. Valid value range: 30~86400. Default is 60.
         :param pulumi.Input[str] working_dir: The working directory of the ecs invocation. When this field is not specified, use the value of the field with the same name in ecs command as the default value.
         """
         pulumi.set(__self__, "command_id", command_id)
@@ -49,10 +57,16 @@ class InvocationArgs:
             pulumi.set(__self__, "invocation_description", invocation_description)
         if launch_time is not None:
             pulumi.set(__self__, "launch_time", launch_time)
+        if parameters is not None:
+            pulumi.set(__self__, "parameters", parameters)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
         if recurrence_end_time is not None:
             pulumi.set(__self__, "recurrence_end_time", recurrence_end_time)
         if repeat_mode is not None:
             pulumi.set(__self__, "repeat_mode", repeat_mode)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if timeout is not None:
             pulumi.set(__self__, "timeout", timeout)
         if working_dir is not None:
@@ -143,6 +157,30 @@ class InvocationArgs:
         pulumi.set(self, "launch_time", value)
 
     @property
+    @pulumi.getter
+    def parameters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InvocationParameterArgs']]]]:
+        """
+        The custom parameters of the ecs command. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        """
+        return pulumi.get(self, "parameters")
+
+    @parameters.setter
+    def parameters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InvocationParameterArgs']]]]):
+        pulumi.set(self, "parameters", value)
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The project name of the ecs command.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
+    @property
     @pulumi.getter(name="recurrenceEndTime")
     def recurrence_end_time(self) -> Optional[pulumi.Input[str]]:
         """
@@ -158,7 +196,7 @@ class InvocationArgs:
     @pulumi.getter(name="repeatMode")
     def repeat_mode(self) -> Optional[pulumi.Input[str]]:
         """
-        The repeat mode of the ecs invocation. Valid values: `Once`, `Rate`, `Fixed`.
+        The repeat mode of the ecs invocation. Valid values: `Once`, `Rate`, `Fixed`. Default is `Once`.
         """
         return pulumi.get(self, "repeat_mode")
 
@@ -168,9 +206,21 @@ class InvocationArgs:
 
     @property
     @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InvocationTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InvocationTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
+    @pulumi.getter
     def timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        The timeout of the ecs command. Valid value range: 10-600. When this field is not specified, use the value of the field with the same name in ecs command as the default value.
+        The timeout of the ecs command. Unit: seconds. Valid value range: 30~86400. Default is 60.
         """
         return pulumi.get(self, "timeout")
 
@@ -202,9 +252,12 @@ class _InvocationState:
                  invocation_name: Optional[pulumi.Input[str]] = None,
                  invocation_status: Optional[pulumi.Input[str]] = None,
                  launch_time: Optional[pulumi.Input[str]] = None,
+                 parameters: Optional[pulumi.Input[Sequence[pulumi.Input['InvocationParameterArgs']]]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  recurrence_end_time: Optional[pulumi.Input[str]] = None,
                  repeat_mode: Optional[pulumi.Input[str]] = None,
                  start_time: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['InvocationTagArgs']]]] = None,
                  timeout: Optional[pulumi.Input[int]] = None,
                  username: Optional[pulumi.Input[str]] = None,
                  working_dir: Optional[pulumi.Input[str]] = None):
@@ -218,10 +271,13 @@ class _InvocationState:
         :param pulumi.Input[str] invocation_name: The name of the ecs invocation.
         :param pulumi.Input[str] invocation_status: The status of the ecs invocation.
         :param pulumi.Input[str] launch_time: The launch time of the ecs invocation. RFC3339 format. This field is valid and required when the value of the repeat_mode field is `Rate` or `Fixed`.
+        :param pulumi.Input[Sequence[pulumi.Input['InvocationParameterArgs']]] parameters: The custom parameters of the ecs command. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        :param pulumi.Input[str] project_name: The project name of the ecs command.
         :param pulumi.Input[str] recurrence_end_time: The recurrence end time of the ecs invocation. RFC3339 format. This field is valid and required when the value of the repeat_mode field is `Rate`.
-        :param pulumi.Input[str] repeat_mode: The repeat mode of the ecs invocation. Valid values: `Once`, `Rate`, `Fixed`.
+        :param pulumi.Input[str] repeat_mode: The repeat mode of the ecs invocation. Valid values: `Once`, `Rate`, `Fixed`. Default is `Once`.
         :param pulumi.Input[str] start_time: The start time of the ecs invocation.
-        :param pulumi.Input[int] timeout: The timeout of the ecs command. Valid value range: 10-600. When this field is not specified, use the value of the field with the same name in ecs command as the default value.
+        :param pulumi.Input[Sequence[pulumi.Input['InvocationTagArgs']]] tags: Tags.
+        :param pulumi.Input[int] timeout: The timeout of the ecs command. Unit: seconds. Valid value range: 30~86400. Default is 60.
         :param pulumi.Input[str] username: The username of the ecs command. When this field is not specified, use the value of the field with the same name in ecs command as the default value.
         :param pulumi.Input[str] working_dir: The working directory of the ecs invocation. When this field is not specified, use the value of the field with the same name in ecs command as the default value.
         """
@@ -241,12 +297,18 @@ class _InvocationState:
             pulumi.set(__self__, "invocation_status", invocation_status)
         if launch_time is not None:
             pulumi.set(__self__, "launch_time", launch_time)
+        if parameters is not None:
+            pulumi.set(__self__, "parameters", parameters)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
         if recurrence_end_time is not None:
             pulumi.set(__self__, "recurrence_end_time", recurrence_end_time)
         if repeat_mode is not None:
             pulumi.set(__self__, "repeat_mode", repeat_mode)
         if start_time is not None:
             pulumi.set(__self__, "start_time", start_time)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if timeout is not None:
             pulumi.set(__self__, "timeout", timeout)
         if username is not None:
@@ -351,6 +413,30 @@ class _InvocationState:
         pulumi.set(self, "launch_time", value)
 
     @property
+    @pulumi.getter
+    def parameters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InvocationParameterArgs']]]]:
+        """
+        The custom parameters of the ecs command. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        """
+        return pulumi.get(self, "parameters")
+
+    @parameters.setter
+    def parameters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InvocationParameterArgs']]]]):
+        pulumi.set(self, "parameters", value)
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The project name of the ecs command.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
+    @property
     @pulumi.getter(name="recurrenceEndTime")
     def recurrence_end_time(self) -> Optional[pulumi.Input[str]]:
         """
@@ -366,7 +452,7 @@ class _InvocationState:
     @pulumi.getter(name="repeatMode")
     def repeat_mode(self) -> Optional[pulumi.Input[str]]:
         """
-        The repeat mode of the ecs invocation. Valid values: `Once`, `Rate`, `Fixed`.
+        The repeat mode of the ecs invocation. Valid values: `Once`, `Rate`, `Fixed`. Default is `Once`.
         """
         return pulumi.get(self, "repeat_mode")
 
@@ -388,9 +474,21 @@ class _InvocationState:
 
     @property
     @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InvocationTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InvocationTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
+    @pulumi.getter
     def timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        The timeout of the ecs command. Valid value range: 10-600. When this field is not specified, use the value of the field with the same name in ecs command as the default value.
+        The timeout of the ecs command. Unit: seconds. Valid value range: 30~86400. Default is 60.
         """
         return pulumi.get(self, "timeout")
 
@@ -434,8 +532,11 @@ class Invocation(pulumi.CustomResource):
                  invocation_description: Optional[pulumi.Input[str]] = None,
                  invocation_name: Optional[pulumi.Input[str]] = None,
                  launch_time: Optional[pulumi.Input[str]] = None,
+                 parameters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InvocationParameterArgs']]]]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  recurrence_end_time: Optional[pulumi.Input[str]] = None,
                  repeat_mode: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InvocationTagArgs']]]]] = None,
                  timeout: Optional[pulumi.Input[int]] = None,
                  username: Optional[pulumi.Input[str]] = None,
                  working_dir: Optional[pulumi.Input[str]] = None,
@@ -455,8 +556,17 @@ class Invocation(pulumi.CustomResource):
             invocation_description="tf",
             invocation_name="tf-test",
             launch_time="2023-06-20T09:48:00Z",
+            parameters=[volcengine.ecs.InvocationParameterArgs(
+                name="test_str",
+                value="tf",
+            )],
+            project_name="default",
             recurrence_end_time="2023-06-20T09:59:00Z",
             repeat_mode="Rate",
+            tags=[volcengine.ecs.InvocationTagArgs(
+                key="k1",
+                value="v1",
+            )],
             timeout=90,
             username="root",
             working_dir="/home")
@@ -478,9 +588,12 @@ class Invocation(pulumi.CustomResource):
         :param pulumi.Input[str] invocation_description: The description of the ecs invocation.
         :param pulumi.Input[str] invocation_name: The name of the ecs invocation.
         :param pulumi.Input[str] launch_time: The launch time of the ecs invocation. RFC3339 format. This field is valid and required when the value of the repeat_mode field is `Rate` or `Fixed`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InvocationParameterArgs']]]] parameters: The custom parameters of the ecs command. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        :param pulumi.Input[str] project_name: The project name of the ecs command.
         :param pulumi.Input[str] recurrence_end_time: The recurrence end time of the ecs invocation. RFC3339 format. This field is valid and required when the value of the repeat_mode field is `Rate`.
-        :param pulumi.Input[str] repeat_mode: The repeat mode of the ecs invocation. Valid values: `Once`, `Rate`, `Fixed`.
-        :param pulumi.Input[int] timeout: The timeout of the ecs command. Valid value range: 10-600. When this field is not specified, use the value of the field with the same name in ecs command as the default value.
+        :param pulumi.Input[str] repeat_mode: The repeat mode of the ecs invocation. Valid values: `Once`, `Rate`, `Fixed`. Default is `Once`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InvocationTagArgs']]]] tags: Tags.
+        :param pulumi.Input[int] timeout: The timeout of the ecs command. Unit: seconds. Valid value range: 30~86400. Default is 60.
         :param pulumi.Input[str] username: The username of the ecs command. When this field is not specified, use the value of the field with the same name in ecs command as the default value.
         :param pulumi.Input[str] working_dir: The working directory of the ecs invocation. When this field is not specified, use the value of the field with the same name in ecs command as the default value.
         """
@@ -505,8 +618,17 @@ class Invocation(pulumi.CustomResource):
             invocation_description="tf",
             invocation_name="tf-test",
             launch_time="2023-06-20T09:48:00Z",
+            parameters=[volcengine.ecs.InvocationParameterArgs(
+                name="test_str",
+                value="tf",
+            )],
+            project_name="default",
             recurrence_end_time="2023-06-20T09:59:00Z",
             repeat_mode="Rate",
+            tags=[volcengine.ecs.InvocationTagArgs(
+                key="k1",
+                value="v1",
+            )],
             timeout=90,
             username="root",
             working_dir="/home")
@@ -541,8 +663,11 @@ class Invocation(pulumi.CustomResource):
                  invocation_description: Optional[pulumi.Input[str]] = None,
                  invocation_name: Optional[pulumi.Input[str]] = None,
                  launch_time: Optional[pulumi.Input[str]] = None,
+                 parameters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InvocationParameterArgs']]]]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  recurrence_end_time: Optional[pulumi.Input[str]] = None,
                  repeat_mode: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InvocationTagArgs']]]]] = None,
                  timeout: Optional[pulumi.Input[int]] = None,
                  username: Optional[pulumi.Input[str]] = None,
                  working_dir: Optional[pulumi.Input[str]] = None,
@@ -567,8 +692,11 @@ class Invocation(pulumi.CustomResource):
                 raise TypeError("Missing required property 'invocation_name'")
             __props__.__dict__["invocation_name"] = invocation_name
             __props__.__dict__["launch_time"] = launch_time
+            __props__.__dict__["parameters"] = parameters
+            __props__.__dict__["project_name"] = project_name
             __props__.__dict__["recurrence_end_time"] = recurrence_end_time
             __props__.__dict__["repeat_mode"] = repeat_mode
+            __props__.__dict__["tags"] = tags
             __props__.__dict__["timeout"] = timeout
             if username is None and not opts.urn:
                 raise TypeError("Missing required property 'username'")
@@ -595,9 +723,12 @@ class Invocation(pulumi.CustomResource):
             invocation_name: Optional[pulumi.Input[str]] = None,
             invocation_status: Optional[pulumi.Input[str]] = None,
             launch_time: Optional[pulumi.Input[str]] = None,
+            parameters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InvocationParameterArgs']]]]] = None,
+            project_name: Optional[pulumi.Input[str]] = None,
             recurrence_end_time: Optional[pulumi.Input[str]] = None,
             repeat_mode: Optional[pulumi.Input[str]] = None,
             start_time: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InvocationTagArgs']]]]] = None,
             timeout: Optional[pulumi.Input[int]] = None,
             username: Optional[pulumi.Input[str]] = None,
             working_dir: Optional[pulumi.Input[str]] = None) -> 'Invocation':
@@ -616,10 +747,13 @@ class Invocation(pulumi.CustomResource):
         :param pulumi.Input[str] invocation_name: The name of the ecs invocation.
         :param pulumi.Input[str] invocation_status: The status of the ecs invocation.
         :param pulumi.Input[str] launch_time: The launch time of the ecs invocation. RFC3339 format. This field is valid and required when the value of the repeat_mode field is `Rate` or `Fixed`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InvocationParameterArgs']]]] parameters: The custom parameters of the ecs command. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        :param pulumi.Input[str] project_name: The project name of the ecs command.
         :param pulumi.Input[str] recurrence_end_time: The recurrence end time of the ecs invocation. RFC3339 format. This field is valid and required when the value of the repeat_mode field is `Rate`.
-        :param pulumi.Input[str] repeat_mode: The repeat mode of the ecs invocation. Valid values: `Once`, `Rate`, `Fixed`.
+        :param pulumi.Input[str] repeat_mode: The repeat mode of the ecs invocation. Valid values: `Once`, `Rate`, `Fixed`. Default is `Once`.
         :param pulumi.Input[str] start_time: The start time of the ecs invocation.
-        :param pulumi.Input[int] timeout: The timeout of the ecs command. Valid value range: 10-600. When this field is not specified, use the value of the field with the same name in ecs command as the default value.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InvocationTagArgs']]]] tags: Tags.
+        :param pulumi.Input[int] timeout: The timeout of the ecs command. Unit: seconds. Valid value range: 30~86400. Default is 60.
         :param pulumi.Input[str] username: The username of the ecs command. When this field is not specified, use the value of the field with the same name in ecs command as the default value.
         :param pulumi.Input[str] working_dir: The working directory of the ecs invocation. When this field is not specified, use the value of the field with the same name in ecs command as the default value.
         """
@@ -635,9 +769,12 @@ class Invocation(pulumi.CustomResource):
         __props__.__dict__["invocation_name"] = invocation_name
         __props__.__dict__["invocation_status"] = invocation_status
         __props__.__dict__["launch_time"] = launch_time
+        __props__.__dict__["parameters"] = parameters
+        __props__.__dict__["project_name"] = project_name
         __props__.__dict__["recurrence_end_time"] = recurrence_end_time
         __props__.__dict__["repeat_mode"] = repeat_mode
         __props__.__dict__["start_time"] = start_time
+        __props__.__dict__["tags"] = tags
         __props__.__dict__["timeout"] = timeout
         __props__.__dict__["username"] = username
         __props__.__dict__["working_dir"] = working_dir
@@ -708,6 +845,22 @@ class Invocation(pulumi.CustomResource):
         return pulumi.get(self, "launch_time")
 
     @property
+    @pulumi.getter
+    def parameters(self) -> pulumi.Output[Optional[Sequence['outputs.InvocationParameter']]]:
+        """
+        The custom parameters of the ecs command. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        """
+        return pulumi.get(self, "parameters")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> pulumi.Output[str]:
+        """
+        The project name of the ecs command.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
     @pulumi.getter(name="recurrenceEndTime")
     def recurrence_end_time(self) -> pulumi.Output[Optional[str]]:
         """
@@ -719,7 +872,7 @@ class Invocation(pulumi.CustomResource):
     @pulumi.getter(name="repeatMode")
     def repeat_mode(self) -> pulumi.Output[Optional[str]]:
         """
-        The repeat mode of the ecs invocation. Valid values: `Once`, `Rate`, `Fixed`.
+        The repeat mode of the ecs invocation. Valid values: `Once`, `Rate`, `Fixed`. Default is `Once`.
         """
         return pulumi.get(self, "repeat_mode")
 
@@ -733,9 +886,17 @@ class Invocation(pulumi.CustomResource):
 
     @property
     @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.InvocationTag']]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter
     def timeout(self) -> pulumi.Output[int]:
         """
-        The timeout of the ecs command. Valid value range: 10-600. When this field is not specified, use the value of the field with the same name in ecs command as the default value.
+        The timeout of the ecs command. Unit: seconds. Valid value range: 30~86400. Default is 60.
         """
         return pulumi.get(self, "timeout")
 

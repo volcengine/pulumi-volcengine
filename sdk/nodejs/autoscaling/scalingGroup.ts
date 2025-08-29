@@ -112,6 +112,10 @@ export class ScalingGroup extends pulumi.CustomResource {
      */
     public /*out*/ readonly healthCheckType!: pulumi.Output<string>;
     /**
+     * Whether to ignore failed ASG scaling activities while waiting for capacity. Default is false.
+     */
+    public readonly ignoreFailedScalingActivities!: pulumi.Output<boolean | undefined>;
+    /**
      * The instance terminate policy of the scaling group. Valid values: OldestInstance, NewestInstance, OldestScalingConfigurationWithOldestInstance, OldestScalingConfigurationWithNewestInstance. Default value: OldestScalingConfigurationWithOldestInstance.
      */
     public readonly instanceTerminatePolicy!: pulumi.Output<string>;
@@ -193,6 +197,10 @@ export class ScalingGroup extends pulumi.CustomResource {
      * The VPC id of the scaling group.
      */
     public /*out*/ readonly vpcId!: pulumi.Output<string>;
+    /**
+     * Maximum duration that Provider should wait for ASG instances to be InService before timing out. Setting this to "0" causes Provider to skip all Capacity Waiting behavior. Default is "0".
+     */
+    public readonly waitForCapacityTimeout!: pulumi.Output<string | undefined>;
 
     /**
      * Create a ScalingGroup resource with the given unique name, arguments, and options.
@@ -213,6 +221,7 @@ export class ScalingGroup extends pulumi.CustomResource {
             resourceInputs["defaultCooldown"] = state ? state.defaultCooldown : undefined;
             resourceInputs["desireInstanceNumber"] = state ? state.desireInstanceNumber : undefined;
             resourceInputs["healthCheckType"] = state ? state.healthCheckType : undefined;
+            resourceInputs["ignoreFailedScalingActivities"] = state ? state.ignoreFailedScalingActivities : undefined;
             resourceInputs["instanceTerminatePolicy"] = state ? state.instanceTerminatePolicy : undefined;
             resourceInputs["launchTemplateId"] = state ? state.launchTemplateId : undefined;
             resourceInputs["launchTemplateOverrides"] = state ? state.launchTemplateOverrides : undefined;
@@ -233,6 +242,7 @@ export class ScalingGroup extends pulumi.CustomResource {
             resourceInputs["totalInstanceCount"] = state ? state.totalInstanceCount : undefined;
             resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
             resourceInputs["vpcId"] = state ? state.vpcId : undefined;
+            resourceInputs["waitForCapacityTimeout"] = state ? state.waitForCapacityTimeout : undefined;
         } else {
             const args = argsOrState as ScalingGroupArgs | undefined;
             if ((!args || args.maxInstanceNumber === undefined) && !opts.urn) {
@@ -250,6 +260,7 @@ export class ScalingGroup extends pulumi.CustomResource {
             resourceInputs["dbInstanceIds"] = args ? args.dbInstanceIds : undefined;
             resourceInputs["defaultCooldown"] = args ? args.defaultCooldown : undefined;
             resourceInputs["desireInstanceNumber"] = args ? args.desireInstanceNumber : undefined;
+            resourceInputs["ignoreFailedScalingActivities"] = args ? args.ignoreFailedScalingActivities : undefined;
             resourceInputs["instanceTerminatePolicy"] = args ? args.instanceTerminatePolicy : undefined;
             resourceInputs["launchTemplateId"] = args ? args.launchTemplateId : undefined;
             resourceInputs["launchTemplateOverrides"] = args ? args.launchTemplateOverrides : undefined;
@@ -263,6 +274,7 @@ export class ScalingGroup extends pulumi.CustomResource {
             resourceInputs["serverGroupAttributes"] = args ? args.serverGroupAttributes : undefined;
             resourceInputs["subnetIds"] = args ? args.subnetIds : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
+            resourceInputs["waitForCapacityTimeout"] = args ? args.waitForCapacityTimeout : undefined;
             resourceInputs["activeScalingConfigurationId"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["healthCheckType"] = undefined /*out*/;
@@ -307,6 +319,10 @@ export interface ScalingGroupState {
      * The health check type of the scaling group.
      */
     healthCheckType?: pulumi.Input<string>;
+    /**
+     * Whether to ignore failed ASG scaling activities while waiting for capacity. Default is false.
+     */
+    ignoreFailedScalingActivities?: pulumi.Input<boolean>;
     /**
      * The instance terminate policy of the scaling group. Valid values: OldestInstance, NewestInstance, OldestScalingConfigurationWithOldestInstance, OldestScalingConfigurationWithNewestInstance. Default value: OldestScalingConfigurationWithOldestInstance.
      */
@@ -389,6 +405,10 @@ export interface ScalingGroupState {
      * The VPC id of the scaling group.
      */
     vpcId?: pulumi.Input<string>;
+    /**
+     * Maximum duration that Provider should wait for ASG instances to be InService before timing out. Setting this to "0" causes Provider to skip all Capacity Waiting behavior. Default is "0".
+     */
+    waitForCapacityTimeout?: pulumi.Input<string>;
 }
 
 /**
@@ -407,6 +427,10 @@ export interface ScalingGroupArgs {
      * The desire instance number of the scaling group.
      */
     desireInstanceNumber?: pulumi.Input<number>;
+    /**
+     * Whether to ignore failed ASG scaling activities while waiting for capacity. Default is false.
+     */
+    ignoreFailedScalingActivities?: pulumi.Input<boolean>;
     /**
      * The instance terminate policy of the scaling group. Valid values: OldestInstance, NewestInstance, OldestScalingConfigurationWithOldestInstance, OldestScalingConfigurationWithNewestInstance. Default value: OldestScalingConfigurationWithOldestInstance.
      */
@@ -461,4 +485,8 @@ export interface ScalingGroupArgs {
      * Tags.
      */
     tags?: pulumi.Input<pulumi.Input<inputs.autoscaling.ScalingGroupTag>[]>;
+    /**
+     * Maximum duration that Provider should wait for ASG instances to be InService before timing out. Setting this to "0" causes Provider to skip all Capacity Waiting behavior. Default is "0".
+     */
+    waitForCapacityTimeout?: pulumi.Input<string>;
 }
