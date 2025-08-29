@@ -2527,6 +2527,100 @@ export namespace ebs {
 }
 
 export namespace ecs {
+    export interface CommandParameterDefinition {
+        /**
+         * The decimal precision of the custom parameter. This field is required when the parameter type is `Digit`.
+         */
+        decimalPrecision?: pulumi.Input<number>;
+        /**
+         * The default value of the custom parameter.
+         */
+        defaultValue?: pulumi.Input<string>;
+        /**
+         * The maximum length of the custom parameter. This field is required when the parameter type is `String`.
+         */
+        maxLength?: pulumi.Input<number>;
+        /**
+         * The maximum value of the custom parameter. This field is required when the parameter type is `Digit`.
+         */
+        maxValue?: pulumi.Input<string>;
+        /**
+         * The minimum length of the custom parameter. This field is required when the parameter type is `String`.
+         */
+        minLength?: pulumi.Input<number>;
+        /**
+         * The minimum value of the custom parameter. This field is required when the parameter type is `Digit`.
+         */
+        minValue?: pulumi.Input<string>;
+        /**
+         * The name of the custom parameter.
+         */
+        name: pulumi.Input<string>;
+        /**
+         * Whether the custom parameter is required.
+         */
+        required?: pulumi.Input<boolean>;
+        /**
+         * The type of the custom parameter. Valid values: `String`, `Digit`.
+         */
+        type: pulumi.Input<string>;
+    }
+
+    export interface CommandTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface CommandsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface CommandsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetCommandsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetCommandsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
     export interface GetImagesTag {
         /**
          * The Key of Tags.
@@ -2561,6 +2655,28 @@ export namespace ecs {
     }
 
     export interface GetInstancesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetInvocationsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetInvocationsTagArgs {
         /**
          * The Key of Tags.
          */
@@ -2717,6 +2833,50 @@ export namespace ecs {
     }
 
     export interface InstancesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface InvocationParameter {
+        /**
+         * The name of the parameter.
+         */
+        name: pulumi.Input<string>;
+        /**
+         * The value of the parameter.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface InvocationTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface InvocationsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface InvocationsTagArgs {
         /**
          * The Key of Tags.
          */
@@ -6185,6 +6345,55 @@ export namespace tos {
         permission: pulumi.Input<string>;
     }
 
+    export interface BucketCorsCorsRule {
+        /**
+         * The list of headers that are allowed in a preflight request.
+         */
+        allowedHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The list of HTTP methods that are allowed in a preflight request. Valid values: `PUT`, `POST`, `DELETE`, `GET`, `HEAD`.
+         */
+        allowedMethods: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The list of origins that are allowed to make requests to the bucket.
+         */
+        allowedOrigins: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The list of headers that are exposed in the response to a preflight request. It is recommended to add two expose headers, X-Tos-Request-Id and ETag.
+         */
+        exposeHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The maximum amount of time that a preflight request can be cached. Unit: second. Default value: 3600.
+         */
+        maxAgeSeconds?: pulumi.Input<number>;
+        /**
+         * Indicates whether the bucket returns the 'Vary: Origin' header in the response to preflight requests. Default value: false.
+         */
+        responseVary?: pulumi.Input<boolean>;
+    }
+
+    export interface BucketEncryptionRule {
+        /**
+         * The server side encryption configuration.
+         */
+        applyServerSideEncryptionByDefault: pulumi.Input<inputs.tos.BucketEncryptionRuleApplyServerSideEncryptionByDefault>;
+    }
+
+    export interface BucketEncryptionRuleApplyServerSideEncryptionByDefault {
+        /**
+         * The kms data encryption. Valid values: `AES256`, `SM4`. Default is `AES256`.
+         */
+        kmsDataEncryption?: pulumi.Input<string>;
+        /**
+         * The kms master key id. This field is required when `sseAlgorithm` is `kms`. The format is `trn:kms:<region>:<accountID>:keyrings/<keyring>/keys/<key>`.
+         */
+        kmsMasterKeyId?: pulumi.Input<string>;
+        /**
+         * The server side encryption algorithm. Valid values: `kms`, `AES256`, `SM4`.
+         */
+        sseAlgorithm: pulumi.Input<string>;
+    }
+
     export interface BucketInventoryDestination {
         /**
          * The destination tos bucket information of the bucket inventory.
@@ -6234,6 +6443,64 @@ export namespace tos {
          * The export schedule of the bucket inventory. Valid values: `Daily`, `Weekly`.
          */
         frequency: pulumi.Input<string>;
+    }
+
+    export interface BucketNotificationRules {
+        /**
+         * The destination info of the notification.
+         */
+        destination: pulumi.Input<inputs.tos.BucketNotificationRulesDestination>;
+        /**
+         * The event type of the notification.
+         */
+        events: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The filter of the notification.
+         */
+        filter?: pulumi.Input<inputs.tos.BucketNotificationRulesFilter>;
+        /**
+         * The rule name of the notification.
+         */
+        ruleId: pulumi.Input<string>;
+    }
+
+    export interface BucketNotificationRulesDestination {
+        /**
+         * The VeFaas info of the destination.
+         */
+        veFaas?: pulumi.Input<pulumi.Input<inputs.tos.BucketNotificationRulesDestinationVeFaa>[]>;
+    }
+
+    export interface BucketNotificationRulesDestinationVeFaa {
+        /**
+         * The function id of the destination.
+         */
+        functionId: pulumi.Input<string>;
+    }
+
+    export interface BucketNotificationRulesFilter {
+        /**
+         * The tos filter of the notification.
+         */
+        tosKey?: pulumi.Input<inputs.tos.BucketNotificationRulesFilterTosKey>;
+    }
+
+    export interface BucketNotificationRulesFilterTosKey {
+        /**
+         * The filter rules of the notification.
+         */
+        filterRules?: pulumi.Input<pulumi.Input<inputs.tos.BucketNotificationRulesFilterTosKeyFilterRule>[]>;
+    }
+
+    export interface BucketNotificationRulesFilterTosKeyFilterRule {
+        /**
+         * The name of the filter rule. Valid values: `prefix`, `suffix`.
+         */
+        name?: pulumi.Input<string>;
+        /**
+         * The value of the filter rule.
+         */
+        value?: pulumi.Input<string>;
     }
 
     export interface BucketObjectAccountAcl {
@@ -8252,6 +8519,10 @@ export namespace vke {
          */
         namePrefix?: pulumi.Input<string>;
         /**
+         * The PreScript of NodeConfig.
+         */
+        preScript?: pulumi.Input<string>;
+        /**
          * The Security of NodeConfig.
          */
         securities?: pulumi.Input<pulumi.Input<inputs.vke.DefaultNodePoolBatchAttachNodeConfigSecurity>[]>;
@@ -8394,6 +8665,10 @@ export namespace vke {
          * The NamePrefix of NodeConfig.
          */
         namePrefix?: pulumi.Input<string>;
+        /**
+         * The PreScript of NodeConfig.
+         */
+        preScript?: pulumi.Input<string>;
         /**
          * The Security of NodeConfig.
          */
@@ -8772,6 +9047,10 @@ export namespace vke {
          * The Period of PrePaid instance of NodeConfig. Valid values: 1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 24, 36. Unit: month. when InstanceChargeType is PrePaid, default value is 12.
          */
         period?: pulumi.Input<number>;
+        /**
+         * The PreScript of NodeConfig.
+         */
+        preScript?: pulumi.Input<string>;
         /**
          * The project name of the ecs instance.
          */

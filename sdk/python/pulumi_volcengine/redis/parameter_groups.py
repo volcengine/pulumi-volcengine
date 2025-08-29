@@ -120,6 +120,15 @@ def parameter_groups(engine_version: Optional[str] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableParameterGroupsResult:
     """
     Use this data source to query detailed information of redis parameter groups
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_volcengine as volcengine
+
+    foo = volcengine.redis.get_parameter_groups(engine_version="5.0",
+        source="User")
+    ```
 
 
     :param str engine_version: The Redis database version applicable to the parameter template.
@@ -154,6 +163,15 @@ def parameter_groups_output(engine_version: Optional[pulumi.Input[Optional[str]]
                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ParameterGroupsResult]:
     """
     Use this data source to query detailed information of redis parameter groups
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_volcengine as volcengine
+
+    foo = volcengine.redis.get_parameter_groups(engine_version="5.0",
+        source="User")
+    ```
 
 
     :param str engine_version: The Redis database version applicable to the parameter template.

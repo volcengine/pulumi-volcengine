@@ -899,11 +899,13 @@ class DefaultNodePoolBatchAttachNodeConfigArgs:
                  ecs_tags: Optional[pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolBatchAttachNodeConfigEcsTagArgs']]]] = None,
                  initialize_script: Optional[pulumi.Input[str]] = None,
                  name_prefix: Optional[pulumi.Input[str]] = None,
+                 pre_script: Optional[pulumi.Input[str]] = None,
                  securities: Optional[pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolBatchAttachNodeConfigSecurityArgs']]]] = None):
         """
         :param pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolBatchAttachNodeConfigEcsTagArgs']]] ecs_tags: Tags for Ecs.
         :param pulumi.Input[str] initialize_script: The initializeScript of NodeConfig.
         :param pulumi.Input[str] name_prefix: The NamePrefix of NodeConfig.
+        :param pulumi.Input[str] pre_script: The PreScript of NodeConfig.
         :param pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolBatchAttachNodeConfigSecurityArgs']]] securities: The Security of NodeConfig.
         """
         if ecs_tags is not None:
@@ -912,6 +914,8 @@ class DefaultNodePoolBatchAttachNodeConfigArgs:
             pulumi.set(__self__, "initialize_script", initialize_script)
         if name_prefix is not None:
             pulumi.set(__self__, "name_prefix", name_prefix)
+        if pre_script is not None:
+            pulumi.set(__self__, "pre_script", pre_script)
         if securities is not None:
             pulumi.set(__self__, "securities", securities)
 
@@ -950,6 +954,18 @@ class DefaultNodePoolBatchAttachNodeConfigArgs:
     @name_prefix.setter
     def name_prefix(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name_prefix", value)
+
+    @property
+    @pulumi.getter(name="preScript")
+    def pre_script(self) -> Optional[pulumi.Input[str]]:
+        """
+        The PreScript of NodeConfig.
+        """
+        return pulumi.get(self, "pre_script")
+
+    @pre_script.setter
+    def pre_script(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pre_script", value)
 
     @property
     @pulumi.getter
@@ -1424,12 +1440,14 @@ class DefaultNodePoolNodeConfigArgs:
                  security: pulumi.Input['DefaultNodePoolNodeConfigSecurityArgs'],
                  ecs_tags: Optional[pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolNodeConfigEcsTagArgs']]]] = None,
                  initialize_script: Optional[pulumi.Input[str]] = None,
-                 name_prefix: Optional[pulumi.Input[str]] = None):
+                 name_prefix: Optional[pulumi.Input[str]] = None,
+                 pre_script: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input['DefaultNodePoolNodeConfigSecurityArgs'] security: The Security of NodeConfig.
         :param pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolNodeConfigEcsTagArgs']]] ecs_tags: Tags for Ecs.
         :param pulumi.Input[str] initialize_script: The initializeScript of NodeConfig.
         :param pulumi.Input[str] name_prefix: The NamePrefix of NodeConfig.
+        :param pulumi.Input[str] pre_script: The PreScript of NodeConfig.
         """
         pulumi.set(__self__, "security", security)
         if ecs_tags is not None:
@@ -1438,6 +1456,8 @@ class DefaultNodePoolNodeConfigArgs:
             pulumi.set(__self__, "initialize_script", initialize_script)
         if name_prefix is not None:
             pulumi.set(__self__, "name_prefix", name_prefix)
+        if pre_script is not None:
+            pulumi.set(__self__, "pre_script", pre_script)
 
     @property
     @pulumi.getter
@@ -1486,6 +1506,18 @@ class DefaultNodePoolNodeConfigArgs:
     @name_prefix.setter
     def name_prefix(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name_prefix", value)
+
+    @property
+    @pulumi.getter(name="preScript")
+    def pre_script(self) -> Optional[pulumi.Input[str]]:
+        """
+        The PreScript of NodeConfig.
+        """
+        return pulumi.get(self, "pre_script")
+
+    @pre_script.setter
+    def pre_script(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pre_script", value)
 
 
 @pulumi.input_type
@@ -2198,6 +2230,7 @@ class NodePoolNodeConfigArgs:
                  instance_charge_type: Optional[pulumi.Input[str]] = None,
                  name_prefix: Optional[pulumi.Input[str]] = None,
                  period: Optional[pulumi.Input[int]] = None,
+                 pre_script: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  system_volume: Optional[pulumi.Input['NodePoolNodeConfigSystemVolumeArgs']] = None):
         """
@@ -2215,6 +2248,7 @@ class NodePoolNodeConfigArgs:
         :param pulumi.Input[str] instance_charge_type: The InstanceChargeType of PrePaid instance of NodeConfig. Valid values: PostPaid, PrePaid. Default value: PostPaid.
         :param pulumi.Input[str] name_prefix: The NamePrefix of NodeConfig.
         :param pulumi.Input[int] period: The Period of PrePaid instance of NodeConfig. Valid values: 1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 24, 36. Unit: month. when InstanceChargeType is PrePaid, default value is 12.
+        :param pulumi.Input[str] pre_script: The PreScript of NodeConfig.
         :param pulumi.Input[str] project_name: The project name of the ecs instance.
         :param pulumi.Input['NodePoolNodeConfigSystemVolumeArgs'] system_volume: The SystemVolume of NodeConfig.
         """
@@ -2243,6 +2277,8 @@ class NodePoolNodeConfigArgs:
             pulumi.set(__self__, "name_prefix", name_prefix)
         if period is not None:
             pulumi.set(__self__, "period", period)
+        if pre_script is not None:
+            pulumi.set(__self__, "pre_script", pre_script)
         if project_name is not None:
             pulumi.set(__self__, "project_name", project_name)
         if system_volume is not None:
@@ -2415,6 +2451,18 @@ class NodePoolNodeConfigArgs:
     @period.setter
     def period(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "period", value)
+
+    @property
+    @pulumi.getter(name="preScript")
+    def pre_script(self) -> Optional[pulumi.Input[str]]:
+        """
+        The PreScript of NodeConfig.
+        """
+        return pulumi.get(self, "pre_script")
+
+    @pre_script.setter
+    def pre_script(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pre_script", value)
 
     @property
     @pulumi.getter(name="projectName")

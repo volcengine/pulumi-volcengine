@@ -248,6 +248,8 @@ type Node struct {
 	KubernetesConfig NodeKubernetesConfigOutput `pulumi:"kubernetesConfig"`
 	// The node pool id. This field is used to specify the custom node pool to which you want to add nodes. If not filled in, it means added to the default node pool.
 	NodePoolId pulumi.StringOutput `pulumi:"nodePoolId"`
+	// The PreScript of Node. This field is valid only when adding an existing instance to the default node pool.
+	PreScript pulumi.StringOutput `pulumi:"preScript"`
 }
 
 // NewNode registers a new resource with the given unique name, arguments, and options.
@@ -306,6 +308,8 @@ type nodeState struct {
 	KubernetesConfig *NodeKubernetesConfig `pulumi:"kubernetesConfig"`
 	// The node pool id. This field is used to specify the custom node pool to which you want to add nodes. If not filled in, it means added to the default node pool.
 	NodePoolId *string `pulumi:"nodePoolId"`
+	// The PreScript of Node. This field is valid only when adding an existing instance to the default node pool.
+	PreScript *string `pulumi:"preScript"`
 }
 
 type NodeState struct {
@@ -329,6 +333,8 @@ type NodeState struct {
 	KubernetesConfig NodeKubernetesConfigPtrInput
 	// The node pool id. This field is used to specify the custom node pool to which you want to add nodes. If not filled in, it means added to the default node pool.
 	NodePoolId pulumi.StringPtrInput
+	// The PreScript of Node. This field is valid only when adding an existing instance to the default node pool.
+	PreScript pulumi.StringPtrInput
 }
 
 func (NodeState) ElementType() reflect.Type {
@@ -356,6 +362,8 @@ type nodeArgs struct {
 	KubernetesConfig *NodeKubernetesConfig `pulumi:"kubernetesConfig"`
 	// The node pool id. This field is used to specify the custom node pool to which you want to add nodes. If not filled in, it means added to the default node pool.
 	NodePoolId *string `pulumi:"nodePoolId"`
+	// The PreScript of Node. This field is valid only when adding an existing instance to the default node pool.
+	PreScript *string `pulumi:"preScript"`
 }
 
 // The set of arguments for constructing a Node resource.
@@ -380,6 +388,8 @@ type NodeArgs struct {
 	KubernetesConfig NodeKubernetesConfigPtrInput
 	// The node pool id. This field is used to specify the custom node pool to which you want to add nodes. If not filled in, it means added to the default node pool.
 	NodePoolId pulumi.StringPtrInput
+	// The PreScript of Node. This field is valid only when adding an existing instance to the default node pool.
+	PreScript pulumi.StringPtrInput
 }
 
 func (NodeArgs) ElementType() reflect.Type {
@@ -517,6 +527,11 @@ func (o NodeOutput) KubernetesConfig() NodeKubernetesConfigOutput {
 // The node pool id. This field is used to specify the custom node pool to which you want to add nodes. If not filled in, it means added to the default node pool.
 func (o NodeOutput) NodePoolId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Node) pulumi.StringOutput { return v.NodePoolId }).(pulumi.StringOutput)
+}
+
+// The PreScript of Node. This field is valid only when adding an existing instance to the default node pool.
+func (o NodeOutput) PreScript() pulumi.StringOutput {
+	return o.ApplyT(func(v *Node) pulumi.StringOutput { return v.PreScript }).(pulumi.StringOutput)
 }
 
 type NodeArrayOutput struct{ *pulumi.OutputState }

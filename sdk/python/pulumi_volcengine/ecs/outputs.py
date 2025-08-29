@@ -14,7 +14,12 @@ __all__ = [
     'AvailableResourcesAvailableZoneResult',
     'AvailableResourcesAvailableZoneAvailableResourceResult',
     'AvailableResourcesAvailableZoneAvailableResourceSupportedResourceResult',
+    'CommandParameterDefinition',
+    'CommandTag',
     'CommandsCommandResult',
+    'CommandsCommandParameterDefinitionResult',
+    'CommandsCommandTagResult',
+    'CommandsTagResult',
     'DeploymentSetsDeploymentSetResult',
     'HpcClustersHpcClusterResult',
     'ImageImportTag',
@@ -40,13 +45,18 @@ __all__ = [
     'InstanceTypesInstanceTypeRdmaResult',
     'InstanceTypesInstanceTypeVolumeResult',
     'InstancesInstanceResult',
+    'InstancesInstanceEipAddressResult',
     'InstancesInstanceGpuDeviceResult',
     'InstancesInstanceNetworkInterfaceResult',
     'InstancesInstanceTagResult',
     'InstancesInstanceVolumeResult',
     'InstancesTagResult',
+    'InvocationParameter',
     'InvocationResultsInvocationResultResult',
+    'InvocationTag',
     'InvocationsInvocationResult',
+    'InvocationsInvocationTagResult',
+    'InvocationsTagResult',
     'KeyPairsKeyPairResult',
     'LaunchTemplateNetworkInterface',
     'LaunchTemplateVolume',
@@ -59,6 +69,9 @@ __all__ = [
     'GetAvailableResourcesAvailableZoneAvailableResourceResult',
     'GetAvailableResourcesAvailableZoneAvailableResourceSupportedResourceResult',
     'GetCommandsCommandResult',
+    'GetCommandsCommandParameterDefinitionResult',
+    'GetCommandsCommandTagResult',
+    'GetCommandsTagResult',
     'GetDeploymentSetsDeploymentSetResult',
     'GetHpcClustersHpcClusterResult',
     'GetImageSharePermissionsAccountResult',
@@ -76,6 +89,7 @@ __all__ = [
     'GetInstanceTypesInstanceTypeRdmaResult',
     'GetInstanceTypesInstanceTypeVolumeResult',
     'GetInstancesInstanceResult',
+    'GetInstancesInstanceEipAddressResult',
     'GetInstancesInstanceGpuDeviceResult',
     'GetInstancesInstanceNetworkInterfaceResult',
     'GetInstancesInstanceTagResult',
@@ -83,6 +97,8 @@ __all__ = [
     'GetInstancesTagResult',
     'GetInvocationResultsInvocationResultResult',
     'GetInvocationsInvocationResult',
+    'GetInvocationsInvocationTagResult',
+    'GetInvocationsTagResult',
     'GetKeyPairsKeyPairResult',
     'GetLaunchTemplatesLaunchTemplateResult',
     'GetLaunchTemplatesLaunchTemplateNetworkInterfaceResult',
@@ -201,16 +217,190 @@ class AvailableResourcesAvailableZoneAvailableResourceSupportedResourceResult(di
 
 
 @pulumi.output_type
+class CommandParameterDefinition(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "decimalPrecision":
+            suggest = "decimal_precision"
+        elif key == "defaultValue":
+            suggest = "default_value"
+        elif key == "maxLength":
+            suggest = "max_length"
+        elif key == "maxValue":
+            suggest = "max_value"
+        elif key == "minLength":
+            suggest = "min_length"
+        elif key == "minValue":
+            suggest = "min_value"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CommandParameterDefinition. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CommandParameterDefinition.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CommandParameterDefinition.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 name: str,
+                 type: str,
+                 decimal_precision: Optional[int] = None,
+                 default_value: Optional[str] = None,
+                 max_length: Optional[int] = None,
+                 max_value: Optional[str] = None,
+                 min_length: Optional[int] = None,
+                 min_value: Optional[str] = None,
+                 required: Optional[bool] = None):
+        """
+        :param str name: The name of the custom parameter.
+        :param str type: The type of the custom parameter. Valid values: `String`, `Digit`.
+        :param int decimal_precision: The decimal precision of the custom parameter. This field is required when the parameter type is `Digit`.
+        :param str default_value: The default value of the custom parameter.
+        :param int max_length: The maximum length of the custom parameter. This field is required when the parameter type is `String`.
+        :param str max_value: The maximum value of the custom parameter. This field is required when the parameter type is `Digit`.
+        :param int min_length: The minimum length of the custom parameter. This field is required when the parameter type is `String`.
+        :param str min_value: The minimum value of the custom parameter. This field is required when the parameter type is `Digit`.
+        :param bool required: Whether the custom parameter is required.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
+        if decimal_precision is not None:
+            pulumi.set(__self__, "decimal_precision", decimal_precision)
+        if default_value is not None:
+            pulumi.set(__self__, "default_value", default_value)
+        if max_length is not None:
+            pulumi.set(__self__, "max_length", max_length)
+        if max_value is not None:
+            pulumi.set(__self__, "max_value", max_value)
+        if min_length is not None:
+            pulumi.set(__self__, "min_length", min_length)
+        if min_value is not None:
+            pulumi.set(__self__, "min_value", min_value)
+        if required is not None:
+            pulumi.set(__self__, "required", required)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the custom parameter.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of the custom parameter. Valid values: `String`, `Digit`.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="decimalPrecision")
+    def decimal_precision(self) -> Optional[int]:
+        """
+        The decimal precision of the custom parameter. This field is required when the parameter type is `Digit`.
+        """
+        return pulumi.get(self, "decimal_precision")
+
+    @property
+    @pulumi.getter(name="defaultValue")
+    def default_value(self) -> Optional[str]:
+        """
+        The default value of the custom parameter.
+        """
+        return pulumi.get(self, "default_value")
+
+    @property
+    @pulumi.getter(name="maxLength")
+    def max_length(self) -> Optional[int]:
+        """
+        The maximum length of the custom parameter. This field is required when the parameter type is `String`.
+        """
+        return pulumi.get(self, "max_length")
+
+    @property
+    @pulumi.getter(name="maxValue")
+    def max_value(self) -> Optional[str]:
+        """
+        The maximum value of the custom parameter. This field is required when the parameter type is `Digit`.
+        """
+        return pulumi.get(self, "max_value")
+
+    @property
+    @pulumi.getter(name="minLength")
+    def min_length(self) -> Optional[int]:
+        """
+        The minimum length of the custom parameter. This field is required when the parameter type is `String`.
+        """
+        return pulumi.get(self, "min_length")
+
+    @property
+    @pulumi.getter(name="minValue")
+    def min_value(self) -> Optional[str]:
+        """
+        The minimum value of the custom parameter. This field is required when the parameter type is `Digit`.
+        """
+        return pulumi.get(self, "min_value")
+
+    @property
+    @pulumi.getter
+    def required(self) -> Optional[bool]:
+        """
+        Whether the custom parameter is required.
+        """
+        return pulumi.get(self, "required")
+
+
+@pulumi.output_type
+class CommandTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class CommandsCommandResult(dict):
     def __init__(__self__, *,
                  command_content: str,
                  command_id: str,
                  command_provider: str,
+                 content_encoding: str,
                  created_at: str,
                  description: str,
+                 enable_parameter: bool,
                  id: str,
                  invocation_times: int,
                  name: str,
+                 parameter_definitions: Sequence['outputs.CommandsCommandParameterDefinitionResult'],
+                 project_name: str,
+                 tags: Sequence['outputs.CommandsCommandTagResult'],
                  timeout: int,
                  type: str,
                  updated_at: str,
@@ -220,11 +410,16 @@ class CommandsCommandResult(dict):
         :param str command_content: The base64 encoded content of the ecs command.
         :param str command_id: The id of ecs command.
         :param str command_provider: The provider of public command. When this field is not specified, query for custom commands.
+        :param str content_encoding: Whether the command content is base64 encoded. Valid values: `Base64`, `PlainText`. Default is `Base64`.
         :param str created_at: The create time of the ecs command.
         :param str description: The description of the ecs command.
+        :param bool enable_parameter: Whether to enable custom parameter. Default is `false`.
         :param str id: The id of the ecs command.
         :param int invocation_times: The invocation times of the ecs command. Public commands do not display the invocation times.
         :param str name: The name of ecs command. This field support fuzzy query.
+        :param Sequence['CommandsCommandParameterDefinitionArgs'] parameter_definitions: The custom parameter definitions of the ecs command.
+        :param str project_name: The project name of ecs command.
+        :param Sequence['CommandsCommandTagArgs'] tags: Tags.
         :param int timeout: The timeout of the ecs command.
         :param str type: The type of ecs command. Valid values: `Shell`.
         :param str updated_at: The update time of the ecs command.
@@ -234,11 +429,16 @@ class CommandsCommandResult(dict):
         pulumi.set(__self__, "command_content", command_content)
         pulumi.set(__self__, "command_id", command_id)
         pulumi.set(__self__, "command_provider", command_provider)
+        pulumi.set(__self__, "content_encoding", content_encoding)
         pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "enable_parameter", enable_parameter)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "invocation_times", invocation_times)
         pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "parameter_definitions", parameter_definitions)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "timeout", timeout)
         pulumi.set(__self__, "type", type)
         pulumi.set(__self__, "updated_at", updated_at)
@@ -270,6 +470,14 @@ class CommandsCommandResult(dict):
         return pulumi.get(self, "command_provider")
 
     @property
+    @pulumi.getter(name="contentEncoding")
+    def content_encoding(self) -> str:
+        """
+        Whether the command content is base64 encoded. Valid values: `Base64`, `PlainText`. Default is `Base64`.
+        """
+        return pulumi.get(self, "content_encoding")
+
+    @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
         """
@@ -284,6 +492,14 @@ class CommandsCommandResult(dict):
         The description of the ecs command.
         """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="enableParameter")
+    def enable_parameter(self) -> bool:
+        """
+        Whether to enable custom parameter. Default is `false`.
+        """
+        return pulumi.get(self, "enable_parameter")
 
     @property
     @pulumi.getter
@@ -308,6 +524,30 @@ class CommandsCommandResult(dict):
         The name of ecs command. This field support fuzzy query.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="parameterDefinitions")
+    def parameter_definitions(self) -> Sequence['outputs.CommandsCommandParameterDefinitionResult']:
+        """
+        The custom parameter definitions of the ecs command.
+        """
+        return pulumi.get(self, "parameter_definitions")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of ecs command.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.CommandsCommandTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
@@ -348,6 +588,170 @@ class CommandsCommandResult(dict):
         The working directory of the ecs command.
         """
         return pulumi.get(self, "working_dir")
+
+
+@pulumi.output_type
+class CommandsCommandParameterDefinitionResult(dict):
+    def __init__(__self__, *,
+                 decimal_precision: int,
+                 default_value: str,
+                 max_length: int,
+                 max_value: str,
+                 min_length: int,
+                 min_value: str,
+                 name: str,
+                 required: bool,
+                 type: str):
+        """
+        :param int decimal_precision: The decimal precision of the custom parameter. This field is required when the parameter type is `Digit`.
+        :param str default_value: The default value of the custom parameter.
+        :param int max_length: The maximum length of the custom parameter. This field is required when the parameter type is `String`.
+        :param str max_value: The maximum value of the custom parameter. This field is required when the parameter type is `Digit`.
+        :param int min_length: The minimum length of the custom parameter. This field is required when the parameter type is `String`.
+        :param str min_value: The minimum value of the custom parameter. This field is required when the parameter type is `Digit`.
+        :param str name: The name of ecs command. This field support fuzzy query.
+        :param bool required: Whether the custom parameter is required.
+        :param str type: The type of ecs command. Valid values: `Shell`.
+        """
+        pulumi.set(__self__, "decimal_precision", decimal_precision)
+        pulumi.set(__self__, "default_value", default_value)
+        pulumi.set(__self__, "max_length", max_length)
+        pulumi.set(__self__, "max_value", max_value)
+        pulumi.set(__self__, "min_length", min_length)
+        pulumi.set(__self__, "min_value", min_value)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "required", required)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="decimalPrecision")
+    def decimal_precision(self) -> int:
+        """
+        The decimal precision of the custom parameter. This field is required when the parameter type is `Digit`.
+        """
+        return pulumi.get(self, "decimal_precision")
+
+    @property
+    @pulumi.getter(name="defaultValue")
+    def default_value(self) -> str:
+        """
+        The default value of the custom parameter.
+        """
+        return pulumi.get(self, "default_value")
+
+    @property
+    @pulumi.getter(name="maxLength")
+    def max_length(self) -> int:
+        """
+        The maximum length of the custom parameter. This field is required when the parameter type is `String`.
+        """
+        return pulumi.get(self, "max_length")
+
+    @property
+    @pulumi.getter(name="maxValue")
+    def max_value(self) -> str:
+        """
+        The maximum value of the custom parameter. This field is required when the parameter type is `Digit`.
+        """
+        return pulumi.get(self, "max_value")
+
+    @property
+    @pulumi.getter(name="minLength")
+    def min_length(self) -> int:
+        """
+        The minimum length of the custom parameter. This field is required when the parameter type is `String`.
+        """
+        return pulumi.get(self, "min_length")
+
+    @property
+    @pulumi.getter(name="minValue")
+    def min_value(self) -> str:
+        """
+        The minimum value of the custom parameter. This field is required when the parameter type is `Digit`.
+        """
+        return pulumi.get(self, "min_value")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of ecs command. This field support fuzzy query.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def required(self) -> bool:
+        """
+        Whether the custom parameter is required.
+        """
+        return pulumi.get(self, "required")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of ecs command. Valid values: `Shell`.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class CommandsCommandTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class CommandsTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -1650,6 +2054,7 @@ class InstancesInstanceResult(dict):
                  created_at: str,
                  deployment_set_id: str,
                  description: str,
+                 eip_addresses: Sequence['outputs.InstancesInstanceEipAddressResult'],
                  gpu_devices: Sequence['outputs.InstancesInstanceGpuDeviceResult'],
                  host_name: str,
                  image_id: str,
@@ -1673,6 +2078,7 @@ class InstancesInstanceResult(dict):
                  stopped_mode: str,
                  tags: Sequence['outputs.InstancesInstanceTagResult'],
                  updated_at: str,
+                 volume_ids: Sequence[str],
                  volumes: Sequence['outputs.InstancesInstanceVolumeResult'],
                  vpc_id: str,
                  zone_id: str):
@@ -1681,6 +2087,7 @@ class InstancesInstanceResult(dict):
         :param str created_at: The create time of ECS instance.
         :param str deployment_set_id: The ID of DeploymentSet.
         :param str description: The description of ECS instance.
+        :param Sequence['InstancesInstanceEipAddressArgs'] eip_addresses: The EIP address of the ECS instance.
         :param Sequence['InstancesInstanceGpuDeviceArgs'] gpu_devices: The GPU device info of Instance.
         :param str host_name: The host name of ECS instance.
         :param str image_id: The image ID of ECS instance.
@@ -1704,6 +2111,7 @@ class InstancesInstanceResult(dict):
         :param str stopped_mode: The stop mode of ECS instance.
         :param Sequence['InstancesInstanceTagArgs'] tags: Tags.
         :param str updated_at: The update time of ECS instance.
+        :param Sequence[str] volume_ids: The volume ID list of ECS instance.
         :param Sequence['InstancesInstanceVolumeArgs'] volumes: The volume detail collection of volume.
         :param str vpc_id: The VPC ID of ECS instance.
         :param str zone_id: The available zone ID of ECS instance.
@@ -1712,6 +2120,7 @@ class InstancesInstanceResult(dict):
         pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "deployment_set_id", deployment_set_id)
         pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "eip_addresses", eip_addresses)
         pulumi.set(__self__, "gpu_devices", gpu_devices)
         pulumi.set(__self__, "host_name", host_name)
         pulumi.set(__self__, "image_id", image_id)
@@ -1735,6 +2144,7 @@ class InstancesInstanceResult(dict):
         pulumi.set(__self__, "stopped_mode", stopped_mode)
         pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "updated_at", updated_at)
+        pulumi.set(__self__, "volume_ids", volume_ids)
         pulumi.set(__self__, "volumes", volumes)
         pulumi.set(__self__, "vpc_id", vpc_id)
         pulumi.set(__self__, "zone_id", zone_id)
@@ -1770,6 +2180,14 @@ class InstancesInstanceResult(dict):
         The description of ECS instance.
         """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="eipAddresses")
+    def eip_addresses(self) -> Sequence['outputs.InstancesInstanceEipAddressResult']:
+        """
+        The EIP address of the ECS instance.
+        """
+        return pulumi.get(self, "eip_addresses")
 
     @property
     @pulumi.getter(name="gpuDevices")
@@ -1956,6 +2374,14 @@ class InstancesInstanceResult(dict):
         return pulumi.get(self, "updated_at")
 
     @property
+    @pulumi.getter(name="volumeIds")
+    def volume_ids(self) -> Sequence[str]:
+        """
+        The volume ID list of ECS instance.
+        """
+        return pulumi.get(self, "volume_ids")
+
+    @property
     @pulumi.getter
     def volumes(self) -> Sequence['outputs.InstancesInstanceVolumeResult']:
         """
@@ -1978,6 +2404,35 @@ class InstancesInstanceResult(dict):
         The available zone ID of ECS instance.
         """
         return pulumi.get(self, "zone_id")
+
+
+@pulumi.output_type
+class InstancesInstanceEipAddressResult(dict):
+    def __init__(__self__, *,
+                 allocation_id: str,
+                 ip_address: str):
+        """
+        :param str allocation_id: The EIP ID of the ECS instance.
+        :param str ip_address: The EIP address of the ECS instance.
+        """
+        pulumi.set(__self__, "allocation_id", allocation_id)
+        pulumi.set(__self__, "ip_address", ip_address)
+
+    @property
+    @pulumi.getter(name="allocationId")
+    def allocation_id(self) -> str:
+        """
+        The EIP ID of the ECS instance.
+        """
+        return pulumi.get(self, "allocation_id")
+
+    @property
+    @pulumi.getter(name="ipAddress")
+    def ip_address(self) -> str:
+        """
+        The EIP address of the ECS instance.
+        """
+        return pulumi.get(self, "ip_address")
 
 
 @pulumi.output_type
@@ -2225,6 +2680,35 @@ class InstancesTagResult(dict):
 
 
 @pulumi.output_type
+class InvocationParameter(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 value: str):
+        """
+        :param str name: The name of the parameter.
+        :param str value: The value of the parameter.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the parameter.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The value of the parameter.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class InvocationResultsInvocationResultResult(dict):
     def __init__(__self__, *,
                  command_id: str,
@@ -2375,6 +2859,35 @@ class InvocationResultsInvocationResultResult(dict):
 
 
 @pulumi.output_type
+class InvocationTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class InvocationsInvocationResult(dict):
     def __init__(__self__, *,
                  command_content: str,
@@ -2393,9 +2906,12 @@ class InvocationsInvocationResult(dict):
                  invocation_name: str,
                  invocation_status: str,
                  launch_time: str,
+                 parameters: str,
+                 project_name: str,
                  recurrence_end_time: str,
                  repeat_mode: str,
                  start_time: str,
+                 tags: Sequence['outputs.InvocationsInvocationTagResult'],
                  timeout: int,
                  username: str,
                  working_dir: str):
@@ -2416,9 +2932,12 @@ class InvocationsInvocationResult(dict):
         :param str invocation_name: The name of ecs invocation. This field support fuzzy query.
         :param str invocation_status: The list of status of ecs invocation. Valid values: `Pending`, `Scheduled`, `Running`, `Success`, `Failed`, `Stopped`, `PartialFailed`, `Finished`.
         :param str launch_time: The launch time of the ecs invocation.
+        :param str parameters: The custom parameters of the ecs invocation.
+        :param str project_name: The project name of ecs invocation.
         :param str recurrence_end_time: The recurrence end time of the ecs invocation.
         :param str repeat_mode: The repeat mode of ecs invocation. Valid values: `Once`, `Rate`, `Fixed`.
         :param str start_time: The start time of the ecs invocation.
+        :param Sequence['InvocationsInvocationTagArgs'] tags: Tags.
         :param int timeout: The timeout of the ecs command.
         :param str username: The username of the ecs command.
         :param str working_dir: The working directory of the ecs command.
@@ -2439,9 +2958,12 @@ class InvocationsInvocationResult(dict):
         pulumi.set(__self__, "invocation_name", invocation_name)
         pulumi.set(__self__, "invocation_status", invocation_status)
         pulumi.set(__self__, "launch_time", launch_time)
+        pulumi.set(__self__, "parameters", parameters)
+        pulumi.set(__self__, "project_name", project_name)
         pulumi.set(__self__, "recurrence_end_time", recurrence_end_time)
         pulumi.set(__self__, "repeat_mode", repeat_mode)
         pulumi.set(__self__, "start_time", start_time)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "timeout", timeout)
         pulumi.set(__self__, "username", username)
         pulumi.set(__self__, "working_dir", working_dir)
@@ -2575,6 +3097,22 @@ class InvocationsInvocationResult(dict):
         return pulumi.get(self, "launch_time")
 
     @property
+    @pulumi.getter
+    def parameters(self) -> str:
+        """
+        The custom parameters of the ecs invocation.
+        """
+        return pulumi.get(self, "parameters")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of ecs invocation.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
     @pulumi.getter(name="recurrenceEndTime")
     def recurrence_end_time(self) -> str:
         """
@@ -2600,6 +3138,14 @@ class InvocationsInvocationResult(dict):
 
     @property
     @pulumi.getter
+    def tags(self) -> Sequence['outputs.InvocationsInvocationTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter
     def timeout(self) -> int:
         """
         The timeout of the ecs command.
@@ -2621,6 +3167,64 @@ class InvocationsInvocationResult(dict):
         The working directory of the ecs command.
         """
         return pulumi.get(self, "working_dir")
+
+
+@pulumi.output_type
+class InvocationsInvocationTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class InvocationsTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -3343,11 +3947,16 @@ class GetCommandsCommandResult(dict):
                  command_content: str,
                  command_id: str,
                  command_provider: str,
+                 content_encoding: str,
                  created_at: str,
                  description: str,
+                 enable_parameter: bool,
                  id: str,
                  invocation_times: int,
                  name: str,
+                 parameter_definitions: Sequence['outputs.GetCommandsCommandParameterDefinitionResult'],
+                 project_name: str,
+                 tags: Sequence['outputs.GetCommandsCommandTagResult'],
                  timeout: int,
                  type: str,
                  updated_at: str,
@@ -3357,11 +3966,16 @@ class GetCommandsCommandResult(dict):
         :param str command_content: The base64 encoded content of the ecs command.
         :param str command_id: The id of ecs command.
         :param str command_provider: The provider of public command. When this field is not specified, query for custom commands.
+        :param str content_encoding: Whether the command content is base64 encoded. Valid values: `Base64`, `PlainText`. Default is `Base64`.
         :param str created_at: The create time of the ecs command.
         :param str description: The description of the ecs command.
+        :param bool enable_parameter: Whether to enable custom parameter. Default is `false`.
         :param str id: The id of the ecs command.
         :param int invocation_times: The invocation times of the ecs command. Public commands do not display the invocation times.
         :param str name: The name of ecs command. This field support fuzzy query.
+        :param Sequence['GetCommandsCommandParameterDefinitionArgs'] parameter_definitions: The custom parameter definitions of the ecs command.
+        :param str project_name: The project name of ecs command.
+        :param Sequence['GetCommandsCommandTagArgs'] tags: Tags.
         :param int timeout: The timeout of the ecs command.
         :param str type: The type of ecs command. Valid values: `Shell`.
         :param str updated_at: The update time of the ecs command.
@@ -3371,11 +3985,16 @@ class GetCommandsCommandResult(dict):
         pulumi.set(__self__, "command_content", command_content)
         pulumi.set(__self__, "command_id", command_id)
         pulumi.set(__self__, "command_provider", command_provider)
+        pulumi.set(__self__, "content_encoding", content_encoding)
         pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "enable_parameter", enable_parameter)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "invocation_times", invocation_times)
         pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "parameter_definitions", parameter_definitions)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "timeout", timeout)
         pulumi.set(__self__, "type", type)
         pulumi.set(__self__, "updated_at", updated_at)
@@ -3407,6 +4026,14 @@ class GetCommandsCommandResult(dict):
         return pulumi.get(self, "command_provider")
 
     @property
+    @pulumi.getter(name="contentEncoding")
+    def content_encoding(self) -> str:
+        """
+        Whether the command content is base64 encoded. Valid values: `Base64`, `PlainText`. Default is `Base64`.
+        """
+        return pulumi.get(self, "content_encoding")
+
+    @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
         """
@@ -3421,6 +4048,14 @@ class GetCommandsCommandResult(dict):
         The description of the ecs command.
         """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="enableParameter")
+    def enable_parameter(self) -> bool:
+        """
+        Whether to enable custom parameter. Default is `false`.
+        """
+        return pulumi.get(self, "enable_parameter")
 
     @property
     @pulumi.getter
@@ -3445,6 +4080,30 @@ class GetCommandsCommandResult(dict):
         The name of ecs command. This field support fuzzy query.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="parameterDefinitions")
+    def parameter_definitions(self) -> Sequence['outputs.GetCommandsCommandParameterDefinitionResult']:
+        """
+        The custom parameter definitions of the ecs command.
+        """
+        return pulumi.get(self, "parameter_definitions")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of ecs command.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetCommandsCommandTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
@@ -3485,6 +4144,170 @@ class GetCommandsCommandResult(dict):
         The working directory of the ecs command.
         """
         return pulumi.get(self, "working_dir")
+
+
+@pulumi.output_type
+class GetCommandsCommandParameterDefinitionResult(dict):
+    def __init__(__self__, *,
+                 decimal_precision: int,
+                 default_value: str,
+                 max_length: int,
+                 max_value: str,
+                 min_length: int,
+                 min_value: str,
+                 name: str,
+                 required: bool,
+                 type: str):
+        """
+        :param int decimal_precision: The decimal precision of the custom parameter. This field is required when the parameter type is `Digit`.
+        :param str default_value: The default value of the custom parameter.
+        :param int max_length: The maximum length of the custom parameter. This field is required when the parameter type is `String`.
+        :param str max_value: The maximum value of the custom parameter. This field is required when the parameter type is `Digit`.
+        :param int min_length: The minimum length of the custom parameter. This field is required when the parameter type is `String`.
+        :param str min_value: The minimum value of the custom parameter. This field is required when the parameter type is `Digit`.
+        :param str name: The name of ecs command. This field support fuzzy query.
+        :param bool required: Whether the custom parameter is required.
+        :param str type: The type of ecs command. Valid values: `Shell`.
+        """
+        pulumi.set(__self__, "decimal_precision", decimal_precision)
+        pulumi.set(__self__, "default_value", default_value)
+        pulumi.set(__self__, "max_length", max_length)
+        pulumi.set(__self__, "max_value", max_value)
+        pulumi.set(__self__, "min_length", min_length)
+        pulumi.set(__self__, "min_value", min_value)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "required", required)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="decimalPrecision")
+    def decimal_precision(self) -> int:
+        """
+        The decimal precision of the custom parameter. This field is required when the parameter type is `Digit`.
+        """
+        return pulumi.get(self, "decimal_precision")
+
+    @property
+    @pulumi.getter(name="defaultValue")
+    def default_value(self) -> str:
+        """
+        The default value of the custom parameter.
+        """
+        return pulumi.get(self, "default_value")
+
+    @property
+    @pulumi.getter(name="maxLength")
+    def max_length(self) -> int:
+        """
+        The maximum length of the custom parameter. This field is required when the parameter type is `String`.
+        """
+        return pulumi.get(self, "max_length")
+
+    @property
+    @pulumi.getter(name="maxValue")
+    def max_value(self) -> str:
+        """
+        The maximum value of the custom parameter. This field is required when the parameter type is `Digit`.
+        """
+        return pulumi.get(self, "max_value")
+
+    @property
+    @pulumi.getter(name="minLength")
+    def min_length(self) -> int:
+        """
+        The minimum length of the custom parameter. This field is required when the parameter type is `String`.
+        """
+        return pulumi.get(self, "min_length")
+
+    @property
+    @pulumi.getter(name="minValue")
+    def min_value(self) -> str:
+        """
+        The minimum value of the custom parameter. This field is required when the parameter type is `Digit`.
+        """
+        return pulumi.get(self, "min_value")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of ecs command. This field support fuzzy query.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def required(self) -> bool:
+        """
+        Whether the custom parameter is required.
+        """
+        return pulumi.get(self, "required")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of ecs command. Valid values: `Shell`.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetCommandsCommandTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetCommandsTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -4376,6 +5199,7 @@ class GetInstancesInstanceResult(dict):
                  created_at: str,
                  deployment_set_id: str,
                  description: str,
+                 eip_addresses: Sequence['outputs.GetInstancesInstanceEipAddressResult'],
                  gpu_devices: Sequence['outputs.GetInstancesInstanceGpuDeviceResult'],
                  host_name: str,
                  image_id: str,
@@ -4399,6 +5223,7 @@ class GetInstancesInstanceResult(dict):
                  stopped_mode: str,
                  tags: Sequence['outputs.GetInstancesInstanceTagResult'],
                  updated_at: str,
+                 volume_ids: Sequence[str],
                  volumes: Sequence['outputs.GetInstancesInstanceVolumeResult'],
                  vpc_id: str,
                  zone_id: str):
@@ -4407,6 +5232,7 @@ class GetInstancesInstanceResult(dict):
         :param str created_at: The create time of ECS instance.
         :param str deployment_set_id: The ID of DeploymentSet.
         :param str description: The description of ECS instance.
+        :param Sequence['GetInstancesInstanceEipAddressArgs'] eip_addresses: The EIP address of the ECS instance.
         :param Sequence['GetInstancesInstanceGpuDeviceArgs'] gpu_devices: The GPU device info of Instance.
         :param str host_name: The host name of ECS instance.
         :param str image_id: The image ID of ECS instance.
@@ -4430,6 +5256,7 @@ class GetInstancesInstanceResult(dict):
         :param str stopped_mode: The stop mode of ECS instance.
         :param Sequence['GetInstancesInstanceTagArgs'] tags: Tags.
         :param str updated_at: The update time of ECS instance.
+        :param Sequence[str] volume_ids: The volume ID list of ECS instance.
         :param Sequence['GetInstancesInstanceVolumeArgs'] volumes: The volume detail collection of volume.
         :param str vpc_id: The VPC ID of ECS instance.
         :param str zone_id: The available zone ID of ECS instance.
@@ -4438,6 +5265,7 @@ class GetInstancesInstanceResult(dict):
         pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "deployment_set_id", deployment_set_id)
         pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "eip_addresses", eip_addresses)
         pulumi.set(__self__, "gpu_devices", gpu_devices)
         pulumi.set(__self__, "host_name", host_name)
         pulumi.set(__self__, "image_id", image_id)
@@ -4461,6 +5289,7 @@ class GetInstancesInstanceResult(dict):
         pulumi.set(__self__, "stopped_mode", stopped_mode)
         pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "updated_at", updated_at)
+        pulumi.set(__self__, "volume_ids", volume_ids)
         pulumi.set(__self__, "volumes", volumes)
         pulumi.set(__self__, "vpc_id", vpc_id)
         pulumi.set(__self__, "zone_id", zone_id)
@@ -4496,6 +5325,14 @@ class GetInstancesInstanceResult(dict):
         The description of ECS instance.
         """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="eipAddresses")
+    def eip_addresses(self) -> Sequence['outputs.GetInstancesInstanceEipAddressResult']:
+        """
+        The EIP address of the ECS instance.
+        """
+        return pulumi.get(self, "eip_addresses")
 
     @property
     @pulumi.getter(name="gpuDevices")
@@ -4682,6 +5519,14 @@ class GetInstancesInstanceResult(dict):
         return pulumi.get(self, "updated_at")
 
     @property
+    @pulumi.getter(name="volumeIds")
+    def volume_ids(self) -> Sequence[str]:
+        """
+        The volume ID list of ECS instance.
+        """
+        return pulumi.get(self, "volume_ids")
+
+    @property
     @pulumi.getter
     def volumes(self) -> Sequence['outputs.GetInstancesInstanceVolumeResult']:
         """
@@ -4704,6 +5549,35 @@ class GetInstancesInstanceResult(dict):
         The available zone ID of ECS instance.
         """
         return pulumi.get(self, "zone_id")
+
+
+@pulumi.output_type
+class GetInstancesInstanceEipAddressResult(dict):
+    def __init__(__self__, *,
+                 allocation_id: str,
+                 ip_address: str):
+        """
+        :param str allocation_id: The EIP ID of the ECS instance.
+        :param str ip_address: The EIP address of the ECS instance.
+        """
+        pulumi.set(__self__, "allocation_id", allocation_id)
+        pulumi.set(__self__, "ip_address", ip_address)
+
+    @property
+    @pulumi.getter(name="allocationId")
+    def allocation_id(self) -> str:
+        """
+        The EIP ID of the ECS instance.
+        """
+        return pulumi.get(self, "allocation_id")
+
+    @property
+    @pulumi.getter(name="ipAddress")
+    def ip_address(self) -> str:
+        """
+        The EIP address of the ECS instance.
+        """
+        return pulumi.get(self, "ip_address")
 
 
 @pulumi.output_type
@@ -5119,9 +5993,12 @@ class GetInvocationsInvocationResult(dict):
                  invocation_name: str,
                  invocation_status: str,
                  launch_time: str,
+                 parameters: str,
+                 project_name: str,
                  recurrence_end_time: str,
                  repeat_mode: str,
                  start_time: str,
+                 tags: Sequence['outputs.GetInvocationsInvocationTagResult'],
                  timeout: int,
                  username: str,
                  working_dir: str):
@@ -5142,9 +6019,12 @@ class GetInvocationsInvocationResult(dict):
         :param str invocation_name: The name of ecs invocation. This field support fuzzy query.
         :param str invocation_status: The list of status of ecs invocation. Valid values: `Pending`, `Scheduled`, `Running`, `Success`, `Failed`, `Stopped`, `PartialFailed`, `Finished`.
         :param str launch_time: The launch time of the ecs invocation.
+        :param str parameters: The custom parameters of the ecs invocation.
+        :param str project_name: The project name of ecs invocation.
         :param str recurrence_end_time: The recurrence end time of the ecs invocation.
         :param str repeat_mode: The repeat mode of ecs invocation. Valid values: `Once`, `Rate`, `Fixed`.
         :param str start_time: The start time of the ecs invocation.
+        :param Sequence['GetInvocationsInvocationTagArgs'] tags: Tags.
         :param int timeout: The timeout of the ecs command.
         :param str username: The username of the ecs command.
         :param str working_dir: The working directory of the ecs command.
@@ -5165,9 +6045,12 @@ class GetInvocationsInvocationResult(dict):
         pulumi.set(__self__, "invocation_name", invocation_name)
         pulumi.set(__self__, "invocation_status", invocation_status)
         pulumi.set(__self__, "launch_time", launch_time)
+        pulumi.set(__self__, "parameters", parameters)
+        pulumi.set(__self__, "project_name", project_name)
         pulumi.set(__self__, "recurrence_end_time", recurrence_end_time)
         pulumi.set(__self__, "repeat_mode", repeat_mode)
         pulumi.set(__self__, "start_time", start_time)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "timeout", timeout)
         pulumi.set(__self__, "username", username)
         pulumi.set(__self__, "working_dir", working_dir)
@@ -5301,6 +6184,22 @@ class GetInvocationsInvocationResult(dict):
         return pulumi.get(self, "launch_time")
 
     @property
+    @pulumi.getter
+    def parameters(self) -> str:
+        """
+        The custom parameters of the ecs invocation.
+        """
+        return pulumi.get(self, "parameters")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of ecs invocation.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
     @pulumi.getter(name="recurrenceEndTime")
     def recurrence_end_time(self) -> str:
         """
@@ -5326,6 +6225,14 @@ class GetInvocationsInvocationResult(dict):
 
     @property
     @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetInvocationsInvocationTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter
     def timeout(self) -> int:
         """
         The timeout of the ecs command.
@@ -5347,6 +6254,64 @@ class GetInvocationsInvocationResult(dict):
         The working directory of the ecs command.
         """
         return pulumi.get(self, "working_dir")
+
+
+@pulumi.output_type
+class GetInvocationsInvocationTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetInvocationsTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type

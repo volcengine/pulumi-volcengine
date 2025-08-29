@@ -81,6 +81,7 @@ export class Provider extends pulumi.ProviderResource {
             resourceInputs["customerEndpoints"] = args ? args.customerEndpoints : undefined;
             resourceInputs["customerHeaders"] = args ? args.customerHeaders : undefined;
             resourceInputs["disableSsl"] = pulumi.output(args ? args.disableSsl : undefined).apply(JSON.stringify);
+            resourceInputs["enableStandardEndpoint"] = pulumi.output(args ? args.enableStandardEndpoint : undefined).apply(JSON.stringify);
             resourceInputs["endpoint"] = (args ? args.endpoint : undefined) ?? utilities.getEnv("VOLCENGINE_ENDPOINT");
             resourceInputs["proxyUrl"] = args ? args.proxyUrl : undefined;
             resourceInputs["region"] = (args ? args.region : undefined) ?? utilities.getEnv("VOLCENGINE_REGION");
@@ -121,6 +122,10 @@ export interface ProviderArgs {
      * Disable SSL for Volcengine Provider
      */
     disableSsl?: pulumi.Input<boolean>;
+    /**
+     * ENABLE STANDARD ENDPOINT for Volcengine Provider
+     */
+    enableStandardEndpoint?: pulumi.Input<boolean>;
     /**
      * The Customer Endpoint for Volcengine Provider
      */

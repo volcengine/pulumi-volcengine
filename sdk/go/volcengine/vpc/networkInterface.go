@@ -21,25 +21,59 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := vpc.NewNetworkInterface(ctx, "foo", &vpc.NetworkInterfaceArgs{
-//				Description:          pulumi.String("tf-test-up"),
-//				NetworkInterfaceName: pulumi.String("tf-test-up"),
-//				PortSecurityEnabled:  pulumi.Bool(false),
-//				PrimaryIpAddress:     pulumi.String("192.168.5.253"),
+//			fooZones, err := ecs.GetZones(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-vpc"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				SubnetName: pulumi.String("acc-test-subnet"),
+//				CidrBlock:  pulumi.String("172.16.0.0/24"),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
+//				VpcId:      fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSecurityGroup, err := vpc.NewSecurityGroup(ctx, "fooSecurityGroup", &vpc.SecurityGroupArgs{
+//				SecurityGroupName: pulumi.String("acc-test-sg"),
+//				VpcId:             fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = vpc.NewNetworkInterface(ctx, "fooNetworkInterface", &vpc.NetworkInterfaceArgs{
+//				NetworkInterfaceName: pulumi.String("acc-test-eni"),
+//				Description:          pulumi.String("acc-test"),
+//				SubnetId:             fooSubnet.ID(),
+//				SecurityGroupIds: pulumi.StringArray{
+//					fooSecurityGroup.ID(),
+//				},
+//				PrimaryIpAddress:    pulumi.String("172.16.0.253"),
+//				PortSecurityEnabled: pulumi.Bool(false),
 //				PrivateIpAddresses: pulumi.StringArray{
-//					pulumi.String("192.168.5.2"),
+//					pulumi.String("172.16.0.2"),
 //				},
 //				ProjectName: pulumi.String("default"),
-//				SecurityGroupIds: pulumi.StringArray{
-//					pulumi.String("sg-2fepz3c793g1s59gp67y21r34"),
+//				Tags: vpc.NetworkInterfaceTagArray{
+//					&vpc.NetworkInterfaceTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
 //				},
-//				SubnetId: pulumi.String("subnet-2fe79j7c8o5c059gp68ksxr93"),
 //			})
 //			if err != nil {
 //				return err

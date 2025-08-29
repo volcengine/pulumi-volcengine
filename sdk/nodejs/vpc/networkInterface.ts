@@ -12,17 +12,37 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = new volcengine.vpc.NetworkInterface("foo", {
- *     description: "tf-test-up",
- *     networkInterfaceName: "tf-test-up",
+ * const fooZones = volcengine.ecs.getZones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooSecurityGroup = new volcengine.vpc.SecurityGroup("fooSecurityGroup", {
+ *     securityGroupName: "acc-test-sg",
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooNetworkInterface = new volcengine.vpc.NetworkInterface("fooNetworkInterface", {
+ *     networkInterfaceName: "acc-test-eni",
+ *     description: "acc-test",
+ *     subnetId: fooSubnet.id,
+ *     securityGroupIds: [fooSecurityGroup.id],
+ *     primaryIpAddress: "172.16.0.253",
  *     portSecurityEnabled: false,
- *     primaryIpAddress: "192.168.5.253",
- *     privateIpAddresses: ["192.168.5.2"],
+ *     privateIpAddresses: ["172.16.0.2"],
  *     projectName: "default",
- *     securityGroupIds: ["sg-2fepz3c793g1s59gp67y21r34"],
- *     subnetId: "subnet-2fe79j7c8o5c059gp68ksxr93",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
  * });
  * ```
  *

@@ -128,6 +128,462 @@ func (o BucketAccountAclArrayOutput) Index(i pulumi.IntInput) BucketAccountAclOu
 	}).(BucketAccountAclOutput)
 }
 
+type BucketCorsCorsRule struct {
+	// The list of headers that are allowed in a preflight request.
+	AllowedHeaders []string `pulumi:"allowedHeaders"`
+	// The list of HTTP methods that are allowed in a preflight request. Valid values: `PUT`, `POST`, `DELETE`, `GET`, `HEAD`.
+	AllowedMethods []string `pulumi:"allowedMethods"`
+	// The list of origins that are allowed to make requests to the bucket.
+	AllowedOrigins []string `pulumi:"allowedOrigins"`
+	// The list of headers that are exposed in the response to a preflight request. It is recommended to add two expose headers, X-Tos-Request-Id and ETag.
+	ExposeHeaders []string `pulumi:"exposeHeaders"`
+	// The maximum amount of time that a preflight request can be cached. Unit: second. Default value: 3600.
+	MaxAgeSeconds *int `pulumi:"maxAgeSeconds"`
+	// Indicates whether the bucket returns the 'Vary: Origin' header in the response to preflight requests. Default value: false.
+	ResponseVary *bool `pulumi:"responseVary"`
+}
+
+// BucketCorsCorsRuleInput is an input type that accepts BucketCorsCorsRuleArgs and BucketCorsCorsRuleOutput values.
+// You can construct a concrete instance of `BucketCorsCorsRuleInput` via:
+//
+//	BucketCorsCorsRuleArgs{...}
+type BucketCorsCorsRuleInput interface {
+	pulumi.Input
+
+	ToBucketCorsCorsRuleOutput() BucketCorsCorsRuleOutput
+	ToBucketCorsCorsRuleOutputWithContext(context.Context) BucketCorsCorsRuleOutput
+}
+
+type BucketCorsCorsRuleArgs struct {
+	// The list of headers that are allowed in a preflight request.
+	AllowedHeaders pulumi.StringArrayInput `pulumi:"allowedHeaders"`
+	// The list of HTTP methods that are allowed in a preflight request. Valid values: `PUT`, `POST`, `DELETE`, `GET`, `HEAD`.
+	AllowedMethods pulumi.StringArrayInput `pulumi:"allowedMethods"`
+	// The list of origins that are allowed to make requests to the bucket.
+	AllowedOrigins pulumi.StringArrayInput `pulumi:"allowedOrigins"`
+	// The list of headers that are exposed in the response to a preflight request. It is recommended to add two expose headers, X-Tos-Request-Id and ETag.
+	ExposeHeaders pulumi.StringArrayInput `pulumi:"exposeHeaders"`
+	// The maximum amount of time that a preflight request can be cached. Unit: second. Default value: 3600.
+	MaxAgeSeconds pulumi.IntPtrInput `pulumi:"maxAgeSeconds"`
+	// Indicates whether the bucket returns the 'Vary: Origin' header in the response to preflight requests. Default value: false.
+	ResponseVary pulumi.BoolPtrInput `pulumi:"responseVary"`
+}
+
+func (BucketCorsCorsRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketCorsCorsRule)(nil)).Elem()
+}
+
+func (i BucketCorsCorsRuleArgs) ToBucketCorsCorsRuleOutput() BucketCorsCorsRuleOutput {
+	return i.ToBucketCorsCorsRuleOutputWithContext(context.Background())
+}
+
+func (i BucketCorsCorsRuleArgs) ToBucketCorsCorsRuleOutputWithContext(ctx context.Context) BucketCorsCorsRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketCorsCorsRuleOutput)
+}
+
+// BucketCorsCorsRuleArrayInput is an input type that accepts BucketCorsCorsRuleArray and BucketCorsCorsRuleArrayOutput values.
+// You can construct a concrete instance of `BucketCorsCorsRuleArrayInput` via:
+//
+//	BucketCorsCorsRuleArray{ BucketCorsCorsRuleArgs{...} }
+type BucketCorsCorsRuleArrayInput interface {
+	pulumi.Input
+
+	ToBucketCorsCorsRuleArrayOutput() BucketCorsCorsRuleArrayOutput
+	ToBucketCorsCorsRuleArrayOutputWithContext(context.Context) BucketCorsCorsRuleArrayOutput
+}
+
+type BucketCorsCorsRuleArray []BucketCorsCorsRuleInput
+
+func (BucketCorsCorsRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BucketCorsCorsRule)(nil)).Elem()
+}
+
+func (i BucketCorsCorsRuleArray) ToBucketCorsCorsRuleArrayOutput() BucketCorsCorsRuleArrayOutput {
+	return i.ToBucketCorsCorsRuleArrayOutputWithContext(context.Background())
+}
+
+func (i BucketCorsCorsRuleArray) ToBucketCorsCorsRuleArrayOutputWithContext(ctx context.Context) BucketCorsCorsRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketCorsCorsRuleArrayOutput)
+}
+
+type BucketCorsCorsRuleOutput struct{ *pulumi.OutputState }
+
+func (BucketCorsCorsRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketCorsCorsRule)(nil)).Elem()
+}
+
+func (o BucketCorsCorsRuleOutput) ToBucketCorsCorsRuleOutput() BucketCorsCorsRuleOutput {
+	return o
+}
+
+func (o BucketCorsCorsRuleOutput) ToBucketCorsCorsRuleOutputWithContext(ctx context.Context) BucketCorsCorsRuleOutput {
+	return o
+}
+
+// The list of headers that are allowed in a preflight request.
+func (o BucketCorsCorsRuleOutput) AllowedHeaders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v BucketCorsCorsRule) []string { return v.AllowedHeaders }).(pulumi.StringArrayOutput)
+}
+
+// The list of HTTP methods that are allowed in a preflight request. Valid values: `PUT`, `POST`, `DELETE`, `GET`, `HEAD`.
+func (o BucketCorsCorsRuleOutput) AllowedMethods() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v BucketCorsCorsRule) []string { return v.AllowedMethods }).(pulumi.StringArrayOutput)
+}
+
+// The list of origins that are allowed to make requests to the bucket.
+func (o BucketCorsCorsRuleOutput) AllowedOrigins() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v BucketCorsCorsRule) []string { return v.AllowedOrigins }).(pulumi.StringArrayOutput)
+}
+
+// The list of headers that are exposed in the response to a preflight request. It is recommended to add two expose headers, X-Tos-Request-Id and ETag.
+func (o BucketCorsCorsRuleOutput) ExposeHeaders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v BucketCorsCorsRule) []string { return v.ExposeHeaders }).(pulumi.StringArrayOutput)
+}
+
+// The maximum amount of time that a preflight request can be cached. Unit: second. Default value: 3600.
+func (o BucketCorsCorsRuleOutput) MaxAgeSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v BucketCorsCorsRule) *int { return v.MaxAgeSeconds }).(pulumi.IntPtrOutput)
+}
+
+// Indicates whether the bucket returns the 'Vary: Origin' header in the response to preflight requests. Default value: false.
+func (o BucketCorsCorsRuleOutput) ResponseVary() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v BucketCorsCorsRule) *bool { return v.ResponseVary }).(pulumi.BoolPtrOutput)
+}
+
+type BucketCorsCorsRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (BucketCorsCorsRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BucketCorsCorsRule)(nil)).Elem()
+}
+
+func (o BucketCorsCorsRuleArrayOutput) ToBucketCorsCorsRuleArrayOutput() BucketCorsCorsRuleArrayOutput {
+	return o
+}
+
+func (o BucketCorsCorsRuleArrayOutput) ToBucketCorsCorsRuleArrayOutputWithContext(ctx context.Context) BucketCorsCorsRuleArrayOutput {
+	return o
+}
+
+func (o BucketCorsCorsRuleArrayOutput) Index(i pulumi.IntInput) BucketCorsCorsRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) BucketCorsCorsRule {
+		return vs[0].([]BucketCorsCorsRule)[vs[1].(int)]
+	}).(BucketCorsCorsRuleOutput)
+}
+
+type BucketEncryptionRule struct {
+	// The server side encryption configuration.
+	ApplyServerSideEncryptionByDefault BucketEncryptionRuleApplyServerSideEncryptionByDefault `pulumi:"applyServerSideEncryptionByDefault"`
+}
+
+// BucketEncryptionRuleInput is an input type that accepts BucketEncryptionRuleArgs and BucketEncryptionRuleOutput values.
+// You can construct a concrete instance of `BucketEncryptionRuleInput` via:
+//
+//	BucketEncryptionRuleArgs{...}
+type BucketEncryptionRuleInput interface {
+	pulumi.Input
+
+	ToBucketEncryptionRuleOutput() BucketEncryptionRuleOutput
+	ToBucketEncryptionRuleOutputWithContext(context.Context) BucketEncryptionRuleOutput
+}
+
+type BucketEncryptionRuleArgs struct {
+	// The server side encryption configuration.
+	ApplyServerSideEncryptionByDefault BucketEncryptionRuleApplyServerSideEncryptionByDefaultInput `pulumi:"applyServerSideEncryptionByDefault"`
+}
+
+func (BucketEncryptionRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketEncryptionRule)(nil)).Elem()
+}
+
+func (i BucketEncryptionRuleArgs) ToBucketEncryptionRuleOutput() BucketEncryptionRuleOutput {
+	return i.ToBucketEncryptionRuleOutputWithContext(context.Background())
+}
+
+func (i BucketEncryptionRuleArgs) ToBucketEncryptionRuleOutputWithContext(ctx context.Context) BucketEncryptionRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketEncryptionRuleOutput)
+}
+
+func (i BucketEncryptionRuleArgs) ToBucketEncryptionRulePtrOutput() BucketEncryptionRulePtrOutput {
+	return i.ToBucketEncryptionRulePtrOutputWithContext(context.Background())
+}
+
+func (i BucketEncryptionRuleArgs) ToBucketEncryptionRulePtrOutputWithContext(ctx context.Context) BucketEncryptionRulePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketEncryptionRuleOutput).ToBucketEncryptionRulePtrOutputWithContext(ctx)
+}
+
+// BucketEncryptionRulePtrInput is an input type that accepts BucketEncryptionRuleArgs, BucketEncryptionRulePtr and BucketEncryptionRulePtrOutput values.
+// You can construct a concrete instance of `BucketEncryptionRulePtrInput` via:
+//
+//	        BucketEncryptionRuleArgs{...}
+//
+//	or:
+//
+//	        nil
+type BucketEncryptionRulePtrInput interface {
+	pulumi.Input
+
+	ToBucketEncryptionRulePtrOutput() BucketEncryptionRulePtrOutput
+	ToBucketEncryptionRulePtrOutputWithContext(context.Context) BucketEncryptionRulePtrOutput
+}
+
+type bucketEncryptionRulePtrType BucketEncryptionRuleArgs
+
+func BucketEncryptionRulePtr(v *BucketEncryptionRuleArgs) BucketEncryptionRulePtrInput {
+	return (*bucketEncryptionRulePtrType)(v)
+}
+
+func (*bucketEncryptionRulePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketEncryptionRule)(nil)).Elem()
+}
+
+func (i *bucketEncryptionRulePtrType) ToBucketEncryptionRulePtrOutput() BucketEncryptionRulePtrOutput {
+	return i.ToBucketEncryptionRulePtrOutputWithContext(context.Background())
+}
+
+func (i *bucketEncryptionRulePtrType) ToBucketEncryptionRulePtrOutputWithContext(ctx context.Context) BucketEncryptionRulePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketEncryptionRulePtrOutput)
+}
+
+type BucketEncryptionRuleOutput struct{ *pulumi.OutputState }
+
+func (BucketEncryptionRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketEncryptionRule)(nil)).Elem()
+}
+
+func (o BucketEncryptionRuleOutput) ToBucketEncryptionRuleOutput() BucketEncryptionRuleOutput {
+	return o
+}
+
+func (o BucketEncryptionRuleOutput) ToBucketEncryptionRuleOutputWithContext(ctx context.Context) BucketEncryptionRuleOutput {
+	return o
+}
+
+func (o BucketEncryptionRuleOutput) ToBucketEncryptionRulePtrOutput() BucketEncryptionRulePtrOutput {
+	return o.ToBucketEncryptionRulePtrOutputWithContext(context.Background())
+}
+
+func (o BucketEncryptionRuleOutput) ToBucketEncryptionRulePtrOutputWithContext(ctx context.Context) BucketEncryptionRulePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v BucketEncryptionRule) *BucketEncryptionRule {
+		return &v
+	}).(BucketEncryptionRulePtrOutput)
+}
+
+// The server side encryption configuration.
+func (o BucketEncryptionRuleOutput) ApplyServerSideEncryptionByDefault() BucketEncryptionRuleApplyServerSideEncryptionByDefaultOutput {
+	return o.ApplyT(func(v BucketEncryptionRule) BucketEncryptionRuleApplyServerSideEncryptionByDefault {
+		return v.ApplyServerSideEncryptionByDefault
+	}).(BucketEncryptionRuleApplyServerSideEncryptionByDefaultOutput)
+}
+
+type BucketEncryptionRulePtrOutput struct{ *pulumi.OutputState }
+
+func (BucketEncryptionRulePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketEncryptionRule)(nil)).Elem()
+}
+
+func (o BucketEncryptionRulePtrOutput) ToBucketEncryptionRulePtrOutput() BucketEncryptionRulePtrOutput {
+	return o
+}
+
+func (o BucketEncryptionRulePtrOutput) ToBucketEncryptionRulePtrOutputWithContext(ctx context.Context) BucketEncryptionRulePtrOutput {
+	return o
+}
+
+func (o BucketEncryptionRulePtrOutput) Elem() BucketEncryptionRuleOutput {
+	return o.ApplyT(func(v *BucketEncryptionRule) BucketEncryptionRule {
+		if v != nil {
+			return *v
+		}
+		var ret BucketEncryptionRule
+		return ret
+	}).(BucketEncryptionRuleOutput)
+}
+
+// The server side encryption configuration.
+func (o BucketEncryptionRulePtrOutput) ApplyServerSideEncryptionByDefault() BucketEncryptionRuleApplyServerSideEncryptionByDefaultPtrOutput {
+	return o.ApplyT(func(v *BucketEncryptionRule) *BucketEncryptionRuleApplyServerSideEncryptionByDefault {
+		if v == nil {
+			return nil
+		}
+		return &v.ApplyServerSideEncryptionByDefault
+	}).(BucketEncryptionRuleApplyServerSideEncryptionByDefaultPtrOutput)
+}
+
+type BucketEncryptionRuleApplyServerSideEncryptionByDefault struct {
+	// The kms data encryption. Valid values: `AES256`, `SM4`. Default is `AES256`.
+	KmsDataEncryption *string `pulumi:"kmsDataEncryption"`
+	// The kms master key id. This field is required when `sseAlgorithm` is `kms`. The format is `trn:kms:<region>:<accountID>:keyrings/<keyring>/keys/<key>`.
+	KmsMasterKeyId *string `pulumi:"kmsMasterKeyId"`
+	// The server side encryption algorithm. Valid values: `kms`, `AES256`, `SM4`.
+	SseAlgorithm string `pulumi:"sseAlgorithm"`
+}
+
+// BucketEncryptionRuleApplyServerSideEncryptionByDefaultInput is an input type that accepts BucketEncryptionRuleApplyServerSideEncryptionByDefaultArgs and BucketEncryptionRuleApplyServerSideEncryptionByDefaultOutput values.
+// You can construct a concrete instance of `BucketEncryptionRuleApplyServerSideEncryptionByDefaultInput` via:
+//
+//	BucketEncryptionRuleApplyServerSideEncryptionByDefaultArgs{...}
+type BucketEncryptionRuleApplyServerSideEncryptionByDefaultInput interface {
+	pulumi.Input
+
+	ToBucketEncryptionRuleApplyServerSideEncryptionByDefaultOutput() BucketEncryptionRuleApplyServerSideEncryptionByDefaultOutput
+	ToBucketEncryptionRuleApplyServerSideEncryptionByDefaultOutputWithContext(context.Context) BucketEncryptionRuleApplyServerSideEncryptionByDefaultOutput
+}
+
+type BucketEncryptionRuleApplyServerSideEncryptionByDefaultArgs struct {
+	// The kms data encryption. Valid values: `AES256`, `SM4`. Default is `AES256`.
+	KmsDataEncryption pulumi.StringPtrInput `pulumi:"kmsDataEncryption"`
+	// The kms master key id. This field is required when `sseAlgorithm` is `kms`. The format is `trn:kms:<region>:<accountID>:keyrings/<keyring>/keys/<key>`.
+	KmsMasterKeyId pulumi.StringPtrInput `pulumi:"kmsMasterKeyId"`
+	// The server side encryption algorithm. Valid values: `kms`, `AES256`, `SM4`.
+	SseAlgorithm pulumi.StringInput `pulumi:"sseAlgorithm"`
+}
+
+func (BucketEncryptionRuleApplyServerSideEncryptionByDefaultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketEncryptionRuleApplyServerSideEncryptionByDefault)(nil)).Elem()
+}
+
+func (i BucketEncryptionRuleApplyServerSideEncryptionByDefaultArgs) ToBucketEncryptionRuleApplyServerSideEncryptionByDefaultOutput() BucketEncryptionRuleApplyServerSideEncryptionByDefaultOutput {
+	return i.ToBucketEncryptionRuleApplyServerSideEncryptionByDefaultOutputWithContext(context.Background())
+}
+
+func (i BucketEncryptionRuleApplyServerSideEncryptionByDefaultArgs) ToBucketEncryptionRuleApplyServerSideEncryptionByDefaultOutputWithContext(ctx context.Context) BucketEncryptionRuleApplyServerSideEncryptionByDefaultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketEncryptionRuleApplyServerSideEncryptionByDefaultOutput)
+}
+
+func (i BucketEncryptionRuleApplyServerSideEncryptionByDefaultArgs) ToBucketEncryptionRuleApplyServerSideEncryptionByDefaultPtrOutput() BucketEncryptionRuleApplyServerSideEncryptionByDefaultPtrOutput {
+	return i.ToBucketEncryptionRuleApplyServerSideEncryptionByDefaultPtrOutputWithContext(context.Background())
+}
+
+func (i BucketEncryptionRuleApplyServerSideEncryptionByDefaultArgs) ToBucketEncryptionRuleApplyServerSideEncryptionByDefaultPtrOutputWithContext(ctx context.Context) BucketEncryptionRuleApplyServerSideEncryptionByDefaultPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketEncryptionRuleApplyServerSideEncryptionByDefaultOutput).ToBucketEncryptionRuleApplyServerSideEncryptionByDefaultPtrOutputWithContext(ctx)
+}
+
+// BucketEncryptionRuleApplyServerSideEncryptionByDefaultPtrInput is an input type that accepts BucketEncryptionRuleApplyServerSideEncryptionByDefaultArgs, BucketEncryptionRuleApplyServerSideEncryptionByDefaultPtr and BucketEncryptionRuleApplyServerSideEncryptionByDefaultPtrOutput values.
+// You can construct a concrete instance of `BucketEncryptionRuleApplyServerSideEncryptionByDefaultPtrInput` via:
+//
+//	        BucketEncryptionRuleApplyServerSideEncryptionByDefaultArgs{...}
+//
+//	or:
+//
+//	        nil
+type BucketEncryptionRuleApplyServerSideEncryptionByDefaultPtrInput interface {
+	pulumi.Input
+
+	ToBucketEncryptionRuleApplyServerSideEncryptionByDefaultPtrOutput() BucketEncryptionRuleApplyServerSideEncryptionByDefaultPtrOutput
+	ToBucketEncryptionRuleApplyServerSideEncryptionByDefaultPtrOutputWithContext(context.Context) BucketEncryptionRuleApplyServerSideEncryptionByDefaultPtrOutput
+}
+
+type bucketEncryptionRuleApplyServerSideEncryptionByDefaultPtrType BucketEncryptionRuleApplyServerSideEncryptionByDefaultArgs
+
+func BucketEncryptionRuleApplyServerSideEncryptionByDefaultPtr(v *BucketEncryptionRuleApplyServerSideEncryptionByDefaultArgs) BucketEncryptionRuleApplyServerSideEncryptionByDefaultPtrInput {
+	return (*bucketEncryptionRuleApplyServerSideEncryptionByDefaultPtrType)(v)
+}
+
+func (*bucketEncryptionRuleApplyServerSideEncryptionByDefaultPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketEncryptionRuleApplyServerSideEncryptionByDefault)(nil)).Elem()
+}
+
+func (i *bucketEncryptionRuleApplyServerSideEncryptionByDefaultPtrType) ToBucketEncryptionRuleApplyServerSideEncryptionByDefaultPtrOutput() BucketEncryptionRuleApplyServerSideEncryptionByDefaultPtrOutput {
+	return i.ToBucketEncryptionRuleApplyServerSideEncryptionByDefaultPtrOutputWithContext(context.Background())
+}
+
+func (i *bucketEncryptionRuleApplyServerSideEncryptionByDefaultPtrType) ToBucketEncryptionRuleApplyServerSideEncryptionByDefaultPtrOutputWithContext(ctx context.Context) BucketEncryptionRuleApplyServerSideEncryptionByDefaultPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketEncryptionRuleApplyServerSideEncryptionByDefaultPtrOutput)
+}
+
+type BucketEncryptionRuleApplyServerSideEncryptionByDefaultOutput struct{ *pulumi.OutputState }
+
+func (BucketEncryptionRuleApplyServerSideEncryptionByDefaultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketEncryptionRuleApplyServerSideEncryptionByDefault)(nil)).Elem()
+}
+
+func (o BucketEncryptionRuleApplyServerSideEncryptionByDefaultOutput) ToBucketEncryptionRuleApplyServerSideEncryptionByDefaultOutput() BucketEncryptionRuleApplyServerSideEncryptionByDefaultOutput {
+	return o
+}
+
+func (o BucketEncryptionRuleApplyServerSideEncryptionByDefaultOutput) ToBucketEncryptionRuleApplyServerSideEncryptionByDefaultOutputWithContext(ctx context.Context) BucketEncryptionRuleApplyServerSideEncryptionByDefaultOutput {
+	return o
+}
+
+func (o BucketEncryptionRuleApplyServerSideEncryptionByDefaultOutput) ToBucketEncryptionRuleApplyServerSideEncryptionByDefaultPtrOutput() BucketEncryptionRuleApplyServerSideEncryptionByDefaultPtrOutput {
+	return o.ToBucketEncryptionRuleApplyServerSideEncryptionByDefaultPtrOutputWithContext(context.Background())
+}
+
+func (o BucketEncryptionRuleApplyServerSideEncryptionByDefaultOutput) ToBucketEncryptionRuleApplyServerSideEncryptionByDefaultPtrOutputWithContext(ctx context.Context) BucketEncryptionRuleApplyServerSideEncryptionByDefaultPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v BucketEncryptionRuleApplyServerSideEncryptionByDefault) *BucketEncryptionRuleApplyServerSideEncryptionByDefault {
+		return &v
+	}).(BucketEncryptionRuleApplyServerSideEncryptionByDefaultPtrOutput)
+}
+
+// The kms data encryption. Valid values: `AES256`, `SM4`. Default is `AES256`.
+func (o BucketEncryptionRuleApplyServerSideEncryptionByDefaultOutput) KmsDataEncryption() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketEncryptionRuleApplyServerSideEncryptionByDefault) *string { return v.KmsDataEncryption }).(pulumi.StringPtrOutput)
+}
+
+// The kms master key id. This field is required when `sseAlgorithm` is `kms`. The format is `trn:kms:<region>:<accountID>:keyrings/<keyring>/keys/<key>`.
+func (o BucketEncryptionRuleApplyServerSideEncryptionByDefaultOutput) KmsMasterKeyId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketEncryptionRuleApplyServerSideEncryptionByDefault) *string { return v.KmsMasterKeyId }).(pulumi.StringPtrOutput)
+}
+
+// The server side encryption algorithm. Valid values: `kms`, `AES256`, `SM4`.
+func (o BucketEncryptionRuleApplyServerSideEncryptionByDefaultOutput) SseAlgorithm() pulumi.StringOutput {
+	return o.ApplyT(func(v BucketEncryptionRuleApplyServerSideEncryptionByDefault) string { return v.SseAlgorithm }).(pulumi.StringOutput)
+}
+
+type BucketEncryptionRuleApplyServerSideEncryptionByDefaultPtrOutput struct{ *pulumi.OutputState }
+
+func (BucketEncryptionRuleApplyServerSideEncryptionByDefaultPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketEncryptionRuleApplyServerSideEncryptionByDefault)(nil)).Elem()
+}
+
+func (o BucketEncryptionRuleApplyServerSideEncryptionByDefaultPtrOutput) ToBucketEncryptionRuleApplyServerSideEncryptionByDefaultPtrOutput() BucketEncryptionRuleApplyServerSideEncryptionByDefaultPtrOutput {
+	return o
+}
+
+func (o BucketEncryptionRuleApplyServerSideEncryptionByDefaultPtrOutput) ToBucketEncryptionRuleApplyServerSideEncryptionByDefaultPtrOutputWithContext(ctx context.Context) BucketEncryptionRuleApplyServerSideEncryptionByDefaultPtrOutput {
+	return o
+}
+
+func (o BucketEncryptionRuleApplyServerSideEncryptionByDefaultPtrOutput) Elem() BucketEncryptionRuleApplyServerSideEncryptionByDefaultOutput {
+	return o.ApplyT(func(v *BucketEncryptionRuleApplyServerSideEncryptionByDefault) BucketEncryptionRuleApplyServerSideEncryptionByDefault {
+		if v != nil {
+			return *v
+		}
+		var ret BucketEncryptionRuleApplyServerSideEncryptionByDefault
+		return ret
+	}).(BucketEncryptionRuleApplyServerSideEncryptionByDefaultOutput)
+}
+
+// The kms data encryption. Valid values: `AES256`, `SM4`. Default is `AES256`.
+func (o BucketEncryptionRuleApplyServerSideEncryptionByDefaultPtrOutput) KmsDataEncryption() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BucketEncryptionRuleApplyServerSideEncryptionByDefault) *string {
+		if v == nil {
+			return nil
+		}
+		return v.KmsDataEncryption
+	}).(pulumi.StringPtrOutput)
+}
+
+// The kms master key id. This field is required when `sseAlgorithm` is `kms`. The format is `trn:kms:<region>:<accountID>:keyrings/<keyring>/keys/<key>`.
+func (o BucketEncryptionRuleApplyServerSideEncryptionByDefaultPtrOutput) KmsMasterKeyId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BucketEncryptionRuleApplyServerSideEncryptionByDefault) *string {
+		if v == nil {
+			return nil
+		}
+		return v.KmsMasterKeyId
+	}).(pulumi.StringPtrOutput)
+}
+
+// The server side encryption algorithm. Valid values: `kms`, `AES256`, `SM4`.
+func (o BucketEncryptionRuleApplyServerSideEncryptionByDefaultPtrOutput) SseAlgorithm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BucketEncryptionRuleApplyServerSideEncryptionByDefault) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.SseAlgorithm
+	}).(pulumi.StringPtrOutput)
+}
+
 type BucketInventoriesInventoryConfiguration struct {
 	// The name the TOS bucket.
 	BucketName string `pulumi:"bucketName"`
@@ -1582,6 +2038,816 @@ func (o BucketInventorySchedulePtrOutput) Frequency() pulumi.StringPtrOutput {
 		}
 		return &v.Frequency
 	}).(pulumi.StringPtrOutput)
+}
+
+type BucketNotificationRules struct {
+	// The destination info of the notification.
+	Destination BucketNotificationRulesDestination `pulumi:"destination"`
+	// The event type of the notification.
+	Events []string `pulumi:"events"`
+	// The filter of the notification.
+	Filter *BucketNotificationRulesFilter `pulumi:"filter"`
+	// The rule name of the notification.
+	RuleId string `pulumi:"ruleId"`
+}
+
+// BucketNotificationRulesInput is an input type that accepts BucketNotificationRulesArgs and BucketNotificationRulesOutput values.
+// You can construct a concrete instance of `BucketNotificationRulesInput` via:
+//
+//	BucketNotificationRulesArgs{...}
+type BucketNotificationRulesInput interface {
+	pulumi.Input
+
+	ToBucketNotificationRulesOutput() BucketNotificationRulesOutput
+	ToBucketNotificationRulesOutputWithContext(context.Context) BucketNotificationRulesOutput
+}
+
+type BucketNotificationRulesArgs struct {
+	// The destination info of the notification.
+	Destination BucketNotificationRulesDestinationInput `pulumi:"destination"`
+	// The event type of the notification.
+	Events pulumi.StringArrayInput `pulumi:"events"`
+	// The filter of the notification.
+	Filter BucketNotificationRulesFilterPtrInput `pulumi:"filter"`
+	// The rule name of the notification.
+	RuleId pulumi.StringInput `pulumi:"ruleId"`
+}
+
+func (BucketNotificationRulesArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketNotificationRules)(nil)).Elem()
+}
+
+func (i BucketNotificationRulesArgs) ToBucketNotificationRulesOutput() BucketNotificationRulesOutput {
+	return i.ToBucketNotificationRulesOutputWithContext(context.Background())
+}
+
+func (i BucketNotificationRulesArgs) ToBucketNotificationRulesOutputWithContext(ctx context.Context) BucketNotificationRulesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketNotificationRulesOutput)
+}
+
+func (i BucketNotificationRulesArgs) ToBucketNotificationRulesPtrOutput() BucketNotificationRulesPtrOutput {
+	return i.ToBucketNotificationRulesPtrOutputWithContext(context.Background())
+}
+
+func (i BucketNotificationRulesArgs) ToBucketNotificationRulesPtrOutputWithContext(ctx context.Context) BucketNotificationRulesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketNotificationRulesOutput).ToBucketNotificationRulesPtrOutputWithContext(ctx)
+}
+
+// BucketNotificationRulesPtrInput is an input type that accepts BucketNotificationRulesArgs, BucketNotificationRulesPtr and BucketNotificationRulesPtrOutput values.
+// You can construct a concrete instance of `BucketNotificationRulesPtrInput` via:
+//
+//	        BucketNotificationRulesArgs{...}
+//
+//	or:
+//
+//	        nil
+type BucketNotificationRulesPtrInput interface {
+	pulumi.Input
+
+	ToBucketNotificationRulesPtrOutput() BucketNotificationRulesPtrOutput
+	ToBucketNotificationRulesPtrOutputWithContext(context.Context) BucketNotificationRulesPtrOutput
+}
+
+type bucketNotificationRulesPtrType BucketNotificationRulesArgs
+
+func BucketNotificationRulesPtr(v *BucketNotificationRulesArgs) BucketNotificationRulesPtrInput {
+	return (*bucketNotificationRulesPtrType)(v)
+}
+
+func (*bucketNotificationRulesPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketNotificationRules)(nil)).Elem()
+}
+
+func (i *bucketNotificationRulesPtrType) ToBucketNotificationRulesPtrOutput() BucketNotificationRulesPtrOutput {
+	return i.ToBucketNotificationRulesPtrOutputWithContext(context.Background())
+}
+
+func (i *bucketNotificationRulesPtrType) ToBucketNotificationRulesPtrOutputWithContext(ctx context.Context) BucketNotificationRulesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketNotificationRulesPtrOutput)
+}
+
+type BucketNotificationRulesOutput struct{ *pulumi.OutputState }
+
+func (BucketNotificationRulesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketNotificationRules)(nil)).Elem()
+}
+
+func (o BucketNotificationRulesOutput) ToBucketNotificationRulesOutput() BucketNotificationRulesOutput {
+	return o
+}
+
+func (o BucketNotificationRulesOutput) ToBucketNotificationRulesOutputWithContext(ctx context.Context) BucketNotificationRulesOutput {
+	return o
+}
+
+func (o BucketNotificationRulesOutput) ToBucketNotificationRulesPtrOutput() BucketNotificationRulesPtrOutput {
+	return o.ToBucketNotificationRulesPtrOutputWithContext(context.Background())
+}
+
+func (o BucketNotificationRulesOutput) ToBucketNotificationRulesPtrOutputWithContext(ctx context.Context) BucketNotificationRulesPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v BucketNotificationRules) *BucketNotificationRules {
+		return &v
+	}).(BucketNotificationRulesPtrOutput)
+}
+
+// The destination info of the notification.
+func (o BucketNotificationRulesOutput) Destination() BucketNotificationRulesDestinationOutput {
+	return o.ApplyT(func(v BucketNotificationRules) BucketNotificationRulesDestination { return v.Destination }).(BucketNotificationRulesDestinationOutput)
+}
+
+// The event type of the notification.
+func (o BucketNotificationRulesOutput) Events() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v BucketNotificationRules) []string { return v.Events }).(pulumi.StringArrayOutput)
+}
+
+// The filter of the notification.
+func (o BucketNotificationRulesOutput) Filter() BucketNotificationRulesFilterPtrOutput {
+	return o.ApplyT(func(v BucketNotificationRules) *BucketNotificationRulesFilter { return v.Filter }).(BucketNotificationRulesFilterPtrOutput)
+}
+
+// The rule name of the notification.
+func (o BucketNotificationRulesOutput) RuleId() pulumi.StringOutput {
+	return o.ApplyT(func(v BucketNotificationRules) string { return v.RuleId }).(pulumi.StringOutput)
+}
+
+type BucketNotificationRulesPtrOutput struct{ *pulumi.OutputState }
+
+func (BucketNotificationRulesPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketNotificationRules)(nil)).Elem()
+}
+
+func (o BucketNotificationRulesPtrOutput) ToBucketNotificationRulesPtrOutput() BucketNotificationRulesPtrOutput {
+	return o
+}
+
+func (o BucketNotificationRulesPtrOutput) ToBucketNotificationRulesPtrOutputWithContext(ctx context.Context) BucketNotificationRulesPtrOutput {
+	return o
+}
+
+func (o BucketNotificationRulesPtrOutput) Elem() BucketNotificationRulesOutput {
+	return o.ApplyT(func(v *BucketNotificationRules) BucketNotificationRules {
+		if v != nil {
+			return *v
+		}
+		var ret BucketNotificationRules
+		return ret
+	}).(BucketNotificationRulesOutput)
+}
+
+// The destination info of the notification.
+func (o BucketNotificationRulesPtrOutput) Destination() BucketNotificationRulesDestinationPtrOutput {
+	return o.ApplyT(func(v *BucketNotificationRules) *BucketNotificationRulesDestination {
+		if v == nil {
+			return nil
+		}
+		return &v.Destination
+	}).(BucketNotificationRulesDestinationPtrOutput)
+}
+
+// The event type of the notification.
+func (o BucketNotificationRulesPtrOutput) Events() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *BucketNotificationRules) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Events
+	}).(pulumi.StringArrayOutput)
+}
+
+// The filter of the notification.
+func (o BucketNotificationRulesPtrOutput) Filter() BucketNotificationRulesFilterPtrOutput {
+	return o.ApplyT(func(v *BucketNotificationRules) *BucketNotificationRulesFilter {
+		if v == nil {
+			return nil
+		}
+		return v.Filter
+	}).(BucketNotificationRulesFilterPtrOutput)
+}
+
+// The rule name of the notification.
+func (o BucketNotificationRulesPtrOutput) RuleId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BucketNotificationRules) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.RuleId
+	}).(pulumi.StringPtrOutput)
+}
+
+type BucketNotificationRulesDestination struct {
+	// The VeFaas info of the destination.
+	VeFaas []BucketNotificationRulesDestinationVeFaa `pulumi:"veFaas"`
+}
+
+// BucketNotificationRulesDestinationInput is an input type that accepts BucketNotificationRulesDestinationArgs and BucketNotificationRulesDestinationOutput values.
+// You can construct a concrete instance of `BucketNotificationRulesDestinationInput` via:
+//
+//	BucketNotificationRulesDestinationArgs{...}
+type BucketNotificationRulesDestinationInput interface {
+	pulumi.Input
+
+	ToBucketNotificationRulesDestinationOutput() BucketNotificationRulesDestinationOutput
+	ToBucketNotificationRulesDestinationOutputWithContext(context.Context) BucketNotificationRulesDestinationOutput
+}
+
+type BucketNotificationRulesDestinationArgs struct {
+	// The VeFaas info of the destination.
+	VeFaas BucketNotificationRulesDestinationVeFaaArrayInput `pulumi:"veFaas"`
+}
+
+func (BucketNotificationRulesDestinationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketNotificationRulesDestination)(nil)).Elem()
+}
+
+func (i BucketNotificationRulesDestinationArgs) ToBucketNotificationRulesDestinationOutput() BucketNotificationRulesDestinationOutput {
+	return i.ToBucketNotificationRulesDestinationOutputWithContext(context.Background())
+}
+
+func (i BucketNotificationRulesDestinationArgs) ToBucketNotificationRulesDestinationOutputWithContext(ctx context.Context) BucketNotificationRulesDestinationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketNotificationRulesDestinationOutput)
+}
+
+func (i BucketNotificationRulesDestinationArgs) ToBucketNotificationRulesDestinationPtrOutput() BucketNotificationRulesDestinationPtrOutput {
+	return i.ToBucketNotificationRulesDestinationPtrOutputWithContext(context.Background())
+}
+
+func (i BucketNotificationRulesDestinationArgs) ToBucketNotificationRulesDestinationPtrOutputWithContext(ctx context.Context) BucketNotificationRulesDestinationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketNotificationRulesDestinationOutput).ToBucketNotificationRulesDestinationPtrOutputWithContext(ctx)
+}
+
+// BucketNotificationRulesDestinationPtrInput is an input type that accepts BucketNotificationRulesDestinationArgs, BucketNotificationRulesDestinationPtr and BucketNotificationRulesDestinationPtrOutput values.
+// You can construct a concrete instance of `BucketNotificationRulesDestinationPtrInput` via:
+//
+//	        BucketNotificationRulesDestinationArgs{...}
+//
+//	or:
+//
+//	        nil
+type BucketNotificationRulesDestinationPtrInput interface {
+	pulumi.Input
+
+	ToBucketNotificationRulesDestinationPtrOutput() BucketNotificationRulesDestinationPtrOutput
+	ToBucketNotificationRulesDestinationPtrOutputWithContext(context.Context) BucketNotificationRulesDestinationPtrOutput
+}
+
+type bucketNotificationRulesDestinationPtrType BucketNotificationRulesDestinationArgs
+
+func BucketNotificationRulesDestinationPtr(v *BucketNotificationRulesDestinationArgs) BucketNotificationRulesDestinationPtrInput {
+	return (*bucketNotificationRulesDestinationPtrType)(v)
+}
+
+func (*bucketNotificationRulesDestinationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketNotificationRulesDestination)(nil)).Elem()
+}
+
+func (i *bucketNotificationRulesDestinationPtrType) ToBucketNotificationRulesDestinationPtrOutput() BucketNotificationRulesDestinationPtrOutput {
+	return i.ToBucketNotificationRulesDestinationPtrOutputWithContext(context.Background())
+}
+
+func (i *bucketNotificationRulesDestinationPtrType) ToBucketNotificationRulesDestinationPtrOutputWithContext(ctx context.Context) BucketNotificationRulesDestinationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketNotificationRulesDestinationPtrOutput)
+}
+
+type BucketNotificationRulesDestinationOutput struct{ *pulumi.OutputState }
+
+func (BucketNotificationRulesDestinationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketNotificationRulesDestination)(nil)).Elem()
+}
+
+func (o BucketNotificationRulesDestinationOutput) ToBucketNotificationRulesDestinationOutput() BucketNotificationRulesDestinationOutput {
+	return o
+}
+
+func (o BucketNotificationRulesDestinationOutput) ToBucketNotificationRulesDestinationOutputWithContext(ctx context.Context) BucketNotificationRulesDestinationOutput {
+	return o
+}
+
+func (o BucketNotificationRulesDestinationOutput) ToBucketNotificationRulesDestinationPtrOutput() BucketNotificationRulesDestinationPtrOutput {
+	return o.ToBucketNotificationRulesDestinationPtrOutputWithContext(context.Background())
+}
+
+func (o BucketNotificationRulesDestinationOutput) ToBucketNotificationRulesDestinationPtrOutputWithContext(ctx context.Context) BucketNotificationRulesDestinationPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v BucketNotificationRulesDestination) *BucketNotificationRulesDestination {
+		return &v
+	}).(BucketNotificationRulesDestinationPtrOutput)
+}
+
+// The VeFaas info of the destination.
+func (o BucketNotificationRulesDestinationOutput) VeFaas() BucketNotificationRulesDestinationVeFaaArrayOutput {
+	return o.ApplyT(func(v BucketNotificationRulesDestination) []BucketNotificationRulesDestinationVeFaa { return v.VeFaas }).(BucketNotificationRulesDestinationVeFaaArrayOutput)
+}
+
+type BucketNotificationRulesDestinationPtrOutput struct{ *pulumi.OutputState }
+
+func (BucketNotificationRulesDestinationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketNotificationRulesDestination)(nil)).Elem()
+}
+
+func (o BucketNotificationRulesDestinationPtrOutput) ToBucketNotificationRulesDestinationPtrOutput() BucketNotificationRulesDestinationPtrOutput {
+	return o
+}
+
+func (o BucketNotificationRulesDestinationPtrOutput) ToBucketNotificationRulesDestinationPtrOutputWithContext(ctx context.Context) BucketNotificationRulesDestinationPtrOutput {
+	return o
+}
+
+func (o BucketNotificationRulesDestinationPtrOutput) Elem() BucketNotificationRulesDestinationOutput {
+	return o.ApplyT(func(v *BucketNotificationRulesDestination) BucketNotificationRulesDestination {
+		if v != nil {
+			return *v
+		}
+		var ret BucketNotificationRulesDestination
+		return ret
+	}).(BucketNotificationRulesDestinationOutput)
+}
+
+// The VeFaas info of the destination.
+func (o BucketNotificationRulesDestinationPtrOutput) VeFaas() BucketNotificationRulesDestinationVeFaaArrayOutput {
+	return o.ApplyT(func(v *BucketNotificationRulesDestination) []BucketNotificationRulesDestinationVeFaa {
+		if v == nil {
+			return nil
+		}
+		return v.VeFaas
+	}).(BucketNotificationRulesDestinationVeFaaArrayOutput)
+}
+
+type BucketNotificationRulesDestinationVeFaa struct {
+	// The function id of the destination.
+	FunctionId string `pulumi:"functionId"`
+}
+
+// BucketNotificationRulesDestinationVeFaaInput is an input type that accepts BucketNotificationRulesDestinationVeFaaArgs and BucketNotificationRulesDestinationVeFaaOutput values.
+// You can construct a concrete instance of `BucketNotificationRulesDestinationVeFaaInput` via:
+//
+//	BucketNotificationRulesDestinationVeFaaArgs{...}
+type BucketNotificationRulesDestinationVeFaaInput interface {
+	pulumi.Input
+
+	ToBucketNotificationRulesDestinationVeFaaOutput() BucketNotificationRulesDestinationVeFaaOutput
+	ToBucketNotificationRulesDestinationVeFaaOutputWithContext(context.Context) BucketNotificationRulesDestinationVeFaaOutput
+}
+
+type BucketNotificationRulesDestinationVeFaaArgs struct {
+	// The function id of the destination.
+	FunctionId pulumi.StringInput `pulumi:"functionId"`
+}
+
+func (BucketNotificationRulesDestinationVeFaaArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketNotificationRulesDestinationVeFaa)(nil)).Elem()
+}
+
+func (i BucketNotificationRulesDestinationVeFaaArgs) ToBucketNotificationRulesDestinationVeFaaOutput() BucketNotificationRulesDestinationVeFaaOutput {
+	return i.ToBucketNotificationRulesDestinationVeFaaOutputWithContext(context.Background())
+}
+
+func (i BucketNotificationRulesDestinationVeFaaArgs) ToBucketNotificationRulesDestinationVeFaaOutputWithContext(ctx context.Context) BucketNotificationRulesDestinationVeFaaOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketNotificationRulesDestinationVeFaaOutput)
+}
+
+// BucketNotificationRulesDestinationVeFaaArrayInput is an input type that accepts BucketNotificationRulesDestinationVeFaaArray and BucketNotificationRulesDestinationVeFaaArrayOutput values.
+// You can construct a concrete instance of `BucketNotificationRulesDestinationVeFaaArrayInput` via:
+//
+//	BucketNotificationRulesDestinationVeFaaArray{ BucketNotificationRulesDestinationVeFaaArgs{...} }
+type BucketNotificationRulesDestinationVeFaaArrayInput interface {
+	pulumi.Input
+
+	ToBucketNotificationRulesDestinationVeFaaArrayOutput() BucketNotificationRulesDestinationVeFaaArrayOutput
+	ToBucketNotificationRulesDestinationVeFaaArrayOutputWithContext(context.Context) BucketNotificationRulesDestinationVeFaaArrayOutput
+}
+
+type BucketNotificationRulesDestinationVeFaaArray []BucketNotificationRulesDestinationVeFaaInput
+
+func (BucketNotificationRulesDestinationVeFaaArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BucketNotificationRulesDestinationVeFaa)(nil)).Elem()
+}
+
+func (i BucketNotificationRulesDestinationVeFaaArray) ToBucketNotificationRulesDestinationVeFaaArrayOutput() BucketNotificationRulesDestinationVeFaaArrayOutput {
+	return i.ToBucketNotificationRulesDestinationVeFaaArrayOutputWithContext(context.Background())
+}
+
+func (i BucketNotificationRulesDestinationVeFaaArray) ToBucketNotificationRulesDestinationVeFaaArrayOutputWithContext(ctx context.Context) BucketNotificationRulesDestinationVeFaaArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketNotificationRulesDestinationVeFaaArrayOutput)
+}
+
+type BucketNotificationRulesDestinationVeFaaOutput struct{ *pulumi.OutputState }
+
+func (BucketNotificationRulesDestinationVeFaaOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketNotificationRulesDestinationVeFaa)(nil)).Elem()
+}
+
+func (o BucketNotificationRulesDestinationVeFaaOutput) ToBucketNotificationRulesDestinationVeFaaOutput() BucketNotificationRulesDestinationVeFaaOutput {
+	return o
+}
+
+func (o BucketNotificationRulesDestinationVeFaaOutput) ToBucketNotificationRulesDestinationVeFaaOutputWithContext(ctx context.Context) BucketNotificationRulesDestinationVeFaaOutput {
+	return o
+}
+
+// The function id of the destination.
+func (o BucketNotificationRulesDestinationVeFaaOutput) FunctionId() pulumi.StringOutput {
+	return o.ApplyT(func(v BucketNotificationRulesDestinationVeFaa) string { return v.FunctionId }).(pulumi.StringOutput)
+}
+
+type BucketNotificationRulesDestinationVeFaaArrayOutput struct{ *pulumi.OutputState }
+
+func (BucketNotificationRulesDestinationVeFaaArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BucketNotificationRulesDestinationVeFaa)(nil)).Elem()
+}
+
+func (o BucketNotificationRulesDestinationVeFaaArrayOutput) ToBucketNotificationRulesDestinationVeFaaArrayOutput() BucketNotificationRulesDestinationVeFaaArrayOutput {
+	return o
+}
+
+func (o BucketNotificationRulesDestinationVeFaaArrayOutput) ToBucketNotificationRulesDestinationVeFaaArrayOutputWithContext(ctx context.Context) BucketNotificationRulesDestinationVeFaaArrayOutput {
+	return o
+}
+
+func (o BucketNotificationRulesDestinationVeFaaArrayOutput) Index(i pulumi.IntInput) BucketNotificationRulesDestinationVeFaaOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) BucketNotificationRulesDestinationVeFaa {
+		return vs[0].([]BucketNotificationRulesDestinationVeFaa)[vs[1].(int)]
+	}).(BucketNotificationRulesDestinationVeFaaOutput)
+}
+
+type BucketNotificationRulesFilter struct {
+	// The tos filter of the notification.
+	TosKey *BucketNotificationRulesFilterTosKey `pulumi:"tosKey"`
+}
+
+// BucketNotificationRulesFilterInput is an input type that accepts BucketNotificationRulesFilterArgs and BucketNotificationRulesFilterOutput values.
+// You can construct a concrete instance of `BucketNotificationRulesFilterInput` via:
+//
+//	BucketNotificationRulesFilterArgs{...}
+type BucketNotificationRulesFilterInput interface {
+	pulumi.Input
+
+	ToBucketNotificationRulesFilterOutput() BucketNotificationRulesFilterOutput
+	ToBucketNotificationRulesFilterOutputWithContext(context.Context) BucketNotificationRulesFilterOutput
+}
+
+type BucketNotificationRulesFilterArgs struct {
+	// The tos filter of the notification.
+	TosKey BucketNotificationRulesFilterTosKeyPtrInput `pulumi:"tosKey"`
+}
+
+func (BucketNotificationRulesFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketNotificationRulesFilter)(nil)).Elem()
+}
+
+func (i BucketNotificationRulesFilterArgs) ToBucketNotificationRulesFilterOutput() BucketNotificationRulesFilterOutput {
+	return i.ToBucketNotificationRulesFilterOutputWithContext(context.Background())
+}
+
+func (i BucketNotificationRulesFilterArgs) ToBucketNotificationRulesFilterOutputWithContext(ctx context.Context) BucketNotificationRulesFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketNotificationRulesFilterOutput)
+}
+
+func (i BucketNotificationRulesFilterArgs) ToBucketNotificationRulesFilterPtrOutput() BucketNotificationRulesFilterPtrOutput {
+	return i.ToBucketNotificationRulesFilterPtrOutputWithContext(context.Background())
+}
+
+func (i BucketNotificationRulesFilterArgs) ToBucketNotificationRulesFilterPtrOutputWithContext(ctx context.Context) BucketNotificationRulesFilterPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketNotificationRulesFilterOutput).ToBucketNotificationRulesFilterPtrOutputWithContext(ctx)
+}
+
+// BucketNotificationRulesFilterPtrInput is an input type that accepts BucketNotificationRulesFilterArgs, BucketNotificationRulesFilterPtr and BucketNotificationRulesFilterPtrOutput values.
+// You can construct a concrete instance of `BucketNotificationRulesFilterPtrInput` via:
+//
+//	        BucketNotificationRulesFilterArgs{...}
+//
+//	or:
+//
+//	        nil
+type BucketNotificationRulesFilterPtrInput interface {
+	pulumi.Input
+
+	ToBucketNotificationRulesFilterPtrOutput() BucketNotificationRulesFilterPtrOutput
+	ToBucketNotificationRulesFilterPtrOutputWithContext(context.Context) BucketNotificationRulesFilterPtrOutput
+}
+
+type bucketNotificationRulesFilterPtrType BucketNotificationRulesFilterArgs
+
+func BucketNotificationRulesFilterPtr(v *BucketNotificationRulesFilterArgs) BucketNotificationRulesFilterPtrInput {
+	return (*bucketNotificationRulesFilterPtrType)(v)
+}
+
+func (*bucketNotificationRulesFilterPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketNotificationRulesFilter)(nil)).Elem()
+}
+
+func (i *bucketNotificationRulesFilterPtrType) ToBucketNotificationRulesFilterPtrOutput() BucketNotificationRulesFilterPtrOutput {
+	return i.ToBucketNotificationRulesFilterPtrOutputWithContext(context.Background())
+}
+
+func (i *bucketNotificationRulesFilterPtrType) ToBucketNotificationRulesFilterPtrOutputWithContext(ctx context.Context) BucketNotificationRulesFilterPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketNotificationRulesFilterPtrOutput)
+}
+
+type BucketNotificationRulesFilterOutput struct{ *pulumi.OutputState }
+
+func (BucketNotificationRulesFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketNotificationRulesFilter)(nil)).Elem()
+}
+
+func (o BucketNotificationRulesFilterOutput) ToBucketNotificationRulesFilterOutput() BucketNotificationRulesFilterOutput {
+	return o
+}
+
+func (o BucketNotificationRulesFilterOutput) ToBucketNotificationRulesFilterOutputWithContext(ctx context.Context) BucketNotificationRulesFilterOutput {
+	return o
+}
+
+func (o BucketNotificationRulesFilterOutput) ToBucketNotificationRulesFilterPtrOutput() BucketNotificationRulesFilterPtrOutput {
+	return o.ToBucketNotificationRulesFilterPtrOutputWithContext(context.Background())
+}
+
+func (o BucketNotificationRulesFilterOutput) ToBucketNotificationRulesFilterPtrOutputWithContext(ctx context.Context) BucketNotificationRulesFilterPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v BucketNotificationRulesFilter) *BucketNotificationRulesFilter {
+		return &v
+	}).(BucketNotificationRulesFilterPtrOutput)
+}
+
+// The tos filter of the notification.
+func (o BucketNotificationRulesFilterOutput) TosKey() BucketNotificationRulesFilterTosKeyPtrOutput {
+	return o.ApplyT(func(v BucketNotificationRulesFilter) *BucketNotificationRulesFilterTosKey { return v.TosKey }).(BucketNotificationRulesFilterTosKeyPtrOutput)
+}
+
+type BucketNotificationRulesFilterPtrOutput struct{ *pulumi.OutputState }
+
+func (BucketNotificationRulesFilterPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketNotificationRulesFilter)(nil)).Elem()
+}
+
+func (o BucketNotificationRulesFilterPtrOutput) ToBucketNotificationRulesFilterPtrOutput() BucketNotificationRulesFilterPtrOutput {
+	return o
+}
+
+func (o BucketNotificationRulesFilterPtrOutput) ToBucketNotificationRulesFilterPtrOutputWithContext(ctx context.Context) BucketNotificationRulesFilterPtrOutput {
+	return o
+}
+
+func (o BucketNotificationRulesFilterPtrOutput) Elem() BucketNotificationRulesFilterOutput {
+	return o.ApplyT(func(v *BucketNotificationRulesFilter) BucketNotificationRulesFilter {
+		if v != nil {
+			return *v
+		}
+		var ret BucketNotificationRulesFilter
+		return ret
+	}).(BucketNotificationRulesFilterOutput)
+}
+
+// The tos filter of the notification.
+func (o BucketNotificationRulesFilterPtrOutput) TosKey() BucketNotificationRulesFilterTosKeyPtrOutput {
+	return o.ApplyT(func(v *BucketNotificationRulesFilter) *BucketNotificationRulesFilterTosKey {
+		if v == nil {
+			return nil
+		}
+		return v.TosKey
+	}).(BucketNotificationRulesFilterTosKeyPtrOutput)
+}
+
+type BucketNotificationRulesFilterTosKey struct {
+	// The filter rules of the notification.
+	FilterRules []BucketNotificationRulesFilterTosKeyFilterRule `pulumi:"filterRules"`
+}
+
+// BucketNotificationRulesFilterTosKeyInput is an input type that accepts BucketNotificationRulesFilterTosKeyArgs and BucketNotificationRulesFilterTosKeyOutput values.
+// You can construct a concrete instance of `BucketNotificationRulesFilterTosKeyInput` via:
+//
+//	BucketNotificationRulesFilterTosKeyArgs{...}
+type BucketNotificationRulesFilterTosKeyInput interface {
+	pulumi.Input
+
+	ToBucketNotificationRulesFilterTosKeyOutput() BucketNotificationRulesFilterTosKeyOutput
+	ToBucketNotificationRulesFilterTosKeyOutputWithContext(context.Context) BucketNotificationRulesFilterTosKeyOutput
+}
+
+type BucketNotificationRulesFilterTosKeyArgs struct {
+	// The filter rules of the notification.
+	FilterRules BucketNotificationRulesFilterTosKeyFilterRuleArrayInput `pulumi:"filterRules"`
+}
+
+func (BucketNotificationRulesFilterTosKeyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketNotificationRulesFilterTosKey)(nil)).Elem()
+}
+
+func (i BucketNotificationRulesFilterTosKeyArgs) ToBucketNotificationRulesFilterTosKeyOutput() BucketNotificationRulesFilterTosKeyOutput {
+	return i.ToBucketNotificationRulesFilterTosKeyOutputWithContext(context.Background())
+}
+
+func (i BucketNotificationRulesFilterTosKeyArgs) ToBucketNotificationRulesFilterTosKeyOutputWithContext(ctx context.Context) BucketNotificationRulesFilterTosKeyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketNotificationRulesFilterTosKeyOutput)
+}
+
+func (i BucketNotificationRulesFilterTosKeyArgs) ToBucketNotificationRulesFilterTosKeyPtrOutput() BucketNotificationRulesFilterTosKeyPtrOutput {
+	return i.ToBucketNotificationRulesFilterTosKeyPtrOutputWithContext(context.Background())
+}
+
+func (i BucketNotificationRulesFilterTosKeyArgs) ToBucketNotificationRulesFilterTosKeyPtrOutputWithContext(ctx context.Context) BucketNotificationRulesFilterTosKeyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketNotificationRulesFilterTosKeyOutput).ToBucketNotificationRulesFilterTosKeyPtrOutputWithContext(ctx)
+}
+
+// BucketNotificationRulesFilterTosKeyPtrInput is an input type that accepts BucketNotificationRulesFilterTosKeyArgs, BucketNotificationRulesFilterTosKeyPtr and BucketNotificationRulesFilterTosKeyPtrOutput values.
+// You can construct a concrete instance of `BucketNotificationRulesFilterTosKeyPtrInput` via:
+//
+//	        BucketNotificationRulesFilterTosKeyArgs{...}
+//
+//	or:
+//
+//	        nil
+type BucketNotificationRulesFilterTosKeyPtrInput interface {
+	pulumi.Input
+
+	ToBucketNotificationRulesFilterTosKeyPtrOutput() BucketNotificationRulesFilterTosKeyPtrOutput
+	ToBucketNotificationRulesFilterTosKeyPtrOutputWithContext(context.Context) BucketNotificationRulesFilterTosKeyPtrOutput
+}
+
+type bucketNotificationRulesFilterTosKeyPtrType BucketNotificationRulesFilterTosKeyArgs
+
+func BucketNotificationRulesFilterTosKeyPtr(v *BucketNotificationRulesFilterTosKeyArgs) BucketNotificationRulesFilterTosKeyPtrInput {
+	return (*bucketNotificationRulesFilterTosKeyPtrType)(v)
+}
+
+func (*bucketNotificationRulesFilterTosKeyPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketNotificationRulesFilterTosKey)(nil)).Elem()
+}
+
+func (i *bucketNotificationRulesFilterTosKeyPtrType) ToBucketNotificationRulesFilterTosKeyPtrOutput() BucketNotificationRulesFilterTosKeyPtrOutput {
+	return i.ToBucketNotificationRulesFilterTosKeyPtrOutputWithContext(context.Background())
+}
+
+func (i *bucketNotificationRulesFilterTosKeyPtrType) ToBucketNotificationRulesFilterTosKeyPtrOutputWithContext(ctx context.Context) BucketNotificationRulesFilterTosKeyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketNotificationRulesFilterTosKeyPtrOutput)
+}
+
+type BucketNotificationRulesFilterTosKeyOutput struct{ *pulumi.OutputState }
+
+func (BucketNotificationRulesFilterTosKeyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketNotificationRulesFilterTosKey)(nil)).Elem()
+}
+
+func (o BucketNotificationRulesFilterTosKeyOutput) ToBucketNotificationRulesFilterTosKeyOutput() BucketNotificationRulesFilterTosKeyOutput {
+	return o
+}
+
+func (o BucketNotificationRulesFilterTosKeyOutput) ToBucketNotificationRulesFilterTosKeyOutputWithContext(ctx context.Context) BucketNotificationRulesFilterTosKeyOutput {
+	return o
+}
+
+func (o BucketNotificationRulesFilterTosKeyOutput) ToBucketNotificationRulesFilterTosKeyPtrOutput() BucketNotificationRulesFilterTosKeyPtrOutput {
+	return o.ToBucketNotificationRulesFilterTosKeyPtrOutputWithContext(context.Background())
+}
+
+func (o BucketNotificationRulesFilterTosKeyOutput) ToBucketNotificationRulesFilterTosKeyPtrOutputWithContext(ctx context.Context) BucketNotificationRulesFilterTosKeyPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v BucketNotificationRulesFilterTosKey) *BucketNotificationRulesFilterTosKey {
+		return &v
+	}).(BucketNotificationRulesFilterTosKeyPtrOutput)
+}
+
+// The filter rules of the notification.
+func (o BucketNotificationRulesFilterTosKeyOutput) FilterRules() BucketNotificationRulesFilterTosKeyFilterRuleArrayOutput {
+	return o.ApplyT(func(v BucketNotificationRulesFilterTosKey) []BucketNotificationRulesFilterTosKeyFilterRule {
+		return v.FilterRules
+	}).(BucketNotificationRulesFilterTosKeyFilterRuleArrayOutput)
+}
+
+type BucketNotificationRulesFilterTosKeyPtrOutput struct{ *pulumi.OutputState }
+
+func (BucketNotificationRulesFilterTosKeyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketNotificationRulesFilterTosKey)(nil)).Elem()
+}
+
+func (o BucketNotificationRulesFilterTosKeyPtrOutput) ToBucketNotificationRulesFilterTosKeyPtrOutput() BucketNotificationRulesFilterTosKeyPtrOutput {
+	return o
+}
+
+func (o BucketNotificationRulesFilterTosKeyPtrOutput) ToBucketNotificationRulesFilterTosKeyPtrOutputWithContext(ctx context.Context) BucketNotificationRulesFilterTosKeyPtrOutput {
+	return o
+}
+
+func (o BucketNotificationRulesFilterTosKeyPtrOutput) Elem() BucketNotificationRulesFilterTosKeyOutput {
+	return o.ApplyT(func(v *BucketNotificationRulesFilterTosKey) BucketNotificationRulesFilterTosKey {
+		if v != nil {
+			return *v
+		}
+		var ret BucketNotificationRulesFilterTosKey
+		return ret
+	}).(BucketNotificationRulesFilterTosKeyOutput)
+}
+
+// The filter rules of the notification.
+func (o BucketNotificationRulesFilterTosKeyPtrOutput) FilterRules() BucketNotificationRulesFilterTosKeyFilterRuleArrayOutput {
+	return o.ApplyT(func(v *BucketNotificationRulesFilterTosKey) []BucketNotificationRulesFilterTosKeyFilterRule {
+		if v == nil {
+			return nil
+		}
+		return v.FilterRules
+	}).(BucketNotificationRulesFilterTosKeyFilterRuleArrayOutput)
+}
+
+type BucketNotificationRulesFilterTosKeyFilterRule struct {
+	// The name of the filter rule. Valid values: `prefix`, `suffix`.
+	Name *string `pulumi:"name"`
+	// The value of the filter rule.
+	Value *string `pulumi:"value"`
+}
+
+// BucketNotificationRulesFilterTosKeyFilterRuleInput is an input type that accepts BucketNotificationRulesFilterTosKeyFilterRuleArgs and BucketNotificationRulesFilterTosKeyFilterRuleOutput values.
+// You can construct a concrete instance of `BucketNotificationRulesFilterTosKeyFilterRuleInput` via:
+//
+//	BucketNotificationRulesFilterTosKeyFilterRuleArgs{...}
+type BucketNotificationRulesFilterTosKeyFilterRuleInput interface {
+	pulumi.Input
+
+	ToBucketNotificationRulesFilterTosKeyFilterRuleOutput() BucketNotificationRulesFilterTosKeyFilterRuleOutput
+	ToBucketNotificationRulesFilterTosKeyFilterRuleOutputWithContext(context.Context) BucketNotificationRulesFilterTosKeyFilterRuleOutput
+}
+
+type BucketNotificationRulesFilterTosKeyFilterRuleArgs struct {
+	// The name of the filter rule. Valid values: `prefix`, `suffix`.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The value of the filter rule.
+	Value pulumi.StringPtrInput `pulumi:"value"`
+}
+
+func (BucketNotificationRulesFilterTosKeyFilterRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketNotificationRulesFilterTosKeyFilterRule)(nil)).Elem()
+}
+
+func (i BucketNotificationRulesFilterTosKeyFilterRuleArgs) ToBucketNotificationRulesFilterTosKeyFilterRuleOutput() BucketNotificationRulesFilterTosKeyFilterRuleOutput {
+	return i.ToBucketNotificationRulesFilterTosKeyFilterRuleOutputWithContext(context.Background())
+}
+
+func (i BucketNotificationRulesFilterTosKeyFilterRuleArgs) ToBucketNotificationRulesFilterTosKeyFilterRuleOutputWithContext(ctx context.Context) BucketNotificationRulesFilterTosKeyFilterRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketNotificationRulesFilterTosKeyFilterRuleOutput)
+}
+
+// BucketNotificationRulesFilterTosKeyFilterRuleArrayInput is an input type that accepts BucketNotificationRulesFilterTosKeyFilterRuleArray and BucketNotificationRulesFilterTosKeyFilterRuleArrayOutput values.
+// You can construct a concrete instance of `BucketNotificationRulesFilterTosKeyFilterRuleArrayInput` via:
+//
+//	BucketNotificationRulesFilterTosKeyFilterRuleArray{ BucketNotificationRulesFilterTosKeyFilterRuleArgs{...} }
+type BucketNotificationRulesFilterTosKeyFilterRuleArrayInput interface {
+	pulumi.Input
+
+	ToBucketNotificationRulesFilterTosKeyFilterRuleArrayOutput() BucketNotificationRulesFilterTosKeyFilterRuleArrayOutput
+	ToBucketNotificationRulesFilterTosKeyFilterRuleArrayOutputWithContext(context.Context) BucketNotificationRulesFilterTosKeyFilterRuleArrayOutput
+}
+
+type BucketNotificationRulesFilterTosKeyFilterRuleArray []BucketNotificationRulesFilterTosKeyFilterRuleInput
+
+func (BucketNotificationRulesFilterTosKeyFilterRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BucketNotificationRulesFilterTosKeyFilterRule)(nil)).Elem()
+}
+
+func (i BucketNotificationRulesFilterTosKeyFilterRuleArray) ToBucketNotificationRulesFilterTosKeyFilterRuleArrayOutput() BucketNotificationRulesFilterTosKeyFilterRuleArrayOutput {
+	return i.ToBucketNotificationRulesFilterTosKeyFilterRuleArrayOutputWithContext(context.Background())
+}
+
+func (i BucketNotificationRulesFilterTosKeyFilterRuleArray) ToBucketNotificationRulesFilterTosKeyFilterRuleArrayOutputWithContext(ctx context.Context) BucketNotificationRulesFilterTosKeyFilterRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketNotificationRulesFilterTosKeyFilterRuleArrayOutput)
+}
+
+type BucketNotificationRulesFilterTosKeyFilterRuleOutput struct{ *pulumi.OutputState }
+
+func (BucketNotificationRulesFilterTosKeyFilterRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketNotificationRulesFilterTosKeyFilterRule)(nil)).Elem()
+}
+
+func (o BucketNotificationRulesFilterTosKeyFilterRuleOutput) ToBucketNotificationRulesFilterTosKeyFilterRuleOutput() BucketNotificationRulesFilterTosKeyFilterRuleOutput {
+	return o
+}
+
+func (o BucketNotificationRulesFilterTosKeyFilterRuleOutput) ToBucketNotificationRulesFilterTosKeyFilterRuleOutputWithContext(ctx context.Context) BucketNotificationRulesFilterTosKeyFilterRuleOutput {
+	return o
+}
+
+// The name of the filter rule. Valid values: `prefix`, `suffix`.
+func (o BucketNotificationRulesFilterTosKeyFilterRuleOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketNotificationRulesFilterTosKeyFilterRule) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+// The value of the filter rule.
+func (o BucketNotificationRulesFilterTosKeyFilterRuleOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketNotificationRulesFilterTosKeyFilterRule) *string { return v.Value }).(pulumi.StringPtrOutput)
+}
+
+type BucketNotificationRulesFilterTosKeyFilterRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (BucketNotificationRulesFilterTosKeyFilterRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BucketNotificationRulesFilterTosKeyFilterRule)(nil)).Elem()
+}
+
+func (o BucketNotificationRulesFilterTosKeyFilterRuleArrayOutput) ToBucketNotificationRulesFilterTosKeyFilterRuleArrayOutput() BucketNotificationRulesFilterTosKeyFilterRuleArrayOutput {
+	return o
+}
+
+func (o BucketNotificationRulesFilterTosKeyFilterRuleArrayOutput) ToBucketNotificationRulesFilterTosKeyFilterRuleArrayOutputWithContext(ctx context.Context) BucketNotificationRulesFilterTosKeyFilterRuleArrayOutput {
+	return o
+}
+
+func (o BucketNotificationRulesFilterTosKeyFilterRuleArrayOutput) Index(i pulumi.IntInput) BucketNotificationRulesFilterTosKeyFilterRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) BucketNotificationRulesFilterTosKeyFilterRule {
+		return vs[0].([]BucketNotificationRulesFilterTosKeyFilterRule)[vs[1].(int)]
+	}).(BucketNotificationRulesFilterTosKeyFilterRuleOutput)
 }
 
 type BucketObjectAccountAcl struct {
@@ -3443,6 +4709,12 @@ func (o GetBucketsBucketArrayOutput) Index(i pulumi.IntInput) GetBucketsBucketOu
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketAccountAclInput)(nil)).Elem(), BucketAccountAclArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketAccountAclArrayInput)(nil)).Elem(), BucketAccountAclArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketCorsCorsRuleInput)(nil)).Elem(), BucketCorsCorsRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketCorsCorsRuleArrayInput)(nil)).Elem(), BucketCorsCorsRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketEncryptionRuleInput)(nil)).Elem(), BucketEncryptionRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketEncryptionRulePtrInput)(nil)).Elem(), BucketEncryptionRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketEncryptionRuleApplyServerSideEncryptionByDefaultInput)(nil)).Elem(), BucketEncryptionRuleApplyServerSideEncryptionByDefaultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketEncryptionRuleApplyServerSideEncryptionByDefaultPtrInput)(nil)).Elem(), BucketEncryptionRuleApplyServerSideEncryptionByDefaultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketInventoriesInventoryConfigurationInput)(nil)).Elem(), BucketInventoriesInventoryConfigurationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketInventoriesInventoryConfigurationArrayInput)(nil)).Elem(), BucketInventoriesInventoryConfigurationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketInventoriesInventoryConfigurationDestinationInput)(nil)).Elem(), BucketInventoriesInventoryConfigurationDestinationArgs{})
@@ -3465,6 +4737,18 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketInventoryOptionalFieldsPtrInput)(nil)).Elem(), BucketInventoryOptionalFieldsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketInventoryScheduleInput)(nil)).Elem(), BucketInventoryScheduleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketInventorySchedulePtrInput)(nil)).Elem(), BucketInventoryScheduleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketNotificationRulesInput)(nil)).Elem(), BucketNotificationRulesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketNotificationRulesPtrInput)(nil)).Elem(), BucketNotificationRulesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketNotificationRulesDestinationInput)(nil)).Elem(), BucketNotificationRulesDestinationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketNotificationRulesDestinationPtrInput)(nil)).Elem(), BucketNotificationRulesDestinationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketNotificationRulesDestinationVeFaaInput)(nil)).Elem(), BucketNotificationRulesDestinationVeFaaArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketNotificationRulesDestinationVeFaaArrayInput)(nil)).Elem(), BucketNotificationRulesDestinationVeFaaArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketNotificationRulesFilterInput)(nil)).Elem(), BucketNotificationRulesFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketNotificationRulesFilterPtrInput)(nil)).Elem(), BucketNotificationRulesFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketNotificationRulesFilterTosKeyInput)(nil)).Elem(), BucketNotificationRulesFilterTosKeyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketNotificationRulesFilterTosKeyPtrInput)(nil)).Elem(), BucketNotificationRulesFilterTosKeyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketNotificationRulesFilterTosKeyFilterRuleInput)(nil)).Elem(), BucketNotificationRulesFilterTosKeyFilterRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketNotificationRulesFilterTosKeyFilterRuleArrayInput)(nil)).Elem(), BucketNotificationRulesFilterTosKeyFilterRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketObjectAccountAclInput)(nil)).Elem(), BucketObjectAccountAclArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketObjectAccountAclArrayInput)(nil)).Elem(), BucketObjectAccountAclArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketObjectTagInput)(nil)).Elem(), BucketObjectTagArgs{})
@@ -3495,6 +4779,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBucketsBucketArrayInput)(nil)).Elem(), GetBucketsBucketArray{})
 	pulumi.RegisterOutputType(BucketAccountAclOutput{})
 	pulumi.RegisterOutputType(BucketAccountAclArrayOutput{})
+	pulumi.RegisterOutputType(BucketCorsCorsRuleOutput{})
+	pulumi.RegisterOutputType(BucketCorsCorsRuleArrayOutput{})
+	pulumi.RegisterOutputType(BucketEncryptionRuleOutput{})
+	pulumi.RegisterOutputType(BucketEncryptionRulePtrOutput{})
+	pulumi.RegisterOutputType(BucketEncryptionRuleApplyServerSideEncryptionByDefaultOutput{})
+	pulumi.RegisterOutputType(BucketEncryptionRuleApplyServerSideEncryptionByDefaultPtrOutput{})
 	pulumi.RegisterOutputType(BucketInventoriesInventoryConfigurationOutput{})
 	pulumi.RegisterOutputType(BucketInventoriesInventoryConfigurationArrayOutput{})
 	pulumi.RegisterOutputType(BucketInventoriesInventoryConfigurationDestinationOutput{})
@@ -3517,6 +4807,18 @@ func init() {
 	pulumi.RegisterOutputType(BucketInventoryOptionalFieldsPtrOutput{})
 	pulumi.RegisterOutputType(BucketInventoryScheduleOutput{})
 	pulumi.RegisterOutputType(BucketInventorySchedulePtrOutput{})
+	pulumi.RegisterOutputType(BucketNotificationRulesOutput{})
+	pulumi.RegisterOutputType(BucketNotificationRulesPtrOutput{})
+	pulumi.RegisterOutputType(BucketNotificationRulesDestinationOutput{})
+	pulumi.RegisterOutputType(BucketNotificationRulesDestinationPtrOutput{})
+	pulumi.RegisterOutputType(BucketNotificationRulesDestinationVeFaaOutput{})
+	pulumi.RegisterOutputType(BucketNotificationRulesDestinationVeFaaArrayOutput{})
+	pulumi.RegisterOutputType(BucketNotificationRulesFilterOutput{})
+	pulumi.RegisterOutputType(BucketNotificationRulesFilterPtrOutput{})
+	pulumi.RegisterOutputType(BucketNotificationRulesFilterTosKeyOutput{})
+	pulumi.RegisterOutputType(BucketNotificationRulesFilterTosKeyPtrOutput{})
+	pulumi.RegisterOutputType(BucketNotificationRulesFilterTosKeyFilterRuleOutput{})
+	pulumi.RegisterOutputType(BucketNotificationRulesFilterTosKeyFilterRuleArrayOutput{})
 	pulumi.RegisterOutputType(BucketObjectAccountAclOutput{})
 	pulumi.RegisterOutputType(BucketObjectAccountAclArrayOutput{})
 	pulumi.RegisterOutputType(BucketObjectTagOutput{})

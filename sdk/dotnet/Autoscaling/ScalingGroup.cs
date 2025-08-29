@@ -120,6 +120,12 @@ namespace Pulumi.Volcengine.Autoscaling
         public Output<string> HealthCheckType { get; private set; } = null!;
 
         /// <summary>
+        /// Whether to ignore failed ASG scaling activities while waiting for capacity. Default is false.
+        /// </summary>
+        [Output("ignoreFailedScalingActivities")]
+        public Output<bool?> IgnoreFailedScalingActivities { get; private set; } = null!;
+
+        /// <summary>
         /// The instance terminate policy of the scaling group. Valid values: OldestInstance, NewestInstance, OldestScalingConfigurationWithOldestInstance, OldestScalingConfigurationWithNewestInstance. Default value: OldestScalingConfigurationWithOldestInstance.
         /// </summary>
         [Output("instanceTerminatePolicy")]
@@ -241,6 +247,12 @@ namespace Pulumi.Volcengine.Autoscaling
         [Output("vpcId")]
         public Output<string> VpcId { get; private set; } = null!;
 
+        /// <summary>
+        /// Maximum duration that Provider should wait for ASG instances to be InService before timing out. Setting this to "0" causes Provider to skip all Capacity Waiting behavior. Default is "0".
+        /// </summary>
+        [Output("waitForCapacityTimeout")]
+        public Output<string?> WaitForCapacityTimeout { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a ScalingGroup resource with the given unique name, arguments, and options.
@@ -311,6 +323,12 @@ namespace Pulumi.Volcengine.Autoscaling
         /// </summary>
         [Input("desireInstanceNumber")]
         public Input<int>? DesireInstanceNumber { get; set; }
+
+        /// <summary>
+        /// Whether to ignore failed ASG scaling activities while waiting for capacity. Default is false.
+        /// </summary>
+        [Input("ignoreFailedScalingActivities")]
+        public Input<bool>? IgnoreFailedScalingActivities { get; set; }
 
         /// <summary>
         /// The instance terminate policy of the scaling group. Valid values: OldestInstance, NewestInstance, OldestScalingConfigurationWithOldestInstance, OldestScalingConfigurationWithNewestInstance. Default value: OldestScalingConfigurationWithOldestInstance.
@@ -416,6 +434,12 @@ namespace Pulumi.Volcengine.Autoscaling
             set => _tags = value;
         }
 
+        /// <summary>
+        /// Maximum duration that Provider should wait for ASG instances to be InService before timing out. Setting this to "0" causes Provider to skip all Capacity Waiting behavior. Default is "0".
+        /// </summary>
+        [Input("waitForCapacityTimeout")]
+        public Input<string>? WaitForCapacityTimeout { get; set; }
+
         public ScalingGroupArgs()
         {
         }
@@ -465,6 +489,12 @@ namespace Pulumi.Volcengine.Autoscaling
         /// </summary>
         [Input("healthCheckType")]
         public Input<string>? HealthCheckType { get; set; }
+
+        /// <summary>
+        /// Whether to ignore failed ASG scaling activities while waiting for capacity. Default is false.
+        /// </summary>
+        [Input("ignoreFailedScalingActivities")]
+        public Input<bool>? IgnoreFailedScalingActivities { get; set; }
 
         /// <summary>
         /// The instance terminate policy of the scaling group. Valid values: OldestInstance, NewestInstance, OldestScalingConfigurationWithOldestInstance, OldestScalingConfigurationWithNewestInstance. Default value: OldestScalingConfigurationWithOldestInstance.
@@ -611,6 +641,12 @@ namespace Pulumi.Volcengine.Autoscaling
         /// </summary>
         [Input("vpcId")]
         public Input<string>? VpcId { get; set; }
+
+        /// <summary>
+        /// Maximum duration that Provider should wait for ASG instances to be InService before timing out. Setting this to "0" causes Provider to skip all Capacity Waiting behavior. Default is "0".
+        /// </summary>
+        [Input("waitForCapacityTimeout")]
+        public Input<string>? WaitForCapacityTimeout { get; set; }
 
         public ScalingGroupState()
         {

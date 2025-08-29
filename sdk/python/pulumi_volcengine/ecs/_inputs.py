@@ -10,6 +10,9 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = [
+    'CommandParameterDefinitionArgs',
+    'CommandTagArgs',
+    'CommandsTagArgs',
     'ImageImportTagArgs',
     'ImageTagArgs',
     'ImagesTagArgs',
@@ -20,11 +23,239 @@ __all__ = [
     'InstanceSecondaryNetworkInterfaceArgs',
     'InstanceTagArgs',
     'InstancesTagArgs',
+    'InvocationParameterArgs',
+    'InvocationTagArgs',
+    'InvocationsTagArgs',
     'LaunchTemplateNetworkInterfaceArgs',
     'LaunchTemplateVolumeArgs',
+    'GetCommandsTagArgs',
     'GetImagesTagArgs',
     'GetInstancesTagArgs',
+    'GetInvocationsTagArgs',
 ]
+
+@pulumi.input_type
+class CommandParameterDefinitionArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 type: pulumi.Input[str],
+                 decimal_precision: Optional[pulumi.Input[int]] = None,
+                 default_value: Optional[pulumi.Input[str]] = None,
+                 max_length: Optional[pulumi.Input[int]] = None,
+                 max_value: Optional[pulumi.Input[str]] = None,
+                 min_length: Optional[pulumi.Input[int]] = None,
+                 min_value: Optional[pulumi.Input[str]] = None,
+                 required: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[str] name: The name of the custom parameter.
+        :param pulumi.Input[str] type: The type of the custom parameter. Valid values: `String`, `Digit`.
+        :param pulumi.Input[int] decimal_precision: The decimal precision of the custom parameter. This field is required when the parameter type is `Digit`.
+        :param pulumi.Input[str] default_value: The default value of the custom parameter.
+        :param pulumi.Input[int] max_length: The maximum length of the custom parameter. This field is required when the parameter type is `String`.
+        :param pulumi.Input[str] max_value: The maximum value of the custom parameter. This field is required when the parameter type is `Digit`.
+        :param pulumi.Input[int] min_length: The minimum length of the custom parameter. This field is required when the parameter type is `String`.
+        :param pulumi.Input[str] min_value: The minimum value of the custom parameter. This field is required when the parameter type is `Digit`.
+        :param pulumi.Input[bool] required: Whether the custom parameter is required.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
+        if decimal_precision is not None:
+            pulumi.set(__self__, "decimal_precision", decimal_precision)
+        if default_value is not None:
+            pulumi.set(__self__, "default_value", default_value)
+        if max_length is not None:
+            pulumi.set(__self__, "max_length", max_length)
+        if max_value is not None:
+            pulumi.set(__self__, "max_value", max_value)
+        if min_length is not None:
+            pulumi.set(__self__, "min_length", min_length)
+        if min_value is not None:
+            pulumi.set(__self__, "min_value", min_value)
+        if required is not None:
+            pulumi.set(__self__, "required", required)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        """
+        The name of the custom parameter.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[str]:
+        """
+        The type of the custom parameter. Valid values: `String`, `Digit`.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter(name="decimalPrecision")
+    def decimal_precision(self) -> Optional[pulumi.Input[int]]:
+        """
+        The decimal precision of the custom parameter. This field is required when the parameter type is `Digit`.
+        """
+        return pulumi.get(self, "decimal_precision")
+
+    @decimal_precision.setter
+    def decimal_precision(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "decimal_precision", value)
+
+    @property
+    @pulumi.getter(name="defaultValue")
+    def default_value(self) -> Optional[pulumi.Input[str]]:
+        """
+        The default value of the custom parameter.
+        """
+        return pulumi.get(self, "default_value")
+
+    @default_value.setter
+    def default_value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "default_value", value)
+
+    @property
+    @pulumi.getter(name="maxLength")
+    def max_length(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum length of the custom parameter. This field is required when the parameter type is `String`.
+        """
+        return pulumi.get(self, "max_length")
+
+    @max_length.setter
+    def max_length(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_length", value)
+
+    @property
+    @pulumi.getter(name="maxValue")
+    def max_value(self) -> Optional[pulumi.Input[str]]:
+        """
+        The maximum value of the custom parameter. This field is required when the parameter type is `Digit`.
+        """
+        return pulumi.get(self, "max_value")
+
+    @max_value.setter
+    def max_value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "max_value", value)
+
+    @property
+    @pulumi.getter(name="minLength")
+    def min_length(self) -> Optional[pulumi.Input[int]]:
+        """
+        The minimum length of the custom parameter. This field is required when the parameter type is `String`.
+        """
+        return pulumi.get(self, "min_length")
+
+    @min_length.setter
+    def min_length(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "min_length", value)
+
+    @property
+    @pulumi.getter(name="minValue")
+    def min_value(self) -> Optional[pulumi.Input[str]]:
+        """
+        The minimum value of the custom parameter. This field is required when the parameter type is `Digit`.
+        """
+        return pulumi.get(self, "min_value")
+
+    @min_value.setter
+    def min_value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "min_value", value)
+
+    @property
+    @pulumi.getter
+    def required(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether the custom parameter is required.
+        """
+        return pulumi.get(self, "required")
+
+    @required.setter
+    def required(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "required", value)
+
+
+@pulumi.input_type
+class CommandTagArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] key: The Key of Tags.
+        :param pulumi.Input[str] value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class CommandsTagArgs:
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: str):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: str):
+        pulumi.set(self, "value", value)
+
 
 @pulumi.input_type
 class ImageImportTagArgs:
@@ -499,6 +730,117 @@ class InstancesTagArgs:
 
 
 @pulumi.input_type
+class InvocationParameterArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] name: The name of the parameter.
+        :param pulumi.Input[str] value: The value of the parameter.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        """
+        The name of the parameter.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        """
+        The value of the parameter.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class InvocationTagArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] key: The Key of Tags.
+        :param pulumi.Input[str] value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class InvocationsTagArgs:
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: str):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: str):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
 class LaunchTemplateNetworkInterfaceArgs:
     def __init__(__self__, *,
                  security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -593,6 +935,43 @@ class LaunchTemplateVolumeArgs:
 
 
 @pulumi.input_type
+class GetCommandsTagArgs:
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: str):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: str):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
 class GetImagesTagArgs:
     def __init__(__self__, *,
                  key: str,
@@ -631,6 +1010,43 @@ class GetImagesTagArgs:
 
 @pulumi.input_type
 class GetInstancesTagArgs:
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: str):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: str):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class GetInvocationsTagArgs:
     def __init__(__self__, *,
                  key: str,
                  value: str):

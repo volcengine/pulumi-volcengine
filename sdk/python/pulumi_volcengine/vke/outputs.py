@@ -1999,6 +1999,8 @@ class DefaultNodePoolBatchAttachNodeConfig(dict):
             suggest = "initialize_script"
         elif key == "namePrefix":
             suggest = "name_prefix"
+        elif key == "preScript":
+            suggest = "pre_script"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in DefaultNodePoolBatchAttachNodeConfig. Access the value via the '{suggest}' property getter instead.")
@@ -2015,11 +2017,13 @@ class DefaultNodePoolBatchAttachNodeConfig(dict):
                  ecs_tags: Optional[Sequence['outputs.DefaultNodePoolBatchAttachNodeConfigEcsTag']] = None,
                  initialize_script: Optional[str] = None,
                  name_prefix: Optional[str] = None,
+                 pre_script: Optional[str] = None,
                  securities: Optional[Sequence['outputs.DefaultNodePoolBatchAttachNodeConfigSecurity']] = None):
         """
         :param Sequence['DefaultNodePoolBatchAttachNodeConfigEcsTagArgs'] ecs_tags: Tags for Ecs.
         :param str initialize_script: The initializeScript of NodeConfig.
         :param str name_prefix: The NamePrefix of NodeConfig.
+        :param str pre_script: The PreScript of NodeConfig.
         :param Sequence['DefaultNodePoolBatchAttachNodeConfigSecurityArgs'] securities: The Security of NodeConfig.
         """
         if ecs_tags is not None:
@@ -2028,6 +2032,8 @@ class DefaultNodePoolBatchAttachNodeConfig(dict):
             pulumi.set(__self__, "initialize_script", initialize_script)
         if name_prefix is not None:
             pulumi.set(__self__, "name_prefix", name_prefix)
+        if pre_script is not None:
+            pulumi.set(__self__, "pre_script", pre_script)
         if securities is not None:
             pulumi.set(__self__, "securities", securities)
 
@@ -2054,6 +2060,14 @@ class DefaultNodePoolBatchAttachNodeConfig(dict):
         The NamePrefix of NodeConfig.
         """
         return pulumi.get(self, "name_prefix")
+
+    @property
+    @pulumi.getter(name="preScript")
+    def pre_script(self) -> Optional[str]:
+        """
+        The PreScript of NodeConfig.
+        """
+        return pulumi.get(self, "pre_script")
 
     @property
     @pulumi.getter
@@ -2507,6 +2521,8 @@ class DefaultNodePoolNodeConfig(dict):
             suggest = "initialize_script"
         elif key == "namePrefix":
             suggest = "name_prefix"
+        elif key == "preScript":
+            suggest = "pre_script"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in DefaultNodePoolNodeConfig. Access the value via the '{suggest}' property getter instead.")
@@ -2523,12 +2539,14 @@ class DefaultNodePoolNodeConfig(dict):
                  security: 'outputs.DefaultNodePoolNodeConfigSecurity',
                  ecs_tags: Optional[Sequence['outputs.DefaultNodePoolNodeConfigEcsTag']] = None,
                  initialize_script: Optional[str] = None,
-                 name_prefix: Optional[str] = None):
+                 name_prefix: Optional[str] = None,
+                 pre_script: Optional[str] = None):
         """
         :param 'DefaultNodePoolNodeConfigSecurityArgs' security: The Security of NodeConfig.
         :param Sequence['DefaultNodePoolNodeConfigEcsTagArgs'] ecs_tags: Tags for Ecs.
         :param str initialize_script: The initializeScript of NodeConfig.
         :param str name_prefix: The NamePrefix of NodeConfig.
+        :param str pre_script: The PreScript of NodeConfig.
         """
         pulumi.set(__self__, "security", security)
         if ecs_tags is not None:
@@ -2537,6 +2555,8 @@ class DefaultNodePoolNodeConfig(dict):
             pulumi.set(__self__, "initialize_script", initialize_script)
         if name_prefix is not None:
             pulumi.set(__self__, "name_prefix", name_prefix)
+        if pre_script is not None:
+            pulumi.set(__self__, "pre_script", pre_script)
 
     @property
     @pulumi.getter
@@ -2569,6 +2589,14 @@ class DefaultNodePoolNodeConfig(dict):
         The NamePrefix of NodeConfig.
         """
         return pulumi.get(self, "name_prefix")
+
+    @property
+    @pulumi.getter(name="preScript")
+    def pre_script(self) -> Optional[str]:
+        """
+        The PreScript of NodeConfig.
+        """
+        return pulumi.get(self, "pre_script")
 
 
 @pulumi.output_type
@@ -3354,6 +3382,8 @@ class NodePoolNodeConfig(dict):
             suggest = "instance_charge_type"
         elif key == "namePrefix":
             suggest = "name_prefix"
+        elif key == "preScript":
+            suggest = "pre_script"
         elif key == "projectName":
             suggest = "project_name"
         elif key == "systemVolume":
@@ -3385,6 +3415,7 @@ class NodePoolNodeConfig(dict):
                  instance_charge_type: Optional[str] = None,
                  name_prefix: Optional[str] = None,
                  period: Optional[int] = None,
+                 pre_script: Optional[str] = None,
                  project_name: Optional[str] = None,
                  system_volume: Optional['outputs.NodePoolNodeConfigSystemVolume'] = None):
         """
@@ -3402,6 +3433,7 @@ class NodePoolNodeConfig(dict):
         :param str instance_charge_type: The InstanceChargeType of PrePaid instance of NodeConfig. Valid values: PostPaid, PrePaid. Default value: PostPaid.
         :param str name_prefix: The NamePrefix of NodeConfig.
         :param int period: The Period of PrePaid instance of NodeConfig. Valid values: 1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 24, 36. Unit: month. when InstanceChargeType is PrePaid, default value is 12.
+        :param str pre_script: The PreScript of NodeConfig.
         :param str project_name: The project name of the ecs instance.
         :param 'NodePoolNodeConfigSystemVolumeArgs' system_volume: The SystemVolume of NodeConfig.
         """
@@ -3430,6 +3462,8 @@ class NodePoolNodeConfig(dict):
             pulumi.set(__self__, "name_prefix", name_prefix)
         if period is not None:
             pulumi.set(__self__, "period", period)
+        if pre_script is not None:
+            pulumi.set(__self__, "pre_script", pre_script)
         if project_name is not None:
             pulumi.set(__self__, "project_name", project_name)
         if system_volume is not None:
@@ -3546,6 +3580,14 @@ class NodePoolNodeConfig(dict):
         The Period of PrePaid instance of NodeConfig. Valid values: 1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 24, 36. Unit: month. when InstanceChargeType is PrePaid, default value is 12.
         """
         return pulumi.get(self, "period")
+
+    @property
+    @pulumi.getter(name="preScript")
+    def pre_script(self) -> Optional[str]:
+        """
+        The PreScript of NodeConfig.
+        """
+        return pulumi.get(self, "pre_script")
 
     @property
     @pulumi.getter(name="projectName")
@@ -4014,6 +4056,7 @@ class NodePoolsNodePoolResult(dict):
                  node_statistics: Sequence['outputs.NodePoolsNodePoolNodeStatisticResult'],
                  period: int,
                  phase: str,
+                 pre_script: str,
                  priority: int,
                  project_name: str,
                  security_group_ids: Sequence[str],
@@ -4058,6 +4101,7 @@ class NodePoolsNodePoolResult(dict):
         :param Sequence['NodePoolsNodePoolNodeStatisticArgs'] node_statistics: The NodeStatistics of NodeConfig.
         :param int period: The period of the PrePaid instance of NodeConfig.
         :param str phase: The Phase of Status.
+        :param str pre_script: The PreScript of NodeConfig.
         :param int priority: The Priority of AutoScaling.
         :param str project_name: The project name of NodeConfig.
         :param Sequence[str] security_group_ids: The SecurityGroupIds of NodeConfig.
@@ -4102,6 +4146,7 @@ class NodePoolsNodePoolResult(dict):
         pulumi.set(__self__, "node_statistics", node_statistics)
         pulumi.set(__self__, "period", period)
         pulumi.set(__self__, "phase", phase)
+        pulumi.set(__self__, "pre_script", pre_script)
         pulumi.set(__self__, "priority", priority)
         pulumi.set(__self__, "project_name", project_name)
         pulumi.set(__self__, "security_group_ids", security_group_ids)
@@ -4362,6 +4407,14 @@ class NodePoolsNodePoolResult(dict):
         The Phase of Status.
         """
         return pulumi.get(self, "phase")
+
+    @property
+    @pulumi.getter(name="preScript")
+    def pre_script(self) -> str:
+        """
+        The PreScript of NodeConfig.
+        """
+        return pulumi.get(self, "pre_script")
 
     @property
     @pulumi.getter
@@ -4919,6 +4972,7 @@ class NodesNodeResult(dict):
                  name: str,
                  node_pool_id: str,
                  phase: str,
+                 pre_script: str,
                  roles: Sequence[str],
                  taints: Sequence['outputs.NodesNodeTaintResult'],
                  update_time: str,
@@ -4940,6 +4994,7 @@ class NodesNodeResult(dict):
         :param str name: The Name of Node.
         :param str node_pool_id: The node pool id.
         :param str phase: The Phase of Node.
+        :param str pre_script: The PreScript of NodeConfig.
         :param Sequence[str] roles: The roles of node.
         :param Sequence['NodesNodeTaintArgs'] taints: The Taint of KubernetesConfig.
         :param str update_time: The update time of Node.
@@ -4961,6 +5016,7 @@ class NodesNodeResult(dict):
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "node_pool_id", node_pool_id)
         pulumi.set(__self__, "phase", phase)
+        pulumi.set(__self__, "pre_script", pre_script)
         pulumi.set(__self__, "roles", roles)
         pulumi.set(__self__, "taints", taints)
         pulumi.set(__self__, "update_time", update_time)
@@ -5093,6 +5149,14 @@ class NodesNodeResult(dict):
         The Phase of Node.
         """
         return pulumi.get(self, "phase")
+
+    @property
+    @pulumi.getter(name="preScript")
+    def pre_script(self) -> str:
+        """
+        The PreScript of NodeConfig.
+        """
+        return pulumi.get(self, "pre_script")
 
     @property
     @pulumi.getter
@@ -6819,6 +6883,7 @@ class GetNodePoolsNodePoolResult(dict):
                  node_statistics: Sequence['outputs.GetNodePoolsNodePoolNodeStatisticResult'],
                  period: int,
                  phase: str,
+                 pre_script: str,
                  priority: int,
                  project_name: str,
                  security_group_ids: Sequence[str],
@@ -6863,6 +6928,7 @@ class GetNodePoolsNodePoolResult(dict):
         :param Sequence['GetNodePoolsNodePoolNodeStatisticArgs'] node_statistics: The NodeStatistics of NodeConfig.
         :param int period: The period of the PrePaid instance of NodeConfig.
         :param str phase: The Phase of Status.
+        :param str pre_script: The PreScript of NodeConfig.
         :param int priority: The Priority of AutoScaling.
         :param str project_name: The project name of NodeConfig.
         :param Sequence[str] security_group_ids: The SecurityGroupIds of NodeConfig.
@@ -6907,6 +6973,7 @@ class GetNodePoolsNodePoolResult(dict):
         pulumi.set(__self__, "node_statistics", node_statistics)
         pulumi.set(__self__, "period", period)
         pulumi.set(__self__, "phase", phase)
+        pulumi.set(__self__, "pre_script", pre_script)
         pulumi.set(__self__, "priority", priority)
         pulumi.set(__self__, "project_name", project_name)
         pulumi.set(__self__, "security_group_ids", security_group_ids)
@@ -7167,6 +7234,14 @@ class GetNodePoolsNodePoolResult(dict):
         The Phase of Status.
         """
         return pulumi.get(self, "phase")
+
+    @property
+    @pulumi.getter(name="preScript")
+    def pre_script(self) -> str:
+        """
+        The PreScript of NodeConfig.
+        """
+        return pulumi.get(self, "pre_script")
 
     @property
     @pulumi.getter
@@ -7724,6 +7799,7 @@ class GetNodesNodeResult(dict):
                  name: str,
                  node_pool_id: str,
                  phase: str,
+                 pre_script: str,
                  roles: Sequence[str],
                  taints: Sequence['outputs.GetNodesNodeTaintResult'],
                  update_time: str,
@@ -7745,6 +7821,7 @@ class GetNodesNodeResult(dict):
         :param str name: The Name of Node.
         :param str node_pool_id: The node pool id.
         :param str phase: The Phase of Node.
+        :param str pre_script: The PreScript of NodeConfig.
         :param Sequence[str] roles: The roles of node.
         :param Sequence['GetNodesNodeTaintArgs'] taints: The Taint of KubernetesConfig.
         :param str update_time: The update time of Node.
@@ -7766,6 +7843,7 @@ class GetNodesNodeResult(dict):
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "node_pool_id", node_pool_id)
         pulumi.set(__self__, "phase", phase)
+        pulumi.set(__self__, "pre_script", pre_script)
         pulumi.set(__self__, "roles", roles)
         pulumi.set(__self__, "taints", taints)
         pulumi.set(__self__, "update_time", update_time)
@@ -7898,6 +7976,14 @@ class GetNodesNodeResult(dict):
         The Phase of Node.
         """
         return pulumi.get(self, "phase")
+
+    @property
+    @pulumi.getter(name="preScript")
+    def pre_script(self) -> str:
+        """
+        The PreScript of NodeConfig.
+        """
+        return pulumi.get(self, "pre_script")
 
     @property
     @pulumi.getter

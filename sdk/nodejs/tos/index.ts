@@ -10,6 +10,16 @@ export type Bucket = import("./bucket").Bucket;
 export const Bucket: typeof import("./bucket").Bucket = null as any;
 utilities.lazyLoad(exports, ["Bucket"], () => require("./bucket"));
 
+export { BucketCorsArgs, BucketCorsState } from "./bucketCors";
+export type BucketCors = import("./bucketCors").BucketCors;
+export const BucketCors: typeof import("./bucketCors").BucketCors = null as any;
+utilities.lazyLoad(exports, ["BucketCors"], () => require("./bucketCors"));
+
+export { BucketEncryptionArgs, BucketEncryptionState } from "./bucketEncryption";
+export type BucketEncryption = import("./bucketEncryption").BucketEncryption;
+export const BucketEncryption: typeof import("./bucketEncryption").BucketEncryption = null as any;
+utilities.lazyLoad(exports, ["BucketEncryption"], () => require("./bucketEncryption"));
+
 export { BucketInventoriesArgs, BucketInventoriesResult, BucketInventoriesOutputArgs } from "./bucketInventories";
 export const bucketInventories: typeof import("./bucketInventories").bucketInventories = null as any;
 export const bucketInventoriesOutput: typeof import("./bucketInventories").bucketInventoriesOutput = null as any;
@@ -19,6 +29,11 @@ export { BucketInventoryArgs, BucketInventoryState } from "./bucketInventory";
 export type BucketInventory = import("./bucketInventory").BucketInventory;
 export const BucketInventory: typeof import("./bucketInventory").BucketInventory = null as any;
 utilities.lazyLoad(exports, ["BucketInventory"], () => require("./bucketInventory"));
+
+export { BucketNotificationArgs, BucketNotificationState } from "./bucketNotification";
+export type BucketNotification = import("./bucketNotification").BucketNotification;
+export const BucketNotification: typeof import("./bucketNotification").BucketNotification = null as any;
+utilities.lazyLoad(exports, ["BucketNotification"], () => require("./bucketNotification"));
 
 export { BucketObjectArgs, BucketObjectState } from "./bucketObject";
 export type BucketObject = import("./bucketObject").BucketObject;
@@ -67,8 +82,14 @@ const _module = {
         switch (type) {
             case "volcengine:tos/bucket:Bucket":
                 return new Bucket(name, <any>undefined, { urn })
+            case "volcengine:tos/bucketCors:BucketCors":
+                return new BucketCors(name, <any>undefined, { urn })
+            case "volcengine:tos/bucketEncryption:BucketEncryption":
+                return new BucketEncryption(name, <any>undefined, { urn })
             case "volcengine:tos/bucketInventory:BucketInventory":
                 return new BucketInventory(name, <any>undefined, { urn })
+            case "volcengine:tos/bucketNotification:BucketNotification":
+                return new BucketNotification(name, <any>undefined, { urn })
             case "volcengine:tos/bucketObject:BucketObject":
                 return new BucketObject(name, <any>undefined, { urn })
             case "volcengine:tos/bucketPolicy:BucketPolicy":
@@ -81,7 +102,10 @@ const _module = {
     },
 };
 pulumi.runtime.registerResourceModule("volcengine", "tos/bucket", _module)
+pulumi.runtime.registerResourceModule("volcengine", "tos/bucketCors", _module)
+pulumi.runtime.registerResourceModule("volcengine", "tos/bucketEncryption", _module)
 pulumi.runtime.registerResourceModule("volcengine", "tos/bucketInventory", _module)
+pulumi.runtime.registerResourceModule("volcengine", "tos/bucketNotification", _module)
 pulumi.runtime.registerResourceModule("volcengine", "tos/bucketObject", _module)
 pulumi.runtime.registerResourceModule("volcengine", "tos/bucketPolicy", _module)
 pulumi.runtime.registerResourceModule("volcengine", "tos/bucketRealtimeLog", _module)

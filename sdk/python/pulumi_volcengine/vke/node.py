@@ -25,7 +25,8 @@ class NodeArgs:
                  initialize_script: Optional[pulumi.Input[str]] = None,
                  keep_instance_name: Optional[pulumi.Input[bool]] = None,
                  kubernetes_config: Optional[pulumi.Input['NodeKubernetesConfigArgs']] = None,
-                 node_pool_id: Optional[pulumi.Input[str]] = None):
+                 node_pool_id: Optional[pulumi.Input[str]] = None,
+                 pre_script: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Node resource.
         :param pulumi.Input[str] cluster_id: The cluster id.
@@ -38,6 +39,7 @@ class NodeArgs:
         :param pulumi.Input[bool] keep_instance_name: The flag of keep instance name, the value is `true` or `false`.
         :param pulumi.Input['NodeKubernetesConfigArgs'] kubernetes_config: The KubernetesConfig of Node. This field is valid only when adding an existing instance to the default node pool.
         :param pulumi.Input[str] node_pool_id: The node pool id. This field is used to specify the custom node pool to which you want to add nodes. If not filled in, it means added to the default node pool.
+        :param pulumi.Input[str] pre_script: The PreScript of Node. This field is valid only when adding an existing instance to the default node pool.
         """
         pulumi.set(__self__, "cluster_id", cluster_id)
         pulumi.set(__self__, "instance_id", instance_id)
@@ -57,6 +59,8 @@ class NodeArgs:
             pulumi.set(__self__, "kubernetes_config", kubernetes_config)
         if node_pool_id is not None:
             pulumi.set(__self__, "node_pool_id", node_pool_id)
+        if pre_script is not None:
+            pulumi.set(__self__, "pre_script", pre_script)
 
     @property
     @pulumi.getter(name="clusterId")
@@ -178,6 +182,18 @@ class NodeArgs:
     def node_pool_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "node_pool_id", value)
 
+    @property
+    @pulumi.getter(name="preScript")
+    def pre_script(self) -> Optional[pulumi.Input[str]]:
+        """
+        The PreScript of Node. This field is valid only when adding an existing instance to the default node pool.
+        """
+        return pulumi.get(self, "pre_script")
+
+    @pre_script.setter
+    def pre_script(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pre_script", value)
+
 
 @pulumi.input_type
 class _NodeState:
@@ -191,7 +207,8 @@ class _NodeState:
                  instance_id: Optional[pulumi.Input[str]] = None,
                  keep_instance_name: Optional[pulumi.Input[bool]] = None,
                  kubernetes_config: Optional[pulumi.Input['NodeKubernetesConfigArgs']] = None,
-                 node_pool_id: Optional[pulumi.Input[str]] = None):
+                 node_pool_id: Optional[pulumi.Input[str]] = None,
+                 pre_script: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Node resources.
         :param pulumi.Input[bool] additional_container_storage_enabled: The flag of additional container storage enable, the value is `true` or `false`. This field is valid only when adding an existing instance to the default node pool.
@@ -204,6 +221,7 @@ class _NodeState:
         :param pulumi.Input[bool] keep_instance_name: The flag of keep instance name, the value is `true` or `false`.
         :param pulumi.Input['NodeKubernetesConfigArgs'] kubernetes_config: The KubernetesConfig of Node. This field is valid only when adding an existing instance to the default node pool.
         :param pulumi.Input[str] node_pool_id: The node pool id. This field is used to specify the custom node pool to which you want to add nodes. If not filled in, it means added to the default node pool.
+        :param pulumi.Input[str] pre_script: The PreScript of Node. This field is valid only when adding an existing instance to the default node pool.
         """
         if additional_container_storage_enabled is not None:
             pulumi.set(__self__, "additional_container_storage_enabled", additional_container_storage_enabled)
@@ -225,6 +243,8 @@ class _NodeState:
             pulumi.set(__self__, "kubernetes_config", kubernetes_config)
         if node_pool_id is not None:
             pulumi.set(__self__, "node_pool_id", node_pool_id)
+        if pre_script is not None:
+            pulumi.set(__self__, "pre_script", pre_script)
 
     @property
     @pulumi.getter(name="additionalContainerStorageEnabled")
@@ -346,6 +366,18 @@ class _NodeState:
     def node_pool_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "node_pool_id", value)
 
+    @property
+    @pulumi.getter(name="preScript")
+    def pre_script(self) -> Optional[pulumi.Input[str]]:
+        """
+        The PreScript of Node. This field is valid only when adding an existing instance to the default node pool.
+        """
+        return pulumi.get(self, "pre_script")
+
+    @pre_script.setter
+    def pre_script(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pre_script", value)
+
 
 class Node(pulumi.CustomResource):
     @overload
@@ -362,6 +394,7 @@ class Node(pulumi.CustomResource):
                  keep_instance_name: Optional[pulumi.Input[bool]] = None,
                  kubernetes_config: Optional[pulumi.Input[pulumi.InputType['NodeKubernetesConfigArgs']]] = None,
                  node_pool_id: Optional[pulumi.Input[str]] = None,
+                 pre_script: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Provides a resource to manage vke node
@@ -508,6 +541,7 @@ class Node(pulumi.CustomResource):
         :param pulumi.Input[bool] keep_instance_name: The flag of keep instance name, the value is `true` or `false`.
         :param pulumi.Input[pulumi.InputType['NodeKubernetesConfigArgs']] kubernetes_config: The KubernetesConfig of Node. This field is valid only when adding an existing instance to the default node pool.
         :param pulumi.Input[str] node_pool_id: The node pool id. This field is used to specify the custom node pool to which you want to add nodes. If not filled in, it means added to the default node pool.
+        :param pulumi.Input[str] pre_script: The PreScript of Node. This field is valid only when adding an existing instance to the default node pool.
         """
         ...
     @overload
@@ -673,6 +707,7 @@ class Node(pulumi.CustomResource):
                  keep_instance_name: Optional[pulumi.Input[bool]] = None,
                  kubernetes_config: Optional[pulumi.Input[pulumi.InputType['NodeKubernetesConfigArgs']]] = None,
                  node_pool_id: Optional[pulumi.Input[str]] = None,
+                 pre_script: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -696,6 +731,7 @@ class Node(pulumi.CustomResource):
             __props__.__dict__["keep_instance_name"] = keep_instance_name
             __props__.__dict__["kubernetes_config"] = kubernetes_config
             __props__.__dict__["node_pool_id"] = node_pool_id
+            __props__.__dict__["pre_script"] = pre_script
         super(Node, __self__).__init__(
             'volcengine:vke/node:Node',
             resource_name,
@@ -715,7 +751,8 @@ class Node(pulumi.CustomResource):
             instance_id: Optional[pulumi.Input[str]] = None,
             keep_instance_name: Optional[pulumi.Input[bool]] = None,
             kubernetes_config: Optional[pulumi.Input[pulumi.InputType['NodeKubernetesConfigArgs']]] = None,
-            node_pool_id: Optional[pulumi.Input[str]] = None) -> 'Node':
+            node_pool_id: Optional[pulumi.Input[str]] = None,
+            pre_script: Optional[pulumi.Input[str]] = None) -> 'Node':
         """
         Get an existing Node resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -733,6 +770,7 @@ class Node(pulumi.CustomResource):
         :param pulumi.Input[bool] keep_instance_name: The flag of keep instance name, the value is `true` or `false`.
         :param pulumi.Input[pulumi.InputType['NodeKubernetesConfigArgs']] kubernetes_config: The KubernetesConfig of Node. This field is valid only when adding an existing instance to the default node pool.
         :param pulumi.Input[str] node_pool_id: The node pool id. This field is used to specify the custom node pool to which you want to add nodes. If not filled in, it means added to the default node pool.
+        :param pulumi.Input[str] pre_script: The PreScript of Node. This field is valid only when adding an existing instance to the default node pool.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -748,6 +786,7 @@ class Node(pulumi.CustomResource):
         __props__.__dict__["keep_instance_name"] = keep_instance_name
         __props__.__dict__["kubernetes_config"] = kubernetes_config
         __props__.__dict__["node_pool_id"] = node_pool_id
+        __props__.__dict__["pre_script"] = pre_script
         return Node(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -829,4 +868,12 @@ class Node(pulumi.CustomResource):
         The node pool id. This field is used to specify the custom node pool to which you want to add nodes. If not filled in, it means added to the default node pool.
         """
         return pulumi.get(self, "node_pool_id")
+
+    @property
+    @pulumi.getter(name="preScript")
+    def pre_script(self) -> pulumi.Output[str]:
+        """
+        The PreScript of Node. This field is valid only when adding an existing instance to the default node pool.
+        """
+        return pulumi.get(self, "pre_script")
 

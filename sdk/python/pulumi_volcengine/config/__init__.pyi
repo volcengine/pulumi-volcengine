@@ -37,6 +37,11 @@ disableSsl: Optional[bool]
 Disable SSL for Volcengine Provider
 """
 
+enableStandardEndpoint: Optional[bool]
+"""
+ENABLE STANDARD ENDPOINT for Volcengine Provider
+"""
+
 endpoint: Optional[str]
 """
 The Customer Endpoint for Volcengine Provider

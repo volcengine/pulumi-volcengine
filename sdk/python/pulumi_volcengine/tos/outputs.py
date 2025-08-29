@@ -12,6 +12,9 @@ from . import outputs
 
 __all__ = [
     'BucketAccountAcl',
+    'BucketCorsCorsRule',
+    'BucketEncryptionRule',
+    'BucketEncryptionRuleApplyServerSideEncryptionByDefault',
     'BucketInventoriesInventoryConfigurationResult',
     'BucketInventoriesInventoryConfigurationDestinationResult',
     'BucketInventoriesInventoryConfigurationDestinationTosBucketDestinationResult',
@@ -23,6 +26,12 @@ __all__ = [
     'BucketInventoryFilter',
     'BucketInventoryOptionalFields',
     'BucketInventorySchedule',
+    'BucketNotificationRules',
+    'BucketNotificationRulesDestination',
+    'BucketNotificationRulesDestinationVeFaa',
+    'BucketNotificationRulesFilter',
+    'BucketNotificationRulesFilterTosKey',
+    'BucketNotificationRulesFilterTosKeyFilterRule',
     'BucketObjectAccountAcl',
     'BucketObjectTag',
     'BucketObjectsObjectResult',
@@ -97,6 +106,208 @@ class BucketAccountAcl(dict):
         The acl type to control.Valid value is CanonicalUser.
         """
         return pulumi.get(self, "acl_type")
+
+
+@pulumi.output_type
+class BucketCorsCorsRule(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "allowedMethods":
+            suggest = "allowed_methods"
+        elif key == "allowedOrigins":
+            suggest = "allowed_origins"
+        elif key == "allowedHeaders":
+            suggest = "allowed_headers"
+        elif key == "exposeHeaders":
+            suggest = "expose_headers"
+        elif key == "maxAgeSeconds":
+            suggest = "max_age_seconds"
+        elif key == "responseVary":
+            suggest = "response_vary"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in BucketCorsCorsRule. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        BucketCorsCorsRule.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        BucketCorsCorsRule.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 allowed_methods: Sequence[str],
+                 allowed_origins: Sequence[str],
+                 allowed_headers: Optional[Sequence[str]] = None,
+                 expose_headers: Optional[Sequence[str]] = None,
+                 max_age_seconds: Optional[int] = None,
+                 response_vary: Optional[bool] = None):
+        """
+        :param Sequence[str] allowed_methods: The list of HTTP methods that are allowed in a preflight request. Valid values: `PUT`, `POST`, `DELETE`, `GET`, `HEAD`.
+        :param Sequence[str] allowed_origins: The list of origins that are allowed to make requests to the bucket.
+        :param Sequence[str] allowed_headers: The list of headers that are allowed in a preflight request.
+        :param Sequence[str] expose_headers: The list of headers that are exposed in the response to a preflight request. It is recommended to add two expose headers, X-Tos-Request-Id and ETag.
+        :param int max_age_seconds: The maximum amount of time that a preflight request can be cached. Unit: second. Default value: 3600.
+        :param bool response_vary: Indicates whether the bucket returns the 'Vary: Origin' header in the response to preflight requests. Default value: false.
+        """
+        pulumi.set(__self__, "allowed_methods", allowed_methods)
+        pulumi.set(__self__, "allowed_origins", allowed_origins)
+        if allowed_headers is not None:
+            pulumi.set(__self__, "allowed_headers", allowed_headers)
+        if expose_headers is not None:
+            pulumi.set(__self__, "expose_headers", expose_headers)
+        if max_age_seconds is not None:
+            pulumi.set(__self__, "max_age_seconds", max_age_seconds)
+        if response_vary is not None:
+            pulumi.set(__self__, "response_vary", response_vary)
+
+    @property
+    @pulumi.getter(name="allowedMethods")
+    def allowed_methods(self) -> Sequence[str]:
+        """
+        The list of HTTP methods that are allowed in a preflight request. Valid values: `PUT`, `POST`, `DELETE`, `GET`, `HEAD`.
+        """
+        return pulumi.get(self, "allowed_methods")
+
+    @property
+    @pulumi.getter(name="allowedOrigins")
+    def allowed_origins(self) -> Sequence[str]:
+        """
+        The list of origins that are allowed to make requests to the bucket.
+        """
+        return pulumi.get(self, "allowed_origins")
+
+    @property
+    @pulumi.getter(name="allowedHeaders")
+    def allowed_headers(self) -> Optional[Sequence[str]]:
+        """
+        The list of headers that are allowed in a preflight request.
+        """
+        return pulumi.get(self, "allowed_headers")
+
+    @property
+    @pulumi.getter(name="exposeHeaders")
+    def expose_headers(self) -> Optional[Sequence[str]]:
+        """
+        The list of headers that are exposed in the response to a preflight request. It is recommended to add two expose headers, X-Tos-Request-Id and ETag.
+        """
+        return pulumi.get(self, "expose_headers")
+
+    @property
+    @pulumi.getter(name="maxAgeSeconds")
+    def max_age_seconds(self) -> Optional[int]:
+        """
+        The maximum amount of time that a preflight request can be cached. Unit: second. Default value: 3600.
+        """
+        return pulumi.get(self, "max_age_seconds")
+
+    @property
+    @pulumi.getter(name="responseVary")
+    def response_vary(self) -> Optional[bool]:
+        """
+        Indicates whether the bucket returns the 'Vary: Origin' header in the response to preflight requests. Default value: false.
+        """
+        return pulumi.get(self, "response_vary")
+
+
+@pulumi.output_type
+class BucketEncryptionRule(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "applyServerSideEncryptionByDefault":
+            suggest = "apply_server_side_encryption_by_default"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in BucketEncryptionRule. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        BucketEncryptionRule.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        BucketEncryptionRule.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 apply_server_side_encryption_by_default: 'outputs.BucketEncryptionRuleApplyServerSideEncryptionByDefault'):
+        """
+        :param 'BucketEncryptionRuleApplyServerSideEncryptionByDefaultArgs' apply_server_side_encryption_by_default: The server side encryption configuration.
+        """
+        pulumi.set(__self__, "apply_server_side_encryption_by_default", apply_server_side_encryption_by_default)
+
+    @property
+    @pulumi.getter(name="applyServerSideEncryptionByDefault")
+    def apply_server_side_encryption_by_default(self) -> 'outputs.BucketEncryptionRuleApplyServerSideEncryptionByDefault':
+        """
+        The server side encryption configuration.
+        """
+        return pulumi.get(self, "apply_server_side_encryption_by_default")
+
+
+@pulumi.output_type
+class BucketEncryptionRuleApplyServerSideEncryptionByDefault(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "sseAlgorithm":
+            suggest = "sse_algorithm"
+        elif key == "kmsDataEncryption":
+            suggest = "kms_data_encryption"
+        elif key == "kmsMasterKeyId":
+            suggest = "kms_master_key_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in BucketEncryptionRuleApplyServerSideEncryptionByDefault. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        BucketEncryptionRuleApplyServerSideEncryptionByDefault.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        BucketEncryptionRuleApplyServerSideEncryptionByDefault.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 sse_algorithm: str,
+                 kms_data_encryption: Optional[str] = None,
+                 kms_master_key_id: Optional[str] = None):
+        """
+        :param str sse_algorithm: The server side encryption algorithm. Valid values: `kms`, `AES256`, `SM4`.
+        :param str kms_data_encryption: The kms data encryption. Valid values: `AES256`, `SM4`. Default is `AES256`.
+        :param str kms_master_key_id: The kms master key id. This field is required when `sse_algorithm` is `kms`. The format is `trn:kms:<region>:<accountID>:keyrings/<keyring>/keys/<key>`.
+        """
+        pulumi.set(__self__, "sse_algorithm", sse_algorithm)
+        if kms_data_encryption is not None:
+            pulumi.set(__self__, "kms_data_encryption", kms_data_encryption)
+        if kms_master_key_id is not None:
+            pulumi.set(__self__, "kms_master_key_id", kms_master_key_id)
+
+    @property
+    @pulumi.getter(name="sseAlgorithm")
+    def sse_algorithm(self) -> str:
+        """
+        The server side encryption algorithm. Valid values: `kms`, `AES256`, `SM4`.
+        """
+        return pulumi.get(self, "sse_algorithm")
+
+    @property
+    @pulumi.getter(name="kmsDataEncryption")
+    def kms_data_encryption(self) -> Optional[str]:
+        """
+        The kms data encryption. Valid values: `AES256`, `SM4`. Default is `AES256`.
+        """
+        return pulumi.get(self, "kms_data_encryption")
+
+    @property
+    @pulumi.getter(name="kmsMasterKeyId")
+    def kms_master_key_id(self) -> Optional[str]:
+        """
+        The kms master key id. This field is required when `sse_algorithm` is `kms`. The format is `trn:kms:<region>:<accountID>:keyrings/<keyring>/keys/<key>`.
+        """
+        return pulumi.get(self, "kms_master_key_id")
 
 
 @pulumi.output_type
@@ -497,6 +708,249 @@ class BucketInventorySchedule(dict):
         The export schedule of the bucket inventory. Valid values: `Daily`, `Weekly`.
         """
         return pulumi.get(self, "frequency")
+
+
+@pulumi.output_type
+class BucketNotificationRules(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "ruleId":
+            suggest = "rule_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in BucketNotificationRules. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        BucketNotificationRules.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        BucketNotificationRules.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 destination: 'outputs.BucketNotificationRulesDestination',
+                 events: Sequence[str],
+                 rule_id: str,
+                 filter: Optional['outputs.BucketNotificationRulesFilter'] = None):
+        """
+        :param 'BucketNotificationRulesDestinationArgs' destination: The destination info of the notification.
+        :param Sequence[str] events: The event type of the notification.
+        :param str rule_id: The rule name of the notification.
+        :param 'BucketNotificationRulesFilterArgs' filter: The filter of the notification.
+        """
+        pulumi.set(__self__, "destination", destination)
+        pulumi.set(__self__, "events", events)
+        pulumi.set(__self__, "rule_id", rule_id)
+        if filter is not None:
+            pulumi.set(__self__, "filter", filter)
+
+    @property
+    @pulumi.getter
+    def destination(self) -> 'outputs.BucketNotificationRulesDestination':
+        """
+        The destination info of the notification.
+        """
+        return pulumi.get(self, "destination")
+
+    @property
+    @pulumi.getter
+    def events(self) -> Sequence[str]:
+        """
+        The event type of the notification.
+        """
+        return pulumi.get(self, "events")
+
+    @property
+    @pulumi.getter(name="ruleId")
+    def rule_id(self) -> str:
+        """
+        The rule name of the notification.
+        """
+        return pulumi.get(self, "rule_id")
+
+    @property
+    @pulumi.getter
+    def filter(self) -> Optional['outputs.BucketNotificationRulesFilter']:
+        """
+        The filter of the notification.
+        """
+        return pulumi.get(self, "filter")
+
+
+@pulumi.output_type
+class BucketNotificationRulesDestination(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "veFaas":
+            suggest = "ve_faas"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in BucketNotificationRulesDestination. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        BucketNotificationRulesDestination.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        BucketNotificationRulesDestination.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 ve_faas: Optional[Sequence['outputs.BucketNotificationRulesDestinationVeFaa']] = None):
+        """
+        :param Sequence['BucketNotificationRulesDestinationVeFaaArgs'] ve_faas: The VeFaas info of the destination.
+        """
+        if ve_faas is not None:
+            pulumi.set(__self__, "ve_faas", ve_faas)
+
+    @property
+    @pulumi.getter(name="veFaas")
+    def ve_faas(self) -> Optional[Sequence['outputs.BucketNotificationRulesDestinationVeFaa']]:
+        """
+        The VeFaas info of the destination.
+        """
+        return pulumi.get(self, "ve_faas")
+
+
+@pulumi.output_type
+class BucketNotificationRulesDestinationVeFaa(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "functionId":
+            suggest = "function_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in BucketNotificationRulesDestinationVeFaa. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        BucketNotificationRulesDestinationVeFaa.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        BucketNotificationRulesDestinationVeFaa.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 function_id: str):
+        """
+        :param str function_id: The function id of the destination.
+        """
+        pulumi.set(__self__, "function_id", function_id)
+
+    @property
+    @pulumi.getter(name="functionId")
+    def function_id(self) -> str:
+        """
+        The function id of the destination.
+        """
+        return pulumi.get(self, "function_id")
+
+
+@pulumi.output_type
+class BucketNotificationRulesFilter(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "tosKey":
+            suggest = "tos_key"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in BucketNotificationRulesFilter. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        BucketNotificationRulesFilter.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        BucketNotificationRulesFilter.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 tos_key: Optional['outputs.BucketNotificationRulesFilterTosKey'] = None):
+        """
+        :param 'BucketNotificationRulesFilterTosKeyArgs' tos_key: The tos filter of the notification.
+        """
+        if tos_key is not None:
+            pulumi.set(__self__, "tos_key", tos_key)
+
+    @property
+    @pulumi.getter(name="tosKey")
+    def tos_key(self) -> Optional['outputs.BucketNotificationRulesFilterTosKey']:
+        """
+        The tos filter of the notification.
+        """
+        return pulumi.get(self, "tos_key")
+
+
+@pulumi.output_type
+class BucketNotificationRulesFilterTosKey(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "filterRules":
+            suggest = "filter_rules"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in BucketNotificationRulesFilterTosKey. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        BucketNotificationRulesFilterTosKey.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        BucketNotificationRulesFilterTosKey.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 filter_rules: Optional[Sequence['outputs.BucketNotificationRulesFilterTosKeyFilterRule']] = None):
+        """
+        :param Sequence['BucketNotificationRulesFilterTosKeyFilterRuleArgs'] filter_rules: The filter rules of the notification.
+        """
+        if filter_rules is not None:
+            pulumi.set(__self__, "filter_rules", filter_rules)
+
+    @property
+    @pulumi.getter(name="filterRules")
+    def filter_rules(self) -> Optional[Sequence['outputs.BucketNotificationRulesFilterTosKeyFilterRule']]:
+        """
+        The filter rules of the notification.
+        """
+        return pulumi.get(self, "filter_rules")
+
+
+@pulumi.output_type
+class BucketNotificationRulesFilterTosKeyFilterRule(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None,
+                 value: Optional[str] = None):
+        """
+        :param str name: The name of the filter rule. Valid values: `prefix`, `suffix`.
+        :param str value: The value of the filter rule.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        The name of the filter rule. Valid values: `prefix`, `suffix`.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        """
+        The value of the filter rule.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type

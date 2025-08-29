@@ -8,6 +8,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['CommandArgs', 'Command']
 
@@ -16,26 +18,46 @@ class CommandArgs:
     def __init__(__self__, *,
                  command_content: pulumi.Input[str],
                  description: Optional[pulumi.Input[str]] = None,
+                 enable_parameter: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 parameter_definitions: Optional[pulumi.Input[Sequence[pulumi.Input['CommandParameterDefinitionArgs']]]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['CommandTagArgs']]]] = None,
                  timeout: Optional[pulumi.Input[int]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
                  username: Optional[pulumi.Input[str]] = None,
                  working_dir: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Command resource.
         :param pulumi.Input[str] command_content: The base64 encoded content of the ecs command.
         :param pulumi.Input[str] description: The description of the ecs command.
+        :param pulumi.Input[bool] enable_parameter: Whether to enable custom parameter. Default is `false`.
         :param pulumi.Input[str] name: The name of the ecs command.
-        :param pulumi.Input[int] timeout: The timeout of the ecs command. Valid value range: 10-600.
+        :param pulumi.Input[Sequence[pulumi.Input['CommandParameterDefinitionArgs']]] parameter_definitions: The custom parameter definitions of the ecs command.
+        :param pulumi.Input[str] project_name: The project name of the ecs command.
+        :param pulumi.Input[Sequence[pulumi.Input['CommandTagArgs']]] tags: Tags.
+        :param pulumi.Input[int] timeout: The timeout of the ecs command. Unit: seconds. Valid value range: 30~86400. Default is 300.
+        :param pulumi.Input[str] type: The type of the ecs command. Valid values: `Shell`, `Python`, `PowerShell`, `Bat`. Default is `Shell`.
         :param pulumi.Input[str] username: The username of the ecs command.
         :param pulumi.Input[str] working_dir: The working directory of the ecs command.
         """
         pulumi.set(__self__, "command_content", command_content)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if enable_parameter is not None:
+            pulumi.set(__self__, "enable_parameter", enable_parameter)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if parameter_definitions is not None:
+            pulumi.set(__self__, "parameter_definitions", parameter_definitions)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if timeout is not None:
             pulumi.set(__self__, "timeout", timeout)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
         if username is not None:
             pulumi.set(__self__, "username", username)
         if working_dir is not None:
@@ -66,6 +88,18 @@ class CommandArgs:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter(name="enableParameter")
+    def enable_parameter(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to enable custom parameter. Default is `false`.
+        """
+        return pulumi.get(self, "enable_parameter")
+
+    @enable_parameter.setter
+    def enable_parameter(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enable_parameter", value)
+
+    @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -78,16 +112,64 @@ class CommandArgs:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter(name="parameterDefinitions")
+    def parameter_definitions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CommandParameterDefinitionArgs']]]]:
+        """
+        The custom parameter definitions of the ecs command.
+        """
+        return pulumi.get(self, "parameter_definitions")
+
+    @parameter_definitions.setter
+    def parameter_definitions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['CommandParameterDefinitionArgs']]]]):
+        pulumi.set(self, "parameter_definitions", value)
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The project name of the ecs command.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CommandTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['CommandTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
     @pulumi.getter
     def timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        The timeout of the ecs command. Valid value range: 10-600.
+        The timeout of the ecs command. Unit: seconds. Valid value range: 30~86400. Default is 300.
         """
         return pulumi.get(self, "timeout")
 
     @timeout.setter
     def timeout(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "timeout", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The type of the ecs command. Valid values: `Shell`, `Python`, `PowerShell`, `Bat`. Default is `Shell`.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
 
     @property
     @pulumi.getter
@@ -120,9 +202,14 @@ class _CommandState:
                  command_content: Optional[pulumi.Input[str]] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 enable_parameter: Optional[pulumi.Input[bool]] = None,
                  invocation_times: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 parameter_definitions: Optional[pulumi.Input[Sequence[pulumi.Input['CommandParameterDefinitionArgs']]]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['CommandTagArgs']]]] = None,
                  timeout: Optional[pulumi.Input[int]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
                  updated_at: Optional[pulumi.Input[str]] = None,
                  username: Optional[pulumi.Input[str]] = None,
                  working_dir: Optional[pulumi.Input[str]] = None):
@@ -131,9 +218,14 @@ class _CommandState:
         :param pulumi.Input[str] command_content: The base64 encoded content of the ecs command.
         :param pulumi.Input[str] created_at: The create time of the ecs command.
         :param pulumi.Input[str] description: The description of the ecs command.
+        :param pulumi.Input[bool] enable_parameter: Whether to enable custom parameter. Default is `false`.
         :param pulumi.Input[int] invocation_times: The invocation times of the ecs command. Public commands do not display the invocation times.
         :param pulumi.Input[str] name: The name of the ecs command.
-        :param pulumi.Input[int] timeout: The timeout of the ecs command. Valid value range: 10-600.
+        :param pulumi.Input[Sequence[pulumi.Input['CommandParameterDefinitionArgs']]] parameter_definitions: The custom parameter definitions of the ecs command.
+        :param pulumi.Input[str] project_name: The project name of the ecs command.
+        :param pulumi.Input[Sequence[pulumi.Input['CommandTagArgs']]] tags: Tags.
+        :param pulumi.Input[int] timeout: The timeout of the ecs command. Unit: seconds. Valid value range: 30~86400. Default is 300.
+        :param pulumi.Input[str] type: The type of the ecs command. Valid values: `Shell`, `Python`, `PowerShell`, `Bat`. Default is `Shell`.
         :param pulumi.Input[str] updated_at: The update time of the ecs command.
         :param pulumi.Input[str] username: The username of the ecs command.
         :param pulumi.Input[str] working_dir: The working directory of the ecs command.
@@ -144,12 +236,22 @@ class _CommandState:
             pulumi.set(__self__, "created_at", created_at)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if enable_parameter is not None:
+            pulumi.set(__self__, "enable_parameter", enable_parameter)
         if invocation_times is not None:
             pulumi.set(__self__, "invocation_times", invocation_times)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if parameter_definitions is not None:
+            pulumi.set(__self__, "parameter_definitions", parameter_definitions)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if timeout is not None:
             pulumi.set(__self__, "timeout", timeout)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
         if updated_at is not None:
             pulumi.set(__self__, "updated_at", updated_at)
         if username is not None:
@@ -194,6 +296,18 @@ class _CommandState:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter(name="enableParameter")
+    def enable_parameter(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to enable custom parameter. Default is `false`.
+        """
+        return pulumi.get(self, "enable_parameter")
+
+    @enable_parameter.setter
+    def enable_parameter(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enable_parameter", value)
+
+    @property
     @pulumi.getter(name="invocationTimes")
     def invocation_times(self) -> Optional[pulumi.Input[int]]:
         """
@@ -218,16 +332,64 @@ class _CommandState:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter(name="parameterDefinitions")
+    def parameter_definitions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CommandParameterDefinitionArgs']]]]:
+        """
+        The custom parameter definitions of the ecs command.
+        """
+        return pulumi.get(self, "parameter_definitions")
+
+    @parameter_definitions.setter
+    def parameter_definitions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['CommandParameterDefinitionArgs']]]]):
+        pulumi.set(self, "parameter_definitions", value)
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The project name of the ecs command.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CommandTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['CommandTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
     @pulumi.getter
     def timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        The timeout of the ecs command. Valid value range: 10-600.
+        The timeout of the ecs command. Unit: seconds. Valid value range: 30~86400. Default is 300.
         """
         return pulumi.get(self, "timeout")
 
     @timeout.setter
     def timeout(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "timeout", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The type of the ecs command. Valid values: `Shell`, `Python`, `PowerShell`, `Bat`. Default is `Shell`.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
 
     @property
     @pulumi.getter(name="updatedAt")
@@ -273,27 +435,18 @@ class Command(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  command_content: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 enable_parameter: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 parameter_definitions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CommandParameterDefinitionArgs']]]]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CommandTagArgs']]]]] = None,
                  timeout: Optional[pulumi.Input[int]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
                  username: Optional[pulumi.Input[str]] = None,
                  working_dir: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Provides a resource to manage ecs command
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_volcengine as volcengine
-
-        foo = volcengine.ecs.Command("foo",
-            command_content="IyEvYmluL2Jhc2gKCgplY2hvICJvcGVyYXRpb24gc3VjY2VzcyEi",
-            description="tf",
-            timeout=100,
-            username="root",
-            working_dir="/home")
-        ```
-
         ## Import
 
         EcsCommand can be imported using the id, e.g.
@@ -306,8 +459,13 @@ class Command(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] command_content: The base64 encoded content of the ecs command.
         :param pulumi.Input[str] description: The description of the ecs command.
+        :param pulumi.Input[bool] enable_parameter: Whether to enable custom parameter. Default is `false`.
         :param pulumi.Input[str] name: The name of the ecs command.
-        :param pulumi.Input[int] timeout: The timeout of the ecs command. Valid value range: 10-600.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CommandParameterDefinitionArgs']]]] parameter_definitions: The custom parameter definitions of the ecs command.
+        :param pulumi.Input[str] project_name: The project name of the ecs command.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CommandTagArgs']]]] tags: Tags.
+        :param pulumi.Input[int] timeout: The timeout of the ecs command. Unit: seconds. Valid value range: 30~86400. Default is 300.
+        :param pulumi.Input[str] type: The type of the ecs command. Valid values: `Shell`, `Python`, `PowerShell`, `Bat`. Default is `Shell`.
         :param pulumi.Input[str] username: The username of the ecs command.
         :param pulumi.Input[str] working_dir: The working directory of the ecs command.
         """
@@ -319,20 +477,6 @@ class Command(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Provides a resource to manage ecs command
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_volcengine as volcengine
-
-        foo = volcengine.ecs.Command("foo",
-            command_content="IyEvYmluL2Jhc2gKCgplY2hvICJvcGVyYXRpb24gc3VjY2VzcyEi",
-            description="tf",
-            timeout=100,
-            username="root",
-            working_dir="/home")
-        ```
-
         ## Import
 
         EcsCommand can be imported using the id, e.g.
@@ -358,8 +502,13 @@ class Command(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  command_content: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 enable_parameter: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 parameter_definitions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CommandParameterDefinitionArgs']]]]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CommandTagArgs']]]]] = None,
                  timeout: Optional[pulumi.Input[int]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
                  username: Optional[pulumi.Input[str]] = None,
                  working_dir: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -375,8 +524,13 @@ class Command(pulumi.CustomResource):
                 raise TypeError("Missing required property 'command_content'")
             __props__.__dict__["command_content"] = command_content
             __props__.__dict__["description"] = description
+            __props__.__dict__["enable_parameter"] = enable_parameter
             __props__.__dict__["name"] = name
+            __props__.__dict__["parameter_definitions"] = parameter_definitions
+            __props__.__dict__["project_name"] = project_name
+            __props__.__dict__["tags"] = tags
             __props__.__dict__["timeout"] = timeout
+            __props__.__dict__["type"] = type
             __props__.__dict__["username"] = username
             __props__.__dict__["working_dir"] = working_dir
             __props__.__dict__["created_at"] = None
@@ -395,9 +549,14 @@ class Command(pulumi.CustomResource):
             command_content: Optional[pulumi.Input[str]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
+            enable_parameter: Optional[pulumi.Input[bool]] = None,
             invocation_times: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            parameter_definitions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CommandParameterDefinitionArgs']]]]] = None,
+            project_name: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CommandTagArgs']]]]] = None,
             timeout: Optional[pulumi.Input[int]] = None,
+            type: Optional[pulumi.Input[str]] = None,
             updated_at: Optional[pulumi.Input[str]] = None,
             username: Optional[pulumi.Input[str]] = None,
             working_dir: Optional[pulumi.Input[str]] = None) -> 'Command':
@@ -411,9 +570,14 @@ class Command(pulumi.CustomResource):
         :param pulumi.Input[str] command_content: The base64 encoded content of the ecs command.
         :param pulumi.Input[str] created_at: The create time of the ecs command.
         :param pulumi.Input[str] description: The description of the ecs command.
+        :param pulumi.Input[bool] enable_parameter: Whether to enable custom parameter. Default is `false`.
         :param pulumi.Input[int] invocation_times: The invocation times of the ecs command. Public commands do not display the invocation times.
         :param pulumi.Input[str] name: The name of the ecs command.
-        :param pulumi.Input[int] timeout: The timeout of the ecs command. Valid value range: 10-600.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CommandParameterDefinitionArgs']]]] parameter_definitions: The custom parameter definitions of the ecs command.
+        :param pulumi.Input[str] project_name: The project name of the ecs command.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CommandTagArgs']]]] tags: Tags.
+        :param pulumi.Input[int] timeout: The timeout of the ecs command. Unit: seconds. Valid value range: 30~86400. Default is 300.
+        :param pulumi.Input[str] type: The type of the ecs command. Valid values: `Shell`, `Python`, `PowerShell`, `Bat`. Default is `Shell`.
         :param pulumi.Input[str] updated_at: The update time of the ecs command.
         :param pulumi.Input[str] username: The username of the ecs command.
         :param pulumi.Input[str] working_dir: The working directory of the ecs command.
@@ -425,9 +589,14 @@ class Command(pulumi.CustomResource):
         __props__.__dict__["command_content"] = command_content
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["description"] = description
+        __props__.__dict__["enable_parameter"] = enable_parameter
         __props__.__dict__["invocation_times"] = invocation_times
         __props__.__dict__["name"] = name
+        __props__.__dict__["parameter_definitions"] = parameter_definitions
+        __props__.__dict__["project_name"] = project_name
+        __props__.__dict__["tags"] = tags
         __props__.__dict__["timeout"] = timeout
+        __props__.__dict__["type"] = type
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["username"] = username
         __props__.__dict__["working_dir"] = working_dir
@@ -458,6 +627,14 @@ class Command(pulumi.CustomResource):
         return pulumi.get(self, "description")
 
     @property
+    @pulumi.getter(name="enableParameter")
+    def enable_parameter(self) -> pulumi.Output[bool]:
+        """
+        Whether to enable custom parameter. Default is `false`.
+        """
+        return pulumi.get(self, "enable_parameter")
+
+    @property
     @pulumi.getter(name="invocationTimes")
     def invocation_times(self) -> pulumi.Output[int]:
         """
@@ -474,12 +651,44 @@ class Command(pulumi.CustomResource):
         return pulumi.get(self, "name")
 
     @property
+    @pulumi.getter(name="parameterDefinitions")
+    def parameter_definitions(self) -> pulumi.Output[Optional[Sequence['outputs.CommandParameterDefinition']]]:
+        """
+        The custom parameter definitions of the ecs command.
+        """
+        return pulumi.get(self, "parameter_definitions")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> pulumi.Output[str]:
+        """
+        The project name of the ecs command.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.CommandTag']]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter
     def timeout(self) -> pulumi.Output[int]:
         """
-        The timeout of the ecs command. Valid value range: 10-600.
+        The timeout of the ecs command. Unit: seconds. Valid value range: 30~86400. Default is 300.
         """
         return pulumi.get(self, "timeout")
+
+    @property
+    @pulumi.getter
+    def type(self) -> pulumi.Output[Optional[str]]:
+        """
+        The type of the ecs command. Valid values: `Shell`, `Python`, `PowerShell`, `Bat`. Default is `Shell`.
+        """
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter(name="updatedAt")

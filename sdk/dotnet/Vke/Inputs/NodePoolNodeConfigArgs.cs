@@ -109,6 +109,12 @@ namespace Pulumi.Volcengine.Vke.Inputs
         public Input<int>? Period { get; set; }
 
         /// <summary>
+        /// The PreScript of NodeConfig.
+        /// </summary>
+        [Input("preScript")]
+        public Input<string>? PreScript { get; set; }
+
+        /// <summary>
         /// The project name of the ecs instance.
         /// </summary>
         [Input("projectName")]

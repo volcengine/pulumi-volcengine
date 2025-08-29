@@ -32,8 +32,25 @@ namespace Pulumi.Volcengine.Ecs
     ///         InvocationDescription = "tf",
     ///         InvocationName = "tf-test",
     ///         LaunchTime = "2023-06-20T09:48:00Z",
+    ///         Parameters = new[]
+    ///         {
+    ///             new Volcengine.Ecs.Inputs.InvocationParameterArgs
+    ///             {
+    ///                 Name = "test_str",
+    ///                 Value = "tf",
+    ///             },
+    ///         },
+    ///         ProjectName = "default",
     ///         RecurrenceEndTime = "2023-06-20T09:59:00Z",
     ///         RepeatMode = "Rate",
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Ecs.Inputs.InvocationTagArgs
+    ///             {
+    ///                 Key = "k1",
+    ///                 Value = "v1",
+    ///             },
+    ///         },
     ///         Timeout = 90,
     ///         Username = "root",
     ///         WorkingDir = "/home",
@@ -102,13 +119,25 @@ namespace Pulumi.Volcengine.Ecs
         public Output<string?> LaunchTime { get; private set; } = null!;
 
         /// <summary>
+        /// The custom parameters of the ecs command. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        /// </summary>
+        [Output("parameters")]
+        public Output<ImmutableArray<Outputs.InvocationParameter>> Parameters { get; private set; } = null!;
+
+        /// <summary>
+        /// The project name of the ecs command.
+        /// </summary>
+        [Output("projectName")]
+        public Output<string> ProjectName { get; private set; } = null!;
+
+        /// <summary>
         /// The recurrence end time of the ecs invocation. RFC3339 format. This field is valid and required when the value of the repeat_mode field is `Rate`.
         /// </summary>
         [Output("recurrenceEndTime")]
         public Output<string?> RecurrenceEndTime { get; private set; } = null!;
 
         /// <summary>
-        /// The repeat mode of the ecs invocation. Valid values: `Once`, `Rate`, `Fixed`.
+        /// The repeat mode of the ecs invocation. Valid values: `Once`, `Rate`, `Fixed`. Default is `Once`.
         /// </summary>
         [Output("repeatMode")]
         public Output<string?> RepeatMode { get; private set; } = null!;
@@ -120,7 +149,13 @@ namespace Pulumi.Volcengine.Ecs
         public Output<string> StartTime { get; private set; } = null!;
 
         /// <summary>
-        /// The timeout of the ecs command. Valid value range: 10-600. When this field is not specified, use the value of the field with the same name in ecs command as the default value.
+        /// Tags.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<Outputs.InvocationTag>> Tags { get; private set; } = null!;
+
+        /// <summary>
+        /// The timeout of the ecs command. Unit: seconds. Valid value range: 30~86400. Default is 60.
         /// </summary>
         [Output("timeout")]
         public Output<int> Timeout { get; private set; } = null!;
@@ -226,6 +261,24 @@ namespace Pulumi.Volcengine.Ecs
         [Input("launchTime")]
         public Input<string>? LaunchTime { get; set; }
 
+        [Input("parameters")]
+        private InputList<Inputs.InvocationParameterArgs>? _parameters;
+
+        /// <summary>
+        /// The custom parameters of the ecs command. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        /// </summary>
+        public InputList<Inputs.InvocationParameterArgs> Parameters
+        {
+            get => _parameters ?? (_parameters = new InputList<Inputs.InvocationParameterArgs>());
+            set => _parameters = value;
+        }
+
+        /// <summary>
+        /// The project name of the ecs command.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
         /// <summary>
         /// The recurrence end time of the ecs invocation. RFC3339 format. This field is valid and required when the value of the repeat_mode field is `Rate`.
         /// </summary>
@@ -233,13 +286,25 @@ namespace Pulumi.Volcengine.Ecs
         public Input<string>? RecurrenceEndTime { get; set; }
 
         /// <summary>
-        /// The repeat mode of the ecs invocation. Valid values: `Once`, `Rate`, `Fixed`.
+        /// The repeat mode of the ecs invocation. Valid values: `Once`, `Rate`, `Fixed`. Default is `Once`.
         /// </summary>
         [Input("repeatMode")]
         public Input<string>? RepeatMode { get; set; }
 
+        [Input("tags")]
+        private InputList<Inputs.InvocationTagArgs>? _tags;
+
         /// <summary>
-        /// The timeout of the ecs command. Valid value range: 10-600. When this field is not specified, use the value of the field with the same name in ecs command as the default value.
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.InvocationTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.InvocationTagArgs>());
+            set => _tags = value;
+        }
+
+        /// <summary>
+        /// The timeout of the ecs command. Unit: seconds. Valid value range: 30~86400. Default is 60.
         /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }
@@ -318,6 +383,24 @@ namespace Pulumi.Volcengine.Ecs
         [Input("launchTime")]
         public Input<string>? LaunchTime { get; set; }
 
+        [Input("parameters")]
+        private InputList<Inputs.InvocationParameterGetArgs>? _parameters;
+
+        /// <summary>
+        /// The custom parameters of the ecs command. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        /// </summary>
+        public InputList<Inputs.InvocationParameterGetArgs> Parameters
+        {
+            get => _parameters ?? (_parameters = new InputList<Inputs.InvocationParameterGetArgs>());
+            set => _parameters = value;
+        }
+
+        /// <summary>
+        /// The project name of the ecs command.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
         /// <summary>
         /// The recurrence end time of the ecs invocation. RFC3339 format. This field is valid and required when the value of the repeat_mode field is `Rate`.
         /// </summary>
@@ -325,7 +408,7 @@ namespace Pulumi.Volcengine.Ecs
         public Input<string>? RecurrenceEndTime { get; set; }
 
         /// <summary>
-        /// The repeat mode of the ecs invocation. Valid values: `Once`, `Rate`, `Fixed`.
+        /// The repeat mode of the ecs invocation. Valid values: `Once`, `Rate`, `Fixed`. Default is `Once`.
         /// </summary>
         [Input("repeatMode")]
         public Input<string>? RepeatMode { get; set; }
@@ -336,8 +419,20 @@ namespace Pulumi.Volcengine.Ecs
         [Input("startTime")]
         public Input<string>? StartTime { get; set; }
 
+        [Input("tags")]
+        private InputList<Inputs.InvocationTagGetArgs>? _tags;
+
         /// <summary>
-        /// The timeout of the ecs command. Valid value range: 10-600. When this field is not specified, use the value of the field with the same name in ecs command as the default value.
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.InvocationTagGetArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.InvocationTagGetArgs>());
+            set => _tags = value;
+        }
+
+        /// <summary>
+        /// The timeout of the ecs command. Unit: seconds. Valid value range: 30~86400. Default is 60.
         /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }

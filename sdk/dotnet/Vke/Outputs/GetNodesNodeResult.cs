@@ -78,6 +78,10 @@ namespace Pulumi.Volcengine.Vke.Outputs
         /// </summary>
         public readonly string Phase;
         /// <summary>
+        /// The PreScript of NodeConfig.
+        /// </summary>
+        public readonly string PreScript;
+        /// <summary>
         /// The roles of node.
         /// </summary>
         public readonly ImmutableArray<string> Roles;
@@ -128,6 +132,8 @@ namespace Pulumi.Volcengine.Vke.Outputs
 
             string phase,
 
+            string preScript,
+
             ImmutableArray<string> roles,
 
             ImmutableArray<Outputs.GetNodesNodeTaintResult> taints,
@@ -152,6 +158,7 @@ namespace Pulumi.Volcengine.Vke.Outputs
             Name = name;
             NodePoolId = nodePoolId;
             Phase = phase;
+            PreScript = preScript;
             Roles = roles;
             Taints = taints;
             UpdateTime = updateTime;

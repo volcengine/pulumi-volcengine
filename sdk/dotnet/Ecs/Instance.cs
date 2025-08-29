@@ -229,6 +229,12 @@ namespace Pulumi.Volcengine.Ecs
         public Output<bool?> IncludeDataVolumes { get; private set; } = null!;
 
         /// <summary>
+        /// Whether to install the Run Command Agent. Default is false. This field is only effective when creating a new instance.
+        /// </summary>
+        [Output("installRunCommandAgent")]
+        public Output<bool?> InstallRunCommandAgent { get; private set; } = null!;
+
+        /// <summary>
         /// The charge type of ECS instance, the value can be `PrePaid` or `PostPaid`.
         /// </summary>
         [Output("instanceChargeType")]
@@ -427,6 +433,12 @@ namespace Pulumi.Volcengine.Ecs
         public Output<string> UserData { get; private set; } = null!;
 
         /// <summary>
+        /// The volume ID list of ECS instance.
+        /// </summary>
+        [Output("volumeIds")]
+        public Output<ImmutableArray<string>> VolumeIds { get; private set; } = null!;
+
+        /// <summary>
         /// The VPC ID of ECS instance.
         /// </summary>
         [Output("vpcId")]
@@ -569,6 +581,12 @@ namespace Pulumi.Volcengine.Ecs
         /// </summary>
         [Input("includeDataVolumes")]
         public Input<bool>? IncludeDataVolumes { get; set; }
+
+        /// <summary>
+        /// Whether to install the Run Command Agent. Default is false. This field is only effective when creating a new instance.
+        /// </summary>
+        [Input("installRunCommandAgent")]
+        public Input<bool>? InstallRunCommandAgent { get; set; }
 
         /// <summary>
         /// The charge type of ECS instance, the value can be `PrePaid` or `PostPaid`.
@@ -862,6 +880,12 @@ namespace Pulumi.Volcengine.Ecs
         public Input<bool>? IncludeDataVolumes { get; set; }
 
         /// <summary>
+        /// Whether to install the Run Command Agent. Default is false. This field is only effective when creating a new instance.
+        /// </summary>
+        [Input("installRunCommandAgent")]
+        public Input<bool>? InstallRunCommandAgent { get; set; }
+
+        /// <summary>
         /// The charge type of ECS instance, the value can be `PrePaid` or `PostPaid`.
         /// </summary>
         [Input("instanceChargeType")]
@@ -1092,6 +1116,18 @@ namespace Pulumi.Volcengine.Ecs
         /// </summary>
         [Input("userData")]
         public Input<string>? UserData { get; set; }
+
+        [Input("volumeIds")]
+        private InputList<string>? _volumeIds;
+
+        /// <summary>
+        /// The volume ID list of ECS instance.
+        /// </summary>
+        public InputList<string> VolumeIds
+        {
+            get => _volumeIds ?? (_volumeIds = new InputList<string>());
+            set => _volumeIds = value;
+        }
 
         /// <summary>
         /// The VPC ID of ECS instance.

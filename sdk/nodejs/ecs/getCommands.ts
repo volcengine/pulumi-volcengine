@@ -30,6 +30,8 @@ export function getCommands(args?: GetCommandsArgs, opts?: pulumi.InvokeOptions)
         "nameRegex": args.nameRegex,
         "order": args.order,
         "outputFile": args.outputFile,
+        "projectName": args.projectName,
+        "tags": args.tags,
         "type": args.type,
     }, opts);
 }
@@ -63,6 +65,14 @@ export interface GetCommandsArgs {
      */
     outputFile?: string;
     /**
+     * The project name of ecs command.
+     */
+    projectName?: string;
+    /**
+     * Tags.
+     */
+    tags?: inputs.ecs.GetCommandsTag[];
+    /**
      * The type of ecs command. Valid values: `Shell`.
      */
     type?: string;
@@ -89,12 +99,20 @@ export interface GetCommandsResult {
      */
     readonly id: string;
     /**
-     * The name of the ecs command.
+     * The name of the custom parameter.
      */
     readonly name?: string;
     readonly nameRegex?: string;
     readonly order?: string;
     readonly outputFile?: string;
+    /**
+     * The project name of the ecs command.
+     */
+    readonly projectName?: string;
+    /**
+     * Tags.
+     */
+    readonly tags?: outputs.ecs.GetCommandsTag[];
     /**
      * The total count of query.
      */
@@ -149,6 +167,14 @@ export interface GetCommandsOutputArgs {
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
+    /**
+     * The project name of ecs command.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.ecs.GetCommandsTagArgs>[]>;
     /**
      * The type of ecs command. Valid values: `Shell`.
      */

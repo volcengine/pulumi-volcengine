@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'CommandsResult',
@@ -24,7 +25,7 @@ class CommandsResult:
     """
     A collection of values returned by Commands.
     """
-    def __init__(__self__, command_id=None, command_provider=None, commands=None, id=None, name=None, name_regex=None, order=None, output_file=None, total_count=None, type=None):
+    def __init__(__self__, command_id=None, command_provider=None, commands=None, id=None, name=None, name_regex=None, order=None, output_file=None, project_name=None, tags=None, total_count=None, type=None):
         if command_id and not isinstance(command_id, str):
             raise TypeError("Expected argument 'command_id' to be a str")
         pulumi.set(__self__, "command_id", command_id)
@@ -49,6 +50,12 @@ class CommandsResult:
         if output_file and not isinstance(output_file, str):
             raise TypeError("Expected argument 'output_file' to be a str")
         pulumi.set(__self__, "output_file", output_file)
+        if project_name and not isinstance(project_name, str):
+            raise TypeError("Expected argument 'project_name' to be a str")
+        pulumi.set(__self__, "project_name", project_name)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
@@ -92,7 +99,7 @@ class CommandsResult:
     @pulumi.getter
     def name(self) -> Optional[str]:
         """
-        The name of the ecs command.
+        The name of the custom parameter.
         """
         return pulumi.get(self, "name")
 
@@ -110,6 +117,22 @@ class CommandsResult:
     @pulumi.getter(name="outputFile")
     def output_file(self) -> Optional[str]:
         return pulumi.get(self, "output_file")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[str]:
+        """
+        The project name of the ecs command.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.CommandsTagResult']]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="totalCount")
@@ -142,6 +165,8 @@ class AwaitableCommandsResult(CommandsResult):
             name_regex=self.name_regex,
             order=self.order,
             output_file=self.output_file,
+            project_name=self.project_name,
+            tags=self.tags,
             total_count=self.total_count,
             type=self.type)
 
@@ -152,6 +177,8 @@ def commands(command_id: Optional[str] = None,
              name_regex: Optional[str] = None,
              order: Optional[str] = None,
              output_file: Optional[str] = None,
+             project_name: Optional[str] = None,
+             tags: Optional[Sequence[pulumi.InputType['CommandsTagArgs']]] = None,
              type: Optional[str] = None,
              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableCommandsResult:
     """
@@ -172,6 +199,8 @@ def commands(command_id: Optional[str] = None,
     :param str name_regex: A Name Regex of Resource.
     :param str order: The order of ecs command query result.
     :param str output_file: File name where to save data source results.
+    :param str project_name: The project name of ecs command.
+    :param Sequence[pulumi.InputType['CommandsTagArgs']] tags: Tags.
     :param str type: The type of ecs command. Valid values: `Shell`.
     """
     pulumi.log.warn("""commands is deprecated: volcengine.ecs.Commands has been deprecated in favor of volcengine.ecs.getCommands""")
@@ -182,6 +211,8 @@ def commands(command_id: Optional[str] = None,
     __args__['nameRegex'] = name_regex
     __args__['order'] = order
     __args__['outputFile'] = output_file
+    __args__['projectName'] = project_name
+    __args__['tags'] = tags
     __args__['type'] = type
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('volcengine:ecs/commands:Commands', __args__, opts=opts, typ=CommandsResult).value
@@ -195,6 +226,8 @@ def commands(command_id: Optional[str] = None,
         name_regex=pulumi.get(__ret__, 'name_regex'),
         order=pulumi.get(__ret__, 'order'),
         output_file=pulumi.get(__ret__, 'output_file'),
+        project_name=pulumi.get(__ret__, 'project_name'),
+        tags=pulumi.get(__ret__, 'tags'),
         total_count=pulumi.get(__ret__, 'total_count'),
         type=pulumi.get(__ret__, 'type'))
 
@@ -206,6 +239,8 @@ def commands_output(command_id: Optional[pulumi.Input[Optional[str]]] = None,
                     name_regex: Optional[pulumi.Input[Optional[str]]] = None,
                     order: Optional[pulumi.Input[Optional[str]]] = None,
                     output_file: Optional[pulumi.Input[Optional[str]]] = None,
+                    project_name: Optional[pulumi.Input[Optional[str]]] = None,
+                    tags: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['CommandsTagArgs']]]]] = None,
                     type: Optional[pulumi.Input[Optional[str]]] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[CommandsResult]:
     """
@@ -226,6 +261,8 @@ def commands_output(command_id: Optional[pulumi.Input[Optional[str]]] = None,
     :param str name_regex: A Name Regex of Resource.
     :param str order: The order of ecs command query result.
     :param str output_file: File name where to save data source results.
+    :param str project_name: The project name of ecs command.
+    :param Sequence[pulumi.InputType['CommandsTagArgs']] tags: Tags.
     :param str type: The type of ecs command. Valid values: `Shell`.
     """
     pulumi.log.warn("""commands is deprecated: volcengine.ecs.Commands has been deprecated in favor of volcengine.ecs.getCommands""")

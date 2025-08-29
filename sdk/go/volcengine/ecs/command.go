@@ -13,36 +13,6 @@ import (
 )
 
 // Provides a resource to manage ecs command
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ecs.NewCommand(ctx, "foo", &ecs.CommandArgs{
-//				CommandContent: pulumi.String("IyEvYmluL2Jhc2gKCgplY2hvICJvcGVyYXRpb24gc3VjY2VzcyEi"),
-//				Description:    pulumi.String("tf"),
-//				Timeout:        pulumi.Int(100),
-//				Username:       pulumi.String("root"),
-//				WorkingDir:     pulumi.String("/home"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // EcsCommand can be imported using the id, e.g.
@@ -59,12 +29,22 @@ type Command struct {
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// The description of the ecs command.
 	Description pulumi.StringOutput `pulumi:"description"`
+	// Whether to enable custom parameter. Default is `false`.
+	EnableParameter pulumi.BoolOutput `pulumi:"enableParameter"`
 	// The invocation times of the ecs command. Public commands do not display the invocation times.
 	InvocationTimes pulumi.IntOutput `pulumi:"invocationTimes"`
 	// The name of the ecs command.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The timeout of the ecs command. Valid value range: 10-600.
+	// The custom parameter definitions of the ecs command.
+	ParameterDefinitions CommandParameterDefinitionArrayOutput `pulumi:"parameterDefinitions"`
+	// The project name of the ecs command.
+	ProjectName pulumi.StringOutput `pulumi:"projectName"`
+	// Tags.
+	Tags CommandTagArrayOutput `pulumi:"tags"`
+	// The timeout of the ecs command. Unit: seconds. Valid value range: 30~86400. Default is 300.
 	Timeout pulumi.IntOutput `pulumi:"timeout"`
+	// The type of the ecs command. Valid values: `Shell`, `Python`, `PowerShell`, `Bat`. Default is `Shell`.
+	Type pulumi.StringPtrOutput `pulumi:"type"`
 	// The update time of the ecs command.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 	// The username of the ecs command.
@@ -112,12 +92,22 @@ type commandState struct {
 	CreatedAt *string `pulumi:"createdAt"`
 	// The description of the ecs command.
 	Description *string `pulumi:"description"`
+	// Whether to enable custom parameter. Default is `false`.
+	EnableParameter *bool `pulumi:"enableParameter"`
 	// The invocation times of the ecs command. Public commands do not display the invocation times.
 	InvocationTimes *int `pulumi:"invocationTimes"`
 	// The name of the ecs command.
 	Name *string `pulumi:"name"`
-	// The timeout of the ecs command. Valid value range: 10-600.
+	// The custom parameter definitions of the ecs command.
+	ParameterDefinitions []CommandParameterDefinition `pulumi:"parameterDefinitions"`
+	// The project name of the ecs command.
+	ProjectName *string `pulumi:"projectName"`
+	// Tags.
+	Tags []CommandTag `pulumi:"tags"`
+	// The timeout of the ecs command. Unit: seconds. Valid value range: 30~86400. Default is 300.
 	Timeout *int `pulumi:"timeout"`
+	// The type of the ecs command. Valid values: `Shell`, `Python`, `PowerShell`, `Bat`. Default is `Shell`.
+	Type *string `pulumi:"type"`
 	// The update time of the ecs command.
 	UpdatedAt *string `pulumi:"updatedAt"`
 	// The username of the ecs command.
@@ -133,12 +123,22 @@ type CommandState struct {
 	CreatedAt pulumi.StringPtrInput
 	// The description of the ecs command.
 	Description pulumi.StringPtrInput
+	// Whether to enable custom parameter. Default is `false`.
+	EnableParameter pulumi.BoolPtrInput
 	// The invocation times of the ecs command. Public commands do not display the invocation times.
 	InvocationTimes pulumi.IntPtrInput
 	// The name of the ecs command.
 	Name pulumi.StringPtrInput
-	// The timeout of the ecs command. Valid value range: 10-600.
+	// The custom parameter definitions of the ecs command.
+	ParameterDefinitions CommandParameterDefinitionArrayInput
+	// The project name of the ecs command.
+	ProjectName pulumi.StringPtrInput
+	// Tags.
+	Tags CommandTagArrayInput
+	// The timeout of the ecs command. Unit: seconds. Valid value range: 30~86400. Default is 300.
 	Timeout pulumi.IntPtrInput
+	// The type of the ecs command. Valid values: `Shell`, `Python`, `PowerShell`, `Bat`. Default is `Shell`.
+	Type pulumi.StringPtrInput
 	// The update time of the ecs command.
 	UpdatedAt pulumi.StringPtrInput
 	// The username of the ecs command.
@@ -156,10 +156,20 @@ type commandArgs struct {
 	CommandContent string `pulumi:"commandContent"`
 	// The description of the ecs command.
 	Description *string `pulumi:"description"`
+	// Whether to enable custom parameter. Default is `false`.
+	EnableParameter *bool `pulumi:"enableParameter"`
 	// The name of the ecs command.
 	Name *string `pulumi:"name"`
-	// The timeout of the ecs command. Valid value range: 10-600.
+	// The custom parameter definitions of the ecs command.
+	ParameterDefinitions []CommandParameterDefinition `pulumi:"parameterDefinitions"`
+	// The project name of the ecs command.
+	ProjectName *string `pulumi:"projectName"`
+	// Tags.
+	Tags []CommandTag `pulumi:"tags"`
+	// The timeout of the ecs command. Unit: seconds. Valid value range: 30~86400. Default is 300.
 	Timeout *int `pulumi:"timeout"`
+	// The type of the ecs command. Valid values: `Shell`, `Python`, `PowerShell`, `Bat`. Default is `Shell`.
+	Type *string `pulumi:"type"`
 	// The username of the ecs command.
 	Username *string `pulumi:"username"`
 	// The working directory of the ecs command.
@@ -172,10 +182,20 @@ type CommandArgs struct {
 	CommandContent pulumi.StringInput
 	// The description of the ecs command.
 	Description pulumi.StringPtrInput
+	// Whether to enable custom parameter. Default is `false`.
+	EnableParameter pulumi.BoolPtrInput
 	// The name of the ecs command.
 	Name pulumi.StringPtrInput
-	// The timeout of the ecs command. Valid value range: 10-600.
+	// The custom parameter definitions of the ecs command.
+	ParameterDefinitions CommandParameterDefinitionArrayInput
+	// The project name of the ecs command.
+	ProjectName pulumi.StringPtrInput
+	// Tags.
+	Tags CommandTagArrayInput
+	// The timeout of the ecs command. Unit: seconds. Valid value range: 30~86400. Default is 300.
 	Timeout pulumi.IntPtrInput
+	// The type of the ecs command. Valid values: `Shell`, `Python`, `PowerShell`, `Bat`. Default is `Shell`.
+	Type pulumi.StringPtrInput
 	// The username of the ecs command.
 	Username pulumi.StringPtrInput
 	// The working directory of the ecs command.
@@ -284,6 +304,11 @@ func (o CommandOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v *Command) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
 }
 
+// Whether to enable custom parameter. Default is `false`.
+func (o CommandOutput) EnableParameter() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Command) pulumi.BoolOutput { return v.EnableParameter }).(pulumi.BoolOutput)
+}
+
 // The invocation times of the ecs command. Public commands do not display the invocation times.
 func (o CommandOutput) InvocationTimes() pulumi.IntOutput {
 	return o.ApplyT(func(v *Command) pulumi.IntOutput { return v.InvocationTimes }).(pulumi.IntOutput)
@@ -294,9 +319,29 @@ func (o CommandOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Command) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The timeout of the ecs command. Valid value range: 10-600.
+// The custom parameter definitions of the ecs command.
+func (o CommandOutput) ParameterDefinitions() CommandParameterDefinitionArrayOutput {
+	return o.ApplyT(func(v *Command) CommandParameterDefinitionArrayOutput { return v.ParameterDefinitions }).(CommandParameterDefinitionArrayOutput)
+}
+
+// The project name of the ecs command.
+func (o CommandOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v *Command) pulumi.StringOutput { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o CommandOutput) Tags() CommandTagArrayOutput {
+	return o.ApplyT(func(v *Command) CommandTagArrayOutput { return v.Tags }).(CommandTagArrayOutput)
+}
+
+// The timeout of the ecs command. Unit: seconds. Valid value range: 30~86400. Default is 300.
 func (o CommandOutput) Timeout() pulumi.IntOutput {
 	return o.ApplyT(func(v *Command) pulumi.IntOutput { return v.Timeout }).(pulumi.IntOutput)
+}
+
+// The type of the ecs command. Valid values: `Shell`, `Python`, `PowerShell`, `Bat`. Default is `Shell`.
+func (o CommandOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Command) pulumi.StringPtrOutput { return v.Type }).(pulumi.StringPtrOutput)
 }
 
 // The update time of the ecs command.

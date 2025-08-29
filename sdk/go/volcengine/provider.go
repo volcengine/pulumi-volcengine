@@ -88,6 +88,8 @@ type providerArgs struct {
 	CustomerHeaders *string `pulumi:"customerHeaders"`
 	// Disable SSL for Volcengine Provider
 	DisableSsl *bool `pulumi:"disableSsl"`
+	// ENABLE STANDARD ENDPOINT for Volcengine Provider
+	EnableStandardEndpoint *bool `pulumi:"enableStandardEndpoint"`
 	// The Customer Endpoint for Volcengine Provider
 	Endpoint *string `pulumi:"endpoint"`
 	// PROXY URL for Volcengine Provider
@@ -115,6 +117,8 @@ type ProviderArgs struct {
 	CustomerHeaders pulumi.StringPtrInput
 	// Disable SSL for Volcengine Provider
 	DisableSsl pulumi.BoolPtrInput
+	// ENABLE STANDARD ENDPOINT for Volcengine Provider
+	EnableStandardEndpoint pulumi.BoolPtrInput
 	// The Customer Endpoint for Volcengine Provider
 	Endpoint pulumi.StringPtrInput
 	// PROXY URL for Volcengine Provider

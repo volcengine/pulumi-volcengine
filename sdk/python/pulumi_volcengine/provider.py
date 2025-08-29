@@ -21,6 +21,7 @@ class ProviderArgs:
                  customer_endpoints: Optional[pulumi.Input[str]] = None,
                  customer_headers: Optional[pulumi.Input[str]] = None,
                  disable_ssl: Optional[pulumi.Input[bool]] = None,
+                 enable_standard_endpoint: Optional[pulumi.Input[bool]] = None,
                  endpoint: Optional[pulumi.Input[str]] = None,
                  proxy_url: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
@@ -35,6 +36,7 @@ class ProviderArgs:
         :param pulumi.Input[str] customer_endpoints: CUSTOMER ENDPOINTS for Volcengine Provider
         :param pulumi.Input[str] customer_headers: CUSTOMER HEADERS for Volcengine Provider
         :param pulumi.Input[bool] disable_ssl: Disable SSL for Volcengine Provider
+        :param pulumi.Input[bool] enable_standard_endpoint: ENABLE STANDARD ENDPOINT for Volcengine Provider
         :param pulumi.Input[str] endpoint: The Customer Endpoint for Volcengine Provider
         :param pulumi.Input[str] proxy_url: PROXY URL for Volcengine Provider
         :param pulumi.Input[str] region: The Region for Volcengine Provider
@@ -55,6 +57,8 @@ class ProviderArgs:
             pulumi.set(__self__, "customer_headers", customer_headers)
         if disable_ssl is not None:
             pulumi.set(__self__, "disable_ssl", disable_ssl)
+        if enable_standard_endpoint is not None:
+            pulumi.set(__self__, "enable_standard_endpoint", enable_standard_endpoint)
         if endpoint is None:
             endpoint = _utilities.get_env('VOLCENGINE_ENDPOINT')
         if endpoint is not None:
@@ -146,6 +150,18 @@ class ProviderArgs:
         pulumi.set(self, "disable_ssl", value)
 
     @property
+    @pulumi.getter(name="enableStandardEndpoint")
+    def enable_standard_endpoint(self) -> Optional[pulumi.Input[bool]]:
+        """
+        ENABLE STANDARD ENDPOINT for Volcengine Provider
+        """
+        return pulumi.get(self, "enable_standard_endpoint")
+
+    @enable_standard_endpoint.setter
+    def enable_standard_endpoint(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enable_standard_endpoint", value)
+
+    @property
     @pulumi.getter
     def endpoint(self) -> Optional[pulumi.Input[str]]:
         """
@@ -217,6 +233,7 @@ class Provider(pulumi.ProviderResource):
                  customer_endpoints: Optional[pulumi.Input[str]] = None,
                  customer_headers: Optional[pulumi.Input[str]] = None,
                  disable_ssl: Optional[pulumi.Input[bool]] = None,
+                 enable_standard_endpoint: Optional[pulumi.Input[bool]] = None,
                  endpoint: Optional[pulumi.Input[str]] = None,
                  proxy_url: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
@@ -238,6 +255,7 @@ class Provider(pulumi.ProviderResource):
         :param pulumi.Input[str] customer_endpoints: CUSTOMER ENDPOINTS for Volcengine Provider
         :param pulumi.Input[str] customer_headers: CUSTOMER HEADERS for Volcengine Provider
         :param pulumi.Input[bool] disable_ssl: Disable SSL for Volcengine Provider
+        :param pulumi.Input[bool] enable_standard_endpoint: ENABLE STANDARD ENDPOINT for Volcengine Provider
         :param pulumi.Input[str] endpoint: The Customer Endpoint for Volcengine Provider
         :param pulumi.Input[str] proxy_url: PROXY URL for Volcengine Provider
         :param pulumi.Input[str] region: The Region for Volcengine Provider
@@ -277,6 +295,7 @@ class Provider(pulumi.ProviderResource):
                  customer_endpoints: Optional[pulumi.Input[str]] = None,
                  customer_headers: Optional[pulumi.Input[str]] = None,
                  disable_ssl: Optional[pulumi.Input[bool]] = None,
+                 enable_standard_endpoint: Optional[pulumi.Input[bool]] = None,
                  endpoint: Optional[pulumi.Input[str]] = None,
                  proxy_url: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
@@ -299,6 +318,7 @@ class Provider(pulumi.ProviderResource):
             __props__.__dict__["customer_endpoints"] = customer_endpoints
             __props__.__dict__["customer_headers"] = customer_headers
             __props__.__dict__["disable_ssl"] = pulumi.Output.from_input(disable_ssl).apply(pulumi.runtime.to_json) if disable_ssl is not None else None
+            __props__.__dict__["enable_standard_endpoint"] = pulumi.Output.from_input(enable_standard_endpoint).apply(pulumi.runtime.to_json) if enable_standard_endpoint is not None else None
             if endpoint is None:
                 endpoint = _utilities.get_env('VOLCENGINE_ENDPOINT')
             __props__.__dict__["endpoint"] = endpoint
