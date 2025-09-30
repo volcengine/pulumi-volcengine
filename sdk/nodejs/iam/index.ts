@@ -20,6 +20,11 @@ export const getAccessKeys: typeof import("./getAccessKeys").getAccessKeys = nul
 export const getAccessKeysOutput: typeof import("./getAccessKeys").getAccessKeysOutput = null as any;
 utilities.lazyLoad(exports, ["getAccessKeys","getAccessKeysOutput"], () => require("./getAccessKeys"));
 
+export { GetOidcProvidersArgs, GetOidcProvidersResult, GetOidcProvidersOutputArgs } from "./getOidcProviders";
+export const getOidcProviders: typeof import("./getOidcProviders").getOidcProviders = null as any;
+export const getOidcProvidersOutput: typeof import("./getOidcProviders").getOidcProvidersOutput = null as any;
+utilities.lazyLoad(exports, ["getOidcProviders","getOidcProvidersOutput"], () => require("./getOidcProviders"));
+
 export { GetPoliciesArgs, GetPoliciesResult, GetPoliciesOutputArgs } from "./getPolicies";
 export const getPolicies: typeof import("./getPolicies").getPolicies = null as any;
 export const getPoliciesOutput: typeof import("./getPolicies").getPoliciesOutput = null as any;
@@ -55,6 +60,16 @@ export type LoginProfile = import("./loginProfile").LoginProfile;
 export const LoginProfile: typeof import("./loginProfile").LoginProfile = null as any;
 utilities.lazyLoad(exports, ["LoginProfile"], () => require("./loginProfile"));
 
+export { OidcProviderArgs, OidcProviderState } from "./oidcProvider";
+export type OidcProvider = import("./oidcProvider").OidcProvider;
+export const OidcProvider: typeof import("./oidcProvider").OidcProvider = null as any;
+utilities.lazyLoad(exports, ["OidcProvider"], () => require("./oidcProvider"));
+
+export { OidcProvidersArgs, OidcProvidersResult, OidcProvidersOutputArgs } from "./oidcProviders";
+export const oidcProviders: typeof import("./oidcProviders").oidcProviders = null as any;
+export const oidcProvidersOutput: typeof import("./oidcProviders").oidcProvidersOutput = null as any;
+utilities.lazyLoad(exports, ["oidcProviders","oidcProvidersOutput"], () => require("./oidcProviders"));
+
 export { PoliciesArgs, PoliciesResult, PoliciesOutputArgs } from "./policies";
 export const policies: typeof import("./policies").policies = null as any;
 export const policiesOutput: typeof import("./policies").policiesOutput = null as any;
@@ -89,6 +104,11 @@ export { SamlProvidersArgs, SamlProvidersResult, SamlProvidersOutputArgs } from 
 export const samlProviders: typeof import("./samlProviders").samlProviders = null as any;
 export const samlProvidersOutput: typeof import("./samlProviders").samlProvidersOutput = null as any;
 utilities.lazyLoad(exports, ["samlProviders","samlProvidersOutput"], () => require("./samlProviders"));
+
+export { ServiceLinkedRoleArgs, ServiceLinkedRoleState } from "./serviceLinkedRole";
+export type ServiceLinkedRole = import("./serviceLinkedRole").ServiceLinkedRole;
+export const ServiceLinkedRole: typeof import("./serviceLinkedRole").ServiceLinkedRole = null as any;
+utilities.lazyLoad(exports, ["ServiceLinkedRole"], () => require("./serviceLinkedRole"));
 
 export { UserArgs, UserState } from "./user";
 export type User = import("./user").User;
@@ -139,6 +159,8 @@ const _module = {
                 return new AccessKey(name, <any>undefined, { urn })
             case "volcengine:iam/loginProfile:LoginProfile":
                 return new LoginProfile(name, <any>undefined, { urn })
+            case "volcengine:iam/oidcProvider:OidcProvider":
+                return new OidcProvider(name, <any>undefined, { urn })
             case "volcengine:iam/policy:Policy":
                 return new Policy(name, <any>undefined, { urn })
             case "volcengine:iam/role:Role":
@@ -147,6 +169,8 @@ const _module = {
                 return new RolePolicyAttachment(name, <any>undefined, { urn })
             case "volcengine:iam/samlProvider:SamlProvider":
                 return new SamlProvider(name, <any>undefined, { urn })
+            case "volcengine:iam/serviceLinkedRole:ServiceLinkedRole":
+                return new ServiceLinkedRole(name, <any>undefined, { urn })
             case "volcengine:iam/user:User":
                 return new User(name, <any>undefined, { urn })
             case "volcengine:iam/userGroup:UserGroup":
@@ -164,10 +188,12 @@ const _module = {
 };
 pulumi.runtime.registerResourceModule("volcengine", "iam/accessKey", _module)
 pulumi.runtime.registerResourceModule("volcengine", "iam/loginProfile", _module)
+pulumi.runtime.registerResourceModule("volcengine", "iam/oidcProvider", _module)
 pulumi.runtime.registerResourceModule("volcengine", "iam/policy", _module)
 pulumi.runtime.registerResourceModule("volcengine", "iam/role", _module)
 pulumi.runtime.registerResourceModule("volcengine", "iam/rolePolicyAttachment", _module)
 pulumi.runtime.registerResourceModule("volcengine", "iam/samlProvider", _module)
+pulumi.runtime.registerResourceModule("volcengine", "iam/serviceLinkedRole", _module)
 pulumi.runtime.registerResourceModule("volcengine", "iam/user", _module)
 pulumi.runtime.registerResourceModule("volcengine", "iam/userGroup", _module)
 pulumi.runtime.registerResourceModule("volcengine", "iam/userGroupAttachment", _module)

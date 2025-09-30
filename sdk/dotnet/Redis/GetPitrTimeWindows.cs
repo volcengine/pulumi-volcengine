@@ -11,9 +11,57 @@ namespace Pulumi.Volcengine.Redis
 {
     public static class GetPitrTimeWindows
     {
+        /// <summary>
+        /// Use this data source to query detailed information of redis pitr time periods
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Volcengine = Pulumi.Volcengine;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var @default = Volcengine.Redis.GetPitrTimeWindows.Invoke(new()
+        ///     {
+        ///         Ids = new[]
+        ///         {
+        ///             "redis-cnlficlt4974swtbz",
+        ///             "redis-cnlfq69d1y1tnguxz",
+        ///         },
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
         public static Task<GetPitrTimeWindowsResult> InvokeAsync(GetPitrTimeWindowsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetPitrTimeWindowsResult>("volcengine:redis/getPitrTimeWindows:getPitrTimeWindows", args ?? new GetPitrTimeWindowsArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Use this data source to query detailed information of redis pitr time periods
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Volcengine = Pulumi.Volcengine;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var @default = Volcengine.Redis.GetPitrTimeWindows.Invoke(new()
+        ///     {
+        ///         Ids = new[]
+        ///         {
+        ///             "redis-cnlficlt4974swtbz",
+        ///             "redis-cnlfq69d1y1tnguxz",
+        ///         },
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
         public static Output<GetPitrTimeWindowsResult> Invoke(GetPitrTimeWindowsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetPitrTimeWindowsResult>("volcengine:redis/getPitrTimeWindows:getPitrTimeWindows", args ?? new GetPitrTimeWindowsInvokeArgs(), options.WithDefaults());
     }
@@ -23,12 +71,19 @@ namespace Pulumi.Volcengine.Redis
     {
         [Input("ids", required: true)]
         private List<string>? _ids;
+
+        /// <summary>
+        /// The ids of the instances.
+        /// </summary>
         public List<string> Ids
         {
             get => _ids ?? (_ids = new List<string>());
             set => _ids = value;
         }
 
+        /// <summary>
+        /// File name where to save data source results.
+        /// </summary>
         [Input("outputFile")]
         public string? OutputFile { get; set; }
 
@@ -42,12 +97,19 @@ namespace Pulumi.Volcengine.Redis
     {
         [Input("ids", required: true)]
         private InputList<string>? _ids;
+
+        /// <summary>
+        /// The ids of the instances.
+        /// </summary>
         public InputList<string> Ids
         {
             get => _ids ?? (_ids = new InputList<string>());
             set => _ids = value;
         }
 
+        /// <summary>
+        /// File name where to save data source results.
+        /// </summary>
         [Input("outputFile")]
         public Input<string>? OutputFile { get; set; }
 
@@ -67,7 +129,13 @@ namespace Pulumi.Volcengine.Redis
         public readonly string Id;
         public readonly ImmutableArray<string> Ids;
         public readonly string? OutputFile;
+        /// <summary>
+        /// The list of time windows.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetPitrTimeWindowsPeriodResult> Periods;
+        /// <summary>
+        /// The total count of redis instances time window query.
+        /// </summary>
         public readonly int TotalCount;
 
         [OutputConstructor]

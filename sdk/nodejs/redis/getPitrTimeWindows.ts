@@ -6,6 +6,22 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
+/**
+ * Use this data source to query detailed information of redis pitr time periods
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.redis.getPitrTimeWindows({
+ *     ids: [
+ *         "redis-cnlficlt4974swtbz",
+ *         "redis-cnlfq69d1y1tnguxz",
+ *     ],
+ * });
+ * ```
+ */
 export function getPitrTimeWindows(args: GetPitrTimeWindowsArgs, opts?: pulumi.InvokeOptions): Promise<GetPitrTimeWindowsResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,7 +35,13 @@ export function getPitrTimeWindows(args: GetPitrTimeWindowsArgs, opts?: pulumi.I
  * A collection of arguments for invoking getPitrTimeWindows.
  */
 export interface GetPitrTimeWindowsArgs {
+    /**
+     * The ids of the instances.
+     */
     ids: string[];
+    /**
+     * File name where to save data source results.
+     */
     outputFile?: string;
 }
 
@@ -33,9 +55,31 @@ export interface GetPitrTimeWindowsResult {
     readonly id: string;
     readonly ids: string[];
     readonly outputFile?: string;
+    /**
+     * The list of time windows.
+     */
     readonly periods: outputs.redis.GetPitrTimeWindowsPeriod[];
+    /**
+     * The total count of redis instances time window query.
+     */
     readonly totalCount: number;
 }
+/**
+ * Use this data source to query detailed information of redis pitr time periods
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.redis.getPitrTimeWindows({
+ *     ids: [
+ *         "redis-cnlficlt4974swtbz",
+ *         "redis-cnlfq69d1y1tnguxz",
+ *     ],
+ * });
+ * ```
+ */
 export function getPitrTimeWindowsOutput(args: GetPitrTimeWindowsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPitrTimeWindowsResult> {
     return pulumi.output(args).apply((a: any) => getPitrTimeWindows(a, opts))
 }
@@ -44,6 +88,12 @@ export function getPitrTimeWindowsOutput(args: GetPitrTimeWindowsOutputArgs, opt
  * A collection of arguments for invoking getPitrTimeWindows.
  */
 export interface GetPitrTimeWindowsOutputArgs {
+    /**
+     * The ids of the instances.
+     */
     ids: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * File name where to save data source results.
+     */
     outputFile?: pulumi.Input<string>;
 }

@@ -11,6 +11,7 @@ from . import _utilities
 
 __all__ = [
     'ProviderAssumeRoleArgs',
+    'ProviderAssumeRoleWithOidcArgs',
 ]
 
 @pulumi.input_type
@@ -67,6 +68,89 @@ class ProviderAssumeRoleArgs:
     @duration_seconds.setter
     def duration_seconds(self, value: pulumi.Input[int]):
         pulumi.set(self, "duration_seconds", value)
+
+    @property
+    @pulumi.getter
+    def policy(self) -> Optional[pulumi.Input[str]]:
+        """
+        A more restrictive policy when making the AssumeRole call.
+        """
+        return pulumi.get(self, "policy")
+
+    @policy.setter
+    def policy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "policy", value)
+
+
+@pulumi.input_type
+class ProviderAssumeRoleWithOidcArgs:
+    def __init__(__self__, *,
+                 duration_seconds: pulumi.Input[int],
+                 oidc_token: pulumi.Input[str],
+                 role_session_name: pulumi.Input[str],
+                 role_trn: pulumi.Input[str],
+                 policy: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[int] duration_seconds: The duration of the session when making the AssumeRole call. Its value ranges from 900 to 43200(seconds), and default is 3600 seconds.
+        :param pulumi.Input[str] oidc_token: The OIDC token to use when making the AssumeRole call.
+        :param pulumi.Input[str] role_session_name: The session name to use when making the AssumeRole call.
+        :param pulumi.Input[str] role_trn: The TRN of the role to assume, in the format `trn:iam:${AccountId}:role/${RoleName}`.
+        :param pulumi.Input[str] policy: A more restrictive policy when making the AssumeRole call.
+        """
+        pulumi.set(__self__, "duration_seconds", duration_seconds)
+        pulumi.set(__self__, "oidc_token", oidc_token)
+        pulumi.set(__self__, "role_session_name", role_session_name)
+        pulumi.set(__self__, "role_trn", role_trn)
+        if policy is not None:
+            pulumi.set(__self__, "policy", policy)
+
+    @property
+    @pulumi.getter(name="durationSeconds")
+    def duration_seconds(self) -> pulumi.Input[int]:
+        """
+        The duration of the session when making the AssumeRole call. Its value ranges from 900 to 43200(seconds), and default is 3600 seconds.
+        """
+        return pulumi.get(self, "duration_seconds")
+
+    @duration_seconds.setter
+    def duration_seconds(self, value: pulumi.Input[int]):
+        pulumi.set(self, "duration_seconds", value)
+
+    @property
+    @pulumi.getter(name="oidcToken")
+    def oidc_token(self) -> pulumi.Input[str]:
+        """
+        The OIDC token to use when making the AssumeRole call.
+        """
+        return pulumi.get(self, "oidc_token")
+
+    @oidc_token.setter
+    def oidc_token(self, value: pulumi.Input[str]):
+        pulumi.set(self, "oidc_token", value)
+
+    @property
+    @pulumi.getter(name="roleSessionName")
+    def role_session_name(self) -> pulumi.Input[str]:
+        """
+        The session name to use when making the AssumeRole call.
+        """
+        return pulumi.get(self, "role_session_name")
+
+    @role_session_name.setter
+    def role_session_name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "role_session_name", value)
+
+    @property
+    @pulumi.getter(name="roleTrn")
+    def role_trn(self) -> pulumi.Input[str]:
+        """
+        The TRN of the role to assume, in the format `trn:iam:${AccountId}:role/${RoleName}`.
+        """
+        return pulumi.get(self, "role_trn")
+
+    @role_trn.setter
+    def role_trn(self, value: pulumi.Input[str]):
+        pulumi.set(self, "role_trn", value)
 
     @property
     @pulumi.getter

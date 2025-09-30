@@ -60,11 +60,17 @@ class GetPitrTimeWindowsResult:
     @property
     @pulumi.getter
     def periods(self) -> Sequence['outputs.GetPitrTimeWindowsPeriodResult']:
+        """
+        The list of time windows.
+        """
         return pulumi.get(self, "periods")
 
     @property
     @pulumi.getter(name="totalCount")
     def total_count(self) -> int:
+        """
+        The total count of redis instances time window query.
+        """
         return pulumi.get(self, "total_count")
 
 
@@ -85,7 +91,22 @@ def get_pitr_time_windows(ids: Optional[Sequence[str]] = None,
                           output_file: Optional[str] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPitrTimeWindowsResult:
     """
-    Use this data source to access information about an existing resource.
+    Use this data source to query detailed information of redis pitr time periods
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_volcengine as volcengine
+
+    default = volcengine.redis.get_pitr_time_windows(ids=[
+        "redis-cnlficlt4974swtbz",
+        "redis-cnlfq69d1y1tnguxz",
+    ])
+    ```
+
+
+    :param Sequence[str] ids: The ids of the instances.
+    :param str output_file: File name where to save data source results.
     """
     __args__ = dict()
     __args__['ids'] = ids
@@ -106,6 +127,21 @@ def get_pitr_time_windows_output(ids: Optional[pulumi.Input[Sequence[str]]] = No
                                  output_file: Optional[pulumi.Input[Optional[str]]] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPitrTimeWindowsResult]:
     """
-    Use this data source to access information about an existing resource.
+    Use this data source to query detailed information of redis pitr time periods
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_volcengine as volcengine
+
+    default = volcengine.redis.get_pitr_time_windows(ids=[
+        "redis-cnlficlt4974swtbz",
+        "redis-cnlfq69d1y1tnguxz",
+    ])
+    ```
+
+
+    :param Sequence[str] ids: The ids of the instances.
+    :param str output_file: File name where to save data source results.
     """
     ...

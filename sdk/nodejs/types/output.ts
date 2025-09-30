@@ -12676,6 +12676,29 @@ export namespace config {
         policy?: string;
     }
 
+    export interface AssumeRoleWithOidc {
+        /**
+         * The duration of the session when making the AssumeRole call. Its value ranges from 900 to 43200(seconds), and default is 3600 seconds.
+         */
+        durationSeconds: number;
+        /**
+         * The OIDC token to use when making the AssumeRole call.
+         */
+        oidcToken: string;
+        /**
+         * A more restrictive policy when making the AssumeRole call.
+         */
+        policy?: string;
+        /**
+         * The session name to use when making the AssumeRole call.
+         */
+        roleSessionName: string;
+        /**
+         * The TRN of the role to assume, in the format `trn:iam:${AccountId}:role/${RoleName}`.
+         */
+        roleTrn: string;
+    }
+
 }
 
 export namespace cr {
@@ -21601,6 +21624,45 @@ export namespace iam {
         userName: string;
     }
 
+    export interface GetOidcProvidersOidcProvider {
+        /**
+         * The client IDs of the OIDC provider.
+         */
+        clientIds: string[];
+        /**
+         * The create date of the OIDC provider.
+         */
+        createDate: string;
+        /**
+         * The description of the OIDC provider.
+         */
+        description: string;
+        /**
+         * The issuance limit time of the OIDC provider.
+         */
+        issuanceLimitTime: number;
+        /**
+         * The URL of the OIDC provider.
+         */
+        issuerUrl: string;
+        /**
+         * The name of the OIDC provider.
+         */
+        providerName: string;
+        /**
+         * The thumbprints of the OIDC provider.
+         */
+        thumbprints: string[];
+        /**
+         * The trn of OIDC provider.
+         */
+        trn: string;
+        /**
+         * The update date of the OIDC provider.
+         */
+        updateDate: string;
+    }
+
     export interface GetPoliciesPolicy {
         /**
          * The create time of the Policy.
@@ -21813,6 +21875,45 @@ export namespace iam {
          * The name of the user.
          */
         userName: string;
+    }
+
+    export interface OidcProvidersOidcProvider {
+        /**
+         * The client IDs of the OIDC provider.
+         */
+        clientIds: string[];
+        /**
+         * The create date of the OIDC provider.
+         */
+        createDate: string;
+        /**
+         * The description of the OIDC provider.
+         */
+        description: string;
+        /**
+         * The issuance limit time of the OIDC provider.
+         */
+        issuanceLimitTime: number;
+        /**
+         * The URL of the OIDC provider.
+         */
+        issuerUrl: string;
+        /**
+         * The name of the OIDC provider.
+         */
+        providerName: string;
+        /**
+         * The thumbprints of the OIDC provider.
+         */
+        thumbprints: string[];
+        /**
+         * The trn of OIDC provider.
+         */
+        trn: string;
+        /**
+         * The update date of the OIDC provider.
+         */
+        updateDate: string;
     }
 
     export interface PoliciesPolicy {

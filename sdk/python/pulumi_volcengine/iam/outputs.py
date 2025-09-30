@@ -11,6 +11,7 @@ from .. import _utilities
 
 __all__ = [
     'AccessKeysAccessKeyMetadataResult',
+    'OidcProvidersOidcProviderResult',
     'PoliciesPolicyResult',
     'RolesRoleResult',
     'SamlProvidersProviderResult',
@@ -18,6 +19,7 @@ __all__ = [
     'UserGroupsUserGroupResult',
     'UsersUserResult',
     'GetAccessKeysAccessKeyMetadataResult',
+    'GetOidcProvidersOidcProviderResult',
     'GetPoliciesPolicyResult',
     'GetRolesRoleResult',
     'GetSamlProvidersProviderResult',
@@ -86,6 +88,112 @@ class AccessKeysAccessKeyMetadataResult(dict):
         The user names.
         """
         return pulumi.get(self, "user_name")
+
+
+@pulumi.output_type
+class OidcProvidersOidcProviderResult(dict):
+    def __init__(__self__, *,
+                 client_ids: Sequence[str],
+                 create_date: str,
+                 description: str,
+                 issuance_limit_time: int,
+                 issuer_url: str,
+                 provider_name: str,
+                 thumbprints: Sequence[str],
+                 trn: str,
+                 update_date: str):
+        """
+        :param Sequence[str] client_ids: The client IDs of the OIDC provider.
+        :param str create_date: The create date of the OIDC provider.
+        :param str description: The description of the OIDC provider.
+        :param int issuance_limit_time: The issuance limit time of the OIDC provider.
+        :param str issuer_url: The URL of the OIDC provider.
+        :param str provider_name: The name of the OIDC provider.
+        :param Sequence[str] thumbprints: The thumbprints of the OIDC provider.
+        :param str trn: The trn of OIDC provider.
+        :param str update_date: The update date of the OIDC provider.
+        """
+        pulumi.set(__self__, "client_ids", client_ids)
+        pulumi.set(__self__, "create_date", create_date)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "issuance_limit_time", issuance_limit_time)
+        pulumi.set(__self__, "issuer_url", issuer_url)
+        pulumi.set(__self__, "provider_name", provider_name)
+        pulumi.set(__self__, "thumbprints", thumbprints)
+        pulumi.set(__self__, "trn", trn)
+        pulumi.set(__self__, "update_date", update_date)
+
+    @property
+    @pulumi.getter(name="clientIds")
+    def client_ids(self) -> Sequence[str]:
+        """
+        The client IDs of the OIDC provider.
+        """
+        return pulumi.get(self, "client_ids")
+
+    @property
+    @pulumi.getter(name="createDate")
+    def create_date(self) -> str:
+        """
+        The create date of the OIDC provider.
+        """
+        return pulumi.get(self, "create_date")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the OIDC provider.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="issuanceLimitTime")
+    def issuance_limit_time(self) -> int:
+        """
+        The issuance limit time of the OIDC provider.
+        """
+        return pulumi.get(self, "issuance_limit_time")
+
+    @property
+    @pulumi.getter(name="issuerUrl")
+    def issuer_url(self) -> str:
+        """
+        The URL of the OIDC provider.
+        """
+        return pulumi.get(self, "issuer_url")
+
+    @property
+    @pulumi.getter(name="providerName")
+    def provider_name(self) -> str:
+        """
+        The name of the OIDC provider.
+        """
+        return pulumi.get(self, "provider_name")
+
+    @property
+    @pulumi.getter
+    def thumbprints(self) -> Sequence[str]:
+        """
+        The thumbprints of the OIDC provider.
+        """
+        return pulumi.get(self, "thumbprints")
+
+    @property
+    @pulumi.getter
+    def trn(self) -> str:
+        """
+        The trn of OIDC provider.
+        """
+        return pulumi.get(self, "trn")
+
+    @property
+    @pulumi.getter(name="updateDate")
+    def update_date(self) -> str:
+        """
+        The update date of the OIDC provider.
+        """
+        return pulumi.get(self, "update_date")
 
 
 @pulumi.output_type
@@ -729,6 +837,112 @@ class GetAccessKeysAccessKeyMetadataResult(dict):
         The user names.
         """
         return pulumi.get(self, "user_name")
+
+
+@pulumi.output_type
+class GetOidcProvidersOidcProviderResult(dict):
+    def __init__(__self__, *,
+                 client_ids: Sequence[str],
+                 create_date: str,
+                 description: str,
+                 issuance_limit_time: int,
+                 issuer_url: str,
+                 provider_name: str,
+                 thumbprints: Sequence[str],
+                 trn: str,
+                 update_date: str):
+        """
+        :param Sequence[str] client_ids: The client IDs of the OIDC provider.
+        :param str create_date: The create date of the OIDC provider.
+        :param str description: The description of the OIDC provider.
+        :param int issuance_limit_time: The issuance limit time of the OIDC provider.
+        :param str issuer_url: The URL of the OIDC provider.
+        :param str provider_name: The name of the OIDC provider.
+        :param Sequence[str] thumbprints: The thumbprints of the OIDC provider.
+        :param str trn: The trn of OIDC provider.
+        :param str update_date: The update date of the OIDC provider.
+        """
+        pulumi.set(__self__, "client_ids", client_ids)
+        pulumi.set(__self__, "create_date", create_date)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "issuance_limit_time", issuance_limit_time)
+        pulumi.set(__self__, "issuer_url", issuer_url)
+        pulumi.set(__self__, "provider_name", provider_name)
+        pulumi.set(__self__, "thumbprints", thumbprints)
+        pulumi.set(__self__, "trn", trn)
+        pulumi.set(__self__, "update_date", update_date)
+
+    @property
+    @pulumi.getter(name="clientIds")
+    def client_ids(self) -> Sequence[str]:
+        """
+        The client IDs of the OIDC provider.
+        """
+        return pulumi.get(self, "client_ids")
+
+    @property
+    @pulumi.getter(name="createDate")
+    def create_date(self) -> str:
+        """
+        The create date of the OIDC provider.
+        """
+        return pulumi.get(self, "create_date")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the OIDC provider.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="issuanceLimitTime")
+    def issuance_limit_time(self) -> int:
+        """
+        The issuance limit time of the OIDC provider.
+        """
+        return pulumi.get(self, "issuance_limit_time")
+
+    @property
+    @pulumi.getter(name="issuerUrl")
+    def issuer_url(self) -> str:
+        """
+        The URL of the OIDC provider.
+        """
+        return pulumi.get(self, "issuer_url")
+
+    @property
+    @pulumi.getter(name="providerName")
+    def provider_name(self) -> str:
+        """
+        The name of the OIDC provider.
+        """
+        return pulumi.get(self, "provider_name")
+
+    @property
+    @pulumi.getter
+    def thumbprints(self) -> Sequence[str]:
+        """
+        The thumbprints of the OIDC provider.
+        """
+        return pulumi.get(self, "thumbprints")
+
+    @property
+    @pulumi.getter
+    def trn(self) -> str:
+        """
+        The trn of OIDC provider.
+        """
+        return pulumi.get(self, "trn")
+
+    @property
+    @pulumi.getter(name="updateDate")
+    def update_date(self) -> str:
+        """
+        The update date of the OIDC provider.
+        """
+        return pulumi.get(self, "update_date")
 
 
 @pulumi.output_type

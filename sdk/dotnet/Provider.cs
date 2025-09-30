@@ -115,6 +115,13 @@ namespace Pulumi.Volcengine
         public Input<Inputs.ProviderAssumeRoleArgs>? AssumeRole { get; set; }
 
         /// <summary>
+        /// The ASSUME ROLE WITH OIDC block for Volcengine Provider. If provided, terraform will attempt to assume this role using
+        /// the supplied credentials.
+        /// </summary>
+        [Input("assumeRoleWithOidc", json: true)]
+        public Input<Inputs.ProviderAssumeRoleWithOidcArgs>? AssumeRoleWithOidc { get; set; }
+
+        /// <summary>
         /// CUSTOMER ENDPOINT SUFFIX for Volcengine Provider
         /// </summary>
         [Input("customerEndpointSuffix")]

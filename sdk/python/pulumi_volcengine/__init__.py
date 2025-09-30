@@ -1101,6 +1101,14 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "iam/oidcProvider",
+  "fqn": "pulumi_volcengine.iam",
+  "classes": {
+   "volcengine:iam/oidcProvider:OidcProvider": "OidcProvider"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "iam/policy",
   "fqn": "pulumi_volcengine.iam",
   "classes": {
@@ -1129,6 +1137,14 @@ _utilities.register(
   "fqn": "pulumi_volcengine.iam",
   "classes": {
    "volcengine:iam/samlProvider:SamlProvider": "SamlProvider"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "iam/serviceLinkedRole",
+  "fqn": "pulumi_volcengine.iam",
+  "classes": {
+   "volcengine:iam/serviceLinkedRole:ServiceLinkedRole": "ServiceLinkedRole"
   }
  },
  {
