@@ -23,6 +23,29 @@ export interface ProviderAssumeRole {
      */
     policy?: pulumi.Input<string>;
 }
+
+export interface ProviderAssumeRoleWithOidc {
+    /**
+     * The duration of the session when making the AssumeRole call. Its value ranges from 900 to 43200(seconds), and default is 3600 seconds.
+     */
+    durationSeconds: pulumi.Input<number>;
+    /**
+     * The OIDC token to use when making the AssumeRole call.
+     */
+    oidcToken: pulumi.Input<string>;
+    /**
+     * A more restrictive policy when making the AssumeRole call.
+     */
+    policy?: pulumi.Input<string>;
+    /**
+     * The session name to use when making the AssumeRole call.
+     */
+    roleSessionName: pulumi.Input<string>;
+    /**
+     * The TRN of the role to assume, in the format `trn:iam:${AccountId}:role/${RoleName}`.
+     */
+    roleTrn: pulumi.Input<string>;
+}
 export namespace alb {
     export interface AclAclEntry {
         /**

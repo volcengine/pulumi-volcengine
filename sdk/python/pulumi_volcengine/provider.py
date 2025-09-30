@@ -17,6 +17,7 @@ class ProviderArgs:
     def __init__(__self__, *,
                  access_key: Optional[pulumi.Input[str]] = None,
                  assume_role: Optional[pulumi.Input['ProviderAssumeRoleArgs']] = None,
+                 assume_role_with_oidc: Optional[pulumi.Input['ProviderAssumeRoleWithOidcArgs']] = None,
                  customer_endpoint_suffix: Optional[pulumi.Input[str]] = None,
                  customer_endpoints: Optional[pulumi.Input[str]] = None,
                  customer_headers: Optional[pulumi.Input[str]] = None,
@@ -32,6 +33,8 @@ class ProviderArgs:
         :param pulumi.Input[str] access_key: The Access Key for Volcengine Provider
         :param pulumi.Input['ProviderAssumeRoleArgs'] assume_role: The ASSUME ROLE block for Volcengine Provider. If provided, terraform will attempt to assume this role using the
                supplied credentials.
+        :param pulumi.Input['ProviderAssumeRoleWithOidcArgs'] assume_role_with_oidc: The ASSUME ROLE WITH OIDC block for Volcengine Provider. If provided, terraform will attempt to assume this role using
+               the supplied credentials.
         :param pulumi.Input[str] customer_endpoint_suffix: CUSTOMER ENDPOINT SUFFIX for Volcengine Provider
         :param pulumi.Input[str] customer_endpoints: CUSTOMER ENDPOINTS for Volcengine Provider
         :param pulumi.Input[str] customer_headers: CUSTOMER HEADERS for Volcengine Provider
@@ -49,6 +52,8 @@ class ProviderArgs:
             pulumi.set(__self__, "access_key", access_key)
         if assume_role is not None:
             pulumi.set(__self__, "assume_role", assume_role)
+        if assume_role_with_oidc is not None:
+            pulumi.set(__self__, "assume_role_with_oidc", assume_role_with_oidc)
         if customer_endpoint_suffix is not None:
             pulumi.set(__self__, "customer_endpoint_suffix", customer_endpoint_suffix)
         if customer_endpoints is not None:
@@ -100,6 +105,19 @@ class ProviderArgs:
     @assume_role.setter
     def assume_role(self, value: Optional[pulumi.Input['ProviderAssumeRoleArgs']]):
         pulumi.set(self, "assume_role", value)
+
+    @property
+    @pulumi.getter(name="assumeRoleWithOidc")
+    def assume_role_with_oidc(self) -> Optional[pulumi.Input['ProviderAssumeRoleWithOidcArgs']]:
+        """
+        The ASSUME ROLE WITH OIDC block for Volcengine Provider. If provided, terraform will attempt to assume this role using
+        the supplied credentials.
+        """
+        return pulumi.get(self, "assume_role_with_oidc")
+
+    @assume_role_with_oidc.setter
+    def assume_role_with_oidc(self, value: Optional[pulumi.Input['ProviderAssumeRoleWithOidcArgs']]):
+        pulumi.set(self, "assume_role_with_oidc", value)
 
     @property
     @pulumi.getter(name="customerEndpointSuffix")
@@ -229,6 +247,7 @@ class Provider(pulumi.ProviderResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  access_key: Optional[pulumi.Input[str]] = None,
                  assume_role: Optional[pulumi.Input[pulumi.InputType['ProviderAssumeRoleArgs']]] = None,
+                 assume_role_with_oidc: Optional[pulumi.Input[pulumi.InputType['ProviderAssumeRoleWithOidcArgs']]] = None,
                  customer_endpoint_suffix: Optional[pulumi.Input[str]] = None,
                  customer_endpoints: Optional[pulumi.Input[str]] = None,
                  customer_headers: Optional[pulumi.Input[str]] = None,
@@ -251,6 +270,8 @@ class Provider(pulumi.ProviderResource):
         :param pulumi.Input[str] access_key: The Access Key for Volcengine Provider
         :param pulumi.Input[pulumi.InputType['ProviderAssumeRoleArgs']] assume_role: The ASSUME ROLE block for Volcengine Provider. If provided, terraform will attempt to assume this role using the
                supplied credentials.
+        :param pulumi.Input[pulumi.InputType['ProviderAssumeRoleWithOidcArgs']] assume_role_with_oidc: The ASSUME ROLE WITH OIDC block for Volcengine Provider. If provided, terraform will attempt to assume this role using
+               the supplied credentials.
         :param pulumi.Input[str] customer_endpoint_suffix: CUSTOMER ENDPOINT SUFFIX for Volcengine Provider
         :param pulumi.Input[str] customer_endpoints: CUSTOMER ENDPOINTS for Volcengine Provider
         :param pulumi.Input[str] customer_headers: CUSTOMER HEADERS for Volcengine Provider
@@ -291,6 +312,7 @@ class Provider(pulumi.ProviderResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  access_key: Optional[pulumi.Input[str]] = None,
                  assume_role: Optional[pulumi.Input[pulumi.InputType['ProviderAssumeRoleArgs']]] = None,
+                 assume_role_with_oidc: Optional[pulumi.Input[pulumi.InputType['ProviderAssumeRoleWithOidcArgs']]] = None,
                  customer_endpoint_suffix: Optional[pulumi.Input[str]] = None,
                  customer_endpoints: Optional[pulumi.Input[str]] = None,
                  customer_headers: Optional[pulumi.Input[str]] = None,
@@ -314,6 +336,7 @@ class Provider(pulumi.ProviderResource):
                 access_key = _utilities.get_env('VOLCENGINE_ACCESS_KEY')
             __props__.__dict__["access_key"] = access_key
             __props__.__dict__["assume_role"] = pulumi.Output.from_input(assume_role).apply(pulumi.runtime.to_json) if assume_role is not None else None
+            __props__.__dict__["assume_role_with_oidc"] = pulumi.Output.from_input(assume_role_with_oidc).apply(pulumi.runtime.to_json) if assume_role_with_oidc is not None else None
             __props__.__dict__["customer_endpoint_suffix"] = customer_endpoint_suffix
             __props__.__dict__["customer_endpoints"] = customer_endpoints
             __props__.__dict__["customer_headers"] = customer_headers

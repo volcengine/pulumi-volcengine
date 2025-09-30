@@ -25,6 +25,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &AccessKey{}
 	case "volcengine:iam/loginProfile:LoginProfile":
 		r = &LoginProfile{}
+	case "volcengine:iam/oidcProvider:OidcProvider":
+		r = &OidcProvider{}
 	case "volcengine:iam/policy:Policy":
 		r = &Policy{}
 	case "volcengine:iam/role:Role":
@@ -33,6 +35,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &RolePolicyAttachment{}
 	case "volcengine:iam/samlProvider:SamlProvider":
 		r = &SamlProvider{}
+	case "volcengine:iam/serviceLinkedRole:ServiceLinkedRole":
+		r = &ServiceLinkedRole{}
 	case "volcengine:iam/user:User":
 		r = &User{}
 	case "volcengine:iam/userGroup:UserGroup":
@@ -68,6 +72,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
+		"iam/oidcProvider",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
 		"iam/policy",
 		&module{version},
 	)
@@ -84,6 +93,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"volcengine",
 		"iam/samlProvider",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"iam/serviceLinkedRole",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

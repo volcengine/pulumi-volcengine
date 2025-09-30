@@ -146,6 +146,175 @@ func (o AccessKeysAccessKeyMetadataArrayOutput) Index(i pulumi.IntInput) AccessK
 	}).(AccessKeysAccessKeyMetadataOutput)
 }
 
+type OidcProvidersOidcProvider struct {
+	// The client IDs of the OIDC provider.
+	ClientIds []string `pulumi:"clientIds"`
+	// The create date of the OIDC provider.
+	CreateDate string `pulumi:"createDate"`
+	// The description of the OIDC provider.
+	Description string `pulumi:"description"`
+	// The issuance limit time of the OIDC provider.
+	IssuanceLimitTime int `pulumi:"issuanceLimitTime"`
+	// The URL of the OIDC provider.
+	IssuerUrl string `pulumi:"issuerUrl"`
+	// The name of the OIDC provider.
+	ProviderName string `pulumi:"providerName"`
+	// The thumbprints of the OIDC provider.
+	Thumbprints []string `pulumi:"thumbprints"`
+	// The trn of OIDC provider.
+	Trn string `pulumi:"trn"`
+	// The update date of the OIDC provider.
+	UpdateDate string `pulumi:"updateDate"`
+}
+
+// OidcProvidersOidcProviderInput is an input type that accepts OidcProvidersOidcProviderArgs and OidcProvidersOidcProviderOutput values.
+// You can construct a concrete instance of `OidcProvidersOidcProviderInput` via:
+//
+//	OidcProvidersOidcProviderArgs{...}
+type OidcProvidersOidcProviderInput interface {
+	pulumi.Input
+
+	ToOidcProvidersOidcProviderOutput() OidcProvidersOidcProviderOutput
+	ToOidcProvidersOidcProviderOutputWithContext(context.Context) OidcProvidersOidcProviderOutput
+}
+
+type OidcProvidersOidcProviderArgs struct {
+	// The client IDs of the OIDC provider.
+	ClientIds pulumi.StringArrayInput `pulumi:"clientIds"`
+	// The create date of the OIDC provider.
+	CreateDate pulumi.StringInput `pulumi:"createDate"`
+	// The description of the OIDC provider.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The issuance limit time of the OIDC provider.
+	IssuanceLimitTime pulumi.IntInput `pulumi:"issuanceLimitTime"`
+	// The URL of the OIDC provider.
+	IssuerUrl pulumi.StringInput `pulumi:"issuerUrl"`
+	// The name of the OIDC provider.
+	ProviderName pulumi.StringInput `pulumi:"providerName"`
+	// The thumbprints of the OIDC provider.
+	Thumbprints pulumi.StringArrayInput `pulumi:"thumbprints"`
+	// The trn of OIDC provider.
+	Trn pulumi.StringInput `pulumi:"trn"`
+	// The update date of the OIDC provider.
+	UpdateDate pulumi.StringInput `pulumi:"updateDate"`
+}
+
+func (OidcProvidersOidcProviderArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*OidcProvidersOidcProvider)(nil)).Elem()
+}
+
+func (i OidcProvidersOidcProviderArgs) ToOidcProvidersOidcProviderOutput() OidcProvidersOidcProviderOutput {
+	return i.ToOidcProvidersOidcProviderOutputWithContext(context.Background())
+}
+
+func (i OidcProvidersOidcProviderArgs) ToOidcProvidersOidcProviderOutputWithContext(ctx context.Context) OidcProvidersOidcProviderOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OidcProvidersOidcProviderOutput)
+}
+
+// OidcProvidersOidcProviderArrayInput is an input type that accepts OidcProvidersOidcProviderArray and OidcProvidersOidcProviderArrayOutput values.
+// You can construct a concrete instance of `OidcProvidersOidcProviderArrayInput` via:
+//
+//	OidcProvidersOidcProviderArray{ OidcProvidersOidcProviderArgs{...} }
+type OidcProvidersOidcProviderArrayInput interface {
+	pulumi.Input
+
+	ToOidcProvidersOidcProviderArrayOutput() OidcProvidersOidcProviderArrayOutput
+	ToOidcProvidersOidcProviderArrayOutputWithContext(context.Context) OidcProvidersOidcProviderArrayOutput
+}
+
+type OidcProvidersOidcProviderArray []OidcProvidersOidcProviderInput
+
+func (OidcProvidersOidcProviderArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]OidcProvidersOidcProvider)(nil)).Elem()
+}
+
+func (i OidcProvidersOidcProviderArray) ToOidcProvidersOidcProviderArrayOutput() OidcProvidersOidcProviderArrayOutput {
+	return i.ToOidcProvidersOidcProviderArrayOutputWithContext(context.Background())
+}
+
+func (i OidcProvidersOidcProviderArray) ToOidcProvidersOidcProviderArrayOutputWithContext(ctx context.Context) OidcProvidersOidcProviderArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OidcProvidersOidcProviderArrayOutput)
+}
+
+type OidcProvidersOidcProviderOutput struct{ *pulumi.OutputState }
+
+func (OidcProvidersOidcProviderOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*OidcProvidersOidcProvider)(nil)).Elem()
+}
+
+func (o OidcProvidersOidcProviderOutput) ToOidcProvidersOidcProviderOutput() OidcProvidersOidcProviderOutput {
+	return o
+}
+
+func (o OidcProvidersOidcProviderOutput) ToOidcProvidersOidcProviderOutputWithContext(ctx context.Context) OidcProvidersOidcProviderOutput {
+	return o
+}
+
+// The client IDs of the OIDC provider.
+func (o OidcProvidersOidcProviderOutput) ClientIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v OidcProvidersOidcProvider) []string { return v.ClientIds }).(pulumi.StringArrayOutput)
+}
+
+// The create date of the OIDC provider.
+func (o OidcProvidersOidcProviderOutput) CreateDate() pulumi.StringOutput {
+	return o.ApplyT(func(v OidcProvidersOidcProvider) string { return v.CreateDate }).(pulumi.StringOutput)
+}
+
+// The description of the OIDC provider.
+func (o OidcProvidersOidcProviderOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v OidcProvidersOidcProvider) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The issuance limit time of the OIDC provider.
+func (o OidcProvidersOidcProviderOutput) IssuanceLimitTime() pulumi.IntOutput {
+	return o.ApplyT(func(v OidcProvidersOidcProvider) int { return v.IssuanceLimitTime }).(pulumi.IntOutput)
+}
+
+// The URL of the OIDC provider.
+func (o OidcProvidersOidcProviderOutput) IssuerUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v OidcProvidersOidcProvider) string { return v.IssuerUrl }).(pulumi.StringOutput)
+}
+
+// The name of the OIDC provider.
+func (o OidcProvidersOidcProviderOutput) ProviderName() pulumi.StringOutput {
+	return o.ApplyT(func(v OidcProvidersOidcProvider) string { return v.ProviderName }).(pulumi.StringOutput)
+}
+
+// The thumbprints of the OIDC provider.
+func (o OidcProvidersOidcProviderOutput) Thumbprints() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v OidcProvidersOidcProvider) []string { return v.Thumbprints }).(pulumi.StringArrayOutput)
+}
+
+// The trn of OIDC provider.
+func (o OidcProvidersOidcProviderOutput) Trn() pulumi.StringOutput {
+	return o.ApplyT(func(v OidcProvidersOidcProvider) string { return v.Trn }).(pulumi.StringOutput)
+}
+
+// The update date of the OIDC provider.
+func (o OidcProvidersOidcProviderOutput) UpdateDate() pulumi.StringOutput {
+	return o.ApplyT(func(v OidcProvidersOidcProvider) string { return v.UpdateDate }).(pulumi.StringOutput)
+}
+
+type OidcProvidersOidcProviderArrayOutput struct{ *pulumi.OutputState }
+
+func (OidcProvidersOidcProviderArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]OidcProvidersOidcProvider)(nil)).Elem()
+}
+
+func (o OidcProvidersOidcProviderArrayOutput) ToOidcProvidersOidcProviderArrayOutput() OidcProvidersOidcProviderArrayOutput {
+	return o
+}
+
+func (o OidcProvidersOidcProviderArrayOutput) ToOidcProvidersOidcProviderArrayOutputWithContext(ctx context.Context) OidcProvidersOidcProviderArrayOutput {
+	return o
+}
+
+func (o OidcProvidersOidcProviderArrayOutput) Index(i pulumi.IntInput) OidcProvidersOidcProviderOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) OidcProvidersOidcProvider {
+		return vs[0].([]OidcProvidersOidcProvider)[vs[1].(int)]
+	}).(OidcProvidersOidcProviderOutput)
+}
+
 type PoliciesPolicy struct {
 	// The create time of the Policy.
 	CreateDate string `pulumi:"createDate"`
@@ -1248,6 +1417,175 @@ func (o GetAccessKeysAccessKeyMetadataArrayOutput) Index(i pulumi.IntInput) GetA
 	}).(GetAccessKeysAccessKeyMetadataOutput)
 }
 
+type GetOidcProvidersOidcProvider struct {
+	// The client IDs of the OIDC provider.
+	ClientIds []string `pulumi:"clientIds"`
+	// The create date of the OIDC provider.
+	CreateDate string `pulumi:"createDate"`
+	// The description of the OIDC provider.
+	Description string `pulumi:"description"`
+	// The issuance limit time of the OIDC provider.
+	IssuanceLimitTime int `pulumi:"issuanceLimitTime"`
+	// The URL of the OIDC provider.
+	IssuerUrl string `pulumi:"issuerUrl"`
+	// The name of the OIDC provider.
+	ProviderName string `pulumi:"providerName"`
+	// The thumbprints of the OIDC provider.
+	Thumbprints []string `pulumi:"thumbprints"`
+	// The trn of OIDC provider.
+	Trn string `pulumi:"trn"`
+	// The update date of the OIDC provider.
+	UpdateDate string `pulumi:"updateDate"`
+}
+
+// GetOidcProvidersOidcProviderInput is an input type that accepts GetOidcProvidersOidcProviderArgs and GetOidcProvidersOidcProviderOutput values.
+// You can construct a concrete instance of `GetOidcProvidersOidcProviderInput` via:
+//
+//	GetOidcProvidersOidcProviderArgs{...}
+type GetOidcProvidersOidcProviderInput interface {
+	pulumi.Input
+
+	ToGetOidcProvidersOidcProviderOutput() GetOidcProvidersOidcProviderOutput
+	ToGetOidcProvidersOidcProviderOutputWithContext(context.Context) GetOidcProvidersOidcProviderOutput
+}
+
+type GetOidcProvidersOidcProviderArgs struct {
+	// The client IDs of the OIDC provider.
+	ClientIds pulumi.StringArrayInput `pulumi:"clientIds"`
+	// The create date of the OIDC provider.
+	CreateDate pulumi.StringInput `pulumi:"createDate"`
+	// The description of the OIDC provider.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The issuance limit time of the OIDC provider.
+	IssuanceLimitTime pulumi.IntInput `pulumi:"issuanceLimitTime"`
+	// The URL of the OIDC provider.
+	IssuerUrl pulumi.StringInput `pulumi:"issuerUrl"`
+	// The name of the OIDC provider.
+	ProviderName pulumi.StringInput `pulumi:"providerName"`
+	// The thumbprints of the OIDC provider.
+	Thumbprints pulumi.StringArrayInput `pulumi:"thumbprints"`
+	// The trn of OIDC provider.
+	Trn pulumi.StringInput `pulumi:"trn"`
+	// The update date of the OIDC provider.
+	UpdateDate pulumi.StringInput `pulumi:"updateDate"`
+}
+
+func (GetOidcProvidersOidcProviderArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetOidcProvidersOidcProvider)(nil)).Elem()
+}
+
+func (i GetOidcProvidersOidcProviderArgs) ToGetOidcProvidersOidcProviderOutput() GetOidcProvidersOidcProviderOutput {
+	return i.ToGetOidcProvidersOidcProviderOutputWithContext(context.Background())
+}
+
+func (i GetOidcProvidersOidcProviderArgs) ToGetOidcProvidersOidcProviderOutputWithContext(ctx context.Context) GetOidcProvidersOidcProviderOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetOidcProvidersOidcProviderOutput)
+}
+
+// GetOidcProvidersOidcProviderArrayInput is an input type that accepts GetOidcProvidersOidcProviderArray and GetOidcProvidersOidcProviderArrayOutput values.
+// You can construct a concrete instance of `GetOidcProvidersOidcProviderArrayInput` via:
+//
+//	GetOidcProvidersOidcProviderArray{ GetOidcProvidersOidcProviderArgs{...} }
+type GetOidcProvidersOidcProviderArrayInput interface {
+	pulumi.Input
+
+	ToGetOidcProvidersOidcProviderArrayOutput() GetOidcProvidersOidcProviderArrayOutput
+	ToGetOidcProvidersOidcProviderArrayOutputWithContext(context.Context) GetOidcProvidersOidcProviderArrayOutput
+}
+
+type GetOidcProvidersOidcProviderArray []GetOidcProvidersOidcProviderInput
+
+func (GetOidcProvidersOidcProviderArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetOidcProvidersOidcProvider)(nil)).Elem()
+}
+
+func (i GetOidcProvidersOidcProviderArray) ToGetOidcProvidersOidcProviderArrayOutput() GetOidcProvidersOidcProviderArrayOutput {
+	return i.ToGetOidcProvidersOidcProviderArrayOutputWithContext(context.Background())
+}
+
+func (i GetOidcProvidersOidcProviderArray) ToGetOidcProvidersOidcProviderArrayOutputWithContext(ctx context.Context) GetOidcProvidersOidcProviderArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetOidcProvidersOidcProviderArrayOutput)
+}
+
+type GetOidcProvidersOidcProviderOutput struct{ *pulumi.OutputState }
+
+func (GetOidcProvidersOidcProviderOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetOidcProvidersOidcProvider)(nil)).Elem()
+}
+
+func (o GetOidcProvidersOidcProviderOutput) ToGetOidcProvidersOidcProviderOutput() GetOidcProvidersOidcProviderOutput {
+	return o
+}
+
+func (o GetOidcProvidersOidcProviderOutput) ToGetOidcProvidersOidcProviderOutputWithContext(ctx context.Context) GetOidcProvidersOidcProviderOutput {
+	return o
+}
+
+// The client IDs of the OIDC provider.
+func (o GetOidcProvidersOidcProviderOutput) ClientIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetOidcProvidersOidcProvider) []string { return v.ClientIds }).(pulumi.StringArrayOutput)
+}
+
+// The create date of the OIDC provider.
+func (o GetOidcProvidersOidcProviderOutput) CreateDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOidcProvidersOidcProvider) string { return v.CreateDate }).(pulumi.StringOutput)
+}
+
+// The description of the OIDC provider.
+func (o GetOidcProvidersOidcProviderOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOidcProvidersOidcProvider) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The issuance limit time of the OIDC provider.
+func (o GetOidcProvidersOidcProviderOutput) IssuanceLimitTime() pulumi.IntOutput {
+	return o.ApplyT(func(v GetOidcProvidersOidcProvider) int { return v.IssuanceLimitTime }).(pulumi.IntOutput)
+}
+
+// The URL of the OIDC provider.
+func (o GetOidcProvidersOidcProviderOutput) IssuerUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOidcProvidersOidcProvider) string { return v.IssuerUrl }).(pulumi.StringOutput)
+}
+
+// The name of the OIDC provider.
+func (o GetOidcProvidersOidcProviderOutput) ProviderName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOidcProvidersOidcProvider) string { return v.ProviderName }).(pulumi.StringOutput)
+}
+
+// The thumbprints of the OIDC provider.
+func (o GetOidcProvidersOidcProviderOutput) Thumbprints() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetOidcProvidersOidcProvider) []string { return v.Thumbprints }).(pulumi.StringArrayOutput)
+}
+
+// The trn of OIDC provider.
+func (o GetOidcProvidersOidcProviderOutput) Trn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOidcProvidersOidcProvider) string { return v.Trn }).(pulumi.StringOutput)
+}
+
+// The update date of the OIDC provider.
+func (o GetOidcProvidersOidcProviderOutput) UpdateDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOidcProvidersOidcProvider) string { return v.UpdateDate }).(pulumi.StringOutput)
+}
+
+type GetOidcProvidersOidcProviderArrayOutput struct{ *pulumi.OutputState }
+
+func (GetOidcProvidersOidcProviderArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetOidcProvidersOidcProvider)(nil)).Elem()
+}
+
+func (o GetOidcProvidersOidcProviderArrayOutput) ToGetOidcProvidersOidcProviderArrayOutput() GetOidcProvidersOidcProviderArrayOutput {
+	return o
+}
+
+func (o GetOidcProvidersOidcProviderArrayOutput) ToGetOidcProvidersOidcProviderArrayOutputWithContext(ctx context.Context) GetOidcProvidersOidcProviderArrayOutput {
+	return o
+}
+
+func (o GetOidcProvidersOidcProviderArrayOutput) Index(i pulumi.IntInput) GetOidcProvidersOidcProviderOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetOidcProvidersOidcProvider {
+		return vs[0].([]GetOidcProvidersOidcProvider)[vs[1].(int)]
+	}).(GetOidcProvidersOidcProviderOutput)
+}
+
 type GetPoliciesPolicy struct {
 	// The create time of the Policy.
 	CreateDate string `pulumi:"createDate"`
@@ -2220,6 +2558,8 @@ func (o GetUsersUserArrayOutput) Index(i pulumi.IntInput) GetUsersUserOutput {
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AccessKeysAccessKeyMetadataInput)(nil)).Elem(), AccessKeysAccessKeyMetadataArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AccessKeysAccessKeyMetadataArrayInput)(nil)).Elem(), AccessKeysAccessKeyMetadataArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OidcProvidersOidcProviderInput)(nil)).Elem(), OidcProvidersOidcProviderArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OidcProvidersOidcProviderArrayInput)(nil)).Elem(), OidcProvidersOidcProviderArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PoliciesPolicyInput)(nil)).Elem(), PoliciesPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PoliciesPolicyArrayInput)(nil)).Elem(), PoliciesPolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RolesRoleInput)(nil)).Elem(), RolesRoleArgs{})
@@ -2234,6 +2574,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*UsersUserArrayInput)(nil)).Elem(), UsersUserArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAccessKeysAccessKeyMetadataInput)(nil)).Elem(), GetAccessKeysAccessKeyMetadataArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAccessKeysAccessKeyMetadataArrayInput)(nil)).Elem(), GetAccessKeysAccessKeyMetadataArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetOidcProvidersOidcProviderInput)(nil)).Elem(), GetOidcProvidersOidcProviderArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetOidcProvidersOidcProviderArrayInput)(nil)).Elem(), GetOidcProvidersOidcProviderArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPoliciesPolicyInput)(nil)).Elem(), GetPoliciesPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPoliciesPolicyArrayInput)(nil)).Elem(), GetPoliciesPolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRolesRoleInput)(nil)).Elem(), GetRolesRoleArgs{})
@@ -2248,6 +2590,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserArrayInput)(nil)).Elem(), GetUsersUserArray{})
 	pulumi.RegisterOutputType(AccessKeysAccessKeyMetadataOutput{})
 	pulumi.RegisterOutputType(AccessKeysAccessKeyMetadataArrayOutput{})
+	pulumi.RegisterOutputType(OidcProvidersOidcProviderOutput{})
+	pulumi.RegisterOutputType(OidcProvidersOidcProviderArrayOutput{})
 	pulumi.RegisterOutputType(PoliciesPolicyOutput{})
 	pulumi.RegisterOutputType(PoliciesPolicyArrayOutput{})
 	pulumi.RegisterOutputType(RolesRoleOutput{})
@@ -2262,6 +2606,8 @@ func init() {
 	pulumi.RegisterOutputType(UsersUserArrayOutput{})
 	pulumi.RegisterOutputType(GetAccessKeysAccessKeyMetadataOutput{})
 	pulumi.RegisterOutputType(GetAccessKeysAccessKeyMetadataArrayOutput{})
+	pulumi.RegisterOutputType(GetOidcProvidersOidcProviderOutput{})
+	pulumi.RegisterOutputType(GetOidcProvidersOidcProviderArrayOutput{})
 	pulumi.RegisterOutputType(GetPoliciesPolicyOutput{})
 	pulumi.RegisterOutputType(GetPoliciesPolicyArrayOutput{})
 	pulumi.RegisterOutputType(GetRolesRoleOutput{})

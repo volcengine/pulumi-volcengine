@@ -11,6 +11,35 @@ import (
 	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
+// Use this data source to query detailed information of redis pitr time periods
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/redis"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := redis.GetPitrTimeWindows(ctx, &redis.GetPitrTimeWindowsArgs{
+//				Ids: []string{
+//					"redis-cnlficlt4974swtbz",
+//					"redis-cnlfq69d1y1tnguxz",
+//				},
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func GetPitrTimeWindows(ctx *pulumi.Context, args *GetPitrTimeWindowsArgs, opts ...pulumi.InvokeOption) (*GetPitrTimeWindowsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetPitrTimeWindowsResult
@@ -23,18 +52,22 @@ func GetPitrTimeWindows(ctx *pulumi.Context, args *GetPitrTimeWindowsArgs, opts 
 
 // A collection of arguments for invoking getPitrTimeWindows.
 type GetPitrTimeWindowsArgs struct {
-	Ids        []string `pulumi:"ids"`
-	OutputFile *string  `pulumi:"outputFile"`
+	// The ids of the instances.
+	Ids []string `pulumi:"ids"`
+	// File name where to save data source results.
+	OutputFile *string `pulumi:"outputFile"`
 }
 
 // A collection of values returned by getPitrTimeWindows.
 type GetPitrTimeWindowsResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id         string                     `pulumi:"id"`
-	Ids        []string                   `pulumi:"ids"`
-	OutputFile *string                    `pulumi:"outputFile"`
-	Periods    []GetPitrTimeWindowsPeriod `pulumi:"periods"`
-	TotalCount int                        `pulumi:"totalCount"`
+	Id         string   `pulumi:"id"`
+	Ids        []string `pulumi:"ids"`
+	OutputFile *string  `pulumi:"outputFile"`
+	// The list of time windows.
+	Periods []GetPitrTimeWindowsPeriod `pulumi:"periods"`
+	// The total count of redis instances time window query.
+	TotalCount int `pulumi:"totalCount"`
 }
 
 func GetPitrTimeWindowsOutput(ctx *pulumi.Context, args GetPitrTimeWindowsOutputArgs, opts ...pulumi.InvokeOption) GetPitrTimeWindowsResultOutput {
@@ -52,8 +85,10 @@ func GetPitrTimeWindowsOutput(ctx *pulumi.Context, args GetPitrTimeWindowsOutput
 
 // A collection of arguments for invoking getPitrTimeWindows.
 type GetPitrTimeWindowsOutputArgs struct {
-	Ids        pulumi.StringArrayInput `pulumi:"ids"`
-	OutputFile pulumi.StringPtrInput   `pulumi:"outputFile"`
+	// The ids of the instances.
+	Ids pulumi.StringArrayInput `pulumi:"ids"`
+	// File name where to save data source results.
+	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
 }
 
 func (GetPitrTimeWindowsOutputArgs) ElementType() reflect.Type {
@@ -88,10 +123,12 @@ func (o GetPitrTimeWindowsResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetPitrTimeWindowsResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
 }
 
+// The list of time windows.
 func (o GetPitrTimeWindowsResultOutput) Periods() GetPitrTimeWindowsPeriodArrayOutput {
 	return o.ApplyT(func(v GetPitrTimeWindowsResult) []GetPitrTimeWindowsPeriod { return v.Periods }).(GetPitrTimeWindowsPeriodArrayOutput)
 }
 
+// The total count of redis instances time window query.
 func (o GetPitrTimeWindowsResultOutput) TotalCount() pulumi.IntOutput {
 	return o.ApplyT(func(v GetPitrTimeWindowsResult) int { return v.TotalCount }).(pulumi.IntOutput)
 }

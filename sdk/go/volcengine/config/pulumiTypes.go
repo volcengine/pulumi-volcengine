@@ -92,7 +92,97 @@ func (o AssumeRoleOutput) Policy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AssumeRole) *string { return v.Policy }).(pulumi.StringPtrOutput)
 }
 
+type AssumeRoleWithOidc struct {
+	// The duration of the session when making the AssumeRole call. Its value ranges from 900 to 43200(seconds), and default is 3600 seconds.
+	DurationSeconds int `pulumi:"durationSeconds"`
+	// The OIDC token to use when making the AssumeRole call.
+	OidcToken string `pulumi:"oidcToken"`
+	// A more restrictive policy when making the AssumeRole call.
+	Policy *string `pulumi:"policy"`
+	// The session name to use when making the AssumeRole call.
+	RoleSessionName string `pulumi:"roleSessionName"`
+	// The TRN of the role to assume, in the format `trn:iam:${AccountId}:role/${RoleName}`.
+	RoleTrn string `pulumi:"roleTrn"`
+}
+
+// AssumeRoleWithOidcInput is an input type that accepts AssumeRoleWithOidcArgs and AssumeRoleWithOidcOutput values.
+// You can construct a concrete instance of `AssumeRoleWithOidcInput` via:
+//
+//	AssumeRoleWithOidcArgs{...}
+type AssumeRoleWithOidcInput interface {
+	pulumi.Input
+
+	ToAssumeRoleWithOidcOutput() AssumeRoleWithOidcOutput
+	ToAssumeRoleWithOidcOutputWithContext(context.Context) AssumeRoleWithOidcOutput
+}
+
+type AssumeRoleWithOidcArgs struct {
+	// The duration of the session when making the AssumeRole call. Its value ranges from 900 to 43200(seconds), and default is 3600 seconds.
+	DurationSeconds pulumi.IntInput `pulumi:"durationSeconds"`
+	// The OIDC token to use when making the AssumeRole call.
+	OidcToken pulumi.StringInput `pulumi:"oidcToken"`
+	// A more restrictive policy when making the AssumeRole call.
+	Policy pulumi.StringPtrInput `pulumi:"policy"`
+	// The session name to use when making the AssumeRole call.
+	RoleSessionName pulumi.StringInput `pulumi:"roleSessionName"`
+	// The TRN of the role to assume, in the format `trn:iam:${AccountId}:role/${RoleName}`.
+	RoleTrn pulumi.StringInput `pulumi:"roleTrn"`
+}
+
+func (AssumeRoleWithOidcArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AssumeRoleWithOidc)(nil)).Elem()
+}
+
+func (i AssumeRoleWithOidcArgs) ToAssumeRoleWithOidcOutput() AssumeRoleWithOidcOutput {
+	return i.ToAssumeRoleWithOidcOutputWithContext(context.Background())
+}
+
+func (i AssumeRoleWithOidcArgs) ToAssumeRoleWithOidcOutputWithContext(ctx context.Context) AssumeRoleWithOidcOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AssumeRoleWithOidcOutput)
+}
+
+type AssumeRoleWithOidcOutput struct{ *pulumi.OutputState }
+
+func (AssumeRoleWithOidcOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AssumeRoleWithOidc)(nil)).Elem()
+}
+
+func (o AssumeRoleWithOidcOutput) ToAssumeRoleWithOidcOutput() AssumeRoleWithOidcOutput {
+	return o
+}
+
+func (o AssumeRoleWithOidcOutput) ToAssumeRoleWithOidcOutputWithContext(ctx context.Context) AssumeRoleWithOidcOutput {
+	return o
+}
+
+// The duration of the session when making the AssumeRole call. Its value ranges from 900 to 43200(seconds), and default is 3600 seconds.
+func (o AssumeRoleWithOidcOutput) DurationSeconds() pulumi.IntOutput {
+	return o.ApplyT(func(v AssumeRoleWithOidc) int { return v.DurationSeconds }).(pulumi.IntOutput)
+}
+
+// The OIDC token to use when making the AssumeRole call.
+func (o AssumeRoleWithOidcOutput) OidcToken() pulumi.StringOutput {
+	return o.ApplyT(func(v AssumeRoleWithOidc) string { return v.OidcToken }).(pulumi.StringOutput)
+}
+
+// A more restrictive policy when making the AssumeRole call.
+func (o AssumeRoleWithOidcOutput) Policy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AssumeRoleWithOidc) *string { return v.Policy }).(pulumi.StringPtrOutput)
+}
+
+// The session name to use when making the AssumeRole call.
+func (o AssumeRoleWithOidcOutput) RoleSessionName() pulumi.StringOutput {
+	return o.ApplyT(func(v AssumeRoleWithOidc) string { return v.RoleSessionName }).(pulumi.StringOutput)
+}
+
+// The TRN of the role to assume, in the format `trn:iam:${AccountId}:role/${RoleName}`.
+func (o AssumeRoleWithOidcOutput) RoleTrn() pulumi.StringOutput {
+	return o.ApplyT(func(v AssumeRoleWithOidc) string { return v.RoleTrn }).(pulumi.StringOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AssumeRoleInput)(nil)).Elem(), AssumeRoleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AssumeRoleWithOidcInput)(nil)).Elem(), AssumeRoleWithOidcArgs{})
 	pulumi.RegisterOutputType(AssumeRoleOutput{})
+	pulumi.RegisterOutputType(AssumeRoleWithOidcOutput{})
 }

@@ -49,6 +49,13 @@ namespace Pulumi.Volcengine
             set => _assumeRole.Set(value);
         }
 
+        private static readonly __Value<Pulumi.Volcengine.Config.Types.AssumeRoleWithOidc?> _assumeRoleWithOidc = new __Value<Pulumi.Volcengine.Config.Types.AssumeRoleWithOidc?>(() => __config.GetObject<Pulumi.Volcengine.Config.Types.AssumeRoleWithOidc>("assumeRoleWithOidc"));
+        public static Pulumi.Volcengine.Config.Types.AssumeRoleWithOidc? AssumeRoleWithOidc
+        {
+            get => _assumeRoleWithOidc.Get();
+            set => _assumeRoleWithOidc.Set(value);
+        }
+
         private static readonly __Value<string?> _customerEndpointSuffix = new __Value<string?>(() => __config.Get("customerEndpointSuffix"));
         /// <summary>
         /// CUSTOMER ENDPOINT SUFFIX for Volcengine Provider
@@ -170,6 +177,30 @@ namespace Pulumi.Volcengine
             /// A more restrictive policy when making the AssumeRole call.
             /// </summary>
                 public string? Policy { get; set; } = null!;
+            }
+
+             public class AssumeRoleWithOidc
+             {
+            /// <summary>
+            /// The duration of the session when making the AssumeRole call. Its value ranges from 900 to 43200(seconds), and default is 3600 seconds.
+            /// </summary>
+                public int DurationSeconds { get; set; }
+            /// <summary>
+            /// The OIDC token to use when making the AssumeRole call.
+            /// </summary>
+                public string OidcToken { get; set; }
+            /// <summary>
+            /// A more restrictive policy when making the AssumeRole call.
+            /// </summary>
+                public string? Policy { get; set; } = null!;
+            /// <summary>
+            /// The session name to use when making the AssumeRole call.
+            /// </summary>
+                public string RoleSessionName { get; set; }
+            /// <summary>
+            /// The TRN of the role to assume, in the format `trn:iam:${AccountId}:role/${RoleName}`.
+            /// </summary>
+                public string RoleTrn { get; set; }
             }
         }
     }

@@ -8,6 +8,7 @@ import typing
 from .access_key import *
 from .access_keys import *
 from .get_access_keys import *
+from .get_oidc_providers import *
 from .get_policies import *
 from .get_roles import *
 from .get_saml_providers import *
@@ -15,6 +16,8 @@ from .get_user_group_policy_attachments import *
 from .get_user_groups import *
 from .get_users import *
 from .login_profile import *
+from .oidc_provider import *
+from .oidc_providers import *
 from .policies import *
 from .policy import *
 from .role import *
@@ -22,6 +25,7 @@ from .role_policy_attachment import *
 from .roles import *
 from .saml_provider import *
 from .saml_providers import *
+from .service_linked_role import *
 from .user import *
 from .user_group import *
 from .user_group_attachment import *

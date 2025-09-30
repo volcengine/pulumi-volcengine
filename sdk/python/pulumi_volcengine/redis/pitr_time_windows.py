@@ -62,11 +62,17 @@ class PitrTimeWindowsResult:
     @property
     @pulumi.getter
     def periods(self) -> Sequence['outputs.PitrTimeWindowsPeriodResult']:
+        """
+        The list of time windows.
+        """
         return pulumi.get(self, "periods")
 
     @property
     @pulumi.getter(name="totalCount")
     def total_count(self) -> int:
+        """
+        The total count of redis instances time window query.
+        """
         return pulumi.get(self, "total_count")
 
 
@@ -87,7 +93,22 @@ def pitr_time_windows(ids: Optional[Sequence[str]] = None,
                       output_file: Optional[str] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitablePitrTimeWindowsResult:
     """
-    Use this data source to access information about an existing resource.
+    Use this data source to query detailed information of redis pitr time periods
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_volcengine as volcengine
+
+    default = volcengine.redis.get_pitr_time_windows(ids=[
+        "redis-cnlficlt4974swtbz",
+        "redis-cnlfq69d1y1tnguxz",
+    ])
+    ```
+
+
+    :param Sequence[str] ids: The ids of the instances.
+    :param str output_file: File name where to save data source results.
     """
     pulumi.log.warn("""pitr_time_windows is deprecated: volcengine.redis.PitrTimeWindows has been deprecated in favor of volcengine.redis.getPitrTimeWindows""")
     __args__ = dict()
@@ -109,7 +130,22 @@ def pitr_time_windows_output(ids: Optional[pulumi.Input[Sequence[str]]] = None,
                              output_file: Optional[pulumi.Input[Optional[str]]] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[PitrTimeWindowsResult]:
     """
-    Use this data source to access information about an existing resource.
+    Use this data source to query detailed information of redis pitr time periods
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_volcengine as volcengine
+
+    default = volcengine.redis.get_pitr_time_windows(ids=[
+        "redis-cnlficlt4974swtbz",
+        "redis-cnlfq69d1y1tnguxz",
+    ])
+    ```
+
+
+    :param Sequence[str] ids: The ids of the instances.
+    :param str output_file: File name where to save data source results.
     """
     pulumi.log.warn("""pitr_time_windows is deprecated: volcengine.redis.PitrTimeWindows has been deprecated in favor of volcengine.redis.getPitrTimeWindows""")
     ...

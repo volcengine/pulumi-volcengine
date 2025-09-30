@@ -28,6 +28,10 @@ class _ExportableConfig(types.ModuleType):
         return __config__.get('assumeRole')
 
     @property
+    def assume_role_with_oidc(self) -> Optional[str]:
+        return __config__.get('assumeRoleWithOidc')
+
+    @property
     def customer_endpoint_suffix(self) -> Optional[str]:
         """
         CUSTOMER ENDPOINT SUFFIX for Volcengine Provider
