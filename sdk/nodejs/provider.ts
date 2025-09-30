@@ -77,6 +77,7 @@ export class Provider extends pulumi.ProviderResource {
         {
             resourceInputs["accessKey"] = (args ? args.accessKey : undefined) ?? utilities.getEnv("VOLCENGINE_ACCESS_KEY");
             resourceInputs["assumeRole"] = pulumi.output(args ? args.assumeRole : undefined).apply(JSON.stringify);
+            resourceInputs["assumeRoleWithOidc"] = pulumi.output(args ? args.assumeRoleWithOidc : undefined).apply(JSON.stringify);
             resourceInputs["customerEndpointSuffix"] = args ? args.customerEndpointSuffix : undefined;
             resourceInputs["customerEndpoints"] = args ? args.customerEndpoints : undefined;
             resourceInputs["customerHeaders"] = args ? args.customerHeaders : undefined;
@@ -106,6 +107,11 @@ export interface ProviderArgs {
      * supplied credentials.
      */
     assumeRole?: pulumi.Input<inputs.ProviderAssumeRole>;
+    /**
+     * The ASSUME ROLE WITH OIDC block for Volcengine Provider. If provided, terraform will attempt to assume this role using
+     * the supplied credentials.
+     */
+    assumeRoleWithOidc?: pulumi.Input<inputs.ProviderAssumeRoleWithOidc>;
     /**
      * CUSTOMER ENDPOINT SUFFIX for Volcengine Provider
      */

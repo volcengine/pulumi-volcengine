@@ -80,6 +80,9 @@ type providerArgs struct {
 	// The ASSUME ROLE block for Volcengine Provider. If provided, terraform will attempt to assume this role using the
 	// supplied credentials.
 	AssumeRole *ProviderAssumeRole `pulumi:"assumeRole"`
+	// The ASSUME ROLE WITH OIDC block for Volcengine Provider. If provided, terraform will attempt to assume this role using
+	// the supplied credentials.
+	AssumeRoleWithOidc *ProviderAssumeRoleWithOidc `pulumi:"assumeRoleWithOidc"`
 	// CUSTOMER ENDPOINT SUFFIX for Volcengine Provider
 	CustomerEndpointSuffix *string `pulumi:"customerEndpointSuffix"`
 	// CUSTOMER ENDPOINTS for Volcengine Provider
@@ -109,6 +112,9 @@ type ProviderArgs struct {
 	// The ASSUME ROLE block for Volcengine Provider. If provided, terraform will attempt to assume this role using the
 	// supplied credentials.
 	AssumeRole ProviderAssumeRolePtrInput
+	// The ASSUME ROLE WITH OIDC block for Volcengine Provider. If provided, terraform will attempt to assume this role using
+	// the supplied credentials.
+	AssumeRoleWithOidc ProviderAssumeRoleWithOidcPtrInput
 	// CUSTOMER ENDPOINT SUFFIX for Volcengine Provider
 	CustomerEndpointSuffix pulumi.StringPtrInput
 	// CUSTOMER ENDPOINTS for Volcengine Provider
