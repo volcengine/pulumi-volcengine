@@ -8327,6 +8327,33 @@ export namespace vke {
         billingType?: pulumi.Input<string>;
     }
 
+    export interface ClusterIrsaConfig {
+        /**
+         * The audience of the IRSA.
+         */
+        audience?: pulumi.Input<string>;
+        /**
+         * Whether to enable IRSA for the cluster.
+         */
+        enabled?: pulumi.Input<boolean>;
+        /**
+         * The issuer of the IRSA.
+         */
+        issuer?: pulumi.Input<string>;
+        /**
+         * The JWKS URL of the IRSA.
+         */
+        jwksUrl?: pulumi.Input<string>;
+        /**
+         * The OIDC trn of the IRSA.
+         */
+        oidcTrn?: pulumi.Input<string>;
+        /**
+         * The OpenID Connect configuration URL of the IRSA.
+         */
+        openIdConfigUrl?: pulumi.Input<string>;
+    }
+
     export interface ClusterLoggingConfig {
         /**
          * The TLS log item ID of the collection target.
@@ -9019,6 +9046,28 @@ export namespace vke {
          * The Value of Taints.
          */
         value?: pulumi.Input<string>;
+    }
+
+    export interface NodePoolManagement {
+        /**
+         * Whether to enable the management function of the node pool. Default is `false`.
+         */
+        enabled?: pulumi.Input<boolean>;
+        /**
+         * The Remedy Config of NodePool. This field is valid when the value of `enabled` is `true`.
+         */
+        remedyConfig?: pulumi.Input<inputs.vke.NodePoolManagementRemedyConfig>;
+    }
+
+    export interface NodePoolManagementRemedyConfig {
+        /**
+         * Whether to enable the remedy function of the node pool. Default is `false`.
+         */
+        enabled?: pulumi.Input<boolean>;
+        /**
+         * The ID of the remedy policy. This field is valid when the value of `enabled` is `true`.
+         */
+        id?: pulumi.Input<string>;
     }
 
     export interface NodePoolNodeConfig {

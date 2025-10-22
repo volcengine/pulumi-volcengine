@@ -58,7 +58,7 @@ namespace Pulumi.Volcengine.Vke.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.GetNodePoolsNodePoolEcsTagResult> EcsTags;
         /// <summary>
-        /// Is Enabled of AutoScaling.
+        /// Whether to enable the remedy function of the node pool.
         /// </summary>
         public readonly bool Enabled;
         /// <summary>
@@ -66,7 +66,7 @@ namespace Pulumi.Volcengine.Vke.Outputs
         /// </summary>
         public readonly ImmutableArray<string> HpcClusterIds;
         /// <summary>
-        /// The Id of NodePool.
+        /// The ID of the remedy policy.
         /// </summary>
         public readonly string Id;
         /// <summary>
@@ -109,6 +109,10 @@ namespace Pulumi.Volcengine.Vke.Outputs
         /// The login type of NodeConfig.
         /// </summary>
         public readonly string LoginType;
+        /// <summary>
+        /// The Management Config of NodePool.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetNodePoolsNodePoolManagementResult> Managements;
         /// <summary>
         /// The MaxReplicas of AutoScaling.
         /// </summary>
@@ -240,6 +244,8 @@ namespace Pulumi.Volcengine.Vke.Outputs
 
             string loginType,
 
+            ImmutableArray<Outputs.GetNodePoolsNodePoolManagementResult> managements,
+
             int maxReplicas,
 
             int minReplicas,
@@ -304,6 +310,7 @@ namespace Pulumi.Volcengine.Vke.Outputs
             LabelContents = labelContents;
             LoginKeyPairName = loginKeyPairName;
             LoginType = loginType;
+            Managements = managements;
             MaxReplicas = maxReplicas;
             MinReplicas = minReplicas;
             Name = name;

@@ -394,6 +394,12 @@ namespace Pulumi.Volcengine.Vke
         public Output<Outputs.NodePoolKubernetesConfig> KubernetesConfig { get; private set; } = null!;
 
         /// <summary>
+        /// The Management Config of NodePool.
+        /// </summary>
+        [Output("management")]
+        public Output<Outputs.NodePoolManagement> Management { get; private set; } = null!;
+
+        /// <summary>
         /// The Name of NodePool.
         /// </summary>
         [Output("name")]
@@ -510,6 +516,12 @@ namespace Pulumi.Volcengine.Vke
         public Input<Inputs.NodePoolKubernetesConfigArgs> KubernetesConfig { get; set; } = null!;
 
         /// <summary>
+        /// The Management Config of NodePool.
+        /// </summary>
+        [Input("management")]
+        public Input<Inputs.NodePoolManagementArgs>? Management { get; set; }
+
+        /// <summary>
         /// The Name of NodePool.
         /// </summary>
         [Input("name")]
@@ -585,6 +597,12 @@ namespace Pulumi.Volcengine.Vke
         /// </summary>
         [Input("kubernetesConfig")]
         public Input<Inputs.NodePoolKubernetesConfigGetArgs>? KubernetesConfig { get; set; }
+
+        /// <summary>
+        /// The Management Config of NodePool.
+        /// </summary>
+        [Input("management")]
+        public Input<Inputs.NodePoolManagementGetArgs>? Management { get; set; }
 
         /// <summary>
         /// The Name of NodePool.

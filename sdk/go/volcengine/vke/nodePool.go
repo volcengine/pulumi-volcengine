@@ -332,6 +332,8 @@ type NodePool struct {
 	KeepInstanceName pulumi.BoolPtrOutput `pulumi:"keepInstanceName"`
 	// The KubernetesConfig of NodeConfig.
 	KubernetesConfig NodePoolKubernetesConfigOutput `pulumi:"kubernetesConfig"`
+	// The Management Config of NodePool.
+	Management NodePoolManagementOutput `pulumi:"management"`
 	// The Name of NodePool.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The Config of NodePool.
@@ -393,6 +395,8 @@ type nodePoolState struct {
 	KeepInstanceName *bool `pulumi:"keepInstanceName"`
 	// The KubernetesConfig of NodeConfig.
 	KubernetesConfig *NodePoolKubernetesConfig `pulumi:"kubernetesConfig"`
+	// The Management Config of NodePool.
+	Management *NodePoolManagement `pulumi:"management"`
 	// The Name of NodePool.
 	Name *string `pulumi:"name"`
 	// The Config of NodePool.
@@ -419,6 +423,8 @@ type NodePoolState struct {
 	KeepInstanceName pulumi.BoolPtrInput
 	// The KubernetesConfig of NodeConfig.
 	KubernetesConfig NodePoolKubernetesConfigPtrInput
+	// The Management Config of NodePool.
+	Management NodePoolManagementPtrInput
 	// The Name of NodePool.
 	Name pulumi.StringPtrInput
 	// The Config of NodePool.
@@ -449,6 +455,8 @@ type nodePoolArgs struct {
 	KeepInstanceName *bool `pulumi:"keepInstanceName"`
 	// The KubernetesConfig of NodeConfig.
 	KubernetesConfig NodePoolKubernetesConfig `pulumi:"kubernetesConfig"`
+	// The Management Config of NodePool.
+	Management *NodePoolManagement `pulumi:"management"`
 	// The Name of NodePool.
 	Name *string `pulumi:"name"`
 	// The Config of NodePool.
@@ -474,6 +482,8 @@ type NodePoolArgs struct {
 	KeepInstanceName pulumi.BoolPtrInput
 	// The KubernetesConfig of NodeConfig.
 	KubernetesConfig NodePoolKubernetesConfigInput
+	// The Management Config of NodePool.
+	Management NodePoolManagementPtrInput
 	// The Name of NodePool.
 	Name pulumi.StringPtrInput
 	// The Config of NodePool.
@@ -600,6 +610,11 @@ func (o NodePoolOutput) KeepInstanceName() pulumi.BoolPtrOutput {
 // The KubernetesConfig of NodeConfig.
 func (o NodePoolOutput) KubernetesConfig() NodePoolKubernetesConfigOutput {
 	return o.ApplyT(func(v *NodePool) NodePoolKubernetesConfigOutput { return v.KubernetesConfig }).(NodePoolKubernetesConfigOutput)
+}
+
+// The Management Config of NodePool.
+func (o NodePoolOutput) Management() NodePoolManagementOutput {
+	return o.ApplyT(func(v *NodePool) NodePoolManagementOutput { return v.Management }).(NodePoolManagementOutput)
 }
 
 // The Name of NodePool.

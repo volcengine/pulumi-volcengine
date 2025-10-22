@@ -986,6 +986,148 @@ func (o ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfig
 	}).(pulumi.StringPtrOutput)
 }
 
+type ClusterIrsaConfig struct {
+	// The audience of the IRSA.
+	Audience *string `pulumi:"audience"`
+	// Whether to enable IRSA for the cluster.
+	Enabled *bool `pulumi:"enabled"`
+	// The issuer of the IRSA.
+	Issuer *string `pulumi:"issuer"`
+	// The JWKS URL of the IRSA.
+	JwksUrl *string `pulumi:"jwksUrl"`
+	// The OIDC trn of the IRSA.
+	OidcTrn *string `pulumi:"oidcTrn"`
+	// The OpenID Connect configuration URL of the IRSA.
+	OpenIdConfigUrl *string `pulumi:"openIdConfigUrl"`
+}
+
+// ClusterIrsaConfigInput is an input type that accepts ClusterIrsaConfigArgs and ClusterIrsaConfigOutput values.
+// You can construct a concrete instance of `ClusterIrsaConfigInput` via:
+//
+//	ClusterIrsaConfigArgs{...}
+type ClusterIrsaConfigInput interface {
+	pulumi.Input
+
+	ToClusterIrsaConfigOutput() ClusterIrsaConfigOutput
+	ToClusterIrsaConfigOutputWithContext(context.Context) ClusterIrsaConfigOutput
+}
+
+type ClusterIrsaConfigArgs struct {
+	// The audience of the IRSA.
+	Audience pulumi.StringPtrInput `pulumi:"audience"`
+	// Whether to enable IRSA for the cluster.
+	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
+	// The issuer of the IRSA.
+	Issuer pulumi.StringPtrInput `pulumi:"issuer"`
+	// The JWKS URL of the IRSA.
+	JwksUrl pulumi.StringPtrInput `pulumi:"jwksUrl"`
+	// The OIDC trn of the IRSA.
+	OidcTrn pulumi.StringPtrInput `pulumi:"oidcTrn"`
+	// The OpenID Connect configuration URL of the IRSA.
+	OpenIdConfigUrl pulumi.StringPtrInput `pulumi:"openIdConfigUrl"`
+}
+
+func (ClusterIrsaConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterIrsaConfig)(nil)).Elem()
+}
+
+func (i ClusterIrsaConfigArgs) ToClusterIrsaConfigOutput() ClusterIrsaConfigOutput {
+	return i.ToClusterIrsaConfigOutputWithContext(context.Background())
+}
+
+func (i ClusterIrsaConfigArgs) ToClusterIrsaConfigOutputWithContext(ctx context.Context) ClusterIrsaConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterIrsaConfigOutput)
+}
+
+// ClusterIrsaConfigArrayInput is an input type that accepts ClusterIrsaConfigArray and ClusterIrsaConfigArrayOutput values.
+// You can construct a concrete instance of `ClusterIrsaConfigArrayInput` via:
+//
+//	ClusterIrsaConfigArray{ ClusterIrsaConfigArgs{...} }
+type ClusterIrsaConfigArrayInput interface {
+	pulumi.Input
+
+	ToClusterIrsaConfigArrayOutput() ClusterIrsaConfigArrayOutput
+	ToClusterIrsaConfigArrayOutputWithContext(context.Context) ClusterIrsaConfigArrayOutput
+}
+
+type ClusterIrsaConfigArray []ClusterIrsaConfigInput
+
+func (ClusterIrsaConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClusterIrsaConfig)(nil)).Elem()
+}
+
+func (i ClusterIrsaConfigArray) ToClusterIrsaConfigArrayOutput() ClusterIrsaConfigArrayOutput {
+	return i.ToClusterIrsaConfigArrayOutputWithContext(context.Background())
+}
+
+func (i ClusterIrsaConfigArray) ToClusterIrsaConfigArrayOutputWithContext(ctx context.Context) ClusterIrsaConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterIrsaConfigArrayOutput)
+}
+
+type ClusterIrsaConfigOutput struct{ *pulumi.OutputState }
+
+func (ClusterIrsaConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterIrsaConfig)(nil)).Elem()
+}
+
+func (o ClusterIrsaConfigOutput) ToClusterIrsaConfigOutput() ClusterIrsaConfigOutput {
+	return o
+}
+
+func (o ClusterIrsaConfigOutput) ToClusterIrsaConfigOutputWithContext(ctx context.Context) ClusterIrsaConfigOutput {
+	return o
+}
+
+// The audience of the IRSA.
+func (o ClusterIrsaConfigOutput) Audience() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClusterIrsaConfig) *string { return v.Audience }).(pulumi.StringPtrOutput)
+}
+
+// Whether to enable IRSA for the cluster.
+func (o ClusterIrsaConfigOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ClusterIrsaConfig) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
+// The issuer of the IRSA.
+func (o ClusterIrsaConfigOutput) Issuer() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClusterIrsaConfig) *string { return v.Issuer }).(pulumi.StringPtrOutput)
+}
+
+// The JWKS URL of the IRSA.
+func (o ClusterIrsaConfigOutput) JwksUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClusterIrsaConfig) *string { return v.JwksUrl }).(pulumi.StringPtrOutput)
+}
+
+// The OIDC trn of the IRSA.
+func (o ClusterIrsaConfigOutput) OidcTrn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClusterIrsaConfig) *string { return v.OidcTrn }).(pulumi.StringPtrOutput)
+}
+
+// The OpenID Connect configuration URL of the IRSA.
+func (o ClusterIrsaConfigOutput) OpenIdConfigUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClusterIrsaConfig) *string { return v.OpenIdConfigUrl }).(pulumi.StringPtrOutput)
+}
+
+type ClusterIrsaConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (ClusterIrsaConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClusterIrsaConfig)(nil)).Elem()
+}
+
+func (o ClusterIrsaConfigArrayOutput) ToClusterIrsaConfigArrayOutput() ClusterIrsaConfigArrayOutput {
+	return o
+}
+
+func (o ClusterIrsaConfigArrayOutput) ToClusterIrsaConfigArrayOutputWithContext(ctx context.Context) ClusterIrsaConfigArrayOutput {
+	return o
+}
+
+func (o ClusterIrsaConfigArrayOutput) Index(i pulumi.IntInput) ClusterIrsaConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClusterIrsaConfig {
+		return vs[0].([]ClusterIrsaConfig)[vs[1].(int)]
+	}).(ClusterIrsaConfigOutput)
+}
+
 type ClusterLoggingConfig struct {
 	// The TLS log item ID of the collection target.
 	LogProjectId *string `pulumi:"logProjectId"`
@@ -2014,6 +2156,8 @@ type ClustersCluster struct {
 	EipAllocationId string `pulumi:"eipAllocationId"`
 	// The ID of the Cluster.
 	Id string `pulumi:"id"`
+	// The IRSA configuration.
+	IrsaConfigs []ClustersClusterIrsaConfig `pulumi:"irsaConfigs"`
 	// Kubeconfig data with private network access, returned in BASE64 encoding, it is suggested to use vkeKubeconfig instead.
 	KubeconfigPrivate string `pulumi:"kubeconfigPrivate"`
 	// Kubeconfig data with public network access, returned in BASE64 encoding, it is suggested to use vkeKubeconfig instead.
@@ -2068,6 +2212,8 @@ type ClustersClusterArgs struct {
 	EipAllocationId pulumi.StringInput `pulumi:"eipAllocationId"`
 	// The ID of the Cluster.
 	Id pulumi.StringInput `pulumi:"id"`
+	// The IRSA configuration.
+	IrsaConfigs ClustersClusterIrsaConfigArrayInput `pulumi:"irsaConfigs"`
 	// Kubeconfig data with private network access, returned in BASE64 encoding, it is suggested to use vkeKubeconfig instead.
 	KubeconfigPrivate pulumi.StringInput `pulumi:"kubeconfigPrivate"`
 	// Kubeconfig data with public network access, returned in BASE64 encoding, it is suggested to use vkeKubeconfig instead.
@@ -2180,6 +2326,11 @@ func (o ClustersClusterOutput) EipAllocationId() pulumi.StringOutput {
 // The ID of the Cluster.
 func (o ClustersClusterOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v ClustersCluster) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The IRSA configuration.
+func (o ClustersClusterOutput) IrsaConfigs() ClustersClusterIrsaConfigArrayOutput {
+	return o.ApplyT(func(v ClustersCluster) []ClustersClusterIrsaConfig { return v.IrsaConfigs }).(ClustersClusterIrsaConfigArrayOutput)
 }
 
 // Kubeconfig data with private network access, returned in BASE64 encoding, it is suggested to use vkeKubeconfig instead.
@@ -2692,6 +2843,148 @@ func (o ClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetwo
 	return o.ApplyT(func(v ClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfig) string {
 		return v.Isp
 	}).(pulumi.StringOutput)
+}
+
+type ClustersClusterIrsaConfig struct {
+	// The audience of the IRSA.
+	Audience string `pulumi:"audience"`
+	// Whether to enable the log option, true means enable, false means not enable, the default is false. When Enabled is changed from false to true, a new Topic will be created.
+	Enabled bool `pulumi:"enabled"`
+	// The issuer of the IRSA.
+	Issuer string `pulumi:"issuer"`
+	// The JWKS URL of the IRSA.
+	JwksUrl string `pulumi:"jwksUrl"`
+	// The OIDC trn of the IRSA.
+	OidcTrn string `pulumi:"oidcTrn"`
+	// The OpenID Connect configuration URL of the IRSA.
+	OpenIdConfigUrl string `pulumi:"openIdConfigUrl"`
+}
+
+// ClustersClusterIrsaConfigInput is an input type that accepts ClustersClusterIrsaConfigArgs and ClustersClusterIrsaConfigOutput values.
+// You can construct a concrete instance of `ClustersClusterIrsaConfigInput` via:
+//
+//	ClustersClusterIrsaConfigArgs{...}
+type ClustersClusterIrsaConfigInput interface {
+	pulumi.Input
+
+	ToClustersClusterIrsaConfigOutput() ClustersClusterIrsaConfigOutput
+	ToClustersClusterIrsaConfigOutputWithContext(context.Context) ClustersClusterIrsaConfigOutput
+}
+
+type ClustersClusterIrsaConfigArgs struct {
+	// The audience of the IRSA.
+	Audience pulumi.StringInput `pulumi:"audience"`
+	// Whether to enable the log option, true means enable, false means not enable, the default is false. When Enabled is changed from false to true, a new Topic will be created.
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+	// The issuer of the IRSA.
+	Issuer pulumi.StringInput `pulumi:"issuer"`
+	// The JWKS URL of the IRSA.
+	JwksUrl pulumi.StringInput `pulumi:"jwksUrl"`
+	// The OIDC trn of the IRSA.
+	OidcTrn pulumi.StringInput `pulumi:"oidcTrn"`
+	// The OpenID Connect configuration URL of the IRSA.
+	OpenIdConfigUrl pulumi.StringInput `pulumi:"openIdConfigUrl"`
+}
+
+func (ClustersClusterIrsaConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClustersClusterIrsaConfig)(nil)).Elem()
+}
+
+func (i ClustersClusterIrsaConfigArgs) ToClustersClusterIrsaConfigOutput() ClustersClusterIrsaConfigOutput {
+	return i.ToClustersClusterIrsaConfigOutputWithContext(context.Background())
+}
+
+func (i ClustersClusterIrsaConfigArgs) ToClustersClusterIrsaConfigOutputWithContext(ctx context.Context) ClustersClusterIrsaConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClustersClusterIrsaConfigOutput)
+}
+
+// ClustersClusterIrsaConfigArrayInput is an input type that accepts ClustersClusterIrsaConfigArray and ClustersClusterIrsaConfigArrayOutput values.
+// You can construct a concrete instance of `ClustersClusterIrsaConfigArrayInput` via:
+//
+//	ClustersClusterIrsaConfigArray{ ClustersClusterIrsaConfigArgs{...} }
+type ClustersClusterIrsaConfigArrayInput interface {
+	pulumi.Input
+
+	ToClustersClusterIrsaConfigArrayOutput() ClustersClusterIrsaConfigArrayOutput
+	ToClustersClusterIrsaConfigArrayOutputWithContext(context.Context) ClustersClusterIrsaConfigArrayOutput
+}
+
+type ClustersClusterIrsaConfigArray []ClustersClusterIrsaConfigInput
+
+func (ClustersClusterIrsaConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClustersClusterIrsaConfig)(nil)).Elem()
+}
+
+func (i ClustersClusterIrsaConfigArray) ToClustersClusterIrsaConfigArrayOutput() ClustersClusterIrsaConfigArrayOutput {
+	return i.ToClustersClusterIrsaConfigArrayOutputWithContext(context.Background())
+}
+
+func (i ClustersClusterIrsaConfigArray) ToClustersClusterIrsaConfigArrayOutputWithContext(ctx context.Context) ClustersClusterIrsaConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClustersClusterIrsaConfigArrayOutput)
+}
+
+type ClustersClusterIrsaConfigOutput struct{ *pulumi.OutputState }
+
+func (ClustersClusterIrsaConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClustersClusterIrsaConfig)(nil)).Elem()
+}
+
+func (o ClustersClusterIrsaConfigOutput) ToClustersClusterIrsaConfigOutput() ClustersClusterIrsaConfigOutput {
+	return o
+}
+
+func (o ClustersClusterIrsaConfigOutput) ToClustersClusterIrsaConfigOutputWithContext(ctx context.Context) ClustersClusterIrsaConfigOutput {
+	return o
+}
+
+// The audience of the IRSA.
+func (o ClustersClusterIrsaConfigOutput) Audience() pulumi.StringOutput {
+	return o.ApplyT(func(v ClustersClusterIrsaConfig) string { return v.Audience }).(pulumi.StringOutput)
+}
+
+// Whether to enable the log option, true means enable, false means not enable, the default is false. When Enabled is changed from false to true, a new Topic will be created.
+func (o ClustersClusterIrsaConfigOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v ClustersClusterIrsaConfig) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// The issuer of the IRSA.
+func (o ClustersClusterIrsaConfigOutput) Issuer() pulumi.StringOutput {
+	return o.ApplyT(func(v ClustersClusterIrsaConfig) string { return v.Issuer }).(pulumi.StringOutput)
+}
+
+// The JWKS URL of the IRSA.
+func (o ClustersClusterIrsaConfigOutput) JwksUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v ClustersClusterIrsaConfig) string { return v.JwksUrl }).(pulumi.StringOutput)
+}
+
+// The OIDC trn of the IRSA.
+func (o ClustersClusterIrsaConfigOutput) OidcTrn() pulumi.StringOutput {
+	return o.ApplyT(func(v ClustersClusterIrsaConfig) string { return v.OidcTrn }).(pulumi.StringOutput)
+}
+
+// The OpenID Connect configuration URL of the IRSA.
+func (o ClustersClusterIrsaConfigOutput) OpenIdConfigUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v ClustersClusterIrsaConfig) string { return v.OpenIdConfigUrl }).(pulumi.StringOutput)
+}
+
+type ClustersClusterIrsaConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (ClustersClusterIrsaConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClustersClusterIrsaConfig)(nil)).Elem()
+}
+
+func (o ClustersClusterIrsaConfigArrayOutput) ToClustersClusterIrsaConfigArrayOutput() ClustersClusterIrsaConfigArrayOutput {
+	return o
+}
+
+func (o ClustersClusterIrsaConfigArrayOutput) ToClustersClusterIrsaConfigArrayOutputWithContext(ctx context.Context) ClustersClusterIrsaConfigArrayOutput {
+	return o
+}
+
+func (o ClustersClusterIrsaConfigArrayOutput) Index(i pulumi.IntInput) ClustersClusterIrsaConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClustersClusterIrsaConfig {
+		return vs[0].([]ClustersClusterIrsaConfig)[vs[1].(int)]
+	}).(ClustersClusterIrsaConfigOutput)
 }
 
 type ClustersClusterLoggingConfig struct {
@@ -7756,6 +8049,318 @@ func (o NodePoolKubernetesConfigTaintArrayOutput) Index(i pulumi.IntInput) NodeP
 	}).(NodePoolKubernetesConfigTaintOutput)
 }
 
+type NodePoolManagement struct {
+	// Whether to enable the management function of the node pool. Default is `false`.
+	Enabled *bool `pulumi:"enabled"`
+	// The Remedy Config of NodePool. This field is valid when the value of `enabled` is `true`.
+	RemedyConfig *NodePoolManagementRemedyConfig `pulumi:"remedyConfig"`
+}
+
+// NodePoolManagementInput is an input type that accepts NodePoolManagementArgs and NodePoolManagementOutput values.
+// You can construct a concrete instance of `NodePoolManagementInput` via:
+//
+//	NodePoolManagementArgs{...}
+type NodePoolManagementInput interface {
+	pulumi.Input
+
+	ToNodePoolManagementOutput() NodePoolManagementOutput
+	ToNodePoolManagementOutputWithContext(context.Context) NodePoolManagementOutput
+}
+
+type NodePoolManagementArgs struct {
+	// Whether to enable the management function of the node pool. Default is `false`.
+	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
+	// The Remedy Config of NodePool. This field is valid when the value of `enabled` is `true`.
+	RemedyConfig NodePoolManagementRemedyConfigPtrInput `pulumi:"remedyConfig"`
+}
+
+func (NodePoolManagementArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodePoolManagement)(nil)).Elem()
+}
+
+func (i NodePoolManagementArgs) ToNodePoolManagementOutput() NodePoolManagementOutput {
+	return i.ToNodePoolManagementOutputWithContext(context.Background())
+}
+
+func (i NodePoolManagementArgs) ToNodePoolManagementOutputWithContext(ctx context.Context) NodePoolManagementOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolManagementOutput)
+}
+
+func (i NodePoolManagementArgs) ToNodePoolManagementPtrOutput() NodePoolManagementPtrOutput {
+	return i.ToNodePoolManagementPtrOutputWithContext(context.Background())
+}
+
+func (i NodePoolManagementArgs) ToNodePoolManagementPtrOutputWithContext(ctx context.Context) NodePoolManagementPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolManagementOutput).ToNodePoolManagementPtrOutputWithContext(ctx)
+}
+
+// NodePoolManagementPtrInput is an input type that accepts NodePoolManagementArgs, NodePoolManagementPtr and NodePoolManagementPtrOutput values.
+// You can construct a concrete instance of `NodePoolManagementPtrInput` via:
+//
+//	        NodePoolManagementArgs{...}
+//
+//	or:
+//
+//	        nil
+type NodePoolManagementPtrInput interface {
+	pulumi.Input
+
+	ToNodePoolManagementPtrOutput() NodePoolManagementPtrOutput
+	ToNodePoolManagementPtrOutputWithContext(context.Context) NodePoolManagementPtrOutput
+}
+
+type nodePoolManagementPtrType NodePoolManagementArgs
+
+func NodePoolManagementPtr(v *NodePoolManagementArgs) NodePoolManagementPtrInput {
+	return (*nodePoolManagementPtrType)(v)
+}
+
+func (*nodePoolManagementPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**NodePoolManagement)(nil)).Elem()
+}
+
+func (i *nodePoolManagementPtrType) ToNodePoolManagementPtrOutput() NodePoolManagementPtrOutput {
+	return i.ToNodePoolManagementPtrOutputWithContext(context.Background())
+}
+
+func (i *nodePoolManagementPtrType) ToNodePoolManagementPtrOutputWithContext(ctx context.Context) NodePoolManagementPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolManagementPtrOutput)
+}
+
+type NodePoolManagementOutput struct{ *pulumi.OutputState }
+
+func (NodePoolManagementOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodePoolManagement)(nil)).Elem()
+}
+
+func (o NodePoolManagementOutput) ToNodePoolManagementOutput() NodePoolManagementOutput {
+	return o
+}
+
+func (o NodePoolManagementOutput) ToNodePoolManagementOutputWithContext(ctx context.Context) NodePoolManagementOutput {
+	return o
+}
+
+func (o NodePoolManagementOutput) ToNodePoolManagementPtrOutput() NodePoolManagementPtrOutput {
+	return o.ToNodePoolManagementPtrOutputWithContext(context.Background())
+}
+
+func (o NodePoolManagementOutput) ToNodePoolManagementPtrOutputWithContext(ctx context.Context) NodePoolManagementPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v NodePoolManagement) *NodePoolManagement {
+		return &v
+	}).(NodePoolManagementPtrOutput)
+}
+
+// Whether to enable the management function of the node pool. Default is `false`.
+func (o NodePoolManagementOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v NodePoolManagement) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
+// The Remedy Config of NodePool. This field is valid when the value of `enabled` is `true`.
+func (o NodePoolManagementOutput) RemedyConfig() NodePoolManagementRemedyConfigPtrOutput {
+	return o.ApplyT(func(v NodePoolManagement) *NodePoolManagementRemedyConfig { return v.RemedyConfig }).(NodePoolManagementRemedyConfigPtrOutput)
+}
+
+type NodePoolManagementPtrOutput struct{ *pulumi.OutputState }
+
+func (NodePoolManagementPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NodePoolManagement)(nil)).Elem()
+}
+
+func (o NodePoolManagementPtrOutput) ToNodePoolManagementPtrOutput() NodePoolManagementPtrOutput {
+	return o
+}
+
+func (o NodePoolManagementPtrOutput) ToNodePoolManagementPtrOutputWithContext(ctx context.Context) NodePoolManagementPtrOutput {
+	return o
+}
+
+func (o NodePoolManagementPtrOutput) Elem() NodePoolManagementOutput {
+	return o.ApplyT(func(v *NodePoolManagement) NodePoolManagement {
+		if v != nil {
+			return *v
+		}
+		var ret NodePoolManagement
+		return ret
+	}).(NodePoolManagementOutput)
+}
+
+// Whether to enable the management function of the node pool. Default is `false`.
+func (o NodePoolManagementPtrOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *NodePoolManagement) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Enabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The Remedy Config of NodePool. This field is valid when the value of `enabled` is `true`.
+func (o NodePoolManagementPtrOutput) RemedyConfig() NodePoolManagementRemedyConfigPtrOutput {
+	return o.ApplyT(func(v *NodePoolManagement) *NodePoolManagementRemedyConfig {
+		if v == nil {
+			return nil
+		}
+		return v.RemedyConfig
+	}).(NodePoolManagementRemedyConfigPtrOutput)
+}
+
+type NodePoolManagementRemedyConfig struct {
+	// Whether to enable the remedy function of the node pool. Default is `false`.
+	Enabled *bool `pulumi:"enabled"`
+	// The ID of the remedy policy. This field is valid when the value of `enabled` is `true`.
+	Id *string `pulumi:"id"`
+}
+
+// NodePoolManagementRemedyConfigInput is an input type that accepts NodePoolManagementRemedyConfigArgs and NodePoolManagementRemedyConfigOutput values.
+// You can construct a concrete instance of `NodePoolManagementRemedyConfigInput` via:
+//
+//	NodePoolManagementRemedyConfigArgs{...}
+type NodePoolManagementRemedyConfigInput interface {
+	pulumi.Input
+
+	ToNodePoolManagementRemedyConfigOutput() NodePoolManagementRemedyConfigOutput
+	ToNodePoolManagementRemedyConfigOutputWithContext(context.Context) NodePoolManagementRemedyConfigOutput
+}
+
+type NodePoolManagementRemedyConfigArgs struct {
+	// Whether to enable the remedy function of the node pool. Default is `false`.
+	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
+	// The ID of the remedy policy. This field is valid when the value of `enabled` is `true`.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+}
+
+func (NodePoolManagementRemedyConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodePoolManagementRemedyConfig)(nil)).Elem()
+}
+
+func (i NodePoolManagementRemedyConfigArgs) ToNodePoolManagementRemedyConfigOutput() NodePoolManagementRemedyConfigOutput {
+	return i.ToNodePoolManagementRemedyConfigOutputWithContext(context.Background())
+}
+
+func (i NodePoolManagementRemedyConfigArgs) ToNodePoolManagementRemedyConfigOutputWithContext(ctx context.Context) NodePoolManagementRemedyConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolManagementRemedyConfigOutput)
+}
+
+func (i NodePoolManagementRemedyConfigArgs) ToNodePoolManagementRemedyConfigPtrOutput() NodePoolManagementRemedyConfigPtrOutput {
+	return i.ToNodePoolManagementRemedyConfigPtrOutputWithContext(context.Background())
+}
+
+func (i NodePoolManagementRemedyConfigArgs) ToNodePoolManagementRemedyConfigPtrOutputWithContext(ctx context.Context) NodePoolManagementRemedyConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolManagementRemedyConfigOutput).ToNodePoolManagementRemedyConfigPtrOutputWithContext(ctx)
+}
+
+// NodePoolManagementRemedyConfigPtrInput is an input type that accepts NodePoolManagementRemedyConfigArgs, NodePoolManagementRemedyConfigPtr and NodePoolManagementRemedyConfigPtrOutput values.
+// You can construct a concrete instance of `NodePoolManagementRemedyConfigPtrInput` via:
+//
+//	        NodePoolManagementRemedyConfigArgs{...}
+//
+//	or:
+//
+//	        nil
+type NodePoolManagementRemedyConfigPtrInput interface {
+	pulumi.Input
+
+	ToNodePoolManagementRemedyConfigPtrOutput() NodePoolManagementRemedyConfigPtrOutput
+	ToNodePoolManagementRemedyConfigPtrOutputWithContext(context.Context) NodePoolManagementRemedyConfigPtrOutput
+}
+
+type nodePoolManagementRemedyConfigPtrType NodePoolManagementRemedyConfigArgs
+
+func NodePoolManagementRemedyConfigPtr(v *NodePoolManagementRemedyConfigArgs) NodePoolManagementRemedyConfigPtrInput {
+	return (*nodePoolManagementRemedyConfigPtrType)(v)
+}
+
+func (*nodePoolManagementRemedyConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**NodePoolManagementRemedyConfig)(nil)).Elem()
+}
+
+func (i *nodePoolManagementRemedyConfigPtrType) ToNodePoolManagementRemedyConfigPtrOutput() NodePoolManagementRemedyConfigPtrOutput {
+	return i.ToNodePoolManagementRemedyConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *nodePoolManagementRemedyConfigPtrType) ToNodePoolManagementRemedyConfigPtrOutputWithContext(ctx context.Context) NodePoolManagementRemedyConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolManagementRemedyConfigPtrOutput)
+}
+
+type NodePoolManagementRemedyConfigOutput struct{ *pulumi.OutputState }
+
+func (NodePoolManagementRemedyConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodePoolManagementRemedyConfig)(nil)).Elem()
+}
+
+func (o NodePoolManagementRemedyConfigOutput) ToNodePoolManagementRemedyConfigOutput() NodePoolManagementRemedyConfigOutput {
+	return o
+}
+
+func (o NodePoolManagementRemedyConfigOutput) ToNodePoolManagementRemedyConfigOutputWithContext(ctx context.Context) NodePoolManagementRemedyConfigOutput {
+	return o
+}
+
+func (o NodePoolManagementRemedyConfigOutput) ToNodePoolManagementRemedyConfigPtrOutput() NodePoolManagementRemedyConfigPtrOutput {
+	return o.ToNodePoolManagementRemedyConfigPtrOutputWithContext(context.Background())
+}
+
+func (o NodePoolManagementRemedyConfigOutput) ToNodePoolManagementRemedyConfigPtrOutputWithContext(ctx context.Context) NodePoolManagementRemedyConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v NodePoolManagementRemedyConfig) *NodePoolManagementRemedyConfig {
+		return &v
+	}).(NodePoolManagementRemedyConfigPtrOutput)
+}
+
+// Whether to enable the remedy function of the node pool. Default is `false`.
+func (o NodePoolManagementRemedyConfigOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v NodePoolManagementRemedyConfig) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
+// The ID of the remedy policy. This field is valid when the value of `enabled` is `true`.
+func (o NodePoolManagementRemedyConfigOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NodePoolManagementRemedyConfig) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+type NodePoolManagementRemedyConfigPtrOutput struct{ *pulumi.OutputState }
+
+func (NodePoolManagementRemedyConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NodePoolManagementRemedyConfig)(nil)).Elem()
+}
+
+func (o NodePoolManagementRemedyConfigPtrOutput) ToNodePoolManagementRemedyConfigPtrOutput() NodePoolManagementRemedyConfigPtrOutput {
+	return o
+}
+
+func (o NodePoolManagementRemedyConfigPtrOutput) ToNodePoolManagementRemedyConfigPtrOutputWithContext(ctx context.Context) NodePoolManagementRemedyConfigPtrOutput {
+	return o
+}
+
+func (o NodePoolManagementRemedyConfigPtrOutput) Elem() NodePoolManagementRemedyConfigOutput {
+	return o.ApplyT(func(v *NodePoolManagementRemedyConfig) NodePoolManagementRemedyConfig {
+		if v != nil {
+			return *v
+		}
+		var ret NodePoolManagementRemedyConfig
+		return ret
+	}).(NodePoolManagementRemedyConfigOutput)
+}
+
+// Whether to enable the remedy function of the node pool. Default is `false`.
+func (o NodePoolManagementRemedyConfigPtrOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *NodePoolManagementRemedyConfig) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Enabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The ID of the remedy policy. This field is valid when the value of `enabled` is `true`.
+func (o NodePoolManagementRemedyConfigPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NodePoolManagementRemedyConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
 type NodePoolNodeConfig struct {
 	// The AdditionalContainerStorageEnabled of NodeConfig.
 	AdditionalContainerStorageEnabled *bool `pulumi:"additionalContainerStorageEnabled"`
@@ -9221,11 +9826,11 @@ type NodePoolsNodePool struct {
 	DesiredReplicas int `pulumi:"desiredReplicas"`
 	// Tags for Ecs.
 	EcsTags []NodePoolsNodePoolEcsTag `pulumi:"ecsTags"`
-	// Is Enabled of AutoScaling.
+	// Whether to enable the remedy function of the node pool.
 	Enabled bool `pulumi:"enabled"`
 	// The IDs of HpcCluster.
 	HpcClusterIds []string `pulumi:"hpcClusterIds"`
-	// The Id of NodePool.
+	// The ID of the remedy policy.
 	Id string `pulumi:"id"`
 	// The ImageId of NodeConfig.
 	ImageId string `pulumi:"imageId"`
@@ -9247,6 +9852,8 @@ type NodePoolsNodePool struct {
 	LoginKeyPairName string `pulumi:"loginKeyPairName"`
 	// The login type of NodeConfig.
 	LoginType string `pulumi:"loginType"`
+	// The Management Config of NodePool.
+	Managements []NodePoolsNodePoolManagement `pulumi:"managements"`
 	// The MaxReplicas of AutoScaling.
 	MaxReplicas int `pulumi:"maxReplicas"`
 	// The MinReplicas of AutoScaling.
@@ -9323,11 +9930,11 @@ type NodePoolsNodePoolArgs struct {
 	DesiredReplicas pulumi.IntInput `pulumi:"desiredReplicas"`
 	// Tags for Ecs.
 	EcsTags NodePoolsNodePoolEcsTagArrayInput `pulumi:"ecsTags"`
-	// Is Enabled of AutoScaling.
+	// Whether to enable the remedy function of the node pool.
 	Enabled pulumi.BoolInput `pulumi:"enabled"`
 	// The IDs of HpcCluster.
 	HpcClusterIds pulumi.StringArrayInput `pulumi:"hpcClusterIds"`
-	// The Id of NodePool.
+	// The ID of the remedy policy.
 	Id pulumi.StringInput `pulumi:"id"`
 	// The ImageId of NodeConfig.
 	ImageId pulumi.StringInput `pulumi:"imageId"`
@@ -9349,6 +9956,8 @@ type NodePoolsNodePoolArgs struct {
 	LoginKeyPairName pulumi.StringInput `pulumi:"loginKeyPairName"`
 	// The login type of NodeConfig.
 	LoginType pulumi.StringInput `pulumi:"loginType"`
+	// The Management Config of NodePool.
+	Managements NodePoolsNodePoolManagementArrayInput `pulumi:"managements"`
 	// The MaxReplicas of AutoScaling.
 	MaxReplicas pulumi.IntInput `pulumi:"maxReplicas"`
 	// The MinReplicas of AutoScaling.
@@ -9497,7 +10106,7 @@ func (o NodePoolsNodePoolOutput) EcsTags() NodePoolsNodePoolEcsTagArrayOutput {
 	return o.ApplyT(func(v NodePoolsNodePool) []NodePoolsNodePoolEcsTag { return v.EcsTags }).(NodePoolsNodePoolEcsTagArrayOutput)
 }
 
-// Is Enabled of AutoScaling.
+// Whether to enable the remedy function of the node pool.
 func (o NodePoolsNodePoolOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v NodePoolsNodePool) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
@@ -9507,7 +10116,7 @@ func (o NodePoolsNodePoolOutput) HpcClusterIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v NodePoolsNodePool) []string { return v.HpcClusterIds }).(pulumi.StringArrayOutput)
 }
 
-// The Id of NodePool.
+// The ID of the remedy policy.
 func (o NodePoolsNodePoolOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v NodePoolsNodePool) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -9560,6 +10169,11 @@ func (o NodePoolsNodePoolOutput) LoginKeyPairName() pulumi.StringOutput {
 // The login type of NodeConfig.
 func (o NodePoolsNodePoolOutput) LoginType() pulumi.StringOutput {
 	return o.ApplyT(func(v NodePoolsNodePool) string { return v.LoginType }).(pulumi.StringOutput)
+}
+
+// The Management Config of NodePool.
+func (o NodePoolsNodePoolOutput) Managements() NodePoolsNodePoolManagementArrayOutput {
+	return o.ApplyT(func(v NodePoolsNodePool) []NodePoolsNodePoolManagement { return v.Managements }).(NodePoolsNodePoolManagementArrayOutput)
 }
 
 // The MaxReplicas of AutoScaling.
@@ -10221,6 +10835,218 @@ func (o NodePoolsNodePoolLabelContentArrayOutput) Index(i pulumi.IntInput) NodeP
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NodePoolsNodePoolLabelContent {
 		return vs[0].([]NodePoolsNodePoolLabelContent)[vs[1].(int)]
 	}).(NodePoolsNodePoolLabelContentOutput)
+}
+
+type NodePoolsNodePoolManagement struct {
+	// Whether to enable the remedy function of the node pool.
+	Enabled bool `pulumi:"enabled"`
+	// The Remedy Config of NodePool.
+	RemedyConfigs []NodePoolsNodePoolManagementRemedyConfig `pulumi:"remedyConfigs"`
+}
+
+// NodePoolsNodePoolManagementInput is an input type that accepts NodePoolsNodePoolManagementArgs and NodePoolsNodePoolManagementOutput values.
+// You can construct a concrete instance of `NodePoolsNodePoolManagementInput` via:
+//
+//	NodePoolsNodePoolManagementArgs{...}
+type NodePoolsNodePoolManagementInput interface {
+	pulumi.Input
+
+	ToNodePoolsNodePoolManagementOutput() NodePoolsNodePoolManagementOutput
+	ToNodePoolsNodePoolManagementOutputWithContext(context.Context) NodePoolsNodePoolManagementOutput
+}
+
+type NodePoolsNodePoolManagementArgs struct {
+	// Whether to enable the remedy function of the node pool.
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+	// The Remedy Config of NodePool.
+	RemedyConfigs NodePoolsNodePoolManagementRemedyConfigArrayInput `pulumi:"remedyConfigs"`
+}
+
+func (NodePoolsNodePoolManagementArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodePoolsNodePoolManagement)(nil)).Elem()
+}
+
+func (i NodePoolsNodePoolManagementArgs) ToNodePoolsNodePoolManagementOutput() NodePoolsNodePoolManagementOutput {
+	return i.ToNodePoolsNodePoolManagementOutputWithContext(context.Background())
+}
+
+func (i NodePoolsNodePoolManagementArgs) ToNodePoolsNodePoolManagementOutputWithContext(ctx context.Context) NodePoolsNodePoolManagementOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolsNodePoolManagementOutput)
+}
+
+// NodePoolsNodePoolManagementArrayInput is an input type that accepts NodePoolsNodePoolManagementArray and NodePoolsNodePoolManagementArrayOutput values.
+// You can construct a concrete instance of `NodePoolsNodePoolManagementArrayInput` via:
+//
+//	NodePoolsNodePoolManagementArray{ NodePoolsNodePoolManagementArgs{...} }
+type NodePoolsNodePoolManagementArrayInput interface {
+	pulumi.Input
+
+	ToNodePoolsNodePoolManagementArrayOutput() NodePoolsNodePoolManagementArrayOutput
+	ToNodePoolsNodePoolManagementArrayOutputWithContext(context.Context) NodePoolsNodePoolManagementArrayOutput
+}
+
+type NodePoolsNodePoolManagementArray []NodePoolsNodePoolManagementInput
+
+func (NodePoolsNodePoolManagementArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NodePoolsNodePoolManagement)(nil)).Elem()
+}
+
+func (i NodePoolsNodePoolManagementArray) ToNodePoolsNodePoolManagementArrayOutput() NodePoolsNodePoolManagementArrayOutput {
+	return i.ToNodePoolsNodePoolManagementArrayOutputWithContext(context.Background())
+}
+
+func (i NodePoolsNodePoolManagementArray) ToNodePoolsNodePoolManagementArrayOutputWithContext(ctx context.Context) NodePoolsNodePoolManagementArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolsNodePoolManagementArrayOutput)
+}
+
+type NodePoolsNodePoolManagementOutput struct{ *pulumi.OutputState }
+
+func (NodePoolsNodePoolManagementOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodePoolsNodePoolManagement)(nil)).Elem()
+}
+
+func (o NodePoolsNodePoolManagementOutput) ToNodePoolsNodePoolManagementOutput() NodePoolsNodePoolManagementOutput {
+	return o
+}
+
+func (o NodePoolsNodePoolManagementOutput) ToNodePoolsNodePoolManagementOutputWithContext(ctx context.Context) NodePoolsNodePoolManagementOutput {
+	return o
+}
+
+// Whether to enable the remedy function of the node pool.
+func (o NodePoolsNodePoolManagementOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v NodePoolsNodePoolManagement) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// The Remedy Config of NodePool.
+func (o NodePoolsNodePoolManagementOutput) RemedyConfigs() NodePoolsNodePoolManagementRemedyConfigArrayOutput {
+	return o.ApplyT(func(v NodePoolsNodePoolManagement) []NodePoolsNodePoolManagementRemedyConfig { return v.RemedyConfigs }).(NodePoolsNodePoolManagementRemedyConfigArrayOutput)
+}
+
+type NodePoolsNodePoolManagementArrayOutput struct{ *pulumi.OutputState }
+
+func (NodePoolsNodePoolManagementArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NodePoolsNodePoolManagement)(nil)).Elem()
+}
+
+func (o NodePoolsNodePoolManagementArrayOutput) ToNodePoolsNodePoolManagementArrayOutput() NodePoolsNodePoolManagementArrayOutput {
+	return o
+}
+
+func (o NodePoolsNodePoolManagementArrayOutput) ToNodePoolsNodePoolManagementArrayOutputWithContext(ctx context.Context) NodePoolsNodePoolManagementArrayOutput {
+	return o
+}
+
+func (o NodePoolsNodePoolManagementArrayOutput) Index(i pulumi.IntInput) NodePoolsNodePoolManagementOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NodePoolsNodePoolManagement {
+		return vs[0].([]NodePoolsNodePoolManagement)[vs[1].(int)]
+	}).(NodePoolsNodePoolManagementOutput)
+}
+
+type NodePoolsNodePoolManagementRemedyConfig struct {
+	// Whether to enable the remedy function of the node pool.
+	Enabled bool `pulumi:"enabled"`
+	// The ID of the remedy policy.
+	Id string `pulumi:"id"`
+}
+
+// NodePoolsNodePoolManagementRemedyConfigInput is an input type that accepts NodePoolsNodePoolManagementRemedyConfigArgs and NodePoolsNodePoolManagementRemedyConfigOutput values.
+// You can construct a concrete instance of `NodePoolsNodePoolManagementRemedyConfigInput` via:
+//
+//	NodePoolsNodePoolManagementRemedyConfigArgs{...}
+type NodePoolsNodePoolManagementRemedyConfigInput interface {
+	pulumi.Input
+
+	ToNodePoolsNodePoolManagementRemedyConfigOutput() NodePoolsNodePoolManagementRemedyConfigOutput
+	ToNodePoolsNodePoolManagementRemedyConfigOutputWithContext(context.Context) NodePoolsNodePoolManagementRemedyConfigOutput
+}
+
+type NodePoolsNodePoolManagementRemedyConfigArgs struct {
+	// Whether to enable the remedy function of the node pool.
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+	// The ID of the remedy policy.
+	Id pulumi.StringInput `pulumi:"id"`
+}
+
+func (NodePoolsNodePoolManagementRemedyConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodePoolsNodePoolManagementRemedyConfig)(nil)).Elem()
+}
+
+func (i NodePoolsNodePoolManagementRemedyConfigArgs) ToNodePoolsNodePoolManagementRemedyConfigOutput() NodePoolsNodePoolManagementRemedyConfigOutput {
+	return i.ToNodePoolsNodePoolManagementRemedyConfigOutputWithContext(context.Background())
+}
+
+func (i NodePoolsNodePoolManagementRemedyConfigArgs) ToNodePoolsNodePoolManagementRemedyConfigOutputWithContext(ctx context.Context) NodePoolsNodePoolManagementRemedyConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolsNodePoolManagementRemedyConfigOutput)
+}
+
+// NodePoolsNodePoolManagementRemedyConfigArrayInput is an input type that accepts NodePoolsNodePoolManagementRemedyConfigArray and NodePoolsNodePoolManagementRemedyConfigArrayOutput values.
+// You can construct a concrete instance of `NodePoolsNodePoolManagementRemedyConfigArrayInput` via:
+//
+//	NodePoolsNodePoolManagementRemedyConfigArray{ NodePoolsNodePoolManagementRemedyConfigArgs{...} }
+type NodePoolsNodePoolManagementRemedyConfigArrayInput interface {
+	pulumi.Input
+
+	ToNodePoolsNodePoolManagementRemedyConfigArrayOutput() NodePoolsNodePoolManagementRemedyConfigArrayOutput
+	ToNodePoolsNodePoolManagementRemedyConfigArrayOutputWithContext(context.Context) NodePoolsNodePoolManagementRemedyConfigArrayOutput
+}
+
+type NodePoolsNodePoolManagementRemedyConfigArray []NodePoolsNodePoolManagementRemedyConfigInput
+
+func (NodePoolsNodePoolManagementRemedyConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NodePoolsNodePoolManagementRemedyConfig)(nil)).Elem()
+}
+
+func (i NodePoolsNodePoolManagementRemedyConfigArray) ToNodePoolsNodePoolManagementRemedyConfigArrayOutput() NodePoolsNodePoolManagementRemedyConfigArrayOutput {
+	return i.ToNodePoolsNodePoolManagementRemedyConfigArrayOutputWithContext(context.Background())
+}
+
+func (i NodePoolsNodePoolManagementRemedyConfigArray) ToNodePoolsNodePoolManagementRemedyConfigArrayOutputWithContext(ctx context.Context) NodePoolsNodePoolManagementRemedyConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolsNodePoolManagementRemedyConfigArrayOutput)
+}
+
+type NodePoolsNodePoolManagementRemedyConfigOutput struct{ *pulumi.OutputState }
+
+func (NodePoolsNodePoolManagementRemedyConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodePoolsNodePoolManagementRemedyConfig)(nil)).Elem()
+}
+
+func (o NodePoolsNodePoolManagementRemedyConfigOutput) ToNodePoolsNodePoolManagementRemedyConfigOutput() NodePoolsNodePoolManagementRemedyConfigOutput {
+	return o
+}
+
+func (o NodePoolsNodePoolManagementRemedyConfigOutput) ToNodePoolsNodePoolManagementRemedyConfigOutputWithContext(ctx context.Context) NodePoolsNodePoolManagementRemedyConfigOutput {
+	return o
+}
+
+// Whether to enable the remedy function of the node pool.
+func (o NodePoolsNodePoolManagementRemedyConfigOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v NodePoolsNodePoolManagementRemedyConfig) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// The ID of the remedy policy.
+func (o NodePoolsNodePoolManagementRemedyConfigOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v NodePoolsNodePoolManagementRemedyConfig) string { return v.Id }).(pulumi.StringOutput)
+}
+
+type NodePoolsNodePoolManagementRemedyConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (NodePoolsNodePoolManagementRemedyConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NodePoolsNodePoolManagementRemedyConfig)(nil)).Elem()
+}
+
+func (o NodePoolsNodePoolManagementRemedyConfigArrayOutput) ToNodePoolsNodePoolManagementRemedyConfigArrayOutput() NodePoolsNodePoolManagementRemedyConfigArrayOutput {
+	return o
+}
+
+func (o NodePoolsNodePoolManagementRemedyConfigArrayOutput) ToNodePoolsNodePoolManagementRemedyConfigArrayOutputWithContext(ctx context.Context) NodePoolsNodePoolManagementRemedyConfigArrayOutput {
+	return o
+}
+
+func (o NodePoolsNodePoolManagementRemedyConfigArrayOutput) Index(i pulumi.IntInput) NodePoolsNodePoolManagementRemedyConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NodePoolsNodePoolManagementRemedyConfig {
+		return vs[0].([]NodePoolsNodePoolManagementRemedyConfig)[vs[1].(int)]
+	}).(NodePoolsNodePoolManagementRemedyConfigOutput)
 }
 
 type NodePoolsNodePoolNodeStatistic struct {
@@ -12747,6 +13573,8 @@ type GetClustersCluster struct {
 	EipAllocationId string `pulumi:"eipAllocationId"`
 	// The ID of the Cluster.
 	Id string `pulumi:"id"`
+	// The IRSA configuration.
+	IrsaConfigs []GetClustersClusterIrsaConfig `pulumi:"irsaConfigs"`
 	// Kubeconfig data with private network access, returned in BASE64 encoding, it is suggested to use vkeKubeconfig instead.
 	KubeconfigPrivate string `pulumi:"kubeconfigPrivate"`
 	// Kubeconfig data with public network access, returned in BASE64 encoding, it is suggested to use vkeKubeconfig instead.
@@ -12801,6 +13629,8 @@ type GetClustersClusterArgs struct {
 	EipAllocationId pulumi.StringInput `pulumi:"eipAllocationId"`
 	// The ID of the Cluster.
 	Id pulumi.StringInput `pulumi:"id"`
+	// The IRSA configuration.
+	IrsaConfigs GetClustersClusterIrsaConfigArrayInput `pulumi:"irsaConfigs"`
 	// Kubeconfig data with private network access, returned in BASE64 encoding, it is suggested to use vkeKubeconfig instead.
 	KubeconfigPrivate pulumi.StringInput `pulumi:"kubeconfigPrivate"`
 	// Kubeconfig data with public network access, returned in BASE64 encoding, it is suggested to use vkeKubeconfig instead.
@@ -12913,6 +13743,11 @@ func (o GetClustersClusterOutput) EipAllocationId() pulumi.StringOutput {
 // The ID of the Cluster.
 func (o GetClustersClusterOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClustersCluster) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The IRSA configuration.
+func (o GetClustersClusterOutput) IrsaConfigs() GetClustersClusterIrsaConfigArrayOutput {
+	return o.ApplyT(func(v GetClustersCluster) []GetClustersClusterIrsaConfig { return v.IrsaConfigs }).(GetClustersClusterIrsaConfigArrayOutput)
 }
 
 // Kubeconfig data with private network access, returned in BASE64 encoding, it is suggested to use vkeKubeconfig instead.
@@ -13427,6 +14262,148 @@ func (o GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNe
 	return o.ApplyT(func(v GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfig) string {
 		return v.Isp
 	}).(pulumi.StringOutput)
+}
+
+type GetClustersClusterIrsaConfig struct {
+	// The audience of the IRSA.
+	Audience string `pulumi:"audience"`
+	// Whether to enable the log option, true means enable, false means not enable, the default is false. When Enabled is changed from false to true, a new Topic will be created.
+	Enabled bool `pulumi:"enabled"`
+	// The issuer of the IRSA.
+	Issuer string `pulumi:"issuer"`
+	// The JWKS URL of the IRSA.
+	JwksUrl string `pulumi:"jwksUrl"`
+	// The OIDC trn of the IRSA.
+	OidcTrn string `pulumi:"oidcTrn"`
+	// The OpenID Connect configuration URL of the IRSA.
+	OpenIdConfigUrl string `pulumi:"openIdConfigUrl"`
+}
+
+// GetClustersClusterIrsaConfigInput is an input type that accepts GetClustersClusterIrsaConfigArgs and GetClustersClusterIrsaConfigOutput values.
+// You can construct a concrete instance of `GetClustersClusterIrsaConfigInput` via:
+//
+//	GetClustersClusterIrsaConfigArgs{...}
+type GetClustersClusterIrsaConfigInput interface {
+	pulumi.Input
+
+	ToGetClustersClusterIrsaConfigOutput() GetClustersClusterIrsaConfigOutput
+	ToGetClustersClusterIrsaConfigOutputWithContext(context.Context) GetClustersClusterIrsaConfigOutput
+}
+
+type GetClustersClusterIrsaConfigArgs struct {
+	// The audience of the IRSA.
+	Audience pulumi.StringInput `pulumi:"audience"`
+	// Whether to enable the log option, true means enable, false means not enable, the default is false. When Enabled is changed from false to true, a new Topic will be created.
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+	// The issuer of the IRSA.
+	Issuer pulumi.StringInput `pulumi:"issuer"`
+	// The JWKS URL of the IRSA.
+	JwksUrl pulumi.StringInput `pulumi:"jwksUrl"`
+	// The OIDC trn of the IRSA.
+	OidcTrn pulumi.StringInput `pulumi:"oidcTrn"`
+	// The OpenID Connect configuration URL of the IRSA.
+	OpenIdConfigUrl pulumi.StringInput `pulumi:"openIdConfigUrl"`
+}
+
+func (GetClustersClusterIrsaConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterIrsaConfig)(nil)).Elem()
+}
+
+func (i GetClustersClusterIrsaConfigArgs) ToGetClustersClusterIrsaConfigOutput() GetClustersClusterIrsaConfigOutput {
+	return i.ToGetClustersClusterIrsaConfigOutputWithContext(context.Background())
+}
+
+func (i GetClustersClusterIrsaConfigArgs) ToGetClustersClusterIrsaConfigOutputWithContext(ctx context.Context) GetClustersClusterIrsaConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersClusterIrsaConfigOutput)
+}
+
+// GetClustersClusterIrsaConfigArrayInput is an input type that accepts GetClustersClusterIrsaConfigArray and GetClustersClusterIrsaConfigArrayOutput values.
+// You can construct a concrete instance of `GetClustersClusterIrsaConfigArrayInput` via:
+//
+//	GetClustersClusterIrsaConfigArray{ GetClustersClusterIrsaConfigArgs{...} }
+type GetClustersClusterIrsaConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetClustersClusterIrsaConfigArrayOutput() GetClustersClusterIrsaConfigArrayOutput
+	ToGetClustersClusterIrsaConfigArrayOutputWithContext(context.Context) GetClustersClusterIrsaConfigArrayOutput
+}
+
+type GetClustersClusterIrsaConfigArray []GetClustersClusterIrsaConfigInput
+
+func (GetClustersClusterIrsaConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersClusterIrsaConfig)(nil)).Elem()
+}
+
+func (i GetClustersClusterIrsaConfigArray) ToGetClustersClusterIrsaConfigArrayOutput() GetClustersClusterIrsaConfigArrayOutput {
+	return i.ToGetClustersClusterIrsaConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetClustersClusterIrsaConfigArray) ToGetClustersClusterIrsaConfigArrayOutputWithContext(ctx context.Context) GetClustersClusterIrsaConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersClusterIrsaConfigArrayOutput)
+}
+
+type GetClustersClusterIrsaConfigOutput struct{ *pulumi.OutputState }
+
+func (GetClustersClusterIrsaConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterIrsaConfig)(nil)).Elem()
+}
+
+func (o GetClustersClusterIrsaConfigOutput) ToGetClustersClusterIrsaConfigOutput() GetClustersClusterIrsaConfigOutput {
+	return o
+}
+
+func (o GetClustersClusterIrsaConfigOutput) ToGetClustersClusterIrsaConfigOutputWithContext(ctx context.Context) GetClustersClusterIrsaConfigOutput {
+	return o
+}
+
+// The audience of the IRSA.
+func (o GetClustersClusterIrsaConfigOutput) Audience() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersClusterIrsaConfig) string { return v.Audience }).(pulumi.StringOutput)
+}
+
+// Whether to enable the log option, true means enable, false means not enable, the default is false. When Enabled is changed from false to true, a new Topic will be created.
+func (o GetClustersClusterIrsaConfigOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetClustersClusterIrsaConfig) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// The issuer of the IRSA.
+func (o GetClustersClusterIrsaConfigOutput) Issuer() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersClusterIrsaConfig) string { return v.Issuer }).(pulumi.StringOutput)
+}
+
+// The JWKS URL of the IRSA.
+func (o GetClustersClusterIrsaConfigOutput) JwksUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersClusterIrsaConfig) string { return v.JwksUrl }).(pulumi.StringOutput)
+}
+
+// The OIDC trn of the IRSA.
+func (o GetClustersClusterIrsaConfigOutput) OidcTrn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersClusterIrsaConfig) string { return v.OidcTrn }).(pulumi.StringOutput)
+}
+
+// The OpenID Connect configuration URL of the IRSA.
+func (o GetClustersClusterIrsaConfigOutput) OpenIdConfigUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersClusterIrsaConfig) string { return v.OpenIdConfigUrl }).(pulumi.StringOutput)
+}
+
+type GetClustersClusterIrsaConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClustersClusterIrsaConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersClusterIrsaConfig)(nil)).Elem()
+}
+
+func (o GetClustersClusterIrsaConfigArrayOutput) ToGetClustersClusterIrsaConfigArrayOutput() GetClustersClusterIrsaConfigArrayOutput {
+	return o
+}
+
+func (o GetClustersClusterIrsaConfigArrayOutput) ToGetClustersClusterIrsaConfigArrayOutputWithContext(ctx context.Context) GetClustersClusterIrsaConfigArrayOutput {
+	return o
+}
+
+func (o GetClustersClusterIrsaConfigArrayOutput) Index(i pulumi.IntInput) GetClustersClusterIrsaConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClustersClusterIrsaConfig {
+		return vs[0].([]GetClustersClusterIrsaConfig)[vs[1].(int)]
+	}).(GetClustersClusterIrsaConfigOutput)
 }
 
 type GetClustersClusterLoggingConfig struct {
@@ -14674,11 +15651,11 @@ type GetNodePoolsNodePool struct {
 	DesiredReplicas int `pulumi:"desiredReplicas"`
 	// Tags for Ecs.
 	EcsTags []GetNodePoolsNodePoolEcsTag `pulumi:"ecsTags"`
-	// Is Enabled of AutoScaling.
+	// Whether to enable the remedy function of the node pool.
 	Enabled bool `pulumi:"enabled"`
 	// The IDs of HpcCluster.
 	HpcClusterIds []string `pulumi:"hpcClusterIds"`
-	// The Id of NodePool.
+	// The ID of the remedy policy.
 	Id string `pulumi:"id"`
 	// The ImageId of NodeConfig.
 	ImageId string `pulumi:"imageId"`
@@ -14700,6 +15677,8 @@ type GetNodePoolsNodePool struct {
 	LoginKeyPairName string `pulumi:"loginKeyPairName"`
 	// The login type of NodeConfig.
 	LoginType string `pulumi:"loginType"`
+	// The Management Config of NodePool.
+	Managements []GetNodePoolsNodePoolManagement `pulumi:"managements"`
 	// The MaxReplicas of AutoScaling.
 	MaxReplicas int `pulumi:"maxReplicas"`
 	// The MinReplicas of AutoScaling.
@@ -14776,11 +15755,11 @@ type GetNodePoolsNodePoolArgs struct {
 	DesiredReplicas pulumi.IntInput `pulumi:"desiredReplicas"`
 	// Tags for Ecs.
 	EcsTags GetNodePoolsNodePoolEcsTagArrayInput `pulumi:"ecsTags"`
-	// Is Enabled of AutoScaling.
+	// Whether to enable the remedy function of the node pool.
 	Enabled pulumi.BoolInput `pulumi:"enabled"`
 	// The IDs of HpcCluster.
 	HpcClusterIds pulumi.StringArrayInput `pulumi:"hpcClusterIds"`
-	// The Id of NodePool.
+	// The ID of the remedy policy.
 	Id pulumi.StringInput `pulumi:"id"`
 	// The ImageId of NodeConfig.
 	ImageId pulumi.StringInput `pulumi:"imageId"`
@@ -14802,6 +15781,8 @@ type GetNodePoolsNodePoolArgs struct {
 	LoginKeyPairName pulumi.StringInput `pulumi:"loginKeyPairName"`
 	// The login type of NodeConfig.
 	LoginType pulumi.StringInput `pulumi:"loginType"`
+	// The Management Config of NodePool.
+	Managements GetNodePoolsNodePoolManagementArrayInput `pulumi:"managements"`
 	// The MaxReplicas of AutoScaling.
 	MaxReplicas pulumi.IntInput `pulumi:"maxReplicas"`
 	// The MinReplicas of AutoScaling.
@@ -14950,7 +15931,7 @@ func (o GetNodePoolsNodePoolOutput) EcsTags() GetNodePoolsNodePoolEcsTagArrayOut
 	return o.ApplyT(func(v GetNodePoolsNodePool) []GetNodePoolsNodePoolEcsTag { return v.EcsTags }).(GetNodePoolsNodePoolEcsTagArrayOutput)
 }
 
-// Is Enabled of AutoScaling.
+// Whether to enable the remedy function of the node pool.
 func (o GetNodePoolsNodePoolOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetNodePoolsNodePool) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
@@ -14960,7 +15941,7 @@ func (o GetNodePoolsNodePoolOutput) HpcClusterIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetNodePoolsNodePool) []string { return v.HpcClusterIds }).(pulumi.StringArrayOutput)
 }
 
-// The Id of NodePool.
+// The ID of the remedy policy.
 func (o GetNodePoolsNodePoolOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetNodePoolsNodePool) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -15013,6 +15994,11 @@ func (o GetNodePoolsNodePoolOutput) LoginKeyPairName() pulumi.StringOutput {
 // The login type of NodeConfig.
 func (o GetNodePoolsNodePoolOutput) LoginType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetNodePoolsNodePool) string { return v.LoginType }).(pulumi.StringOutput)
+}
+
+// The Management Config of NodePool.
+func (o GetNodePoolsNodePoolOutput) Managements() GetNodePoolsNodePoolManagementArrayOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) []GetNodePoolsNodePoolManagement { return v.Managements }).(GetNodePoolsNodePoolManagementArrayOutput)
 }
 
 // The MaxReplicas of AutoScaling.
@@ -15674,6 +16660,220 @@ func (o GetNodePoolsNodePoolLabelContentArrayOutput) Index(i pulumi.IntInput) Ge
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodePoolsNodePoolLabelContent {
 		return vs[0].([]GetNodePoolsNodePoolLabelContent)[vs[1].(int)]
 	}).(GetNodePoolsNodePoolLabelContentOutput)
+}
+
+type GetNodePoolsNodePoolManagement struct {
+	// Whether to enable the remedy function of the node pool.
+	Enabled bool `pulumi:"enabled"`
+	// The Remedy Config of NodePool.
+	RemedyConfigs []GetNodePoolsNodePoolManagementRemedyConfig `pulumi:"remedyConfigs"`
+}
+
+// GetNodePoolsNodePoolManagementInput is an input type that accepts GetNodePoolsNodePoolManagementArgs and GetNodePoolsNodePoolManagementOutput values.
+// You can construct a concrete instance of `GetNodePoolsNodePoolManagementInput` via:
+//
+//	GetNodePoolsNodePoolManagementArgs{...}
+type GetNodePoolsNodePoolManagementInput interface {
+	pulumi.Input
+
+	ToGetNodePoolsNodePoolManagementOutput() GetNodePoolsNodePoolManagementOutput
+	ToGetNodePoolsNodePoolManagementOutputWithContext(context.Context) GetNodePoolsNodePoolManagementOutput
+}
+
+type GetNodePoolsNodePoolManagementArgs struct {
+	// Whether to enable the remedy function of the node pool.
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+	// The Remedy Config of NodePool.
+	RemedyConfigs GetNodePoolsNodePoolManagementRemedyConfigArrayInput `pulumi:"remedyConfigs"`
+}
+
+func (GetNodePoolsNodePoolManagementArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodePoolsNodePoolManagement)(nil)).Elem()
+}
+
+func (i GetNodePoolsNodePoolManagementArgs) ToGetNodePoolsNodePoolManagementOutput() GetNodePoolsNodePoolManagementOutput {
+	return i.ToGetNodePoolsNodePoolManagementOutputWithContext(context.Background())
+}
+
+func (i GetNodePoolsNodePoolManagementArgs) ToGetNodePoolsNodePoolManagementOutputWithContext(ctx context.Context) GetNodePoolsNodePoolManagementOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodePoolsNodePoolManagementOutput)
+}
+
+// GetNodePoolsNodePoolManagementArrayInput is an input type that accepts GetNodePoolsNodePoolManagementArray and GetNodePoolsNodePoolManagementArrayOutput values.
+// You can construct a concrete instance of `GetNodePoolsNodePoolManagementArrayInput` via:
+//
+//	GetNodePoolsNodePoolManagementArray{ GetNodePoolsNodePoolManagementArgs{...} }
+type GetNodePoolsNodePoolManagementArrayInput interface {
+	pulumi.Input
+
+	ToGetNodePoolsNodePoolManagementArrayOutput() GetNodePoolsNodePoolManagementArrayOutput
+	ToGetNodePoolsNodePoolManagementArrayOutputWithContext(context.Context) GetNodePoolsNodePoolManagementArrayOutput
+}
+
+type GetNodePoolsNodePoolManagementArray []GetNodePoolsNodePoolManagementInput
+
+func (GetNodePoolsNodePoolManagementArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodePoolsNodePoolManagement)(nil)).Elem()
+}
+
+func (i GetNodePoolsNodePoolManagementArray) ToGetNodePoolsNodePoolManagementArrayOutput() GetNodePoolsNodePoolManagementArrayOutput {
+	return i.ToGetNodePoolsNodePoolManagementArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodePoolsNodePoolManagementArray) ToGetNodePoolsNodePoolManagementArrayOutputWithContext(ctx context.Context) GetNodePoolsNodePoolManagementArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodePoolsNodePoolManagementArrayOutput)
+}
+
+type GetNodePoolsNodePoolManagementOutput struct{ *pulumi.OutputState }
+
+func (GetNodePoolsNodePoolManagementOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodePoolsNodePoolManagement)(nil)).Elem()
+}
+
+func (o GetNodePoolsNodePoolManagementOutput) ToGetNodePoolsNodePoolManagementOutput() GetNodePoolsNodePoolManagementOutput {
+	return o
+}
+
+func (o GetNodePoolsNodePoolManagementOutput) ToGetNodePoolsNodePoolManagementOutputWithContext(ctx context.Context) GetNodePoolsNodePoolManagementOutput {
+	return o
+}
+
+// Whether to enable the remedy function of the node pool.
+func (o GetNodePoolsNodePoolManagementOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePoolManagement) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// The Remedy Config of NodePool.
+func (o GetNodePoolsNodePoolManagementOutput) RemedyConfigs() GetNodePoolsNodePoolManagementRemedyConfigArrayOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePoolManagement) []GetNodePoolsNodePoolManagementRemedyConfig {
+		return v.RemedyConfigs
+	}).(GetNodePoolsNodePoolManagementRemedyConfigArrayOutput)
+}
+
+type GetNodePoolsNodePoolManagementArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodePoolsNodePoolManagementArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodePoolsNodePoolManagement)(nil)).Elem()
+}
+
+func (o GetNodePoolsNodePoolManagementArrayOutput) ToGetNodePoolsNodePoolManagementArrayOutput() GetNodePoolsNodePoolManagementArrayOutput {
+	return o
+}
+
+func (o GetNodePoolsNodePoolManagementArrayOutput) ToGetNodePoolsNodePoolManagementArrayOutputWithContext(ctx context.Context) GetNodePoolsNodePoolManagementArrayOutput {
+	return o
+}
+
+func (o GetNodePoolsNodePoolManagementArrayOutput) Index(i pulumi.IntInput) GetNodePoolsNodePoolManagementOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodePoolsNodePoolManagement {
+		return vs[0].([]GetNodePoolsNodePoolManagement)[vs[1].(int)]
+	}).(GetNodePoolsNodePoolManagementOutput)
+}
+
+type GetNodePoolsNodePoolManagementRemedyConfig struct {
+	// Whether to enable the remedy function of the node pool.
+	Enabled bool `pulumi:"enabled"`
+	// The ID of the remedy policy.
+	Id string `pulumi:"id"`
+}
+
+// GetNodePoolsNodePoolManagementRemedyConfigInput is an input type that accepts GetNodePoolsNodePoolManagementRemedyConfigArgs and GetNodePoolsNodePoolManagementRemedyConfigOutput values.
+// You can construct a concrete instance of `GetNodePoolsNodePoolManagementRemedyConfigInput` via:
+//
+//	GetNodePoolsNodePoolManagementRemedyConfigArgs{...}
+type GetNodePoolsNodePoolManagementRemedyConfigInput interface {
+	pulumi.Input
+
+	ToGetNodePoolsNodePoolManagementRemedyConfigOutput() GetNodePoolsNodePoolManagementRemedyConfigOutput
+	ToGetNodePoolsNodePoolManagementRemedyConfigOutputWithContext(context.Context) GetNodePoolsNodePoolManagementRemedyConfigOutput
+}
+
+type GetNodePoolsNodePoolManagementRemedyConfigArgs struct {
+	// Whether to enable the remedy function of the node pool.
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+	// The ID of the remedy policy.
+	Id pulumi.StringInput `pulumi:"id"`
+}
+
+func (GetNodePoolsNodePoolManagementRemedyConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodePoolsNodePoolManagementRemedyConfig)(nil)).Elem()
+}
+
+func (i GetNodePoolsNodePoolManagementRemedyConfigArgs) ToGetNodePoolsNodePoolManagementRemedyConfigOutput() GetNodePoolsNodePoolManagementRemedyConfigOutput {
+	return i.ToGetNodePoolsNodePoolManagementRemedyConfigOutputWithContext(context.Background())
+}
+
+func (i GetNodePoolsNodePoolManagementRemedyConfigArgs) ToGetNodePoolsNodePoolManagementRemedyConfigOutputWithContext(ctx context.Context) GetNodePoolsNodePoolManagementRemedyConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodePoolsNodePoolManagementRemedyConfigOutput)
+}
+
+// GetNodePoolsNodePoolManagementRemedyConfigArrayInput is an input type that accepts GetNodePoolsNodePoolManagementRemedyConfigArray and GetNodePoolsNodePoolManagementRemedyConfigArrayOutput values.
+// You can construct a concrete instance of `GetNodePoolsNodePoolManagementRemedyConfigArrayInput` via:
+//
+//	GetNodePoolsNodePoolManagementRemedyConfigArray{ GetNodePoolsNodePoolManagementRemedyConfigArgs{...} }
+type GetNodePoolsNodePoolManagementRemedyConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetNodePoolsNodePoolManagementRemedyConfigArrayOutput() GetNodePoolsNodePoolManagementRemedyConfigArrayOutput
+	ToGetNodePoolsNodePoolManagementRemedyConfigArrayOutputWithContext(context.Context) GetNodePoolsNodePoolManagementRemedyConfigArrayOutput
+}
+
+type GetNodePoolsNodePoolManagementRemedyConfigArray []GetNodePoolsNodePoolManagementRemedyConfigInput
+
+func (GetNodePoolsNodePoolManagementRemedyConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodePoolsNodePoolManagementRemedyConfig)(nil)).Elem()
+}
+
+func (i GetNodePoolsNodePoolManagementRemedyConfigArray) ToGetNodePoolsNodePoolManagementRemedyConfigArrayOutput() GetNodePoolsNodePoolManagementRemedyConfigArrayOutput {
+	return i.ToGetNodePoolsNodePoolManagementRemedyConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodePoolsNodePoolManagementRemedyConfigArray) ToGetNodePoolsNodePoolManagementRemedyConfigArrayOutputWithContext(ctx context.Context) GetNodePoolsNodePoolManagementRemedyConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodePoolsNodePoolManagementRemedyConfigArrayOutput)
+}
+
+type GetNodePoolsNodePoolManagementRemedyConfigOutput struct{ *pulumi.OutputState }
+
+func (GetNodePoolsNodePoolManagementRemedyConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodePoolsNodePoolManagementRemedyConfig)(nil)).Elem()
+}
+
+func (o GetNodePoolsNodePoolManagementRemedyConfigOutput) ToGetNodePoolsNodePoolManagementRemedyConfigOutput() GetNodePoolsNodePoolManagementRemedyConfigOutput {
+	return o
+}
+
+func (o GetNodePoolsNodePoolManagementRemedyConfigOutput) ToGetNodePoolsNodePoolManagementRemedyConfigOutputWithContext(ctx context.Context) GetNodePoolsNodePoolManagementRemedyConfigOutput {
+	return o
+}
+
+// Whether to enable the remedy function of the node pool.
+func (o GetNodePoolsNodePoolManagementRemedyConfigOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePoolManagementRemedyConfig) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// The ID of the remedy policy.
+func (o GetNodePoolsNodePoolManagementRemedyConfigOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePoolManagementRemedyConfig) string { return v.Id }).(pulumi.StringOutput)
+}
+
+type GetNodePoolsNodePoolManagementRemedyConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodePoolsNodePoolManagementRemedyConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodePoolsNodePoolManagementRemedyConfig)(nil)).Elem()
+}
+
+func (o GetNodePoolsNodePoolManagementRemedyConfigArrayOutput) ToGetNodePoolsNodePoolManagementRemedyConfigArrayOutput() GetNodePoolsNodePoolManagementRemedyConfigArrayOutput {
+	return o
+}
+
+func (o GetNodePoolsNodePoolManagementRemedyConfigArrayOutput) ToGetNodePoolsNodePoolManagementRemedyConfigArrayOutputWithContext(ctx context.Context) GetNodePoolsNodePoolManagementRemedyConfigArrayOutput {
+	return o
+}
+
+func (o GetNodePoolsNodePoolManagementRemedyConfigArrayOutput) Index(i pulumi.IntInput) GetNodePoolsNodePoolManagementRemedyConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodePoolsNodePoolManagementRemedyConfig {
+		return vs[0].([]GetNodePoolsNodePoolManagementRemedyConfig)[vs[1].(int)]
+	}).(GetNodePoolsNodePoolManagementRemedyConfigOutput)
 }
 
 type GetNodePoolsNodePoolNodeStatistic struct {
@@ -17750,6 +18950,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterClusterConfigApiServerPublicAccessConfigPtrInput)(nil)).Elem(), ClusterClusterConfigApiServerPublicAccessConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigInput)(nil)).Elem(), ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigPtrInput)(nil)).Elem(), ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClusterIrsaConfigInput)(nil)).Elem(), ClusterIrsaConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClusterIrsaConfigArrayInput)(nil)).Elem(), ClusterIrsaConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterLoggingConfigInput)(nil)).Elem(), ClusterLoggingConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterLoggingConfigPtrInput)(nil)).Elem(), ClusterLoggingConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterLoggingConfigLogSetupInput)(nil)).Elem(), ClusterLoggingConfigLogSetupArgs{})
@@ -17772,6 +18974,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ClustersClusterClusterConfigApiServerEndpointsPublicIpInput)(nil)).Elem(), ClustersClusterClusterConfigApiServerEndpointsPublicIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClustersClusterClusterConfigApiServerPublicAccessConfigInput)(nil)).Elem(), ClustersClusterClusterConfigApiServerPublicAccessConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigInput)(nil)).Elem(), ClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClustersClusterIrsaConfigInput)(nil)).Elem(), ClustersClusterIrsaConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClustersClusterIrsaConfigArrayInput)(nil)).Elem(), ClustersClusterIrsaConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClustersClusterLoggingConfigInput)(nil)).Elem(), ClustersClusterLoggingConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClustersClusterLoggingConfigArrayInput)(nil)).Elem(), ClustersClusterLoggingConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClustersClusterLoggingConfigLogSetupInput)(nil)).Elem(), ClustersClusterLoggingConfigLogSetupArgs{})
@@ -17846,6 +19050,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolKubernetesConfigLabelArrayInput)(nil)).Elem(), NodePoolKubernetesConfigLabelArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolKubernetesConfigTaintInput)(nil)).Elem(), NodePoolKubernetesConfigTaintArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolKubernetesConfigTaintArrayInput)(nil)).Elem(), NodePoolKubernetesConfigTaintArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolManagementInput)(nil)).Elem(), NodePoolManagementArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolManagementPtrInput)(nil)).Elem(), NodePoolManagementArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolManagementRemedyConfigInput)(nil)).Elem(), NodePoolManagementRemedyConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolManagementRemedyConfigPtrInput)(nil)).Elem(), NodePoolManagementRemedyConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolNodeConfigInput)(nil)).Elem(), NodePoolNodeConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolNodeConfigPtrInput)(nil)).Elem(), NodePoolNodeConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolNodeConfigDataVolumeInput)(nil)).Elem(), NodePoolNodeConfigDataVolumeArgs{})
@@ -17874,6 +19082,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolsNodePoolKubeletConfigFeatureGateArrayInput)(nil)).Elem(), NodePoolsNodePoolKubeletConfigFeatureGateArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolsNodePoolLabelContentInput)(nil)).Elem(), NodePoolsNodePoolLabelContentArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolsNodePoolLabelContentArrayInput)(nil)).Elem(), NodePoolsNodePoolLabelContentArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolsNodePoolManagementInput)(nil)).Elem(), NodePoolsNodePoolManagementArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolsNodePoolManagementArrayInput)(nil)).Elem(), NodePoolsNodePoolManagementArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolsNodePoolManagementRemedyConfigInput)(nil)).Elem(), NodePoolsNodePoolManagementRemedyConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolsNodePoolManagementRemedyConfigArrayInput)(nil)).Elem(), NodePoolsNodePoolManagementRemedyConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolsNodePoolNodeStatisticInput)(nil)).Elem(), NodePoolsNodePoolNodeStatisticArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolsNodePoolNodeStatisticArrayInput)(nil)).Elem(), NodePoolsNodePoolNodeStatisticArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolsNodePoolSystemVolumeInput)(nil)).Elem(), NodePoolsNodePoolSystemVolumeArgs{})
@@ -17919,6 +19131,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterClusterConfigApiServerEndpointsPublicIpInput)(nil)).Elem(), GetClustersClusterClusterConfigApiServerEndpointsPublicIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterClusterConfigApiServerPublicAccessConfigInput)(nil)).Elem(), GetClustersClusterClusterConfigApiServerPublicAccessConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigInput)(nil)).Elem(), GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterIrsaConfigInput)(nil)).Elem(), GetClustersClusterIrsaConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterIrsaConfigArrayInput)(nil)).Elem(), GetClustersClusterIrsaConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterLoggingConfigInput)(nil)).Elem(), GetClustersClusterLoggingConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterLoggingConfigArrayInput)(nil)).Elem(), GetClustersClusterLoggingConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterLoggingConfigLogSetupInput)(nil)).Elem(), GetClustersClusterLoggingConfigLogSetupArgs{})
@@ -17951,6 +19165,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolsNodePoolKubeletConfigFeatureGateArrayInput)(nil)).Elem(), GetNodePoolsNodePoolKubeletConfigFeatureGateArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolsNodePoolLabelContentInput)(nil)).Elem(), GetNodePoolsNodePoolLabelContentArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolsNodePoolLabelContentArrayInput)(nil)).Elem(), GetNodePoolsNodePoolLabelContentArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolsNodePoolManagementInput)(nil)).Elem(), GetNodePoolsNodePoolManagementArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolsNodePoolManagementArrayInput)(nil)).Elem(), GetNodePoolsNodePoolManagementArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolsNodePoolManagementRemedyConfigInput)(nil)).Elem(), GetNodePoolsNodePoolManagementRemedyConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolsNodePoolManagementRemedyConfigArrayInput)(nil)).Elem(), GetNodePoolsNodePoolManagementRemedyConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolsNodePoolNodeStatisticInput)(nil)).Elem(), GetNodePoolsNodePoolNodeStatisticArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolsNodePoolNodeStatisticArrayInput)(nil)).Elem(), GetNodePoolsNodePoolNodeStatisticArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolsNodePoolSystemVolumeInput)(nil)).Elem(), GetNodePoolsNodePoolSystemVolumeArgs{})
@@ -17994,6 +19212,8 @@ func init() {
 	pulumi.RegisterOutputType(ClusterClusterConfigApiServerPublicAccessConfigPtrOutput{})
 	pulumi.RegisterOutputType(ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigOutput{})
 	pulumi.RegisterOutputType(ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigPtrOutput{})
+	pulumi.RegisterOutputType(ClusterIrsaConfigOutput{})
+	pulumi.RegisterOutputType(ClusterIrsaConfigArrayOutput{})
 	pulumi.RegisterOutputType(ClusterLoggingConfigOutput{})
 	pulumi.RegisterOutputType(ClusterLoggingConfigPtrOutput{})
 	pulumi.RegisterOutputType(ClusterLoggingConfigLogSetupOutput{})
@@ -18016,6 +19236,8 @@ func init() {
 	pulumi.RegisterOutputType(ClustersClusterClusterConfigApiServerEndpointsPublicIpOutput{})
 	pulumi.RegisterOutputType(ClustersClusterClusterConfigApiServerPublicAccessConfigOutput{})
 	pulumi.RegisterOutputType(ClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigOutput{})
+	pulumi.RegisterOutputType(ClustersClusterIrsaConfigOutput{})
+	pulumi.RegisterOutputType(ClustersClusterIrsaConfigArrayOutput{})
 	pulumi.RegisterOutputType(ClustersClusterLoggingConfigOutput{})
 	pulumi.RegisterOutputType(ClustersClusterLoggingConfigArrayOutput{})
 	pulumi.RegisterOutputType(ClustersClusterLoggingConfigLogSetupOutput{})
@@ -18090,6 +19312,10 @@ func init() {
 	pulumi.RegisterOutputType(NodePoolKubernetesConfigLabelArrayOutput{})
 	pulumi.RegisterOutputType(NodePoolKubernetesConfigTaintOutput{})
 	pulumi.RegisterOutputType(NodePoolKubernetesConfigTaintArrayOutput{})
+	pulumi.RegisterOutputType(NodePoolManagementOutput{})
+	pulumi.RegisterOutputType(NodePoolManagementPtrOutput{})
+	pulumi.RegisterOutputType(NodePoolManagementRemedyConfigOutput{})
+	pulumi.RegisterOutputType(NodePoolManagementRemedyConfigPtrOutput{})
 	pulumi.RegisterOutputType(NodePoolNodeConfigOutput{})
 	pulumi.RegisterOutputType(NodePoolNodeConfigPtrOutput{})
 	pulumi.RegisterOutputType(NodePoolNodeConfigDataVolumeOutput{})
@@ -18118,6 +19344,10 @@ func init() {
 	pulumi.RegisterOutputType(NodePoolsNodePoolKubeletConfigFeatureGateArrayOutput{})
 	pulumi.RegisterOutputType(NodePoolsNodePoolLabelContentOutput{})
 	pulumi.RegisterOutputType(NodePoolsNodePoolLabelContentArrayOutput{})
+	pulumi.RegisterOutputType(NodePoolsNodePoolManagementOutput{})
+	pulumi.RegisterOutputType(NodePoolsNodePoolManagementArrayOutput{})
+	pulumi.RegisterOutputType(NodePoolsNodePoolManagementRemedyConfigOutput{})
+	pulumi.RegisterOutputType(NodePoolsNodePoolManagementRemedyConfigArrayOutput{})
 	pulumi.RegisterOutputType(NodePoolsNodePoolNodeStatisticOutput{})
 	pulumi.RegisterOutputType(NodePoolsNodePoolNodeStatisticArrayOutput{})
 	pulumi.RegisterOutputType(NodePoolsNodePoolSystemVolumeOutput{})
@@ -18163,6 +19393,8 @@ func init() {
 	pulumi.RegisterOutputType(GetClustersClusterClusterConfigApiServerEndpointsPublicIpOutput{})
 	pulumi.RegisterOutputType(GetClustersClusterClusterConfigApiServerPublicAccessConfigOutput{})
 	pulumi.RegisterOutputType(GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigOutput{})
+	pulumi.RegisterOutputType(GetClustersClusterIrsaConfigOutput{})
+	pulumi.RegisterOutputType(GetClustersClusterIrsaConfigArrayOutput{})
 	pulumi.RegisterOutputType(GetClustersClusterLoggingConfigOutput{})
 	pulumi.RegisterOutputType(GetClustersClusterLoggingConfigArrayOutput{})
 	pulumi.RegisterOutputType(GetClustersClusterLoggingConfigLogSetupOutput{})
@@ -18195,6 +19427,10 @@ func init() {
 	pulumi.RegisterOutputType(GetNodePoolsNodePoolKubeletConfigFeatureGateArrayOutput{})
 	pulumi.RegisterOutputType(GetNodePoolsNodePoolLabelContentOutput{})
 	pulumi.RegisterOutputType(GetNodePoolsNodePoolLabelContentArrayOutput{})
+	pulumi.RegisterOutputType(GetNodePoolsNodePoolManagementOutput{})
+	pulumi.RegisterOutputType(GetNodePoolsNodePoolManagementArrayOutput{})
+	pulumi.RegisterOutputType(GetNodePoolsNodePoolManagementRemedyConfigOutput{})
+	pulumi.RegisterOutputType(GetNodePoolsNodePoolManagementRemedyConfigArrayOutput{})
 	pulumi.RegisterOutputType(GetNodePoolsNodePoolNodeStatisticOutput{})
 	pulumi.RegisterOutputType(GetNodePoolsNodePoolNodeStatisticArrayOutput{})
 	pulumi.RegisterOutputType(GetNodePoolsNodePoolSystemVolumeOutput{})
