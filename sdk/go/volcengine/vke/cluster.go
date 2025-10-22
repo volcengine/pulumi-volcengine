@@ -64,6 +64,7 @@ import (
 //				Description:             pulumi.String("created by terraform"),
 //				ProjectName:             pulumi.String("default"),
 //				DeleteProtectionEnabled: pulumi.Bool(false),
+//				IrsaEnabled:             pulumi.Bool(false),
 //				ClusterConfig: &vke.ClusterClusterConfigArgs{
 //					SubnetIds: pulumi.StringArray{
 //						fooSubnet.ID(),
@@ -109,6 +110,9 @@ import (
 //			// create vke node pool
 //			fooNodePool, err := vke.NewNodePool(ctx, "fooNodePool", &vke.NodePoolArgs{
 //				ClusterId: fooCluster.ID(),
+//				Management: &vke.NodePoolManagementArgs{
+//					Enabled: pulumi.Bool(false),
+//				},
 //				AutoScaling: &vke.NodePoolAutoScalingArgs{
 //					Enabled:         pulumi.Bool(true),
 //					MinReplicas:     pulumi.Int(0),
@@ -251,6 +255,10 @@ type Cluster struct {
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// Eip allocation Id.
 	EipAllocationId pulumi.StringOutput `pulumi:"eipAllocationId"`
+	// The IRSA configuration.
+	IrsaConfigs ClusterIrsaConfigArrayOutput `pulumi:"irsaConfigs"`
+	// Whether to enable IRSA for the cluster. This field is valid only when modifying the cluster.
+	IrsaEnabled pulumi.BoolPtrOutput `pulumi:"irsaEnabled"`
 	// Kubeconfig data with private network access, returned in BASE64 encoding, it is suggested to use vkeKubeconfig instead.
 	KubeconfigPrivate pulumi.StringOutput `pulumi:"kubeconfigPrivate"`
 	// Kubeconfig data with public network access, returned in BASE64 encoding, it is suggested to use vkeKubeconfig instead.
@@ -320,6 +328,10 @@ type clusterState struct {
 	Description *string `pulumi:"description"`
 	// Eip allocation Id.
 	EipAllocationId *string `pulumi:"eipAllocationId"`
+	// The IRSA configuration.
+	IrsaConfigs []ClusterIrsaConfig `pulumi:"irsaConfigs"`
+	// Whether to enable IRSA for the cluster. This field is valid only when modifying the cluster.
+	IrsaEnabled *bool `pulumi:"irsaEnabled"`
 	// Kubeconfig data with private network access, returned in BASE64 encoding, it is suggested to use vkeKubeconfig instead.
 	KubeconfigPrivate *string `pulumi:"kubeconfigPrivate"`
 	// Kubeconfig data with public network access, returned in BASE64 encoding, it is suggested to use vkeKubeconfig instead.
@@ -351,6 +363,10 @@ type ClusterState struct {
 	Description pulumi.StringPtrInput
 	// Eip allocation Id.
 	EipAllocationId pulumi.StringPtrInput
+	// The IRSA configuration.
+	IrsaConfigs ClusterIrsaConfigArrayInput
+	// Whether to enable IRSA for the cluster. This field is valid only when modifying the cluster.
+	IrsaEnabled pulumi.BoolPtrInput
 	// Kubeconfig data with private network access, returned in BASE64 encoding, it is suggested to use vkeKubeconfig instead.
 	KubeconfigPrivate pulumi.StringPtrInput
 	// Kubeconfig data with public network access, returned in BASE64 encoding, it is suggested to use vkeKubeconfig instead.
@@ -384,6 +400,8 @@ type clusterArgs struct {
 	DeleteProtectionEnabled *bool `pulumi:"deleteProtectionEnabled"`
 	// The description of the cluster.
 	Description *string `pulumi:"description"`
+	// Whether to enable IRSA for the cluster. This field is valid only when modifying the cluster.
+	IrsaEnabled *bool `pulumi:"irsaEnabled"`
 	// The version of Kubernetes specified when creating a VKE cluster (specified to patch version), with an example value of `1.24`. If not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
 	KubernetesVersion *string `pulumi:"kubernetesVersion"`
 	// Cluster log configuration information.
@@ -410,6 +428,8 @@ type ClusterArgs struct {
 	DeleteProtectionEnabled pulumi.BoolPtrInput
 	// The description of the cluster.
 	Description pulumi.StringPtrInput
+	// Whether to enable IRSA for the cluster. This field is valid only when modifying the cluster.
+	IrsaEnabled pulumi.BoolPtrInput
 	// The version of Kubernetes specified when creating a VKE cluster (specified to patch version), with an example value of `1.24`. If not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
 	KubernetesVersion pulumi.StringPtrInput
 	// Cluster log configuration information.
@@ -536,6 +556,16 @@ func (o ClusterOutput) Description() pulumi.StringPtrOutput {
 // Eip allocation Id.
 func (o ClusterOutput) EipAllocationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.EipAllocationId }).(pulumi.StringOutput)
+}
+
+// The IRSA configuration.
+func (o ClusterOutput) IrsaConfigs() ClusterIrsaConfigArrayOutput {
+	return o.ApplyT(func(v *Cluster) ClusterIrsaConfigArrayOutput { return v.IrsaConfigs }).(ClusterIrsaConfigArrayOutput)
+}
+
+// Whether to enable IRSA for the cluster. This field is valid only when modifying the cluster.
+func (o ClusterOutput) IrsaEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Cluster) pulumi.BoolPtrOutput { return v.IrsaEnabled }).(pulumi.BoolPtrOutput)
 }
 
 // Kubeconfig data with private network access, returned in BASE64 encoding, it is suggested to use vkeKubeconfig instead.

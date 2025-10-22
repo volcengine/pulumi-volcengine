@@ -42,6 +42,10 @@ namespace Pulumi.Volcengine.Vke.Outputs
         /// </summary>
         public readonly string Id;
         /// <summary>
+        /// The IRSA configuration.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.ClustersClusterIrsaConfigResult> IrsaConfigs;
+        /// <summary>
         /// Kubeconfig data with private network access, returned in BASE64 encoding, it is suggested to use vke_kubeconfig instead.
         /// </summary>
         public readonly string KubeconfigPrivate;
@@ -110,6 +114,8 @@ namespace Pulumi.Volcengine.Vke.Outputs
 
             string id,
 
+            ImmutableArray<Outputs.ClustersClusterIrsaConfigResult> irsaConfigs,
+
             string kubeconfigPrivate,
 
             string kubeconfigPublic,
@@ -143,6 +149,7 @@ namespace Pulumi.Volcengine.Vke.Outputs
             Description = description;
             EipAllocationId = eipAllocationId;
             Id = id;
+            IrsaConfigs = irsaConfigs;
             KubeconfigPrivate = kubeconfigPrivate;
             KubeconfigPublic = kubeconfigPublic;
             KubernetesVersion = kubernetesVersion;

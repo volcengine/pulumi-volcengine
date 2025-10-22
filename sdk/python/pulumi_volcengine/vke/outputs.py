@@ -18,6 +18,7 @@ __all__ = [
     'ClusterClusterConfig',
     'ClusterClusterConfigApiServerPublicAccessConfig',
     'ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfig',
+    'ClusterIrsaConfig',
     'ClusterLoggingConfig',
     'ClusterLoggingConfigLogSetup',
     'ClusterPodsConfig',
@@ -32,6 +33,7 @@ __all__ = [
     'ClustersClusterClusterConfigApiServerEndpointsPublicIpResult',
     'ClustersClusterClusterConfigApiServerPublicAccessConfigResult',
     'ClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigResult',
+    'ClustersClusterIrsaConfigResult',
     'ClustersClusterLoggingConfigResult',
     'ClustersClusterLoggingConfigLogSetupResult',
     'ClustersClusterNodeStatisticsResult',
@@ -72,6 +74,8 @@ __all__ = [
     'NodePoolKubernetesConfigKubeletConfigFeatureGates',
     'NodePoolKubernetesConfigLabel',
     'NodePoolKubernetesConfigTaint',
+    'NodePoolManagement',
+    'NodePoolManagementRemedyConfig',
     'NodePoolNodeConfig',
     'NodePoolNodeConfigDataVolume',
     'NodePoolNodeConfigEcsTag',
@@ -86,6 +90,8 @@ __all__ = [
     'NodePoolsNodePoolKubeletConfigResult',
     'NodePoolsNodePoolKubeletConfigFeatureGateResult',
     'NodePoolsNodePoolLabelContentResult',
+    'NodePoolsNodePoolManagementResult',
+    'NodePoolsNodePoolManagementRemedyConfigResult',
     'NodePoolsNodePoolNodeStatisticResult',
     'NodePoolsNodePoolSystemVolumeResult',
     'NodePoolsNodePoolTagResult',
@@ -112,6 +118,7 @@ __all__ = [
     'GetClustersClusterClusterConfigApiServerEndpointsPublicIpResult',
     'GetClustersClusterClusterConfigApiServerPublicAccessConfigResult',
     'GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigResult',
+    'GetClustersClusterIrsaConfigResult',
     'GetClustersClusterLoggingConfigResult',
     'GetClustersClusterLoggingConfigLogSetupResult',
     'GetClustersClusterNodeStatisticsResult',
@@ -131,6 +138,8 @@ __all__ = [
     'GetNodePoolsNodePoolKubeletConfigResult',
     'GetNodePoolsNodePoolKubeletConfigFeatureGateResult',
     'GetNodePoolsNodePoolLabelContentResult',
+    'GetNodePoolsNodePoolManagementResult',
+    'GetNodePoolsNodePoolManagementRemedyConfigResult',
     'GetNodePoolsNodePoolNodeStatisticResult',
     'GetNodePoolsNodePoolSystemVolumeResult',
     'GetNodePoolsNodePoolTagResult',
@@ -536,6 +545,106 @@ class ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfig(d
 
 
 @pulumi.output_type
+class ClusterIrsaConfig(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "jwksUrl":
+            suggest = "jwks_url"
+        elif key == "oidcTrn":
+            suggest = "oidc_trn"
+        elif key == "openIdConfigUrl":
+            suggest = "open_id_config_url"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ClusterIrsaConfig. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ClusterIrsaConfig.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ClusterIrsaConfig.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 audience: Optional[str] = None,
+                 enabled: Optional[bool] = None,
+                 issuer: Optional[str] = None,
+                 jwks_url: Optional[str] = None,
+                 oidc_trn: Optional[str] = None,
+                 open_id_config_url: Optional[str] = None):
+        """
+        :param str audience: The audience of the IRSA.
+        :param bool enabled: Whether to enable IRSA for the cluster.
+        :param str issuer: The issuer of the IRSA.
+        :param str jwks_url: The JWKS URL of the IRSA.
+        :param str oidc_trn: The OIDC trn of the IRSA.
+        :param str open_id_config_url: The OpenID Connect configuration URL of the IRSA.
+        """
+        if audience is not None:
+            pulumi.set(__self__, "audience", audience)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if issuer is not None:
+            pulumi.set(__self__, "issuer", issuer)
+        if jwks_url is not None:
+            pulumi.set(__self__, "jwks_url", jwks_url)
+        if oidc_trn is not None:
+            pulumi.set(__self__, "oidc_trn", oidc_trn)
+        if open_id_config_url is not None:
+            pulumi.set(__self__, "open_id_config_url", open_id_config_url)
+
+    @property
+    @pulumi.getter
+    def audience(self) -> Optional[str]:
+        """
+        The audience of the IRSA.
+        """
+        return pulumi.get(self, "audience")
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[bool]:
+        """
+        Whether to enable IRSA for the cluster.
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter
+    def issuer(self) -> Optional[str]:
+        """
+        The issuer of the IRSA.
+        """
+        return pulumi.get(self, "issuer")
+
+    @property
+    @pulumi.getter(name="jwksUrl")
+    def jwks_url(self) -> Optional[str]:
+        """
+        The JWKS URL of the IRSA.
+        """
+        return pulumi.get(self, "jwks_url")
+
+    @property
+    @pulumi.getter(name="oidcTrn")
+    def oidc_trn(self) -> Optional[str]:
+        """
+        The OIDC trn of the IRSA.
+        """
+        return pulumi.get(self, "oidc_trn")
+
+    @property
+    @pulumi.getter(name="openIdConfigUrl")
+    def open_id_config_url(self) -> Optional[str]:
+        """
+        The OpenID Connect configuration URL of the IRSA.
+        """
+        return pulumi.get(self, "open_id_config_url")
+
+
+@pulumi.output_type
 class ClusterLoggingConfig(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -890,6 +999,7 @@ class ClustersClusterResult(dict):
                  description: str,
                  eip_allocation_id: str,
                  id: str,
+                 irsa_configs: Sequence['outputs.ClustersClusterIrsaConfigResult'],
                  kubeconfig_private: str,
                  kubeconfig_public: str,
                  kubernetes_version: str,
@@ -911,6 +1021,7 @@ class ClustersClusterResult(dict):
         :param str description: The description of the cluster.
         :param str eip_allocation_id: Eip allocation Id.
         :param str id: The ID of the Cluster.
+        :param Sequence['ClustersClusterIrsaConfigArgs'] irsa_configs: The IRSA configuration.
         :param str kubeconfig_private: Kubeconfig data with private network access, returned in BASE64 encoding, it is suggested to use vke_kubeconfig instead.
         :param str kubeconfig_public: Kubeconfig data with public network access, returned in BASE64 encoding, it is suggested to use vke_kubeconfig instead.
         :param str kubernetes_version: The Kubernetes version information corresponding to the cluster, specific to the patch version.
@@ -932,6 +1043,7 @@ class ClustersClusterResult(dict):
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "eip_allocation_id", eip_allocation_id)
         pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "irsa_configs", irsa_configs)
         pulumi.set(__self__, "kubeconfig_private", kubeconfig_private)
         pulumi.set(__self__, "kubeconfig_public", kubeconfig_public)
         pulumi.set(__self__, "kubernetes_version", kubernetes_version)
@@ -996,6 +1108,14 @@ class ClustersClusterResult(dict):
         The ID of the Cluster.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="irsaConfigs")
+    def irsa_configs(self) -> Sequence['outputs.ClustersClusterIrsaConfigResult']:
+        """
+        The IRSA configuration.
+        """
+        return pulumi.get(self, "irsa_configs")
 
     @property
     @pulumi.getter(name="kubeconfigPrivate")
@@ -1337,6 +1457,79 @@ class ClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetwork
         The ISP of public IP.
         """
         return pulumi.get(self, "isp")
+
+
+@pulumi.output_type
+class ClustersClusterIrsaConfigResult(dict):
+    def __init__(__self__, *,
+                 audience: str,
+                 enabled: bool,
+                 issuer: str,
+                 jwks_url: str,
+                 oidc_trn: str,
+                 open_id_config_url: str):
+        """
+        :param str audience: The audience of the IRSA.
+        :param bool enabled: Whether to enable the log option, true means enable, false means not enable, the default is false. When Enabled is changed from false to true, a new Topic will be created.
+        :param str issuer: The issuer of the IRSA.
+        :param str jwks_url: The JWKS URL of the IRSA.
+        :param str oidc_trn: The OIDC trn of the IRSA.
+        :param str open_id_config_url: The OpenID Connect configuration URL of the IRSA.
+        """
+        pulumi.set(__self__, "audience", audience)
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "issuer", issuer)
+        pulumi.set(__self__, "jwks_url", jwks_url)
+        pulumi.set(__self__, "oidc_trn", oidc_trn)
+        pulumi.set(__self__, "open_id_config_url", open_id_config_url)
+
+    @property
+    @pulumi.getter
+    def audience(self) -> str:
+        """
+        The audience of the IRSA.
+        """
+        return pulumi.get(self, "audience")
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> bool:
+        """
+        Whether to enable the log option, true means enable, false means not enable, the default is false. When Enabled is changed from false to true, a new Topic will be created.
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter
+    def issuer(self) -> str:
+        """
+        The issuer of the IRSA.
+        """
+        return pulumi.get(self, "issuer")
+
+    @property
+    @pulumi.getter(name="jwksUrl")
+    def jwks_url(self) -> str:
+        """
+        The JWKS URL of the IRSA.
+        """
+        return pulumi.get(self, "jwks_url")
+
+    @property
+    @pulumi.getter(name="oidcTrn")
+    def oidc_trn(self) -> str:
+        """
+        The OIDC trn of the IRSA.
+        """
+        return pulumi.get(self, "oidc_trn")
+
+    @property
+    @pulumi.getter(name="openIdConfigUrl")
+    def open_id_config_url(self) -> str:
+        """
+        The OpenID Connect configuration URL of the IRSA.
+        """
+        return pulumi.get(self, "open_id_config_url")
 
 
 @pulumi.output_type
@@ -3354,6 +3547,85 @@ class NodePoolKubernetesConfigTaint(dict):
 
 
 @pulumi.output_type
+class NodePoolManagement(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "remedyConfig":
+            suggest = "remedy_config"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NodePoolManagement. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NodePoolManagement.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NodePoolManagement.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 enabled: Optional[bool] = None,
+                 remedy_config: Optional['outputs.NodePoolManagementRemedyConfig'] = None):
+        """
+        :param bool enabled: Whether to enable the management function of the node pool. Default is `false`.
+        :param 'NodePoolManagementRemedyConfigArgs' remedy_config: The Remedy Config of NodePool. This field is valid when the value of `enabled` is `true`.
+        """
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if remedy_config is not None:
+            pulumi.set(__self__, "remedy_config", remedy_config)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[bool]:
+        """
+        Whether to enable the management function of the node pool. Default is `false`.
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter(name="remedyConfig")
+    def remedy_config(self) -> Optional['outputs.NodePoolManagementRemedyConfig']:
+        """
+        The Remedy Config of NodePool. This field is valid when the value of `enabled` is `true`.
+        """
+        return pulumi.get(self, "remedy_config")
+
+
+@pulumi.output_type
+class NodePoolManagementRemedyConfig(dict):
+    def __init__(__self__, *,
+                 enabled: Optional[bool] = None,
+                 id: Optional[str] = None):
+        """
+        :param bool enabled: Whether to enable the remedy function of the node pool. Default is `false`.
+        :param str id: The ID of the remedy policy. This field is valid when the value of `enabled` is `true`.
+        """
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[bool]:
+        """
+        Whether to enable the remedy function of the node pool. Default is `false`.
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        The ID of the remedy policy. This field is valid when the value of `enabled` is `true`.
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
 class NodePoolNodeConfig(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -4049,6 +4321,7 @@ class NodePoolsNodePoolResult(dict):
                  label_contents: Sequence['outputs.NodePoolsNodePoolLabelContentResult'],
                  login_key_pair_name: str,
                  login_type: str,
+                 managements: Sequence['outputs.NodePoolsNodePoolManagementResult'],
                  max_replicas: int,
                  min_replicas: int,
                  name: str,
@@ -4081,9 +4354,9 @@ class NodePoolsNodePoolResult(dict):
         :param Sequence['NodePoolsNodePoolDataVolumeArgs'] data_volumes: The DataVolume of NodeConfig.
         :param int desired_replicas: The DesiredReplicas of AutoScaling.
         :param Sequence['NodePoolsNodePoolEcsTagArgs'] ecs_tags: Tags for Ecs.
-        :param bool enabled: Is Enabled of AutoScaling.
+        :param bool enabled: Whether to enable the remedy function of the node pool.
         :param Sequence[str] hpc_cluster_ids: The IDs of HpcCluster.
-        :param str id: The Id of NodePool.
+        :param str id: The ID of the remedy policy.
         :param str image_id: The ImageId of NodeConfig.
         :param str initialize_script: The InitializeScript of NodeConfig.
         :param str instance_charge_type: The InstanceChargeType of NodeConfig.
@@ -4094,6 +4367,7 @@ class NodePoolsNodePoolResult(dict):
         :param Sequence['NodePoolsNodePoolLabelContentArgs'] label_contents: The LabelContent of KubernetesConfig.
         :param str login_key_pair_name: The login SshKeyPairName of NodeConfig.
         :param str login_type: The login type of NodeConfig.
+        :param Sequence['NodePoolsNodePoolManagementArgs'] managements: The Management Config of NodePool.
         :param int max_replicas: The MaxReplicas of AutoScaling.
         :param int min_replicas: The MinReplicas of AutoScaling.
         :param str name: The Name of NodePool.
@@ -4139,6 +4413,7 @@ class NodePoolsNodePoolResult(dict):
         pulumi.set(__self__, "label_contents", label_contents)
         pulumi.set(__self__, "login_key_pair_name", login_key_pair_name)
         pulumi.set(__self__, "login_type", login_type)
+        pulumi.set(__self__, "managements", managements)
         pulumi.set(__self__, "max_replicas", max_replicas)
         pulumi.set(__self__, "min_replicas", min_replicas)
         pulumi.set(__self__, "name", name)
@@ -4252,7 +4527,7 @@ class NodePoolsNodePoolResult(dict):
     @pulumi.getter
     def enabled(self) -> bool:
         """
-        Is Enabled of AutoScaling.
+        Whether to enable the remedy function of the node pool.
         """
         return pulumi.get(self, "enabled")
 
@@ -4268,7 +4543,7 @@ class NodePoolsNodePoolResult(dict):
     @pulumi.getter
     def id(self) -> str:
         """
-        The Id of NodePool.
+        The ID of the remedy policy.
         """
         return pulumi.get(self, "id")
 
@@ -4351,6 +4626,14 @@ class NodePoolsNodePoolResult(dict):
         The login type of NodeConfig.
         """
         return pulumi.get(self, "login_type")
+
+    @property
+    @pulumi.getter
+    def managements(self) -> Sequence['outputs.NodePoolsNodePoolManagementResult']:
+        """
+        The Management Config of NodePool.
+        """
+        return pulumi.get(self, "managements")
 
     @property
     @pulumi.getter(name="maxReplicas")
@@ -4667,6 +4950,64 @@ class NodePoolsNodePoolLabelContentResult(dict):
         The Value of Taint.
         """
         return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class NodePoolsNodePoolManagementResult(dict):
+    def __init__(__self__, *,
+                 enabled: bool,
+                 remedy_configs: Sequence['outputs.NodePoolsNodePoolManagementRemedyConfigResult']):
+        """
+        :param bool enabled: Whether to enable the remedy function of the node pool.
+        :param Sequence['NodePoolsNodePoolManagementRemedyConfigArgs'] remedy_configs: The Remedy Config of NodePool.
+        """
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "remedy_configs", remedy_configs)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> bool:
+        """
+        Whether to enable the remedy function of the node pool.
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter(name="remedyConfigs")
+    def remedy_configs(self) -> Sequence['outputs.NodePoolsNodePoolManagementRemedyConfigResult']:
+        """
+        The Remedy Config of NodePool.
+        """
+        return pulumi.get(self, "remedy_configs")
+
+
+@pulumi.output_type
+class NodePoolsNodePoolManagementRemedyConfigResult(dict):
+    def __init__(__self__, *,
+                 enabled: bool,
+                 id: str):
+        """
+        :param bool enabled: Whether to enable the remedy function of the node pool.
+        :param str id: The ID of the remedy policy.
+        """
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> bool:
+        """
+        Whether to enable the remedy function of the node pool.
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the remedy policy.
+        """
+        return pulumi.get(self, "id")
 
 
 @pulumi.output_type
@@ -5886,6 +6227,7 @@ class GetClustersClusterResult(dict):
                  description: str,
                  eip_allocation_id: str,
                  id: str,
+                 irsa_configs: Sequence['outputs.GetClustersClusterIrsaConfigResult'],
                  kubeconfig_private: str,
                  kubeconfig_public: str,
                  kubernetes_version: str,
@@ -5907,6 +6249,7 @@ class GetClustersClusterResult(dict):
         :param str description: The description of the cluster.
         :param str eip_allocation_id: Eip allocation Id.
         :param str id: The ID of the Cluster.
+        :param Sequence['GetClustersClusterIrsaConfigArgs'] irsa_configs: The IRSA configuration.
         :param str kubeconfig_private: Kubeconfig data with private network access, returned in BASE64 encoding, it is suggested to use vke_kubeconfig instead.
         :param str kubeconfig_public: Kubeconfig data with public network access, returned in BASE64 encoding, it is suggested to use vke_kubeconfig instead.
         :param str kubernetes_version: The Kubernetes version information corresponding to the cluster, specific to the patch version.
@@ -5928,6 +6271,7 @@ class GetClustersClusterResult(dict):
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "eip_allocation_id", eip_allocation_id)
         pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "irsa_configs", irsa_configs)
         pulumi.set(__self__, "kubeconfig_private", kubeconfig_private)
         pulumi.set(__self__, "kubeconfig_public", kubeconfig_public)
         pulumi.set(__self__, "kubernetes_version", kubernetes_version)
@@ -5992,6 +6336,14 @@ class GetClustersClusterResult(dict):
         The ID of the Cluster.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="irsaConfigs")
+    def irsa_configs(self) -> Sequence['outputs.GetClustersClusterIrsaConfigResult']:
+        """
+        The IRSA configuration.
+        """
+        return pulumi.get(self, "irsa_configs")
 
     @property
     @pulumi.getter(name="kubeconfigPrivate")
@@ -6333,6 +6685,79 @@ class GetClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetw
         The ISP of public IP.
         """
         return pulumi.get(self, "isp")
+
+
+@pulumi.output_type
+class GetClustersClusterIrsaConfigResult(dict):
+    def __init__(__self__, *,
+                 audience: str,
+                 enabled: bool,
+                 issuer: str,
+                 jwks_url: str,
+                 oidc_trn: str,
+                 open_id_config_url: str):
+        """
+        :param str audience: The audience of the IRSA.
+        :param bool enabled: Whether to enable the log option, true means enable, false means not enable, the default is false. When Enabled is changed from false to true, a new Topic will be created.
+        :param str issuer: The issuer of the IRSA.
+        :param str jwks_url: The JWKS URL of the IRSA.
+        :param str oidc_trn: The OIDC trn of the IRSA.
+        :param str open_id_config_url: The OpenID Connect configuration URL of the IRSA.
+        """
+        pulumi.set(__self__, "audience", audience)
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "issuer", issuer)
+        pulumi.set(__self__, "jwks_url", jwks_url)
+        pulumi.set(__self__, "oidc_trn", oidc_trn)
+        pulumi.set(__self__, "open_id_config_url", open_id_config_url)
+
+    @property
+    @pulumi.getter
+    def audience(self) -> str:
+        """
+        The audience of the IRSA.
+        """
+        return pulumi.get(self, "audience")
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> bool:
+        """
+        Whether to enable the log option, true means enable, false means not enable, the default is false. When Enabled is changed from false to true, a new Topic will be created.
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter
+    def issuer(self) -> str:
+        """
+        The issuer of the IRSA.
+        """
+        return pulumi.get(self, "issuer")
+
+    @property
+    @pulumi.getter(name="jwksUrl")
+    def jwks_url(self) -> str:
+        """
+        The JWKS URL of the IRSA.
+        """
+        return pulumi.get(self, "jwks_url")
+
+    @property
+    @pulumi.getter(name="oidcTrn")
+    def oidc_trn(self) -> str:
+        """
+        The OIDC trn of the IRSA.
+        """
+        return pulumi.get(self, "oidc_trn")
+
+    @property
+    @pulumi.getter(name="openIdConfigUrl")
+    def open_id_config_url(self) -> str:
+        """
+        The OpenID Connect configuration URL of the IRSA.
+        """
+        return pulumi.get(self, "open_id_config_url")
 
 
 @pulumi.output_type
@@ -6876,6 +7301,7 @@ class GetNodePoolsNodePoolResult(dict):
                  label_contents: Sequence['outputs.GetNodePoolsNodePoolLabelContentResult'],
                  login_key_pair_name: str,
                  login_type: str,
+                 managements: Sequence['outputs.GetNodePoolsNodePoolManagementResult'],
                  max_replicas: int,
                  min_replicas: int,
                  name: str,
@@ -6908,9 +7334,9 @@ class GetNodePoolsNodePoolResult(dict):
         :param Sequence['GetNodePoolsNodePoolDataVolumeArgs'] data_volumes: The DataVolume of NodeConfig.
         :param int desired_replicas: The DesiredReplicas of AutoScaling.
         :param Sequence['GetNodePoolsNodePoolEcsTagArgs'] ecs_tags: Tags for Ecs.
-        :param bool enabled: Is Enabled of AutoScaling.
+        :param bool enabled: Whether to enable the remedy function of the node pool.
         :param Sequence[str] hpc_cluster_ids: The IDs of HpcCluster.
-        :param str id: The Id of NodePool.
+        :param str id: The ID of the remedy policy.
         :param str image_id: The ImageId of NodeConfig.
         :param str initialize_script: The InitializeScript of NodeConfig.
         :param str instance_charge_type: The InstanceChargeType of NodeConfig.
@@ -6921,6 +7347,7 @@ class GetNodePoolsNodePoolResult(dict):
         :param Sequence['GetNodePoolsNodePoolLabelContentArgs'] label_contents: The LabelContent of KubernetesConfig.
         :param str login_key_pair_name: The login SshKeyPairName of NodeConfig.
         :param str login_type: The login type of NodeConfig.
+        :param Sequence['GetNodePoolsNodePoolManagementArgs'] managements: The Management Config of NodePool.
         :param int max_replicas: The MaxReplicas of AutoScaling.
         :param int min_replicas: The MinReplicas of AutoScaling.
         :param str name: The Name of NodePool.
@@ -6966,6 +7393,7 @@ class GetNodePoolsNodePoolResult(dict):
         pulumi.set(__self__, "label_contents", label_contents)
         pulumi.set(__self__, "login_key_pair_name", login_key_pair_name)
         pulumi.set(__self__, "login_type", login_type)
+        pulumi.set(__self__, "managements", managements)
         pulumi.set(__self__, "max_replicas", max_replicas)
         pulumi.set(__self__, "min_replicas", min_replicas)
         pulumi.set(__self__, "name", name)
@@ -7079,7 +7507,7 @@ class GetNodePoolsNodePoolResult(dict):
     @pulumi.getter
     def enabled(self) -> bool:
         """
-        Is Enabled of AutoScaling.
+        Whether to enable the remedy function of the node pool.
         """
         return pulumi.get(self, "enabled")
 
@@ -7095,7 +7523,7 @@ class GetNodePoolsNodePoolResult(dict):
     @pulumi.getter
     def id(self) -> str:
         """
-        The Id of NodePool.
+        The ID of the remedy policy.
         """
         return pulumi.get(self, "id")
 
@@ -7178,6 +7606,14 @@ class GetNodePoolsNodePoolResult(dict):
         The login type of NodeConfig.
         """
         return pulumi.get(self, "login_type")
+
+    @property
+    @pulumi.getter
+    def managements(self) -> Sequence['outputs.GetNodePoolsNodePoolManagementResult']:
+        """
+        The Management Config of NodePool.
+        """
+        return pulumi.get(self, "managements")
 
     @property
     @pulumi.getter(name="maxReplicas")
@@ -7494,6 +7930,64 @@ class GetNodePoolsNodePoolLabelContentResult(dict):
         The Value of Taint.
         """
         return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetNodePoolsNodePoolManagementResult(dict):
+    def __init__(__self__, *,
+                 enabled: bool,
+                 remedy_configs: Sequence['outputs.GetNodePoolsNodePoolManagementRemedyConfigResult']):
+        """
+        :param bool enabled: Whether to enable the remedy function of the node pool.
+        :param Sequence['GetNodePoolsNodePoolManagementRemedyConfigArgs'] remedy_configs: The Remedy Config of NodePool.
+        """
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "remedy_configs", remedy_configs)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> bool:
+        """
+        Whether to enable the remedy function of the node pool.
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter(name="remedyConfigs")
+    def remedy_configs(self) -> Sequence['outputs.GetNodePoolsNodePoolManagementRemedyConfigResult']:
+        """
+        The Remedy Config of NodePool.
+        """
+        return pulumi.get(self, "remedy_configs")
+
+
+@pulumi.output_type
+class GetNodePoolsNodePoolManagementRemedyConfigResult(dict):
+    def __init__(__self__, *,
+                 enabled: bool,
+                 id: str):
+        """
+        :param bool enabled: Whether to enable the remedy function of the node pool.
+        :param str id: The ID of the remedy policy.
+        """
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> bool:
+        """
+        Whether to enable the remedy function of the node pool.
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the remedy policy.
+        """
+        return pulumi.get(self, "id")
 
 
 @pulumi.output_type

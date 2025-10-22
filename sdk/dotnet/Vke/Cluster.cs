@@ -52,6 +52,7 @@ namespace Pulumi.Volcengine.Vke
     ///         Description = "created by terraform",
     ///         ProjectName = "default",
     ///         DeleteProtectionEnabled = false,
+    ///         IrsaEnabled = false,
     ///         ClusterConfig = new Volcengine.Vke.Inputs.ClusterClusterConfigArgs
     ///         {
     ///             SubnetIds = new[]
@@ -106,6 +107,10 @@ namespace Pulumi.Volcengine.Vke
     ///     var fooNodePool = new Volcengine.Vke.NodePool("fooNodePool", new()
     ///     {
     ///         ClusterId = fooCluster.Id,
+    ///         Management = new Volcengine.Vke.Inputs.NodePoolManagementArgs
+    ///         {
+    ///             Enabled = false,
+    ///         },
     ///         AutoScaling = new Volcengine.Vke.Inputs.NodePoolAutoScalingArgs
     ///         {
     ///             Enabled = true,
@@ -293,6 +298,18 @@ namespace Pulumi.Volcengine.Vke
         public Output<string> EipAllocationId { get; private set; } = null!;
 
         /// <summary>
+        /// The IRSA configuration.
+        /// </summary>
+        [Output("irsaConfigs")]
+        public Output<ImmutableArray<Outputs.ClusterIrsaConfig>> IrsaConfigs { get; private set; } = null!;
+
+        /// <summary>
+        /// Whether to enable IRSA for the cluster. This field is valid only when modifying the cluster.
+        /// </summary>
+        [Output("irsaEnabled")]
+        public Output<bool?> IrsaEnabled { get; private set; } = null!;
+
+        /// <summary>
         /// Kubeconfig data with private network access, returned in BASE64 encoding, it is suggested to use vke_kubeconfig instead.
         /// </summary>
         [Output("kubeconfigPrivate")]
@@ -418,6 +435,12 @@ namespace Pulumi.Volcengine.Vke
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// Whether to enable IRSA for the cluster. This field is valid only when modifying the cluster.
+        /// </summary>
+        [Input("irsaEnabled")]
+        public Input<bool>? IrsaEnabled { get; set; }
+
+        /// <summary>
         /// The version of Kubernetes specified when creating a VKE cluster (specified to patch version), with an example value of `1.24`. If not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
         /// </summary>
         [Input("kubernetesVersion")]
@@ -502,6 +525,24 @@ namespace Pulumi.Volcengine.Vke
         /// </summary>
         [Input("eipAllocationId")]
         public Input<string>? EipAllocationId { get; set; }
+
+        [Input("irsaConfigs")]
+        private InputList<Inputs.ClusterIrsaConfigGetArgs>? _irsaConfigs;
+
+        /// <summary>
+        /// The IRSA configuration.
+        /// </summary>
+        public InputList<Inputs.ClusterIrsaConfigGetArgs> IrsaConfigs
+        {
+            get => _irsaConfigs ?? (_irsaConfigs = new InputList<Inputs.ClusterIrsaConfigGetArgs>());
+            set => _irsaConfigs = value;
+        }
+
+        /// <summary>
+        /// Whether to enable IRSA for the cluster. This field is valid only when modifying the cluster.
+        /// </summary>
+        [Input("irsaEnabled")]
+        public Input<bool>? IrsaEnabled { get; set; }
 
         /// <summary>
         /// Kubeconfig data with private network access, returned in BASE64 encoding, it is suggested to use vke_kubeconfig instead.

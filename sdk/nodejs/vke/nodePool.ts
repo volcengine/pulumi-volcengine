@@ -269,6 +269,10 @@ export class NodePool extends pulumi.CustomResource {
      */
     public readonly kubernetesConfig!: pulumi.Output<outputs.vke.NodePoolKubernetesConfig>;
     /**
+     * The Management Config of NodePool.
+     */
+    public readonly management!: pulumi.Output<outputs.vke.NodePoolManagement>;
+    /**
      * The Name of NodePool.
      */
     public readonly name!: pulumi.Output<string>;
@@ -304,6 +308,7 @@ export class NodePool extends pulumi.CustomResource {
             resourceInputs["instanceIds"] = state ? state.instanceIds : undefined;
             resourceInputs["keepInstanceName"] = state ? state.keepInstanceName : undefined;
             resourceInputs["kubernetesConfig"] = state ? state.kubernetesConfig : undefined;
+            resourceInputs["management"] = state ? state.management : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["nodeConfig"] = state ? state.nodeConfig : undefined;
             resourceInputs["nodeStatistics"] = state ? state.nodeStatistics : undefined;
@@ -322,6 +327,7 @@ export class NodePool extends pulumi.CustomResource {
             resourceInputs["instanceIds"] = args ? args.instanceIds : undefined;
             resourceInputs["keepInstanceName"] = args ? args.keepInstanceName : undefined;
             resourceInputs["kubernetesConfig"] = args ? args.kubernetesConfig : undefined;
+            resourceInputs["management"] = args ? args.management : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["nodeConfig"] = args ? args.nodeConfig : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
@@ -363,6 +369,10 @@ export interface NodePoolState {
      * The KubernetesConfig of NodeConfig.
      */
     kubernetesConfig?: pulumi.Input<inputs.vke.NodePoolKubernetesConfig>;
+    /**
+     * The Management Config of NodePool.
+     */
+    management?: pulumi.Input<inputs.vke.NodePoolManagement>;
     /**
      * The Name of NodePool.
      */
@@ -412,6 +422,10 @@ export interface NodePoolArgs {
      * The KubernetesConfig of NodeConfig.
      */
     kubernetesConfig: pulumi.Input<inputs.vke.NodePoolKubernetesConfig>;
+    /**
+     * The Management Config of NodePool.
+     */
+    management?: pulumi.Input<inputs.vke.NodePoolManagement>;
     /**
      * The Name of NodePool.
      */
