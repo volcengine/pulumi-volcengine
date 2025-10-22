@@ -23,6 +23,7 @@ class NodePoolArgs:
                  cluster_id: Optional[pulumi.Input[str]] = None,
                  instance_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  keep_instance_name: Optional[pulumi.Input[bool]] = None,
+                 management: Optional[pulumi.Input['NodePoolManagementArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolTagArgs']]]] = None):
         """
@@ -37,6 +38,7 @@ class NodePoolArgs:
                It is not recommended to use this field, it is recommended to use `vke.Node` resource to add an existing instance to a custom node pool.
         :param pulumi.Input[bool] keep_instance_name: Whether to keep instance name when adding an existing instance to a custom node pool, the value is `true` or `false`.
                This field is valid only when adding new instances to the custom node pool.
+        :param pulumi.Input['NodePoolManagementArgs'] management: The Management Config of NodePool.
         :param pulumi.Input[str] name: The Name of NodePool.
         :param pulumi.Input[Sequence[pulumi.Input['NodePoolTagArgs']]] tags: Tags.
         """
@@ -52,6 +54,8 @@ class NodePoolArgs:
             pulumi.set(__self__, "instance_ids", instance_ids)
         if keep_instance_name is not None:
             pulumi.set(__self__, "keep_instance_name", keep_instance_name)
+        if management is not None:
+            pulumi.set(__self__, "management", management)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if tags is not None:
@@ -146,6 +150,18 @@ class NodePoolArgs:
 
     @property
     @pulumi.getter
+    def management(self) -> Optional[pulumi.Input['NodePoolManagementArgs']]:
+        """
+        The Management Config of NodePool.
+        """
+        return pulumi.get(self, "management")
+
+    @management.setter
+    def management(self, value: Optional[pulumi.Input['NodePoolManagementArgs']]):
+        pulumi.set(self, "management", value)
+
+    @property
+    @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
         The Name of NodePool.
@@ -178,6 +194,7 @@ class _NodePoolState:
                  instance_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  keep_instance_name: Optional[pulumi.Input[bool]] = None,
                  kubernetes_config: Optional[pulumi.Input['NodePoolKubernetesConfigArgs']] = None,
+                 management: Optional[pulumi.Input['NodePoolManagementArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  node_config: Optional[pulumi.Input['NodePoolNodeConfigArgs']] = None,
                  node_statistics: Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolNodeStatisticArgs']]]] = None,
@@ -193,6 +210,7 @@ class _NodePoolState:
         :param pulumi.Input[bool] keep_instance_name: Whether to keep instance name when adding an existing instance to a custom node pool, the value is `true` or `false`.
                This field is valid only when adding new instances to the custom node pool.
         :param pulumi.Input['NodePoolKubernetesConfigArgs'] kubernetes_config: The KubernetesConfig of NodeConfig.
+        :param pulumi.Input['NodePoolManagementArgs'] management: The Management Config of NodePool.
         :param pulumi.Input[str] name: The Name of NodePool.
         :param pulumi.Input['NodePoolNodeConfigArgs'] node_config: The Config of NodePool.
         :param pulumi.Input[Sequence[pulumi.Input['NodePoolNodeStatisticArgs']]] node_statistics: The NodeStatistics of NodeConfig.
@@ -210,6 +228,8 @@ class _NodePoolState:
             pulumi.set(__self__, "keep_instance_name", keep_instance_name)
         if kubernetes_config is not None:
             pulumi.set(__self__, "kubernetes_config", kubernetes_config)
+        if management is not None:
+            pulumi.set(__self__, "management", management)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if node_config is not None:
@@ -296,6 +316,18 @@ class _NodePoolState:
 
     @property
     @pulumi.getter
+    def management(self) -> Optional[pulumi.Input['NodePoolManagementArgs']]:
+        """
+        The Management Config of NodePool.
+        """
+        return pulumi.get(self, "management")
+
+    @management.setter
+    def management(self, value: Optional[pulumi.Input['NodePoolManagementArgs']]):
+        pulumi.set(self, "management", value)
+
+    @property
+    @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
         The Name of NodePool.
@@ -354,6 +386,7 @@ class NodePool(pulumi.CustomResource):
                  instance_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  keep_instance_name: Optional[pulumi.Input[bool]] = None,
                  kubernetes_config: Optional[pulumi.Input[pulumi.InputType['NodePoolKubernetesConfigArgs']]] = None,
+                 management: Optional[pulumi.Input[pulumi.InputType['NodePoolManagementArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  node_config: Optional[pulumi.Input[pulumi.InputType['NodePoolNodeConfigArgs']]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NodePoolTagArgs']]]]] = None,
@@ -565,6 +598,7 @@ class NodePool(pulumi.CustomResource):
         :param pulumi.Input[bool] keep_instance_name: Whether to keep instance name when adding an existing instance to a custom node pool, the value is `true` or `false`.
                This field is valid only when adding new instances to the custom node pool.
         :param pulumi.Input[pulumi.InputType['NodePoolKubernetesConfigArgs']] kubernetes_config: The KubernetesConfig of NodeConfig.
+        :param pulumi.Input[pulumi.InputType['NodePoolManagementArgs']] management: The Management Config of NodePool.
         :param pulumi.Input[str] name: The Name of NodePool.
         :param pulumi.Input[pulumi.InputType['NodePoolNodeConfigArgs']] node_config: The Config of NodePool.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NodePoolTagArgs']]]] tags: Tags.
@@ -792,6 +826,7 @@ class NodePool(pulumi.CustomResource):
                  instance_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  keep_instance_name: Optional[pulumi.Input[bool]] = None,
                  kubernetes_config: Optional[pulumi.Input[pulumi.InputType['NodePoolKubernetesConfigArgs']]] = None,
+                 management: Optional[pulumi.Input[pulumi.InputType['NodePoolManagementArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  node_config: Optional[pulumi.Input[pulumi.InputType['NodePoolNodeConfigArgs']]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NodePoolTagArgs']]]]] = None,
@@ -812,6 +847,7 @@ class NodePool(pulumi.CustomResource):
             if kubernetes_config is None and not opts.urn:
                 raise TypeError("Missing required property 'kubernetes_config'")
             __props__.__dict__["kubernetes_config"] = kubernetes_config
+            __props__.__dict__["management"] = management
             __props__.__dict__["name"] = name
             if node_config is None and not opts.urn:
                 raise TypeError("Missing required property 'node_config'")
@@ -834,6 +870,7 @@ class NodePool(pulumi.CustomResource):
             instance_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             keep_instance_name: Optional[pulumi.Input[bool]] = None,
             kubernetes_config: Optional[pulumi.Input[pulumi.InputType['NodePoolKubernetesConfigArgs']]] = None,
+            management: Optional[pulumi.Input[pulumi.InputType['NodePoolManagementArgs']]] = None,
             name: Optional[pulumi.Input[str]] = None,
             node_config: Optional[pulumi.Input[pulumi.InputType['NodePoolNodeConfigArgs']]] = None,
             node_statistics: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NodePoolNodeStatisticArgs']]]]] = None,
@@ -854,6 +891,7 @@ class NodePool(pulumi.CustomResource):
         :param pulumi.Input[bool] keep_instance_name: Whether to keep instance name when adding an existing instance to a custom node pool, the value is `true` or `false`.
                This field is valid only when adding new instances to the custom node pool.
         :param pulumi.Input[pulumi.InputType['NodePoolKubernetesConfigArgs']] kubernetes_config: The KubernetesConfig of NodeConfig.
+        :param pulumi.Input[pulumi.InputType['NodePoolManagementArgs']] management: The Management Config of NodePool.
         :param pulumi.Input[str] name: The Name of NodePool.
         :param pulumi.Input[pulumi.InputType['NodePoolNodeConfigArgs']] node_config: The Config of NodePool.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NodePoolNodeStatisticArgs']]]] node_statistics: The NodeStatistics of NodeConfig.
@@ -869,6 +907,7 @@ class NodePool(pulumi.CustomResource):
         __props__.__dict__["instance_ids"] = instance_ids
         __props__.__dict__["keep_instance_name"] = keep_instance_name
         __props__.__dict__["kubernetes_config"] = kubernetes_config
+        __props__.__dict__["management"] = management
         __props__.__dict__["name"] = name
         __props__.__dict__["node_config"] = node_config
         __props__.__dict__["node_statistics"] = node_statistics
@@ -925,6 +964,14 @@ class NodePool(pulumi.CustomResource):
         The KubernetesConfig of NodeConfig.
         """
         return pulumi.get(self, "kubernetes_config")
+
+    @property
+    @pulumi.getter
+    def management(self) -> pulumi.Output['outputs.NodePoolManagement']:
+        """
+        The Management Config of NodePool.
+        """
+        return pulumi.get(self, "management")
 
     @property
     @pulumi.getter

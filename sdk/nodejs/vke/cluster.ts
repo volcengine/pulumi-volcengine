@@ -38,6 +38,7 @@ import * as utilities from "../utilities";
  *     description: "created by terraform",
  *     projectName: "default",
  *     deleteProtectionEnabled: false,
+ *     irsaEnabled: false,
  *     clusterConfig: {
  *         subnetIds: [fooSubnet.id],
  *         apiServerPublicAccessEnabled: true,
@@ -69,6 +70,9 @@ import * as utilities from "../utilities";
  * // create vke node pool
  * const fooNodePool = new volcengine.vke.NodePool("fooNodePool", {
  *     clusterId: fooCluster.id,
+ *     management: {
+ *         enabled: false,
+ *     },
  *     autoScaling: {
  *         enabled: true,
  *         minReplicas: 0,
@@ -215,6 +219,14 @@ export class Cluster extends pulumi.CustomResource {
      */
     public /*out*/ readonly eipAllocationId!: pulumi.Output<string>;
     /**
+     * The IRSA configuration.
+     */
+    public /*out*/ readonly irsaConfigs!: pulumi.Output<outputs.vke.ClusterIrsaConfig[]>;
+    /**
+     * Whether to enable IRSA for the cluster. This field is valid only when modifying the cluster.
+     */
+    public readonly irsaEnabled!: pulumi.Output<boolean | undefined>;
+    /**
      * Kubeconfig data with private network access, returned in BASE64 encoding, it is suggested to use vkeKubeconfig instead.
      */
     public /*out*/ readonly kubeconfigPrivate!: pulumi.Output<string>;
@@ -269,6 +281,8 @@ export class Cluster extends pulumi.CustomResource {
             resourceInputs["deleteProtectionEnabled"] = state ? state.deleteProtectionEnabled : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["eipAllocationId"] = state ? state.eipAllocationId : undefined;
+            resourceInputs["irsaConfigs"] = state ? state.irsaConfigs : undefined;
+            resourceInputs["irsaEnabled"] = state ? state.irsaEnabled : undefined;
             resourceInputs["kubeconfigPrivate"] = state ? state.kubeconfigPrivate : undefined;
             resourceInputs["kubeconfigPublic"] = state ? state.kubeconfigPublic : undefined;
             resourceInputs["kubernetesVersion"] = state ? state.kubernetesVersion : undefined;
@@ -293,6 +307,7 @@ export class Cluster extends pulumi.CustomResource {
             resourceInputs["clusterConfig"] = args ? args.clusterConfig : undefined;
             resourceInputs["deleteProtectionEnabled"] = args ? args.deleteProtectionEnabled : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["irsaEnabled"] = args ? args.irsaEnabled : undefined;
             resourceInputs["kubernetesVersion"] = args ? args.kubernetesVersion : undefined;
             resourceInputs["loggingConfig"] = args ? args.loggingConfig : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -301,6 +316,7 @@ export class Cluster extends pulumi.CustomResource {
             resourceInputs["servicesConfig"] = args ? args.servicesConfig : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["eipAllocationId"] = undefined /*out*/;
+            resourceInputs["irsaConfigs"] = undefined /*out*/;
             resourceInputs["kubeconfigPrivate"] = undefined /*out*/;
             resourceInputs["kubeconfigPublic"] = undefined /*out*/;
         }
@@ -333,6 +349,14 @@ export interface ClusterState {
      * Eip allocation Id.
      */
     eipAllocationId?: pulumi.Input<string>;
+    /**
+     * The IRSA configuration.
+     */
+    irsaConfigs?: pulumi.Input<pulumi.Input<inputs.vke.ClusterIrsaConfig>[]>;
+    /**
+     * Whether to enable IRSA for the cluster. This field is valid only when modifying the cluster.
+     */
+    irsaEnabled?: pulumi.Input<boolean>;
     /**
      * Kubeconfig data with private network access, returned in BASE64 encoding, it is suggested to use vkeKubeconfig instead.
      */
@@ -391,6 +415,10 @@ export interface ClusterArgs {
      * The description of the cluster.
      */
     description?: pulumi.Input<string>;
+    /**
+     * Whether to enable IRSA for the cluster. This field is valid only when modifying the cluster.
+     */
+    irsaEnabled?: pulumi.Input<boolean>;
     /**
      * The version of Kubernetes specified when creating a VKE cluster (specified to patch version), with an example value of `1.24`. If not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
      */

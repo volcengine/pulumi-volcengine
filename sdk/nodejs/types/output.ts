@@ -52860,6 +52860,33 @@ export namespace vke {
         billingType?: string;
     }
 
+    export interface ClusterIrsaConfig {
+        /**
+         * The audience of the IRSA.
+         */
+        audience: string;
+        /**
+         * Whether to enable IRSA for the cluster.
+         */
+        enabled: boolean;
+        /**
+         * The issuer of the IRSA.
+         */
+        issuer: string;
+        /**
+         * The JWKS URL of the IRSA.
+         */
+        jwksUrl: string;
+        /**
+         * The OIDC trn of the IRSA.
+         */
+        oidcTrn: string;
+        /**
+         * The OpenID Connect configuration URL of the IRSA.
+         */
+        openIdConfigUrl: string;
+    }
+
     export interface ClusterLoggingConfig {
         /**
          * The TLS log item ID of the collection target.
@@ -52974,6 +53001,10 @@ export namespace vke {
          * The ID of the Cluster.
          */
         id: string;
+        /**
+         * The IRSA configuration.
+         */
+        irsaConfigs: outputs.vke.ClustersClusterIrsaConfig[];
         /**
          * Kubeconfig data with private network access, returned in BASE64 encoding, it is suggested to use vkeKubeconfig instead.
          */
@@ -53112,6 +53143,33 @@ export namespace vke {
          * The ISP of public IP.
          */
         isp: string;
+    }
+
+    export interface ClustersClusterIrsaConfig {
+        /**
+         * The audience of the IRSA.
+         */
+        audience: string;
+        /**
+         * Whether to enable the log option, true means enable, false means not enable, the default is false. When Enabled is changed from false to true, a new Topic will be created.
+         */
+        enabled: boolean;
+        /**
+         * The issuer of the IRSA.
+         */
+        issuer: string;
+        /**
+         * The JWKS URL of the IRSA.
+         */
+        jwksUrl: string;
+        /**
+         * The OIDC trn of the IRSA.
+         */
+        oidcTrn: string;
+        /**
+         * The OpenID Connect configuration URL of the IRSA.
+         */
+        openIdConfigUrl: string;
     }
 
     export interface ClustersClusterLoggingConfig {
@@ -53668,6 +53726,10 @@ export namespace vke {
          */
         id: string;
         /**
+         * The IRSA configuration.
+         */
+        irsaConfigs: outputs.vke.GetClustersClusterIrsaConfig[];
+        /**
          * Kubeconfig data with private network access, returned in BASE64 encoding, it is suggested to use vkeKubeconfig instead.
          */
         kubeconfigPrivate: string;
@@ -53805,6 +53867,33 @@ export namespace vke {
          * The ISP of public IP.
          */
         isp: string;
+    }
+
+    export interface GetClustersClusterIrsaConfig {
+        /**
+         * The audience of the IRSA.
+         */
+        audience: string;
+        /**
+         * Whether to enable the log option, true means enable, false means not enable, the default is false. When Enabled is changed from false to true, a new Topic will be created.
+         */
+        enabled: boolean;
+        /**
+         * The issuer of the IRSA.
+         */
+        issuer: string;
+        /**
+         * The JWKS URL of the IRSA.
+         */
+        jwksUrl: string;
+        /**
+         * The OIDC trn of the IRSA.
+         */
+        oidcTrn: string;
+        /**
+         * The OpenID Connect configuration URL of the IRSA.
+         */
+        openIdConfigUrl: string;
     }
 
     export interface GetClustersClusterLoggingConfig {
@@ -54046,7 +54135,7 @@ export namespace vke {
          */
         ecsTags: outputs.vke.GetNodePoolsNodePoolEcsTag[];
         /**
-         * Is Enabled of AutoScaling.
+         * Whether to enable the remedy function of the node pool.
          */
         enabled: boolean;
         /**
@@ -54054,7 +54143,7 @@ export namespace vke {
          */
         hpcClusterIds: string[];
         /**
-         * The Id of NodePool.
+         * The ID of the remedy policy.
          */
         id: string;
         /**
@@ -54097,6 +54186,10 @@ export namespace vke {
          * The login type of NodeConfig.
          */
         loginType: string;
+        /**
+         * The Management Config of NodePool.
+         */
+        managements: outputs.vke.GetNodePoolsNodePoolManagement[];
         /**
          * The MaxReplicas of AutoScaling.
          */
@@ -54236,6 +54329,28 @@ export namespace vke {
          * The Value of Taint.
          */
         value: string;
+    }
+
+    export interface GetNodePoolsNodePoolManagement {
+        /**
+         * Whether to enable the remedy function of the node pool.
+         */
+        enabled: boolean;
+        /**
+         * The Remedy Config of NodePool.
+         */
+        remedyConfigs: outputs.vke.GetNodePoolsNodePoolManagementRemedyConfig[];
+    }
+
+    export interface GetNodePoolsNodePoolManagementRemedyConfig {
+        /**
+         * Whether to enable the remedy function of the node pool.
+         */
+        enabled: boolean;
+        /**
+         * The ID of the remedy policy.
+         */
+        id: string;
     }
 
     export interface GetNodePoolsNodePoolNodeStatistic {
@@ -54787,6 +54902,28 @@ export namespace vke {
         value?: string;
     }
 
+    export interface NodePoolManagement {
+        /**
+         * Whether to enable the management function of the node pool. Default is `false`.
+         */
+        enabled?: boolean;
+        /**
+         * The Remedy Config of NodePool. This field is valid when the value of `enabled` is `true`.
+         */
+        remedyConfig: outputs.vke.NodePoolManagementRemedyConfig;
+    }
+
+    export interface NodePoolManagementRemedyConfig {
+        /**
+         * Whether to enable the remedy function of the node pool. Default is `false`.
+         */
+        enabled?: boolean;
+        /**
+         * The ID of the remedy policy. This field is valid when the value of `enabled` is `true`.
+         */
+        id: string;
+    }
+
     export interface NodePoolNodeConfig {
         /**
          * The AdditionalContainerStorageEnabled of NodeConfig.
@@ -55023,7 +55160,7 @@ export namespace vke {
          */
         ecsTags: outputs.vke.NodePoolsNodePoolEcsTag[];
         /**
-         * Is Enabled of AutoScaling.
+         * Whether to enable the remedy function of the node pool.
          */
         enabled: boolean;
         /**
@@ -55031,7 +55168,7 @@ export namespace vke {
          */
         hpcClusterIds: string[];
         /**
-         * The Id of NodePool.
+         * The ID of the remedy policy.
          */
         id: string;
         /**
@@ -55074,6 +55211,10 @@ export namespace vke {
          * The login type of NodeConfig.
          */
         loginType: string;
+        /**
+         * The Management Config of NodePool.
+         */
+        managements: outputs.vke.NodePoolsNodePoolManagement[];
         /**
          * The MaxReplicas of AutoScaling.
          */
@@ -55213,6 +55354,28 @@ export namespace vke {
          * The Value of Taint.
          */
         value: string;
+    }
+
+    export interface NodePoolsNodePoolManagement {
+        /**
+         * Whether to enable the remedy function of the node pool.
+         */
+        enabled: boolean;
+        /**
+         * The Remedy Config of NodePool.
+         */
+        remedyConfigs: outputs.vke.NodePoolsNodePoolManagementRemedyConfig[];
+    }
+
+    export interface NodePoolsNodePoolManagementRemedyConfig {
+        /**
+         * Whether to enable the remedy function of the node pool.
+         */
+        enabled: boolean;
+        /**
+         * The ID of the remedy policy.
+         */
+        id: string;
     }
 
     export interface NodePoolsNodePoolNodeStatistic {

@@ -14,6 +14,7 @@ __all__ = [
     'ClusterClusterConfigArgs',
     'ClusterClusterConfigApiServerPublicAccessConfigArgs',
     'ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs',
+    'ClusterIrsaConfigArgs',
     'ClusterLoggingConfigArgs',
     'ClusterLoggingConfigLogSetupArgs',
     'ClusterPodsConfigArgs',
@@ -50,6 +51,8 @@ __all__ = [
     'NodePoolKubernetesConfigKubeletConfigFeatureGatesArgs',
     'NodePoolKubernetesConfigLabelArgs',
     'NodePoolKubernetesConfigTaintArgs',
+    'NodePoolManagementArgs',
+    'NodePoolManagementRemedyConfigArgs',
     'NodePoolNodeConfigArgs',
     'NodePoolNodeConfigDataVolumeArgs',
     'NodePoolNodeConfigEcsTagArgs',
@@ -258,6 +261,109 @@ class ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigAr
     @billing_type.setter
     def billing_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "billing_type", value)
+
+
+@pulumi.input_type
+class ClusterIrsaConfigArgs:
+    def __init__(__self__, *,
+                 audience: Optional[pulumi.Input[str]] = None,
+                 enabled: Optional[pulumi.Input[bool]] = None,
+                 issuer: Optional[pulumi.Input[str]] = None,
+                 jwks_url: Optional[pulumi.Input[str]] = None,
+                 oidc_trn: Optional[pulumi.Input[str]] = None,
+                 open_id_config_url: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] audience: The audience of the IRSA.
+        :param pulumi.Input[bool] enabled: Whether to enable IRSA for the cluster.
+        :param pulumi.Input[str] issuer: The issuer of the IRSA.
+        :param pulumi.Input[str] jwks_url: The JWKS URL of the IRSA.
+        :param pulumi.Input[str] oidc_trn: The OIDC trn of the IRSA.
+        :param pulumi.Input[str] open_id_config_url: The OpenID Connect configuration URL of the IRSA.
+        """
+        if audience is not None:
+            pulumi.set(__self__, "audience", audience)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if issuer is not None:
+            pulumi.set(__self__, "issuer", issuer)
+        if jwks_url is not None:
+            pulumi.set(__self__, "jwks_url", jwks_url)
+        if oidc_trn is not None:
+            pulumi.set(__self__, "oidc_trn", oidc_trn)
+        if open_id_config_url is not None:
+            pulumi.set(__self__, "open_id_config_url", open_id_config_url)
+
+    @property
+    @pulumi.getter
+    def audience(self) -> Optional[pulumi.Input[str]]:
+        """
+        The audience of the IRSA.
+        """
+        return pulumi.get(self, "audience")
+
+    @audience.setter
+    def audience(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "audience", value)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to enable IRSA for the cluster.
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enabled", value)
+
+    @property
+    @pulumi.getter
+    def issuer(self) -> Optional[pulumi.Input[str]]:
+        """
+        The issuer of the IRSA.
+        """
+        return pulumi.get(self, "issuer")
+
+    @issuer.setter
+    def issuer(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "issuer", value)
+
+    @property
+    @pulumi.getter(name="jwksUrl")
+    def jwks_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        The JWKS URL of the IRSA.
+        """
+        return pulumi.get(self, "jwks_url")
+
+    @jwks_url.setter
+    def jwks_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "jwks_url", value)
+
+    @property
+    @pulumi.getter(name="oidcTrn")
+    def oidc_trn(self) -> Optional[pulumi.Input[str]]:
+        """
+        The OIDC trn of the IRSA.
+        """
+        return pulumi.get(self, "oidc_trn")
+
+    @oidc_trn.setter
+    def oidc_trn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "oidc_trn", value)
+
+    @property
+    @pulumi.getter(name="openIdConfigUrl")
+    def open_id_config_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        The OpenID Connect configuration URL of the IRSA.
+        """
+        return pulumi.get(self, "open_id_config_url")
+
+    @open_id_config_url.setter
+    def open_id_config_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "open_id_config_url", value)
 
 
 @pulumi.input_type
@@ -2211,6 +2317,84 @@ class NodePoolKubernetesConfigTaintArgs:
     @value.setter
     def value(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class NodePoolManagementArgs:
+    def __init__(__self__, *,
+                 enabled: Optional[pulumi.Input[bool]] = None,
+                 remedy_config: Optional[pulumi.Input['NodePoolManagementRemedyConfigArgs']] = None):
+        """
+        :param pulumi.Input[bool] enabled: Whether to enable the management function of the node pool. Default is `false`.
+        :param pulumi.Input['NodePoolManagementRemedyConfigArgs'] remedy_config: The Remedy Config of NodePool. This field is valid when the value of `enabled` is `true`.
+        """
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if remedy_config is not None:
+            pulumi.set(__self__, "remedy_config", remedy_config)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to enable the management function of the node pool. Default is `false`.
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enabled", value)
+
+    @property
+    @pulumi.getter(name="remedyConfig")
+    def remedy_config(self) -> Optional[pulumi.Input['NodePoolManagementRemedyConfigArgs']]:
+        """
+        The Remedy Config of NodePool. This field is valid when the value of `enabled` is `true`.
+        """
+        return pulumi.get(self, "remedy_config")
+
+    @remedy_config.setter
+    def remedy_config(self, value: Optional[pulumi.Input['NodePoolManagementRemedyConfigArgs']]):
+        pulumi.set(self, "remedy_config", value)
+
+
+@pulumi.input_type
+class NodePoolManagementRemedyConfigArgs:
+    def __init__(__self__, *,
+                 enabled: Optional[pulumi.Input[bool]] = None,
+                 id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[bool] enabled: Whether to enable the remedy function of the node pool. Default is `false`.
+        :param pulumi.Input[str] id: The ID of the remedy policy. This field is valid when the value of `enabled` is `true`.
+        """
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to enable the remedy function of the node pool. Default is `false`.
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enabled", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the remedy policy. This field is valid when the value of `enabled` is `true`.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
 
 
 @pulumi.input_type

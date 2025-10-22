@@ -22,6 +22,7 @@ class ClusterArgs:
                  client_token: Optional[pulumi.Input[str]] = None,
                  delete_protection_enabled: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 irsa_enabled: Optional[pulumi.Input[bool]] = None,
                  kubernetes_version: Optional[pulumi.Input[str]] = None,
                  logging_config: Optional[pulumi.Input['ClusterLoggingConfigArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -35,6 +36,7 @@ class ClusterArgs:
         :param pulumi.Input[str] client_token: ClientToken is a case-sensitive string of no more than 64 ASCII characters passed in by the caller.
         :param pulumi.Input[bool] delete_protection_enabled: The delete protection of the cluster, the value is `true` or `false`.
         :param pulumi.Input[str] description: The description of the cluster.
+        :param pulumi.Input[bool] irsa_enabled: Whether to enable IRSA for the cluster. This field is valid only when modifying the cluster.
         :param pulumi.Input[str] kubernetes_version: The version of Kubernetes specified when creating a VKE cluster (specified to patch version), with an example value of `1.24`. If not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
         :param pulumi.Input['ClusterLoggingConfigArgs'] logging_config: Cluster log configuration information.
         :param pulumi.Input[str] name: The name of the cluster.
@@ -50,6 +52,8 @@ class ClusterArgs:
             pulumi.set(__self__, "delete_protection_enabled", delete_protection_enabled)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if irsa_enabled is not None:
+            pulumi.set(__self__, "irsa_enabled", irsa_enabled)
         if kubernetes_version is not None:
             pulumi.set(__self__, "kubernetes_version", kubernetes_version)
         if logging_config is not None:
@@ -134,6 +138,18 @@ class ClusterArgs:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter(name="irsaEnabled")
+    def irsa_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to enable IRSA for the cluster. This field is valid only when modifying the cluster.
+        """
+        return pulumi.get(self, "irsa_enabled")
+
+    @irsa_enabled.setter
+    def irsa_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "irsa_enabled", value)
+
+    @property
     @pulumi.getter(name="kubernetesVersion")
     def kubernetes_version(self) -> Optional[pulumi.Input[str]]:
         """
@@ -202,6 +218,8 @@ class _ClusterState:
                  delete_protection_enabled: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  eip_allocation_id: Optional[pulumi.Input[str]] = None,
+                 irsa_configs: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterIrsaConfigArgs']]]] = None,
+                 irsa_enabled: Optional[pulumi.Input[bool]] = None,
                  kubeconfig_private: Optional[pulumi.Input[str]] = None,
                  kubeconfig_public: Optional[pulumi.Input[str]] = None,
                  kubernetes_version: Optional[pulumi.Input[str]] = None,
@@ -218,6 +236,8 @@ class _ClusterState:
         :param pulumi.Input[bool] delete_protection_enabled: The delete protection of the cluster, the value is `true` or `false`.
         :param pulumi.Input[str] description: The description of the cluster.
         :param pulumi.Input[str] eip_allocation_id: Eip allocation Id.
+        :param pulumi.Input[Sequence[pulumi.Input['ClusterIrsaConfigArgs']]] irsa_configs: The IRSA configuration.
+        :param pulumi.Input[bool] irsa_enabled: Whether to enable IRSA for the cluster. This field is valid only when modifying the cluster.
         :param pulumi.Input[str] kubeconfig_private: Kubeconfig data with private network access, returned in BASE64 encoding, it is suggested to use vke_kubeconfig instead.
         :param pulumi.Input[str] kubeconfig_public: Kubeconfig data with public network access, returned in BASE64 encoding, it is suggested to use vke_kubeconfig instead.
         :param pulumi.Input[str] kubernetes_version: The version of Kubernetes specified when creating a VKE cluster (specified to patch version), with an example value of `1.24`. If not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
@@ -238,6 +258,10 @@ class _ClusterState:
             pulumi.set(__self__, "description", description)
         if eip_allocation_id is not None:
             pulumi.set(__self__, "eip_allocation_id", eip_allocation_id)
+        if irsa_configs is not None:
+            pulumi.set(__self__, "irsa_configs", irsa_configs)
+        if irsa_enabled is not None:
+            pulumi.set(__self__, "irsa_enabled", irsa_enabled)
         if kubeconfig_private is not None:
             pulumi.set(__self__, "kubeconfig_private", kubeconfig_private)
         if kubeconfig_public is not None:
@@ -316,6 +340,30 @@ class _ClusterState:
     @eip_allocation_id.setter
     def eip_allocation_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "eip_allocation_id", value)
+
+    @property
+    @pulumi.getter(name="irsaConfigs")
+    def irsa_configs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterIrsaConfigArgs']]]]:
+        """
+        The IRSA configuration.
+        """
+        return pulumi.get(self, "irsa_configs")
+
+    @irsa_configs.setter
+    def irsa_configs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterIrsaConfigArgs']]]]):
+        pulumi.set(self, "irsa_configs", value)
+
+    @property
+    @pulumi.getter(name="irsaEnabled")
+    def irsa_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to enable IRSA for the cluster. This field is valid only when modifying the cluster.
+        """
+        return pulumi.get(self, "irsa_enabled")
+
+    @irsa_enabled.setter
+    def irsa_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "irsa_enabled", value)
 
     @property
     @pulumi.getter(name="kubeconfigPrivate")
@@ -435,6 +483,7 @@ class Cluster(pulumi.CustomResource):
                  cluster_config: Optional[pulumi.Input[pulumi.InputType['ClusterClusterConfigArgs']]] = None,
                  delete_protection_enabled: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 irsa_enabled: Optional[pulumi.Input[bool]] = None,
                  kubernetes_version: Optional[pulumi.Input[str]] = None,
                  logging_config: Optional[pulumi.Input[pulumi.InputType['ClusterLoggingConfigArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -471,6 +520,7 @@ class Cluster(pulumi.CustomResource):
             description="created by terraform",
             project_name="default",
             delete_protection_enabled=False,
+            irsa_enabled=False,
             cluster_config=volcengine.vke.ClusterClusterConfigArgs(
                 subnet_ids=[foo_subnet.id],
                 api_server_public_access_enabled=True,
@@ -499,6 +549,9 @@ class Cluster(pulumi.CustomResource):
         # create vke node pool
         foo_node_pool = volcengine.vke.NodePool("fooNodePool",
             cluster_id=foo_cluster.id,
+            management=volcengine.vke.NodePoolManagementArgs(
+                enabled=False,
+            ),
             auto_scaling=volcengine.vke.NodePoolAutoScalingArgs(
                 enabled=True,
                 min_replicas=0,
@@ -599,6 +652,7 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['ClusterClusterConfigArgs']] cluster_config: The config of the cluster.
         :param pulumi.Input[bool] delete_protection_enabled: The delete protection of the cluster, the value is `true` or `false`.
         :param pulumi.Input[str] description: The description of the cluster.
+        :param pulumi.Input[bool] irsa_enabled: Whether to enable IRSA for the cluster. This field is valid only when modifying the cluster.
         :param pulumi.Input[str] kubernetes_version: The version of Kubernetes specified when creating a VKE cluster (specified to patch version), with an example value of `1.24`. If not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
         :param pulumi.Input[pulumi.InputType['ClusterLoggingConfigArgs']] logging_config: Cluster log configuration information.
         :param pulumi.Input[str] name: The name of the cluster.
@@ -641,6 +695,7 @@ class Cluster(pulumi.CustomResource):
             description="created by terraform",
             project_name="default",
             delete_protection_enabled=False,
+            irsa_enabled=False,
             cluster_config=volcengine.vke.ClusterClusterConfigArgs(
                 subnet_ids=[foo_subnet.id],
                 api_server_public_access_enabled=True,
@@ -669,6 +724,9 @@ class Cluster(pulumi.CustomResource):
         # create vke node pool
         foo_node_pool = volcengine.vke.NodePool("fooNodePool",
             cluster_id=foo_cluster.id,
+            management=volcengine.vke.NodePoolManagementArgs(
+                enabled=False,
+            ),
             auto_scaling=volcengine.vke.NodePoolAutoScalingArgs(
                 enabled=True,
                 min_replicas=0,
@@ -782,6 +840,7 @@ class Cluster(pulumi.CustomResource):
                  cluster_config: Optional[pulumi.Input[pulumi.InputType['ClusterClusterConfigArgs']]] = None,
                  delete_protection_enabled: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 irsa_enabled: Optional[pulumi.Input[bool]] = None,
                  kubernetes_version: Optional[pulumi.Input[str]] = None,
                  logging_config: Optional[pulumi.Input[pulumi.InputType['ClusterLoggingConfigArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -804,6 +863,7 @@ class Cluster(pulumi.CustomResource):
             __props__.__dict__["cluster_config"] = cluster_config
             __props__.__dict__["delete_protection_enabled"] = delete_protection_enabled
             __props__.__dict__["description"] = description
+            __props__.__dict__["irsa_enabled"] = irsa_enabled
             __props__.__dict__["kubernetes_version"] = kubernetes_version
             __props__.__dict__["logging_config"] = logging_config
             __props__.__dict__["name"] = name
@@ -816,6 +876,7 @@ class Cluster(pulumi.CustomResource):
             __props__.__dict__["services_config"] = services_config
             __props__.__dict__["tags"] = tags
             __props__.__dict__["eip_allocation_id"] = None
+            __props__.__dict__["irsa_configs"] = None
             __props__.__dict__["kubeconfig_private"] = None
             __props__.__dict__["kubeconfig_public"] = None
         super(Cluster, __self__).__init__(
@@ -833,6 +894,8 @@ class Cluster(pulumi.CustomResource):
             delete_protection_enabled: Optional[pulumi.Input[bool]] = None,
             description: Optional[pulumi.Input[str]] = None,
             eip_allocation_id: Optional[pulumi.Input[str]] = None,
+            irsa_configs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterIrsaConfigArgs']]]]] = None,
+            irsa_enabled: Optional[pulumi.Input[bool]] = None,
             kubeconfig_private: Optional[pulumi.Input[str]] = None,
             kubeconfig_public: Optional[pulumi.Input[str]] = None,
             kubernetes_version: Optional[pulumi.Input[str]] = None,
@@ -854,6 +917,8 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[bool] delete_protection_enabled: The delete protection of the cluster, the value is `true` or `false`.
         :param pulumi.Input[str] description: The description of the cluster.
         :param pulumi.Input[str] eip_allocation_id: Eip allocation Id.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterIrsaConfigArgs']]]] irsa_configs: The IRSA configuration.
+        :param pulumi.Input[bool] irsa_enabled: Whether to enable IRSA for the cluster. This field is valid only when modifying the cluster.
         :param pulumi.Input[str] kubeconfig_private: Kubeconfig data with private network access, returned in BASE64 encoding, it is suggested to use vke_kubeconfig instead.
         :param pulumi.Input[str] kubeconfig_public: Kubeconfig data with public network access, returned in BASE64 encoding, it is suggested to use vke_kubeconfig instead.
         :param pulumi.Input[str] kubernetes_version: The version of Kubernetes specified when creating a VKE cluster (specified to patch version), with an example value of `1.24`. If not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
@@ -873,6 +938,8 @@ class Cluster(pulumi.CustomResource):
         __props__.__dict__["delete_protection_enabled"] = delete_protection_enabled
         __props__.__dict__["description"] = description
         __props__.__dict__["eip_allocation_id"] = eip_allocation_id
+        __props__.__dict__["irsa_configs"] = irsa_configs
+        __props__.__dict__["irsa_enabled"] = irsa_enabled
         __props__.__dict__["kubeconfig_private"] = kubeconfig_private
         __props__.__dict__["kubeconfig_public"] = kubeconfig_public
         __props__.__dict__["kubernetes_version"] = kubernetes_version
@@ -923,6 +990,22 @@ class Cluster(pulumi.CustomResource):
         Eip allocation Id.
         """
         return pulumi.get(self, "eip_allocation_id")
+
+    @property
+    @pulumi.getter(name="irsaConfigs")
+    def irsa_configs(self) -> pulumi.Output[Sequence['outputs.ClusterIrsaConfig']]:
+        """
+        The IRSA configuration.
+        """
+        return pulumi.get(self, "irsa_configs")
+
+    @property
+    @pulumi.getter(name="irsaEnabled")
+    def irsa_enabled(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Whether to enable IRSA for the cluster. This field is valid only when modifying the cluster.
+        """
+        return pulumi.get(self, "irsa_enabled")
 
     @property
     @pulumi.getter(name="kubeconfigPrivate")
