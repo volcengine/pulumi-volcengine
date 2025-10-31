@@ -541,6 +541,20 @@ class Cluster(pulumi.CustomResource):
             services_config=volcengine.vke.ClusterServicesConfigArgs(
                 service_cidrsv4s=["172.30.0.0/18"],
             ),
+            logging_config=volcengine.vke.ClusterLoggingConfigArgs(
+                log_setups=[
+                    volcengine.vke.ClusterLoggingConfigLogSetupArgs(
+                        log_type="ClusterAutoscaler",
+                        enabled=True,
+                        log_ttl=60,
+                    ),
+                    volcengine.vke.ClusterLoggingConfigLogSetupArgs(
+                        log_type="Etcd",
+                        enabled=False,
+                        log_ttl=60,
+                    ),
+                ],
+            ),
             tags=[volcengine.vke.ClusterTagArgs(
                 key="tf-k1",
                 value="tf-v1",
@@ -715,6 +729,20 @@ class Cluster(pulumi.CustomResource):
             ),
             services_config=volcengine.vke.ClusterServicesConfigArgs(
                 service_cidrsv4s=["172.30.0.0/18"],
+            ),
+            logging_config=volcengine.vke.ClusterLoggingConfigArgs(
+                log_setups=[
+                    volcengine.vke.ClusterLoggingConfigLogSetupArgs(
+                        log_type="ClusterAutoscaler",
+                        enabled=True,
+                        log_ttl=60,
+                    ),
+                    volcengine.vke.ClusterLoggingConfigLogSetupArgs(
+                        log_type="Etcd",
+                        enabled=False,
+                        log_ttl=60,
+                    ),
+                ],
             ),
             tags=[volcengine.vke.ClusterTagArgs(
                 key="tf-k1",

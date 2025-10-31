@@ -417,6 +417,8 @@ class ClusterLoggingConfigLogSetupArgs:
                KubeApiServer: kube-apiserver component logs.
                KubeScheduler: kube-scheduler component logs.
                KubeControllerManager: kube-controller-manager component logs.
+               Etcd: etcd component logs.
+               ClusterAutoscaler: cluster-autoscaler component logs.
         :param pulumi.Input[bool] enabled: Whether to enable the log option, true means enable, false means not enable, the default is false. When Enabled is changed from false to true, a new Topic will be created.
         :param pulumi.Input[int] log_ttl: The storage time of logs in Log Service. After the specified log storage time is exceeded, the expired logs in this log topic will be automatically cleared. The unit is days, and the default is 30 days. The value range is 1 to 3650, specifying 3650 days means permanent storage.
         """
@@ -435,6 +437,8 @@ class ClusterLoggingConfigLogSetupArgs:
         KubeApiServer: kube-apiserver component logs.
         KubeScheduler: kube-scheduler component logs.
         KubeControllerManager: kube-controller-manager component logs.
+        Etcd: etcd component logs.
+        ClusterAutoscaler: cluster-autoscaler component logs.
         """
         return pulumi.get(self, "log_type")
 

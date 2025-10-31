@@ -62,6 +62,8 @@ type SecurityGroup struct {
 	Status pulumi.StringOutput `pulumi:"status"`
 	// Tags.
 	Tags SecurityGroupTagArrayOutput `pulumi:"tags"`
+	// Type of SecurityGroup. Valid values: `cidrOnly`. If this parameter is not specified, it is a normal security group.
+	Type pulumi.StringOutput `pulumi:"type"`
 	// Id of the VPC.
 	VpcId pulumi.StringOutput `pulumi:"vpcId"`
 }
@@ -111,6 +113,8 @@ type securityGroupState struct {
 	Status *string `pulumi:"status"`
 	// Tags.
 	Tags []SecurityGroupTag `pulumi:"tags"`
+	// Type of SecurityGroup. Valid values: `cidrOnly`. If this parameter is not specified, it is a normal security group.
+	Type *string `pulumi:"type"`
 	// Id of the VPC.
 	VpcId *string `pulumi:"vpcId"`
 }
@@ -128,6 +132,8 @@ type SecurityGroupState struct {
 	Status pulumi.StringPtrInput
 	// Tags.
 	Tags SecurityGroupTagArrayInput
+	// Type of SecurityGroup. Valid values: `cidrOnly`. If this parameter is not specified, it is a normal security group.
+	Type pulumi.StringPtrInput
 	// Id of the VPC.
 	VpcId pulumi.StringPtrInput
 }
@@ -145,6 +151,8 @@ type securityGroupArgs struct {
 	SecurityGroupName *string `pulumi:"securityGroupName"`
 	// Tags.
 	Tags []SecurityGroupTag `pulumi:"tags"`
+	// Type of SecurityGroup. Valid values: `cidrOnly`. If this parameter is not specified, it is a normal security group.
+	Type *string `pulumi:"type"`
 	// Id of the VPC.
 	VpcId string `pulumi:"vpcId"`
 }
@@ -159,6 +167,8 @@ type SecurityGroupArgs struct {
 	SecurityGroupName pulumi.StringPtrInput
 	// Tags.
 	Tags SecurityGroupTagArrayInput
+	// Type of SecurityGroup. Valid values: `cidrOnly`. If this parameter is not specified, it is a normal security group.
+	Type pulumi.StringPtrInput
 	// Id of the VPC.
 	VpcId pulumi.StringInput
 }
@@ -278,6 +288,11 @@ func (o SecurityGroupOutput) Status() pulumi.StringOutput {
 // Tags.
 func (o SecurityGroupOutput) Tags() SecurityGroupTagArrayOutput {
 	return o.ApplyT(func(v *SecurityGroup) SecurityGroupTagArrayOutput { return v.Tags }).(SecurityGroupTagArrayOutput)
+}
+
+// Type of SecurityGroup. Valid values: `cidrOnly`. If this parameter is not specified, it is a normal security group.
+func (o SecurityGroupOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecurityGroup) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
 
 // Id of the VPC.

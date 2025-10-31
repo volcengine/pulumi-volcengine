@@ -88,6 +88,24 @@ namespace Pulumi.Volcengine.Vke
     ///                 "172.30.0.0/18",
     ///             },
     ///         },
+    ///         LoggingConfig = new Volcengine.Vke.Inputs.ClusterLoggingConfigArgs
+    ///         {
+    ///             LogSetups = new[]
+    ///             {
+    ///                 new Volcengine.Vke.Inputs.ClusterLoggingConfigLogSetupArgs
+    ///                 {
+    ///                     LogType = "ClusterAutoscaler",
+    ///                     Enabled = true,
+    ///                     LogTtl = 60,
+    ///                 },
+    ///                 new Volcengine.Vke.Inputs.ClusterLoggingConfigLogSetupArgs
+    ///                 {
+    ///                     LogType = "Etcd",
+    ///                     Enabled = false,
+    ///                     LogTtl = 60,
+    ///                 },
+    ///             },
+    ///         },
     ///         Tags = new[]
     ///         {
     ///             new Volcengine.Vke.Inputs.ClusterTagArgs
