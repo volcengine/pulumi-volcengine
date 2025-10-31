@@ -52913,6 +52913,8 @@ export namespace vke {
          * KubeApiServer: kube-apiserver component logs.
          * KubeScheduler: kube-scheduler component logs.
          * KubeControllerManager: kube-controller-manager component logs.
+         * Etcd: etcd component logs.
+         * ClusterAutoscaler: cluster-autoscaler component logs.
          */
         logType: string;
     }
@@ -58368,7 +58370,7 @@ export namespace vpc {
          */
         tags: outputs.vpc.GetSecurityGroupsSecurityGroupTag[];
         /**
-         * A Name Regex of SecurityGroup.
+         * The type of SecurityGroup.
          */
         type: string;
         /**
@@ -60028,7 +60030,7 @@ export namespace vpc {
          */
         tags: outputs.vpc.SecurityGroupsSecurityGroupTag[];
         /**
-         * A Name Regex of SecurityGroup.
+         * The type of SecurityGroup.
          */
         type: string;
         /**

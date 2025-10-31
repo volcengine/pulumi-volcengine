@@ -46,7 +46,7 @@ namespace Pulumi.Volcengine.Vpc.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.GetSecurityGroupsSecurityGroupTagResult> Tags;
         /// <summary>
-        /// A Name Regex of SecurityGroup.
+        /// The type of SecurityGroup.
         /// </summary>
         public readonly string Type;
         /// <summary>

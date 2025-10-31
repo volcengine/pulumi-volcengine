@@ -81,6 +81,10 @@ export class SecurityGroup extends pulumi.CustomResource {
      */
     public readonly tags!: pulumi.Output<outputs.vpc.SecurityGroupTag[] | undefined>;
     /**
+     * Type of SecurityGroup. Valid values: `cidrOnly`. If this parameter is not specified, it is a normal security group.
+     */
+    public readonly type!: pulumi.Output<string>;
+    /**
      * Id of the VPC.
      */
     public readonly vpcId!: pulumi.Output<string>;
@@ -104,6 +108,7 @@ export class SecurityGroup extends pulumi.CustomResource {
             resourceInputs["securityGroupName"] = state ? state.securityGroupName : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
             resourceInputs["vpcId"] = state ? state.vpcId : undefined;
         } else {
             const args = argsOrState as SecurityGroupArgs | undefined;
@@ -114,6 +119,7 @@ export class SecurityGroup extends pulumi.CustomResource {
             resourceInputs["projectName"] = args ? args.projectName : undefined;
             resourceInputs["securityGroupName"] = args ? args.securityGroupName : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["vpcId"] = args ? args.vpcId : undefined;
             resourceInputs["creationTime"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
@@ -152,6 +158,10 @@ export interface SecurityGroupState {
      */
     tags?: pulumi.Input<pulumi.Input<inputs.vpc.SecurityGroupTag>[]>;
     /**
+     * Type of SecurityGroup. Valid values: `cidrOnly`. If this parameter is not specified, it is a normal security group.
+     */
+    type?: pulumi.Input<string>;
+    /**
      * Id of the VPC.
      */
     vpcId?: pulumi.Input<string>;
@@ -177,6 +187,10 @@ export interface SecurityGroupArgs {
      * Tags.
      */
     tags?: pulumi.Input<pulumi.Input<inputs.vpc.SecurityGroupTag>[]>;
+    /**
+     * Type of SecurityGroup. Valid values: `cidrOnly`. If this parameter is not specified, it is a normal security group.
+     */
+    type?: pulumi.Input<string>;
     /**
      * Id of the VPC.
      */

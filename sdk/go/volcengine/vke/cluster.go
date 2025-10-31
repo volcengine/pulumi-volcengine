@@ -91,6 +91,20 @@ import (
 //						pulumi.String("172.30.0.0/18"),
 //					},
 //				},
+//				LoggingConfig: &vke.ClusterLoggingConfigArgs{
+//					LogSetups: vke.ClusterLoggingConfigLogSetupArray{
+//						&vke.ClusterLoggingConfigLogSetupArgs{
+//							LogType: pulumi.String("ClusterAutoscaler"),
+//							Enabled: pulumi.Bool(true),
+//							LogTtl:  pulumi.Int(60),
+//						},
+//						&vke.ClusterLoggingConfigLogSetupArgs{
+//							LogType: pulumi.String("Etcd"),
+//							Enabled: pulumi.Bool(false),
+//							LogTtl:  pulumi.Int(60),
+//						},
+//					},
+//				},
 //				Tags: vke.ClusterTagArray{
 //					&vke.ClusterTagArgs{
 //						Key:   pulumi.String("tf-k1"),

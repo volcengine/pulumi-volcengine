@@ -27,6 +27,8 @@ namespace Pulumi.Volcengine.Vke.Outputs
         /// KubeApiServer: kube-apiserver component logs.
         /// KubeScheduler: kube-scheduler component logs.
         /// KubeControllerManager: kube-controller-manager component logs.
+        /// Etcd: etcd component logs.
+        /// ClusterAutoscaler: cluster-autoscaler component logs.
         /// </summary>
         public readonly string LogType;
 
