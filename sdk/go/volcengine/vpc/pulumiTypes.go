@@ -5662,7 +5662,7 @@ type SecurityGroupsSecurityGroup struct {
 	Status string `pulumi:"status"`
 	// Tags.
 	Tags []SecurityGroupsSecurityGroupTag `pulumi:"tags"`
-	// A Name Regex of SecurityGroup.
+	// The type of SecurityGroup.
 	Type string `pulumi:"type"`
 	// The ID of vpc where security group is located.
 	VpcId string `pulumi:"vpcId"`
@@ -5696,7 +5696,7 @@ type SecurityGroupsSecurityGroupArgs struct {
 	Status pulumi.StringInput `pulumi:"status"`
 	// Tags.
 	Tags SecurityGroupsSecurityGroupTagArrayInput `pulumi:"tags"`
-	// A Name Regex of SecurityGroup.
+	// The type of SecurityGroup.
 	Type pulumi.StringInput `pulumi:"type"`
 	// The ID of vpc where security group is located.
 	VpcId pulumi.StringInput `pulumi:"vpcId"`
@@ -5793,7 +5793,7 @@ func (o SecurityGroupsSecurityGroupOutput) Tags() SecurityGroupsSecurityGroupTag
 	return o.ApplyT(func(v SecurityGroupsSecurityGroup) []SecurityGroupsSecurityGroupTag { return v.Tags }).(SecurityGroupsSecurityGroupTagArrayOutput)
 }
 
-// A Name Regex of SecurityGroup.
+// The type of SecurityGroup.
 func (o SecurityGroupsSecurityGroupOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v SecurityGroupsSecurityGroup) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -14192,7 +14192,7 @@ type GetSecurityGroupsSecurityGroup struct {
 	Status string `pulumi:"status"`
 	// Tags.
 	Tags []GetSecurityGroupsSecurityGroupTag `pulumi:"tags"`
-	// A Name Regex of SecurityGroup.
+	// The type of SecurityGroup.
 	Type string `pulumi:"type"`
 	// The ID of vpc where security group is located.
 	VpcId string `pulumi:"vpcId"`
@@ -14226,7 +14226,7 @@ type GetSecurityGroupsSecurityGroupArgs struct {
 	Status pulumi.StringInput `pulumi:"status"`
 	// Tags.
 	Tags GetSecurityGroupsSecurityGroupTagArrayInput `pulumi:"tags"`
-	// A Name Regex of SecurityGroup.
+	// The type of SecurityGroup.
 	Type pulumi.StringInput `pulumi:"type"`
 	// The ID of vpc where security group is located.
 	VpcId pulumi.StringInput `pulumi:"vpcId"`
@@ -14323,7 +14323,7 @@ func (o GetSecurityGroupsSecurityGroupOutput) Tags() GetSecurityGroupsSecurityGr
 	return o.ApplyT(func(v GetSecurityGroupsSecurityGroup) []GetSecurityGroupsSecurityGroupTag { return v.Tags }).(GetSecurityGroupsSecurityGroupTagArrayOutput)
 }
 
-// A Name Regex of SecurityGroup.
+// The type of SecurityGroup.
 func (o GetSecurityGroupsSecurityGroupOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSecurityGroupsSecurityGroup) string { return v.Type }).(pulumi.StringOutput)
 }

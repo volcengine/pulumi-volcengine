@@ -78,6 +78,12 @@ namespace Pulumi.Volcengine.Vpc
         public Output<ImmutableArray<Outputs.SecurityGroupTag>> Tags { get; private set; } = null!;
 
         /// <summary>
+        /// Type of SecurityGroup. Valid values: `cidr_only`. If this parameter is not specified, it is a normal security group.
+        /// </summary>
+        [Output("type")]
+        public Output<string> Type { get; private set; } = null!;
+
+        /// <summary>
         /// Id of the VPC.
         /// </summary>
         [Output("vpcId")]
@@ -161,6 +167,12 @@ namespace Pulumi.Volcengine.Vpc
         }
 
         /// <summary>
+        /// Type of SecurityGroup. Valid values: `cidr_only`. If this parameter is not specified, it is a normal security group.
+        /// </summary>
+        [Input("type")]
+        public Input<string>? Type { get; set; }
+
+        /// <summary>
         /// Id of the VPC.
         /// </summary>
         [Input("vpcId", required: true)]
@@ -215,6 +227,12 @@ namespace Pulumi.Volcengine.Vpc
             get => _tags ?? (_tags = new InputList<Inputs.SecurityGroupTagGetArgs>());
             set => _tags = value;
         }
+
+        /// <summary>
+        /// Type of SecurityGroup. Valid values: `cidr_only`. If this parameter is not specified, it is a normal security group.
+        /// </summary>
+        [Input("type")]
+        public Input<string>? Type { get; set; }
 
         /// <summary>
         /// Id of the VPC.

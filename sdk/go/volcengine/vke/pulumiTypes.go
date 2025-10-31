@@ -1294,6 +1294,8 @@ type ClusterLoggingConfigLogSetup struct {
 	// KubeApiServer: kube-apiserver component logs.
 	// KubeScheduler: kube-scheduler component logs.
 	// KubeControllerManager: kube-controller-manager component logs.
+	// Etcd: etcd component logs.
+	// ClusterAutoscaler: cluster-autoscaler component logs.
 	LogType string `pulumi:"logType"`
 }
 
@@ -1318,6 +1320,8 @@ type ClusterLoggingConfigLogSetupArgs struct {
 	// KubeApiServer: kube-apiserver component logs.
 	// KubeScheduler: kube-scheduler component logs.
 	// KubeControllerManager: kube-controller-manager component logs.
+	// Etcd: etcd component logs.
+	// ClusterAutoscaler: cluster-autoscaler component logs.
 	LogType pulumi.StringInput `pulumi:"logType"`
 }
 
@@ -1387,6 +1391,8 @@ func (o ClusterLoggingConfigLogSetupOutput) LogTtl() pulumi.IntPtrOutput {
 // KubeApiServer: kube-apiserver component logs.
 // KubeScheduler: kube-scheduler component logs.
 // KubeControllerManager: kube-controller-manager component logs.
+// Etcd: etcd component logs.
+// ClusterAutoscaler: cluster-autoscaler component logs.
 func (o ClusterLoggingConfigLogSetupOutput) LogType() pulumi.StringOutput {
 	return o.ApplyT(func(v ClusterLoggingConfigLogSetup) string { return v.LogType }).(pulumi.StringOutput)
 }

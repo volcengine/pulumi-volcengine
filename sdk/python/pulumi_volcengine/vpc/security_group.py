@@ -20,7 +20,8 @@ class SecurityGroupArgs:
                  description: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  security_group_name: Optional[pulumi.Input[str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['SecurityGroupTagArgs']]]] = None):
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['SecurityGroupTagArgs']]]] = None,
+                 type: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SecurityGroup resource.
         :param pulumi.Input[str] vpc_id: Id of the VPC.
@@ -28,6 +29,7 @@ class SecurityGroupArgs:
         :param pulumi.Input[str] project_name: The ProjectName of SecurityGroup.
         :param pulumi.Input[str] security_group_name: Name of SecurityGroup.
         :param pulumi.Input[Sequence[pulumi.Input['SecurityGroupTagArgs']]] tags: Tags.
+        :param pulumi.Input[str] type: Type of SecurityGroup. Valid values: `cidr_only`. If this parameter is not specified, it is a normal security group.
         """
         pulumi.set(__self__, "vpc_id", vpc_id)
         if description is not None:
@@ -38,6 +40,8 @@ class SecurityGroupArgs:
             pulumi.set(__self__, "security_group_name", security_group_name)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter(name="vpcId")
@@ -99,6 +103,18 @@ class SecurityGroupArgs:
     def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SecurityGroupTagArgs']]]]):
         pulumi.set(self, "tags", value)
 
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Type of SecurityGroup. Valid values: `cidr_only`. If this parameter is not specified, it is a normal security group.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
+
 
 @pulumi.input_type
 class _SecurityGroupState:
@@ -109,6 +125,7 @@ class _SecurityGroupState:
                  security_group_name: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input['SecurityGroupTagArgs']]]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SecurityGroup resources.
@@ -118,6 +135,7 @@ class _SecurityGroupState:
         :param pulumi.Input[str] security_group_name: Name of SecurityGroup.
         :param pulumi.Input[str] status: Status of SecurityGroup.
         :param pulumi.Input[Sequence[pulumi.Input['SecurityGroupTagArgs']]] tags: Tags.
+        :param pulumi.Input[str] type: Type of SecurityGroup. Valid values: `cidr_only`. If this parameter is not specified, it is a normal security group.
         :param pulumi.Input[str] vpc_id: Id of the VPC.
         """
         if creation_time is not None:
@@ -132,6 +150,8 @@ class _SecurityGroupState:
             pulumi.set(__self__, "status", status)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
         if vpc_id is not None:
             pulumi.set(__self__, "vpc_id", vpc_id)
 
@@ -208,6 +228,18 @@ class _SecurityGroupState:
         pulumi.set(self, "tags", value)
 
     @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Type of SecurityGroup. Valid values: `cidr_only`. If this parameter is not specified, it is a normal security group.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
+
+    @property
     @pulumi.getter(name="vpcId")
     def vpc_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -229,6 +261,7 @@ class SecurityGroup(pulumi.CustomResource):
                  project_name: Optional[pulumi.Input[str]] = None,
                  security_group_name: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecurityGroupTagArgs']]]]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -258,6 +291,7 @@ class SecurityGroup(pulumi.CustomResource):
         :param pulumi.Input[str] project_name: The ProjectName of SecurityGroup.
         :param pulumi.Input[str] security_group_name: Name of SecurityGroup.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecurityGroupTagArgs']]]] tags: Tags.
+        :param pulumi.Input[str] type: Type of SecurityGroup. Valid values: `cidr_only`. If this parameter is not specified, it is a normal security group.
         :param pulumi.Input[str] vpc_id: Id of the VPC.
         """
         ...
@@ -306,6 +340,7 @@ class SecurityGroup(pulumi.CustomResource):
                  project_name: Optional[pulumi.Input[str]] = None,
                  security_group_name: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecurityGroupTagArgs']]]]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -320,6 +355,7 @@ class SecurityGroup(pulumi.CustomResource):
             __props__.__dict__["project_name"] = project_name
             __props__.__dict__["security_group_name"] = security_group_name
             __props__.__dict__["tags"] = tags
+            __props__.__dict__["type"] = type
             if vpc_id is None and not opts.urn:
                 raise TypeError("Missing required property 'vpc_id'")
             __props__.__dict__["vpc_id"] = vpc_id
@@ -341,6 +377,7 @@ class SecurityGroup(pulumi.CustomResource):
             security_group_name: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecurityGroupTagArgs']]]]] = None,
+            type: Optional[pulumi.Input[str]] = None,
             vpc_id: Optional[pulumi.Input[str]] = None) -> 'SecurityGroup':
         """
         Get an existing SecurityGroup resource's state with the given name, id, and optional extra
@@ -355,6 +392,7 @@ class SecurityGroup(pulumi.CustomResource):
         :param pulumi.Input[str] security_group_name: Name of SecurityGroup.
         :param pulumi.Input[str] status: Status of SecurityGroup.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecurityGroupTagArgs']]]] tags: Tags.
+        :param pulumi.Input[str] type: Type of SecurityGroup. Valid values: `cidr_only`. If this parameter is not specified, it is a normal security group.
         :param pulumi.Input[str] vpc_id: Id of the VPC.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -367,6 +405,7 @@ class SecurityGroup(pulumi.CustomResource):
         __props__.__dict__["security_group_name"] = security_group_name
         __props__.__dict__["status"] = status
         __props__.__dict__["tags"] = tags
+        __props__.__dict__["type"] = type
         __props__.__dict__["vpc_id"] = vpc_id
         return SecurityGroup(resource_name, opts=opts, __props__=__props__)
 
@@ -417,6 +456,14 @@ class SecurityGroup(pulumi.CustomResource):
         Tags.
         """
         return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter
+    def type(self) -> pulumi.Output[str]:
+        """
+        Type of SecurityGroup. Valid values: `cidr_only`. If this parameter is not specified, it is a normal security group.
+        """
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter(name="vpcId")

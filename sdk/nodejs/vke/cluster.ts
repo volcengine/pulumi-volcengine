@@ -59,6 +59,20 @@ import * as utilities from "../utilities";
  *     servicesConfig: {
  *         serviceCidrsv4s: ["172.30.0.0/18"],
  *     },
+ *     loggingConfig: {
+ *         logSetups: [
+ *             {
+ *                 logType: "ClusterAutoscaler",
+ *                 enabled: true,
+ *                 logTtl: 60,
+ *             },
+ *             {
+ *                 logType: "Etcd",
+ *                 enabled: false,
+ *                 logTtl: 60,
+ *             },
+ *         ],
+ *     },
  *     tags: [{
  *         key: "tf-k1",
  *         value: "tf-v1",

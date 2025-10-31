@@ -3095,7 +3095,7 @@ class SecurityGroupsSecurityGroupResult(dict):
         :param str security_group_name: The Name of SecurityGroup.
         :param str status: The Status of SecurityGroup.
         :param Sequence['SecurityGroupsSecurityGroupTagArgs'] tags: Tags.
-        :param str type: A Name Regex of SecurityGroup.
+        :param str type: The type of SecurityGroup.
         :param str vpc_id: The ID of vpc where security group is located.
         """
         pulumi.set(__self__, "creation_time", creation_time)
@@ -3177,7 +3177,7 @@ class SecurityGroupsSecurityGroupResult(dict):
     @pulumi.getter
     def type(self) -> str:
         """
-        A Name Regex of SecurityGroup.
+        The type of SecurityGroup.
         """
         return pulumi.get(self, "type")
 
@@ -7637,7 +7637,7 @@ class GetSecurityGroupsSecurityGroupResult(dict):
         :param str security_group_name: The Name of SecurityGroup.
         :param str status: The Status of SecurityGroup.
         :param Sequence['GetSecurityGroupsSecurityGroupTagArgs'] tags: Tags.
-        :param str type: A Name Regex of SecurityGroup.
+        :param str type: The type of SecurityGroup.
         :param str vpc_id: The ID of vpc where security group is located.
         """
         pulumi.set(__self__, "creation_time", creation_time)
@@ -7719,7 +7719,7 @@ class GetSecurityGroupsSecurityGroupResult(dict):
     @pulumi.getter
     def type(self) -> str:
         """
-        A Name Regex of SecurityGroup.
+        The type of SecurityGroup.
         """
         return pulumi.get(self, "type")
 
