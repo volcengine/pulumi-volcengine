@@ -36,12 +36,13 @@ namespace Pulumi.Volcengine.Nat
     ///         VpcId = fooVpc.Id,
     ///     });
     /// 
-    ///     var fooGateway = new Volcengine.Nat.Gateway("fooGateway", new()
+    ///     // create internet nat gateway and snat entry and dnat entry
+    ///     var internetNatGateway = new Volcengine.Nat.Gateway("internetNatGateway", new()
     ///     {
     ///         VpcId = fooVpc.Id,
     ///         SubnetId = fooSubnet.Id,
     ///         Spec = "Small",
-    ///         NatGatewayName = "acc-test-ng",
+    ///         NatGatewayName = "acc-test-internet_ng",
     ///         Description = "acc-test",
     ///         BillingType = "PostPaid",
     ///         ProjectName = "default",
@@ -53,6 +54,99 @@ namespace Pulumi.Volcengine.Nat
     ///                 Value = "v1",
     ///             },
     ///         },
+    ///     });
+    /// 
+    ///     var fooAddress = new Volcengine.Eip.Address("fooAddress", new()
+    ///     {
+    ///         Description = "acc-test",
+    ///         Bandwidth = 1,
+    ///         BillingType = "PostPaidByBandwidth",
+    ///         Isp = "BGP",
+    ///     });
+    /// 
+    ///     var fooAssociate = new Volcengine.Eip.Associate("fooAssociate", new()
+    ///     {
+    ///         AllocationId = fooAddress.Id,
+    ///         InstanceId = internetNatGateway.Id,
+    ///         InstanceType = "Nat",
+    ///     });
+    /// 
+    ///     var fooSnatEntry = new Volcengine.Nat.SnatEntry("fooSnatEntry", new()
+    ///     {
+    ///         SnatEntryName = "acc-test-snat-entry",
+    ///         NatGatewayId = internetNatGateway.Id,
+    ///         EipId = fooAddress.Id,
+    ///         SourceCidr = "172.16.0.0/24",
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn =
+    ///         {
+    ///             fooAssociate,
+    ///         },
+    ///     });
+    /// 
+    ///     var fooDnatEntry = new Volcengine.Nat.DnatEntry("fooDnatEntry", new()
+    ///     {
+    ///         DnatEntryName = "acc-test-dnat-entry",
+    ///         ExternalIp = fooAddress.EipAddress,
+    ///         ExternalPort = "80",
+    ///         InternalIp = "172.16.0.10",
+    ///         InternalPort = "80",
+    ///         NatGatewayId = internetNatGateway.Id,
+    ///         Protocol = "tcp",
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn =
+    ///         {
+    ///             fooAssociate,
+    ///         },
+    ///     });
+    /// 
+    ///     // create intranet nat gateway and snat entry and dnat entry
+    ///     var intranetNatGateway = new Volcengine.Nat.Gateway("intranetNatGateway", new()
+    ///     {
+    ///         VpcId = fooVpc.Id,
+    ///         SubnetId = fooSubnet.Id,
+    ///         NatGatewayName = "acc-test-intranet_ng",
+    ///         Description = "acc-test",
+    ///         NetworkType = "intranet",
+    ///         BillingType = "PostPaidByUsage",
+    ///         ProjectName = "default",
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Nat.Inputs.GatewayTagArgs
+    ///             {
+    ///                 Key = "k1",
+    ///                 Value = "v1",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var fooIp = new Volcengine.Nat.Ip("fooIp", new()
+    ///     {
+    ///         NatGatewayId = intranetNatGateway.Id,
+    ///         NatIpName = "acc-test-nat-ip",
+    ///         NatIpDescription = "acc-test",
+    ///         NatIp = "172.16.0.3",
+    ///     });
+    /// 
+    ///     var foo_intranetSnatEntry = new Volcengine.Nat.SnatEntry("foo-intranetSnatEntry", new()
+    ///     {
+    ///         SnatEntryName = "acc-test-snat-entry-intranet",
+    ///         NatGatewayId = intranetNatGateway.Id,
+    ///         NatIpId = fooIp.Id,
+    ///         SourceCidr = "172.16.0.0/24",
+    ///     });
+    /// 
+    ///     var foo_intranetDnatEntry = new Volcengine.Nat.DnatEntry("foo-intranetDnatEntry", new()
+    ///     {
+    ///         NatGatewayId = intranetNatGateway.Id,
+    ///         DnatEntryName = "acc-test-dnat-entry-intranet",
+    ///         Protocol = "tcp",
+    ///         InternalIp = "172.16.0.5",
+    ///         InternalPort = "82",
+    ///         ExternalIp = fooIp.NatIp,
+    ///         ExternalPort = "87",
     ///     });
     /// 
     /// });
@@ -70,7 +164,8 @@ namespace Pulumi.Volcengine.Nat
     public partial class Gateway : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The billing type of the NatGateway, the value is `PostPaid` or `PrePaid`.
+        /// The billing type of the NatGateway, the value is `PostPaid` or `PrePaid` or `PostPaidByUsage`. Default value is `PostPaid`.
+        /// When the `network_type` is `intranet`, the billing type must be `PostPaidByUsage`.
         /// </summary>
         [Output("billingType")]
         public Output<string?> BillingType { get; private set; } = null!;
@@ -88,6 +183,12 @@ namespace Pulumi.Volcengine.Nat
         public Output<string?> NatGatewayName { get; private set; } = null!;
 
         /// <summary>
+        /// The network type of the NatGateway. Valid values are `internet` and `intranet`. Default value is `internet`.
+        /// </summary>
+        [Output("networkType")]
+        public Output<string?> NetworkType { get; private set; } = null!;
+
+        /// <summary>
         /// The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         /// </summary>
         [Output("period")]
@@ -101,6 +202,7 @@ namespace Pulumi.Volcengine.Nat
 
         /// <summary>
         /// The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large` or leave blank.
+        /// When the `billing_type` is `PostPaidByUsage`, this field should not be specified.
         /// </summary>
         [Output("spec")]
         public Output<string> Spec { get; private set; } = null!;
@@ -171,7 +273,8 @@ namespace Pulumi.Volcengine.Nat
     public sealed class GatewayArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The billing type of the NatGateway, the value is `PostPaid` or `PrePaid`.
+        /// The billing type of the NatGateway, the value is `PostPaid` or `PrePaid` or `PostPaidByUsage`. Default value is `PostPaid`.
+        /// When the `network_type` is `intranet`, the billing type must be `PostPaidByUsage`.
         /// </summary>
         [Input("billingType")]
         public Input<string>? BillingType { get; set; }
@@ -189,6 +292,12 @@ namespace Pulumi.Volcengine.Nat
         public Input<string>? NatGatewayName { get; set; }
 
         /// <summary>
+        /// The network type of the NatGateway. Valid values are `internet` and `intranet`. Default value is `internet`.
+        /// </summary>
+        [Input("networkType")]
+        public Input<string>? NetworkType { get; set; }
+
+        /// <summary>
         /// The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         /// </summary>
         [Input("period")]
@@ -202,6 +311,7 @@ namespace Pulumi.Volcengine.Nat
 
         /// <summary>
         /// The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large` or leave blank.
+        /// When the `billing_type` is `PostPaidByUsage`, this field should not be specified.
         /// </summary>
         [Input("spec")]
         public Input<string>? Spec { get; set; }
@@ -239,7 +349,8 @@ namespace Pulumi.Volcengine.Nat
     public sealed class GatewayState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The billing type of the NatGateway, the value is `PostPaid` or `PrePaid`.
+        /// The billing type of the NatGateway, the value is `PostPaid` or `PrePaid` or `PostPaidByUsage`. Default value is `PostPaid`.
+        /// When the `network_type` is `intranet`, the billing type must be `PostPaidByUsage`.
         /// </summary>
         [Input("billingType")]
         public Input<string>? BillingType { get; set; }
@@ -257,6 +368,12 @@ namespace Pulumi.Volcengine.Nat
         public Input<string>? NatGatewayName { get; set; }
 
         /// <summary>
+        /// The network type of the NatGateway. Valid values are `internet` and `intranet`. Default value is `internet`.
+        /// </summary>
+        [Input("networkType")]
+        public Input<string>? NetworkType { get; set; }
+
+        /// <summary>
         /// The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         /// </summary>
         [Input("period")]
@@ -270,6 +387,7 @@ namespace Pulumi.Volcengine.Nat
 
         /// <summary>
         /// The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large` or leave blank.
+        /// When the `billing_type` is `PostPaidByUsage`, this field should not be specified.
         /// </summary>
         [Input("spec")]
         public Input<string>? Spec { get; set; }

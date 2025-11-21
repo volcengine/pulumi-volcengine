@@ -22,6 +22,8 @@ type DnatEntriesDnatEntry struct {
 	ExternalIp string `pulumi:"externalIp"`
 	// The port or port segment that receives requests from the public network. If InternalPort is passed into the port segment, ExternalPort must also be passed into the port segment.
 	ExternalPort string `pulumi:"externalPort"`
+	// The ID of the DNAT entry.
+	Id string `pulumi:"id"`
 	// Provides the internal IP address.
 	InternalIp string `pulumi:"internalIp"`
 	// The port or port segment on which the cloud server instance provides services to the public network.
@@ -54,6 +56,8 @@ type DnatEntriesDnatEntryArgs struct {
 	ExternalIp pulumi.StringInput `pulumi:"externalIp"`
 	// The port or port segment that receives requests from the public network. If InternalPort is passed into the port segment, ExternalPort must also be passed into the port segment.
 	ExternalPort pulumi.StringInput `pulumi:"externalPort"`
+	// The ID of the DNAT entry.
+	Id pulumi.StringInput `pulumi:"id"`
 	// Provides the internal IP address.
 	InternalIp pulumi.StringInput `pulumi:"internalIp"`
 	// The port or port segment on which the cloud server instance provides services to the public network.
@@ -135,6 +139,11 @@ func (o DnatEntriesDnatEntryOutput) ExternalIp() pulumi.StringOutput {
 // The port or port segment that receives requests from the public network. If InternalPort is passed into the port segment, ExternalPort must also be passed into the port segment.
 func (o DnatEntriesDnatEntryOutput) ExternalPort() pulumi.StringOutput {
 	return o.ApplyT(func(v DnatEntriesDnatEntry) string { return v.ExternalPort }).(pulumi.StringOutput)
+}
+
+// The ID of the DNAT entry.
+func (o DnatEntriesDnatEntryOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v DnatEntriesDnatEntry) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Provides the internal IP address.
@@ -299,6 +308,8 @@ type GatewaysNatGateway struct {
 	DeletedTime string `pulumi:"deletedTime"`
 	// The description of the NatGateway.
 	Description string `pulumi:"description"`
+	// A list of dnat entry ids.
+	DnatEntryIds []string `pulumi:"dnatEntryIds"`
 	// The eip addresses of the NatGateway.
 	EipAddresses []GatewaysNatGatewayEipAddress `pulumi:"eipAddresses"`
 	// The ID of the NatGateway.
@@ -311,8 +322,12 @@ type GatewaysNatGateway struct {
 	NatGatewayName string `pulumi:"natGatewayName"`
 	// The ID of the network interface.
 	NetworkInterfaceId string `pulumi:"networkInterfaceId"`
+	// The network type of the NatGateway.
+	NetworkType string `pulumi:"networkType"`
 	// The overdue time of the NatGateway.
 	OverdueTime string `pulumi:"overdueTime"`
+	// A list of snat entry ids.
+	SnatEntryIds []string `pulumi:"snatEntryIds"`
 	// The specification of the NatGateway.
 	Spec string `pulumi:"spec"`
 	// The status of the NatGateway.
@@ -349,6 +364,8 @@ type GatewaysNatGatewayArgs struct {
 	DeletedTime pulumi.StringInput `pulumi:"deletedTime"`
 	// The description of the NatGateway.
 	Description pulumi.StringInput `pulumi:"description"`
+	// A list of dnat entry ids.
+	DnatEntryIds pulumi.StringArrayInput `pulumi:"dnatEntryIds"`
 	// The eip addresses of the NatGateway.
 	EipAddresses GatewaysNatGatewayEipAddressArrayInput `pulumi:"eipAddresses"`
 	// The ID of the NatGateway.
@@ -361,8 +378,12 @@ type GatewaysNatGatewayArgs struct {
 	NatGatewayName pulumi.StringInput `pulumi:"natGatewayName"`
 	// The ID of the network interface.
 	NetworkInterfaceId pulumi.StringInput `pulumi:"networkInterfaceId"`
+	// The network type of the NatGateway.
+	NetworkType pulumi.StringInput `pulumi:"networkType"`
 	// The overdue time of the NatGateway.
 	OverdueTime pulumi.StringInput `pulumi:"overdueTime"`
+	// A list of snat entry ids.
+	SnatEntryIds pulumi.StringArrayInput `pulumi:"snatEntryIds"`
 	// The specification of the NatGateway.
 	Spec pulumi.StringInput `pulumi:"spec"`
 	// The status of the NatGateway.
@@ -453,6 +474,11 @@ func (o GatewaysNatGatewayOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v GatewaysNatGateway) string { return v.Description }).(pulumi.StringOutput)
 }
 
+// A list of dnat entry ids.
+func (o GatewaysNatGatewayOutput) DnatEntryIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GatewaysNatGateway) []string { return v.DnatEntryIds }).(pulumi.StringArrayOutput)
+}
+
 // The eip addresses of the NatGateway.
 func (o GatewaysNatGatewayOutput) EipAddresses() GatewaysNatGatewayEipAddressArrayOutput {
 	return o.ApplyT(func(v GatewaysNatGateway) []GatewaysNatGatewayEipAddress { return v.EipAddresses }).(GatewaysNatGatewayEipAddressArrayOutput)
@@ -483,9 +509,19 @@ func (o GatewaysNatGatewayOutput) NetworkInterfaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v GatewaysNatGateway) string { return v.NetworkInterfaceId }).(pulumi.StringOutput)
 }
 
+// The network type of the NatGateway.
+func (o GatewaysNatGatewayOutput) NetworkType() pulumi.StringOutput {
+	return o.ApplyT(func(v GatewaysNatGateway) string { return v.NetworkType }).(pulumi.StringOutput)
+}
+
 // The overdue time of the NatGateway.
 func (o GatewaysNatGatewayOutput) OverdueTime() pulumi.StringOutput {
 	return o.ApplyT(func(v GatewaysNatGateway) string { return v.OverdueTime }).(pulumi.StringOutput)
+}
+
+// A list of snat entry ids.
+func (o GatewaysNatGatewayOutput) SnatEntryIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GatewaysNatGateway) []string { return v.SnatEntryIds }).(pulumi.StringArrayOutput)
 }
 
 // The specification of the NatGateway.
@@ -865,6 +901,175 @@ func (o GatewaysTagArrayOutput) Index(i pulumi.IntInput) GatewaysTagOutput {
 	}).(GatewaysTagOutput)
 }
 
+type IpsNatIp struct {
+	// The id of the Nat Ip.
+	Id string `pulumi:"id"`
+	// Whether the Ip is the default Nat Ip.
+	IsDefault bool `pulumi:"isDefault"`
+	// The id of the Nat gateway.
+	NatGatewayId string `pulumi:"natGatewayId"`
+	// The ip address of the Nat Ip.
+	NatIp string `pulumi:"natIp"`
+	// The description of the Nat Ip.
+	NatIpDescription string `pulumi:"natIpDescription"`
+	// The id of the Nat Ip.
+	NatIpId string `pulumi:"natIpId"`
+	// The name of the Nat IP.
+	NatIpName string `pulumi:"natIpName"`
+	// The status of the Nat Ip.
+	Status string `pulumi:"status"`
+	// The using status of the Nat Ip.
+	UsingStatus string `pulumi:"usingStatus"`
+}
+
+// IpsNatIpInput is an input type that accepts IpsNatIpArgs and IpsNatIpOutput values.
+// You can construct a concrete instance of `IpsNatIpInput` via:
+//
+//	IpsNatIpArgs{...}
+type IpsNatIpInput interface {
+	pulumi.Input
+
+	ToIpsNatIpOutput() IpsNatIpOutput
+	ToIpsNatIpOutputWithContext(context.Context) IpsNatIpOutput
+}
+
+type IpsNatIpArgs struct {
+	// The id of the Nat Ip.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Whether the Ip is the default Nat Ip.
+	IsDefault pulumi.BoolInput `pulumi:"isDefault"`
+	// The id of the Nat gateway.
+	NatGatewayId pulumi.StringInput `pulumi:"natGatewayId"`
+	// The ip address of the Nat Ip.
+	NatIp pulumi.StringInput `pulumi:"natIp"`
+	// The description of the Nat Ip.
+	NatIpDescription pulumi.StringInput `pulumi:"natIpDescription"`
+	// The id of the Nat Ip.
+	NatIpId pulumi.StringInput `pulumi:"natIpId"`
+	// The name of the Nat IP.
+	NatIpName pulumi.StringInput `pulumi:"natIpName"`
+	// The status of the Nat Ip.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The using status of the Nat Ip.
+	UsingStatus pulumi.StringInput `pulumi:"usingStatus"`
+}
+
+func (IpsNatIpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*IpsNatIp)(nil)).Elem()
+}
+
+func (i IpsNatIpArgs) ToIpsNatIpOutput() IpsNatIpOutput {
+	return i.ToIpsNatIpOutputWithContext(context.Background())
+}
+
+func (i IpsNatIpArgs) ToIpsNatIpOutputWithContext(ctx context.Context) IpsNatIpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IpsNatIpOutput)
+}
+
+// IpsNatIpArrayInput is an input type that accepts IpsNatIpArray and IpsNatIpArrayOutput values.
+// You can construct a concrete instance of `IpsNatIpArrayInput` via:
+//
+//	IpsNatIpArray{ IpsNatIpArgs{...} }
+type IpsNatIpArrayInput interface {
+	pulumi.Input
+
+	ToIpsNatIpArrayOutput() IpsNatIpArrayOutput
+	ToIpsNatIpArrayOutputWithContext(context.Context) IpsNatIpArrayOutput
+}
+
+type IpsNatIpArray []IpsNatIpInput
+
+func (IpsNatIpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]IpsNatIp)(nil)).Elem()
+}
+
+func (i IpsNatIpArray) ToIpsNatIpArrayOutput() IpsNatIpArrayOutput {
+	return i.ToIpsNatIpArrayOutputWithContext(context.Background())
+}
+
+func (i IpsNatIpArray) ToIpsNatIpArrayOutputWithContext(ctx context.Context) IpsNatIpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IpsNatIpArrayOutput)
+}
+
+type IpsNatIpOutput struct{ *pulumi.OutputState }
+
+func (IpsNatIpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IpsNatIp)(nil)).Elem()
+}
+
+func (o IpsNatIpOutput) ToIpsNatIpOutput() IpsNatIpOutput {
+	return o
+}
+
+func (o IpsNatIpOutput) ToIpsNatIpOutputWithContext(ctx context.Context) IpsNatIpOutput {
+	return o
+}
+
+// The id of the Nat Ip.
+func (o IpsNatIpOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v IpsNatIp) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Whether the Ip is the default Nat Ip.
+func (o IpsNatIpOutput) IsDefault() pulumi.BoolOutput {
+	return o.ApplyT(func(v IpsNatIp) bool { return v.IsDefault }).(pulumi.BoolOutput)
+}
+
+// The id of the Nat gateway.
+func (o IpsNatIpOutput) NatGatewayId() pulumi.StringOutput {
+	return o.ApplyT(func(v IpsNatIp) string { return v.NatGatewayId }).(pulumi.StringOutput)
+}
+
+// The ip address of the Nat Ip.
+func (o IpsNatIpOutput) NatIp() pulumi.StringOutput {
+	return o.ApplyT(func(v IpsNatIp) string { return v.NatIp }).(pulumi.StringOutput)
+}
+
+// The description of the Nat Ip.
+func (o IpsNatIpOutput) NatIpDescription() pulumi.StringOutput {
+	return o.ApplyT(func(v IpsNatIp) string { return v.NatIpDescription }).(pulumi.StringOutput)
+}
+
+// The id of the Nat Ip.
+func (o IpsNatIpOutput) NatIpId() pulumi.StringOutput {
+	return o.ApplyT(func(v IpsNatIp) string { return v.NatIpId }).(pulumi.StringOutput)
+}
+
+// The name of the Nat IP.
+func (o IpsNatIpOutput) NatIpName() pulumi.StringOutput {
+	return o.ApplyT(func(v IpsNatIp) string { return v.NatIpName }).(pulumi.StringOutput)
+}
+
+// The status of the Nat Ip.
+func (o IpsNatIpOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v IpsNatIp) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The using status of the Nat Ip.
+func (o IpsNatIpOutput) UsingStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v IpsNatIp) string { return v.UsingStatus }).(pulumi.StringOutput)
+}
+
+type IpsNatIpArrayOutput struct{ *pulumi.OutputState }
+
+func (IpsNatIpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]IpsNatIp)(nil)).Elem()
+}
+
+func (o IpsNatIpArrayOutput) ToIpsNatIpArrayOutput() IpsNatIpArrayOutput {
+	return o
+}
+
+func (o IpsNatIpArrayOutput) ToIpsNatIpArrayOutputWithContext(ctx context.Context) IpsNatIpArrayOutput {
+	return o
+}
+
+func (o IpsNatIpArrayOutput) Index(i pulumi.IntInput) IpsNatIpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) IpsNatIp {
+		return vs[0].([]IpsNatIp)[vs[1].(int)]
+	}).(IpsNatIpOutput)
+}
+
 type SnatEntriesSnatEntry struct {
 	// The public ip address used by the SNAT entry.
 	EipAddress string `pulumi:"eipAddress"`
@@ -874,6 +1079,8 @@ type SnatEntriesSnatEntry struct {
 	Id string `pulumi:"id"`
 	// An id of the nat gateway to which the entry belongs.
 	NatGatewayId string `pulumi:"natGatewayId"`
+	// The ID of the intranet NAT gateway's transit IP.
+	NatIpId string `pulumi:"natIpId"`
 	// The id of the SNAT entry.
 	SnatEntryId string `pulumi:"snatEntryId"`
 	// A name of SNAT entry.
@@ -906,6 +1113,8 @@ type SnatEntriesSnatEntryArgs struct {
 	Id pulumi.StringInput `pulumi:"id"`
 	// An id of the nat gateway to which the entry belongs.
 	NatGatewayId pulumi.StringInput `pulumi:"natGatewayId"`
+	// The ID of the intranet NAT gateway's transit IP.
+	NatIpId pulumi.StringInput `pulumi:"natIpId"`
 	// The id of the SNAT entry.
 	SnatEntryId pulumi.StringInput `pulumi:"snatEntryId"`
 	// A name of SNAT entry.
@@ -989,6 +1198,11 @@ func (o SnatEntriesSnatEntryOutput) NatGatewayId() pulumi.StringOutput {
 	return o.ApplyT(func(v SnatEntriesSnatEntry) string { return v.NatGatewayId }).(pulumi.StringOutput)
 }
 
+// The ID of the intranet NAT gateway's transit IP.
+func (o SnatEntriesSnatEntryOutput) NatIpId() pulumi.StringOutput {
+	return o.ApplyT(func(v SnatEntriesSnatEntry) string { return v.NatIpId }).(pulumi.StringOutput)
+}
+
 // The id of the SNAT entry.
 func (o SnatEntriesSnatEntryOutput) SnatEntryId() pulumi.StringOutput {
 	return o.ApplyT(func(v SnatEntriesSnatEntry) string { return v.SnatEntryId }).(pulumi.StringOutput)
@@ -1043,6 +1257,8 @@ type GetDnatEntriesDnatEntry struct {
 	ExternalIp string `pulumi:"externalIp"`
 	// The port or port segment that receives requests from the public network. If InternalPort is passed into the port segment, ExternalPort must also be passed into the port segment.
 	ExternalPort string `pulumi:"externalPort"`
+	// The ID of the DNAT entry.
+	Id string `pulumi:"id"`
 	// Provides the internal IP address.
 	InternalIp string `pulumi:"internalIp"`
 	// The port or port segment on which the cloud server instance provides services to the public network.
@@ -1075,6 +1291,8 @@ type GetDnatEntriesDnatEntryArgs struct {
 	ExternalIp pulumi.StringInput `pulumi:"externalIp"`
 	// The port or port segment that receives requests from the public network. If InternalPort is passed into the port segment, ExternalPort must also be passed into the port segment.
 	ExternalPort pulumi.StringInput `pulumi:"externalPort"`
+	// The ID of the DNAT entry.
+	Id pulumi.StringInput `pulumi:"id"`
 	// Provides the internal IP address.
 	InternalIp pulumi.StringInput `pulumi:"internalIp"`
 	// The port or port segment on which the cloud server instance provides services to the public network.
@@ -1158,6 +1376,11 @@ func (o GetDnatEntriesDnatEntryOutput) ExternalPort() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDnatEntriesDnatEntry) string { return v.ExternalPort }).(pulumi.StringOutput)
 }
 
+// The ID of the DNAT entry.
+func (o GetDnatEntriesDnatEntryOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDnatEntriesDnatEntry) string { return v.Id }).(pulumi.StringOutput)
+}
+
 // Provides the internal IP address.
 func (o GetDnatEntriesDnatEntryOutput) InternalIp() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDnatEntriesDnatEntry) string { return v.InternalIp }).(pulumi.StringOutput)
@@ -1214,6 +1437,8 @@ type GetGatewaysNatGateway struct {
 	DeletedTime string `pulumi:"deletedTime"`
 	// The description of the NatGateway.
 	Description string `pulumi:"description"`
+	// A list of dnat entry ids.
+	DnatEntryIds []string `pulumi:"dnatEntryIds"`
 	// The eip addresses of the NatGateway.
 	EipAddresses []GetGatewaysNatGatewayEipAddress `pulumi:"eipAddresses"`
 	// The ID of the NatGateway.
@@ -1226,8 +1451,12 @@ type GetGatewaysNatGateway struct {
 	NatGatewayName string `pulumi:"natGatewayName"`
 	// The ID of the network interface.
 	NetworkInterfaceId string `pulumi:"networkInterfaceId"`
+	// The network type of the NatGateway.
+	NetworkType string `pulumi:"networkType"`
 	// The overdue time of the NatGateway.
 	OverdueTime string `pulumi:"overdueTime"`
+	// A list of snat entry ids.
+	SnatEntryIds []string `pulumi:"snatEntryIds"`
 	// The specification of the NatGateway.
 	Spec string `pulumi:"spec"`
 	// The status of the NatGateway.
@@ -1264,6 +1493,8 @@ type GetGatewaysNatGatewayArgs struct {
 	DeletedTime pulumi.StringInput `pulumi:"deletedTime"`
 	// The description of the NatGateway.
 	Description pulumi.StringInput `pulumi:"description"`
+	// A list of dnat entry ids.
+	DnatEntryIds pulumi.StringArrayInput `pulumi:"dnatEntryIds"`
 	// The eip addresses of the NatGateway.
 	EipAddresses GetGatewaysNatGatewayEipAddressArrayInput `pulumi:"eipAddresses"`
 	// The ID of the NatGateway.
@@ -1276,8 +1507,12 @@ type GetGatewaysNatGatewayArgs struct {
 	NatGatewayName pulumi.StringInput `pulumi:"natGatewayName"`
 	// The ID of the network interface.
 	NetworkInterfaceId pulumi.StringInput `pulumi:"networkInterfaceId"`
+	// The network type of the NatGateway.
+	NetworkType pulumi.StringInput `pulumi:"networkType"`
 	// The overdue time of the NatGateway.
 	OverdueTime pulumi.StringInput `pulumi:"overdueTime"`
+	// A list of snat entry ids.
+	SnatEntryIds pulumi.StringArrayInput `pulumi:"snatEntryIds"`
 	// The specification of the NatGateway.
 	Spec pulumi.StringInput `pulumi:"spec"`
 	// The status of the NatGateway.
@@ -1368,6 +1603,11 @@ func (o GetGatewaysNatGatewayOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v GetGatewaysNatGateway) string { return v.Description }).(pulumi.StringOutput)
 }
 
+// A list of dnat entry ids.
+func (o GetGatewaysNatGatewayOutput) DnatEntryIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetGatewaysNatGateway) []string { return v.DnatEntryIds }).(pulumi.StringArrayOutput)
+}
+
 // The eip addresses of the NatGateway.
 func (o GetGatewaysNatGatewayOutput) EipAddresses() GetGatewaysNatGatewayEipAddressArrayOutput {
 	return o.ApplyT(func(v GetGatewaysNatGateway) []GetGatewaysNatGatewayEipAddress { return v.EipAddresses }).(GetGatewaysNatGatewayEipAddressArrayOutput)
@@ -1398,9 +1638,19 @@ func (o GetGatewaysNatGatewayOutput) NetworkInterfaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetGatewaysNatGateway) string { return v.NetworkInterfaceId }).(pulumi.StringOutput)
 }
 
+// The network type of the NatGateway.
+func (o GetGatewaysNatGatewayOutput) NetworkType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGatewaysNatGateway) string { return v.NetworkType }).(pulumi.StringOutput)
+}
+
 // The overdue time of the NatGateway.
 func (o GetGatewaysNatGatewayOutput) OverdueTime() pulumi.StringOutput {
 	return o.ApplyT(func(v GetGatewaysNatGateway) string { return v.OverdueTime }).(pulumi.StringOutput)
+}
+
+// A list of snat entry ids.
+func (o GetGatewaysNatGatewayOutput) SnatEntryIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetGatewaysNatGateway) []string { return v.SnatEntryIds }).(pulumi.StringArrayOutput)
 }
 
 // The specification of the NatGateway.
@@ -1780,6 +2030,175 @@ func (o GetGatewaysTagArrayOutput) Index(i pulumi.IntInput) GetGatewaysTagOutput
 	}).(GetGatewaysTagOutput)
 }
 
+type GetIpsNatIp struct {
+	// The id of the Nat Ip.
+	Id string `pulumi:"id"`
+	// Whether the Ip is the default Nat Ip.
+	IsDefault bool `pulumi:"isDefault"`
+	// The id of the Nat gateway.
+	NatGatewayId string `pulumi:"natGatewayId"`
+	// The ip address of the Nat Ip.
+	NatIp string `pulumi:"natIp"`
+	// The description of the Nat Ip.
+	NatIpDescription string `pulumi:"natIpDescription"`
+	// The id of the Nat Ip.
+	NatIpId string `pulumi:"natIpId"`
+	// The name of the Nat IP.
+	NatIpName string `pulumi:"natIpName"`
+	// The status of the Nat Ip.
+	Status string `pulumi:"status"`
+	// The using status of the Nat Ip.
+	UsingStatus string `pulumi:"usingStatus"`
+}
+
+// GetIpsNatIpInput is an input type that accepts GetIpsNatIpArgs and GetIpsNatIpOutput values.
+// You can construct a concrete instance of `GetIpsNatIpInput` via:
+//
+//	GetIpsNatIpArgs{...}
+type GetIpsNatIpInput interface {
+	pulumi.Input
+
+	ToGetIpsNatIpOutput() GetIpsNatIpOutput
+	ToGetIpsNatIpOutputWithContext(context.Context) GetIpsNatIpOutput
+}
+
+type GetIpsNatIpArgs struct {
+	// The id of the Nat Ip.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Whether the Ip is the default Nat Ip.
+	IsDefault pulumi.BoolInput `pulumi:"isDefault"`
+	// The id of the Nat gateway.
+	NatGatewayId pulumi.StringInput `pulumi:"natGatewayId"`
+	// The ip address of the Nat Ip.
+	NatIp pulumi.StringInput `pulumi:"natIp"`
+	// The description of the Nat Ip.
+	NatIpDescription pulumi.StringInput `pulumi:"natIpDescription"`
+	// The id of the Nat Ip.
+	NatIpId pulumi.StringInput `pulumi:"natIpId"`
+	// The name of the Nat IP.
+	NatIpName pulumi.StringInput `pulumi:"natIpName"`
+	// The status of the Nat Ip.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The using status of the Nat Ip.
+	UsingStatus pulumi.StringInput `pulumi:"usingStatus"`
+}
+
+func (GetIpsNatIpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetIpsNatIp)(nil)).Elem()
+}
+
+func (i GetIpsNatIpArgs) ToGetIpsNatIpOutput() GetIpsNatIpOutput {
+	return i.ToGetIpsNatIpOutputWithContext(context.Background())
+}
+
+func (i GetIpsNatIpArgs) ToGetIpsNatIpOutputWithContext(ctx context.Context) GetIpsNatIpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetIpsNatIpOutput)
+}
+
+// GetIpsNatIpArrayInput is an input type that accepts GetIpsNatIpArray and GetIpsNatIpArrayOutput values.
+// You can construct a concrete instance of `GetIpsNatIpArrayInput` via:
+//
+//	GetIpsNatIpArray{ GetIpsNatIpArgs{...} }
+type GetIpsNatIpArrayInput interface {
+	pulumi.Input
+
+	ToGetIpsNatIpArrayOutput() GetIpsNatIpArrayOutput
+	ToGetIpsNatIpArrayOutputWithContext(context.Context) GetIpsNatIpArrayOutput
+}
+
+type GetIpsNatIpArray []GetIpsNatIpInput
+
+func (GetIpsNatIpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetIpsNatIp)(nil)).Elem()
+}
+
+func (i GetIpsNatIpArray) ToGetIpsNatIpArrayOutput() GetIpsNatIpArrayOutput {
+	return i.ToGetIpsNatIpArrayOutputWithContext(context.Background())
+}
+
+func (i GetIpsNatIpArray) ToGetIpsNatIpArrayOutputWithContext(ctx context.Context) GetIpsNatIpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetIpsNatIpArrayOutput)
+}
+
+type GetIpsNatIpOutput struct{ *pulumi.OutputState }
+
+func (GetIpsNatIpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetIpsNatIp)(nil)).Elem()
+}
+
+func (o GetIpsNatIpOutput) ToGetIpsNatIpOutput() GetIpsNatIpOutput {
+	return o
+}
+
+func (o GetIpsNatIpOutput) ToGetIpsNatIpOutputWithContext(ctx context.Context) GetIpsNatIpOutput {
+	return o
+}
+
+// The id of the Nat Ip.
+func (o GetIpsNatIpOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIpsNatIp) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Whether the Ip is the default Nat Ip.
+func (o GetIpsNatIpOutput) IsDefault() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetIpsNatIp) bool { return v.IsDefault }).(pulumi.BoolOutput)
+}
+
+// The id of the Nat gateway.
+func (o GetIpsNatIpOutput) NatGatewayId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIpsNatIp) string { return v.NatGatewayId }).(pulumi.StringOutput)
+}
+
+// The ip address of the Nat Ip.
+func (o GetIpsNatIpOutput) NatIp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIpsNatIp) string { return v.NatIp }).(pulumi.StringOutput)
+}
+
+// The description of the Nat Ip.
+func (o GetIpsNatIpOutput) NatIpDescription() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIpsNatIp) string { return v.NatIpDescription }).(pulumi.StringOutput)
+}
+
+// The id of the Nat Ip.
+func (o GetIpsNatIpOutput) NatIpId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIpsNatIp) string { return v.NatIpId }).(pulumi.StringOutput)
+}
+
+// The name of the Nat IP.
+func (o GetIpsNatIpOutput) NatIpName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIpsNatIp) string { return v.NatIpName }).(pulumi.StringOutput)
+}
+
+// The status of the Nat Ip.
+func (o GetIpsNatIpOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIpsNatIp) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The using status of the Nat Ip.
+func (o GetIpsNatIpOutput) UsingStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIpsNatIp) string { return v.UsingStatus }).(pulumi.StringOutput)
+}
+
+type GetIpsNatIpArrayOutput struct{ *pulumi.OutputState }
+
+func (GetIpsNatIpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetIpsNatIp)(nil)).Elem()
+}
+
+func (o GetIpsNatIpArrayOutput) ToGetIpsNatIpArrayOutput() GetIpsNatIpArrayOutput {
+	return o
+}
+
+func (o GetIpsNatIpArrayOutput) ToGetIpsNatIpArrayOutputWithContext(ctx context.Context) GetIpsNatIpArrayOutput {
+	return o
+}
+
+func (o GetIpsNatIpArrayOutput) Index(i pulumi.IntInput) GetIpsNatIpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetIpsNatIp {
+		return vs[0].([]GetIpsNatIp)[vs[1].(int)]
+	}).(GetIpsNatIpOutput)
+}
+
 type GetSnatEntriesSnatEntry struct {
 	// The public ip address used by the SNAT entry.
 	EipAddress string `pulumi:"eipAddress"`
@@ -1789,6 +2208,8 @@ type GetSnatEntriesSnatEntry struct {
 	Id string `pulumi:"id"`
 	// An id of the nat gateway to which the entry belongs.
 	NatGatewayId string `pulumi:"natGatewayId"`
+	// The ID of the intranet NAT gateway's transit IP.
+	NatIpId string `pulumi:"natIpId"`
 	// The id of the SNAT entry.
 	SnatEntryId string `pulumi:"snatEntryId"`
 	// A name of SNAT entry.
@@ -1821,6 +2242,8 @@ type GetSnatEntriesSnatEntryArgs struct {
 	Id pulumi.StringInput `pulumi:"id"`
 	// An id of the nat gateway to which the entry belongs.
 	NatGatewayId pulumi.StringInput `pulumi:"natGatewayId"`
+	// The ID of the intranet NAT gateway's transit IP.
+	NatIpId pulumi.StringInput `pulumi:"natIpId"`
 	// The id of the SNAT entry.
 	SnatEntryId pulumi.StringInput `pulumi:"snatEntryId"`
 	// A name of SNAT entry.
@@ -1904,6 +2327,11 @@ func (o GetSnatEntriesSnatEntryOutput) NatGatewayId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSnatEntriesSnatEntry) string { return v.NatGatewayId }).(pulumi.StringOutput)
 }
 
+// The ID of the intranet NAT gateway's transit IP.
+func (o GetSnatEntriesSnatEntryOutput) NatIpId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSnatEntriesSnatEntry) string { return v.NatIpId }).(pulumi.StringOutput)
+}
+
 // The id of the SNAT entry.
 func (o GetSnatEntriesSnatEntryOutput) SnatEntryId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSnatEntriesSnatEntry) string { return v.SnatEntryId }).(pulumi.StringOutput)
@@ -1962,6 +2390,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GatewaysNatGatewayTagArrayInput)(nil)).Elem(), GatewaysNatGatewayTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GatewaysTagInput)(nil)).Elem(), GatewaysTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GatewaysTagArrayInput)(nil)).Elem(), GatewaysTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IpsNatIpInput)(nil)).Elem(), IpsNatIpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IpsNatIpArrayInput)(nil)).Elem(), IpsNatIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SnatEntriesSnatEntryInput)(nil)).Elem(), SnatEntriesSnatEntryArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SnatEntriesSnatEntryArrayInput)(nil)).Elem(), SnatEntriesSnatEntryArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDnatEntriesDnatEntryInput)(nil)).Elem(), GetDnatEntriesDnatEntryArgs{})
@@ -1974,6 +2404,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGatewaysNatGatewayTagArrayInput)(nil)).Elem(), GetGatewaysNatGatewayTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGatewaysTagInput)(nil)).Elem(), GetGatewaysTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGatewaysTagArrayInput)(nil)).Elem(), GetGatewaysTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetIpsNatIpInput)(nil)).Elem(), GetIpsNatIpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetIpsNatIpArrayInput)(nil)).Elem(), GetIpsNatIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSnatEntriesSnatEntryInput)(nil)).Elem(), GetSnatEntriesSnatEntryArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSnatEntriesSnatEntryArrayInput)(nil)).Elem(), GetSnatEntriesSnatEntryArray{})
 	pulumi.RegisterOutputType(DnatEntriesDnatEntryOutput{})
@@ -1988,6 +2420,8 @@ func init() {
 	pulumi.RegisterOutputType(GatewaysNatGatewayTagArrayOutput{})
 	pulumi.RegisterOutputType(GatewaysTagOutput{})
 	pulumi.RegisterOutputType(GatewaysTagArrayOutput{})
+	pulumi.RegisterOutputType(IpsNatIpOutput{})
+	pulumi.RegisterOutputType(IpsNatIpArrayOutput{})
 	pulumi.RegisterOutputType(SnatEntriesSnatEntryOutput{})
 	pulumi.RegisterOutputType(SnatEntriesSnatEntryArrayOutput{})
 	pulumi.RegisterOutputType(GetDnatEntriesDnatEntryOutput{})
@@ -2000,6 +2434,8 @@ func init() {
 	pulumi.RegisterOutputType(GetGatewaysNatGatewayTagArrayOutput{})
 	pulumi.RegisterOutputType(GetGatewaysTagOutput{})
 	pulumi.RegisterOutputType(GetGatewaysTagArrayOutput{})
+	pulumi.RegisterOutputType(GetIpsNatIpOutput{})
+	pulumi.RegisterOutputType(GetIpsNatIpArrayOutput{})
 	pulumi.RegisterOutputType(GetSnatEntriesSnatEntryOutput{})
 	pulumi.RegisterOutputType(GetSnatEntriesSnatEntryArrayOutput{})
 }

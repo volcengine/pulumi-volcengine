@@ -28,7 +28,7 @@ class DnatEntryArgs:
         :param pulumi.Input[str] internal_ip: Provides the internal IP address.
         :param pulumi.Input[str] internal_port: The port or port segment on which the cloud server instance provides services to the public network.
         :param pulumi.Input[str] nat_gateway_id: The id of the nat gateway to which the entry belongs.
-        :param pulumi.Input[str] protocol: The network protocol.
+        :param pulumi.Input[str] protocol: The network protocol. Valid values: `tcp`, `udp`.
         :param pulumi.Input[str] dnat_entry_name: The name of the DNAT rule.
         """
         pulumi.set(__self__, "external_ip", external_ip)
@@ -104,7 +104,7 @@ class DnatEntryArgs:
     @pulumi.getter
     def protocol(self) -> pulumi.Input[str]:
         """
-        The network protocol.
+        The network protocol. Valid values: `tcp`, `udp`.
         """
         return pulumi.get(self, "protocol")
 
@@ -145,7 +145,7 @@ class _DnatEntryState:
         :param pulumi.Input[str] internal_ip: Provides the internal IP address.
         :param pulumi.Input[str] internal_port: The port or port segment on which the cloud server instance provides services to the public network.
         :param pulumi.Input[str] nat_gateway_id: The id of the nat gateway to which the entry belongs.
-        :param pulumi.Input[str] protocol: The network protocol.
+        :param pulumi.Input[str] protocol: The network protocol. Valid values: `tcp`, `udp`.
         """
         if dnat_entry_id is not None:
             pulumi.set(__self__, "dnat_entry_id", dnat_entry_id)
@@ -252,7 +252,7 @@ class _DnatEntryState:
     @pulumi.getter
     def protocol(self) -> Optional[pulumi.Input[str]]:
         """
-        The network protocol.
+        The network protocol. Valid values: `tcp`, `udp`.
         """
         return pulumi.get(self, "protocol")
 
@@ -339,7 +339,7 @@ class DnatEntry(pulumi.CustomResource):
         :param pulumi.Input[str] internal_ip: Provides the internal IP address.
         :param pulumi.Input[str] internal_port: The port or port segment on which the cloud server instance provides services to the public network.
         :param pulumi.Input[str] nat_gateway_id: The id of the nat gateway to which the entry belongs.
-        :param pulumi.Input[str] protocol: The network protocol.
+        :param pulumi.Input[str] protocol: The network protocol. Valid values: `tcp`, `udp`.
         """
         ...
     @overload
@@ -487,7 +487,7 @@ class DnatEntry(pulumi.CustomResource):
         :param pulumi.Input[str] internal_ip: Provides the internal IP address.
         :param pulumi.Input[str] internal_port: The port or port segment on which the cloud server instance provides services to the public network.
         :param pulumi.Input[str] nat_gateway_id: The id of the nat gateway to which the entry belongs.
-        :param pulumi.Input[str] protocol: The network protocol.
+        :param pulumi.Input[str] protocol: The network protocol. Valid values: `tcp`, `udp`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -563,7 +563,7 @@ class DnatEntry(pulumi.CustomResource):
     @pulumi.getter
     def protocol(self) -> pulumi.Output[str]:
         """
-        The network protocol.
+        The network protocol. Valid values: `tcp`, `udp`.
         """
         return pulumi.get(self, "protocol")
 

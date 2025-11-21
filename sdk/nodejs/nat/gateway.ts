@@ -25,11 +25,12 @@ import * as utilities from "../utilities";
  *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
  *     vpcId: fooVpc.id,
  * });
- * const fooGateway = new volcengine.nat.Gateway("fooGateway", {
+ * // create internet nat gateway and snat entry and dnat entry
+ * const internetNatGateway = new volcengine.nat.Gateway("internetNatGateway", {
  *     vpcId: fooVpc.id,
  *     subnetId: fooSubnet.id,
  *     spec: "Small",
- *     natGatewayName: "acc-test-ng",
+ *     natGatewayName: "acc-test-internet_ng",
  *     description: "acc-test",
  *     billingType: "PostPaid",
  *     projectName: "default",
@@ -37,6 +38,71 @@ import * as utilities from "../utilities";
  *         key: "k1",
  *         value: "v1",
  *     }],
+ * });
+ * const fooAddress = new volcengine.eip.Address("fooAddress", {
+ *     description: "acc-test",
+ *     bandwidth: 1,
+ *     billingType: "PostPaidByBandwidth",
+ *     isp: "BGP",
+ * });
+ * const fooAssociate = new volcengine.eip.Associate("fooAssociate", {
+ *     allocationId: fooAddress.id,
+ *     instanceId: internetNatGateway.id,
+ *     instanceType: "Nat",
+ * });
+ * const fooSnatEntry = new volcengine.nat.SnatEntry("fooSnatEntry", {
+ *     snatEntryName: "acc-test-snat-entry",
+ *     natGatewayId: internetNatGateway.id,
+ *     eipId: fooAddress.id,
+ *     sourceCidr: "172.16.0.0/24",
+ * }, {
+ *     dependsOn: [fooAssociate],
+ * });
+ * const fooDnatEntry = new volcengine.nat.DnatEntry("fooDnatEntry", {
+ *     dnatEntryName: "acc-test-dnat-entry",
+ *     externalIp: fooAddress.eipAddress,
+ *     externalPort: "80",
+ *     internalIp: "172.16.0.10",
+ *     internalPort: "80",
+ *     natGatewayId: internetNatGateway.id,
+ *     protocol: "tcp",
+ * }, {
+ *     dependsOn: [fooAssociate],
+ * });
+ * // create intranet nat gateway and snat entry and dnat entry
+ * const intranetNatGateway = new volcengine.nat.Gateway("intranetNatGateway", {
+ *     vpcId: fooVpc.id,
+ *     subnetId: fooSubnet.id,
+ *     natGatewayName: "acc-test-intranet_ng",
+ *     description: "acc-test",
+ *     networkType: "intranet",
+ *     billingType: "PostPaidByUsage",
+ *     projectName: "default",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
+ * });
+ * const fooIp = new volcengine.nat.Ip("fooIp", {
+ *     natGatewayId: intranetNatGateway.id,
+ *     natIpName: "acc-test-nat-ip",
+ *     natIpDescription: "acc-test",
+ *     natIp: "172.16.0.3",
+ * });
+ * const foo_intranetSnatEntry = new volcengine.nat.SnatEntry("foo-intranetSnatEntry", {
+ *     snatEntryName: "acc-test-snat-entry-intranet",
+ *     natGatewayId: intranetNatGateway.id,
+ *     natIpId: fooIp.id,
+ *     sourceCidr: "172.16.0.0/24",
+ * });
+ * const foo_intranetDnatEntry = new volcengine.nat.DnatEntry("foo-intranetDnatEntry", {
+ *     natGatewayId: intranetNatGateway.id,
+ *     dnatEntryName: "acc-test-dnat-entry-intranet",
+ *     protocol: "tcp",
+ *     internalIp: "172.16.0.5",
+ *     internalPort: "82",
+ *     externalIp: fooIp.natIp,
+ *     externalPort: "87",
  * });
  * ```
  *
@@ -77,7 +143,8 @@ export class Gateway extends pulumi.CustomResource {
     }
 
     /**
-     * The billing type of the NatGateway, the value is `PostPaid` or `PrePaid`.
+     * The billing type of the NatGateway, the value is `PostPaid` or `PrePaid` or `PostPaidByUsage`. Default value is `PostPaid`.
+     * When the `networkType` is `intranet`, the billing type must be `PostPaidByUsage`.
      */
     public readonly billingType!: pulumi.Output<string | undefined>;
     /**
@@ -89,6 +156,10 @@ export class Gateway extends pulumi.CustomResource {
      */
     public readonly natGatewayName!: pulumi.Output<string | undefined>;
     /**
+     * The network type of the NatGateway. Valid values are `internet` and `intranet`. Default value is `internet`.
+     */
+    public readonly networkType!: pulumi.Output<string | undefined>;
+    /**
      * The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
      */
     public readonly period!: pulumi.Output<number | undefined>;
@@ -98,6 +169,7 @@ export class Gateway extends pulumi.CustomResource {
     public readonly projectName!: pulumi.Output<string>;
     /**
      * The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large` or leave blank.
+     * When the `billingType` is `PostPaidByUsage`, this field should not be specified.
      */
     public readonly spec!: pulumi.Output<string>;
     /**
@@ -129,6 +201,7 @@ export class Gateway extends pulumi.CustomResource {
             resourceInputs["billingType"] = state ? state.billingType : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["natGatewayName"] = state ? state.natGatewayName : undefined;
+            resourceInputs["networkType"] = state ? state.networkType : undefined;
             resourceInputs["period"] = state ? state.period : undefined;
             resourceInputs["projectName"] = state ? state.projectName : undefined;
             resourceInputs["spec"] = state ? state.spec : undefined;
@@ -146,6 +219,7 @@ export class Gateway extends pulumi.CustomResource {
             resourceInputs["billingType"] = args ? args.billingType : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["natGatewayName"] = args ? args.natGatewayName : undefined;
+            resourceInputs["networkType"] = args ? args.networkType : undefined;
             resourceInputs["period"] = args ? args.period : undefined;
             resourceInputs["projectName"] = args ? args.projectName : undefined;
             resourceInputs["spec"] = args ? args.spec : undefined;
@@ -163,7 +237,8 @@ export class Gateway extends pulumi.CustomResource {
  */
 export interface GatewayState {
     /**
-     * The billing type of the NatGateway, the value is `PostPaid` or `PrePaid`.
+     * The billing type of the NatGateway, the value is `PostPaid` or `PrePaid` or `PostPaidByUsage`. Default value is `PostPaid`.
+     * When the `networkType` is `intranet`, the billing type must be `PostPaidByUsage`.
      */
     billingType?: pulumi.Input<string>;
     /**
@@ -175,6 +250,10 @@ export interface GatewayState {
      */
     natGatewayName?: pulumi.Input<string>;
     /**
+     * The network type of the NatGateway. Valid values are `internet` and `intranet`. Default value is `internet`.
+     */
+    networkType?: pulumi.Input<string>;
+    /**
      * The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
      */
     period?: pulumi.Input<number>;
@@ -184,6 +263,7 @@ export interface GatewayState {
     projectName?: pulumi.Input<string>;
     /**
      * The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large` or leave blank.
+     * When the `billingType` is `PostPaidByUsage`, this field should not be specified.
      */
     spec?: pulumi.Input<string>;
     /**
@@ -205,7 +285,8 @@ export interface GatewayState {
  */
 export interface GatewayArgs {
     /**
-     * The billing type of the NatGateway, the value is `PostPaid` or `PrePaid`.
+     * The billing type of the NatGateway, the value is `PostPaid` or `PrePaid` or `PostPaidByUsage`. Default value is `PostPaid`.
+     * When the `networkType` is `intranet`, the billing type must be `PostPaidByUsage`.
      */
     billingType?: pulumi.Input<string>;
     /**
@@ -217,6 +298,10 @@ export interface GatewayArgs {
      */
     natGatewayName?: pulumi.Input<string>;
     /**
+     * The network type of the NatGateway. Valid values are `internet` and `intranet`. Default value is `internet`.
+     */
+    networkType?: pulumi.Input<string>;
+    /**
      * The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
      */
     period?: pulumi.Input<number>;
@@ -226,6 +311,7 @@ export interface GatewayArgs {
     projectName?: pulumi.Input<string>;
     /**
      * The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large` or leave blank.
+     * When the `billingType` is `PostPaidByUsage`, this field should not be specified.
      */
     spec?: pulumi.Input<string>;
     /**

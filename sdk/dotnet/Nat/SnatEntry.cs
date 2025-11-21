@@ -100,16 +100,22 @@ namespace Pulumi.Volcengine.Nat
     public partial class SnatEntry : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The id of the public ip address used by the SNAT entry.
+        /// The id of the public ip address used by the SNAT entry. This field is required when the nat gateway is a internet NAT gateway.
         /// </summary>
         [Output("eipId")]
-        public Output<string> EipId { get; private set; } = null!;
+        public Output<string?> EipId { get; private set; } = null!;
 
         /// <summary>
         /// The id of the nat gateway to which the entry belongs.
         /// </summary>
         [Output("natGatewayId")]
         public Output<string> NatGatewayId { get; private set; } = null!;
+
+        /// <summary>
+        /// The ID of the intranet NAT gateway's transit IP. This field is required when the nat gateway is a intranet NAT gateway.
+        /// </summary>
+        [Output("natIpId")]
+        public Output<string?> NatIpId { get; private set; } = null!;
 
         /// <summary>
         /// The name of the SNAT entry.
@@ -183,16 +189,22 @@ namespace Pulumi.Volcengine.Nat
     public sealed class SnatEntryArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The id of the public ip address used by the SNAT entry.
+        /// The id of the public ip address used by the SNAT entry. This field is required when the nat gateway is a internet NAT gateway.
         /// </summary>
-        [Input("eipId", required: true)]
-        public Input<string> EipId { get; set; } = null!;
+        [Input("eipId")]
+        public Input<string>? EipId { get; set; }
 
         /// <summary>
         /// The id of the nat gateway to which the entry belongs.
         /// </summary>
         [Input("natGatewayId", required: true)]
         public Input<string> NatGatewayId { get; set; } = null!;
+
+        /// <summary>
+        /// The ID of the intranet NAT gateway's transit IP. This field is required when the nat gateway is a intranet NAT gateway.
+        /// </summary>
+        [Input("natIpId")]
+        public Input<string>? NatIpId { get; set; }
 
         /// <summary>
         /// The name of the SNAT entry.
@@ -221,7 +233,7 @@ namespace Pulumi.Volcengine.Nat
     public sealed class SnatEntryState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The id of the public ip address used by the SNAT entry.
+        /// The id of the public ip address used by the SNAT entry. This field is required when the nat gateway is a internet NAT gateway.
         /// </summary>
         [Input("eipId")]
         public Input<string>? EipId { get; set; }
@@ -231,6 +243,12 @@ namespace Pulumi.Volcengine.Nat
         /// </summary>
         [Input("natGatewayId")]
         public Input<string>? NatGatewayId { get; set; }
+
+        /// <summary>
+        /// The ID of the intranet NAT gateway's transit IP. This field is required when the nat gateway is a intranet NAT gateway.
+        /// </summary>
+        [Input("natIpId")]
+        public Input<string>? NatIpId { get; set; }
 
         /// <summary>
         /// The name of the SNAT entry.

@@ -30,6 +30,10 @@ namespace Pulumi.Volcengine.Nat.Outputs
         /// </summary>
         public readonly string ExternalPort;
         /// <summary>
+        /// The ID of the DNAT entry.
+        /// </summary>
+        public readonly string Id;
+        /// <summary>
         /// Provides the internal IP address.
         /// </summary>
         public readonly string InternalIp;
@@ -60,6 +64,8 @@ namespace Pulumi.Volcengine.Nat.Outputs
 
             string externalPort,
 
+            string id,
+
             string internalIp,
 
             string internalPort,
@@ -74,6 +80,7 @@ namespace Pulumi.Volcengine.Nat.Outputs
             DnatEntryName = dnatEntryName;
             ExternalIp = externalIp;
             ExternalPort = externalPort;
+            Id = id;
             InternalIp = internalIp;
             InternalPort = internalPort;
             NatGatewayId = natGatewayId;

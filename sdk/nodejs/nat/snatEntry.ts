@@ -95,13 +95,17 @@ export class SnatEntry extends pulumi.CustomResource {
     }
 
     /**
-     * The id of the public ip address used by the SNAT entry.
+     * The id of the public ip address used by the SNAT entry. This field is required when the nat gateway is a internet NAT gateway.
      */
-    public readonly eipId!: pulumi.Output<string>;
+    public readonly eipId!: pulumi.Output<string | undefined>;
     /**
      * The id of the nat gateway to which the entry belongs.
      */
     public readonly natGatewayId!: pulumi.Output<string>;
+    /**
+     * The ID of the intranet NAT gateway's transit IP. This field is required when the nat gateway is a intranet NAT gateway.
+     */
+    public readonly natIpId!: pulumi.Output<string | undefined>;
     /**
      * The name of the SNAT entry.
      */
@@ -134,20 +138,19 @@ export class SnatEntry extends pulumi.CustomResource {
             const state = argsOrState as SnatEntryState | undefined;
             resourceInputs["eipId"] = state ? state.eipId : undefined;
             resourceInputs["natGatewayId"] = state ? state.natGatewayId : undefined;
+            resourceInputs["natIpId"] = state ? state.natIpId : undefined;
             resourceInputs["snatEntryName"] = state ? state.snatEntryName : undefined;
             resourceInputs["sourceCidr"] = state ? state.sourceCidr : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["subnetId"] = state ? state.subnetId : undefined;
         } else {
             const args = argsOrState as SnatEntryArgs | undefined;
-            if ((!args || args.eipId === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'eipId'");
-            }
             if ((!args || args.natGatewayId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'natGatewayId'");
             }
             resourceInputs["eipId"] = args ? args.eipId : undefined;
             resourceInputs["natGatewayId"] = args ? args.natGatewayId : undefined;
+            resourceInputs["natIpId"] = args ? args.natIpId : undefined;
             resourceInputs["snatEntryName"] = args ? args.snatEntryName : undefined;
             resourceInputs["sourceCidr"] = args ? args.sourceCidr : undefined;
             resourceInputs["subnetId"] = args ? args.subnetId : undefined;
@@ -163,13 +166,17 @@ export class SnatEntry extends pulumi.CustomResource {
  */
 export interface SnatEntryState {
     /**
-     * The id of the public ip address used by the SNAT entry.
+     * The id of the public ip address used by the SNAT entry. This field is required when the nat gateway is a internet NAT gateway.
      */
     eipId?: pulumi.Input<string>;
     /**
      * The id of the nat gateway to which the entry belongs.
      */
     natGatewayId?: pulumi.Input<string>;
+    /**
+     * The ID of the intranet NAT gateway's transit IP. This field is required when the nat gateway is a intranet NAT gateway.
+     */
+    natIpId?: pulumi.Input<string>;
     /**
      * The name of the SNAT entry.
      */
@@ -193,13 +200,17 @@ export interface SnatEntryState {
  */
 export interface SnatEntryArgs {
     /**
-     * The id of the public ip address used by the SNAT entry.
+     * The id of the public ip address used by the SNAT entry. This field is required when the nat gateway is a internet NAT gateway.
      */
-    eipId: pulumi.Input<string>;
+    eipId?: pulumi.Input<string>;
     /**
      * The id of the nat gateway to which the entry belongs.
      */
     natGatewayId: pulumi.Input<string>;
+    /**
+     * The ID of the intranet NAT gateway's transit IP. This field is required when the nat gateway is a intranet NAT gateway.
+     */
+    natIpId?: pulumi.Input<string>;
     /**
      * The name of the SNAT entry.
      */

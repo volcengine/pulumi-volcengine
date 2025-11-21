@@ -30,6 +30,10 @@ namespace Pulumi.Volcengine.Nat.Outputs
         /// </summary>
         public readonly string NatGatewayId;
         /// <summary>
+        /// The ID of the intranet NAT gateway's transit IP.
+        /// </summary>
+        public readonly string NatIpId;
+        /// <summary>
         /// The id of the SNAT entry.
         /// </summary>
         public readonly string SnatEntryId;
@@ -60,6 +64,8 @@ namespace Pulumi.Volcengine.Nat.Outputs
 
             string natGatewayId,
 
+            string natIpId,
+
             string snatEntryId,
 
             string snatEntryName,
@@ -74,6 +80,7 @@ namespace Pulumi.Volcengine.Nat.Outputs
             EipId = eipId;
             Id = id;
             NatGatewayId = natGatewayId;
+            NatIpId = natIpId;
             SnatEntryId = snatEntryId;
             SnatEntryName = snatEntryName;
             SourceCidr = sourceCidr;
