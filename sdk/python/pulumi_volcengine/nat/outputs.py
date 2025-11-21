@@ -17,12 +17,14 @@ __all__ = [
     'GatewaysNatGatewayEipAddressResult',
     'GatewaysNatGatewayTagResult',
     'GatewaysTagResult',
+    'IpsNatIpResult',
     'SnatEntriesSnatEntryResult',
     'GetDnatEntriesDnatEntryResult',
     'GetGatewaysNatGatewayResult',
     'GetGatewaysNatGatewayEipAddressResult',
     'GetGatewaysNatGatewayTagResult',
     'GetGatewaysTagResult',
+    'GetIpsNatIpResult',
     'GetSnatEntriesSnatEntryResult',
 ]
 
@@ -33,6 +35,7 @@ class DnatEntriesDnatEntryResult(dict):
                  dnat_entry_name: str,
                  external_ip: str,
                  external_port: str,
+                 id: str,
                  internal_ip: str,
                  internal_port: str,
                  nat_gateway_id: str,
@@ -43,6 +46,7 @@ class DnatEntriesDnatEntryResult(dict):
         :param str dnat_entry_name: The name of the DNAT entry.
         :param str external_ip: Provides the public IP address for public network access.
         :param str external_port: The port or port segment that receives requests from the public network. If InternalPort is passed into the port segment, ExternalPort must also be passed into the port segment.
+        :param str id: The ID of the DNAT entry.
         :param str internal_ip: Provides the internal IP address.
         :param str internal_port: The port or port segment on which the cloud server instance provides services to the public network.
         :param str nat_gateway_id: The id of the NAT gateway.
@@ -53,6 +57,7 @@ class DnatEntriesDnatEntryResult(dict):
         pulumi.set(__self__, "dnat_entry_name", dnat_entry_name)
         pulumi.set(__self__, "external_ip", external_ip)
         pulumi.set(__self__, "external_port", external_port)
+        pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "internal_ip", internal_ip)
         pulumi.set(__self__, "internal_port", internal_port)
         pulumi.set(__self__, "nat_gateway_id", nat_gateway_id)
@@ -90,6 +95,14 @@ class DnatEntriesDnatEntryResult(dict):
         The port or port segment that receives requests from the public network. If InternalPort is passed into the port segment, ExternalPort must also be passed into the port segment.
         """
         return pulumi.get(self, "external_port")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the DNAT entry.
+        """
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="internalIp")
@@ -169,13 +182,16 @@ class GatewaysNatGatewayResult(dict):
                  creation_time: str,
                  deleted_time: str,
                  description: str,
+                 dnat_entry_ids: Sequence[str],
                  eip_addresses: Sequence['outputs.GatewaysNatGatewayEipAddressResult'],
                  id: str,
                  lock_reason: str,
                  nat_gateway_id: str,
                  nat_gateway_name: str,
                  network_interface_id: str,
+                 network_type: str,
                  overdue_time: str,
+                 snat_entry_ids: Sequence[str],
                  spec: str,
                  status: str,
                  subnet_id: str,
@@ -188,13 +204,16 @@ class GatewaysNatGatewayResult(dict):
         :param str creation_time: The creation time of the NatGateway.
         :param str deleted_time: The deleted time of the NatGateway.
         :param str description: The description of the NatGateway.
+        :param Sequence[str] dnat_entry_ids: A list of dnat entry ids.
         :param Sequence['GatewaysNatGatewayEipAddressArgs'] eip_addresses: The eip addresses of the NatGateway.
         :param str id: The ID of the NatGateway.
         :param str lock_reason: The reason why locking NatGateway.
         :param str nat_gateway_id: The ID of the NatGateway.
         :param str nat_gateway_name: The name of the NatGateway.
         :param str network_interface_id: The ID of the network interface.
+        :param str network_type: The network type of the NatGateway.
         :param str overdue_time: The overdue time of the NatGateway.
+        :param Sequence[str] snat_entry_ids: A list of snat entry ids.
         :param str spec: The specification of the NatGateway.
         :param str status: The status of the NatGateway.
         :param str subnet_id: The id of the Subnet.
@@ -207,13 +226,16 @@ class GatewaysNatGatewayResult(dict):
         pulumi.set(__self__, "creation_time", creation_time)
         pulumi.set(__self__, "deleted_time", deleted_time)
         pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "dnat_entry_ids", dnat_entry_ids)
         pulumi.set(__self__, "eip_addresses", eip_addresses)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "lock_reason", lock_reason)
         pulumi.set(__self__, "nat_gateway_id", nat_gateway_id)
         pulumi.set(__self__, "nat_gateway_name", nat_gateway_name)
         pulumi.set(__self__, "network_interface_id", network_interface_id)
+        pulumi.set(__self__, "network_type", network_type)
         pulumi.set(__self__, "overdue_time", overdue_time)
+        pulumi.set(__self__, "snat_entry_ids", snat_entry_ids)
         pulumi.set(__self__, "spec", spec)
         pulumi.set(__self__, "status", status)
         pulumi.set(__self__, "subnet_id", subnet_id)
@@ -260,6 +282,14 @@ class GatewaysNatGatewayResult(dict):
         The description of the NatGateway.
         """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="dnatEntryIds")
+    def dnat_entry_ids(self) -> Sequence[str]:
+        """
+        A list of dnat entry ids.
+        """
+        return pulumi.get(self, "dnat_entry_ids")
 
     @property
     @pulumi.getter(name="eipAddresses")
@@ -310,12 +340,28 @@ class GatewaysNatGatewayResult(dict):
         return pulumi.get(self, "network_interface_id")
 
     @property
+    @pulumi.getter(name="networkType")
+    def network_type(self) -> str:
+        """
+        The network type of the NatGateway.
+        """
+        return pulumi.get(self, "network_type")
+
+    @property
     @pulumi.getter(name="overdueTime")
     def overdue_time(self) -> str:
         """
         The overdue time of the NatGateway.
         """
         return pulumi.get(self, "overdue_time")
+
+    @property
+    @pulumi.getter(name="snatEntryIds")
+    def snat_entry_ids(self) -> Sequence[str]:
+        """
+        A list of snat entry ids.
+        """
+        return pulumi.get(self, "snat_entry_ids")
 
     @property
     @pulumi.getter
@@ -465,12 +511,119 @@ class GatewaysTagResult(dict):
 
 
 @pulumi.output_type
+class IpsNatIpResult(dict):
+    def __init__(__self__, *,
+                 id: str,
+                 is_default: bool,
+                 nat_gateway_id: str,
+                 nat_ip: str,
+                 nat_ip_description: str,
+                 nat_ip_id: str,
+                 nat_ip_name: str,
+                 status: str,
+                 using_status: str):
+        """
+        :param str id: The id of the Nat Ip.
+        :param bool is_default: Whether the Ip is the default Nat Ip.
+        :param str nat_gateway_id: The id of the Nat gateway.
+        :param str nat_ip: The ip address of the Nat Ip.
+        :param str nat_ip_description: The description of the Nat Ip.
+        :param str nat_ip_id: The id of the Nat Ip.
+        :param str nat_ip_name: The name of the Nat IP.
+        :param str status: The status of the Nat Ip.
+        :param str using_status: The using status of the Nat Ip.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "is_default", is_default)
+        pulumi.set(__self__, "nat_gateway_id", nat_gateway_id)
+        pulumi.set(__self__, "nat_ip", nat_ip)
+        pulumi.set(__self__, "nat_ip_description", nat_ip_description)
+        pulumi.set(__self__, "nat_ip_id", nat_ip_id)
+        pulumi.set(__self__, "nat_ip_name", nat_ip_name)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "using_status", using_status)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The id of the Nat Ip.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="isDefault")
+    def is_default(self) -> bool:
+        """
+        Whether the Ip is the default Nat Ip.
+        """
+        return pulumi.get(self, "is_default")
+
+    @property
+    @pulumi.getter(name="natGatewayId")
+    def nat_gateway_id(self) -> str:
+        """
+        The id of the Nat gateway.
+        """
+        return pulumi.get(self, "nat_gateway_id")
+
+    @property
+    @pulumi.getter(name="natIp")
+    def nat_ip(self) -> str:
+        """
+        The ip address of the Nat Ip.
+        """
+        return pulumi.get(self, "nat_ip")
+
+    @property
+    @pulumi.getter(name="natIpDescription")
+    def nat_ip_description(self) -> str:
+        """
+        The description of the Nat Ip.
+        """
+        return pulumi.get(self, "nat_ip_description")
+
+    @property
+    @pulumi.getter(name="natIpId")
+    def nat_ip_id(self) -> str:
+        """
+        The id of the Nat Ip.
+        """
+        return pulumi.get(self, "nat_ip_id")
+
+    @property
+    @pulumi.getter(name="natIpName")
+    def nat_ip_name(self) -> str:
+        """
+        The name of the Nat IP.
+        """
+        return pulumi.get(self, "nat_ip_name")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of the Nat Ip.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="usingStatus")
+    def using_status(self) -> str:
+        """
+        The using status of the Nat Ip.
+        """
+        return pulumi.get(self, "using_status")
+
+
+@pulumi.output_type
 class SnatEntriesSnatEntryResult(dict):
     def __init__(__self__, *,
                  eip_address: str,
                  eip_id: str,
                  id: str,
                  nat_gateway_id: str,
+                 nat_ip_id: str,
                  snat_entry_id: str,
                  snat_entry_name: str,
                  source_cidr: str,
@@ -481,6 +634,7 @@ class SnatEntriesSnatEntryResult(dict):
         :param str eip_id: An id of the public ip address used by the SNAT entry.
         :param str id: The id of the SNAT entry.
         :param str nat_gateway_id: An id of the nat gateway to which the entry belongs.
+        :param str nat_ip_id: The ID of the intranet NAT gateway's transit IP.
         :param str snat_entry_id: The id of the SNAT entry.
         :param str snat_entry_name: A name of SNAT entry.
         :param str source_cidr: The SourceCidr of SNAT entry.
@@ -491,6 +645,7 @@ class SnatEntriesSnatEntryResult(dict):
         pulumi.set(__self__, "eip_id", eip_id)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "nat_gateway_id", nat_gateway_id)
+        pulumi.set(__self__, "nat_ip_id", nat_ip_id)
         pulumi.set(__self__, "snat_entry_id", snat_entry_id)
         pulumi.set(__self__, "snat_entry_name", snat_entry_name)
         pulumi.set(__self__, "source_cidr", source_cidr)
@@ -528,6 +683,14 @@ class SnatEntriesSnatEntryResult(dict):
         An id of the nat gateway to which the entry belongs.
         """
         return pulumi.get(self, "nat_gateway_id")
+
+    @property
+    @pulumi.getter(name="natIpId")
+    def nat_ip_id(self) -> str:
+        """
+        The ID of the intranet NAT gateway's transit IP.
+        """
+        return pulumi.get(self, "nat_ip_id")
 
     @property
     @pulumi.getter(name="snatEntryId")
@@ -577,6 +740,7 @@ class GetDnatEntriesDnatEntryResult(dict):
                  dnat_entry_name: str,
                  external_ip: str,
                  external_port: str,
+                 id: str,
                  internal_ip: str,
                  internal_port: str,
                  nat_gateway_id: str,
@@ -587,6 +751,7 @@ class GetDnatEntriesDnatEntryResult(dict):
         :param str dnat_entry_name: The name of the DNAT entry.
         :param str external_ip: Provides the public IP address for public network access.
         :param str external_port: The port or port segment that receives requests from the public network. If InternalPort is passed into the port segment, ExternalPort must also be passed into the port segment.
+        :param str id: The ID of the DNAT entry.
         :param str internal_ip: Provides the internal IP address.
         :param str internal_port: The port or port segment on which the cloud server instance provides services to the public network.
         :param str nat_gateway_id: The id of the NAT gateway.
@@ -597,6 +762,7 @@ class GetDnatEntriesDnatEntryResult(dict):
         pulumi.set(__self__, "dnat_entry_name", dnat_entry_name)
         pulumi.set(__self__, "external_ip", external_ip)
         pulumi.set(__self__, "external_port", external_port)
+        pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "internal_ip", internal_ip)
         pulumi.set(__self__, "internal_port", internal_port)
         pulumi.set(__self__, "nat_gateway_id", nat_gateway_id)
@@ -634,6 +800,14 @@ class GetDnatEntriesDnatEntryResult(dict):
         The port or port segment that receives requests from the public network. If InternalPort is passed into the port segment, ExternalPort must also be passed into the port segment.
         """
         return pulumi.get(self, "external_port")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the DNAT entry.
+        """
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="internalIp")
@@ -684,13 +858,16 @@ class GetGatewaysNatGatewayResult(dict):
                  creation_time: str,
                  deleted_time: str,
                  description: str,
+                 dnat_entry_ids: Sequence[str],
                  eip_addresses: Sequence['outputs.GetGatewaysNatGatewayEipAddressResult'],
                  id: str,
                  lock_reason: str,
                  nat_gateway_id: str,
                  nat_gateway_name: str,
                  network_interface_id: str,
+                 network_type: str,
                  overdue_time: str,
+                 snat_entry_ids: Sequence[str],
                  spec: str,
                  status: str,
                  subnet_id: str,
@@ -703,13 +880,16 @@ class GetGatewaysNatGatewayResult(dict):
         :param str creation_time: The creation time of the NatGateway.
         :param str deleted_time: The deleted time of the NatGateway.
         :param str description: The description of the NatGateway.
+        :param Sequence[str] dnat_entry_ids: A list of dnat entry ids.
         :param Sequence['GetGatewaysNatGatewayEipAddressArgs'] eip_addresses: The eip addresses of the NatGateway.
         :param str id: The ID of the NatGateway.
         :param str lock_reason: The reason why locking NatGateway.
         :param str nat_gateway_id: The ID of the NatGateway.
         :param str nat_gateway_name: The name of the NatGateway.
         :param str network_interface_id: The ID of the network interface.
+        :param str network_type: The network type of the NatGateway.
         :param str overdue_time: The overdue time of the NatGateway.
+        :param Sequence[str] snat_entry_ids: A list of snat entry ids.
         :param str spec: The specification of the NatGateway.
         :param str status: The status of the NatGateway.
         :param str subnet_id: The id of the Subnet.
@@ -722,13 +902,16 @@ class GetGatewaysNatGatewayResult(dict):
         pulumi.set(__self__, "creation_time", creation_time)
         pulumi.set(__self__, "deleted_time", deleted_time)
         pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "dnat_entry_ids", dnat_entry_ids)
         pulumi.set(__self__, "eip_addresses", eip_addresses)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "lock_reason", lock_reason)
         pulumi.set(__self__, "nat_gateway_id", nat_gateway_id)
         pulumi.set(__self__, "nat_gateway_name", nat_gateway_name)
         pulumi.set(__self__, "network_interface_id", network_interface_id)
+        pulumi.set(__self__, "network_type", network_type)
         pulumi.set(__self__, "overdue_time", overdue_time)
+        pulumi.set(__self__, "snat_entry_ids", snat_entry_ids)
         pulumi.set(__self__, "spec", spec)
         pulumi.set(__self__, "status", status)
         pulumi.set(__self__, "subnet_id", subnet_id)
@@ -775,6 +958,14 @@ class GetGatewaysNatGatewayResult(dict):
         The description of the NatGateway.
         """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="dnatEntryIds")
+    def dnat_entry_ids(self) -> Sequence[str]:
+        """
+        A list of dnat entry ids.
+        """
+        return pulumi.get(self, "dnat_entry_ids")
 
     @property
     @pulumi.getter(name="eipAddresses")
@@ -825,12 +1016,28 @@ class GetGatewaysNatGatewayResult(dict):
         return pulumi.get(self, "network_interface_id")
 
     @property
+    @pulumi.getter(name="networkType")
+    def network_type(self) -> str:
+        """
+        The network type of the NatGateway.
+        """
+        return pulumi.get(self, "network_type")
+
+    @property
     @pulumi.getter(name="overdueTime")
     def overdue_time(self) -> str:
         """
         The overdue time of the NatGateway.
         """
         return pulumi.get(self, "overdue_time")
+
+    @property
+    @pulumi.getter(name="snatEntryIds")
+    def snat_entry_ids(self) -> Sequence[str]:
+        """
+        A list of snat entry ids.
+        """
+        return pulumi.get(self, "snat_entry_ids")
 
     @property
     @pulumi.getter
@@ -980,12 +1187,119 @@ class GetGatewaysTagResult(dict):
 
 
 @pulumi.output_type
+class GetIpsNatIpResult(dict):
+    def __init__(__self__, *,
+                 id: str,
+                 is_default: bool,
+                 nat_gateway_id: str,
+                 nat_ip: str,
+                 nat_ip_description: str,
+                 nat_ip_id: str,
+                 nat_ip_name: str,
+                 status: str,
+                 using_status: str):
+        """
+        :param str id: The id of the Nat Ip.
+        :param bool is_default: Whether the Ip is the default Nat Ip.
+        :param str nat_gateway_id: The id of the Nat gateway.
+        :param str nat_ip: The ip address of the Nat Ip.
+        :param str nat_ip_description: The description of the Nat Ip.
+        :param str nat_ip_id: The id of the Nat Ip.
+        :param str nat_ip_name: The name of the Nat IP.
+        :param str status: The status of the Nat Ip.
+        :param str using_status: The using status of the Nat Ip.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "is_default", is_default)
+        pulumi.set(__self__, "nat_gateway_id", nat_gateway_id)
+        pulumi.set(__self__, "nat_ip", nat_ip)
+        pulumi.set(__self__, "nat_ip_description", nat_ip_description)
+        pulumi.set(__self__, "nat_ip_id", nat_ip_id)
+        pulumi.set(__self__, "nat_ip_name", nat_ip_name)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "using_status", using_status)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The id of the Nat Ip.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="isDefault")
+    def is_default(self) -> bool:
+        """
+        Whether the Ip is the default Nat Ip.
+        """
+        return pulumi.get(self, "is_default")
+
+    @property
+    @pulumi.getter(name="natGatewayId")
+    def nat_gateway_id(self) -> str:
+        """
+        The id of the Nat gateway.
+        """
+        return pulumi.get(self, "nat_gateway_id")
+
+    @property
+    @pulumi.getter(name="natIp")
+    def nat_ip(self) -> str:
+        """
+        The ip address of the Nat Ip.
+        """
+        return pulumi.get(self, "nat_ip")
+
+    @property
+    @pulumi.getter(name="natIpDescription")
+    def nat_ip_description(self) -> str:
+        """
+        The description of the Nat Ip.
+        """
+        return pulumi.get(self, "nat_ip_description")
+
+    @property
+    @pulumi.getter(name="natIpId")
+    def nat_ip_id(self) -> str:
+        """
+        The id of the Nat Ip.
+        """
+        return pulumi.get(self, "nat_ip_id")
+
+    @property
+    @pulumi.getter(name="natIpName")
+    def nat_ip_name(self) -> str:
+        """
+        The name of the Nat IP.
+        """
+        return pulumi.get(self, "nat_ip_name")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of the Nat Ip.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="usingStatus")
+    def using_status(self) -> str:
+        """
+        The using status of the Nat Ip.
+        """
+        return pulumi.get(self, "using_status")
+
+
+@pulumi.output_type
 class GetSnatEntriesSnatEntryResult(dict):
     def __init__(__self__, *,
                  eip_address: str,
                  eip_id: str,
                  id: str,
                  nat_gateway_id: str,
+                 nat_ip_id: str,
                  snat_entry_id: str,
                  snat_entry_name: str,
                  source_cidr: str,
@@ -996,6 +1310,7 @@ class GetSnatEntriesSnatEntryResult(dict):
         :param str eip_id: An id of the public ip address used by the SNAT entry.
         :param str id: The id of the SNAT entry.
         :param str nat_gateway_id: An id of the nat gateway to which the entry belongs.
+        :param str nat_ip_id: The ID of the intranet NAT gateway's transit IP.
         :param str snat_entry_id: The id of the SNAT entry.
         :param str snat_entry_name: A name of SNAT entry.
         :param str source_cidr: The SourceCidr of SNAT entry.
@@ -1006,6 +1321,7 @@ class GetSnatEntriesSnatEntryResult(dict):
         pulumi.set(__self__, "eip_id", eip_id)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "nat_gateway_id", nat_gateway_id)
+        pulumi.set(__self__, "nat_ip_id", nat_ip_id)
         pulumi.set(__self__, "snat_entry_id", snat_entry_id)
         pulumi.set(__self__, "snat_entry_name", snat_entry_name)
         pulumi.set(__self__, "source_cidr", source_cidr)
@@ -1043,6 +1359,14 @@ class GetSnatEntriesSnatEntryResult(dict):
         An id of the nat gateway to which the entry belongs.
         """
         return pulumi.get(self, "nat_gateway_id")
+
+    @property
+    @pulumi.getter(name="natIpId")
+    def nat_ip_id(self) -> str:
+        """
+        The ID of the intranet NAT gateway's transit IP.
+        """
+        return pulumi.get(self, "nat_ip_id")
 
     @property
     @pulumi.getter(name="snatEntryId")

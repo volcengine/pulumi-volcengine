@@ -112,10 +112,12 @@ import (
 type SnatEntry struct {
 	pulumi.CustomResourceState
 
-	// The id of the public ip address used by the SNAT entry.
-	EipId pulumi.StringOutput `pulumi:"eipId"`
+	// The id of the public ip address used by the SNAT entry. This field is required when the nat gateway is a internet NAT gateway.
+	EipId pulumi.StringPtrOutput `pulumi:"eipId"`
 	// The id of the nat gateway to which the entry belongs.
 	NatGatewayId pulumi.StringOutput `pulumi:"natGatewayId"`
+	// The ID of the intranet NAT gateway's transit IP. This field is required when the nat gateway is a intranet NAT gateway.
+	NatIpId pulumi.StringPtrOutput `pulumi:"natIpId"`
 	// The name of the SNAT entry.
 	SnatEntryName pulumi.StringOutput `pulumi:"snatEntryName"`
 	// The SourceCidr of the SNAT entry. Only one of `subnet_id,source_cidr` can be specified.
@@ -133,9 +135,6 @@ func NewSnatEntry(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.EipId == nil {
-		return nil, errors.New("invalid value for required argument 'EipId'")
-	}
 	if args.NatGatewayId == nil {
 		return nil, errors.New("invalid value for required argument 'NatGatewayId'")
 	}
@@ -162,10 +161,12 @@ func GetSnatEntry(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SnatEntry resources.
 type snatEntryState struct {
-	// The id of the public ip address used by the SNAT entry.
+	// The id of the public ip address used by the SNAT entry. This field is required when the nat gateway is a internet NAT gateway.
 	EipId *string `pulumi:"eipId"`
 	// The id of the nat gateway to which the entry belongs.
 	NatGatewayId *string `pulumi:"natGatewayId"`
+	// The ID of the intranet NAT gateway's transit IP. This field is required when the nat gateway is a intranet NAT gateway.
+	NatIpId *string `pulumi:"natIpId"`
 	// The name of the SNAT entry.
 	SnatEntryName *string `pulumi:"snatEntryName"`
 	// The SourceCidr of the SNAT entry. Only one of `subnet_id,source_cidr` can be specified.
@@ -177,10 +178,12 @@ type snatEntryState struct {
 }
 
 type SnatEntryState struct {
-	// The id of the public ip address used by the SNAT entry.
+	// The id of the public ip address used by the SNAT entry. This field is required when the nat gateway is a internet NAT gateway.
 	EipId pulumi.StringPtrInput
 	// The id of the nat gateway to which the entry belongs.
 	NatGatewayId pulumi.StringPtrInput
+	// The ID of the intranet NAT gateway's transit IP. This field is required when the nat gateway is a intranet NAT gateway.
+	NatIpId pulumi.StringPtrInput
 	// The name of the SNAT entry.
 	SnatEntryName pulumi.StringPtrInput
 	// The SourceCidr of the SNAT entry. Only one of `subnet_id,source_cidr` can be specified.
@@ -196,10 +199,12 @@ func (SnatEntryState) ElementType() reflect.Type {
 }
 
 type snatEntryArgs struct {
-	// The id of the public ip address used by the SNAT entry.
-	EipId string `pulumi:"eipId"`
+	// The id of the public ip address used by the SNAT entry. This field is required when the nat gateway is a internet NAT gateway.
+	EipId *string `pulumi:"eipId"`
 	// The id of the nat gateway to which the entry belongs.
 	NatGatewayId string `pulumi:"natGatewayId"`
+	// The ID of the intranet NAT gateway's transit IP. This field is required when the nat gateway is a intranet NAT gateway.
+	NatIpId *string `pulumi:"natIpId"`
 	// The name of the SNAT entry.
 	SnatEntryName *string `pulumi:"snatEntryName"`
 	// The SourceCidr of the SNAT entry. Only one of `subnet_id,source_cidr` can be specified.
@@ -210,10 +215,12 @@ type snatEntryArgs struct {
 
 // The set of arguments for constructing a SnatEntry resource.
 type SnatEntryArgs struct {
-	// The id of the public ip address used by the SNAT entry.
-	EipId pulumi.StringInput
+	// The id of the public ip address used by the SNAT entry. This field is required when the nat gateway is a internet NAT gateway.
+	EipId pulumi.StringPtrInput
 	// The id of the nat gateway to which the entry belongs.
 	NatGatewayId pulumi.StringInput
+	// The ID of the intranet NAT gateway's transit IP. This field is required when the nat gateway is a intranet NAT gateway.
+	NatIpId pulumi.StringPtrInput
 	// The name of the SNAT entry.
 	SnatEntryName pulumi.StringPtrInput
 	// The SourceCidr of the SNAT entry. Only one of `subnet_id,source_cidr` can be specified.
@@ -309,14 +316,19 @@ func (o SnatEntryOutput) ToSnatEntryOutputWithContext(ctx context.Context) SnatE
 	return o
 }
 
-// The id of the public ip address used by the SNAT entry.
-func (o SnatEntryOutput) EipId() pulumi.StringOutput {
-	return o.ApplyT(func(v *SnatEntry) pulumi.StringOutput { return v.EipId }).(pulumi.StringOutput)
+// The id of the public ip address used by the SNAT entry. This field is required when the nat gateway is a internet NAT gateway.
+func (o SnatEntryOutput) EipId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SnatEntry) pulumi.StringPtrOutput { return v.EipId }).(pulumi.StringPtrOutput)
 }
 
 // The id of the nat gateway to which the entry belongs.
 func (o SnatEntryOutput) NatGatewayId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SnatEntry) pulumi.StringOutput { return v.NatGatewayId }).(pulumi.StringOutput)
+}
+
+// The ID of the intranet NAT gateway's transit IP. This field is required when the nat gateway is a intranet NAT gateway.
+func (o SnatEntryOutput) NatIpId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SnatEntry) pulumi.StringPtrOutput { return v.NatIpId }).(pulumi.StringPtrOutput)
 }
 
 // The name of the SNAT entry.

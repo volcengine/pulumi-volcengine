@@ -34,6 +34,10 @@ namespace Pulumi.Volcengine.Nat.Outputs
         /// </summary>
         public readonly string Description;
         /// <summary>
+        /// A list of dnat entry ids.
+        /// </summary>
+        public readonly ImmutableArray<string> DnatEntryIds;
+        /// <summary>
         /// The eip addresses of the NatGateway.
         /// </summary>
         public readonly ImmutableArray<Outputs.GatewaysNatGatewayEipAddressResult> EipAddresses;
@@ -58,9 +62,17 @@ namespace Pulumi.Volcengine.Nat.Outputs
         /// </summary>
         public readonly string NetworkInterfaceId;
         /// <summary>
+        /// The network type of the NatGateway.
+        /// </summary>
+        public readonly string NetworkType;
+        /// <summary>
         /// The overdue time of the NatGateway.
         /// </summary>
         public readonly string OverdueTime;
+        /// <summary>
+        /// A list of snat entry ids.
+        /// </summary>
+        public readonly ImmutableArray<string> SnatEntryIds;
         /// <summary>
         /// The specification of the NatGateway.
         /// </summary>
@@ -98,6 +110,8 @@ namespace Pulumi.Volcengine.Nat.Outputs
 
             string description,
 
+            ImmutableArray<string> dnatEntryIds,
+
             ImmutableArray<Outputs.GatewaysNatGatewayEipAddressResult> eipAddresses,
 
             string id,
@@ -110,7 +124,11 @@ namespace Pulumi.Volcengine.Nat.Outputs
 
             string networkInterfaceId,
 
+            string networkType,
+
             string overdueTime,
+
+            ImmutableArray<string> snatEntryIds,
 
             string spec,
 
@@ -129,13 +147,16 @@ namespace Pulumi.Volcengine.Nat.Outputs
             CreationTime = creationTime;
             DeletedTime = deletedTime;
             Description = description;
+            DnatEntryIds = dnatEntryIds;
             EipAddresses = eipAddresses;
             Id = id;
             LockReason = lockReason;
             NatGatewayId = natGatewayId;
             NatGatewayName = natGatewayName;
             NetworkInterfaceId = networkInterfaceId;
+            NetworkType = networkType;
             OverdueTime = overdueTime;
+            SnatEntryIds = snatEntryIds;
             Spec = spec;
             Status = status;
             SubnetId = subnetId;

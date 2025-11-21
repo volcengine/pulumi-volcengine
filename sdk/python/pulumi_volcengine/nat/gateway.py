@@ -21,6 +21,7 @@ class GatewayArgs:
                  billing_type: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  nat_gateway_name: Optional[pulumi.Input[str]] = None,
+                 network_type: Optional[pulumi.Input[str]] = None,
                  period: Optional[pulumi.Input[int]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  spec: Optional[pulumi.Input[str]] = None,
@@ -29,12 +30,15 @@ class GatewayArgs:
         The set of arguments for constructing a Gateway resource.
         :param pulumi.Input[str] subnet_id: The ID of the Subnet.
         :param pulumi.Input[str] vpc_id: The ID of the VPC.
-        :param pulumi.Input[str] billing_type: The billing type of the NatGateway, the value is `PostPaid` or `PrePaid`.
+        :param pulumi.Input[str] billing_type: The billing type of the NatGateway, the value is `PostPaid` or `PrePaid` or `PostPaidByUsage`. Default value is `PostPaid`.
+               When the `network_type` is `intranet`, the billing type must be `PostPaidByUsage`.
         :param pulumi.Input[str] description: The description of the NatGateway.
         :param pulumi.Input[str] nat_gateway_name: The name of the NatGateway.
+        :param pulumi.Input[str] network_type: The network type of the NatGateway. Valid values are `internet` and `intranet`. Default value is `internet`.
         :param pulumi.Input[int] period: The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] project_name: The ProjectName of the NatGateway.
         :param pulumi.Input[str] spec: The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large` or leave blank.
+               When the `billing_type` is `PostPaidByUsage`, this field should not be specified.
         :param pulumi.Input[Sequence[pulumi.Input['GatewayTagArgs']]] tags: Tags.
         """
         pulumi.set(__self__, "subnet_id", subnet_id)
@@ -45,6 +49,8 @@ class GatewayArgs:
             pulumi.set(__self__, "description", description)
         if nat_gateway_name is not None:
             pulumi.set(__self__, "nat_gateway_name", nat_gateway_name)
+        if network_type is not None:
+            pulumi.set(__self__, "network_type", network_type)
         if period is not None:
             pulumi.set(__self__, "period", period)
         if project_name is not None:
@@ -82,7 +88,8 @@ class GatewayArgs:
     @pulumi.getter(name="billingType")
     def billing_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The billing type of the NatGateway, the value is `PostPaid` or `PrePaid`.
+        The billing type of the NatGateway, the value is `PostPaid` or `PrePaid` or `PostPaidByUsage`. Default value is `PostPaid`.
+        When the `network_type` is `intranet`, the billing type must be `PostPaidByUsage`.
         """
         return pulumi.get(self, "billing_type")
 
@@ -115,6 +122,18 @@ class GatewayArgs:
         pulumi.set(self, "nat_gateway_name", value)
 
     @property
+    @pulumi.getter(name="networkType")
+    def network_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The network type of the NatGateway. Valid values are `internet` and `intranet`. Default value is `internet`.
+        """
+        return pulumi.get(self, "network_type")
+
+    @network_type.setter
+    def network_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "network_type", value)
+
+    @property
     @pulumi.getter
     def period(self) -> Optional[pulumi.Input[int]]:
         """
@@ -143,6 +162,7 @@ class GatewayArgs:
     def spec(self) -> Optional[pulumi.Input[str]]:
         """
         The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large` or leave blank.
+        When the `billing_type` is `PostPaidByUsage`, this field should not be specified.
         """
         return pulumi.get(self, "spec")
 
@@ -169,6 +189,7 @@ class _GatewayState:
                  billing_type: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  nat_gateway_name: Optional[pulumi.Input[str]] = None,
+                 network_type: Optional[pulumi.Input[str]] = None,
                  period: Optional[pulumi.Input[int]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  spec: Optional[pulumi.Input[str]] = None,
@@ -177,12 +198,15 @@ class _GatewayState:
                  vpc_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Gateway resources.
-        :param pulumi.Input[str] billing_type: The billing type of the NatGateway, the value is `PostPaid` or `PrePaid`.
+        :param pulumi.Input[str] billing_type: The billing type of the NatGateway, the value is `PostPaid` or `PrePaid` or `PostPaidByUsage`. Default value is `PostPaid`.
+               When the `network_type` is `intranet`, the billing type must be `PostPaidByUsage`.
         :param pulumi.Input[str] description: The description of the NatGateway.
         :param pulumi.Input[str] nat_gateway_name: The name of the NatGateway.
+        :param pulumi.Input[str] network_type: The network type of the NatGateway. Valid values are `internet` and `intranet`. Default value is `internet`.
         :param pulumi.Input[int] period: The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] project_name: The ProjectName of the NatGateway.
         :param pulumi.Input[str] spec: The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large` or leave blank.
+               When the `billing_type` is `PostPaidByUsage`, this field should not be specified.
         :param pulumi.Input[str] subnet_id: The ID of the Subnet.
         :param pulumi.Input[Sequence[pulumi.Input['GatewayTagArgs']]] tags: Tags.
         :param pulumi.Input[str] vpc_id: The ID of the VPC.
@@ -193,6 +217,8 @@ class _GatewayState:
             pulumi.set(__self__, "description", description)
         if nat_gateway_name is not None:
             pulumi.set(__self__, "nat_gateway_name", nat_gateway_name)
+        if network_type is not None:
+            pulumi.set(__self__, "network_type", network_type)
         if period is not None:
             pulumi.set(__self__, "period", period)
         if project_name is not None:
@@ -210,7 +236,8 @@ class _GatewayState:
     @pulumi.getter(name="billingType")
     def billing_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The billing type of the NatGateway, the value is `PostPaid` or `PrePaid`.
+        The billing type of the NatGateway, the value is `PostPaid` or `PrePaid` or `PostPaidByUsage`. Default value is `PostPaid`.
+        When the `network_type` is `intranet`, the billing type must be `PostPaidByUsage`.
         """
         return pulumi.get(self, "billing_type")
 
@@ -243,6 +270,18 @@ class _GatewayState:
         pulumi.set(self, "nat_gateway_name", value)
 
     @property
+    @pulumi.getter(name="networkType")
+    def network_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The network type of the NatGateway. Valid values are `internet` and `intranet`. Default value is `internet`.
+        """
+        return pulumi.get(self, "network_type")
+
+    @network_type.setter
+    def network_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "network_type", value)
+
+    @property
     @pulumi.getter
     def period(self) -> Optional[pulumi.Input[int]]:
         """
@@ -271,6 +310,7 @@ class _GatewayState:
     def spec(self) -> Optional[pulumi.Input[str]]:
         """
         The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large` or leave blank.
+        When the `billing_type` is `PostPaidByUsage`, this field should not be specified.
         """
         return pulumi.get(self, "spec")
 
@@ -323,6 +363,7 @@ class Gateway(pulumi.CustomResource):
                  billing_type: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  nat_gateway_name: Optional[pulumi.Input[str]] = None,
+                 network_type: Optional[pulumi.Input[str]] = None,
                  period: Optional[pulumi.Input[int]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  spec: Optional[pulumi.Input[str]] = None,
@@ -346,11 +387,12 @@ class Gateway(pulumi.CustomResource):
             cidr_block="172.16.0.0/24",
             zone_id=foo_zones.zones[0].id,
             vpc_id=foo_vpc.id)
-        foo_gateway = volcengine.nat.Gateway("fooGateway",
+        # create internet nat gateway and snat entry and dnat entry
+        internet_nat_gateway = volcengine.nat.Gateway("internetNatGateway",
             vpc_id=foo_vpc.id,
             subnet_id=foo_subnet.id,
             spec="Small",
-            nat_gateway_name="acc-test-ng",
+            nat_gateway_name="acc-test-internet_ng",
             description="acc-test",
             billing_type="PostPaid",
             project_name="default",
@@ -358,6 +400,61 @@ class Gateway(pulumi.CustomResource):
                 key="k1",
                 value="v1",
             )])
+        foo_address = volcengine.eip.Address("fooAddress",
+            description="acc-test",
+            bandwidth=1,
+            billing_type="PostPaidByBandwidth",
+            isp="BGP")
+        foo_associate = volcengine.eip.Associate("fooAssociate",
+            allocation_id=foo_address.id,
+            instance_id=internet_nat_gateway.id,
+            instance_type="Nat")
+        foo_snat_entry = volcengine.nat.SnatEntry("fooSnatEntry",
+            snat_entry_name="acc-test-snat-entry",
+            nat_gateway_id=internet_nat_gateway.id,
+            eip_id=foo_address.id,
+            source_cidr="172.16.0.0/24",
+            opts=pulumi.ResourceOptions(depends_on=[foo_associate]))
+        foo_dnat_entry = volcengine.nat.DnatEntry("fooDnatEntry",
+            dnat_entry_name="acc-test-dnat-entry",
+            external_ip=foo_address.eip_address,
+            external_port="80",
+            internal_ip="172.16.0.10",
+            internal_port="80",
+            nat_gateway_id=internet_nat_gateway.id,
+            protocol="tcp",
+            opts=pulumi.ResourceOptions(depends_on=[foo_associate]))
+        # create intranet nat gateway and snat entry and dnat entry
+        intranet_nat_gateway = volcengine.nat.Gateway("intranetNatGateway",
+            vpc_id=foo_vpc.id,
+            subnet_id=foo_subnet.id,
+            nat_gateway_name="acc-test-intranet_ng",
+            description="acc-test",
+            network_type="intranet",
+            billing_type="PostPaidByUsage",
+            project_name="default",
+            tags=[volcengine.nat.GatewayTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        foo_ip = volcengine.nat.Ip("fooIp",
+            nat_gateway_id=intranet_nat_gateway.id,
+            nat_ip_name="acc-test-nat-ip",
+            nat_ip_description="acc-test",
+            nat_ip="172.16.0.3")
+        foo_intranet_snat_entry = volcengine.nat.SnatEntry("foo-intranetSnatEntry",
+            snat_entry_name="acc-test-snat-entry-intranet",
+            nat_gateway_id=intranet_nat_gateway.id,
+            nat_ip_id=foo_ip.id,
+            source_cidr="172.16.0.0/24")
+        foo_intranet_dnat_entry = volcengine.nat.DnatEntry("foo-intranetDnatEntry",
+            nat_gateway_id=intranet_nat_gateway.id,
+            dnat_entry_name="acc-test-dnat-entry-intranet",
+            protocol="tcp",
+            internal_ip="172.16.0.5",
+            internal_port="82",
+            external_ip=foo_ip.nat_ip,
+            external_port="87")
         ```
 
         ## Import
@@ -370,12 +467,15 @@ class Gateway(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] billing_type: The billing type of the NatGateway, the value is `PostPaid` or `PrePaid`.
+        :param pulumi.Input[str] billing_type: The billing type of the NatGateway, the value is `PostPaid` or `PrePaid` or `PostPaidByUsage`. Default value is `PostPaid`.
+               When the `network_type` is `intranet`, the billing type must be `PostPaidByUsage`.
         :param pulumi.Input[str] description: The description of the NatGateway.
         :param pulumi.Input[str] nat_gateway_name: The name of the NatGateway.
+        :param pulumi.Input[str] network_type: The network type of the NatGateway. Valid values are `internet` and `intranet`. Default value is `internet`.
         :param pulumi.Input[int] period: The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] project_name: The ProjectName of the NatGateway.
         :param pulumi.Input[str] spec: The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large` or leave blank.
+               When the `billing_type` is `PostPaidByUsage`, this field should not be specified.
         :param pulumi.Input[str] subnet_id: The ID of the Subnet.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GatewayTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] vpc_id: The ID of the VPC.
@@ -402,11 +502,12 @@ class Gateway(pulumi.CustomResource):
             cidr_block="172.16.0.0/24",
             zone_id=foo_zones.zones[0].id,
             vpc_id=foo_vpc.id)
-        foo_gateway = volcengine.nat.Gateway("fooGateway",
+        # create internet nat gateway and snat entry and dnat entry
+        internet_nat_gateway = volcengine.nat.Gateway("internetNatGateway",
             vpc_id=foo_vpc.id,
             subnet_id=foo_subnet.id,
             spec="Small",
-            nat_gateway_name="acc-test-ng",
+            nat_gateway_name="acc-test-internet_ng",
             description="acc-test",
             billing_type="PostPaid",
             project_name="default",
@@ -414,6 +515,61 @@ class Gateway(pulumi.CustomResource):
                 key="k1",
                 value="v1",
             )])
+        foo_address = volcengine.eip.Address("fooAddress",
+            description="acc-test",
+            bandwidth=1,
+            billing_type="PostPaidByBandwidth",
+            isp="BGP")
+        foo_associate = volcengine.eip.Associate("fooAssociate",
+            allocation_id=foo_address.id,
+            instance_id=internet_nat_gateway.id,
+            instance_type="Nat")
+        foo_snat_entry = volcengine.nat.SnatEntry("fooSnatEntry",
+            snat_entry_name="acc-test-snat-entry",
+            nat_gateway_id=internet_nat_gateway.id,
+            eip_id=foo_address.id,
+            source_cidr="172.16.0.0/24",
+            opts=pulumi.ResourceOptions(depends_on=[foo_associate]))
+        foo_dnat_entry = volcengine.nat.DnatEntry("fooDnatEntry",
+            dnat_entry_name="acc-test-dnat-entry",
+            external_ip=foo_address.eip_address,
+            external_port="80",
+            internal_ip="172.16.0.10",
+            internal_port="80",
+            nat_gateway_id=internet_nat_gateway.id,
+            protocol="tcp",
+            opts=pulumi.ResourceOptions(depends_on=[foo_associate]))
+        # create intranet nat gateway and snat entry and dnat entry
+        intranet_nat_gateway = volcengine.nat.Gateway("intranetNatGateway",
+            vpc_id=foo_vpc.id,
+            subnet_id=foo_subnet.id,
+            nat_gateway_name="acc-test-intranet_ng",
+            description="acc-test",
+            network_type="intranet",
+            billing_type="PostPaidByUsage",
+            project_name="default",
+            tags=[volcengine.nat.GatewayTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        foo_ip = volcengine.nat.Ip("fooIp",
+            nat_gateway_id=intranet_nat_gateway.id,
+            nat_ip_name="acc-test-nat-ip",
+            nat_ip_description="acc-test",
+            nat_ip="172.16.0.3")
+        foo_intranet_snat_entry = volcengine.nat.SnatEntry("foo-intranetSnatEntry",
+            snat_entry_name="acc-test-snat-entry-intranet",
+            nat_gateway_id=intranet_nat_gateway.id,
+            nat_ip_id=foo_ip.id,
+            source_cidr="172.16.0.0/24")
+        foo_intranet_dnat_entry = volcengine.nat.DnatEntry("foo-intranetDnatEntry",
+            nat_gateway_id=intranet_nat_gateway.id,
+            dnat_entry_name="acc-test-dnat-entry-intranet",
+            protocol="tcp",
+            internal_ip="172.16.0.5",
+            internal_port="82",
+            external_ip=foo_ip.nat_ip,
+            external_port="87")
         ```
 
         ## Import
@@ -442,6 +598,7 @@ class Gateway(pulumi.CustomResource):
                  billing_type: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  nat_gateway_name: Optional[pulumi.Input[str]] = None,
+                 network_type: Optional[pulumi.Input[str]] = None,
                  period: Optional[pulumi.Input[int]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  spec: Optional[pulumi.Input[str]] = None,
@@ -460,6 +617,7 @@ class Gateway(pulumi.CustomResource):
             __props__.__dict__["billing_type"] = billing_type
             __props__.__dict__["description"] = description
             __props__.__dict__["nat_gateway_name"] = nat_gateway_name
+            __props__.__dict__["network_type"] = network_type
             __props__.__dict__["period"] = period
             __props__.__dict__["project_name"] = project_name
             __props__.__dict__["spec"] = spec
@@ -483,6 +641,7 @@ class Gateway(pulumi.CustomResource):
             billing_type: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             nat_gateway_name: Optional[pulumi.Input[str]] = None,
+            network_type: Optional[pulumi.Input[str]] = None,
             period: Optional[pulumi.Input[int]] = None,
             project_name: Optional[pulumi.Input[str]] = None,
             spec: Optional[pulumi.Input[str]] = None,
@@ -496,12 +655,15 @@ class Gateway(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] billing_type: The billing type of the NatGateway, the value is `PostPaid` or `PrePaid`.
+        :param pulumi.Input[str] billing_type: The billing type of the NatGateway, the value is `PostPaid` or `PrePaid` or `PostPaidByUsage`. Default value is `PostPaid`.
+               When the `network_type` is `intranet`, the billing type must be `PostPaidByUsage`.
         :param pulumi.Input[str] description: The description of the NatGateway.
         :param pulumi.Input[str] nat_gateway_name: The name of the NatGateway.
+        :param pulumi.Input[str] network_type: The network type of the NatGateway. Valid values are `internet` and `intranet`. Default value is `internet`.
         :param pulumi.Input[int] period: The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] project_name: The ProjectName of the NatGateway.
         :param pulumi.Input[str] spec: The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large` or leave blank.
+               When the `billing_type` is `PostPaidByUsage`, this field should not be specified.
         :param pulumi.Input[str] subnet_id: The ID of the Subnet.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GatewayTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] vpc_id: The ID of the VPC.
@@ -513,6 +675,7 @@ class Gateway(pulumi.CustomResource):
         __props__.__dict__["billing_type"] = billing_type
         __props__.__dict__["description"] = description
         __props__.__dict__["nat_gateway_name"] = nat_gateway_name
+        __props__.__dict__["network_type"] = network_type
         __props__.__dict__["period"] = period
         __props__.__dict__["project_name"] = project_name
         __props__.__dict__["spec"] = spec
@@ -525,7 +688,8 @@ class Gateway(pulumi.CustomResource):
     @pulumi.getter(name="billingType")
     def billing_type(self) -> pulumi.Output[Optional[str]]:
         """
-        The billing type of the NatGateway, the value is `PostPaid` or `PrePaid`.
+        The billing type of the NatGateway, the value is `PostPaid` or `PrePaid` or `PostPaidByUsage`. Default value is `PostPaid`.
+        When the `network_type` is `intranet`, the billing type must be `PostPaidByUsage`.
         """
         return pulumi.get(self, "billing_type")
 
@@ -544,6 +708,14 @@ class Gateway(pulumi.CustomResource):
         The name of the NatGateway.
         """
         return pulumi.get(self, "nat_gateway_name")
+
+    @property
+    @pulumi.getter(name="networkType")
+    def network_type(self) -> pulumi.Output[Optional[str]]:
+        """
+        The network type of the NatGateway. Valid values are `internet` and `intranet`. Default value is `internet`.
+        """
+        return pulumi.get(self, "network_type")
 
     @property
     @pulumi.getter
@@ -566,6 +738,7 @@ class Gateway(pulumi.CustomResource):
     def spec(self) -> pulumi.Output[str]:
         """
         The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large` or leave blank.
+        When the `billing_type` is `PostPaidByUsage`, this field should not be specified.
         """
         return pulumi.get(self, "spec")
 

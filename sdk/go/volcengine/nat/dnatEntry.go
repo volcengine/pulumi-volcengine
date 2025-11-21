@@ -129,7 +129,7 @@ type DnatEntry struct {
 	InternalPort pulumi.StringOutput `pulumi:"internalPort"`
 	// The id of the nat gateway to which the entry belongs.
 	NatGatewayId pulumi.StringOutput `pulumi:"natGatewayId"`
-	// The network protocol.
+	// The network protocol. Valid values: `tcp`, `udp`.
 	Protocol pulumi.StringOutput `pulumi:"protocol"`
 }
 
@@ -195,7 +195,7 @@ type dnatEntryState struct {
 	InternalPort *string `pulumi:"internalPort"`
 	// The id of the nat gateway to which the entry belongs.
 	NatGatewayId *string `pulumi:"natGatewayId"`
-	// The network protocol.
+	// The network protocol. Valid values: `tcp`, `udp`.
 	Protocol *string `pulumi:"protocol"`
 }
 
@@ -214,7 +214,7 @@ type DnatEntryState struct {
 	InternalPort pulumi.StringPtrInput
 	// The id of the nat gateway to which the entry belongs.
 	NatGatewayId pulumi.StringPtrInput
-	// The network protocol.
+	// The network protocol. Valid values: `tcp`, `udp`.
 	Protocol pulumi.StringPtrInput
 }
 
@@ -235,7 +235,7 @@ type dnatEntryArgs struct {
 	InternalPort string `pulumi:"internalPort"`
 	// The id of the nat gateway to which the entry belongs.
 	NatGatewayId string `pulumi:"natGatewayId"`
-	// The network protocol.
+	// The network protocol. Valid values: `tcp`, `udp`.
 	Protocol string `pulumi:"protocol"`
 }
 
@@ -253,7 +253,7 @@ type DnatEntryArgs struct {
 	InternalPort pulumi.StringInput
 	// The id of the nat gateway to which the entry belongs.
 	NatGatewayId pulumi.StringInput
-	// The network protocol.
+	// The network protocol. Valid values: `tcp`, `udp`.
 	Protocol pulumi.StringInput
 }
 
@@ -379,7 +379,7 @@ func (o DnatEntryOutput) NatGatewayId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DnatEntry) pulumi.StringOutput { return v.NatGatewayId }).(pulumi.StringOutput)
 }
 
-// The network protocol.
+// The network protocol. Valid values: `tcp`, `udp`.
 func (o DnatEntryOutput) Protocol() pulumi.StringOutput {
 	return o.ApplyT(func(v *DnatEntry) pulumi.StringOutput { return v.Protocol }).(pulumi.StringOutput)
 }

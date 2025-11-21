@@ -25,6 +25,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &DnatEntry{}
 	case "volcengine:nat/gateway:Gateway":
 		r = &Gateway{}
+	case "volcengine:nat/ip:Ip":
+		r = &Ip{}
 	case "volcengine:nat/snatEntry:SnatEntry":
 		r = &SnatEntry{}
 	default:
@@ -48,6 +50,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"volcengine",
 		"nat/gateway",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"nat/ip",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

@@ -35,10 +35,25 @@ export const getGateways: typeof import("./getGateways").getGateways = null as a
 export const getGatewaysOutput: typeof import("./getGateways").getGatewaysOutput = null as any;
 utilities.lazyLoad(exports, ["getGateways","getGatewaysOutput"], () => require("./getGateways"));
 
+export { GetIpsArgs, GetIpsResult, GetIpsOutputArgs } from "./getIps";
+export const getIps: typeof import("./getIps").getIps = null as any;
+export const getIpsOutput: typeof import("./getIps").getIpsOutput = null as any;
+utilities.lazyLoad(exports, ["getIps","getIpsOutput"], () => require("./getIps"));
+
 export { GetSnatEntriesArgs, GetSnatEntriesResult, GetSnatEntriesOutputArgs } from "./getSnatEntries";
 export const getSnatEntries: typeof import("./getSnatEntries").getSnatEntries = null as any;
 export const getSnatEntriesOutput: typeof import("./getSnatEntries").getSnatEntriesOutput = null as any;
 utilities.lazyLoad(exports, ["getSnatEntries","getSnatEntriesOutput"], () => require("./getSnatEntries"));
+
+export { IpArgs, IpState } from "./ip";
+export type Ip = import("./ip").Ip;
+export const Ip: typeof import("./ip").Ip = null as any;
+utilities.lazyLoad(exports, ["Ip"], () => require("./ip"));
+
+export { IpsArgs, IpsResult, IpsOutputArgs } from "./ips";
+export const ips: typeof import("./ips").ips = null as any;
+export const ipsOutput: typeof import("./ips").ipsOutput = null as any;
+utilities.lazyLoad(exports, ["ips","ipsOutput"], () => require("./ips"));
 
 export { SnatEntriesArgs, SnatEntriesResult, SnatEntriesOutputArgs } from "./snatEntries";
 export const snatEntries: typeof import("./snatEntries").snatEntries = null as any;
@@ -59,6 +74,8 @@ const _module = {
                 return new DnatEntry(name, <any>undefined, { urn })
             case "volcengine:nat/gateway:Gateway":
                 return new Gateway(name, <any>undefined, { urn })
+            case "volcengine:nat/ip:Ip":
+                return new Ip(name, <any>undefined, { urn })
             case "volcengine:nat/snatEntry:SnatEntry":
                 return new SnatEntry(name, <any>undefined, { urn })
             default:
@@ -68,4 +85,5 @@ const _module = {
 };
 pulumi.runtime.registerResourceModule("volcengine", "nat/dnatEntry", _module)
 pulumi.runtime.registerResourceModule("volcengine", "nat/gateway", _module)
+pulumi.runtime.registerResourceModule("volcengine", "nat/ip", _module)
 pulumi.runtime.registerResourceModule("volcengine", "nat/snatEntry", _module)
