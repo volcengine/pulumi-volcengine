@@ -1413,6 +1413,14 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "nat/ip",
+  "fqn": "pulumi_volcengine.nat",
+  "classes": {
+   "volcengine:nat/ip:Ip": "Ip"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "nat/snatEntry",
   "fqn": "pulumi_volcengine.nat",
   "classes": {

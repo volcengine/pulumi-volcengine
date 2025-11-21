@@ -21,6 +21,7 @@ import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/eip"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/nat"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
@@ -48,11 +49,12 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = nat.NewGateway(ctx, "fooGateway", &nat.GatewayArgs{
+//			// create internet nat gateway and snat entry and dnat entry
+//			internetNatGateway, err := nat.NewGateway(ctx, "internetNatGateway", &nat.GatewayArgs{
 //				VpcId:          fooVpc.ID(),
 //				SubnetId:       fooSubnet.ID(),
 //				Spec:           pulumi.String("Small"),
-//				NatGatewayName: pulumi.String("acc-test-ng"),
+//				NatGatewayName: pulumi.String("acc-test-internet_ng"),
 //				Description:    pulumi.String("acc-test"),
 //				BillingType:    pulumi.String("PostPaid"),
 //				ProjectName:    pulumi.String("default"),
@@ -62,6 +64,97 @@ import (
 //						Value: pulumi.String("v1"),
 //					},
 //				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooAddress, err := eip.NewAddress(ctx, "fooAddress", &eip.AddressArgs{
+//				Description: pulumi.String("acc-test"),
+//				Bandwidth:   pulumi.Int(1),
+//				BillingType: pulumi.String("PostPaidByBandwidth"),
+//				Isp:         pulumi.String("BGP"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooAssociate, err := eip.NewAssociate(ctx, "fooAssociate", &eip.AssociateArgs{
+//				AllocationId: fooAddress.ID(),
+//				InstanceId:   internetNatGateway.ID(),
+//				InstanceType: pulumi.String("Nat"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = nat.NewSnatEntry(ctx, "fooSnatEntry", &nat.SnatEntryArgs{
+//				SnatEntryName: pulumi.String("acc-test-snat-entry"),
+//				NatGatewayId:  internetNatGateway.ID(),
+//				EipId:         fooAddress.ID(),
+//				SourceCidr:    pulumi.String("172.16.0.0/24"),
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				fooAssociate,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			_, err = nat.NewDnatEntry(ctx, "fooDnatEntry", &nat.DnatEntryArgs{
+//				DnatEntryName: pulumi.String("acc-test-dnat-entry"),
+//				ExternalIp:    fooAddress.EipAddress,
+//				ExternalPort:  pulumi.String("80"),
+//				InternalIp:    pulumi.String("172.16.0.10"),
+//				InternalPort:  pulumi.String("80"),
+//				NatGatewayId:  internetNatGateway.ID(),
+//				Protocol:      pulumi.String("tcp"),
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				fooAssociate,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			// create intranet nat gateway and snat entry and dnat entry
+//			intranetNatGateway, err := nat.NewGateway(ctx, "intranetNatGateway", &nat.GatewayArgs{
+//				VpcId:          fooVpc.ID(),
+//				SubnetId:       fooSubnet.ID(),
+//				NatGatewayName: pulumi.String("acc-test-intranet_ng"),
+//				Description:    pulumi.String("acc-test"),
+//				NetworkType:    pulumi.String("intranet"),
+//				BillingType:    pulumi.String("PostPaidByUsage"),
+//				ProjectName:    pulumi.String("default"),
+//				Tags: nat.GatewayTagArray{
+//					&nat.GatewayTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooIp, err := nat.NewIp(ctx, "fooIp", &nat.IpArgs{
+//				NatGatewayId:     intranetNatGateway.ID(),
+//				NatIpName:        pulumi.String("acc-test-nat-ip"),
+//				NatIpDescription: pulumi.String("acc-test"),
+//				NatIp:            pulumi.String("172.16.0.3"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = nat.NewSnatEntry(ctx, "foo-intranetSnatEntry", &nat.SnatEntryArgs{
+//				SnatEntryName: pulumi.String("acc-test-snat-entry-intranet"),
+//				NatGatewayId:  intranetNatGateway.ID(),
+//				NatIpId:       fooIp.ID(),
+//				SourceCidr:    pulumi.String("172.16.0.0/24"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = nat.NewDnatEntry(ctx, "foo-intranetDnatEntry", &nat.DnatEntryArgs{
+//				NatGatewayId:  intranetNatGateway.ID(),
+//				DnatEntryName: pulumi.String("acc-test-dnat-entry-intranet"),
+//				Protocol:      pulumi.String("tcp"),
+//				InternalIp:    pulumi.String("172.16.0.5"),
+//				InternalPort:  pulumi.String("82"),
+//				ExternalIp:    fooIp.NatIp,
+//				ExternalPort:  pulumi.String("87"),
 //			})
 //			if err != nil {
 //				return err
@@ -82,17 +175,21 @@ import (
 type Gateway struct {
 	pulumi.CustomResourceState
 
-	// The billing type of the NatGateway, the value is `PostPaid` or `PrePaid`.
+	// The billing type of the NatGateway, the value is `PostPaid` or `PrePaid` or `PostPaidByUsage`. Default value is `PostPaid`.
+	// When the `networkType` is `intranet`, the billing type must be `PostPaidByUsage`.
 	BillingType pulumi.StringPtrOutput `pulumi:"billingType"`
 	// The description of the NatGateway.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The name of the NatGateway.
 	NatGatewayName pulumi.StringPtrOutput `pulumi:"natGatewayName"`
+	// The network type of the NatGateway. Valid values are `internet` and `intranet`. Default value is `internet`.
+	NetworkType pulumi.StringPtrOutput `pulumi:"networkType"`
 	// The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	Period pulumi.IntPtrOutput `pulumi:"period"`
 	// The ProjectName of the NatGateway.
 	ProjectName pulumi.StringOutput `pulumi:"projectName"`
 	// The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large` or leave blank.
+	// When the `billingType` is `PostPaidByUsage`, this field should not be specified.
 	Spec pulumi.StringOutput `pulumi:"spec"`
 	// The ID of the Subnet.
 	SubnetId pulumi.StringOutput `pulumi:"subnetId"`
@@ -138,17 +235,21 @@ func GetGateway(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Gateway resources.
 type gatewayState struct {
-	// The billing type of the NatGateway, the value is `PostPaid` or `PrePaid`.
+	// The billing type of the NatGateway, the value is `PostPaid` or `PrePaid` or `PostPaidByUsage`. Default value is `PostPaid`.
+	// When the `networkType` is `intranet`, the billing type must be `PostPaidByUsage`.
 	BillingType *string `pulumi:"billingType"`
 	// The description of the NatGateway.
 	Description *string `pulumi:"description"`
 	// The name of the NatGateway.
 	NatGatewayName *string `pulumi:"natGatewayName"`
+	// The network type of the NatGateway. Valid values are `internet` and `intranet`. Default value is `internet`.
+	NetworkType *string `pulumi:"networkType"`
 	// The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	Period *int `pulumi:"period"`
 	// The ProjectName of the NatGateway.
 	ProjectName *string `pulumi:"projectName"`
 	// The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large` or leave blank.
+	// When the `billingType` is `PostPaidByUsage`, this field should not be specified.
 	Spec *string `pulumi:"spec"`
 	// The ID of the Subnet.
 	SubnetId *string `pulumi:"subnetId"`
@@ -159,17 +260,21 @@ type gatewayState struct {
 }
 
 type GatewayState struct {
-	// The billing type of the NatGateway, the value is `PostPaid` or `PrePaid`.
+	// The billing type of the NatGateway, the value is `PostPaid` or `PrePaid` or `PostPaidByUsage`. Default value is `PostPaid`.
+	// When the `networkType` is `intranet`, the billing type must be `PostPaidByUsage`.
 	BillingType pulumi.StringPtrInput
 	// The description of the NatGateway.
 	Description pulumi.StringPtrInput
 	// The name of the NatGateway.
 	NatGatewayName pulumi.StringPtrInput
+	// The network type of the NatGateway. Valid values are `internet` and `intranet`. Default value is `internet`.
+	NetworkType pulumi.StringPtrInput
 	// The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	Period pulumi.IntPtrInput
 	// The ProjectName of the NatGateway.
 	ProjectName pulumi.StringPtrInput
 	// The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large` or leave blank.
+	// When the `billingType` is `PostPaidByUsage`, this field should not be specified.
 	Spec pulumi.StringPtrInput
 	// The ID of the Subnet.
 	SubnetId pulumi.StringPtrInput
@@ -184,17 +289,21 @@ func (GatewayState) ElementType() reflect.Type {
 }
 
 type gatewayArgs struct {
-	// The billing type of the NatGateway, the value is `PostPaid` or `PrePaid`.
+	// The billing type of the NatGateway, the value is `PostPaid` or `PrePaid` or `PostPaidByUsage`. Default value is `PostPaid`.
+	// When the `networkType` is `intranet`, the billing type must be `PostPaidByUsage`.
 	BillingType *string `pulumi:"billingType"`
 	// The description of the NatGateway.
 	Description *string `pulumi:"description"`
 	// The name of the NatGateway.
 	NatGatewayName *string `pulumi:"natGatewayName"`
+	// The network type of the NatGateway. Valid values are `internet` and `intranet`. Default value is `internet`.
+	NetworkType *string `pulumi:"networkType"`
 	// The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	Period *int `pulumi:"period"`
 	// The ProjectName of the NatGateway.
 	ProjectName *string `pulumi:"projectName"`
 	// The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large` or leave blank.
+	// When the `billingType` is `PostPaidByUsage`, this field should not be specified.
 	Spec *string `pulumi:"spec"`
 	// The ID of the Subnet.
 	SubnetId string `pulumi:"subnetId"`
@@ -206,17 +315,21 @@ type gatewayArgs struct {
 
 // The set of arguments for constructing a Gateway resource.
 type GatewayArgs struct {
-	// The billing type of the NatGateway, the value is `PostPaid` or `PrePaid`.
+	// The billing type of the NatGateway, the value is `PostPaid` or `PrePaid` or `PostPaidByUsage`. Default value is `PostPaid`.
+	// When the `networkType` is `intranet`, the billing type must be `PostPaidByUsage`.
 	BillingType pulumi.StringPtrInput
 	// The description of the NatGateway.
 	Description pulumi.StringPtrInput
 	// The name of the NatGateway.
 	NatGatewayName pulumi.StringPtrInput
+	// The network type of the NatGateway. Valid values are `internet` and `intranet`. Default value is `internet`.
+	NetworkType pulumi.StringPtrInput
 	// The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	Period pulumi.IntPtrInput
 	// The ProjectName of the NatGateway.
 	ProjectName pulumi.StringPtrInput
 	// The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large` or leave blank.
+	// When the `billingType` is `PostPaidByUsage`, this field should not be specified.
 	Spec pulumi.StringPtrInput
 	// The ID of the Subnet.
 	SubnetId pulumi.StringInput
@@ -313,7 +426,8 @@ func (o GatewayOutput) ToGatewayOutputWithContext(ctx context.Context) GatewayOu
 	return o
 }
 
-// The billing type of the NatGateway, the value is `PostPaid` or `PrePaid`.
+// The billing type of the NatGateway, the value is `PostPaid` or `PrePaid` or `PostPaidByUsage`. Default value is `PostPaid`.
+// When the `networkType` is `intranet`, the billing type must be `PostPaidByUsage`.
 func (o GatewayOutput) BillingType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Gateway) pulumi.StringPtrOutput { return v.BillingType }).(pulumi.StringPtrOutput)
 }
@@ -328,6 +442,11 @@ func (o GatewayOutput) NatGatewayName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Gateway) pulumi.StringPtrOutput { return v.NatGatewayName }).(pulumi.StringPtrOutput)
 }
 
+// The network type of the NatGateway. Valid values are `internet` and `intranet`. Default value is `internet`.
+func (o GatewayOutput) NetworkType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Gateway) pulumi.StringPtrOutput { return v.NetworkType }).(pulumi.StringPtrOutput)
+}
+
 // The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 func (o GatewayOutput) Period() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *Gateway) pulumi.IntPtrOutput { return v.Period }).(pulumi.IntPtrOutput)
@@ -339,6 +458,7 @@ func (o GatewayOutput) ProjectName() pulumi.StringOutput {
 }
 
 // The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large` or leave blank.
+// When the `billingType` is `PostPaidByUsage`, this field should not be specified.
 func (o GatewayOutput) Spec() pulumi.StringOutput {
 	return o.ApplyT(func(v *Gateway) pulumi.StringOutput { return v.Spec }).(pulumi.StringOutput)
 }

@@ -26265,6 +26265,10 @@ export namespace nat {
          */
         externalPort: string;
         /**
+         * The ID of the DNAT entry.
+         */
+        id: string;
+        /**
          * Provides the internal IP address.
          */
         internalIp: string;
@@ -26319,6 +26323,10 @@ export namespace nat {
          */
         description: string;
         /**
+         * A list of dnat entry ids.
+         */
+        dnatEntryIds: string[];
+        /**
          * The eip addresses of the NatGateway.
          */
         eipAddresses: outputs.nat.GatewaysNatGatewayEipAddress[];
@@ -26343,9 +26351,17 @@ export namespace nat {
          */
         networkInterfaceId: string;
         /**
+         * The network type of the NatGateway.
+         */
+        networkType: string;
+        /**
          * The overdue time of the NatGateway.
          */
         overdueTime: string;
+        /**
+         * A list of snat entry ids.
+         */
+        snatEntryIds: string[];
         /**
          * The specification of the NatGateway.
          */
@@ -26427,6 +26443,10 @@ export namespace nat {
          */
         externalPort: string;
         /**
+         * The ID of the DNAT entry.
+         */
+        id: string;
+        /**
          * Provides the internal IP address.
          */
         internalIp: string;
@@ -26470,6 +26490,10 @@ export namespace nat {
          */
         description: string;
         /**
+         * A list of dnat entry ids.
+         */
+        dnatEntryIds: string[];
+        /**
          * The eip addresses of the NatGateway.
          */
         eipAddresses: outputs.nat.GetGatewaysNatGatewayEipAddress[];
@@ -26494,9 +26518,17 @@ export namespace nat {
          */
         networkInterfaceId: string;
         /**
+         * The network type of the NatGateway.
+         */
+        networkType: string;
+        /**
          * The overdue time of the NatGateway.
          */
         overdueTime: string;
+        /**
+         * A list of snat entry ids.
+         */
+        snatEntryIds: string[];
         /**
          * The specification of the NatGateway.
          */
@@ -26560,6 +26592,45 @@ export namespace nat {
         value: string;
     }
 
+    export interface GetIpsNatIp {
+        /**
+         * The id of the Nat Ip.
+         */
+        id: string;
+        /**
+         * Whether the Ip is the default Nat Ip.
+         */
+        isDefault: boolean;
+        /**
+         * The id of the Nat gateway.
+         */
+        natGatewayId: string;
+        /**
+         * The ip address of the Nat Ip.
+         */
+        natIp: string;
+        /**
+         * The description of the Nat Ip.
+         */
+        natIpDescription: string;
+        /**
+         * The id of the Nat Ip.
+         */
+        natIpId: string;
+        /**
+         * The name of the Nat IP.
+         */
+        natIpName: string;
+        /**
+         * The status of the Nat Ip.
+         */
+        status: string;
+        /**
+         * The using status of the Nat Ip.
+         */
+        usingStatus: string;
+    }
+
     export interface GetSnatEntriesSnatEntry {
         /**
          * The public ip address used by the SNAT entry.
@@ -26577,6 +26648,10 @@ export namespace nat {
          * An id of the nat gateway to which the entry belongs.
          */
         natGatewayId: string;
+        /**
+         * The ID of the intranet NAT gateway's transit IP.
+         */
+        natIpId: string;
         /**
          * The id of the SNAT entry.
          */
@@ -26599,6 +26674,45 @@ export namespace nat {
         subnetId: string;
     }
 
+    export interface IpsNatIp {
+        /**
+         * The id of the Nat Ip.
+         */
+        id: string;
+        /**
+         * Whether the Ip is the default Nat Ip.
+         */
+        isDefault: boolean;
+        /**
+         * The id of the Nat gateway.
+         */
+        natGatewayId: string;
+        /**
+         * The ip address of the Nat Ip.
+         */
+        natIp: string;
+        /**
+         * The description of the Nat Ip.
+         */
+        natIpDescription: string;
+        /**
+         * The id of the Nat Ip.
+         */
+        natIpId: string;
+        /**
+         * The name of the Nat IP.
+         */
+        natIpName: string;
+        /**
+         * The status of the Nat Ip.
+         */
+        status: string;
+        /**
+         * The using status of the Nat Ip.
+         */
+        usingStatus: string;
+    }
+
     export interface SnatEntriesSnatEntry {
         /**
          * The public ip address used by the SNAT entry.
@@ -26616,6 +26730,10 @@ export namespace nat {
          * An id of the nat gateway to which the entry belongs.
          */
         natGatewayId: string;
+        /**
+         * The ID of the intranet NAT gateway's transit IP.
+         */
+        natIpId: string;
         /**
          * The id of the SNAT entry.
          */

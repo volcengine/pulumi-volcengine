@@ -14,39 +14,32 @@ __all__ = ['SnatEntryArgs', 'SnatEntry']
 @pulumi.input_type
 class SnatEntryArgs:
     def __init__(__self__, *,
-                 eip_id: pulumi.Input[str],
                  nat_gateway_id: pulumi.Input[str],
+                 eip_id: Optional[pulumi.Input[str]] = None,
+                 nat_ip_id: Optional[pulumi.Input[str]] = None,
                  snat_entry_name: Optional[pulumi.Input[str]] = None,
                  source_cidr: Optional[pulumi.Input[str]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SnatEntry resource.
-        :param pulumi.Input[str] eip_id: The id of the public ip address used by the SNAT entry.
         :param pulumi.Input[str] nat_gateway_id: The id of the nat gateway to which the entry belongs.
+        :param pulumi.Input[str] eip_id: The id of the public ip address used by the SNAT entry. This field is required when the nat gateway is a internet NAT gateway.
+        :param pulumi.Input[str] nat_ip_id: The ID of the intranet NAT gateway's transit IP. This field is required when the nat gateway is a intranet NAT gateway.
         :param pulumi.Input[str] snat_entry_name: The name of the SNAT entry.
         :param pulumi.Input[str] source_cidr: The SourceCidr of the SNAT entry. Only one of `subnet_id,source_cidr` can be specified.
         :param pulumi.Input[str] subnet_id: The id of the subnet that is required to access the internet. Only one of `subnet_id,source_cidr` can be specified.
         """
-        pulumi.set(__self__, "eip_id", eip_id)
         pulumi.set(__self__, "nat_gateway_id", nat_gateway_id)
+        if eip_id is not None:
+            pulumi.set(__self__, "eip_id", eip_id)
+        if nat_ip_id is not None:
+            pulumi.set(__self__, "nat_ip_id", nat_ip_id)
         if snat_entry_name is not None:
             pulumi.set(__self__, "snat_entry_name", snat_entry_name)
         if source_cidr is not None:
             pulumi.set(__self__, "source_cidr", source_cidr)
         if subnet_id is not None:
             pulumi.set(__self__, "subnet_id", subnet_id)
-
-    @property
-    @pulumi.getter(name="eipId")
-    def eip_id(self) -> pulumi.Input[str]:
-        """
-        The id of the public ip address used by the SNAT entry.
-        """
-        return pulumi.get(self, "eip_id")
-
-    @eip_id.setter
-    def eip_id(self, value: pulumi.Input[str]):
-        pulumi.set(self, "eip_id", value)
 
     @property
     @pulumi.getter(name="natGatewayId")
@@ -59,6 +52,30 @@ class SnatEntryArgs:
     @nat_gateway_id.setter
     def nat_gateway_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "nat_gateway_id", value)
+
+    @property
+    @pulumi.getter(name="eipId")
+    def eip_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The id of the public ip address used by the SNAT entry. This field is required when the nat gateway is a internet NAT gateway.
+        """
+        return pulumi.get(self, "eip_id")
+
+    @eip_id.setter
+    def eip_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "eip_id", value)
+
+    @property
+    @pulumi.getter(name="natIpId")
+    def nat_ip_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the intranet NAT gateway's transit IP. This field is required when the nat gateway is a intranet NAT gateway.
+        """
+        return pulumi.get(self, "nat_ip_id")
+
+    @nat_ip_id.setter
+    def nat_ip_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "nat_ip_id", value)
 
     @property
     @pulumi.getter(name="snatEntryName")
@@ -102,14 +119,16 @@ class _SnatEntryState:
     def __init__(__self__, *,
                  eip_id: Optional[pulumi.Input[str]] = None,
                  nat_gateway_id: Optional[pulumi.Input[str]] = None,
+                 nat_ip_id: Optional[pulumi.Input[str]] = None,
                  snat_entry_name: Optional[pulumi.Input[str]] = None,
                  source_cidr: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SnatEntry resources.
-        :param pulumi.Input[str] eip_id: The id of the public ip address used by the SNAT entry.
+        :param pulumi.Input[str] eip_id: The id of the public ip address used by the SNAT entry. This field is required when the nat gateway is a internet NAT gateway.
         :param pulumi.Input[str] nat_gateway_id: The id of the nat gateway to which the entry belongs.
+        :param pulumi.Input[str] nat_ip_id: The ID of the intranet NAT gateway's transit IP. This field is required when the nat gateway is a intranet NAT gateway.
         :param pulumi.Input[str] snat_entry_name: The name of the SNAT entry.
         :param pulumi.Input[str] source_cidr: The SourceCidr of the SNAT entry. Only one of `subnet_id,source_cidr` can be specified.
         :param pulumi.Input[str] status: The status of the SNAT entry.
@@ -119,6 +138,8 @@ class _SnatEntryState:
             pulumi.set(__self__, "eip_id", eip_id)
         if nat_gateway_id is not None:
             pulumi.set(__self__, "nat_gateway_id", nat_gateway_id)
+        if nat_ip_id is not None:
+            pulumi.set(__self__, "nat_ip_id", nat_ip_id)
         if snat_entry_name is not None:
             pulumi.set(__self__, "snat_entry_name", snat_entry_name)
         if source_cidr is not None:
@@ -132,7 +153,7 @@ class _SnatEntryState:
     @pulumi.getter(name="eipId")
     def eip_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The id of the public ip address used by the SNAT entry.
+        The id of the public ip address used by the SNAT entry. This field is required when the nat gateway is a internet NAT gateway.
         """
         return pulumi.get(self, "eip_id")
 
@@ -151,6 +172,18 @@ class _SnatEntryState:
     @nat_gateway_id.setter
     def nat_gateway_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "nat_gateway_id", value)
+
+    @property
+    @pulumi.getter(name="natIpId")
+    def nat_ip_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the intranet NAT gateway's transit IP. This field is required when the nat gateway is a intranet NAT gateway.
+        """
+        return pulumi.get(self, "nat_ip_id")
+
+    @nat_ip_id.setter
+    def nat_ip_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "nat_ip_id", value)
 
     @property
     @pulumi.getter(name="snatEntryName")
@@ -208,6 +241,7 @@ class SnatEntry(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  eip_id: Optional[pulumi.Input[str]] = None,
                  nat_gateway_id: Optional[pulumi.Input[str]] = None,
+                 nat_ip_id: Optional[pulumi.Input[str]] = None,
                  snat_entry_name: Optional[pulumi.Input[str]] = None,
                  source_cidr: Optional[pulumi.Input[str]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None,
@@ -268,8 +302,9 @@ class SnatEntry(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] eip_id: The id of the public ip address used by the SNAT entry.
+        :param pulumi.Input[str] eip_id: The id of the public ip address used by the SNAT entry. This field is required when the nat gateway is a internet NAT gateway.
         :param pulumi.Input[str] nat_gateway_id: The id of the nat gateway to which the entry belongs.
+        :param pulumi.Input[str] nat_ip_id: The ID of the intranet NAT gateway's transit IP. This field is required when the nat gateway is a intranet NAT gateway.
         :param pulumi.Input[str] snat_entry_name: The name of the SNAT entry.
         :param pulumi.Input[str] source_cidr: The SourceCidr of the SNAT entry. Only one of `subnet_id,source_cidr` can be specified.
         :param pulumi.Input[str] subnet_id: The id of the subnet that is required to access the internet. Only one of `subnet_id,source_cidr` can be specified.
@@ -351,6 +386,7 @@ class SnatEntry(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  eip_id: Optional[pulumi.Input[str]] = None,
                  nat_gateway_id: Optional[pulumi.Input[str]] = None,
+                 nat_ip_id: Optional[pulumi.Input[str]] = None,
                  snat_entry_name: Optional[pulumi.Input[str]] = None,
                  source_cidr: Optional[pulumi.Input[str]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None,
@@ -363,12 +399,11 @@ class SnatEntry(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SnatEntryArgs.__new__(SnatEntryArgs)
 
-            if eip_id is None and not opts.urn:
-                raise TypeError("Missing required property 'eip_id'")
             __props__.__dict__["eip_id"] = eip_id
             if nat_gateway_id is None and not opts.urn:
                 raise TypeError("Missing required property 'nat_gateway_id'")
             __props__.__dict__["nat_gateway_id"] = nat_gateway_id
+            __props__.__dict__["nat_ip_id"] = nat_ip_id
             __props__.__dict__["snat_entry_name"] = snat_entry_name
             __props__.__dict__["source_cidr"] = source_cidr
             __props__.__dict__["subnet_id"] = subnet_id
@@ -385,6 +420,7 @@ class SnatEntry(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             eip_id: Optional[pulumi.Input[str]] = None,
             nat_gateway_id: Optional[pulumi.Input[str]] = None,
+            nat_ip_id: Optional[pulumi.Input[str]] = None,
             snat_entry_name: Optional[pulumi.Input[str]] = None,
             source_cidr: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
@@ -396,8 +432,9 @@ class SnatEntry(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] eip_id: The id of the public ip address used by the SNAT entry.
+        :param pulumi.Input[str] eip_id: The id of the public ip address used by the SNAT entry. This field is required when the nat gateway is a internet NAT gateway.
         :param pulumi.Input[str] nat_gateway_id: The id of the nat gateway to which the entry belongs.
+        :param pulumi.Input[str] nat_ip_id: The ID of the intranet NAT gateway's transit IP. This field is required when the nat gateway is a intranet NAT gateway.
         :param pulumi.Input[str] snat_entry_name: The name of the SNAT entry.
         :param pulumi.Input[str] source_cidr: The SourceCidr of the SNAT entry. Only one of `subnet_id,source_cidr` can be specified.
         :param pulumi.Input[str] status: The status of the SNAT entry.
@@ -409,6 +446,7 @@ class SnatEntry(pulumi.CustomResource):
 
         __props__.__dict__["eip_id"] = eip_id
         __props__.__dict__["nat_gateway_id"] = nat_gateway_id
+        __props__.__dict__["nat_ip_id"] = nat_ip_id
         __props__.__dict__["snat_entry_name"] = snat_entry_name
         __props__.__dict__["source_cidr"] = source_cidr
         __props__.__dict__["status"] = status
@@ -417,9 +455,9 @@ class SnatEntry(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="eipId")
-    def eip_id(self) -> pulumi.Output[str]:
+    def eip_id(self) -> pulumi.Output[Optional[str]]:
         """
-        The id of the public ip address used by the SNAT entry.
+        The id of the public ip address used by the SNAT entry. This field is required when the nat gateway is a internet NAT gateway.
         """
         return pulumi.get(self, "eip_id")
 
@@ -430,6 +468,14 @@ class SnatEntry(pulumi.CustomResource):
         The id of the nat gateway to which the entry belongs.
         """
         return pulumi.get(self, "nat_gateway_id")
+
+    @property
+    @pulumi.getter(name="natIpId")
+    def nat_ip_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        The ID of the intranet NAT gateway's transit IP. This field is required when the nat gateway is a intranet NAT gateway.
+        """
+        return pulumi.get(self, "nat_ip_id")
 
     @property
     @pulumi.getter(name="snatEntryName")

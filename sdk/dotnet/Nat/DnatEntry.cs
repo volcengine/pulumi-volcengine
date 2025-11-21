@@ -145,7 +145,7 @@ namespace Pulumi.Volcengine.Nat
         public Output<string> NatGatewayId { get; private set; } = null!;
 
         /// <summary>
-        /// The network protocol.
+        /// The network protocol. Valid values: `tcp`, `udp`.
         /// </summary>
         [Output("protocol")]
         public Output<string> Protocol { get; private set; } = null!;
@@ -234,7 +234,7 @@ namespace Pulumi.Volcengine.Nat
         public Input<string> NatGatewayId { get; set; } = null!;
 
         /// <summary>
-        /// The network protocol.
+        /// The network protocol. Valid values: `tcp`, `udp`.
         /// </summary>
         [Input("protocol", required: true)]
         public Input<string> Protocol { get; set; } = null!;
@@ -290,7 +290,7 @@ namespace Pulumi.Volcengine.Nat
         public Input<string>? NatGatewayId { get; set; }
 
         /// <summary>
-        /// The network protocol.
+        /// The network protocol. Valid values: `tcp`, `udp`.
         /// </summary>
         [Input("protocol")]
         public Input<string>? Protocol { get; set; }

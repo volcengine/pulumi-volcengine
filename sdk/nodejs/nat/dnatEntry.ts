@@ -126,7 +126,7 @@ export class DnatEntry extends pulumi.CustomResource {
      */
     public readonly natGatewayId!: pulumi.Output<string>;
     /**
-     * The network protocol.
+     * The network protocol. Valid values: `tcp`, `udp`.
      */
     public readonly protocol!: pulumi.Output<string>;
 
@@ -218,7 +218,7 @@ export interface DnatEntryState {
      */
     natGatewayId?: pulumi.Input<string>;
     /**
-     * The network protocol.
+     * The network protocol. Valid values: `tcp`, `udp`.
      */
     protocol?: pulumi.Input<string>;
 }
@@ -252,7 +252,7 @@ export interface DnatEntryArgs {
      */
     natGatewayId: pulumi.Input<string>;
     /**
-     * The network protocol.
+     * The network protocol. Valid values: `tcp`, `udp`.
      */
     protocol: pulumi.Input<string>;
 }
