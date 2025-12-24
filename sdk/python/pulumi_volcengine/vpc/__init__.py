@@ -62,6 +62,7 @@ from .traffic_mirror_session import *
 from .traffic_mirror_sessions import *
 from .traffic_mirror_target import *
 from .traffic_mirror_targets import *
+from .user_cidr_block_associate import *
 from .vpc import *
 from .vpcs import *
 from ._inputs import *

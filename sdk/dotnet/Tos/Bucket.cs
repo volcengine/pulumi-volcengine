@@ -25,7 +25,7 @@ namespace Pulumi.Volcengine.Tos
     ///     // create tos bucket
     ///     var fooBucket = new Volcengine.Tos.Bucket("fooBucket", new()
     ///     {
-    ///         BucketName = "tf-acc-test-bucket",
+    ///         BucketName = "tflyb7",
     ///         PublicAcl = "private",
     ///         AzRedundancy = "multi-az",
     ///         EnableVersion = true,
@@ -122,6 +122,12 @@ namespace Pulumi.Volcengine.Tos
         public Output<string> BucketName { get; private set; } = null!;
 
         /// <summary>
+        /// The bucket type of the TOS bucket. Default is `fns`. Valid values: `hns`, `fns`.
+        /// </summary>
+        [Output("bucketType")]
+        public Output<string?> BucketType { get; private set; } = null!;
+
+        /// <summary>
         /// The create date of the TOS bucket.
         /// </summary>
         [Output("creationDate")]
@@ -164,7 +170,7 @@ namespace Pulumi.Volcengine.Tos
         public Output<string?> PublicAcl { get; private set; } = null!;
 
         /// <summary>
-        /// The storage type of the object.Valid value is STANDARD|IA|ARCHIVE_FR.Default is STANDARD.
+        /// The storage type of the object.Valid value is STANDARD|IA|INTELLIGENT_TIERING|ARCHIVE_FR|ARCHIVE|COLD_ARCHIVE|DEEP_COLD_ARCHIVE.Default is STANDARD.
         /// </summary>
         [Output("storageClass")]
         public Output<string?> StorageClass { get; private set; } = null!;
@@ -253,6 +259,12 @@ namespace Pulumi.Volcengine.Tos
         public Input<string> BucketName { get; set; } = null!;
 
         /// <summary>
+        /// The bucket type of the TOS bucket. Default is `fns`. Valid values: `hns`, `fns`.
+        /// </summary>
+        [Input("bucketType")]
+        public Input<string>? BucketType { get; set; }
+
+        /// <summary>
         /// The flag of enable tos version.
         /// </summary>
         [Input("enableVersion")]
@@ -271,7 +283,7 @@ namespace Pulumi.Volcengine.Tos
         public Input<string>? PublicAcl { get; set; }
 
         /// <summary>
-        /// The storage type of the object.Valid value is STANDARD|IA|ARCHIVE_FR.Default is STANDARD.
+        /// The storage type of the object.Valid value is STANDARD|IA|INTELLIGENT_TIERING|ARCHIVE_FR|ARCHIVE|COLD_ARCHIVE|DEEP_COLD_ARCHIVE.Default is STANDARD.
         /// </summary>
         [Input("storageClass")]
         public Input<string>? StorageClass { get; set; }
@@ -327,6 +339,12 @@ namespace Pulumi.Volcengine.Tos
         public Input<string>? BucketName { get; set; }
 
         /// <summary>
+        /// The bucket type of the TOS bucket. Default is `fns`. Valid values: `hns`, `fns`.
+        /// </summary>
+        [Input("bucketType")]
+        public Input<string>? BucketType { get; set; }
+
+        /// <summary>
         /// The create date of the TOS bucket.
         /// </summary>
         [Input("creationDate")]
@@ -369,7 +387,7 @@ namespace Pulumi.Volcengine.Tos
         public Input<string>? PublicAcl { get; set; }
 
         /// <summary>
-        /// The storage type of the object.Valid value is STANDARD|IA|ARCHIVE_FR.Default is STANDARD.
+        /// The storage type of the object.Valid value is STANDARD|IA|INTELLIGENT_TIERING|ARCHIVE_FR|ARCHIVE|COLD_ARCHIVE|DEEP_COLD_ARCHIVE.Default is STANDARD.
         /// </summary>
         [Input("storageClass")]
         public Input<string>? StorageClass { get; set; }

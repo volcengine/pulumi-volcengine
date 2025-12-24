@@ -69,6 +69,12 @@ namespace Pulumi.Volcengine.Tos
         public string? BucketName { get; set; }
 
         /// <summary>
+        /// The bucket type of the TOS bucket.
+        /// </summary>
+        [Input("bucketType")]
+        public string? BucketType { get; set; }
+
+        /// <summary>
         /// A Name Regex of TOS bucket.
         /// </summary>
         [Input("nameRegex")]
@@ -79,6 +85,12 @@ namespace Pulumi.Volcengine.Tos
         /// </summary>
         [Input("outputFile")]
         public string? OutputFile { get; set; }
+
+        /// <summary>
+        /// The project of the TOS bucket.
+        /// </summary>
+        [Input("projectName")]
+        public string? ProjectName { get; set; }
 
         public BucketsArgs()
         {
@@ -95,6 +107,12 @@ namespace Pulumi.Volcengine.Tos
         public Input<string>? BucketName { get; set; }
 
         /// <summary>
+        /// The bucket type of the TOS bucket.
+        /// </summary>
+        [Input("bucketType")]
+        public Input<string>? BucketType { get; set; }
+
+        /// <summary>
         /// A Name Regex of TOS bucket.
         /// </summary>
         [Input("nameRegex")]
@@ -105,6 +123,12 @@ namespace Pulumi.Volcengine.Tos
         /// </summary>
         [Input("outputFile")]
         public Input<string>? OutputFile { get; set; }
+
+        /// <summary>
+        /// The project of the TOS bucket.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
 
         public BucketsInvokeArgs()
         {
@@ -118,6 +142,10 @@ namespace Pulumi.Volcengine.Tos
     {
         public readonly string? BucketName;
         /// <summary>
+        /// The bucket type of the TOS bucket.
+        /// </summary>
+        public readonly string? BucketType;
+        /// <summary>
         /// The collection of TOS bucket query.
         /// </summary>
         public readonly ImmutableArray<Outputs.BucketsBucketResult> Buckets;
@@ -128,6 +156,10 @@ namespace Pulumi.Volcengine.Tos
         public readonly string? NameRegex;
         public readonly string? OutputFile;
         /// <summary>
+        /// The project of the TOS bucket.
+        /// </summary>
+        public readonly string? ProjectName;
+        /// <summary>
         /// The total count of TOS bucket query.
         /// </summary>
         public readonly int TotalCount;
@@ -135,6 +167,8 @@ namespace Pulumi.Volcengine.Tos
         [OutputConstructor]
         private BucketsResult(
             string? bucketName,
+
+            string? bucketType,
 
             ImmutableArray<Outputs.BucketsBucketResult> buckets,
 
@@ -144,13 +178,17 @@ namespace Pulumi.Volcengine.Tos
 
             string? outputFile,
 
+            string? projectName,
+
             int totalCount)
         {
             BucketName = bucketName;
+            BucketType = bucketType;
             Buckets = buckets;
             Id = id;
             NameRegex = nameRegex;
             OutputFile = outputFile;
+            ProjectName = projectName;
             TotalCount = totalCount;
         }
     }

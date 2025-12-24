@@ -25,12 +25,29 @@ namespace Pulumi.Volcengine.Rds_postgresql
     ///     {
     ///         AllowLists = new[]
     ///         {
-    ///             "192.168.0.0/24",
-    ///             "192.168.1.0/24",
+    ///             "10.0.0.0/24",
     ///         },
     ///         AllowListDesc = "acc-test",
     ///         AllowListName = "acc-test-allowlist",
     ///         AllowListType = "IPv4",
+    ///         SecurityGroupBindInfos = new[]
+    ///         {
+    ///             new Volcengine.Rds_postgresql.Inputs.AllowlistSecurityGroupBindInfoArgs
+    ///             {
+    ///                 BindMode = "IngressDirectionIp",
+    ///                 SecurityGroupId = "sg-1jojfhw8rca9s1n7ampztrq6w",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var example = new Volcengine.Rds_postgresql.Allowlist("example", new()
+    ///     {
+    ///         AllowListName = "unify_new",
+    ///         InstanceIds = new[]
+    ///         {
+    ///             "postgres-72715e0d9f58",
+    ///             "postgres-eb3a578a6d73",
+    ///         },
     ///     });
     /// 
     /// });
@@ -47,6 +64,12 @@ namespace Pulumi.Volcengine.Rds_postgresql
     [VolcengineResourceType("volcengine:rds_postgresql/allowlist:Allowlist")]
     public partial class Allowlist : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// The category of the allow list. Valid values: Ordinary, Default. When this parameter is used as a request parameter, there is no default value.
+        /// </summary>
+        [Output("allowListCategory")]
+        public Output<string> AllowListCategory { get; private set; } = null!;
+
         /// <summary>
         /// The description of the postgresql allow list.
         /// </summary>
@@ -66,7 +89,7 @@ namespace Pulumi.Volcengine.Rds_postgresql
         public Output<string> AllowListType { get; private set; } = null!;
 
         /// <summary>
-        /// Enter an IP address or a range of IP addresses in CIDR format.
+        /// Enter an IP address or a range of IP addresses in CIDR format. This field cannot be used together with the user_allow_list field.
         /// </summary>
         [Output("allowLists")]
         public Output<ImmutableArray<string>> AllowLists { get; private set; } = null!;
@@ -82,6 +105,30 @@ namespace Pulumi.Volcengine.Rds_postgresql
         /// </summary>
         [Output("associatedInstances")]
         public Output<ImmutableArray<Outputs.AllowlistAssociatedInstance>> AssociatedInstances { get; private set; } = null!;
+
+        /// <summary>
+        /// IDs of PostgreSQL instances to unify allowlists. When set, creation uses UnifyNewAllowList to merge existing instance allowlists into a new one. Supports merging and generating allowlists of up to 300 instances.
+        /// </summary>
+        [Output("instanceIds")]
+        public Output<ImmutableArray<string>> InstanceIds { get; private set; } = null!;
+
+        /// <summary>
+        /// The information of security groups to bind with the allow list.
+        /// </summary>
+        [Output("securityGroupBindInfos")]
+        public Output<ImmutableArray<Outputs.AllowlistSecurityGroupBindInfo>> SecurityGroupBindInfos { get; private set; } = null!;
+
+        /// <summary>
+        /// Whether to update the security groups bound to the allowlist when modifying.
+        /// </summary>
+        [Output("updateSecurityGroup")]
+        public Output<bool?> UpdateSecurityGroup { get; private set; } = null!;
+
+        /// <summary>
+        /// IP addresses outside security groups to be added to the allowlist. Cannot be used with allow_list.
+        /// </summary>
+        [Output("userAllowLists")]
+        public Output<ImmutableArray<string>> UserAllowLists { get; private set; } = null!;
 
 
         /// <summary>
@@ -131,6 +178,12 @@ namespace Pulumi.Volcengine.Rds_postgresql
     public sealed class AllowlistArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The category of the allow list. Valid values: Ordinary, Default. When this parameter is used as a request parameter, there is no default value.
+        /// </summary>
+        [Input("allowListCategory")]
+        public Input<string>? AllowListCategory { get; set; }
+
+        /// <summary>
         /// The description of the postgresql allow list.
         /// </summary>
         [Input("allowListDesc")]
@@ -148,16 +201,58 @@ namespace Pulumi.Volcengine.Rds_postgresql
         [Input("allowListType")]
         public Input<string>? AllowListType { get; set; }
 
-        [Input("allowLists", required: true)]
+        [Input("allowLists")]
         private InputList<string>? _allowLists;
 
         /// <summary>
-        /// Enter an IP address or a range of IP addresses in CIDR format.
+        /// Enter an IP address or a range of IP addresses in CIDR format. This field cannot be used together with the user_allow_list field.
         /// </summary>
         public InputList<string> AllowLists
         {
             get => _allowLists ?? (_allowLists = new InputList<string>());
             set => _allowLists = value;
+        }
+
+        [Input("instanceIds")]
+        private InputList<string>? _instanceIds;
+
+        /// <summary>
+        /// IDs of PostgreSQL instances to unify allowlists. When set, creation uses UnifyNewAllowList to merge existing instance allowlists into a new one. Supports merging and generating allowlists of up to 300 instances.
+        /// </summary>
+        public InputList<string> InstanceIds
+        {
+            get => _instanceIds ?? (_instanceIds = new InputList<string>());
+            set => _instanceIds = value;
+        }
+
+        [Input("securityGroupBindInfos")]
+        private InputList<Inputs.AllowlistSecurityGroupBindInfoArgs>? _securityGroupBindInfos;
+
+        /// <summary>
+        /// The information of security groups to bind with the allow list.
+        /// </summary>
+        public InputList<Inputs.AllowlistSecurityGroupBindInfoArgs> SecurityGroupBindInfos
+        {
+            get => _securityGroupBindInfos ?? (_securityGroupBindInfos = new InputList<Inputs.AllowlistSecurityGroupBindInfoArgs>());
+            set => _securityGroupBindInfos = value;
+        }
+
+        /// <summary>
+        /// Whether to update the security groups bound to the allowlist when modifying.
+        /// </summary>
+        [Input("updateSecurityGroup")]
+        public Input<bool>? UpdateSecurityGroup { get; set; }
+
+        [Input("userAllowLists")]
+        private InputList<string>? _userAllowLists;
+
+        /// <summary>
+        /// IP addresses outside security groups to be added to the allowlist. Cannot be used with allow_list.
+        /// </summary>
+        public InputList<string> UserAllowLists
+        {
+            get => _userAllowLists ?? (_userAllowLists = new InputList<string>());
+            set => _userAllowLists = value;
         }
 
         public AllowlistArgs()
@@ -168,6 +263,12 @@ namespace Pulumi.Volcengine.Rds_postgresql
 
     public sealed class AllowlistState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The category of the allow list. Valid values: Ordinary, Default. When this parameter is used as a request parameter, there is no default value.
+        /// </summary>
+        [Input("allowListCategory")]
+        public Input<string>? AllowListCategory { get; set; }
+
         /// <summary>
         /// The description of the postgresql allow list.
         /// </summary>
@@ -190,7 +291,7 @@ namespace Pulumi.Volcengine.Rds_postgresql
         private InputList<string>? _allowLists;
 
         /// <summary>
-        /// Enter an IP address or a range of IP addresses in CIDR format.
+        /// Enter an IP address or a range of IP addresses in CIDR format. This field cannot be used together with the user_allow_list field.
         /// </summary>
         public InputList<string> AllowLists
         {
@@ -214,6 +315,48 @@ namespace Pulumi.Volcengine.Rds_postgresql
         {
             get => _associatedInstances ?? (_associatedInstances = new InputList<Inputs.AllowlistAssociatedInstanceGetArgs>());
             set => _associatedInstances = value;
+        }
+
+        [Input("instanceIds")]
+        private InputList<string>? _instanceIds;
+
+        /// <summary>
+        /// IDs of PostgreSQL instances to unify allowlists. When set, creation uses UnifyNewAllowList to merge existing instance allowlists into a new one. Supports merging and generating allowlists of up to 300 instances.
+        /// </summary>
+        public InputList<string> InstanceIds
+        {
+            get => _instanceIds ?? (_instanceIds = new InputList<string>());
+            set => _instanceIds = value;
+        }
+
+        [Input("securityGroupBindInfos")]
+        private InputList<Inputs.AllowlistSecurityGroupBindInfoGetArgs>? _securityGroupBindInfos;
+
+        /// <summary>
+        /// The information of security groups to bind with the allow list.
+        /// </summary>
+        public InputList<Inputs.AllowlistSecurityGroupBindInfoGetArgs> SecurityGroupBindInfos
+        {
+            get => _securityGroupBindInfos ?? (_securityGroupBindInfos = new InputList<Inputs.AllowlistSecurityGroupBindInfoGetArgs>());
+            set => _securityGroupBindInfos = value;
+        }
+
+        /// <summary>
+        /// Whether to update the security groups bound to the allowlist when modifying.
+        /// </summary>
+        [Input("updateSecurityGroup")]
+        public Input<bool>? UpdateSecurityGroup { get; set; }
+
+        [Input("userAllowLists")]
+        private InputList<string>? _userAllowLists;
+
+        /// <summary>
+        /// IP addresses outside security groups to be added to the allowlist. Cannot be used with allow_list.
+        /// </summary>
+        public InputList<string> UserAllowLists
+        {
+            get => _userAllowLists ?? (_userAllowLists = new InputList<string>());
+            set => _userAllowLists = value;
         }
 
         public AllowlistState()

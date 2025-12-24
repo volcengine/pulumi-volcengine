@@ -24,10 +24,13 @@ class BucketsResult:
     """
     A collection of values returned by Buckets.
     """
-    def __init__(__self__, bucket_name=None, buckets=None, id=None, name_regex=None, output_file=None, total_count=None):
+    def __init__(__self__, bucket_name=None, bucket_type=None, buckets=None, id=None, name_regex=None, output_file=None, project_name=None, total_count=None):
         if bucket_name and not isinstance(bucket_name, str):
             raise TypeError("Expected argument 'bucket_name' to be a str")
         pulumi.set(__self__, "bucket_name", bucket_name)
+        if bucket_type and not isinstance(bucket_type, str):
+            raise TypeError("Expected argument 'bucket_type' to be a str")
+        pulumi.set(__self__, "bucket_type", bucket_type)
         if buckets and not isinstance(buckets, list):
             raise TypeError("Expected argument 'buckets' to be a list")
         pulumi.set(__self__, "buckets", buckets)
@@ -40,6 +43,9 @@ class BucketsResult:
         if output_file and not isinstance(output_file, str):
             raise TypeError("Expected argument 'output_file' to be a str")
         pulumi.set(__self__, "output_file", output_file)
+        if project_name and not isinstance(project_name, str):
+            raise TypeError("Expected argument 'project_name' to be a str")
+        pulumi.set(__self__, "project_name", project_name)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
@@ -48,6 +54,14 @@ class BucketsResult:
     @pulumi.getter(name="bucketName")
     def bucket_name(self) -> Optional[str]:
         return pulumi.get(self, "bucket_name")
+
+    @property
+    @pulumi.getter(name="bucketType")
+    def bucket_type(self) -> Optional[str]:
+        """
+        The bucket type of the TOS bucket.
+        """
+        return pulumi.get(self, "bucket_type")
 
     @property
     @pulumi.getter
@@ -76,6 +90,14 @@ class BucketsResult:
         return pulumi.get(self, "output_file")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[str]:
+        """
+        The project of the TOS bucket.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
     @pulumi.getter(name="totalCount")
     def total_count(self) -> int:
         """
@@ -91,16 +113,20 @@ class AwaitableBucketsResult(BucketsResult):
             yield self
         return BucketsResult(
             bucket_name=self.bucket_name,
+            bucket_type=self.bucket_type,
             buckets=self.buckets,
             id=self.id,
             name_regex=self.name_regex,
             output_file=self.output_file,
+            project_name=self.project_name,
             total_count=self.total_count)
 
 
 def buckets(bucket_name: Optional[str] = None,
+            bucket_type: Optional[str] = None,
             name_regex: Optional[str] = None,
             output_file: Optional[str] = None,
+            project_name: Optional[str] = None,
             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableBucketsResult:
     """
     Use this data source to query detailed information of tos buckets
@@ -115,30 +141,38 @@ def buckets(bucket_name: Optional[str] = None,
 
 
     :param str bucket_name: The name the TOS bucket.
+    :param str bucket_type: The bucket type of the TOS bucket.
     :param str name_regex: A Name Regex of TOS bucket.
     :param str output_file: File name where to save data source results.
+    :param str project_name: The project of the TOS bucket.
     """
     pulumi.log.warn("""buckets is deprecated: volcengine.tos.Buckets has been deprecated in favor of volcengine.tos.getBuckets""")
     __args__ = dict()
     __args__['bucketName'] = bucket_name
+    __args__['bucketType'] = bucket_type
     __args__['nameRegex'] = name_regex
     __args__['outputFile'] = output_file
+    __args__['projectName'] = project_name
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('volcengine:tos/buckets:Buckets', __args__, opts=opts, typ=BucketsResult).value
 
     return AwaitableBucketsResult(
         bucket_name=pulumi.get(__ret__, 'bucket_name'),
+        bucket_type=pulumi.get(__ret__, 'bucket_type'),
         buckets=pulumi.get(__ret__, 'buckets'),
         id=pulumi.get(__ret__, 'id'),
         name_regex=pulumi.get(__ret__, 'name_regex'),
         output_file=pulumi.get(__ret__, 'output_file'),
+        project_name=pulumi.get(__ret__, 'project_name'),
         total_count=pulumi.get(__ret__, 'total_count'))
 
 
 @_utilities.lift_output_func(buckets)
 def buckets_output(bucket_name: Optional[pulumi.Input[Optional[str]]] = None,
+                   bucket_type: Optional[pulumi.Input[Optional[str]]] = None,
                    name_regex: Optional[pulumi.Input[Optional[str]]] = None,
                    output_file: Optional[pulumi.Input[Optional[str]]] = None,
+                   project_name: Optional[pulumi.Input[Optional[str]]] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[BucketsResult]:
     """
     Use this data source to query detailed information of tos buckets
@@ -153,8 +187,10 @@ def buckets_output(bucket_name: Optional[pulumi.Input[Optional[str]]] = None,
 
 
     :param str bucket_name: The name the TOS bucket.
+    :param str bucket_type: The bucket type of the TOS bucket.
     :param str name_regex: A Name Regex of TOS bucket.
     :param str output_file: File name where to save data source results.
+    :param str project_name: The project of the TOS bucket.
     """
     pulumi.log.warn("""buckets is deprecated: volcengine.tos.Buckets has been deprecated in favor of volcengine.tos.getBuckets""")
     ...

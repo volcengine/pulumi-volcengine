@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@volcengine/pulumi";
  *
  * const fooBucket = new volcengine.tos.Bucket("fooBucket", {
- *     bucketName: "tf-acc-test-bucket",
+ *     bucketName: "tf-acc-test-bucket1",
  *     publicAcl: "private",
  *     azRedundancy: "multi-az",
  *     projectName: "default",

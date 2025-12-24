@@ -19,7 +19,10 @@ class DatabaseArgs:
                  c_type: Optional[pulumi.Input[str]] = None,
                  character_set_name: Optional[pulumi.Input[str]] = None,
                  collate: Optional[pulumi.Input[str]] = None,
-                 owner: Optional[pulumi.Input[str]] = None):
+                 data_option: Optional[pulumi.Input[str]] = None,
+                 owner: Optional[pulumi.Input[str]] = None,
+                 plpgsql_options: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 source_db_name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Database resource.
         :param pulumi.Input[str] db_name: The name of database.
@@ -27,7 +30,10 @@ class DatabaseArgs:
         :param pulumi.Input[str] c_type: Character classification. Value range: C (default), C.UTF-8, en_US.utf8, zh_CN.utf8, and POSIX.
         :param pulumi.Input[str] character_set_name: Database character set. Currently supported character sets include: utf8, latin1, ascii. Default is utf8.
         :param pulumi.Input[str] collate: The collate of database. Sorting rules. Value range: C (default), C.UTF-8, en_US.utf8, zh_CN.utf8 and POSIX.
+        :param pulumi.Input[str] data_option: The data option of the new database. Currently only Metadata is supported. This parameter is optional when clone an existing database.
         :param pulumi.Input[str] owner: The owner of database.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] plpgsql_options: The pl_pgsql option of the new database. Value range: View, Procedure, Function, Trigger. This parameter is optional when clone an existing database.
+        :param pulumi.Input[str] source_db_name: The name of the source database. This parameter is required when clone an existing database.
         """
         pulumi.set(__self__, "db_name", db_name)
         pulumi.set(__self__, "instance_id", instance_id)
@@ -37,8 +43,14 @@ class DatabaseArgs:
             pulumi.set(__self__, "character_set_name", character_set_name)
         if collate is not None:
             pulumi.set(__self__, "collate", collate)
+        if data_option is not None:
+            pulumi.set(__self__, "data_option", data_option)
         if owner is not None:
             pulumi.set(__self__, "owner", owner)
+        if plpgsql_options is not None:
+            pulumi.set(__self__, "plpgsql_options", plpgsql_options)
+        if source_db_name is not None:
+            pulumi.set(__self__, "source_db_name", source_db_name)
 
     @property
     @pulumi.getter(name="dbName")
@@ -101,6 +113,18 @@ class DatabaseArgs:
         pulumi.set(self, "collate", value)
 
     @property
+    @pulumi.getter(name="dataOption")
+    def data_option(self) -> Optional[pulumi.Input[str]]:
+        """
+        The data option of the new database. Currently only Metadata is supported. This parameter is optional when clone an existing database.
+        """
+        return pulumi.get(self, "data_option")
+
+    @data_option.setter
+    def data_option(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "data_option", value)
+
+    @property
     @pulumi.getter
     def owner(self) -> Optional[pulumi.Input[str]]:
         """
@@ -112,6 +136,30 @@ class DatabaseArgs:
     def owner(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "owner", value)
 
+    @property
+    @pulumi.getter(name="plpgsqlOptions")
+    def plpgsql_options(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The pl_pgsql option of the new database. Value range: View, Procedure, Function, Trigger. This parameter is optional when clone an existing database.
+        """
+        return pulumi.get(self, "plpgsql_options")
+
+    @plpgsql_options.setter
+    def plpgsql_options(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "plpgsql_options", value)
+
+    @property
+    @pulumi.getter(name="sourceDbName")
+    def source_db_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the source database. This parameter is required when clone an existing database.
+        """
+        return pulumi.get(self, "source_db_name")
+
+    @source_db_name.setter
+    def source_db_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "source_db_name", value)
+
 
 @pulumi.input_type
 class _DatabaseState:
@@ -119,19 +167,25 @@ class _DatabaseState:
                  c_type: Optional[pulumi.Input[str]] = None,
                  character_set_name: Optional[pulumi.Input[str]] = None,
                  collate: Optional[pulumi.Input[str]] = None,
+                 data_option: Optional[pulumi.Input[str]] = None,
                  db_name: Optional[pulumi.Input[str]] = None,
                  db_status: Optional[pulumi.Input[str]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
-                 owner: Optional[pulumi.Input[str]] = None):
+                 owner: Optional[pulumi.Input[str]] = None,
+                 plpgsql_options: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 source_db_name: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Database resources.
         :param pulumi.Input[str] c_type: Character classification. Value range: C (default), C.UTF-8, en_US.utf8, zh_CN.utf8, and POSIX.
         :param pulumi.Input[str] character_set_name: Database character set. Currently supported character sets include: utf8, latin1, ascii. Default is utf8.
         :param pulumi.Input[str] collate: The collate of database. Sorting rules. Value range: C (default), C.UTF-8, en_US.utf8, zh_CN.utf8 and POSIX.
+        :param pulumi.Input[str] data_option: The data option of the new database. Currently only Metadata is supported. This parameter is optional when clone an existing database.
         :param pulumi.Input[str] db_name: The name of database.
         :param pulumi.Input[str] db_status: The status of the RDS database.
         :param pulumi.Input[str] instance_id: The ID of the RDS instance.
         :param pulumi.Input[str] owner: The owner of database.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] plpgsql_options: The pl_pgsql option of the new database. Value range: View, Procedure, Function, Trigger. This parameter is optional when clone an existing database.
+        :param pulumi.Input[str] source_db_name: The name of the source database. This parameter is required when clone an existing database.
         """
         if c_type is not None:
             pulumi.set(__self__, "c_type", c_type)
@@ -139,6 +193,8 @@ class _DatabaseState:
             pulumi.set(__self__, "character_set_name", character_set_name)
         if collate is not None:
             pulumi.set(__self__, "collate", collate)
+        if data_option is not None:
+            pulumi.set(__self__, "data_option", data_option)
         if db_name is not None:
             pulumi.set(__self__, "db_name", db_name)
         if db_status is not None:
@@ -147,6 +203,10 @@ class _DatabaseState:
             pulumi.set(__self__, "instance_id", instance_id)
         if owner is not None:
             pulumi.set(__self__, "owner", owner)
+        if plpgsql_options is not None:
+            pulumi.set(__self__, "plpgsql_options", plpgsql_options)
+        if source_db_name is not None:
+            pulumi.set(__self__, "source_db_name", source_db_name)
 
     @property
     @pulumi.getter(name="cType")
@@ -183,6 +243,18 @@ class _DatabaseState:
     @collate.setter
     def collate(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "collate", value)
+
+    @property
+    @pulumi.getter(name="dataOption")
+    def data_option(self) -> Optional[pulumi.Input[str]]:
+        """
+        The data option of the new database. Currently only Metadata is supported. This parameter is optional when clone an existing database.
+        """
+        return pulumi.get(self, "data_option")
+
+    @data_option.setter
+    def data_option(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "data_option", value)
 
     @property
     @pulumi.getter(name="dbName")
@@ -232,6 +304,30 @@ class _DatabaseState:
     def owner(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "owner", value)
 
+    @property
+    @pulumi.getter(name="plpgsqlOptions")
+    def plpgsql_options(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The pl_pgsql option of the new database. Value range: View, Procedure, Function, Trigger. This parameter is optional when clone an existing database.
+        """
+        return pulumi.get(self, "plpgsql_options")
+
+    @plpgsql_options.setter
+    def plpgsql_options(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "plpgsql_options", value)
+
+    @property
+    @pulumi.getter(name="sourceDbName")
+    def source_db_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the source database. This parameter is required when clone an existing database.
+        """
+        return pulumi.get(self, "source_db_name")
+
+    @source_db_name.setter
+    def source_db_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "source_db_name", value)
+
 
 class Database(pulumi.CustomResource):
     @overload
@@ -241,9 +337,12 @@ class Database(pulumi.CustomResource):
                  c_type: Optional[pulumi.Input[str]] = None,
                  character_set_name: Optional[pulumi.Input[str]] = None,
                  collate: Optional[pulumi.Input[str]] = None,
+                 data_option: Optional[pulumi.Input[str]] = None,
                  db_name: Optional[pulumi.Input[str]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
                  owner: Optional[pulumi.Input[str]] = None,
+                 plpgsql_options: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 source_db_name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Provides a resource to manage rds postgresql database
@@ -257,7 +356,13 @@ class Database(pulumi.CustomResource):
             c_type="C",
             collate="zh_CN.utf8",
             db_name="acc-test",
-            instance_id="postgres-95*******233")
+            instance_id="postgres-95*******233",
+            owner="super")
+        clone_example = volcengine.rds_postgresql.Database("cloneExample",
+            data_option="Metadata",
+            db_name="clone-test",
+            instance_id="postgres-95*******233",
+            source_db_name="acc-test")
         ```
 
         ## Import
@@ -273,9 +378,12 @@ class Database(pulumi.CustomResource):
         :param pulumi.Input[str] c_type: Character classification. Value range: C (default), C.UTF-8, en_US.utf8, zh_CN.utf8, and POSIX.
         :param pulumi.Input[str] character_set_name: Database character set. Currently supported character sets include: utf8, latin1, ascii. Default is utf8.
         :param pulumi.Input[str] collate: The collate of database. Sorting rules. Value range: C (default), C.UTF-8, en_US.utf8, zh_CN.utf8 and POSIX.
+        :param pulumi.Input[str] data_option: The data option of the new database. Currently only Metadata is supported. This parameter is optional when clone an existing database.
         :param pulumi.Input[str] db_name: The name of database.
         :param pulumi.Input[str] instance_id: The ID of the RDS instance.
         :param pulumi.Input[str] owner: The owner of database.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] plpgsql_options: The pl_pgsql option of the new database. Value range: View, Procedure, Function, Trigger. This parameter is optional when clone an existing database.
+        :param pulumi.Input[str] source_db_name: The name of the source database. This parameter is required when clone an existing database.
         """
         ...
     @overload
@@ -295,7 +403,13 @@ class Database(pulumi.CustomResource):
             c_type="C",
             collate="zh_CN.utf8",
             db_name="acc-test",
-            instance_id="postgres-95*******233")
+            instance_id="postgres-95*******233",
+            owner="super")
+        clone_example = volcengine.rds_postgresql.Database("cloneExample",
+            data_option="Metadata",
+            db_name="clone-test",
+            instance_id="postgres-95*******233",
+            source_db_name="acc-test")
         ```
 
         ## Import
@@ -324,9 +438,12 @@ class Database(pulumi.CustomResource):
                  c_type: Optional[pulumi.Input[str]] = None,
                  character_set_name: Optional[pulumi.Input[str]] = None,
                  collate: Optional[pulumi.Input[str]] = None,
+                 data_option: Optional[pulumi.Input[str]] = None,
                  db_name: Optional[pulumi.Input[str]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
                  owner: Optional[pulumi.Input[str]] = None,
+                 plpgsql_options: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 source_db_name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -339,6 +456,7 @@ class Database(pulumi.CustomResource):
             __props__.__dict__["c_type"] = c_type
             __props__.__dict__["character_set_name"] = character_set_name
             __props__.__dict__["collate"] = collate
+            __props__.__dict__["data_option"] = data_option
             if db_name is None and not opts.urn:
                 raise TypeError("Missing required property 'db_name'")
             __props__.__dict__["db_name"] = db_name
@@ -346,6 +464,8 @@ class Database(pulumi.CustomResource):
                 raise TypeError("Missing required property 'instance_id'")
             __props__.__dict__["instance_id"] = instance_id
             __props__.__dict__["owner"] = owner
+            __props__.__dict__["plpgsql_options"] = plpgsql_options
+            __props__.__dict__["source_db_name"] = source_db_name
             __props__.__dict__["db_status"] = None
         super(Database, __self__).__init__(
             'volcengine:rds_postgresql/database:Database',
@@ -360,10 +480,13 @@ class Database(pulumi.CustomResource):
             c_type: Optional[pulumi.Input[str]] = None,
             character_set_name: Optional[pulumi.Input[str]] = None,
             collate: Optional[pulumi.Input[str]] = None,
+            data_option: Optional[pulumi.Input[str]] = None,
             db_name: Optional[pulumi.Input[str]] = None,
             db_status: Optional[pulumi.Input[str]] = None,
             instance_id: Optional[pulumi.Input[str]] = None,
-            owner: Optional[pulumi.Input[str]] = None) -> 'Database':
+            owner: Optional[pulumi.Input[str]] = None,
+            plpgsql_options: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            source_db_name: Optional[pulumi.Input[str]] = None) -> 'Database':
         """
         Get an existing Database resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -374,10 +497,13 @@ class Database(pulumi.CustomResource):
         :param pulumi.Input[str] c_type: Character classification. Value range: C (default), C.UTF-8, en_US.utf8, zh_CN.utf8, and POSIX.
         :param pulumi.Input[str] character_set_name: Database character set. Currently supported character sets include: utf8, latin1, ascii. Default is utf8.
         :param pulumi.Input[str] collate: The collate of database. Sorting rules. Value range: C (default), C.UTF-8, en_US.utf8, zh_CN.utf8 and POSIX.
+        :param pulumi.Input[str] data_option: The data option of the new database. Currently only Metadata is supported. This parameter is optional when clone an existing database.
         :param pulumi.Input[str] db_name: The name of database.
         :param pulumi.Input[str] db_status: The status of the RDS database.
         :param pulumi.Input[str] instance_id: The ID of the RDS instance.
         :param pulumi.Input[str] owner: The owner of database.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] plpgsql_options: The pl_pgsql option of the new database. Value range: View, Procedure, Function, Trigger. This parameter is optional when clone an existing database.
+        :param pulumi.Input[str] source_db_name: The name of the source database. This parameter is required when clone an existing database.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -386,10 +512,13 @@ class Database(pulumi.CustomResource):
         __props__.__dict__["c_type"] = c_type
         __props__.__dict__["character_set_name"] = character_set_name
         __props__.__dict__["collate"] = collate
+        __props__.__dict__["data_option"] = data_option
         __props__.__dict__["db_name"] = db_name
         __props__.__dict__["db_status"] = db_status
         __props__.__dict__["instance_id"] = instance_id
         __props__.__dict__["owner"] = owner
+        __props__.__dict__["plpgsql_options"] = plpgsql_options
+        __props__.__dict__["source_db_name"] = source_db_name
         return Database(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -415,6 +544,14 @@ class Database(pulumi.CustomResource):
         The collate of database. Sorting rules. Value range: C (default), C.UTF-8, en_US.utf8, zh_CN.utf8 and POSIX.
         """
         return pulumi.get(self, "collate")
+
+    @property
+    @pulumi.getter(name="dataOption")
+    def data_option(self) -> pulumi.Output[Optional[str]]:
+        """
+        The data option of the new database. Currently only Metadata is supported. This parameter is optional when clone an existing database.
+        """
+        return pulumi.get(self, "data_option")
 
     @property
     @pulumi.getter(name="dbName")
@@ -447,4 +584,20 @@ class Database(pulumi.CustomResource):
         The owner of database.
         """
         return pulumi.get(self, "owner")
+
+    @property
+    @pulumi.getter(name="plpgsqlOptions")
+    def plpgsql_options(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        The pl_pgsql option of the new database. Value range: View, Procedure, Function, Trigger. This parameter is optional when clone an existing database.
+        """
+        return pulumi.get(self, "plpgsql_options")
+
+    @property
+    @pulumi.getter(name="sourceDbName")
+    def source_db_name(self) -> pulumi.Output[Optional[str]]:
+        """
+        The name of the source database. This parameter is required when clone an existing database.
+        """
+        return pulumi.get(self, "source_db_name")
 

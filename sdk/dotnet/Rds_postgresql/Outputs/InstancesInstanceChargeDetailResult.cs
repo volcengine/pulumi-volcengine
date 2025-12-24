@@ -31,13 +31,17 @@ namespace Pulumi.Volcengine.Rds_postgresql.Outputs
         /// Pay status. Value:
         /// normal - normal
         /// overdue - overdue
-        /// .
+        /// unpaid - unpaid.
         /// </summary>
         public readonly string ChargeStatus;
         /// <summary>
         /// The charge type of the RDS instance.
         /// </summary>
         public readonly string ChargeType;
+        /// <summary>
+        /// The number of the RDS PostgreSQL instance.
+        /// </summary>
+        public readonly int Number;
         /// <summary>
         /// Estimated release time when arrears are closed (pay-as-you-go &amp; monthly subscription).
         /// </summary>
@@ -77,6 +81,8 @@ namespace Pulumi.Volcengine.Rds_postgresql.Outputs
 
             string chargeType,
 
+            int number,
+
             string overdueReclaimTime,
 
             string overdueTime,
@@ -94,6 +100,7 @@ namespace Pulumi.Volcengine.Rds_postgresql.Outputs
             ChargeStartTime = chargeStartTime;
             ChargeStatus = chargeStatus;
             ChargeType = chargeType;
+            Number = number;
             OverdueReclaimTime = overdueReclaimTime;
             OverdueTime = overdueTime;
             Period = period;

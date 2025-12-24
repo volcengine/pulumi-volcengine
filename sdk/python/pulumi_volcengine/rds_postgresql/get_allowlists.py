@@ -22,13 +22,28 @@ class GetAllowlistsResult:
     """
     A collection of values returned by getAllowlists.
     """
-    def __init__(__self__, id=None, instance_id=None, name_regex=None, output_file=None, postgresql_allow_lists=None, total_count=None):
+    def __init__(__self__, allow_list_category=None, allow_list_desc=None, allow_list_id=None, allow_list_name=None, id=None, instance_id=None, ip_address=None, name_regex=None, output_file=None, postgresql_allow_lists=None, total_count=None):
+        if allow_list_category and not isinstance(allow_list_category, str):
+            raise TypeError("Expected argument 'allow_list_category' to be a str")
+        pulumi.set(__self__, "allow_list_category", allow_list_category)
+        if allow_list_desc and not isinstance(allow_list_desc, str):
+            raise TypeError("Expected argument 'allow_list_desc' to be a str")
+        pulumi.set(__self__, "allow_list_desc", allow_list_desc)
+        if allow_list_id and not isinstance(allow_list_id, str):
+            raise TypeError("Expected argument 'allow_list_id' to be a str")
+        pulumi.set(__self__, "allow_list_id", allow_list_id)
+        if allow_list_name and not isinstance(allow_list_name, str):
+            raise TypeError("Expected argument 'allow_list_name' to be a str")
+        pulumi.set(__self__, "allow_list_name", allow_list_name)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
         if instance_id and not isinstance(instance_id, str):
             raise TypeError("Expected argument 'instance_id' to be a str")
         pulumi.set(__self__, "instance_id", instance_id)
+        if ip_address and not isinstance(ip_address, str):
+            raise TypeError("Expected argument 'ip_address' to be a str")
+        pulumi.set(__self__, "ip_address", ip_address)
         if name_regex and not isinstance(name_regex, str):
             raise TypeError("Expected argument 'name_regex' to be a str")
         pulumi.set(__self__, "name_regex", name_regex)
@@ -41,6 +56,38 @@ class GetAllowlistsResult:
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
+
+    @property
+    @pulumi.getter(name="allowListCategory")
+    def allow_list_category(self) -> Optional[str]:
+        """
+        The category of the postgresql allow list.
+        """
+        return pulumi.get(self, "allow_list_category")
+
+    @property
+    @pulumi.getter(name="allowListDesc")
+    def allow_list_desc(self) -> Optional[str]:
+        """
+        The description of the postgresql allow list.
+        """
+        return pulumi.get(self, "allow_list_desc")
+
+    @property
+    @pulumi.getter(name="allowListId")
+    def allow_list_id(self) -> Optional[str]:
+        """
+        The id of the postgresql allow list.
+        """
+        return pulumi.get(self, "allow_list_id")
+
+    @property
+    @pulumi.getter(name="allowListName")
+    def allow_list_name(self) -> Optional[str]:
+        """
+        The name of the postgresql allow list.
+        """
+        return pulumi.get(self, "allow_list_name")
 
     @property
     @pulumi.getter
@@ -57,6 +104,11 @@ class GetAllowlistsResult:
         The id of the postgresql instance.
         """
         return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="ipAddress")
+    def ip_address(self) -> Optional[str]:
+        return pulumi.get(self, "ip_address")
 
     @property
     @pulumi.getter(name="nameRegex")
@@ -91,15 +143,25 @@ class AwaitableGetAllowlistsResult(GetAllowlistsResult):
         if False:
             yield self
         return GetAllowlistsResult(
+            allow_list_category=self.allow_list_category,
+            allow_list_desc=self.allow_list_desc,
+            allow_list_id=self.allow_list_id,
+            allow_list_name=self.allow_list_name,
             id=self.id,
             instance_id=self.instance_id,
+            ip_address=self.ip_address,
             name_regex=self.name_regex,
             output_file=self.output_file,
             postgresql_allow_lists=self.postgresql_allow_lists,
             total_count=self.total_count)
 
 
-def get_allowlists(instance_id: Optional[str] = None,
+def get_allowlists(allow_list_category: Optional[str] = None,
+                   allow_list_desc: Optional[str] = None,
+                   allow_list_id: Optional[str] = None,
+                   allow_list_name: Optional[str] = None,
+                   instance_id: Optional[str] = None,
+                   ip_address: Optional[str] = None,
                    name_regex: Optional[str] = None,
                    output_file: Optional[str] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAllowlistsResult:
@@ -111,24 +173,44 @@ def get_allowlists(instance_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.rds_postgresql.get_allowlists()
+    default = volcengine.rds_postgresql.get_allowlists(allow_list_category="Ordinary",
+        allow_list_desc="test allow list",
+        allow_list_id="acl-e7846436e1e741edbd385868fa657436",
+        allow_list_name="test",
+        ip_address="100.64.0.0/10",
+        name_regex=".*allowlist.*")
     ```
 
 
+    :param str allow_list_category: The category of the postgresql allow list. Valid values: Ordinary, Default.
+    :param str allow_list_desc: The description of the postgresql allow list. Perform a fuzzy search based on the description information.
+    :param str allow_list_id: The id of the postgresql allow list.
+    :param str allow_list_name: The name of the postgresql allow list.
     :param str instance_id: The id of the postgresql Instance.
+    :param str ip_address: The IP address to be added to the allow list.
     :param str name_regex: A Name Regex of Resource.
     :param str output_file: File name where to save data source results.
     """
     __args__ = dict()
+    __args__['allowListCategory'] = allow_list_category
+    __args__['allowListDesc'] = allow_list_desc
+    __args__['allowListId'] = allow_list_id
+    __args__['allowListName'] = allow_list_name
     __args__['instanceId'] = instance_id
+    __args__['ipAddress'] = ip_address
     __args__['nameRegex'] = name_regex
     __args__['outputFile'] = output_file
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('volcengine:rds_postgresql/getAllowlists:getAllowlists', __args__, opts=opts, typ=GetAllowlistsResult).value
 
     return AwaitableGetAllowlistsResult(
+        allow_list_category=pulumi.get(__ret__, 'allow_list_category'),
+        allow_list_desc=pulumi.get(__ret__, 'allow_list_desc'),
+        allow_list_id=pulumi.get(__ret__, 'allow_list_id'),
+        allow_list_name=pulumi.get(__ret__, 'allow_list_name'),
         id=pulumi.get(__ret__, 'id'),
         instance_id=pulumi.get(__ret__, 'instance_id'),
+        ip_address=pulumi.get(__ret__, 'ip_address'),
         name_regex=pulumi.get(__ret__, 'name_regex'),
         output_file=pulumi.get(__ret__, 'output_file'),
         postgresql_allow_lists=pulumi.get(__ret__, 'postgresql_allow_lists'),
@@ -136,7 +218,12 @@ def get_allowlists(instance_id: Optional[str] = None,
 
 
 @_utilities.lift_output_func(get_allowlists)
-def get_allowlists_output(instance_id: Optional[pulumi.Input[Optional[str]]] = None,
+def get_allowlists_output(allow_list_category: Optional[pulumi.Input[Optional[str]]] = None,
+                          allow_list_desc: Optional[pulumi.Input[Optional[str]]] = None,
+                          allow_list_id: Optional[pulumi.Input[Optional[str]]] = None,
+                          allow_list_name: Optional[pulumi.Input[Optional[str]]] = None,
+                          instance_id: Optional[pulumi.Input[Optional[str]]] = None,
+                          ip_address: Optional[pulumi.Input[Optional[str]]] = None,
                           name_regex: Optional[pulumi.Input[Optional[str]]] = None,
                           output_file: Optional[pulumi.Input[Optional[str]]] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAllowlistsResult]:
@@ -148,11 +235,21 @@ def get_allowlists_output(instance_id: Optional[pulumi.Input[Optional[str]]] = N
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.rds_postgresql.get_allowlists()
+    default = volcengine.rds_postgresql.get_allowlists(allow_list_category="Ordinary",
+        allow_list_desc="test allow list",
+        allow_list_id="acl-e7846436e1e741edbd385868fa657436",
+        allow_list_name="test",
+        ip_address="100.64.0.0/10",
+        name_regex=".*allowlist.*")
     ```
 
 
+    :param str allow_list_category: The category of the postgresql allow list. Valid values: Ordinary, Default.
+    :param str allow_list_desc: The description of the postgresql allow list. Perform a fuzzy search based on the description information.
+    :param str allow_list_id: The id of the postgresql allow list.
+    :param str allow_list_name: The name of the postgresql allow list.
     :param str instance_id: The id of the postgresql Instance.
+    :param str ip_address: The IP address to be added to the allow list.
     :param str name_regex: A Name Regex of Resource.
     :param str output_file: File name where to save data source results.
     """

@@ -21,7 +21,6 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/rds_postgresql"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
@@ -29,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooZones, err := ecs.GetZones(ctx, nil, nil)
+//			_, err := rds_postgresql.GetZones(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -50,7 +49,7 @@ import (
 //			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
 //				SubnetName: pulumi.String("acc-test-subnet"),
 //				CidrBlock:  pulumi.String("172.16.0.0/24"),
-//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:     pulumi.Any(data.Volcengine_zones.Foo.Zones[0].Id),
 //				VpcId:      fooVpc.ID(),
 //			})
 //			if err != nil {
@@ -60,8 +59,8 @@ import (
 //			fooInstance, err := rds_postgresql.NewInstance(ctx, "fooInstance", &rds_postgresql.InstanceArgs{
 //				DbEngineVersion: pulumi.String("PostgreSQL_12"),
 //				NodeSpec:        pulumi.String("rds.postgres.1c2g"),
-//				PrimaryZoneId:   pulumi.String(fooZones.Zones[0].Id),
-//				SecondaryZoneId: pulumi.String(fooZones.Zones[0].Id),
+//				PrimaryZoneId:   pulumi.Any(data.Volcengine_zones.Foo.Zones[0].Id),
+//				SecondaryZoneId: pulumi.Any(data.Volcengine_zones.Foo.Zones[0].Id),
 //				StorageSpace:    pulumi.Int(40),
 //				SubnetId:        fooSubnet.ID(),
 //				InstanceName:    pulumi.String("acc-test-postgresql-instance"),
@@ -93,7 +92,7 @@ import (
 //			_, err = rds_postgresql.NewInstanceReadonlyNode(ctx, "fooInstanceReadonlyNode", &rds_postgresql.InstanceReadonlyNodeArgs{
 //				InstanceId: fooInstance.ID(),
 //				NodeSpec:   pulumi.String("rds.postgres.1c2g"),
-//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:     pulumi.Any(data.Volcengine_zones.Foo.Zones[0].Id),
 //			})
 //			if err != nil {
 //				return err
@@ -150,6 +149,23 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			_, err = rds_postgresql.NewInstance(ctx, "example", &rds_postgresql.InstanceArgs{
+//				SrcInstanceId:   pulumi.String("postgres-faa4921fdde4"),
+//				BackupId:        pulumi.String("20251215-215628F"),
+//				DbEngineVersion: pulumi.String("PostgreSQL_12"),
+//				NodeSpec:        pulumi.String("rds.postgres.1c2g"),
+//				SubnetId:        fooSubnet.ID(),
+//				InstanceName:    pulumi.String("acc-test-postgresql-instance-restore"),
+//				ChargeInfo: &rds_postgresql.InstanceChargeInfoArgs{
+//					ChargeType: pulumi.String("PostPaid"),
+//					Number:     pulumi.Int(1),
+//				},
+//				PrimaryZoneId:   pulumi.Any(data.Volcengine_zones.Foo.Zones[0].Id),
+//				SecondaryZoneId: pulumi.Any(data.Volcengine_zones.Foo.Zones[0].Id),
+//			})
+//			if err != nil {
+//				return err
+//			}
 //			return nil
 //		})
 //	}
@@ -166,6 +182,12 @@ import (
 type Instance struct {
 	pulumi.CustomResourceState
 
+	// Allow list IDs to bind at creation.
+	AllowListIds pulumi.StringArrayOutput `pulumi:"allowListIds"`
+	// The allow list version of the RDS PostgreSQL instance.
+	AllowListVersion pulumi.StringOutput `pulumi:"allowListVersion"`
+	// Backup ID (choose either this or restore_time; if both are set, backupId shall prevail).
+	BackupId pulumi.StringPtrOutput `pulumi:"backupId"`
 	// The instance has used backup space. Unit: GB.
 	BackupUse pulumi.IntOutput `pulumi:"backupUse"`
 	// Payment methods.
@@ -176,10 +198,14 @@ type Instance struct {
 	CreateTime pulumi.StringOutput `pulumi:"createTime"`
 	// Data synchronization mode.
 	DataSyncMode pulumi.StringOutput `pulumi:"dataSyncMode"`
-	// Instance type. Value: PostgreSQL_11, PostgreSQL_12, PostgreSQL_13.
+	// Instance type. Value: PostgreSQL_11, PostgreSQL_12, PostgreSQL_13, PostgreSQL_14, PostgreSQL_15, PostgreSQL_16, PostgreSQL_17.
 	DbEngineVersion pulumi.StringOutput `pulumi:"dbEngineVersion"`
 	// The endpoint info of the RDS instance.
 	Endpoints InstanceEndpointArrayOutput `pulumi:"endpoints"`
+	// Whether to initiate a configuration change assessment. Only estimate spec change impact without executing. Default value: false.
+	EstimateOnly pulumi.BoolPtrOutput `pulumi:"estimateOnly"`
+	// The estimated impact on the instance after the current configuration changes.
+	EstimationResults InstanceEstimationResultArrayOutput `pulumi:"estimationResults"`
 	// Instance ID.
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
 	// Instance name. Cannot start with a number or a dash. Can only contain Chinese characters, letters, numbers, underscores and dashes. The length is limited between 1 ~ 128.
@@ -190,6 +216,8 @@ type Instance struct {
 	InstanceType pulumi.StringOutput `pulumi:"instanceType"`
 	// Memory size in GB.
 	Memory pulumi.IntOutput `pulumi:"memory"`
+	// Spec change type. Usually(default) or Temporary.
+	ModifyType pulumi.StringPtrOutput `pulumi:"modifyType"`
 	// The number of nodes.
 	NodeNumber pulumi.IntOutput `pulumi:"nodeNumber"`
 	// The specification of primary node and secondary node.
@@ -204,12 +232,28 @@ type Instance struct {
 	ProjectName pulumi.StringOutput `pulumi:"projectName"`
 	// The region of the RDS PostgreSQL instance.
 	RegionId pulumi.StringOutput `pulumi:"regionId"`
+	// The point in time to restore to, in UTC format yyyy-MM-ddTHH:mm:ssZ (choose either this or backup_id).
+	RestoreTime pulumi.StringPtrOutput `pulumi:"restoreTime"`
+	// Rollback time for Temporary change, UTC format yyyy-MM-ddTHH:mm:ss.sssZ.
+	RollbackTime pulumi.StringPtrOutput `pulumi:"rollbackTime"`
 	// The available zone of secondary node.
 	SecondaryZoneId pulumi.StringOutput `pulumi:"secondaryZoneId"`
-	// Instance storage space. Value range: [20, 3000], unit: GB, increments every 100GB. Default value: 100.
+	// Source instance ID. After setting it, a new instance will be created by restoring from the backup/time point.
+	SrcInstanceId pulumi.StringPtrOutput `pulumi:"srcInstanceId"`
+	// The instance's primary node has used storage space. Unit: Byte.
+	StorageDataUse pulumi.IntOutput `pulumi:"storageDataUse"`
+	// The instance's primary node has used log storage space. Unit: Byte.
+	StorageLogUse pulumi.IntOutput `pulumi:"storageLogUse"`
+	// Instance storage space. Value range: [20, 3000], unit: GB, step 10GB. Default value: 100.
 	StorageSpace pulumi.IntPtrOutput `pulumi:"storageSpace"`
+	// The instance's primary node has used temporary storage space. Unit: Byte.
+	StorageTempUse pulumi.IntOutput `pulumi:"storageTempUse"`
 	// Instance storage type.
 	StorageType pulumi.StringOutput `pulumi:"storageType"`
+	// The instance has used storage space. Unit: Byte.
+	StorageUse pulumi.IntOutput `pulumi:"storageUse"`
+	// The instance's primary node has used WAL storage space. Unit: Byte.
+	StorageWalUse pulumi.IntOutput `pulumi:"storageWalUse"`
 	// Subnet ID of the RDS PostgreSQL instance.
 	SubnetId pulumi.StringOutput `pulumi:"subnetId"`
 	// Tags.
@@ -224,6 +268,8 @@ type Instance struct {
 	ZoneId pulumi.StringOutput `pulumi:"zoneId"`
 	// ID of the availability zone where each instance is located.
 	ZoneIds pulumi.StringArrayOutput `pulumi:"zoneIds"`
+	// Nodes to migrate AZ. Only Secondary or ReadOnly nodes are allowed. If you want to migrate the availability zone of the secondary node, you need to add the zoneMigrations field. Modifying the secondaryZoneId directly will not work. Cross-AZ instance migration is not supported.
+	ZoneMigrations InstanceZoneMigrationArrayOutput `pulumi:"zoneMigrations"`
 }
 
 // NewInstance registers a new resource with the given unique name, arguments, and options.
@@ -274,6 +320,12 @@ func GetInstance(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Instance resources.
 type instanceState struct {
+	// Allow list IDs to bind at creation.
+	AllowListIds []string `pulumi:"allowListIds"`
+	// The allow list version of the RDS PostgreSQL instance.
+	AllowListVersion *string `pulumi:"allowListVersion"`
+	// Backup ID (choose either this or restore_time; if both are set, backupId shall prevail).
+	BackupId *string `pulumi:"backupId"`
 	// The instance has used backup space. Unit: GB.
 	BackupUse *int `pulumi:"backupUse"`
 	// Payment methods.
@@ -284,10 +336,14 @@ type instanceState struct {
 	CreateTime *string `pulumi:"createTime"`
 	// Data synchronization mode.
 	DataSyncMode *string `pulumi:"dataSyncMode"`
-	// Instance type. Value: PostgreSQL_11, PostgreSQL_12, PostgreSQL_13.
+	// Instance type. Value: PostgreSQL_11, PostgreSQL_12, PostgreSQL_13, PostgreSQL_14, PostgreSQL_15, PostgreSQL_16, PostgreSQL_17.
 	DbEngineVersion *string `pulumi:"dbEngineVersion"`
 	// The endpoint info of the RDS instance.
 	Endpoints []InstanceEndpoint `pulumi:"endpoints"`
+	// Whether to initiate a configuration change assessment. Only estimate spec change impact without executing. Default value: false.
+	EstimateOnly *bool `pulumi:"estimateOnly"`
+	// The estimated impact on the instance after the current configuration changes.
+	EstimationResults []InstanceEstimationResult `pulumi:"estimationResults"`
 	// Instance ID.
 	InstanceId *string `pulumi:"instanceId"`
 	// Instance name. Cannot start with a number or a dash. Can only contain Chinese characters, letters, numbers, underscores and dashes. The length is limited between 1 ~ 128.
@@ -298,6 +354,8 @@ type instanceState struct {
 	InstanceType *string `pulumi:"instanceType"`
 	// Memory size in GB.
 	Memory *int `pulumi:"memory"`
+	// Spec change type. Usually(default) or Temporary.
+	ModifyType *string `pulumi:"modifyType"`
 	// The number of nodes.
 	NodeNumber *int `pulumi:"nodeNumber"`
 	// The specification of primary node and secondary node.
@@ -312,12 +370,28 @@ type instanceState struct {
 	ProjectName *string `pulumi:"projectName"`
 	// The region of the RDS PostgreSQL instance.
 	RegionId *string `pulumi:"regionId"`
+	// The point in time to restore to, in UTC format yyyy-MM-ddTHH:mm:ssZ (choose either this or backup_id).
+	RestoreTime *string `pulumi:"restoreTime"`
+	// Rollback time for Temporary change, UTC format yyyy-MM-ddTHH:mm:ss.sssZ.
+	RollbackTime *string `pulumi:"rollbackTime"`
 	// The available zone of secondary node.
 	SecondaryZoneId *string `pulumi:"secondaryZoneId"`
-	// Instance storage space. Value range: [20, 3000], unit: GB, increments every 100GB. Default value: 100.
+	// Source instance ID. After setting it, a new instance will be created by restoring from the backup/time point.
+	SrcInstanceId *string `pulumi:"srcInstanceId"`
+	// The instance's primary node has used storage space. Unit: Byte.
+	StorageDataUse *int `pulumi:"storageDataUse"`
+	// The instance's primary node has used log storage space. Unit: Byte.
+	StorageLogUse *int `pulumi:"storageLogUse"`
+	// Instance storage space. Value range: [20, 3000], unit: GB, step 10GB. Default value: 100.
 	StorageSpace *int `pulumi:"storageSpace"`
+	// The instance's primary node has used temporary storage space. Unit: Byte.
+	StorageTempUse *int `pulumi:"storageTempUse"`
 	// Instance storage type.
 	StorageType *string `pulumi:"storageType"`
+	// The instance has used storage space. Unit: Byte.
+	StorageUse *int `pulumi:"storageUse"`
+	// The instance's primary node has used WAL storage space. Unit: Byte.
+	StorageWalUse *int `pulumi:"storageWalUse"`
 	// Subnet ID of the RDS PostgreSQL instance.
 	SubnetId *string `pulumi:"subnetId"`
 	// Tags.
@@ -332,9 +406,17 @@ type instanceState struct {
 	ZoneId *string `pulumi:"zoneId"`
 	// ID of the availability zone where each instance is located.
 	ZoneIds []string `pulumi:"zoneIds"`
+	// Nodes to migrate AZ. Only Secondary or ReadOnly nodes are allowed. If you want to migrate the availability zone of the secondary node, you need to add the zoneMigrations field. Modifying the secondaryZoneId directly will not work. Cross-AZ instance migration is not supported.
+	ZoneMigrations []InstanceZoneMigration `pulumi:"zoneMigrations"`
 }
 
 type InstanceState struct {
+	// Allow list IDs to bind at creation.
+	AllowListIds pulumi.StringArrayInput
+	// The allow list version of the RDS PostgreSQL instance.
+	AllowListVersion pulumi.StringPtrInput
+	// Backup ID (choose either this or restore_time; if both are set, backupId shall prevail).
+	BackupId pulumi.StringPtrInput
 	// The instance has used backup space. Unit: GB.
 	BackupUse pulumi.IntPtrInput
 	// Payment methods.
@@ -345,10 +427,14 @@ type InstanceState struct {
 	CreateTime pulumi.StringPtrInput
 	// Data synchronization mode.
 	DataSyncMode pulumi.StringPtrInput
-	// Instance type. Value: PostgreSQL_11, PostgreSQL_12, PostgreSQL_13.
+	// Instance type. Value: PostgreSQL_11, PostgreSQL_12, PostgreSQL_13, PostgreSQL_14, PostgreSQL_15, PostgreSQL_16, PostgreSQL_17.
 	DbEngineVersion pulumi.StringPtrInput
 	// The endpoint info of the RDS instance.
 	Endpoints InstanceEndpointArrayInput
+	// Whether to initiate a configuration change assessment. Only estimate spec change impact without executing. Default value: false.
+	EstimateOnly pulumi.BoolPtrInput
+	// The estimated impact on the instance after the current configuration changes.
+	EstimationResults InstanceEstimationResultArrayInput
 	// Instance ID.
 	InstanceId pulumi.StringPtrInput
 	// Instance name. Cannot start with a number or a dash. Can only contain Chinese characters, letters, numbers, underscores and dashes. The length is limited between 1 ~ 128.
@@ -359,6 +445,8 @@ type InstanceState struct {
 	InstanceType pulumi.StringPtrInput
 	// Memory size in GB.
 	Memory pulumi.IntPtrInput
+	// Spec change type. Usually(default) or Temporary.
+	ModifyType pulumi.StringPtrInput
 	// The number of nodes.
 	NodeNumber pulumi.IntPtrInput
 	// The specification of primary node and secondary node.
@@ -373,12 +461,28 @@ type InstanceState struct {
 	ProjectName pulumi.StringPtrInput
 	// The region of the RDS PostgreSQL instance.
 	RegionId pulumi.StringPtrInput
+	// The point in time to restore to, in UTC format yyyy-MM-ddTHH:mm:ssZ (choose either this or backup_id).
+	RestoreTime pulumi.StringPtrInput
+	// Rollback time for Temporary change, UTC format yyyy-MM-ddTHH:mm:ss.sssZ.
+	RollbackTime pulumi.StringPtrInput
 	// The available zone of secondary node.
 	SecondaryZoneId pulumi.StringPtrInput
-	// Instance storage space. Value range: [20, 3000], unit: GB, increments every 100GB. Default value: 100.
+	// Source instance ID. After setting it, a new instance will be created by restoring from the backup/time point.
+	SrcInstanceId pulumi.StringPtrInput
+	// The instance's primary node has used storage space. Unit: Byte.
+	StorageDataUse pulumi.IntPtrInput
+	// The instance's primary node has used log storage space. Unit: Byte.
+	StorageLogUse pulumi.IntPtrInput
+	// Instance storage space. Value range: [20, 3000], unit: GB, step 10GB. Default value: 100.
 	StorageSpace pulumi.IntPtrInput
+	// The instance's primary node has used temporary storage space. Unit: Byte.
+	StorageTempUse pulumi.IntPtrInput
 	// Instance storage type.
 	StorageType pulumi.StringPtrInput
+	// The instance has used storage space. Unit: Byte.
+	StorageUse pulumi.IntPtrInput
+	// The instance's primary node has used WAL storage space. Unit: Byte.
+	StorageWalUse pulumi.IntPtrInput
 	// Subnet ID of the RDS PostgreSQL instance.
 	SubnetId pulumi.StringPtrInput
 	// Tags.
@@ -393,6 +497,8 @@ type InstanceState struct {
 	ZoneId pulumi.StringPtrInput
 	// ID of the availability zone where each instance is located.
 	ZoneIds pulumi.StringArrayInput
+	// Nodes to migrate AZ. Only Secondary or ReadOnly nodes are allowed. If you want to migrate the availability zone of the secondary node, you need to add the zoneMigrations field. Modifying the secondaryZoneId directly will not work. Cross-AZ instance migration is not supported.
+	ZoneMigrations InstanceZoneMigrationArrayInput
 }
 
 func (InstanceState) ElementType() reflect.Type {
@@ -400,12 +506,20 @@ func (InstanceState) ElementType() reflect.Type {
 }
 
 type instanceArgs struct {
+	// Allow list IDs to bind at creation.
+	AllowListIds []string `pulumi:"allowListIds"`
+	// Backup ID (choose either this or restore_time; if both are set, backupId shall prevail).
+	BackupId *string `pulumi:"backupId"`
 	// Payment methods.
 	ChargeInfo InstanceChargeInfo `pulumi:"chargeInfo"`
-	// Instance type. Value: PostgreSQL_11, PostgreSQL_12, PostgreSQL_13.
+	// Instance type. Value: PostgreSQL_11, PostgreSQL_12, PostgreSQL_13, PostgreSQL_14, PostgreSQL_15, PostgreSQL_16, PostgreSQL_17.
 	DbEngineVersion string `pulumi:"dbEngineVersion"`
+	// Whether to initiate a configuration change assessment. Only estimate spec change impact without executing. Default value: false.
+	EstimateOnly *bool `pulumi:"estimateOnly"`
 	// Instance name. Cannot start with a number or a dash. Can only contain Chinese characters, letters, numbers, underscores and dashes. The length is limited between 1 ~ 128.
 	InstanceName *string `pulumi:"instanceName"`
+	// Spec change type. Usually(default) or Temporary.
+	ModifyType *string `pulumi:"modifyType"`
 	// The specification of primary node and secondary node.
 	NodeSpec string `pulumi:"nodeSpec"`
 	// Parameter of the RDS PostgreSQL instance. This field can only be added or modified. Deleting this field is invalid.
@@ -414,24 +528,40 @@ type instanceArgs struct {
 	PrimaryZoneId string `pulumi:"primaryZoneId"`
 	// The project name of the RDS instance.
 	ProjectName *string `pulumi:"projectName"`
+	// The point in time to restore to, in UTC format yyyy-MM-ddTHH:mm:ssZ (choose either this or backup_id).
+	RestoreTime *string `pulumi:"restoreTime"`
+	// Rollback time for Temporary change, UTC format yyyy-MM-ddTHH:mm:ss.sssZ.
+	RollbackTime *string `pulumi:"rollbackTime"`
 	// The available zone of secondary node.
 	SecondaryZoneId string `pulumi:"secondaryZoneId"`
-	// Instance storage space. Value range: [20, 3000], unit: GB, increments every 100GB. Default value: 100.
+	// Source instance ID. After setting it, a new instance will be created by restoring from the backup/time point.
+	SrcInstanceId *string `pulumi:"srcInstanceId"`
+	// Instance storage space. Value range: [20, 3000], unit: GB, step 10GB. Default value: 100.
 	StorageSpace *int `pulumi:"storageSpace"`
 	// Subnet ID of the RDS PostgreSQL instance.
 	SubnetId string `pulumi:"subnetId"`
 	// Tags.
 	Tags []InstanceTag `pulumi:"tags"`
+	// Nodes to migrate AZ. Only Secondary or ReadOnly nodes are allowed. If you want to migrate the availability zone of the secondary node, you need to add the zoneMigrations field. Modifying the secondaryZoneId directly will not work. Cross-AZ instance migration is not supported.
+	ZoneMigrations []InstanceZoneMigration `pulumi:"zoneMigrations"`
 }
 
 // The set of arguments for constructing a Instance resource.
 type InstanceArgs struct {
+	// Allow list IDs to bind at creation.
+	AllowListIds pulumi.StringArrayInput
+	// Backup ID (choose either this or restore_time; if both are set, backupId shall prevail).
+	BackupId pulumi.StringPtrInput
 	// Payment methods.
 	ChargeInfo InstanceChargeInfoInput
-	// Instance type. Value: PostgreSQL_11, PostgreSQL_12, PostgreSQL_13.
+	// Instance type. Value: PostgreSQL_11, PostgreSQL_12, PostgreSQL_13, PostgreSQL_14, PostgreSQL_15, PostgreSQL_16, PostgreSQL_17.
 	DbEngineVersion pulumi.StringInput
+	// Whether to initiate a configuration change assessment. Only estimate spec change impact without executing. Default value: false.
+	EstimateOnly pulumi.BoolPtrInput
 	// Instance name. Cannot start with a number or a dash. Can only contain Chinese characters, letters, numbers, underscores and dashes. The length is limited between 1 ~ 128.
 	InstanceName pulumi.StringPtrInput
+	// Spec change type. Usually(default) or Temporary.
+	ModifyType pulumi.StringPtrInput
 	// The specification of primary node and secondary node.
 	NodeSpec pulumi.StringInput
 	// Parameter of the RDS PostgreSQL instance. This field can only be added or modified. Deleting this field is invalid.
@@ -440,14 +570,22 @@ type InstanceArgs struct {
 	PrimaryZoneId pulumi.StringInput
 	// The project name of the RDS instance.
 	ProjectName pulumi.StringPtrInput
+	// The point in time to restore to, in UTC format yyyy-MM-ddTHH:mm:ssZ (choose either this or backup_id).
+	RestoreTime pulumi.StringPtrInput
+	// Rollback time for Temporary change, UTC format yyyy-MM-ddTHH:mm:ss.sssZ.
+	RollbackTime pulumi.StringPtrInput
 	// The available zone of secondary node.
 	SecondaryZoneId pulumi.StringInput
-	// Instance storage space. Value range: [20, 3000], unit: GB, increments every 100GB. Default value: 100.
+	// Source instance ID. After setting it, a new instance will be created by restoring from the backup/time point.
+	SrcInstanceId pulumi.StringPtrInput
+	// Instance storage space. Value range: [20, 3000], unit: GB, step 10GB. Default value: 100.
 	StorageSpace pulumi.IntPtrInput
 	// Subnet ID of the RDS PostgreSQL instance.
 	SubnetId pulumi.StringInput
 	// Tags.
 	Tags InstanceTagArrayInput
+	// Nodes to migrate AZ. Only Secondary or ReadOnly nodes are allowed. If you want to migrate the availability zone of the secondary node, you need to add the zoneMigrations field. Modifying the secondaryZoneId directly will not work. Cross-AZ instance migration is not supported.
+	ZoneMigrations InstanceZoneMigrationArrayInput
 }
 
 func (InstanceArgs) ElementType() reflect.Type {
@@ -537,6 +675,21 @@ func (o InstanceOutput) ToInstanceOutputWithContext(ctx context.Context) Instanc
 	return o
 }
 
+// Allow list IDs to bind at creation.
+func (o InstanceOutput) AllowListIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringArrayOutput { return v.AllowListIds }).(pulumi.StringArrayOutput)
+}
+
+// The allow list version of the RDS PostgreSQL instance.
+func (o InstanceOutput) AllowListVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.AllowListVersion }).(pulumi.StringOutput)
+}
+
+// Backup ID (choose either this or restore_time; if both are set, backupId shall prevail).
+func (o InstanceOutput) BackupId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringPtrOutput { return v.BackupId }).(pulumi.StringPtrOutput)
+}
+
 // The instance has used backup space. Unit: GB.
 func (o InstanceOutput) BackupUse() pulumi.IntOutput {
 	return o.ApplyT(func(v *Instance) pulumi.IntOutput { return v.BackupUse }).(pulumi.IntOutput)
@@ -562,7 +715,7 @@ func (o InstanceOutput) DataSyncMode() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.DataSyncMode }).(pulumi.StringOutput)
 }
 
-// Instance type. Value: PostgreSQL_11, PostgreSQL_12, PostgreSQL_13.
+// Instance type. Value: PostgreSQL_11, PostgreSQL_12, PostgreSQL_13, PostgreSQL_14, PostgreSQL_15, PostgreSQL_16, PostgreSQL_17.
 func (o InstanceOutput) DbEngineVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.DbEngineVersion }).(pulumi.StringOutput)
 }
@@ -570,6 +723,16 @@ func (o InstanceOutput) DbEngineVersion() pulumi.StringOutput {
 // The endpoint info of the RDS instance.
 func (o InstanceOutput) Endpoints() InstanceEndpointArrayOutput {
 	return o.ApplyT(func(v *Instance) InstanceEndpointArrayOutput { return v.Endpoints }).(InstanceEndpointArrayOutput)
+}
+
+// Whether to initiate a configuration change assessment. Only estimate spec change impact without executing. Default value: false.
+func (o InstanceOutput) EstimateOnly() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Instance) pulumi.BoolPtrOutput { return v.EstimateOnly }).(pulumi.BoolPtrOutput)
+}
+
+// The estimated impact on the instance after the current configuration changes.
+func (o InstanceOutput) EstimationResults() InstanceEstimationResultArrayOutput {
+	return o.ApplyT(func(v *Instance) InstanceEstimationResultArrayOutput { return v.EstimationResults }).(InstanceEstimationResultArrayOutput)
 }
 
 // Instance ID.
@@ -595,6 +758,11 @@ func (o InstanceOutput) InstanceType() pulumi.StringOutput {
 // Memory size in GB.
 func (o InstanceOutput) Memory() pulumi.IntOutput {
 	return o.ApplyT(func(v *Instance) pulumi.IntOutput { return v.Memory }).(pulumi.IntOutput)
+}
+
+// Spec change type. Usually(default) or Temporary.
+func (o InstanceOutput) ModifyType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringPtrOutput { return v.ModifyType }).(pulumi.StringPtrOutput)
 }
 
 // The number of nodes.
@@ -632,19 +800,59 @@ func (o InstanceOutput) RegionId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.RegionId }).(pulumi.StringOutput)
 }
 
+// The point in time to restore to, in UTC format yyyy-MM-ddTHH:mm:ssZ (choose either this or backup_id).
+func (o InstanceOutput) RestoreTime() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringPtrOutput { return v.RestoreTime }).(pulumi.StringPtrOutput)
+}
+
+// Rollback time for Temporary change, UTC format yyyy-MM-ddTHH:mm:ss.sssZ.
+func (o InstanceOutput) RollbackTime() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringPtrOutput { return v.RollbackTime }).(pulumi.StringPtrOutput)
+}
+
 // The available zone of secondary node.
 func (o InstanceOutput) SecondaryZoneId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.SecondaryZoneId }).(pulumi.StringOutput)
 }
 
-// Instance storage space. Value range: [20, 3000], unit: GB, increments every 100GB. Default value: 100.
+// Source instance ID. After setting it, a new instance will be created by restoring from the backup/time point.
+func (o InstanceOutput) SrcInstanceId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringPtrOutput { return v.SrcInstanceId }).(pulumi.StringPtrOutput)
+}
+
+// The instance's primary node has used storage space. Unit: Byte.
+func (o InstanceOutput) StorageDataUse() pulumi.IntOutput {
+	return o.ApplyT(func(v *Instance) pulumi.IntOutput { return v.StorageDataUse }).(pulumi.IntOutput)
+}
+
+// The instance's primary node has used log storage space. Unit: Byte.
+func (o InstanceOutput) StorageLogUse() pulumi.IntOutput {
+	return o.ApplyT(func(v *Instance) pulumi.IntOutput { return v.StorageLogUse }).(pulumi.IntOutput)
+}
+
+// Instance storage space. Value range: [20, 3000], unit: GB, step 10GB. Default value: 100.
 func (o InstanceOutput) StorageSpace() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *Instance) pulumi.IntPtrOutput { return v.StorageSpace }).(pulumi.IntPtrOutput)
+}
+
+// The instance's primary node has used temporary storage space. Unit: Byte.
+func (o InstanceOutput) StorageTempUse() pulumi.IntOutput {
+	return o.ApplyT(func(v *Instance) pulumi.IntOutput { return v.StorageTempUse }).(pulumi.IntOutput)
 }
 
 // Instance storage type.
 func (o InstanceOutput) StorageType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.StorageType }).(pulumi.StringOutput)
+}
+
+// The instance has used storage space. Unit: Byte.
+func (o InstanceOutput) StorageUse() pulumi.IntOutput {
+	return o.ApplyT(func(v *Instance) pulumi.IntOutput { return v.StorageUse }).(pulumi.IntOutput)
+}
+
+// The instance's primary node has used WAL storage space. Unit: Byte.
+func (o InstanceOutput) StorageWalUse() pulumi.IntOutput {
+	return o.ApplyT(func(v *Instance) pulumi.IntOutput { return v.StorageWalUse }).(pulumi.IntOutput)
 }
 
 // Subnet ID of the RDS PostgreSQL instance.
@@ -680,6 +888,11 @@ func (o InstanceOutput) ZoneId() pulumi.StringOutput {
 // ID of the availability zone where each instance is located.
 func (o InstanceOutput) ZoneIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringArrayOutput { return v.ZoneIds }).(pulumi.StringArrayOutput)
+}
+
+// Nodes to migrate AZ. Only Secondary or ReadOnly nodes are allowed. If you want to migrate the availability zone of the secondary node, you need to add the zoneMigrations field. Modifying the secondaryZoneId directly will not work. Cross-AZ instance migration is not supported.
+func (o InstanceOutput) ZoneMigrations() InstanceZoneMigrationArrayOutput {
+	return o.ApplyT(func(v *Instance) InstanceZoneMigrationArrayOutput { return v.ZoneMigrations }).(InstanceZoneMigrationArrayOutput)
 }
 
 type InstanceArrayOutput struct{ *pulumi.OutputState }

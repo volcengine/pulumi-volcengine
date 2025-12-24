@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooZones = volcengine.ecs.getZones({});
+ * const fooZones = volcengine.rds_postgresql.getZones({});
  * // create vpc
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
  *     vpcName: "acc-test-vpc",
@@ -30,15 +30,15 @@ import * as utilities from "../utilities";
  * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
  *     subnetName: "acc-test-subnet",
  *     cidrBlock: "172.16.0.0/24",
- *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     zoneId: data.volcengine_zones.foo.zones[0].id,
  *     vpcId: fooVpc.id,
  * });
  * // create postgresql instance
  * const fooInstance = new volcengine.rds_postgresql.Instance("fooInstance", {
  *     dbEngineVersion: "PostgreSQL_12",
  *     nodeSpec: "rds.postgres.1c2g",
- *     primaryZoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
- *     secondaryZoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     primaryZoneId: data.volcengine_zones.foo.zones[0].id,
+ *     secondaryZoneId: data.volcengine_zones.foo.zones[0].id,
  *     storageSpace: 40,
  *     subnetId: fooSubnet.id,
  *     instanceName: "acc-test-postgresql-instance",
@@ -65,7 +65,7 @@ import * as utilities from "../utilities";
  * const fooInstanceReadonlyNode = new volcengine.rds_postgresql.InstanceReadonlyNode("fooInstanceReadonlyNode", {
  *     instanceId: fooInstance.id,
  *     nodeSpec: "rds.postgres.1c2g",
- *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     zoneId: data.volcengine_zones.foo.zones[0].id,
  * });
  * // create postgresql allow list
  * const fooAllowlist = new volcengine.rds_postgresql.Allowlist("fooAllowlist", {
@@ -103,6 +103,21 @@ import * as utilities from "../utilities";
  *     instanceId: fooInstance.id,
  *     owner: fooAccount.accountName,
  *     schemaName: "acc-test-schema",
+ * });
+ * // Restore the backup to a new instance
+ * const example = new volcengine.rds_postgresql.Instance("example", {
+ *     srcInstanceId: "postgres-faa4921fdde4",
+ *     backupId: "20251215-215628F",
+ *     dbEngineVersion: "PostgreSQL_12",
+ *     nodeSpec: "rds.postgres.1c2g",
+ *     subnetId: fooSubnet.id,
+ *     instanceName: "acc-test-postgresql-instance-restore",
+ *     chargeInfo: {
+ *         chargeType: "PostPaid",
+ *         number: 1,
+ *     },
+ *     primaryZoneId: data.volcengine_zones.foo.zones[0].id,
+ *     secondaryZoneId: data.volcengine_zones.foo.zones[0].id,
  * });
  * ```
  *
@@ -143,6 +158,18 @@ export class Instance extends pulumi.CustomResource {
     }
 
     /**
+     * Allow list IDs to bind at creation.
+     */
+    public readonly allowListIds!: pulumi.Output<string[] | undefined>;
+    /**
+     * The allow list version of the RDS PostgreSQL instance.
+     */
+    public /*out*/ readonly allowListVersion!: pulumi.Output<string>;
+    /**
+     * Backup ID (choose either this or restore_time; if both are set, backupId shall prevail).
+     */
+    public readonly backupId!: pulumi.Output<string | undefined>;
+    /**
      * The instance has used backup space. Unit: GB.
      */
     public /*out*/ readonly backupUse!: pulumi.Output<number>;
@@ -163,13 +190,21 @@ export class Instance extends pulumi.CustomResource {
      */
     public /*out*/ readonly dataSyncMode!: pulumi.Output<string>;
     /**
-     * Instance type. Value: PostgreSQL_11, PostgreSQL_12, PostgreSQL_13.
+     * Instance type. Value: PostgreSQL_11, PostgreSQL_12, PostgreSQL_13, PostgreSQL_14, PostgreSQL_15, PostgreSQL_16, PostgreSQL_17.
      */
     public readonly dbEngineVersion!: pulumi.Output<string>;
     /**
      * The endpoint info of the RDS instance.
      */
     public /*out*/ readonly endpoints!: pulumi.Output<outputs.rds_postgresql.InstanceEndpoint[]>;
+    /**
+     * Whether to initiate a configuration change assessment. Only estimate spec change impact without executing. Default value: false.
+     */
+    public readonly estimateOnly!: pulumi.Output<boolean | undefined>;
+    /**
+     * The estimated impact on the instance after the current configuration changes.
+     */
+    public /*out*/ readonly estimationResults!: pulumi.Output<outputs.rds_postgresql.InstanceEstimationResult[]>;
     /**
      * Instance ID.
      */
@@ -190,6 +225,10 @@ export class Instance extends pulumi.CustomResource {
      * Memory size in GB.
      */
     public /*out*/ readonly memory!: pulumi.Output<number>;
+    /**
+     * Spec change type. Usually(default) or Temporary.
+     */
+    public readonly modifyType!: pulumi.Output<string | undefined>;
     /**
      * The number of nodes.
      */
@@ -219,17 +258,49 @@ export class Instance extends pulumi.CustomResource {
      */
     public /*out*/ readonly regionId!: pulumi.Output<string>;
     /**
+     * The point in time to restore to, in UTC format yyyy-MM-ddTHH:mm:ssZ (choose either this or backup_id).
+     */
+    public readonly restoreTime!: pulumi.Output<string | undefined>;
+    /**
+     * Rollback time for Temporary change, UTC format yyyy-MM-ddTHH:mm:ss.sssZ.
+     */
+    public readonly rollbackTime!: pulumi.Output<string | undefined>;
+    /**
      * The available zone of secondary node.
      */
     public readonly secondaryZoneId!: pulumi.Output<string>;
     /**
-     * Instance storage space. Value range: [20, 3000], unit: GB, increments every 100GB. Default value: 100.
+     * Source instance ID. After setting it, a new instance will be created by restoring from the backup/time point.
+     */
+    public readonly srcInstanceId!: pulumi.Output<string | undefined>;
+    /**
+     * The instance's primary node has used storage space. Unit: Byte.
+     */
+    public /*out*/ readonly storageDataUse!: pulumi.Output<number>;
+    /**
+     * The instance's primary node has used log storage space. Unit: Byte.
+     */
+    public /*out*/ readonly storageLogUse!: pulumi.Output<number>;
+    /**
+     * Instance storage space. Value range: [20, 3000], unit: GB, step 10GB. Default value: 100.
      */
     public readonly storageSpace!: pulumi.Output<number | undefined>;
+    /**
+     * The instance's primary node has used temporary storage space. Unit: Byte.
+     */
+    public /*out*/ readonly storageTempUse!: pulumi.Output<number>;
     /**
      * Instance storage type.
      */
     public /*out*/ readonly storageType!: pulumi.Output<string>;
+    /**
+     * The instance has used storage space. Unit: Byte.
+     */
+    public /*out*/ readonly storageUse!: pulumi.Output<number>;
+    /**
+     * The instance's primary node has used WAL storage space. Unit: Byte.
+     */
+    public /*out*/ readonly storageWalUse!: pulumi.Output<number>;
     /**
      * Subnet ID of the RDS PostgreSQL instance.
      */
@@ -258,6 +329,10 @@ export class Instance extends pulumi.CustomResource {
      * ID of the availability zone where each instance is located.
      */
     public /*out*/ readonly zoneIds!: pulumi.Output<string[]>;
+    /**
+     * Nodes to migrate AZ. Only Secondary or ReadOnly nodes are allowed. If you want to migrate the availability zone of the secondary node, you need to add the zoneMigrations field. Modifying the secondaryZoneId directly will not work. Cross-AZ instance migration is not supported.
+     */
+    public readonly zoneMigrations!: pulumi.Output<outputs.rds_postgresql.InstanceZoneMigration[] | undefined>;
 
     /**
      * Create a Instance resource with the given unique name, arguments, and options.
@@ -272,6 +347,9 @@ export class Instance extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as InstanceState | undefined;
+            resourceInputs["allowListIds"] = state ? state.allowListIds : undefined;
+            resourceInputs["allowListVersion"] = state ? state.allowListVersion : undefined;
+            resourceInputs["backupId"] = state ? state.backupId : undefined;
             resourceInputs["backupUse"] = state ? state.backupUse : undefined;
             resourceInputs["chargeDetails"] = state ? state.chargeDetails : undefined;
             resourceInputs["chargeInfo"] = state ? state.chargeInfo : undefined;
@@ -279,11 +357,14 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["dataSyncMode"] = state ? state.dataSyncMode : undefined;
             resourceInputs["dbEngineVersion"] = state ? state.dbEngineVersion : undefined;
             resourceInputs["endpoints"] = state ? state.endpoints : undefined;
+            resourceInputs["estimateOnly"] = state ? state.estimateOnly : undefined;
+            resourceInputs["estimationResults"] = state ? state.estimationResults : undefined;
             resourceInputs["instanceId"] = state ? state.instanceId : undefined;
             resourceInputs["instanceName"] = state ? state.instanceName : undefined;
             resourceInputs["instanceStatus"] = state ? state.instanceStatus : undefined;
             resourceInputs["instanceType"] = state ? state.instanceType : undefined;
             resourceInputs["memory"] = state ? state.memory : undefined;
+            resourceInputs["modifyType"] = state ? state.modifyType : undefined;
             resourceInputs["nodeNumber"] = state ? state.nodeNumber : undefined;
             resourceInputs["nodeSpec"] = state ? state.nodeSpec : undefined;
             resourceInputs["nodes"] = state ? state.nodes : undefined;
@@ -291,9 +372,17 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["primaryZoneId"] = state ? state.primaryZoneId : undefined;
             resourceInputs["projectName"] = state ? state.projectName : undefined;
             resourceInputs["regionId"] = state ? state.regionId : undefined;
+            resourceInputs["restoreTime"] = state ? state.restoreTime : undefined;
+            resourceInputs["rollbackTime"] = state ? state.rollbackTime : undefined;
             resourceInputs["secondaryZoneId"] = state ? state.secondaryZoneId : undefined;
+            resourceInputs["srcInstanceId"] = state ? state.srcInstanceId : undefined;
+            resourceInputs["storageDataUse"] = state ? state.storageDataUse : undefined;
+            resourceInputs["storageLogUse"] = state ? state.storageLogUse : undefined;
             resourceInputs["storageSpace"] = state ? state.storageSpace : undefined;
+            resourceInputs["storageTempUse"] = state ? state.storageTempUse : undefined;
             resourceInputs["storageType"] = state ? state.storageType : undefined;
+            resourceInputs["storageUse"] = state ? state.storageUse : undefined;
+            resourceInputs["storageWalUse"] = state ? state.storageWalUse : undefined;
             resourceInputs["subnetId"] = state ? state.subnetId : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["updateTime"] = state ? state.updateTime : undefined;
@@ -301,6 +390,7 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["vpcId"] = state ? state.vpcId : undefined;
             resourceInputs["zoneId"] = state ? state.zoneId : undefined;
             resourceInputs["zoneIds"] = state ? state.zoneIds : undefined;
+            resourceInputs["zoneMigrations"] = state ? state.zoneMigrations : undefined;
         } else {
             const args = argsOrState as InstanceArgs | undefined;
             if ((!args || args.chargeInfo === undefined) && !opts.urn) {
@@ -321,22 +411,32 @@ export class Instance extends pulumi.CustomResource {
             if ((!args || args.subnetId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'subnetId'");
             }
+            resourceInputs["allowListIds"] = args ? args.allowListIds : undefined;
+            resourceInputs["backupId"] = args ? args.backupId : undefined;
             resourceInputs["chargeInfo"] = args ? args.chargeInfo : undefined;
             resourceInputs["dbEngineVersion"] = args ? args.dbEngineVersion : undefined;
+            resourceInputs["estimateOnly"] = args ? args.estimateOnly : undefined;
             resourceInputs["instanceName"] = args ? args.instanceName : undefined;
+            resourceInputs["modifyType"] = args ? args.modifyType : undefined;
             resourceInputs["nodeSpec"] = args ? args.nodeSpec : undefined;
             resourceInputs["parameters"] = args ? args.parameters : undefined;
             resourceInputs["primaryZoneId"] = args ? args.primaryZoneId : undefined;
             resourceInputs["projectName"] = args ? args.projectName : undefined;
+            resourceInputs["restoreTime"] = args ? args.restoreTime : undefined;
+            resourceInputs["rollbackTime"] = args ? args.rollbackTime : undefined;
             resourceInputs["secondaryZoneId"] = args ? args.secondaryZoneId : undefined;
+            resourceInputs["srcInstanceId"] = args ? args.srcInstanceId : undefined;
             resourceInputs["storageSpace"] = args ? args.storageSpace : undefined;
             resourceInputs["subnetId"] = args ? args.subnetId : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
+            resourceInputs["zoneMigrations"] = args ? args.zoneMigrations : undefined;
+            resourceInputs["allowListVersion"] = undefined /*out*/;
             resourceInputs["backupUse"] = undefined /*out*/;
             resourceInputs["chargeDetails"] = undefined /*out*/;
             resourceInputs["createTime"] = undefined /*out*/;
             resourceInputs["dataSyncMode"] = undefined /*out*/;
             resourceInputs["endpoints"] = undefined /*out*/;
+            resourceInputs["estimationResults"] = undefined /*out*/;
             resourceInputs["instanceId"] = undefined /*out*/;
             resourceInputs["instanceStatus"] = undefined /*out*/;
             resourceInputs["instanceType"] = undefined /*out*/;
@@ -344,7 +444,12 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["nodeNumber"] = undefined /*out*/;
             resourceInputs["nodes"] = undefined /*out*/;
             resourceInputs["regionId"] = undefined /*out*/;
+            resourceInputs["storageDataUse"] = undefined /*out*/;
+            resourceInputs["storageLogUse"] = undefined /*out*/;
+            resourceInputs["storageTempUse"] = undefined /*out*/;
             resourceInputs["storageType"] = undefined /*out*/;
+            resourceInputs["storageUse"] = undefined /*out*/;
+            resourceInputs["storageWalUse"] = undefined /*out*/;
             resourceInputs["updateTime"] = undefined /*out*/;
             resourceInputs["vCpu"] = undefined /*out*/;
             resourceInputs["vpcId"] = undefined /*out*/;
@@ -360,6 +465,18 @@ export class Instance extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Instance resources.
  */
 export interface InstanceState {
+    /**
+     * Allow list IDs to bind at creation.
+     */
+    allowListIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The allow list version of the RDS PostgreSQL instance.
+     */
+    allowListVersion?: pulumi.Input<string>;
+    /**
+     * Backup ID (choose either this or restore_time; if both are set, backupId shall prevail).
+     */
+    backupId?: pulumi.Input<string>;
     /**
      * The instance has used backup space. Unit: GB.
      */
@@ -381,13 +498,21 @@ export interface InstanceState {
      */
     dataSyncMode?: pulumi.Input<string>;
     /**
-     * Instance type. Value: PostgreSQL_11, PostgreSQL_12, PostgreSQL_13.
+     * Instance type. Value: PostgreSQL_11, PostgreSQL_12, PostgreSQL_13, PostgreSQL_14, PostgreSQL_15, PostgreSQL_16, PostgreSQL_17.
      */
     dbEngineVersion?: pulumi.Input<string>;
     /**
      * The endpoint info of the RDS instance.
      */
     endpoints?: pulumi.Input<pulumi.Input<inputs.rds_postgresql.InstanceEndpoint>[]>;
+    /**
+     * Whether to initiate a configuration change assessment. Only estimate spec change impact without executing. Default value: false.
+     */
+    estimateOnly?: pulumi.Input<boolean>;
+    /**
+     * The estimated impact on the instance after the current configuration changes.
+     */
+    estimationResults?: pulumi.Input<pulumi.Input<inputs.rds_postgresql.InstanceEstimationResult>[]>;
     /**
      * Instance ID.
      */
@@ -408,6 +533,10 @@ export interface InstanceState {
      * Memory size in GB.
      */
     memory?: pulumi.Input<number>;
+    /**
+     * Spec change type. Usually(default) or Temporary.
+     */
+    modifyType?: pulumi.Input<string>;
     /**
      * The number of nodes.
      */
@@ -437,17 +566,49 @@ export interface InstanceState {
      */
     regionId?: pulumi.Input<string>;
     /**
+     * The point in time to restore to, in UTC format yyyy-MM-ddTHH:mm:ssZ (choose either this or backup_id).
+     */
+    restoreTime?: pulumi.Input<string>;
+    /**
+     * Rollback time for Temporary change, UTC format yyyy-MM-ddTHH:mm:ss.sssZ.
+     */
+    rollbackTime?: pulumi.Input<string>;
+    /**
      * The available zone of secondary node.
      */
     secondaryZoneId?: pulumi.Input<string>;
     /**
-     * Instance storage space. Value range: [20, 3000], unit: GB, increments every 100GB. Default value: 100.
+     * Source instance ID. After setting it, a new instance will be created by restoring from the backup/time point.
+     */
+    srcInstanceId?: pulumi.Input<string>;
+    /**
+     * The instance's primary node has used storage space. Unit: Byte.
+     */
+    storageDataUse?: pulumi.Input<number>;
+    /**
+     * The instance's primary node has used log storage space. Unit: Byte.
+     */
+    storageLogUse?: pulumi.Input<number>;
+    /**
+     * Instance storage space. Value range: [20, 3000], unit: GB, step 10GB. Default value: 100.
      */
     storageSpace?: pulumi.Input<number>;
+    /**
+     * The instance's primary node has used temporary storage space. Unit: Byte.
+     */
+    storageTempUse?: pulumi.Input<number>;
     /**
      * Instance storage type.
      */
     storageType?: pulumi.Input<string>;
+    /**
+     * The instance has used storage space. Unit: Byte.
+     */
+    storageUse?: pulumi.Input<number>;
+    /**
+     * The instance's primary node has used WAL storage space. Unit: Byte.
+     */
+    storageWalUse?: pulumi.Input<number>;
     /**
      * Subnet ID of the RDS PostgreSQL instance.
      */
@@ -476,6 +637,10 @@ export interface InstanceState {
      * ID of the availability zone where each instance is located.
      */
     zoneIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Nodes to migrate AZ. Only Secondary or ReadOnly nodes are allowed. If you want to migrate the availability zone of the secondary node, you need to add the zoneMigrations field. Modifying the secondaryZoneId directly will not work. Cross-AZ instance migration is not supported.
+     */
+    zoneMigrations?: pulumi.Input<pulumi.Input<inputs.rds_postgresql.InstanceZoneMigration>[]>;
 }
 
 /**
@@ -483,17 +648,33 @@ export interface InstanceState {
  */
 export interface InstanceArgs {
     /**
+     * Allow list IDs to bind at creation.
+     */
+    allowListIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Backup ID (choose either this or restore_time; if both are set, backupId shall prevail).
+     */
+    backupId?: pulumi.Input<string>;
+    /**
      * Payment methods.
      */
     chargeInfo: pulumi.Input<inputs.rds_postgresql.InstanceChargeInfo>;
     /**
-     * Instance type. Value: PostgreSQL_11, PostgreSQL_12, PostgreSQL_13.
+     * Instance type. Value: PostgreSQL_11, PostgreSQL_12, PostgreSQL_13, PostgreSQL_14, PostgreSQL_15, PostgreSQL_16, PostgreSQL_17.
      */
     dbEngineVersion: pulumi.Input<string>;
+    /**
+     * Whether to initiate a configuration change assessment. Only estimate spec change impact without executing. Default value: false.
+     */
+    estimateOnly?: pulumi.Input<boolean>;
     /**
      * Instance name. Cannot start with a number or a dash. Can only contain Chinese characters, letters, numbers, underscores and dashes. The length is limited between 1 ~ 128.
      */
     instanceName?: pulumi.Input<string>;
+    /**
+     * Spec change type. Usually(default) or Temporary.
+     */
+    modifyType?: pulumi.Input<string>;
     /**
      * The specification of primary node and secondary node.
      */
@@ -511,11 +692,23 @@ export interface InstanceArgs {
      */
     projectName?: pulumi.Input<string>;
     /**
+     * The point in time to restore to, in UTC format yyyy-MM-ddTHH:mm:ssZ (choose either this or backup_id).
+     */
+    restoreTime?: pulumi.Input<string>;
+    /**
+     * Rollback time for Temporary change, UTC format yyyy-MM-ddTHH:mm:ss.sssZ.
+     */
+    rollbackTime?: pulumi.Input<string>;
+    /**
      * The available zone of secondary node.
      */
     secondaryZoneId: pulumi.Input<string>;
     /**
-     * Instance storage space. Value range: [20, 3000], unit: GB, increments every 100GB. Default value: 100.
+     * Source instance ID. After setting it, a new instance will be created by restoring from the backup/time point.
+     */
+    srcInstanceId?: pulumi.Input<string>;
+    /**
+     * Instance storage space. Value range: [20, 3000], unit: GB, step 10GB. Default value: 100.
      */
     storageSpace?: pulumi.Input<number>;
     /**
@@ -526,4 +719,8 @@ export interface InstanceArgs {
      * Tags.
      */
     tags?: pulumi.Input<pulumi.Input<inputs.rds_postgresql.InstanceTag>[]>;
+    /**
+     * Nodes to migrate AZ. Only Secondary or ReadOnly nodes are allowed. If you want to migrate the availability zone of the secondary node, you need to add the zoneMigrations field. Modifying the secondaryZoneId directly will not work. Cross-AZ instance migration is not supported.
+     */
+    zoneMigrations?: pulumi.Input<pulumi.Input<inputs.rds_postgresql.InstanceZoneMigration>[]>;
 }

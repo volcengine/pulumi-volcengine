@@ -16,7 +16,7 @@ import * as utilities from "../utilities";
  *
  * // create tos bucket
  * const fooBucket = new volcengine.tos.Bucket("fooBucket", {
- *     bucketName: "tf-acc-test-bucket",
+ *     bucketName: "tflyb7",
  *     publicAcl: "private",
  *     azRedundancy: "multi-az",
  *     enableVersion: true,
@@ -105,6 +105,10 @@ export class Bucket extends pulumi.CustomResource {
      */
     public readonly bucketName!: pulumi.Output<string>;
     /**
+     * The bucket type of the TOS bucket. Default is `fns`. Valid values: `hns`, `fns`.
+     */
+    public readonly bucketType!: pulumi.Output<string | undefined>;
+    /**
      * The create date of the TOS bucket.
      */
     public /*out*/ readonly creationDate!: pulumi.Output<string>;
@@ -133,7 +137,7 @@ export class Bucket extends pulumi.CustomResource {
      */
     public readonly publicAcl!: pulumi.Output<string | undefined>;
     /**
-     * The storage type of the object.Valid value is STANDARD|IA|ARCHIVE_FR.Default is STANDARD.
+     * The storage type of the object.Valid value is STANDARD|IA|INTELLIGENT_TIERING|ARCHIVE_FR|ARCHIVE|COLD_ARCHIVE|DEEP_COLD_ARCHIVE.Default is STANDARD.
      */
     public readonly storageClass!: pulumi.Output<string | undefined>;
     /**
@@ -158,6 +162,7 @@ export class Bucket extends pulumi.CustomResource {
             resourceInputs["azRedundancy"] = state ? state.azRedundancy : undefined;
             resourceInputs["bucketAclDelivered"] = state ? state.bucketAclDelivered : undefined;
             resourceInputs["bucketName"] = state ? state.bucketName : undefined;
+            resourceInputs["bucketType"] = state ? state.bucketType : undefined;
             resourceInputs["creationDate"] = state ? state.creationDate : undefined;
             resourceInputs["enableVersion"] = state ? state.enableVersion : undefined;
             resourceInputs["extranetEndpoint"] = state ? state.extranetEndpoint : undefined;
@@ -176,6 +181,7 @@ export class Bucket extends pulumi.CustomResource {
             resourceInputs["azRedundancy"] = args ? args.azRedundancy : undefined;
             resourceInputs["bucketAclDelivered"] = args ? args.bucketAclDelivered : undefined;
             resourceInputs["bucketName"] = args ? args.bucketName : undefined;
+            resourceInputs["bucketType"] = args ? args.bucketType : undefined;
             resourceInputs["enableVersion"] = args ? args.enableVersion : undefined;
             resourceInputs["projectName"] = args ? args.projectName : undefined;
             resourceInputs["publicAcl"] = args ? args.publicAcl : undefined;
@@ -212,6 +218,10 @@ export interface BucketState {
      */
     bucketName?: pulumi.Input<string>;
     /**
+     * The bucket type of the TOS bucket. Default is `fns`. Valid values: `hns`, `fns`.
+     */
+    bucketType?: pulumi.Input<string>;
+    /**
      * The create date of the TOS bucket.
      */
     creationDate?: pulumi.Input<string>;
@@ -240,7 +250,7 @@ export interface BucketState {
      */
     publicAcl?: pulumi.Input<string>;
     /**
-     * The storage type of the object.Valid value is STANDARD|IA|ARCHIVE_FR.Default is STANDARD.
+     * The storage type of the object.Valid value is STANDARD|IA|INTELLIGENT_TIERING|ARCHIVE_FR|ARCHIVE|COLD_ARCHIVE|DEEP_COLD_ARCHIVE.Default is STANDARD.
      */
     storageClass?: pulumi.Input<string>;
     /**
@@ -270,6 +280,10 @@ export interface BucketArgs {
      */
     bucketName: pulumi.Input<string>;
     /**
+     * The bucket type of the TOS bucket. Default is `fns`. Valid values: `hns`, `fns`.
+     */
+    bucketType?: pulumi.Input<string>;
+    /**
      * The flag of enable tos version.
      */
     enableVersion?: pulumi.Input<boolean>;
@@ -282,7 +296,7 @@ export interface BucketArgs {
      */
     publicAcl?: pulumi.Input<string>;
     /**
-     * The storage type of the object.Valid value is STANDARD|IA|ARCHIVE_FR.Default is STANDARD.
+     * The storage type of the object.Valid value is STANDARD|IA|INTELLIGENT_TIERING|ARCHIVE_FR|ARCHIVE|COLD_ARCHIVE|DEEP_COLD_ARCHIVE.Default is STANDARD.
      */
     storageClass?: pulumi.Input<string>;
     /**

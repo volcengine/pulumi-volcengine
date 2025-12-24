@@ -29,12 +29,27 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := rds_postgresql.NewAllowlist(ctx, "foo", &rds_postgresql.AllowlistArgs{
 //				AllowLists: pulumi.StringArray{
-//					pulumi.String("192.168.0.0/24"),
-//					pulumi.String("192.168.1.0/24"),
+//					pulumi.String("10.0.0.0/24"),
 //				},
 //				AllowListDesc: pulumi.String("acc-test"),
 //				AllowListName: pulumi.String("acc-test-allowlist"),
 //				AllowListType: pulumi.String("IPv4"),
+//				SecurityGroupBindInfos: rds_postgresql.AllowlistSecurityGroupBindInfoArray{
+//					&rds_postgresql.AllowlistSecurityGroupBindInfoArgs{
+//						BindMode:        pulumi.String("IngressDirectionIp"),
+//						SecurityGroupId: pulumi.String("sg-1jojfhw8rca9s1n7ampztrq6w"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = rds_postgresql.NewAllowlist(ctx, "example", &rds_postgresql.AllowlistArgs{
+//				AllowListName: pulumi.String("unify_new"),
+//				InstanceIds: pulumi.StringArray{
+//					pulumi.String("postgres-72715e0d9f58"),
+//					pulumi.String("postgres-eb3a578a6d73"),
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -55,18 +70,28 @@ import (
 type Allowlist struct {
 	pulumi.CustomResourceState
 
+	// The category of the allow list. Valid values: Ordinary, Default. When this parameter is used as a request parameter, there is no default value.
+	AllowListCategory pulumi.StringOutput `pulumi:"allowListCategory"`
 	// The description of the postgresql allow list.
 	AllowListDesc pulumi.StringPtrOutput `pulumi:"allowListDesc"`
 	// The name of the postgresql allow list.
 	AllowListName pulumi.StringOutput `pulumi:"allowListName"`
 	// The type of IP address in the whitelist. Currently only `IPv4` addresses are supported.
 	AllowListType pulumi.StringOutput `pulumi:"allowListType"`
-	// Enter an IP address or a range of IP addresses in CIDR format.
+	// Enter an IP address or a range of IP addresses in CIDR format. This field cannot be used together with the userAllowList field.
 	AllowLists pulumi.StringArrayOutput `pulumi:"allowLists"`
 	// The total number of instances bound under the whitelist.
 	AssociatedInstanceNum pulumi.IntOutput `pulumi:"associatedInstanceNum"`
 	// The list of postgresql instances.
 	AssociatedInstances AllowlistAssociatedInstanceArrayOutput `pulumi:"associatedInstances"`
+	// IDs of PostgreSQL instances to unify allowlists. When set, creation uses UnifyNewAllowList to merge existing instance allowlists into a new one. Supports merging and generating allowlists of up to 300 instances.
+	InstanceIds pulumi.StringArrayOutput `pulumi:"instanceIds"`
+	// The information of security groups to bind with the allow list.
+	SecurityGroupBindInfos AllowlistSecurityGroupBindInfoArrayOutput `pulumi:"securityGroupBindInfos"`
+	// Whether to update the security groups bound to the allowlist when modifying.
+	UpdateSecurityGroup pulumi.BoolPtrOutput `pulumi:"updateSecurityGroup"`
+	// IP addresses outside security groups to be added to the allowlist. Cannot be used with allow_list.
+	UserAllowLists pulumi.StringArrayOutput `pulumi:"userAllowLists"`
 }
 
 // NewAllowlist registers a new resource with the given unique name, arguments, and options.
@@ -78,9 +103,6 @@ func NewAllowlist(ctx *pulumi.Context,
 
 	if args.AllowListName == nil {
 		return nil, errors.New("invalid value for required argument 'AllowListName'")
-	}
-	if args.AllowLists == nil {
-		return nil, errors.New("invalid value for required argument 'AllowLists'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Allowlist
@@ -105,33 +127,53 @@ func GetAllowlist(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Allowlist resources.
 type allowlistState struct {
+	// The category of the allow list. Valid values: Ordinary, Default. When this parameter is used as a request parameter, there is no default value.
+	AllowListCategory *string `pulumi:"allowListCategory"`
 	// The description of the postgresql allow list.
 	AllowListDesc *string `pulumi:"allowListDesc"`
 	// The name of the postgresql allow list.
 	AllowListName *string `pulumi:"allowListName"`
 	// The type of IP address in the whitelist. Currently only `IPv4` addresses are supported.
 	AllowListType *string `pulumi:"allowListType"`
-	// Enter an IP address or a range of IP addresses in CIDR format.
+	// Enter an IP address or a range of IP addresses in CIDR format. This field cannot be used together with the userAllowList field.
 	AllowLists []string `pulumi:"allowLists"`
 	// The total number of instances bound under the whitelist.
 	AssociatedInstanceNum *int `pulumi:"associatedInstanceNum"`
 	// The list of postgresql instances.
 	AssociatedInstances []AllowlistAssociatedInstance `pulumi:"associatedInstances"`
+	// IDs of PostgreSQL instances to unify allowlists. When set, creation uses UnifyNewAllowList to merge existing instance allowlists into a new one. Supports merging and generating allowlists of up to 300 instances.
+	InstanceIds []string `pulumi:"instanceIds"`
+	// The information of security groups to bind with the allow list.
+	SecurityGroupBindInfos []AllowlistSecurityGroupBindInfo `pulumi:"securityGroupBindInfos"`
+	// Whether to update the security groups bound to the allowlist when modifying.
+	UpdateSecurityGroup *bool `pulumi:"updateSecurityGroup"`
+	// IP addresses outside security groups to be added to the allowlist. Cannot be used with allow_list.
+	UserAllowLists []string `pulumi:"userAllowLists"`
 }
 
 type AllowlistState struct {
+	// The category of the allow list. Valid values: Ordinary, Default. When this parameter is used as a request parameter, there is no default value.
+	AllowListCategory pulumi.StringPtrInput
 	// The description of the postgresql allow list.
 	AllowListDesc pulumi.StringPtrInput
 	// The name of the postgresql allow list.
 	AllowListName pulumi.StringPtrInput
 	// The type of IP address in the whitelist. Currently only `IPv4` addresses are supported.
 	AllowListType pulumi.StringPtrInput
-	// Enter an IP address or a range of IP addresses in CIDR format.
+	// Enter an IP address or a range of IP addresses in CIDR format. This field cannot be used together with the userAllowList field.
 	AllowLists pulumi.StringArrayInput
 	// The total number of instances bound under the whitelist.
 	AssociatedInstanceNum pulumi.IntPtrInput
 	// The list of postgresql instances.
 	AssociatedInstances AllowlistAssociatedInstanceArrayInput
+	// IDs of PostgreSQL instances to unify allowlists. When set, creation uses UnifyNewAllowList to merge existing instance allowlists into a new one. Supports merging and generating allowlists of up to 300 instances.
+	InstanceIds pulumi.StringArrayInput
+	// The information of security groups to bind with the allow list.
+	SecurityGroupBindInfos AllowlistSecurityGroupBindInfoArrayInput
+	// Whether to update the security groups bound to the allowlist when modifying.
+	UpdateSecurityGroup pulumi.BoolPtrInput
+	// IP addresses outside security groups to be added to the allowlist. Cannot be used with allow_list.
+	UserAllowLists pulumi.StringArrayInput
 }
 
 func (AllowlistState) ElementType() reflect.Type {
@@ -139,26 +181,46 @@ func (AllowlistState) ElementType() reflect.Type {
 }
 
 type allowlistArgs struct {
+	// The category of the allow list. Valid values: Ordinary, Default. When this parameter is used as a request parameter, there is no default value.
+	AllowListCategory *string `pulumi:"allowListCategory"`
 	// The description of the postgresql allow list.
 	AllowListDesc *string `pulumi:"allowListDesc"`
 	// The name of the postgresql allow list.
 	AllowListName string `pulumi:"allowListName"`
 	// The type of IP address in the whitelist. Currently only `IPv4` addresses are supported.
 	AllowListType *string `pulumi:"allowListType"`
-	// Enter an IP address or a range of IP addresses in CIDR format.
+	// Enter an IP address or a range of IP addresses in CIDR format. This field cannot be used together with the userAllowList field.
 	AllowLists []string `pulumi:"allowLists"`
+	// IDs of PostgreSQL instances to unify allowlists. When set, creation uses UnifyNewAllowList to merge existing instance allowlists into a new one. Supports merging and generating allowlists of up to 300 instances.
+	InstanceIds []string `pulumi:"instanceIds"`
+	// The information of security groups to bind with the allow list.
+	SecurityGroupBindInfos []AllowlistSecurityGroupBindInfo `pulumi:"securityGroupBindInfos"`
+	// Whether to update the security groups bound to the allowlist when modifying.
+	UpdateSecurityGroup *bool `pulumi:"updateSecurityGroup"`
+	// IP addresses outside security groups to be added to the allowlist. Cannot be used with allow_list.
+	UserAllowLists []string `pulumi:"userAllowLists"`
 }
 
 // The set of arguments for constructing a Allowlist resource.
 type AllowlistArgs struct {
+	// The category of the allow list. Valid values: Ordinary, Default. When this parameter is used as a request parameter, there is no default value.
+	AllowListCategory pulumi.StringPtrInput
 	// The description of the postgresql allow list.
 	AllowListDesc pulumi.StringPtrInput
 	// The name of the postgresql allow list.
 	AllowListName pulumi.StringInput
 	// The type of IP address in the whitelist. Currently only `IPv4` addresses are supported.
 	AllowListType pulumi.StringPtrInput
-	// Enter an IP address or a range of IP addresses in CIDR format.
+	// Enter an IP address or a range of IP addresses in CIDR format. This field cannot be used together with the userAllowList field.
 	AllowLists pulumi.StringArrayInput
+	// IDs of PostgreSQL instances to unify allowlists. When set, creation uses UnifyNewAllowList to merge existing instance allowlists into a new one. Supports merging and generating allowlists of up to 300 instances.
+	InstanceIds pulumi.StringArrayInput
+	// The information of security groups to bind with the allow list.
+	SecurityGroupBindInfos AllowlistSecurityGroupBindInfoArrayInput
+	// Whether to update the security groups bound to the allowlist when modifying.
+	UpdateSecurityGroup pulumi.BoolPtrInput
+	// IP addresses outside security groups to be added to the allowlist. Cannot be used with allow_list.
+	UserAllowLists pulumi.StringArrayInput
 }
 
 func (AllowlistArgs) ElementType() reflect.Type {
@@ -248,6 +310,11 @@ func (o AllowlistOutput) ToAllowlistOutputWithContext(ctx context.Context) Allow
 	return o
 }
 
+// The category of the allow list. Valid values: Ordinary, Default. When this parameter is used as a request parameter, there is no default value.
+func (o AllowlistOutput) AllowListCategory() pulumi.StringOutput {
+	return o.ApplyT(func(v *Allowlist) pulumi.StringOutput { return v.AllowListCategory }).(pulumi.StringOutput)
+}
+
 // The description of the postgresql allow list.
 func (o AllowlistOutput) AllowListDesc() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Allowlist) pulumi.StringPtrOutput { return v.AllowListDesc }).(pulumi.StringPtrOutput)
@@ -263,7 +330,7 @@ func (o AllowlistOutput) AllowListType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Allowlist) pulumi.StringOutput { return v.AllowListType }).(pulumi.StringOutput)
 }
 
-// Enter an IP address or a range of IP addresses in CIDR format.
+// Enter an IP address or a range of IP addresses in CIDR format. This field cannot be used together with the userAllowList field.
 func (o AllowlistOutput) AllowLists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Allowlist) pulumi.StringArrayOutput { return v.AllowLists }).(pulumi.StringArrayOutput)
 }
@@ -276,6 +343,26 @@ func (o AllowlistOutput) AssociatedInstanceNum() pulumi.IntOutput {
 // The list of postgresql instances.
 func (o AllowlistOutput) AssociatedInstances() AllowlistAssociatedInstanceArrayOutput {
 	return o.ApplyT(func(v *Allowlist) AllowlistAssociatedInstanceArrayOutput { return v.AssociatedInstances }).(AllowlistAssociatedInstanceArrayOutput)
+}
+
+// IDs of PostgreSQL instances to unify allowlists. When set, creation uses UnifyNewAllowList to merge existing instance allowlists into a new one. Supports merging and generating allowlists of up to 300 instances.
+func (o AllowlistOutput) InstanceIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Allowlist) pulumi.StringArrayOutput { return v.InstanceIds }).(pulumi.StringArrayOutput)
+}
+
+// The information of security groups to bind with the allow list.
+func (o AllowlistOutput) SecurityGroupBindInfos() AllowlistSecurityGroupBindInfoArrayOutput {
+	return o.ApplyT(func(v *Allowlist) AllowlistSecurityGroupBindInfoArrayOutput { return v.SecurityGroupBindInfos }).(AllowlistSecurityGroupBindInfoArrayOutput)
+}
+
+// Whether to update the security groups bound to the allowlist when modifying.
+func (o AllowlistOutput) UpdateSecurityGroup() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Allowlist) pulumi.BoolPtrOutput { return v.UpdateSecurityGroup }).(pulumi.BoolPtrOutput)
+}
+
+// IP addresses outside security groups to be added to the allowlist. Cannot be used with allow_list.
+func (o AllowlistOutput) UserAllowLists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Allowlist) pulumi.StringArrayOutput { return v.UserAllowLists }).(pulumi.StringArrayOutput)
 }
 
 type AllowlistArrayOutput struct{ *pulumi.OutputState }

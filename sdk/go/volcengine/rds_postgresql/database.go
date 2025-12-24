@@ -32,6 +32,16 @@ import (
 //				Collate:    pulumi.String("zh_CN.utf8"),
 //				DbName:     pulumi.String("acc-test"),
 //				InstanceId: pulumi.String("postgres-95*******233"),
+//				Owner:      pulumi.String("super"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = rds_postgresql.NewDatabase(ctx, "cloneExample", &rds_postgresql.DatabaseArgs{
+//				DataOption:   pulumi.String("Metadata"),
+//				DbName:       pulumi.String("clone-test"),
+//				InstanceId:   pulumi.String("postgres-95*******233"),
+//				SourceDbName: pulumi.String("acc-test"),
 //			})
 //			if err != nil {
 //				return err
@@ -58,6 +68,8 @@ type Database struct {
 	CharacterSetName pulumi.StringOutput `pulumi:"characterSetName"`
 	// The collate of database. Sorting rules. Value range: C (default), C.UTF-8, en_US.utf8, zh_CN.utf8 and POSIX.
 	Collate pulumi.StringOutput `pulumi:"collate"`
+	// The data option of the new database. Currently only Metadata is supported. This parameter is optional when clone an existing database.
+	DataOption pulumi.StringPtrOutput `pulumi:"dataOption"`
 	// The name of database.
 	DbName pulumi.StringOutput `pulumi:"dbName"`
 	// The status of the RDS database.
@@ -66,6 +78,10 @@ type Database struct {
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
 	// The owner of database.
 	Owner pulumi.StringOutput `pulumi:"owner"`
+	// The plPgsql option of the new database. Value range: View, Procedure, Function, Trigger. This parameter is optional when clone an existing database.
+	PlpgsqlOptions pulumi.StringArrayOutput `pulumi:"plpgsqlOptions"`
+	// The name of the source database. This parameter is required when clone an existing database.
+	SourceDbName pulumi.StringPtrOutput `pulumi:"sourceDbName"`
 }
 
 // NewDatabase registers a new resource with the given unique name, arguments, and options.
@@ -110,6 +126,8 @@ type databaseState struct {
 	CharacterSetName *string `pulumi:"characterSetName"`
 	// The collate of database. Sorting rules. Value range: C (default), C.UTF-8, en_US.utf8, zh_CN.utf8 and POSIX.
 	Collate *string `pulumi:"collate"`
+	// The data option of the new database. Currently only Metadata is supported. This parameter is optional when clone an existing database.
+	DataOption *string `pulumi:"dataOption"`
 	// The name of database.
 	DbName *string `pulumi:"dbName"`
 	// The status of the RDS database.
@@ -118,6 +136,10 @@ type databaseState struct {
 	InstanceId *string `pulumi:"instanceId"`
 	// The owner of database.
 	Owner *string `pulumi:"owner"`
+	// The plPgsql option of the new database. Value range: View, Procedure, Function, Trigger. This parameter is optional when clone an existing database.
+	PlpgsqlOptions []string `pulumi:"plpgsqlOptions"`
+	// The name of the source database. This parameter is required when clone an existing database.
+	SourceDbName *string `pulumi:"sourceDbName"`
 }
 
 type DatabaseState struct {
@@ -127,6 +149,8 @@ type DatabaseState struct {
 	CharacterSetName pulumi.StringPtrInput
 	// The collate of database. Sorting rules. Value range: C (default), C.UTF-8, en_US.utf8, zh_CN.utf8 and POSIX.
 	Collate pulumi.StringPtrInput
+	// The data option of the new database. Currently only Metadata is supported. This parameter is optional when clone an existing database.
+	DataOption pulumi.StringPtrInput
 	// The name of database.
 	DbName pulumi.StringPtrInput
 	// The status of the RDS database.
@@ -135,6 +159,10 @@ type DatabaseState struct {
 	InstanceId pulumi.StringPtrInput
 	// The owner of database.
 	Owner pulumi.StringPtrInput
+	// The plPgsql option of the new database. Value range: View, Procedure, Function, Trigger. This parameter is optional when clone an existing database.
+	PlpgsqlOptions pulumi.StringArrayInput
+	// The name of the source database. This parameter is required when clone an existing database.
+	SourceDbName pulumi.StringPtrInput
 }
 
 func (DatabaseState) ElementType() reflect.Type {
@@ -148,12 +176,18 @@ type databaseArgs struct {
 	CharacterSetName *string `pulumi:"characterSetName"`
 	// The collate of database. Sorting rules. Value range: C (default), C.UTF-8, en_US.utf8, zh_CN.utf8 and POSIX.
 	Collate *string `pulumi:"collate"`
+	// The data option of the new database. Currently only Metadata is supported. This parameter is optional when clone an existing database.
+	DataOption *string `pulumi:"dataOption"`
 	// The name of database.
 	DbName string `pulumi:"dbName"`
 	// The ID of the RDS instance.
 	InstanceId string `pulumi:"instanceId"`
 	// The owner of database.
 	Owner *string `pulumi:"owner"`
+	// The plPgsql option of the new database. Value range: View, Procedure, Function, Trigger. This parameter is optional when clone an existing database.
+	PlpgsqlOptions []string `pulumi:"plpgsqlOptions"`
+	// The name of the source database. This parameter is required when clone an existing database.
+	SourceDbName *string `pulumi:"sourceDbName"`
 }
 
 // The set of arguments for constructing a Database resource.
@@ -164,12 +198,18 @@ type DatabaseArgs struct {
 	CharacterSetName pulumi.StringPtrInput
 	// The collate of database. Sorting rules. Value range: C (default), C.UTF-8, en_US.utf8, zh_CN.utf8 and POSIX.
 	Collate pulumi.StringPtrInput
+	// The data option of the new database. Currently only Metadata is supported. This parameter is optional when clone an existing database.
+	DataOption pulumi.StringPtrInput
 	// The name of database.
 	DbName pulumi.StringInput
 	// The ID of the RDS instance.
 	InstanceId pulumi.StringInput
 	// The owner of database.
 	Owner pulumi.StringPtrInput
+	// The plPgsql option of the new database. Value range: View, Procedure, Function, Trigger. This parameter is optional when clone an existing database.
+	PlpgsqlOptions pulumi.StringArrayInput
+	// The name of the source database. This parameter is required when clone an existing database.
+	SourceDbName pulumi.StringPtrInput
 }
 
 func (DatabaseArgs) ElementType() reflect.Type {
@@ -274,6 +314,11 @@ func (o DatabaseOutput) Collate() pulumi.StringOutput {
 	return o.ApplyT(func(v *Database) pulumi.StringOutput { return v.Collate }).(pulumi.StringOutput)
 }
 
+// The data option of the new database. Currently only Metadata is supported. This parameter is optional when clone an existing database.
+func (o DatabaseOutput) DataOption() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Database) pulumi.StringPtrOutput { return v.DataOption }).(pulumi.StringPtrOutput)
+}
+
 // The name of database.
 func (o DatabaseOutput) DbName() pulumi.StringOutput {
 	return o.ApplyT(func(v *Database) pulumi.StringOutput { return v.DbName }).(pulumi.StringOutput)
@@ -292,6 +337,16 @@ func (o DatabaseOutput) InstanceId() pulumi.StringOutput {
 // The owner of database.
 func (o DatabaseOutput) Owner() pulumi.StringOutput {
 	return o.ApplyT(func(v *Database) pulumi.StringOutput { return v.Owner }).(pulumi.StringOutput)
+}
+
+// The plPgsql option of the new database. Value range: View, Procedure, Function, Trigger. This parameter is optional when clone an existing database.
+func (o DatabaseOutput) PlpgsqlOptions() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Database) pulumi.StringArrayOutput { return v.PlpgsqlOptions }).(pulumi.StringArrayOutput)
+}
+
+// The name of the source database. This parameter is required when clone an existing database.
+func (o DatabaseOutput) SourceDbName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Database) pulumi.StringPtrOutput { return v.SourceDbName }).(pulumi.StringPtrOutput)
 }
 
 type DatabaseArrayOutput struct{ *pulumi.OutputState }

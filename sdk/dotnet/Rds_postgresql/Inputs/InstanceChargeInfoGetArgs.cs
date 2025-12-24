@@ -22,6 +22,12 @@ namespace Pulumi.Volcengine.Rds_postgresql.Inputs
         public Input<string> ChargeType { get; set; } = null!;
 
         /// <summary>
+        /// Purchase number of the RDS PostgreSQL instance. Range: [1, 20]. Default: 1.
+        /// </summary>
+        [Input("number")]
+        public Input<int>? Number { get; set; }
+
+        /// <summary>
         /// Purchase duration in prepaid scenarios. Default: 1.
         /// </summary>
         [Input("period")]

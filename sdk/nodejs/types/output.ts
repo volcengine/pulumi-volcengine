@@ -33971,6 +33971,10 @@ export namespace rds_postgresql {
          * The type of the database account.
          */
         accountType: string;
+        /**
+         * The privileges to be disabled for the account.
+         */
+        notAllowPrivileges: string[];
     }
 
     export interface AllowlistAssociatedInstance {
@@ -33988,9 +33992,32 @@ export namespace rds_postgresql {
         vpc: string;
     }
 
+    export interface AllowlistSecurityGroupBindInfo {
+        /**
+         * The binding mode of the security group. Valid values: IngressDirectionIp, AssociateEcsIp.
+         */
+        bindMode: string;
+        /**
+         * IP addresses in the security group.
+         */
+        ipLists?: string[];
+        /**
+         * The ID of the security group.
+         */
+        securityGroupId: string;
+        /**
+         * The name of the security group.
+         */
+        securityGroupName?: string;
+    }
+
     export interface AllowlistsPostgresqlAllowList {
         /**
-         * The description of the postgresql allow list.
+         * The category of the postgresql allow list. Valid values: Ordinary, Default.
+         */
+        allowListCategory: string;
+        /**
+         * The description of the postgresql allow list. Perform a fuzzy search based on the description information.
          */
         allowListDesc: string;
         /**
@@ -34025,6 +34052,14 @@ export namespace rds_postgresql {
          * The id of the postgresql allow list.
          */
         id: string;
+        /**
+         * The information of the security group bound by the allowlist.
+         */
+        securityGroupBindInfos: outputs.rds_postgresql.AllowlistsPostgresqlAllowListSecurityGroupBindInfo[];
+        /**
+         * IP addresses outside the security group and added to the allowlist.
+         */
+        userAllowLists: string[];
     }
 
     export interface AllowlistsPostgresqlAllowListAssociatedInstance {
@@ -34040,6 +34075,246 @@ export namespace rds_postgresql {
          * The id of the vpc.
          */
         vpc: string;
+    }
+
+    export interface AllowlistsPostgresqlAllowListSecurityGroupBindInfo {
+        /**
+         * The binding mode of the security group.
+         */
+        bindMode: string;
+        /**
+         * IP addresses in the security group.
+         */
+        ipLists: string[];
+        /**
+         * The ID of the security group.
+         */
+        securityGroupId: string;
+        /**
+         * The name of the security group.
+         */
+        securityGroupName: string;
+    }
+
+    export interface BackupDownloadsDownload {
+        /**
+         * The description of the backup set.
+         */
+        backupDescription: string;
+        /**
+         * The public network download address of the backup.
+         */
+        backupDownloadLink: string;
+        /**
+         * The name of the backup file.
+         */
+        backupFileName: string;
+        /**
+         * The size of the backup file, in Byte.
+         */
+        backupFileSize: number;
+        /**
+         * The ID of the logical backup to be downloaded.
+         */
+        backupId: string;
+        /**
+         * The type of the backup.
+         */
+        backupMethod: string;
+        /**
+         * The inner network download address of the backup.
+         */
+        innerBackupDownloadLink: string;
+        /**
+         * The id of the PostgreSQL instance.
+         */
+        instanceId: string;
+        /**
+         * Expiration time of the download link, format:yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+         */
+        linkExpiredTime: string;
+        /**
+         * The prepare progress of the backup.
+         */
+        prepareProgress: number;
+    }
+
+    export interface BackupPoliciesBackupPolicy {
+        /**
+         * The backup retention period.
+         */
+        backupRetentionPeriod: number;
+        /**
+         * The backup increment data backup periods.
+         */
+        dataIncrBackupPeriods: string;
+        /**
+         * The full backup period.
+         */
+        fullBackupPeriod: string;
+        /**
+         * The time when the backup task is executed. Format: HH:mmZ-HH:mmZ (UTC time).
+         */
+        fullBackupTime: string;
+        /**
+         * Whether to enable the high-frequency backup function.
+         */
+        hourlyIncrBackupEnable: boolean;
+        /**
+         * The frequency of increment backup.
+         */
+        incrementBackupFrequency: number;
+        /**
+         * The id of the PostgreSQL instance.
+         */
+        instanceId: string;
+        /**
+         * Status of the local remaining available space protection function.
+         */
+        walLogSpaceLimitEnable: boolean;
+    }
+
+    export interface DataBackupBackupMeta {
+        /**
+         * The name of the database.
+         */
+        dbName: string;
+    }
+
+    export interface DataBackupsBackup {
+        /**
+         * The original size of the data contained in the backup, in Bytes.
+         */
+        backupDataSize: number;
+        /**
+         * The description of the backup set.
+         */
+        backupDescription: string;
+        /**
+         * The latest time when the backup is created, in the format of yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+         */
+        backupEndTime: string;
+        /**
+         * The name of the backup file.
+         */
+        backupFileName: string;
+        /**
+         * The size of the backup file, in Byte.
+         */
+        backupFileSize: number;
+        /**
+         * The ID of the backup.
+         */
+        backupId: string;
+        /**
+         * The information about the databases included in the backup.
+         */
+        backupMetas: outputs.rds_postgresql.DataBackupsBackupBackupMeta[];
+        /**
+         * The method of the backup: Physical, Logical.
+         */
+        backupMethod: string;
+        /**
+         * The progress of the backup. The unit is percentage.
+         */
+        backupProgress: number;
+        /**
+         * The scope of the backup: Instance, Database.
+         */
+        backupScope: string;
+        /**
+         * The earliest time when the backup is created, in the format of yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+         */
+        backupStartTime: string;
+        /**
+         * The status of the backup: Success, Failed, Running.
+         */
+        backupStatus: string;
+        /**
+         * The type of the backup: Full, Increment.
+         */
+        backupType: string;
+        /**
+         * The creation type of the backup: System, User.
+         */
+        createType: string;
+        /**
+         * The downloadable status of the backup set. NotAllowed: download is not supported. NeedToPrepare: the backup set is in place and needs background preparation for backup. LinkReady: the backup set is ready for download.
+         */
+        downloadStatus: string;
+    }
+
+    export interface DataBackupsBackupBackupMeta {
+        /**
+         * The name of the database.
+         */
+        dbName: string;
+    }
+
+    export interface DatabaseEndpointReadOnlyNodeWeight {
+        /**
+         * A read-only node requires passing in the NodeId. A primary node does not need to pass in the NodeId.
+         */
+        nodeId?: string;
+        /**
+         * Node type. Primary or ReadOnly.
+         */
+        nodeType?: string;
+        /**
+         * Custom read weight allocation. Increases by 100, with a maximum value of 40000. Weights cannot all be set to 0.
+         */
+        weight: number;
+    }
+
+    export interface DatabaseEndpointsEndpoint {
+        /**
+         * Cross-region domain for private address.
+         */
+        crossRegionDomain: string;
+        /**
+         * Whether to enable public network resolution.
+         */
+        dnsVisibility: boolean;
+        /**
+         * Connect domain name.
+         */
+        domain: string;
+        /**
+         * The ID of the RDS PostgreSQL database endpoint.
+         */
+        endpointId: string;
+        /**
+         * The name of the RDS PostgreSQL database endpoint.
+         */
+        endpointName: string;
+        /**
+         * The type of the RDS PostgreSQL database endpoint. Valid values: `Custom`(custom endpoint), `Cluster`(default endpoint).
+         */
+        endpointType: string;
+        /**
+         * The endpoint port.
+         */
+        port: string;
+        /**
+         * The distribution type of the read-only nodes.
+         */
+        readOnlyNodeDistributionType: string;
+        /**
+         * ReadOnly node max delay seconds.
+         */
+        readOnlyNodeMaxDelayTime: number;
+        /**
+         * ReadWrite or ReadOnly. Default value is ReadOnly.
+         */
+        readWriteMode: string;
+        /**
+         * The number of proxy connections set for the terminal.
+         */
+        readWriteProxyConnection: number;
+        /**
+         * Whether the endpoint sends write requests to the write node.
+         */
+        writeNodeHaltWriting: boolean;
     }
 
     export interface DatabasesDatabase {
@@ -34069,6 +34344,44 @@ export namespace rds_postgresql {
         owner: string;
     }
 
+    export interface EngineVersionParametersDbEngineVersionParameter {
+        /**
+         * The database engine version of the RDS PostgreSQL instance. Valid value: PostgreSQL_11, PostgreSQL_12, PostgreSQL_13, PostgreSQL_14, PostgreSQL_15, PostgreSQL_16, PostgreSQL_17.
+         */
+        dbEngineVersion: string;
+        /**
+         * The number of parameters that users can set under the specified database engine version.
+         */
+        parameterCount: string;
+        /**
+         * The collection of parameters that users can set under the specified database engine version.
+         */
+        parameters: outputs.rds_postgresql.EngineVersionParametersDbEngineVersionParameterParameter[];
+    }
+
+    export interface EngineVersionParametersDbEngineVersionParameterParameter {
+        /**
+         * The value range of the parameter.
+         */
+        checkingCode: string;
+        /**
+         * Parameter default value. Refers to the default value provided in the default template corresponding to this instance.
+         */
+        defaultValue: string;
+        /**
+         * Indicates whether a restart is required after the parameter is modified.
+         */
+        forceRestart: boolean;
+        /**
+         * The name of the parameter.
+         */
+        name: string;
+        /**
+         * The type of the parameter.
+         */
+        type: string;
+    }
+
     export interface GetAccountsAccount {
         /**
          * The name of the database account. This field supports fuzzy query.
@@ -34086,11 +34399,19 @@ export namespace rds_postgresql {
          * The type of the database account.
          */
         accountType: string;
+        /**
+         * The privileges to be disabled for the account.
+         */
+        notAllowPrivileges: string[];
     }
 
     export interface GetAllowlistsPostgresqlAllowList {
         /**
-         * The description of the postgresql allow list.
+         * The category of the postgresql allow list. Valid values: Ordinary, Default.
+         */
+        allowListCategory: string;
+        /**
+         * The description of the postgresql allow list. Perform a fuzzy search based on the description information.
          */
         allowListDesc: string;
         /**
@@ -34125,6 +34446,14 @@ export namespace rds_postgresql {
          * The id of the postgresql allow list.
          */
         id: string;
+        /**
+         * The information of the security group bound by the allowlist.
+         */
+        securityGroupBindInfos: outputs.rds_postgresql.GetAllowlistsPostgresqlAllowListSecurityGroupBindInfo[];
+        /**
+         * IP addresses outside the security group and added to the allowlist.
+         */
+        userAllowLists: string[];
     }
 
     export interface GetAllowlistsPostgresqlAllowListAssociatedInstance {
@@ -34140,6 +34469,224 @@ export namespace rds_postgresql {
          * The id of the vpc.
          */
         vpc: string;
+    }
+
+    export interface GetAllowlistsPostgresqlAllowListSecurityGroupBindInfo {
+        /**
+         * The binding mode of the security group.
+         */
+        bindMode: string;
+        /**
+         * IP addresses in the security group.
+         */
+        ipLists: string[];
+        /**
+         * The ID of the security group.
+         */
+        securityGroupId: string;
+        /**
+         * The name of the security group.
+         */
+        securityGroupName: string;
+    }
+
+    export interface GetBackupDownloadsDownload {
+        /**
+         * The description of the backup set.
+         */
+        backupDescription: string;
+        /**
+         * The public network download address of the backup.
+         */
+        backupDownloadLink: string;
+        /**
+         * The name of the backup file.
+         */
+        backupFileName: string;
+        /**
+         * The size of the backup file, in Byte.
+         */
+        backupFileSize: number;
+        /**
+         * The ID of the logical backup to be downloaded.
+         */
+        backupId: string;
+        /**
+         * The type of the backup.
+         */
+        backupMethod: string;
+        /**
+         * The inner network download address of the backup.
+         */
+        innerBackupDownloadLink: string;
+        /**
+         * The id of the PostgreSQL instance.
+         */
+        instanceId: string;
+        /**
+         * Expiration time of the download link, format:yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+         */
+        linkExpiredTime: string;
+        /**
+         * The prepare progress of the backup.
+         */
+        prepareProgress: number;
+    }
+
+    export interface GetBackupPoliciesBackupPolicy {
+        /**
+         * The backup retention period.
+         */
+        backupRetentionPeriod: number;
+        /**
+         * The backup increment data backup periods.
+         */
+        dataIncrBackupPeriods: string;
+        /**
+         * The full backup period.
+         */
+        fullBackupPeriod: string;
+        /**
+         * The time when the backup task is executed. Format: HH:mmZ-HH:mmZ (UTC time).
+         */
+        fullBackupTime: string;
+        /**
+         * Whether to enable the high-frequency backup function.
+         */
+        hourlyIncrBackupEnable: boolean;
+        /**
+         * The frequency of increment backup.
+         */
+        incrementBackupFrequency: number;
+        /**
+         * The id of the PostgreSQL instance.
+         */
+        instanceId: string;
+        /**
+         * Status of the local remaining available space protection function.
+         */
+        walLogSpaceLimitEnable: boolean;
+    }
+
+    export interface GetDataBackupsBackup {
+        /**
+         * The original size of the data contained in the backup, in Bytes.
+         */
+        backupDataSize: number;
+        /**
+         * The description of the backup set.
+         */
+        backupDescription: string;
+        /**
+         * The latest time when the backup is created, in the format of yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+         */
+        backupEndTime: string;
+        /**
+         * The name of the backup file.
+         */
+        backupFileName: string;
+        /**
+         * The size of the backup file, in Byte.
+         */
+        backupFileSize: number;
+        /**
+         * The ID of the backup.
+         */
+        backupId: string;
+        /**
+         * The information about the databases included in the backup.
+         */
+        backupMetas: outputs.rds_postgresql.GetDataBackupsBackupBackupMeta[];
+        /**
+         * The method of the backup: Physical, Logical.
+         */
+        backupMethod: string;
+        /**
+         * The progress of the backup. The unit is percentage.
+         */
+        backupProgress: number;
+        /**
+         * The scope of the backup: Instance, Database.
+         */
+        backupScope: string;
+        /**
+         * The earliest time when the backup is created, in the format of yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+         */
+        backupStartTime: string;
+        /**
+         * The status of the backup: Success, Failed, Running.
+         */
+        backupStatus: string;
+        /**
+         * The type of the backup: Full, Increment.
+         */
+        backupType: string;
+        /**
+         * The creation type of the backup: System, User.
+         */
+        createType: string;
+        /**
+         * The downloadable status of the backup set. NotAllowed: download is not supported. NeedToPrepare: the backup set is in place and needs background preparation for backup. LinkReady: the backup set is ready for download.
+         */
+        downloadStatus: string;
+    }
+
+    export interface GetDataBackupsBackupBackupMeta {
+        /**
+         * The name of the database.
+         */
+        dbName: string;
+    }
+
+    export interface GetDatabaseEndpointsEndpoint {
+        /**
+         * Cross-region domain for private address.
+         */
+        crossRegionDomain: string;
+        /**
+         * Whether to enable public network resolution.
+         */
+        dnsVisibility: boolean;
+        /**
+         * Connect domain name.
+         */
+        domain: string;
+        /**
+         * The ID of the RDS PostgreSQL database endpoint.
+         */
+        endpointId: string;
+        /**
+         * The name of the RDS PostgreSQL database endpoint.
+         */
+        endpointName: string;
+        /**
+         * The type of the RDS PostgreSQL database endpoint. Valid values: `Custom`(custom endpoint), `Cluster`(default endpoint).
+         */
+        endpointType: string;
+        /**
+         * The endpoint port.
+         */
+        port: string;
+        /**
+         * The distribution type of the read-only nodes.
+         */
+        readOnlyNodeDistributionType: string;
+        /**
+         * ReadOnly node max delay seconds.
+         */
+        readOnlyNodeMaxDelayTime: number;
+        /**
+         * ReadWrite or ReadOnly. Default value is ReadOnly.
+         */
+        readWriteMode: string;
+        /**
+         * The number of proxy connections set for the terminal.
+         */
+        readWriteProxyConnection: number;
+        /**
+         * Whether the endpoint sends write requests to the write node.
+         */
+        writeNodeHaltWriting: boolean;
     }
 
     export interface GetDatabasesDatabase {
@@ -34169,7 +34716,610 @@ export namespace rds_postgresql {
         owner: string;
     }
 
+    export interface GetEngineVersionParametersDbEngineVersionParameter {
+        /**
+         * The database engine version of the RDS PostgreSQL instance. Valid value: PostgreSQL_11, PostgreSQL_12, PostgreSQL_13, PostgreSQL_14, PostgreSQL_15, PostgreSQL_16, PostgreSQL_17.
+         */
+        dbEngineVersion: string;
+        /**
+         * The number of parameters that users can set under the specified database engine version.
+         */
+        parameterCount: string;
+        /**
+         * The collection of parameters that users can set under the specified database engine version.
+         */
+        parameters: outputs.rds_postgresql.GetEngineVersionParametersDbEngineVersionParameterParameter[];
+    }
+
+    export interface GetEngineVersionParametersDbEngineVersionParameterParameter {
+        /**
+         * The value range of the parameter.
+         */
+        checkingCode: string;
+        /**
+         * Parameter default value. Refers to the default value provided in the default template corresponding to this instance.
+         */
+        defaultValue: string;
+        /**
+         * Indicates whether a restart is required after the parameter is modified.
+         */
+        forceRestart: boolean;
+        /**
+         * The name of the parameter.
+         */
+        name: string;
+        /**
+         * The type of the parameter.
+         */
+        type: string;
+    }
+
+    export interface GetInstanceBackupDetachedsBackup {
+        /**
+         * The latest time when the backup is created, in the format of yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+         */
+        backupEndTime: string;
+        /**
+         * The name of the backup file.
+         */
+        backupFileName: string;
+        /**
+         * The size of the backup file, in Byte.
+         */
+        backupFileSize: number;
+        /**
+         * The ID of the backup.
+         */
+        backupId: string;
+        /**
+         * The progress of the backup. The unit is percentage.
+         */
+        backupProgress: number;
+        /**
+         * The earliest time when the backup is created, in the format of yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+         */
+        backupStartTime: string;
+        /**
+         * The status of the backup.
+         */
+        backupStatus: string;
+        /**
+         * The type of the backup.
+         */
+        backupType: string;
+        /**
+         * The creation type of the backup: System, User.
+         */
+        createType: string;
+        /**
+         * Information about the PostgreSQL instance associated with this backup.
+         */
+        instanceInfos: outputs.rds_postgresql.GetInstanceBackupDetachedsBackupInstanceInfo[];
+    }
+
+    export interface GetInstanceBackupDetachedsBackupInstanceInfo {
+        /**
+         * The version of the database engine.
+         */
+        dbEngineVersion: string;
+        /**
+         * The ID of the PostgreSQL instance.
+         */
+        instanceId: string;
+        /**
+         * The name of the PostgreSQL instance.
+         */
+        instanceName: string;
+        /**
+         * The status of the instance.
+         */
+        instanceStatus: string;
+    }
+
+    export interface GetInstanceBackupWalLogsWalLogBackup {
+        /**
+         * The size of the WAL log backup file. The unit is bytes (Byte).
+         */
+        backupFileSize: number;
+        /**
+         * The id of the backup.
+         */
+        backupId: string;
+        /**
+         * The status of the WAL log backup.
+         */
+        backupStatus: string;
+        /**
+         * The checksum in the ETag format using the crc64 algorithm.
+         */
+        checkSum: string;
+        /**
+         * The downloadable status of the WAL log backup.
+         */
+        downloadStatus: string;
+        /**
+         * The project to which the instance of the WAL log backup belongs.
+         */
+        projectName: string;
+        /**
+         * The end time of the WAL log backup, in the format of yyyy-MM-ddTHH:mm:ssZ (UTC time).
+         */
+        walLogBackupEndTime: string;
+    }
+
+    export interface GetInstanceFailoverLogsFailoverLog {
+        /**
+         * The time when the failover occurred. Format: yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+         */
+        failoverTime: string;
+        /**
+         * The type of the failover, such as User or System.
+         */
+        failoverType: string;
+        /**
+         * The node ID of the new master after failover.
+         */
+        newMasterNodeId: string;
+        /**
+         * The node ID of the old master before failover.
+         */
+        oldMasterNodeId: string;
+    }
+
+    export interface GetInstanceParameterLogsParameterChangeLog {
+        /**
+         * The time when the parameter was last modified. Format: yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+         */
+        modifyTime: string;
+        /**
+         * The name of the parameter.
+         */
+        name: string;
+        /**
+         * The new value of the parameter.
+         */
+        newValue: string;
+        /**
+         * The old value of the parameter.
+         */
+        oldValue: string;
+        /**
+         * The status of the parameter. Applied: Already in effect. Invalid: Not in effect. Syncing: Being applied, not yet in effect.
+         */
+        status: string;
+    }
+
+    export interface GetInstanceParametersInstanceParameter {
+        /**
+         * The version of the PostgreSQL engine.
+         */
+        dbEngineVersion: string;
+        /**
+         * The ID of the PostgreSQL instance.
+         */
+        instanceId: string;
+        /**
+         * @deprecated The current parameter configuration of the instance (non-kernel parameters).
+         */
+        noneKernelParameters: outputs.rds_postgresql.GetInstanceParametersInstanceParameterNoneKernelParameter[];
+        /**
+         * The total count of parameters.
+         */
+        parameterCount: string;
+        /**
+         * The current parameter configuration of the instance (kernel parameters).
+         */
+        parameters: outputs.rds_postgresql.GetInstanceParametersInstanceParameterParameter[];
+    }
+
+    export interface GetInstanceParametersInstanceParameterNoneKernelParameter {
+        /**
+         * The value range of the parameter.
+         */
+        checkingCode: string;
+        /**
+         * Parameter default value. Refers to the default value provided in the default template corresponding to this instance.
+         */
+        defaultValue: string;
+        /**
+         * The description of the parameter in English.
+         */
+        description: string;
+        /**
+         * The description of the parameter in Chinese.
+         */
+        descriptionZh: string;
+        /**
+         * Indicates whether a restart is required after the parameter is modified.
+         */
+        forceRestart: boolean;
+        /**
+         * The name of the parameter.
+         */
+        name: string;
+        /**
+         * The type of the parameter.
+         */
+        type: string;
+        /**
+         * The current value of the parameter.
+         */
+        value: string;
+    }
+
+    export interface GetInstanceParametersInstanceParameterParameter {
+        /**
+         * The value range of the parameter.
+         */
+        checkingCode: string;
+        /**
+         * Parameter default value. Refers to the default value provided in the default template corresponding to this instance.
+         */
+        defaultValue: string;
+        /**
+         * The description of the parameter in English.
+         */
+        description: string;
+        /**
+         * The description of the parameter in Chinese.
+         */
+        descriptionZh: string;
+        /**
+         * Indicates whether a restart is required after the parameter is modified.
+         */
+        forceRestart: boolean;
+        /**
+         * The name of the parameter.
+         */
+        name: string;
+        /**
+         * The type of the parameter.
+         */
+        type: string;
+        /**
+         * The current value of the parameter.
+         */
+        value: string;
+    }
+
+    export interface GetInstancePriceDetailsChargeInfo {
+        /**
+         * Whether to auto renew the subscription in a pre-paid scenario.
+         */
+        autoRenew?: boolean;
+        /**
+         * The charge type of the instance. Valid values: PostPaid, PrePaid.
+         */
+        chargeType: string;
+        /**
+         * Number of purchased instances. Can be an integer between 1 and 20. Default value:1.
+         */
+        number?: number;
+        /**
+         * Subscription duration in a pre-paid scenario.Default value:1.
+         */
+        period?: number;
+        /**
+         * Purchase cycle in a pre-paid scenario. Valid values: Month, Year.
+         */
+        periodUnit?: string;
+    }
+
+    export interface GetInstancePriceDetailsInstancesPrice {
+        /**
+         * Price of each charge item.
+         */
+        chargeItemPrices: outputs.rds_postgresql.GetInstancePriceDetailsInstancesPriceChargeItemPrice[];
+        /**
+         * Currency unit.
+         */
+        currency: string;
+        /**
+         * Instance price after discount.
+         */
+        discountPrice: number;
+        /**
+         * Number of purchased instances.
+         */
+        instanceQuantity: number;
+        /**
+         * Instance price before discount.
+         */
+        originalPrice: number;
+        /**
+         * Price payable of instance.
+         */
+        payablePrice: number;
+    }
+
+    export interface GetInstancePriceDetailsInstancesPriceChargeItemPrice {
+        /**
+         * If chargeItemKey is Primary, Secondary, or ReadOnly, this parameter returns the instance specification, such as rds.pg.d1.1c2g. If chargeItemKey is Storage, this parameter returns the stored key, such as rds.pg.d1.localssd.
+         */
+        chargeItemKey: string;
+        /**
+         * Billing item name. Values:Primary, Secondary, ReadOnly, Storage.
+         */
+        chargeItemType: string;
+        /**
+         * If chargeItemKey is Primary, Secondary, or ReadOnly, this parameter returns the number of nodes, with a value of "1". If chargeItemKey is Storage, his parameter returns the storage size in GB.
+         */
+        chargeItemValue: number;
+        /**
+         * Instance price after discount.
+         */
+        discountPrice: number;
+        /**
+         * Number of nodes of each instance.
+         */
+        nodeNumPerInstance: number;
+        /**
+         * Instance price before discount.
+         */
+        originalPrice: number;
+        /**
+         * Price payable of instance.
+         */
+        payablePrice: number;
+    }
+
+    export interface GetInstancePriceDetailsNodeInfo {
+        /**
+         * The id of the node.
+         */
+        nodeId?: string;
+        /**
+         * The operate type of the node. Valid values: Create.
+         */
+        nodeOperateType?: string;
+        /**
+         * The specification of the node.
+         */
+        nodeSpec: string;
+        /**
+         * The type of the node. Valid values: Primary, Secondary, ReadOnly.
+         */
+        nodeType: string;
+        /**
+         * The AZ of the node.
+         */
+        zoneId: string;
+    }
+
+    export interface GetInstancePriceDifferencesChargeInfo {
+        /**
+         * Whether to auto renew the subscription in a pre-paid scenario.
+         */
+        autoRenew?: boolean;
+        /**
+         * The charge type of the instance. Valid values: PostPaid, PrePaid.
+         */
+        chargeType: string;
+        /**
+         * Number of purchased instances. Can be an integer between 1 and 20. Default value:1.
+         */
+        number?: number;
+        /**
+         * Subscription duration in a pre-paid scenario.Default value:1.
+         */
+        period?: number;
+        /**
+         * Purchase cycle in a pre-paid scenario. Valid values: Month, Year.
+         */
+        periodUnit?: string;
+    }
+
+    export interface GetInstancePriceDifferencesInstancesPrice {
+        chargeItemPrices: outputs.rds_postgresql.GetInstancePriceDifferencesInstancesPriceChargeItemPrice[];
+        /**
+         * Currency unit.
+         */
+        currency: string;
+        /**
+         * Instance price after discount.
+         */
+        discountPrice: number;
+        /**
+         * Instance price before discount.
+         */
+        originalPrice: number;
+        /**
+         * Price payable of instance.
+         */
+        payablePrice: number;
+    }
+
+    export interface GetInstancePriceDifferencesInstancesPriceChargeItemPrice {
+        /**
+         * If chargeItemKey is Primary, Secondary, or ReadOnly, this parameter returns the instance specification, such as rds.pg.d1.1c2g. If chargeItemKey is Storage, this parameter returns the stored key, such as rds.pg.d1.localssd.
+         */
+        chargeItemKey: string;
+        /**
+         * Billing item name. Values:Primary, Secondary, ReadOnly, Storage.
+         */
+        chargeItemType: string;
+        /**
+         * If chargeItemKey is Primary, Secondary, or ReadOnly, this parameter returns the number of nodes, with a value of "1". If chargeItemKey is Storage, his parameter returns the storage size in GB.
+         */
+        chargeItemValue: number;
+        /**
+         * Instance price after discount.
+         */
+        discountPrice: number;
+        /**
+         * Number of nodes of each instance.
+         */
+        nodeNumPerInstance: number;
+        /**
+         * Instance price before discount.
+         */
+        originalPrice: number;
+        /**
+         * Price payable of instance.
+         */
+        payablePrice: number;
+    }
+
+    export interface GetInstancePriceDifferencesNodeInfo {
+        /**
+         * The id of the node.When the modifyType is set to Temporary, this parameter is required.
+         */
+        nodeId?: string;
+        /**
+         * The operate type of the node. Valid values: Create, Modify.
+         */
+        nodeOperateType?: string;
+        /**
+         * The specification of the node.
+         */
+        nodeSpec: string;
+        /**
+         * The type of the node. Valid values: Primary, Secondary, ReadOnly.
+         */
+        nodeType: string;
+        /**
+         * The AZ of the node.
+         */
+        zoneId: string;
+    }
+
+    export interface GetInstanceRecoverableTimesRecoverableTimeInfo {
+        /**
+         * The earliest recoverable time of the instance (UTC time).
+         */
+        earliestRecoverableTime: string;
+        /**
+         * The latest recoverable time of the instance (UTC time).
+         */
+        latestRecoverableTime: string;
+    }
+
+    export interface GetInstanceSpecsInstanceSpec {
+        /**
+         * The maximum number of connections supported by the instance.
+         */
+        connection: number;
+        /**
+         * The version of the RDS PostgreSQL instance.
+         */
+        dbEngineVersion: string;
+        /**
+         * The memory size of the instance. Unit: GB.
+         */
+        memory: number;
+        /**
+         * The ID of the region.
+         */
+        regionId: string;
+        /**
+         * Instance specification code.
+         */
+        specCode: string;
+        /**
+         * Storage type, fixed to LocalSSD.
+         */
+        storageType: string;
+        /**
+         * The number of vCPUs of the instance.
+         */
+        vCpu: number;
+        /**
+         * Primary availability zone ID.
+         */
+        zoneId: string;
+    }
+
+    export interface GetInstanceSslsSsl {
+        /**
+         * The protected addresses.
+         */
+        addresses: string[];
+        /**
+         * Raw byte stream array of certificate zip.
+         */
+        certificates: number[];
+        /**
+         * Whether to force encryption.
+         */
+        forceEncryption: boolean;
+        /**
+         * The id of the postgresql Instance.
+         */
+        instanceId: string;
+        /**
+         * Whether the SSL certificate is valid.
+         */
+        isValid: boolean;
+        /**
+         * Whether to enable SSL.
+         */
+        sslEnable: boolean;
+        /**
+         * The expiration time of the SSL certificate. The format is: yyyy-MM-ddTHH:mm:ss(UTC time).
+         */
+        sslExpireTime: string;
+        /**
+         * The supported TLS versions.
+         */
+        tlsVersions: string[];
+    }
+
+    export interface GetInstanceTasksTaskInfo {
+        /**
+         * Task execution time in milliseconds.
+         */
+        costTimeMs: number;
+        /**
+         * Task creation time. Format: yyyy-MM-ddTHH:mm:ssZ (UTC).
+         */
+        createTime: string;
+        /**
+         * Task finish time. Format: yyyy-MM-ddTHH:mm:ssZ (UTC).
+         */
+        finishTime: string;
+        /**
+         * The id of the PostgreSQL instance.
+         */
+        instanceId: string;
+        /**
+         * Project name.
+         */
+        projectName: string;
+        /**
+         * Region.
+         */
+        region: string;
+        /**
+         * The scheduled end time for the switch. The time format is yyyy-MM-ddTHH:mm:ssZ (UTC time). Note: This field will only be returned for tasks in the "Waiting to Start", "Waiting to Execute", or "Waiting to Switch" states.
+         */
+        scheduledSwitchEndTime: string;
+        /**
+         * The start time of the scheduled switch. The time format is yyyy-MM-ddTHH:mm:ssZ (UTC time). Note: This field will only be returned for tasks in the "Waiting to Start", "Waiting to Execute", or "Waiting to Switch" states.
+         */
+        scheduledSwitchStartTime: string;
+        /**
+         * Task action.
+         */
+        taskAction: string;
+        /**
+         * Task ID. Note: One of TaskId or task time (creation_start_time and creation_end_time) must be specified.
+         */
+        taskId: string;
+        /**
+         * Task parameters in JSON string.
+         */
+        taskParams: string;
+        /**
+         * Task status. Values: Canceled, WaitStart, WaitSwitch, Running, Running_BeforeSwitch, Running_Switching, Running_AfterSwitch, Success, Failed, Timeout, Rollbacking, RollbackFailed, Paused.
+         */
+        taskStatus: string;
+    }
+
     export interface GetInstancesInstance {
+        /**
+         * The allow list version of the RDS PostgreSQL instance.
+         */
+        allowListVersion: string;
         /**
          * The instance has used backup space. Unit: GB.
          */
@@ -34239,13 +35389,33 @@ export namespace rds_postgresql {
          */
         regionId: string;
         /**
+         * The instance's primary node has used storage space. Unit: Byte.
+         */
+        storageDataUse: number;
+        /**
+         * The instance's primary node has used log storage space. Unit: Byte.
+         */
+        storageLogUse: number;
+        /**
          * Total instance storage space. Unit: GB.
          */
         storageSpace: number;
         /**
-         * Instance storage type.
+         * The instance's primary node has used temporary storage space. Unit: Byte.
+         */
+        storageTempUse: number;
+        /**
+         * The storage type of the RDS PostgreSQL instance.
          */
         storageType: string;
+        /**
+         * The instance has used storage space. Unit: Byte.
+         */
+        storageUse: number;
+        /**
+         * The instance's primary node has used WAL storage space. Unit: Byte.
+         */
+        storageWalUse: number;
         /**
          * The subnet ID of the RDS PostgreSQL instance.
          */
@@ -34295,13 +35465,17 @@ export namespace rds_postgresql {
          * Pay status. Value:
          * normal - normal
          * overdue - overdue
-         * .
+         * unpaid - unpaid.
          */
         chargeStatus: string;
         /**
          * The charge type of the RDS instance.
          */
         chargeType: string;
+        /**
+         * The number of the RDS PostgreSQL instance.
+         */
+        number: number;
         /**
          * Estimated release time when arrears are closed (pay-as-you-go & monthly subscription).
          */
@@ -34369,6 +35543,16 @@ export namespace rds_postgresql {
          */
         endpointType: string;
         /**
+         * The distribution type of the read-only nodes, value:
+         * Default: Default distribution.
+         * Custom: Custom distribution.
+         */
+        readOnlyNodeDistributionType: string;
+        /**
+         * Maximum latency threshold of read-only node. If the latency of a read-only node exceeds this value, reading traffic won't be routed to this node. Unit: seconds.Values: 0~3600.Default value: 30.
+         */
+        readOnlyNodeMaxDelayTime: number;
+        /**
          * The list of nodes configured by the connection terminal and the corresponding read-only weights.
          */
         readOnlyNodeWeights: outputs.rds_postgresql.GetInstancesInstanceEndpointReadOnlyNodeWeight[];
@@ -34378,11 +35562,23 @@ export namespace rds_postgresql {
          * ReadOnly: read only (default).
          */
         readWriteMode: string;
+        /**
+         * After the terminal enables read-write separation, the number of proxy connections set for the terminal. The lower limit of the number of proxy connections is 20. The upper limit of the number of proxy connections depends on the specifications of the instance master node.
+         */
+        readWriteProxyConnection: number;
+        /**
+         * Whether the endpoint sends write requests to the write node (currently only the master node is a write node). Values: true: Yes(Default). false: No.
+         */
+        writeNodeHaltWriting: boolean;
     }
 
     export interface GetInstancesInstanceEndpointAddress {
         /**
-         * DNS Visibility.
+         * Address that can be accessed across regions.
+         */
+        crossRegionDomain: string;
+        /**
+         * Whether to enable public network resolution. Values: false: Default value. PrivateZone of Volcano Engine. true: Private and public network resolution of Volcano Engine.
          */
         dnsVisibility: boolean;
         /**
@@ -34390,13 +35586,25 @@ export namespace rds_postgresql {
          */
         domain: string;
         /**
+         * The type of private network address. Values: LocalDomain: Local domain name. CrossRegionDomain: Domains accessible across regions.
+         */
+        domainVisibilitySetting: string;
+        /**
          * The ID of the EIP, only valid for Public addresses.
          */
         eipId: string;
         /**
+         * Address IP protocol, IPv4 or IPv6.
+         */
+        internetProtocol: string;
+        /**
          * The IP Address.
          */
         ipAddress: string;
+        /**
+         * The IPv6 Address.
+         */
+        ipv6Address: string;
         /**
          * Network address type, temporarily Private, Public, PublicService.
          */
@@ -34499,6 +35707,212 @@ export namespace rds_postgresql {
         value: string;
     }
 
+    export interface GetParameterTemplateApplyDiffsParameter {
+        /**
+         * The name of the parameter.
+         */
+        name: string;
+        /**
+         * The running value defined for this parameter in the parameter template.
+         */
+        newValue: string;
+        /**
+         * The current running value of this parameter in the instance.
+         */
+        oldValue: string;
+        /**
+         * Indicates whether a restart is required after the parameter is modified.
+         */
+        restart: boolean;
+    }
+
+    export interface GetParameterTemplatesTemplateInfo {
+        /**
+         * Account ID.
+         */
+        accountId: string;
+        /**
+         * Creation time of the parameter template. The format is yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+         */
+        createTime: string;
+        /**
+         * Indicates whether the parameter template change requires a restart.
+         */
+        needRestart: boolean;
+        /**
+         * Number of parameters in the parameter template.
+         */
+        parameterNum: number;
+        /**
+         * Classification of parameter templates. The current value can only be DBEngine.
+         */
+        templateCategory: string;
+        /**
+         * Description information of the parameter template.
+         */
+        templateDesc: string;
+        /**
+         * Parameter template ID.
+         */
+        templateId: string;
+        /**
+         * Parameter template name.
+         */
+        templateName: string;
+        /**
+         * Parameter configuration of the parameter template.
+         */
+        templateParams: outputs.rds_postgresql.GetParameterTemplatesTemplateInfoTemplateParam[];
+        /**
+         * The source of the parameter template. The current value can only be User.
+         */
+        templateSource: string;
+        /**
+         * The type of the parameter template. The current value can only be PostgreSQL.
+         */
+        templateType: string;
+        /**
+         * PostgreSQL compatible versions. The current value can only be PostgreSQL_11/12/13/14/15/16/17.
+         */
+        templateTypeVersion: string;
+        /**
+         * Update time of the parameter template. The format is yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+         */
+        updateTime: string;
+    }
+
+    export interface GetParameterTemplatesTemplateInfoTemplateParam {
+        /**
+         * The value range of the parameter.
+         */
+        checkingCode: string;
+        /**
+         * Parameter default value. Refers to the default value provided in the default template corresponding to this instance.
+         */
+        defaultValue: string;
+        /**
+         * The description of the parameter in English.
+         */
+        description: string;
+        /**
+         * The description of the parameter in Chinese.
+         */
+        descriptionZh: string;
+        /**
+         * Indicates whether a restart is required after the parameter is modified.
+         */
+        forceRestart: boolean;
+        /**
+         * The name of the parameter.
+         */
+        name: string;
+        /**
+         * The type of the parameter.
+         */
+        type: string;
+        /**
+         * The current value of the parameter.
+         */
+        value: string;
+    }
+
+    export interface GetPlannedEventsPlannedEvent {
+        /**
+         * The impact of operation and maintenance events on the business.
+         */
+        businessImpact: string;
+        /**
+         * Event ID.
+         */
+        eventId: string;
+        /**
+         * Event type. Values: VersionUpgrade, HostOffline.
+         */
+        eventType: string;
+        /**
+         * The id of the PostgreSQL instance.
+         */
+        instanceId: string;
+        /**
+         * The name of PostgreSQL instance.
+         */
+        instanceName: string;
+        /**
+         * Maximum delay time. Format: yyyy-MM-ddTHH:mm:ss.sssZ (UTC).
+         */
+        maxDelayTime: string;
+        /**
+         * Planned execution time. Format: yyyy-MM-ddTHH:mm:ss.sssZ (UTC).
+         */
+        plannedBeginTime: string;
+        /**
+         * Reason for the planned event.
+         */
+        plannedEventReason: string;
+        /**
+         * Planned switch start time. Format: yyyy-MM-ddTHH:mm:ss.sssZ (UTC).
+         */
+        plannedSwitchBeginTime: string;
+        /**
+         * Planned switch end time. Format: yyyy-MM-ddTHH:mm:ss.sssZ (UTC).
+         */
+        plannedSwitchEndTime: string;
+        /**
+         * Region.
+         */
+        region: string;
+        /**
+         * Operation event status. Values: Canceled, WaitStart, WaitSwitch, Running, Running_BeforeSwitch, Running_Switching, Running_AfterSwitch, Success, Failed, Timeout, Rollbacking, RollbackFailed.
+         */
+        status: string;
+    }
+
+    export interface GetRegionsRegion {
+        /**
+         * The ID of the region.
+         */
+        regionId: string;
+        /**
+         * The name of the region.
+         */
+        regionName: string;
+    }
+
+    export interface GetReplicationSlotsReplicationSlot {
+        /**
+         * The database where the replication slot is located.
+         */
+        dataBase?: string;
+        /**
+         * The ip address.
+         */
+        ipAddress?: string;
+        /**
+         * The name of the plugin used by the logical replication slot to parse WAL logs.
+         */
+        plugin: string;
+        /**
+         * The name of the slot.
+         */
+        slotName: string;
+        /**
+         * The status of the replication slot: ACTIVE or INACTIVE.
+         */
+        slotStatus?: string;
+        /**
+         * The type of the slot: physical or logical.
+         */
+        slotType: string;
+        /**
+         * Whether the slot is temporary.
+         */
+        temporary?: boolean;
+        /**
+         * The cumulative WAL log volume corresponding to this replication slot. The unit is Byte.
+         */
+        walDelay?: number;
+    }
+
     export interface GetSchemasSchema {
         /**
          * The name of the database.
@@ -34512,6 +35926,114 @@ export namespace rds_postgresql {
          * The name of the schema.
          */
         schemaName: string;
+    }
+
+    export interface GetZonesZone {
+        /**
+         * The description of the zone.
+         */
+        description: string;
+        /**
+         * The id of the zone.
+         */
+        zoneId: string;
+        /**
+         * The name of the zone.
+         */
+        zoneName: string;
+    }
+
+    export interface InstanceBackupDetachedsBackup {
+        /**
+         * The latest time when the backup is created, in the format of yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+         */
+        backupEndTime: string;
+        /**
+         * The name of the backup file.
+         */
+        backupFileName: string;
+        /**
+         * The size of the backup file, in Byte.
+         */
+        backupFileSize: number;
+        /**
+         * The ID of the backup.
+         */
+        backupId: string;
+        /**
+         * The progress of the backup. The unit is percentage.
+         */
+        backupProgress: number;
+        /**
+         * The earliest time when the backup is created, in the format of yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+         */
+        backupStartTime: string;
+        /**
+         * The status of the backup.
+         */
+        backupStatus: string;
+        /**
+         * The type of the backup.
+         */
+        backupType: string;
+        /**
+         * The creation type of the backup: System, User.
+         */
+        createType: string;
+        /**
+         * Information about the PostgreSQL instance associated with this backup.
+         */
+        instanceInfos: outputs.rds_postgresql.InstanceBackupDetachedsBackupInstanceInfo[];
+    }
+
+    export interface InstanceBackupDetachedsBackupInstanceInfo {
+        /**
+         * The version of the database engine.
+         */
+        dbEngineVersion: string;
+        /**
+         * The ID of the PostgreSQL instance.
+         */
+        instanceId: string;
+        /**
+         * The name of the PostgreSQL instance.
+         */
+        instanceName: string;
+        /**
+         * The status of the instance.
+         */
+        instanceStatus: string;
+    }
+
+    export interface InstanceBackupWalLogsWalLogBackup {
+        /**
+         * The size of the WAL log backup file. The unit is bytes (Byte).
+         */
+        backupFileSize: number;
+        /**
+         * The id of the backup.
+         */
+        backupId: string;
+        /**
+         * The status of the WAL log backup.
+         */
+        backupStatus: string;
+        /**
+         * The checksum in the ETag format using the crc64 algorithm.
+         */
+        checkSum: string;
+        /**
+         * The downloadable status of the WAL log backup.
+         */
+        downloadStatus: string;
+        /**
+         * The project to which the instance of the WAL log backup belongs.
+         */
+        projectName: string;
+        /**
+         * The end time of the WAL log backup, in the format of yyyy-MM-ddTHH:mm:ssZ (UTC time).
+         */
+        walLogBackupEndTime: string;
     }
 
     export interface InstanceChargeDetail {
@@ -34533,7 +36055,7 @@ export namespace rds_postgresql {
          * Pay status. Value:
          * normal - normal
          * overdue - overdue
-         * .
+         * unpaid - unpaid.
          */
         chargeStatus: string;
         /**
@@ -34542,6 +36064,10 @@ export namespace rds_postgresql {
          * PrePaid - Yearly and monthly (default).
          */
         chargeType: string;
+        /**
+         * The number of the RDS PostgreSQL instance.
+         */
+        number: number;
         /**
          * Estimated release time when arrears are closed (pay-as-you-go & monthly subscription).
          */
@@ -34576,6 +36102,10 @@ export namespace rds_postgresql {
          */
         autoRenew: boolean;
         chargeType: string;
+        /**
+         * Purchase number of the RDS PostgreSQL instance. Range: [1, 20]. Default: 1.
+         */
+        number?: number;
         /**
          * Purchase duration in prepaid scenarios. Default: 1.
          */
@@ -34627,6 +36157,16 @@ export namespace rds_postgresql {
          */
         endpointType: string;
         /**
+         * The distribution type of the read-only nodes, value:
+         * Default: Default distribution.
+         * Custom: Custom distribution.
+         */
+        readOnlyNodeDistributionType: string;
+        /**
+         * Maximum latency threshold of read-only node. If the latency of a read-only node exceeds this value, reading traffic won't be routed to this node. Unit: seconds.Values: 0~3600.Default value: 30.
+         */
+        readOnlyNodeMaxDelayTime: number;
+        /**
          * The list of nodes configured by the connection terminal and the corresponding read-only weights.
          */
         readOnlyNodeWeights: outputs.rds_postgresql.InstanceEndpointReadOnlyNodeWeight[];
@@ -34636,11 +36176,23 @@ export namespace rds_postgresql {
          * ReadOnly: read only (default).
          */
         readWriteMode: string;
+        /**
+         * After the terminal enables read-write separation, the number of proxy connections set for the terminal. The lower limit of the number of proxy connections is 20. The upper limit of the number of proxy connections depends on the specifications of the instance master node.
+         */
+        readWriteProxyConnection: number;
+        /**
+         * Whether the endpoint sends write requests to the write node (currently only the master node is a write node). Values: true: Yes(Default). false: No.
+         */
+        writeNodeHaltWriting: boolean;
     }
 
     export interface InstanceEndpointAddress {
         /**
-         * DNS Visibility.
+         * Address that can be accessed across regions.
+         */
+        crossRegionDomain: string;
+        /**
+         * Whether to enable public network resolution. Values: false: Default value. PrivateZone of Volcano Engine. true: Private and public network resolution of Volcano Engine.
          */
         dnsVisibility: boolean;
         /**
@@ -34648,13 +36200,25 @@ export namespace rds_postgresql {
          */
         domain: string;
         /**
+         * The type of private network address. Values: LocalDomain: Local domain name. CrossRegionDomain: Domains accessible across regions.
+         */
+        domainVisibilitySetting: string;
+        /**
          * The ID of the EIP, only valid for Public addresses.
          */
         eipId: string;
         /**
+         * Address IP protocol, IPv4 or IPv6.
+         */
+        internetProtocol: string;
+        /**
          * The IP Address.
          */
         ipAddress: string;
+        /**
+         * The IPv6 Address.
+         */
+        ipv6Address: string;
         /**
          * Network address type, temporarily Private, Public, PublicService.
          */
@@ -34684,6 +36248,36 @@ export namespace rds_postgresql {
          * The weight of the node.
          */
         weight: number;
+    }
+
+    export interface InstanceEstimationResult {
+        /**
+         * After changing according to the current configuration, the estimated impact on the read and write connections of the instance.
+         */
+        effects: string[];
+        /**
+         * Estimated impact on the instance after the current configuration changes.
+         */
+        plans: string[];
+    }
+
+    export interface InstanceFailoverLogsFailoverLog {
+        /**
+         * The time when the failover occurred. Format: yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+         */
+        failoverTime: string;
+        /**
+         * The type of the failover, such as User or System.
+         */
+        failoverType: string;
+        /**
+         * The node ID of the new master after failover.
+         */
+        newMasterNodeId: string;
+        /**
+         * The node ID of the old master before failover.
+         */
+        oldMasterNodeId: string;
     }
 
     export interface InstanceNode {
@@ -34746,6 +36340,404 @@ export namespace rds_postgresql {
         value: string;
     }
 
+    export interface InstanceParameterLogsParameterChangeLog {
+        /**
+         * The time when the parameter was last modified. Format: yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+         */
+        modifyTime: string;
+        /**
+         * The name of the parameter.
+         */
+        name: string;
+        /**
+         * The new value of the parameter.
+         */
+        newValue: string;
+        /**
+         * The old value of the parameter.
+         */
+        oldValue: string;
+        /**
+         * The status of the parameter. Applied: Already in effect. Invalid: Not in effect. Syncing: Being applied, not yet in effect.
+         */
+        status: string;
+    }
+
+    export interface InstanceParametersInstanceParameter {
+        /**
+         * The version of the PostgreSQL engine.
+         */
+        dbEngineVersion: string;
+        /**
+         * The ID of the PostgreSQL instance.
+         */
+        instanceId: string;
+        /**
+         * @deprecated The current parameter configuration of the instance (non-kernel parameters).
+         */
+        noneKernelParameters: outputs.rds_postgresql.InstanceParametersInstanceParameterNoneKernelParameter[];
+        /**
+         * The total count of parameters.
+         */
+        parameterCount: string;
+        /**
+         * The current parameter configuration of the instance (kernel parameters).
+         */
+        parameters: outputs.rds_postgresql.InstanceParametersInstanceParameterParameter[];
+    }
+
+    export interface InstanceParametersInstanceParameterNoneKernelParameter {
+        /**
+         * The value range of the parameter.
+         */
+        checkingCode: string;
+        /**
+         * Parameter default value. Refers to the default value provided in the default template corresponding to this instance.
+         */
+        defaultValue: string;
+        /**
+         * The description of the parameter in English.
+         */
+        description: string;
+        /**
+         * The description of the parameter in Chinese.
+         */
+        descriptionZh: string;
+        /**
+         * Indicates whether a restart is required after the parameter is modified.
+         */
+        forceRestart: boolean;
+        /**
+         * The name of the parameter.
+         */
+        name: string;
+        /**
+         * The type of the parameter.
+         */
+        type: string;
+        /**
+         * The current value of the parameter.
+         */
+        value: string;
+    }
+
+    export interface InstanceParametersInstanceParameterParameter {
+        /**
+         * The value range of the parameter.
+         */
+        checkingCode: string;
+        /**
+         * Parameter default value. Refers to the default value provided in the default template corresponding to this instance.
+         */
+        defaultValue: string;
+        /**
+         * The description of the parameter in English.
+         */
+        description: string;
+        /**
+         * The description of the parameter in Chinese.
+         */
+        descriptionZh: string;
+        /**
+         * Indicates whether a restart is required after the parameter is modified.
+         */
+        forceRestart: boolean;
+        /**
+         * The name of the parameter.
+         */
+        name: string;
+        /**
+         * The type of the parameter.
+         */
+        type: string;
+        /**
+         * The current value of the parameter.
+         */
+        value: string;
+    }
+
+    export interface InstancePriceDetailsChargeInfo {
+        /**
+         * Whether to auto renew the subscription in a pre-paid scenario.
+         */
+        autoRenew?: boolean;
+        /**
+         * The charge type of the instance. Valid values: PostPaid, PrePaid.
+         */
+        chargeType: string;
+        /**
+         * Number of purchased instances. Can be an integer between 1 and 20. Default value:1.
+         */
+        number?: number;
+        /**
+         * Subscription duration in a pre-paid scenario.Default value:1.
+         */
+        period?: number;
+        /**
+         * Purchase cycle in a pre-paid scenario. Valid values: Month, Year.
+         */
+        periodUnit?: string;
+    }
+
+    export interface InstancePriceDetailsInstancesPrice {
+        /**
+         * Price of each charge item.
+         */
+        chargeItemPrices: outputs.rds_postgresql.InstancePriceDetailsInstancesPriceChargeItemPrice[];
+        /**
+         * Currency unit.
+         */
+        currency: string;
+        /**
+         * Instance price after discount.
+         */
+        discountPrice: number;
+        /**
+         * Number of purchased instances.
+         */
+        instanceQuantity: number;
+        /**
+         * Instance price before discount.
+         */
+        originalPrice: number;
+        /**
+         * Price payable of instance.
+         */
+        payablePrice: number;
+    }
+
+    export interface InstancePriceDetailsInstancesPriceChargeItemPrice {
+        /**
+         * If chargeItemKey is Primary, Secondary, or ReadOnly, this parameter returns the instance specification, such as rds.pg.d1.1c2g. If chargeItemKey is Storage, this parameter returns the stored key, such as rds.pg.d1.localssd.
+         */
+        chargeItemKey: string;
+        /**
+         * Billing item name. Values:Primary, Secondary, ReadOnly, Storage.
+         */
+        chargeItemType: string;
+        /**
+         * If chargeItemKey is Primary, Secondary, or ReadOnly, this parameter returns the number of nodes, with a value of "1". If chargeItemKey is Storage, his parameter returns the storage size in GB.
+         */
+        chargeItemValue: number;
+        /**
+         * Instance price after discount.
+         */
+        discountPrice: number;
+        /**
+         * Number of nodes of each instance.
+         */
+        nodeNumPerInstance: number;
+        /**
+         * Instance price before discount.
+         */
+        originalPrice: number;
+        /**
+         * Price payable of instance.
+         */
+        payablePrice: number;
+    }
+
+    export interface InstancePriceDetailsNodeInfo {
+        /**
+         * The id of the node.
+         */
+        nodeId?: string;
+        /**
+         * The operate type of the node. Valid values: Create.
+         */
+        nodeOperateType?: string;
+        /**
+         * The specification of the node.
+         */
+        nodeSpec: string;
+        /**
+         * The type of the node. Valid values: Primary, Secondary, ReadOnly.
+         */
+        nodeType: string;
+        /**
+         * The AZ of the node.
+         */
+        zoneId: string;
+    }
+
+    export interface InstancePriceDifferencesChargeInfo {
+        /**
+         * Whether to auto renew the subscription in a pre-paid scenario.
+         */
+        autoRenew?: boolean;
+        /**
+         * The charge type of the instance. Valid values: PostPaid, PrePaid.
+         */
+        chargeType: string;
+        /**
+         * Number of purchased instances. Can be an integer between 1 and 20. Default value:1.
+         */
+        number?: number;
+        /**
+         * Subscription duration in a pre-paid scenario.Default value:1.
+         */
+        period?: number;
+        /**
+         * Purchase cycle in a pre-paid scenario. Valid values: Month, Year.
+         */
+        periodUnit?: string;
+    }
+
+    export interface InstancePriceDifferencesInstancesPrice {
+        chargeItemPrices: outputs.rds_postgresql.InstancePriceDifferencesInstancesPriceChargeItemPrice[];
+        /**
+         * Currency unit.
+         */
+        currency: string;
+        /**
+         * Instance price after discount.
+         */
+        discountPrice: number;
+        /**
+         * Instance price before discount.
+         */
+        originalPrice: number;
+        /**
+         * Price payable of instance.
+         */
+        payablePrice: number;
+    }
+
+    export interface InstancePriceDifferencesInstancesPriceChargeItemPrice {
+        /**
+         * If chargeItemKey is Primary, Secondary, or ReadOnly, this parameter returns the instance specification, such as rds.pg.d1.1c2g. If chargeItemKey is Storage, this parameter returns the stored key, such as rds.pg.d1.localssd.
+         */
+        chargeItemKey: string;
+        /**
+         * Billing item name. Values:Primary, Secondary, ReadOnly, Storage.
+         */
+        chargeItemType: string;
+        /**
+         * If chargeItemKey is Primary, Secondary, or ReadOnly, this parameter returns the number of nodes, with a value of "1". If chargeItemKey is Storage, his parameter returns the storage size in GB.
+         */
+        chargeItemValue: number;
+        /**
+         * Instance price after discount.
+         */
+        discountPrice: number;
+        /**
+         * Number of nodes of each instance.
+         */
+        nodeNumPerInstance: number;
+        /**
+         * Instance price before discount.
+         */
+        originalPrice: number;
+        /**
+         * Price payable of instance.
+         */
+        payablePrice: number;
+    }
+
+    export interface InstancePriceDifferencesNodeInfo {
+        /**
+         * The id of the node.When the modifyType is set to Temporary, this parameter is required.
+         */
+        nodeId?: string;
+        /**
+         * The operate type of the node. Valid values: Create, Modify.
+         */
+        nodeOperateType?: string;
+        /**
+         * The specification of the node.
+         */
+        nodeSpec: string;
+        /**
+         * The type of the node. Valid values: Primary, Secondary, ReadOnly.
+         */
+        nodeType: string;
+        /**
+         * The AZ of the node.
+         */
+        zoneId: string;
+    }
+
+    export interface InstanceRecoverableTimesRecoverableTimeInfo {
+        /**
+         * The earliest recoverable time of the instance (UTC time).
+         */
+        earliestRecoverableTime: string;
+        /**
+         * The latest recoverable time of the instance (UTC time).
+         */
+        latestRecoverableTime: string;
+    }
+
+    export interface InstanceSpecsInstanceSpec {
+        /**
+         * The maximum number of connections supported by the instance.
+         */
+        connection: number;
+        /**
+         * The version of the RDS PostgreSQL instance.
+         */
+        dbEngineVersion: string;
+        /**
+         * The memory size of the instance. Unit: GB.
+         */
+        memory: number;
+        /**
+         * The ID of the region.
+         */
+        regionId: string;
+        /**
+         * Instance specification code.
+         */
+        specCode: string;
+        /**
+         * Storage type, fixed to LocalSSD.
+         */
+        storageType: string;
+        /**
+         * The number of vCPUs of the instance.
+         */
+        vCpu: number;
+        /**
+         * Primary availability zone ID.
+         */
+        zoneId: string;
+    }
+
+    export interface InstanceSslsSsl {
+        /**
+         * The protected addresses.
+         */
+        addresses: string[];
+        /**
+         * Raw byte stream array of certificate zip.
+         */
+        certificates: number[];
+        /**
+         * Whether to force encryption.
+         */
+        forceEncryption: boolean;
+        /**
+         * The id of the postgresql Instance.
+         */
+        instanceId: string;
+        /**
+         * Whether the SSL certificate is valid.
+         */
+        isValid: boolean;
+        /**
+         * Whether to enable SSL.
+         */
+        sslEnable: boolean;
+        /**
+         * The expiration time of the SSL certificate. The format is: yyyy-MM-ddTHH:mm:ss(UTC time).
+         */
+        sslExpireTime: string;
+        /**
+         * The supported TLS versions.
+         */
+        tlsVersions: string[];
+    }
+
     export interface InstanceTag {
         /**
          * The Key of Tags.
@@ -34757,7 +36749,77 @@ export namespace rds_postgresql {
         value: string;
     }
 
+    export interface InstanceTasksTaskInfo {
+        /**
+         * Task execution time in milliseconds.
+         */
+        costTimeMs: number;
+        /**
+         * Task creation time. Format: yyyy-MM-ddTHH:mm:ssZ (UTC).
+         */
+        createTime: string;
+        /**
+         * Task finish time. Format: yyyy-MM-ddTHH:mm:ssZ (UTC).
+         */
+        finishTime: string;
+        /**
+         * The id of the PostgreSQL instance.
+         */
+        instanceId: string;
+        /**
+         * Project name.
+         */
+        projectName: string;
+        /**
+         * Region.
+         */
+        region: string;
+        /**
+         * The scheduled end time for the switch. The time format is yyyy-MM-ddTHH:mm:ssZ (UTC time). Note: This field will only be returned for tasks in the "Waiting to Start", "Waiting to Execute", or "Waiting to Switch" states.
+         */
+        scheduledSwitchEndTime: string;
+        /**
+         * The start time of the scheduled switch. The time format is yyyy-MM-ddTHH:mm:ssZ (UTC time). Note: This field will only be returned for tasks in the "Waiting to Start", "Waiting to Execute", or "Waiting to Switch" states.
+         */
+        scheduledSwitchStartTime: string;
+        /**
+         * Task action.
+         */
+        taskAction: string;
+        /**
+         * Task ID. Note: One of TaskId or task time (creation_start_time and creation_end_time) must be specified.
+         */
+        taskId: string;
+        /**
+         * Task parameters in JSON string.
+         */
+        taskParams: string;
+        /**
+         * Task status. Values: Canceled, WaitStart, WaitSwitch, Running, Running_BeforeSwitch, Running_Switching, Running_AfterSwitch, Success, Failed, Timeout, Rollbacking, RollbackFailed, Paused.
+         */
+        taskStatus: string;
+    }
+
+    export interface InstanceZoneMigration {
+        /**
+         * Node ID to migrate.
+         */
+        nodeId: string;
+        /**
+         * Node type: Secondary or ReadOnly.
+         */
+        nodeType?: string;
+        /**
+         * Target zone ID.
+         */
+        zoneId: string;
+    }
+
     export interface InstancesInstance {
+        /**
+         * The allow list version of the RDS PostgreSQL instance.
+         */
+        allowListVersion: string;
         /**
          * The instance has used backup space. Unit: GB.
          */
@@ -34827,13 +36889,33 @@ export namespace rds_postgresql {
          */
         regionId: string;
         /**
+         * The instance's primary node has used storage space. Unit: Byte.
+         */
+        storageDataUse: number;
+        /**
+         * The instance's primary node has used log storage space. Unit: Byte.
+         */
+        storageLogUse: number;
+        /**
          * Total instance storage space. Unit: GB.
          */
         storageSpace: number;
         /**
-         * Instance storage type.
+         * The instance's primary node has used temporary storage space. Unit: Byte.
+         */
+        storageTempUse: number;
+        /**
+         * The storage type of the RDS PostgreSQL instance.
          */
         storageType: string;
+        /**
+         * The instance has used storage space. Unit: Byte.
+         */
+        storageUse: number;
+        /**
+         * The instance's primary node has used WAL storage space. Unit: Byte.
+         */
+        storageWalUse: number;
         /**
          * The subnet ID of the RDS PostgreSQL instance.
          */
@@ -34883,13 +36965,17 @@ export namespace rds_postgresql {
          * Pay status. Value:
          * normal - normal
          * overdue - overdue
-         * .
+         * unpaid - unpaid.
          */
         chargeStatus: string;
         /**
          * The charge type of the RDS instance.
          */
         chargeType: string;
+        /**
+         * The number of the RDS PostgreSQL instance.
+         */
+        number: number;
         /**
          * Estimated release time when arrears are closed (pay-as-you-go & monthly subscription).
          */
@@ -34957,6 +37043,16 @@ export namespace rds_postgresql {
          */
         endpointType: string;
         /**
+         * The distribution type of the read-only nodes, value:
+         * Default: Default distribution.
+         * Custom: Custom distribution.
+         */
+        readOnlyNodeDistributionType: string;
+        /**
+         * Maximum latency threshold of read-only node. If the latency of a read-only node exceeds this value, reading traffic won't be routed to this node. Unit: seconds.Values: 0~3600.Default value: 30.
+         */
+        readOnlyNodeMaxDelayTime: number;
+        /**
          * The list of nodes configured by the connection terminal and the corresponding read-only weights.
          */
         readOnlyNodeWeights: outputs.rds_postgresql.InstancesInstanceEndpointReadOnlyNodeWeight[];
@@ -34966,11 +37062,23 @@ export namespace rds_postgresql {
          * ReadOnly: read only (default).
          */
         readWriteMode: string;
+        /**
+         * After the terminal enables read-write separation, the number of proxy connections set for the terminal. The lower limit of the number of proxy connections is 20. The upper limit of the number of proxy connections depends on the specifications of the instance master node.
+         */
+        readWriteProxyConnection: number;
+        /**
+         * Whether the endpoint sends write requests to the write node (currently only the master node is a write node). Values: true: Yes(Default). false: No.
+         */
+        writeNodeHaltWriting: boolean;
     }
 
     export interface InstancesInstanceEndpointAddress {
         /**
-         * DNS Visibility.
+         * Address that can be accessed across regions.
+         */
+        crossRegionDomain: string;
+        /**
+         * Whether to enable public network resolution. Values: false: Default value. PrivateZone of Volcano Engine. true: Private and public network resolution of Volcano Engine.
          */
         dnsVisibility: boolean;
         /**
@@ -34978,13 +37086,25 @@ export namespace rds_postgresql {
          */
         domain: string;
         /**
+         * The type of private network address. Values: LocalDomain: Local domain name. CrossRegionDomain: Domains accessible across regions.
+         */
+        domainVisibilitySetting: string;
+        /**
          * The ID of the EIP, only valid for Public addresses.
          */
         eipId: string;
         /**
+         * Address IP protocol, IPv4 or IPv6.
+         */
+        internetProtocol: string;
+        /**
          * The IP Address.
          */
         ipAddress: string;
+        /**
+         * The IPv6 Address.
+         */
+        ipv6Address: string;
         /**
          * Network address type, temporarily Private, Public, PublicService.
          */
@@ -35087,6 +37207,234 @@ export namespace rds_postgresql {
         value: string;
     }
 
+    export interface ParameterTemplateApplyDiffsParameter {
+        /**
+         * The name of the parameter.
+         */
+        name: string;
+        /**
+         * The running value defined for this parameter in the parameter template.
+         */
+        newValue: string;
+        /**
+         * The current running value of this parameter in the instance.
+         */
+        oldValue: string;
+        /**
+         * Indicates whether a restart is required after the parameter is modified.
+         */
+        restart: boolean;
+    }
+
+    export interface ParameterTemplateTemplateParam {
+        /**
+         * The name of the parameter.
+         */
+        name: string;
+        /**
+         * The value of the parameter.
+         */
+        value: string;
+    }
+
+    export interface ParameterTemplatesTemplateInfo {
+        /**
+         * Account ID.
+         */
+        accountId: string;
+        /**
+         * Creation time of the parameter template. The format is yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+         */
+        createTime: string;
+        /**
+         * Indicates whether the parameter template change requires a restart.
+         */
+        needRestart: boolean;
+        /**
+         * Number of parameters in the parameter template.
+         */
+        parameterNum: number;
+        /**
+         * Classification of parameter templates. The current value can only be DBEngine.
+         */
+        templateCategory: string;
+        /**
+         * Description information of the parameter template.
+         */
+        templateDesc: string;
+        /**
+         * Parameter template ID.
+         */
+        templateId: string;
+        /**
+         * Parameter template name.
+         */
+        templateName: string;
+        /**
+         * Parameter configuration of the parameter template.
+         */
+        templateParams: outputs.rds_postgresql.ParameterTemplatesTemplateInfoTemplateParam[];
+        /**
+         * The source of the parameter template. The current value can only be User.
+         */
+        templateSource: string;
+        /**
+         * The type of the parameter template. The current value can only be PostgreSQL.
+         */
+        templateType: string;
+        /**
+         * PostgreSQL compatible versions. The current value can only be PostgreSQL_11/12/13/14/15/16/17.
+         */
+        templateTypeVersion: string;
+        /**
+         * Update time of the parameter template. The format is yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+         */
+        updateTime: string;
+    }
+
+    export interface ParameterTemplatesTemplateInfoTemplateParam {
+        /**
+         * The value range of the parameter.
+         */
+        checkingCode: string;
+        /**
+         * Parameter default value. Refers to the default value provided in the default template corresponding to this instance.
+         */
+        defaultValue: string;
+        /**
+         * The description of the parameter in English.
+         */
+        description: string;
+        /**
+         * The description of the parameter in Chinese.
+         */
+        descriptionZh: string;
+        /**
+         * Indicates whether a restart is required after the parameter is modified.
+         */
+        forceRestart: boolean;
+        /**
+         * The name of the parameter.
+         */
+        name: string;
+        /**
+         * The type of the parameter.
+         */
+        type: string;
+        /**
+         * The current value of the parameter.
+         */
+        value: string;
+    }
+
+    export interface PlannedEventsPlannedEvent {
+        /**
+         * The impact of operation and maintenance events on the business.
+         */
+        businessImpact: string;
+        /**
+         * Event ID.
+         */
+        eventId: string;
+        /**
+         * Event type. Values: VersionUpgrade, HostOffline.
+         */
+        eventType: string;
+        /**
+         * The id of the PostgreSQL instance.
+         */
+        instanceId: string;
+        /**
+         * The name of PostgreSQL instance.
+         */
+        instanceName: string;
+        /**
+         * Maximum delay time. Format: yyyy-MM-ddTHH:mm:ss.sssZ (UTC).
+         */
+        maxDelayTime: string;
+        /**
+         * Planned execution time. Format: yyyy-MM-ddTHH:mm:ss.sssZ (UTC).
+         */
+        plannedBeginTime: string;
+        /**
+         * Reason for the planned event.
+         */
+        plannedEventReason: string;
+        /**
+         * Planned switch start time. Format: yyyy-MM-ddTHH:mm:ss.sssZ (UTC).
+         */
+        plannedSwitchBeginTime: string;
+        /**
+         * Planned switch end time. Format: yyyy-MM-ddTHH:mm:ss.sssZ (UTC).
+         */
+        plannedSwitchEndTime: string;
+        /**
+         * Region.
+         */
+        region: string;
+        /**
+         * Operation event status. Values: Canceled, WaitStart, WaitSwitch, Running, Running_BeforeSwitch, Running_Switching, Running_AfterSwitch, Success, Failed, Timeout, Rollbacking, RollbackFailed.
+         */
+        status: string;
+    }
+
+    export interface RegionsRegion {
+        /**
+         * The ID of the region.
+         */
+        regionId: string;
+        /**
+         * The name of the region.
+         */
+        regionName: string;
+    }
+
+    export interface ReplicationSlotsReplicationSlot {
+        /**
+         * The database where the replication slot is located.
+         */
+        dataBase?: string;
+        /**
+         * The ip address.
+         */
+        ipAddress?: string;
+        /**
+         * The name of the plugin used by the logical replication slot to parse WAL logs.
+         */
+        plugin: string;
+        /**
+         * The name of the slot.
+         */
+        slotName: string;
+        /**
+         * The status of the replication slot: ACTIVE or INACTIVE.
+         */
+        slotStatus?: string;
+        /**
+         * The type of the slot: physical or logical.
+         */
+        slotType: string;
+        /**
+         * Whether the slot is temporary.
+         */
+        temporary?: boolean;
+        /**
+         * The cumulative WAL log volume corresponding to this replication slot. The unit is Byte.
+         */
+        walDelay?: number;
+    }
+
+    export interface RestoreBackupDatabase {
+        /**
+         * Original database name.
+         */
+        dbName: string;
+        /**
+         * New database name.
+         */
+        newDbName: string;
+    }
+
     export interface SchemasSchema {
         /**
          * The name of the database.
@@ -35100,6 +37448,21 @@ export namespace rds_postgresql {
          * The name of the schema.
          */
         schemaName: string;
+    }
+
+    export interface ZonesZone {
+        /**
+         * The description of the zone.
+         */
+        description: string;
+        /**
+         * The id of the zone.
+         */
+        zoneId: string;
+        /**
+         * The name of the zone.
+         */
+        zoneName: string;
     }
 
 }
@@ -43586,6 +45949,21 @@ export namespace tos {
         responseVary: boolean;
     }
 
+    export interface BucketCustomdomainCustomDomainRule {
+        /**
+         * The certificate id.
+         */
+        certId?: string;
+        /**
+         * The custom domain name for the bucket.
+         */
+        domain: string;
+        /**
+         * Custom domain access protocol.tos|s3.
+         */
+        protocol?: string;
+    }
+
     export interface BucketEncryptionRule {
         /**
          * The server side encryption configuration.
@@ -43745,6 +46123,377 @@ export namespace tos {
         frequency: string;
     }
 
+    export interface BucketLifecycleRule {
+        /**
+         * The abort incomplete multipart upload configuration of the lifecycle rule.
+         */
+        abortIncompleteMultipartUpload?: outputs.tos.BucketLifecycleRuleAbortIncompleteMultipartUpload;
+        /**
+         * The expiration configuration of the lifecycle rule.
+         */
+        expiration?: outputs.tos.BucketLifecycleRuleExpiration;
+        /**
+         * The filter configuration of the lifecycle rule.
+         */
+        filter?: outputs.tos.BucketLifecycleRuleFilter;
+        /**
+         * The ID of the lifecycle rule.
+         */
+        id: string;
+        /**
+         * The non-current version expiration configuration of the lifecycle rule.
+         */
+        nonCurrentVersionExpiration?: outputs.tos.BucketLifecycleRuleNonCurrentVersionExpiration;
+        /**
+         * The non-current version transition configuration of the lifecycle rule.
+         */
+        nonCurrentVersionTransitions?: outputs.tos.BucketLifecycleRuleNonCurrentVersionTransition[];
+        /**
+         * The prefix of the lifecycle rule.
+         */
+        prefix?: string;
+        /**
+         * The status of the lifecycle rule. Valid values: Enabled, Disabled.
+         */
+        status: string;
+        /**
+         * The tag filters.
+         */
+        tags?: outputs.tos.BucketLifecycleRuleTag[];
+        /**
+         * The transition configuration of the lifecycle rule.
+         */
+        transitions?: outputs.tos.BucketLifecycleRuleTransition[];
+    }
+
+    export interface BucketLifecycleRuleAbortIncompleteMultipartUpload {
+        /**
+         * The number of days after initiation when the incomplete multipart upload should be aborted.
+         */
+        daysAfterInitiation: number;
+    }
+
+    export interface BucketLifecycleRuleExpiration {
+        /**
+         * The date when the rule takes effect. Format: 2023-01-01T00:00:00.000Z.
+         */
+        date?: string;
+        /**
+         * The number of days after object creation when the rule takes effect.
+         */
+        days?: number;
+    }
+
+    export interface BucketLifecycleRuleFilter {
+        /**
+         * Whether to enable equal conditions. The value can only be "Enabled" or "Disabled". If not configured, it will default to "Disabled".
+         */
+        greaterThanIncludeEqual?: string;
+        /**
+         * Whether to enable equal conditions. The value can only be "Enabled" or "Disabled". If not configured, it will default to "Disabled".
+         */
+        lessThanIncludeEqual?: string;
+        /**
+         * The minimum object size in bytes for the rule to apply.
+         */
+        objectSizeGreaterThan?: number;
+        /**
+         * The maximum object size in bytes for the rule to apply.
+         */
+        objectSizeLessThan?: number;
+    }
+
+    export interface BucketLifecycleRuleNonCurrentVersionExpiration {
+        /**
+         * The number of days after object creation when the non-current version expiration takes effect.
+         */
+        nonCurrentDays: number;
+    }
+
+    export interface BucketLifecycleRuleNonCurrentVersionTransition {
+        /**
+         * The number of days after object creation when the non-current version transition takes effect.
+         */
+        nonCurrentDays: number;
+        /**
+         * The storage class to transition to. Valid values: IA, ARCHIVE, COLD_ARCHIVE.
+         */
+        storageClass: string;
+    }
+
+    export interface BucketLifecycleRuleTag {
+        /**
+         * The key of the tag.
+         */
+        key: string;
+        /**
+         * The value of the tag.
+         */
+        value: string;
+    }
+
+    export interface BucketLifecycleRuleTransition {
+        /**
+         * The date when the transition takes effect. Format: 2023-01-01T00:00:00.000Z.
+         */
+        date?: string;
+        /**
+         * The number of days after object creation when the transition takes effect.
+         */
+        days?: number;
+        /**
+         * The storage class to transition to. Valid values: IA, ARCHIVE, COLD_ARCHIVE.
+         */
+        storageClass?: string;
+    }
+
+    export interface BucketLoggingLoggingEnabled {
+        /**
+         * The role that is assumed by TOS to write log objects to the target bucket.
+         */
+        role?: string;
+        /**
+         * The name of the target bucket where the access logs are stored.
+         */
+        targetBucket?: string;
+        /**
+         * The prefix for the log object keys.
+         */
+        targetPrefix?: string;
+    }
+
+    export interface BucketMirrorBackRule {
+        /**
+         * The condition of the mirrorBack rule.
+         */
+        condition?: outputs.tos.BucketMirrorBackRuleCondition;
+        /**
+         * The ID of the mirrorBack rule.
+         */
+        id: string;
+        /**
+         * The redirect configuration of the mirrorBack rule.
+         */
+        redirect?: outputs.tos.BucketMirrorBackRuleRedirect;
+    }
+
+    export interface BucketMirrorBackRuleCondition {
+        /**
+         * Only when a specific domain name is supported will the origin retrieval be triggered.
+         */
+        allowHosts?: string[];
+        /**
+         * Error code for triggering the source re-fetch function.
+         */
+        httpCode: number;
+        /**
+         * The type of request that triggers the re-sourcing process.
+         */
+        httpMethods?: string[];
+        /**
+         * The prefix of the object name that matches the source object.
+         */
+        keyPrefix?: string;
+        /**
+         * The suffix of the object name that matches the source object.
+         */
+        keySuffix?: string;
+    }
+
+    export interface BucketMirrorBackRuleRedirect {
+        /**
+         * The fetch header to metadata rules.
+         */
+        fetchHeaderToMetaDataRules?: outputs.tos.BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRule[];
+        /**
+         * Whether to fetch source on redirect.
+         */
+        fetchSourceOnRedirect?: boolean;
+        /**
+         * Whether to fetch source on redirect with query.
+         */
+        fetchSourceOnRedirectWithQuery?: boolean;
+        /**
+         * Whether to follow redirects.
+         */
+        followRedirect?: boolean;
+        /**
+         * The mirror header configuration.
+         */
+        mirrorHeaders?: outputs.tos.BucketMirrorBackRuleRedirectMirrorHeader[];
+        /**
+         * Whether to pass query parameters.
+         */
+        passQuery?: boolean;
+        /**
+         * The private source configuration.
+         */
+        privateSources?: outputs.tos.BucketMirrorBackRuleRedirectPrivateSource[];
+        /**
+         * The public source configuration.
+         */
+        publicSource?: outputs.tos.BucketMirrorBackRuleRedirectPublicSource;
+        /**
+         * The type of redirect.
+         */
+        redirectType?: string;
+        /**
+         * The transform configuration.
+         */
+        transform?: outputs.tos.BucketMirrorBackRuleRedirectTransform;
+    }
+
+    export interface BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRule {
+        /**
+         * The metadata suffix.
+         */
+        metaDataSuffix: string;
+        /**
+         * The source header.
+         */
+        sourceHeader: string;
+    }
+
+    export interface BucketMirrorBackRuleRedirectMirrorHeader {
+        /**
+         * Whether to pass all headers.
+         */
+        passAll?: boolean;
+        /**
+         * The headers to pass.
+         */
+        passes?: string[];
+        /**
+         * The headers to remove.
+         */
+        removes?: string[];
+        /**
+         * The mirror header configuration.
+         */
+        sets?: outputs.tos.BucketMirrorBackRuleRedirectMirrorHeaderSet[];
+    }
+
+    export interface BucketMirrorBackRuleRedirectMirrorHeaderSet {
+        /**
+         * The key of the header.
+         */
+        key?: string;
+        /**
+         * The value of the header.
+         */
+        value?: string;
+    }
+
+    export interface BucketMirrorBackRuleRedirectPrivateSource {
+        /**
+         * The source endpoint.
+         */
+        sourceEndpoints?: outputs.tos.BucketMirrorBackRuleRedirectPrivateSourceSourceEndpoint[];
+    }
+
+    export interface BucketMirrorBackRuleRedirectPrivateSourceSourceEndpoint {
+        /**
+         * The follower endpoints.
+         */
+        followers?: outputs.tos.BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollower[];
+        /**
+         * The primary endpoints.
+         */
+        primaries?: outputs.tos.BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimary[];
+    }
+
+    export interface BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollower {
+        /**
+         * The bucket name.
+         */
+        bucketName?: string;
+        /**
+         * The credential provider.
+         */
+        credentialProvider?: outputs.tos.BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProvider;
+        /**
+         * The endpoint.
+         */
+        endpoint?: string;
+    }
+
+    export interface BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProvider {
+        /**
+         * The role.
+         */
+        role?: string;
+    }
+
+    export interface BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimary {
+        /**
+         * The bucket name.
+         */
+        bucketName?: string;
+        /**
+         * The credential provider.
+         */
+        credentialProvider?: outputs.tos.BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProvider;
+        /**
+         * The endpoint.
+         */
+        endpoint?: string;
+    }
+
+    export interface BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProvider {
+        /**
+         * The role.
+         */
+        role?: string;
+    }
+
+    export interface BucketMirrorBackRuleRedirectPublicSource {
+        /**
+         * Whether the endpoint is fixed.
+         */
+        fixedEndpoint?: boolean;
+        /**
+         * The source endpoint.
+         */
+        sourceEndpoint?: outputs.tos.BucketMirrorBackRuleRedirectPublicSourceSourceEndpoint;
+    }
+
+    export interface BucketMirrorBackRuleRedirectPublicSourceSourceEndpoint {
+        /**
+         * The follower endpoints.
+         */
+        followers?: string[];
+        /**
+         * The primary endpoints.
+         */
+        primaries?: string[];
+    }
+
+    export interface BucketMirrorBackRuleRedirectTransform {
+        /**
+         * The replace key prefix configuration.
+         */
+        replaceKeyPrefix?: outputs.tos.BucketMirrorBackRuleRedirectTransformReplaceKeyPrefix;
+        /**
+         * The key prefix to add.
+         */
+        withKeyPrefix?: string;
+        /**
+         * The key suffix to add.
+         */
+        withKeySuffix?: string;
+    }
+
+    export interface BucketMirrorBackRuleRedirectTransformReplaceKeyPrefix {
+        /**
+         * The key prefix to replace.
+         */
+        keyPrefix?: string;
+        /**
+         * The value to replace with.
+         */
+        replaceWith?: string;
+    }
+
     export interface BucketNotificationRules {
         /**
          * The destination info of the notification.
@@ -43818,6 +46567,28 @@ export namespace tos {
         permission: string;
     }
 
+    export interface BucketObjectLockConfigurationRule {
+        /**
+         * The default retention configuration.
+         */
+        defaultRetention: outputs.tos.BucketObjectLockConfigurationRuleDefaultRetention;
+    }
+
+    export interface BucketObjectLockConfigurationRuleDefaultRetention {
+        /**
+         * The number of days for the default retention period.
+         */
+        days?: number;
+        /**
+         * The default retention mode. Valid values: COMPLIANCE, GOVERNANCE.
+         */
+        mode: string;
+        /**
+         * The number of years for the default retention period.
+         */
+        years?: number;
+    }
+
     export interface BucketObjectTag {
         /**
          * The Key of Tags.
@@ -43867,6 +46638,63 @@ export namespace tos {
         ttl?: number;
     }
 
+    export interface BucketReplicationRule {
+        /**
+         * The access control translation configuration of the replication rule.
+         */
+        accessControlTranslation: outputs.tos.BucketReplicationRuleAccessControlTranslation;
+        /**
+         * The destination configuration of the replication rule.
+         */
+        destination: outputs.tos.BucketReplicationRuleDestination;
+        /**
+         * Whether to replicate historical objects. Valid values: Enabled, Disabled.
+         */
+        historicalObjectReplication?: string;
+        /**
+         * The ID of the replication rule.
+         */
+        id?: string;
+        /**
+         * The prefix set for the replication rule.
+         */
+        prefixSets?: string[];
+        /**
+         * The status of the replication rule. Valid values: Enabled, Disabled.
+         */
+        status: string;
+        /**
+         * Specify the data transmission link to be used for cross-regional replication. Valid values: internal, tos_acc.
+         */
+        transferType?: string;
+    }
+
+    export interface BucketReplicationRuleAccessControlTranslation {
+        /**
+         * The owner of the destination object.
+         */
+        owner?: string;
+    }
+
+    export interface BucketReplicationRuleDestination {
+        /**
+         * The destination bucket name.
+         */
+        bucket: string;
+        /**
+         * The destination bucket location.
+         */
+        location: string;
+        /**
+         * The storage class for the destination bucket. Valid values: STANDARD, IA, ARCHIVE, COLD_ARCHIVE.
+         */
+        storageClass?: string;
+        /**
+         * The storage class inherit directive. Valid values: COPY, OVERRIDE.
+         */
+        storageClassInheritDirective?: string;
+    }
+
     export interface BucketTag {
         /**
          * The Key of Tags.
@@ -43878,7 +46706,85 @@ export namespace tos {
         value: string;
     }
 
+    export interface BucketWebsiteErrorDocument {
+        /**
+         * The key of the error document object, e.g., error.html.
+         */
+        key?: string;
+    }
+
+    export interface BucketWebsiteIndexDocument {
+        /**
+         * The suffix of the index document, e.g., index.html.
+         */
+        suffix: string;
+        /**
+         * Whether to support subdirectory indexing. Default is false.
+         */
+        supportSubDir?: boolean;
+    }
+
+    export interface BucketWebsiteRedirectAllRequestsTo {
+        /**
+         * The target host name for redirect.
+         */
+        hostName?: string;
+        /**
+         * The protocol for redirect. Valid values: http, https.
+         */
+        protocol?: string;
+    }
+
+    export interface BucketWebsiteRoutingRule {
+        /**
+         * The condition for the routing rule.
+         */
+        condition: outputs.tos.BucketWebsiteRoutingRuleCondition;
+        /**
+         * The redirect configuration for the routing rule.
+         */
+        redirect: outputs.tos.BucketWebsiteRoutingRuleRedirect;
+    }
+
+    export interface BucketWebsiteRoutingRuleCondition {
+        /**
+         * The HTTP error code that must match for the rule to apply, e.g., 404.
+         */
+        httpErrorCodeReturnedEquals?: number;
+        /**
+         * The key prefix that must match for the rule to apply.
+         */
+        keyPrefixEquals?: string;
+    }
+
+    export interface BucketWebsiteRoutingRuleRedirect {
+        /**
+         * The host name to redirect to.
+         */
+        hostName?: string;
+        /**
+         * The HTTP redirect code to use, e.g., 301, 302.
+         */
+        httpRedirectCode?: number;
+        /**
+         * The protocol to use for the redirect. Valid values: http, https.
+         */
+        protocol?: string;
+        /**
+         * The key prefix to replace the original key prefix with.
+         */
+        replaceKeyPrefixWith?: string;
+        /**
+         * The key to replace the original key with.
+         */
+        replaceKeyWith?: string;
+    }
+
     export interface BucketsBucket {
+        /**
+         * The bucket type of the TOS bucket.
+         */
+        bucketType: string;
         /**
          * The create date of the TOS bucket.
          */
@@ -43923,6 +46829,10 @@ export namespace tos {
          * @deprecated The Field is Deprecated.
          */
         prefix: string;
+        /**
+         * The project of the TOS bucket.
+         */
+        projectName: string;
     }
 
     export interface GetBucketInventoriesInventoryConfiguration {
@@ -44032,6 +46942,10 @@ export namespace tos {
 
     export interface GetBucketsBucket {
         /**
+         * The bucket type of the TOS bucket.
+         */
+        bucketType: string;
+        /**
          * The create date of the TOS bucket.
          */
         creationDate: string;
@@ -44075,6 +46989,10 @@ export namespace tos {
          * @deprecated The Field is Deprecated.
          */
         prefix: string;
+        /**
+         * The project of the TOS bucket.
+         */
+        projectName: string;
     }
 
 }
@@ -59131,6 +62049,10 @@ export namespace vpc {
          */
         updateTime: string;
         /**
+         * The user cidr block list of VPC.
+         */
+        userCidrBlocks: string[];
+        /**
          * The ID of VPC.
          */
         vpcId: string;
@@ -60860,6 +63782,10 @@ export namespace vpc {
          * The update time of VPC.
          */
         updateTime: string;
+        /**
+         * The user cidr block list of VPC.
+         */
+        userCidrBlocks: string[];
         /**
          * The ID of VPC.
          */

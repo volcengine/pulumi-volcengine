@@ -22,7 +22,7 @@ class SchemaArgs:
         The set of arguments for constructing a Schema resource.
         :param pulumi.Input[str] db_name: The name of the database.
         :param pulumi.Input[str] instance_id: The id of the postgresql instance.
-        :param pulumi.Input[str] owner: The owner of the schema.
+        :param pulumi.Input[str] owner: The owner of the schema.The instance read-only account, a high-privilege account with DDL permissions disabled, or a normal account with DDL permissions disabled cannot be used as the owner of the schema.
         :param pulumi.Input[str] schema_name: The name of the schema.
         """
         pulumi.set(__self__, "db_name", db_name)
@@ -58,7 +58,7 @@ class SchemaArgs:
     @pulumi.getter
     def owner(self) -> pulumi.Input[str]:
         """
-        The owner of the schema.
+        The owner of the schema.The instance read-only account, a high-privilege account with DDL permissions disabled, or a normal account with DDL permissions disabled cannot be used as the owner of the schema.
         """
         return pulumi.get(self, "owner")
 
@@ -90,7 +90,7 @@ class _SchemaState:
         Input properties used for looking up and filtering Schema resources.
         :param pulumi.Input[str] db_name: The name of the database.
         :param pulumi.Input[str] instance_id: The id of the postgresql instance.
-        :param pulumi.Input[str] owner: The owner of the schema.
+        :param pulumi.Input[str] owner: The owner of the schema.The instance read-only account, a high-privilege account with DDL permissions disabled, or a normal account with DDL permissions disabled cannot be used as the owner of the schema.
         :param pulumi.Input[str] schema_name: The name of the schema.
         """
         if db_name is not None:
@@ -130,7 +130,7 @@ class _SchemaState:
     @pulumi.getter
     def owner(self) -> Optional[pulumi.Input[str]]:
         """
-        The owner of the schema.
+        The owner of the schema.The instance read-only account, a high-privilege account with DDL permissions disabled, or a normal account with DDL permissions disabled cannot be used as the owner of the schema.
         """
         return pulumi.get(self, "owner")
 
@@ -240,7 +240,7 @@ class Schema(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] db_name: The name of the database.
         :param pulumi.Input[str] instance_id: The id of the postgresql instance.
-        :param pulumi.Input[str] owner: The owner of the schema.
+        :param pulumi.Input[str] owner: The owner of the schema.The instance read-only account, a high-privilege account with DDL permissions disabled, or a normal account with DDL permissions disabled cannot be used as the owner of the schema.
         :param pulumi.Input[str] schema_name: The name of the schema.
         """
         ...
@@ -387,7 +387,7 @@ class Schema(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] db_name: The name of the database.
         :param pulumi.Input[str] instance_id: The id of the postgresql instance.
-        :param pulumi.Input[str] owner: The owner of the schema.
+        :param pulumi.Input[str] owner: The owner of the schema.The instance read-only account, a high-privilege account with DDL permissions disabled, or a normal account with DDL permissions disabled cannot be used as the owner of the schema.
         :param pulumi.Input[str] schema_name: The name of the schema.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -420,7 +420,7 @@ class Schema(pulumi.CustomResource):
     @pulumi.getter
     def owner(self) -> pulumi.Output[str]:
         """
-        The owner of the schema.
+        The owner of the schema.The instance read-only account, a high-privilege account with DDL permissions disabled, or a normal account with DDL permissions disabled cannot be used as the owner of the schema.
         """
         return pulumi.get(self, "owner")
 

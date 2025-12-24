@@ -14,6 +14,10 @@ namespace Pulumi.Volcengine.Tos.Outputs
     public sealed class GetBucketsBucketResult
     {
         /// <summary>
+        /// The bucket type of the TOS bucket.
+        /// </summary>
+        public readonly string BucketType;
+        /// <summary>
         /// The create date of the TOS bucket.
         /// </summary>
         public readonly string CreationDate;
@@ -49,9 +53,15 @@ namespace Pulumi.Volcengine.Tos.Outputs
         /// (**Deprecated**) The Field is Deprecated. The prefix the TOS bucket.
         /// </summary>
         public readonly string Prefix;
+        /// <summary>
+        /// The project of the TOS bucket.
+        /// </summary>
+        public readonly string ProjectName;
 
         [OutputConstructor]
         private GetBucketsBucketResult(
+            string bucketType,
+
             string creationDate,
 
             string extranetEndpoint,
@@ -68,8 +78,11 @@ namespace Pulumi.Volcengine.Tos.Outputs
 
             string name,
 
-            string prefix)
+            string prefix,
+
+            string projectName)
         {
+            BucketType = bucketType;
             CreationDate = creationDate;
             ExtranetEndpoint = extranetEndpoint;
             IntranetEndpoint = intranetEndpoint;
@@ -79,6 +92,7 @@ namespace Pulumi.Volcengine.Tos.Outputs
             MaxKeys = maxKeys;
             Name = name;
             Prefix = prefix;
+            ProjectName = projectName;
         }
     }
 }

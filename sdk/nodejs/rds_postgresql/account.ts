@@ -16,14 +16,15 @@ import * as utilities from "../utilities";
  *     accountName: "acc-test-account",
  *     accountPassword: "93c@*****!ab12",
  *     accountType: "Super",
- *     instanceId: "postgres-954*****7233",
+ *     instanceId: "postgres-0ac38a79fe35",
  * });
  * const foo1 = new volcengine.rds_postgresql.Account("foo1", {
  *     accountName: "acc-test-account1",
  *     accountPassword: "9wc@****b12",
- *     accountPrivileges: "Inherit,Login,CreateRole,CreateDB",
+ *     accountPrivileges: "Login,Inherit",
  *     accountType: "Normal",
- *     instanceId: "postgres-95*****7233",
+ *     instanceId: "postgres-0ac38a79fe35",
+ *     notAllowPrivileges: ["DDL"],
  * });
  * ```
  *
@@ -72,9 +73,9 @@ export class Account extends pulumi.CustomResource {
      */
     public readonly accountPassword!: pulumi.Output<string>;
     /**
-     * The privilege information of account. When the account type is a super account, there is no need to pass in this parameter, and all privileges are supported by default. When the account type is a normal account, this parameter can be passed in, the default values are Login and Inherit.
+     * The privilege information of account. When the account type is a super account, there is no need to pass in this parameter, and all privileges are supported by default. When the account type is a normal account, this parameter can be passed in, the default values are Login and Inherit.When the account type is an instance read-only account, this parameter is not required to be passed in, as this account type does not support permission granting.
      */
-    public readonly accountPrivileges!: pulumi.Output<string>;
+    public readonly accountPrivileges!: pulumi.Output<string | undefined>;
     /**
      * The status of the database account.
      */
@@ -89,6 +90,10 @@ export class Account extends pulumi.CustomResource {
      * The ID of the RDS instance.
      */
     public readonly instanceId!: pulumi.Output<string>;
+    /**
+     * The permissions to be disabled for the account. Only the DDL permission is supported for the moment. This field can only be passed in for high-privilege accounts or normal accounts, i.e., when the accountType is set to Super or Normal.
+     */
+    public readonly notAllowPrivileges!: pulumi.Output<string[] | undefined>;
 
     /**
      * Create a Account resource with the given unique name, arguments, and options.
@@ -109,6 +114,7 @@ export class Account extends pulumi.CustomResource {
             resourceInputs["accountStatus"] = state ? state.accountStatus : undefined;
             resourceInputs["accountType"] = state ? state.accountType : undefined;
             resourceInputs["instanceId"] = state ? state.instanceId : undefined;
+            resourceInputs["notAllowPrivileges"] = state ? state.notAllowPrivileges : undefined;
         } else {
             const args = argsOrState as AccountArgs | undefined;
             if ((!args || args.accountName === undefined) && !opts.urn) {
@@ -128,6 +134,7 @@ export class Account extends pulumi.CustomResource {
             resourceInputs["accountPrivileges"] = args ? args.accountPrivileges : undefined;
             resourceInputs["accountType"] = args ? args.accountType : undefined;
             resourceInputs["instanceId"] = args ? args.instanceId : undefined;
+            resourceInputs["notAllowPrivileges"] = args ? args.notAllowPrivileges : undefined;
             resourceInputs["accountStatus"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -150,7 +157,7 @@ export interface AccountState {
      */
     accountPassword?: pulumi.Input<string>;
     /**
-     * The privilege information of account. When the account type is a super account, there is no need to pass in this parameter, and all privileges are supported by default. When the account type is a normal account, this parameter can be passed in, the default values are Login and Inherit.
+     * The privilege information of account. When the account type is a super account, there is no need to pass in this parameter, and all privileges are supported by default. When the account type is a normal account, this parameter can be passed in, the default values are Login and Inherit.When the account type is an instance read-only account, this parameter is not required to be passed in, as this account type does not support permission granting.
      */
     accountPrivileges?: pulumi.Input<string>;
     /**
@@ -167,6 +174,10 @@ export interface AccountState {
      * The ID of the RDS instance.
      */
     instanceId?: pulumi.Input<string>;
+    /**
+     * The permissions to be disabled for the account. Only the DDL permission is supported for the moment. This field can only be passed in for high-privilege accounts or normal accounts, i.e., when the accountType is set to Super or Normal.
+     */
+    notAllowPrivileges?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 /**
@@ -182,7 +193,7 @@ export interface AccountArgs {
      */
     accountPassword: pulumi.Input<string>;
     /**
-     * The privilege information of account. When the account type is a super account, there is no need to pass in this parameter, and all privileges are supported by default. When the account type is a normal account, this parameter can be passed in, the default values are Login and Inherit.
+     * The privilege information of account. When the account type is a super account, there is no need to pass in this parameter, and all privileges are supported by default. When the account type is a normal account, this parameter can be passed in, the default values are Login and Inherit.When the account type is an instance read-only account, this parameter is not required to be passed in, as this account type does not support permission granting.
      */
     accountPrivileges?: pulumi.Input<string>;
     /**
@@ -195,4 +206,8 @@ export interface AccountArgs {
      * The ID of the RDS instance.
      */
     instanceId: pulumi.Input<string>;
+    /**
+     * The permissions to be disabled for the account. Only the DDL permission is supported for the moment. This field can only be passed in for high-privilege accounts or normal accounts, i.e., when the accountType is set to Super or Normal.
+     */
+    notAllowPrivileges?: pulumi.Input<pulumi.Input<string>[]>;
 }

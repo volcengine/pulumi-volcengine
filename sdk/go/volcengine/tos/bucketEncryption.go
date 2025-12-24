@@ -29,7 +29,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			fooBucket, err := tos.NewBucket(ctx, "fooBucket", &tos.BucketArgs{
-//				BucketName:   pulumi.String("tf-acc-test-bucket"),
+//				BucketName:   pulumi.String("tf-acc-test-bucket1"),
 //				PublicAcl:    pulumi.String("private"),
 //				AzRedundancy: pulumi.String("multi-az"),
 //				ProjectName:  pulumi.String("default"),

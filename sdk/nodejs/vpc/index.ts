@@ -290,6 +290,11 @@ export const trafficMirrorTargets: typeof import("./trafficMirrorTargets").traff
 export const trafficMirrorTargetsOutput: typeof import("./trafficMirrorTargets").trafficMirrorTargetsOutput = null as any;
 utilities.lazyLoad(exports, ["trafficMirrorTargets","trafficMirrorTargetsOutput"], () => require("./trafficMirrorTargets"));
 
+export { UserCidrBlockAssociateArgs, UserCidrBlockAssociateState } from "./userCidrBlockAssociate";
+export type UserCidrBlockAssociate = import("./userCidrBlockAssociate").UserCidrBlockAssociate;
+export const UserCidrBlockAssociate: typeof import("./userCidrBlockAssociate").UserCidrBlockAssociate = null as any;
+utilities.lazyLoad(exports, ["UserCidrBlockAssociate"], () => require("./userCidrBlockAssociate"));
+
 export { VpcArgs, VpcState } from "./vpc";
 export type Vpc = import("./vpc").Vpc;
 export const Vpc: typeof import("./vpc").Vpc = null as any;
@@ -349,6 +354,8 @@ const _module = {
                 return new TrafficMirrorSession(name, <any>undefined, { urn })
             case "volcengine:vpc/trafficMirrorTarget:TrafficMirrorTarget":
                 return new TrafficMirrorTarget(name, <any>undefined, { urn })
+            case "volcengine:vpc/userCidrBlockAssociate:UserCidrBlockAssociate":
+                return new UserCidrBlockAssociate(name, <any>undefined, { urn })
             case "volcengine:vpc/vpc:Vpc":
                 return new Vpc(name, <any>undefined, { urn })
             default:
@@ -378,4 +385,5 @@ pulumi.runtime.registerResourceModule("volcengine", "vpc/trafficMirrorFilter", _
 pulumi.runtime.registerResourceModule("volcengine", "vpc/trafficMirrorFilterRule", _module)
 pulumi.runtime.registerResourceModule("volcengine", "vpc/trafficMirrorSession", _module)
 pulumi.runtime.registerResourceModule("volcengine", "vpc/trafficMirrorTarget", _module)
+pulumi.runtime.registerResourceModule("volcengine", "vpc/userCidrBlockAssociate", _module)
 pulumi.runtime.registerResourceModule("volcengine", "vpc/vpc", _module)

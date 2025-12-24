@@ -18,7 +18,8 @@ class AccountArgs:
                  account_password: pulumi.Input[str],
                  account_type: pulumi.Input[str],
                  instance_id: pulumi.Input[str],
-                 account_privileges: Optional[pulumi.Input[str]] = None):
+                 account_privileges: Optional[pulumi.Input[str]] = None,
+                 not_allow_privileges: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a Account resource.
         :param pulumi.Input[str] account_name: Database account name.
@@ -27,7 +28,8 @@ class AccountArgs:
                Super: A high-privilege account. Only one database account can be created for an instance.
                Normal: An account with ordinary privileges.
         :param pulumi.Input[str] instance_id: The ID of the RDS instance.
-        :param pulumi.Input[str] account_privileges: The privilege information of account. When the account type is a super account, there is no need to pass in this parameter, and all privileges are supported by default. When the account type is a normal account, this parameter can be passed in, the default values are Login and Inherit.
+        :param pulumi.Input[str] account_privileges: The privilege information of account. When the account type is a super account, there is no need to pass in this parameter, and all privileges are supported by default. When the account type is a normal account, this parameter can be passed in, the default values are Login and Inherit.When the account type is an instance read-only account, this parameter is not required to be passed in, as this account type does not support permission granting.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] not_allow_privileges: The permissions to be disabled for the account. Only the DDL permission is supported for the moment. This field can only be passed in for high-privilege accounts or normal accounts, i.e., when the account_type is set to Super or Normal.
         """
         pulumi.set(__self__, "account_name", account_name)
         pulumi.set(__self__, "account_password", account_password)
@@ -35,6 +37,8 @@ class AccountArgs:
         pulumi.set(__self__, "instance_id", instance_id)
         if account_privileges is not None:
             pulumi.set(__self__, "account_privileges", account_privileges)
+        if not_allow_privileges is not None:
+            pulumi.set(__self__, "not_allow_privileges", not_allow_privileges)
 
     @property
     @pulumi.getter(name="accountName")
@@ -90,13 +94,25 @@ class AccountArgs:
     @pulumi.getter(name="accountPrivileges")
     def account_privileges(self) -> Optional[pulumi.Input[str]]:
         """
-        The privilege information of account. When the account type is a super account, there is no need to pass in this parameter, and all privileges are supported by default. When the account type is a normal account, this parameter can be passed in, the default values are Login and Inherit.
+        The privilege information of account. When the account type is a super account, there is no need to pass in this parameter, and all privileges are supported by default. When the account type is a normal account, this parameter can be passed in, the default values are Login and Inherit.When the account type is an instance read-only account, this parameter is not required to be passed in, as this account type does not support permission granting.
         """
         return pulumi.get(self, "account_privileges")
 
     @account_privileges.setter
     def account_privileges(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "account_privileges", value)
+
+    @property
+    @pulumi.getter(name="notAllowPrivileges")
+    def not_allow_privileges(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The permissions to be disabled for the account. Only the DDL permission is supported for the moment. This field can only be passed in for high-privilege accounts or normal accounts, i.e., when the account_type is set to Super or Normal.
+        """
+        return pulumi.get(self, "not_allow_privileges")
+
+    @not_allow_privileges.setter
+    def not_allow_privileges(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "not_allow_privileges", value)
 
 
 @pulumi.input_type
@@ -107,17 +123,19 @@ class _AccountState:
                  account_privileges: Optional[pulumi.Input[str]] = None,
                  account_status: Optional[pulumi.Input[str]] = None,
                  account_type: Optional[pulumi.Input[str]] = None,
-                 instance_id: Optional[pulumi.Input[str]] = None):
+                 instance_id: Optional[pulumi.Input[str]] = None,
+                 not_allow_privileges: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering Account resources.
         :param pulumi.Input[str] account_name: Database account name.
         :param pulumi.Input[str] account_password: The password of the database account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
-        :param pulumi.Input[str] account_privileges: The privilege information of account. When the account type is a super account, there is no need to pass in this parameter, and all privileges are supported by default. When the account type is a normal account, this parameter can be passed in, the default values are Login and Inherit.
+        :param pulumi.Input[str] account_privileges: The privilege information of account. When the account type is a super account, there is no need to pass in this parameter, and all privileges are supported by default. When the account type is a normal account, this parameter can be passed in, the default values are Login and Inherit.When the account type is an instance read-only account, this parameter is not required to be passed in, as this account type does not support permission granting.
         :param pulumi.Input[str] account_status: The status of the database account.
         :param pulumi.Input[str] account_type: Database account type, value:
                Super: A high-privilege account. Only one database account can be created for an instance.
                Normal: An account with ordinary privileges.
         :param pulumi.Input[str] instance_id: The ID of the RDS instance.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] not_allow_privileges: The permissions to be disabled for the account. Only the DDL permission is supported for the moment. This field can only be passed in for high-privilege accounts or normal accounts, i.e., when the account_type is set to Super or Normal.
         """
         if account_name is not None:
             pulumi.set(__self__, "account_name", account_name)
@@ -131,6 +149,8 @@ class _AccountState:
             pulumi.set(__self__, "account_type", account_type)
         if instance_id is not None:
             pulumi.set(__self__, "instance_id", instance_id)
+        if not_allow_privileges is not None:
+            pulumi.set(__self__, "not_allow_privileges", not_allow_privileges)
 
     @property
     @pulumi.getter(name="accountName")
@@ -160,7 +180,7 @@ class _AccountState:
     @pulumi.getter(name="accountPrivileges")
     def account_privileges(self) -> Optional[pulumi.Input[str]]:
         """
-        The privilege information of account. When the account type is a super account, there is no need to pass in this parameter, and all privileges are supported by default. When the account type is a normal account, this parameter can be passed in, the default values are Login and Inherit.
+        The privilege information of account. When the account type is a super account, there is no need to pass in this parameter, and all privileges are supported by default. When the account type is a normal account, this parameter can be passed in, the default values are Login and Inherit.When the account type is an instance read-only account, this parameter is not required to be passed in, as this account type does not support permission granting.
         """
         return pulumi.get(self, "account_privileges")
 
@@ -206,6 +226,18 @@ class _AccountState:
     def instance_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "instance_id", value)
 
+    @property
+    @pulumi.getter(name="notAllowPrivileges")
+    def not_allow_privileges(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The permissions to be disabled for the account. Only the DDL permission is supported for the moment. This field can only be passed in for high-privilege accounts or normal accounts, i.e., when the account_type is set to Super or Normal.
+        """
+        return pulumi.get(self, "not_allow_privileges")
+
+    @not_allow_privileges.setter
+    def not_allow_privileges(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "not_allow_privileges", value)
+
 
 class Account(pulumi.CustomResource):
     @overload
@@ -217,6 +249,7 @@ class Account(pulumi.CustomResource):
                  account_privileges: Optional[pulumi.Input[str]] = None,
                  account_type: Optional[pulumi.Input[str]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
+                 not_allow_privileges: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
         Provides a resource to manage rds postgresql account
@@ -230,13 +263,14 @@ class Account(pulumi.CustomResource):
             account_name="acc-test-account",
             account_password="93c@*****!ab12",
             account_type="Super",
-            instance_id="postgres-954*****7233")
+            instance_id="postgres-0ac38a79fe35")
         foo1 = volcengine.rds_postgresql.Account("foo1",
             account_name="acc-test-account1",
             account_password="9wc@****b12",
-            account_privileges="Inherit,Login,CreateRole,CreateDB",
+            account_privileges="Login,Inherit",
             account_type="Normal",
-            instance_id="postgres-95*****7233")
+            instance_id="postgres-0ac38a79fe35",
+            not_allow_privileges=["DDL"])
         ```
 
         ## Import
@@ -251,11 +285,12 @@ class Account(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] account_name: Database account name.
         :param pulumi.Input[str] account_password: The password of the database account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
-        :param pulumi.Input[str] account_privileges: The privilege information of account. When the account type is a super account, there is no need to pass in this parameter, and all privileges are supported by default. When the account type is a normal account, this parameter can be passed in, the default values are Login and Inherit.
+        :param pulumi.Input[str] account_privileges: The privilege information of account. When the account type is a super account, there is no need to pass in this parameter, and all privileges are supported by default. When the account type is a normal account, this parameter can be passed in, the default values are Login and Inherit.When the account type is an instance read-only account, this parameter is not required to be passed in, as this account type does not support permission granting.
         :param pulumi.Input[str] account_type: Database account type, value:
                Super: A high-privilege account. Only one database account can be created for an instance.
                Normal: An account with ordinary privileges.
         :param pulumi.Input[str] instance_id: The ID of the RDS instance.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] not_allow_privileges: The permissions to be disabled for the account. Only the DDL permission is supported for the moment. This field can only be passed in for high-privilege accounts or normal accounts, i.e., when the account_type is set to Super or Normal.
         """
         ...
     @overload
@@ -275,13 +310,14 @@ class Account(pulumi.CustomResource):
             account_name="acc-test-account",
             account_password="93c@*****!ab12",
             account_type="Super",
-            instance_id="postgres-954*****7233")
+            instance_id="postgres-0ac38a79fe35")
         foo1 = volcengine.rds_postgresql.Account("foo1",
             account_name="acc-test-account1",
             account_password="9wc@****b12",
-            account_privileges="Inherit,Login,CreateRole,CreateDB",
+            account_privileges="Login,Inherit",
             account_type="Normal",
-            instance_id="postgres-95*****7233")
+            instance_id="postgres-0ac38a79fe35",
+            not_allow_privileges=["DDL"])
         ```
 
         ## Import
@@ -312,6 +348,7 @@ class Account(pulumi.CustomResource):
                  account_privileges: Optional[pulumi.Input[str]] = None,
                  account_type: Optional[pulumi.Input[str]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
+                 not_allow_privileges: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -334,6 +371,7 @@ class Account(pulumi.CustomResource):
             if instance_id is None and not opts.urn:
                 raise TypeError("Missing required property 'instance_id'")
             __props__.__dict__["instance_id"] = instance_id
+            __props__.__dict__["not_allow_privileges"] = not_allow_privileges
             __props__.__dict__["account_status"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["accountPassword"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
@@ -352,7 +390,8 @@ class Account(pulumi.CustomResource):
             account_privileges: Optional[pulumi.Input[str]] = None,
             account_status: Optional[pulumi.Input[str]] = None,
             account_type: Optional[pulumi.Input[str]] = None,
-            instance_id: Optional[pulumi.Input[str]] = None) -> 'Account':
+            instance_id: Optional[pulumi.Input[str]] = None,
+            not_allow_privileges: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'Account':
         """
         Get an existing Account resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -362,12 +401,13 @@ class Account(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] account_name: Database account name.
         :param pulumi.Input[str] account_password: The password of the database account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
-        :param pulumi.Input[str] account_privileges: The privilege information of account. When the account type is a super account, there is no need to pass in this parameter, and all privileges are supported by default. When the account type is a normal account, this parameter can be passed in, the default values are Login and Inherit.
+        :param pulumi.Input[str] account_privileges: The privilege information of account. When the account type is a super account, there is no need to pass in this parameter, and all privileges are supported by default. When the account type is a normal account, this parameter can be passed in, the default values are Login and Inherit.When the account type is an instance read-only account, this parameter is not required to be passed in, as this account type does not support permission granting.
         :param pulumi.Input[str] account_status: The status of the database account.
         :param pulumi.Input[str] account_type: Database account type, value:
                Super: A high-privilege account. Only one database account can be created for an instance.
                Normal: An account with ordinary privileges.
         :param pulumi.Input[str] instance_id: The ID of the RDS instance.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] not_allow_privileges: The permissions to be disabled for the account. Only the DDL permission is supported for the moment. This field can only be passed in for high-privilege accounts or normal accounts, i.e., when the account_type is set to Super or Normal.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -379,6 +419,7 @@ class Account(pulumi.CustomResource):
         __props__.__dict__["account_status"] = account_status
         __props__.__dict__["account_type"] = account_type
         __props__.__dict__["instance_id"] = instance_id
+        __props__.__dict__["not_allow_privileges"] = not_allow_privileges
         return Account(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -399,9 +440,9 @@ class Account(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="accountPrivileges")
-    def account_privileges(self) -> pulumi.Output[str]:
+    def account_privileges(self) -> pulumi.Output[Optional[str]]:
         """
-        The privilege information of account. When the account type is a super account, there is no need to pass in this parameter, and all privileges are supported by default. When the account type is a normal account, this parameter can be passed in, the default values are Login and Inherit.
+        The privilege information of account. When the account type is a super account, there is no need to pass in this parameter, and all privileges are supported by default. When the account type is a normal account, this parameter can be passed in, the default values are Login and Inherit.When the account type is an instance read-only account, this parameter is not required to be passed in, as this account type does not support permission granting.
         """
         return pulumi.get(self, "account_privileges")
 
@@ -430,4 +471,12 @@ class Account(pulumi.CustomResource):
         The ID of the RDS instance.
         """
         return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="notAllowPrivileges")
+    def not_allow_privileges(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        The permissions to be disabled for the account. Only the DDL permission is supported for the moment. This field can only be passed in for high-privilege accounts or normal accounts, i.e., when the account_type is set to Super or Normal.
+        """
+        return pulumi.get(self, "not_allow_privileges")
 

@@ -71,6 +71,20 @@ namespace Pulumi.Volcengine.Rds_postgresql.Inputs
         [Input("endpointType")]
         public Input<string>? EndpointType { get; set; }
 
+        /// <summary>
+        /// The distribution type of the read-only nodes, value:
+        /// Default: Default distribution.
+        /// Custom: Custom distribution.
+        /// </summary>
+        [Input("readOnlyNodeDistributionType")]
+        public Input<string>? ReadOnlyNodeDistributionType { get; set; }
+
+        /// <summary>
+        /// Maximum latency threshold of read-only node. If the latency of a read-only node exceeds this value, reading traffic won't be routed to this node. Unit: seconds.Values: 0~3600.Default value: 30.
+        /// </summary>
+        [Input("readOnlyNodeMaxDelayTime")]
+        public Input<int>? ReadOnlyNodeMaxDelayTime { get; set; }
+
         [Input("readOnlyNodeWeights")]
         private InputList<Inputs.InstanceEndpointReadOnlyNodeWeightGetArgs>? _readOnlyNodeWeights;
 
@@ -90,6 +104,18 @@ namespace Pulumi.Volcengine.Rds_postgresql.Inputs
         /// </summary>
         [Input("readWriteMode")]
         public Input<string>? ReadWriteMode { get; set; }
+
+        /// <summary>
+        /// After the terminal enables read-write separation, the number of proxy connections set for the terminal. The lower limit of the number of proxy connections is 20. The upper limit of the number of proxy connections depends on the specifications of the instance master node.
+        /// </summary>
+        [Input("readWriteProxyConnection")]
+        public Input<int>? ReadWriteProxyConnection { get; set; }
+
+        /// <summary>
+        /// Whether the endpoint sends write requests to the write node (currently only the master node is a write node). Values: true: Yes(Default). false: No.
+        /// </summary>
+        [Input("writeNodeHaltWriting")]
+        public Input<bool>? WriteNodeHaltWriting { get; set; }
 
         public InstanceEndpointGetArgs()
         {

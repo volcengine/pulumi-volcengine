@@ -17,22 +17,43 @@ __all__ = ['AllowlistArgs', 'Allowlist']
 class AllowlistArgs:
     def __init__(__self__, *,
                  allow_list_name: pulumi.Input[str],
-                 allow_lists: pulumi.Input[Sequence[pulumi.Input[str]]],
+                 allow_list_category: Optional[pulumi.Input[str]] = None,
                  allow_list_desc: Optional[pulumi.Input[str]] = None,
-                 allow_list_type: Optional[pulumi.Input[str]] = None):
+                 allow_list_type: Optional[pulumi.Input[str]] = None,
+                 allow_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 instance_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 security_group_bind_infos: Optional[pulumi.Input[Sequence[pulumi.Input['AllowlistSecurityGroupBindInfoArgs']]]] = None,
+                 update_security_group: Optional[pulumi.Input[bool]] = None,
+                 user_allow_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a Allowlist resource.
         :param pulumi.Input[str] allow_list_name: The name of the postgresql allow list.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_lists: Enter an IP address or a range of IP addresses in CIDR format.
+        :param pulumi.Input[str] allow_list_category: The category of the allow list. Valid values: Ordinary, Default. When this parameter is used as a request parameter, there is no default value.
         :param pulumi.Input[str] allow_list_desc: The description of the postgresql allow list.
         :param pulumi.Input[str] allow_list_type: The type of IP address in the whitelist. Currently only `IPv4` addresses are supported.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_lists: Enter an IP address or a range of IP addresses in CIDR format. This field cannot be used together with the user_allow_list field.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] instance_ids: IDs of PostgreSQL instances to unify allowlists. When set, creation uses UnifyNewAllowList to merge existing instance allowlists into a new one. Supports merging and generating allowlists of up to 300 instances.
+        :param pulumi.Input[Sequence[pulumi.Input['AllowlistSecurityGroupBindInfoArgs']]] security_group_bind_infos: The information of security groups to bind with the allow list.
+        :param pulumi.Input[bool] update_security_group: Whether to update the security groups bound to the allowlist when modifying.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] user_allow_lists: IP addresses outside security groups to be added to the allowlist. Cannot be used with allow_list.
         """
         pulumi.set(__self__, "allow_list_name", allow_list_name)
-        pulumi.set(__self__, "allow_lists", allow_lists)
+        if allow_list_category is not None:
+            pulumi.set(__self__, "allow_list_category", allow_list_category)
         if allow_list_desc is not None:
             pulumi.set(__self__, "allow_list_desc", allow_list_desc)
         if allow_list_type is not None:
             pulumi.set(__self__, "allow_list_type", allow_list_type)
+        if allow_lists is not None:
+            pulumi.set(__self__, "allow_lists", allow_lists)
+        if instance_ids is not None:
+            pulumi.set(__self__, "instance_ids", instance_ids)
+        if security_group_bind_infos is not None:
+            pulumi.set(__self__, "security_group_bind_infos", security_group_bind_infos)
+        if update_security_group is not None:
+            pulumi.set(__self__, "update_security_group", update_security_group)
+        if user_allow_lists is not None:
+            pulumi.set(__self__, "user_allow_lists", user_allow_lists)
 
     @property
     @pulumi.getter(name="allowListName")
@@ -47,16 +68,16 @@ class AllowlistArgs:
         pulumi.set(self, "allow_list_name", value)
 
     @property
-    @pulumi.getter(name="allowLists")
-    def allow_lists(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+    @pulumi.getter(name="allowListCategory")
+    def allow_list_category(self) -> Optional[pulumi.Input[str]]:
         """
-        Enter an IP address or a range of IP addresses in CIDR format.
+        The category of the allow list. Valid values: Ordinary, Default. When this parameter is used as a request parameter, there is no default value.
         """
-        return pulumi.get(self, "allow_lists")
+        return pulumi.get(self, "allow_list_category")
 
-    @allow_lists.setter
-    def allow_lists(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
-        pulumi.set(self, "allow_lists", value)
+    @allow_list_category.setter
+    def allow_list_category(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "allow_list_category", value)
 
     @property
     @pulumi.getter(name="allowListDesc")
@@ -82,25 +103,97 @@ class AllowlistArgs:
     def allow_list_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "allow_list_type", value)
 
+    @property
+    @pulumi.getter(name="allowLists")
+    def allow_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Enter an IP address or a range of IP addresses in CIDR format. This field cannot be used together with the user_allow_list field.
+        """
+        return pulumi.get(self, "allow_lists")
+
+    @allow_lists.setter
+    def allow_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "allow_lists", value)
+
+    @property
+    @pulumi.getter(name="instanceIds")
+    def instance_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        IDs of PostgreSQL instances to unify allowlists. When set, creation uses UnifyNewAllowList to merge existing instance allowlists into a new one. Supports merging and generating allowlists of up to 300 instances.
+        """
+        return pulumi.get(self, "instance_ids")
+
+    @instance_ids.setter
+    def instance_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "instance_ids", value)
+
+    @property
+    @pulumi.getter(name="securityGroupBindInfos")
+    def security_group_bind_infos(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AllowlistSecurityGroupBindInfoArgs']]]]:
+        """
+        The information of security groups to bind with the allow list.
+        """
+        return pulumi.get(self, "security_group_bind_infos")
+
+    @security_group_bind_infos.setter
+    def security_group_bind_infos(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AllowlistSecurityGroupBindInfoArgs']]]]):
+        pulumi.set(self, "security_group_bind_infos", value)
+
+    @property
+    @pulumi.getter(name="updateSecurityGroup")
+    def update_security_group(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to update the security groups bound to the allowlist when modifying.
+        """
+        return pulumi.get(self, "update_security_group")
+
+    @update_security_group.setter
+    def update_security_group(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "update_security_group", value)
+
+    @property
+    @pulumi.getter(name="userAllowLists")
+    def user_allow_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        IP addresses outside security groups to be added to the allowlist. Cannot be used with allow_list.
+        """
+        return pulumi.get(self, "user_allow_lists")
+
+    @user_allow_lists.setter
+    def user_allow_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "user_allow_lists", value)
+
 
 @pulumi.input_type
 class _AllowlistState:
     def __init__(__self__, *,
+                 allow_list_category: Optional[pulumi.Input[str]] = None,
                  allow_list_desc: Optional[pulumi.Input[str]] = None,
                  allow_list_name: Optional[pulumi.Input[str]] = None,
                  allow_list_type: Optional[pulumi.Input[str]] = None,
                  allow_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  associated_instance_num: Optional[pulumi.Input[int]] = None,
-                 associated_instances: Optional[pulumi.Input[Sequence[pulumi.Input['AllowlistAssociatedInstanceArgs']]]] = None):
+                 associated_instances: Optional[pulumi.Input[Sequence[pulumi.Input['AllowlistAssociatedInstanceArgs']]]] = None,
+                 instance_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 security_group_bind_infos: Optional[pulumi.Input[Sequence[pulumi.Input['AllowlistSecurityGroupBindInfoArgs']]]] = None,
+                 update_security_group: Optional[pulumi.Input[bool]] = None,
+                 user_allow_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering Allowlist resources.
+        :param pulumi.Input[str] allow_list_category: The category of the allow list. Valid values: Ordinary, Default. When this parameter is used as a request parameter, there is no default value.
         :param pulumi.Input[str] allow_list_desc: The description of the postgresql allow list.
         :param pulumi.Input[str] allow_list_name: The name of the postgresql allow list.
         :param pulumi.Input[str] allow_list_type: The type of IP address in the whitelist. Currently only `IPv4` addresses are supported.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_lists: Enter an IP address or a range of IP addresses in CIDR format.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_lists: Enter an IP address or a range of IP addresses in CIDR format. This field cannot be used together with the user_allow_list field.
         :param pulumi.Input[int] associated_instance_num: The total number of instances bound under the whitelist.
         :param pulumi.Input[Sequence[pulumi.Input['AllowlistAssociatedInstanceArgs']]] associated_instances: The list of postgresql instances.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] instance_ids: IDs of PostgreSQL instances to unify allowlists. When set, creation uses UnifyNewAllowList to merge existing instance allowlists into a new one. Supports merging and generating allowlists of up to 300 instances.
+        :param pulumi.Input[Sequence[pulumi.Input['AllowlistSecurityGroupBindInfoArgs']]] security_group_bind_infos: The information of security groups to bind with the allow list.
+        :param pulumi.Input[bool] update_security_group: Whether to update the security groups bound to the allowlist when modifying.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] user_allow_lists: IP addresses outside security groups to be added to the allowlist. Cannot be used with allow_list.
         """
+        if allow_list_category is not None:
+            pulumi.set(__self__, "allow_list_category", allow_list_category)
         if allow_list_desc is not None:
             pulumi.set(__self__, "allow_list_desc", allow_list_desc)
         if allow_list_name is not None:
@@ -113,6 +206,26 @@ class _AllowlistState:
             pulumi.set(__self__, "associated_instance_num", associated_instance_num)
         if associated_instances is not None:
             pulumi.set(__self__, "associated_instances", associated_instances)
+        if instance_ids is not None:
+            pulumi.set(__self__, "instance_ids", instance_ids)
+        if security_group_bind_infos is not None:
+            pulumi.set(__self__, "security_group_bind_infos", security_group_bind_infos)
+        if update_security_group is not None:
+            pulumi.set(__self__, "update_security_group", update_security_group)
+        if user_allow_lists is not None:
+            pulumi.set(__self__, "user_allow_lists", user_allow_lists)
+
+    @property
+    @pulumi.getter(name="allowListCategory")
+    def allow_list_category(self) -> Optional[pulumi.Input[str]]:
+        """
+        The category of the allow list. Valid values: Ordinary, Default. When this parameter is used as a request parameter, there is no default value.
+        """
+        return pulumi.get(self, "allow_list_category")
+
+    @allow_list_category.setter
+    def allow_list_category(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "allow_list_category", value)
 
     @property
     @pulumi.getter(name="allowListDesc")
@@ -154,7 +267,7 @@ class _AllowlistState:
     @pulumi.getter(name="allowLists")
     def allow_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Enter an IP address or a range of IP addresses in CIDR format.
+        Enter an IP address or a range of IP addresses in CIDR format. This field cannot be used together with the user_allow_list field.
         """
         return pulumi.get(self, "allow_lists")
 
@@ -186,16 +299,69 @@ class _AllowlistState:
     def associated_instances(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AllowlistAssociatedInstanceArgs']]]]):
         pulumi.set(self, "associated_instances", value)
 
+    @property
+    @pulumi.getter(name="instanceIds")
+    def instance_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        IDs of PostgreSQL instances to unify allowlists. When set, creation uses UnifyNewAllowList to merge existing instance allowlists into a new one. Supports merging and generating allowlists of up to 300 instances.
+        """
+        return pulumi.get(self, "instance_ids")
+
+    @instance_ids.setter
+    def instance_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "instance_ids", value)
+
+    @property
+    @pulumi.getter(name="securityGroupBindInfos")
+    def security_group_bind_infos(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AllowlistSecurityGroupBindInfoArgs']]]]:
+        """
+        The information of security groups to bind with the allow list.
+        """
+        return pulumi.get(self, "security_group_bind_infos")
+
+    @security_group_bind_infos.setter
+    def security_group_bind_infos(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AllowlistSecurityGroupBindInfoArgs']]]]):
+        pulumi.set(self, "security_group_bind_infos", value)
+
+    @property
+    @pulumi.getter(name="updateSecurityGroup")
+    def update_security_group(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to update the security groups bound to the allowlist when modifying.
+        """
+        return pulumi.get(self, "update_security_group")
+
+    @update_security_group.setter
+    def update_security_group(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "update_security_group", value)
+
+    @property
+    @pulumi.getter(name="userAllowLists")
+    def user_allow_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        IP addresses outside security groups to be added to the allowlist. Cannot be used with allow_list.
+        """
+        return pulumi.get(self, "user_allow_lists")
+
+    @user_allow_lists.setter
+    def user_allow_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "user_allow_lists", value)
+
 
 class Allowlist(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 allow_list_category: Optional[pulumi.Input[str]] = None,
                  allow_list_desc: Optional[pulumi.Input[str]] = None,
                  allow_list_name: Optional[pulumi.Input[str]] = None,
                  allow_list_type: Optional[pulumi.Input[str]] = None,
                  allow_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 instance_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 security_group_bind_infos: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AllowlistSecurityGroupBindInfoArgs']]]]] = None,
+                 update_security_group: Optional[pulumi.Input[bool]] = None,
+                 user_allow_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
         Provides a resource to manage rds postgresql allowlist
@@ -206,13 +372,20 @@ class Allowlist(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.rds_postgresql.Allowlist("foo",
-            allow_lists=[
-                "192.168.0.0/24",
-                "192.168.1.0/24",
-            ],
+            allow_lists=["10.0.0.0/24"],
             allow_list_desc="acc-test",
             allow_list_name="acc-test-allowlist",
-            allow_list_type="IPv4")
+            allow_list_type="IPv4",
+            security_group_bind_infos=[volcengine.rds_postgresql.AllowlistSecurityGroupBindInfoArgs(
+                bind_mode="IngressDirectionIp",
+                security_group_id="sg-1jojfhw8rca9s1n7ampztrq6w",
+            )])
+        example = volcengine.rds_postgresql.Allowlist("example",
+            allow_list_name="unify_new",
+            instance_ids=[
+                "postgres-72715e0d9f58",
+                "postgres-eb3a578a6d73",
+            ])
         ```
 
         ## Import
@@ -225,10 +398,15 @@ class Allowlist(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] allow_list_category: The category of the allow list. Valid values: Ordinary, Default. When this parameter is used as a request parameter, there is no default value.
         :param pulumi.Input[str] allow_list_desc: The description of the postgresql allow list.
         :param pulumi.Input[str] allow_list_name: The name of the postgresql allow list.
         :param pulumi.Input[str] allow_list_type: The type of IP address in the whitelist. Currently only `IPv4` addresses are supported.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_lists: Enter an IP address or a range of IP addresses in CIDR format.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_lists: Enter an IP address or a range of IP addresses in CIDR format. This field cannot be used together with the user_allow_list field.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] instance_ids: IDs of PostgreSQL instances to unify allowlists. When set, creation uses UnifyNewAllowList to merge existing instance allowlists into a new one. Supports merging and generating allowlists of up to 300 instances.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AllowlistSecurityGroupBindInfoArgs']]]] security_group_bind_infos: The information of security groups to bind with the allow list.
+        :param pulumi.Input[bool] update_security_group: Whether to update the security groups bound to the allowlist when modifying.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] user_allow_lists: IP addresses outside security groups to be added to the allowlist. Cannot be used with allow_list.
         """
         ...
     @overload
@@ -245,13 +423,20 @@ class Allowlist(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.rds_postgresql.Allowlist("foo",
-            allow_lists=[
-                "192.168.0.0/24",
-                "192.168.1.0/24",
-            ],
+            allow_lists=["10.0.0.0/24"],
             allow_list_desc="acc-test",
             allow_list_name="acc-test-allowlist",
-            allow_list_type="IPv4")
+            allow_list_type="IPv4",
+            security_group_bind_infos=[volcengine.rds_postgresql.AllowlistSecurityGroupBindInfoArgs(
+                bind_mode="IngressDirectionIp",
+                security_group_id="sg-1jojfhw8rca9s1n7ampztrq6w",
+            )])
+        example = volcengine.rds_postgresql.Allowlist("example",
+            allow_list_name="unify_new",
+            instance_ids=[
+                "postgres-72715e0d9f58",
+                "postgres-eb3a578a6d73",
+            ])
         ```
 
         ## Import
@@ -277,10 +462,15 @@ class Allowlist(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 allow_list_category: Optional[pulumi.Input[str]] = None,
                  allow_list_desc: Optional[pulumi.Input[str]] = None,
                  allow_list_name: Optional[pulumi.Input[str]] = None,
                  allow_list_type: Optional[pulumi.Input[str]] = None,
                  allow_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 instance_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 security_group_bind_infos: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AllowlistSecurityGroupBindInfoArgs']]]]] = None,
+                 update_security_group: Optional[pulumi.Input[bool]] = None,
+                 user_allow_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -290,14 +480,17 @@ class Allowlist(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = AllowlistArgs.__new__(AllowlistArgs)
 
+            __props__.__dict__["allow_list_category"] = allow_list_category
             __props__.__dict__["allow_list_desc"] = allow_list_desc
             if allow_list_name is None and not opts.urn:
                 raise TypeError("Missing required property 'allow_list_name'")
             __props__.__dict__["allow_list_name"] = allow_list_name
             __props__.__dict__["allow_list_type"] = allow_list_type
-            if allow_lists is None and not opts.urn:
-                raise TypeError("Missing required property 'allow_lists'")
             __props__.__dict__["allow_lists"] = allow_lists
+            __props__.__dict__["instance_ids"] = instance_ids
+            __props__.__dict__["security_group_bind_infos"] = security_group_bind_infos
+            __props__.__dict__["update_security_group"] = update_security_group
+            __props__.__dict__["user_allow_lists"] = user_allow_lists
             __props__.__dict__["associated_instance_num"] = None
             __props__.__dict__["associated_instances"] = None
         super(Allowlist, __self__).__init__(
@@ -310,12 +503,17 @@ class Allowlist(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            allow_list_category: Optional[pulumi.Input[str]] = None,
             allow_list_desc: Optional[pulumi.Input[str]] = None,
             allow_list_name: Optional[pulumi.Input[str]] = None,
             allow_list_type: Optional[pulumi.Input[str]] = None,
             allow_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             associated_instance_num: Optional[pulumi.Input[int]] = None,
-            associated_instances: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AllowlistAssociatedInstanceArgs']]]]] = None) -> 'Allowlist':
+            associated_instances: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AllowlistAssociatedInstanceArgs']]]]] = None,
+            instance_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            security_group_bind_infos: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AllowlistSecurityGroupBindInfoArgs']]]]] = None,
+            update_security_group: Optional[pulumi.Input[bool]] = None,
+            user_allow_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'Allowlist':
         """
         Get an existing Allowlist resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -323,24 +521,42 @@ class Allowlist(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] allow_list_category: The category of the allow list. Valid values: Ordinary, Default. When this parameter is used as a request parameter, there is no default value.
         :param pulumi.Input[str] allow_list_desc: The description of the postgresql allow list.
         :param pulumi.Input[str] allow_list_name: The name of the postgresql allow list.
         :param pulumi.Input[str] allow_list_type: The type of IP address in the whitelist. Currently only `IPv4` addresses are supported.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_lists: Enter an IP address or a range of IP addresses in CIDR format.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_lists: Enter an IP address or a range of IP addresses in CIDR format. This field cannot be used together with the user_allow_list field.
         :param pulumi.Input[int] associated_instance_num: The total number of instances bound under the whitelist.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AllowlistAssociatedInstanceArgs']]]] associated_instances: The list of postgresql instances.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] instance_ids: IDs of PostgreSQL instances to unify allowlists. When set, creation uses UnifyNewAllowList to merge existing instance allowlists into a new one. Supports merging and generating allowlists of up to 300 instances.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AllowlistSecurityGroupBindInfoArgs']]]] security_group_bind_infos: The information of security groups to bind with the allow list.
+        :param pulumi.Input[bool] update_security_group: Whether to update the security groups bound to the allowlist when modifying.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] user_allow_lists: IP addresses outside security groups to be added to the allowlist. Cannot be used with allow_list.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _AllowlistState.__new__(_AllowlistState)
 
+        __props__.__dict__["allow_list_category"] = allow_list_category
         __props__.__dict__["allow_list_desc"] = allow_list_desc
         __props__.__dict__["allow_list_name"] = allow_list_name
         __props__.__dict__["allow_list_type"] = allow_list_type
         __props__.__dict__["allow_lists"] = allow_lists
         __props__.__dict__["associated_instance_num"] = associated_instance_num
         __props__.__dict__["associated_instances"] = associated_instances
+        __props__.__dict__["instance_ids"] = instance_ids
+        __props__.__dict__["security_group_bind_infos"] = security_group_bind_infos
+        __props__.__dict__["update_security_group"] = update_security_group
+        __props__.__dict__["user_allow_lists"] = user_allow_lists
         return Allowlist(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="allowListCategory")
+    def allow_list_category(self) -> pulumi.Output[str]:
+        """
+        The category of the allow list. Valid values: Ordinary, Default. When this parameter is used as a request parameter, there is no default value.
+        """
+        return pulumi.get(self, "allow_list_category")
 
     @property
     @pulumi.getter(name="allowListDesc")
@@ -370,7 +586,7 @@ class Allowlist(pulumi.CustomResource):
     @pulumi.getter(name="allowLists")
     def allow_lists(self) -> pulumi.Output[Sequence[str]]:
         """
-        Enter an IP address or a range of IP addresses in CIDR format.
+        Enter an IP address or a range of IP addresses in CIDR format. This field cannot be used together with the user_allow_list field.
         """
         return pulumi.get(self, "allow_lists")
 
@@ -389,4 +605,36 @@ class Allowlist(pulumi.CustomResource):
         The list of postgresql instances.
         """
         return pulumi.get(self, "associated_instances")
+
+    @property
+    @pulumi.getter(name="instanceIds")
+    def instance_ids(self) -> pulumi.Output[Sequence[str]]:
+        """
+        IDs of PostgreSQL instances to unify allowlists. When set, creation uses UnifyNewAllowList to merge existing instance allowlists into a new one. Supports merging and generating allowlists of up to 300 instances.
+        """
+        return pulumi.get(self, "instance_ids")
+
+    @property
+    @pulumi.getter(name="securityGroupBindInfos")
+    def security_group_bind_infos(self) -> pulumi.Output[Optional[Sequence['outputs.AllowlistSecurityGroupBindInfo']]]:
+        """
+        The information of security groups to bind with the allow list.
+        """
+        return pulumi.get(self, "security_group_bind_infos")
+
+    @property
+    @pulumi.getter(name="updateSecurityGroup")
+    def update_security_group(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Whether to update the security groups bound to the allowlist when modifying.
+        """
+        return pulumi.get(self, "update_security_group")
+
+    @property
+    @pulumi.getter(name="userAllowLists")
+    def user_allow_lists(self) -> pulumi.Output[Sequence[str]]:
+        """
+        IP addresses outside security groups to be added to the allowlist. Cannot be used with allow_list.
+        """
+        return pulumi.get(self, "user_allow_lists")
 

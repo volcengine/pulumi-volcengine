@@ -26,16 +26,20 @@ namespace Pulumi.Volcengine.Rds_postgresql
     ///         AccountName = "acc-test-account",
     ///         AccountPassword = "93c@*****!ab12",
     ///         AccountType = "Super",
-    ///         InstanceId = "postgres-954*****7233",
+    ///         InstanceId = "postgres-0ac38a79fe35",
     ///     });
     /// 
     ///     var foo1 = new Volcengine.Rds_postgresql.Account("foo1", new()
     ///     {
     ///         AccountName = "acc-test-account1",
     ///         AccountPassword = "9wc@****b12",
-    ///         AccountPrivileges = "Inherit,Login,CreateRole,CreateDB",
+    ///         AccountPrivileges = "Login,Inherit",
     ///         AccountType = "Normal",
-    ///         InstanceId = "postgres-95*****7233",
+    ///         InstanceId = "postgres-0ac38a79fe35",
+    ///         NotAllowPrivileges = new[]
+    ///         {
+    ///             "DDL",
+    ///         },
     ///     });
     /// 
     /// });
@@ -65,10 +69,10 @@ namespace Pulumi.Volcengine.Rds_postgresql
         public Output<string> AccountPassword { get; private set; } = null!;
 
         /// <summary>
-        /// The privilege information of account. When the account type is a super account, there is no need to pass in this parameter, and all privileges are supported by default. When the account type is a normal account, this parameter can be passed in, the default values are Login and Inherit.
+        /// The privilege information of account. When the account type is a super account, there is no need to pass in this parameter, and all privileges are supported by default. When the account type is a normal account, this parameter can be passed in, the default values are Login and Inherit.When the account type is an instance read-only account, this parameter is not required to be passed in, as this account type does not support permission granting.
         /// </summary>
         [Output("accountPrivileges")]
-        public Output<string> AccountPrivileges { get; private set; } = null!;
+        public Output<string?> AccountPrivileges { get; private set; } = null!;
 
         /// <summary>
         /// The status of the database account.
@@ -89,6 +93,12 @@ namespace Pulumi.Volcengine.Rds_postgresql
         /// </summary>
         [Output("instanceId")]
         public Output<string> InstanceId { get; private set; } = null!;
+
+        /// <summary>
+        /// The permissions to be disabled for the account. Only the DDL permission is supported for the moment. This field can only be passed in for high-privilege accounts or normal accounts, i.e., when the account_type is set to Super or Normal.
+        /// </summary>
+        [Output("notAllowPrivileges")]
+        public Output<ImmutableArray<string>> NotAllowPrivileges { get; private set; } = null!;
 
 
         /// <summary>
@@ -164,7 +174,7 @@ namespace Pulumi.Volcengine.Rds_postgresql
         }
 
         /// <summary>
-        /// The privilege information of account. When the account type is a super account, there is no need to pass in this parameter, and all privileges are supported by default. When the account type is a normal account, this parameter can be passed in, the default values are Login and Inherit.
+        /// The privilege information of account. When the account type is a super account, there is no need to pass in this parameter, and all privileges are supported by default. When the account type is a normal account, this parameter can be passed in, the default values are Login and Inherit.When the account type is an instance read-only account, this parameter is not required to be passed in, as this account type does not support permission granting.
         /// </summary>
         [Input("accountPrivileges")]
         public Input<string>? AccountPrivileges { get; set; }
@@ -182,6 +192,18 @@ namespace Pulumi.Volcengine.Rds_postgresql
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<string> InstanceId { get; set; } = null!;
+
+        [Input("notAllowPrivileges")]
+        private InputList<string>? _notAllowPrivileges;
+
+        /// <summary>
+        /// The permissions to be disabled for the account. Only the DDL permission is supported for the moment. This field can only be passed in for high-privilege accounts or normal accounts, i.e., when the account_type is set to Super or Normal.
+        /// </summary>
+        public InputList<string> NotAllowPrivileges
+        {
+            get => _notAllowPrivileges ?? (_notAllowPrivileges = new InputList<string>());
+            set => _notAllowPrivileges = value;
+        }
 
         public AccountArgs()
         {
@@ -214,7 +236,7 @@ namespace Pulumi.Volcengine.Rds_postgresql
         }
 
         /// <summary>
-        /// The privilege information of account. When the account type is a super account, there is no need to pass in this parameter, and all privileges are supported by default. When the account type is a normal account, this parameter can be passed in, the default values are Login and Inherit.
+        /// The privilege information of account. When the account type is a super account, there is no need to pass in this parameter, and all privileges are supported by default. When the account type is a normal account, this parameter can be passed in, the default values are Login and Inherit.When the account type is an instance read-only account, this parameter is not required to be passed in, as this account type does not support permission granting.
         /// </summary>
         [Input("accountPrivileges")]
         public Input<string>? AccountPrivileges { get; set; }
@@ -238,6 +260,18 @@ namespace Pulumi.Volcengine.Rds_postgresql
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }
+
+        [Input("notAllowPrivileges")]
+        private InputList<string>? _notAllowPrivileges;
+
+        /// <summary>
+        /// The permissions to be disabled for the account. Only the DDL permission is supported for the moment. This field can only be passed in for high-privilege accounts or normal accounts, i.e., when the account_type is set to Super or Normal.
+        /// </summary>
+        public InputList<string> NotAllowPrivileges
+        {
+            get => _notAllowPrivileges ?? (_notAllowPrivileges = new InputList<string>());
+            set => _notAllowPrivileges = value;
+        }
 
         public AccountState()
         {

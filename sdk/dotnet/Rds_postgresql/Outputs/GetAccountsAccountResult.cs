@@ -29,6 +29,10 @@ namespace Pulumi.Volcengine.Rds_postgresql.Outputs
         /// The type of the database account.
         /// </summary>
         public readonly string AccountType;
+        /// <summary>
+        /// The privileges to be disabled for the account.
+        /// </summary>
+        public readonly ImmutableArray<string> NotAllowPrivileges;
 
         [OutputConstructor]
         private GetAccountsAccountResult(
@@ -38,12 +42,15 @@ namespace Pulumi.Volcengine.Rds_postgresql.Outputs
 
             string accountStatus,
 
-            string accountType)
+            string accountType,
+
+            ImmutableArray<string> notAllowPrivileges)
         {
             AccountName = accountName;
             AccountPrivileges = accountPrivileges;
             AccountStatus = accountStatus;
             AccountType = accountType;
+            NotAllowPrivileges = notAllowPrivileges;
         }
     }
 }

@@ -1781,10 +1781,58 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "rds_postgresql/allowlistVersionUpgrade",
+  "fqn": "pulumi_volcengine.rds_postgresql",
+  "classes": {
+   "volcengine:rds_postgresql/allowlistVersionUpgrade:AllowlistVersionUpgrade": "AllowlistVersionUpgrade"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "rds_postgresql/backupDownload",
+  "fqn": "pulumi_volcengine.rds_postgresql",
+  "classes": {
+   "volcengine:rds_postgresql/backupDownload:BackupDownload": "BackupDownload"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "rds_postgresql/backupPolicy",
+  "fqn": "pulumi_volcengine.rds_postgresql",
+  "classes": {
+   "volcengine:rds_postgresql/backupPolicy:BackupPolicy": "BackupPolicy"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "rds_postgresql/dataBackup",
+  "fqn": "pulumi_volcengine.rds_postgresql",
+  "classes": {
+   "volcengine:rds_postgresql/dataBackup:DataBackup": "DataBackup"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "rds_postgresql/database",
   "fqn": "pulumi_volcengine.rds_postgresql",
   "classes": {
    "volcengine:rds_postgresql/database:Database": "Database"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "rds_postgresql/databaseEndpoint",
+  "fqn": "pulumi_volcengine.rds_postgresql",
+  "classes": {
+   "volcengine:rds_postgresql/databaseEndpoint:DatabaseEndpoint": "DatabaseEndpoint"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "rds_postgresql/endpointPublicAddress",
+  "fqn": "pulumi_volcengine.rds_postgresql",
+  "classes": {
+   "volcengine:rds_postgresql/endpointPublicAddress:EndpointPublicAddress": "EndpointPublicAddress"
   }
  },
  {
@@ -1805,10 +1853,50 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "rds_postgresql/instanceSsl",
+  "fqn": "pulumi_volcengine.rds_postgresql",
+  "classes": {
+   "volcengine:rds_postgresql/instanceSsl:InstanceSsl": "InstanceSsl"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "rds_postgresql/parameterTemplate",
+  "fqn": "pulumi_volcengine.rds_postgresql",
+  "classes": {
+   "volcengine:rds_postgresql/parameterTemplate:ParameterTemplate": "ParameterTemplate"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "rds_postgresql/replicationSlot",
+  "fqn": "pulumi_volcengine.rds_postgresql",
+  "classes": {
+   "volcengine:rds_postgresql/replicationSlot:ReplicationSlot": "ReplicationSlot"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "rds_postgresql/restoreBackup",
+  "fqn": "pulumi_volcengine.rds_postgresql",
+  "classes": {
+   "volcengine:rds_postgresql/restoreBackup:RestoreBackup": "RestoreBackup"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "rds_postgresql/schema",
   "fqn": "pulumi_volcengine.rds_postgresql",
   "classes": {
    "volcengine:rds_postgresql/schema:Schema": "Schema"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "rds_postgresql/state",
+  "fqn": "pulumi_volcengine.rds_postgresql",
+  "classes": {
+   "volcengine:rds_postgresql/state:State": "State"
   }
  },
  {
@@ -2085,10 +2173,26 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "tos/bucketAccessMonitor",
+  "fqn": "pulumi_volcengine.tos",
+  "classes": {
+   "volcengine:tos/bucketAccessMonitor:BucketAccessMonitor": "BucketAccessMonitor"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "tos/bucketCors",
   "fqn": "pulumi_volcengine.tos",
   "classes": {
    "volcengine:tos/bucketCors:BucketCors": "BucketCors"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "tos/bucketCustomdomain",
+  "fqn": "pulumi_volcengine.tos",
+  "classes": {
+   "volcengine:tos/bucketCustomdomain:BucketCustomdomain": "BucketCustomdomain"
   }
  },
  {
@@ -2109,6 +2213,30 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "tos/bucketLifecycle",
+  "fqn": "pulumi_volcengine.tos",
+  "classes": {
+   "volcengine:tos/bucketLifecycle:BucketLifecycle": "BucketLifecycle"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "tos/bucketLogging",
+  "fqn": "pulumi_volcengine.tos",
+  "classes": {
+   "volcengine:tos/bucketLogging:BucketLogging": "BucketLogging"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "tos/bucketMirrorBack",
+  "fqn": "pulumi_volcengine.tos",
+  "classes": {
+   "volcengine:tos/bucketMirrorBack:BucketMirrorBack": "BucketMirrorBack"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "tos/bucketNotification",
   "fqn": "pulumi_volcengine.tos",
   "classes": {
@@ -2125,6 +2253,14 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "tos/bucketObjectLockConfiguration",
+  "fqn": "pulumi_volcengine.tos",
+  "classes": {
+   "volcengine:tos/bucketObjectLockConfiguration:BucketObjectLockConfiguration": "BucketObjectLockConfiguration"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "tos/bucketPolicy",
   "fqn": "pulumi_volcengine.tos",
   "classes": {
@@ -2137,6 +2273,46 @@ _utilities.register(
   "fqn": "pulumi_volcengine.tos",
   "classes": {
    "volcengine:tos/bucketRealtimeLog:BucketRealtimeLog": "BucketRealtimeLog"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "tos/bucketRename",
+  "fqn": "pulumi_volcengine.tos",
+  "classes": {
+   "volcengine:tos/bucketRename:BucketRename": "BucketRename"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "tos/bucketReplication",
+  "fqn": "pulumi_volcengine.tos",
+  "classes": {
+   "volcengine:tos/bucketReplication:BucketReplication": "BucketReplication"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "tos/bucketRequestPayment",
+  "fqn": "pulumi_volcengine.tos",
+  "classes": {
+   "volcengine:tos/bucketRequestPayment:BucketRequestPayment": "BucketRequestPayment"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "tos/bucketTransferAcceleration",
+  "fqn": "pulumi_volcengine.tos",
+  "classes": {
+   "volcengine:tos/bucketTransferAcceleration:BucketTransferAcceleration": "BucketTransferAcceleration"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "tos/bucketWebsite",
+  "fqn": "pulumi_volcengine.tos",
+  "classes": {
+   "volcengine:tos/bucketWebsite:BucketWebsite": "BucketWebsite"
   }
  },
  {
@@ -2737,6 +2913,14 @@ _utilities.register(
   "fqn": "pulumi_volcengine.vpc",
   "classes": {
    "volcengine:vpc/trafficMirrorTarget:TrafficMirrorTarget": "TrafficMirrorTarget"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "vpc/userCidrBlockAssociate",
+  "fqn": "pulumi_volcengine.vpc",
+  "classes": {
+   "volcengine:vpc/userCidrBlockAssociate:UserCidrBlockAssociate": "UserCidrBlockAssociate"
   }
  },
  {
