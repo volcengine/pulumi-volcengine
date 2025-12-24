@@ -82,6 +82,10 @@ namespace Pulumi.Volcengine.Vpc.Outputs
         /// </summary>
         public readonly string UpdateTime;
         /// <summary>
+        /// The user cidr block list of VPC.
+        /// </summary>
+        public readonly ImmutableArray<string> UserCidrBlocks;
+        /// <summary>
         /// The ID of VPC.
         /// </summary>
         public readonly string VpcId;
@@ -126,6 +130,8 @@ namespace Pulumi.Volcengine.Vpc.Outputs
 
             string updateTime,
 
+            ImmutableArray<string> userCidrBlocks,
+
             string vpcId,
 
             string vpcName)
@@ -147,6 +153,7 @@ namespace Pulumi.Volcengine.Vpc.Outputs
             SubnetIds = subnetIds;
             Tags = tags;
             UpdateTime = updateTime;
+            UserCidrBlocks = userCidrBlocks;
             VpcId = vpcId;
             VpcName = vpcName;
         }

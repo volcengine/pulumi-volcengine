@@ -22,24 +22,40 @@ class InstanceArgs:
                  primary_zone_id: pulumi.Input[str],
                  secondary_zone_id: pulumi.Input[str],
                  subnet_id: pulumi.Input[str],
+                 allow_list_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 backup_id: Optional[pulumi.Input[str]] = None,
+                 estimate_only: Optional[pulumi.Input[bool]] = None,
                  instance_name: Optional[pulumi.Input[str]] = None,
+                 modify_type: Optional[pulumi.Input[str]] = None,
                  parameters: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceParameterArgs']]]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
+                 restore_time: Optional[pulumi.Input[str]] = None,
+                 rollback_time: Optional[pulumi.Input[str]] = None,
+                 src_instance_id: Optional[pulumi.Input[str]] = None,
                  storage_space: Optional[pulumi.Input[int]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceTagArgs']]]] = None):
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceTagArgs']]]] = None,
+                 zone_migrations: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceZoneMigrationArgs']]]] = None):
         """
         The set of arguments for constructing a Instance resource.
         :param pulumi.Input['InstanceChargeInfoArgs'] charge_info: Payment methods.
-        :param pulumi.Input[str] db_engine_version: Instance type. Value: PostgreSQL_11, PostgreSQL_12, PostgreSQL_13.
+        :param pulumi.Input[str] db_engine_version: Instance type. Value: PostgreSQL_11, PostgreSQL_12, PostgreSQL_13, PostgreSQL_14, PostgreSQL_15, PostgreSQL_16, PostgreSQL_17.
         :param pulumi.Input[str] node_spec: The specification of primary node and secondary node.
         :param pulumi.Input[str] primary_zone_id: The available zone of primary node.
         :param pulumi.Input[str] secondary_zone_id: The available zone of secondary node.
         :param pulumi.Input[str] subnet_id: Subnet ID of the RDS PostgreSQL instance.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_list_ids: Allow list IDs to bind at creation.
+        :param pulumi.Input[str] backup_id: Backup ID (choose either this or restore_time; if both are set, backup_id shall prevail).
+        :param pulumi.Input[bool] estimate_only: Whether to initiate a configuration change assessment. Only estimate spec change impact without executing. Default value: false.
         :param pulumi.Input[str] instance_name: Instance name. Cannot start with a number or a dash. Can only contain Chinese characters, letters, numbers, underscores and dashes. The length is limited between 1 ~ 128.
+        :param pulumi.Input[str] modify_type: Spec change type. Usually(default) or Temporary.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceParameterArgs']]] parameters: Parameter of the RDS PostgreSQL instance. This field can only be added or modified. Deleting this field is invalid.
         :param pulumi.Input[str] project_name: The project name of the RDS instance.
-        :param pulumi.Input[int] storage_space: Instance storage space. Value range: [20, 3000], unit: GB, increments every 100GB. Default value: 100.
+        :param pulumi.Input[str] restore_time: The point in time to restore to, in UTC format yyyy-MM-ddTHH:mm:ssZ (choose either this or backup_id).
+        :param pulumi.Input[str] rollback_time: Rollback time for Temporary change, UTC format yyyy-MM-ddTHH:mm:ss.sssZ.
+        :param pulumi.Input[str] src_instance_id: Source instance ID. After setting it, a new instance will be created by restoring from the backup/time point.
+        :param pulumi.Input[int] storage_space: Instance storage space. Value range: [20, 3000], unit: GB, step 10GB. Default value: 100.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceTagArgs']]] tags: Tags.
+        :param pulumi.Input[Sequence[pulumi.Input['InstanceZoneMigrationArgs']]] zone_migrations: Nodes to migrate AZ. Only Secondary or ReadOnly nodes are allowed. If you want to migrate the availability zone of the secondary node, you need to add the zone_migrations field. Modifying the secondary_zone_id directly will not work. Cross-AZ instance migration is not supported.
         """
         pulumi.set(__self__, "charge_info", charge_info)
         pulumi.set(__self__, "db_engine_version", db_engine_version)
@@ -47,16 +63,32 @@ class InstanceArgs:
         pulumi.set(__self__, "primary_zone_id", primary_zone_id)
         pulumi.set(__self__, "secondary_zone_id", secondary_zone_id)
         pulumi.set(__self__, "subnet_id", subnet_id)
+        if allow_list_ids is not None:
+            pulumi.set(__self__, "allow_list_ids", allow_list_ids)
+        if backup_id is not None:
+            pulumi.set(__self__, "backup_id", backup_id)
+        if estimate_only is not None:
+            pulumi.set(__self__, "estimate_only", estimate_only)
         if instance_name is not None:
             pulumi.set(__self__, "instance_name", instance_name)
+        if modify_type is not None:
+            pulumi.set(__self__, "modify_type", modify_type)
         if parameters is not None:
             pulumi.set(__self__, "parameters", parameters)
         if project_name is not None:
             pulumi.set(__self__, "project_name", project_name)
+        if restore_time is not None:
+            pulumi.set(__self__, "restore_time", restore_time)
+        if rollback_time is not None:
+            pulumi.set(__self__, "rollback_time", rollback_time)
+        if src_instance_id is not None:
+            pulumi.set(__self__, "src_instance_id", src_instance_id)
         if storage_space is not None:
             pulumi.set(__self__, "storage_space", storage_space)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
+        if zone_migrations is not None:
+            pulumi.set(__self__, "zone_migrations", zone_migrations)
 
     @property
     @pulumi.getter(name="chargeInfo")
@@ -74,7 +106,7 @@ class InstanceArgs:
     @pulumi.getter(name="dbEngineVersion")
     def db_engine_version(self) -> pulumi.Input[str]:
         """
-        Instance type. Value: PostgreSQL_11, PostgreSQL_12, PostgreSQL_13.
+        Instance type. Value: PostgreSQL_11, PostgreSQL_12, PostgreSQL_13, PostgreSQL_14, PostgreSQL_15, PostgreSQL_16, PostgreSQL_17.
         """
         return pulumi.get(self, "db_engine_version")
 
@@ -131,6 +163,42 @@ class InstanceArgs:
         pulumi.set(self, "subnet_id", value)
 
     @property
+    @pulumi.getter(name="allowListIds")
+    def allow_list_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Allow list IDs to bind at creation.
+        """
+        return pulumi.get(self, "allow_list_ids")
+
+    @allow_list_ids.setter
+    def allow_list_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "allow_list_ids", value)
+
+    @property
+    @pulumi.getter(name="backupId")
+    def backup_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Backup ID (choose either this or restore_time; if both are set, backup_id shall prevail).
+        """
+        return pulumi.get(self, "backup_id")
+
+    @backup_id.setter
+    def backup_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backup_id", value)
+
+    @property
+    @pulumi.getter(name="estimateOnly")
+    def estimate_only(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to initiate a configuration change assessment. Only estimate spec change impact without executing. Default value: false.
+        """
+        return pulumi.get(self, "estimate_only")
+
+    @estimate_only.setter
+    def estimate_only(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "estimate_only", value)
+
+    @property
     @pulumi.getter(name="instanceName")
     def instance_name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -141,6 +209,18 @@ class InstanceArgs:
     @instance_name.setter
     def instance_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "instance_name", value)
+
+    @property
+    @pulumi.getter(name="modifyType")
+    def modify_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Spec change type. Usually(default) or Temporary.
+        """
+        return pulumi.get(self, "modify_type")
+
+    @modify_type.setter
+    def modify_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "modify_type", value)
 
     @property
     @pulumi.getter
@@ -167,10 +247,46 @@ class InstanceArgs:
         pulumi.set(self, "project_name", value)
 
     @property
+    @pulumi.getter(name="restoreTime")
+    def restore_time(self) -> Optional[pulumi.Input[str]]:
+        """
+        The point in time to restore to, in UTC format yyyy-MM-ddTHH:mm:ssZ (choose either this or backup_id).
+        """
+        return pulumi.get(self, "restore_time")
+
+    @restore_time.setter
+    def restore_time(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "restore_time", value)
+
+    @property
+    @pulumi.getter(name="rollbackTime")
+    def rollback_time(self) -> Optional[pulumi.Input[str]]:
+        """
+        Rollback time for Temporary change, UTC format yyyy-MM-ddTHH:mm:ss.sssZ.
+        """
+        return pulumi.get(self, "rollback_time")
+
+    @rollback_time.setter
+    def rollback_time(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rollback_time", value)
+
+    @property
+    @pulumi.getter(name="srcInstanceId")
+    def src_instance_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Source instance ID. After setting it, a new instance will be created by restoring from the backup/time point.
+        """
+        return pulumi.get(self, "src_instance_id")
+
+    @src_instance_id.setter
+    def src_instance_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "src_instance_id", value)
+
+    @property
     @pulumi.getter(name="storageSpace")
     def storage_space(self) -> Optional[pulumi.Input[int]]:
         """
-        Instance storage space. Value range: [20, 3000], unit: GB, increments every 100GB. Default value: 100.
+        Instance storage space. Value range: [20, 3000], unit: GB, step 10GB. Default value: 100.
         """
         return pulumi.get(self, "storage_space")
 
@@ -190,10 +306,25 @@ class InstanceArgs:
     def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceTagArgs']]]]):
         pulumi.set(self, "tags", value)
 
+    @property
+    @pulumi.getter(name="zoneMigrations")
+    def zone_migrations(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceZoneMigrationArgs']]]]:
+        """
+        Nodes to migrate AZ. Only Secondary or ReadOnly nodes are allowed. If you want to migrate the availability zone of the secondary node, you need to add the zone_migrations field. Modifying the secondary_zone_id directly will not work. Cross-AZ instance migration is not supported.
+        """
+        return pulumi.get(self, "zone_migrations")
+
+    @zone_migrations.setter
+    def zone_migrations(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceZoneMigrationArgs']]]]):
+        pulumi.set(self, "zone_migrations", value)
+
 
 @pulumi.input_type
 class _InstanceState:
     def __init__(__self__, *,
+                 allow_list_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allow_list_version: Optional[pulumi.Input[str]] = None,
+                 backup_id: Optional[pulumi.Input[str]] = None,
                  backup_use: Optional[pulumi.Input[int]] = None,
                  charge_details: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceChargeDetailArgs']]]] = None,
                  charge_info: Optional[pulumi.Input['InstanceChargeInfoArgs']] = None,
@@ -201,11 +332,14 @@ class _InstanceState:
                  data_sync_mode: Optional[pulumi.Input[str]] = None,
                  db_engine_version: Optional[pulumi.Input[str]] = None,
                  endpoints: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceEndpointArgs']]]] = None,
+                 estimate_only: Optional[pulumi.Input[bool]] = None,
+                 estimation_results: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceEstimationResultArgs']]]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
                  instance_name: Optional[pulumi.Input[str]] = None,
                  instance_status: Optional[pulumi.Input[str]] = None,
                  instance_type: Optional[pulumi.Input[str]] = None,
                  memory: Optional[pulumi.Input[int]] = None,
+                 modify_type: Optional[pulumi.Input[str]] = None,
                  node_number: Optional[pulumi.Input[int]] = None,
                  node_spec: Optional[pulumi.Input[str]] = None,
                  nodes: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceNodeArgs']]]] = None,
@@ -213,30 +347,45 @@ class _InstanceState:
                  primary_zone_id: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  region_id: Optional[pulumi.Input[str]] = None,
+                 restore_time: Optional[pulumi.Input[str]] = None,
+                 rollback_time: Optional[pulumi.Input[str]] = None,
                  secondary_zone_id: Optional[pulumi.Input[str]] = None,
+                 src_instance_id: Optional[pulumi.Input[str]] = None,
+                 storage_data_use: Optional[pulumi.Input[int]] = None,
+                 storage_log_use: Optional[pulumi.Input[int]] = None,
                  storage_space: Optional[pulumi.Input[int]] = None,
+                 storage_temp_use: Optional[pulumi.Input[int]] = None,
                  storage_type: Optional[pulumi.Input[str]] = None,
+                 storage_use: Optional[pulumi.Input[int]] = None,
+                 storage_wal_use: Optional[pulumi.Input[int]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceTagArgs']]]] = None,
                  update_time: Optional[pulumi.Input[str]] = None,
                  v_cpu: Optional[pulumi.Input[int]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None,
                  zone_id: Optional[pulumi.Input[str]] = None,
-                 zone_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+                 zone_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 zone_migrations: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceZoneMigrationArgs']]]] = None):
         """
         Input properties used for looking up and filtering Instance resources.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_list_ids: Allow list IDs to bind at creation.
+        :param pulumi.Input[str] allow_list_version: The allow list version of the RDS PostgreSQL instance.
+        :param pulumi.Input[str] backup_id: Backup ID (choose either this or restore_time; if both are set, backup_id shall prevail).
         :param pulumi.Input[int] backup_use: The instance has used backup space. Unit: GB.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceChargeDetailArgs']]] charge_details: Payment methods.
         :param pulumi.Input['InstanceChargeInfoArgs'] charge_info: Payment methods.
         :param pulumi.Input[str] create_time: Node creation local time.
         :param pulumi.Input[str] data_sync_mode: Data synchronization mode.
-        :param pulumi.Input[str] db_engine_version: Instance type. Value: PostgreSQL_11, PostgreSQL_12, PostgreSQL_13.
+        :param pulumi.Input[str] db_engine_version: Instance type. Value: PostgreSQL_11, PostgreSQL_12, PostgreSQL_13, PostgreSQL_14, PostgreSQL_15, PostgreSQL_16, PostgreSQL_17.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceEndpointArgs']]] endpoints: The endpoint info of the RDS instance.
+        :param pulumi.Input[bool] estimate_only: Whether to initiate a configuration change assessment. Only estimate spec change impact without executing. Default value: false.
+        :param pulumi.Input[Sequence[pulumi.Input['InstanceEstimationResultArgs']]] estimation_results: The estimated impact on the instance after the current configuration changes.
         :param pulumi.Input[str] instance_id: Instance ID.
         :param pulumi.Input[str] instance_name: Instance name. Cannot start with a number or a dash. Can only contain Chinese characters, letters, numbers, underscores and dashes. The length is limited between 1 ~ 128.
         :param pulumi.Input[str] instance_status: The status of the RDS PostgreSQL instance.
         :param pulumi.Input[str] instance_type: The instance type of the RDS PostgreSQL instance.
         :param pulumi.Input[int] memory: Memory size in GB.
+        :param pulumi.Input[str] modify_type: Spec change type. Usually(default) or Temporary.
         :param pulumi.Input[int] node_number: The number of nodes.
         :param pulumi.Input[str] node_spec: The specification of primary node and secondary node.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceNodeArgs']]] nodes: Instance node information.
@@ -244,9 +393,17 @@ class _InstanceState:
         :param pulumi.Input[str] primary_zone_id: The available zone of primary node.
         :param pulumi.Input[str] project_name: The project name of the RDS instance.
         :param pulumi.Input[str] region_id: The region of the RDS PostgreSQL instance.
+        :param pulumi.Input[str] restore_time: The point in time to restore to, in UTC format yyyy-MM-ddTHH:mm:ssZ (choose either this or backup_id).
+        :param pulumi.Input[str] rollback_time: Rollback time for Temporary change, UTC format yyyy-MM-ddTHH:mm:ss.sssZ.
         :param pulumi.Input[str] secondary_zone_id: The available zone of secondary node.
-        :param pulumi.Input[int] storage_space: Instance storage space. Value range: [20, 3000], unit: GB, increments every 100GB. Default value: 100.
+        :param pulumi.Input[str] src_instance_id: Source instance ID. After setting it, a new instance will be created by restoring from the backup/time point.
+        :param pulumi.Input[int] storage_data_use: The instance's primary node has used storage space. Unit: Byte.
+        :param pulumi.Input[int] storage_log_use: The instance's primary node has used log storage space. Unit: Byte.
+        :param pulumi.Input[int] storage_space: Instance storage space. Value range: [20, 3000], unit: GB, step 10GB. Default value: 100.
+        :param pulumi.Input[int] storage_temp_use: The instance's primary node has used temporary storage space. Unit: Byte.
         :param pulumi.Input[str] storage_type: Instance storage type.
+        :param pulumi.Input[int] storage_use: The instance has used storage space. Unit: Byte.
+        :param pulumi.Input[int] storage_wal_use: The instance's primary node has used WAL storage space. Unit: Byte.
         :param pulumi.Input[str] subnet_id: Subnet ID of the RDS PostgreSQL instance.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceTagArgs']]] tags: Tags.
         :param pulumi.Input[str] update_time: The update time of the RDS PostgreSQL instance.
@@ -254,7 +411,14 @@ class _InstanceState:
         :param pulumi.Input[str] vpc_id: The vpc ID of the RDS PostgreSQL instance.
         :param pulumi.Input[str] zone_id: The available zone of the RDS PostgreSQL instance.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] zone_ids: ID of the availability zone where each instance is located.
+        :param pulumi.Input[Sequence[pulumi.Input['InstanceZoneMigrationArgs']]] zone_migrations: Nodes to migrate AZ. Only Secondary or ReadOnly nodes are allowed. If you want to migrate the availability zone of the secondary node, you need to add the zone_migrations field. Modifying the secondary_zone_id directly will not work. Cross-AZ instance migration is not supported.
         """
+        if allow_list_ids is not None:
+            pulumi.set(__self__, "allow_list_ids", allow_list_ids)
+        if allow_list_version is not None:
+            pulumi.set(__self__, "allow_list_version", allow_list_version)
+        if backup_id is not None:
+            pulumi.set(__self__, "backup_id", backup_id)
         if backup_use is not None:
             pulumi.set(__self__, "backup_use", backup_use)
         if charge_details is not None:
@@ -269,6 +433,10 @@ class _InstanceState:
             pulumi.set(__self__, "db_engine_version", db_engine_version)
         if endpoints is not None:
             pulumi.set(__self__, "endpoints", endpoints)
+        if estimate_only is not None:
+            pulumi.set(__self__, "estimate_only", estimate_only)
+        if estimation_results is not None:
+            pulumi.set(__self__, "estimation_results", estimation_results)
         if instance_id is not None:
             pulumi.set(__self__, "instance_id", instance_id)
         if instance_name is not None:
@@ -279,6 +447,8 @@ class _InstanceState:
             pulumi.set(__self__, "instance_type", instance_type)
         if memory is not None:
             pulumi.set(__self__, "memory", memory)
+        if modify_type is not None:
+            pulumi.set(__self__, "modify_type", modify_type)
         if node_number is not None:
             pulumi.set(__self__, "node_number", node_number)
         if node_spec is not None:
@@ -293,12 +463,28 @@ class _InstanceState:
             pulumi.set(__self__, "project_name", project_name)
         if region_id is not None:
             pulumi.set(__self__, "region_id", region_id)
+        if restore_time is not None:
+            pulumi.set(__self__, "restore_time", restore_time)
+        if rollback_time is not None:
+            pulumi.set(__self__, "rollback_time", rollback_time)
         if secondary_zone_id is not None:
             pulumi.set(__self__, "secondary_zone_id", secondary_zone_id)
+        if src_instance_id is not None:
+            pulumi.set(__self__, "src_instance_id", src_instance_id)
+        if storage_data_use is not None:
+            pulumi.set(__self__, "storage_data_use", storage_data_use)
+        if storage_log_use is not None:
+            pulumi.set(__self__, "storage_log_use", storage_log_use)
         if storage_space is not None:
             pulumi.set(__self__, "storage_space", storage_space)
+        if storage_temp_use is not None:
+            pulumi.set(__self__, "storage_temp_use", storage_temp_use)
         if storage_type is not None:
             pulumi.set(__self__, "storage_type", storage_type)
+        if storage_use is not None:
+            pulumi.set(__self__, "storage_use", storage_use)
+        if storage_wal_use is not None:
+            pulumi.set(__self__, "storage_wal_use", storage_wal_use)
         if subnet_id is not None:
             pulumi.set(__self__, "subnet_id", subnet_id)
         if tags is not None:
@@ -313,6 +499,44 @@ class _InstanceState:
             pulumi.set(__self__, "zone_id", zone_id)
         if zone_ids is not None:
             pulumi.set(__self__, "zone_ids", zone_ids)
+        if zone_migrations is not None:
+            pulumi.set(__self__, "zone_migrations", zone_migrations)
+
+    @property
+    @pulumi.getter(name="allowListIds")
+    def allow_list_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Allow list IDs to bind at creation.
+        """
+        return pulumi.get(self, "allow_list_ids")
+
+    @allow_list_ids.setter
+    def allow_list_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "allow_list_ids", value)
+
+    @property
+    @pulumi.getter(name="allowListVersion")
+    def allow_list_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        The allow list version of the RDS PostgreSQL instance.
+        """
+        return pulumi.get(self, "allow_list_version")
+
+    @allow_list_version.setter
+    def allow_list_version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "allow_list_version", value)
+
+    @property
+    @pulumi.getter(name="backupId")
+    def backup_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Backup ID (choose either this or restore_time; if both are set, backup_id shall prevail).
+        """
+        return pulumi.get(self, "backup_id")
+
+    @backup_id.setter
+    def backup_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backup_id", value)
 
     @property
     @pulumi.getter(name="backupUse")
@@ -378,7 +602,7 @@ class _InstanceState:
     @pulumi.getter(name="dbEngineVersion")
     def db_engine_version(self) -> Optional[pulumi.Input[str]]:
         """
-        Instance type. Value: PostgreSQL_11, PostgreSQL_12, PostgreSQL_13.
+        Instance type. Value: PostgreSQL_11, PostgreSQL_12, PostgreSQL_13, PostgreSQL_14, PostgreSQL_15, PostgreSQL_16, PostgreSQL_17.
         """
         return pulumi.get(self, "db_engine_version")
 
@@ -397,6 +621,30 @@ class _InstanceState:
     @endpoints.setter
     def endpoints(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceEndpointArgs']]]]):
         pulumi.set(self, "endpoints", value)
+
+    @property
+    @pulumi.getter(name="estimateOnly")
+    def estimate_only(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to initiate a configuration change assessment. Only estimate spec change impact without executing. Default value: false.
+        """
+        return pulumi.get(self, "estimate_only")
+
+    @estimate_only.setter
+    def estimate_only(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "estimate_only", value)
+
+    @property
+    @pulumi.getter(name="estimationResults")
+    def estimation_results(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceEstimationResultArgs']]]]:
+        """
+        The estimated impact on the instance after the current configuration changes.
+        """
+        return pulumi.get(self, "estimation_results")
+
+    @estimation_results.setter
+    def estimation_results(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceEstimationResultArgs']]]]):
+        pulumi.set(self, "estimation_results", value)
 
     @property
     @pulumi.getter(name="instanceId")
@@ -457,6 +705,18 @@ class _InstanceState:
     @memory.setter
     def memory(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "memory", value)
+
+    @property
+    @pulumi.getter(name="modifyType")
+    def modify_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Spec change type. Usually(default) or Temporary.
+        """
+        return pulumi.get(self, "modify_type")
+
+    @modify_type.setter
+    def modify_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "modify_type", value)
 
     @property
     @pulumi.getter(name="nodeNumber")
@@ -543,6 +803,30 @@ class _InstanceState:
         pulumi.set(self, "region_id", value)
 
     @property
+    @pulumi.getter(name="restoreTime")
+    def restore_time(self) -> Optional[pulumi.Input[str]]:
+        """
+        The point in time to restore to, in UTC format yyyy-MM-ddTHH:mm:ssZ (choose either this or backup_id).
+        """
+        return pulumi.get(self, "restore_time")
+
+    @restore_time.setter
+    def restore_time(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "restore_time", value)
+
+    @property
+    @pulumi.getter(name="rollbackTime")
+    def rollback_time(self) -> Optional[pulumi.Input[str]]:
+        """
+        Rollback time for Temporary change, UTC format yyyy-MM-ddTHH:mm:ss.sssZ.
+        """
+        return pulumi.get(self, "rollback_time")
+
+    @rollback_time.setter
+    def rollback_time(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rollback_time", value)
+
+    @property
     @pulumi.getter(name="secondaryZoneId")
     def secondary_zone_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -555,16 +839,64 @@ class _InstanceState:
         pulumi.set(self, "secondary_zone_id", value)
 
     @property
+    @pulumi.getter(name="srcInstanceId")
+    def src_instance_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Source instance ID. After setting it, a new instance will be created by restoring from the backup/time point.
+        """
+        return pulumi.get(self, "src_instance_id")
+
+    @src_instance_id.setter
+    def src_instance_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "src_instance_id", value)
+
+    @property
+    @pulumi.getter(name="storageDataUse")
+    def storage_data_use(self) -> Optional[pulumi.Input[int]]:
+        """
+        The instance's primary node has used storage space. Unit: Byte.
+        """
+        return pulumi.get(self, "storage_data_use")
+
+    @storage_data_use.setter
+    def storage_data_use(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "storage_data_use", value)
+
+    @property
+    @pulumi.getter(name="storageLogUse")
+    def storage_log_use(self) -> Optional[pulumi.Input[int]]:
+        """
+        The instance's primary node has used log storage space. Unit: Byte.
+        """
+        return pulumi.get(self, "storage_log_use")
+
+    @storage_log_use.setter
+    def storage_log_use(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "storage_log_use", value)
+
+    @property
     @pulumi.getter(name="storageSpace")
     def storage_space(self) -> Optional[pulumi.Input[int]]:
         """
-        Instance storage space. Value range: [20, 3000], unit: GB, increments every 100GB. Default value: 100.
+        Instance storage space. Value range: [20, 3000], unit: GB, step 10GB. Default value: 100.
         """
         return pulumi.get(self, "storage_space")
 
     @storage_space.setter
     def storage_space(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "storage_space", value)
+
+    @property
+    @pulumi.getter(name="storageTempUse")
+    def storage_temp_use(self) -> Optional[pulumi.Input[int]]:
+        """
+        The instance's primary node has used temporary storage space. Unit: Byte.
+        """
+        return pulumi.get(self, "storage_temp_use")
+
+    @storage_temp_use.setter
+    def storage_temp_use(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "storage_temp_use", value)
 
     @property
     @pulumi.getter(name="storageType")
@@ -577,6 +909,30 @@ class _InstanceState:
     @storage_type.setter
     def storage_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "storage_type", value)
+
+    @property
+    @pulumi.getter(name="storageUse")
+    def storage_use(self) -> Optional[pulumi.Input[int]]:
+        """
+        The instance has used storage space. Unit: Byte.
+        """
+        return pulumi.get(self, "storage_use")
+
+    @storage_use.setter
+    def storage_use(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "storage_use", value)
+
+    @property
+    @pulumi.getter(name="storageWalUse")
+    def storage_wal_use(self) -> Optional[pulumi.Input[int]]:
+        """
+        The instance's primary node has used WAL storage space. Unit: Byte.
+        """
+        return pulumi.get(self, "storage_wal_use")
+
+    @storage_wal_use.setter
+    def storage_wal_use(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "storage_wal_use", value)
 
     @property
     @pulumi.getter(name="subnetId")
@@ -662,23 +1018,43 @@ class _InstanceState:
     def zone_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "zone_ids", value)
 
+    @property
+    @pulumi.getter(name="zoneMigrations")
+    def zone_migrations(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceZoneMigrationArgs']]]]:
+        """
+        Nodes to migrate AZ. Only Secondary or ReadOnly nodes are allowed. If you want to migrate the availability zone of the secondary node, you need to add the zone_migrations field. Modifying the secondary_zone_id directly will not work. Cross-AZ instance migration is not supported.
+        """
+        return pulumi.get(self, "zone_migrations")
+
+    @zone_migrations.setter
+    def zone_migrations(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceZoneMigrationArgs']]]]):
+        pulumi.set(self, "zone_migrations", value)
+
 
 class Instance(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 allow_list_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 backup_id: Optional[pulumi.Input[str]] = None,
                  charge_info: Optional[pulumi.Input[pulumi.InputType['InstanceChargeInfoArgs']]] = None,
                  db_engine_version: Optional[pulumi.Input[str]] = None,
+                 estimate_only: Optional[pulumi.Input[bool]] = None,
                  instance_name: Optional[pulumi.Input[str]] = None,
+                 modify_type: Optional[pulumi.Input[str]] = None,
                  node_spec: Optional[pulumi.Input[str]] = None,
                  parameters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceParameterArgs']]]]] = None,
                  primary_zone_id: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
+                 restore_time: Optional[pulumi.Input[str]] = None,
+                 rollback_time: Optional[pulumi.Input[str]] = None,
                  secondary_zone_id: Optional[pulumi.Input[str]] = None,
+                 src_instance_id: Optional[pulumi.Input[str]] = None,
                  storage_space: Optional[pulumi.Input[int]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceTagArgs']]]]] = None,
+                 zone_migrations: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceZoneMigrationArgs']]]]] = None,
                  __props__=None):
         """
         Provides a resource to manage rds postgresql instance
@@ -688,7 +1064,7 @@ class Instance(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo_zones = volcengine.ecs.get_zones()
+        foo_zones = volcengine.rds_postgresql.get_zones()
         # create vpc
         foo_vpc = volcengine.vpc.Vpc("fooVpc",
             vpc_name="acc-test-vpc",
@@ -702,14 +1078,14 @@ class Instance(pulumi.CustomResource):
         foo_subnet = volcengine.vpc.Subnet("fooSubnet",
             subnet_name="acc-test-subnet",
             cidr_block="172.16.0.0/24",
-            zone_id=foo_zones.zones[0].id,
+            zone_id=data["volcengine_zones"]["foo"]["zones"][0]["id"],
             vpc_id=foo_vpc.id)
         # create postgresql instance
         foo_instance = volcengine.rds_postgresql.Instance("fooInstance",
             db_engine_version="PostgreSQL_12",
             node_spec="rds.postgres.1c2g",
-            primary_zone_id=foo_zones.zones[0].id,
-            secondary_zone_id=foo_zones.zones[0].id,
+            primary_zone_id=data["volcengine_zones"]["foo"]["zones"][0]["id"],
+            secondary_zone_id=data["volcengine_zones"]["foo"]["zones"][0]["id"],
             storage_space=40,
             subnet_id=foo_subnet.id,
             instance_name="acc-test-postgresql-instance",
@@ -735,7 +1111,7 @@ class Instance(pulumi.CustomResource):
         foo_instance_readonly_node = volcengine.rds_postgresql.InstanceReadonlyNode("fooInstanceReadonlyNode",
             instance_id=foo_instance.id,
             node_spec="rds.postgres.1c2g",
-            zone_id=foo_zones.zones[0].id)
+            zone_id=data["volcengine_zones"]["foo"]["zones"][0]["id"])
         # create postgresql allow list
         foo_allowlist = volcengine.rds_postgresql.Allowlist("fooAllowlist",
             allow_list_name="acc-test-allowlist",
@@ -768,6 +1144,20 @@ class Instance(pulumi.CustomResource):
             instance_id=foo_instance.id,
             owner=foo_account.account_name,
             schema_name="acc-test-schema")
+        # Restore the backup to a new instance
+        example = volcengine.rds_postgresql.Instance("example",
+            src_instance_id="postgres-faa4921fdde4",
+            backup_id="20251215-215628F",
+            db_engine_version="PostgreSQL_12",
+            node_spec="rds.postgres.1c2g",
+            subnet_id=foo_subnet.id,
+            instance_name="acc-test-postgresql-instance-restore",
+            charge_info=volcengine.rds_postgresql.InstanceChargeInfoArgs(
+                charge_type="PostPaid",
+                number=1,
+            ),
+            primary_zone_id=data["volcengine_zones"]["foo"]["zones"][0]["id"],
+            secondary_zone_id=data["volcengine_zones"]["foo"]["zones"][0]["id"])
         ```
 
         ## Import
@@ -780,17 +1170,25 @@ class Instance(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_list_ids: Allow list IDs to bind at creation.
+        :param pulumi.Input[str] backup_id: Backup ID (choose either this or restore_time; if both are set, backup_id shall prevail).
         :param pulumi.Input[pulumi.InputType['InstanceChargeInfoArgs']] charge_info: Payment methods.
-        :param pulumi.Input[str] db_engine_version: Instance type. Value: PostgreSQL_11, PostgreSQL_12, PostgreSQL_13.
+        :param pulumi.Input[str] db_engine_version: Instance type. Value: PostgreSQL_11, PostgreSQL_12, PostgreSQL_13, PostgreSQL_14, PostgreSQL_15, PostgreSQL_16, PostgreSQL_17.
+        :param pulumi.Input[bool] estimate_only: Whether to initiate a configuration change assessment. Only estimate spec change impact without executing. Default value: false.
         :param pulumi.Input[str] instance_name: Instance name. Cannot start with a number or a dash. Can only contain Chinese characters, letters, numbers, underscores and dashes. The length is limited between 1 ~ 128.
+        :param pulumi.Input[str] modify_type: Spec change type. Usually(default) or Temporary.
         :param pulumi.Input[str] node_spec: The specification of primary node and secondary node.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceParameterArgs']]]] parameters: Parameter of the RDS PostgreSQL instance. This field can only be added or modified. Deleting this field is invalid.
         :param pulumi.Input[str] primary_zone_id: The available zone of primary node.
         :param pulumi.Input[str] project_name: The project name of the RDS instance.
+        :param pulumi.Input[str] restore_time: The point in time to restore to, in UTC format yyyy-MM-ddTHH:mm:ssZ (choose either this or backup_id).
+        :param pulumi.Input[str] rollback_time: Rollback time for Temporary change, UTC format yyyy-MM-ddTHH:mm:ss.sssZ.
         :param pulumi.Input[str] secondary_zone_id: The available zone of secondary node.
-        :param pulumi.Input[int] storage_space: Instance storage space. Value range: [20, 3000], unit: GB, increments every 100GB. Default value: 100.
+        :param pulumi.Input[str] src_instance_id: Source instance ID. After setting it, a new instance will be created by restoring from the backup/time point.
+        :param pulumi.Input[int] storage_space: Instance storage space. Value range: [20, 3000], unit: GB, step 10GB. Default value: 100.
         :param pulumi.Input[str] subnet_id: Subnet ID of the RDS PostgreSQL instance.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceTagArgs']]]] tags: Tags.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceZoneMigrationArgs']]]] zone_migrations: Nodes to migrate AZ. Only Secondary or ReadOnly nodes are allowed. If you want to migrate the availability zone of the secondary node, you need to add the zone_migrations field. Modifying the secondary_zone_id directly will not work. Cross-AZ instance migration is not supported.
         """
         ...
     @overload
@@ -806,7 +1204,7 @@ class Instance(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo_zones = volcengine.ecs.get_zones()
+        foo_zones = volcengine.rds_postgresql.get_zones()
         # create vpc
         foo_vpc = volcengine.vpc.Vpc("fooVpc",
             vpc_name="acc-test-vpc",
@@ -820,14 +1218,14 @@ class Instance(pulumi.CustomResource):
         foo_subnet = volcengine.vpc.Subnet("fooSubnet",
             subnet_name="acc-test-subnet",
             cidr_block="172.16.0.0/24",
-            zone_id=foo_zones.zones[0].id,
+            zone_id=data["volcengine_zones"]["foo"]["zones"][0]["id"],
             vpc_id=foo_vpc.id)
         # create postgresql instance
         foo_instance = volcengine.rds_postgresql.Instance("fooInstance",
             db_engine_version="PostgreSQL_12",
             node_spec="rds.postgres.1c2g",
-            primary_zone_id=foo_zones.zones[0].id,
-            secondary_zone_id=foo_zones.zones[0].id,
+            primary_zone_id=data["volcengine_zones"]["foo"]["zones"][0]["id"],
+            secondary_zone_id=data["volcengine_zones"]["foo"]["zones"][0]["id"],
             storage_space=40,
             subnet_id=foo_subnet.id,
             instance_name="acc-test-postgresql-instance",
@@ -853,7 +1251,7 @@ class Instance(pulumi.CustomResource):
         foo_instance_readonly_node = volcengine.rds_postgresql.InstanceReadonlyNode("fooInstanceReadonlyNode",
             instance_id=foo_instance.id,
             node_spec="rds.postgres.1c2g",
-            zone_id=foo_zones.zones[0].id)
+            zone_id=data["volcengine_zones"]["foo"]["zones"][0]["id"])
         # create postgresql allow list
         foo_allowlist = volcengine.rds_postgresql.Allowlist("fooAllowlist",
             allow_list_name="acc-test-allowlist",
@@ -886,6 +1284,20 @@ class Instance(pulumi.CustomResource):
             instance_id=foo_instance.id,
             owner=foo_account.account_name,
             schema_name="acc-test-schema")
+        # Restore the backup to a new instance
+        example = volcengine.rds_postgresql.Instance("example",
+            src_instance_id="postgres-faa4921fdde4",
+            backup_id="20251215-215628F",
+            db_engine_version="PostgreSQL_12",
+            node_spec="rds.postgres.1c2g",
+            subnet_id=foo_subnet.id,
+            instance_name="acc-test-postgresql-instance-restore",
+            charge_info=volcengine.rds_postgresql.InstanceChargeInfoArgs(
+                charge_type="PostPaid",
+                number=1,
+            ),
+            primary_zone_id=data["volcengine_zones"]["foo"]["zones"][0]["id"],
+            secondary_zone_id=data["volcengine_zones"]["foo"]["zones"][0]["id"])
         ```
 
         ## Import
@@ -911,17 +1323,25 @@ class Instance(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 allow_list_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 backup_id: Optional[pulumi.Input[str]] = None,
                  charge_info: Optional[pulumi.Input[pulumi.InputType['InstanceChargeInfoArgs']]] = None,
                  db_engine_version: Optional[pulumi.Input[str]] = None,
+                 estimate_only: Optional[pulumi.Input[bool]] = None,
                  instance_name: Optional[pulumi.Input[str]] = None,
+                 modify_type: Optional[pulumi.Input[str]] = None,
                  node_spec: Optional[pulumi.Input[str]] = None,
                  parameters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceParameterArgs']]]]] = None,
                  primary_zone_id: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
+                 restore_time: Optional[pulumi.Input[str]] = None,
+                 rollback_time: Optional[pulumi.Input[str]] = None,
                  secondary_zone_id: Optional[pulumi.Input[str]] = None,
+                 src_instance_id: Optional[pulumi.Input[str]] = None,
                  storage_space: Optional[pulumi.Input[int]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceTagArgs']]]]] = None,
+                 zone_migrations: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceZoneMigrationArgs']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -931,13 +1351,17 @@ class Instance(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = InstanceArgs.__new__(InstanceArgs)
 
+            __props__.__dict__["allow_list_ids"] = allow_list_ids
+            __props__.__dict__["backup_id"] = backup_id
             if charge_info is None and not opts.urn:
                 raise TypeError("Missing required property 'charge_info'")
             __props__.__dict__["charge_info"] = charge_info
             if db_engine_version is None and not opts.urn:
                 raise TypeError("Missing required property 'db_engine_version'")
             __props__.__dict__["db_engine_version"] = db_engine_version
+            __props__.__dict__["estimate_only"] = estimate_only
             __props__.__dict__["instance_name"] = instance_name
+            __props__.__dict__["modify_type"] = modify_type
             if node_spec is None and not opts.urn:
                 raise TypeError("Missing required property 'node_spec'")
             __props__.__dict__["node_spec"] = node_spec
@@ -946,19 +1370,25 @@ class Instance(pulumi.CustomResource):
                 raise TypeError("Missing required property 'primary_zone_id'")
             __props__.__dict__["primary_zone_id"] = primary_zone_id
             __props__.__dict__["project_name"] = project_name
+            __props__.__dict__["restore_time"] = restore_time
+            __props__.__dict__["rollback_time"] = rollback_time
             if secondary_zone_id is None and not opts.urn:
                 raise TypeError("Missing required property 'secondary_zone_id'")
             __props__.__dict__["secondary_zone_id"] = secondary_zone_id
+            __props__.__dict__["src_instance_id"] = src_instance_id
             __props__.__dict__["storage_space"] = storage_space
             if subnet_id is None and not opts.urn:
                 raise TypeError("Missing required property 'subnet_id'")
             __props__.__dict__["subnet_id"] = subnet_id
             __props__.__dict__["tags"] = tags
+            __props__.__dict__["zone_migrations"] = zone_migrations
+            __props__.__dict__["allow_list_version"] = None
             __props__.__dict__["backup_use"] = None
             __props__.__dict__["charge_details"] = None
             __props__.__dict__["create_time"] = None
             __props__.__dict__["data_sync_mode"] = None
             __props__.__dict__["endpoints"] = None
+            __props__.__dict__["estimation_results"] = None
             __props__.__dict__["instance_id"] = None
             __props__.__dict__["instance_status"] = None
             __props__.__dict__["instance_type"] = None
@@ -966,7 +1396,12 @@ class Instance(pulumi.CustomResource):
             __props__.__dict__["node_number"] = None
             __props__.__dict__["nodes"] = None
             __props__.__dict__["region_id"] = None
+            __props__.__dict__["storage_data_use"] = None
+            __props__.__dict__["storage_log_use"] = None
+            __props__.__dict__["storage_temp_use"] = None
             __props__.__dict__["storage_type"] = None
+            __props__.__dict__["storage_use"] = None
+            __props__.__dict__["storage_wal_use"] = None
             __props__.__dict__["update_time"] = None
             __props__.__dict__["v_cpu"] = None
             __props__.__dict__["vpc_id"] = None
@@ -982,6 +1417,9 @@ class Instance(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            allow_list_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            allow_list_version: Optional[pulumi.Input[str]] = None,
+            backup_id: Optional[pulumi.Input[str]] = None,
             backup_use: Optional[pulumi.Input[int]] = None,
             charge_details: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceChargeDetailArgs']]]]] = None,
             charge_info: Optional[pulumi.Input[pulumi.InputType['InstanceChargeInfoArgs']]] = None,
@@ -989,11 +1427,14 @@ class Instance(pulumi.CustomResource):
             data_sync_mode: Optional[pulumi.Input[str]] = None,
             db_engine_version: Optional[pulumi.Input[str]] = None,
             endpoints: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceEndpointArgs']]]]] = None,
+            estimate_only: Optional[pulumi.Input[bool]] = None,
+            estimation_results: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceEstimationResultArgs']]]]] = None,
             instance_id: Optional[pulumi.Input[str]] = None,
             instance_name: Optional[pulumi.Input[str]] = None,
             instance_status: Optional[pulumi.Input[str]] = None,
             instance_type: Optional[pulumi.Input[str]] = None,
             memory: Optional[pulumi.Input[int]] = None,
+            modify_type: Optional[pulumi.Input[str]] = None,
             node_number: Optional[pulumi.Input[int]] = None,
             node_spec: Optional[pulumi.Input[str]] = None,
             nodes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceNodeArgs']]]]] = None,
@@ -1001,16 +1442,25 @@ class Instance(pulumi.CustomResource):
             primary_zone_id: Optional[pulumi.Input[str]] = None,
             project_name: Optional[pulumi.Input[str]] = None,
             region_id: Optional[pulumi.Input[str]] = None,
+            restore_time: Optional[pulumi.Input[str]] = None,
+            rollback_time: Optional[pulumi.Input[str]] = None,
             secondary_zone_id: Optional[pulumi.Input[str]] = None,
+            src_instance_id: Optional[pulumi.Input[str]] = None,
+            storage_data_use: Optional[pulumi.Input[int]] = None,
+            storage_log_use: Optional[pulumi.Input[int]] = None,
             storage_space: Optional[pulumi.Input[int]] = None,
+            storage_temp_use: Optional[pulumi.Input[int]] = None,
             storage_type: Optional[pulumi.Input[str]] = None,
+            storage_use: Optional[pulumi.Input[int]] = None,
+            storage_wal_use: Optional[pulumi.Input[int]] = None,
             subnet_id: Optional[pulumi.Input[str]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceTagArgs']]]]] = None,
             update_time: Optional[pulumi.Input[str]] = None,
             v_cpu: Optional[pulumi.Input[int]] = None,
             vpc_id: Optional[pulumi.Input[str]] = None,
             zone_id: Optional[pulumi.Input[str]] = None,
-            zone_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'Instance':
+            zone_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            zone_migrations: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceZoneMigrationArgs']]]]] = None) -> 'Instance':
         """
         Get an existing Instance resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -1018,18 +1468,24 @@ class Instance(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_list_ids: Allow list IDs to bind at creation.
+        :param pulumi.Input[str] allow_list_version: The allow list version of the RDS PostgreSQL instance.
+        :param pulumi.Input[str] backup_id: Backup ID (choose either this or restore_time; if both are set, backup_id shall prevail).
         :param pulumi.Input[int] backup_use: The instance has used backup space. Unit: GB.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceChargeDetailArgs']]]] charge_details: Payment methods.
         :param pulumi.Input[pulumi.InputType['InstanceChargeInfoArgs']] charge_info: Payment methods.
         :param pulumi.Input[str] create_time: Node creation local time.
         :param pulumi.Input[str] data_sync_mode: Data synchronization mode.
-        :param pulumi.Input[str] db_engine_version: Instance type. Value: PostgreSQL_11, PostgreSQL_12, PostgreSQL_13.
+        :param pulumi.Input[str] db_engine_version: Instance type. Value: PostgreSQL_11, PostgreSQL_12, PostgreSQL_13, PostgreSQL_14, PostgreSQL_15, PostgreSQL_16, PostgreSQL_17.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceEndpointArgs']]]] endpoints: The endpoint info of the RDS instance.
+        :param pulumi.Input[bool] estimate_only: Whether to initiate a configuration change assessment. Only estimate spec change impact without executing. Default value: false.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceEstimationResultArgs']]]] estimation_results: The estimated impact on the instance after the current configuration changes.
         :param pulumi.Input[str] instance_id: Instance ID.
         :param pulumi.Input[str] instance_name: Instance name. Cannot start with a number or a dash. Can only contain Chinese characters, letters, numbers, underscores and dashes. The length is limited between 1 ~ 128.
         :param pulumi.Input[str] instance_status: The status of the RDS PostgreSQL instance.
         :param pulumi.Input[str] instance_type: The instance type of the RDS PostgreSQL instance.
         :param pulumi.Input[int] memory: Memory size in GB.
+        :param pulumi.Input[str] modify_type: Spec change type. Usually(default) or Temporary.
         :param pulumi.Input[int] node_number: The number of nodes.
         :param pulumi.Input[str] node_spec: The specification of primary node and secondary node.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceNodeArgs']]]] nodes: Instance node information.
@@ -1037,9 +1493,17 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] primary_zone_id: The available zone of primary node.
         :param pulumi.Input[str] project_name: The project name of the RDS instance.
         :param pulumi.Input[str] region_id: The region of the RDS PostgreSQL instance.
+        :param pulumi.Input[str] restore_time: The point in time to restore to, in UTC format yyyy-MM-ddTHH:mm:ssZ (choose either this or backup_id).
+        :param pulumi.Input[str] rollback_time: Rollback time for Temporary change, UTC format yyyy-MM-ddTHH:mm:ss.sssZ.
         :param pulumi.Input[str] secondary_zone_id: The available zone of secondary node.
-        :param pulumi.Input[int] storage_space: Instance storage space. Value range: [20, 3000], unit: GB, increments every 100GB. Default value: 100.
+        :param pulumi.Input[str] src_instance_id: Source instance ID. After setting it, a new instance will be created by restoring from the backup/time point.
+        :param pulumi.Input[int] storage_data_use: The instance's primary node has used storage space. Unit: Byte.
+        :param pulumi.Input[int] storage_log_use: The instance's primary node has used log storage space. Unit: Byte.
+        :param pulumi.Input[int] storage_space: Instance storage space. Value range: [20, 3000], unit: GB, step 10GB. Default value: 100.
+        :param pulumi.Input[int] storage_temp_use: The instance's primary node has used temporary storage space. Unit: Byte.
         :param pulumi.Input[str] storage_type: Instance storage type.
+        :param pulumi.Input[int] storage_use: The instance has used storage space. Unit: Byte.
+        :param pulumi.Input[int] storage_wal_use: The instance's primary node has used WAL storage space. Unit: Byte.
         :param pulumi.Input[str] subnet_id: Subnet ID of the RDS PostgreSQL instance.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] update_time: The update time of the RDS PostgreSQL instance.
@@ -1047,11 +1511,15 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] vpc_id: The vpc ID of the RDS PostgreSQL instance.
         :param pulumi.Input[str] zone_id: The available zone of the RDS PostgreSQL instance.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] zone_ids: ID of the availability zone where each instance is located.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceZoneMigrationArgs']]]] zone_migrations: Nodes to migrate AZ. Only Secondary or ReadOnly nodes are allowed. If you want to migrate the availability zone of the secondary node, you need to add the zone_migrations field. Modifying the secondary_zone_id directly will not work. Cross-AZ instance migration is not supported.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _InstanceState.__new__(_InstanceState)
 
+        __props__.__dict__["allow_list_ids"] = allow_list_ids
+        __props__.__dict__["allow_list_version"] = allow_list_version
+        __props__.__dict__["backup_id"] = backup_id
         __props__.__dict__["backup_use"] = backup_use
         __props__.__dict__["charge_details"] = charge_details
         __props__.__dict__["charge_info"] = charge_info
@@ -1059,11 +1527,14 @@ class Instance(pulumi.CustomResource):
         __props__.__dict__["data_sync_mode"] = data_sync_mode
         __props__.__dict__["db_engine_version"] = db_engine_version
         __props__.__dict__["endpoints"] = endpoints
+        __props__.__dict__["estimate_only"] = estimate_only
+        __props__.__dict__["estimation_results"] = estimation_results
         __props__.__dict__["instance_id"] = instance_id
         __props__.__dict__["instance_name"] = instance_name
         __props__.__dict__["instance_status"] = instance_status
         __props__.__dict__["instance_type"] = instance_type
         __props__.__dict__["memory"] = memory
+        __props__.__dict__["modify_type"] = modify_type
         __props__.__dict__["node_number"] = node_number
         __props__.__dict__["node_spec"] = node_spec
         __props__.__dict__["nodes"] = nodes
@@ -1071,9 +1542,17 @@ class Instance(pulumi.CustomResource):
         __props__.__dict__["primary_zone_id"] = primary_zone_id
         __props__.__dict__["project_name"] = project_name
         __props__.__dict__["region_id"] = region_id
+        __props__.__dict__["restore_time"] = restore_time
+        __props__.__dict__["rollback_time"] = rollback_time
         __props__.__dict__["secondary_zone_id"] = secondary_zone_id
+        __props__.__dict__["src_instance_id"] = src_instance_id
+        __props__.__dict__["storage_data_use"] = storage_data_use
+        __props__.__dict__["storage_log_use"] = storage_log_use
         __props__.__dict__["storage_space"] = storage_space
+        __props__.__dict__["storage_temp_use"] = storage_temp_use
         __props__.__dict__["storage_type"] = storage_type
+        __props__.__dict__["storage_use"] = storage_use
+        __props__.__dict__["storage_wal_use"] = storage_wal_use
         __props__.__dict__["subnet_id"] = subnet_id
         __props__.__dict__["tags"] = tags
         __props__.__dict__["update_time"] = update_time
@@ -1081,7 +1560,32 @@ class Instance(pulumi.CustomResource):
         __props__.__dict__["vpc_id"] = vpc_id
         __props__.__dict__["zone_id"] = zone_id
         __props__.__dict__["zone_ids"] = zone_ids
+        __props__.__dict__["zone_migrations"] = zone_migrations
         return Instance(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="allowListIds")
+    def allow_list_ids(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        Allow list IDs to bind at creation.
+        """
+        return pulumi.get(self, "allow_list_ids")
+
+    @property
+    @pulumi.getter(name="allowListVersion")
+    def allow_list_version(self) -> pulumi.Output[str]:
+        """
+        The allow list version of the RDS PostgreSQL instance.
+        """
+        return pulumi.get(self, "allow_list_version")
+
+    @property
+    @pulumi.getter(name="backupId")
+    def backup_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        Backup ID (choose either this or restore_time; if both are set, backup_id shall prevail).
+        """
+        return pulumi.get(self, "backup_id")
 
     @property
     @pulumi.getter(name="backupUse")
@@ -1127,7 +1631,7 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter(name="dbEngineVersion")
     def db_engine_version(self) -> pulumi.Output[str]:
         """
-        Instance type. Value: PostgreSQL_11, PostgreSQL_12, PostgreSQL_13.
+        Instance type. Value: PostgreSQL_11, PostgreSQL_12, PostgreSQL_13, PostgreSQL_14, PostgreSQL_15, PostgreSQL_16, PostgreSQL_17.
         """
         return pulumi.get(self, "db_engine_version")
 
@@ -1138,6 +1642,22 @@ class Instance(pulumi.CustomResource):
         The endpoint info of the RDS instance.
         """
         return pulumi.get(self, "endpoints")
+
+    @property
+    @pulumi.getter(name="estimateOnly")
+    def estimate_only(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Whether to initiate a configuration change assessment. Only estimate spec change impact without executing. Default value: false.
+        """
+        return pulumi.get(self, "estimate_only")
+
+    @property
+    @pulumi.getter(name="estimationResults")
+    def estimation_results(self) -> pulumi.Output[Sequence['outputs.InstanceEstimationResult']]:
+        """
+        The estimated impact on the instance after the current configuration changes.
+        """
+        return pulumi.get(self, "estimation_results")
 
     @property
     @pulumi.getter(name="instanceId")
@@ -1178,6 +1698,14 @@ class Instance(pulumi.CustomResource):
         Memory size in GB.
         """
         return pulumi.get(self, "memory")
+
+    @property
+    @pulumi.getter(name="modifyType")
+    def modify_type(self) -> pulumi.Output[Optional[str]]:
+        """
+        Spec change type. Usually(default) or Temporary.
+        """
+        return pulumi.get(self, "modify_type")
 
     @property
     @pulumi.getter(name="nodeNumber")
@@ -1236,6 +1764,22 @@ class Instance(pulumi.CustomResource):
         return pulumi.get(self, "region_id")
 
     @property
+    @pulumi.getter(name="restoreTime")
+    def restore_time(self) -> pulumi.Output[Optional[str]]:
+        """
+        The point in time to restore to, in UTC format yyyy-MM-ddTHH:mm:ssZ (choose either this or backup_id).
+        """
+        return pulumi.get(self, "restore_time")
+
+    @property
+    @pulumi.getter(name="rollbackTime")
+    def rollback_time(self) -> pulumi.Output[Optional[str]]:
+        """
+        Rollback time for Temporary change, UTC format yyyy-MM-ddTHH:mm:ss.sssZ.
+        """
+        return pulumi.get(self, "rollback_time")
+
+    @property
     @pulumi.getter(name="secondaryZoneId")
     def secondary_zone_id(self) -> pulumi.Output[str]:
         """
@@ -1244,12 +1788,44 @@ class Instance(pulumi.CustomResource):
         return pulumi.get(self, "secondary_zone_id")
 
     @property
+    @pulumi.getter(name="srcInstanceId")
+    def src_instance_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        Source instance ID. After setting it, a new instance will be created by restoring from the backup/time point.
+        """
+        return pulumi.get(self, "src_instance_id")
+
+    @property
+    @pulumi.getter(name="storageDataUse")
+    def storage_data_use(self) -> pulumi.Output[int]:
+        """
+        The instance's primary node has used storage space. Unit: Byte.
+        """
+        return pulumi.get(self, "storage_data_use")
+
+    @property
+    @pulumi.getter(name="storageLogUse")
+    def storage_log_use(self) -> pulumi.Output[int]:
+        """
+        The instance's primary node has used log storage space. Unit: Byte.
+        """
+        return pulumi.get(self, "storage_log_use")
+
+    @property
     @pulumi.getter(name="storageSpace")
     def storage_space(self) -> pulumi.Output[Optional[int]]:
         """
-        Instance storage space. Value range: [20, 3000], unit: GB, increments every 100GB. Default value: 100.
+        Instance storage space. Value range: [20, 3000], unit: GB, step 10GB. Default value: 100.
         """
         return pulumi.get(self, "storage_space")
+
+    @property
+    @pulumi.getter(name="storageTempUse")
+    def storage_temp_use(self) -> pulumi.Output[int]:
+        """
+        The instance's primary node has used temporary storage space. Unit: Byte.
+        """
+        return pulumi.get(self, "storage_temp_use")
 
     @property
     @pulumi.getter(name="storageType")
@@ -1258,6 +1834,22 @@ class Instance(pulumi.CustomResource):
         Instance storage type.
         """
         return pulumi.get(self, "storage_type")
+
+    @property
+    @pulumi.getter(name="storageUse")
+    def storage_use(self) -> pulumi.Output[int]:
+        """
+        The instance has used storage space. Unit: Byte.
+        """
+        return pulumi.get(self, "storage_use")
+
+    @property
+    @pulumi.getter(name="storageWalUse")
+    def storage_wal_use(self) -> pulumi.Output[int]:
+        """
+        The instance's primary node has used WAL storage space. Unit: Byte.
+        """
+        return pulumi.get(self, "storage_wal_use")
 
     @property
     @pulumi.getter(name="subnetId")
@@ -1314,4 +1906,12 @@ class Instance(pulumi.CustomResource):
         ID of the availability zone where each instance is located.
         """
         return pulumi.get(self, "zone_ids")
+
+    @property
+    @pulumi.getter(name="zoneMigrations")
+    def zone_migrations(self) -> pulumi.Output[Optional[Sequence['outputs.InstanceZoneMigration']]]:
+        """
+        Nodes to migrate AZ. Only Secondary or ReadOnly nodes are allowed. If you want to migrate the availability zone of the secondary node, you need to add the zone_migrations field. Modifying the secondary_zone_id directly will not work. Cross-AZ instance migration is not supported.
+        """
+        return pulumi.get(self, "zone_migrations")
 

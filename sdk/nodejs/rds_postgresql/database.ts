@@ -17,6 +17,13 @@ import * as utilities from "../utilities";
  *     collate: "zh_CN.utf8",
  *     dbName: "acc-test",
  *     instanceId: "postgres-95*******233",
+ *     owner: "super",
+ * });
+ * const cloneExample = new volcengine.rds_postgresql.Database("cloneExample", {
+ *     dataOption: "Metadata",
+ *     dbName: "clone-test",
+ *     instanceId: "postgres-95*******233",
+ *     sourceDbName: "acc-test",
  * });
  * ```
  *
@@ -69,6 +76,10 @@ export class Database extends pulumi.CustomResource {
      */
     public readonly collate!: pulumi.Output<string>;
     /**
+     * The data option of the new database. Currently only Metadata is supported. This parameter is optional when clone an existing database.
+     */
+    public readonly dataOption!: pulumi.Output<string | undefined>;
+    /**
      * The name of database.
      */
     public readonly dbName!: pulumi.Output<string>;
@@ -84,6 +95,14 @@ export class Database extends pulumi.CustomResource {
      * The owner of database.
      */
     public readonly owner!: pulumi.Output<string>;
+    /**
+     * The plPgsql option of the new database. Value range: View, Procedure, Function, Trigger. This parameter is optional when clone an existing database.
+     */
+    public readonly plpgsqlOptions!: pulumi.Output<string[] | undefined>;
+    /**
+     * The name of the source database. This parameter is required when clone an existing database.
+     */
+    public readonly sourceDbName!: pulumi.Output<string | undefined>;
 
     /**
      * Create a Database resource with the given unique name, arguments, and options.
@@ -101,10 +120,13 @@ export class Database extends pulumi.CustomResource {
             resourceInputs["cType"] = state ? state.cType : undefined;
             resourceInputs["characterSetName"] = state ? state.characterSetName : undefined;
             resourceInputs["collate"] = state ? state.collate : undefined;
+            resourceInputs["dataOption"] = state ? state.dataOption : undefined;
             resourceInputs["dbName"] = state ? state.dbName : undefined;
             resourceInputs["dbStatus"] = state ? state.dbStatus : undefined;
             resourceInputs["instanceId"] = state ? state.instanceId : undefined;
             resourceInputs["owner"] = state ? state.owner : undefined;
+            resourceInputs["plpgsqlOptions"] = state ? state.plpgsqlOptions : undefined;
+            resourceInputs["sourceDbName"] = state ? state.sourceDbName : undefined;
         } else {
             const args = argsOrState as DatabaseArgs | undefined;
             if ((!args || args.dbName === undefined) && !opts.urn) {
@@ -116,9 +138,12 @@ export class Database extends pulumi.CustomResource {
             resourceInputs["cType"] = args ? args.cType : undefined;
             resourceInputs["characterSetName"] = args ? args.characterSetName : undefined;
             resourceInputs["collate"] = args ? args.collate : undefined;
+            resourceInputs["dataOption"] = args ? args.dataOption : undefined;
             resourceInputs["dbName"] = args ? args.dbName : undefined;
             resourceInputs["instanceId"] = args ? args.instanceId : undefined;
             resourceInputs["owner"] = args ? args.owner : undefined;
+            resourceInputs["plpgsqlOptions"] = args ? args.plpgsqlOptions : undefined;
+            resourceInputs["sourceDbName"] = args ? args.sourceDbName : undefined;
             resourceInputs["dbStatus"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -143,6 +168,10 @@ export interface DatabaseState {
      */
     collate?: pulumi.Input<string>;
     /**
+     * The data option of the new database. Currently only Metadata is supported. This parameter is optional when clone an existing database.
+     */
+    dataOption?: pulumi.Input<string>;
+    /**
      * The name of database.
      */
     dbName?: pulumi.Input<string>;
@@ -158,6 +187,14 @@ export interface DatabaseState {
      * The owner of database.
      */
     owner?: pulumi.Input<string>;
+    /**
+     * The plPgsql option of the new database. Value range: View, Procedure, Function, Trigger. This parameter is optional when clone an existing database.
+     */
+    plpgsqlOptions?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The name of the source database. This parameter is required when clone an existing database.
+     */
+    sourceDbName?: pulumi.Input<string>;
 }
 
 /**
@@ -177,6 +214,10 @@ export interface DatabaseArgs {
      */
     collate?: pulumi.Input<string>;
     /**
+     * The data option of the new database. Currently only Metadata is supported. This parameter is optional when clone an existing database.
+     */
+    dataOption?: pulumi.Input<string>;
+    /**
      * The name of database.
      */
     dbName: pulumi.Input<string>;
@@ -188,4 +229,12 @@ export interface DatabaseArgs {
      * The owner of database.
      */
     owner?: pulumi.Input<string>;
+    /**
+     * The plPgsql option of the new database. Value range: View, Procedure, Function, Trigger. This parameter is optional when clone an existing database.
+     */
+    plpgsqlOptions?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The name of the source database. This parameter is required when clone an existing database.
+     */
+    sourceDbName?: pulumi.Input<string>;
 }

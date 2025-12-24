@@ -6,15 +6,26 @@ from .. import _utilities
 import typing
 # Export this package's modules as members:
 from .bucket import *
+from .bucket_access_monitor import *
 from .bucket_cors import *
+from .bucket_customdomain import *
 from .bucket_encryption import *
 from .bucket_inventories import *
 from .bucket_inventory import *
+from .bucket_lifecycle import *
+from .bucket_logging import *
+from .bucket_mirror_back import *
 from .bucket_notification import *
 from .bucket_object import *
+from .bucket_object_lock_configuration import *
 from .bucket_objects import *
 from .bucket_policy import *
 from .bucket_realtime_log import *
+from .bucket_rename import *
+from .bucket_replication import *
+from .bucket_request_payment import *
+from .bucket_transfer_acceleration import *
+from .bucket_website import *
 from .buckets import *
 from .get_bucket_inventories import *
 from .get_bucket_objects import *

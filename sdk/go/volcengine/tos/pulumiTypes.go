@@ -270,6 +270,121 @@ func (o BucketCorsCorsRuleArrayOutput) Index(i pulumi.IntInput) BucketCorsCorsRu
 	}).(BucketCorsCorsRuleOutput)
 }
 
+type BucketCustomdomainCustomDomainRule struct {
+	// The certificate id.
+	CertId *string `pulumi:"certId"`
+	// The custom domain name for the bucket.
+	Domain string `pulumi:"domain"`
+	// Custom domain access protocol.tos|s3.
+	Protocol *string `pulumi:"protocol"`
+}
+
+// BucketCustomdomainCustomDomainRuleInput is an input type that accepts BucketCustomdomainCustomDomainRuleArgs and BucketCustomdomainCustomDomainRuleOutput values.
+// You can construct a concrete instance of `BucketCustomdomainCustomDomainRuleInput` via:
+//
+//	BucketCustomdomainCustomDomainRuleArgs{...}
+type BucketCustomdomainCustomDomainRuleInput interface {
+	pulumi.Input
+
+	ToBucketCustomdomainCustomDomainRuleOutput() BucketCustomdomainCustomDomainRuleOutput
+	ToBucketCustomdomainCustomDomainRuleOutputWithContext(context.Context) BucketCustomdomainCustomDomainRuleOutput
+}
+
+type BucketCustomdomainCustomDomainRuleArgs struct {
+	// The certificate id.
+	CertId pulumi.StringPtrInput `pulumi:"certId"`
+	// The custom domain name for the bucket.
+	Domain pulumi.StringInput `pulumi:"domain"`
+	// Custom domain access protocol.tos|s3.
+	Protocol pulumi.StringPtrInput `pulumi:"protocol"`
+}
+
+func (BucketCustomdomainCustomDomainRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketCustomdomainCustomDomainRule)(nil)).Elem()
+}
+
+func (i BucketCustomdomainCustomDomainRuleArgs) ToBucketCustomdomainCustomDomainRuleOutput() BucketCustomdomainCustomDomainRuleOutput {
+	return i.ToBucketCustomdomainCustomDomainRuleOutputWithContext(context.Background())
+}
+
+func (i BucketCustomdomainCustomDomainRuleArgs) ToBucketCustomdomainCustomDomainRuleOutputWithContext(ctx context.Context) BucketCustomdomainCustomDomainRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketCustomdomainCustomDomainRuleOutput)
+}
+
+// BucketCustomdomainCustomDomainRuleArrayInput is an input type that accepts BucketCustomdomainCustomDomainRuleArray and BucketCustomdomainCustomDomainRuleArrayOutput values.
+// You can construct a concrete instance of `BucketCustomdomainCustomDomainRuleArrayInput` via:
+//
+//	BucketCustomdomainCustomDomainRuleArray{ BucketCustomdomainCustomDomainRuleArgs{...} }
+type BucketCustomdomainCustomDomainRuleArrayInput interface {
+	pulumi.Input
+
+	ToBucketCustomdomainCustomDomainRuleArrayOutput() BucketCustomdomainCustomDomainRuleArrayOutput
+	ToBucketCustomdomainCustomDomainRuleArrayOutputWithContext(context.Context) BucketCustomdomainCustomDomainRuleArrayOutput
+}
+
+type BucketCustomdomainCustomDomainRuleArray []BucketCustomdomainCustomDomainRuleInput
+
+func (BucketCustomdomainCustomDomainRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BucketCustomdomainCustomDomainRule)(nil)).Elem()
+}
+
+func (i BucketCustomdomainCustomDomainRuleArray) ToBucketCustomdomainCustomDomainRuleArrayOutput() BucketCustomdomainCustomDomainRuleArrayOutput {
+	return i.ToBucketCustomdomainCustomDomainRuleArrayOutputWithContext(context.Background())
+}
+
+func (i BucketCustomdomainCustomDomainRuleArray) ToBucketCustomdomainCustomDomainRuleArrayOutputWithContext(ctx context.Context) BucketCustomdomainCustomDomainRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketCustomdomainCustomDomainRuleArrayOutput)
+}
+
+type BucketCustomdomainCustomDomainRuleOutput struct{ *pulumi.OutputState }
+
+func (BucketCustomdomainCustomDomainRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketCustomdomainCustomDomainRule)(nil)).Elem()
+}
+
+func (o BucketCustomdomainCustomDomainRuleOutput) ToBucketCustomdomainCustomDomainRuleOutput() BucketCustomdomainCustomDomainRuleOutput {
+	return o
+}
+
+func (o BucketCustomdomainCustomDomainRuleOutput) ToBucketCustomdomainCustomDomainRuleOutputWithContext(ctx context.Context) BucketCustomdomainCustomDomainRuleOutput {
+	return o
+}
+
+// The certificate id.
+func (o BucketCustomdomainCustomDomainRuleOutput) CertId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketCustomdomainCustomDomainRule) *string { return v.CertId }).(pulumi.StringPtrOutput)
+}
+
+// The custom domain name for the bucket.
+func (o BucketCustomdomainCustomDomainRuleOutput) Domain() pulumi.StringOutput {
+	return o.ApplyT(func(v BucketCustomdomainCustomDomainRule) string { return v.Domain }).(pulumi.StringOutput)
+}
+
+// Custom domain access protocol.tos|s3.
+func (o BucketCustomdomainCustomDomainRuleOutput) Protocol() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketCustomdomainCustomDomainRule) *string { return v.Protocol }).(pulumi.StringPtrOutput)
+}
+
+type BucketCustomdomainCustomDomainRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (BucketCustomdomainCustomDomainRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BucketCustomdomainCustomDomainRule)(nil)).Elem()
+}
+
+func (o BucketCustomdomainCustomDomainRuleArrayOutput) ToBucketCustomdomainCustomDomainRuleArrayOutput() BucketCustomdomainCustomDomainRuleArrayOutput {
+	return o
+}
+
+func (o BucketCustomdomainCustomDomainRuleArrayOutput) ToBucketCustomdomainCustomDomainRuleArrayOutputWithContext(ctx context.Context) BucketCustomdomainCustomDomainRuleArrayOutput {
+	return o
+}
+
+func (o BucketCustomdomainCustomDomainRuleArrayOutput) Index(i pulumi.IntInput) BucketCustomdomainCustomDomainRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) BucketCustomdomainCustomDomainRule {
+		return vs[0].([]BucketCustomdomainCustomDomainRule)[vs[1].(int)]
+	}).(BucketCustomdomainCustomDomainRuleOutput)
+}
+
 type BucketEncryptionRule struct {
 	// The server side encryption configuration.
 	ApplyServerSideEncryptionByDefault BucketEncryptionRuleApplyServerSideEncryptionByDefault `pulumi:"applyServerSideEncryptionByDefault"`
@@ -2040,6 +2155,3604 @@ func (o BucketInventorySchedulePtrOutput) Frequency() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type BucketLifecycleRule struct {
+	// The abort incomplete multipart upload configuration of the lifecycle rule.
+	AbortIncompleteMultipartUpload *BucketLifecycleRuleAbortIncompleteMultipartUpload `pulumi:"abortIncompleteMultipartUpload"`
+	// The expiration configuration of the lifecycle rule.
+	Expiration *BucketLifecycleRuleExpiration `pulumi:"expiration"`
+	// The filter configuration of the lifecycle rule.
+	Filter *BucketLifecycleRuleFilter `pulumi:"filter"`
+	// The ID of the lifecycle rule.
+	Id *string `pulumi:"id"`
+	// The non-current version expiration configuration of the lifecycle rule.
+	NonCurrentVersionExpiration *BucketLifecycleRuleNonCurrentVersionExpiration `pulumi:"nonCurrentVersionExpiration"`
+	// The non-current version transition configuration of the lifecycle rule.
+	NonCurrentVersionTransitions []BucketLifecycleRuleNonCurrentVersionTransition `pulumi:"nonCurrentVersionTransitions"`
+	// The prefix of the lifecycle rule.
+	Prefix *string `pulumi:"prefix"`
+	// The status of the lifecycle rule. Valid values: Enabled, Disabled.
+	Status string `pulumi:"status"`
+	// The tag filters.
+	Tags []BucketLifecycleRuleTag `pulumi:"tags"`
+	// The transition configuration of the lifecycle rule.
+	Transitions []BucketLifecycleRuleTransition `pulumi:"transitions"`
+}
+
+// BucketLifecycleRuleInput is an input type that accepts BucketLifecycleRuleArgs and BucketLifecycleRuleOutput values.
+// You can construct a concrete instance of `BucketLifecycleRuleInput` via:
+//
+//	BucketLifecycleRuleArgs{...}
+type BucketLifecycleRuleInput interface {
+	pulumi.Input
+
+	ToBucketLifecycleRuleOutput() BucketLifecycleRuleOutput
+	ToBucketLifecycleRuleOutputWithContext(context.Context) BucketLifecycleRuleOutput
+}
+
+type BucketLifecycleRuleArgs struct {
+	// The abort incomplete multipart upload configuration of the lifecycle rule.
+	AbortIncompleteMultipartUpload BucketLifecycleRuleAbortIncompleteMultipartUploadPtrInput `pulumi:"abortIncompleteMultipartUpload"`
+	// The expiration configuration of the lifecycle rule.
+	Expiration BucketLifecycleRuleExpirationPtrInput `pulumi:"expiration"`
+	// The filter configuration of the lifecycle rule.
+	Filter BucketLifecycleRuleFilterPtrInput `pulumi:"filter"`
+	// The ID of the lifecycle rule.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// The non-current version expiration configuration of the lifecycle rule.
+	NonCurrentVersionExpiration BucketLifecycleRuleNonCurrentVersionExpirationPtrInput `pulumi:"nonCurrentVersionExpiration"`
+	// The non-current version transition configuration of the lifecycle rule.
+	NonCurrentVersionTransitions BucketLifecycleRuleNonCurrentVersionTransitionArrayInput `pulumi:"nonCurrentVersionTransitions"`
+	// The prefix of the lifecycle rule.
+	Prefix pulumi.StringPtrInput `pulumi:"prefix"`
+	// The status of the lifecycle rule. Valid values: Enabled, Disabled.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The tag filters.
+	Tags BucketLifecycleRuleTagArrayInput `pulumi:"tags"`
+	// The transition configuration of the lifecycle rule.
+	Transitions BucketLifecycleRuleTransitionArrayInput `pulumi:"transitions"`
+}
+
+func (BucketLifecycleRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketLifecycleRule)(nil)).Elem()
+}
+
+func (i BucketLifecycleRuleArgs) ToBucketLifecycleRuleOutput() BucketLifecycleRuleOutput {
+	return i.ToBucketLifecycleRuleOutputWithContext(context.Background())
+}
+
+func (i BucketLifecycleRuleArgs) ToBucketLifecycleRuleOutputWithContext(ctx context.Context) BucketLifecycleRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketLifecycleRuleOutput)
+}
+
+// BucketLifecycleRuleArrayInput is an input type that accepts BucketLifecycleRuleArray and BucketLifecycleRuleArrayOutput values.
+// You can construct a concrete instance of `BucketLifecycleRuleArrayInput` via:
+//
+//	BucketLifecycleRuleArray{ BucketLifecycleRuleArgs{...} }
+type BucketLifecycleRuleArrayInput interface {
+	pulumi.Input
+
+	ToBucketLifecycleRuleArrayOutput() BucketLifecycleRuleArrayOutput
+	ToBucketLifecycleRuleArrayOutputWithContext(context.Context) BucketLifecycleRuleArrayOutput
+}
+
+type BucketLifecycleRuleArray []BucketLifecycleRuleInput
+
+func (BucketLifecycleRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BucketLifecycleRule)(nil)).Elem()
+}
+
+func (i BucketLifecycleRuleArray) ToBucketLifecycleRuleArrayOutput() BucketLifecycleRuleArrayOutput {
+	return i.ToBucketLifecycleRuleArrayOutputWithContext(context.Background())
+}
+
+func (i BucketLifecycleRuleArray) ToBucketLifecycleRuleArrayOutputWithContext(ctx context.Context) BucketLifecycleRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketLifecycleRuleArrayOutput)
+}
+
+type BucketLifecycleRuleOutput struct{ *pulumi.OutputState }
+
+func (BucketLifecycleRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketLifecycleRule)(nil)).Elem()
+}
+
+func (o BucketLifecycleRuleOutput) ToBucketLifecycleRuleOutput() BucketLifecycleRuleOutput {
+	return o
+}
+
+func (o BucketLifecycleRuleOutput) ToBucketLifecycleRuleOutputWithContext(ctx context.Context) BucketLifecycleRuleOutput {
+	return o
+}
+
+// The abort incomplete multipart upload configuration of the lifecycle rule.
+func (o BucketLifecycleRuleOutput) AbortIncompleteMultipartUpload() BucketLifecycleRuleAbortIncompleteMultipartUploadPtrOutput {
+	return o.ApplyT(func(v BucketLifecycleRule) *BucketLifecycleRuleAbortIncompleteMultipartUpload {
+		return v.AbortIncompleteMultipartUpload
+	}).(BucketLifecycleRuleAbortIncompleteMultipartUploadPtrOutput)
+}
+
+// The expiration configuration of the lifecycle rule.
+func (o BucketLifecycleRuleOutput) Expiration() BucketLifecycleRuleExpirationPtrOutput {
+	return o.ApplyT(func(v BucketLifecycleRule) *BucketLifecycleRuleExpiration { return v.Expiration }).(BucketLifecycleRuleExpirationPtrOutput)
+}
+
+// The filter configuration of the lifecycle rule.
+func (o BucketLifecycleRuleOutput) Filter() BucketLifecycleRuleFilterPtrOutput {
+	return o.ApplyT(func(v BucketLifecycleRule) *BucketLifecycleRuleFilter { return v.Filter }).(BucketLifecycleRuleFilterPtrOutput)
+}
+
+// The ID of the lifecycle rule.
+func (o BucketLifecycleRuleOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketLifecycleRule) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// The non-current version expiration configuration of the lifecycle rule.
+func (o BucketLifecycleRuleOutput) NonCurrentVersionExpiration() BucketLifecycleRuleNonCurrentVersionExpirationPtrOutput {
+	return o.ApplyT(func(v BucketLifecycleRule) *BucketLifecycleRuleNonCurrentVersionExpiration {
+		return v.NonCurrentVersionExpiration
+	}).(BucketLifecycleRuleNonCurrentVersionExpirationPtrOutput)
+}
+
+// The non-current version transition configuration of the lifecycle rule.
+func (o BucketLifecycleRuleOutput) NonCurrentVersionTransitions() BucketLifecycleRuleNonCurrentVersionTransitionArrayOutput {
+	return o.ApplyT(func(v BucketLifecycleRule) []BucketLifecycleRuleNonCurrentVersionTransition {
+		return v.NonCurrentVersionTransitions
+	}).(BucketLifecycleRuleNonCurrentVersionTransitionArrayOutput)
+}
+
+// The prefix of the lifecycle rule.
+func (o BucketLifecycleRuleOutput) Prefix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketLifecycleRule) *string { return v.Prefix }).(pulumi.StringPtrOutput)
+}
+
+// The status of the lifecycle rule. Valid values: Enabled, Disabled.
+func (o BucketLifecycleRuleOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v BucketLifecycleRule) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The tag filters.
+func (o BucketLifecycleRuleOutput) Tags() BucketLifecycleRuleTagArrayOutput {
+	return o.ApplyT(func(v BucketLifecycleRule) []BucketLifecycleRuleTag { return v.Tags }).(BucketLifecycleRuleTagArrayOutput)
+}
+
+// The transition configuration of the lifecycle rule.
+func (o BucketLifecycleRuleOutput) Transitions() BucketLifecycleRuleTransitionArrayOutput {
+	return o.ApplyT(func(v BucketLifecycleRule) []BucketLifecycleRuleTransition { return v.Transitions }).(BucketLifecycleRuleTransitionArrayOutput)
+}
+
+type BucketLifecycleRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (BucketLifecycleRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BucketLifecycleRule)(nil)).Elem()
+}
+
+func (o BucketLifecycleRuleArrayOutput) ToBucketLifecycleRuleArrayOutput() BucketLifecycleRuleArrayOutput {
+	return o
+}
+
+func (o BucketLifecycleRuleArrayOutput) ToBucketLifecycleRuleArrayOutputWithContext(ctx context.Context) BucketLifecycleRuleArrayOutput {
+	return o
+}
+
+func (o BucketLifecycleRuleArrayOutput) Index(i pulumi.IntInput) BucketLifecycleRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) BucketLifecycleRule {
+		return vs[0].([]BucketLifecycleRule)[vs[1].(int)]
+	}).(BucketLifecycleRuleOutput)
+}
+
+type BucketLifecycleRuleAbortIncompleteMultipartUpload struct {
+	// The number of days after initiation when the incomplete multipart upload should be aborted.
+	DaysAfterInitiation int `pulumi:"daysAfterInitiation"`
+}
+
+// BucketLifecycleRuleAbortIncompleteMultipartUploadInput is an input type that accepts BucketLifecycleRuleAbortIncompleteMultipartUploadArgs and BucketLifecycleRuleAbortIncompleteMultipartUploadOutput values.
+// You can construct a concrete instance of `BucketLifecycleRuleAbortIncompleteMultipartUploadInput` via:
+//
+//	BucketLifecycleRuleAbortIncompleteMultipartUploadArgs{...}
+type BucketLifecycleRuleAbortIncompleteMultipartUploadInput interface {
+	pulumi.Input
+
+	ToBucketLifecycleRuleAbortIncompleteMultipartUploadOutput() BucketLifecycleRuleAbortIncompleteMultipartUploadOutput
+	ToBucketLifecycleRuleAbortIncompleteMultipartUploadOutputWithContext(context.Context) BucketLifecycleRuleAbortIncompleteMultipartUploadOutput
+}
+
+type BucketLifecycleRuleAbortIncompleteMultipartUploadArgs struct {
+	// The number of days after initiation when the incomplete multipart upload should be aborted.
+	DaysAfterInitiation pulumi.IntInput `pulumi:"daysAfterInitiation"`
+}
+
+func (BucketLifecycleRuleAbortIncompleteMultipartUploadArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketLifecycleRuleAbortIncompleteMultipartUpload)(nil)).Elem()
+}
+
+func (i BucketLifecycleRuleAbortIncompleteMultipartUploadArgs) ToBucketLifecycleRuleAbortIncompleteMultipartUploadOutput() BucketLifecycleRuleAbortIncompleteMultipartUploadOutput {
+	return i.ToBucketLifecycleRuleAbortIncompleteMultipartUploadOutputWithContext(context.Background())
+}
+
+func (i BucketLifecycleRuleAbortIncompleteMultipartUploadArgs) ToBucketLifecycleRuleAbortIncompleteMultipartUploadOutputWithContext(ctx context.Context) BucketLifecycleRuleAbortIncompleteMultipartUploadOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketLifecycleRuleAbortIncompleteMultipartUploadOutput)
+}
+
+func (i BucketLifecycleRuleAbortIncompleteMultipartUploadArgs) ToBucketLifecycleRuleAbortIncompleteMultipartUploadPtrOutput() BucketLifecycleRuleAbortIncompleteMultipartUploadPtrOutput {
+	return i.ToBucketLifecycleRuleAbortIncompleteMultipartUploadPtrOutputWithContext(context.Background())
+}
+
+func (i BucketLifecycleRuleAbortIncompleteMultipartUploadArgs) ToBucketLifecycleRuleAbortIncompleteMultipartUploadPtrOutputWithContext(ctx context.Context) BucketLifecycleRuleAbortIncompleteMultipartUploadPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketLifecycleRuleAbortIncompleteMultipartUploadOutput).ToBucketLifecycleRuleAbortIncompleteMultipartUploadPtrOutputWithContext(ctx)
+}
+
+// BucketLifecycleRuleAbortIncompleteMultipartUploadPtrInput is an input type that accepts BucketLifecycleRuleAbortIncompleteMultipartUploadArgs, BucketLifecycleRuleAbortIncompleteMultipartUploadPtr and BucketLifecycleRuleAbortIncompleteMultipartUploadPtrOutput values.
+// You can construct a concrete instance of `BucketLifecycleRuleAbortIncompleteMultipartUploadPtrInput` via:
+//
+//	        BucketLifecycleRuleAbortIncompleteMultipartUploadArgs{...}
+//
+//	or:
+//
+//	        nil
+type BucketLifecycleRuleAbortIncompleteMultipartUploadPtrInput interface {
+	pulumi.Input
+
+	ToBucketLifecycleRuleAbortIncompleteMultipartUploadPtrOutput() BucketLifecycleRuleAbortIncompleteMultipartUploadPtrOutput
+	ToBucketLifecycleRuleAbortIncompleteMultipartUploadPtrOutputWithContext(context.Context) BucketLifecycleRuleAbortIncompleteMultipartUploadPtrOutput
+}
+
+type bucketLifecycleRuleAbortIncompleteMultipartUploadPtrType BucketLifecycleRuleAbortIncompleteMultipartUploadArgs
+
+func BucketLifecycleRuleAbortIncompleteMultipartUploadPtr(v *BucketLifecycleRuleAbortIncompleteMultipartUploadArgs) BucketLifecycleRuleAbortIncompleteMultipartUploadPtrInput {
+	return (*bucketLifecycleRuleAbortIncompleteMultipartUploadPtrType)(v)
+}
+
+func (*bucketLifecycleRuleAbortIncompleteMultipartUploadPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketLifecycleRuleAbortIncompleteMultipartUpload)(nil)).Elem()
+}
+
+func (i *bucketLifecycleRuleAbortIncompleteMultipartUploadPtrType) ToBucketLifecycleRuleAbortIncompleteMultipartUploadPtrOutput() BucketLifecycleRuleAbortIncompleteMultipartUploadPtrOutput {
+	return i.ToBucketLifecycleRuleAbortIncompleteMultipartUploadPtrOutputWithContext(context.Background())
+}
+
+func (i *bucketLifecycleRuleAbortIncompleteMultipartUploadPtrType) ToBucketLifecycleRuleAbortIncompleteMultipartUploadPtrOutputWithContext(ctx context.Context) BucketLifecycleRuleAbortIncompleteMultipartUploadPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketLifecycleRuleAbortIncompleteMultipartUploadPtrOutput)
+}
+
+type BucketLifecycleRuleAbortIncompleteMultipartUploadOutput struct{ *pulumi.OutputState }
+
+func (BucketLifecycleRuleAbortIncompleteMultipartUploadOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketLifecycleRuleAbortIncompleteMultipartUpload)(nil)).Elem()
+}
+
+func (o BucketLifecycleRuleAbortIncompleteMultipartUploadOutput) ToBucketLifecycleRuleAbortIncompleteMultipartUploadOutput() BucketLifecycleRuleAbortIncompleteMultipartUploadOutput {
+	return o
+}
+
+func (o BucketLifecycleRuleAbortIncompleteMultipartUploadOutput) ToBucketLifecycleRuleAbortIncompleteMultipartUploadOutputWithContext(ctx context.Context) BucketLifecycleRuleAbortIncompleteMultipartUploadOutput {
+	return o
+}
+
+func (o BucketLifecycleRuleAbortIncompleteMultipartUploadOutput) ToBucketLifecycleRuleAbortIncompleteMultipartUploadPtrOutput() BucketLifecycleRuleAbortIncompleteMultipartUploadPtrOutput {
+	return o.ToBucketLifecycleRuleAbortIncompleteMultipartUploadPtrOutputWithContext(context.Background())
+}
+
+func (o BucketLifecycleRuleAbortIncompleteMultipartUploadOutput) ToBucketLifecycleRuleAbortIncompleteMultipartUploadPtrOutputWithContext(ctx context.Context) BucketLifecycleRuleAbortIncompleteMultipartUploadPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v BucketLifecycleRuleAbortIncompleteMultipartUpload) *BucketLifecycleRuleAbortIncompleteMultipartUpload {
+		return &v
+	}).(BucketLifecycleRuleAbortIncompleteMultipartUploadPtrOutput)
+}
+
+// The number of days after initiation when the incomplete multipart upload should be aborted.
+func (o BucketLifecycleRuleAbortIncompleteMultipartUploadOutput) DaysAfterInitiation() pulumi.IntOutput {
+	return o.ApplyT(func(v BucketLifecycleRuleAbortIncompleteMultipartUpload) int { return v.DaysAfterInitiation }).(pulumi.IntOutput)
+}
+
+type BucketLifecycleRuleAbortIncompleteMultipartUploadPtrOutput struct{ *pulumi.OutputState }
+
+func (BucketLifecycleRuleAbortIncompleteMultipartUploadPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketLifecycleRuleAbortIncompleteMultipartUpload)(nil)).Elem()
+}
+
+func (o BucketLifecycleRuleAbortIncompleteMultipartUploadPtrOutput) ToBucketLifecycleRuleAbortIncompleteMultipartUploadPtrOutput() BucketLifecycleRuleAbortIncompleteMultipartUploadPtrOutput {
+	return o
+}
+
+func (o BucketLifecycleRuleAbortIncompleteMultipartUploadPtrOutput) ToBucketLifecycleRuleAbortIncompleteMultipartUploadPtrOutputWithContext(ctx context.Context) BucketLifecycleRuleAbortIncompleteMultipartUploadPtrOutput {
+	return o
+}
+
+func (o BucketLifecycleRuleAbortIncompleteMultipartUploadPtrOutput) Elem() BucketLifecycleRuleAbortIncompleteMultipartUploadOutput {
+	return o.ApplyT(func(v *BucketLifecycleRuleAbortIncompleteMultipartUpload) BucketLifecycleRuleAbortIncompleteMultipartUpload {
+		if v != nil {
+			return *v
+		}
+		var ret BucketLifecycleRuleAbortIncompleteMultipartUpload
+		return ret
+	}).(BucketLifecycleRuleAbortIncompleteMultipartUploadOutput)
+}
+
+// The number of days after initiation when the incomplete multipart upload should be aborted.
+func (o BucketLifecycleRuleAbortIncompleteMultipartUploadPtrOutput) DaysAfterInitiation() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *BucketLifecycleRuleAbortIncompleteMultipartUpload) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.DaysAfterInitiation
+	}).(pulumi.IntPtrOutput)
+}
+
+type BucketLifecycleRuleExpiration struct {
+	// The date when the rule takes effect. Format: 2023-01-01T00:00:00.000Z.
+	Date *string `pulumi:"date"`
+	// The number of days after object creation when the rule takes effect.
+	Days *int `pulumi:"days"`
+}
+
+// BucketLifecycleRuleExpirationInput is an input type that accepts BucketLifecycleRuleExpirationArgs and BucketLifecycleRuleExpirationOutput values.
+// You can construct a concrete instance of `BucketLifecycleRuleExpirationInput` via:
+//
+//	BucketLifecycleRuleExpirationArgs{...}
+type BucketLifecycleRuleExpirationInput interface {
+	pulumi.Input
+
+	ToBucketLifecycleRuleExpirationOutput() BucketLifecycleRuleExpirationOutput
+	ToBucketLifecycleRuleExpirationOutputWithContext(context.Context) BucketLifecycleRuleExpirationOutput
+}
+
+type BucketLifecycleRuleExpirationArgs struct {
+	// The date when the rule takes effect. Format: 2023-01-01T00:00:00.000Z.
+	Date pulumi.StringPtrInput `pulumi:"date"`
+	// The number of days after object creation when the rule takes effect.
+	Days pulumi.IntPtrInput `pulumi:"days"`
+}
+
+func (BucketLifecycleRuleExpirationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketLifecycleRuleExpiration)(nil)).Elem()
+}
+
+func (i BucketLifecycleRuleExpirationArgs) ToBucketLifecycleRuleExpirationOutput() BucketLifecycleRuleExpirationOutput {
+	return i.ToBucketLifecycleRuleExpirationOutputWithContext(context.Background())
+}
+
+func (i BucketLifecycleRuleExpirationArgs) ToBucketLifecycleRuleExpirationOutputWithContext(ctx context.Context) BucketLifecycleRuleExpirationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketLifecycleRuleExpirationOutput)
+}
+
+func (i BucketLifecycleRuleExpirationArgs) ToBucketLifecycleRuleExpirationPtrOutput() BucketLifecycleRuleExpirationPtrOutput {
+	return i.ToBucketLifecycleRuleExpirationPtrOutputWithContext(context.Background())
+}
+
+func (i BucketLifecycleRuleExpirationArgs) ToBucketLifecycleRuleExpirationPtrOutputWithContext(ctx context.Context) BucketLifecycleRuleExpirationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketLifecycleRuleExpirationOutput).ToBucketLifecycleRuleExpirationPtrOutputWithContext(ctx)
+}
+
+// BucketLifecycleRuleExpirationPtrInput is an input type that accepts BucketLifecycleRuleExpirationArgs, BucketLifecycleRuleExpirationPtr and BucketLifecycleRuleExpirationPtrOutput values.
+// You can construct a concrete instance of `BucketLifecycleRuleExpirationPtrInput` via:
+//
+//	        BucketLifecycleRuleExpirationArgs{...}
+//
+//	or:
+//
+//	        nil
+type BucketLifecycleRuleExpirationPtrInput interface {
+	pulumi.Input
+
+	ToBucketLifecycleRuleExpirationPtrOutput() BucketLifecycleRuleExpirationPtrOutput
+	ToBucketLifecycleRuleExpirationPtrOutputWithContext(context.Context) BucketLifecycleRuleExpirationPtrOutput
+}
+
+type bucketLifecycleRuleExpirationPtrType BucketLifecycleRuleExpirationArgs
+
+func BucketLifecycleRuleExpirationPtr(v *BucketLifecycleRuleExpirationArgs) BucketLifecycleRuleExpirationPtrInput {
+	return (*bucketLifecycleRuleExpirationPtrType)(v)
+}
+
+func (*bucketLifecycleRuleExpirationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketLifecycleRuleExpiration)(nil)).Elem()
+}
+
+func (i *bucketLifecycleRuleExpirationPtrType) ToBucketLifecycleRuleExpirationPtrOutput() BucketLifecycleRuleExpirationPtrOutput {
+	return i.ToBucketLifecycleRuleExpirationPtrOutputWithContext(context.Background())
+}
+
+func (i *bucketLifecycleRuleExpirationPtrType) ToBucketLifecycleRuleExpirationPtrOutputWithContext(ctx context.Context) BucketLifecycleRuleExpirationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketLifecycleRuleExpirationPtrOutput)
+}
+
+type BucketLifecycleRuleExpirationOutput struct{ *pulumi.OutputState }
+
+func (BucketLifecycleRuleExpirationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketLifecycleRuleExpiration)(nil)).Elem()
+}
+
+func (o BucketLifecycleRuleExpirationOutput) ToBucketLifecycleRuleExpirationOutput() BucketLifecycleRuleExpirationOutput {
+	return o
+}
+
+func (o BucketLifecycleRuleExpirationOutput) ToBucketLifecycleRuleExpirationOutputWithContext(ctx context.Context) BucketLifecycleRuleExpirationOutput {
+	return o
+}
+
+func (o BucketLifecycleRuleExpirationOutput) ToBucketLifecycleRuleExpirationPtrOutput() BucketLifecycleRuleExpirationPtrOutput {
+	return o.ToBucketLifecycleRuleExpirationPtrOutputWithContext(context.Background())
+}
+
+func (o BucketLifecycleRuleExpirationOutput) ToBucketLifecycleRuleExpirationPtrOutputWithContext(ctx context.Context) BucketLifecycleRuleExpirationPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v BucketLifecycleRuleExpiration) *BucketLifecycleRuleExpiration {
+		return &v
+	}).(BucketLifecycleRuleExpirationPtrOutput)
+}
+
+// The date when the rule takes effect. Format: 2023-01-01T00:00:00.000Z.
+func (o BucketLifecycleRuleExpirationOutput) Date() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketLifecycleRuleExpiration) *string { return v.Date }).(pulumi.StringPtrOutput)
+}
+
+// The number of days after object creation when the rule takes effect.
+func (o BucketLifecycleRuleExpirationOutput) Days() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v BucketLifecycleRuleExpiration) *int { return v.Days }).(pulumi.IntPtrOutput)
+}
+
+type BucketLifecycleRuleExpirationPtrOutput struct{ *pulumi.OutputState }
+
+func (BucketLifecycleRuleExpirationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketLifecycleRuleExpiration)(nil)).Elem()
+}
+
+func (o BucketLifecycleRuleExpirationPtrOutput) ToBucketLifecycleRuleExpirationPtrOutput() BucketLifecycleRuleExpirationPtrOutput {
+	return o
+}
+
+func (o BucketLifecycleRuleExpirationPtrOutput) ToBucketLifecycleRuleExpirationPtrOutputWithContext(ctx context.Context) BucketLifecycleRuleExpirationPtrOutput {
+	return o
+}
+
+func (o BucketLifecycleRuleExpirationPtrOutput) Elem() BucketLifecycleRuleExpirationOutput {
+	return o.ApplyT(func(v *BucketLifecycleRuleExpiration) BucketLifecycleRuleExpiration {
+		if v != nil {
+			return *v
+		}
+		var ret BucketLifecycleRuleExpiration
+		return ret
+	}).(BucketLifecycleRuleExpirationOutput)
+}
+
+// The date when the rule takes effect. Format: 2023-01-01T00:00:00.000Z.
+func (o BucketLifecycleRuleExpirationPtrOutput) Date() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BucketLifecycleRuleExpiration) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Date
+	}).(pulumi.StringPtrOutput)
+}
+
+// The number of days after object creation when the rule takes effect.
+func (o BucketLifecycleRuleExpirationPtrOutput) Days() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *BucketLifecycleRuleExpiration) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Days
+	}).(pulumi.IntPtrOutput)
+}
+
+type BucketLifecycleRuleFilter struct {
+	// Whether to enable equal conditions. The value can only be "Enabled" or "Disabled". If not configured, it will default to "Disabled".
+	GreaterThanIncludeEqual *string `pulumi:"greaterThanIncludeEqual"`
+	// Whether to enable equal conditions. The value can only be "Enabled" or "Disabled". If not configured, it will default to "Disabled".
+	LessThanIncludeEqual *string `pulumi:"lessThanIncludeEqual"`
+	// The minimum object size in bytes for the rule to apply.
+	ObjectSizeGreaterThan *int `pulumi:"objectSizeGreaterThan"`
+	// The maximum object size in bytes for the rule to apply.
+	ObjectSizeLessThan *int `pulumi:"objectSizeLessThan"`
+}
+
+// BucketLifecycleRuleFilterInput is an input type that accepts BucketLifecycleRuleFilterArgs and BucketLifecycleRuleFilterOutput values.
+// You can construct a concrete instance of `BucketLifecycleRuleFilterInput` via:
+//
+//	BucketLifecycleRuleFilterArgs{...}
+type BucketLifecycleRuleFilterInput interface {
+	pulumi.Input
+
+	ToBucketLifecycleRuleFilterOutput() BucketLifecycleRuleFilterOutput
+	ToBucketLifecycleRuleFilterOutputWithContext(context.Context) BucketLifecycleRuleFilterOutput
+}
+
+type BucketLifecycleRuleFilterArgs struct {
+	// Whether to enable equal conditions. The value can only be "Enabled" or "Disabled". If not configured, it will default to "Disabled".
+	GreaterThanIncludeEqual pulumi.StringPtrInput `pulumi:"greaterThanIncludeEqual"`
+	// Whether to enable equal conditions. The value can only be "Enabled" or "Disabled". If not configured, it will default to "Disabled".
+	LessThanIncludeEqual pulumi.StringPtrInput `pulumi:"lessThanIncludeEqual"`
+	// The minimum object size in bytes for the rule to apply.
+	ObjectSizeGreaterThan pulumi.IntPtrInput `pulumi:"objectSizeGreaterThan"`
+	// The maximum object size in bytes for the rule to apply.
+	ObjectSizeLessThan pulumi.IntPtrInput `pulumi:"objectSizeLessThan"`
+}
+
+func (BucketLifecycleRuleFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketLifecycleRuleFilter)(nil)).Elem()
+}
+
+func (i BucketLifecycleRuleFilterArgs) ToBucketLifecycleRuleFilterOutput() BucketLifecycleRuleFilterOutput {
+	return i.ToBucketLifecycleRuleFilterOutputWithContext(context.Background())
+}
+
+func (i BucketLifecycleRuleFilterArgs) ToBucketLifecycleRuleFilterOutputWithContext(ctx context.Context) BucketLifecycleRuleFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketLifecycleRuleFilterOutput)
+}
+
+func (i BucketLifecycleRuleFilterArgs) ToBucketLifecycleRuleFilterPtrOutput() BucketLifecycleRuleFilterPtrOutput {
+	return i.ToBucketLifecycleRuleFilterPtrOutputWithContext(context.Background())
+}
+
+func (i BucketLifecycleRuleFilterArgs) ToBucketLifecycleRuleFilterPtrOutputWithContext(ctx context.Context) BucketLifecycleRuleFilterPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketLifecycleRuleFilterOutput).ToBucketLifecycleRuleFilterPtrOutputWithContext(ctx)
+}
+
+// BucketLifecycleRuleFilterPtrInput is an input type that accepts BucketLifecycleRuleFilterArgs, BucketLifecycleRuleFilterPtr and BucketLifecycleRuleFilterPtrOutput values.
+// You can construct a concrete instance of `BucketLifecycleRuleFilterPtrInput` via:
+//
+//	        BucketLifecycleRuleFilterArgs{...}
+//
+//	or:
+//
+//	        nil
+type BucketLifecycleRuleFilterPtrInput interface {
+	pulumi.Input
+
+	ToBucketLifecycleRuleFilterPtrOutput() BucketLifecycleRuleFilterPtrOutput
+	ToBucketLifecycleRuleFilterPtrOutputWithContext(context.Context) BucketLifecycleRuleFilterPtrOutput
+}
+
+type bucketLifecycleRuleFilterPtrType BucketLifecycleRuleFilterArgs
+
+func BucketLifecycleRuleFilterPtr(v *BucketLifecycleRuleFilterArgs) BucketLifecycleRuleFilterPtrInput {
+	return (*bucketLifecycleRuleFilterPtrType)(v)
+}
+
+func (*bucketLifecycleRuleFilterPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketLifecycleRuleFilter)(nil)).Elem()
+}
+
+func (i *bucketLifecycleRuleFilterPtrType) ToBucketLifecycleRuleFilterPtrOutput() BucketLifecycleRuleFilterPtrOutput {
+	return i.ToBucketLifecycleRuleFilterPtrOutputWithContext(context.Background())
+}
+
+func (i *bucketLifecycleRuleFilterPtrType) ToBucketLifecycleRuleFilterPtrOutputWithContext(ctx context.Context) BucketLifecycleRuleFilterPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketLifecycleRuleFilterPtrOutput)
+}
+
+type BucketLifecycleRuleFilterOutput struct{ *pulumi.OutputState }
+
+func (BucketLifecycleRuleFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketLifecycleRuleFilter)(nil)).Elem()
+}
+
+func (o BucketLifecycleRuleFilterOutput) ToBucketLifecycleRuleFilterOutput() BucketLifecycleRuleFilterOutput {
+	return o
+}
+
+func (o BucketLifecycleRuleFilterOutput) ToBucketLifecycleRuleFilterOutputWithContext(ctx context.Context) BucketLifecycleRuleFilterOutput {
+	return o
+}
+
+func (o BucketLifecycleRuleFilterOutput) ToBucketLifecycleRuleFilterPtrOutput() BucketLifecycleRuleFilterPtrOutput {
+	return o.ToBucketLifecycleRuleFilterPtrOutputWithContext(context.Background())
+}
+
+func (o BucketLifecycleRuleFilterOutput) ToBucketLifecycleRuleFilterPtrOutputWithContext(ctx context.Context) BucketLifecycleRuleFilterPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v BucketLifecycleRuleFilter) *BucketLifecycleRuleFilter {
+		return &v
+	}).(BucketLifecycleRuleFilterPtrOutput)
+}
+
+// Whether to enable equal conditions. The value can only be "Enabled" or "Disabled". If not configured, it will default to "Disabled".
+func (o BucketLifecycleRuleFilterOutput) GreaterThanIncludeEqual() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketLifecycleRuleFilter) *string { return v.GreaterThanIncludeEqual }).(pulumi.StringPtrOutput)
+}
+
+// Whether to enable equal conditions. The value can only be "Enabled" or "Disabled". If not configured, it will default to "Disabled".
+func (o BucketLifecycleRuleFilterOutput) LessThanIncludeEqual() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketLifecycleRuleFilter) *string { return v.LessThanIncludeEqual }).(pulumi.StringPtrOutput)
+}
+
+// The minimum object size in bytes for the rule to apply.
+func (o BucketLifecycleRuleFilterOutput) ObjectSizeGreaterThan() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v BucketLifecycleRuleFilter) *int { return v.ObjectSizeGreaterThan }).(pulumi.IntPtrOutput)
+}
+
+// The maximum object size in bytes for the rule to apply.
+func (o BucketLifecycleRuleFilterOutput) ObjectSizeLessThan() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v BucketLifecycleRuleFilter) *int { return v.ObjectSizeLessThan }).(pulumi.IntPtrOutput)
+}
+
+type BucketLifecycleRuleFilterPtrOutput struct{ *pulumi.OutputState }
+
+func (BucketLifecycleRuleFilterPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketLifecycleRuleFilter)(nil)).Elem()
+}
+
+func (o BucketLifecycleRuleFilterPtrOutput) ToBucketLifecycleRuleFilterPtrOutput() BucketLifecycleRuleFilterPtrOutput {
+	return o
+}
+
+func (o BucketLifecycleRuleFilterPtrOutput) ToBucketLifecycleRuleFilterPtrOutputWithContext(ctx context.Context) BucketLifecycleRuleFilterPtrOutput {
+	return o
+}
+
+func (o BucketLifecycleRuleFilterPtrOutput) Elem() BucketLifecycleRuleFilterOutput {
+	return o.ApplyT(func(v *BucketLifecycleRuleFilter) BucketLifecycleRuleFilter {
+		if v != nil {
+			return *v
+		}
+		var ret BucketLifecycleRuleFilter
+		return ret
+	}).(BucketLifecycleRuleFilterOutput)
+}
+
+// Whether to enable equal conditions. The value can only be "Enabled" or "Disabled". If not configured, it will default to "Disabled".
+func (o BucketLifecycleRuleFilterPtrOutput) GreaterThanIncludeEqual() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BucketLifecycleRuleFilter) *string {
+		if v == nil {
+			return nil
+		}
+		return v.GreaterThanIncludeEqual
+	}).(pulumi.StringPtrOutput)
+}
+
+// Whether to enable equal conditions. The value can only be "Enabled" or "Disabled". If not configured, it will default to "Disabled".
+func (o BucketLifecycleRuleFilterPtrOutput) LessThanIncludeEqual() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BucketLifecycleRuleFilter) *string {
+		if v == nil {
+			return nil
+		}
+		return v.LessThanIncludeEqual
+	}).(pulumi.StringPtrOutput)
+}
+
+// The minimum object size in bytes for the rule to apply.
+func (o BucketLifecycleRuleFilterPtrOutput) ObjectSizeGreaterThan() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *BucketLifecycleRuleFilter) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ObjectSizeGreaterThan
+	}).(pulumi.IntPtrOutput)
+}
+
+// The maximum object size in bytes for the rule to apply.
+func (o BucketLifecycleRuleFilterPtrOutput) ObjectSizeLessThan() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *BucketLifecycleRuleFilter) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ObjectSizeLessThan
+	}).(pulumi.IntPtrOutput)
+}
+
+type BucketLifecycleRuleNonCurrentVersionExpiration struct {
+	// The number of days after object creation when the non-current version expiration takes effect.
+	NonCurrentDays int `pulumi:"nonCurrentDays"`
+}
+
+// BucketLifecycleRuleNonCurrentVersionExpirationInput is an input type that accepts BucketLifecycleRuleNonCurrentVersionExpirationArgs and BucketLifecycleRuleNonCurrentVersionExpirationOutput values.
+// You can construct a concrete instance of `BucketLifecycleRuleNonCurrentVersionExpirationInput` via:
+//
+//	BucketLifecycleRuleNonCurrentVersionExpirationArgs{...}
+type BucketLifecycleRuleNonCurrentVersionExpirationInput interface {
+	pulumi.Input
+
+	ToBucketLifecycleRuleNonCurrentVersionExpirationOutput() BucketLifecycleRuleNonCurrentVersionExpirationOutput
+	ToBucketLifecycleRuleNonCurrentVersionExpirationOutputWithContext(context.Context) BucketLifecycleRuleNonCurrentVersionExpirationOutput
+}
+
+type BucketLifecycleRuleNonCurrentVersionExpirationArgs struct {
+	// The number of days after object creation when the non-current version expiration takes effect.
+	NonCurrentDays pulumi.IntInput `pulumi:"nonCurrentDays"`
+}
+
+func (BucketLifecycleRuleNonCurrentVersionExpirationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketLifecycleRuleNonCurrentVersionExpiration)(nil)).Elem()
+}
+
+func (i BucketLifecycleRuleNonCurrentVersionExpirationArgs) ToBucketLifecycleRuleNonCurrentVersionExpirationOutput() BucketLifecycleRuleNonCurrentVersionExpirationOutput {
+	return i.ToBucketLifecycleRuleNonCurrentVersionExpirationOutputWithContext(context.Background())
+}
+
+func (i BucketLifecycleRuleNonCurrentVersionExpirationArgs) ToBucketLifecycleRuleNonCurrentVersionExpirationOutputWithContext(ctx context.Context) BucketLifecycleRuleNonCurrentVersionExpirationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketLifecycleRuleNonCurrentVersionExpirationOutput)
+}
+
+func (i BucketLifecycleRuleNonCurrentVersionExpirationArgs) ToBucketLifecycleRuleNonCurrentVersionExpirationPtrOutput() BucketLifecycleRuleNonCurrentVersionExpirationPtrOutput {
+	return i.ToBucketLifecycleRuleNonCurrentVersionExpirationPtrOutputWithContext(context.Background())
+}
+
+func (i BucketLifecycleRuleNonCurrentVersionExpirationArgs) ToBucketLifecycleRuleNonCurrentVersionExpirationPtrOutputWithContext(ctx context.Context) BucketLifecycleRuleNonCurrentVersionExpirationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketLifecycleRuleNonCurrentVersionExpirationOutput).ToBucketLifecycleRuleNonCurrentVersionExpirationPtrOutputWithContext(ctx)
+}
+
+// BucketLifecycleRuleNonCurrentVersionExpirationPtrInput is an input type that accepts BucketLifecycleRuleNonCurrentVersionExpirationArgs, BucketLifecycleRuleNonCurrentVersionExpirationPtr and BucketLifecycleRuleNonCurrentVersionExpirationPtrOutput values.
+// You can construct a concrete instance of `BucketLifecycleRuleNonCurrentVersionExpirationPtrInput` via:
+//
+//	        BucketLifecycleRuleNonCurrentVersionExpirationArgs{...}
+//
+//	or:
+//
+//	        nil
+type BucketLifecycleRuleNonCurrentVersionExpirationPtrInput interface {
+	pulumi.Input
+
+	ToBucketLifecycleRuleNonCurrentVersionExpirationPtrOutput() BucketLifecycleRuleNonCurrentVersionExpirationPtrOutput
+	ToBucketLifecycleRuleNonCurrentVersionExpirationPtrOutputWithContext(context.Context) BucketLifecycleRuleNonCurrentVersionExpirationPtrOutput
+}
+
+type bucketLifecycleRuleNonCurrentVersionExpirationPtrType BucketLifecycleRuleNonCurrentVersionExpirationArgs
+
+func BucketLifecycleRuleNonCurrentVersionExpirationPtr(v *BucketLifecycleRuleNonCurrentVersionExpirationArgs) BucketLifecycleRuleNonCurrentVersionExpirationPtrInput {
+	return (*bucketLifecycleRuleNonCurrentVersionExpirationPtrType)(v)
+}
+
+func (*bucketLifecycleRuleNonCurrentVersionExpirationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketLifecycleRuleNonCurrentVersionExpiration)(nil)).Elem()
+}
+
+func (i *bucketLifecycleRuleNonCurrentVersionExpirationPtrType) ToBucketLifecycleRuleNonCurrentVersionExpirationPtrOutput() BucketLifecycleRuleNonCurrentVersionExpirationPtrOutput {
+	return i.ToBucketLifecycleRuleNonCurrentVersionExpirationPtrOutputWithContext(context.Background())
+}
+
+func (i *bucketLifecycleRuleNonCurrentVersionExpirationPtrType) ToBucketLifecycleRuleNonCurrentVersionExpirationPtrOutputWithContext(ctx context.Context) BucketLifecycleRuleNonCurrentVersionExpirationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketLifecycleRuleNonCurrentVersionExpirationPtrOutput)
+}
+
+type BucketLifecycleRuleNonCurrentVersionExpirationOutput struct{ *pulumi.OutputState }
+
+func (BucketLifecycleRuleNonCurrentVersionExpirationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketLifecycleRuleNonCurrentVersionExpiration)(nil)).Elem()
+}
+
+func (o BucketLifecycleRuleNonCurrentVersionExpirationOutput) ToBucketLifecycleRuleNonCurrentVersionExpirationOutput() BucketLifecycleRuleNonCurrentVersionExpirationOutput {
+	return o
+}
+
+func (o BucketLifecycleRuleNonCurrentVersionExpirationOutput) ToBucketLifecycleRuleNonCurrentVersionExpirationOutputWithContext(ctx context.Context) BucketLifecycleRuleNonCurrentVersionExpirationOutput {
+	return o
+}
+
+func (o BucketLifecycleRuleNonCurrentVersionExpirationOutput) ToBucketLifecycleRuleNonCurrentVersionExpirationPtrOutput() BucketLifecycleRuleNonCurrentVersionExpirationPtrOutput {
+	return o.ToBucketLifecycleRuleNonCurrentVersionExpirationPtrOutputWithContext(context.Background())
+}
+
+func (o BucketLifecycleRuleNonCurrentVersionExpirationOutput) ToBucketLifecycleRuleNonCurrentVersionExpirationPtrOutputWithContext(ctx context.Context) BucketLifecycleRuleNonCurrentVersionExpirationPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v BucketLifecycleRuleNonCurrentVersionExpiration) *BucketLifecycleRuleNonCurrentVersionExpiration {
+		return &v
+	}).(BucketLifecycleRuleNonCurrentVersionExpirationPtrOutput)
+}
+
+// The number of days after object creation when the non-current version expiration takes effect.
+func (o BucketLifecycleRuleNonCurrentVersionExpirationOutput) NonCurrentDays() pulumi.IntOutput {
+	return o.ApplyT(func(v BucketLifecycleRuleNonCurrentVersionExpiration) int { return v.NonCurrentDays }).(pulumi.IntOutput)
+}
+
+type BucketLifecycleRuleNonCurrentVersionExpirationPtrOutput struct{ *pulumi.OutputState }
+
+func (BucketLifecycleRuleNonCurrentVersionExpirationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketLifecycleRuleNonCurrentVersionExpiration)(nil)).Elem()
+}
+
+func (o BucketLifecycleRuleNonCurrentVersionExpirationPtrOutput) ToBucketLifecycleRuleNonCurrentVersionExpirationPtrOutput() BucketLifecycleRuleNonCurrentVersionExpirationPtrOutput {
+	return o
+}
+
+func (o BucketLifecycleRuleNonCurrentVersionExpirationPtrOutput) ToBucketLifecycleRuleNonCurrentVersionExpirationPtrOutputWithContext(ctx context.Context) BucketLifecycleRuleNonCurrentVersionExpirationPtrOutput {
+	return o
+}
+
+func (o BucketLifecycleRuleNonCurrentVersionExpirationPtrOutput) Elem() BucketLifecycleRuleNonCurrentVersionExpirationOutput {
+	return o.ApplyT(func(v *BucketLifecycleRuleNonCurrentVersionExpiration) BucketLifecycleRuleNonCurrentVersionExpiration {
+		if v != nil {
+			return *v
+		}
+		var ret BucketLifecycleRuleNonCurrentVersionExpiration
+		return ret
+	}).(BucketLifecycleRuleNonCurrentVersionExpirationOutput)
+}
+
+// The number of days after object creation when the non-current version expiration takes effect.
+func (o BucketLifecycleRuleNonCurrentVersionExpirationPtrOutput) NonCurrentDays() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *BucketLifecycleRuleNonCurrentVersionExpiration) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.NonCurrentDays
+	}).(pulumi.IntPtrOutput)
+}
+
+type BucketLifecycleRuleNonCurrentVersionTransition struct {
+	// The number of days after object creation when the non-current version transition takes effect.
+	NonCurrentDays int `pulumi:"nonCurrentDays"`
+	// The storage class to transition to. Valid values: IA, ARCHIVE, COLD_ARCHIVE.
+	StorageClass string `pulumi:"storageClass"`
+}
+
+// BucketLifecycleRuleNonCurrentVersionTransitionInput is an input type that accepts BucketLifecycleRuleNonCurrentVersionTransitionArgs and BucketLifecycleRuleNonCurrentVersionTransitionOutput values.
+// You can construct a concrete instance of `BucketLifecycleRuleNonCurrentVersionTransitionInput` via:
+//
+//	BucketLifecycleRuleNonCurrentVersionTransitionArgs{...}
+type BucketLifecycleRuleNonCurrentVersionTransitionInput interface {
+	pulumi.Input
+
+	ToBucketLifecycleRuleNonCurrentVersionTransitionOutput() BucketLifecycleRuleNonCurrentVersionTransitionOutput
+	ToBucketLifecycleRuleNonCurrentVersionTransitionOutputWithContext(context.Context) BucketLifecycleRuleNonCurrentVersionTransitionOutput
+}
+
+type BucketLifecycleRuleNonCurrentVersionTransitionArgs struct {
+	// The number of days after object creation when the non-current version transition takes effect.
+	NonCurrentDays pulumi.IntInput `pulumi:"nonCurrentDays"`
+	// The storage class to transition to. Valid values: IA, ARCHIVE, COLD_ARCHIVE.
+	StorageClass pulumi.StringInput `pulumi:"storageClass"`
+}
+
+func (BucketLifecycleRuleNonCurrentVersionTransitionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketLifecycleRuleNonCurrentVersionTransition)(nil)).Elem()
+}
+
+func (i BucketLifecycleRuleNonCurrentVersionTransitionArgs) ToBucketLifecycleRuleNonCurrentVersionTransitionOutput() BucketLifecycleRuleNonCurrentVersionTransitionOutput {
+	return i.ToBucketLifecycleRuleNonCurrentVersionTransitionOutputWithContext(context.Background())
+}
+
+func (i BucketLifecycleRuleNonCurrentVersionTransitionArgs) ToBucketLifecycleRuleNonCurrentVersionTransitionOutputWithContext(ctx context.Context) BucketLifecycleRuleNonCurrentVersionTransitionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketLifecycleRuleNonCurrentVersionTransitionOutput)
+}
+
+// BucketLifecycleRuleNonCurrentVersionTransitionArrayInput is an input type that accepts BucketLifecycleRuleNonCurrentVersionTransitionArray and BucketLifecycleRuleNonCurrentVersionTransitionArrayOutput values.
+// You can construct a concrete instance of `BucketLifecycleRuleNonCurrentVersionTransitionArrayInput` via:
+//
+//	BucketLifecycleRuleNonCurrentVersionTransitionArray{ BucketLifecycleRuleNonCurrentVersionTransitionArgs{...} }
+type BucketLifecycleRuleNonCurrentVersionTransitionArrayInput interface {
+	pulumi.Input
+
+	ToBucketLifecycleRuleNonCurrentVersionTransitionArrayOutput() BucketLifecycleRuleNonCurrentVersionTransitionArrayOutput
+	ToBucketLifecycleRuleNonCurrentVersionTransitionArrayOutputWithContext(context.Context) BucketLifecycleRuleNonCurrentVersionTransitionArrayOutput
+}
+
+type BucketLifecycleRuleNonCurrentVersionTransitionArray []BucketLifecycleRuleNonCurrentVersionTransitionInput
+
+func (BucketLifecycleRuleNonCurrentVersionTransitionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BucketLifecycleRuleNonCurrentVersionTransition)(nil)).Elem()
+}
+
+func (i BucketLifecycleRuleNonCurrentVersionTransitionArray) ToBucketLifecycleRuleNonCurrentVersionTransitionArrayOutput() BucketLifecycleRuleNonCurrentVersionTransitionArrayOutput {
+	return i.ToBucketLifecycleRuleNonCurrentVersionTransitionArrayOutputWithContext(context.Background())
+}
+
+func (i BucketLifecycleRuleNonCurrentVersionTransitionArray) ToBucketLifecycleRuleNonCurrentVersionTransitionArrayOutputWithContext(ctx context.Context) BucketLifecycleRuleNonCurrentVersionTransitionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketLifecycleRuleNonCurrentVersionTransitionArrayOutput)
+}
+
+type BucketLifecycleRuleNonCurrentVersionTransitionOutput struct{ *pulumi.OutputState }
+
+func (BucketLifecycleRuleNonCurrentVersionTransitionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketLifecycleRuleNonCurrentVersionTransition)(nil)).Elem()
+}
+
+func (o BucketLifecycleRuleNonCurrentVersionTransitionOutput) ToBucketLifecycleRuleNonCurrentVersionTransitionOutput() BucketLifecycleRuleNonCurrentVersionTransitionOutput {
+	return o
+}
+
+func (o BucketLifecycleRuleNonCurrentVersionTransitionOutput) ToBucketLifecycleRuleNonCurrentVersionTransitionOutputWithContext(ctx context.Context) BucketLifecycleRuleNonCurrentVersionTransitionOutput {
+	return o
+}
+
+// The number of days after object creation when the non-current version transition takes effect.
+func (o BucketLifecycleRuleNonCurrentVersionTransitionOutput) NonCurrentDays() pulumi.IntOutput {
+	return o.ApplyT(func(v BucketLifecycleRuleNonCurrentVersionTransition) int { return v.NonCurrentDays }).(pulumi.IntOutput)
+}
+
+// The storage class to transition to. Valid values: IA, ARCHIVE, COLD_ARCHIVE.
+func (o BucketLifecycleRuleNonCurrentVersionTransitionOutput) StorageClass() pulumi.StringOutput {
+	return o.ApplyT(func(v BucketLifecycleRuleNonCurrentVersionTransition) string { return v.StorageClass }).(pulumi.StringOutput)
+}
+
+type BucketLifecycleRuleNonCurrentVersionTransitionArrayOutput struct{ *pulumi.OutputState }
+
+func (BucketLifecycleRuleNonCurrentVersionTransitionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BucketLifecycleRuleNonCurrentVersionTransition)(nil)).Elem()
+}
+
+func (o BucketLifecycleRuleNonCurrentVersionTransitionArrayOutput) ToBucketLifecycleRuleNonCurrentVersionTransitionArrayOutput() BucketLifecycleRuleNonCurrentVersionTransitionArrayOutput {
+	return o
+}
+
+func (o BucketLifecycleRuleNonCurrentVersionTransitionArrayOutput) ToBucketLifecycleRuleNonCurrentVersionTransitionArrayOutputWithContext(ctx context.Context) BucketLifecycleRuleNonCurrentVersionTransitionArrayOutput {
+	return o
+}
+
+func (o BucketLifecycleRuleNonCurrentVersionTransitionArrayOutput) Index(i pulumi.IntInput) BucketLifecycleRuleNonCurrentVersionTransitionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) BucketLifecycleRuleNonCurrentVersionTransition {
+		return vs[0].([]BucketLifecycleRuleNonCurrentVersionTransition)[vs[1].(int)]
+	}).(BucketLifecycleRuleNonCurrentVersionTransitionOutput)
+}
+
+type BucketLifecycleRuleTag struct {
+	// The key of the tag.
+	Key string `pulumi:"key"`
+	// The value of the tag.
+	Value string `pulumi:"value"`
+}
+
+// BucketLifecycleRuleTagInput is an input type that accepts BucketLifecycleRuleTagArgs and BucketLifecycleRuleTagOutput values.
+// You can construct a concrete instance of `BucketLifecycleRuleTagInput` via:
+//
+//	BucketLifecycleRuleTagArgs{...}
+type BucketLifecycleRuleTagInput interface {
+	pulumi.Input
+
+	ToBucketLifecycleRuleTagOutput() BucketLifecycleRuleTagOutput
+	ToBucketLifecycleRuleTagOutputWithContext(context.Context) BucketLifecycleRuleTagOutput
+}
+
+type BucketLifecycleRuleTagArgs struct {
+	// The key of the tag.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The value of the tag.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (BucketLifecycleRuleTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketLifecycleRuleTag)(nil)).Elem()
+}
+
+func (i BucketLifecycleRuleTagArgs) ToBucketLifecycleRuleTagOutput() BucketLifecycleRuleTagOutput {
+	return i.ToBucketLifecycleRuleTagOutputWithContext(context.Background())
+}
+
+func (i BucketLifecycleRuleTagArgs) ToBucketLifecycleRuleTagOutputWithContext(ctx context.Context) BucketLifecycleRuleTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketLifecycleRuleTagOutput)
+}
+
+// BucketLifecycleRuleTagArrayInput is an input type that accepts BucketLifecycleRuleTagArray and BucketLifecycleRuleTagArrayOutput values.
+// You can construct a concrete instance of `BucketLifecycleRuleTagArrayInput` via:
+//
+//	BucketLifecycleRuleTagArray{ BucketLifecycleRuleTagArgs{...} }
+type BucketLifecycleRuleTagArrayInput interface {
+	pulumi.Input
+
+	ToBucketLifecycleRuleTagArrayOutput() BucketLifecycleRuleTagArrayOutput
+	ToBucketLifecycleRuleTagArrayOutputWithContext(context.Context) BucketLifecycleRuleTagArrayOutput
+}
+
+type BucketLifecycleRuleTagArray []BucketLifecycleRuleTagInput
+
+func (BucketLifecycleRuleTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BucketLifecycleRuleTag)(nil)).Elem()
+}
+
+func (i BucketLifecycleRuleTagArray) ToBucketLifecycleRuleTagArrayOutput() BucketLifecycleRuleTagArrayOutput {
+	return i.ToBucketLifecycleRuleTagArrayOutputWithContext(context.Background())
+}
+
+func (i BucketLifecycleRuleTagArray) ToBucketLifecycleRuleTagArrayOutputWithContext(ctx context.Context) BucketLifecycleRuleTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketLifecycleRuleTagArrayOutput)
+}
+
+type BucketLifecycleRuleTagOutput struct{ *pulumi.OutputState }
+
+func (BucketLifecycleRuleTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketLifecycleRuleTag)(nil)).Elem()
+}
+
+func (o BucketLifecycleRuleTagOutput) ToBucketLifecycleRuleTagOutput() BucketLifecycleRuleTagOutput {
+	return o
+}
+
+func (o BucketLifecycleRuleTagOutput) ToBucketLifecycleRuleTagOutputWithContext(ctx context.Context) BucketLifecycleRuleTagOutput {
+	return o
+}
+
+// The key of the tag.
+func (o BucketLifecycleRuleTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v BucketLifecycleRuleTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The value of the tag.
+func (o BucketLifecycleRuleTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v BucketLifecycleRuleTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type BucketLifecycleRuleTagArrayOutput struct{ *pulumi.OutputState }
+
+func (BucketLifecycleRuleTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BucketLifecycleRuleTag)(nil)).Elem()
+}
+
+func (o BucketLifecycleRuleTagArrayOutput) ToBucketLifecycleRuleTagArrayOutput() BucketLifecycleRuleTagArrayOutput {
+	return o
+}
+
+func (o BucketLifecycleRuleTagArrayOutput) ToBucketLifecycleRuleTagArrayOutputWithContext(ctx context.Context) BucketLifecycleRuleTagArrayOutput {
+	return o
+}
+
+func (o BucketLifecycleRuleTagArrayOutput) Index(i pulumi.IntInput) BucketLifecycleRuleTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) BucketLifecycleRuleTag {
+		return vs[0].([]BucketLifecycleRuleTag)[vs[1].(int)]
+	}).(BucketLifecycleRuleTagOutput)
+}
+
+type BucketLifecycleRuleTransition struct {
+	// The date when the transition takes effect. Format: 2023-01-01T00:00:00.000Z.
+	Date *string `pulumi:"date"`
+	// The number of days after object creation when the transition takes effect.
+	Days *int `pulumi:"days"`
+	// The storage class to transition to. Valid values: IA, ARCHIVE, COLD_ARCHIVE.
+	StorageClass *string `pulumi:"storageClass"`
+}
+
+// BucketLifecycleRuleTransitionInput is an input type that accepts BucketLifecycleRuleTransitionArgs and BucketLifecycleRuleTransitionOutput values.
+// You can construct a concrete instance of `BucketLifecycleRuleTransitionInput` via:
+//
+//	BucketLifecycleRuleTransitionArgs{...}
+type BucketLifecycleRuleTransitionInput interface {
+	pulumi.Input
+
+	ToBucketLifecycleRuleTransitionOutput() BucketLifecycleRuleTransitionOutput
+	ToBucketLifecycleRuleTransitionOutputWithContext(context.Context) BucketLifecycleRuleTransitionOutput
+}
+
+type BucketLifecycleRuleTransitionArgs struct {
+	// The date when the transition takes effect. Format: 2023-01-01T00:00:00.000Z.
+	Date pulumi.StringPtrInput `pulumi:"date"`
+	// The number of days after object creation when the transition takes effect.
+	Days pulumi.IntPtrInput `pulumi:"days"`
+	// The storage class to transition to. Valid values: IA, ARCHIVE, COLD_ARCHIVE.
+	StorageClass pulumi.StringPtrInput `pulumi:"storageClass"`
+}
+
+func (BucketLifecycleRuleTransitionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketLifecycleRuleTransition)(nil)).Elem()
+}
+
+func (i BucketLifecycleRuleTransitionArgs) ToBucketLifecycleRuleTransitionOutput() BucketLifecycleRuleTransitionOutput {
+	return i.ToBucketLifecycleRuleTransitionOutputWithContext(context.Background())
+}
+
+func (i BucketLifecycleRuleTransitionArgs) ToBucketLifecycleRuleTransitionOutputWithContext(ctx context.Context) BucketLifecycleRuleTransitionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketLifecycleRuleTransitionOutput)
+}
+
+// BucketLifecycleRuleTransitionArrayInput is an input type that accepts BucketLifecycleRuleTransitionArray and BucketLifecycleRuleTransitionArrayOutput values.
+// You can construct a concrete instance of `BucketLifecycleRuleTransitionArrayInput` via:
+//
+//	BucketLifecycleRuleTransitionArray{ BucketLifecycleRuleTransitionArgs{...} }
+type BucketLifecycleRuleTransitionArrayInput interface {
+	pulumi.Input
+
+	ToBucketLifecycleRuleTransitionArrayOutput() BucketLifecycleRuleTransitionArrayOutput
+	ToBucketLifecycleRuleTransitionArrayOutputWithContext(context.Context) BucketLifecycleRuleTransitionArrayOutput
+}
+
+type BucketLifecycleRuleTransitionArray []BucketLifecycleRuleTransitionInput
+
+func (BucketLifecycleRuleTransitionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BucketLifecycleRuleTransition)(nil)).Elem()
+}
+
+func (i BucketLifecycleRuleTransitionArray) ToBucketLifecycleRuleTransitionArrayOutput() BucketLifecycleRuleTransitionArrayOutput {
+	return i.ToBucketLifecycleRuleTransitionArrayOutputWithContext(context.Background())
+}
+
+func (i BucketLifecycleRuleTransitionArray) ToBucketLifecycleRuleTransitionArrayOutputWithContext(ctx context.Context) BucketLifecycleRuleTransitionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketLifecycleRuleTransitionArrayOutput)
+}
+
+type BucketLifecycleRuleTransitionOutput struct{ *pulumi.OutputState }
+
+func (BucketLifecycleRuleTransitionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketLifecycleRuleTransition)(nil)).Elem()
+}
+
+func (o BucketLifecycleRuleTransitionOutput) ToBucketLifecycleRuleTransitionOutput() BucketLifecycleRuleTransitionOutput {
+	return o
+}
+
+func (o BucketLifecycleRuleTransitionOutput) ToBucketLifecycleRuleTransitionOutputWithContext(ctx context.Context) BucketLifecycleRuleTransitionOutput {
+	return o
+}
+
+// The date when the transition takes effect. Format: 2023-01-01T00:00:00.000Z.
+func (o BucketLifecycleRuleTransitionOutput) Date() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketLifecycleRuleTransition) *string { return v.Date }).(pulumi.StringPtrOutput)
+}
+
+// The number of days after object creation when the transition takes effect.
+func (o BucketLifecycleRuleTransitionOutput) Days() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v BucketLifecycleRuleTransition) *int { return v.Days }).(pulumi.IntPtrOutput)
+}
+
+// The storage class to transition to. Valid values: IA, ARCHIVE, COLD_ARCHIVE.
+func (o BucketLifecycleRuleTransitionOutput) StorageClass() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketLifecycleRuleTransition) *string { return v.StorageClass }).(pulumi.StringPtrOutput)
+}
+
+type BucketLifecycleRuleTransitionArrayOutput struct{ *pulumi.OutputState }
+
+func (BucketLifecycleRuleTransitionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BucketLifecycleRuleTransition)(nil)).Elem()
+}
+
+func (o BucketLifecycleRuleTransitionArrayOutput) ToBucketLifecycleRuleTransitionArrayOutput() BucketLifecycleRuleTransitionArrayOutput {
+	return o
+}
+
+func (o BucketLifecycleRuleTransitionArrayOutput) ToBucketLifecycleRuleTransitionArrayOutputWithContext(ctx context.Context) BucketLifecycleRuleTransitionArrayOutput {
+	return o
+}
+
+func (o BucketLifecycleRuleTransitionArrayOutput) Index(i pulumi.IntInput) BucketLifecycleRuleTransitionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) BucketLifecycleRuleTransition {
+		return vs[0].([]BucketLifecycleRuleTransition)[vs[1].(int)]
+	}).(BucketLifecycleRuleTransitionOutput)
+}
+
+type BucketLoggingLoggingEnabled struct {
+	// The role that is assumed by TOS to write log objects to the target bucket.
+	Role *string `pulumi:"role"`
+	// The name of the target bucket where the access logs are stored.
+	TargetBucket *string `pulumi:"targetBucket"`
+	// The prefix for the log object keys.
+	TargetPrefix *string `pulumi:"targetPrefix"`
+}
+
+// BucketLoggingLoggingEnabledInput is an input type that accepts BucketLoggingLoggingEnabledArgs and BucketLoggingLoggingEnabledOutput values.
+// You can construct a concrete instance of `BucketLoggingLoggingEnabledInput` via:
+//
+//	BucketLoggingLoggingEnabledArgs{...}
+type BucketLoggingLoggingEnabledInput interface {
+	pulumi.Input
+
+	ToBucketLoggingLoggingEnabledOutput() BucketLoggingLoggingEnabledOutput
+	ToBucketLoggingLoggingEnabledOutputWithContext(context.Context) BucketLoggingLoggingEnabledOutput
+}
+
+type BucketLoggingLoggingEnabledArgs struct {
+	// The role that is assumed by TOS to write log objects to the target bucket.
+	Role pulumi.StringPtrInput `pulumi:"role"`
+	// The name of the target bucket where the access logs are stored.
+	TargetBucket pulumi.StringPtrInput `pulumi:"targetBucket"`
+	// The prefix for the log object keys.
+	TargetPrefix pulumi.StringPtrInput `pulumi:"targetPrefix"`
+}
+
+func (BucketLoggingLoggingEnabledArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketLoggingLoggingEnabled)(nil)).Elem()
+}
+
+func (i BucketLoggingLoggingEnabledArgs) ToBucketLoggingLoggingEnabledOutput() BucketLoggingLoggingEnabledOutput {
+	return i.ToBucketLoggingLoggingEnabledOutputWithContext(context.Background())
+}
+
+func (i BucketLoggingLoggingEnabledArgs) ToBucketLoggingLoggingEnabledOutputWithContext(ctx context.Context) BucketLoggingLoggingEnabledOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketLoggingLoggingEnabledOutput)
+}
+
+// BucketLoggingLoggingEnabledArrayInput is an input type that accepts BucketLoggingLoggingEnabledArray and BucketLoggingLoggingEnabledArrayOutput values.
+// You can construct a concrete instance of `BucketLoggingLoggingEnabledArrayInput` via:
+//
+//	BucketLoggingLoggingEnabledArray{ BucketLoggingLoggingEnabledArgs{...} }
+type BucketLoggingLoggingEnabledArrayInput interface {
+	pulumi.Input
+
+	ToBucketLoggingLoggingEnabledArrayOutput() BucketLoggingLoggingEnabledArrayOutput
+	ToBucketLoggingLoggingEnabledArrayOutputWithContext(context.Context) BucketLoggingLoggingEnabledArrayOutput
+}
+
+type BucketLoggingLoggingEnabledArray []BucketLoggingLoggingEnabledInput
+
+func (BucketLoggingLoggingEnabledArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BucketLoggingLoggingEnabled)(nil)).Elem()
+}
+
+func (i BucketLoggingLoggingEnabledArray) ToBucketLoggingLoggingEnabledArrayOutput() BucketLoggingLoggingEnabledArrayOutput {
+	return i.ToBucketLoggingLoggingEnabledArrayOutputWithContext(context.Background())
+}
+
+func (i BucketLoggingLoggingEnabledArray) ToBucketLoggingLoggingEnabledArrayOutputWithContext(ctx context.Context) BucketLoggingLoggingEnabledArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketLoggingLoggingEnabledArrayOutput)
+}
+
+type BucketLoggingLoggingEnabledOutput struct{ *pulumi.OutputState }
+
+func (BucketLoggingLoggingEnabledOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketLoggingLoggingEnabled)(nil)).Elem()
+}
+
+func (o BucketLoggingLoggingEnabledOutput) ToBucketLoggingLoggingEnabledOutput() BucketLoggingLoggingEnabledOutput {
+	return o
+}
+
+func (o BucketLoggingLoggingEnabledOutput) ToBucketLoggingLoggingEnabledOutputWithContext(ctx context.Context) BucketLoggingLoggingEnabledOutput {
+	return o
+}
+
+// The role that is assumed by TOS to write log objects to the target bucket.
+func (o BucketLoggingLoggingEnabledOutput) Role() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketLoggingLoggingEnabled) *string { return v.Role }).(pulumi.StringPtrOutput)
+}
+
+// The name of the target bucket where the access logs are stored.
+func (o BucketLoggingLoggingEnabledOutput) TargetBucket() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketLoggingLoggingEnabled) *string { return v.TargetBucket }).(pulumi.StringPtrOutput)
+}
+
+// The prefix for the log object keys.
+func (o BucketLoggingLoggingEnabledOutput) TargetPrefix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketLoggingLoggingEnabled) *string { return v.TargetPrefix }).(pulumi.StringPtrOutput)
+}
+
+type BucketLoggingLoggingEnabledArrayOutput struct{ *pulumi.OutputState }
+
+func (BucketLoggingLoggingEnabledArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BucketLoggingLoggingEnabled)(nil)).Elem()
+}
+
+func (o BucketLoggingLoggingEnabledArrayOutput) ToBucketLoggingLoggingEnabledArrayOutput() BucketLoggingLoggingEnabledArrayOutput {
+	return o
+}
+
+func (o BucketLoggingLoggingEnabledArrayOutput) ToBucketLoggingLoggingEnabledArrayOutputWithContext(ctx context.Context) BucketLoggingLoggingEnabledArrayOutput {
+	return o
+}
+
+func (o BucketLoggingLoggingEnabledArrayOutput) Index(i pulumi.IntInput) BucketLoggingLoggingEnabledOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) BucketLoggingLoggingEnabled {
+		return vs[0].([]BucketLoggingLoggingEnabled)[vs[1].(int)]
+	}).(BucketLoggingLoggingEnabledOutput)
+}
+
+type BucketMirrorBackRule struct {
+	// The condition of the mirrorBack rule.
+	Condition *BucketMirrorBackRuleCondition `pulumi:"condition"`
+	// The ID of the mirrorBack rule.
+	Id *string `pulumi:"id"`
+	// The redirect configuration of the mirrorBack rule.
+	Redirect *BucketMirrorBackRuleRedirect `pulumi:"redirect"`
+}
+
+// BucketMirrorBackRuleInput is an input type that accepts BucketMirrorBackRuleArgs and BucketMirrorBackRuleOutput values.
+// You can construct a concrete instance of `BucketMirrorBackRuleInput` via:
+//
+//	BucketMirrorBackRuleArgs{...}
+type BucketMirrorBackRuleInput interface {
+	pulumi.Input
+
+	ToBucketMirrorBackRuleOutput() BucketMirrorBackRuleOutput
+	ToBucketMirrorBackRuleOutputWithContext(context.Context) BucketMirrorBackRuleOutput
+}
+
+type BucketMirrorBackRuleArgs struct {
+	// The condition of the mirrorBack rule.
+	Condition BucketMirrorBackRuleConditionPtrInput `pulumi:"condition"`
+	// The ID of the mirrorBack rule.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// The redirect configuration of the mirrorBack rule.
+	Redirect BucketMirrorBackRuleRedirectPtrInput `pulumi:"redirect"`
+}
+
+func (BucketMirrorBackRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketMirrorBackRule)(nil)).Elem()
+}
+
+func (i BucketMirrorBackRuleArgs) ToBucketMirrorBackRuleOutput() BucketMirrorBackRuleOutput {
+	return i.ToBucketMirrorBackRuleOutputWithContext(context.Background())
+}
+
+func (i BucketMirrorBackRuleArgs) ToBucketMirrorBackRuleOutputWithContext(ctx context.Context) BucketMirrorBackRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketMirrorBackRuleOutput)
+}
+
+// BucketMirrorBackRuleArrayInput is an input type that accepts BucketMirrorBackRuleArray and BucketMirrorBackRuleArrayOutput values.
+// You can construct a concrete instance of `BucketMirrorBackRuleArrayInput` via:
+//
+//	BucketMirrorBackRuleArray{ BucketMirrorBackRuleArgs{...} }
+type BucketMirrorBackRuleArrayInput interface {
+	pulumi.Input
+
+	ToBucketMirrorBackRuleArrayOutput() BucketMirrorBackRuleArrayOutput
+	ToBucketMirrorBackRuleArrayOutputWithContext(context.Context) BucketMirrorBackRuleArrayOutput
+}
+
+type BucketMirrorBackRuleArray []BucketMirrorBackRuleInput
+
+func (BucketMirrorBackRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BucketMirrorBackRule)(nil)).Elem()
+}
+
+func (i BucketMirrorBackRuleArray) ToBucketMirrorBackRuleArrayOutput() BucketMirrorBackRuleArrayOutput {
+	return i.ToBucketMirrorBackRuleArrayOutputWithContext(context.Background())
+}
+
+func (i BucketMirrorBackRuleArray) ToBucketMirrorBackRuleArrayOutputWithContext(ctx context.Context) BucketMirrorBackRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketMirrorBackRuleArrayOutput)
+}
+
+type BucketMirrorBackRuleOutput struct{ *pulumi.OutputState }
+
+func (BucketMirrorBackRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketMirrorBackRule)(nil)).Elem()
+}
+
+func (o BucketMirrorBackRuleOutput) ToBucketMirrorBackRuleOutput() BucketMirrorBackRuleOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleOutput) ToBucketMirrorBackRuleOutputWithContext(ctx context.Context) BucketMirrorBackRuleOutput {
+	return o
+}
+
+// The condition of the mirrorBack rule.
+func (o BucketMirrorBackRuleOutput) Condition() BucketMirrorBackRuleConditionPtrOutput {
+	return o.ApplyT(func(v BucketMirrorBackRule) *BucketMirrorBackRuleCondition { return v.Condition }).(BucketMirrorBackRuleConditionPtrOutput)
+}
+
+// The ID of the mirrorBack rule.
+func (o BucketMirrorBackRuleOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketMirrorBackRule) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// The redirect configuration of the mirrorBack rule.
+func (o BucketMirrorBackRuleOutput) Redirect() BucketMirrorBackRuleRedirectPtrOutput {
+	return o.ApplyT(func(v BucketMirrorBackRule) *BucketMirrorBackRuleRedirect { return v.Redirect }).(BucketMirrorBackRuleRedirectPtrOutput)
+}
+
+type BucketMirrorBackRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (BucketMirrorBackRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BucketMirrorBackRule)(nil)).Elem()
+}
+
+func (o BucketMirrorBackRuleArrayOutput) ToBucketMirrorBackRuleArrayOutput() BucketMirrorBackRuleArrayOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleArrayOutput) ToBucketMirrorBackRuleArrayOutputWithContext(ctx context.Context) BucketMirrorBackRuleArrayOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleArrayOutput) Index(i pulumi.IntInput) BucketMirrorBackRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) BucketMirrorBackRule {
+		return vs[0].([]BucketMirrorBackRule)[vs[1].(int)]
+	}).(BucketMirrorBackRuleOutput)
+}
+
+type BucketMirrorBackRuleCondition struct {
+	// Only when a specific domain name is supported will the origin retrieval be triggered.
+	AllowHosts []string `pulumi:"allowHosts"`
+	// Error code for triggering the source re-fetch function.
+	HttpCode int `pulumi:"httpCode"`
+	// The type of request that triggers the re-sourcing process.
+	HttpMethods []string `pulumi:"httpMethods"`
+	// The prefix of the object name that matches the source object.
+	KeyPrefix *string `pulumi:"keyPrefix"`
+	// The suffix of the object name that matches the source object.
+	KeySuffix *string `pulumi:"keySuffix"`
+}
+
+// BucketMirrorBackRuleConditionInput is an input type that accepts BucketMirrorBackRuleConditionArgs and BucketMirrorBackRuleConditionOutput values.
+// You can construct a concrete instance of `BucketMirrorBackRuleConditionInput` via:
+//
+//	BucketMirrorBackRuleConditionArgs{...}
+type BucketMirrorBackRuleConditionInput interface {
+	pulumi.Input
+
+	ToBucketMirrorBackRuleConditionOutput() BucketMirrorBackRuleConditionOutput
+	ToBucketMirrorBackRuleConditionOutputWithContext(context.Context) BucketMirrorBackRuleConditionOutput
+}
+
+type BucketMirrorBackRuleConditionArgs struct {
+	// Only when a specific domain name is supported will the origin retrieval be triggered.
+	AllowHosts pulumi.StringArrayInput `pulumi:"allowHosts"`
+	// Error code for triggering the source re-fetch function.
+	HttpCode pulumi.IntInput `pulumi:"httpCode"`
+	// The type of request that triggers the re-sourcing process.
+	HttpMethods pulumi.StringArrayInput `pulumi:"httpMethods"`
+	// The prefix of the object name that matches the source object.
+	KeyPrefix pulumi.StringPtrInput `pulumi:"keyPrefix"`
+	// The suffix of the object name that matches the source object.
+	KeySuffix pulumi.StringPtrInput `pulumi:"keySuffix"`
+}
+
+func (BucketMirrorBackRuleConditionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketMirrorBackRuleCondition)(nil)).Elem()
+}
+
+func (i BucketMirrorBackRuleConditionArgs) ToBucketMirrorBackRuleConditionOutput() BucketMirrorBackRuleConditionOutput {
+	return i.ToBucketMirrorBackRuleConditionOutputWithContext(context.Background())
+}
+
+func (i BucketMirrorBackRuleConditionArgs) ToBucketMirrorBackRuleConditionOutputWithContext(ctx context.Context) BucketMirrorBackRuleConditionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketMirrorBackRuleConditionOutput)
+}
+
+func (i BucketMirrorBackRuleConditionArgs) ToBucketMirrorBackRuleConditionPtrOutput() BucketMirrorBackRuleConditionPtrOutput {
+	return i.ToBucketMirrorBackRuleConditionPtrOutputWithContext(context.Background())
+}
+
+func (i BucketMirrorBackRuleConditionArgs) ToBucketMirrorBackRuleConditionPtrOutputWithContext(ctx context.Context) BucketMirrorBackRuleConditionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketMirrorBackRuleConditionOutput).ToBucketMirrorBackRuleConditionPtrOutputWithContext(ctx)
+}
+
+// BucketMirrorBackRuleConditionPtrInput is an input type that accepts BucketMirrorBackRuleConditionArgs, BucketMirrorBackRuleConditionPtr and BucketMirrorBackRuleConditionPtrOutput values.
+// You can construct a concrete instance of `BucketMirrorBackRuleConditionPtrInput` via:
+//
+//	        BucketMirrorBackRuleConditionArgs{...}
+//
+//	or:
+//
+//	        nil
+type BucketMirrorBackRuleConditionPtrInput interface {
+	pulumi.Input
+
+	ToBucketMirrorBackRuleConditionPtrOutput() BucketMirrorBackRuleConditionPtrOutput
+	ToBucketMirrorBackRuleConditionPtrOutputWithContext(context.Context) BucketMirrorBackRuleConditionPtrOutput
+}
+
+type bucketMirrorBackRuleConditionPtrType BucketMirrorBackRuleConditionArgs
+
+func BucketMirrorBackRuleConditionPtr(v *BucketMirrorBackRuleConditionArgs) BucketMirrorBackRuleConditionPtrInput {
+	return (*bucketMirrorBackRuleConditionPtrType)(v)
+}
+
+func (*bucketMirrorBackRuleConditionPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketMirrorBackRuleCondition)(nil)).Elem()
+}
+
+func (i *bucketMirrorBackRuleConditionPtrType) ToBucketMirrorBackRuleConditionPtrOutput() BucketMirrorBackRuleConditionPtrOutput {
+	return i.ToBucketMirrorBackRuleConditionPtrOutputWithContext(context.Background())
+}
+
+func (i *bucketMirrorBackRuleConditionPtrType) ToBucketMirrorBackRuleConditionPtrOutputWithContext(ctx context.Context) BucketMirrorBackRuleConditionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketMirrorBackRuleConditionPtrOutput)
+}
+
+type BucketMirrorBackRuleConditionOutput struct{ *pulumi.OutputState }
+
+func (BucketMirrorBackRuleConditionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketMirrorBackRuleCondition)(nil)).Elem()
+}
+
+func (o BucketMirrorBackRuleConditionOutput) ToBucketMirrorBackRuleConditionOutput() BucketMirrorBackRuleConditionOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleConditionOutput) ToBucketMirrorBackRuleConditionOutputWithContext(ctx context.Context) BucketMirrorBackRuleConditionOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleConditionOutput) ToBucketMirrorBackRuleConditionPtrOutput() BucketMirrorBackRuleConditionPtrOutput {
+	return o.ToBucketMirrorBackRuleConditionPtrOutputWithContext(context.Background())
+}
+
+func (o BucketMirrorBackRuleConditionOutput) ToBucketMirrorBackRuleConditionPtrOutputWithContext(ctx context.Context) BucketMirrorBackRuleConditionPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v BucketMirrorBackRuleCondition) *BucketMirrorBackRuleCondition {
+		return &v
+	}).(BucketMirrorBackRuleConditionPtrOutput)
+}
+
+// Only when a specific domain name is supported will the origin retrieval be triggered.
+func (o BucketMirrorBackRuleConditionOutput) AllowHosts() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v BucketMirrorBackRuleCondition) []string { return v.AllowHosts }).(pulumi.StringArrayOutput)
+}
+
+// Error code for triggering the source re-fetch function.
+func (o BucketMirrorBackRuleConditionOutput) HttpCode() pulumi.IntOutput {
+	return o.ApplyT(func(v BucketMirrorBackRuleCondition) int { return v.HttpCode }).(pulumi.IntOutput)
+}
+
+// The type of request that triggers the re-sourcing process.
+func (o BucketMirrorBackRuleConditionOutput) HttpMethods() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v BucketMirrorBackRuleCondition) []string { return v.HttpMethods }).(pulumi.StringArrayOutput)
+}
+
+// The prefix of the object name that matches the source object.
+func (o BucketMirrorBackRuleConditionOutput) KeyPrefix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketMirrorBackRuleCondition) *string { return v.KeyPrefix }).(pulumi.StringPtrOutput)
+}
+
+// The suffix of the object name that matches the source object.
+func (o BucketMirrorBackRuleConditionOutput) KeySuffix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketMirrorBackRuleCondition) *string { return v.KeySuffix }).(pulumi.StringPtrOutput)
+}
+
+type BucketMirrorBackRuleConditionPtrOutput struct{ *pulumi.OutputState }
+
+func (BucketMirrorBackRuleConditionPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketMirrorBackRuleCondition)(nil)).Elem()
+}
+
+func (o BucketMirrorBackRuleConditionPtrOutput) ToBucketMirrorBackRuleConditionPtrOutput() BucketMirrorBackRuleConditionPtrOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleConditionPtrOutput) ToBucketMirrorBackRuleConditionPtrOutputWithContext(ctx context.Context) BucketMirrorBackRuleConditionPtrOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleConditionPtrOutput) Elem() BucketMirrorBackRuleConditionOutput {
+	return o.ApplyT(func(v *BucketMirrorBackRuleCondition) BucketMirrorBackRuleCondition {
+		if v != nil {
+			return *v
+		}
+		var ret BucketMirrorBackRuleCondition
+		return ret
+	}).(BucketMirrorBackRuleConditionOutput)
+}
+
+// Only when a specific domain name is supported will the origin retrieval be triggered.
+func (o BucketMirrorBackRuleConditionPtrOutput) AllowHosts() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *BucketMirrorBackRuleCondition) []string {
+		if v == nil {
+			return nil
+		}
+		return v.AllowHosts
+	}).(pulumi.StringArrayOutput)
+}
+
+// Error code for triggering the source re-fetch function.
+func (o BucketMirrorBackRuleConditionPtrOutput) HttpCode() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *BucketMirrorBackRuleCondition) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.HttpCode
+	}).(pulumi.IntPtrOutput)
+}
+
+// The type of request that triggers the re-sourcing process.
+func (o BucketMirrorBackRuleConditionPtrOutput) HttpMethods() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *BucketMirrorBackRuleCondition) []string {
+		if v == nil {
+			return nil
+		}
+		return v.HttpMethods
+	}).(pulumi.StringArrayOutput)
+}
+
+// The prefix of the object name that matches the source object.
+func (o BucketMirrorBackRuleConditionPtrOutput) KeyPrefix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BucketMirrorBackRuleCondition) *string {
+		if v == nil {
+			return nil
+		}
+		return v.KeyPrefix
+	}).(pulumi.StringPtrOutput)
+}
+
+// The suffix of the object name that matches the source object.
+func (o BucketMirrorBackRuleConditionPtrOutput) KeySuffix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BucketMirrorBackRuleCondition) *string {
+		if v == nil {
+			return nil
+		}
+		return v.KeySuffix
+	}).(pulumi.StringPtrOutput)
+}
+
+type BucketMirrorBackRuleRedirect struct {
+	// The fetch header to metadata rules.
+	FetchHeaderToMetaDataRules []BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRule `pulumi:"fetchHeaderToMetaDataRules"`
+	// Whether to fetch source on redirect.
+	FetchSourceOnRedirect *bool `pulumi:"fetchSourceOnRedirect"`
+	// Whether to fetch source on redirect with query.
+	FetchSourceOnRedirectWithQuery *bool `pulumi:"fetchSourceOnRedirectWithQuery"`
+	// Whether to follow redirects.
+	FollowRedirect *bool `pulumi:"followRedirect"`
+	// The mirror header configuration.
+	MirrorHeaders []BucketMirrorBackRuleRedirectMirrorHeader `pulumi:"mirrorHeaders"`
+	// Whether to pass query parameters.
+	PassQuery *bool `pulumi:"passQuery"`
+	// The private source configuration.
+	PrivateSources []BucketMirrorBackRuleRedirectPrivateSource `pulumi:"privateSources"`
+	// The public source configuration.
+	PublicSource *BucketMirrorBackRuleRedirectPublicSource `pulumi:"publicSource"`
+	// The type of redirect.
+	RedirectType *string `pulumi:"redirectType"`
+	// The transform configuration.
+	Transform *BucketMirrorBackRuleRedirectTransform `pulumi:"transform"`
+}
+
+// BucketMirrorBackRuleRedirectInput is an input type that accepts BucketMirrorBackRuleRedirectArgs and BucketMirrorBackRuleRedirectOutput values.
+// You can construct a concrete instance of `BucketMirrorBackRuleRedirectInput` via:
+//
+//	BucketMirrorBackRuleRedirectArgs{...}
+type BucketMirrorBackRuleRedirectInput interface {
+	pulumi.Input
+
+	ToBucketMirrorBackRuleRedirectOutput() BucketMirrorBackRuleRedirectOutput
+	ToBucketMirrorBackRuleRedirectOutputWithContext(context.Context) BucketMirrorBackRuleRedirectOutput
+}
+
+type BucketMirrorBackRuleRedirectArgs struct {
+	// The fetch header to metadata rules.
+	FetchHeaderToMetaDataRules BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleArrayInput `pulumi:"fetchHeaderToMetaDataRules"`
+	// Whether to fetch source on redirect.
+	FetchSourceOnRedirect pulumi.BoolPtrInput `pulumi:"fetchSourceOnRedirect"`
+	// Whether to fetch source on redirect with query.
+	FetchSourceOnRedirectWithQuery pulumi.BoolPtrInput `pulumi:"fetchSourceOnRedirectWithQuery"`
+	// Whether to follow redirects.
+	FollowRedirect pulumi.BoolPtrInput `pulumi:"followRedirect"`
+	// The mirror header configuration.
+	MirrorHeaders BucketMirrorBackRuleRedirectMirrorHeaderArrayInput `pulumi:"mirrorHeaders"`
+	// Whether to pass query parameters.
+	PassQuery pulumi.BoolPtrInput `pulumi:"passQuery"`
+	// The private source configuration.
+	PrivateSources BucketMirrorBackRuleRedirectPrivateSourceArrayInput `pulumi:"privateSources"`
+	// The public source configuration.
+	PublicSource BucketMirrorBackRuleRedirectPublicSourcePtrInput `pulumi:"publicSource"`
+	// The type of redirect.
+	RedirectType pulumi.StringPtrInput `pulumi:"redirectType"`
+	// The transform configuration.
+	Transform BucketMirrorBackRuleRedirectTransformPtrInput `pulumi:"transform"`
+}
+
+func (BucketMirrorBackRuleRedirectArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketMirrorBackRuleRedirect)(nil)).Elem()
+}
+
+func (i BucketMirrorBackRuleRedirectArgs) ToBucketMirrorBackRuleRedirectOutput() BucketMirrorBackRuleRedirectOutput {
+	return i.ToBucketMirrorBackRuleRedirectOutputWithContext(context.Background())
+}
+
+func (i BucketMirrorBackRuleRedirectArgs) ToBucketMirrorBackRuleRedirectOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketMirrorBackRuleRedirectOutput)
+}
+
+func (i BucketMirrorBackRuleRedirectArgs) ToBucketMirrorBackRuleRedirectPtrOutput() BucketMirrorBackRuleRedirectPtrOutput {
+	return i.ToBucketMirrorBackRuleRedirectPtrOutputWithContext(context.Background())
+}
+
+func (i BucketMirrorBackRuleRedirectArgs) ToBucketMirrorBackRuleRedirectPtrOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketMirrorBackRuleRedirectOutput).ToBucketMirrorBackRuleRedirectPtrOutputWithContext(ctx)
+}
+
+// BucketMirrorBackRuleRedirectPtrInput is an input type that accepts BucketMirrorBackRuleRedirectArgs, BucketMirrorBackRuleRedirectPtr and BucketMirrorBackRuleRedirectPtrOutput values.
+// You can construct a concrete instance of `BucketMirrorBackRuleRedirectPtrInput` via:
+//
+//	        BucketMirrorBackRuleRedirectArgs{...}
+//
+//	or:
+//
+//	        nil
+type BucketMirrorBackRuleRedirectPtrInput interface {
+	pulumi.Input
+
+	ToBucketMirrorBackRuleRedirectPtrOutput() BucketMirrorBackRuleRedirectPtrOutput
+	ToBucketMirrorBackRuleRedirectPtrOutputWithContext(context.Context) BucketMirrorBackRuleRedirectPtrOutput
+}
+
+type bucketMirrorBackRuleRedirectPtrType BucketMirrorBackRuleRedirectArgs
+
+func BucketMirrorBackRuleRedirectPtr(v *BucketMirrorBackRuleRedirectArgs) BucketMirrorBackRuleRedirectPtrInput {
+	return (*bucketMirrorBackRuleRedirectPtrType)(v)
+}
+
+func (*bucketMirrorBackRuleRedirectPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketMirrorBackRuleRedirect)(nil)).Elem()
+}
+
+func (i *bucketMirrorBackRuleRedirectPtrType) ToBucketMirrorBackRuleRedirectPtrOutput() BucketMirrorBackRuleRedirectPtrOutput {
+	return i.ToBucketMirrorBackRuleRedirectPtrOutputWithContext(context.Background())
+}
+
+func (i *bucketMirrorBackRuleRedirectPtrType) ToBucketMirrorBackRuleRedirectPtrOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketMirrorBackRuleRedirectPtrOutput)
+}
+
+type BucketMirrorBackRuleRedirectOutput struct{ *pulumi.OutputState }
+
+func (BucketMirrorBackRuleRedirectOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketMirrorBackRuleRedirect)(nil)).Elem()
+}
+
+func (o BucketMirrorBackRuleRedirectOutput) ToBucketMirrorBackRuleRedirectOutput() BucketMirrorBackRuleRedirectOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleRedirectOutput) ToBucketMirrorBackRuleRedirectOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleRedirectOutput) ToBucketMirrorBackRuleRedirectPtrOutput() BucketMirrorBackRuleRedirectPtrOutput {
+	return o.ToBucketMirrorBackRuleRedirectPtrOutputWithContext(context.Background())
+}
+
+func (o BucketMirrorBackRuleRedirectOutput) ToBucketMirrorBackRuleRedirectPtrOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v BucketMirrorBackRuleRedirect) *BucketMirrorBackRuleRedirect {
+		return &v
+	}).(BucketMirrorBackRuleRedirectPtrOutput)
+}
+
+// The fetch header to metadata rules.
+func (o BucketMirrorBackRuleRedirectOutput) FetchHeaderToMetaDataRules() BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleArrayOutput {
+	return o.ApplyT(func(v BucketMirrorBackRuleRedirect) []BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRule {
+		return v.FetchHeaderToMetaDataRules
+	}).(BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleArrayOutput)
+}
+
+// Whether to fetch source on redirect.
+func (o BucketMirrorBackRuleRedirectOutput) FetchSourceOnRedirect() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v BucketMirrorBackRuleRedirect) *bool { return v.FetchSourceOnRedirect }).(pulumi.BoolPtrOutput)
+}
+
+// Whether to fetch source on redirect with query.
+func (o BucketMirrorBackRuleRedirectOutput) FetchSourceOnRedirectWithQuery() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v BucketMirrorBackRuleRedirect) *bool { return v.FetchSourceOnRedirectWithQuery }).(pulumi.BoolPtrOutput)
+}
+
+// Whether to follow redirects.
+func (o BucketMirrorBackRuleRedirectOutput) FollowRedirect() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v BucketMirrorBackRuleRedirect) *bool { return v.FollowRedirect }).(pulumi.BoolPtrOutput)
+}
+
+// The mirror header configuration.
+func (o BucketMirrorBackRuleRedirectOutput) MirrorHeaders() BucketMirrorBackRuleRedirectMirrorHeaderArrayOutput {
+	return o.ApplyT(func(v BucketMirrorBackRuleRedirect) []BucketMirrorBackRuleRedirectMirrorHeader {
+		return v.MirrorHeaders
+	}).(BucketMirrorBackRuleRedirectMirrorHeaderArrayOutput)
+}
+
+// Whether to pass query parameters.
+func (o BucketMirrorBackRuleRedirectOutput) PassQuery() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v BucketMirrorBackRuleRedirect) *bool { return v.PassQuery }).(pulumi.BoolPtrOutput)
+}
+
+// The private source configuration.
+func (o BucketMirrorBackRuleRedirectOutput) PrivateSources() BucketMirrorBackRuleRedirectPrivateSourceArrayOutput {
+	return o.ApplyT(func(v BucketMirrorBackRuleRedirect) []BucketMirrorBackRuleRedirectPrivateSource {
+		return v.PrivateSources
+	}).(BucketMirrorBackRuleRedirectPrivateSourceArrayOutput)
+}
+
+// The public source configuration.
+func (o BucketMirrorBackRuleRedirectOutput) PublicSource() BucketMirrorBackRuleRedirectPublicSourcePtrOutput {
+	return o.ApplyT(func(v BucketMirrorBackRuleRedirect) *BucketMirrorBackRuleRedirectPublicSource { return v.PublicSource }).(BucketMirrorBackRuleRedirectPublicSourcePtrOutput)
+}
+
+// The type of redirect.
+func (o BucketMirrorBackRuleRedirectOutput) RedirectType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketMirrorBackRuleRedirect) *string { return v.RedirectType }).(pulumi.StringPtrOutput)
+}
+
+// The transform configuration.
+func (o BucketMirrorBackRuleRedirectOutput) Transform() BucketMirrorBackRuleRedirectTransformPtrOutput {
+	return o.ApplyT(func(v BucketMirrorBackRuleRedirect) *BucketMirrorBackRuleRedirectTransform { return v.Transform }).(BucketMirrorBackRuleRedirectTransformPtrOutput)
+}
+
+type BucketMirrorBackRuleRedirectPtrOutput struct{ *pulumi.OutputState }
+
+func (BucketMirrorBackRuleRedirectPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketMirrorBackRuleRedirect)(nil)).Elem()
+}
+
+func (o BucketMirrorBackRuleRedirectPtrOutput) ToBucketMirrorBackRuleRedirectPtrOutput() BucketMirrorBackRuleRedirectPtrOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleRedirectPtrOutput) ToBucketMirrorBackRuleRedirectPtrOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectPtrOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleRedirectPtrOutput) Elem() BucketMirrorBackRuleRedirectOutput {
+	return o.ApplyT(func(v *BucketMirrorBackRuleRedirect) BucketMirrorBackRuleRedirect {
+		if v != nil {
+			return *v
+		}
+		var ret BucketMirrorBackRuleRedirect
+		return ret
+	}).(BucketMirrorBackRuleRedirectOutput)
+}
+
+// The fetch header to metadata rules.
+func (o BucketMirrorBackRuleRedirectPtrOutput) FetchHeaderToMetaDataRules() BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleArrayOutput {
+	return o.ApplyT(func(v *BucketMirrorBackRuleRedirect) []BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRule {
+		if v == nil {
+			return nil
+		}
+		return v.FetchHeaderToMetaDataRules
+	}).(BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleArrayOutput)
+}
+
+// Whether to fetch source on redirect.
+func (o BucketMirrorBackRuleRedirectPtrOutput) FetchSourceOnRedirect() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *BucketMirrorBackRuleRedirect) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.FetchSourceOnRedirect
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Whether to fetch source on redirect with query.
+func (o BucketMirrorBackRuleRedirectPtrOutput) FetchSourceOnRedirectWithQuery() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *BucketMirrorBackRuleRedirect) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.FetchSourceOnRedirectWithQuery
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Whether to follow redirects.
+func (o BucketMirrorBackRuleRedirectPtrOutput) FollowRedirect() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *BucketMirrorBackRuleRedirect) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.FollowRedirect
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The mirror header configuration.
+func (o BucketMirrorBackRuleRedirectPtrOutput) MirrorHeaders() BucketMirrorBackRuleRedirectMirrorHeaderArrayOutput {
+	return o.ApplyT(func(v *BucketMirrorBackRuleRedirect) []BucketMirrorBackRuleRedirectMirrorHeader {
+		if v == nil {
+			return nil
+		}
+		return v.MirrorHeaders
+	}).(BucketMirrorBackRuleRedirectMirrorHeaderArrayOutput)
+}
+
+// Whether to pass query parameters.
+func (o BucketMirrorBackRuleRedirectPtrOutput) PassQuery() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *BucketMirrorBackRuleRedirect) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.PassQuery
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The private source configuration.
+func (o BucketMirrorBackRuleRedirectPtrOutput) PrivateSources() BucketMirrorBackRuleRedirectPrivateSourceArrayOutput {
+	return o.ApplyT(func(v *BucketMirrorBackRuleRedirect) []BucketMirrorBackRuleRedirectPrivateSource {
+		if v == nil {
+			return nil
+		}
+		return v.PrivateSources
+	}).(BucketMirrorBackRuleRedirectPrivateSourceArrayOutput)
+}
+
+// The public source configuration.
+func (o BucketMirrorBackRuleRedirectPtrOutput) PublicSource() BucketMirrorBackRuleRedirectPublicSourcePtrOutput {
+	return o.ApplyT(func(v *BucketMirrorBackRuleRedirect) *BucketMirrorBackRuleRedirectPublicSource {
+		if v == nil {
+			return nil
+		}
+		return v.PublicSource
+	}).(BucketMirrorBackRuleRedirectPublicSourcePtrOutput)
+}
+
+// The type of redirect.
+func (o BucketMirrorBackRuleRedirectPtrOutput) RedirectType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BucketMirrorBackRuleRedirect) *string {
+		if v == nil {
+			return nil
+		}
+		return v.RedirectType
+	}).(pulumi.StringPtrOutput)
+}
+
+// The transform configuration.
+func (o BucketMirrorBackRuleRedirectPtrOutput) Transform() BucketMirrorBackRuleRedirectTransformPtrOutput {
+	return o.ApplyT(func(v *BucketMirrorBackRuleRedirect) *BucketMirrorBackRuleRedirectTransform {
+		if v == nil {
+			return nil
+		}
+		return v.Transform
+	}).(BucketMirrorBackRuleRedirectTransformPtrOutput)
+}
+
+type BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRule struct {
+	// The metadata suffix.
+	MetaDataSuffix string `pulumi:"metaDataSuffix"`
+	// The source header.
+	SourceHeader string `pulumi:"sourceHeader"`
+}
+
+// BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleInput is an input type that accepts BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleArgs and BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleOutput values.
+// You can construct a concrete instance of `BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleInput` via:
+//
+//	BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleArgs{...}
+type BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleInput interface {
+	pulumi.Input
+
+	ToBucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleOutput() BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleOutput
+	ToBucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleOutputWithContext(context.Context) BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleOutput
+}
+
+type BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleArgs struct {
+	// The metadata suffix.
+	MetaDataSuffix pulumi.StringInput `pulumi:"metaDataSuffix"`
+	// The source header.
+	SourceHeader pulumi.StringInput `pulumi:"sourceHeader"`
+}
+
+func (BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRule)(nil)).Elem()
+}
+
+func (i BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleArgs) ToBucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleOutput() BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleOutput {
+	return i.ToBucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleOutputWithContext(context.Background())
+}
+
+func (i BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleArgs) ToBucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleOutput)
+}
+
+// BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleArrayInput is an input type that accepts BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleArray and BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleArrayOutput values.
+// You can construct a concrete instance of `BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleArrayInput` via:
+//
+//	BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleArray{ BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleArgs{...} }
+type BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleArrayInput interface {
+	pulumi.Input
+
+	ToBucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleArrayOutput() BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleArrayOutput
+	ToBucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleArrayOutputWithContext(context.Context) BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleArrayOutput
+}
+
+type BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleArray []BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleInput
+
+func (BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRule)(nil)).Elem()
+}
+
+func (i BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleArray) ToBucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleArrayOutput() BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleArrayOutput {
+	return i.ToBucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleArrayOutputWithContext(context.Background())
+}
+
+func (i BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleArray) ToBucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleArrayOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleArrayOutput)
+}
+
+type BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleOutput struct{ *pulumi.OutputState }
+
+func (BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRule)(nil)).Elem()
+}
+
+func (o BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleOutput) ToBucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleOutput() BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleOutput) ToBucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleOutput {
+	return o
+}
+
+// The metadata suffix.
+func (o BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleOutput) MetaDataSuffix() pulumi.StringOutput {
+	return o.ApplyT(func(v BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRule) string { return v.MetaDataSuffix }).(pulumi.StringOutput)
+}
+
+// The source header.
+func (o BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleOutput) SourceHeader() pulumi.StringOutput {
+	return o.ApplyT(func(v BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRule) string { return v.SourceHeader }).(pulumi.StringOutput)
+}
+
+type BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRule)(nil)).Elem()
+}
+
+func (o BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleArrayOutput) ToBucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleArrayOutput() BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleArrayOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleArrayOutput) ToBucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleArrayOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleArrayOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleArrayOutput) Index(i pulumi.IntInput) BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRule {
+		return vs[0].([]BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRule)[vs[1].(int)]
+	}).(BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleOutput)
+}
+
+type BucketMirrorBackRuleRedirectMirrorHeader struct {
+	// Whether to pass all headers.
+	PassAll *bool `pulumi:"passAll"`
+	// The headers to pass.
+	Passes []string `pulumi:"passes"`
+	// The headers to remove.
+	Removes []string `pulumi:"removes"`
+	// The mirror header configuration.
+	Sets []BucketMirrorBackRuleRedirectMirrorHeaderSet `pulumi:"sets"`
+}
+
+// BucketMirrorBackRuleRedirectMirrorHeaderInput is an input type that accepts BucketMirrorBackRuleRedirectMirrorHeaderArgs and BucketMirrorBackRuleRedirectMirrorHeaderOutput values.
+// You can construct a concrete instance of `BucketMirrorBackRuleRedirectMirrorHeaderInput` via:
+//
+//	BucketMirrorBackRuleRedirectMirrorHeaderArgs{...}
+type BucketMirrorBackRuleRedirectMirrorHeaderInput interface {
+	pulumi.Input
+
+	ToBucketMirrorBackRuleRedirectMirrorHeaderOutput() BucketMirrorBackRuleRedirectMirrorHeaderOutput
+	ToBucketMirrorBackRuleRedirectMirrorHeaderOutputWithContext(context.Context) BucketMirrorBackRuleRedirectMirrorHeaderOutput
+}
+
+type BucketMirrorBackRuleRedirectMirrorHeaderArgs struct {
+	// Whether to pass all headers.
+	PassAll pulumi.BoolPtrInput `pulumi:"passAll"`
+	// The headers to pass.
+	Passes pulumi.StringArrayInput `pulumi:"passes"`
+	// The headers to remove.
+	Removes pulumi.StringArrayInput `pulumi:"removes"`
+	// The mirror header configuration.
+	Sets BucketMirrorBackRuleRedirectMirrorHeaderSetArrayInput `pulumi:"sets"`
+}
+
+func (BucketMirrorBackRuleRedirectMirrorHeaderArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketMirrorBackRuleRedirectMirrorHeader)(nil)).Elem()
+}
+
+func (i BucketMirrorBackRuleRedirectMirrorHeaderArgs) ToBucketMirrorBackRuleRedirectMirrorHeaderOutput() BucketMirrorBackRuleRedirectMirrorHeaderOutput {
+	return i.ToBucketMirrorBackRuleRedirectMirrorHeaderOutputWithContext(context.Background())
+}
+
+func (i BucketMirrorBackRuleRedirectMirrorHeaderArgs) ToBucketMirrorBackRuleRedirectMirrorHeaderOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectMirrorHeaderOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketMirrorBackRuleRedirectMirrorHeaderOutput)
+}
+
+// BucketMirrorBackRuleRedirectMirrorHeaderArrayInput is an input type that accepts BucketMirrorBackRuleRedirectMirrorHeaderArray and BucketMirrorBackRuleRedirectMirrorHeaderArrayOutput values.
+// You can construct a concrete instance of `BucketMirrorBackRuleRedirectMirrorHeaderArrayInput` via:
+//
+//	BucketMirrorBackRuleRedirectMirrorHeaderArray{ BucketMirrorBackRuleRedirectMirrorHeaderArgs{...} }
+type BucketMirrorBackRuleRedirectMirrorHeaderArrayInput interface {
+	pulumi.Input
+
+	ToBucketMirrorBackRuleRedirectMirrorHeaderArrayOutput() BucketMirrorBackRuleRedirectMirrorHeaderArrayOutput
+	ToBucketMirrorBackRuleRedirectMirrorHeaderArrayOutputWithContext(context.Context) BucketMirrorBackRuleRedirectMirrorHeaderArrayOutput
+}
+
+type BucketMirrorBackRuleRedirectMirrorHeaderArray []BucketMirrorBackRuleRedirectMirrorHeaderInput
+
+func (BucketMirrorBackRuleRedirectMirrorHeaderArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BucketMirrorBackRuleRedirectMirrorHeader)(nil)).Elem()
+}
+
+func (i BucketMirrorBackRuleRedirectMirrorHeaderArray) ToBucketMirrorBackRuleRedirectMirrorHeaderArrayOutput() BucketMirrorBackRuleRedirectMirrorHeaderArrayOutput {
+	return i.ToBucketMirrorBackRuleRedirectMirrorHeaderArrayOutputWithContext(context.Background())
+}
+
+func (i BucketMirrorBackRuleRedirectMirrorHeaderArray) ToBucketMirrorBackRuleRedirectMirrorHeaderArrayOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectMirrorHeaderArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketMirrorBackRuleRedirectMirrorHeaderArrayOutput)
+}
+
+type BucketMirrorBackRuleRedirectMirrorHeaderOutput struct{ *pulumi.OutputState }
+
+func (BucketMirrorBackRuleRedirectMirrorHeaderOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketMirrorBackRuleRedirectMirrorHeader)(nil)).Elem()
+}
+
+func (o BucketMirrorBackRuleRedirectMirrorHeaderOutput) ToBucketMirrorBackRuleRedirectMirrorHeaderOutput() BucketMirrorBackRuleRedirectMirrorHeaderOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleRedirectMirrorHeaderOutput) ToBucketMirrorBackRuleRedirectMirrorHeaderOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectMirrorHeaderOutput {
+	return o
+}
+
+// Whether to pass all headers.
+func (o BucketMirrorBackRuleRedirectMirrorHeaderOutput) PassAll() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v BucketMirrorBackRuleRedirectMirrorHeader) *bool { return v.PassAll }).(pulumi.BoolPtrOutput)
+}
+
+// The headers to pass.
+func (o BucketMirrorBackRuleRedirectMirrorHeaderOutput) Passes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v BucketMirrorBackRuleRedirectMirrorHeader) []string { return v.Passes }).(pulumi.StringArrayOutput)
+}
+
+// The headers to remove.
+func (o BucketMirrorBackRuleRedirectMirrorHeaderOutput) Removes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v BucketMirrorBackRuleRedirectMirrorHeader) []string { return v.Removes }).(pulumi.StringArrayOutput)
+}
+
+// The mirror header configuration.
+func (o BucketMirrorBackRuleRedirectMirrorHeaderOutput) Sets() BucketMirrorBackRuleRedirectMirrorHeaderSetArrayOutput {
+	return o.ApplyT(func(v BucketMirrorBackRuleRedirectMirrorHeader) []BucketMirrorBackRuleRedirectMirrorHeaderSet {
+		return v.Sets
+	}).(BucketMirrorBackRuleRedirectMirrorHeaderSetArrayOutput)
+}
+
+type BucketMirrorBackRuleRedirectMirrorHeaderArrayOutput struct{ *pulumi.OutputState }
+
+func (BucketMirrorBackRuleRedirectMirrorHeaderArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BucketMirrorBackRuleRedirectMirrorHeader)(nil)).Elem()
+}
+
+func (o BucketMirrorBackRuleRedirectMirrorHeaderArrayOutput) ToBucketMirrorBackRuleRedirectMirrorHeaderArrayOutput() BucketMirrorBackRuleRedirectMirrorHeaderArrayOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleRedirectMirrorHeaderArrayOutput) ToBucketMirrorBackRuleRedirectMirrorHeaderArrayOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectMirrorHeaderArrayOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleRedirectMirrorHeaderArrayOutput) Index(i pulumi.IntInput) BucketMirrorBackRuleRedirectMirrorHeaderOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) BucketMirrorBackRuleRedirectMirrorHeader {
+		return vs[0].([]BucketMirrorBackRuleRedirectMirrorHeader)[vs[1].(int)]
+	}).(BucketMirrorBackRuleRedirectMirrorHeaderOutput)
+}
+
+type BucketMirrorBackRuleRedirectMirrorHeaderSet struct {
+	// The key of the header.
+	Key *string `pulumi:"key"`
+	// The value of the header.
+	Value *string `pulumi:"value"`
+}
+
+// BucketMirrorBackRuleRedirectMirrorHeaderSetInput is an input type that accepts BucketMirrorBackRuleRedirectMirrorHeaderSetArgs and BucketMirrorBackRuleRedirectMirrorHeaderSetOutput values.
+// You can construct a concrete instance of `BucketMirrorBackRuleRedirectMirrorHeaderSetInput` via:
+//
+//	BucketMirrorBackRuleRedirectMirrorHeaderSetArgs{...}
+type BucketMirrorBackRuleRedirectMirrorHeaderSetInput interface {
+	pulumi.Input
+
+	ToBucketMirrorBackRuleRedirectMirrorHeaderSetOutput() BucketMirrorBackRuleRedirectMirrorHeaderSetOutput
+	ToBucketMirrorBackRuleRedirectMirrorHeaderSetOutputWithContext(context.Context) BucketMirrorBackRuleRedirectMirrorHeaderSetOutput
+}
+
+type BucketMirrorBackRuleRedirectMirrorHeaderSetArgs struct {
+	// The key of the header.
+	Key pulumi.StringPtrInput `pulumi:"key"`
+	// The value of the header.
+	Value pulumi.StringPtrInput `pulumi:"value"`
+}
+
+func (BucketMirrorBackRuleRedirectMirrorHeaderSetArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketMirrorBackRuleRedirectMirrorHeaderSet)(nil)).Elem()
+}
+
+func (i BucketMirrorBackRuleRedirectMirrorHeaderSetArgs) ToBucketMirrorBackRuleRedirectMirrorHeaderSetOutput() BucketMirrorBackRuleRedirectMirrorHeaderSetOutput {
+	return i.ToBucketMirrorBackRuleRedirectMirrorHeaderSetOutputWithContext(context.Background())
+}
+
+func (i BucketMirrorBackRuleRedirectMirrorHeaderSetArgs) ToBucketMirrorBackRuleRedirectMirrorHeaderSetOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectMirrorHeaderSetOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketMirrorBackRuleRedirectMirrorHeaderSetOutput)
+}
+
+// BucketMirrorBackRuleRedirectMirrorHeaderSetArrayInput is an input type that accepts BucketMirrorBackRuleRedirectMirrorHeaderSetArray and BucketMirrorBackRuleRedirectMirrorHeaderSetArrayOutput values.
+// You can construct a concrete instance of `BucketMirrorBackRuleRedirectMirrorHeaderSetArrayInput` via:
+//
+//	BucketMirrorBackRuleRedirectMirrorHeaderSetArray{ BucketMirrorBackRuleRedirectMirrorHeaderSetArgs{...} }
+type BucketMirrorBackRuleRedirectMirrorHeaderSetArrayInput interface {
+	pulumi.Input
+
+	ToBucketMirrorBackRuleRedirectMirrorHeaderSetArrayOutput() BucketMirrorBackRuleRedirectMirrorHeaderSetArrayOutput
+	ToBucketMirrorBackRuleRedirectMirrorHeaderSetArrayOutputWithContext(context.Context) BucketMirrorBackRuleRedirectMirrorHeaderSetArrayOutput
+}
+
+type BucketMirrorBackRuleRedirectMirrorHeaderSetArray []BucketMirrorBackRuleRedirectMirrorHeaderSetInput
+
+func (BucketMirrorBackRuleRedirectMirrorHeaderSetArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BucketMirrorBackRuleRedirectMirrorHeaderSet)(nil)).Elem()
+}
+
+func (i BucketMirrorBackRuleRedirectMirrorHeaderSetArray) ToBucketMirrorBackRuleRedirectMirrorHeaderSetArrayOutput() BucketMirrorBackRuleRedirectMirrorHeaderSetArrayOutput {
+	return i.ToBucketMirrorBackRuleRedirectMirrorHeaderSetArrayOutputWithContext(context.Background())
+}
+
+func (i BucketMirrorBackRuleRedirectMirrorHeaderSetArray) ToBucketMirrorBackRuleRedirectMirrorHeaderSetArrayOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectMirrorHeaderSetArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketMirrorBackRuleRedirectMirrorHeaderSetArrayOutput)
+}
+
+type BucketMirrorBackRuleRedirectMirrorHeaderSetOutput struct{ *pulumi.OutputState }
+
+func (BucketMirrorBackRuleRedirectMirrorHeaderSetOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketMirrorBackRuleRedirectMirrorHeaderSet)(nil)).Elem()
+}
+
+func (o BucketMirrorBackRuleRedirectMirrorHeaderSetOutput) ToBucketMirrorBackRuleRedirectMirrorHeaderSetOutput() BucketMirrorBackRuleRedirectMirrorHeaderSetOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleRedirectMirrorHeaderSetOutput) ToBucketMirrorBackRuleRedirectMirrorHeaderSetOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectMirrorHeaderSetOutput {
+	return o
+}
+
+// The key of the header.
+func (o BucketMirrorBackRuleRedirectMirrorHeaderSetOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketMirrorBackRuleRedirectMirrorHeaderSet) *string { return v.Key }).(pulumi.StringPtrOutput)
+}
+
+// The value of the header.
+func (o BucketMirrorBackRuleRedirectMirrorHeaderSetOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketMirrorBackRuleRedirectMirrorHeaderSet) *string { return v.Value }).(pulumi.StringPtrOutput)
+}
+
+type BucketMirrorBackRuleRedirectMirrorHeaderSetArrayOutput struct{ *pulumi.OutputState }
+
+func (BucketMirrorBackRuleRedirectMirrorHeaderSetArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BucketMirrorBackRuleRedirectMirrorHeaderSet)(nil)).Elem()
+}
+
+func (o BucketMirrorBackRuleRedirectMirrorHeaderSetArrayOutput) ToBucketMirrorBackRuleRedirectMirrorHeaderSetArrayOutput() BucketMirrorBackRuleRedirectMirrorHeaderSetArrayOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleRedirectMirrorHeaderSetArrayOutput) ToBucketMirrorBackRuleRedirectMirrorHeaderSetArrayOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectMirrorHeaderSetArrayOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleRedirectMirrorHeaderSetArrayOutput) Index(i pulumi.IntInput) BucketMirrorBackRuleRedirectMirrorHeaderSetOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) BucketMirrorBackRuleRedirectMirrorHeaderSet {
+		return vs[0].([]BucketMirrorBackRuleRedirectMirrorHeaderSet)[vs[1].(int)]
+	}).(BucketMirrorBackRuleRedirectMirrorHeaderSetOutput)
+}
+
+type BucketMirrorBackRuleRedirectPrivateSource struct {
+	// The source endpoint.
+	SourceEndpoints []BucketMirrorBackRuleRedirectPrivateSourceSourceEndpoint `pulumi:"sourceEndpoints"`
+}
+
+// BucketMirrorBackRuleRedirectPrivateSourceInput is an input type that accepts BucketMirrorBackRuleRedirectPrivateSourceArgs and BucketMirrorBackRuleRedirectPrivateSourceOutput values.
+// You can construct a concrete instance of `BucketMirrorBackRuleRedirectPrivateSourceInput` via:
+//
+//	BucketMirrorBackRuleRedirectPrivateSourceArgs{...}
+type BucketMirrorBackRuleRedirectPrivateSourceInput interface {
+	pulumi.Input
+
+	ToBucketMirrorBackRuleRedirectPrivateSourceOutput() BucketMirrorBackRuleRedirectPrivateSourceOutput
+	ToBucketMirrorBackRuleRedirectPrivateSourceOutputWithContext(context.Context) BucketMirrorBackRuleRedirectPrivateSourceOutput
+}
+
+type BucketMirrorBackRuleRedirectPrivateSourceArgs struct {
+	// The source endpoint.
+	SourceEndpoints BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointArrayInput `pulumi:"sourceEndpoints"`
+}
+
+func (BucketMirrorBackRuleRedirectPrivateSourceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketMirrorBackRuleRedirectPrivateSource)(nil)).Elem()
+}
+
+func (i BucketMirrorBackRuleRedirectPrivateSourceArgs) ToBucketMirrorBackRuleRedirectPrivateSourceOutput() BucketMirrorBackRuleRedirectPrivateSourceOutput {
+	return i.ToBucketMirrorBackRuleRedirectPrivateSourceOutputWithContext(context.Background())
+}
+
+func (i BucketMirrorBackRuleRedirectPrivateSourceArgs) ToBucketMirrorBackRuleRedirectPrivateSourceOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectPrivateSourceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketMirrorBackRuleRedirectPrivateSourceOutput)
+}
+
+// BucketMirrorBackRuleRedirectPrivateSourceArrayInput is an input type that accepts BucketMirrorBackRuleRedirectPrivateSourceArray and BucketMirrorBackRuleRedirectPrivateSourceArrayOutput values.
+// You can construct a concrete instance of `BucketMirrorBackRuleRedirectPrivateSourceArrayInput` via:
+//
+//	BucketMirrorBackRuleRedirectPrivateSourceArray{ BucketMirrorBackRuleRedirectPrivateSourceArgs{...} }
+type BucketMirrorBackRuleRedirectPrivateSourceArrayInput interface {
+	pulumi.Input
+
+	ToBucketMirrorBackRuleRedirectPrivateSourceArrayOutput() BucketMirrorBackRuleRedirectPrivateSourceArrayOutput
+	ToBucketMirrorBackRuleRedirectPrivateSourceArrayOutputWithContext(context.Context) BucketMirrorBackRuleRedirectPrivateSourceArrayOutput
+}
+
+type BucketMirrorBackRuleRedirectPrivateSourceArray []BucketMirrorBackRuleRedirectPrivateSourceInput
+
+func (BucketMirrorBackRuleRedirectPrivateSourceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BucketMirrorBackRuleRedirectPrivateSource)(nil)).Elem()
+}
+
+func (i BucketMirrorBackRuleRedirectPrivateSourceArray) ToBucketMirrorBackRuleRedirectPrivateSourceArrayOutput() BucketMirrorBackRuleRedirectPrivateSourceArrayOutput {
+	return i.ToBucketMirrorBackRuleRedirectPrivateSourceArrayOutputWithContext(context.Background())
+}
+
+func (i BucketMirrorBackRuleRedirectPrivateSourceArray) ToBucketMirrorBackRuleRedirectPrivateSourceArrayOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectPrivateSourceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketMirrorBackRuleRedirectPrivateSourceArrayOutput)
+}
+
+type BucketMirrorBackRuleRedirectPrivateSourceOutput struct{ *pulumi.OutputState }
+
+func (BucketMirrorBackRuleRedirectPrivateSourceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketMirrorBackRuleRedirectPrivateSource)(nil)).Elem()
+}
+
+func (o BucketMirrorBackRuleRedirectPrivateSourceOutput) ToBucketMirrorBackRuleRedirectPrivateSourceOutput() BucketMirrorBackRuleRedirectPrivateSourceOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleRedirectPrivateSourceOutput) ToBucketMirrorBackRuleRedirectPrivateSourceOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectPrivateSourceOutput {
+	return o
+}
+
+// The source endpoint.
+func (o BucketMirrorBackRuleRedirectPrivateSourceOutput) SourceEndpoints() BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointArrayOutput {
+	return o.ApplyT(func(v BucketMirrorBackRuleRedirectPrivateSource) []BucketMirrorBackRuleRedirectPrivateSourceSourceEndpoint {
+		return v.SourceEndpoints
+	}).(BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointArrayOutput)
+}
+
+type BucketMirrorBackRuleRedirectPrivateSourceArrayOutput struct{ *pulumi.OutputState }
+
+func (BucketMirrorBackRuleRedirectPrivateSourceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BucketMirrorBackRuleRedirectPrivateSource)(nil)).Elem()
+}
+
+func (o BucketMirrorBackRuleRedirectPrivateSourceArrayOutput) ToBucketMirrorBackRuleRedirectPrivateSourceArrayOutput() BucketMirrorBackRuleRedirectPrivateSourceArrayOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleRedirectPrivateSourceArrayOutput) ToBucketMirrorBackRuleRedirectPrivateSourceArrayOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectPrivateSourceArrayOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleRedirectPrivateSourceArrayOutput) Index(i pulumi.IntInput) BucketMirrorBackRuleRedirectPrivateSourceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) BucketMirrorBackRuleRedirectPrivateSource {
+		return vs[0].([]BucketMirrorBackRuleRedirectPrivateSource)[vs[1].(int)]
+	}).(BucketMirrorBackRuleRedirectPrivateSourceOutput)
+}
+
+type BucketMirrorBackRuleRedirectPrivateSourceSourceEndpoint struct {
+	// The follower endpoints.
+	Followers []BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollower `pulumi:"followers"`
+	// The primary endpoints.
+	Primaries []BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimary `pulumi:"primaries"`
+}
+
+// BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointInput is an input type that accepts BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointArgs and BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointOutput values.
+// You can construct a concrete instance of `BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointInput` via:
+//
+//	BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointArgs{...}
+type BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointInput interface {
+	pulumi.Input
+
+	ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointOutput() BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointOutput
+	ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointOutputWithContext(context.Context) BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointOutput
+}
+
+type BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointArgs struct {
+	// The follower endpoints.
+	Followers BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerArrayInput `pulumi:"followers"`
+	// The primary endpoints.
+	Primaries BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryArrayInput `pulumi:"primaries"`
+}
+
+func (BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketMirrorBackRuleRedirectPrivateSourceSourceEndpoint)(nil)).Elem()
+}
+
+func (i BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointArgs) ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointOutput() BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointOutput {
+	return i.ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointOutputWithContext(context.Background())
+}
+
+func (i BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointArgs) ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointOutput)
+}
+
+// BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointArrayInput is an input type that accepts BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointArray and BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointArrayOutput values.
+// You can construct a concrete instance of `BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointArrayInput` via:
+//
+//	BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointArray{ BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointArgs{...} }
+type BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointArrayInput interface {
+	pulumi.Input
+
+	ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointArrayOutput() BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointArrayOutput
+	ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointArrayOutputWithContext(context.Context) BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointArrayOutput
+}
+
+type BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointArray []BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointInput
+
+func (BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BucketMirrorBackRuleRedirectPrivateSourceSourceEndpoint)(nil)).Elem()
+}
+
+func (i BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointArray) ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointArrayOutput() BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointArrayOutput {
+	return i.ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointArrayOutputWithContext(context.Background())
+}
+
+func (i BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointArray) ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointArrayOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointArrayOutput)
+}
+
+type BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointOutput struct{ *pulumi.OutputState }
+
+func (BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketMirrorBackRuleRedirectPrivateSourceSourceEndpoint)(nil)).Elem()
+}
+
+func (o BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointOutput) ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointOutput() BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointOutput) ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointOutput {
+	return o
+}
+
+// The follower endpoints.
+func (o BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointOutput) Followers() BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerArrayOutput {
+	return o.ApplyT(func(v BucketMirrorBackRuleRedirectPrivateSourceSourceEndpoint) []BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollower {
+		return v.Followers
+	}).(BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerArrayOutput)
+}
+
+// The primary endpoints.
+func (o BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointOutput) Primaries() BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryArrayOutput {
+	return o.ApplyT(func(v BucketMirrorBackRuleRedirectPrivateSourceSourceEndpoint) []BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimary {
+		return v.Primaries
+	}).(BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryArrayOutput)
+}
+
+type BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointArrayOutput struct{ *pulumi.OutputState }
+
+func (BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BucketMirrorBackRuleRedirectPrivateSourceSourceEndpoint)(nil)).Elem()
+}
+
+func (o BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointArrayOutput) ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointArrayOutput() BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointArrayOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointArrayOutput) ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointArrayOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointArrayOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointArrayOutput) Index(i pulumi.IntInput) BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) BucketMirrorBackRuleRedirectPrivateSourceSourceEndpoint {
+		return vs[0].([]BucketMirrorBackRuleRedirectPrivateSourceSourceEndpoint)[vs[1].(int)]
+	}).(BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointOutput)
+}
+
+type BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollower struct {
+	// The bucket name.
+	BucketName *string `pulumi:"bucketName"`
+	// The credential provider.
+	CredentialProvider *BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProvider `pulumi:"credentialProvider"`
+	// The endpoint.
+	Endpoint *string `pulumi:"endpoint"`
+}
+
+// BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerInput is an input type that accepts BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerArgs and BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerOutput values.
+// You can construct a concrete instance of `BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerInput` via:
+//
+//	BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerArgs{...}
+type BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerInput interface {
+	pulumi.Input
+
+	ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerOutput() BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerOutput
+	ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerOutputWithContext(context.Context) BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerOutput
+}
+
+type BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerArgs struct {
+	// The bucket name.
+	BucketName pulumi.StringPtrInput `pulumi:"bucketName"`
+	// The credential provider.
+	CredentialProvider BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderPtrInput `pulumi:"credentialProvider"`
+	// The endpoint.
+	Endpoint pulumi.StringPtrInput `pulumi:"endpoint"`
+}
+
+func (BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollower)(nil)).Elem()
+}
+
+func (i BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerArgs) ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerOutput() BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerOutput {
+	return i.ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerOutputWithContext(context.Background())
+}
+
+func (i BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerArgs) ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerOutput)
+}
+
+// BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerArrayInput is an input type that accepts BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerArray and BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerArrayOutput values.
+// You can construct a concrete instance of `BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerArrayInput` via:
+//
+//	BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerArray{ BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerArgs{...} }
+type BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerArrayInput interface {
+	pulumi.Input
+
+	ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerArrayOutput() BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerArrayOutput
+	ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerArrayOutputWithContext(context.Context) BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerArrayOutput
+}
+
+type BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerArray []BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerInput
+
+func (BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollower)(nil)).Elem()
+}
+
+func (i BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerArray) ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerArrayOutput() BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerArrayOutput {
+	return i.ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerArrayOutputWithContext(context.Background())
+}
+
+func (i BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerArray) ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerArrayOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerArrayOutput)
+}
+
+type BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerOutput struct{ *pulumi.OutputState }
+
+func (BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollower)(nil)).Elem()
+}
+
+func (o BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerOutput) ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerOutput() BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerOutput) ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerOutput {
+	return o
+}
+
+// The bucket name.
+func (o BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerOutput) BucketName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollower) *string { return v.BucketName }).(pulumi.StringPtrOutput)
+}
+
+// The credential provider.
+func (o BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerOutput) CredentialProvider() BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderPtrOutput {
+	return o.ApplyT(func(v BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollower) *BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProvider {
+		return v.CredentialProvider
+	}).(BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderPtrOutput)
+}
+
+// The endpoint.
+func (o BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerOutput) Endpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollower) *string { return v.Endpoint }).(pulumi.StringPtrOutput)
+}
+
+type BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerArrayOutput struct{ *pulumi.OutputState }
+
+func (BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollower)(nil)).Elem()
+}
+
+func (o BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerArrayOutput) ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerArrayOutput() BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerArrayOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerArrayOutput) ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerArrayOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerArrayOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerArrayOutput) Index(i pulumi.IntInput) BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollower {
+		return vs[0].([]BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollower)[vs[1].(int)]
+	}).(BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerOutput)
+}
+
+type BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProvider struct {
+	// The role.
+	Role *string `pulumi:"role"`
+}
+
+// BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderInput is an input type that accepts BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderArgs and BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderOutput values.
+// You can construct a concrete instance of `BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderInput` via:
+//
+//	BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderArgs{...}
+type BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderInput interface {
+	pulumi.Input
+
+	ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderOutput() BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderOutput
+	ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderOutputWithContext(context.Context) BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderOutput
+}
+
+type BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderArgs struct {
+	// The role.
+	Role pulumi.StringPtrInput `pulumi:"role"`
+}
+
+func (BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProvider)(nil)).Elem()
+}
+
+func (i BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderArgs) ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderOutput() BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderOutput {
+	return i.ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderOutputWithContext(context.Background())
+}
+
+func (i BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderArgs) ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderOutput)
+}
+
+func (i BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderArgs) ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderPtrOutput() BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderPtrOutput {
+	return i.ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderPtrOutputWithContext(context.Background())
+}
+
+func (i BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderArgs) ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderPtrOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderOutput).ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderPtrOutputWithContext(ctx)
+}
+
+// BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderPtrInput is an input type that accepts BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderArgs, BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderPtr and BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderPtrOutput values.
+// You can construct a concrete instance of `BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderPtrInput` via:
+//
+//	        BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderArgs{...}
+//
+//	or:
+//
+//	        nil
+type BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderPtrInput interface {
+	pulumi.Input
+
+	ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderPtrOutput() BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderPtrOutput
+	ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderPtrOutputWithContext(context.Context) BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderPtrOutput
+}
+
+type bucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderPtrType BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderArgs
+
+func BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderPtr(v *BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderArgs) BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderPtrInput {
+	return (*bucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderPtrType)(v)
+}
+
+func (*bucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProvider)(nil)).Elem()
+}
+
+func (i *bucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderPtrType) ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderPtrOutput() BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderPtrOutput {
+	return i.ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderPtrOutputWithContext(context.Background())
+}
+
+func (i *bucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderPtrType) ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderPtrOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderPtrOutput)
+}
+
+type BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderOutput struct{ *pulumi.OutputState }
+
+func (BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProvider)(nil)).Elem()
+}
+
+func (o BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderOutput) ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderOutput() BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderOutput) ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderOutput) ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderPtrOutput() BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderPtrOutput {
+	return o.ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderPtrOutputWithContext(context.Background())
+}
+
+func (o BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderOutput) ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderPtrOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProvider) *BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProvider {
+		return &v
+	}).(BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderPtrOutput)
+}
+
+// The role.
+func (o BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderOutput) Role() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProvider) *string {
+		return v.Role
+	}).(pulumi.StringPtrOutput)
+}
+
+type BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderPtrOutput struct{ *pulumi.OutputState }
+
+func (BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProvider)(nil)).Elem()
+}
+
+func (o BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderPtrOutput) ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderPtrOutput() BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderPtrOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderPtrOutput) ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderPtrOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderPtrOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderPtrOutput) Elem() BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderOutput {
+	return o.ApplyT(func(v *BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProvider) BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProvider {
+		if v != nil {
+			return *v
+		}
+		var ret BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProvider
+		return ret
+	}).(BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderOutput)
+}
+
+// The role.
+func (o BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderPtrOutput) Role() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProvider) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Role
+	}).(pulumi.StringPtrOutput)
+}
+
+type BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimary struct {
+	// The bucket name.
+	BucketName *string `pulumi:"bucketName"`
+	// The credential provider.
+	CredentialProvider *BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProvider `pulumi:"credentialProvider"`
+	// The endpoint.
+	Endpoint *string `pulumi:"endpoint"`
+}
+
+// BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryInput is an input type that accepts BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryArgs and BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryOutput values.
+// You can construct a concrete instance of `BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryInput` via:
+//
+//	BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryArgs{...}
+type BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryInput interface {
+	pulumi.Input
+
+	ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryOutput() BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryOutput
+	ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryOutputWithContext(context.Context) BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryOutput
+}
+
+type BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryArgs struct {
+	// The bucket name.
+	BucketName pulumi.StringPtrInput `pulumi:"bucketName"`
+	// The credential provider.
+	CredentialProvider BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderPtrInput `pulumi:"credentialProvider"`
+	// The endpoint.
+	Endpoint pulumi.StringPtrInput `pulumi:"endpoint"`
+}
+
+func (BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimary)(nil)).Elem()
+}
+
+func (i BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryArgs) ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryOutput() BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryOutput {
+	return i.ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryOutputWithContext(context.Background())
+}
+
+func (i BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryArgs) ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryOutput)
+}
+
+// BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryArrayInput is an input type that accepts BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryArray and BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryArrayOutput values.
+// You can construct a concrete instance of `BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryArrayInput` via:
+//
+//	BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryArray{ BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryArgs{...} }
+type BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryArrayInput interface {
+	pulumi.Input
+
+	ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryArrayOutput() BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryArrayOutput
+	ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryArrayOutputWithContext(context.Context) BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryArrayOutput
+}
+
+type BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryArray []BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryInput
+
+func (BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimary)(nil)).Elem()
+}
+
+func (i BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryArray) ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryArrayOutput() BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryArrayOutput {
+	return i.ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryArrayOutputWithContext(context.Background())
+}
+
+func (i BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryArray) ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryArrayOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryArrayOutput)
+}
+
+type BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryOutput struct{ *pulumi.OutputState }
+
+func (BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimary)(nil)).Elem()
+}
+
+func (o BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryOutput) ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryOutput() BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryOutput) ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryOutput {
+	return o
+}
+
+// The bucket name.
+func (o BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryOutput) BucketName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimary) *string { return v.BucketName }).(pulumi.StringPtrOutput)
+}
+
+// The credential provider.
+func (o BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryOutput) CredentialProvider() BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderPtrOutput {
+	return o.ApplyT(func(v BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimary) *BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProvider {
+		return v.CredentialProvider
+	}).(BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderPtrOutput)
+}
+
+// The endpoint.
+func (o BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryOutput) Endpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimary) *string { return v.Endpoint }).(pulumi.StringPtrOutput)
+}
+
+type BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryArrayOutput struct{ *pulumi.OutputState }
+
+func (BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimary)(nil)).Elem()
+}
+
+func (o BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryArrayOutput) ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryArrayOutput() BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryArrayOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryArrayOutput) ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryArrayOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryArrayOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryArrayOutput) Index(i pulumi.IntInput) BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimary {
+		return vs[0].([]BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimary)[vs[1].(int)]
+	}).(BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryOutput)
+}
+
+type BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProvider struct {
+	// The role.
+	Role *string `pulumi:"role"`
+}
+
+// BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderInput is an input type that accepts BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderArgs and BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderOutput values.
+// You can construct a concrete instance of `BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderInput` via:
+//
+//	BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderArgs{...}
+type BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderInput interface {
+	pulumi.Input
+
+	ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderOutput() BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderOutput
+	ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderOutputWithContext(context.Context) BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderOutput
+}
+
+type BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderArgs struct {
+	// The role.
+	Role pulumi.StringPtrInput `pulumi:"role"`
+}
+
+func (BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProvider)(nil)).Elem()
+}
+
+func (i BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderArgs) ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderOutput() BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderOutput {
+	return i.ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderOutputWithContext(context.Background())
+}
+
+func (i BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderArgs) ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderOutput)
+}
+
+func (i BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderArgs) ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderPtrOutput() BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderPtrOutput {
+	return i.ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderPtrOutputWithContext(context.Background())
+}
+
+func (i BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderArgs) ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderPtrOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderOutput).ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderPtrOutputWithContext(ctx)
+}
+
+// BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderPtrInput is an input type that accepts BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderArgs, BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderPtr and BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderPtrOutput values.
+// You can construct a concrete instance of `BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderPtrInput` via:
+//
+//	        BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderArgs{...}
+//
+//	or:
+//
+//	        nil
+type BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderPtrInput interface {
+	pulumi.Input
+
+	ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderPtrOutput() BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderPtrOutput
+	ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderPtrOutputWithContext(context.Context) BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderPtrOutput
+}
+
+type bucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderPtrType BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderArgs
+
+func BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderPtr(v *BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderArgs) BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderPtrInput {
+	return (*bucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderPtrType)(v)
+}
+
+func (*bucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProvider)(nil)).Elem()
+}
+
+func (i *bucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderPtrType) ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderPtrOutput() BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderPtrOutput {
+	return i.ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderPtrOutputWithContext(context.Background())
+}
+
+func (i *bucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderPtrType) ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderPtrOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderPtrOutput)
+}
+
+type BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderOutput struct{ *pulumi.OutputState }
+
+func (BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProvider)(nil)).Elem()
+}
+
+func (o BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderOutput) ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderOutput() BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderOutput) ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderOutput) ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderPtrOutput() BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderPtrOutput {
+	return o.ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderPtrOutputWithContext(context.Background())
+}
+
+func (o BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderOutput) ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderPtrOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProvider) *BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProvider {
+		return &v
+	}).(BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderPtrOutput)
+}
+
+// The role.
+func (o BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderOutput) Role() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProvider) *string {
+		return v.Role
+	}).(pulumi.StringPtrOutput)
+}
+
+type BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderPtrOutput struct{ *pulumi.OutputState }
+
+func (BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProvider)(nil)).Elem()
+}
+
+func (o BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderPtrOutput) ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderPtrOutput() BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderPtrOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderPtrOutput) ToBucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderPtrOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderPtrOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderPtrOutput) Elem() BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderOutput {
+	return o.ApplyT(func(v *BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProvider) BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProvider {
+		if v != nil {
+			return *v
+		}
+		var ret BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProvider
+		return ret
+	}).(BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderOutput)
+}
+
+// The role.
+func (o BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderPtrOutput) Role() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProvider) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Role
+	}).(pulumi.StringPtrOutput)
+}
+
+type BucketMirrorBackRuleRedirectPublicSource struct {
+	// Whether the endpoint is fixed.
+	FixedEndpoint *bool `pulumi:"fixedEndpoint"`
+	// The source endpoint.
+	SourceEndpoint *BucketMirrorBackRuleRedirectPublicSourceSourceEndpoint `pulumi:"sourceEndpoint"`
+}
+
+// BucketMirrorBackRuleRedirectPublicSourceInput is an input type that accepts BucketMirrorBackRuleRedirectPublicSourceArgs and BucketMirrorBackRuleRedirectPublicSourceOutput values.
+// You can construct a concrete instance of `BucketMirrorBackRuleRedirectPublicSourceInput` via:
+//
+//	BucketMirrorBackRuleRedirectPublicSourceArgs{...}
+type BucketMirrorBackRuleRedirectPublicSourceInput interface {
+	pulumi.Input
+
+	ToBucketMirrorBackRuleRedirectPublicSourceOutput() BucketMirrorBackRuleRedirectPublicSourceOutput
+	ToBucketMirrorBackRuleRedirectPublicSourceOutputWithContext(context.Context) BucketMirrorBackRuleRedirectPublicSourceOutput
+}
+
+type BucketMirrorBackRuleRedirectPublicSourceArgs struct {
+	// Whether the endpoint is fixed.
+	FixedEndpoint pulumi.BoolPtrInput `pulumi:"fixedEndpoint"`
+	// The source endpoint.
+	SourceEndpoint BucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtrInput `pulumi:"sourceEndpoint"`
+}
+
+func (BucketMirrorBackRuleRedirectPublicSourceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketMirrorBackRuleRedirectPublicSource)(nil)).Elem()
+}
+
+func (i BucketMirrorBackRuleRedirectPublicSourceArgs) ToBucketMirrorBackRuleRedirectPublicSourceOutput() BucketMirrorBackRuleRedirectPublicSourceOutput {
+	return i.ToBucketMirrorBackRuleRedirectPublicSourceOutputWithContext(context.Background())
+}
+
+func (i BucketMirrorBackRuleRedirectPublicSourceArgs) ToBucketMirrorBackRuleRedirectPublicSourceOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectPublicSourceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketMirrorBackRuleRedirectPublicSourceOutput)
+}
+
+func (i BucketMirrorBackRuleRedirectPublicSourceArgs) ToBucketMirrorBackRuleRedirectPublicSourcePtrOutput() BucketMirrorBackRuleRedirectPublicSourcePtrOutput {
+	return i.ToBucketMirrorBackRuleRedirectPublicSourcePtrOutputWithContext(context.Background())
+}
+
+func (i BucketMirrorBackRuleRedirectPublicSourceArgs) ToBucketMirrorBackRuleRedirectPublicSourcePtrOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectPublicSourcePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketMirrorBackRuleRedirectPublicSourceOutput).ToBucketMirrorBackRuleRedirectPublicSourcePtrOutputWithContext(ctx)
+}
+
+// BucketMirrorBackRuleRedirectPublicSourcePtrInput is an input type that accepts BucketMirrorBackRuleRedirectPublicSourceArgs, BucketMirrorBackRuleRedirectPublicSourcePtr and BucketMirrorBackRuleRedirectPublicSourcePtrOutput values.
+// You can construct a concrete instance of `BucketMirrorBackRuleRedirectPublicSourcePtrInput` via:
+//
+//	        BucketMirrorBackRuleRedirectPublicSourceArgs{...}
+//
+//	or:
+//
+//	        nil
+type BucketMirrorBackRuleRedirectPublicSourcePtrInput interface {
+	pulumi.Input
+
+	ToBucketMirrorBackRuleRedirectPublicSourcePtrOutput() BucketMirrorBackRuleRedirectPublicSourcePtrOutput
+	ToBucketMirrorBackRuleRedirectPublicSourcePtrOutputWithContext(context.Context) BucketMirrorBackRuleRedirectPublicSourcePtrOutput
+}
+
+type bucketMirrorBackRuleRedirectPublicSourcePtrType BucketMirrorBackRuleRedirectPublicSourceArgs
+
+func BucketMirrorBackRuleRedirectPublicSourcePtr(v *BucketMirrorBackRuleRedirectPublicSourceArgs) BucketMirrorBackRuleRedirectPublicSourcePtrInput {
+	return (*bucketMirrorBackRuleRedirectPublicSourcePtrType)(v)
+}
+
+func (*bucketMirrorBackRuleRedirectPublicSourcePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketMirrorBackRuleRedirectPublicSource)(nil)).Elem()
+}
+
+func (i *bucketMirrorBackRuleRedirectPublicSourcePtrType) ToBucketMirrorBackRuleRedirectPublicSourcePtrOutput() BucketMirrorBackRuleRedirectPublicSourcePtrOutput {
+	return i.ToBucketMirrorBackRuleRedirectPublicSourcePtrOutputWithContext(context.Background())
+}
+
+func (i *bucketMirrorBackRuleRedirectPublicSourcePtrType) ToBucketMirrorBackRuleRedirectPublicSourcePtrOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectPublicSourcePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketMirrorBackRuleRedirectPublicSourcePtrOutput)
+}
+
+type BucketMirrorBackRuleRedirectPublicSourceOutput struct{ *pulumi.OutputState }
+
+func (BucketMirrorBackRuleRedirectPublicSourceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketMirrorBackRuleRedirectPublicSource)(nil)).Elem()
+}
+
+func (o BucketMirrorBackRuleRedirectPublicSourceOutput) ToBucketMirrorBackRuleRedirectPublicSourceOutput() BucketMirrorBackRuleRedirectPublicSourceOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleRedirectPublicSourceOutput) ToBucketMirrorBackRuleRedirectPublicSourceOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectPublicSourceOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleRedirectPublicSourceOutput) ToBucketMirrorBackRuleRedirectPublicSourcePtrOutput() BucketMirrorBackRuleRedirectPublicSourcePtrOutput {
+	return o.ToBucketMirrorBackRuleRedirectPublicSourcePtrOutputWithContext(context.Background())
+}
+
+func (o BucketMirrorBackRuleRedirectPublicSourceOutput) ToBucketMirrorBackRuleRedirectPublicSourcePtrOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectPublicSourcePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v BucketMirrorBackRuleRedirectPublicSource) *BucketMirrorBackRuleRedirectPublicSource {
+		return &v
+	}).(BucketMirrorBackRuleRedirectPublicSourcePtrOutput)
+}
+
+// Whether the endpoint is fixed.
+func (o BucketMirrorBackRuleRedirectPublicSourceOutput) FixedEndpoint() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v BucketMirrorBackRuleRedirectPublicSource) *bool { return v.FixedEndpoint }).(pulumi.BoolPtrOutput)
+}
+
+// The source endpoint.
+func (o BucketMirrorBackRuleRedirectPublicSourceOutput) SourceEndpoint() BucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtrOutput {
+	return o.ApplyT(func(v BucketMirrorBackRuleRedirectPublicSource) *BucketMirrorBackRuleRedirectPublicSourceSourceEndpoint {
+		return v.SourceEndpoint
+	}).(BucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtrOutput)
+}
+
+type BucketMirrorBackRuleRedirectPublicSourcePtrOutput struct{ *pulumi.OutputState }
+
+func (BucketMirrorBackRuleRedirectPublicSourcePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketMirrorBackRuleRedirectPublicSource)(nil)).Elem()
+}
+
+func (o BucketMirrorBackRuleRedirectPublicSourcePtrOutput) ToBucketMirrorBackRuleRedirectPublicSourcePtrOutput() BucketMirrorBackRuleRedirectPublicSourcePtrOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleRedirectPublicSourcePtrOutput) ToBucketMirrorBackRuleRedirectPublicSourcePtrOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectPublicSourcePtrOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleRedirectPublicSourcePtrOutput) Elem() BucketMirrorBackRuleRedirectPublicSourceOutput {
+	return o.ApplyT(func(v *BucketMirrorBackRuleRedirectPublicSource) BucketMirrorBackRuleRedirectPublicSource {
+		if v != nil {
+			return *v
+		}
+		var ret BucketMirrorBackRuleRedirectPublicSource
+		return ret
+	}).(BucketMirrorBackRuleRedirectPublicSourceOutput)
+}
+
+// Whether the endpoint is fixed.
+func (o BucketMirrorBackRuleRedirectPublicSourcePtrOutput) FixedEndpoint() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *BucketMirrorBackRuleRedirectPublicSource) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.FixedEndpoint
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The source endpoint.
+func (o BucketMirrorBackRuleRedirectPublicSourcePtrOutput) SourceEndpoint() BucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtrOutput {
+	return o.ApplyT(func(v *BucketMirrorBackRuleRedirectPublicSource) *BucketMirrorBackRuleRedirectPublicSourceSourceEndpoint {
+		if v == nil {
+			return nil
+		}
+		return v.SourceEndpoint
+	}).(BucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtrOutput)
+}
+
+type BucketMirrorBackRuleRedirectPublicSourceSourceEndpoint struct {
+	// The follower endpoints.
+	Followers []string `pulumi:"followers"`
+	// The primary endpoints.
+	Primaries []string `pulumi:"primaries"`
+}
+
+// BucketMirrorBackRuleRedirectPublicSourceSourceEndpointInput is an input type that accepts BucketMirrorBackRuleRedirectPublicSourceSourceEndpointArgs and BucketMirrorBackRuleRedirectPublicSourceSourceEndpointOutput values.
+// You can construct a concrete instance of `BucketMirrorBackRuleRedirectPublicSourceSourceEndpointInput` via:
+//
+//	BucketMirrorBackRuleRedirectPublicSourceSourceEndpointArgs{...}
+type BucketMirrorBackRuleRedirectPublicSourceSourceEndpointInput interface {
+	pulumi.Input
+
+	ToBucketMirrorBackRuleRedirectPublicSourceSourceEndpointOutput() BucketMirrorBackRuleRedirectPublicSourceSourceEndpointOutput
+	ToBucketMirrorBackRuleRedirectPublicSourceSourceEndpointOutputWithContext(context.Context) BucketMirrorBackRuleRedirectPublicSourceSourceEndpointOutput
+}
+
+type BucketMirrorBackRuleRedirectPublicSourceSourceEndpointArgs struct {
+	// The follower endpoints.
+	Followers pulumi.StringArrayInput `pulumi:"followers"`
+	// The primary endpoints.
+	Primaries pulumi.StringArrayInput `pulumi:"primaries"`
+}
+
+func (BucketMirrorBackRuleRedirectPublicSourceSourceEndpointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketMirrorBackRuleRedirectPublicSourceSourceEndpoint)(nil)).Elem()
+}
+
+func (i BucketMirrorBackRuleRedirectPublicSourceSourceEndpointArgs) ToBucketMirrorBackRuleRedirectPublicSourceSourceEndpointOutput() BucketMirrorBackRuleRedirectPublicSourceSourceEndpointOutput {
+	return i.ToBucketMirrorBackRuleRedirectPublicSourceSourceEndpointOutputWithContext(context.Background())
+}
+
+func (i BucketMirrorBackRuleRedirectPublicSourceSourceEndpointArgs) ToBucketMirrorBackRuleRedirectPublicSourceSourceEndpointOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectPublicSourceSourceEndpointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketMirrorBackRuleRedirectPublicSourceSourceEndpointOutput)
+}
+
+func (i BucketMirrorBackRuleRedirectPublicSourceSourceEndpointArgs) ToBucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtrOutput() BucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtrOutput {
+	return i.ToBucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtrOutputWithContext(context.Background())
+}
+
+func (i BucketMirrorBackRuleRedirectPublicSourceSourceEndpointArgs) ToBucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtrOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketMirrorBackRuleRedirectPublicSourceSourceEndpointOutput).ToBucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtrOutputWithContext(ctx)
+}
+
+// BucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtrInput is an input type that accepts BucketMirrorBackRuleRedirectPublicSourceSourceEndpointArgs, BucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtr and BucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtrOutput values.
+// You can construct a concrete instance of `BucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtrInput` via:
+//
+//	        BucketMirrorBackRuleRedirectPublicSourceSourceEndpointArgs{...}
+//
+//	or:
+//
+//	        nil
+type BucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtrInput interface {
+	pulumi.Input
+
+	ToBucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtrOutput() BucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtrOutput
+	ToBucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtrOutputWithContext(context.Context) BucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtrOutput
+}
+
+type bucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtrType BucketMirrorBackRuleRedirectPublicSourceSourceEndpointArgs
+
+func BucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtr(v *BucketMirrorBackRuleRedirectPublicSourceSourceEndpointArgs) BucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtrInput {
+	return (*bucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtrType)(v)
+}
+
+func (*bucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketMirrorBackRuleRedirectPublicSourceSourceEndpoint)(nil)).Elem()
+}
+
+func (i *bucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtrType) ToBucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtrOutput() BucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtrOutput {
+	return i.ToBucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtrOutputWithContext(context.Background())
+}
+
+func (i *bucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtrType) ToBucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtrOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtrOutput)
+}
+
+type BucketMirrorBackRuleRedirectPublicSourceSourceEndpointOutput struct{ *pulumi.OutputState }
+
+func (BucketMirrorBackRuleRedirectPublicSourceSourceEndpointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketMirrorBackRuleRedirectPublicSourceSourceEndpoint)(nil)).Elem()
+}
+
+func (o BucketMirrorBackRuleRedirectPublicSourceSourceEndpointOutput) ToBucketMirrorBackRuleRedirectPublicSourceSourceEndpointOutput() BucketMirrorBackRuleRedirectPublicSourceSourceEndpointOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleRedirectPublicSourceSourceEndpointOutput) ToBucketMirrorBackRuleRedirectPublicSourceSourceEndpointOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectPublicSourceSourceEndpointOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleRedirectPublicSourceSourceEndpointOutput) ToBucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtrOutput() BucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtrOutput {
+	return o.ToBucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtrOutputWithContext(context.Background())
+}
+
+func (o BucketMirrorBackRuleRedirectPublicSourceSourceEndpointOutput) ToBucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtrOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v BucketMirrorBackRuleRedirectPublicSourceSourceEndpoint) *BucketMirrorBackRuleRedirectPublicSourceSourceEndpoint {
+		return &v
+	}).(BucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtrOutput)
+}
+
+// The follower endpoints.
+func (o BucketMirrorBackRuleRedirectPublicSourceSourceEndpointOutput) Followers() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v BucketMirrorBackRuleRedirectPublicSourceSourceEndpoint) []string { return v.Followers }).(pulumi.StringArrayOutput)
+}
+
+// The primary endpoints.
+func (o BucketMirrorBackRuleRedirectPublicSourceSourceEndpointOutput) Primaries() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v BucketMirrorBackRuleRedirectPublicSourceSourceEndpoint) []string { return v.Primaries }).(pulumi.StringArrayOutput)
+}
+
+type BucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtrOutput struct{ *pulumi.OutputState }
+
+func (BucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketMirrorBackRuleRedirectPublicSourceSourceEndpoint)(nil)).Elem()
+}
+
+func (o BucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtrOutput) ToBucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtrOutput() BucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtrOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtrOutput) ToBucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtrOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtrOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtrOutput) Elem() BucketMirrorBackRuleRedirectPublicSourceSourceEndpointOutput {
+	return o.ApplyT(func(v *BucketMirrorBackRuleRedirectPublicSourceSourceEndpoint) BucketMirrorBackRuleRedirectPublicSourceSourceEndpoint {
+		if v != nil {
+			return *v
+		}
+		var ret BucketMirrorBackRuleRedirectPublicSourceSourceEndpoint
+		return ret
+	}).(BucketMirrorBackRuleRedirectPublicSourceSourceEndpointOutput)
+}
+
+// The follower endpoints.
+func (o BucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtrOutput) Followers() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *BucketMirrorBackRuleRedirectPublicSourceSourceEndpoint) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Followers
+	}).(pulumi.StringArrayOutput)
+}
+
+// The primary endpoints.
+func (o BucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtrOutput) Primaries() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *BucketMirrorBackRuleRedirectPublicSourceSourceEndpoint) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Primaries
+	}).(pulumi.StringArrayOutput)
+}
+
+type BucketMirrorBackRuleRedirectTransform struct {
+	// The replace key prefix configuration.
+	ReplaceKeyPrefix *BucketMirrorBackRuleRedirectTransformReplaceKeyPrefix `pulumi:"replaceKeyPrefix"`
+	// The key prefix to add.
+	WithKeyPrefix *string `pulumi:"withKeyPrefix"`
+	// The key suffix to add.
+	WithKeySuffix *string `pulumi:"withKeySuffix"`
+}
+
+// BucketMirrorBackRuleRedirectTransformInput is an input type that accepts BucketMirrorBackRuleRedirectTransformArgs and BucketMirrorBackRuleRedirectTransformOutput values.
+// You can construct a concrete instance of `BucketMirrorBackRuleRedirectTransformInput` via:
+//
+//	BucketMirrorBackRuleRedirectTransformArgs{...}
+type BucketMirrorBackRuleRedirectTransformInput interface {
+	pulumi.Input
+
+	ToBucketMirrorBackRuleRedirectTransformOutput() BucketMirrorBackRuleRedirectTransformOutput
+	ToBucketMirrorBackRuleRedirectTransformOutputWithContext(context.Context) BucketMirrorBackRuleRedirectTransformOutput
+}
+
+type BucketMirrorBackRuleRedirectTransformArgs struct {
+	// The replace key prefix configuration.
+	ReplaceKeyPrefix BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtrInput `pulumi:"replaceKeyPrefix"`
+	// The key prefix to add.
+	WithKeyPrefix pulumi.StringPtrInput `pulumi:"withKeyPrefix"`
+	// The key suffix to add.
+	WithKeySuffix pulumi.StringPtrInput `pulumi:"withKeySuffix"`
+}
+
+func (BucketMirrorBackRuleRedirectTransformArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketMirrorBackRuleRedirectTransform)(nil)).Elem()
+}
+
+func (i BucketMirrorBackRuleRedirectTransformArgs) ToBucketMirrorBackRuleRedirectTransformOutput() BucketMirrorBackRuleRedirectTransformOutput {
+	return i.ToBucketMirrorBackRuleRedirectTransformOutputWithContext(context.Background())
+}
+
+func (i BucketMirrorBackRuleRedirectTransformArgs) ToBucketMirrorBackRuleRedirectTransformOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectTransformOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketMirrorBackRuleRedirectTransformOutput)
+}
+
+func (i BucketMirrorBackRuleRedirectTransformArgs) ToBucketMirrorBackRuleRedirectTransformPtrOutput() BucketMirrorBackRuleRedirectTransformPtrOutput {
+	return i.ToBucketMirrorBackRuleRedirectTransformPtrOutputWithContext(context.Background())
+}
+
+func (i BucketMirrorBackRuleRedirectTransformArgs) ToBucketMirrorBackRuleRedirectTransformPtrOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectTransformPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketMirrorBackRuleRedirectTransformOutput).ToBucketMirrorBackRuleRedirectTransformPtrOutputWithContext(ctx)
+}
+
+// BucketMirrorBackRuleRedirectTransformPtrInput is an input type that accepts BucketMirrorBackRuleRedirectTransformArgs, BucketMirrorBackRuleRedirectTransformPtr and BucketMirrorBackRuleRedirectTransformPtrOutput values.
+// You can construct a concrete instance of `BucketMirrorBackRuleRedirectTransformPtrInput` via:
+//
+//	        BucketMirrorBackRuleRedirectTransformArgs{...}
+//
+//	or:
+//
+//	        nil
+type BucketMirrorBackRuleRedirectTransformPtrInput interface {
+	pulumi.Input
+
+	ToBucketMirrorBackRuleRedirectTransformPtrOutput() BucketMirrorBackRuleRedirectTransformPtrOutput
+	ToBucketMirrorBackRuleRedirectTransformPtrOutputWithContext(context.Context) BucketMirrorBackRuleRedirectTransformPtrOutput
+}
+
+type bucketMirrorBackRuleRedirectTransformPtrType BucketMirrorBackRuleRedirectTransformArgs
+
+func BucketMirrorBackRuleRedirectTransformPtr(v *BucketMirrorBackRuleRedirectTransformArgs) BucketMirrorBackRuleRedirectTransformPtrInput {
+	return (*bucketMirrorBackRuleRedirectTransformPtrType)(v)
+}
+
+func (*bucketMirrorBackRuleRedirectTransformPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketMirrorBackRuleRedirectTransform)(nil)).Elem()
+}
+
+func (i *bucketMirrorBackRuleRedirectTransformPtrType) ToBucketMirrorBackRuleRedirectTransformPtrOutput() BucketMirrorBackRuleRedirectTransformPtrOutput {
+	return i.ToBucketMirrorBackRuleRedirectTransformPtrOutputWithContext(context.Background())
+}
+
+func (i *bucketMirrorBackRuleRedirectTransformPtrType) ToBucketMirrorBackRuleRedirectTransformPtrOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectTransformPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketMirrorBackRuleRedirectTransformPtrOutput)
+}
+
+type BucketMirrorBackRuleRedirectTransformOutput struct{ *pulumi.OutputState }
+
+func (BucketMirrorBackRuleRedirectTransformOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketMirrorBackRuleRedirectTransform)(nil)).Elem()
+}
+
+func (o BucketMirrorBackRuleRedirectTransformOutput) ToBucketMirrorBackRuleRedirectTransformOutput() BucketMirrorBackRuleRedirectTransformOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleRedirectTransformOutput) ToBucketMirrorBackRuleRedirectTransformOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectTransformOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleRedirectTransformOutput) ToBucketMirrorBackRuleRedirectTransformPtrOutput() BucketMirrorBackRuleRedirectTransformPtrOutput {
+	return o.ToBucketMirrorBackRuleRedirectTransformPtrOutputWithContext(context.Background())
+}
+
+func (o BucketMirrorBackRuleRedirectTransformOutput) ToBucketMirrorBackRuleRedirectTransformPtrOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectTransformPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v BucketMirrorBackRuleRedirectTransform) *BucketMirrorBackRuleRedirectTransform {
+		return &v
+	}).(BucketMirrorBackRuleRedirectTransformPtrOutput)
+}
+
+// The replace key prefix configuration.
+func (o BucketMirrorBackRuleRedirectTransformOutput) ReplaceKeyPrefix() BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtrOutput {
+	return o.ApplyT(func(v BucketMirrorBackRuleRedirectTransform) *BucketMirrorBackRuleRedirectTransformReplaceKeyPrefix {
+		return v.ReplaceKeyPrefix
+	}).(BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtrOutput)
+}
+
+// The key prefix to add.
+func (o BucketMirrorBackRuleRedirectTransformOutput) WithKeyPrefix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketMirrorBackRuleRedirectTransform) *string { return v.WithKeyPrefix }).(pulumi.StringPtrOutput)
+}
+
+// The key suffix to add.
+func (o BucketMirrorBackRuleRedirectTransformOutput) WithKeySuffix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketMirrorBackRuleRedirectTransform) *string { return v.WithKeySuffix }).(pulumi.StringPtrOutput)
+}
+
+type BucketMirrorBackRuleRedirectTransformPtrOutput struct{ *pulumi.OutputState }
+
+func (BucketMirrorBackRuleRedirectTransformPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketMirrorBackRuleRedirectTransform)(nil)).Elem()
+}
+
+func (o BucketMirrorBackRuleRedirectTransformPtrOutput) ToBucketMirrorBackRuleRedirectTransformPtrOutput() BucketMirrorBackRuleRedirectTransformPtrOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleRedirectTransformPtrOutput) ToBucketMirrorBackRuleRedirectTransformPtrOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectTransformPtrOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleRedirectTransformPtrOutput) Elem() BucketMirrorBackRuleRedirectTransformOutput {
+	return o.ApplyT(func(v *BucketMirrorBackRuleRedirectTransform) BucketMirrorBackRuleRedirectTransform {
+		if v != nil {
+			return *v
+		}
+		var ret BucketMirrorBackRuleRedirectTransform
+		return ret
+	}).(BucketMirrorBackRuleRedirectTransformOutput)
+}
+
+// The replace key prefix configuration.
+func (o BucketMirrorBackRuleRedirectTransformPtrOutput) ReplaceKeyPrefix() BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtrOutput {
+	return o.ApplyT(func(v *BucketMirrorBackRuleRedirectTransform) *BucketMirrorBackRuleRedirectTransformReplaceKeyPrefix {
+		if v == nil {
+			return nil
+		}
+		return v.ReplaceKeyPrefix
+	}).(BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtrOutput)
+}
+
+// The key prefix to add.
+func (o BucketMirrorBackRuleRedirectTransformPtrOutput) WithKeyPrefix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BucketMirrorBackRuleRedirectTransform) *string {
+		if v == nil {
+			return nil
+		}
+		return v.WithKeyPrefix
+	}).(pulumi.StringPtrOutput)
+}
+
+// The key suffix to add.
+func (o BucketMirrorBackRuleRedirectTransformPtrOutput) WithKeySuffix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BucketMirrorBackRuleRedirectTransform) *string {
+		if v == nil {
+			return nil
+		}
+		return v.WithKeySuffix
+	}).(pulumi.StringPtrOutput)
+}
+
+type BucketMirrorBackRuleRedirectTransformReplaceKeyPrefix struct {
+	// The key prefix to replace.
+	KeyPrefix *string `pulumi:"keyPrefix"`
+	// The value to replace with.
+	ReplaceWith *string `pulumi:"replaceWith"`
+}
+
+// BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixInput is an input type that accepts BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixArgs and BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixOutput values.
+// You can construct a concrete instance of `BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixInput` via:
+//
+//	BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixArgs{...}
+type BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixInput interface {
+	pulumi.Input
+
+	ToBucketMirrorBackRuleRedirectTransformReplaceKeyPrefixOutput() BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixOutput
+	ToBucketMirrorBackRuleRedirectTransformReplaceKeyPrefixOutputWithContext(context.Context) BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixOutput
+}
+
+type BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixArgs struct {
+	// The key prefix to replace.
+	KeyPrefix pulumi.StringPtrInput `pulumi:"keyPrefix"`
+	// The value to replace with.
+	ReplaceWith pulumi.StringPtrInput `pulumi:"replaceWith"`
+}
+
+func (BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketMirrorBackRuleRedirectTransformReplaceKeyPrefix)(nil)).Elem()
+}
+
+func (i BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixArgs) ToBucketMirrorBackRuleRedirectTransformReplaceKeyPrefixOutput() BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixOutput {
+	return i.ToBucketMirrorBackRuleRedirectTransformReplaceKeyPrefixOutputWithContext(context.Background())
+}
+
+func (i BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixArgs) ToBucketMirrorBackRuleRedirectTransformReplaceKeyPrefixOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixOutput)
+}
+
+func (i BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixArgs) ToBucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtrOutput() BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtrOutput {
+	return i.ToBucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtrOutputWithContext(context.Background())
+}
+
+func (i BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixArgs) ToBucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtrOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixOutput).ToBucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtrOutputWithContext(ctx)
+}
+
+// BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtrInput is an input type that accepts BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixArgs, BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtr and BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtrOutput values.
+// You can construct a concrete instance of `BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtrInput` via:
+//
+//	        BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixArgs{...}
+//
+//	or:
+//
+//	        nil
+type BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtrInput interface {
+	pulumi.Input
+
+	ToBucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtrOutput() BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtrOutput
+	ToBucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtrOutputWithContext(context.Context) BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtrOutput
+}
+
+type bucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtrType BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixArgs
+
+func BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtr(v *BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixArgs) BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtrInput {
+	return (*bucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtrType)(v)
+}
+
+func (*bucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketMirrorBackRuleRedirectTransformReplaceKeyPrefix)(nil)).Elem()
+}
+
+func (i *bucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtrType) ToBucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtrOutput() BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtrOutput {
+	return i.ToBucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtrOutputWithContext(context.Background())
+}
+
+func (i *bucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtrType) ToBucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtrOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtrOutput)
+}
+
+type BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixOutput struct{ *pulumi.OutputState }
+
+func (BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketMirrorBackRuleRedirectTransformReplaceKeyPrefix)(nil)).Elem()
+}
+
+func (o BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixOutput) ToBucketMirrorBackRuleRedirectTransformReplaceKeyPrefixOutput() BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixOutput) ToBucketMirrorBackRuleRedirectTransformReplaceKeyPrefixOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixOutput) ToBucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtrOutput() BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtrOutput {
+	return o.ToBucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtrOutputWithContext(context.Background())
+}
+
+func (o BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixOutput) ToBucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtrOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v BucketMirrorBackRuleRedirectTransformReplaceKeyPrefix) *BucketMirrorBackRuleRedirectTransformReplaceKeyPrefix {
+		return &v
+	}).(BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtrOutput)
+}
+
+// The key prefix to replace.
+func (o BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixOutput) KeyPrefix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketMirrorBackRuleRedirectTransformReplaceKeyPrefix) *string { return v.KeyPrefix }).(pulumi.StringPtrOutput)
+}
+
+// The value to replace with.
+func (o BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixOutput) ReplaceWith() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketMirrorBackRuleRedirectTransformReplaceKeyPrefix) *string { return v.ReplaceWith }).(pulumi.StringPtrOutput)
+}
+
+type BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtrOutput struct{ *pulumi.OutputState }
+
+func (BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketMirrorBackRuleRedirectTransformReplaceKeyPrefix)(nil)).Elem()
+}
+
+func (o BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtrOutput) ToBucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtrOutput() BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtrOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtrOutput) ToBucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtrOutputWithContext(ctx context.Context) BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtrOutput {
+	return o
+}
+
+func (o BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtrOutput) Elem() BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixOutput {
+	return o.ApplyT(func(v *BucketMirrorBackRuleRedirectTransformReplaceKeyPrefix) BucketMirrorBackRuleRedirectTransformReplaceKeyPrefix {
+		if v != nil {
+			return *v
+		}
+		var ret BucketMirrorBackRuleRedirectTransformReplaceKeyPrefix
+		return ret
+	}).(BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixOutput)
+}
+
+// The key prefix to replace.
+func (o BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtrOutput) KeyPrefix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BucketMirrorBackRuleRedirectTransformReplaceKeyPrefix) *string {
+		if v == nil {
+			return nil
+		}
+		return v.KeyPrefix
+	}).(pulumi.StringPtrOutput)
+}
+
+// The value to replace with.
+func (o BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtrOutput) ReplaceWith() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BucketMirrorBackRuleRedirectTransformReplaceKeyPrefix) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ReplaceWith
+	}).(pulumi.StringPtrOutput)
+}
+
 type BucketNotificationRules struct {
 	// The destination info of the notification.
 	Destination BucketNotificationRulesDestination `pulumi:"destination"`
@@ -2965,6 +6678,320 @@ func (o BucketObjectAccountAclArrayOutput) Index(i pulumi.IntInput) BucketObject
 	}).(BucketObjectAccountAclOutput)
 }
 
+type BucketObjectLockConfigurationRule struct {
+	// The default retention configuration.
+	DefaultRetention BucketObjectLockConfigurationRuleDefaultRetention `pulumi:"defaultRetention"`
+}
+
+// BucketObjectLockConfigurationRuleInput is an input type that accepts BucketObjectLockConfigurationRuleArgs and BucketObjectLockConfigurationRuleOutput values.
+// You can construct a concrete instance of `BucketObjectLockConfigurationRuleInput` via:
+//
+//	BucketObjectLockConfigurationRuleArgs{...}
+type BucketObjectLockConfigurationRuleInput interface {
+	pulumi.Input
+
+	ToBucketObjectLockConfigurationRuleOutput() BucketObjectLockConfigurationRuleOutput
+	ToBucketObjectLockConfigurationRuleOutputWithContext(context.Context) BucketObjectLockConfigurationRuleOutput
+}
+
+type BucketObjectLockConfigurationRuleArgs struct {
+	// The default retention configuration.
+	DefaultRetention BucketObjectLockConfigurationRuleDefaultRetentionInput `pulumi:"defaultRetention"`
+}
+
+func (BucketObjectLockConfigurationRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketObjectLockConfigurationRule)(nil)).Elem()
+}
+
+func (i BucketObjectLockConfigurationRuleArgs) ToBucketObjectLockConfigurationRuleOutput() BucketObjectLockConfigurationRuleOutput {
+	return i.ToBucketObjectLockConfigurationRuleOutputWithContext(context.Background())
+}
+
+func (i BucketObjectLockConfigurationRuleArgs) ToBucketObjectLockConfigurationRuleOutputWithContext(ctx context.Context) BucketObjectLockConfigurationRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketObjectLockConfigurationRuleOutput)
+}
+
+func (i BucketObjectLockConfigurationRuleArgs) ToBucketObjectLockConfigurationRulePtrOutput() BucketObjectLockConfigurationRulePtrOutput {
+	return i.ToBucketObjectLockConfigurationRulePtrOutputWithContext(context.Background())
+}
+
+func (i BucketObjectLockConfigurationRuleArgs) ToBucketObjectLockConfigurationRulePtrOutputWithContext(ctx context.Context) BucketObjectLockConfigurationRulePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketObjectLockConfigurationRuleOutput).ToBucketObjectLockConfigurationRulePtrOutputWithContext(ctx)
+}
+
+// BucketObjectLockConfigurationRulePtrInput is an input type that accepts BucketObjectLockConfigurationRuleArgs, BucketObjectLockConfigurationRulePtr and BucketObjectLockConfigurationRulePtrOutput values.
+// You can construct a concrete instance of `BucketObjectLockConfigurationRulePtrInput` via:
+//
+//	        BucketObjectLockConfigurationRuleArgs{...}
+//
+//	or:
+//
+//	        nil
+type BucketObjectLockConfigurationRulePtrInput interface {
+	pulumi.Input
+
+	ToBucketObjectLockConfigurationRulePtrOutput() BucketObjectLockConfigurationRulePtrOutput
+	ToBucketObjectLockConfigurationRulePtrOutputWithContext(context.Context) BucketObjectLockConfigurationRulePtrOutput
+}
+
+type bucketObjectLockConfigurationRulePtrType BucketObjectLockConfigurationRuleArgs
+
+func BucketObjectLockConfigurationRulePtr(v *BucketObjectLockConfigurationRuleArgs) BucketObjectLockConfigurationRulePtrInput {
+	return (*bucketObjectLockConfigurationRulePtrType)(v)
+}
+
+func (*bucketObjectLockConfigurationRulePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketObjectLockConfigurationRule)(nil)).Elem()
+}
+
+func (i *bucketObjectLockConfigurationRulePtrType) ToBucketObjectLockConfigurationRulePtrOutput() BucketObjectLockConfigurationRulePtrOutput {
+	return i.ToBucketObjectLockConfigurationRulePtrOutputWithContext(context.Background())
+}
+
+func (i *bucketObjectLockConfigurationRulePtrType) ToBucketObjectLockConfigurationRulePtrOutputWithContext(ctx context.Context) BucketObjectLockConfigurationRulePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketObjectLockConfigurationRulePtrOutput)
+}
+
+type BucketObjectLockConfigurationRuleOutput struct{ *pulumi.OutputState }
+
+func (BucketObjectLockConfigurationRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketObjectLockConfigurationRule)(nil)).Elem()
+}
+
+func (o BucketObjectLockConfigurationRuleOutput) ToBucketObjectLockConfigurationRuleOutput() BucketObjectLockConfigurationRuleOutput {
+	return o
+}
+
+func (o BucketObjectLockConfigurationRuleOutput) ToBucketObjectLockConfigurationRuleOutputWithContext(ctx context.Context) BucketObjectLockConfigurationRuleOutput {
+	return o
+}
+
+func (o BucketObjectLockConfigurationRuleOutput) ToBucketObjectLockConfigurationRulePtrOutput() BucketObjectLockConfigurationRulePtrOutput {
+	return o.ToBucketObjectLockConfigurationRulePtrOutputWithContext(context.Background())
+}
+
+func (o BucketObjectLockConfigurationRuleOutput) ToBucketObjectLockConfigurationRulePtrOutputWithContext(ctx context.Context) BucketObjectLockConfigurationRulePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v BucketObjectLockConfigurationRule) *BucketObjectLockConfigurationRule {
+		return &v
+	}).(BucketObjectLockConfigurationRulePtrOutput)
+}
+
+// The default retention configuration.
+func (o BucketObjectLockConfigurationRuleOutput) DefaultRetention() BucketObjectLockConfigurationRuleDefaultRetentionOutput {
+	return o.ApplyT(func(v BucketObjectLockConfigurationRule) BucketObjectLockConfigurationRuleDefaultRetention {
+		return v.DefaultRetention
+	}).(BucketObjectLockConfigurationRuleDefaultRetentionOutput)
+}
+
+type BucketObjectLockConfigurationRulePtrOutput struct{ *pulumi.OutputState }
+
+func (BucketObjectLockConfigurationRulePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketObjectLockConfigurationRule)(nil)).Elem()
+}
+
+func (o BucketObjectLockConfigurationRulePtrOutput) ToBucketObjectLockConfigurationRulePtrOutput() BucketObjectLockConfigurationRulePtrOutput {
+	return o
+}
+
+func (o BucketObjectLockConfigurationRulePtrOutput) ToBucketObjectLockConfigurationRulePtrOutputWithContext(ctx context.Context) BucketObjectLockConfigurationRulePtrOutput {
+	return o
+}
+
+func (o BucketObjectLockConfigurationRulePtrOutput) Elem() BucketObjectLockConfigurationRuleOutput {
+	return o.ApplyT(func(v *BucketObjectLockConfigurationRule) BucketObjectLockConfigurationRule {
+		if v != nil {
+			return *v
+		}
+		var ret BucketObjectLockConfigurationRule
+		return ret
+	}).(BucketObjectLockConfigurationRuleOutput)
+}
+
+// The default retention configuration.
+func (o BucketObjectLockConfigurationRulePtrOutput) DefaultRetention() BucketObjectLockConfigurationRuleDefaultRetentionPtrOutput {
+	return o.ApplyT(func(v *BucketObjectLockConfigurationRule) *BucketObjectLockConfigurationRuleDefaultRetention {
+		if v == nil {
+			return nil
+		}
+		return &v.DefaultRetention
+	}).(BucketObjectLockConfigurationRuleDefaultRetentionPtrOutput)
+}
+
+type BucketObjectLockConfigurationRuleDefaultRetention struct {
+	// The number of days for the default retention period.
+	Days *int `pulumi:"days"`
+	// The default retention mode. Valid values: COMPLIANCE, GOVERNANCE.
+	Mode string `pulumi:"mode"`
+	// The number of years for the default retention period.
+	Years *int `pulumi:"years"`
+}
+
+// BucketObjectLockConfigurationRuleDefaultRetentionInput is an input type that accepts BucketObjectLockConfigurationRuleDefaultRetentionArgs and BucketObjectLockConfigurationRuleDefaultRetentionOutput values.
+// You can construct a concrete instance of `BucketObjectLockConfigurationRuleDefaultRetentionInput` via:
+//
+//	BucketObjectLockConfigurationRuleDefaultRetentionArgs{...}
+type BucketObjectLockConfigurationRuleDefaultRetentionInput interface {
+	pulumi.Input
+
+	ToBucketObjectLockConfigurationRuleDefaultRetentionOutput() BucketObjectLockConfigurationRuleDefaultRetentionOutput
+	ToBucketObjectLockConfigurationRuleDefaultRetentionOutputWithContext(context.Context) BucketObjectLockConfigurationRuleDefaultRetentionOutput
+}
+
+type BucketObjectLockConfigurationRuleDefaultRetentionArgs struct {
+	// The number of days for the default retention period.
+	Days pulumi.IntPtrInput `pulumi:"days"`
+	// The default retention mode. Valid values: COMPLIANCE, GOVERNANCE.
+	Mode pulumi.StringInput `pulumi:"mode"`
+	// The number of years for the default retention period.
+	Years pulumi.IntPtrInput `pulumi:"years"`
+}
+
+func (BucketObjectLockConfigurationRuleDefaultRetentionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketObjectLockConfigurationRuleDefaultRetention)(nil)).Elem()
+}
+
+func (i BucketObjectLockConfigurationRuleDefaultRetentionArgs) ToBucketObjectLockConfigurationRuleDefaultRetentionOutput() BucketObjectLockConfigurationRuleDefaultRetentionOutput {
+	return i.ToBucketObjectLockConfigurationRuleDefaultRetentionOutputWithContext(context.Background())
+}
+
+func (i BucketObjectLockConfigurationRuleDefaultRetentionArgs) ToBucketObjectLockConfigurationRuleDefaultRetentionOutputWithContext(ctx context.Context) BucketObjectLockConfigurationRuleDefaultRetentionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketObjectLockConfigurationRuleDefaultRetentionOutput)
+}
+
+func (i BucketObjectLockConfigurationRuleDefaultRetentionArgs) ToBucketObjectLockConfigurationRuleDefaultRetentionPtrOutput() BucketObjectLockConfigurationRuleDefaultRetentionPtrOutput {
+	return i.ToBucketObjectLockConfigurationRuleDefaultRetentionPtrOutputWithContext(context.Background())
+}
+
+func (i BucketObjectLockConfigurationRuleDefaultRetentionArgs) ToBucketObjectLockConfigurationRuleDefaultRetentionPtrOutputWithContext(ctx context.Context) BucketObjectLockConfigurationRuleDefaultRetentionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketObjectLockConfigurationRuleDefaultRetentionOutput).ToBucketObjectLockConfigurationRuleDefaultRetentionPtrOutputWithContext(ctx)
+}
+
+// BucketObjectLockConfigurationRuleDefaultRetentionPtrInput is an input type that accepts BucketObjectLockConfigurationRuleDefaultRetentionArgs, BucketObjectLockConfigurationRuleDefaultRetentionPtr and BucketObjectLockConfigurationRuleDefaultRetentionPtrOutput values.
+// You can construct a concrete instance of `BucketObjectLockConfigurationRuleDefaultRetentionPtrInput` via:
+//
+//	        BucketObjectLockConfigurationRuleDefaultRetentionArgs{...}
+//
+//	or:
+//
+//	        nil
+type BucketObjectLockConfigurationRuleDefaultRetentionPtrInput interface {
+	pulumi.Input
+
+	ToBucketObjectLockConfigurationRuleDefaultRetentionPtrOutput() BucketObjectLockConfigurationRuleDefaultRetentionPtrOutput
+	ToBucketObjectLockConfigurationRuleDefaultRetentionPtrOutputWithContext(context.Context) BucketObjectLockConfigurationRuleDefaultRetentionPtrOutput
+}
+
+type bucketObjectLockConfigurationRuleDefaultRetentionPtrType BucketObjectLockConfigurationRuleDefaultRetentionArgs
+
+func BucketObjectLockConfigurationRuleDefaultRetentionPtr(v *BucketObjectLockConfigurationRuleDefaultRetentionArgs) BucketObjectLockConfigurationRuleDefaultRetentionPtrInput {
+	return (*bucketObjectLockConfigurationRuleDefaultRetentionPtrType)(v)
+}
+
+func (*bucketObjectLockConfigurationRuleDefaultRetentionPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketObjectLockConfigurationRuleDefaultRetention)(nil)).Elem()
+}
+
+func (i *bucketObjectLockConfigurationRuleDefaultRetentionPtrType) ToBucketObjectLockConfigurationRuleDefaultRetentionPtrOutput() BucketObjectLockConfigurationRuleDefaultRetentionPtrOutput {
+	return i.ToBucketObjectLockConfigurationRuleDefaultRetentionPtrOutputWithContext(context.Background())
+}
+
+func (i *bucketObjectLockConfigurationRuleDefaultRetentionPtrType) ToBucketObjectLockConfigurationRuleDefaultRetentionPtrOutputWithContext(ctx context.Context) BucketObjectLockConfigurationRuleDefaultRetentionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketObjectLockConfigurationRuleDefaultRetentionPtrOutput)
+}
+
+type BucketObjectLockConfigurationRuleDefaultRetentionOutput struct{ *pulumi.OutputState }
+
+func (BucketObjectLockConfigurationRuleDefaultRetentionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketObjectLockConfigurationRuleDefaultRetention)(nil)).Elem()
+}
+
+func (o BucketObjectLockConfigurationRuleDefaultRetentionOutput) ToBucketObjectLockConfigurationRuleDefaultRetentionOutput() BucketObjectLockConfigurationRuleDefaultRetentionOutput {
+	return o
+}
+
+func (o BucketObjectLockConfigurationRuleDefaultRetentionOutput) ToBucketObjectLockConfigurationRuleDefaultRetentionOutputWithContext(ctx context.Context) BucketObjectLockConfigurationRuleDefaultRetentionOutput {
+	return o
+}
+
+func (o BucketObjectLockConfigurationRuleDefaultRetentionOutput) ToBucketObjectLockConfigurationRuleDefaultRetentionPtrOutput() BucketObjectLockConfigurationRuleDefaultRetentionPtrOutput {
+	return o.ToBucketObjectLockConfigurationRuleDefaultRetentionPtrOutputWithContext(context.Background())
+}
+
+func (o BucketObjectLockConfigurationRuleDefaultRetentionOutput) ToBucketObjectLockConfigurationRuleDefaultRetentionPtrOutputWithContext(ctx context.Context) BucketObjectLockConfigurationRuleDefaultRetentionPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v BucketObjectLockConfigurationRuleDefaultRetention) *BucketObjectLockConfigurationRuleDefaultRetention {
+		return &v
+	}).(BucketObjectLockConfigurationRuleDefaultRetentionPtrOutput)
+}
+
+// The number of days for the default retention period.
+func (o BucketObjectLockConfigurationRuleDefaultRetentionOutput) Days() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v BucketObjectLockConfigurationRuleDefaultRetention) *int { return v.Days }).(pulumi.IntPtrOutput)
+}
+
+// The default retention mode. Valid values: COMPLIANCE, GOVERNANCE.
+func (o BucketObjectLockConfigurationRuleDefaultRetentionOutput) Mode() pulumi.StringOutput {
+	return o.ApplyT(func(v BucketObjectLockConfigurationRuleDefaultRetention) string { return v.Mode }).(pulumi.StringOutput)
+}
+
+// The number of years for the default retention period.
+func (o BucketObjectLockConfigurationRuleDefaultRetentionOutput) Years() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v BucketObjectLockConfigurationRuleDefaultRetention) *int { return v.Years }).(pulumi.IntPtrOutput)
+}
+
+type BucketObjectLockConfigurationRuleDefaultRetentionPtrOutput struct{ *pulumi.OutputState }
+
+func (BucketObjectLockConfigurationRuleDefaultRetentionPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketObjectLockConfigurationRuleDefaultRetention)(nil)).Elem()
+}
+
+func (o BucketObjectLockConfigurationRuleDefaultRetentionPtrOutput) ToBucketObjectLockConfigurationRuleDefaultRetentionPtrOutput() BucketObjectLockConfigurationRuleDefaultRetentionPtrOutput {
+	return o
+}
+
+func (o BucketObjectLockConfigurationRuleDefaultRetentionPtrOutput) ToBucketObjectLockConfigurationRuleDefaultRetentionPtrOutputWithContext(ctx context.Context) BucketObjectLockConfigurationRuleDefaultRetentionPtrOutput {
+	return o
+}
+
+func (o BucketObjectLockConfigurationRuleDefaultRetentionPtrOutput) Elem() BucketObjectLockConfigurationRuleDefaultRetentionOutput {
+	return o.ApplyT(func(v *BucketObjectLockConfigurationRuleDefaultRetention) BucketObjectLockConfigurationRuleDefaultRetention {
+		if v != nil {
+			return *v
+		}
+		var ret BucketObjectLockConfigurationRuleDefaultRetention
+		return ret
+	}).(BucketObjectLockConfigurationRuleDefaultRetentionOutput)
+}
+
+// The number of days for the default retention period.
+func (o BucketObjectLockConfigurationRuleDefaultRetentionPtrOutput) Days() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *BucketObjectLockConfigurationRuleDefaultRetention) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Days
+	}).(pulumi.IntPtrOutput)
+}
+
+// The default retention mode. Valid values: COMPLIANCE, GOVERNANCE.
+func (o BucketObjectLockConfigurationRuleDefaultRetentionPtrOutput) Mode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BucketObjectLockConfigurationRuleDefaultRetention) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Mode
+	}).(pulumi.StringPtrOutput)
+}
+
+// The number of years for the default retention period.
+func (o BucketObjectLockConfigurationRuleDefaultRetentionPtrOutput) Years() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *BucketObjectLockConfigurationRuleDefaultRetention) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Years
+	}).(pulumi.IntPtrOutput)
+}
+
 type BucketObjectTag struct {
 	// The Key of Tags.
 	Key string `pulumi:"key"`
@@ -3389,6 +7416,290 @@ func (o BucketRealtimeLogAccessLogConfigurationPtrOutput) Ttl() pulumi.IntPtrOut
 	}).(pulumi.IntPtrOutput)
 }
 
+type BucketReplicationRule struct {
+	// The access control translation configuration of the replication rule.
+	AccessControlTranslation BucketReplicationRuleAccessControlTranslation `pulumi:"accessControlTranslation"`
+	// The destination configuration of the replication rule.
+	Destination BucketReplicationRuleDestination `pulumi:"destination"`
+	// Whether to replicate historical objects. Valid values: Enabled, Disabled.
+	HistoricalObjectReplication *string `pulumi:"historicalObjectReplication"`
+	// The ID of the replication rule.
+	Id *string `pulumi:"id"`
+	// The prefix set for the replication rule.
+	PrefixSets []string `pulumi:"prefixSets"`
+	// The status of the replication rule. Valid values: Enabled, Disabled.
+	Status string `pulumi:"status"`
+	// Specify the data transmission link to be used for cross-regional replication. Valid values: internal, tos_acc.
+	TransferType *string `pulumi:"transferType"`
+}
+
+// BucketReplicationRuleInput is an input type that accepts BucketReplicationRuleArgs and BucketReplicationRuleOutput values.
+// You can construct a concrete instance of `BucketReplicationRuleInput` via:
+//
+//	BucketReplicationRuleArgs{...}
+type BucketReplicationRuleInput interface {
+	pulumi.Input
+
+	ToBucketReplicationRuleOutput() BucketReplicationRuleOutput
+	ToBucketReplicationRuleOutputWithContext(context.Context) BucketReplicationRuleOutput
+}
+
+type BucketReplicationRuleArgs struct {
+	// The access control translation configuration of the replication rule.
+	AccessControlTranslation BucketReplicationRuleAccessControlTranslationInput `pulumi:"accessControlTranslation"`
+	// The destination configuration of the replication rule.
+	Destination BucketReplicationRuleDestinationInput `pulumi:"destination"`
+	// Whether to replicate historical objects. Valid values: Enabled, Disabled.
+	HistoricalObjectReplication pulumi.StringPtrInput `pulumi:"historicalObjectReplication"`
+	// The ID of the replication rule.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// The prefix set for the replication rule.
+	PrefixSets pulumi.StringArrayInput `pulumi:"prefixSets"`
+	// The status of the replication rule. Valid values: Enabled, Disabled.
+	Status pulumi.StringInput `pulumi:"status"`
+	// Specify the data transmission link to be used for cross-regional replication. Valid values: internal, tos_acc.
+	TransferType pulumi.StringPtrInput `pulumi:"transferType"`
+}
+
+func (BucketReplicationRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketReplicationRule)(nil)).Elem()
+}
+
+func (i BucketReplicationRuleArgs) ToBucketReplicationRuleOutput() BucketReplicationRuleOutput {
+	return i.ToBucketReplicationRuleOutputWithContext(context.Background())
+}
+
+func (i BucketReplicationRuleArgs) ToBucketReplicationRuleOutputWithContext(ctx context.Context) BucketReplicationRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketReplicationRuleOutput)
+}
+
+// BucketReplicationRuleArrayInput is an input type that accepts BucketReplicationRuleArray and BucketReplicationRuleArrayOutput values.
+// You can construct a concrete instance of `BucketReplicationRuleArrayInput` via:
+//
+//	BucketReplicationRuleArray{ BucketReplicationRuleArgs{...} }
+type BucketReplicationRuleArrayInput interface {
+	pulumi.Input
+
+	ToBucketReplicationRuleArrayOutput() BucketReplicationRuleArrayOutput
+	ToBucketReplicationRuleArrayOutputWithContext(context.Context) BucketReplicationRuleArrayOutput
+}
+
+type BucketReplicationRuleArray []BucketReplicationRuleInput
+
+func (BucketReplicationRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BucketReplicationRule)(nil)).Elem()
+}
+
+func (i BucketReplicationRuleArray) ToBucketReplicationRuleArrayOutput() BucketReplicationRuleArrayOutput {
+	return i.ToBucketReplicationRuleArrayOutputWithContext(context.Background())
+}
+
+func (i BucketReplicationRuleArray) ToBucketReplicationRuleArrayOutputWithContext(ctx context.Context) BucketReplicationRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketReplicationRuleArrayOutput)
+}
+
+type BucketReplicationRuleOutput struct{ *pulumi.OutputState }
+
+func (BucketReplicationRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketReplicationRule)(nil)).Elem()
+}
+
+func (o BucketReplicationRuleOutput) ToBucketReplicationRuleOutput() BucketReplicationRuleOutput {
+	return o
+}
+
+func (o BucketReplicationRuleOutput) ToBucketReplicationRuleOutputWithContext(ctx context.Context) BucketReplicationRuleOutput {
+	return o
+}
+
+// The access control translation configuration of the replication rule.
+func (o BucketReplicationRuleOutput) AccessControlTranslation() BucketReplicationRuleAccessControlTranslationOutput {
+	return o.ApplyT(func(v BucketReplicationRule) BucketReplicationRuleAccessControlTranslation {
+		return v.AccessControlTranslation
+	}).(BucketReplicationRuleAccessControlTranslationOutput)
+}
+
+// The destination configuration of the replication rule.
+func (o BucketReplicationRuleOutput) Destination() BucketReplicationRuleDestinationOutput {
+	return o.ApplyT(func(v BucketReplicationRule) BucketReplicationRuleDestination { return v.Destination }).(BucketReplicationRuleDestinationOutput)
+}
+
+// Whether to replicate historical objects. Valid values: Enabled, Disabled.
+func (o BucketReplicationRuleOutput) HistoricalObjectReplication() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketReplicationRule) *string { return v.HistoricalObjectReplication }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the replication rule.
+func (o BucketReplicationRuleOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketReplicationRule) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// The prefix set for the replication rule.
+func (o BucketReplicationRuleOutput) PrefixSets() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v BucketReplicationRule) []string { return v.PrefixSets }).(pulumi.StringArrayOutput)
+}
+
+// The status of the replication rule. Valid values: Enabled, Disabled.
+func (o BucketReplicationRuleOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v BucketReplicationRule) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Specify the data transmission link to be used for cross-regional replication. Valid values: internal, tos_acc.
+func (o BucketReplicationRuleOutput) TransferType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketReplicationRule) *string { return v.TransferType }).(pulumi.StringPtrOutput)
+}
+
+type BucketReplicationRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (BucketReplicationRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BucketReplicationRule)(nil)).Elem()
+}
+
+func (o BucketReplicationRuleArrayOutput) ToBucketReplicationRuleArrayOutput() BucketReplicationRuleArrayOutput {
+	return o
+}
+
+func (o BucketReplicationRuleArrayOutput) ToBucketReplicationRuleArrayOutputWithContext(ctx context.Context) BucketReplicationRuleArrayOutput {
+	return o
+}
+
+func (o BucketReplicationRuleArrayOutput) Index(i pulumi.IntInput) BucketReplicationRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) BucketReplicationRule {
+		return vs[0].([]BucketReplicationRule)[vs[1].(int)]
+	}).(BucketReplicationRuleOutput)
+}
+
+type BucketReplicationRuleAccessControlTranslation struct {
+	// The owner of the destination object.
+	Owner *string `pulumi:"owner"`
+}
+
+// BucketReplicationRuleAccessControlTranslationInput is an input type that accepts BucketReplicationRuleAccessControlTranslationArgs and BucketReplicationRuleAccessControlTranslationOutput values.
+// You can construct a concrete instance of `BucketReplicationRuleAccessControlTranslationInput` via:
+//
+//	BucketReplicationRuleAccessControlTranslationArgs{...}
+type BucketReplicationRuleAccessControlTranslationInput interface {
+	pulumi.Input
+
+	ToBucketReplicationRuleAccessControlTranslationOutput() BucketReplicationRuleAccessControlTranslationOutput
+	ToBucketReplicationRuleAccessControlTranslationOutputWithContext(context.Context) BucketReplicationRuleAccessControlTranslationOutput
+}
+
+type BucketReplicationRuleAccessControlTranslationArgs struct {
+	// The owner of the destination object.
+	Owner pulumi.StringPtrInput `pulumi:"owner"`
+}
+
+func (BucketReplicationRuleAccessControlTranslationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketReplicationRuleAccessControlTranslation)(nil)).Elem()
+}
+
+func (i BucketReplicationRuleAccessControlTranslationArgs) ToBucketReplicationRuleAccessControlTranslationOutput() BucketReplicationRuleAccessControlTranslationOutput {
+	return i.ToBucketReplicationRuleAccessControlTranslationOutputWithContext(context.Background())
+}
+
+func (i BucketReplicationRuleAccessControlTranslationArgs) ToBucketReplicationRuleAccessControlTranslationOutputWithContext(ctx context.Context) BucketReplicationRuleAccessControlTranslationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketReplicationRuleAccessControlTranslationOutput)
+}
+
+type BucketReplicationRuleAccessControlTranslationOutput struct{ *pulumi.OutputState }
+
+func (BucketReplicationRuleAccessControlTranslationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketReplicationRuleAccessControlTranslation)(nil)).Elem()
+}
+
+func (o BucketReplicationRuleAccessControlTranslationOutput) ToBucketReplicationRuleAccessControlTranslationOutput() BucketReplicationRuleAccessControlTranslationOutput {
+	return o
+}
+
+func (o BucketReplicationRuleAccessControlTranslationOutput) ToBucketReplicationRuleAccessControlTranslationOutputWithContext(ctx context.Context) BucketReplicationRuleAccessControlTranslationOutput {
+	return o
+}
+
+// The owner of the destination object.
+func (o BucketReplicationRuleAccessControlTranslationOutput) Owner() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketReplicationRuleAccessControlTranslation) *string { return v.Owner }).(pulumi.StringPtrOutput)
+}
+
+type BucketReplicationRuleDestination struct {
+	// The destination bucket name.
+	Bucket string `pulumi:"bucket"`
+	// The destination bucket location.
+	Location string `pulumi:"location"`
+	// The storage class for the destination bucket. Valid values: STANDARD, IA, ARCHIVE, COLD_ARCHIVE.
+	StorageClass *string `pulumi:"storageClass"`
+	// The storage class inherit directive. Valid values: COPY, OVERRIDE.
+	StorageClassInheritDirective *string `pulumi:"storageClassInheritDirective"`
+}
+
+// BucketReplicationRuleDestinationInput is an input type that accepts BucketReplicationRuleDestinationArgs and BucketReplicationRuleDestinationOutput values.
+// You can construct a concrete instance of `BucketReplicationRuleDestinationInput` via:
+//
+//	BucketReplicationRuleDestinationArgs{...}
+type BucketReplicationRuleDestinationInput interface {
+	pulumi.Input
+
+	ToBucketReplicationRuleDestinationOutput() BucketReplicationRuleDestinationOutput
+	ToBucketReplicationRuleDestinationOutputWithContext(context.Context) BucketReplicationRuleDestinationOutput
+}
+
+type BucketReplicationRuleDestinationArgs struct {
+	// The destination bucket name.
+	Bucket pulumi.StringInput `pulumi:"bucket"`
+	// The destination bucket location.
+	Location pulumi.StringInput `pulumi:"location"`
+	// The storage class for the destination bucket. Valid values: STANDARD, IA, ARCHIVE, COLD_ARCHIVE.
+	StorageClass pulumi.StringPtrInput `pulumi:"storageClass"`
+	// The storage class inherit directive. Valid values: COPY, OVERRIDE.
+	StorageClassInheritDirective pulumi.StringPtrInput `pulumi:"storageClassInheritDirective"`
+}
+
+func (BucketReplicationRuleDestinationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketReplicationRuleDestination)(nil)).Elem()
+}
+
+func (i BucketReplicationRuleDestinationArgs) ToBucketReplicationRuleDestinationOutput() BucketReplicationRuleDestinationOutput {
+	return i.ToBucketReplicationRuleDestinationOutputWithContext(context.Background())
+}
+
+func (i BucketReplicationRuleDestinationArgs) ToBucketReplicationRuleDestinationOutputWithContext(ctx context.Context) BucketReplicationRuleDestinationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketReplicationRuleDestinationOutput)
+}
+
+type BucketReplicationRuleDestinationOutput struct{ *pulumi.OutputState }
+
+func (BucketReplicationRuleDestinationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketReplicationRuleDestination)(nil)).Elem()
+}
+
+func (o BucketReplicationRuleDestinationOutput) ToBucketReplicationRuleDestinationOutput() BucketReplicationRuleDestinationOutput {
+	return o
+}
+
+func (o BucketReplicationRuleDestinationOutput) ToBucketReplicationRuleDestinationOutputWithContext(ctx context.Context) BucketReplicationRuleDestinationOutput {
+	return o
+}
+
+// The destination bucket name.
+func (o BucketReplicationRuleDestinationOutput) Bucket() pulumi.StringOutput {
+	return o.ApplyT(func(v BucketReplicationRuleDestination) string { return v.Bucket }).(pulumi.StringOutput)
+}
+
+// The destination bucket location.
+func (o BucketReplicationRuleDestinationOutput) Location() pulumi.StringOutput {
+	return o.ApplyT(func(v BucketReplicationRuleDestination) string { return v.Location }).(pulumi.StringOutput)
+}
+
+// The storage class for the destination bucket. Valid values: STANDARD, IA, ARCHIVE, COLD_ARCHIVE.
+func (o BucketReplicationRuleDestinationOutput) StorageClass() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketReplicationRuleDestination) *string { return v.StorageClass }).(pulumi.StringPtrOutput)
+}
+
+// The storage class inherit directive. Valid values: COPY, OVERRIDE.
+func (o BucketReplicationRuleDestinationOutput) StorageClassInheritDirective() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketReplicationRuleDestination) *string { return v.StorageClassInheritDirective }).(pulumi.StringPtrOutput)
+}
+
 type BucketTag struct {
 	// The Key of Tags.
 	Key string `pulumi:"key"`
@@ -3495,7 +7806,713 @@ func (o BucketTagArrayOutput) Index(i pulumi.IntInput) BucketTagOutput {
 	}).(BucketTagOutput)
 }
 
+type BucketWebsiteErrorDocument struct {
+	// The key of the error document object, e.g., error.html.
+	Key *string `pulumi:"key"`
+}
+
+// BucketWebsiteErrorDocumentInput is an input type that accepts BucketWebsiteErrorDocumentArgs and BucketWebsiteErrorDocumentOutput values.
+// You can construct a concrete instance of `BucketWebsiteErrorDocumentInput` via:
+//
+//	BucketWebsiteErrorDocumentArgs{...}
+type BucketWebsiteErrorDocumentInput interface {
+	pulumi.Input
+
+	ToBucketWebsiteErrorDocumentOutput() BucketWebsiteErrorDocumentOutput
+	ToBucketWebsiteErrorDocumentOutputWithContext(context.Context) BucketWebsiteErrorDocumentOutput
+}
+
+type BucketWebsiteErrorDocumentArgs struct {
+	// The key of the error document object, e.g., error.html.
+	Key pulumi.StringPtrInput `pulumi:"key"`
+}
+
+func (BucketWebsiteErrorDocumentArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketWebsiteErrorDocument)(nil)).Elem()
+}
+
+func (i BucketWebsiteErrorDocumentArgs) ToBucketWebsiteErrorDocumentOutput() BucketWebsiteErrorDocumentOutput {
+	return i.ToBucketWebsiteErrorDocumentOutputWithContext(context.Background())
+}
+
+func (i BucketWebsiteErrorDocumentArgs) ToBucketWebsiteErrorDocumentOutputWithContext(ctx context.Context) BucketWebsiteErrorDocumentOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketWebsiteErrorDocumentOutput)
+}
+
+func (i BucketWebsiteErrorDocumentArgs) ToBucketWebsiteErrorDocumentPtrOutput() BucketWebsiteErrorDocumentPtrOutput {
+	return i.ToBucketWebsiteErrorDocumentPtrOutputWithContext(context.Background())
+}
+
+func (i BucketWebsiteErrorDocumentArgs) ToBucketWebsiteErrorDocumentPtrOutputWithContext(ctx context.Context) BucketWebsiteErrorDocumentPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketWebsiteErrorDocumentOutput).ToBucketWebsiteErrorDocumentPtrOutputWithContext(ctx)
+}
+
+// BucketWebsiteErrorDocumentPtrInput is an input type that accepts BucketWebsiteErrorDocumentArgs, BucketWebsiteErrorDocumentPtr and BucketWebsiteErrorDocumentPtrOutput values.
+// You can construct a concrete instance of `BucketWebsiteErrorDocumentPtrInput` via:
+//
+//	        BucketWebsiteErrorDocumentArgs{...}
+//
+//	or:
+//
+//	        nil
+type BucketWebsiteErrorDocumentPtrInput interface {
+	pulumi.Input
+
+	ToBucketWebsiteErrorDocumentPtrOutput() BucketWebsiteErrorDocumentPtrOutput
+	ToBucketWebsiteErrorDocumentPtrOutputWithContext(context.Context) BucketWebsiteErrorDocumentPtrOutput
+}
+
+type bucketWebsiteErrorDocumentPtrType BucketWebsiteErrorDocumentArgs
+
+func BucketWebsiteErrorDocumentPtr(v *BucketWebsiteErrorDocumentArgs) BucketWebsiteErrorDocumentPtrInput {
+	return (*bucketWebsiteErrorDocumentPtrType)(v)
+}
+
+func (*bucketWebsiteErrorDocumentPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketWebsiteErrorDocument)(nil)).Elem()
+}
+
+func (i *bucketWebsiteErrorDocumentPtrType) ToBucketWebsiteErrorDocumentPtrOutput() BucketWebsiteErrorDocumentPtrOutput {
+	return i.ToBucketWebsiteErrorDocumentPtrOutputWithContext(context.Background())
+}
+
+func (i *bucketWebsiteErrorDocumentPtrType) ToBucketWebsiteErrorDocumentPtrOutputWithContext(ctx context.Context) BucketWebsiteErrorDocumentPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketWebsiteErrorDocumentPtrOutput)
+}
+
+type BucketWebsiteErrorDocumentOutput struct{ *pulumi.OutputState }
+
+func (BucketWebsiteErrorDocumentOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketWebsiteErrorDocument)(nil)).Elem()
+}
+
+func (o BucketWebsiteErrorDocumentOutput) ToBucketWebsiteErrorDocumentOutput() BucketWebsiteErrorDocumentOutput {
+	return o
+}
+
+func (o BucketWebsiteErrorDocumentOutput) ToBucketWebsiteErrorDocumentOutputWithContext(ctx context.Context) BucketWebsiteErrorDocumentOutput {
+	return o
+}
+
+func (o BucketWebsiteErrorDocumentOutput) ToBucketWebsiteErrorDocumentPtrOutput() BucketWebsiteErrorDocumentPtrOutput {
+	return o.ToBucketWebsiteErrorDocumentPtrOutputWithContext(context.Background())
+}
+
+func (o BucketWebsiteErrorDocumentOutput) ToBucketWebsiteErrorDocumentPtrOutputWithContext(ctx context.Context) BucketWebsiteErrorDocumentPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v BucketWebsiteErrorDocument) *BucketWebsiteErrorDocument {
+		return &v
+	}).(BucketWebsiteErrorDocumentPtrOutput)
+}
+
+// The key of the error document object, e.g., error.html.
+func (o BucketWebsiteErrorDocumentOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketWebsiteErrorDocument) *string { return v.Key }).(pulumi.StringPtrOutput)
+}
+
+type BucketWebsiteErrorDocumentPtrOutput struct{ *pulumi.OutputState }
+
+func (BucketWebsiteErrorDocumentPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketWebsiteErrorDocument)(nil)).Elem()
+}
+
+func (o BucketWebsiteErrorDocumentPtrOutput) ToBucketWebsiteErrorDocumentPtrOutput() BucketWebsiteErrorDocumentPtrOutput {
+	return o
+}
+
+func (o BucketWebsiteErrorDocumentPtrOutput) ToBucketWebsiteErrorDocumentPtrOutputWithContext(ctx context.Context) BucketWebsiteErrorDocumentPtrOutput {
+	return o
+}
+
+func (o BucketWebsiteErrorDocumentPtrOutput) Elem() BucketWebsiteErrorDocumentOutput {
+	return o.ApplyT(func(v *BucketWebsiteErrorDocument) BucketWebsiteErrorDocument {
+		if v != nil {
+			return *v
+		}
+		var ret BucketWebsiteErrorDocument
+		return ret
+	}).(BucketWebsiteErrorDocumentOutput)
+}
+
+// The key of the error document object, e.g., error.html.
+func (o BucketWebsiteErrorDocumentPtrOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BucketWebsiteErrorDocument) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Key
+	}).(pulumi.StringPtrOutput)
+}
+
+type BucketWebsiteIndexDocument struct {
+	// The suffix of the index document, e.g., index.html.
+	Suffix string `pulumi:"suffix"`
+	// Whether to support subdirectory indexing. Default is false.
+	SupportSubDir *bool `pulumi:"supportSubDir"`
+}
+
+// BucketWebsiteIndexDocumentInput is an input type that accepts BucketWebsiteIndexDocumentArgs and BucketWebsiteIndexDocumentOutput values.
+// You can construct a concrete instance of `BucketWebsiteIndexDocumentInput` via:
+//
+//	BucketWebsiteIndexDocumentArgs{...}
+type BucketWebsiteIndexDocumentInput interface {
+	pulumi.Input
+
+	ToBucketWebsiteIndexDocumentOutput() BucketWebsiteIndexDocumentOutput
+	ToBucketWebsiteIndexDocumentOutputWithContext(context.Context) BucketWebsiteIndexDocumentOutput
+}
+
+type BucketWebsiteIndexDocumentArgs struct {
+	// The suffix of the index document, e.g., index.html.
+	Suffix pulumi.StringInput `pulumi:"suffix"`
+	// Whether to support subdirectory indexing. Default is false.
+	SupportSubDir pulumi.BoolPtrInput `pulumi:"supportSubDir"`
+}
+
+func (BucketWebsiteIndexDocumentArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketWebsiteIndexDocument)(nil)).Elem()
+}
+
+func (i BucketWebsiteIndexDocumentArgs) ToBucketWebsiteIndexDocumentOutput() BucketWebsiteIndexDocumentOutput {
+	return i.ToBucketWebsiteIndexDocumentOutputWithContext(context.Background())
+}
+
+func (i BucketWebsiteIndexDocumentArgs) ToBucketWebsiteIndexDocumentOutputWithContext(ctx context.Context) BucketWebsiteIndexDocumentOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketWebsiteIndexDocumentOutput)
+}
+
+func (i BucketWebsiteIndexDocumentArgs) ToBucketWebsiteIndexDocumentPtrOutput() BucketWebsiteIndexDocumentPtrOutput {
+	return i.ToBucketWebsiteIndexDocumentPtrOutputWithContext(context.Background())
+}
+
+func (i BucketWebsiteIndexDocumentArgs) ToBucketWebsiteIndexDocumentPtrOutputWithContext(ctx context.Context) BucketWebsiteIndexDocumentPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketWebsiteIndexDocumentOutput).ToBucketWebsiteIndexDocumentPtrOutputWithContext(ctx)
+}
+
+// BucketWebsiteIndexDocumentPtrInput is an input type that accepts BucketWebsiteIndexDocumentArgs, BucketWebsiteIndexDocumentPtr and BucketWebsiteIndexDocumentPtrOutput values.
+// You can construct a concrete instance of `BucketWebsiteIndexDocumentPtrInput` via:
+//
+//	        BucketWebsiteIndexDocumentArgs{...}
+//
+//	or:
+//
+//	        nil
+type BucketWebsiteIndexDocumentPtrInput interface {
+	pulumi.Input
+
+	ToBucketWebsiteIndexDocumentPtrOutput() BucketWebsiteIndexDocumentPtrOutput
+	ToBucketWebsiteIndexDocumentPtrOutputWithContext(context.Context) BucketWebsiteIndexDocumentPtrOutput
+}
+
+type bucketWebsiteIndexDocumentPtrType BucketWebsiteIndexDocumentArgs
+
+func BucketWebsiteIndexDocumentPtr(v *BucketWebsiteIndexDocumentArgs) BucketWebsiteIndexDocumentPtrInput {
+	return (*bucketWebsiteIndexDocumentPtrType)(v)
+}
+
+func (*bucketWebsiteIndexDocumentPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketWebsiteIndexDocument)(nil)).Elem()
+}
+
+func (i *bucketWebsiteIndexDocumentPtrType) ToBucketWebsiteIndexDocumentPtrOutput() BucketWebsiteIndexDocumentPtrOutput {
+	return i.ToBucketWebsiteIndexDocumentPtrOutputWithContext(context.Background())
+}
+
+func (i *bucketWebsiteIndexDocumentPtrType) ToBucketWebsiteIndexDocumentPtrOutputWithContext(ctx context.Context) BucketWebsiteIndexDocumentPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketWebsiteIndexDocumentPtrOutput)
+}
+
+type BucketWebsiteIndexDocumentOutput struct{ *pulumi.OutputState }
+
+func (BucketWebsiteIndexDocumentOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketWebsiteIndexDocument)(nil)).Elem()
+}
+
+func (o BucketWebsiteIndexDocumentOutput) ToBucketWebsiteIndexDocumentOutput() BucketWebsiteIndexDocumentOutput {
+	return o
+}
+
+func (o BucketWebsiteIndexDocumentOutput) ToBucketWebsiteIndexDocumentOutputWithContext(ctx context.Context) BucketWebsiteIndexDocumentOutput {
+	return o
+}
+
+func (o BucketWebsiteIndexDocumentOutput) ToBucketWebsiteIndexDocumentPtrOutput() BucketWebsiteIndexDocumentPtrOutput {
+	return o.ToBucketWebsiteIndexDocumentPtrOutputWithContext(context.Background())
+}
+
+func (o BucketWebsiteIndexDocumentOutput) ToBucketWebsiteIndexDocumentPtrOutputWithContext(ctx context.Context) BucketWebsiteIndexDocumentPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v BucketWebsiteIndexDocument) *BucketWebsiteIndexDocument {
+		return &v
+	}).(BucketWebsiteIndexDocumentPtrOutput)
+}
+
+// The suffix of the index document, e.g., index.html.
+func (o BucketWebsiteIndexDocumentOutput) Suffix() pulumi.StringOutput {
+	return o.ApplyT(func(v BucketWebsiteIndexDocument) string { return v.Suffix }).(pulumi.StringOutput)
+}
+
+// Whether to support subdirectory indexing. Default is false.
+func (o BucketWebsiteIndexDocumentOutput) SupportSubDir() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v BucketWebsiteIndexDocument) *bool { return v.SupportSubDir }).(pulumi.BoolPtrOutput)
+}
+
+type BucketWebsiteIndexDocumentPtrOutput struct{ *pulumi.OutputState }
+
+func (BucketWebsiteIndexDocumentPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketWebsiteIndexDocument)(nil)).Elem()
+}
+
+func (o BucketWebsiteIndexDocumentPtrOutput) ToBucketWebsiteIndexDocumentPtrOutput() BucketWebsiteIndexDocumentPtrOutput {
+	return o
+}
+
+func (o BucketWebsiteIndexDocumentPtrOutput) ToBucketWebsiteIndexDocumentPtrOutputWithContext(ctx context.Context) BucketWebsiteIndexDocumentPtrOutput {
+	return o
+}
+
+func (o BucketWebsiteIndexDocumentPtrOutput) Elem() BucketWebsiteIndexDocumentOutput {
+	return o.ApplyT(func(v *BucketWebsiteIndexDocument) BucketWebsiteIndexDocument {
+		if v != nil {
+			return *v
+		}
+		var ret BucketWebsiteIndexDocument
+		return ret
+	}).(BucketWebsiteIndexDocumentOutput)
+}
+
+// The suffix of the index document, e.g., index.html.
+func (o BucketWebsiteIndexDocumentPtrOutput) Suffix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BucketWebsiteIndexDocument) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Suffix
+	}).(pulumi.StringPtrOutput)
+}
+
+// Whether to support subdirectory indexing. Default is false.
+func (o BucketWebsiteIndexDocumentPtrOutput) SupportSubDir() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *BucketWebsiteIndexDocument) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.SupportSubDir
+	}).(pulumi.BoolPtrOutput)
+}
+
+type BucketWebsiteRedirectAllRequestsTo struct {
+	// The target host name for redirect.
+	HostName *string `pulumi:"hostName"`
+	// The protocol for redirect. Valid values: http, https.
+	Protocol *string `pulumi:"protocol"`
+}
+
+// BucketWebsiteRedirectAllRequestsToInput is an input type that accepts BucketWebsiteRedirectAllRequestsToArgs and BucketWebsiteRedirectAllRequestsToOutput values.
+// You can construct a concrete instance of `BucketWebsiteRedirectAllRequestsToInput` via:
+//
+//	BucketWebsiteRedirectAllRequestsToArgs{...}
+type BucketWebsiteRedirectAllRequestsToInput interface {
+	pulumi.Input
+
+	ToBucketWebsiteRedirectAllRequestsToOutput() BucketWebsiteRedirectAllRequestsToOutput
+	ToBucketWebsiteRedirectAllRequestsToOutputWithContext(context.Context) BucketWebsiteRedirectAllRequestsToOutput
+}
+
+type BucketWebsiteRedirectAllRequestsToArgs struct {
+	// The target host name for redirect.
+	HostName pulumi.StringPtrInput `pulumi:"hostName"`
+	// The protocol for redirect. Valid values: http, https.
+	Protocol pulumi.StringPtrInput `pulumi:"protocol"`
+}
+
+func (BucketWebsiteRedirectAllRequestsToArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketWebsiteRedirectAllRequestsTo)(nil)).Elem()
+}
+
+func (i BucketWebsiteRedirectAllRequestsToArgs) ToBucketWebsiteRedirectAllRequestsToOutput() BucketWebsiteRedirectAllRequestsToOutput {
+	return i.ToBucketWebsiteRedirectAllRequestsToOutputWithContext(context.Background())
+}
+
+func (i BucketWebsiteRedirectAllRequestsToArgs) ToBucketWebsiteRedirectAllRequestsToOutputWithContext(ctx context.Context) BucketWebsiteRedirectAllRequestsToOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketWebsiteRedirectAllRequestsToOutput)
+}
+
+func (i BucketWebsiteRedirectAllRequestsToArgs) ToBucketWebsiteRedirectAllRequestsToPtrOutput() BucketWebsiteRedirectAllRequestsToPtrOutput {
+	return i.ToBucketWebsiteRedirectAllRequestsToPtrOutputWithContext(context.Background())
+}
+
+func (i BucketWebsiteRedirectAllRequestsToArgs) ToBucketWebsiteRedirectAllRequestsToPtrOutputWithContext(ctx context.Context) BucketWebsiteRedirectAllRequestsToPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketWebsiteRedirectAllRequestsToOutput).ToBucketWebsiteRedirectAllRequestsToPtrOutputWithContext(ctx)
+}
+
+// BucketWebsiteRedirectAllRequestsToPtrInput is an input type that accepts BucketWebsiteRedirectAllRequestsToArgs, BucketWebsiteRedirectAllRequestsToPtr and BucketWebsiteRedirectAllRequestsToPtrOutput values.
+// You can construct a concrete instance of `BucketWebsiteRedirectAllRequestsToPtrInput` via:
+//
+//	        BucketWebsiteRedirectAllRequestsToArgs{...}
+//
+//	or:
+//
+//	        nil
+type BucketWebsiteRedirectAllRequestsToPtrInput interface {
+	pulumi.Input
+
+	ToBucketWebsiteRedirectAllRequestsToPtrOutput() BucketWebsiteRedirectAllRequestsToPtrOutput
+	ToBucketWebsiteRedirectAllRequestsToPtrOutputWithContext(context.Context) BucketWebsiteRedirectAllRequestsToPtrOutput
+}
+
+type bucketWebsiteRedirectAllRequestsToPtrType BucketWebsiteRedirectAllRequestsToArgs
+
+func BucketWebsiteRedirectAllRequestsToPtr(v *BucketWebsiteRedirectAllRequestsToArgs) BucketWebsiteRedirectAllRequestsToPtrInput {
+	return (*bucketWebsiteRedirectAllRequestsToPtrType)(v)
+}
+
+func (*bucketWebsiteRedirectAllRequestsToPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketWebsiteRedirectAllRequestsTo)(nil)).Elem()
+}
+
+func (i *bucketWebsiteRedirectAllRequestsToPtrType) ToBucketWebsiteRedirectAllRequestsToPtrOutput() BucketWebsiteRedirectAllRequestsToPtrOutput {
+	return i.ToBucketWebsiteRedirectAllRequestsToPtrOutputWithContext(context.Background())
+}
+
+func (i *bucketWebsiteRedirectAllRequestsToPtrType) ToBucketWebsiteRedirectAllRequestsToPtrOutputWithContext(ctx context.Context) BucketWebsiteRedirectAllRequestsToPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketWebsiteRedirectAllRequestsToPtrOutput)
+}
+
+type BucketWebsiteRedirectAllRequestsToOutput struct{ *pulumi.OutputState }
+
+func (BucketWebsiteRedirectAllRequestsToOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketWebsiteRedirectAllRequestsTo)(nil)).Elem()
+}
+
+func (o BucketWebsiteRedirectAllRequestsToOutput) ToBucketWebsiteRedirectAllRequestsToOutput() BucketWebsiteRedirectAllRequestsToOutput {
+	return o
+}
+
+func (o BucketWebsiteRedirectAllRequestsToOutput) ToBucketWebsiteRedirectAllRequestsToOutputWithContext(ctx context.Context) BucketWebsiteRedirectAllRequestsToOutput {
+	return o
+}
+
+func (o BucketWebsiteRedirectAllRequestsToOutput) ToBucketWebsiteRedirectAllRequestsToPtrOutput() BucketWebsiteRedirectAllRequestsToPtrOutput {
+	return o.ToBucketWebsiteRedirectAllRequestsToPtrOutputWithContext(context.Background())
+}
+
+func (o BucketWebsiteRedirectAllRequestsToOutput) ToBucketWebsiteRedirectAllRequestsToPtrOutputWithContext(ctx context.Context) BucketWebsiteRedirectAllRequestsToPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v BucketWebsiteRedirectAllRequestsTo) *BucketWebsiteRedirectAllRequestsTo {
+		return &v
+	}).(BucketWebsiteRedirectAllRequestsToPtrOutput)
+}
+
+// The target host name for redirect.
+func (o BucketWebsiteRedirectAllRequestsToOutput) HostName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketWebsiteRedirectAllRequestsTo) *string { return v.HostName }).(pulumi.StringPtrOutput)
+}
+
+// The protocol for redirect. Valid values: http, https.
+func (o BucketWebsiteRedirectAllRequestsToOutput) Protocol() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketWebsiteRedirectAllRequestsTo) *string { return v.Protocol }).(pulumi.StringPtrOutput)
+}
+
+type BucketWebsiteRedirectAllRequestsToPtrOutput struct{ *pulumi.OutputState }
+
+func (BucketWebsiteRedirectAllRequestsToPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketWebsiteRedirectAllRequestsTo)(nil)).Elem()
+}
+
+func (o BucketWebsiteRedirectAllRequestsToPtrOutput) ToBucketWebsiteRedirectAllRequestsToPtrOutput() BucketWebsiteRedirectAllRequestsToPtrOutput {
+	return o
+}
+
+func (o BucketWebsiteRedirectAllRequestsToPtrOutput) ToBucketWebsiteRedirectAllRequestsToPtrOutputWithContext(ctx context.Context) BucketWebsiteRedirectAllRequestsToPtrOutput {
+	return o
+}
+
+func (o BucketWebsiteRedirectAllRequestsToPtrOutput) Elem() BucketWebsiteRedirectAllRequestsToOutput {
+	return o.ApplyT(func(v *BucketWebsiteRedirectAllRequestsTo) BucketWebsiteRedirectAllRequestsTo {
+		if v != nil {
+			return *v
+		}
+		var ret BucketWebsiteRedirectAllRequestsTo
+		return ret
+	}).(BucketWebsiteRedirectAllRequestsToOutput)
+}
+
+// The target host name for redirect.
+func (o BucketWebsiteRedirectAllRequestsToPtrOutput) HostName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BucketWebsiteRedirectAllRequestsTo) *string {
+		if v == nil {
+			return nil
+		}
+		return v.HostName
+	}).(pulumi.StringPtrOutput)
+}
+
+// The protocol for redirect. Valid values: http, https.
+func (o BucketWebsiteRedirectAllRequestsToPtrOutput) Protocol() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BucketWebsiteRedirectAllRequestsTo) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Protocol
+	}).(pulumi.StringPtrOutput)
+}
+
+type BucketWebsiteRoutingRule struct {
+	// The condition for the routing rule.
+	Condition BucketWebsiteRoutingRuleCondition `pulumi:"condition"`
+	// The redirect configuration for the routing rule.
+	Redirect BucketWebsiteRoutingRuleRedirect `pulumi:"redirect"`
+}
+
+// BucketWebsiteRoutingRuleInput is an input type that accepts BucketWebsiteRoutingRuleArgs and BucketWebsiteRoutingRuleOutput values.
+// You can construct a concrete instance of `BucketWebsiteRoutingRuleInput` via:
+//
+//	BucketWebsiteRoutingRuleArgs{...}
+type BucketWebsiteRoutingRuleInput interface {
+	pulumi.Input
+
+	ToBucketWebsiteRoutingRuleOutput() BucketWebsiteRoutingRuleOutput
+	ToBucketWebsiteRoutingRuleOutputWithContext(context.Context) BucketWebsiteRoutingRuleOutput
+}
+
+type BucketWebsiteRoutingRuleArgs struct {
+	// The condition for the routing rule.
+	Condition BucketWebsiteRoutingRuleConditionInput `pulumi:"condition"`
+	// The redirect configuration for the routing rule.
+	Redirect BucketWebsiteRoutingRuleRedirectInput `pulumi:"redirect"`
+}
+
+func (BucketWebsiteRoutingRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketWebsiteRoutingRule)(nil)).Elem()
+}
+
+func (i BucketWebsiteRoutingRuleArgs) ToBucketWebsiteRoutingRuleOutput() BucketWebsiteRoutingRuleOutput {
+	return i.ToBucketWebsiteRoutingRuleOutputWithContext(context.Background())
+}
+
+func (i BucketWebsiteRoutingRuleArgs) ToBucketWebsiteRoutingRuleOutputWithContext(ctx context.Context) BucketWebsiteRoutingRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketWebsiteRoutingRuleOutput)
+}
+
+// BucketWebsiteRoutingRuleArrayInput is an input type that accepts BucketWebsiteRoutingRuleArray and BucketWebsiteRoutingRuleArrayOutput values.
+// You can construct a concrete instance of `BucketWebsiteRoutingRuleArrayInput` via:
+//
+//	BucketWebsiteRoutingRuleArray{ BucketWebsiteRoutingRuleArgs{...} }
+type BucketWebsiteRoutingRuleArrayInput interface {
+	pulumi.Input
+
+	ToBucketWebsiteRoutingRuleArrayOutput() BucketWebsiteRoutingRuleArrayOutput
+	ToBucketWebsiteRoutingRuleArrayOutputWithContext(context.Context) BucketWebsiteRoutingRuleArrayOutput
+}
+
+type BucketWebsiteRoutingRuleArray []BucketWebsiteRoutingRuleInput
+
+func (BucketWebsiteRoutingRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BucketWebsiteRoutingRule)(nil)).Elem()
+}
+
+func (i BucketWebsiteRoutingRuleArray) ToBucketWebsiteRoutingRuleArrayOutput() BucketWebsiteRoutingRuleArrayOutput {
+	return i.ToBucketWebsiteRoutingRuleArrayOutputWithContext(context.Background())
+}
+
+func (i BucketWebsiteRoutingRuleArray) ToBucketWebsiteRoutingRuleArrayOutputWithContext(ctx context.Context) BucketWebsiteRoutingRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketWebsiteRoutingRuleArrayOutput)
+}
+
+type BucketWebsiteRoutingRuleOutput struct{ *pulumi.OutputState }
+
+func (BucketWebsiteRoutingRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketWebsiteRoutingRule)(nil)).Elem()
+}
+
+func (o BucketWebsiteRoutingRuleOutput) ToBucketWebsiteRoutingRuleOutput() BucketWebsiteRoutingRuleOutput {
+	return o
+}
+
+func (o BucketWebsiteRoutingRuleOutput) ToBucketWebsiteRoutingRuleOutputWithContext(ctx context.Context) BucketWebsiteRoutingRuleOutput {
+	return o
+}
+
+// The condition for the routing rule.
+func (o BucketWebsiteRoutingRuleOutput) Condition() BucketWebsiteRoutingRuleConditionOutput {
+	return o.ApplyT(func(v BucketWebsiteRoutingRule) BucketWebsiteRoutingRuleCondition { return v.Condition }).(BucketWebsiteRoutingRuleConditionOutput)
+}
+
+// The redirect configuration for the routing rule.
+func (o BucketWebsiteRoutingRuleOutput) Redirect() BucketWebsiteRoutingRuleRedirectOutput {
+	return o.ApplyT(func(v BucketWebsiteRoutingRule) BucketWebsiteRoutingRuleRedirect { return v.Redirect }).(BucketWebsiteRoutingRuleRedirectOutput)
+}
+
+type BucketWebsiteRoutingRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (BucketWebsiteRoutingRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BucketWebsiteRoutingRule)(nil)).Elem()
+}
+
+func (o BucketWebsiteRoutingRuleArrayOutput) ToBucketWebsiteRoutingRuleArrayOutput() BucketWebsiteRoutingRuleArrayOutput {
+	return o
+}
+
+func (o BucketWebsiteRoutingRuleArrayOutput) ToBucketWebsiteRoutingRuleArrayOutputWithContext(ctx context.Context) BucketWebsiteRoutingRuleArrayOutput {
+	return o
+}
+
+func (o BucketWebsiteRoutingRuleArrayOutput) Index(i pulumi.IntInput) BucketWebsiteRoutingRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) BucketWebsiteRoutingRule {
+		return vs[0].([]BucketWebsiteRoutingRule)[vs[1].(int)]
+	}).(BucketWebsiteRoutingRuleOutput)
+}
+
+type BucketWebsiteRoutingRuleCondition struct {
+	// The HTTP error code that must match for the rule to apply, e.g., 404.
+	HttpErrorCodeReturnedEquals *int `pulumi:"httpErrorCodeReturnedEquals"`
+	// The key prefix that must match for the rule to apply.
+	KeyPrefixEquals *string `pulumi:"keyPrefixEquals"`
+}
+
+// BucketWebsiteRoutingRuleConditionInput is an input type that accepts BucketWebsiteRoutingRuleConditionArgs and BucketWebsiteRoutingRuleConditionOutput values.
+// You can construct a concrete instance of `BucketWebsiteRoutingRuleConditionInput` via:
+//
+//	BucketWebsiteRoutingRuleConditionArgs{...}
+type BucketWebsiteRoutingRuleConditionInput interface {
+	pulumi.Input
+
+	ToBucketWebsiteRoutingRuleConditionOutput() BucketWebsiteRoutingRuleConditionOutput
+	ToBucketWebsiteRoutingRuleConditionOutputWithContext(context.Context) BucketWebsiteRoutingRuleConditionOutput
+}
+
+type BucketWebsiteRoutingRuleConditionArgs struct {
+	// The HTTP error code that must match for the rule to apply, e.g., 404.
+	HttpErrorCodeReturnedEquals pulumi.IntPtrInput `pulumi:"httpErrorCodeReturnedEquals"`
+	// The key prefix that must match for the rule to apply.
+	KeyPrefixEquals pulumi.StringPtrInput `pulumi:"keyPrefixEquals"`
+}
+
+func (BucketWebsiteRoutingRuleConditionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketWebsiteRoutingRuleCondition)(nil)).Elem()
+}
+
+func (i BucketWebsiteRoutingRuleConditionArgs) ToBucketWebsiteRoutingRuleConditionOutput() BucketWebsiteRoutingRuleConditionOutput {
+	return i.ToBucketWebsiteRoutingRuleConditionOutputWithContext(context.Background())
+}
+
+func (i BucketWebsiteRoutingRuleConditionArgs) ToBucketWebsiteRoutingRuleConditionOutputWithContext(ctx context.Context) BucketWebsiteRoutingRuleConditionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketWebsiteRoutingRuleConditionOutput)
+}
+
+type BucketWebsiteRoutingRuleConditionOutput struct{ *pulumi.OutputState }
+
+func (BucketWebsiteRoutingRuleConditionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketWebsiteRoutingRuleCondition)(nil)).Elem()
+}
+
+func (o BucketWebsiteRoutingRuleConditionOutput) ToBucketWebsiteRoutingRuleConditionOutput() BucketWebsiteRoutingRuleConditionOutput {
+	return o
+}
+
+func (o BucketWebsiteRoutingRuleConditionOutput) ToBucketWebsiteRoutingRuleConditionOutputWithContext(ctx context.Context) BucketWebsiteRoutingRuleConditionOutput {
+	return o
+}
+
+// The HTTP error code that must match for the rule to apply, e.g., 404.
+func (o BucketWebsiteRoutingRuleConditionOutput) HttpErrorCodeReturnedEquals() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v BucketWebsiteRoutingRuleCondition) *int { return v.HttpErrorCodeReturnedEquals }).(pulumi.IntPtrOutput)
+}
+
+// The key prefix that must match for the rule to apply.
+func (o BucketWebsiteRoutingRuleConditionOutput) KeyPrefixEquals() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketWebsiteRoutingRuleCondition) *string { return v.KeyPrefixEquals }).(pulumi.StringPtrOutput)
+}
+
+type BucketWebsiteRoutingRuleRedirect struct {
+	// The host name to redirect to.
+	HostName *string `pulumi:"hostName"`
+	// The HTTP redirect code to use, e.g., 301, 302.
+	HttpRedirectCode *int `pulumi:"httpRedirectCode"`
+	// The protocol to use for the redirect. Valid values: http, https.
+	Protocol *string `pulumi:"protocol"`
+	// The key prefix to replace the original key prefix with.
+	ReplaceKeyPrefixWith *string `pulumi:"replaceKeyPrefixWith"`
+	// The key to replace the original key with.
+	ReplaceKeyWith *string `pulumi:"replaceKeyWith"`
+}
+
+// BucketWebsiteRoutingRuleRedirectInput is an input type that accepts BucketWebsiteRoutingRuleRedirectArgs and BucketWebsiteRoutingRuleRedirectOutput values.
+// You can construct a concrete instance of `BucketWebsiteRoutingRuleRedirectInput` via:
+//
+//	BucketWebsiteRoutingRuleRedirectArgs{...}
+type BucketWebsiteRoutingRuleRedirectInput interface {
+	pulumi.Input
+
+	ToBucketWebsiteRoutingRuleRedirectOutput() BucketWebsiteRoutingRuleRedirectOutput
+	ToBucketWebsiteRoutingRuleRedirectOutputWithContext(context.Context) BucketWebsiteRoutingRuleRedirectOutput
+}
+
+type BucketWebsiteRoutingRuleRedirectArgs struct {
+	// The host name to redirect to.
+	HostName pulumi.StringPtrInput `pulumi:"hostName"`
+	// The HTTP redirect code to use, e.g., 301, 302.
+	HttpRedirectCode pulumi.IntPtrInput `pulumi:"httpRedirectCode"`
+	// The protocol to use for the redirect. Valid values: http, https.
+	Protocol pulumi.StringPtrInput `pulumi:"protocol"`
+	// The key prefix to replace the original key prefix with.
+	ReplaceKeyPrefixWith pulumi.StringPtrInput `pulumi:"replaceKeyPrefixWith"`
+	// The key to replace the original key with.
+	ReplaceKeyWith pulumi.StringPtrInput `pulumi:"replaceKeyWith"`
+}
+
+func (BucketWebsiteRoutingRuleRedirectArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketWebsiteRoutingRuleRedirect)(nil)).Elem()
+}
+
+func (i BucketWebsiteRoutingRuleRedirectArgs) ToBucketWebsiteRoutingRuleRedirectOutput() BucketWebsiteRoutingRuleRedirectOutput {
+	return i.ToBucketWebsiteRoutingRuleRedirectOutputWithContext(context.Background())
+}
+
+func (i BucketWebsiteRoutingRuleRedirectArgs) ToBucketWebsiteRoutingRuleRedirectOutputWithContext(ctx context.Context) BucketWebsiteRoutingRuleRedirectOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketWebsiteRoutingRuleRedirectOutput)
+}
+
+type BucketWebsiteRoutingRuleRedirectOutput struct{ *pulumi.OutputState }
+
+func (BucketWebsiteRoutingRuleRedirectOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketWebsiteRoutingRuleRedirect)(nil)).Elem()
+}
+
+func (o BucketWebsiteRoutingRuleRedirectOutput) ToBucketWebsiteRoutingRuleRedirectOutput() BucketWebsiteRoutingRuleRedirectOutput {
+	return o
+}
+
+func (o BucketWebsiteRoutingRuleRedirectOutput) ToBucketWebsiteRoutingRuleRedirectOutputWithContext(ctx context.Context) BucketWebsiteRoutingRuleRedirectOutput {
+	return o
+}
+
+// The host name to redirect to.
+func (o BucketWebsiteRoutingRuleRedirectOutput) HostName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketWebsiteRoutingRuleRedirect) *string { return v.HostName }).(pulumi.StringPtrOutput)
+}
+
+// The HTTP redirect code to use, e.g., 301, 302.
+func (o BucketWebsiteRoutingRuleRedirectOutput) HttpRedirectCode() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v BucketWebsiteRoutingRuleRedirect) *int { return v.HttpRedirectCode }).(pulumi.IntPtrOutput)
+}
+
+// The protocol to use for the redirect. Valid values: http, https.
+func (o BucketWebsiteRoutingRuleRedirectOutput) Protocol() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketWebsiteRoutingRuleRedirect) *string { return v.Protocol }).(pulumi.StringPtrOutput)
+}
+
+// The key prefix to replace the original key prefix with.
+func (o BucketWebsiteRoutingRuleRedirectOutput) ReplaceKeyPrefixWith() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketWebsiteRoutingRuleRedirect) *string { return v.ReplaceKeyPrefixWith }).(pulumi.StringPtrOutput)
+}
+
+// The key to replace the original key with.
+func (o BucketWebsiteRoutingRuleRedirectOutput) ReplaceKeyWith() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketWebsiteRoutingRuleRedirect) *string { return v.ReplaceKeyWith }).(pulumi.StringPtrOutput)
+}
+
 type BucketsBucket struct {
+	// The bucket type of the TOS bucket.
+	BucketType string `pulumi:"bucketType"`
 	// The create date of the TOS bucket.
 	CreationDate string `pulumi:"creationDate"`
 	// The extranet endpoint of the TOS bucket.
@@ -3522,6 +8539,8 @@ type BucketsBucket struct {
 	//
 	// Deprecated: The Field is Deprecated.
 	Prefix string `pulumi:"prefix"`
+	// The project of the TOS bucket.
+	ProjectName string `pulumi:"projectName"`
 }
 
 // BucketsBucketInput is an input type that accepts BucketsBucketArgs and BucketsBucketOutput values.
@@ -3536,6 +8555,8 @@ type BucketsBucketInput interface {
 }
 
 type BucketsBucketArgs struct {
+	// The bucket type of the TOS bucket.
+	BucketType pulumi.StringInput `pulumi:"bucketType"`
 	// The create date of the TOS bucket.
 	CreationDate pulumi.StringInput `pulumi:"creationDate"`
 	// The extranet endpoint of the TOS bucket.
@@ -3562,6 +8583,8 @@ type BucketsBucketArgs struct {
 	//
 	// Deprecated: The Field is Deprecated.
 	Prefix pulumi.StringInput `pulumi:"prefix"`
+	// The project of the TOS bucket.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
 }
 
 func (BucketsBucketArgs) ElementType() reflect.Type {
@@ -3615,6 +8638,11 @@ func (o BucketsBucketOutput) ToBucketsBucketOutputWithContext(ctx context.Contex
 	return o
 }
 
+// The bucket type of the TOS bucket.
+func (o BucketsBucketOutput) BucketType() pulumi.StringOutput {
+	return o.ApplyT(func(v BucketsBucket) string { return v.BucketType }).(pulumi.StringOutput)
+}
+
 // The create date of the TOS bucket.
 func (o BucketsBucketOutput) CreationDate() pulumi.StringOutput {
 	return o.ApplyT(func(v BucketsBucket) string { return v.CreationDate }).(pulumi.StringOutput)
@@ -3666,6 +8694,11 @@ func (o BucketsBucketOutput) Name() pulumi.StringOutput {
 // Deprecated: The Field is Deprecated.
 func (o BucketsBucketOutput) Prefix() pulumi.StringOutput {
 	return o.ApplyT(func(v BucketsBucket) string { return v.Prefix }).(pulumi.StringOutput)
+}
+
+// The project of the TOS bucket.
+func (o BucketsBucketOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v BucketsBucket) string { return v.ProjectName }).(pulumi.StringOutput)
 }
 
 type BucketsBucketArrayOutput struct{ *pulumi.OutputState }
@@ -4514,6 +9547,8 @@ func (o GetBucketObjectsObjectArrayOutput) Index(i pulumi.IntInput) GetBucketObj
 }
 
 type GetBucketsBucket struct {
+	// The bucket type of the TOS bucket.
+	BucketType string `pulumi:"bucketType"`
 	// The create date of the TOS bucket.
 	CreationDate string `pulumi:"creationDate"`
 	// The extranet endpoint of the TOS bucket.
@@ -4540,6 +9575,8 @@ type GetBucketsBucket struct {
 	//
 	// Deprecated: The Field is Deprecated.
 	Prefix string `pulumi:"prefix"`
+	// The project of the TOS bucket.
+	ProjectName string `pulumi:"projectName"`
 }
 
 // GetBucketsBucketInput is an input type that accepts GetBucketsBucketArgs and GetBucketsBucketOutput values.
@@ -4554,6 +9591,8 @@ type GetBucketsBucketInput interface {
 }
 
 type GetBucketsBucketArgs struct {
+	// The bucket type of the TOS bucket.
+	BucketType pulumi.StringInput `pulumi:"bucketType"`
 	// The create date of the TOS bucket.
 	CreationDate pulumi.StringInput `pulumi:"creationDate"`
 	// The extranet endpoint of the TOS bucket.
@@ -4580,6 +9619,8 @@ type GetBucketsBucketArgs struct {
 	//
 	// Deprecated: The Field is Deprecated.
 	Prefix pulumi.StringInput `pulumi:"prefix"`
+	// The project of the TOS bucket.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
 }
 
 func (GetBucketsBucketArgs) ElementType() reflect.Type {
@@ -4631,6 +9672,11 @@ func (o GetBucketsBucketOutput) ToGetBucketsBucketOutput() GetBucketsBucketOutpu
 
 func (o GetBucketsBucketOutput) ToGetBucketsBucketOutputWithContext(ctx context.Context) GetBucketsBucketOutput {
 	return o
+}
+
+// The bucket type of the TOS bucket.
+func (o GetBucketsBucketOutput) BucketType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBucketsBucket) string { return v.BucketType }).(pulumi.StringOutput)
 }
 
 // The create date of the TOS bucket.
@@ -4686,6 +9732,11 @@ func (o GetBucketsBucketOutput) Prefix() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBucketsBucket) string { return v.Prefix }).(pulumi.StringOutput)
 }
 
+// The project of the TOS bucket.
+func (o GetBucketsBucketOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBucketsBucket) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
 type GetBucketsBucketArrayOutput struct{ *pulumi.OutputState }
 
 func (GetBucketsBucketArrayOutput) ElementType() reflect.Type {
@@ -4711,6 +9762,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketAccountAclArrayInput)(nil)).Elem(), BucketAccountAclArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketCorsCorsRuleInput)(nil)).Elem(), BucketCorsCorsRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketCorsCorsRuleArrayInput)(nil)).Elem(), BucketCorsCorsRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketCustomdomainCustomDomainRuleInput)(nil)).Elem(), BucketCustomdomainCustomDomainRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketCustomdomainCustomDomainRuleArrayInput)(nil)).Elem(), BucketCustomdomainCustomDomainRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketEncryptionRuleInput)(nil)).Elem(), BucketEncryptionRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketEncryptionRulePtrInput)(nil)).Elem(), BucketEncryptionRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketEncryptionRuleApplyServerSideEncryptionByDefaultInput)(nil)).Elem(), BucketEncryptionRuleApplyServerSideEncryptionByDefaultArgs{})
@@ -4737,6 +9790,56 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketInventoryOptionalFieldsPtrInput)(nil)).Elem(), BucketInventoryOptionalFieldsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketInventoryScheduleInput)(nil)).Elem(), BucketInventoryScheduleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketInventorySchedulePtrInput)(nil)).Elem(), BucketInventoryScheduleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketLifecycleRuleInput)(nil)).Elem(), BucketLifecycleRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketLifecycleRuleArrayInput)(nil)).Elem(), BucketLifecycleRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketLifecycleRuleAbortIncompleteMultipartUploadInput)(nil)).Elem(), BucketLifecycleRuleAbortIncompleteMultipartUploadArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketLifecycleRuleAbortIncompleteMultipartUploadPtrInput)(nil)).Elem(), BucketLifecycleRuleAbortIncompleteMultipartUploadArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketLifecycleRuleExpirationInput)(nil)).Elem(), BucketLifecycleRuleExpirationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketLifecycleRuleExpirationPtrInput)(nil)).Elem(), BucketLifecycleRuleExpirationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketLifecycleRuleFilterInput)(nil)).Elem(), BucketLifecycleRuleFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketLifecycleRuleFilterPtrInput)(nil)).Elem(), BucketLifecycleRuleFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketLifecycleRuleNonCurrentVersionExpirationInput)(nil)).Elem(), BucketLifecycleRuleNonCurrentVersionExpirationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketLifecycleRuleNonCurrentVersionExpirationPtrInput)(nil)).Elem(), BucketLifecycleRuleNonCurrentVersionExpirationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketLifecycleRuleNonCurrentVersionTransitionInput)(nil)).Elem(), BucketLifecycleRuleNonCurrentVersionTransitionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketLifecycleRuleNonCurrentVersionTransitionArrayInput)(nil)).Elem(), BucketLifecycleRuleNonCurrentVersionTransitionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketLifecycleRuleTagInput)(nil)).Elem(), BucketLifecycleRuleTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketLifecycleRuleTagArrayInput)(nil)).Elem(), BucketLifecycleRuleTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketLifecycleRuleTransitionInput)(nil)).Elem(), BucketLifecycleRuleTransitionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketLifecycleRuleTransitionArrayInput)(nil)).Elem(), BucketLifecycleRuleTransitionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketLoggingLoggingEnabledInput)(nil)).Elem(), BucketLoggingLoggingEnabledArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketLoggingLoggingEnabledArrayInput)(nil)).Elem(), BucketLoggingLoggingEnabledArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketMirrorBackRuleInput)(nil)).Elem(), BucketMirrorBackRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketMirrorBackRuleArrayInput)(nil)).Elem(), BucketMirrorBackRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketMirrorBackRuleConditionInput)(nil)).Elem(), BucketMirrorBackRuleConditionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketMirrorBackRuleConditionPtrInput)(nil)).Elem(), BucketMirrorBackRuleConditionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketMirrorBackRuleRedirectInput)(nil)).Elem(), BucketMirrorBackRuleRedirectArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketMirrorBackRuleRedirectPtrInput)(nil)).Elem(), BucketMirrorBackRuleRedirectArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleInput)(nil)).Elem(), BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleArrayInput)(nil)).Elem(), BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketMirrorBackRuleRedirectMirrorHeaderInput)(nil)).Elem(), BucketMirrorBackRuleRedirectMirrorHeaderArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketMirrorBackRuleRedirectMirrorHeaderArrayInput)(nil)).Elem(), BucketMirrorBackRuleRedirectMirrorHeaderArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketMirrorBackRuleRedirectMirrorHeaderSetInput)(nil)).Elem(), BucketMirrorBackRuleRedirectMirrorHeaderSetArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketMirrorBackRuleRedirectMirrorHeaderSetArrayInput)(nil)).Elem(), BucketMirrorBackRuleRedirectMirrorHeaderSetArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketMirrorBackRuleRedirectPrivateSourceInput)(nil)).Elem(), BucketMirrorBackRuleRedirectPrivateSourceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketMirrorBackRuleRedirectPrivateSourceArrayInput)(nil)).Elem(), BucketMirrorBackRuleRedirectPrivateSourceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointInput)(nil)).Elem(), BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointArrayInput)(nil)).Elem(), BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerInput)(nil)).Elem(), BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerArrayInput)(nil)).Elem(), BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderInput)(nil)).Elem(), BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderPtrInput)(nil)).Elem(), BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryInput)(nil)).Elem(), BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryArrayInput)(nil)).Elem(), BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderInput)(nil)).Elem(), BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderPtrInput)(nil)).Elem(), BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketMirrorBackRuleRedirectPublicSourceInput)(nil)).Elem(), BucketMirrorBackRuleRedirectPublicSourceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketMirrorBackRuleRedirectPublicSourcePtrInput)(nil)).Elem(), BucketMirrorBackRuleRedirectPublicSourceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketMirrorBackRuleRedirectPublicSourceSourceEndpointInput)(nil)).Elem(), BucketMirrorBackRuleRedirectPublicSourceSourceEndpointArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtrInput)(nil)).Elem(), BucketMirrorBackRuleRedirectPublicSourceSourceEndpointArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketMirrorBackRuleRedirectTransformInput)(nil)).Elem(), BucketMirrorBackRuleRedirectTransformArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketMirrorBackRuleRedirectTransformPtrInput)(nil)).Elem(), BucketMirrorBackRuleRedirectTransformArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixInput)(nil)).Elem(), BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtrInput)(nil)).Elem(), BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketNotificationRulesInput)(nil)).Elem(), BucketNotificationRulesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketNotificationRulesPtrInput)(nil)).Elem(), BucketNotificationRulesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketNotificationRulesDestinationInput)(nil)).Elem(), BucketNotificationRulesDestinationArgs{})
@@ -4751,14 +9854,32 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketNotificationRulesFilterTosKeyFilterRuleArrayInput)(nil)).Elem(), BucketNotificationRulesFilterTosKeyFilterRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketObjectAccountAclInput)(nil)).Elem(), BucketObjectAccountAclArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketObjectAccountAclArrayInput)(nil)).Elem(), BucketObjectAccountAclArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketObjectLockConfigurationRuleInput)(nil)).Elem(), BucketObjectLockConfigurationRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketObjectLockConfigurationRulePtrInput)(nil)).Elem(), BucketObjectLockConfigurationRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketObjectLockConfigurationRuleDefaultRetentionInput)(nil)).Elem(), BucketObjectLockConfigurationRuleDefaultRetentionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketObjectLockConfigurationRuleDefaultRetentionPtrInput)(nil)).Elem(), BucketObjectLockConfigurationRuleDefaultRetentionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketObjectTagInput)(nil)).Elem(), BucketObjectTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketObjectTagArrayInput)(nil)).Elem(), BucketObjectTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketObjectsObjectInput)(nil)).Elem(), BucketObjectsObjectArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketObjectsObjectArrayInput)(nil)).Elem(), BucketObjectsObjectArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketRealtimeLogAccessLogConfigurationInput)(nil)).Elem(), BucketRealtimeLogAccessLogConfigurationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketRealtimeLogAccessLogConfigurationPtrInput)(nil)).Elem(), BucketRealtimeLogAccessLogConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketReplicationRuleInput)(nil)).Elem(), BucketReplicationRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketReplicationRuleArrayInput)(nil)).Elem(), BucketReplicationRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketReplicationRuleAccessControlTranslationInput)(nil)).Elem(), BucketReplicationRuleAccessControlTranslationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketReplicationRuleDestinationInput)(nil)).Elem(), BucketReplicationRuleDestinationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketTagInput)(nil)).Elem(), BucketTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketTagArrayInput)(nil)).Elem(), BucketTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketWebsiteErrorDocumentInput)(nil)).Elem(), BucketWebsiteErrorDocumentArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketWebsiteErrorDocumentPtrInput)(nil)).Elem(), BucketWebsiteErrorDocumentArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketWebsiteIndexDocumentInput)(nil)).Elem(), BucketWebsiteIndexDocumentArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketWebsiteIndexDocumentPtrInput)(nil)).Elem(), BucketWebsiteIndexDocumentArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketWebsiteRedirectAllRequestsToInput)(nil)).Elem(), BucketWebsiteRedirectAllRequestsToArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketWebsiteRedirectAllRequestsToPtrInput)(nil)).Elem(), BucketWebsiteRedirectAllRequestsToArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketWebsiteRoutingRuleInput)(nil)).Elem(), BucketWebsiteRoutingRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketWebsiteRoutingRuleArrayInput)(nil)).Elem(), BucketWebsiteRoutingRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketWebsiteRoutingRuleConditionInput)(nil)).Elem(), BucketWebsiteRoutingRuleConditionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketWebsiteRoutingRuleRedirectInput)(nil)).Elem(), BucketWebsiteRoutingRuleRedirectArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketsBucketInput)(nil)).Elem(), BucketsBucketArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketsBucketArrayInput)(nil)).Elem(), BucketsBucketArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBucketInventoriesInventoryConfigurationInput)(nil)).Elem(), GetBucketInventoriesInventoryConfigurationArgs{})
@@ -4781,6 +9902,8 @@ func init() {
 	pulumi.RegisterOutputType(BucketAccountAclArrayOutput{})
 	pulumi.RegisterOutputType(BucketCorsCorsRuleOutput{})
 	pulumi.RegisterOutputType(BucketCorsCorsRuleArrayOutput{})
+	pulumi.RegisterOutputType(BucketCustomdomainCustomDomainRuleOutput{})
+	pulumi.RegisterOutputType(BucketCustomdomainCustomDomainRuleArrayOutput{})
 	pulumi.RegisterOutputType(BucketEncryptionRuleOutput{})
 	pulumi.RegisterOutputType(BucketEncryptionRulePtrOutput{})
 	pulumi.RegisterOutputType(BucketEncryptionRuleApplyServerSideEncryptionByDefaultOutput{})
@@ -4807,6 +9930,56 @@ func init() {
 	pulumi.RegisterOutputType(BucketInventoryOptionalFieldsPtrOutput{})
 	pulumi.RegisterOutputType(BucketInventoryScheduleOutput{})
 	pulumi.RegisterOutputType(BucketInventorySchedulePtrOutput{})
+	pulumi.RegisterOutputType(BucketLifecycleRuleOutput{})
+	pulumi.RegisterOutputType(BucketLifecycleRuleArrayOutput{})
+	pulumi.RegisterOutputType(BucketLifecycleRuleAbortIncompleteMultipartUploadOutput{})
+	pulumi.RegisterOutputType(BucketLifecycleRuleAbortIncompleteMultipartUploadPtrOutput{})
+	pulumi.RegisterOutputType(BucketLifecycleRuleExpirationOutput{})
+	pulumi.RegisterOutputType(BucketLifecycleRuleExpirationPtrOutput{})
+	pulumi.RegisterOutputType(BucketLifecycleRuleFilterOutput{})
+	pulumi.RegisterOutputType(BucketLifecycleRuleFilterPtrOutput{})
+	pulumi.RegisterOutputType(BucketLifecycleRuleNonCurrentVersionExpirationOutput{})
+	pulumi.RegisterOutputType(BucketLifecycleRuleNonCurrentVersionExpirationPtrOutput{})
+	pulumi.RegisterOutputType(BucketLifecycleRuleNonCurrentVersionTransitionOutput{})
+	pulumi.RegisterOutputType(BucketLifecycleRuleNonCurrentVersionTransitionArrayOutput{})
+	pulumi.RegisterOutputType(BucketLifecycleRuleTagOutput{})
+	pulumi.RegisterOutputType(BucketLifecycleRuleTagArrayOutput{})
+	pulumi.RegisterOutputType(BucketLifecycleRuleTransitionOutput{})
+	pulumi.RegisterOutputType(BucketLifecycleRuleTransitionArrayOutput{})
+	pulumi.RegisterOutputType(BucketLoggingLoggingEnabledOutput{})
+	pulumi.RegisterOutputType(BucketLoggingLoggingEnabledArrayOutput{})
+	pulumi.RegisterOutputType(BucketMirrorBackRuleOutput{})
+	pulumi.RegisterOutputType(BucketMirrorBackRuleArrayOutput{})
+	pulumi.RegisterOutputType(BucketMirrorBackRuleConditionOutput{})
+	pulumi.RegisterOutputType(BucketMirrorBackRuleConditionPtrOutput{})
+	pulumi.RegisterOutputType(BucketMirrorBackRuleRedirectOutput{})
+	pulumi.RegisterOutputType(BucketMirrorBackRuleRedirectPtrOutput{})
+	pulumi.RegisterOutputType(BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleOutput{})
+	pulumi.RegisterOutputType(BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRuleArrayOutput{})
+	pulumi.RegisterOutputType(BucketMirrorBackRuleRedirectMirrorHeaderOutput{})
+	pulumi.RegisterOutputType(BucketMirrorBackRuleRedirectMirrorHeaderArrayOutput{})
+	pulumi.RegisterOutputType(BucketMirrorBackRuleRedirectMirrorHeaderSetOutput{})
+	pulumi.RegisterOutputType(BucketMirrorBackRuleRedirectMirrorHeaderSetArrayOutput{})
+	pulumi.RegisterOutputType(BucketMirrorBackRuleRedirectPrivateSourceOutput{})
+	pulumi.RegisterOutputType(BucketMirrorBackRuleRedirectPrivateSourceArrayOutput{})
+	pulumi.RegisterOutputType(BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointOutput{})
+	pulumi.RegisterOutputType(BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointArrayOutput{})
+	pulumi.RegisterOutputType(BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerOutput{})
+	pulumi.RegisterOutputType(BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerArrayOutput{})
+	pulumi.RegisterOutputType(BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderOutput{})
+	pulumi.RegisterOutputType(BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProviderPtrOutput{})
+	pulumi.RegisterOutputType(BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryOutput{})
+	pulumi.RegisterOutputType(BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryArrayOutput{})
+	pulumi.RegisterOutputType(BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderOutput{})
+	pulumi.RegisterOutputType(BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProviderPtrOutput{})
+	pulumi.RegisterOutputType(BucketMirrorBackRuleRedirectPublicSourceOutput{})
+	pulumi.RegisterOutputType(BucketMirrorBackRuleRedirectPublicSourcePtrOutput{})
+	pulumi.RegisterOutputType(BucketMirrorBackRuleRedirectPublicSourceSourceEndpointOutput{})
+	pulumi.RegisterOutputType(BucketMirrorBackRuleRedirectPublicSourceSourceEndpointPtrOutput{})
+	pulumi.RegisterOutputType(BucketMirrorBackRuleRedirectTransformOutput{})
+	pulumi.RegisterOutputType(BucketMirrorBackRuleRedirectTransformPtrOutput{})
+	pulumi.RegisterOutputType(BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixOutput{})
+	pulumi.RegisterOutputType(BucketMirrorBackRuleRedirectTransformReplaceKeyPrefixPtrOutput{})
 	pulumi.RegisterOutputType(BucketNotificationRulesOutput{})
 	pulumi.RegisterOutputType(BucketNotificationRulesPtrOutput{})
 	pulumi.RegisterOutputType(BucketNotificationRulesDestinationOutput{})
@@ -4821,14 +9994,32 @@ func init() {
 	pulumi.RegisterOutputType(BucketNotificationRulesFilterTosKeyFilterRuleArrayOutput{})
 	pulumi.RegisterOutputType(BucketObjectAccountAclOutput{})
 	pulumi.RegisterOutputType(BucketObjectAccountAclArrayOutput{})
+	pulumi.RegisterOutputType(BucketObjectLockConfigurationRuleOutput{})
+	pulumi.RegisterOutputType(BucketObjectLockConfigurationRulePtrOutput{})
+	pulumi.RegisterOutputType(BucketObjectLockConfigurationRuleDefaultRetentionOutput{})
+	pulumi.RegisterOutputType(BucketObjectLockConfigurationRuleDefaultRetentionPtrOutput{})
 	pulumi.RegisterOutputType(BucketObjectTagOutput{})
 	pulumi.RegisterOutputType(BucketObjectTagArrayOutput{})
 	pulumi.RegisterOutputType(BucketObjectsObjectOutput{})
 	pulumi.RegisterOutputType(BucketObjectsObjectArrayOutput{})
 	pulumi.RegisterOutputType(BucketRealtimeLogAccessLogConfigurationOutput{})
 	pulumi.RegisterOutputType(BucketRealtimeLogAccessLogConfigurationPtrOutput{})
+	pulumi.RegisterOutputType(BucketReplicationRuleOutput{})
+	pulumi.RegisterOutputType(BucketReplicationRuleArrayOutput{})
+	pulumi.RegisterOutputType(BucketReplicationRuleAccessControlTranslationOutput{})
+	pulumi.RegisterOutputType(BucketReplicationRuleDestinationOutput{})
 	pulumi.RegisterOutputType(BucketTagOutput{})
 	pulumi.RegisterOutputType(BucketTagArrayOutput{})
+	pulumi.RegisterOutputType(BucketWebsiteErrorDocumentOutput{})
+	pulumi.RegisterOutputType(BucketWebsiteErrorDocumentPtrOutput{})
+	pulumi.RegisterOutputType(BucketWebsiteIndexDocumentOutput{})
+	pulumi.RegisterOutputType(BucketWebsiteIndexDocumentPtrOutput{})
+	pulumi.RegisterOutputType(BucketWebsiteRedirectAllRequestsToOutput{})
+	pulumi.RegisterOutputType(BucketWebsiteRedirectAllRequestsToPtrOutput{})
+	pulumi.RegisterOutputType(BucketWebsiteRoutingRuleOutput{})
+	pulumi.RegisterOutputType(BucketWebsiteRoutingRuleArrayOutput{})
+	pulumi.RegisterOutputType(BucketWebsiteRoutingRuleConditionOutput{})
+	pulumi.RegisterOutputType(BucketWebsiteRoutingRuleRedirectOutput{})
 	pulumi.RegisterOutputType(BucketsBucketOutput{})
 	pulumi.RegisterOutputType(BucketsBucketArrayOutput{})
 	pulumi.RegisterOutputType(GetBucketInventoriesInventoryConfigurationOutput{})

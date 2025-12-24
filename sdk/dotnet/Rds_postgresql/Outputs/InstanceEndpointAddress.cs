@@ -14,7 +14,11 @@ namespace Pulumi.Volcengine.Rds_postgresql.Outputs
     public sealed class InstanceEndpointAddress
     {
         /// <summary>
-        /// DNS Visibility.
+        /// Address that can be accessed across regions.
+        /// </summary>
+        public readonly string? CrossRegionDomain;
+        /// <summary>
+        /// Whether to enable public network resolution. Values: false: Default value. PrivateZone of Volcano Engine. true: Private and public network resolution of Volcano Engine.
         /// </summary>
         public readonly bool? DnsVisibility;
         /// <summary>
@@ -22,13 +26,25 @@ namespace Pulumi.Volcengine.Rds_postgresql.Outputs
         /// </summary>
         public readonly string? Domain;
         /// <summary>
+        /// The type of private network address. Values: LocalDomain: Local domain name. CrossRegionDomain: Domains accessible across regions.
+        /// </summary>
+        public readonly string? DomainVisibilitySetting;
+        /// <summary>
         /// The ID of the EIP, only valid for Public addresses.
         /// </summary>
         public readonly string? EipId;
         /// <summary>
+        /// Address IP protocol, IPv4 or IPv6.
+        /// </summary>
+        public readonly string? InternetProtocol;
+        /// <summary>
         /// The IP Address.
         /// </summary>
         public readonly string? IpAddress;
+        /// <summary>
+        /// The IPv6 Address.
+        /// </summary>
+        public readonly string? Ipv6Address;
         /// <summary>
         /// Network address type, temporarily Private, Public, PublicService.
         /// </summary>
@@ -44,13 +60,21 @@ namespace Pulumi.Volcengine.Rds_postgresql.Outputs
 
         [OutputConstructor]
         private InstanceEndpointAddress(
+            string? crossRegionDomain,
+
             bool? dnsVisibility,
 
             string? domain,
 
+            string? domainVisibilitySetting,
+
             string? eipId,
 
+            string? internetProtocol,
+
             string? ipAddress,
+
+            string? ipv6Address,
 
             string? networkType,
 
@@ -58,10 +82,14 @@ namespace Pulumi.Volcengine.Rds_postgresql.Outputs
 
             string? subnetId)
         {
+            CrossRegionDomain = crossRegionDomain;
             DnsVisibility = dnsVisibility;
             Domain = domain;
+            DomainVisibilitySetting = domainVisibilitySetting;
             EipId = eipId;
+            InternetProtocol = internetProtocol;
             IpAddress = ipAddress;
+            Ipv6Address = ipv6Address;
             NetworkType = networkType;
             Port = port;
             SubnetId = subnetId;

@@ -118,6 +118,10 @@ type GetInstancesArgs struct {
 	NameRegex *string `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
+	// The project name of the RDS PostgreSQL instance.
+	ProjectName *string `pulumi:"projectName"`
+	// The storage type of the RDS PostgreSQL instance.
+	StorageType *string `pulumi:"storageType"`
 	// Tags.
 	Tags []GetInstancesTag `pulumi:"tags"`
 	// The available zone of the RDS PostgreSQL instance.
@@ -146,6 +150,10 @@ type GetInstancesResult struct {
 	Instances  []GetInstancesInstance `pulumi:"instances"`
 	NameRegex  *string                `pulumi:"nameRegex"`
 	OutputFile *string                `pulumi:"outputFile"`
+	// The project name of the RDS PostgreSQL instance.
+	ProjectName *string `pulumi:"projectName"`
+	// Instance storage type.
+	StorageType *string `pulumi:"storageType"`
 	// Tags.
 	Tags []GetInstancesTag `pulumi:"tags"`
 	// The total count of RDS instance query.
@@ -187,6 +195,10 @@ type GetInstancesOutputArgs struct {
 	NameRegex pulumi.StringPtrInput `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// The project name of the RDS PostgreSQL instance.
+	ProjectName pulumi.StringPtrInput `pulumi:"projectName"`
+	// The storage type of the RDS PostgreSQL instance.
+	StorageType pulumi.StringPtrInput `pulumi:"storageType"`
 	// Tags.
 	Tags GetInstancesTagArrayInput `pulumi:"tags"`
 	// The available zone of the RDS PostgreSQL instance.
@@ -263,6 +275,16 @@ func (o GetInstancesResultOutput) NameRegex() pulumi.StringPtrOutput {
 
 func (o GetInstancesResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetInstancesResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
+}
+
+// The project name of the RDS PostgreSQL instance.
+func (o GetInstancesResultOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetInstancesResult) *string { return v.ProjectName }).(pulumi.StringPtrOutput)
+}
+
+// Instance storage type.
+func (o GetInstancesResultOutput) StorageType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetInstancesResult) *string { return v.StorageType }).(pulumi.StringPtrOutput)
 }
 
 // Tags.

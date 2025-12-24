@@ -108,7 +108,7 @@ class BucketEncryption(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo_bucket = volcengine.tos.Bucket("fooBucket",
-            bucket_name="tf-acc-test-bucket",
+            bucket_name="tf-acc-test-bucket1",
             public_acl="private",
             az_redundancy="multi-az",
             project_name="default",
@@ -159,7 +159,7 @@ class BucketEncryption(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo_bucket = volcengine.tos.Bucket("fooBucket",
-            bucket_name="tf-acc-test-bucket",
+            bucket_name="tf-acc-test-bucket1",
             public_acl="private",
             az_redundancy="multi-az",
             project_name="default",

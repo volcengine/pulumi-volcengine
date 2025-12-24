@@ -14,7 +14,11 @@ namespace Pulumi.Volcengine.Rds_postgresql.Outputs
     public sealed class AllowlistsPostgresqlAllowListResult
     {
         /// <summary>
-        /// The description of the postgresql allow list.
+        /// The category of the postgresql allow list. Valid values: Ordinary, Default.
+        /// </summary>
+        public readonly string AllowListCategory;
+        /// <summary>
+        /// The description of the postgresql allow list. Perform a fuzzy search based on the description information.
         /// </summary>
         public readonly string AllowListDesc;
         /// <summary>
@@ -49,9 +53,19 @@ namespace Pulumi.Volcengine.Rds_postgresql.Outputs
         /// The id of the postgresql allow list.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// The information of the security group bound by the allowlist.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.AllowlistsPostgresqlAllowListSecurityGroupBindInfoResult> SecurityGroupBindInfos;
+        /// <summary>
+        /// IP addresses outside the security group and added to the allowlist.
+        /// </summary>
+        public readonly ImmutableArray<string> UserAllowLists;
 
         [OutputConstructor]
         private AllowlistsPostgresqlAllowListResult(
+            string allowListCategory,
+
             string allowListDesc,
 
             string allowListId,
@@ -68,8 +82,13 @@ namespace Pulumi.Volcengine.Rds_postgresql.Outputs
 
             ImmutableArray<Outputs.AllowlistsPostgresqlAllowListAssociatedInstanceResult> associatedInstances,
 
-            string id)
+            string id,
+
+            ImmutableArray<Outputs.AllowlistsPostgresqlAllowListSecurityGroupBindInfoResult> securityGroupBindInfos,
+
+            ImmutableArray<string> userAllowLists)
         {
+            AllowListCategory = allowListCategory;
             AllowListDesc = allowListDesc;
             AllowListId = allowListId;
             AllowListIpNum = allowListIpNum;
@@ -79,6 +98,8 @@ namespace Pulumi.Volcengine.Rds_postgresql.Outputs
             AssociatedInstanceNum = associatedInstanceNum;
             AssociatedInstances = associatedInstances;
             Id = id;
+            SecurityGroupBindInfos = securityGroupBindInfos;
+            UserAllowLists = userAllowLists;
         }
     }
 }

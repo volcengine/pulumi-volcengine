@@ -25,20 +25,75 @@ export type AllowlistAssociate = import("./allowlistAssociate").AllowlistAssocia
 export const AllowlistAssociate: typeof import("./allowlistAssociate").AllowlistAssociate = null as any;
 utilities.lazyLoad(exports, ["AllowlistAssociate"], () => require("./allowlistAssociate"));
 
+export { AllowlistVersionUpgradeArgs, AllowlistVersionUpgradeState } from "./allowlistVersionUpgrade";
+export type AllowlistVersionUpgrade = import("./allowlistVersionUpgrade").AllowlistVersionUpgrade;
+export const AllowlistVersionUpgrade: typeof import("./allowlistVersionUpgrade").AllowlistVersionUpgrade = null as any;
+utilities.lazyLoad(exports, ["AllowlistVersionUpgrade"], () => require("./allowlistVersionUpgrade"));
+
 export { AllowlistsArgs, AllowlistsResult, AllowlistsOutputArgs } from "./allowlists";
 export const allowlists: typeof import("./allowlists").allowlists = null as any;
 export const allowlistsOutput: typeof import("./allowlists").allowlistsOutput = null as any;
 utilities.lazyLoad(exports, ["allowlists","allowlistsOutput"], () => require("./allowlists"));
+
+export { BackupDownloadArgs, BackupDownloadState } from "./backupDownload";
+export type BackupDownload = import("./backupDownload").BackupDownload;
+export const BackupDownload: typeof import("./backupDownload").BackupDownload = null as any;
+utilities.lazyLoad(exports, ["BackupDownload"], () => require("./backupDownload"));
+
+export { BackupDownloadsArgs, BackupDownloadsResult, BackupDownloadsOutputArgs } from "./backupDownloads";
+export const backupDownloads: typeof import("./backupDownloads").backupDownloads = null as any;
+export const backupDownloadsOutput: typeof import("./backupDownloads").backupDownloadsOutput = null as any;
+utilities.lazyLoad(exports, ["backupDownloads","backupDownloadsOutput"], () => require("./backupDownloads"));
+
+export { BackupPoliciesArgs, BackupPoliciesResult, BackupPoliciesOutputArgs } from "./backupPolicies";
+export const backupPolicies: typeof import("./backupPolicies").backupPolicies = null as any;
+export const backupPoliciesOutput: typeof import("./backupPolicies").backupPoliciesOutput = null as any;
+utilities.lazyLoad(exports, ["backupPolicies","backupPoliciesOutput"], () => require("./backupPolicies"));
+
+export { BackupPolicyArgs, BackupPolicyState } from "./backupPolicy";
+export type BackupPolicy = import("./backupPolicy").BackupPolicy;
+export const BackupPolicy: typeof import("./backupPolicy").BackupPolicy = null as any;
+utilities.lazyLoad(exports, ["BackupPolicy"], () => require("./backupPolicy"));
+
+export { DataBackupArgs, DataBackupState } from "./dataBackup";
+export type DataBackup = import("./dataBackup").DataBackup;
+export const DataBackup: typeof import("./dataBackup").DataBackup = null as any;
+utilities.lazyLoad(exports, ["DataBackup"], () => require("./dataBackup"));
+
+export { DataBackupsArgs, DataBackupsResult, DataBackupsOutputArgs } from "./dataBackups";
+export const dataBackups: typeof import("./dataBackups").dataBackups = null as any;
+export const dataBackupsOutput: typeof import("./dataBackups").dataBackupsOutput = null as any;
+utilities.lazyLoad(exports, ["dataBackups","dataBackupsOutput"], () => require("./dataBackups"));
 
 export { DatabaseArgs, DatabaseState } from "./database";
 export type Database = import("./database").Database;
 export const Database: typeof import("./database").Database = null as any;
 utilities.lazyLoad(exports, ["Database"], () => require("./database"));
 
+export { DatabaseEndpointArgs, DatabaseEndpointState } from "./databaseEndpoint";
+export type DatabaseEndpoint = import("./databaseEndpoint").DatabaseEndpoint;
+export const DatabaseEndpoint: typeof import("./databaseEndpoint").DatabaseEndpoint = null as any;
+utilities.lazyLoad(exports, ["DatabaseEndpoint"], () => require("./databaseEndpoint"));
+
+export { DatabaseEndpointsArgs, DatabaseEndpointsResult, DatabaseEndpointsOutputArgs } from "./databaseEndpoints";
+export const databaseEndpoints: typeof import("./databaseEndpoints").databaseEndpoints = null as any;
+export const databaseEndpointsOutput: typeof import("./databaseEndpoints").databaseEndpointsOutput = null as any;
+utilities.lazyLoad(exports, ["databaseEndpoints","databaseEndpointsOutput"], () => require("./databaseEndpoints"));
+
 export { DatabasesArgs, DatabasesResult, DatabasesOutputArgs } from "./databases";
 export const databases: typeof import("./databases").databases = null as any;
 export const databasesOutput: typeof import("./databases").databasesOutput = null as any;
 utilities.lazyLoad(exports, ["databases","databasesOutput"], () => require("./databases"));
+
+export { EndpointPublicAddressArgs, EndpointPublicAddressState } from "./endpointPublicAddress";
+export type EndpointPublicAddress = import("./endpointPublicAddress").EndpointPublicAddress;
+export const EndpointPublicAddress: typeof import("./endpointPublicAddress").EndpointPublicAddress = null as any;
+utilities.lazyLoad(exports, ["EndpointPublicAddress"], () => require("./endpointPublicAddress"));
+
+export { EngineVersionParametersArgs, EngineVersionParametersResult, EngineVersionParametersOutputArgs } from "./engineVersionParameters";
+export const engineVersionParameters: typeof import("./engineVersionParameters").engineVersionParameters = null as any;
+export const engineVersionParametersOutput: typeof import("./engineVersionParameters").engineVersionParametersOutput = null as any;
+utilities.lazyLoad(exports, ["engineVersionParameters","engineVersionParametersOutput"], () => require("./engineVersionParameters"));
 
 export { GetAccountsArgs, GetAccountsResult, GetAccountsOutputArgs } from "./getAccounts";
 export const getAccounts: typeof import("./getAccounts").getAccounts = null as any;
@@ -50,35 +105,245 @@ export const getAllowlists: typeof import("./getAllowlists").getAllowlists = nul
 export const getAllowlistsOutput: typeof import("./getAllowlists").getAllowlistsOutput = null as any;
 utilities.lazyLoad(exports, ["getAllowlists","getAllowlistsOutput"], () => require("./getAllowlists"));
 
+export { GetBackupDownloadsArgs, GetBackupDownloadsResult, GetBackupDownloadsOutputArgs } from "./getBackupDownloads";
+export const getBackupDownloads: typeof import("./getBackupDownloads").getBackupDownloads = null as any;
+export const getBackupDownloadsOutput: typeof import("./getBackupDownloads").getBackupDownloadsOutput = null as any;
+utilities.lazyLoad(exports, ["getBackupDownloads","getBackupDownloadsOutput"], () => require("./getBackupDownloads"));
+
+export { GetBackupPoliciesArgs, GetBackupPoliciesResult, GetBackupPoliciesOutputArgs } from "./getBackupPolicies";
+export const getBackupPolicies: typeof import("./getBackupPolicies").getBackupPolicies = null as any;
+export const getBackupPoliciesOutput: typeof import("./getBackupPolicies").getBackupPoliciesOutput = null as any;
+utilities.lazyLoad(exports, ["getBackupPolicies","getBackupPoliciesOutput"], () => require("./getBackupPolicies"));
+
+export { GetDataBackupsArgs, GetDataBackupsResult, GetDataBackupsOutputArgs } from "./getDataBackups";
+export const getDataBackups: typeof import("./getDataBackups").getDataBackups = null as any;
+export const getDataBackupsOutput: typeof import("./getDataBackups").getDataBackupsOutput = null as any;
+utilities.lazyLoad(exports, ["getDataBackups","getDataBackupsOutput"], () => require("./getDataBackups"));
+
+export { GetDatabaseEndpointsArgs, GetDatabaseEndpointsResult, GetDatabaseEndpointsOutputArgs } from "./getDatabaseEndpoints";
+export const getDatabaseEndpoints: typeof import("./getDatabaseEndpoints").getDatabaseEndpoints = null as any;
+export const getDatabaseEndpointsOutput: typeof import("./getDatabaseEndpoints").getDatabaseEndpointsOutput = null as any;
+utilities.lazyLoad(exports, ["getDatabaseEndpoints","getDatabaseEndpointsOutput"], () => require("./getDatabaseEndpoints"));
+
 export { GetDatabasesArgs, GetDatabasesResult, GetDatabasesOutputArgs } from "./getDatabases";
 export const getDatabases: typeof import("./getDatabases").getDatabases = null as any;
 export const getDatabasesOutput: typeof import("./getDatabases").getDatabasesOutput = null as any;
 utilities.lazyLoad(exports, ["getDatabases","getDatabasesOutput"], () => require("./getDatabases"));
+
+export { GetEngineVersionParametersArgs, GetEngineVersionParametersResult, GetEngineVersionParametersOutputArgs } from "./getEngineVersionParameters";
+export const getEngineVersionParameters: typeof import("./getEngineVersionParameters").getEngineVersionParameters = null as any;
+export const getEngineVersionParametersOutput: typeof import("./getEngineVersionParameters").getEngineVersionParametersOutput = null as any;
+utilities.lazyLoad(exports, ["getEngineVersionParameters","getEngineVersionParametersOutput"], () => require("./getEngineVersionParameters"));
+
+export { GetInstanceBackupDetachedsArgs, GetInstanceBackupDetachedsResult, GetInstanceBackupDetachedsOutputArgs } from "./getInstanceBackupDetacheds";
+export const getInstanceBackupDetacheds: typeof import("./getInstanceBackupDetacheds").getInstanceBackupDetacheds = null as any;
+export const getInstanceBackupDetachedsOutput: typeof import("./getInstanceBackupDetacheds").getInstanceBackupDetachedsOutput = null as any;
+utilities.lazyLoad(exports, ["getInstanceBackupDetacheds","getInstanceBackupDetachedsOutput"], () => require("./getInstanceBackupDetacheds"));
+
+export { GetInstanceBackupWalLogsArgs, GetInstanceBackupWalLogsResult, GetInstanceBackupWalLogsOutputArgs } from "./getInstanceBackupWalLogs";
+export const getInstanceBackupWalLogs: typeof import("./getInstanceBackupWalLogs").getInstanceBackupWalLogs = null as any;
+export const getInstanceBackupWalLogsOutput: typeof import("./getInstanceBackupWalLogs").getInstanceBackupWalLogsOutput = null as any;
+utilities.lazyLoad(exports, ["getInstanceBackupWalLogs","getInstanceBackupWalLogsOutput"], () => require("./getInstanceBackupWalLogs"));
+
+export { GetInstanceFailoverLogsArgs, GetInstanceFailoverLogsResult, GetInstanceFailoverLogsOutputArgs } from "./getInstanceFailoverLogs";
+export const getInstanceFailoverLogs: typeof import("./getInstanceFailoverLogs").getInstanceFailoverLogs = null as any;
+export const getInstanceFailoverLogsOutput: typeof import("./getInstanceFailoverLogs").getInstanceFailoverLogsOutput = null as any;
+utilities.lazyLoad(exports, ["getInstanceFailoverLogs","getInstanceFailoverLogsOutput"], () => require("./getInstanceFailoverLogs"));
+
+export { GetInstanceParameterLogsArgs, GetInstanceParameterLogsResult, GetInstanceParameterLogsOutputArgs } from "./getInstanceParameterLogs";
+export const getInstanceParameterLogs: typeof import("./getInstanceParameterLogs").getInstanceParameterLogs = null as any;
+export const getInstanceParameterLogsOutput: typeof import("./getInstanceParameterLogs").getInstanceParameterLogsOutput = null as any;
+utilities.lazyLoad(exports, ["getInstanceParameterLogs","getInstanceParameterLogsOutput"], () => require("./getInstanceParameterLogs"));
+
+export { GetInstanceParametersArgs, GetInstanceParametersResult, GetInstanceParametersOutputArgs } from "./getInstanceParameters";
+export const getInstanceParameters: typeof import("./getInstanceParameters").getInstanceParameters = null as any;
+export const getInstanceParametersOutput: typeof import("./getInstanceParameters").getInstanceParametersOutput = null as any;
+utilities.lazyLoad(exports, ["getInstanceParameters","getInstanceParametersOutput"], () => require("./getInstanceParameters"));
+
+export { GetInstancePriceDetailsArgs, GetInstancePriceDetailsResult, GetInstancePriceDetailsOutputArgs } from "./getInstancePriceDetails";
+export const getInstancePriceDetails: typeof import("./getInstancePriceDetails").getInstancePriceDetails = null as any;
+export const getInstancePriceDetailsOutput: typeof import("./getInstancePriceDetails").getInstancePriceDetailsOutput = null as any;
+utilities.lazyLoad(exports, ["getInstancePriceDetails","getInstancePriceDetailsOutput"], () => require("./getInstancePriceDetails"));
+
+export { GetInstancePriceDifferencesArgs, GetInstancePriceDifferencesResult, GetInstancePriceDifferencesOutputArgs } from "./getInstancePriceDifferences";
+export const getInstancePriceDifferences: typeof import("./getInstancePriceDifferences").getInstancePriceDifferences = null as any;
+export const getInstancePriceDifferencesOutput: typeof import("./getInstancePriceDifferences").getInstancePriceDifferencesOutput = null as any;
+utilities.lazyLoad(exports, ["getInstancePriceDifferences","getInstancePriceDifferencesOutput"], () => require("./getInstancePriceDifferences"));
+
+export { GetInstanceRecoverableTimesArgs, GetInstanceRecoverableTimesResult, GetInstanceRecoverableTimesOutputArgs } from "./getInstanceRecoverableTimes";
+export const getInstanceRecoverableTimes: typeof import("./getInstanceRecoverableTimes").getInstanceRecoverableTimes = null as any;
+export const getInstanceRecoverableTimesOutput: typeof import("./getInstanceRecoverableTimes").getInstanceRecoverableTimesOutput = null as any;
+utilities.lazyLoad(exports, ["getInstanceRecoverableTimes","getInstanceRecoverableTimesOutput"], () => require("./getInstanceRecoverableTimes"));
+
+export { GetInstanceSpecsArgs, GetInstanceSpecsResult, GetInstanceSpecsOutputArgs } from "./getInstanceSpecs";
+export const getInstanceSpecs: typeof import("./getInstanceSpecs").getInstanceSpecs = null as any;
+export const getInstanceSpecsOutput: typeof import("./getInstanceSpecs").getInstanceSpecsOutput = null as any;
+utilities.lazyLoad(exports, ["getInstanceSpecs","getInstanceSpecsOutput"], () => require("./getInstanceSpecs"));
+
+export { GetInstanceSslsArgs, GetInstanceSslsResult, GetInstanceSslsOutputArgs } from "./getInstanceSsls";
+export const getInstanceSsls: typeof import("./getInstanceSsls").getInstanceSsls = null as any;
+export const getInstanceSslsOutput: typeof import("./getInstanceSsls").getInstanceSslsOutput = null as any;
+utilities.lazyLoad(exports, ["getInstanceSsls","getInstanceSslsOutput"], () => require("./getInstanceSsls"));
+
+export { GetInstanceTasksArgs, GetInstanceTasksResult, GetInstanceTasksOutputArgs } from "./getInstanceTasks";
+export const getInstanceTasks: typeof import("./getInstanceTasks").getInstanceTasks = null as any;
+export const getInstanceTasksOutput: typeof import("./getInstanceTasks").getInstanceTasksOutput = null as any;
+utilities.lazyLoad(exports, ["getInstanceTasks","getInstanceTasksOutput"], () => require("./getInstanceTasks"));
 
 export { GetInstancesArgs, GetInstancesResult, GetInstancesOutputArgs } from "./getInstances";
 export const getInstances: typeof import("./getInstances").getInstances = null as any;
 export const getInstancesOutput: typeof import("./getInstances").getInstancesOutput = null as any;
 utilities.lazyLoad(exports, ["getInstances","getInstancesOutput"], () => require("./getInstances"));
 
+export { GetParameterTemplateApplyDiffsArgs, GetParameterTemplateApplyDiffsResult, GetParameterTemplateApplyDiffsOutputArgs } from "./getParameterTemplateApplyDiffs";
+export const getParameterTemplateApplyDiffs: typeof import("./getParameterTemplateApplyDiffs").getParameterTemplateApplyDiffs = null as any;
+export const getParameterTemplateApplyDiffsOutput: typeof import("./getParameterTemplateApplyDiffs").getParameterTemplateApplyDiffsOutput = null as any;
+utilities.lazyLoad(exports, ["getParameterTemplateApplyDiffs","getParameterTemplateApplyDiffsOutput"], () => require("./getParameterTemplateApplyDiffs"));
+
+export { GetParameterTemplatesArgs, GetParameterTemplatesResult, GetParameterTemplatesOutputArgs } from "./getParameterTemplates";
+export const getParameterTemplates: typeof import("./getParameterTemplates").getParameterTemplates = null as any;
+export const getParameterTemplatesOutput: typeof import("./getParameterTemplates").getParameterTemplatesOutput = null as any;
+utilities.lazyLoad(exports, ["getParameterTemplates","getParameterTemplatesOutput"], () => require("./getParameterTemplates"));
+
+export { GetPlannedEventsArgs, GetPlannedEventsResult, GetPlannedEventsOutputArgs } from "./getPlannedEvents";
+export const getPlannedEvents: typeof import("./getPlannedEvents").getPlannedEvents = null as any;
+export const getPlannedEventsOutput: typeof import("./getPlannedEvents").getPlannedEventsOutput = null as any;
+utilities.lazyLoad(exports, ["getPlannedEvents","getPlannedEventsOutput"], () => require("./getPlannedEvents"));
+
+export { GetRegionsArgs, GetRegionsResult, GetRegionsOutputArgs } from "./getRegions";
+export const getRegions: typeof import("./getRegions").getRegions = null as any;
+export const getRegionsOutput: typeof import("./getRegions").getRegionsOutput = null as any;
+utilities.lazyLoad(exports, ["getRegions","getRegionsOutput"], () => require("./getRegions"));
+
+export { GetReplicationSlotsArgs, GetReplicationSlotsResult, GetReplicationSlotsOutputArgs } from "./getReplicationSlots";
+export const getReplicationSlots: typeof import("./getReplicationSlots").getReplicationSlots = null as any;
+export const getReplicationSlotsOutput: typeof import("./getReplicationSlots").getReplicationSlotsOutput = null as any;
+utilities.lazyLoad(exports, ["getReplicationSlots","getReplicationSlotsOutput"], () => require("./getReplicationSlots"));
+
 export { GetSchemasArgs, GetSchemasResult, GetSchemasOutputArgs } from "./getSchemas";
 export const getSchemas: typeof import("./getSchemas").getSchemas = null as any;
 export const getSchemasOutput: typeof import("./getSchemas").getSchemasOutput = null as any;
 utilities.lazyLoad(exports, ["getSchemas","getSchemasOutput"], () => require("./getSchemas"));
+
+export { GetZonesArgs, GetZonesResult, GetZonesOutputArgs } from "./getZones";
+export const getZones: typeof import("./getZones").getZones = null as any;
+export const getZonesOutput: typeof import("./getZones").getZonesOutput = null as any;
+utilities.lazyLoad(exports, ["getZones","getZonesOutput"], () => require("./getZones"));
 
 export { InstanceArgs, InstanceState } from "./instance";
 export type Instance = import("./instance").Instance;
 export const Instance: typeof import("./instance").Instance = null as any;
 utilities.lazyLoad(exports, ["Instance"], () => require("./instance"));
 
+export { InstanceBackupDetachedsArgs, InstanceBackupDetachedsResult, InstanceBackupDetachedsOutputArgs } from "./instanceBackupDetacheds";
+export const instanceBackupDetacheds: typeof import("./instanceBackupDetacheds").instanceBackupDetacheds = null as any;
+export const instanceBackupDetachedsOutput: typeof import("./instanceBackupDetacheds").instanceBackupDetachedsOutput = null as any;
+utilities.lazyLoad(exports, ["instanceBackupDetacheds","instanceBackupDetachedsOutput"], () => require("./instanceBackupDetacheds"));
+
+export { InstanceBackupWalLogsArgs, InstanceBackupWalLogsResult, InstanceBackupWalLogsOutputArgs } from "./instanceBackupWalLogs";
+export const instanceBackupWalLogs: typeof import("./instanceBackupWalLogs").instanceBackupWalLogs = null as any;
+export const instanceBackupWalLogsOutput: typeof import("./instanceBackupWalLogs").instanceBackupWalLogsOutput = null as any;
+utilities.lazyLoad(exports, ["instanceBackupWalLogs","instanceBackupWalLogsOutput"], () => require("./instanceBackupWalLogs"));
+
+export { InstanceFailoverLogsArgs, InstanceFailoverLogsResult, InstanceFailoverLogsOutputArgs } from "./instanceFailoverLogs";
+export const instanceFailoverLogs: typeof import("./instanceFailoverLogs").instanceFailoverLogs = null as any;
+export const instanceFailoverLogsOutput: typeof import("./instanceFailoverLogs").instanceFailoverLogsOutput = null as any;
+utilities.lazyLoad(exports, ["instanceFailoverLogs","instanceFailoverLogsOutput"], () => require("./instanceFailoverLogs"));
+
+export { InstanceParameterLogsArgs, InstanceParameterLogsResult, InstanceParameterLogsOutputArgs } from "./instanceParameterLogs";
+export const instanceParameterLogs: typeof import("./instanceParameterLogs").instanceParameterLogs = null as any;
+export const instanceParameterLogsOutput: typeof import("./instanceParameterLogs").instanceParameterLogsOutput = null as any;
+utilities.lazyLoad(exports, ["instanceParameterLogs","instanceParameterLogsOutput"], () => require("./instanceParameterLogs"));
+
+export { InstanceParametersArgs, InstanceParametersResult, InstanceParametersOutputArgs } from "./instanceParameters";
+export const instanceParameters: typeof import("./instanceParameters").instanceParameters = null as any;
+export const instanceParametersOutput: typeof import("./instanceParameters").instanceParametersOutput = null as any;
+utilities.lazyLoad(exports, ["instanceParameters","instanceParametersOutput"], () => require("./instanceParameters"));
+
+export { InstancePriceDetailsArgs, InstancePriceDetailsResult, InstancePriceDetailsOutputArgs } from "./instancePriceDetails";
+export const instancePriceDetails: typeof import("./instancePriceDetails").instancePriceDetails = null as any;
+export const instancePriceDetailsOutput: typeof import("./instancePriceDetails").instancePriceDetailsOutput = null as any;
+utilities.lazyLoad(exports, ["instancePriceDetails","instancePriceDetailsOutput"], () => require("./instancePriceDetails"));
+
+export { InstancePriceDifferencesArgs, InstancePriceDifferencesResult, InstancePriceDifferencesOutputArgs } from "./instancePriceDifferences";
+export const instancePriceDifferences: typeof import("./instancePriceDifferences").instancePriceDifferences = null as any;
+export const instancePriceDifferencesOutput: typeof import("./instancePriceDifferences").instancePriceDifferencesOutput = null as any;
+utilities.lazyLoad(exports, ["instancePriceDifferences","instancePriceDifferencesOutput"], () => require("./instancePriceDifferences"));
+
 export { InstanceReadonlyNodeArgs, InstanceReadonlyNodeState } from "./instanceReadonlyNode";
 export type InstanceReadonlyNode = import("./instanceReadonlyNode").InstanceReadonlyNode;
 export const InstanceReadonlyNode: typeof import("./instanceReadonlyNode").InstanceReadonlyNode = null as any;
 utilities.lazyLoad(exports, ["InstanceReadonlyNode"], () => require("./instanceReadonlyNode"));
 
+export { InstanceRecoverableTimesArgs, InstanceRecoverableTimesResult, InstanceRecoverableTimesOutputArgs } from "./instanceRecoverableTimes";
+export const instanceRecoverableTimes: typeof import("./instanceRecoverableTimes").instanceRecoverableTimes = null as any;
+export const instanceRecoverableTimesOutput: typeof import("./instanceRecoverableTimes").instanceRecoverableTimesOutput = null as any;
+utilities.lazyLoad(exports, ["instanceRecoverableTimes","instanceRecoverableTimesOutput"], () => require("./instanceRecoverableTimes"));
+
+export { InstanceSpecsArgs, InstanceSpecsResult, InstanceSpecsOutputArgs } from "./instanceSpecs";
+export const instanceSpecs: typeof import("./instanceSpecs").instanceSpecs = null as any;
+export const instanceSpecsOutput: typeof import("./instanceSpecs").instanceSpecsOutput = null as any;
+utilities.lazyLoad(exports, ["instanceSpecs","instanceSpecsOutput"], () => require("./instanceSpecs"));
+
+export { InstanceSslArgs, InstanceSslState } from "./instanceSsl";
+export type InstanceSsl = import("./instanceSsl").InstanceSsl;
+export const InstanceSsl: typeof import("./instanceSsl").InstanceSsl = null as any;
+utilities.lazyLoad(exports, ["InstanceSsl"], () => require("./instanceSsl"));
+
+export { InstanceSslsArgs, InstanceSslsResult, InstanceSslsOutputArgs } from "./instanceSsls";
+export const instanceSsls: typeof import("./instanceSsls").instanceSsls = null as any;
+export const instanceSslsOutput: typeof import("./instanceSsls").instanceSslsOutput = null as any;
+utilities.lazyLoad(exports, ["instanceSsls","instanceSslsOutput"], () => require("./instanceSsls"));
+
+export { InstanceTasksArgs, InstanceTasksResult, InstanceTasksOutputArgs } from "./instanceTasks";
+export const instanceTasks: typeof import("./instanceTasks").instanceTasks = null as any;
+export const instanceTasksOutput: typeof import("./instanceTasks").instanceTasksOutput = null as any;
+utilities.lazyLoad(exports, ["instanceTasks","instanceTasksOutput"], () => require("./instanceTasks"));
+
 export { InstancesArgs, InstancesResult, InstancesOutputArgs } from "./instances";
 export const instances: typeof import("./instances").instances = null as any;
 export const instancesOutput: typeof import("./instances").instancesOutput = null as any;
 utilities.lazyLoad(exports, ["instances","instancesOutput"], () => require("./instances"));
+
+export { ParameterTemplateArgs, ParameterTemplateState } from "./parameterTemplate";
+export type ParameterTemplate = import("./parameterTemplate").ParameterTemplate;
+export const ParameterTemplate: typeof import("./parameterTemplate").ParameterTemplate = null as any;
+utilities.lazyLoad(exports, ["ParameterTemplate"], () => require("./parameterTemplate"));
+
+export { ParameterTemplateApplyDiffsArgs, ParameterTemplateApplyDiffsResult, ParameterTemplateApplyDiffsOutputArgs } from "./parameterTemplateApplyDiffs";
+export const parameterTemplateApplyDiffs: typeof import("./parameterTemplateApplyDiffs").parameterTemplateApplyDiffs = null as any;
+export const parameterTemplateApplyDiffsOutput: typeof import("./parameterTemplateApplyDiffs").parameterTemplateApplyDiffsOutput = null as any;
+utilities.lazyLoad(exports, ["parameterTemplateApplyDiffs","parameterTemplateApplyDiffsOutput"], () => require("./parameterTemplateApplyDiffs"));
+
+export { ParameterTemplatesArgs, ParameterTemplatesResult, ParameterTemplatesOutputArgs } from "./parameterTemplates";
+export const parameterTemplates: typeof import("./parameterTemplates").parameterTemplates = null as any;
+export const parameterTemplatesOutput: typeof import("./parameterTemplates").parameterTemplatesOutput = null as any;
+utilities.lazyLoad(exports, ["parameterTemplates","parameterTemplatesOutput"], () => require("./parameterTemplates"));
+
+export { PlannedEventsArgs, PlannedEventsResult, PlannedEventsOutputArgs } from "./plannedEvents";
+export const plannedEvents: typeof import("./plannedEvents").plannedEvents = null as any;
+export const plannedEventsOutput: typeof import("./plannedEvents").plannedEventsOutput = null as any;
+utilities.lazyLoad(exports, ["plannedEvents","plannedEventsOutput"], () => require("./plannedEvents"));
+
+export { RegionsArgs, RegionsResult, RegionsOutputArgs } from "./regions";
+export const regions: typeof import("./regions").regions = null as any;
+export const regionsOutput: typeof import("./regions").regionsOutput = null as any;
+utilities.lazyLoad(exports, ["regions","regionsOutput"], () => require("./regions"));
+
+export { ReplicationSlotArgs, ReplicationSlotState } from "./replicationSlot";
+export type ReplicationSlot = import("./replicationSlot").ReplicationSlot;
+export const ReplicationSlot: typeof import("./replicationSlot").ReplicationSlot = null as any;
+utilities.lazyLoad(exports, ["ReplicationSlot"], () => require("./replicationSlot"));
+
+export { ReplicationSlotsArgs, ReplicationSlotsResult, ReplicationSlotsOutputArgs } from "./replicationSlots";
+export const replicationSlots: typeof import("./replicationSlots").replicationSlots = null as any;
+export const replicationSlotsOutput: typeof import("./replicationSlots").replicationSlotsOutput = null as any;
+utilities.lazyLoad(exports, ["replicationSlots","replicationSlotsOutput"], () => require("./replicationSlots"));
+
+export { RestoreBackupArgs, RestoreBackupState } from "./restoreBackup";
+export type RestoreBackup = import("./restoreBackup").RestoreBackup;
+export const RestoreBackup: typeof import("./restoreBackup").RestoreBackup = null as any;
+utilities.lazyLoad(exports, ["RestoreBackup"], () => require("./restoreBackup"));
 
 export { SchemaArgs, SchemaState } from "./schema";
 export type Schema = import("./schema").Schema;
@@ -89,6 +354,16 @@ export { SchemasArgs, SchemasResult, SchemasOutputArgs } from "./schemas";
 export const schemas: typeof import("./schemas").schemas = null as any;
 export const schemasOutput: typeof import("./schemas").schemasOutput = null as any;
 utilities.lazyLoad(exports, ["schemas","schemasOutput"], () => require("./schemas"));
+
+export { StateArgs, StateState } from "./state";
+export type State = import("./state").State;
+export const State: typeof import("./state").State = null as any;
+utilities.lazyLoad(exports, ["State"], () => require("./state"));
+
+export { ZonesArgs, ZonesResult, ZonesOutputArgs } from "./zones";
+export const zones: typeof import("./zones").zones = null as any;
+export const zonesOutput: typeof import("./zones").zonesOutput = null as any;
+utilities.lazyLoad(exports, ["zones","zonesOutput"], () => require("./zones"));
 
 
 const _module = {
@@ -101,14 +376,36 @@ const _module = {
                 return new Allowlist(name, <any>undefined, { urn })
             case "volcengine:rds_postgresql/allowlistAssociate:AllowlistAssociate":
                 return new AllowlistAssociate(name, <any>undefined, { urn })
+            case "volcengine:rds_postgresql/allowlistVersionUpgrade:AllowlistVersionUpgrade":
+                return new AllowlistVersionUpgrade(name, <any>undefined, { urn })
+            case "volcengine:rds_postgresql/backupDownload:BackupDownload":
+                return new BackupDownload(name, <any>undefined, { urn })
+            case "volcengine:rds_postgresql/backupPolicy:BackupPolicy":
+                return new BackupPolicy(name, <any>undefined, { urn })
+            case "volcengine:rds_postgresql/dataBackup:DataBackup":
+                return new DataBackup(name, <any>undefined, { urn })
             case "volcengine:rds_postgresql/database:Database":
                 return new Database(name, <any>undefined, { urn })
+            case "volcengine:rds_postgresql/databaseEndpoint:DatabaseEndpoint":
+                return new DatabaseEndpoint(name, <any>undefined, { urn })
+            case "volcengine:rds_postgresql/endpointPublicAddress:EndpointPublicAddress":
+                return new EndpointPublicAddress(name, <any>undefined, { urn })
             case "volcengine:rds_postgresql/instance:Instance":
                 return new Instance(name, <any>undefined, { urn })
             case "volcengine:rds_postgresql/instanceReadonlyNode:InstanceReadonlyNode":
                 return new InstanceReadonlyNode(name, <any>undefined, { urn })
+            case "volcengine:rds_postgresql/instanceSsl:InstanceSsl":
+                return new InstanceSsl(name, <any>undefined, { urn })
+            case "volcengine:rds_postgresql/parameterTemplate:ParameterTemplate":
+                return new ParameterTemplate(name, <any>undefined, { urn })
+            case "volcengine:rds_postgresql/replicationSlot:ReplicationSlot":
+                return new ReplicationSlot(name, <any>undefined, { urn })
+            case "volcengine:rds_postgresql/restoreBackup:RestoreBackup":
+                return new RestoreBackup(name, <any>undefined, { urn })
             case "volcengine:rds_postgresql/schema:Schema":
                 return new Schema(name, <any>undefined, { urn })
+            case "volcengine:rds_postgresql/state:State":
+                return new State(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
@@ -117,7 +414,18 @@ const _module = {
 pulumi.runtime.registerResourceModule("volcengine", "rds_postgresql/account", _module)
 pulumi.runtime.registerResourceModule("volcengine", "rds_postgresql/allowlist", _module)
 pulumi.runtime.registerResourceModule("volcengine", "rds_postgresql/allowlistAssociate", _module)
+pulumi.runtime.registerResourceModule("volcengine", "rds_postgresql/allowlistVersionUpgrade", _module)
+pulumi.runtime.registerResourceModule("volcengine", "rds_postgresql/backupDownload", _module)
+pulumi.runtime.registerResourceModule("volcengine", "rds_postgresql/backupPolicy", _module)
+pulumi.runtime.registerResourceModule("volcengine", "rds_postgresql/dataBackup", _module)
 pulumi.runtime.registerResourceModule("volcengine", "rds_postgresql/database", _module)
+pulumi.runtime.registerResourceModule("volcengine", "rds_postgresql/databaseEndpoint", _module)
+pulumi.runtime.registerResourceModule("volcengine", "rds_postgresql/endpointPublicAddress", _module)
 pulumi.runtime.registerResourceModule("volcengine", "rds_postgresql/instance", _module)
 pulumi.runtime.registerResourceModule("volcengine", "rds_postgresql/instanceReadonlyNode", _module)
+pulumi.runtime.registerResourceModule("volcengine", "rds_postgresql/instanceSsl", _module)
+pulumi.runtime.registerResourceModule("volcengine", "rds_postgresql/parameterTemplate", _module)
+pulumi.runtime.registerResourceModule("volcengine", "rds_postgresql/replicationSlot", _module)
+pulumi.runtime.registerResourceModule("volcengine", "rds_postgresql/restoreBackup", _module)
 pulumi.runtime.registerResourceModule("volcengine", "rds_postgresql/schema", _module)
+pulumi.runtime.registerResourceModule("volcengine", "rds_postgresql/state", _module)

@@ -23,7 +23,7 @@ namespace Pulumi.Volcengine.Tos
     /// {
     ///     var fooBucket = new Volcengine.Tos.Bucket("fooBucket", new()
     ///     {
-    ///         BucketName = "tf-acc-test-bucket",
+    ///         BucketName = "tf-acc-test-bucket1",
     ///         PublicAcl = "private",
     ///         AzRedundancy = "multi-az",
     ///         ProjectName = "default",

@@ -65,6 +65,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &TrafficMirrorSession{}
 	case "volcengine:vpc/trafficMirrorTarget:TrafficMirrorTarget":
 		r = &TrafficMirrorTarget{}
+	case "volcengine:vpc/userCidrBlockAssociate:UserCidrBlockAssociate":
+		r = &UserCidrBlockAssociate{}
 	case "volcengine:vpc/vpc:Vpc":
 		r = &Vpc{}
 	default:
@@ -188,6 +190,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"volcengine",
 		"vpc/trafficMirrorTarget",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"vpc/userCidrBlockAssociate",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

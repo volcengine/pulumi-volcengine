@@ -31,7 +31,7 @@ import (
 //				AccountName:     pulumi.String("acc-test-account"),
 //				AccountPassword: pulumi.String("93c@*****!ab12"),
 //				AccountType:     pulumi.String("Super"),
-//				InstanceId:      pulumi.String("postgres-954*****7233"),
+//				InstanceId:      pulumi.String("postgres-0ac38a79fe35"),
 //			})
 //			if err != nil {
 //				return err
@@ -39,9 +39,12 @@ import (
 //			_, err = rds_postgresql.NewAccount(ctx, "foo1", &rds_postgresql.AccountArgs{
 //				AccountName:       pulumi.String("acc-test-account1"),
 //				AccountPassword:   pulumi.String("9wc@****b12"),
-//				AccountPrivileges: pulumi.String("Inherit,Login,CreateRole,CreateDB"),
+//				AccountPrivileges: pulumi.String("Login,Inherit"),
 //				AccountType:       pulumi.String("Normal"),
-//				InstanceId:        pulumi.String("postgres-95*****7233"),
+//				InstanceId:        pulumi.String("postgres-0ac38a79fe35"),
+//				NotAllowPrivileges: pulumi.StringArray{
+//					pulumi.String("DDL"),
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -66,8 +69,8 @@ type Account struct {
 	AccountName pulumi.StringOutput `pulumi:"accountName"`
 	// The password of the database account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	AccountPassword pulumi.StringOutput `pulumi:"accountPassword"`
-	// The privilege information of account. When the account type is a super account, there is no need to pass in this parameter, and all privileges are supported by default. When the account type is a normal account, this parameter can be passed in, the default values are Login and Inherit.
-	AccountPrivileges pulumi.StringOutput `pulumi:"accountPrivileges"`
+	// The privilege information of account. When the account type is a super account, there is no need to pass in this parameter, and all privileges are supported by default. When the account type is a normal account, this parameter can be passed in, the default values are Login and Inherit.When the account type is an instance read-only account, this parameter is not required to be passed in, as this account type does not support permission granting.
+	AccountPrivileges pulumi.StringPtrOutput `pulumi:"accountPrivileges"`
 	// The status of the database account.
 	AccountStatus pulumi.StringOutput `pulumi:"accountStatus"`
 	// Database account type, value:
@@ -76,6 +79,8 @@ type Account struct {
 	AccountType pulumi.StringOutput `pulumi:"accountType"`
 	// The ID of the RDS instance.
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
+	// The permissions to be disabled for the account. Only the DDL permission is supported for the moment. This field can only be passed in for high-privilege accounts or normal accounts, i.e., when the accountType is set to Super or Normal.
+	NotAllowPrivileges pulumi.StringArrayOutput `pulumi:"notAllowPrivileges"`
 }
 
 // NewAccount registers a new resource with the given unique name, arguments, and options.
@@ -131,7 +136,7 @@ type accountState struct {
 	AccountName *string `pulumi:"accountName"`
 	// The password of the database account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	AccountPassword *string `pulumi:"accountPassword"`
-	// The privilege information of account. When the account type is a super account, there is no need to pass in this parameter, and all privileges are supported by default. When the account type is a normal account, this parameter can be passed in, the default values are Login and Inherit.
+	// The privilege information of account. When the account type is a super account, there is no need to pass in this parameter, and all privileges are supported by default. When the account type is a normal account, this parameter can be passed in, the default values are Login and Inherit.When the account type is an instance read-only account, this parameter is not required to be passed in, as this account type does not support permission granting.
 	AccountPrivileges *string `pulumi:"accountPrivileges"`
 	// The status of the database account.
 	AccountStatus *string `pulumi:"accountStatus"`
@@ -141,6 +146,8 @@ type accountState struct {
 	AccountType *string `pulumi:"accountType"`
 	// The ID of the RDS instance.
 	InstanceId *string `pulumi:"instanceId"`
+	// The permissions to be disabled for the account. Only the DDL permission is supported for the moment. This field can only be passed in for high-privilege accounts or normal accounts, i.e., when the accountType is set to Super or Normal.
+	NotAllowPrivileges []string `pulumi:"notAllowPrivileges"`
 }
 
 type AccountState struct {
@@ -148,7 +155,7 @@ type AccountState struct {
 	AccountName pulumi.StringPtrInput
 	// The password of the database account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	AccountPassword pulumi.StringPtrInput
-	// The privilege information of account. When the account type is a super account, there is no need to pass in this parameter, and all privileges are supported by default. When the account type is a normal account, this parameter can be passed in, the default values are Login and Inherit.
+	// The privilege information of account. When the account type is a super account, there is no need to pass in this parameter, and all privileges are supported by default. When the account type is a normal account, this parameter can be passed in, the default values are Login and Inherit.When the account type is an instance read-only account, this parameter is not required to be passed in, as this account type does not support permission granting.
 	AccountPrivileges pulumi.StringPtrInput
 	// The status of the database account.
 	AccountStatus pulumi.StringPtrInput
@@ -158,6 +165,8 @@ type AccountState struct {
 	AccountType pulumi.StringPtrInput
 	// The ID of the RDS instance.
 	InstanceId pulumi.StringPtrInput
+	// The permissions to be disabled for the account. Only the DDL permission is supported for the moment. This field can only be passed in for high-privilege accounts or normal accounts, i.e., when the accountType is set to Super or Normal.
+	NotAllowPrivileges pulumi.StringArrayInput
 }
 
 func (AccountState) ElementType() reflect.Type {
@@ -169,7 +178,7 @@ type accountArgs struct {
 	AccountName string `pulumi:"accountName"`
 	// The password of the database account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	AccountPassword string `pulumi:"accountPassword"`
-	// The privilege information of account. When the account type is a super account, there is no need to pass in this parameter, and all privileges are supported by default. When the account type is a normal account, this parameter can be passed in, the default values are Login and Inherit.
+	// The privilege information of account. When the account type is a super account, there is no need to pass in this parameter, and all privileges are supported by default. When the account type is a normal account, this parameter can be passed in, the default values are Login and Inherit.When the account type is an instance read-only account, this parameter is not required to be passed in, as this account type does not support permission granting.
 	AccountPrivileges *string `pulumi:"accountPrivileges"`
 	// Database account type, value:
 	// Super: A high-privilege account. Only one database account can be created for an instance.
@@ -177,6 +186,8 @@ type accountArgs struct {
 	AccountType string `pulumi:"accountType"`
 	// The ID of the RDS instance.
 	InstanceId string `pulumi:"instanceId"`
+	// The permissions to be disabled for the account. Only the DDL permission is supported for the moment. This field can only be passed in for high-privilege accounts or normal accounts, i.e., when the accountType is set to Super or Normal.
+	NotAllowPrivileges []string `pulumi:"notAllowPrivileges"`
 }
 
 // The set of arguments for constructing a Account resource.
@@ -185,7 +196,7 @@ type AccountArgs struct {
 	AccountName pulumi.StringInput
 	// The password of the database account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	AccountPassword pulumi.StringInput
-	// The privilege information of account. When the account type is a super account, there is no need to pass in this parameter, and all privileges are supported by default. When the account type is a normal account, this parameter can be passed in, the default values are Login and Inherit.
+	// The privilege information of account. When the account type is a super account, there is no need to pass in this parameter, and all privileges are supported by default. When the account type is a normal account, this parameter can be passed in, the default values are Login and Inherit.When the account type is an instance read-only account, this parameter is not required to be passed in, as this account type does not support permission granting.
 	AccountPrivileges pulumi.StringPtrInput
 	// Database account type, value:
 	// Super: A high-privilege account. Only one database account can be created for an instance.
@@ -193,6 +204,8 @@ type AccountArgs struct {
 	AccountType pulumi.StringInput
 	// The ID of the RDS instance.
 	InstanceId pulumi.StringInput
+	// The permissions to be disabled for the account. Only the DDL permission is supported for the moment. This field can only be passed in for high-privilege accounts or normal accounts, i.e., when the accountType is set to Super or Normal.
+	NotAllowPrivileges pulumi.StringArrayInput
 }
 
 func (AccountArgs) ElementType() reflect.Type {
@@ -292,9 +305,9 @@ func (o AccountOutput) AccountPassword() pulumi.StringOutput {
 	return o.ApplyT(func(v *Account) pulumi.StringOutput { return v.AccountPassword }).(pulumi.StringOutput)
 }
 
-// The privilege information of account. When the account type is a super account, there is no need to pass in this parameter, and all privileges are supported by default. When the account type is a normal account, this parameter can be passed in, the default values are Login and Inherit.
-func (o AccountOutput) AccountPrivileges() pulumi.StringOutput {
-	return o.ApplyT(func(v *Account) pulumi.StringOutput { return v.AccountPrivileges }).(pulumi.StringOutput)
+// The privilege information of account. When the account type is a super account, there is no need to pass in this parameter, and all privileges are supported by default. When the account type is a normal account, this parameter can be passed in, the default values are Login and Inherit.When the account type is an instance read-only account, this parameter is not required to be passed in, as this account type does not support permission granting.
+func (o AccountOutput) AccountPrivileges() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Account) pulumi.StringPtrOutput { return v.AccountPrivileges }).(pulumi.StringPtrOutput)
 }
 
 // The status of the database account.
@@ -312,6 +325,11 @@ func (o AccountOutput) AccountType() pulumi.StringOutput {
 // The ID of the RDS instance.
 func (o AccountOutput) InstanceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Account) pulumi.StringOutput { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// The permissions to be disabled for the account. Only the DDL permission is supported for the moment. This field can only be passed in for high-privilege accounts or normal accounts, i.e., when the accountType is set to Super or Normal.
+func (o AccountOutput) NotAllowPrivileges() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Account) pulumi.StringArrayOutput { return v.NotAllowPrivileges }).(pulumi.StringArrayOutput)
 }
 
 type AccountArrayOutput struct{ *pulumi.OutputState }

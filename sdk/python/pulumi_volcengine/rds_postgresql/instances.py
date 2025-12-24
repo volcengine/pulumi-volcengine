@@ -25,7 +25,7 @@ class InstancesResult:
     """
     A collection of values returned by Instances.
     """
-    def __init__(__self__, charge_type=None, create_time_end=None, create_time_start=None, db_engine_version=None, id=None, instance_id=None, instance_name=None, instance_status=None, instances=None, name_regex=None, output_file=None, tags=None, total_count=None, zone_id=None):
+    def __init__(__self__, charge_type=None, create_time_end=None, create_time_start=None, db_engine_version=None, id=None, instance_id=None, instance_name=None, instance_status=None, instances=None, name_regex=None, output_file=None, project_name=None, storage_type=None, tags=None, total_count=None, zone_id=None):
         if charge_type and not isinstance(charge_type, str):
             raise TypeError("Expected argument 'charge_type' to be a str")
         pulumi.set(__self__, "charge_type", charge_type)
@@ -59,6 +59,12 @@ class InstancesResult:
         if output_file and not isinstance(output_file, str):
             raise TypeError("Expected argument 'output_file' to be a str")
         pulumi.set(__self__, "output_file", output_file)
+        if project_name and not isinstance(project_name, str):
+            raise TypeError("Expected argument 'project_name' to be a str")
+        pulumi.set(__self__, "project_name", project_name)
+        if storage_type and not isinstance(storage_type, str):
+            raise TypeError("Expected argument 'storage_type' to be a str")
+        pulumi.set(__self__, "storage_type", storage_type)
         if tags and not isinstance(tags, list):
             raise TypeError("Expected argument 'tags' to be a list")
         pulumi.set(__self__, "tags", tags)
@@ -148,6 +154,22 @@ class InstancesResult:
         return pulumi.get(self, "output_file")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[str]:
+        """
+        The project name of the RDS PostgreSQL instance.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="storageType")
+    def storage_type(self) -> Optional[str]:
+        """
+        Instance storage type.
+        """
+        return pulumi.get(self, "storage_type")
+
+    @property
     @pulumi.getter
     def tags(self) -> Optional[Sequence['outputs.InstancesTagResult']]:
         """
@@ -189,6 +211,8 @@ class AwaitableInstancesResult(InstancesResult):
             instances=self.instances,
             name_regex=self.name_regex,
             output_file=self.output_file,
+            project_name=self.project_name,
+            storage_type=self.storage_type,
             tags=self.tags,
             total_count=self.total_count,
             zone_id=self.zone_id)
@@ -203,6 +227,8 @@ def instances(charge_type: Optional[str] = None,
               instance_status: Optional[str] = None,
               name_regex: Optional[str] = None,
               output_file: Optional[str] = None,
+              project_name: Optional[str] = None,
+              storage_type: Optional[str] = None,
               tags: Optional[Sequence[pulumi.InputType['InstancesTagArgs']]] = None,
               zone_id: Optional[str] = None,
               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableInstancesResult:
@@ -262,6 +288,8 @@ def instances(charge_type: Optional[str] = None,
     :param str instance_status: The status of the RDS PostgreSQL instance.
     :param str name_regex: A Name Regex of RDS instance.
     :param str output_file: File name where to save data source results.
+    :param str project_name: The project name of the RDS PostgreSQL instance.
+    :param str storage_type: The storage type of the RDS PostgreSQL instance.
     :param Sequence[pulumi.InputType['InstancesTagArgs']] tags: Tags.
     :param str zone_id: The available zone of the RDS PostgreSQL instance.
     """
@@ -276,6 +304,8 @@ def instances(charge_type: Optional[str] = None,
     __args__['instanceStatus'] = instance_status
     __args__['nameRegex'] = name_regex
     __args__['outputFile'] = output_file
+    __args__['projectName'] = project_name
+    __args__['storageType'] = storage_type
     __args__['tags'] = tags
     __args__['zoneId'] = zone_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -293,6 +323,8 @@ def instances(charge_type: Optional[str] = None,
         instances=pulumi.get(__ret__, 'instances'),
         name_regex=pulumi.get(__ret__, 'name_regex'),
         output_file=pulumi.get(__ret__, 'output_file'),
+        project_name=pulumi.get(__ret__, 'project_name'),
+        storage_type=pulumi.get(__ret__, 'storage_type'),
         tags=pulumi.get(__ret__, 'tags'),
         total_count=pulumi.get(__ret__, 'total_count'),
         zone_id=pulumi.get(__ret__, 'zone_id'))
@@ -308,6 +340,8 @@ def instances_output(charge_type: Optional[pulumi.Input[Optional[str]]] = None,
                      instance_status: Optional[pulumi.Input[Optional[str]]] = None,
                      name_regex: Optional[pulumi.Input[Optional[str]]] = None,
                      output_file: Optional[pulumi.Input[Optional[str]]] = None,
+                     project_name: Optional[pulumi.Input[Optional[str]]] = None,
+                     storage_type: Optional[pulumi.Input[Optional[str]]] = None,
                      tags: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['InstancesTagArgs']]]]] = None,
                      zone_id: Optional[pulumi.Input[Optional[str]]] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[InstancesResult]:
@@ -367,6 +401,8 @@ def instances_output(charge_type: Optional[pulumi.Input[Optional[str]]] = None,
     :param str instance_status: The status of the RDS PostgreSQL instance.
     :param str name_regex: A Name Regex of RDS instance.
     :param str output_file: File name where to save data source results.
+    :param str project_name: The project name of the RDS PostgreSQL instance.
+    :param str storage_type: The storage type of the RDS PostgreSQL instance.
     :param Sequence[pulumi.InputType['InstancesTagArgs']] tags: Tags.
     :param str zone_id: The available zone of the RDS PostgreSQL instance.
     """

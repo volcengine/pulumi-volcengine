@@ -11,15 +11,30 @@ from .. import _utilities
 
 __all__ = [
     'AllowlistAssociatedInstanceArgs',
+    'AllowlistSecurityGroupBindInfoArgs',
+    'DataBackupBackupMetaArgs',
+    'DatabaseEndpointReadOnlyNodeWeightArgs',
     'InstanceChargeDetailArgs',
     'InstanceChargeInfoArgs',
     'InstanceEndpointArgs',
     'InstanceEndpointAddressArgs',
     'InstanceEndpointReadOnlyNodeWeightArgs',
+    'InstanceEstimationResultArgs',
     'InstanceNodeArgs',
     'InstanceParameterArgs',
+    'InstancePriceDetailsChargeInfoArgs',
+    'InstancePriceDetailsNodeInfoArgs',
+    'InstancePriceDifferencesChargeInfoArgs',
+    'InstancePriceDifferencesNodeInfoArgs',
     'InstanceTagArgs',
+    'InstanceZoneMigrationArgs',
     'InstancesTagArgs',
+    'ParameterTemplateTemplateParamArgs',
+    'RestoreBackupDatabaseArgs',
+    'GetInstancePriceDetailsChargeInfoArgs',
+    'GetInstancePriceDetailsNodeInfoArgs',
+    'GetInstancePriceDifferencesChargeInfoArgs',
+    'GetInstancePriceDifferencesNodeInfoArgs',
     'GetInstancesTagArgs',
 ]
 
@@ -79,6 +94,152 @@ class AllowlistAssociatedInstanceArgs:
 
 
 @pulumi.input_type
+class AllowlistSecurityGroupBindInfoArgs:
+    def __init__(__self__, *,
+                 bind_mode: pulumi.Input[str],
+                 security_group_id: pulumi.Input[str],
+                 ip_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 security_group_name: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] bind_mode: The binding mode of the security group. Valid values: IngressDirectionIp, AssociateEcsIp.
+        :param pulumi.Input[str] security_group_id: The ID of the security group.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_lists: IP addresses in the security group.
+        :param pulumi.Input[str] security_group_name: The name of the security group.
+        """
+        pulumi.set(__self__, "bind_mode", bind_mode)
+        pulumi.set(__self__, "security_group_id", security_group_id)
+        if ip_lists is not None:
+            pulumi.set(__self__, "ip_lists", ip_lists)
+        if security_group_name is not None:
+            pulumi.set(__self__, "security_group_name", security_group_name)
+
+    @property
+    @pulumi.getter(name="bindMode")
+    def bind_mode(self) -> pulumi.Input[str]:
+        """
+        The binding mode of the security group. Valid values: IngressDirectionIp, AssociateEcsIp.
+        """
+        return pulumi.get(self, "bind_mode")
+
+    @bind_mode.setter
+    def bind_mode(self, value: pulumi.Input[str]):
+        pulumi.set(self, "bind_mode", value)
+
+    @property
+    @pulumi.getter(name="securityGroupId")
+    def security_group_id(self) -> pulumi.Input[str]:
+        """
+        The ID of the security group.
+        """
+        return pulumi.get(self, "security_group_id")
+
+    @security_group_id.setter
+    def security_group_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "security_group_id", value)
+
+    @property
+    @pulumi.getter(name="ipLists")
+    def ip_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        IP addresses in the security group.
+        """
+        return pulumi.get(self, "ip_lists")
+
+    @ip_lists.setter
+    def ip_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "ip_lists", value)
+
+    @property
+    @pulumi.getter(name="securityGroupName")
+    def security_group_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the security group.
+        """
+        return pulumi.get(self, "security_group_name")
+
+    @security_group_name.setter
+    def security_group_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "security_group_name", value)
+
+
+@pulumi.input_type
+class DataBackupBackupMetaArgs:
+    def __init__(__self__, *,
+                 db_name: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] db_name: The name of the database.
+        """
+        pulumi.set(__self__, "db_name", db_name)
+
+    @property
+    @pulumi.getter(name="dbName")
+    def db_name(self) -> pulumi.Input[str]:
+        """
+        The name of the database.
+        """
+        return pulumi.get(self, "db_name")
+
+    @db_name.setter
+    def db_name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "db_name", value)
+
+
+@pulumi.input_type
+class DatabaseEndpointReadOnlyNodeWeightArgs:
+    def __init__(__self__, *,
+                 node_id: Optional[pulumi.Input[str]] = None,
+                 node_type: Optional[pulumi.Input[str]] = None,
+                 weight: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] node_id: A read-only node requires passing in the NodeId. A primary node does not need to pass in the NodeId.
+        :param pulumi.Input[str] node_type: Node type. Primary or ReadOnly.
+        :param pulumi.Input[int] weight: Custom read weight allocation. Increases by 100, with a maximum value of 40000. Weights cannot all be set to 0.
+        """
+        if node_id is not None:
+            pulumi.set(__self__, "node_id", node_id)
+        if node_type is not None:
+            pulumi.set(__self__, "node_type", node_type)
+        if weight is not None:
+            pulumi.set(__self__, "weight", weight)
+
+    @property
+    @pulumi.getter(name="nodeId")
+    def node_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        A read-only node requires passing in the NodeId. A primary node does not need to pass in the NodeId.
+        """
+        return pulumi.get(self, "node_id")
+
+    @node_id.setter
+    def node_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "node_id", value)
+
+    @property
+    @pulumi.getter(name="nodeType")
+    def node_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Node type. Primary or ReadOnly.
+        """
+        return pulumi.get(self, "node_type")
+
+    @node_type.setter
+    def node_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "node_type", value)
+
+    @property
+    @pulumi.getter
+    def weight(self) -> Optional[pulumi.Input[int]]:
+        """
+        Custom read weight allocation. Increases by 100, with a maximum value of 40000. Weights cannot all be set to 0.
+        """
+        return pulumi.get(self, "weight")
+
+    @weight.setter
+    def weight(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "weight", value)
+
+
+@pulumi.input_type
 class InstanceChargeDetailArgs:
     def __init__(__self__, *,
                  auto_renew: Optional[pulumi.Input[bool]] = None,
@@ -86,6 +247,7 @@ class InstanceChargeDetailArgs:
                  charge_start_time: Optional[pulumi.Input[str]] = None,
                  charge_status: Optional[pulumi.Input[str]] = None,
                  charge_type: Optional[pulumi.Input[str]] = None,
+                 number: Optional[pulumi.Input[int]] = None,
                  overdue_reclaim_time: Optional[pulumi.Input[str]] = None,
                  overdue_time: Optional[pulumi.Input[str]] = None,
                  period: Optional[pulumi.Input[int]] = None,
@@ -101,10 +263,11 @@ class InstanceChargeDetailArgs:
         :param pulumi.Input[str] charge_status: Pay status. Value:
                normal - normal
                overdue - overdue
-               .
+               unpaid - unpaid.
         :param pulumi.Input[str] charge_type: Payment type. Value:
                PostPaid - Pay-As-You-Go
                PrePaid - Yearly and monthly (default).
+        :param pulumi.Input[int] number: The number of the RDS PostgreSQL instance.
         :param pulumi.Input[str] overdue_reclaim_time: Estimated release time when arrears are closed (pay-as-you-go & monthly subscription).
         :param pulumi.Input[str] overdue_time: Shutdown time in arrears (pay-as-you-go & monthly subscription).
         :param pulumi.Input[int] period: Purchase duration in prepaid scenarios. Default: 1.
@@ -124,6 +287,8 @@ class InstanceChargeDetailArgs:
             pulumi.set(__self__, "charge_status", charge_status)
         if charge_type is not None:
             pulumi.set(__self__, "charge_type", charge_type)
+        if number is not None:
+            pulumi.set(__self__, "number", number)
         if overdue_reclaim_time is not None:
             pulumi.set(__self__, "overdue_reclaim_time", overdue_reclaim_time)
         if overdue_time is not None:
@@ -182,7 +347,7 @@ class InstanceChargeDetailArgs:
         Pay status. Value:
         normal - normal
         overdue - overdue
-        .
+        unpaid - unpaid.
         """
         return pulumi.get(self, "charge_status")
 
@@ -203,6 +368,18 @@ class InstanceChargeDetailArgs:
     @charge_type.setter
     def charge_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "charge_type", value)
+
+    @property
+    @pulumi.getter
+    def number(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of the RDS PostgreSQL instance.
+        """
+        return pulumi.get(self, "number")
+
+    @number.setter
+    def number(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "number", value)
 
     @property
     @pulumi.getter(name="overdueReclaimTime")
@@ -284,10 +461,12 @@ class InstanceChargeInfoArgs:
     def __init__(__self__, *,
                  charge_type: pulumi.Input[str],
                  auto_renew: Optional[pulumi.Input[bool]] = None,
+                 number: Optional[pulumi.Input[int]] = None,
                  period: Optional[pulumi.Input[int]] = None,
                  period_unit: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[bool] auto_renew: Whether to automatically renew in prepaid scenarios.
+        :param pulumi.Input[int] number: Purchase number of the RDS PostgreSQL instance. Range: [1, 20]. Default: 1.
         :param pulumi.Input[int] period: Purchase duration in prepaid scenarios. Default: 1.
         :param pulumi.Input[str] period_unit: The purchase cycle in the prepaid scenario.
                Month - monthly subscription (default)
@@ -296,6 +475,8 @@ class InstanceChargeInfoArgs:
         pulumi.set(__self__, "charge_type", charge_type)
         if auto_renew is not None:
             pulumi.set(__self__, "auto_renew", auto_renew)
+        if number is not None:
+            pulumi.set(__self__, "number", number)
         if period is not None:
             pulumi.set(__self__, "period", period)
         if period_unit is not None:
@@ -321,6 +502,18 @@ class InstanceChargeInfoArgs:
     @auto_renew.setter
     def auto_renew(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "auto_renew", value)
+
+    @property
+    @pulumi.getter
+    def number(self) -> Optional[pulumi.Input[int]]:
+        """
+        Purchase number of the RDS PostgreSQL instance. Range: [1, 20]. Default: 1.
+        """
+        return pulumi.get(self, "number")
+
+    @number.setter
+    def number(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "number", value)
 
     @property
     @pulumi.getter
@@ -360,8 +553,12 @@ class InstanceEndpointArgs:
                  endpoint_id: Optional[pulumi.Input[str]] = None,
                  endpoint_name: Optional[pulumi.Input[str]] = None,
                  endpoint_type: Optional[pulumi.Input[str]] = None,
+                 read_only_node_distribution_type: Optional[pulumi.Input[str]] = None,
+                 read_only_node_max_delay_time: Optional[pulumi.Input[int]] = None,
                  read_only_node_weights: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceEndpointReadOnlyNodeWeightArgs']]]] = None,
-                 read_write_mode: Optional[pulumi.Input[str]] = None):
+                 read_write_mode: Optional[pulumi.Input[str]] = None,
+                 read_write_proxy_connection: Optional[pulumi.Input[int]] = None,
+                 write_node_halt_writing: Optional[pulumi.Input[bool]] = None):
         """
         :param pulumi.Input[Sequence[pulumi.Input['InstanceEndpointAddressArgs']]] addresses: Address list.
         :param pulumi.Input[str] auto_add_new_nodes: When the terminal type is read-write terminal or read-only terminal, it supports setting whether new nodes are automatically added.
@@ -376,10 +573,16 @@ class InstanceEndpointArgs:
                Custom: Custom terminal.
                Direct: Direct connection to the terminal. (Only the operation and maintenance side)
                AllNode: All node terminals. (Only the operation and maintenance side).
+        :param pulumi.Input[str] read_only_node_distribution_type: The distribution type of the read-only nodes, value:
+               Default: Default distribution.
+               Custom: Custom distribution.
+        :param pulumi.Input[int] read_only_node_max_delay_time: Maximum latency threshold of read-only node. If the latency of a read-only node exceeds this value, reading traffic won't be routed to this node. Unit: seconds.Values: 0~3600.Default value: 30.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceEndpointReadOnlyNodeWeightArgs']]] read_only_node_weights: The list of nodes configured by the connection terminal and the corresponding read-only weights.
         :param pulumi.Input[str] read_write_mode: Read and write mode:
                ReadWrite: read and write
                ReadOnly: read only (default).
+        :param pulumi.Input[int] read_write_proxy_connection: After the terminal enables read-write separation, the number of proxy connections set for the terminal. The lower limit of the number of proxy connections is 20. The upper limit of the number of proxy connections depends on the specifications of the instance master node.
+        :param pulumi.Input[bool] write_node_halt_writing: Whether the endpoint sends write requests to the write node (currently only the master node is a write node). Values: true: Yes(Default). false: No.
         """
         if addresses is not None:
             pulumi.set(__self__, "addresses", addresses)
@@ -397,10 +600,18 @@ class InstanceEndpointArgs:
             pulumi.set(__self__, "endpoint_name", endpoint_name)
         if endpoint_type is not None:
             pulumi.set(__self__, "endpoint_type", endpoint_type)
+        if read_only_node_distribution_type is not None:
+            pulumi.set(__self__, "read_only_node_distribution_type", read_only_node_distribution_type)
+        if read_only_node_max_delay_time is not None:
+            pulumi.set(__self__, "read_only_node_max_delay_time", read_only_node_max_delay_time)
         if read_only_node_weights is not None:
             pulumi.set(__self__, "read_only_node_weights", read_only_node_weights)
         if read_write_mode is not None:
             pulumi.set(__self__, "read_write_mode", read_write_mode)
+        if read_write_proxy_connection is not None:
+            pulumi.set(__self__, "read_write_proxy_connection", read_write_proxy_connection)
+        if write_node_halt_writing is not None:
+            pulumi.set(__self__, "write_node_halt_writing", write_node_halt_writing)
 
     @property
     @pulumi.getter
@@ -504,6 +715,32 @@ class InstanceEndpointArgs:
         pulumi.set(self, "endpoint_type", value)
 
     @property
+    @pulumi.getter(name="readOnlyNodeDistributionType")
+    def read_only_node_distribution_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The distribution type of the read-only nodes, value:
+        Default: Default distribution.
+        Custom: Custom distribution.
+        """
+        return pulumi.get(self, "read_only_node_distribution_type")
+
+    @read_only_node_distribution_type.setter
+    def read_only_node_distribution_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "read_only_node_distribution_type", value)
+
+    @property
+    @pulumi.getter(name="readOnlyNodeMaxDelayTime")
+    def read_only_node_max_delay_time(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum latency threshold of read-only node. If the latency of a read-only node exceeds this value, reading traffic won't be routed to this node. Unit: seconds.Values: 0~3600.Default value: 30.
+        """
+        return pulumi.get(self, "read_only_node_max_delay_time")
+
+    @read_only_node_max_delay_time.setter
+    def read_only_node_max_delay_time(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "read_only_node_max_delay_time", value)
+
+    @property
     @pulumi.getter(name="readOnlyNodeWeights")
     def read_only_node_weights(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceEndpointReadOnlyNodeWeightArgs']]]]:
         """
@@ -529,34 +766,74 @@ class InstanceEndpointArgs:
     def read_write_mode(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "read_write_mode", value)
 
+    @property
+    @pulumi.getter(name="readWriteProxyConnection")
+    def read_write_proxy_connection(self) -> Optional[pulumi.Input[int]]:
+        """
+        After the terminal enables read-write separation, the number of proxy connections set for the terminal. The lower limit of the number of proxy connections is 20. The upper limit of the number of proxy connections depends on the specifications of the instance master node.
+        """
+        return pulumi.get(self, "read_write_proxy_connection")
+
+    @read_write_proxy_connection.setter
+    def read_write_proxy_connection(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "read_write_proxy_connection", value)
+
+    @property
+    @pulumi.getter(name="writeNodeHaltWriting")
+    def write_node_halt_writing(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether the endpoint sends write requests to the write node (currently only the master node is a write node). Values: true: Yes(Default). false: No.
+        """
+        return pulumi.get(self, "write_node_halt_writing")
+
+    @write_node_halt_writing.setter
+    def write_node_halt_writing(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "write_node_halt_writing", value)
+
 
 @pulumi.input_type
 class InstanceEndpointAddressArgs:
     def __init__(__self__, *,
+                 cross_region_domain: Optional[pulumi.Input[str]] = None,
                  dns_visibility: Optional[pulumi.Input[bool]] = None,
                  domain: Optional[pulumi.Input[str]] = None,
+                 domain_visibility_setting: Optional[pulumi.Input[str]] = None,
                  eip_id: Optional[pulumi.Input[str]] = None,
+                 internet_protocol: Optional[pulumi.Input[str]] = None,
                  ip_address: Optional[pulumi.Input[str]] = None,
+                 ipv6_address: Optional[pulumi.Input[str]] = None,
                  network_type: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[str]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[bool] dns_visibility: DNS Visibility.
+        :param pulumi.Input[str] cross_region_domain: Address that can be accessed across regions.
+        :param pulumi.Input[bool] dns_visibility: Whether to enable public network resolution. Values: false: Default value. PrivateZone of Volcano Engine. true: Private and public network resolution of Volcano Engine.
         :param pulumi.Input[str] domain: Connect domain name.
+        :param pulumi.Input[str] domain_visibility_setting: The type of private network address. Values: LocalDomain: Local domain name. CrossRegionDomain: Domains accessible across regions.
         :param pulumi.Input[str] eip_id: The ID of the EIP, only valid for Public addresses.
+        :param pulumi.Input[str] internet_protocol: Address IP protocol, IPv4 or IPv6.
         :param pulumi.Input[str] ip_address: The IP Address.
+        :param pulumi.Input[str] ipv6_address: The IPv6 Address.
         :param pulumi.Input[str] network_type: Network address type, temporarily Private, Public, PublicService.
         :param pulumi.Input[str] port: The Port.
         :param pulumi.Input[str] subnet_id: Subnet ID of the RDS PostgreSQL instance.
         """
+        if cross_region_domain is not None:
+            pulumi.set(__self__, "cross_region_domain", cross_region_domain)
         if dns_visibility is not None:
             pulumi.set(__self__, "dns_visibility", dns_visibility)
         if domain is not None:
             pulumi.set(__self__, "domain", domain)
+        if domain_visibility_setting is not None:
+            pulumi.set(__self__, "domain_visibility_setting", domain_visibility_setting)
         if eip_id is not None:
             pulumi.set(__self__, "eip_id", eip_id)
+        if internet_protocol is not None:
+            pulumi.set(__self__, "internet_protocol", internet_protocol)
         if ip_address is not None:
             pulumi.set(__self__, "ip_address", ip_address)
+        if ipv6_address is not None:
+            pulumi.set(__self__, "ipv6_address", ipv6_address)
         if network_type is not None:
             pulumi.set(__self__, "network_type", network_type)
         if port is not None:
@@ -565,10 +842,22 @@ class InstanceEndpointAddressArgs:
             pulumi.set(__self__, "subnet_id", subnet_id)
 
     @property
+    @pulumi.getter(name="crossRegionDomain")
+    def cross_region_domain(self) -> Optional[pulumi.Input[str]]:
+        """
+        Address that can be accessed across regions.
+        """
+        return pulumi.get(self, "cross_region_domain")
+
+    @cross_region_domain.setter
+    def cross_region_domain(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cross_region_domain", value)
+
+    @property
     @pulumi.getter(name="dnsVisibility")
     def dns_visibility(self) -> Optional[pulumi.Input[bool]]:
         """
-        DNS Visibility.
+        Whether to enable public network resolution. Values: false: Default value. PrivateZone of Volcano Engine. true: Private and public network resolution of Volcano Engine.
         """
         return pulumi.get(self, "dns_visibility")
 
@@ -589,6 +878,18 @@ class InstanceEndpointAddressArgs:
         pulumi.set(self, "domain", value)
 
     @property
+    @pulumi.getter(name="domainVisibilitySetting")
+    def domain_visibility_setting(self) -> Optional[pulumi.Input[str]]:
+        """
+        The type of private network address. Values: LocalDomain: Local domain name. CrossRegionDomain: Domains accessible across regions.
+        """
+        return pulumi.get(self, "domain_visibility_setting")
+
+    @domain_visibility_setting.setter
+    def domain_visibility_setting(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "domain_visibility_setting", value)
+
+    @property
     @pulumi.getter(name="eipId")
     def eip_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -601,6 +902,18 @@ class InstanceEndpointAddressArgs:
         pulumi.set(self, "eip_id", value)
 
     @property
+    @pulumi.getter(name="internetProtocol")
+    def internet_protocol(self) -> Optional[pulumi.Input[str]]:
+        """
+        Address IP protocol, IPv4 or IPv6.
+        """
+        return pulumi.get(self, "internet_protocol")
+
+    @internet_protocol.setter
+    def internet_protocol(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "internet_protocol", value)
+
+    @property
     @pulumi.getter(name="ipAddress")
     def ip_address(self) -> Optional[pulumi.Input[str]]:
         """
@@ -611,6 +924,18 @@ class InstanceEndpointAddressArgs:
     @ip_address.setter
     def ip_address(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ip_address", value)
+
+    @property
+    @pulumi.getter(name="ipv6Address")
+    def ipv6_address(self) -> Optional[pulumi.Input[str]]:
+        """
+        The IPv6 Address.
+        """
+        return pulumi.get(self, "ipv6_address")
+
+    @ipv6_address.setter
+    def ipv6_address(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ipv6_address", value)
 
     @property
     @pulumi.getter(name="networkType")
@@ -706,6 +1031,45 @@ class InstanceEndpointReadOnlyNodeWeightArgs:
     @weight.setter
     def weight(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "weight", value)
+
+
+@pulumi.input_type
+class InstanceEstimationResultArgs:
+    def __init__(__self__, *,
+                 effects: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 plans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] effects: After changing according to the current configuration, the estimated impact on the read and write connections of the instance.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] plans: Estimated impact on the instance after the current configuration changes.
+        """
+        if effects is not None:
+            pulumi.set(__self__, "effects", effects)
+        if plans is not None:
+            pulumi.set(__self__, "plans", plans)
+
+    @property
+    @pulumi.getter
+    def effects(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        After changing according to the current configuration, the estimated impact on the read and write connections of the instance.
+        """
+        return pulumi.get(self, "effects")
+
+    @effects.setter
+    def effects(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "effects", value)
+
+    @property
+    @pulumi.getter
+    def plans(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Estimated impact on the instance after the current configuration changes.
+        """
+        return pulumi.get(self, "plans")
+
+    @plans.setter
+    def plans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "plans", value)
 
 
 @pulumi.input_type
@@ -933,6 +1297,346 @@ class InstanceParameterArgs:
 
 
 @pulumi.input_type
+class InstancePriceDetailsChargeInfoArgs:
+    def __init__(__self__, *,
+                 charge_type: str,
+                 auto_renew: Optional[bool] = None,
+                 number: Optional[int] = None,
+                 period: Optional[int] = None,
+                 period_unit: Optional[str] = None):
+        """
+        :param str charge_type: The charge type of the instance. Valid values: PostPaid, PrePaid.
+        :param bool auto_renew: Whether to auto renew the subscription in a pre-paid scenario.
+        :param int number: Number of purchased instances. Can be an integer between 1 and 20. Default value:1.
+        :param int period: Subscription duration in a pre-paid scenario.Default value:1.
+        :param str period_unit: Purchase cycle in a pre-paid scenario. Valid values: Month, Year.
+        """
+        pulumi.set(__self__, "charge_type", charge_type)
+        if auto_renew is not None:
+            pulumi.set(__self__, "auto_renew", auto_renew)
+        if number is not None:
+            pulumi.set(__self__, "number", number)
+        if period is not None:
+            pulumi.set(__self__, "period", period)
+        if period_unit is not None:
+            pulumi.set(__self__, "period_unit", period_unit)
+
+    @property
+    @pulumi.getter(name="chargeType")
+    def charge_type(self) -> str:
+        """
+        The charge type of the instance. Valid values: PostPaid, PrePaid.
+        """
+        return pulumi.get(self, "charge_type")
+
+    @charge_type.setter
+    def charge_type(self, value: str):
+        pulumi.set(self, "charge_type", value)
+
+    @property
+    @pulumi.getter(name="autoRenew")
+    def auto_renew(self) -> Optional[bool]:
+        """
+        Whether to auto renew the subscription in a pre-paid scenario.
+        """
+        return pulumi.get(self, "auto_renew")
+
+    @auto_renew.setter
+    def auto_renew(self, value: Optional[bool]):
+        pulumi.set(self, "auto_renew", value)
+
+    @property
+    @pulumi.getter
+    def number(self) -> Optional[int]:
+        """
+        Number of purchased instances. Can be an integer between 1 and 20. Default value:1.
+        """
+        return pulumi.get(self, "number")
+
+    @number.setter
+    def number(self, value: Optional[int]):
+        pulumi.set(self, "number", value)
+
+    @property
+    @pulumi.getter
+    def period(self) -> Optional[int]:
+        """
+        Subscription duration in a pre-paid scenario.Default value:1.
+        """
+        return pulumi.get(self, "period")
+
+    @period.setter
+    def period(self, value: Optional[int]):
+        pulumi.set(self, "period", value)
+
+    @property
+    @pulumi.getter(name="periodUnit")
+    def period_unit(self) -> Optional[str]:
+        """
+        Purchase cycle in a pre-paid scenario. Valid values: Month, Year.
+        """
+        return pulumi.get(self, "period_unit")
+
+    @period_unit.setter
+    def period_unit(self, value: Optional[str]):
+        pulumi.set(self, "period_unit", value)
+
+
+@pulumi.input_type
+class InstancePriceDetailsNodeInfoArgs:
+    def __init__(__self__, *,
+                 node_spec: str,
+                 node_type: str,
+                 zone_id: str,
+                 node_id: Optional[str] = None,
+                 node_operate_type: Optional[str] = None):
+        """
+        :param str node_spec: The specification of the node.
+        :param str node_type: The type of the node. Valid values: Primary, Secondary, ReadOnly.
+        :param str zone_id: The AZ of the node.
+        :param str node_id: The id of the node.
+        :param str node_operate_type: The operate type of the node. Valid values: Create.
+        """
+        pulumi.set(__self__, "node_spec", node_spec)
+        pulumi.set(__self__, "node_type", node_type)
+        pulumi.set(__self__, "zone_id", zone_id)
+        if node_id is not None:
+            pulumi.set(__self__, "node_id", node_id)
+        if node_operate_type is not None:
+            pulumi.set(__self__, "node_operate_type", node_operate_type)
+
+    @property
+    @pulumi.getter(name="nodeSpec")
+    def node_spec(self) -> str:
+        """
+        The specification of the node.
+        """
+        return pulumi.get(self, "node_spec")
+
+    @node_spec.setter
+    def node_spec(self, value: str):
+        pulumi.set(self, "node_spec", value)
+
+    @property
+    @pulumi.getter(name="nodeType")
+    def node_type(self) -> str:
+        """
+        The type of the node. Valid values: Primary, Secondary, ReadOnly.
+        """
+        return pulumi.get(self, "node_type")
+
+    @node_type.setter
+    def node_type(self, value: str):
+        pulumi.set(self, "node_type", value)
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> str:
+        """
+        The AZ of the node.
+        """
+        return pulumi.get(self, "zone_id")
+
+    @zone_id.setter
+    def zone_id(self, value: str):
+        pulumi.set(self, "zone_id", value)
+
+    @property
+    @pulumi.getter(name="nodeId")
+    def node_id(self) -> Optional[str]:
+        """
+        The id of the node.
+        """
+        return pulumi.get(self, "node_id")
+
+    @node_id.setter
+    def node_id(self, value: Optional[str]):
+        pulumi.set(self, "node_id", value)
+
+    @property
+    @pulumi.getter(name="nodeOperateType")
+    def node_operate_type(self) -> Optional[str]:
+        """
+        The operate type of the node. Valid values: Create.
+        """
+        return pulumi.get(self, "node_operate_type")
+
+    @node_operate_type.setter
+    def node_operate_type(self, value: Optional[str]):
+        pulumi.set(self, "node_operate_type", value)
+
+
+@pulumi.input_type
+class InstancePriceDifferencesChargeInfoArgs:
+    def __init__(__self__, *,
+                 charge_type: str,
+                 auto_renew: Optional[bool] = None,
+                 number: Optional[int] = None,
+                 period: Optional[int] = None,
+                 period_unit: Optional[str] = None):
+        """
+        :param str charge_type: The charge type of the instance. Valid values: PostPaid, PrePaid.
+        :param bool auto_renew: Whether to auto renew the subscription in a pre-paid scenario.
+        :param int number: Number of purchased instances. Can be an integer between 1 and 20. Default value:1.
+        :param int period: Subscription duration in a pre-paid scenario.Default value:1.
+        :param str period_unit: Purchase cycle in a pre-paid scenario. Valid values: Month, Year.
+        """
+        pulumi.set(__self__, "charge_type", charge_type)
+        if auto_renew is not None:
+            pulumi.set(__self__, "auto_renew", auto_renew)
+        if number is not None:
+            pulumi.set(__self__, "number", number)
+        if period is not None:
+            pulumi.set(__self__, "period", period)
+        if period_unit is not None:
+            pulumi.set(__self__, "period_unit", period_unit)
+
+    @property
+    @pulumi.getter(name="chargeType")
+    def charge_type(self) -> str:
+        """
+        The charge type of the instance. Valid values: PostPaid, PrePaid.
+        """
+        return pulumi.get(self, "charge_type")
+
+    @charge_type.setter
+    def charge_type(self, value: str):
+        pulumi.set(self, "charge_type", value)
+
+    @property
+    @pulumi.getter(name="autoRenew")
+    def auto_renew(self) -> Optional[bool]:
+        """
+        Whether to auto renew the subscription in a pre-paid scenario.
+        """
+        return pulumi.get(self, "auto_renew")
+
+    @auto_renew.setter
+    def auto_renew(self, value: Optional[bool]):
+        pulumi.set(self, "auto_renew", value)
+
+    @property
+    @pulumi.getter
+    def number(self) -> Optional[int]:
+        """
+        Number of purchased instances. Can be an integer between 1 and 20. Default value:1.
+        """
+        return pulumi.get(self, "number")
+
+    @number.setter
+    def number(self, value: Optional[int]):
+        pulumi.set(self, "number", value)
+
+    @property
+    @pulumi.getter
+    def period(self) -> Optional[int]:
+        """
+        Subscription duration in a pre-paid scenario.Default value:1.
+        """
+        return pulumi.get(self, "period")
+
+    @period.setter
+    def period(self, value: Optional[int]):
+        pulumi.set(self, "period", value)
+
+    @property
+    @pulumi.getter(name="periodUnit")
+    def period_unit(self) -> Optional[str]:
+        """
+        Purchase cycle in a pre-paid scenario. Valid values: Month, Year.
+        """
+        return pulumi.get(self, "period_unit")
+
+    @period_unit.setter
+    def period_unit(self, value: Optional[str]):
+        pulumi.set(self, "period_unit", value)
+
+
+@pulumi.input_type
+class InstancePriceDifferencesNodeInfoArgs:
+    def __init__(__self__, *,
+                 node_spec: str,
+                 node_type: str,
+                 zone_id: str,
+                 node_id: Optional[str] = None,
+                 node_operate_type: Optional[str] = None):
+        """
+        :param str node_spec: The specification of the node.
+        :param str node_type: The type of the node. Valid values: Primary, Secondary, ReadOnly.
+        :param str zone_id: The AZ of the node.
+        :param str node_id: The id of the node.When the modify_type is set to Temporary, this parameter is required.
+        :param str node_operate_type: The operate type of the node. Valid values: Create, Modify.
+        """
+        pulumi.set(__self__, "node_spec", node_spec)
+        pulumi.set(__self__, "node_type", node_type)
+        pulumi.set(__self__, "zone_id", zone_id)
+        if node_id is not None:
+            pulumi.set(__self__, "node_id", node_id)
+        if node_operate_type is not None:
+            pulumi.set(__self__, "node_operate_type", node_operate_type)
+
+    @property
+    @pulumi.getter(name="nodeSpec")
+    def node_spec(self) -> str:
+        """
+        The specification of the node.
+        """
+        return pulumi.get(self, "node_spec")
+
+    @node_spec.setter
+    def node_spec(self, value: str):
+        pulumi.set(self, "node_spec", value)
+
+    @property
+    @pulumi.getter(name="nodeType")
+    def node_type(self) -> str:
+        """
+        The type of the node. Valid values: Primary, Secondary, ReadOnly.
+        """
+        return pulumi.get(self, "node_type")
+
+    @node_type.setter
+    def node_type(self, value: str):
+        pulumi.set(self, "node_type", value)
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> str:
+        """
+        The AZ of the node.
+        """
+        return pulumi.get(self, "zone_id")
+
+    @zone_id.setter
+    def zone_id(self, value: str):
+        pulumi.set(self, "zone_id", value)
+
+    @property
+    @pulumi.getter(name="nodeId")
+    def node_id(self) -> Optional[str]:
+        """
+        The id of the node.When the modify_type is set to Temporary, this parameter is required.
+        """
+        return pulumi.get(self, "node_id")
+
+    @node_id.setter
+    def node_id(self, value: Optional[str]):
+        pulumi.set(self, "node_id", value)
+
+    @property
+    @pulumi.getter(name="nodeOperateType")
+    def node_operate_type(self) -> Optional[str]:
+        """
+        The operate type of the node. Valid values: Create, Modify.
+        """
+        return pulumi.get(self, "node_operate_type")
+
+    @node_operate_type.setter
+    def node_operate_type(self, value: Optional[str]):
+        pulumi.set(self, "node_operate_type", value)
+
+
+@pulumi.input_type
 class InstanceTagArgs:
     def __init__(__self__, *,
                  key: pulumi.Input[str],
@@ -970,6 +1674,59 @@ class InstanceTagArgs:
 
 
 @pulumi.input_type
+class InstanceZoneMigrationArgs:
+    def __init__(__self__, *,
+                 node_id: pulumi.Input[str],
+                 zone_id: pulumi.Input[str],
+                 node_type: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] node_id: Node ID to migrate.
+        :param pulumi.Input[str] zone_id: Target zone ID.
+        :param pulumi.Input[str] node_type: Node type: Secondary or ReadOnly.
+        """
+        pulumi.set(__self__, "node_id", node_id)
+        pulumi.set(__self__, "zone_id", zone_id)
+        if node_type is not None:
+            pulumi.set(__self__, "node_type", node_type)
+
+    @property
+    @pulumi.getter(name="nodeId")
+    def node_id(self) -> pulumi.Input[str]:
+        """
+        Node ID to migrate.
+        """
+        return pulumi.get(self, "node_id")
+
+    @node_id.setter
+    def node_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "node_id", value)
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> pulumi.Input[str]:
+        """
+        Target zone ID.
+        """
+        return pulumi.get(self, "zone_id")
+
+    @zone_id.setter
+    def zone_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "zone_id", value)
+
+    @property
+    @pulumi.getter(name="nodeType")
+    def node_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Node type: Secondary or ReadOnly.
+        """
+        return pulumi.get(self, "node_type")
+
+    @node_type.setter
+    def node_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "node_type", value)
+
+
+@pulumi.input_type
 class InstancesTagArgs:
     def __init__(__self__, *,
                  key: str,
@@ -1004,6 +1761,420 @@ class InstancesTagArgs:
     @value.setter
     def value(self, value: str):
         pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ParameterTemplateTemplateParamArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] name: The name of the parameter.
+        :param pulumi.Input[str] value: The value of the parameter.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        """
+        The name of the parameter.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        """
+        The value of the parameter.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class RestoreBackupDatabaseArgs:
+    def __init__(__self__, *,
+                 db_name: pulumi.Input[str],
+                 new_db_name: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] db_name: Original database name.
+        :param pulumi.Input[str] new_db_name: New database name.
+        """
+        pulumi.set(__self__, "db_name", db_name)
+        pulumi.set(__self__, "new_db_name", new_db_name)
+
+    @property
+    @pulumi.getter(name="dbName")
+    def db_name(self) -> pulumi.Input[str]:
+        """
+        Original database name.
+        """
+        return pulumi.get(self, "db_name")
+
+    @db_name.setter
+    def db_name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "db_name", value)
+
+    @property
+    @pulumi.getter(name="newDbName")
+    def new_db_name(self) -> pulumi.Input[str]:
+        """
+        New database name.
+        """
+        return pulumi.get(self, "new_db_name")
+
+    @new_db_name.setter
+    def new_db_name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "new_db_name", value)
+
+
+@pulumi.input_type
+class GetInstancePriceDetailsChargeInfoArgs:
+    def __init__(__self__, *,
+                 charge_type: str,
+                 auto_renew: Optional[bool] = None,
+                 number: Optional[int] = None,
+                 period: Optional[int] = None,
+                 period_unit: Optional[str] = None):
+        """
+        :param str charge_type: The charge type of the instance. Valid values: PostPaid, PrePaid.
+        :param bool auto_renew: Whether to auto renew the subscription in a pre-paid scenario.
+        :param int number: Number of purchased instances. Can be an integer between 1 and 20. Default value:1.
+        :param int period: Subscription duration in a pre-paid scenario.Default value:1.
+        :param str period_unit: Purchase cycle in a pre-paid scenario. Valid values: Month, Year.
+        """
+        pulumi.set(__self__, "charge_type", charge_type)
+        if auto_renew is not None:
+            pulumi.set(__self__, "auto_renew", auto_renew)
+        if number is not None:
+            pulumi.set(__self__, "number", number)
+        if period is not None:
+            pulumi.set(__self__, "period", period)
+        if period_unit is not None:
+            pulumi.set(__self__, "period_unit", period_unit)
+
+    @property
+    @pulumi.getter(name="chargeType")
+    def charge_type(self) -> str:
+        """
+        The charge type of the instance. Valid values: PostPaid, PrePaid.
+        """
+        return pulumi.get(self, "charge_type")
+
+    @charge_type.setter
+    def charge_type(self, value: str):
+        pulumi.set(self, "charge_type", value)
+
+    @property
+    @pulumi.getter(name="autoRenew")
+    def auto_renew(self) -> Optional[bool]:
+        """
+        Whether to auto renew the subscription in a pre-paid scenario.
+        """
+        return pulumi.get(self, "auto_renew")
+
+    @auto_renew.setter
+    def auto_renew(self, value: Optional[bool]):
+        pulumi.set(self, "auto_renew", value)
+
+    @property
+    @pulumi.getter
+    def number(self) -> Optional[int]:
+        """
+        Number of purchased instances. Can be an integer between 1 and 20. Default value:1.
+        """
+        return pulumi.get(self, "number")
+
+    @number.setter
+    def number(self, value: Optional[int]):
+        pulumi.set(self, "number", value)
+
+    @property
+    @pulumi.getter
+    def period(self) -> Optional[int]:
+        """
+        Subscription duration in a pre-paid scenario.Default value:1.
+        """
+        return pulumi.get(self, "period")
+
+    @period.setter
+    def period(self, value: Optional[int]):
+        pulumi.set(self, "period", value)
+
+    @property
+    @pulumi.getter(name="periodUnit")
+    def period_unit(self) -> Optional[str]:
+        """
+        Purchase cycle in a pre-paid scenario. Valid values: Month, Year.
+        """
+        return pulumi.get(self, "period_unit")
+
+    @period_unit.setter
+    def period_unit(self, value: Optional[str]):
+        pulumi.set(self, "period_unit", value)
+
+
+@pulumi.input_type
+class GetInstancePriceDetailsNodeInfoArgs:
+    def __init__(__self__, *,
+                 node_spec: str,
+                 node_type: str,
+                 zone_id: str,
+                 node_id: Optional[str] = None,
+                 node_operate_type: Optional[str] = None):
+        """
+        :param str node_spec: The specification of the node.
+        :param str node_type: The type of the node. Valid values: Primary, Secondary, ReadOnly.
+        :param str zone_id: The AZ of the node.
+        :param str node_id: The id of the node.
+        :param str node_operate_type: The operate type of the node. Valid values: Create.
+        """
+        pulumi.set(__self__, "node_spec", node_spec)
+        pulumi.set(__self__, "node_type", node_type)
+        pulumi.set(__self__, "zone_id", zone_id)
+        if node_id is not None:
+            pulumi.set(__self__, "node_id", node_id)
+        if node_operate_type is not None:
+            pulumi.set(__self__, "node_operate_type", node_operate_type)
+
+    @property
+    @pulumi.getter(name="nodeSpec")
+    def node_spec(self) -> str:
+        """
+        The specification of the node.
+        """
+        return pulumi.get(self, "node_spec")
+
+    @node_spec.setter
+    def node_spec(self, value: str):
+        pulumi.set(self, "node_spec", value)
+
+    @property
+    @pulumi.getter(name="nodeType")
+    def node_type(self) -> str:
+        """
+        The type of the node. Valid values: Primary, Secondary, ReadOnly.
+        """
+        return pulumi.get(self, "node_type")
+
+    @node_type.setter
+    def node_type(self, value: str):
+        pulumi.set(self, "node_type", value)
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> str:
+        """
+        The AZ of the node.
+        """
+        return pulumi.get(self, "zone_id")
+
+    @zone_id.setter
+    def zone_id(self, value: str):
+        pulumi.set(self, "zone_id", value)
+
+    @property
+    @pulumi.getter(name="nodeId")
+    def node_id(self) -> Optional[str]:
+        """
+        The id of the node.
+        """
+        return pulumi.get(self, "node_id")
+
+    @node_id.setter
+    def node_id(self, value: Optional[str]):
+        pulumi.set(self, "node_id", value)
+
+    @property
+    @pulumi.getter(name="nodeOperateType")
+    def node_operate_type(self) -> Optional[str]:
+        """
+        The operate type of the node. Valid values: Create.
+        """
+        return pulumi.get(self, "node_operate_type")
+
+    @node_operate_type.setter
+    def node_operate_type(self, value: Optional[str]):
+        pulumi.set(self, "node_operate_type", value)
+
+
+@pulumi.input_type
+class GetInstancePriceDifferencesChargeInfoArgs:
+    def __init__(__self__, *,
+                 charge_type: str,
+                 auto_renew: Optional[bool] = None,
+                 number: Optional[int] = None,
+                 period: Optional[int] = None,
+                 period_unit: Optional[str] = None):
+        """
+        :param str charge_type: The charge type of the instance. Valid values: PostPaid, PrePaid.
+        :param bool auto_renew: Whether to auto renew the subscription in a pre-paid scenario.
+        :param int number: Number of purchased instances. Can be an integer between 1 and 20. Default value:1.
+        :param int period: Subscription duration in a pre-paid scenario.Default value:1.
+        :param str period_unit: Purchase cycle in a pre-paid scenario. Valid values: Month, Year.
+        """
+        pulumi.set(__self__, "charge_type", charge_type)
+        if auto_renew is not None:
+            pulumi.set(__self__, "auto_renew", auto_renew)
+        if number is not None:
+            pulumi.set(__self__, "number", number)
+        if period is not None:
+            pulumi.set(__self__, "period", period)
+        if period_unit is not None:
+            pulumi.set(__self__, "period_unit", period_unit)
+
+    @property
+    @pulumi.getter(name="chargeType")
+    def charge_type(self) -> str:
+        """
+        The charge type of the instance. Valid values: PostPaid, PrePaid.
+        """
+        return pulumi.get(self, "charge_type")
+
+    @charge_type.setter
+    def charge_type(self, value: str):
+        pulumi.set(self, "charge_type", value)
+
+    @property
+    @pulumi.getter(name="autoRenew")
+    def auto_renew(self) -> Optional[bool]:
+        """
+        Whether to auto renew the subscription in a pre-paid scenario.
+        """
+        return pulumi.get(self, "auto_renew")
+
+    @auto_renew.setter
+    def auto_renew(self, value: Optional[bool]):
+        pulumi.set(self, "auto_renew", value)
+
+    @property
+    @pulumi.getter
+    def number(self) -> Optional[int]:
+        """
+        Number of purchased instances. Can be an integer between 1 and 20. Default value:1.
+        """
+        return pulumi.get(self, "number")
+
+    @number.setter
+    def number(self, value: Optional[int]):
+        pulumi.set(self, "number", value)
+
+    @property
+    @pulumi.getter
+    def period(self) -> Optional[int]:
+        """
+        Subscription duration in a pre-paid scenario.Default value:1.
+        """
+        return pulumi.get(self, "period")
+
+    @period.setter
+    def period(self, value: Optional[int]):
+        pulumi.set(self, "period", value)
+
+    @property
+    @pulumi.getter(name="periodUnit")
+    def period_unit(self) -> Optional[str]:
+        """
+        Purchase cycle in a pre-paid scenario. Valid values: Month, Year.
+        """
+        return pulumi.get(self, "period_unit")
+
+    @period_unit.setter
+    def period_unit(self, value: Optional[str]):
+        pulumi.set(self, "period_unit", value)
+
+
+@pulumi.input_type
+class GetInstancePriceDifferencesNodeInfoArgs:
+    def __init__(__self__, *,
+                 node_spec: str,
+                 node_type: str,
+                 zone_id: str,
+                 node_id: Optional[str] = None,
+                 node_operate_type: Optional[str] = None):
+        """
+        :param str node_spec: The specification of the node.
+        :param str node_type: The type of the node. Valid values: Primary, Secondary, ReadOnly.
+        :param str zone_id: The AZ of the node.
+        :param str node_id: The id of the node.When the modify_type is set to Temporary, this parameter is required.
+        :param str node_operate_type: The operate type of the node. Valid values: Create, Modify.
+        """
+        pulumi.set(__self__, "node_spec", node_spec)
+        pulumi.set(__self__, "node_type", node_type)
+        pulumi.set(__self__, "zone_id", zone_id)
+        if node_id is not None:
+            pulumi.set(__self__, "node_id", node_id)
+        if node_operate_type is not None:
+            pulumi.set(__self__, "node_operate_type", node_operate_type)
+
+    @property
+    @pulumi.getter(name="nodeSpec")
+    def node_spec(self) -> str:
+        """
+        The specification of the node.
+        """
+        return pulumi.get(self, "node_spec")
+
+    @node_spec.setter
+    def node_spec(self, value: str):
+        pulumi.set(self, "node_spec", value)
+
+    @property
+    @pulumi.getter(name="nodeType")
+    def node_type(self) -> str:
+        """
+        The type of the node. Valid values: Primary, Secondary, ReadOnly.
+        """
+        return pulumi.get(self, "node_type")
+
+    @node_type.setter
+    def node_type(self, value: str):
+        pulumi.set(self, "node_type", value)
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> str:
+        """
+        The AZ of the node.
+        """
+        return pulumi.get(self, "zone_id")
+
+    @zone_id.setter
+    def zone_id(self, value: str):
+        pulumi.set(self, "zone_id", value)
+
+    @property
+    @pulumi.getter(name="nodeId")
+    def node_id(self) -> Optional[str]:
+        """
+        The id of the node.When the modify_type is set to Temporary, this parameter is required.
+        """
+        return pulumi.get(self, "node_id")
+
+    @node_id.setter
+    def node_id(self, value: Optional[str]):
+        pulumi.set(self, "node_id", value)
+
+    @property
+    @pulumi.getter(name="nodeOperateType")
+    def node_operate_type(self) -> Optional[str]:
+        """
+        The operate type of the node. Valid values: Create, Modify.
+        """
+        return pulumi.get(self, "node_operate_type")
+
+    @node_operate_type.setter
+    def node_operate_type(self, value: Optional[str]):
+        pulumi.set(self, "node_operate_type", value)
 
 
 @pulumi.input_type

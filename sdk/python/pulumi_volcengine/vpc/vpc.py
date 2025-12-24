@@ -169,6 +169,7 @@ class _VpcState:
                  subnet_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input['VpcTagArgs']]]] = None,
                  update_time: Optional[pulumi.Input[str]] = None,
+                 user_cidr_blocks: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None,
                  vpc_name: Optional[pulumi.Input[str]] = None):
         """
@@ -191,6 +192,7 @@ class _VpcState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] subnet_ids: The subnet ID list of VPC.
         :param pulumi.Input[Sequence[pulumi.Input['VpcTagArgs']]] tags: Tags.
         :param pulumi.Input[str] update_time: The update time of VPC.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] user_cidr_blocks: The user cidr block list of VPC.
         :param pulumi.Input[str] vpc_id: The ID of VPC.
         :param pulumi.Input[str] vpc_name: The name of the VPC.
         """
@@ -230,6 +232,8 @@ class _VpcState:
             pulumi.set(__self__, "tags", tags)
         if update_time is not None:
             pulumi.set(__self__, "update_time", update_time)
+        if user_cidr_blocks is not None:
+            pulumi.set(__self__, "user_cidr_blocks", user_cidr_blocks)
         if vpc_id is not None:
             pulumi.set(__self__, "vpc_id", vpc_id)
         if vpc_name is not None:
@@ -452,6 +456,18 @@ class _VpcState:
         pulumi.set(self, "update_time", value)
 
     @property
+    @pulumi.getter(name="userCidrBlocks")
+    def user_cidr_blocks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The user cidr block list of VPC.
+        """
+        return pulumi.get(self, "user_cidr_blocks")
+
+    @user_cidr_blocks.setter
+    def user_cidr_blocks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "user_cidr_blocks", value)
+
+    @property
     @pulumi.getter(name="vpcId")
     def vpc_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -636,6 +652,7 @@ class Vpc(pulumi.CustomResource):
             __props__.__dict__["status"] = None
             __props__.__dict__["subnet_ids"] = None
             __props__.__dict__["update_time"] = None
+            __props__.__dict__["user_cidr_blocks"] = None
             __props__.__dict__["vpc_id"] = None
         super(Vpc, __self__).__init__(
             'volcengine:vpc/vpc:Vpc',
@@ -665,6 +682,7 @@ class Vpc(pulumi.CustomResource):
             subnet_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcTagArgs']]]]] = None,
             update_time: Optional[pulumi.Input[str]] = None,
+            user_cidr_blocks: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             vpc_id: Optional[pulumi.Input[str]] = None,
             vpc_name: Optional[pulumi.Input[str]] = None) -> 'Vpc':
         """
@@ -692,6 +710,7 @@ class Vpc(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] subnet_ids: The subnet ID list of VPC.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] update_time: The update time of VPC.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] user_cidr_blocks: The user cidr block list of VPC.
         :param pulumi.Input[str] vpc_id: The ID of VPC.
         :param pulumi.Input[str] vpc_name: The name of the VPC.
         """
@@ -717,6 +736,7 @@ class Vpc(pulumi.CustomResource):
         __props__.__dict__["subnet_ids"] = subnet_ids
         __props__.__dict__["tags"] = tags
         __props__.__dict__["update_time"] = update_time
+        __props__.__dict__["user_cidr_blocks"] = user_cidr_blocks
         __props__.__dict__["vpc_id"] = vpc_id
         __props__.__dict__["vpc_name"] = vpc_name
         return Vpc(resource_name, opts=opts, __props__=__props__)
@@ -864,6 +884,14 @@ class Vpc(pulumi.CustomResource):
         The update time of VPC.
         """
         return pulumi.get(self, "update_time")
+
+    @property
+    @pulumi.getter(name="userCidrBlocks")
+    def user_cidr_blocks(self) -> pulumi.Output[Sequence[str]]:
+        """
+        The user cidr block list of VPC.
+        """
+        return pulumi.get(self, "user_cidr_blocks")
 
     @property
     @pulumi.getter(name="vpcId")

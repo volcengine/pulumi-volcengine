@@ -27,8 +27,10 @@ export function buckets(args?: BucketsArgs, opts?: pulumi.InvokeOptions): Promis
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:tos/buckets:Buckets", {
         "bucketName": args.bucketName,
+        "bucketType": args.bucketType,
         "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
+        "projectName": args.projectName,
     }, opts);
 }
 
@@ -41,6 +43,10 @@ export interface BucketsArgs {
      */
     bucketName?: string;
     /**
+     * The bucket type of the TOS bucket.
+     */
+    bucketType?: string;
+    /**
      * A Name Regex of TOS bucket.
      */
     nameRegex?: string;
@@ -48,6 +54,10 @@ export interface BucketsArgs {
      * File name where to save data source results.
      */
     outputFile?: string;
+    /**
+     * The project of the TOS bucket.
+     */
+    projectName?: string;
 }
 
 /**
@@ -55,6 +65,10 @@ export interface BucketsArgs {
  */
 export interface BucketsResult {
     readonly bucketName?: string;
+    /**
+     * The bucket type of the TOS bucket.
+     */
+    readonly bucketType?: string;
     /**
      * The collection of TOS bucket query.
      */
@@ -65,6 +79,10 @@ export interface BucketsResult {
     readonly id: string;
     readonly nameRegex?: string;
     readonly outputFile?: string;
+    /**
+     * The project of the TOS bucket.
+     */
+    readonly projectName?: string;
     /**
      * The total count of TOS bucket query.
      */
@@ -97,6 +115,10 @@ export interface BucketsOutputArgs {
      */
     bucketName?: pulumi.Input<string>;
     /**
+     * The bucket type of the TOS bucket.
+     */
+    bucketType?: pulumi.Input<string>;
+    /**
      * A Name Regex of TOS bucket.
      */
     nameRegex?: pulumi.Input<string>;
@@ -104,4 +126,8 @@ export interface BucketsOutputArgs {
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
+    /**
+     * The project of the TOS bucket.
+     */
+    projectName?: pulumi.Input<string>;
 }

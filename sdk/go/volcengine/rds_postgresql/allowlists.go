@@ -26,7 +26,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := rds_postgresql.GetAllowlists(ctx, nil, nil)
+//			_, err := rds_postgresql.GetAllowlists(ctx, &rds_postgresql.GetAllowlistsArgs{
+//				AllowListCategory: pulumi.StringRef("Ordinary"),
+//				AllowListDesc:     pulumi.StringRef("test allow list"),
+//				AllowListId:       pulumi.StringRef("acl-e7846436e1e741edbd385868fa657436"),
+//				AllowListName:     pulumi.StringRef("test"),
+//				IpAddress:         pulumi.StringRef("100.64.0.0/10"),
+//				NameRegex:         pulumi.StringRef(".*allowlist.*"),
+//			}, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -49,8 +56,18 @@ func Allowlists(ctx *pulumi.Context, args *AllowlistsArgs, opts ...pulumi.Invoke
 
 // A collection of arguments for invoking Allowlists.
 type AllowlistsArgs struct {
+	// The category of the postgresql allow list. Valid values: Ordinary, Default.
+	AllowListCategory *string `pulumi:"allowListCategory"`
+	// The description of the postgresql allow list. Perform a fuzzy search based on the description information.
+	AllowListDesc *string `pulumi:"allowListDesc"`
+	// The id of the postgresql allow list.
+	AllowListId *string `pulumi:"allowListId"`
+	// The name of the postgresql allow list.
+	AllowListName *string `pulumi:"allowListName"`
 	// The id of the postgresql Instance.
 	InstanceId *string `pulumi:"instanceId"`
+	// The IP address to be added to the allow list.
+	IpAddress *string `pulumi:"ipAddress"`
 	// A Name Regex of Resource.
 	NameRegex *string `pulumi:"nameRegex"`
 	// File name where to save data source results.
@@ -59,10 +76,19 @@ type AllowlistsArgs struct {
 
 // A collection of values returned by Allowlists.
 type AllowlistsResult struct {
+	// The category of the postgresql allow list.
+	AllowListCategory *string `pulumi:"allowListCategory"`
+	// The description of the postgresql allow list.
+	AllowListDesc *string `pulumi:"allowListDesc"`
+	// The id of the postgresql allow list.
+	AllowListId *string `pulumi:"allowListId"`
+	// The name of the postgresql allow list.
+	AllowListName *string `pulumi:"allowListName"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// The id of the postgresql instance.
 	InstanceId *string `pulumi:"instanceId"`
+	IpAddress  *string `pulumi:"ipAddress"`
 	NameRegex  *string `pulumi:"nameRegex"`
 	OutputFile *string `pulumi:"outputFile"`
 	// The list of postgresql allowed list.
@@ -86,8 +112,18 @@ func AllowlistsOutput(ctx *pulumi.Context, args AllowlistsOutputArgs, opts ...pu
 
 // A collection of arguments for invoking Allowlists.
 type AllowlistsOutputArgs struct {
+	// The category of the postgresql allow list. Valid values: Ordinary, Default.
+	AllowListCategory pulumi.StringPtrInput `pulumi:"allowListCategory"`
+	// The description of the postgresql allow list. Perform a fuzzy search based on the description information.
+	AllowListDesc pulumi.StringPtrInput `pulumi:"allowListDesc"`
+	// The id of the postgresql allow list.
+	AllowListId pulumi.StringPtrInput `pulumi:"allowListId"`
+	// The name of the postgresql allow list.
+	AllowListName pulumi.StringPtrInput `pulumi:"allowListName"`
 	// The id of the postgresql Instance.
 	InstanceId pulumi.StringPtrInput `pulumi:"instanceId"`
+	// The IP address to be added to the allow list.
+	IpAddress pulumi.StringPtrInput `pulumi:"ipAddress"`
 	// A Name Regex of Resource.
 	NameRegex pulumi.StringPtrInput `pulumi:"nameRegex"`
 	// File name where to save data source results.
@@ -113,6 +149,26 @@ func (o AllowlistsResultOutput) ToAllowlistsResultOutputWithContext(ctx context.
 	return o
 }
 
+// The category of the postgresql allow list.
+func (o AllowlistsResultOutput) AllowListCategory() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AllowlistsResult) *string { return v.AllowListCategory }).(pulumi.StringPtrOutput)
+}
+
+// The description of the postgresql allow list.
+func (o AllowlistsResultOutput) AllowListDesc() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AllowlistsResult) *string { return v.AllowListDesc }).(pulumi.StringPtrOutput)
+}
+
+// The id of the postgresql allow list.
+func (o AllowlistsResultOutput) AllowListId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AllowlistsResult) *string { return v.AllowListId }).(pulumi.StringPtrOutput)
+}
+
+// The name of the postgresql allow list.
+func (o AllowlistsResultOutput) AllowListName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AllowlistsResult) *string { return v.AllowListName }).(pulumi.StringPtrOutput)
+}
+
 // The provider-assigned unique ID for this managed resource.
 func (o AllowlistsResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v AllowlistsResult) string { return v.Id }).(pulumi.StringOutput)
@@ -121,6 +177,10 @@ func (o AllowlistsResultOutput) Id() pulumi.StringOutput {
 // The id of the postgresql instance.
 func (o AllowlistsResultOutput) InstanceId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AllowlistsResult) *string { return v.InstanceId }).(pulumi.StringPtrOutput)
+}
+
+func (o AllowlistsResultOutput) IpAddress() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AllowlistsResult) *string { return v.IpAddress }).(pulumi.StringPtrOutput)
 }
 
 func (o AllowlistsResultOutput) NameRegex() pulumi.StringPtrOutput {

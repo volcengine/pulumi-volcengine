@@ -13,7 +13,13 @@ namespace Pulumi.Volcengine.Rds_postgresql.Inputs
     public sealed class InstanceEndpointAddressArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// DNS Visibility.
+        /// Address that can be accessed across regions.
+        /// </summary>
+        [Input("crossRegionDomain")]
+        public Input<string>? CrossRegionDomain { get; set; }
+
+        /// <summary>
+        /// Whether to enable public network resolution. Values: false: Default value. PrivateZone of Volcano Engine. true: Private and public network resolution of Volcano Engine.
         /// </summary>
         [Input("dnsVisibility")]
         public Input<bool>? DnsVisibility { get; set; }
@@ -25,16 +31,34 @@ namespace Pulumi.Volcengine.Rds_postgresql.Inputs
         public Input<string>? Domain { get; set; }
 
         /// <summary>
+        /// The type of private network address. Values: LocalDomain: Local domain name. CrossRegionDomain: Domains accessible across regions.
+        /// </summary>
+        [Input("domainVisibilitySetting")]
+        public Input<string>? DomainVisibilitySetting { get; set; }
+
+        /// <summary>
         /// The ID of the EIP, only valid for Public addresses.
         /// </summary>
         [Input("eipId")]
         public Input<string>? EipId { get; set; }
 
         /// <summary>
+        /// Address IP protocol, IPv4 or IPv6.
+        /// </summary>
+        [Input("internetProtocol")]
+        public Input<string>? InternetProtocol { get; set; }
+
+        /// <summary>
         /// The IP Address.
         /// </summary>
         [Input("ipAddress")]
         public Input<string>? IpAddress { get; set; }
+
+        /// <summary>
+        /// The IPv6 Address.
+        /// </summary>
+        [Input("ipv6Address")]
+        public Input<string>? Ipv6Address { get; set; }
 
         /// <summary>
         /// Network address type, temporarily Private, Public, PublicService.

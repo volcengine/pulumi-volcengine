@@ -21,7 +21,7 @@ namespace Pulumi.Volcengine.Rds_postgresql
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var fooZones = Volcengine.Ecs.GetZones.Invoke();
+    ///     var fooZones = Volcengine.Rds_postgresql.GetZones.Invoke();
     /// 
     ///     // create vpc
     ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
@@ -41,7 +41,7 @@ namespace Pulumi.Volcengine.Rds_postgresql
     ///     {
     ///         SubnetName = "acc-test-subnet",
     ///         CidrBlock = "172.16.0.0/24",
-    ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
+    ///         ZoneId = data.Volcengine_zones.Foo.Zones[0].Id,
     ///         VpcId = fooVpc.Id,
     ///     });
     /// 
@@ -50,8 +50,8 @@ namespace Pulumi.Volcengine.Rds_postgresql
     ///     {
     ///         DbEngineVersion = "PostgreSQL_12",
     ///         NodeSpec = "rds.postgres.1c2g",
-    ///         PrimaryZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
-    ///         SecondaryZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
+    ///         PrimaryZoneId = data.Volcengine_zones.Foo.Zones[0].Id,
+    ///         SecondaryZoneId = data.Volcengine_zones.Foo.Zones[0].Id,
     ///         StorageSpace = 40,
     ///         SubnetId = fooSubnet.Id,
     ///         InstanceName = "acc-test-postgresql-instance",
@@ -88,7 +88,7 @@ namespace Pulumi.Volcengine.Rds_postgresql
     ///     {
     ///         InstanceId = fooInstance.Id,
     ///         NodeSpec = "rds.postgres.1c2g",
-    ///         ZoneId = fooZones.Apply(getZonesResult =&gt; getZonesResult.Zones[0]?.Id),
+    ///         ZoneId = data.Volcengine_zones.Foo.Zones[0].Id,
     ///     });
     /// 
     ///     // create postgresql allow list
@@ -139,6 +139,24 @@ namespace Pulumi.Volcengine.Rds_postgresql
     ///         SchemaName = "acc-test-schema",
     ///     });
     /// 
+    ///     // Restore the backup to a new instance
+    ///     var example = new Volcengine.Rds_postgresql.Instance("example", new()
+    ///     {
+    ///         SrcInstanceId = "postgres-faa4921fdde4",
+    ///         BackupId = "20251215-215628F",
+    ///         DbEngineVersion = "PostgreSQL_12",
+    ///         NodeSpec = "rds.postgres.1c2g",
+    ///         SubnetId = fooSubnet.Id,
+    ///         InstanceName = "acc-test-postgresql-instance-restore",
+    ///         ChargeInfo = new Volcengine.Rds_postgresql.Inputs.InstanceChargeInfoArgs
+    ///         {
+    ///             ChargeType = "PostPaid",
+    ///             Number = 1,
+    ///         },
+    ///         PrimaryZoneId = data.Volcengine_zones.Foo.Zones[0].Id,
+    ///         SecondaryZoneId = data.Volcengine_zones.Foo.Zones[0].Id,
+    ///     });
+    /// 
     /// });
     /// ```
     /// 
@@ -153,6 +171,24 @@ namespace Pulumi.Volcengine.Rds_postgresql
     [VolcengineResourceType("volcengine:rds_postgresql/instance:Instance")]
     public partial class Instance : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Allow list IDs to bind at creation.
+        /// </summary>
+        [Output("allowListIds")]
+        public Output<ImmutableArray<string>> AllowListIds { get; private set; } = null!;
+
+        /// <summary>
+        /// The allow list version of the RDS PostgreSQL instance.
+        /// </summary>
+        [Output("allowListVersion")]
+        public Output<string> AllowListVersion { get; private set; } = null!;
+
+        /// <summary>
+        /// Backup ID (choose either this or restore_time; if both are set, backup_id shall prevail).
+        /// </summary>
+        [Output("backupId")]
+        public Output<string?> BackupId { get; private set; } = null!;
+
         /// <summary>
         /// The instance has used backup space. Unit: GB.
         /// </summary>
@@ -184,7 +220,7 @@ namespace Pulumi.Volcengine.Rds_postgresql
         public Output<string> DataSyncMode { get; private set; } = null!;
 
         /// <summary>
-        /// Instance type. Value: PostgreSQL_11, PostgreSQL_12, PostgreSQL_13.
+        /// Instance type. Value: PostgreSQL_11, PostgreSQL_12, PostgreSQL_13, PostgreSQL_14, PostgreSQL_15, PostgreSQL_16, PostgreSQL_17.
         /// </summary>
         [Output("dbEngineVersion")]
         public Output<string> DbEngineVersion { get; private set; } = null!;
@@ -194,6 +230,18 @@ namespace Pulumi.Volcengine.Rds_postgresql
         /// </summary>
         [Output("endpoints")]
         public Output<ImmutableArray<Outputs.InstanceEndpoint>> Endpoints { get; private set; } = null!;
+
+        /// <summary>
+        /// Whether to initiate a configuration change assessment. Only estimate spec change impact without executing. Default value: false.
+        /// </summary>
+        [Output("estimateOnly")]
+        public Output<bool?> EstimateOnly { get; private set; } = null!;
+
+        /// <summary>
+        /// The estimated impact on the instance after the current configuration changes.
+        /// </summary>
+        [Output("estimationResults")]
+        public Output<ImmutableArray<Outputs.InstanceEstimationResult>> EstimationResults { get; private set; } = null!;
 
         /// <summary>
         /// Instance ID.
@@ -224,6 +272,12 @@ namespace Pulumi.Volcengine.Rds_postgresql
         /// </summary>
         [Output("memory")]
         public Output<int> Memory { get; private set; } = null!;
+
+        /// <summary>
+        /// Spec change type. Usually(default) or Temporary.
+        /// </summary>
+        [Output("modifyType")]
+        public Output<string?> ModifyType { get; private set; } = null!;
 
         /// <summary>
         /// The number of nodes.
@@ -268,22 +322,70 @@ namespace Pulumi.Volcengine.Rds_postgresql
         public Output<string> RegionId { get; private set; } = null!;
 
         /// <summary>
+        /// The point in time to restore to, in UTC format yyyy-MM-ddTHH:mm:ssZ (choose either this or backup_id).
+        /// </summary>
+        [Output("restoreTime")]
+        public Output<string?> RestoreTime { get; private set; } = null!;
+
+        /// <summary>
+        /// Rollback time for Temporary change, UTC format yyyy-MM-ddTHH:mm:ss.sssZ.
+        /// </summary>
+        [Output("rollbackTime")]
+        public Output<string?> RollbackTime { get; private set; } = null!;
+
+        /// <summary>
         /// The available zone of secondary node.
         /// </summary>
         [Output("secondaryZoneId")]
         public Output<string> SecondaryZoneId { get; private set; } = null!;
 
         /// <summary>
-        /// Instance storage space. Value range: [20, 3000], unit: GB, increments every 100GB. Default value: 100.
+        /// Source instance ID. After setting it, a new instance will be created by restoring from the backup/time point.
+        /// </summary>
+        [Output("srcInstanceId")]
+        public Output<string?> SrcInstanceId { get; private set; } = null!;
+
+        /// <summary>
+        /// The instance's primary node has used storage space. Unit: Byte.
+        /// </summary>
+        [Output("storageDataUse")]
+        public Output<int> StorageDataUse { get; private set; } = null!;
+
+        /// <summary>
+        /// The instance's primary node has used log storage space. Unit: Byte.
+        /// </summary>
+        [Output("storageLogUse")]
+        public Output<int> StorageLogUse { get; private set; } = null!;
+
+        /// <summary>
+        /// Instance storage space. Value range: [20, 3000], unit: GB, step 10GB. Default value: 100.
         /// </summary>
         [Output("storageSpace")]
         public Output<int?> StorageSpace { get; private set; } = null!;
+
+        /// <summary>
+        /// The instance's primary node has used temporary storage space. Unit: Byte.
+        /// </summary>
+        [Output("storageTempUse")]
+        public Output<int> StorageTempUse { get; private set; } = null!;
 
         /// <summary>
         /// Instance storage type.
         /// </summary>
         [Output("storageType")]
         public Output<string> StorageType { get; private set; } = null!;
+
+        /// <summary>
+        /// The instance has used storage space. Unit: Byte.
+        /// </summary>
+        [Output("storageUse")]
+        public Output<int> StorageUse { get; private set; } = null!;
+
+        /// <summary>
+        /// The instance's primary node has used WAL storage space. Unit: Byte.
+        /// </summary>
+        [Output("storageWalUse")]
+        public Output<int> StorageWalUse { get; private set; } = null!;
 
         /// <summary>
         /// Subnet ID of the RDS PostgreSQL instance.
@@ -326,6 +428,12 @@ namespace Pulumi.Volcengine.Rds_postgresql
         /// </summary>
         [Output("zoneIds")]
         public Output<ImmutableArray<string>> ZoneIds { get; private set; } = null!;
+
+        /// <summary>
+        /// Nodes to migrate AZ. Only Secondary or ReadOnly nodes are allowed. If you want to migrate the availability zone of the secondary node, you need to add the zone_migrations field. Modifying the secondary_zone_id directly will not work. Cross-AZ instance migration is not supported.
+        /// </summary>
+        [Output("zoneMigrations")]
+        public Output<ImmutableArray<Outputs.InstanceZoneMigration>> ZoneMigrations { get; private set; } = null!;
 
 
         /// <summary>
@@ -374,6 +482,24 @@ namespace Pulumi.Volcengine.Rds_postgresql
 
     public sealed class InstanceArgs : global::Pulumi.ResourceArgs
     {
+        [Input("allowListIds")]
+        private InputList<string>? _allowListIds;
+
+        /// <summary>
+        /// Allow list IDs to bind at creation.
+        /// </summary>
+        public InputList<string> AllowListIds
+        {
+            get => _allowListIds ?? (_allowListIds = new InputList<string>());
+            set => _allowListIds = value;
+        }
+
+        /// <summary>
+        /// Backup ID (choose either this or restore_time; if both are set, backup_id shall prevail).
+        /// </summary>
+        [Input("backupId")]
+        public Input<string>? BackupId { get; set; }
+
         /// <summary>
         /// Payment methods.
         /// </summary>
@@ -381,16 +507,28 @@ namespace Pulumi.Volcengine.Rds_postgresql
         public Input<Inputs.InstanceChargeInfoArgs> ChargeInfo { get; set; } = null!;
 
         /// <summary>
-        /// Instance type. Value: PostgreSQL_11, PostgreSQL_12, PostgreSQL_13.
+        /// Instance type. Value: PostgreSQL_11, PostgreSQL_12, PostgreSQL_13, PostgreSQL_14, PostgreSQL_15, PostgreSQL_16, PostgreSQL_17.
         /// </summary>
         [Input("dbEngineVersion", required: true)]
         public Input<string> DbEngineVersion { get; set; } = null!;
+
+        /// <summary>
+        /// Whether to initiate a configuration change assessment. Only estimate spec change impact without executing. Default value: false.
+        /// </summary>
+        [Input("estimateOnly")]
+        public Input<bool>? EstimateOnly { get; set; }
 
         /// <summary>
         /// Instance name. Cannot start with a number or a dash. Can only contain Chinese characters, letters, numbers, underscores and dashes. The length is limited between 1 ~ 128.
         /// </summary>
         [Input("instanceName")]
         public Input<string>? InstanceName { get; set; }
+
+        /// <summary>
+        /// Spec change type. Usually(default) or Temporary.
+        /// </summary>
+        [Input("modifyType")]
+        public Input<string>? ModifyType { get; set; }
 
         /// <summary>
         /// The specification of primary node and secondary node.
@@ -423,13 +561,31 @@ namespace Pulumi.Volcengine.Rds_postgresql
         public Input<string>? ProjectName { get; set; }
 
         /// <summary>
+        /// The point in time to restore to, in UTC format yyyy-MM-ddTHH:mm:ssZ (choose either this or backup_id).
+        /// </summary>
+        [Input("restoreTime")]
+        public Input<string>? RestoreTime { get; set; }
+
+        /// <summary>
+        /// Rollback time for Temporary change, UTC format yyyy-MM-ddTHH:mm:ss.sssZ.
+        /// </summary>
+        [Input("rollbackTime")]
+        public Input<string>? RollbackTime { get; set; }
+
+        /// <summary>
         /// The available zone of secondary node.
         /// </summary>
         [Input("secondaryZoneId", required: true)]
         public Input<string> SecondaryZoneId { get; set; } = null!;
 
         /// <summary>
-        /// Instance storage space. Value range: [20, 3000], unit: GB, increments every 100GB. Default value: 100.
+        /// Source instance ID. After setting it, a new instance will be created by restoring from the backup/time point.
+        /// </summary>
+        [Input("srcInstanceId")]
+        public Input<string>? SrcInstanceId { get; set; }
+
+        /// <summary>
+        /// Instance storage space. Value range: [20, 3000], unit: GB, step 10GB. Default value: 100.
         /// </summary>
         [Input("storageSpace")]
         public Input<int>? StorageSpace { get; set; }
@@ -452,6 +608,18 @@ namespace Pulumi.Volcengine.Rds_postgresql
             set => _tags = value;
         }
 
+        [Input("zoneMigrations")]
+        private InputList<Inputs.InstanceZoneMigrationArgs>? _zoneMigrations;
+
+        /// <summary>
+        /// Nodes to migrate AZ. Only Secondary or ReadOnly nodes are allowed. If you want to migrate the availability zone of the secondary node, you need to add the zone_migrations field. Modifying the secondary_zone_id directly will not work. Cross-AZ instance migration is not supported.
+        /// </summary>
+        public InputList<Inputs.InstanceZoneMigrationArgs> ZoneMigrations
+        {
+            get => _zoneMigrations ?? (_zoneMigrations = new InputList<Inputs.InstanceZoneMigrationArgs>());
+            set => _zoneMigrations = value;
+        }
+
         public InstanceArgs()
         {
         }
@@ -460,6 +628,30 @@ namespace Pulumi.Volcengine.Rds_postgresql
 
     public sealed class InstanceState : global::Pulumi.ResourceArgs
     {
+        [Input("allowListIds")]
+        private InputList<string>? _allowListIds;
+
+        /// <summary>
+        /// Allow list IDs to bind at creation.
+        /// </summary>
+        public InputList<string> AllowListIds
+        {
+            get => _allowListIds ?? (_allowListIds = new InputList<string>());
+            set => _allowListIds = value;
+        }
+
+        /// <summary>
+        /// The allow list version of the RDS PostgreSQL instance.
+        /// </summary>
+        [Input("allowListVersion")]
+        public Input<string>? AllowListVersion { get; set; }
+
+        /// <summary>
+        /// Backup ID (choose either this or restore_time; if both are set, backup_id shall prevail).
+        /// </summary>
+        [Input("backupId")]
+        public Input<string>? BackupId { get; set; }
+
         /// <summary>
         /// The instance has used backup space. Unit: GB.
         /// </summary>
@@ -497,7 +689,7 @@ namespace Pulumi.Volcengine.Rds_postgresql
         public Input<string>? DataSyncMode { get; set; }
 
         /// <summary>
-        /// Instance type. Value: PostgreSQL_11, PostgreSQL_12, PostgreSQL_13.
+        /// Instance type. Value: PostgreSQL_11, PostgreSQL_12, PostgreSQL_13, PostgreSQL_14, PostgreSQL_15, PostgreSQL_16, PostgreSQL_17.
         /// </summary>
         [Input("dbEngineVersion")]
         public Input<string>? DbEngineVersion { get; set; }
@@ -512,6 +704,24 @@ namespace Pulumi.Volcengine.Rds_postgresql
         {
             get => _endpoints ?? (_endpoints = new InputList<Inputs.InstanceEndpointGetArgs>());
             set => _endpoints = value;
+        }
+
+        /// <summary>
+        /// Whether to initiate a configuration change assessment. Only estimate spec change impact without executing. Default value: false.
+        /// </summary>
+        [Input("estimateOnly")]
+        public Input<bool>? EstimateOnly { get; set; }
+
+        [Input("estimationResults")]
+        private InputList<Inputs.InstanceEstimationResultGetArgs>? _estimationResults;
+
+        /// <summary>
+        /// The estimated impact on the instance after the current configuration changes.
+        /// </summary>
+        public InputList<Inputs.InstanceEstimationResultGetArgs> EstimationResults
+        {
+            get => _estimationResults ?? (_estimationResults = new InputList<Inputs.InstanceEstimationResultGetArgs>());
+            set => _estimationResults = value;
         }
 
         /// <summary>
@@ -543,6 +753,12 @@ namespace Pulumi.Volcengine.Rds_postgresql
         /// </summary>
         [Input("memory")]
         public Input<int>? Memory { get; set; }
+
+        /// <summary>
+        /// Spec change type. Usually(default) or Temporary.
+        /// </summary>
+        [Input("modifyType")]
+        public Input<string>? ModifyType { get; set; }
 
         /// <summary>
         /// The number of nodes.
@@ -599,22 +815,70 @@ namespace Pulumi.Volcengine.Rds_postgresql
         public Input<string>? RegionId { get; set; }
 
         /// <summary>
+        /// The point in time to restore to, in UTC format yyyy-MM-ddTHH:mm:ssZ (choose either this or backup_id).
+        /// </summary>
+        [Input("restoreTime")]
+        public Input<string>? RestoreTime { get; set; }
+
+        /// <summary>
+        /// Rollback time for Temporary change, UTC format yyyy-MM-ddTHH:mm:ss.sssZ.
+        /// </summary>
+        [Input("rollbackTime")]
+        public Input<string>? RollbackTime { get; set; }
+
+        /// <summary>
         /// The available zone of secondary node.
         /// </summary>
         [Input("secondaryZoneId")]
         public Input<string>? SecondaryZoneId { get; set; }
 
         /// <summary>
-        /// Instance storage space. Value range: [20, 3000], unit: GB, increments every 100GB. Default value: 100.
+        /// Source instance ID. After setting it, a new instance will be created by restoring from the backup/time point.
+        /// </summary>
+        [Input("srcInstanceId")]
+        public Input<string>? SrcInstanceId { get; set; }
+
+        /// <summary>
+        /// The instance's primary node has used storage space. Unit: Byte.
+        /// </summary>
+        [Input("storageDataUse")]
+        public Input<int>? StorageDataUse { get; set; }
+
+        /// <summary>
+        /// The instance's primary node has used log storage space. Unit: Byte.
+        /// </summary>
+        [Input("storageLogUse")]
+        public Input<int>? StorageLogUse { get; set; }
+
+        /// <summary>
+        /// Instance storage space. Value range: [20, 3000], unit: GB, step 10GB. Default value: 100.
         /// </summary>
         [Input("storageSpace")]
         public Input<int>? StorageSpace { get; set; }
+
+        /// <summary>
+        /// The instance's primary node has used temporary storage space. Unit: Byte.
+        /// </summary>
+        [Input("storageTempUse")]
+        public Input<int>? StorageTempUse { get; set; }
 
         /// <summary>
         /// Instance storage type.
         /// </summary>
         [Input("storageType")]
         public Input<string>? StorageType { get; set; }
+
+        /// <summary>
+        /// The instance has used storage space. Unit: Byte.
+        /// </summary>
+        [Input("storageUse")]
+        public Input<int>? StorageUse { get; set; }
+
+        /// <summary>
+        /// The instance's primary node has used WAL storage space. Unit: Byte.
+        /// </summary>
+        [Input("storageWalUse")]
+        public Input<int>? StorageWalUse { get; set; }
 
         /// <summary>
         /// Subnet ID of the RDS PostgreSQL instance.
@@ -668,6 +932,18 @@ namespace Pulumi.Volcengine.Rds_postgresql
         {
             get => _zoneIds ?? (_zoneIds = new InputList<string>());
             set => _zoneIds = value;
+        }
+
+        [Input("zoneMigrations")]
+        private InputList<Inputs.InstanceZoneMigrationGetArgs>? _zoneMigrations;
+
+        /// <summary>
+        /// Nodes to migrate AZ. Only Secondary or ReadOnly nodes are allowed. If you want to migrate the availability zone of the secondary node, you need to add the zone_migrations field. Modifying the secondary_zone_id directly will not work. Cross-AZ instance migration is not supported.
+        /// </summary>
+        public InputList<Inputs.InstanceZoneMigrationGetArgs> ZoneMigrations
+        {
+            get => _zoneMigrations ?? (_zoneMigrations = new InputList<Inputs.InstanceZoneMigrationGetArgs>());
+            set => _zoneMigrations = value;
         }
 
         public InstanceState()

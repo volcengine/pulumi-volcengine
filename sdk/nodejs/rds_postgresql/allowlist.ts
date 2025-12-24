@@ -15,13 +15,21 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@volcengine/pulumi";
  *
  * const foo = new volcengine.rds_postgresql.Allowlist("foo", {
- *     allowLists: [
- *         "192.168.0.0/24",
- *         "192.168.1.0/24",
- *     ],
+ *     allowLists: ["10.0.0.0/24"],
  *     allowListDesc: "acc-test",
  *     allowListName: "acc-test-allowlist",
  *     allowListType: "IPv4",
+ *     securityGroupBindInfos: [{
+ *         bindMode: "IngressDirectionIp",
+ *         securityGroupId: "sg-1jojfhw8rca9s1n7ampztrq6w",
+ *     }],
+ * });
+ * const example = new volcengine.rds_postgresql.Allowlist("example", {
+ *     allowListName: "unify_new",
+ *     instanceIds: [
+ *         "postgres-72715e0d9f58",
+ *         "postgres-eb3a578a6d73",
+ *     ],
  * });
  * ```
  *
@@ -62,6 +70,10 @@ export class Allowlist extends pulumi.CustomResource {
     }
 
     /**
+     * The category of the allow list. Valid values: Ordinary, Default. When this parameter is used as a request parameter, there is no default value.
+     */
+    public readonly allowListCategory!: pulumi.Output<string>;
+    /**
      * The description of the postgresql allow list.
      */
     public readonly allowListDesc!: pulumi.Output<string | undefined>;
@@ -74,7 +86,7 @@ export class Allowlist extends pulumi.CustomResource {
      */
     public readonly allowListType!: pulumi.Output<string>;
     /**
-     * Enter an IP address or a range of IP addresses in CIDR format.
+     * Enter an IP address or a range of IP addresses in CIDR format. This field cannot be used together with the userAllowList field.
      */
     public readonly allowLists!: pulumi.Output<string[]>;
     /**
@@ -85,6 +97,22 @@ export class Allowlist extends pulumi.CustomResource {
      * The list of postgresql instances.
      */
     public /*out*/ readonly associatedInstances!: pulumi.Output<outputs.rds_postgresql.AllowlistAssociatedInstance[]>;
+    /**
+     * IDs of PostgreSQL instances to unify allowlists. When set, creation uses UnifyNewAllowList to merge existing instance allowlists into a new one. Supports merging and generating allowlists of up to 300 instances.
+     */
+    public readonly instanceIds!: pulumi.Output<string[]>;
+    /**
+     * The information of security groups to bind with the allow list.
+     */
+    public readonly securityGroupBindInfos!: pulumi.Output<outputs.rds_postgresql.AllowlistSecurityGroupBindInfo[] | undefined>;
+    /**
+     * Whether to update the security groups bound to the allowlist when modifying.
+     */
+    public readonly updateSecurityGroup!: pulumi.Output<boolean | undefined>;
+    /**
+     * IP addresses outside security groups to be added to the allowlist. Cannot be used with allow_list.
+     */
+    public readonly userAllowLists!: pulumi.Output<string[]>;
 
     /**
      * Create a Allowlist resource with the given unique name, arguments, and options.
@@ -99,24 +127,31 @@ export class Allowlist extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AllowlistState | undefined;
+            resourceInputs["allowListCategory"] = state ? state.allowListCategory : undefined;
             resourceInputs["allowListDesc"] = state ? state.allowListDesc : undefined;
             resourceInputs["allowListName"] = state ? state.allowListName : undefined;
             resourceInputs["allowListType"] = state ? state.allowListType : undefined;
             resourceInputs["allowLists"] = state ? state.allowLists : undefined;
             resourceInputs["associatedInstanceNum"] = state ? state.associatedInstanceNum : undefined;
             resourceInputs["associatedInstances"] = state ? state.associatedInstances : undefined;
+            resourceInputs["instanceIds"] = state ? state.instanceIds : undefined;
+            resourceInputs["securityGroupBindInfos"] = state ? state.securityGroupBindInfos : undefined;
+            resourceInputs["updateSecurityGroup"] = state ? state.updateSecurityGroup : undefined;
+            resourceInputs["userAllowLists"] = state ? state.userAllowLists : undefined;
         } else {
             const args = argsOrState as AllowlistArgs | undefined;
             if ((!args || args.allowListName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'allowListName'");
             }
-            if ((!args || args.allowLists === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'allowLists'");
-            }
+            resourceInputs["allowListCategory"] = args ? args.allowListCategory : undefined;
             resourceInputs["allowListDesc"] = args ? args.allowListDesc : undefined;
             resourceInputs["allowListName"] = args ? args.allowListName : undefined;
             resourceInputs["allowListType"] = args ? args.allowListType : undefined;
             resourceInputs["allowLists"] = args ? args.allowLists : undefined;
+            resourceInputs["instanceIds"] = args ? args.instanceIds : undefined;
+            resourceInputs["securityGroupBindInfos"] = args ? args.securityGroupBindInfos : undefined;
+            resourceInputs["updateSecurityGroup"] = args ? args.updateSecurityGroup : undefined;
+            resourceInputs["userAllowLists"] = args ? args.userAllowLists : undefined;
             resourceInputs["associatedInstanceNum"] = undefined /*out*/;
             resourceInputs["associatedInstances"] = undefined /*out*/;
         }
@@ -130,6 +165,10 @@ export class Allowlist extends pulumi.CustomResource {
  */
 export interface AllowlistState {
     /**
+     * The category of the allow list. Valid values: Ordinary, Default. When this parameter is used as a request parameter, there is no default value.
+     */
+    allowListCategory?: pulumi.Input<string>;
+    /**
      * The description of the postgresql allow list.
      */
     allowListDesc?: pulumi.Input<string>;
@@ -142,7 +181,7 @@ export interface AllowlistState {
      */
     allowListType?: pulumi.Input<string>;
     /**
-     * Enter an IP address or a range of IP addresses in CIDR format.
+     * Enter an IP address or a range of IP addresses in CIDR format. This field cannot be used together with the userAllowList field.
      */
     allowLists?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -153,12 +192,32 @@ export interface AllowlistState {
      * The list of postgresql instances.
      */
     associatedInstances?: pulumi.Input<pulumi.Input<inputs.rds_postgresql.AllowlistAssociatedInstance>[]>;
+    /**
+     * IDs of PostgreSQL instances to unify allowlists. When set, creation uses UnifyNewAllowList to merge existing instance allowlists into a new one. Supports merging and generating allowlists of up to 300 instances.
+     */
+    instanceIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The information of security groups to bind with the allow list.
+     */
+    securityGroupBindInfos?: pulumi.Input<pulumi.Input<inputs.rds_postgresql.AllowlistSecurityGroupBindInfo>[]>;
+    /**
+     * Whether to update the security groups bound to the allowlist when modifying.
+     */
+    updateSecurityGroup?: pulumi.Input<boolean>;
+    /**
+     * IP addresses outside security groups to be added to the allowlist. Cannot be used with allow_list.
+     */
+    userAllowLists?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 /**
  * The set of arguments for constructing a Allowlist resource.
  */
 export interface AllowlistArgs {
+    /**
+     * The category of the allow list. Valid values: Ordinary, Default. When this parameter is used as a request parameter, there is no default value.
+     */
+    allowListCategory?: pulumi.Input<string>;
     /**
      * The description of the postgresql allow list.
      */
@@ -172,7 +231,23 @@ export interface AllowlistArgs {
      */
     allowListType?: pulumi.Input<string>;
     /**
-     * Enter an IP address or a range of IP addresses in CIDR format.
+     * Enter an IP address or a range of IP addresses in CIDR format. This field cannot be used together with the userAllowList field.
      */
-    allowLists: pulumi.Input<pulumi.Input<string>[]>;
+    allowLists?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * IDs of PostgreSQL instances to unify allowlists. When set, creation uses UnifyNewAllowList to merge existing instance allowlists into a new one. Supports merging and generating allowlists of up to 300 instances.
+     */
+    instanceIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The information of security groups to bind with the allow list.
+     */
+    securityGroupBindInfos?: pulumi.Input<pulumi.Input<inputs.rds_postgresql.AllowlistSecurityGroupBindInfo>[]>;
+    /**
+     * Whether to update the security groups bound to the allowlist when modifying.
+     */
+    updateSecurityGroup?: pulumi.Input<boolean>;
+    /**
+     * IP addresses outside security groups to be added to the allowlist. Cannot be used with allow_list.
+     */
+    userAllowLists?: pulumi.Input<pulumi.Input<string>[]>;
 }

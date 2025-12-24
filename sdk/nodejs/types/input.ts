@@ -4726,6 +4726,231 @@ export namespace rds_postgresql {
         vpc?: pulumi.Input<string>;
     }
 
+    export interface AllowlistSecurityGroupBindInfo {
+        /**
+         * The binding mode of the security group. Valid values: IngressDirectionIp, AssociateEcsIp.
+         */
+        bindMode: pulumi.Input<string>;
+        /**
+         * IP addresses in the security group.
+         */
+        ipLists?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The ID of the security group.
+         */
+        securityGroupId: pulumi.Input<string>;
+        /**
+         * The name of the security group.
+         */
+        securityGroupName?: pulumi.Input<string>;
+    }
+
+    export interface DataBackupBackupMeta {
+        /**
+         * The name of the database.
+         */
+        dbName: pulumi.Input<string>;
+    }
+
+    export interface DatabaseEndpointReadOnlyNodeWeight {
+        /**
+         * A read-only node requires passing in the NodeId. A primary node does not need to pass in the NodeId.
+         */
+        nodeId?: pulumi.Input<string>;
+        /**
+         * Node type. Primary or ReadOnly.
+         */
+        nodeType?: pulumi.Input<string>;
+        /**
+         * Custom read weight allocation. Increases by 100, with a maximum value of 40000. Weights cannot all be set to 0.
+         */
+        weight?: pulumi.Input<number>;
+    }
+
+    export interface GetInstancePriceDetailsChargeInfo {
+        /**
+         * Whether to auto renew the subscription in a pre-paid scenario.
+         */
+        autoRenew?: boolean;
+        /**
+         * The charge type of the instance. Valid values: PostPaid, PrePaid.
+         */
+        chargeType: string;
+        /**
+         * Number of purchased instances. Can be an integer between 1 and 20. Default value:1.
+         */
+        number?: number;
+        /**
+         * Subscription duration in a pre-paid scenario.Default value:1.
+         */
+        period?: number;
+        /**
+         * Purchase cycle in a pre-paid scenario. Valid values: Month, Year.
+         */
+        periodUnit?: string;
+    }
+
+    export interface GetInstancePriceDetailsChargeInfoArgs {
+        /**
+         * Whether to auto renew the subscription in a pre-paid scenario.
+         */
+        autoRenew?: pulumi.Input<boolean>;
+        /**
+         * The charge type of the instance. Valid values: PostPaid, PrePaid.
+         */
+        chargeType: pulumi.Input<string>;
+        /**
+         * Number of purchased instances. Can be an integer between 1 and 20. Default value:1.
+         */
+        number?: pulumi.Input<number>;
+        /**
+         * Subscription duration in a pre-paid scenario.Default value:1.
+         */
+        period?: pulumi.Input<number>;
+        /**
+         * Purchase cycle in a pre-paid scenario. Valid values: Month, Year.
+         */
+        periodUnit?: pulumi.Input<string>;
+    }
+
+    export interface GetInstancePriceDetailsNodeInfo {
+        /**
+         * The id of the node.
+         */
+        nodeId?: string;
+        /**
+         * The operate type of the node. Valid values: Create.
+         */
+        nodeOperateType?: string;
+        /**
+         * The specification of the node.
+         */
+        nodeSpec: string;
+        /**
+         * The type of the node. Valid values: Primary, Secondary, ReadOnly.
+         */
+        nodeType: string;
+        /**
+         * The AZ of the node.
+         */
+        zoneId: string;
+    }
+
+    export interface GetInstancePriceDetailsNodeInfoArgs {
+        /**
+         * The id of the node.
+         */
+        nodeId?: pulumi.Input<string>;
+        /**
+         * The operate type of the node. Valid values: Create.
+         */
+        nodeOperateType?: pulumi.Input<string>;
+        /**
+         * The specification of the node.
+         */
+        nodeSpec: pulumi.Input<string>;
+        /**
+         * The type of the node. Valid values: Primary, Secondary, ReadOnly.
+         */
+        nodeType: pulumi.Input<string>;
+        /**
+         * The AZ of the node.
+         */
+        zoneId: pulumi.Input<string>;
+    }
+
+    export interface GetInstancePriceDifferencesChargeInfo {
+        /**
+         * Whether to auto renew the subscription in a pre-paid scenario.
+         */
+        autoRenew?: boolean;
+        /**
+         * The charge type of the instance. Valid values: PostPaid, PrePaid.
+         */
+        chargeType: string;
+        /**
+         * Number of purchased instances. Can be an integer between 1 and 20. Default value:1.
+         */
+        number?: number;
+        /**
+         * Subscription duration in a pre-paid scenario.Default value:1.
+         */
+        period?: number;
+        /**
+         * Purchase cycle in a pre-paid scenario. Valid values: Month, Year.
+         */
+        periodUnit?: string;
+    }
+
+    export interface GetInstancePriceDifferencesChargeInfoArgs {
+        /**
+         * Whether to auto renew the subscription in a pre-paid scenario.
+         */
+        autoRenew?: pulumi.Input<boolean>;
+        /**
+         * The charge type of the instance. Valid values: PostPaid, PrePaid.
+         */
+        chargeType: pulumi.Input<string>;
+        /**
+         * Number of purchased instances. Can be an integer between 1 and 20. Default value:1.
+         */
+        number?: pulumi.Input<number>;
+        /**
+         * Subscription duration in a pre-paid scenario.Default value:1.
+         */
+        period?: pulumi.Input<number>;
+        /**
+         * Purchase cycle in a pre-paid scenario. Valid values: Month, Year.
+         */
+        periodUnit?: pulumi.Input<string>;
+    }
+
+    export interface GetInstancePriceDifferencesNodeInfo {
+        /**
+         * The id of the node.When the modifyType is set to Temporary, this parameter is required.
+         */
+        nodeId?: string;
+        /**
+         * The operate type of the node. Valid values: Create, Modify.
+         */
+        nodeOperateType?: string;
+        /**
+         * The specification of the node.
+         */
+        nodeSpec: string;
+        /**
+         * The type of the node. Valid values: Primary, Secondary, ReadOnly.
+         */
+        nodeType: string;
+        /**
+         * The AZ of the node.
+         */
+        zoneId: string;
+    }
+
+    export interface GetInstancePriceDifferencesNodeInfoArgs {
+        /**
+         * The id of the node.When the modifyType is set to Temporary, this parameter is required.
+         */
+        nodeId?: pulumi.Input<string>;
+        /**
+         * The operate type of the node. Valid values: Create, Modify.
+         */
+        nodeOperateType?: pulumi.Input<string>;
+        /**
+         * The specification of the node.
+         */
+        nodeSpec: pulumi.Input<string>;
+        /**
+         * The type of the node. Valid values: Primary, Secondary, ReadOnly.
+         */
+        nodeType: pulumi.Input<string>;
+        /**
+         * The AZ of the node.
+         */
+        zoneId: pulumi.Input<string>;
+    }
+
     export interface GetInstancesTag {
         /**
          * The Key of Tags.
@@ -4767,7 +4992,7 @@ export namespace rds_postgresql {
          * Pay status. Value:
          * normal - normal
          * overdue - overdue
-         * .
+         * unpaid - unpaid.
          */
         chargeStatus?: pulumi.Input<string>;
         /**
@@ -4776,6 +5001,10 @@ export namespace rds_postgresql {
          * PrePaid - Yearly and monthly (default).
          */
         chargeType?: pulumi.Input<string>;
+        /**
+         * The number of the RDS PostgreSQL instance.
+         */
+        number?: pulumi.Input<number>;
         /**
          * Estimated release time when arrears are closed (pay-as-you-go & monthly subscription).
          */
@@ -4810,6 +5039,10 @@ export namespace rds_postgresql {
          */
         autoRenew?: pulumi.Input<boolean>;
         chargeType: pulumi.Input<string>;
+        /**
+         * Purchase number of the RDS PostgreSQL instance. Range: [1, 20]. Default: 1.
+         */
+        number?: pulumi.Input<number>;
         /**
          * Purchase duration in prepaid scenarios. Default: 1.
          */
@@ -4861,6 +5094,16 @@ export namespace rds_postgresql {
          */
         endpointType?: pulumi.Input<string>;
         /**
+         * The distribution type of the read-only nodes, value:
+         * Default: Default distribution.
+         * Custom: Custom distribution.
+         */
+        readOnlyNodeDistributionType?: pulumi.Input<string>;
+        /**
+         * Maximum latency threshold of read-only node. If the latency of a read-only node exceeds this value, reading traffic won't be routed to this node. Unit: seconds.Values: 0~3600.Default value: 30.
+         */
+        readOnlyNodeMaxDelayTime?: pulumi.Input<number>;
+        /**
          * The list of nodes configured by the connection terminal and the corresponding read-only weights.
          */
         readOnlyNodeWeights?: pulumi.Input<pulumi.Input<inputs.rds_postgresql.InstanceEndpointReadOnlyNodeWeight>[]>;
@@ -4870,11 +5113,23 @@ export namespace rds_postgresql {
          * ReadOnly: read only (default).
          */
         readWriteMode?: pulumi.Input<string>;
+        /**
+         * After the terminal enables read-write separation, the number of proxy connections set for the terminal. The lower limit of the number of proxy connections is 20. The upper limit of the number of proxy connections depends on the specifications of the instance master node.
+         */
+        readWriteProxyConnection?: pulumi.Input<number>;
+        /**
+         * Whether the endpoint sends write requests to the write node (currently only the master node is a write node). Values: true: Yes(Default). false: No.
+         */
+        writeNodeHaltWriting?: pulumi.Input<boolean>;
     }
 
     export interface InstanceEndpointAddress {
         /**
-         * DNS Visibility.
+         * Address that can be accessed across regions.
+         */
+        crossRegionDomain?: pulumi.Input<string>;
+        /**
+         * Whether to enable public network resolution. Values: false: Default value. PrivateZone of Volcano Engine. true: Private and public network resolution of Volcano Engine.
          */
         dnsVisibility?: pulumi.Input<boolean>;
         /**
@@ -4882,13 +5137,25 @@ export namespace rds_postgresql {
          */
         domain?: pulumi.Input<string>;
         /**
+         * The type of private network address. Values: LocalDomain: Local domain name. CrossRegionDomain: Domains accessible across regions.
+         */
+        domainVisibilitySetting?: pulumi.Input<string>;
+        /**
          * The ID of the EIP, only valid for Public addresses.
          */
         eipId?: pulumi.Input<string>;
         /**
+         * Address IP protocol, IPv4 or IPv6.
+         */
+        internetProtocol?: pulumi.Input<string>;
+        /**
          * The IP Address.
          */
         ipAddress?: pulumi.Input<string>;
+        /**
+         * The IPv6 Address.
+         */
+        ipv6Address?: pulumi.Input<string>;
         /**
          * Network address type, temporarily Private, Public, PublicService.
          */
@@ -4918,6 +5185,17 @@ export namespace rds_postgresql {
          * The weight of the node.
          */
         weight?: pulumi.Input<number>;
+    }
+
+    export interface InstanceEstimationResult {
+        /**
+         * After changing according to the current configuration, the estimated impact on the read and write connections of the instance.
+         */
+        effects?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Estimated impact on the instance after the current configuration changes.
+         */
+        plans?: pulumi.Input<pulumi.Input<string>[]>;
     }
 
     export interface InstanceNode {
@@ -4980,6 +5258,190 @@ export namespace rds_postgresql {
         value: pulumi.Input<string>;
     }
 
+    export interface InstancePriceDetailsChargeInfo {
+        /**
+         * Whether to auto renew the subscription in a pre-paid scenario.
+         */
+        autoRenew?: boolean;
+        /**
+         * The charge type of the instance. Valid values: PostPaid, PrePaid.
+         */
+        chargeType: string;
+        /**
+         * Number of purchased instances. Can be an integer between 1 and 20. Default value:1.
+         */
+        number?: number;
+        /**
+         * Subscription duration in a pre-paid scenario.Default value:1.
+         */
+        period?: number;
+        /**
+         * Purchase cycle in a pre-paid scenario. Valid values: Month, Year.
+         */
+        periodUnit?: string;
+    }
+
+    export interface InstancePriceDetailsChargeInfoArgs {
+        /**
+         * Whether to auto renew the subscription in a pre-paid scenario.
+         */
+        autoRenew?: pulumi.Input<boolean>;
+        /**
+         * The charge type of the instance. Valid values: PostPaid, PrePaid.
+         */
+        chargeType: pulumi.Input<string>;
+        /**
+         * Number of purchased instances. Can be an integer between 1 and 20. Default value:1.
+         */
+        number?: pulumi.Input<number>;
+        /**
+         * Subscription duration in a pre-paid scenario.Default value:1.
+         */
+        period?: pulumi.Input<number>;
+        /**
+         * Purchase cycle in a pre-paid scenario. Valid values: Month, Year.
+         */
+        periodUnit?: pulumi.Input<string>;
+    }
+
+    export interface InstancePriceDetailsNodeInfo {
+        /**
+         * The id of the node.
+         */
+        nodeId?: string;
+        /**
+         * The operate type of the node. Valid values: Create.
+         */
+        nodeOperateType?: string;
+        /**
+         * The specification of the node.
+         */
+        nodeSpec: string;
+        /**
+         * The type of the node. Valid values: Primary, Secondary, ReadOnly.
+         */
+        nodeType: string;
+        /**
+         * The AZ of the node.
+         */
+        zoneId: string;
+    }
+
+    export interface InstancePriceDetailsNodeInfoArgs {
+        /**
+         * The id of the node.
+         */
+        nodeId?: pulumi.Input<string>;
+        /**
+         * The operate type of the node. Valid values: Create.
+         */
+        nodeOperateType?: pulumi.Input<string>;
+        /**
+         * The specification of the node.
+         */
+        nodeSpec: pulumi.Input<string>;
+        /**
+         * The type of the node. Valid values: Primary, Secondary, ReadOnly.
+         */
+        nodeType: pulumi.Input<string>;
+        /**
+         * The AZ of the node.
+         */
+        zoneId: pulumi.Input<string>;
+    }
+
+    export interface InstancePriceDifferencesChargeInfo {
+        /**
+         * Whether to auto renew the subscription in a pre-paid scenario.
+         */
+        autoRenew?: boolean;
+        /**
+         * The charge type of the instance. Valid values: PostPaid, PrePaid.
+         */
+        chargeType: string;
+        /**
+         * Number of purchased instances. Can be an integer between 1 and 20. Default value:1.
+         */
+        number?: number;
+        /**
+         * Subscription duration in a pre-paid scenario.Default value:1.
+         */
+        period?: number;
+        /**
+         * Purchase cycle in a pre-paid scenario. Valid values: Month, Year.
+         */
+        periodUnit?: string;
+    }
+
+    export interface InstancePriceDifferencesChargeInfoArgs {
+        /**
+         * Whether to auto renew the subscription in a pre-paid scenario.
+         */
+        autoRenew?: pulumi.Input<boolean>;
+        /**
+         * The charge type of the instance. Valid values: PostPaid, PrePaid.
+         */
+        chargeType: pulumi.Input<string>;
+        /**
+         * Number of purchased instances. Can be an integer between 1 and 20. Default value:1.
+         */
+        number?: pulumi.Input<number>;
+        /**
+         * Subscription duration in a pre-paid scenario.Default value:1.
+         */
+        period?: pulumi.Input<number>;
+        /**
+         * Purchase cycle in a pre-paid scenario. Valid values: Month, Year.
+         */
+        periodUnit?: pulumi.Input<string>;
+    }
+
+    export interface InstancePriceDifferencesNodeInfo {
+        /**
+         * The id of the node.When the modifyType is set to Temporary, this parameter is required.
+         */
+        nodeId?: string;
+        /**
+         * The operate type of the node. Valid values: Create, Modify.
+         */
+        nodeOperateType?: string;
+        /**
+         * The specification of the node.
+         */
+        nodeSpec: string;
+        /**
+         * The type of the node. Valid values: Primary, Secondary, ReadOnly.
+         */
+        nodeType: string;
+        /**
+         * The AZ of the node.
+         */
+        zoneId: string;
+    }
+
+    export interface InstancePriceDifferencesNodeInfoArgs {
+        /**
+         * The id of the node.When the modifyType is set to Temporary, this parameter is required.
+         */
+        nodeId?: pulumi.Input<string>;
+        /**
+         * The operate type of the node. Valid values: Create, Modify.
+         */
+        nodeOperateType?: pulumi.Input<string>;
+        /**
+         * The specification of the node.
+         */
+        nodeSpec: pulumi.Input<string>;
+        /**
+         * The type of the node. Valid values: Primary, Secondary, ReadOnly.
+         */
+        nodeType: pulumi.Input<string>;
+        /**
+         * The AZ of the node.
+         */
+        zoneId: pulumi.Input<string>;
+    }
+
     export interface InstanceTag {
         /**
          * The Key of Tags.
@@ -4989,6 +5451,21 @@ export namespace rds_postgresql {
          * The Value of Tags.
          */
         value: pulumi.Input<string>;
+    }
+
+    export interface InstanceZoneMigration {
+        /**
+         * Node ID to migrate.
+         */
+        nodeId: pulumi.Input<string>;
+        /**
+         * Node type: Secondary or ReadOnly.
+         */
+        nodeType?: pulumi.Input<string>;
+        /**
+         * Target zone ID.
+         */
+        zoneId: pulumi.Input<string>;
     }
 
     export interface InstancesTag {
@@ -5011,6 +5488,28 @@ export namespace rds_postgresql {
          * The Value of Tags.
          */
         value: pulumi.Input<string>;
+    }
+
+    export interface ParameterTemplateTemplateParam {
+        /**
+         * The name of the parameter.
+         */
+        name: pulumi.Input<string>;
+        /**
+         * The value of the parameter.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface RestoreBackupDatabase {
+        /**
+         * Original database name.
+         */
+        dbName: pulumi.Input<string>;
+        /**
+         * New database name.
+         */
+        newDbName: pulumi.Input<string>;
     }
 
 }
@@ -6395,6 +6894,21 @@ export namespace tos {
         responseVary?: pulumi.Input<boolean>;
     }
 
+    export interface BucketCustomdomainCustomDomainRule {
+        /**
+         * The certificate id.
+         */
+        certId?: pulumi.Input<string>;
+        /**
+         * The custom domain name for the bucket.
+         */
+        domain: pulumi.Input<string>;
+        /**
+         * Custom domain access protocol.tos|s3.
+         */
+        protocol?: pulumi.Input<string>;
+    }
+
     export interface BucketEncryptionRule {
         /**
          * The server side encryption configuration.
@@ -6466,6 +6980,377 @@ export namespace tos {
          * The export schedule of the bucket inventory. Valid values: `Daily`, `Weekly`.
          */
         frequency: pulumi.Input<string>;
+    }
+
+    export interface BucketLifecycleRule {
+        /**
+         * The abort incomplete multipart upload configuration of the lifecycle rule.
+         */
+        abortIncompleteMultipartUpload?: pulumi.Input<inputs.tos.BucketLifecycleRuleAbortIncompleteMultipartUpload>;
+        /**
+         * The expiration configuration of the lifecycle rule.
+         */
+        expiration?: pulumi.Input<inputs.tos.BucketLifecycleRuleExpiration>;
+        /**
+         * The filter configuration of the lifecycle rule.
+         */
+        filter?: pulumi.Input<inputs.tos.BucketLifecycleRuleFilter>;
+        /**
+         * The ID of the lifecycle rule.
+         */
+        id?: pulumi.Input<string>;
+        /**
+         * The non-current version expiration configuration of the lifecycle rule.
+         */
+        nonCurrentVersionExpiration?: pulumi.Input<inputs.tos.BucketLifecycleRuleNonCurrentVersionExpiration>;
+        /**
+         * The non-current version transition configuration of the lifecycle rule.
+         */
+        nonCurrentVersionTransitions?: pulumi.Input<pulumi.Input<inputs.tos.BucketLifecycleRuleNonCurrentVersionTransition>[]>;
+        /**
+         * The prefix of the lifecycle rule.
+         */
+        prefix?: pulumi.Input<string>;
+        /**
+         * The status of the lifecycle rule. Valid values: Enabled, Disabled.
+         */
+        status: pulumi.Input<string>;
+        /**
+         * The tag filters.
+         */
+        tags?: pulumi.Input<pulumi.Input<inputs.tos.BucketLifecycleRuleTag>[]>;
+        /**
+         * The transition configuration of the lifecycle rule.
+         */
+        transitions?: pulumi.Input<pulumi.Input<inputs.tos.BucketLifecycleRuleTransition>[]>;
+    }
+
+    export interface BucketLifecycleRuleAbortIncompleteMultipartUpload {
+        /**
+         * The number of days after initiation when the incomplete multipart upload should be aborted.
+         */
+        daysAfterInitiation: pulumi.Input<number>;
+    }
+
+    export interface BucketLifecycleRuleExpiration {
+        /**
+         * The date when the rule takes effect. Format: 2023-01-01T00:00:00.000Z.
+         */
+        date?: pulumi.Input<string>;
+        /**
+         * The number of days after object creation when the rule takes effect.
+         */
+        days?: pulumi.Input<number>;
+    }
+
+    export interface BucketLifecycleRuleFilter {
+        /**
+         * Whether to enable equal conditions. The value can only be "Enabled" or "Disabled". If not configured, it will default to "Disabled".
+         */
+        greaterThanIncludeEqual?: pulumi.Input<string>;
+        /**
+         * Whether to enable equal conditions. The value can only be "Enabled" or "Disabled". If not configured, it will default to "Disabled".
+         */
+        lessThanIncludeEqual?: pulumi.Input<string>;
+        /**
+         * The minimum object size in bytes for the rule to apply.
+         */
+        objectSizeGreaterThan?: pulumi.Input<number>;
+        /**
+         * The maximum object size in bytes for the rule to apply.
+         */
+        objectSizeLessThan?: pulumi.Input<number>;
+    }
+
+    export interface BucketLifecycleRuleNonCurrentVersionExpiration {
+        /**
+         * The number of days after object creation when the non-current version expiration takes effect.
+         */
+        nonCurrentDays: pulumi.Input<number>;
+    }
+
+    export interface BucketLifecycleRuleNonCurrentVersionTransition {
+        /**
+         * The number of days after object creation when the non-current version transition takes effect.
+         */
+        nonCurrentDays: pulumi.Input<number>;
+        /**
+         * The storage class to transition to. Valid values: IA, ARCHIVE, COLD_ARCHIVE.
+         */
+        storageClass: pulumi.Input<string>;
+    }
+
+    export interface BucketLifecycleRuleTag {
+        /**
+         * The key of the tag.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The value of the tag.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface BucketLifecycleRuleTransition {
+        /**
+         * The date when the transition takes effect. Format: 2023-01-01T00:00:00.000Z.
+         */
+        date?: pulumi.Input<string>;
+        /**
+         * The number of days after object creation when the transition takes effect.
+         */
+        days?: pulumi.Input<number>;
+        /**
+         * The storage class to transition to. Valid values: IA, ARCHIVE, COLD_ARCHIVE.
+         */
+        storageClass?: pulumi.Input<string>;
+    }
+
+    export interface BucketLoggingLoggingEnabled {
+        /**
+         * The role that is assumed by TOS to write log objects to the target bucket.
+         */
+        role?: pulumi.Input<string>;
+        /**
+         * The name of the target bucket where the access logs are stored.
+         */
+        targetBucket?: pulumi.Input<string>;
+        /**
+         * The prefix for the log object keys.
+         */
+        targetPrefix?: pulumi.Input<string>;
+    }
+
+    export interface BucketMirrorBackRule {
+        /**
+         * The condition of the mirrorBack rule.
+         */
+        condition?: pulumi.Input<inputs.tos.BucketMirrorBackRuleCondition>;
+        /**
+         * The ID of the mirrorBack rule.
+         */
+        id?: pulumi.Input<string>;
+        /**
+         * The redirect configuration of the mirrorBack rule.
+         */
+        redirect?: pulumi.Input<inputs.tos.BucketMirrorBackRuleRedirect>;
+    }
+
+    export interface BucketMirrorBackRuleCondition {
+        /**
+         * Only when a specific domain name is supported will the origin retrieval be triggered.
+         */
+        allowHosts?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Error code for triggering the source re-fetch function.
+         */
+        httpCode: pulumi.Input<number>;
+        /**
+         * The type of request that triggers the re-sourcing process.
+         */
+        httpMethods?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The prefix of the object name that matches the source object.
+         */
+        keyPrefix?: pulumi.Input<string>;
+        /**
+         * The suffix of the object name that matches the source object.
+         */
+        keySuffix?: pulumi.Input<string>;
+    }
+
+    export interface BucketMirrorBackRuleRedirect {
+        /**
+         * The fetch header to metadata rules.
+         */
+        fetchHeaderToMetaDataRules?: pulumi.Input<pulumi.Input<inputs.tos.BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRule>[]>;
+        /**
+         * Whether to fetch source on redirect.
+         */
+        fetchSourceOnRedirect?: pulumi.Input<boolean>;
+        /**
+         * Whether to fetch source on redirect with query.
+         */
+        fetchSourceOnRedirectWithQuery?: pulumi.Input<boolean>;
+        /**
+         * Whether to follow redirects.
+         */
+        followRedirect?: pulumi.Input<boolean>;
+        /**
+         * The mirror header configuration.
+         */
+        mirrorHeaders?: pulumi.Input<pulumi.Input<inputs.tos.BucketMirrorBackRuleRedirectMirrorHeader>[]>;
+        /**
+         * Whether to pass query parameters.
+         */
+        passQuery?: pulumi.Input<boolean>;
+        /**
+         * The private source configuration.
+         */
+        privateSources?: pulumi.Input<pulumi.Input<inputs.tos.BucketMirrorBackRuleRedirectPrivateSource>[]>;
+        /**
+         * The public source configuration.
+         */
+        publicSource?: pulumi.Input<inputs.tos.BucketMirrorBackRuleRedirectPublicSource>;
+        /**
+         * The type of redirect.
+         */
+        redirectType?: pulumi.Input<string>;
+        /**
+         * The transform configuration.
+         */
+        transform?: pulumi.Input<inputs.tos.BucketMirrorBackRuleRedirectTransform>;
+    }
+
+    export interface BucketMirrorBackRuleRedirectFetchHeaderToMetaDataRule {
+        /**
+         * The metadata suffix.
+         */
+        metaDataSuffix: pulumi.Input<string>;
+        /**
+         * The source header.
+         */
+        sourceHeader: pulumi.Input<string>;
+    }
+
+    export interface BucketMirrorBackRuleRedirectMirrorHeader {
+        /**
+         * Whether to pass all headers.
+         */
+        passAll?: pulumi.Input<boolean>;
+        /**
+         * The headers to pass.
+         */
+        passes?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The headers to remove.
+         */
+        removes?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The mirror header configuration.
+         */
+        sets?: pulumi.Input<pulumi.Input<inputs.tos.BucketMirrorBackRuleRedirectMirrorHeaderSet>[]>;
+    }
+
+    export interface BucketMirrorBackRuleRedirectMirrorHeaderSet {
+        /**
+         * The key of the header.
+         */
+        key?: pulumi.Input<string>;
+        /**
+         * The value of the header.
+         */
+        value?: pulumi.Input<string>;
+    }
+
+    export interface BucketMirrorBackRuleRedirectPrivateSource {
+        /**
+         * The source endpoint.
+         */
+        sourceEndpoints?: pulumi.Input<pulumi.Input<inputs.tos.BucketMirrorBackRuleRedirectPrivateSourceSourceEndpoint>[]>;
+    }
+
+    export interface BucketMirrorBackRuleRedirectPrivateSourceSourceEndpoint {
+        /**
+         * The follower endpoints.
+         */
+        followers?: pulumi.Input<pulumi.Input<inputs.tos.BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollower>[]>;
+        /**
+         * The primary endpoints.
+         */
+        primaries?: pulumi.Input<pulumi.Input<inputs.tos.BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimary>[]>;
+    }
+
+    export interface BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollower {
+        /**
+         * The bucket name.
+         */
+        bucketName?: pulumi.Input<string>;
+        /**
+         * The credential provider.
+         */
+        credentialProvider?: pulumi.Input<inputs.tos.BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProvider>;
+        /**
+         * The endpoint.
+         */
+        endpoint?: pulumi.Input<string>;
+    }
+
+    export interface BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointFollowerCredentialProvider {
+        /**
+         * The role.
+         */
+        role?: pulumi.Input<string>;
+    }
+
+    export interface BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimary {
+        /**
+         * The bucket name.
+         */
+        bucketName?: pulumi.Input<string>;
+        /**
+         * The credential provider.
+         */
+        credentialProvider?: pulumi.Input<inputs.tos.BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProvider>;
+        /**
+         * The endpoint.
+         */
+        endpoint?: pulumi.Input<string>;
+    }
+
+    export interface BucketMirrorBackRuleRedirectPrivateSourceSourceEndpointPrimaryCredentialProvider {
+        /**
+         * The role.
+         */
+        role?: pulumi.Input<string>;
+    }
+
+    export interface BucketMirrorBackRuleRedirectPublicSource {
+        /**
+         * Whether the endpoint is fixed.
+         */
+        fixedEndpoint?: pulumi.Input<boolean>;
+        /**
+         * The source endpoint.
+         */
+        sourceEndpoint?: pulumi.Input<inputs.tos.BucketMirrorBackRuleRedirectPublicSourceSourceEndpoint>;
+    }
+
+    export interface BucketMirrorBackRuleRedirectPublicSourceSourceEndpoint {
+        /**
+         * The follower endpoints.
+         */
+        followers?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The primary endpoints.
+         */
+        primaries?: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface BucketMirrorBackRuleRedirectTransform {
+        /**
+         * The replace key prefix configuration.
+         */
+        replaceKeyPrefix?: pulumi.Input<inputs.tos.BucketMirrorBackRuleRedirectTransformReplaceKeyPrefix>;
+        /**
+         * The key prefix to add.
+         */
+        withKeyPrefix?: pulumi.Input<string>;
+        /**
+         * The key suffix to add.
+         */
+        withKeySuffix?: pulumi.Input<string>;
+    }
+
+    export interface BucketMirrorBackRuleRedirectTransformReplaceKeyPrefix {
+        /**
+         * The key prefix to replace.
+         */
+        keyPrefix?: pulumi.Input<string>;
+        /**
+         * The value to replace with.
+         */
+        replaceWith?: pulumi.Input<string>;
     }
 
     export interface BucketNotificationRules {
@@ -6541,6 +7426,28 @@ export namespace tos {
         permission: pulumi.Input<string>;
     }
 
+    export interface BucketObjectLockConfigurationRule {
+        /**
+         * The default retention configuration.
+         */
+        defaultRetention: pulumi.Input<inputs.tos.BucketObjectLockConfigurationRuleDefaultRetention>;
+    }
+
+    export interface BucketObjectLockConfigurationRuleDefaultRetention {
+        /**
+         * The number of days for the default retention period.
+         */
+        days?: pulumi.Input<number>;
+        /**
+         * The default retention mode. Valid values: COMPLIANCE, GOVERNANCE.
+         */
+        mode: pulumi.Input<string>;
+        /**
+         * The number of years for the default retention period.
+         */
+        years?: pulumi.Input<number>;
+    }
+
     export interface BucketObjectTag {
         /**
          * The Key of Tags.
@@ -6571,6 +7478,63 @@ export namespace tos {
         ttl?: pulumi.Input<number>;
     }
 
+    export interface BucketReplicationRule {
+        /**
+         * The access control translation configuration of the replication rule.
+         */
+        accessControlTranslation: pulumi.Input<inputs.tos.BucketReplicationRuleAccessControlTranslation>;
+        /**
+         * The destination configuration of the replication rule.
+         */
+        destination: pulumi.Input<inputs.tos.BucketReplicationRuleDestination>;
+        /**
+         * Whether to replicate historical objects. Valid values: Enabled, Disabled.
+         */
+        historicalObjectReplication?: pulumi.Input<string>;
+        /**
+         * The ID of the replication rule.
+         */
+        id?: pulumi.Input<string>;
+        /**
+         * The prefix set for the replication rule.
+         */
+        prefixSets?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The status of the replication rule. Valid values: Enabled, Disabled.
+         */
+        status: pulumi.Input<string>;
+        /**
+         * Specify the data transmission link to be used for cross-regional replication. Valid values: internal, tos_acc.
+         */
+        transferType?: pulumi.Input<string>;
+    }
+
+    export interface BucketReplicationRuleAccessControlTranslation {
+        /**
+         * The owner of the destination object.
+         */
+        owner?: pulumi.Input<string>;
+    }
+
+    export interface BucketReplicationRuleDestination {
+        /**
+         * The destination bucket name.
+         */
+        bucket: pulumi.Input<string>;
+        /**
+         * The destination bucket location.
+         */
+        location: pulumi.Input<string>;
+        /**
+         * The storage class for the destination bucket. Valid values: STANDARD, IA, ARCHIVE, COLD_ARCHIVE.
+         */
+        storageClass?: pulumi.Input<string>;
+        /**
+         * The storage class inherit directive. Valid values: COPY, OVERRIDE.
+         */
+        storageClassInheritDirective?: pulumi.Input<string>;
+    }
+
     export interface BucketTag {
         /**
          * The Key of Tags.
@@ -6580,6 +7544,80 @@ export namespace tos {
          * The Value of Tags.
          */
         value: pulumi.Input<string>;
+    }
+
+    export interface BucketWebsiteErrorDocument {
+        /**
+         * The key of the error document object, e.g., error.html.
+         */
+        key?: pulumi.Input<string>;
+    }
+
+    export interface BucketWebsiteIndexDocument {
+        /**
+         * The suffix of the index document, e.g., index.html.
+         */
+        suffix: pulumi.Input<string>;
+        /**
+         * Whether to support subdirectory indexing. Default is false.
+         */
+        supportSubDir?: pulumi.Input<boolean>;
+    }
+
+    export interface BucketWebsiteRedirectAllRequestsTo {
+        /**
+         * The target host name for redirect.
+         */
+        hostName?: pulumi.Input<string>;
+        /**
+         * The protocol for redirect. Valid values: http, https.
+         */
+        protocol?: pulumi.Input<string>;
+    }
+
+    export interface BucketWebsiteRoutingRule {
+        /**
+         * The condition for the routing rule.
+         */
+        condition: pulumi.Input<inputs.tos.BucketWebsiteRoutingRuleCondition>;
+        /**
+         * The redirect configuration for the routing rule.
+         */
+        redirect: pulumi.Input<inputs.tos.BucketWebsiteRoutingRuleRedirect>;
+    }
+
+    export interface BucketWebsiteRoutingRuleCondition {
+        /**
+         * The HTTP error code that must match for the rule to apply, e.g., 404.
+         */
+        httpErrorCodeReturnedEquals?: pulumi.Input<number>;
+        /**
+         * The key prefix that must match for the rule to apply.
+         */
+        keyPrefixEquals?: pulumi.Input<string>;
+    }
+
+    export interface BucketWebsiteRoutingRuleRedirect {
+        /**
+         * The host name to redirect to.
+         */
+        hostName?: pulumi.Input<string>;
+        /**
+         * The HTTP redirect code to use, e.g., 301, 302.
+         */
+        httpRedirectCode?: pulumi.Input<number>;
+        /**
+         * The protocol to use for the redirect. Valid values: http, https.
+         */
+        protocol?: pulumi.Input<string>;
+        /**
+         * The key prefix to replace the original key prefix with.
+         */
+        replaceKeyPrefixWith?: pulumi.Input<string>;
+        /**
+         * The key to replace the original key with.
+         */
+        replaceKeyWith?: pulumi.Input<string>;
     }
 
 }

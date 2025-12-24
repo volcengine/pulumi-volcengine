@@ -72,6 +72,8 @@ export function getInstances(args?: GetInstancesArgs, opts?: pulumi.InvokeOption
         "instanceStatus": args.instanceStatus,
         "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
+        "projectName": args.projectName,
+        "storageType": args.storageType,
         "tags": args.tags,
         "zoneId": args.zoneId,
     }, opts);
@@ -117,6 +119,14 @@ export interface GetInstancesArgs {
      * File name where to save data source results.
      */
     outputFile?: string;
+    /**
+     * The project name of the RDS PostgreSQL instance.
+     */
+    projectName?: string;
+    /**
+     * The storage type of the RDS PostgreSQL instance.
+     */
+    storageType?: string;
     /**
      * Tags.
      */
@@ -165,6 +175,14 @@ export interface GetInstancesResult {
     readonly instances: outputs.rds_postgresql.GetInstancesInstance[];
     readonly nameRegex?: string;
     readonly outputFile?: string;
+    /**
+     * The project name of the RDS PostgreSQL instance.
+     */
+    readonly projectName?: string;
+    /**
+     * Instance storage type.
+     */
+    readonly storageType?: string;
     /**
      * Tags.
      */
@@ -274,6 +292,14 @@ export interface GetInstancesOutputArgs {
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
+    /**
+     * The project name of the RDS PostgreSQL instance.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
+     * The storage type of the RDS PostgreSQL instance.
+     */
+    storageType?: pulumi.Input<string>;
     /**
      * Tags.
      */

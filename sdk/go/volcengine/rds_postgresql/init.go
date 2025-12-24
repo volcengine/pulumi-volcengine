@@ -27,14 +27,36 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Allowlist{}
 	case "volcengine:rds_postgresql/allowlistAssociate:AllowlistAssociate":
 		r = &AllowlistAssociate{}
+	case "volcengine:rds_postgresql/allowlistVersionUpgrade:AllowlistVersionUpgrade":
+		r = &AllowlistVersionUpgrade{}
+	case "volcengine:rds_postgresql/backupDownload:BackupDownload":
+		r = &BackupDownload{}
+	case "volcengine:rds_postgresql/backupPolicy:BackupPolicy":
+		r = &BackupPolicy{}
+	case "volcengine:rds_postgresql/dataBackup:DataBackup":
+		r = &DataBackup{}
 	case "volcengine:rds_postgresql/database:Database":
 		r = &Database{}
+	case "volcengine:rds_postgresql/databaseEndpoint:DatabaseEndpoint":
+		r = &DatabaseEndpoint{}
+	case "volcengine:rds_postgresql/endpointPublicAddress:EndpointPublicAddress":
+		r = &EndpointPublicAddress{}
 	case "volcengine:rds_postgresql/instance:Instance":
 		r = &Instance{}
 	case "volcengine:rds_postgresql/instanceReadonlyNode:InstanceReadonlyNode":
 		r = &InstanceReadonlyNode{}
+	case "volcengine:rds_postgresql/instanceSsl:InstanceSsl":
+		r = &InstanceSsl{}
+	case "volcengine:rds_postgresql/parameterTemplate:ParameterTemplate":
+		r = &ParameterTemplate{}
+	case "volcengine:rds_postgresql/replicationSlot:ReplicationSlot":
+		r = &ReplicationSlot{}
+	case "volcengine:rds_postgresql/restoreBackup:RestoreBackup":
+		r = &RestoreBackup{}
 	case "volcengine:rds_postgresql/schema:Schema":
 		r = &Schema{}
+	case "volcengine:rds_postgresql/state:State":
+		r = &State{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -65,7 +87,37 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
+		"rds_postgresql/allowlistVersionUpgrade",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"rds_postgresql/backupDownload",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"rds_postgresql/backupPolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"rds_postgresql/dataBackup",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
 		"rds_postgresql/database",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"rds_postgresql/databaseEndpoint",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"rds_postgresql/endpointPublicAddress",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -80,7 +132,32 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
+		"rds_postgresql/instanceSsl",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"rds_postgresql/parameterTemplate",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"rds_postgresql/replicationSlot",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"rds_postgresql/restoreBackup",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
 		"rds_postgresql/schema",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"rds_postgresql/state",
 		&module{version},
 	)
 }
