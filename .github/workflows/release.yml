@@ -121,17 +121,20 @@ jobs:
           user: ${{ env.PYPI_USERNAME }}
           password: ${{ env.PYPI_PASSWORD }}
           packages_dir: ${{ github.workspace }}/sdk/python/bin/dist
+        continue-on-error: true
       - if: ${{ matrix.language == 'nodejs' && env.PUBLISH_NPM == 'true' }}
-        name: Publish package to NPM
-        working-directory: ${{ github.workspace }}/sdk/nodejs/bin
-        run: |
-          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
-          npm publish --access public
+        uses: JS-DevTools/npm-publish@v1
+        with:
+          access: "public"
+          token: ${{ env.NPM_TOKEN }}
+          package: ${{ github.workspace }}/sdk/nodejs/bin/package.json
+        continue-on-error: true
       - if: ${{ matrix.language == 'dotnet' && env.PUBLISH_NUGET == 'true' }}
         name: publish nuget package
         run: |
           dotnet nuget push ${{ github.workspace }}/sdk/dotnet/bin/Debug/*.nupkg -s ${{ env.NUGET_FEED_URL }} -k ${{ env.NUGET_PUBLISH_KEY }}
           echo "done publishing packages"
+        continue-on-error: true
     strategy:
       fail-fast: true
       matrix:
