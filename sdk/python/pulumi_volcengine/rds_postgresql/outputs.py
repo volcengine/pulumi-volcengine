@@ -13,17 +13,50 @@ from . import outputs
 __all__ = [
     'AccountsAccountResult',
     'AllowlistAssociatedInstance',
+    'AllowlistSecurityGroupBindInfo',
     'AllowlistsPostgresqlAllowListResult',
     'AllowlistsPostgresqlAllowListAssociatedInstanceResult',
+    'AllowlistsPostgresqlAllowListSecurityGroupBindInfoResult',
+    'BackupDownloadsDownloadResult',
+    'BackupPoliciesBackupPolicyResult',
+    'DataBackupBackupMeta',
+    'DataBackupsBackupResult',
+    'DataBackupsBackupBackupMetaResult',
+    'DatabaseEndpointReadOnlyNodeWeight',
+    'DatabaseEndpointsEndpointResult',
     'DatabasesDatabaseResult',
+    'EngineVersionParametersDbEngineVersionParameterResult',
+    'EngineVersionParametersDbEngineVersionParameterParameterResult',
+    'InstanceBackupDetachedsBackupResult',
+    'InstanceBackupDetachedsBackupInstanceInfoResult',
+    'InstanceBackupWalLogsWalLogBackupResult',
     'InstanceChargeDetail',
     'InstanceChargeInfo',
     'InstanceEndpoint',
     'InstanceEndpointAddress',
     'InstanceEndpointReadOnlyNodeWeight',
+    'InstanceEstimationResult',
+    'InstanceFailoverLogsFailoverLogResult',
     'InstanceNode',
     'InstanceParameter',
+    'InstanceParameterLogsParameterChangeLogResult',
+    'InstanceParametersInstanceParameterResult',
+    'InstanceParametersInstanceParameterNoneKernelParameterResult',
+    'InstanceParametersInstanceParameterParameterResult',
+    'InstancePriceDetailsChargeInfoResult',
+    'InstancePriceDetailsInstancesPriceResult',
+    'InstancePriceDetailsInstancesPriceChargeItemPriceResult',
+    'InstancePriceDetailsNodeInfoResult',
+    'InstancePriceDifferencesChargeInfoResult',
+    'InstancePriceDifferencesInstancesPriceResult',
+    'InstancePriceDifferencesInstancesPriceChargeItemPriceResult',
+    'InstancePriceDifferencesNodeInfoResult',
+    'InstanceRecoverableTimesRecoverableTimeInfoResult',
+    'InstanceSpecsInstanceSpecResult',
+    'InstanceSslsSslResult',
     'InstanceTag',
+    'InstanceTasksTaskInfoResult',
+    'InstanceZoneMigration',
     'InstancesInstanceResult',
     'InstancesInstanceChargeDetailResult',
     'InstancesInstanceEndpointResult',
@@ -32,11 +65,48 @@ __all__ = [
     'InstancesInstanceNodeResult',
     'InstancesInstanceTagResult',
     'InstancesTagResult',
+    'ParameterTemplateApplyDiffsParameterResult',
+    'ParameterTemplateTemplateParam',
+    'ParameterTemplatesTemplateInfoResult',
+    'ParameterTemplatesTemplateInfoTemplateParamResult',
+    'PlannedEventsPlannedEventResult',
+    'RegionsRegionResult',
+    'ReplicationSlotsReplicationSlotResult',
+    'RestoreBackupDatabase',
     'SchemasSchemaResult',
+    'ZonesZoneResult',
     'GetAccountsAccountResult',
     'GetAllowlistsPostgresqlAllowListResult',
     'GetAllowlistsPostgresqlAllowListAssociatedInstanceResult',
+    'GetAllowlistsPostgresqlAllowListSecurityGroupBindInfoResult',
+    'GetBackupDownloadsDownloadResult',
+    'GetBackupPoliciesBackupPolicyResult',
+    'GetDataBackupsBackupResult',
+    'GetDataBackupsBackupBackupMetaResult',
+    'GetDatabaseEndpointsEndpointResult',
     'GetDatabasesDatabaseResult',
+    'GetEngineVersionParametersDbEngineVersionParameterResult',
+    'GetEngineVersionParametersDbEngineVersionParameterParameterResult',
+    'GetInstanceBackupDetachedsBackupResult',
+    'GetInstanceBackupDetachedsBackupInstanceInfoResult',
+    'GetInstanceBackupWalLogsWalLogBackupResult',
+    'GetInstanceFailoverLogsFailoverLogResult',
+    'GetInstanceParameterLogsParameterChangeLogResult',
+    'GetInstanceParametersInstanceParameterResult',
+    'GetInstanceParametersInstanceParameterNoneKernelParameterResult',
+    'GetInstanceParametersInstanceParameterParameterResult',
+    'GetInstancePriceDetailsChargeInfoResult',
+    'GetInstancePriceDetailsInstancesPriceResult',
+    'GetInstancePriceDetailsInstancesPriceChargeItemPriceResult',
+    'GetInstancePriceDetailsNodeInfoResult',
+    'GetInstancePriceDifferencesChargeInfoResult',
+    'GetInstancePriceDifferencesInstancesPriceResult',
+    'GetInstancePriceDifferencesInstancesPriceChargeItemPriceResult',
+    'GetInstancePriceDifferencesNodeInfoResult',
+    'GetInstanceRecoverableTimesRecoverableTimeInfoResult',
+    'GetInstanceSpecsInstanceSpecResult',
+    'GetInstanceSslsSslResult',
+    'GetInstanceTasksTaskInfoResult',
     'GetInstancesInstanceResult',
     'GetInstancesInstanceChargeDetailResult',
     'GetInstancesInstanceEndpointResult',
@@ -45,7 +115,14 @@ __all__ = [
     'GetInstancesInstanceNodeResult',
     'GetInstancesInstanceTagResult',
     'GetInstancesTagResult',
+    'GetParameterTemplateApplyDiffsParameterResult',
+    'GetParameterTemplatesTemplateInfoResult',
+    'GetParameterTemplatesTemplateInfoTemplateParamResult',
+    'GetPlannedEventsPlannedEventResult',
+    'GetRegionsRegionResult',
+    'GetReplicationSlotsReplicationSlotResult',
     'GetSchemasSchemaResult',
+    'GetZonesZoneResult',
 ]
 
 @pulumi.output_type
@@ -54,17 +131,20 @@ class AccountsAccountResult(dict):
                  account_name: str,
                  account_privileges: str,
                  account_status: str,
-                 account_type: str):
+                 account_type: str,
+                 not_allow_privileges: Sequence[str]):
         """
         :param str account_name: The name of the database account. This field supports fuzzy query.
         :param str account_privileges: The privileges of the database account.
         :param str account_status: The status of the database account.
         :param str account_type: The type of the database account.
+        :param Sequence[str] not_allow_privileges: The privileges to be disabled for the account.
         """
         pulumi.set(__self__, "account_name", account_name)
         pulumi.set(__self__, "account_privileges", account_privileges)
         pulumi.set(__self__, "account_status", account_status)
         pulumi.set(__self__, "account_type", account_type)
+        pulumi.set(__self__, "not_allow_privileges", not_allow_privileges)
 
     @property
     @pulumi.getter(name="accountName")
@@ -97,6 +177,14 @@ class AccountsAccountResult(dict):
         The type of the database account.
         """
         return pulumi.get(self, "account_type")
+
+    @property
+    @pulumi.getter(name="notAllowPrivileges")
+    def not_allow_privileges(self) -> Sequence[str]:
+        """
+        The privileges to be disabled for the account.
+        """
+        return pulumi.get(self, "not_allow_privileges")
 
 
 @pulumi.output_type
@@ -162,8 +250,85 @@ class AllowlistAssociatedInstance(dict):
 
 
 @pulumi.output_type
+class AllowlistSecurityGroupBindInfo(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "bindMode":
+            suggest = "bind_mode"
+        elif key == "securityGroupId":
+            suggest = "security_group_id"
+        elif key == "ipLists":
+            suggest = "ip_lists"
+        elif key == "securityGroupName":
+            suggest = "security_group_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AllowlistSecurityGroupBindInfo. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AllowlistSecurityGroupBindInfo.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AllowlistSecurityGroupBindInfo.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 bind_mode: str,
+                 security_group_id: str,
+                 ip_lists: Optional[Sequence[str]] = None,
+                 security_group_name: Optional[str] = None):
+        """
+        :param str bind_mode: The binding mode of the security group. Valid values: IngressDirectionIp, AssociateEcsIp.
+        :param str security_group_id: The ID of the security group.
+        :param Sequence[str] ip_lists: IP addresses in the security group.
+        :param str security_group_name: The name of the security group.
+        """
+        pulumi.set(__self__, "bind_mode", bind_mode)
+        pulumi.set(__self__, "security_group_id", security_group_id)
+        if ip_lists is not None:
+            pulumi.set(__self__, "ip_lists", ip_lists)
+        if security_group_name is not None:
+            pulumi.set(__self__, "security_group_name", security_group_name)
+
+    @property
+    @pulumi.getter(name="bindMode")
+    def bind_mode(self) -> str:
+        """
+        The binding mode of the security group. Valid values: IngressDirectionIp, AssociateEcsIp.
+        """
+        return pulumi.get(self, "bind_mode")
+
+    @property
+    @pulumi.getter(name="securityGroupId")
+    def security_group_id(self) -> str:
+        """
+        The ID of the security group.
+        """
+        return pulumi.get(self, "security_group_id")
+
+    @property
+    @pulumi.getter(name="ipLists")
+    def ip_lists(self) -> Optional[Sequence[str]]:
+        """
+        IP addresses in the security group.
+        """
+        return pulumi.get(self, "ip_lists")
+
+    @property
+    @pulumi.getter(name="securityGroupName")
+    def security_group_name(self) -> Optional[str]:
+        """
+        The name of the security group.
+        """
+        return pulumi.get(self, "security_group_name")
+
+
+@pulumi.output_type
 class AllowlistsPostgresqlAllowListResult(dict):
     def __init__(__self__, *,
+                 allow_list_category: str,
                  allow_list_desc: str,
                  allow_list_id: str,
                  allow_list_ip_num: int,
@@ -172,9 +337,12 @@ class AllowlistsPostgresqlAllowListResult(dict):
                  allow_lists: Sequence[str],
                  associated_instance_num: int,
                  associated_instances: Sequence['outputs.AllowlistsPostgresqlAllowListAssociatedInstanceResult'],
-                 id: str):
+                 id: str,
+                 security_group_bind_infos: Sequence['outputs.AllowlistsPostgresqlAllowListSecurityGroupBindInfoResult'],
+                 user_allow_lists: Sequence[str]):
         """
-        :param str allow_list_desc: The description of the postgresql allow list.
+        :param str allow_list_category: The category of the postgresql allow list. Valid values: Ordinary, Default.
+        :param str allow_list_desc: The description of the postgresql allow list. Perform a fuzzy search based on the description information.
         :param str allow_list_id: The id of the postgresql allow list.
         :param int allow_list_ip_num: The total number of IP addresses (or address ranges) in the whitelist.
         :param str allow_list_name: The name of the postgresql allow list.
@@ -183,7 +351,10 @@ class AllowlistsPostgresqlAllowListResult(dict):
         :param int associated_instance_num: The total number of instances bound under the whitelist.
         :param Sequence['AllowlistsPostgresqlAllowListAssociatedInstanceArgs'] associated_instances: The list of postgresql instances.
         :param str id: The id of the postgresql allow list.
+        :param Sequence['AllowlistsPostgresqlAllowListSecurityGroupBindInfoArgs'] security_group_bind_infos: The information of the security group bound by the allowlist.
+        :param Sequence[str] user_allow_lists: IP addresses outside the security group and added to the allowlist.
         """
+        pulumi.set(__self__, "allow_list_category", allow_list_category)
         pulumi.set(__self__, "allow_list_desc", allow_list_desc)
         pulumi.set(__self__, "allow_list_id", allow_list_id)
         pulumi.set(__self__, "allow_list_ip_num", allow_list_ip_num)
@@ -193,12 +364,22 @@ class AllowlistsPostgresqlAllowListResult(dict):
         pulumi.set(__self__, "associated_instance_num", associated_instance_num)
         pulumi.set(__self__, "associated_instances", associated_instances)
         pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "security_group_bind_infos", security_group_bind_infos)
+        pulumi.set(__self__, "user_allow_lists", user_allow_lists)
+
+    @property
+    @pulumi.getter(name="allowListCategory")
+    def allow_list_category(self) -> str:
+        """
+        The category of the postgresql allow list. Valid values: Ordinary, Default.
+        """
+        return pulumi.get(self, "allow_list_category")
 
     @property
     @pulumi.getter(name="allowListDesc")
     def allow_list_desc(self) -> str:
         """
-        The description of the postgresql allow list.
+        The description of the postgresql allow list. Perform a fuzzy search based on the description information.
         """
         return pulumi.get(self, "allow_list_desc")
 
@@ -266,6 +447,22 @@ class AllowlistsPostgresqlAllowListResult(dict):
         """
         return pulumi.get(self, "id")
 
+    @property
+    @pulumi.getter(name="securityGroupBindInfos")
+    def security_group_bind_infos(self) -> Sequence['outputs.AllowlistsPostgresqlAllowListSecurityGroupBindInfoResult']:
+        """
+        The information of the security group bound by the allowlist.
+        """
+        return pulumi.get(self, "security_group_bind_infos")
+
+    @property
+    @pulumi.getter(name="userAllowLists")
+    def user_allow_lists(self) -> Sequence[str]:
+        """
+        IP addresses outside the security group and added to the allowlist.
+        """
+        return pulumi.get(self, "user_allow_lists")
+
 
 @pulumi.output_type
 class AllowlistsPostgresqlAllowListAssociatedInstanceResult(dict):
@@ -305,6 +502,695 @@ class AllowlistsPostgresqlAllowListAssociatedInstanceResult(dict):
         The id of the vpc.
         """
         return pulumi.get(self, "vpc")
+
+
+@pulumi.output_type
+class AllowlistsPostgresqlAllowListSecurityGroupBindInfoResult(dict):
+    def __init__(__self__, *,
+                 bind_mode: str,
+                 ip_lists: Sequence[str],
+                 security_group_id: str,
+                 security_group_name: str):
+        """
+        :param str bind_mode: The binding mode of the security group.
+        :param Sequence[str] ip_lists: IP addresses in the security group.
+        :param str security_group_id: The ID of the security group.
+        :param str security_group_name: The name of the security group.
+        """
+        pulumi.set(__self__, "bind_mode", bind_mode)
+        pulumi.set(__self__, "ip_lists", ip_lists)
+        pulumi.set(__self__, "security_group_id", security_group_id)
+        pulumi.set(__self__, "security_group_name", security_group_name)
+
+    @property
+    @pulumi.getter(name="bindMode")
+    def bind_mode(self) -> str:
+        """
+        The binding mode of the security group.
+        """
+        return pulumi.get(self, "bind_mode")
+
+    @property
+    @pulumi.getter(name="ipLists")
+    def ip_lists(self) -> Sequence[str]:
+        """
+        IP addresses in the security group.
+        """
+        return pulumi.get(self, "ip_lists")
+
+    @property
+    @pulumi.getter(name="securityGroupId")
+    def security_group_id(self) -> str:
+        """
+        The ID of the security group.
+        """
+        return pulumi.get(self, "security_group_id")
+
+    @property
+    @pulumi.getter(name="securityGroupName")
+    def security_group_name(self) -> str:
+        """
+        The name of the security group.
+        """
+        return pulumi.get(self, "security_group_name")
+
+
+@pulumi.output_type
+class BackupDownloadsDownloadResult(dict):
+    def __init__(__self__, *,
+                 backup_description: str,
+                 backup_download_link: str,
+                 backup_file_name: str,
+                 backup_file_size: int,
+                 backup_id: str,
+                 backup_method: str,
+                 inner_backup_download_link: str,
+                 instance_id: str,
+                 link_expired_time: str,
+                 prepare_progress: int):
+        """
+        :param str backup_description: The description of the backup set.
+        :param str backup_download_link: The public network download address of the backup.
+        :param str backup_file_name: The name of the backup file.
+        :param int backup_file_size: The size of the backup file, in Byte.
+        :param str backup_id: The ID of the logical backup to be downloaded.
+        :param str backup_method: The type of the backup.
+        :param str inner_backup_download_link: The inner network download address of the backup.
+        :param str instance_id: The id of the PostgreSQL instance.
+        :param str link_expired_time: Expiration time of the download link, format:yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+        :param int prepare_progress: The prepare progress of the backup.
+        """
+        pulumi.set(__self__, "backup_description", backup_description)
+        pulumi.set(__self__, "backup_download_link", backup_download_link)
+        pulumi.set(__self__, "backup_file_name", backup_file_name)
+        pulumi.set(__self__, "backup_file_size", backup_file_size)
+        pulumi.set(__self__, "backup_id", backup_id)
+        pulumi.set(__self__, "backup_method", backup_method)
+        pulumi.set(__self__, "inner_backup_download_link", inner_backup_download_link)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "link_expired_time", link_expired_time)
+        pulumi.set(__self__, "prepare_progress", prepare_progress)
+
+    @property
+    @pulumi.getter(name="backupDescription")
+    def backup_description(self) -> str:
+        """
+        The description of the backup set.
+        """
+        return pulumi.get(self, "backup_description")
+
+    @property
+    @pulumi.getter(name="backupDownloadLink")
+    def backup_download_link(self) -> str:
+        """
+        The public network download address of the backup.
+        """
+        return pulumi.get(self, "backup_download_link")
+
+    @property
+    @pulumi.getter(name="backupFileName")
+    def backup_file_name(self) -> str:
+        """
+        The name of the backup file.
+        """
+        return pulumi.get(self, "backup_file_name")
+
+    @property
+    @pulumi.getter(name="backupFileSize")
+    def backup_file_size(self) -> int:
+        """
+        The size of the backup file, in Byte.
+        """
+        return pulumi.get(self, "backup_file_size")
+
+    @property
+    @pulumi.getter(name="backupId")
+    def backup_id(self) -> str:
+        """
+        The ID of the logical backup to be downloaded.
+        """
+        return pulumi.get(self, "backup_id")
+
+    @property
+    @pulumi.getter(name="backupMethod")
+    def backup_method(self) -> str:
+        """
+        The type of the backup.
+        """
+        return pulumi.get(self, "backup_method")
+
+    @property
+    @pulumi.getter(name="innerBackupDownloadLink")
+    def inner_backup_download_link(self) -> str:
+        """
+        The inner network download address of the backup.
+        """
+        return pulumi.get(self, "inner_backup_download_link")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        The id of the PostgreSQL instance.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="linkExpiredTime")
+    def link_expired_time(self) -> str:
+        """
+        Expiration time of the download link, format:yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+        """
+        return pulumi.get(self, "link_expired_time")
+
+    @property
+    @pulumi.getter(name="prepareProgress")
+    def prepare_progress(self) -> int:
+        """
+        The prepare progress of the backup.
+        """
+        return pulumi.get(self, "prepare_progress")
+
+
+@pulumi.output_type
+class BackupPoliciesBackupPolicyResult(dict):
+    def __init__(__self__, *,
+                 backup_retention_period: int,
+                 data_incr_backup_periods: str,
+                 full_backup_period: str,
+                 full_backup_time: str,
+                 hourly_incr_backup_enable: bool,
+                 increment_backup_frequency: int,
+                 instance_id: str,
+                 wal_log_space_limit_enable: bool):
+        """
+        :param int backup_retention_period: The backup retention period.
+        :param str data_incr_backup_periods: The backup increment data backup periods.
+        :param str full_backup_period: The full backup period.
+        :param str full_backup_time: The time when the backup task is executed. Format: HH:mmZ-HH:mmZ (UTC time).
+        :param bool hourly_incr_backup_enable: Whether to enable the high-frequency backup function.
+        :param int increment_backup_frequency: The frequency of increment backup.
+        :param str instance_id: The id of the PostgreSQL instance.
+        :param bool wal_log_space_limit_enable: Status of the local remaining available space protection function.
+        """
+        pulumi.set(__self__, "backup_retention_period", backup_retention_period)
+        pulumi.set(__self__, "data_incr_backup_periods", data_incr_backup_periods)
+        pulumi.set(__self__, "full_backup_period", full_backup_period)
+        pulumi.set(__self__, "full_backup_time", full_backup_time)
+        pulumi.set(__self__, "hourly_incr_backup_enable", hourly_incr_backup_enable)
+        pulumi.set(__self__, "increment_backup_frequency", increment_backup_frequency)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "wal_log_space_limit_enable", wal_log_space_limit_enable)
+
+    @property
+    @pulumi.getter(name="backupRetentionPeriod")
+    def backup_retention_period(self) -> int:
+        """
+        The backup retention period.
+        """
+        return pulumi.get(self, "backup_retention_period")
+
+    @property
+    @pulumi.getter(name="dataIncrBackupPeriods")
+    def data_incr_backup_periods(self) -> str:
+        """
+        The backup increment data backup periods.
+        """
+        return pulumi.get(self, "data_incr_backup_periods")
+
+    @property
+    @pulumi.getter(name="fullBackupPeriod")
+    def full_backup_period(self) -> str:
+        """
+        The full backup period.
+        """
+        return pulumi.get(self, "full_backup_period")
+
+    @property
+    @pulumi.getter(name="fullBackupTime")
+    def full_backup_time(self) -> str:
+        """
+        The time when the backup task is executed. Format: HH:mmZ-HH:mmZ (UTC time).
+        """
+        return pulumi.get(self, "full_backup_time")
+
+    @property
+    @pulumi.getter(name="hourlyIncrBackupEnable")
+    def hourly_incr_backup_enable(self) -> bool:
+        """
+        Whether to enable the high-frequency backup function.
+        """
+        return pulumi.get(self, "hourly_incr_backup_enable")
+
+    @property
+    @pulumi.getter(name="incrementBackupFrequency")
+    def increment_backup_frequency(self) -> int:
+        """
+        The frequency of increment backup.
+        """
+        return pulumi.get(self, "increment_backup_frequency")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        The id of the PostgreSQL instance.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="walLogSpaceLimitEnable")
+    def wal_log_space_limit_enable(self) -> bool:
+        """
+        Status of the local remaining available space protection function.
+        """
+        return pulumi.get(self, "wal_log_space_limit_enable")
+
+
+@pulumi.output_type
+class DataBackupBackupMeta(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "dbName":
+            suggest = "db_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DataBackupBackupMeta. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DataBackupBackupMeta.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DataBackupBackupMeta.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 db_name: str):
+        """
+        :param str db_name: The name of the database.
+        """
+        pulumi.set(__self__, "db_name", db_name)
+
+    @property
+    @pulumi.getter(name="dbName")
+    def db_name(self) -> str:
+        """
+        The name of the database.
+        """
+        return pulumi.get(self, "db_name")
+
+
+@pulumi.output_type
+class DataBackupsBackupResult(dict):
+    def __init__(__self__, *,
+                 backup_data_size: int,
+                 backup_description: str,
+                 backup_end_time: str,
+                 backup_file_name: str,
+                 backup_file_size: int,
+                 backup_id: str,
+                 backup_metas: Sequence['outputs.DataBackupsBackupBackupMetaResult'],
+                 backup_method: str,
+                 backup_progress: int,
+                 backup_scope: str,
+                 backup_start_time: str,
+                 backup_status: str,
+                 backup_type: str,
+                 create_type: str,
+                 download_status: str):
+        """
+        :param int backup_data_size: The original size of the data contained in the backup, in Bytes.
+        :param str backup_description: The description of the backup set.
+        :param str backup_end_time: The latest time when the backup is created, in the format of yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+        :param str backup_file_name: The name of the backup file.
+        :param int backup_file_size: The size of the backup file, in Byte.
+        :param str backup_id: The ID of the backup.
+        :param Sequence['DataBackupsBackupBackupMetaArgs'] backup_metas: The information about the databases included in the backup.
+        :param str backup_method: The method of the backup: Physical, Logical.
+        :param int backup_progress: The progress of the backup. The unit is percentage.
+        :param str backup_scope: The scope of the backup: Instance, Database.
+        :param str backup_start_time: The earliest time when the backup is created, in the format of yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+        :param str backup_status: The status of the backup: Success, Failed, Running.
+        :param str backup_type: The type of the backup: Full, Increment.
+        :param str create_type: The creation type of the backup: System, User.
+        :param str download_status: The downloadable status of the backup set. NotAllowed: download is not supported. NeedToPrepare: the backup set is in place and needs background preparation for backup. LinkReady: the backup set is ready for download.
+        """
+        pulumi.set(__self__, "backup_data_size", backup_data_size)
+        pulumi.set(__self__, "backup_description", backup_description)
+        pulumi.set(__self__, "backup_end_time", backup_end_time)
+        pulumi.set(__self__, "backup_file_name", backup_file_name)
+        pulumi.set(__self__, "backup_file_size", backup_file_size)
+        pulumi.set(__self__, "backup_id", backup_id)
+        pulumi.set(__self__, "backup_metas", backup_metas)
+        pulumi.set(__self__, "backup_method", backup_method)
+        pulumi.set(__self__, "backup_progress", backup_progress)
+        pulumi.set(__self__, "backup_scope", backup_scope)
+        pulumi.set(__self__, "backup_start_time", backup_start_time)
+        pulumi.set(__self__, "backup_status", backup_status)
+        pulumi.set(__self__, "backup_type", backup_type)
+        pulumi.set(__self__, "create_type", create_type)
+        pulumi.set(__self__, "download_status", download_status)
+
+    @property
+    @pulumi.getter(name="backupDataSize")
+    def backup_data_size(self) -> int:
+        """
+        The original size of the data contained in the backup, in Bytes.
+        """
+        return pulumi.get(self, "backup_data_size")
+
+    @property
+    @pulumi.getter(name="backupDescription")
+    def backup_description(self) -> str:
+        """
+        The description of the backup set.
+        """
+        return pulumi.get(self, "backup_description")
+
+    @property
+    @pulumi.getter(name="backupEndTime")
+    def backup_end_time(self) -> str:
+        """
+        The latest time when the backup is created, in the format of yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+        """
+        return pulumi.get(self, "backup_end_time")
+
+    @property
+    @pulumi.getter(name="backupFileName")
+    def backup_file_name(self) -> str:
+        """
+        The name of the backup file.
+        """
+        return pulumi.get(self, "backup_file_name")
+
+    @property
+    @pulumi.getter(name="backupFileSize")
+    def backup_file_size(self) -> int:
+        """
+        The size of the backup file, in Byte.
+        """
+        return pulumi.get(self, "backup_file_size")
+
+    @property
+    @pulumi.getter(name="backupId")
+    def backup_id(self) -> str:
+        """
+        The ID of the backup.
+        """
+        return pulumi.get(self, "backup_id")
+
+    @property
+    @pulumi.getter(name="backupMetas")
+    def backup_metas(self) -> Sequence['outputs.DataBackupsBackupBackupMetaResult']:
+        """
+        The information about the databases included in the backup.
+        """
+        return pulumi.get(self, "backup_metas")
+
+    @property
+    @pulumi.getter(name="backupMethod")
+    def backup_method(self) -> str:
+        """
+        The method of the backup: Physical, Logical.
+        """
+        return pulumi.get(self, "backup_method")
+
+    @property
+    @pulumi.getter(name="backupProgress")
+    def backup_progress(self) -> int:
+        """
+        The progress of the backup. The unit is percentage.
+        """
+        return pulumi.get(self, "backup_progress")
+
+    @property
+    @pulumi.getter(name="backupScope")
+    def backup_scope(self) -> str:
+        """
+        The scope of the backup: Instance, Database.
+        """
+        return pulumi.get(self, "backup_scope")
+
+    @property
+    @pulumi.getter(name="backupStartTime")
+    def backup_start_time(self) -> str:
+        """
+        The earliest time when the backup is created, in the format of yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+        """
+        return pulumi.get(self, "backup_start_time")
+
+    @property
+    @pulumi.getter(name="backupStatus")
+    def backup_status(self) -> str:
+        """
+        The status of the backup: Success, Failed, Running.
+        """
+        return pulumi.get(self, "backup_status")
+
+    @property
+    @pulumi.getter(name="backupType")
+    def backup_type(self) -> str:
+        """
+        The type of the backup: Full, Increment.
+        """
+        return pulumi.get(self, "backup_type")
+
+    @property
+    @pulumi.getter(name="createType")
+    def create_type(self) -> str:
+        """
+        The creation type of the backup: System, User.
+        """
+        return pulumi.get(self, "create_type")
+
+    @property
+    @pulumi.getter(name="downloadStatus")
+    def download_status(self) -> str:
+        """
+        The downloadable status of the backup set. NotAllowed: download is not supported. NeedToPrepare: the backup set is in place and needs background preparation for backup. LinkReady: the backup set is ready for download.
+        """
+        return pulumi.get(self, "download_status")
+
+
+@pulumi.output_type
+class DataBackupsBackupBackupMetaResult(dict):
+    def __init__(__self__, *,
+                 db_name: str):
+        """
+        :param str db_name: The name of the database.
+        """
+        pulumi.set(__self__, "db_name", db_name)
+
+    @property
+    @pulumi.getter(name="dbName")
+    def db_name(self) -> str:
+        """
+        The name of the database.
+        """
+        return pulumi.get(self, "db_name")
+
+
+@pulumi.output_type
+class DatabaseEndpointReadOnlyNodeWeight(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "nodeId":
+            suggest = "node_id"
+        elif key == "nodeType":
+            suggest = "node_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DatabaseEndpointReadOnlyNodeWeight. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DatabaseEndpointReadOnlyNodeWeight.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DatabaseEndpointReadOnlyNodeWeight.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 node_id: Optional[str] = None,
+                 node_type: Optional[str] = None,
+                 weight: Optional[int] = None):
+        """
+        :param str node_id: A read-only node requires passing in the NodeId. A primary node does not need to pass in the NodeId.
+        :param str node_type: Node type. Primary or ReadOnly.
+        :param int weight: Custom read weight allocation. Increases by 100, with a maximum value of 40000. Weights cannot all be set to 0.
+        """
+        if node_id is not None:
+            pulumi.set(__self__, "node_id", node_id)
+        if node_type is not None:
+            pulumi.set(__self__, "node_type", node_type)
+        if weight is not None:
+            pulumi.set(__self__, "weight", weight)
+
+    @property
+    @pulumi.getter(name="nodeId")
+    def node_id(self) -> Optional[str]:
+        """
+        A read-only node requires passing in the NodeId. A primary node does not need to pass in the NodeId.
+        """
+        return pulumi.get(self, "node_id")
+
+    @property
+    @pulumi.getter(name="nodeType")
+    def node_type(self) -> Optional[str]:
+        """
+        Node type. Primary or ReadOnly.
+        """
+        return pulumi.get(self, "node_type")
+
+    @property
+    @pulumi.getter
+    def weight(self) -> Optional[int]:
+        """
+        Custom read weight allocation. Increases by 100, with a maximum value of 40000. Weights cannot all be set to 0.
+        """
+        return pulumi.get(self, "weight")
+
+
+@pulumi.output_type
+class DatabaseEndpointsEndpointResult(dict):
+    def __init__(__self__, *,
+                 cross_region_domain: str,
+                 dns_visibility: bool,
+                 domain: str,
+                 endpoint_id: str,
+                 endpoint_name: str,
+                 endpoint_type: str,
+                 port: str,
+                 read_only_node_distribution_type: str,
+                 read_only_node_max_delay_time: int,
+                 read_write_mode: str,
+                 read_write_proxy_connection: int,
+                 write_node_halt_writing: bool):
+        """
+        :param str cross_region_domain: Cross-region domain for private address.
+        :param bool dns_visibility: Whether to enable public network resolution.
+        :param str domain: Connect domain name.
+        :param str endpoint_id: The ID of the RDS PostgreSQL database endpoint.
+        :param str endpoint_name: The name of the RDS PostgreSQL database endpoint.
+        :param str endpoint_type: The type of the RDS PostgreSQL database endpoint. Valid values: `Custom`(custom endpoint), `Cluster`(default endpoint).
+        :param str port: The endpoint port.
+        :param str read_only_node_distribution_type: The distribution type of the read-only nodes.
+        :param int read_only_node_max_delay_time: ReadOnly node max delay seconds.
+        :param str read_write_mode: ReadWrite or ReadOnly. Default value is ReadOnly.
+        :param int read_write_proxy_connection: The number of proxy connections set for the terminal.
+        :param bool write_node_halt_writing: Whether the endpoint sends write requests to the write node.
+        """
+        pulumi.set(__self__, "cross_region_domain", cross_region_domain)
+        pulumi.set(__self__, "dns_visibility", dns_visibility)
+        pulumi.set(__self__, "domain", domain)
+        pulumi.set(__self__, "endpoint_id", endpoint_id)
+        pulumi.set(__self__, "endpoint_name", endpoint_name)
+        pulumi.set(__self__, "endpoint_type", endpoint_type)
+        pulumi.set(__self__, "port", port)
+        pulumi.set(__self__, "read_only_node_distribution_type", read_only_node_distribution_type)
+        pulumi.set(__self__, "read_only_node_max_delay_time", read_only_node_max_delay_time)
+        pulumi.set(__self__, "read_write_mode", read_write_mode)
+        pulumi.set(__self__, "read_write_proxy_connection", read_write_proxy_connection)
+        pulumi.set(__self__, "write_node_halt_writing", write_node_halt_writing)
+
+    @property
+    @pulumi.getter(name="crossRegionDomain")
+    def cross_region_domain(self) -> str:
+        """
+        Cross-region domain for private address.
+        """
+        return pulumi.get(self, "cross_region_domain")
+
+    @property
+    @pulumi.getter(name="dnsVisibility")
+    def dns_visibility(self) -> bool:
+        """
+        Whether to enable public network resolution.
+        """
+        return pulumi.get(self, "dns_visibility")
+
+    @property
+    @pulumi.getter
+    def domain(self) -> str:
+        """
+        Connect domain name.
+        """
+        return pulumi.get(self, "domain")
+
+    @property
+    @pulumi.getter(name="endpointId")
+    def endpoint_id(self) -> str:
+        """
+        The ID of the RDS PostgreSQL database endpoint.
+        """
+        return pulumi.get(self, "endpoint_id")
+
+    @property
+    @pulumi.getter(name="endpointName")
+    def endpoint_name(self) -> str:
+        """
+        The name of the RDS PostgreSQL database endpoint.
+        """
+        return pulumi.get(self, "endpoint_name")
+
+    @property
+    @pulumi.getter(name="endpointType")
+    def endpoint_type(self) -> str:
+        """
+        The type of the RDS PostgreSQL database endpoint. Valid values: `Custom`(custom endpoint), `Cluster`(default endpoint).
+        """
+        return pulumi.get(self, "endpoint_type")
+
+    @property
+    @pulumi.getter
+    def port(self) -> str:
+        """
+        The endpoint port.
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter(name="readOnlyNodeDistributionType")
+    def read_only_node_distribution_type(self) -> str:
+        """
+        The distribution type of the read-only nodes.
+        """
+        return pulumi.get(self, "read_only_node_distribution_type")
+
+    @property
+    @pulumi.getter(name="readOnlyNodeMaxDelayTime")
+    def read_only_node_max_delay_time(self) -> int:
+        """
+        ReadOnly node max delay seconds.
+        """
+        return pulumi.get(self, "read_only_node_max_delay_time")
+
+    @property
+    @pulumi.getter(name="readWriteMode")
+    def read_write_mode(self) -> str:
+        """
+        ReadWrite or ReadOnly. Default value is ReadOnly.
+        """
+        return pulumi.get(self, "read_write_mode")
+
+    @property
+    @pulumi.getter(name="readWriteProxyConnection")
+    def read_write_proxy_connection(self) -> int:
+        """
+        The number of proxy connections set for the terminal.
+        """
+        return pulumi.get(self, "read_write_proxy_connection")
+
+    @property
+    @pulumi.getter(name="writeNodeHaltWriting")
+    def write_node_halt_writing(self) -> bool:
+        """
+        Whether the endpoint sends write requests to the write node.
+        """
+        return pulumi.get(self, "write_node_halt_writing")
 
 
 @pulumi.output_type
@@ -381,6 +1267,360 @@ class DatabasesDatabaseResult(dict):
 
 
 @pulumi.output_type
+class EngineVersionParametersDbEngineVersionParameterResult(dict):
+    def __init__(__self__, *,
+                 db_engine_version: str,
+                 parameter_count: str,
+                 parameters: Sequence['outputs.EngineVersionParametersDbEngineVersionParameterParameterResult']):
+        """
+        :param str db_engine_version: The database engine version of the RDS PostgreSQL instance. Valid value: PostgreSQL_11, PostgreSQL_12, PostgreSQL_13, PostgreSQL_14, PostgreSQL_15, PostgreSQL_16, PostgreSQL_17.
+        :param str parameter_count: The number of parameters that users can set under the specified database engine version.
+        :param Sequence['EngineVersionParametersDbEngineVersionParameterParameterArgs'] parameters: The collection of parameters that users can set under the specified database engine version.
+        """
+        pulumi.set(__self__, "db_engine_version", db_engine_version)
+        pulumi.set(__self__, "parameter_count", parameter_count)
+        pulumi.set(__self__, "parameters", parameters)
+
+    @property
+    @pulumi.getter(name="dbEngineVersion")
+    def db_engine_version(self) -> str:
+        """
+        The database engine version of the RDS PostgreSQL instance. Valid value: PostgreSQL_11, PostgreSQL_12, PostgreSQL_13, PostgreSQL_14, PostgreSQL_15, PostgreSQL_16, PostgreSQL_17.
+        """
+        return pulumi.get(self, "db_engine_version")
+
+    @property
+    @pulumi.getter(name="parameterCount")
+    def parameter_count(self) -> str:
+        """
+        The number of parameters that users can set under the specified database engine version.
+        """
+        return pulumi.get(self, "parameter_count")
+
+    @property
+    @pulumi.getter
+    def parameters(self) -> Sequence['outputs.EngineVersionParametersDbEngineVersionParameterParameterResult']:
+        """
+        The collection of parameters that users can set under the specified database engine version.
+        """
+        return pulumi.get(self, "parameters")
+
+
+@pulumi.output_type
+class EngineVersionParametersDbEngineVersionParameterParameterResult(dict):
+    def __init__(__self__, *,
+                 checking_code: str,
+                 default_value: str,
+                 force_restart: bool,
+                 name: str,
+                 type: str):
+        """
+        :param str checking_code: The value range of the parameter.
+        :param str default_value: Parameter default value. Refers to the default value provided in the default template corresponding to this instance.
+        :param bool force_restart: Indicates whether a restart is required after the parameter is modified.
+        :param str name: The name of the parameter.
+        :param str type: The type of the parameter.
+        """
+        pulumi.set(__self__, "checking_code", checking_code)
+        pulumi.set(__self__, "default_value", default_value)
+        pulumi.set(__self__, "force_restart", force_restart)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="checkingCode")
+    def checking_code(self) -> str:
+        """
+        The value range of the parameter.
+        """
+        return pulumi.get(self, "checking_code")
+
+    @property
+    @pulumi.getter(name="defaultValue")
+    def default_value(self) -> str:
+        """
+        Parameter default value. Refers to the default value provided in the default template corresponding to this instance.
+        """
+        return pulumi.get(self, "default_value")
+
+    @property
+    @pulumi.getter(name="forceRestart")
+    def force_restart(self) -> bool:
+        """
+        Indicates whether a restart is required after the parameter is modified.
+        """
+        return pulumi.get(self, "force_restart")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the parameter.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of the parameter.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class InstanceBackupDetachedsBackupResult(dict):
+    def __init__(__self__, *,
+                 backup_end_time: str,
+                 backup_file_name: str,
+                 backup_file_size: int,
+                 backup_id: str,
+                 backup_progress: int,
+                 backup_start_time: str,
+                 backup_status: str,
+                 backup_type: str,
+                 create_type: str,
+                 instance_infos: Sequence['outputs.InstanceBackupDetachedsBackupInstanceInfoResult']):
+        """
+        :param str backup_end_time: The latest time when the backup is created, in the format of yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+        :param str backup_file_name: The name of the backup file.
+        :param int backup_file_size: The size of the backup file, in Byte.
+        :param str backup_id: The ID of the backup.
+        :param int backup_progress: The progress of the backup. The unit is percentage.
+        :param str backup_start_time: The earliest time when the backup is created, in the format of yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+        :param str backup_status: The status of the backup.
+        :param str backup_type: The type of the backup.
+        :param str create_type: The creation type of the backup: System, User.
+        :param Sequence['InstanceBackupDetachedsBackupInstanceInfoArgs'] instance_infos: Information about the PostgreSQL instance associated with this backup.
+        """
+        pulumi.set(__self__, "backup_end_time", backup_end_time)
+        pulumi.set(__self__, "backup_file_name", backup_file_name)
+        pulumi.set(__self__, "backup_file_size", backup_file_size)
+        pulumi.set(__self__, "backup_id", backup_id)
+        pulumi.set(__self__, "backup_progress", backup_progress)
+        pulumi.set(__self__, "backup_start_time", backup_start_time)
+        pulumi.set(__self__, "backup_status", backup_status)
+        pulumi.set(__self__, "backup_type", backup_type)
+        pulumi.set(__self__, "create_type", create_type)
+        pulumi.set(__self__, "instance_infos", instance_infos)
+
+    @property
+    @pulumi.getter(name="backupEndTime")
+    def backup_end_time(self) -> str:
+        """
+        The latest time when the backup is created, in the format of yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+        """
+        return pulumi.get(self, "backup_end_time")
+
+    @property
+    @pulumi.getter(name="backupFileName")
+    def backup_file_name(self) -> str:
+        """
+        The name of the backup file.
+        """
+        return pulumi.get(self, "backup_file_name")
+
+    @property
+    @pulumi.getter(name="backupFileSize")
+    def backup_file_size(self) -> int:
+        """
+        The size of the backup file, in Byte.
+        """
+        return pulumi.get(self, "backup_file_size")
+
+    @property
+    @pulumi.getter(name="backupId")
+    def backup_id(self) -> str:
+        """
+        The ID of the backup.
+        """
+        return pulumi.get(self, "backup_id")
+
+    @property
+    @pulumi.getter(name="backupProgress")
+    def backup_progress(self) -> int:
+        """
+        The progress of the backup. The unit is percentage.
+        """
+        return pulumi.get(self, "backup_progress")
+
+    @property
+    @pulumi.getter(name="backupStartTime")
+    def backup_start_time(self) -> str:
+        """
+        The earliest time when the backup is created, in the format of yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+        """
+        return pulumi.get(self, "backup_start_time")
+
+    @property
+    @pulumi.getter(name="backupStatus")
+    def backup_status(self) -> str:
+        """
+        The status of the backup.
+        """
+        return pulumi.get(self, "backup_status")
+
+    @property
+    @pulumi.getter(name="backupType")
+    def backup_type(self) -> str:
+        """
+        The type of the backup.
+        """
+        return pulumi.get(self, "backup_type")
+
+    @property
+    @pulumi.getter(name="createType")
+    def create_type(self) -> str:
+        """
+        The creation type of the backup: System, User.
+        """
+        return pulumi.get(self, "create_type")
+
+    @property
+    @pulumi.getter(name="instanceInfos")
+    def instance_infos(self) -> Sequence['outputs.InstanceBackupDetachedsBackupInstanceInfoResult']:
+        """
+        Information about the PostgreSQL instance associated with this backup.
+        """
+        return pulumi.get(self, "instance_infos")
+
+
+@pulumi.output_type
+class InstanceBackupDetachedsBackupInstanceInfoResult(dict):
+    def __init__(__self__, *,
+                 db_engine_version: str,
+                 instance_id: str,
+                 instance_name: str,
+                 instance_status: str):
+        """
+        :param str db_engine_version: The version of the database engine.
+        :param str instance_id: The ID of the PostgreSQL instance.
+        :param str instance_name: The name of the PostgreSQL instance.
+        :param str instance_status: The status of the instance.
+        """
+        pulumi.set(__self__, "db_engine_version", db_engine_version)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "instance_name", instance_name)
+        pulumi.set(__self__, "instance_status", instance_status)
+
+    @property
+    @pulumi.getter(name="dbEngineVersion")
+    def db_engine_version(self) -> str:
+        """
+        The version of the database engine.
+        """
+        return pulumi.get(self, "db_engine_version")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        The ID of the PostgreSQL instance.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="instanceName")
+    def instance_name(self) -> str:
+        """
+        The name of the PostgreSQL instance.
+        """
+        return pulumi.get(self, "instance_name")
+
+    @property
+    @pulumi.getter(name="instanceStatus")
+    def instance_status(self) -> str:
+        """
+        The status of the instance.
+        """
+        return pulumi.get(self, "instance_status")
+
+
+@pulumi.output_type
+class InstanceBackupWalLogsWalLogBackupResult(dict):
+    def __init__(__self__, *,
+                 backup_file_size: int,
+                 backup_id: str,
+                 backup_status: str,
+                 check_sum: str,
+                 download_status: str,
+                 project_name: str,
+                 wal_log_backup_end_time: str):
+        """
+        :param int backup_file_size: The size of the WAL log backup file. The unit is bytes (Byte).
+        :param str backup_id: The id of the backup.
+        :param str backup_status: The status of the WAL log backup.
+        :param str check_sum: The checksum in the ETag format using the crc64 algorithm.
+        :param str download_status: The downloadable status of the WAL log backup.
+        :param str project_name: The project to which the instance of the WAL log backup belongs.
+        :param str wal_log_backup_end_time: The end time of the WAL log backup, in the format of yyyy-MM-ddTHH:mm:ssZ (UTC time).
+        """
+        pulumi.set(__self__, "backup_file_size", backup_file_size)
+        pulumi.set(__self__, "backup_id", backup_id)
+        pulumi.set(__self__, "backup_status", backup_status)
+        pulumi.set(__self__, "check_sum", check_sum)
+        pulumi.set(__self__, "download_status", download_status)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "wal_log_backup_end_time", wal_log_backup_end_time)
+
+    @property
+    @pulumi.getter(name="backupFileSize")
+    def backup_file_size(self) -> int:
+        """
+        The size of the WAL log backup file. The unit is bytes (Byte).
+        """
+        return pulumi.get(self, "backup_file_size")
+
+    @property
+    @pulumi.getter(name="backupId")
+    def backup_id(self) -> str:
+        """
+        The id of the backup.
+        """
+        return pulumi.get(self, "backup_id")
+
+    @property
+    @pulumi.getter(name="backupStatus")
+    def backup_status(self) -> str:
+        """
+        The status of the WAL log backup.
+        """
+        return pulumi.get(self, "backup_status")
+
+    @property
+    @pulumi.getter(name="checkSum")
+    def check_sum(self) -> str:
+        """
+        The checksum in the ETag format using the crc64 algorithm.
+        """
+        return pulumi.get(self, "check_sum")
+
+    @property
+    @pulumi.getter(name="downloadStatus")
+    def download_status(self) -> str:
+        """
+        The downloadable status of the WAL log backup.
+        """
+        return pulumi.get(self, "download_status")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project to which the instance of the WAL log backup belongs.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="walLogBackupEndTime")
+    def wal_log_backup_end_time(self) -> str:
+        """
+        The end time of the WAL log backup, in the format of yyyy-MM-ddTHH:mm:ssZ (UTC time).
+        """
+        return pulumi.get(self, "wal_log_backup_end_time")
+
+
+@pulumi.output_type
 class InstanceChargeDetail(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -423,6 +1663,7 @@ class InstanceChargeDetail(dict):
                  charge_start_time: Optional[str] = None,
                  charge_status: Optional[str] = None,
                  charge_type: Optional[str] = None,
+                 number: Optional[int] = None,
                  overdue_reclaim_time: Optional[str] = None,
                  overdue_time: Optional[str] = None,
                  period: Optional[int] = None,
@@ -438,10 +1679,11 @@ class InstanceChargeDetail(dict):
         :param str charge_status: Pay status. Value:
                normal - normal
                overdue - overdue
-               .
+               unpaid - unpaid.
         :param str charge_type: Payment type. Value:
                PostPaid - Pay-As-You-Go
                PrePaid - Yearly and monthly (default).
+        :param int number: The number of the RDS PostgreSQL instance.
         :param str overdue_reclaim_time: Estimated release time when arrears are closed (pay-as-you-go & monthly subscription).
         :param str overdue_time: Shutdown time in arrears (pay-as-you-go & monthly subscription).
         :param int period: Purchase duration in prepaid scenarios. Default: 1.
@@ -461,6 +1703,8 @@ class InstanceChargeDetail(dict):
             pulumi.set(__self__, "charge_status", charge_status)
         if charge_type is not None:
             pulumi.set(__self__, "charge_type", charge_type)
+        if number is not None:
+            pulumi.set(__self__, "number", number)
         if overdue_reclaim_time is not None:
             pulumi.set(__self__, "overdue_reclaim_time", overdue_reclaim_time)
         if overdue_time is not None:
@@ -507,7 +1751,7 @@ class InstanceChargeDetail(dict):
         Pay status. Value:
         normal - normal
         overdue - overdue
-        .
+        unpaid - unpaid.
         """
         return pulumi.get(self, "charge_status")
 
@@ -520,6 +1764,14 @@ class InstanceChargeDetail(dict):
         PrePaid - Yearly and monthly (default).
         """
         return pulumi.get(self, "charge_type")
+
+    @property
+    @pulumi.getter
+    def number(self) -> Optional[int]:
+        """
+        The number of the RDS PostgreSQL instance.
+        """
+        return pulumi.get(self, "number")
 
     @property
     @pulumi.getter(name="overdueReclaimTime")
@@ -598,10 +1850,12 @@ class InstanceChargeInfo(dict):
     def __init__(__self__, *,
                  charge_type: str,
                  auto_renew: Optional[bool] = None,
+                 number: Optional[int] = None,
                  period: Optional[int] = None,
                  period_unit: Optional[str] = None):
         """
         :param bool auto_renew: Whether to automatically renew in prepaid scenarios.
+        :param int number: Purchase number of the RDS PostgreSQL instance. Range: [1, 20]. Default: 1.
         :param int period: Purchase duration in prepaid scenarios. Default: 1.
         :param str period_unit: The purchase cycle in the prepaid scenario.
                Month - monthly subscription (default)
@@ -610,6 +1864,8 @@ class InstanceChargeInfo(dict):
         pulumi.set(__self__, "charge_type", charge_type)
         if auto_renew is not None:
             pulumi.set(__self__, "auto_renew", auto_renew)
+        if number is not None:
+            pulumi.set(__self__, "number", number)
         if period is not None:
             pulumi.set(__self__, "period", period)
         if period_unit is not None:
@@ -627,6 +1883,14 @@ class InstanceChargeInfo(dict):
         Whether to automatically renew in prepaid scenarios.
         """
         return pulumi.get(self, "auto_renew")
+
+    @property
+    @pulumi.getter
+    def number(self) -> Optional[int]:
+        """
+        Purchase number of the RDS PostgreSQL instance. Range: [1, 20]. Default: 1.
+        """
+        return pulumi.get(self, "number")
 
     @property
     @pulumi.getter
@@ -664,10 +1928,18 @@ class InstanceEndpoint(dict):
             suggest = "endpoint_name"
         elif key == "endpointType":
             suggest = "endpoint_type"
+        elif key == "readOnlyNodeDistributionType":
+            suggest = "read_only_node_distribution_type"
+        elif key == "readOnlyNodeMaxDelayTime":
+            suggest = "read_only_node_max_delay_time"
         elif key == "readOnlyNodeWeights":
             suggest = "read_only_node_weights"
         elif key == "readWriteMode":
             suggest = "read_write_mode"
+        elif key == "readWriteProxyConnection":
+            suggest = "read_write_proxy_connection"
+        elif key == "writeNodeHaltWriting":
+            suggest = "write_node_halt_writing"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in InstanceEndpoint. Access the value via the '{suggest}' property getter instead.")
@@ -689,8 +1961,12 @@ class InstanceEndpoint(dict):
                  endpoint_id: Optional[str] = None,
                  endpoint_name: Optional[str] = None,
                  endpoint_type: Optional[str] = None,
+                 read_only_node_distribution_type: Optional[str] = None,
+                 read_only_node_max_delay_time: Optional[int] = None,
                  read_only_node_weights: Optional[Sequence['outputs.InstanceEndpointReadOnlyNodeWeight']] = None,
-                 read_write_mode: Optional[str] = None):
+                 read_write_mode: Optional[str] = None,
+                 read_write_proxy_connection: Optional[int] = None,
+                 write_node_halt_writing: Optional[bool] = None):
         """
         :param Sequence['InstanceEndpointAddressArgs'] addresses: Address list.
         :param str auto_add_new_nodes: When the terminal type is read-write terminal or read-only terminal, it supports setting whether new nodes are automatically added.
@@ -705,10 +1981,16 @@ class InstanceEndpoint(dict):
                Custom: Custom terminal.
                Direct: Direct connection to the terminal. (Only the operation and maintenance side)
                AllNode: All node terminals. (Only the operation and maintenance side).
+        :param str read_only_node_distribution_type: The distribution type of the read-only nodes, value:
+               Default: Default distribution.
+               Custom: Custom distribution.
+        :param int read_only_node_max_delay_time: Maximum latency threshold of read-only node. If the latency of a read-only node exceeds this value, reading traffic won't be routed to this node. Unit: seconds.Values: 0~3600.Default value: 30.
         :param Sequence['InstanceEndpointReadOnlyNodeWeightArgs'] read_only_node_weights: The list of nodes configured by the connection terminal and the corresponding read-only weights.
         :param str read_write_mode: Read and write mode:
                ReadWrite: read and write
                ReadOnly: read only (default).
+        :param int read_write_proxy_connection: After the terminal enables read-write separation, the number of proxy connections set for the terminal. The lower limit of the number of proxy connections is 20. The upper limit of the number of proxy connections depends on the specifications of the instance master node.
+        :param bool write_node_halt_writing: Whether the endpoint sends write requests to the write node (currently only the master node is a write node). Values: true: Yes(Default). false: No.
         """
         if addresses is not None:
             pulumi.set(__self__, "addresses", addresses)
@@ -726,10 +2008,18 @@ class InstanceEndpoint(dict):
             pulumi.set(__self__, "endpoint_name", endpoint_name)
         if endpoint_type is not None:
             pulumi.set(__self__, "endpoint_type", endpoint_type)
+        if read_only_node_distribution_type is not None:
+            pulumi.set(__self__, "read_only_node_distribution_type", read_only_node_distribution_type)
+        if read_only_node_max_delay_time is not None:
+            pulumi.set(__self__, "read_only_node_max_delay_time", read_only_node_max_delay_time)
         if read_only_node_weights is not None:
             pulumi.set(__self__, "read_only_node_weights", read_only_node_weights)
         if read_write_mode is not None:
             pulumi.set(__self__, "read_write_mode", read_write_mode)
+        if read_write_proxy_connection is not None:
+            pulumi.set(__self__, "read_write_proxy_connection", read_write_proxy_connection)
+        if write_node_halt_writing is not None:
+            pulumi.set(__self__, "write_node_halt_writing", write_node_halt_writing)
 
     @property
     @pulumi.getter
@@ -801,6 +2091,24 @@ class InstanceEndpoint(dict):
         return pulumi.get(self, "endpoint_type")
 
     @property
+    @pulumi.getter(name="readOnlyNodeDistributionType")
+    def read_only_node_distribution_type(self) -> Optional[str]:
+        """
+        The distribution type of the read-only nodes, value:
+        Default: Default distribution.
+        Custom: Custom distribution.
+        """
+        return pulumi.get(self, "read_only_node_distribution_type")
+
+    @property
+    @pulumi.getter(name="readOnlyNodeMaxDelayTime")
+    def read_only_node_max_delay_time(self) -> Optional[int]:
+        """
+        Maximum latency threshold of read-only node. If the latency of a read-only node exceeds this value, reading traffic won't be routed to this node. Unit: seconds.Values: 0~3600.Default value: 30.
+        """
+        return pulumi.get(self, "read_only_node_max_delay_time")
+
+    @property
     @pulumi.getter(name="readOnlyNodeWeights")
     def read_only_node_weights(self) -> Optional[Sequence['outputs.InstanceEndpointReadOnlyNodeWeight']]:
         """
@@ -818,18 +2126,42 @@ class InstanceEndpoint(dict):
         """
         return pulumi.get(self, "read_write_mode")
 
+    @property
+    @pulumi.getter(name="readWriteProxyConnection")
+    def read_write_proxy_connection(self) -> Optional[int]:
+        """
+        After the terminal enables read-write separation, the number of proxy connections set for the terminal. The lower limit of the number of proxy connections is 20. The upper limit of the number of proxy connections depends on the specifications of the instance master node.
+        """
+        return pulumi.get(self, "read_write_proxy_connection")
+
+    @property
+    @pulumi.getter(name="writeNodeHaltWriting")
+    def write_node_halt_writing(self) -> Optional[bool]:
+        """
+        Whether the endpoint sends write requests to the write node (currently only the master node is a write node). Values: true: Yes(Default). false: No.
+        """
+        return pulumi.get(self, "write_node_halt_writing")
+
 
 @pulumi.output_type
 class InstanceEndpointAddress(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "dnsVisibility":
+        if key == "crossRegionDomain":
+            suggest = "cross_region_domain"
+        elif key == "dnsVisibility":
             suggest = "dns_visibility"
+        elif key == "domainVisibilitySetting":
+            suggest = "domain_visibility_setting"
         elif key == "eipId":
             suggest = "eip_id"
+        elif key == "internetProtocol":
+            suggest = "internet_protocol"
         elif key == "ipAddress":
             suggest = "ip_address"
+        elif key == "ipv6Address":
+            suggest = "ipv6_address"
         elif key == "networkType":
             suggest = "network_type"
         elif key == "subnetId":
@@ -847,30 +2179,46 @@ class InstanceEndpointAddress(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
+                 cross_region_domain: Optional[str] = None,
                  dns_visibility: Optional[bool] = None,
                  domain: Optional[str] = None,
+                 domain_visibility_setting: Optional[str] = None,
                  eip_id: Optional[str] = None,
+                 internet_protocol: Optional[str] = None,
                  ip_address: Optional[str] = None,
+                 ipv6_address: Optional[str] = None,
                  network_type: Optional[str] = None,
                  port: Optional[str] = None,
                  subnet_id: Optional[str] = None):
         """
-        :param bool dns_visibility: DNS Visibility.
+        :param str cross_region_domain: Address that can be accessed across regions.
+        :param bool dns_visibility: Whether to enable public network resolution. Values: false: Default value. PrivateZone of Volcano Engine. true: Private and public network resolution of Volcano Engine.
         :param str domain: Connect domain name.
+        :param str domain_visibility_setting: The type of private network address. Values: LocalDomain: Local domain name. CrossRegionDomain: Domains accessible across regions.
         :param str eip_id: The ID of the EIP, only valid for Public addresses.
+        :param str internet_protocol: Address IP protocol, IPv4 or IPv6.
         :param str ip_address: The IP Address.
+        :param str ipv6_address: The IPv6 Address.
         :param str network_type: Network address type, temporarily Private, Public, PublicService.
         :param str port: The Port.
         :param str subnet_id: Subnet ID of the RDS PostgreSQL instance.
         """
+        if cross_region_domain is not None:
+            pulumi.set(__self__, "cross_region_domain", cross_region_domain)
         if dns_visibility is not None:
             pulumi.set(__self__, "dns_visibility", dns_visibility)
         if domain is not None:
             pulumi.set(__self__, "domain", domain)
+        if domain_visibility_setting is not None:
+            pulumi.set(__self__, "domain_visibility_setting", domain_visibility_setting)
         if eip_id is not None:
             pulumi.set(__self__, "eip_id", eip_id)
+        if internet_protocol is not None:
+            pulumi.set(__self__, "internet_protocol", internet_protocol)
         if ip_address is not None:
             pulumi.set(__self__, "ip_address", ip_address)
+        if ipv6_address is not None:
+            pulumi.set(__self__, "ipv6_address", ipv6_address)
         if network_type is not None:
             pulumi.set(__self__, "network_type", network_type)
         if port is not None:
@@ -879,10 +2227,18 @@ class InstanceEndpointAddress(dict):
             pulumi.set(__self__, "subnet_id", subnet_id)
 
     @property
+    @pulumi.getter(name="crossRegionDomain")
+    def cross_region_domain(self) -> Optional[str]:
+        """
+        Address that can be accessed across regions.
+        """
+        return pulumi.get(self, "cross_region_domain")
+
+    @property
     @pulumi.getter(name="dnsVisibility")
     def dns_visibility(self) -> Optional[bool]:
         """
-        DNS Visibility.
+        Whether to enable public network resolution. Values: false: Default value. PrivateZone of Volcano Engine. true: Private and public network resolution of Volcano Engine.
         """
         return pulumi.get(self, "dns_visibility")
 
@@ -895,6 +2251,14 @@ class InstanceEndpointAddress(dict):
         return pulumi.get(self, "domain")
 
     @property
+    @pulumi.getter(name="domainVisibilitySetting")
+    def domain_visibility_setting(self) -> Optional[str]:
+        """
+        The type of private network address. Values: LocalDomain: Local domain name. CrossRegionDomain: Domains accessible across regions.
+        """
+        return pulumi.get(self, "domain_visibility_setting")
+
+    @property
     @pulumi.getter(name="eipId")
     def eip_id(self) -> Optional[str]:
         """
@@ -903,12 +2267,28 @@ class InstanceEndpointAddress(dict):
         return pulumi.get(self, "eip_id")
 
     @property
+    @pulumi.getter(name="internetProtocol")
+    def internet_protocol(self) -> Optional[str]:
+        """
+        Address IP protocol, IPv4 or IPv6.
+        """
+        return pulumi.get(self, "internet_protocol")
+
+    @property
     @pulumi.getter(name="ipAddress")
     def ip_address(self) -> Optional[str]:
         """
         The IP Address.
         """
         return pulumi.get(self, "ip_address")
+
+    @property
+    @pulumi.getter(name="ipv6Address")
+    def ipv6_address(self) -> Optional[str]:
+        """
+        The IPv6 Address.
+        """
+        return pulumi.get(self, "ipv6_address")
 
     @property
     @pulumi.getter(name="networkType")
@@ -999,6 +2379,88 @@ class InstanceEndpointReadOnlyNodeWeight(dict):
         The weight of the node.
         """
         return pulumi.get(self, "weight")
+
+
+@pulumi.output_type
+class InstanceEstimationResult(dict):
+    def __init__(__self__, *,
+                 effects: Optional[Sequence[str]] = None,
+                 plans: Optional[Sequence[str]] = None):
+        """
+        :param Sequence[str] effects: After changing according to the current configuration, the estimated impact on the read and write connections of the instance.
+        :param Sequence[str] plans: Estimated impact on the instance after the current configuration changes.
+        """
+        if effects is not None:
+            pulumi.set(__self__, "effects", effects)
+        if plans is not None:
+            pulumi.set(__self__, "plans", plans)
+
+    @property
+    @pulumi.getter
+    def effects(self) -> Optional[Sequence[str]]:
+        """
+        After changing according to the current configuration, the estimated impact on the read and write connections of the instance.
+        """
+        return pulumi.get(self, "effects")
+
+    @property
+    @pulumi.getter
+    def plans(self) -> Optional[Sequence[str]]:
+        """
+        Estimated impact on the instance after the current configuration changes.
+        """
+        return pulumi.get(self, "plans")
+
+
+@pulumi.output_type
+class InstanceFailoverLogsFailoverLogResult(dict):
+    def __init__(__self__, *,
+                 failover_time: str,
+                 failover_type: str,
+                 new_master_node_id: str,
+                 old_master_node_id: str):
+        """
+        :param str failover_time: The time when the failover occurred. Format: yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+        :param str failover_type: The type of the failover, such as User or System.
+        :param str new_master_node_id: The node ID of the new master after failover.
+        :param str old_master_node_id: The node ID of the old master before failover.
+        """
+        pulumi.set(__self__, "failover_time", failover_time)
+        pulumi.set(__self__, "failover_type", failover_type)
+        pulumi.set(__self__, "new_master_node_id", new_master_node_id)
+        pulumi.set(__self__, "old_master_node_id", old_master_node_id)
+
+    @property
+    @pulumi.getter(name="failoverTime")
+    def failover_time(self) -> str:
+        """
+        The time when the failover occurred. Format: yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+        """
+        return pulumi.get(self, "failover_time")
+
+    @property
+    @pulumi.getter(name="failoverType")
+    def failover_type(self) -> str:
+        """
+        The type of the failover, such as User or System.
+        """
+        return pulumi.get(self, "failover_type")
+
+    @property
+    @pulumi.getter(name="newMasterNodeId")
+    def new_master_node_id(self) -> str:
+        """
+        The node ID of the new master after failover.
+        """
+        return pulumi.get(self, "new_master_node_id")
+
+    @property
+    @pulumi.getter(name="oldMasterNodeId")
+    def old_master_node_id(self) -> str:
+        """
+        The node ID of the old master before failover.
+        """
+        return pulumi.get(self, "old_master_node_id")
 
 
 @pulumi.output_type
@@ -1209,6 +2671,1097 @@ class InstanceParameter(dict):
 
 
 @pulumi.output_type
+class InstanceParameterLogsParameterChangeLogResult(dict):
+    def __init__(__self__, *,
+                 modify_time: str,
+                 name: str,
+                 new_value: str,
+                 old_value: str,
+                 status: str):
+        """
+        :param str modify_time: The time when the parameter was last modified. Format: yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+        :param str name: The name of the parameter.
+        :param str new_value: The new value of the parameter.
+        :param str old_value: The old value of the parameter.
+        :param str status: The status of the parameter. Applied: Already in effect. Invalid: Not in effect. Syncing: Being applied, not yet in effect.
+        """
+        pulumi.set(__self__, "modify_time", modify_time)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "new_value", new_value)
+        pulumi.set(__self__, "old_value", old_value)
+        pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter(name="modifyTime")
+    def modify_time(self) -> str:
+        """
+        The time when the parameter was last modified. Format: yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+        """
+        return pulumi.get(self, "modify_time")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the parameter.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="newValue")
+    def new_value(self) -> str:
+        """
+        The new value of the parameter.
+        """
+        return pulumi.get(self, "new_value")
+
+    @property
+    @pulumi.getter(name="oldValue")
+    def old_value(self) -> str:
+        """
+        The old value of the parameter.
+        """
+        return pulumi.get(self, "old_value")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of the parameter. Applied: Already in effect. Invalid: Not in effect. Syncing: Being applied, not yet in effect.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class InstanceParametersInstanceParameterResult(dict):
+    def __init__(__self__, *,
+                 db_engine_version: str,
+                 instance_id: str,
+                 none_kernel_parameters: Sequence['outputs.InstanceParametersInstanceParameterNoneKernelParameterResult'],
+                 parameter_count: str,
+                 parameters: Sequence['outputs.InstanceParametersInstanceParameterParameterResult']):
+        """
+        :param str db_engine_version: The version of the PostgreSQL engine.
+        :param str instance_id: The ID of the PostgreSQL instance.
+        :param str parameter_count: The total count of parameters.
+        :param Sequence['InstanceParametersInstanceParameterParameterArgs'] parameters: The current parameter configuration of the instance (kernel parameters).
+        """
+        pulumi.set(__self__, "db_engine_version", db_engine_version)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "none_kernel_parameters", none_kernel_parameters)
+        pulumi.set(__self__, "parameter_count", parameter_count)
+        pulumi.set(__self__, "parameters", parameters)
+
+    @property
+    @pulumi.getter(name="dbEngineVersion")
+    def db_engine_version(self) -> str:
+        """
+        The version of the PostgreSQL engine.
+        """
+        return pulumi.get(self, "db_engine_version")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        The ID of the PostgreSQL instance.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="noneKernelParameters")
+    def none_kernel_parameters(self) -> Sequence['outputs.InstanceParametersInstanceParameterNoneKernelParameterResult']:
+        warnings.warn("""The current parameter configuration of the instance (non-kernel parameters).""", DeprecationWarning)
+        pulumi.log.warn("""none_kernel_parameters is deprecated: The current parameter configuration of the instance (non-kernel parameters).""")
+
+        return pulumi.get(self, "none_kernel_parameters")
+
+    @property
+    @pulumi.getter(name="parameterCount")
+    def parameter_count(self) -> str:
+        """
+        The total count of parameters.
+        """
+        return pulumi.get(self, "parameter_count")
+
+    @property
+    @pulumi.getter
+    def parameters(self) -> Sequence['outputs.InstanceParametersInstanceParameterParameterResult']:
+        """
+        The current parameter configuration of the instance (kernel parameters).
+        """
+        return pulumi.get(self, "parameters")
+
+
+@pulumi.output_type
+class InstanceParametersInstanceParameterNoneKernelParameterResult(dict):
+    def __init__(__self__, *,
+                 checking_code: str,
+                 default_value: str,
+                 description: str,
+                 description_zh: str,
+                 force_restart: bool,
+                 name: str,
+                 type: str,
+                 value: str):
+        """
+        :param str checking_code: The value range of the parameter.
+        :param str default_value: Parameter default value. Refers to the default value provided in the default template corresponding to this instance.
+        :param str description: The description of the parameter in English.
+        :param str description_zh: The description of the parameter in Chinese.
+        :param bool force_restart: Indicates whether a restart is required after the parameter is modified.
+        :param str name: The name of the parameter.
+        :param str type: The type of the parameter.
+        :param str value: The current value of the parameter.
+        """
+        pulumi.set(__self__, "checking_code", checking_code)
+        pulumi.set(__self__, "default_value", default_value)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "description_zh", description_zh)
+        pulumi.set(__self__, "force_restart", force_restart)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="checkingCode")
+    def checking_code(self) -> str:
+        """
+        The value range of the parameter.
+        """
+        return pulumi.get(self, "checking_code")
+
+    @property
+    @pulumi.getter(name="defaultValue")
+    def default_value(self) -> str:
+        """
+        Parameter default value. Refers to the default value provided in the default template corresponding to this instance.
+        """
+        return pulumi.get(self, "default_value")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the parameter in English.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="descriptionZh")
+    def description_zh(self) -> str:
+        """
+        The description of the parameter in Chinese.
+        """
+        return pulumi.get(self, "description_zh")
+
+    @property
+    @pulumi.getter(name="forceRestart")
+    def force_restart(self) -> bool:
+        """
+        Indicates whether a restart is required after the parameter is modified.
+        """
+        return pulumi.get(self, "force_restart")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the parameter.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of the parameter.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The current value of the parameter.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class InstanceParametersInstanceParameterParameterResult(dict):
+    def __init__(__self__, *,
+                 checking_code: str,
+                 default_value: str,
+                 description: str,
+                 description_zh: str,
+                 force_restart: bool,
+                 name: str,
+                 type: str,
+                 value: str):
+        """
+        :param str checking_code: The value range of the parameter.
+        :param str default_value: Parameter default value. Refers to the default value provided in the default template corresponding to this instance.
+        :param str description: The description of the parameter in English.
+        :param str description_zh: The description of the parameter in Chinese.
+        :param bool force_restart: Indicates whether a restart is required after the parameter is modified.
+        :param str name: The name of the parameter.
+        :param str type: The type of the parameter.
+        :param str value: The current value of the parameter.
+        """
+        pulumi.set(__self__, "checking_code", checking_code)
+        pulumi.set(__self__, "default_value", default_value)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "description_zh", description_zh)
+        pulumi.set(__self__, "force_restart", force_restart)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="checkingCode")
+    def checking_code(self) -> str:
+        """
+        The value range of the parameter.
+        """
+        return pulumi.get(self, "checking_code")
+
+    @property
+    @pulumi.getter(name="defaultValue")
+    def default_value(self) -> str:
+        """
+        Parameter default value. Refers to the default value provided in the default template corresponding to this instance.
+        """
+        return pulumi.get(self, "default_value")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the parameter in English.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="descriptionZh")
+    def description_zh(self) -> str:
+        """
+        The description of the parameter in Chinese.
+        """
+        return pulumi.get(self, "description_zh")
+
+    @property
+    @pulumi.getter(name="forceRestart")
+    def force_restart(self) -> bool:
+        """
+        Indicates whether a restart is required after the parameter is modified.
+        """
+        return pulumi.get(self, "force_restart")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the parameter.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of the parameter.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The current value of the parameter.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class InstancePriceDetailsChargeInfoResult(dict):
+    def __init__(__self__, *,
+                 charge_type: str,
+                 auto_renew: Optional[bool] = None,
+                 number: Optional[int] = None,
+                 period: Optional[int] = None,
+                 period_unit: Optional[str] = None):
+        """
+        :param str charge_type: The charge type of the instance. Valid values: PostPaid, PrePaid.
+        :param bool auto_renew: Whether to auto renew the subscription in a pre-paid scenario.
+        :param int number: Number of purchased instances. Can be an integer between 1 and 20. Default value:1.
+        :param int period: Subscription duration in a pre-paid scenario.Default value:1.
+        :param str period_unit: Purchase cycle in a pre-paid scenario. Valid values: Month, Year.
+        """
+        pulumi.set(__self__, "charge_type", charge_type)
+        if auto_renew is not None:
+            pulumi.set(__self__, "auto_renew", auto_renew)
+        if number is not None:
+            pulumi.set(__self__, "number", number)
+        if period is not None:
+            pulumi.set(__self__, "period", period)
+        if period_unit is not None:
+            pulumi.set(__self__, "period_unit", period_unit)
+
+    @property
+    @pulumi.getter(name="chargeType")
+    def charge_type(self) -> str:
+        """
+        The charge type of the instance. Valid values: PostPaid, PrePaid.
+        """
+        return pulumi.get(self, "charge_type")
+
+    @property
+    @pulumi.getter(name="autoRenew")
+    def auto_renew(self) -> Optional[bool]:
+        """
+        Whether to auto renew the subscription in a pre-paid scenario.
+        """
+        return pulumi.get(self, "auto_renew")
+
+    @property
+    @pulumi.getter
+    def number(self) -> Optional[int]:
+        """
+        Number of purchased instances. Can be an integer between 1 and 20. Default value:1.
+        """
+        return pulumi.get(self, "number")
+
+    @property
+    @pulumi.getter
+    def period(self) -> Optional[int]:
+        """
+        Subscription duration in a pre-paid scenario.Default value:1.
+        """
+        return pulumi.get(self, "period")
+
+    @property
+    @pulumi.getter(name="periodUnit")
+    def period_unit(self) -> Optional[str]:
+        """
+        Purchase cycle in a pre-paid scenario. Valid values: Month, Year.
+        """
+        return pulumi.get(self, "period_unit")
+
+
+@pulumi.output_type
+class InstancePriceDetailsInstancesPriceResult(dict):
+    def __init__(__self__, *,
+                 charge_item_prices: Sequence['outputs.InstancePriceDetailsInstancesPriceChargeItemPriceResult'],
+                 currency: str,
+                 discount_price: float,
+                 instance_quantity: int,
+                 original_price: float,
+                 payable_price: float):
+        """
+        :param Sequence['InstancePriceDetailsInstancesPriceChargeItemPriceArgs'] charge_item_prices: Price of each charge item.
+        :param str currency: Currency unit.
+        :param float discount_price: Instance price after discount.
+        :param int instance_quantity: Number of purchased instances.
+        :param float original_price: Instance price before discount.
+        :param float payable_price: Price payable of instance.
+        """
+        pulumi.set(__self__, "charge_item_prices", charge_item_prices)
+        pulumi.set(__self__, "currency", currency)
+        pulumi.set(__self__, "discount_price", discount_price)
+        pulumi.set(__self__, "instance_quantity", instance_quantity)
+        pulumi.set(__self__, "original_price", original_price)
+        pulumi.set(__self__, "payable_price", payable_price)
+
+    @property
+    @pulumi.getter(name="chargeItemPrices")
+    def charge_item_prices(self) -> Sequence['outputs.InstancePriceDetailsInstancesPriceChargeItemPriceResult']:
+        """
+        Price of each charge item.
+        """
+        return pulumi.get(self, "charge_item_prices")
+
+    @property
+    @pulumi.getter
+    def currency(self) -> str:
+        """
+        Currency unit.
+        """
+        return pulumi.get(self, "currency")
+
+    @property
+    @pulumi.getter(name="discountPrice")
+    def discount_price(self) -> float:
+        """
+        Instance price after discount.
+        """
+        return pulumi.get(self, "discount_price")
+
+    @property
+    @pulumi.getter(name="instanceQuantity")
+    def instance_quantity(self) -> int:
+        """
+        Number of purchased instances.
+        """
+        return pulumi.get(self, "instance_quantity")
+
+    @property
+    @pulumi.getter(name="originalPrice")
+    def original_price(self) -> float:
+        """
+        Instance price before discount.
+        """
+        return pulumi.get(self, "original_price")
+
+    @property
+    @pulumi.getter(name="payablePrice")
+    def payable_price(self) -> float:
+        """
+        Price payable of instance.
+        """
+        return pulumi.get(self, "payable_price")
+
+
+@pulumi.output_type
+class InstancePriceDetailsInstancesPriceChargeItemPriceResult(dict):
+    def __init__(__self__, *,
+                 charge_item_key: str,
+                 charge_item_type: str,
+                 charge_item_value: int,
+                 discount_price: float,
+                 node_num_per_instance: int,
+                 original_price: float,
+                 payable_price: float):
+        """
+        :param str charge_item_key: If charge_item_key is Primary, Secondary, or ReadOnly, this parameter returns the instance specification, such as rds.pg.d1.1c2g. If charge_item_key is Storage, this parameter returns the stored key, such as rds.pg.d1.localssd.
+        :param str charge_item_type: Billing item name. Values:Primary, Secondary, ReadOnly, Storage.
+        :param int charge_item_value: If charge_item_key is Primary, Secondary, or ReadOnly, this parameter returns the number of nodes, with a value of "1". If charge_item_key is Storage, his parameter returns the storage size in GB.
+        :param float discount_price: Instance price after discount.
+        :param int node_num_per_instance: Number of nodes of each instance.
+        :param float original_price: Instance price before discount.
+        :param float payable_price: Price payable of instance.
+        """
+        pulumi.set(__self__, "charge_item_key", charge_item_key)
+        pulumi.set(__self__, "charge_item_type", charge_item_type)
+        pulumi.set(__self__, "charge_item_value", charge_item_value)
+        pulumi.set(__self__, "discount_price", discount_price)
+        pulumi.set(__self__, "node_num_per_instance", node_num_per_instance)
+        pulumi.set(__self__, "original_price", original_price)
+        pulumi.set(__self__, "payable_price", payable_price)
+
+    @property
+    @pulumi.getter(name="chargeItemKey")
+    def charge_item_key(self) -> str:
+        """
+        If charge_item_key is Primary, Secondary, or ReadOnly, this parameter returns the instance specification, such as rds.pg.d1.1c2g. If charge_item_key is Storage, this parameter returns the stored key, such as rds.pg.d1.localssd.
+        """
+        return pulumi.get(self, "charge_item_key")
+
+    @property
+    @pulumi.getter(name="chargeItemType")
+    def charge_item_type(self) -> str:
+        """
+        Billing item name. Values:Primary, Secondary, ReadOnly, Storage.
+        """
+        return pulumi.get(self, "charge_item_type")
+
+    @property
+    @pulumi.getter(name="chargeItemValue")
+    def charge_item_value(self) -> int:
+        """
+        If charge_item_key is Primary, Secondary, or ReadOnly, this parameter returns the number of nodes, with a value of "1". If charge_item_key is Storage, his parameter returns the storage size in GB.
+        """
+        return pulumi.get(self, "charge_item_value")
+
+    @property
+    @pulumi.getter(name="discountPrice")
+    def discount_price(self) -> float:
+        """
+        Instance price after discount.
+        """
+        return pulumi.get(self, "discount_price")
+
+    @property
+    @pulumi.getter(name="nodeNumPerInstance")
+    def node_num_per_instance(self) -> int:
+        """
+        Number of nodes of each instance.
+        """
+        return pulumi.get(self, "node_num_per_instance")
+
+    @property
+    @pulumi.getter(name="originalPrice")
+    def original_price(self) -> float:
+        """
+        Instance price before discount.
+        """
+        return pulumi.get(self, "original_price")
+
+    @property
+    @pulumi.getter(name="payablePrice")
+    def payable_price(self) -> float:
+        """
+        Price payable of instance.
+        """
+        return pulumi.get(self, "payable_price")
+
+
+@pulumi.output_type
+class InstancePriceDetailsNodeInfoResult(dict):
+    def __init__(__self__, *,
+                 node_spec: str,
+                 node_type: str,
+                 zone_id: str,
+                 node_id: Optional[str] = None,
+                 node_operate_type: Optional[str] = None):
+        """
+        :param str node_spec: The specification of the node.
+        :param str node_type: The type of the node. Valid values: Primary, Secondary, ReadOnly.
+        :param str zone_id: The AZ of the node.
+        :param str node_id: The id of the node.
+        :param str node_operate_type: The operate type of the node. Valid values: Create.
+        """
+        pulumi.set(__self__, "node_spec", node_spec)
+        pulumi.set(__self__, "node_type", node_type)
+        pulumi.set(__self__, "zone_id", zone_id)
+        if node_id is not None:
+            pulumi.set(__self__, "node_id", node_id)
+        if node_operate_type is not None:
+            pulumi.set(__self__, "node_operate_type", node_operate_type)
+
+    @property
+    @pulumi.getter(name="nodeSpec")
+    def node_spec(self) -> str:
+        """
+        The specification of the node.
+        """
+        return pulumi.get(self, "node_spec")
+
+    @property
+    @pulumi.getter(name="nodeType")
+    def node_type(self) -> str:
+        """
+        The type of the node. Valid values: Primary, Secondary, ReadOnly.
+        """
+        return pulumi.get(self, "node_type")
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> str:
+        """
+        The AZ of the node.
+        """
+        return pulumi.get(self, "zone_id")
+
+    @property
+    @pulumi.getter(name="nodeId")
+    def node_id(self) -> Optional[str]:
+        """
+        The id of the node.
+        """
+        return pulumi.get(self, "node_id")
+
+    @property
+    @pulumi.getter(name="nodeOperateType")
+    def node_operate_type(self) -> Optional[str]:
+        """
+        The operate type of the node. Valid values: Create.
+        """
+        return pulumi.get(self, "node_operate_type")
+
+
+@pulumi.output_type
+class InstancePriceDifferencesChargeInfoResult(dict):
+    def __init__(__self__, *,
+                 charge_type: str,
+                 auto_renew: Optional[bool] = None,
+                 number: Optional[int] = None,
+                 period: Optional[int] = None,
+                 period_unit: Optional[str] = None):
+        """
+        :param str charge_type: The charge type of the instance. Valid values: PostPaid, PrePaid.
+        :param bool auto_renew: Whether to auto renew the subscription in a pre-paid scenario.
+        :param int number: Number of purchased instances. Can be an integer between 1 and 20. Default value:1.
+        :param int period: Subscription duration in a pre-paid scenario.Default value:1.
+        :param str period_unit: Purchase cycle in a pre-paid scenario. Valid values: Month, Year.
+        """
+        pulumi.set(__self__, "charge_type", charge_type)
+        if auto_renew is not None:
+            pulumi.set(__self__, "auto_renew", auto_renew)
+        if number is not None:
+            pulumi.set(__self__, "number", number)
+        if period is not None:
+            pulumi.set(__self__, "period", period)
+        if period_unit is not None:
+            pulumi.set(__self__, "period_unit", period_unit)
+
+    @property
+    @pulumi.getter(name="chargeType")
+    def charge_type(self) -> str:
+        """
+        The charge type of the instance. Valid values: PostPaid, PrePaid.
+        """
+        return pulumi.get(self, "charge_type")
+
+    @property
+    @pulumi.getter(name="autoRenew")
+    def auto_renew(self) -> Optional[bool]:
+        """
+        Whether to auto renew the subscription in a pre-paid scenario.
+        """
+        return pulumi.get(self, "auto_renew")
+
+    @property
+    @pulumi.getter
+    def number(self) -> Optional[int]:
+        """
+        Number of purchased instances. Can be an integer between 1 and 20. Default value:1.
+        """
+        return pulumi.get(self, "number")
+
+    @property
+    @pulumi.getter
+    def period(self) -> Optional[int]:
+        """
+        Subscription duration in a pre-paid scenario.Default value:1.
+        """
+        return pulumi.get(self, "period")
+
+    @property
+    @pulumi.getter(name="periodUnit")
+    def period_unit(self) -> Optional[str]:
+        """
+        Purchase cycle in a pre-paid scenario. Valid values: Month, Year.
+        """
+        return pulumi.get(self, "period_unit")
+
+
+@pulumi.output_type
+class InstancePriceDifferencesInstancesPriceResult(dict):
+    def __init__(__self__, *,
+                 charge_item_prices: Sequence['outputs.InstancePriceDifferencesInstancesPriceChargeItemPriceResult'],
+                 currency: str,
+                 discount_price: float,
+                 original_price: float,
+                 payable_price: float):
+        """
+        :param str currency: Currency unit.
+        :param float discount_price: Instance price after discount.
+        :param float original_price: Instance price before discount.
+        :param float payable_price: Price payable of instance.
+        """
+        pulumi.set(__self__, "charge_item_prices", charge_item_prices)
+        pulumi.set(__self__, "currency", currency)
+        pulumi.set(__self__, "discount_price", discount_price)
+        pulumi.set(__self__, "original_price", original_price)
+        pulumi.set(__self__, "payable_price", payable_price)
+
+    @property
+    @pulumi.getter(name="chargeItemPrices")
+    def charge_item_prices(self) -> Sequence['outputs.InstancePriceDifferencesInstancesPriceChargeItemPriceResult']:
+        return pulumi.get(self, "charge_item_prices")
+
+    @property
+    @pulumi.getter
+    def currency(self) -> str:
+        """
+        Currency unit.
+        """
+        return pulumi.get(self, "currency")
+
+    @property
+    @pulumi.getter(name="discountPrice")
+    def discount_price(self) -> float:
+        """
+        Instance price after discount.
+        """
+        return pulumi.get(self, "discount_price")
+
+    @property
+    @pulumi.getter(name="originalPrice")
+    def original_price(self) -> float:
+        """
+        Instance price before discount.
+        """
+        return pulumi.get(self, "original_price")
+
+    @property
+    @pulumi.getter(name="payablePrice")
+    def payable_price(self) -> float:
+        """
+        Price payable of instance.
+        """
+        return pulumi.get(self, "payable_price")
+
+
+@pulumi.output_type
+class InstancePriceDifferencesInstancesPriceChargeItemPriceResult(dict):
+    def __init__(__self__, *,
+                 charge_item_key: str,
+                 charge_item_type: str,
+                 charge_item_value: int,
+                 discount_price: float,
+                 node_num_per_instance: int,
+                 original_price: float,
+                 payable_price: float):
+        """
+        :param str charge_item_key: If charge_item_key is Primary, Secondary, or ReadOnly, this parameter returns the instance specification, such as rds.pg.d1.1c2g. If charge_item_key is Storage, this parameter returns the stored key, such as rds.pg.d1.localssd.
+        :param str charge_item_type: Billing item name. Values:Primary, Secondary, ReadOnly, Storage.
+        :param int charge_item_value: If charge_item_key is Primary, Secondary, or ReadOnly, this parameter returns the number of nodes, with a value of "1". If charge_item_key is Storage, his parameter returns the storage size in GB.
+        :param float discount_price: Instance price after discount.
+        :param int node_num_per_instance: Number of nodes of each instance.
+        :param float original_price: Instance price before discount.
+        :param float payable_price: Price payable of instance.
+        """
+        pulumi.set(__self__, "charge_item_key", charge_item_key)
+        pulumi.set(__self__, "charge_item_type", charge_item_type)
+        pulumi.set(__self__, "charge_item_value", charge_item_value)
+        pulumi.set(__self__, "discount_price", discount_price)
+        pulumi.set(__self__, "node_num_per_instance", node_num_per_instance)
+        pulumi.set(__self__, "original_price", original_price)
+        pulumi.set(__self__, "payable_price", payable_price)
+
+    @property
+    @pulumi.getter(name="chargeItemKey")
+    def charge_item_key(self) -> str:
+        """
+        If charge_item_key is Primary, Secondary, or ReadOnly, this parameter returns the instance specification, such as rds.pg.d1.1c2g. If charge_item_key is Storage, this parameter returns the stored key, such as rds.pg.d1.localssd.
+        """
+        return pulumi.get(self, "charge_item_key")
+
+    @property
+    @pulumi.getter(name="chargeItemType")
+    def charge_item_type(self) -> str:
+        """
+        Billing item name. Values:Primary, Secondary, ReadOnly, Storage.
+        """
+        return pulumi.get(self, "charge_item_type")
+
+    @property
+    @pulumi.getter(name="chargeItemValue")
+    def charge_item_value(self) -> int:
+        """
+        If charge_item_key is Primary, Secondary, or ReadOnly, this parameter returns the number of nodes, with a value of "1". If charge_item_key is Storage, his parameter returns the storage size in GB.
+        """
+        return pulumi.get(self, "charge_item_value")
+
+    @property
+    @pulumi.getter(name="discountPrice")
+    def discount_price(self) -> float:
+        """
+        Instance price after discount.
+        """
+        return pulumi.get(self, "discount_price")
+
+    @property
+    @pulumi.getter(name="nodeNumPerInstance")
+    def node_num_per_instance(self) -> int:
+        """
+        Number of nodes of each instance.
+        """
+        return pulumi.get(self, "node_num_per_instance")
+
+    @property
+    @pulumi.getter(name="originalPrice")
+    def original_price(self) -> float:
+        """
+        Instance price before discount.
+        """
+        return pulumi.get(self, "original_price")
+
+    @property
+    @pulumi.getter(name="payablePrice")
+    def payable_price(self) -> float:
+        """
+        Price payable of instance.
+        """
+        return pulumi.get(self, "payable_price")
+
+
+@pulumi.output_type
+class InstancePriceDifferencesNodeInfoResult(dict):
+    def __init__(__self__, *,
+                 node_spec: str,
+                 node_type: str,
+                 zone_id: str,
+                 node_id: Optional[str] = None,
+                 node_operate_type: Optional[str] = None):
+        """
+        :param str node_spec: The specification of the node.
+        :param str node_type: The type of the node. Valid values: Primary, Secondary, ReadOnly.
+        :param str zone_id: The AZ of the node.
+        :param str node_id: The id of the node.When the modify_type is set to Temporary, this parameter is required.
+        :param str node_operate_type: The operate type of the node. Valid values: Create, Modify.
+        """
+        pulumi.set(__self__, "node_spec", node_spec)
+        pulumi.set(__self__, "node_type", node_type)
+        pulumi.set(__self__, "zone_id", zone_id)
+        if node_id is not None:
+            pulumi.set(__self__, "node_id", node_id)
+        if node_operate_type is not None:
+            pulumi.set(__self__, "node_operate_type", node_operate_type)
+
+    @property
+    @pulumi.getter(name="nodeSpec")
+    def node_spec(self) -> str:
+        """
+        The specification of the node.
+        """
+        return pulumi.get(self, "node_spec")
+
+    @property
+    @pulumi.getter(name="nodeType")
+    def node_type(self) -> str:
+        """
+        The type of the node. Valid values: Primary, Secondary, ReadOnly.
+        """
+        return pulumi.get(self, "node_type")
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> str:
+        """
+        The AZ of the node.
+        """
+        return pulumi.get(self, "zone_id")
+
+    @property
+    @pulumi.getter(name="nodeId")
+    def node_id(self) -> Optional[str]:
+        """
+        The id of the node.When the modify_type is set to Temporary, this parameter is required.
+        """
+        return pulumi.get(self, "node_id")
+
+    @property
+    @pulumi.getter(name="nodeOperateType")
+    def node_operate_type(self) -> Optional[str]:
+        """
+        The operate type of the node. Valid values: Create, Modify.
+        """
+        return pulumi.get(self, "node_operate_type")
+
+
+@pulumi.output_type
+class InstanceRecoverableTimesRecoverableTimeInfoResult(dict):
+    def __init__(__self__, *,
+                 earliest_recoverable_time: str,
+                 latest_recoverable_time: str):
+        """
+        :param str earliest_recoverable_time: The earliest recoverable time of the instance (UTC time).
+        :param str latest_recoverable_time: The latest recoverable time of the instance (UTC time).
+        """
+        pulumi.set(__self__, "earliest_recoverable_time", earliest_recoverable_time)
+        pulumi.set(__self__, "latest_recoverable_time", latest_recoverable_time)
+
+    @property
+    @pulumi.getter(name="earliestRecoverableTime")
+    def earliest_recoverable_time(self) -> str:
+        """
+        The earliest recoverable time of the instance (UTC time).
+        """
+        return pulumi.get(self, "earliest_recoverable_time")
+
+    @property
+    @pulumi.getter(name="latestRecoverableTime")
+    def latest_recoverable_time(self) -> str:
+        """
+        The latest recoverable time of the instance (UTC time).
+        """
+        return pulumi.get(self, "latest_recoverable_time")
+
+
+@pulumi.output_type
+class InstanceSpecsInstanceSpecResult(dict):
+    def __init__(__self__, *,
+                 connection: int,
+                 db_engine_version: str,
+                 memory: int,
+                 region_id: str,
+                 spec_code: str,
+                 storage_type: str,
+                 v_cpu: int,
+                 zone_id: str):
+        """
+        :param int connection: The maximum number of connections supported by the instance.
+        :param str db_engine_version: The version of the RDS PostgreSQL instance.
+        :param int memory: The memory size of the instance. Unit: GB.
+        :param str region_id: The ID of the region.
+        :param str spec_code: Instance specification code.
+        :param str storage_type: Storage type, fixed to LocalSSD.
+        :param int v_cpu: The number of vCPUs of the instance.
+        :param str zone_id: Primary availability zone ID.
+        """
+        pulumi.set(__self__, "connection", connection)
+        pulumi.set(__self__, "db_engine_version", db_engine_version)
+        pulumi.set(__self__, "memory", memory)
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "spec_code", spec_code)
+        pulumi.set(__self__, "storage_type", storage_type)
+        pulumi.set(__self__, "v_cpu", v_cpu)
+        pulumi.set(__self__, "zone_id", zone_id)
+
+    @property
+    @pulumi.getter
+    def connection(self) -> int:
+        """
+        The maximum number of connections supported by the instance.
+        """
+        return pulumi.get(self, "connection")
+
+    @property
+    @pulumi.getter(name="dbEngineVersion")
+    def db_engine_version(self) -> str:
+        """
+        The version of the RDS PostgreSQL instance.
+        """
+        return pulumi.get(self, "db_engine_version")
+
+    @property
+    @pulumi.getter
+    def memory(self) -> int:
+        """
+        The memory size of the instance. Unit: GB.
+        """
+        return pulumi.get(self, "memory")
+
+    @property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> str:
+        """
+        The ID of the region.
+        """
+        return pulumi.get(self, "region_id")
+
+    @property
+    @pulumi.getter(name="specCode")
+    def spec_code(self) -> str:
+        """
+        Instance specification code.
+        """
+        return pulumi.get(self, "spec_code")
+
+    @property
+    @pulumi.getter(name="storageType")
+    def storage_type(self) -> str:
+        """
+        Storage type, fixed to LocalSSD.
+        """
+        return pulumi.get(self, "storage_type")
+
+    @property
+    @pulumi.getter(name="vCpu")
+    def v_cpu(self) -> int:
+        """
+        The number of vCPUs of the instance.
+        """
+        return pulumi.get(self, "v_cpu")
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> str:
+        """
+        Primary availability zone ID.
+        """
+        return pulumi.get(self, "zone_id")
+
+
+@pulumi.output_type
+class InstanceSslsSslResult(dict):
+    def __init__(__self__, *,
+                 addresses: Sequence[str],
+                 certificates: Sequence[int],
+                 force_encryption: bool,
+                 instance_id: str,
+                 is_valid: bool,
+                 ssl_enable: bool,
+                 ssl_expire_time: str,
+                 tls_versions: Sequence[str]):
+        """
+        :param Sequence[str] addresses: The protected addresses.
+        :param Sequence[int] certificates: Raw byte stream array of certificate zip.
+        :param bool force_encryption: Whether to force encryption.
+        :param str instance_id: The id of the postgresql Instance.
+        :param bool is_valid: Whether the SSL certificate is valid.
+        :param bool ssl_enable: Whether to enable SSL.
+        :param str ssl_expire_time: The expiration time of the SSL certificate. The format is: yyyy-MM-ddTHH:mm:ss(UTC time).
+        :param Sequence[str] tls_versions: The supported TLS versions.
+        """
+        pulumi.set(__self__, "addresses", addresses)
+        pulumi.set(__self__, "certificates", certificates)
+        pulumi.set(__self__, "force_encryption", force_encryption)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "is_valid", is_valid)
+        pulumi.set(__self__, "ssl_enable", ssl_enable)
+        pulumi.set(__self__, "ssl_expire_time", ssl_expire_time)
+        pulumi.set(__self__, "tls_versions", tls_versions)
+
+    @property
+    @pulumi.getter
+    def addresses(self) -> Sequence[str]:
+        """
+        The protected addresses.
+        """
+        return pulumi.get(self, "addresses")
+
+    @property
+    @pulumi.getter
+    def certificates(self) -> Sequence[int]:
+        """
+        Raw byte stream array of certificate zip.
+        """
+        return pulumi.get(self, "certificates")
+
+    @property
+    @pulumi.getter(name="forceEncryption")
+    def force_encryption(self) -> bool:
+        """
+        Whether to force encryption.
+        """
+        return pulumi.get(self, "force_encryption")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        The id of the postgresql Instance.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="isValid")
+    def is_valid(self) -> bool:
+        """
+        Whether the SSL certificate is valid.
+        """
+        return pulumi.get(self, "is_valid")
+
+    @property
+    @pulumi.getter(name="sslEnable")
+    def ssl_enable(self) -> bool:
+        """
+        Whether to enable SSL.
+        """
+        return pulumi.get(self, "ssl_enable")
+
+    @property
+    @pulumi.getter(name="sslExpireTime")
+    def ssl_expire_time(self) -> str:
+        """
+        The expiration time of the SSL certificate. The format is: yyyy-MM-ddTHH:mm:ss(UTC time).
+        """
+        return pulumi.get(self, "ssl_expire_time")
+
+    @property
+    @pulumi.getter(name="tlsVersions")
+    def tls_versions(self) -> Sequence[str]:
+        """
+        The supported TLS versions.
+        """
+        return pulumi.get(self, "tls_versions")
+
+
+@pulumi.output_type
 class InstanceTag(dict):
     def __init__(__self__, *,
                  key: str,
@@ -1238,8 +3791,210 @@ class InstanceTag(dict):
 
 
 @pulumi.output_type
+class InstanceTasksTaskInfoResult(dict):
+    def __init__(__self__, *,
+                 cost_time_ms: int,
+                 create_time: str,
+                 finish_time: str,
+                 instance_id: str,
+                 project_name: str,
+                 region: str,
+                 scheduled_switch_end_time: str,
+                 scheduled_switch_start_time: str,
+                 task_action: str,
+                 task_id: str,
+                 task_params: str,
+                 task_status: str):
+        """
+        :param int cost_time_ms: Task execution time in milliseconds.
+        :param str create_time: Task creation time. Format: yyyy-MM-ddTHH:mm:ssZ (UTC).
+        :param str finish_time: Task finish time. Format: yyyy-MM-ddTHH:mm:ssZ (UTC).
+        :param str instance_id: The id of the PostgreSQL instance.
+        :param str project_name: Project name.
+        :param str region: Region.
+        :param str scheduled_switch_end_time: The scheduled end time for the switch. The time format is yyyy-MM-ddTHH:mm:ssZ (UTC time). Note: This field will only be returned for tasks in the "Waiting to Start", "Waiting to Execute", or "Waiting to Switch" states.
+        :param str scheduled_switch_start_time: The start time of the scheduled switch. The time format is yyyy-MM-ddTHH:mm:ssZ (UTC time). Note: This field will only be returned for tasks in the "Waiting to Start", "Waiting to Execute", or "Waiting to Switch" states.
+        :param str task_action: Task action.
+        :param str task_id: Task ID. Note: One of TaskId or task time (creation_start_time and creation_end_time) must be specified.
+        :param str task_params: Task parameters in JSON string.
+        :param str task_status: Task status. Values: Canceled, WaitStart, WaitSwitch, Running, Running_BeforeSwitch, Running_Switching, Running_AfterSwitch, Success, Failed, Timeout, Rollbacking, RollbackFailed, Paused.
+        """
+        pulumi.set(__self__, "cost_time_ms", cost_time_ms)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "finish_time", finish_time)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "scheduled_switch_end_time", scheduled_switch_end_time)
+        pulumi.set(__self__, "scheduled_switch_start_time", scheduled_switch_start_time)
+        pulumi.set(__self__, "task_action", task_action)
+        pulumi.set(__self__, "task_id", task_id)
+        pulumi.set(__self__, "task_params", task_params)
+        pulumi.set(__self__, "task_status", task_status)
+
+    @property
+    @pulumi.getter(name="costTimeMs")
+    def cost_time_ms(self) -> int:
+        """
+        Task execution time in milliseconds.
+        """
+        return pulumi.get(self, "cost_time_ms")
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        Task creation time. Format: yyyy-MM-ddTHH:mm:ssZ (UTC).
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter(name="finishTime")
+    def finish_time(self) -> str:
+        """
+        Task finish time. Format: yyyy-MM-ddTHH:mm:ssZ (UTC).
+        """
+        return pulumi.get(self, "finish_time")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        The id of the PostgreSQL instance.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        Project name.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter
+    def region(self) -> str:
+        """
+        Region.
+        """
+        return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter(name="scheduledSwitchEndTime")
+    def scheduled_switch_end_time(self) -> str:
+        """
+        The scheduled end time for the switch. The time format is yyyy-MM-ddTHH:mm:ssZ (UTC time). Note: This field will only be returned for tasks in the "Waiting to Start", "Waiting to Execute", or "Waiting to Switch" states.
+        """
+        return pulumi.get(self, "scheduled_switch_end_time")
+
+    @property
+    @pulumi.getter(name="scheduledSwitchStartTime")
+    def scheduled_switch_start_time(self) -> str:
+        """
+        The start time of the scheduled switch. The time format is yyyy-MM-ddTHH:mm:ssZ (UTC time). Note: This field will only be returned for tasks in the "Waiting to Start", "Waiting to Execute", or "Waiting to Switch" states.
+        """
+        return pulumi.get(self, "scheduled_switch_start_time")
+
+    @property
+    @pulumi.getter(name="taskAction")
+    def task_action(self) -> str:
+        """
+        Task action.
+        """
+        return pulumi.get(self, "task_action")
+
+    @property
+    @pulumi.getter(name="taskId")
+    def task_id(self) -> str:
+        """
+        Task ID. Note: One of TaskId or task time (creation_start_time and creation_end_time) must be specified.
+        """
+        return pulumi.get(self, "task_id")
+
+    @property
+    @pulumi.getter(name="taskParams")
+    def task_params(self) -> str:
+        """
+        Task parameters in JSON string.
+        """
+        return pulumi.get(self, "task_params")
+
+    @property
+    @pulumi.getter(name="taskStatus")
+    def task_status(self) -> str:
+        """
+        Task status. Values: Canceled, WaitStart, WaitSwitch, Running, Running_BeforeSwitch, Running_Switching, Running_AfterSwitch, Success, Failed, Timeout, Rollbacking, RollbackFailed, Paused.
+        """
+        return pulumi.get(self, "task_status")
+
+
+@pulumi.output_type
+class InstanceZoneMigration(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "nodeId":
+            suggest = "node_id"
+        elif key == "zoneId":
+            suggest = "zone_id"
+        elif key == "nodeType":
+            suggest = "node_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in InstanceZoneMigration. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        InstanceZoneMigration.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        InstanceZoneMigration.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 node_id: str,
+                 zone_id: str,
+                 node_type: Optional[str] = None):
+        """
+        :param str node_id: Node ID to migrate.
+        :param str zone_id: Target zone ID.
+        :param str node_type: Node type: Secondary or ReadOnly.
+        """
+        pulumi.set(__self__, "node_id", node_id)
+        pulumi.set(__self__, "zone_id", zone_id)
+        if node_type is not None:
+            pulumi.set(__self__, "node_type", node_type)
+
+    @property
+    @pulumi.getter(name="nodeId")
+    def node_id(self) -> str:
+        """
+        Node ID to migrate.
+        """
+        return pulumi.get(self, "node_id")
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> str:
+        """
+        Target zone ID.
+        """
+        return pulumi.get(self, "zone_id")
+
+    @property
+    @pulumi.getter(name="nodeType")
+    def node_type(self) -> Optional[str]:
+        """
+        Node type: Secondary or ReadOnly.
+        """
+        return pulumi.get(self, "node_type")
+
+
+@pulumi.output_type
 class InstancesInstanceResult(dict):
     def __init__(__self__, *,
+                 allow_list_version: str,
                  backup_use: int,
                  charge_details: Sequence['outputs.InstancesInstanceChargeDetailResult'],
                  create_time: str,
@@ -1257,8 +4012,13 @@ class InstancesInstanceResult(dict):
                  nodes: Sequence['outputs.InstancesInstanceNodeResult'],
                  project_name: str,
                  region_id: str,
+                 storage_data_use: int,
+                 storage_log_use: int,
                  storage_space: int,
+                 storage_temp_use: int,
                  storage_type: str,
+                 storage_use: int,
+                 storage_wal_use: int,
                  subnet_id: str,
                  tags: Sequence['outputs.InstancesInstanceTagResult'],
                  update_time: str,
@@ -1267,6 +4027,7 @@ class InstancesInstanceResult(dict):
                  zone_id: str,
                  zone_ids: Sequence[str]):
         """
+        :param str allow_list_version: The allow list version of the RDS PostgreSQL instance.
         :param int backup_use: The instance has used backup space. Unit: GB.
         :param Sequence['InstancesInstanceChargeDetailArgs'] charge_details: Payment methods.
         :param str create_time: Node creation local time.
@@ -1284,8 +4045,13 @@ class InstancesInstanceResult(dict):
         :param Sequence['InstancesInstanceNodeArgs'] nodes: Instance node information.
         :param str project_name: The project name of the RDS PostgreSQL instance.
         :param str region_id: The region of the RDS PostgreSQL instance.
+        :param int storage_data_use: The instance's primary node has used storage space. Unit: Byte.
+        :param int storage_log_use: The instance's primary node has used log storage space. Unit: Byte.
         :param int storage_space: Total instance storage space. Unit: GB.
-        :param str storage_type: Instance storage type.
+        :param int storage_temp_use: The instance's primary node has used temporary storage space. Unit: Byte.
+        :param str storage_type: The storage type of the RDS PostgreSQL instance.
+        :param int storage_use: The instance has used storage space. Unit: Byte.
+        :param int storage_wal_use: The instance's primary node has used WAL storage space. Unit: Byte.
         :param str subnet_id: The subnet ID of the RDS PostgreSQL instance.
         :param Sequence['InstancesInstanceTagArgs'] tags: Tags.
         :param str update_time: The update time of the RDS PostgreSQL instance.
@@ -1294,6 +4060,7 @@ class InstancesInstanceResult(dict):
         :param str zone_id: The available zone of the RDS PostgreSQL instance.
         :param Sequence[str] zone_ids: ID of the availability zone where each instance is located.
         """
+        pulumi.set(__self__, "allow_list_version", allow_list_version)
         pulumi.set(__self__, "backup_use", backup_use)
         pulumi.set(__self__, "charge_details", charge_details)
         pulumi.set(__self__, "create_time", create_time)
@@ -1311,8 +4078,13 @@ class InstancesInstanceResult(dict):
         pulumi.set(__self__, "nodes", nodes)
         pulumi.set(__self__, "project_name", project_name)
         pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "storage_data_use", storage_data_use)
+        pulumi.set(__self__, "storage_log_use", storage_log_use)
         pulumi.set(__self__, "storage_space", storage_space)
+        pulumi.set(__self__, "storage_temp_use", storage_temp_use)
         pulumi.set(__self__, "storage_type", storage_type)
+        pulumi.set(__self__, "storage_use", storage_use)
+        pulumi.set(__self__, "storage_wal_use", storage_wal_use)
         pulumi.set(__self__, "subnet_id", subnet_id)
         pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "update_time", update_time)
@@ -1320,6 +4092,14 @@ class InstancesInstanceResult(dict):
         pulumi.set(__self__, "vpc_id", vpc_id)
         pulumi.set(__self__, "zone_id", zone_id)
         pulumi.set(__self__, "zone_ids", zone_ids)
+
+    @property
+    @pulumi.getter(name="allowListVersion")
+    def allow_list_version(self) -> str:
+        """
+        The allow list version of the RDS PostgreSQL instance.
+        """
+        return pulumi.get(self, "allow_list_version")
 
     @property
     @pulumi.getter(name="backupUse")
@@ -1458,6 +4238,22 @@ class InstancesInstanceResult(dict):
         return pulumi.get(self, "region_id")
 
     @property
+    @pulumi.getter(name="storageDataUse")
+    def storage_data_use(self) -> int:
+        """
+        The instance's primary node has used storage space. Unit: Byte.
+        """
+        return pulumi.get(self, "storage_data_use")
+
+    @property
+    @pulumi.getter(name="storageLogUse")
+    def storage_log_use(self) -> int:
+        """
+        The instance's primary node has used log storage space. Unit: Byte.
+        """
+        return pulumi.get(self, "storage_log_use")
+
+    @property
     @pulumi.getter(name="storageSpace")
     def storage_space(self) -> int:
         """
@@ -1466,12 +4262,36 @@ class InstancesInstanceResult(dict):
         return pulumi.get(self, "storage_space")
 
     @property
+    @pulumi.getter(name="storageTempUse")
+    def storage_temp_use(self) -> int:
+        """
+        The instance's primary node has used temporary storage space. Unit: Byte.
+        """
+        return pulumi.get(self, "storage_temp_use")
+
+    @property
     @pulumi.getter(name="storageType")
     def storage_type(self) -> str:
         """
-        Instance storage type.
+        The storage type of the RDS PostgreSQL instance.
         """
         return pulumi.get(self, "storage_type")
+
+    @property
+    @pulumi.getter(name="storageUse")
+    def storage_use(self) -> int:
+        """
+        The instance has used storage space. Unit: Byte.
+        """
+        return pulumi.get(self, "storage_use")
+
+    @property
+    @pulumi.getter(name="storageWalUse")
+    def storage_wal_use(self) -> int:
+        """
+        The instance's primary node has used WAL storage space. Unit: Byte.
+        """
+        return pulumi.get(self, "storage_wal_use")
 
     @property
     @pulumi.getter(name="subnetId")
@@ -1538,6 +4358,7 @@ class InstancesInstanceChargeDetailResult(dict):
                  charge_start_time: str,
                  charge_status: str,
                  charge_type: str,
+                 number: int,
                  overdue_reclaim_time: str,
                  overdue_time: str,
                  period: int,
@@ -1553,8 +4374,9 @@ class InstancesInstanceChargeDetailResult(dict):
         :param str charge_status: Pay status. Value:
                normal - normal
                overdue - overdue
-               .
+               unpaid - unpaid.
         :param str charge_type: The charge type of the RDS instance.
+        :param int number: The number of the RDS PostgreSQL instance.
         :param str overdue_reclaim_time: Estimated release time when arrears are closed (pay-as-you-go & monthly subscription).
         :param str overdue_time: Shutdown time in arrears (pay-as-you-go & monthly subscription).
         :param int period: Purchase duration in prepaid scenarios. Default: 1.
@@ -1569,6 +4391,7 @@ class InstancesInstanceChargeDetailResult(dict):
         pulumi.set(__self__, "charge_start_time", charge_start_time)
         pulumi.set(__self__, "charge_status", charge_status)
         pulumi.set(__self__, "charge_type", charge_type)
+        pulumi.set(__self__, "number", number)
         pulumi.set(__self__, "overdue_reclaim_time", overdue_reclaim_time)
         pulumi.set(__self__, "overdue_time", overdue_time)
         pulumi.set(__self__, "period", period)
@@ -1609,7 +4432,7 @@ class InstancesInstanceChargeDetailResult(dict):
         Pay status. Value:
         normal - normal
         overdue - overdue
-        .
+        unpaid - unpaid.
         """
         return pulumi.get(self, "charge_status")
 
@@ -1620,6 +4443,14 @@ class InstancesInstanceChargeDetailResult(dict):
         The charge type of the RDS instance.
         """
         return pulumi.get(self, "charge_type")
+
+    @property
+    @pulumi.getter
+    def number(self) -> int:
+        """
+        The number of the RDS PostgreSQL instance.
+        """
+        return pulumi.get(self, "number")
 
     @property
     @pulumi.getter(name="overdueReclaimTime")
@@ -1683,8 +4514,12 @@ class InstancesInstanceEndpointResult(dict):
                  endpoint_id: str,
                  endpoint_name: str,
                  endpoint_type: str,
+                 read_only_node_distribution_type: str,
+                 read_only_node_max_delay_time: int,
                  read_only_node_weights: Sequence['outputs.InstancesInstanceEndpointReadOnlyNodeWeightResult'],
-                 read_write_mode: str):
+                 read_write_mode: str,
+                 read_write_proxy_connection: int,
+                 write_node_halt_writing: bool):
         """
         :param Sequence['InstancesInstanceEndpointAddressArgs'] addresses: Address list.
         :param str auto_add_new_nodes: When the terminal type is read-write terminal or read-only terminal, it supports setting whether new nodes are automatically added.
@@ -1699,10 +4534,16 @@ class InstancesInstanceEndpointResult(dict):
                Custom: Custom terminal.
                Direct: Direct connection to the terminal. (Only the operation and maintenance side)
                AllNode: All node terminals. (Only the operation and maintenance side).
+        :param str read_only_node_distribution_type: The distribution type of the read-only nodes, value:
+               Default: Default distribution.
+               Custom: Custom distribution.
+        :param int read_only_node_max_delay_time: Maximum latency threshold of read-only node. If the latency of a read-only node exceeds this value, reading traffic won't be routed to this node. Unit: seconds.Values: 0~3600.Default value: 30.
         :param Sequence['InstancesInstanceEndpointReadOnlyNodeWeightArgs'] read_only_node_weights: The list of nodes configured by the connection terminal and the corresponding read-only weights.
         :param str read_write_mode: Read and write mode:
                ReadWrite: read and write
                ReadOnly: read only (default).
+        :param int read_write_proxy_connection: After the terminal enables read-write separation, the number of proxy connections set for the terminal. The lower limit of the number of proxy connections is 20. The upper limit of the number of proxy connections depends on the specifications of the instance master node.
+        :param bool write_node_halt_writing: Whether the endpoint sends write requests to the write node (currently only the master node is a write node). Values: true: Yes(Default). false: No.
         """
         pulumi.set(__self__, "addresses", addresses)
         pulumi.set(__self__, "auto_add_new_nodes", auto_add_new_nodes)
@@ -1712,8 +4553,12 @@ class InstancesInstanceEndpointResult(dict):
         pulumi.set(__self__, "endpoint_id", endpoint_id)
         pulumi.set(__self__, "endpoint_name", endpoint_name)
         pulumi.set(__self__, "endpoint_type", endpoint_type)
+        pulumi.set(__self__, "read_only_node_distribution_type", read_only_node_distribution_type)
+        pulumi.set(__self__, "read_only_node_max_delay_time", read_only_node_max_delay_time)
         pulumi.set(__self__, "read_only_node_weights", read_only_node_weights)
         pulumi.set(__self__, "read_write_mode", read_write_mode)
+        pulumi.set(__self__, "read_write_proxy_connection", read_write_proxy_connection)
+        pulumi.set(__self__, "write_node_halt_writing", write_node_halt_writing)
 
     @property
     @pulumi.getter
@@ -1785,6 +4630,24 @@ class InstancesInstanceEndpointResult(dict):
         return pulumi.get(self, "endpoint_type")
 
     @property
+    @pulumi.getter(name="readOnlyNodeDistributionType")
+    def read_only_node_distribution_type(self) -> str:
+        """
+        The distribution type of the read-only nodes, value:
+        Default: Default distribution.
+        Custom: Custom distribution.
+        """
+        return pulumi.get(self, "read_only_node_distribution_type")
+
+    @property
+    @pulumi.getter(name="readOnlyNodeMaxDelayTime")
+    def read_only_node_max_delay_time(self) -> int:
+        """
+        Maximum latency threshold of read-only node. If the latency of a read-only node exceeds this value, reading traffic won't be routed to this node. Unit: seconds.Values: 0~3600.Default value: 30.
+        """
+        return pulumi.get(self, "read_only_node_max_delay_time")
+
+    @property
     @pulumi.getter(name="readOnlyNodeWeights")
     def read_only_node_weights(self) -> Sequence['outputs.InstancesInstanceEndpointReadOnlyNodeWeightResult']:
         """
@@ -1802,39 +4665,75 @@ class InstancesInstanceEndpointResult(dict):
         """
         return pulumi.get(self, "read_write_mode")
 
+    @property
+    @pulumi.getter(name="readWriteProxyConnection")
+    def read_write_proxy_connection(self) -> int:
+        """
+        After the terminal enables read-write separation, the number of proxy connections set for the terminal. The lower limit of the number of proxy connections is 20. The upper limit of the number of proxy connections depends on the specifications of the instance master node.
+        """
+        return pulumi.get(self, "read_write_proxy_connection")
+
+    @property
+    @pulumi.getter(name="writeNodeHaltWriting")
+    def write_node_halt_writing(self) -> bool:
+        """
+        Whether the endpoint sends write requests to the write node (currently only the master node is a write node). Values: true: Yes(Default). false: No.
+        """
+        return pulumi.get(self, "write_node_halt_writing")
+
 
 @pulumi.output_type
 class InstancesInstanceEndpointAddressResult(dict):
     def __init__(__self__, *,
+                 cross_region_domain: str,
                  dns_visibility: bool,
                  domain: str,
+                 domain_visibility_setting: str,
                  eip_id: str,
+                 internet_protocol: str,
                  ip_address: str,
+                 ipv6_address: str,
                  network_type: str,
                  port: str,
                  subnet_id: str):
         """
-        :param bool dns_visibility: DNS Visibility.
+        :param str cross_region_domain: Address that can be accessed across regions.
+        :param bool dns_visibility: Whether to enable public network resolution. Values: false: Default value. PrivateZone of Volcano Engine. true: Private and public network resolution of Volcano Engine.
         :param str domain: Connect domain name.
+        :param str domain_visibility_setting: The type of private network address. Values: LocalDomain: Local domain name. CrossRegionDomain: Domains accessible across regions.
         :param str eip_id: The ID of the EIP, only valid for Public addresses.
+        :param str internet_protocol: Address IP protocol, IPv4 or IPv6.
         :param str ip_address: The IP Address.
+        :param str ipv6_address: The IPv6 Address.
         :param str network_type: Network address type, temporarily Private, Public, PublicService.
         :param str port: The Port.
         :param str subnet_id: The subnet ID of the RDS PostgreSQL instance.
         """
+        pulumi.set(__self__, "cross_region_domain", cross_region_domain)
         pulumi.set(__self__, "dns_visibility", dns_visibility)
         pulumi.set(__self__, "domain", domain)
+        pulumi.set(__self__, "domain_visibility_setting", domain_visibility_setting)
         pulumi.set(__self__, "eip_id", eip_id)
+        pulumi.set(__self__, "internet_protocol", internet_protocol)
         pulumi.set(__self__, "ip_address", ip_address)
+        pulumi.set(__self__, "ipv6_address", ipv6_address)
         pulumi.set(__self__, "network_type", network_type)
         pulumi.set(__self__, "port", port)
         pulumi.set(__self__, "subnet_id", subnet_id)
 
     @property
+    @pulumi.getter(name="crossRegionDomain")
+    def cross_region_domain(self) -> str:
+        """
+        Address that can be accessed across regions.
+        """
+        return pulumi.get(self, "cross_region_domain")
+
+    @property
     @pulumi.getter(name="dnsVisibility")
     def dns_visibility(self) -> bool:
         """
-        DNS Visibility.
+        Whether to enable public network resolution. Values: false: Default value. PrivateZone of Volcano Engine. true: Private and public network resolution of Volcano Engine.
         """
         return pulumi.get(self, "dns_visibility")
 
@@ -1847,6 +4746,14 @@ class InstancesInstanceEndpointAddressResult(dict):
         return pulumi.get(self, "domain")
 
     @property
+    @pulumi.getter(name="domainVisibilitySetting")
+    def domain_visibility_setting(self) -> str:
+        """
+        The type of private network address. Values: LocalDomain: Local domain name. CrossRegionDomain: Domains accessible across regions.
+        """
+        return pulumi.get(self, "domain_visibility_setting")
+
+    @property
     @pulumi.getter(name="eipId")
     def eip_id(self) -> str:
         """
@@ -1855,12 +4762,28 @@ class InstancesInstanceEndpointAddressResult(dict):
         return pulumi.get(self, "eip_id")
 
     @property
+    @pulumi.getter(name="internetProtocol")
+    def internet_protocol(self) -> str:
+        """
+        Address IP protocol, IPv4 or IPv6.
+        """
+        return pulumi.get(self, "internet_protocol")
+
+    @property
     @pulumi.getter(name="ipAddress")
     def ip_address(self) -> str:
         """
         The IP Address.
         """
         return pulumi.get(self, "ip_address")
+
+    @property
+    @pulumi.getter(name="ipv6Address")
+    def ipv6_address(self) -> str:
+        """
+        The IPv6 Address.
+        """
+        return pulumi.get(self, "ipv6_address")
 
     @property
     @pulumi.getter(name="networkType")
@@ -2122,6 +5045,647 @@ class InstancesTagResult(dict):
 
 
 @pulumi.output_type
+class ParameterTemplateApplyDiffsParameterResult(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 new_value: str,
+                 old_value: str,
+                 restart: bool):
+        """
+        :param str name: The name of the parameter.
+        :param str new_value: The running value defined for this parameter in the parameter template.
+        :param str old_value: The current running value of this parameter in the instance.
+        :param bool restart: Indicates whether a restart is required after the parameter is modified.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "new_value", new_value)
+        pulumi.set(__self__, "old_value", old_value)
+        pulumi.set(__self__, "restart", restart)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the parameter.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="newValue")
+    def new_value(self) -> str:
+        """
+        The running value defined for this parameter in the parameter template.
+        """
+        return pulumi.get(self, "new_value")
+
+    @property
+    @pulumi.getter(name="oldValue")
+    def old_value(self) -> str:
+        """
+        The current running value of this parameter in the instance.
+        """
+        return pulumi.get(self, "old_value")
+
+    @property
+    @pulumi.getter
+    def restart(self) -> bool:
+        """
+        Indicates whether a restart is required after the parameter is modified.
+        """
+        return pulumi.get(self, "restart")
+
+
+@pulumi.output_type
+class ParameterTemplateTemplateParam(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 value: str):
+        """
+        :param str name: The name of the parameter.
+        :param str value: The value of the parameter.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the parameter.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The value of the parameter.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ParameterTemplatesTemplateInfoResult(dict):
+    def __init__(__self__, *,
+                 account_id: str,
+                 create_time: str,
+                 need_restart: bool,
+                 parameter_num: int,
+                 template_category: str,
+                 template_desc: str,
+                 template_id: str,
+                 template_name: str,
+                 template_params: Sequence['outputs.ParameterTemplatesTemplateInfoTemplateParamResult'],
+                 template_source: str,
+                 template_type: str,
+                 template_type_version: str,
+                 update_time: str):
+        """
+        :param str account_id: Account ID.
+        :param str create_time: Creation time of the parameter template. The format is yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+        :param bool need_restart: Indicates whether the parameter template change requires a restart.
+        :param int parameter_num: Number of parameters in the parameter template.
+        :param str template_category: Classification of parameter templates. The current value can only be DBEngine.
+        :param str template_desc: Description information of the parameter template.
+        :param str template_id: Parameter template ID.
+        :param str template_name: Parameter template name.
+        :param Sequence['ParameterTemplatesTemplateInfoTemplateParamArgs'] template_params: Parameter configuration of the parameter template.
+        :param str template_source: The source of the parameter template. The current value can only be User.
+        :param str template_type: The type of the parameter template. The current value can only be PostgreSQL.
+        :param str template_type_version: PostgreSQL compatible versions. The current value can only be PostgreSQL_11/12/13/14/15/16/17.
+        :param str update_time: Update time of the parameter template. The format is yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+        """
+        pulumi.set(__self__, "account_id", account_id)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "need_restart", need_restart)
+        pulumi.set(__self__, "parameter_num", parameter_num)
+        pulumi.set(__self__, "template_category", template_category)
+        pulumi.set(__self__, "template_desc", template_desc)
+        pulumi.set(__self__, "template_id", template_id)
+        pulumi.set(__self__, "template_name", template_name)
+        pulumi.set(__self__, "template_params", template_params)
+        pulumi.set(__self__, "template_source", template_source)
+        pulumi.set(__self__, "template_type", template_type)
+        pulumi.set(__self__, "template_type_version", template_type_version)
+        pulumi.set(__self__, "update_time", update_time)
+
+    @property
+    @pulumi.getter(name="accountId")
+    def account_id(self) -> str:
+        """
+        Account ID.
+        """
+        return pulumi.get(self, "account_id")
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        Creation time of the parameter template. The format is yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter(name="needRestart")
+    def need_restart(self) -> bool:
+        """
+        Indicates whether the parameter template change requires a restart.
+        """
+        return pulumi.get(self, "need_restart")
+
+    @property
+    @pulumi.getter(name="parameterNum")
+    def parameter_num(self) -> int:
+        """
+        Number of parameters in the parameter template.
+        """
+        return pulumi.get(self, "parameter_num")
+
+    @property
+    @pulumi.getter(name="templateCategory")
+    def template_category(self) -> str:
+        """
+        Classification of parameter templates. The current value can only be DBEngine.
+        """
+        return pulumi.get(self, "template_category")
+
+    @property
+    @pulumi.getter(name="templateDesc")
+    def template_desc(self) -> str:
+        """
+        Description information of the parameter template.
+        """
+        return pulumi.get(self, "template_desc")
+
+    @property
+    @pulumi.getter(name="templateId")
+    def template_id(self) -> str:
+        """
+        Parameter template ID.
+        """
+        return pulumi.get(self, "template_id")
+
+    @property
+    @pulumi.getter(name="templateName")
+    def template_name(self) -> str:
+        """
+        Parameter template name.
+        """
+        return pulumi.get(self, "template_name")
+
+    @property
+    @pulumi.getter(name="templateParams")
+    def template_params(self) -> Sequence['outputs.ParameterTemplatesTemplateInfoTemplateParamResult']:
+        """
+        Parameter configuration of the parameter template.
+        """
+        return pulumi.get(self, "template_params")
+
+    @property
+    @pulumi.getter(name="templateSource")
+    def template_source(self) -> str:
+        """
+        The source of the parameter template. The current value can only be User.
+        """
+        return pulumi.get(self, "template_source")
+
+    @property
+    @pulumi.getter(name="templateType")
+    def template_type(self) -> str:
+        """
+        The type of the parameter template. The current value can only be PostgreSQL.
+        """
+        return pulumi.get(self, "template_type")
+
+    @property
+    @pulumi.getter(name="templateTypeVersion")
+    def template_type_version(self) -> str:
+        """
+        PostgreSQL compatible versions. The current value can only be PostgreSQL_11/12/13/14/15/16/17.
+        """
+        return pulumi.get(self, "template_type_version")
+
+    @property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> str:
+        """
+        Update time of the parameter template. The format is yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+        """
+        return pulumi.get(self, "update_time")
+
+
+@pulumi.output_type
+class ParameterTemplatesTemplateInfoTemplateParamResult(dict):
+    def __init__(__self__, *,
+                 checking_code: str,
+                 default_value: str,
+                 description: str,
+                 description_zh: str,
+                 force_restart: bool,
+                 name: str,
+                 type: str,
+                 value: str):
+        """
+        :param str checking_code: The value range of the parameter.
+        :param str default_value: Parameter default value. Refers to the default value provided in the default template corresponding to this instance.
+        :param str description: The description of the parameter in English.
+        :param str description_zh: The description of the parameter in Chinese.
+        :param bool force_restart: Indicates whether a restart is required after the parameter is modified.
+        :param str name: The name of the parameter.
+        :param str type: The type of the parameter.
+        :param str value: The current value of the parameter.
+        """
+        pulumi.set(__self__, "checking_code", checking_code)
+        pulumi.set(__self__, "default_value", default_value)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "description_zh", description_zh)
+        pulumi.set(__self__, "force_restart", force_restart)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="checkingCode")
+    def checking_code(self) -> str:
+        """
+        The value range of the parameter.
+        """
+        return pulumi.get(self, "checking_code")
+
+    @property
+    @pulumi.getter(name="defaultValue")
+    def default_value(self) -> str:
+        """
+        Parameter default value. Refers to the default value provided in the default template corresponding to this instance.
+        """
+        return pulumi.get(self, "default_value")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the parameter in English.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="descriptionZh")
+    def description_zh(self) -> str:
+        """
+        The description of the parameter in Chinese.
+        """
+        return pulumi.get(self, "description_zh")
+
+    @property
+    @pulumi.getter(name="forceRestart")
+    def force_restart(self) -> bool:
+        """
+        Indicates whether a restart is required after the parameter is modified.
+        """
+        return pulumi.get(self, "force_restart")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the parameter.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of the parameter.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The current value of the parameter.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class PlannedEventsPlannedEventResult(dict):
+    def __init__(__self__, *,
+                 business_impact: str,
+                 event_id: str,
+                 event_type: str,
+                 instance_id: str,
+                 instance_name: str,
+                 max_delay_time: str,
+                 planned_begin_time: str,
+                 planned_event_reason: str,
+                 planned_switch_begin_time: str,
+                 planned_switch_end_time: str,
+                 region: str,
+                 status: str):
+        """
+        :param str business_impact: The impact of operation and maintenance events on the business.
+        :param str event_id: Event ID.
+        :param str event_type: Event type. Values: VersionUpgrade, HostOffline.
+        :param str instance_id: The id of the PostgreSQL instance.
+        :param str instance_name: The name of PostgreSQL instance.
+        :param str max_delay_time: Maximum delay time. Format: yyyy-MM-ddTHH:mm:ss.sssZ (UTC).
+        :param str planned_begin_time: Planned execution time. Format: yyyy-MM-ddTHH:mm:ss.sssZ (UTC).
+        :param str planned_event_reason: Reason for the planned event.
+        :param str planned_switch_begin_time: Planned switch start time. Format: yyyy-MM-ddTHH:mm:ss.sssZ (UTC).
+        :param str planned_switch_end_time: Planned switch end time. Format: yyyy-MM-ddTHH:mm:ss.sssZ (UTC).
+        :param str region: Region.
+        :param str status: Operation event status. Values: Canceled, WaitStart, WaitSwitch, Running, Running_BeforeSwitch, Running_Switching, Running_AfterSwitch, Success, Failed, Timeout, Rollbacking, RollbackFailed.
+        """
+        pulumi.set(__self__, "business_impact", business_impact)
+        pulumi.set(__self__, "event_id", event_id)
+        pulumi.set(__self__, "event_type", event_type)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "instance_name", instance_name)
+        pulumi.set(__self__, "max_delay_time", max_delay_time)
+        pulumi.set(__self__, "planned_begin_time", planned_begin_time)
+        pulumi.set(__self__, "planned_event_reason", planned_event_reason)
+        pulumi.set(__self__, "planned_switch_begin_time", planned_switch_begin_time)
+        pulumi.set(__self__, "planned_switch_end_time", planned_switch_end_time)
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter(name="businessImpact")
+    def business_impact(self) -> str:
+        """
+        The impact of operation and maintenance events on the business.
+        """
+        return pulumi.get(self, "business_impact")
+
+    @property
+    @pulumi.getter(name="eventId")
+    def event_id(self) -> str:
+        """
+        Event ID.
+        """
+        return pulumi.get(self, "event_id")
+
+    @property
+    @pulumi.getter(name="eventType")
+    def event_type(self) -> str:
+        """
+        Event type. Values: VersionUpgrade, HostOffline.
+        """
+        return pulumi.get(self, "event_type")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        The id of the PostgreSQL instance.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="instanceName")
+    def instance_name(self) -> str:
+        """
+        The name of PostgreSQL instance.
+        """
+        return pulumi.get(self, "instance_name")
+
+    @property
+    @pulumi.getter(name="maxDelayTime")
+    def max_delay_time(self) -> str:
+        """
+        Maximum delay time. Format: yyyy-MM-ddTHH:mm:ss.sssZ (UTC).
+        """
+        return pulumi.get(self, "max_delay_time")
+
+    @property
+    @pulumi.getter(name="plannedBeginTime")
+    def planned_begin_time(self) -> str:
+        """
+        Planned execution time. Format: yyyy-MM-ddTHH:mm:ss.sssZ (UTC).
+        """
+        return pulumi.get(self, "planned_begin_time")
+
+    @property
+    @pulumi.getter(name="plannedEventReason")
+    def planned_event_reason(self) -> str:
+        """
+        Reason for the planned event.
+        """
+        return pulumi.get(self, "planned_event_reason")
+
+    @property
+    @pulumi.getter(name="plannedSwitchBeginTime")
+    def planned_switch_begin_time(self) -> str:
+        """
+        Planned switch start time. Format: yyyy-MM-ddTHH:mm:ss.sssZ (UTC).
+        """
+        return pulumi.get(self, "planned_switch_begin_time")
+
+    @property
+    @pulumi.getter(name="plannedSwitchEndTime")
+    def planned_switch_end_time(self) -> str:
+        """
+        Planned switch end time. Format: yyyy-MM-ddTHH:mm:ss.sssZ (UTC).
+        """
+        return pulumi.get(self, "planned_switch_end_time")
+
+    @property
+    @pulumi.getter
+    def region(self) -> str:
+        """
+        Region.
+        """
+        return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        Operation event status. Values: Canceled, WaitStart, WaitSwitch, Running, Running_BeforeSwitch, Running_Switching, Running_AfterSwitch, Success, Failed, Timeout, Rollbacking, RollbackFailed.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class RegionsRegionResult(dict):
+    def __init__(__self__, *,
+                 region_id: str,
+                 region_name: str):
+        """
+        :param str region_id: The ID of the region.
+        :param str region_name: The name of the region.
+        """
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "region_name", region_name)
+
+    @property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> str:
+        """
+        The ID of the region.
+        """
+        return pulumi.get(self, "region_id")
+
+    @property
+    @pulumi.getter(name="regionName")
+    def region_name(self) -> str:
+        """
+        The name of the region.
+        """
+        return pulumi.get(self, "region_name")
+
+
+@pulumi.output_type
+class ReplicationSlotsReplicationSlotResult(dict):
+    def __init__(__self__, *,
+                 plugin: str,
+                 slot_name: str,
+                 slot_type: str,
+                 data_base: Optional[str] = None,
+                 ip_address: Optional[str] = None,
+                 slot_status: Optional[str] = None,
+                 temporary: Optional[bool] = None,
+                 wal_delay: Optional[int] = None):
+        """
+        :param str plugin: The name of the plugin used by the logical replication slot to parse WAL logs.
+        :param str slot_name: The name of the slot.
+        :param str slot_type: The type of the slot: physical or logical.
+        :param str data_base: The database where the replication slot is located.
+        :param str ip_address: The ip address.
+        :param str slot_status: The status of the replication slot: ACTIVE or INACTIVE.
+        :param bool temporary: Whether the slot is temporary.
+        :param int wal_delay: The cumulative WAL log volume corresponding to this replication slot. The unit is Byte.
+        """
+        pulumi.set(__self__, "plugin", plugin)
+        pulumi.set(__self__, "slot_name", slot_name)
+        pulumi.set(__self__, "slot_type", slot_type)
+        if data_base is not None:
+            pulumi.set(__self__, "data_base", data_base)
+        if ip_address is not None:
+            pulumi.set(__self__, "ip_address", ip_address)
+        if slot_status is not None:
+            pulumi.set(__self__, "slot_status", slot_status)
+        if temporary is not None:
+            pulumi.set(__self__, "temporary", temporary)
+        if wal_delay is not None:
+            pulumi.set(__self__, "wal_delay", wal_delay)
+
+    @property
+    @pulumi.getter
+    def plugin(self) -> str:
+        """
+        The name of the plugin used by the logical replication slot to parse WAL logs.
+        """
+        return pulumi.get(self, "plugin")
+
+    @property
+    @pulumi.getter(name="slotName")
+    def slot_name(self) -> str:
+        """
+        The name of the slot.
+        """
+        return pulumi.get(self, "slot_name")
+
+    @property
+    @pulumi.getter(name="slotType")
+    def slot_type(self) -> str:
+        """
+        The type of the slot: physical or logical.
+        """
+        return pulumi.get(self, "slot_type")
+
+    @property
+    @pulumi.getter(name="dataBase")
+    def data_base(self) -> Optional[str]:
+        """
+        The database where the replication slot is located.
+        """
+        return pulumi.get(self, "data_base")
+
+    @property
+    @pulumi.getter(name="ipAddress")
+    def ip_address(self) -> Optional[str]:
+        """
+        The ip address.
+        """
+        return pulumi.get(self, "ip_address")
+
+    @property
+    @pulumi.getter(name="slotStatus")
+    def slot_status(self) -> Optional[str]:
+        """
+        The status of the replication slot: ACTIVE or INACTIVE.
+        """
+        return pulumi.get(self, "slot_status")
+
+    @property
+    @pulumi.getter
+    def temporary(self) -> Optional[bool]:
+        """
+        Whether the slot is temporary.
+        """
+        return pulumi.get(self, "temporary")
+
+    @property
+    @pulumi.getter(name="walDelay")
+    def wal_delay(self) -> Optional[int]:
+        """
+        The cumulative WAL log volume corresponding to this replication slot. The unit is Byte.
+        """
+        return pulumi.get(self, "wal_delay")
+
+
+@pulumi.output_type
+class RestoreBackupDatabase(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "dbName":
+            suggest = "db_name"
+        elif key == "newDbName":
+            suggest = "new_db_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in RestoreBackupDatabase. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        RestoreBackupDatabase.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        RestoreBackupDatabase.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 db_name: str,
+                 new_db_name: str):
+        """
+        :param str db_name: Original database name.
+        :param str new_db_name: New database name.
+        """
+        pulumi.set(__self__, "db_name", db_name)
+        pulumi.set(__self__, "new_db_name", new_db_name)
+
+    @property
+    @pulumi.getter(name="dbName")
+    def db_name(self) -> str:
+        """
+        Original database name.
+        """
+        return pulumi.get(self, "db_name")
+
+    @property
+    @pulumi.getter(name="newDbName")
+    def new_db_name(self) -> str:
+        """
+        New database name.
+        """
+        return pulumi.get(self, "new_db_name")
+
+
+@pulumi.output_type
 class SchemasSchemaResult(dict):
     def __init__(__self__, *,
                  db_name: str,
@@ -2162,22 +5726,65 @@ class SchemasSchemaResult(dict):
 
 
 @pulumi.output_type
+class ZonesZoneResult(dict):
+    def __init__(__self__, *,
+                 description: str,
+                 zone_id: str,
+                 zone_name: str):
+        """
+        :param str description: The description of the zone.
+        :param str zone_id: The id of the zone.
+        :param str zone_name: The name of the zone.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "zone_id", zone_id)
+        pulumi.set(__self__, "zone_name", zone_name)
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the zone.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> str:
+        """
+        The id of the zone.
+        """
+        return pulumi.get(self, "zone_id")
+
+    @property
+    @pulumi.getter(name="zoneName")
+    def zone_name(self) -> str:
+        """
+        The name of the zone.
+        """
+        return pulumi.get(self, "zone_name")
+
+
+@pulumi.output_type
 class GetAccountsAccountResult(dict):
     def __init__(__self__, *,
                  account_name: str,
                  account_privileges: str,
                  account_status: str,
-                 account_type: str):
+                 account_type: str,
+                 not_allow_privileges: Sequence[str]):
         """
         :param str account_name: The name of the database account. This field supports fuzzy query.
         :param str account_privileges: The privileges of the database account.
         :param str account_status: The status of the database account.
         :param str account_type: The type of the database account.
+        :param Sequence[str] not_allow_privileges: The privileges to be disabled for the account.
         """
         pulumi.set(__self__, "account_name", account_name)
         pulumi.set(__self__, "account_privileges", account_privileges)
         pulumi.set(__self__, "account_status", account_status)
         pulumi.set(__self__, "account_type", account_type)
+        pulumi.set(__self__, "not_allow_privileges", not_allow_privileges)
 
     @property
     @pulumi.getter(name="accountName")
@@ -2211,10 +5818,19 @@ class GetAccountsAccountResult(dict):
         """
         return pulumi.get(self, "account_type")
 
+    @property
+    @pulumi.getter(name="notAllowPrivileges")
+    def not_allow_privileges(self) -> Sequence[str]:
+        """
+        The privileges to be disabled for the account.
+        """
+        return pulumi.get(self, "not_allow_privileges")
+
 
 @pulumi.output_type
 class GetAllowlistsPostgresqlAllowListResult(dict):
     def __init__(__self__, *,
+                 allow_list_category: str,
                  allow_list_desc: str,
                  allow_list_id: str,
                  allow_list_ip_num: int,
@@ -2223,9 +5839,12 @@ class GetAllowlistsPostgresqlAllowListResult(dict):
                  allow_lists: Sequence[str],
                  associated_instance_num: int,
                  associated_instances: Sequence['outputs.GetAllowlistsPostgresqlAllowListAssociatedInstanceResult'],
-                 id: str):
+                 id: str,
+                 security_group_bind_infos: Sequence['outputs.GetAllowlistsPostgresqlAllowListSecurityGroupBindInfoResult'],
+                 user_allow_lists: Sequence[str]):
         """
-        :param str allow_list_desc: The description of the postgresql allow list.
+        :param str allow_list_category: The category of the postgresql allow list. Valid values: Ordinary, Default.
+        :param str allow_list_desc: The description of the postgresql allow list. Perform a fuzzy search based on the description information.
         :param str allow_list_id: The id of the postgresql allow list.
         :param int allow_list_ip_num: The total number of IP addresses (or address ranges) in the whitelist.
         :param str allow_list_name: The name of the postgresql allow list.
@@ -2234,7 +5853,10 @@ class GetAllowlistsPostgresqlAllowListResult(dict):
         :param int associated_instance_num: The total number of instances bound under the whitelist.
         :param Sequence['GetAllowlistsPostgresqlAllowListAssociatedInstanceArgs'] associated_instances: The list of postgresql instances.
         :param str id: The id of the postgresql allow list.
+        :param Sequence['GetAllowlistsPostgresqlAllowListSecurityGroupBindInfoArgs'] security_group_bind_infos: The information of the security group bound by the allowlist.
+        :param Sequence[str] user_allow_lists: IP addresses outside the security group and added to the allowlist.
         """
+        pulumi.set(__self__, "allow_list_category", allow_list_category)
         pulumi.set(__self__, "allow_list_desc", allow_list_desc)
         pulumi.set(__self__, "allow_list_id", allow_list_id)
         pulumi.set(__self__, "allow_list_ip_num", allow_list_ip_num)
@@ -2244,12 +5866,22 @@ class GetAllowlistsPostgresqlAllowListResult(dict):
         pulumi.set(__self__, "associated_instance_num", associated_instance_num)
         pulumi.set(__self__, "associated_instances", associated_instances)
         pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "security_group_bind_infos", security_group_bind_infos)
+        pulumi.set(__self__, "user_allow_lists", user_allow_lists)
+
+    @property
+    @pulumi.getter(name="allowListCategory")
+    def allow_list_category(self) -> str:
+        """
+        The category of the postgresql allow list. Valid values: Ordinary, Default.
+        """
+        return pulumi.get(self, "allow_list_category")
 
     @property
     @pulumi.getter(name="allowListDesc")
     def allow_list_desc(self) -> str:
         """
-        The description of the postgresql allow list.
+        The description of the postgresql allow list. Perform a fuzzy search based on the description information.
         """
         return pulumi.get(self, "allow_list_desc")
 
@@ -2317,6 +5949,22 @@ class GetAllowlistsPostgresqlAllowListResult(dict):
         """
         return pulumi.get(self, "id")
 
+    @property
+    @pulumi.getter(name="securityGroupBindInfos")
+    def security_group_bind_infos(self) -> Sequence['outputs.GetAllowlistsPostgresqlAllowListSecurityGroupBindInfoResult']:
+        """
+        The information of the security group bound by the allowlist.
+        """
+        return pulumi.get(self, "security_group_bind_infos")
+
+    @property
+    @pulumi.getter(name="userAllowLists")
+    def user_allow_lists(self) -> Sequence[str]:
+        """
+        IP addresses outside the security group and added to the allowlist.
+        """
+        return pulumi.get(self, "user_allow_lists")
+
 
 @pulumi.output_type
 class GetAllowlistsPostgresqlAllowListAssociatedInstanceResult(dict):
@@ -2356,6 +6004,598 @@ class GetAllowlistsPostgresqlAllowListAssociatedInstanceResult(dict):
         The id of the vpc.
         """
         return pulumi.get(self, "vpc")
+
+
+@pulumi.output_type
+class GetAllowlistsPostgresqlAllowListSecurityGroupBindInfoResult(dict):
+    def __init__(__self__, *,
+                 bind_mode: str,
+                 ip_lists: Sequence[str],
+                 security_group_id: str,
+                 security_group_name: str):
+        """
+        :param str bind_mode: The binding mode of the security group.
+        :param Sequence[str] ip_lists: IP addresses in the security group.
+        :param str security_group_id: The ID of the security group.
+        :param str security_group_name: The name of the security group.
+        """
+        pulumi.set(__self__, "bind_mode", bind_mode)
+        pulumi.set(__self__, "ip_lists", ip_lists)
+        pulumi.set(__self__, "security_group_id", security_group_id)
+        pulumi.set(__self__, "security_group_name", security_group_name)
+
+    @property
+    @pulumi.getter(name="bindMode")
+    def bind_mode(self) -> str:
+        """
+        The binding mode of the security group.
+        """
+        return pulumi.get(self, "bind_mode")
+
+    @property
+    @pulumi.getter(name="ipLists")
+    def ip_lists(self) -> Sequence[str]:
+        """
+        IP addresses in the security group.
+        """
+        return pulumi.get(self, "ip_lists")
+
+    @property
+    @pulumi.getter(name="securityGroupId")
+    def security_group_id(self) -> str:
+        """
+        The ID of the security group.
+        """
+        return pulumi.get(self, "security_group_id")
+
+    @property
+    @pulumi.getter(name="securityGroupName")
+    def security_group_name(self) -> str:
+        """
+        The name of the security group.
+        """
+        return pulumi.get(self, "security_group_name")
+
+
+@pulumi.output_type
+class GetBackupDownloadsDownloadResult(dict):
+    def __init__(__self__, *,
+                 backup_description: str,
+                 backup_download_link: str,
+                 backup_file_name: str,
+                 backup_file_size: int,
+                 backup_id: str,
+                 backup_method: str,
+                 inner_backup_download_link: str,
+                 instance_id: str,
+                 link_expired_time: str,
+                 prepare_progress: int):
+        """
+        :param str backup_description: The description of the backup set.
+        :param str backup_download_link: The public network download address of the backup.
+        :param str backup_file_name: The name of the backup file.
+        :param int backup_file_size: The size of the backup file, in Byte.
+        :param str backup_id: The ID of the logical backup to be downloaded.
+        :param str backup_method: The type of the backup.
+        :param str inner_backup_download_link: The inner network download address of the backup.
+        :param str instance_id: The id of the PostgreSQL instance.
+        :param str link_expired_time: Expiration time of the download link, format:yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+        :param int prepare_progress: The prepare progress of the backup.
+        """
+        pulumi.set(__self__, "backup_description", backup_description)
+        pulumi.set(__self__, "backup_download_link", backup_download_link)
+        pulumi.set(__self__, "backup_file_name", backup_file_name)
+        pulumi.set(__self__, "backup_file_size", backup_file_size)
+        pulumi.set(__self__, "backup_id", backup_id)
+        pulumi.set(__self__, "backup_method", backup_method)
+        pulumi.set(__self__, "inner_backup_download_link", inner_backup_download_link)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "link_expired_time", link_expired_time)
+        pulumi.set(__self__, "prepare_progress", prepare_progress)
+
+    @property
+    @pulumi.getter(name="backupDescription")
+    def backup_description(self) -> str:
+        """
+        The description of the backup set.
+        """
+        return pulumi.get(self, "backup_description")
+
+    @property
+    @pulumi.getter(name="backupDownloadLink")
+    def backup_download_link(self) -> str:
+        """
+        The public network download address of the backup.
+        """
+        return pulumi.get(self, "backup_download_link")
+
+    @property
+    @pulumi.getter(name="backupFileName")
+    def backup_file_name(self) -> str:
+        """
+        The name of the backup file.
+        """
+        return pulumi.get(self, "backup_file_name")
+
+    @property
+    @pulumi.getter(name="backupFileSize")
+    def backup_file_size(self) -> int:
+        """
+        The size of the backup file, in Byte.
+        """
+        return pulumi.get(self, "backup_file_size")
+
+    @property
+    @pulumi.getter(name="backupId")
+    def backup_id(self) -> str:
+        """
+        The ID of the logical backup to be downloaded.
+        """
+        return pulumi.get(self, "backup_id")
+
+    @property
+    @pulumi.getter(name="backupMethod")
+    def backup_method(self) -> str:
+        """
+        The type of the backup.
+        """
+        return pulumi.get(self, "backup_method")
+
+    @property
+    @pulumi.getter(name="innerBackupDownloadLink")
+    def inner_backup_download_link(self) -> str:
+        """
+        The inner network download address of the backup.
+        """
+        return pulumi.get(self, "inner_backup_download_link")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        The id of the PostgreSQL instance.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="linkExpiredTime")
+    def link_expired_time(self) -> str:
+        """
+        Expiration time of the download link, format:yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+        """
+        return pulumi.get(self, "link_expired_time")
+
+    @property
+    @pulumi.getter(name="prepareProgress")
+    def prepare_progress(self) -> int:
+        """
+        The prepare progress of the backup.
+        """
+        return pulumi.get(self, "prepare_progress")
+
+
+@pulumi.output_type
+class GetBackupPoliciesBackupPolicyResult(dict):
+    def __init__(__self__, *,
+                 backup_retention_period: int,
+                 data_incr_backup_periods: str,
+                 full_backup_period: str,
+                 full_backup_time: str,
+                 hourly_incr_backup_enable: bool,
+                 increment_backup_frequency: int,
+                 instance_id: str,
+                 wal_log_space_limit_enable: bool):
+        """
+        :param int backup_retention_period: The backup retention period.
+        :param str data_incr_backup_periods: The backup increment data backup periods.
+        :param str full_backup_period: The full backup period.
+        :param str full_backup_time: The time when the backup task is executed. Format: HH:mmZ-HH:mmZ (UTC time).
+        :param bool hourly_incr_backup_enable: Whether to enable the high-frequency backup function.
+        :param int increment_backup_frequency: The frequency of increment backup.
+        :param str instance_id: The id of the PostgreSQL instance.
+        :param bool wal_log_space_limit_enable: Status of the local remaining available space protection function.
+        """
+        pulumi.set(__self__, "backup_retention_period", backup_retention_period)
+        pulumi.set(__self__, "data_incr_backup_periods", data_incr_backup_periods)
+        pulumi.set(__self__, "full_backup_period", full_backup_period)
+        pulumi.set(__self__, "full_backup_time", full_backup_time)
+        pulumi.set(__self__, "hourly_incr_backup_enable", hourly_incr_backup_enable)
+        pulumi.set(__self__, "increment_backup_frequency", increment_backup_frequency)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "wal_log_space_limit_enable", wal_log_space_limit_enable)
+
+    @property
+    @pulumi.getter(name="backupRetentionPeriod")
+    def backup_retention_period(self) -> int:
+        """
+        The backup retention period.
+        """
+        return pulumi.get(self, "backup_retention_period")
+
+    @property
+    @pulumi.getter(name="dataIncrBackupPeriods")
+    def data_incr_backup_periods(self) -> str:
+        """
+        The backup increment data backup periods.
+        """
+        return pulumi.get(self, "data_incr_backup_periods")
+
+    @property
+    @pulumi.getter(name="fullBackupPeriod")
+    def full_backup_period(self) -> str:
+        """
+        The full backup period.
+        """
+        return pulumi.get(self, "full_backup_period")
+
+    @property
+    @pulumi.getter(name="fullBackupTime")
+    def full_backup_time(self) -> str:
+        """
+        The time when the backup task is executed. Format: HH:mmZ-HH:mmZ (UTC time).
+        """
+        return pulumi.get(self, "full_backup_time")
+
+    @property
+    @pulumi.getter(name="hourlyIncrBackupEnable")
+    def hourly_incr_backup_enable(self) -> bool:
+        """
+        Whether to enable the high-frequency backup function.
+        """
+        return pulumi.get(self, "hourly_incr_backup_enable")
+
+    @property
+    @pulumi.getter(name="incrementBackupFrequency")
+    def increment_backup_frequency(self) -> int:
+        """
+        The frequency of increment backup.
+        """
+        return pulumi.get(self, "increment_backup_frequency")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        The id of the PostgreSQL instance.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="walLogSpaceLimitEnable")
+    def wal_log_space_limit_enable(self) -> bool:
+        """
+        Status of the local remaining available space protection function.
+        """
+        return pulumi.get(self, "wal_log_space_limit_enable")
+
+
+@pulumi.output_type
+class GetDataBackupsBackupResult(dict):
+    def __init__(__self__, *,
+                 backup_data_size: int,
+                 backup_description: str,
+                 backup_end_time: str,
+                 backup_file_name: str,
+                 backup_file_size: int,
+                 backup_id: str,
+                 backup_metas: Sequence['outputs.GetDataBackupsBackupBackupMetaResult'],
+                 backup_method: str,
+                 backup_progress: int,
+                 backup_scope: str,
+                 backup_start_time: str,
+                 backup_status: str,
+                 backup_type: str,
+                 create_type: str,
+                 download_status: str):
+        """
+        :param int backup_data_size: The original size of the data contained in the backup, in Bytes.
+        :param str backup_description: The description of the backup set.
+        :param str backup_end_time: The latest time when the backup is created, in the format of yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+        :param str backup_file_name: The name of the backup file.
+        :param int backup_file_size: The size of the backup file, in Byte.
+        :param str backup_id: The ID of the backup.
+        :param Sequence['GetDataBackupsBackupBackupMetaArgs'] backup_metas: The information about the databases included in the backup.
+        :param str backup_method: The method of the backup: Physical, Logical.
+        :param int backup_progress: The progress of the backup. The unit is percentage.
+        :param str backup_scope: The scope of the backup: Instance, Database.
+        :param str backup_start_time: The earliest time when the backup is created, in the format of yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+        :param str backup_status: The status of the backup: Success, Failed, Running.
+        :param str backup_type: The type of the backup: Full, Increment.
+        :param str create_type: The creation type of the backup: System, User.
+        :param str download_status: The downloadable status of the backup set. NotAllowed: download is not supported. NeedToPrepare: the backup set is in place and needs background preparation for backup. LinkReady: the backup set is ready for download.
+        """
+        pulumi.set(__self__, "backup_data_size", backup_data_size)
+        pulumi.set(__self__, "backup_description", backup_description)
+        pulumi.set(__self__, "backup_end_time", backup_end_time)
+        pulumi.set(__self__, "backup_file_name", backup_file_name)
+        pulumi.set(__self__, "backup_file_size", backup_file_size)
+        pulumi.set(__self__, "backup_id", backup_id)
+        pulumi.set(__self__, "backup_metas", backup_metas)
+        pulumi.set(__self__, "backup_method", backup_method)
+        pulumi.set(__self__, "backup_progress", backup_progress)
+        pulumi.set(__self__, "backup_scope", backup_scope)
+        pulumi.set(__self__, "backup_start_time", backup_start_time)
+        pulumi.set(__self__, "backup_status", backup_status)
+        pulumi.set(__self__, "backup_type", backup_type)
+        pulumi.set(__self__, "create_type", create_type)
+        pulumi.set(__self__, "download_status", download_status)
+
+    @property
+    @pulumi.getter(name="backupDataSize")
+    def backup_data_size(self) -> int:
+        """
+        The original size of the data contained in the backup, in Bytes.
+        """
+        return pulumi.get(self, "backup_data_size")
+
+    @property
+    @pulumi.getter(name="backupDescription")
+    def backup_description(self) -> str:
+        """
+        The description of the backup set.
+        """
+        return pulumi.get(self, "backup_description")
+
+    @property
+    @pulumi.getter(name="backupEndTime")
+    def backup_end_time(self) -> str:
+        """
+        The latest time when the backup is created, in the format of yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+        """
+        return pulumi.get(self, "backup_end_time")
+
+    @property
+    @pulumi.getter(name="backupFileName")
+    def backup_file_name(self) -> str:
+        """
+        The name of the backup file.
+        """
+        return pulumi.get(self, "backup_file_name")
+
+    @property
+    @pulumi.getter(name="backupFileSize")
+    def backup_file_size(self) -> int:
+        """
+        The size of the backup file, in Byte.
+        """
+        return pulumi.get(self, "backup_file_size")
+
+    @property
+    @pulumi.getter(name="backupId")
+    def backup_id(self) -> str:
+        """
+        The ID of the backup.
+        """
+        return pulumi.get(self, "backup_id")
+
+    @property
+    @pulumi.getter(name="backupMetas")
+    def backup_metas(self) -> Sequence['outputs.GetDataBackupsBackupBackupMetaResult']:
+        """
+        The information about the databases included in the backup.
+        """
+        return pulumi.get(self, "backup_metas")
+
+    @property
+    @pulumi.getter(name="backupMethod")
+    def backup_method(self) -> str:
+        """
+        The method of the backup: Physical, Logical.
+        """
+        return pulumi.get(self, "backup_method")
+
+    @property
+    @pulumi.getter(name="backupProgress")
+    def backup_progress(self) -> int:
+        """
+        The progress of the backup. The unit is percentage.
+        """
+        return pulumi.get(self, "backup_progress")
+
+    @property
+    @pulumi.getter(name="backupScope")
+    def backup_scope(self) -> str:
+        """
+        The scope of the backup: Instance, Database.
+        """
+        return pulumi.get(self, "backup_scope")
+
+    @property
+    @pulumi.getter(name="backupStartTime")
+    def backup_start_time(self) -> str:
+        """
+        The earliest time when the backup is created, in the format of yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+        """
+        return pulumi.get(self, "backup_start_time")
+
+    @property
+    @pulumi.getter(name="backupStatus")
+    def backup_status(self) -> str:
+        """
+        The status of the backup: Success, Failed, Running.
+        """
+        return pulumi.get(self, "backup_status")
+
+    @property
+    @pulumi.getter(name="backupType")
+    def backup_type(self) -> str:
+        """
+        The type of the backup: Full, Increment.
+        """
+        return pulumi.get(self, "backup_type")
+
+    @property
+    @pulumi.getter(name="createType")
+    def create_type(self) -> str:
+        """
+        The creation type of the backup: System, User.
+        """
+        return pulumi.get(self, "create_type")
+
+    @property
+    @pulumi.getter(name="downloadStatus")
+    def download_status(self) -> str:
+        """
+        The downloadable status of the backup set. NotAllowed: download is not supported. NeedToPrepare: the backup set is in place and needs background preparation for backup. LinkReady: the backup set is ready for download.
+        """
+        return pulumi.get(self, "download_status")
+
+
+@pulumi.output_type
+class GetDataBackupsBackupBackupMetaResult(dict):
+    def __init__(__self__, *,
+                 db_name: str):
+        """
+        :param str db_name: The name of the database.
+        """
+        pulumi.set(__self__, "db_name", db_name)
+
+    @property
+    @pulumi.getter(name="dbName")
+    def db_name(self) -> str:
+        """
+        The name of the database.
+        """
+        return pulumi.get(self, "db_name")
+
+
+@pulumi.output_type
+class GetDatabaseEndpointsEndpointResult(dict):
+    def __init__(__self__, *,
+                 cross_region_domain: str,
+                 dns_visibility: bool,
+                 domain: str,
+                 endpoint_id: str,
+                 endpoint_name: str,
+                 endpoint_type: str,
+                 port: str,
+                 read_only_node_distribution_type: str,
+                 read_only_node_max_delay_time: int,
+                 read_write_mode: str,
+                 read_write_proxy_connection: int,
+                 write_node_halt_writing: bool):
+        """
+        :param str cross_region_domain: Cross-region domain for private address.
+        :param bool dns_visibility: Whether to enable public network resolution.
+        :param str domain: Connect domain name.
+        :param str endpoint_id: The ID of the RDS PostgreSQL database endpoint.
+        :param str endpoint_name: The name of the RDS PostgreSQL database endpoint.
+        :param str endpoint_type: The type of the RDS PostgreSQL database endpoint. Valid values: `Custom`(custom endpoint), `Cluster`(default endpoint).
+        :param str port: The endpoint port.
+        :param str read_only_node_distribution_type: The distribution type of the read-only nodes.
+        :param int read_only_node_max_delay_time: ReadOnly node max delay seconds.
+        :param str read_write_mode: ReadWrite or ReadOnly. Default value is ReadOnly.
+        :param int read_write_proxy_connection: The number of proxy connections set for the terminal.
+        :param bool write_node_halt_writing: Whether the endpoint sends write requests to the write node.
+        """
+        pulumi.set(__self__, "cross_region_domain", cross_region_domain)
+        pulumi.set(__self__, "dns_visibility", dns_visibility)
+        pulumi.set(__self__, "domain", domain)
+        pulumi.set(__self__, "endpoint_id", endpoint_id)
+        pulumi.set(__self__, "endpoint_name", endpoint_name)
+        pulumi.set(__self__, "endpoint_type", endpoint_type)
+        pulumi.set(__self__, "port", port)
+        pulumi.set(__self__, "read_only_node_distribution_type", read_only_node_distribution_type)
+        pulumi.set(__self__, "read_only_node_max_delay_time", read_only_node_max_delay_time)
+        pulumi.set(__self__, "read_write_mode", read_write_mode)
+        pulumi.set(__self__, "read_write_proxy_connection", read_write_proxy_connection)
+        pulumi.set(__self__, "write_node_halt_writing", write_node_halt_writing)
+
+    @property
+    @pulumi.getter(name="crossRegionDomain")
+    def cross_region_domain(self) -> str:
+        """
+        Cross-region domain for private address.
+        """
+        return pulumi.get(self, "cross_region_domain")
+
+    @property
+    @pulumi.getter(name="dnsVisibility")
+    def dns_visibility(self) -> bool:
+        """
+        Whether to enable public network resolution.
+        """
+        return pulumi.get(self, "dns_visibility")
+
+    @property
+    @pulumi.getter
+    def domain(self) -> str:
+        """
+        Connect domain name.
+        """
+        return pulumi.get(self, "domain")
+
+    @property
+    @pulumi.getter(name="endpointId")
+    def endpoint_id(self) -> str:
+        """
+        The ID of the RDS PostgreSQL database endpoint.
+        """
+        return pulumi.get(self, "endpoint_id")
+
+    @property
+    @pulumi.getter(name="endpointName")
+    def endpoint_name(self) -> str:
+        """
+        The name of the RDS PostgreSQL database endpoint.
+        """
+        return pulumi.get(self, "endpoint_name")
+
+    @property
+    @pulumi.getter(name="endpointType")
+    def endpoint_type(self) -> str:
+        """
+        The type of the RDS PostgreSQL database endpoint. Valid values: `Custom`(custom endpoint), `Cluster`(default endpoint).
+        """
+        return pulumi.get(self, "endpoint_type")
+
+    @property
+    @pulumi.getter
+    def port(self) -> str:
+        """
+        The endpoint port.
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter(name="readOnlyNodeDistributionType")
+    def read_only_node_distribution_type(self) -> str:
+        """
+        The distribution type of the read-only nodes.
+        """
+        return pulumi.get(self, "read_only_node_distribution_type")
+
+    @property
+    @pulumi.getter(name="readOnlyNodeMaxDelayTime")
+    def read_only_node_max_delay_time(self) -> int:
+        """
+        ReadOnly node max delay seconds.
+        """
+        return pulumi.get(self, "read_only_node_max_delay_time")
+
+    @property
+    @pulumi.getter(name="readWriteMode")
+    def read_write_mode(self) -> str:
+        """
+        ReadWrite or ReadOnly. Default value is ReadOnly.
+        """
+        return pulumi.get(self, "read_write_mode")
+
+    @property
+    @pulumi.getter(name="readWriteProxyConnection")
+    def read_write_proxy_connection(self) -> int:
+        """
+        The number of proxy connections set for the terminal.
+        """
+        return pulumi.get(self, "read_write_proxy_connection")
+
+    @property
+    @pulumi.getter(name="writeNodeHaltWriting")
+    def write_node_halt_writing(self) -> bool:
+        """
+        Whether the endpoint sends write requests to the write node.
+        """
+        return pulumi.get(self, "write_node_halt_writing")
 
 
 @pulumi.output_type
@@ -2432,8 +6672,1644 @@ class GetDatabasesDatabaseResult(dict):
 
 
 @pulumi.output_type
+class GetEngineVersionParametersDbEngineVersionParameterResult(dict):
+    def __init__(__self__, *,
+                 db_engine_version: str,
+                 parameter_count: str,
+                 parameters: Sequence['outputs.GetEngineVersionParametersDbEngineVersionParameterParameterResult']):
+        """
+        :param str db_engine_version: The database engine version of the RDS PostgreSQL instance. Valid value: PostgreSQL_11, PostgreSQL_12, PostgreSQL_13, PostgreSQL_14, PostgreSQL_15, PostgreSQL_16, PostgreSQL_17.
+        :param str parameter_count: The number of parameters that users can set under the specified database engine version.
+        :param Sequence['GetEngineVersionParametersDbEngineVersionParameterParameterArgs'] parameters: The collection of parameters that users can set under the specified database engine version.
+        """
+        pulumi.set(__self__, "db_engine_version", db_engine_version)
+        pulumi.set(__self__, "parameter_count", parameter_count)
+        pulumi.set(__self__, "parameters", parameters)
+
+    @property
+    @pulumi.getter(name="dbEngineVersion")
+    def db_engine_version(self) -> str:
+        """
+        The database engine version of the RDS PostgreSQL instance. Valid value: PostgreSQL_11, PostgreSQL_12, PostgreSQL_13, PostgreSQL_14, PostgreSQL_15, PostgreSQL_16, PostgreSQL_17.
+        """
+        return pulumi.get(self, "db_engine_version")
+
+    @property
+    @pulumi.getter(name="parameterCount")
+    def parameter_count(self) -> str:
+        """
+        The number of parameters that users can set under the specified database engine version.
+        """
+        return pulumi.get(self, "parameter_count")
+
+    @property
+    @pulumi.getter
+    def parameters(self) -> Sequence['outputs.GetEngineVersionParametersDbEngineVersionParameterParameterResult']:
+        """
+        The collection of parameters that users can set under the specified database engine version.
+        """
+        return pulumi.get(self, "parameters")
+
+
+@pulumi.output_type
+class GetEngineVersionParametersDbEngineVersionParameterParameterResult(dict):
+    def __init__(__self__, *,
+                 checking_code: str,
+                 default_value: str,
+                 force_restart: bool,
+                 name: str,
+                 type: str):
+        """
+        :param str checking_code: The value range of the parameter.
+        :param str default_value: Parameter default value. Refers to the default value provided in the default template corresponding to this instance.
+        :param bool force_restart: Indicates whether a restart is required after the parameter is modified.
+        :param str name: The name of the parameter.
+        :param str type: The type of the parameter.
+        """
+        pulumi.set(__self__, "checking_code", checking_code)
+        pulumi.set(__self__, "default_value", default_value)
+        pulumi.set(__self__, "force_restart", force_restart)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="checkingCode")
+    def checking_code(self) -> str:
+        """
+        The value range of the parameter.
+        """
+        return pulumi.get(self, "checking_code")
+
+    @property
+    @pulumi.getter(name="defaultValue")
+    def default_value(self) -> str:
+        """
+        Parameter default value. Refers to the default value provided in the default template corresponding to this instance.
+        """
+        return pulumi.get(self, "default_value")
+
+    @property
+    @pulumi.getter(name="forceRestart")
+    def force_restart(self) -> bool:
+        """
+        Indicates whether a restart is required after the parameter is modified.
+        """
+        return pulumi.get(self, "force_restart")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the parameter.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of the parameter.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetInstanceBackupDetachedsBackupResult(dict):
+    def __init__(__self__, *,
+                 backup_end_time: str,
+                 backup_file_name: str,
+                 backup_file_size: int,
+                 backup_id: str,
+                 backup_progress: int,
+                 backup_start_time: str,
+                 backup_status: str,
+                 backup_type: str,
+                 create_type: str,
+                 instance_infos: Sequence['outputs.GetInstanceBackupDetachedsBackupInstanceInfoResult']):
+        """
+        :param str backup_end_time: The latest time when the backup is created, in the format of yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+        :param str backup_file_name: The name of the backup file.
+        :param int backup_file_size: The size of the backup file, in Byte.
+        :param str backup_id: The ID of the backup.
+        :param int backup_progress: The progress of the backup. The unit is percentage.
+        :param str backup_start_time: The earliest time when the backup is created, in the format of yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+        :param str backup_status: The status of the backup.
+        :param str backup_type: The type of the backup.
+        :param str create_type: The creation type of the backup: System, User.
+        :param Sequence['GetInstanceBackupDetachedsBackupInstanceInfoArgs'] instance_infos: Information about the PostgreSQL instance associated with this backup.
+        """
+        pulumi.set(__self__, "backup_end_time", backup_end_time)
+        pulumi.set(__self__, "backup_file_name", backup_file_name)
+        pulumi.set(__self__, "backup_file_size", backup_file_size)
+        pulumi.set(__self__, "backup_id", backup_id)
+        pulumi.set(__self__, "backup_progress", backup_progress)
+        pulumi.set(__self__, "backup_start_time", backup_start_time)
+        pulumi.set(__self__, "backup_status", backup_status)
+        pulumi.set(__self__, "backup_type", backup_type)
+        pulumi.set(__self__, "create_type", create_type)
+        pulumi.set(__self__, "instance_infos", instance_infos)
+
+    @property
+    @pulumi.getter(name="backupEndTime")
+    def backup_end_time(self) -> str:
+        """
+        The latest time when the backup is created, in the format of yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+        """
+        return pulumi.get(self, "backup_end_time")
+
+    @property
+    @pulumi.getter(name="backupFileName")
+    def backup_file_name(self) -> str:
+        """
+        The name of the backup file.
+        """
+        return pulumi.get(self, "backup_file_name")
+
+    @property
+    @pulumi.getter(name="backupFileSize")
+    def backup_file_size(self) -> int:
+        """
+        The size of the backup file, in Byte.
+        """
+        return pulumi.get(self, "backup_file_size")
+
+    @property
+    @pulumi.getter(name="backupId")
+    def backup_id(self) -> str:
+        """
+        The ID of the backup.
+        """
+        return pulumi.get(self, "backup_id")
+
+    @property
+    @pulumi.getter(name="backupProgress")
+    def backup_progress(self) -> int:
+        """
+        The progress of the backup. The unit is percentage.
+        """
+        return pulumi.get(self, "backup_progress")
+
+    @property
+    @pulumi.getter(name="backupStartTime")
+    def backup_start_time(self) -> str:
+        """
+        The earliest time when the backup is created, in the format of yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+        """
+        return pulumi.get(self, "backup_start_time")
+
+    @property
+    @pulumi.getter(name="backupStatus")
+    def backup_status(self) -> str:
+        """
+        The status of the backup.
+        """
+        return pulumi.get(self, "backup_status")
+
+    @property
+    @pulumi.getter(name="backupType")
+    def backup_type(self) -> str:
+        """
+        The type of the backup.
+        """
+        return pulumi.get(self, "backup_type")
+
+    @property
+    @pulumi.getter(name="createType")
+    def create_type(self) -> str:
+        """
+        The creation type of the backup: System, User.
+        """
+        return pulumi.get(self, "create_type")
+
+    @property
+    @pulumi.getter(name="instanceInfos")
+    def instance_infos(self) -> Sequence['outputs.GetInstanceBackupDetachedsBackupInstanceInfoResult']:
+        """
+        Information about the PostgreSQL instance associated with this backup.
+        """
+        return pulumi.get(self, "instance_infos")
+
+
+@pulumi.output_type
+class GetInstanceBackupDetachedsBackupInstanceInfoResult(dict):
+    def __init__(__self__, *,
+                 db_engine_version: str,
+                 instance_id: str,
+                 instance_name: str,
+                 instance_status: str):
+        """
+        :param str db_engine_version: The version of the database engine.
+        :param str instance_id: The ID of the PostgreSQL instance.
+        :param str instance_name: The name of the PostgreSQL instance.
+        :param str instance_status: The status of the instance.
+        """
+        pulumi.set(__self__, "db_engine_version", db_engine_version)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "instance_name", instance_name)
+        pulumi.set(__self__, "instance_status", instance_status)
+
+    @property
+    @pulumi.getter(name="dbEngineVersion")
+    def db_engine_version(self) -> str:
+        """
+        The version of the database engine.
+        """
+        return pulumi.get(self, "db_engine_version")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        The ID of the PostgreSQL instance.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="instanceName")
+    def instance_name(self) -> str:
+        """
+        The name of the PostgreSQL instance.
+        """
+        return pulumi.get(self, "instance_name")
+
+    @property
+    @pulumi.getter(name="instanceStatus")
+    def instance_status(self) -> str:
+        """
+        The status of the instance.
+        """
+        return pulumi.get(self, "instance_status")
+
+
+@pulumi.output_type
+class GetInstanceBackupWalLogsWalLogBackupResult(dict):
+    def __init__(__self__, *,
+                 backup_file_size: int,
+                 backup_id: str,
+                 backup_status: str,
+                 check_sum: str,
+                 download_status: str,
+                 project_name: str,
+                 wal_log_backup_end_time: str):
+        """
+        :param int backup_file_size: The size of the WAL log backup file. The unit is bytes (Byte).
+        :param str backup_id: The id of the backup.
+        :param str backup_status: The status of the WAL log backup.
+        :param str check_sum: The checksum in the ETag format using the crc64 algorithm.
+        :param str download_status: The downloadable status of the WAL log backup.
+        :param str project_name: The project to which the instance of the WAL log backup belongs.
+        :param str wal_log_backup_end_time: The end time of the WAL log backup, in the format of yyyy-MM-ddTHH:mm:ssZ (UTC time).
+        """
+        pulumi.set(__self__, "backup_file_size", backup_file_size)
+        pulumi.set(__self__, "backup_id", backup_id)
+        pulumi.set(__self__, "backup_status", backup_status)
+        pulumi.set(__self__, "check_sum", check_sum)
+        pulumi.set(__self__, "download_status", download_status)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "wal_log_backup_end_time", wal_log_backup_end_time)
+
+    @property
+    @pulumi.getter(name="backupFileSize")
+    def backup_file_size(self) -> int:
+        """
+        The size of the WAL log backup file. The unit is bytes (Byte).
+        """
+        return pulumi.get(self, "backup_file_size")
+
+    @property
+    @pulumi.getter(name="backupId")
+    def backup_id(self) -> str:
+        """
+        The id of the backup.
+        """
+        return pulumi.get(self, "backup_id")
+
+    @property
+    @pulumi.getter(name="backupStatus")
+    def backup_status(self) -> str:
+        """
+        The status of the WAL log backup.
+        """
+        return pulumi.get(self, "backup_status")
+
+    @property
+    @pulumi.getter(name="checkSum")
+    def check_sum(self) -> str:
+        """
+        The checksum in the ETag format using the crc64 algorithm.
+        """
+        return pulumi.get(self, "check_sum")
+
+    @property
+    @pulumi.getter(name="downloadStatus")
+    def download_status(self) -> str:
+        """
+        The downloadable status of the WAL log backup.
+        """
+        return pulumi.get(self, "download_status")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project to which the instance of the WAL log backup belongs.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="walLogBackupEndTime")
+    def wal_log_backup_end_time(self) -> str:
+        """
+        The end time of the WAL log backup, in the format of yyyy-MM-ddTHH:mm:ssZ (UTC time).
+        """
+        return pulumi.get(self, "wal_log_backup_end_time")
+
+
+@pulumi.output_type
+class GetInstanceFailoverLogsFailoverLogResult(dict):
+    def __init__(__self__, *,
+                 failover_time: str,
+                 failover_type: str,
+                 new_master_node_id: str,
+                 old_master_node_id: str):
+        """
+        :param str failover_time: The time when the failover occurred. Format: yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+        :param str failover_type: The type of the failover, such as User or System.
+        :param str new_master_node_id: The node ID of the new master after failover.
+        :param str old_master_node_id: The node ID of the old master before failover.
+        """
+        pulumi.set(__self__, "failover_time", failover_time)
+        pulumi.set(__self__, "failover_type", failover_type)
+        pulumi.set(__self__, "new_master_node_id", new_master_node_id)
+        pulumi.set(__self__, "old_master_node_id", old_master_node_id)
+
+    @property
+    @pulumi.getter(name="failoverTime")
+    def failover_time(self) -> str:
+        """
+        The time when the failover occurred. Format: yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+        """
+        return pulumi.get(self, "failover_time")
+
+    @property
+    @pulumi.getter(name="failoverType")
+    def failover_type(self) -> str:
+        """
+        The type of the failover, such as User or System.
+        """
+        return pulumi.get(self, "failover_type")
+
+    @property
+    @pulumi.getter(name="newMasterNodeId")
+    def new_master_node_id(self) -> str:
+        """
+        The node ID of the new master after failover.
+        """
+        return pulumi.get(self, "new_master_node_id")
+
+    @property
+    @pulumi.getter(name="oldMasterNodeId")
+    def old_master_node_id(self) -> str:
+        """
+        The node ID of the old master before failover.
+        """
+        return pulumi.get(self, "old_master_node_id")
+
+
+@pulumi.output_type
+class GetInstanceParameterLogsParameterChangeLogResult(dict):
+    def __init__(__self__, *,
+                 modify_time: str,
+                 name: str,
+                 new_value: str,
+                 old_value: str,
+                 status: str):
+        """
+        :param str modify_time: The time when the parameter was last modified. Format: yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+        :param str name: The name of the parameter.
+        :param str new_value: The new value of the parameter.
+        :param str old_value: The old value of the parameter.
+        :param str status: The status of the parameter. Applied: Already in effect. Invalid: Not in effect. Syncing: Being applied, not yet in effect.
+        """
+        pulumi.set(__self__, "modify_time", modify_time)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "new_value", new_value)
+        pulumi.set(__self__, "old_value", old_value)
+        pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter(name="modifyTime")
+    def modify_time(self) -> str:
+        """
+        The time when the parameter was last modified. Format: yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+        """
+        return pulumi.get(self, "modify_time")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the parameter.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="newValue")
+    def new_value(self) -> str:
+        """
+        The new value of the parameter.
+        """
+        return pulumi.get(self, "new_value")
+
+    @property
+    @pulumi.getter(name="oldValue")
+    def old_value(self) -> str:
+        """
+        The old value of the parameter.
+        """
+        return pulumi.get(self, "old_value")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of the parameter. Applied: Already in effect. Invalid: Not in effect. Syncing: Being applied, not yet in effect.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetInstanceParametersInstanceParameterResult(dict):
+    def __init__(__self__, *,
+                 db_engine_version: str,
+                 instance_id: str,
+                 none_kernel_parameters: Sequence['outputs.GetInstanceParametersInstanceParameterNoneKernelParameterResult'],
+                 parameter_count: str,
+                 parameters: Sequence['outputs.GetInstanceParametersInstanceParameterParameterResult']):
+        """
+        :param str db_engine_version: The version of the PostgreSQL engine.
+        :param str instance_id: The ID of the PostgreSQL instance.
+        :param str parameter_count: The total count of parameters.
+        :param Sequence['GetInstanceParametersInstanceParameterParameterArgs'] parameters: The current parameter configuration of the instance (kernel parameters).
+        """
+        pulumi.set(__self__, "db_engine_version", db_engine_version)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "none_kernel_parameters", none_kernel_parameters)
+        pulumi.set(__self__, "parameter_count", parameter_count)
+        pulumi.set(__self__, "parameters", parameters)
+
+    @property
+    @pulumi.getter(name="dbEngineVersion")
+    def db_engine_version(self) -> str:
+        """
+        The version of the PostgreSQL engine.
+        """
+        return pulumi.get(self, "db_engine_version")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        The ID of the PostgreSQL instance.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="noneKernelParameters")
+    def none_kernel_parameters(self) -> Sequence['outputs.GetInstanceParametersInstanceParameterNoneKernelParameterResult']:
+        warnings.warn("""The current parameter configuration of the instance (non-kernel parameters).""", DeprecationWarning)
+        pulumi.log.warn("""none_kernel_parameters is deprecated: The current parameter configuration of the instance (non-kernel parameters).""")
+
+        return pulumi.get(self, "none_kernel_parameters")
+
+    @property
+    @pulumi.getter(name="parameterCount")
+    def parameter_count(self) -> str:
+        """
+        The total count of parameters.
+        """
+        return pulumi.get(self, "parameter_count")
+
+    @property
+    @pulumi.getter
+    def parameters(self) -> Sequence['outputs.GetInstanceParametersInstanceParameterParameterResult']:
+        """
+        The current parameter configuration of the instance (kernel parameters).
+        """
+        return pulumi.get(self, "parameters")
+
+
+@pulumi.output_type
+class GetInstanceParametersInstanceParameterNoneKernelParameterResult(dict):
+    def __init__(__self__, *,
+                 checking_code: str,
+                 default_value: str,
+                 description: str,
+                 description_zh: str,
+                 force_restart: bool,
+                 name: str,
+                 type: str,
+                 value: str):
+        """
+        :param str checking_code: The value range of the parameter.
+        :param str default_value: Parameter default value. Refers to the default value provided in the default template corresponding to this instance.
+        :param str description: The description of the parameter in English.
+        :param str description_zh: The description of the parameter in Chinese.
+        :param bool force_restart: Indicates whether a restart is required after the parameter is modified.
+        :param str name: The name of the parameter.
+        :param str type: The type of the parameter.
+        :param str value: The current value of the parameter.
+        """
+        pulumi.set(__self__, "checking_code", checking_code)
+        pulumi.set(__self__, "default_value", default_value)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "description_zh", description_zh)
+        pulumi.set(__self__, "force_restart", force_restart)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="checkingCode")
+    def checking_code(self) -> str:
+        """
+        The value range of the parameter.
+        """
+        return pulumi.get(self, "checking_code")
+
+    @property
+    @pulumi.getter(name="defaultValue")
+    def default_value(self) -> str:
+        """
+        Parameter default value. Refers to the default value provided in the default template corresponding to this instance.
+        """
+        return pulumi.get(self, "default_value")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the parameter in English.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="descriptionZh")
+    def description_zh(self) -> str:
+        """
+        The description of the parameter in Chinese.
+        """
+        return pulumi.get(self, "description_zh")
+
+    @property
+    @pulumi.getter(name="forceRestart")
+    def force_restart(self) -> bool:
+        """
+        Indicates whether a restart is required after the parameter is modified.
+        """
+        return pulumi.get(self, "force_restart")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the parameter.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of the parameter.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The current value of the parameter.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetInstanceParametersInstanceParameterParameterResult(dict):
+    def __init__(__self__, *,
+                 checking_code: str,
+                 default_value: str,
+                 description: str,
+                 description_zh: str,
+                 force_restart: bool,
+                 name: str,
+                 type: str,
+                 value: str):
+        """
+        :param str checking_code: The value range of the parameter.
+        :param str default_value: Parameter default value. Refers to the default value provided in the default template corresponding to this instance.
+        :param str description: The description of the parameter in English.
+        :param str description_zh: The description of the parameter in Chinese.
+        :param bool force_restart: Indicates whether a restart is required after the parameter is modified.
+        :param str name: The name of the parameter.
+        :param str type: The type of the parameter.
+        :param str value: The current value of the parameter.
+        """
+        pulumi.set(__self__, "checking_code", checking_code)
+        pulumi.set(__self__, "default_value", default_value)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "description_zh", description_zh)
+        pulumi.set(__self__, "force_restart", force_restart)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="checkingCode")
+    def checking_code(self) -> str:
+        """
+        The value range of the parameter.
+        """
+        return pulumi.get(self, "checking_code")
+
+    @property
+    @pulumi.getter(name="defaultValue")
+    def default_value(self) -> str:
+        """
+        Parameter default value. Refers to the default value provided in the default template corresponding to this instance.
+        """
+        return pulumi.get(self, "default_value")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the parameter in English.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="descriptionZh")
+    def description_zh(self) -> str:
+        """
+        The description of the parameter in Chinese.
+        """
+        return pulumi.get(self, "description_zh")
+
+    @property
+    @pulumi.getter(name="forceRestart")
+    def force_restart(self) -> bool:
+        """
+        Indicates whether a restart is required after the parameter is modified.
+        """
+        return pulumi.get(self, "force_restart")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the parameter.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of the parameter.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The current value of the parameter.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetInstancePriceDetailsChargeInfoResult(dict):
+    def __init__(__self__, *,
+                 charge_type: str,
+                 auto_renew: Optional[bool] = None,
+                 number: Optional[int] = None,
+                 period: Optional[int] = None,
+                 period_unit: Optional[str] = None):
+        """
+        :param str charge_type: The charge type of the instance. Valid values: PostPaid, PrePaid.
+        :param bool auto_renew: Whether to auto renew the subscription in a pre-paid scenario.
+        :param int number: Number of purchased instances. Can be an integer between 1 and 20. Default value:1.
+        :param int period: Subscription duration in a pre-paid scenario.Default value:1.
+        :param str period_unit: Purchase cycle in a pre-paid scenario. Valid values: Month, Year.
+        """
+        pulumi.set(__self__, "charge_type", charge_type)
+        if auto_renew is not None:
+            pulumi.set(__self__, "auto_renew", auto_renew)
+        if number is not None:
+            pulumi.set(__self__, "number", number)
+        if period is not None:
+            pulumi.set(__self__, "period", period)
+        if period_unit is not None:
+            pulumi.set(__self__, "period_unit", period_unit)
+
+    @property
+    @pulumi.getter(name="chargeType")
+    def charge_type(self) -> str:
+        """
+        The charge type of the instance. Valid values: PostPaid, PrePaid.
+        """
+        return pulumi.get(self, "charge_type")
+
+    @property
+    @pulumi.getter(name="autoRenew")
+    def auto_renew(self) -> Optional[bool]:
+        """
+        Whether to auto renew the subscription in a pre-paid scenario.
+        """
+        return pulumi.get(self, "auto_renew")
+
+    @property
+    @pulumi.getter
+    def number(self) -> Optional[int]:
+        """
+        Number of purchased instances. Can be an integer between 1 and 20. Default value:1.
+        """
+        return pulumi.get(self, "number")
+
+    @property
+    @pulumi.getter
+    def period(self) -> Optional[int]:
+        """
+        Subscription duration in a pre-paid scenario.Default value:1.
+        """
+        return pulumi.get(self, "period")
+
+    @property
+    @pulumi.getter(name="periodUnit")
+    def period_unit(self) -> Optional[str]:
+        """
+        Purchase cycle in a pre-paid scenario. Valid values: Month, Year.
+        """
+        return pulumi.get(self, "period_unit")
+
+
+@pulumi.output_type
+class GetInstancePriceDetailsInstancesPriceResult(dict):
+    def __init__(__self__, *,
+                 charge_item_prices: Sequence['outputs.GetInstancePriceDetailsInstancesPriceChargeItemPriceResult'],
+                 currency: str,
+                 discount_price: float,
+                 instance_quantity: int,
+                 original_price: float,
+                 payable_price: float):
+        """
+        :param Sequence['GetInstancePriceDetailsInstancesPriceChargeItemPriceArgs'] charge_item_prices: Price of each charge item.
+        :param str currency: Currency unit.
+        :param float discount_price: Instance price after discount.
+        :param int instance_quantity: Number of purchased instances.
+        :param float original_price: Instance price before discount.
+        :param float payable_price: Price payable of instance.
+        """
+        pulumi.set(__self__, "charge_item_prices", charge_item_prices)
+        pulumi.set(__self__, "currency", currency)
+        pulumi.set(__self__, "discount_price", discount_price)
+        pulumi.set(__self__, "instance_quantity", instance_quantity)
+        pulumi.set(__self__, "original_price", original_price)
+        pulumi.set(__self__, "payable_price", payable_price)
+
+    @property
+    @pulumi.getter(name="chargeItemPrices")
+    def charge_item_prices(self) -> Sequence['outputs.GetInstancePriceDetailsInstancesPriceChargeItemPriceResult']:
+        """
+        Price of each charge item.
+        """
+        return pulumi.get(self, "charge_item_prices")
+
+    @property
+    @pulumi.getter
+    def currency(self) -> str:
+        """
+        Currency unit.
+        """
+        return pulumi.get(self, "currency")
+
+    @property
+    @pulumi.getter(name="discountPrice")
+    def discount_price(self) -> float:
+        """
+        Instance price after discount.
+        """
+        return pulumi.get(self, "discount_price")
+
+    @property
+    @pulumi.getter(name="instanceQuantity")
+    def instance_quantity(self) -> int:
+        """
+        Number of purchased instances.
+        """
+        return pulumi.get(self, "instance_quantity")
+
+    @property
+    @pulumi.getter(name="originalPrice")
+    def original_price(self) -> float:
+        """
+        Instance price before discount.
+        """
+        return pulumi.get(self, "original_price")
+
+    @property
+    @pulumi.getter(name="payablePrice")
+    def payable_price(self) -> float:
+        """
+        Price payable of instance.
+        """
+        return pulumi.get(self, "payable_price")
+
+
+@pulumi.output_type
+class GetInstancePriceDetailsInstancesPriceChargeItemPriceResult(dict):
+    def __init__(__self__, *,
+                 charge_item_key: str,
+                 charge_item_type: str,
+                 charge_item_value: int,
+                 discount_price: float,
+                 node_num_per_instance: int,
+                 original_price: float,
+                 payable_price: float):
+        """
+        :param str charge_item_key: If charge_item_key is Primary, Secondary, or ReadOnly, this parameter returns the instance specification, such as rds.pg.d1.1c2g. If charge_item_key is Storage, this parameter returns the stored key, such as rds.pg.d1.localssd.
+        :param str charge_item_type: Billing item name. Values:Primary, Secondary, ReadOnly, Storage.
+        :param int charge_item_value: If charge_item_key is Primary, Secondary, or ReadOnly, this parameter returns the number of nodes, with a value of "1". If charge_item_key is Storage, his parameter returns the storage size in GB.
+        :param float discount_price: Instance price after discount.
+        :param int node_num_per_instance: Number of nodes of each instance.
+        :param float original_price: Instance price before discount.
+        :param float payable_price: Price payable of instance.
+        """
+        pulumi.set(__self__, "charge_item_key", charge_item_key)
+        pulumi.set(__self__, "charge_item_type", charge_item_type)
+        pulumi.set(__self__, "charge_item_value", charge_item_value)
+        pulumi.set(__self__, "discount_price", discount_price)
+        pulumi.set(__self__, "node_num_per_instance", node_num_per_instance)
+        pulumi.set(__self__, "original_price", original_price)
+        pulumi.set(__self__, "payable_price", payable_price)
+
+    @property
+    @pulumi.getter(name="chargeItemKey")
+    def charge_item_key(self) -> str:
+        """
+        If charge_item_key is Primary, Secondary, or ReadOnly, this parameter returns the instance specification, such as rds.pg.d1.1c2g. If charge_item_key is Storage, this parameter returns the stored key, such as rds.pg.d1.localssd.
+        """
+        return pulumi.get(self, "charge_item_key")
+
+    @property
+    @pulumi.getter(name="chargeItemType")
+    def charge_item_type(self) -> str:
+        """
+        Billing item name. Values:Primary, Secondary, ReadOnly, Storage.
+        """
+        return pulumi.get(self, "charge_item_type")
+
+    @property
+    @pulumi.getter(name="chargeItemValue")
+    def charge_item_value(self) -> int:
+        """
+        If charge_item_key is Primary, Secondary, or ReadOnly, this parameter returns the number of nodes, with a value of "1". If charge_item_key is Storage, his parameter returns the storage size in GB.
+        """
+        return pulumi.get(self, "charge_item_value")
+
+    @property
+    @pulumi.getter(name="discountPrice")
+    def discount_price(self) -> float:
+        """
+        Instance price after discount.
+        """
+        return pulumi.get(self, "discount_price")
+
+    @property
+    @pulumi.getter(name="nodeNumPerInstance")
+    def node_num_per_instance(self) -> int:
+        """
+        Number of nodes of each instance.
+        """
+        return pulumi.get(self, "node_num_per_instance")
+
+    @property
+    @pulumi.getter(name="originalPrice")
+    def original_price(self) -> float:
+        """
+        Instance price before discount.
+        """
+        return pulumi.get(self, "original_price")
+
+    @property
+    @pulumi.getter(name="payablePrice")
+    def payable_price(self) -> float:
+        """
+        Price payable of instance.
+        """
+        return pulumi.get(self, "payable_price")
+
+
+@pulumi.output_type
+class GetInstancePriceDetailsNodeInfoResult(dict):
+    def __init__(__self__, *,
+                 node_spec: str,
+                 node_type: str,
+                 zone_id: str,
+                 node_id: Optional[str] = None,
+                 node_operate_type: Optional[str] = None):
+        """
+        :param str node_spec: The specification of the node.
+        :param str node_type: The type of the node. Valid values: Primary, Secondary, ReadOnly.
+        :param str zone_id: The AZ of the node.
+        :param str node_id: The id of the node.
+        :param str node_operate_type: The operate type of the node. Valid values: Create.
+        """
+        pulumi.set(__self__, "node_spec", node_spec)
+        pulumi.set(__self__, "node_type", node_type)
+        pulumi.set(__self__, "zone_id", zone_id)
+        if node_id is not None:
+            pulumi.set(__self__, "node_id", node_id)
+        if node_operate_type is not None:
+            pulumi.set(__self__, "node_operate_type", node_operate_type)
+
+    @property
+    @pulumi.getter(name="nodeSpec")
+    def node_spec(self) -> str:
+        """
+        The specification of the node.
+        """
+        return pulumi.get(self, "node_spec")
+
+    @property
+    @pulumi.getter(name="nodeType")
+    def node_type(self) -> str:
+        """
+        The type of the node. Valid values: Primary, Secondary, ReadOnly.
+        """
+        return pulumi.get(self, "node_type")
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> str:
+        """
+        The AZ of the node.
+        """
+        return pulumi.get(self, "zone_id")
+
+    @property
+    @pulumi.getter(name="nodeId")
+    def node_id(self) -> Optional[str]:
+        """
+        The id of the node.
+        """
+        return pulumi.get(self, "node_id")
+
+    @property
+    @pulumi.getter(name="nodeOperateType")
+    def node_operate_type(self) -> Optional[str]:
+        """
+        The operate type of the node. Valid values: Create.
+        """
+        return pulumi.get(self, "node_operate_type")
+
+
+@pulumi.output_type
+class GetInstancePriceDifferencesChargeInfoResult(dict):
+    def __init__(__self__, *,
+                 charge_type: str,
+                 auto_renew: Optional[bool] = None,
+                 number: Optional[int] = None,
+                 period: Optional[int] = None,
+                 period_unit: Optional[str] = None):
+        """
+        :param str charge_type: The charge type of the instance. Valid values: PostPaid, PrePaid.
+        :param bool auto_renew: Whether to auto renew the subscription in a pre-paid scenario.
+        :param int number: Number of purchased instances. Can be an integer between 1 and 20. Default value:1.
+        :param int period: Subscription duration in a pre-paid scenario.Default value:1.
+        :param str period_unit: Purchase cycle in a pre-paid scenario. Valid values: Month, Year.
+        """
+        pulumi.set(__self__, "charge_type", charge_type)
+        if auto_renew is not None:
+            pulumi.set(__self__, "auto_renew", auto_renew)
+        if number is not None:
+            pulumi.set(__self__, "number", number)
+        if period is not None:
+            pulumi.set(__self__, "period", period)
+        if period_unit is not None:
+            pulumi.set(__self__, "period_unit", period_unit)
+
+    @property
+    @pulumi.getter(name="chargeType")
+    def charge_type(self) -> str:
+        """
+        The charge type of the instance. Valid values: PostPaid, PrePaid.
+        """
+        return pulumi.get(self, "charge_type")
+
+    @property
+    @pulumi.getter(name="autoRenew")
+    def auto_renew(self) -> Optional[bool]:
+        """
+        Whether to auto renew the subscription in a pre-paid scenario.
+        """
+        return pulumi.get(self, "auto_renew")
+
+    @property
+    @pulumi.getter
+    def number(self) -> Optional[int]:
+        """
+        Number of purchased instances. Can be an integer between 1 and 20. Default value:1.
+        """
+        return pulumi.get(self, "number")
+
+    @property
+    @pulumi.getter
+    def period(self) -> Optional[int]:
+        """
+        Subscription duration in a pre-paid scenario.Default value:1.
+        """
+        return pulumi.get(self, "period")
+
+    @property
+    @pulumi.getter(name="periodUnit")
+    def period_unit(self) -> Optional[str]:
+        """
+        Purchase cycle in a pre-paid scenario. Valid values: Month, Year.
+        """
+        return pulumi.get(self, "period_unit")
+
+
+@pulumi.output_type
+class GetInstancePriceDifferencesInstancesPriceResult(dict):
+    def __init__(__self__, *,
+                 charge_item_prices: Sequence['outputs.GetInstancePriceDifferencesInstancesPriceChargeItemPriceResult'],
+                 currency: str,
+                 discount_price: float,
+                 original_price: float,
+                 payable_price: float):
+        """
+        :param str currency: Currency unit.
+        :param float discount_price: Instance price after discount.
+        :param float original_price: Instance price before discount.
+        :param float payable_price: Price payable of instance.
+        """
+        pulumi.set(__self__, "charge_item_prices", charge_item_prices)
+        pulumi.set(__self__, "currency", currency)
+        pulumi.set(__self__, "discount_price", discount_price)
+        pulumi.set(__self__, "original_price", original_price)
+        pulumi.set(__self__, "payable_price", payable_price)
+
+    @property
+    @pulumi.getter(name="chargeItemPrices")
+    def charge_item_prices(self) -> Sequence['outputs.GetInstancePriceDifferencesInstancesPriceChargeItemPriceResult']:
+        return pulumi.get(self, "charge_item_prices")
+
+    @property
+    @pulumi.getter
+    def currency(self) -> str:
+        """
+        Currency unit.
+        """
+        return pulumi.get(self, "currency")
+
+    @property
+    @pulumi.getter(name="discountPrice")
+    def discount_price(self) -> float:
+        """
+        Instance price after discount.
+        """
+        return pulumi.get(self, "discount_price")
+
+    @property
+    @pulumi.getter(name="originalPrice")
+    def original_price(self) -> float:
+        """
+        Instance price before discount.
+        """
+        return pulumi.get(self, "original_price")
+
+    @property
+    @pulumi.getter(name="payablePrice")
+    def payable_price(self) -> float:
+        """
+        Price payable of instance.
+        """
+        return pulumi.get(self, "payable_price")
+
+
+@pulumi.output_type
+class GetInstancePriceDifferencesInstancesPriceChargeItemPriceResult(dict):
+    def __init__(__self__, *,
+                 charge_item_key: str,
+                 charge_item_type: str,
+                 charge_item_value: int,
+                 discount_price: float,
+                 node_num_per_instance: int,
+                 original_price: float,
+                 payable_price: float):
+        """
+        :param str charge_item_key: If charge_item_key is Primary, Secondary, or ReadOnly, this parameter returns the instance specification, such as rds.pg.d1.1c2g. If charge_item_key is Storage, this parameter returns the stored key, such as rds.pg.d1.localssd.
+        :param str charge_item_type: Billing item name. Values:Primary, Secondary, ReadOnly, Storage.
+        :param int charge_item_value: If charge_item_key is Primary, Secondary, or ReadOnly, this parameter returns the number of nodes, with a value of "1". If charge_item_key is Storage, his parameter returns the storage size in GB.
+        :param float discount_price: Instance price after discount.
+        :param int node_num_per_instance: Number of nodes of each instance.
+        :param float original_price: Instance price before discount.
+        :param float payable_price: Price payable of instance.
+        """
+        pulumi.set(__self__, "charge_item_key", charge_item_key)
+        pulumi.set(__self__, "charge_item_type", charge_item_type)
+        pulumi.set(__self__, "charge_item_value", charge_item_value)
+        pulumi.set(__self__, "discount_price", discount_price)
+        pulumi.set(__self__, "node_num_per_instance", node_num_per_instance)
+        pulumi.set(__self__, "original_price", original_price)
+        pulumi.set(__self__, "payable_price", payable_price)
+
+    @property
+    @pulumi.getter(name="chargeItemKey")
+    def charge_item_key(self) -> str:
+        """
+        If charge_item_key is Primary, Secondary, or ReadOnly, this parameter returns the instance specification, such as rds.pg.d1.1c2g. If charge_item_key is Storage, this parameter returns the stored key, such as rds.pg.d1.localssd.
+        """
+        return pulumi.get(self, "charge_item_key")
+
+    @property
+    @pulumi.getter(name="chargeItemType")
+    def charge_item_type(self) -> str:
+        """
+        Billing item name. Values:Primary, Secondary, ReadOnly, Storage.
+        """
+        return pulumi.get(self, "charge_item_type")
+
+    @property
+    @pulumi.getter(name="chargeItemValue")
+    def charge_item_value(self) -> int:
+        """
+        If charge_item_key is Primary, Secondary, or ReadOnly, this parameter returns the number of nodes, with a value of "1". If charge_item_key is Storage, his parameter returns the storage size in GB.
+        """
+        return pulumi.get(self, "charge_item_value")
+
+    @property
+    @pulumi.getter(name="discountPrice")
+    def discount_price(self) -> float:
+        """
+        Instance price after discount.
+        """
+        return pulumi.get(self, "discount_price")
+
+    @property
+    @pulumi.getter(name="nodeNumPerInstance")
+    def node_num_per_instance(self) -> int:
+        """
+        Number of nodes of each instance.
+        """
+        return pulumi.get(self, "node_num_per_instance")
+
+    @property
+    @pulumi.getter(name="originalPrice")
+    def original_price(self) -> float:
+        """
+        Instance price before discount.
+        """
+        return pulumi.get(self, "original_price")
+
+    @property
+    @pulumi.getter(name="payablePrice")
+    def payable_price(self) -> float:
+        """
+        Price payable of instance.
+        """
+        return pulumi.get(self, "payable_price")
+
+
+@pulumi.output_type
+class GetInstancePriceDifferencesNodeInfoResult(dict):
+    def __init__(__self__, *,
+                 node_spec: str,
+                 node_type: str,
+                 zone_id: str,
+                 node_id: Optional[str] = None,
+                 node_operate_type: Optional[str] = None):
+        """
+        :param str node_spec: The specification of the node.
+        :param str node_type: The type of the node. Valid values: Primary, Secondary, ReadOnly.
+        :param str zone_id: The AZ of the node.
+        :param str node_id: The id of the node.When the modify_type is set to Temporary, this parameter is required.
+        :param str node_operate_type: The operate type of the node. Valid values: Create, Modify.
+        """
+        pulumi.set(__self__, "node_spec", node_spec)
+        pulumi.set(__self__, "node_type", node_type)
+        pulumi.set(__self__, "zone_id", zone_id)
+        if node_id is not None:
+            pulumi.set(__self__, "node_id", node_id)
+        if node_operate_type is not None:
+            pulumi.set(__self__, "node_operate_type", node_operate_type)
+
+    @property
+    @pulumi.getter(name="nodeSpec")
+    def node_spec(self) -> str:
+        """
+        The specification of the node.
+        """
+        return pulumi.get(self, "node_spec")
+
+    @property
+    @pulumi.getter(name="nodeType")
+    def node_type(self) -> str:
+        """
+        The type of the node. Valid values: Primary, Secondary, ReadOnly.
+        """
+        return pulumi.get(self, "node_type")
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> str:
+        """
+        The AZ of the node.
+        """
+        return pulumi.get(self, "zone_id")
+
+    @property
+    @pulumi.getter(name="nodeId")
+    def node_id(self) -> Optional[str]:
+        """
+        The id of the node.When the modify_type is set to Temporary, this parameter is required.
+        """
+        return pulumi.get(self, "node_id")
+
+    @property
+    @pulumi.getter(name="nodeOperateType")
+    def node_operate_type(self) -> Optional[str]:
+        """
+        The operate type of the node. Valid values: Create, Modify.
+        """
+        return pulumi.get(self, "node_operate_type")
+
+
+@pulumi.output_type
+class GetInstanceRecoverableTimesRecoverableTimeInfoResult(dict):
+    def __init__(__self__, *,
+                 earliest_recoverable_time: str,
+                 latest_recoverable_time: str):
+        """
+        :param str earliest_recoverable_time: The earliest recoverable time of the instance (UTC time).
+        :param str latest_recoverable_time: The latest recoverable time of the instance (UTC time).
+        """
+        pulumi.set(__self__, "earliest_recoverable_time", earliest_recoverable_time)
+        pulumi.set(__self__, "latest_recoverable_time", latest_recoverable_time)
+
+    @property
+    @pulumi.getter(name="earliestRecoverableTime")
+    def earliest_recoverable_time(self) -> str:
+        """
+        The earliest recoverable time of the instance (UTC time).
+        """
+        return pulumi.get(self, "earliest_recoverable_time")
+
+    @property
+    @pulumi.getter(name="latestRecoverableTime")
+    def latest_recoverable_time(self) -> str:
+        """
+        The latest recoverable time of the instance (UTC time).
+        """
+        return pulumi.get(self, "latest_recoverable_time")
+
+
+@pulumi.output_type
+class GetInstanceSpecsInstanceSpecResult(dict):
+    def __init__(__self__, *,
+                 connection: int,
+                 db_engine_version: str,
+                 memory: int,
+                 region_id: str,
+                 spec_code: str,
+                 storage_type: str,
+                 v_cpu: int,
+                 zone_id: str):
+        """
+        :param int connection: The maximum number of connections supported by the instance.
+        :param str db_engine_version: The version of the RDS PostgreSQL instance.
+        :param int memory: The memory size of the instance. Unit: GB.
+        :param str region_id: The ID of the region.
+        :param str spec_code: Instance specification code.
+        :param str storage_type: Storage type, fixed to LocalSSD.
+        :param int v_cpu: The number of vCPUs of the instance.
+        :param str zone_id: Primary availability zone ID.
+        """
+        pulumi.set(__self__, "connection", connection)
+        pulumi.set(__self__, "db_engine_version", db_engine_version)
+        pulumi.set(__self__, "memory", memory)
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "spec_code", spec_code)
+        pulumi.set(__self__, "storage_type", storage_type)
+        pulumi.set(__self__, "v_cpu", v_cpu)
+        pulumi.set(__self__, "zone_id", zone_id)
+
+    @property
+    @pulumi.getter
+    def connection(self) -> int:
+        """
+        The maximum number of connections supported by the instance.
+        """
+        return pulumi.get(self, "connection")
+
+    @property
+    @pulumi.getter(name="dbEngineVersion")
+    def db_engine_version(self) -> str:
+        """
+        The version of the RDS PostgreSQL instance.
+        """
+        return pulumi.get(self, "db_engine_version")
+
+    @property
+    @pulumi.getter
+    def memory(self) -> int:
+        """
+        The memory size of the instance. Unit: GB.
+        """
+        return pulumi.get(self, "memory")
+
+    @property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> str:
+        """
+        The ID of the region.
+        """
+        return pulumi.get(self, "region_id")
+
+    @property
+    @pulumi.getter(name="specCode")
+    def spec_code(self) -> str:
+        """
+        Instance specification code.
+        """
+        return pulumi.get(self, "spec_code")
+
+    @property
+    @pulumi.getter(name="storageType")
+    def storage_type(self) -> str:
+        """
+        Storage type, fixed to LocalSSD.
+        """
+        return pulumi.get(self, "storage_type")
+
+    @property
+    @pulumi.getter(name="vCpu")
+    def v_cpu(self) -> int:
+        """
+        The number of vCPUs of the instance.
+        """
+        return pulumi.get(self, "v_cpu")
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> str:
+        """
+        Primary availability zone ID.
+        """
+        return pulumi.get(self, "zone_id")
+
+
+@pulumi.output_type
+class GetInstanceSslsSslResult(dict):
+    def __init__(__self__, *,
+                 addresses: Sequence[str],
+                 certificates: Sequence[int],
+                 force_encryption: bool,
+                 instance_id: str,
+                 is_valid: bool,
+                 ssl_enable: bool,
+                 ssl_expire_time: str,
+                 tls_versions: Sequence[str]):
+        """
+        :param Sequence[str] addresses: The protected addresses.
+        :param Sequence[int] certificates: Raw byte stream array of certificate zip.
+        :param bool force_encryption: Whether to force encryption.
+        :param str instance_id: The id of the postgresql Instance.
+        :param bool is_valid: Whether the SSL certificate is valid.
+        :param bool ssl_enable: Whether to enable SSL.
+        :param str ssl_expire_time: The expiration time of the SSL certificate. The format is: yyyy-MM-ddTHH:mm:ss(UTC time).
+        :param Sequence[str] tls_versions: The supported TLS versions.
+        """
+        pulumi.set(__self__, "addresses", addresses)
+        pulumi.set(__self__, "certificates", certificates)
+        pulumi.set(__self__, "force_encryption", force_encryption)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "is_valid", is_valid)
+        pulumi.set(__self__, "ssl_enable", ssl_enable)
+        pulumi.set(__self__, "ssl_expire_time", ssl_expire_time)
+        pulumi.set(__self__, "tls_versions", tls_versions)
+
+    @property
+    @pulumi.getter
+    def addresses(self) -> Sequence[str]:
+        """
+        The protected addresses.
+        """
+        return pulumi.get(self, "addresses")
+
+    @property
+    @pulumi.getter
+    def certificates(self) -> Sequence[int]:
+        """
+        Raw byte stream array of certificate zip.
+        """
+        return pulumi.get(self, "certificates")
+
+    @property
+    @pulumi.getter(name="forceEncryption")
+    def force_encryption(self) -> bool:
+        """
+        Whether to force encryption.
+        """
+        return pulumi.get(self, "force_encryption")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        The id of the postgresql Instance.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="isValid")
+    def is_valid(self) -> bool:
+        """
+        Whether the SSL certificate is valid.
+        """
+        return pulumi.get(self, "is_valid")
+
+    @property
+    @pulumi.getter(name="sslEnable")
+    def ssl_enable(self) -> bool:
+        """
+        Whether to enable SSL.
+        """
+        return pulumi.get(self, "ssl_enable")
+
+    @property
+    @pulumi.getter(name="sslExpireTime")
+    def ssl_expire_time(self) -> str:
+        """
+        The expiration time of the SSL certificate. The format is: yyyy-MM-ddTHH:mm:ss(UTC time).
+        """
+        return pulumi.get(self, "ssl_expire_time")
+
+    @property
+    @pulumi.getter(name="tlsVersions")
+    def tls_versions(self) -> Sequence[str]:
+        """
+        The supported TLS versions.
+        """
+        return pulumi.get(self, "tls_versions")
+
+
+@pulumi.output_type
+class GetInstanceTasksTaskInfoResult(dict):
+    def __init__(__self__, *,
+                 cost_time_ms: int,
+                 create_time: str,
+                 finish_time: str,
+                 instance_id: str,
+                 project_name: str,
+                 region: str,
+                 scheduled_switch_end_time: str,
+                 scheduled_switch_start_time: str,
+                 task_action: str,
+                 task_id: str,
+                 task_params: str,
+                 task_status: str):
+        """
+        :param int cost_time_ms: Task execution time in milliseconds.
+        :param str create_time: Task creation time. Format: yyyy-MM-ddTHH:mm:ssZ (UTC).
+        :param str finish_time: Task finish time. Format: yyyy-MM-ddTHH:mm:ssZ (UTC).
+        :param str instance_id: The id of the PostgreSQL instance.
+        :param str project_name: Project name.
+        :param str region: Region.
+        :param str scheduled_switch_end_time: The scheduled end time for the switch. The time format is yyyy-MM-ddTHH:mm:ssZ (UTC time). Note: This field will only be returned for tasks in the "Waiting to Start", "Waiting to Execute", or "Waiting to Switch" states.
+        :param str scheduled_switch_start_time: The start time of the scheduled switch. The time format is yyyy-MM-ddTHH:mm:ssZ (UTC time). Note: This field will only be returned for tasks in the "Waiting to Start", "Waiting to Execute", or "Waiting to Switch" states.
+        :param str task_action: Task action.
+        :param str task_id: Task ID. Note: One of TaskId or task time (creation_start_time and creation_end_time) must be specified.
+        :param str task_params: Task parameters in JSON string.
+        :param str task_status: Task status. Values: Canceled, WaitStart, WaitSwitch, Running, Running_BeforeSwitch, Running_Switching, Running_AfterSwitch, Success, Failed, Timeout, Rollbacking, RollbackFailed, Paused.
+        """
+        pulumi.set(__self__, "cost_time_ms", cost_time_ms)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "finish_time", finish_time)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "scheduled_switch_end_time", scheduled_switch_end_time)
+        pulumi.set(__self__, "scheduled_switch_start_time", scheduled_switch_start_time)
+        pulumi.set(__self__, "task_action", task_action)
+        pulumi.set(__self__, "task_id", task_id)
+        pulumi.set(__self__, "task_params", task_params)
+        pulumi.set(__self__, "task_status", task_status)
+
+    @property
+    @pulumi.getter(name="costTimeMs")
+    def cost_time_ms(self) -> int:
+        """
+        Task execution time in milliseconds.
+        """
+        return pulumi.get(self, "cost_time_ms")
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        Task creation time. Format: yyyy-MM-ddTHH:mm:ssZ (UTC).
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter(name="finishTime")
+    def finish_time(self) -> str:
+        """
+        Task finish time. Format: yyyy-MM-ddTHH:mm:ssZ (UTC).
+        """
+        return pulumi.get(self, "finish_time")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        The id of the PostgreSQL instance.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        Project name.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter
+    def region(self) -> str:
+        """
+        Region.
+        """
+        return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter(name="scheduledSwitchEndTime")
+    def scheduled_switch_end_time(self) -> str:
+        """
+        The scheduled end time for the switch. The time format is yyyy-MM-ddTHH:mm:ssZ (UTC time). Note: This field will only be returned for tasks in the "Waiting to Start", "Waiting to Execute", or "Waiting to Switch" states.
+        """
+        return pulumi.get(self, "scheduled_switch_end_time")
+
+    @property
+    @pulumi.getter(name="scheduledSwitchStartTime")
+    def scheduled_switch_start_time(self) -> str:
+        """
+        The start time of the scheduled switch. The time format is yyyy-MM-ddTHH:mm:ssZ (UTC time). Note: This field will only be returned for tasks in the "Waiting to Start", "Waiting to Execute", or "Waiting to Switch" states.
+        """
+        return pulumi.get(self, "scheduled_switch_start_time")
+
+    @property
+    @pulumi.getter(name="taskAction")
+    def task_action(self) -> str:
+        """
+        Task action.
+        """
+        return pulumi.get(self, "task_action")
+
+    @property
+    @pulumi.getter(name="taskId")
+    def task_id(self) -> str:
+        """
+        Task ID. Note: One of TaskId or task time (creation_start_time and creation_end_time) must be specified.
+        """
+        return pulumi.get(self, "task_id")
+
+    @property
+    @pulumi.getter(name="taskParams")
+    def task_params(self) -> str:
+        """
+        Task parameters in JSON string.
+        """
+        return pulumi.get(self, "task_params")
+
+    @property
+    @pulumi.getter(name="taskStatus")
+    def task_status(self) -> str:
+        """
+        Task status. Values: Canceled, WaitStart, WaitSwitch, Running, Running_BeforeSwitch, Running_Switching, Running_AfterSwitch, Success, Failed, Timeout, Rollbacking, RollbackFailed, Paused.
+        """
+        return pulumi.get(self, "task_status")
+
+
+@pulumi.output_type
 class GetInstancesInstanceResult(dict):
     def __init__(__self__, *,
+                 allow_list_version: str,
                  backup_use: int,
                  charge_details: Sequence['outputs.GetInstancesInstanceChargeDetailResult'],
                  create_time: str,
@@ -2451,8 +8327,13 @@ class GetInstancesInstanceResult(dict):
                  nodes: Sequence['outputs.GetInstancesInstanceNodeResult'],
                  project_name: str,
                  region_id: str,
+                 storage_data_use: int,
+                 storage_log_use: int,
                  storage_space: int,
+                 storage_temp_use: int,
                  storage_type: str,
+                 storage_use: int,
+                 storage_wal_use: int,
                  subnet_id: str,
                  tags: Sequence['outputs.GetInstancesInstanceTagResult'],
                  update_time: str,
@@ -2461,6 +8342,7 @@ class GetInstancesInstanceResult(dict):
                  zone_id: str,
                  zone_ids: Sequence[str]):
         """
+        :param str allow_list_version: The allow list version of the RDS PostgreSQL instance.
         :param int backup_use: The instance has used backup space. Unit: GB.
         :param Sequence['GetInstancesInstanceChargeDetailArgs'] charge_details: Payment methods.
         :param str create_time: Node creation local time.
@@ -2478,8 +8360,13 @@ class GetInstancesInstanceResult(dict):
         :param Sequence['GetInstancesInstanceNodeArgs'] nodes: Instance node information.
         :param str project_name: The project name of the RDS PostgreSQL instance.
         :param str region_id: The region of the RDS PostgreSQL instance.
+        :param int storage_data_use: The instance's primary node has used storage space. Unit: Byte.
+        :param int storage_log_use: The instance's primary node has used log storage space. Unit: Byte.
         :param int storage_space: Total instance storage space. Unit: GB.
-        :param str storage_type: Instance storage type.
+        :param int storage_temp_use: The instance's primary node has used temporary storage space. Unit: Byte.
+        :param str storage_type: The storage type of the RDS PostgreSQL instance.
+        :param int storage_use: The instance has used storage space. Unit: Byte.
+        :param int storage_wal_use: The instance's primary node has used WAL storage space. Unit: Byte.
         :param str subnet_id: The subnet ID of the RDS PostgreSQL instance.
         :param Sequence['GetInstancesInstanceTagArgs'] tags: Tags.
         :param str update_time: The update time of the RDS PostgreSQL instance.
@@ -2488,6 +8375,7 @@ class GetInstancesInstanceResult(dict):
         :param str zone_id: The available zone of the RDS PostgreSQL instance.
         :param Sequence[str] zone_ids: ID of the availability zone where each instance is located.
         """
+        pulumi.set(__self__, "allow_list_version", allow_list_version)
         pulumi.set(__self__, "backup_use", backup_use)
         pulumi.set(__self__, "charge_details", charge_details)
         pulumi.set(__self__, "create_time", create_time)
@@ -2505,8 +8393,13 @@ class GetInstancesInstanceResult(dict):
         pulumi.set(__self__, "nodes", nodes)
         pulumi.set(__self__, "project_name", project_name)
         pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "storage_data_use", storage_data_use)
+        pulumi.set(__self__, "storage_log_use", storage_log_use)
         pulumi.set(__self__, "storage_space", storage_space)
+        pulumi.set(__self__, "storage_temp_use", storage_temp_use)
         pulumi.set(__self__, "storage_type", storage_type)
+        pulumi.set(__self__, "storage_use", storage_use)
+        pulumi.set(__self__, "storage_wal_use", storage_wal_use)
         pulumi.set(__self__, "subnet_id", subnet_id)
         pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "update_time", update_time)
@@ -2514,6 +8407,14 @@ class GetInstancesInstanceResult(dict):
         pulumi.set(__self__, "vpc_id", vpc_id)
         pulumi.set(__self__, "zone_id", zone_id)
         pulumi.set(__self__, "zone_ids", zone_ids)
+
+    @property
+    @pulumi.getter(name="allowListVersion")
+    def allow_list_version(self) -> str:
+        """
+        The allow list version of the RDS PostgreSQL instance.
+        """
+        return pulumi.get(self, "allow_list_version")
 
     @property
     @pulumi.getter(name="backupUse")
@@ -2652,6 +8553,22 @@ class GetInstancesInstanceResult(dict):
         return pulumi.get(self, "region_id")
 
     @property
+    @pulumi.getter(name="storageDataUse")
+    def storage_data_use(self) -> int:
+        """
+        The instance's primary node has used storage space. Unit: Byte.
+        """
+        return pulumi.get(self, "storage_data_use")
+
+    @property
+    @pulumi.getter(name="storageLogUse")
+    def storage_log_use(self) -> int:
+        """
+        The instance's primary node has used log storage space. Unit: Byte.
+        """
+        return pulumi.get(self, "storage_log_use")
+
+    @property
     @pulumi.getter(name="storageSpace")
     def storage_space(self) -> int:
         """
@@ -2660,12 +8577,36 @@ class GetInstancesInstanceResult(dict):
         return pulumi.get(self, "storage_space")
 
     @property
+    @pulumi.getter(name="storageTempUse")
+    def storage_temp_use(self) -> int:
+        """
+        The instance's primary node has used temporary storage space. Unit: Byte.
+        """
+        return pulumi.get(self, "storage_temp_use")
+
+    @property
     @pulumi.getter(name="storageType")
     def storage_type(self) -> str:
         """
-        Instance storage type.
+        The storage type of the RDS PostgreSQL instance.
         """
         return pulumi.get(self, "storage_type")
+
+    @property
+    @pulumi.getter(name="storageUse")
+    def storage_use(self) -> int:
+        """
+        The instance has used storage space. Unit: Byte.
+        """
+        return pulumi.get(self, "storage_use")
+
+    @property
+    @pulumi.getter(name="storageWalUse")
+    def storage_wal_use(self) -> int:
+        """
+        The instance's primary node has used WAL storage space. Unit: Byte.
+        """
+        return pulumi.get(self, "storage_wal_use")
 
     @property
     @pulumi.getter(name="subnetId")
@@ -2732,6 +8673,7 @@ class GetInstancesInstanceChargeDetailResult(dict):
                  charge_start_time: str,
                  charge_status: str,
                  charge_type: str,
+                 number: int,
                  overdue_reclaim_time: str,
                  overdue_time: str,
                  period: int,
@@ -2747,8 +8689,9 @@ class GetInstancesInstanceChargeDetailResult(dict):
         :param str charge_status: Pay status. Value:
                normal - normal
                overdue - overdue
-               .
+               unpaid - unpaid.
         :param str charge_type: The charge type of the RDS instance.
+        :param int number: The number of the RDS PostgreSQL instance.
         :param str overdue_reclaim_time: Estimated release time when arrears are closed (pay-as-you-go & monthly subscription).
         :param str overdue_time: Shutdown time in arrears (pay-as-you-go & monthly subscription).
         :param int period: Purchase duration in prepaid scenarios. Default: 1.
@@ -2763,6 +8706,7 @@ class GetInstancesInstanceChargeDetailResult(dict):
         pulumi.set(__self__, "charge_start_time", charge_start_time)
         pulumi.set(__self__, "charge_status", charge_status)
         pulumi.set(__self__, "charge_type", charge_type)
+        pulumi.set(__self__, "number", number)
         pulumi.set(__self__, "overdue_reclaim_time", overdue_reclaim_time)
         pulumi.set(__self__, "overdue_time", overdue_time)
         pulumi.set(__self__, "period", period)
@@ -2803,7 +8747,7 @@ class GetInstancesInstanceChargeDetailResult(dict):
         Pay status. Value:
         normal - normal
         overdue - overdue
-        .
+        unpaid - unpaid.
         """
         return pulumi.get(self, "charge_status")
 
@@ -2814,6 +8758,14 @@ class GetInstancesInstanceChargeDetailResult(dict):
         The charge type of the RDS instance.
         """
         return pulumi.get(self, "charge_type")
+
+    @property
+    @pulumi.getter
+    def number(self) -> int:
+        """
+        The number of the RDS PostgreSQL instance.
+        """
+        return pulumi.get(self, "number")
 
     @property
     @pulumi.getter(name="overdueReclaimTime")
@@ -2877,8 +8829,12 @@ class GetInstancesInstanceEndpointResult(dict):
                  endpoint_id: str,
                  endpoint_name: str,
                  endpoint_type: str,
+                 read_only_node_distribution_type: str,
+                 read_only_node_max_delay_time: int,
                  read_only_node_weights: Sequence['outputs.GetInstancesInstanceEndpointReadOnlyNodeWeightResult'],
-                 read_write_mode: str):
+                 read_write_mode: str,
+                 read_write_proxy_connection: int,
+                 write_node_halt_writing: bool):
         """
         :param Sequence['GetInstancesInstanceEndpointAddressArgs'] addresses: Address list.
         :param str auto_add_new_nodes: When the terminal type is read-write terminal or read-only terminal, it supports setting whether new nodes are automatically added.
@@ -2893,10 +8849,16 @@ class GetInstancesInstanceEndpointResult(dict):
                Custom: Custom terminal.
                Direct: Direct connection to the terminal. (Only the operation and maintenance side)
                AllNode: All node terminals. (Only the operation and maintenance side).
+        :param str read_only_node_distribution_type: The distribution type of the read-only nodes, value:
+               Default: Default distribution.
+               Custom: Custom distribution.
+        :param int read_only_node_max_delay_time: Maximum latency threshold of read-only node. If the latency of a read-only node exceeds this value, reading traffic won't be routed to this node. Unit: seconds.Values: 0~3600.Default value: 30.
         :param Sequence['GetInstancesInstanceEndpointReadOnlyNodeWeightArgs'] read_only_node_weights: The list of nodes configured by the connection terminal and the corresponding read-only weights.
         :param str read_write_mode: Read and write mode:
                ReadWrite: read and write
                ReadOnly: read only (default).
+        :param int read_write_proxy_connection: After the terminal enables read-write separation, the number of proxy connections set for the terminal. The lower limit of the number of proxy connections is 20. The upper limit of the number of proxy connections depends on the specifications of the instance master node.
+        :param bool write_node_halt_writing: Whether the endpoint sends write requests to the write node (currently only the master node is a write node). Values: true: Yes(Default). false: No.
         """
         pulumi.set(__self__, "addresses", addresses)
         pulumi.set(__self__, "auto_add_new_nodes", auto_add_new_nodes)
@@ -2906,8 +8868,12 @@ class GetInstancesInstanceEndpointResult(dict):
         pulumi.set(__self__, "endpoint_id", endpoint_id)
         pulumi.set(__self__, "endpoint_name", endpoint_name)
         pulumi.set(__self__, "endpoint_type", endpoint_type)
+        pulumi.set(__self__, "read_only_node_distribution_type", read_only_node_distribution_type)
+        pulumi.set(__self__, "read_only_node_max_delay_time", read_only_node_max_delay_time)
         pulumi.set(__self__, "read_only_node_weights", read_only_node_weights)
         pulumi.set(__self__, "read_write_mode", read_write_mode)
+        pulumi.set(__self__, "read_write_proxy_connection", read_write_proxy_connection)
+        pulumi.set(__self__, "write_node_halt_writing", write_node_halt_writing)
 
     @property
     @pulumi.getter
@@ -2979,6 +8945,24 @@ class GetInstancesInstanceEndpointResult(dict):
         return pulumi.get(self, "endpoint_type")
 
     @property
+    @pulumi.getter(name="readOnlyNodeDistributionType")
+    def read_only_node_distribution_type(self) -> str:
+        """
+        The distribution type of the read-only nodes, value:
+        Default: Default distribution.
+        Custom: Custom distribution.
+        """
+        return pulumi.get(self, "read_only_node_distribution_type")
+
+    @property
+    @pulumi.getter(name="readOnlyNodeMaxDelayTime")
+    def read_only_node_max_delay_time(self) -> int:
+        """
+        Maximum latency threshold of read-only node. If the latency of a read-only node exceeds this value, reading traffic won't be routed to this node. Unit: seconds.Values: 0~3600.Default value: 30.
+        """
+        return pulumi.get(self, "read_only_node_max_delay_time")
+
+    @property
     @pulumi.getter(name="readOnlyNodeWeights")
     def read_only_node_weights(self) -> Sequence['outputs.GetInstancesInstanceEndpointReadOnlyNodeWeightResult']:
         """
@@ -2996,39 +8980,75 @@ class GetInstancesInstanceEndpointResult(dict):
         """
         return pulumi.get(self, "read_write_mode")
 
+    @property
+    @pulumi.getter(name="readWriteProxyConnection")
+    def read_write_proxy_connection(self) -> int:
+        """
+        After the terminal enables read-write separation, the number of proxy connections set for the terminal. The lower limit of the number of proxy connections is 20. The upper limit of the number of proxy connections depends on the specifications of the instance master node.
+        """
+        return pulumi.get(self, "read_write_proxy_connection")
+
+    @property
+    @pulumi.getter(name="writeNodeHaltWriting")
+    def write_node_halt_writing(self) -> bool:
+        """
+        Whether the endpoint sends write requests to the write node (currently only the master node is a write node). Values: true: Yes(Default). false: No.
+        """
+        return pulumi.get(self, "write_node_halt_writing")
+
 
 @pulumi.output_type
 class GetInstancesInstanceEndpointAddressResult(dict):
     def __init__(__self__, *,
+                 cross_region_domain: str,
                  dns_visibility: bool,
                  domain: str,
+                 domain_visibility_setting: str,
                  eip_id: str,
+                 internet_protocol: str,
                  ip_address: str,
+                 ipv6_address: str,
                  network_type: str,
                  port: str,
                  subnet_id: str):
         """
-        :param bool dns_visibility: DNS Visibility.
+        :param str cross_region_domain: Address that can be accessed across regions.
+        :param bool dns_visibility: Whether to enable public network resolution. Values: false: Default value. PrivateZone of Volcano Engine. true: Private and public network resolution of Volcano Engine.
         :param str domain: Connect domain name.
+        :param str domain_visibility_setting: The type of private network address. Values: LocalDomain: Local domain name. CrossRegionDomain: Domains accessible across regions.
         :param str eip_id: The ID of the EIP, only valid for Public addresses.
+        :param str internet_protocol: Address IP protocol, IPv4 or IPv6.
         :param str ip_address: The IP Address.
+        :param str ipv6_address: The IPv6 Address.
         :param str network_type: Network address type, temporarily Private, Public, PublicService.
         :param str port: The Port.
         :param str subnet_id: The subnet ID of the RDS PostgreSQL instance.
         """
+        pulumi.set(__self__, "cross_region_domain", cross_region_domain)
         pulumi.set(__self__, "dns_visibility", dns_visibility)
         pulumi.set(__self__, "domain", domain)
+        pulumi.set(__self__, "domain_visibility_setting", domain_visibility_setting)
         pulumi.set(__self__, "eip_id", eip_id)
+        pulumi.set(__self__, "internet_protocol", internet_protocol)
         pulumi.set(__self__, "ip_address", ip_address)
+        pulumi.set(__self__, "ipv6_address", ipv6_address)
         pulumi.set(__self__, "network_type", network_type)
         pulumi.set(__self__, "port", port)
         pulumi.set(__self__, "subnet_id", subnet_id)
 
     @property
+    @pulumi.getter(name="crossRegionDomain")
+    def cross_region_domain(self) -> str:
+        """
+        Address that can be accessed across regions.
+        """
+        return pulumi.get(self, "cross_region_domain")
+
+    @property
     @pulumi.getter(name="dnsVisibility")
     def dns_visibility(self) -> bool:
         """
-        DNS Visibility.
+        Whether to enable public network resolution. Values: false: Default value. PrivateZone of Volcano Engine. true: Private and public network resolution of Volcano Engine.
         """
         return pulumi.get(self, "dns_visibility")
 
@@ -3041,6 +9061,14 @@ class GetInstancesInstanceEndpointAddressResult(dict):
         return pulumi.get(self, "domain")
 
     @property
+    @pulumi.getter(name="domainVisibilitySetting")
+    def domain_visibility_setting(self) -> str:
+        """
+        The type of private network address. Values: LocalDomain: Local domain name. CrossRegionDomain: Domains accessible across regions.
+        """
+        return pulumi.get(self, "domain_visibility_setting")
+
+    @property
     @pulumi.getter(name="eipId")
     def eip_id(self) -> str:
         """
@@ -3049,12 +9077,28 @@ class GetInstancesInstanceEndpointAddressResult(dict):
         return pulumi.get(self, "eip_id")
 
     @property
+    @pulumi.getter(name="internetProtocol")
+    def internet_protocol(self) -> str:
+        """
+        Address IP protocol, IPv4 or IPv6.
+        """
+        return pulumi.get(self, "internet_protocol")
+
+    @property
     @pulumi.getter(name="ipAddress")
     def ip_address(self) -> str:
         """
         The IP Address.
         """
         return pulumi.get(self, "ip_address")
+
+    @property
+    @pulumi.getter(name="ipv6Address")
+    def ipv6_address(self) -> str:
+        """
+        The IPv6 Address.
+        """
+        return pulumi.get(self, "ipv6_address")
 
     @property
     @pulumi.getter(name="networkType")
@@ -3316,6 +9360,570 @@ class GetInstancesTagResult(dict):
 
 
 @pulumi.output_type
+class GetParameterTemplateApplyDiffsParameterResult(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 new_value: str,
+                 old_value: str,
+                 restart: bool):
+        """
+        :param str name: The name of the parameter.
+        :param str new_value: The running value defined for this parameter in the parameter template.
+        :param str old_value: The current running value of this parameter in the instance.
+        :param bool restart: Indicates whether a restart is required after the parameter is modified.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "new_value", new_value)
+        pulumi.set(__self__, "old_value", old_value)
+        pulumi.set(__self__, "restart", restart)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the parameter.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="newValue")
+    def new_value(self) -> str:
+        """
+        The running value defined for this parameter in the parameter template.
+        """
+        return pulumi.get(self, "new_value")
+
+    @property
+    @pulumi.getter(name="oldValue")
+    def old_value(self) -> str:
+        """
+        The current running value of this parameter in the instance.
+        """
+        return pulumi.get(self, "old_value")
+
+    @property
+    @pulumi.getter
+    def restart(self) -> bool:
+        """
+        Indicates whether a restart is required after the parameter is modified.
+        """
+        return pulumi.get(self, "restart")
+
+
+@pulumi.output_type
+class GetParameterTemplatesTemplateInfoResult(dict):
+    def __init__(__self__, *,
+                 account_id: str,
+                 create_time: str,
+                 need_restart: bool,
+                 parameter_num: int,
+                 template_category: str,
+                 template_desc: str,
+                 template_id: str,
+                 template_name: str,
+                 template_params: Sequence['outputs.GetParameterTemplatesTemplateInfoTemplateParamResult'],
+                 template_source: str,
+                 template_type: str,
+                 template_type_version: str,
+                 update_time: str):
+        """
+        :param str account_id: Account ID.
+        :param str create_time: Creation time of the parameter template. The format is yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+        :param bool need_restart: Indicates whether the parameter template change requires a restart.
+        :param int parameter_num: Number of parameters in the parameter template.
+        :param str template_category: Classification of parameter templates. The current value can only be DBEngine.
+        :param str template_desc: Description information of the parameter template.
+        :param str template_id: Parameter template ID.
+        :param str template_name: Parameter template name.
+        :param Sequence['GetParameterTemplatesTemplateInfoTemplateParamArgs'] template_params: Parameter configuration of the parameter template.
+        :param str template_source: The source of the parameter template. The current value can only be User.
+        :param str template_type: The type of the parameter template. The current value can only be PostgreSQL.
+        :param str template_type_version: PostgreSQL compatible versions. The current value can only be PostgreSQL_11/12/13/14/15/16/17.
+        :param str update_time: Update time of the parameter template. The format is yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+        """
+        pulumi.set(__self__, "account_id", account_id)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "need_restart", need_restart)
+        pulumi.set(__self__, "parameter_num", parameter_num)
+        pulumi.set(__self__, "template_category", template_category)
+        pulumi.set(__self__, "template_desc", template_desc)
+        pulumi.set(__self__, "template_id", template_id)
+        pulumi.set(__self__, "template_name", template_name)
+        pulumi.set(__self__, "template_params", template_params)
+        pulumi.set(__self__, "template_source", template_source)
+        pulumi.set(__self__, "template_type", template_type)
+        pulumi.set(__self__, "template_type_version", template_type_version)
+        pulumi.set(__self__, "update_time", update_time)
+
+    @property
+    @pulumi.getter(name="accountId")
+    def account_id(self) -> str:
+        """
+        Account ID.
+        """
+        return pulumi.get(self, "account_id")
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        Creation time of the parameter template. The format is yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter(name="needRestart")
+    def need_restart(self) -> bool:
+        """
+        Indicates whether the parameter template change requires a restart.
+        """
+        return pulumi.get(self, "need_restart")
+
+    @property
+    @pulumi.getter(name="parameterNum")
+    def parameter_num(self) -> int:
+        """
+        Number of parameters in the parameter template.
+        """
+        return pulumi.get(self, "parameter_num")
+
+    @property
+    @pulumi.getter(name="templateCategory")
+    def template_category(self) -> str:
+        """
+        Classification of parameter templates. The current value can only be DBEngine.
+        """
+        return pulumi.get(self, "template_category")
+
+    @property
+    @pulumi.getter(name="templateDesc")
+    def template_desc(self) -> str:
+        """
+        Description information of the parameter template.
+        """
+        return pulumi.get(self, "template_desc")
+
+    @property
+    @pulumi.getter(name="templateId")
+    def template_id(self) -> str:
+        """
+        Parameter template ID.
+        """
+        return pulumi.get(self, "template_id")
+
+    @property
+    @pulumi.getter(name="templateName")
+    def template_name(self) -> str:
+        """
+        Parameter template name.
+        """
+        return pulumi.get(self, "template_name")
+
+    @property
+    @pulumi.getter(name="templateParams")
+    def template_params(self) -> Sequence['outputs.GetParameterTemplatesTemplateInfoTemplateParamResult']:
+        """
+        Parameter configuration of the parameter template.
+        """
+        return pulumi.get(self, "template_params")
+
+    @property
+    @pulumi.getter(name="templateSource")
+    def template_source(self) -> str:
+        """
+        The source of the parameter template. The current value can only be User.
+        """
+        return pulumi.get(self, "template_source")
+
+    @property
+    @pulumi.getter(name="templateType")
+    def template_type(self) -> str:
+        """
+        The type of the parameter template. The current value can only be PostgreSQL.
+        """
+        return pulumi.get(self, "template_type")
+
+    @property
+    @pulumi.getter(name="templateTypeVersion")
+    def template_type_version(self) -> str:
+        """
+        PostgreSQL compatible versions. The current value can only be PostgreSQL_11/12/13/14/15/16/17.
+        """
+        return pulumi.get(self, "template_type_version")
+
+    @property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> str:
+        """
+        Update time of the parameter template. The format is yyyy-MM-ddTHH:mm:ss.sssZ (UTC time).
+        """
+        return pulumi.get(self, "update_time")
+
+
+@pulumi.output_type
+class GetParameterTemplatesTemplateInfoTemplateParamResult(dict):
+    def __init__(__self__, *,
+                 checking_code: str,
+                 default_value: str,
+                 description: str,
+                 description_zh: str,
+                 force_restart: bool,
+                 name: str,
+                 type: str,
+                 value: str):
+        """
+        :param str checking_code: The value range of the parameter.
+        :param str default_value: Parameter default value. Refers to the default value provided in the default template corresponding to this instance.
+        :param str description: The description of the parameter in English.
+        :param str description_zh: The description of the parameter in Chinese.
+        :param bool force_restart: Indicates whether a restart is required after the parameter is modified.
+        :param str name: The name of the parameter.
+        :param str type: The type of the parameter.
+        :param str value: The current value of the parameter.
+        """
+        pulumi.set(__self__, "checking_code", checking_code)
+        pulumi.set(__self__, "default_value", default_value)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "description_zh", description_zh)
+        pulumi.set(__self__, "force_restart", force_restart)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="checkingCode")
+    def checking_code(self) -> str:
+        """
+        The value range of the parameter.
+        """
+        return pulumi.get(self, "checking_code")
+
+    @property
+    @pulumi.getter(name="defaultValue")
+    def default_value(self) -> str:
+        """
+        Parameter default value. Refers to the default value provided in the default template corresponding to this instance.
+        """
+        return pulumi.get(self, "default_value")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the parameter in English.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="descriptionZh")
+    def description_zh(self) -> str:
+        """
+        The description of the parameter in Chinese.
+        """
+        return pulumi.get(self, "description_zh")
+
+    @property
+    @pulumi.getter(name="forceRestart")
+    def force_restart(self) -> bool:
+        """
+        Indicates whether a restart is required after the parameter is modified.
+        """
+        return pulumi.get(self, "force_restart")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the parameter.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of the parameter.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The current value of the parameter.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetPlannedEventsPlannedEventResult(dict):
+    def __init__(__self__, *,
+                 business_impact: str,
+                 event_id: str,
+                 event_type: str,
+                 instance_id: str,
+                 instance_name: str,
+                 max_delay_time: str,
+                 planned_begin_time: str,
+                 planned_event_reason: str,
+                 planned_switch_begin_time: str,
+                 planned_switch_end_time: str,
+                 region: str,
+                 status: str):
+        """
+        :param str business_impact: The impact of operation and maintenance events on the business.
+        :param str event_id: Event ID.
+        :param str event_type: Event type. Values: VersionUpgrade, HostOffline.
+        :param str instance_id: The id of the PostgreSQL instance.
+        :param str instance_name: The name of PostgreSQL instance.
+        :param str max_delay_time: Maximum delay time. Format: yyyy-MM-ddTHH:mm:ss.sssZ (UTC).
+        :param str planned_begin_time: Planned execution time. Format: yyyy-MM-ddTHH:mm:ss.sssZ (UTC).
+        :param str planned_event_reason: Reason for the planned event.
+        :param str planned_switch_begin_time: Planned switch start time. Format: yyyy-MM-ddTHH:mm:ss.sssZ (UTC).
+        :param str planned_switch_end_time: Planned switch end time. Format: yyyy-MM-ddTHH:mm:ss.sssZ (UTC).
+        :param str region: Region.
+        :param str status: Operation event status. Values: Canceled, WaitStart, WaitSwitch, Running, Running_BeforeSwitch, Running_Switching, Running_AfterSwitch, Success, Failed, Timeout, Rollbacking, RollbackFailed.
+        """
+        pulumi.set(__self__, "business_impact", business_impact)
+        pulumi.set(__self__, "event_id", event_id)
+        pulumi.set(__self__, "event_type", event_type)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "instance_name", instance_name)
+        pulumi.set(__self__, "max_delay_time", max_delay_time)
+        pulumi.set(__self__, "planned_begin_time", planned_begin_time)
+        pulumi.set(__self__, "planned_event_reason", planned_event_reason)
+        pulumi.set(__self__, "planned_switch_begin_time", planned_switch_begin_time)
+        pulumi.set(__self__, "planned_switch_end_time", planned_switch_end_time)
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter(name="businessImpact")
+    def business_impact(self) -> str:
+        """
+        The impact of operation and maintenance events on the business.
+        """
+        return pulumi.get(self, "business_impact")
+
+    @property
+    @pulumi.getter(name="eventId")
+    def event_id(self) -> str:
+        """
+        Event ID.
+        """
+        return pulumi.get(self, "event_id")
+
+    @property
+    @pulumi.getter(name="eventType")
+    def event_type(self) -> str:
+        """
+        Event type. Values: VersionUpgrade, HostOffline.
+        """
+        return pulumi.get(self, "event_type")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        The id of the PostgreSQL instance.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="instanceName")
+    def instance_name(self) -> str:
+        """
+        The name of PostgreSQL instance.
+        """
+        return pulumi.get(self, "instance_name")
+
+    @property
+    @pulumi.getter(name="maxDelayTime")
+    def max_delay_time(self) -> str:
+        """
+        Maximum delay time. Format: yyyy-MM-ddTHH:mm:ss.sssZ (UTC).
+        """
+        return pulumi.get(self, "max_delay_time")
+
+    @property
+    @pulumi.getter(name="plannedBeginTime")
+    def planned_begin_time(self) -> str:
+        """
+        Planned execution time. Format: yyyy-MM-ddTHH:mm:ss.sssZ (UTC).
+        """
+        return pulumi.get(self, "planned_begin_time")
+
+    @property
+    @pulumi.getter(name="plannedEventReason")
+    def planned_event_reason(self) -> str:
+        """
+        Reason for the planned event.
+        """
+        return pulumi.get(self, "planned_event_reason")
+
+    @property
+    @pulumi.getter(name="plannedSwitchBeginTime")
+    def planned_switch_begin_time(self) -> str:
+        """
+        Planned switch start time. Format: yyyy-MM-ddTHH:mm:ss.sssZ (UTC).
+        """
+        return pulumi.get(self, "planned_switch_begin_time")
+
+    @property
+    @pulumi.getter(name="plannedSwitchEndTime")
+    def planned_switch_end_time(self) -> str:
+        """
+        Planned switch end time. Format: yyyy-MM-ddTHH:mm:ss.sssZ (UTC).
+        """
+        return pulumi.get(self, "planned_switch_end_time")
+
+    @property
+    @pulumi.getter
+    def region(self) -> str:
+        """
+        Region.
+        """
+        return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        Operation event status. Values: Canceled, WaitStart, WaitSwitch, Running, Running_BeforeSwitch, Running_Switching, Running_AfterSwitch, Success, Failed, Timeout, Rollbacking, RollbackFailed.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetRegionsRegionResult(dict):
+    def __init__(__self__, *,
+                 region_id: str,
+                 region_name: str):
+        """
+        :param str region_id: The ID of the region.
+        :param str region_name: The name of the region.
+        """
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "region_name", region_name)
+
+    @property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> str:
+        """
+        The ID of the region.
+        """
+        return pulumi.get(self, "region_id")
+
+    @property
+    @pulumi.getter(name="regionName")
+    def region_name(self) -> str:
+        """
+        The name of the region.
+        """
+        return pulumi.get(self, "region_name")
+
+
+@pulumi.output_type
+class GetReplicationSlotsReplicationSlotResult(dict):
+    def __init__(__self__, *,
+                 plugin: str,
+                 slot_name: str,
+                 slot_type: str,
+                 data_base: Optional[str] = None,
+                 ip_address: Optional[str] = None,
+                 slot_status: Optional[str] = None,
+                 temporary: Optional[bool] = None,
+                 wal_delay: Optional[int] = None):
+        """
+        :param str plugin: The name of the plugin used by the logical replication slot to parse WAL logs.
+        :param str slot_name: The name of the slot.
+        :param str slot_type: The type of the slot: physical or logical.
+        :param str data_base: The database where the replication slot is located.
+        :param str ip_address: The ip address.
+        :param str slot_status: The status of the replication slot: ACTIVE or INACTIVE.
+        :param bool temporary: Whether the slot is temporary.
+        :param int wal_delay: The cumulative WAL log volume corresponding to this replication slot. The unit is Byte.
+        """
+        pulumi.set(__self__, "plugin", plugin)
+        pulumi.set(__self__, "slot_name", slot_name)
+        pulumi.set(__self__, "slot_type", slot_type)
+        if data_base is not None:
+            pulumi.set(__self__, "data_base", data_base)
+        if ip_address is not None:
+            pulumi.set(__self__, "ip_address", ip_address)
+        if slot_status is not None:
+            pulumi.set(__self__, "slot_status", slot_status)
+        if temporary is not None:
+            pulumi.set(__self__, "temporary", temporary)
+        if wal_delay is not None:
+            pulumi.set(__self__, "wal_delay", wal_delay)
+
+    @property
+    @pulumi.getter
+    def plugin(self) -> str:
+        """
+        The name of the plugin used by the logical replication slot to parse WAL logs.
+        """
+        return pulumi.get(self, "plugin")
+
+    @property
+    @pulumi.getter(name="slotName")
+    def slot_name(self) -> str:
+        """
+        The name of the slot.
+        """
+        return pulumi.get(self, "slot_name")
+
+    @property
+    @pulumi.getter(name="slotType")
+    def slot_type(self) -> str:
+        """
+        The type of the slot: physical or logical.
+        """
+        return pulumi.get(self, "slot_type")
+
+    @property
+    @pulumi.getter(name="dataBase")
+    def data_base(self) -> Optional[str]:
+        """
+        The database where the replication slot is located.
+        """
+        return pulumi.get(self, "data_base")
+
+    @property
+    @pulumi.getter(name="ipAddress")
+    def ip_address(self) -> Optional[str]:
+        """
+        The ip address.
+        """
+        return pulumi.get(self, "ip_address")
+
+    @property
+    @pulumi.getter(name="slotStatus")
+    def slot_status(self) -> Optional[str]:
+        """
+        The status of the replication slot: ACTIVE or INACTIVE.
+        """
+        return pulumi.get(self, "slot_status")
+
+    @property
+    @pulumi.getter
+    def temporary(self) -> Optional[bool]:
+        """
+        Whether the slot is temporary.
+        """
+        return pulumi.get(self, "temporary")
+
+    @property
+    @pulumi.getter(name="walDelay")
+    def wal_delay(self) -> Optional[int]:
+        """
+        The cumulative WAL log volume corresponding to this replication slot. The unit is Byte.
+        """
+        return pulumi.get(self, "wal_delay")
+
+
+@pulumi.output_type
 class GetSchemasSchemaResult(dict):
     def __init__(__self__, *,
                  db_name: str,
@@ -3353,5 +9961,45 @@ class GetSchemasSchemaResult(dict):
         The name of the schema.
         """
         return pulumi.get(self, "schema_name")
+
+
+@pulumi.output_type
+class GetZonesZoneResult(dict):
+    def __init__(__self__, *,
+                 description: str,
+                 zone_id: str,
+                 zone_name: str):
+        """
+        :param str description: The description of the zone.
+        :param str zone_id: The id of the zone.
+        :param str zone_name: The name of the zone.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "zone_id", zone_id)
+        pulumi.set(__self__, "zone_name", zone_name)
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the zone.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> str:
+        """
+        The id of the zone.
+        """
+        return pulumi.get(self, "zone_id")
+
+    @property
+    @pulumi.getter(name="zoneName")
+    def zone_name(self) -> str:
+        """
+        The name of the zone.
+        """
+        return pulumi.get(self, "zone_name")
 
 

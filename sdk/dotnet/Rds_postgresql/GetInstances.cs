@@ -221,6 +221,18 @@ namespace Pulumi.Volcengine.Rds_postgresql
         [Input("outputFile")]
         public string? OutputFile { get; set; }
 
+        /// <summary>
+        /// The project name of the RDS PostgreSQL instance.
+        /// </summary>
+        [Input("projectName")]
+        public string? ProjectName { get; set; }
+
+        /// <summary>
+        /// The storage type of the RDS PostgreSQL instance.
+        /// </summary>
+        [Input("storageType")]
+        public string? StorageType { get; set; }
+
         [Input("tags")]
         private List<Inputs.GetInstancesTagArgs>? _tags;
 
@@ -301,6 +313,18 @@ namespace Pulumi.Volcengine.Rds_postgresql
         [Input("outputFile")]
         public Input<string>? OutputFile { get; set; }
 
+        /// <summary>
+        /// The project name of the RDS PostgreSQL instance.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        /// <summary>
+        /// The storage type of the RDS PostgreSQL instance.
+        /// </summary>
+        [Input("storageType")]
+        public Input<string>? StorageType { get; set; }
+
         [Input("tags")]
         private InputList<Inputs.GetInstancesTagInputArgs>? _tags;
 
@@ -364,6 +388,14 @@ namespace Pulumi.Volcengine.Rds_postgresql
         public readonly string? NameRegex;
         public readonly string? OutputFile;
         /// <summary>
+        /// The project name of the RDS PostgreSQL instance.
+        /// </summary>
+        public readonly string? ProjectName;
+        /// <summary>
+        /// Instance storage type.
+        /// </summary>
+        public readonly string? StorageType;
+        /// <summary>
         /// Tags.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetInstancesTagResult> Tags;
@@ -400,6 +432,10 @@ namespace Pulumi.Volcengine.Rds_postgresql
 
             string? outputFile,
 
+            string? projectName,
+
+            string? storageType,
+
             ImmutableArray<Outputs.GetInstancesTagResult> tags,
 
             int totalCount,
@@ -417,6 +453,8 @@ namespace Pulumi.Volcengine.Rds_postgresql
             Instances = instances;
             NameRegex = nameRegex;
             OutputFile = outputFile;
+            ProjectName = projectName;
+            StorageType = storageType;
             Tags = tags;
             TotalCount = totalCount;
             ZoneId = zoneId;

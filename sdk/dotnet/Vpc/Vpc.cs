@@ -175,6 +175,12 @@ namespace Pulumi.Volcengine.Vpc
         public Output<string> UpdateTime { get; private set; } = null!;
 
         /// <summary>
+        /// The user cidr block list of VPC.
+        /// </summary>
+        [Output("userCidrBlocks")]
+        public Output<ImmutableArray<string>> UserCidrBlocks { get; private set; } = null!;
+
+        /// <summary>
         /// The ID of VPC.
         /// </summary>
         [Output("vpcId")]
@@ -462,6 +468,18 @@ namespace Pulumi.Volcengine.Vpc
         /// </summary>
         [Input("updateTime")]
         public Input<string>? UpdateTime { get; set; }
+
+        [Input("userCidrBlocks")]
+        private InputList<string>? _userCidrBlocks;
+
+        /// <summary>
+        /// The user cidr block list of VPC.
+        /// </summary>
+        public InputList<string> UserCidrBlocks
+        {
+            get => _userCidrBlocks ?? (_userCidrBlocks = new InputList<string>());
+            set => _userCidrBlocks = value;
+        }
 
         /// <summary>
         /// The ID of VPC.

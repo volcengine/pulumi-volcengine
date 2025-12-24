@@ -20,6 +20,7 @@ class BucketArgs:
                  account_acls: Optional[pulumi.Input[Sequence[pulumi.Input['BucketAccountAclArgs']]]] = None,
                  az_redundancy: Optional[pulumi.Input[str]] = None,
                  bucket_acl_delivered: Optional[pulumi.Input[bool]] = None,
+                 bucket_type: Optional[pulumi.Input[str]] = None,
                  enable_version: Optional[pulumi.Input[bool]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  public_acl: Optional[pulumi.Input[str]] = None,
@@ -31,10 +32,11 @@ class BucketArgs:
         :param pulumi.Input[Sequence[pulumi.Input['BucketAccountAclArgs']]] account_acls: The user set of grant full control.
         :param pulumi.Input[str] az_redundancy: The AZ redundancy of the Tos Bucket. Default is `single-az`. Valid values: `single-az`, `multi-az`.
         :param pulumi.Input[bool] bucket_acl_delivered: Whether to enable the default inheritance bucket ACL function for objects. Default is false.
+        :param pulumi.Input[str] bucket_type: The bucket type of the TOS bucket. Default is `fns`. Valid values: `hns`, `fns`.
         :param pulumi.Input[bool] enable_version: The flag of enable tos version.
         :param pulumi.Input[str] project_name: The ProjectName of the Tos Bucket. Default is `default`.
         :param pulumi.Input[str] public_acl: The public acl control of object.Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read.
-        :param pulumi.Input[str] storage_class: The storage type of the object.Valid value is STANDARD|IA|ARCHIVE_FR.Default is STANDARD.
+        :param pulumi.Input[str] storage_class: The storage type of the object.Valid value is STANDARD|IA|INTELLIGENT_TIERING|ARCHIVE_FR|ARCHIVE|COLD_ARCHIVE|DEEP_COLD_ARCHIVE.Default is STANDARD.
         :param pulumi.Input[Sequence[pulumi.Input['BucketTagArgs']]] tags: Tos Bucket Tags.
         """
         pulumi.set(__self__, "bucket_name", bucket_name)
@@ -44,6 +46,8 @@ class BucketArgs:
             pulumi.set(__self__, "az_redundancy", az_redundancy)
         if bucket_acl_delivered is not None:
             pulumi.set(__self__, "bucket_acl_delivered", bucket_acl_delivered)
+        if bucket_type is not None:
+            pulumi.set(__self__, "bucket_type", bucket_type)
         if enable_version is not None:
             pulumi.set(__self__, "enable_version", enable_version)
         if project_name is not None:
@@ -104,6 +108,18 @@ class BucketArgs:
         pulumi.set(self, "bucket_acl_delivered", value)
 
     @property
+    @pulumi.getter(name="bucketType")
+    def bucket_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The bucket type of the TOS bucket. Default is `fns`. Valid values: `hns`, `fns`.
+        """
+        return pulumi.get(self, "bucket_type")
+
+    @bucket_type.setter
+    def bucket_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "bucket_type", value)
+
+    @property
     @pulumi.getter(name="enableVersion")
     def enable_version(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -143,7 +159,7 @@ class BucketArgs:
     @pulumi.getter(name="storageClass")
     def storage_class(self) -> Optional[pulumi.Input[str]]:
         """
-        The storage type of the object.Valid value is STANDARD|IA|ARCHIVE_FR.Default is STANDARD.
+        The storage type of the object.Valid value is STANDARD|IA|INTELLIGENT_TIERING|ARCHIVE_FR|ARCHIVE|COLD_ARCHIVE|DEEP_COLD_ARCHIVE.Default is STANDARD.
         """
         return pulumi.get(self, "storage_class")
 
@@ -171,6 +187,7 @@ class _BucketState:
                  az_redundancy: Optional[pulumi.Input[str]] = None,
                  bucket_acl_delivered: Optional[pulumi.Input[bool]] = None,
                  bucket_name: Optional[pulumi.Input[str]] = None,
+                 bucket_type: Optional[pulumi.Input[str]] = None,
                  creation_date: Optional[pulumi.Input[str]] = None,
                  enable_version: Optional[pulumi.Input[bool]] = None,
                  extranet_endpoint: Optional[pulumi.Input[str]] = None,
@@ -186,6 +203,7 @@ class _BucketState:
         :param pulumi.Input[str] az_redundancy: The AZ redundancy of the Tos Bucket. Default is `single-az`. Valid values: `single-az`, `multi-az`.
         :param pulumi.Input[bool] bucket_acl_delivered: Whether to enable the default inheritance bucket ACL function for objects. Default is false.
         :param pulumi.Input[str] bucket_name: The name of the bucket.
+        :param pulumi.Input[str] bucket_type: The bucket type of the TOS bucket. Default is `fns`. Valid values: `hns`, `fns`.
         :param pulumi.Input[str] creation_date: The create date of the TOS bucket.
         :param pulumi.Input[bool] enable_version: The flag of enable tos version.
         :param pulumi.Input[str] extranet_endpoint: The extranet endpoint of the TOS bucket.
@@ -193,7 +211,7 @@ class _BucketState:
         :param pulumi.Input[str] location: The location of the TOS bucket.
         :param pulumi.Input[str] project_name: The ProjectName of the Tos Bucket. Default is `default`.
         :param pulumi.Input[str] public_acl: The public acl control of object.Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read.
-        :param pulumi.Input[str] storage_class: The storage type of the object.Valid value is STANDARD|IA|ARCHIVE_FR.Default is STANDARD.
+        :param pulumi.Input[str] storage_class: The storage type of the object.Valid value is STANDARD|IA|INTELLIGENT_TIERING|ARCHIVE_FR|ARCHIVE|COLD_ARCHIVE|DEEP_COLD_ARCHIVE.Default is STANDARD.
         :param pulumi.Input[Sequence[pulumi.Input['BucketTagArgs']]] tags: Tos Bucket Tags.
         """
         if account_acls is not None:
@@ -204,6 +222,8 @@ class _BucketState:
             pulumi.set(__self__, "bucket_acl_delivered", bucket_acl_delivered)
         if bucket_name is not None:
             pulumi.set(__self__, "bucket_name", bucket_name)
+        if bucket_type is not None:
+            pulumi.set(__self__, "bucket_type", bucket_type)
         if creation_date is not None:
             pulumi.set(__self__, "creation_date", creation_date)
         if enable_version is not None:
@@ -270,6 +290,18 @@ class _BucketState:
     @bucket_name.setter
     def bucket_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "bucket_name", value)
+
+    @property
+    @pulumi.getter(name="bucketType")
+    def bucket_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The bucket type of the TOS bucket. Default is `fns`. Valid values: `hns`, `fns`.
+        """
+        return pulumi.get(self, "bucket_type")
+
+    @bucket_type.setter
+    def bucket_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "bucket_type", value)
 
     @property
     @pulumi.getter(name="creationDate")
@@ -359,7 +391,7 @@ class _BucketState:
     @pulumi.getter(name="storageClass")
     def storage_class(self) -> Optional[pulumi.Input[str]]:
         """
-        The storage type of the object.Valid value is STANDARD|IA|ARCHIVE_FR.Default is STANDARD.
+        The storage type of the object.Valid value is STANDARD|IA|INTELLIGENT_TIERING|ARCHIVE_FR|ARCHIVE|COLD_ARCHIVE|DEEP_COLD_ARCHIVE.Default is STANDARD.
         """
         return pulumi.get(self, "storage_class")
 
@@ -389,6 +421,7 @@ class Bucket(pulumi.CustomResource):
                  az_redundancy: Optional[pulumi.Input[str]] = None,
                  bucket_acl_delivered: Optional[pulumi.Input[bool]] = None,
                  bucket_name: Optional[pulumi.Input[str]] = None,
+                 bucket_type: Optional[pulumi.Input[str]] = None,
                  enable_version: Optional[pulumi.Input[bool]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  public_acl: Optional[pulumi.Input[str]] = None,
@@ -406,7 +439,7 @@ class Bucket(pulumi.CustomResource):
 
         # create tos bucket
         foo_bucket = volcengine.tos.Bucket("fooBucket",
-            bucket_name="tf-acc-test-bucket",
+            bucket_name="tflyb7",
             public_acl="private",
             az_redundancy="multi-az",
             enable_version=True,
@@ -454,10 +487,11 @@ class Bucket(pulumi.CustomResource):
         :param pulumi.Input[str] az_redundancy: The AZ redundancy of the Tos Bucket. Default is `single-az`. Valid values: `single-az`, `multi-az`.
         :param pulumi.Input[bool] bucket_acl_delivered: Whether to enable the default inheritance bucket ACL function for objects. Default is false.
         :param pulumi.Input[str] bucket_name: The name of the bucket.
+        :param pulumi.Input[str] bucket_type: The bucket type of the TOS bucket. Default is `fns`. Valid values: `hns`, `fns`.
         :param pulumi.Input[bool] enable_version: The flag of enable tos version.
         :param pulumi.Input[str] project_name: The ProjectName of the Tos Bucket. Default is `default`.
         :param pulumi.Input[str] public_acl: The public acl control of object.Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read.
-        :param pulumi.Input[str] storage_class: The storage type of the object.Valid value is STANDARD|IA|ARCHIVE_FR.Default is STANDARD.
+        :param pulumi.Input[str] storage_class: The storage type of the object.Valid value is STANDARD|IA|INTELLIGENT_TIERING|ARCHIVE_FR|ARCHIVE|COLD_ARCHIVE|DEEP_COLD_ARCHIVE.Default is STANDARD.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BucketTagArgs']]]] tags: Tos Bucket Tags.
         """
         ...
@@ -477,7 +511,7 @@ class Bucket(pulumi.CustomResource):
 
         # create tos bucket
         foo_bucket = volcengine.tos.Bucket("fooBucket",
-            bucket_name="tf-acc-test-bucket",
+            bucket_name="tflyb7",
             public_acl="private",
             az_redundancy="multi-az",
             enable_version=True,
@@ -538,6 +572,7 @@ class Bucket(pulumi.CustomResource):
                  az_redundancy: Optional[pulumi.Input[str]] = None,
                  bucket_acl_delivered: Optional[pulumi.Input[bool]] = None,
                  bucket_name: Optional[pulumi.Input[str]] = None,
+                 bucket_type: Optional[pulumi.Input[str]] = None,
                  enable_version: Optional[pulumi.Input[bool]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  public_acl: Optional[pulumi.Input[str]] = None,
@@ -558,6 +593,7 @@ class Bucket(pulumi.CustomResource):
             if bucket_name is None and not opts.urn:
                 raise TypeError("Missing required property 'bucket_name'")
             __props__.__dict__["bucket_name"] = bucket_name
+            __props__.__dict__["bucket_type"] = bucket_type
             __props__.__dict__["enable_version"] = enable_version
             __props__.__dict__["project_name"] = project_name
             __props__.__dict__["public_acl"] = public_acl
@@ -581,6 +617,7 @@ class Bucket(pulumi.CustomResource):
             az_redundancy: Optional[pulumi.Input[str]] = None,
             bucket_acl_delivered: Optional[pulumi.Input[bool]] = None,
             bucket_name: Optional[pulumi.Input[str]] = None,
+            bucket_type: Optional[pulumi.Input[str]] = None,
             creation_date: Optional[pulumi.Input[str]] = None,
             enable_version: Optional[pulumi.Input[bool]] = None,
             extranet_endpoint: Optional[pulumi.Input[str]] = None,
@@ -601,6 +638,7 @@ class Bucket(pulumi.CustomResource):
         :param pulumi.Input[str] az_redundancy: The AZ redundancy of the Tos Bucket. Default is `single-az`. Valid values: `single-az`, `multi-az`.
         :param pulumi.Input[bool] bucket_acl_delivered: Whether to enable the default inheritance bucket ACL function for objects. Default is false.
         :param pulumi.Input[str] bucket_name: The name of the bucket.
+        :param pulumi.Input[str] bucket_type: The bucket type of the TOS bucket. Default is `fns`. Valid values: `hns`, `fns`.
         :param pulumi.Input[str] creation_date: The create date of the TOS bucket.
         :param pulumi.Input[bool] enable_version: The flag of enable tos version.
         :param pulumi.Input[str] extranet_endpoint: The extranet endpoint of the TOS bucket.
@@ -608,7 +646,7 @@ class Bucket(pulumi.CustomResource):
         :param pulumi.Input[str] location: The location of the TOS bucket.
         :param pulumi.Input[str] project_name: The ProjectName of the Tos Bucket. Default is `default`.
         :param pulumi.Input[str] public_acl: The public acl control of object.Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read.
-        :param pulumi.Input[str] storage_class: The storage type of the object.Valid value is STANDARD|IA|ARCHIVE_FR.Default is STANDARD.
+        :param pulumi.Input[str] storage_class: The storage type of the object.Valid value is STANDARD|IA|INTELLIGENT_TIERING|ARCHIVE_FR|ARCHIVE|COLD_ARCHIVE|DEEP_COLD_ARCHIVE.Default is STANDARD.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BucketTagArgs']]]] tags: Tos Bucket Tags.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -619,6 +657,7 @@ class Bucket(pulumi.CustomResource):
         __props__.__dict__["az_redundancy"] = az_redundancy
         __props__.__dict__["bucket_acl_delivered"] = bucket_acl_delivered
         __props__.__dict__["bucket_name"] = bucket_name
+        __props__.__dict__["bucket_type"] = bucket_type
         __props__.__dict__["creation_date"] = creation_date
         __props__.__dict__["enable_version"] = enable_version
         __props__.__dict__["extranet_endpoint"] = extranet_endpoint
@@ -661,6 +700,14 @@ class Bucket(pulumi.CustomResource):
         The name of the bucket.
         """
         return pulumi.get(self, "bucket_name")
+
+    @property
+    @pulumi.getter(name="bucketType")
+    def bucket_type(self) -> pulumi.Output[Optional[str]]:
+        """
+        The bucket type of the TOS bucket. Default is `fns`. Valid values: `hns`, `fns`.
+        """
+        return pulumi.get(self, "bucket_type")
 
     @property
     @pulumi.getter(name="creationDate")
@@ -722,7 +769,7 @@ class Bucket(pulumi.CustomResource):
     @pulumi.getter(name="storageClass")
     def storage_class(self) -> pulumi.Output[Optional[str]]:
         """
-        The storage type of the object.Valid value is STANDARD|IA|ARCHIVE_FR.Default is STANDARD.
+        The storage type of the object.Valid value is STANDARD|IA|INTELLIGENT_TIERING|ARCHIVE_FR|ARCHIVE|COLD_ARCHIVE|DEEP_COLD_ARCHIVE.Default is STANDARD.
         """
         return pulumi.get(self, "storage_class")
 

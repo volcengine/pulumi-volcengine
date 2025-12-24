@@ -135,7 +135,7 @@ namespace Pulumi.Volcengine.Rds_postgresql
         public Output<string> InstanceId { get; private set; } = null!;
 
         /// <summary>
-        /// The owner of the schema.
+        /// The owner of the schema.The instance read-only account, a high-privilege account with DDL permissions disabled, or a normal account with DDL permissions disabled cannot be used as the owner of the schema.
         /// </summary>
         [Output("owner")]
         public Output<string> Owner { get; private set; } = null!;
@@ -206,7 +206,7 @@ namespace Pulumi.Volcengine.Rds_postgresql
         public Input<string> InstanceId { get; set; } = null!;
 
         /// <summary>
-        /// The owner of the schema.
+        /// The owner of the schema.The instance read-only account, a high-privilege account with DDL permissions disabled, or a normal account with DDL permissions disabled cannot be used as the owner of the schema.
         /// </summary>
         [Input("owner", required: true)]
         public Input<string> Owner { get; set; } = null!;
@@ -238,7 +238,7 @@ namespace Pulumi.Volcengine.Rds_postgresql
         public Input<string>? InstanceId { get; set; }
 
         /// <summary>
-        /// The owner of the schema.
+        /// The owner of the schema.The instance read-only account, a high-privilege account with DDL permissions disabled, or a normal account with DDL permissions disabled cannot be used as the owner of the schema.
         /// </summary>
         [Input("owner")]
         public Input<string>? Owner { get; set; }

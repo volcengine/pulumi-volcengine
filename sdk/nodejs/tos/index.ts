@@ -10,10 +10,20 @@ export type Bucket = import("./bucket").Bucket;
 export const Bucket: typeof import("./bucket").Bucket = null as any;
 utilities.lazyLoad(exports, ["Bucket"], () => require("./bucket"));
 
+export { BucketAccessMonitorArgs, BucketAccessMonitorState } from "./bucketAccessMonitor";
+export type BucketAccessMonitor = import("./bucketAccessMonitor").BucketAccessMonitor;
+export const BucketAccessMonitor: typeof import("./bucketAccessMonitor").BucketAccessMonitor = null as any;
+utilities.lazyLoad(exports, ["BucketAccessMonitor"], () => require("./bucketAccessMonitor"));
+
 export { BucketCorsArgs, BucketCorsState } from "./bucketCors";
 export type BucketCors = import("./bucketCors").BucketCors;
 export const BucketCors: typeof import("./bucketCors").BucketCors = null as any;
 utilities.lazyLoad(exports, ["BucketCors"], () => require("./bucketCors"));
+
+export { BucketCustomdomainArgs, BucketCustomdomainState } from "./bucketCustomdomain";
+export type BucketCustomdomain = import("./bucketCustomdomain").BucketCustomdomain;
+export const BucketCustomdomain: typeof import("./bucketCustomdomain").BucketCustomdomain = null as any;
+utilities.lazyLoad(exports, ["BucketCustomdomain"], () => require("./bucketCustomdomain"));
 
 export { BucketEncryptionArgs, BucketEncryptionState } from "./bucketEncryption";
 export type BucketEncryption = import("./bucketEncryption").BucketEncryption;
@@ -30,6 +40,21 @@ export type BucketInventory = import("./bucketInventory").BucketInventory;
 export const BucketInventory: typeof import("./bucketInventory").BucketInventory = null as any;
 utilities.lazyLoad(exports, ["BucketInventory"], () => require("./bucketInventory"));
 
+export { BucketLifecycleArgs, BucketLifecycleState } from "./bucketLifecycle";
+export type BucketLifecycle = import("./bucketLifecycle").BucketLifecycle;
+export const BucketLifecycle: typeof import("./bucketLifecycle").BucketLifecycle = null as any;
+utilities.lazyLoad(exports, ["BucketLifecycle"], () => require("./bucketLifecycle"));
+
+export { BucketLoggingArgs, BucketLoggingState } from "./bucketLogging";
+export type BucketLogging = import("./bucketLogging").BucketLogging;
+export const BucketLogging: typeof import("./bucketLogging").BucketLogging = null as any;
+utilities.lazyLoad(exports, ["BucketLogging"], () => require("./bucketLogging"));
+
+export { BucketMirrorBackArgs, BucketMirrorBackState } from "./bucketMirrorBack";
+export type BucketMirrorBack = import("./bucketMirrorBack").BucketMirrorBack;
+export const BucketMirrorBack: typeof import("./bucketMirrorBack").BucketMirrorBack = null as any;
+utilities.lazyLoad(exports, ["BucketMirrorBack"], () => require("./bucketMirrorBack"));
+
 export { BucketNotificationArgs, BucketNotificationState } from "./bucketNotification";
 export type BucketNotification = import("./bucketNotification").BucketNotification;
 export const BucketNotification: typeof import("./bucketNotification").BucketNotification = null as any;
@@ -39,6 +64,11 @@ export { BucketObjectArgs, BucketObjectState } from "./bucketObject";
 export type BucketObject = import("./bucketObject").BucketObject;
 export const BucketObject: typeof import("./bucketObject").BucketObject = null as any;
 utilities.lazyLoad(exports, ["BucketObject"], () => require("./bucketObject"));
+
+export { BucketObjectLockConfigurationArgs, BucketObjectLockConfigurationState } from "./bucketObjectLockConfiguration";
+export type BucketObjectLockConfiguration = import("./bucketObjectLockConfiguration").BucketObjectLockConfiguration;
+export const BucketObjectLockConfiguration: typeof import("./bucketObjectLockConfiguration").BucketObjectLockConfiguration = null as any;
+utilities.lazyLoad(exports, ["BucketObjectLockConfiguration"], () => require("./bucketObjectLockConfiguration"));
 
 export { BucketObjectsArgs, BucketObjectsResult, BucketObjectsOutputArgs } from "./bucketObjects";
 export const bucketObjects: typeof import("./bucketObjects").bucketObjects = null as any;
@@ -54,6 +84,31 @@ export { BucketRealtimeLogArgs, BucketRealtimeLogState } from "./bucketRealtimeL
 export type BucketRealtimeLog = import("./bucketRealtimeLog").BucketRealtimeLog;
 export const BucketRealtimeLog: typeof import("./bucketRealtimeLog").BucketRealtimeLog = null as any;
 utilities.lazyLoad(exports, ["BucketRealtimeLog"], () => require("./bucketRealtimeLog"));
+
+export { BucketRenameArgs, BucketRenameState } from "./bucketRename";
+export type BucketRename = import("./bucketRename").BucketRename;
+export const BucketRename: typeof import("./bucketRename").BucketRename = null as any;
+utilities.lazyLoad(exports, ["BucketRename"], () => require("./bucketRename"));
+
+export { BucketReplicationArgs, BucketReplicationState } from "./bucketReplication";
+export type BucketReplication = import("./bucketReplication").BucketReplication;
+export const BucketReplication: typeof import("./bucketReplication").BucketReplication = null as any;
+utilities.lazyLoad(exports, ["BucketReplication"], () => require("./bucketReplication"));
+
+export { BucketRequestPaymentArgs, BucketRequestPaymentState } from "./bucketRequestPayment";
+export type BucketRequestPayment = import("./bucketRequestPayment").BucketRequestPayment;
+export const BucketRequestPayment: typeof import("./bucketRequestPayment").BucketRequestPayment = null as any;
+utilities.lazyLoad(exports, ["BucketRequestPayment"], () => require("./bucketRequestPayment"));
+
+export { BucketTransferAccelerationArgs, BucketTransferAccelerationState } from "./bucketTransferAcceleration";
+export type BucketTransferAcceleration = import("./bucketTransferAcceleration").BucketTransferAcceleration;
+export const BucketTransferAcceleration: typeof import("./bucketTransferAcceleration").BucketTransferAcceleration = null as any;
+utilities.lazyLoad(exports, ["BucketTransferAcceleration"], () => require("./bucketTransferAcceleration"));
+
+export { BucketWebsiteArgs, BucketWebsiteState } from "./bucketWebsite";
+export type BucketWebsite = import("./bucketWebsite").BucketWebsite;
+export const BucketWebsite: typeof import("./bucketWebsite").BucketWebsite = null as any;
+utilities.lazyLoad(exports, ["BucketWebsite"], () => require("./bucketWebsite"));
 
 export { BucketsArgs, BucketsResult, BucketsOutputArgs } from "./buckets";
 export const buckets: typeof import("./buckets").buckets = null as any;
@@ -82,30 +137,63 @@ const _module = {
         switch (type) {
             case "volcengine:tos/bucket:Bucket":
                 return new Bucket(name, <any>undefined, { urn })
+            case "volcengine:tos/bucketAccessMonitor:BucketAccessMonitor":
+                return new BucketAccessMonitor(name, <any>undefined, { urn })
             case "volcengine:tos/bucketCors:BucketCors":
                 return new BucketCors(name, <any>undefined, { urn })
+            case "volcengine:tos/bucketCustomdomain:BucketCustomdomain":
+                return new BucketCustomdomain(name, <any>undefined, { urn })
             case "volcengine:tos/bucketEncryption:BucketEncryption":
                 return new BucketEncryption(name, <any>undefined, { urn })
             case "volcengine:tos/bucketInventory:BucketInventory":
                 return new BucketInventory(name, <any>undefined, { urn })
+            case "volcengine:tos/bucketLifecycle:BucketLifecycle":
+                return new BucketLifecycle(name, <any>undefined, { urn })
+            case "volcengine:tos/bucketLogging:BucketLogging":
+                return new BucketLogging(name, <any>undefined, { urn })
+            case "volcengine:tos/bucketMirrorBack:BucketMirrorBack":
+                return new BucketMirrorBack(name, <any>undefined, { urn })
             case "volcengine:tos/bucketNotification:BucketNotification":
                 return new BucketNotification(name, <any>undefined, { urn })
             case "volcengine:tos/bucketObject:BucketObject":
                 return new BucketObject(name, <any>undefined, { urn })
+            case "volcengine:tos/bucketObjectLockConfiguration:BucketObjectLockConfiguration":
+                return new BucketObjectLockConfiguration(name, <any>undefined, { urn })
             case "volcengine:tos/bucketPolicy:BucketPolicy":
                 return new BucketPolicy(name, <any>undefined, { urn })
             case "volcengine:tos/bucketRealtimeLog:BucketRealtimeLog":
                 return new BucketRealtimeLog(name, <any>undefined, { urn })
+            case "volcengine:tos/bucketRename:BucketRename":
+                return new BucketRename(name, <any>undefined, { urn })
+            case "volcengine:tos/bucketReplication:BucketReplication":
+                return new BucketReplication(name, <any>undefined, { urn })
+            case "volcengine:tos/bucketRequestPayment:BucketRequestPayment":
+                return new BucketRequestPayment(name, <any>undefined, { urn })
+            case "volcengine:tos/bucketTransferAcceleration:BucketTransferAcceleration":
+                return new BucketTransferAcceleration(name, <any>undefined, { urn })
+            case "volcengine:tos/bucketWebsite:BucketWebsite":
+                return new BucketWebsite(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
     },
 };
 pulumi.runtime.registerResourceModule("volcengine", "tos/bucket", _module)
+pulumi.runtime.registerResourceModule("volcengine", "tos/bucketAccessMonitor", _module)
 pulumi.runtime.registerResourceModule("volcengine", "tos/bucketCors", _module)
+pulumi.runtime.registerResourceModule("volcengine", "tos/bucketCustomdomain", _module)
 pulumi.runtime.registerResourceModule("volcengine", "tos/bucketEncryption", _module)
 pulumi.runtime.registerResourceModule("volcengine", "tos/bucketInventory", _module)
+pulumi.runtime.registerResourceModule("volcengine", "tos/bucketLifecycle", _module)
+pulumi.runtime.registerResourceModule("volcengine", "tos/bucketLogging", _module)
+pulumi.runtime.registerResourceModule("volcengine", "tos/bucketMirrorBack", _module)
 pulumi.runtime.registerResourceModule("volcengine", "tos/bucketNotification", _module)
 pulumi.runtime.registerResourceModule("volcengine", "tos/bucketObject", _module)
+pulumi.runtime.registerResourceModule("volcengine", "tos/bucketObjectLockConfiguration", _module)
 pulumi.runtime.registerResourceModule("volcengine", "tos/bucketPolicy", _module)
 pulumi.runtime.registerResourceModule("volcengine", "tos/bucketRealtimeLog", _module)
+pulumi.runtime.registerResourceModule("volcengine", "tos/bucketRename", _module)
+pulumi.runtime.registerResourceModule("volcengine", "tos/bucketReplication", _module)
+pulumi.runtime.registerResourceModule("volcengine", "tos/bucketRequestPayment", _module)
+pulumi.runtime.registerResourceModule("volcengine", "tos/bucketTransferAcceleration", _module)
+pulumi.runtime.registerResourceModule("volcengine", "tos/bucketWebsite", _module)

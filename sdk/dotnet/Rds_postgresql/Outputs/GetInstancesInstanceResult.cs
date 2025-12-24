@@ -14,6 +14,10 @@ namespace Pulumi.Volcengine.Rds_postgresql.Outputs
     public sealed class GetInstancesInstanceResult
     {
         /// <summary>
+        /// The allow list version of the RDS PostgreSQL instance.
+        /// </summary>
+        public readonly string AllowListVersion;
+        /// <summary>
         /// The instance has used backup space. Unit: GB.
         /// </summary>
         public readonly int BackupUse;
@@ -82,13 +86,33 @@ namespace Pulumi.Volcengine.Rds_postgresql.Outputs
         /// </summary>
         public readonly string RegionId;
         /// <summary>
+        /// The instance's primary node has used storage space. Unit: Byte.
+        /// </summary>
+        public readonly int StorageDataUse;
+        /// <summary>
+        /// The instance's primary node has used log storage space. Unit: Byte.
+        /// </summary>
+        public readonly int StorageLogUse;
+        /// <summary>
         /// Total instance storage space. Unit: GB.
         /// </summary>
         public readonly int StorageSpace;
         /// <summary>
-        /// Instance storage type.
+        /// The instance's primary node has used temporary storage space. Unit: Byte.
+        /// </summary>
+        public readonly int StorageTempUse;
+        /// <summary>
+        /// The storage type of the RDS PostgreSQL instance.
         /// </summary>
         public readonly string StorageType;
+        /// <summary>
+        /// The instance has used storage space. Unit: Byte.
+        /// </summary>
+        public readonly int StorageUse;
+        /// <summary>
+        /// The instance's primary node has used WAL storage space. Unit: Byte.
+        /// </summary>
+        public readonly int StorageWalUse;
         /// <summary>
         /// The subnet ID of the RDS PostgreSQL instance.
         /// </summary>
@@ -120,6 +144,8 @@ namespace Pulumi.Volcengine.Rds_postgresql.Outputs
 
         [OutputConstructor]
         private GetInstancesInstanceResult(
+            string allowListVersion,
+
             int backupUse,
 
             ImmutableArray<Outputs.GetInstancesInstanceChargeDetailResult> chargeDetails,
@@ -154,9 +180,19 @@ namespace Pulumi.Volcengine.Rds_postgresql.Outputs
 
             string regionId,
 
+            int storageDataUse,
+
+            int storageLogUse,
+
             int storageSpace,
 
+            int storageTempUse,
+
             string storageType,
+
+            int storageUse,
+
+            int storageWalUse,
 
             string subnetId,
 
@@ -172,6 +208,7 @@ namespace Pulumi.Volcengine.Rds_postgresql.Outputs
 
             ImmutableArray<string> zoneIds)
         {
+            AllowListVersion = allowListVersion;
             BackupUse = backupUse;
             ChargeDetails = chargeDetails;
             CreateTime = createTime;
@@ -189,8 +226,13 @@ namespace Pulumi.Volcengine.Rds_postgresql.Outputs
             Nodes = nodes;
             ProjectName = projectName;
             RegionId = regionId;
+            StorageDataUse = storageDataUse;
+            StorageLogUse = storageLogUse;
             StorageSpace = storageSpace;
+            StorageTempUse = storageTempUse;
             StorageType = storageType;
+            StorageUse = storageUse;
+            StorageWalUse = storageWalUse;
             SubnetId = subnetId;
             Tags = tags;
             UpdateTime = updateTime;

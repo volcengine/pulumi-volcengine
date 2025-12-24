@@ -14,7 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.rds_postgresql.getAllowlists({});
+ * const default = volcengine.rds_postgresql.getAllowlists({
+ *     allowListCategory: "Ordinary",
+ *     allowListDesc: "test allow list",
+ *     allowListId: "acl-e7846436e1e741edbd385868fa657436",
+ *     allowListName: "test",
+ *     ipAddress: "100.64.0.0/10",
+ *     nameRegex: ".*allowlist.*",
+ * });
  * ```
  */
 export function getAllowlists(args?: GetAllowlistsArgs, opts?: pulumi.InvokeOptions): Promise<GetAllowlistsResult> {
@@ -22,7 +29,12 @@ export function getAllowlists(args?: GetAllowlistsArgs, opts?: pulumi.InvokeOpti
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:rds_postgresql/getAllowlists:getAllowlists", {
+        "allowListCategory": args.allowListCategory,
+        "allowListDesc": args.allowListDesc,
+        "allowListId": args.allowListId,
+        "allowListName": args.allowListName,
         "instanceId": args.instanceId,
+        "ipAddress": args.ipAddress,
         "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
     }, opts);
@@ -33,9 +45,29 @@ export function getAllowlists(args?: GetAllowlistsArgs, opts?: pulumi.InvokeOpti
  */
 export interface GetAllowlistsArgs {
     /**
+     * The category of the postgresql allow list. Valid values: Ordinary, Default.
+     */
+    allowListCategory?: string;
+    /**
+     * The description of the postgresql allow list. Perform a fuzzy search based on the description information.
+     */
+    allowListDesc?: string;
+    /**
+     * The id of the postgresql allow list.
+     */
+    allowListId?: string;
+    /**
+     * The name of the postgresql allow list.
+     */
+    allowListName?: string;
+    /**
      * The id of the postgresql Instance.
      */
     instanceId?: string;
+    /**
+     * The IP address to be added to the allow list.
+     */
+    ipAddress?: string;
     /**
      * A Name Regex of Resource.
      */
@@ -51,6 +83,22 @@ export interface GetAllowlistsArgs {
  */
 export interface GetAllowlistsResult {
     /**
+     * The category of the postgresql allow list.
+     */
+    readonly allowListCategory?: string;
+    /**
+     * The description of the postgresql allow list.
+     */
+    readonly allowListDesc?: string;
+    /**
+     * The id of the postgresql allow list.
+     */
+    readonly allowListId?: string;
+    /**
+     * The name of the postgresql allow list.
+     */
+    readonly allowListName?: string;
+    /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
@@ -58,6 +106,7 @@ export interface GetAllowlistsResult {
      * The id of the postgresql instance.
      */
     readonly instanceId?: string;
+    readonly ipAddress?: string;
     readonly nameRegex?: string;
     readonly outputFile?: string;
     /**
@@ -77,7 +126,14 @@ export interface GetAllowlistsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.rds_postgresql.getAllowlists({});
+ * const default = volcengine.rds_postgresql.getAllowlists({
+ *     allowListCategory: "Ordinary",
+ *     allowListDesc: "test allow list",
+ *     allowListId: "acl-e7846436e1e741edbd385868fa657436",
+ *     allowListName: "test",
+ *     ipAddress: "100.64.0.0/10",
+ *     nameRegex: ".*allowlist.*",
+ * });
  * ```
  */
 export function getAllowlistsOutput(args?: GetAllowlistsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAllowlistsResult> {
@@ -89,9 +145,29 @@ export function getAllowlistsOutput(args?: GetAllowlistsOutputArgs, opts?: pulum
  */
 export interface GetAllowlistsOutputArgs {
     /**
+     * The category of the postgresql allow list. Valid values: Ordinary, Default.
+     */
+    allowListCategory?: pulumi.Input<string>;
+    /**
+     * The description of the postgresql allow list. Perform a fuzzy search based on the description information.
+     */
+    allowListDesc?: pulumi.Input<string>;
+    /**
+     * The id of the postgresql allow list.
+     */
+    allowListId?: pulumi.Input<string>;
+    /**
+     * The name of the postgresql allow list.
+     */
+    allowListName?: pulumi.Input<string>;
+    /**
      * The id of the postgresql Instance.
      */
     instanceId?: pulumi.Input<string>;
+    /**
+     * The IP address to be added to the allow list.
+     */
+    ipAddress?: pulumi.Input<string>;
     /**
      * A Name Regex of Resource.
      */

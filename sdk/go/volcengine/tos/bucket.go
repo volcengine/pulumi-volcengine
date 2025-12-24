@@ -32,7 +32,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// create tos bucket
 //			fooBucket, err := tos.NewBucket(ctx, "fooBucket", &tos.BucketArgs{
-//				BucketName:         pulumi.String("tf-acc-test-bucket"),
+//				BucketName:         pulumi.String("tflyb7"),
 //				PublicAcl:          pulumi.String("private"),
 //				AzRedundancy:       pulumi.String("multi-az"),
 //				EnableVersion:      pulumi.Bool(true),
@@ -114,6 +114,8 @@ type Bucket struct {
 	BucketAclDelivered pulumi.BoolOutput `pulumi:"bucketAclDelivered"`
 	// The name of the bucket.
 	BucketName pulumi.StringOutput `pulumi:"bucketName"`
+	// The bucket type of the TOS bucket. Default is `fns`. Valid values: `hns`, `fns`.
+	BucketType pulumi.StringPtrOutput `pulumi:"bucketType"`
 	// The create date of the TOS bucket.
 	CreationDate pulumi.StringOutput `pulumi:"creationDate"`
 	// The flag of enable tos version.
@@ -128,7 +130,7 @@ type Bucket struct {
 	ProjectName pulumi.StringPtrOutput `pulumi:"projectName"`
 	// The public acl control of object.Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read.
 	PublicAcl pulumi.StringPtrOutput `pulumi:"publicAcl"`
-	// The storage type of the object.Valid value is STANDARD|IA|ARCHIVE_FR.Default is STANDARD.
+	// The storage type of the object.Valid value is STANDARD|IA|INTELLIGENT_TIERING|ARCHIVE_FR|ARCHIVE|COLD_ARCHIVE|DEEP_COLD_ARCHIVE.Default is STANDARD.
 	StorageClass pulumi.StringPtrOutput `pulumi:"storageClass"`
 	// Tos Bucket Tags.
 	Tags BucketTagArrayOutput `pulumi:"tags"`
@@ -175,6 +177,8 @@ type bucketState struct {
 	BucketAclDelivered *bool `pulumi:"bucketAclDelivered"`
 	// The name of the bucket.
 	BucketName *string `pulumi:"bucketName"`
+	// The bucket type of the TOS bucket. Default is `fns`. Valid values: `hns`, `fns`.
+	BucketType *string `pulumi:"bucketType"`
 	// The create date of the TOS bucket.
 	CreationDate *string `pulumi:"creationDate"`
 	// The flag of enable tos version.
@@ -189,7 +193,7 @@ type bucketState struct {
 	ProjectName *string `pulumi:"projectName"`
 	// The public acl control of object.Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read.
 	PublicAcl *string `pulumi:"publicAcl"`
-	// The storage type of the object.Valid value is STANDARD|IA|ARCHIVE_FR.Default is STANDARD.
+	// The storage type of the object.Valid value is STANDARD|IA|INTELLIGENT_TIERING|ARCHIVE_FR|ARCHIVE|COLD_ARCHIVE|DEEP_COLD_ARCHIVE.Default is STANDARD.
 	StorageClass *string `pulumi:"storageClass"`
 	// Tos Bucket Tags.
 	Tags []BucketTag `pulumi:"tags"`
@@ -204,6 +208,8 @@ type BucketState struct {
 	BucketAclDelivered pulumi.BoolPtrInput
 	// The name of the bucket.
 	BucketName pulumi.StringPtrInput
+	// The bucket type of the TOS bucket. Default is `fns`. Valid values: `hns`, `fns`.
+	BucketType pulumi.StringPtrInput
 	// The create date of the TOS bucket.
 	CreationDate pulumi.StringPtrInput
 	// The flag of enable tos version.
@@ -218,7 +224,7 @@ type BucketState struct {
 	ProjectName pulumi.StringPtrInput
 	// The public acl control of object.Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read.
 	PublicAcl pulumi.StringPtrInput
-	// The storage type of the object.Valid value is STANDARD|IA|ARCHIVE_FR.Default is STANDARD.
+	// The storage type of the object.Valid value is STANDARD|IA|INTELLIGENT_TIERING|ARCHIVE_FR|ARCHIVE|COLD_ARCHIVE|DEEP_COLD_ARCHIVE.Default is STANDARD.
 	StorageClass pulumi.StringPtrInput
 	// Tos Bucket Tags.
 	Tags BucketTagArrayInput
@@ -237,13 +243,15 @@ type bucketArgs struct {
 	BucketAclDelivered *bool `pulumi:"bucketAclDelivered"`
 	// The name of the bucket.
 	BucketName string `pulumi:"bucketName"`
+	// The bucket type of the TOS bucket. Default is `fns`. Valid values: `hns`, `fns`.
+	BucketType *string `pulumi:"bucketType"`
 	// The flag of enable tos version.
 	EnableVersion *bool `pulumi:"enableVersion"`
 	// The ProjectName of the Tos Bucket. Default is `default`.
 	ProjectName *string `pulumi:"projectName"`
 	// The public acl control of object.Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read.
 	PublicAcl *string `pulumi:"publicAcl"`
-	// The storage type of the object.Valid value is STANDARD|IA|ARCHIVE_FR.Default is STANDARD.
+	// The storage type of the object.Valid value is STANDARD|IA|INTELLIGENT_TIERING|ARCHIVE_FR|ARCHIVE|COLD_ARCHIVE|DEEP_COLD_ARCHIVE.Default is STANDARD.
 	StorageClass *string `pulumi:"storageClass"`
 	// Tos Bucket Tags.
 	Tags []BucketTag `pulumi:"tags"`
@@ -259,13 +267,15 @@ type BucketArgs struct {
 	BucketAclDelivered pulumi.BoolPtrInput
 	// The name of the bucket.
 	BucketName pulumi.StringInput
+	// The bucket type of the TOS bucket. Default is `fns`. Valid values: `hns`, `fns`.
+	BucketType pulumi.StringPtrInput
 	// The flag of enable tos version.
 	EnableVersion pulumi.BoolPtrInput
 	// The ProjectName of the Tos Bucket. Default is `default`.
 	ProjectName pulumi.StringPtrInput
 	// The public acl control of object.Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read.
 	PublicAcl pulumi.StringPtrInput
-	// The storage type of the object.Valid value is STANDARD|IA|ARCHIVE_FR.Default is STANDARD.
+	// The storage type of the object.Valid value is STANDARD|IA|INTELLIGENT_TIERING|ARCHIVE_FR|ARCHIVE|COLD_ARCHIVE|DEEP_COLD_ARCHIVE.Default is STANDARD.
 	StorageClass pulumi.StringPtrInput
 	// Tos Bucket Tags.
 	Tags BucketTagArrayInput
@@ -378,6 +388,11 @@ func (o BucketOutput) BucketName() pulumi.StringOutput {
 	return o.ApplyT(func(v *Bucket) pulumi.StringOutput { return v.BucketName }).(pulumi.StringOutput)
 }
 
+// The bucket type of the TOS bucket. Default is `fns`. Valid values: `hns`, `fns`.
+func (o BucketOutput) BucketType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Bucket) pulumi.StringPtrOutput { return v.BucketType }).(pulumi.StringPtrOutput)
+}
+
 // The create date of the TOS bucket.
 func (o BucketOutput) CreationDate() pulumi.StringOutput {
 	return o.ApplyT(func(v *Bucket) pulumi.StringOutput { return v.CreationDate }).(pulumi.StringOutput)
@@ -413,7 +428,7 @@ func (o BucketOutput) PublicAcl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Bucket) pulumi.StringPtrOutput { return v.PublicAcl }).(pulumi.StringPtrOutput)
 }
 
-// The storage type of the object.Valid value is STANDARD|IA|ARCHIVE_FR.Default is STANDARD.
+// The storage type of the object.Valid value is STANDARD|IA|INTELLIGENT_TIERING|ARCHIVE_FR|ARCHIVE|COLD_ARCHIVE|DEEP_COLD_ARCHIVE.Default is STANDARD.
 func (o BucketOutput) StorageClass() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Bucket) pulumi.StringPtrOutput { return v.StorageClass }).(pulumi.StringPtrOutput)
 }

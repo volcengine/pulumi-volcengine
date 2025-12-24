@@ -4945,6 +4945,7 @@ class VpcsVpcResult(dict):
                  subnet_ids: Sequence[str],
                  tags: Sequence['outputs.VpcsVpcTagResult'],
                  update_time: str,
+                 user_cidr_blocks: Sequence[str],
                  vpc_id: str,
                  vpc_name: str):
         """
@@ -4965,6 +4966,7 @@ class VpcsVpcResult(dict):
         :param Sequence[str] subnet_ids: The subnet ID list of VPC.
         :param Sequence['VpcsVpcTagArgs'] tags: Tags.
         :param str update_time: The update time of VPC.
+        :param Sequence[str] user_cidr_blocks: The user cidr block list of VPC.
         :param str vpc_id: The ID of VPC.
         :param str vpc_name: The vpc name to query.
         """
@@ -4985,6 +4987,7 @@ class VpcsVpcResult(dict):
         pulumi.set(__self__, "subnet_ids", subnet_ids)
         pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "update_time", update_time)
+        pulumi.set(__self__, "user_cidr_blocks", user_cidr_blocks)
         pulumi.set(__self__, "vpc_id", vpc_id)
         pulumi.set(__self__, "vpc_name", vpc_name)
 
@@ -5123,6 +5126,14 @@ class VpcsVpcResult(dict):
         The update time of VPC.
         """
         return pulumi.get(self, "update_time")
+
+    @property
+    @pulumi.getter(name="userCidrBlocks")
+    def user_cidr_blocks(self) -> Sequence[str]:
+        """
+        The user cidr block list of VPC.
+        """
+        return pulumi.get(self, "user_cidr_blocks")
 
     @property
     @pulumi.getter(name="vpcId")
@@ -9278,6 +9289,7 @@ class GetVpcsVpcResult(dict):
                  subnet_ids: Sequence[str],
                  tags: Sequence['outputs.GetVpcsVpcTagResult'],
                  update_time: str,
+                 user_cidr_blocks: Sequence[str],
                  vpc_id: str,
                  vpc_name: str):
         """
@@ -9298,6 +9310,7 @@ class GetVpcsVpcResult(dict):
         :param Sequence[str] subnet_ids: The subnet ID list of VPC.
         :param Sequence['GetVpcsVpcTagArgs'] tags: Tags.
         :param str update_time: The update time of VPC.
+        :param Sequence[str] user_cidr_blocks: The user cidr block list of VPC.
         :param str vpc_id: The ID of VPC.
         :param str vpc_name: The vpc name to query.
         """
@@ -9318,6 +9331,7 @@ class GetVpcsVpcResult(dict):
         pulumi.set(__self__, "subnet_ids", subnet_ids)
         pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "update_time", update_time)
+        pulumi.set(__self__, "user_cidr_blocks", user_cidr_blocks)
         pulumi.set(__self__, "vpc_id", vpc_id)
         pulumi.set(__self__, "vpc_name", vpc_name)
 
@@ -9456,6 +9470,14 @@ class GetVpcsVpcResult(dict):
         The update time of VPC.
         """
         return pulumi.get(self, "update_time")
+
+    @property
+    @pulumi.getter(name="userCidrBlocks")
+    def user_cidr_blocks(self) -> Sequence[str]:
+        """
+        The user cidr block list of VPC.
+        """
+        return pulumi.get(self, "user_cidr_blocks")
 
     @property
     @pulumi.getter(name="vpcId")

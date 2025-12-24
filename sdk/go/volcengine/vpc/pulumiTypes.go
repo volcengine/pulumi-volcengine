@@ -9368,6 +9368,8 @@ type VpcsVpc struct {
 	Tags []VpcsVpcTag `pulumi:"tags"`
 	// The update time of VPC.
 	UpdateTime string `pulumi:"updateTime"`
+	// The user cidr block list of VPC.
+	UserCidrBlocks []string `pulumi:"userCidrBlocks"`
 	// The ID of VPC.
 	VpcId string `pulumi:"vpcId"`
 	// The vpc name to query.
@@ -9420,6 +9422,8 @@ type VpcsVpcArgs struct {
 	Tags VpcsVpcTagArrayInput `pulumi:"tags"`
 	// The update time of VPC.
 	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
+	// The user cidr block list of VPC.
+	UserCidrBlocks pulumi.StringArrayInput `pulumi:"userCidrBlocks"`
 	// The ID of VPC.
 	VpcId pulumi.StringInput `pulumi:"vpcId"`
 	// The vpc name to query.
@@ -9560,6 +9564,11 @@ func (o VpcsVpcOutput) Tags() VpcsVpcTagArrayOutput {
 // The update time of VPC.
 func (o VpcsVpcOutput) UpdateTime() pulumi.StringOutput {
 	return o.ApplyT(func(v VpcsVpc) string { return v.UpdateTime }).(pulumi.StringOutput)
+}
+
+// The user cidr block list of VPC.
+func (o VpcsVpcOutput) UserCidrBlocks() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v VpcsVpc) []string { return v.UserCidrBlocks }).(pulumi.StringArrayOutput)
 }
 
 // The ID of VPC.
@@ -17263,6 +17272,8 @@ type GetVpcsVpc struct {
 	Tags []GetVpcsVpcTag `pulumi:"tags"`
 	// The update time of VPC.
 	UpdateTime string `pulumi:"updateTime"`
+	// The user cidr block list of VPC.
+	UserCidrBlocks []string `pulumi:"userCidrBlocks"`
 	// The ID of VPC.
 	VpcId string `pulumi:"vpcId"`
 	// The vpc name to query.
@@ -17315,6 +17326,8 @@ type GetVpcsVpcArgs struct {
 	Tags GetVpcsVpcTagArrayInput `pulumi:"tags"`
 	// The update time of VPC.
 	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
+	// The user cidr block list of VPC.
+	UserCidrBlocks pulumi.StringArrayInput `pulumi:"userCidrBlocks"`
 	// The ID of VPC.
 	VpcId pulumi.StringInput `pulumi:"vpcId"`
 	// The vpc name to query.
@@ -17455,6 +17468,11 @@ func (o GetVpcsVpcOutput) Tags() GetVpcsVpcTagArrayOutput {
 // The update time of VPC.
 func (o GetVpcsVpcOutput) UpdateTime() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVpcsVpc) string { return v.UpdateTime }).(pulumi.StringOutput)
+}
+
+// The user cidr block list of VPC.
+func (o GetVpcsVpcOutput) UserCidrBlocks() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetVpcsVpc) []string { return v.UserCidrBlocks }).(pulumi.StringArrayOutput)
 }
 
 // The ID of VPC.

@@ -23,20 +23,42 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "volcengine:tos/bucket:Bucket":
 		r = &Bucket{}
+	case "volcengine:tos/bucketAccessMonitor:BucketAccessMonitor":
+		r = &BucketAccessMonitor{}
 	case "volcengine:tos/bucketCors:BucketCors":
 		r = &BucketCors{}
+	case "volcengine:tos/bucketCustomdomain:BucketCustomdomain":
+		r = &BucketCustomdomain{}
 	case "volcengine:tos/bucketEncryption:BucketEncryption":
 		r = &BucketEncryption{}
 	case "volcengine:tos/bucketInventory:BucketInventory":
 		r = &BucketInventory{}
+	case "volcengine:tos/bucketLifecycle:BucketLifecycle":
+		r = &BucketLifecycle{}
+	case "volcengine:tos/bucketLogging:BucketLogging":
+		r = &BucketLogging{}
+	case "volcengine:tos/bucketMirrorBack:BucketMirrorBack":
+		r = &BucketMirrorBack{}
 	case "volcengine:tos/bucketNotification:BucketNotification":
 		r = &BucketNotification{}
 	case "volcengine:tos/bucketObject:BucketObject":
 		r = &BucketObject{}
+	case "volcengine:tos/bucketObjectLockConfiguration:BucketObjectLockConfiguration":
+		r = &BucketObjectLockConfiguration{}
 	case "volcengine:tos/bucketPolicy:BucketPolicy":
 		r = &BucketPolicy{}
 	case "volcengine:tos/bucketRealtimeLog:BucketRealtimeLog":
 		r = &BucketRealtimeLog{}
+	case "volcengine:tos/bucketRename:BucketRename":
+		r = &BucketRename{}
+	case "volcengine:tos/bucketReplication:BucketReplication":
+		r = &BucketReplication{}
+	case "volcengine:tos/bucketRequestPayment:BucketRequestPayment":
+		r = &BucketRequestPayment{}
+	case "volcengine:tos/bucketTransferAcceleration:BucketTransferAcceleration":
+		r = &BucketTransferAcceleration{}
+	case "volcengine:tos/bucketWebsite:BucketWebsite":
+		r = &BucketWebsite{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -57,7 +79,17 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
+		"tos/bucketAccessMonitor",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
 		"tos/bucketCors",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"tos/bucketCustomdomain",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -72,6 +104,21 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
+		"tos/bucketLifecycle",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"tos/bucketLogging",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"tos/bucketMirrorBack",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
 		"tos/bucketNotification",
 		&module{version},
 	)
@@ -82,12 +129,42 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
+		"tos/bucketObjectLockConfiguration",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
 		"tos/bucketPolicy",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
 		"tos/bucketRealtimeLog",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"tos/bucketRename",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"tos/bucketReplication",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"tos/bucketRequestPayment",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"tos/bucketTransferAcceleration",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"tos/bucketWebsite",
 		&module{version},
 	)
 }

@@ -19,6 +19,10 @@ namespace Pulumi.Volcengine.Rds_postgresql.Outputs
         public readonly bool? AutoRenew;
         public readonly string ChargeType;
         /// <summary>
+        /// Purchase number of the RDS PostgreSQL instance. Range: [1, 20]. Default: 1.
+        /// </summary>
+        public readonly int? Number;
+        /// <summary>
         /// Purchase duration in prepaid scenarios. Default: 1.
         /// </summary>
         public readonly int? Period;
@@ -35,12 +39,15 @@ namespace Pulumi.Volcengine.Rds_postgresql.Outputs
 
             string chargeType,
 
+            int? number,
+
             int? period,
 
             string? periodUnit)
         {
             AutoRenew = autoRenew;
             ChargeType = chargeType;
+            Number = number;
             Period = period;
             PeriodUnit = periodUnit;
         }

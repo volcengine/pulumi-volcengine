@@ -139,7 +139,7 @@ type Schema struct {
 	DbName pulumi.StringOutput `pulumi:"dbName"`
 	// The id of the postgresql instance.
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
-	// The owner of the schema.
+	// The owner of the schema.The instance read-only account, a high-privilege account with DDL permissions disabled, or a normal account with DDL permissions disabled cannot be used as the owner of the schema.
 	Owner pulumi.StringOutput `pulumi:"owner"`
 	// The name of the schema.
 	SchemaName pulumi.StringOutput `pulumi:"schemaName"`
@@ -191,7 +191,7 @@ type schemaState struct {
 	DbName *string `pulumi:"dbName"`
 	// The id of the postgresql instance.
 	InstanceId *string `pulumi:"instanceId"`
-	// The owner of the schema.
+	// The owner of the schema.The instance read-only account, a high-privilege account with DDL permissions disabled, or a normal account with DDL permissions disabled cannot be used as the owner of the schema.
 	Owner *string `pulumi:"owner"`
 	// The name of the schema.
 	SchemaName *string `pulumi:"schemaName"`
@@ -202,7 +202,7 @@ type SchemaState struct {
 	DbName pulumi.StringPtrInput
 	// The id of the postgresql instance.
 	InstanceId pulumi.StringPtrInput
-	// The owner of the schema.
+	// The owner of the schema.The instance read-only account, a high-privilege account with DDL permissions disabled, or a normal account with DDL permissions disabled cannot be used as the owner of the schema.
 	Owner pulumi.StringPtrInput
 	// The name of the schema.
 	SchemaName pulumi.StringPtrInput
@@ -217,7 +217,7 @@ type schemaArgs struct {
 	DbName string `pulumi:"dbName"`
 	// The id of the postgresql instance.
 	InstanceId string `pulumi:"instanceId"`
-	// The owner of the schema.
+	// The owner of the schema.The instance read-only account, a high-privilege account with DDL permissions disabled, or a normal account with DDL permissions disabled cannot be used as the owner of the schema.
 	Owner string `pulumi:"owner"`
 	// The name of the schema.
 	SchemaName string `pulumi:"schemaName"`
@@ -229,7 +229,7 @@ type SchemaArgs struct {
 	DbName pulumi.StringInput
 	// The id of the postgresql instance.
 	InstanceId pulumi.StringInput
-	// The owner of the schema.
+	// The owner of the schema.The instance read-only account, a high-privilege account with DDL permissions disabled, or a normal account with DDL permissions disabled cannot be used as the owner of the schema.
 	Owner pulumi.StringInput
 	// The name of the schema.
 	SchemaName pulumi.StringInput
@@ -332,7 +332,7 @@ func (o SchemaOutput) InstanceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Schema) pulumi.StringOutput { return v.InstanceId }).(pulumi.StringOutput)
 }
 
-// The owner of the schema.
+// The owner of the schema.The instance read-only account, a high-privilege account with DDL permissions disabled, or a normal account with DDL permissions disabled cannot be used as the owner of the schema.
 func (o SchemaOutput) Owner() pulumi.StringOutput {
 	return o.ApplyT(func(v *Schema) pulumi.StringOutput { return v.Owner }).(pulumi.StringOutput)
 }

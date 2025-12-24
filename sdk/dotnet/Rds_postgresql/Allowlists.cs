@@ -24,7 +24,15 @@ namespace Pulumi.Volcengine.Rds_postgresql
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Rds_postgresql.GetAllowlists.Invoke();
+        ///     var @default = Volcengine.Rds_postgresql.GetAllowlists.Invoke(new()
+        ///     {
+        ///         AllowListCategory = "Ordinary",
+        ///         AllowListDesc = "test allow list",
+        ///         AllowListId = "acl-e7846436e1e741edbd385868fa657436",
+        ///         AllowListName = "test",
+        ///         IpAddress = "100.64.0.0/10",
+        ///         NameRegex = ".*allowlist.*",
+        ///     });
         /// 
         /// });
         /// ```
@@ -44,7 +52,15 @@ namespace Pulumi.Volcengine.Rds_postgresql
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Rds_postgresql.GetAllowlists.Invoke();
+        ///     var @default = Volcengine.Rds_postgresql.GetAllowlists.Invoke(new()
+        ///     {
+        ///         AllowListCategory = "Ordinary",
+        ///         AllowListDesc = "test allow list",
+        ///         AllowListId = "acl-e7846436e1e741edbd385868fa657436",
+        ///         AllowListName = "test",
+        ///         IpAddress = "100.64.0.0/10",
+        ///         NameRegex = ".*allowlist.*",
+        ///     });
         /// 
         /// });
         /// ```
@@ -57,10 +73,40 @@ namespace Pulumi.Volcengine.Rds_postgresql
     public sealed class AllowlistsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
+        /// The category of the postgresql allow list. Valid values: Ordinary, Default.
+        /// </summary>
+        [Input("allowListCategory")]
+        public string? AllowListCategory { get; set; }
+
+        /// <summary>
+        /// The description of the postgresql allow list. Perform a fuzzy search based on the description information.
+        /// </summary>
+        [Input("allowListDesc")]
+        public string? AllowListDesc { get; set; }
+
+        /// <summary>
+        /// The id of the postgresql allow list.
+        /// </summary>
+        [Input("allowListId")]
+        public string? AllowListId { get; set; }
+
+        /// <summary>
+        /// The name of the postgresql allow list.
+        /// </summary>
+        [Input("allowListName")]
+        public string? AllowListName { get; set; }
+
+        /// <summary>
         /// The id of the postgresql Instance.
         /// </summary>
         [Input("instanceId")]
         public string? InstanceId { get; set; }
+
+        /// <summary>
+        /// The IP address to be added to the allow list.
+        /// </summary>
+        [Input("ipAddress")]
+        public string? IpAddress { get; set; }
 
         /// <summary>
         /// A Name Regex of Resource.
@@ -83,10 +129,40 @@ namespace Pulumi.Volcengine.Rds_postgresql
     public sealed class AllowlistsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
+        /// The category of the postgresql allow list. Valid values: Ordinary, Default.
+        /// </summary>
+        [Input("allowListCategory")]
+        public Input<string>? AllowListCategory { get; set; }
+
+        /// <summary>
+        /// The description of the postgresql allow list. Perform a fuzzy search based on the description information.
+        /// </summary>
+        [Input("allowListDesc")]
+        public Input<string>? AllowListDesc { get; set; }
+
+        /// <summary>
+        /// The id of the postgresql allow list.
+        /// </summary>
+        [Input("allowListId")]
+        public Input<string>? AllowListId { get; set; }
+
+        /// <summary>
+        /// The name of the postgresql allow list.
+        /// </summary>
+        [Input("allowListName")]
+        public Input<string>? AllowListName { get; set; }
+
+        /// <summary>
         /// The id of the postgresql Instance.
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }
+
+        /// <summary>
+        /// The IP address to be added to the allow list.
+        /// </summary>
+        [Input("ipAddress")]
+        public Input<string>? IpAddress { get; set; }
 
         /// <summary>
         /// A Name Regex of Resource.
@@ -111,6 +187,22 @@ namespace Pulumi.Volcengine.Rds_postgresql
     public sealed class AllowlistsResult
     {
         /// <summary>
+        /// The category of the postgresql allow list.
+        /// </summary>
+        public readonly string? AllowListCategory;
+        /// <summary>
+        /// The description of the postgresql allow list.
+        /// </summary>
+        public readonly string? AllowListDesc;
+        /// <summary>
+        /// The id of the postgresql allow list.
+        /// </summary>
+        public readonly string? AllowListId;
+        /// <summary>
+        /// The name of the postgresql allow list.
+        /// </summary>
+        public readonly string? AllowListName;
+        /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
@@ -118,6 +210,7 @@ namespace Pulumi.Volcengine.Rds_postgresql
         /// The id of the postgresql instance.
         /// </summary>
         public readonly string? InstanceId;
+        public readonly string? IpAddress;
         public readonly string? NameRegex;
         public readonly string? OutputFile;
         /// <summary>
@@ -131,9 +224,19 @@ namespace Pulumi.Volcengine.Rds_postgresql
 
         [OutputConstructor]
         private AllowlistsResult(
+            string? allowListCategory,
+
+            string? allowListDesc,
+
+            string? allowListId,
+
+            string? allowListName,
+
             string id,
 
             string? instanceId,
+
+            string? ipAddress,
 
             string? nameRegex,
 
@@ -143,8 +246,13 @@ namespace Pulumi.Volcengine.Rds_postgresql
 
             int totalCount)
         {
+            AllowListCategory = allowListCategory;
+            AllowListDesc = allowListDesc;
+            AllowListId = allowListId;
+            AllowListName = allowListName;
             Id = id;
             InstanceId = instanceId;
+            IpAddress = ipAddress;
             NameRegex = nameRegex;
             OutputFile = outputFile;
             PostgresqlAllowLists = postgresqlAllowLists;

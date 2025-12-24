@@ -27,6 +27,15 @@ namespace Pulumi.Volcengine.Rds_postgresql
     ///         Collate = "zh_CN.utf8",
     ///         DbName = "acc-test",
     ///         InstanceId = "postgres-95*******233",
+    ///         Owner = "super",
+    ///     });
+    /// 
+    ///     var cloneExample = new Volcengine.Rds_postgresql.Database("cloneExample", new()
+    ///     {
+    ///         DataOption = "Metadata",
+    ///         DbName = "clone-test",
+    ///         InstanceId = "postgres-95*******233",
+    ///         SourceDbName = "acc-test",
     ///     });
     /// 
     /// });
@@ -62,6 +71,12 @@ namespace Pulumi.Volcengine.Rds_postgresql
         public Output<string> Collate { get; private set; } = null!;
 
         /// <summary>
+        /// The data option of the new database. Currently only Metadata is supported. This parameter is optional when clone an existing database.
+        /// </summary>
+        [Output("dataOption")]
+        public Output<string?> DataOption { get; private set; } = null!;
+
+        /// <summary>
         /// The name of database.
         /// </summary>
         [Output("dbName")]
@@ -84,6 +99,18 @@ namespace Pulumi.Volcengine.Rds_postgresql
         /// </summary>
         [Output("owner")]
         public Output<string> Owner { get; private set; } = null!;
+
+        /// <summary>
+        /// The pl_pgsql option of the new database. Value range: View, Procedure, Function, Trigger. This parameter is optional when clone an existing database.
+        /// </summary>
+        [Output("plpgsqlOptions")]
+        public Output<ImmutableArray<string>> PlpgsqlOptions { get; private set; } = null!;
+
+        /// <summary>
+        /// The name of the source database. This parameter is required when clone an existing database.
+        /// </summary>
+        [Output("sourceDbName")]
+        public Output<string?> SourceDbName { get; private set; } = null!;
 
 
         /// <summary>
@@ -151,6 +178,12 @@ namespace Pulumi.Volcengine.Rds_postgresql
         public Input<string>? Collate { get; set; }
 
         /// <summary>
+        /// The data option of the new database. Currently only Metadata is supported. This parameter is optional when clone an existing database.
+        /// </summary>
+        [Input("dataOption")]
+        public Input<string>? DataOption { get; set; }
+
+        /// <summary>
         /// The name of database.
         /// </summary>
         [Input("dbName", required: true)]
@@ -167,6 +200,24 @@ namespace Pulumi.Volcengine.Rds_postgresql
         /// </summary>
         [Input("owner")]
         public Input<string>? Owner { get; set; }
+
+        [Input("plpgsqlOptions")]
+        private InputList<string>? _plpgsqlOptions;
+
+        /// <summary>
+        /// The pl_pgsql option of the new database. Value range: View, Procedure, Function, Trigger. This parameter is optional when clone an existing database.
+        /// </summary>
+        public InputList<string> PlpgsqlOptions
+        {
+            get => _plpgsqlOptions ?? (_plpgsqlOptions = new InputList<string>());
+            set => _plpgsqlOptions = value;
+        }
+
+        /// <summary>
+        /// The name of the source database. This parameter is required when clone an existing database.
+        /// </summary>
+        [Input("sourceDbName")]
+        public Input<string>? SourceDbName { get; set; }
 
         public DatabaseArgs()
         {
@@ -195,6 +246,12 @@ namespace Pulumi.Volcengine.Rds_postgresql
         public Input<string>? Collate { get; set; }
 
         /// <summary>
+        /// The data option of the new database. Currently only Metadata is supported. This parameter is optional when clone an existing database.
+        /// </summary>
+        [Input("dataOption")]
+        public Input<string>? DataOption { get; set; }
+
+        /// <summary>
         /// The name of database.
         /// </summary>
         [Input("dbName")]
@@ -217,6 +274,24 @@ namespace Pulumi.Volcengine.Rds_postgresql
         /// </summary>
         [Input("owner")]
         public Input<string>? Owner { get; set; }
+
+        [Input("plpgsqlOptions")]
+        private InputList<string>? _plpgsqlOptions;
+
+        /// <summary>
+        /// The pl_pgsql option of the new database. Value range: View, Procedure, Function, Trigger. This parameter is optional when clone an existing database.
+        /// </summary>
+        public InputList<string> PlpgsqlOptions
+        {
+            get => _plpgsqlOptions ?? (_plpgsqlOptions = new InputList<string>());
+            set => _plpgsqlOptions = value;
+        }
+
+        /// <summary>
+        /// The name of the source database. This parameter is required when clone an existing database.
+        /// </summary>
+        [Input("sourceDbName")]
+        public Input<string>? SourceDbName { get; set; }
 
         public DatabaseState()
         {

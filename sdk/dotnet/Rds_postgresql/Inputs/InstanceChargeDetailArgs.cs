@@ -36,7 +36,7 @@ namespace Pulumi.Volcengine.Rds_postgresql.Inputs
         /// Pay status. Value:
         /// normal - normal
         /// overdue - overdue
-        /// .
+        /// unpaid - unpaid.
         /// </summary>
         [Input("chargeStatus")]
         public Input<string>? ChargeStatus { get; set; }
@@ -48,6 +48,12 @@ namespace Pulumi.Volcengine.Rds_postgresql.Inputs
         /// </summary>
         [Input("chargeType")]
         public Input<string>? ChargeType { get; set; }
+
+        /// <summary>
+        /// The number of the RDS PostgreSQL instance.
+        /// </summary>
+        [Input("number")]
+        public Input<int>? Number { get; set; }
 
         /// <summary>
         /// Estimated release time when arrears are closed (pay-as-you-go &amp; monthly subscription).

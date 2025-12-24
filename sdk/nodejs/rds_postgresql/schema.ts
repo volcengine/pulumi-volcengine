@@ -124,7 +124,7 @@ export class Schema extends pulumi.CustomResource {
      */
     public readonly instanceId!: pulumi.Output<string>;
     /**
-     * The owner of the schema.
+     * The owner of the schema.The instance read-only account, a high-privilege account with DDL permissions disabled, or a normal account with DDL permissions disabled cannot be used as the owner of the schema.
      */
     public readonly owner!: pulumi.Output<string>;
     /**
@@ -186,7 +186,7 @@ export interface SchemaState {
      */
     instanceId?: pulumi.Input<string>;
     /**
-     * The owner of the schema.
+     * The owner of the schema.The instance read-only account, a high-privilege account with DDL permissions disabled, or a normal account with DDL permissions disabled cannot be used as the owner of the schema.
      */
     owner?: pulumi.Input<string>;
     /**
@@ -208,7 +208,7 @@ export interface SchemaArgs {
      */
     instanceId: pulumi.Input<string>;
     /**
-     * The owner of the schema.
+     * The owner of the schema.The instance read-only account, a high-privilege account with DDL permissions disabled, or a normal account with DDL permissions disabled cannot be used as the owner of the schema.
      */
     owner: pulumi.Input<string>;
     /**

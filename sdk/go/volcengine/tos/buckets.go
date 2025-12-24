@@ -53,21 +53,29 @@ func Buckets(ctx *pulumi.Context, args *BucketsArgs, opts ...pulumi.InvokeOption
 type BucketsArgs struct {
 	// The name the TOS bucket.
 	BucketName *string `pulumi:"bucketName"`
+	// The bucket type of the TOS bucket.
+	BucketType *string `pulumi:"bucketType"`
 	// A Name Regex of TOS bucket.
 	NameRegex *string `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
+	// The project of the TOS bucket.
+	ProjectName *string `pulumi:"projectName"`
 }
 
 // A collection of values returned by Buckets.
 type BucketsResult struct {
 	BucketName *string `pulumi:"bucketName"`
+	// The bucket type of the TOS bucket.
+	BucketType *string `pulumi:"bucketType"`
 	// The collection of TOS bucket query.
 	Buckets []BucketsBucket `pulumi:"buckets"`
 	// The provider-assigned unique ID for this managed resource.
 	Id         string  `pulumi:"id"`
 	NameRegex  *string `pulumi:"nameRegex"`
 	OutputFile *string `pulumi:"outputFile"`
+	// The project of the TOS bucket.
+	ProjectName *string `pulumi:"projectName"`
 	// The total count of TOS bucket query.
 	TotalCount int `pulumi:"totalCount"`
 }
@@ -89,10 +97,14 @@ func BucketsOutput(ctx *pulumi.Context, args BucketsOutputArgs, opts ...pulumi.I
 type BucketsOutputArgs struct {
 	// The name the TOS bucket.
 	BucketName pulumi.StringPtrInput `pulumi:"bucketName"`
+	// The bucket type of the TOS bucket.
+	BucketType pulumi.StringPtrInput `pulumi:"bucketType"`
 	// A Name Regex of TOS bucket.
 	NameRegex pulumi.StringPtrInput `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// The project of the TOS bucket.
+	ProjectName pulumi.StringPtrInput `pulumi:"projectName"`
 }
 
 func (BucketsOutputArgs) ElementType() reflect.Type {
@@ -118,6 +130,11 @@ func (o BucketsResultOutput) BucketName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BucketsResult) *string { return v.BucketName }).(pulumi.StringPtrOutput)
 }
 
+// The bucket type of the TOS bucket.
+func (o BucketsResultOutput) BucketType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketsResult) *string { return v.BucketType }).(pulumi.StringPtrOutput)
+}
+
 // The collection of TOS bucket query.
 func (o BucketsResultOutput) Buckets() BucketsBucketArrayOutput {
 	return o.ApplyT(func(v BucketsResult) []BucketsBucket { return v.Buckets }).(BucketsBucketArrayOutput)
@@ -134,6 +151,11 @@ func (o BucketsResultOutput) NameRegex() pulumi.StringPtrOutput {
 
 func (o BucketsResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BucketsResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
+}
+
+// The project of the TOS bucket.
+func (o BucketsResultOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketsResult) *string { return v.ProjectName }).(pulumi.StringPtrOutput)
 }
 
 // The total count of TOS bucket query.

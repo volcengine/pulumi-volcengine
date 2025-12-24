@@ -51,6 +51,16 @@ namespace Pulumi.Volcengine.Rds_postgresql.Outputs
         /// </summary>
         public readonly string? EndpointType;
         /// <summary>
+        /// The distribution type of the read-only nodes, value:
+        /// Default: Default distribution.
+        /// Custom: Custom distribution.
+        /// </summary>
+        public readonly string? ReadOnlyNodeDistributionType;
+        /// <summary>
+        /// Maximum latency threshold of read-only node. If the latency of a read-only node exceeds this value, reading traffic won't be routed to this node. Unit: seconds.Values: 0~3600.Default value: 30.
+        /// </summary>
+        public readonly int? ReadOnlyNodeMaxDelayTime;
+        /// <summary>
         /// The list of nodes configured by the connection terminal and the corresponding read-only weights.
         /// </summary>
         public readonly ImmutableArray<Outputs.InstanceEndpointReadOnlyNodeWeight> ReadOnlyNodeWeights;
@@ -60,6 +70,14 @@ namespace Pulumi.Volcengine.Rds_postgresql.Outputs
         /// ReadOnly: read only (default).
         /// </summary>
         public readonly string? ReadWriteMode;
+        /// <summary>
+        /// After the terminal enables read-write separation, the number of proxy connections set for the terminal. The lower limit of the number of proxy connections is 20. The upper limit of the number of proxy connections depends on the specifications of the instance master node.
+        /// </summary>
+        public readonly int? ReadWriteProxyConnection;
+        /// <summary>
+        /// Whether the endpoint sends write requests to the write node (currently only the master node is a write node). Values: true: Yes(Default). false: No.
+        /// </summary>
+        public readonly bool? WriteNodeHaltWriting;
 
         [OutputConstructor]
         private InstanceEndpoint(
@@ -79,9 +97,17 @@ namespace Pulumi.Volcengine.Rds_postgresql.Outputs
 
             string? endpointType,
 
+            string? readOnlyNodeDistributionType,
+
+            int? readOnlyNodeMaxDelayTime,
+
             ImmutableArray<Outputs.InstanceEndpointReadOnlyNodeWeight> readOnlyNodeWeights,
 
-            string? readWriteMode)
+            string? readWriteMode,
+
+            int? readWriteProxyConnection,
+
+            bool? writeNodeHaltWriting)
         {
             Addresses = addresses;
             AutoAddNewNodes = autoAddNewNodes;
@@ -91,8 +117,12 @@ namespace Pulumi.Volcengine.Rds_postgresql.Outputs
             EndpointId = endpointId;
             EndpointName = endpointName;
             EndpointType = endpointType;
+            ReadOnlyNodeDistributionType = readOnlyNodeDistributionType;
+            ReadOnlyNodeMaxDelayTime = readOnlyNodeMaxDelayTime;
             ReadOnlyNodeWeights = readOnlyNodeWeights;
             ReadWriteMode = readWriteMode;
+            ReadWriteProxyConnection = readWriteProxyConnection;
+            WriteNodeHaltWriting = writeNodeHaltWriting;
         }
     }
 }

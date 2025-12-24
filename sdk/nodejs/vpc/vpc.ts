@@ -149,6 +149,10 @@ export class Vpc extends pulumi.CustomResource {
      */
     public /*out*/ readonly updateTime!: pulumi.Output<string>;
     /**
+     * The user cidr block list of VPC.
+     */
+    public /*out*/ readonly userCidrBlocks!: pulumi.Output<string[]>;
+    /**
      * The ID of VPC.
      */
     public /*out*/ readonly vpcId!: pulumi.Output<string>;
@@ -188,6 +192,7 @@ export class Vpc extends pulumi.CustomResource {
             resourceInputs["subnetIds"] = state ? state.subnetIds : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["updateTime"] = state ? state.updateTime : undefined;
+            resourceInputs["userCidrBlocks"] = state ? state.userCidrBlocks : undefined;
             resourceInputs["vpcId"] = state ? state.vpcId : undefined;
             resourceInputs["vpcName"] = state ? state.vpcName : undefined;
         } else {
@@ -214,6 +219,7 @@ export class Vpc extends pulumi.CustomResource {
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["subnetIds"] = undefined /*out*/;
             resourceInputs["updateTime"] = undefined /*out*/;
+            resourceInputs["userCidrBlocks"] = undefined /*out*/;
             resourceInputs["vpcId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -297,6 +303,10 @@ export interface VpcState {
      * The update time of VPC.
      */
     updateTime?: pulumi.Input<string>;
+    /**
+     * The user cidr block list of VPC.
+     */
+    userCidrBlocks?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The ID of VPC.
      */
