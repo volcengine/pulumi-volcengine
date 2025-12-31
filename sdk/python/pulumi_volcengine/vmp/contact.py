@@ -16,6 +16,7 @@ __all__ = ['ContactArgs', 'Contact']
 @pulumi.input_type
 class ContactArgs:
     def __init__(__self__, *,
+                 contact_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ding_talk_bot_webhook: Optional[pulumi.Input['ContactDingTalkBotWebhookArgs']] = None,
                  email: Optional[pulumi.Input[str]] = None,
                  lark_bot_webhook: Optional[pulumi.Input['ContactLarkBotWebhookArgs']] = None,
@@ -25,6 +26,7 @@ class ContactArgs:
                  webhook: Optional[pulumi.Input['ContactWebhookArgs']] = None):
         """
         The set of arguments for constructing a Contact resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] contact_group_ids: A list of contact group ids.
         :param pulumi.Input['ContactDingTalkBotWebhookArgs'] ding_talk_bot_webhook: The ding talk bot webhook of contact.
         :param pulumi.Input[str] email: The email of the contact.
         :param pulumi.Input['ContactLarkBotWebhookArgs'] lark_bot_webhook: The lark bot webhook of contact.
@@ -33,6 +35,8 @@ class ContactArgs:
         :param pulumi.Input['ContactWeComBotWebhookArgs'] we_com_bot_webhook: The we com bot webhook of contact.
         :param pulumi.Input['ContactWebhookArgs'] webhook: The webhook of contact.
         """
+        if contact_group_ids is not None:
+            pulumi.set(__self__, "contact_group_ids", contact_group_ids)
         if ding_talk_bot_webhook is not None:
             pulumi.set(__self__, "ding_talk_bot_webhook", ding_talk_bot_webhook)
         if email is not None:
@@ -47,6 +51,18 @@ class ContactArgs:
             pulumi.set(__self__, "we_com_bot_webhook", we_com_bot_webhook)
         if webhook is not None:
             pulumi.set(__self__, "webhook", webhook)
+
+    @property
+    @pulumi.getter(name="contactGroupIds")
+    def contact_group_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A list of contact group ids.
+        """
+        return pulumi.get(self, "contact_group_ids")
+
+    @contact_group_ids.setter
+    def contact_group_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "contact_group_ids", value)
 
     @property
     @pulumi.getter(name="dingTalkBotWebhook")
@@ -306,6 +322,7 @@ class Contact(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 contact_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ding_talk_bot_webhook: Optional[pulumi.Input[pulumi.InputType['ContactDingTalkBotWebhookArgs']]] = None,
                  email: Optional[pulumi.Input[str]] = None,
                  lark_bot_webhook: Optional[pulumi.Input[pulumi.InputType['ContactLarkBotWebhookArgs']]] = None,
@@ -350,6 +367,7 @@ class Contact(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] contact_group_ids: A list of contact group ids.
         :param pulumi.Input[pulumi.InputType['ContactDingTalkBotWebhookArgs']] ding_talk_bot_webhook: The ding talk bot webhook of contact.
         :param pulumi.Input[str] email: The email of the contact.
         :param pulumi.Input[pulumi.InputType['ContactLarkBotWebhookArgs']] lark_bot_webhook: The lark bot webhook of contact.
@@ -413,6 +431,7 @@ class Contact(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 contact_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ding_talk_bot_webhook: Optional[pulumi.Input[pulumi.InputType['ContactDingTalkBotWebhookArgs']]] = None,
                  email: Optional[pulumi.Input[str]] = None,
                  lark_bot_webhook: Optional[pulumi.Input[pulumi.InputType['ContactLarkBotWebhookArgs']]] = None,
@@ -429,6 +448,7 @@ class Contact(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ContactArgs.__new__(ContactArgs)
 
+            __props__.__dict__["contact_group_ids"] = contact_group_ids
             __props__.__dict__["ding_talk_bot_webhook"] = ding_talk_bot_webhook
             __props__.__dict__["email"] = email
             __props__.__dict__["lark_bot_webhook"] = lark_bot_webhook
@@ -436,7 +456,6 @@ class Contact(pulumi.CustomResource):
             __props__.__dict__["phone_number"] = phone_number
             __props__.__dict__["we_com_bot_webhook"] = we_com_bot_webhook
             __props__.__dict__["webhook"] = webhook
-            __props__.__dict__["contact_group_ids"] = None
             __props__.__dict__["create_time"] = None
             __props__.__dict__["email_active"] = None
         super(Contact, __self__).__init__(
@@ -495,7 +514,7 @@ class Contact(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="contactGroupIds")
-    def contact_group_ids(self) -> pulumi.Output[Sequence[str]]:
+    def contact_group_ids(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         A list of contact group ids.
         """

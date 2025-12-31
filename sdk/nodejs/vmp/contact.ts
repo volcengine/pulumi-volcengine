@@ -72,7 +72,7 @@ export class Contact extends pulumi.CustomResource {
     /**
      * A list of contact group ids.
      */
-    public /*out*/ readonly contactGroupIds!: pulumi.Output<string[]>;
+    public readonly contactGroupIds!: pulumi.Output<string[] | undefined>;
     /**
      * The create time of contact.
      */
@@ -135,6 +135,7 @@ export class Contact extends pulumi.CustomResource {
             resourceInputs["webhook"] = state ? state.webhook : undefined;
         } else {
             const args = argsOrState as ContactArgs | undefined;
+            resourceInputs["contactGroupIds"] = args ? args.contactGroupIds : undefined;
             resourceInputs["dingTalkBotWebhook"] = args ? args.dingTalkBotWebhook : undefined;
             resourceInputs["email"] = args ? args.email : undefined;
             resourceInputs["larkBotWebhook"] = args ? args.larkBotWebhook : undefined;
@@ -142,7 +143,6 @@ export class Contact extends pulumi.CustomResource {
             resourceInputs["phoneNumber"] = args ? args.phoneNumber : undefined;
             resourceInputs["weComBotWebhook"] = args ? args.weComBotWebhook : undefined;
             resourceInputs["webhook"] = args ? args.webhook : undefined;
-            resourceInputs["contactGroupIds"] = undefined /*out*/;
             resourceInputs["createTime"] = undefined /*out*/;
             resourceInputs["emailActive"] = undefined /*out*/;
         }
@@ -201,6 +201,10 @@ export interface ContactState {
  * The set of arguments for constructing a Contact resource.
  */
 export interface ContactArgs {
+    /**
+     * A list of contact group ids.
+     */
+    contactGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The ding talk bot webhook of contact.
      */

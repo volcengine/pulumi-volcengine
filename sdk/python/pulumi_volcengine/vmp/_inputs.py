@@ -23,6 +23,10 @@ __all__ = [
     'NotifyPolicyLevelArgs',
     'NotifyTemplateActiveArgs',
     'NotifyTemplateResolvedArgs',
+    'SilencePolicyMetricLabelMatcherArgs',
+    'SilencePolicyMetricLabelMatcherMatcherArgs',
+    'SilencePolicyTimeRangeMatcherArgs',
+    'SilencePolicyTimeRangeMatcherPeriodicDateArgs',
     'WorkspaceTagArgs',
     'WorkspacesTagArgs',
     'GetWorkspacesTagArgs',
@@ -649,6 +653,190 @@ class NotifyTemplateResolvedArgs:
     @title.setter
     def title(self, value: pulumi.Input[str]):
         pulumi.set(self, "title", value)
+
+
+@pulumi.input_type
+class SilencePolicyMetricLabelMatcherArgs:
+    def __init__(__self__, *,
+                 matchers: pulumi.Input[Sequence[pulumi.Input['SilencePolicyMetricLabelMatcherMatcherArgs']]]):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['SilencePolicyMetricLabelMatcherMatcherArgs']]] matchers: Label matcher. Among them, each LabelMatcher array can contain a maximum of 24 items.
+        """
+        pulumi.set(__self__, "matchers", matchers)
+
+    @property
+    @pulumi.getter
+    def matchers(self) -> pulumi.Input[Sequence[pulumi.Input['SilencePolicyMetricLabelMatcherMatcherArgs']]]:
+        """
+        Label matcher. Among them, each LabelMatcher array can contain a maximum of 24 items.
+        """
+        return pulumi.get(self, "matchers")
+
+    @matchers.setter
+    def matchers(self, value: pulumi.Input[Sequence[pulumi.Input['SilencePolicyMetricLabelMatcherMatcherArgs']]]):
+        pulumi.set(self, "matchers", value)
+
+
+@pulumi.input_type
+class SilencePolicyMetricLabelMatcherMatcherArgs:
+    def __init__(__self__, *,
+                 label: pulumi.Input[str],
+                 value: pulumi.Input[str],
+                 operator: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] label: Label.
+        :param pulumi.Input[str] value: Label value.
+        :param pulumi.Input[str] operator: Operator. The optional values are as follows: Equal, NotEqual, RegexpEqual, RegexpNotEqual.
+        """
+        pulumi.set(__self__, "label", label)
+        pulumi.set(__self__, "value", value)
+        if operator is not None:
+            pulumi.set(__self__, "operator", operator)
+
+    @property
+    @pulumi.getter
+    def label(self) -> pulumi.Input[str]:
+        """
+        Label.
+        """
+        return pulumi.get(self, "label")
+
+    @label.setter
+    def label(self, value: pulumi.Input[str]):
+        pulumi.set(self, "label", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        """
+        Label value.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+    @property
+    @pulumi.getter
+    def operator(self) -> Optional[pulumi.Input[str]]:
+        """
+        Operator. The optional values are as follows: Equal, NotEqual, RegexpEqual, RegexpNotEqual.
+        """
+        return pulumi.get(self, "operator")
+
+    @operator.setter
+    def operator(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "operator", value)
+
+
+@pulumi.input_type
+class SilencePolicyTimeRangeMatcherArgs:
+    def __init__(__self__, *,
+                 location: pulumi.Input[str],
+                 date: Optional[pulumi.Input[str]] = None,
+                 periodic_date: Optional[pulumi.Input['SilencePolicyTimeRangeMatcherPeriodicDateArgs']] = None):
+        """
+        :param pulumi.Input[str] location: Timezone, e.g. Asia/Shanghai.
+        :param pulumi.Input[str] date: Silence time range, like 2025-01-02 15:04~2025-01-03 14:04.
+        :param pulumi.Input['SilencePolicyTimeRangeMatcherPeriodicDateArgs'] periodic_date: The cycle of alarm silence. It is used to configure alarm silence that takes effect periodically.
+        """
+        pulumi.set(__self__, "location", location)
+        if date is not None:
+            pulumi.set(__self__, "date", date)
+        if periodic_date is not None:
+            pulumi.set(__self__, "periodic_date", periodic_date)
+
+    @property
+    @pulumi.getter
+    def location(self) -> pulumi.Input[str]:
+        """
+        Timezone, e.g. Asia/Shanghai.
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: pulumi.Input[str]):
+        pulumi.set(self, "location", value)
+
+    @property
+    @pulumi.getter
+    def date(self) -> Optional[pulumi.Input[str]]:
+        """
+        Silence time range, like 2025-01-02 15:04~2025-01-03 14:04.
+        """
+        return pulumi.get(self, "date")
+
+    @date.setter
+    def date(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "date", value)
+
+    @property
+    @pulumi.getter(name="periodicDate")
+    def periodic_date(self) -> Optional[pulumi.Input['SilencePolicyTimeRangeMatcherPeriodicDateArgs']]:
+        """
+        The cycle of alarm silence. It is used to configure alarm silence that takes effect periodically.
+        """
+        return pulumi.get(self, "periodic_date")
+
+    @periodic_date.setter
+    def periodic_date(self, value: Optional[pulumi.Input['SilencePolicyTimeRangeMatcherPeriodicDateArgs']]):
+        pulumi.set(self, "periodic_date", value)
+
+
+@pulumi.input_type
+class SilencePolicyTimeRangeMatcherPeriodicDateArgs:
+    def __init__(__self__, *,
+                 day_of_month: Optional[pulumi.Input[str]] = None,
+                 time: Optional[pulumi.Input[str]] = None,
+                 weekday: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] day_of_month: Days of month, e.g. 2~3. A maximum of 10 time periods can be configured.
+        :param pulumi.Input[str] time: Time periods, e.g. 20:00~21:12,22:00~23:12. A maximum of 4 time periods can be configured.
+        :param pulumi.Input[str] weekday: Weekdays, e.g. 1,3,5. A maximum of 7 time periods can be configured.
+        """
+        if day_of_month is not None:
+            pulumi.set(__self__, "day_of_month", day_of_month)
+        if time is not None:
+            pulumi.set(__self__, "time", time)
+        if weekday is not None:
+            pulumi.set(__self__, "weekday", weekday)
+
+    @property
+    @pulumi.getter(name="dayOfMonth")
+    def day_of_month(self) -> Optional[pulumi.Input[str]]:
+        """
+        Days of month, e.g. 2~3. A maximum of 10 time periods can be configured.
+        """
+        return pulumi.get(self, "day_of_month")
+
+    @day_of_month.setter
+    def day_of_month(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "day_of_month", value)
+
+    @property
+    @pulumi.getter
+    def time(self) -> Optional[pulumi.Input[str]]:
+        """
+        Time periods, e.g. 20:00~21:12,22:00~23:12. A maximum of 4 time periods can be configured.
+        """
+        return pulumi.get(self, "time")
+
+    @time.setter
+    def time(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "time", value)
+
+    @property
+    @pulumi.getter
+    def weekday(self) -> Optional[pulumi.Input[str]]:
+        """
+        Weekdays, e.g. 1,3,5. A maximum of 7 time periods can be configured.
+        """
+        return pulumi.get(self, "weekday")
+
+    @weekday.setter
+    def weekday(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "weekday", value)
 
 
 @pulumi.input_type
