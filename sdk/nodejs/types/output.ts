@@ -58790,6 +58790,29 @@ export namespace vke {
 }
 
 export namespace vmp {
+    export interface AlertSamplesAlertSample {
+        /**
+         * Alert ID to filter samples.
+         */
+        alertId: string;
+        /**
+         * Alert sample level.
+         */
+        level: string;
+        /**
+         * Alert sample phase.
+         */
+        phase: string;
+        /**
+         * Alert sample timestamp(unix).
+         */
+        timestamp: number;
+        /**
+         * Alert sample value.
+         */
+        value: number;
+    }
+
     export interface AlertingRuleAnnotation {
         /**
          * The name of the annotation.
@@ -59240,6 +59263,29 @@ export namespace vmp {
         token: string;
     }
 
+    export interface GetAlertSamplesAlertSample {
+        /**
+         * Alert ID to filter samples.
+         */
+        alertId: string;
+        /**
+         * Alert sample level.
+         */
+        level: string;
+        /**
+         * Alert sample phase.
+         */
+        phase: string;
+        /**
+         * Alert sample timestamp(unix).
+         */
+        timestamp: number;
+        /**
+         * Alert sample value.
+         */
+        value: number;
+    }
+
     export interface GetAlertingRulesAlertingRule {
         /**
          * The annotations of the vmp alerting rule.
@@ -59622,6 +59668,52 @@ export namespace vmp {
         scanSeriesPerSecond: number;
     }
 
+    export interface GetIntegrationTasksIntegrationTask {
+        /**
+         * The deployment environment. Valid values: `Vke` or `Managed`.
+         */
+        environment: string;
+        /**
+         * The ID of the integration task.
+         */
+        id: string;
+        /**
+         * The name of the integration task.
+         */
+        name: string;
+        /**
+         * The status of the VKE cluster.
+         */
+        status: string;
+        /**
+         * The type of the integration task.
+         */
+        type: string;
+        /**
+         * The ID of the VKE cluster.
+         */
+        vkeClusterIds: string[];
+        /**
+         * The information of the VKE cluster.
+         */
+        vkeClusterInfos: outputs.vmp.GetIntegrationTasksIntegrationTaskVkeClusterInfo[];
+        /**
+         * The workspace ID.
+         */
+        workspaceId: string;
+    }
+
+    export interface GetIntegrationTasksIntegrationTaskVkeClusterInfo {
+        /**
+         * The name of the integration task.
+         */
+        name: string;
+        /**
+         * The status of the VKE cluster.
+         */
+        status: string;
+    }
+
     export interface GetNotifyGroupPoliciesNotifyPolicy {
         /**
          * The create time of notify group policy.
@@ -59856,6 +59948,75 @@ export namespace vmp {
         value: string;
     }
 
+    export interface GetSilencePoliciesSilencePolicy {
+        /**
+         * The auto delete time of the silence policy.
+         */
+        autoDeleteTime: string;
+        /**
+         * The create time of the silence policy, in RFC3339 format.
+         */
+        createTime: string;
+        /**
+         * The description of the silence policy.
+         */
+        description: string;
+        /**
+         * The id of the silence policy.
+         */
+        id: string;
+        /**
+         * The name of silence policy.
+         */
+        name: string;
+        /**
+         * The source of the silence policy.
+         */
+        source: string;
+        /**
+         * The status of silence policy: Active/Disabled/Expired.
+         */
+        status: string;
+        /**
+         * The matching time in the alert silence policy.
+         */
+        timeRangeMatchers: outputs.vmp.GetSilencePoliciesSilencePolicyTimeRangeMatcher[];
+        /**
+         * The update time of the silence policy, in RFC3339 format.
+         */
+        updateTime: string;
+    }
+
+    export interface GetSilencePoliciesSilencePolicyTimeRangeMatcher {
+        /**
+         * The time period for alarm silence.
+         */
+        date: string;
+        /**
+         * Time zone.
+         */
+        location: string;
+        /**
+         * The cycle of alarm silence.
+         */
+        periodicDates: outputs.vmp.GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDate[];
+    }
+
+    export interface GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDate {
+        /**
+         * Days of the month, e.g. 1,15,30.
+         */
+        dayOfMonth: string;
+        /**
+         * Time periods, e.g. 20:00~21:12,22:00~23:12.
+         */
+        time: string;
+        /**
+         * Weekdays, e.g. 1,3,5.
+         */
+        weekday: string;
+    }
+
     export interface GetWorkspacesTag {
         /**
          * The Key of Tags.
@@ -59982,6 +60143,52 @@ export namespace vmp {
          * Maximum number of scan sequences per second.
          */
         scanSeriesPerSecond: number;
+    }
+
+    export interface IntegrationTasksIntegrationTask {
+        /**
+         * The deployment environment. Valid values: `Vke` or `Managed`.
+         */
+        environment: string;
+        /**
+         * The ID of the integration task.
+         */
+        id: string;
+        /**
+         * The name of the integration task.
+         */
+        name: string;
+        /**
+         * The status of the VKE cluster.
+         */
+        status: string;
+        /**
+         * The type of the integration task.
+         */
+        type: string;
+        /**
+         * The ID of the VKE cluster.
+         */
+        vkeClusterIds: string[];
+        /**
+         * The information of the VKE cluster.
+         */
+        vkeClusterInfos: outputs.vmp.IntegrationTasksIntegrationTaskVkeClusterInfo[];
+        /**
+         * The workspace ID.
+         */
+        workspaceId: string;
+    }
+
+    export interface IntegrationTasksIntegrationTaskVkeClusterInfo {
+        /**
+         * The name of the integration task.
+         */
+        name: string;
+        /**
+         * The status of the VKE cluster.
+         */
+        status: string;
     }
 
     export interface NotifyGroupPoliciesNotifyPolicy {
@@ -60280,6 +60487,127 @@ export namespace vmp {
          * The value of label.
          */
         value: string;
+    }
+
+    export interface SilencePoliciesSilencePolicy {
+        /**
+         * The auto delete time of the silence policy.
+         */
+        autoDeleteTime: string;
+        /**
+         * The create time of the silence policy, in RFC3339 format.
+         */
+        createTime: string;
+        /**
+         * The description of the silence policy.
+         */
+        description: string;
+        /**
+         * The id of the silence policy.
+         */
+        id: string;
+        /**
+         * The name of silence policy.
+         */
+        name: string;
+        /**
+         * The source of the silence policy.
+         */
+        source: string;
+        /**
+         * The status of silence policy: Active/Disabled/Expired.
+         */
+        status: string;
+        /**
+         * The matching time in the alert silence policy.
+         */
+        timeRangeMatchers: outputs.vmp.SilencePoliciesSilencePolicyTimeRangeMatcher[];
+        /**
+         * The update time of the silence policy, in RFC3339 format.
+         */
+        updateTime: string;
+    }
+
+    export interface SilencePoliciesSilencePolicyTimeRangeMatcher {
+        /**
+         * The time period for alarm silence.
+         */
+        date: string;
+        /**
+         * Time zone.
+         */
+        location: string;
+        /**
+         * The cycle of alarm silence.
+         */
+        periodicDates: outputs.vmp.SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDate[];
+    }
+
+    export interface SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDate {
+        /**
+         * Days of the month, e.g. 1,15,30.
+         */
+        dayOfMonth: string;
+        /**
+         * Time periods, e.g. 20:00~21:12,22:00~23:12.
+         */
+        time: string;
+        /**
+         * Weekdays, e.g. 1,3,5.
+         */
+        weekday: string;
+    }
+
+    export interface SilencePolicyMetricLabelMatcher {
+        /**
+         * Label matcher. Among them, each LabelMatcher array can contain a maximum of 24 items.
+         */
+        matchers: outputs.vmp.SilencePolicyMetricLabelMatcherMatcher[];
+    }
+
+    export interface SilencePolicyMetricLabelMatcherMatcher {
+        /**
+         * Label.
+         */
+        label: string;
+        /**
+         * Operator. The optional values are as follows: Equal, NotEqual, RegexpEqual, RegexpNotEqual.
+         */
+        operator?: string;
+        /**
+         * Label value.
+         */
+        value: string;
+    }
+
+    export interface SilencePolicyTimeRangeMatcher {
+        /**
+         * Silence time range, like 2025-01-02 15:04~2025-01-03 14:04.
+         */
+        date?: string;
+        /**
+         * Timezone, e.g. Asia/Shanghai.
+         */
+        location: string;
+        /**
+         * The cycle of alarm silence. It is used to configure alarm silence that takes effect periodically.
+         */
+        periodicDate?: outputs.vmp.SilencePolicyTimeRangeMatcherPeriodicDate;
+    }
+
+    export interface SilencePolicyTimeRangeMatcherPeriodicDate {
+        /**
+         * Days of month, e.g. 2~3. A maximum of 10 time periods can be configured.
+         */
+        dayOfMonth?: string;
+        /**
+         * Time periods, e.g. 20:00~21:12,22:00~23:12. A maximum of 4 time periods can be configured.
+         */
+        time?: string;
+        /**
+         * Weekdays, e.g. 1,3,5. A maximum of 7 time periods can be configured.
+         */
+        weekday?: string;
     }
 
     export interface WorkspaceTag {

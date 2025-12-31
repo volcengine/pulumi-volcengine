@@ -166,6 +166,8 @@ func (ContactState) ElementType() reflect.Type {
 }
 
 type contactArgs struct {
+	// A list of contact group ids.
+	ContactGroupIds []string `pulumi:"contactGroupIds"`
 	// The ding talk bot webhook of contact.
 	DingTalkBotWebhook *ContactDingTalkBotWebhook `pulumi:"dingTalkBotWebhook"`
 	// The email of the contact.
@@ -184,6 +186,8 @@ type contactArgs struct {
 
 // The set of arguments for constructing a Contact resource.
 type ContactArgs struct {
+	// A list of contact group ids.
+	ContactGroupIds pulumi.StringArrayInput
 	// The ding talk bot webhook of contact.
 	DingTalkBotWebhook ContactDingTalkBotWebhookPtrInput
 	// The email of the contact.

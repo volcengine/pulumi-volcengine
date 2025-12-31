@@ -48,6 +48,8 @@ export function contacts(args?: ContactsArgs, opts?: pulumi.InvokeOptions): Prom
         "ids": args.ids,
         "name": args.name,
         "outputFile": args.outputFile,
+        "sortBy": args.sortBy,
+        "sortOrder": args.sortOrder,
     }, opts);
 }
 
@@ -71,6 +73,14 @@ export interface ContactsArgs {
      * File name where to save data source results.
      */
     outputFile?: string;
+    /**
+     * The sort field of query.
+     */
+    sortBy?: string;
+    /**
+     * The sort order of query.
+     */
+    sortOrder?: string;
 }
 
 /**
@@ -95,6 +105,8 @@ export interface ContactsResult {
      */
     readonly name?: string;
     readonly outputFile?: string;
+    readonly sortBy?: string;
+    readonly sortOrder?: string;
     /**
      * The total count of query.
      */
@@ -156,4 +168,12 @@ export interface ContactsOutputArgs {
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
+    /**
+     * The sort field of query.
+     */
+    sortBy?: pulumi.Input<string>;
+    /**
+     * The sort order of query.
+     */
+    sortOrder?: pulumi.Input<string>;
 }

@@ -80,6 +80,10 @@ type ContactsArgs struct {
 	Name *string `pulumi:"name"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
+	// The sort field of query.
+	SortBy *string `pulumi:"sortBy"`
+	// The sort order of query.
+	SortOrder *string `pulumi:"sortOrder"`
 }
 
 // A collection of values returned by Contacts.
@@ -94,6 +98,8 @@ type ContactsResult struct {
 	// The name of contact.
 	Name       *string `pulumi:"name"`
 	OutputFile *string `pulumi:"outputFile"`
+	SortBy     *string `pulumi:"sortBy"`
+	SortOrder  *string `pulumi:"sortOrder"`
 	// The total count of query.
 	TotalCount int `pulumi:"totalCount"`
 }
@@ -121,6 +127,10 @@ type ContactsOutputArgs struct {
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// The sort field of query.
+	SortBy pulumi.StringPtrInput `pulumi:"sortBy"`
+	// The sort order of query.
+	SortOrder pulumi.StringPtrInput `pulumi:"sortOrder"`
 }
 
 func (ContactsOutputArgs) ElementType() reflect.Type {
@@ -168,6 +178,14 @@ func (o ContactsResultOutput) Name() pulumi.StringPtrOutput {
 
 func (o ContactsResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContactsResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
+}
+
+func (o ContactsResultOutput) SortBy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactsResult) *string { return v.SortBy }).(pulumi.StringPtrOutput)
+}
+
+func (o ContactsResultOutput) SortOrder() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactsResult) *string { return v.SortOrder }).(pulumi.StringPtrOutput)
 }
 
 // The total count of query.

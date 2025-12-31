@@ -2685,6 +2685,14 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "vmp/alertingRuleEnableDisable",
+  "fqn": "pulumi_volcengine.vmp",
+  "classes": {
+   "volcengine:vmp/alertingRuleEnableDisable:AlertingRuleEnableDisable": "AlertingRuleEnableDisable"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "vmp/contact",
   "fqn": "pulumi_volcengine.vmp",
   "classes": {
@@ -2697,6 +2705,22 @@ _utilities.register(
   "fqn": "pulumi_volcengine.vmp",
   "classes": {
    "volcengine:vmp/contactGroup:ContactGroup": "ContactGroup"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "vmp/integrationTask",
+  "fqn": "pulumi_volcengine.vmp",
+  "classes": {
+   "volcengine:vmp/integrationTask:IntegrationTask": "IntegrationTask"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "vmp/integrationTaskEnable",
+  "fqn": "pulumi_volcengine.vmp",
+  "classes": {
+   "volcengine:vmp/integrationTaskEnable:IntegrationTaskEnable": "IntegrationTaskEnable"
   }
  },
  {
@@ -2729,6 +2753,22 @@ _utilities.register(
   "fqn": "pulumi_volcengine.vmp",
   "classes": {
    "volcengine:vmp/ruleFile:RuleFile": "RuleFile"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "vmp/silencePolicy",
+  "fqn": "pulumi_volcengine.vmp",
+  "classes": {
+   "volcengine:vmp/silencePolicy:SilencePolicy": "SilencePolicy"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "vmp/silencePolicyEnableDisable",
+  "fqn": "pulumi_volcengine.vmp",
+  "classes": {
+   "volcengine:vmp/silencePolicyEnableDisable:SilencePolicyEnableDisable": "SilencePolicyEnableDisable"
   }
  },
  {

@@ -23,10 +23,16 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "volcengine:vmp/alertingRule:AlertingRule":
 		r = &AlertingRule{}
+	case "volcengine:vmp/alertingRuleEnableDisable:AlertingRuleEnableDisable":
+		r = &AlertingRuleEnableDisable{}
 	case "volcengine:vmp/contact:Contact":
 		r = &Contact{}
 	case "volcengine:vmp/contactGroup:ContactGroup":
 		r = &ContactGroup{}
+	case "volcengine:vmp/integrationTask:IntegrationTask":
+		r = &IntegrationTask{}
+	case "volcengine:vmp/integrationTaskEnable:IntegrationTaskEnable":
+		r = &IntegrationTaskEnable{}
 	case "volcengine:vmp/notifyGroupPolicy:NotifyGroupPolicy":
 		r = &NotifyGroupPolicy{}
 	case "volcengine:vmp/notifyPolicy:NotifyPolicy":
@@ -35,6 +41,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &NotifyTemplate{}
 	case "volcengine:vmp/ruleFile:RuleFile":
 		r = &RuleFile{}
+	case "volcengine:vmp/silencePolicy:SilencePolicy":
+		r = &SilencePolicy{}
+	case "volcengine:vmp/silencePolicyEnableDisable:SilencePolicyEnableDisable":
+		r = &SilencePolicyEnableDisable{}
 	case "volcengine:vmp/workspace:Workspace":
 		r = &Workspace{}
 	default:
@@ -57,12 +67,27 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
+		"vmp/alertingRuleEnableDisable",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
 		"vmp/contact",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
 		"vmp/contactGroup",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"vmp/integrationTask",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"vmp/integrationTaskEnable",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -83,6 +108,16 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"volcengine",
 		"vmp/ruleFile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"vmp/silencePolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"vmp/silencePolicyEnableDisable",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

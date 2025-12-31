@@ -10570,6 +10570,58 @@ export namespace vmp {
         title: pulumi.Input<string>;
     }
 
+    export interface SilencePolicyMetricLabelMatcher {
+        /**
+         * Label matcher. Among them, each LabelMatcher array can contain a maximum of 24 items.
+         */
+        matchers: pulumi.Input<pulumi.Input<inputs.vmp.SilencePolicyMetricLabelMatcherMatcher>[]>;
+    }
+
+    export interface SilencePolicyMetricLabelMatcherMatcher {
+        /**
+         * Label.
+         */
+        label: pulumi.Input<string>;
+        /**
+         * Operator. The optional values are as follows: Equal, NotEqual, RegexpEqual, RegexpNotEqual.
+         */
+        operator?: pulumi.Input<string>;
+        /**
+         * Label value.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface SilencePolicyTimeRangeMatcher {
+        /**
+         * Silence time range, like 2025-01-02 15:04~2025-01-03 14:04.
+         */
+        date?: pulumi.Input<string>;
+        /**
+         * Timezone, e.g. Asia/Shanghai.
+         */
+        location: pulumi.Input<string>;
+        /**
+         * The cycle of alarm silence. It is used to configure alarm silence that takes effect periodically.
+         */
+        periodicDate?: pulumi.Input<inputs.vmp.SilencePolicyTimeRangeMatcherPeriodicDate>;
+    }
+
+    export interface SilencePolicyTimeRangeMatcherPeriodicDate {
+        /**
+         * Days of month, e.g. 2~3. A maximum of 10 time periods can be configured.
+         */
+        dayOfMonth?: pulumi.Input<string>;
+        /**
+         * Time periods, e.g. 20:00~21:12,22:00~23:12. A maximum of 4 time periods can be configured.
+         */
+        time?: pulumi.Input<string>;
+        /**
+         * Weekdays, e.g. 1,3,5. A maximum of 7 time periods can be configured.
+         */
+        weekday?: pulumi.Input<string>;
+    }
+
     export interface WorkspaceTag {
         /**
          * The Key of Tags.
