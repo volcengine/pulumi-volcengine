@@ -11,6 +11,7 @@ from .. import _utilities
 from . import outputs
 
 __all__ = [
+    'AlertSamplesAlertSampleResult',
     'AlertingRuleAnnotation',
     'AlertingRuleLabel',
     'AlertingRuleLevel',
@@ -38,6 +39,8 @@ __all__ = [
     'ContactsContactWeComBotWebhookResult',
     'ContactsContactWebhookResult',
     'InstanceTypesInstanceTypeResult',
+    'IntegrationTasksIntegrationTaskResult',
+    'IntegrationTasksIntegrationTaskVkeClusterInfoResult',
     'NotifyGroupPoliciesNotifyPolicyResult',
     'NotifyGroupPoliciesNotifyPolicyLevelResult',
     'NotifyGroupPolicyLevel',
@@ -52,10 +55,18 @@ __all__ = [
     'RuleFilesFileResult',
     'RulesRuleResult',
     'RulesRuleLabelResult',
+    'SilencePoliciesSilencePolicyResult',
+    'SilencePoliciesSilencePolicyTimeRangeMatcherResult',
+    'SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateResult',
+    'SilencePolicyMetricLabelMatcher',
+    'SilencePolicyMetricLabelMatcherMatcher',
+    'SilencePolicyTimeRangeMatcher',
+    'SilencePolicyTimeRangeMatcherPeriodicDate',
     'WorkspaceTag',
     'WorkspacesTagResult',
     'WorkspacesWorkspaceResult',
     'WorkspacesWorkspaceTagResult',
+    'GetAlertSamplesAlertSampleResult',
     'GetAlertingRulesAlertingRuleResult',
     'GetAlertingRulesAlertingRuleAnnotationResult',
     'GetAlertingRulesAlertingRuleLabelResult',
@@ -74,6 +85,8 @@ __all__ = [
     'GetContactsContactWeComBotWebhookResult',
     'GetContactsContactWebhookResult',
     'GetInstanceTypesInstanceTypeResult',
+    'GetIntegrationTasksIntegrationTaskResult',
+    'GetIntegrationTasksIntegrationTaskVkeClusterInfoResult',
     'GetNotifyGroupPoliciesNotifyPolicyResult',
     'GetNotifyGroupPoliciesNotifyPolicyLevelResult',
     'GetNotifyPoliciesNotifyPolicyResult',
@@ -84,10 +97,75 @@ __all__ = [
     'GetRuleFilesFileResult',
     'GetRulesRuleResult',
     'GetRulesRuleLabelResult',
+    'GetSilencePoliciesSilencePolicyResult',
+    'GetSilencePoliciesSilencePolicyTimeRangeMatcherResult',
+    'GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateResult',
     'GetWorkspacesTagResult',
     'GetWorkspacesWorkspaceResult',
     'GetWorkspacesWorkspaceTagResult',
 ]
+
+@pulumi.output_type
+class AlertSamplesAlertSampleResult(dict):
+    def __init__(__self__, *,
+                 alert_id: str,
+                 level: str,
+                 phase: str,
+                 timestamp: int,
+                 value: float):
+        """
+        :param str alert_id: Alert ID to filter samples.
+        :param str level: Alert sample level.
+        :param str phase: Alert sample phase.
+        :param int timestamp: Alert sample timestamp(unix).
+        :param float value: Alert sample value.
+        """
+        pulumi.set(__self__, "alert_id", alert_id)
+        pulumi.set(__self__, "level", level)
+        pulumi.set(__self__, "phase", phase)
+        pulumi.set(__self__, "timestamp", timestamp)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="alertId")
+    def alert_id(self) -> str:
+        """
+        Alert ID to filter samples.
+        """
+        return pulumi.get(self, "alert_id")
+
+    @property
+    @pulumi.getter
+    def level(self) -> str:
+        """
+        Alert sample level.
+        """
+        return pulumi.get(self, "level")
+
+    @property
+    @pulumi.getter
+    def phase(self) -> str:
+        """
+        Alert sample phase.
+        """
+        return pulumi.get(self, "phase")
+
+    @property
+    @pulumi.getter
+    def timestamp(self) -> int:
+        """
+        Alert sample timestamp(unix).
+        """
+        return pulumi.get(self, "timestamp")
+
+    @property
+    @pulumi.getter
+    def value(self) -> float:
+        """
+        Alert sample value.
+        """
+        return pulumi.get(self, "value")
+
 
 @pulumi.output_type
 class AlertingRuleAnnotation(dict):
@@ -1537,6 +1615,130 @@ class InstanceTypesInstanceTypeResult(dict):
 
 
 @pulumi.output_type
+class IntegrationTasksIntegrationTaskResult(dict):
+    def __init__(__self__, *,
+                 environment: str,
+                 id: str,
+                 name: str,
+                 status: str,
+                 type: str,
+                 vke_cluster_ids: Sequence[str],
+                 vke_cluster_infos: Sequence['outputs.IntegrationTasksIntegrationTaskVkeClusterInfoResult'],
+                 workspace_id: str):
+        """
+        :param str environment: The deployment environment. Valid values: `Vke` or `Managed`.
+        :param str id: The ID of the integration task.
+        :param str name: The name of the integration task.
+        :param str status: The status of the VKE cluster.
+        :param str type: The type of the integration task.
+        :param Sequence[str] vke_cluster_ids: The ID of the VKE cluster.
+        :param Sequence['IntegrationTasksIntegrationTaskVkeClusterInfoArgs'] vke_cluster_infos: The information of the VKE cluster.
+        :param str workspace_id: The workspace ID.
+        """
+        pulumi.set(__self__, "environment", environment)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "vke_cluster_ids", vke_cluster_ids)
+        pulumi.set(__self__, "vke_cluster_infos", vke_cluster_infos)
+        pulumi.set(__self__, "workspace_id", workspace_id)
+
+    @property
+    @pulumi.getter
+    def environment(self) -> str:
+        """
+        The deployment environment. Valid values: `Vke` or `Managed`.
+        """
+        return pulumi.get(self, "environment")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the integration task.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the integration task.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of the VKE cluster.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of the integration task.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="vkeClusterIds")
+    def vke_cluster_ids(self) -> Sequence[str]:
+        """
+        The ID of the VKE cluster.
+        """
+        return pulumi.get(self, "vke_cluster_ids")
+
+    @property
+    @pulumi.getter(name="vkeClusterInfos")
+    def vke_cluster_infos(self) -> Sequence['outputs.IntegrationTasksIntegrationTaskVkeClusterInfoResult']:
+        """
+        The information of the VKE cluster.
+        """
+        return pulumi.get(self, "vke_cluster_infos")
+
+    @property
+    @pulumi.getter(name="workspaceId")
+    def workspace_id(self) -> str:
+        """
+        The workspace ID.
+        """
+        return pulumi.get(self, "workspace_id")
+
+
+@pulumi.output_type
+class IntegrationTasksIntegrationTaskVkeClusterInfoResult(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 status: str):
+        """
+        :param str name: The name of the integration task.
+        :param str status: The status of the VKE cluster.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the integration task.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of the VKE cluster.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
 class NotifyGroupPoliciesNotifyPolicyResult(dict):
     def __init__(__self__, *,
                  create_time: str,
@@ -2382,6 +2584,370 @@ class RulesRuleLabelResult(dict):
 
 
 @pulumi.output_type
+class SilencePoliciesSilencePolicyResult(dict):
+    def __init__(__self__, *,
+                 auto_delete_time: str,
+                 create_time: str,
+                 description: str,
+                 id: str,
+                 name: str,
+                 source: str,
+                 status: str,
+                 time_range_matchers: Sequence['outputs.SilencePoliciesSilencePolicyTimeRangeMatcherResult'],
+                 update_time: str):
+        """
+        :param str auto_delete_time: The auto delete time of the silence policy.
+        :param str create_time: The create time of the silence policy, in RFC3339 format.
+        :param str description: The description of the silence policy.
+        :param str id: The id of the silence policy.
+        :param str name: The name of silence policy.
+        :param str source: The source of the silence policy.
+        :param str status: The status of silence policy: Active/Disabled/Expired.
+        :param Sequence['SilencePoliciesSilencePolicyTimeRangeMatcherArgs'] time_range_matchers: The matching time in the alert silence policy.
+        :param str update_time: The update time of the silence policy, in RFC3339 format.
+        """
+        pulumi.set(__self__, "auto_delete_time", auto_delete_time)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "source", source)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "time_range_matchers", time_range_matchers)
+        pulumi.set(__self__, "update_time", update_time)
+
+    @property
+    @pulumi.getter(name="autoDeleteTime")
+    def auto_delete_time(self) -> str:
+        """
+        The auto delete time of the silence policy.
+        """
+        return pulumi.get(self, "auto_delete_time")
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        The create time of the silence policy, in RFC3339 format.
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the silence policy.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The id of the silence policy.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of silence policy.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def source(self) -> str:
+        """
+        The source of the silence policy.
+        """
+        return pulumi.get(self, "source")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of silence policy: Active/Disabled/Expired.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="timeRangeMatchers")
+    def time_range_matchers(self) -> Sequence['outputs.SilencePoliciesSilencePolicyTimeRangeMatcherResult']:
+        """
+        The matching time in the alert silence policy.
+        """
+        return pulumi.get(self, "time_range_matchers")
+
+    @property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> str:
+        """
+        The update time of the silence policy, in RFC3339 format.
+        """
+        return pulumi.get(self, "update_time")
+
+
+@pulumi.output_type
+class SilencePoliciesSilencePolicyTimeRangeMatcherResult(dict):
+    def __init__(__self__, *,
+                 date: str,
+                 location: str,
+                 periodic_dates: Sequence['outputs.SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateResult']):
+        """
+        :param str date: The time period for alarm silence.
+        :param str location: Time zone.
+        :param Sequence['SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArgs'] periodic_dates: The cycle of alarm silence.
+        """
+        pulumi.set(__self__, "date", date)
+        pulumi.set(__self__, "location", location)
+        pulumi.set(__self__, "periodic_dates", periodic_dates)
+
+    @property
+    @pulumi.getter
+    def date(self) -> str:
+        """
+        The time period for alarm silence.
+        """
+        return pulumi.get(self, "date")
+
+    @property
+    @pulumi.getter
+    def location(self) -> str:
+        """
+        Time zone.
+        """
+        return pulumi.get(self, "location")
+
+    @property
+    @pulumi.getter(name="periodicDates")
+    def periodic_dates(self) -> Sequence['outputs.SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateResult']:
+        """
+        The cycle of alarm silence.
+        """
+        return pulumi.get(self, "periodic_dates")
+
+
+@pulumi.output_type
+class SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateResult(dict):
+    def __init__(__self__, *,
+                 day_of_month: str,
+                 time: str,
+                 weekday: str):
+        """
+        :param str day_of_month: Days of the month, e.g. 1,15,30.
+        :param str time: Time periods, e.g. 20:00~21:12,22:00~23:12.
+        :param str weekday: Weekdays, e.g. 1,3,5.
+        """
+        pulumi.set(__self__, "day_of_month", day_of_month)
+        pulumi.set(__self__, "time", time)
+        pulumi.set(__self__, "weekday", weekday)
+
+    @property
+    @pulumi.getter(name="dayOfMonth")
+    def day_of_month(self) -> str:
+        """
+        Days of the month, e.g. 1,15,30.
+        """
+        return pulumi.get(self, "day_of_month")
+
+    @property
+    @pulumi.getter
+    def time(self) -> str:
+        """
+        Time periods, e.g. 20:00~21:12,22:00~23:12.
+        """
+        return pulumi.get(self, "time")
+
+    @property
+    @pulumi.getter
+    def weekday(self) -> str:
+        """
+        Weekdays, e.g. 1,3,5.
+        """
+        return pulumi.get(self, "weekday")
+
+
+@pulumi.output_type
+class SilencePolicyMetricLabelMatcher(dict):
+    def __init__(__self__, *,
+                 matchers: Sequence['outputs.SilencePolicyMetricLabelMatcherMatcher']):
+        """
+        :param Sequence['SilencePolicyMetricLabelMatcherMatcherArgs'] matchers: Label matcher. Among them, each LabelMatcher array can contain a maximum of 24 items.
+        """
+        pulumi.set(__self__, "matchers", matchers)
+
+    @property
+    @pulumi.getter
+    def matchers(self) -> Sequence['outputs.SilencePolicyMetricLabelMatcherMatcher']:
+        """
+        Label matcher. Among them, each LabelMatcher array can contain a maximum of 24 items.
+        """
+        return pulumi.get(self, "matchers")
+
+
+@pulumi.output_type
+class SilencePolicyMetricLabelMatcherMatcher(dict):
+    def __init__(__self__, *,
+                 label: str,
+                 value: str,
+                 operator: Optional[str] = None):
+        """
+        :param str label: Label.
+        :param str value: Label value.
+        :param str operator: Operator. The optional values are as follows: Equal, NotEqual, RegexpEqual, RegexpNotEqual.
+        """
+        pulumi.set(__self__, "label", label)
+        pulumi.set(__self__, "value", value)
+        if operator is not None:
+            pulumi.set(__self__, "operator", operator)
+
+    @property
+    @pulumi.getter
+    def label(self) -> str:
+        """
+        Label.
+        """
+        return pulumi.get(self, "label")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        Label value.
+        """
+        return pulumi.get(self, "value")
+
+    @property
+    @pulumi.getter
+    def operator(self) -> Optional[str]:
+        """
+        Operator. The optional values are as follows: Equal, NotEqual, RegexpEqual, RegexpNotEqual.
+        """
+        return pulumi.get(self, "operator")
+
+
+@pulumi.output_type
+class SilencePolicyTimeRangeMatcher(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "periodicDate":
+            suggest = "periodic_date"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SilencePolicyTimeRangeMatcher. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SilencePolicyTimeRangeMatcher.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SilencePolicyTimeRangeMatcher.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 location: str,
+                 date: Optional[str] = None,
+                 periodic_date: Optional['outputs.SilencePolicyTimeRangeMatcherPeriodicDate'] = None):
+        """
+        :param str location: Timezone, e.g. Asia/Shanghai.
+        :param str date: Silence time range, like 2025-01-02 15:04~2025-01-03 14:04.
+        :param 'SilencePolicyTimeRangeMatcherPeriodicDateArgs' periodic_date: The cycle of alarm silence. It is used to configure alarm silence that takes effect periodically.
+        """
+        pulumi.set(__self__, "location", location)
+        if date is not None:
+            pulumi.set(__self__, "date", date)
+        if periodic_date is not None:
+            pulumi.set(__self__, "periodic_date", periodic_date)
+
+    @property
+    @pulumi.getter
+    def location(self) -> str:
+        """
+        Timezone, e.g. Asia/Shanghai.
+        """
+        return pulumi.get(self, "location")
+
+    @property
+    @pulumi.getter
+    def date(self) -> Optional[str]:
+        """
+        Silence time range, like 2025-01-02 15:04~2025-01-03 14:04.
+        """
+        return pulumi.get(self, "date")
+
+    @property
+    @pulumi.getter(name="periodicDate")
+    def periodic_date(self) -> Optional['outputs.SilencePolicyTimeRangeMatcherPeriodicDate']:
+        """
+        The cycle of alarm silence. It is used to configure alarm silence that takes effect periodically.
+        """
+        return pulumi.get(self, "periodic_date")
+
+
+@pulumi.output_type
+class SilencePolicyTimeRangeMatcherPeriodicDate(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "dayOfMonth":
+            suggest = "day_of_month"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SilencePolicyTimeRangeMatcherPeriodicDate. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SilencePolicyTimeRangeMatcherPeriodicDate.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SilencePolicyTimeRangeMatcherPeriodicDate.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 day_of_month: Optional[str] = None,
+                 time: Optional[str] = None,
+                 weekday: Optional[str] = None):
+        """
+        :param str day_of_month: Days of month, e.g. 2~3. A maximum of 10 time periods can be configured.
+        :param str time: Time periods, e.g. 20:00~21:12,22:00~23:12. A maximum of 4 time periods can be configured.
+        :param str weekday: Weekdays, e.g. 1,3,5. A maximum of 7 time periods can be configured.
+        """
+        if day_of_month is not None:
+            pulumi.set(__self__, "day_of_month", day_of_month)
+        if time is not None:
+            pulumi.set(__self__, "time", time)
+        if weekday is not None:
+            pulumi.set(__self__, "weekday", weekday)
+
+    @property
+    @pulumi.getter(name="dayOfMonth")
+    def day_of_month(self) -> Optional[str]:
+        """
+        Days of month, e.g. 2~3. A maximum of 10 time periods can be configured.
+        """
+        return pulumi.get(self, "day_of_month")
+
+    @property
+    @pulumi.getter
+    def time(self) -> Optional[str]:
+        """
+        Time periods, e.g. 20:00~21:12,22:00~23:12. A maximum of 4 time periods can be configured.
+        """
+        return pulumi.get(self, "time")
+
+    @property
+    @pulumi.getter
+    def weekday(self) -> Optional[str]:
+        """
+        Weekdays, e.g. 1,3,5. A maximum of 7 time periods can be configured.
+        """
+        return pulumi.get(self, "weekday")
+
+
+@pulumi.output_type
 class WorkspaceTag(dict):
     def __init__(__self__, *,
                  key: str,
@@ -2625,6 +3191,68 @@ class WorkspacesWorkspaceTagResult(dict):
     def value(self) -> str:
         """
         The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetAlertSamplesAlertSampleResult(dict):
+    def __init__(__self__, *,
+                 alert_id: str,
+                 level: str,
+                 phase: str,
+                 timestamp: int,
+                 value: float):
+        """
+        :param str alert_id: Alert ID to filter samples.
+        :param str level: Alert sample level.
+        :param str phase: Alert sample phase.
+        :param int timestamp: Alert sample timestamp(unix).
+        :param float value: Alert sample value.
+        """
+        pulumi.set(__self__, "alert_id", alert_id)
+        pulumi.set(__self__, "level", level)
+        pulumi.set(__self__, "phase", phase)
+        pulumi.set(__self__, "timestamp", timestamp)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="alertId")
+    def alert_id(self) -> str:
+        """
+        Alert ID to filter samples.
+        """
+        return pulumi.get(self, "alert_id")
+
+    @property
+    @pulumi.getter
+    def level(self) -> str:
+        """
+        Alert sample level.
+        """
+        return pulumi.get(self, "level")
+
+    @property
+    @pulumi.getter
+    def phase(self) -> str:
+        """
+        Alert sample phase.
+        """
+        return pulumi.get(self, "phase")
+
+    @property
+    @pulumi.getter
+    def timestamp(self) -> int:
+        """
+        Alert sample timestamp(unix).
+        """
+        return pulumi.get(self, "timestamp")
+
+    @property
+    @pulumi.getter
+    def value(self) -> float:
+        """
+        Alert sample value.
         """
         return pulumi.get(self, "value")
 
@@ -3658,6 +4286,130 @@ class GetInstanceTypesInstanceTypeResult(dict):
 
 
 @pulumi.output_type
+class GetIntegrationTasksIntegrationTaskResult(dict):
+    def __init__(__self__, *,
+                 environment: str,
+                 id: str,
+                 name: str,
+                 status: str,
+                 type: str,
+                 vke_cluster_ids: Sequence[str],
+                 vke_cluster_infos: Sequence['outputs.GetIntegrationTasksIntegrationTaskVkeClusterInfoResult'],
+                 workspace_id: str):
+        """
+        :param str environment: The deployment environment. Valid values: `Vke` or `Managed`.
+        :param str id: The ID of the integration task.
+        :param str name: The name of the integration task.
+        :param str status: The status of the VKE cluster.
+        :param str type: The type of the integration task.
+        :param Sequence[str] vke_cluster_ids: The ID of the VKE cluster.
+        :param Sequence['GetIntegrationTasksIntegrationTaskVkeClusterInfoArgs'] vke_cluster_infos: The information of the VKE cluster.
+        :param str workspace_id: The workspace ID.
+        """
+        pulumi.set(__self__, "environment", environment)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "vke_cluster_ids", vke_cluster_ids)
+        pulumi.set(__self__, "vke_cluster_infos", vke_cluster_infos)
+        pulumi.set(__self__, "workspace_id", workspace_id)
+
+    @property
+    @pulumi.getter
+    def environment(self) -> str:
+        """
+        The deployment environment. Valid values: `Vke` or `Managed`.
+        """
+        return pulumi.get(self, "environment")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the integration task.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the integration task.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of the VKE cluster.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of the integration task.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="vkeClusterIds")
+    def vke_cluster_ids(self) -> Sequence[str]:
+        """
+        The ID of the VKE cluster.
+        """
+        return pulumi.get(self, "vke_cluster_ids")
+
+    @property
+    @pulumi.getter(name="vkeClusterInfos")
+    def vke_cluster_infos(self) -> Sequence['outputs.GetIntegrationTasksIntegrationTaskVkeClusterInfoResult']:
+        """
+        The information of the VKE cluster.
+        """
+        return pulumi.get(self, "vke_cluster_infos")
+
+    @property
+    @pulumi.getter(name="workspaceId")
+    def workspace_id(self) -> str:
+        """
+        The workspace ID.
+        """
+        return pulumi.get(self, "workspace_id")
+
+
+@pulumi.output_type
+class GetIntegrationTasksIntegrationTaskVkeClusterInfoResult(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 status: str):
+        """
+        :param str name: The name of the integration task.
+        :param str status: The status of the VKE cluster.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the integration task.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of the VKE cluster.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
 class GetNotifyGroupPoliciesNotifyPolicyResult(dict):
     def __init__(__self__, *,
                  create_time: str,
@@ -4286,6 +5038,192 @@ class GetRulesRuleLabelResult(dict):
         The value of label.
         """
         return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetSilencePoliciesSilencePolicyResult(dict):
+    def __init__(__self__, *,
+                 auto_delete_time: str,
+                 create_time: str,
+                 description: str,
+                 id: str,
+                 name: str,
+                 source: str,
+                 status: str,
+                 time_range_matchers: Sequence['outputs.GetSilencePoliciesSilencePolicyTimeRangeMatcherResult'],
+                 update_time: str):
+        """
+        :param str auto_delete_time: The auto delete time of the silence policy.
+        :param str create_time: The create time of the silence policy, in RFC3339 format.
+        :param str description: The description of the silence policy.
+        :param str id: The id of the silence policy.
+        :param str name: The name of silence policy.
+        :param str source: The source of the silence policy.
+        :param str status: The status of silence policy: Active/Disabled/Expired.
+        :param Sequence['GetSilencePoliciesSilencePolicyTimeRangeMatcherArgs'] time_range_matchers: The matching time in the alert silence policy.
+        :param str update_time: The update time of the silence policy, in RFC3339 format.
+        """
+        pulumi.set(__self__, "auto_delete_time", auto_delete_time)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "source", source)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "time_range_matchers", time_range_matchers)
+        pulumi.set(__self__, "update_time", update_time)
+
+    @property
+    @pulumi.getter(name="autoDeleteTime")
+    def auto_delete_time(self) -> str:
+        """
+        The auto delete time of the silence policy.
+        """
+        return pulumi.get(self, "auto_delete_time")
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        The create time of the silence policy, in RFC3339 format.
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the silence policy.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The id of the silence policy.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of silence policy.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def source(self) -> str:
+        """
+        The source of the silence policy.
+        """
+        return pulumi.get(self, "source")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of silence policy: Active/Disabled/Expired.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="timeRangeMatchers")
+    def time_range_matchers(self) -> Sequence['outputs.GetSilencePoliciesSilencePolicyTimeRangeMatcherResult']:
+        """
+        The matching time in the alert silence policy.
+        """
+        return pulumi.get(self, "time_range_matchers")
+
+    @property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> str:
+        """
+        The update time of the silence policy, in RFC3339 format.
+        """
+        return pulumi.get(self, "update_time")
+
+
+@pulumi.output_type
+class GetSilencePoliciesSilencePolicyTimeRangeMatcherResult(dict):
+    def __init__(__self__, *,
+                 date: str,
+                 location: str,
+                 periodic_dates: Sequence['outputs.GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateResult']):
+        """
+        :param str date: The time period for alarm silence.
+        :param str location: Time zone.
+        :param Sequence['GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArgs'] periodic_dates: The cycle of alarm silence.
+        """
+        pulumi.set(__self__, "date", date)
+        pulumi.set(__self__, "location", location)
+        pulumi.set(__self__, "periodic_dates", periodic_dates)
+
+    @property
+    @pulumi.getter
+    def date(self) -> str:
+        """
+        The time period for alarm silence.
+        """
+        return pulumi.get(self, "date")
+
+    @property
+    @pulumi.getter
+    def location(self) -> str:
+        """
+        Time zone.
+        """
+        return pulumi.get(self, "location")
+
+    @property
+    @pulumi.getter(name="periodicDates")
+    def periodic_dates(self) -> Sequence['outputs.GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateResult']:
+        """
+        The cycle of alarm silence.
+        """
+        return pulumi.get(self, "periodic_dates")
+
+
+@pulumi.output_type
+class GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateResult(dict):
+    def __init__(__self__, *,
+                 day_of_month: str,
+                 time: str,
+                 weekday: str):
+        """
+        :param str day_of_month: Days of the month, e.g. 1,15,30.
+        :param str time: Time periods, e.g. 20:00~21:12,22:00~23:12.
+        :param str weekday: Weekdays, e.g. 1,3,5.
+        """
+        pulumi.set(__self__, "day_of_month", day_of_month)
+        pulumi.set(__self__, "time", time)
+        pulumi.set(__self__, "weekday", weekday)
+
+    @property
+    @pulumi.getter(name="dayOfMonth")
+    def day_of_month(self) -> str:
+        """
+        Days of the month, e.g. 1,15,30.
+        """
+        return pulumi.get(self, "day_of_month")
+
+    @property
+    @pulumi.getter
+    def time(self) -> str:
+        """
+        Time periods, e.g. 20:00~21:12,22:00~23:12.
+        """
+        return pulumi.get(self, "time")
+
+    @property
+    @pulumi.getter
+    def weekday(self) -> str:
+        """
+        Weekdays, e.g. 1,3,5.
+        """
+        return pulumi.get(self, "weekday")
 
 
 @pulumi.output_type

@@ -13,6 +13,139 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type AlertSamplesAlertSample struct {
+	// Alert ID to filter samples.
+	AlertId string `pulumi:"alertId"`
+	// Alert sample level.
+	Level string `pulumi:"level"`
+	// Alert sample phase.
+	Phase string `pulumi:"phase"`
+	// Alert sample timestamp(unix).
+	Timestamp int `pulumi:"timestamp"`
+	// Alert sample value.
+	Value float64 `pulumi:"value"`
+}
+
+// AlertSamplesAlertSampleInput is an input type that accepts AlertSamplesAlertSampleArgs and AlertSamplesAlertSampleOutput values.
+// You can construct a concrete instance of `AlertSamplesAlertSampleInput` via:
+//
+//	AlertSamplesAlertSampleArgs{...}
+type AlertSamplesAlertSampleInput interface {
+	pulumi.Input
+
+	ToAlertSamplesAlertSampleOutput() AlertSamplesAlertSampleOutput
+	ToAlertSamplesAlertSampleOutputWithContext(context.Context) AlertSamplesAlertSampleOutput
+}
+
+type AlertSamplesAlertSampleArgs struct {
+	// Alert ID to filter samples.
+	AlertId pulumi.StringInput `pulumi:"alertId"`
+	// Alert sample level.
+	Level pulumi.StringInput `pulumi:"level"`
+	// Alert sample phase.
+	Phase pulumi.StringInput `pulumi:"phase"`
+	// Alert sample timestamp(unix).
+	Timestamp pulumi.IntInput `pulumi:"timestamp"`
+	// Alert sample value.
+	Value pulumi.Float64Input `pulumi:"value"`
+}
+
+func (AlertSamplesAlertSampleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertSamplesAlertSample)(nil)).Elem()
+}
+
+func (i AlertSamplesAlertSampleArgs) ToAlertSamplesAlertSampleOutput() AlertSamplesAlertSampleOutput {
+	return i.ToAlertSamplesAlertSampleOutputWithContext(context.Background())
+}
+
+func (i AlertSamplesAlertSampleArgs) ToAlertSamplesAlertSampleOutputWithContext(ctx context.Context) AlertSamplesAlertSampleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertSamplesAlertSampleOutput)
+}
+
+// AlertSamplesAlertSampleArrayInput is an input type that accepts AlertSamplesAlertSampleArray and AlertSamplesAlertSampleArrayOutput values.
+// You can construct a concrete instance of `AlertSamplesAlertSampleArrayInput` via:
+//
+//	AlertSamplesAlertSampleArray{ AlertSamplesAlertSampleArgs{...} }
+type AlertSamplesAlertSampleArrayInput interface {
+	pulumi.Input
+
+	ToAlertSamplesAlertSampleArrayOutput() AlertSamplesAlertSampleArrayOutput
+	ToAlertSamplesAlertSampleArrayOutputWithContext(context.Context) AlertSamplesAlertSampleArrayOutput
+}
+
+type AlertSamplesAlertSampleArray []AlertSamplesAlertSampleInput
+
+func (AlertSamplesAlertSampleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AlertSamplesAlertSample)(nil)).Elem()
+}
+
+func (i AlertSamplesAlertSampleArray) ToAlertSamplesAlertSampleArrayOutput() AlertSamplesAlertSampleArrayOutput {
+	return i.ToAlertSamplesAlertSampleArrayOutputWithContext(context.Background())
+}
+
+func (i AlertSamplesAlertSampleArray) ToAlertSamplesAlertSampleArrayOutputWithContext(ctx context.Context) AlertSamplesAlertSampleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertSamplesAlertSampleArrayOutput)
+}
+
+type AlertSamplesAlertSampleOutput struct{ *pulumi.OutputState }
+
+func (AlertSamplesAlertSampleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertSamplesAlertSample)(nil)).Elem()
+}
+
+func (o AlertSamplesAlertSampleOutput) ToAlertSamplesAlertSampleOutput() AlertSamplesAlertSampleOutput {
+	return o
+}
+
+func (o AlertSamplesAlertSampleOutput) ToAlertSamplesAlertSampleOutputWithContext(ctx context.Context) AlertSamplesAlertSampleOutput {
+	return o
+}
+
+// Alert ID to filter samples.
+func (o AlertSamplesAlertSampleOutput) AlertId() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertSamplesAlertSample) string { return v.AlertId }).(pulumi.StringOutput)
+}
+
+// Alert sample level.
+func (o AlertSamplesAlertSampleOutput) Level() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertSamplesAlertSample) string { return v.Level }).(pulumi.StringOutput)
+}
+
+// Alert sample phase.
+func (o AlertSamplesAlertSampleOutput) Phase() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertSamplesAlertSample) string { return v.Phase }).(pulumi.StringOutput)
+}
+
+// Alert sample timestamp(unix).
+func (o AlertSamplesAlertSampleOutput) Timestamp() pulumi.IntOutput {
+	return o.ApplyT(func(v AlertSamplesAlertSample) int { return v.Timestamp }).(pulumi.IntOutput)
+}
+
+// Alert sample value.
+func (o AlertSamplesAlertSampleOutput) Value() pulumi.Float64Output {
+	return o.ApplyT(func(v AlertSamplesAlertSample) float64 { return v.Value }).(pulumi.Float64Output)
+}
+
+type AlertSamplesAlertSampleArrayOutput struct{ *pulumi.OutputState }
+
+func (AlertSamplesAlertSampleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AlertSamplesAlertSample)(nil)).Elem()
+}
+
+func (o AlertSamplesAlertSampleArrayOutput) ToAlertSamplesAlertSampleArrayOutput() AlertSamplesAlertSampleArrayOutput {
+	return o
+}
+
+func (o AlertSamplesAlertSampleArrayOutput) ToAlertSamplesAlertSampleArrayOutputWithContext(ctx context.Context) AlertSamplesAlertSampleArrayOutput {
+	return o
+}
+
+func (o AlertSamplesAlertSampleArrayOutput) Index(i pulumi.IntInput) AlertSamplesAlertSampleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AlertSamplesAlertSample {
+		return vs[0].([]AlertSamplesAlertSample)[vs[1].(int)]
+	}).(AlertSamplesAlertSampleOutput)
+}
+
 type AlertingRuleAnnotation struct {
 	// The name of the annotation.
 	Name string `pulumi:"name"`
@@ -3645,6 +3778,274 @@ func (o InstanceTypesInstanceTypeArrayOutput) Index(i pulumi.IntInput) InstanceT
 	}).(InstanceTypesInstanceTypeOutput)
 }
 
+type IntegrationTasksIntegrationTask struct {
+	// The deployment environment. Valid values: `Vke` or `Managed`.
+	Environment string `pulumi:"environment"`
+	// The ID of the integration task.
+	Id string `pulumi:"id"`
+	// The name of the integration task.
+	Name string `pulumi:"name"`
+	// The status of the VKE cluster.
+	Status string `pulumi:"status"`
+	// The type of the integration task.
+	Type string `pulumi:"type"`
+	// The ID of the VKE cluster.
+	VkeClusterIds []string `pulumi:"vkeClusterIds"`
+	// The information of the VKE cluster.
+	VkeClusterInfos []IntegrationTasksIntegrationTaskVkeClusterInfo `pulumi:"vkeClusterInfos"`
+	// The workspace ID.
+	WorkspaceId string `pulumi:"workspaceId"`
+}
+
+// IntegrationTasksIntegrationTaskInput is an input type that accepts IntegrationTasksIntegrationTaskArgs and IntegrationTasksIntegrationTaskOutput values.
+// You can construct a concrete instance of `IntegrationTasksIntegrationTaskInput` via:
+//
+//	IntegrationTasksIntegrationTaskArgs{...}
+type IntegrationTasksIntegrationTaskInput interface {
+	pulumi.Input
+
+	ToIntegrationTasksIntegrationTaskOutput() IntegrationTasksIntegrationTaskOutput
+	ToIntegrationTasksIntegrationTaskOutputWithContext(context.Context) IntegrationTasksIntegrationTaskOutput
+}
+
+type IntegrationTasksIntegrationTaskArgs struct {
+	// The deployment environment. Valid values: `Vke` or `Managed`.
+	Environment pulumi.StringInput `pulumi:"environment"`
+	// The ID of the integration task.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The name of the integration task.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The status of the VKE cluster.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The type of the integration task.
+	Type pulumi.StringInput `pulumi:"type"`
+	// The ID of the VKE cluster.
+	VkeClusterIds pulumi.StringArrayInput `pulumi:"vkeClusterIds"`
+	// The information of the VKE cluster.
+	VkeClusterInfos IntegrationTasksIntegrationTaskVkeClusterInfoArrayInput `pulumi:"vkeClusterInfos"`
+	// The workspace ID.
+	WorkspaceId pulumi.StringInput `pulumi:"workspaceId"`
+}
+
+func (IntegrationTasksIntegrationTaskArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*IntegrationTasksIntegrationTask)(nil)).Elem()
+}
+
+func (i IntegrationTasksIntegrationTaskArgs) ToIntegrationTasksIntegrationTaskOutput() IntegrationTasksIntegrationTaskOutput {
+	return i.ToIntegrationTasksIntegrationTaskOutputWithContext(context.Background())
+}
+
+func (i IntegrationTasksIntegrationTaskArgs) ToIntegrationTasksIntegrationTaskOutputWithContext(ctx context.Context) IntegrationTasksIntegrationTaskOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationTasksIntegrationTaskOutput)
+}
+
+// IntegrationTasksIntegrationTaskArrayInput is an input type that accepts IntegrationTasksIntegrationTaskArray and IntegrationTasksIntegrationTaskArrayOutput values.
+// You can construct a concrete instance of `IntegrationTasksIntegrationTaskArrayInput` via:
+//
+//	IntegrationTasksIntegrationTaskArray{ IntegrationTasksIntegrationTaskArgs{...} }
+type IntegrationTasksIntegrationTaskArrayInput interface {
+	pulumi.Input
+
+	ToIntegrationTasksIntegrationTaskArrayOutput() IntegrationTasksIntegrationTaskArrayOutput
+	ToIntegrationTasksIntegrationTaskArrayOutputWithContext(context.Context) IntegrationTasksIntegrationTaskArrayOutput
+}
+
+type IntegrationTasksIntegrationTaskArray []IntegrationTasksIntegrationTaskInput
+
+func (IntegrationTasksIntegrationTaskArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]IntegrationTasksIntegrationTask)(nil)).Elem()
+}
+
+func (i IntegrationTasksIntegrationTaskArray) ToIntegrationTasksIntegrationTaskArrayOutput() IntegrationTasksIntegrationTaskArrayOutput {
+	return i.ToIntegrationTasksIntegrationTaskArrayOutputWithContext(context.Background())
+}
+
+func (i IntegrationTasksIntegrationTaskArray) ToIntegrationTasksIntegrationTaskArrayOutputWithContext(ctx context.Context) IntegrationTasksIntegrationTaskArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationTasksIntegrationTaskArrayOutput)
+}
+
+type IntegrationTasksIntegrationTaskOutput struct{ *pulumi.OutputState }
+
+func (IntegrationTasksIntegrationTaskOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IntegrationTasksIntegrationTask)(nil)).Elem()
+}
+
+func (o IntegrationTasksIntegrationTaskOutput) ToIntegrationTasksIntegrationTaskOutput() IntegrationTasksIntegrationTaskOutput {
+	return o
+}
+
+func (o IntegrationTasksIntegrationTaskOutput) ToIntegrationTasksIntegrationTaskOutputWithContext(ctx context.Context) IntegrationTasksIntegrationTaskOutput {
+	return o
+}
+
+// The deployment environment. Valid values: `Vke` or `Managed`.
+func (o IntegrationTasksIntegrationTaskOutput) Environment() pulumi.StringOutput {
+	return o.ApplyT(func(v IntegrationTasksIntegrationTask) string { return v.Environment }).(pulumi.StringOutput)
+}
+
+// The ID of the integration task.
+func (o IntegrationTasksIntegrationTaskOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v IntegrationTasksIntegrationTask) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The name of the integration task.
+func (o IntegrationTasksIntegrationTaskOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v IntegrationTasksIntegrationTask) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The status of the VKE cluster.
+func (o IntegrationTasksIntegrationTaskOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v IntegrationTasksIntegrationTask) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The type of the integration task.
+func (o IntegrationTasksIntegrationTaskOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v IntegrationTasksIntegrationTask) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// The ID of the VKE cluster.
+func (o IntegrationTasksIntegrationTaskOutput) VkeClusterIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v IntegrationTasksIntegrationTask) []string { return v.VkeClusterIds }).(pulumi.StringArrayOutput)
+}
+
+// The information of the VKE cluster.
+func (o IntegrationTasksIntegrationTaskOutput) VkeClusterInfos() IntegrationTasksIntegrationTaskVkeClusterInfoArrayOutput {
+	return o.ApplyT(func(v IntegrationTasksIntegrationTask) []IntegrationTasksIntegrationTaskVkeClusterInfo {
+		return v.VkeClusterInfos
+	}).(IntegrationTasksIntegrationTaskVkeClusterInfoArrayOutput)
+}
+
+// The workspace ID.
+func (o IntegrationTasksIntegrationTaskOutput) WorkspaceId() pulumi.StringOutput {
+	return o.ApplyT(func(v IntegrationTasksIntegrationTask) string { return v.WorkspaceId }).(pulumi.StringOutput)
+}
+
+type IntegrationTasksIntegrationTaskArrayOutput struct{ *pulumi.OutputState }
+
+func (IntegrationTasksIntegrationTaskArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]IntegrationTasksIntegrationTask)(nil)).Elem()
+}
+
+func (o IntegrationTasksIntegrationTaskArrayOutput) ToIntegrationTasksIntegrationTaskArrayOutput() IntegrationTasksIntegrationTaskArrayOutput {
+	return o
+}
+
+func (o IntegrationTasksIntegrationTaskArrayOutput) ToIntegrationTasksIntegrationTaskArrayOutputWithContext(ctx context.Context) IntegrationTasksIntegrationTaskArrayOutput {
+	return o
+}
+
+func (o IntegrationTasksIntegrationTaskArrayOutput) Index(i pulumi.IntInput) IntegrationTasksIntegrationTaskOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) IntegrationTasksIntegrationTask {
+		return vs[0].([]IntegrationTasksIntegrationTask)[vs[1].(int)]
+	}).(IntegrationTasksIntegrationTaskOutput)
+}
+
+type IntegrationTasksIntegrationTaskVkeClusterInfo struct {
+	// The name of the integration task.
+	Name string `pulumi:"name"`
+	// The status of the VKE cluster.
+	Status string `pulumi:"status"`
+}
+
+// IntegrationTasksIntegrationTaskVkeClusterInfoInput is an input type that accepts IntegrationTasksIntegrationTaskVkeClusterInfoArgs and IntegrationTasksIntegrationTaskVkeClusterInfoOutput values.
+// You can construct a concrete instance of `IntegrationTasksIntegrationTaskVkeClusterInfoInput` via:
+//
+//	IntegrationTasksIntegrationTaskVkeClusterInfoArgs{...}
+type IntegrationTasksIntegrationTaskVkeClusterInfoInput interface {
+	pulumi.Input
+
+	ToIntegrationTasksIntegrationTaskVkeClusterInfoOutput() IntegrationTasksIntegrationTaskVkeClusterInfoOutput
+	ToIntegrationTasksIntegrationTaskVkeClusterInfoOutputWithContext(context.Context) IntegrationTasksIntegrationTaskVkeClusterInfoOutput
+}
+
+type IntegrationTasksIntegrationTaskVkeClusterInfoArgs struct {
+	// The name of the integration task.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The status of the VKE cluster.
+	Status pulumi.StringInput `pulumi:"status"`
+}
+
+func (IntegrationTasksIntegrationTaskVkeClusterInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*IntegrationTasksIntegrationTaskVkeClusterInfo)(nil)).Elem()
+}
+
+func (i IntegrationTasksIntegrationTaskVkeClusterInfoArgs) ToIntegrationTasksIntegrationTaskVkeClusterInfoOutput() IntegrationTasksIntegrationTaskVkeClusterInfoOutput {
+	return i.ToIntegrationTasksIntegrationTaskVkeClusterInfoOutputWithContext(context.Background())
+}
+
+func (i IntegrationTasksIntegrationTaskVkeClusterInfoArgs) ToIntegrationTasksIntegrationTaskVkeClusterInfoOutputWithContext(ctx context.Context) IntegrationTasksIntegrationTaskVkeClusterInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationTasksIntegrationTaskVkeClusterInfoOutput)
+}
+
+// IntegrationTasksIntegrationTaskVkeClusterInfoArrayInput is an input type that accepts IntegrationTasksIntegrationTaskVkeClusterInfoArray and IntegrationTasksIntegrationTaskVkeClusterInfoArrayOutput values.
+// You can construct a concrete instance of `IntegrationTasksIntegrationTaskVkeClusterInfoArrayInput` via:
+//
+//	IntegrationTasksIntegrationTaskVkeClusterInfoArray{ IntegrationTasksIntegrationTaskVkeClusterInfoArgs{...} }
+type IntegrationTasksIntegrationTaskVkeClusterInfoArrayInput interface {
+	pulumi.Input
+
+	ToIntegrationTasksIntegrationTaskVkeClusterInfoArrayOutput() IntegrationTasksIntegrationTaskVkeClusterInfoArrayOutput
+	ToIntegrationTasksIntegrationTaskVkeClusterInfoArrayOutputWithContext(context.Context) IntegrationTasksIntegrationTaskVkeClusterInfoArrayOutput
+}
+
+type IntegrationTasksIntegrationTaskVkeClusterInfoArray []IntegrationTasksIntegrationTaskVkeClusterInfoInput
+
+func (IntegrationTasksIntegrationTaskVkeClusterInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]IntegrationTasksIntegrationTaskVkeClusterInfo)(nil)).Elem()
+}
+
+func (i IntegrationTasksIntegrationTaskVkeClusterInfoArray) ToIntegrationTasksIntegrationTaskVkeClusterInfoArrayOutput() IntegrationTasksIntegrationTaskVkeClusterInfoArrayOutput {
+	return i.ToIntegrationTasksIntegrationTaskVkeClusterInfoArrayOutputWithContext(context.Background())
+}
+
+func (i IntegrationTasksIntegrationTaskVkeClusterInfoArray) ToIntegrationTasksIntegrationTaskVkeClusterInfoArrayOutputWithContext(ctx context.Context) IntegrationTasksIntegrationTaskVkeClusterInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationTasksIntegrationTaskVkeClusterInfoArrayOutput)
+}
+
+type IntegrationTasksIntegrationTaskVkeClusterInfoOutput struct{ *pulumi.OutputState }
+
+func (IntegrationTasksIntegrationTaskVkeClusterInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IntegrationTasksIntegrationTaskVkeClusterInfo)(nil)).Elem()
+}
+
+func (o IntegrationTasksIntegrationTaskVkeClusterInfoOutput) ToIntegrationTasksIntegrationTaskVkeClusterInfoOutput() IntegrationTasksIntegrationTaskVkeClusterInfoOutput {
+	return o
+}
+
+func (o IntegrationTasksIntegrationTaskVkeClusterInfoOutput) ToIntegrationTasksIntegrationTaskVkeClusterInfoOutputWithContext(ctx context.Context) IntegrationTasksIntegrationTaskVkeClusterInfoOutput {
+	return o
+}
+
+// The name of the integration task.
+func (o IntegrationTasksIntegrationTaskVkeClusterInfoOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v IntegrationTasksIntegrationTaskVkeClusterInfo) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The status of the VKE cluster.
+func (o IntegrationTasksIntegrationTaskVkeClusterInfoOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v IntegrationTasksIntegrationTaskVkeClusterInfo) string { return v.Status }).(pulumi.StringOutput)
+}
+
+type IntegrationTasksIntegrationTaskVkeClusterInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (IntegrationTasksIntegrationTaskVkeClusterInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]IntegrationTasksIntegrationTaskVkeClusterInfo)(nil)).Elem()
+}
+
+func (o IntegrationTasksIntegrationTaskVkeClusterInfoArrayOutput) ToIntegrationTasksIntegrationTaskVkeClusterInfoArrayOutput() IntegrationTasksIntegrationTaskVkeClusterInfoArrayOutput {
+	return o
+}
+
+func (o IntegrationTasksIntegrationTaskVkeClusterInfoArrayOutput) ToIntegrationTasksIntegrationTaskVkeClusterInfoArrayOutputWithContext(ctx context.Context) IntegrationTasksIntegrationTaskVkeClusterInfoArrayOutput {
+	return o
+}
+
+func (o IntegrationTasksIntegrationTaskVkeClusterInfoArrayOutput) Index(i pulumi.IntInput) IntegrationTasksIntegrationTaskVkeClusterInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) IntegrationTasksIntegrationTaskVkeClusterInfo {
+		return vs[0].([]IntegrationTasksIntegrationTaskVkeClusterInfo)[vs[1].(int)]
+	}).(IntegrationTasksIntegrationTaskVkeClusterInfoOutput)
+}
+
 type NotifyGroupPoliciesNotifyPolicy struct {
 	// The create time of notify group policy.
 	CreateTime string `pulumi:"createTime"`
@@ -5553,6 +5954,913 @@ func (o RulesRuleLabelArrayOutput) Index(i pulumi.IntInput) RulesRuleLabelOutput
 	}).(RulesRuleLabelOutput)
 }
 
+type SilencePoliciesSilencePolicy struct {
+	// The auto delete time of the silence policy.
+	AutoDeleteTime string `pulumi:"autoDeleteTime"`
+	// The create time of the silence policy, in RFC3339 format.
+	CreateTime string `pulumi:"createTime"`
+	// The description of the silence policy.
+	Description string `pulumi:"description"`
+	// The id of the silence policy.
+	Id string `pulumi:"id"`
+	// The name of silence policy.
+	Name string `pulumi:"name"`
+	// The source of the silence policy.
+	Source string `pulumi:"source"`
+	// The status of silence policy: Active/Disabled/Expired.
+	Status string `pulumi:"status"`
+	// The matching time in the alert silence policy.
+	TimeRangeMatchers []SilencePoliciesSilencePolicyTimeRangeMatcher `pulumi:"timeRangeMatchers"`
+	// The update time of the silence policy, in RFC3339 format.
+	UpdateTime string `pulumi:"updateTime"`
+}
+
+// SilencePoliciesSilencePolicyInput is an input type that accepts SilencePoliciesSilencePolicyArgs and SilencePoliciesSilencePolicyOutput values.
+// You can construct a concrete instance of `SilencePoliciesSilencePolicyInput` via:
+//
+//	SilencePoliciesSilencePolicyArgs{...}
+type SilencePoliciesSilencePolicyInput interface {
+	pulumi.Input
+
+	ToSilencePoliciesSilencePolicyOutput() SilencePoliciesSilencePolicyOutput
+	ToSilencePoliciesSilencePolicyOutputWithContext(context.Context) SilencePoliciesSilencePolicyOutput
+}
+
+type SilencePoliciesSilencePolicyArgs struct {
+	// The auto delete time of the silence policy.
+	AutoDeleteTime pulumi.StringInput `pulumi:"autoDeleteTime"`
+	// The create time of the silence policy, in RFC3339 format.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The description of the silence policy.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The id of the silence policy.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The name of silence policy.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The source of the silence policy.
+	Source pulumi.StringInput `pulumi:"source"`
+	// The status of silence policy: Active/Disabled/Expired.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The matching time in the alert silence policy.
+	TimeRangeMatchers SilencePoliciesSilencePolicyTimeRangeMatcherArrayInput `pulumi:"timeRangeMatchers"`
+	// The update time of the silence policy, in RFC3339 format.
+	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
+}
+
+func (SilencePoliciesSilencePolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SilencePoliciesSilencePolicy)(nil)).Elem()
+}
+
+func (i SilencePoliciesSilencePolicyArgs) ToSilencePoliciesSilencePolicyOutput() SilencePoliciesSilencePolicyOutput {
+	return i.ToSilencePoliciesSilencePolicyOutputWithContext(context.Background())
+}
+
+func (i SilencePoliciesSilencePolicyArgs) ToSilencePoliciesSilencePolicyOutputWithContext(ctx context.Context) SilencePoliciesSilencePolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SilencePoliciesSilencePolicyOutput)
+}
+
+// SilencePoliciesSilencePolicyArrayInput is an input type that accepts SilencePoliciesSilencePolicyArray and SilencePoliciesSilencePolicyArrayOutput values.
+// You can construct a concrete instance of `SilencePoliciesSilencePolicyArrayInput` via:
+//
+//	SilencePoliciesSilencePolicyArray{ SilencePoliciesSilencePolicyArgs{...} }
+type SilencePoliciesSilencePolicyArrayInput interface {
+	pulumi.Input
+
+	ToSilencePoliciesSilencePolicyArrayOutput() SilencePoliciesSilencePolicyArrayOutput
+	ToSilencePoliciesSilencePolicyArrayOutputWithContext(context.Context) SilencePoliciesSilencePolicyArrayOutput
+}
+
+type SilencePoliciesSilencePolicyArray []SilencePoliciesSilencePolicyInput
+
+func (SilencePoliciesSilencePolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SilencePoliciesSilencePolicy)(nil)).Elem()
+}
+
+func (i SilencePoliciesSilencePolicyArray) ToSilencePoliciesSilencePolicyArrayOutput() SilencePoliciesSilencePolicyArrayOutput {
+	return i.ToSilencePoliciesSilencePolicyArrayOutputWithContext(context.Background())
+}
+
+func (i SilencePoliciesSilencePolicyArray) ToSilencePoliciesSilencePolicyArrayOutputWithContext(ctx context.Context) SilencePoliciesSilencePolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SilencePoliciesSilencePolicyArrayOutput)
+}
+
+type SilencePoliciesSilencePolicyOutput struct{ *pulumi.OutputState }
+
+func (SilencePoliciesSilencePolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SilencePoliciesSilencePolicy)(nil)).Elem()
+}
+
+func (o SilencePoliciesSilencePolicyOutput) ToSilencePoliciesSilencePolicyOutput() SilencePoliciesSilencePolicyOutput {
+	return o
+}
+
+func (o SilencePoliciesSilencePolicyOutput) ToSilencePoliciesSilencePolicyOutputWithContext(ctx context.Context) SilencePoliciesSilencePolicyOutput {
+	return o
+}
+
+// The auto delete time of the silence policy.
+func (o SilencePoliciesSilencePolicyOutput) AutoDeleteTime() pulumi.StringOutput {
+	return o.ApplyT(func(v SilencePoliciesSilencePolicy) string { return v.AutoDeleteTime }).(pulumi.StringOutput)
+}
+
+// The create time of the silence policy, in RFC3339 format.
+func (o SilencePoliciesSilencePolicyOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v SilencePoliciesSilencePolicy) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The description of the silence policy.
+func (o SilencePoliciesSilencePolicyOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v SilencePoliciesSilencePolicy) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The id of the silence policy.
+func (o SilencePoliciesSilencePolicyOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v SilencePoliciesSilencePolicy) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The name of silence policy.
+func (o SilencePoliciesSilencePolicyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v SilencePoliciesSilencePolicy) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The source of the silence policy.
+func (o SilencePoliciesSilencePolicyOutput) Source() pulumi.StringOutput {
+	return o.ApplyT(func(v SilencePoliciesSilencePolicy) string { return v.Source }).(pulumi.StringOutput)
+}
+
+// The status of silence policy: Active/Disabled/Expired.
+func (o SilencePoliciesSilencePolicyOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v SilencePoliciesSilencePolicy) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The matching time in the alert silence policy.
+func (o SilencePoliciesSilencePolicyOutput) TimeRangeMatchers() SilencePoliciesSilencePolicyTimeRangeMatcherArrayOutput {
+	return o.ApplyT(func(v SilencePoliciesSilencePolicy) []SilencePoliciesSilencePolicyTimeRangeMatcher {
+		return v.TimeRangeMatchers
+	}).(SilencePoliciesSilencePolicyTimeRangeMatcherArrayOutput)
+}
+
+// The update time of the silence policy, in RFC3339 format.
+func (o SilencePoliciesSilencePolicyOutput) UpdateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v SilencePoliciesSilencePolicy) string { return v.UpdateTime }).(pulumi.StringOutput)
+}
+
+type SilencePoliciesSilencePolicyArrayOutput struct{ *pulumi.OutputState }
+
+func (SilencePoliciesSilencePolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SilencePoliciesSilencePolicy)(nil)).Elem()
+}
+
+func (o SilencePoliciesSilencePolicyArrayOutput) ToSilencePoliciesSilencePolicyArrayOutput() SilencePoliciesSilencePolicyArrayOutput {
+	return o
+}
+
+func (o SilencePoliciesSilencePolicyArrayOutput) ToSilencePoliciesSilencePolicyArrayOutputWithContext(ctx context.Context) SilencePoliciesSilencePolicyArrayOutput {
+	return o
+}
+
+func (o SilencePoliciesSilencePolicyArrayOutput) Index(i pulumi.IntInput) SilencePoliciesSilencePolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SilencePoliciesSilencePolicy {
+		return vs[0].([]SilencePoliciesSilencePolicy)[vs[1].(int)]
+	}).(SilencePoliciesSilencePolicyOutput)
+}
+
+type SilencePoliciesSilencePolicyTimeRangeMatcher struct {
+	// The time period for alarm silence.
+	Date string `pulumi:"date"`
+	// Time zone.
+	Location string `pulumi:"location"`
+	// The cycle of alarm silence.
+	PeriodicDates []SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDate `pulumi:"periodicDates"`
+}
+
+// SilencePoliciesSilencePolicyTimeRangeMatcherInput is an input type that accepts SilencePoliciesSilencePolicyTimeRangeMatcherArgs and SilencePoliciesSilencePolicyTimeRangeMatcherOutput values.
+// You can construct a concrete instance of `SilencePoliciesSilencePolicyTimeRangeMatcherInput` via:
+//
+//	SilencePoliciesSilencePolicyTimeRangeMatcherArgs{...}
+type SilencePoliciesSilencePolicyTimeRangeMatcherInput interface {
+	pulumi.Input
+
+	ToSilencePoliciesSilencePolicyTimeRangeMatcherOutput() SilencePoliciesSilencePolicyTimeRangeMatcherOutput
+	ToSilencePoliciesSilencePolicyTimeRangeMatcherOutputWithContext(context.Context) SilencePoliciesSilencePolicyTimeRangeMatcherOutput
+}
+
+type SilencePoliciesSilencePolicyTimeRangeMatcherArgs struct {
+	// The time period for alarm silence.
+	Date pulumi.StringInput `pulumi:"date"`
+	// Time zone.
+	Location pulumi.StringInput `pulumi:"location"`
+	// The cycle of alarm silence.
+	PeriodicDates SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayInput `pulumi:"periodicDates"`
+}
+
+func (SilencePoliciesSilencePolicyTimeRangeMatcherArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SilencePoliciesSilencePolicyTimeRangeMatcher)(nil)).Elem()
+}
+
+func (i SilencePoliciesSilencePolicyTimeRangeMatcherArgs) ToSilencePoliciesSilencePolicyTimeRangeMatcherOutput() SilencePoliciesSilencePolicyTimeRangeMatcherOutput {
+	return i.ToSilencePoliciesSilencePolicyTimeRangeMatcherOutputWithContext(context.Background())
+}
+
+func (i SilencePoliciesSilencePolicyTimeRangeMatcherArgs) ToSilencePoliciesSilencePolicyTimeRangeMatcherOutputWithContext(ctx context.Context) SilencePoliciesSilencePolicyTimeRangeMatcherOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SilencePoliciesSilencePolicyTimeRangeMatcherOutput)
+}
+
+// SilencePoliciesSilencePolicyTimeRangeMatcherArrayInput is an input type that accepts SilencePoliciesSilencePolicyTimeRangeMatcherArray and SilencePoliciesSilencePolicyTimeRangeMatcherArrayOutput values.
+// You can construct a concrete instance of `SilencePoliciesSilencePolicyTimeRangeMatcherArrayInput` via:
+//
+//	SilencePoliciesSilencePolicyTimeRangeMatcherArray{ SilencePoliciesSilencePolicyTimeRangeMatcherArgs{...} }
+type SilencePoliciesSilencePolicyTimeRangeMatcherArrayInput interface {
+	pulumi.Input
+
+	ToSilencePoliciesSilencePolicyTimeRangeMatcherArrayOutput() SilencePoliciesSilencePolicyTimeRangeMatcherArrayOutput
+	ToSilencePoliciesSilencePolicyTimeRangeMatcherArrayOutputWithContext(context.Context) SilencePoliciesSilencePolicyTimeRangeMatcherArrayOutput
+}
+
+type SilencePoliciesSilencePolicyTimeRangeMatcherArray []SilencePoliciesSilencePolicyTimeRangeMatcherInput
+
+func (SilencePoliciesSilencePolicyTimeRangeMatcherArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SilencePoliciesSilencePolicyTimeRangeMatcher)(nil)).Elem()
+}
+
+func (i SilencePoliciesSilencePolicyTimeRangeMatcherArray) ToSilencePoliciesSilencePolicyTimeRangeMatcherArrayOutput() SilencePoliciesSilencePolicyTimeRangeMatcherArrayOutput {
+	return i.ToSilencePoliciesSilencePolicyTimeRangeMatcherArrayOutputWithContext(context.Background())
+}
+
+func (i SilencePoliciesSilencePolicyTimeRangeMatcherArray) ToSilencePoliciesSilencePolicyTimeRangeMatcherArrayOutputWithContext(ctx context.Context) SilencePoliciesSilencePolicyTimeRangeMatcherArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SilencePoliciesSilencePolicyTimeRangeMatcherArrayOutput)
+}
+
+type SilencePoliciesSilencePolicyTimeRangeMatcherOutput struct{ *pulumi.OutputState }
+
+func (SilencePoliciesSilencePolicyTimeRangeMatcherOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SilencePoliciesSilencePolicyTimeRangeMatcher)(nil)).Elem()
+}
+
+func (o SilencePoliciesSilencePolicyTimeRangeMatcherOutput) ToSilencePoliciesSilencePolicyTimeRangeMatcherOutput() SilencePoliciesSilencePolicyTimeRangeMatcherOutput {
+	return o
+}
+
+func (o SilencePoliciesSilencePolicyTimeRangeMatcherOutput) ToSilencePoliciesSilencePolicyTimeRangeMatcherOutputWithContext(ctx context.Context) SilencePoliciesSilencePolicyTimeRangeMatcherOutput {
+	return o
+}
+
+// The time period for alarm silence.
+func (o SilencePoliciesSilencePolicyTimeRangeMatcherOutput) Date() pulumi.StringOutput {
+	return o.ApplyT(func(v SilencePoliciesSilencePolicyTimeRangeMatcher) string { return v.Date }).(pulumi.StringOutput)
+}
+
+// Time zone.
+func (o SilencePoliciesSilencePolicyTimeRangeMatcherOutput) Location() pulumi.StringOutput {
+	return o.ApplyT(func(v SilencePoliciesSilencePolicyTimeRangeMatcher) string { return v.Location }).(pulumi.StringOutput)
+}
+
+// The cycle of alarm silence.
+func (o SilencePoliciesSilencePolicyTimeRangeMatcherOutput) PeriodicDates() SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayOutput {
+	return o.ApplyT(func(v SilencePoliciesSilencePolicyTimeRangeMatcher) []SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDate {
+		return v.PeriodicDates
+	}).(SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayOutput)
+}
+
+type SilencePoliciesSilencePolicyTimeRangeMatcherArrayOutput struct{ *pulumi.OutputState }
+
+func (SilencePoliciesSilencePolicyTimeRangeMatcherArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SilencePoliciesSilencePolicyTimeRangeMatcher)(nil)).Elem()
+}
+
+func (o SilencePoliciesSilencePolicyTimeRangeMatcherArrayOutput) ToSilencePoliciesSilencePolicyTimeRangeMatcherArrayOutput() SilencePoliciesSilencePolicyTimeRangeMatcherArrayOutput {
+	return o
+}
+
+func (o SilencePoliciesSilencePolicyTimeRangeMatcherArrayOutput) ToSilencePoliciesSilencePolicyTimeRangeMatcherArrayOutputWithContext(ctx context.Context) SilencePoliciesSilencePolicyTimeRangeMatcherArrayOutput {
+	return o
+}
+
+func (o SilencePoliciesSilencePolicyTimeRangeMatcherArrayOutput) Index(i pulumi.IntInput) SilencePoliciesSilencePolicyTimeRangeMatcherOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SilencePoliciesSilencePolicyTimeRangeMatcher {
+		return vs[0].([]SilencePoliciesSilencePolicyTimeRangeMatcher)[vs[1].(int)]
+	}).(SilencePoliciesSilencePolicyTimeRangeMatcherOutput)
+}
+
+type SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDate struct {
+	// Days of the month, e.g. 1,15,30.
+	DayOfMonth string `pulumi:"dayOfMonth"`
+	// Time periods, e.g. 20:00~21:12,22:00~23:12.
+	Time string `pulumi:"time"`
+	// Weekdays, e.g. 1,3,5.
+	Weekday string `pulumi:"weekday"`
+}
+
+// SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateInput is an input type that accepts SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArgs and SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateOutput values.
+// You can construct a concrete instance of `SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateInput` via:
+//
+//	SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArgs{...}
+type SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateInput interface {
+	pulumi.Input
+
+	ToSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateOutput() SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateOutput
+	ToSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateOutputWithContext(context.Context) SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateOutput
+}
+
+type SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArgs struct {
+	// Days of the month, e.g. 1,15,30.
+	DayOfMonth pulumi.StringInput `pulumi:"dayOfMonth"`
+	// Time periods, e.g. 20:00~21:12,22:00~23:12.
+	Time pulumi.StringInput `pulumi:"time"`
+	// Weekdays, e.g. 1,3,5.
+	Weekday pulumi.StringInput `pulumi:"weekday"`
+}
+
+func (SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDate)(nil)).Elem()
+}
+
+func (i SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArgs) ToSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateOutput() SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateOutput {
+	return i.ToSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateOutputWithContext(context.Background())
+}
+
+func (i SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArgs) ToSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateOutputWithContext(ctx context.Context) SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateOutput)
+}
+
+// SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayInput is an input type that accepts SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArray and SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayOutput values.
+// You can construct a concrete instance of `SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayInput` via:
+//
+//	SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArray{ SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArgs{...} }
+type SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayInput interface {
+	pulumi.Input
+
+	ToSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayOutput() SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayOutput
+	ToSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayOutputWithContext(context.Context) SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayOutput
+}
+
+type SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArray []SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateInput
+
+func (SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDate)(nil)).Elem()
+}
+
+func (i SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArray) ToSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayOutput() SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayOutput {
+	return i.ToSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayOutputWithContext(context.Background())
+}
+
+func (i SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArray) ToSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayOutputWithContext(ctx context.Context) SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayOutput)
+}
+
+type SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateOutput struct{ *pulumi.OutputState }
+
+func (SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDate)(nil)).Elem()
+}
+
+func (o SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateOutput) ToSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateOutput() SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateOutput {
+	return o
+}
+
+func (o SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateOutput) ToSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateOutputWithContext(ctx context.Context) SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateOutput {
+	return o
+}
+
+// Days of the month, e.g. 1,15,30.
+func (o SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateOutput) DayOfMonth() pulumi.StringOutput {
+	return o.ApplyT(func(v SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDate) string { return v.DayOfMonth }).(pulumi.StringOutput)
+}
+
+// Time periods, e.g. 20:00~21:12,22:00~23:12.
+func (o SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateOutput) Time() pulumi.StringOutput {
+	return o.ApplyT(func(v SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDate) string { return v.Time }).(pulumi.StringOutput)
+}
+
+// Weekdays, e.g. 1,3,5.
+func (o SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateOutput) Weekday() pulumi.StringOutput {
+	return o.ApplyT(func(v SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDate) string { return v.Weekday }).(pulumi.StringOutput)
+}
+
+type SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayOutput struct{ *pulumi.OutputState }
+
+func (SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDate)(nil)).Elem()
+}
+
+func (o SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayOutput) ToSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayOutput() SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayOutput {
+	return o
+}
+
+func (o SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayOutput) ToSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayOutputWithContext(ctx context.Context) SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayOutput {
+	return o
+}
+
+func (o SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayOutput) Index(i pulumi.IntInput) SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDate {
+		return vs[0].([]SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDate)[vs[1].(int)]
+	}).(SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateOutput)
+}
+
+type SilencePolicyMetricLabelMatcher struct {
+	// Label matcher. Among them, each LabelMatcher array can contain a maximum of 24 items.
+	Matchers []SilencePolicyMetricLabelMatcherMatcher `pulumi:"matchers"`
+}
+
+// SilencePolicyMetricLabelMatcherInput is an input type that accepts SilencePolicyMetricLabelMatcherArgs and SilencePolicyMetricLabelMatcherOutput values.
+// You can construct a concrete instance of `SilencePolicyMetricLabelMatcherInput` via:
+//
+//	SilencePolicyMetricLabelMatcherArgs{...}
+type SilencePolicyMetricLabelMatcherInput interface {
+	pulumi.Input
+
+	ToSilencePolicyMetricLabelMatcherOutput() SilencePolicyMetricLabelMatcherOutput
+	ToSilencePolicyMetricLabelMatcherOutputWithContext(context.Context) SilencePolicyMetricLabelMatcherOutput
+}
+
+type SilencePolicyMetricLabelMatcherArgs struct {
+	// Label matcher. Among them, each LabelMatcher array can contain a maximum of 24 items.
+	Matchers SilencePolicyMetricLabelMatcherMatcherArrayInput `pulumi:"matchers"`
+}
+
+func (SilencePolicyMetricLabelMatcherArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SilencePolicyMetricLabelMatcher)(nil)).Elem()
+}
+
+func (i SilencePolicyMetricLabelMatcherArgs) ToSilencePolicyMetricLabelMatcherOutput() SilencePolicyMetricLabelMatcherOutput {
+	return i.ToSilencePolicyMetricLabelMatcherOutputWithContext(context.Background())
+}
+
+func (i SilencePolicyMetricLabelMatcherArgs) ToSilencePolicyMetricLabelMatcherOutputWithContext(ctx context.Context) SilencePolicyMetricLabelMatcherOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SilencePolicyMetricLabelMatcherOutput)
+}
+
+// SilencePolicyMetricLabelMatcherArrayInput is an input type that accepts SilencePolicyMetricLabelMatcherArray and SilencePolicyMetricLabelMatcherArrayOutput values.
+// You can construct a concrete instance of `SilencePolicyMetricLabelMatcherArrayInput` via:
+//
+//	SilencePolicyMetricLabelMatcherArray{ SilencePolicyMetricLabelMatcherArgs{...} }
+type SilencePolicyMetricLabelMatcherArrayInput interface {
+	pulumi.Input
+
+	ToSilencePolicyMetricLabelMatcherArrayOutput() SilencePolicyMetricLabelMatcherArrayOutput
+	ToSilencePolicyMetricLabelMatcherArrayOutputWithContext(context.Context) SilencePolicyMetricLabelMatcherArrayOutput
+}
+
+type SilencePolicyMetricLabelMatcherArray []SilencePolicyMetricLabelMatcherInput
+
+func (SilencePolicyMetricLabelMatcherArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SilencePolicyMetricLabelMatcher)(nil)).Elem()
+}
+
+func (i SilencePolicyMetricLabelMatcherArray) ToSilencePolicyMetricLabelMatcherArrayOutput() SilencePolicyMetricLabelMatcherArrayOutput {
+	return i.ToSilencePolicyMetricLabelMatcherArrayOutputWithContext(context.Background())
+}
+
+func (i SilencePolicyMetricLabelMatcherArray) ToSilencePolicyMetricLabelMatcherArrayOutputWithContext(ctx context.Context) SilencePolicyMetricLabelMatcherArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SilencePolicyMetricLabelMatcherArrayOutput)
+}
+
+type SilencePolicyMetricLabelMatcherOutput struct{ *pulumi.OutputState }
+
+func (SilencePolicyMetricLabelMatcherOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SilencePolicyMetricLabelMatcher)(nil)).Elem()
+}
+
+func (o SilencePolicyMetricLabelMatcherOutput) ToSilencePolicyMetricLabelMatcherOutput() SilencePolicyMetricLabelMatcherOutput {
+	return o
+}
+
+func (o SilencePolicyMetricLabelMatcherOutput) ToSilencePolicyMetricLabelMatcherOutputWithContext(ctx context.Context) SilencePolicyMetricLabelMatcherOutput {
+	return o
+}
+
+// Label matcher. Among them, each LabelMatcher array can contain a maximum of 24 items.
+func (o SilencePolicyMetricLabelMatcherOutput) Matchers() SilencePolicyMetricLabelMatcherMatcherArrayOutput {
+	return o.ApplyT(func(v SilencePolicyMetricLabelMatcher) []SilencePolicyMetricLabelMatcherMatcher { return v.Matchers }).(SilencePolicyMetricLabelMatcherMatcherArrayOutput)
+}
+
+type SilencePolicyMetricLabelMatcherArrayOutput struct{ *pulumi.OutputState }
+
+func (SilencePolicyMetricLabelMatcherArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SilencePolicyMetricLabelMatcher)(nil)).Elem()
+}
+
+func (o SilencePolicyMetricLabelMatcherArrayOutput) ToSilencePolicyMetricLabelMatcherArrayOutput() SilencePolicyMetricLabelMatcherArrayOutput {
+	return o
+}
+
+func (o SilencePolicyMetricLabelMatcherArrayOutput) ToSilencePolicyMetricLabelMatcherArrayOutputWithContext(ctx context.Context) SilencePolicyMetricLabelMatcherArrayOutput {
+	return o
+}
+
+func (o SilencePolicyMetricLabelMatcherArrayOutput) Index(i pulumi.IntInput) SilencePolicyMetricLabelMatcherOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SilencePolicyMetricLabelMatcher {
+		return vs[0].([]SilencePolicyMetricLabelMatcher)[vs[1].(int)]
+	}).(SilencePolicyMetricLabelMatcherOutput)
+}
+
+type SilencePolicyMetricLabelMatcherMatcher struct {
+	// Label.
+	Label string `pulumi:"label"`
+	// Operator. The optional values are as follows: Equal, NotEqual, RegexpEqual, RegexpNotEqual.
+	Operator *string `pulumi:"operator"`
+	// Label value.
+	Value string `pulumi:"value"`
+}
+
+// SilencePolicyMetricLabelMatcherMatcherInput is an input type that accepts SilencePolicyMetricLabelMatcherMatcherArgs and SilencePolicyMetricLabelMatcherMatcherOutput values.
+// You can construct a concrete instance of `SilencePolicyMetricLabelMatcherMatcherInput` via:
+//
+//	SilencePolicyMetricLabelMatcherMatcherArgs{...}
+type SilencePolicyMetricLabelMatcherMatcherInput interface {
+	pulumi.Input
+
+	ToSilencePolicyMetricLabelMatcherMatcherOutput() SilencePolicyMetricLabelMatcherMatcherOutput
+	ToSilencePolicyMetricLabelMatcherMatcherOutputWithContext(context.Context) SilencePolicyMetricLabelMatcherMatcherOutput
+}
+
+type SilencePolicyMetricLabelMatcherMatcherArgs struct {
+	// Label.
+	Label pulumi.StringInput `pulumi:"label"`
+	// Operator. The optional values are as follows: Equal, NotEqual, RegexpEqual, RegexpNotEqual.
+	Operator pulumi.StringPtrInput `pulumi:"operator"`
+	// Label value.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (SilencePolicyMetricLabelMatcherMatcherArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SilencePolicyMetricLabelMatcherMatcher)(nil)).Elem()
+}
+
+func (i SilencePolicyMetricLabelMatcherMatcherArgs) ToSilencePolicyMetricLabelMatcherMatcherOutput() SilencePolicyMetricLabelMatcherMatcherOutput {
+	return i.ToSilencePolicyMetricLabelMatcherMatcherOutputWithContext(context.Background())
+}
+
+func (i SilencePolicyMetricLabelMatcherMatcherArgs) ToSilencePolicyMetricLabelMatcherMatcherOutputWithContext(ctx context.Context) SilencePolicyMetricLabelMatcherMatcherOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SilencePolicyMetricLabelMatcherMatcherOutput)
+}
+
+// SilencePolicyMetricLabelMatcherMatcherArrayInput is an input type that accepts SilencePolicyMetricLabelMatcherMatcherArray and SilencePolicyMetricLabelMatcherMatcherArrayOutput values.
+// You can construct a concrete instance of `SilencePolicyMetricLabelMatcherMatcherArrayInput` via:
+//
+//	SilencePolicyMetricLabelMatcherMatcherArray{ SilencePolicyMetricLabelMatcherMatcherArgs{...} }
+type SilencePolicyMetricLabelMatcherMatcherArrayInput interface {
+	pulumi.Input
+
+	ToSilencePolicyMetricLabelMatcherMatcherArrayOutput() SilencePolicyMetricLabelMatcherMatcherArrayOutput
+	ToSilencePolicyMetricLabelMatcherMatcherArrayOutputWithContext(context.Context) SilencePolicyMetricLabelMatcherMatcherArrayOutput
+}
+
+type SilencePolicyMetricLabelMatcherMatcherArray []SilencePolicyMetricLabelMatcherMatcherInput
+
+func (SilencePolicyMetricLabelMatcherMatcherArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SilencePolicyMetricLabelMatcherMatcher)(nil)).Elem()
+}
+
+func (i SilencePolicyMetricLabelMatcherMatcherArray) ToSilencePolicyMetricLabelMatcherMatcherArrayOutput() SilencePolicyMetricLabelMatcherMatcherArrayOutput {
+	return i.ToSilencePolicyMetricLabelMatcherMatcherArrayOutputWithContext(context.Background())
+}
+
+func (i SilencePolicyMetricLabelMatcherMatcherArray) ToSilencePolicyMetricLabelMatcherMatcherArrayOutputWithContext(ctx context.Context) SilencePolicyMetricLabelMatcherMatcherArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SilencePolicyMetricLabelMatcherMatcherArrayOutput)
+}
+
+type SilencePolicyMetricLabelMatcherMatcherOutput struct{ *pulumi.OutputState }
+
+func (SilencePolicyMetricLabelMatcherMatcherOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SilencePolicyMetricLabelMatcherMatcher)(nil)).Elem()
+}
+
+func (o SilencePolicyMetricLabelMatcherMatcherOutput) ToSilencePolicyMetricLabelMatcherMatcherOutput() SilencePolicyMetricLabelMatcherMatcherOutput {
+	return o
+}
+
+func (o SilencePolicyMetricLabelMatcherMatcherOutput) ToSilencePolicyMetricLabelMatcherMatcherOutputWithContext(ctx context.Context) SilencePolicyMetricLabelMatcherMatcherOutput {
+	return o
+}
+
+// Label.
+func (o SilencePolicyMetricLabelMatcherMatcherOutput) Label() pulumi.StringOutput {
+	return o.ApplyT(func(v SilencePolicyMetricLabelMatcherMatcher) string { return v.Label }).(pulumi.StringOutput)
+}
+
+// Operator. The optional values are as follows: Equal, NotEqual, RegexpEqual, RegexpNotEqual.
+func (o SilencePolicyMetricLabelMatcherMatcherOutput) Operator() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SilencePolicyMetricLabelMatcherMatcher) *string { return v.Operator }).(pulumi.StringPtrOutput)
+}
+
+// Label value.
+func (o SilencePolicyMetricLabelMatcherMatcherOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v SilencePolicyMetricLabelMatcherMatcher) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type SilencePolicyMetricLabelMatcherMatcherArrayOutput struct{ *pulumi.OutputState }
+
+func (SilencePolicyMetricLabelMatcherMatcherArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SilencePolicyMetricLabelMatcherMatcher)(nil)).Elem()
+}
+
+func (o SilencePolicyMetricLabelMatcherMatcherArrayOutput) ToSilencePolicyMetricLabelMatcherMatcherArrayOutput() SilencePolicyMetricLabelMatcherMatcherArrayOutput {
+	return o
+}
+
+func (o SilencePolicyMetricLabelMatcherMatcherArrayOutput) ToSilencePolicyMetricLabelMatcherMatcherArrayOutputWithContext(ctx context.Context) SilencePolicyMetricLabelMatcherMatcherArrayOutput {
+	return o
+}
+
+func (o SilencePolicyMetricLabelMatcherMatcherArrayOutput) Index(i pulumi.IntInput) SilencePolicyMetricLabelMatcherMatcherOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SilencePolicyMetricLabelMatcherMatcher {
+		return vs[0].([]SilencePolicyMetricLabelMatcherMatcher)[vs[1].(int)]
+	}).(SilencePolicyMetricLabelMatcherMatcherOutput)
+}
+
+type SilencePolicyTimeRangeMatcher struct {
+	// Silence time range, like 2025-01-02 15:04~2025-01-03 14:04.
+	Date *string `pulumi:"date"`
+	// Timezone, e.g. Asia/Shanghai.
+	Location string `pulumi:"location"`
+	// The cycle of alarm silence. It is used to configure alarm silence that takes effect periodically.
+	PeriodicDate *SilencePolicyTimeRangeMatcherPeriodicDate `pulumi:"periodicDate"`
+}
+
+// SilencePolicyTimeRangeMatcherInput is an input type that accepts SilencePolicyTimeRangeMatcherArgs and SilencePolicyTimeRangeMatcherOutput values.
+// You can construct a concrete instance of `SilencePolicyTimeRangeMatcherInput` via:
+//
+//	SilencePolicyTimeRangeMatcherArgs{...}
+type SilencePolicyTimeRangeMatcherInput interface {
+	pulumi.Input
+
+	ToSilencePolicyTimeRangeMatcherOutput() SilencePolicyTimeRangeMatcherOutput
+	ToSilencePolicyTimeRangeMatcherOutputWithContext(context.Context) SilencePolicyTimeRangeMatcherOutput
+}
+
+type SilencePolicyTimeRangeMatcherArgs struct {
+	// Silence time range, like 2025-01-02 15:04~2025-01-03 14:04.
+	Date pulumi.StringPtrInput `pulumi:"date"`
+	// Timezone, e.g. Asia/Shanghai.
+	Location pulumi.StringInput `pulumi:"location"`
+	// The cycle of alarm silence. It is used to configure alarm silence that takes effect periodically.
+	PeriodicDate SilencePolicyTimeRangeMatcherPeriodicDatePtrInput `pulumi:"periodicDate"`
+}
+
+func (SilencePolicyTimeRangeMatcherArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SilencePolicyTimeRangeMatcher)(nil)).Elem()
+}
+
+func (i SilencePolicyTimeRangeMatcherArgs) ToSilencePolicyTimeRangeMatcherOutput() SilencePolicyTimeRangeMatcherOutput {
+	return i.ToSilencePolicyTimeRangeMatcherOutputWithContext(context.Background())
+}
+
+func (i SilencePolicyTimeRangeMatcherArgs) ToSilencePolicyTimeRangeMatcherOutputWithContext(ctx context.Context) SilencePolicyTimeRangeMatcherOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SilencePolicyTimeRangeMatcherOutput)
+}
+
+// SilencePolicyTimeRangeMatcherArrayInput is an input type that accepts SilencePolicyTimeRangeMatcherArray and SilencePolicyTimeRangeMatcherArrayOutput values.
+// You can construct a concrete instance of `SilencePolicyTimeRangeMatcherArrayInput` via:
+//
+//	SilencePolicyTimeRangeMatcherArray{ SilencePolicyTimeRangeMatcherArgs{...} }
+type SilencePolicyTimeRangeMatcherArrayInput interface {
+	pulumi.Input
+
+	ToSilencePolicyTimeRangeMatcherArrayOutput() SilencePolicyTimeRangeMatcherArrayOutput
+	ToSilencePolicyTimeRangeMatcherArrayOutputWithContext(context.Context) SilencePolicyTimeRangeMatcherArrayOutput
+}
+
+type SilencePolicyTimeRangeMatcherArray []SilencePolicyTimeRangeMatcherInput
+
+func (SilencePolicyTimeRangeMatcherArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SilencePolicyTimeRangeMatcher)(nil)).Elem()
+}
+
+func (i SilencePolicyTimeRangeMatcherArray) ToSilencePolicyTimeRangeMatcherArrayOutput() SilencePolicyTimeRangeMatcherArrayOutput {
+	return i.ToSilencePolicyTimeRangeMatcherArrayOutputWithContext(context.Background())
+}
+
+func (i SilencePolicyTimeRangeMatcherArray) ToSilencePolicyTimeRangeMatcherArrayOutputWithContext(ctx context.Context) SilencePolicyTimeRangeMatcherArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SilencePolicyTimeRangeMatcherArrayOutput)
+}
+
+type SilencePolicyTimeRangeMatcherOutput struct{ *pulumi.OutputState }
+
+func (SilencePolicyTimeRangeMatcherOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SilencePolicyTimeRangeMatcher)(nil)).Elem()
+}
+
+func (o SilencePolicyTimeRangeMatcherOutput) ToSilencePolicyTimeRangeMatcherOutput() SilencePolicyTimeRangeMatcherOutput {
+	return o
+}
+
+func (o SilencePolicyTimeRangeMatcherOutput) ToSilencePolicyTimeRangeMatcherOutputWithContext(ctx context.Context) SilencePolicyTimeRangeMatcherOutput {
+	return o
+}
+
+// Silence time range, like 2025-01-02 15:04~2025-01-03 14:04.
+func (o SilencePolicyTimeRangeMatcherOutput) Date() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SilencePolicyTimeRangeMatcher) *string { return v.Date }).(pulumi.StringPtrOutput)
+}
+
+// Timezone, e.g. Asia/Shanghai.
+func (o SilencePolicyTimeRangeMatcherOutput) Location() pulumi.StringOutput {
+	return o.ApplyT(func(v SilencePolicyTimeRangeMatcher) string { return v.Location }).(pulumi.StringOutput)
+}
+
+// The cycle of alarm silence. It is used to configure alarm silence that takes effect periodically.
+func (o SilencePolicyTimeRangeMatcherOutput) PeriodicDate() SilencePolicyTimeRangeMatcherPeriodicDatePtrOutput {
+	return o.ApplyT(func(v SilencePolicyTimeRangeMatcher) *SilencePolicyTimeRangeMatcherPeriodicDate {
+		return v.PeriodicDate
+	}).(SilencePolicyTimeRangeMatcherPeriodicDatePtrOutput)
+}
+
+type SilencePolicyTimeRangeMatcherArrayOutput struct{ *pulumi.OutputState }
+
+func (SilencePolicyTimeRangeMatcherArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SilencePolicyTimeRangeMatcher)(nil)).Elem()
+}
+
+func (o SilencePolicyTimeRangeMatcherArrayOutput) ToSilencePolicyTimeRangeMatcherArrayOutput() SilencePolicyTimeRangeMatcherArrayOutput {
+	return o
+}
+
+func (o SilencePolicyTimeRangeMatcherArrayOutput) ToSilencePolicyTimeRangeMatcherArrayOutputWithContext(ctx context.Context) SilencePolicyTimeRangeMatcherArrayOutput {
+	return o
+}
+
+func (o SilencePolicyTimeRangeMatcherArrayOutput) Index(i pulumi.IntInput) SilencePolicyTimeRangeMatcherOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SilencePolicyTimeRangeMatcher {
+		return vs[0].([]SilencePolicyTimeRangeMatcher)[vs[1].(int)]
+	}).(SilencePolicyTimeRangeMatcherOutput)
+}
+
+type SilencePolicyTimeRangeMatcherPeriodicDate struct {
+	// Days of month, e.g. 2~3. A maximum of 10 time periods can be configured.
+	DayOfMonth *string `pulumi:"dayOfMonth"`
+	// Time periods, e.g. 20:00~21:12,22:00~23:12. A maximum of 4 time periods can be configured.
+	Time *string `pulumi:"time"`
+	// Weekdays, e.g. 1,3,5. A maximum of 7 time periods can be configured.
+	Weekday *string `pulumi:"weekday"`
+}
+
+// SilencePolicyTimeRangeMatcherPeriodicDateInput is an input type that accepts SilencePolicyTimeRangeMatcherPeriodicDateArgs and SilencePolicyTimeRangeMatcherPeriodicDateOutput values.
+// You can construct a concrete instance of `SilencePolicyTimeRangeMatcherPeriodicDateInput` via:
+//
+//	SilencePolicyTimeRangeMatcherPeriodicDateArgs{...}
+type SilencePolicyTimeRangeMatcherPeriodicDateInput interface {
+	pulumi.Input
+
+	ToSilencePolicyTimeRangeMatcherPeriodicDateOutput() SilencePolicyTimeRangeMatcherPeriodicDateOutput
+	ToSilencePolicyTimeRangeMatcherPeriodicDateOutputWithContext(context.Context) SilencePolicyTimeRangeMatcherPeriodicDateOutput
+}
+
+type SilencePolicyTimeRangeMatcherPeriodicDateArgs struct {
+	// Days of month, e.g. 2~3. A maximum of 10 time periods can be configured.
+	DayOfMonth pulumi.StringPtrInput `pulumi:"dayOfMonth"`
+	// Time periods, e.g. 20:00~21:12,22:00~23:12. A maximum of 4 time periods can be configured.
+	Time pulumi.StringPtrInput `pulumi:"time"`
+	// Weekdays, e.g. 1,3,5. A maximum of 7 time periods can be configured.
+	Weekday pulumi.StringPtrInput `pulumi:"weekday"`
+}
+
+func (SilencePolicyTimeRangeMatcherPeriodicDateArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SilencePolicyTimeRangeMatcherPeriodicDate)(nil)).Elem()
+}
+
+func (i SilencePolicyTimeRangeMatcherPeriodicDateArgs) ToSilencePolicyTimeRangeMatcherPeriodicDateOutput() SilencePolicyTimeRangeMatcherPeriodicDateOutput {
+	return i.ToSilencePolicyTimeRangeMatcherPeriodicDateOutputWithContext(context.Background())
+}
+
+func (i SilencePolicyTimeRangeMatcherPeriodicDateArgs) ToSilencePolicyTimeRangeMatcherPeriodicDateOutputWithContext(ctx context.Context) SilencePolicyTimeRangeMatcherPeriodicDateOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SilencePolicyTimeRangeMatcherPeriodicDateOutput)
+}
+
+func (i SilencePolicyTimeRangeMatcherPeriodicDateArgs) ToSilencePolicyTimeRangeMatcherPeriodicDatePtrOutput() SilencePolicyTimeRangeMatcherPeriodicDatePtrOutput {
+	return i.ToSilencePolicyTimeRangeMatcherPeriodicDatePtrOutputWithContext(context.Background())
+}
+
+func (i SilencePolicyTimeRangeMatcherPeriodicDateArgs) ToSilencePolicyTimeRangeMatcherPeriodicDatePtrOutputWithContext(ctx context.Context) SilencePolicyTimeRangeMatcherPeriodicDatePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SilencePolicyTimeRangeMatcherPeriodicDateOutput).ToSilencePolicyTimeRangeMatcherPeriodicDatePtrOutputWithContext(ctx)
+}
+
+// SilencePolicyTimeRangeMatcherPeriodicDatePtrInput is an input type that accepts SilencePolicyTimeRangeMatcherPeriodicDateArgs, SilencePolicyTimeRangeMatcherPeriodicDatePtr and SilencePolicyTimeRangeMatcherPeriodicDatePtrOutput values.
+// You can construct a concrete instance of `SilencePolicyTimeRangeMatcherPeriodicDatePtrInput` via:
+//
+//	        SilencePolicyTimeRangeMatcherPeriodicDateArgs{...}
+//
+//	or:
+//
+//	        nil
+type SilencePolicyTimeRangeMatcherPeriodicDatePtrInput interface {
+	pulumi.Input
+
+	ToSilencePolicyTimeRangeMatcherPeriodicDatePtrOutput() SilencePolicyTimeRangeMatcherPeriodicDatePtrOutput
+	ToSilencePolicyTimeRangeMatcherPeriodicDatePtrOutputWithContext(context.Context) SilencePolicyTimeRangeMatcherPeriodicDatePtrOutput
+}
+
+type silencePolicyTimeRangeMatcherPeriodicDatePtrType SilencePolicyTimeRangeMatcherPeriodicDateArgs
+
+func SilencePolicyTimeRangeMatcherPeriodicDatePtr(v *SilencePolicyTimeRangeMatcherPeriodicDateArgs) SilencePolicyTimeRangeMatcherPeriodicDatePtrInput {
+	return (*silencePolicyTimeRangeMatcherPeriodicDatePtrType)(v)
+}
+
+func (*silencePolicyTimeRangeMatcherPeriodicDatePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SilencePolicyTimeRangeMatcherPeriodicDate)(nil)).Elem()
+}
+
+func (i *silencePolicyTimeRangeMatcherPeriodicDatePtrType) ToSilencePolicyTimeRangeMatcherPeriodicDatePtrOutput() SilencePolicyTimeRangeMatcherPeriodicDatePtrOutput {
+	return i.ToSilencePolicyTimeRangeMatcherPeriodicDatePtrOutputWithContext(context.Background())
+}
+
+func (i *silencePolicyTimeRangeMatcherPeriodicDatePtrType) ToSilencePolicyTimeRangeMatcherPeriodicDatePtrOutputWithContext(ctx context.Context) SilencePolicyTimeRangeMatcherPeriodicDatePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SilencePolicyTimeRangeMatcherPeriodicDatePtrOutput)
+}
+
+type SilencePolicyTimeRangeMatcherPeriodicDateOutput struct{ *pulumi.OutputState }
+
+func (SilencePolicyTimeRangeMatcherPeriodicDateOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SilencePolicyTimeRangeMatcherPeriodicDate)(nil)).Elem()
+}
+
+func (o SilencePolicyTimeRangeMatcherPeriodicDateOutput) ToSilencePolicyTimeRangeMatcherPeriodicDateOutput() SilencePolicyTimeRangeMatcherPeriodicDateOutput {
+	return o
+}
+
+func (o SilencePolicyTimeRangeMatcherPeriodicDateOutput) ToSilencePolicyTimeRangeMatcherPeriodicDateOutputWithContext(ctx context.Context) SilencePolicyTimeRangeMatcherPeriodicDateOutput {
+	return o
+}
+
+func (o SilencePolicyTimeRangeMatcherPeriodicDateOutput) ToSilencePolicyTimeRangeMatcherPeriodicDatePtrOutput() SilencePolicyTimeRangeMatcherPeriodicDatePtrOutput {
+	return o.ToSilencePolicyTimeRangeMatcherPeriodicDatePtrOutputWithContext(context.Background())
+}
+
+func (o SilencePolicyTimeRangeMatcherPeriodicDateOutput) ToSilencePolicyTimeRangeMatcherPeriodicDatePtrOutputWithContext(ctx context.Context) SilencePolicyTimeRangeMatcherPeriodicDatePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SilencePolicyTimeRangeMatcherPeriodicDate) *SilencePolicyTimeRangeMatcherPeriodicDate {
+		return &v
+	}).(SilencePolicyTimeRangeMatcherPeriodicDatePtrOutput)
+}
+
+// Days of month, e.g. 2~3. A maximum of 10 time periods can be configured.
+func (o SilencePolicyTimeRangeMatcherPeriodicDateOutput) DayOfMonth() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SilencePolicyTimeRangeMatcherPeriodicDate) *string { return v.DayOfMonth }).(pulumi.StringPtrOutput)
+}
+
+// Time periods, e.g. 20:00~21:12,22:00~23:12. A maximum of 4 time periods can be configured.
+func (o SilencePolicyTimeRangeMatcherPeriodicDateOutput) Time() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SilencePolicyTimeRangeMatcherPeriodicDate) *string { return v.Time }).(pulumi.StringPtrOutput)
+}
+
+// Weekdays, e.g. 1,3,5. A maximum of 7 time periods can be configured.
+func (o SilencePolicyTimeRangeMatcherPeriodicDateOutput) Weekday() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SilencePolicyTimeRangeMatcherPeriodicDate) *string { return v.Weekday }).(pulumi.StringPtrOutput)
+}
+
+type SilencePolicyTimeRangeMatcherPeriodicDatePtrOutput struct{ *pulumi.OutputState }
+
+func (SilencePolicyTimeRangeMatcherPeriodicDatePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SilencePolicyTimeRangeMatcherPeriodicDate)(nil)).Elem()
+}
+
+func (o SilencePolicyTimeRangeMatcherPeriodicDatePtrOutput) ToSilencePolicyTimeRangeMatcherPeriodicDatePtrOutput() SilencePolicyTimeRangeMatcherPeriodicDatePtrOutput {
+	return o
+}
+
+func (o SilencePolicyTimeRangeMatcherPeriodicDatePtrOutput) ToSilencePolicyTimeRangeMatcherPeriodicDatePtrOutputWithContext(ctx context.Context) SilencePolicyTimeRangeMatcherPeriodicDatePtrOutput {
+	return o
+}
+
+func (o SilencePolicyTimeRangeMatcherPeriodicDatePtrOutput) Elem() SilencePolicyTimeRangeMatcherPeriodicDateOutput {
+	return o.ApplyT(func(v *SilencePolicyTimeRangeMatcherPeriodicDate) SilencePolicyTimeRangeMatcherPeriodicDate {
+		if v != nil {
+			return *v
+		}
+		var ret SilencePolicyTimeRangeMatcherPeriodicDate
+		return ret
+	}).(SilencePolicyTimeRangeMatcherPeriodicDateOutput)
+}
+
+// Days of month, e.g. 2~3. A maximum of 10 time periods can be configured.
+func (o SilencePolicyTimeRangeMatcherPeriodicDatePtrOutput) DayOfMonth() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SilencePolicyTimeRangeMatcherPeriodicDate) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DayOfMonth
+	}).(pulumi.StringPtrOutput)
+}
+
+// Time periods, e.g. 20:00~21:12,22:00~23:12. A maximum of 4 time periods can be configured.
+func (o SilencePolicyTimeRangeMatcherPeriodicDatePtrOutput) Time() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SilencePolicyTimeRangeMatcherPeriodicDate) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Time
+	}).(pulumi.StringPtrOutput)
+}
+
+// Weekdays, e.g. 1,3,5. A maximum of 7 time periods can be configured.
+func (o SilencePolicyTimeRangeMatcherPeriodicDatePtrOutput) Weekday() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SilencePolicyTimeRangeMatcherPeriodicDate) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Weekday
+	}).(pulumi.StringPtrOutput)
+}
+
 type WorkspaceTag struct {
 	// The Key of Tags.
 	Key string `pulumi:"key"`
@@ -6083,6 +7391,139 @@ func (o WorkspacesWorkspaceTagArrayOutput) Index(i pulumi.IntInput) WorkspacesWo
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WorkspacesWorkspaceTag {
 		return vs[0].([]WorkspacesWorkspaceTag)[vs[1].(int)]
 	}).(WorkspacesWorkspaceTagOutput)
+}
+
+type GetAlertSamplesAlertSample struct {
+	// Alert ID to filter samples.
+	AlertId string `pulumi:"alertId"`
+	// Alert sample level.
+	Level string `pulumi:"level"`
+	// Alert sample phase.
+	Phase string `pulumi:"phase"`
+	// Alert sample timestamp(unix).
+	Timestamp int `pulumi:"timestamp"`
+	// Alert sample value.
+	Value float64 `pulumi:"value"`
+}
+
+// GetAlertSamplesAlertSampleInput is an input type that accepts GetAlertSamplesAlertSampleArgs and GetAlertSamplesAlertSampleOutput values.
+// You can construct a concrete instance of `GetAlertSamplesAlertSampleInput` via:
+//
+//	GetAlertSamplesAlertSampleArgs{...}
+type GetAlertSamplesAlertSampleInput interface {
+	pulumi.Input
+
+	ToGetAlertSamplesAlertSampleOutput() GetAlertSamplesAlertSampleOutput
+	ToGetAlertSamplesAlertSampleOutputWithContext(context.Context) GetAlertSamplesAlertSampleOutput
+}
+
+type GetAlertSamplesAlertSampleArgs struct {
+	// Alert ID to filter samples.
+	AlertId pulumi.StringInput `pulumi:"alertId"`
+	// Alert sample level.
+	Level pulumi.StringInput `pulumi:"level"`
+	// Alert sample phase.
+	Phase pulumi.StringInput `pulumi:"phase"`
+	// Alert sample timestamp(unix).
+	Timestamp pulumi.IntInput `pulumi:"timestamp"`
+	// Alert sample value.
+	Value pulumi.Float64Input `pulumi:"value"`
+}
+
+func (GetAlertSamplesAlertSampleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlertSamplesAlertSample)(nil)).Elem()
+}
+
+func (i GetAlertSamplesAlertSampleArgs) ToGetAlertSamplesAlertSampleOutput() GetAlertSamplesAlertSampleOutput {
+	return i.ToGetAlertSamplesAlertSampleOutputWithContext(context.Background())
+}
+
+func (i GetAlertSamplesAlertSampleArgs) ToGetAlertSamplesAlertSampleOutputWithContext(ctx context.Context) GetAlertSamplesAlertSampleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlertSamplesAlertSampleOutput)
+}
+
+// GetAlertSamplesAlertSampleArrayInput is an input type that accepts GetAlertSamplesAlertSampleArray and GetAlertSamplesAlertSampleArrayOutput values.
+// You can construct a concrete instance of `GetAlertSamplesAlertSampleArrayInput` via:
+//
+//	GetAlertSamplesAlertSampleArray{ GetAlertSamplesAlertSampleArgs{...} }
+type GetAlertSamplesAlertSampleArrayInput interface {
+	pulumi.Input
+
+	ToGetAlertSamplesAlertSampleArrayOutput() GetAlertSamplesAlertSampleArrayOutput
+	ToGetAlertSamplesAlertSampleArrayOutputWithContext(context.Context) GetAlertSamplesAlertSampleArrayOutput
+}
+
+type GetAlertSamplesAlertSampleArray []GetAlertSamplesAlertSampleInput
+
+func (GetAlertSamplesAlertSampleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAlertSamplesAlertSample)(nil)).Elem()
+}
+
+func (i GetAlertSamplesAlertSampleArray) ToGetAlertSamplesAlertSampleArrayOutput() GetAlertSamplesAlertSampleArrayOutput {
+	return i.ToGetAlertSamplesAlertSampleArrayOutputWithContext(context.Background())
+}
+
+func (i GetAlertSamplesAlertSampleArray) ToGetAlertSamplesAlertSampleArrayOutputWithContext(ctx context.Context) GetAlertSamplesAlertSampleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlertSamplesAlertSampleArrayOutput)
+}
+
+type GetAlertSamplesAlertSampleOutput struct{ *pulumi.OutputState }
+
+func (GetAlertSamplesAlertSampleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlertSamplesAlertSample)(nil)).Elem()
+}
+
+func (o GetAlertSamplesAlertSampleOutput) ToGetAlertSamplesAlertSampleOutput() GetAlertSamplesAlertSampleOutput {
+	return o
+}
+
+func (o GetAlertSamplesAlertSampleOutput) ToGetAlertSamplesAlertSampleOutputWithContext(ctx context.Context) GetAlertSamplesAlertSampleOutput {
+	return o
+}
+
+// Alert ID to filter samples.
+func (o GetAlertSamplesAlertSampleOutput) AlertId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertSamplesAlertSample) string { return v.AlertId }).(pulumi.StringOutput)
+}
+
+// Alert sample level.
+func (o GetAlertSamplesAlertSampleOutput) Level() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertSamplesAlertSample) string { return v.Level }).(pulumi.StringOutput)
+}
+
+// Alert sample phase.
+func (o GetAlertSamplesAlertSampleOutput) Phase() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertSamplesAlertSample) string { return v.Phase }).(pulumi.StringOutput)
+}
+
+// Alert sample timestamp(unix).
+func (o GetAlertSamplesAlertSampleOutput) Timestamp() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAlertSamplesAlertSample) int { return v.Timestamp }).(pulumi.IntOutput)
+}
+
+// Alert sample value.
+func (o GetAlertSamplesAlertSampleOutput) Value() pulumi.Float64Output {
+	return o.ApplyT(func(v GetAlertSamplesAlertSample) float64 { return v.Value }).(pulumi.Float64Output)
+}
+
+type GetAlertSamplesAlertSampleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAlertSamplesAlertSampleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAlertSamplesAlertSample)(nil)).Elem()
+}
+
+func (o GetAlertSamplesAlertSampleArrayOutput) ToGetAlertSamplesAlertSampleArrayOutput() GetAlertSamplesAlertSampleArrayOutput {
+	return o
+}
+
+func (o GetAlertSamplesAlertSampleArrayOutput) ToGetAlertSamplesAlertSampleArrayOutputWithContext(ctx context.Context) GetAlertSamplesAlertSampleArrayOutput {
+	return o
+}
+
+func (o GetAlertSamplesAlertSampleArrayOutput) Index(i pulumi.IntInput) GetAlertSamplesAlertSampleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAlertSamplesAlertSample {
+		return vs[0].([]GetAlertSamplesAlertSample)[vs[1].(int)]
+	}).(GetAlertSamplesAlertSampleOutput)
 }
 
 type GetAlertingRulesAlertingRule struct {
@@ -8407,6 +9848,274 @@ func (o GetInstanceTypesInstanceTypeArrayOutput) Index(i pulumi.IntInput) GetIns
 	}).(GetInstanceTypesInstanceTypeOutput)
 }
 
+type GetIntegrationTasksIntegrationTask struct {
+	// The deployment environment. Valid values: `Vke` or `Managed`.
+	Environment string `pulumi:"environment"`
+	// The ID of the integration task.
+	Id string `pulumi:"id"`
+	// The name of the integration task.
+	Name string `pulumi:"name"`
+	// The status of the VKE cluster.
+	Status string `pulumi:"status"`
+	// The type of the integration task.
+	Type string `pulumi:"type"`
+	// The ID of the VKE cluster.
+	VkeClusterIds []string `pulumi:"vkeClusterIds"`
+	// The information of the VKE cluster.
+	VkeClusterInfos []GetIntegrationTasksIntegrationTaskVkeClusterInfo `pulumi:"vkeClusterInfos"`
+	// The workspace ID.
+	WorkspaceId string `pulumi:"workspaceId"`
+}
+
+// GetIntegrationTasksIntegrationTaskInput is an input type that accepts GetIntegrationTasksIntegrationTaskArgs and GetIntegrationTasksIntegrationTaskOutput values.
+// You can construct a concrete instance of `GetIntegrationTasksIntegrationTaskInput` via:
+//
+//	GetIntegrationTasksIntegrationTaskArgs{...}
+type GetIntegrationTasksIntegrationTaskInput interface {
+	pulumi.Input
+
+	ToGetIntegrationTasksIntegrationTaskOutput() GetIntegrationTasksIntegrationTaskOutput
+	ToGetIntegrationTasksIntegrationTaskOutputWithContext(context.Context) GetIntegrationTasksIntegrationTaskOutput
+}
+
+type GetIntegrationTasksIntegrationTaskArgs struct {
+	// The deployment environment. Valid values: `Vke` or `Managed`.
+	Environment pulumi.StringInput `pulumi:"environment"`
+	// The ID of the integration task.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The name of the integration task.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The status of the VKE cluster.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The type of the integration task.
+	Type pulumi.StringInput `pulumi:"type"`
+	// The ID of the VKE cluster.
+	VkeClusterIds pulumi.StringArrayInput `pulumi:"vkeClusterIds"`
+	// The information of the VKE cluster.
+	VkeClusterInfos GetIntegrationTasksIntegrationTaskVkeClusterInfoArrayInput `pulumi:"vkeClusterInfos"`
+	// The workspace ID.
+	WorkspaceId pulumi.StringInput `pulumi:"workspaceId"`
+}
+
+func (GetIntegrationTasksIntegrationTaskArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetIntegrationTasksIntegrationTask)(nil)).Elem()
+}
+
+func (i GetIntegrationTasksIntegrationTaskArgs) ToGetIntegrationTasksIntegrationTaskOutput() GetIntegrationTasksIntegrationTaskOutput {
+	return i.ToGetIntegrationTasksIntegrationTaskOutputWithContext(context.Background())
+}
+
+func (i GetIntegrationTasksIntegrationTaskArgs) ToGetIntegrationTasksIntegrationTaskOutputWithContext(ctx context.Context) GetIntegrationTasksIntegrationTaskOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetIntegrationTasksIntegrationTaskOutput)
+}
+
+// GetIntegrationTasksIntegrationTaskArrayInput is an input type that accepts GetIntegrationTasksIntegrationTaskArray and GetIntegrationTasksIntegrationTaskArrayOutput values.
+// You can construct a concrete instance of `GetIntegrationTasksIntegrationTaskArrayInput` via:
+//
+//	GetIntegrationTasksIntegrationTaskArray{ GetIntegrationTasksIntegrationTaskArgs{...} }
+type GetIntegrationTasksIntegrationTaskArrayInput interface {
+	pulumi.Input
+
+	ToGetIntegrationTasksIntegrationTaskArrayOutput() GetIntegrationTasksIntegrationTaskArrayOutput
+	ToGetIntegrationTasksIntegrationTaskArrayOutputWithContext(context.Context) GetIntegrationTasksIntegrationTaskArrayOutput
+}
+
+type GetIntegrationTasksIntegrationTaskArray []GetIntegrationTasksIntegrationTaskInput
+
+func (GetIntegrationTasksIntegrationTaskArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetIntegrationTasksIntegrationTask)(nil)).Elem()
+}
+
+func (i GetIntegrationTasksIntegrationTaskArray) ToGetIntegrationTasksIntegrationTaskArrayOutput() GetIntegrationTasksIntegrationTaskArrayOutput {
+	return i.ToGetIntegrationTasksIntegrationTaskArrayOutputWithContext(context.Background())
+}
+
+func (i GetIntegrationTasksIntegrationTaskArray) ToGetIntegrationTasksIntegrationTaskArrayOutputWithContext(ctx context.Context) GetIntegrationTasksIntegrationTaskArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetIntegrationTasksIntegrationTaskArrayOutput)
+}
+
+type GetIntegrationTasksIntegrationTaskOutput struct{ *pulumi.OutputState }
+
+func (GetIntegrationTasksIntegrationTaskOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetIntegrationTasksIntegrationTask)(nil)).Elem()
+}
+
+func (o GetIntegrationTasksIntegrationTaskOutput) ToGetIntegrationTasksIntegrationTaskOutput() GetIntegrationTasksIntegrationTaskOutput {
+	return o
+}
+
+func (o GetIntegrationTasksIntegrationTaskOutput) ToGetIntegrationTasksIntegrationTaskOutputWithContext(ctx context.Context) GetIntegrationTasksIntegrationTaskOutput {
+	return o
+}
+
+// The deployment environment. Valid values: `Vke` or `Managed`.
+func (o GetIntegrationTasksIntegrationTaskOutput) Environment() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIntegrationTasksIntegrationTask) string { return v.Environment }).(pulumi.StringOutput)
+}
+
+// The ID of the integration task.
+func (o GetIntegrationTasksIntegrationTaskOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIntegrationTasksIntegrationTask) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The name of the integration task.
+func (o GetIntegrationTasksIntegrationTaskOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIntegrationTasksIntegrationTask) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The status of the VKE cluster.
+func (o GetIntegrationTasksIntegrationTaskOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIntegrationTasksIntegrationTask) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The type of the integration task.
+func (o GetIntegrationTasksIntegrationTaskOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIntegrationTasksIntegrationTask) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// The ID of the VKE cluster.
+func (o GetIntegrationTasksIntegrationTaskOutput) VkeClusterIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetIntegrationTasksIntegrationTask) []string { return v.VkeClusterIds }).(pulumi.StringArrayOutput)
+}
+
+// The information of the VKE cluster.
+func (o GetIntegrationTasksIntegrationTaskOutput) VkeClusterInfos() GetIntegrationTasksIntegrationTaskVkeClusterInfoArrayOutput {
+	return o.ApplyT(func(v GetIntegrationTasksIntegrationTask) []GetIntegrationTasksIntegrationTaskVkeClusterInfo {
+		return v.VkeClusterInfos
+	}).(GetIntegrationTasksIntegrationTaskVkeClusterInfoArrayOutput)
+}
+
+// The workspace ID.
+func (o GetIntegrationTasksIntegrationTaskOutput) WorkspaceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIntegrationTasksIntegrationTask) string { return v.WorkspaceId }).(pulumi.StringOutput)
+}
+
+type GetIntegrationTasksIntegrationTaskArrayOutput struct{ *pulumi.OutputState }
+
+func (GetIntegrationTasksIntegrationTaskArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetIntegrationTasksIntegrationTask)(nil)).Elem()
+}
+
+func (o GetIntegrationTasksIntegrationTaskArrayOutput) ToGetIntegrationTasksIntegrationTaskArrayOutput() GetIntegrationTasksIntegrationTaskArrayOutput {
+	return o
+}
+
+func (o GetIntegrationTasksIntegrationTaskArrayOutput) ToGetIntegrationTasksIntegrationTaskArrayOutputWithContext(ctx context.Context) GetIntegrationTasksIntegrationTaskArrayOutput {
+	return o
+}
+
+func (o GetIntegrationTasksIntegrationTaskArrayOutput) Index(i pulumi.IntInput) GetIntegrationTasksIntegrationTaskOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetIntegrationTasksIntegrationTask {
+		return vs[0].([]GetIntegrationTasksIntegrationTask)[vs[1].(int)]
+	}).(GetIntegrationTasksIntegrationTaskOutput)
+}
+
+type GetIntegrationTasksIntegrationTaskVkeClusterInfo struct {
+	// The name of the integration task.
+	Name string `pulumi:"name"`
+	// The status of the VKE cluster.
+	Status string `pulumi:"status"`
+}
+
+// GetIntegrationTasksIntegrationTaskVkeClusterInfoInput is an input type that accepts GetIntegrationTasksIntegrationTaskVkeClusterInfoArgs and GetIntegrationTasksIntegrationTaskVkeClusterInfoOutput values.
+// You can construct a concrete instance of `GetIntegrationTasksIntegrationTaskVkeClusterInfoInput` via:
+//
+//	GetIntegrationTasksIntegrationTaskVkeClusterInfoArgs{...}
+type GetIntegrationTasksIntegrationTaskVkeClusterInfoInput interface {
+	pulumi.Input
+
+	ToGetIntegrationTasksIntegrationTaskVkeClusterInfoOutput() GetIntegrationTasksIntegrationTaskVkeClusterInfoOutput
+	ToGetIntegrationTasksIntegrationTaskVkeClusterInfoOutputWithContext(context.Context) GetIntegrationTasksIntegrationTaskVkeClusterInfoOutput
+}
+
+type GetIntegrationTasksIntegrationTaskVkeClusterInfoArgs struct {
+	// The name of the integration task.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The status of the VKE cluster.
+	Status pulumi.StringInput `pulumi:"status"`
+}
+
+func (GetIntegrationTasksIntegrationTaskVkeClusterInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetIntegrationTasksIntegrationTaskVkeClusterInfo)(nil)).Elem()
+}
+
+func (i GetIntegrationTasksIntegrationTaskVkeClusterInfoArgs) ToGetIntegrationTasksIntegrationTaskVkeClusterInfoOutput() GetIntegrationTasksIntegrationTaskVkeClusterInfoOutput {
+	return i.ToGetIntegrationTasksIntegrationTaskVkeClusterInfoOutputWithContext(context.Background())
+}
+
+func (i GetIntegrationTasksIntegrationTaskVkeClusterInfoArgs) ToGetIntegrationTasksIntegrationTaskVkeClusterInfoOutputWithContext(ctx context.Context) GetIntegrationTasksIntegrationTaskVkeClusterInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetIntegrationTasksIntegrationTaskVkeClusterInfoOutput)
+}
+
+// GetIntegrationTasksIntegrationTaskVkeClusterInfoArrayInput is an input type that accepts GetIntegrationTasksIntegrationTaskVkeClusterInfoArray and GetIntegrationTasksIntegrationTaskVkeClusterInfoArrayOutput values.
+// You can construct a concrete instance of `GetIntegrationTasksIntegrationTaskVkeClusterInfoArrayInput` via:
+//
+//	GetIntegrationTasksIntegrationTaskVkeClusterInfoArray{ GetIntegrationTasksIntegrationTaskVkeClusterInfoArgs{...} }
+type GetIntegrationTasksIntegrationTaskVkeClusterInfoArrayInput interface {
+	pulumi.Input
+
+	ToGetIntegrationTasksIntegrationTaskVkeClusterInfoArrayOutput() GetIntegrationTasksIntegrationTaskVkeClusterInfoArrayOutput
+	ToGetIntegrationTasksIntegrationTaskVkeClusterInfoArrayOutputWithContext(context.Context) GetIntegrationTasksIntegrationTaskVkeClusterInfoArrayOutput
+}
+
+type GetIntegrationTasksIntegrationTaskVkeClusterInfoArray []GetIntegrationTasksIntegrationTaskVkeClusterInfoInput
+
+func (GetIntegrationTasksIntegrationTaskVkeClusterInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetIntegrationTasksIntegrationTaskVkeClusterInfo)(nil)).Elem()
+}
+
+func (i GetIntegrationTasksIntegrationTaskVkeClusterInfoArray) ToGetIntegrationTasksIntegrationTaskVkeClusterInfoArrayOutput() GetIntegrationTasksIntegrationTaskVkeClusterInfoArrayOutput {
+	return i.ToGetIntegrationTasksIntegrationTaskVkeClusterInfoArrayOutputWithContext(context.Background())
+}
+
+func (i GetIntegrationTasksIntegrationTaskVkeClusterInfoArray) ToGetIntegrationTasksIntegrationTaskVkeClusterInfoArrayOutputWithContext(ctx context.Context) GetIntegrationTasksIntegrationTaskVkeClusterInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetIntegrationTasksIntegrationTaskVkeClusterInfoArrayOutput)
+}
+
+type GetIntegrationTasksIntegrationTaskVkeClusterInfoOutput struct{ *pulumi.OutputState }
+
+func (GetIntegrationTasksIntegrationTaskVkeClusterInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetIntegrationTasksIntegrationTaskVkeClusterInfo)(nil)).Elem()
+}
+
+func (o GetIntegrationTasksIntegrationTaskVkeClusterInfoOutput) ToGetIntegrationTasksIntegrationTaskVkeClusterInfoOutput() GetIntegrationTasksIntegrationTaskVkeClusterInfoOutput {
+	return o
+}
+
+func (o GetIntegrationTasksIntegrationTaskVkeClusterInfoOutput) ToGetIntegrationTasksIntegrationTaskVkeClusterInfoOutputWithContext(ctx context.Context) GetIntegrationTasksIntegrationTaskVkeClusterInfoOutput {
+	return o
+}
+
+// The name of the integration task.
+func (o GetIntegrationTasksIntegrationTaskVkeClusterInfoOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIntegrationTasksIntegrationTaskVkeClusterInfo) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The status of the VKE cluster.
+func (o GetIntegrationTasksIntegrationTaskVkeClusterInfoOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIntegrationTasksIntegrationTaskVkeClusterInfo) string { return v.Status }).(pulumi.StringOutput)
+}
+
+type GetIntegrationTasksIntegrationTaskVkeClusterInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (GetIntegrationTasksIntegrationTaskVkeClusterInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetIntegrationTasksIntegrationTaskVkeClusterInfo)(nil)).Elem()
+}
+
+func (o GetIntegrationTasksIntegrationTaskVkeClusterInfoArrayOutput) ToGetIntegrationTasksIntegrationTaskVkeClusterInfoArrayOutput() GetIntegrationTasksIntegrationTaskVkeClusterInfoArrayOutput {
+	return o
+}
+
+func (o GetIntegrationTasksIntegrationTaskVkeClusterInfoArrayOutput) ToGetIntegrationTasksIntegrationTaskVkeClusterInfoArrayOutputWithContext(ctx context.Context) GetIntegrationTasksIntegrationTaskVkeClusterInfoArrayOutput {
+	return o
+}
+
+func (o GetIntegrationTasksIntegrationTaskVkeClusterInfoArrayOutput) Index(i pulumi.IntInput) GetIntegrationTasksIntegrationTaskVkeClusterInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetIntegrationTasksIntegrationTaskVkeClusterInfo {
+		return vs[0].([]GetIntegrationTasksIntegrationTaskVkeClusterInfo)[vs[1].(int)]
+	}).(GetIntegrationTasksIntegrationTaskVkeClusterInfoOutput)
+}
+
 type GetNotifyGroupPoliciesNotifyPolicy struct {
 	// The create time of notify group policy.
 	CreateTime string `pulumi:"createTime"`
@@ -9748,6 +11457,409 @@ func (o GetRulesRuleLabelArrayOutput) Index(i pulumi.IntInput) GetRulesRuleLabel
 	}).(GetRulesRuleLabelOutput)
 }
 
+type GetSilencePoliciesSilencePolicy struct {
+	// The auto delete time of the silence policy.
+	AutoDeleteTime string `pulumi:"autoDeleteTime"`
+	// The create time of the silence policy, in RFC3339 format.
+	CreateTime string `pulumi:"createTime"`
+	// The description of the silence policy.
+	Description string `pulumi:"description"`
+	// The id of the silence policy.
+	Id string `pulumi:"id"`
+	// The name of silence policy.
+	Name string `pulumi:"name"`
+	// The source of the silence policy.
+	Source string `pulumi:"source"`
+	// The status of silence policy: Active/Disabled/Expired.
+	Status string `pulumi:"status"`
+	// The matching time in the alert silence policy.
+	TimeRangeMatchers []GetSilencePoliciesSilencePolicyTimeRangeMatcher `pulumi:"timeRangeMatchers"`
+	// The update time of the silence policy, in RFC3339 format.
+	UpdateTime string `pulumi:"updateTime"`
+}
+
+// GetSilencePoliciesSilencePolicyInput is an input type that accepts GetSilencePoliciesSilencePolicyArgs and GetSilencePoliciesSilencePolicyOutput values.
+// You can construct a concrete instance of `GetSilencePoliciesSilencePolicyInput` via:
+//
+//	GetSilencePoliciesSilencePolicyArgs{...}
+type GetSilencePoliciesSilencePolicyInput interface {
+	pulumi.Input
+
+	ToGetSilencePoliciesSilencePolicyOutput() GetSilencePoliciesSilencePolicyOutput
+	ToGetSilencePoliciesSilencePolicyOutputWithContext(context.Context) GetSilencePoliciesSilencePolicyOutput
+}
+
+type GetSilencePoliciesSilencePolicyArgs struct {
+	// The auto delete time of the silence policy.
+	AutoDeleteTime pulumi.StringInput `pulumi:"autoDeleteTime"`
+	// The create time of the silence policy, in RFC3339 format.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The description of the silence policy.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The id of the silence policy.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The name of silence policy.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The source of the silence policy.
+	Source pulumi.StringInput `pulumi:"source"`
+	// The status of silence policy: Active/Disabled/Expired.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The matching time in the alert silence policy.
+	TimeRangeMatchers GetSilencePoliciesSilencePolicyTimeRangeMatcherArrayInput `pulumi:"timeRangeMatchers"`
+	// The update time of the silence policy, in RFC3339 format.
+	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
+}
+
+func (GetSilencePoliciesSilencePolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSilencePoliciesSilencePolicy)(nil)).Elem()
+}
+
+func (i GetSilencePoliciesSilencePolicyArgs) ToGetSilencePoliciesSilencePolicyOutput() GetSilencePoliciesSilencePolicyOutput {
+	return i.ToGetSilencePoliciesSilencePolicyOutputWithContext(context.Background())
+}
+
+func (i GetSilencePoliciesSilencePolicyArgs) ToGetSilencePoliciesSilencePolicyOutputWithContext(ctx context.Context) GetSilencePoliciesSilencePolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSilencePoliciesSilencePolicyOutput)
+}
+
+// GetSilencePoliciesSilencePolicyArrayInput is an input type that accepts GetSilencePoliciesSilencePolicyArray and GetSilencePoliciesSilencePolicyArrayOutput values.
+// You can construct a concrete instance of `GetSilencePoliciesSilencePolicyArrayInput` via:
+//
+//	GetSilencePoliciesSilencePolicyArray{ GetSilencePoliciesSilencePolicyArgs{...} }
+type GetSilencePoliciesSilencePolicyArrayInput interface {
+	pulumi.Input
+
+	ToGetSilencePoliciesSilencePolicyArrayOutput() GetSilencePoliciesSilencePolicyArrayOutput
+	ToGetSilencePoliciesSilencePolicyArrayOutputWithContext(context.Context) GetSilencePoliciesSilencePolicyArrayOutput
+}
+
+type GetSilencePoliciesSilencePolicyArray []GetSilencePoliciesSilencePolicyInput
+
+func (GetSilencePoliciesSilencePolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSilencePoliciesSilencePolicy)(nil)).Elem()
+}
+
+func (i GetSilencePoliciesSilencePolicyArray) ToGetSilencePoliciesSilencePolicyArrayOutput() GetSilencePoliciesSilencePolicyArrayOutput {
+	return i.ToGetSilencePoliciesSilencePolicyArrayOutputWithContext(context.Background())
+}
+
+func (i GetSilencePoliciesSilencePolicyArray) ToGetSilencePoliciesSilencePolicyArrayOutputWithContext(ctx context.Context) GetSilencePoliciesSilencePolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSilencePoliciesSilencePolicyArrayOutput)
+}
+
+type GetSilencePoliciesSilencePolicyOutput struct{ *pulumi.OutputState }
+
+func (GetSilencePoliciesSilencePolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSilencePoliciesSilencePolicy)(nil)).Elem()
+}
+
+func (o GetSilencePoliciesSilencePolicyOutput) ToGetSilencePoliciesSilencePolicyOutput() GetSilencePoliciesSilencePolicyOutput {
+	return o
+}
+
+func (o GetSilencePoliciesSilencePolicyOutput) ToGetSilencePoliciesSilencePolicyOutputWithContext(ctx context.Context) GetSilencePoliciesSilencePolicyOutput {
+	return o
+}
+
+// The auto delete time of the silence policy.
+func (o GetSilencePoliciesSilencePolicyOutput) AutoDeleteTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSilencePoliciesSilencePolicy) string { return v.AutoDeleteTime }).(pulumi.StringOutput)
+}
+
+// The create time of the silence policy, in RFC3339 format.
+func (o GetSilencePoliciesSilencePolicyOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSilencePoliciesSilencePolicy) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The description of the silence policy.
+func (o GetSilencePoliciesSilencePolicyOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSilencePoliciesSilencePolicy) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The id of the silence policy.
+func (o GetSilencePoliciesSilencePolicyOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSilencePoliciesSilencePolicy) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The name of silence policy.
+func (o GetSilencePoliciesSilencePolicyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSilencePoliciesSilencePolicy) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The source of the silence policy.
+func (o GetSilencePoliciesSilencePolicyOutput) Source() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSilencePoliciesSilencePolicy) string { return v.Source }).(pulumi.StringOutput)
+}
+
+// The status of silence policy: Active/Disabled/Expired.
+func (o GetSilencePoliciesSilencePolicyOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSilencePoliciesSilencePolicy) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The matching time in the alert silence policy.
+func (o GetSilencePoliciesSilencePolicyOutput) TimeRangeMatchers() GetSilencePoliciesSilencePolicyTimeRangeMatcherArrayOutput {
+	return o.ApplyT(func(v GetSilencePoliciesSilencePolicy) []GetSilencePoliciesSilencePolicyTimeRangeMatcher {
+		return v.TimeRangeMatchers
+	}).(GetSilencePoliciesSilencePolicyTimeRangeMatcherArrayOutput)
+}
+
+// The update time of the silence policy, in RFC3339 format.
+func (o GetSilencePoliciesSilencePolicyOutput) UpdateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSilencePoliciesSilencePolicy) string { return v.UpdateTime }).(pulumi.StringOutput)
+}
+
+type GetSilencePoliciesSilencePolicyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSilencePoliciesSilencePolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSilencePoliciesSilencePolicy)(nil)).Elem()
+}
+
+func (o GetSilencePoliciesSilencePolicyArrayOutput) ToGetSilencePoliciesSilencePolicyArrayOutput() GetSilencePoliciesSilencePolicyArrayOutput {
+	return o
+}
+
+func (o GetSilencePoliciesSilencePolicyArrayOutput) ToGetSilencePoliciesSilencePolicyArrayOutputWithContext(ctx context.Context) GetSilencePoliciesSilencePolicyArrayOutput {
+	return o
+}
+
+func (o GetSilencePoliciesSilencePolicyArrayOutput) Index(i pulumi.IntInput) GetSilencePoliciesSilencePolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSilencePoliciesSilencePolicy {
+		return vs[0].([]GetSilencePoliciesSilencePolicy)[vs[1].(int)]
+	}).(GetSilencePoliciesSilencePolicyOutput)
+}
+
+type GetSilencePoliciesSilencePolicyTimeRangeMatcher struct {
+	// The time period for alarm silence.
+	Date string `pulumi:"date"`
+	// Time zone.
+	Location string `pulumi:"location"`
+	// The cycle of alarm silence.
+	PeriodicDates []GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDate `pulumi:"periodicDates"`
+}
+
+// GetSilencePoliciesSilencePolicyTimeRangeMatcherInput is an input type that accepts GetSilencePoliciesSilencePolicyTimeRangeMatcherArgs and GetSilencePoliciesSilencePolicyTimeRangeMatcherOutput values.
+// You can construct a concrete instance of `GetSilencePoliciesSilencePolicyTimeRangeMatcherInput` via:
+//
+//	GetSilencePoliciesSilencePolicyTimeRangeMatcherArgs{...}
+type GetSilencePoliciesSilencePolicyTimeRangeMatcherInput interface {
+	pulumi.Input
+
+	ToGetSilencePoliciesSilencePolicyTimeRangeMatcherOutput() GetSilencePoliciesSilencePolicyTimeRangeMatcherOutput
+	ToGetSilencePoliciesSilencePolicyTimeRangeMatcherOutputWithContext(context.Context) GetSilencePoliciesSilencePolicyTimeRangeMatcherOutput
+}
+
+type GetSilencePoliciesSilencePolicyTimeRangeMatcherArgs struct {
+	// The time period for alarm silence.
+	Date pulumi.StringInput `pulumi:"date"`
+	// Time zone.
+	Location pulumi.StringInput `pulumi:"location"`
+	// The cycle of alarm silence.
+	PeriodicDates GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayInput `pulumi:"periodicDates"`
+}
+
+func (GetSilencePoliciesSilencePolicyTimeRangeMatcherArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSilencePoliciesSilencePolicyTimeRangeMatcher)(nil)).Elem()
+}
+
+func (i GetSilencePoliciesSilencePolicyTimeRangeMatcherArgs) ToGetSilencePoliciesSilencePolicyTimeRangeMatcherOutput() GetSilencePoliciesSilencePolicyTimeRangeMatcherOutput {
+	return i.ToGetSilencePoliciesSilencePolicyTimeRangeMatcherOutputWithContext(context.Background())
+}
+
+func (i GetSilencePoliciesSilencePolicyTimeRangeMatcherArgs) ToGetSilencePoliciesSilencePolicyTimeRangeMatcherOutputWithContext(ctx context.Context) GetSilencePoliciesSilencePolicyTimeRangeMatcherOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSilencePoliciesSilencePolicyTimeRangeMatcherOutput)
+}
+
+// GetSilencePoliciesSilencePolicyTimeRangeMatcherArrayInput is an input type that accepts GetSilencePoliciesSilencePolicyTimeRangeMatcherArray and GetSilencePoliciesSilencePolicyTimeRangeMatcherArrayOutput values.
+// You can construct a concrete instance of `GetSilencePoliciesSilencePolicyTimeRangeMatcherArrayInput` via:
+//
+//	GetSilencePoliciesSilencePolicyTimeRangeMatcherArray{ GetSilencePoliciesSilencePolicyTimeRangeMatcherArgs{...} }
+type GetSilencePoliciesSilencePolicyTimeRangeMatcherArrayInput interface {
+	pulumi.Input
+
+	ToGetSilencePoliciesSilencePolicyTimeRangeMatcherArrayOutput() GetSilencePoliciesSilencePolicyTimeRangeMatcherArrayOutput
+	ToGetSilencePoliciesSilencePolicyTimeRangeMatcherArrayOutputWithContext(context.Context) GetSilencePoliciesSilencePolicyTimeRangeMatcherArrayOutput
+}
+
+type GetSilencePoliciesSilencePolicyTimeRangeMatcherArray []GetSilencePoliciesSilencePolicyTimeRangeMatcherInput
+
+func (GetSilencePoliciesSilencePolicyTimeRangeMatcherArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSilencePoliciesSilencePolicyTimeRangeMatcher)(nil)).Elem()
+}
+
+func (i GetSilencePoliciesSilencePolicyTimeRangeMatcherArray) ToGetSilencePoliciesSilencePolicyTimeRangeMatcherArrayOutput() GetSilencePoliciesSilencePolicyTimeRangeMatcherArrayOutput {
+	return i.ToGetSilencePoliciesSilencePolicyTimeRangeMatcherArrayOutputWithContext(context.Background())
+}
+
+func (i GetSilencePoliciesSilencePolicyTimeRangeMatcherArray) ToGetSilencePoliciesSilencePolicyTimeRangeMatcherArrayOutputWithContext(ctx context.Context) GetSilencePoliciesSilencePolicyTimeRangeMatcherArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSilencePoliciesSilencePolicyTimeRangeMatcherArrayOutput)
+}
+
+type GetSilencePoliciesSilencePolicyTimeRangeMatcherOutput struct{ *pulumi.OutputState }
+
+func (GetSilencePoliciesSilencePolicyTimeRangeMatcherOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSilencePoliciesSilencePolicyTimeRangeMatcher)(nil)).Elem()
+}
+
+func (o GetSilencePoliciesSilencePolicyTimeRangeMatcherOutput) ToGetSilencePoliciesSilencePolicyTimeRangeMatcherOutput() GetSilencePoliciesSilencePolicyTimeRangeMatcherOutput {
+	return o
+}
+
+func (o GetSilencePoliciesSilencePolicyTimeRangeMatcherOutput) ToGetSilencePoliciesSilencePolicyTimeRangeMatcherOutputWithContext(ctx context.Context) GetSilencePoliciesSilencePolicyTimeRangeMatcherOutput {
+	return o
+}
+
+// The time period for alarm silence.
+func (o GetSilencePoliciesSilencePolicyTimeRangeMatcherOutput) Date() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSilencePoliciesSilencePolicyTimeRangeMatcher) string { return v.Date }).(pulumi.StringOutput)
+}
+
+// Time zone.
+func (o GetSilencePoliciesSilencePolicyTimeRangeMatcherOutput) Location() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSilencePoliciesSilencePolicyTimeRangeMatcher) string { return v.Location }).(pulumi.StringOutput)
+}
+
+// The cycle of alarm silence.
+func (o GetSilencePoliciesSilencePolicyTimeRangeMatcherOutput) PeriodicDates() GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayOutput {
+	return o.ApplyT(func(v GetSilencePoliciesSilencePolicyTimeRangeMatcher) []GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDate {
+		return v.PeriodicDates
+	}).(GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayOutput)
+}
+
+type GetSilencePoliciesSilencePolicyTimeRangeMatcherArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSilencePoliciesSilencePolicyTimeRangeMatcherArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSilencePoliciesSilencePolicyTimeRangeMatcher)(nil)).Elem()
+}
+
+func (o GetSilencePoliciesSilencePolicyTimeRangeMatcherArrayOutput) ToGetSilencePoliciesSilencePolicyTimeRangeMatcherArrayOutput() GetSilencePoliciesSilencePolicyTimeRangeMatcherArrayOutput {
+	return o
+}
+
+func (o GetSilencePoliciesSilencePolicyTimeRangeMatcherArrayOutput) ToGetSilencePoliciesSilencePolicyTimeRangeMatcherArrayOutputWithContext(ctx context.Context) GetSilencePoliciesSilencePolicyTimeRangeMatcherArrayOutput {
+	return o
+}
+
+func (o GetSilencePoliciesSilencePolicyTimeRangeMatcherArrayOutput) Index(i pulumi.IntInput) GetSilencePoliciesSilencePolicyTimeRangeMatcherOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSilencePoliciesSilencePolicyTimeRangeMatcher {
+		return vs[0].([]GetSilencePoliciesSilencePolicyTimeRangeMatcher)[vs[1].(int)]
+	}).(GetSilencePoliciesSilencePolicyTimeRangeMatcherOutput)
+}
+
+type GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDate struct {
+	// Days of the month, e.g. 1,15,30.
+	DayOfMonth string `pulumi:"dayOfMonth"`
+	// Time periods, e.g. 20:00~21:12,22:00~23:12.
+	Time string `pulumi:"time"`
+	// Weekdays, e.g. 1,3,5.
+	Weekday string `pulumi:"weekday"`
+}
+
+// GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateInput is an input type that accepts GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArgs and GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateOutput values.
+// You can construct a concrete instance of `GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateInput` via:
+//
+//	GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArgs{...}
+type GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateInput interface {
+	pulumi.Input
+
+	ToGetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateOutput() GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateOutput
+	ToGetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateOutputWithContext(context.Context) GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateOutput
+}
+
+type GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArgs struct {
+	// Days of the month, e.g. 1,15,30.
+	DayOfMonth pulumi.StringInput `pulumi:"dayOfMonth"`
+	// Time periods, e.g. 20:00~21:12,22:00~23:12.
+	Time pulumi.StringInput `pulumi:"time"`
+	// Weekdays, e.g. 1,3,5.
+	Weekday pulumi.StringInput `pulumi:"weekday"`
+}
+
+func (GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDate)(nil)).Elem()
+}
+
+func (i GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArgs) ToGetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateOutput() GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateOutput {
+	return i.ToGetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateOutputWithContext(context.Background())
+}
+
+func (i GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArgs) ToGetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateOutputWithContext(ctx context.Context) GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateOutput)
+}
+
+// GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayInput is an input type that accepts GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArray and GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayOutput values.
+// You can construct a concrete instance of `GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayInput` via:
+//
+//	GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArray{ GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArgs{...} }
+type GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayInput interface {
+	pulumi.Input
+
+	ToGetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayOutput() GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayOutput
+	ToGetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayOutputWithContext(context.Context) GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayOutput
+}
+
+type GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArray []GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateInput
+
+func (GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDate)(nil)).Elem()
+}
+
+func (i GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArray) ToGetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayOutput() GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayOutput {
+	return i.ToGetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayOutputWithContext(context.Background())
+}
+
+func (i GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArray) ToGetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayOutputWithContext(ctx context.Context) GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayOutput)
+}
+
+type GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateOutput struct{ *pulumi.OutputState }
+
+func (GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDate)(nil)).Elem()
+}
+
+func (o GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateOutput) ToGetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateOutput() GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateOutput {
+	return o
+}
+
+func (o GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateOutput) ToGetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateOutputWithContext(ctx context.Context) GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateOutput {
+	return o
+}
+
+// Days of the month, e.g. 1,15,30.
+func (o GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateOutput) DayOfMonth() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDate) string { return v.DayOfMonth }).(pulumi.StringOutput)
+}
+
+// Time periods, e.g. 20:00~21:12,22:00~23:12.
+func (o GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateOutput) Time() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDate) string { return v.Time }).(pulumi.StringOutput)
+}
+
+// Weekdays, e.g. 1,3,5.
+func (o GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateOutput) Weekday() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDate) string { return v.Weekday }).(pulumi.StringOutput)
+}
+
+type GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDate)(nil)).Elem()
+}
+
+func (o GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayOutput) ToGetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayOutput() GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayOutput {
+	return o
+}
+
+func (o GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayOutput) ToGetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayOutputWithContext(ctx context.Context) GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayOutput {
+	return o
+}
+
+func (o GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayOutput) Index(i pulumi.IntInput) GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDate {
+		return vs[0].([]GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDate)[vs[1].(int)]
+	}).(GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateOutput)
+}
+
 type GetWorkspacesTag struct {
 	// The Key of Tags.
 	Key string `pulumi:"key"`
@@ -10175,6 +12287,8 @@ func (o GetWorkspacesWorkspaceTagArrayOutput) Index(i pulumi.IntInput) GetWorksp
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertSamplesAlertSampleInput)(nil)).Elem(), AlertSamplesAlertSampleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertSamplesAlertSampleArrayInput)(nil)).Elem(), AlertSamplesAlertSampleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertingRuleAnnotationInput)(nil)).Elem(), AlertingRuleAnnotationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertingRuleAnnotationArrayInput)(nil)).Elem(), AlertingRuleAnnotationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertingRuleLabelInput)(nil)).Elem(), AlertingRuleLabelArgs{})
@@ -10229,6 +12343,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactsContactWebhookArrayInput)(nil)).Elem(), ContactsContactWebhookArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceTypesInstanceTypeInput)(nil)).Elem(), InstanceTypesInstanceTypeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceTypesInstanceTypeArrayInput)(nil)).Elem(), InstanceTypesInstanceTypeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationTasksIntegrationTaskInput)(nil)).Elem(), IntegrationTasksIntegrationTaskArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationTasksIntegrationTaskArrayInput)(nil)).Elem(), IntegrationTasksIntegrationTaskArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationTasksIntegrationTaskVkeClusterInfoInput)(nil)).Elem(), IntegrationTasksIntegrationTaskVkeClusterInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationTasksIntegrationTaskVkeClusterInfoArrayInput)(nil)).Elem(), IntegrationTasksIntegrationTaskVkeClusterInfoArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NotifyGroupPoliciesNotifyPolicyInput)(nil)).Elem(), NotifyGroupPoliciesNotifyPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NotifyGroupPoliciesNotifyPolicyArrayInput)(nil)).Elem(), NotifyGroupPoliciesNotifyPolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NotifyGroupPoliciesNotifyPolicyLevelInput)(nil)).Elem(), NotifyGroupPoliciesNotifyPolicyLevelArgs{})
@@ -10257,6 +12375,20 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleArrayInput)(nil)).Elem(), RulesRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleLabelInput)(nil)).Elem(), RulesRuleLabelArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleLabelArrayInput)(nil)).Elem(), RulesRuleLabelArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SilencePoliciesSilencePolicyInput)(nil)).Elem(), SilencePoliciesSilencePolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SilencePoliciesSilencePolicyArrayInput)(nil)).Elem(), SilencePoliciesSilencePolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SilencePoliciesSilencePolicyTimeRangeMatcherInput)(nil)).Elem(), SilencePoliciesSilencePolicyTimeRangeMatcherArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SilencePoliciesSilencePolicyTimeRangeMatcherArrayInput)(nil)).Elem(), SilencePoliciesSilencePolicyTimeRangeMatcherArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateInput)(nil)).Elem(), SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayInput)(nil)).Elem(), SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SilencePolicyMetricLabelMatcherInput)(nil)).Elem(), SilencePolicyMetricLabelMatcherArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SilencePolicyMetricLabelMatcherArrayInput)(nil)).Elem(), SilencePolicyMetricLabelMatcherArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SilencePolicyMetricLabelMatcherMatcherInput)(nil)).Elem(), SilencePolicyMetricLabelMatcherMatcherArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SilencePolicyMetricLabelMatcherMatcherArrayInput)(nil)).Elem(), SilencePolicyMetricLabelMatcherMatcherArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SilencePolicyTimeRangeMatcherInput)(nil)).Elem(), SilencePolicyTimeRangeMatcherArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SilencePolicyTimeRangeMatcherArrayInput)(nil)).Elem(), SilencePolicyTimeRangeMatcherArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SilencePolicyTimeRangeMatcherPeriodicDateInput)(nil)).Elem(), SilencePolicyTimeRangeMatcherPeriodicDateArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SilencePolicyTimeRangeMatcherPeriodicDatePtrInput)(nil)).Elem(), SilencePolicyTimeRangeMatcherPeriodicDateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WorkspaceTagInput)(nil)).Elem(), WorkspaceTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WorkspaceTagArrayInput)(nil)).Elem(), WorkspaceTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WorkspacesTagInput)(nil)).Elem(), WorkspacesTagArgs{})
@@ -10265,6 +12397,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*WorkspacesWorkspaceArrayInput)(nil)).Elem(), WorkspacesWorkspaceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WorkspacesWorkspaceTagInput)(nil)).Elem(), WorkspacesWorkspaceTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WorkspacesWorkspaceTagArrayInput)(nil)).Elem(), WorkspacesWorkspaceTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAlertSamplesAlertSampleInput)(nil)).Elem(), GetAlertSamplesAlertSampleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAlertSamplesAlertSampleArrayInput)(nil)).Elem(), GetAlertSamplesAlertSampleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAlertingRulesAlertingRuleInput)(nil)).Elem(), GetAlertingRulesAlertingRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAlertingRulesAlertingRuleArrayInput)(nil)).Elem(), GetAlertingRulesAlertingRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAlertingRulesAlertingRuleAnnotationInput)(nil)).Elem(), GetAlertingRulesAlertingRuleAnnotationArgs{})
@@ -10301,6 +12435,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetContactsContactWebhookArrayInput)(nil)).Elem(), GetContactsContactWebhookArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceTypesInstanceTypeInput)(nil)).Elem(), GetInstanceTypesInstanceTypeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceTypesInstanceTypeArrayInput)(nil)).Elem(), GetInstanceTypesInstanceTypeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetIntegrationTasksIntegrationTaskInput)(nil)).Elem(), GetIntegrationTasksIntegrationTaskArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetIntegrationTasksIntegrationTaskArrayInput)(nil)).Elem(), GetIntegrationTasksIntegrationTaskArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetIntegrationTasksIntegrationTaskVkeClusterInfoInput)(nil)).Elem(), GetIntegrationTasksIntegrationTaskVkeClusterInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetIntegrationTasksIntegrationTaskVkeClusterInfoArrayInput)(nil)).Elem(), GetIntegrationTasksIntegrationTaskVkeClusterInfoArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNotifyGroupPoliciesNotifyPolicyInput)(nil)).Elem(), GetNotifyGroupPoliciesNotifyPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNotifyGroupPoliciesNotifyPolicyArrayInput)(nil)).Elem(), GetNotifyGroupPoliciesNotifyPolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNotifyGroupPoliciesNotifyPolicyLevelInput)(nil)).Elem(), GetNotifyGroupPoliciesNotifyPolicyLevelArgs{})
@@ -10321,12 +12459,20 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleArrayInput)(nil)).Elem(), GetRulesRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleLabelInput)(nil)).Elem(), GetRulesRuleLabelArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleLabelArrayInput)(nil)).Elem(), GetRulesRuleLabelArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSilencePoliciesSilencePolicyInput)(nil)).Elem(), GetSilencePoliciesSilencePolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSilencePoliciesSilencePolicyArrayInput)(nil)).Elem(), GetSilencePoliciesSilencePolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSilencePoliciesSilencePolicyTimeRangeMatcherInput)(nil)).Elem(), GetSilencePoliciesSilencePolicyTimeRangeMatcherArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSilencePoliciesSilencePolicyTimeRangeMatcherArrayInput)(nil)).Elem(), GetSilencePoliciesSilencePolicyTimeRangeMatcherArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateInput)(nil)).Elem(), GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayInput)(nil)).Elem(), GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetWorkspacesTagInput)(nil)).Elem(), GetWorkspacesTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetWorkspacesTagArrayInput)(nil)).Elem(), GetWorkspacesTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetWorkspacesWorkspaceInput)(nil)).Elem(), GetWorkspacesWorkspaceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetWorkspacesWorkspaceArrayInput)(nil)).Elem(), GetWorkspacesWorkspaceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetWorkspacesWorkspaceTagInput)(nil)).Elem(), GetWorkspacesWorkspaceTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetWorkspacesWorkspaceTagArrayInput)(nil)).Elem(), GetWorkspacesWorkspaceTagArray{})
+	pulumi.RegisterOutputType(AlertSamplesAlertSampleOutput{})
+	pulumi.RegisterOutputType(AlertSamplesAlertSampleArrayOutput{})
 	pulumi.RegisterOutputType(AlertingRuleAnnotationOutput{})
 	pulumi.RegisterOutputType(AlertingRuleAnnotationArrayOutput{})
 	pulumi.RegisterOutputType(AlertingRuleLabelOutput{})
@@ -10381,6 +12527,10 @@ func init() {
 	pulumi.RegisterOutputType(ContactsContactWebhookArrayOutput{})
 	pulumi.RegisterOutputType(InstanceTypesInstanceTypeOutput{})
 	pulumi.RegisterOutputType(InstanceTypesInstanceTypeArrayOutput{})
+	pulumi.RegisterOutputType(IntegrationTasksIntegrationTaskOutput{})
+	pulumi.RegisterOutputType(IntegrationTasksIntegrationTaskArrayOutput{})
+	pulumi.RegisterOutputType(IntegrationTasksIntegrationTaskVkeClusterInfoOutput{})
+	pulumi.RegisterOutputType(IntegrationTasksIntegrationTaskVkeClusterInfoArrayOutput{})
 	pulumi.RegisterOutputType(NotifyGroupPoliciesNotifyPolicyOutput{})
 	pulumi.RegisterOutputType(NotifyGroupPoliciesNotifyPolicyArrayOutput{})
 	pulumi.RegisterOutputType(NotifyGroupPoliciesNotifyPolicyLevelOutput{})
@@ -10409,6 +12559,20 @@ func init() {
 	pulumi.RegisterOutputType(RulesRuleArrayOutput{})
 	pulumi.RegisterOutputType(RulesRuleLabelOutput{})
 	pulumi.RegisterOutputType(RulesRuleLabelArrayOutput{})
+	pulumi.RegisterOutputType(SilencePoliciesSilencePolicyOutput{})
+	pulumi.RegisterOutputType(SilencePoliciesSilencePolicyArrayOutput{})
+	pulumi.RegisterOutputType(SilencePoliciesSilencePolicyTimeRangeMatcherOutput{})
+	pulumi.RegisterOutputType(SilencePoliciesSilencePolicyTimeRangeMatcherArrayOutput{})
+	pulumi.RegisterOutputType(SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateOutput{})
+	pulumi.RegisterOutputType(SilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayOutput{})
+	pulumi.RegisterOutputType(SilencePolicyMetricLabelMatcherOutput{})
+	pulumi.RegisterOutputType(SilencePolicyMetricLabelMatcherArrayOutput{})
+	pulumi.RegisterOutputType(SilencePolicyMetricLabelMatcherMatcherOutput{})
+	pulumi.RegisterOutputType(SilencePolicyMetricLabelMatcherMatcherArrayOutput{})
+	pulumi.RegisterOutputType(SilencePolicyTimeRangeMatcherOutput{})
+	pulumi.RegisterOutputType(SilencePolicyTimeRangeMatcherArrayOutput{})
+	pulumi.RegisterOutputType(SilencePolicyTimeRangeMatcherPeriodicDateOutput{})
+	pulumi.RegisterOutputType(SilencePolicyTimeRangeMatcherPeriodicDatePtrOutput{})
 	pulumi.RegisterOutputType(WorkspaceTagOutput{})
 	pulumi.RegisterOutputType(WorkspaceTagArrayOutput{})
 	pulumi.RegisterOutputType(WorkspacesTagOutput{})
@@ -10417,6 +12581,8 @@ func init() {
 	pulumi.RegisterOutputType(WorkspacesWorkspaceArrayOutput{})
 	pulumi.RegisterOutputType(WorkspacesWorkspaceTagOutput{})
 	pulumi.RegisterOutputType(WorkspacesWorkspaceTagArrayOutput{})
+	pulumi.RegisterOutputType(GetAlertSamplesAlertSampleOutput{})
+	pulumi.RegisterOutputType(GetAlertSamplesAlertSampleArrayOutput{})
 	pulumi.RegisterOutputType(GetAlertingRulesAlertingRuleOutput{})
 	pulumi.RegisterOutputType(GetAlertingRulesAlertingRuleArrayOutput{})
 	pulumi.RegisterOutputType(GetAlertingRulesAlertingRuleAnnotationOutput{})
@@ -10453,6 +12619,10 @@ func init() {
 	pulumi.RegisterOutputType(GetContactsContactWebhookArrayOutput{})
 	pulumi.RegisterOutputType(GetInstanceTypesInstanceTypeOutput{})
 	pulumi.RegisterOutputType(GetInstanceTypesInstanceTypeArrayOutput{})
+	pulumi.RegisterOutputType(GetIntegrationTasksIntegrationTaskOutput{})
+	pulumi.RegisterOutputType(GetIntegrationTasksIntegrationTaskArrayOutput{})
+	pulumi.RegisterOutputType(GetIntegrationTasksIntegrationTaskVkeClusterInfoOutput{})
+	pulumi.RegisterOutputType(GetIntegrationTasksIntegrationTaskVkeClusterInfoArrayOutput{})
 	pulumi.RegisterOutputType(GetNotifyGroupPoliciesNotifyPolicyOutput{})
 	pulumi.RegisterOutputType(GetNotifyGroupPoliciesNotifyPolicyArrayOutput{})
 	pulumi.RegisterOutputType(GetNotifyGroupPoliciesNotifyPolicyLevelOutput{})
@@ -10473,6 +12643,12 @@ func init() {
 	pulumi.RegisterOutputType(GetRulesRuleArrayOutput{})
 	pulumi.RegisterOutputType(GetRulesRuleLabelOutput{})
 	pulumi.RegisterOutputType(GetRulesRuleLabelArrayOutput{})
+	pulumi.RegisterOutputType(GetSilencePoliciesSilencePolicyOutput{})
+	pulumi.RegisterOutputType(GetSilencePoliciesSilencePolicyArrayOutput{})
+	pulumi.RegisterOutputType(GetSilencePoliciesSilencePolicyTimeRangeMatcherOutput{})
+	pulumi.RegisterOutputType(GetSilencePoliciesSilencePolicyTimeRangeMatcherArrayOutput{})
+	pulumi.RegisterOutputType(GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateOutput{})
+	pulumi.RegisterOutputType(GetSilencePoliciesSilencePolicyTimeRangeMatcherPeriodicDateArrayOutput{})
 	pulumi.RegisterOutputType(GetWorkspacesTagOutput{})
 	pulumi.RegisterOutputType(GetWorkspacesTagArrayOutput{})
 	pulumi.RegisterOutputType(GetWorkspacesWorkspaceOutput{})

@@ -24,7 +24,7 @@ class ContactsResult:
     """
     A collection of values returned by Contacts.
     """
-    def __init__(__self__, contacts=None, email=None, id=None, ids=None, name=None, output_file=None, total_count=None):
+    def __init__(__self__, contacts=None, email=None, id=None, ids=None, name=None, output_file=None, sort_by=None, sort_order=None, total_count=None):
         if contacts and not isinstance(contacts, list):
             raise TypeError("Expected argument 'contacts' to be a list")
         pulumi.set(__self__, "contacts", contacts)
@@ -43,6 +43,12 @@ class ContactsResult:
         if output_file and not isinstance(output_file, str):
             raise TypeError("Expected argument 'output_file' to be a str")
         pulumi.set(__self__, "output_file", output_file)
+        if sort_by and not isinstance(sort_by, str):
+            raise TypeError("Expected argument 'sort_by' to be a str")
+        pulumi.set(__self__, "sort_by", sort_by)
+        if sort_order and not isinstance(sort_order, str):
+            raise TypeError("Expected argument 'sort_order' to be a str")
+        pulumi.set(__self__, "sort_order", sort_order)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
@@ -90,6 +96,16 @@ class ContactsResult:
         return pulumi.get(self, "output_file")
 
     @property
+    @pulumi.getter(name="sortBy")
+    def sort_by(self) -> Optional[str]:
+        return pulumi.get(self, "sort_by")
+
+    @property
+    @pulumi.getter(name="sortOrder")
+    def sort_order(self) -> Optional[str]:
+        return pulumi.get(self, "sort_order")
+
+    @property
     @pulumi.getter(name="totalCount")
     def total_count(self) -> int:
         """
@@ -110,6 +126,8 @@ class AwaitableContactsResult(ContactsResult):
             ids=self.ids,
             name=self.name,
             output_file=self.output_file,
+            sort_by=self.sort_by,
+            sort_order=self.sort_order,
             total_count=self.total_count)
 
 
@@ -117,6 +135,8 @@ def contacts(email: Optional[str] = None,
              ids: Optional[Sequence[str]] = None,
              name: Optional[str] = None,
              output_file: Optional[str] = None,
+             sort_by: Optional[str] = None,
+             sort_order: Optional[str] = None,
              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableContactsResult:
     """
     Use this data source to query detailed information of vmp contacts
@@ -150,6 +170,8 @@ def contacts(email: Optional[str] = None,
     :param Sequence[str] ids: A list of contact ids.
     :param str name: The name of contact.
     :param str output_file: File name where to save data source results.
+    :param str sort_by: The sort field of query.
+    :param str sort_order: The sort order of query.
     """
     pulumi.log.warn("""contacts is deprecated: volcengine.vmp.Contacts has been deprecated in favor of volcengine.vmp.getContacts""")
     __args__ = dict()
@@ -157,6 +179,8 @@ def contacts(email: Optional[str] = None,
     __args__['ids'] = ids
     __args__['name'] = name
     __args__['outputFile'] = output_file
+    __args__['sortBy'] = sort_by
+    __args__['sortOrder'] = sort_order
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('volcengine:vmp/contacts:Contacts', __args__, opts=opts, typ=ContactsResult).value
 
@@ -167,6 +191,8 @@ def contacts(email: Optional[str] = None,
         ids=pulumi.get(__ret__, 'ids'),
         name=pulumi.get(__ret__, 'name'),
         output_file=pulumi.get(__ret__, 'output_file'),
+        sort_by=pulumi.get(__ret__, 'sort_by'),
+        sort_order=pulumi.get(__ret__, 'sort_order'),
         total_count=pulumi.get(__ret__, 'total_count'))
 
 
@@ -175,6 +201,8 @@ def contacts_output(email: Optional[pulumi.Input[Optional[str]]] = None,
                     ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                     name: Optional[pulumi.Input[Optional[str]]] = None,
                     output_file: Optional[pulumi.Input[Optional[str]]] = None,
+                    sort_by: Optional[pulumi.Input[Optional[str]]] = None,
+                    sort_order: Optional[pulumi.Input[Optional[str]]] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ContactsResult]:
     """
     Use this data source to query detailed information of vmp contacts
@@ -208,6 +236,8 @@ def contacts_output(email: Optional[pulumi.Input[Optional[str]]] = None,
     :param Sequence[str] ids: A list of contact ids.
     :param str name: The name of contact.
     :param str output_file: File name where to save data source results.
+    :param str sort_by: The sort field of query.
+    :param str sort_order: The sort order of query.
     """
     pulumi.log.warn("""contacts is deprecated: volcengine.vmp.Contacts has been deprecated in favor of volcengine.vmp.getContacts""")
     ...

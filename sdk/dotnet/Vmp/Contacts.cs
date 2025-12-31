@@ -150,6 +150,18 @@ namespace Pulumi.Volcengine.Vmp
         [Input("outputFile")]
         public string? OutputFile { get; set; }
 
+        /// <summary>
+        /// The sort field of query.
+        /// </summary>
+        [Input("sortBy")]
+        public string? SortBy { get; set; }
+
+        /// <summary>
+        /// The sort order of query.
+        /// </summary>
+        [Input("sortOrder")]
+        public string? SortOrder { get; set; }
+
         public ContactsArgs()
         {
         }
@@ -188,6 +200,18 @@ namespace Pulumi.Volcengine.Vmp
         [Input("outputFile")]
         public Input<string>? OutputFile { get; set; }
 
+        /// <summary>
+        /// The sort field of query.
+        /// </summary>
+        [Input("sortBy")]
+        public Input<string>? SortBy { get; set; }
+
+        /// <summary>
+        /// The sort order of query.
+        /// </summary>
+        [Input("sortOrder")]
+        public Input<string>? SortOrder { get; set; }
+
         public ContactsInvokeArgs()
         {
         }
@@ -216,6 +240,8 @@ namespace Pulumi.Volcengine.Vmp
         /// </summary>
         public readonly string? Name;
         public readonly string? OutputFile;
+        public readonly string? SortBy;
+        public readonly string? SortOrder;
         /// <summary>
         /// The total count of query.
         /// </summary>
@@ -235,6 +261,10 @@ namespace Pulumi.Volcengine.Vmp
 
             string? outputFile,
 
+            string? sortBy,
+
+            string? sortOrder,
+
             int totalCount)
         {
             Contacts = contacts;
@@ -243,6 +273,8 @@ namespace Pulumi.Volcengine.Vmp
             Ids = ids;
             Name = name;
             OutputFile = outputFile;
+            SortBy = sortBy;
+            SortOrder = sortOrder;
             TotalCount = totalCount;
         }
     }

@@ -168,6 +168,18 @@ namespace Pulumi.Volcengine.Vmp
 
     public sealed class ContactArgs : global::Pulumi.ResourceArgs
     {
+        [Input("contactGroupIds")]
+        private InputList<string>? _contactGroupIds;
+
+        /// <summary>
+        /// A list of contact group ids.
+        /// </summary>
+        public InputList<string> ContactGroupIds
+        {
+            get => _contactGroupIds ?? (_contactGroupIds = new InputList<string>());
+            set => _contactGroupIds = value;
+        }
+
         /// <summary>
         /// The ding talk bot webhook of contact.
         /// </summary>

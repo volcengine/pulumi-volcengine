@@ -5,10 +5,20 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { AlertSamplesArgs, AlertSamplesResult, AlertSamplesOutputArgs } from "./alertSamples";
+export const alertSamples: typeof import("./alertSamples").alertSamples = null as any;
+export const alertSamplesOutput: typeof import("./alertSamples").alertSamplesOutput = null as any;
+utilities.lazyLoad(exports, ["alertSamples","alertSamplesOutput"], () => require("./alertSamples"));
+
 export { AlertingRuleArgs, AlertingRuleState } from "./alertingRule";
 export type AlertingRule = import("./alertingRule").AlertingRule;
 export const AlertingRule: typeof import("./alertingRule").AlertingRule = null as any;
 utilities.lazyLoad(exports, ["AlertingRule"], () => require("./alertingRule"));
+
+export { AlertingRuleEnableDisableArgs, AlertingRuleEnableDisableState } from "./alertingRuleEnableDisable";
+export type AlertingRuleEnableDisable = import("./alertingRuleEnableDisable").AlertingRuleEnableDisable;
+export const AlertingRuleEnableDisable: typeof import("./alertingRuleEnableDisable").AlertingRuleEnableDisable = null as any;
+utilities.lazyLoad(exports, ["AlertingRuleEnableDisable"], () => require("./alertingRuleEnableDisable"));
 
 export { AlertingRulesArgs, AlertingRulesResult, AlertingRulesOutputArgs } from "./alertingRules";
 export const alertingRules: typeof import("./alertingRules").alertingRules = null as any;
@@ -40,6 +50,11 @@ export const contacts: typeof import("./contacts").contacts = null as any;
 export const contactsOutput: typeof import("./contacts").contactsOutput = null as any;
 utilities.lazyLoad(exports, ["contacts","contactsOutput"], () => require("./contacts"));
 
+export { GetAlertSamplesArgs, GetAlertSamplesResult, GetAlertSamplesOutputArgs } from "./getAlertSamples";
+export const getAlertSamples: typeof import("./getAlertSamples").getAlertSamples = null as any;
+export const getAlertSamplesOutput: typeof import("./getAlertSamples").getAlertSamplesOutput = null as any;
+utilities.lazyLoad(exports, ["getAlertSamples","getAlertSamplesOutput"], () => require("./getAlertSamples"));
+
 export { GetAlertingRulesArgs, GetAlertingRulesResult, GetAlertingRulesOutputArgs } from "./getAlertingRules";
 export const getAlertingRules: typeof import("./getAlertingRules").getAlertingRules = null as any;
 export const getAlertingRulesOutput: typeof import("./getAlertingRules").getAlertingRulesOutput = null as any;
@@ -64,6 +79,11 @@ export { GetInstanceTypesArgs, GetInstanceTypesResult, GetInstanceTypesOutputArg
 export const getInstanceTypes: typeof import("./getInstanceTypes").getInstanceTypes = null as any;
 export const getInstanceTypesOutput: typeof import("./getInstanceTypes").getInstanceTypesOutput = null as any;
 utilities.lazyLoad(exports, ["getInstanceTypes","getInstanceTypesOutput"], () => require("./getInstanceTypes"));
+
+export { GetIntegrationTasksArgs, GetIntegrationTasksResult, GetIntegrationTasksOutputArgs } from "./getIntegrationTasks";
+export const getIntegrationTasks: typeof import("./getIntegrationTasks").getIntegrationTasks = null as any;
+export const getIntegrationTasksOutput: typeof import("./getIntegrationTasks").getIntegrationTasksOutput = null as any;
+utilities.lazyLoad(exports, ["getIntegrationTasks","getIntegrationTasksOutput"], () => require("./getIntegrationTasks"));
 
 export { GetNotifyGroupPoliciesArgs, GetNotifyGroupPoliciesResult, GetNotifyGroupPoliciesOutputArgs } from "./getNotifyGroupPolicies";
 export const getNotifyGroupPolicies: typeof import("./getNotifyGroupPolicies").getNotifyGroupPolicies = null as any;
@@ -90,6 +110,11 @@ export const getRules: typeof import("./getRules").getRules = null as any;
 export const getRulesOutput: typeof import("./getRules").getRulesOutput = null as any;
 utilities.lazyLoad(exports, ["getRules","getRulesOutput"], () => require("./getRules"));
 
+export { GetSilencePoliciesArgs, GetSilencePoliciesResult, GetSilencePoliciesOutputArgs } from "./getSilencePolicies";
+export const getSilencePolicies: typeof import("./getSilencePolicies").getSilencePolicies = null as any;
+export const getSilencePoliciesOutput: typeof import("./getSilencePolicies").getSilencePoliciesOutput = null as any;
+utilities.lazyLoad(exports, ["getSilencePolicies","getSilencePoliciesOutput"], () => require("./getSilencePolicies"));
+
 export { GetWorkspacesArgs, GetWorkspacesResult, GetWorkspacesOutputArgs } from "./getWorkspaces";
 export const getWorkspaces: typeof import("./getWorkspaces").getWorkspaces = null as any;
 export const getWorkspacesOutput: typeof import("./getWorkspaces").getWorkspacesOutput = null as any;
@@ -99,6 +124,21 @@ export { InstanceTypesArgs, InstanceTypesResult, InstanceTypesOutputArgs } from 
 export const instanceTypes: typeof import("./instanceTypes").instanceTypes = null as any;
 export const instanceTypesOutput: typeof import("./instanceTypes").instanceTypesOutput = null as any;
 utilities.lazyLoad(exports, ["instanceTypes","instanceTypesOutput"], () => require("./instanceTypes"));
+
+export { IntegrationTaskArgs, IntegrationTaskState } from "./integrationTask";
+export type IntegrationTask = import("./integrationTask").IntegrationTask;
+export const IntegrationTask: typeof import("./integrationTask").IntegrationTask = null as any;
+utilities.lazyLoad(exports, ["IntegrationTask"], () => require("./integrationTask"));
+
+export { IntegrationTaskEnableArgs, IntegrationTaskEnableState } from "./integrationTaskEnable";
+export type IntegrationTaskEnable = import("./integrationTaskEnable").IntegrationTaskEnable;
+export const IntegrationTaskEnable: typeof import("./integrationTaskEnable").IntegrationTaskEnable = null as any;
+utilities.lazyLoad(exports, ["IntegrationTaskEnable"], () => require("./integrationTaskEnable"));
+
+export { IntegrationTasksArgs, IntegrationTasksResult, IntegrationTasksOutputArgs } from "./integrationTasks";
+export const integrationTasks: typeof import("./integrationTasks").integrationTasks = null as any;
+export const integrationTasksOutput: typeof import("./integrationTasks").integrationTasksOutput = null as any;
+utilities.lazyLoad(exports, ["integrationTasks","integrationTasksOutput"], () => require("./integrationTasks"));
 
 export { NotifyGroupPoliciesArgs, NotifyGroupPoliciesResult, NotifyGroupPoliciesOutputArgs } from "./notifyGroupPolicies";
 export const notifyGroupPolicies: typeof import("./notifyGroupPolicies").notifyGroupPolicies = null as any;
@@ -145,6 +185,21 @@ export const rules: typeof import("./rules").rules = null as any;
 export const rulesOutput: typeof import("./rules").rulesOutput = null as any;
 utilities.lazyLoad(exports, ["rules","rulesOutput"], () => require("./rules"));
 
+export { SilencePoliciesArgs, SilencePoliciesResult, SilencePoliciesOutputArgs } from "./silencePolicies";
+export const silencePolicies: typeof import("./silencePolicies").silencePolicies = null as any;
+export const silencePoliciesOutput: typeof import("./silencePolicies").silencePoliciesOutput = null as any;
+utilities.lazyLoad(exports, ["silencePolicies","silencePoliciesOutput"], () => require("./silencePolicies"));
+
+export { SilencePolicyArgs, SilencePolicyState } from "./silencePolicy";
+export type SilencePolicy = import("./silencePolicy").SilencePolicy;
+export const SilencePolicy: typeof import("./silencePolicy").SilencePolicy = null as any;
+utilities.lazyLoad(exports, ["SilencePolicy"], () => require("./silencePolicy"));
+
+export { SilencePolicyEnableDisableArgs, SilencePolicyEnableDisableState } from "./silencePolicyEnableDisable";
+export type SilencePolicyEnableDisable = import("./silencePolicyEnableDisable").SilencePolicyEnableDisable;
+export const SilencePolicyEnableDisable: typeof import("./silencePolicyEnableDisable").SilencePolicyEnableDisable = null as any;
+utilities.lazyLoad(exports, ["SilencePolicyEnableDisable"], () => require("./silencePolicyEnableDisable"));
+
 export { WorkspaceArgs, WorkspaceState } from "./workspace";
 export type Workspace = import("./workspace").Workspace;
 export const Workspace: typeof import("./workspace").Workspace = null as any;
@@ -162,10 +217,16 @@ const _module = {
         switch (type) {
             case "volcengine:vmp/alertingRule:AlertingRule":
                 return new AlertingRule(name, <any>undefined, { urn })
+            case "volcengine:vmp/alertingRuleEnableDisable:AlertingRuleEnableDisable":
+                return new AlertingRuleEnableDisable(name, <any>undefined, { urn })
             case "volcengine:vmp/contact:Contact":
                 return new Contact(name, <any>undefined, { urn })
             case "volcengine:vmp/contactGroup:ContactGroup":
                 return new ContactGroup(name, <any>undefined, { urn })
+            case "volcengine:vmp/integrationTask:IntegrationTask":
+                return new IntegrationTask(name, <any>undefined, { urn })
+            case "volcengine:vmp/integrationTaskEnable:IntegrationTaskEnable":
+                return new IntegrationTaskEnable(name, <any>undefined, { urn })
             case "volcengine:vmp/notifyGroupPolicy:NotifyGroupPolicy":
                 return new NotifyGroupPolicy(name, <any>undefined, { urn })
             case "volcengine:vmp/notifyPolicy:NotifyPolicy":
@@ -174,6 +235,10 @@ const _module = {
                 return new NotifyTemplate(name, <any>undefined, { urn })
             case "volcengine:vmp/ruleFile:RuleFile":
                 return new RuleFile(name, <any>undefined, { urn })
+            case "volcengine:vmp/silencePolicy:SilencePolicy":
+                return new SilencePolicy(name, <any>undefined, { urn })
+            case "volcengine:vmp/silencePolicyEnableDisable:SilencePolicyEnableDisable":
+                return new SilencePolicyEnableDisable(name, <any>undefined, { urn })
             case "volcengine:vmp/workspace:Workspace":
                 return new Workspace(name, <any>undefined, { urn })
             default:
@@ -182,10 +247,15 @@ const _module = {
     },
 };
 pulumi.runtime.registerResourceModule("volcengine", "vmp/alertingRule", _module)
+pulumi.runtime.registerResourceModule("volcengine", "vmp/alertingRuleEnableDisable", _module)
 pulumi.runtime.registerResourceModule("volcengine", "vmp/contact", _module)
 pulumi.runtime.registerResourceModule("volcengine", "vmp/contactGroup", _module)
+pulumi.runtime.registerResourceModule("volcengine", "vmp/integrationTask", _module)
+pulumi.runtime.registerResourceModule("volcengine", "vmp/integrationTaskEnable", _module)
 pulumi.runtime.registerResourceModule("volcengine", "vmp/notifyGroupPolicy", _module)
 pulumi.runtime.registerResourceModule("volcengine", "vmp/notifyPolicy", _module)
 pulumi.runtime.registerResourceModule("volcengine", "vmp/notifyTemplate", _module)
 pulumi.runtime.registerResourceModule("volcengine", "vmp/ruleFile", _module)
+pulumi.runtime.registerResourceModule("volcengine", "vmp/silencePolicy", _module)
+pulumi.runtime.registerResourceModule("volcengine", "vmp/silencePolicyEnableDisable", _module)
 pulumi.runtime.registerResourceModule("volcengine", "vmp/workspace", _module)
