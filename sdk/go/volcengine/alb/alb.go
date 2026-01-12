@@ -79,8 +79,8 @@ import (
 //				DeleteProtection: pulumi.String("off"),
 //				Tags: alb.AlbTagArray{
 //					&alb.AlbTagArgs{
-//						Key:   pulumi.String("k1"),
-//						Value: pulumi.String("v1"),
+//						Key:   pulumi.String("k2"),
+//						Value: pulumi.String("v2"),
 //					},
 //				},
 //			})
@@ -110,8 +110,8 @@ import (
 //				},
 //				Tags: alb.AlbTagArray{
 //					&alb.AlbTagArgs{
-//						Key:   pulumi.String("k1"),
-//						Value: pulumi.String("v1"),
+//						Key:   pulumi.String("k2"),
+//						Value: pulumi.String("v2"),
 //					},
 //				},
 //			}, pulumi.DependsOn([]pulumi.Resource{

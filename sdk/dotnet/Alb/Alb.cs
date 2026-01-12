@@ -70,8 +70,8 @@ namespace Pulumi.Volcengine.Alb
     ///         {
     ///             new Volcengine.Alb.Inputs.AlbTagArgs
     ///             {
-    ///                 Key = "k1",
-    ///                 Value = "v1",
+    ///                 Key = "k2",
+    ///                 Value = "v2",
     ///             },
     ///         },
     ///     });
@@ -105,8 +105,8 @@ namespace Pulumi.Volcengine.Alb
     ///         {
     ///             new Volcengine.Alb.Inputs.AlbTagArgs
     ///             {
-    ///                 Key = "k1",
-    ///                 Value = "v1",
+    ///                 Key = "k2",
+    ///                 Value = "v2",
     ///             },
     ///         },
     ///     }, new CustomResourceOptions

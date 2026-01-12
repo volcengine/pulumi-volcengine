@@ -481,8 +481,8 @@ class Alb(pulumi.CustomResource):
             project_name="default",
             delete_protection="off",
             tags=[volcengine.alb.AlbTagArgs(
-                key="k1",
-                value="v1",
+                key="k2",
+                value="v2",
             )])
         alb_public = volcengine.alb.Alb("alb-public",
             address_ip_version="DualStack",
@@ -506,8 +506,8 @@ class Alb(pulumi.CustomResource):
                 bandwidth=1,
             ),
             tags=[volcengine.alb.AlbTagArgs(
-                key="k1",
-                value="v1",
+                key="k2",
+                value="v2",
             )],
             opts=pulumi.ResourceOptions(depends_on=[ipv6_gateway]))
         ```
@@ -577,8 +577,8 @@ class Alb(pulumi.CustomResource):
             project_name="default",
             delete_protection="off",
             tags=[volcengine.alb.AlbTagArgs(
-                key="k1",
-                value="v1",
+                key="k2",
+                value="v2",
             )])
         alb_public = volcengine.alb.Alb("alb-public",
             address_ip_version="DualStack",
@@ -602,8 +602,8 @@ class Alb(pulumi.CustomResource):
                 bandwidth=1,
             ),
             tags=[volcengine.alb.AlbTagArgs(
-                key="k1",
-                value="v1",
+                key="k2",
+                value="v2",
             )],
             opts=pulumi.ResourceOptions(depends_on=[ipv6_gateway]))
         ```
