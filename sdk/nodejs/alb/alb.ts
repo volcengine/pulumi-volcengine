@@ -48,8 +48,8 @@ import * as utilities from "../utilities";
  *     projectName: "default",
  *     deleteProtection: "off",
  *     tags: [{
- *         key: "k1",
- *         value: "v1",
+ *         key: "k2",
+ *         value: "v2",
  *     }],
  * });
  * const alb_public = new volcengine.alb.Alb("alb-public", {
@@ -74,8 +74,8 @@ import * as utilities from "../utilities";
  *         bandwidth: 1,
  *     },
  *     tags: [{
- *         key: "k1",
- *         value: "v1",
+ *         key: "k2",
+ *         value: "v2",
  *     }],
  * }, {
  *     dependsOn: [ipv6Gateway],
