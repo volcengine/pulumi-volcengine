@@ -16,6 +16,10 @@ import * as utilities from "../utilities";
  *
  * const default = volcengine.alb.getCertificates({
  *     certificateName: "tf-test",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
  * });
  * ```
  */
@@ -27,6 +31,8 @@ export function getCertificates(args?: GetCertificatesArgs, opts?: pulumi.Invoke
         "certificateName": args.certificateName,
         "ids": args.ids,
         "outputFile": args.outputFile,
+        "projectName": args.projectName,
+        "tags": args.tags,
     }, opts);
 }
 
@@ -46,6 +52,14 @@ export interface GetCertificatesArgs {
      * File name where to save data source results.
      */
     outputFile?: string;
+    /**
+     * The project name to which the certificate belongs.
+     */
+    projectName?: string;
+    /**
+     * Tags.
+     */
+    tags?: inputs.alb.GetCertificatesTag[];
 }
 
 /**
@@ -67,6 +81,14 @@ export interface GetCertificatesResult {
     readonly ids?: string[];
     readonly outputFile?: string;
     /**
+     * The ProjectName of the Certificate.
+     */
+    readonly projectName?: string;
+    /**
+     * Tags.
+     */
+    readonly tags?: outputs.alb.GetCertificatesTag[];
+    /**
      * The total count of Certificate query.
      */
     readonly totalCount: number;
@@ -81,6 +103,10 @@ export interface GetCertificatesResult {
  *
  * const default = volcengine.alb.getCertificates({
  *     certificateName: "tf-test",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
  * });
  * ```
  */
@@ -104,4 +130,12 @@ export interface GetCertificatesOutputArgs {
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
+    /**
+     * The project name to which the certificate belongs.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.alb.GetCertificatesTagArgs>[]>;
 }

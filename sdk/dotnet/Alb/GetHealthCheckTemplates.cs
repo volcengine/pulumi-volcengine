@@ -29,6 +29,14 @@ namespace Pulumi.Volcengine.Alb
         ///         {
         ///             "hctpl-1iidd1tobnim874adhf708uwf",
         ///         },
+        ///         Tags = new[]
+        ///         {
+        ///             new Volcengine.Alb.Inputs.GetHealthCheckTemplatesTagInputArgs
+        ///             {
+        ///                 Key = "key1",
+        ///                 Value = "value2",
+        ///             },
+        ///         },
         ///     });
         /// 
         /// });
@@ -54,6 +62,14 @@ namespace Pulumi.Volcengine.Alb
         ///         Ids = new[]
         ///         {
         ///             "hctpl-1iidd1tobnim874adhf708uwf",
+        ///         },
+        ///         Tags = new[]
+        ///         {
+        ///             new Volcengine.Alb.Inputs.GetHealthCheckTemplatesTagInputArgs
+        ///             {
+        ///                 Key = "key1",
+        ///                 Value = "value2",
+        ///             },
         ///         },
         ///     });
         /// 
@@ -97,6 +113,24 @@ namespace Pulumi.Volcengine.Alb
         [Input("outputFile")]
         public string? OutputFile { get; set; }
 
+        /// <summary>
+        /// The project name to query.
+        /// </summary>
+        [Input("projectName")]
+        public string? ProjectName { get; set; }
+
+        [Input("tags")]
+        private List<Inputs.GetHealthCheckTemplatesTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public List<Inputs.GetHealthCheckTemplatesTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new List<Inputs.GetHealthCheckTemplatesTagArgs>());
+            set => _tags = value;
+        }
+
         public GetHealthCheckTemplatesArgs()
         {
         }
@@ -135,6 +169,24 @@ namespace Pulumi.Volcengine.Alb
         [Input("outputFile")]
         public Input<string>? OutputFile { get; set; }
 
+        /// <summary>
+        /// The project name to query.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.GetHealthCheckTemplatesTagInputArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.GetHealthCheckTemplatesTagInputArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.GetHealthCheckTemplatesTagInputArgs>());
+            set => _tags = value;
+        }
+
         public GetHealthCheckTemplatesInvokeArgs()
         {
         }
@@ -161,6 +213,14 @@ namespace Pulumi.Volcengine.Alb
         public readonly string? NameRegex;
         public readonly string? OutputFile;
         /// <summary>
+        /// The project name to which the health check template belongs.
+        /// </summary>
+        public readonly string? ProjectName;
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetHealthCheckTemplatesTagResult> Tags;
+        /// <summary>
         /// The total count of health check template query.
         /// </summary>
         public readonly int TotalCount;
@@ -179,6 +239,10 @@ namespace Pulumi.Volcengine.Alb
 
             string? outputFile,
 
+            string? projectName,
+
+            ImmutableArray<Outputs.GetHealthCheckTemplatesTagResult> tags,
+
             int totalCount)
         {
             HealthCheckTemplateName = healthCheckTemplateName;
@@ -187,6 +251,8 @@ namespace Pulumi.Volcengine.Alb
             Ids = ids;
             NameRegex = nameRegex;
             OutputFile = outputFile;
+            ProjectName = projectName;
+            Tags = tags;
             TotalCount = totalCount;
         }
     }

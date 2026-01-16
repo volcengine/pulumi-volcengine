@@ -70,6 +70,8 @@ type CACertificate struct {
 	Listeners pulumi.StringArrayOutput `pulumi:"listeners"`
 	// The project name of the CA certificate.
 	ProjectName pulumi.StringOutput `pulumi:"projectName"`
+	// The san extension of the Certificate.
+	San pulumi.StringOutput `pulumi:"san"`
 	// The status of the CA Certificate.
 	Status pulumi.StringOutput `pulumi:"status"`
 }
@@ -125,6 +127,8 @@ type cacertificateState struct {
 	Listeners []string `pulumi:"listeners"`
 	// The project name of the CA certificate.
 	ProjectName *string `pulumi:"projectName"`
+	// The san extension of the Certificate.
+	San *string `pulumi:"san"`
 	// The status of the CA Certificate.
 	Status *string `pulumi:"status"`
 }
@@ -148,6 +152,8 @@ type CACertificateState struct {
 	Listeners pulumi.StringArrayInput
 	// The project name of the CA certificate.
 	ProjectName pulumi.StringPtrInput
+	// The san extension of the Certificate.
+	San pulumi.StringPtrInput
 	// The status of the CA Certificate.
 	Status pulumi.StringPtrInput
 }
@@ -309,6 +315,11 @@ func (o CACertificateOutput) Listeners() pulumi.StringArrayOutput {
 // The project name of the CA certificate.
 func (o CACertificateOutput) ProjectName() pulumi.StringOutput {
 	return o.ApplyT(func(v *CACertificate) pulumi.StringOutput { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The san extension of the Certificate.
+func (o CACertificateOutput) San() pulumi.StringOutput {
+	return o.ApplyT(func(v *CACertificate) pulumi.StringOutput { return v.San }).(pulumi.StringOutput)
 }
 
 // The status of the CA Certificate.

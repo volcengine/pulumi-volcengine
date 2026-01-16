@@ -60,6 +60,8 @@ type CustomizedCfg struct {
 	Description pulumi.StringOutput `pulumi:"description"`
 	// The project name of the CustomizedCfg.
 	ProjectName pulumi.StringOutput `pulumi:"projectName"`
+	// Tags.
+	Tags CustomizedCfgTagArrayOutput `pulumi:"tags"`
 }
 
 // NewCustomizedCfg registers a new resource with the given unique name, arguments, and options.
@@ -106,6 +108,8 @@ type customizedCfgState struct {
 	Description *string `pulumi:"description"`
 	// The project name of the CustomizedCfg.
 	ProjectName *string `pulumi:"projectName"`
+	// Tags.
+	Tags []CustomizedCfgTag `pulumi:"tags"`
 }
 
 type CustomizedCfgState struct {
@@ -117,6 +121,8 @@ type CustomizedCfgState struct {
 	Description pulumi.StringPtrInput
 	// The project name of the CustomizedCfg.
 	ProjectName pulumi.StringPtrInput
+	// Tags.
+	Tags CustomizedCfgTagArrayInput
 }
 
 func (CustomizedCfgState) ElementType() reflect.Type {
@@ -132,6 +138,8 @@ type customizedCfgArgs struct {
 	Description *string `pulumi:"description"`
 	// The project name of the CustomizedCfg.
 	ProjectName *string `pulumi:"projectName"`
+	// Tags.
+	Tags []CustomizedCfgTag `pulumi:"tags"`
 }
 
 // The set of arguments for constructing a CustomizedCfg resource.
@@ -144,6 +152,8 @@ type CustomizedCfgArgs struct {
 	Description pulumi.StringPtrInput
 	// The project name of the CustomizedCfg.
 	ProjectName pulumi.StringPtrInput
+	// Tags.
+	Tags CustomizedCfgTagArrayInput
 }
 
 func (CustomizedCfgArgs) ElementType() reflect.Type {
@@ -251,6 +261,11 @@ func (o CustomizedCfgOutput) Description() pulumi.StringOutput {
 // The project name of the CustomizedCfg.
 func (o CustomizedCfgOutput) ProjectName() pulumi.StringOutput {
 	return o.ApplyT(func(v *CustomizedCfg) pulumi.StringOutput { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o CustomizedCfgOutput) Tags() CustomizedCfgTagArrayOutput {
+	return o.ApplyT(func(v *CustomizedCfg) CustomizedCfgTagArrayOutput { return v.Tags }).(CustomizedCfgTagArrayOutput)
 }
 
 type CustomizedCfgArrayOutput struct{ *pulumi.OutputState }

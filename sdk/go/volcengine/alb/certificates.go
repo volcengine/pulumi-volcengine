@@ -28,6 +28,12 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := alb.GetCertificates(ctx, &alb.GetCertificatesArgs{
 //				CertificateName: pulumi.StringRef("tf-test"),
+//				Tags: []alb.GetCertificatesTag{
+//					{
+//						Key:   "k1",
+//						Value: "v1",
+//					},
+//				},
 //			}, nil)
 //			if err != nil {
 //				return err
@@ -57,6 +63,10 @@ type CertificatesArgs struct {
 	Ids []string `pulumi:"ids"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
+	// The project name to which the certificate belongs.
+	ProjectName *string `pulumi:"projectName"`
+	// Tags.
+	Tags []CertificatesTag `pulumi:"tags"`
 }
 
 // A collection of values returned by Certificates.
@@ -69,6 +79,10 @@ type CertificatesResult struct {
 	Id         string   `pulumi:"id"`
 	Ids        []string `pulumi:"ids"`
 	OutputFile *string  `pulumi:"outputFile"`
+	// The ProjectName of the Certificate.
+	ProjectName *string `pulumi:"projectName"`
+	// Tags.
+	Tags []CertificatesTag `pulumi:"tags"`
 	// The total count of Certificate query.
 	TotalCount int `pulumi:"totalCount"`
 }
@@ -94,6 +108,10 @@ type CertificatesOutputArgs struct {
 	Ids pulumi.StringArrayInput `pulumi:"ids"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// The project name to which the certificate belongs.
+	ProjectName pulumi.StringPtrInput `pulumi:"projectName"`
+	// Tags.
+	Tags CertificatesTagArrayInput `pulumi:"tags"`
 }
 
 func (CertificatesOutputArgs) ElementType() reflect.Type {
@@ -136,6 +154,16 @@ func (o CertificatesResultOutput) Ids() pulumi.StringArrayOutput {
 
 func (o CertificatesResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CertificatesResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
+}
+
+// The ProjectName of the Certificate.
+func (o CertificatesResultOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CertificatesResult) *string { return v.ProjectName }).(pulumi.StringPtrOutput)
+}
+
+// Tags.
+func (o CertificatesResultOutput) Tags() CertificatesTagArrayOutput {
+	return o.ApplyT(func(v CertificatesResult) []CertificatesTag { return v.Tags }).(CertificatesTagArrayOutput)
 }
 
 // The total count of Certificate query.

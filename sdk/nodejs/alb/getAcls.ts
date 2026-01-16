@@ -29,6 +29,7 @@ export function getAcls(args?: GetAclsArgs, opts?: pulumi.InvokeOptions): Promis
         "ids": args.ids,
         "outputFile": args.outputFile,
         "projectName": args.projectName,
+        "tags": args.tags,
     }, opts);
 }
 
@@ -52,6 +53,10 @@ export interface GetAclsArgs {
      * The name of project.
      */
     projectName?: string;
+    /**
+     * Tags.
+     */
+    tags?: inputs.alb.GetAclsTag[];
 }
 
 /**
@@ -76,6 +81,10 @@ export interface GetAclsResult {
      * The project name of Acl.
      */
     readonly projectName?: string;
+    /**
+     * Tags.
+     */
+    readonly tags?: outputs.alb.GetAclsTag[];
     /**
      * The total count of Acl query.
      */
@@ -119,4 +128,8 @@ export interface GetAclsOutputArgs {
      * The name of project.
      */
     projectName?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.alb.GetAclsTagArgs>[]>;
 }

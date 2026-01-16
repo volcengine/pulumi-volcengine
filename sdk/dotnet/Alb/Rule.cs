@@ -21,6 +21,7 @@ namespace Pulumi.Volcengine.Alb
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
+    ///     // Basic edition
     ///     var foo = new Volcengine.Alb.Rule("foo", new()
     ///     {
     ///         Description = "test",
@@ -43,6 +44,63 @@ namespace Pulumi.Volcengine.Alb
     ///         TrafficLimitEnabled = "off",
     ///         TrafficLimitQps = 100,
     ///         Url = "/test",
+    ///     });
+    /// 
+    ///     // Standard edition
+    ///     var example = new Volcengine.Alb.Rule("example", new()
+    ///     {
+    ///         Description = "standard edition alb rule",
+    ///         ListenerId = "lsn-bddjp5fcof0g8dv40naga1yd",
+    ///         Priority = 1,
+    ///         RuleAction = "",
+    ///         RuleActions = new[]
+    ///         {
+    ///             new Volcengine.Alb.Inputs.RuleRuleActionArgs
+    ///             {
+    ///                 ForwardGroupConfig = new Volcengine.Alb.Inputs.RuleRuleActionForwardGroupConfigArgs
+    ///                 {
+    ///                     ServerGroupStickySession = new Volcengine.Alb.Inputs.RuleRuleActionForwardGroupConfigServerGroupStickySessionArgs
+    ///                     {
+    ///                         Enabled = "off",
+    ///                     },
+    ///                     ServerGroupTuples = new[]
+    ///                     {
+    ///                         new Volcengine.Alb.Inputs.RuleRuleActionForwardGroupConfigServerGroupTupleArgs
+    ///                         {
+    ///                             ServerGroupId = "rsp-bdd1lpcbvv288dv40ov1sye0",
+    ///                             Weight = 50,
+    ///                         },
+    ///                     },
+    ///                 },
+    ///                 Type = "ForwardGroup",
+    ///             },
+    ///         },
+    ///         RuleConditions = new[]
+    ///         {
+    ///             new Volcengine.Alb.Inputs.RuleRuleConditionArgs
+    ///             {
+    ///                 HostConfig = new Volcengine.Alb.Inputs.RuleRuleConditionHostConfigArgs
+    ///                 {
+    ///                     Values = new[]
+    ///                     {
+    ///                         "www.example.com",
+    ///                     },
+    ///                 },
+    ///                 Type = "Host",
+    ///             },
+    ///             new Volcengine.Alb.Inputs.RuleRuleConditionArgs
+    ///             {
+    ///                 PathConfig = new Volcengine.Alb.Inputs.RuleRuleConditionPathConfigArgs
+    ///                 {
+    ///                     Values = new[]
+    ///                     {
+    ///                         "/app/*",
+    ///                     },
+    ///                 },
+    ///                 Type = "Path",
+    ///             },
+    ///         },
+    ///         Url = "",
     ///     });
     /// 
     /// });
@@ -78,6 +136,12 @@ namespace Pulumi.Volcengine.Alb
         public Output<string> ListenerId { get; private set; } = null!;
 
         /// <summary>
+        /// The priority of the Rule.Only the standard version is supported.
+        /// </summary>
+        [Output("priority")]
+        public Output<int> Priority { get; private set; } = null!;
+
+        /// <summary>
         /// The redirect related configuration.
         /// </summary>
         [Output("redirectConfig")]
@@ -104,6 +168,18 @@ namespace Pulumi.Volcengine.Alb
         public Output<string> RuleAction { get; private set; } = null!;
 
         /// <summary>
+        /// The rule actions for standard edition forwarding rules.
+        /// </summary>
+        [Output("ruleActions")]
+        public Output<ImmutableArray<Outputs.RuleRuleAction>> RuleActions { get; private set; } = null!;
+
+        /// <summary>
+        /// The rule conditions for standard edition forwarding rules.
+        /// </summary>
+        [Output("ruleConditions")]
+        public Output<ImmutableArray<Outputs.RuleRuleCondition>> RuleConditions { get; private set; } = null!;
+
+        /// <summary>
         /// The ID of rule.
         /// </summary>
         [Output("ruleId")]
@@ -114,6 +190,24 @@ namespace Pulumi.Volcengine.Alb
         /// </summary>
         [Output("serverGroupId")]
         public Output<string?> ServerGroupId { get; private set; } = null!;
+
+        /// <summary>
+        /// Weight forwarded to the corresponding backend server group.
+        /// </summary>
+        [Output("serverGroupTuples")]
+        public Output<ImmutableArray<Outputs.RuleServerGroupTuple>> ServerGroupTuples { get; private set; } = null!;
+
+        /// <summary>
+        /// Whether to enable group session stickiness. Valid values are 'on' and 'off'.
+        /// </summary>
+        [Output("stickySessionEnabled")]
+        public Output<string> StickySessionEnabled { get; private set; } = null!;
+
+        /// <summary>
+        /// The group session stickiness timeout, in seconds.
+        /// </summary>
+        [Output("stickySessionTimeout")]
+        public Output<int> StickySessionTimeout { get; private set; } = null!;
 
         /// <summary>
         /// Forwarding rule QPS rate limiting switch:
@@ -201,6 +295,12 @@ namespace Pulumi.Volcengine.Alb
         public Input<string> ListenerId { get; set; } = null!;
 
         /// <summary>
+        /// The priority of the Rule.Only the standard version is supported.
+        /// </summary>
+        [Input("priority")]
+        public Input<int>? Priority { get; set; }
+
+        /// <summary>
         /// The redirect related configuration.
         /// </summary>
         [Input("redirectConfig")]
@@ -226,11 +326,59 @@ namespace Pulumi.Volcengine.Alb
         [Input("ruleAction", required: true)]
         public Input<string> RuleAction { get; set; } = null!;
 
+        [Input("ruleActions")]
+        private InputList<Inputs.RuleRuleActionArgs>? _ruleActions;
+
+        /// <summary>
+        /// The rule actions for standard edition forwarding rules.
+        /// </summary>
+        public InputList<Inputs.RuleRuleActionArgs> RuleActions
+        {
+            get => _ruleActions ?? (_ruleActions = new InputList<Inputs.RuleRuleActionArgs>());
+            set => _ruleActions = value;
+        }
+
+        [Input("ruleConditions")]
+        private InputList<Inputs.RuleRuleConditionArgs>? _ruleConditions;
+
+        /// <summary>
+        /// The rule conditions for standard edition forwarding rules.
+        /// </summary>
+        public InputList<Inputs.RuleRuleConditionArgs> RuleConditions
+        {
+            get => _ruleConditions ?? (_ruleConditions = new InputList<Inputs.RuleRuleConditionArgs>());
+            set => _ruleConditions = value;
+        }
+
         /// <summary>
         /// Server group ID, this parameter is required if `rule_action` is empty.
         /// </summary>
         [Input("serverGroupId")]
         public Input<string>? ServerGroupId { get; set; }
+
+        [Input("serverGroupTuples")]
+        private InputList<Inputs.RuleServerGroupTupleArgs>? _serverGroupTuples;
+
+        /// <summary>
+        /// Weight forwarded to the corresponding backend server group.
+        /// </summary>
+        public InputList<Inputs.RuleServerGroupTupleArgs> ServerGroupTuples
+        {
+            get => _serverGroupTuples ?? (_serverGroupTuples = new InputList<Inputs.RuleServerGroupTupleArgs>());
+            set => _serverGroupTuples = value;
+        }
+
+        /// <summary>
+        /// Whether to enable group session stickiness. Valid values are 'on' and 'off'.
+        /// </summary>
+        [Input("stickySessionEnabled")]
+        public Input<string>? StickySessionEnabled { get; set; }
+
+        /// <summary>
+        /// The group session stickiness timeout, in seconds.
+        /// </summary>
+        [Input("stickySessionTimeout")]
+        public Input<int>? StickySessionTimeout { get; set; }
 
         /// <summary>
         /// Forwarding rule QPS rate limiting switch:
@@ -279,6 +427,12 @@ namespace Pulumi.Volcengine.Alb
         public Input<string>? ListenerId { get; set; }
 
         /// <summary>
+        /// The priority of the Rule.Only the standard version is supported.
+        /// </summary>
+        [Input("priority")]
+        public Input<int>? Priority { get; set; }
+
+        /// <summary>
         /// The redirect related configuration.
         /// </summary>
         [Input("redirectConfig")]
@@ -304,6 +458,30 @@ namespace Pulumi.Volcengine.Alb
         [Input("ruleAction")]
         public Input<string>? RuleAction { get; set; }
 
+        [Input("ruleActions")]
+        private InputList<Inputs.RuleRuleActionGetArgs>? _ruleActions;
+
+        /// <summary>
+        /// The rule actions for standard edition forwarding rules.
+        /// </summary>
+        public InputList<Inputs.RuleRuleActionGetArgs> RuleActions
+        {
+            get => _ruleActions ?? (_ruleActions = new InputList<Inputs.RuleRuleActionGetArgs>());
+            set => _ruleActions = value;
+        }
+
+        [Input("ruleConditions")]
+        private InputList<Inputs.RuleRuleConditionGetArgs>? _ruleConditions;
+
+        /// <summary>
+        /// The rule conditions for standard edition forwarding rules.
+        /// </summary>
+        public InputList<Inputs.RuleRuleConditionGetArgs> RuleConditions
+        {
+            get => _ruleConditions ?? (_ruleConditions = new InputList<Inputs.RuleRuleConditionGetArgs>());
+            set => _ruleConditions = value;
+        }
+
         /// <summary>
         /// The ID of rule.
         /// </summary>
@@ -315,6 +493,30 @@ namespace Pulumi.Volcengine.Alb
         /// </summary>
         [Input("serverGroupId")]
         public Input<string>? ServerGroupId { get; set; }
+
+        [Input("serverGroupTuples")]
+        private InputList<Inputs.RuleServerGroupTupleGetArgs>? _serverGroupTuples;
+
+        /// <summary>
+        /// Weight forwarded to the corresponding backend server group.
+        /// </summary>
+        public InputList<Inputs.RuleServerGroupTupleGetArgs> ServerGroupTuples
+        {
+            get => _serverGroupTuples ?? (_serverGroupTuples = new InputList<Inputs.RuleServerGroupTupleGetArgs>());
+            set => _serverGroupTuples = value;
+        }
+
+        /// <summary>
+        /// Whether to enable group session stickiness. Valid values are 'on' and 'off'.
+        /// </summary>
+        [Input("stickySessionEnabled")]
+        public Input<string>? StickySessionEnabled { get; set; }
+
+        /// <summary>
+        /// The group session stickiness timeout, in seconds.
+        /// </summary>
+        [Input("stickySessionTimeout")]
+        public Input<int>? StickySessionTimeout { get; set; }
 
         /// <summary>
         /// Forwarding rule QPS rate limiting switch:

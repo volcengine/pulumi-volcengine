@@ -58,6 +58,39 @@ export namespace alb {
         entry: pulumi.Input<string>;
     }
 
+    export interface AclTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface AclsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface AclsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
     export interface AlbEipBillingConfig {
         /**
          * The peek bandwidth of the EIP which automatically assigned to the Alb. Unit: Mbps.
@@ -71,6 +104,25 @@ export namespace alb {
          * The ISP of the EIP which automatically associated to the Alb, the value can be `BGP`.
          */
         isp: pulumi.Input<string>;
+    }
+
+    export interface AlbGlobalAccelerator {
+        /**
+         * The global accelerator id.
+         */
+        acceleratorId?: pulumi.Input<string>;
+        /**
+         * The global accelerator listener id.
+         */
+        acceleratorListenerId?: pulumi.Input<string>;
+        /**
+         * The global accelerator endpoint group id.
+         */
+        endpointGroupId?: pulumi.Input<string>;
+        /**
+         * The traffic distribution weight of the endpoint. The value range is: 1 - 100.
+         */
+        weight?: pulumi.Input<number>;
     }
 
     export interface AlbIpv6EipBillingConfig {
@@ -163,6 +215,116 @@ export namespace alb {
         value: pulumi.Input<string>;
     }
 
+    export interface AllCertificatesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface AllCertificatesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface CertificateTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface CertificatesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface CertificatesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface CustomizedCfgTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface CustomizedCfgsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface CustomizedCfgsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetAclsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetAclsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
     export interface GetAlbsTag {
         /**
          * The Key of Tags.
@@ -175,6 +337,231 @@ export namespace alb {
     }
 
     export interface GetAlbsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetAllCertificatesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetAllCertificatesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetCertificatesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetCertificatesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetCustomizedCfgsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetCustomizedCfgsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetHealthCheckTemplatesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetHealthCheckTemplatesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetListenersTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetListenersTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetServerGroupsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetServerGroupsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface HealthCheckTemplateTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface HealthCheckTemplatesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface HealthCheckTemplatesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface ListenerDomainExtension {
+        /**
+         * The server certificate ID used by the domain name. Valid when the certificateSource is `certCenter`.
+         */
+        certCenterCertificateId?: pulumi.Input<string>;
+        /**
+         * The server certificate ID used by the domain name. Valid when the certificateSource is `alb`.
+         */
+        certificateId?: pulumi.Input<string>;
+        /**
+         * The source of the certificate. Valid values: `alb`, `certCenter`.
+         */
+        certificateSource?: pulumi.Input<string>;
+        /**
+         * The domain name.
+         */
+        domain?: pulumi.Input<string>;
+        /**
+         * The extended domain ID, required only for deletion and modification.
+         */
+        domainExtensionId?: pulumi.Input<string>;
+        /**
+         * The server certificate ID used by the domain name. Valid when the certificate source is `pcaLeaf`.
+         */
+        pcaLeafCertificateId?: pulumi.Input<string>;
+    }
+
+    export interface ListenerTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface ListenersTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface ListenersTagArgs {
         /**
          * The Key of Tags.
          */
@@ -215,6 +602,210 @@ export namespace alb {
         rewritePath: pulumi.Input<string>;
     }
 
+    export interface RuleRuleAction {
+        /**
+         * Fixed response configuration for fixed response type rule.
+         */
+        fixedResponseConfig?: pulumi.Input<inputs.alb.RuleRuleActionFixedResponseConfig>;
+        /**
+         * Forward group configuration for ForwardGroup type action.
+         */
+        forwardGroupConfig?: pulumi.Input<inputs.alb.RuleRuleActionForwardGroupConfig>;
+        /**
+         * Redirect configuration for Redirect type action.
+         */
+        redirectConfig?: pulumi.Input<inputs.alb.RuleRuleActionRedirectConfig>;
+        /**
+         * Rewrite configuration for Rewrite type action.
+         */
+        rewriteConfig?: pulumi.Input<inputs.alb.RuleRuleActionRewriteConfig>;
+        /**
+         * Traffic limit configuration for TrafficLimit type action.
+         */
+        trafficLimitConfig?: pulumi.Input<inputs.alb.RuleRuleActionTrafficLimitConfig>;
+        /**
+         * The type of rule action. Valid values: ForwardGroup, Redirect, Rewrite, TrafficLimit.
+         */
+        type?: pulumi.Input<string>;
+    }
+
+    export interface RuleRuleActionFixedResponseConfig {
+        /**
+         * The content type of the fixed response.
+         */
+        contentType?: pulumi.Input<string>;
+        /**
+         * The response body of the fixed response.
+         */
+        responseBody?: pulumi.Input<string>;
+        /**
+         * The fixed response HTTP status code.
+         */
+        responseCode?: pulumi.Input<string>;
+        /**
+         * The fixed response message.
+         */
+        responseMessage?: pulumi.Input<string>;
+    }
+
+    export interface RuleRuleActionForwardGroupConfig {
+        /**
+         * The config of group session stickiness.
+         */
+        serverGroupStickySession?: pulumi.Input<inputs.alb.RuleRuleActionForwardGroupConfigServerGroupStickySession>;
+        /**
+         * The server group tuples.
+         */
+        serverGroupTuples?: pulumi.Input<pulumi.Input<inputs.alb.RuleRuleActionForwardGroupConfigServerGroupTuple>[]>;
+    }
+
+    export interface RuleRuleActionForwardGroupConfigServerGroupStickySession {
+        /**
+         * Whether to enable sticky session stickiness. Valid values are 'on' and 'off'.
+         */
+        enabled?: pulumi.Input<string>;
+        /**
+         * The sticky session timeout, in seconds.
+         */
+        timeout?: pulumi.Input<number>;
+    }
+
+    export interface RuleRuleActionForwardGroupConfigServerGroupTuple {
+        /**
+         * The server group ID. The priority of this parameter is higher than that of `serverGroupId`.
+         */
+        serverGroupId?: pulumi.Input<string>;
+        /**
+         * The weight of the server group.
+         */
+        weight?: pulumi.Input<number>;
+    }
+
+    export interface RuleRuleActionRedirectConfig {
+        /**
+         * The domain name to which the request was redirected.
+         */
+        host?: pulumi.Input<string>;
+        /**
+         * The redirect HTTP code.
+         */
+        httpCode?: pulumi.Input<string>;
+        /**
+         * The path to which the request was redirected.
+         */
+        path?: pulumi.Input<string>;
+        /**
+         * The redirect port.
+         */
+        port?: pulumi.Input<string>;
+        /**
+         * The redirect protocol.
+         */
+        protocol?: pulumi.Input<string>;
+    }
+
+    export interface RuleRuleActionRewriteConfig {
+        /**
+         * The rewrite path.
+         */
+        path?: pulumi.Input<string>;
+    }
+
+    export interface RuleRuleActionTrafficLimitConfig {
+        /**
+         * The QPS limit.
+         */
+        qps?: pulumi.Input<number>;
+    }
+
+    export interface RuleRuleCondition {
+        /**
+         * Header configuration for Header type condition.
+         */
+        headerConfig?: pulumi.Input<inputs.alb.RuleRuleConditionHeaderConfig>;
+        /**
+         * Host configuration for Host type condition.
+         */
+        hostConfig?: pulumi.Input<inputs.alb.RuleRuleConditionHostConfig>;
+        /**
+         * Method configuration for Method type condition.
+         */
+        methodConfig?: pulumi.Input<inputs.alb.RuleRuleConditionMethodConfig>;
+        /**
+         * Path configuration for Path type condition.
+         */
+        pathConfig?: pulumi.Input<inputs.alb.RuleRuleConditionPathConfig>;
+        /**
+         * Query string configuration for QueryString type condition.
+         */
+        queryStringConfig?: pulumi.Input<inputs.alb.RuleRuleConditionQueryStringConfig>;
+        /**
+         * The type of rule condition. Valid values: Host, Path, Header, Method, QueryString.
+         */
+        type?: pulumi.Input<string>;
+    }
+
+    export interface RuleRuleConditionHeaderConfig {
+        /**
+         * The header key.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The list of header values.
+         */
+        values: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface RuleRuleConditionHostConfig {
+        /**
+         * The list of domain names.
+         */
+        values: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface RuleRuleConditionMethodConfig {
+        /**
+         * The values of the method. Vaild values: HEAD,GET,POST,OPTIONS,PUT,PATCH,DELETE.
+         */
+        values: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface RuleRuleConditionPathConfig {
+        /**
+         * The list of absolute paths.
+         */
+        values?: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface RuleRuleConditionQueryStringConfig {
+        /**
+         * The list of query string values.
+         */
+        values?: pulumi.Input<pulumi.Input<inputs.alb.RuleRuleConditionQueryStringConfigValue>[]>;
+    }
+
+    export interface RuleRuleConditionQueryStringConfigValue {
+        /**
+         * The query string key.
+         */
+        key?: pulumi.Input<string>;
+        /**
+         * The query string value.
+         */
+        value?: pulumi.Input<string>;
+    }
+
+    export interface RuleServerGroupTuple {
+        /**
+         * The server group ID. The priority of this parameter is higher than that of `serverGroupId`.
+         */
+        serverGroupId: pulumi.Input<string>;
+        /**
+         * The weight of the server group.
+         */
+        weight?: pulumi.Input<number>;
+    }
+
     export interface ServerGroupHealthCheck {
         /**
          * The domain of health check.
@@ -229,7 +820,7 @@ export namespace alb {
          */
         healthyThreshold?: pulumi.Input<number>;
         /**
-         * The normal http status code of health check, the value can be `http2xx` or `http3xx` or `http4xx` or `http5xx`.
+         * The normal http status code of health check, the value can be `http2xx`, `http3xx`, `http4xx` or `http5xx`. Default is `http_2xx,http_3xx`.
          */
         httpCode?: pulumi.Input<string>;
         /**
@@ -244,6 +835,14 @@ export namespace alb {
          * The method of health check. Valid values: `GET` or `HEAD`. Default is `HEAD`.
          */
         method?: pulumi.Input<string>;
+        /**
+         * The port of health check. When the value is 0, it means use the backend server port for health check. Valid value range in 0~65535.
+         */
+        port?: pulumi.Input<number>;
+        /**
+         * The protocol of health check. Valid values: `HTTP`, `TCP`. Default is `HTTP`.
+         */
+        protocol?: pulumi.Input<string>;
         /**
          * The response timeout of health check. Unit: second. Valid value range in 1~60. Default is 2.
          */
@@ -275,6 +874,39 @@ export namespace alb {
          * The cookie handle type of the sticky session. Valid values: `insert`, `server`. Default is `insert`. This field is required when the value of the `stickySessionEnabled` is `on`.
          */
         stickySessionType?: pulumi.Input<string>;
+    }
+
+    export interface ServerGroupTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface ServerGroupsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface ServerGroupsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
     }
 
 }

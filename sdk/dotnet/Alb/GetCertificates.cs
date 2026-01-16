@@ -26,6 +26,14 @@ namespace Pulumi.Volcengine.Alb
         ///     var @default = Volcengine.Alb.GetCertificates.Invoke(new()
         ///     {
         ///         CertificateName = "tf-test",
+        ///         Tags = new[]
+        ///         {
+        ///             new Volcengine.Alb.Inputs.GetCertificatesTagInputArgs
+        ///             {
+        ///                 Key = "k1",
+        ///                 Value = "v1",
+        ///             },
+        ///         },
         ///     });
         /// 
         /// });
@@ -49,6 +57,14 @@ namespace Pulumi.Volcengine.Alb
         ///     var @default = Volcengine.Alb.GetCertificates.Invoke(new()
         ///     {
         ///         CertificateName = "tf-test",
+        ///         Tags = new[]
+        ///         {
+        ///             new Volcengine.Alb.Inputs.GetCertificatesTagInputArgs
+        ///             {
+        ///                 Key = "k1",
+        ///                 Value = "v1",
+        ///             },
+        ///         },
         ///     });
         /// 
         /// });
@@ -85,6 +101,24 @@ namespace Pulumi.Volcengine.Alb
         [Input("outputFile")]
         public string? OutputFile { get; set; }
 
+        /// <summary>
+        /// The project name to which the certificate belongs.
+        /// </summary>
+        [Input("projectName")]
+        public string? ProjectName { get; set; }
+
+        [Input("tags")]
+        private List<Inputs.GetCertificatesTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public List<Inputs.GetCertificatesTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new List<Inputs.GetCertificatesTagArgs>());
+            set => _tags = value;
+        }
+
         public GetCertificatesArgs()
         {
         }
@@ -117,6 +151,24 @@ namespace Pulumi.Volcengine.Alb
         [Input("outputFile")]
         public Input<string>? OutputFile { get; set; }
 
+        /// <summary>
+        /// The project name to which the certificate belongs.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.GetCertificatesTagInputArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.GetCertificatesTagInputArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.GetCertificatesTagInputArgs>());
+            set => _tags = value;
+        }
+
         public GetCertificatesInvokeArgs()
         {
         }
@@ -142,6 +194,14 @@ namespace Pulumi.Volcengine.Alb
         public readonly ImmutableArray<string> Ids;
         public readonly string? OutputFile;
         /// <summary>
+        /// The ProjectName of the Certificate.
+        /// </summary>
+        public readonly string? ProjectName;
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetCertificatesTagResult> Tags;
+        /// <summary>
         /// The total count of Certificate query.
         /// </summary>
         public readonly int TotalCount;
@@ -158,6 +218,10 @@ namespace Pulumi.Volcengine.Alb
 
             string? outputFile,
 
+            string? projectName,
+
+            ImmutableArray<Outputs.GetCertificatesTagResult> tags,
+
             int totalCount)
         {
             CertificateName = certificateName;
@@ -165,6 +229,8 @@ namespace Pulumi.Volcengine.Alb
             Id = id;
             Ids = ids;
             OutputFile = outputFile;
+            ProjectName = projectName;
+            Tags = tags;
             TotalCount = totalCount;
         }
     }

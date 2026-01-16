@@ -100,6 +100,26 @@ namespace Pulumi.Volcengine.Alb
     ///         CertificateId = fooCertificate.Id,
     ///         ServerGroupId = fooServerGroup.Id,
     ///         Description = "acc test listener",
+    ///         AccessLogRecordCustomizedHeadersEnabled = "off",
+    ///         CaCertificateSource = "alb",
+    ///         CaCertificateId = "cert-xoekc6lpu9s054ov5eo*****",
+    ///         DomainExtensions = new[]
+    ///         {
+    ///             new Volcengine.Alb.Inputs.ListenerDomainExtensionArgs
+    ///             {
+    ///                 Domain = "example.com",
+    ///                 CertificateSource = "alb",
+    ///                 CertificateId = "cert-1pf4a8k8tokcg845wf******",
+    ///             },
+    ///         },
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Alb.Inputs.ListenerTagArgs
+    ///             {
+    ///                 Key = "key1",
+    ///                 Value = "value2",
+    ///             },
+    ///         },
     ///     });
     /// 
     /// });
@@ -116,6 +136,12 @@ namespace Pulumi.Volcengine.Alb
     [VolcengineResourceType("volcengine:alb/listener:Listener")]
     public partial class Listener : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Whether to enable custom headers in access logs. Default is `off`.
+        /// </summary>
+        [Output("accessLogRecordCustomizedHeadersEnabled")]
+        public Output<string?> AccessLogRecordCustomizedHeadersEnabled { get; private set; } = null!;
+
         /// <summary>
         /// The id list of the Acl. When the AclStatus parameter is configured as on, AclType and AclIds.N are required.
         /// </summary>
@@ -135,10 +161,16 @@ namespace Pulumi.Volcengine.Alb
         public Output<string> AclType { get; private set; } = null!;
 
         /// <summary>
-        /// The CA certificate id associated with the listener.
+        /// The CA certificate id associated with the listener. When the value of ca_certificate_source is alb, the ca_certificate_id parameter must be specified.
         /// </summary>
         [Output("caCertificateId")]
         public Output<string?> CaCertificateId { get; private set; } = null!;
+
+        /// <summary>
+        /// The source of the CA certificate associated with the listener. This parameter is only valid for HTTPS listeners and is used for two-way authentication. Valid values: `alb`, `pca_root`, `pca_sub`.
+        /// </summary>
+        [Output("caCertificateSource")]
+        public Output<string?> CaCertificateSource { get; private set; } = null!;
 
         /// <summary>
         /// The certificate id associated with the listener. Source is `cert_center`.
@@ -169,6 +201,12 @@ namespace Pulumi.Volcengine.Alb
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
+
+        /// <summary>
+        /// The domain extensions of the Listener.
+        /// </summary>
+        [Output("domainExtensions")]
+        public Output<ImmutableArray<Outputs.ListenerDomainExtension>> DomainExtensions { get; private set; } = null!;
 
         /// <summary>
         /// The HTTP2 feature switch,valid value is on or off. Default is `off`.
@@ -207,6 +245,24 @@ namespace Pulumi.Volcengine.Alb
         public Output<string> LoadBalancerId { get; private set; } = null!;
 
         /// <summary>
+        /// The CA certificate id associated with the listener. When the value of ca_certificate_source is pca_leaf, pca_leaf_certificate_id parameter must be specified.
+        /// </summary>
+        [Output("pcaLeafCertificateId")]
+        public Output<string?> PcaLeafCertificateId { get; private set; } = null!;
+
+        /// <summary>
+        /// The CA certificate id associated with the listener. When the value of ca_certificate_source is pca_root, pca_root_ca_certificate_id parameter must be specified.
+        /// </summary>
+        [Output("pcaRootCaCertificateId")]
+        public Output<string?> PcaRootCaCertificateId { get; private set; } = null!;
+
+        /// <summary>
+        /// The CA certificate id associated with the listener. When the value of ca_certificate_source is pca_sub, pca_sub_ca_certificate_id parameter must be specified.
+        /// </summary>
+        [Output("pcaSubCaCertificateId")]
+        public Output<string?> PcaSubCaCertificateId { get; private set; } = null!;
+
+        /// <summary>
         /// The port receiving request of the Listener, the value range in 1~65535.
         /// </summary>
         [Output("port")]
@@ -223,6 +279,12 @@ namespace Pulumi.Volcengine.Alb
         /// </summary>
         [Output("serverGroupId")]
         public Output<string> ServerGroupId { get; private set; } = null!;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<Outputs.ListenerTag>> Tags { get; private set; } = null!;
 
 
         /// <summary>
@@ -271,6 +333,12 @@ namespace Pulumi.Volcengine.Alb
 
     public sealed class ListenerArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Whether to enable custom headers in access logs. Default is `off`.
+        /// </summary>
+        [Input("accessLogRecordCustomizedHeadersEnabled")]
+        public Input<string>? AccessLogRecordCustomizedHeadersEnabled { get; set; }
+
         [Input("aclIds")]
         private InputList<string>? _aclIds;
 
@@ -296,10 +364,16 @@ namespace Pulumi.Volcengine.Alb
         public Input<string>? AclType { get; set; }
 
         /// <summary>
-        /// The CA certificate id associated with the listener.
+        /// The CA certificate id associated with the listener. When the value of ca_certificate_source is alb, the ca_certificate_id parameter must be specified.
         /// </summary>
         [Input("caCertificateId")]
         public Input<string>? CaCertificateId { get; set; }
+
+        /// <summary>
+        /// The source of the CA certificate associated with the listener. This parameter is only valid for HTTPS listeners and is used for two-way authentication. Valid values: `alb`, `pca_root`, `pca_sub`.
+        /// </summary>
+        [Input("caCertificateSource")]
+        public Input<string>? CaCertificateSource { get; set; }
 
         /// <summary>
         /// The certificate id associated with the listener. Source is `cert_center`.
@@ -330,6 +404,18 @@ namespace Pulumi.Volcengine.Alb
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
+
+        [Input("domainExtensions")]
+        private InputList<Inputs.ListenerDomainExtensionArgs>? _domainExtensions;
+
+        /// <summary>
+        /// The domain extensions of the Listener.
+        /// </summary>
+        public InputList<Inputs.ListenerDomainExtensionArgs> DomainExtensions
+        {
+            get => _domainExtensions ?? (_domainExtensions = new InputList<Inputs.ListenerDomainExtensionArgs>());
+            set => _domainExtensions = value;
+        }
 
         /// <summary>
         /// The HTTP2 feature switch,valid value is on or off. Default is `off`.
@@ -362,6 +448,24 @@ namespace Pulumi.Volcengine.Alb
         public Input<string> LoadBalancerId { get; set; } = null!;
 
         /// <summary>
+        /// The CA certificate id associated with the listener. When the value of ca_certificate_source is pca_leaf, pca_leaf_certificate_id parameter must be specified.
+        /// </summary>
+        [Input("pcaLeafCertificateId")]
+        public Input<string>? PcaLeafCertificateId { get; set; }
+
+        /// <summary>
+        /// The CA certificate id associated with the listener. When the value of ca_certificate_source is pca_root, pca_root_ca_certificate_id parameter must be specified.
+        /// </summary>
+        [Input("pcaRootCaCertificateId")]
+        public Input<string>? PcaRootCaCertificateId { get; set; }
+
+        /// <summary>
+        /// The CA certificate id associated with the listener. When the value of ca_certificate_source is pca_sub, pca_sub_ca_certificate_id parameter must be specified.
+        /// </summary>
+        [Input("pcaSubCaCertificateId")]
+        public Input<string>? PcaSubCaCertificateId { get; set; }
+
+        /// <summary>
         /// The port receiving request of the Listener, the value range in 1~65535.
         /// </summary>
         [Input("port", required: true)]
@@ -379,6 +483,18 @@ namespace Pulumi.Volcengine.Alb
         [Input("serverGroupId", required: true)]
         public Input<string> ServerGroupId { get; set; } = null!;
 
+        [Input("tags")]
+        private InputList<Inputs.ListenerTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.ListenerTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.ListenerTagArgs>());
+            set => _tags = value;
+        }
+
         public ListenerArgs()
         {
         }
@@ -387,6 +503,12 @@ namespace Pulumi.Volcengine.Alb
 
     public sealed class ListenerState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Whether to enable custom headers in access logs. Default is `off`.
+        /// </summary>
+        [Input("accessLogRecordCustomizedHeadersEnabled")]
+        public Input<string>? AccessLogRecordCustomizedHeadersEnabled { get; set; }
+
         [Input("aclIds")]
         private InputList<string>? _aclIds;
 
@@ -412,10 +534,16 @@ namespace Pulumi.Volcengine.Alb
         public Input<string>? AclType { get; set; }
 
         /// <summary>
-        /// The CA certificate id associated with the listener.
+        /// The CA certificate id associated with the listener. When the value of ca_certificate_source is alb, the ca_certificate_id parameter must be specified.
         /// </summary>
         [Input("caCertificateId")]
         public Input<string>? CaCertificateId { get; set; }
+
+        /// <summary>
+        /// The source of the CA certificate associated with the listener. This parameter is only valid for HTTPS listeners and is used for two-way authentication. Valid values: `alb`, `pca_root`, `pca_sub`.
+        /// </summary>
+        [Input("caCertificateSource")]
+        public Input<string>? CaCertificateSource { get; set; }
 
         /// <summary>
         /// The certificate id associated with the listener. Source is `cert_center`.
@@ -446,6 +574,18 @@ namespace Pulumi.Volcengine.Alb
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
+
+        [Input("domainExtensions")]
+        private InputList<Inputs.ListenerDomainExtensionGetArgs>? _domainExtensions;
+
+        /// <summary>
+        /// The domain extensions of the Listener.
+        /// </summary>
+        public InputList<Inputs.ListenerDomainExtensionGetArgs> DomainExtensions
+        {
+            get => _domainExtensions ?? (_domainExtensions = new InputList<Inputs.ListenerDomainExtensionGetArgs>());
+            set => _domainExtensions = value;
+        }
 
         /// <summary>
         /// The HTTP2 feature switch,valid value is on or off. Default is `off`.
@@ -484,6 +624,24 @@ namespace Pulumi.Volcengine.Alb
         public Input<string>? LoadBalancerId { get; set; }
 
         /// <summary>
+        /// The CA certificate id associated with the listener. When the value of ca_certificate_source is pca_leaf, pca_leaf_certificate_id parameter must be specified.
+        /// </summary>
+        [Input("pcaLeafCertificateId")]
+        public Input<string>? PcaLeafCertificateId { get; set; }
+
+        /// <summary>
+        /// The CA certificate id associated with the listener. When the value of ca_certificate_source is pca_root, pca_root_ca_certificate_id parameter must be specified.
+        /// </summary>
+        [Input("pcaRootCaCertificateId")]
+        public Input<string>? PcaRootCaCertificateId { get; set; }
+
+        /// <summary>
+        /// The CA certificate id associated with the listener. When the value of ca_certificate_source is pca_sub, pca_sub_ca_certificate_id parameter must be specified.
+        /// </summary>
+        [Input("pcaSubCaCertificateId")]
+        public Input<string>? PcaSubCaCertificateId { get; set; }
+
+        /// <summary>
         /// The port receiving request of the Listener, the value range in 1~65535.
         /// </summary>
         [Input("port")]
@@ -500,6 +658,18 @@ namespace Pulumi.Volcengine.Alb
         /// </summary>
         [Input("serverGroupId")]
         public Input<string>? ServerGroupId { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.ListenerTagGetArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.ListenerTagGetArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.ListenerTagGetArgs>());
+            set => _tags = value;
+        }
 
         public ListenerState()
         {

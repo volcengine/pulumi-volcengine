@@ -30,6 +30,12 @@ import (
 //				Ids: []string{
 //					"hctpl-1iidd1tobnim874adhf708uwf",
 //				},
+//				Tags: []alb.GetHealthCheckTemplatesTag{
+//					{
+//						Key:   "key1",
+//						Value: "value2",
+//					},
+//				},
 //			}, nil)
 //			if err != nil {
 //				return err
@@ -61,6 +67,10 @@ type HealthCheckTemplatesArgs struct {
 	NameRegex *string `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
+	// The project name to query.
+	ProjectName *string `pulumi:"projectName"`
+	// Tags.
+	Tags []HealthCheckTemplatesTag `pulumi:"tags"`
 }
 
 // A collection of values returned by HealthCheckTemplates.
@@ -74,6 +84,10 @@ type HealthCheckTemplatesResult struct {
 	Ids        []string `pulumi:"ids"`
 	NameRegex  *string  `pulumi:"nameRegex"`
 	OutputFile *string  `pulumi:"outputFile"`
+	// The project name to which the health check template belongs.
+	ProjectName *string `pulumi:"projectName"`
+	// Tags.
+	Tags []HealthCheckTemplatesTag `pulumi:"tags"`
 	// The total count of health check template query.
 	TotalCount int `pulumi:"totalCount"`
 }
@@ -101,6 +115,10 @@ type HealthCheckTemplatesOutputArgs struct {
 	NameRegex pulumi.StringPtrInput `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// The project name to query.
+	ProjectName pulumi.StringPtrInput `pulumi:"projectName"`
+	// Tags.
+	Tags HealthCheckTemplatesTagArrayInput `pulumi:"tags"`
 }
 
 func (HealthCheckTemplatesOutputArgs) ElementType() reflect.Type {
@@ -149,6 +167,16 @@ func (o HealthCheckTemplatesResultOutput) NameRegex() pulumi.StringPtrOutput {
 
 func (o HealthCheckTemplatesResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v HealthCheckTemplatesResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
+}
+
+// The project name to which the health check template belongs.
+func (o HealthCheckTemplatesResultOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v HealthCheckTemplatesResult) *string { return v.ProjectName }).(pulumi.StringPtrOutput)
+}
+
+// Tags.
+func (o HealthCheckTemplatesResultOutput) Tags() HealthCheckTemplatesTagArrayOutput {
+	return o.ApplyT(func(v HealthCheckTemplatesResult) []HealthCheckTemplatesTag { return v.Tags }).(HealthCheckTemplatesTagArrayOutput)
 }
 
 // The total count of health check template query.

@@ -98,6 +98,18 @@ namespace Pulumi.Volcengine.Alb
         [Input("projectName")]
         public string? ProjectName { get; set; }
 
+        [Input("tags")]
+        private List<Inputs.CustomizedCfgsTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public List<Inputs.CustomizedCfgsTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new List<Inputs.CustomizedCfgsTagArgs>());
+            set => _tags = value;
+        }
+
         public CustomizedCfgsArgs()
         {
         }
@@ -148,6 +160,18 @@ namespace Pulumi.Volcengine.Alb
         [Input("projectName")]
         public Input<string>? ProjectName { get; set; }
 
+        [Input("tags")]
+        private InputList<Inputs.CustomizedCfgsTagInputArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.CustomizedCfgsTagInputArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.CustomizedCfgsTagInputArgs>());
+            set => _tags = value;
+        }
+
         public CustomizedCfgsInvokeArgs()
         {
         }
@@ -182,6 +206,10 @@ namespace Pulumi.Volcengine.Alb
         /// </summary>
         public readonly string? ProjectName;
         /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.CustomizedCfgsTagResult> Tags;
+        /// <summary>
         /// The total count of CustomizedCfg query.
         /// </summary>
         public readonly int TotalCount;
@@ -204,6 +232,8 @@ namespace Pulumi.Volcengine.Alb
 
             string? projectName,
 
+            ImmutableArray<Outputs.CustomizedCfgsTagResult> tags,
+
             int totalCount)
         {
             Cfgs = cfgs;
@@ -214,6 +244,7 @@ namespace Pulumi.Volcengine.Alb
             NameRegex = nameRegex;
             OutputFile = outputFile;
             ProjectName = projectName;
+            Tags = tags;
             TotalCount = totalCount;
         }
     }

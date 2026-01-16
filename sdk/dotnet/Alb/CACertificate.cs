@@ -100,6 +100,12 @@ namespace Pulumi.Volcengine.Alb
         public Output<string> ProjectName { get; private set; } = null!;
 
         /// <summary>
+        /// The san extension of the Certificate.
+        /// </summary>
+        [Output("san")]
+        public Output<string> San { get; private set; } = null!;
+
+        /// <summary>
         /// The status of the CA Certificate.
         /// </summary>
         [Output("status")]
@@ -243,6 +249,12 @@ namespace Pulumi.Volcengine.Alb
         /// </summary>
         [Input("projectName")]
         public Input<string>? ProjectName { get; set; }
+
+        /// <summary>
+        /// The san extension of the Certificate.
+        /// </summary>
+        [Input("san")]
+        public Input<string>? San { get; set; }
 
         /// <summary>
         /// The status of the CA Certificate.

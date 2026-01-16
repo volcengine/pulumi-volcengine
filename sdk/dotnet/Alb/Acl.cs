@@ -84,6 +84,24 @@ namespace Pulumi.Volcengine.Alb
         [Output("projectName")]
         public Output<string> ProjectName { get; private set; } = null!;
 
+        /// <summary>
+        /// The status of the Acl.
+        /// </summary>
+        [Output("status")]
+        public Output<string> Status { get; private set; } = null!;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<Outputs.AclTag>> Tags { get; private set; } = null!;
+
+        /// <summary>
+        /// Update time of Acl.
+        /// </summary>
+        [Output("updateTime")]
+        public Output<string> UpdateTime { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a Acl resource with the given unique name, arguments, and options.
@@ -161,6 +179,18 @@ namespace Pulumi.Volcengine.Alb
         [Input("projectName")]
         public Input<string>? ProjectName { get; set; }
 
+        [Input("tags")]
+        private InputList<Inputs.AclTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.AclTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.AclTagArgs>());
+            set => _tags = value;
+        }
+
         public AclArgs()
         {
         }
@@ -204,6 +234,30 @@ namespace Pulumi.Volcengine.Alb
         /// </summary>
         [Input("projectName")]
         public Input<string>? ProjectName { get; set; }
+
+        /// <summary>
+        /// The status of the Acl.
+        /// </summary>
+        [Input("status")]
+        public Input<string>? Status { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.AclTagGetArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.AclTagGetArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.AclTagGetArgs>());
+            set => _tags = value;
+        }
+
+        /// <summary>
+        /// Update time of Acl.
+        /// </summary>
+        [Input("updateTime")]
+        public Input<string>? UpdateTime { get; set; }
 
         public AclState()
         {

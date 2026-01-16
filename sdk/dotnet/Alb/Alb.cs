@@ -70,8 +70,8 @@ namespace Pulumi.Volcengine.Alb
     ///         {
     ///             new Volcengine.Alb.Inputs.AlbTagArgs
     ///             {
-    ///                 Key = "k2",
-    ///                 Value = "v2",
+    ///                 Key = "k1",
+    ///                 Value = "v1",
     ///             },
     ///         },
     ///     });
@@ -89,6 +89,9 @@ namespace Pulumi.Volcengine.Alb
     ///         },
     ///         ProjectName = "default",
     ///         DeleteProtection = "off",
+    ///         ModificationProtectionStatus = "NonProtection",
+    ///         ModificationProtectionReason = "Test modification protection",
+    ///         LoadBalancerEdition = "Basic",
     ///         EipBillingConfig = new Volcengine.Alb.Inputs.AlbEipBillingConfigArgs
     ///         {
     ///             Isp = "BGP",
@@ -105,8 +108,8 @@ namespace Pulumi.Volcengine.Alb
     ///         {
     ///             new Volcengine.Alb.Inputs.AlbTagArgs
     ///             {
-    ///                 Key = "k2",
-    ///                 Value = "v2",
+    ///                 Key = "k1",
+    ///                 Value = "v1",
     ///             },
     ///         },
     ///     }, new CustomResourceOptions
@@ -114,6 +117,39 @@ namespace Pulumi.Volcengine.Alb
     ///         DependsOn =
     ///         {
     ///             ipv6Gateway,
+    ///         },
+    ///     });
+    /// 
+    ///     // CLone ALB instance
+    ///     var alb_cloned = new Volcengine.Alb.Alb("alb-cloned", new()
+    ///     {
+    ///         SourceLoadBalancerId = alb_private.Id,
+    ///         LoadBalancerName = "acc-test-alb-cloned",
+    ///         Description = "cloned from alb-private",
+    ///         SubnetIds = new[]
+    ///         {
+    ///             subnetIpv61.Id,
+    ///         },
+    ///         Type = "private",
+    ///         ProjectName = "default",
+    ///     });
+    /// 
+    ///     // Example of ALB network type change, private -&gt; public
+    ///     var alb_type_change = new Volcengine.Alb.Alb("alb-type-change", new()
+    ///     {
+    ///         LoadBalancerName = "acc-test-alb-type-change",
+    ///         Description = "will change to public type",
+    ///         SubnetIds = new[]
+    ///         {
+    ///             subnetIpv61.Id,
+    ///             subnetIpv62.Id,
+    ///         },
+    ///         Type = "public",
+    ///         ProjectName = "default",
+    ///         AllocationIds = new[]
+    ///         {
+    ///             "eip-iinpy4k1rytc74o8curgocd7",
+    ///             "eip-iinpy4k1rytc74o8curgocd8",
     ///         },
     ///     });
     /// 
@@ -136,6 +172,12 @@ namespace Pulumi.Volcengine.Alb
         /// </summary>
         [Output("addressIpVersion")]
         public Output<string?> AddressIpVersion { get; private set; } = null!;
+
+        /// <summary>
+        /// The ID of the public IP. This field is only valid when the type field changes from private to public.
+        /// </summary>
+        [Output("allocationIds")]
+        public Output<ImmutableArray<string>> AllocationIds { get; private set; } = null!;
 
         /// <summary>
         /// Whether to enable the delete protection function of the Alb. Valid values: `on`, `off`. Default is `off`.
@@ -162,10 +204,22 @@ namespace Pulumi.Volcengine.Alb
         public Output<Outputs.AlbEipBillingConfig> EipBillingConfig { get; private set; } = null!;
 
         /// <summary>
+        /// The global accelerator configuration.
+        /// </summary>
+        [Output("globalAccelerator")]
+        public Output<Outputs.AlbGlobalAccelerator> GlobalAccelerator { get; private set; } = null!;
+
+        /// <summary>
         /// The billing configuration of the Ipv6 EIP which automatically associated to the Alb. This field is required when the type of the Alb is `public`.When the type of the Alb is `private`, suggest using a combination of resource `volcengine.vpc.Ipv6Gateway` and `volcengine.vpc.Ipv6AddressBandwidth` to achieve ipv6 public network access function.
         /// </summary>
         [Output("ipv6EipBillingConfig")]
         public Output<Outputs.AlbIpv6EipBillingConfig> Ipv6EipBillingConfig { get; private set; } = null!;
+
+        /// <summary>
+        /// The version of the ALB instance. Basic: Basic Edition. Standard: Standard Edition. Default is `Basic`.
+        /// </summary>
+        [Output("loadBalancerEdition")]
+        public Output<string> LoadBalancerEdition { get; private set; } = null!;
 
         /// <summary>
         /// The name of the Alb.
@@ -180,10 +234,34 @@ namespace Pulumi.Volcengine.Alb
         public Output<ImmutableArray<string>> LocalAddresses { get; private set; } = null!;
 
         /// <summary>
+        /// The reason for enabling instance modification protection. This parameter is valid when the modification_protection_status is `ConsoleProtection`.
+        /// </summary>
+        [Output("modificationProtectionReason")]
+        public Output<string> ModificationProtectionReason { get; private set; } = null!;
+
+        /// <summary>
+        /// Whether to enable the modification protection function of the Alb. Valid values: `NonProtection`, `ConsoleProtection`. Default is `NonProtection`. NonProtection: Instance modification protection is not enabled. ConsoleProtection: Instance modification protection is enabled; you cannot modify the instance configuration through the ALB console, and can only modify the instance configuration by calling the API.
+        /// </summary>
+        [Output("modificationProtectionStatus")]
+        public Output<string> ModificationProtectionStatus { get; private set; } = null!;
+
+        /// <summary>
         /// The ProjectName of the Alb.
         /// </summary>
         [Output("projectName")]
         public Output<string> ProjectName { get; private set; } = null!;
+
+        /// <summary>
+        /// ALB can support the Proxy Protocol and record the real IP of the client.
+        /// </summary>
+        [Output("proxyProtocolEnabled")]
+        public Output<string> ProxyProtocolEnabled { get; private set; } = null!;
+
+        /// <summary>
+        /// The source ALB instance ID for cloning. If specified, the ALB instance will be cloned from this source.
+        /// </summary>
+        [Output("sourceLoadBalancerId")]
+        public Output<string?> SourceLoadBalancerId { get; private set; } = null!;
 
         /// <summary>
         /// The status of the Alb.
@@ -214,6 +292,24 @@ namespace Pulumi.Volcengine.Alb
         /// </summary>
         [Output("vpcId")]
         public Output<string> VpcId { get; private set; } = null!;
+
+        /// <summary>
+        /// The ID of the WAF instance to be associated with the Alb. This field is valid when the value of the `waf_protection_enabled` is `on`.
+        /// </summary>
+        [Output("wafInstanceId")]
+        public Output<string> WafInstanceId { get; private set; } = null!;
+
+        /// <summary>
+        /// The domain name of the WAF protected Alb. This field is valid when the value of the `waf_protection_enabled` is `on`.
+        /// </summary>
+        [Output("wafProtectedDomain")]
+        public Output<string?> WafProtectedDomain { get; private set; } = null!;
+
+        /// <summary>
+        /// Whether to enable the WAF protection function of the Alb. Valid values: `off`, `on`. Default is `off`.
+        /// </summary>
+        [Output("wafProtectionEnabled")]
+        public Output<string> WafProtectionEnabled { get; private set; } = null!;
 
         /// <summary>
         /// Configuration information of the Alb instance in different Availability Zones.
@@ -274,6 +370,18 @@ namespace Pulumi.Volcengine.Alb
         [Input("addressIpVersion")]
         public Input<string>? AddressIpVersion { get; set; }
 
+        [Input("allocationIds")]
+        private InputList<string>? _allocationIds;
+
+        /// <summary>
+        /// The ID of the public IP. This field is only valid when the type field changes from private to public.
+        /// </summary>
+        public InputList<string> AllocationIds
+        {
+            get => _allocationIds ?? (_allocationIds = new InputList<string>());
+            set => _allocationIds = value;
+        }
+
         /// <summary>
         /// Whether to enable the delete protection function of the Alb. Valid values: `on`, `off`. Default is `off`.
         /// </summary>
@@ -293,10 +401,22 @@ namespace Pulumi.Volcengine.Alb
         public Input<Inputs.AlbEipBillingConfigArgs>? EipBillingConfig { get; set; }
 
         /// <summary>
+        /// The global accelerator configuration.
+        /// </summary>
+        [Input("globalAccelerator")]
+        public Input<Inputs.AlbGlobalAcceleratorArgs>? GlobalAccelerator { get; set; }
+
+        /// <summary>
         /// The billing configuration of the Ipv6 EIP which automatically associated to the Alb. This field is required when the type of the Alb is `public`.When the type of the Alb is `private`, suggest using a combination of resource `volcengine.vpc.Ipv6Gateway` and `volcengine.vpc.Ipv6AddressBandwidth` to achieve ipv6 public network access function.
         /// </summary>
         [Input("ipv6EipBillingConfig")]
         public Input<Inputs.AlbIpv6EipBillingConfigArgs>? Ipv6EipBillingConfig { get; set; }
+
+        /// <summary>
+        /// The version of the ALB instance. Basic: Basic Edition. Standard: Standard Edition. Default is `Basic`.
+        /// </summary>
+        [Input("loadBalancerEdition")]
+        public Input<string>? LoadBalancerEdition { get; set; }
 
         /// <summary>
         /// The name of the Alb.
@@ -305,10 +425,34 @@ namespace Pulumi.Volcengine.Alb
         public Input<string>? LoadBalancerName { get; set; }
 
         /// <summary>
+        /// The reason for enabling instance modification protection. This parameter is valid when the modification_protection_status is `ConsoleProtection`.
+        /// </summary>
+        [Input("modificationProtectionReason")]
+        public Input<string>? ModificationProtectionReason { get; set; }
+
+        /// <summary>
+        /// Whether to enable the modification protection function of the Alb. Valid values: `NonProtection`, `ConsoleProtection`. Default is `NonProtection`. NonProtection: Instance modification protection is not enabled. ConsoleProtection: Instance modification protection is enabled; you cannot modify the instance configuration through the ALB console, and can only modify the instance configuration by calling the API.
+        /// </summary>
+        [Input("modificationProtectionStatus")]
+        public Input<string>? ModificationProtectionStatus { get; set; }
+
+        /// <summary>
         /// The ProjectName of the Alb.
         /// </summary>
         [Input("projectName")]
         public Input<string>? ProjectName { get; set; }
+
+        /// <summary>
+        /// ALB can support the Proxy Protocol and record the real IP of the client.
+        /// </summary>
+        [Input("proxyProtocolEnabled")]
+        public Input<string>? ProxyProtocolEnabled { get; set; }
+
+        /// <summary>
+        /// The source ALB instance ID for cloning. If specified, the ALB instance will be cloned from this source.
+        /// </summary>
+        [Input("sourceLoadBalancerId")]
+        public Input<string>? SourceLoadBalancerId { get; set; }
 
         [Input("subnetIds", required: true)]
         private InputList<string>? _subnetIds;
@@ -340,6 +484,24 @@ namespace Pulumi.Volcengine.Alb
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
+        /// <summary>
+        /// The ID of the WAF instance to be associated with the Alb. This field is valid when the value of the `waf_protection_enabled` is `on`.
+        /// </summary>
+        [Input("wafInstanceId")]
+        public Input<string>? WafInstanceId { get; set; }
+
+        /// <summary>
+        /// The domain name of the WAF protected Alb. This field is valid when the value of the `waf_protection_enabled` is `on`.
+        /// </summary>
+        [Input("wafProtectedDomain")]
+        public Input<string>? WafProtectedDomain { get; set; }
+
+        /// <summary>
+        /// Whether to enable the WAF protection function of the Alb. Valid values: `off`, `on`. Default is `off`.
+        /// </summary>
+        [Input("wafProtectionEnabled")]
+        public Input<string>? WafProtectionEnabled { get; set; }
+
         public AlbArgs()
         {
         }
@@ -353,6 +515,18 @@ namespace Pulumi.Volcengine.Alb
         /// </summary>
         [Input("addressIpVersion")]
         public Input<string>? AddressIpVersion { get; set; }
+
+        [Input("allocationIds")]
+        private InputList<string>? _allocationIds;
+
+        /// <summary>
+        /// The ID of the public IP. This field is only valid when the type field changes from private to public.
+        /// </summary>
+        public InputList<string> AllocationIds
+        {
+            get => _allocationIds ?? (_allocationIds = new InputList<string>());
+            set => _allocationIds = value;
+        }
 
         /// <summary>
         /// Whether to enable the delete protection function of the Alb. Valid values: `on`, `off`. Default is `off`.
@@ -379,10 +553,22 @@ namespace Pulumi.Volcengine.Alb
         public Input<Inputs.AlbEipBillingConfigGetArgs>? EipBillingConfig { get; set; }
 
         /// <summary>
+        /// The global accelerator configuration.
+        /// </summary>
+        [Input("globalAccelerator")]
+        public Input<Inputs.AlbGlobalAcceleratorGetArgs>? GlobalAccelerator { get; set; }
+
+        /// <summary>
         /// The billing configuration of the Ipv6 EIP which automatically associated to the Alb. This field is required when the type of the Alb is `public`.When the type of the Alb is `private`, suggest using a combination of resource `volcengine.vpc.Ipv6Gateway` and `volcengine.vpc.Ipv6AddressBandwidth` to achieve ipv6 public network access function.
         /// </summary>
         [Input("ipv6EipBillingConfig")]
         public Input<Inputs.AlbIpv6EipBillingConfigGetArgs>? Ipv6EipBillingConfig { get; set; }
+
+        /// <summary>
+        /// The version of the ALB instance. Basic: Basic Edition. Standard: Standard Edition. Default is `Basic`.
+        /// </summary>
+        [Input("loadBalancerEdition")]
+        public Input<string>? LoadBalancerEdition { get; set; }
 
         /// <summary>
         /// The name of the Alb.
@@ -403,10 +589,34 @@ namespace Pulumi.Volcengine.Alb
         }
 
         /// <summary>
+        /// The reason for enabling instance modification protection. This parameter is valid when the modification_protection_status is `ConsoleProtection`.
+        /// </summary>
+        [Input("modificationProtectionReason")]
+        public Input<string>? ModificationProtectionReason { get; set; }
+
+        /// <summary>
+        /// Whether to enable the modification protection function of the Alb. Valid values: `NonProtection`, `ConsoleProtection`. Default is `NonProtection`. NonProtection: Instance modification protection is not enabled. ConsoleProtection: Instance modification protection is enabled; you cannot modify the instance configuration through the ALB console, and can only modify the instance configuration by calling the API.
+        /// </summary>
+        [Input("modificationProtectionStatus")]
+        public Input<string>? ModificationProtectionStatus { get; set; }
+
+        /// <summary>
         /// The ProjectName of the Alb.
         /// </summary>
         [Input("projectName")]
         public Input<string>? ProjectName { get; set; }
+
+        /// <summary>
+        /// ALB can support the Proxy Protocol and record the real IP of the client.
+        /// </summary>
+        [Input("proxyProtocolEnabled")]
+        public Input<string>? ProxyProtocolEnabled { get; set; }
+
+        /// <summary>
+        /// The source ALB instance ID for cloning. If specified, the ALB instance will be cloned from this source.
+        /// </summary>
+        [Input("sourceLoadBalancerId")]
+        public Input<string>? SourceLoadBalancerId { get; set; }
 
         /// <summary>
         /// The status of the Alb.
@@ -449,6 +659,24 @@ namespace Pulumi.Volcengine.Alb
         /// </summary>
         [Input("vpcId")]
         public Input<string>? VpcId { get; set; }
+
+        /// <summary>
+        /// The ID of the WAF instance to be associated with the Alb. This field is valid when the value of the `waf_protection_enabled` is `on`.
+        /// </summary>
+        [Input("wafInstanceId")]
+        public Input<string>? WafInstanceId { get; set; }
+
+        /// <summary>
+        /// The domain name of the WAF protected Alb. This field is valid when the value of the `waf_protection_enabled` is `on`.
+        /// </summary>
+        [Input("wafProtectedDomain")]
+        public Input<string>? WafProtectedDomain { get; set; }
+
+        /// <summary>
+        /// Whether to enable the WAF protection function of the Alb. Valid values: `off`, `on`. Default is `off`.
+        /// </summary>
+        [Input("wafProtectionEnabled")]
+        public Input<string>? WafProtectionEnabled { get; set; }
 
         [Input("zoneMappings")]
         private InputList<Inputs.AlbZoneMappingGetArgs>? _zoneMappings;

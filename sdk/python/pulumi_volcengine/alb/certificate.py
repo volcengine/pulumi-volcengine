@@ -8,6 +8,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['CertificateArgs', 'Certificate']
 
@@ -18,7 +20,8 @@ class CertificateArgs:
                  public_key: pulumi.Input[str],
                  certificate_name: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
-                 project_name: Optional[pulumi.Input[str]] = None):
+                 project_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['CertificateTagArgs']]]] = None):
         """
         The set of arguments for constructing a Certificate resource.
         :param pulumi.Input[str] private_key: The private key of the Certificate.
@@ -26,6 +29,7 @@ class CertificateArgs:
         :param pulumi.Input[str] certificate_name: The name of the Certificate.
         :param pulumi.Input[str] description: The description of the Certificate.
         :param pulumi.Input[str] project_name: The project name of the Certificate.
+        :param pulumi.Input[Sequence[pulumi.Input['CertificateTagArgs']]] tags: Tags.
         """
         pulumi.set(__self__, "private_key", private_key)
         pulumi.set(__self__, "public_key", public_key)
@@ -35,6 +39,8 @@ class CertificateArgs:
             pulumi.set(__self__, "description", description)
         if project_name is not None:
             pulumi.set(__self__, "project_name", project_name)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter(name="privateKey")
@@ -96,6 +102,18 @@ class CertificateArgs:
     def project_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "project_name", value)
 
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CertificateTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['CertificateTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
 
 @pulumi.input_type
 class _CertificateState:
@@ -110,7 +128,9 @@ class _CertificateState:
                  private_key: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  public_key: Optional[pulumi.Input[str]] = None,
-                 status: Optional[pulumi.Input[str]] = None):
+                 san: Optional[pulumi.Input[str]] = None,
+                 status: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['CertificateTagArgs']]]] = None):
         """
         Input properties used for looking up and filtering Certificate resources.
         :param pulumi.Input[str] certificate_name: The name of the Certificate.
@@ -123,7 +143,9 @@ class _CertificateState:
         :param pulumi.Input[str] private_key: The private key of the Certificate.
         :param pulumi.Input[str] project_name: The project name of the Certificate.
         :param pulumi.Input[str] public_key: The public key of the Certificate.
+        :param pulumi.Input[str] san: The san extension of the Certificate.
         :param pulumi.Input[str] status: The status of the Certificate.
+        :param pulumi.Input[Sequence[pulumi.Input['CertificateTagArgs']]] tags: Tags.
         """
         if certificate_name is not None:
             pulumi.set(__self__, "certificate_name", certificate_name)
@@ -145,8 +167,12 @@ class _CertificateState:
             pulumi.set(__self__, "project_name", project_name)
         if public_key is not None:
             pulumi.set(__self__, "public_key", public_key)
+        if san is not None:
+            pulumi.set(__self__, "san", san)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter(name="certificateName")
@@ -270,6 +296,18 @@ class _CertificateState:
 
     @property
     @pulumi.getter
+    def san(self) -> Optional[pulumi.Input[str]]:
+        """
+        The san extension of the Certificate.
+        """
+        return pulumi.get(self, "san")
+
+    @san.setter
+    def san(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "san", value)
+
+    @property
+    @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
         """
         The status of the Certificate.
@@ -279,6 +317,18 @@ class _CertificateState:
     @status.setter
     def status(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "status", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CertificateTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['CertificateTagArgs']]]]):
+        pulumi.set(self, "tags", value)
 
 
 class Certificate(pulumi.CustomResource):
@@ -291,6 +341,7 @@ class Certificate(pulumi.CustomResource):
                  private_key: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  public_key: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CertificateTagArgs']]]]] = None,
                  __props__=None):
         """
         Provides a resource to manage alb certificate
@@ -303,7 +354,11 @@ class Certificate(pulumi.CustomResource):
         foo = volcengine.alb.Certificate("foo",
             description="test123",
             private_key="private key",
-            public_key="public key")
+            public_key="public key",
+            tags=[volcengine.alb.CertificateTagArgs(
+                key="k1",
+                value="v1",
+            )])
         ```
 
         ## Import
@@ -321,6 +376,7 @@ class Certificate(pulumi.CustomResource):
         :param pulumi.Input[str] private_key: The private key of the Certificate.
         :param pulumi.Input[str] project_name: The project name of the Certificate.
         :param pulumi.Input[str] public_key: The public key of the Certificate.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CertificateTagArgs']]]] tags: Tags.
         """
         ...
     @overload
@@ -339,7 +395,11 @@ class Certificate(pulumi.CustomResource):
         foo = volcengine.alb.Certificate("foo",
             description="test123",
             private_key="private key",
-            public_key="public key")
+            public_key="public key",
+            tags=[volcengine.alb.CertificateTagArgs(
+                key="k1",
+                value="v1",
+            )])
         ```
 
         ## Import
@@ -370,6 +430,7 @@ class Certificate(pulumi.CustomResource):
                  private_key: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  public_key: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CertificateTagArgs']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -388,11 +449,13 @@ class Certificate(pulumi.CustomResource):
             if public_key is None and not opts.urn:
                 raise TypeError("Missing required property 'public_key'")
             __props__.__dict__["public_key"] = public_key
+            __props__.__dict__["tags"] = tags
             __props__.__dict__["certificate_type"] = None
             __props__.__dict__["create_time"] = None
             __props__.__dict__["domain_name"] = None
             __props__.__dict__["expired_at"] = None
             __props__.__dict__["listeners"] = None
+            __props__.__dict__["san"] = None
             __props__.__dict__["status"] = None
         super(Certificate, __self__).__init__(
             'volcengine:alb/certificate:Certificate',
@@ -414,7 +477,9 @@ class Certificate(pulumi.CustomResource):
             private_key: Optional[pulumi.Input[str]] = None,
             project_name: Optional[pulumi.Input[str]] = None,
             public_key: Optional[pulumi.Input[str]] = None,
-            status: Optional[pulumi.Input[str]] = None) -> 'Certificate':
+            san: Optional[pulumi.Input[str]] = None,
+            status: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CertificateTagArgs']]]]] = None) -> 'Certificate':
         """
         Get an existing Certificate resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -432,7 +497,9 @@ class Certificate(pulumi.CustomResource):
         :param pulumi.Input[str] private_key: The private key of the Certificate.
         :param pulumi.Input[str] project_name: The project name of the Certificate.
         :param pulumi.Input[str] public_key: The public key of the Certificate.
+        :param pulumi.Input[str] san: The san extension of the Certificate.
         :param pulumi.Input[str] status: The status of the Certificate.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CertificateTagArgs']]]] tags: Tags.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -448,7 +515,9 @@ class Certificate(pulumi.CustomResource):
         __props__.__dict__["private_key"] = private_key
         __props__.__dict__["project_name"] = project_name
         __props__.__dict__["public_key"] = public_key
+        __props__.__dict__["san"] = san
         __props__.__dict__["status"] = status
+        __props__.__dict__["tags"] = tags
         return Certificate(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -533,9 +602,25 @@ class Certificate(pulumi.CustomResource):
 
     @property
     @pulumi.getter
+    def san(self) -> pulumi.Output[str]:
+        """
+        The san extension of the Certificate.
+        """
+        return pulumi.get(self, "san")
+
+    @property
+    @pulumi.getter
     def status(self) -> pulumi.Output[str]:
         """
         The status of the Certificate.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.CertificateTag']]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 

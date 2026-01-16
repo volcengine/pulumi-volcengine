@@ -23,10 +23,13 @@ class GetAlbsResult:
     """
     A collection of values returned by getAlbs.
     """
-    def __init__(__self__, albs=None, eni_address=None, id=None, ids=None, load_balancer_name=None, name_regex=None, output_file=None, project=None, tags=None, total_count=None, vpc_id=None):
+    def __init__(__self__, albs=None, eip_address=None, eni_address=None, id=None, ids=None, load_balancer_name=None, name_regex=None, output_file=None, project=None, tags=None, total_count=None, type=None, vpc_id=None):
         if albs and not isinstance(albs, list):
             raise TypeError("Expected argument 'albs' to be a list")
         pulumi.set(__self__, "albs", albs)
+        if eip_address and not isinstance(eip_address, str):
+            raise TypeError("Expected argument 'eip_address' to be a str")
+        pulumi.set(__self__, "eip_address", eip_address)
         if eni_address and not isinstance(eni_address, str):
             raise TypeError("Expected argument 'eni_address' to be a str")
         pulumi.set(__self__, "eni_address", eni_address)
@@ -54,6 +57,9 @@ class GetAlbsResult:
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
+        if type and not isinstance(type, str):
+            raise TypeError("Expected argument 'type' to be a str")
+        pulumi.set(__self__, "type", type)
         if vpc_id and not isinstance(vpc_id, str):
             raise TypeError("Expected argument 'vpc_id' to be a str")
         pulumi.set(__self__, "vpc_id", vpc_id)
@@ -65,6 +71,14 @@ class GetAlbsResult:
         The collection of query.
         """
         return pulumi.get(self, "albs")
+
+    @property
+    @pulumi.getter(name="eipAddress")
+    def eip_address(self) -> Optional[str]:
+        """
+        The Eip address of the Alb.
+        """
+        return pulumi.get(self, "eip_address")
 
     @property
     @pulumi.getter(name="eniAddress")
@@ -127,6 +141,14 @@ class GetAlbsResult:
         return pulumi.get(self, "total_count")
 
     @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        """
+        The type of the Alb, valid value: `public`, `private`.
+        """
+        return pulumi.get(self, "type")
+
+    @property
     @pulumi.getter(name="vpcId")
     def vpc_id(self) -> Optional[str]:
         """
@@ -142,6 +164,7 @@ class AwaitableGetAlbsResult(GetAlbsResult):
             yield self
         return GetAlbsResult(
             albs=self.albs,
+            eip_address=self.eip_address,
             eni_address=self.eni_address,
             id=self.id,
             ids=self.ids,
@@ -151,16 +174,19 @@ class AwaitableGetAlbsResult(GetAlbsResult):
             project=self.project,
             tags=self.tags,
             total_count=self.total_count,
+            type=self.type,
             vpc_id=self.vpc_id)
 
 
-def get_albs(eni_address: Optional[str] = None,
+def get_albs(eip_address: Optional[str] = None,
+             eni_address: Optional[str] = None,
              ids: Optional[Sequence[str]] = None,
              load_balancer_name: Optional[str] = None,
              name_regex: Optional[str] = None,
              output_file: Optional[str] = None,
              project: Optional[str] = None,
              tags: Optional[Sequence[pulumi.InputType['GetAlbsTagArgs']]] = None,
+             type: Optional[str] = None,
              vpc_id: Optional[str] = None,
              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAlbsResult:
     """
@@ -206,6 +232,7 @@ def get_albs(eni_address: Optional[str] = None,
     ```
 
 
+    :param str eip_address: The public ip address of the Alb.
     :param str eni_address: The private ip address of the Alb.
     :param Sequence[str] ids: A list of Alb IDs.
     :param str load_balancer_name: The name of the Alb.
@@ -213,9 +240,11 @@ def get_albs(eni_address: Optional[str] = None,
     :param str output_file: File name where to save data source results.
     :param str project: The project of the Alb.
     :param Sequence[pulumi.InputType['GetAlbsTagArgs']] tags: Tags.
+    :param str type: The type of the Alb. public: public network ALB. private: private network ALB.
     :param str vpc_id: The vpc id which Alb belongs to.
     """
     __args__ = dict()
+    __args__['eipAddress'] = eip_address
     __args__['eniAddress'] = eni_address
     __args__['ids'] = ids
     __args__['loadBalancerName'] = load_balancer_name
@@ -223,12 +252,14 @@ def get_albs(eni_address: Optional[str] = None,
     __args__['outputFile'] = output_file
     __args__['project'] = project
     __args__['tags'] = tags
+    __args__['type'] = type
     __args__['vpcId'] = vpc_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('volcengine:alb/getAlbs:getAlbs', __args__, opts=opts, typ=GetAlbsResult).value
 
     return AwaitableGetAlbsResult(
         albs=pulumi.get(__ret__, 'albs'),
+        eip_address=pulumi.get(__ret__, 'eip_address'),
         eni_address=pulumi.get(__ret__, 'eni_address'),
         id=pulumi.get(__ret__, 'id'),
         ids=pulumi.get(__ret__, 'ids'),
@@ -238,17 +269,20 @@ def get_albs(eni_address: Optional[str] = None,
         project=pulumi.get(__ret__, 'project'),
         tags=pulumi.get(__ret__, 'tags'),
         total_count=pulumi.get(__ret__, 'total_count'),
+        type=pulumi.get(__ret__, 'type'),
         vpc_id=pulumi.get(__ret__, 'vpc_id'))
 
 
 @_utilities.lift_output_func(get_albs)
-def get_albs_output(eni_address: Optional[pulumi.Input[Optional[str]]] = None,
+def get_albs_output(eip_address: Optional[pulumi.Input[Optional[str]]] = None,
+                    eni_address: Optional[pulumi.Input[Optional[str]]] = None,
                     ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                     load_balancer_name: Optional[pulumi.Input[Optional[str]]] = None,
                     name_regex: Optional[pulumi.Input[Optional[str]]] = None,
                     output_file: Optional[pulumi.Input[Optional[str]]] = None,
                     project: Optional[pulumi.Input[Optional[str]]] = None,
                     tags: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetAlbsTagArgs']]]]] = None,
+                    type: Optional[pulumi.Input[Optional[str]]] = None,
                     vpc_id: Optional[pulumi.Input[Optional[str]]] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAlbsResult]:
     """
@@ -294,6 +328,7 @@ def get_albs_output(eni_address: Optional[pulumi.Input[Optional[str]]] = None,
     ```
 
 
+    :param str eip_address: The public ip address of the Alb.
     :param str eni_address: The private ip address of the Alb.
     :param Sequence[str] ids: A list of Alb IDs.
     :param str load_balancer_name: The name of the Alb.
@@ -301,6 +336,7 @@ def get_albs_output(eni_address: Optional[pulumi.Input[Optional[str]]] = None,
     :param str output_file: File name where to save data source results.
     :param str project: The project of the Alb.
     :param Sequence[pulumi.InputType['GetAlbsTagArgs']] tags: Tags.
+    :param str type: The type of the Alb. public: public network ALB. private: private network ALB.
     :param str vpc_id: The vpc id which Alb belongs to.
     """
     ...

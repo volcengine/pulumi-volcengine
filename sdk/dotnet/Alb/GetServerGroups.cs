@@ -175,6 +175,24 @@ namespace Pulumi.Volcengine.Alb
         [Input("serverGroupType")]
         public string? ServerGroupType { get; set; }
 
+        [Input("tags")]
+        private List<Inputs.GetServerGroupsTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public List<Inputs.GetServerGroupsTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new List<Inputs.GetServerGroupsTagArgs>());
+            set => _tags = value;
+        }
+
+        /// <summary>
+        /// The vpc id of Alb server group.
+        /// </summary>
+        [Input("vpcId")]
+        public string? VpcId { get; set; }
+
         public GetServerGroupsArgs()
         {
         }
@@ -231,6 +249,24 @@ namespace Pulumi.Volcengine.Alb
         [Input("serverGroupType")]
         public Input<string>? ServerGroupType { get; set; }
 
+        [Input("tags")]
+        private InputList<Inputs.GetServerGroupsTagInputArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.GetServerGroupsTagInputArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.GetServerGroupsTagInputArgs>());
+            set => _tags = value;
+        }
+
+        /// <summary>
+        /// The vpc id of Alb server group.
+        /// </summary>
+        [Input("vpcId")]
+        public Input<string>? VpcId { get; set; }
+
         public GetServerGroupsInvokeArgs()
         {
         }
@@ -262,9 +298,17 @@ namespace Pulumi.Volcengine.Alb
         /// </summary>
         public readonly ImmutableArray<Outputs.GetServerGroupsServerGroupResult> ServerGroups;
         /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetServerGroupsTagResult> Tags;
+        /// <summary>
         /// The total count of query.
         /// </summary>
         public readonly int TotalCount;
+        /// <summary>
+        /// The vpc id of the Alb server group.
+        /// </summary>
+        public readonly string? VpcId;
 
         [OutputConstructor]
         private GetServerGroupsResult(
@@ -284,7 +328,11 @@ namespace Pulumi.Volcengine.Alb
 
             ImmutableArray<Outputs.GetServerGroupsServerGroupResult> serverGroups,
 
-            int totalCount)
+            ImmutableArray<Outputs.GetServerGroupsTagResult> tags,
+
+            int totalCount,
+
+            string? vpcId)
         {
             Id = id;
             Ids = ids;
@@ -294,7 +342,9 @@ namespace Pulumi.Volcengine.Alb
             ServerGroupNames = serverGroupNames;
             ServerGroupType = serverGroupType;
             ServerGroups = serverGroups;
+            Tags = tags;
             TotalCount = totalCount;
+            VpcId = vpcId;
         }
     }
 }

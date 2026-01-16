@@ -34,11 +34,15 @@ namespace Pulumi.Volcengine.Alb.Outputs
         /// </summary>
         public readonly int Port;
         /// <summary>
+        /// Whether to enable remote IP function. Optional choice contains `on`, `off`.
+        /// </summary>
+        public readonly string RemoteEnabled;
+        /// <summary>
         /// The server id of instance in ServerGroup.
         /// </summary>
         public readonly string ServerId;
         /// <summary>
-        /// The type of instance. Optional choice contains `ecs`, `eni`.
+        /// The type of instance. Optional choice contains `ecs`, `eni`, `ip`.
         /// </summary>
         public readonly string Type;
         /// <summary>
@@ -58,6 +62,8 @@ namespace Pulumi.Volcengine.Alb.Outputs
 
             int port,
 
+            string remoteEnabled,
+
             string serverId,
 
             string type,
@@ -69,6 +75,7 @@ namespace Pulumi.Volcengine.Alb.Outputs
             InstanceId = instanceId;
             Ip = ip;
             Port = port;
+            RemoteEnabled = remoteEnabled;
             ServerId = serverId;
             Type = type;
             Weight = weight;

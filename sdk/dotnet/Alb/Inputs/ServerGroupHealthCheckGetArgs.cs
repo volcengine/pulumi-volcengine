@@ -31,7 +31,7 @@ namespace Pulumi.Volcengine.Alb.Inputs
         public Input<int>? HealthyThreshold { get; set; }
 
         /// <summary>
-        /// The normal http status code of health check, the value can be `http_2xx` or `http_3xx` or `http_4xx` or `http_5xx`.
+        /// The normal http status code of health check, the value can be `http_2xx`, `http_3xx`, `http_4xx` or `http_5xx`. Default is `http_2xx,http_3xx`.
         /// </summary>
         [Input("httpCode")]
         public Input<string>? HttpCode { get; set; }
@@ -53,6 +53,18 @@ namespace Pulumi.Volcengine.Alb.Inputs
         /// </summary>
         [Input("method")]
         public Input<string>? Method { get; set; }
+
+        /// <summary>
+        /// The port of health check. When the value is 0, it means use the backend server port for health check. Valid value range in 0~65535.
+        /// </summary>
+        [Input("port")]
+        public Input<int>? Port { get; set; }
+
+        /// <summary>
+        /// The protocol of health check. Valid values: `HTTP`, `TCP`. Default is `HTTP`.
+        /// </summary>
+        [Input("protocol")]
+        public Input<string>? Protocol { get; set; }
 
         /// <summary>
         /// The response timeout of health check. Unit: second. Valid value range in 1~60. Default is 2.

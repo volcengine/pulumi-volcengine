@@ -14,6 +14,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@volcengine/pulumi";
  *
+ * // Basic edition
  * const foo = new volcengine.alb.Rule("foo", {
  *     description: "test",
  *     domain: "www.test.com",
@@ -33,6 +34,40 @@ import * as utilities from "../utilities";
  *     trafficLimitEnabled: "off",
  *     trafficLimitQps: 100,
  *     url: "/test",
+ * });
+ * // Standard edition
+ * const example = new volcengine.alb.Rule("example", {
+ *     description: "standard edition alb rule",
+ *     listenerId: "lsn-bddjp5fcof0g8dv40naga1yd",
+ *     priority: 1,
+ *     ruleAction: "",
+ *     ruleActions: [{
+ *         forwardGroupConfig: {
+ *             serverGroupStickySession: {
+ *                 enabled: "off",
+ *             },
+ *             serverGroupTuples: [{
+ *                 serverGroupId: "rsp-bdd1lpcbvv288dv40ov1sye0",
+ *                 weight: 50,
+ *             }],
+ *         },
+ *         type: "ForwardGroup",
+ *     }],
+ *     ruleConditions: [
+ *         {
+ *             hostConfig: {
+ *                 values: ["www.example.com"],
+ *             },
+ *             type: "Host",
+ *         },
+ *         {
+ *             pathConfig: {
+ *                 values: ["/app/*"],
+ *             },
+ *             type: "Path",
+ *         },
+ *     ],
+ *     url: "",
  * });
  * ```
  *
@@ -85,6 +120,10 @@ export class Rule extends pulumi.CustomResource {
      */
     public readonly listenerId!: pulumi.Output<string>;
     /**
+     * The priority of the Rule.Only the standard version is supported.
+     */
+    public readonly priority!: pulumi.Output<number>;
+    /**
      * The redirect related configuration.
      */
     public readonly redirectConfig!: pulumi.Output<outputs.alb.RuleRedirectConfig | undefined>;
@@ -103,6 +142,14 @@ export class Rule extends pulumi.CustomResource {
      */
     public readonly ruleAction!: pulumi.Output<string>;
     /**
+     * The rule actions for standard edition forwarding rules.
+     */
+    public readonly ruleActions!: pulumi.Output<outputs.alb.RuleRuleAction[]>;
+    /**
+     * The rule conditions for standard edition forwarding rules.
+     */
+    public readonly ruleConditions!: pulumi.Output<outputs.alb.RuleRuleCondition[]>;
+    /**
      * The ID of rule.
      */
     public /*out*/ readonly ruleId!: pulumi.Output<string>;
@@ -110,6 +157,18 @@ export class Rule extends pulumi.CustomResource {
      * Server group ID, this parameter is required if `ruleAction` is empty.
      */
     public readonly serverGroupId!: pulumi.Output<string | undefined>;
+    /**
+     * Weight forwarded to the corresponding backend server group.
+     */
+    public readonly serverGroupTuples!: pulumi.Output<outputs.alb.RuleServerGroupTuple[]>;
+    /**
+     * Whether to enable group session stickiness. Valid values are 'on' and 'off'.
+     */
+    public readonly stickySessionEnabled!: pulumi.Output<string>;
+    /**
+     * The group session stickiness timeout, in seconds.
+     */
+    public readonly stickySessionTimeout!: pulumi.Output<number>;
     /**
      * Forwarding rule QPS rate limiting switch:
      * on: enable.
@@ -141,12 +200,18 @@ export class Rule extends pulumi.CustomResource {
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["domain"] = state ? state.domain : undefined;
             resourceInputs["listenerId"] = state ? state.listenerId : undefined;
+            resourceInputs["priority"] = state ? state.priority : undefined;
             resourceInputs["redirectConfig"] = state ? state.redirectConfig : undefined;
             resourceInputs["rewriteConfig"] = state ? state.rewriteConfig : undefined;
             resourceInputs["rewriteEnabled"] = state ? state.rewriteEnabled : undefined;
             resourceInputs["ruleAction"] = state ? state.ruleAction : undefined;
+            resourceInputs["ruleActions"] = state ? state.ruleActions : undefined;
+            resourceInputs["ruleConditions"] = state ? state.ruleConditions : undefined;
             resourceInputs["ruleId"] = state ? state.ruleId : undefined;
             resourceInputs["serverGroupId"] = state ? state.serverGroupId : undefined;
+            resourceInputs["serverGroupTuples"] = state ? state.serverGroupTuples : undefined;
+            resourceInputs["stickySessionEnabled"] = state ? state.stickySessionEnabled : undefined;
+            resourceInputs["stickySessionTimeout"] = state ? state.stickySessionTimeout : undefined;
             resourceInputs["trafficLimitEnabled"] = state ? state.trafficLimitEnabled : undefined;
             resourceInputs["trafficLimitQps"] = state ? state.trafficLimitQps : undefined;
             resourceInputs["url"] = state ? state.url : undefined;
@@ -161,11 +226,17 @@ export class Rule extends pulumi.CustomResource {
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["domain"] = args ? args.domain : undefined;
             resourceInputs["listenerId"] = args ? args.listenerId : undefined;
+            resourceInputs["priority"] = args ? args.priority : undefined;
             resourceInputs["redirectConfig"] = args ? args.redirectConfig : undefined;
             resourceInputs["rewriteConfig"] = args ? args.rewriteConfig : undefined;
             resourceInputs["rewriteEnabled"] = args ? args.rewriteEnabled : undefined;
             resourceInputs["ruleAction"] = args ? args.ruleAction : undefined;
+            resourceInputs["ruleActions"] = args ? args.ruleActions : undefined;
+            resourceInputs["ruleConditions"] = args ? args.ruleConditions : undefined;
             resourceInputs["serverGroupId"] = args ? args.serverGroupId : undefined;
+            resourceInputs["serverGroupTuples"] = args ? args.serverGroupTuples : undefined;
+            resourceInputs["stickySessionEnabled"] = args ? args.stickySessionEnabled : undefined;
+            resourceInputs["stickySessionTimeout"] = args ? args.stickySessionTimeout : undefined;
             resourceInputs["trafficLimitEnabled"] = args ? args.trafficLimitEnabled : undefined;
             resourceInputs["trafficLimitQps"] = args ? args.trafficLimitQps : undefined;
             resourceInputs["url"] = args ? args.url : undefined;
@@ -193,6 +264,10 @@ export interface RuleState {
      */
     listenerId?: pulumi.Input<string>;
     /**
+     * The priority of the Rule.Only the standard version is supported.
+     */
+    priority?: pulumi.Input<number>;
+    /**
      * The redirect related configuration.
      */
     redirectConfig?: pulumi.Input<inputs.alb.RuleRedirectConfig>;
@@ -211,6 +286,14 @@ export interface RuleState {
      */
     ruleAction?: pulumi.Input<string>;
     /**
+     * The rule actions for standard edition forwarding rules.
+     */
+    ruleActions?: pulumi.Input<pulumi.Input<inputs.alb.RuleRuleAction>[]>;
+    /**
+     * The rule conditions for standard edition forwarding rules.
+     */
+    ruleConditions?: pulumi.Input<pulumi.Input<inputs.alb.RuleRuleCondition>[]>;
+    /**
      * The ID of rule.
      */
     ruleId?: pulumi.Input<string>;
@@ -218,6 +301,18 @@ export interface RuleState {
      * Server group ID, this parameter is required if `ruleAction` is empty.
      */
     serverGroupId?: pulumi.Input<string>;
+    /**
+     * Weight forwarded to the corresponding backend server group.
+     */
+    serverGroupTuples?: pulumi.Input<pulumi.Input<inputs.alb.RuleServerGroupTuple>[]>;
+    /**
+     * Whether to enable group session stickiness. Valid values are 'on' and 'off'.
+     */
+    stickySessionEnabled?: pulumi.Input<string>;
+    /**
+     * The group session stickiness timeout, in seconds.
+     */
+    stickySessionTimeout?: pulumi.Input<number>;
     /**
      * Forwarding rule QPS rate limiting switch:
      * on: enable.
@@ -251,6 +346,10 @@ export interface RuleArgs {
      */
     listenerId: pulumi.Input<string>;
     /**
+     * The priority of the Rule.Only the standard version is supported.
+     */
+    priority?: pulumi.Input<number>;
+    /**
      * The redirect related configuration.
      */
     redirectConfig?: pulumi.Input<inputs.alb.RuleRedirectConfig>;
@@ -269,9 +368,29 @@ export interface RuleArgs {
      */
     ruleAction: pulumi.Input<string>;
     /**
+     * The rule actions for standard edition forwarding rules.
+     */
+    ruleActions?: pulumi.Input<pulumi.Input<inputs.alb.RuleRuleAction>[]>;
+    /**
+     * The rule conditions for standard edition forwarding rules.
+     */
+    ruleConditions?: pulumi.Input<pulumi.Input<inputs.alb.RuleRuleCondition>[]>;
+    /**
      * Server group ID, this parameter is required if `ruleAction` is empty.
      */
     serverGroupId?: pulumi.Input<string>;
+    /**
+     * Weight forwarded to the corresponding backend server group.
+     */
+    serverGroupTuples?: pulumi.Input<pulumi.Input<inputs.alb.RuleServerGroupTuple>[]>;
+    /**
+     * Whether to enable group session stickiness. Valid values are 'on' and 'off'.
+     */
+    stickySessionEnabled?: pulumi.Input<string>;
+    /**
+     * The group session stickiness timeout, in seconds.
+     */
+    stickySessionTimeout?: pulumi.Input<number>;
     /**
      * Forwarding rule QPS rate limiting switch:
      * on: enable.

@@ -86,6 +86,18 @@ export class Acl extends pulumi.CustomResource {
      * The project name of the Acl.
      */
     public readonly projectName!: pulumi.Output<string>;
+    /**
+     * The status of the Acl.
+     */
+    public /*out*/ readonly status!: pulumi.Output<string>;
+    /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.alb.AclTag[] | undefined>;
+    /**
+     * Update time of Acl.
+     */
+    public /*out*/ readonly updateTime!: pulumi.Output<string>;
 
     /**
      * Create a Acl resource with the given unique name, arguments, and options.
@@ -105,13 +117,19 @@ export class Acl extends pulumi.CustomResource {
             resourceInputs["createTime"] = state ? state.createTime : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["projectName"] = state ? state.projectName : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
+            resourceInputs["updateTime"] = state ? state.updateTime : undefined;
         } else {
             const args = argsOrState as AclArgs | undefined;
             resourceInputs["aclEntries"] = args ? args.aclEntries : undefined;
             resourceInputs["aclName"] = args ? args.aclName : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["projectName"] = args ? args.projectName : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["createTime"] = undefined /*out*/;
+            resourceInputs["status"] = undefined /*out*/;
+            resourceInputs["updateTime"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Acl.__pulumiType, name, resourceInputs, opts);
@@ -142,6 +160,18 @@ export interface AclState {
      * The project name of the Acl.
      */
     projectName?: pulumi.Input<string>;
+    /**
+     * The status of the Acl.
+     */
+    status?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.alb.AclTag>[]>;
+    /**
+     * Update time of Acl.
+     */
+    updateTime?: pulumi.Input<string>;
 }
 
 /**
@@ -164,4 +194,8 @@ export interface AclArgs {
      * The project name of the Acl.
      */
     projectName?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.alb.AclTag>[]>;
 }

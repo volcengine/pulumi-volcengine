@@ -26,6 +26,14 @@ namespace Pulumi.Volcengine.Alb
     ///         Description = "test123",
     ///         PrivateKey = "private key",
     ///         PublicKey = "public key",
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Alb.Inputs.CertificateTagArgs
+    ///             {
+    ///                 Key = "k1",
+    ///                 Value = "v1",
+    ///             },
+    ///         },
     ///     });
     /// 
     /// });
@@ -103,10 +111,22 @@ namespace Pulumi.Volcengine.Alb
         public Output<string> PublicKey { get; private set; } = null!;
 
         /// <summary>
+        /// The san extension of the Certificate.
+        /// </summary>
+        [Output("san")]
+        public Output<string> San { get; private set; } = null!;
+
+        /// <summary>
         /// The status of the Certificate.
         /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<Outputs.CertificateTag>> Tags { get; private set; } = null!;
 
 
         /// <summary>
@@ -185,6 +205,18 @@ namespace Pulumi.Volcengine.Alb
         [Input("publicKey", required: true)]
         public Input<string> PublicKey { get; set; } = null!;
 
+        [Input("tags")]
+        private InputList<Inputs.CertificateTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.CertificateTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.CertificateTagArgs>());
+            set => _tags = value;
+        }
+
         public CertificateArgs()
         {
         }
@@ -260,10 +292,28 @@ namespace Pulumi.Volcengine.Alb
         public Input<string>? PublicKey { get; set; }
 
         /// <summary>
+        /// The san extension of the Certificate.
+        /// </summary>
+        [Input("san")]
+        public Input<string>? San { get; set; }
+
+        /// <summary>
         /// The status of the Certificate.
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.CertificateTagGetArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.CertificateTagGetArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.CertificateTagGetArgs>());
+            set => _tags = value;
+        }
 
         public CertificateState()
         {

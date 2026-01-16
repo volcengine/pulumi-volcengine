@@ -72,9 +72,13 @@ export class ServerGroupServer extends pulumi.CustomResource {
      */
     public readonly ip!: pulumi.Output<string>;
     /**
-     * The port receiving request.
+     * The port receiving request. Value range: 1 ~ 65535.
      */
     public readonly port!: pulumi.Output<number>;
+    /**
+     * Whether to enable remote IP function. Optional choice contains `on`, `off`. Default value is `off`. This field is only effective when the type is `ip`.
+     */
+    public readonly remoteEnabled!: pulumi.Output<string | undefined>;
     /**
      * The ID of the ServerGroup.
      */
@@ -84,7 +88,7 @@ export class ServerGroupServer extends pulumi.CustomResource {
      */
     public /*out*/ readonly serverId!: pulumi.Output<string>;
     /**
-     * The type of instance. Optional choice contains `ecs`, `eni`.
+     * The type of instance. Optional choice contains `ecs`, `eni`, `ip`.
      */
     public readonly type!: pulumi.Output<string>;
     /**
@@ -109,6 +113,7 @@ export class ServerGroupServer extends pulumi.CustomResource {
             resourceInputs["instanceId"] = state ? state.instanceId : undefined;
             resourceInputs["ip"] = state ? state.ip : undefined;
             resourceInputs["port"] = state ? state.port : undefined;
+            resourceInputs["remoteEnabled"] = state ? state.remoteEnabled : undefined;
             resourceInputs["serverGroupId"] = state ? state.serverGroupId : undefined;
             resourceInputs["serverId"] = state ? state.serverId : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
@@ -134,6 +139,7 @@ export class ServerGroupServer extends pulumi.CustomResource {
             resourceInputs["instanceId"] = args ? args.instanceId : undefined;
             resourceInputs["ip"] = args ? args.ip : undefined;
             resourceInputs["port"] = args ? args.port : undefined;
+            resourceInputs["remoteEnabled"] = args ? args.remoteEnabled : undefined;
             resourceInputs["serverGroupId"] = args ? args.serverGroupId : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["weight"] = args ? args.weight : undefined;
@@ -161,9 +167,13 @@ export interface ServerGroupServerState {
      */
     ip?: pulumi.Input<string>;
     /**
-     * The port receiving request.
+     * The port receiving request. Value range: 1 ~ 65535.
      */
     port?: pulumi.Input<number>;
+    /**
+     * Whether to enable remote IP function. Optional choice contains `on`, `off`. Default value is `off`. This field is only effective when the type is `ip`.
+     */
+    remoteEnabled?: pulumi.Input<string>;
     /**
      * The ID of the ServerGroup.
      */
@@ -173,7 +183,7 @@ export interface ServerGroupServerState {
      */
     serverId?: pulumi.Input<string>;
     /**
-     * The type of instance. Optional choice contains `ecs`, `eni`.
+     * The type of instance. Optional choice contains `ecs`, `eni`, `ip`.
      */
     type?: pulumi.Input<string>;
     /**
@@ -199,15 +209,19 @@ export interface ServerGroupServerArgs {
      */
     ip: pulumi.Input<string>;
     /**
-     * The port receiving request.
+     * The port receiving request. Value range: 1 ~ 65535.
      */
     port: pulumi.Input<number>;
+    /**
+     * Whether to enable remote IP function. Optional choice contains `on`, `off`. Default value is `off`. This field is only effective when the type is `ip`.
+     */
+    remoteEnabled?: pulumi.Input<string>;
     /**
      * The ID of the ServerGroup.
      */
     serverGroupId: pulumi.Input<string>;
     /**
-     * The type of instance. Optional choice contains `ecs`, `eni`.
+     * The type of instance. Optional choice contains `ecs`, `eni`, `ip`.
      */
     type: pulumi.Input<string>;
     /**

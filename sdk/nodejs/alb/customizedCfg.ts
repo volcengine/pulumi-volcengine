@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -72,6 +74,10 @@ export class CustomizedCfg extends pulumi.CustomResource {
      * The project name of the CustomizedCfg.
      */
     public readonly projectName!: pulumi.Output<string>;
+    /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.alb.CustomizedCfgTag[] | undefined>;
 
     /**
      * Create a CustomizedCfg resource with the given unique name, arguments, and options.
@@ -90,6 +96,7 @@ export class CustomizedCfg extends pulumi.CustomResource {
             resourceInputs["customizedCfgName"] = state ? state.customizedCfgName : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["projectName"] = state ? state.projectName : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
         } else {
             const args = argsOrState as CustomizedCfgArgs | undefined;
             if ((!args || args.customizedCfgContent === undefined) && !opts.urn) {
@@ -102,6 +109,7 @@ export class CustomizedCfg extends pulumi.CustomResource {
             resourceInputs["customizedCfgName"] = args ? args.customizedCfgName : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["projectName"] = args ? args.projectName : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(CustomizedCfg.__pulumiType, name, resourceInputs, opts);
@@ -128,6 +136,10 @@ export interface CustomizedCfgState {
      * The project name of the CustomizedCfg.
      */
     projectName?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.alb.CustomizedCfgTag>[]>;
 }
 
 /**
@@ -150,4 +162,8 @@ export interface CustomizedCfgArgs {
      * The project name of the CustomizedCfg.
      */
     projectName?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.alb.CustomizedCfgTag>[]>;
 }

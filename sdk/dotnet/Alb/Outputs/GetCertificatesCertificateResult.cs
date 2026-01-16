@@ -50,13 +50,21 @@ namespace Pulumi.Volcengine.Alb.Outputs
         /// </summary>
         public readonly ImmutableArray<string> Listeners;
         /// <summary>
-        /// The ProjectName of the Certificate.
+        /// The project name to which the certificate belongs.
         /// </summary>
         public readonly string ProjectName;
+        /// <summary>
+        /// The san extension of the Certificate.
+        /// </summary>
+        public readonly string San;
         /// <summary>
         /// The status of the Certificate.
         /// </summary>
         public readonly string Status;
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetCertificatesCertificateTagResult> Tags;
 
         [OutputConstructor]
         private GetCertificatesCertificateResult(
@@ -80,7 +88,11 @@ namespace Pulumi.Volcengine.Alb.Outputs
 
             string projectName,
 
-            string status)
+            string san,
+
+            string status,
+
+            ImmutableArray<Outputs.GetCertificatesCertificateTagResult> tags)
         {
             CertificateId = certificateId;
             CertificateName = certificateName;
@@ -92,7 +104,9 @@ namespace Pulumi.Volcengine.Alb.Outputs
             Id = id;
             Listeners = listeners;
             ProjectName = projectName;
+            San = san;
             Status = status;
+            Tags = tags;
         }
     }
 }

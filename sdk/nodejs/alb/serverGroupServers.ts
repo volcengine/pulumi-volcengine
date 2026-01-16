@@ -15,6 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  *
  * const foo = volcengine.alb.getServerGroupServers({
+ *     instanceIds: ["i-yecutyh340qc6io*****"],
  *     serverGroupId: "rsp-1g7317vrcx3pc2zbhq4c3i6a2",
  * });
  * ```
@@ -25,6 +26,8 @@ export function serverGroupServers(args: ServerGroupServersArgs, opts?: pulumi.I
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:alb/serverGroupServers:ServerGroupServers", {
+        "instanceIds": args.instanceIds,
+        "ips": args.ips,
         "outputFile": args.outputFile,
         "serverGroupId": args.serverGroupId,
     }, opts);
@@ -34,6 +37,14 @@ export function serverGroupServers(args: ServerGroupServersArgs, opts?: pulumi.I
  * A collection of arguments for invoking ServerGroupServers.
  */
 export interface ServerGroupServersArgs {
+    /**
+     * A list of instance IDs. When the backend server is ECS, the parameter value is the ID of the ECS. When the backend server is a secondary network interface card, the parameter value is the ID of the secondary network interface card.
+     */
+    instanceIds?: string[];
+    /**
+     * A list of private IP addresses.
+     */
+    ips?: string[];
     /**
      * File name where to save data source results.
      */
@@ -52,6 +63,8 @@ export interface ServerGroupServersResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly instanceIds?: string[];
+    readonly ips?: string[];
     readonly outputFile?: string;
     readonly serverGroupId: string;
     /**
@@ -72,6 +85,7 @@ export interface ServerGroupServersResult {
  * import * as volcengine from "@pulumi/volcengine";
  *
  * const foo = volcengine.alb.getServerGroupServers({
+ *     instanceIds: ["i-yecutyh340qc6io*****"],
  *     serverGroupId: "rsp-1g7317vrcx3pc2zbhq4c3i6a2",
  * });
  * ```
@@ -85,6 +99,14 @@ export function serverGroupServersOutput(args: ServerGroupServersOutputArgs, opt
  * A collection of arguments for invoking ServerGroupServers.
  */
 export interface ServerGroupServersOutputArgs {
+    /**
+     * A list of instance IDs. When the backend server is ECS, the parameter value is the ID of the ECS. When the backend server is a secondary network interface card, the parameter value is the ID of the secondary network interface card.
+     */
+    instanceIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * A list of private IP addresses.
+     */
+    ips?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * File name where to save data source results.
      */

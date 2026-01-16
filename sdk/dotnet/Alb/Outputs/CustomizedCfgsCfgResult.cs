@@ -50,6 +50,10 @@ namespace Pulumi.Volcengine.Alb.Outputs
         /// </summary>
         public readonly string Status;
         /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.CustomizedCfgsCfgTagResult> Tags;
+        /// <summary>
         /// The update time of CustomizedCfg.
         /// </summary>
         public readonly string UpdateTime;
@@ -74,6 +78,8 @@ namespace Pulumi.Volcengine.Alb.Outputs
 
             string status,
 
+            ImmutableArray<Outputs.CustomizedCfgsCfgTagResult> tags,
+
             string updateTime)
         {
             CreateTime = createTime;
@@ -85,6 +91,7 @@ namespace Pulumi.Volcengine.Alb.Outputs
             Listeners = listeners;
             ProjectName = projectName;
             Status = status;
+            Tags = tags;
             UpdateTime = updateTime;
         }
     }

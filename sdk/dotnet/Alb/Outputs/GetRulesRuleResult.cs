@@ -22,15 +22,23 @@ namespace Pulumi.Volcengine.Alb.Outputs
         /// </summary>
         public readonly string Domain;
         /// <summary>
+        /// Forward group configuration for ForwardGroup type action.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetRulesRuleForwardGroupConfigResult> ForwardGroupConfigs;
+        /// <summary>
         /// The Id of Rule.
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// Redirect related configuration.
+        /// The priority of the Rule. Only the standard version is supported.
+        /// </summary>
+        public readonly int Priority;
+        /// <summary>
+        /// Redirect configuration for Redirect type action.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetRulesRuleRedirectConfigResult> RedirectConfigs;
         /// <summary>
-        /// The list of rewrite configurations.
+        /// Rewrite configuration for Rewrite type action.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetRulesRuleRewriteConfigResult> RewriteConfigs;
         /// <summary>
@@ -43,6 +51,14 @@ namespace Pulumi.Volcengine.Alb.Outputs
         /// The forwarding rule action, if this parameter is empty, forward to server group, if value is `Redirect`, will redirect.
         /// </summary>
         public readonly string RuleAction;
+        /// <summary>
+        /// The rule actions for standard edition forwarding rules.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetRulesRuleRuleActionResult> RuleActions;
+        /// <summary>
+        /// The rule conditions for standard edition forwarding rules.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetRulesRuleRuleConditionResult> RuleConditions;
         /// <summary>
         /// The Id of Rule.
         /// </summary>
@@ -72,7 +88,11 @@ namespace Pulumi.Volcengine.Alb.Outputs
 
             string domain,
 
+            ImmutableArray<Outputs.GetRulesRuleForwardGroupConfigResult> forwardGroupConfigs,
+
             string id,
+
+            int priority,
 
             ImmutableArray<Outputs.GetRulesRuleRedirectConfigResult> redirectConfigs,
 
@@ -81,6 +101,10 @@ namespace Pulumi.Volcengine.Alb.Outputs
             string rewriteEnabled,
 
             string ruleAction,
+
+            ImmutableArray<Outputs.GetRulesRuleRuleActionResult> ruleActions,
+
+            ImmutableArray<Outputs.GetRulesRuleRuleConditionResult> ruleConditions,
 
             string ruleId,
 
@@ -94,11 +118,15 @@ namespace Pulumi.Volcengine.Alb.Outputs
         {
             Description = description;
             Domain = domain;
+            ForwardGroupConfigs = forwardGroupConfigs;
             Id = id;
+            Priority = priority;
             RedirectConfigs = redirectConfigs;
             RewriteConfigs = rewriteConfigs;
             RewriteEnabled = rewriteEnabled;
             RuleAction = ruleAction;
+            RuleActions = ruleActions;
+            RuleConditions = ruleConditions;
             RuleId = ruleId;
             ServerGroupId = serverGroupId;
             TrafficLimitEnabled = trafficLimitEnabled;

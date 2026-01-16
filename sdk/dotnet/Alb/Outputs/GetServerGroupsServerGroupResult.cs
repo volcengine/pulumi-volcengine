@@ -18,6 +18,10 @@ namespace Pulumi.Volcengine.Alb.Outputs
         /// </summary>
         public readonly string CreateTime;
         /// <summary>
+        /// Whether to enable cross-zone load balancing for the server group.
+        /// </summary>
+        public readonly string CrossZoneEnabled;
+        /// <summary>
         /// The description of the server group server.
         /// </summary>
         public readonly string Description;
@@ -30,6 +34,10 @@ namespace Pulumi.Volcengine.Alb.Outputs
         /// </summary>
         public readonly string Id;
         /// <summary>
+        /// The ip address type of the server group.
+        /// </summary>
+        public readonly string IpAddressType;
+        /// <summary>
         /// The listener information of the Alb server group.
         /// </summary>
         public readonly ImmutableArray<string> Listeners;
@@ -37,6 +45,10 @@ namespace Pulumi.Volcengine.Alb.Outputs
         /// The project name of Alb server group.
         /// </summary>
         public readonly string ProjectName;
+        /// <summary>
+        /// The backend protocol of the Alb server group.
+        /// </summary>
+        public readonly string Protocol;
         /// <summary>
         /// The scheduler algorithm of the Alb server group.
         /// </summary>
@@ -70,11 +82,15 @@ namespace Pulumi.Volcengine.Alb.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.GetServerGroupsServerGroupStickySessionConfigResult> StickySessionConfigs;
         /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetServerGroupsServerGroupTagResult> Tags;
+        /// <summary>
         /// The update time of the Alb server group.
         /// </summary>
         public readonly string UpdateTime;
         /// <summary>
-        /// The vpc id of the Alb server group.
+        /// The vpc id of Alb server group.
         /// </summary>
         public readonly string VpcId;
 
@@ -82,15 +98,21 @@ namespace Pulumi.Volcengine.Alb.Outputs
         private GetServerGroupsServerGroupResult(
             string createTime,
 
+            string crossZoneEnabled,
+
             string description,
 
             ImmutableArray<Outputs.GetServerGroupsServerGroupHealthCheckResult> healthChecks,
 
             string id,
 
+            string ipAddressType,
+
             ImmutableArray<string> listeners,
 
             string projectName,
+
+            string protocol,
 
             string scheduler,
 
@@ -108,16 +130,21 @@ namespace Pulumi.Volcengine.Alb.Outputs
 
             ImmutableArray<Outputs.GetServerGroupsServerGroupStickySessionConfigResult> stickySessionConfigs,
 
+            ImmutableArray<Outputs.GetServerGroupsServerGroupTagResult> tags,
+
             string updateTime,
 
             string vpcId)
         {
             CreateTime = createTime;
+            CrossZoneEnabled = crossZoneEnabled;
             Description = description;
             HealthChecks = healthChecks;
             Id = id;
+            IpAddressType = ipAddressType;
             Listeners = listeners;
             ProjectName = projectName;
+            Protocol = protocol;
             Scheduler = scheduler;
             ServerCount = serverCount;
             ServerGroupId = serverGroupId;
@@ -126,6 +153,7 @@ namespace Pulumi.Volcengine.Alb.Outputs
             Servers = servers;
             Status = status;
             StickySessionConfigs = stickySessionConfigs;
+            Tags = tags;
             UpdateTime = updateTime;
             VpcId = vpcId;
         }

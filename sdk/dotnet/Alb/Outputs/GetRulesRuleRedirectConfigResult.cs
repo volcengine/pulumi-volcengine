@@ -18,7 +18,7 @@ namespace Pulumi.Volcengine.Alb.Outputs
         /// </summary>
         public readonly string RedirectDomain;
         /// <summary>
-        /// The redirect HTTP code,support 301(default), 302, 307, 308.
+        /// The redirect HTTP code.
         /// </summary>
         public readonly string RedirectHttpCode;
         /// <summary>
@@ -26,7 +26,7 @@ namespace Pulumi.Volcengine.Alb.Outputs
         /// </summary>
         public readonly string RedirectPort;
         /// <summary>
-        /// The redirect protocol,support HTTP,HTTPS(default).
+        /// The redirect protocol.
         /// </summary>
         public readonly string RedirectProtocol;
         /// <summary>

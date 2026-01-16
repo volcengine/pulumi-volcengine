@@ -5,6 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { AccessLogArgs, AccessLogState } from "./accessLog";
+export type AccessLog = import("./accessLog").AccessLog;
+export const AccessLog: typeof import("./accessLog").AccessLog = null as any;
+utilities.lazyLoad(exports, ["AccessLog"], () => require("./accessLog"));
+
 export { AclArgs, AclState } from "./acl";
 export type Acl = import("./acl").Acl;
 export const Acl: typeof import("./acl").Acl = null as any;
@@ -24,6 +29,11 @@ export { AlbsArgs, AlbsResult, AlbsOutputArgs } from "./albs";
 export const albs: typeof import("./albs").albs = null as any;
 export const albsOutput: typeof import("./albs").albsOutput = null as any;
 utilities.lazyLoad(exports, ["albs","albsOutput"], () => require("./albs"));
+
+export { AllCertificatesArgs, AllCertificatesResult, AllCertificatesOutputArgs } from "./allCertificates";
+export const allCertificates: typeof import("./allCertificates").allCertificates = null as any;
+export const allCertificatesOutput: typeof import("./allCertificates").allCertificatesOutput = null as any;
+utilities.lazyLoad(exports, ["allCertificates","allCertificatesOutput"], () => require("./allCertificates"));
 
 export { CaCertificatesArgs, CaCertificatesResult, CaCertificatesOutputArgs } from "./caCertificates";
 export const caCertificates: typeof import("./caCertificates").caCertificates = null as any;
@@ -65,6 +75,11 @@ export const getAlbs: typeof import("./getAlbs").getAlbs = null as any;
 export const getAlbsOutput: typeof import("./getAlbs").getAlbsOutput = null as any;
 utilities.lazyLoad(exports, ["getAlbs","getAlbsOutput"], () => require("./getAlbs"));
 
+export { GetAllCertificatesArgs, GetAllCertificatesResult, GetAllCertificatesOutputArgs } from "./getAllCertificates";
+export const getAllCertificates: typeof import("./getAllCertificates").getAllCertificates = null as any;
+export const getAllCertificatesOutput: typeof import("./getAllCertificates").getAllCertificatesOutput = null as any;
+utilities.lazyLoad(exports, ["getAllCertificates","getAllCertificatesOutput"], () => require("./getAllCertificates"));
+
 export { GetCaCertificatesArgs, GetCaCertificatesResult, GetCaCertificatesOutputArgs } from "./getCaCertificates";
 export const getCaCertificates: typeof import("./getCaCertificates").getCaCertificates = null as any;
 export const getCaCertificatesOutput: typeof import("./getCaCertificates").getCaCertificatesOutput = null as any;
@@ -89,6 +104,11 @@ export { GetListenerDomainExtensionsArgs, GetListenerDomainExtensionsResult, Get
 export const getListenerDomainExtensions: typeof import("./getListenerDomainExtensions").getListenerDomainExtensions = null as any;
 export const getListenerDomainExtensionsOutput: typeof import("./getListenerDomainExtensions").getListenerDomainExtensionsOutput = null as any;
 utilities.lazyLoad(exports, ["getListenerDomainExtensions","getListenerDomainExtensionsOutput"], () => require("./getListenerDomainExtensions"));
+
+export { GetListenerHealthsArgs, GetListenerHealthsResult, GetListenerHealthsOutputArgs } from "./getListenerHealths";
+export const getListenerHealths: typeof import("./getListenerHealths").getListenerHealths = null as any;
+export const getListenerHealthsOutput: typeof import("./getListenerHealths").getListenerHealthsOutput = null as any;
+utilities.lazyLoad(exports, ["getListenerHealths","getListenerHealthsOutput"], () => require("./getListenerHealths"));
 
 export { GetListenersArgs, GetListenersResult, GetListenersOutputArgs } from "./getListeners";
 export const getListeners: typeof import("./getListeners").getListeners = null as any;
@@ -125,6 +145,11 @@ export const healthCheckTemplates: typeof import("./healthCheckTemplates").healt
 export const healthCheckTemplatesOutput: typeof import("./healthCheckTemplates").healthCheckTemplatesOutput = null as any;
 utilities.lazyLoad(exports, ["healthCheckTemplates","healthCheckTemplatesOutput"], () => require("./healthCheckTemplates"));
 
+export { HealthLogArgs, HealthLogState } from "./healthLog";
+export type HealthLog = import("./healthLog").HealthLog;
+export const HealthLog: typeof import("./healthLog").HealthLog = null as any;
+utilities.lazyLoad(exports, ["HealthLog"], () => require("./healthLog"));
+
 export { ListenerArgs, ListenerState } from "./listener";
 export type Listener = import("./listener").Listener;
 export const Listener: typeof import("./listener").Listener = null as any;
@@ -140,10 +165,20 @@ export const listenerDomainExtensions: typeof import("./listenerDomainExtensions
 export const listenerDomainExtensionsOutput: typeof import("./listenerDomainExtensions").listenerDomainExtensionsOutput = null as any;
 utilities.lazyLoad(exports, ["listenerDomainExtensions","listenerDomainExtensionsOutput"], () => require("./listenerDomainExtensions"));
 
+export { ListenerHealthsArgs, ListenerHealthsResult, ListenerHealthsOutputArgs } from "./listenerHealths";
+export const listenerHealths: typeof import("./listenerHealths").listenerHealths = null as any;
+export const listenerHealthsOutput: typeof import("./listenerHealths").listenerHealthsOutput = null as any;
+utilities.lazyLoad(exports, ["listenerHealths","listenerHealthsOutput"], () => require("./listenerHealths"));
+
 export { ListenersArgs, ListenersResult, ListenersOutputArgs } from "./listeners";
 export const listeners: typeof import("./listeners").listeners = null as any;
 export const listenersOutput: typeof import("./listeners").listenersOutput = null as any;
 utilities.lazyLoad(exports, ["listeners","listenersOutput"], () => require("./listeners"));
+
+export { ReplaceCertificateArgs, ReplaceCertificateState } from "./replaceCertificate";
+export type ReplaceCertificate = import("./replaceCertificate").ReplaceCertificate;
+export const ReplaceCertificate: typeof import("./replaceCertificate").ReplaceCertificate = null as any;
+utilities.lazyLoad(exports, ["ReplaceCertificate"], () => require("./replaceCertificate"));
 
 export { RuleArgs, RuleState } from "./rule";
 export type Rule = import("./rule").Rule;
@@ -175,6 +210,11 @@ export const serverGroups: typeof import("./serverGroups").serverGroups = null a
 export const serverGroupsOutput: typeof import("./serverGroups").serverGroupsOutput = null as any;
 utilities.lazyLoad(exports, ["serverGroups","serverGroupsOutput"], () => require("./serverGroups"));
 
+export { TlsAccessLogArgs, TlsAccessLogState } from "./tlsAccessLog";
+export type TlsAccessLog = import("./tlsAccessLog").TlsAccessLog;
+export const TlsAccessLog: typeof import("./tlsAccessLog").TlsAccessLog = null as any;
+utilities.lazyLoad(exports, ["TlsAccessLog"], () => require("./tlsAccessLog"));
+
 export { ZonesArgs, ZonesResult, ZonesOutputArgs } from "./zones";
 export const zones: typeof import("./zones").zones = null as any;
 export const zonesOutput: typeof import("./zones").zonesOutput = null as any;
@@ -185,6 +225,8 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "volcengine:alb/accessLog:AccessLog":
+                return new AccessLog(name, <any>undefined, { urn })
             case "volcengine:alb/acl:Acl":
                 return new Acl(name, <any>undefined, { urn })
             case "volcengine:alb/alb:Alb":
@@ -197,29 +239,39 @@ const _module = {
                 return new CustomizedCfg(name, <any>undefined, { urn })
             case "volcengine:alb/healthCheckTemplate:HealthCheckTemplate":
                 return new HealthCheckTemplate(name, <any>undefined, { urn })
+            case "volcengine:alb/healthLog:HealthLog":
+                return new HealthLog(name, <any>undefined, { urn })
             case "volcengine:alb/listener:Listener":
                 return new Listener(name, <any>undefined, { urn })
             case "volcengine:alb/listenerDomainExtension:ListenerDomainExtension":
                 return new ListenerDomainExtension(name, <any>undefined, { urn })
+            case "volcengine:alb/replaceCertificate:ReplaceCertificate":
+                return new ReplaceCertificate(name, <any>undefined, { urn })
             case "volcengine:alb/rule:Rule":
                 return new Rule(name, <any>undefined, { urn })
             case "volcengine:alb/serverGroup:ServerGroup":
                 return new ServerGroup(name, <any>undefined, { urn })
             case "volcengine:alb/serverGroupServer:ServerGroupServer":
                 return new ServerGroupServer(name, <any>undefined, { urn })
+            case "volcengine:alb/tlsAccessLog:TlsAccessLog":
+                return new TlsAccessLog(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
     },
 };
+pulumi.runtime.registerResourceModule("volcengine", "alb/accessLog", _module)
 pulumi.runtime.registerResourceModule("volcengine", "alb/acl", _module)
 pulumi.runtime.registerResourceModule("volcengine", "alb/alb", _module)
 pulumi.runtime.registerResourceModule("volcengine", "alb/cACertificate", _module)
 pulumi.runtime.registerResourceModule("volcengine", "alb/certificate", _module)
 pulumi.runtime.registerResourceModule("volcengine", "alb/customizedCfg", _module)
 pulumi.runtime.registerResourceModule("volcengine", "alb/healthCheckTemplate", _module)
+pulumi.runtime.registerResourceModule("volcengine", "alb/healthLog", _module)
 pulumi.runtime.registerResourceModule("volcengine", "alb/listener", _module)
 pulumi.runtime.registerResourceModule("volcengine", "alb/listenerDomainExtension", _module)
+pulumi.runtime.registerResourceModule("volcengine", "alb/replaceCertificate", _module)
 pulumi.runtime.registerResourceModule("volcengine", "alb/rule", _module)
 pulumi.runtime.registerResourceModule("volcengine", "alb/serverGroup", _module)
 pulumi.runtime.registerResourceModule("volcengine", "alb/serverGroupServer", _module)
+pulumi.runtime.registerResourceModule("volcengine", "alb/tlsAccessLog", _module)

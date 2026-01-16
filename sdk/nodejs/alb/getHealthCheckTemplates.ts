@@ -16,6 +16,10 @@ import * as utilities from "../utilities";
  *
  * const foo = volcengine.alb.getHealthCheckTemplates({
  *     ids: ["hctpl-1iidd1tobnim874adhf708uwf"],
+ *     tags: [{
+ *         key: "key1",
+ *         value: "value2",
+ *     }],
  * });
  * ```
  */
@@ -28,6 +32,8 @@ export function getHealthCheckTemplates(args?: GetHealthCheckTemplatesArgs, opts
         "ids": args.ids,
         "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
+        "projectName": args.projectName,
+        "tags": args.tags,
     }, opts);
 }
 
@@ -51,6 +57,14 @@ export interface GetHealthCheckTemplatesArgs {
      * File name where to save data source results.
      */
     outputFile?: string;
+    /**
+     * The project name to query.
+     */
+    projectName?: string;
+    /**
+     * Tags.
+     */
+    tags?: inputs.alb.GetHealthCheckTemplatesTag[];
 }
 
 /**
@@ -73,6 +87,14 @@ export interface GetHealthCheckTemplatesResult {
     readonly nameRegex?: string;
     readonly outputFile?: string;
     /**
+     * The project name to which the health check template belongs.
+     */
+    readonly projectName?: string;
+    /**
+     * Tags.
+     */
+    readonly tags?: outputs.alb.GetHealthCheckTemplatesTag[];
+    /**
      * The total count of health check template query.
      */
     readonly totalCount: number;
@@ -87,6 +109,10 @@ export interface GetHealthCheckTemplatesResult {
  *
  * const foo = volcengine.alb.getHealthCheckTemplates({
  *     ids: ["hctpl-1iidd1tobnim874adhf708uwf"],
+ *     tags: [{
+ *         key: "key1",
+ *         value: "value2",
+ *     }],
  * });
  * ```
  */
@@ -114,4 +140,12 @@ export interface GetHealthCheckTemplatesOutputArgs {
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
+    /**
+     * The project name to query.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.alb.GetHealthCheckTemplatesTagArgs>[]>;
 }
