@@ -41,17 +41,31 @@ import (
 //				Description:     pulumi.String("acc-test"),
 //				ServerGroupType: pulumi.String("instance"),
 //				Scheduler:       pulumi.String("wlc"),
+//				Protocol:        pulumi.String("HTTP"),
+//				IpAddressType:   pulumi.String("IPv4"),
 //				ProjectName:     pulumi.String("default"),
 //				HealthCheck: &alb.ServerGroupHealthCheckArgs{
-//					Enabled:  pulumi.String("on"),
-//					Interval: pulumi.Int(3),
-//					Timeout:  pulumi.Int(3),
-//					Method:   pulumi.String("GET"),
+//					Enabled:     pulumi.String("on"),
+//					Interval:    pulumi.Int(3),
+//					Timeout:     pulumi.Int(3),
+//					Method:      pulumi.String("GET"),
+//					Domain:      pulumi.String("www.test.com"),
+//					Uri:         pulumi.String("/health"),
+//					HttpCode:    pulumi.String("http_2xx,http_3xx"),
+//					Protocol:    pulumi.String("HTTP"),
+//					Port:        pulumi.Int(80),
+//					HttpVersion: pulumi.String("HTTP1.1"),
 //				},
 //				StickySessionConfig: &alb.ServerGroupStickySessionConfigArgs{
 //					StickySessionEnabled: pulumi.String("on"),
 //					StickySessionType:    pulumi.String("insert"),
 //					CookieTimeout:        pulumi.Int(1100),
+//				},
+//				Tags: alb.ServerGroupTagArray{
+//					&alb.ServerGroupTagArgs{
+//						Key:   pulumi.String("key1"),
+//						Value: pulumi.String("value2"),
+//					},
 //				},
 //			})
 //			if err != nil {
@@ -75,14 +89,20 @@ type ServerGroup struct {
 
 	// The create time of the Alb server group.
 	CreateTime pulumi.StringOutput `pulumi:"createTime"`
+	// Whether to enable cross-zone load balancing for the server group. Valid values: `on`, `off`.
+	CrossZoneEnabled pulumi.StringOutput `pulumi:"crossZoneEnabled"`
 	// The description of the Alb server group.
 	Description pulumi.StringOutput `pulumi:"description"`
 	// The health check config of the Alb server group. The enable status of health check function defaults to `on`.
 	HealthCheck ServerGroupHealthCheckOutput `pulumi:"healthCheck"`
+	// The ip address type of the server group.
+	IpAddressType pulumi.StringOutput `pulumi:"ipAddressType"`
 	// The listener information of the Alb server group.
 	Listeners pulumi.StringArrayOutput `pulumi:"listeners"`
 	// The project name of the Alb server group.
 	ProjectName pulumi.StringOutput `pulumi:"projectName"`
+	// The backend protocol of the Alb server group. Valid values: `HTTP`, `HTTPS`, `gRPC`. Default is `HTTP`.
+	Protocol pulumi.StringPtrOutput `pulumi:"protocol"`
 	// The scheduling algorithm of the Alb server group. Valid values: `wrr`, `wlc`, `sh`.
 	Scheduler pulumi.StringPtrOutput `pulumi:"scheduler"`
 	// The server count of the Alb server group.
@@ -95,6 +115,8 @@ type ServerGroup struct {
 	Status pulumi.StringOutput `pulumi:"status"`
 	// The sticky session config of the Alb server group. The enable status of sticky session function defaults to `off`.
 	StickySessionConfig ServerGroupStickySessionConfigOutput `pulumi:"stickySessionConfig"`
+	// Tags.
+	Tags ServerGroupTagArrayOutput `pulumi:"tags"`
 	// The update time of the Alb server group.
 	UpdateTime pulumi.StringOutput `pulumi:"updateTime"`
 	// The vpc id of the Alb server group.
@@ -136,14 +158,20 @@ func GetServerGroup(ctx *pulumi.Context,
 type serverGroupState struct {
 	// The create time of the Alb server group.
 	CreateTime *string `pulumi:"createTime"`
+	// Whether to enable cross-zone load balancing for the server group. Valid values: `on`, `off`.
+	CrossZoneEnabled *string `pulumi:"crossZoneEnabled"`
 	// The description of the Alb server group.
 	Description *string `pulumi:"description"`
 	// The health check config of the Alb server group. The enable status of health check function defaults to `on`.
 	HealthCheck *ServerGroupHealthCheck `pulumi:"healthCheck"`
+	// The ip address type of the server group.
+	IpAddressType *string `pulumi:"ipAddressType"`
 	// The listener information of the Alb server group.
 	Listeners []string `pulumi:"listeners"`
 	// The project name of the Alb server group.
 	ProjectName *string `pulumi:"projectName"`
+	// The backend protocol of the Alb server group. Valid values: `HTTP`, `HTTPS`, `gRPC`. Default is `HTTP`.
+	Protocol *string `pulumi:"protocol"`
 	// The scheduling algorithm of the Alb server group. Valid values: `wrr`, `wlc`, `sh`.
 	Scheduler *string `pulumi:"scheduler"`
 	// The server count of the Alb server group.
@@ -156,6 +184,8 @@ type serverGroupState struct {
 	Status *string `pulumi:"status"`
 	// The sticky session config of the Alb server group. The enable status of sticky session function defaults to `off`.
 	StickySessionConfig *ServerGroupStickySessionConfig `pulumi:"stickySessionConfig"`
+	// Tags.
+	Tags []ServerGroupTag `pulumi:"tags"`
 	// The update time of the Alb server group.
 	UpdateTime *string `pulumi:"updateTime"`
 	// The vpc id of the Alb server group.
@@ -165,14 +195,20 @@ type serverGroupState struct {
 type ServerGroupState struct {
 	// The create time of the Alb server group.
 	CreateTime pulumi.StringPtrInput
+	// Whether to enable cross-zone load balancing for the server group. Valid values: `on`, `off`.
+	CrossZoneEnabled pulumi.StringPtrInput
 	// The description of the Alb server group.
 	Description pulumi.StringPtrInput
 	// The health check config of the Alb server group. The enable status of health check function defaults to `on`.
 	HealthCheck ServerGroupHealthCheckPtrInput
+	// The ip address type of the server group.
+	IpAddressType pulumi.StringPtrInput
 	// The listener information of the Alb server group.
 	Listeners pulumi.StringArrayInput
 	// The project name of the Alb server group.
 	ProjectName pulumi.StringPtrInput
+	// The backend protocol of the Alb server group. Valid values: `HTTP`, `HTTPS`, `gRPC`. Default is `HTTP`.
+	Protocol pulumi.StringPtrInput
 	// The scheduling algorithm of the Alb server group. Valid values: `wrr`, `wlc`, `sh`.
 	Scheduler pulumi.StringPtrInput
 	// The server count of the Alb server group.
@@ -185,6 +221,8 @@ type ServerGroupState struct {
 	Status pulumi.StringPtrInput
 	// The sticky session config of the Alb server group. The enable status of sticky session function defaults to `off`.
 	StickySessionConfig ServerGroupStickySessionConfigPtrInput
+	// Tags.
+	Tags ServerGroupTagArrayInput
 	// The update time of the Alb server group.
 	UpdateTime pulumi.StringPtrInput
 	// The vpc id of the Alb server group.
@@ -196,12 +234,18 @@ func (ServerGroupState) ElementType() reflect.Type {
 }
 
 type serverGroupArgs struct {
+	// Whether to enable cross-zone load balancing for the server group. Valid values: `on`, `off`.
+	CrossZoneEnabled *string `pulumi:"crossZoneEnabled"`
 	// The description of the Alb server group.
 	Description *string `pulumi:"description"`
 	// The health check config of the Alb server group. The enable status of health check function defaults to `on`.
 	HealthCheck *ServerGroupHealthCheck `pulumi:"healthCheck"`
+	// The ip address type of the server group.
+	IpAddressType *string `pulumi:"ipAddressType"`
 	// The project name of the Alb server group.
 	ProjectName *string `pulumi:"projectName"`
+	// The backend protocol of the Alb server group. Valid values: `HTTP`, `HTTPS`, `gRPC`. Default is `HTTP`.
+	Protocol *string `pulumi:"protocol"`
 	// The scheduling algorithm of the Alb server group. Valid values: `wrr`, `wlc`, `sh`.
 	Scheduler *string `pulumi:"scheduler"`
 	// The name of the Alb server group.
@@ -210,18 +254,26 @@ type serverGroupArgs struct {
 	ServerGroupType *string `pulumi:"serverGroupType"`
 	// The sticky session config of the Alb server group. The enable status of sticky session function defaults to `off`.
 	StickySessionConfig *ServerGroupStickySessionConfig `pulumi:"stickySessionConfig"`
+	// Tags.
+	Tags []ServerGroupTag `pulumi:"tags"`
 	// The vpc id of the Alb server group.
 	VpcId string `pulumi:"vpcId"`
 }
 
 // The set of arguments for constructing a ServerGroup resource.
 type ServerGroupArgs struct {
+	// Whether to enable cross-zone load balancing for the server group. Valid values: `on`, `off`.
+	CrossZoneEnabled pulumi.StringPtrInput
 	// The description of the Alb server group.
 	Description pulumi.StringPtrInput
 	// The health check config of the Alb server group. The enable status of health check function defaults to `on`.
 	HealthCheck ServerGroupHealthCheckPtrInput
+	// The ip address type of the server group.
+	IpAddressType pulumi.StringPtrInput
 	// The project name of the Alb server group.
 	ProjectName pulumi.StringPtrInput
+	// The backend protocol of the Alb server group. Valid values: `HTTP`, `HTTPS`, `gRPC`. Default is `HTTP`.
+	Protocol pulumi.StringPtrInput
 	// The scheduling algorithm of the Alb server group. Valid values: `wrr`, `wlc`, `sh`.
 	Scheduler pulumi.StringPtrInput
 	// The name of the Alb server group.
@@ -230,6 +282,8 @@ type ServerGroupArgs struct {
 	ServerGroupType pulumi.StringPtrInput
 	// The sticky session config of the Alb server group. The enable status of sticky session function defaults to `off`.
 	StickySessionConfig ServerGroupStickySessionConfigPtrInput
+	// Tags.
+	Tags ServerGroupTagArrayInput
 	// The vpc id of the Alb server group.
 	VpcId pulumi.StringInput
 }
@@ -326,6 +380,11 @@ func (o ServerGroupOutput) CreateTime() pulumi.StringOutput {
 	return o.ApplyT(func(v *ServerGroup) pulumi.StringOutput { return v.CreateTime }).(pulumi.StringOutput)
 }
 
+// Whether to enable cross-zone load balancing for the server group. Valid values: `on`, `off`.
+func (o ServerGroupOutput) CrossZoneEnabled() pulumi.StringOutput {
+	return o.ApplyT(func(v *ServerGroup) pulumi.StringOutput { return v.CrossZoneEnabled }).(pulumi.StringOutput)
+}
+
 // The description of the Alb server group.
 func (o ServerGroupOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v *ServerGroup) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
@@ -336,6 +395,11 @@ func (o ServerGroupOutput) HealthCheck() ServerGroupHealthCheckOutput {
 	return o.ApplyT(func(v *ServerGroup) ServerGroupHealthCheckOutput { return v.HealthCheck }).(ServerGroupHealthCheckOutput)
 }
 
+// The ip address type of the server group.
+func (o ServerGroupOutput) IpAddressType() pulumi.StringOutput {
+	return o.ApplyT(func(v *ServerGroup) pulumi.StringOutput { return v.IpAddressType }).(pulumi.StringOutput)
+}
+
 // The listener information of the Alb server group.
 func (o ServerGroupOutput) Listeners() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *ServerGroup) pulumi.StringArrayOutput { return v.Listeners }).(pulumi.StringArrayOutput)
@@ -344,6 +408,11 @@ func (o ServerGroupOutput) Listeners() pulumi.StringArrayOutput {
 // The project name of the Alb server group.
 func (o ServerGroupOutput) ProjectName() pulumi.StringOutput {
 	return o.ApplyT(func(v *ServerGroup) pulumi.StringOutput { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The backend protocol of the Alb server group. Valid values: `HTTP`, `HTTPS`, `gRPC`. Default is `HTTP`.
+func (o ServerGroupOutput) Protocol() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServerGroup) pulumi.StringPtrOutput { return v.Protocol }).(pulumi.StringPtrOutput)
 }
 
 // The scheduling algorithm of the Alb server group. Valid values: `wrr`, `wlc`, `sh`.
@@ -374,6 +443,11 @@ func (o ServerGroupOutput) Status() pulumi.StringOutput {
 // The sticky session config of the Alb server group. The enable status of sticky session function defaults to `off`.
 func (o ServerGroupOutput) StickySessionConfig() ServerGroupStickySessionConfigOutput {
 	return o.ApplyT(func(v *ServerGroup) ServerGroupStickySessionConfigOutput { return v.StickySessionConfig }).(ServerGroupStickySessionConfigOutput)
+}
+
+// Tags.
+func (o ServerGroupOutput) Tags() ServerGroupTagArrayOutput {
+	return o.ApplyT(func(v *ServerGroup) ServerGroupTagArrayOutput { return v.Tags }).(ServerGroupTagArrayOutput)
 }
 
 // The update time of the Alb server group.

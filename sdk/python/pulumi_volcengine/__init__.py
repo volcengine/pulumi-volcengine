@@ -173,6 +173,14 @@ _utilities.register(
 [
  {
   "pkg": "volcengine",
+  "mod": "alb/accessLog",
+  "fqn": "pulumi_volcengine.alb",
+  "classes": {
+   "volcengine:alb/accessLog:AccessLog": "AccessLog"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "alb/acl",
   "fqn": "pulumi_volcengine.alb",
   "classes": {
@@ -221,6 +229,14 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "alb/healthLog",
+  "fqn": "pulumi_volcengine.alb",
+  "classes": {
+   "volcengine:alb/healthLog:HealthLog": "HealthLog"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "alb/listener",
   "fqn": "pulumi_volcengine.alb",
   "classes": {
@@ -233,6 +249,14 @@ _utilities.register(
   "fqn": "pulumi_volcengine.alb",
   "classes": {
    "volcengine:alb/listenerDomainExtension:ListenerDomainExtension": "ListenerDomainExtension"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "alb/replaceCertificate",
+  "fqn": "pulumi_volcengine.alb",
+  "classes": {
+   "volcengine:alb/replaceCertificate:ReplaceCertificate": "ReplaceCertificate"
   }
  },
  {
@@ -257,6 +281,14 @@ _utilities.register(
   "fqn": "pulumi_volcengine.alb",
   "classes": {
    "volcengine:alb/serverGroupServer:ServerGroupServer": "ServerGroupServer"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "alb/tlsAccessLog",
+  "fqn": "pulumi_volcengine.alb",
+  "classes": {
+   "volcengine:alb/tlsAccessLog:TlsAccessLog": "TlsAccessLog"
   }
  },
  {

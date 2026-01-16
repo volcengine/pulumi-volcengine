@@ -26,6 +26,10 @@ namespace Pulumi.Volcengine.Alb
         /// {
         ///     var foo = Volcengine.Alb.GetServerGroupServers.Invoke(new()
         ///     {
+        ///         InstanceIds = new[]
+        ///         {
+        ///             "i-yecutyh340qc6io*****",
+        ///         },
         ///         ServerGroupId = "rsp-1g7317vrcx3pc2zbhq4c3i6a2",
         ///     });
         /// 
@@ -49,6 +53,10 @@ namespace Pulumi.Volcengine.Alb
         /// {
         ///     var foo = Volcengine.Alb.GetServerGroupServers.Invoke(new()
         ///     {
+        ///         InstanceIds = new[]
+        ///         {
+        ///             "i-yecutyh340qc6io*****",
+        ///         },
         ///         ServerGroupId = "rsp-1g7317vrcx3pc2zbhq4c3i6a2",
         ///     });
         /// 
@@ -62,6 +70,30 @@ namespace Pulumi.Volcengine.Alb
 
     public sealed class ServerGroupServersArgs : global::Pulumi.InvokeArgs
     {
+        [Input("instanceIds")]
+        private List<string>? _instanceIds;
+
+        /// <summary>
+        /// A list of instance IDs. When the backend server is ECS, the parameter value is the ID of the ECS. When the backend server is a secondary network interface card, the parameter value is the ID of the secondary network interface card.
+        /// </summary>
+        public List<string> InstanceIds
+        {
+            get => _instanceIds ?? (_instanceIds = new List<string>());
+            set => _instanceIds = value;
+        }
+
+        [Input("ips")]
+        private List<string>? _ips;
+
+        /// <summary>
+        /// A list of private IP addresses.
+        /// </summary>
+        public List<string> Ips
+        {
+            get => _ips ?? (_ips = new List<string>());
+            set => _ips = value;
+        }
+
         /// <summary>
         /// File name where to save data source results.
         /// </summary>
@@ -82,6 +114,30 @@ namespace Pulumi.Volcengine.Alb
 
     public sealed class ServerGroupServersInvokeArgs : global::Pulumi.InvokeArgs
     {
+        [Input("instanceIds")]
+        private InputList<string>? _instanceIds;
+
+        /// <summary>
+        /// A list of instance IDs. When the backend server is ECS, the parameter value is the ID of the ECS. When the backend server is a secondary network interface card, the parameter value is the ID of the secondary network interface card.
+        /// </summary>
+        public InputList<string> InstanceIds
+        {
+            get => _instanceIds ?? (_instanceIds = new InputList<string>());
+            set => _instanceIds = value;
+        }
+
+        [Input("ips")]
+        private InputList<string>? _ips;
+
+        /// <summary>
+        /// A list of private IP addresses.
+        /// </summary>
+        public InputList<string> Ips
+        {
+            get => _ips ?? (_ips = new InputList<string>());
+            set => _ips = value;
+        }
+
         /// <summary>
         /// File name where to save data source results.
         /// </summary>
@@ -108,6 +164,8 @@ namespace Pulumi.Volcengine.Alb
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        public readonly ImmutableArray<string> InstanceIds;
+        public readonly ImmutableArray<string> Ips;
         public readonly string? OutputFile;
         public readonly string ServerGroupId;
         /// <summary>
@@ -123,6 +181,10 @@ namespace Pulumi.Volcengine.Alb
         private ServerGroupServersResult(
             string id,
 
+            ImmutableArray<string> instanceIds,
+
+            ImmutableArray<string> ips,
+
             string? outputFile,
 
             string serverGroupId,
@@ -132,6 +194,8 @@ namespace Pulumi.Volcengine.Alb
             int totalCount)
         {
             Id = id;
+            InstanceIds = instanceIds;
+            Ips = ips;
             OutputFile = outputFile;
             ServerGroupId = serverGroupId;
             Servers = servers;

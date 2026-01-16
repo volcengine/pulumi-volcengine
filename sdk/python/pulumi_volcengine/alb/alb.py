@@ -19,44 +19,84 @@ class AlbArgs:
                  subnet_ids: pulumi.Input[Sequence[pulumi.Input[str]]],
                  type: pulumi.Input[str],
                  address_ip_version: Optional[pulumi.Input[str]] = None,
+                 allocation_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  delete_protection: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  eip_billing_config: Optional[pulumi.Input['AlbEipBillingConfigArgs']] = None,
+                 global_accelerator: Optional[pulumi.Input['AlbGlobalAcceleratorArgs']] = None,
                  ipv6_eip_billing_config: Optional[pulumi.Input['AlbIpv6EipBillingConfigArgs']] = None,
+                 load_balancer_edition: Optional[pulumi.Input[str]] = None,
                  load_balancer_name: Optional[pulumi.Input[str]] = None,
+                 modification_protection_reason: Optional[pulumi.Input[str]] = None,
+                 modification_protection_status: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['AlbTagArgs']]]] = None):
+                 proxy_protocol_enabled: Optional[pulumi.Input[str]] = None,
+                 source_load_balancer_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['AlbTagArgs']]]] = None,
+                 waf_instance_id: Optional[pulumi.Input[str]] = None,
+                 waf_protected_domain: Optional[pulumi.Input[str]] = None,
+                 waf_protection_enabled: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Alb resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] subnet_ids: The id of the Subnet.
         :param pulumi.Input[str] type: The type of the Alb. Valid values: `public`, `private`.
         :param pulumi.Input[str] address_ip_version: The address ip version of the Alb. Valid values: `IPv4`, `DualStack`. Default is `ipv4`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allocation_ids: The ID of the public IP. This field is only valid when the type field changes from private to public.
         :param pulumi.Input[str] delete_protection: Whether to enable the delete protection function of the Alb. Valid values: `on`, `off`. Default is `off`.
         :param pulumi.Input[str] description: The description of the Alb.
         :param pulumi.Input['AlbEipBillingConfigArgs'] eip_billing_config: The billing configuration of the EIP which automatically associated to the Alb. This field is valid when the type of the Alb is `public`.When the type of the Alb is `private`, suggest using a combination of resource `eip.Address` and `eip.Associate` to achieve public network access function.
+        :param pulumi.Input['AlbGlobalAcceleratorArgs'] global_accelerator: The global accelerator configuration.
         :param pulumi.Input['AlbIpv6EipBillingConfigArgs'] ipv6_eip_billing_config: The billing configuration of the Ipv6 EIP which automatically associated to the Alb. This field is required when the type of the Alb is `public`.When the type of the Alb is `private`, suggest using a combination of resource `vpc.Ipv6Gateway` and `vpc.Ipv6AddressBandwidth` to achieve ipv6 public network access function.
+        :param pulumi.Input[str] load_balancer_edition: The version of the ALB instance. Basic: Basic Edition. Standard: Standard Edition. Default is `Basic`.
         :param pulumi.Input[str] load_balancer_name: The name of the Alb.
+        :param pulumi.Input[str] modification_protection_reason: The reason for enabling instance modification protection. This parameter is valid when the modification_protection_status is `ConsoleProtection`.
+        :param pulumi.Input[str] modification_protection_status: Whether to enable the modification protection function of the Alb. Valid values: `NonProtection`, `ConsoleProtection`. Default is `NonProtection`. NonProtection: Instance modification protection is not enabled. ConsoleProtection: Instance modification protection is enabled; you cannot modify the instance configuration through the ALB console, and can only modify the instance configuration by calling the API.
         :param pulumi.Input[str] project_name: The ProjectName of the Alb.
+        :param pulumi.Input[str] proxy_protocol_enabled: ALB can support the Proxy Protocol and record the real IP of the client.
+        :param pulumi.Input[str] source_load_balancer_id: The source ALB instance ID for cloning. If specified, the ALB instance will be cloned from this source.
         :param pulumi.Input[Sequence[pulumi.Input['AlbTagArgs']]] tags: Tags.
+        :param pulumi.Input[str] waf_instance_id: The ID of the WAF instance to be associated with the Alb. This field is valid when the value of the `waf_protection_enabled` is `on`.
+        :param pulumi.Input[str] waf_protected_domain: The domain name of the WAF protected Alb. This field is valid when the value of the `waf_protection_enabled` is `on`.
+        :param pulumi.Input[str] waf_protection_enabled: Whether to enable the WAF protection function of the Alb. Valid values: `off`, `on`. Default is `off`.
         """
         pulumi.set(__self__, "subnet_ids", subnet_ids)
         pulumi.set(__self__, "type", type)
         if address_ip_version is not None:
             pulumi.set(__self__, "address_ip_version", address_ip_version)
+        if allocation_ids is not None:
+            pulumi.set(__self__, "allocation_ids", allocation_ids)
         if delete_protection is not None:
             pulumi.set(__self__, "delete_protection", delete_protection)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if eip_billing_config is not None:
             pulumi.set(__self__, "eip_billing_config", eip_billing_config)
+        if global_accelerator is not None:
+            pulumi.set(__self__, "global_accelerator", global_accelerator)
         if ipv6_eip_billing_config is not None:
             pulumi.set(__self__, "ipv6_eip_billing_config", ipv6_eip_billing_config)
+        if load_balancer_edition is not None:
+            pulumi.set(__self__, "load_balancer_edition", load_balancer_edition)
         if load_balancer_name is not None:
             pulumi.set(__self__, "load_balancer_name", load_balancer_name)
+        if modification_protection_reason is not None:
+            pulumi.set(__self__, "modification_protection_reason", modification_protection_reason)
+        if modification_protection_status is not None:
+            pulumi.set(__self__, "modification_protection_status", modification_protection_status)
         if project_name is not None:
             pulumi.set(__self__, "project_name", project_name)
+        if proxy_protocol_enabled is not None:
+            pulumi.set(__self__, "proxy_protocol_enabled", proxy_protocol_enabled)
+        if source_load_balancer_id is not None:
+            pulumi.set(__self__, "source_load_balancer_id", source_load_balancer_id)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
+        if waf_instance_id is not None:
+            pulumi.set(__self__, "waf_instance_id", waf_instance_id)
+        if waf_protected_domain is not None:
+            pulumi.set(__self__, "waf_protected_domain", waf_protected_domain)
+        if waf_protection_enabled is not None:
+            pulumi.set(__self__, "waf_protection_enabled", waf_protection_enabled)
 
     @property
     @pulumi.getter(name="subnetIds")
@@ -95,6 +135,18 @@ class AlbArgs:
         pulumi.set(self, "address_ip_version", value)
 
     @property
+    @pulumi.getter(name="allocationIds")
+    def allocation_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The ID of the public IP. This field is only valid when the type field changes from private to public.
+        """
+        return pulumi.get(self, "allocation_ids")
+
+    @allocation_ids.setter
+    def allocation_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "allocation_ids", value)
+
+    @property
     @pulumi.getter(name="deleteProtection")
     def delete_protection(self) -> Optional[pulumi.Input[str]]:
         """
@@ -131,6 +183,18 @@ class AlbArgs:
         pulumi.set(self, "eip_billing_config", value)
 
     @property
+    @pulumi.getter(name="globalAccelerator")
+    def global_accelerator(self) -> Optional[pulumi.Input['AlbGlobalAcceleratorArgs']]:
+        """
+        The global accelerator configuration.
+        """
+        return pulumi.get(self, "global_accelerator")
+
+    @global_accelerator.setter
+    def global_accelerator(self, value: Optional[pulumi.Input['AlbGlobalAcceleratorArgs']]):
+        pulumi.set(self, "global_accelerator", value)
+
+    @property
     @pulumi.getter(name="ipv6EipBillingConfig")
     def ipv6_eip_billing_config(self) -> Optional[pulumi.Input['AlbIpv6EipBillingConfigArgs']]:
         """
@@ -141,6 +205,18 @@ class AlbArgs:
     @ipv6_eip_billing_config.setter
     def ipv6_eip_billing_config(self, value: Optional[pulumi.Input['AlbIpv6EipBillingConfigArgs']]):
         pulumi.set(self, "ipv6_eip_billing_config", value)
+
+    @property
+    @pulumi.getter(name="loadBalancerEdition")
+    def load_balancer_edition(self) -> Optional[pulumi.Input[str]]:
+        """
+        The version of the ALB instance. Basic: Basic Edition. Standard: Standard Edition. Default is `Basic`.
+        """
+        return pulumi.get(self, "load_balancer_edition")
+
+    @load_balancer_edition.setter
+    def load_balancer_edition(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "load_balancer_edition", value)
 
     @property
     @pulumi.getter(name="loadBalancerName")
@@ -155,6 +231,30 @@ class AlbArgs:
         pulumi.set(self, "load_balancer_name", value)
 
     @property
+    @pulumi.getter(name="modificationProtectionReason")
+    def modification_protection_reason(self) -> Optional[pulumi.Input[str]]:
+        """
+        The reason for enabling instance modification protection. This parameter is valid when the modification_protection_status is `ConsoleProtection`.
+        """
+        return pulumi.get(self, "modification_protection_reason")
+
+    @modification_protection_reason.setter
+    def modification_protection_reason(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "modification_protection_reason", value)
+
+    @property
+    @pulumi.getter(name="modificationProtectionStatus")
+    def modification_protection_status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Whether to enable the modification protection function of the Alb. Valid values: `NonProtection`, `ConsoleProtection`. Default is `NonProtection`. NonProtection: Instance modification protection is not enabled. ConsoleProtection: Instance modification protection is enabled; you cannot modify the instance configuration through the ALB console, and can only modify the instance configuration by calling the API.
+        """
+        return pulumi.get(self, "modification_protection_status")
+
+    @modification_protection_status.setter
+    def modification_protection_status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "modification_protection_status", value)
+
+    @property
     @pulumi.getter(name="projectName")
     def project_name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -165,6 +265,30 @@ class AlbArgs:
     @project_name.setter
     def project_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "project_name", value)
+
+    @property
+    @pulumi.getter(name="proxyProtocolEnabled")
+    def proxy_protocol_enabled(self) -> Optional[pulumi.Input[str]]:
+        """
+        ALB can support the Proxy Protocol and record the real IP of the client.
+        """
+        return pulumi.get(self, "proxy_protocol_enabled")
+
+    @proxy_protocol_enabled.setter
+    def proxy_protocol_enabled(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "proxy_protocol_enabled", value)
+
+    @property
+    @pulumi.getter(name="sourceLoadBalancerId")
+    def source_load_balancer_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The source ALB instance ID for cloning. If specified, the ALB instance will be cloned from this source.
+        """
+        return pulumi.get(self, "source_load_balancer_id")
+
+    @source_load_balancer_id.setter
+    def source_load_balancer_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "source_load_balancer_id", value)
 
     @property
     @pulumi.getter
@@ -178,45 +302,103 @@ class AlbArgs:
     def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AlbTagArgs']]]]):
         pulumi.set(self, "tags", value)
 
+    @property
+    @pulumi.getter(name="wafInstanceId")
+    def waf_instance_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the WAF instance to be associated with the Alb. This field is valid when the value of the `waf_protection_enabled` is `on`.
+        """
+        return pulumi.get(self, "waf_instance_id")
+
+    @waf_instance_id.setter
+    def waf_instance_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "waf_instance_id", value)
+
+    @property
+    @pulumi.getter(name="wafProtectedDomain")
+    def waf_protected_domain(self) -> Optional[pulumi.Input[str]]:
+        """
+        The domain name of the WAF protected Alb. This field is valid when the value of the `waf_protection_enabled` is `on`.
+        """
+        return pulumi.get(self, "waf_protected_domain")
+
+    @waf_protected_domain.setter
+    def waf_protected_domain(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "waf_protected_domain", value)
+
+    @property
+    @pulumi.getter(name="wafProtectionEnabled")
+    def waf_protection_enabled(self) -> Optional[pulumi.Input[str]]:
+        """
+        Whether to enable the WAF protection function of the Alb. Valid values: `off`, `on`. Default is `off`.
+        """
+        return pulumi.get(self, "waf_protection_enabled")
+
+    @waf_protection_enabled.setter
+    def waf_protection_enabled(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "waf_protection_enabled", value)
+
 
 @pulumi.input_type
 class _AlbState:
     def __init__(__self__, *,
                  address_ip_version: Optional[pulumi.Input[str]] = None,
+                 allocation_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  delete_protection: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  dns_name: Optional[pulumi.Input[str]] = None,
                  eip_billing_config: Optional[pulumi.Input['AlbEipBillingConfigArgs']] = None,
+                 global_accelerator: Optional[pulumi.Input['AlbGlobalAcceleratorArgs']] = None,
                  ipv6_eip_billing_config: Optional[pulumi.Input['AlbIpv6EipBillingConfigArgs']] = None,
+                 load_balancer_edition: Optional[pulumi.Input[str]] = None,
                  load_balancer_name: Optional[pulumi.Input[str]] = None,
                  local_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 modification_protection_reason: Optional[pulumi.Input[str]] = None,
+                 modification_protection_status: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
+                 proxy_protocol_enabled: Optional[pulumi.Input[str]] = None,
+                 source_load_balancer_id: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  subnet_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input['AlbTagArgs']]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None,
+                 waf_instance_id: Optional[pulumi.Input[str]] = None,
+                 waf_protected_domain: Optional[pulumi.Input[str]] = None,
+                 waf_protection_enabled: Optional[pulumi.Input[str]] = None,
                  zone_mappings: Optional[pulumi.Input[Sequence[pulumi.Input['AlbZoneMappingArgs']]]] = None):
         """
         Input properties used for looking up and filtering Alb resources.
         :param pulumi.Input[str] address_ip_version: The address ip version of the Alb. Valid values: `IPv4`, `DualStack`. Default is `ipv4`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allocation_ids: The ID of the public IP. This field is only valid when the type field changes from private to public.
         :param pulumi.Input[str] delete_protection: Whether to enable the delete protection function of the Alb. Valid values: `on`, `off`. Default is `off`.
         :param pulumi.Input[str] description: The description of the Alb.
         :param pulumi.Input[str] dns_name: The DNS name.
         :param pulumi.Input['AlbEipBillingConfigArgs'] eip_billing_config: The billing configuration of the EIP which automatically associated to the Alb. This field is valid when the type of the Alb is `public`.When the type of the Alb is `private`, suggest using a combination of resource `eip.Address` and `eip.Associate` to achieve public network access function.
+        :param pulumi.Input['AlbGlobalAcceleratorArgs'] global_accelerator: The global accelerator configuration.
         :param pulumi.Input['AlbIpv6EipBillingConfigArgs'] ipv6_eip_billing_config: The billing configuration of the Ipv6 EIP which automatically associated to the Alb. This field is required when the type of the Alb is `public`.When the type of the Alb is `private`, suggest using a combination of resource `vpc.Ipv6Gateway` and `vpc.Ipv6AddressBandwidth` to achieve ipv6 public network access function.
+        :param pulumi.Input[str] load_balancer_edition: The version of the ALB instance. Basic: Basic Edition. Standard: Standard Edition. Default is `Basic`.
         :param pulumi.Input[str] load_balancer_name: The name of the Alb.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] local_addresses: The local addresses of the Alb.
+        :param pulumi.Input[str] modification_protection_reason: The reason for enabling instance modification protection. This parameter is valid when the modification_protection_status is `ConsoleProtection`.
+        :param pulumi.Input[str] modification_protection_status: Whether to enable the modification protection function of the Alb. Valid values: `NonProtection`, `ConsoleProtection`. Default is `NonProtection`. NonProtection: Instance modification protection is not enabled. ConsoleProtection: Instance modification protection is enabled; you cannot modify the instance configuration through the ALB console, and can only modify the instance configuration by calling the API.
         :param pulumi.Input[str] project_name: The ProjectName of the Alb.
+        :param pulumi.Input[str] proxy_protocol_enabled: ALB can support the Proxy Protocol and record the real IP of the client.
+        :param pulumi.Input[str] source_load_balancer_id: The source ALB instance ID for cloning. If specified, the ALB instance will be cloned from this source.
         :param pulumi.Input[str] status: The status of the Alb.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] subnet_ids: The id of the Subnet.
         :param pulumi.Input[Sequence[pulumi.Input['AlbTagArgs']]] tags: Tags.
         :param pulumi.Input[str] type: The type of the Alb. Valid values: `public`, `private`.
         :param pulumi.Input[str] vpc_id: The vpc id of the Alb.
+        :param pulumi.Input[str] waf_instance_id: The ID of the WAF instance to be associated with the Alb. This field is valid when the value of the `waf_protection_enabled` is `on`.
+        :param pulumi.Input[str] waf_protected_domain: The domain name of the WAF protected Alb. This field is valid when the value of the `waf_protection_enabled` is `on`.
+        :param pulumi.Input[str] waf_protection_enabled: Whether to enable the WAF protection function of the Alb. Valid values: `off`, `on`. Default is `off`.
         :param pulumi.Input[Sequence[pulumi.Input['AlbZoneMappingArgs']]] zone_mappings: Configuration information of the Alb instance in different Availability Zones.
         """
         if address_ip_version is not None:
             pulumi.set(__self__, "address_ip_version", address_ip_version)
+        if allocation_ids is not None:
+            pulumi.set(__self__, "allocation_ids", allocation_ids)
         if delete_protection is not None:
             pulumi.set(__self__, "delete_protection", delete_protection)
         if description is not None:
@@ -225,14 +407,26 @@ class _AlbState:
             pulumi.set(__self__, "dns_name", dns_name)
         if eip_billing_config is not None:
             pulumi.set(__self__, "eip_billing_config", eip_billing_config)
+        if global_accelerator is not None:
+            pulumi.set(__self__, "global_accelerator", global_accelerator)
         if ipv6_eip_billing_config is not None:
             pulumi.set(__self__, "ipv6_eip_billing_config", ipv6_eip_billing_config)
+        if load_balancer_edition is not None:
+            pulumi.set(__self__, "load_balancer_edition", load_balancer_edition)
         if load_balancer_name is not None:
             pulumi.set(__self__, "load_balancer_name", load_balancer_name)
         if local_addresses is not None:
             pulumi.set(__self__, "local_addresses", local_addresses)
+        if modification_protection_reason is not None:
+            pulumi.set(__self__, "modification_protection_reason", modification_protection_reason)
+        if modification_protection_status is not None:
+            pulumi.set(__self__, "modification_protection_status", modification_protection_status)
         if project_name is not None:
             pulumi.set(__self__, "project_name", project_name)
+        if proxy_protocol_enabled is not None:
+            pulumi.set(__self__, "proxy_protocol_enabled", proxy_protocol_enabled)
+        if source_load_balancer_id is not None:
+            pulumi.set(__self__, "source_load_balancer_id", source_load_balancer_id)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if subnet_ids is not None:
@@ -243,6 +437,12 @@ class _AlbState:
             pulumi.set(__self__, "type", type)
         if vpc_id is not None:
             pulumi.set(__self__, "vpc_id", vpc_id)
+        if waf_instance_id is not None:
+            pulumi.set(__self__, "waf_instance_id", waf_instance_id)
+        if waf_protected_domain is not None:
+            pulumi.set(__self__, "waf_protected_domain", waf_protected_domain)
+        if waf_protection_enabled is not None:
+            pulumi.set(__self__, "waf_protection_enabled", waf_protection_enabled)
         if zone_mappings is not None:
             pulumi.set(__self__, "zone_mappings", zone_mappings)
 
@@ -257,6 +457,18 @@ class _AlbState:
     @address_ip_version.setter
     def address_ip_version(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "address_ip_version", value)
+
+    @property
+    @pulumi.getter(name="allocationIds")
+    def allocation_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The ID of the public IP. This field is only valid when the type field changes from private to public.
+        """
+        return pulumi.get(self, "allocation_ids")
+
+    @allocation_ids.setter
+    def allocation_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "allocation_ids", value)
 
     @property
     @pulumi.getter(name="deleteProtection")
@@ -307,6 +519,18 @@ class _AlbState:
         pulumi.set(self, "eip_billing_config", value)
 
     @property
+    @pulumi.getter(name="globalAccelerator")
+    def global_accelerator(self) -> Optional[pulumi.Input['AlbGlobalAcceleratorArgs']]:
+        """
+        The global accelerator configuration.
+        """
+        return pulumi.get(self, "global_accelerator")
+
+    @global_accelerator.setter
+    def global_accelerator(self, value: Optional[pulumi.Input['AlbGlobalAcceleratorArgs']]):
+        pulumi.set(self, "global_accelerator", value)
+
+    @property
     @pulumi.getter(name="ipv6EipBillingConfig")
     def ipv6_eip_billing_config(self) -> Optional[pulumi.Input['AlbIpv6EipBillingConfigArgs']]:
         """
@@ -317,6 +541,18 @@ class _AlbState:
     @ipv6_eip_billing_config.setter
     def ipv6_eip_billing_config(self, value: Optional[pulumi.Input['AlbIpv6EipBillingConfigArgs']]):
         pulumi.set(self, "ipv6_eip_billing_config", value)
+
+    @property
+    @pulumi.getter(name="loadBalancerEdition")
+    def load_balancer_edition(self) -> Optional[pulumi.Input[str]]:
+        """
+        The version of the ALB instance. Basic: Basic Edition. Standard: Standard Edition. Default is `Basic`.
+        """
+        return pulumi.get(self, "load_balancer_edition")
+
+    @load_balancer_edition.setter
+    def load_balancer_edition(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "load_balancer_edition", value)
 
     @property
     @pulumi.getter(name="loadBalancerName")
@@ -343,6 +579,30 @@ class _AlbState:
         pulumi.set(self, "local_addresses", value)
 
     @property
+    @pulumi.getter(name="modificationProtectionReason")
+    def modification_protection_reason(self) -> Optional[pulumi.Input[str]]:
+        """
+        The reason for enabling instance modification protection. This parameter is valid when the modification_protection_status is `ConsoleProtection`.
+        """
+        return pulumi.get(self, "modification_protection_reason")
+
+    @modification_protection_reason.setter
+    def modification_protection_reason(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "modification_protection_reason", value)
+
+    @property
+    @pulumi.getter(name="modificationProtectionStatus")
+    def modification_protection_status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Whether to enable the modification protection function of the Alb. Valid values: `NonProtection`, `ConsoleProtection`. Default is `NonProtection`. NonProtection: Instance modification protection is not enabled. ConsoleProtection: Instance modification protection is enabled; you cannot modify the instance configuration through the ALB console, and can only modify the instance configuration by calling the API.
+        """
+        return pulumi.get(self, "modification_protection_status")
+
+    @modification_protection_status.setter
+    def modification_protection_status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "modification_protection_status", value)
+
+    @property
     @pulumi.getter(name="projectName")
     def project_name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -353,6 +613,30 @@ class _AlbState:
     @project_name.setter
     def project_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "project_name", value)
+
+    @property
+    @pulumi.getter(name="proxyProtocolEnabled")
+    def proxy_protocol_enabled(self) -> Optional[pulumi.Input[str]]:
+        """
+        ALB can support the Proxy Protocol and record the real IP of the client.
+        """
+        return pulumi.get(self, "proxy_protocol_enabled")
+
+    @proxy_protocol_enabled.setter
+    def proxy_protocol_enabled(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "proxy_protocol_enabled", value)
+
+    @property
+    @pulumi.getter(name="sourceLoadBalancerId")
+    def source_load_balancer_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The source ALB instance ID for cloning. If specified, the ALB instance will be cloned from this source.
+        """
+        return pulumi.get(self, "source_load_balancer_id")
+
+    @source_load_balancer_id.setter
+    def source_load_balancer_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "source_load_balancer_id", value)
 
     @property
     @pulumi.getter
@@ -415,6 +699,42 @@ class _AlbState:
         pulumi.set(self, "vpc_id", value)
 
     @property
+    @pulumi.getter(name="wafInstanceId")
+    def waf_instance_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the WAF instance to be associated with the Alb. This field is valid when the value of the `waf_protection_enabled` is `on`.
+        """
+        return pulumi.get(self, "waf_instance_id")
+
+    @waf_instance_id.setter
+    def waf_instance_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "waf_instance_id", value)
+
+    @property
+    @pulumi.getter(name="wafProtectedDomain")
+    def waf_protected_domain(self) -> Optional[pulumi.Input[str]]:
+        """
+        The domain name of the WAF protected Alb. This field is valid when the value of the `waf_protection_enabled` is `on`.
+        """
+        return pulumi.get(self, "waf_protected_domain")
+
+    @waf_protected_domain.setter
+    def waf_protected_domain(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "waf_protected_domain", value)
+
+    @property
+    @pulumi.getter(name="wafProtectionEnabled")
+    def waf_protection_enabled(self) -> Optional[pulumi.Input[str]]:
+        """
+        Whether to enable the WAF protection function of the Alb. Valid values: `off`, `on`. Default is `off`.
+        """
+        return pulumi.get(self, "waf_protection_enabled")
+
+    @waf_protection_enabled.setter
+    def waf_protection_enabled(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "waf_protection_enabled", value)
+
+    @property
     @pulumi.getter(name="zoneMappings")
     def zone_mappings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AlbZoneMappingArgs']]]]:
         """
@@ -433,15 +753,25 @@ class Alb(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  address_ip_version: Optional[pulumi.Input[str]] = None,
+                 allocation_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  delete_protection: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  eip_billing_config: Optional[pulumi.Input[pulumi.InputType['AlbEipBillingConfigArgs']]] = None,
+                 global_accelerator: Optional[pulumi.Input[pulumi.InputType['AlbGlobalAcceleratorArgs']]] = None,
                  ipv6_eip_billing_config: Optional[pulumi.Input[pulumi.InputType['AlbIpv6EipBillingConfigArgs']]] = None,
+                 load_balancer_edition: Optional[pulumi.Input[str]] = None,
                  load_balancer_name: Optional[pulumi.Input[str]] = None,
+                 modification_protection_reason: Optional[pulumi.Input[str]] = None,
+                 modification_protection_status: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
+                 proxy_protocol_enabled: Optional[pulumi.Input[str]] = None,
+                 source_load_balancer_id: Optional[pulumi.Input[str]] = None,
                  subnet_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlbTagArgs']]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
+                 waf_instance_id: Optional[pulumi.Input[str]] = None,
+                 waf_protected_domain: Optional[pulumi.Input[str]] = None,
+                 waf_protection_enabled: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Provides a resource to manage alb
@@ -481,8 +811,8 @@ class Alb(pulumi.CustomResource):
             project_name="default",
             delete_protection="off",
             tags=[volcengine.alb.AlbTagArgs(
-                key="k2",
-                value="v2",
+                key="k1",
+                value="v1",
             )])
         alb_public = volcengine.alb.Alb("alb-public",
             address_ip_version="DualStack",
@@ -495,6 +825,9 @@ class Alb(pulumi.CustomResource):
             ],
             project_name="default",
             delete_protection="off",
+            modification_protection_status="NonProtection",
+            modification_protection_reason="Test modification protection",
+            load_balancer_edition="Basic",
             eip_billing_config=volcengine.alb.AlbEipBillingConfigArgs(
                 isp="BGP",
                 eip_billing_type="PostPaidByBandwidth",
@@ -506,10 +839,32 @@ class Alb(pulumi.CustomResource):
                 bandwidth=1,
             ),
             tags=[volcengine.alb.AlbTagArgs(
-                key="k2",
-                value="v2",
+                key="k1",
+                value="v1",
             )],
             opts=pulumi.ResourceOptions(depends_on=[ipv6_gateway]))
+        # CLone ALB instance
+        alb_cloned = volcengine.alb.Alb("alb-cloned",
+            source_load_balancer_id=alb_private.id,
+            load_balancer_name="acc-test-alb-cloned",
+            description="cloned from alb-private",
+            subnet_ids=[subnet_ipv61.id],
+            type="private",
+            project_name="default")
+        # Example of ALB network type change, private -> public
+        alb_type_change = volcengine.alb.Alb("alb-type-change",
+            load_balancer_name="acc-test-alb-type-change",
+            description="will change to public type",
+            subnet_ids=[
+                subnet_ipv61.id,
+                subnet_ipv62.id,
+            ],
+            type="public",
+            project_name="default",
+            allocation_ids=[
+                "eip-iinpy4k1rytc74o8curgocd7",
+                "eip-iinpy4k1rytc74o8curgocd8",
+            ])
         ```
 
         ## Import
@@ -523,15 +878,25 @@ class Alb(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] address_ip_version: The address ip version of the Alb. Valid values: `IPv4`, `DualStack`. Default is `ipv4`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allocation_ids: The ID of the public IP. This field is only valid when the type field changes from private to public.
         :param pulumi.Input[str] delete_protection: Whether to enable the delete protection function of the Alb. Valid values: `on`, `off`. Default is `off`.
         :param pulumi.Input[str] description: The description of the Alb.
         :param pulumi.Input[pulumi.InputType['AlbEipBillingConfigArgs']] eip_billing_config: The billing configuration of the EIP which automatically associated to the Alb. This field is valid when the type of the Alb is `public`.When the type of the Alb is `private`, suggest using a combination of resource `eip.Address` and `eip.Associate` to achieve public network access function.
+        :param pulumi.Input[pulumi.InputType['AlbGlobalAcceleratorArgs']] global_accelerator: The global accelerator configuration.
         :param pulumi.Input[pulumi.InputType['AlbIpv6EipBillingConfigArgs']] ipv6_eip_billing_config: The billing configuration of the Ipv6 EIP which automatically associated to the Alb. This field is required when the type of the Alb is `public`.When the type of the Alb is `private`, suggest using a combination of resource `vpc.Ipv6Gateway` and `vpc.Ipv6AddressBandwidth` to achieve ipv6 public network access function.
+        :param pulumi.Input[str] load_balancer_edition: The version of the ALB instance. Basic: Basic Edition. Standard: Standard Edition. Default is `Basic`.
         :param pulumi.Input[str] load_balancer_name: The name of the Alb.
+        :param pulumi.Input[str] modification_protection_reason: The reason for enabling instance modification protection. This parameter is valid when the modification_protection_status is `ConsoleProtection`.
+        :param pulumi.Input[str] modification_protection_status: Whether to enable the modification protection function of the Alb. Valid values: `NonProtection`, `ConsoleProtection`. Default is `NonProtection`. NonProtection: Instance modification protection is not enabled. ConsoleProtection: Instance modification protection is enabled; you cannot modify the instance configuration through the ALB console, and can only modify the instance configuration by calling the API.
         :param pulumi.Input[str] project_name: The ProjectName of the Alb.
+        :param pulumi.Input[str] proxy_protocol_enabled: ALB can support the Proxy Protocol and record the real IP of the client.
+        :param pulumi.Input[str] source_load_balancer_id: The source ALB instance ID for cloning. If specified, the ALB instance will be cloned from this source.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] subnet_ids: The id of the Subnet.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlbTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] type: The type of the Alb. Valid values: `public`, `private`.
+        :param pulumi.Input[str] waf_instance_id: The ID of the WAF instance to be associated with the Alb. This field is valid when the value of the `waf_protection_enabled` is `on`.
+        :param pulumi.Input[str] waf_protected_domain: The domain name of the WAF protected Alb. This field is valid when the value of the `waf_protection_enabled` is `on`.
+        :param pulumi.Input[str] waf_protection_enabled: Whether to enable the WAF protection function of the Alb. Valid values: `off`, `on`. Default is `off`.
         """
         ...
     @overload
@@ -577,8 +942,8 @@ class Alb(pulumi.CustomResource):
             project_name="default",
             delete_protection="off",
             tags=[volcengine.alb.AlbTagArgs(
-                key="k2",
-                value="v2",
+                key="k1",
+                value="v1",
             )])
         alb_public = volcengine.alb.Alb("alb-public",
             address_ip_version="DualStack",
@@ -591,6 +956,9 @@ class Alb(pulumi.CustomResource):
             ],
             project_name="default",
             delete_protection="off",
+            modification_protection_status="NonProtection",
+            modification_protection_reason="Test modification protection",
+            load_balancer_edition="Basic",
             eip_billing_config=volcengine.alb.AlbEipBillingConfigArgs(
                 isp="BGP",
                 eip_billing_type="PostPaidByBandwidth",
@@ -602,10 +970,32 @@ class Alb(pulumi.CustomResource):
                 bandwidth=1,
             ),
             tags=[volcengine.alb.AlbTagArgs(
-                key="k2",
-                value="v2",
+                key="k1",
+                value="v1",
             )],
             opts=pulumi.ResourceOptions(depends_on=[ipv6_gateway]))
+        # CLone ALB instance
+        alb_cloned = volcengine.alb.Alb("alb-cloned",
+            source_load_balancer_id=alb_private.id,
+            load_balancer_name="acc-test-alb-cloned",
+            description="cloned from alb-private",
+            subnet_ids=[subnet_ipv61.id],
+            type="private",
+            project_name="default")
+        # Example of ALB network type change, private -> public
+        alb_type_change = volcengine.alb.Alb("alb-type-change",
+            load_balancer_name="acc-test-alb-type-change",
+            description="will change to public type",
+            subnet_ids=[
+                subnet_ipv61.id,
+                subnet_ipv62.id,
+            ],
+            type="public",
+            project_name="default",
+            allocation_ids=[
+                "eip-iinpy4k1rytc74o8curgocd7",
+                "eip-iinpy4k1rytc74o8curgocd8",
+            ])
         ```
 
         ## Import
@@ -632,15 +1022,25 @@ class Alb(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  address_ip_version: Optional[pulumi.Input[str]] = None,
+                 allocation_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  delete_protection: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  eip_billing_config: Optional[pulumi.Input[pulumi.InputType['AlbEipBillingConfigArgs']]] = None,
+                 global_accelerator: Optional[pulumi.Input[pulumi.InputType['AlbGlobalAcceleratorArgs']]] = None,
                  ipv6_eip_billing_config: Optional[pulumi.Input[pulumi.InputType['AlbIpv6EipBillingConfigArgs']]] = None,
+                 load_balancer_edition: Optional[pulumi.Input[str]] = None,
                  load_balancer_name: Optional[pulumi.Input[str]] = None,
+                 modification_protection_reason: Optional[pulumi.Input[str]] = None,
+                 modification_protection_status: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
+                 proxy_protocol_enabled: Optional[pulumi.Input[str]] = None,
+                 source_load_balancer_id: Optional[pulumi.Input[str]] = None,
                  subnet_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlbTagArgs']]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
+                 waf_instance_id: Optional[pulumi.Input[str]] = None,
+                 waf_protected_domain: Optional[pulumi.Input[str]] = None,
+                 waf_protection_enabled: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -651,12 +1051,19 @@ class Alb(pulumi.CustomResource):
             __props__ = AlbArgs.__new__(AlbArgs)
 
             __props__.__dict__["address_ip_version"] = address_ip_version
+            __props__.__dict__["allocation_ids"] = allocation_ids
             __props__.__dict__["delete_protection"] = delete_protection
             __props__.__dict__["description"] = description
             __props__.__dict__["eip_billing_config"] = eip_billing_config
+            __props__.__dict__["global_accelerator"] = global_accelerator
             __props__.__dict__["ipv6_eip_billing_config"] = ipv6_eip_billing_config
+            __props__.__dict__["load_balancer_edition"] = load_balancer_edition
             __props__.__dict__["load_balancer_name"] = load_balancer_name
+            __props__.__dict__["modification_protection_reason"] = modification_protection_reason
+            __props__.__dict__["modification_protection_status"] = modification_protection_status
             __props__.__dict__["project_name"] = project_name
+            __props__.__dict__["proxy_protocol_enabled"] = proxy_protocol_enabled
+            __props__.__dict__["source_load_balancer_id"] = source_load_balancer_id
             if subnet_ids is None and not opts.urn:
                 raise TypeError("Missing required property 'subnet_ids'")
             __props__.__dict__["subnet_ids"] = subnet_ids
@@ -664,6 +1071,9 @@ class Alb(pulumi.CustomResource):
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
             __props__.__dict__["type"] = type
+            __props__.__dict__["waf_instance_id"] = waf_instance_id
+            __props__.__dict__["waf_protected_domain"] = waf_protected_domain
+            __props__.__dict__["waf_protection_enabled"] = waf_protection_enabled
             __props__.__dict__["dns_name"] = None
             __props__.__dict__["local_addresses"] = None
             __props__.__dict__["status"] = None
@@ -680,19 +1090,29 @@ class Alb(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             address_ip_version: Optional[pulumi.Input[str]] = None,
+            allocation_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             delete_protection: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             dns_name: Optional[pulumi.Input[str]] = None,
             eip_billing_config: Optional[pulumi.Input[pulumi.InputType['AlbEipBillingConfigArgs']]] = None,
+            global_accelerator: Optional[pulumi.Input[pulumi.InputType['AlbGlobalAcceleratorArgs']]] = None,
             ipv6_eip_billing_config: Optional[pulumi.Input[pulumi.InputType['AlbIpv6EipBillingConfigArgs']]] = None,
+            load_balancer_edition: Optional[pulumi.Input[str]] = None,
             load_balancer_name: Optional[pulumi.Input[str]] = None,
             local_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            modification_protection_reason: Optional[pulumi.Input[str]] = None,
+            modification_protection_status: Optional[pulumi.Input[str]] = None,
             project_name: Optional[pulumi.Input[str]] = None,
+            proxy_protocol_enabled: Optional[pulumi.Input[str]] = None,
+            source_load_balancer_id: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
             subnet_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlbTagArgs']]]]] = None,
             type: Optional[pulumi.Input[str]] = None,
             vpc_id: Optional[pulumi.Input[str]] = None,
+            waf_instance_id: Optional[pulumi.Input[str]] = None,
+            waf_protected_domain: Optional[pulumi.Input[str]] = None,
+            waf_protection_enabled: Optional[pulumi.Input[str]] = None,
             zone_mappings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlbZoneMappingArgs']]]]] = None) -> 'Alb':
         """
         Get an existing Alb resource's state with the given name, id, and optional extra
@@ -702,19 +1122,29 @@ class Alb(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] address_ip_version: The address ip version of the Alb. Valid values: `IPv4`, `DualStack`. Default is `ipv4`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allocation_ids: The ID of the public IP. This field is only valid when the type field changes from private to public.
         :param pulumi.Input[str] delete_protection: Whether to enable the delete protection function of the Alb. Valid values: `on`, `off`. Default is `off`.
         :param pulumi.Input[str] description: The description of the Alb.
         :param pulumi.Input[str] dns_name: The DNS name.
         :param pulumi.Input[pulumi.InputType['AlbEipBillingConfigArgs']] eip_billing_config: The billing configuration of the EIP which automatically associated to the Alb. This field is valid when the type of the Alb is `public`.When the type of the Alb is `private`, suggest using a combination of resource `eip.Address` and `eip.Associate` to achieve public network access function.
+        :param pulumi.Input[pulumi.InputType['AlbGlobalAcceleratorArgs']] global_accelerator: The global accelerator configuration.
         :param pulumi.Input[pulumi.InputType['AlbIpv6EipBillingConfigArgs']] ipv6_eip_billing_config: The billing configuration of the Ipv6 EIP which automatically associated to the Alb. This field is required when the type of the Alb is `public`.When the type of the Alb is `private`, suggest using a combination of resource `vpc.Ipv6Gateway` and `vpc.Ipv6AddressBandwidth` to achieve ipv6 public network access function.
+        :param pulumi.Input[str] load_balancer_edition: The version of the ALB instance. Basic: Basic Edition. Standard: Standard Edition. Default is `Basic`.
         :param pulumi.Input[str] load_balancer_name: The name of the Alb.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] local_addresses: The local addresses of the Alb.
+        :param pulumi.Input[str] modification_protection_reason: The reason for enabling instance modification protection. This parameter is valid when the modification_protection_status is `ConsoleProtection`.
+        :param pulumi.Input[str] modification_protection_status: Whether to enable the modification protection function of the Alb. Valid values: `NonProtection`, `ConsoleProtection`. Default is `NonProtection`. NonProtection: Instance modification protection is not enabled. ConsoleProtection: Instance modification protection is enabled; you cannot modify the instance configuration through the ALB console, and can only modify the instance configuration by calling the API.
         :param pulumi.Input[str] project_name: The ProjectName of the Alb.
+        :param pulumi.Input[str] proxy_protocol_enabled: ALB can support the Proxy Protocol and record the real IP of the client.
+        :param pulumi.Input[str] source_load_balancer_id: The source ALB instance ID for cloning. If specified, the ALB instance will be cloned from this source.
         :param pulumi.Input[str] status: The status of the Alb.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] subnet_ids: The id of the Subnet.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlbTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] type: The type of the Alb. Valid values: `public`, `private`.
         :param pulumi.Input[str] vpc_id: The vpc id of the Alb.
+        :param pulumi.Input[str] waf_instance_id: The ID of the WAF instance to be associated with the Alb. This field is valid when the value of the `waf_protection_enabled` is `on`.
+        :param pulumi.Input[str] waf_protected_domain: The domain name of the WAF protected Alb. This field is valid when the value of the `waf_protection_enabled` is `on`.
+        :param pulumi.Input[str] waf_protection_enabled: Whether to enable the WAF protection function of the Alb. Valid values: `off`, `on`. Default is `off`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlbZoneMappingArgs']]]] zone_mappings: Configuration information of the Alb instance in different Availability Zones.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -722,19 +1152,29 @@ class Alb(pulumi.CustomResource):
         __props__ = _AlbState.__new__(_AlbState)
 
         __props__.__dict__["address_ip_version"] = address_ip_version
+        __props__.__dict__["allocation_ids"] = allocation_ids
         __props__.__dict__["delete_protection"] = delete_protection
         __props__.__dict__["description"] = description
         __props__.__dict__["dns_name"] = dns_name
         __props__.__dict__["eip_billing_config"] = eip_billing_config
+        __props__.__dict__["global_accelerator"] = global_accelerator
         __props__.__dict__["ipv6_eip_billing_config"] = ipv6_eip_billing_config
+        __props__.__dict__["load_balancer_edition"] = load_balancer_edition
         __props__.__dict__["load_balancer_name"] = load_balancer_name
         __props__.__dict__["local_addresses"] = local_addresses
+        __props__.__dict__["modification_protection_reason"] = modification_protection_reason
+        __props__.__dict__["modification_protection_status"] = modification_protection_status
         __props__.__dict__["project_name"] = project_name
+        __props__.__dict__["proxy_protocol_enabled"] = proxy_protocol_enabled
+        __props__.__dict__["source_load_balancer_id"] = source_load_balancer_id
         __props__.__dict__["status"] = status
         __props__.__dict__["subnet_ids"] = subnet_ids
         __props__.__dict__["tags"] = tags
         __props__.__dict__["type"] = type
         __props__.__dict__["vpc_id"] = vpc_id
+        __props__.__dict__["waf_instance_id"] = waf_instance_id
+        __props__.__dict__["waf_protected_domain"] = waf_protected_domain
+        __props__.__dict__["waf_protection_enabled"] = waf_protection_enabled
         __props__.__dict__["zone_mappings"] = zone_mappings
         return Alb(resource_name, opts=opts, __props__=__props__)
 
@@ -745,6 +1185,14 @@ class Alb(pulumi.CustomResource):
         The address ip version of the Alb. Valid values: `IPv4`, `DualStack`. Default is `ipv4`.
         """
         return pulumi.get(self, "address_ip_version")
+
+    @property
+    @pulumi.getter(name="allocationIds")
+    def allocation_ids(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        The ID of the public IP. This field is only valid when the type field changes from private to public.
+        """
+        return pulumi.get(self, "allocation_ids")
 
     @property
     @pulumi.getter(name="deleteProtection")
@@ -779,12 +1227,28 @@ class Alb(pulumi.CustomResource):
         return pulumi.get(self, "eip_billing_config")
 
     @property
+    @pulumi.getter(name="globalAccelerator")
+    def global_accelerator(self) -> pulumi.Output['outputs.AlbGlobalAccelerator']:
+        """
+        The global accelerator configuration.
+        """
+        return pulumi.get(self, "global_accelerator")
+
+    @property
     @pulumi.getter(name="ipv6EipBillingConfig")
     def ipv6_eip_billing_config(self) -> pulumi.Output['outputs.AlbIpv6EipBillingConfig']:
         """
         The billing configuration of the Ipv6 EIP which automatically associated to the Alb. This field is required when the type of the Alb is `public`.When the type of the Alb is `private`, suggest using a combination of resource `vpc.Ipv6Gateway` and `vpc.Ipv6AddressBandwidth` to achieve ipv6 public network access function.
         """
         return pulumi.get(self, "ipv6_eip_billing_config")
+
+    @property
+    @pulumi.getter(name="loadBalancerEdition")
+    def load_balancer_edition(self) -> pulumi.Output[str]:
+        """
+        The version of the ALB instance. Basic: Basic Edition. Standard: Standard Edition. Default is `Basic`.
+        """
+        return pulumi.get(self, "load_balancer_edition")
 
     @property
     @pulumi.getter(name="loadBalancerName")
@@ -803,12 +1267,44 @@ class Alb(pulumi.CustomResource):
         return pulumi.get(self, "local_addresses")
 
     @property
+    @pulumi.getter(name="modificationProtectionReason")
+    def modification_protection_reason(self) -> pulumi.Output[str]:
+        """
+        The reason for enabling instance modification protection. This parameter is valid when the modification_protection_status is `ConsoleProtection`.
+        """
+        return pulumi.get(self, "modification_protection_reason")
+
+    @property
+    @pulumi.getter(name="modificationProtectionStatus")
+    def modification_protection_status(self) -> pulumi.Output[str]:
+        """
+        Whether to enable the modification protection function of the Alb. Valid values: `NonProtection`, `ConsoleProtection`. Default is `NonProtection`. NonProtection: Instance modification protection is not enabled. ConsoleProtection: Instance modification protection is enabled; you cannot modify the instance configuration through the ALB console, and can only modify the instance configuration by calling the API.
+        """
+        return pulumi.get(self, "modification_protection_status")
+
+    @property
     @pulumi.getter(name="projectName")
     def project_name(self) -> pulumi.Output[str]:
         """
         The ProjectName of the Alb.
         """
         return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="proxyProtocolEnabled")
+    def proxy_protocol_enabled(self) -> pulumi.Output[str]:
+        """
+        ALB can support the Proxy Protocol and record the real IP of the client.
+        """
+        return pulumi.get(self, "proxy_protocol_enabled")
+
+    @property
+    @pulumi.getter(name="sourceLoadBalancerId")
+    def source_load_balancer_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        The source ALB instance ID for cloning. If specified, the ALB instance will be cloned from this source.
+        """
+        return pulumi.get(self, "source_load_balancer_id")
 
     @property
     @pulumi.getter
@@ -849,6 +1345,30 @@ class Alb(pulumi.CustomResource):
         The vpc id of the Alb.
         """
         return pulumi.get(self, "vpc_id")
+
+    @property
+    @pulumi.getter(name="wafInstanceId")
+    def waf_instance_id(self) -> pulumi.Output[str]:
+        """
+        The ID of the WAF instance to be associated with the Alb. This field is valid when the value of the `waf_protection_enabled` is `on`.
+        """
+        return pulumi.get(self, "waf_instance_id")
+
+    @property
+    @pulumi.getter(name="wafProtectedDomain")
+    def waf_protected_domain(self) -> pulumi.Output[Optional[str]]:
+        """
+        The domain name of the WAF protected Alb. This field is valid when the value of the `waf_protection_enabled` is `on`.
+        """
+        return pulumi.get(self, "waf_protected_domain")
+
+    @property
+    @pulumi.getter(name="wafProtectionEnabled")
+    def waf_protection_enabled(self) -> pulumi.Output[str]:
+        """
+        Whether to enable the WAF protection function of the Alb. Valid values: `off`, `on`. Default is `off`.
+        """
+        return pulumi.get(self, "waf_protection_enabled")
 
     @property
     @pulumi.getter(name="zoneMappings")

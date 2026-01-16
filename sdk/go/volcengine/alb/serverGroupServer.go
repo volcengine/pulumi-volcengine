@@ -61,13 +61,15 @@ type ServerGroupServer struct {
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
 	// The private ip of the instance.
 	Ip pulumi.StringOutput `pulumi:"ip"`
-	// The port receiving request.
+	// The port receiving request. Value range: 1 ~ 65535.
 	Port pulumi.IntOutput `pulumi:"port"`
+	// Whether to enable remote IP function. Optional choice contains `on`, `off`. Default value is `off`. This field is only effective when the type is `ip`.
+	RemoteEnabled pulumi.StringPtrOutput `pulumi:"remoteEnabled"`
 	// The ID of the ServerGroup.
 	ServerGroupId pulumi.StringOutput `pulumi:"serverGroupId"`
 	// The server id of instance in ServerGroup.
 	ServerId pulumi.StringOutput `pulumi:"serverId"`
-	// The type of instance. Optional choice contains `ecs`, `eni`.
+	// The type of instance. Optional choice contains `ecs`, `eni`, `ip`.
 	Type pulumi.StringOutput `pulumi:"type"`
 	// The weight of the instance, range in 0~100.
 	Weight pulumi.IntPtrOutput `pulumi:"weight"`
@@ -124,13 +126,15 @@ type serverGroupServerState struct {
 	InstanceId *string `pulumi:"instanceId"`
 	// The private ip of the instance.
 	Ip *string `pulumi:"ip"`
-	// The port receiving request.
+	// The port receiving request. Value range: 1 ~ 65535.
 	Port *int `pulumi:"port"`
+	// Whether to enable remote IP function. Optional choice contains `on`, `off`. Default value is `off`. This field is only effective when the type is `ip`.
+	RemoteEnabled *string `pulumi:"remoteEnabled"`
 	// The ID of the ServerGroup.
 	ServerGroupId *string `pulumi:"serverGroupId"`
 	// The server id of instance in ServerGroup.
 	ServerId *string `pulumi:"serverId"`
-	// The type of instance. Optional choice contains `ecs`, `eni`.
+	// The type of instance. Optional choice contains `ecs`, `eni`, `ip`.
 	Type *string `pulumi:"type"`
 	// The weight of the instance, range in 0~100.
 	Weight *int `pulumi:"weight"`
@@ -143,13 +147,15 @@ type ServerGroupServerState struct {
 	InstanceId pulumi.StringPtrInput
 	// The private ip of the instance.
 	Ip pulumi.StringPtrInput
-	// The port receiving request.
+	// The port receiving request. Value range: 1 ~ 65535.
 	Port pulumi.IntPtrInput
+	// Whether to enable remote IP function. Optional choice contains `on`, `off`. Default value is `off`. This field is only effective when the type is `ip`.
+	RemoteEnabled pulumi.StringPtrInput
 	// The ID of the ServerGroup.
 	ServerGroupId pulumi.StringPtrInput
 	// The server id of instance in ServerGroup.
 	ServerId pulumi.StringPtrInput
-	// The type of instance. Optional choice contains `ecs`, `eni`.
+	// The type of instance. Optional choice contains `ecs`, `eni`, `ip`.
 	Type pulumi.StringPtrInput
 	// The weight of the instance, range in 0~100.
 	Weight pulumi.IntPtrInput
@@ -166,11 +172,13 @@ type serverGroupServerArgs struct {
 	InstanceId string `pulumi:"instanceId"`
 	// The private ip of the instance.
 	Ip string `pulumi:"ip"`
-	// The port receiving request.
+	// The port receiving request. Value range: 1 ~ 65535.
 	Port int `pulumi:"port"`
+	// Whether to enable remote IP function. Optional choice contains `on`, `off`. Default value is `off`. This field is only effective when the type is `ip`.
+	RemoteEnabled *string `pulumi:"remoteEnabled"`
 	// The ID of the ServerGroup.
 	ServerGroupId string `pulumi:"serverGroupId"`
-	// The type of instance. Optional choice contains `ecs`, `eni`.
+	// The type of instance. Optional choice contains `ecs`, `eni`, `ip`.
 	Type string `pulumi:"type"`
 	// The weight of the instance, range in 0~100.
 	Weight *int `pulumi:"weight"`
@@ -184,11 +192,13 @@ type ServerGroupServerArgs struct {
 	InstanceId pulumi.StringInput
 	// The private ip of the instance.
 	Ip pulumi.StringInput
-	// The port receiving request.
+	// The port receiving request. Value range: 1 ~ 65535.
 	Port pulumi.IntInput
+	// Whether to enable remote IP function. Optional choice contains `on`, `off`. Default value is `off`. This field is only effective when the type is `ip`.
+	RemoteEnabled pulumi.StringPtrInput
 	// The ID of the ServerGroup.
 	ServerGroupId pulumi.StringInput
-	// The type of instance. Optional choice contains `ecs`, `eni`.
+	// The type of instance. Optional choice contains `ecs`, `eni`, `ip`.
 	Type pulumi.StringInput
 	// The weight of the instance, range in 0~100.
 	Weight pulumi.IntPtrInput
@@ -296,9 +306,14 @@ func (o ServerGroupServerOutput) Ip() pulumi.StringOutput {
 	return o.ApplyT(func(v *ServerGroupServer) pulumi.StringOutput { return v.Ip }).(pulumi.StringOutput)
 }
 
-// The port receiving request.
+// The port receiving request. Value range: 1 ~ 65535.
 func (o ServerGroupServerOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v *ServerGroupServer) pulumi.IntOutput { return v.Port }).(pulumi.IntOutput)
+}
+
+// Whether to enable remote IP function. Optional choice contains `on`, `off`. Default value is `off`. This field is only effective when the type is `ip`.
+func (o ServerGroupServerOutput) RemoteEnabled() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServerGroupServer) pulumi.StringPtrOutput { return v.RemoteEnabled }).(pulumi.StringPtrOutput)
 }
 
 // The ID of the ServerGroup.
@@ -311,7 +326,7 @@ func (o ServerGroupServerOutput) ServerId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ServerGroupServer) pulumi.StringOutput { return v.ServerId }).(pulumi.StringOutput)
 }
 
-// The type of instance. Optional choice contains `ecs`, `eni`.
+// The type of instance. Optional choice contains `ecs`, `eni`, `ip`.
 func (o ServerGroupServerOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *ServerGroupServer) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }

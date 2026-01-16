@@ -50,6 +50,10 @@ namespace Pulumi.Volcengine.Alb.Outputs
         /// </summary>
         public readonly string ProjectName;
         /// <summary>
+        /// The san extension of the CA Certificate.
+        /// </summary>
+        public readonly string San;
+        /// <summary>
         /// The status of the CA Certificate.
         /// </summary>
         public readonly string Status;
@@ -74,6 +78,8 @@ namespace Pulumi.Volcengine.Alb.Outputs
 
             string projectName,
 
+            string san,
+
             string status)
         {
             CaCertificateId = caCertificateId;
@@ -85,6 +91,7 @@ namespace Pulumi.Volcengine.Alb.Outputs
             ExpiredAt = expiredAt;
             Listeners = listeners;
             ProjectName = projectName;
+            San = san;
             Status = status;
         }
     }

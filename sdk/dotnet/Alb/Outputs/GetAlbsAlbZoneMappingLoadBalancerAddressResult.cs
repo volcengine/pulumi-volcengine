@@ -14,7 +14,7 @@ namespace Pulumi.Volcengine.Alb.Outputs
     public sealed class GetAlbsAlbZoneMappingLoadBalancerAddressResult
     {
         /// <summary>
-        /// The Eip address of the Alb.
+        /// The public ip address of the Alb.
         /// </summary>
         public readonly string EipAddress;
         /// <summary>

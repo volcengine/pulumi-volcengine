@@ -50,6 +50,14 @@ namespace Pulumi.Volcengine.Alb.Outputs
         /// </summary>
         public readonly string ProjectName;
         /// <summary>
+        /// The status of Acl.
+        /// </summary>
+        public readonly string Status;
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetAclsAclTagResult> Tags;
+        /// <summary>
         /// Update time of Acl.
         /// </summary>
         public readonly string UpdateTime;
@@ -74,6 +82,10 @@ namespace Pulumi.Volcengine.Alb.Outputs
 
             string projectName,
 
+            string status,
+
+            ImmutableArray<Outputs.GetAclsAclTagResult> tags,
+
             string updateTime)
         {
             AclEntries = aclEntries;
@@ -85,6 +97,8 @@ namespace Pulumi.Volcengine.Alb.Outputs
             Id = id;
             Listeners = listeners;
             ProjectName = projectName;
+            Status = status;
+            Tags = tags;
             UpdateTime = updateTime;
         }
     }

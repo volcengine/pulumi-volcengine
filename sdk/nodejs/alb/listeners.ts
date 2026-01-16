@@ -30,6 +30,8 @@ export function listeners(args?: ListenersArgs, opts?: pulumi.InvokeOptions): Pr
         "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
         "projectName": args.projectName,
+        "protocol": args.protocol,
+        "tags": args.tags,
     }, opts);
 }
 
@@ -61,6 +63,14 @@ export interface ListenersArgs {
      * The project name of the listener.
      */
     projectName?: string;
+    /**
+     * The protocol of the Listener.
+     */
+    protocol?: string;
+    /**
+     * Tags.
+     */
+    tags?: inputs.alb.ListenersTag[];
 }
 
 /**
@@ -90,6 +100,14 @@ export interface ListenersResult {
      * The project name of the listener.
      */
     readonly projectName?: string;
+    /**
+     * The protocol of the Listener.
+     */
+    readonly protocol?: string;
+    /**
+     * Tags.
+     */
+    readonly tags?: outputs.alb.ListenersTag[];
     /**
      * The total count of Listener query.
      */
@@ -139,4 +157,12 @@ export interface ListenersOutputArgs {
      * The project name of the listener.
      */
     projectName?: pulumi.Input<string>;
+    /**
+     * The protocol of the Listener.
+     */
+    protocol?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.alb.ListenersTagArgs>[]>;
 }

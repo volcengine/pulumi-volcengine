@@ -22,10 +22,16 @@ class GetServerGroupServersResult:
     """
     A collection of values returned by getServerGroupServers.
     """
-    def __init__(__self__, id=None, output_file=None, server_group_id=None, servers=None, total_count=None):
+    def __init__(__self__, id=None, instance_ids=None, ips=None, output_file=None, server_group_id=None, servers=None, total_count=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if instance_ids and not isinstance(instance_ids, list):
+            raise TypeError("Expected argument 'instance_ids' to be a list")
+        pulumi.set(__self__, "instance_ids", instance_ids)
+        if ips and not isinstance(ips, list):
+            raise TypeError("Expected argument 'ips' to be a list")
+        pulumi.set(__self__, "ips", ips)
         if output_file and not isinstance(output_file, str):
             raise TypeError("Expected argument 'output_file' to be a str")
         pulumi.set(__self__, "output_file", output_file)
@@ -46,6 +52,16 @@ class GetServerGroupServersResult:
         The provider-assigned unique ID for this managed resource.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="instanceIds")
+    def instance_ids(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "instance_ids")
+
+    @property
+    @pulumi.getter
+    def ips(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "ips")
 
     @property
     @pulumi.getter(name="outputFile")
@@ -81,13 +97,17 @@ class AwaitableGetServerGroupServersResult(GetServerGroupServersResult):
             yield self
         return GetServerGroupServersResult(
             id=self.id,
+            instance_ids=self.instance_ids,
+            ips=self.ips,
             output_file=self.output_file,
             server_group_id=self.server_group_id,
             servers=self.servers,
             total_count=self.total_count)
 
 
-def get_server_group_servers(output_file: Optional[str] = None,
+def get_server_group_servers(instance_ids: Optional[Sequence[str]] = None,
+                             ips: Optional[Sequence[str]] = None,
+                             output_file: Optional[str] = None,
                              server_group_id: Optional[str] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetServerGroupServersResult:
     """
@@ -98,14 +118,19 @@ def get_server_group_servers(output_file: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.alb.get_server_group_servers(server_group_id="rsp-1g7317vrcx3pc2zbhq4c3i6a2")
+    foo = volcengine.alb.get_server_group_servers(instance_ids=["i-yecutyh340qc6io*****"],
+        server_group_id="rsp-1g7317vrcx3pc2zbhq4c3i6a2")
     ```
 
 
+    :param Sequence[str] instance_ids: A list of instance IDs. When the backend server is ECS, the parameter value is the ID of the ECS. When the backend server is a secondary network interface card, the parameter value is the ID of the secondary network interface card.
+    :param Sequence[str] ips: A list of private IP addresses.
     :param str output_file: File name where to save data source results.
     :param str server_group_id: The ID of the ServerGroup.
     """
     __args__ = dict()
+    __args__['instanceIds'] = instance_ids
+    __args__['ips'] = ips
     __args__['outputFile'] = output_file
     __args__['serverGroupId'] = server_group_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -113,6 +138,8 @@ def get_server_group_servers(output_file: Optional[str] = None,
 
     return AwaitableGetServerGroupServersResult(
         id=pulumi.get(__ret__, 'id'),
+        instance_ids=pulumi.get(__ret__, 'instance_ids'),
+        ips=pulumi.get(__ret__, 'ips'),
         output_file=pulumi.get(__ret__, 'output_file'),
         server_group_id=pulumi.get(__ret__, 'server_group_id'),
         servers=pulumi.get(__ret__, 'servers'),
@@ -120,7 +147,9 @@ def get_server_group_servers(output_file: Optional[str] = None,
 
 
 @_utilities.lift_output_func(get_server_group_servers)
-def get_server_group_servers_output(output_file: Optional[pulumi.Input[Optional[str]]] = None,
+def get_server_group_servers_output(instance_ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
+                                    ips: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
+                                    output_file: Optional[pulumi.Input[Optional[str]]] = None,
                                     server_group_id: Optional[pulumi.Input[str]] = None,
                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetServerGroupServersResult]:
     """
@@ -131,10 +160,13 @@ def get_server_group_servers_output(output_file: Optional[pulumi.Input[Optional[
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.alb.get_server_group_servers(server_group_id="rsp-1g7317vrcx3pc2zbhq4c3i6a2")
+    foo = volcengine.alb.get_server_group_servers(instance_ids=["i-yecutyh340qc6io*****"],
+        server_group_id="rsp-1g7317vrcx3pc2zbhq4c3i6a2")
     ```
 
 
+    :param Sequence[str] instance_ids: A list of instance IDs. When the backend server is ECS, the parameter value is the ID of the ECS. When the backend server is a secondary network interface card, the parameter value is the ID of the secondary network interface card.
+    :param Sequence[str] ips: A list of private IP addresses.
     :param str output_file: File name where to save data source results.
     :param str server_group_id: The ID of the ServerGroup.
     """

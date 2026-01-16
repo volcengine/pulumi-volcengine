@@ -67,6 +67,12 @@ namespace Pulumi.Volcengine.Alb
         [Output("projectName")]
         public Output<string> ProjectName { get; private set; } = null!;
 
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<Outputs.CustomizedCfgTag>> Tags { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a CustomizedCfg resource with the given unique name, arguments, and options.
@@ -138,6 +144,18 @@ namespace Pulumi.Volcengine.Alb
         [Input("projectName")]
         public Input<string>? ProjectName { get; set; }
 
+        [Input("tags")]
+        private InputList<Inputs.CustomizedCfgTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.CustomizedCfgTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.CustomizedCfgTagArgs>());
+            set => _tags = value;
+        }
+
         public CustomizedCfgArgs()
         {
         }
@@ -169,6 +187,18 @@ namespace Pulumi.Volcengine.Alb
         /// </summary>
         [Input("projectName")]
         public Input<string>? ProjectName { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.CustomizedCfgTagGetArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.CustomizedCfgTagGetArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.CustomizedCfgTagGetArgs>());
+            set => _tags = value;
+        }
 
         public CustomizedCfgState()
         {

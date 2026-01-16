@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -24,6 +26,10 @@ import * as utilities from "../utilities";
  *     healthCheckTimeout: 11,
  *     healthCheckUri: "/",
  *     healthyThreshold: 2,
+ *     tags: [{
+ *         key: "key1",
+ *         value: "value2",
+ *     }],
  *     unhealthyThreshold: 3,
  * });
  * ```
@@ -89,7 +95,11 @@ export class HealthCheckTemplate extends pulumi.CustomResource {
      */
     public readonly healthCheckMethod!: pulumi.Output<string>;
     /**
-     * THe protocol of health check,only support HTTP.
+     * The port for health check. 0 means use backend server port for health check, 1-65535 means use the specified port.
+     */
+    public readonly healthCheckPort!: pulumi.Output<number>;
+    /**
+     * The protocol of health check, support HTTP and TCP.
      */
     public readonly healthCheckProtocol!: pulumi.Output<string>;
     /**
@@ -108,6 +118,14 @@ export class HealthCheckTemplate extends pulumi.CustomResource {
      * The healthy threshold of the health check, the default is 3, the value is 2-10.
      */
     public readonly healthyThreshold!: pulumi.Output<number>;
+    /**
+     * The project name to which the health check template belongs.
+     */
+    public readonly projectName!: pulumi.Output<string>;
+    /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.alb.HealthCheckTemplateTag[] | undefined>;
     /**
      * The unhealthy threshold of the health check, the default is 3, the value is 2-10.
      */
@@ -132,11 +150,14 @@ export class HealthCheckTemplate extends pulumi.CustomResource {
             resourceInputs["healthCheckHttpVersion"] = state ? state.healthCheckHttpVersion : undefined;
             resourceInputs["healthCheckInterval"] = state ? state.healthCheckInterval : undefined;
             resourceInputs["healthCheckMethod"] = state ? state.healthCheckMethod : undefined;
+            resourceInputs["healthCheckPort"] = state ? state.healthCheckPort : undefined;
             resourceInputs["healthCheckProtocol"] = state ? state.healthCheckProtocol : undefined;
             resourceInputs["healthCheckTemplateName"] = state ? state.healthCheckTemplateName : undefined;
             resourceInputs["healthCheckTimeout"] = state ? state.healthCheckTimeout : undefined;
             resourceInputs["healthCheckUri"] = state ? state.healthCheckUri : undefined;
             resourceInputs["healthyThreshold"] = state ? state.healthyThreshold : undefined;
+            resourceInputs["projectName"] = state ? state.projectName : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["unhealthyThreshold"] = state ? state.unhealthyThreshold : undefined;
         } else {
             const args = argsOrState as HealthCheckTemplateArgs | undefined;
@@ -149,11 +170,14 @@ export class HealthCheckTemplate extends pulumi.CustomResource {
             resourceInputs["healthCheckHttpVersion"] = args ? args.healthCheckHttpVersion : undefined;
             resourceInputs["healthCheckInterval"] = args ? args.healthCheckInterval : undefined;
             resourceInputs["healthCheckMethod"] = args ? args.healthCheckMethod : undefined;
+            resourceInputs["healthCheckPort"] = args ? args.healthCheckPort : undefined;
             resourceInputs["healthCheckProtocol"] = args ? args.healthCheckProtocol : undefined;
             resourceInputs["healthCheckTemplateName"] = args ? args.healthCheckTemplateName : undefined;
             resourceInputs["healthCheckTimeout"] = args ? args.healthCheckTimeout : undefined;
             resourceInputs["healthCheckUri"] = args ? args.healthCheckUri : undefined;
             resourceInputs["healthyThreshold"] = args ? args.healthyThreshold : undefined;
+            resourceInputs["projectName"] = args ? args.projectName : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["unhealthyThreshold"] = args ? args.unhealthyThreshold : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -190,7 +214,11 @@ export interface HealthCheckTemplateState {
      */
     healthCheckMethod?: pulumi.Input<string>;
     /**
-     * THe protocol of health check,only support HTTP.
+     * The port for health check. 0 means use backend server port for health check, 1-65535 means use the specified port.
+     */
+    healthCheckPort?: pulumi.Input<number>;
+    /**
+     * The protocol of health check, support HTTP and TCP.
      */
     healthCheckProtocol?: pulumi.Input<string>;
     /**
@@ -209,6 +237,14 @@ export interface HealthCheckTemplateState {
      * The healthy threshold of the health check, the default is 3, the value is 2-10.
      */
     healthyThreshold?: pulumi.Input<number>;
+    /**
+     * The project name to which the health check template belongs.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.alb.HealthCheckTemplateTag>[]>;
     /**
      * The unhealthy threshold of the health check, the default is 3, the value is 2-10.
      */
@@ -244,7 +280,11 @@ export interface HealthCheckTemplateArgs {
      */
     healthCheckMethod?: pulumi.Input<string>;
     /**
-     * THe protocol of health check,only support HTTP.
+     * The port for health check. 0 means use backend server port for health check, 1-65535 means use the specified port.
+     */
+    healthCheckPort?: pulumi.Input<number>;
+    /**
+     * The protocol of health check, support HTTP and TCP.
      */
     healthCheckProtocol?: pulumi.Input<string>;
     /**
@@ -263,6 +303,14 @@ export interface HealthCheckTemplateArgs {
      * The healthy threshold of the health check, the default is 3, the value is 2-10.
      */
     healthyThreshold?: pulumi.Input<number>;
+    /**
+     * The project name to which the health check template belongs.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.alb.HealthCheckTemplateTag>[]>;
     /**
      * The unhealthy threshold of the health check, the default is 3, the value is 2-10.
      */

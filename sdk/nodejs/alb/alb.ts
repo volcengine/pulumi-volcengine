@@ -48,8 +48,8 @@ import * as utilities from "../utilities";
  *     projectName: "default",
  *     deleteProtection: "off",
  *     tags: [{
- *         key: "k2",
- *         value: "v2",
+ *         key: "k1",
+ *         value: "v1",
  *     }],
  * });
  * const alb_public = new volcengine.alb.Alb("alb-public", {
@@ -63,6 +63,9 @@ import * as utilities from "../utilities";
  *     ],
  *     projectName: "default",
  *     deleteProtection: "off",
+ *     modificationProtectionStatus: "NonProtection",
+ *     modificationProtectionReason: "Test modification protection",
+ *     loadBalancerEdition: "Basic",
  *     eipBillingConfig: {
  *         isp: "BGP",
  *         eipBillingType: "PostPaidByBandwidth",
@@ -74,11 +77,35 @@ import * as utilities from "../utilities";
  *         bandwidth: 1,
  *     },
  *     tags: [{
- *         key: "k2",
- *         value: "v2",
+ *         key: "k1",
+ *         value: "v1",
  *     }],
  * }, {
  *     dependsOn: [ipv6Gateway],
+ * });
+ * // CLone ALB instance
+ * const alb_cloned = new volcengine.alb.Alb("alb-cloned", {
+ *     sourceLoadBalancerId: alb_private.id,
+ *     loadBalancerName: "acc-test-alb-cloned",
+ *     description: "cloned from alb-private",
+ *     subnetIds: [subnetIpv61.id],
+ *     type: "private",
+ *     projectName: "default",
+ * });
+ * // Example of ALB network type change, private -> public
+ * const alb_type_change = new volcengine.alb.Alb("alb-type-change", {
+ *     loadBalancerName: "acc-test-alb-type-change",
+ *     description: "will change to public type",
+ *     subnetIds: [
+ *         subnetIpv61.id,
+ *         subnetIpv62.id,
+ *     ],
+ *     type: "public",
+ *     projectName: "default",
+ *     allocationIds: [
+ *         "eip-iinpy4k1rytc74o8curgocd7",
+ *         "eip-iinpy4k1rytc74o8curgocd8",
+ *     ],
  * });
  * ```
  *
@@ -123,6 +150,10 @@ export class Alb extends pulumi.CustomResource {
      */
     public readonly addressIpVersion!: pulumi.Output<string | undefined>;
     /**
+     * The ID of the public IP. This field is only valid when the type field changes from private to public.
+     */
+    public readonly allocationIds!: pulumi.Output<string[] | undefined>;
+    /**
      * Whether to enable the delete protection function of the Alb. Valid values: `on`, `off`. Default is `off`.
      */
     public readonly deleteProtection!: pulumi.Output<string | undefined>;
@@ -139,9 +170,17 @@ export class Alb extends pulumi.CustomResource {
      */
     public readonly eipBillingConfig!: pulumi.Output<outputs.alb.AlbEipBillingConfig>;
     /**
+     * The global accelerator configuration.
+     */
+    public readonly globalAccelerator!: pulumi.Output<outputs.alb.AlbGlobalAccelerator>;
+    /**
      * The billing configuration of the Ipv6 EIP which automatically associated to the Alb. This field is required when the type of the Alb is `public`.When the type of the Alb is `private`, suggest using a combination of resource `volcengine.vpc.Ipv6Gateway` and `volcengine.vpc.Ipv6AddressBandwidth` to achieve ipv6 public network access function.
      */
     public readonly ipv6EipBillingConfig!: pulumi.Output<outputs.alb.AlbIpv6EipBillingConfig>;
+    /**
+     * The version of the ALB instance. Basic: Basic Edition. Standard: Standard Edition. Default is `Basic`.
+     */
+    public readonly loadBalancerEdition!: pulumi.Output<string>;
     /**
      * The name of the Alb.
      */
@@ -151,9 +190,25 @@ export class Alb extends pulumi.CustomResource {
      */
     public /*out*/ readonly localAddresses!: pulumi.Output<string[]>;
     /**
+     * The reason for enabling instance modification protection. This parameter is valid when the modificationProtectionStatus is `ConsoleProtection`.
+     */
+    public readonly modificationProtectionReason!: pulumi.Output<string>;
+    /**
+     * Whether to enable the modification protection function of the Alb. Valid values: `NonProtection`, `ConsoleProtection`. Default is `NonProtection`. NonProtection: Instance modification protection is not enabled. ConsoleProtection: Instance modification protection is enabled; you cannot modify the instance configuration through the ALB console, and can only modify the instance configuration by calling the API.
+     */
+    public readonly modificationProtectionStatus!: pulumi.Output<string>;
+    /**
      * The ProjectName of the Alb.
      */
     public readonly projectName!: pulumi.Output<string>;
+    /**
+     * ALB can support the Proxy Protocol and record the real IP of the client.
+     */
+    public readonly proxyProtocolEnabled!: pulumi.Output<string>;
+    /**
+     * The source ALB instance ID for cloning. If specified, the ALB instance will be cloned from this source.
+     */
+    public readonly sourceLoadBalancerId!: pulumi.Output<string | undefined>;
     /**
      * The status of the Alb.
      */
@@ -175,6 +230,18 @@ export class Alb extends pulumi.CustomResource {
      */
     public /*out*/ readonly vpcId!: pulumi.Output<string>;
     /**
+     * The ID of the WAF instance to be associated with the Alb. This field is valid when the value of the `wafProtectionEnabled` is `on`.
+     */
+    public readonly wafInstanceId!: pulumi.Output<string>;
+    /**
+     * The domain name of the WAF protected Alb. This field is valid when the value of the `wafProtectionEnabled` is `on`.
+     */
+    public readonly wafProtectedDomain!: pulumi.Output<string | undefined>;
+    /**
+     * Whether to enable the WAF protection function of the Alb. Valid values: `off`, `on`. Default is `off`.
+     */
+    public readonly wafProtectionEnabled!: pulumi.Output<string>;
+    /**
      * Configuration information of the Alb instance in different Availability Zones.
      */
     public /*out*/ readonly zoneMappings!: pulumi.Output<outputs.alb.AlbZoneMapping[]>;
@@ -193,19 +260,29 @@ export class Alb extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as AlbState | undefined;
             resourceInputs["addressIpVersion"] = state ? state.addressIpVersion : undefined;
+            resourceInputs["allocationIds"] = state ? state.allocationIds : undefined;
             resourceInputs["deleteProtection"] = state ? state.deleteProtection : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["dnsName"] = state ? state.dnsName : undefined;
             resourceInputs["eipBillingConfig"] = state ? state.eipBillingConfig : undefined;
+            resourceInputs["globalAccelerator"] = state ? state.globalAccelerator : undefined;
             resourceInputs["ipv6EipBillingConfig"] = state ? state.ipv6EipBillingConfig : undefined;
+            resourceInputs["loadBalancerEdition"] = state ? state.loadBalancerEdition : undefined;
             resourceInputs["loadBalancerName"] = state ? state.loadBalancerName : undefined;
             resourceInputs["localAddresses"] = state ? state.localAddresses : undefined;
+            resourceInputs["modificationProtectionReason"] = state ? state.modificationProtectionReason : undefined;
+            resourceInputs["modificationProtectionStatus"] = state ? state.modificationProtectionStatus : undefined;
             resourceInputs["projectName"] = state ? state.projectName : undefined;
+            resourceInputs["proxyProtocolEnabled"] = state ? state.proxyProtocolEnabled : undefined;
+            resourceInputs["sourceLoadBalancerId"] = state ? state.sourceLoadBalancerId : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["subnetIds"] = state ? state.subnetIds : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
             resourceInputs["vpcId"] = state ? state.vpcId : undefined;
+            resourceInputs["wafInstanceId"] = state ? state.wafInstanceId : undefined;
+            resourceInputs["wafProtectedDomain"] = state ? state.wafProtectedDomain : undefined;
+            resourceInputs["wafProtectionEnabled"] = state ? state.wafProtectionEnabled : undefined;
             resourceInputs["zoneMappings"] = state ? state.zoneMappings : undefined;
         } else {
             const args = argsOrState as AlbArgs | undefined;
@@ -216,15 +293,25 @@ export class Alb extends pulumi.CustomResource {
                 throw new Error("Missing required property 'type'");
             }
             resourceInputs["addressIpVersion"] = args ? args.addressIpVersion : undefined;
+            resourceInputs["allocationIds"] = args ? args.allocationIds : undefined;
             resourceInputs["deleteProtection"] = args ? args.deleteProtection : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["eipBillingConfig"] = args ? args.eipBillingConfig : undefined;
+            resourceInputs["globalAccelerator"] = args ? args.globalAccelerator : undefined;
             resourceInputs["ipv6EipBillingConfig"] = args ? args.ipv6EipBillingConfig : undefined;
+            resourceInputs["loadBalancerEdition"] = args ? args.loadBalancerEdition : undefined;
             resourceInputs["loadBalancerName"] = args ? args.loadBalancerName : undefined;
+            resourceInputs["modificationProtectionReason"] = args ? args.modificationProtectionReason : undefined;
+            resourceInputs["modificationProtectionStatus"] = args ? args.modificationProtectionStatus : undefined;
             resourceInputs["projectName"] = args ? args.projectName : undefined;
+            resourceInputs["proxyProtocolEnabled"] = args ? args.proxyProtocolEnabled : undefined;
+            resourceInputs["sourceLoadBalancerId"] = args ? args.sourceLoadBalancerId : undefined;
             resourceInputs["subnetIds"] = args ? args.subnetIds : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["wafInstanceId"] = args ? args.wafInstanceId : undefined;
+            resourceInputs["wafProtectedDomain"] = args ? args.wafProtectedDomain : undefined;
+            resourceInputs["wafProtectionEnabled"] = args ? args.wafProtectionEnabled : undefined;
             resourceInputs["dnsName"] = undefined /*out*/;
             resourceInputs["localAddresses"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
@@ -245,6 +332,10 @@ export interface AlbState {
      */
     addressIpVersion?: pulumi.Input<string>;
     /**
+     * The ID of the public IP. This field is only valid when the type field changes from private to public.
+     */
+    allocationIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * Whether to enable the delete protection function of the Alb. Valid values: `on`, `off`. Default is `off`.
      */
     deleteProtection?: pulumi.Input<string>;
@@ -261,9 +352,17 @@ export interface AlbState {
      */
     eipBillingConfig?: pulumi.Input<inputs.alb.AlbEipBillingConfig>;
     /**
+     * The global accelerator configuration.
+     */
+    globalAccelerator?: pulumi.Input<inputs.alb.AlbGlobalAccelerator>;
+    /**
      * The billing configuration of the Ipv6 EIP which automatically associated to the Alb. This field is required when the type of the Alb is `public`.When the type of the Alb is `private`, suggest using a combination of resource `volcengine.vpc.Ipv6Gateway` and `volcengine.vpc.Ipv6AddressBandwidth` to achieve ipv6 public network access function.
      */
     ipv6EipBillingConfig?: pulumi.Input<inputs.alb.AlbIpv6EipBillingConfig>;
+    /**
+     * The version of the ALB instance. Basic: Basic Edition. Standard: Standard Edition. Default is `Basic`.
+     */
+    loadBalancerEdition?: pulumi.Input<string>;
     /**
      * The name of the Alb.
      */
@@ -273,9 +372,25 @@ export interface AlbState {
      */
     localAddresses?: pulumi.Input<pulumi.Input<string>[]>;
     /**
+     * The reason for enabling instance modification protection. This parameter is valid when the modificationProtectionStatus is `ConsoleProtection`.
+     */
+    modificationProtectionReason?: pulumi.Input<string>;
+    /**
+     * Whether to enable the modification protection function of the Alb. Valid values: `NonProtection`, `ConsoleProtection`. Default is `NonProtection`. NonProtection: Instance modification protection is not enabled. ConsoleProtection: Instance modification protection is enabled; you cannot modify the instance configuration through the ALB console, and can only modify the instance configuration by calling the API.
+     */
+    modificationProtectionStatus?: pulumi.Input<string>;
+    /**
      * The ProjectName of the Alb.
      */
     projectName?: pulumi.Input<string>;
+    /**
+     * ALB can support the Proxy Protocol and record the real IP of the client.
+     */
+    proxyProtocolEnabled?: pulumi.Input<string>;
+    /**
+     * The source ALB instance ID for cloning. If specified, the ALB instance will be cloned from this source.
+     */
+    sourceLoadBalancerId?: pulumi.Input<string>;
     /**
      * The status of the Alb.
      */
@@ -297,6 +412,18 @@ export interface AlbState {
      */
     vpcId?: pulumi.Input<string>;
     /**
+     * The ID of the WAF instance to be associated with the Alb. This field is valid when the value of the `wafProtectionEnabled` is `on`.
+     */
+    wafInstanceId?: pulumi.Input<string>;
+    /**
+     * The domain name of the WAF protected Alb. This field is valid when the value of the `wafProtectionEnabled` is `on`.
+     */
+    wafProtectedDomain?: pulumi.Input<string>;
+    /**
+     * Whether to enable the WAF protection function of the Alb. Valid values: `off`, `on`. Default is `off`.
+     */
+    wafProtectionEnabled?: pulumi.Input<string>;
+    /**
      * Configuration information of the Alb instance in different Availability Zones.
      */
     zoneMappings?: pulumi.Input<pulumi.Input<inputs.alb.AlbZoneMapping>[]>;
@@ -311,6 +438,10 @@ export interface AlbArgs {
      */
     addressIpVersion?: pulumi.Input<string>;
     /**
+     * The ID of the public IP. This field is only valid when the type field changes from private to public.
+     */
+    allocationIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * Whether to enable the delete protection function of the Alb. Valid values: `on`, `off`. Default is `off`.
      */
     deleteProtection?: pulumi.Input<string>;
@@ -323,17 +454,41 @@ export interface AlbArgs {
      */
     eipBillingConfig?: pulumi.Input<inputs.alb.AlbEipBillingConfig>;
     /**
+     * The global accelerator configuration.
+     */
+    globalAccelerator?: pulumi.Input<inputs.alb.AlbGlobalAccelerator>;
+    /**
      * The billing configuration of the Ipv6 EIP which automatically associated to the Alb. This field is required when the type of the Alb is `public`.When the type of the Alb is `private`, suggest using a combination of resource `volcengine.vpc.Ipv6Gateway` and `volcengine.vpc.Ipv6AddressBandwidth` to achieve ipv6 public network access function.
      */
     ipv6EipBillingConfig?: pulumi.Input<inputs.alb.AlbIpv6EipBillingConfig>;
+    /**
+     * The version of the ALB instance. Basic: Basic Edition. Standard: Standard Edition. Default is `Basic`.
+     */
+    loadBalancerEdition?: pulumi.Input<string>;
     /**
      * The name of the Alb.
      */
     loadBalancerName?: pulumi.Input<string>;
     /**
+     * The reason for enabling instance modification protection. This parameter is valid when the modificationProtectionStatus is `ConsoleProtection`.
+     */
+    modificationProtectionReason?: pulumi.Input<string>;
+    /**
+     * Whether to enable the modification protection function of the Alb. Valid values: `NonProtection`, `ConsoleProtection`. Default is `NonProtection`. NonProtection: Instance modification protection is not enabled. ConsoleProtection: Instance modification protection is enabled; you cannot modify the instance configuration through the ALB console, and can only modify the instance configuration by calling the API.
+     */
+    modificationProtectionStatus?: pulumi.Input<string>;
+    /**
      * The ProjectName of the Alb.
      */
     projectName?: pulumi.Input<string>;
+    /**
+     * ALB can support the Proxy Protocol and record the real IP of the client.
+     */
+    proxyProtocolEnabled?: pulumi.Input<string>;
+    /**
+     * The source ALB instance ID for cloning. If specified, the ALB instance will be cloned from this source.
+     */
+    sourceLoadBalancerId?: pulumi.Input<string>;
     /**
      * The id of the Subnet.
      */
@@ -346,4 +501,16 @@ export interface AlbArgs {
      * The type of the Alb. Valid values: `public`, `private`.
      */
     type: pulumi.Input<string>;
+    /**
+     * The ID of the WAF instance to be associated with the Alb. This field is valid when the value of the `wafProtectionEnabled` is `on`.
+     */
+    wafInstanceId?: pulumi.Input<string>;
+    /**
+     * The domain name of the WAF protected Alb. This field is valid when the value of the `wafProtectionEnabled` is `on`.
+     */
+    wafProtectedDomain?: pulumi.Input<string>;
+    /**
+     * Whether to enable the WAF protection function of the Alb. Valid values: `off`, `on`. Default is `off`.
+     */
+    wafProtectionEnabled?: pulumi.Input<string>;
 }

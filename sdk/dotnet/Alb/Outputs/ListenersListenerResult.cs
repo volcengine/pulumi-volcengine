@@ -14,6 +14,10 @@ namespace Pulumi.Volcengine.Alb.Outputs
     public sealed class ListenersListenerResult
     {
         /// <summary>
+        /// Whether the listener has enabled the "Log custom headers in the access log" feature.
+        /// </summary>
+        public readonly string AccessLogRecordCustomizedHeadersEnabled;
+        /// <summary>
         /// The ID of the access control policy group bound to the listener, only returned when the AclStatus parameter is on.
         /// </summary>
         public readonly ImmutableArray<string> AclIds;
@@ -30,7 +34,11 @@ namespace Pulumi.Volcengine.Alb.Outputs
         /// </summary>
         public readonly string CaCertificateId;
         /// <summary>
-        /// The certificate id associated with the listener. Source is `cert_center`.
+        /// The source of the CA certificate associated with the HTTPS listener.
+        /// </summary>
+        public readonly string CaCertificateSource;
+        /// <summary>
+        /// The server certificate ID used by the domain name. It takes effect when the certificate source is cert_center.
         /// </summary>
         public readonly string CertCenterCertificateId;
         /// <summary>
@@ -86,6 +94,18 @@ namespace Pulumi.Volcengine.Alb.Outputs
         /// </summary>
         public readonly string LoadBalancerId;
         /// <summary>
+        /// The certificate ID associated with the HTTPS listener. Effective when the certificate source is pca_leaf.
+        /// </summary>
+        public readonly string PcaLeafCertificateId;
+        /// <summary>
+        /// The CA certificate ID associated with the HTTPS listener. It takes effect when the certificate source is pca_root.
+        /// </summary>
+        public readonly string PcaRootCaCertificateId;
+        /// <summary>
+        /// The CA certificate ID associated with the HTTPS listener. Effective when the certificate source is pca_sub.
+        /// </summary>
+        public readonly string PcaSubCaCertificateId;
+        /// <summary>
         /// The port receiving request of the Listener.
         /// </summary>
         public readonly int Port;
@@ -110,12 +130,18 @@ namespace Pulumi.Volcengine.Alb.Outputs
         /// </summary>
         public readonly string Status;
         /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.ListenersListenerTagResult> Tags;
+        /// <summary>
         /// The update time of the Listener.
         /// </summary>
         public readonly string UpdateTime;
 
         [OutputConstructor]
         private ListenersListenerResult(
+            string accessLogRecordCustomizedHeadersEnabled,
+
             ImmutableArray<string> aclIds,
 
             string aclStatus,
@@ -123,6 +149,8 @@ namespace Pulumi.Volcengine.Alb.Outputs
             string aclType,
 
             string caCertificateId,
+
+            string caCertificateSource,
 
             string certCenterCertificateId,
 
@@ -152,6 +180,12 @@ namespace Pulumi.Volcengine.Alb.Outputs
 
             string loadBalancerId,
 
+            string pcaLeafCertificateId,
+
+            string pcaRootCaCertificateId,
+
+            string pcaSubCaCertificateId,
+
             int port,
 
             string projectName,
@@ -164,12 +198,16 @@ namespace Pulumi.Volcengine.Alb.Outputs
 
             string status,
 
+            ImmutableArray<Outputs.ListenersListenerTagResult> tags,
+
             string updateTime)
         {
+            AccessLogRecordCustomizedHeadersEnabled = accessLogRecordCustomizedHeadersEnabled;
             AclIds = aclIds;
             AclStatus = aclStatus;
             AclType = aclType;
             CaCertificateId = caCertificateId;
+            CaCertificateSource = caCertificateSource;
             CertCenterCertificateId = certCenterCertificateId;
             CertificateId = certificateId;
             CertificateSource = certificateSource;
@@ -184,12 +222,16 @@ namespace Pulumi.Volcengine.Alb.Outputs
             ListenerId = listenerId;
             ListenerName = listenerName;
             LoadBalancerId = loadBalancerId;
+            PcaLeafCertificateId = pcaLeafCertificateId;
+            PcaRootCaCertificateId = pcaRootCaCertificateId;
+            PcaSubCaCertificateId = pcaSubCaCertificateId;
             Port = port;
             ProjectName = projectName;
             Protocol = protocol;
             ServerGroupId = serverGroupId;
             ServerGroups = serverGroups;
             Status = status;
+            Tags = tags;
             UpdateTime = updateTime;
         }
     }

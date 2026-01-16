@@ -27,6 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Basic edition
 //			_, err := alb.NewRule(ctx, "foo", &alb.RuleArgs{
 //				Description: pulumi.String("test"),
 //				Domain:      pulumi.String("www.test.com"),
@@ -46,6 +47,51 @@ import (
 //				TrafficLimitEnabled: pulumi.String("off"),
 //				TrafficLimitQps:     pulumi.Int(100),
 //				Url:                 pulumi.String("/test"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// Standard edition
+//			_, err = alb.NewRule(ctx, "example", &alb.RuleArgs{
+//				Description: pulumi.String("standard edition alb rule"),
+//				ListenerId:  pulumi.String("lsn-bddjp5fcof0g8dv40naga1yd"),
+//				Priority:    pulumi.Int(1),
+//				RuleAction:  pulumi.String(""),
+//				RuleActions: alb.RuleRuleActionArray{
+//					&alb.RuleRuleActionArgs{
+//						ForwardGroupConfig: &alb.RuleRuleActionForwardGroupConfigArgs{
+//							ServerGroupStickySession: &alb.RuleRuleActionForwardGroupConfigServerGroupStickySessionArgs{
+//								Enabled: pulumi.String("off"),
+//							},
+//							ServerGroupTuples: alb.RuleRuleActionForwardGroupConfigServerGroupTupleArray{
+//								&alb.RuleRuleActionForwardGroupConfigServerGroupTupleArgs{
+//									ServerGroupId: pulumi.String("rsp-bdd1lpcbvv288dv40ov1sye0"),
+//									Weight:        pulumi.Int(50),
+//								},
+//							},
+//						},
+//						Type: pulumi.String("ForwardGroup"),
+//					},
+//				},
+//				RuleConditions: alb.RuleRuleConditionArray{
+//					&alb.RuleRuleConditionArgs{
+//						HostConfig: &alb.RuleRuleConditionHostConfigArgs{
+//							Values: pulumi.StringArray{
+//								pulumi.String("www.example.com"),
+//							},
+//						},
+//						Type: pulumi.String("Host"),
+//					},
+//					&alb.RuleRuleConditionArgs{
+//						PathConfig: &alb.RuleRuleConditionPathConfigArgs{
+//							Values: pulumi.StringArray{
+//								pulumi.String("/app/*"),
+//							},
+//						},
+//						Type: pulumi.String("Path"),
+//					},
+//				},
+//				Url: pulumi.String(""),
 //			})
 //			if err != nil {
 //				return err
@@ -72,6 +118,8 @@ type Rule struct {
 	Domain pulumi.StringOutput `pulumi:"domain"`
 	// The ID of listener.
 	ListenerId pulumi.StringOutput `pulumi:"listenerId"`
+	// The priority of the Rule.Only the standard version is supported.
+	Priority pulumi.IntOutput `pulumi:"priority"`
 	// The redirect related configuration.
 	RedirectConfig RuleRedirectConfigPtrOutput `pulumi:"redirectConfig"`
 	// The list of rewrite configurations.
@@ -82,10 +130,20 @@ type Rule struct {
 	RewriteEnabled pulumi.StringPtrOutput `pulumi:"rewriteEnabled"`
 	// The forwarding rule action, if this parameter is empty(`""`), forward to server group, if value is `Redirect`, will redirect.
 	RuleAction pulumi.StringOutput `pulumi:"ruleAction"`
+	// The rule actions for standard edition forwarding rules.
+	RuleActions RuleRuleActionArrayOutput `pulumi:"ruleActions"`
+	// The rule conditions for standard edition forwarding rules.
+	RuleConditions RuleRuleConditionArrayOutput `pulumi:"ruleConditions"`
 	// The ID of rule.
 	RuleId pulumi.StringOutput `pulumi:"ruleId"`
 	// Server group ID, this parameter is required if `ruleAction` is empty.
 	ServerGroupId pulumi.StringPtrOutput `pulumi:"serverGroupId"`
+	// Weight forwarded to the corresponding backend server group.
+	ServerGroupTuples RuleServerGroupTupleArrayOutput `pulumi:"serverGroupTuples"`
+	// Whether to enable group session stickiness. Valid values are 'on' and 'off'.
+	StickySessionEnabled pulumi.StringOutput `pulumi:"stickySessionEnabled"`
+	// The group session stickiness timeout, in seconds.
+	StickySessionTimeout pulumi.IntOutput `pulumi:"stickySessionTimeout"`
 	// Forwarding rule QPS rate limiting switch:
 	// on: enable.
 	// off: disable (default).
@@ -138,6 +196,8 @@ type ruleState struct {
 	Domain *string `pulumi:"domain"`
 	// The ID of listener.
 	ListenerId *string `pulumi:"listenerId"`
+	// The priority of the Rule.Only the standard version is supported.
+	Priority *int `pulumi:"priority"`
 	// The redirect related configuration.
 	RedirectConfig *RuleRedirectConfig `pulumi:"redirectConfig"`
 	// The list of rewrite configurations.
@@ -148,10 +208,20 @@ type ruleState struct {
 	RewriteEnabled *string `pulumi:"rewriteEnabled"`
 	// The forwarding rule action, if this parameter is empty(`""`), forward to server group, if value is `Redirect`, will redirect.
 	RuleAction *string `pulumi:"ruleAction"`
+	// The rule actions for standard edition forwarding rules.
+	RuleActions []RuleRuleAction `pulumi:"ruleActions"`
+	// The rule conditions for standard edition forwarding rules.
+	RuleConditions []RuleRuleCondition `pulumi:"ruleConditions"`
 	// The ID of rule.
 	RuleId *string `pulumi:"ruleId"`
 	// Server group ID, this parameter is required if `ruleAction` is empty.
 	ServerGroupId *string `pulumi:"serverGroupId"`
+	// Weight forwarded to the corresponding backend server group.
+	ServerGroupTuples []RuleServerGroupTuple `pulumi:"serverGroupTuples"`
+	// Whether to enable group session stickiness. Valid values are 'on' and 'off'.
+	StickySessionEnabled *string `pulumi:"stickySessionEnabled"`
+	// The group session stickiness timeout, in seconds.
+	StickySessionTimeout *int `pulumi:"stickySessionTimeout"`
 	// Forwarding rule QPS rate limiting switch:
 	// on: enable.
 	// off: disable (default).
@@ -169,6 +239,8 @@ type RuleState struct {
 	Domain pulumi.StringPtrInput
 	// The ID of listener.
 	ListenerId pulumi.StringPtrInput
+	// The priority of the Rule.Only the standard version is supported.
+	Priority pulumi.IntPtrInput
 	// The redirect related configuration.
 	RedirectConfig RuleRedirectConfigPtrInput
 	// The list of rewrite configurations.
@@ -179,10 +251,20 @@ type RuleState struct {
 	RewriteEnabled pulumi.StringPtrInput
 	// The forwarding rule action, if this parameter is empty(`""`), forward to server group, if value is `Redirect`, will redirect.
 	RuleAction pulumi.StringPtrInput
+	// The rule actions for standard edition forwarding rules.
+	RuleActions RuleRuleActionArrayInput
+	// The rule conditions for standard edition forwarding rules.
+	RuleConditions RuleRuleConditionArrayInput
 	// The ID of rule.
 	RuleId pulumi.StringPtrInput
 	// Server group ID, this parameter is required if `ruleAction` is empty.
 	ServerGroupId pulumi.StringPtrInput
+	// Weight forwarded to the corresponding backend server group.
+	ServerGroupTuples RuleServerGroupTupleArrayInput
+	// Whether to enable group session stickiness. Valid values are 'on' and 'off'.
+	StickySessionEnabled pulumi.StringPtrInput
+	// The group session stickiness timeout, in seconds.
+	StickySessionTimeout pulumi.IntPtrInput
 	// Forwarding rule QPS rate limiting switch:
 	// on: enable.
 	// off: disable (default).
@@ -204,6 +286,8 @@ type ruleArgs struct {
 	Domain *string `pulumi:"domain"`
 	// The ID of listener.
 	ListenerId string `pulumi:"listenerId"`
+	// The priority of the Rule.Only the standard version is supported.
+	Priority *int `pulumi:"priority"`
 	// The redirect related configuration.
 	RedirectConfig *RuleRedirectConfig `pulumi:"redirectConfig"`
 	// The list of rewrite configurations.
@@ -214,8 +298,18 @@ type ruleArgs struct {
 	RewriteEnabled *string `pulumi:"rewriteEnabled"`
 	// The forwarding rule action, if this parameter is empty(`""`), forward to server group, if value is `Redirect`, will redirect.
 	RuleAction string `pulumi:"ruleAction"`
+	// The rule actions for standard edition forwarding rules.
+	RuleActions []RuleRuleAction `pulumi:"ruleActions"`
+	// The rule conditions for standard edition forwarding rules.
+	RuleConditions []RuleRuleCondition `pulumi:"ruleConditions"`
 	// Server group ID, this parameter is required if `ruleAction` is empty.
 	ServerGroupId *string `pulumi:"serverGroupId"`
+	// Weight forwarded to the corresponding backend server group.
+	ServerGroupTuples []RuleServerGroupTuple `pulumi:"serverGroupTuples"`
+	// Whether to enable group session stickiness. Valid values are 'on' and 'off'.
+	StickySessionEnabled *string `pulumi:"stickySessionEnabled"`
+	// The group session stickiness timeout, in seconds.
+	StickySessionTimeout *int `pulumi:"stickySessionTimeout"`
 	// Forwarding rule QPS rate limiting switch:
 	// on: enable.
 	// off: disable (default).
@@ -234,6 +328,8 @@ type RuleArgs struct {
 	Domain pulumi.StringPtrInput
 	// The ID of listener.
 	ListenerId pulumi.StringInput
+	// The priority of the Rule.Only the standard version is supported.
+	Priority pulumi.IntPtrInput
 	// The redirect related configuration.
 	RedirectConfig RuleRedirectConfigPtrInput
 	// The list of rewrite configurations.
@@ -244,8 +340,18 @@ type RuleArgs struct {
 	RewriteEnabled pulumi.StringPtrInput
 	// The forwarding rule action, if this parameter is empty(`""`), forward to server group, if value is `Redirect`, will redirect.
 	RuleAction pulumi.StringInput
+	// The rule actions for standard edition forwarding rules.
+	RuleActions RuleRuleActionArrayInput
+	// The rule conditions for standard edition forwarding rules.
+	RuleConditions RuleRuleConditionArrayInput
 	// Server group ID, this parameter is required if `ruleAction` is empty.
 	ServerGroupId pulumi.StringPtrInput
+	// Weight forwarded to the corresponding backend server group.
+	ServerGroupTuples RuleServerGroupTupleArrayInput
+	// Whether to enable group session stickiness. Valid values are 'on' and 'off'.
+	StickySessionEnabled pulumi.StringPtrInput
+	// The group session stickiness timeout, in seconds.
+	StickySessionTimeout pulumi.IntPtrInput
 	// Forwarding rule QPS rate limiting switch:
 	// on: enable.
 	// off: disable (default).
@@ -358,6 +464,11 @@ func (o RuleOutput) ListenerId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Rule) pulumi.StringOutput { return v.ListenerId }).(pulumi.StringOutput)
 }
 
+// The priority of the Rule.Only the standard version is supported.
+func (o RuleOutput) Priority() pulumi.IntOutput {
+	return o.ApplyT(func(v *Rule) pulumi.IntOutput { return v.Priority }).(pulumi.IntOutput)
+}
+
 // The redirect related configuration.
 func (o RuleOutput) RedirectConfig() RuleRedirectConfigPtrOutput {
 	return o.ApplyT(func(v *Rule) RuleRedirectConfigPtrOutput { return v.RedirectConfig }).(RuleRedirectConfigPtrOutput)
@@ -380,6 +491,16 @@ func (o RuleOutput) RuleAction() pulumi.StringOutput {
 	return o.ApplyT(func(v *Rule) pulumi.StringOutput { return v.RuleAction }).(pulumi.StringOutput)
 }
 
+// The rule actions for standard edition forwarding rules.
+func (o RuleOutput) RuleActions() RuleRuleActionArrayOutput {
+	return o.ApplyT(func(v *Rule) RuleRuleActionArrayOutput { return v.RuleActions }).(RuleRuleActionArrayOutput)
+}
+
+// The rule conditions for standard edition forwarding rules.
+func (o RuleOutput) RuleConditions() RuleRuleConditionArrayOutput {
+	return o.ApplyT(func(v *Rule) RuleRuleConditionArrayOutput { return v.RuleConditions }).(RuleRuleConditionArrayOutput)
+}
+
 // The ID of rule.
 func (o RuleOutput) RuleId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Rule) pulumi.StringOutput { return v.RuleId }).(pulumi.StringOutput)
@@ -388,6 +509,21 @@ func (o RuleOutput) RuleId() pulumi.StringOutput {
 // Server group ID, this parameter is required if `ruleAction` is empty.
 func (o RuleOutput) ServerGroupId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Rule) pulumi.StringPtrOutput { return v.ServerGroupId }).(pulumi.StringPtrOutput)
+}
+
+// Weight forwarded to the corresponding backend server group.
+func (o RuleOutput) ServerGroupTuples() RuleServerGroupTupleArrayOutput {
+	return o.ApplyT(func(v *Rule) RuleServerGroupTupleArrayOutput { return v.ServerGroupTuples }).(RuleServerGroupTupleArrayOutput)
+}
+
+// Whether to enable group session stickiness. Valid values are 'on' and 'off'.
+func (o RuleOutput) StickySessionEnabled() pulumi.StringOutput {
+	return o.ApplyT(func(v *Rule) pulumi.StringOutput { return v.StickySessionEnabled }).(pulumi.StringOutput)
+}
+
+// The group session stickiness timeout, in seconds.
+func (o RuleOutput) StickySessionTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *Rule) pulumi.IntOutput { return v.StickySessionTimeout }).(pulumi.IntOutput)
 }
 
 // Forwarding rule QPS rate limiting switch:

@@ -59,6 +59,10 @@ type GetListenersArgs struct {
 	OutputFile *string `pulumi:"outputFile"`
 	// The project name of the listener.
 	ProjectName *string `pulumi:"projectName"`
+	// The protocol of the Listener.
+	Protocol *string `pulumi:"protocol"`
+	// Tags.
+	Tags []GetListenersTag `pulumi:"tags"`
 }
 
 // A collection of values returned by getListeners.
@@ -76,6 +80,10 @@ type GetListenersResult struct {
 	OutputFile     *string `pulumi:"outputFile"`
 	// The project name of the listener.
 	ProjectName *string `pulumi:"projectName"`
+	// The protocol of the Listener.
+	Protocol *string `pulumi:"protocol"`
+	// Tags.
+	Tags []GetListenersTag `pulumi:"tags"`
 	// The total count of Listener query.
 	TotalCount int `pulumi:"totalCount"`
 }
@@ -107,6 +115,10 @@ type GetListenersOutputArgs struct {
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
 	// The project name of the listener.
 	ProjectName pulumi.StringPtrInput `pulumi:"projectName"`
+	// The protocol of the Listener.
+	Protocol pulumi.StringPtrInput `pulumi:"protocol"`
+	// Tags.
+	Tags GetListenersTagArrayInput `pulumi:"tags"`
 }
 
 func (GetListenersOutputArgs) ElementType() reflect.Type {
@@ -163,6 +175,16 @@ func (o GetListenersResultOutput) OutputFile() pulumi.StringPtrOutput {
 // The project name of the listener.
 func (o GetListenersResultOutput) ProjectName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetListenersResult) *string { return v.ProjectName }).(pulumi.StringPtrOutput)
+}
+
+// The protocol of the Listener.
+func (o GetListenersResultOutput) Protocol() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetListenersResult) *string { return v.Protocol }).(pulumi.StringPtrOutput)
+}
+
+// Tags.
+func (o GetListenersResultOutput) Tags() GetListenersTagArrayOutput {
+	return o.ApplyT(func(v GetListenersResult) []GetListenersTag { return v.Tags }).(GetListenersTagArrayOutput)
 }
 
 // The total count of Listener query.

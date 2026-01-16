@@ -107,6 +107,8 @@ func Albs(ctx *pulumi.Context, args *AlbsArgs, opts ...pulumi.InvokeOption) (*Al
 
 // A collection of arguments for invoking Albs.
 type AlbsArgs struct {
+	// The public ip address of the Alb.
+	EipAddress *string `pulumi:"eipAddress"`
 	// The private ip address of the Alb.
 	EniAddress *string `pulumi:"eniAddress"`
 	// A list of Alb IDs.
@@ -121,6 +123,8 @@ type AlbsArgs struct {
 	Project *string `pulumi:"project"`
 	// Tags.
 	Tags []AlbsTag `pulumi:"tags"`
+	// The type of the Alb. public: public network ALB. private: private network ALB.
+	Type *string `pulumi:"type"`
 	// The vpc id which Alb belongs to.
 	VpcId *string `pulumi:"vpcId"`
 }
@@ -129,6 +133,8 @@ type AlbsArgs struct {
 type AlbsResult struct {
 	// The collection of query.
 	Albs []AlbsAlb `pulumi:"albs"`
+	// The Eip address of the Alb.
+	EipAddress *string `pulumi:"eipAddress"`
 	// The Eni address of the Alb in this availability zone.
 	EniAddress *string `pulumi:"eniAddress"`
 	// The provider-assigned unique ID for this managed resource.
@@ -143,6 +149,8 @@ type AlbsResult struct {
 	Tags []AlbsTag `pulumi:"tags"`
 	// The total count of query.
 	TotalCount int `pulumi:"totalCount"`
+	// The type of the Alb, valid value: `public`, `private`.
+	Type *string `pulumi:"type"`
 	// The vpc id of the Alb.
 	VpcId *string `pulumi:"vpcId"`
 }
@@ -162,6 +170,8 @@ func AlbsOutput(ctx *pulumi.Context, args AlbsOutputArgs, opts ...pulumi.InvokeO
 
 // A collection of arguments for invoking Albs.
 type AlbsOutputArgs struct {
+	// The public ip address of the Alb.
+	EipAddress pulumi.StringPtrInput `pulumi:"eipAddress"`
 	// The private ip address of the Alb.
 	EniAddress pulumi.StringPtrInput `pulumi:"eniAddress"`
 	// A list of Alb IDs.
@@ -176,6 +186,8 @@ type AlbsOutputArgs struct {
 	Project pulumi.StringPtrInput `pulumi:"project"`
 	// Tags.
 	Tags AlbsTagArrayInput `pulumi:"tags"`
+	// The type of the Alb. public: public network ALB. private: private network ALB.
+	Type pulumi.StringPtrInput `pulumi:"type"`
 	// The vpc id which Alb belongs to.
 	VpcId pulumi.StringPtrInput `pulumi:"vpcId"`
 }
@@ -202,6 +214,11 @@ func (o AlbsResultOutput) ToAlbsResultOutputWithContext(ctx context.Context) Alb
 // The collection of query.
 func (o AlbsResultOutput) Albs() AlbsAlbArrayOutput {
 	return o.ApplyT(func(v AlbsResult) []AlbsAlb { return v.Albs }).(AlbsAlbArrayOutput)
+}
+
+// The Eip address of the Alb.
+func (o AlbsResultOutput) EipAddress() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlbsResult) *string { return v.EipAddress }).(pulumi.StringPtrOutput)
 }
 
 // The Eni address of the Alb in this availability zone.
@@ -243,6 +260,11 @@ func (o AlbsResultOutput) Tags() AlbsTagArrayOutput {
 // The total count of query.
 func (o AlbsResultOutput) TotalCount() pulumi.IntOutput {
 	return o.ApplyT(func(v AlbsResult) int { return v.TotalCount }).(pulumi.IntOutput)
+}
+
+// The type of the Alb, valid value: `public`, `private`.
+func (o AlbsResultOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlbsResult) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
 
 // The vpc id of the Alb.

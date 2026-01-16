@@ -11,17 +11,55 @@ from .. import _utilities
 
 __all__ = [
     'AclAclEntryArgs',
+    'AclTagArgs',
+    'AclsTagArgs',
     'AlbEipBillingConfigArgs',
+    'AlbGlobalAcceleratorArgs',
     'AlbIpv6EipBillingConfigArgs',
     'AlbTagArgs',
     'AlbZoneMappingArgs',
     'AlbZoneMappingLoadBalancerAddressArgs',
     'AlbsTagArgs',
+    'AllCertificatesTagArgs',
+    'CertificateTagArgs',
+    'CertificatesTagArgs',
+    'CustomizedCfgTagArgs',
+    'CustomizedCfgsTagArgs',
+    'HealthCheckTemplateTagArgs',
+    'HealthCheckTemplatesTagArgs',
+    'ListenerDomainExtensionArgs',
+    'ListenerTagArgs',
+    'ListenersTagArgs',
     'RuleRedirectConfigArgs',
     'RuleRewriteConfigArgs',
+    'RuleRuleActionArgs',
+    'RuleRuleActionFixedResponseConfigArgs',
+    'RuleRuleActionForwardGroupConfigArgs',
+    'RuleRuleActionForwardGroupConfigServerGroupStickySessionArgs',
+    'RuleRuleActionForwardGroupConfigServerGroupTupleArgs',
+    'RuleRuleActionRedirectConfigArgs',
+    'RuleRuleActionRewriteConfigArgs',
+    'RuleRuleActionTrafficLimitConfigArgs',
+    'RuleRuleConditionArgs',
+    'RuleRuleConditionHeaderConfigArgs',
+    'RuleRuleConditionHostConfigArgs',
+    'RuleRuleConditionMethodConfigArgs',
+    'RuleRuleConditionPathConfigArgs',
+    'RuleRuleConditionQueryStringConfigArgs',
+    'RuleRuleConditionQueryStringConfigValueArgs',
+    'RuleServerGroupTupleArgs',
     'ServerGroupHealthCheckArgs',
     'ServerGroupStickySessionConfigArgs',
+    'ServerGroupTagArgs',
+    'ServerGroupsTagArgs',
+    'GetAclsTagArgs',
     'GetAlbsTagArgs',
+    'GetAllCertificatesTagArgs',
+    'GetCertificatesTagArgs',
+    'GetCustomizedCfgsTagArgs',
+    'GetHealthCheckTemplatesTagArgs',
+    'GetListenersTagArgs',
+    'GetServerGroupsTagArgs',
 ]
 
 @pulumi.input_type
@@ -60,6 +98,80 @@ class AclAclEntryArgs:
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
+
+
+@pulumi.input_type
+class AclTagArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] key: The Key of Tags.
+        :param pulumi.Input[str] value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class AclsTagArgs:
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: str):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: str):
+        pulumi.set(self, "value", value)
 
 
 @pulumi.input_type
@@ -112,6 +224,77 @@ class AlbEipBillingConfigArgs:
     @isp.setter
     def isp(self, value: pulumi.Input[str]):
         pulumi.set(self, "isp", value)
+
+
+@pulumi.input_type
+class AlbGlobalAcceleratorArgs:
+    def __init__(__self__, *,
+                 accelerator_id: Optional[pulumi.Input[str]] = None,
+                 accelerator_listener_id: Optional[pulumi.Input[str]] = None,
+                 endpoint_group_id: Optional[pulumi.Input[str]] = None,
+                 weight: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] accelerator_id: The global accelerator id.
+        :param pulumi.Input[str] accelerator_listener_id: The global accelerator listener id.
+        :param pulumi.Input[str] endpoint_group_id: The global accelerator endpoint group id.
+        :param pulumi.Input[int] weight: The traffic distribution weight of the endpoint. The value range is: 1 - 100.
+        """
+        if accelerator_id is not None:
+            pulumi.set(__self__, "accelerator_id", accelerator_id)
+        if accelerator_listener_id is not None:
+            pulumi.set(__self__, "accelerator_listener_id", accelerator_listener_id)
+        if endpoint_group_id is not None:
+            pulumi.set(__self__, "endpoint_group_id", endpoint_group_id)
+        if weight is not None:
+            pulumi.set(__self__, "weight", weight)
+
+    @property
+    @pulumi.getter(name="acceleratorId")
+    def accelerator_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The global accelerator id.
+        """
+        return pulumi.get(self, "accelerator_id")
+
+    @accelerator_id.setter
+    def accelerator_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "accelerator_id", value)
+
+    @property
+    @pulumi.getter(name="acceleratorListenerId")
+    def accelerator_listener_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The global accelerator listener id.
+        """
+        return pulumi.get(self, "accelerator_listener_id")
+
+    @accelerator_listener_id.setter
+    def accelerator_listener_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "accelerator_listener_id", value)
+
+    @property
+    @pulumi.getter(name="endpointGroupId")
+    def endpoint_group_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The global accelerator endpoint group id.
+        """
+        return pulumi.get(self, "endpoint_group_id")
+
+    @endpoint_group_id.setter
+    def endpoint_group_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "endpoint_group_id", value)
+
+    @property
+    @pulumi.getter
+    def weight(self) -> Optional[pulumi.Input[int]]:
+        """
+        The traffic distribution weight of the endpoint. The value range is: 1 - 100.
+        """
+        return pulumi.get(self, "weight")
+
+    @weight.setter
+    def weight(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "weight", value)
 
 
 @pulumi.input_type
@@ -399,6 +582,442 @@ class AlbsTagArgs:
 
 
 @pulumi.input_type
+class AllCertificatesTagArgs:
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: str):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: str):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class CertificateTagArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] key: The Key of Tags.
+        :param pulumi.Input[str] value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class CertificatesTagArgs:
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: str):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: str):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class CustomizedCfgTagArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] key: The Key of Tags.
+        :param pulumi.Input[str] value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class CustomizedCfgsTagArgs:
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: str):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: str):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class HealthCheckTemplateTagArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] key: The Key of Tags.
+        :param pulumi.Input[str] value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class HealthCheckTemplatesTagArgs:
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: str):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: str):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ListenerDomainExtensionArgs:
+    def __init__(__self__, *,
+                 cert_center_certificate_id: Optional[pulumi.Input[str]] = None,
+                 certificate_id: Optional[pulumi.Input[str]] = None,
+                 certificate_source: Optional[pulumi.Input[str]] = None,
+                 domain: Optional[pulumi.Input[str]] = None,
+                 domain_extension_id: Optional[pulumi.Input[str]] = None,
+                 pca_leaf_certificate_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] cert_center_certificate_id: The server certificate ID used by the domain name. Valid when the certificate_source is `cert_center`.
+        :param pulumi.Input[str] certificate_id: The server certificate ID used by the domain name. Valid when the certificate_source is `alb`.
+        :param pulumi.Input[str] certificate_source: The source of the certificate. Valid values: `alb`, `cert_center`.
+        :param pulumi.Input[str] domain: The domain name.
+        :param pulumi.Input[str] domain_extension_id: The extended domain ID, required only for deletion and modification.
+        :param pulumi.Input[str] pca_leaf_certificate_id: The server certificate ID used by the domain name. Valid when the certificate source is `pca_leaf`.
+        """
+        if cert_center_certificate_id is not None:
+            pulumi.set(__self__, "cert_center_certificate_id", cert_center_certificate_id)
+        if certificate_id is not None:
+            pulumi.set(__self__, "certificate_id", certificate_id)
+        if certificate_source is not None:
+            pulumi.set(__self__, "certificate_source", certificate_source)
+        if domain is not None:
+            pulumi.set(__self__, "domain", domain)
+        if domain_extension_id is not None:
+            pulumi.set(__self__, "domain_extension_id", domain_extension_id)
+        if pca_leaf_certificate_id is not None:
+            pulumi.set(__self__, "pca_leaf_certificate_id", pca_leaf_certificate_id)
+
+    @property
+    @pulumi.getter(name="certCenterCertificateId")
+    def cert_center_certificate_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The server certificate ID used by the domain name. Valid when the certificate_source is `cert_center`.
+        """
+        return pulumi.get(self, "cert_center_certificate_id")
+
+    @cert_center_certificate_id.setter
+    def cert_center_certificate_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cert_center_certificate_id", value)
+
+    @property
+    @pulumi.getter(name="certificateId")
+    def certificate_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The server certificate ID used by the domain name. Valid when the certificate_source is `alb`.
+        """
+        return pulumi.get(self, "certificate_id")
+
+    @certificate_id.setter
+    def certificate_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "certificate_id", value)
+
+    @property
+    @pulumi.getter(name="certificateSource")
+    def certificate_source(self) -> Optional[pulumi.Input[str]]:
+        """
+        The source of the certificate. Valid values: `alb`, `cert_center`.
+        """
+        return pulumi.get(self, "certificate_source")
+
+    @certificate_source.setter
+    def certificate_source(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "certificate_source", value)
+
+    @property
+    @pulumi.getter
+    def domain(self) -> Optional[pulumi.Input[str]]:
+        """
+        The domain name.
+        """
+        return pulumi.get(self, "domain")
+
+    @domain.setter
+    def domain(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "domain", value)
+
+    @property
+    @pulumi.getter(name="domainExtensionId")
+    def domain_extension_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The extended domain ID, required only for deletion and modification.
+        """
+        return pulumi.get(self, "domain_extension_id")
+
+    @domain_extension_id.setter
+    def domain_extension_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "domain_extension_id", value)
+
+    @property
+    @pulumi.getter(name="pcaLeafCertificateId")
+    def pca_leaf_certificate_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The server certificate ID used by the domain name. Valid when the certificate source is `pca_leaf`.
+        """
+        return pulumi.get(self, "pca_leaf_certificate_id")
+
+    @pca_leaf_certificate_id.setter
+    def pca_leaf_certificate_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pca_leaf_certificate_id", value)
+
+
+@pulumi.input_type
+class ListenerTagArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] key: The Key of Tags.
+        :param pulumi.Input[str] value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ListenersTagArgs:
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: str):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: str):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
 class RuleRedirectConfigArgs:
     def __init__(__self__, *,
                  redirect_domain: Optional[pulumi.Input[str]] = None,
@@ -508,6 +1127,737 @@ class RuleRewriteConfigArgs:
 
 
 @pulumi.input_type
+class RuleRuleActionArgs:
+    def __init__(__self__, *,
+                 fixed_response_config: Optional[pulumi.Input['RuleRuleActionFixedResponseConfigArgs']] = None,
+                 forward_group_config: Optional[pulumi.Input['RuleRuleActionForwardGroupConfigArgs']] = None,
+                 redirect_config: Optional[pulumi.Input['RuleRuleActionRedirectConfigArgs']] = None,
+                 rewrite_config: Optional[pulumi.Input['RuleRuleActionRewriteConfigArgs']] = None,
+                 traffic_limit_config: Optional[pulumi.Input['RuleRuleActionTrafficLimitConfigArgs']] = None,
+                 type: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input['RuleRuleActionFixedResponseConfigArgs'] fixed_response_config: Fixed response configuration for fixed response type rule.
+        :param pulumi.Input['RuleRuleActionForwardGroupConfigArgs'] forward_group_config: Forward group configuration for ForwardGroup type action.
+        :param pulumi.Input['RuleRuleActionRedirectConfigArgs'] redirect_config: Redirect configuration for Redirect type action.
+        :param pulumi.Input['RuleRuleActionRewriteConfigArgs'] rewrite_config: Rewrite configuration for Rewrite type action.
+        :param pulumi.Input['RuleRuleActionTrafficLimitConfigArgs'] traffic_limit_config: Traffic limit configuration for TrafficLimit type action.
+        :param pulumi.Input[str] type: The type of rule action. Valid values: ForwardGroup, Redirect, Rewrite, TrafficLimit.
+        """
+        if fixed_response_config is not None:
+            pulumi.set(__self__, "fixed_response_config", fixed_response_config)
+        if forward_group_config is not None:
+            pulumi.set(__self__, "forward_group_config", forward_group_config)
+        if redirect_config is not None:
+            pulumi.set(__self__, "redirect_config", redirect_config)
+        if rewrite_config is not None:
+            pulumi.set(__self__, "rewrite_config", rewrite_config)
+        if traffic_limit_config is not None:
+            pulumi.set(__self__, "traffic_limit_config", traffic_limit_config)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="fixedResponseConfig")
+    def fixed_response_config(self) -> Optional[pulumi.Input['RuleRuleActionFixedResponseConfigArgs']]:
+        """
+        Fixed response configuration for fixed response type rule.
+        """
+        return pulumi.get(self, "fixed_response_config")
+
+    @fixed_response_config.setter
+    def fixed_response_config(self, value: Optional[pulumi.Input['RuleRuleActionFixedResponseConfigArgs']]):
+        pulumi.set(self, "fixed_response_config", value)
+
+    @property
+    @pulumi.getter(name="forwardGroupConfig")
+    def forward_group_config(self) -> Optional[pulumi.Input['RuleRuleActionForwardGroupConfigArgs']]:
+        """
+        Forward group configuration for ForwardGroup type action.
+        """
+        return pulumi.get(self, "forward_group_config")
+
+    @forward_group_config.setter
+    def forward_group_config(self, value: Optional[pulumi.Input['RuleRuleActionForwardGroupConfigArgs']]):
+        pulumi.set(self, "forward_group_config", value)
+
+    @property
+    @pulumi.getter(name="redirectConfig")
+    def redirect_config(self) -> Optional[pulumi.Input['RuleRuleActionRedirectConfigArgs']]:
+        """
+        Redirect configuration for Redirect type action.
+        """
+        return pulumi.get(self, "redirect_config")
+
+    @redirect_config.setter
+    def redirect_config(self, value: Optional[pulumi.Input['RuleRuleActionRedirectConfigArgs']]):
+        pulumi.set(self, "redirect_config", value)
+
+    @property
+    @pulumi.getter(name="rewriteConfig")
+    def rewrite_config(self) -> Optional[pulumi.Input['RuleRuleActionRewriteConfigArgs']]:
+        """
+        Rewrite configuration for Rewrite type action.
+        """
+        return pulumi.get(self, "rewrite_config")
+
+    @rewrite_config.setter
+    def rewrite_config(self, value: Optional[pulumi.Input['RuleRuleActionRewriteConfigArgs']]):
+        pulumi.set(self, "rewrite_config", value)
+
+    @property
+    @pulumi.getter(name="trafficLimitConfig")
+    def traffic_limit_config(self) -> Optional[pulumi.Input['RuleRuleActionTrafficLimitConfigArgs']]:
+        """
+        Traffic limit configuration for TrafficLimit type action.
+        """
+        return pulumi.get(self, "traffic_limit_config")
+
+    @traffic_limit_config.setter
+    def traffic_limit_config(self, value: Optional[pulumi.Input['RuleRuleActionTrafficLimitConfigArgs']]):
+        pulumi.set(self, "traffic_limit_config", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The type of rule action. Valid values: ForwardGroup, Redirect, Rewrite, TrafficLimit.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
+
+
+@pulumi.input_type
+class RuleRuleActionFixedResponseConfigArgs:
+    def __init__(__self__, *,
+                 content_type: Optional[pulumi.Input[str]] = None,
+                 response_body: Optional[pulumi.Input[str]] = None,
+                 response_code: Optional[pulumi.Input[str]] = None,
+                 response_message: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] content_type: The content type of the fixed response.
+        :param pulumi.Input[str] response_body: The response body of the fixed response.
+        :param pulumi.Input[str] response_code: The fixed response HTTP status code.
+        :param pulumi.Input[str] response_message: The fixed response message.
+        """
+        if content_type is not None:
+            pulumi.set(__self__, "content_type", content_type)
+        if response_body is not None:
+            pulumi.set(__self__, "response_body", response_body)
+        if response_code is not None:
+            pulumi.set(__self__, "response_code", response_code)
+        if response_message is not None:
+            pulumi.set(__self__, "response_message", response_message)
+
+    @property
+    @pulumi.getter(name="contentType")
+    def content_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The content type of the fixed response.
+        """
+        return pulumi.get(self, "content_type")
+
+    @content_type.setter
+    def content_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "content_type", value)
+
+    @property
+    @pulumi.getter(name="responseBody")
+    def response_body(self) -> Optional[pulumi.Input[str]]:
+        """
+        The response body of the fixed response.
+        """
+        return pulumi.get(self, "response_body")
+
+    @response_body.setter
+    def response_body(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "response_body", value)
+
+    @property
+    @pulumi.getter(name="responseCode")
+    def response_code(self) -> Optional[pulumi.Input[str]]:
+        """
+        The fixed response HTTP status code.
+        """
+        return pulumi.get(self, "response_code")
+
+    @response_code.setter
+    def response_code(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "response_code", value)
+
+    @property
+    @pulumi.getter(name="responseMessage")
+    def response_message(self) -> Optional[pulumi.Input[str]]:
+        """
+        The fixed response message.
+        """
+        return pulumi.get(self, "response_message")
+
+    @response_message.setter
+    def response_message(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "response_message", value)
+
+
+@pulumi.input_type
+class RuleRuleActionForwardGroupConfigArgs:
+    def __init__(__self__, *,
+                 server_group_sticky_session: Optional[pulumi.Input['RuleRuleActionForwardGroupConfigServerGroupStickySessionArgs']] = None,
+                 server_group_tuples: Optional[pulumi.Input[Sequence[pulumi.Input['RuleRuleActionForwardGroupConfigServerGroupTupleArgs']]]] = None):
+        """
+        :param pulumi.Input['RuleRuleActionForwardGroupConfigServerGroupStickySessionArgs'] server_group_sticky_session: The config of group session stickiness.
+        :param pulumi.Input[Sequence[pulumi.Input['RuleRuleActionForwardGroupConfigServerGroupTupleArgs']]] server_group_tuples: The server group tuples.
+        """
+        if server_group_sticky_session is not None:
+            pulumi.set(__self__, "server_group_sticky_session", server_group_sticky_session)
+        if server_group_tuples is not None:
+            pulumi.set(__self__, "server_group_tuples", server_group_tuples)
+
+    @property
+    @pulumi.getter(name="serverGroupStickySession")
+    def server_group_sticky_session(self) -> Optional[pulumi.Input['RuleRuleActionForwardGroupConfigServerGroupStickySessionArgs']]:
+        """
+        The config of group session stickiness.
+        """
+        return pulumi.get(self, "server_group_sticky_session")
+
+    @server_group_sticky_session.setter
+    def server_group_sticky_session(self, value: Optional[pulumi.Input['RuleRuleActionForwardGroupConfigServerGroupStickySessionArgs']]):
+        pulumi.set(self, "server_group_sticky_session", value)
+
+    @property
+    @pulumi.getter(name="serverGroupTuples")
+    def server_group_tuples(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RuleRuleActionForwardGroupConfigServerGroupTupleArgs']]]]:
+        """
+        The server group tuples.
+        """
+        return pulumi.get(self, "server_group_tuples")
+
+    @server_group_tuples.setter
+    def server_group_tuples(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RuleRuleActionForwardGroupConfigServerGroupTupleArgs']]]]):
+        pulumi.set(self, "server_group_tuples", value)
+
+
+@pulumi.input_type
+class RuleRuleActionForwardGroupConfigServerGroupStickySessionArgs:
+    def __init__(__self__, *,
+                 enabled: Optional[pulumi.Input[str]] = None,
+                 timeout: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] enabled: Whether to enable sticky session stickiness. Valid values are 'on' and 'off'.
+        :param pulumi.Input[int] timeout: The sticky session timeout, in seconds.
+        """
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[pulumi.Input[str]]:
+        """
+        Whether to enable sticky session stickiness. Valid values are 'on' and 'off'.
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "enabled", value)
+
+    @property
+    @pulumi.getter
+    def timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        The sticky session timeout, in seconds.
+        """
+        return pulumi.get(self, "timeout")
+
+    @timeout.setter
+    def timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "timeout", value)
+
+
+@pulumi.input_type
+class RuleRuleActionForwardGroupConfigServerGroupTupleArgs:
+    def __init__(__self__, *,
+                 server_group_id: Optional[pulumi.Input[str]] = None,
+                 weight: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] server_group_id: The server group ID. The priority of this parameter is higher than that of `server_group_id`.
+        :param pulumi.Input[int] weight: The weight of the server group.
+        """
+        if server_group_id is not None:
+            pulumi.set(__self__, "server_group_id", server_group_id)
+        if weight is not None:
+            pulumi.set(__self__, "weight", weight)
+
+    @property
+    @pulumi.getter(name="serverGroupId")
+    def server_group_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The server group ID. The priority of this parameter is higher than that of `server_group_id`.
+        """
+        return pulumi.get(self, "server_group_id")
+
+    @server_group_id.setter
+    def server_group_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "server_group_id", value)
+
+    @property
+    @pulumi.getter
+    def weight(self) -> Optional[pulumi.Input[int]]:
+        """
+        The weight of the server group.
+        """
+        return pulumi.get(self, "weight")
+
+    @weight.setter
+    def weight(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "weight", value)
+
+
+@pulumi.input_type
+class RuleRuleActionRedirectConfigArgs:
+    def __init__(__self__, *,
+                 host: Optional[pulumi.Input[str]] = None,
+                 http_code: Optional[pulumi.Input[str]] = None,
+                 path: Optional[pulumi.Input[str]] = None,
+                 port: Optional[pulumi.Input[str]] = None,
+                 protocol: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] host: The domain name to which the request was redirected.
+        :param pulumi.Input[str] http_code: The redirect HTTP code.
+        :param pulumi.Input[str] path: The path to which the request was redirected.
+        :param pulumi.Input[str] port: The redirect port.
+        :param pulumi.Input[str] protocol: The redirect protocol.
+        """
+        if host is not None:
+            pulumi.set(__self__, "host", host)
+        if http_code is not None:
+            pulumi.set(__self__, "http_code", http_code)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if protocol is not None:
+            pulumi.set(__self__, "protocol", protocol)
+
+    @property
+    @pulumi.getter
+    def host(self) -> Optional[pulumi.Input[str]]:
+        """
+        The domain name to which the request was redirected.
+        """
+        return pulumi.get(self, "host")
+
+    @host.setter
+    def host(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "host", value)
+
+    @property
+    @pulumi.getter(name="httpCode")
+    def http_code(self) -> Optional[pulumi.Input[str]]:
+        """
+        The redirect HTTP code.
+        """
+        return pulumi.get(self, "http_code")
+
+    @http_code.setter
+    def http_code(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "http_code", value)
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[pulumi.Input[str]]:
+        """
+        The path to which the request was redirected.
+        """
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "path", value)
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[pulumi.Input[str]]:
+        """
+        The redirect port.
+        """
+        return pulumi.get(self, "port")
+
+    @port.setter
+    def port(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "port", value)
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> Optional[pulumi.Input[str]]:
+        """
+        The redirect protocol.
+        """
+        return pulumi.get(self, "protocol")
+
+    @protocol.setter
+    def protocol(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "protocol", value)
+
+
+@pulumi.input_type
+class RuleRuleActionRewriteConfigArgs:
+    def __init__(__self__, *,
+                 path: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] path: The rewrite path.
+        """
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[pulumi.Input[str]]:
+        """
+        The rewrite path.
+        """
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "path", value)
+
+
+@pulumi.input_type
+class RuleRuleActionTrafficLimitConfigArgs:
+    def __init__(__self__, *,
+                 qps: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[int] qps: The QPS limit.
+        """
+        if qps is not None:
+            pulumi.set(__self__, "qps", qps)
+
+    @property
+    @pulumi.getter
+    def qps(self) -> Optional[pulumi.Input[int]]:
+        """
+        The QPS limit.
+        """
+        return pulumi.get(self, "qps")
+
+    @qps.setter
+    def qps(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "qps", value)
+
+
+@pulumi.input_type
+class RuleRuleConditionArgs:
+    def __init__(__self__, *,
+                 header_config: Optional[pulumi.Input['RuleRuleConditionHeaderConfigArgs']] = None,
+                 host_config: Optional[pulumi.Input['RuleRuleConditionHostConfigArgs']] = None,
+                 method_config: Optional[pulumi.Input['RuleRuleConditionMethodConfigArgs']] = None,
+                 path_config: Optional[pulumi.Input['RuleRuleConditionPathConfigArgs']] = None,
+                 query_string_config: Optional[pulumi.Input['RuleRuleConditionQueryStringConfigArgs']] = None,
+                 type: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input['RuleRuleConditionHeaderConfigArgs'] header_config: Header configuration for Header type condition.
+        :param pulumi.Input['RuleRuleConditionHostConfigArgs'] host_config: Host configuration for Host type condition.
+        :param pulumi.Input['RuleRuleConditionMethodConfigArgs'] method_config: Method configuration for Method type condition.
+        :param pulumi.Input['RuleRuleConditionPathConfigArgs'] path_config: Path configuration for Path type condition.
+        :param pulumi.Input['RuleRuleConditionQueryStringConfigArgs'] query_string_config: Query string configuration for QueryString type condition.
+        :param pulumi.Input[str] type: The type of rule condition. Valid values: Host, Path, Header, Method, QueryString.
+        """
+        if header_config is not None:
+            pulumi.set(__self__, "header_config", header_config)
+        if host_config is not None:
+            pulumi.set(__self__, "host_config", host_config)
+        if method_config is not None:
+            pulumi.set(__self__, "method_config", method_config)
+        if path_config is not None:
+            pulumi.set(__self__, "path_config", path_config)
+        if query_string_config is not None:
+            pulumi.set(__self__, "query_string_config", query_string_config)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="headerConfig")
+    def header_config(self) -> Optional[pulumi.Input['RuleRuleConditionHeaderConfigArgs']]:
+        """
+        Header configuration for Header type condition.
+        """
+        return pulumi.get(self, "header_config")
+
+    @header_config.setter
+    def header_config(self, value: Optional[pulumi.Input['RuleRuleConditionHeaderConfigArgs']]):
+        pulumi.set(self, "header_config", value)
+
+    @property
+    @pulumi.getter(name="hostConfig")
+    def host_config(self) -> Optional[pulumi.Input['RuleRuleConditionHostConfigArgs']]:
+        """
+        Host configuration for Host type condition.
+        """
+        return pulumi.get(self, "host_config")
+
+    @host_config.setter
+    def host_config(self, value: Optional[pulumi.Input['RuleRuleConditionHostConfigArgs']]):
+        pulumi.set(self, "host_config", value)
+
+    @property
+    @pulumi.getter(name="methodConfig")
+    def method_config(self) -> Optional[pulumi.Input['RuleRuleConditionMethodConfigArgs']]:
+        """
+        Method configuration for Method type condition.
+        """
+        return pulumi.get(self, "method_config")
+
+    @method_config.setter
+    def method_config(self, value: Optional[pulumi.Input['RuleRuleConditionMethodConfigArgs']]):
+        pulumi.set(self, "method_config", value)
+
+    @property
+    @pulumi.getter(name="pathConfig")
+    def path_config(self) -> Optional[pulumi.Input['RuleRuleConditionPathConfigArgs']]:
+        """
+        Path configuration for Path type condition.
+        """
+        return pulumi.get(self, "path_config")
+
+    @path_config.setter
+    def path_config(self, value: Optional[pulumi.Input['RuleRuleConditionPathConfigArgs']]):
+        pulumi.set(self, "path_config", value)
+
+    @property
+    @pulumi.getter(name="queryStringConfig")
+    def query_string_config(self) -> Optional[pulumi.Input['RuleRuleConditionQueryStringConfigArgs']]:
+        """
+        Query string configuration for QueryString type condition.
+        """
+        return pulumi.get(self, "query_string_config")
+
+    @query_string_config.setter
+    def query_string_config(self, value: Optional[pulumi.Input['RuleRuleConditionQueryStringConfigArgs']]):
+        pulumi.set(self, "query_string_config", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The type of rule condition. Valid values: Host, Path, Header, Method, QueryString.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
+
+
+@pulumi.input_type
+class RuleRuleConditionHeaderConfigArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str],
+                 values: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        """
+        :param pulumi.Input[str] key: The header key.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] values: The list of header values.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        """
+        The header key.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def values(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        The list of header values.
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        pulumi.set(self, "values", value)
+
+
+@pulumi.input_type
+class RuleRuleConditionHostConfigArgs:
+    def __init__(__self__, *,
+                 values: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] values: The list of domain names.
+        """
+        pulumi.set(__self__, "values", values)
+
+    @property
+    @pulumi.getter
+    def values(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        The list of domain names.
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        pulumi.set(self, "values", value)
+
+
+@pulumi.input_type
+class RuleRuleConditionMethodConfigArgs:
+    def __init__(__self__, *,
+                 values: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] values: The values of the method. Vaild values: HEAD,GET,POST,OPTIONS,PUT,PATCH,DELETE.
+        """
+        pulumi.set(__self__, "values", values)
+
+    @property
+    @pulumi.getter
+    def values(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        The values of the method. Vaild values: HEAD,GET,POST,OPTIONS,PUT,PATCH,DELETE.
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        pulumi.set(self, "values", value)
+
+
+@pulumi.input_type
+class RuleRuleConditionPathConfigArgs:
+    def __init__(__self__, *,
+                 values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] values: The list of absolute paths.
+        """
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+
+    @property
+    @pulumi.getter
+    def values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The list of absolute paths.
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "values", value)
+
+
+@pulumi.input_type
+class RuleRuleConditionQueryStringConfigArgs:
+    def __init__(__self__, *,
+                 values: Optional[pulumi.Input[Sequence[pulumi.Input['RuleRuleConditionQueryStringConfigValueArgs']]]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['RuleRuleConditionQueryStringConfigValueArgs']]] values: The list of query string values.
+        """
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+
+    @property
+    @pulumi.getter
+    def values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RuleRuleConditionQueryStringConfigValueArgs']]]]:
+        """
+        The list of query string values.
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RuleRuleConditionQueryStringConfigValueArgs']]]]):
+        pulumi.set(self, "values", value)
+
+
+@pulumi.input_type
+class RuleRuleConditionQueryStringConfigValueArgs:
+    def __init__(__self__, *,
+                 key: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] key: The query string key.
+        :param pulumi.Input[str] value: The query string value.
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The query string key.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        """
+        The query string value.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class RuleServerGroupTupleArgs:
+    def __init__(__self__, *,
+                 server_group_id: pulumi.Input[str],
+                 weight: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] server_group_id: The server group ID. The priority of this parameter is higher than that of `server_group_id`.
+        :param pulumi.Input[int] weight: The weight of the server group.
+        """
+        pulumi.set(__self__, "server_group_id", server_group_id)
+        if weight is not None:
+            pulumi.set(__self__, "weight", weight)
+
+    @property
+    @pulumi.getter(name="serverGroupId")
+    def server_group_id(self) -> pulumi.Input[str]:
+        """
+        The server group ID. The priority of this parameter is higher than that of `server_group_id`.
+        """
+        return pulumi.get(self, "server_group_id")
+
+    @server_group_id.setter
+    def server_group_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "server_group_id", value)
+
+    @property
+    @pulumi.getter
+    def weight(self) -> Optional[pulumi.Input[int]]:
+        """
+        The weight of the server group.
+        """
+        return pulumi.get(self, "weight")
+
+    @weight.setter
+    def weight(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "weight", value)
+
+
+@pulumi.input_type
 class ServerGroupHealthCheckArgs:
     def __init__(__self__, *,
                  domain: Optional[pulumi.Input[str]] = None,
@@ -517,6 +1867,8 @@ class ServerGroupHealthCheckArgs:
                  http_version: Optional[pulumi.Input[str]] = None,
                  interval: Optional[pulumi.Input[int]] = None,
                  method: Optional[pulumi.Input[str]] = None,
+                 port: Optional[pulumi.Input[int]] = None,
+                 protocol: Optional[pulumi.Input[str]] = None,
                  timeout: Optional[pulumi.Input[int]] = None,
                  unhealthy_threshold: Optional[pulumi.Input[int]] = None,
                  uri: Optional[pulumi.Input[str]] = None):
@@ -524,10 +1876,12 @@ class ServerGroupHealthCheckArgs:
         :param pulumi.Input[str] domain: The domain of health check.
         :param pulumi.Input[str] enabled: The enable status of health check function. Valid values: `on`, `off`. Default is `on`.
         :param pulumi.Input[int] healthy_threshold: The healthy threshold of health check. Valid value range in 2~10. Default is 3.
-        :param pulumi.Input[str] http_code: The normal http status code of health check, the value can be `http_2xx` or `http_3xx` or `http_4xx` or `http_5xx`.
+        :param pulumi.Input[str] http_code: The normal http status code of health check, the value can be `http_2xx`, `http_3xx`, `http_4xx` or `http_5xx`. Default is `http_2xx,http_3xx`.
         :param pulumi.Input[str] http_version: The http version of health check. Valid values: `HTTP1.0`, `HTTP1.1`. Default is `HTTP1.0`.
         :param pulumi.Input[int] interval: The interval executing health check. Unit: second. Valid value range in 1~300. Default is 2.
         :param pulumi.Input[str] method: The method of health check. Valid values: `GET` or `HEAD`. Default is `HEAD`.
+        :param pulumi.Input[int] port: The port of health check. When the value is 0, it means use the backend server port for health check. Valid value range in 0~65535.
+        :param pulumi.Input[str] protocol: The protocol of health check. Valid values: `HTTP`, `TCP`. Default is `HTTP`.
         :param pulumi.Input[int] timeout: The response timeout of health check. Unit: second. Valid value range in 1~60. Default is 2.
         :param pulumi.Input[int] unhealthy_threshold: The unhealthy threshold of health check. Valid value range in 2~10. Default is 3.
         :param pulumi.Input[str] uri: The uri of health check.
@@ -546,6 +1900,10 @@ class ServerGroupHealthCheckArgs:
             pulumi.set(__self__, "interval", interval)
         if method is not None:
             pulumi.set(__self__, "method", method)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if protocol is not None:
+            pulumi.set(__self__, "protocol", protocol)
         if timeout is not None:
             pulumi.set(__self__, "timeout", timeout)
         if unhealthy_threshold is not None:
@@ -593,7 +1951,7 @@ class ServerGroupHealthCheckArgs:
     @pulumi.getter(name="httpCode")
     def http_code(self) -> Optional[pulumi.Input[str]]:
         """
-        The normal http status code of health check, the value can be `http_2xx` or `http_3xx` or `http_4xx` or `http_5xx`.
+        The normal http status code of health check, the value can be `http_2xx`, `http_3xx`, `http_4xx` or `http_5xx`. Default is `http_2xx,http_3xx`.
         """
         return pulumi.get(self, "http_code")
 
@@ -636,6 +1994,30 @@ class ServerGroupHealthCheckArgs:
     @method.setter
     def method(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "method", value)
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[pulumi.Input[int]]:
+        """
+        The port of health check. When the value is 0, it means use the backend server port for health check. Valid value range in 0~65535.
+        """
+        return pulumi.get(self, "port")
+
+    @port.setter
+    def port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "port", value)
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> Optional[pulumi.Input[str]]:
+        """
+        The protocol of health check. Valid values: `HTTP`, `TCP`. Default is `HTTP`.
+        """
+        return pulumi.get(self, "protocol")
+
+    @protocol.setter
+    def protocol(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "protocol", value)
 
     @property
     @pulumi.getter
@@ -746,7 +2128,340 @@ class ServerGroupStickySessionConfigArgs:
 
 
 @pulumi.input_type
+class ServerGroupTagArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] key: The Key of Tags.
+        :param pulumi.Input[str] value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ServerGroupsTagArgs:
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: str):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: str):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class GetAclsTagArgs:
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: str):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: str):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
 class GetAlbsTagArgs:
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: str):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: str):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class GetAllCertificatesTagArgs:
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: str):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: str):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class GetCertificatesTagArgs:
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: str):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: str):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class GetCustomizedCfgsTagArgs:
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: str):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: str):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class GetHealthCheckTemplatesTagArgs:
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: str):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: str):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class GetListenersTagArgs:
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: str):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: str):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class GetServerGroupsTagArgs:
     def __init__(__self__, *,
                  key: str,
                  value: str):

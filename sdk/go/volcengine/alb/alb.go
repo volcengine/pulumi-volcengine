@@ -79,8 +79,8 @@ import (
 //				DeleteProtection: pulumi.String("off"),
 //				Tags: alb.AlbTagArray{
 //					&alb.AlbTagArgs{
-//						Key:   pulumi.String("k2"),
-//						Value: pulumi.String("v2"),
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
 //					},
 //				},
 //			})
@@ -96,8 +96,11 @@ import (
 //					subnetIpv61.ID(),
 //					subnetIpv62.ID(),
 //				},
-//				ProjectName:      pulumi.String("default"),
-//				DeleteProtection: pulumi.String("off"),
+//				ProjectName:                  pulumi.String("default"),
+//				DeleteProtection:             pulumi.String("off"),
+//				ModificationProtectionStatus: pulumi.String("NonProtection"),
+//				ModificationProtectionReason: pulumi.String("Test modification protection"),
+//				LoadBalancerEdition:          pulumi.String("Basic"),
 //				EipBillingConfig: &alb.AlbEipBillingConfigArgs{
 //					Isp:            pulumi.String("BGP"),
 //					EipBillingType: pulumi.String("PostPaidByBandwidth"),
@@ -110,13 +113,45 @@ import (
 //				},
 //				Tags: alb.AlbTagArray{
 //					&alb.AlbTagArgs{
-//						Key:   pulumi.String("k2"),
-//						Value: pulumi.String("v2"),
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
 //					},
 //				},
 //			}, pulumi.DependsOn([]pulumi.Resource{
 //				ipv6Gateway,
 //			}))
+//			if err != nil {
+//				return err
+//			}
+//			// CLone ALB instance
+//			_, err = alb.NewAlb(ctx, "alb-cloned", &alb.AlbArgs{
+//				SourceLoadBalancerId: alb_private.ID(),
+//				LoadBalancerName:     pulumi.String("acc-test-alb-cloned"),
+//				Description:          pulumi.String("cloned from alb-private"),
+//				SubnetIds: pulumi.StringArray{
+//					subnetIpv61.ID(),
+//				},
+//				Type:        pulumi.String("private"),
+//				ProjectName: pulumi.String("default"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// Example of ALB network type change, private -> public
+//			_, err = alb.NewAlb(ctx, "alb-type-change", &alb.AlbArgs{
+//				LoadBalancerName: pulumi.String("acc-test-alb-type-change"),
+//				Description:      pulumi.String("will change to public type"),
+//				SubnetIds: pulumi.StringArray{
+//					subnetIpv61.ID(),
+//					subnetIpv62.ID(),
+//				},
+//				Type:        pulumi.String("public"),
+//				ProjectName: pulumi.String("default"),
+//				AllocationIds: pulumi.StringArray{
+//					pulumi.String("eip-iinpy4k1rytc74o8curgocd7"),
+//					pulumi.String("eip-iinpy4k1rytc74o8curgocd8"),
+//				},
+//			})
 //			if err != nil {
 //				return err
 //			}
@@ -138,6 +173,8 @@ type Alb struct {
 
 	// The address ip version of the Alb. Valid values: `IPv4`, `DualStack`. Default is `ipv4`.
 	AddressIpVersion pulumi.StringPtrOutput `pulumi:"addressIpVersion"`
+	// The ID of the public IP. This field is only valid when the type field changes from private to public.
+	AllocationIds pulumi.StringArrayOutput `pulumi:"allocationIds"`
 	// Whether to enable the delete protection function of the Alb. Valid values: `on`, `off`. Default is `off`.
 	DeleteProtection pulumi.StringPtrOutput `pulumi:"deleteProtection"`
 	// The description of the Alb.
@@ -146,14 +183,26 @@ type Alb struct {
 	DnsName pulumi.StringOutput `pulumi:"dnsName"`
 	// The billing configuration of the EIP which automatically associated to the Alb. This field is valid when the type of the Alb is `public`.When the type of the Alb is `private`, suggest using a combination of resource `eip.Address` and `eip.Associate` to achieve public network access function.
 	EipBillingConfig AlbEipBillingConfigOutput `pulumi:"eipBillingConfig"`
+	// The global accelerator configuration.
+	GlobalAccelerator AlbGlobalAcceleratorOutput `pulumi:"globalAccelerator"`
 	// The billing configuration of the Ipv6 EIP which automatically associated to the Alb. This field is required when the type of the Alb is `public`.When the type of the Alb is `private`, suggest using a combination of resource `vpc.Ipv6Gateway` and `vpc.Ipv6AddressBandwidth` to achieve ipv6 public network access function.
 	Ipv6EipBillingConfig AlbIpv6EipBillingConfigOutput `pulumi:"ipv6EipBillingConfig"`
+	// The version of the ALB instance. Basic: Basic Edition. Standard: Standard Edition. Default is `Basic`.
+	LoadBalancerEdition pulumi.StringOutput `pulumi:"loadBalancerEdition"`
 	// The name of the Alb.
 	LoadBalancerName pulumi.StringOutput `pulumi:"loadBalancerName"`
 	// The local addresses of the Alb.
 	LocalAddresses pulumi.StringArrayOutput `pulumi:"localAddresses"`
+	// The reason for enabling instance modification protection. This parameter is valid when the modificationProtectionStatus is `ConsoleProtection`.
+	ModificationProtectionReason pulumi.StringOutput `pulumi:"modificationProtectionReason"`
+	// Whether to enable the modification protection function of the Alb. Valid values: `NonProtection`, `ConsoleProtection`. Default is `NonProtection`. NonProtection: Instance modification protection is not enabled. ConsoleProtection: Instance modification protection is enabled; you cannot modify the instance configuration through the ALB console, and can only modify the instance configuration by calling the API.
+	ModificationProtectionStatus pulumi.StringOutput `pulumi:"modificationProtectionStatus"`
 	// The ProjectName of the Alb.
 	ProjectName pulumi.StringOutput `pulumi:"projectName"`
+	// ALB can support the Proxy Protocol and record the real IP of the client.
+	ProxyProtocolEnabled pulumi.StringOutput `pulumi:"proxyProtocolEnabled"`
+	// The source ALB instance ID for cloning. If specified, the ALB instance will be cloned from this source.
+	SourceLoadBalancerId pulumi.StringPtrOutput `pulumi:"sourceLoadBalancerId"`
 	// The status of the Alb.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// The id of the Subnet.
@@ -164,6 +213,12 @@ type Alb struct {
 	Type pulumi.StringOutput `pulumi:"type"`
 	// The vpc id of the Alb.
 	VpcId pulumi.StringOutput `pulumi:"vpcId"`
+	// The ID of the WAF instance to be associated with the Alb. This field is valid when the value of the `wafProtectionEnabled` is `on`.
+	WafInstanceId pulumi.StringOutput `pulumi:"wafInstanceId"`
+	// The domain name of the WAF protected Alb. This field is valid when the value of the `wafProtectionEnabled` is `on`.
+	WafProtectedDomain pulumi.StringPtrOutput `pulumi:"wafProtectedDomain"`
+	// Whether to enable the WAF protection function of the Alb. Valid values: `off`, `on`. Default is `off`.
+	WafProtectionEnabled pulumi.StringOutput `pulumi:"wafProtectionEnabled"`
 	// Configuration information of the Alb instance in different Availability Zones.
 	ZoneMappings AlbZoneMappingArrayOutput `pulumi:"zoneMappings"`
 }
@@ -206,6 +261,8 @@ func GetAlb(ctx *pulumi.Context,
 type albState struct {
 	// The address ip version of the Alb. Valid values: `IPv4`, `DualStack`. Default is `ipv4`.
 	AddressIpVersion *string `pulumi:"addressIpVersion"`
+	// The ID of the public IP. This field is only valid when the type field changes from private to public.
+	AllocationIds []string `pulumi:"allocationIds"`
 	// Whether to enable the delete protection function of the Alb. Valid values: `on`, `off`. Default is `off`.
 	DeleteProtection *string `pulumi:"deleteProtection"`
 	// The description of the Alb.
@@ -214,14 +271,26 @@ type albState struct {
 	DnsName *string `pulumi:"dnsName"`
 	// The billing configuration of the EIP which automatically associated to the Alb. This field is valid when the type of the Alb is `public`.When the type of the Alb is `private`, suggest using a combination of resource `eip.Address` and `eip.Associate` to achieve public network access function.
 	EipBillingConfig *AlbEipBillingConfig `pulumi:"eipBillingConfig"`
+	// The global accelerator configuration.
+	GlobalAccelerator *AlbGlobalAccelerator `pulumi:"globalAccelerator"`
 	// The billing configuration of the Ipv6 EIP which automatically associated to the Alb. This field is required when the type of the Alb is `public`.When the type of the Alb is `private`, suggest using a combination of resource `vpc.Ipv6Gateway` and `vpc.Ipv6AddressBandwidth` to achieve ipv6 public network access function.
 	Ipv6EipBillingConfig *AlbIpv6EipBillingConfig `pulumi:"ipv6EipBillingConfig"`
+	// The version of the ALB instance. Basic: Basic Edition. Standard: Standard Edition. Default is `Basic`.
+	LoadBalancerEdition *string `pulumi:"loadBalancerEdition"`
 	// The name of the Alb.
 	LoadBalancerName *string `pulumi:"loadBalancerName"`
 	// The local addresses of the Alb.
 	LocalAddresses []string `pulumi:"localAddresses"`
+	// The reason for enabling instance modification protection. This parameter is valid when the modificationProtectionStatus is `ConsoleProtection`.
+	ModificationProtectionReason *string `pulumi:"modificationProtectionReason"`
+	// Whether to enable the modification protection function of the Alb. Valid values: `NonProtection`, `ConsoleProtection`. Default is `NonProtection`. NonProtection: Instance modification protection is not enabled. ConsoleProtection: Instance modification protection is enabled; you cannot modify the instance configuration through the ALB console, and can only modify the instance configuration by calling the API.
+	ModificationProtectionStatus *string `pulumi:"modificationProtectionStatus"`
 	// The ProjectName of the Alb.
 	ProjectName *string `pulumi:"projectName"`
+	// ALB can support the Proxy Protocol and record the real IP of the client.
+	ProxyProtocolEnabled *string `pulumi:"proxyProtocolEnabled"`
+	// The source ALB instance ID for cloning. If specified, the ALB instance will be cloned from this source.
+	SourceLoadBalancerId *string `pulumi:"sourceLoadBalancerId"`
 	// The status of the Alb.
 	Status *string `pulumi:"status"`
 	// The id of the Subnet.
@@ -232,6 +301,12 @@ type albState struct {
 	Type *string `pulumi:"type"`
 	// The vpc id of the Alb.
 	VpcId *string `pulumi:"vpcId"`
+	// The ID of the WAF instance to be associated with the Alb. This field is valid when the value of the `wafProtectionEnabled` is `on`.
+	WafInstanceId *string `pulumi:"wafInstanceId"`
+	// The domain name of the WAF protected Alb. This field is valid when the value of the `wafProtectionEnabled` is `on`.
+	WafProtectedDomain *string `pulumi:"wafProtectedDomain"`
+	// Whether to enable the WAF protection function of the Alb. Valid values: `off`, `on`. Default is `off`.
+	WafProtectionEnabled *string `pulumi:"wafProtectionEnabled"`
 	// Configuration information of the Alb instance in different Availability Zones.
 	ZoneMappings []AlbZoneMapping `pulumi:"zoneMappings"`
 }
@@ -239,6 +314,8 @@ type albState struct {
 type AlbState struct {
 	// The address ip version of the Alb. Valid values: `IPv4`, `DualStack`. Default is `ipv4`.
 	AddressIpVersion pulumi.StringPtrInput
+	// The ID of the public IP. This field is only valid when the type field changes from private to public.
+	AllocationIds pulumi.StringArrayInput
 	// Whether to enable the delete protection function of the Alb. Valid values: `on`, `off`. Default is `off`.
 	DeleteProtection pulumi.StringPtrInput
 	// The description of the Alb.
@@ -247,14 +324,26 @@ type AlbState struct {
 	DnsName pulumi.StringPtrInput
 	// The billing configuration of the EIP which automatically associated to the Alb. This field is valid when the type of the Alb is `public`.When the type of the Alb is `private`, suggest using a combination of resource `eip.Address` and `eip.Associate` to achieve public network access function.
 	EipBillingConfig AlbEipBillingConfigPtrInput
+	// The global accelerator configuration.
+	GlobalAccelerator AlbGlobalAcceleratorPtrInput
 	// The billing configuration of the Ipv6 EIP which automatically associated to the Alb. This field is required when the type of the Alb is `public`.When the type of the Alb is `private`, suggest using a combination of resource `vpc.Ipv6Gateway` and `vpc.Ipv6AddressBandwidth` to achieve ipv6 public network access function.
 	Ipv6EipBillingConfig AlbIpv6EipBillingConfigPtrInput
+	// The version of the ALB instance. Basic: Basic Edition. Standard: Standard Edition. Default is `Basic`.
+	LoadBalancerEdition pulumi.StringPtrInput
 	// The name of the Alb.
 	LoadBalancerName pulumi.StringPtrInput
 	// The local addresses of the Alb.
 	LocalAddresses pulumi.StringArrayInput
+	// The reason for enabling instance modification protection. This parameter is valid when the modificationProtectionStatus is `ConsoleProtection`.
+	ModificationProtectionReason pulumi.StringPtrInput
+	// Whether to enable the modification protection function of the Alb. Valid values: `NonProtection`, `ConsoleProtection`. Default is `NonProtection`. NonProtection: Instance modification protection is not enabled. ConsoleProtection: Instance modification protection is enabled; you cannot modify the instance configuration through the ALB console, and can only modify the instance configuration by calling the API.
+	ModificationProtectionStatus pulumi.StringPtrInput
 	// The ProjectName of the Alb.
 	ProjectName pulumi.StringPtrInput
+	// ALB can support the Proxy Protocol and record the real IP of the client.
+	ProxyProtocolEnabled pulumi.StringPtrInput
+	// The source ALB instance ID for cloning. If specified, the ALB instance will be cloned from this source.
+	SourceLoadBalancerId pulumi.StringPtrInput
 	// The status of the Alb.
 	Status pulumi.StringPtrInput
 	// The id of the Subnet.
@@ -265,6 +354,12 @@ type AlbState struct {
 	Type pulumi.StringPtrInput
 	// The vpc id of the Alb.
 	VpcId pulumi.StringPtrInput
+	// The ID of the WAF instance to be associated with the Alb. This field is valid when the value of the `wafProtectionEnabled` is `on`.
+	WafInstanceId pulumi.StringPtrInput
+	// The domain name of the WAF protected Alb. This field is valid when the value of the `wafProtectionEnabled` is `on`.
+	WafProtectedDomain pulumi.StringPtrInput
+	// Whether to enable the WAF protection function of the Alb. Valid values: `off`, `on`. Default is `off`.
+	WafProtectionEnabled pulumi.StringPtrInput
 	// Configuration information of the Alb instance in different Availability Zones.
 	ZoneMappings AlbZoneMappingArrayInput
 }
@@ -276,48 +371,88 @@ func (AlbState) ElementType() reflect.Type {
 type albArgs struct {
 	// The address ip version of the Alb. Valid values: `IPv4`, `DualStack`. Default is `ipv4`.
 	AddressIpVersion *string `pulumi:"addressIpVersion"`
+	// The ID of the public IP. This field is only valid when the type field changes from private to public.
+	AllocationIds []string `pulumi:"allocationIds"`
 	// Whether to enable the delete protection function of the Alb. Valid values: `on`, `off`. Default is `off`.
 	DeleteProtection *string `pulumi:"deleteProtection"`
 	// The description of the Alb.
 	Description *string `pulumi:"description"`
 	// The billing configuration of the EIP which automatically associated to the Alb. This field is valid when the type of the Alb is `public`.When the type of the Alb is `private`, suggest using a combination of resource `eip.Address` and `eip.Associate` to achieve public network access function.
 	EipBillingConfig *AlbEipBillingConfig `pulumi:"eipBillingConfig"`
+	// The global accelerator configuration.
+	GlobalAccelerator *AlbGlobalAccelerator `pulumi:"globalAccelerator"`
 	// The billing configuration of the Ipv6 EIP which automatically associated to the Alb. This field is required when the type of the Alb is `public`.When the type of the Alb is `private`, suggest using a combination of resource `vpc.Ipv6Gateway` and `vpc.Ipv6AddressBandwidth` to achieve ipv6 public network access function.
 	Ipv6EipBillingConfig *AlbIpv6EipBillingConfig `pulumi:"ipv6EipBillingConfig"`
+	// The version of the ALB instance. Basic: Basic Edition. Standard: Standard Edition. Default is `Basic`.
+	LoadBalancerEdition *string `pulumi:"loadBalancerEdition"`
 	// The name of the Alb.
 	LoadBalancerName *string `pulumi:"loadBalancerName"`
+	// The reason for enabling instance modification protection. This parameter is valid when the modificationProtectionStatus is `ConsoleProtection`.
+	ModificationProtectionReason *string `pulumi:"modificationProtectionReason"`
+	// Whether to enable the modification protection function of the Alb. Valid values: `NonProtection`, `ConsoleProtection`. Default is `NonProtection`. NonProtection: Instance modification protection is not enabled. ConsoleProtection: Instance modification protection is enabled; you cannot modify the instance configuration through the ALB console, and can only modify the instance configuration by calling the API.
+	ModificationProtectionStatus *string `pulumi:"modificationProtectionStatus"`
 	// The ProjectName of the Alb.
 	ProjectName *string `pulumi:"projectName"`
+	// ALB can support the Proxy Protocol and record the real IP of the client.
+	ProxyProtocolEnabled *string `pulumi:"proxyProtocolEnabled"`
+	// The source ALB instance ID for cloning. If specified, the ALB instance will be cloned from this source.
+	SourceLoadBalancerId *string `pulumi:"sourceLoadBalancerId"`
 	// The id of the Subnet.
 	SubnetIds []string `pulumi:"subnetIds"`
 	// Tags.
 	Tags []AlbTag `pulumi:"tags"`
 	// The type of the Alb. Valid values: `public`, `private`.
 	Type string `pulumi:"type"`
+	// The ID of the WAF instance to be associated with the Alb. This field is valid when the value of the `wafProtectionEnabled` is `on`.
+	WafInstanceId *string `pulumi:"wafInstanceId"`
+	// The domain name of the WAF protected Alb. This field is valid when the value of the `wafProtectionEnabled` is `on`.
+	WafProtectedDomain *string `pulumi:"wafProtectedDomain"`
+	// Whether to enable the WAF protection function of the Alb. Valid values: `off`, `on`. Default is `off`.
+	WafProtectionEnabled *string `pulumi:"wafProtectionEnabled"`
 }
 
 // The set of arguments for constructing a Alb resource.
 type AlbArgs struct {
 	// The address ip version of the Alb. Valid values: `IPv4`, `DualStack`. Default is `ipv4`.
 	AddressIpVersion pulumi.StringPtrInput
+	// The ID of the public IP. This field is only valid when the type field changes from private to public.
+	AllocationIds pulumi.StringArrayInput
 	// Whether to enable the delete protection function of the Alb. Valid values: `on`, `off`. Default is `off`.
 	DeleteProtection pulumi.StringPtrInput
 	// The description of the Alb.
 	Description pulumi.StringPtrInput
 	// The billing configuration of the EIP which automatically associated to the Alb. This field is valid when the type of the Alb is `public`.When the type of the Alb is `private`, suggest using a combination of resource `eip.Address` and `eip.Associate` to achieve public network access function.
 	EipBillingConfig AlbEipBillingConfigPtrInput
+	// The global accelerator configuration.
+	GlobalAccelerator AlbGlobalAcceleratorPtrInput
 	// The billing configuration of the Ipv6 EIP which automatically associated to the Alb. This field is required when the type of the Alb is `public`.When the type of the Alb is `private`, suggest using a combination of resource `vpc.Ipv6Gateway` and `vpc.Ipv6AddressBandwidth` to achieve ipv6 public network access function.
 	Ipv6EipBillingConfig AlbIpv6EipBillingConfigPtrInput
+	// The version of the ALB instance. Basic: Basic Edition. Standard: Standard Edition. Default is `Basic`.
+	LoadBalancerEdition pulumi.StringPtrInput
 	// The name of the Alb.
 	LoadBalancerName pulumi.StringPtrInput
+	// The reason for enabling instance modification protection. This parameter is valid when the modificationProtectionStatus is `ConsoleProtection`.
+	ModificationProtectionReason pulumi.StringPtrInput
+	// Whether to enable the modification protection function of the Alb. Valid values: `NonProtection`, `ConsoleProtection`. Default is `NonProtection`. NonProtection: Instance modification protection is not enabled. ConsoleProtection: Instance modification protection is enabled; you cannot modify the instance configuration through the ALB console, and can only modify the instance configuration by calling the API.
+	ModificationProtectionStatus pulumi.StringPtrInput
 	// The ProjectName of the Alb.
 	ProjectName pulumi.StringPtrInput
+	// ALB can support the Proxy Protocol and record the real IP of the client.
+	ProxyProtocolEnabled pulumi.StringPtrInput
+	// The source ALB instance ID for cloning. If specified, the ALB instance will be cloned from this source.
+	SourceLoadBalancerId pulumi.StringPtrInput
 	// The id of the Subnet.
 	SubnetIds pulumi.StringArrayInput
 	// Tags.
 	Tags AlbTagArrayInput
 	// The type of the Alb. Valid values: `public`, `private`.
 	Type pulumi.StringInput
+	// The ID of the WAF instance to be associated with the Alb. This field is valid when the value of the `wafProtectionEnabled` is `on`.
+	WafInstanceId pulumi.StringPtrInput
+	// The domain name of the WAF protected Alb. This field is valid when the value of the `wafProtectionEnabled` is `on`.
+	WafProtectedDomain pulumi.StringPtrInput
+	// Whether to enable the WAF protection function of the Alb. Valid values: `off`, `on`. Default is `off`.
+	WafProtectionEnabled pulumi.StringPtrInput
 }
 
 func (AlbArgs) ElementType() reflect.Type {
@@ -412,6 +547,11 @@ func (o AlbOutput) AddressIpVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Alb) pulumi.StringPtrOutput { return v.AddressIpVersion }).(pulumi.StringPtrOutput)
 }
 
+// The ID of the public IP. This field is only valid when the type field changes from private to public.
+func (o AlbOutput) AllocationIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Alb) pulumi.StringArrayOutput { return v.AllocationIds }).(pulumi.StringArrayOutput)
+}
+
 // Whether to enable the delete protection function of the Alb. Valid values: `on`, `off`. Default is `off`.
 func (o AlbOutput) DeleteProtection() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Alb) pulumi.StringPtrOutput { return v.DeleteProtection }).(pulumi.StringPtrOutput)
@@ -432,9 +572,19 @@ func (o AlbOutput) EipBillingConfig() AlbEipBillingConfigOutput {
 	return o.ApplyT(func(v *Alb) AlbEipBillingConfigOutput { return v.EipBillingConfig }).(AlbEipBillingConfigOutput)
 }
 
+// The global accelerator configuration.
+func (o AlbOutput) GlobalAccelerator() AlbGlobalAcceleratorOutput {
+	return o.ApplyT(func(v *Alb) AlbGlobalAcceleratorOutput { return v.GlobalAccelerator }).(AlbGlobalAcceleratorOutput)
+}
+
 // The billing configuration of the Ipv6 EIP which automatically associated to the Alb. This field is required when the type of the Alb is `public`.When the type of the Alb is `private`, suggest using a combination of resource `vpc.Ipv6Gateway` and `vpc.Ipv6AddressBandwidth` to achieve ipv6 public network access function.
 func (o AlbOutput) Ipv6EipBillingConfig() AlbIpv6EipBillingConfigOutput {
 	return o.ApplyT(func(v *Alb) AlbIpv6EipBillingConfigOutput { return v.Ipv6EipBillingConfig }).(AlbIpv6EipBillingConfigOutput)
+}
+
+// The version of the ALB instance. Basic: Basic Edition. Standard: Standard Edition. Default is `Basic`.
+func (o AlbOutput) LoadBalancerEdition() pulumi.StringOutput {
+	return o.ApplyT(func(v *Alb) pulumi.StringOutput { return v.LoadBalancerEdition }).(pulumi.StringOutput)
 }
 
 // The name of the Alb.
@@ -447,9 +597,29 @@ func (o AlbOutput) LocalAddresses() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Alb) pulumi.StringArrayOutput { return v.LocalAddresses }).(pulumi.StringArrayOutput)
 }
 
+// The reason for enabling instance modification protection. This parameter is valid when the modificationProtectionStatus is `ConsoleProtection`.
+func (o AlbOutput) ModificationProtectionReason() pulumi.StringOutput {
+	return o.ApplyT(func(v *Alb) pulumi.StringOutput { return v.ModificationProtectionReason }).(pulumi.StringOutput)
+}
+
+// Whether to enable the modification protection function of the Alb. Valid values: `NonProtection`, `ConsoleProtection`. Default is `NonProtection`. NonProtection: Instance modification protection is not enabled. ConsoleProtection: Instance modification protection is enabled; you cannot modify the instance configuration through the ALB console, and can only modify the instance configuration by calling the API.
+func (o AlbOutput) ModificationProtectionStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *Alb) pulumi.StringOutput { return v.ModificationProtectionStatus }).(pulumi.StringOutput)
+}
+
 // The ProjectName of the Alb.
 func (o AlbOutput) ProjectName() pulumi.StringOutput {
 	return o.ApplyT(func(v *Alb) pulumi.StringOutput { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// ALB can support the Proxy Protocol and record the real IP of the client.
+func (o AlbOutput) ProxyProtocolEnabled() pulumi.StringOutput {
+	return o.ApplyT(func(v *Alb) pulumi.StringOutput { return v.ProxyProtocolEnabled }).(pulumi.StringOutput)
+}
+
+// The source ALB instance ID for cloning. If specified, the ALB instance will be cloned from this source.
+func (o AlbOutput) SourceLoadBalancerId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Alb) pulumi.StringPtrOutput { return v.SourceLoadBalancerId }).(pulumi.StringPtrOutput)
 }
 
 // The status of the Alb.
@@ -475,6 +645,21 @@ func (o AlbOutput) Type() pulumi.StringOutput {
 // The vpc id of the Alb.
 func (o AlbOutput) VpcId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Alb) pulumi.StringOutput { return v.VpcId }).(pulumi.StringOutput)
+}
+
+// The ID of the WAF instance to be associated with the Alb. This field is valid when the value of the `wafProtectionEnabled` is `on`.
+func (o AlbOutput) WafInstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Alb) pulumi.StringOutput { return v.WafInstanceId }).(pulumi.StringOutput)
+}
+
+// The domain name of the WAF protected Alb. This field is valid when the value of the `wafProtectionEnabled` is `on`.
+func (o AlbOutput) WafProtectedDomain() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Alb) pulumi.StringPtrOutput { return v.WafProtectedDomain }).(pulumi.StringPtrOutput)
+}
+
+// Whether to enable the WAF protection function of the Alb. Valid values: `off`, `on`. Default is `off`.
+func (o AlbOutput) WafProtectionEnabled() pulumi.StringOutput {
+	return o.ApplyT(func(v *Alb) pulumi.StringOutput { return v.WafProtectionEnabled }).(pulumi.StringOutput)
 }
 
 // Configuration information of the Alb instance in different Availability Zones.

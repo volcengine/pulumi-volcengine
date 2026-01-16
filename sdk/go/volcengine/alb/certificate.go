@@ -31,6 +31,12 @@ import (
 //				Description: pulumi.String("test123"),
 //				PrivateKey:  pulumi.String("private key"),
 //				PublicKey:   pulumi.String("public key"),
+//				Tags: alb.CertificateTagArray{
+//					&alb.CertificateTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -71,8 +77,12 @@ type Certificate struct {
 	ProjectName pulumi.StringOutput `pulumi:"projectName"`
 	// The public key of the Certificate.
 	PublicKey pulumi.StringOutput `pulumi:"publicKey"`
+	// The san extension of the Certificate.
+	San pulumi.StringOutput `pulumi:"san"`
 	// The status of the Certificate.
 	Status pulumi.StringOutput `pulumi:"status"`
+	// Tags.
+	Tags CertificateTagArrayOutput `pulumi:"tags"`
 }
 
 // NewCertificate registers a new resource with the given unique name, arguments, and options.
@@ -131,8 +141,12 @@ type certificateState struct {
 	ProjectName *string `pulumi:"projectName"`
 	// The public key of the Certificate.
 	PublicKey *string `pulumi:"publicKey"`
+	// The san extension of the Certificate.
+	San *string `pulumi:"san"`
 	// The status of the Certificate.
 	Status *string `pulumi:"status"`
+	// Tags.
+	Tags []CertificateTag `pulumi:"tags"`
 }
 
 type CertificateState struct {
@@ -156,8 +170,12 @@ type CertificateState struct {
 	ProjectName pulumi.StringPtrInput
 	// The public key of the Certificate.
 	PublicKey pulumi.StringPtrInput
+	// The san extension of the Certificate.
+	San pulumi.StringPtrInput
 	// The status of the Certificate.
 	Status pulumi.StringPtrInput
+	// Tags.
+	Tags CertificateTagArrayInput
 }
 
 func (CertificateState) ElementType() reflect.Type {
@@ -175,6 +193,8 @@ type certificateArgs struct {
 	ProjectName *string `pulumi:"projectName"`
 	// The public key of the Certificate.
 	PublicKey string `pulumi:"publicKey"`
+	// Tags.
+	Tags []CertificateTag `pulumi:"tags"`
 }
 
 // The set of arguments for constructing a Certificate resource.
@@ -189,6 +209,8 @@ type CertificateArgs struct {
 	ProjectName pulumi.StringPtrInput
 	// The public key of the Certificate.
 	PublicKey pulumi.StringInput
+	// Tags.
+	Tags CertificateTagArrayInput
 }
 
 func (CertificateArgs) ElementType() reflect.Type {
@@ -328,9 +350,19 @@ func (o CertificateOutput) PublicKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *Certificate) pulumi.StringOutput { return v.PublicKey }).(pulumi.StringOutput)
 }
 
+// The san extension of the Certificate.
+func (o CertificateOutput) San() pulumi.StringOutput {
+	return o.ApplyT(func(v *Certificate) pulumi.StringOutput { return v.San }).(pulumi.StringOutput)
+}
+
 // The status of the Certificate.
 func (o CertificateOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *Certificate) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o CertificateOutput) Tags() CertificateTagArrayOutput {
+	return o.ApplyT(func(v *Certificate) CertificateTagArrayOutput { return v.Tags }).(CertificateTagArrayOutput)
 }
 
 type CertificateArrayOutput struct{ *pulumi.OutputState }

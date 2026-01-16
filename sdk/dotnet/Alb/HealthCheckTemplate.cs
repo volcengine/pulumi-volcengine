@@ -34,6 +34,14 @@ namespace Pulumi.Volcengine.Alb
     ///         HealthCheckTimeout = 11,
     ///         HealthCheckUri = "/",
     ///         HealthyThreshold = 2,
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Alb.Inputs.HealthCheckTemplateTagArgs
+    ///             {
+    ///                 Key = "key1",
+    ///                 Value = "value2",
+    ///             },
+    ///         },
     ///         UnhealthyThreshold = 3,
     ///     });
     /// 
@@ -88,7 +96,13 @@ namespace Pulumi.Volcengine.Alb
         public Output<string> HealthCheckMethod { get; private set; } = null!;
 
         /// <summary>
-        /// THe protocol of health check,only support HTTP.
+        /// The port for health check. 0 means use backend server port for health check, 1-65535 means use the specified port.
+        /// </summary>
+        [Output("healthCheckPort")]
+        public Output<int> HealthCheckPort { get; private set; } = null!;
+
+        /// <summary>
+        /// The protocol of health check, support HTTP and TCP.
         /// </summary>
         [Output("healthCheckProtocol")]
         public Output<string> HealthCheckProtocol { get; private set; } = null!;
@@ -116,6 +130,18 @@ namespace Pulumi.Volcengine.Alb
         /// </summary>
         [Output("healthyThreshold")]
         public Output<int> HealthyThreshold { get; private set; } = null!;
+
+        /// <summary>
+        /// The project name to which the health check template belongs.
+        /// </summary>
+        [Output("projectName")]
+        public Output<string> ProjectName { get; private set; } = null!;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<Outputs.HealthCheckTemplateTag>> Tags { get; private set; } = null!;
 
         /// <summary>
         /// The unhealthy threshold of the health check, the default is 3, the value is 2-10.
@@ -207,7 +233,13 @@ namespace Pulumi.Volcengine.Alb
         public Input<string>? HealthCheckMethod { get; set; }
 
         /// <summary>
-        /// THe protocol of health check,only support HTTP.
+        /// The port for health check. 0 means use backend server port for health check, 1-65535 means use the specified port.
+        /// </summary>
+        [Input("healthCheckPort")]
+        public Input<int>? HealthCheckPort { get; set; }
+
+        /// <summary>
+        /// The protocol of health check, support HTTP and TCP.
         /// </summary>
         [Input("healthCheckProtocol")]
         public Input<string>? HealthCheckProtocol { get; set; }
@@ -235,6 +267,24 @@ namespace Pulumi.Volcengine.Alb
         /// </summary>
         [Input("healthyThreshold")]
         public Input<int>? HealthyThreshold { get; set; }
+
+        /// <summary>
+        /// The project name to which the health check template belongs.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.HealthCheckTemplateTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.HealthCheckTemplateTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.HealthCheckTemplateTagArgs>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// The unhealthy threshold of the health check, the default is 3, the value is 2-10.
@@ -287,7 +337,13 @@ namespace Pulumi.Volcengine.Alb
         public Input<string>? HealthCheckMethod { get; set; }
 
         /// <summary>
-        /// THe protocol of health check,only support HTTP.
+        /// The port for health check. 0 means use backend server port for health check, 1-65535 means use the specified port.
+        /// </summary>
+        [Input("healthCheckPort")]
+        public Input<int>? HealthCheckPort { get; set; }
+
+        /// <summary>
+        /// The protocol of health check, support HTTP and TCP.
         /// </summary>
         [Input("healthCheckProtocol")]
         public Input<string>? HealthCheckProtocol { get; set; }
@@ -315,6 +371,24 @@ namespace Pulumi.Volcengine.Alb
         /// </summary>
         [Input("healthyThreshold")]
         public Input<int>? HealthyThreshold { get; set; }
+
+        /// <summary>
+        /// The project name to which the health check template belongs.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.HealthCheckTemplateTagGetArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.HealthCheckTemplateTagGetArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.HealthCheckTemplateTagGetArgs>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// The unhealthy threshold of the health check, the default is 3, the value is 2-10.

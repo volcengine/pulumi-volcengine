@@ -19,13 +19,15 @@ class AclArgs:
                  acl_entries: Optional[pulumi.Input[Sequence[pulumi.Input['AclAclEntryArgs']]]] = None,
                  acl_name: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
-                 project_name: Optional[pulumi.Input[str]] = None):
+                 project_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['AclTagArgs']]]] = None):
         """
         The set of arguments for constructing a Acl resource.
         :param pulumi.Input[Sequence[pulumi.Input['AclAclEntryArgs']]] acl_entries: The acl entry set of the Acl.
         :param pulumi.Input[str] acl_name: The name of Acl.
         :param pulumi.Input[str] description: The description of the Acl.
         :param pulumi.Input[str] project_name: The project name of the Acl.
+        :param pulumi.Input[Sequence[pulumi.Input['AclTagArgs']]] tags: Tags.
         """
         if acl_entries is not None:
             pulumi.set(__self__, "acl_entries", acl_entries)
@@ -35,6 +37,8 @@ class AclArgs:
             pulumi.set(__self__, "description", description)
         if project_name is not None:
             pulumi.set(__self__, "project_name", project_name)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter(name="aclEntries")
@@ -84,6 +88,18 @@ class AclArgs:
     def project_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "project_name", value)
 
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AclTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AclTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
 
 @pulumi.input_type
 class _AclState:
@@ -92,7 +108,10 @@ class _AclState:
                  acl_name: Optional[pulumi.Input[str]] = None,
                  create_time: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
-                 project_name: Optional[pulumi.Input[str]] = None):
+                 project_name: Optional[pulumi.Input[str]] = None,
+                 status: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['AclTagArgs']]]] = None,
+                 update_time: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Acl resources.
         :param pulumi.Input[Sequence[pulumi.Input['AclAclEntryArgs']]] acl_entries: The acl entry set of the Acl.
@@ -100,6 +119,9 @@ class _AclState:
         :param pulumi.Input[str] create_time: Create time of Acl.
         :param pulumi.Input[str] description: The description of the Acl.
         :param pulumi.Input[str] project_name: The project name of the Acl.
+        :param pulumi.Input[str] status: The status of the Acl.
+        :param pulumi.Input[Sequence[pulumi.Input['AclTagArgs']]] tags: Tags.
+        :param pulumi.Input[str] update_time: Update time of Acl.
         """
         if acl_entries is not None:
             pulumi.set(__self__, "acl_entries", acl_entries)
@@ -111,6 +133,12 @@ class _AclState:
             pulumi.set(__self__, "description", description)
         if project_name is not None:
             pulumi.set(__self__, "project_name", project_name)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+        if update_time is not None:
+            pulumi.set(__self__, "update_time", update_time)
 
     @property
     @pulumi.getter(name="aclEntries")
@@ -172,6 +200,42 @@ class _AclState:
     def project_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "project_name", value)
 
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[pulumi.Input[str]]:
+        """
+        The status of the Acl.
+        """
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "status", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AclTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AclTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> Optional[pulumi.Input[str]]:
+        """
+        Update time of Acl.
+        """
+        return pulumi.get(self, "update_time")
+
+    @update_time.setter
+    def update_time(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "update_time", value)
+
 
 class Acl(pulumi.CustomResource):
     @overload
@@ -182,6 +246,7 @@ class Acl(pulumi.CustomResource):
                  acl_name: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AclTagArgs']]]]] = None,
                  __props__=None):
         """
         Provides a resource to manage alb acl
@@ -220,6 +285,7 @@ class Acl(pulumi.CustomResource):
         :param pulumi.Input[str] acl_name: The name of Acl.
         :param pulumi.Input[str] description: The description of the Acl.
         :param pulumi.Input[str] project_name: The project name of the Acl.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AclTagArgs']]]] tags: Tags.
         """
         ...
     @overload
@@ -277,6 +343,7 @@ class Acl(pulumi.CustomResource):
                  acl_name: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AclTagArgs']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -290,7 +357,10 @@ class Acl(pulumi.CustomResource):
             __props__.__dict__["acl_name"] = acl_name
             __props__.__dict__["description"] = description
             __props__.__dict__["project_name"] = project_name
+            __props__.__dict__["tags"] = tags
             __props__.__dict__["create_time"] = None
+            __props__.__dict__["status"] = None
+            __props__.__dict__["update_time"] = None
         super(Acl, __self__).__init__(
             'volcengine:alb/acl:Acl',
             resource_name,
@@ -305,7 +375,10 @@ class Acl(pulumi.CustomResource):
             acl_name: Optional[pulumi.Input[str]] = None,
             create_time: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
-            project_name: Optional[pulumi.Input[str]] = None) -> 'Acl':
+            project_name: Optional[pulumi.Input[str]] = None,
+            status: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AclTagArgs']]]]] = None,
+            update_time: Optional[pulumi.Input[str]] = None) -> 'Acl':
         """
         Get an existing Acl resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -318,6 +391,9 @@ class Acl(pulumi.CustomResource):
         :param pulumi.Input[str] create_time: Create time of Acl.
         :param pulumi.Input[str] description: The description of the Acl.
         :param pulumi.Input[str] project_name: The project name of the Acl.
+        :param pulumi.Input[str] status: The status of the Acl.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AclTagArgs']]]] tags: Tags.
+        :param pulumi.Input[str] update_time: Update time of Acl.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -328,6 +404,9 @@ class Acl(pulumi.CustomResource):
         __props__.__dict__["create_time"] = create_time
         __props__.__dict__["description"] = description
         __props__.__dict__["project_name"] = project_name
+        __props__.__dict__["status"] = status
+        __props__.__dict__["tags"] = tags
+        __props__.__dict__["update_time"] = update_time
         return Acl(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -369,4 +448,28 @@ class Acl(pulumi.CustomResource):
         The project name of the Acl.
         """
         return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter
+    def status(self) -> pulumi.Output[str]:
+        """
+        The status of the Acl.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.AclTag']]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> pulumi.Output[str]:
+        """
+        Update time of Acl.
+        """
+        return pulumi.get(self, "update_time")
 

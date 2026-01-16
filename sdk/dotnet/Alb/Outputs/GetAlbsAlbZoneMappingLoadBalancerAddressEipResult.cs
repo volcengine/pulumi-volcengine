@@ -22,7 +22,7 @@ namespace Pulumi.Volcengine.Alb.Outputs
         /// </summary>
         public readonly int Bandwidth;
         /// <summary>
-        /// The Eip address of the Alb.
+        /// The public ip address of the Alb.
         /// </summary>
         public readonly string EipAddress;
         /// <summary>

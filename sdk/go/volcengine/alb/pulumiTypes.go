@@ -119,6 +119,112 @@ func (o AclAclEntryArrayOutput) Index(i pulumi.IntInput) AclAclEntryOutput {
 	}).(AclAclEntryOutput)
 }
 
+type AclTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// AclTagInput is an input type that accepts AclTagArgs and AclTagOutput values.
+// You can construct a concrete instance of `AclTagInput` via:
+//
+//	AclTagArgs{...}
+type AclTagInput interface {
+	pulumi.Input
+
+	ToAclTagOutput() AclTagOutput
+	ToAclTagOutputWithContext(context.Context) AclTagOutput
+}
+
+type AclTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (AclTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AclTag)(nil)).Elem()
+}
+
+func (i AclTagArgs) ToAclTagOutput() AclTagOutput {
+	return i.ToAclTagOutputWithContext(context.Background())
+}
+
+func (i AclTagArgs) ToAclTagOutputWithContext(ctx context.Context) AclTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AclTagOutput)
+}
+
+// AclTagArrayInput is an input type that accepts AclTagArray and AclTagArrayOutput values.
+// You can construct a concrete instance of `AclTagArrayInput` via:
+//
+//	AclTagArray{ AclTagArgs{...} }
+type AclTagArrayInput interface {
+	pulumi.Input
+
+	ToAclTagArrayOutput() AclTagArrayOutput
+	ToAclTagArrayOutputWithContext(context.Context) AclTagArrayOutput
+}
+
+type AclTagArray []AclTagInput
+
+func (AclTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AclTag)(nil)).Elem()
+}
+
+func (i AclTagArray) ToAclTagArrayOutput() AclTagArrayOutput {
+	return i.ToAclTagArrayOutputWithContext(context.Background())
+}
+
+func (i AclTagArray) ToAclTagArrayOutputWithContext(ctx context.Context) AclTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AclTagArrayOutput)
+}
+
+type AclTagOutput struct{ *pulumi.OutputState }
+
+func (AclTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AclTag)(nil)).Elem()
+}
+
+func (o AclTagOutput) ToAclTagOutput() AclTagOutput {
+	return o
+}
+
+func (o AclTagOutput) ToAclTagOutputWithContext(ctx context.Context) AclTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o AclTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v AclTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o AclTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v AclTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type AclTagArrayOutput struct{ *pulumi.OutputState }
+
+func (AclTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AclTag)(nil)).Elem()
+}
+
+func (o AclTagArrayOutput) ToAclTagArrayOutput() AclTagArrayOutput {
+	return o
+}
+
+func (o AclTagArrayOutput) ToAclTagArrayOutputWithContext(ctx context.Context) AclTagArrayOutput {
+	return o
+}
+
+func (o AclTagArrayOutput) Index(i pulumi.IntInput) AclTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AclTag {
+		return vs[0].([]AclTag)[vs[1].(int)]
+	}).(AclTagOutput)
+}
+
 type AclsAcl struct {
 	// The entries info of acl.
 	AclEntries []AclsAclAclEntry `pulumi:"aclEntries"`
@@ -138,6 +244,10 @@ type AclsAcl struct {
 	Listeners []AclsAclListener `pulumi:"listeners"`
 	// The name of project.
 	ProjectName string `pulumi:"projectName"`
+	// The status of Acl.
+	Status string `pulumi:"status"`
+	// Tags.
+	Tags []AclsAclTag `pulumi:"tags"`
 	// Update time of Acl.
 	UpdateTime string `pulumi:"updateTime"`
 }
@@ -172,6 +282,10 @@ type AclsAclArgs struct {
 	Listeners AclsAclListenerArrayInput `pulumi:"listeners"`
 	// The name of project.
 	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The status of Acl.
+	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags AclsAclTagArrayInput `pulumi:"tags"`
 	// Update time of Acl.
 	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
 }
@@ -270,6 +384,16 @@ func (o AclsAclOutput) Listeners() AclsAclListenerArrayOutput {
 // The name of project.
 func (o AclsAclOutput) ProjectName() pulumi.StringOutput {
 	return o.ApplyT(func(v AclsAcl) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The status of Acl.
+func (o AclsAclOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v AclsAcl) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o AclsAclOutput) Tags() AclsAclTagArrayOutput {
+	return o.ApplyT(func(v AclsAcl) []AclsAclTag { return v.Tags }).(AclsAclTagArrayOutput)
 }
 
 // Update time of Acl.
@@ -536,6 +660,218 @@ func (o AclsAclListenerArrayOutput) Index(i pulumi.IntInput) AclsAclListenerOutp
 	}).(AclsAclListenerOutput)
 }
 
+type AclsAclTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// AclsAclTagInput is an input type that accepts AclsAclTagArgs and AclsAclTagOutput values.
+// You can construct a concrete instance of `AclsAclTagInput` via:
+//
+//	AclsAclTagArgs{...}
+type AclsAclTagInput interface {
+	pulumi.Input
+
+	ToAclsAclTagOutput() AclsAclTagOutput
+	ToAclsAclTagOutputWithContext(context.Context) AclsAclTagOutput
+}
+
+type AclsAclTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (AclsAclTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AclsAclTag)(nil)).Elem()
+}
+
+func (i AclsAclTagArgs) ToAclsAclTagOutput() AclsAclTagOutput {
+	return i.ToAclsAclTagOutputWithContext(context.Background())
+}
+
+func (i AclsAclTagArgs) ToAclsAclTagOutputWithContext(ctx context.Context) AclsAclTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AclsAclTagOutput)
+}
+
+// AclsAclTagArrayInput is an input type that accepts AclsAclTagArray and AclsAclTagArrayOutput values.
+// You can construct a concrete instance of `AclsAclTagArrayInput` via:
+//
+//	AclsAclTagArray{ AclsAclTagArgs{...} }
+type AclsAclTagArrayInput interface {
+	pulumi.Input
+
+	ToAclsAclTagArrayOutput() AclsAclTagArrayOutput
+	ToAclsAclTagArrayOutputWithContext(context.Context) AclsAclTagArrayOutput
+}
+
+type AclsAclTagArray []AclsAclTagInput
+
+func (AclsAclTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AclsAclTag)(nil)).Elem()
+}
+
+func (i AclsAclTagArray) ToAclsAclTagArrayOutput() AclsAclTagArrayOutput {
+	return i.ToAclsAclTagArrayOutputWithContext(context.Background())
+}
+
+func (i AclsAclTagArray) ToAclsAclTagArrayOutputWithContext(ctx context.Context) AclsAclTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AclsAclTagArrayOutput)
+}
+
+type AclsAclTagOutput struct{ *pulumi.OutputState }
+
+func (AclsAclTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AclsAclTag)(nil)).Elem()
+}
+
+func (o AclsAclTagOutput) ToAclsAclTagOutput() AclsAclTagOutput {
+	return o
+}
+
+func (o AclsAclTagOutput) ToAclsAclTagOutputWithContext(ctx context.Context) AclsAclTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o AclsAclTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v AclsAclTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o AclsAclTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v AclsAclTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type AclsAclTagArrayOutput struct{ *pulumi.OutputState }
+
+func (AclsAclTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AclsAclTag)(nil)).Elem()
+}
+
+func (o AclsAclTagArrayOutput) ToAclsAclTagArrayOutput() AclsAclTagArrayOutput {
+	return o
+}
+
+func (o AclsAclTagArrayOutput) ToAclsAclTagArrayOutputWithContext(ctx context.Context) AclsAclTagArrayOutput {
+	return o
+}
+
+func (o AclsAclTagArrayOutput) Index(i pulumi.IntInput) AclsAclTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AclsAclTag {
+		return vs[0].([]AclsAclTag)[vs[1].(int)]
+	}).(AclsAclTagOutput)
+}
+
+type AclsTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// AclsTagInput is an input type that accepts AclsTagArgs and AclsTagOutput values.
+// You can construct a concrete instance of `AclsTagInput` via:
+//
+//	AclsTagArgs{...}
+type AclsTagInput interface {
+	pulumi.Input
+
+	ToAclsTagOutput() AclsTagOutput
+	ToAclsTagOutputWithContext(context.Context) AclsTagOutput
+}
+
+type AclsTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (AclsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AclsTag)(nil)).Elem()
+}
+
+func (i AclsTagArgs) ToAclsTagOutput() AclsTagOutput {
+	return i.ToAclsTagOutputWithContext(context.Background())
+}
+
+func (i AclsTagArgs) ToAclsTagOutputWithContext(ctx context.Context) AclsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AclsTagOutput)
+}
+
+// AclsTagArrayInput is an input type that accepts AclsTagArray and AclsTagArrayOutput values.
+// You can construct a concrete instance of `AclsTagArrayInput` via:
+//
+//	AclsTagArray{ AclsTagArgs{...} }
+type AclsTagArrayInput interface {
+	pulumi.Input
+
+	ToAclsTagArrayOutput() AclsTagArrayOutput
+	ToAclsTagArrayOutputWithContext(context.Context) AclsTagArrayOutput
+}
+
+type AclsTagArray []AclsTagInput
+
+func (AclsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AclsTag)(nil)).Elem()
+}
+
+func (i AclsTagArray) ToAclsTagArrayOutput() AclsTagArrayOutput {
+	return i.ToAclsTagArrayOutputWithContext(context.Background())
+}
+
+func (i AclsTagArray) ToAclsTagArrayOutputWithContext(ctx context.Context) AclsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AclsTagArrayOutput)
+}
+
+type AclsTagOutput struct{ *pulumi.OutputState }
+
+func (AclsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AclsTag)(nil)).Elem()
+}
+
+func (o AclsTagOutput) ToAclsTagOutput() AclsTagOutput {
+	return o
+}
+
+func (o AclsTagOutput) ToAclsTagOutputWithContext(ctx context.Context) AclsTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o AclsTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v AclsTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o AclsTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v AclsTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type AclsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (AclsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AclsTag)(nil)).Elem()
+}
+
+func (o AclsTagArrayOutput) ToAclsTagArrayOutput() AclsTagArrayOutput {
+	return o
+}
+
+func (o AclsTagArrayOutput) ToAclsTagArrayOutputWithContext(ctx context.Context) AclsTagArrayOutput {
+	return o
+}
+
+func (o AclsTagArrayOutput) Index(i pulumi.IntInput) AclsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AclsTag {
+		return vs[0].([]AclsTag)[vs[1].(int)]
+	}).(AclsTagOutput)
+}
+
 type AlbEipBillingConfig struct {
 	// The peek bandwidth of the EIP which automatically assigned to the Alb. Unit: Mbps.
 	Bandwidth int `pulumi:"bandwidth"`
@@ -709,6 +1045,200 @@ func (o AlbEipBillingConfigPtrOutput) Isp() pulumi.StringPtrOutput {
 		}
 		return &v.Isp
 	}).(pulumi.StringPtrOutput)
+}
+
+type AlbGlobalAccelerator struct {
+	// The global accelerator id.
+	AcceleratorId *string `pulumi:"acceleratorId"`
+	// The global accelerator listener id.
+	AcceleratorListenerId *string `pulumi:"acceleratorListenerId"`
+	// The global accelerator endpoint group id.
+	EndpointGroupId *string `pulumi:"endpointGroupId"`
+	// The traffic distribution weight of the endpoint. The value range is: 1 - 100.
+	Weight *int `pulumi:"weight"`
+}
+
+// AlbGlobalAcceleratorInput is an input type that accepts AlbGlobalAcceleratorArgs and AlbGlobalAcceleratorOutput values.
+// You can construct a concrete instance of `AlbGlobalAcceleratorInput` via:
+//
+//	AlbGlobalAcceleratorArgs{...}
+type AlbGlobalAcceleratorInput interface {
+	pulumi.Input
+
+	ToAlbGlobalAcceleratorOutput() AlbGlobalAcceleratorOutput
+	ToAlbGlobalAcceleratorOutputWithContext(context.Context) AlbGlobalAcceleratorOutput
+}
+
+type AlbGlobalAcceleratorArgs struct {
+	// The global accelerator id.
+	AcceleratorId pulumi.StringPtrInput `pulumi:"acceleratorId"`
+	// The global accelerator listener id.
+	AcceleratorListenerId pulumi.StringPtrInput `pulumi:"acceleratorListenerId"`
+	// The global accelerator endpoint group id.
+	EndpointGroupId pulumi.StringPtrInput `pulumi:"endpointGroupId"`
+	// The traffic distribution weight of the endpoint. The value range is: 1 - 100.
+	Weight pulumi.IntPtrInput `pulumi:"weight"`
+}
+
+func (AlbGlobalAcceleratorArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlbGlobalAccelerator)(nil)).Elem()
+}
+
+func (i AlbGlobalAcceleratorArgs) ToAlbGlobalAcceleratorOutput() AlbGlobalAcceleratorOutput {
+	return i.ToAlbGlobalAcceleratorOutputWithContext(context.Background())
+}
+
+func (i AlbGlobalAcceleratorArgs) ToAlbGlobalAcceleratorOutputWithContext(ctx context.Context) AlbGlobalAcceleratorOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlbGlobalAcceleratorOutput)
+}
+
+func (i AlbGlobalAcceleratorArgs) ToAlbGlobalAcceleratorPtrOutput() AlbGlobalAcceleratorPtrOutput {
+	return i.ToAlbGlobalAcceleratorPtrOutputWithContext(context.Background())
+}
+
+func (i AlbGlobalAcceleratorArgs) ToAlbGlobalAcceleratorPtrOutputWithContext(ctx context.Context) AlbGlobalAcceleratorPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlbGlobalAcceleratorOutput).ToAlbGlobalAcceleratorPtrOutputWithContext(ctx)
+}
+
+// AlbGlobalAcceleratorPtrInput is an input type that accepts AlbGlobalAcceleratorArgs, AlbGlobalAcceleratorPtr and AlbGlobalAcceleratorPtrOutput values.
+// You can construct a concrete instance of `AlbGlobalAcceleratorPtrInput` via:
+//
+//	        AlbGlobalAcceleratorArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlbGlobalAcceleratorPtrInput interface {
+	pulumi.Input
+
+	ToAlbGlobalAcceleratorPtrOutput() AlbGlobalAcceleratorPtrOutput
+	ToAlbGlobalAcceleratorPtrOutputWithContext(context.Context) AlbGlobalAcceleratorPtrOutput
+}
+
+type albGlobalAcceleratorPtrType AlbGlobalAcceleratorArgs
+
+func AlbGlobalAcceleratorPtr(v *AlbGlobalAcceleratorArgs) AlbGlobalAcceleratorPtrInput {
+	return (*albGlobalAcceleratorPtrType)(v)
+}
+
+func (*albGlobalAcceleratorPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlbGlobalAccelerator)(nil)).Elem()
+}
+
+func (i *albGlobalAcceleratorPtrType) ToAlbGlobalAcceleratorPtrOutput() AlbGlobalAcceleratorPtrOutput {
+	return i.ToAlbGlobalAcceleratorPtrOutputWithContext(context.Background())
+}
+
+func (i *albGlobalAcceleratorPtrType) ToAlbGlobalAcceleratorPtrOutputWithContext(ctx context.Context) AlbGlobalAcceleratorPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlbGlobalAcceleratorPtrOutput)
+}
+
+type AlbGlobalAcceleratorOutput struct{ *pulumi.OutputState }
+
+func (AlbGlobalAcceleratorOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlbGlobalAccelerator)(nil)).Elem()
+}
+
+func (o AlbGlobalAcceleratorOutput) ToAlbGlobalAcceleratorOutput() AlbGlobalAcceleratorOutput {
+	return o
+}
+
+func (o AlbGlobalAcceleratorOutput) ToAlbGlobalAcceleratorOutputWithContext(ctx context.Context) AlbGlobalAcceleratorOutput {
+	return o
+}
+
+func (o AlbGlobalAcceleratorOutput) ToAlbGlobalAcceleratorPtrOutput() AlbGlobalAcceleratorPtrOutput {
+	return o.ToAlbGlobalAcceleratorPtrOutputWithContext(context.Background())
+}
+
+func (o AlbGlobalAcceleratorOutput) ToAlbGlobalAcceleratorPtrOutputWithContext(ctx context.Context) AlbGlobalAcceleratorPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlbGlobalAccelerator) *AlbGlobalAccelerator {
+		return &v
+	}).(AlbGlobalAcceleratorPtrOutput)
+}
+
+// The global accelerator id.
+func (o AlbGlobalAcceleratorOutput) AcceleratorId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlbGlobalAccelerator) *string { return v.AcceleratorId }).(pulumi.StringPtrOutput)
+}
+
+// The global accelerator listener id.
+func (o AlbGlobalAcceleratorOutput) AcceleratorListenerId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlbGlobalAccelerator) *string { return v.AcceleratorListenerId }).(pulumi.StringPtrOutput)
+}
+
+// The global accelerator endpoint group id.
+func (o AlbGlobalAcceleratorOutput) EndpointGroupId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlbGlobalAccelerator) *string { return v.EndpointGroupId }).(pulumi.StringPtrOutput)
+}
+
+// The traffic distribution weight of the endpoint. The value range is: 1 - 100.
+func (o AlbGlobalAcceleratorOutput) Weight() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AlbGlobalAccelerator) *int { return v.Weight }).(pulumi.IntPtrOutput)
+}
+
+type AlbGlobalAcceleratorPtrOutput struct{ *pulumi.OutputState }
+
+func (AlbGlobalAcceleratorPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlbGlobalAccelerator)(nil)).Elem()
+}
+
+func (o AlbGlobalAcceleratorPtrOutput) ToAlbGlobalAcceleratorPtrOutput() AlbGlobalAcceleratorPtrOutput {
+	return o
+}
+
+func (o AlbGlobalAcceleratorPtrOutput) ToAlbGlobalAcceleratorPtrOutputWithContext(ctx context.Context) AlbGlobalAcceleratorPtrOutput {
+	return o
+}
+
+func (o AlbGlobalAcceleratorPtrOutput) Elem() AlbGlobalAcceleratorOutput {
+	return o.ApplyT(func(v *AlbGlobalAccelerator) AlbGlobalAccelerator {
+		if v != nil {
+			return *v
+		}
+		var ret AlbGlobalAccelerator
+		return ret
+	}).(AlbGlobalAcceleratorOutput)
+}
+
+// The global accelerator id.
+func (o AlbGlobalAcceleratorPtrOutput) AcceleratorId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlbGlobalAccelerator) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AcceleratorId
+	}).(pulumi.StringPtrOutput)
+}
+
+// The global accelerator listener id.
+func (o AlbGlobalAcceleratorPtrOutput) AcceleratorListenerId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlbGlobalAccelerator) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AcceleratorListenerId
+	}).(pulumi.StringPtrOutput)
+}
+
+// The global accelerator endpoint group id.
+func (o AlbGlobalAcceleratorPtrOutput) EndpointGroupId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlbGlobalAccelerator) *string {
+		if v == nil {
+			return nil
+		}
+		return v.EndpointGroupId
+	}).(pulumi.StringPtrOutput)
+}
+
+// The traffic distribution weight of the endpoint. The value range is: 1 - 100.
+func (o AlbGlobalAcceleratorPtrOutput) Weight() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AlbGlobalAccelerator) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Weight
+	}).(pulumi.IntPtrOutput)
 }
 
 type AlbIpv6EipBillingConfig struct {
@@ -1266,6 +1796,10 @@ type AlbsAlb struct {
 	Description string `pulumi:"description"`
 	// The DNS name.
 	DnsName string `pulumi:"dnsName"`
+	// Whether the tls access log function is enabled.
+	Enabled bool `pulumi:"enabled"`
+	// The global accelerator bound to the ALB instance.
+	GlobalAccelerators []AlbsAlbGlobalAccelerator `pulumi:"globalAccelerators"`
 	// The health log information of the Alb.
 	HealthLogs []AlbsAlbHealthLog `pulumi:"healthLogs"`
 	// The ID of the Alb.
@@ -1274,6 +1808,8 @@ type AlbsAlb struct {
 	Listeners []AlbsAlbListener `pulumi:"listeners"`
 	// The billing type of the Alb.
 	LoadBalancerBillingType int `pulumi:"loadBalancerBillingType"`
+	// The version of the ALB instance. Basic: Basic Edition. Standard: Standard Edition.
+	LoadBalancerEdition string `pulumi:"loadBalancerEdition"`
 	// The ID of the Alb.
 	LoadBalancerId string `pulumi:"loadBalancerId"`
 	// The name of the Alb.
@@ -1282,22 +1818,34 @@ type AlbsAlb struct {
 	LocalAddresses []string `pulumi:"localAddresses"`
 	// The reason why Alb is locked. This parameter has a query value only when the status of the Alb instance is `FinancialLocked`.
 	LockReason string `pulumi:"lockReason"`
+	// The reason for enabling instance modification protection.
+	ModificationProtectionReason string `pulumi:"modificationProtectionReason"`
+	// Whether the instance modification protection function is enabled. NonProtection: Not enabled. ConsoleProtection: Enabled.
+	ModificationProtectionStatus string `pulumi:"modificationProtectionStatus"`
 	// The overdue time of the Alb. This parameter has a query value only when the status of the Alb instance is `FinancialLocked`.
 	OverdueTime string `pulumi:"overdueTime"`
 	// The project name of the Alb.
 	ProjectName string `pulumi:"projectName"`
+	// ALB can support the Proxy Protocol and record the real IP of the client.
+	ProxyProtocolEnabled string `pulumi:"proxyProtocolEnabled"`
+	// Listeners under the instance support automatically selecting extended certificates.
+	SniAutoMatch string `pulumi:"sniAutoMatch"`
 	// The status of the Alb.
 	Status string `pulumi:"status"`
 	// Tags.
 	Tags []AlbsAlbTag `pulumi:"tags"`
 	// The tls access log information of the Alb.
 	TlsAccessLogs []AlbsAlbTlsAccessLog `pulumi:"tlsAccessLogs"`
-	// The type of the Alb, valid value: `public`, `private`.
+	// The type of the Alb. public: public network ALB. private: private network ALB.
 	Type string `pulumi:"type"`
 	// The update time of the Alb.
 	UpdateTime string `pulumi:"updateTime"`
 	// The vpc id which Alb belongs to.
 	VpcId string `pulumi:"vpcId"`
+	// The ID of the WAF security protection instance bound to the ALB instance.
+	WafInstanceId string `pulumi:"wafInstanceId"`
+	// The WAF security protection switch.
+	WafProtectionEnabled string `pulumi:"wafProtectionEnabled"`
 	// Configuration information of the Alb instance in different Availability Zones.
 	ZoneMappings []AlbsAlbZoneMapping `pulumi:"zoneMappings"`
 }
@@ -1330,6 +1878,10 @@ type AlbsAlbArgs struct {
 	Description pulumi.StringInput `pulumi:"description"`
 	// The DNS name.
 	DnsName pulumi.StringInput `pulumi:"dnsName"`
+	// Whether the tls access log function is enabled.
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+	// The global accelerator bound to the ALB instance.
+	GlobalAccelerators AlbsAlbGlobalAcceleratorArrayInput `pulumi:"globalAccelerators"`
 	// The health log information of the Alb.
 	HealthLogs AlbsAlbHealthLogArrayInput `pulumi:"healthLogs"`
 	// The ID of the Alb.
@@ -1338,6 +1890,8 @@ type AlbsAlbArgs struct {
 	Listeners AlbsAlbListenerArrayInput `pulumi:"listeners"`
 	// The billing type of the Alb.
 	LoadBalancerBillingType pulumi.IntInput `pulumi:"loadBalancerBillingType"`
+	// The version of the ALB instance. Basic: Basic Edition. Standard: Standard Edition.
+	LoadBalancerEdition pulumi.StringInput `pulumi:"loadBalancerEdition"`
 	// The ID of the Alb.
 	LoadBalancerId pulumi.StringInput `pulumi:"loadBalancerId"`
 	// The name of the Alb.
@@ -1346,22 +1900,34 @@ type AlbsAlbArgs struct {
 	LocalAddresses pulumi.StringArrayInput `pulumi:"localAddresses"`
 	// The reason why Alb is locked. This parameter has a query value only when the status of the Alb instance is `FinancialLocked`.
 	LockReason pulumi.StringInput `pulumi:"lockReason"`
+	// The reason for enabling instance modification protection.
+	ModificationProtectionReason pulumi.StringInput `pulumi:"modificationProtectionReason"`
+	// Whether the instance modification protection function is enabled. NonProtection: Not enabled. ConsoleProtection: Enabled.
+	ModificationProtectionStatus pulumi.StringInput `pulumi:"modificationProtectionStatus"`
 	// The overdue time of the Alb. This parameter has a query value only when the status of the Alb instance is `FinancialLocked`.
 	OverdueTime pulumi.StringInput `pulumi:"overdueTime"`
 	// The project name of the Alb.
 	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// ALB can support the Proxy Protocol and record the real IP of the client.
+	ProxyProtocolEnabled pulumi.StringInput `pulumi:"proxyProtocolEnabled"`
+	// Listeners under the instance support automatically selecting extended certificates.
+	SniAutoMatch pulumi.StringInput `pulumi:"sniAutoMatch"`
 	// The status of the Alb.
 	Status pulumi.StringInput `pulumi:"status"`
 	// Tags.
 	Tags AlbsAlbTagArrayInput `pulumi:"tags"`
 	// The tls access log information of the Alb.
 	TlsAccessLogs AlbsAlbTlsAccessLogArrayInput `pulumi:"tlsAccessLogs"`
-	// The type of the Alb, valid value: `public`, `private`.
+	// The type of the Alb. public: public network ALB. private: private network ALB.
 	Type pulumi.StringInput `pulumi:"type"`
 	// The update time of the Alb.
 	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
 	// The vpc id which Alb belongs to.
 	VpcId pulumi.StringInput `pulumi:"vpcId"`
+	// The ID of the WAF security protection instance bound to the ALB instance.
+	WafInstanceId pulumi.StringInput `pulumi:"wafInstanceId"`
+	// The WAF security protection switch.
+	WafProtectionEnabled pulumi.StringInput `pulumi:"wafProtectionEnabled"`
 	// Configuration information of the Alb instance in different Availability Zones.
 	ZoneMappings AlbsAlbZoneMappingArrayInput `pulumi:"zoneMappings"`
 }
@@ -1457,6 +2023,16 @@ func (o AlbsAlbOutput) DnsName() pulumi.StringOutput {
 	return o.ApplyT(func(v AlbsAlb) string { return v.DnsName }).(pulumi.StringOutput)
 }
 
+// Whether the tls access log function is enabled.
+func (o AlbsAlbOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v AlbsAlb) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// The global accelerator bound to the ALB instance.
+func (o AlbsAlbOutput) GlobalAccelerators() AlbsAlbGlobalAcceleratorArrayOutput {
+	return o.ApplyT(func(v AlbsAlb) []AlbsAlbGlobalAccelerator { return v.GlobalAccelerators }).(AlbsAlbGlobalAcceleratorArrayOutput)
+}
+
 // The health log information of the Alb.
 func (o AlbsAlbOutput) HealthLogs() AlbsAlbHealthLogArrayOutput {
 	return o.ApplyT(func(v AlbsAlb) []AlbsAlbHealthLog { return v.HealthLogs }).(AlbsAlbHealthLogArrayOutput)
@@ -1475,6 +2051,11 @@ func (o AlbsAlbOutput) Listeners() AlbsAlbListenerArrayOutput {
 // The billing type of the Alb.
 func (o AlbsAlbOutput) LoadBalancerBillingType() pulumi.IntOutput {
 	return o.ApplyT(func(v AlbsAlb) int { return v.LoadBalancerBillingType }).(pulumi.IntOutput)
+}
+
+// The version of the ALB instance. Basic: Basic Edition. Standard: Standard Edition.
+func (o AlbsAlbOutput) LoadBalancerEdition() pulumi.StringOutput {
+	return o.ApplyT(func(v AlbsAlb) string { return v.LoadBalancerEdition }).(pulumi.StringOutput)
 }
 
 // The ID of the Alb.
@@ -1497,6 +2078,16 @@ func (o AlbsAlbOutput) LockReason() pulumi.StringOutput {
 	return o.ApplyT(func(v AlbsAlb) string { return v.LockReason }).(pulumi.StringOutput)
 }
 
+// The reason for enabling instance modification protection.
+func (o AlbsAlbOutput) ModificationProtectionReason() pulumi.StringOutput {
+	return o.ApplyT(func(v AlbsAlb) string { return v.ModificationProtectionReason }).(pulumi.StringOutput)
+}
+
+// Whether the instance modification protection function is enabled. NonProtection: Not enabled. ConsoleProtection: Enabled.
+func (o AlbsAlbOutput) ModificationProtectionStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v AlbsAlb) string { return v.ModificationProtectionStatus }).(pulumi.StringOutput)
+}
+
 // The overdue time of the Alb. This parameter has a query value only when the status of the Alb instance is `FinancialLocked`.
 func (o AlbsAlbOutput) OverdueTime() pulumi.StringOutput {
 	return o.ApplyT(func(v AlbsAlb) string { return v.OverdueTime }).(pulumi.StringOutput)
@@ -1505,6 +2096,16 @@ func (o AlbsAlbOutput) OverdueTime() pulumi.StringOutput {
 // The project name of the Alb.
 func (o AlbsAlbOutput) ProjectName() pulumi.StringOutput {
 	return o.ApplyT(func(v AlbsAlb) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// ALB can support the Proxy Protocol and record the real IP of the client.
+func (o AlbsAlbOutput) ProxyProtocolEnabled() pulumi.StringOutput {
+	return o.ApplyT(func(v AlbsAlb) string { return v.ProxyProtocolEnabled }).(pulumi.StringOutput)
+}
+
+// Listeners under the instance support automatically selecting extended certificates.
+func (o AlbsAlbOutput) SniAutoMatch() pulumi.StringOutput {
+	return o.ApplyT(func(v AlbsAlb) string { return v.SniAutoMatch }).(pulumi.StringOutput)
 }
 
 // The status of the Alb.
@@ -1522,7 +2123,7 @@ func (o AlbsAlbOutput) TlsAccessLogs() AlbsAlbTlsAccessLogArrayOutput {
 	return o.ApplyT(func(v AlbsAlb) []AlbsAlbTlsAccessLog { return v.TlsAccessLogs }).(AlbsAlbTlsAccessLogArrayOutput)
 }
 
-// The type of the Alb, valid value: `public`, `private`.
+// The type of the Alb. public: public network ALB. private: private network ALB.
 func (o AlbsAlbOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v AlbsAlb) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -1535,6 +2136,16 @@ func (o AlbsAlbOutput) UpdateTime() pulumi.StringOutput {
 // The vpc id which Alb belongs to.
 func (o AlbsAlbOutput) VpcId() pulumi.StringOutput {
 	return o.ApplyT(func(v AlbsAlb) string { return v.VpcId }).(pulumi.StringOutput)
+}
+
+// The ID of the WAF security protection instance bound to the ALB instance.
+func (o AlbsAlbOutput) WafInstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v AlbsAlb) string { return v.WafInstanceId }).(pulumi.StringOutput)
+}
+
+// The WAF security protection switch.
+func (o AlbsAlbOutput) WafProtectionEnabled() pulumi.StringOutput {
+	return o.ApplyT(func(v AlbsAlb) string { return v.WafProtectionEnabled }).(pulumi.StringOutput)
 }
 
 // Configuration information of the Alb instance in different Availability Zones.
@@ -1666,6 +2277,112 @@ func (o AlbsAlbAccessLogArrayOutput) Index(i pulumi.IntInput) AlbsAlbAccessLogOu
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AlbsAlbAccessLog {
 		return vs[0].([]AlbsAlbAccessLog)[vs[1].(int)]
 	}).(AlbsAlbAccessLogOutput)
+}
+
+type AlbsAlbGlobalAccelerator struct {
+	// The global accelerator id.
+	AcceleratorId string `pulumi:"acceleratorId"`
+	// The name of the global accelerator.
+	AcceleratorName string `pulumi:"acceleratorName"`
+}
+
+// AlbsAlbGlobalAcceleratorInput is an input type that accepts AlbsAlbGlobalAcceleratorArgs and AlbsAlbGlobalAcceleratorOutput values.
+// You can construct a concrete instance of `AlbsAlbGlobalAcceleratorInput` via:
+//
+//	AlbsAlbGlobalAcceleratorArgs{...}
+type AlbsAlbGlobalAcceleratorInput interface {
+	pulumi.Input
+
+	ToAlbsAlbGlobalAcceleratorOutput() AlbsAlbGlobalAcceleratorOutput
+	ToAlbsAlbGlobalAcceleratorOutputWithContext(context.Context) AlbsAlbGlobalAcceleratorOutput
+}
+
+type AlbsAlbGlobalAcceleratorArgs struct {
+	// The global accelerator id.
+	AcceleratorId pulumi.StringInput `pulumi:"acceleratorId"`
+	// The name of the global accelerator.
+	AcceleratorName pulumi.StringInput `pulumi:"acceleratorName"`
+}
+
+func (AlbsAlbGlobalAcceleratorArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlbsAlbGlobalAccelerator)(nil)).Elem()
+}
+
+func (i AlbsAlbGlobalAcceleratorArgs) ToAlbsAlbGlobalAcceleratorOutput() AlbsAlbGlobalAcceleratorOutput {
+	return i.ToAlbsAlbGlobalAcceleratorOutputWithContext(context.Background())
+}
+
+func (i AlbsAlbGlobalAcceleratorArgs) ToAlbsAlbGlobalAcceleratorOutputWithContext(ctx context.Context) AlbsAlbGlobalAcceleratorOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlbsAlbGlobalAcceleratorOutput)
+}
+
+// AlbsAlbGlobalAcceleratorArrayInput is an input type that accepts AlbsAlbGlobalAcceleratorArray and AlbsAlbGlobalAcceleratorArrayOutput values.
+// You can construct a concrete instance of `AlbsAlbGlobalAcceleratorArrayInput` via:
+//
+//	AlbsAlbGlobalAcceleratorArray{ AlbsAlbGlobalAcceleratorArgs{...} }
+type AlbsAlbGlobalAcceleratorArrayInput interface {
+	pulumi.Input
+
+	ToAlbsAlbGlobalAcceleratorArrayOutput() AlbsAlbGlobalAcceleratorArrayOutput
+	ToAlbsAlbGlobalAcceleratorArrayOutputWithContext(context.Context) AlbsAlbGlobalAcceleratorArrayOutput
+}
+
+type AlbsAlbGlobalAcceleratorArray []AlbsAlbGlobalAcceleratorInput
+
+func (AlbsAlbGlobalAcceleratorArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AlbsAlbGlobalAccelerator)(nil)).Elem()
+}
+
+func (i AlbsAlbGlobalAcceleratorArray) ToAlbsAlbGlobalAcceleratorArrayOutput() AlbsAlbGlobalAcceleratorArrayOutput {
+	return i.ToAlbsAlbGlobalAcceleratorArrayOutputWithContext(context.Background())
+}
+
+func (i AlbsAlbGlobalAcceleratorArray) ToAlbsAlbGlobalAcceleratorArrayOutputWithContext(ctx context.Context) AlbsAlbGlobalAcceleratorArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlbsAlbGlobalAcceleratorArrayOutput)
+}
+
+type AlbsAlbGlobalAcceleratorOutput struct{ *pulumi.OutputState }
+
+func (AlbsAlbGlobalAcceleratorOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlbsAlbGlobalAccelerator)(nil)).Elem()
+}
+
+func (o AlbsAlbGlobalAcceleratorOutput) ToAlbsAlbGlobalAcceleratorOutput() AlbsAlbGlobalAcceleratorOutput {
+	return o
+}
+
+func (o AlbsAlbGlobalAcceleratorOutput) ToAlbsAlbGlobalAcceleratorOutputWithContext(ctx context.Context) AlbsAlbGlobalAcceleratorOutput {
+	return o
+}
+
+// The global accelerator id.
+func (o AlbsAlbGlobalAcceleratorOutput) AcceleratorId() pulumi.StringOutput {
+	return o.ApplyT(func(v AlbsAlbGlobalAccelerator) string { return v.AcceleratorId }).(pulumi.StringOutput)
+}
+
+// The name of the global accelerator.
+func (o AlbsAlbGlobalAcceleratorOutput) AcceleratorName() pulumi.StringOutput {
+	return o.ApplyT(func(v AlbsAlbGlobalAccelerator) string { return v.AcceleratorName }).(pulumi.StringOutput)
+}
+
+type AlbsAlbGlobalAcceleratorArrayOutput struct{ *pulumi.OutputState }
+
+func (AlbsAlbGlobalAcceleratorArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AlbsAlbGlobalAccelerator)(nil)).Elem()
+}
+
+func (o AlbsAlbGlobalAcceleratorArrayOutput) ToAlbsAlbGlobalAcceleratorArrayOutput() AlbsAlbGlobalAcceleratorArrayOutput {
+	return o
+}
+
+func (o AlbsAlbGlobalAcceleratorArrayOutput) ToAlbsAlbGlobalAcceleratorArrayOutputWithContext(ctx context.Context) AlbsAlbGlobalAcceleratorArrayOutput {
+	return o
+}
+
+func (o AlbsAlbGlobalAcceleratorArrayOutput) Index(i pulumi.IntInput) AlbsAlbGlobalAcceleratorOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AlbsAlbGlobalAccelerator {
+		return vs[0].([]AlbsAlbGlobalAccelerator)[vs[1].(int)]
+	}).(AlbsAlbGlobalAcceleratorOutput)
 }
 
 type AlbsAlbHealthLog struct {
@@ -2226,7 +2943,7 @@ func (o AlbsAlbZoneMappingArrayOutput) Index(i pulumi.IntInput) AlbsAlbZoneMappi
 }
 
 type AlbsAlbZoneMappingLoadBalancerAddress struct {
-	// The Eip address of the Alb.
+	// The public ip address of the Alb.
 	EipAddress string `pulumi:"eipAddress"`
 	// The Eip id of alb instance in this availability zone.
 	EipId string `pulumi:"eipId"`
@@ -2256,7 +2973,7 @@ type AlbsAlbZoneMappingLoadBalancerAddressInput interface {
 }
 
 type AlbsAlbZoneMappingLoadBalancerAddressArgs struct {
-	// The Eip address of the Alb.
+	// The public ip address of the Alb.
 	EipAddress pulumi.StringInput `pulumi:"eipAddress"`
 	// The Eip id of alb instance in this availability zone.
 	EipId pulumi.StringInput `pulumi:"eipId"`
@@ -2325,7 +3042,7 @@ func (o AlbsAlbZoneMappingLoadBalancerAddressOutput) ToAlbsAlbZoneMappingLoadBal
 	return o
 }
 
-// The Eip address of the Alb.
+// The public ip address of the Alb.
 func (o AlbsAlbZoneMappingLoadBalancerAddressOutput) EipAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v AlbsAlbZoneMappingLoadBalancerAddress) string { return v.EipAddress }).(pulumi.StringOutput)
 }
@@ -2394,7 +3111,7 @@ type AlbsAlbZoneMappingLoadBalancerAddressEip struct {
 	AssociationMode string `pulumi:"associationMode"`
 	// The peek bandwidth of the Ipv6 Eip assigned to Alb. Units: Mbps.
 	Bandwidth int `pulumi:"bandwidth"`
-	// The Eip address of the Alb.
+	// The public ip address of the Alb.
 	EipAddress string `pulumi:"eipAddress"`
 	// The billing type of the Eip assigned to Alb. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic`.
 	EipBillingType string `pulumi:"eipBillingType"`
@@ -2424,7 +3141,7 @@ type AlbsAlbZoneMappingLoadBalancerAddressEipArgs struct {
 	AssociationMode pulumi.StringInput `pulumi:"associationMode"`
 	// The peek bandwidth of the Ipv6 Eip assigned to Alb. Units: Mbps.
 	Bandwidth pulumi.IntInput `pulumi:"bandwidth"`
-	// The Eip address of the Alb.
+	// The public ip address of the Alb.
 	EipAddress pulumi.StringInput `pulumi:"eipAddress"`
 	// The billing type of the Eip assigned to Alb. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic`.
 	EipBillingType pulumi.StringInput `pulumi:"eipBillingType"`
@@ -2499,7 +3216,7 @@ func (o AlbsAlbZoneMappingLoadBalancerAddressEipOutput) Bandwidth() pulumi.IntOu
 	return o.ApplyT(func(v AlbsAlbZoneMappingLoadBalancerAddressEip) int { return v.Bandwidth }).(pulumi.IntOutput)
 }
 
-// The Eip address of the Alb.
+// The public ip address of the Alb.
 func (o AlbsAlbZoneMappingLoadBalancerAddressEipOutput) EipAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v AlbsAlbZoneMappingLoadBalancerAddressEip) string { return v.EipAddress }).(pulumi.StringOutput)
 }
@@ -2878,6 +3595,423 @@ func (o AlbsTagArrayOutput) Index(i pulumi.IntInput) AlbsTagOutput {
 	}).(AlbsTagOutput)
 }
 
+type AllCertificatesCertificate struct {
+	// The ID of the Certificate.
+	CertificateId string `pulumi:"certificateId"`
+	// The name of the Certificate.
+	CertificateName string `pulumi:"certificateName"`
+	// The type of the Certificate.
+	CertificateType string `pulumi:"certificateType"`
+	// The create time of the Certificate.
+	CreateTime string `pulumi:"createTime"`
+	// The description of the Certificate.
+	Description string `pulumi:"description"`
+	// The domain name of the Certificate.
+	DomainName string `pulumi:"domainName"`
+	// The expire time of the Certificate.
+	ExpiredAt string `pulumi:"expiredAt"`
+	// The ID of the Certificate.
+	Id string `pulumi:"id"`
+	// The ID list of the Listener.
+	Listeners []string `pulumi:"listeners"`
+	// The ProjectName of the Certificate.
+	ProjectName string `pulumi:"projectName"`
+	// The list of extended domain names for the certificate, separated by English commas ',', including (commonName, DnsName, IP).
+	San string `pulumi:"san"`
+	// The status of the Certificate.
+	Status string `pulumi:"status"`
+	// Tags.
+	Tags []AllCertificatesCertificateTag `pulumi:"tags"`
+}
+
+// AllCertificatesCertificateInput is an input type that accepts AllCertificatesCertificateArgs and AllCertificatesCertificateOutput values.
+// You can construct a concrete instance of `AllCertificatesCertificateInput` via:
+//
+//	AllCertificatesCertificateArgs{...}
+type AllCertificatesCertificateInput interface {
+	pulumi.Input
+
+	ToAllCertificatesCertificateOutput() AllCertificatesCertificateOutput
+	ToAllCertificatesCertificateOutputWithContext(context.Context) AllCertificatesCertificateOutput
+}
+
+type AllCertificatesCertificateArgs struct {
+	// The ID of the Certificate.
+	CertificateId pulumi.StringInput `pulumi:"certificateId"`
+	// The name of the Certificate.
+	CertificateName pulumi.StringInput `pulumi:"certificateName"`
+	// The type of the Certificate.
+	CertificateType pulumi.StringInput `pulumi:"certificateType"`
+	// The create time of the Certificate.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The description of the Certificate.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The domain name of the Certificate.
+	DomainName pulumi.StringInput `pulumi:"domainName"`
+	// The expire time of the Certificate.
+	ExpiredAt pulumi.StringInput `pulumi:"expiredAt"`
+	// The ID of the Certificate.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The ID list of the Listener.
+	Listeners pulumi.StringArrayInput `pulumi:"listeners"`
+	// The ProjectName of the Certificate.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The list of extended domain names for the certificate, separated by English commas ',', including (commonName, DnsName, IP).
+	San pulumi.StringInput `pulumi:"san"`
+	// The status of the Certificate.
+	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags AllCertificatesCertificateTagArrayInput `pulumi:"tags"`
+}
+
+func (AllCertificatesCertificateArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AllCertificatesCertificate)(nil)).Elem()
+}
+
+func (i AllCertificatesCertificateArgs) ToAllCertificatesCertificateOutput() AllCertificatesCertificateOutput {
+	return i.ToAllCertificatesCertificateOutputWithContext(context.Background())
+}
+
+func (i AllCertificatesCertificateArgs) ToAllCertificatesCertificateOutputWithContext(ctx context.Context) AllCertificatesCertificateOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AllCertificatesCertificateOutput)
+}
+
+// AllCertificatesCertificateArrayInput is an input type that accepts AllCertificatesCertificateArray and AllCertificatesCertificateArrayOutput values.
+// You can construct a concrete instance of `AllCertificatesCertificateArrayInput` via:
+//
+//	AllCertificatesCertificateArray{ AllCertificatesCertificateArgs{...} }
+type AllCertificatesCertificateArrayInput interface {
+	pulumi.Input
+
+	ToAllCertificatesCertificateArrayOutput() AllCertificatesCertificateArrayOutput
+	ToAllCertificatesCertificateArrayOutputWithContext(context.Context) AllCertificatesCertificateArrayOutput
+}
+
+type AllCertificatesCertificateArray []AllCertificatesCertificateInput
+
+func (AllCertificatesCertificateArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AllCertificatesCertificate)(nil)).Elem()
+}
+
+func (i AllCertificatesCertificateArray) ToAllCertificatesCertificateArrayOutput() AllCertificatesCertificateArrayOutput {
+	return i.ToAllCertificatesCertificateArrayOutputWithContext(context.Background())
+}
+
+func (i AllCertificatesCertificateArray) ToAllCertificatesCertificateArrayOutputWithContext(ctx context.Context) AllCertificatesCertificateArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AllCertificatesCertificateArrayOutput)
+}
+
+type AllCertificatesCertificateOutput struct{ *pulumi.OutputState }
+
+func (AllCertificatesCertificateOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AllCertificatesCertificate)(nil)).Elem()
+}
+
+func (o AllCertificatesCertificateOutput) ToAllCertificatesCertificateOutput() AllCertificatesCertificateOutput {
+	return o
+}
+
+func (o AllCertificatesCertificateOutput) ToAllCertificatesCertificateOutputWithContext(ctx context.Context) AllCertificatesCertificateOutput {
+	return o
+}
+
+// The ID of the Certificate.
+func (o AllCertificatesCertificateOutput) CertificateId() pulumi.StringOutput {
+	return o.ApplyT(func(v AllCertificatesCertificate) string { return v.CertificateId }).(pulumi.StringOutput)
+}
+
+// The name of the Certificate.
+func (o AllCertificatesCertificateOutput) CertificateName() pulumi.StringOutput {
+	return o.ApplyT(func(v AllCertificatesCertificate) string { return v.CertificateName }).(pulumi.StringOutput)
+}
+
+// The type of the Certificate.
+func (o AllCertificatesCertificateOutput) CertificateType() pulumi.StringOutput {
+	return o.ApplyT(func(v AllCertificatesCertificate) string { return v.CertificateType }).(pulumi.StringOutput)
+}
+
+// The create time of the Certificate.
+func (o AllCertificatesCertificateOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v AllCertificatesCertificate) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The description of the Certificate.
+func (o AllCertificatesCertificateOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v AllCertificatesCertificate) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The domain name of the Certificate.
+func (o AllCertificatesCertificateOutput) DomainName() pulumi.StringOutput {
+	return o.ApplyT(func(v AllCertificatesCertificate) string { return v.DomainName }).(pulumi.StringOutput)
+}
+
+// The expire time of the Certificate.
+func (o AllCertificatesCertificateOutput) ExpiredAt() pulumi.StringOutput {
+	return o.ApplyT(func(v AllCertificatesCertificate) string { return v.ExpiredAt }).(pulumi.StringOutput)
+}
+
+// The ID of the Certificate.
+func (o AllCertificatesCertificateOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v AllCertificatesCertificate) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The ID list of the Listener.
+func (o AllCertificatesCertificateOutput) Listeners() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AllCertificatesCertificate) []string { return v.Listeners }).(pulumi.StringArrayOutput)
+}
+
+// The ProjectName of the Certificate.
+func (o AllCertificatesCertificateOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v AllCertificatesCertificate) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The list of extended domain names for the certificate, separated by English commas ',', including (commonName, DnsName, IP).
+func (o AllCertificatesCertificateOutput) San() pulumi.StringOutput {
+	return o.ApplyT(func(v AllCertificatesCertificate) string { return v.San }).(pulumi.StringOutput)
+}
+
+// The status of the Certificate.
+func (o AllCertificatesCertificateOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v AllCertificatesCertificate) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o AllCertificatesCertificateOutput) Tags() AllCertificatesCertificateTagArrayOutput {
+	return o.ApplyT(func(v AllCertificatesCertificate) []AllCertificatesCertificateTag { return v.Tags }).(AllCertificatesCertificateTagArrayOutput)
+}
+
+type AllCertificatesCertificateArrayOutput struct{ *pulumi.OutputState }
+
+func (AllCertificatesCertificateArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AllCertificatesCertificate)(nil)).Elem()
+}
+
+func (o AllCertificatesCertificateArrayOutput) ToAllCertificatesCertificateArrayOutput() AllCertificatesCertificateArrayOutput {
+	return o
+}
+
+func (o AllCertificatesCertificateArrayOutput) ToAllCertificatesCertificateArrayOutputWithContext(ctx context.Context) AllCertificatesCertificateArrayOutput {
+	return o
+}
+
+func (o AllCertificatesCertificateArrayOutput) Index(i pulumi.IntInput) AllCertificatesCertificateOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AllCertificatesCertificate {
+		return vs[0].([]AllCertificatesCertificate)[vs[1].(int)]
+	}).(AllCertificatesCertificateOutput)
+}
+
+type AllCertificatesCertificateTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// AllCertificatesCertificateTagInput is an input type that accepts AllCertificatesCertificateTagArgs and AllCertificatesCertificateTagOutput values.
+// You can construct a concrete instance of `AllCertificatesCertificateTagInput` via:
+//
+//	AllCertificatesCertificateTagArgs{...}
+type AllCertificatesCertificateTagInput interface {
+	pulumi.Input
+
+	ToAllCertificatesCertificateTagOutput() AllCertificatesCertificateTagOutput
+	ToAllCertificatesCertificateTagOutputWithContext(context.Context) AllCertificatesCertificateTagOutput
+}
+
+type AllCertificatesCertificateTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (AllCertificatesCertificateTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AllCertificatesCertificateTag)(nil)).Elem()
+}
+
+func (i AllCertificatesCertificateTagArgs) ToAllCertificatesCertificateTagOutput() AllCertificatesCertificateTagOutput {
+	return i.ToAllCertificatesCertificateTagOutputWithContext(context.Background())
+}
+
+func (i AllCertificatesCertificateTagArgs) ToAllCertificatesCertificateTagOutputWithContext(ctx context.Context) AllCertificatesCertificateTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AllCertificatesCertificateTagOutput)
+}
+
+// AllCertificatesCertificateTagArrayInput is an input type that accepts AllCertificatesCertificateTagArray and AllCertificatesCertificateTagArrayOutput values.
+// You can construct a concrete instance of `AllCertificatesCertificateTagArrayInput` via:
+//
+//	AllCertificatesCertificateTagArray{ AllCertificatesCertificateTagArgs{...} }
+type AllCertificatesCertificateTagArrayInput interface {
+	pulumi.Input
+
+	ToAllCertificatesCertificateTagArrayOutput() AllCertificatesCertificateTagArrayOutput
+	ToAllCertificatesCertificateTagArrayOutputWithContext(context.Context) AllCertificatesCertificateTagArrayOutput
+}
+
+type AllCertificatesCertificateTagArray []AllCertificatesCertificateTagInput
+
+func (AllCertificatesCertificateTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AllCertificatesCertificateTag)(nil)).Elem()
+}
+
+func (i AllCertificatesCertificateTagArray) ToAllCertificatesCertificateTagArrayOutput() AllCertificatesCertificateTagArrayOutput {
+	return i.ToAllCertificatesCertificateTagArrayOutputWithContext(context.Background())
+}
+
+func (i AllCertificatesCertificateTagArray) ToAllCertificatesCertificateTagArrayOutputWithContext(ctx context.Context) AllCertificatesCertificateTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AllCertificatesCertificateTagArrayOutput)
+}
+
+type AllCertificatesCertificateTagOutput struct{ *pulumi.OutputState }
+
+func (AllCertificatesCertificateTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AllCertificatesCertificateTag)(nil)).Elem()
+}
+
+func (o AllCertificatesCertificateTagOutput) ToAllCertificatesCertificateTagOutput() AllCertificatesCertificateTagOutput {
+	return o
+}
+
+func (o AllCertificatesCertificateTagOutput) ToAllCertificatesCertificateTagOutputWithContext(ctx context.Context) AllCertificatesCertificateTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o AllCertificatesCertificateTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v AllCertificatesCertificateTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o AllCertificatesCertificateTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v AllCertificatesCertificateTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type AllCertificatesCertificateTagArrayOutput struct{ *pulumi.OutputState }
+
+func (AllCertificatesCertificateTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AllCertificatesCertificateTag)(nil)).Elem()
+}
+
+func (o AllCertificatesCertificateTagArrayOutput) ToAllCertificatesCertificateTagArrayOutput() AllCertificatesCertificateTagArrayOutput {
+	return o
+}
+
+func (o AllCertificatesCertificateTagArrayOutput) ToAllCertificatesCertificateTagArrayOutputWithContext(ctx context.Context) AllCertificatesCertificateTagArrayOutput {
+	return o
+}
+
+func (o AllCertificatesCertificateTagArrayOutput) Index(i pulumi.IntInput) AllCertificatesCertificateTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AllCertificatesCertificateTag {
+		return vs[0].([]AllCertificatesCertificateTag)[vs[1].(int)]
+	}).(AllCertificatesCertificateTagOutput)
+}
+
+type AllCertificatesTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// AllCertificatesTagInput is an input type that accepts AllCertificatesTagArgs and AllCertificatesTagOutput values.
+// You can construct a concrete instance of `AllCertificatesTagInput` via:
+//
+//	AllCertificatesTagArgs{...}
+type AllCertificatesTagInput interface {
+	pulumi.Input
+
+	ToAllCertificatesTagOutput() AllCertificatesTagOutput
+	ToAllCertificatesTagOutputWithContext(context.Context) AllCertificatesTagOutput
+}
+
+type AllCertificatesTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (AllCertificatesTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AllCertificatesTag)(nil)).Elem()
+}
+
+func (i AllCertificatesTagArgs) ToAllCertificatesTagOutput() AllCertificatesTagOutput {
+	return i.ToAllCertificatesTagOutputWithContext(context.Background())
+}
+
+func (i AllCertificatesTagArgs) ToAllCertificatesTagOutputWithContext(ctx context.Context) AllCertificatesTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AllCertificatesTagOutput)
+}
+
+// AllCertificatesTagArrayInput is an input type that accepts AllCertificatesTagArray and AllCertificatesTagArrayOutput values.
+// You can construct a concrete instance of `AllCertificatesTagArrayInput` via:
+//
+//	AllCertificatesTagArray{ AllCertificatesTagArgs{...} }
+type AllCertificatesTagArrayInput interface {
+	pulumi.Input
+
+	ToAllCertificatesTagArrayOutput() AllCertificatesTagArrayOutput
+	ToAllCertificatesTagArrayOutputWithContext(context.Context) AllCertificatesTagArrayOutput
+}
+
+type AllCertificatesTagArray []AllCertificatesTagInput
+
+func (AllCertificatesTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AllCertificatesTag)(nil)).Elem()
+}
+
+func (i AllCertificatesTagArray) ToAllCertificatesTagArrayOutput() AllCertificatesTagArrayOutput {
+	return i.ToAllCertificatesTagArrayOutputWithContext(context.Background())
+}
+
+func (i AllCertificatesTagArray) ToAllCertificatesTagArrayOutputWithContext(ctx context.Context) AllCertificatesTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AllCertificatesTagArrayOutput)
+}
+
+type AllCertificatesTagOutput struct{ *pulumi.OutputState }
+
+func (AllCertificatesTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AllCertificatesTag)(nil)).Elem()
+}
+
+func (o AllCertificatesTagOutput) ToAllCertificatesTagOutput() AllCertificatesTagOutput {
+	return o
+}
+
+func (o AllCertificatesTagOutput) ToAllCertificatesTagOutputWithContext(ctx context.Context) AllCertificatesTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o AllCertificatesTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v AllCertificatesTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o AllCertificatesTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v AllCertificatesTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type AllCertificatesTagArrayOutput struct{ *pulumi.OutputState }
+
+func (AllCertificatesTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AllCertificatesTag)(nil)).Elem()
+}
+
+func (o AllCertificatesTagArrayOutput) ToAllCertificatesTagArrayOutput() AllCertificatesTagArrayOutput {
+	return o
+}
+
+func (o AllCertificatesTagArrayOutput) ToAllCertificatesTagArrayOutputWithContext(ctx context.Context) AllCertificatesTagArrayOutput {
+	return o
+}
+
+func (o AllCertificatesTagArrayOutput) Index(i pulumi.IntInput) AllCertificatesTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AllCertificatesTag {
+		return vs[0].([]AllCertificatesTag)[vs[1].(int)]
+	}).(AllCertificatesTagOutput)
+}
+
 type CaCertificatesCertificate struct {
 	// The ID of the CA certificate.
 	CaCertificateId string `pulumi:"caCertificateId"`
@@ -2897,6 +4031,8 @@ type CaCertificatesCertificate struct {
 	Listeners []string `pulumi:"listeners"`
 	// The project name of the CA certificate.
 	ProjectName string `pulumi:"projectName"`
+	// The san extension of the CA Certificate.
+	San string `pulumi:"san"`
 	// The status of the CA Certificate.
 	Status string `pulumi:"status"`
 }
@@ -2931,6 +4067,8 @@ type CaCertificatesCertificateArgs struct {
 	Listeners pulumi.StringArrayInput `pulumi:"listeners"`
 	// The project name of the CA certificate.
 	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The san extension of the CA Certificate.
+	San pulumi.StringInput `pulumi:"san"`
 	// The status of the CA Certificate.
 	Status pulumi.StringInput `pulumi:"status"`
 }
@@ -3031,6 +4169,11 @@ func (o CaCertificatesCertificateOutput) ProjectName() pulumi.StringOutput {
 	return o.ApplyT(func(v CaCertificatesCertificate) string { return v.ProjectName }).(pulumi.StringOutput)
 }
 
+// The san extension of the CA Certificate.
+func (o CaCertificatesCertificateOutput) San() pulumi.StringOutput {
+	return o.ApplyT(func(v CaCertificatesCertificate) string { return v.San }).(pulumi.StringOutput)
+}
+
 // The status of the CA Certificate.
 func (o CaCertificatesCertificateOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v CaCertificatesCertificate) string { return v.Status }).(pulumi.StringOutput)
@@ -3056,6 +4199,112 @@ func (o CaCertificatesCertificateArrayOutput) Index(i pulumi.IntInput) CaCertifi
 	}).(CaCertificatesCertificateOutput)
 }
 
+type CertificateTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// CertificateTagInput is an input type that accepts CertificateTagArgs and CertificateTagOutput values.
+// You can construct a concrete instance of `CertificateTagInput` via:
+//
+//	CertificateTagArgs{...}
+type CertificateTagInput interface {
+	pulumi.Input
+
+	ToCertificateTagOutput() CertificateTagOutput
+	ToCertificateTagOutputWithContext(context.Context) CertificateTagOutput
+}
+
+type CertificateTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (CertificateTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CertificateTag)(nil)).Elem()
+}
+
+func (i CertificateTagArgs) ToCertificateTagOutput() CertificateTagOutput {
+	return i.ToCertificateTagOutputWithContext(context.Background())
+}
+
+func (i CertificateTagArgs) ToCertificateTagOutputWithContext(ctx context.Context) CertificateTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CertificateTagOutput)
+}
+
+// CertificateTagArrayInput is an input type that accepts CertificateTagArray and CertificateTagArrayOutput values.
+// You can construct a concrete instance of `CertificateTagArrayInput` via:
+//
+//	CertificateTagArray{ CertificateTagArgs{...} }
+type CertificateTagArrayInput interface {
+	pulumi.Input
+
+	ToCertificateTagArrayOutput() CertificateTagArrayOutput
+	ToCertificateTagArrayOutputWithContext(context.Context) CertificateTagArrayOutput
+}
+
+type CertificateTagArray []CertificateTagInput
+
+func (CertificateTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CertificateTag)(nil)).Elem()
+}
+
+func (i CertificateTagArray) ToCertificateTagArrayOutput() CertificateTagArrayOutput {
+	return i.ToCertificateTagArrayOutputWithContext(context.Background())
+}
+
+func (i CertificateTagArray) ToCertificateTagArrayOutputWithContext(ctx context.Context) CertificateTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CertificateTagArrayOutput)
+}
+
+type CertificateTagOutput struct{ *pulumi.OutputState }
+
+func (CertificateTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CertificateTag)(nil)).Elem()
+}
+
+func (o CertificateTagOutput) ToCertificateTagOutput() CertificateTagOutput {
+	return o
+}
+
+func (o CertificateTagOutput) ToCertificateTagOutputWithContext(ctx context.Context) CertificateTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o CertificateTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v CertificateTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o CertificateTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v CertificateTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type CertificateTagArrayOutput struct{ *pulumi.OutputState }
+
+func (CertificateTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CertificateTag)(nil)).Elem()
+}
+
+func (o CertificateTagArrayOutput) ToCertificateTagArrayOutput() CertificateTagArrayOutput {
+	return o
+}
+
+func (o CertificateTagArrayOutput) ToCertificateTagArrayOutputWithContext(ctx context.Context) CertificateTagArrayOutput {
+	return o
+}
+
+func (o CertificateTagArrayOutput) Index(i pulumi.IntInput) CertificateTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CertificateTag {
+		return vs[0].([]CertificateTag)[vs[1].(int)]
+	}).(CertificateTagOutput)
+}
+
 type CertificatesCertificate struct {
 	// The ID of the Certificate.
 	CertificateId string `pulumi:"certificateId"`
@@ -3075,10 +4324,14 @@ type CertificatesCertificate struct {
 	Id string `pulumi:"id"`
 	// The ID list of the Listener.
 	Listeners []string `pulumi:"listeners"`
-	// The ProjectName of the Certificate.
+	// The project name to which the certificate belongs.
 	ProjectName string `pulumi:"projectName"`
+	// The san extension of the Certificate.
+	San string `pulumi:"san"`
 	// The status of the Certificate.
 	Status string `pulumi:"status"`
+	// Tags.
+	Tags []CertificatesCertificateTag `pulumi:"tags"`
 }
 
 // CertificatesCertificateInput is an input type that accepts CertificatesCertificateArgs and CertificatesCertificateOutput values.
@@ -3111,10 +4364,14 @@ type CertificatesCertificateArgs struct {
 	Id pulumi.StringInput `pulumi:"id"`
 	// The ID list of the Listener.
 	Listeners pulumi.StringArrayInput `pulumi:"listeners"`
-	// The ProjectName of the Certificate.
+	// The project name to which the certificate belongs.
 	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The san extension of the Certificate.
+	San pulumi.StringInput `pulumi:"san"`
 	// The status of the Certificate.
 	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags CertificatesCertificateTagArrayInput `pulumi:"tags"`
 }
 
 func (CertificatesCertificateArgs) ElementType() reflect.Type {
@@ -3213,14 +4470,24 @@ func (o CertificatesCertificateOutput) Listeners() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v CertificatesCertificate) []string { return v.Listeners }).(pulumi.StringArrayOutput)
 }
 
-// The ProjectName of the Certificate.
+// The project name to which the certificate belongs.
 func (o CertificatesCertificateOutput) ProjectName() pulumi.StringOutput {
 	return o.ApplyT(func(v CertificatesCertificate) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The san extension of the Certificate.
+func (o CertificatesCertificateOutput) San() pulumi.StringOutput {
+	return o.ApplyT(func(v CertificatesCertificate) string { return v.San }).(pulumi.StringOutput)
 }
 
 // The status of the Certificate.
 func (o CertificatesCertificateOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v CertificatesCertificate) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o CertificatesCertificateOutput) Tags() CertificatesCertificateTagArrayOutput {
+	return o.ApplyT(func(v CertificatesCertificate) []CertificatesCertificateTag { return v.Tags }).(CertificatesCertificateTagArrayOutput)
 }
 
 type CertificatesCertificateArrayOutput struct{ *pulumi.OutputState }
@@ -3243,6 +4510,324 @@ func (o CertificatesCertificateArrayOutput) Index(i pulumi.IntInput) Certificate
 	}).(CertificatesCertificateOutput)
 }
 
+type CertificatesCertificateTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// CertificatesCertificateTagInput is an input type that accepts CertificatesCertificateTagArgs and CertificatesCertificateTagOutput values.
+// You can construct a concrete instance of `CertificatesCertificateTagInput` via:
+//
+//	CertificatesCertificateTagArgs{...}
+type CertificatesCertificateTagInput interface {
+	pulumi.Input
+
+	ToCertificatesCertificateTagOutput() CertificatesCertificateTagOutput
+	ToCertificatesCertificateTagOutputWithContext(context.Context) CertificatesCertificateTagOutput
+}
+
+type CertificatesCertificateTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (CertificatesCertificateTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CertificatesCertificateTag)(nil)).Elem()
+}
+
+func (i CertificatesCertificateTagArgs) ToCertificatesCertificateTagOutput() CertificatesCertificateTagOutput {
+	return i.ToCertificatesCertificateTagOutputWithContext(context.Background())
+}
+
+func (i CertificatesCertificateTagArgs) ToCertificatesCertificateTagOutputWithContext(ctx context.Context) CertificatesCertificateTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CertificatesCertificateTagOutput)
+}
+
+// CertificatesCertificateTagArrayInput is an input type that accepts CertificatesCertificateTagArray and CertificatesCertificateTagArrayOutput values.
+// You can construct a concrete instance of `CertificatesCertificateTagArrayInput` via:
+//
+//	CertificatesCertificateTagArray{ CertificatesCertificateTagArgs{...} }
+type CertificatesCertificateTagArrayInput interface {
+	pulumi.Input
+
+	ToCertificatesCertificateTagArrayOutput() CertificatesCertificateTagArrayOutput
+	ToCertificatesCertificateTagArrayOutputWithContext(context.Context) CertificatesCertificateTagArrayOutput
+}
+
+type CertificatesCertificateTagArray []CertificatesCertificateTagInput
+
+func (CertificatesCertificateTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CertificatesCertificateTag)(nil)).Elem()
+}
+
+func (i CertificatesCertificateTagArray) ToCertificatesCertificateTagArrayOutput() CertificatesCertificateTagArrayOutput {
+	return i.ToCertificatesCertificateTagArrayOutputWithContext(context.Background())
+}
+
+func (i CertificatesCertificateTagArray) ToCertificatesCertificateTagArrayOutputWithContext(ctx context.Context) CertificatesCertificateTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CertificatesCertificateTagArrayOutput)
+}
+
+type CertificatesCertificateTagOutput struct{ *pulumi.OutputState }
+
+func (CertificatesCertificateTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CertificatesCertificateTag)(nil)).Elem()
+}
+
+func (o CertificatesCertificateTagOutput) ToCertificatesCertificateTagOutput() CertificatesCertificateTagOutput {
+	return o
+}
+
+func (o CertificatesCertificateTagOutput) ToCertificatesCertificateTagOutputWithContext(ctx context.Context) CertificatesCertificateTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o CertificatesCertificateTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v CertificatesCertificateTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o CertificatesCertificateTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v CertificatesCertificateTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type CertificatesCertificateTagArrayOutput struct{ *pulumi.OutputState }
+
+func (CertificatesCertificateTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CertificatesCertificateTag)(nil)).Elem()
+}
+
+func (o CertificatesCertificateTagArrayOutput) ToCertificatesCertificateTagArrayOutput() CertificatesCertificateTagArrayOutput {
+	return o
+}
+
+func (o CertificatesCertificateTagArrayOutput) ToCertificatesCertificateTagArrayOutputWithContext(ctx context.Context) CertificatesCertificateTagArrayOutput {
+	return o
+}
+
+func (o CertificatesCertificateTagArrayOutput) Index(i pulumi.IntInput) CertificatesCertificateTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CertificatesCertificateTag {
+		return vs[0].([]CertificatesCertificateTag)[vs[1].(int)]
+	}).(CertificatesCertificateTagOutput)
+}
+
+type CertificatesTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// CertificatesTagInput is an input type that accepts CertificatesTagArgs and CertificatesTagOutput values.
+// You can construct a concrete instance of `CertificatesTagInput` via:
+//
+//	CertificatesTagArgs{...}
+type CertificatesTagInput interface {
+	pulumi.Input
+
+	ToCertificatesTagOutput() CertificatesTagOutput
+	ToCertificatesTagOutputWithContext(context.Context) CertificatesTagOutput
+}
+
+type CertificatesTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (CertificatesTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CertificatesTag)(nil)).Elem()
+}
+
+func (i CertificatesTagArgs) ToCertificatesTagOutput() CertificatesTagOutput {
+	return i.ToCertificatesTagOutputWithContext(context.Background())
+}
+
+func (i CertificatesTagArgs) ToCertificatesTagOutputWithContext(ctx context.Context) CertificatesTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CertificatesTagOutput)
+}
+
+// CertificatesTagArrayInput is an input type that accepts CertificatesTagArray and CertificatesTagArrayOutput values.
+// You can construct a concrete instance of `CertificatesTagArrayInput` via:
+//
+//	CertificatesTagArray{ CertificatesTagArgs{...} }
+type CertificatesTagArrayInput interface {
+	pulumi.Input
+
+	ToCertificatesTagArrayOutput() CertificatesTagArrayOutput
+	ToCertificatesTagArrayOutputWithContext(context.Context) CertificatesTagArrayOutput
+}
+
+type CertificatesTagArray []CertificatesTagInput
+
+func (CertificatesTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CertificatesTag)(nil)).Elem()
+}
+
+func (i CertificatesTagArray) ToCertificatesTagArrayOutput() CertificatesTagArrayOutput {
+	return i.ToCertificatesTagArrayOutputWithContext(context.Background())
+}
+
+func (i CertificatesTagArray) ToCertificatesTagArrayOutputWithContext(ctx context.Context) CertificatesTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CertificatesTagArrayOutput)
+}
+
+type CertificatesTagOutput struct{ *pulumi.OutputState }
+
+func (CertificatesTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CertificatesTag)(nil)).Elem()
+}
+
+func (o CertificatesTagOutput) ToCertificatesTagOutput() CertificatesTagOutput {
+	return o
+}
+
+func (o CertificatesTagOutput) ToCertificatesTagOutputWithContext(ctx context.Context) CertificatesTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o CertificatesTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v CertificatesTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o CertificatesTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v CertificatesTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type CertificatesTagArrayOutput struct{ *pulumi.OutputState }
+
+func (CertificatesTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CertificatesTag)(nil)).Elem()
+}
+
+func (o CertificatesTagArrayOutput) ToCertificatesTagArrayOutput() CertificatesTagArrayOutput {
+	return o
+}
+
+func (o CertificatesTagArrayOutput) ToCertificatesTagArrayOutputWithContext(ctx context.Context) CertificatesTagArrayOutput {
+	return o
+}
+
+func (o CertificatesTagArrayOutput) Index(i pulumi.IntInput) CertificatesTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CertificatesTag {
+		return vs[0].([]CertificatesTag)[vs[1].(int)]
+	}).(CertificatesTagOutput)
+}
+
+type CustomizedCfgTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// CustomizedCfgTagInput is an input type that accepts CustomizedCfgTagArgs and CustomizedCfgTagOutput values.
+// You can construct a concrete instance of `CustomizedCfgTagInput` via:
+//
+//	CustomizedCfgTagArgs{...}
+type CustomizedCfgTagInput interface {
+	pulumi.Input
+
+	ToCustomizedCfgTagOutput() CustomizedCfgTagOutput
+	ToCustomizedCfgTagOutputWithContext(context.Context) CustomizedCfgTagOutput
+}
+
+type CustomizedCfgTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (CustomizedCfgTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomizedCfgTag)(nil)).Elem()
+}
+
+func (i CustomizedCfgTagArgs) ToCustomizedCfgTagOutput() CustomizedCfgTagOutput {
+	return i.ToCustomizedCfgTagOutputWithContext(context.Background())
+}
+
+func (i CustomizedCfgTagArgs) ToCustomizedCfgTagOutputWithContext(ctx context.Context) CustomizedCfgTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomizedCfgTagOutput)
+}
+
+// CustomizedCfgTagArrayInput is an input type that accepts CustomizedCfgTagArray and CustomizedCfgTagArrayOutput values.
+// You can construct a concrete instance of `CustomizedCfgTagArrayInput` via:
+//
+//	CustomizedCfgTagArray{ CustomizedCfgTagArgs{...} }
+type CustomizedCfgTagArrayInput interface {
+	pulumi.Input
+
+	ToCustomizedCfgTagArrayOutput() CustomizedCfgTagArrayOutput
+	ToCustomizedCfgTagArrayOutputWithContext(context.Context) CustomizedCfgTagArrayOutput
+}
+
+type CustomizedCfgTagArray []CustomizedCfgTagInput
+
+func (CustomizedCfgTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CustomizedCfgTag)(nil)).Elem()
+}
+
+func (i CustomizedCfgTagArray) ToCustomizedCfgTagArrayOutput() CustomizedCfgTagArrayOutput {
+	return i.ToCustomizedCfgTagArrayOutputWithContext(context.Background())
+}
+
+func (i CustomizedCfgTagArray) ToCustomizedCfgTagArrayOutputWithContext(ctx context.Context) CustomizedCfgTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomizedCfgTagArrayOutput)
+}
+
+type CustomizedCfgTagOutput struct{ *pulumi.OutputState }
+
+func (CustomizedCfgTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomizedCfgTag)(nil)).Elem()
+}
+
+func (o CustomizedCfgTagOutput) ToCustomizedCfgTagOutput() CustomizedCfgTagOutput {
+	return o
+}
+
+func (o CustomizedCfgTagOutput) ToCustomizedCfgTagOutputWithContext(ctx context.Context) CustomizedCfgTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o CustomizedCfgTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v CustomizedCfgTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o CustomizedCfgTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v CustomizedCfgTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type CustomizedCfgTagArrayOutput struct{ *pulumi.OutputState }
+
+func (CustomizedCfgTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CustomizedCfgTag)(nil)).Elem()
+}
+
+func (o CustomizedCfgTagArrayOutput) ToCustomizedCfgTagArrayOutput() CustomizedCfgTagArrayOutput {
+	return o
+}
+
+func (o CustomizedCfgTagArrayOutput) ToCustomizedCfgTagArrayOutputWithContext(ctx context.Context) CustomizedCfgTagArrayOutput {
+	return o
+}
+
+func (o CustomizedCfgTagArrayOutput) Index(i pulumi.IntInput) CustomizedCfgTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CustomizedCfgTag {
+		return vs[0].([]CustomizedCfgTag)[vs[1].(int)]
+	}).(CustomizedCfgTagOutput)
+}
+
 type CustomizedCfgsCfg struct {
 	// The create time of CustomizedCfg.
 	CreateTime string `pulumi:"createTime"`
@@ -3262,6 +4847,8 @@ type CustomizedCfgsCfg struct {
 	ProjectName string `pulumi:"projectName"`
 	// The status of CustomizedCfg.
 	Status string `pulumi:"status"`
+	// Tags.
+	Tags []CustomizedCfgsCfgTag `pulumi:"tags"`
 	// The update time of CustomizedCfg.
 	UpdateTime string `pulumi:"updateTime"`
 }
@@ -3296,6 +4883,8 @@ type CustomizedCfgsCfgArgs struct {
 	ProjectName pulumi.StringInput `pulumi:"projectName"`
 	// The status of CustomizedCfg.
 	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags CustomizedCfgsCfgTagArrayInput `pulumi:"tags"`
 	// The update time of CustomizedCfg.
 	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
 }
@@ -3394,6 +4983,11 @@ func (o CustomizedCfgsCfgOutput) ProjectName() pulumi.StringOutput {
 // The status of CustomizedCfg.
 func (o CustomizedCfgsCfgOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v CustomizedCfgsCfg) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o CustomizedCfgsCfgOutput) Tags() CustomizedCfgsCfgTagArrayOutput {
+	return o.ApplyT(func(v CustomizedCfgsCfg) []CustomizedCfgsCfgTag { return v.Tags }).(CustomizedCfgsCfgTagArrayOutput)
 }
 
 // The update time of CustomizedCfg.
@@ -3545,7 +5139,327 @@ func (o CustomizedCfgsCfgListenerArrayOutput) Index(i pulumi.IntInput) Customize
 	}).(CustomizedCfgsCfgListenerOutput)
 }
 
+type CustomizedCfgsCfgTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// CustomizedCfgsCfgTagInput is an input type that accepts CustomizedCfgsCfgTagArgs and CustomizedCfgsCfgTagOutput values.
+// You can construct a concrete instance of `CustomizedCfgsCfgTagInput` via:
+//
+//	CustomizedCfgsCfgTagArgs{...}
+type CustomizedCfgsCfgTagInput interface {
+	pulumi.Input
+
+	ToCustomizedCfgsCfgTagOutput() CustomizedCfgsCfgTagOutput
+	ToCustomizedCfgsCfgTagOutputWithContext(context.Context) CustomizedCfgsCfgTagOutput
+}
+
+type CustomizedCfgsCfgTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (CustomizedCfgsCfgTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomizedCfgsCfgTag)(nil)).Elem()
+}
+
+func (i CustomizedCfgsCfgTagArgs) ToCustomizedCfgsCfgTagOutput() CustomizedCfgsCfgTagOutput {
+	return i.ToCustomizedCfgsCfgTagOutputWithContext(context.Background())
+}
+
+func (i CustomizedCfgsCfgTagArgs) ToCustomizedCfgsCfgTagOutputWithContext(ctx context.Context) CustomizedCfgsCfgTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomizedCfgsCfgTagOutput)
+}
+
+// CustomizedCfgsCfgTagArrayInput is an input type that accepts CustomizedCfgsCfgTagArray and CustomizedCfgsCfgTagArrayOutput values.
+// You can construct a concrete instance of `CustomizedCfgsCfgTagArrayInput` via:
+//
+//	CustomizedCfgsCfgTagArray{ CustomizedCfgsCfgTagArgs{...} }
+type CustomizedCfgsCfgTagArrayInput interface {
+	pulumi.Input
+
+	ToCustomizedCfgsCfgTagArrayOutput() CustomizedCfgsCfgTagArrayOutput
+	ToCustomizedCfgsCfgTagArrayOutputWithContext(context.Context) CustomizedCfgsCfgTagArrayOutput
+}
+
+type CustomizedCfgsCfgTagArray []CustomizedCfgsCfgTagInput
+
+func (CustomizedCfgsCfgTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CustomizedCfgsCfgTag)(nil)).Elem()
+}
+
+func (i CustomizedCfgsCfgTagArray) ToCustomizedCfgsCfgTagArrayOutput() CustomizedCfgsCfgTagArrayOutput {
+	return i.ToCustomizedCfgsCfgTagArrayOutputWithContext(context.Background())
+}
+
+func (i CustomizedCfgsCfgTagArray) ToCustomizedCfgsCfgTagArrayOutputWithContext(ctx context.Context) CustomizedCfgsCfgTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomizedCfgsCfgTagArrayOutput)
+}
+
+type CustomizedCfgsCfgTagOutput struct{ *pulumi.OutputState }
+
+func (CustomizedCfgsCfgTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomizedCfgsCfgTag)(nil)).Elem()
+}
+
+func (o CustomizedCfgsCfgTagOutput) ToCustomizedCfgsCfgTagOutput() CustomizedCfgsCfgTagOutput {
+	return o
+}
+
+func (o CustomizedCfgsCfgTagOutput) ToCustomizedCfgsCfgTagOutputWithContext(ctx context.Context) CustomizedCfgsCfgTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o CustomizedCfgsCfgTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v CustomizedCfgsCfgTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o CustomizedCfgsCfgTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v CustomizedCfgsCfgTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type CustomizedCfgsCfgTagArrayOutput struct{ *pulumi.OutputState }
+
+func (CustomizedCfgsCfgTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CustomizedCfgsCfgTag)(nil)).Elem()
+}
+
+func (o CustomizedCfgsCfgTagArrayOutput) ToCustomizedCfgsCfgTagArrayOutput() CustomizedCfgsCfgTagArrayOutput {
+	return o
+}
+
+func (o CustomizedCfgsCfgTagArrayOutput) ToCustomizedCfgsCfgTagArrayOutputWithContext(ctx context.Context) CustomizedCfgsCfgTagArrayOutput {
+	return o
+}
+
+func (o CustomizedCfgsCfgTagArrayOutput) Index(i pulumi.IntInput) CustomizedCfgsCfgTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CustomizedCfgsCfgTag {
+		return vs[0].([]CustomizedCfgsCfgTag)[vs[1].(int)]
+	}).(CustomizedCfgsCfgTagOutput)
+}
+
+type CustomizedCfgsTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// CustomizedCfgsTagInput is an input type that accepts CustomizedCfgsTagArgs and CustomizedCfgsTagOutput values.
+// You can construct a concrete instance of `CustomizedCfgsTagInput` via:
+//
+//	CustomizedCfgsTagArgs{...}
+type CustomizedCfgsTagInput interface {
+	pulumi.Input
+
+	ToCustomizedCfgsTagOutput() CustomizedCfgsTagOutput
+	ToCustomizedCfgsTagOutputWithContext(context.Context) CustomizedCfgsTagOutput
+}
+
+type CustomizedCfgsTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (CustomizedCfgsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomizedCfgsTag)(nil)).Elem()
+}
+
+func (i CustomizedCfgsTagArgs) ToCustomizedCfgsTagOutput() CustomizedCfgsTagOutput {
+	return i.ToCustomizedCfgsTagOutputWithContext(context.Background())
+}
+
+func (i CustomizedCfgsTagArgs) ToCustomizedCfgsTagOutputWithContext(ctx context.Context) CustomizedCfgsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomizedCfgsTagOutput)
+}
+
+// CustomizedCfgsTagArrayInput is an input type that accepts CustomizedCfgsTagArray and CustomizedCfgsTagArrayOutput values.
+// You can construct a concrete instance of `CustomizedCfgsTagArrayInput` via:
+//
+//	CustomizedCfgsTagArray{ CustomizedCfgsTagArgs{...} }
+type CustomizedCfgsTagArrayInput interface {
+	pulumi.Input
+
+	ToCustomizedCfgsTagArrayOutput() CustomizedCfgsTagArrayOutput
+	ToCustomizedCfgsTagArrayOutputWithContext(context.Context) CustomizedCfgsTagArrayOutput
+}
+
+type CustomizedCfgsTagArray []CustomizedCfgsTagInput
+
+func (CustomizedCfgsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CustomizedCfgsTag)(nil)).Elem()
+}
+
+func (i CustomizedCfgsTagArray) ToCustomizedCfgsTagArrayOutput() CustomizedCfgsTagArrayOutput {
+	return i.ToCustomizedCfgsTagArrayOutputWithContext(context.Background())
+}
+
+func (i CustomizedCfgsTagArray) ToCustomizedCfgsTagArrayOutputWithContext(ctx context.Context) CustomizedCfgsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomizedCfgsTagArrayOutput)
+}
+
+type CustomizedCfgsTagOutput struct{ *pulumi.OutputState }
+
+func (CustomizedCfgsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomizedCfgsTag)(nil)).Elem()
+}
+
+func (o CustomizedCfgsTagOutput) ToCustomizedCfgsTagOutput() CustomizedCfgsTagOutput {
+	return o
+}
+
+func (o CustomizedCfgsTagOutput) ToCustomizedCfgsTagOutputWithContext(ctx context.Context) CustomizedCfgsTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o CustomizedCfgsTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v CustomizedCfgsTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o CustomizedCfgsTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v CustomizedCfgsTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type CustomizedCfgsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (CustomizedCfgsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CustomizedCfgsTag)(nil)).Elem()
+}
+
+func (o CustomizedCfgsTagArrayOutput) ToCustomizedCfgsTagArrayOutput() CustomizedCfgsTagArrayOutput {
+	return o
+}
+
+func (o CustomizedCfgsTagArrayOutput) ToCustomizedCfgsTagArrayOutputWithContext(ctx context.Context) CustomizedCfgsTagArrayOutput {
+	return o
+}
+
+func (o CustomizedCfgsTagArrayOutput) Index(i pulumi.IntInput) CustomizedCfgsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CustomizedCfgsTag {
+		return vs[0].([]CustomizedCfgsTag)[vs[1].(int)]
+	}).(CustomizedCfgsTagOutput)
+}
+
+type HealthCheckTemplateTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// HealthCheckTemplateTagInput is an input type that accepts HealthCheckTemplateTagArgs and HealthCheckTemplateTagOutput values.
+// You can construct a concrete instance of `HealthCheckTemplateTagInput` via:
+//
+//	HealthCheckTemplateTagArgs{...}
+type HealthCheckTemplateTagInput interface {
+	pulumi.Input
+
+	ToHealthCheckTemplateTagOutput() HealthCheckTemplateTagOutput
+	ToHealthCheckTemplateTagOutputWithContext(context.Context) HealthCheckTemplateTagOutput
+}
+
+type HealthCheckTemplateTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (HealthCheckTemplateTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*HealthCheckTemplateTag)(nil)).Elem()
+}
+
+func (i HealthCheckTemplateTagArgs) ToHealthCheckTemplateTagOutput() HealthCheckTemplateTagOutput {
+	return i.ToHealthCheckTemplateTagOutputWithContext(context.Background())
+}
+
+func (i HealthCheckTemplateTagArgs) ToHealthCheckTemplateTagOutputWithContext(ctx context.Context) HealthCheckTemplateTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HealthCheckTemplateTagOutput)
+}
+
+// HealthCheckTemplateTagArrayInput is an input type that accepts HealthCheckTemplateTagArray and HealthCheckTemplateTagArrayOutput values.
+// You can construct a concrete instance of `HealthCheckTemplateTagArrayInput` via:
+//
+//	HealthCheckTemplateTagArray{ HealthCheckTemplateTagArgs{...} }
+type HealthCheckTemplateTagArrayInput interface {
+	pulumi.Input
+
+	ToHealthCheckTemplateTagArrayOutput() HealthCheckTemplateTagArrayOutput
+	ToHealthCheckTemplateTagArrayOutputWithContext(context.Context) HealthCheckTemplateTagArrayOutput
+}
+
+type HealthCheckTemplateTagArray []HealthCheckTemplateTagInput
+
+func (HealthCheckTemplateTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]HealthCheckTemplateTag)(nil)).Elem()
+}
+
+func (i HealthCheckTemplateTagArray) ToHealthCheckTemplateTagArrayOutput() HealthCheckTemplateTagArrayOutput {
+	return i.ToHealthCheckTemplateTagArrayOutputWithContext(context.Background())
+}
+
+func (i HealthCheckTemplateTagArray) ToHealthCheckTemplateTagArrayOutputWithContext(ctx context.Context) HealthCheckTemplateTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HealthCheckTemplateTagArrayOutput)
+}
+
+type HealthCheckTemplateTagOutput struct{ *pulumi.OutputState }
+
+func (HealthCheckTemplateTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*HealthCheckTemplateTag)(nil)).Elem()
+}
+
+func (o HealthCheckTemplateTagOutput) ToHealthCheckTemplateTagOutput() HealthCheckTemplateTagOutput {
+	return o
+}
+
+func (o HealthCheckTemplateTagOutput) ToHealthCheckTemplateTagOutputWithContext(ctx context.Context) HealthCheckTemplateTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o HealthCheckTemplateTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v HealthCheckTemplateTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o HealthCheckTemplateTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v HealthCheckTemplateTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type HealthCheckTemplateTagArrayOutput struct{ *pulumi.OutputState }
+
+func (HealthCheckTemplateTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]HealthCheckTemplateTag)(nil)).Elem()
+}
+
+func (o HealthCheckTemplateTagArrayOutput) ToHealthCheckTemplateTagArrayOutput() HealthCheckTemplateTagArrayOutput {
+	return o
+}
+
+func (o HealthCheckTemplateTagArrayOutput) ToHealthCheckTemplateTagArrayOutputWithContext(ctx context.Context) HealthCheckTemplateTagArrayOutput {
+	return o
+}
+
+func (o HealthCheckTemplateTagArrayOutput) Index(i pulumi.IntInput) HealthCheckTemplateTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) HealthCheckTemplateTag {
+		return vs[0].([]HealthCheckTemplateTag)[vs[1].(int)]
+	}).(HealthCheckTemplateTagOutput)
+}
+
 type HealthCheckTemplatesHealthCheckTemplate struct {
+	// The creation time of the health check template.
+	CreateTime string `pulumi:"createTime"`
 	// The description of health check template.
 	Description string `pulumi:"description"`
 	// The domain name to health check.
@@ -3556,9 +5470,11 @@ type HealthCheckTemplatesHealthCheckTemplate struct {
 	HealthCheckHttpVersion string `pulumi:"healthCheckHttpVersion"`
 	// The interval for performing health checks, the default value is 2, and the value is 1-300.
 	HealthCheckInterval int `pulumi:"healthCheckInterval"`
-	// The health check method,default is `GET`,support `GET` and ``HEAD.
+	// The health check method, support `GET` and `HEAD`.
 	HealthCheckMethod string `pulumi:"healthCheckMethod"`
-	// The protocol of health check,only support HTTP.
+	// The port for health check. 0 means use backend server port for health check, 1-65535 means use the specified port.
+	HealthCheckPort int `pulumi:"healthCheckPort"`
+	// The protocol of health check, support HTTP and TCP.
 	HealthCheckProtocol string `pulumi:"healthCheckProtocol"`
 	// The ID of health check template.
 	HealthCheckTemplateId string `pulumi:"healthCheckTemplateId"`
@@ -3572,8 +5488,14 @@ type HealthCheckTemplatesHealthCheckTemplate struct {
 	HealthyThreshold int `pulumi:"healthyThreshold"`
 	// The id of the health check template.
 	Id string `pulumi:"id"`
+	// The project name to query.
+	ProjectName string `pulumi:"projectName"`
+	// Tags.
+	Tags []HealthCheckTemplatesHealthCheckTemplateTag `pulumi:"tags"`
 	// The unhealthy threshold of the health check, the default is 3, the value is 2-10.
 	UnhealthyThreshold int `pulumi:"unhealthyThreshold"`
+	// The last update time of the health check template.
+	UpdateTime string `pulumi:"updateTime"`
 }
 
 // HealthCheckTemplatesHealthCheckTemplateInput is an input type that accepts HealthCheckTemplatesHealthCheckTemplateArgs and HealthCheckTemplatesHealthCheckTemplateOutput values.
@@ -3588,6 +5510,8 @@ type HealthCheckTemplatesHealthCheckTemplateInput interface {
 }
 
 type HealthCheckTemplatesHealthCheckTemplateArgs struct {
+	// The creation time of the health check template.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
 	// The description of health check template.
 	Description pulumi.StringInput `pulumi:"description"`
 	// The domain name to health check.
@@ -3598,9 +5522,11 @@ type HealthCheckTemplatesHealthCheckTemplateArgs struct {
 	HealthCheckHttpVersion pulumi.StringInput `pulumi:"healthCheckHttpVersion"`
 	// The interval for performing health checks, the default value is 2, and the value is 1-300.
 	HealthCheckInterval pulumi.IntInput `pulumi:"healthCheckInterval"`
-	// The health check method,default is `GET`,support `GET` and ``HEAD.
+	// The health check method, support `GET` and `HEAD`.
 	HealthCheckMethod pulumi.StringInput `pulumi:"healthCheckMethod"`
-	// The protocol of health check,only support HTTP.
+	// The port for health check. 0 means use backend server port for health check, 1-65535 means use the specified port.
+	HealthCheckPort pulumi.IntInput `pulumi:"healthCheckPort"`
+	// The protocol of health check, support HTTP and TCP.
 	HealthCheckProtocol pulumi.StringInput `pulumi:"healthCheckProtocol"`
 	// The ID of health check template.
 	HealthCheckTemplateId pulumi.StringInput `pulumi:"healthCheckTemplateId"`
@@ -3614,8 +5540,14 @@ type HealthCheckTemplatesHealthCheckTemplateArgs struct {
 	HealthyThreshold pulumi.IntInput `pulumi:"healthyThreshold"`
 	// The id of the health check template.
 	Id pulumi.StringInput `pulumi:"id"`
+	// The project name to query.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// Tags.
+	Tags HealthCheckTemplatesHealthCheckTemplateTagArrayInput `pulumi:"tags"`
 	// The unhealthy threshold of the health check, the default is 3, the value is 2-10.
 	UnhealthyThreshold pulumi.IntInput `pulumi:"unhealthyThreshold"`
+	// The last update time of the health check template.
+	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
 }
 
 func (HealthCheckTemplatesHealthCheckTemplateArgs) ElementType() reflect.Type {
@@ -3669,6 +5601,11 @@ func (o HealthCheckTemplatesHealthCheckTemplateOutput) ToHealthCheckTemplatesHea
 	return o
 }
 
+// The creation time of the health check template.
+func (o HealthCheckTemplatesHealthCheckTemplateOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v HealthCheckTemplatesHealthCheckTemplate) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
 // The description of health check template.
 func (o HealthCheckTemplatesHealthCheckTemplateOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v HealthCheckTemplatesHealthCheckTemplate) string { return v.Description }).(pulumi.StringOutput)
@@ -3694,12 +5631,17 @@ func (o HealthCheckTemplatesHealthCheckTemplateOutput) HealthCheckInterval() pul
 	return o.ApplyT(func(v HealthCheckTemplatesHealthCheckTemplate) int { return v.HealthCheckInterval }).(pulumi.IntOutput)
 }
 
-// The health check method,default is `GET`,support `GET` and “HEAD.
+// The health check method, support `GET` and `HEAD`.
 func (o HealthCheckTemplatesHealthCheckTemplateOutput) HealthCheckMethod() pulumi.StringOutput {
 	return o.ApplyT(func(v HealthCheckTemplatesHealthCheckTemplate) string { return v.HealthCheckMethod }).(pulumi.StringOutput)
 }
 
-// The protocol of health check,only support HTTP.
+// The port for health check. 0 means use backend server port for health check, 1-65535 means use the specified port.
+func (o HealthCheckTemplatesHealthCheckTemplateOutput) HealthCheckPort() pulumi.IntOutput {
+	return o.ApplyT(func(v HealthCheckTemplatesHealthCheckTemplate) int { return v.HealthCheckPort }).(pulumi.IntOutput)
+}
+
+// The protocol of health check, support HTTP and TCP.
 func (o HealthCheckTemplatesHealthCheckTemplateOutput) HealthCheckProtocol() pulumi.StringOutput {
 	return o.ApplyT(func(v HealthCheckTemplatesHealthCheckTemplate) string { return v.HealthCheckProtocol }).(pulumi.StringOutput)
 }
@@ -3734,9 +5676,26 @@ func (o HealthCheckTemplatesHealthCheckTemplateOutput) Id() pulumi.StringOutput 
 	return o.ApplyT(func(v HealthCheckTemplatesHealthCheckTemplate) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// The project name to query.
+func (o HealthCheckTemplatesHealthCheckTemplateOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v HealthCheckTemplatesHealthCheckTemplate) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o HealthCheckTemplatesHealthCheckTemplateOutput) Tags() HealthCheckTemplatesHealthCheckTemplateTagArrayOutput {
+	return o.ApplyT(func(v HealthCheckTemplatesHealthCheckTemplate) []HealthCheckTemplatesHealthCheckTemplateTag {
+		return v.Tags
+	}).(HealthCheckTemplatesHealthCheckTemplateTagArrayOutput)
+}
+
 // The unhealthy threshold of the health check, the default is 3, the value is 2-10.
 func (o HealthCheckTemplatesHealthCheckTemplateOutput) UnhealthyThreshold() pulumi.IntOutput {
 	return o.ApplyT(func(v HealthCheckTemplatesHealthCheckTemplate) int { return v.UnhealthyThreshold }).(pulumi.IntOutput)
+}
+
+// The last update time of the health check template.
+func (o HealthCheckTemplatesHealthCheckTemplateOutput) UpdateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v HealthCheckTemplatesHealthCheckTemplate) string { return v.UpdateTime }).(pulumi.StringOutput)
 }
 
 type HealthCheckTemplatesHealthCheckTemplateArrayOutput struct{ *pulumi.OutputState }
@@ -3757,6 +5716,360 @@ func (o HealthCheckTemplatesHealthCheckTemplateArrayOutput) Index(i pulumi.IntIn
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) HealthCheckTemplatesHealthCheckTemplate {
 		return vs[0].([]HealthCheckTemplatesHealthCheckTemplate)[vs[1].(int)]
 	}).(HealthCheckTemplatesHealthCheckTemplateOutput)
+}
+
+type HealthCheckTemplatesHealthCheckTemplateTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// HealthCheckTemplatesHealthCheckTemplateTagInput is an input type that accepts HealthCheckTemplatesHealthCheckTemplateTagArgs and HealthCheckTemplatesHealthCheckTemplateTagOutput values.
+// You can construct a concrete instance of `HealthCheckTemplatesHealthCheckTemplateTagInput` via:
+//
+//	HealthCheckTemplatesHealthCheckTemplateTagArgs{...}
+type HealthCheckTemplatesHealthCheckTemplateTagInput interface {
+	pulumi.Input
+
+	ToHealthCheckTemplatesHealthCheckTemplateTagOutput() HealthCheckTemplatesHealthCheckTemplateTagOutput
+	ToHealthCheckTemplatesHealthCheckTemplateTagOutputWithContext(context.Context) HealthCheckTemplatesHealthCheckTemplateTagOutput
+}
+
+type HealthCheckTemplatesHealthCheckTemplateTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (HealthCheckTemplatesHealthCheckTemplateTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*HealthCheckTemplatesHealthCheckTemplateTag)(nil)).Elem()
+}
+
+func (i HealthCheckTemplatesHealthCheckTemplateTagArgs) ToHealthCheckTemplatesHealthCheckTemplateTagOutput() HealthCheckTemplatesHealthCheckTemplateTagOutput {
+	return i.ToHealthCheckTemplatesHealthCheckTemplateTagOutputWithContext(context.Background())
+}
+
+func (i HealthCheckTemplatesHealthCheckTemplateTagArgs) ToHealthCheckTemplatesHealthCheckTemplateTagOutputWithContext(ctx context.Context) HealthCheckTemplatesHealthCheckTemplateTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HealthCheckTemplatesHealthCheckTemplateTagOutput)
+}
+
+// HealthCheckTemplatesHealthCheckTemplateTagArrayInput is an input type that accepts HealthCheckTemplatesHealthCheckTemplateTagArray and HealthCheckTemplatesHealthCheckTemplateTagArrayOutput values.
+// You can construct a concrete instance of `HealthCheckTemplatesHealthCheckTemplateTagArrayInput` via:
+//
+//	HealthCheckTemplatesHealthCheckTemplateTagArray{ HealthCheckTemplatesHealthCheckTemplateTagArgs{...} }
+type HealthCheckTemplatesHealthCheckTemplateTagArrayInput interface {
+	pulumi.Input
+
+	ToHealthCheckTemplatesHealthCheckTemplateTagArrayOutput() HealthCheckTemplatesHealthCheckTemplateTagArrayOutput
+	ToHealthCheckTemplatesHealthCheckTemplateTagArrayOutputWithContext(context.Context) HealthCheckTemplatesHealthCheckTemplateTagArrayOutput
+}
+
+type HealthCheckTemplatesHealthCheckTemplateTagArray []HealthCheckTemplatesHealthCheckTemplateTagInput
+
+func (HealthCheckTemplatesHealthCheckTemplateTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]HealthCheckTemplatesHealthCheckTemplateTag)(nil)).Elem()
+}
+
+func (i HealthCheckTemplatesHealthCheckTemplateTagArray) ToHealthCheckTemplatesHealthCheckTemplateTagArrayOutput() HealthCheckTemplatesHealthCheckTemplateTagArrayOutput {
+	return i.ToHealthCheckTemplatesHealthCheckTemplateTagArrayOutputWithContext(context.Background())
+}
+
+func (i HealthCheckTemplatesHealthCheckTemplateTagArray) ToHealthCheckTemplatesHealthCheckTemplateTagArrayOutputWithContext(ctx context.Context) HealthCheckTemplatesHealthCheckTemplateTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HealthCheckTemplatesHealthCheckTemplateTagArrayOutput)
+}
+
+type HealthCheckTemplatesHealthCheckTemplateTagOutput struct{ *pulumi.OutputState }
+
+func (HealthCheckTemplatesHealthCheckTemplateTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*HealthCheckTemplatesHealthCheckTemplateTag)(nil)).Elem()
+}
+
+func (o HealthCheckTemplatesHealthCheckTemplateTagOutput) ToHealthCheckTemplatesHealthCheckTemplateTagOutput() HealthCheckTemplatesHealthCheckTemplateTagOutput {
+	return o
+}
+
+func (o HealthCheckTemplatesHealthCheckTemplateTagOutput) ToHealthCheckTemplatesHealthCheckTemplateTagOutputWithContext(ctx context.Context) HealthCheckTemplatesHealthCheckTemplateTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o HealthCheckTemplatesHealthCheckTemplateTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v HealthCheckTemplatesHealthCheckTemplateTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o HealthCheckTemplatesHealthCheckTemplateTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v HealthCheckTemplatesHealthCheckTemplateTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type HealthCheckTemplatesHealthCheckTemplateTagArrayOutput struct{ *pulumi.OutputState }
+
+func (HealthCheckTemplatesHealthCheckTemplateTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]HealthCheckTemplatesHealthCheckTemplateTag)(nil)).Elem()
+}
+
+func (o HealthCheckTemplatesHealthCheckTemplateTagArrayOutput) ToHealthCheckTemplatesHealthCheckTemplateTagArrayOutput() HealthCheckTemplatesHealthCheckTemplateTagArrayOutput {
+	return o
+}
+
+func (o HealthCheckTemplatesHealthCheckTemplateTagArrayOutput) ToHealthCheckTemplatesHealthCheckTemplateTagArrayOutputWithContext(ctx context.Context) HealthCheckTemplatesHealthCheckTemplateTagArrayOutput {
+	return o
+}
+
+func (o HealthCheckTemplatesHealthCheckTemplateTagArrayOutput) Index(i pulumi.IntInput) HealthCheckTemplatesHealthCheckTemplateTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) HealthCheckTemplatesHealthCheckTemplateTag {
+		return vs[0].([]HealthCheckTemplatesHealthCheckTemplateTag)[vs[1].(int)]
+	}).(HealthCheckTemplatesHealthCheckTemplateTagOutput)
+}
+
+type HealthCheckTemplatesTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// HealthCheckTemplatesTagInput is an input type that accepts HealthCheckTemplatesTagArgs and HealthCheckTemplatesTagOutput values.
+// You can construct a concrete instance of `HealthCheckTemplatesTagInput` via:
+//
+//	HealthCheckTemplatesTagArgs{...}
+type HealthCheckTemplatesTagInput interface {
+	pulumi.Input
+
+	ToHealthCheckTemplatesTagOutput() HealthCheckTemplatesTagOutput
+	ToHealthCheckTemplatesTagOutputWithContext(context.Context) HealthCheckTemplatesTagOutput
+}
+
+type HealthCheckTemplatesTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (HealthCheckTemplatesTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*HealthCheckTemplatesTag)(nil)).Elem()
+}
+
+func (i HealthCheckTemplatesTagArgs) ToHealthCheckTemplatesTagOutput() HealthCheckTemplatesTagOutput {
+	return i.ToHealthCheckTemplatesTagOutputWithContext(context.Background())
+}
+
+func (i HealthCheckTemplatesTagArgs) ToHealthCheckTemplatesTagOutputWithContext(ctx context.Context) HealthCheckTemplatesTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HealthCheckTemplatesTagOutput)
+}
+
+// HealthCheckTemplatesTagArrayInput is an input type that accepts HealthCheckTemplatesTagArray and HealthCheckTemplatesTagArrayOutput values.
+// You can construct a concrete instance of `HealthCheckTemplatesTagArrayInput` via:
+//
+//	HealthCheckTemplatesTagArray{ HealthCheckTemplatesTagArgs{...} }
+type HealthCheckTemplatesTagArrayInput interface {
+	pulumi.Input
+
+	ToHealthCheckTemplatesTagArrayOutput() HealthCheckTemplatesTagArrayOutput
+	ToHealthCheckTemplatesTagArrayOutputWithContext(context.Context) HealthCheckTemplatesTagArrayOutput
+}
+
+type HealthCheckTemplatesTagArray []HealthCheckTemplatesTagInput
+
+func (HealthCheckTemplatesTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]HealthCheckTemplatesTag)(nil)).Elem()
+}
+
+func (i HealthCheckTemplatesTagArray) ToHealthCheckTemplatesTagArrayOutput() HealthCheckTemplatesTagArrayOutput {
+	return i.ToHealthCheckTemplatesTagArrayOutputWithContext(context.Background())
+}
+
+func (i HealthCheckTemplatesTagArray) ToHealthCheckTemplatesTagArrayOutputWithContext(ctx context.Context) HealthCheckTemplatesTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HealthCheckTemplatesTagArrayOutput)
+}
+
+type HealthCheckTemplatesTagOutput struct{ *pulumi.OutputState }
+
+func (HealthCheckTemplatesTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*HealthCheckTemplatesTag)(nil)).Elem()
+}
+
+func (o HealthCheckTemplatesTagOutput) ToHealthCheckTemplatesTagOutput() HealthCheckTemplatesTagOutput {
+	return o
+}
+
+func (o HealthCheckTemplatesTagOutput) ToHealthCheckTemplatesTagOutputWithContext(ctx context.Context) HealthCheckTemplatesTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o HealthCheckTemplatesTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v HealthCheckTemplatesTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o HealthCheckTemplatesTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v HealthCheckTemplatesTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type HealthCheckTemplatesTagArrayOutput struct{ *pulumi.OutputState }
+
+func (HealthCheckTemplatesTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]HealthCheckTemplatesTag)(nil)).Elem()
+}
+
+func (o HealthCheckTemplatesTagArrayOutput) ToHealthCheckTemplatesTagArrayOutput() HealthCheckTemplatesTagArrayOutput {
+	return o
+}
+
+func (o HealthCheckTemplatesTagArrayOutput) ToHealthCheckTemplatesTagArrayOutputWithContext(ctx context.Context) HealthCheckTemplatesTagArrayOutput {
+	return o
+}
+
+func (o HealthCheckTemplatesTagArrayOutput) Index(i pulumi.IntInput) HealthCheckTemplatesTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) HealthCheckTemplatesTag {
+		return vs[0].([]HealthCheckTemplatesTag)[vs[1].(int)]
+	}).(HealthCheckTemplatesTagOutput)
+}
+
+type ListenerDomainExtensionType struct {
+	// The server certificate ID used by the domain name. Valid when the certificateSource is `certCenter`.
+	CertCenterCertificateId *string `pulumi:"certCenterCertificateId"`
+	// The server certificate ID used by the domain name. Valid when the certificateSource is `alb`.
+	CertificateId *string `pulumi:"certificateId"`
+	// The source of the certificate. Valid values: `alb`, `certCenter`.
+	CertificateSource *string `pulumi:"certificateSource"`
+	// The domain name.
+	Domain *string `pulumi:"domain"`
+	// The extended domain ID, required only for deletion and modification.
+	DomainExtensionId *string `pulumi:"domainExtensionId"`
+	// The server certificate ID used by the domain name. Valid when the certificate source is `pcaLeaf`.
+	PcaLeafCertificateId *string `pulumi:"pcaLeafCertificateId"`
+}
+
+// ListenerDomainExtensionTypeInput is an input type that accepts ListenerDomainExtensionTypeArgs and ListenerDomainExtensionTypeOutput values.
+// You can construct a concrete instance of `ListenerDomainExtensionTypeInput` via:
+//
+//	ListenerDomainExtensionTypeArgs{...}
+type ListenerDomainExtensionTypeInput interface {
+	pulumi.Input
+
+	ToListenerDomainExtensionTypeOutput() ListenerDomainExtensionTypeOutput
+	ToListenerDomainExtensionTypeOutputWithContext(context.Context) ListenerDomainExtensionTypeOutput
+}
+
+type ListenerDomainExtensionTypeArgs struct {
+	// The server certificate ID used by the domain name. Valid when the certificateSource is `certCenter`.
+	CertCenterCertificateId pulumi.StringPtrInput `pulumi:"certCenterCertificateId"`
+	// The server certificate ID used by the domain name. Valid when the certificateSource is `alb`.
+	CertificateId pulumi.StringPtrInput `pulumi:"certificateId"`
+	// The source of the certificate. Valid values: `alb`, `certCenter`.
+	CertificateSource pulumi.StringPtrInput `pulumi:"certificateSource"`
+	// The domain name.
+	Domain pulumi.StringPtrInput `pulumi:"domain"`
+	// The extended domain ID, required only for deletion and modification.
+	DomainExtensionId pulumi.StringPtrInput `pulumi:"domainExtensionId"`
+	// The server certificate ID used by the domain name. Valid when the certificate source is `pcaLeaf`.
+	PcaLeafCertificateId pulumi.StringPtrInput `pulumi:"pcaLeafCertificateId"`
+}
+
+func (ListenerDomainExtensionTypeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListenerDomainExtensionType)(nil)).Elem()
+}
+
+func (i ListenerDomainExtensionTypeArgs) ToListenerDomainExtensionTypeOutput() ListenerDomainExtensionTypeOutput {
+	return i.ToListenerDomainExtensionTypeOutputWithContext(context.Background())
+}
+
+func (i ListenerDomainExtensionTypeArgs) ToListenerDomainExtensionTypeOutputWithContext(ctx context.Context) ListenerDomainExtensionTypeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListenerDomainExtensionTypeOutput)
+}
+
+// ListenerDomainExtensionTypeArrayInput is an input type that accepts ListenerDomainExtensionTypeArray and ListenerDomainExtensionTypeArrayOutput values.
+// You can construct a concrete instance of `ListenerDomainExtensionTypeArrayInput` via:
+//
+//	ListenerDomainExtensionTypeArray{ ListenerDomainExtensionTypeArgs{...} }
+type ListenerDomainExtensionTypeArrayInput interface {
+	pulumi.Input
+
+	ToListenerDomainExtensionTypeArrayOutput() ListenerDomainExtensionTypeArrayOutput
+	ToListenerDomainExtensionTypeArrayOutputWithContext(context.Context) ListenerDomainExtensionTypeArrayOutput
+}
+
+type ListenerDomainExtensionTypeArray []ListenerDomainExtensionTypeInput
+
+func (ListenerDomainExtensionTypeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ListenerDomainExtensionType)(nil)).Elem()
+}
+
+func (i ListenerDomainExtensionTypeArray) ToListenerDomainExtensionTypeArrayOutput() ListenerDomainExtensionTypeArrayOutput {
+	return i.ToListenerDomainExtensionTypeArrayOutputWithContext(context.Background())
+}
+
+func (i ListenerDomainExtensionTypeArray) ToListenerDomainExtensionTypeArrayOutputWithContext(ctx context.Context) ListenerDomainExtensionTypeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListenerDomainExtensionTypeArrayOutput)
+}
+
+type ListenerDomainExtensionTypeOutput struct{ *pulumi.OutputState }
+
+func (ListenerDomainExtensionTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListenerDomainExtensionType)(nil)).Elem()
+}
+
+func (o ListenerDomainExtensionTypeOutput) ToListenerDomainExtensionTypeOutput() ListenerDomainExtensionTypeOutput {
+	return o
+}
+
+func (o ListenerDomainExtensionTypeOutput) ToListenerDomainExtensionTypeOutputWithContext(ctx context.Context) ListenerDomainExtensionTypeOutput {
+	return o
+}
+
+// The server certificate ID used by the domain name. Valid when the certificateSource is `certCenter`.
+func (o ListenerDomainExtensionTypeOutput) CertCenterCertificateId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListenerDomainExtensionType) *string { return v.CertCenterCertificateId }).(pulumi.StringPtrOutput)
+}
+
+// The server certificate ID used by the domain name. Valid when the certificateSource is `alb`.
+func (o ListenerDomainExtensionTypeOutput) CertificateId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListenerDomainExtensionType) *string { return v.CertificateId }).(pulumi.StringPtrOutput)
+}
+
+// The source of the certificate. Valid values: `alb`, `certCenter`.
+func (o ListenerDomainExtensionTypeOutput) CertificateSource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListenerDomainExtensionType) *string { return v.CertificateSource }).(pulumi.StringPtrOutput)
+}
+
+// The domain name.
+func (o ListenerDomainExtensionTypeOutput) Domain() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListenerDomainExtensionType) *string { return v.Domain }).(pulumi.StringPtrOutput)
+}
+
+// The extended domain ID, required only for deletion and modification.
+func (o ListenerDomainExtensionTypeOutput) DomainExtensionId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListenerDomainExtensionType) *string { return v.DomainExtensionId }).(pulumi.StringPtrOutput)
+}
+
+// The server certificate ID used by the domain name. Valid when the certificate source is `pcaLeaf`.
+func (o ListenerDomainExtensionTypeOutput) PcaLeafCertificateId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListenerDomainExtensionType) *string { return v.PcaLeafCertificateId }).(pulumi.StringPtrOutput)
+}
+
+type ListenerDomainExtensionTypeArrayOutput struct{ *pulumi.OutputState }
+
+func (ListenerDomainExtensionTypeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ListenerDomainExtensionType)(nil)).Elem()
+}
+
+func (o ListenerDomainExtensionTypeArrayOutput) ToListenerDomainExtensionTypeArrayOutput() ListenerDomainExtensionTypeArrayOutput {
+	return o
+}
+
+func (o ListenerDomainExtensionTypeArrayOutput) ToListenerDomainExtensionTypeArrayOutputWithContext(ctx context.Context) ListenerDomainExtensionTypeArrayOutput {
+	return o
+}
+
+func (o ListenerDomainExtensionTypeArrayOutput) Index(i pulumi.IntInput) ListenerDomainExtensionTypeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ListenerDomainExtensionType {
+		return vs[0].([]ListenerDomainExtensionType)[vs[1].(int)]
+	}).(ListenerDomainExtensionTypeOutput)
 }
 
 type ListenerDomainExtensionsDomainExtension struct {
@@ -3892,7 +6205,417 @@ func (o ListenerDomainExtensionsDomainExtensionArrayOutput) Index(i pulumi.IntIn
 	}).(ListenerDomainExtensionsDomainExtensionOutput)
 }
 
+type ListenerHealthsListener struct {
+	// The list of backend server health details.
+	BackendServers []ListenerHealthsListenerBackendServer `pulumi:"backendServers"`
+	// The ID of the listener.
+	ListenerId string `pulumi:"listenerId"`
+	// The status of the listener. Value: Active, Error, NoTarget, Disabled.
+	Status string `pulumi:"status"`
+	// The total count of backend servers under the listener.
+	TotalBackendServerCount int `pulumi:"totalBackendServerCount"`
+	// The count of backend servers with abnormal health check status.
+	UnHealthyCount int `pulumi:"unHealthyCount"`
+}
+
+// ListenerHealthsListenerInput is an input type that accepts ListenerHealthsListenerArgs and ListenerHealthsListenerOutput values.
+// You can construct a concrete instance of `ListenerHealthsListenerInput` via:
+//
+//	ListenerHealthsListenerArgs{...}
+type ListenerHealthsListenerInput interface {
+	pulumi.Input
+
+	ToListenerHealthsListenerOutput() ListenerHealthsListenerOutput
+	ToListenerHealthsListenerOutputWithContext(context.Context) ListenerHealthsListenerOutput
+}
+
+type ListenerHealthsListenerArgs struct {
+	// The list of backend server health details.
+	BackendServers ListenerHealthsListenerBackendServerArrayInput `pulumi:"backendServers"`
+	// The ID of the listener.
+	ListenerId pulumi.StringInput `pulumi:"listenerId"`
+	// The status of the listener. Value: Active, Error, NoTarget, Disabled.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The total count of backend servers under the listener.
+	TotalBackendServerCount pulumi.IntInput `pulumi:"totalBackendServerCount"`
+	// The count of backend servers with abnormal health check status.
+	UnHealthyCount pulumi.IntInput `pulumi:"unHealthyCount"`
+}
+
+func (ListenerHealthsListenerArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListenerHealthsListener)(nil)).Elem()
+}
+
+func (i ListenerHealthsListenerArgs) ToListenerHealthsListenerOutput() ListenerHealthsListenerOutput {
+	return i.ToListenerHealthsListenerOutputWithContext(context.Background())
+}
+
+func (i ListenerHealthsListenerArgs) ToListenerHealthsListenerOutputWithContext(ctx context.Context) ListenerHealthsListenerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListenerHealthsListenerOutput)
+}
+
+// ListenerHealthsListenerArrayInput is an input type that accepts ListenerHealthsListenerArray and ListenerHealthsListenerArrayOutput values.
+// You can construct a concrete instance of `ListenerHealthsListenerArrayInput` via:
+//
+//	ListenerHealthsListenerArray{ ListenerHealthsListenerArgs{...} }
+type ListenerHealthsListenerArrayInput interface {
+	pulumi.Input
+
+	ToListenerHealthsListenerArrayOutput() ListenerHealthsListenerArrayOutput
+	ToListenerHealthsListenerArrayOutputWithContext(context.Context) ListenerHealthsListenerArrayOutput
+}
+
+type ListenerHealthsListenerArray []ListenerHealthsListenerInput
+
+func (ListenerHealthsListenerArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ListenerHealthsListener)(nil)).Elem()
+}
+
+func (i ListenerHealthsListenerArray) ToListenerHealthsListenerArrayOutput() ListenerHealthsListenerArrayOutput {
+	return i.ToListenerHealthsListenerArrayOutputWithContext(context.Background())
+}
+
+func (i ListenerHealthsListenerArray) ToListenerHealthsListenerArrayOutputWithContext(ctx context.Context) ListenerHealthsListenerArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListenerHealthsListenerArrayOutput)
+}
+
+type ListenerHealthsListenerOutput struct{ *pulumi.OutputState }
+
+func (ListenerHealthsListenerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListenerHealthsListener)(nil)).Elem()
+}
+
+func (o ListenerHealthsListenerOutput) ToListenerHealthsListenerOutput() ListenerHealthsListenerOutput {
+	return o
+}
+
+func (o ListenerHealthsListenerOutput) ToListenerHealthsListenerOutputWithContext(ctx context.Context) ListenerHealthsListenerOutput {
+	return o
+}
+
+// The list of backend server health details.
+func (o ListenerHealthsListenerOutput) BackendServers() ListenerHealthsListenerBackendServerArrayOutput {
+	return o.ApplyT(func(v ListenerHealthsListener) []ListenerHealthsListenerBackendServer { return v.BackendServers }).(ListenerHealthsListenerBackendServerArrayOutput)
+}
+
+// The ID of the listener.
+func (o ListenerHealthsListenerOutput) ListenerId() pulumi.StringOutput {
+	return o.ApplyT(func(v ListenerHealthsListener) string { return v.ListenerId }).(pulumi.StringOutput)
+}
+
+// The status of the listener. Value: Active, Error, NoTarget, Disabled.
+func (o ListenerHealthsListenerOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v ListenerHealthsListener) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The total count of backend servers under the listener.
+func (o ListenerHealthsListenerOutput) TotalBackendServerCount() pulumi.IntOutput {
+	return o.ApplyT(func(v ListenerHealthsListener) int { return v.TotalBackendServerCount }).(pulumi.IntOutput)
+}
+
+// The count of backend servers with abnormal health check status.
+func (o ListenerHealthsListenerOutput) UnHealthyCount() pulumi.IntOutput {
+	return o.ApplyT(func(v ListenerHealthsListener) int { return v.UnHealthyCount }).(pulumi.IntOutput)
+}
+
+type ListenerHealthsListenerArrayOutput struct{ *pulumi.OutputState }
+
+func (ListenerHealthsListenerArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ListenerHealthsListener)(nil)).Elem()
+}
+
+func (o ListenerHealthsListenerArrayOutput) ToListenerHealthsListenerArrayOutput() ListenerHealthsListenerArrayOutput {
+	return o
+}
+
+func (o ListenerHealthsListenerArrayOutput) ToListenerHealthsListenerArrayOutputWithContext(ctx context.Context) ListenerHealthsListenerArrayOutput {
+	return o
+}
+
+func (o ListenerHealthsListenerArrayOutput) Index(i pulumi.IntInput) ListenerHealthsListenerOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ListenerHealthsListener {
+		return vs[0].([]ListenerHealthsListener)[vs[1].(int)]
+	}).(ListenerHealthsListenerOutput)
+}
+
+type ListenerHealthsListenerBackendServer struct {
+	// The ID of the ECS instance or ENI.
+	InstanceId string `pulumi:"instanceId"`
+	// The IP address of the backend server.
+	Ip string `pulumi:"ip"`
+	// The port of the backend server.
+	Port int `pulumi:"port"`
+	// The number of forwarding rules associated with the backend server.
+	RuleNumber int `pulumi:"ruleNumber"`
+	// The ID of the backend server group.
+	ServerGroupId string `pulumi:"serverGroupId"`
+	// The name of the backend server group.
+	ServerGroupName string `pulumi:"serverGroupName"`
+	// The ID of the backend server.
+	ServerId string `pulumi:"serverId"`
+	// The health status of the backend server. Value: Up, Down.
+	Status string `pulumi:"status"`
+	// The type of backend server. Value: ecs, eni.
+	Type string `pulumi:"type"`
+}
+
+// ListenerHealthsListenerBackendServerInput is an input type that accepts ListenerHealthsListenerBackendServerArgs and ListenerHealthsListenerBackendServerOutput values.
+// You can construct a concrete instance of `ListenerHealthsListenerBackendServerInput` via:
+//
+//	ListenerHealthsListenerBackendServerArgs{...}
+type ListenerHealthsListenerBackendServerInput interface {
+	pulumi.Input
+
+	ToListenerHealthsListenerBackendServerOutput() ListenerHealthsListenerBackendServerOutput
+	ToListenerHealthsListenerBackendServerOutputWithContext(context.Context) ListenerHealthsListenerBackendServerOutput
+}
+
+type ListenerHealthsListenerBackendServerArgs struct {
+	// The ID of the ECS instance or ENI.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// The IP address of the backend server.
+	Ip pulumi.StringInput `pulumi:"ip"`
+	// The port of the backend server.
+	Port pulumi.IntInput `pulumi:"port"`
+	// The number of forwarding rules associated with the backend server.
+	RuleNumber pulumi.IntInput `pulumi:"ruleNumber"`
+	// The ID of the backend server group.
+	ServerGroupId pulumi.StringInput `pulumi:"serverGroupId"`
+	// The name of the backend server group.
+	ServerGroupName pulumi.StringInput `pulumi:"serverGroupName"`
+	// The ID of the backend server.
+	ServerId pulumi.StringInput `pulumi:"serverId"`
+	// The health status of the backend server. Value: Up, Down.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The type of backend server. Value: ecs, eni.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (ListenerHealthsListenerBackendServerArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListenerHealthsListenerBackendServer)(nil)).Elem()
+}
+
+func (i ListenerHealthsListenerBackendServerArgs) ToListenerHealthsListenerBackendServerOutput() ListenerHealthsListenerBackendServerOutput {
+	return i.ToListenerHealthsListenerBackendServerOutputWithContext(context.Background())
+}
+
+func (i ListenerHealthsListenerBackendServerArgs) ToListenerHealthsListenerBackendServerOutputWithContext(ctx context.Context) ListenerHealthsListenerBackendServerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListenerHealthsListenerBackendServerOutput)
+}
+
+// ListenerHealthsListenerBackendServerArrayInput is an input type that accepts ListenerHealthsListenerBackendServerArray and ListenerHealthsListenerBackendServerArrayOutput values.
+// You can construct a concrete instance of `ListenerHealthsListenerBackendServerArrayInput` via:
+//
+//	ListenerHealthsListenerBackendServerArray{ ListenerHealthsListenerBackendServerArgs{...} }
+type ListenerHealthsListenerBackendServerArrayInput interface {
+	pulumi.Input
+
+	ToListenerHealthsListenerBackendServerArrayOutput() ListenerHealthsListenerBackendServerArrayOutput
+	ToListenerHealthsListenerBackendServerArrayOutputWithContext(context.Context) ListenerHealthsListenerBackendServerArrayOutput
+}
+
+type ListenerHealthsListenerBackendServerArray []ListenerHealthsListenerBackendServerInput
+
+func (ListenerHealthsListenerBackendServerArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ListenerHealthsListenerBackendServer)(nil)).Elem()
+}
+
+func (i ListenerHealthsListenerBackendServerArray) ToListenerHealthsListenerBackendServerArrayOutput() ListenerHealthsListenerBackendServerArrayOutput {
+	return i.ToListenerHealthsListenerBackendServerArrayOutputWithContext(context.Background())
+}
+
+func (i ListenerHealthsListenerBackendServerArray) ToListenerHealthsListenerBackendServerArrayOutputWithContext(ctx context.Context) ListenerHealthsListenerBackendServerArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListenerHealthsListenerBackendServerArrayOutput)
+}
+
+type ListenerHealthsListenerBackendServerOutput struct{ *pulumi.OutputState }
+
+func (ListenerHealthsListenerBackendServerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListenerHealthsListenerBackendServer)(nil)).Elem()
+}
+
+func (o ListenerHealthsListenerBackendServerOutput) ToListenerHealthsListenerBackendServerOutput() ListenerHealthsListenerBackendServerOutput {
+	return o
+}
+
+func (o ListenerHealthsListenerBackendServerOutput) ToListenerHealthsListenerBackendServerOutputWithContext(ctx context.Context) ListenerHealthsListenerBackendServerOutput {
+	return o
+}
+
+// The ID of the ECS instance or ENI.
+func (o ListenerHealthsListenerBackendServerOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v ListenerHealthsListenerBackendServer) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// The IP address of the backend server.
+func (o ListenerHealthsListenerBackendServerOutput) Ip() pulumi.StringOutput {
+	return o.ApplyT(func(v ListenerHealthsListenerBackendServer) string { return v.Ip }).(pulumi.StringOutput)
+}
+
+// The port of the backend server.
+func (o ListenerHealthsListenerBackendServerOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v ListenerHealthsListenerBackendServer) int { return v.Port }).(pulumi.IntOutput)
+}
+
+// The number of forwarding rules associated with the backend server.
+func (o ListenerHealthsListenerBackendServerOutput) RuleNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v ListenerHealthsListenerBackendServer) int { return v.RuleNumber }).(pulumi.IntOutput)
+}
+
+// The ID of the backend server group.
+func (o ListenerHealthsListenerBackendServerOutput) ServerGroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v ListenerHealthsListenerBackendServer) string { return v.ServerGroupId }).(pulumi.StringOutput)
+}
+
+// The name of the backend server group.
+func (o ListenerHealthsListenerBackendServerOutput) ServerGroupName() pulumi.StringOutput {
+	return o.ApplyT(func(v ListenerHealthsListenerBackendServer) string { return v.ServerGroupName }).(pulumi.StringOutput)
+}
+
+// The ID of the backend server.
+func (o ListenerHealthsListenerBackendServerOutput) ServerId() pulumi.StringOutput {
+	return o.ApplyT(func(v ListenerHealthsListenerBackendServer) string { return v.ServerId }).(pulumi.StringOutput)
+}
+
+// The health status of the backend server. Value: Up, Down.
+func (o ListenerHealthsListenerBackendServerOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v ListenerHealthsListenerBackendServer) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The type of backend server. Value: ecs, eni.
+func (o ListenerHealthsListenerBackendServerOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v ListenerHealthsListenerBackendServer) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type ListenerHealthsListenerBackendServerArrayOutput struct{ *pulumi.OutputState }
+
+func (ListenerHealthsListenerBackendServerArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ListenerHealthsListenerBackendServer)(nil)).Elem()
+}
+
+func (o ListenerHealthsListenerBackendServerArrayOutput) ToListenerHealthsListenerBackendServerArrayOutput() ListenerHealthsListenerBackendServerArrayOutput {
+	return o
+}
+
+func (o ListenerHealthsListenerBackendServerArrayOutput) ToListenerHealthsListenerBackendServerArrayOutputWithContext(ctx context.Context) ListenerHealthsListenerBackendServerArrayOutput {
+	return o
+}
+
+func (o ListenerHealthsListenerBackendServerArrayOutput) Index(i pulumi.IntInput) ListenerHealthsListenerBackendServerOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ListenerHealthsListenerBackendServer {
+		return vs[0].([]ListenerHealthsListenerBackendServer)[vs[1].(int)]
+	}).(ListenerHealthsListenerBackendServerOutput)
+}
+
+type ListenerTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// ListenerTagInput is an input type that accepts ListenerTagArgs and ListenerTagOutput values.
+// You can construct a concrete instance of `ListenerTagInput` via:
+//
+//	ListenerTagArgs{...}
+type ListenerTagInput interface {
+	pulumi.Input
+
+	ToListenerTagOutput() ListenerTagOutput
+	ToListenerTagOutputWithContext(context.Context) ListenerTagOutput
+}
+
+type ListenerTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (ListenerTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListenerTag)(nil)).Elem()
+}
+
+func (i ListenerTagArgs) ToListenerTagOutput() ListenerTagOutput {
+	return i.ToListenerTagOutputWithContext(context.Background())
+}
+
+func (i ListenerTagArgs) ToListenerTagOutputWithContext(ctx context.Context) ListenerTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListenerTagOutput)
+}
+
+// ListenerTagArrayInput is an input type that accepts ListenerTagArray and ListenerTagArrayOutput values.
+// You can construct a concrete instance of `ListenerTagArrayInput` via:
+//
+//	ListenerTagArray{ ListenerTagArgs{...} }
+type ListenerTagArrayInput interface {
+	pulumi.Input
+
+	ToListenerTagArrayOutput() ListenerTagArrayOutput
+	ToListenerTagArrayOutputWithContext(context.Context) ListenerTagArrayOutput
+}
+
+type ListenerTagArray []ListenerTagInput
+
+func (ListenerTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ListenerTag)(nil)).Elem()
+}
+
+func (i ListenerTagArray) ToListenerTagArrayOutput() ListenerTagArrayOutput {
+	return i.ToListenerTagArrayOutputWithContext(context.Background())
+}
+
+func (i ListenerTagArray) ToListenerTagArrayOutputWithContext(ctx context.Context) ListenerTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListenerTagArrayOutput)
+}
+
+type ListenerTagOutput struct{ *pulumi.OutputState }
+
+func (ListenerTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListenerTag)(nil)).Elem()
+}
+
+func (o ListenerTagOutput) ToListenerTagOutput() ListenerTagOutput {
+	return o
+}
+
+func (o ListenerTagOutput) ToListenerTagOutputWithContext(ctx context.Context) ListenerTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o ListenerTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v ListenerTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o ListenerTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v ListenerTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type ListenerTagArrayOutput struct{ *pulumi.OutputState }
+
+func (ListenerTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ListenerTag)(nil)).Elem()
+}
+
+func (o ListenerTagArrayOutput) ToListenerTagArrayOutput() ListenerTagArrayOutput {
+	return o
+}
+
+func (o ListenerTagArrayOutput) ToListenerTagArrayOutputWithContext(ctx context.Context) ListenerTagArrayOutput {
+	return o
+}
+
+func (o ListenerTagArrayOutput) Index(i pulumi.IntInput) ListenerTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ListenerTag {
+		return vs[0].([]ListenerTag)[vs[1].(int)]
+	}).(ListenerTagOutput)
+}
+
 type ListenersListener struct {
+	// Whether the listener has enabled the "Log custom headers in the access log" feature.
+	AccessLogRecordCustomizedHeadersEnabled string `pulumi:"accessLogRecordCustomizedHeadersEnabled"`
 	// The ID of the access control policy group bound to the listener, only returned when the AclStatus parameter is on.
 	AclIds []string `pulumi:"aclIds"`
 	// Whether to enable the access control function,valid value is on or off.
@@ -3901,7 +6624,9 @@ type ListenersListener struct {
 	AclType string `pulumi:"aclType"`
 	// CA certificate ID associated with HTTPS listener.
 	CaCertificateId string `pulumi:"caCertificateId"`
-	// The certificate id associated with the listener. Source is `certCenter`.
+	// The source of the CA certificate associated with the HTTPS listener.
+	CaCertificateSource string `pulumi:"caCertificateSource"`
+	// The server certificate ID used by the domain name. It takes effect when the certificate source is cert_center.
 	CertCenterCertificateId string `pulumi:"certCenterCertificateId"`
 	// The server certificate ID that domain used.
 	CertificateId string `pulumi:"certificateId"`
@@ -3929,6 +6654,12 @@ type ListenersListener struct {
 	ListenerName string `pulumi:"listenerName"`
 	// The id of the Alb.
 	LoadBalancerId string `pulumi:"loadBalancerId"`
+	// The certificate ID associated with the HTTPS listener. Effective when the certificate source is pca_leaf.
+	PcaLeafCertificateId string `pulumi:"pcaLeafCertificateId"`
+	// The CA certificate ID associated with the HTTPS listener. It takes effect when the certificate source is pca_root.
+	PcaRootCaCertificateId string `pulumi:"pcaRootCaCertificateId"`
+	// The CA certificate ID associated with the HTTPS listener. Effective when the certificate source is pca_sub.
+	PcaSubCaCertificateId string `pulumi:"pcaSubCaCertificateId"`
 	// The port receiving request of the Listener.
 	Port int `pulumi:"port"`
 	// The project name of the listener.
@@ -3941,6 +6672,8 @@ type ListenersListener struct {
 	ServerGroups []ListenersListenerServerGroup `pulumi:"serverGroups"`
 	// The status of the Listener.
 	Status string `pulumi:"status"`
+	// Tags.
+	Tags []ListenersListenerTag `pulumi:"tags"`
 	// The update time of the Listener.
 	UpdateTime string `pulumi:"updateTime"`
 }
@@ -3957,6 +6690,8 @@ type ListenersListenerInput interface {
 }
 
 type ListenersListenerArgs struct {
+	// Whether the listener has enabled the "Log custom headers in the access log" feature.
+	AccessLogRecordCustomizedHeadersEnabled pulumi.StringInput `pulumi:"accessLogRecordCustomizedHeadersEnabled"`
 	// The ID of the access control policy group bound to the listener, only returned when the AclStatus parameter is on.
 	AclIds pulumi.StringArrayInput `pulumi:"aclIds"`
 	// Whether to enable the access control function,valid value is on or off.
@@ -3965,7 +6700,9 @@ type ListenersListenerArgs struct {
 	AclType pulumi.StringInput `pulumi:"aclType"`
 	// CA certificate ID associated with HTTPS listener.
 	CaCertificateId pulumi.StringInput `pulumi:"caCertificateId"`
-	// The certificate id associated with the listener. Source is `certCenter`.
+	// The source of the CA certificate associated with the HTTPS listener.
+	CaCertificateSource pulumi.StringInput `pulumi:"caCertificateSource"`
+	// The server certificate ID used by the domain name. It takes effect when the certificate source is cert_center.
 	CertCenterCertificateId pulumi.StringInput `pulumi:"certCenterCertificateId"`
 	// The server certificate ID that domain used.
 	CertificateId pulumi.StringInput `pulumi:"certificateId"`
@@ -3993,6 +6730,12 @@ type ListenersListenerArgs struct {
 	ListenerName pulumi.StringInput `pulumi:"listenerName"`
 	// The id of the Alb.
 	LoadBalancerId pulumi.StringInput `pulumi:"loadBalancerId"`
+	// The certificate ID associated with the HTTPS listener. Effective when the certificate source is pca_leaf.
+	PcaLeafCertificateId pulumi.StringInput `pulumi:"pcaLeafCertificateId"`
+	// The CA certificate ID associated with the HTTPS listener. It takes effect when the certificate source is pca_root.
+	PcaRootCaCertificateId pulumi.StringInput `pulumi:"pcaRootCaCertificateId"`
+	// The CA certificate ID associated with the HTTPS listener. Effective when the certificate source is pca_sub.
+	PcaSubCaCertificateId pulumi.StringInput `pulumi:"pcaSubCaCertificateId"`
 	// The port receiving request of the Listener.
 	Port pulumi.IntInput `pulumi:"port"`
 	// The project name of the listener.
@@ -4005,6 +6748,8 @@ type ListenersListenerArgs struct {
 	ServerGroups ListenersListenerServerGroupArrayInput `pulumi:"serverGroups"`
 	// The status of the Listener.
 	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags ListenersListenerTagArrayInput `pulumi:"tags"`
 	// The update time of the Listener.
 	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
 }
@@ -4060,6 +6805,11 @@ func (o ListenersListenerOutput) ToListenersListenerOutputWithContext(ctx contex
 	return o
 }
 
+// Whether the listener has enabled the "Log custom headers in the access log" feature.
+func (o ListenersListenerOutput) AccessLogRecordCustomizedHeadersEnabled() pulumi.StringOutput {
+	return o.ApplyT(func(v ListenersListener) string { return v.AccessLogRecordCustomizedHeadersEnabled }).(pulumi.StringOutput)
+}
+
 // The ID of the access control policy group bound to the listener, only returned when the AclStatus parameter is on.
 func (o ListenersListenerOutput) AclIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ListenersListener) []string { return v.AclIds }).(pulumi.StringArrayOutput)
@@ -4080,7 +6830,12 @@ func (o ListenersListenerOutput) CaCertificateId() pulumi.StringOutput {
 	return o.ApplyT(func(v ListenersListener) string { return v.CaCertificateId }).(pulumi.StringOutput)
 }
 
-// The certificate id associated with the listener. Source is `certCenter`.
+// The source of the CA certificate associated with the HTTPS listener.
+func (o ListenersListenerOutput) CaCertificateSource() pulumi.StringOutput {
+	return o.ApplyT(func(v ListenersListener) string { return v.CaCertificateSource }).(pulumi.StringOutput)
+}
+
+// The server certificate ID used by the domain name. It takes effect when the certificate source is cert_center.
 func (o ListenersListenerOutput) CertCenterCertificateId() pulumi.StringOutput {
 	return o.ApplyT(func(v ListenersListener) string { return v.CertCenterCertificateId }).(pulumi.StringOutput)
 }
@@ -4150,6 +6905,21 @@ func (o ListenersListenerOutput) LoadBalancerId() pulumi.StringOutput {
 	return o.ApplyT(func(v ListenersListener) string { return v.LoadBalancerId }).(pulumi.StringOutput)
 }
 
+// The certificate ID associated with the HTTPS listener. Effective when the certificate source is pca_leaf.
+func (o ListenersListenerOutput) PcaLeafCertificateId() pulumi.StringOutput {
+	return o.ApplyT(func(v ListenersListener) string { return v.PcaLeafCertificateId }).(pulumi.StringOutput)
+}
+
+// The CA certificate ID associated with the HTTPS listener. It takes effect when the certificate source is pca_root.
+func (o ListenersListenerOutput) PcaRootCaCertificateId() pulumi.StringOutput {
+	return o.ApplyT(func(v ListenersListener) string { return v.PcaRootCaCertificateId }).(pulumi.StringOutput)
+}
+
+// The CA certificate ID associated with the HTTPS listener. Effective when the certificate source is pca_sub.
+func (o ListenersListenerOutput) PcaSubCaCertificateId() pulumi.StringOutput {
+	return o.ApplyT(func(v ListenersListener) string { return v.PcaSubCaCertificateId }).(pulumi.StringOutput)
+}
+
 // The port receiving request of the Listener.
 func (o ListenersListenerOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v ListenersListener) int { return v.Port }).(pulumi.IntOutput)
@@ -4180,6 +6950,11 @@ func (o ListenersListenerOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v ListenersListener) string { return v.Status }).(pulumi.StringOutput)
 }
 
+// Tags.
+func (o ListenersListenerOutput) Tags() ListenersListenerTagArrayOutput {
+	return o.ApplyT(func(v ListenersListener) []ListenersListenerTag { return v.Tags }).(ListenersListenerTagArrayOutput)
+}
+
 // The update time of the Listener.
 func (o ListenersListenerOutput) UpdateTime() pulumi.StringOutput {
 	return o.ApplyT(func(v ListenersListener) string { return v.UpdateTime }).(pulumi.StringOutput)
@@ -4206,14 +6981,22 @@ func (o ListenersListenerArrayOutput) Index(i pulumi.IntInput) ListenersListener
 }
 
 type ListenersListenerDomainExtension struct {
+	// The server certificate ID used by the domain name. It takes effect when the certificate source is cert_center.
+	CertCenterCertificateId string `pulumi:"certCenterCertificateId"`
 	// The server certificate ID that domain used.
 	CertificateId string `pulumi:"certificateId"`
+	// The source of the certificate.
+	CertificateSource string `pulumi:"certificateSource"`
 	// The domain.
 	Domain string `pulumi:"domain"`
 	// The extension domain ID.
 	DomainExtensionId string `pulumi:"domainExtensionId"`
 	// The ID of the Listener.
 	ListenerId string `pulumi:"listenerId"`
+	// The certificate ID associated with the HTTPS listener. Effective when the certificate source is pca_leaf.
+	PcaLeafCertificateId string `pulumi:"pcaLeafCertificateId"`
+	// The CommonName, extended domain names, and IPs of the certificate are separated by ','.
+	San string `pulumi:"san"`
 }
 
 // ListenersListenerDomainExtensionInput is an input type that accepts ListenersListenerDomainExtensionArgs and ListenersListenerDomainExtensionOutput values.
@@ -4228,14 +7011,22 @@ type ListenersListenerDomainExtensionInput interface {
 }
 
 type ListenersListenerDomainExtensionArgs struct {
+	// The server certificate ID used by the domain name. It takes effect when the certificate source is cert_center.
+	CertCenterCertificateId pulumi.StringInput `pulumi:"certCenterCertificateId"`
 	// The server certificate ID that domain used.
 	CertificateId pulumi.StringInput `pulumi:"certificateId"`
+	// The source of the certificate.
+	CertificateSource pulumi.StringInput `pulumi:"certificateSource"`
 	// The domain.
 	Domain pulumi.StringInput `pulumi:"domain"`
 	// The extension domain ID.
 	DomainExtensionId pulumi.StringInput `pulumi:"domainExtensionId"`
 	// The ID of the Listener.
 	ListenerId pulumi.StringInput `pulumi:"listenerId"`
+	// The certificate ID associated with the HTTPS listener. Effective when the certificate source is pca_leaf.
+	PcaLeafCertificateId pulumi.StringInput `pulumi:"pcaLeafCertificateId"`
+	// The CommonName, extended domain names, and IPs of the certificate are separated by ','.
+	San pulumi.StringInput `pulumi:"san"`
 }
 
 func (ListenersListenerDomainExtensionArgs) ElementType() reflect.Type {
@@ -4289,9 +7080,19 @@ func (o ListenersListenerDomainExtensionOutput) ToListenersListenerDomainExtensi
 	return o
 }
 
+// The server certificate ID used by the domain name. It takes effect when the certificate source is cert_center.
+func (o ListenersListenerDomainExtensionOutput) CertCenterCertificateId() pulumi.StringOutput {
+	return o.ApplyT(func(v ListenersListenerDomainExtension) string { return v.CertCenterCertificateId }).(pulumi.StringOutput)
+}
+
 // The server certificate ID that domain used.
 func (o ListenersListenerDomainExtensionOutput) CertificateId() pulumi.StringOutput {
 	return o.ApplyT(func(v ListenersListenerDomainExtension) string { return v.CertificateId }).(pulumi.StringOutput)
+}
+
+// The source of the certificate.
+func (o ListenersListenerDomainExtensionOutput) CertificateSource() pulumi.StringOutput {
+	return o.ApplyT(func(v ListenersListenerDomainExtension) string { return v.CertificateSource }).(pulumi.StringOutput)
 }
 
 // The domain.
@@ -4307,6 +7108,16 @@ func (o ListenersListenerDomainExtensionOutput) DomainExtensionId() pulumi.Strin
 // The ID of the Listener.
 func (o ListenersListenerDomainExtensionOutput) ListenerId() pulumi.StringOutput {
 	return o.ApplyT(func(v ListenersListenerDomainExtension) string { return v.ListenerId }).(pulumi.StringOutput)
+}
+
+// The certificate ID associated with the HTTPS listener. Effective when the certificate source is pca_leaf.
+func (o ListenersListenerDomainExtensionOutput) PcaLeafCertificateId() pulumi.StringOutput {
+	return o.ApplyT(func(v ListenersListenerDomainExtension) string { return v.PcaLeafCertificateId }).(pulumi.StringOutput)
+}
+
+// The CommonName, extended domain names, and IPs of the certificate are separated by ','.
+func (o ListenersListenerDomainExtensionOutput) San() pulumi.StringOutput {
+	return o.ApplyT(func(v ListenersListenerDomainExtension) string { return v.San }).(pulumi.StringOutput)
 }
 
 type ListenersListenerDomainExtensionArrayOutput struct{ *pulumi.OutputState }
@@ -4433,6 +7244,218 @@ func (o ListenersListenerServerGroupArrayOutput) Index(i pulumi.IntInput) Listen
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ListenersListenerServerGroup {
 		return vs[0].([]ListenersListenerServerGroup)[vs[1].(int)]
 	}).(ListenersListenerServerGroupOutput)
+}
+
+type ListenersListenerTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// ListenersListenerTagInput is an input type that accepts ListenersListenerTagArgs and ListenersListenerTagOutput values.
+// You can construct a concrete instance of `ListenersListenerTagInput` via:
+//
+//	ListenersListenerTagArgs{...}
+type ListenersListenerTagInput interface {
+	pulumi.Input
+
+	ToListenersListenerTagOutput() ListenersListenerTagOutput
+	ToListenersListenerTagOutputWithContext(context.Context) ListenersListenerTagOutput
+}
+
+type ListenersListenerTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (ListenersListenerTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListenersListenerTag)(nil)).Elem()
+}
+
+func (i ListenersListenerTagArgs) ToListenersListenerTagOutput() ListenersListenerTagOutput {
+	return i.ToListenersListenerTagOutputWithContext(context.Background())
+}
+
+func (i ListenersListenerTagArgs) ToListenersListenerTagOutputWithContext(ctx context.Context) ListenersListenerTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListenersListenerTagOutput)
+}
+
+// ListenersListenerTagArrayInput is an input type that accepts ListenersListenerTagArray and ListenersListenerTagArrayOutput values.
+// You can construct a concrete instance of `ListenersListenerTagArrayInput` via:
+//
+//	ListenersListenerTagArray{ ListenersListenerTagArgs{...} }
+type ListenersListenerTagArrayInput interface {
+	pulumi.Input
+
+	ToListenersListenerTagArrayOutput() ListenersListenerTagArrayOutput
+	ToListenersListenerTagArrayOutputWithContext(context.Context) ListenersListenerTagArrayOutput
+}
+
+type ListenersListenerTagArray []ListenersListenerTagInput
+
+func (ListenersListenerTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ListenersListenerTag)(nil)).Elem()
+}
+
+func (i ListenersListenerTagArray) ToListenersListenerTagArrayOutput() ListenersListenerTagArrayOutput {
+	return i.ToListenersListenerTagArrayOutputWithContext(context.Background())
+}
+
+func (i ListenersListenerTagArray) ToListenersListenerTagArrayOutputWithContext(ctx context.Context) ListenersListenerTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListenersListenerTagArrayOutput)
+}
+
+type ListenersListenerTagOutput struct{ *pulumi.OutputState }
+
+func (ListenersListenerTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListenersListenerTag)(nil)).Elem()
+}
+
+func (o ListenersListenerTagOutput) ToListenersListenerTagOutput() ListenersListenerTagOutput {
+	return o
+}
+
+func (o ListenersListenerTagOutput) ToListenersListenerTagOutputWithContext(ctx context.Context) ListenersListenerTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o ListenersListenerTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v ListenersListenerTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o ListenersListenerTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v ListenersListenerTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type ListenersListenerTagArrayOutput struct{ *pulumi.OutputState }
+
+func (ListenersListenerTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ListenersListenerTag)(nil)).Elem()
+}
+
+func (o ListenersListenerTagArrayOutput) ToListenersListenerTagArrayOutput() ListenersListenerTagArrayOutput {
+	return o
+}
+
+func (o ListenersListenerTagArrayOutput) ToListenersListenerTagArrayOutputWithContext(ctx context.Context) ListenersListenerTagArrayOutput {
+	return o
+}
+
+func (o ListenersListenerTagArrayOutput) Index(i pulumi.IntInput) ListenersListenerTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ListenersListenerTag {
+		return vs[0].([]ListenersListenerTag)[vs[1].(int)]
+	}).(ListenersListenerTagOutput)
+}
+
+type ListenersTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// ListenersTagInput is an input type that accepts ListenersTagArgs and ListenersTagOutput values.
+// You can construct a concrete instance of `ListenersTagInput` via:
+//
+//	ListenersTagArgs{...}
+type ListenersTagInput interface {
+	pulumi.Input
+
+	ToListenersTagOutput() ListenersTagOutput
+	ToListenersTagOutputWithContext(context.Context) ListenersTagOutput
+}
+
+type ListenersTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (ListenersTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListenersTag)(nil)).Elem()
+}
+
+func (i ListenersTagArgs) ToListenersTagOutput() ListenersTagOutput {
+	return i.ToListenersTagOutputWithContext(context.Background())
+}
+
+func (i ListenersTagArgs) ToListenersTagOutputWithContext(ctx context.Context) ListenersTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListenersTagOutput)
+}
+
+// ListenersTagArrayInput is an input type that accepts ListenersTagArray and ListenersTagArrayOutput values.
+// You can construct a concrete instance of `ListenersTagArrayInput` via:
+//
+//	ListenersTagArray{ ListenersTagArgs{...} }
+type ListenersTagArrayInput interface {
+	pulumi.Input
+
+	ToListenersTagArrayOutput() ListenersTagArrayOutput
+	ToListenersTagArrayOutputWithContext(context.Context) ListenersTagArrayOutput
+}
+
+type ListenersTagArray []ListenersTagInput
+
+func (ListenersTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ListenersTag)(nil)).Elem()
+}
+
+func (i ListenersTagArray) ToListenersTagArrayOutput() ListenersTagArrayOutput {
+	return i.ToListenersTagArrayOutputWithContext(context.Background())
+}
+
+func (i ListenersTagArray) ToListenersTagArrayOutputWithContext(ctx context.Context) ListenersTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListenersTagArrayOutput)
+}
+
+type ListenersTagOutput struct{ *pulumi.OutputState }
+
+func (ListenersTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListenersTag)(nil)).Elem()
+}
+
+func (o ListenersTagOutput) ToListenersTagOutput() ListenersTagOutput {
+	return o
+}
+
+func (o ListenersTagOutput) ToListenersTagOutputWithContext(ctx context.Context) ListenersTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o ListenersTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v ListenersTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o ListenersTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v ListenersTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type ListenersTagArrayOutput struct{ *pulumi.OutputState }
+
+func (ListenersTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ListenersTag)(nil)).Elem()
+}
+
+func (o ListenersTagArrayOutput) ToListenersTagArrayOutput() ListenersTagArrayOutput {
+	return o
+}
+
+func (o ListenersTagArrayOutput) ToListenersTagArrayOutputWithContext(ctx context.Context) ListenersTagArrayOutput {
+	return o
+}
+
+func (o ListenersTagArrayOutput) Index(i pulumi.IntInput) ListenersTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ListenersTag {
+		return vs[0].([]ListenersTag)[vs[1].(int)]
+	}).(ListenersTagOutput)
 }
 
 type RuleRedirectConfig struct {
@@ -4785,16 +7808,2323 @@ func (o RuleRewriteConfigPtrOutput) RewritePath() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type RuleRuleAction struct {
+	// Fixed response configuration for fixed response type rule.
+	FixedResponseConfig *RuleRuleActionFixedResponseConfig `pulumi:"fixedResponseConfig"`
+	// Forward group configuration for ForwardGroup type action.
+	ForwardGroupConfig *RuleRuleActionForwardGroupConfig `pulumi:"forwardGroupConfig"`
+	// Redirect configuration for Redirect type action.
+	RedirectConfig *RuleRuleActionRedirectConfig `pulumi:"redirectConfig"`
+	// Rewrite configuration for Rewrite type action.
+	RewriteConfig *RuleRuleActionRewriteConfig `pulumi:"rewriteConfig"`
+	// Traffic limit configuration for TrafficLimit type action.
+	TrafficLimitConfig *RuleRuleActionTrafficLimitConfig `pulumi:"trafficLimitConfig"`
+	// The type of rule action. Valid values: ForwardGroup, Redirect, Rewrite, TrafficLimit.
+	Type *string `pulumi:"type"`
+}
+
+// RuleRuleActionInput is an input type that accepts RuleRuleActionArgs and RuleRuleActionOutput values.
+// You can construct a concrete instance of `RuleRuleActionInput` via:
+//
+//	RuleRuleActionArgs{...}
+type RuleRuleActionInput interface {
+	pulumi.Input
+
+	ToRuleRuleActionOutput() RuleRuleActionOutput
+	ToRuleRuleActionOutputWithContext(context.Context) RuleRuleActionOutput
+}
+
+type RuleRuleActionArgs struct {
+	// Fixed response configuration for fixed response type rule.
+	FixedResponseConfig RuleRuleActionFixedResponseConfigPtrInput `pulumi:"fixedResponseConfig"`
+	// Forward group configuration for ForwardGroup type action.
+	ForwardGroupConfig RuleRuleActionForwardGroupConfigPtrInput `pulumi:"forwardGroupConfig"`
+	// Redirect configuration for Redirect type action.
+	RedirectConfig RuleRuleActionRedirectConfigPtrInput `pulumi:"redirectConfig"`
+	// Rewrite configuration for Rewrite type action.
+	RewriteConfig RuleRuleActionRewriteConfigPtrInput `pulumi:"rewriteConfig"`
+	// Traffic limit configuration for TrafficLimit type action.
+	TrafficLimitConfig RuleRuleActionTrafficLimitConfigPtrInput `pulumi:"trafficLimitConfig"`
+	// The type of rule action. Valid values: ForwardGroup, Redirect, Rewrite, TrafficLimit.
+	Type pulumi.StringPtrInput `pulumi:"type"`
+}
+
+func (RuleRuleActionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleRuleAction)(nil)).Elem()
+}
+
+func (i RuleRuleActionArgs) ToRuleRuleActionOutput() RuleRuleActionOutput {
+	return i.ToRuleRuleActionOutputWithContext(context.Background())
+}
+
+func (i RuleRuleActionArgs) ToRuleRuleActionOutputWithContext(ctx context.Context) RuleRuleActionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleRuleActionOutput)
+}
+
+// RuleRuleActionArrayInput is an input type that accepts RuleRuleActionArray and RuleRuleActionArrayOutput values.
+// You can construct a concrete instance of `RuleRuleActionArrayInput` via:
+//
+//	RuleRuleActionArray{ RuleRuleActionArgs{...} }
+type RuleRuleActionArrayInput interface {
+	pulumi.Input
+
+	ToRuleRuleActionArrayOutput() RuleRuleActionArrayOutput
+	ToRuleRuleActionArrayOutputWithContext(context.Context) RuleRuleActionArrayOutput
+}
+
+type RuleRuleActionArray []RuleRuleActionInput
+
+func (RuleRuleActionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RuleRuleAction)(nil)).Elem()
+}
+
+func (i RuleRuleActionArray) ToRuleRuleActionArrayOutput() RuleRuleActionArrayOutput {
+	return i.ToRuleRuleActionArrayOutputWithContext(context.Background())
+}
+
+func (i RuleRuleActionArray) ToRuleRuleActionArrayOutputWithContext(ctx context.Context) RuleRuleActionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleRuleActionArrayOutput)
+}
+
+type RuleRuleActionOutput struct{ *pulumi.OutputState }
+
+func (RuleRuleActionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleRuleAction)(nil)).Elem()
+}
+
+func (o RuleRuleActionOutput) ToRuleRuleActionOutput() RuleRuleActionOutput {
+	return o
+}
+
+func (o RuleRuleActionOutput) ToRuleRuleActionOutputWithContext(ctx context.Context) RuleRuleActionOutput {
+	return o
+}
+
+// Fixed response configuration for fixed response type rule.
+func (o RuleRuleActionOutput) FixedResponseConfig() RuleRuleActionFixedResponseConfigPtrOutput {
+	return o.ApplyT(func(v RuleRuleAction) *RuleRuleActionFixedResponseConfig { return v.FixedResponseConfig }).(RuleRuleActionFixedResponseConfigPtrOutput)
+}
+
+// Forward group configuration for ForwardGroup type action.
+func (o RuleRuleActionOutput) ForwardGroupConfig() RuleRuleActionForwardGroupConfigPtrOutput {
+	return o.ApplyT(func(v RuleRuleAction) *RuleRuleActionForwardGroupConfig { return v.ForwardGroupConfig }).(RuleRuleActionForwardGroupConfigPtrOutput)
+}
+
+// Redirect configuration for Redirect type action.
+func (o RuleRuleActionOutput) RedirectConfig() RuleRuleActionRedirectConfigPtrOutput {
+	return o.ApplyT(func(v RuleRuleAction) *RuleRuleActionRedirectConfig { return v.RedirectConfig }).(RuleRuleActionRedirectConfigPtrOutput)
+}
+
+// Rewrite configuration for Rewrite type action.
+func (o RuleRuleActionOutput) RewriteConfig() RuleRuleActionRewriteConfigPtrOutput {
+	return o.ApplyT(func(v RuleRuleAction) *RuleRuleActionRewriteConfig { return v.RewriteConfig }).(RuleRuleActionRewriteConfigPtrOutput)
+}
+
+// Traffic limit configuration for TrafficLimit type action.
+func (o RuleRuleActionOutput) TrafficLimitConfig() RuleRuleActionTrafficLimitConfigPtrOutput {
+	return o.ApplyT(func(v RuleRuleAction) *RuleRuleActionTrafficLimitConfig { return v.TrafficLimitConfig }).(RuleRuleActionTrafficLimitConfigPtrOutput)
+}
+
+// The type of rule action. Valid values: ForwardGroup, Redirect, Rewrite, TrafficLimit.
+func (o RuleRuleActionOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RuleRuleAction) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+type RuleRuleActionArrayOutput struct{ *pulumi.OutputState }
+
+func (RuleRuleActionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RuleRuleAction)(nil)).Elem()
+}
+
+func (o RuleRuleActionArrayOutput) ToRuleRuleActionArrayOutput() RuleRuleActionArrayOutput {
+	return o
+}
+
+func (o RuleRuleActionArrayOutput) ToRuleRuleActionArrayOutputWithContext(ctx context.Context) RuleRuleActionArrayOutput {
+	return o
+}
+
+func (o RuleRuleActionArrayOutput) Index(i pulumi.IntInput) RuleRuleActionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RuleRuleAction {
+		return vs[0].([]RuleRuleAction)[vs[1].(int)]
+	}).(RuleRuleActionOutput)
+}
+
+type RuleRuleActionFixedResponseConfig struct {
+	// The content type of the fixed response.
+	ContentType *string `pulumi:"contentType"`
+	// The response body of the fixed response.
+	ResponseBody *string `pulumi:"responseBody"`
+	// The fixed response HTTP status code.
+	ResponseCode *string `pulumi:"responseCode"`
+	// The fixed response message.
+	ResponseMessage *string `pulumi:"responseMessage"`
+}
+
+// RuleRuleActionFixedResponseConfigInput is an input type that accepts RuleRuleActionFixedResponseConfigArgs and RuleRuleActionFixedResponseConfigOutput values.
+// You can construct a concrete instance of `RuleRuleActionFixedResponseConfigInput` via:
+//
+//	RuleRuleActionFixedResponseConfigArgs{...}
+type RuleRuleActionFixedResponseConfigInput interface {
+	pulumi.Input
+
+	ToRuleRuleActionFixedResponseConfigOutput() RuleRuleActionFixedResponseConfigOutput
+	ToRuleRuleActionFixedResponseConfigOutputWithContext(context.Context) RuleRuleActionFixedResponseConfigOutput
+}
+
+type RuleRuleActionFixedResponseConfigArgs struct {
+	// The content type of the fixed response.
+	ContentType pulumi.StringPtrInput `pulumi:"contentType"`
+	// The response body of the fixed response.
+	ResponseBody pulumi.StringPtrInput `pulumi:"responseBody"`
+	// The fixed response HTTP status code.
+	ResponseCode pulumi.StringPtrInput `pulumi:"responseCode"`
+	// The fixed response message.
+	ResponseMessage pulumi.StringPtrInput `pulumi:"responseMessage"`
+}
+
+func (RuleRuleActionFixedResponseConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleRuleActionFixedResponseConfig)(nil)).Elem()
+}
+
+func (i RuleRuleActionFixedResponseConfigArgs) ToRuleRuleActionFixedResponseConfigOutput() RuleRuleActionFixedResponseConfigOutput {
+	return i.ToRuleRuleActionFixedResponseConfigOutputWithContext(context.Background())
+}
+
+func (i RuleRuleActionFixedResponseConfigArgs) ToRuleRuleActionFixedResponseConfigOutputWithContext(ctx context.Context) RuleRuleActionFixedResponseConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleRuleActionFixedResponseConfigOutput)
+}
+
+func (i RuleRuleActionFixedResponseConfigArgs) ToRuleRuleActionFixedResponseConfigPtrOutput() RuleRuleActionFixedResponseConfigPtrOutput {
+	return i.ToRuleRuleActionFixedResponseConfigPtrOutputWithContext(context.Background())
+}
+
+func (i RuleRuleActionFixedResponseConfigArgs) ToRuleRuleActionFixedResponseConfigPtrOutputWithContext(ctx context.Context) RuleRuleActionFixedResponseConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleRuleActionFixedResponseConfigOutput).ToRuleRuleActionFixedResponseConfigPtrOutputWithContext(ctx)
+}
+
+// RuleRuleActionFixedResponseConfigPtrInput is an input type that accepts RuleRuleActionFixedResponseConfigArgs, RuleRuleActionFixedResponseConfigPtr and RuleRuleActionFixedResponseConfigPtrOutput values.
+// You can construct a concrete instance of `RuleRuleActionFixedResponseConfigPtrInput` via:
+//
+//	        RuleRuleActionFixedResponseConfigArgs{...}
+//
+//	or:
+//
+//	        nil
+type RuleRuleActionFixedResponseConfigPtrInput interface {
+	pulumi.Input
+
+	ToRuleRuleActionFixedResponseConfigPtrOutput() RuleRuleActionFixedResponseConfigPtrOutput
+	ToRuleRuleActionFixedResponseConfigPtrOutputWithContext(context.Context) RuleRuleActionFixedResponseConfigPtrOutput
+}
+
+type ruleRuleActionFixedResponseConfigPtrType RuleRuleActionFixedResponseConfigArgs
+
+func RuleRuleActionFixedResponseConfigPtr(v *RuleRuleActionFixedResponseConfigArgs) RuleRuleActionFixedResponseConfigPtrInput {
+	return (*ruleRuleActionFixedResponseConfigPtrType)(v)
+}
+
+func (*ruleRuleActionFixedResponseConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RuleRuleActionFixedResponseConfig)(nil)).Elem()
+}
+
+func (i *ruleRuleActionFixedResponseConfigPtrType) ToRuleRuleActionFixedResponseConfigPtrOutput() RuleRuleActionFixedResponseConfigPtrOutput {
+	return i.ToRuleRuleActionFixedResponseConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *ruleRuleActionFixedResponseConfigPtrType) ToRuleRuleActionFixedResponseConfigPtrOutputWithContext(ctx context.Context) RuleRuleActionFixedResponseConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleRuleActionFixedResponseConfigPtrOutput)
+}
+
+type RuleRuleActionFixedResponseConfigOutput struct{ *pulumi.OutputState }
+
+func (RuleRuleActionFixedResponseConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleRuleActionFixedResponseConfig)(nil)).Elem()
+}
+
+func (o RuleRuleActionFixedResponseConfigOutput) ToRuleRuleActionFixedResponseConfigOutput() RuleRuleActionFixedResponseConfigOutput {
+	return o
+}
+
+func (o RuleRuleActionFixedResponseConfigOutput) ToRuleRuleActionFixedResponseConfigOutputWithContext(ctx context.Context) RuleRuleActionFixedResponseConfigOutput {
+	return o
+}
+
+func (o RuleRuleActionFixedResponseConfigOutput) ToRuleRuleActionFixedResponseConfigPtrOutput() RuleRuleActionFixedResponseConfigPtrOutput {
+	return o.ToRuleRuleActionFixedResponseConfigPtrOutputWithContext(context.Background())
+}
+
+func (o RuleRuleActionFixedResponseConfigOutput) ToRuleRuleActionFixedResponseConfigPtrOutputWithContext(ctx context.Context) RuleRuleActionFixedResponseConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RuleRuleActionFixedResponseConfig) *RuleRuleActionFixedResponseConfig {
+		return &v
+	}).(RuleRuleActionFixedResponseConfigPtrOutput)
+}
+
+// The content type of the fixed response.
+func (o RuleRuleActionFixedResponseConfigOutput) ContentType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RuleRuleActionFixedResponseConfig) *string { return v.ContentType }).(pulumi.StringPtrOutput)
+}
+
+// The response body of the fixed response.
+func (o RuleRuleActionFixedResponseConfigOutput) ResponseBody() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RuleRuleActionFixedResponseConfig) *string { return v.ResponseBody }).(pulumi.StringPtrOutput)
+}
+
+// The fixed response HTTP status code.
+func (o RuleRuleActionFixedResponseConfigOutput) ResponseCode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RuleRuleActionFixedResponseConfig) *string { return v.ResponseCode }).(pulumi.StringPtrOutput)
+}
+
+// The fixed response message.
+func (o RuleRuleActionFixedResponseConfigOutput) ResponseMessage() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RuleRuleActionFixedResponseConfig) *string { return v.ResponseMessage }).(pulumi.StringPtrOutput)
+}
+
+type RuleRuleActionFixedResponseConfigPtrOutput struct{ *pulumi.OutputState }
+
+func (RuleRuleActionFixedResponseConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RuleRuleActionFixedResponseConfig)(nil)).Elem()
+}
+
+func (o RuleRuleActionFixedResponseConfigPtrOutput) ToRuleRuleActionFixedResponseConfigPtrOutput() RuleRuleActionFixedResponseConfigPtrOutput {
+	return o
+}
+
+func (o RuleRuleActionFixedResponseConfigPtrOutput) ToRuleRuleActionFixedResponseConfigPtrOutputWithContext(ctx context.Context) RuleRuleActionFixedResponseConfigPtrOutput {
+	return o
+}
+
+func (o RuleRuleActionFixedResponseConfigPtrOutput) Elem() RuleRuleActionFixedResponseConfigOutput {
+	return o.ApplyT(func(v *RuleRuleActionFixedResponseConfig) RuleRuleActionFixedResponseConfig {
+		if v != nil {
+			return *v
+		}
+		var ret RuleRuleActionFixedResponseConfig
+		return ret
+	}).(RuleRuleActionFixedResponseConfigOutput)
+}
+
+// The content type of the fixed response.
+func (o RuleRuleActionFixedResponseConfigPtrOutput) ContentType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RuleRuleActionFixedResponseConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ContentType
+	}).(pulumi.StringPtrOutput)
+}
+
+// The response body of the fixed response.
+func (o RuleRuleActionFixedResponseConfigPtrOutput) ResponseBody() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RuleRuleActionFixedResponseConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ResponseBody
+	}).(pulumi.StringPtrOutput)
+}
+
+// The fixed response HTTP status code.
+func (o RuleRuleActionFixedResponseConfigPtrOutput) ResponseCode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RuleRuleActionFixedResponseConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ResponseCode
+	}).(pulumi.StringPtrOutput)
+}
+
+// The fixed response message.
+func (o RuleRuleActionFixedResponseConfigPtrOutput) ResponseMessage() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RuleRuleActionFixedResponseConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ResponseMessage
+	}).(pulumi.StringPtrOutput)
+}
+
+type RuleRuleActionForwardGroupConfig struct {
+	// The config of group session stickiness.
+	ServerGroupStickySession *RuleRuleActionForwardGroupConfigServerGroupStickySession `pulumi:"serverGroupStickySession"`
+	// The server group tuples.
+	ServerGroupTuples []RuleRuleActionForwardGroupConfigServerGroupTuple `pulumi:"serverGroupTuples"`
+}
+
+// RuleRuleActionForwardGroupConfigInput is an input type that accepts RuleRuleActionForwardGroupConfigArgs and RuleRuleActionForwardGroupConfigOutput values.
+// You can construct a concrete instance of `RuleRuleActionForwardGroupConfigInput` via:
+//
+//	RuleRuleActionForwardGroupConfigArgs{...}
+type RuleRuleActionForwardGroupConfigInput interface {
+	pulumi.Input
+
+	ToRuleRuleActionForwardGroupConfigOutput() RuleRuleActionForwardGroupConfigOutput
+	ToRuleRuleActionForwardGroupConfigOutputWithContext(context.Context) RuleRuleActionForwardGroupConfigOutput
+}
+
+type RuleRuleActionForwardGroupConfigArgs struct {
+	// The config of group session stickiness.
+	ServerGroupStickySession RuleRuleActionForwardGroupConfigServerGroupStickySessionPtrInput `pulumi:"serverGroupStickySession"`
+	// The server group tuples.
+	ServerGroupTuples RuleRuleActionForwardGroupConfigServerGroupTupleArrayInput `pulumi:"serverGroupTuples"`
+}
+
+func (RuleRuleActionForwardGroupConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleRuleActionForwardGroupConfig)(nil)).Elem()
+}
+
+func (i RuleRuleActionForwardGroupConfigArgs) ToRuleRuleActionForwardGroupConfigOutput() RuleRuleActionForwardGroupConfigOutput {
+	return i.ToRuleRuleActionForwardGroupConfigOutputWithContext(context.Background())
+}
+
+func (i RuleRuleActionForwardGroupConfigArgs) ToRuleRuleActionForwardGroupConfigOutputWithContext(ctx context.Context) RuleRuleActionForwardGroupConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleRuleActionForwardGroupConfigOutput)
+}
+
+func (i RuleRuleActionForwardGroupConfigArgs) ToRuleRuleActionForwardGroupConfigPtrOutput() RuleRuleActionForwardGroupConfigPtrOutput {
+	return i.ToRuleRuleActionForwardGroupConfigPtrOutputWithContext(context.Background())
+}
+
+func (i RuleRuleActionForwardGroupConfigArgs) ToRuleRuleActionForwardGroupConfigPtrOutputWithContext(ctx context.Context) RuleRuleActionForwardGroupConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleRuleActionForwardGroupConfigOutput).ToRuleRuleActionForwardGroupConfigPtrOutputWithContext(ctx)
+}
+
+// RuleRuleActionForwardGroupConfigPtrInput is an input type that accepts RuleRuleActionForwardGroupConfigArgs, RuleRuleActionForwardGroupConfigPtr and RuleRuleActionForwardGroupConfigPtrOutput values.
+// You can construct a concrete instance of `RuleRuleActionForwardGroupConfigPtrInput` via:
+//
+//	        RuleRuleActionForwardGroupConfigArgs{...}
+//
+//	or:
+//
+//	        nil
+type RuleRuleActionForwardGroupConfigPtrInput interface {
+	pulumi.Input
+
+	ToRuleRuleActionForwardGroupConfigPtrOutput() RuleRuleActionForwardGroupConfigPtrOutput
+	ToRuleRuleActionForwardGroupConfigPtrOutputWithContext(context.Context) RuleRuleActionForwardGroupConfigPtrOutput
+}
+
+type ruleRuleActionForwardGroupConfigPtrType RuleRuleActionForwardGroupConfigArgs
+
+func RuleRuleActionForwardGroupConfigPtr(v *RuleRuleActionForwardGroupConfigArgs) RuleRuleActionForwardGroupConfigPtrInput {
+	return (*ruleRuleActionForwardGroupConfigPtrType)(v)
+}
+
+func (*ruleRuleActionForwardGroupConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RuleRuleActionForwardGroupConfig)(nil)).Elem()
+}
+
+func (i *ruleRuleActionForwardGroupConfigPtrType) ToRuleRuleActionForwardGroupConfigPtrOutput() RuleRuleActionForwardGroupConfigPtrOutput {
+	return i.ToRuleRuleActionForwardGroupConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *ruleRuleActionForwardGroupConfigPtrType) ToRuleRuleActionForwardGroupConfigPtrOutputWithContext(ctx context.Context) RuleRuleActionForwardGroupConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleRuleActionForwardGroupConfigPtrOutput)
+}
+
+type RuleRuleActionForwardGroupConfigOutput struct{ *pulumi.OutputState }
+
+func (RuleRuleActionForwardGroupConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleRuleActionForwardGroupConfig)(nil)).Elem()
+}
+
+func (o RuleRuleActionForwardGroupConfigOutput) ToRuleRuleActionForwardGroupConfigOutput() RuleRuleActionForwardGroupConfigOutput {
+	return o
+}
+
+func (o RuleRuleActionForwardGroupConfigOutput) ToRuleRuleActionForwardGroupConfigOutputWithContext(ctx context.Context) RuleRuleActionForwardGroupConfigOutput {
+	return o
+}
+
+func (o RuleRuleActionForwardGroupConfigOutput) ToRuleRuleActionForwardGroupConfigPtrOutput() RuleRuleActionForwardGroupConfigPtrOutput {
+	return o.ToRuleRuleActionForwardGroupConfigPtrOutputWithContext(context.Background())
+}
+
+func (o RuleRuleActionForwardGroupConfigOutput) ToRuleRuleActionForwardGroupConfigPtrOutputWithContext(ctx context.Context) RuleRuleActionForwardGroupConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RuleRuleActionForwardGroupConfig) *RuleRuleActionForwardGroupConfig {
+		return &v
+	}).(RuleRuleActionForwardGroupConfigPtrOutput)
+}
+
+// The config of group session stickiness.
+func (o RuleRuleActionForwardGroupConfigOutput) ServerGroupStickySession() RuleRuleActionForwardGroupConfigServerGroupStickySessionPtrOutput {
+	return o.ApplyT(func(v RuleRuleActionForwardGroupConfig) *RuleRuleActionForwardGroupConfigServerGroupStickySession {
+		return v.ServerGroupStickySession
+	}).(RuleRuleActionForwardGroupConfigServerGroupStickySessionPtrOutput)
+}
+
+// The server group tuples.
+func (o RuleRuleActionForwardGroupConfigOutput) ServerGroupTuples() RuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput {
+	return o.ApplyT(func(v RuleRuleActionForwardGroupConfig) []RuleRuleActionForwardGroupConfigServerGroupTuple {
+		return v.ServerGroupTuples
+	}).(RuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput)
+}
+
+type RuleRuleActionForwardGroupConfigPtrOutput struct{ *pulumi.OutputState }
+
+func (RuleRuleActionForwardGroupConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RuleRuleActionForwardGroupConfig)(nil)).Elem()
+}
+
+func (o RuleRuleActionForwardGroupConfigPtrOutput) ToRuleRuleActionForwardGroupConfigPtrOutput() RuleRuleActionForwardGroupConfigPtrOutput {
+	return o
+}
+
+func (o RuleRuleActionForwardGroupConfigPtrOutput) ToRuleRuleActionForwardGroupConfigPtrOutputWithContext(ctx context.Context) RuleRuleActionForwardGroupConfigPtrOutput {
+	return o
+}
+
+func (o RuleRuleActionForwardGroupConfigPtrOutput) Elem() RuleRuleActionForwardGroupConfigOutput {
+	return o.ApplyT(func(v *RuleRuleActionForwardGroupConfig) RuleRuleActionForwardGroupConfig {
+		if v != nil {
+			return *v
+		}
+		var ret RuleRuleActionForwardGroupConfig
+		return ret
+	}).(RuleRuleActionForwardGroupConfigOutput)
+}
+
+// The config of group session stickiness.
+func (o RuleRuleActionForwardGroupConfigPtrOutput) ServerGroupStickySession() RuleRuleActionForwardGroupConfigServerGroupStickySessionPtrOutput {
+	return o.ApplyT(func(v *RuleRuleActionForwardGroupConfig) *RuleRuleActionForwardGroupConfigServerGroupStickySession {
+		if v == nil {
+			return nil
+		}
+		return v.ServerGroupStickySession
+	}).(RuleRuleActionForwardGroupConfigServerGroupStickySessionPtrOutput)
+}
+
+// The server group tuples.
+func (o RuleRuleActionForwardGroupConfigPtrOutput) ServerGroupTuples() RuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput {
+	return o.ApplyT(func(v *RuleRuleActionForwardGroupConfig) []RuleRuleActionForwardGroupConfigServerGroupTuple {
+		if v == nil {
+			return nil
+		}
+		return v.ServerGroupTuples
+	}).(RuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput)
+}
+
+type RuleRuleActionForwardGroupConfigServerGroupStickySession struct {
+	// Whether to enable sticky session stickiness. Valid values are 'on' and 'off'.
+	Enabled *string `pulumi:"enabled"`
+	// The sticky session timeout, in seconds.
+	Timeout *int `pulumi:"timeout"`
+}
+
+// RuleRuleActionForwardGroupConfigServerGroupStickySessionInput is an input type that accepts RuleRuleActionForwardGroupConfigServerGroupStickySessionArgs and RuleRuleActionForwardGroupConfigServerGroupStickySessionOutput values.
+// You can construct a concrete instance of `RuleRuleActionForwardGroupConfigServerGroupStickySessionInput` via:
+//
+//	RuleRuleActionForwardGroupConfigServerGroupStickySessionArgs{...}
+type RuleRuleActionForwardGroupConfigServerGroupStickySessionInput interface {
+	pulumi.Input
+
+	ToRuleRuleActionForwardGroupConfigServerGroupStickySessionOutput() RuleRuleActionForwardGroupConfigServerGroupStickySessionOutput
+	ToRuleRuleActionForwardGroupConfigServerGroupStickySessionOutputWithContext(context.Context) RuleRuleActionForwardGroupConfigServerGroupStickySessionOutput
+}
+
+type RuleRuleActionForwardGroupConfigServerGroupStickySessionArgs struct {
+	// Whether to enable sticky session stickiness. Valid values are 'on' and 'off'.
+	Enabled pulumi.StringPtrInput `pulumi:"enabled"`
+	// The sticky session timeout, in seconds.
+	Timeout pulumi.IntPtrInput `pulumi:"timeout"`
+}
+
+func (RuleRuleActionForwardGroupConfigServerGroupStickySessionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleRuleActionForwardGroupConfigServerGroupStickySession)(nil)).Elem()
+}
+
+func (i RuleRuleActionForwardGroupConfigServerGroupStickySessionArgs) ToRuleRuleActionForwardGroupConfigServerGroupStickySessionOutput() RuleRuleActionForwardGroupConfigServerGroupStickySessionOutput {
+	return i.ToRuleRuleActionForwardGroupConfigServerGroupStickySessionOutputWithContext(context.Background())
+}
+
+func (i RuleRuleActionForwardGroupConfigServerGroupStickySessionArgs) ToRuleRuleActionForwardGroupConfigServerGroupStickySessionOutputWithContext(ctx context.Context) RuleRuleActionForwardGroupConfigServerGroupStickySessionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleRuleActionForwardGroupConfigServerGroupStickySessionOutput)
+}
+
+func (i RuleRuleActionForwardGroupConfigServerGroupStickySessionArgs) ToRuleRuleActionForwardGroupConfigServerGroupStickySessionPtrOutput() RuleRuleActionForwardGroupConfigServerGroupStickySessionPtrOutput {
+	return i.ToRuleRuleActionForwardGroupConfigServerGroupStickySessionPtrOutputWithContext(context.Background())
+}
+
+func (i RuleRuleActionForwardGroupConfigServerGroupStickySessionArgs) ToRuleRuleActionForwardGroupConfigServerGroupStickySessionPtrOutputWithContext(ctx context.Context) RuleRuleActionForwardGroupConfigServerGroupStickySessionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleRuleActionForwardGroupConfigServerGroupStickySessionOutput).ToRuleRuleActionForwardGroupConfigServerGroupStickySessionPtrOutputWithContext(ctx)
+}
+
+// RuleRuleActionForwardGroupConfigServerGroupStickySessionPtrInput is an input type that accepts RuleRuleActionForwardGroupConfigServerGroupStickySessionArgs, RuleRuleActionForwardGroupConfigServerGroupStickySessionPtr and RuleRuleActionForwardGroupConfigServerGroupStickySessionPtrOutput values.
+// You can construct a concrete instance of `RuleRuleActionForwardGroupConfigServerGroupStickySessionPtrInput` via:
+//
+//	        RuleRuleActionForwardGroupConfigServerGroupStickySessionArgs{...}
+//
+//	or:
+//
+//	        nil
+type RuleRuleActionForwardGroupConfigServerGroupStickySessionPtrInput interface {
+	pulumi.Input
+
+	ToRuleRuleActionForwardGroupConfigServerGroupStickySessionPtrOutput() RuleRuleActionForwardGroupConfigServerGroupStickySessionPtrOutput
+	ToRuleRuleActionForwardGroupConfigServerGroupStickySessionPtrOutputWithContext(context.Context) RuleRuleActionForwardGroupConfigServerGroupStickySessionPtrOutput
+}
+
+type ruleRuleActionForwardGroupConfigServerGroupStickySessionPtrType RuleRuleActionForwardGroupConfigServerGroupStickySessionArgs
+
+func RuleRuleActionForwardGroupConfigServerGroupStickySessionPtr(v *RuleRuleActionForwardGroupConfigServerGroupStickySessionArgs) RuleRuleActionForwardGroupConfigServerGroupStickySessionPtrInput {
+	return (*ruleRuleActionForwardGroupConfigServerGroupStickySessionPtrType)(v)
+}
+
+func (*ruleRuleActionForwardGroupConfigServerGroupStickySessionPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RuleRuleActionForwardGroupConfigServerGroupStickySession)(nil)).Elem()
+}
+
+func (i *ruleRuleActionForwardGroupConfigServerGroupStickySessionPtrType) ToRuleRuleActionForwardGroupConfigServerGroupStickySessionPtrOutput() RuleRuleActionForwardGroupConfigServerGroupStickySessionPtrOutput {
+	return i.ToRuleRuleActionForwardGroupConfigServerGroupStickySessionPtrOutputWithContext(context.Background())
+}
+
+func (i *ruleRuleActionForwardGroupConfigServerGroupStickySessionPtrType) ToRuleRuleActionForwardGroupConfigServerGroupStickySessionPtrOutputWithContext(ctx context.Context) RuleRuleActionForwardGroupConfigServerGroupStickySessionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleRuleActionForwardGroupConfigServerGroupStickySessionPtrOutput)
+}
+
+type RuleRuleActionForwardGroupConfigServerGroupStickySessionOutput struct{ *pulumi.OutputState }
+
+func (RuleRuleActionForwardGroupConfigServerGroupStickySessionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleRuleActionForwardGroupConfigServerGroupStickySession)(nil)).Elem()
+}
+
+func (o RuleRuleActionForwardGroupConfigServerGroupStickySessionOutput) ToRuleRuleActionForwardGroupConfigServerGroupStickySessionOutput() RuleRuleActionForwardGroupConfigServerGroupStickySessionOutput {
+	return o
+}
+
+func (o RuleRuleActionForwardGroupConfigServerGroupStickySessionOutput) ToRuleRuleActionForwardGroupConfigServerGroupStickySessionOutputWithContext(ctx context.Context) RuleRuleActionForwardGroupConfigServerGroupStickySessionOutput {
+	return o
+}
+
+func (o RuleRuleActionForwardGroupConfigServerGroupStickySessionOutput) ToRuleRuleActionForwardGroupConfigServerGroupStickySessionPtrOutput() RuleRuleActionForwardGroupConfigServerGroupStickySessionPtrOutput {
+	return o.ToRuleRuleActionForwardGroupConfigServerGroupStickySessionPtrOutputWithContext(context.Background())
+}
+
+func (o RuleRuleActionForwardGroupConfigServerGroupStickySessionOutput) ToRuleRuleActionForwardGroupConfigServerGroupStickySessionPtrOutputWithContext(ctx context.Context) RuleRuleActionForwardGroupConfigServerGroupStickySessionPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RuleRuleActionForwardGroupConfigServerGroupStickySession) *RuleRuleActionForwardGroupConfigServerGroupStickySession {
+		return &v
+	}).(RuleRuleActionForwardGroupConfigServerGroupStickySessionPtrOutput)
+}
+
+// Whether to enable sticky session stickiness. Valid values are 'on' and 'off'.
+func (o RuleRuleActionForwardGroupConfigServerGroupStickySessionOutput) Enabled() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RuleRuleActionForwardGroupConfigServerGroupStickySession) *string { return v.Enabled }).(pulumi.StringPtrOutput)
+}
+
+// The sticky session timeout, in seconds.
+func (o RuleRuleActionForwardGroupConfigServerGroupStickySessionOutput) Timeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v RuleRuleActionForwardGroupConfigServerGroupStickySession) *int { return v.Timeout }).(pulumi.IntPtrOutput)
+}
+
+type RuleRuleActionForwardGroupConfigServerGroupStickySessionPtrOutput struct{ *pulumi.OutputState }
+
+func (RuleRuleActionForwardGroupConfigServerGroupStickySessionPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RuleRuleActionForwardGroupConfigServerGroupStickySession)(nil)).Elem()
+}
+
+func (o RuleRuleActionForwardGroupConfigServerGroupStickySessionPtrOutput) ToRuleRuleActionForwardGroupConfigServerGroupStickySessionPtrOutput() RuleRuleActionForwardGroupConfigServerGroupStickySessionPtrOutput {
+	return o
+}
+
+func (o RuleRuleActionForwardGroupConfigServerGroupStickySessionPtrOutput) ToRuleRuleActionForwardGroupConfigServerGroupStickySessionPtrOutputWithContext(ctx context.Context) RuleRuleActionForwardGroupConfigServerGroupStickySessionPtrOutput {
+	return o
+}
+
+func (o RuleRuleActionForwardGroupConfigServerGroupStickySessionPtrOutput) Elem() RuleRuleActionForwardGroupConfigServerGroupStickySessionOutput {
+	return o.ApplyT(func(v *RuleRuleActionForwardGroupConfigServerGroupStickySession) RuleRuleActionForwardGroupConfigServerGroupStickySession {
+		if v != nil {
+			return *v
+		}
+		var ret RuleRuleActionForwardGroupConfigServerGroupStickySession
+		return ret
+	}).(RuleRuleActionForwardGroupConfigServerGroupStickySessionOutput)
+}
+
+// Whether to enable sticky session stickiness. Valid values are 'on' and 'off'.
+func (o RuleRuleActionForwardGroupConfigServerGroupStickySessionPtrOutput) Enabled() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RuleRuleActionForwardGroupConfigServerGroupStickySession) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Enabled
+	}).(pulumi.StringPtrOutput)
+}
+
+// The sticky session timeout, in seconds.
+func (o RuleRuleActionForwardGroupConfigServerGroupStickySessionPtrOutput) Timeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *RuleRuleActionForwardGroupConfigServerGroupStickySession) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Timeout
+	}).(pulumi.IntPtrOutput)
+}
+
+type RuleRuleActionForwardGroupConfigServerGroupTuple struct {
+	// The server group ID. The priority of this parameter is higher than that of `serverGroupId`.
+	ServerGroupId *string `pulumi:"serverGroupId"`
+	// The weight of the server group.
+	Weight *int `pulumi:"weight"`
+}
+
+// RuleRuleActionForwardGroupConfigServerGroupTupleInput is an input type that accepts RuleRuleActionForwardGroupConfigServerGroupTupleArgs and RuleRuleActionForwardGroupConfigServerGroupTupleOutput values.
+// You can construct a concrete instance of `RuleRuleActionForwardGroupConfigServerGroupTupleInput` via:
+//
+//	RuleRuleActionForwardGroupConfigServerGroupTupleArgs{...}
+type RuleRuleActionForwardGroupConfigServerGroupTupleInput interface {
+	pulumi.Input
+
+	ToRuleRuleActionForwardGroupConfigServerGroupTupleOutput() RuleRuleActionForwardGroupConfigServerGroupTupleOutput
+	ToRuleRuleActionForwardGroupConfigServerGroupTupleOutputWithContext(context.Context) RuleRuleActionForwardGroupConfigServerGroupTupleOutput
+}
+
+type RuleRuleActionForwardGroupConfigServerGroupTupleArgs struct {
+	// The server group ID. The priority of this parameter is higher than that of `serverGroupId`.
+	ServerGroupId pulumi.StringPtrInput `pulumi:"serverGroupId"`
+	// The weight of the server group.
+	Weight pulumi.IntPtrInput `pulumi:"weight"`
+}
+
+func (RuleRuleActionForwardGroupConfigServerGroupTupleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleRuleActionForwardGroupConfigServerGroupTuple)(nil)).Elem()
+}
+
+func (i RuleRuleActionForwardGroupConfigServerGroupTupleArgs) ToRuleRuleActionForwardGroupConfigServerGroupTupleOutput() RuleRuleActionForwardGroupConfigServerGroupTupleOutput {
+	return i.ToRuleRuleActionForwardGroupConfigServerGroupTupleOutputWithContext(context.Background())
+}
+
+func (i RuleRuleActionForwardGroupConfigServerGroupTupleArgs) ToRuleRuleActionForwardGroupConfigServerGroupTupleOutputWithContext(ctx context.Context) RuleRuleActionForwardGroupConfigServerGroupTupleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleRuleActionForwardGroupConfigServerGroupTupleOutput)
+}
+
+// RuleRuleActionForwardGroupConfigServerGroupTupleArrayInput is an input type that accepts RuleRuleActionForwardGroupConfigServerGroupTupleArray and RuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput values.
+// You can construct a concrete instance of `RuleRuleActionForwardGroupConfigServerGroupTupleArrayInput` via:
+//
+//	RuleRuleActionForwardGroupConfigServerGroupTupleArray{ RuleRuleActionForwardGroupConfigServerGroupTupleArgs{...} }
+type RuleRuleActionForwardGroupConfigServerGroupTupleArrayInput interface {
+	pulumi.Input
+
+	ToRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput() RuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput
+	ToRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutputWithContext(context.Context) RuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput
+}
+
+type RuleRuleActionForwardGroupConfigServerGroupTupleArray []RuleRuleActionForwardGroupConfigServerGroupTupleInput
+
+func (RuleRuleActionForwardGroupConfigServerGroupTupleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RuleRuleActionForwardGroupConfigServerGroupTuple)(nil)).Elem()
+}
+
+func (i RuleRuleActionForwardGroupConfigServerGroupTupleArray) ToRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput() RuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput {
+	return i.ToRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutputWithContext(context.Background())
+}
+
+func (i RuleRuleActionForwardGroupConfigServerGroupTupleArray) ToRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutputWithContext(ctx context.Context) RuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput)
+}
+
+type RuleRuleActionForwardGroupConfigServerGroupTupleOutput struct{ *pulumi.OutputState }
+
+func (RuleRuleActionForwardGroupConfigServerGroupTupleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleRuleActionForwardGroupConfigServerGroupTuple)(nil)).Elem()
+}
+
+func (o RuleRuleActionForwardGroupConfigServerGroupTupleOutput) ToRuleRuleActionForwardGroupConfigServerGroupTupleOutput() RuleRuleActionForwardGroupConfigServerGroupTupleOutput {
+	return o
+}
+
+func (o RuleRuleActionForwardGroupConfigServerGroupTupleOutput) ToRuleRuleActionForwardGroupConfigServerGroupTupleOutputWithContext(ctx context.Context) RuleRuleActionForwardGroupConfigServerGroupTupleOutput {
+	return o
+}
+
+// The server group ID. The priority of this parameter is higher than that of `serverGroupId`.
+func (o RuleRuleActionForwardGroupConfigServerGroupTupleOutput) ServerGroupId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RuleRuleActionForwardGroupConfigServerGroupTuple) *string { return v.ServerGroupId }).(pulumi.StringPtrOutput)
+}
+
+// The weight of the server group.
+func (o RuleRuleActionForwardGroupConfigServerGroupTupleOutput) Weight() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v RuleRuleActionForwardGroupConfigServerGroupTuple) *int { return v.Weight }).(pulumi.IntPtrOutput)
+}
+
+type RuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput struct{ *pulumi.OutputState }
+
+func (RuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RuleRuleActionForwardGroupConfigServerGroupTuple)(nil)).Elem()
+}
+
+func (o RuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput) ToRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput() RuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput {
+	return o
+}
+
+func (o RuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput) ToRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutputWithContext(ctx context.Context) RuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput {
+	return o
+}
+
+func (o RuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput) Index(i pulumi.IntInput) RuleRuleActionForwardGroupConfigServerGroupTupleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RuleRuleActionForwardGroupConfigServerGroupTuple {
+		return vs[0].([]RuleRuleActionForwardGroupConfigServerGroupTuple)[vs[1].(int)]
+	}).(RuleRuleActionForwardGroupConfigServerGroupTupleOutput)
+}
+
+type RuleRuleActionRedirectConfig struct {
+	// The domain name to which the request was redirected.
+	Host *string `pulumi:"host"`
+	// The redirect HTTP code.
+	HttpCode *string `pulumi:"httpCode"`
+	// The path to which the request was redirected.
+	Path *string `pulumi:"path"`
+	// The redirect port.
+	Port *string `pulumi:"port"`
+	// The redirect protocol.
+	Protocol *string `pulumi:"protocol"`
+}
+
+// RuleRuleActionRedirectConfigInput is an input type that accepts RuleRuleActionRedirectConfigArgs and RuleRuleActionRedirectConfigOutput values.
+// You can construct a concrete instance of `RuleRuleActionRedirectConfigInput` via:
+//
+//	RuleRuleActionRedirectConfigArgs{...}
+type RuleRuleActionRedirectConfigInput interface {
+	pulumi.Input
+
+	ToRuleRuleActionRedirectConfigOutput() RuleRuleActionRedirectConfigOutput
+	ToRuleRuleActionRedirectConfigOutputWithContext(context.Context) RuleRuleActionRedirectConfigOutput
+}
+
+type RuleRuleActionRedirectConfigArgs struct {
+	// The domain name to which the request was redirected.
+	Host pulumi.StringPtrInput `pulumi:"host"`
+	// The redirect HTTP code.
+	HttpCode pulumi.StringPtrInput `pulumi:"httpCode"`
+	// The path to which the request was redirected.
+	Path pulumi.StringPtrInput `pulumi:"path"`
+	// The redirect port.
+	Port pulumi.StringPtrInput `pulumi:"port"`
+	// The redirect protocol.
+	Protocol pulumi.StringPtrInput `pulumi:"protocol"`
+}
+
+func (RuleRuleActionRedirectConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleRuleActionRedirectConfig)(nil)).Elem()
+}
+
+func (i RuleRuleActionRedirectConfigArgs) ToRuleRuleActionRedirectConfigOutput() RuleRuleActionRedirectConfigOutput {
+	return i.ToRuleRuleActionRedirectConfigOutputWithContext(context.Background())
+}
+
+func (i RuleRuleActionRedirectConfigArgs) ToRuleRuleActionRedirectConfigOutputWithContext(ctx context.Context) RuleRuleActionRedirectConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleRuleActionRedirectConfigOutput)
+}
+
+func (i RuleRuleActionRedirectConfigArgs) ToRuleRuleActionRedirectConfigPtrOutput() RuleRuleActionRedirectConfigPtrOutput {
+	return i.ToRuleRuleActionRedirectConfigPtrOutputWithContext(context.Background())
+}
+
+func (i RuleRuleActionRedirectConfigArgs) ToRuleRuleActionRedirectConfigPtrOutputWithContext(ctx context.Context) RuleRuleActionRedirectConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleRuleActionRedirectConfigOutput).ToRuleRuleActionRedirectConfigPtrOutputWithContext(ctx)
+}
+
+// RuleRuleActionRedirectConfigPtrInput is an input type that accepts RuleRuleActionRedirectConfigArgs, RuleRuleActionRedirectConfigPtr and RuleRuleActionRedirectConfigPtrOutput values.
+// You can construct a concrete instance of `RuleRuleActionRedirectConfigPtrInput` via:
+//
+//	        RuleRuleActionRedirectConfigArgs{...}
+//
+//	or:
+//
+//	        nil
+type RuleRuleActionRedirectConfigPtrInput interface {
+	pulumi.Input
+
+	ToRuleRuleActionRedirectConfigPtrOutput() RuleRuleActionRedirectConfigPtrOutput
+	ToRuleRuleActionRedirectConfigPtrOutputWithContext(context.Context) RuleRuleActionRedirectConfigPtrOutput
+}
+
+type ruleRuleActionRedirectConfigPtrType RuleRuleActionRedirectConfigArgs
+
+func RuleRuleActionRedirectConfigPtr(v *RuleRuleActionRedirectConfigArgs) RuleRuleActionRedirectConfigPtrInput {
+	return (*ruleRuleActionRedirectConfigPtrType)(v)
+}
+
+func (*ruleRuleActionRedirectConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RuleRuleActionRedirectConfig)(nil)).Elem()
+}
+
+func (i *ruleRuleActionRedirectConfigPtrType) ToRuleRuleActionRedirectConfigPtrOutput() RuleRuleActionRedirectConfigPtrOutput {
+	return i.ToRuleRuleActionRedirectConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *ruleRuleActionRedirectConfigPtrType) ToRuleRuleActionRedirectConfigPtrOutputWithContext(ctx context.Context) RuleRuleActionRedirectConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleRuleActionRedirectConfigPtrOutput)
+}
+
+type RuleRuleActionRedirectConfigOutput struct{ *pulumi.OutputState }
+
+func (RuleRuleActionRedirectConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleRuleActionRedirectConfig)(nil)).Elem()
+}
+
+func (o RuleRuleActionRedirectConfigOutput) ToRuleRuleActionRedirectConfigOutput() RuleRuleActionRedirectConfigOutput {
+	return o
+}
+
+func (o RuleRuleActionRedirectConfigOutput) ToRuleRuleActionRedirectConfigOutputWithContext(ctx context.Context) RuleRuleActionRedirectConfigOutput {
+	return o
+}
+
+func (o RuleRuleActionRedirectConfigOutput) ToRuleRuleActionRedirectConfigPtrOutput() RuleRuleActionRedirectConfigPtrOutput {
+	return o.ToRuleRuleActionRedirectConfigPtrOutputWithContext(context.Background())
+}
+
+func (o RuleRuleActionRedirectConfigOutput) ToRuleRuleActionRedirectConfigPtrOutputWithContext(ctx context.Context) RuleRuleActionRedirectConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RuleRuleActionRedirectConfig) *RuleRuleActionRedirectConfig {
+		return &v
+	}).(RuleRuleActionRedirectConfigPtrOutput)
+}
+
+// The domain name to which the request was redirected.
+func (o RuleRuleActionRedirectConfigOutput) Host() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RuleRuleActionRedirectConfig) *string { return v.Host }).(pulumi.StringPtrOutput)
+}
+
+// The redirect HTTP code.
+func (o RuleRuleActionRedirectConfigOutput) HttpCode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RuleRuleActionRedirectConfig) *string { return v.HttpCode }).(pulumi.StringPtrOutput)
+}
+
+// The path to which the request was redirected.
+func (o RuleRuleActionRedirectConfigOutput) Path() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RuleRuleActionRedirectConfig) *string { return v.Path }).(pulumi.StringPtrOutput)
+}
+
+// The redirect port.
+func (o RuleRuleActionRedirectConfigOutput) Port() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RuleRuleActionRedirectConfig) *string { return v.Port }).(pulumi.StringPtrOutput)
+}
+
+// The redirect protocol.
+func (o RuleRuleActionRedirectConfigOutput) Protocol() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RuleRuleActionRedirectConfig) *string { return v.Protocol }).(pulumi.StringPtrOutput)
+}
+
+type RuleRuleActionRedirectConfigPtrOutput struct{ *pulumi.OutputState }
+
+func (RuleRuleActionRedirectConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RuleRuleActionRedirectConfig)(nil)).Elem()
+}
+
+func (o RuleRuleActionRedirectConfigPtrOutput) ToRuleRuleActionRedirectConfigPtrOutput() RuleRuleActionRedirectConfigPtrOutput {
+	return o
+}
+
+func (o RuleRuleActionRedirectConfigPtrOutput) ToRuleRuleActionRedirectConfigPtrOutputWithContext(ctx context.Context) RuleRuleActionRedirectConfigPtrOutput {
+	return o
+}
+
+func (o RuleRuleActionRedirectConfigPtrOutput) Elem() RuleRuleActionRedirectConfigOutput {
+	return o.ApplyT(func(v *RuleRuleActionRedirectConfig) RuleRuleActionRedirectConfig {
+		if v != nil {
+			return *v
+		}
+		var ret RuleRuleActionRedirectConfig
+		return ret
+	}).(RuleRuleActionRedirectConfigOutput)
+}
+
+// The domain name to which the request was redirected.
+func (o RuleRuleActionRedirectConfigPtrOutput) Host() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RuleRuleActionRedirectConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Host
+	}).(pulumi.StringPtrOutput)
+}
+
+// The redirect HTTP code.
+func (o RuleRuleActionRedirectConfigPtrOutput) HttpCode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RuleRuleActionRedirectConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.HttpCode
+	}).(pulumi.StringPtrOutput)
+}
+
+// The path to which the request was redirected.
+func (o RuleRuleActionRedirectConfigPtrOutput) Path() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RuleRuleActionRedirectConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Path
+	}).(pulumi.StringPtrOutput)
+}
+
+// The redirect port.
+func (o RuleRuleActionRedirectConfigPtrOutput) Port() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RuleRuleActionRedirectConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Port
+	}).(pulumi.StringPtrOutput)
+}
+
+// The redirect protocol.
+func (o RuleRuleActionRedirectConfigPtrOutput) Protocol() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RuleRuleActionRedirectConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Protocol
+	}).(pulumi.StringPtrOutput)
+}
+
+type RuleRuleActionRewriteConfig struct {
+	// The rewrite path.
+	Path *string `pulumi:"path"`
+}
+
+// RuleRuleActionRewriteConfigInput is an input type that accepts RuleRuleActionRewriteConfigArgs and RuleRuleActionRewriteConfigOutput values.
+// You can construct a concrete instance of `RuleRuleActionRewriteConfigInput` via:
+//
+//	RuleRuleActionRewriteConfigArgs{...}
+type RuleRuleActionRewriteConfigInput interface {
+	pulumi.Input
+
+	ToRuleRuleActionRewriteConfigOutput() RuleRuleActionRewriteConfigOutput
+	ToRuleRuleActionRewriteConfigOutputWithContext(context.Context) RuleRuleActionRewriteConfigOutput
+}
+
+type RuleRuleActionRewriteConfigArgs struct {
+	// The rewrite path.
+	Path pulumi.StringPtrInput `pulumi:"path"`
+}
+
+func (RuleRuleActionRewriteConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleRuleActionRewriteConfig)(nil)).Elem()
+}
+
+func (i RuleRuleActionRewriteConfigArgs) ToRuleRuleActionRewriteConfigOutput() RuleRuleActionRewriteConfigOutput {
+	return i.ToRuleRuleActionRewriteConfigOutputWithContext(context.Background())
+}
+
+func (i RuleRuleActionRewriteConfigArgs) ToRuleRuleActionRewriteConfigOutputWithContext(ctx context.Context) RuleRuleActionRewriteConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleRuleActionRewriteConfigOutput)
+}
+
+func (i RuleRuleActionRewriteConfigArgs) ToRuleRuleActionRewriteConfigPtrOutput() RuleRuleActionRewriteConfigPtrOutput {
+	return i.ToRuleRuleActionRewriteConfigPtrOutputWithContext(context.Background())
+}
+
+func (i RuleRuleActionRewriteConfigArgs) ToRuleRuleActionRewriteConfigPtrOutputWithContext(ctx context.Context) RuleRuleActionRewriteConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleRuleActionRewriteConfigOutput).ToRuleRuleActionRewriteConfigPtrOutputWithContext(ctx)
+}
+
+// RuleRuleActionRewriteConfigPtrInput is an input type that accepts RuleRuleActionRewriteConfigArgs, RuleRuleActionRewriteConfigPtr and RuleRuleActionRewriteConfigPtrOutput values.
+// You can construct a concrete instance of `RuleRuleActionRewriteConfigPtrInput` via:
+//
+//	        RuleRuleActionRewriteConfigArgs{...}
+//
+//	or:
+//
+//	        nil
+type RuleRuleActionRewriteConfigPtrInput interface {
+	pulumi.Input
+
+	ToRuleRuleActionRewriteConfigPtrOutput() RuleRuleActionRewriteConfigPtrOutput
+	ToRuleRuleActionRewriteConfigPtrOutputWithContext(context.Context) RuleRuleActionRewriteConfigPtrOutput
+}
+
+type ruleRuleActionRewriteConfigPtrType RuleRuleActionRewriteConfigArgs
+
+func RuleRuleActionRewriteConfigPtr(v *RuleRuleActionRewriteConfigArgs) RuleRuleActionRewriteConfigPtrInput {
+	return (*ruleRuleActionRewriteConfigPtrType)(v)
+}
+
+func (*ruleRuleActionRewriteConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RuleRuleActionRewriteConfig)(nil)).Elem()
+}
+
+func (i *ruleRuleActionRewriteConfigPtrType) ToRuleRuleActionRewriteConfigPtrOutput() RuleRuleActionRewriteConfigPtrOutput {
+	return i.ToRuleRuleActionRewriteConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *ruleRuleActionRewriteConfigPtrType) ToRuleRuleActionRewriteConfigPtrOutputWithContext(ctx context.Context) RuleRuleActionRewriteConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleRuleActionRewriteConfigPtrOutput)
+}
+
+type RuleRuleActionRewriteConfigOutput struct{ *pulumi.OutputState }
+
+func (RuleRuleActionRewriteConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleRuleActionRewriteConfig)(nil)).Elem()
+}
+
+func (o RuleRuleActionRewriteConfigOutput) ToRuleRuleActionRewriteConfigOutput() RuleRuleActionRewriteConfigOutput {
+	return o
+}
+
+func (o RuleRuleActionRewriteConfigOutput) ToRuleRuleActionRewriteConfigOutputWithContext(ctx context.Context) RuleRuleActionRewriteConfigOutput {
+	return o
+}
+
+func (o RuleRuleActionRewriteConfigOutput) ToRuleRuleActionRewriteConfigPtrOutput() RuleRuleActionRewriteConfigPtrOutput {
+	return o.ToRuleRuleActionRewriteConfigPtrOutputWithContext(context.Background())
+}
+
+func (o RuleRuleActionRewriteConfigOutput) ToRuleRuleActionRewriteConfigPtrOutputWithContext(ctx context.Context) RuleRuleActionRewriteConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RuleRuleActionRewriteConfig) *RuleRuleActionRewriteConfig {
+		return &v
+	}).(RuleRuleActionRewriteConfigPtrOutput)
+}
+
+// The rewrite path.
+func (o RuleRuleActionRewriteConfigOutput) Path() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RuleRuleActionRewriteConfig) *string { return v.Path }).(pulumi.StringPtrOutput)
+}
+
+type RuleRuleActionRewriteConfigPtrOutput struct{ *pulumi.OutputState }
+
+func (RuleRuleActionRewriteConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RuleRuleActionRewriteConfig)(nil)).Elem()
+}
+
+func (o RuleRuleActionRewriteConfigPtrOutput) ToRuleRuleActionRewriteConfigPtrOutput() RuleRuleActionRewriteConfigPtrOutput {
+	return o
+}
+
+func (o RuleRuleActionRewriteConfigPtrOutput) ToRuleRuleActionRewriteConfigPtrOutputWithContext(ctx context.Context) RuleRuleActionRewriteConfigPtrOutput {
+	return o
+}
+
+func (o RuleRuleActionRewriteConfigPtrOutput) Elem() RuleRuleActionRewriteConfigOutput {
+	return o.ApplyT(func(v *RuleRuleActionRewriteConfig) RuleRuleActionRewriteConfig {
+		if v != nil {
+			return *v
+		}
+		var ret RuleRuleActionRewriteConfig
+		return ret
+	}).(RuleRuleActionRewriteConfigOutput)
+}
+
+// The rewrite path.
+func (o RuleRuleActionRewriteConfigPtrOutput) Path() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RuleRuleActionRewriteConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Path
+	}).(pulumi.StringPtrOutput)
+}
+
+type RuleRuleActionTrafficLimitConfig struct {
+	// The QPS limit.
+	Qps *int `pulumi:"qps"`
+}
+
+// RuleRuleActionTrafficLimitConfigInput is an input type that accepts RuleRuleActionTrafficLimitConfigArgs and RuleRuleActionTrafficLimitConfigOutput values.
+// You can construct a concrete instance of `RuleRuleActionTrafficLimitConfigInput` via:
+//
+//	RuleRuleActionTrafficLimitConfigArgs{...}
+type RuleRuleActionTrafficLimitConfigInput interface {
+	pulumi.Input
+
+	ToRuleRuleActionTrafficLimitConfigOutput() RuleRuleActionTrafficLimitConfigOutput
+	ToRuleRuleActionTrafficLimitConfigOutputWithContext(context.Context) RuleRuleActionTrafficLimitConfigOutput
+}
+
+type RuleRuleActionTrafficLimitConfigArgs struct {
+	// The QPS limit.
+	Qps pulumi.IntPtrInput `pulumi:"qps"`
+}
+
+func (RuleRuleActionTrafficLimitConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleRuleActionTrafficLimitConfig)(nil)).Elem()
+}
+
+func (i RuleRuleActionTrafficLimitConfigArgs) ToRuleRuleActionTrafficLimitConfigOutput() RuleRuleActionTrafficLimitConfigOutput {
+	return i.ToRuleRuleActionTrafficLimitConfigOutputWithContext(context.Background())
+}
+
+func (i RuleRuleActionTrafficLimitConfigArgs) ToRuleRuleActionTrafficLimitConfigOutputWithContext(ctx context.Context) RuleRuleActionTrafficLimitConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleRuleActionTrafficLimitConfigOutput)
+}
+
+func (i RuleRuleActionTrafficLimitConfigArgs) ToRuleRuleActionTrafficLimitConfigPtrOutput() RuleRuleActionTrafficLimitConfigPtrOutput {
+	return i.ToRuleRuleActionTrafficLimitConfigPtrOutputWithContext(context.Background())
+}
+
+func (i RuleRuleActionTrafficLimitConfigArgs) ToRuleRuleActionTrafficLimitConfigPtrOutputWithContext(ctx context.Context) RuleRuleActionTrafficLimitConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleRuleActionTrafficLimitConfigOutput).ToRuleRuleActionTrafficLimitConfigPtrOutputWithContext(ctx)
+}
+
+// RuleRuleActionTrafficLimitConfigPtrInput is an input type that accepts RuleRuleActionTrafficLimitConfigArgs, RuleRuleActionTrafficLimitConfigPtr and RuleRuleActionTrafficLimitConfigPtrOutput values.
+// You can construct a concrete instance of `RuleRuleActionTrafficLimitConfigPtrInput` via:
+//
+//	        RuleRuleActionTrafficLimitConfigArgs{...}
+//
+//	or:
+//
+//	        nil
+type RuleRuleActionTrafficLimitConfigPtrInput interface {
+	pulumi.Input
+
+	ToRuleRuleActionTrafficLimitConfigPtrOutput() RuleRuleActionTrafficLimitConfigPtrOutput
+	ToRuleRuleActionTrafficLimitConfigPtrOutputWithContext(context.Context) RuleRuleActionTrafficLimitConfigPtrOutput
+}
+
+type ruleRuleActionTrafficLimitConfigPtrType RuleRuleActionTrafficLimitConfigArgs
+
+func RuleRuleActionTrafficLimitConfigPtr(v *RuleRuleActionTrafficLimitConfigArgs) RuleRuleActionTrafficLimitConfigPtrInput {
+	return (*ruleRuleActionTrafficLimitConfigPtrType)(v)
+}
+
+func (*ruleRuleActionTrafficLimitConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RuleRuleActionTrafficLimitConfig)(nil)).Elem()
+}
+
+func (i *ruleRuleActionTrafficLimitConfigPtrType) ToRuleRuleActionTrafficLimitConfigPtrOutput() RuleRuleActionTrafficLimitConfigPtrOutput {
+	return i.ToRuleRuleActionTrafficLimitConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *ruleRuleActionTrafficLimitConfigPtrType) ToRuleRuleActionTrafficLimitConfigPtrOutputWithContext(ctx context.Context) RuleRuleActionTrafficLimitConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleRuleActionTrafficLimitConfigPtrOutput)
+}
+
+type RuleRuleActionTrafficLimitConfigOutput struct{ *pulumi.OutputState }
+
+func (RuleRuleActionTrafficLimitConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleRuleActionTrafficLimitConfig)(nil)).Elem()
+}
+
+func (o RuleRuleActionTrafficLimitConfigOutput) ToRuleRuleActionTrafficLimitConfigOutput() RuleRuleActionTrafficLimitConfigOutput {
+	return o
+}
+
+func (o RuleRuleActionTrafficLimitConfigOutput) ToRuleRuleActionTrafficLimitConfigOutputWithContext(ctx context.Context) RuleRuleActionTrafficLimitConfigOutput {
+	return o
+}
+
+func (o RuleRuleActionTrafficLimitConfigOutput) ToRuleRuleActionTrafficLimitConfigPtrOutput() RuleRuleActionTrafficLimitConfigPtrOutput {
+	return o.ToRuleRuleActionTrafficLimitConfigPtrOutputWithContext(context.Background())
+}
+
+func (o RuleRuleActionTrafficLimitConfigOutput) ToRuleRuleActionTrafficLimitConfigPtrOutputWithContext(ctx context.Context) RuleRuleActionTrafficLimitConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RuleRuleActionTrafficLimitConfig) *RuleRuleActionTrafficLimitConfig {
+		return &v
+	}).(RuleRuleActionTrafficLimitConfigPtrOutput)
+}
+
+// The QPS limit.
+func (o RuleRuleActionTrafficLimitConfigOutput) Qps() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v RuleRuleActionTrafficLimitConfig) *int { return v.Qps }).(pulumi.IntPtrOutput)
+}
+
+type RuleRuleActionTrafficLimitConfigPtrOutput struct{ *pulumi.OutputState }
+
+func (RuleRuleActionTrafficLimitConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RuleRuleActionTrafficLimitConfig)(nil)).Elem()
+}
+
+func (o RuleRuleActionTrafficLimitConfigPtrOutput) ToRuleRuleActionTrafficLimitConfigPtrOutput() RuleRuleActionTrafficLimitConfigPtrOutput {
+	return o
+}
+
+func (o RuleRuleActionTrafficLimitConfigPtrOutput) ToRuleRuleActionTrafficLimitConfigPtrOutputWithContext(ctx context.Context) RuleRuleActionTrafficLimitConfigPtrOutput {
+	return o
+}
+
+func (o RuleRuleActionTrafficLimitConfigPtrOutput) Elem() RuleRuleActionTrafficLimitConfigOutput {
+	return o.ApplyT(func(v *RuleRuleActionTrafficLimitConfig) RuleRuleActionTrafficLimitConfig {
+		if v != nil {
+			return *v
+		}
+		var ret RuleRuleActionTrafficLimitConfig
+		return ret
+	}).(RuleRuleActionTrafficLimitConfigOutput)
+}
+
+// The QPS limit.
+func (o RuleRuleActionTrafficLimitConfigPtrOutput) Qps() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *RuleRuleActionTrafficLimitConfig) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Qps
+	}).(pulumi.IntPtrOutput)
+}
+
+type RuleRuleCondition struct {
+	// Header configuration for Header type condition.
+	HeaderConfig *RuleRuleConditionHeaderConfig `pulumi:"headerConfig"`
+	// Host configuration for Host type condition.
+	HostConfig *RuleRuleConditionHostConfig `pulumi:"hostConfig"`
+	// Method configuration for Method type condition.
+	MethodConfig *RuleRuleConditionMethodConfig `pulumi:"methodConfig"`
+	// Path configuration for Path type condition.
+	PathConfig *RuleRuleConditionPathConfig `pulumi:"pathConfig"`
+	// Query string configuration for QueryString type condition.
+	QueryStringConfig *RuleRuleConditionQueryStringConfig `pulumi:"queryStringConfig"`
+	// The type of rule condition. Valid values: Host, Path, Header, Method, QueryString.
+	Type *string `pulumi:"type"`
+}
+
+// RuleRuleConditionInput is an input type that accepts RuleRuleConditionArgs and RuleRuleConditionOutput values.
+// You can construct a concrete instance of `RuleRuleConditionInput` via:
+//
+//	RuleRuleConditionArgs{...}
+type RuleRuleConditionInput interface {
+	pulumi.Input
+
+	ToRuleRuleConditionOutput() RuleRuleConditionOutput
+	ToRuleRuleConditionOutputWithContext(context.Context) RuleRuleConditionOutput
+}
+
+type RuleRuleConditionArgs struct {
+	// Header configuration for Header type condition.
+	HeaderConfig RuleRuleConditionHeaderConfigPtrInput `pulumi:"headerConfig"`
+	// Host configuration for Host type condition.
+	HostConfig RuleRuleConditionHostConfigPtrInput `pulumi:"hostConfig"`
+	// Method configuration for Method type condition.
+	MethodConfig RuleRuleConditionMethodConfigPtrInput `pulumi:"methodConfig"`
+	// Path configuration for Path type condition.
+	PathConfig RuleRuleConditionPathConfigPtrInput `pulumi:"pathConfig"`
+	// Query string configuration for QueryString type condition.
+	QueryStringConfig RuleRuleConditionQueryStringConfigPtrInput `pulumi:"queryStringConfig"`
+	// The type of rule condition. Valid values: Host, Path, Header, Method, QueryString.
+	Type pulumi.StringPtrInput `pulumi:"type"`
+}
+
+func (RuleRuleConditionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleRuleCondition)(nil)).Elem()
+}
+
+func (i RuleRuleConditionArgs) ToRuleRuleConditionOutput() RuleRuleConditionOutput {
+	return i.ToRuleRuleConditionOutputWithContext(context.Background())
+}
+
+func (i RuleRuleConditionArgs) ToRuleRuleConditionOutputWithContext(ctx context.Context) RuleRuleConditionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleRuleConditionOutput)
+}
+
+// RuleRuleConditionArrayInput is an input type that accepts RuleRuleConditionArray and RuleRuleConditionArrayOutput values.
+// You can construct a concrete instance of `RuleRuleConditionArrayInput` via:
+//
+//	RuleRuleConditionArray{ RuleRuleConditionArgs{...} }
+type RuleRuleConditionArrayInput interface {
+	pulumi.Input
+
+	ToRuleRuleConditionArrayOutput() RuleRuleConditionArrayOutput
+	ToRuleRuleConditionArrayOutputWithContext(context.Context) RuleRuleConditionArrayOutput
+}
+
+type RuleRuleConditionArray []RuleRuleConditionInput
+
+func (RuleRuleConditionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RuleRuleCondition)(nil)).Elem()
+}
+
+func (i RuleRuleConditionArray) ToRuleRuleConditionArrayOutput() RuleRuleConditionArrayOutput {
+	return i.ToRuleRuleConditionArrayOutputWithContext(context.Background())
+}
+
+func (i RuleRuleConditionArray) ToRuleRuleConditionArrayOutputWithContext(ctx context.Context) RuleRuleConditionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleRuleConditionArrayOutput)
+}
+
+type RuleRuleConditionOutput struct{ *pulumi.OutputState }
+
+func (RuleRuleConditionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleRuleCondition)(nil)).Elem()
+}
+
+func (o RuleRuleConditionOutput) ToRuleRuleConditionOutput() RuleRuleConditionOutput {
+	return o
+}
+
+func (o RuleRuleConditionOutput) ToRuleRuleConditionOutputWithContext(ctx context.Context) RuleRuleConditionOutput {
+	return o
+}
+
+// Header configuration for Header type condition.
+func (o RuleRuleConditionOutput) HeaderConfig() RuleRuleConditionHeaderConfigPtrOutput {
+	return o.ApplyT(func(v RuleRuleCondition) *RuleRuleConditionHeaderConfig { return v.HeaderConfig }).(RuleRuleConditionHeaderConfigPtrOutput)
+}
+
+// Host configuration for Host type condition.
+func (o RuleRuleConditionOutput) HostConfig() RuleRuleConditionHostConfigPtrOutput {
+	return o.ApplyT(func(v RuleRuleCondition) *RuleRuleConditionHostConfig { return v.HostConfig }).(RuleRuleConditionHostConfigPtrOutput)
+}
+
+// Method configuration for Method type condition.
+func (o RuleRuleConditionOutput) MethodConfig() RuleRuleConditionMethodConfigPtrOutput {
+	return o.ApplyT(func(v RuleRuleCondition) *RuleRuleConditionMethodConfig { return v.MethodConfig }).(RuleRuleConditionMethodConfigPtrOutput)
+}
+
+// Path configuration for Path type condition.
+func (o RuleRuleConditionOutput) PathConfig() RuleRuleConditionPathConfigPtrOutput {
+	return o.ApplyT(func(v RuleRuleCondition) *RuleRuleConditionPathConfig { return v.PathConfig }).(RuleRuleConditionPathConfigPtrOutput)
+}
+
+// Query string configuration for QueryString type condition.
+func (o RuleRuleConditionOutput) QueryStringConfig() RuleRuleConditionQueryStringConfigPtrOutput {
+	return o.ApplyT(func(v RuleRuleCondition) *RuleRuleConditionQueryStringConfig { return v.QueryStringConfig }).(RuleRuleConditionQueryStringConfigPtrOutput)
+}
+
+// The type of rule condition. Valid values: Host, Path, Header, Method, QueryString.
+func (o RuleRuleConditionOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RuleRuleCondition) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+type RuleRuleConditionArrayOutput struct{ *pulumi.OutputState }
+
+func (RuleRuleConditionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RuleRuleCondition)(nil)).Elem()
+}
+
+func (o RuleRuleConditionArrayOutput) ToRuleRuleConditionArrayOutput() RuleRuleConditionArrayOutput {
+	return o
+}
+
+func (o RuleRuleConditionArrayOutput) ToRuleRuleConditionArrayOutputWithContext(ctx context.Context) RuleRuleConditionArrayOutput {
+	return o
+}
+
+func (o RuleRuleConditionArrayOutput) Index(i pulumi.IntInput) RuleRuleConditionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RuleRuleCondition {
+		return vs[0].([]RuleRuleCondition)[vs[1].(int)]
+	}).(RuleRuleConditionOutput)
+}
+
+type RuleRuleConditionHeaderConfig struct {
+	// The header key.
+	Key string `pulumi:"key"`
+	// The list of header values.
+	Values []string `pulumi:"values"`
+}
+
+// RuleRuleConditionHeaderConfigInput is an input type that accepts RuleRuleConditionHeaderConfigArgs and RuleRuleConditionHeaderConfigOutput values.
+// You can construct a concrete instance of `RuleRuleConditionHeaderConfigInput` via:
+//
+//	RuleRuleConditionHeaderConfigArgs{...}
+type RuleRuleConditionHeaderConfigInput interface {
+	pulumi.Input
+
+	ToRuleRuleConditionHeaderConfigOutput() RuleRuleConditionHeaderConfigOutput
+	ToRuleRuleConditionHeaderConfigOutputWithContext(context.Context) RuleRuleConditionHeaderConfigOutput
+}
+
+type RuleRuleConditionHeaderConfigArgs struct {
+	// The header key.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The list of header values.
+	Values pulumi.StringArrayInput `pulumi:"values"`
+}
+
+func (RuleRuleConditionHeaderConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleRuleConditionHeaderConfig)(nil)).Elem()
+}
+
+func (i RuleRuleConditionHeaderConfigArgs) ToRuleRuleConditionHeaderConfigOutput() RuleRuleConditionHeaderConfigOutput {
+	return i.ToRuleRuleConditionHeaderConfigOutputWithContext(context.Background())
+}
+
+func (i RuleRuleConditionHeaderConfigArgs) ToRuleRuleConditionHeaderConfigOutputWithContext(ctx context.Context) RuleRuleConditionHeaderConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleRuleConditionHeaderConfigOutput)
+}
+
+func (i RuleRuleConditionHeaderConfigArgs) ToRuleRuleConditionHeaderConfigPtrOutput() RuleRuleConditionHeaderConfigPtrOutput {
+	return i.ToRuleRuleConditionHeaderConfigPtrOutputWithContext(context.Background())
+}
+
+func (i RuleRuleConditionHeaderConfigArgs) ToRuleRuleConditionHeaderConfigPtrOutputWithContext(ctx context.Context) RuleRuleConditionHeaderConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleRuleConditionHeaderConfigOutput).ToRuleRuleConditionHeaderConfigPtrOutputWithContext(ctx)
+}
+
+// RuleRuleConditionHeaderConfigPtrInput is an input type that accepts RuleRuleConditionHeaderConfigArgs, RuleRuleConditionHeaderConfigPtr and RuleRuleConditionHeaderConfigPtrOutput values.
+// You can construct a concrete instance of `RuleRuleConditionHeaderConfigPtrInput` via:
+//
+//	        RuleRuleConditionHeaderConfigArgs{...}
+//
+//	or:
+//
+//	        nil
+type RuleRuleConditionHeaderConfigPtrInput interface {
+	pulumi.Input
+
+	ToRuleRuleConditionHeaderConfigPtrOutput() RuleRuleConditionHeaderConfigPtrOutput
+	ToRuleRuleConditionHeaderConfigPtrOutputWithContext(context.Context) RuleRuleConditionHeaderConfigPtrOutput
+}
+
+type ruleRuleConditionHeaderConfigPtrType RuleRuleConditionHeaderConfigArgs
+
+func RuleRuleConditionHeaderConfigPtr(v *RuleRuleConditionHeaderConfigArgs) RuleRuleConditionHeaderConfigPtrInput {
+	return (*ruleRuleConditionHeaderConfigPtrType)(v)
+}
+
+func (*ruleRuleConditionHeaderConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RuleRuleConditionHeaderConfig)(nil)).Elem()
+}
+
+func (i *ruleRuleConditionHeaderConfigPtrType) ToRuleRuleConditionHeaderConfigPtrOutput() RuleRuleConditionHeaderConfigPtrOutput {
+	return i.ToRuleRuleConditionHeaderConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *ruleRuleConditionHeaderConfigPtrType) ToRuleRuleConditionHeaderConfigPtrOutputWithContext(ctx context.Context) RuleRuleConditionHeaderConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleRuleConditionHeaderConfigPtrOutput)
+}
+
+type RuleRuleConditionHeaderConfigOutput struct{ *pulumi.OutputState }
+
+func (RuleRuleConditionHeaderConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleRuleConditionHeaderConfig)(nil)).Elem()
+}
+
+func (o RuleRuleConditionHeaderConfigOutput) ToRuleRuleConditionHeaderConfigOutput() RuleRuleConditionHeaderConfigOutput {
+	return o
+}
+
+func (o RuleRuleConditionHeaderConfigOutput) ToRuleRuleConditionHeaderConfigOutputWithContext(ctx context.Context) RuleRuleConditionHeaderConfigOutput {
+	return o
+}
+
+func (o RuleRuleConditionHeaderConfigOutput) ToRuleRuleConditionHeaderConfigPtrOutput() RuleRuleConditionHeaderConfigPtrOutput {
+	return o.ToRuleRuleConditionHeaderConfigPtrOutputWithContext(context.Background())
+}
+
+func (o RuleRuleConditionHeaderConfigOutput) ToRuleRuleConditionHeaderConfigPtrOutputWithContext(ctx context.Context) RuleRuleConditionHeaderConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RuleRuleConditionHeaderConfig) *RuleRuleConditionHeaderConfig {
+		return &v
+	}).(RuleRuleConditionHeaderConfigPtrOutput)
+}
+
+// The header key.
+func (o RuleRuleConditionHeaderConfigOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v RuleRuleConditionHeaderConfig) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The list of header values.
+func (o RuleRuleConditionHeaderConfigOutput) Values() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v RuleRuleConditionHeaderConfig) []string { return v.Values }).(pulumi.StringArrayOutput)
+}
+
+type RuleRuleConditionHeaderConfigPtrOutput struct{ *pulumi.OutputState }
+
+func (RuleRuleConditionHeaderConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RuleRuleConditionHeaderConfig)(nil)).Elem()
+}
+
+func (o RuleRuleConditionHeaderConfigPtrOutput) ToRuleRuleConditionHeaderConfigPtrOutput() RuleRuleConditionHeaderConfigPtrOutput {
+	return o
+}
+
+func (o RuleRuleConditionHeaderConfigPtrOutput) ToRuleRuleConditionHeaderConfigPtrOutputWithContext(ctx context.Context) RuleRuleConditionHeaderConfigPtrOutput {
+	return o
+}
+
+func (o RuleRuleConditionHeaderConfigPtrOutput) Elem() RuleRuleConditionHeaderConfigOutput {
+	return o.ApplyT(func(v *RuleRuleConditionHeaderConfig) RuleRuleConditionHeaderConfig {
+		if v != nil {
+			return *v
+		}
+		var ret RuleRuleConditionHeaderConfig
+		return ret
+	}).(RuleRuleConditionHeaderConfigOutput)
+}
+
+// The header key.
+func (o RuleRuleConditionHeaderConfigPtrOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RuleRuleConditionHeaderConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Key
+	}).(pulumi.StringPtrOutput)
+}
+
+// The list of header values.
+func (o RuleRuleConditionHeaderConfigPtrOutput) Values() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *RuleRuleConditionHeaderConfig) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Values
+	}).(pulumi.StringArrayOutput)
+}
+
+type RuleRuleConditionHostConfig struct {
+	// The list of domain names.
+	Values []string `pulumi:"values"`
+}
+
+// RuleRuleConditionHostConfigInput is an input type that accepts RuleRuleConditionHostConfigArgs and RuleRuleConditionHostConfigOutput values.
+// You can construct a concrete instance of `RuleRuleConditionHostConfigInput` via:
+//
+//	RuleRuleConditionHostConfigArgs{...}
+type RuleRuleConditionHostConfigInput interface {
+	pulumi.Input
+
+	ToRuleRuleConditionHostConfigOutput() RuleRuleConditionHostConfigOutput
+	ToRuleRuleConditionHostConfigOutputWithContext(context.Context) RuleRuleConditionHostConfigOutput
+}
+
+type RuleRuleConditionHostConfigArgs struct {
+	// The list of domain names.
+	Values pulumi.StringArrayInput `pulumi:"values"`
+}
+
+func (RuleRuleConditionHostConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleRuleConditionHostConfig)(nil)).Elem()
+}
+
+func (i RuleRuleConditionHostConfigArgs) ToRuleRuleConditionHostConfigOutput() RuleRuleConditionHostConfigOutput {
+	return i.ToRuleRuleConditionHostConfigOutputWithContext(context.Background())
+}
+
+func (i RuleRuleConditionHostConfigArgs) ToRuleRuleConditionHostConfigOutputWithContext(ctx context.Context) RuleRuleConditionHostConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleRuleConditionHostConfigOutput)
+}
+
+func (i RuleRuleConditionHostConfigArgs) ToRuleRuleConditionHostConfigPtrOutput() RuleRuleConditionHostConfigPtrOutput {
+	return i.ToRuleRuleConditionHostConfigPtrOutputWithContext(context.Background())
+}
+
+func (i RuleRuleConditionHostConfigArgs) ToRuleRuleConditionHostConfigPtrOutputWithContext(ctx context.Context) RuleRuleConditionHostConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleRuleConditionHostConfigOutput).ToRuleRuleConditionHostConfigPtrOutputWithContext(ctx)
+}
+
+// RuleRuleConditionHostConfigPtrInput is an input type that accepts RuleRuleConditionHostConfigArgs, RuleRuleConditionHostConfigPtr and RuleRuleConditionHostConfigPtrOutput values.
+// You can construct a concrete instance of `RuleRuleConditionHostConfigPtrInput` via:
+//
+//	        RuleRuleConditionHostConfigArgs{...}
+//
+//	or:
+//
+//	        nil
+type RuleRuleConditionHostConfigPtrInput interface {
+	pulumi.Input
+
+	ToRuleRuleConditionHostConfigPtrOutput() RuleRuleConditionHostConfigPtrOutput
+	ToRuleRuleConditionHostConfigPtrOutputWithContext(context.Context) RuleRuleConditionHostConfigPtrOutput
+}
+
+type ruleRuleConditionHostConfigPtrType RuleRuleConditionHostConfigArgs
+
+func RuleRuleConditionHostConfigPtr(v *RuleRuleConditionHostConfigArgs) RuleRuleConditionHostConfigPtrInput {
+	return (*ruleRuleConditionHostConfigPtrType)(v)
+}
+
+func (*ruleRuleConditionHostConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RuleRuleConditionHostConfig)(nil)).Elem()
+}
+
+func (i *ruleRuleConditionHostConfigPtrType) ToRuleRuleConditionHostConfigPtrOutput() RuleRuleConditionHostConfigPtrOutput {
+	return i.ToRuleRuleConditionHostConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *ruleRuleConditionHostConfigPtrType) ToRuleRuleConditionHostConfigPtrOutputWithContext(ctx context.Context) RuleRuleConditionHostConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleRuleConditionHostConfigPtrOutput)
+}
+
+type RuleRuleConditionHostConfigOutput struct{ *pulumi.OutputState }
+
+func (RuleRuleConditionHostConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleRuleConditionHostConfig)(nil)).Elem()
+}
+
+func (o RuleRuleConditionHostConfigOutput) ToRuleRuleConditionHostConfigOutput() RuleRuleConditionHostConfigOutput {
+	return o
+}
+
+func (o RuleRuleConditionHostConfigOutput) ToRuleRuleConditionHostConfigOutputWithContext(ctx context.Context) RuleRuleConditionHostConfigOutput {
+	return o
+}
+
+func (o RuleRuleConditionHostConfigOutput) ToRuleRuleConditionHostConfigPtrOutput() RuleRuleConditionHostConfigPtrOutput {
+	return o.ToRuleRuleConditionHostConfigPtrOutputWithContext(context.Background())
+}
+
+func (o RuleRuleConditionHostConfigOutput) ToRuleRuleConditionHostConfigPtrOutputWithContext(ctx context.Context) RuleRuleConditionHostConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RuleRuleConditionHostConfig) *RuleRuleConditionHostConfig {
+		return &v
+	}).(RuleRuleConditionHostConfigPtrOutput)
+}
+
+// The list of domain names.
+func (o RuleRuleConditionHostConfigOutput) Values() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v RuleRuleConditionHostConfig) []string { return v.Values }).(pulumi.StringArrayOutput)
+}
+
+type RuleRuleConditionHostConfigPtrOutput struct{ *pulumi.OutputState }
+
+func (RuleRuleConditionHostConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RuleRuleConditionHostConfig)(nil)).Elem()
+}
+
+func (o RuleRuleConditionHostConfigPtrOutput) ToRuleRuleConditionHostConfigPtrOutput() RuleRuleConditionHostConfigPtrOutput {
+	return o
+}
+
+func (o RuleRuleConditionHostConfigPtrOutput) ToRuleRuleConditionHostConfigPtrOutputWithContext(ctx context.Context) RuleRuleConditionHostConfigPtrOutput {
+	return o
+}
+
+func (o RuleRuleConditionHostConfigPtrOutput) Elem() RuleRuleConditionHostConfigOutput {
+	return o.ApplyT(func(v *RuleRuleConditionHostConfig) RuleRuleConditionHostConfig {
+		if v != nil {
+			return *v
+		}
+		var ret RuleRuleConditionHostConfig
+		return ret
+	}).(RuleRuleConditionHostConfigOutput)
+}
+
+// The list of domain names.
+func (o RuleRuleConditionHostConfigPtrOutput) Values() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *RuleRuleConditionHostConfig) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Values
+	}).(pulumi.StringArrayOutput)
+}
+
+type RuleRuleConditionMethodConfig struct {
+	// The values of the method. Vaild values: HEAD,GET,POST,OPTIONS,PUT,PATCH,DELETE.
+	Values []string `pulumi:"values"`
+}
+
+// RuleRuleConditionMethodConfigInput is an input type that accepts RuleRuleConditionMethodConfigArgs and RuleRuleConditionMethodConfigOutput values.
+// You can construct a concrete instance of `RuleRuleConditionMethodConfigInput` via:
+//
+//	RuleRuleConditionMethodConfigArgs{...}
+type RuleRuleConditionMethodConfigInput interface {
+	pulumi.Input
+
+	ToRuleRuleConditionMethodConfigOutput() RuleRuleConditionMethodConfigOutput
+	ToRuleRuleConditionMethodConfigOutputWithContext(context.Context) RuleRuleConditionMethodConfigOutput
+}
+
+type RuleRuleConditionMethodConfigArgs struct {
+	// The values of the method. Vaild values: HEAD,GET,POST,OPTIONS,PUT,PATCH,DELETE.
+	Values pulumi.StringArrayInput `pulumi:"values"`
+}
+
+func (RuleRuleConditionMethodConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleRuleConditionMethodConfig)(nil)).Elem()
+}
+
+func (i RuleRuleConditionMethodConfigArgs) ToRuleRuleConditionMethodConfigOutput() RuleRuleConditionMethodConfigOutput {
+	return i.ToRuleRuleConditionMethodConfigOutputWithContext(context.Background())
+}
+
+func (i RuleRuleConditionMethodConfigArgs) ToRuleRuleConditionMethodConfigOutputWithContext(ctx context.Context) RuleRuleConditionMethodConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleRuleConditionMethodConfigOutput)
+}
+
+func (i RuleRuleConditionMethodConfigArgs) ToRuleRuleConditionMethodConfigPtrOutput() RuleRuleConditionMethodConfigPtrOutput {
+	return i.ToRuleRuleConditionMethodConfigPtrOutputWithContext(context.Background())
+}
+
+func (i RuleRuleConditionMethodConfigArgs) ToRuleRuleConditionMethodConfigPtrOutputWithContext(ctx context.Context) RuleRuleConditionMethodConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleRuleConditionMethodConfigOutput).ToRuleRuleConditionMethodConfigPtrOutputWithContext(ctx)
+}
+
+// RuleRuleConditionMethodConfigPtrInput is an input type that accepts RuleRuleConditionMethodConfigArgs, RuleRuleConditionMethodConfigPtr and RuleRuleConditionMethodConfigPtrOutput values.
+// You can construct a concrete instance of `RuleRuleConditionMethodConfigPtrInput` via:
+//
+//	        RuleRuleConditionMethodConfigArgs{...}
+//
+//	or:
+//
+//	        nil
+type RuleRuleConditionMethodConfigPtrInput interface {
+	pulumi.Input
+
+	ToRuleRuleConditionMethodConfigPtrOutput() RuleRuleConditionMethodConfigPtrOutput
+	ToRuleRuleConditionMethodConfigPtrOutputWithContext(context.Context) RuleRuleConditionMethodConfigPtrOutput
+}
+
+type ruleRuleConditionMethodConfigPtrType RuleRuleConditionMethodConfigArgs
+
+func RuleRuleConditionMethodConfigPtr(v *RuleRuleConditionMethodConfigArgs) RuleRuleConditionMethodConfigPtrInput {
+	return (*ruleRuleConditionMethodConfigPtrType)(v)
+}
+
+func (*ruleRuleConditionMethodConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RuleRuleConditionMethodConfig)(nil)).Elem()
+}
+
+func (i *ruleRuleConditionMethodConfigPtrType) ToRuleRuleConditionMethodConfigPtrOutput() RuleRuleConditionMethodConfigPtrOutput {
+	return i.ToRuleRuleConditionMethodConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *ruleRuleConditionMethodConfigPtrType) ToRuleRuleConditionMethodConfigPtrOutputWithContext(ctx context.Context) RuleRuleConditionMethodConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleRuleConditionMethodConfigPtrOutput)
+}
+
+type RuleRuleConditionMethodConfigOutput struct{ *pulumi.OutputState }
+
+func (RuleRuleConditionMethodConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleRuleConditionMethodConfig)(nil)).Elem()
+}
+
+func (o RuleRuleConditionMethodConfigOutput) ToRuleRuleConditionMethodConfigOutput() RuleRuleConditionMethodConfigOutput {
+	return o
+}
+
+func (o RuleRuleConditionMethodConfigOutput) ToRuleRuleConditionMethodConfigOutputWithContext(ctx context.Context) RuleRuleConditionMethodConfigOutput {
+	return o
+}
+
+func (o RuleRuleConditionMethodConfigOutput) ToRuleRuleConditionMethodConfigPtrOutput() RuleRuleConditionMethodConfigPtrOutput {
+	return o.ToRuleRuleConditionMethodConfigPtrOutputWithContext(context.Background())
+}
+
+func (o RuleRuleConditionMethodConfigOutput) ToRuleRuleConditionMethodConfigPtrOutputWithContext(ctx context.Context) RuleRuleConditionMethodConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RuleRuleConditionMethodConfig) *RuleRuleConditionMethodConfig {
+		return &v
+	}).(RuleRuleConditionMethodConfigPtrOutput)
+}
+
+// The values of the method. Vaild values: HEAD,GET,POST,OPTIONS,PUT,PATCH,DELETE.
+func (o RuleRuleConditionMethodConfigOutput) Values() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v RuleRuleConditionMethodConfig) []string { return v.Values }).(pulumi.StringArrayOutput)
+}
+
+type RuleRuleConditionMethodConfigPtrOutput struct{ *pulumi.OutputState }
+
+func (RuleRuleConditionMethodConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RuleRuleConditionMethodConfig)(nil)).Elem()
+}
+
+func (o RuleRuleConditionMethodConfigPtrOutput) ToRuleRuleConditionMethodConfigPtrOutput() RuleRuleConditionMethodConfigPtrOutput {
+	return o
+}
+
+func (o RuleRuleConditionMethodConfigPtrOutput) ToRuleRuleConditionMethodConfigPtrOutputWithContext(ctx context.Context) RuleRuleConditionMethodConfigPtrOutput {
+	return o
+}
+
+func (o RuleRuleConditionMethodConfigPtrOutput) Elem() RuleRuleConditionMethodConfigOutput {
+	return o.ApplyT(func(v *RuleRuleConditionMethodConfig) RuleRuleConditionMethodConfig {
+		if v != nil {
+			return *v
+		}
+		var ret RuleRuleConditionMethodConfig
+		return ret
+	}).(RuleRuleConditionMethodConfigOutput)
+}
+
+// The values of the method. Vaild values: HEAD,GET,POST,OPTIONS,PUT,PATCH,DELETE.
+func (o RuleRuleConditionMethodConfigPtrOutput) Values() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *RuleRuleConditionMethodConfig) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Values
+	}).(pulumi.StringArrayOutput)
+}
+
+type RuleRuleConditionPathConfig struct {
+	// The list of absolute paths.
+	Values []string `pulumi:"values"`
+}
+
+// RuleRuleConditionPathConfigInput is an input type that accepts RuleRuleConditionPathConfigArgs and RuleRuleConditionPathConfigOutput values.
+// You can construct a concrete instance of `RuleRuleConditionPathConfigInput` via:
+//
+//	RuleRuleConditionPathConfigArgs{...}
+type RuleRuleConditionPathConfigInput interface {
+	pulumi.Input
+
+	ToRuleRuleConditionPathConfigOutput() RuleRuleConditionPathConfigOutput
+	ToRuleRuleConditionPathConfigOutputWithContext(context.Context) RuleRuleConditionPathConfigOutput
+}
+
+type RuleRuleConditionPathConfigArgs struct {
+	// The list of absolute paths.
+	Values pulumi.StringArrayInput `pulumi:"values"`
+}
+
+func (RuleRuleConditionPathConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleRuleConditionPathConfig)(nil)).Elem()
+}
+
+func (i RuleRuleConditionPathConfigArgs) ToRuleRuleConditionPathConfigOutput() RuleRuleConditionPathConfigOutput {
+	return i.ToRuleRuleConditionPathConfigOutputWithContext(context.Background())
+}
+
+func (i RuleRuleConditionPathConfigArgs) ToRuleRuleConditionPathConfigOutputWithContext(ctx context.Context) RuleRuleConditionPathConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleRuleConditionPathConfigOutput)
+}
+
+func (i RuleRuleConditionPathConfigArgs) ToRuleRuleConditionPathConfigPtrOutput() RuleRuleConditionPathConfigPtrOutput {
+	return i.ToRuleRuleConditionPathConfigPtrOutputWithContext(context.Background())
+}
+
+func (i RuleRuleConditionPathConfigArgs) ToRuleRuleConditionPathConfigPtrOutputWithContext(ctx context.Context) RuleRuleConditionPathConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleRuleConditionPathConfigOutput).ToRuleRuleConditionPathConfigPtrOutputWithContext(ctx)
+}
+
+// RuleRuleConditionPathConfigPtrInput is an input type that accepts RuleRuleConditionPathConfigArgs, RuleRuleConditionPathConfigPtr and RuleRuleConditionPathConfigPtrOutput values.
+// You can construct a concrete instance of `RuleRuleConditionPathConfigPtrInput` via:
+//
+//	        RuleRuleConditionPathConfigArgs{...}
+//
+//	or:
+//
+//	        nil
+type RuleRuleConditionPathConfigPtrInput interface {
+	pulumi.Input
+
+	ToRuleRuleConditionPathConfigPtrOutput() RuleRuleConditionPathConfigPtrOutput
+	ToRuleRuleConditionPathConfigPtrOutputWithContext(context.Context) RuleRuleConditionPathConfigPtrOutput
+}
+
+type ruleRuleConditionPathConfigPtrType RuleRuleConditionPathConfigArgs
+
+func RuleRuleConditionPathConfigPtr(v *RuleRuleConditionPathConfigArgs) RuleRuleConditionPathConfigPtrInput {
+	return (*ruleRuleConditionPathConfigPtrType)(v)
+}
+
+func (*ruleRuleConditionPathConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RuleRuleConditionPathConfig)(nil)).Elem()
+}
+
+func (i *ruleRuleConditionPathConfigPtrType) ToRuleRuleConditionPathConfigPtrOutput() RuleRuleConditionPathConfigPtrOutput {
+	return i.ToRuleRuleConditionPathConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *ruleRuleConditionPathConfigPtrType) ToRuleRuleConditionPathConfigPtrOutputWithContext(ctx context.Context) RuleRuleConditionPathConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleRuleConditionPathConfigPtrOutput)
+}
+
+type RuleRuleConditionPathConfigOutput struct{ *pulumi.OutputState }
+
+func (RuleRuleConditionPathConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleRuleConditionPathConfig)(nil)).Elem()
+}
+
+func (o RuleRuleConditionPathConfigOutput) ToRuleRuleConditionPathConfigOutput() RuleRuleConditionPathConfigOutput {
+	return o
+}
+
+func (o RuleRuleConditionPathConfigOutput) ToRuleRuleConditionPathConfigOutputWithContext(ctx context.Context) RuleRuleConditionPathConfigOutput {
+	return o
+}
+
+func (o RuleRuleConditionPathConfigOutput) ToRuleRuleConditionPathConfigPtrOutput() RuleRuleConditionPathConfigPtrOutput {
+	return o.ToRuleRuleConditionPathConfigPtrOutputWithContext(context.Background())
+}
+
+func (o RuleRuleConditionPathConfigOutput) ToRuleRuleConditionPathConfigPtrOutputWithContext(ctx context.Context) RuleRuleConditionPathConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RuleRuleConditionPathConfig) *RuleRuleConditionPathConfig {
+		return &v
+	}).(RuleRuleConditionPathConfigPtrOutput)
+}
+
+// The list of absolute paths.
+func (o RuleRuleConditionPathConfigOutput) Values() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v RuleRuleConditionPathConfig) []string { return v.Values }).(pulumi.StringArrayOutput)
+}
+
+type RuleRuleConditionPathConfigPtrOutput struct{ *pulumi.OutputState }
+
+func (RuleRuleConditionPathConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RuleRuleConditionPathConfig)(nil)).Elem()
+}
+
+func (o RuleRuleConditionPathConfigPtrOutput) ToRuleRuleConditionPathConfigPtrOutput() RuleRuleConditionPathConfigPtrOutput {
+	return o
+}
+
+func (o RuleRuleConditionPathConfigPtrOutput) ToRuleRuleConditionPathConfigPtrOutputWithContext(ctx context.Context) RuleRuleConditionPathConfigPtrOutput {
+	return o
+}
+
+func (o RuleRuleConditionPathConfigPtrOutput) Elem() RuleRuleConditionPathConfigOutput {
+	return o.ApplyT(func(v *RuleRuleConditionPathConfig) RuleRuleConditionPathConfig {
+		if v != nil {
+			return *v
+		}
+		var ret RuleRuleConditionPathConfig
+		return ret
+	}).(RuleRuleConditionPathConfigOutput)
+}
+
+// The list of absolute paths.
+func (o RuleRuleConditionPathConfigPtrOutput) Values() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *RuleRuleConditionPathConfig) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Values
+	}).(pulumi.StringArrayOutput)
+}
+
+type RuleRuleConditionQueryStringConfig struct {
+	// The list of query string values.
+	Values []RuleRuleConditionQueryStringConfigValue `pulumi:"values"`
+}
+
+// RuleRuleConditionQueryStringConfigInput is an input type that accepts RuleRuleConditionQueryStringConfigArgs and RuleRuleConditionQueryStringConfigOutput values.
+// You can construct a concrete instance of `RuleRuleConditionQueryStringConfigInput` via:
+//
+//	RuleRuleConditionQueryStringConfigArgs{...}
+type RuleRuleConditionQueryStringConfigInput interface {
+	pulumi.Input
+
+	ToRuleRuleConditionQueryStringConfigOutput() RuleRuleConditionQueryStringConfigOutput
+	ToRuleRuleConditionQueryStringConfigOutputWithContext(context.Context) RuleRuleConditionQueryStringConfigOutput
+}
+
+type RuleRuleConditionQueryStringConfigArgs struct {
+	// The list of query string values.
+	Values RuleRuleConditionQueryStringConfigValueArrayInput `pulumi:"values"`
+}
+
+func (RuleRuleConditionQueryStringConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleRuleConditionQueryStringConfig)(nil)).Elem()
+}
+
+func (i RuleRuleConditionQueryStringConfigArgs) ToRuleRuleConditionQueryStringConfigOutput() RuleRuleConditionQueryStringConfigOutput {
+	return i.ToRuleRuleConditionQueryStringConfigOutputWithContext(context.Background())
+}
+
+func (i RuleRuleConditionQueryStringConfigArgs) ToRuleRuleConditionQueryStringConfigOutputWithContext(ctx context.Context) RuleRuleConditionQueryStringConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleRuleConditionQueryStringConfigOutput)
+}
+
+func (i RuleRuleConditionQueryStringConfigArgs) ToRuleRuleConditionQueryStringConfigPtrOutput() RuleRuleConditionQueryStringConfigPtrOutput {
+	return i.ToRuleRuleConditionQueryStringConfigPtrOutputWithContext(context.Background())
+}
+
+func (i RuleRuleConditionQueryStringConfigArgs) ToRuleRuleConditionQueryStringConfigPtrOutputWithContext(ctx context.Context) RuleRuleConditionQueryStringConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleRuleConditionQueryStringConfigOutput).ToRuleRuleConditionQueryStringConfigPtrOutputWithContext(ctx)
+}
+
+// RuleRuleConditionQueryStringConfigPtrInput is an input type that accepts RuleRuleConditionQueryStringConfigArgs, RuleRuleConditionQueryStringConfigPtr and RuleRuleConditionQueryStringConfigPtrOutput values.
+// You can construct a concrete instance of `RuleRuleConditionQueryStringConfigPtrInput` via:
+//
+//	        RuleRuleConditionQueryStringConfigArgs{...}
+//
+//	or:
+//
+//	        nil
+type RuleRuleConditionQueryStringConfigPtrInput interface {
+	pulumi.Input
+
+	ToRuleRuleConditionQueryStringConfigPtrOutput() RuleRuleConditionQueryStringConfigPtrOutput
+	ToRuleRuleConditionQueryStringConfigPtrOutputWithContext(context.Context) RuleRuleConditionQueryStringConfigPtrOutput
+}
+
+type ruleRuleConditionQueryStringConfigPtrType RuleRuleConditionQueryStringConfigArgs
+
+func RuleRuleConditionQueryStringConfigPtr(v *RuleRuleConditionQueryStringConfigArgs) RuleRuleConditionQueryStringConfigPtrInput {
+	return (*ruleRuleConditionQueryStringConfigPtrType)(v)
+}
+
+func (*ruleRuleConditionQueryStringConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RuleRuleConditionQueryStringConfig)(nil)).Elem()
+}
+
+func (i *ruleRuleConditionQueryStringConfigPtrType) ToRuleRuleConditionQueryStringConfigPtrOutput() RuleRuleConditionQueryStringConfigPtrOutput {
+	return i.ToRuleRuleConditionQueryStringConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *ruleRuleConditionQueryStringConfigPtrType) ToRuleRuleConditionQueryStringConfigPtrOutputWithContext(ctx context.Context) RuleRuleConditionQueryStringConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleRuleConditionQueryStringConfigPtrOutput)
+}
+
+type RuleRuleConditionQueryStringConfigOutput struct{ *pulumi.OutputState }
+
+func (RuleRuleConditionQueryStringConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleRuleConditionQueryStringConfig)(nil)).Elem()
+}
+
+func (o RuleRuleConditionQueryStringConfigOutput) ToRuleRuleConditionQueryStringConfigOutput() RuleRuleConditionQueryStringConfigOutput {
+	return o
+}
+
+func (o RuleRuleConditionQueryStringConfigOutput) ToRuleRuleConditionQueryStringConfigOutputWithContext(ctx context.Context) RuleRuleConditionQueryStringConfigOutput {
+	return o
+}
+
+func (o RuleRuleConditionQueryStringConfigOutput) ToRuleRuleConditionQueryStringConfigPtrOutput() RuleRuleConditionQueryStringConfigPtrOutput {
+	return o.ToRuleRuleConditionQueryStringConfigPtrOutputWithContext(context.Background())
+}
+
+func (o RuleRuleConditionQueryStringConfigOutput) ToRuleRuleConditionQueryStringConfigPtrOutputWithContext(ctx context.Context) RuleRuleConditionQueryStringConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RuleRuleConditionQueryStringConfig) *RuleRuleConditionQueryStringConfig {
+		return &v
+	}).(RuleRuleConditionQueryStringConfigPtrOutput)
+}
+
+// The list of query string values.
+func (o RuleRuleConditionQueryStringConfigOutput) Values() RuleRuleConditionQueryStringConfigValueArrayOutput {
+	return o.ApplyT(func(v RuleRuleConditionQueryStringConfig) []RuleRuleConditionQueryStringConfigValue { return v.Values }).(RuleRuleConditionQueryStringConfigValueArrayOutput)
+}
+
+type RuleRuleConditionQueryStringConfigPtrOutput struct{ *pulumi.OutputState }
+
+func (RuleRuleConditionQueryStringConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RuleRuleConditionQueryStringConfig)(nil)).Elem()
+}
+
+func (o RuleRuleConditionQueryStringConfigPtrOutput) ToRuleRuleConditionQueryStringConfigPtrOutput() RuleRuleConditionQueryStringConfigPtrOutput {
+	return o
+}
+
+func (o RuleRuleConditionQueryStringConfigPtrOutput) ToRuleRuleConditionQueryStringConfigPtrOutputWithContext(ctx context.Context) RuleRuleConditionQueryStringConfigPtrOutput {
+	return o
+}
+
+func (o RuleRuleConditionQueryStringConfigPtrOutput) Elem() RuleRuleConditionQueryStringConfigOutput {
+	return o.ApplyT(func(v *RuleRuleConditionQueryStringConfig) RuleRuleConditionQueryStringConfig {
+		if v != nil {
+			return *v
+		}
+		var ret RuleRuleConditionQueryStringConfig
+		return ret
+	}).(RuleRuleConditionQueryStringConfigOutput)
+}
+
+// The list of query string values.
+func (o RuleRuleConditionQueryStringConfigPtrOutput) Values() RuleRuleConditionQueryStringConfigValueArrayOutput {
+	return o.ApplyT(func(v *RuleRuleConditionQueryStringConfig) []RuleRuleConditionQueryStringConfigValue {
+		if v == nil {
+			return nil
+		}
+		return v.Values
+	}).(RuleRuleConditionQueryStringConfigValueArrayOutput)
+}
+
+type RuleRuleConditionQueryStringConfigValue struct {
+	// The query string key.
+	Key *string `pulumi:"key"`
+	// The query string value.
+	Value *string `pulumi:"value"`
+}
+
+// RuleRuleConditionQueryStringConfigValueInput is an input type that accepts RuleRuleConditionQueryStringConfigValueArgs and RuleRuleConditionQueryStringConfigValueOutput values.
+// You can construct a concrete instance of `RuleRuleConditionQueryStringConfigValueInput` via:
+//
+//	RuleRuleConditionQueryStringConfigValueArgs{...}
+type RuleRuleConditionQueryStringConfigValueInput interface {
+	pulumi.Input
+
+	ToRuleRuleConditionQueryStringConfigValueOutput() RuleRuleConditionQueryStringConfigValueOutput
+	ToRuleRuleConditionQueryStringConfigValueOutputWithContext(context.Context) RuleRuleConditionQueryStringConfigValueOutput
+}
+
+type RuleRuleConditionQueryStringConfigValueArgs struct {
+	// The query string key.
+	Key pulumi.StringPtrInput `pulumi:"key"`
+	// The query string value.
+	Value pulumi.StringPtrInput `pulumi:"value"`
+}
+
+func (RuleRuleConditionQueryStringConfigValueArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleRuleConditionQueryStringConfigValue)(nil)).Elem()
+}
+
+func (i RuleRuleConditionQueryStringConfigValueArgs) ToRuleRuleConditionQueryStringConfigValueOutput() RuleRuleConditionQueryStringConfigValueOutput {
+	return i.ToRuleRuleConditionQueryStringConfigValueOutputWithContext(context.Background())
+}
+
+func (i RuleRuleConditionQueryStringConfigValueArgs) ToRuleRuleConditionQueryStringConfigValueOutputWithContext(ctx context.Context) RuleRuleConditionQueryStringConfigValueOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleRuleConditionQueryStringConfigValueOutput)
+}
+
+// RuleRuleConditionQueryStringConfigValueArrayInput is an input type that accepts RuleRuleConditionQueryStringConfigValueArray and RuleRuleConditionQueryStringConfigValueArrayOutput values.
+// You can construct a concrete instance of `RuleRuleConditionQueryStringConfigValueArrayInput` via:
+//
+//	RuleRuleConditionQueryStringConfigValueArray{ RuleRuleConditionQueryStringConfigValueArgs{...} }
+type RuleRuleConditionQueryStringConfigValueArrayInput interface {
+	pulumi.Input
+
+	ToRuleRuleConditionQueryStringConfigValueArrayOutput() RuleRuleConditionQueryStringConfigValueArrayOutput
+	ToRuleRuleConditionQueryStringConfigValueArrayOutputWithContext(context.Context) RuleRuleConditionQueryStringConfigValueArrayOutput
+}
+
+type RuleRuleConditionQueryStringConfigValueArray []RuleRuleConditionQueryStringConfigValueInput
+
+func (RuleRuleConditionQueryStringConfigValueArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RuleRuleConditionQueryStringConfigValue)(nil)).Elem()
+}
+
+func (i RuleRuleConditionQueryStringConfigValueArray) ToRuleRuleConditionQueryStringConfigValueArrayOutput() RuleRuleConditionQueryStringConfigValueArrayOutput {
+	return i.ToRuleRuleConditionQueryStringConfigValueArrayOutputWithContext(context.Background())
+}
+
+func (i RuleRuleConditionQueryStringConfigValueArray) ToRuleRuleConditionQueryStringConfigValueArrayOutputWithContext(ctx context.Context) RuleRuleConditionQueryStringConfigValueArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleRuleConditionQueryStringConfigValueArrayOutput)
+}
+
+type RuleRuleConditionQueryStringConfigValueOutput struct{ *pulumi.OutputState }
+
+func (RuleRuleConditionQueryStringConfigValueOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleRuleConditionQueryStringConfigValue)(nil)).Elem()
+}
+
+func (o RuleRuleConditionQueryStringConfigValueOutput) ToRuleRuleConditionQueryStringConfigValueOutput() RuleRuleConditionQueryStringConfigValueOutput {
+	return o
+}
+
+func (o RuleRuleConditionQueryStringConfigValueOutput) ToRuleRuleConditionQueryStringConfigValueOutputWithContext(ctx context.Context) RuleRuleConditionQueryStringConfigValueOutput {
+	return o
+}
+
+// The query string key.
+func (o RuleRuleConditionQueryStringConfigValueOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RuleRuleConditionQueryStringConfigValue) *string { return v.Key }).(pulumi.StringPtrOutput)
+}
+
+// The query string value.
+func (o RuleRuleConditionQueryStringConfigValueOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RuleRuleConditionQueryStringConfigValue) *string { return v.Value }).(pulumi.StringPtrOutput)
+}
+
+type RuleRuleConditionQueryStringConfigValueArrayOutput struct{ *pulumi.OutputState }
+
+func (RuleRuleConditionQueryStringConfigValueArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RuleRuleConditionQueryStringConfigValue)(nil)).Elem()
+}
+
+func (o RuleRuleConditionQueryStringConfigValueArrayOutput) ToRuleRuleConditionQueryStringConfigValueArrayOutput() RuleRuleConditionQueryStringConfigValueArrayOutput {
+	return o
+}
+
+func (o RuleRuleConditionQueryStringConfigValueArrayOutput) ToRuleRuleConditionQueryStringConfigValueArrayOutputWithContext(ctx context.Context) RuleRuleConditionQueryStringConfigValueArrayOutput {
+	return o
+}
+
+func (o RuleRuleConditionQueryStringConfigValueArrayOutput) Index(i pulumi.IntInput) RuleRuleConditionQueryStringConfigValueOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RuleRuleConditionQueryStringConfigValue {
+		return vs[0].([]RuleRuleConditionQueryStringConfigValue)[vs[1].(int)]
+	}).(RuleRuleConditionQueryStringConfigValueOutput)
+}
+
+type RuleServerGroupTuple struct {
+	// The server group ID. The priority of this parameter is higher than that of `serverGroupId`.
+	ServerGroupId string `pulumi:"serverGroupId"`
+	// The weight of the server group.
+	Weight *int `pulumi:"weight"`
+}
+
+// RuleServerGroupTupleInput is an input type that accepts RuleServerGroupTupleArgs and RuleServerGroupTupleOutput values.
+// You can construct a concrete instance of `RuleServerGroupTupleInput` via:
+//
+//	RuleServerGroupTupleArgs{...}
+type RuleServerGroupTupleInput interface {
+	pulumi.Input
+
+	ToRuleServerGroupTupleOutput() RuleServerGroupTupleOutput
+	ToRuleServerGroupTupleOutputWithContext(context.Context) RuleServerGroupTupleOutput
+}
+
+type RuleServerGroupTupleArgs struct {
+	// The server group ID. The priority of this parameter is higher than that of `serverGroupId`.
+	ServerGroupId pulumi.StringInput `pulumi:"serverGroupId"`
+	// The weight of the server group.
+	Weight pulumi.IntPtrInput `pulumi:"weight"`
+}
+
+func (RuleServerGroupTupleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleServerGroupTuple)(nil)).Elem()
+}
+
+func (i RuleServerGroupTupleArgs) ToRuleServerGroupTupleOutput() RuleServerGroupTupleOutput {
+	return i.ToRuleServerGroupTupleOutputWithContext(context.Background())
+}
+
+func (i RuleServerGroupTupleArgs) ToRuleServerGroupTupleOutputWithContext(ctx context.Context) RuleServerGroupTupleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleServerGroupTupleOutput)
+}
+
+// RuleServerGroupTupleArrayInput is an input type that accepts RuleServerGroupTupleArray and RuleServerGroupTupleArrayOutput values.
+// You can construct a concrete instance of `RuleServerGroupTupleArrayInput` via:
+//
+//	RuleServerGroupTupleArray{ RuleServerGroupTupleArgs{...} }
+type RuleServerGroupTupleArrayInput interface {
+	pulumi.Input
+
+	ToRuleServerGroupTupleArrayOutput() RuleServerGroupTupleArrayOutput
+	ToRuleServerGroupTupleArrayOutputWithContext(context.Context) RuleServerGroupTupleArrayOutput
+}
+
+type RuleServerGroupTupleArray []RuleServerGroupTupleInput
+
+func (RuleServerGroupTupleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RuleServerGroupTuple)(nil)).Elem()
+}
+
+func (i RuleServerGroupTupleArray) ToRuleServerGroupTupleArrayOutput() RuleServerGroupTupleArrayOutput {
+	return i.ToRuleServerGroupTupleArrayOutputWithContext(context.Background())
+}
+
+func (i RuleServerGroupTupleArray) ToRuleServerGroupTupleArrayOutputWithContext(ctx context.Context) RuleServerGroupTupleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleServerGroupTupleArrayOutput)
+}
+
+type RuleServerGroupTupleOutput struct{ *pulumi.OutputState }
+
+func (RuleServerGroupTupleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleServerGroupTuple)(nil)).Elem()
+}
+
+func (o RuleServerGroupTupleOutput) ToRuleServerGroupTupleOutput() RuleServerGroupTupleOutput {
+	return o
+}
+
+func (o RuleServerGroupTupleOutput) ToRuleServerGroupTupleOutputWithContext(ctx context.Context) RuleServerGroupTupleOutput {
+	return o
+}
+
+// The server group ID. The priority of this parameter is higher than that of `serverGroupId`.
+func (o RuleServerGroupTupleOutput) ServerGroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v RuleServerGroupTuple) string { return v.ServerGroupId }).(pulumi.StringOutput)
+}
+
+// The weight of the server group.
+func (o RuleServerGroupTupleOutput) Weight() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v RuleServerGroupTuple) *int { return v.Weight }).(pulumi.IntPtrOutput)
+}
+
+type RuleServerGroupTupleArrayOutput struct{ *pulumi.OutputState }
+
+func (RuleServerGroupTupleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RuleServerGroupTuple)(nil)).Elem()
+}
+
+func (o RuleServerGroupTupleArrayOutput) ToRuleServerGroupTupleArrayOutput() RuleServerGroupTupleArrayOutput {
+	return o
+}
+
+func (o RuleServerGroupTupleArrayOutput) ToRuleServerGroupTupleArrayOutputWithContext(ctx context.Context) RuleServerGroupTupleArrayOutput {
+	return o
+}
+
+func (o RuleServerGroupTupleArrayOutput) Index(i pulumi.IntInput) RuleServerGroupTupleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RuleServerGroupTuple {
+		return vs[0].([]RuleServerGroupTuple)[vs[1].(int)]
+	}).(RuleServerGroupTupleOutput)
+}
+
 type RulesRule struct {
 	// The Description of Rule.
 	Description string `pulumi:"description"`
 	// The Domain of Rule.
 	Domain string `pulumi:"domain"`
+	// Forward group configuration for ForwardGroup type action.
+	ForwardGroupConfigs []RulesRuleForwardGroupConfig `pulumi:"forwardGroupConfigs"`
 	// The Id of Rule.
 	Id string `pulumi:"id"`
-	// Redirect related configuration.
+	// The priority of the Rule. Only the standard version is supported.
+	Priority int `pulumi:"priority"`
+	// Redirect configuration for Redirect type action.
 	RedirectConfigs []RulesRuleRedirectConfig `pulumi:"redirectConfigs"`
-	// The list of rewrite configurations.
+	// Rewrite configuration for Rewrite type action.
 	RewriteConfigs []RulesRuleRewriteConfig `pulumi:"rewriteConfigs"`
 	// Rewrite configuration switch for forwarding rules, only allows configuration and takes effect when RuleAction is empty (i.e., forwarding to server group). Only available for whitelist users, please submit an application to experience. Supported values are as follows:
 	// on: enable.
@@ -4802,6 +10132,10 @@ type RulesRule struct {
 	RewriteEnabled string `pulumi:"rewriteEnabled"`
 	// The forwarding rule action, if this parameter is empty, forward to server group, if value is `Redirect`, will redirect.
 	RuleAction string `pulumi:"ruleAction"`
+	// The rule actions for standard edition forwarding rules.
+	RuleActions []RulesRuleRuleAction `pulumi:"ruleActions"`
+	// The rule conditions for standard edition forwarding rules.
+	RuleConditions []RulesRuleRuleCondition `pulumi:"ruleConditions"`
 	// The Id of Rule.
 	RuleId string `pulumi:"ruleId"`
 	// The Id of Server Group.
@@ -4832,11 +10166,15 @@ type RulesRuleArgs struct {
 	Description pulumi.StringInput `pulumi:"description"`
 	// The Domain of Rule.
 	Domain pulumi.StringInput `pulumi:"domain"`
+	// Forward group configuration for ForwardGroup type action.
+	ForwardGroupConfigs RulesRuleForwardGroupConfigArrayInput `pulumi:"forwardGroupConfigs"`
 	// The Id of Rule.
 	Id pulumi.StringInput `pulumi:"id"`
-	// Redirect related configuration.
+	// The priority of the Rule. Only the standard version is supported.
+	Priority pulumi.IntInput `pulumi:"priority"`
+	// Redirect configuration for Redirect type action.
 	RedirectConfigs RulesRuleRedirectConfigArrayInput `pulumi:"redirectConfigs"`
-	// The list of rewrite configurations.
+	// Rewrite configuration for Rewrite type action.
 	RewriteConfigs RulesRuleRewriteConfigArrayInput `pulumi:"rewriteConfigs"`
 	// Rewrite configuration switch for forwarding rules, only allows configuration and takes effect when RuleAction is empty (i.e., forwarding to server group). Only available for whitelist users, please submit an application to experience. Supported values are as follows:
 	// on: enable.
@@ -4844,6 +10182,10 @@ type RulesRuleArgs struct {
 	RewriteEnabled pulumi.StringInput `pulumi:"rewriteEnabled"`
 	// The forwarding rule action, if this parameter is empty, forward to server group, if value is `Redirect`, will redirect.
 	RuleAction pulumi.StringInput `pulumi:"ruleAction"`
+	// The rule actions for standard edition forwarding rules.
+	RuleActions RulesRuleRuleActionArrayInput `pulumi:"ruleActions"`
+	// The rule conditions for standard edition forwarding rules.
+	RuleConditions RulesRuleRuleConditionArrayInput `pulumi:"ruleConditions"`
 	// The Id of Rule.
 	RuleId pulumi.StringInput `pulumi:"ruleId"`
 	// The Id of Server Group.
@@ -4919,17 +10261,27 @@ func (o RulesRuleOutput) Domain() pulumi.StringOutput {
 	return o.ApplyT(func(v RulesRule) string { return v.Domain }).(pulumi.StringOutput)
 }
 
+// Forward group configuration for ForwardGroup type action.
+func (o RulesRuleOutput) ForwardGroupConfigs() RulesRuleForwardGroupConfigArrayOutput {
+	return o.ApplyT(func(v RulesRule) []RulesRuleForwardGroupConfig { return v.ForwardGroupConfigs }).(RulesRuleForwardGroupConfigArrayOutput)
+}
+
 // The Id of Rule.
 func (o RulesRuleOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v RulesRule) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Redirect related configuration.
+// The priority of the Rule. Only the standard version is supported.
+func (o RulesRuleOutput) Priority() pulumi.IntOutput {
+	return o.ApplyT(func(v RulesRule) int { return v.Priority }).(pulumi.IntOutput)
+}
+
+// Redirect configuration for Redirect type action.
 func (o RulesRuleOutput) RedirectConfigs() RulesRuleRedirectConfigArrayOutput {
 	return o.ApplyT(func(v RulesRule) []RulesRuleRedirectConfig { return v.RedirectConfigs }).(RulesRuleRedirectConfigArrayOutput)
 }
 
-// The list of rewrite configurations.
+// Rewrite configuration for Rewrite type action.
 func (o RulesRuleOutput) RewriteConfigs() RulesRuleRewriteConfigArrayOutput {
 	return o.ApplyT(func(v RulesRule) []RulesRuleRewriteConfig { return v.RewriteConfigs }).(RulesRuleRewriteConfigArrayOutput)
 }
@@ -4944,6 +10296,16 @@ func (o RulesRuleOutput) RewriteEnabled() pulumi.StringOutput {
 // The forwarding rule action, if this parameter is empty, forward to server group, if value is `Redirect`, will redirect.
 func (o RulesRuleOutput) RuleAction() pulumi.StringOutput {
 	return o.ApplyT(func(v RulesRule) string { return v.RuleAction }).(pulumi.StringOutput)
+}
+
+// The rule actions for standard edition forwarding rules.
+func (o RulesRuleOutput) RuleActions() RulesRuleRuleActionArrayOutput {
+	return o.ApplyT(func(v RulesRule) []RulesRuleRuleAction { return v.RuleActions }).(RulesRuleRuleActionArrayOutput)
+}
+
+// The rule conditions for standard edition forwarding rules.
+func (o RulesRuleOutput) RuleConditions() RulesRuleRuleConditionArrayOutput {
+	return o.ApplyT(func(v RulesRule) []RulesRuleRuleCondition { return v.RuleConditions }).(RulesRuleRuleConditionArrayOutput)
 }
 
 // The Id of Rule.
@@ -4993,14 +10355,237 @@ func (o RulesRuleArrayOutput) Index(i pulumi.IntInput) RulesRuleOutput {
 	}).(RulesRuleOutput)
 }
 
+type RulesRuleForwardGroupConfig struct {
+	// The server group tuples.
+	ServerGroupTuples []RulesRuleForwardGroupConfigServerGroupTuple `pulumi:"serverGroupTuples"`
+	// Whether to enable inter-group session hold.
+	StickySessionEnabled string `pulumi:"stickySessionEnabled"`
+	// The group session stickiness timeout, in seconds.
+	StickySessionTimeout int `pulumi:"stickySessionTimeout"`
+}
+
+// RulesRuleForwardGroupConfigInput is an input type that accepts RulesRuleForwardGroupConfigArgs and RulesRuleForwardGroupConfigOutput values.
+// You can construct a concrete instance of `RulesRuleForwardGroupConfigInput` via:
+//
+//	RulesRuleForwardGroupConfigArgs{...}
+type RulesRuleForwardGroupConfigInput interface {
+	pulumi.Input
+
+	ToRulesRuleForwardGroupConfigOutput() RulesRuleForwardGroupConfigOutput
+	ToRulesRuleForwardGroupConfigOutputWithContext(context.Context) RulesRuleForwardGroupConfigOutput
+}
+
+type RulesRuleForwardGroupConfigArgs struct {
+	// The server group tuples.
+	ServerGroupTuples RulesRuleForwardGroupConfigServerGroupTupleArrayInput `pulumi:"serverGroupTuples"`
+	// Whether to enable inter-group session hold.
+	StickySessionEnabled pulumi.StringInput `pulumi:"stickySessionEnabled"`
+	// The group session stickiness timeout, in seconds.
+	StickySessionTimeout pulumi.IntInput `pulumi:"stickySessionTimeout"`
+}
+
+func (RulesRuleForwardGroupConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RulesRuleForwardGroupConfig)(nil)).Elem()
+}
+
+func (i RulesRuleForwardGroupConfigArgs) ToRulesRuleForwardGroupConfigOutput() RulesRuleForwardGroupConfigOutput {
+	return i.ToRulesRuleForwardGroupConfigOutputWithContext(context.Background())
+}
+
+func (i RulesRuleForwardGroupConfigArgs) ToRulesRuleForwardGroupConfigOutputWithContext(ctx context.Context) RulesRuleForwardGroupConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RulesRuleForwardGroupConfigOutput)
+}
+
+// RulesRuleForwardGroupConfigArrayInput is an input type that accepts RulesRuleForwardGroupConfigArray and RulesRuleForwardGroupConfigArrayOutput values.
+// You can construct a concrete instance of `RulesRuleForwardGroupConfigArrayInput` via:
+//
+//	RulesRuleForwardGroupConfigArray{ RulesRuleForwardGroupConfigArgs{...} }
+type RulesRuleForwardGroupConfigArrayInput interface {
+	pulumi.Input
+
+	ToRulesRuleForwardGroupConfigArrayOutput() RulesRuleForwardGroupConfigArrayOutput
+	ToRulesRuleForwardGroupConfigArrayOutputWithContext(context.Context) RulesRuleForwardGroupConfigArrayOutput
+}
+
+type RulesRuleForwardGroupConfigArray []RulesRuleForwardGroupConfigInput
+
+func (RulesRuleForwardGroupConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RulesRuleForwardGroupConfig)(nil)).Elem()
+}
+
+func (i RulesRuleForwardGroupConfigArray) ToRulesRuleForwardGroupConfigArrayOutput() RulesRuleForwardGroupConfigArrayOutput {
+	return i.ToRulesRuleForwardGroupConfigArrayOutputWithContext(context.Background())
+}
+
+func (i RulesRuleForwardGroupConfigArray) ToRulesRuleForwardGroupConfigArrayOutputWithContext(ctx context.Context) RulesRuleForwardGroupConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RulesRuleForwardGroupConfigArrayOutput)
+}
+
+type RulesRuleForwardGroupConfigOutput struct{ *pulumi.OutputState }
+
+func (RulesRuleForwardGroupConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RulesRuleForwardGroupConfig)(nil)).Elem()
+}
+
+func (o RulesRuleForwardGroupConfigOutput) ToRulesRuleForwardGroupConfigOutput() RulesRuleForwardGroupConfigOutput {
+	return o
+}
+
+func (o RulesRuleForwardGroupConfigOutput) ToRulesRuleForwardGroupConfigOutputWithContext(ctx context.Context) RulesRuleForwardGroupConfigOutput {
+	return o
+}
+
+// The server group tuples.
+func (o RulesRuleForwardGroupConfigOutput) ServerGroupTuples() RulesRuleForwardGroupConfigServerGroupTupleArrayOutput {
+	return o.ApplyT(func(v RulesRuleForwardGroupConfig) []RulesRuleForwardGroupConfigServerGroupTuple {
+		return v.ServerGroupTuples
+	}).(RulesRuleForwardGroupConfigServerGroupTupleArrayOutput)
+}
+
+// Whether to enable inter-group session hold.
+func (o RulesRuleForwardGroupConfigOutput) StickySessionEnabled() pulumi.StringOutput {
+	return o.ApplyT(func(v RulesRuleForwardGroupConfig) string { return v.StickySessionEnabled }).(pulumi.StringOutput)
+}
+
+// The group session stickiness timeout, in seconds.
+func (o RulesRuleForwardGroupConfigOutput) StickySessionTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v RulesRuleForwardGroupConfig) int { return v.StickySessionTimeout }).(pulumi.IntOutput)
+}
+
+type RulesRuleForwardGroupConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (RulesRuleForwardGroupConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RulesRuleForwardGroupConfig)(nil)).Elem()
+}
+
+func (o RulesRuleForwardGroupConfigArrayOutput) ToRulesRuleForwardGroupConfigArrayOutput() RulesRuleForwardGroupConfigArrayOutput {
+	return o
+}
+
+func (o RulesRuleForwardGroupConfigArrayOutput) ToRulesRuleForwardGroupConfigArrayOutputWithContext(ctx context.Context) RulesRuleForwardGroupConfigArrayOutput {
+	return o
+}
+
+func (o RulesRuleForwardGroupConfigArrayOutput) Index(i pulumi.IntInput) RulesRuleForwardGroupConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RulesRuleForwardGroupConfig {
+		return vs[0].([]RulesRuleForwardGroupConfig)[vs[1].(int)]
+	}).(RulesRuleForwardGroupConfigOutput)
+}
+
+type RulesRuleForwardGroupConfigServerGroupTuple struct {
+	// The Id of Server Group.
+	ServerGroupId string `pulumi:"serverGroupId"`
+	// The weight of the server group.
+	Weight string `pulumi:"weight"`
+}
+
+// RulesRuleForwardGroupConfigServerGroupTupleInput is an input type that accepts RulesRuleForwardGroupConfigServerGroupTupleArgs and RulesRuleForwardGroupConfigServerGroupTupleOutput values.
+// You can construct a concrete instance of `RulesRuleForwardGroupConfigServerGroupTupleInput` via:
+//
+//	RulesRuleForwardGroupConfigServerGroupTupleArgs{...}
+type RulesRuleForwardGroupConfigServerGroupTupleInput interface {
+	pulumi.Input
+
+	ToRulesRuleForwardGroupConfigServerGroupTupleOutput() RulesRuleForwardGroupConfigServerGroupTupleOutput
+	ToRulesRuleForwardGroupConfigServerGroupTupleOutputWithContext(context.Context) RulesRuleForwardGroupConfigServerGroupTupleOutput
+}
+
+type RulesRuleForwardGroupConfigServerGroupTupleArgs struct {
+	// The Id of Server Group.
+	ServerGroupId pulumi.StringInput `pulumi:"serverGroupId"`
+	// The weight of the server group.
+	Weight pulumi.StringInput `pulumi:"weight"`
+}
+
+func (RulesRuleForwardGroupConfigServerGroupTupleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RulesRuleForwardGroupConfigServerGroupTuple)(nil)).Elem()
+}
+
+func (i RulesRuleForwardGroupConfigServerGroupTupleArgs) ToRulesRuleForwardGroupConfigServerGroupTupleOutput() RulesRuleForwardGroupConfigServerGroupTupleOutput {
+	return i.ToRulesRuleForwardGroupConfigServerGroupTupleOutputWithContext(context.Background())
+}
+
+func (i RulesRuleForwardGroupConfigServerGroupTupleArgs) ToRulesRuleForwardGroupConfigServerGroupTupleOutputWithContext(ctx context.Context) RulesRuleForwardGroupConfigServerGroupTupleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RulesRuleForwardGroupConfigServerGroupTupleOutput)
+}
+
+// RulesRuleForwardGroupConfigServerGroupTupleArrayInput is an input type that accepts RulesRuleForwardGroupConfigServerGroupTupleArray and RulesRuleForwardGroupConfigServerGroupTupleArrayOutput values.
+// You can construct a concrete instance of `RulesRuleForwardGroupConfigServerGroupTupleArrayInput` via:
+//
+//	RulesRuleForwardGroupConfigServerGroupTupleArray{ RulesRuleForwardGroupConfigServerGroupTupleArgs{...} }
+type RulesRuleForwardGroupConfigServerGroupTupleArrayInput interface {
+	pulumi.Input
+
+	ToRulesRuleForwardGroupConfigServerGroupTupleArrayOutput() RulesRuleForwardGroupConfigServerGroupTupleArrayOutput
+	ToRulesRuleForwardGroupConfigServerGroupTupleArrayOutputWithContext(context.Context) RulesRuleForwardGroupConfigServerGroupTupleArrayOutput
+}
+
+type RulesRuleForwardGroupConfigServerGroupTupleArray []RulesRuleForwardGroupConfigServerGroupTupleInput
+
+func (RulesRuleForwardGroupConfigServerGroupTupleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RulesRuleForwardGroupConfigServerGroupTuple)(nil)).Elem()
+}
+
+func (i RulesRuleForwardGroupConfigServerGroupTupleArray) ToRulesRuleForwardGroupConfigServerGroupTupleArrayOutput() RulesRuleForwardGroupConfigServerGroupTupleArrayOutput {
+	return i.ToRulesRuleForwardGroupConfigServerGroupTupleArrayOutputWithContext(context.Background())
+}
+
+func (i RulesRuleForwardGroupConfigServerGroupTupleArray) ToRulesRuleForwardGroupConfigServerGroupTupleArrayOutputWithContext(ctx context.Context) RulesRuleForwardGroupConfigServerGroupTupleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RulesRuleForwardGroupConfigServerGroupTupleArrayOutput)
+}
+
+type RulesRuleForwardGroupConfigServerGroupTupleOutput struct{ *pulumi.OutputState }
+
+func (RulesRuleForwardGroupConfigServerGroupTupleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RulesRuleForwardGroupConfigServerGroupTuple)(nil)).Elem()
+}
+
+func (o RulesRuleForwardGroupConfigServerGroupTupleOutput) ToRulesRuleForwardGroupConfigServerGroupTupleOutput() RulesRuleForwardGroupConfigServerGroupTupleOutput {
+	return o
+}
+
+func (o RulesRuleForwardGroupConfigServerGroupTupleOutput) ToRulesRuleForwardGroupConfigServerGroupTupleOutputWithContext(ctx context.Context) RulesRuleForwardGroupConfigServerGroupTupleOutput {
+	return o
+}
+
+// The Id of Server Group.
+func (o RulesRuleForwardGroupConfigServerGroupTupleOutput) ServerGroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v RulesRuleForwardGroupConfigServerGroupTuple) string { return v.ServerGroupId }).(pulumi.StringOutput)
+}
+
+// The weight of the server group.
+func (o RulesRuleForwardGroupConfigServerGroupTupleOutput) Weight() pulumi.StringOutput {
+	return o.ApplyT(func(v RulesRuleForwardGroupConfigServerGroupTuple) string { return v.Weight }).(pulumi.StringOutput)
+}
+
+type RulesRuleForwardGroupConfigServerGroupTupleArrayOutput struct{ *pulumi.OutputState }
+
+func (RulesRuleForwardGroupConfigServerGroupTupleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RulesRuleForwardGroupConfigServerGroupTuple)(nil)).Elem()
+}
+
+func (o RulesRuleForwardGroupConfigServerGroupTupleArrayOutput) ToRulesRuleForwardGroupConfigServerGroupTupleArrayOutput() RulesRuleForwardGroupConfigServerGroupTupleArrayOutput {
+	return o
+}
+
+func (o RulesRuleForwardGroupConfigServerGroupTupleArrayOutput) ToRulesRuleForwardGroupConfigServerGroupTupleArrayOutputWithContext(ctx context.Context) RulesRuleForwardGroupConfigServerGroupTupleArrayOutput {
+	return o
+}
+
+func (o RulesRuleForwardGroupConfigServerGroupTupleArrayOutput) Index(i pulumi.IntInput) RulesRuleForwardGroupConfigServerGroupTupleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RulesRuleForwardGroupConfigServerGroupTuple {
+		return vs[0].([]RulesRuleForwardGroupConfigServerGroupTuple)[vs[1].(int)]
+	}).(RulesRuleForwardGroupConfigServerGroupTupleOutput)
+}
+
 type RulesRuleRedirectConfig struct {
 	// The redirect domain.
 	RedirectDomain string `pulumi:"redirectDomain"`
-	// The redirect HTTP code,support 301(default), 302, 307, 308.
+	// The redirect HTTP code.
 	RedirectHttpCode string `pulumi:"redirectHttpCode"`
 	// The redirect port.
 	RedirectPort string `pulumi:"redirectPort"`
-	// The redirect protocol,support HTTP,HTTPS(default).
+	// The redirect protocol.
 	RedirectProtocol string `pulumi:"redirectProtocol"`
 	// The redirect URI.
 	RedirectUri string `pulumi:"redirectUri"`
@@ -5020,11 +10605,11 @@ type RulesRuleRedirectConfigInput interface {
 type RulesRuleRedirectConfigArgs struct {
 	// The redirect domain.
 	RedirectDomain pulumi.StringInput `pulumi:"redirectDomain"`
-	// The redirect HTTP code,support 301(default), 302, 307, 308.
+	// The redirect HTTP code.
 	RedirectHttpCode pulumi.StringInput `pulumi:"redirectHttpCode"`
 	// The redirect port.
 	RedirectPort pulumi.StringInput `pulumi:"redirectPort"`
-	// The redirect protocol,support HTTP,HTTPS(default).
+	// The redirect protocol.
 	RedirectProtocol pulumi.StringInput `pulumi:"redirectProtocol"`
 	// The redirect URI.
 	RedirectUri pulumi.StringInput `pulumi:"redirectUri"`
@@ -5086,7 +10671,7 @@ func (o RulesRuleRedirectConfigOutput) RedirectDomain() pulumi.StringOutput {
 	return o.ApplyT(func(v RulesRuleRedirectConfig) string { return v.RedirectDomain }).(pulumi.StringOutput)
 }
 
-// The redirect HTTP code,support 301(default), 302, 307, 308.
+// The redirect HTTP code.
 func (o RulesRuleRedirectConfigOutput) RedirectHttpCode() pulumi.StringOutput {
 	return o.ApplyT(func(v RulesRuleRedirectConfig) string { return v.RedirectHttpCode }).(pulumi.StringOutput)
 }
@@ -5096,7 +10681,7 @@ func (o RulesRuleRedirectConfigOutput) RedirectPort() pulumi.StringOutput {
 	return o.ApplyT(func(v RulesRuleRedirectConfig) string { return v.RedirectPort }).(pulumi.StringOutput)
 }
 
-// The redirect protocol,support HTTP,HTTPS(default).
+// The redirect protocol.
 func (o RulesRuleRedirectConfigOutput) RedirectProtocol() pulumi.StringOutput {
 	return o.ApplyT(func(v RulesRuleRedirectConfig) string { return v.RedirectProtocol }).(pulumi.StringOutput)
 }
@@ -5223,6 +10808,1665 @@ func (o RulesRuleRewriteConfigArrayOutput) Index(i pulumi.IntInput) RulesRuleRew
 	}).(RulesRuleRewriteConfigOutput)
 }
 
+type RulesRuleRuleAction struct {
+	// Fixed response configuration for fixed response type rule.
+	FixedResponseConfigs []RulesRuleRuleActionFixedResponseConfig `pulumi:"fixedResponseConfigs"`
+	// Forward group configuration for ForwardGroup type action.
+	ForwardGroupConfigs []RulesRuleRuleActionForwardGroupConfig `pulumi:"forwardGroupConfigs"`
+	// Redirect configuration for Redirect type action.
+	RedirectConfigs []RulesRuleRuleActionRedirectConfig `pulumi:"redirectConfigs"`
+	// Rewrite configuration for Rewrite type action.
+	RewriteConfigs []RulesRuleRuleActionRewriteConfig `pulumi:"rewriteConfigs"`
+	// Traffic limit configuration for TrafficLimit type action.
+	TrafficLimitConfigs []RulesRuleRuleActionTrafficLimitConfig `pulumi:"trafficLimitConfigs"`
+	// The type of rule condition. Valid values: Host, Path, Header.
+	Type string `pulumi:"type"`
+}
+
+// RulesRuleRuleActionInput is an input type that accepts RulesRuleRuleActionArgs and RulesRuleRuleActionOutput values.
+// You can construct a concrete instance of `RulesRuleRuleActionInput` via:
+//
+//	RulesRuleRuleActionArgs{...}
+type RulesRuleRuleActionInput interface {
+	pulumi.Input
+
+	ToRulesRuleRuleActionOutput() RulesRuleRuleActionOutput
+	ToRulesRuleRuleActionOutputWithContext(context.Context) RulesRuleRuleActionOutput
+}
+
+type RulesRuleRuleActionArgs struct {
+	// Fixed response configuration for fixed response type rule.
+	FixedResponseConfigs RulesRuleRuleActionFixedResponseConfigArrayInput `pulumi:"fixedResponseConfigs"`
+	// Forward group configuration for ForwardGroup type action.
+	ForwardGroupConfigs RulesRuleRuleActionForwardGroupConfigArrayInput `pulumi:"forwardGroupConfigs"`
+	// Redirect configuration for Redirect type action.
+	RedirectConfigs RulesRuleRuleActionRedirectConfigArrayInput `pulumi:"redirectConfigs"`
+	// Rewrite configuration for Rewrite type action.
+	RewriteConfigs RulesRuleRuleActionRewriteConfigArrayInput `pulumi:"rewriteConfigs"`
+	// Traffic limit configuration for TrafficLimit type action.
+	TrafficLimitConfigs RulesRuleRuleActionTrafficLimitConfigArrayInput `pulumi:"trafficLimitConfigs"`
+	// The type of rule condition. Valid values: Host, Path, Header.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (RulesRuleRuleActionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RulesRuleRuleAction)(nil)).Elem()
+}
+
+func (i RulesRuleRuleActionArgs) ToRulesRuleRuleActionOutput() RulesRuleRuleActionOutput {
+	return i.ToRulesRuleRuleActionOutputWithContext(context.Background())
+}
+
+func (i RulesRuleRuleActionArgs) ToRulesRuleRuleActionOutputWithContext(ctx context.Context) RulesRuleRuleActionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RulesRuleRuleActionOutput)
+}
+
+// RulesRuleRuleActionArrayInput is an input type that accepts RulesRuleRuleActionArray and RulesRuleRuleActionArrayOutput values.
+// You can construct a concrete instance of `RulesRuleRuleActionArrayInput` via:
+//
+//	RulesRuleRuleActionArray{ RulesRuleRuleActionArgs{...} }
+type RulesRuleRuleActionArrayInput interface {
+	pulumi.Input
+
+	ToRulesRuleRuleActionArrayOutput() RulesRuleRuleActionArrayOutput
+	ToRulesRuleRuleActionArrayOutputWithContext(context.Context) RulesRuleRuleActionArrayOutput
+}
+
+type RulesRuleRuleActionArray []RulesRuleRuleActionInput
+
+func (RulesRuleRuleActionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RulesRuleRuleAction)(nil)).Elem()
+}
+
+func (i RulesRuleRuleActionArray) ToRulesRuleRuleActionArrayOutput() RulesRuleRuleActionArrayOutput {
+	return i.ToRulesRuleRuleActionArrayOutputWithContext(context.Background())
+}
+
+func (i RulesRuleRuleActionArray) ToRulesRuleRuleActionArrayOutputWithContext(ctx context.Context) RulesRuleRuleActionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RulesRuleRuleActionArrayOutput)
+}
+
+type RulesRuleRuleActionOutput struct{ *pulumi.OutputState }
+
+func (RulesRuleRuleActionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RulesRuleRuleAction)(nil)).Elem()
+}
+
+func (o RulesRuleRuleActionOutput) ToRulesRuleRuleActionOutput() RulesRuleRuleActionOutput {
+	return o
+}
+
+func (o RulesRuleRuleActionOutput) ToRulesRuleRuleActionOutputWithContext(ctx context.Context) RulesRuleRuleActionOutput {
+	return o
+}
+
+// Fixed response configuration for fixed response type rule.
+func (o RulesRuleRuleActionOutput) FixedResponseConfigs() RulesRuleRuleActionFixedResponseConfigArrayOutput {
+	return o.ApplyT(func(v RulesRuleRuleAction) []RulesRuleRuleActionFixedResponseConfig { return v.FixedResponseConfigs }).(RulesRuleRuleActionFixedResponseConfigArrayOutput)
+}
+
+// Forward group configuration for ForwardGroup type action.
+func (o RulesRuleRuleActionOutput) ForwardGroupConfigs() RulesRuleRuleActionForwardGroupConfigArrayOutput {
+	return o.ApplyT(func(v RulesRuleRuleAction) []RulesRuleRuleActionForwardGroupConfig { return v.ForwardGroupConfigs }).(RulesRuleRuleActionForwardGroupConfigArrayOutput)
+}
+
+// Redirect configuration for Redirect type action.
+func (o RulesRuleRuleActionOutput) RedirectConfigs() RulesRuleRuleActionRedirectConfigArrayOutput {
+	return o.ApplyT(func(v RulesRuleRuleAction) []RulesRuleRuleActionRedirectConfig { return v.RedirectConfigs }).(RulesRuleRuleActionRedirectConfigArrayOutput)
+}
+
+// Rewrite configuration for Rewrite type action.
+func (o RulesRuleRuleActionOutput) RewriteConfigs() RulesRuleRuleActionRewriteConfigArrayOutput {
+	return o.ApplyT(func(v RulesRuleRuleAction) []RulesRuleRuleActionRewriteConfig { return v.RewriteConfigs }).(RulesRuleRuleActionRewriteConfigArrayOutput)
+}
+
+// Traffic limit configuration for TrafficLimit type action.
+func (o RulesRuleRuleActionOutput) TrafficLimitConfigs() RulesRuleRuleActionTrafficLimitConfigArrayOutput {
+	return o.ApplyT(func(v RulesRuleRuleAction) []RulesRuleRuleActionTrafficLimitConfig { return v.TrafficLimitConfigs }).(RulesRuleRuleActionTrafficLimitConfigArrayOutput)
+}
+
+// The type of rule condition. Valid values: Host, Path, Header.
+func (o RulesRuleRuleActionOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v RulesRuleRuleAction) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type RulesRuleRuleActionArrayOutput struct{ *pulumi.OutputState }
+
+func (RulesRuleRuleActionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RulesRuleRuleAction)(nil)).Elem()
+}
+
+func (o RulesRuleRuleActionArrayOutput) ToRulesRuleRuleActionArrayOutput() RulesRuleRuleActionArrayOutput {
+	return o
+}
+
+func (o RulesRuleRuleActionArrayOutput) ToRulesRuleRuleActionArrayOutputWithContext(ctx context.Context) RulesRuleRuleActionArrayOutput {
+	return o
+}
+
+func (o RulesRuleRuleActionArrayOutput) Index(i pulumi.IntInput) RulesRuleRuleActionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RulesRuleRuleAction {
+		return vs[0].([]RulesRuleRuleAction)[vs[1].(int)]
+	}).(RulesRuleRuleActionOutput)
+}
+
+type RulesRuleRuleActionFixedResponseConfig struct {
+	// The content type of the fixed response.
+	ContentType string `pulumi:"contentType"`
+	// The response body of the fixed response.
+	ResponseBody string `pulumi:"responseBody"`
+	// The fixed response HTTP status code.
+	ResponseCode string `pulumi:"responseCode"`
+	// The fixed response message.
+	ResponseMessage string `pulumi:"responseMessage"`
+}
+
+// RulesRuleRuleActionFixedResponseConfigInput is an input type that accepts RulesRuleRuleActionFixedResponseConfigArgs and RulesRuleRuleActionFixedResponseConfigOutput values.
+// You can construct a concrete instance of `RulesRuleRuleActionFixedResponseConfigInput` via:
+//
+//	RulesRuleRuleActionFixedResponseConfigArgs{...}
+type RulesRuleRuleActionFixedResponseConfigInput interface {
+	pulumi.Input
+
+	ToRulesRuleRuleActionFixedResponseConfigOutput() RulesRuleRuleActionFixedResponseConfigOutput
+	ToRulesRuleRuleActionFixedResponseConfigOutputWithContext(context.Context) RulesRuleRuleActionFixedResponseConfigOutput
+}
+
+type RulesRuleRuleActionFixedResponseConfigArgs struct {
+	// The content type of the fixed response.
+	ContentType pulumi.StringInput `pulumi:"contentType"`
+	// The response body of the fixed response.
+	ResponseBody pulumi.StringInput `pulumi:"responseBody"`
+	// The fixed response HTTP status code.
+	ResponseCode pulumi.StringInput `pulumi:"responseCode"`
+	// The fixed response message.
+	ResponseMessage pulumi.StringInput `pulumi:"responseMessage"`
+}
+
+func (RulesRuleRuleActionFixedResponseConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RulesRuleRuleActionFixedResponseConfig)(nil)).Elem()
+}
+
+func (i RulesRuleRuleActionFixedResponseConfigArgs) ToRulesRuleRuleActionFixedResponseConfigOutput() RulesRuleRuleActionFixedResponseConfigOutput {
+	return i.ToRulesRuleRuleActionFixedResponseConfigOutputWithContext(context.Background())
+}
+
+func (i RulesRuleRuleActionFixedResponseConfigArgs) ToRulesRuleRuleActionFixedResponseConfigOutputWithContext(ctx context.Context) RulesRuleRuleActionFixedResponseConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RulesRuleRuleActionFixedResponseConfigOutput)
+}
+
+// RulesRuleRuleActionFixedResponseConfigArrayInput is an input type that accepts RulesRuleRuleActionFixedResponseConfigArray and RulesRuleRuleActionFixedResponseConfigArrayOutput values.
+// You can construct a concrete instance of `RulesRuleRuleActionFixedResponseConfigArrayInput` via:
+//
+//	RulesRuleRuleActionFixedResponseConfigArray{ RulesRuleRuleActionFixedResponseConfigArgs{...} }
+type RulesRuleRuleActionFixedResponseConfigArrayInput interface {
+	pulumi.Input
+
+	ToRulesRuleRuleActionFixedResponseConfigArrayOutput() RulesRuleRuleActionFixedResponseConfigArrayOutput
+	ToRulesRuleRuleActionFixedResponseConfigArrayOutputWithContext(context.Context) RulesRuleRuleActionFixedResponseConfigArrayOutput
+}
+
+type RulesRuleRuleActionFixedResponseConfigArray []RulesRuleRuleActionFixedResponseConfigInput
+
+func (RulesRuleRuleActionFixedResponseConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RulesRuleRuleActionFixedResponseConfig)(nil)).Elem()
+}
+
+func (i RulesRuleRuleActionFixedResponseConfigArray) ToRulesRuleRuleActionFixedResponseConfigArrayOutput() RulesRuleRuleActionFixedResponseConfigArrayOutput {
+	return i.ToRulesRuleRuleActionFixedResponseConfigArrayOutputWithContext(context.Background())
+}
+
+func (i RulesRuleRuleActionFixedResponseConfigArray) ToRulesRuleRuleActionFixedResponseConfigArrayOutputWithContext(ctx context.Context) RulesRuleRuleActionFixedResponseConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RulesRuleRuleActionFixedResponseConfigArrayOutput)
+}
+
+type RulesRuleRuleActionFixedResponseConfigOutput struct{ *pulumi.OutputState }
+
+func (RulesRuleRuleActionFixedResponseConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RulesRuleRuleActionFixedResponseConfig)(nil)).Elem()
+}
+
+func (o RulesRuleRuleActionFixedResponseConfigOutput) ToRulesRuleRuleActionFixedResponseConfigOutput() RulesRuleRuleActionFixedResponseConfigOutput {
+	return o
+}
+
+func (o RulesRuleRuleActionFixedResponseConfigOutput) ToRulesRuleRuleActionFixedResponseConfigOutputWithContext(ctx context.Context) RulesRuleRuleActionFixedResponseConfigOutput {
+	return o
+}
+
+// The content type of the fixed response.
+func (o RulesRuleRuleActionFixedResponseConfigOutput) ContentType() pulumi.StringOutput {
+	return o.ApplyT(func(v RulesRuleRuleActionFixedResponseConfig) string { return v.ContentType }).(pulumi.StringOutput)
+}
+
+// The response body of the fixed response.
+func (o RulesRuleRuleActionFixedResponseConfigOutput) ResponseBody() pulumi.StringOutput {
+	return o.ApplyT(func(v RulesRuleRuleActionFixedResponseConfig) string { return v.ResponseBody }).(pulumi.StringOutput)
+}
+
+// The fixed response HTTP status code.
+func (o RulesRuleRuleActionFixedResponseConfigOutput) ResponseCode() pulumi.StringOutput {
+	return o.ApplyT(func(v RulesRuleRuleActionFixedResponseConfig) string { return v.ResponseCode }).(pulumi.StringOutput)
+}
+
+// The fixed response message.
+func (o RulesRuleRuleActionFixedResponseConfigOutput) ResponseMessage() pulumi.StringOutput {
+	return o.ApplyT(func(v RulesRuleRuleActionFixedResponseConfig) string { return v.ResponseMessage }).(pulumi.StringOutput)
+}
+
+type RulesRuleRuleActionFixedResponseConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (RulesRuleRuleActionFixedResponseConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RulesRuleRuleActionFixedResponseConfig)(nil)).Elem()
+}
+
+func (o RulesRuleRuleActionFixedResponseConfigArrayOutput) ToRulesRuleRuleActionFixedResponseConfigArrayOutput() RulesRuleRuleActionFixedResponseConfigArrayOutput {
+	return o
+}
+
+func (o RulesRuleRuleActionFixedResponseConfigArrayOutput) ToRulesRuleRuleActionFixedResponseConfigArrayOutputWithContext(ctx context.Context) RulesRuleRuleActionFixedResponseConfigArrayOutput {
+	return o
+}
+
+func (o RulesRuleRuleActionFixedResponseConfigArrayOutput) Index(i pulumi.IntInput) RulesRuleRuleActionFixedResponseConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RulesRuleRuleActionFixedResponseConfig {
+		return vs[0].([]RulesRuleRuleActionFixedResponseConfig)[vs[1].(int)]
+	}).(RulesRuleRuleActionFixedResponseConfigOutput)
+}
+
+type RulesRuleRuleActionForwardGroupConfig struct {
+	// The config of group session stickiness.
+	ServerGroupStickySessions []RulesRuleRuleActionForwardGroupConfigServerGroupStickySession `pulumi:"serverGroupStickySessions"`
+	// The server group tuples.
+	ServerGroupTuples []RulesRuleRuleActionForwardGroupConfigServerGroupTuple `pulumi:"serverGroupTuples"`
+}
+
+// RulesRuleRuleActionForwardGroupConfigInput is an input type that accepts RulesRuleRuleActionForwardGroupConfigArgs and RulesRuleRuleActionForwardGroupConfigOutput values.
+// You can construct a concrete instance of `RulesRuleRuleActionForwardGroupConfigInput` via:
+//
+//	RulesRuleRuleActionForwardGroupConfigArgs{...}
+type RulesRuleRuleActionForwardGroupConfigInput interface {
+	pulumi.Input
+
+	ToRulesRuleRuleActionForwardGroupConfigOutput() RulesRuleRuleActionForwardGroupConfigOutput
+	ToRulesRuleRuleActionForwardGroupConfigOutputWithContext(context.Context) RulesRuleRuleActionForwardGroupConfigOutput
+}
+
+type RulesRuleRuleActionForwardGroupConfigArgs struct {
+	// The config of group session stickiness.
+	ServerGroupStickySessions RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayInput `pulumi:"serverGroupStickySessions"`
+	// The server group tuples.
+	ServerGroupTuples RulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayInput `pulumi:"serverGroupTuples"`
+}
+
+func (RulesRuleRuleActionForwardGroupConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RulesRuleRuleActionForwardGroupConfig)(nil)).Elem()
+}
+
+func (i RulesRuleRuleActionForwardGroupConfigArgs) ToRulesRuleRuleActionForwardGroupConfigOutput() RulesRuleRuleActionForwardGroupConfigOutput {
+	return i.ToRulesRuleRuleActionForwardGroupConfigOutputWithContext(context.Background())
+}
+
+func (i RulesRuleRuleActionForwardGroupConfigArgs) ToRulesRuleRuleActionForwardGroupConfigOutputWithContext(ctx context.Context) RulesRuleRuleActionForwardGroupConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RulesRuleRuleActionForwardGroupConfigOutput)
+}
+
+// RulesRuleRuleActionForwardGroupConfigArrayInput is an input type that accepts RulesRuleRuleActionForwardGroupConfigArray and RulesRuleRuleActionForwardGroupConfigArrayOutput values.
+// You can construct a concrete instance of `RulesRuleRuleActionForwardGroupConfigArrayInput` via:
+//
+//	RulesRuleRuleActionForwardGroupConfigArray{ RulesRuleRuleActionForwardGroupConfigArgs{...} }
+type RulesRuleRuleActionForwardGroupConfigArrayInput interface {
+	pulumi.Input
+
+	ToRulesRuleRuleActionForwardGroupConfigArrayOutput() RulesRuleRuleActionForwardGroupConfigArrayOutput
+	ToRulesRuleRuleActionForwardGroupConfigArrayOutputWithContext(context.Context) RulesRuleRuleActionForwardGroupConfigArrayOutput
+}
+
+type RulesRuleRuleActionForwardGroupConfigArray []RulesRuleRuleActionForwardGroupConfigInput
+
+func (RulesRuleRuleActionForwardGroupConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RulesRuleRuleActionForwardGroupConfig)(nil)).Elem()
+}
+
+func (i RulesRuleRuleActionForwardGroupConfigArray) ToRulesRuleRuleActionForwardGroupConfigArrayOutput() RulesRuleRuleActionForwardGroupConfigArrayOutput {
+	return i.ToRulesRuleRuleActionForwardGroupConfigArrayOutputWithContext(context.Background())
+}
+
+func (i RulesRuleRuleActionForwardGroupConfigArray) ToRulesRuleRuleActionForwardGroupConfigArrayOutputWithContext(ctx context.Context) RulesRuleRuleActionForwardGroupConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RulesRuleRuleActionForwardGroupConfigArrayOutput)
+}
+
+type RulesRuleRuleActionForwardGroupConfigOutput struct{ *pulumi.OutputState }
+
+func (RulesRuleRuleActionForwardGroupConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RulesRuleRuleActionForwardGroupConfig)(nil)).Elem()
+}
+
+func (o RulesRuleRuleActionForwardGroupConfigOutput) ToRulesRuleRuleActionForwardGroupConfigOutput() RulesRuleRuleActionForwardGroupConfigOutput {
+	return o
+}
+
+func (o RulesRuleRuleActionForwardGroupConfigOutput) ToRulesRuleRuleActionForwardGroupConfigOutputWithContext(ctx context.Context) RulesRuleRuleActionForwardGroupConfigOutput {
+	return o
+}
+
+// The config of group session stickiness.
+func (o RulesRuleRuleActionForwardGroupConfigOutput) ServerGroupStickySessions() RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayOutput {
+	return o.ApplyT(func(v RulesRuleRuleActionForwardGroupConfig) []RulesRuleRuleActionForwardGroupConfigServerGroupStickySession {
+		return v.ServerGroupStickySessions
+	}).(RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayOutput)
+}
+
+// The server group tuples.
+func (o RulesRuleRuleActionForwardGroupConfigOutput) ServerGroupTuples() RulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput {
+	return o.ApplyT(func(v RulesRuleRuleActionForwardGroupConfig) []RulesRuleRuleActionForwardGroupConfigServerGroupTuple {
+		return v.ServerGroupTuples
+	}).(RulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput)
+}
+
+type RulesRuleRuleActionForwardGroupConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (RulesRuleRuleActionForwardGroupConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RulesRuleRuleActionForwardGroupConfig)(nil)).Elem()
+}
+
+func (o RulesRuleRuleActionForwardGroupConfigArrayOutput) ToRulesRuleRuleActionForwardGroupConfigArrayOutput() RulesRuleRuleActionForwardGroupConfigArrayOutput {
+	return o
+}
+
+func (o RulesRuleRuleActionForwardGroupConfigArrayOutput) ToRulesRuleRuleActionForwardGroupConfigArrayOutputWithContext(ctx context.Context) RulesRuleRuleActionForwardGroupConfigArrayOutput {
+	return o
+}
+
+func (o RulesRuleRuleActionForwardGroupConfigArrayOutput) Index(i pulumi.IntInput) RulesRuleRuleActionForwardGroupConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RulesRuleRuleActionForwardGroupConfig {
+		return vs[0].([]RulesRuleRuleActionForwardGroupConfig)[vs[1].(int)]
+	}).(RulesRuleRuleActionForwardGroupConfigOutput)
+}
+
+type RulesRuleRuleActionForwardGroupConfigServerGroupStickySession struct {
+	// Whether to enable sticky session stickiness. Valid values are 'on' and 'off'.
+	Enabled string `pulumi:"enabled"`
+	// The sticky session timeout, in seconds.
+	Timeout int `pulumi:"timeout"`
+}
+
+// RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionInput is an input type that accepts RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArgs and RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionOutput values.
+// You can construct a concrete instance of `RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionInput` via:
+//
+//	RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArgs{...}
+type RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionInput interface {
+	pulumi.Input
+
+	ToRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionOutput() RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionOutput
+	ToRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionOutputWithContext(context.Context) RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionOutput
+}
+
+type RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArgs struct {
+	// Whether to enable sticky session stickiness. Valid values are 'on' and 'off'.
+	Enabled pulumi.StringInput `pulumi:"enabled"`
+	// The sticky session timeout, in seconds.
+	Timeout pulumi.IntInput `pulumi:"timeout"`
+}
+
+func (RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RulesRuleRuleActionForwardGroupConfigServerGroupStickySession)(nil)).Elem()
+}
+
+func (i RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArgs) ToRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionOutput() RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionOutput {
+	return i.ToRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionOutputWithContext(context.Background())
+}
+
+func (i RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArgs) ToRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionOutputWithContext(ctx context.Context) RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionOutput)
+}
+
+// RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayInput is an input type that accepts RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArray and RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayOutput values.
+// You can construct a concrete instance of `RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayInput` via:
+//
+//	RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArray{ RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArgs{...} }
+type RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayInput interface {
+	pulumi.Input
+
+	ToRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayOutput() RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayOutput
+	ToRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayOutputWithContext(context.Context) RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayOutput
+}
+
+type RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArray []RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionInput
+
+func (RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RulesRuleRuleActionForwardGroupConfigServerGroupStickySession)(nil)).Elem()
+}
+
+func (i RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArray) ToRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayOutput() RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayOutput {
+	return i.ToRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayOutputWithContext(context.Background())
+}
+
+func (i RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArray) ToRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayOutputWithContext(ctx context.Context) RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayOutput)
+}
+
+type RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionOutput struct{ *pulumi.OutputState }
+
+func (RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RulesRuleRuleActionForwardGroupConfigServerGroupStickySession)(nil)).Elem()
+}
+
+func (o RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionOutput) ToRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionOutput() RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionOutput {
+	return o
+}
+
+func (o RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionOutput) ToRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionOutputWithContext(ctx context.Context) RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionOutput {
+	return o
+}
+
+// Whether to enable sticky session stickiness. Valid values are 'on' and 'off'.
+func (o RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionOutput) Enabled() pulumi.StringOutput {
+	return o.ApplyT(func(v RulesRuleRuleActionForwardGroupConfigServerGroupStickySession) string { return v.Enabled }).(pulumi.StringOutput)
+}
+
+// The sticky session timeout, in seconds.
+func (o RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionOutput) Timeout() pulumi.IntOutput {
+	return o.ApplyT(func(v RulesRuleRuleActionForwardGroupConfigServerGroupStickySession) int { return v.Timeout }).(pulumi.IntOutput)
+}
+
+type RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayOutput struct{ *pulumi.OutputState }
+
+func (RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RulesRuleRuleActionForwardGroupConfigServerGroupStickySession)(nil)).Elem()
+}
+
+func (o RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayOutput) ToRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayOutput() RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayOutput {
+	return o
+}
+
+func (o RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayOutput) ToRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayOutputWithContext(ctx context.Context) RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayOutput {
+	return o
+}
+
+func (o RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayOutput) Index(i pulumi.IntInput) RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RulesRuleRuleActionForwardGroupConfigServerGroupStickySession {
+		return vs[0].([]RulesRuleRuleActionForwardGroupConfigServerGroupStickySession)[vs[1].(int)]
+	}).(RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionOutput)
+}
+
+type RulesRuleRuleActionForwardGroupConfigServerGroupTuple struct {
+	// The Id of Server Group.
+	ServerGroupId string `pulumi:"serverGroupId"`
+	// The weight of the server group.
+	Weight int `pulumi:"weight"`
+}
+
+// RulesRuleRuleActionForwardGroupConfigServerGroupTupleInput is an input type that accepts RulesRuleRuleActionForwardGroupConfigServerGroupTupleArgs and RulesRuleRuleActionForwardGroupConfigServerGroupTupleOutput values.
+// You can construct a concrete instance of `RulesRuleRuleActionForwardGroupConfigServerGroupTupleInput` via:
+//
+//	RulesRuleRuleActionForwardGroupConfigServerGroupTupleArgs{...}
+type RulesRuleRuleActionForwardGroupConfigServerGroupTupleInput interface {
+	pulumi.Input
+
+	ToRulesRuleRuleActionForwardGroupConfigServerGroupTupleOutput() RulesRuleRuleActionForwardGroupConfigServerGroupTupleOutput
+	ToRulesRuleRuleActionForwardGroupConfigServerGroupTupleOutputWithContext(context.Context) RulesRuleRuleActionForwardGroupConfigServerGroupTupleOutput
+}
+
+type RulesRuleRuleActionForwardGroupConfigServerGroupTupleArgs struct {
+	// The Id of Server Group.
+	ServerGroupId pulumi.StringInput `pulumi:"serverGroupId"`
+	// The weight of the server group.
+	Weight pulumi.IntInput `pulumi:"weight"`
+}
+
+func (RulesRuleRuleActionForwardGroupConfigServerGroupTupleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RulesRuleRuleActionForwardGroupConfigServerGroupTuple)(nil)).Elem()
+}
+
+func (i RulesRuleRuleActionForwardGroupConfigServerGroupTupleArgs) ToRulesRuleRuleActionForwardGroupConfigServerGroupTupleOutput() RulesRuleRuleActionForwardGroupConfigServerGroupTupleOutput {
+	return i.ToRulesRuleRuleActionForwardGroupConfigServerGroupTupleOutputWithContext(context.Background())
+}
+
+func (i RulesRuleRuleActionForwardGroupConfigServerGroupTupleArgs) ToRulesRuleRuleActionForwardGroupConfigServerGroupTupleOutputWithContext(ctx context.Context) RulesRuleRuleActionForwardGroupConfigServerGroupTupleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RulesRuleRuleActionForwardGroupConfigServerGroupTupleOutput)
+}
+
+// RulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayInput is an input type that accepts RulesRuleRuleActionForwardGroupConfigServerGroupTupleArray and RulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput values.
+// You can construct a concrete instance of `RulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayInput` via:
+//
+//	RulesRuleRuleActionForwardGroupConfigServerGroupTupleArray{ RulesRuleRuleActionForwardGroupConfigServerGroupTupleArgs{...} }
+type RulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayInput interface {
+	pulumi.Input
+
+	ToRulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput() RulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput
+	ToRulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutputWithContext(context.Context) RulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput
+}
+
+type RulesRuleRuleActionForwardGroupConfigServerGroupTupleArray []RulesRuleRuleActionForwardGroupConfigServerGroupTupleInput
+
+func (RulesRuleRuleActionForwardGroupConfigServerGroupTupleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RulesRuleRuleActionForwardGroupConfigServerGroupTuple)(nil)).Elem()
+}
+
+func (i RulesRuleRuleActionForwardGroupConfigServerGroupTupleArray) ToRulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput() RulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput {
+	return i.ToRulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutputWithContext(context.Background())
+}
+
+func (i RulesRuleRuleActionForwardGroupConfigServerGroupTupleArray) ToRulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutputWithContext(ctx context.Context) RulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput)
+}
+
+type RulesRuleRuleActionForwardGroupConfigServerGroupTupleOutput struct{ *pulumi.OutputState }
+
+func (RulesRuleRuleActionForwardGroupConfigServerGroupTupleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RulesRuleRuleActionForwardGroupConfigServerGroupTuple)(nil)).Elem()
+}
+
+func (o RulesRuleRuleActionForwardGroupConfigServerGroupTupleOutput) ToRulesRuleRuleActionForwardGroupConfigServerGroupTupleOutput() RulesRuleRuleActionForwardGroupConfigServerGroupTupleOutput {
+	return o
+}
+
+func (o RulesRuleRuleActionForwardGroupConfigServerGroupTupleOutput) ToRulesRuleRuleActionForwardGroupConfigServerGroupTupleOutputWithContext(ctx context.Context) RulesRuleRuleActionForwardGroupConfigServerGroupTupleOutput {
+	return o
+}
+
+// The Id of Server Group.
+func (o RulesRuleRuleActionForwardGroupConfigServerGroupTupleOutput) ServerGroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v RulesRuleRuleActionForwardGroupConfigServerGroupTuple) string { return v.ServerGroupId }).(pulumi.StringOutput)
+}
+
+// The weight of the server group.
+func (o RulesRuleRuleActionForwardGroupConfigServerGroupTupleOutput) Weight() pulumi.IntOutput {
+	return o.ApplyT(func(v RulesRuleRuleActionForwardGroupConfigServerGroupTuple) int { return v.Weight }).(pulumi.IntOutput)
+}
+
+type RulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput struct{ *pulumi.OutputState }
+
+func (RulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RulesRuleRuleActionForwardGroupConfigServerGroupTuple)(nil)).Elem()
+}
+
+func (o RulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput) ToRulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput() RulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput {
+	return o
+}
+
+func (o RulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput) ToRulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutputWithContext(ctx context.Context) RulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput {
+	return o
+}
+
+func (o RulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput) Index(i pulumi.IntInput) RulesRuleRuleActionForwardGroupConfigServerGroupTupleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RulesRuleRuleActionForwardGroupConfigServerGroupTuple {
+		return vs[0].([]RulesRuleRuleActionForwardGroupConfigServerGroupTuple)[vs[1].(int)]
+	}).(RulesRuleRuleActionForwardGroupConfigServerGroupTupleOutput)
+}
+
+type RulesRuleRuleActionRedirectConfig struct {
+	// The redirect domain.
+	RedirectDomain string `pulumi:"redirectDomain"`
+	// The redirect HTTP code.
+	RedirectHttpCode string `pulumi:"redirectHttpCode"`
+	// The redirect port.
+	RedirectPort string `pulumi:"redirectPort"`
+	// The redirect protocol.
+	RedirectProtocol string `pulumi:"redirectProtocol"`
+	// The redirect URI.
+	RedirectUri string `pulumi:"redirectUri"`
+}
+
+// RulesRuleRuleActionRedirectConfigInput is an input type that accepts RulesRuleRuleActionRedirectConfigArgs and RulesRuleRuleActionRedirectConfigOutput values.
+// You can construct a concrete instance of `RulesRuleRuleActionRedirectConfigInput` via:
+//
+//	RulesRuleRuleActionRedirectConfigArgs{...}
+type RulesRuleRuleActionRedirectConfigInput interface {
+	pulumi.Input
+
+	ToRulesRuleRuleActionRedirectConfigOutput() RulesRuleRuleActionRedirectConfigOutput
+	ToRulesRuleRuleActionRedirectConfigOutputWithContext(context.Context) RulesRuleRuleActionRedirectConfigOutput
+}
+
+type RulesRuleRuleActionRedirectConfigArgs struct {
+	// The redirect domain.
+	RedirectDomain pulumi.StringInput `pulumi:"redirectDomain"`
+	// The redirect HTTP code.
+	RedirectHttpCode pulumi.StringInput `pulumi:"redirectHttpCode"`
+	// The redirect port.
+	RedirectPort pulumi.StringInput `pulumi:"redirectPort"`
+	// The redirect protocol.
+	RedirectProtocol pulumi.StringInput `pulumi:"redirectProtocol"`
+	// The redirect URI.
+	RedirectUri pulumi.StringInput `pulumi:"redirectUri"`
+}
+
+func (RulesRuleRuleActionRedirectConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RulesRuleRuleActionRedirectConfig)(nil)).Elem()
+}
+
+func (i RulesRuleRuleActionRedirectConfigArgs) ToRulesRuleRuleActionRedirectConfigOutput() RulesRuleRuleActionRedirectConfigOutput {
+	return i.ToRulesRuleRuleActionRedirectConfigOutputWithContext(context.Background())
+}
+
+func (i RulesRuleRuleActionRedirectConfigArgs) ToRulesRuleRuleActionRedirectConfigOutputWithContext(ctx context.Context) RulesRuleRuleActionRedirectConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RulesRuleRuleActionRedirectConfigOutput)
+}
+
+// RulesRuleRuleActionRedirectConfigArrayInput is an input type that accepts RulesRuleRuleActionRedirectConfigArray and RulesRuleRuleActionRedirectConfigArrayOutput values.
+// You can construct a concrete instance of `RulesRuleRuleActionRedirectConfigArrayInput` via:
+//
+//	RulesRuleRuleActionRedirectConfigArray{ RulesRuleRuleActionRedirectConfigArgs{...} }
+type RulesRuleRuleActionRedirectConfigArrayInput interface {
+	pulumi.Input
+
+	ToRulesRuleRuleActionRedirectConfigArrayOutput() RulesRuleRuleActionRedirectConfigArrayOutput
+	ToRulesRuleRuleActionRedirectConfigArrayOutputWithContext(context.Context) RulesRuleRuleActionRedirectConfigArrayOutput
+}
+
+type RulesRuleRuleActionRedirectConfigArray []RulesRuleRuleActionRedirectConfigInput
+
+func (RulesRuleRuleActionRedirectConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RulesRuleRuleActionRedirectConfig)(nil)).Elem()
+}
+
+func (i RulesRuleRuleActionRedirectConfigArray) ToRulesRuleRuleActionRedirectConfigArrayOutput() RulesRuleRuleActionRedirectConfigArrayOutput {
+	return i.ToRulesRuleRuleActionRedirectConfigArrayOutputWithContext(context.Background())
+}
+
+func (i RulesRuleRuleActionRedirectConfigArray) ToRulesRuleRuleActionRedirectConfigArrayOutputWithContext(ctx context.Context) RulesRuleRuleActionRedirectConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RulesRuleRuleActionRedirectConfigArrayOutput)
+}
+
+type RulesRuleRuleActionRedirectConfigOutput struct{ *pulumi.OutputState }
+
+func (RulesRuleRuleActionRedirectConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RulesRuleRuleActionRedirectConfig)(nil)).Elem()
+}
+
+func (o RulesRuleRuleActionRedirectConfigOutput) ToRulesRuleRuleActionRedirectConfigOutput() RulesRuleRuleActionRedirectConfigOutput {
+	return o
+}
+
+func (o RulesRuleRuleActionRedirectConfigOutput) ToRulesRuleRuleActionRedirectConfigOutputWithContext(ctx context.Context) RulesRuleRuleActionRedirectConfigOutput {
+	return o
+}
+
+// The redirect domain.
+func (o RulesRuleRuleActionRedirectConfigOutput) RedirectDomain() pulumi.StringOutput {
+	return o.ApplyT(func(v RulesRuleRuleActionRedirectConfig) string { return v.RedirectDomain }).(pulumi.StringOutput)
+}
+
+// The redirect HTTP code.
+func (o RulesRuleRuleActionRedirectConfigOutput) RedirectHttpCode() pulumi.StringOutput {
+	return o.ApplyT(func(v RulesRuleRuleActionRedirectConfig) string { return v.RedirectHttpCode }).(pulumi.StringOutput)
+}
+
+// The redirect port.
+func (o RulesRuleRuleActionRedirectConfigOutput) RedirectPort() pulumi.StringOutput {
+	return o.ApplyT(func(v RulesRuleRuleActionRedirectConfig) string { return v.RedirectPort }).(pulumi.StringOutput)
+}
+
+// The redirect protocol.
+func (o RulesRuleRuleActionRedirectConfigOutput) RedirectProtocol() pulumi.StringOutput {
+	return o.ApplyT(func(v RulesRuleRuleActionRedirectConfig) string { return v.RedirectProtocol }).(pulumi.StringOutput)
+}
+
+// The redirect URI.
+func (o RulesRuleRuleActionRedirectConfigOutput) RedirectUri() pulumi.StringOutput {
+	return o.ApplyT(func(v RulesRuleRuleActionRedirectConfig) string { return v.RedirectUri }).(pulumi.StringOutput)
+}
+
+type RulesRuleRuleActionRedirectConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (RulesRuleRuleActionRedirectConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RulesRuleRuleActionRedirectConfig)(nil)).Elem()
+}
+
+func (o RulesRuleRuleActionRedirectConfigArrayOutput) ToRulesRuleRuleActionRedirectConfigArrayOutput() RulesRuleRuleActionRedirectConfigArrayOutput {
+	return o
+}
+
+func (o RulesRuleRuleActionRedirectConfigArrayOutput) ToRulesRuleRuleActionRedirectConfigArrayOutputWithContext(ctx context.Context) RulesRuleRuleActionRedirectConfigArrayOutput {
+	return o
+}
+
+func (o RulesRuleRuleActionRedirectConfigArrayOutput) Index(i pulumi.IntInput) RulesRuleRuleActionRedirectConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RulesRuleRuleActionRedirectConfig {
+		return vs[0].([]RulesRuleRuleActionRedirectConfig)[vs[1].(int)]
+	}).(RulesRuleRuleActionRedirectConfigOutput)
+}
+
+type RulesRuleRuleActionRewriteConfig struct {
+	// The rewrite path.
+	Path string `pulumi:"path"`
+}
+
+// RulesRuleRuleActionRewriteConfigInput is an input type that accepts RulesRuleRuleActionRewriteConfigArgs and RulesRuleRuleActionRewriteConfigOutput values.
+// You can construct a concrete instance of `RulesRuleRuleActionRewriteConfigInput` via:
+//
+//	RulesRuleRuleActionRewriteConfigArgs{...}
+type RulesRuleRuleActionRewriteConfigInput interface {
+	pulumi.Input
+
+	ToRulesRuleRuleActionRewriteConfigOutput() RulesRuleRuleActionRewriteConfigOutput
+	ToRulesRuleRuleActionRewriteConfigOutputWithContext(context.Context) RulesRuleRuleActionRewriteConfigOutput
+}
+
+type RulesRuleRuleActionRewriteConfigArgs struct {
+	// The rewrite path.
+	Path pulumi.StringInput `pulumi:"path"`
+}
+
+func (RulesRuleRuleActionRewriteConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RulesRuleRuleActionRewriteConfig)(nil)).Elem()
+}
+
+func (i RulesRuleRuleActionRewriteConfigArgs) ToRulesRuleRuleActionRewriteConfigOutput() RulesRuleRuleActionRewriteConfigOutput {
+	return i.ToRulesRuleRuleActionRewriteConfigOutputWithContext(context.Background())
+}
+
+func (i RulesRuleRuleActionRewriteConfigArgs) ToRulesRuleRuleActionRewriteConfigOutputWithContext(ctx context.Context) RulesRuleRuleActionRewriteConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RulesRuleRuleActionRewriteConfigOutput)
+}
+
+// RulesRuleRuleActionRewriteConfigArrayInput is an input type that accepts RulesRuleRuleActionRewriteConfigArray and RulesRuleRuleActionRewriteConfigArrayOutput values.
+// You can construct a concrete instance of `RulesRuleRuleActionRewriteConfigArrayInput` via:
+//
+//	RulesRuleRuleActionRewriteConfigArray{ RulesRuleRuleActionRewriteConfigArgs{...} }
+type RulesRuleRuleActionRewriteConfigArrayInput interface {
+	pulumi.Input
+
+	ToRulesRuleRuleActionRewriteConfigArrayOutput() RulesRuleRuleActionRewriteConfigArrayOutput
+	ToRulesRuleRuleActionRewriteConfigArrayOutputWithContext(context.Context) RulesRuleRuleActionRewriteConfigArrayOutput
+}
+
+type RulesRuleRuleActionRewriteConfigArray []RulesRuleRuleActionRewriteConfigInput
+
+func (RulesRuleRuleActionRewriteConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RulesRuleRuleActionRewriteConfig)(nil)).Elem()
+}
+
+func (i RulesRuleRuleActionRewriteConfigArray) ToRulesRuleRuleActionRewriteConfigArrayOutput() RulesRuleRuleActionRewriteConfigArrayOutput {
+	return i.ToRulesRuleRuleActionRewriteConfigArrayOutputWithContext(context.Background())
+}
+
+func (i RulesRuleRuleActionRewriteConfigArray) ToRulesRuleRuleActionRewriteConfigArrayOutputWithContext(ctx context.Context) RulesRuleRuleActionRewriteConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RulesRuleRuleActionRewriteConfigArrayOutput)
+}
+
+type RulesRuleRuleActionRewriteConfigOutput struct{ *pulumi.OutputState }
+
+func (RulesRuleRuleActionRewriteConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RulesRuleRuleActionRewriteConfig)(nil)).Elem()
+}
+
+func (o RulesRuleRuleActionRewriteConfigOutput) ToRulesRuleRuleActionRewriteConfigOutput() RulesRuleRuleActionRewriteConfigOutput {
+	return o
+}
+
+func (o RulesRuleRuleActionRewriteConfigOutput) ToRulesRuleRuleActionRewriteConfigOutputWithContext(ctx context.Context) RulesRuleRuleActionRewriteConfigOutput {
+	return o
+}
+
+// The rewrite path.
+func (o RulesRuleRuleActionRewriteConfigOutput) Path() pulumi.StringOutput {
+	return o.ApplyT(func(v RulesRuleRuleActionRewriteConfig) string { return v.Path }).(pulumi.StringOutput)
+}
+
+type RulesRuleRuleActionRewriteConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (RulesRuleRuleActionRewriteConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RulesRuleRuleActionRewriteConfig)(nil)).Elem()
+}
+
+func (o RulesRuleRuleActionRewriteConfigArrayOutput) ToRulesRuleRuleActionRewriteConfigArrayOutput() RulesRuleRuleActionRewriteConfigArrayOutput {
+	return o
+}
+
+func (o RulesRuleRuleActionRewriteConfigArrayOutput) ToRulesRuleRuleActionRewriteConfigArrayOutputWithContext(ctx context.Context) RulesRuleRuleActionRewriteConfigArrayOutput {
+	return o
+}
+
+func (o RulesRuleRuleActionRewriteConfigArrayOutput) Index(i pulumi.IntInput) RulesRuleRuleActionRewriteConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RulesRuleRuleActionRewriteConfig {
+		return vs[0].([]RulesRuleRuleActionRewriteConfig)[vs[1].(int)]
+	}).(RulesRuleRuleActionRewriteConfigOutput)
+}
+
+type RulesRuleRuleActionTrafficLimitConfig struct {
+	// The QPS limit.
+	Qps int `pulumi:"qps"`
+}
+
+// RulesRuleRuleActionTrafficLimitConfigInput is an input type that accepts RulesRuleRuleActionTrafficLimitConfigArgs and RulesRuleRuleActionTrafficLimitConfigOutput values.
+// You can construct a concrete instance of `RulesRuleRuleActionTrafficLimitConfigInput` via:
+//
+//	RulesRuleRuleActionTrafficLimitConfigArgs{...}
+type RulesRuleRuleActionTrafficLimitConfigInput interface {
+	pulumi.Input
+
+	ToRulesRuleRuleActionTrafficLimitConfigOutput() RulesRuleRuleActionTrafficLimitConfigOutput
+	ToRulesRuleRuleActionTrafficLimitConfigOutputWithContext(context.Context) RulesRuleRuleActionTrafficLimitConfigOutput
+}
+
+type RulesRuleRuleActionTrafficLimitConfigArgs struct {
+	// The QPS limit.
+	Qps pulumi.IntInput `pulumi:"qps"`
+}
+
+func (RulesRuleRuleActionTrafficLimitConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RulesRuleRuleActionTrafficLimitConfig)(nil)).Elem()
+}
+
+func (i RulesRuleRuleActionTrafficLimitConfigArgs) ToRulesRuleRuleActionTrafficLimitConfigOutput() RulesRuleRuleActionTrafficLimitConfigOutput {
+	return i.ToRulesRuleRuleActionTrafficLimitConfigOutputWithContext(context.Background())
+}
+
+func (i RulesRuleRuleActionTrafficLimitConfigArgs) ToRulesRuleRuleActionTrafficLimitConfigOutputWithContext(ctx context.Context) RulesRuleRuleActionTrafficLimitConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RulesRuleRuleActionTrafficLimitConfigOutput)
+}
+
+// RulesRuleRuleActionTrafficLimitConfigArrayInput is an input type that accepts RulesRuleRuleActionTrafficLimitConfigArray and RulesRuleRuleActionTrafficLimitConfigArrayOutput values.
+// You can construct a concrete instance of `RulesRuleRuleActionTrafficLimitConfigArrayInput` via:
+//
+//	RulesRuleRuleActionTrafficLimitConfigArray{ RulesRuleRuleActionTrafficLimitConfigArgs{...} }
+type RulesRuleRuleActionTrafficLimitConfigArrayInput interface {
+	pulumi.Input
+
+	ToRulesRuleRuleActionTrafficLimitConfigArrayOutput() RulesRuleRuleActionTrafficLimitConfigArrayOutput
+	ToRulesRuleRuleActionTrafficLimitConfigArrayOutputWithContext(context.Context) RulesRuleRuleActionTrafficLimitConfigArrayOutput
+}
+
+type RulesRuleRuleActionTrafficLimitConfigArray []RulesRuleRuleActionTrafficLimitConfigInput
+
+func (RulesRuleRuleActionTrafficLimitConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RulesRuleRuleActionTrafficLimitConfig)(nil)).Elem()
+}
+
+func (i RulesRuleRuleActionTrafficLimitConfigArray) ToRulesRuleRuleActionTrafficLimitConfigArrayOutput() RulesRuleRuleActionTrafficLimitConfigArrayOutput {
+	return i.ToRulesRuleRuleActionTrafficLimitConfigArrayOutputWithContext(context.Background())
+}
+
+func (i RulesRuleRuleActionTrafficLimitConfigArray) ToRulesRuleRuleActionTrafficLimitConfigArrayOutputWithContext(ctx context.Context) RulesRuleRuleActionTrafficLimitConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RulesRuleRuleActionTrafficLimitConfigArrayOutput)
+}
+
+type RulesRuleRuleActionTrafficLimitConfigOutput struct{ *pulumi.OutputState }
+
+func (RulesRuleRuleActionTrafficLimitConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RulesRuleRuleActionTrafficLimitConfig)(nil)).Elem()
+}
+
+func (o RulesRuleRuleActionTrafficLimitConfigOutput) ToRulesRuleRuleActionTrafficLimitConfigOutput() RulesRuleRuleActionTrafficLimitConfigOutput {
+	return o
+}
+
+func (o RulesRuleRuleActionTrafficLimitConfigOutput) ToRulesRuleRuleActionTrafficLimitConfigOutputWithContext(ctx context.Context) RulesRuleRuleActionTrafficLimitConfigOutput {
+	return o
+}
+
+// The QPS limit.
+func (o RulesRuleRuleActionTrafficLimitConfigOutput) Qps() pulumi.IntOutput {
+	return o.ApplyT(func(v RulesRuleRuleActionTrafficLimitConfig) int { return v.Qps }).(pulumi.IntOutput)
+}
+
+type RulesRuleRuleActionTrafficLimitConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (RulesRuleRuleActionTrafficLimitConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RulesRuleRuleActionTrafficLimitConfig)(nil)).Elem()
+}
+
+func (o RulesRuleRuleActionTrafficLimitConfigArrayOutput) ToRulesRuleRuleActionTrafficLimitConfigArrayOutput() RulesRuleRuleActionTrafficLimitConfigArrayOutput {
+	return o
+}
+
+func (o RulesRuleRuleActionTrafficLimitConfigArrayOutput) ToRulesRuleRuleActionTrafficLimitConfigArrayOutputWithContext(ctx context.Context) RulesRuleRuleActionTrafficLimitConfigArrayOutput {
+	return o
+}
+
+func (o RulesRuleRuleActionTrafficLimitConfigArrayOutput) Index(i pulumi.IntInput) RulesRuleRuleActionTrafficLimitConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RulesRuleRuleActionTrafficLimitConfig {
+		return vs[0].([]RulesRuleRuleActionTrafficLimitConfig)[vs[1].(int)]
+	}).(RulesRuleRuleActionTrafficLimitConfigOutput)
+}
+
+type RulesRuleRuleCondition struct {
+	// Header configuration for Header type condition.
+	HeaderConfigs []RulesRuleRuleConditionHeaderConfig `pulumi:"headerConfigs"`
+	// Host configuration for host type condition.
+	HostConfigs []RulesRuleRuleConditionHostConfig `pulumi:"hostConfigs"`
+	// Method configuration for Method type condition.
+	MethodConfigs []RulesRuleRuleConditionMethodConfig `pulumi:"methodConfigs"`
+	// Path configuration for Path type condition.
+	PathConfigs []RulesRuleRuleConditionPathConfig `pulumi:"pathConfigs"`
+	// Query string configuration.
+	QueryStringConfigs []RulesRuleRuleConditionQueryStringConfig `pulumi:"queryStringConfigs"`
+	// The type of rule condition. Valid values: Host, Path, Header.
+	Type string `pulumi:"type"`
+}
+
+// RulesRuleRuleConditionInput is an input type that accepts RulesRuleRuleConditionArgs and RulesRuleRuleConditionOutput values.
+// You can construct a concrete instance of `RulesRuleRuleConditionInput` via:
+//
+//	RulesRuleRuleConditionArgs{...}
+type RulesRuleRuleConditionInput interface {
+	pulumi.Input
+
+	ToRulesRuleRuleConditionOutput() RulesRuleRuleConditionOutput
+	ToRulesRuleRuleConditionOutputWithContext(context.Context) RulesRuleRuleConditionOutput
+}
+
+type RulesRuleRuleConditionArgs struct {
+	// Header configuration for Header type condition.
+	HeaderConfigs RulesRuleRuleConditionHeaderConfigArrayInput `pulumi:"headerConfigs"`
+	// Host configuration for host type condition.
+	HostConfigs RulesRuleRuleConditionHostConfigArrayInput `pulumi:"hostConfigs"`
+	// Method configuration for Method type condition.
+	MethodConfigs RulesRuleRuleConditionMethodConfigArrayInput `pulumi:"methodConfigs"`
+	// Path configuration for Path type condition.
+	PathConfigs RulesRuleRuleConditionPathConfigArrayInput `pulumi:"pathConfigs"`
+	// Query string configuration.
+	QueryStringConfigs RulesRuleRuleConditionQueryStringConfigArrayInput `pulumi:"queryStringConfigs"`
+	// The type of rule condition. Valid values: Host, Path, Header.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (RulesRuleRuleConditionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RulesRuleRuleCondition)(nil)).Elem()
+}
+
+func (i RulesRuleRuleConditionArgs) ToRulesRuleRuleConditionOutput() RulesRuleRuleConditionOutput {
+	return i.ToRulesRuleRuleConditionOutputWithContext(context.Background())
+}
+
+func (i RulesRuleRuleConditionArgs) ToRulesRuleRuleConditionOutputWithContext(ctx context.Context) RulesRuleRuleConditionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RulesRuleRuleConditionOutput)
+}
+
+// RulesRuleRuleConditionArrayInput is an input type that accepts RulesRuleRuleConditionArray and RulesRuleRuleConditionArrayOutput values.
+// You can construct a concrete instance of `RulesRuleRuleConditionArrayInput` via:
+//
+//	RulesRuleRuleConditionArray{ RulesRuleRuleConditionArgs{...} }
+type RulesRuleRuleConditionArrayInput interface {
+	pulumi.Input
+
+	ToRulesRuleRuleConditionArrayOutput() RulesRuleRuleConditionArrayOutput
+	ToRulesRuleRuleConditionArrayOutputWithContext(context.Context) RulesRuleRuleConditionArrayOutput
+}
+
+type RulesRuleRuleConditionArray []RulesRuleRuleConditionInput
+
+func (RulesRuleRuleConditionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RulesRuleRuleCondition)(nil)).Elem()
+}
+
+func (i RulesRuleRuleConditionArray) ToRulesRuleRuleConditionArrayOutput() RulesRuleRuleConditionArrayOutput {
+	return i.ToRulesRuleRuleConditionArrayOutputWithContext(context.Background())
+}
+
+func (i RulesRuleRuleConditionArray) ToRulesRuleRuleConditionArrayOutputWithContext(ctx context.Context) RulesRuleRuleConditionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RulesRuleRuleConditionArrayOutput)
+}
+
+type RulesRuleRuleConditionOutput struct{ *pulumi.OutputState }
+
+func (RulesRuleRuleConditionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RulesRuleRuleCondition)(nil)).Elem()
+}
+
+func (o RulesRuleRuleConditionOutput) ToRulesRuleRuleConditionOutput() RulesRuleRuleConditionOutput {
+	return o
+}
+
+func (o RulesRuleRuleConditionOutput) ToRulesRuleRuleConditionOutputWithContext(ctx context.Context) RulesRuleRuleConditionOutput {
+	return o
+}
+
+// Header configuration for Header type condition.
+func (o RulesRuleRuleConditionOutput) HeaderConfigs() RulesRuleRuleConditionHeaderConfigArrayOutput {
+	return o.ApplyT(func(v RulesRuleRuleCondition) []RulesRuleRuleConditionHeaderConfig { return v.HeaderConfigs }).(RulesRuleRuleConditionHeaderConfigArrayOutput)
+}
+
+// Host configuration for host type condition.
+func (o RulesRuleRuleConditionOutput) HostConfigs() RulesRuleRuleConditionHostConfigArrayOutput {
+	return o.ApplyT(func(v RulesRuleRuleCondition) []RulesRuleRuleConditionHostConfig { return v.HostConfigs }).(RulesRuleRuleConditionHostConfigArrayOutput)
+}
+
+// Method configuration for Method type condition.
+func (o RulesRuleRuleConditionOutput) MethodConfigs() RulesRuleRuleConditionMethodConfigArrayOutput {
+	return o.ApplyT(func(v RulesRuleRuleCondition) []RulesRuleRuleConditionMethodConfig { return v.MethodConfigs }).(RulesRuleRuleConditionMethodConfigArrayOutput)
+}
+
+// Path configuration for Path type condition.
+func (o RulesRuleRuleConditionOutput) PathConfigs() RulesRuleRuleConditionPathConfigArrayOutput {
+	return o.ApplyT(func(v RulesRuleRuleCondition) []RulesRuleRuleConditionPathConfig { return v.PathConfigs }).(RulesRuleRuleConditionPathConfigArrayOutput)
+}
+
+// Query string configuration.
+func (o RulesRuleRuleConditionOutput) QueryStringConfigs() RulesRuleRuleConditionQueryStringConfigArrayOutput {
+	return o.ApplyT(func(v RulesRuleRuleCondition) []RulesRuleRuleConditionQueryStringConfig { return v.QueryStringConfigs }).(RulesRuleRuleConditionQueryStringConfigArrayOutput)
+}
+
+// The type of rule condition. Valid values: Host, Path, Header.
+func (o RulesRuleRuleConditionOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v RulesRuleRuleCondition) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type RulesRuleRuleConditionArrayOutput struct{ *pulumi.OutputState }
+
+func (RulesRuleRuleConditionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RulesRuleRuleCondition)(nil)).Elem()
+}
+
+func (o RulesRuleRuleConditionArrayOutput) ToRulesRuleRuleConditionArrayOutput() RulesRuleRuleConditionArrayOutput {
+	return o
+}
+
+func (o RulesRuleRuleConditionArrayOutput) ToRulesRuleRuleConditionArrayOutputWithContext(ctx context.Context) RulesRuleRuleConditionArrayOutput {
+	return o
+}
+
+func (o RulesRuleRuleConditionArrayOutput) Index(i pulumi.IntInput) RulesRuleRuleConditionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RulesRuleRuleCondition {
+		return vs[0].([]RulesRuleRuleCondition)[vs[1].(int)]
+	}).(RulesRuleRuleConditionOutput)
+}
+
+type RulesRuleRuleConditionHeaderConfig struct {
+	// The query string key.
+	Key string `pulumi:"key"`
+	// The list of query string values.
+	Values []string `pulumi:"values"`
+}
+
+// RulesRuleRuleConditionHeaderConfigInput is an input type that accepts RulesRuleRuleConditionHeaderConfigArgs and RulesRuleRuleConditionHeaderConfigOutput values.
+// You can construct a concrete instance of `RulesRuleRuleConditionHeaderConfigInput` via:
+//
+//	RulesRuleRuleConditionHeaderConfigArgs{...}
+type RulesRuleRuleConditionHeaderConfigInput interface {
+	pulumi.Input
+
+	ToRulesRuleRuleConditionHeaderConfigOutput() RulesRuleRuleConditionHeaderConfigOutput
+	ToRulesRuleRuleConditionHeaderConfigOutputWithContext(context.Context) RulesRuleRuleConditionHeaderConfigOutput
+}
+
+type RulesRuleRuleConditionHeaderConfigArgs struct {
+	// The query string key.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The list of query string values.
+	Values pulumi.StringArrayInput `pulumi:"values"`
+}
+
+func (RulesRuleRuleConditionHeaderConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RulesRuleRuleConditionHeaderConfig)(nil)).Elem()
+}
+
+func (i RulesRuleRuleConditionHeaderConfigArgs) ToRulesRuleRuleConditionHeaderConfigOutput() RulesRuleRuleConditionHeaderConfigOutput {
+	return i.ToRulesRuleRuleConditionHeaderConfigOutputWithContext(context.Background())
+}
+
+func (i RulesRuleRuleConditionHeaderConfigArgs) ToRulesRuleRuleConditionHeaderConfigOutputWithContext(ctx context.Context) RulesRuleRuleConditionHeaderConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RulesRuleRuleConditionHeaderConfigOutput)
+}
+
+// RulesRuleRuleConditionHeaderConfigArrayInput is an input type that accepts RulesRuleRuleConditionHeaderConfigArray and RulesRuleRuleConditionHeaderConfigArrayOutput values.
+// You can construct a concrete instance of `RulesRuleRuleConditionHeaderConfigArrayInput` via:
+//
+//	RulesRuleRuleConditionHeaderConfigArray{ RulesRuleRuleConditionHeaderConfigArgs{...} }
+type RulesRuleRuleConditionHeaderConfigArrayInput interface {
+	pulumi.Input
+
+	ToRulesRuleRuleConditionHeaderConfigArrayOutput() RulesRuleRuleConditionHeaderConfigArrayOutput
+	ToRulesRuleRuleConditionHeaderConfigArrayOutputWithContext(context.Context) RulesRuleRuleConditionHeaderConfigArrayOutput
+}
+
+type RulesRuleRuleConditionHeaderConfigArray []RulesRuleRuleConditionHeaderConfigInput
+
+func (RulesRuleRuleConditionHeaderConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RulesRuleRuleConditionHeaderConfig)(nil)).Elem()
+}
+
+func (i RulesRuleRuleConditionHeaderConfigArray) ToRulesRuleRuleConditionHeaderConfigArrayOutput() RulesRuleRuleConditionHeaderConfigArrayOutput {
+	return i.ToRulesRuleRuleConditionHeaderConfigArrayOutputWithContext(context.Background())
+}
+
+func (i RulesRuleRuleConditionHeaderConfigArray) ToRulesRuleRuleConditionHeaderConfigArrayOutputWithContext(ctx context.Context) RulesRuleRuleConditionHeaderConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RulesRuleRuleConditionHeaderConfigArrayOutput)
+}
+
+type RulesRuleRuleConditionHeaderConfigOutput struct{ *pulumi.OutputState }
+
+func (RulesRuleRuleConditionHeaderConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RulesRuleRuleConditionHeaderConfig)(nil)).Elem()
+}
+
+func (o RulesRuleRuleConditionHeaderConfigOutput) ToRulesRuleRuleConditionHeaderConfigOutput() RulesRuleRuleConditionHeaderConfigOutput {
+	return o
+}
+
+func (o RulesRuleRuleConditionHeaderConfigOutput) ToRulesRuleRuleConditionHeaderConfigOutputWithContext(ctx context.Context) RulesRuleRuleConditionHeaderConfigOutput {
+	return o
+}
+
+// The query string key.
+func (o RulesRuleRuleConditionHeaderConfigOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v RulesRuleRuleConditionHeaderConfig) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The list of query string values.
+func (o RulesRuleRuleConditionHeaderConfigOutput) Values() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v RulesRuleRuleConditionHeaderConfig) []string { return v.Values }).(pulumi.StringArrayOutput)
+}
+
+type RulesRuleRuleConditionHeaderConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (RulesRuleRuleConditionHeaderConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RulesRuleRuleConditionHeaderConfig)(nil)).Elem()
+}
+
+func (o RulesRuleRuleConditionHeaderConfigArrayOutput) ToRulesRuleRuleConditionHeaderConfigArrayOutput() RulesRuleRuleConditionHeaderConfigArrayOutput {
+	return o
+}
+
+func (o RulesRuleRuleConditionHeaderConfigArrayOutput) ToRulesRuleRuleConditionHeaderConfigArrayOutputWithContext(ctx context.Context) RulesRuleRuleConditionHeaderConfigArrayOutput {
+	return o
+}
+
+func (o RulesRuleRuleConditionHeaderConfigArrayOutput) Index(i pulumi.IntInput) RulesRuleRuleConditionHeaderConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RulesRuleRuleConditionHeaderConfig {
+		return vs[0].([]RulesRuleRuleConditionHeaderConfig)[vs[1].(int)]
+	}).(RulesRuleRuleConditionHeaderConfigOutput)
+}
+
+type RulesRuleRuleConditionHostConfig struct {
+	// The list of query string values.
+	Values []string `pulumi:"values"`
+}
+
+// RulesRuleRuleConditionHostConfigInput is an input type that accepts RulesRuleRuleConditionHostConfigArgs and RulesRuleRuleConditionHostConfigOutput values.
+// You can construct a concrete instance of `RulesRuleRuleConditionHostConfigInput` via:
+//
+//	RulesRuleRuleConditionHostConfigArgs{...}
+type RulesRuleRuleConditionHostConfigInput interface {
+	pulumi.Input
+
+	ToRulesRuleRuleConditionHostConfigOutput() RulesRuleRuleConditionHostConfigOutput
+	ToRulesRuleRuleConditionHostConfigOutputWithContext(context.Context) RulesRuleRuleConditionHostConfigOutput
+}
+
+type RulesRuleRuleConditionHostConfigArgs struct {
+	// The list of query string values.
+	Values pulumi.StringArrayInput `pulumi:"values"`
+}
+
+func (RulesRuleRuleConditionHostConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RulesRuleRuleConditionHostConfig)(nil)).Elem()
+}
+
+func (i RulesRuleRuleConditionHostConfigArgs) ToRulesRuleRuleConditionHostConfigOutput() RulesRuleRuleConditionHostConfigOutput {
+	return i.ToRulesRuleRuleConditionHostConfigOutputWithContext(context.Background())
+}
+
+func (i RulesRuleRuleConditionHostConfigArgs) ToRulesRuleRuleConditionHostConfigOutputWithContext(ctx context.Context) RulesRuleRuleConditionHostConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RulesRuleRuleConditionHostConfigOutput)
+}
+
+// RulesRuleRuleConditionHostConfigArrayInput is an input type that accepts RulesRuleRuleConditionHostConfigArray and RulesRuleRuleConditionHostConfigArrayOutput values.
+// You can construct a concrete instance of `RulesRuleRuleConditionHostConfigArrayInput` via:
+//
+//	RulesRuleRuleConditionHostConfigArray{ RulesRuleRuleConditionHostConfigArgs{...} }
+type RulesRuleRuleConditionHostConfigArrayInput interface {
+	pulumi.Input
+
+	ToRulesRuleRuleConditionHostConfigArrayOutput() RulesRuleRuleConditionHostConfigArrayOutput
+	ToRulesRuleRuleConditionHostConfigArrayOutputWithContext(context.Context) RulesRuleRuleConditionHostConfigArrayOutput
+}
+
+type RulesRuleRuleConditionHostConfigArray []RulesRuleRuleConditionHostConfigInput
+
+func (RulesRuleRuleConditionHostConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RulesRuleRuleConditionHostConfig)(nil)).Elem()
+}
+
+func (i RulesRuleRuleConditionHostConfigArray) ToRulesRuleRuleConditionHostConfigArrayOutput() RulesRuleRuleConditionHostConfigArrayOutput {
+	return i.ToRulesRuleRuleConditionHostConfigArrayOutputWithContext(context.Background())
+}
+
+func (i RulesRuleRuleConditionHostConfigArray) ToRulesRuleRuleConditionHostConfigArrayOutputWithContext(ctx context.Context) RulesRuleRuleConditionHostConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RulesRuleRuleConditionHostConfigArrayOutput)
+}
+
+type RulesRuleRuleConditionHostConfigOutput struct{ *pulumi.OutputState }
+
+func (RulesRuleRuleConditionHostConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RulesRuleRuleConditionHostConfig)(nil)).Elem()
+}
+
+func (o RulesRuleRuleConditionHostConfigOutput) ToRulesRuleRuleConditionHostConfigOutput() RulesRuleRuleConditionHostConfigOutput {
+	return o
+}
+
+func (o RulesRuleRuleConditionHostConfigOutput) ToRulesRuleRuleConditionHostConfigOutputWithContext(ctx context.Context) RulesRuleRuleConditionHostConfigOutput {
+	return o
+}
+
+// The list of query string values.
+func (o RulesRuleRuleConditionHostConfigOutput) Values() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v RulesRuleRuleConditionHostConfig) []string { return v.Values }).(pulumi.StringArrayOutput)
+}
+
+type RulesRuleRuleConditionHostConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (RulesRuleRuleConditionHostConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RulesRuleRuleConditionHostConfig)(nil)).Elem()
+}
+
+func (o RulesRuleRuleConditionHostConfigArrayOutput) ToRulesRuleRuleConditionHostConfigArrayOutput() RulesRuleRuleConditionHostConfigArrayOutput {
+	return o
+}
+
+func (o RulesRuleRuleConditionHostConfigArrayOutput) ToRulesRuleRuleConditionHostConfigArrayOutputWithContext(ctx context.Context) RulesRuleRuleConditionHostConfigArrayOutput {
+	return o
+}
+
+func (o RulesRuleRuleConditionHostConfigArrayOutput) Index(i pulumi.IntInput) RulesRuleRuleConditionHostConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RulesRuleRuleConditionHostConfig {
+		return vs[0].([]RulesRuleRuleConditionHostConfig)[vs[1].(int)]
+	}).(RulesRuleRuleConditionHostConfigOutput)
+}
+
+type RulesRuleRuleConditionMethodConfig struct {
+	// The list of query string values.
+	Values []string `pulumi:"values"`
+}
+
+// RulesRuleRuleConditionMethodConfigInput is an input type that accepts RulesRuleRuleConditionMethodConfigArgs and RulesRuleRuleConditionMethodConfigOutput values.
+// You can construct a concrete instance of `RulesRuleRuleConditionMethodConfigInput` via:
+//
+//	RulesRuleRuleConditionMethodConfigArgs{...}
+type RulesRuleRuleConditionMethodConfigInput interface {
+	pulumi.Input
+
+	ToRulesRuleRuleConditionMethodConfigOutput() RulesRuleRuleConditionMethodConfigOutput
+	ToRulesRuleRuleConditionMethodConfigOutputWithContext(context.Context) RulesRuleRuleConditionMethodConfigOutput
+}
+
+type RulesRuleRuleConditionMethodConfigArgs struct {
+	// The list of query string values.
+	Values pulumi.StringArrayInput `pulumi:"values"`
+}
+
+func (RulesRuleRuleConditionMethodConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RulesRuleRuleConditionMethodConfig)(nil)).Elem()
+}
+
+func (i RulesRuleRuleConditionMethodConfigArgs) ToRulesRuleRuleConditionMethodConfigOutput() RulesRuleRuleConditionMethodConfigOutput {
+	return i.ToRulesRuleRuleConditionMethodConfigOutputWithContext(context.Background())
+}
+
+func (i RulesRuleRuleConditionMethodConfigArgs) ToRulesRuleRuleConditionMethodConfigOutputWithContext(ctx context.Context) RulesRuleRuleConditionMethodConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RulesRuleRuleConditionMethodConfigOutput)
+}
+
+// RulesRuleRuleConditionMethodConfigArrayInput is an input type that accepts RulesRuleRuleConditionMethodConfigArray and RulesRuleRuleConditionMethodConfigArrayOutput values.
+// You can construct a concrete instance of `RulesRuleRuleConditionMethodConfigArrayInput` via:
+//
+//	RulesRuleRuleConditionMethodConfigArray{ RulesRuleRuleConditionMethodConfigArgs{...} }
+type RulesRuleRuleConditionMethodConfigArrayInput interface {
+	pulumi.Input
+
+	ToRulesRuleRuleConditionMethodConfigArrayOutput() RulesRuleRuleConditionMethodConfigArrayOutput
+	ToRulesRuleRuleConditionMethodConfigArrayOutputWithContext(context.Context) RulesRuleRuleConditionMethodConfigArrayOutput
+}
+
+type RulesRuleRuleConditionMethodConfigArray []RulesRuleRuleConditionMethodConfigInput
+
+func (RulesRuleRuleConditionMethodConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RulesRuleRuleConditionMethodConfig)(nil)).Elem()
+}
+
+func (i RulesRuleRuleConditionMethodConfigArray) ToRulesRuleRuleConditionMethodConfigArrayOutput() RulesRuleRuleConditionMethodConfigArrayOutput {
+	return i.ToRulesRuleRuleConditionMethodConfigArrayOutputWithContext(context.Background())
+}
+
+func (i RulesRuleRuleConditionMethodConfigArray) ToRulesRuleRuleConditionMethodConfigArrayOutputWithContext(ctx context.Context) RulesRuleRuleConditionMethodConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RulesRuleRuleConditionMethodConfigArrayOutput)
+}
+
+type RulesRuleRuleConditionMethodConfigOutput struct{ *pulumi.OutputState }
+
+func (RulesRuleRuleConditionMethodConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RulesRuleRuleConditionMethodConfig)(nil)).Elem()
+}
+
+func (o RulesRuleRuleConditionMethodConfigOutput) ToRulesRuleRuleConditionMethodConfigOutput() RulesRuleRuleConditionMethodConfigOutput {
+	return o
+}
+
+func (o RulesRuleRuleConditionMethodConfigOutput) ToRulesRuleRuleConditionMethodConfigOutputWithContext(ctx context.Context) RulesRuleRuleConditionMethodConfigOutput {
+	return o
+}
+
+// The list of query string values.
+func (o RulesRuleRuleConditionMethodConfigOutput) Values() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v RulesRuleRuleConditionMethodConfig) []string { return v.Values }).(pulumi.StringArrayOutput)
+}
+
+type RulesRuleRuleConditionMethodConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (RulesRuleRuleConditionMethodConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RulesRuleRuleConditionMethodConfig)(nil)).Elem()
+}
+
+func (o RulesRuleRuleConditionMethodConfigArrayOutput) ToRulesRuleRuleConditionMethodConfigArrayOutput() RulesRuleRuleConditionMethodConfigArrayOutput {
+	return o
+}
+
+func (o RulesRuleRuleConditionMethodConfigArrayOutput) ToRulesRuleRuleConditionMethodConfigArrayOutputWithContext(ctx context.Context) RulesRuleRuleConditionMethodConfigArrayOutput {
+	return o
+}
+
+func (o RulesRuleRuleConditionMethodConfigArrayOutput) Index(i pulumi.IntInput) RulesRuleRuleConditionMethodConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RulesRuleRuleConditionMethodConfig {
+		return vs[0].([]RulesRuleRuleConditionMethodConfig)[vs[1].(int)]
+	}).(RulesRuleRuleConditionMethodConfigOutput)
+}
+
+type RulesRuleRuleConditionPathConfig struct {
+	// The list of query string values.
+	Values []string `pulumi:"values"`
+}
+
+// RulesRuleRuleConditionPathConfigInput is an input type that accepts RulesRuleRuleConditionPathConfigArgs and RulesRuleRuleConditionPathConfigOutput values.
+// You can construct a concrete instance of `RulesRuleRuleConditionPathConfigInput` via:
+//
+//	RulesRuleRuleConditionPathConfigArgs{...}
+type RulesRuleRuleConditionPathConfigInput interface {
+	pulumi.Input
+
+	ToRulesRuleRuleConditionPathConfigOutput() RulesRuleRuleConditionPathConfigOutput
+	ToRulesRuleRuleConditionPathConfigOutputWithContext(context.Context) RulesRuleRuleConditionPathConfigOutput
+}
+
+type RulesRuleRuleConditionPathConfigArgs struct {
+	// The list of query string values.
+	Values pulumi.StringArrayInput `pulumi:"values"`
+}
+
+func (RulesRuleRuleConditionPathConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RulesRuleRuleConditionPathConfig)(nil)).Elem()
+}
+
+func (i RulesRuleRuleConditionPathConfigArgs) ToRulesRuleRuleConditionPathConfigOutput() RulesRuleRuleConditionPathConfigOutput {
+	return i.ToRulesRuleRuleConditionPathConfigOutputWithContext(context.Background())
+}
+
+func (i RulesRuleRuleConditionPathConfigArgs) ToRulesRuleRuleConditionPathConfigOutputWithContext(ctx context.Context) RulesRuleRuleConditionPathConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RulesRuleRuleConditionPathConfigOutput)
+}
+
+// RulesRuleRuleConditionPathConfigArrayInput is an input type that accepts RulesRuleRuleConditionPathConfigArray and RulesRuleRuleConditionPathConfigArrayOutput values.
+// You can construct a concrete instance of `RulesRuleRuleConditionPathConfigArrayInput` via:
+//
+//	RulesRuleRuleConditionPathConfigArray{ RulesRuleRuleConditionPathConfigArgs{...} }
+type RulesRuleRuleConditionPathConfigArrayInput interface {
+	pulumi.Input
+
+	ToRulesRuleRuleConditionPathConfigArrayOutput() RulesRuleRuleConditionPathConfigArrayOutput
+	ToRulesRuleRuleConditionPathConfigArrayOutputWithContext(context.Context) RulesRuleRuleConditionPathConfigArrayOutput
+}
+
+type RulesRuleRuleConditionPathConfigArray []RulesRuleRuleConditionPathConfigInput
+
+func (RulesRuleRuleConditionPathConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RulesRuleRuleConditionPathConfig)(nil)).Elem()
+}
+
+func (i RulesRuleRuleConditionPathConfigArray) ToRulesRuleRuleConditionPathConfigArrayOutput() RulesRuleRuleConditionPathConfigArrayOutput {
+	return i.ToRulesRuleRuleConditionPathConfigArrayOutputWithContext(context.Background())
+}
+
+func (i RulesRuleRuleConditionPathConfigArray) ToRulesRuleRuleConditionPathConfigArrayOutputWithContext(ctx context.Context) RulesRuleRuleConditionPathConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RulesRuleRuleConditionPathConfigArrayOutput)
+}
+
+type RulesRuleRuleConditionPathConfigOutput struct{ *pulumi.OutputState }
+
+func (RulesRuleRuleConditionPathConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RulesRuleRuleConditionPathConfig)(nil)).Elem()
+}
+
+func (o RulesRuleRuleConditionPathConfigOutput) ToRulesRuleRuleConditionPathConfigOutput() RulesRuleRuleConditionPathConfigOutput {
+	return o
+}
+
+func (o RulesRuleRuleConditionPathConfigOutput) ToRulesRuleRuleConditionPathConfigOutputWithContext(ctx context.Context) RulesRuleRuleConditionPathConfigOutput {
+	return o
+}
+
+// The list of query string values.
+func (o RulesRuleRuleConditionPathConfigOutput) Values() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v RulesRuleRuleConditionPathConfig) []string { return v.Values }).(pulumi.StringArrayOutput)
+}
+
+type RulesRuleRuleConditionPathConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (RulesRuleRuleConditionPathConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RulesRuleRuleConditionPathConfig)(nil)).Elem()
+}
+
+func (o RulesRuleRuleConditionPathConfigArrayOutput) ToRulesRuleRuleConditionPathConfigArrayOutput() RulesRuleRuleConditionPathConfigArrayOutput {
+	return o
+}
+
+func (o RulesRuleRuleConditionPathConfigArrayOutput) ToRulesRuleRuleConditionPathConfigArrayOutputWithContext(ctx context.Context) RulesRuleRuleConditionPathConfigArrayOutput {
+	return o
+}
+
+func (o RulesRuleRuleConditionPathConfigArrayOutput) Index(i pulumi.IntInput) RulesRuleRuleConditionPathConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RulesRuleRuleConditionPathConfig {
+		return vs[0].([]RulesRuleRuleConditionPathConfig)[vs[1].(int)]
+	}).(RulesRuleRuleConditionPathConfigOutput)
+}
+
+type RulesRuleRuleConditionQueryStringConfig struct {
+	// The list of query string values.
+	Values []RulesRuleRuleConditionQueryStringConfigValue `pulumi:"values"`
+}
+
+// RulesRuleRuleConditionQueryStringConfigInput is an input type that accepts RulesRuleRuleConditionQueryStringConfigArgs and RulesRuleRuleConditionQueryStringConfigOutput values.
+// You can construct a concrete instance of `RulesRuleRuleConditionQueryStringConfigInput` via:
+//
+//	RulesRuleRuleConditionQueryStringConfigArgs{...}
+type RulesRuleRuleConditionQueryStringConfigInput interface {
+	pulumi.Input
+
+	ToRulesRuleRuleConditionQueryStringConfigOutput() RulesRuleRuleConditionQueryStringConfigOutput
+	ToRulesRuleRuleConditionQueryStringConfigOutputWithContext(context.Context) RulesRuleRuleConditionQueryStringConfigOutput
+}
+
+type RulesRuleRuleConditionQueryStringConfigArgs struct {
+	// The list of query string values.
+	Values RulesRuleRuleConditionQueryStringConfigValueArrayInput `pulumi:"values"`
+}
+
+func (RulesRuleRuleConditionQueryStringConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RulesRuleRuleConditionQueryStringConfig)(nil)).Elem()
+}
+
+func (i RulesRuleRuleConditionQueryStringConfigArgs) ToRulesRuleRuleConditionQueryStringConfigOutput() RulesRuleRuleConditionQueryStringConfigOutput {
+	return i.ToRulesRuleRuleConditionQueryStringConfigOutputWithContext(context.Background())
+}
+
+func (i RulesRuleRuleConditionQueryStringConfigArgs) ToRulesRuleRuleConditionQueryStringConfigOutputWithContext(ctx context.Context) RulesRuleRuleConditionQueryStringConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RulesRuleRuleConditionQueryStringConfigOutput)
+}
+
+// RulesRuleRuleConditionQueryStringConfigArrayInput is an input type that accepts RulesRuleRuleConditionQueryStringConfigArray and RulesRuleRuleConditionQueryStringConfigArrayOutput values.
+// You can construct a concrete instance of `RulesRuleRuleConditionQueryStringConfigArrayInput` via:
+//
+//	RulesRuleRuleConditionQueryStringConfigArray{ RulesRuleRuleConditionQueryStringConfigArgs{...} }
+type RulesRuleRuleConditionQueryStringConfigArrayInput interface {
+	pulumi.Input
+
+	ToRulesRuleRuleConditionQueryStringConfigArrayOutput() RulesRuleRuleConditionQueryStringConfigArrayOutput
+	ToRulesRuleRuleConditionQueryStringConfigArrayOutputWithContext(context.Context) RulesRuleRuleConditionQueryStringConfigArrayOutput
+}
+
+type RulesRuleRuleConditionQueryStringConfigArray []RulesRuleRuleConditionQueryStringConfigInput
+
+func (RulesRuleRuleConditionQueryStringConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RulesRuleRuleConditionQueryStringConfig)(nil)).Elem()
+}
+
+func (i RulesRuleRuleConditionQueryStringConfigArray) ToRulesRuleRuleConditionQueryStringConfigArrayOutput() RulesRuleRuleConditionQueryStringConfigArrayOutput {
+	return i.ToRulesRuleRuleConditionQueryStringConfigArrayOutputWithContext(context.Background())
+}
+
+func (i RulesRuleRuleConditionQueryStringConfigArray) ToRulesRuleRuleConditionQueryStringConfigArrayOutputWithContext(ctx context.Context) RulesRuleRuleConditionQueryStringConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RulesRuleRuleConditionQueryStringConfigArrayOutput)
+}
+
+type RulesRuleRuleConditionQueryStringConfigOutput struct{ *pulumi.OutputState }
+
+func (RulesRuleRuleConditionQueryStringConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RulesRuleRuleConditionQueryStringConfig)(nil)).Elem()
+}
+
+func (o RulesRuleRuleConditionQueryStringConfigOutput) ToRulesRuleRuleConditionQueryStringConfigOutput() RulesRuleRuleConditionQueryStringConfigOutput {
+	return o
+}
+
+func (o RulesRuleRuleConditionQueryStringConfigOutput) ToRulesRuleRuleConditionQueryStringConfigOutputWithContext(ctx context.Context) RulesRuleRuleConditionQueryStringConfigOutput {
+	return o
+}
+
+// The list of query string values.
+func (o RulesRuleRuleConditionQueryStringConfigOutput) Values() RulesRuleRuleConditionQueryStringConfigValueArrayOutput {
+	return o.ApplyT(func(v RulesRuleRuleConditionQueryStringConfig) []RulesRuleRuleConditionQueryStringConfigValue {
+		return v.Values
+	}).(RulesRuleRuleConditionQueryStringConfigValueArrayOutput)
+}
+
+type RulesRuleRuleConditionQueryStringConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (RulesRuleRuleConditionQueryStringConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RulesRuleRuleConditionQueryStringConfig)(nil)).Elem()
+}
+
+func (o RulesRuleRuleConditionQueryStringConfigArrayOutput) ToRulesRuleRuleConditionQueryStringConfigArrayOutput() RulesRuleRuleConditionQueryStringConfigArrayOutput {
+	return o
+}
+
+func (o RulesRuleRuleConditionQueryStringConfigArrayOutput) ToRulesRuleRuleConditionQueryStringConfigArrayOutputWithContext(ctx context.Context) RulesRuleRuleConditionQueryStringConfigArrayOutput {
+	return o
+}
+
+func (o RulesRuleRuleConditionQueryStringConfigArrayOutput) Index(i pulumi.IntInput) RulesRuleRuleConditionQueryStringConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RulesRuleRuleConditionQueryStringConfig {
+		return vs[0].([]RulesRuleRuleConditionQueryStringConfig)[vs[1].(int)]
+	}).(RulesRuleRuleConditionQueryStringConfigOutput)
+}
+
+type RulesRuleRuleConditionQueryStringConfigValue struct {
+	// The query string key.
+	Key string `pulumi:"key"`
+	// The query string value.
+	Value string `pulumi:"value"`
+}
+
+// RulesRuleRuleConditionQueryStringConfigValueInput is an input type that accepts RulesRuleRuleConditionQueryStringConfigValueArgs and RulesRuleRuleConditionQueryStringConfigValueOutput values.
+// You can construct a concrete instance of `RulesRuleRuleConditionQueryStringConfigValueInput` via:
+//
+//	RulesRuleRuleConditionQueryStringConfigValueArgs{...}
+type RulesRuleRuleConditionQueryStringConfigValueInput interface {
+	pulumi.Input
+
+	ToRulesRuleRuleConditionQueryStringConfigValueOutput() RulesRuleRuleConditionQueryStringConfigValueOutput
+	ToRulesRuleRuleConditionQueryStringConfigValueOutputWithContext(context.Context) RulesRuleRuleConditionQueryStringConfigValueOutput
+}
+
+type RulesRuleRuleConditionQueryStringConfigValueArgs struct {
+	// The query string key.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The query string value.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (RulesRuleRuleConditionQueryStringConfigValueArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RulesRuleRuleConditionQueryStringConfigValue)(nil)).Elem()
+}
+
+func (i RulesRuleRuleConditionQueryStringConfigValueArgs) ToRulesRuleRuleConditionQueryStringConfigValueOutput() RulesRuleRuleConditionQueryStringConfigValueOutput {
+	return i.ToRulesRuleRuleConditionQueryStringConfigValueOutputWithContext(context.Background())
+}
+
+func (i RulesRuleRuleConditionQueryStringConfigValueArgs) ToRulesRuleRuleConditionQueryStringConfigValueOutputWithContext(ctx context.Context) RulesRuleRuleConditionQueryStringConfigValueOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RulesRuleRuleConditionQueryStringConfigValueOutput)
+}
+
+// RulesRuleRuleConditionQueryStringConfigValueArrayInput is an input type that accepts RulesRuleRuleConditionQueryStringConfigValueArray and RulesRuleRuleConditionQueryStringConfigValueArrayOutput values.
+// You can construct a concrete instance of `RulesRuleRuleConditionQueryStringConfigValueArrayInput` via:
+//
+//	RulesRuleRuleConditionQueryStringConfigValueArray{ RulesRuleRuleConditionQueryStringConfigValueArgs{...} }
+type RulesRuleRuleConditionQueryStringConfigValueArrayInput interface {
+	pulumi.Input
+
+	ToRulesRuleRuleConditionQueryStringConfigValueArrayOutput() RulesRuleRuleConditionQueryStringConfigValueArrayOutput
+	ToRulesRuleRuleConditionQueryStringConfigValueArrayOutputWithContext(context.Context) RulesRuleRuleConditionQueryStringConfigValueArrayOutput
+}
+
+type RulesRuleRuleConditionQueryStringConfigValueArray []RulesRuleRuleConditionQueryStringConfigValueInput
+
+func (RulesRuleRuleConditionQueryStringConfigValueArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RulesRuleRuleConditionQueryStringConfigValue)(nil)).Elem()
+}
+
+func (i RulesRuleRuleConditionQueryStringConfigValueArray) ToRulesRuleRuleConditionQueryStringConfigValueArrayOutput() RulesRuleRuleConditionQueryStringConfigValueArrayOutput {
+	return i.ToRulesRuleRuleConditionQueryStringConfigValueArrayOutputWithContext(context.Background())
+}
+
+func (i RulesRuleRuleConditionQueryStringConfigValueArray) ToRulesRuleRuleConditionQueryStringConfigValueArrayOutputWithContext(ctx context.Context) RulesRuleRuleConditionQueryStringConfigValueArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RulesRuleRuleConditionQueryStringConfigValueArrayOutput)
+}
+
+type RulesRuleRuleConditionQueryStringConfigValueOutput struct{ *pulumi.OutputState }
+
+func (RulesRuleRuleConditionQueryStringConfigValueOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RulesRuleRuleConditionQueryStringConfigValue)(nil)).Elem()
+}
+
+func (o RulesRuleRuleConditionQueryStringConfigValueOutput) ToRulesRuleRuleConditionQueryStringConfigValueOutput() RulesRuleRuleConditionQueryStringConfigValueOutput {
+	return o
+}
+
+func (o RulesRuleRuleConditionQueryStringConfigValueOutput) ToRulesRuleRuleConditionQueryStringConfigValueOutputWithContext(ctx context.Context) RulesRuleRuleConditionQueryStringConfigValueOutput {
+	return o
+}
+
+// The query string key.
+func (o RulesRuleRuleConditionQueryStringConfigValueOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v RulesRuleRuleConditionQueryStringConfigValue) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The query string value.
+func (o RulesRuleRuleConditionQueryStringConfigValueOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v RulesRuleRuleConditionQueryStringConfigValue) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type RulesRuleRuleConditionQueryStringConfigValueArrayOutput struct{ *pulumi.OutputState }
+
+func (RulesRuleRuleConditionQueryStringConfigValueArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RulesRuleRuleConditionQueryStringConfigValue)(nil)).Elem()
+}
+
+func (o RulesRuleRuleConditionQueryStringConfigValueArrayOutput) ToRulesRuleRuleConditionQueryStringConfigValueArrayOutput() RulesRuleRuleConditionQueryStringConfigValueArrayOutput {
+	return o
+}
+
+func (o RulesRuleRuleConditionQueryStringConfigValueArrayOutput) ToRulesRuleRuleConditionQueryStringConfigValueArrayOutputWithContext(ctx context.Context) RulesRuleRuleConditionQueryStringConfigValueArrayOutput {
+	return o
+}
+
+func (o RulesRuleRuleConditionQueryStringConfigValueArrayOutput) Index(i pulumi.IntInput) RulesRuleRuleConditionQueryStringConfigValueOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RulesRuleRuleConditionQueryStringConfigValue {
+		return vs[0].([]RulesRuleRuleConditionQueryStringConfigValue)[vs[1].(int)]
+	}).(RulesRuleRuleConditionQueryStringConfigValueOutput)
+}
+
 type ServerGroupHealthCheck struct {
 	// The domain of health check.
 	Domain *string `pulumi:"domain"`
@@ -5230,7 +12474,7 @@ type ServerGroupHealthCheck struct {
 	Enabled *string `pulumi:"enabled"`
 	// The healthy threshold of health check. Valid value range in 2~10. Default is 3.
 	HealthyThreshold *int `pulumi:"healthyThreshold"`
-	// The normal http status code of health check, the value can be `http2xx` or `http3xx` or `http4xx` or `http5xx`.
+	// The normal http status code of health check, the value can be `http2xx`, `http3xx`, `http4xx` or `http5xx`. Default is `http_2xx,http_3xx`.
 	HttpCode *string `pulumi:"httpCode"`
 	// The http version of health check. Valid values: `HTTP1.0`, `HTTP1.1`. Default is `HTTP1.0`.
 	HttpVersion *string `pulumi:"httpVersion"`
@@ -5238,6 +12482,10 @@ type ServerGroupHealthCheck struct {
 	Interval *int `pulumi:"interval"`
 	// The method of health check. Valid values: `GET` or `HEAD`. Default is `HEAD`.
 	Method *string `pulumi:"method"`
+	// The port of health check. When the value is 0, it means use the backend server port for health check. Valid value range in 0~65535.
+	Port *int `pulumi:"port"`
+	// The protocol of health check. Valid values: `HTTP`, `TCP`. Default is `HTTP`.
+	Protocol *string `pulumi:"protocol"`
 	// The response timeout of health check. Unit: second. Valid value range in 1~60. Default is 2.
 	Timeout *int `pulumi:"timeout"`
 	// The unhealthy threshold of health check. Valid value range in 2~10. Default is 3.
@@ -5264,7 +12512,7 @@ type ServerGroupHealthCheckArgs struct {
 	Enabled pulumi.StringPtrInput `pulumi:"enabled"`
 	// The healthy threshold of health check. Valid value range in 2~10. Default is 3.
 	HealthyThreshold pulumi.IntPtrInput `pulumi:"healthyThreshold"`
-	// The normal http status code of health check, the value can be `http2xx` or `http3xx` or `http4xx` or `http5xx`.
+	// The normal http status code of health check, the value can be `http2xx`, `http3xx`, `http4xx` or `http5xx`. Default is `http_2xx,http_3xx`.
 	HttpCode pulumi.StringPtrInput `pulumi:"httpCode"`
 	// The http version of health check. Valid values: `HTTP1.0`, `HTTP1.1`. Default is `HTTP1.0`.
 	HttpVersion pulumi.StringPtrInput `pulumi:"httpVersion"`
@@ -5272,6 +12520,10 @@ type ServerGroupHealthCheckArgs struct {
 	Interval pulumi.IntPtrInput `pulumi:"interval"`
 	// The method of health check. Valid values: `GET` or `HEAD`. Default is `HEAD`.
 	Method pulumi.StringPtrInput `pulumi:"method"`
+	// The port of health check. When the value is 0, it means use the backend server port for health check. Valid value range in 0~65535.
+	Port pulumi.IntPtrInput `pulumi:"port"`
+	// The protocol of health check. Valid values: `HTTP`, `TCP`. Default is `HTTP`.
+	Protocol pulumi.StringPtrInput `pulumi:"protocol"`
 	// The response timeout of health check. Unit: second. Valid value range in 1~60. Default is 2.
 	Timeout pulumi.IntPtrInput `pulumi:"timeout"`
 	// The unhealthy threshold of health check. Valid value range in 2~10. Default is 3.
@@ -5372,7 +12624,7 @@ func (o ServerGroupHealthCheckOutput) HealthyThreshold() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServerGroupHealthCheck) *int { return v.HealthyThreshold }).(pulumi.IntPtrOutput)
 }
 
-// The normal http status code of health check, the value can be `http2xx` or `http3xx` or `http4xx` or `http5xx`.
+// The normal http status code of health check, the value can be `http2xx`, `http3xx`, `http4xx` or `http5xx`. Default is `http_2xx,http_3xx`.
 func (o ServerGroupHealthCheckOutput) HttpCode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServerGroupHealthCheck) *string { return v.HttpCode }).(pulumi.StringPtrOutput)
 }
@@ -5390,6 +12642,16 @@ func (o ServerGroupHealthCheckOutput) Interval() pulumi.IntPtrOutput {
 // The method of health check. Valid values: `GET` or `HEAD`. Default is `HEAD`.
 func (o ServerGroupHealthCheckOutput) Method() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServerGroupHealthCheck) *string { return v.Method }).(pulumi.StringPtrOutput)
+}
+
+// The port of health check. When the value is 0, it means use the backend server port for health check. Valid value range in 0~65535.
+func (o ServerGroupHealthCheckOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServerGroupHealthCheck) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+// The protocol of health check. Valid values: `HTTP`, `TCP`. Default is `HTTP`.
+func (o ServerGroupHealthCheckOutput) Protocol() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServerGroupHealthCheck) *string { return v.Protocol }).(pulumi.StringPtrOutput)
 }
 
 // The response timeout of health check. Unit: second. Valid value range in 1~60. Default is 2.
@@ -5461,7 +12723,7 @@ func (o ServerGroupHealthCheckPtrOutput) HealthyThreshold() pulumi.IntPtrOutput 
 	}).(pulumi.IntPtrOutput)
 }
 
-// The normal http status code of health check, the value can be `http2xx` or `http3xx` or `http4xx` or `http5xx`.
+// The normal http status code of health check, the value can be `http2xx`, `http3xx`, `http4xx` or `http5xx`. Default is `http_2xx,http_3xx`.
 func (o ServerGroupHealthCheckPtrOutput) HttpCode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ServerGroupHealthCheck) *string {
 		if v == nil {
@@ -5498,6 +12760,26 @@ func (o ServerGroupHealthCheckPtrOutput) Method() pulumi.StringPtrOutput {
 			return nil
 		}
 		return v.Method
+	}).(pulumi.StringPtrOutput)
+}
+
+// The port of health check. When the value is 0, it means use the backend server port for health check. Valid value range in 0~65535.
+func (o ServerGroupHealthCheckPtrOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ServerGroupHealthCheck) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Port
+	}).(pulumi.IntPtrOutput)
+}
+
+// The protocol of health check. Valid values: `HTTP`, `TCP`. Default is `HTTP`.
+func (o ServerGroupHealthCheckPtrOutput) Protocol() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServerGroupHealthCheck) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Protocol
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -5542,9 +12824,11 @@ type ServerGroupServersServer struct {
 	Ip string `pulumi:"ip"`
 	// The port receiving request.
 	Port int `pulumi:"port"`
+	// Whether to enable remote IP function. Optional choice contains `on`, `off`.
+	RemoteEnabled string `pulumi:"remoteEnabled"`
 	// The server id of instance in ServerGroup.
 	ServerId string `pulumi:"serverId"`
-	// The type of instance. Optional choice contains `ecs`, `eni`.
+	// The type of instance. Optional choice contains `ecs`, `eni`, `ip`.
 	Type string `pulumi:"type"`
 	// The weight of the instance.
 	Weight int `pulumi:"weight"`
@@ -5572,9 +12856,11 @@ type ServerGroupServersServerArgs struct {
 	Ip pulumi.StringInput `pulumi:"ip"`
 	// The port receiving request.
 	Port pulumi.IntInput `pulumi:"port"`
+	// Whether to enable remote IP function. Optional choice contains `on`, `off`.
+	RemoteEnabled pulumi.StringInput `pulumi:"remoteEnabled"`
 	// The server id of instance in ServerGroup.
 	ServerId pulumi.StringInput `pulumi:"serverId"`
-	// The type of instance. Optional choice contains `ecs`, `eni`.
+	// The type of instance. Optional choice contains `ecs`, `eni`, `ip`.
 	Type pulumi.StringInput `pulumi:"type"`
 	// The weight of the instance.
 	Weight pulumi.IntInput `pulumi:"weight"`
@@ -5656,12 +12942,17 @@ func (o ServerGroupServersServerOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v ServerGroupServersServer) int { return v.Port }).(pulumi.IntOutput)
 }
 
+// Whether to enable remote IP function. Optional choice contains `on`, `off`.
+func (o ServerGroupServersServerOutput) RemoteEnabled() pulumi.StringOutput {
+	return o.ApplyT(func(v ServerGroupServersServer) string { return v.RemoteEnabled }).(pulumi.StringOutput)
+}
+
 // The server id of instance in ServerGroup.
 func (o ServerGroupServersServerOutput) ServerId() pulumi.StringOutput {
 	return o.ApplyT(func(v ServerGroupServersServer) string { return v.ServerId }).(pulumi.StringOutput)
 }
 
-// The type of instance. Optional choice contains `ecs`, `eni`.
+// The type of instance. Optional choice contains `ecs`, `eni`, `ip`.
 func (o ServerGroupServersServerOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v ServerGroupServersServer) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -5885,19 +13176,131 @@ func (o ServerGroupStickySessionConfigPtrOutput) StickySessionType() pulumi.Stri
 	}).(pulumi.StringPtrOutput)
 }
 
+type ServerGroupTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// ServerGroupTagInput is an input type that accepts ServerGroupTagArgs and ServerGroupTagOutput values.
+// You can construct a concrete instance of `ServerGroupTagInput` via:
+//
+//	ServerGroupTagArgs{...}
+type ServerGroupTagInput interface {
+	pulumi.Input
+
+	ToServerGroupTagOutput() ServerGroupTagOutput
+	ToServerGroupTagOutputWithContext(context.Context) ServerGroupTagOutput
+}
+
+type ServerGroupTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (ServerGroupTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServerGroupTag)(nil)).Elem()
+}
+
+func (i ServerGroupTagArgs) ToServerGroupTagOutput() ServerGroupTagOutput {
+	return i.ToServerGroupTagOutputWithContext(context.Background())
+}
+
+func (i ServerGroupTagArgs) ToServerGroupTagOutputWithContext(ctx context.Context) ServerGroupTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServerGroupTagOutput)
+}
+
+// ServerGroupTagArrayInput is an input type that accepts ServerGroupTagArray and ServerGroupTagArrayOutput values.
+// You can construct a concrete instance of `ServerGroupTagArrayInput` via:
+//
+//	ServerGroupTagArray{ ServerGroupTagArgs{...} }
+type ServerGroupTagArrayInput interface {
+	pulumi.Input
+
+	ToServerGroupTagArrayOutput() ServerGroupTagArrayOutput
+	ToServerGroupTagArrayOutputWithContext(context.Context) ServerGroupTagArrayOutput
+}
+
+type ServerGroupTagArray []ServerGroupTagInput
+
+func (ServerGroupTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServerGroupTag)(nil)).Elem()
+}
+
+func (i ServerGroupTagArray) ToServerGroupTagArrayOutput() ServerGroupTagArrayOutput {
+	return i.ToServerGroupTagArrayOutputWithContext(context.Background())
+}
+
+func (i ServerGroupTagArray) ToServerGroupTagArrayOutputWithContext(ctx context.Context) ServerGroupTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServerGroupTagArrayOutput)
+}
+
+type ServerGroupTagOutput struct{ *pulumi.OutputState }
+
+func (ServerGroupTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServerGroupTag)(nil)).Elem()
+}
+
+func (o ServerGroupTagOutput) ToServerGroupTagOutput() ServerGroupTagOutput {
+	return o
+}
+
+func (o ServerGroupTagOutput) ToServerGroupTagOutputWithContext(ctx context.Context) ServerGroupTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o ServerGroupTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v ServerGroupTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o ServerGroupTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v ServerGroupTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type ServerGroupTagArrayOutput struct{ *pulumi.OutputState }
+
+func (ServerGroupTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServerGroupTag)(nil)).Elem()
+}
+
+func (o ServerGroupTagArrayOutput) ToServerGroupTagArrayOutput() ServerGroupTagArrayOutput {
+	return o
+}
+
+func (o ServerGroupTagArrayOutput) ToServerGroupTagArrayOutputWithContext(ctx context.Context) ServerGroupTagArrayOutput {
+	return o
+}
+
+func (o ServerGroupTagArrayOutput) Index(i pulumi.IntInput) ServerGroupTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServerGroupTag {
+		return vs[0].([]ServerGroupTag)[vs[1].(int)]
+	}).(ServerGroupTagOutput)
+}
+
 type ServerGroupsServerGroup struct {
 	// The create time of the Alb server group.
 	CreateTime string `pulumi:"createTime"`
+	// Whether to enable cross-zone load balancing for the server group.
+	CrossZoneEnabled string `pulumi:"crossZoneEnabled"`
 	// The description of the server group server.
 	Description string `pulumi:"description"`
 	// The health check config of the Alb server group.
 	HealthChecks []ServerGroupsServerGroupHealthCheck `pulumi:"healthChecks"`
 	// The ID of the Alb server group.
 	Id string `pulumi:"id"`
+	// The ip address type of the server group.
+	IpAddressType string `pulumi:"ipAddressType"`
 	// The listener information of the Alb server group.
 	Listeners []string `pulumi:"listeners"`
 	// The project name of Alb server group.
 	ProjectName string `pulumi:"projectName"`
+	// The backend protocol of the Alb server group.
+	Protocol string `pulumi:"protocol"`
 	// The scheduler algorithm of the Alb server group.
 	Scheduler string `pulumi:"scheduler"`
 	// The server count of the Alb server group.
@@ -5914,9 +13317,11 @@ type ServerGroupsServerGroup struct {
 	Status string `pulumi:"status"`
 	// The sticky session config of the Alb server group.
 	StickySessionConfigs []ServerGroupsServerGroupStickySessionConfig `pulumi:"stickySessionConfigs"`
+	// Tags.
+	Tags []ServerGroupsServerGroupTag `pulumi:"tags"`
 	// The update time of the Alb server group.
 	UpdateTime string `pulumi:"updateTime"`
-	// The vpc id of the Alb server group.
+	// The vpc id of Alb server group.
 	VpcId string `pulumi:"vpcId"`
 }
 
@@ -5934,16 +13339,22 @@ type ServerGroupsServerGroupInput interface {
 type ServerGroupsServerGroupArgs struct {
 	// The create time of the Alb server group.
 	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// Whether to enable cross-zone load balancing for the server group.
+	CrossZoneEnabled pulumi.StringInput `pulumi:"crossZoneEnabled"`
 	// The description of the server group server.
 	Description pulumi.StringInput `pulumi:"description"`
 	// The health check config of the Alb server group.
 	HealthChecks ServerGroupsServerGroupHealthCheckArrayInput `pulumi:"healthChecks"`
 	// The ID of the Alb server group.
 	Id pulumi.StringInput `pulumi:"id"`
+	// The ip address type of the server group.
+	IpAddressType pulumi.StringInput `pulumi:"ipAddressType"`
 	// The listener information of the Alb server group.
 	Listeners pulumi.StringArrayInput `pulumi:"listeners"`
 	// The project name of Alb server group.
 	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The backend protocol of the Alb server group.
+	Protocol pulumi.StringInput `pulumi:"protocol"`
 	// The scheduler algorithm of the Alb server group.
 	Scheduler pulumi.StringInput `pulumi:"scheduler"`
 	// The server count of the Alb server group.
@@ -5960,9 +13371,11 @@ type ServerGroupsServerGroupArgs struct {
 	Status pulumi.StringInput `pulumi:"status"`
 	// The sticky session config of the Alb server group.
 	StickySessionConfigs ServerGroupsServerGroupStickySessionConfigArrayInput `pulumi:"stickySessionConfigs"`
+	// Tags.
+	Tags ServerGroupsServerGroupTagArrayInput `pulumi:"tags"`
 	// The update time of the Alb server group.
 	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
-	// The vpc id of the Alb server group.
+	// The vpc id of Alb server group.
 	VpcId pulumi.StringInput `pulumi:"vpcId"`
 }
 
@@ -6022,6 +13435,11 @@ func (o ServerGroupsServerGroupOutput) CreateTime() pulumi.StringOutput {
 	return o.ApplyT(func(v ServerGroupsServerGroup) string { return v.CreateTime }).(pulumi.StringOutput)
 }
 
+// Whether to enable cross-zone load balancing for the server group.
+func (o ServerGroupsServerGroupOutput) CrossZoneEnabled() pulumi.StringOutput {
+	return o.ApplyT(func(v ServerGroupsServerGroup) string { return v.CrossZoneEnabled }).(pulumi.StringOutput)
+}
+
 // The description of the server group server.
 func (o ServerGroupsServerGroupOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v ServerGroupsServerGroup) string { return v.Description }).(pulumi.StringOutput)
@@ -6037,6 +13455,11 @@ func (o ServerGroupsServerGroupOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v ServerGroupsServerGroup) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// The ip address type of the server group.
+func (o ServerGroupsServerGroupOutput) IpAddressType() pulumi.StringOutput {
+	return o.ApplyT(func(v ServerGroupsServerGroup) string { return v.IpAddressType }).(pulumi.StringOutput)
+}
+
 // The listener information of the Alb server group.
 func (o ServerGroupsServerGroupOutput) Listeners() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ServerGroupsServerGroup) []string { return v.Listeners }).(pulumi.StringArrayOutput)
@@ -6045,6 +13468,11 @@ func (o ServerGroupsServerGroupOutput) Listeners() pulumi.StringArrayOutput {
 // The project name of Alb server group.
 func (o ServerGroupsServerGroupOutput) ProjectName() pulumi.StringOutput {
 	return o.ApplyT(func(v ServerGroupsServerGroup) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The backend protocol of the Alb server group.
+func (o ServerGroupsServerGroupOutput) Protocol() pulumi.StringOutput {
+	return o.ApplyT(func(v ServerGroupsServerGroup) string { return v.Protocol }).(pulumi.StringOutput)
 }
 
 // The scheduler algorithm of the Alb server group.
@@ -6089,12 +13517,17 @@ func (o ServerGroupsServerGroupOutput) StickySessionConfigs() ServerGroupsServer
 	}).(ServerGroupsServerGroupStickySessionConfigArrayOutput)
 }
 
+// Tags.
+func (o ServerGroupsServerGroupOutput) Tags() ServerGroupsServerGroupTagArrayOutput {
+	return o.ApplyT(func(v ServerGroupsServerGroup) []ServerGroupsServerGroupTag { return v.Tags }).(ServerGroupsServerGroupTagArrayOutput)
+}
+
 // The update time of the Alb server group.
 func (o ServerGroupsServerGroupOutput) UpdateTime() pulumi.StringOutput {
 	return o.ApplyT(func(v ServerGroupsServerGroup) string { return v.UpdateTime }).(pulumi.StringOutput)
 }
 
-// The vpc id of the Alb server group.
+// The vpc id of Alb server group.
 func (o ServerGroupsServerGroupOutput) VpcId() pulumi.StringOutput {
 	return o.ApplyT(func(v ServerGroupsServerGroup) string { return v.VpcId }).(pulumi.StringOutput)
 }
@@ -6127,15 +13560,17 @@ type ServerGroupsServerGroupHealthCheck struct {
 	// The healthy threshold of health check.
 	HealthyThreshold int `pulumi:"healthyThreshold"`
 	// The normal http status code of health check.
-	HttpCode *string `pulumi:"httpCode"`
+	HttpCode string `pulumi:"httpCode"`
 	// The http version of health check.
-	HttpVersion *string `pulumi:"httpVersion"`
+	HttpVersion string `pulumi:"httpVersion"`
 	// The interval executing health check.
 	Interval int `pulumi:"interval"`
 	// The method of health check.
 	Method string `pulumi:"method"`
-	// The protocol of health check.
-	Protocol *string `pulumi:"protocol"`
+	// The port receiving request of the server group server.
+	Port int `pulumi:"port"`
+	// The backend protocol of the Alb server group.
+	Protocol string `pulumi:"protocol"`
 	// The response timeout of health check.
 	Timeout *int `pulumi:"timeout"`
 	// The unhealthy threshold of health check.
@@ -6163,15 +13598,17 @@ type ServerGroupsServerGroupHealthCheckArgs struct {
 	// The healthy threshold of health check.
 	HealthyThreshold pulumi.IntInput `pulumi:"healthyThreshold"`
 	// The normal http status code of health check.
-	HttpCode pulumi.StringPtrInput `pulumi:"httpCode"`
+	HttpCode pulumi.StringInput `pulumi:"httpCode"`
 	// The http version of health check.
-	HttpVersion pulumi.StringPtrInput `pulumi:"httpVersion"`
+	HttpVersion pulumi.StringInput `pulumi:"httpVersion"`
 	// The interval executing health check.
 	Interval pulumi.IntInput `pulumi:"interval"`
 	// The method of health check.
 	Method pulumi.StringInput `pulumi:"method"`
-	// The protocol of health check.
-	Protocol pulumi.StringPtrInput `pulumi:"protocol"`
+	// The port receiving request of the server group server.
+	Port pulumi.IntInput `pulumi:"port"`
+	// The backend protocol of the Alb server group.
+	Protocol pulumi.StringInput `pulumi:"protocol"`
 	// The response timeout of health check.
 	Timeout pulumi.IntPtrInput `pulumi:"timeout"`
 	// The unhealthy threshold of health check.
@@ -6247,13 +13684,13 @@ func (o ServerGroupsServerGroupHealthCheckOutput) HealthyThreshold() pulumi.IntO
 }
 
 // The normal http status code of health check.
-func (o ServerGroupsServerGroupHealthCheckOutput) HttpCode() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ServerGroupsServerGroupHealthCheck) *string { return v.HttpCode }).(pulumi.StringPtrOutput)
+func (o ServerGroupsServerGroupHealthCheckOutput) HttpCode() pulumi.StringOutput {
+	return o.ApplyT(func(v ServerGroupsServerGroupHealthCheck) string { return v.HttpCode }).(pulumi.StringOutput)
 }
 
 // The http version of health check.
-func (o ServerGroupsServerGroupHealthCheckOutput) HttpVersion() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ServerGroupsServerGroupHealthCheck) *string { return v.HttpVersion }).(pulumi.StringPtrOutput)
+func (o ServerGroupsServerGroupHealthCheckOutput) HttpVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v ServerGroupsServerGroupHealthCheck) string { return v.HttpVersion }).(pulumi.StringOutput)
 }
 
 // The interval executing health check.
@@ -6266,9 +13703,14 @@ func (o ServerGroupsServerGroupHealthCheckOutput) Method() pulumi.StringOutput {
 	return o.ApplyT(func(v ServerGroupsServerGroupHealthCheck) string { return v.Method }).(pulumi.StringOutput)
 }
 
-// The protocol of health check.
-func (o ServerGroupsServerGroupHealthCheckOutput) Protocol() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ServerGroupsServerGroupHealthCheck) *string { return v.Protocol }).(pulumi.StringPtrOutput)
+// The port receiving request of the server group server.
+func (o ServerGroupsServerGroupHealthCheckOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v ServerGroupsServerGroupHealthCheck) int { return v.Port }).(pulumi.IntOutput)
+}
+
+// The backend protocol of the Alb server group.
+func (o ServerGroupsServerGroupHealthCheckOutput) Protocol() pulumi.StringOutput {
+	return o.ApplyT(func(v ServerGroupsServerGroupHealthCheck) string { return v.Protocol }).(pulumi.StringOutput)
 }
 
 // The response timeout of health check.
@@ -6590,6 +14032,218 @@ func (o ServerGroupsServerGroupStickySessionConfigArrayOutput) Index(i pulumi.In
 	}).(ServerGroupsServerGroupStickySessionConfigOutput)
 }
 
+type ServerGroupsServerGroupTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// ServerGroupsServerGroupTagInput is an input type that accepts ServerGroupsServerGroupTagArgs and ServerGroupsServerGroupTagOutput values.
+// You can construct a concrete instance of `ServerGroupsServerGroupTagInput` via:
+//
+//	ServerGroupsServerGroupTagArgs{...}
+type ServerGroupsServerGroupTagInput interface {
+	pulumi.Input
+
+	ToServerGroupsServerGroupTagOutput() ServerGroupsServerGroupTagOutput
+	ToServerGroupsServerGroupTagOutputWithContext(context.Context) ServerGroupsServerGroupTagOutput
+}
+
+type ServerGroupsServerGroupTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (ServerGroupsServerGroupTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServerGroupsServerGroupTag)(nil)).Elem()
+}
+
+func (i ServerGroupsServerGroupTagArgs) ToServerGroupsServerGroupTagOutput() ServerGroupsServerGroupTagOutput {
+	return i.ToServerGroupsServerGroupTagOutputWithContext(context.Background())
+}
+
+func (i ServerGroupsServerGroupTagArgs) ToServerGroupsServerGroupTagOutputWithContext(ctx context.Context) ServerGroupsServerGroupTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServerGroupsServerGroupTagOutput)
+}
+
+// ServerGroupsServerGroupTagArrayInput is an input type that accepts ServerGroupsServerGroupTagArray and ServerGroupsServerGroupTagArrayOutput values.
+// You can construct a concrete instance of `ServerGroupsServerGroupTagArrayInput` via:
+//
+//	ServerGroupsServerGroupTagArray{ ServerGroupsServerGroupTagArgs{...} }
+type ServerGroupsServerGroupTagArrayInput interface {
+	pulumi.Input
+
+	ToServerGroupsServerGroupTagArrayOutput() ServerGroupsServerGroupTagArrayOutput
+	ToServerGroupsServerGroupTagArrayOutputWithContext(context.Context) ServerGroupsServerGroupTagArrayOutput
+}
+
+type ServerGroupsServerGroupTagArray []ServerGroupsServerGroupTagInput
+
+func (ServerGroupsServerGroupTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServerGroupsServerGroupTag)(nil)).Elem()
+}
+
+func (i ServerGroupsServerGroupTagArray) ToServerGroupsServerGroupTagArrayOutput() ServerGroupsServerGroupTagArrayOutput {
+	return i.ToServerGroupsServerGroupTagArrayOutputWithContext(context.Background())
+}
+
+func (i ServerGroupsServerGroupTagArray) ToServerGroupsServerGroupTagArrayOutputWithContext(ctx context.Context) ServerGroupsServerGroupTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServerGroupsServerGroupTagArrayOutput)
+}
+
+type ServerGroupsServerGroupTagOutput struct{ *pulumi.OutputState }
+
+func (ServerGroupsServerGroupTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServerGroupsServerGroupTag)(nil)).Elem()
+}
+
+func (o ServerGroupsServerGroupTagOutput) ToServerGroupsServerGroupTagOutput() ServerGroupsServerGroupTagOutput {
+	return o
+}
+
+func (o ServerGroupsServerGroupTagOutput) ToServerGroupsServerGroupTagOutputWithContext(ctx context.Context) ServerGroupsServerGroupTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o ServerGroupsServerGroupTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v ServerGroupsServerGroupTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o ServerGroupsServerGroupTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v ServerGroupsServerGroupTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type ServerGroupsServerGroupTagArrayOutput struct{ *pulumi.OutputState }
+
+func (ServerGroupsServerGroupTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServerGroupsServerGroupTag)(nil)).Elem()
+}
+
+func (o ServerGroupsServerGroupTagArrayOutput) ToServerGroupsServerGroupTagArrayOutput() ServerGroupsServerGroupTagArrayOutput {
+	return o
+}
+
+func (o ServerGroupsServerGroupTagArrayOutput) ToServerGroupsServerGroupTagArrayOutputWithContext(ctx context.Context) ServerGroupsServerGroupTagArrayOutput {
+	return o
+}
+
+func (o ServerGroupsServerGroupTagArrayOutput) Index(i pulumi.IntInput) ServerGroupsServerGroupTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServerGroupsServerGroupTag {
+		return vs[0].([]ServerGroupsServerGroupTag)[vs[1].(int)]
+	}).(ServerGroupsServerGroupTagOutput)
+}
+
+type ServerGroupsTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// ServerGroupsTagInput is an input type that accepts ServerGroupsTagArgs and ServerGroupsTagOutput values.
+// You can construct a concrete instance of `ServerGroupsTagInput` via:
+//
+//	ServerGroupsTagArgs{...}
+type ServerGroupsTagInput interface {
+	pulumi.Input
+
+	ToServerGroupsTagOutput() ServerGroupsTagOutput
+	ToServerGroupsTagOutputWithContext(context.Context) ServerGroupsTagOutput
+}
+
+type ServerGroupsTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (ServerGroupsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServerGroupsTag)(nil)).Elem()
+}
+
+func (i ServerGroupsTagArgs) ToServerGroupsTagOutput() ServerGroupsTagOutput {
+	return i.ToServerGroupsTagOutputWithContext(context.Background())
+}
+
+func (i ServerGroupsTagArgs) ToServerGroupsTagOutputWithContext(ctx context.Context) ServerGroupsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServerGroupsTagOutput)
+}
+
+// ServerGroupsTagArrayInput is an input type that accepts ServerGroupsTagArray and ServerGroupsTagArrayOutput values.
+// You can construct a concrete instance of `ServerGroupsTagArrayInput` via:
+//
+//	ServerGroupsTagArray{ ServerGroupsTagArgs{...} }
+type ServerGroupsTagArrayInput interface {
+	pulumi.Input
+
+	ToServerGroupsTagArrayOutput() ServerGroupsTagArrayOutput
+	ToServerGroupsTagArrayOutputWithContext(context.Context) ServerGroupsTagArrayOutput
+}
+
+type ServerGroupsTagArray []ServerGroupsTagInput
+
+func (ServerGroupsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServerGroupsTag)(nil)).Elem()
+}
+
+func (i ServerGroupsTagArray) ToServerGroupsTagArrayOutput() ServerGroupsTagArrayOutput {
+	return i.ToServerGroupsTagArrayOutputWithContext(context.Background())
+}
+
+func (i ServerGroupsTagArray) ToServerGroupsTagArrayOutputWithContext(ctx context.Context) ServerGroupsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServerGroupsTagArrayOutput)
+}
+
+type ServerGroupsTagOutput struct{ *pulumi.OutputState }
+
+func (ServerGroupsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServerGroupsTag)(nil)).Elem()
+}
+
+func (o ServerGroupsTagOutput) ToServerGroupsTagOutput() ServerGroupsTagOutput {
+	return o
+}
+
+func (o ServerGroupsTagOutput) ToServerGroupsTagOutputWithContext(ctx context.Context) ServerGroupsTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o ServerGroupsTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v ServerGroupsTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o ServerGroupsTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v ServerGroupsTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type ServerGroupsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (ServerGroupsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServerGroupsTag)(nil)).Elem()
+}
+
+func (o ServerGroupsTagArrayOutput) ToServerGroupsTagArrayOutput() ServerGroupsTagArrayOutput {
+	return o
+}
+
+func (o ServerGroupsTagArrayOutput) ToServerGroupsTagArrayOutputWithContext(ctx context.Context) ServerGroupsTagArrayOutput {
+	return o
+}
+
+func (o ServerGroupsTagArrayOutput) Index(i pulumi.IntInput) ServerGroupsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServerGroupsTag {
+		return vs[0].([]ServerGroupsTag)[vs[1].(int)]
+	}).(ServerGroupsTagOutput)
+}
+
 type ZonesZone struct {
 	// The id of the zone.
 	Id string `pulumi:"id"`
@@ -6715,6 +14369,10 @@ type GetAclsAcl struct {
 	Listeners []GetAclsAclListener `pulumi:"listeners"`
 	// The name of project.
 	ProjectName string `pulumi:"projectName"`
+	// The status of Acl.
+	Status string `pulumi:"status"`
+	// Tags.
+	Tags []GetAclsAclTag `pulumi:"tags"`
 	// Update time of Acl.
 	UpdateTime string `pulumi:"updateTime"`
 }
@@ -6749,6 +14407,10 @@ type GetAclsAclArgs struct {
 	Listeners GetAclsAclListenerArrayInput `pulumi:"listeners"`
 	// The name of project.
 	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The status of Acl.
+	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags GetAclsAclTagArrayInput `pulumi:"tags"`
 	// Update time of Acl.
 	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
 }
@@ -6847,6 +14509,16 @@ func (o GetAclsAclOutput) Listeners() GetAclsAclListenerArrayOutput {
 // The name of project.
 func (o GetAclsAclOutput) ProjectName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAclsAcl) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The status of Acl.
+func (o GetAclsAclOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAclsAcl) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o GetAclsAclOutput) Tags() GetAclsAclTagArrayOutput {
+	return o.ApplyT(func(v GetAclsAcl) []GetAclsAclTag { return v.Tags }).(GetAclsAclTagArrayOutput)
 }
 
 // Update time of Acl.
@@ -7113,6 +14785,218 @@ func (o GetAclsAclListenerArrayOutput) Index(i pulumi.IntInput) GetAclsAclListen
 	}).(GetAclsAclListenerOutput)
 }
 
+type GetAclsAclTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetAclsAclTagInput is an input type that accepts GetAclsAclTagArgs and GetAclsAclTagOutput values.
+// You can construct a concrete instance of `GetAclsAclTagInput` via:
+//
+//	GetAclsAclTagArgs{...}
+type GetAclsAclTagInput interface {
+	pulumi.Input
+
+	ToGetAclsAclTagOutput() GetAclsAclTagOutput
+	ToGetAclsAclTagOutputWithContext(context.Context) GetAclsAclTagOutput
+}
+
+type GetAclsAclTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetAclsAclTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAclsAclTag)(nil)).Elem()
+}
+
+func (i GetAclsAclTagArgs) ToGetAclsAclTagOutput() GetAclsAclTagOutput {
+	return i.ToGetAclsAclTagOutputWithContext(context.Background())
+}
+
+func (i GetAclsAclTagArgs) ToGetAclsAclTagOutputWithContext(ctx context.Context) GetAclsAclTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAclsAclTagOutput)
+}
+
+// GetAclsAclTagArrayInput is an input type that accepts GetAclsAclTagArray and GetAclsAclTagArrayOutput values.
+// You can construct a concrete instance of `GetAclsAclTagArrayInput` via:
+//
+//	GetAclsAclTagArray{ GetAclsAclTagArgs{...} }
+type GetAclsAclTagArrayInput interface {
+	pulumi.Input
+
+	ToGetAclsAclTagArrayOutput() GetAclsAclTagArrayOutput
+	ToGetAclsAclTagArrayOutputWithContext(context.Context) GetAclsAclTagArrayOutput
+}
+
+type GetAclsAclTagArray []GetAclsAclTagInput
+
+func (GetAclsAclTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAclsAclTag)(nil)).Elem()
+}
+
+func (i GetAclsAclTagArray) ToGetAclsAclTagArrayOutput() GetAclsAclTagArrayOutput {
+	return i.ToGetAclsAclTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetAclsAclTagArray) ToGetAclsAclTagArrayOutputWithContext(ctx context.Context) GetAclsAclTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAclsAclTagArrayOutput)
+}
+
+type GetAclsAclTagOutput struct{ *pulumi.OutputState }
+
+func (GetAclsAclTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAclsAclTag)(nil)).Elem()
+}
+
+func (o GetAclsAclTagOutput) ToGetAclsAclTagOutput() GetAclsAclTagOutput {
+	return o
+}
+
+func (o GetAclsAclTagOutput) ToGetAclsAclTagOutputWithContext(ctx context.Context) GetAclsAclTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetAclsAclTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAclsAclTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetAclsAclTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAclsAclTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetAclsAclTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAclsAclTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAclsAclTag)(nil)).Elem()
+}
+
+func (o GetAclsAclTagArrayOutput) ToGetAclsAclTagArrayOutput() GetAclsAclTagArrayOutput {
+	return o
+}
+
+func (o GetAclsAclTagArrayOutput) ToGetAclsAclTagArrayOutputWithContext(ctx context.Context) GetAclsAclTagArrayOutput {
+	return o
+}
+
+func (o GetAclsAclTagArrayOutput) Index(i pulumi.IntInput) GetAclsAclTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAclsAclTag {
+		return vs[0].([]GetAclsAclTag)[vs[1].(int)]
+	}).(GetAclsAclTagOutput)
+}
+
+type GetAclsTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetAclsTagInput is an input type that accepts GetAclsTagArgs and GetAclsTagOutput values.
+// You can construct a concrete instance of `GetAclsTagInput` via:
+//
+//	GetAclsTagArgs{...}
+type GetAclsTagInput interface {
+	pulumi.Input
+
+	ToGetAclsTagOutput() GetAclsTagOutput
+	ToGetAclsTagOutputWithContext(context.Context) GetAclsTagOutput
+}
+
+type GetAclsTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetAclsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAclsTag)(nil)).Elem()
+}
+
+func (i GetAclsTagArgs) ToGetAclsTagOutput() GetAclsTagOutput {
+	return i.ToGetAclsTagOutputWithContext(context.Background())
+}
+
+func (i GetAclsTagArgs) ToGetAclsTagOutputWithContext(ctx context.Context) GetAclsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAclsTagOutput)
+}
+
+// GetAclsTagArrayInput is an input type that accepts GetAclsTagArray and GetAclsTagArrayOutput values.
+// You can construct a concrete instance of `GetAclsTagArrayInput` via:
+//
+//	GetAclsTagArray{ GetAclsTagArgs{...} }
+type GetAclsTagArrayInput interface {
+	pulumi.Input
+
+	ToGetAclsTagArrayOutput() GetAclsTagArrayOutput
+	ToGetAclsTagArrayOutputWithContext(context.Context) GetAclsTagArrayOutput
+}
+
+type GetAclsTagArray []GetAclsTagInput
+
+func (GetAclsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAclsTag)(nil)).Elem()
+}
+
+func (i GetAclsTagArray) ToGetAclsTagArrayOutput() GetAclsTagArrayOutput {
+	return i.ToGetAclsTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetAclsTagArray) ToGetAclsTagArrayOutputWithContext(ctx context.Context) GetAclsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAclsTagArrayOutput)
+}
+
+type GetAclsTagOutput struct{ *pulumi.OutputState }
+
+func (GetAclsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAclsTag)(nil)).Elem()
+}
+
+func (o GetAclsTagOutput) ToGetAclsTagOutput() GetAclsTagOutput {
+	return o
+}
+
+func (o GetAclsTagOutput) ToGetAclsTagOutputWithContext(ctx context.Context) GetAclsTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetAclsTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAclsTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetAclsTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAclsTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetAclsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAclsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAclsTag)(nil)).Elem()
+}
+
+func (o GetAclsTagArrayOutput) ToGetAclsTagArrayOutput() GetAclsTagArrayOutput {
+	return o
+}
+
+func (o GetAclsTagArrayOutput) ToGetAclsTagArrayOutputWithContext(ctx context.Context) GetAclsTagArrayOutput {
+	return o
+}
+
+func (o GetAclsTagArrayOutput) Index(i pulumi.IntInput) GetAclsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAclsTag {
+		return vs[0].([]GetAclsTag)[vs[1].(int)]
+	}).(GetAclsTagOutput)
+}
+
 type GetAlbsAlb struct {
 	// The access log information of the Alb.
 	AccessLogs []GetAlbsAlbAccessLog `pulumi:"accessLogs"`
@@ -7130,6 +15014,10 @@ type GetAlbsAlb struct {
 	Description string `pulumi:"description"`
 	// The DNS name.
 	DnsName string `pulumi:"dnsName"`
+	// Whether the tls access log function is enabled.
+	Enabled bool `pulumi:"enabled"`
+	// The global accelerator bound to the ALB instance.
+	GlobalAccelerators []GetAlbsAlbGlobalAccelerator `pulumi:"globalAccelerators"`
 	// The health log information of the Alb.
 	HealthLogs []GetAlbsAlbHealthLog `pulumi:"healthLogs"`
 	// The ID of the Alb.
@@ -7138,6 +15026,8 @@ type GetAlbsAlb struct {
 	Listeners []GetAlbsAlbListener `pulumi:"listeners"`
 	// The billing type of the Alb.
 	LoadBalancerBillingType int `pulumi:"loadBalancerBillingType"`
+	// The version of the ALB instance. Basic: Basic Edition. Standard: Standard Edition.
+	LoadBalancerEdition string `pulumi:"loadBalancerEdition"`
 	// The ID of the Alb.
 	LoadBalancerId string `pulumi:"loadBalancerId"`
 	// The name of the Alb.
@@ -7146,22 +15036,34 @@ type GetAlbsAlb struct {
 	LocalAddresses []string `pulumi:"localAddresses"`
 	// The reason why Alb is locked. This parameter has a query value only when the status of the Alb instance is `FinancialLocked`.
 	LockReason string `pulumi:"lockReason"`
+	// The reason for enabling instance modification protection.
+	ModificationProtectionReason string `pulumi:"modificationProtectionReason"`
+	// Whether the instance modification protection function is enabled. NonProtection: Not enabled. ConsoleProtection: Enabled.
+	ModificationProtectionStatus string `pulumi:"modificationProtectionStatus"`
 	// The overdue time of the Alb. This parameter has a query value only when the status of the Alb instance is `FinancialLocked`.
 	OverdueTime string `pulumi:"overdueTime"`
 	// The project name of the Alb.
 	ProjectName string `pulumi:"projectName"`
+	// ALB can support the Proxy Protocol and record the real IP of the client.
+	ProxyProtocolEnabled string `pulumi:"proxyProtocolEnabled"`
+	// Listeners under the instance support automatically selecting extended certificates.
+	SniAutoMatch string `pulumi:"sniAutoMatch"`
 	// The status of the Alb.
 	Status string `pulumi:"status"`
 	// Tags.
 	Tags []GetAlbsAlbTag `pulumi:"tags"`
 	// The tls access log information of the Alb.
 	TlsAccessLogs []GetAlbsAlbTlsAccessLog `pulumi:"tlsAccessLogs"`
-	// The type of the Alb, valid value: `public`, `private`.
+	// The type of the Alb. public: public network ALB. private: private network ALB.
 	Type string `pulumi:"type"`
 	// The update time of the Alb.
 	UpdateTime string `pulumi:"updateTime"`
 	// The vpc id which Alb belongs to.
 	VpcId string `pulumi:"vpcId"`
+	// The ID of the WAF security protection instance bound to the ALB instance.
+	WafInstanceId string `pulumi:"wafInstanceId"`
+	// The WAF security protection switch.
+	WafProtectionEnabled string `pulumi:"wafProtectionEnabled"`
 	// Configuration information of the Alb instance in different Availability Zones.
 	ZoneMappings []GetAlbsAlbZoneMapping `pulumi:"zoneMappings"`
 }
@@ -7194,6 +15096,10 @@ type GetAlbsAlbArgs struct {
 	Description pulumi.StringInput `pulumi:"description"`
 	// The DNS name.
 	DnsName pulumi.StringInput `pulumi:"dnsName"`
+	// Whether the tls access log function is enabled.
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+	// The global accelerator bound to the ALB instance.
+	GlobalAccelerators GetAlbsAlbGlobalAcceleratorArrayInput `pulumi:"globalAccelerators"`
 	// The health log information of the Alb.
 	HealthLogs GetAlbsAlbHealthLogArrayInput `pulumi:"healthLogs"`
 	// The ID of the Alb.
@@ -7202,6 +15108,8 @@ type GetAlbsAlbArgs struct {
 	Listeners GetAlbsAlbListenerArrayInput `pulumi:"listeners"`
 	// The billing type of the Alb.
 	LoadBalancerBillingType pulumi.IntInput `pulumi:"loadBalancerBillingType"`
+	// The version of the ALB instance. Basic: Basic Edition. Standard: Standard Edition.
+	LoadBalancerEdition pulumi.StringInput `pulumi:"loadBalancerEdition"`
 	// The ID of the Alb.
 	LoadBalancerId pulumi.StringInput `pulumi:"loadBalancerId"`
 	// The name of the Alb.
@@ -7210,22 +15118,34 @@ type GetAlbsAlbArgs struct {
 	LocalAddresses pulumi.StringArrayInput `pulumi:"localAddresses"`
 	// The reason why Alb is locked. This parameter has a query value only when the status of the Alb instance is `FinancialLocked`.
 	LockReason pulumi.StringInput `pulumi:"lockReason"`
+	// The reason for enabling instance modification protection.
+	ModificationProtectionReason pulumi.StringInput `pulumi:"modificationProtectionReason"`
+	// Whether the instance modification protection function is enabled. NonProtection: Not enabled. ConsoleProtection: Enabled.
+	ModificationProtectionStatus pulumi.StringInput `pulumi:"modificationProtectionStatus"`
 	// The overdue time of the Alb. This parameter has a query value only when the status of the Alb instance is `FinancialLocked`.
 	OverdueTime pulumi.StringInput `pulumi:"overdueTime"`
 	// The project name of the Alb.
 	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// ALB can support the Proxy Protocol and record the real IP of the client.
+	ProxyProtocolEnabled pulumi.StringInput `pulumi:"proxyProtocolEnabled"`
+	// Listeners under the instance support automatically selecting extended certificates.
+	SniAutoMatch pulumi.StringInput `pulumi:"sniAutoMatch"`
 	// The status of the Alb.
 	Status pulumi.StringInput `pulumi:"status"`
 	// Tags.
 	Tags GetAlbsAlbTagArrayInput `pulumi:"tags"`
 	// The tls access log information of the Alb.
 	TlsAccessLogs GetAlbsAlbTlsAccessLogArrayInput `pulumi:"tlsAccessLogs"`
-	// The type of the Alb, valid value: `public`, `private`.
+	// The type of the Alb. public: public network ALB. private: private network ALB.
 	Type pulumi.StringInput `pulumi:"type"`
 	// The update time of the Alb.
 	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
 	// The vpc id which Alb belongs to.
 	VpcId pulumi.StringInput `pulumi:"vpcId"`
+	// The ID of the WAF security protection instance bound to the ALB instance.
+	WafInstanceId pulumi.StringInput `pulumi:"wafInstanceId"`
+	// The WAF security protection switch.
+	WafProtectionEnabled pulumi.StringInput `pulumi:"wafProtectionEnabled"`
 	// Configuration information of the Alb instance in different Availability Zones.
 	ZoneMappings GetAlbsAlbZoneMappingArrayInput `pulumi:"zoneMappings"`
 }
@@ -7321,6 +15241,16 @@ func (o GetAlbsAlbOutput) DnsName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlbsAlb) string { return v.DnsName }).(pulumi.StringOutput)
 }
 
+// Whether the tls access log function is enabled.
+func (o GetAlbsAlbOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetAlbsAlb) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// The global accelerator bound to the ALB instance.
+func (o GetAlbsAlbOutput) GlobalAccelerators() GetAlbsAlbGlobalAcceleratorArrayOutput {
+	return o.ApplyT(func(v GetAlbsAlb) []GetAlbsAlbGlobalAccelerator { return v.GlobalAccelerators }).(GetAlbsAlbGlobalAcceleratorArrayOutput)
+}
+
 // The health log information of the Alb.
 func (o GetAlbsAlbOutput) HealthLogs() GetAlbsAlbHealthLogArrayOutput {
 	return o.ApplyT(func(v GetAlbsAlb) []GetAlbsAlbHealthLog { return v.HealthLogs }).(GetAlbsAlbHealthLogArrayOutput)
@@ -7339,6 +15269,11 @@ func (o GetAlbsAlbOutput) Listeners() GetAlbsAlbListenerArrayOutput {
 // The billing type of the Alb.
 func (o GetAlbsAlbOutput) LoadBalancerBillingType() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAlbsAlb) int { return v.LoadBalancerBillingType }).(pulumi.IntOutput)
+}
+
+// The version of the ALB instance. Basic: Basic Edition. Standard: Standard Edition.
+func (o GetAlbsAlbOutput) LoadBalancerEdition() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlbsAlb) string { return v.LoadBalancerEdition }).(pulumi.StringOutput)
 }
 
 // The ID of the Alb.
@@ -7361,6 +15296,16 @@ func (o GetAlbsAlbOutput) LockReason() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlbsAlb) string { return v.LockReason }).(pulumi.StringOutput)
 }
 
+// The reason for enabling instance modification protection.
+func (o GetAlbsAlbOutput) ModificationProtectionReason() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlbsAlb) string { return v.ModificationProtectionReason }).(pulumi.StringOutput)
+}
+
+// Whether the instance modification protection function is enabled. NonProtection: Not enabled. ConsoleProtection: Enabled.
+func (o GetAlbsAlbOutput) ModificationProtectionStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlbsAlb) string { return v.ModificationProtectionStatus }).(pulumi.StringOutput)
+}
+
 // The overdue time of the Alb. This parameter has a query value only when the status of the Alb instance is `FinancialLocked`.
 func (o GetAlbsAlbOutput) OverdueTime() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlbsAlb) string { return v.OverdueTime }).(pulumi.StringOutput)
@@ -7369,6 +15314,16 @@ func (o GetAlbsAlbOutput) OverdueTime() pulumi.StringOutput {
 // The project name of the Alb.
 func (o GetAlbsAlbOutput) ProjectName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlbsAlb) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// ALB can support the Proxy Protocol and record the real IP of the client.
+func (o GetAlbsAlbOutput) ProxyProtocolEnabled() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlbsAlb) string { return v.ProxyProtocolEnabled }).(pulumi.StringOutput)
+}
+
+// Listeners under the instance support automatically selecting extended certificates.
+func (o GetAlbsAlbOutput) SniAutoMatch() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlbsAlb) string { return v.SniAutoMatch }).(pulumi.StringOutput)
 }
 
 // The status of the Alb.
@@ -7386,7 +15341,7 @@ func (o GetAlbsAlbOutput) TlsAccessLogs() GetAlbsAlbTlsAccessLogArrayOutput {
 	return o.ApplyT(func(v GetAlbsAlb) []GetAlbsAlbTlsAccessLog { return v.TlsAccessLogs }).(GetAlbsAlbTlsAccessLogArrayOutput)
 }
 
-// The type of the Alb, valid value: `public`, `private`.
+// The type of the Alb. public: public network ALB. private: private network ALB.
 func (o GetAlbsAlbOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlbsAlb) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -7399,6 +15354,16 @@ func (o GetAlbsAlbOutput) UpdateTime() pulumi.StringOutput {
 // The vpc id which Alb belongs to.
 func (o GetAlbsAlbOutput) VpcId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlbsAlb) string { return v.VpcId }).(pulumi.StringOutput)
+}
+
+// The ID of the WAF security protection instance bound to the ALB instance.
+func (o GetAlbsAlbOutput) WafInstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlbsAlb) string { return v.WafInstanceId }).(pulumi.StringOutput)
+}
+
+// The WAF security protection switch.
+func (o GetAlbsAlbOutput) WafProtectionEnabled() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlbsAlb) string { return v.WafProtectionEnabled }).(pulumi.StringOutput)
 }
 
 // Configuration information of the Alb instance in different Availability Zones.
@@ -7530,6 +15495,112 @@ func (o GetAlbsAlbAccessLogArrayOutput) Index(i pulumi.IntInput) GetAlbsAlbAcces
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAlbsAlbAccessLog {
 		return vs[0].([]GetAlbsAlbAccessLog)[vs[1].(int)]
 	}).(GetAlbsAlbAccessLogOutput)
+}
+
+type GetAlbsAlbGlobalAccelerator struct {
+	// The global accelerator id.
+	AcceleratorId string `pulumi:"acceleratorId"`
+	// The name of the global accelerator.
+	AcceleratorName string `pulumi:"acceleratorName"`
+}
+
+// GetAlbsAlbGlobalAcceleratorInput is an input type that accepts GetAlbsAlbGlobalAcceleratorArgs and GetAlbsAlbGlobalAcceleratorOutput values.
+// You can construct a concrete instance of `GetAlbsAlbGlobalAcceleratorInput` via:
+//
+//	GetAlbsAlbGlobalAcceleratorArgs{...}
+type GetAlbsAlbGlobalAcceleratorInput interface {
+	pulumi.Input
+
+	ToGetAlbsAlbGlobalAcceleratorOutput() GetAlbsAlbGlobalAcceleratorOutput
+	ToGetAlbsAlbGlobalAcceleratorOutputWithContext(context.Context) GetAlbsAlbGlobalAcceleratorOutput
+}
+
+type GetAlbsAlbGlobalAcceleratorArgs struct {
+	// The global accelerator id.
+	AcceleratorId pulumi.StringInput `pulumi:"acceleratorId"`
+	// The name of the global accelerator.
+	AcceleratorName pulumi.StringInput `pulumi:"acceleratorName"`
+}
+
+func (GetAlbsAlbGlobalAcceleratorArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlbsAlbGlobalAccelerator)(nil)).Elem()
+}
+
+func (i GetAlbsAlbGlobalAcceleratorArgs) ToGetAlbsAlbGlobalAcceleratorOutput() GetAlbsAlbGlobalAcceleratorOutput {
+	return i.ToGetAlbsAlbGlobalAcceleratorOutputWithContext(context.Background())
+}
+
+func (i GetAlbsAlbGlobalAcceleratorArgs) ToGetAlbsAlbGlobalAcceleratorOutputWithContext(ctx context.Context) GetAlbsAlbGlobalAcceleratorOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlbsAlbGlobalAcceleratorOutput)
+}
+
+// GetAlbsAlbGlobalAcceleratorArrayInput is an input type that accepts GetAlbsAlbGlobalAcceleratorArray and GetAlbsAlbGlobalAcceleratorArrayOutput values.
+// You can construct a concrete instance of `GetAlbsAlbGlobalAcceleratorArrayInput` via:
+//
+//	GetAlbsAlbGlobalAcceleratorArray{ GetAlbsAlbGlobalAcceleratorArgs{...} }
+type GetAlbsAlbGlobalAcceleratorArrayInput interface {
+	pulumi.Input
+
+	ToGetAlbsAlbGlobalAcceleratorArrayOutput() GetAlbsAlbGlobalAcceleratorArrayOutput
+	ToGetAlbsAlbGlobalAcceleratorArrayOutputWithContext(context.Context) GetAlbsAlbGlobalAcceleratorArrayOutput
+}
+
+type GetAlbsAlbGlobalAcceleratorArray []GetAlbsAlbGlobalAcceleratorInput
+
+func (GetAlbsAlbGlobalAcceleratorArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAlbsAlbGlobalAccelerator)(nil)).Elem()
+}
+
+func (i GetAlbsAlbGlobalAcceleratorArray) ToGetAlbsAlbGlobalAcceleratorArrayOutput() GetAlbsAlbGlobalAcceleratorArrayOutput {
+	return i.ToGetAlbsAlbGlobalAcceleratorArrayOutputWithContext(context.Background())
+}
+
+func (i GetAlbsAlbGlobalAcceleratorArray) ToGetAlbsAlbGlobalAcceleratorArrayOutputWithContext(ctx context.Context) GetAlbsAlbGlobalAcceleratorArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlbsAlbGlobalAcceleratorArrayOutput)
+}
+
+type GetAlbsAlbGlobalAcceleratorOutput struct{ *pulumi.OutputState }
+
+func (GetAlbsAlbGlobalAcceleratorOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlbsAlbGlobalAccelerator)(nil)).Elem()
+}
+
+func (o GetAlbsAlbGlobalAcceleratorOutput) ToGetAlbsAlbGlobalAcceleratorOutput() GetAlbsAlbGlobalAcceleratorOutput {
+	return o
+}
+
+func (o GetAlbsAlbGlobalAcceleratorOutput) ToGetAlbsAlbGlobalAcceleratorOutputWithContext(ctx context.Context) GetAlbsAlbGlobalAcceleratorOutput {
+	return o
+}
+
+// The global accelerator id.
+func (o GetAlbsAlbGlobalAcceleratorOutput) AcceleratorId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlbsAlbGlobalAccelerator) string { return v.AcceleratorId }).(pulumi.StringOutput)
+}
+
+// The name of the global accelerator.
+func (o GetAlbsAlbGlobalAcceleratorOutput) AcceleratorName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlbsAlbGlobalAccelerator) string { return v.AcceleratorName }).(pulumi.StringOutput)
+}
+
+type GetAlbsAlbGlobalAcceleratorArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAlbsAlbGlobalAcceleratorArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAlbsAlbGlobalAccelerator)(nil)).Elem()
+}
+
+func (o GetAlbsAlbGlobalAcceleratorArrayOutput) ToGetAlbsAlbGlobalAcceleratorArrayOutput() GetAlbsAlbGlobalAcceleratorArrayOutput {
+	return o
+}
+
+func (o GetAlbsAlbGlobalAcceleratorArrayOutput) ToGetAlbsAlbGlobalAcceleratorArrayOutputWithContext(ctx context.Context) GetAlbsAlbGlobalAcceleratorArrayOutput {
+	return o
+}
+
+func (o GetAlbsAlbGlobalAcceleratorArrayOutput) Index(i pulumi.IntInput) GetAlbsAlbGlobalAcceleratorOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAlbsAlbGlobalAccelerator {
+		return vs[0].([]GetAlbsAlbGlobalAccelerator)[vs[1].(int)]
+	}).(GetAlbsAlbGlobalAcceleratorOutput)
 }
 
 type GetAlbsAlbHealthLog struct {
@@ -8092,7 +16163,7 @@ func (o GetAlbsAlbZoneMappingArrayOutput) Index(i pulumi.IntInput) GetAlbsAlbZon
 }
 
 type GetAlbsAlbZoneMappingLoadBalancerAddress struct {
-	// The Eip address of the Alb.
+	// The public ip address of the Alb.
 	EipAddress string `pulumi:"eipAddress"`
 	// The Eip id of alb instance in this availability zone.
 	EipId string `pulumi:"eipId"`
@@ -8122,7 +16193,7 @@ type GetAlbsAlbZoneMappingLoadBalancerAddressInput interface {
 }
 
 type GetAlbsAlbZoneMappingLoadBalancerAddressArgs struct {
-	// The Eip address of the Alb.
+	// The public ip address of the Alb.
 	EipAddress pulumi.StringInput `pulumi:"eipAddress"`
 	// The Eip id of alb instance in this availability zone.
 	EipId pulumi.StringInput `pulumi:"eipId"`
@@ -8191,7 +16262,7 @@ func (o GetAlbsAlbZoneMappingLoadBalancerAddressOutput) ToGetAlbsAlbZoneMappingL
 	return o
 }
 
-// The Eip address of the Alb.
+// The public ip address of the Alb.
 func (o GetAlbsAlbZoneMappingLoadBalancerAddressOutput) EipAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlbsAlbZoneMappingLoadBalancerAddress) string { return v.EipAddress }).(pulumi.StringOutput)
 }
@@ -8260,7 +16331,7 @@ type GetAlbsAlbZoneMappingLoadBalancerAddressEip struct {
 	AssociationMode string `pulumi:"associationMode"`
 	// The peek bandwidth of the Ipv6 Eip assigned to Alb. Units: Mbps.
 	Bandwidth int `pulumi:"bandwidth"`
-	// The Eip address of the Alb.
+	// The public ip address of the Alb.
 	EipAddress string `pulumi:"eipAddress"`
 	// The billing type of the Eip assigned to Alb. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic`.
 	EipBillingType string `pulumi:"eipBillingType"`
@@ -8290,7 +16361,7 @@ type GetAlbsAlbZoneMappingLoadBalancerAddressEipArgs struct {
 	AssociationMode pulumi.StringInput `pulumi:"associationMode"`
 	// The peek bandwidth of the Ipv6 Eip assigned to Alb. Units: Mbps.
 	Bandwidth pulumi.IntInput `pulumi:"bandwidth"`
-	// The Eip address of the Alb.
+	// The public ip address of the Alb.
 	EipAddress pulumi.StringInput `pulumi:"eipAddress"`
 	// The billing type of the Eip assigned to Alb. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic`.
 	EipBillingType pulumi.StringInput `pulumi:"eipBillingType"`
@@ -8365,7 +16436,7 @@ func (o GetAlbsAlbZoneMappingLoadBalancerAddressEipOutput) Bandwidth() pulumi.In
 	return o.ApplyT(func(v GetAlbsAlbZoneMappingLoadBalancerAddressEip) int { return v.Bandwidth }).(pulumi.IntOutput)
 }
 
-// The Eip address of the Alb.
+// The public ip address of the Alb.
 func (o GetAlbsAlbZoneMappingLoadBalancerAddressEipOutput) EipAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlbsAlbZoneMappingLoadBalancerAddressEip) string { return v.EipAddress }).(pulumi.StringOutput)
 }
@@ -8744,6 +16815,423 @@ func (o GetAlbsTagArrayOutput) Index(i pulumi.IntInput) GetAlbsTagOutput {
 	}).(GetAlbsTagOutput)
 }
 
+type GetAllCertificatesCertificate struct {
+	// The ID of the Certificate.
+	CertificateId string `pulumi:"certificateId"`
+	// The name of the Certificate.
+	CertificateName string `pulumi:"certificateName"`
+	// The type of the Certificate.
+	CertificateType string `pulumi:"certificateType"`
+	// The create time of the Certificate.
+	CreateTime string `pulumi:"createTime"`
+	// The description of the Certificate.
+	Description string `pulumi:"description"`
+	// The domain name of the Certificate.
+	DomainName string `pulumi:"domainName"`
+	// The expire time of the Certificate.
+	ExpiredAt string `pulumi:"expiredAt"`
+	// The ID of the Certificate.
+	Id string `pulumi:"id"`
+	// The ID list of the Listener.
+	Listeners []string `pulumi:"listeners"`
+	// The ProjectName of the Certificate.
+	ProjectName string `pulumi:"projectName"`
+	// The list of extended domain names for the certificate, separated by English commas ',', including (commonName, DnsName, IP).
+	San string `pulumi:"san"`
+	// The status of the Certificate.
+	Status string `pulumi:"status"`
+	// Tags.
+	Tags []GetAllCertificatesCertificateTag `pulumi:"tags"`
+}
+
+// GetAllCertificatesCertificateInput is an input type that accepts GetAllCertificatesCertificateArgs and GetAllCertificatesCertificateOutput values.
+// You can construct a concrete instance of `GetAllCertificatesCertificateInput` via:
+//
+//	GetAllCertificatesCertificateArgs{...}
+type GetAllCertificatesCertificateInput interface {
+	pulumi.Input
+
+	ToGetAllCertificatesCertificateOutput() GetAllCertificatesCertificateOutput
+	ToGetAllCertificatesCertificateOutputWithContext(context.Context) GetAllCertificatesCertificateOutput
+}
+
+type GetAllCertificatesCertificateArgs struct {
+	// The ID of the Certificate.
+	CertificateId pulumi.StringInput `pulumi:"certificateId"`
+	// The name of the Certificate.
+	CertificateName pulumi.StringInput `pulumi:"certificateName"`
+	// The type of the Certificate.
+	CertificateType pulumi.StringInput `pulumi:"certificateType"`
+	// The create time of the Certificate.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The description of the Certificate.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The domain name of the Certificate.
+	DomainName pulumi.StringInput `pulumi:"domainName"`
+	// The expire time of the Certificate.
+	ExpiredAt pulumi.StringInput `pulumi:"expiredAt"`
+	// The ID of the Certificate.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The ID list of the Listener.
+	Listeners pulumi.StringArrayInput `pulumi:"listeners"`
+	// The ProjectName of the Certificate.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The list of extended domain names for the certificate, separated by English commas ',', including (commonName, DnsName, IP).
+	San pulumi.StringInput `pulumi:"san"`
+	// The status of the Certificate.
+	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags GetAllCertificatesCertificateTagArrayInput `pulumi:"tags"`
+}
+
+func (GetAllCertificatesCertificateArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAllCertificatesCertificate)(nil)).Elem()
+}
+
+func (i GetAllCertificatesCertificateArgs) ToGetAllCertificatesCertificateOutput() GetAllCertificatesCertificateOutput {
+	return i.ToGetAllCertificatesCertificateOutputWithContext(context.Background())
+}
+
+func (i GetAllCertificatesCertificateArgs) ToGetAllCertificatesCertificateOutputWithContext(ctx context.Context) GetAllCertificatesCertificateOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAllCertificatesCertificateOutput)
+}
+
+// GetAllCertificatesCertificateArrayInput is an input type that accepts GetAllCertificatesCertificateArray and GetAllCertificatesCertificateArrayOutput values.
+// You can construct a concrete instance of `GetAllCertificatesCertificateArrayInput` via:
+//
+//	GetAllCertificatesCertificateArray{ GetAllCertificatesCertificateArgs{...} }
+type GetAllCertificatesCertificateArrayInput interface {
+	pulumi.Input
+
+	ToGetAllCertificatesCertificateArrayOutput() GetAllCertificatesCertificateArrayOutput
+	ToGetAllCertificatesCertificateArrayOutputWithContext(context.Context) GetAllCertificatesCertificateArrayOutput
+}
+
+type GetAllCertificatesCertificateArray []GetAllCertificatesCertificateInput
+
+func (GetAllCertificatesCertificateArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAllCertificatesCertificate)(nil)).Elem()
+}
+
+func (i GetAllCertificatesCertificateArray) ToGetAllCertificatesCertificateArrayOutput() GetAllCertificatesCertificateArrayOutput {
+	return i.ToGetAllCertificatesCertificateArrayOutputWithContext(context.Background())
+}
+
+func (i GetAllCertificatesCertificateArray) ToGetAllCertificatesCertificateArrayOutputWithContext(ctx context.Context) GetAllCertificatesCertificateArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAllCertificatesCertificateArrayOutput)
+}
+
+type GetAllCertificatesCertificateOutput struct{ *pulumi.OutputState }
+
+func (GetAllCertificatesCertificateOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAllCertificatesCertificate)(nil)).Elem()
+}
+
+func (o GetAllCertificatesCertificateOutput) ToGetAllCertificatesCertificateOutput() GetAllCertificatesCertificateOutput {
+	return o
+}
+
+func (o GetAllCertificatesCertificateOutput) ToGetAllCertificatesCertificateOutputWithContext(ctx context.Context) GetAllCertificatesCertificateOutput {
+	return o
+}
+
+// The ID of the Certificate.
+func (o GetAllCertificatesCertificateOutput) CertificateId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllCertificatesCertificate) string { return v.CertificateId }).(pulumi.StringOutput)
+}
+
+// The name of the Certificate.
+func (o GetAllCertificatesCertificateOutput) CertificateName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllCertificatesCertificate) string { return v.CertificateName }).(pulumi.StringOutput)
+}
+
+// The type of the Certificate.
+func (o GetAllCertificatesCertificateOutput) CertificateType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllCertificatesCertificate) string { return v.CertificateType }).(pulumi.StringOutput)
+}
+
+// The create time of the Certificate.
+func (o GetAllCertificatesCertificateOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllCertificatesCertificate) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The description of the Certificate.
+func (o GetAllCertificatesCertificateOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllCertificatesCertificate) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The domain name of the Certificate.
+func (o GetAllCertificatesCertificateOutput) DomainName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllCertificatesCertificate) string { return v.DomainName }).(pulumi.StringOutput)
+}
+
+// The expire time of the Certificate.
+func (o GetAllCertificatesCertificateOutput) ExpiredAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllCertificatesCertificate) string { return v.ExpiredAt }).(pulumi.StringOutput)
+}
+
+// The ID of the Certificate.
+func (o GetAllCertificatesCertificateOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllCertificatesCertificate) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The ID list of the Listener.
+func (o GetAllCertificatesCertificateOutput) Listeners() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetAllCertificatesCertificate) []string { return v.Listeners }).(pulumi.StringArrayOutput)
+}
+
+// The ProjectName of the Certificate.
+func (o GetAllCertificatesCertificateOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllCertificatesCertificate) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The list of extended domain names for the certificate, separated by English commas ',', including (commonName, DnsName, IP).
+func (o GetAllCertificatesCertificateOutput) San() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllCertificatesCertificate) string { return v.San }).(pulumi.StringOutput)
+}
+
+// The status of the Certificate.
+func (o GetAllCertificatesCertificateOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllCertificatesCertificate) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o GetAllCertificatesCertificateOutput) Tags() GetAllCertificatesCertificateTagArrayOutput {
+	return o.ApplyT(func(v GetAllCertificatesCertificate) []GetAllCertificatesCertificateTag { return v.Tags }).(GetAllCertificatesCertificateTagArrayOutput)
+}
+
+type GetAllCertificatesCertificateArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAllCertificatesCertificateArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAllCertificatesCertificate)(nil)).Elem()
+}
+
+func (o GetAllCertificatesCertificateArrayOutput) ToGetAllCertificatesCertificateArrayOutput() GetAllCertificatesCertificateArrayOutput {
+	return o
+}
+
+func (o GetAllCertificatesCertificateArrayOutput) ToGetAllCertificatesCertificateArrayOutputWithContext(ctx context.Context) GetAllCertificatesCertificateArrayOutput {
+	return o
+}
+
+func (o GetAllCertificatesCertificateArrayOutput) Index(i pulumi.IntInput) GetAllCertificatesCertificateOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAllCertificatesCertificate {
+		return vs[0].([]GetAllCertificatesCertificate)[vs[1].(int)]
+	}).(GetAllCertificatesCertificateOutput)
+}
+
+type GetAllCertificatesCertificateTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetAllCertificatesCertificateTagInput is an input type that accepts GetAllCertificatesCertificateTagArgs and GetAllCertificatesCertificateTagOutput values.
+// You can construct a concrete instance of `GetAllCertificatesCertificateTagInput` via:
+//
+//	GetAllCertificatesCertificateTagArgs{...}
+type GetAllCertificatesCertificateTagInput interface {
+	pulumi.Input
+
+	ToGetAllCertificatesCertificateTagOutput() GetAllCertificatesCertificateTagOutput
+	ToGetAllCertificatesCertificateTagOutputWithContext(context.Context) GetAllCertificatesCertificateTagOutput
+}
+
+type GetAllCertificatesCertificateTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetAllCertificatesCertificateTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAllCertificatesCertificateTag)(nil)).Elem()
+}
+
+func (i GetAllCertificatesCertificateTagArgs) ToGetAllCertificatesCertificateTagOutput() GetAllCertificatesCertificateTagOutput {
+	return i.ToGetAllCertificatesCertificateTagOutputWithContext(context.Background())
+}
+
+func (i GetAllCertificatesCertificateTagArgs) ToGetAllCertificatesCertificateTagOutputWithContext(ctx context.Context) GetAllCertificatesCertificateTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAllCertificatesCertificateTagOutput)
+}
+
+// GetAllCertificatesCertificateTagArrayInput is an input type that accepts GetAllCertificatesCertificateTagArray and GetAllCertificatesCertificateTagArrayOutput values.
+// You can construct a concrete instance of `GetAllCertificatesCertificateTagArrayInput` via:
+//
+//	GetAllCertificatesCertificateTagArray{ GetAllCertificatesCertificateTagArgs{...} }
+type GetAllCertificatesCertificateTagArrayInput interface {
+	pulumi.Input
+
+	ToGetAllCertificatesCertificateTagArrayOutput() GetAllCertificatesCertificateTagArrayOutput
+	ToGetAllCertificatesCertificateTagArrayOutputWithContext(context.Context) GetAllCertificatesCertificateTagArrayOutput
+}
+
+type GetAllCertificatesCertificateTagArray []GetAllCertificatesCertificateTagInput
+
+func (GetAllCertificatesCertificateTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAllCertificatesCertificateTag)(nil)).Elem()
+}
+
+func (i GetAllCertificatesCertificateTagArray) ToGetAllCertificatesCertificateTagArrayOutput() GetAllCertificatesCertificateTagArrayOutput {
+	return i.ToGetAllCertificatesCertificateTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetAllCertificatesCertificateTagArray) ToGetAllCertificatesCertificateTagArrayOutputWithContext(ctx context.Context) GetAllCertificatesCertificateTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAllCertificatesCertificateTagArrayOutput)
+}
+
+type GetAllCertificatesCertificateTagOutput struct{ *pulumi.OutputState }
+
+func (GetAllCertificatesCertificateTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAllCertificatesCertificateTag)(nil)).Elem()
+}
+
+func (o GetAllCertificatesCertificateTagOutput) ToGetAllCertificatesCertificateTagOutput() GetAllCertificatesCertificateTagOutput {
+	return o
+}
+
+func (o GetAllCertificatesCertificateTagOutput) ToGetAllCertificatesCertificateTagOutputWithContext(ctx context.Context) GetAllCertificatesCertificateTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetAllCertificatesCertificateTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllCertificatesCertificateTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetAllCertificatesCertificateTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllCertificatesCertificateTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetAllCertificatesCertificateTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAllCertificatesCertificateTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAllCertificatesCertificateTag)(nil)).Elem()
+}
+
+func (o GetAllCertificatesCertificateTagArrayOutput) ToGetAllCertificatesCertificateTagArrayOutput() GetAllCertificatesCertificateTagArrayOutput {
+	return o
+}
+
+func (o GetAllCertificatesCertificateTagArrayOutput) ToGetAllCertificatesCertificateTagArrayOutputWithContext(ctx context.Context) GetAllCertificatesCertificateTagArrayOutput {
+	return o
+}
+
+func (o GetAllCertificatesCertificateTagArrayOutput) Index(i pulumi.IntInput) GetAllCertificatesCertificateTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAllCertificatesCertificateTag {
+		return vs[0].([]GetAllCertificatesCertificateTag)[vs[1].(int)]
+	}).(GetAllCertificatesCertificateTagOutput)
+}
+
+type GetAllCertificatesTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetAllCertificatesTagInput is an input type that accepts GetAllCertificatesTagArgs and GetAllCertificatesTagOutput values.
+// You can construct a concrete instance of `GetAllCertificatesTagInput` via:
+//
+//	GetAllCertificatesTagArgs{...}
+type GetAllCertificatesTagInput interface {
+	pulumi.Input
+
+	ToGetAllCertificatesTagOutput() GetAllCertificatesTagOutput
+	ToGetAllCertificatesTagOutputWithContext(context.Context) GetAllCertificatesTagOutput
+}
+
+type GetAllCertificatesTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetAllCertificatesTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAllCertificatesTag)(nil)).Elem()
+}
+
+func (i GetAllCertificatesTagArgs) ToGetAllCertificatesTagOutput() GetAllCertificatesTagOutput {
+	return i.ToGetAllCertificatesTagOutputWithContext(context.Background())
+}
+
+func (i GetAllCertificatesTagArgs) ToGetAllCertificatesTagOutputWithContext(ctx context.Context) GetAllCertificatesTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAllCertificatesTagOutput)
+}
+
+// GetAllCertificatesTagArrayInput is an input type that accepts GetAllCertificatesTagArray and GetAllCertificatesTagArrayOutput values.
+// You can construct a concrete instance of `GetAllCertificatesTagArrayInput` via:
+//
+//	GetAllCertificatesTagArray{ GetAllCertificatesTagArgs{...} }
+type GetAllCertificatesTagArrayInput interface {
+	pulumi.Input
+
+	ToGetAllCertificatesTagArrayOutput() GetAllCertificatesTagArrayOutput
+	ToGetAllCertificatesTagArrayOutputWithContext(context.Context) GetAllCertificatesTagArrayOutput
+}
+
+type GetAllCertificatesTagArray []GetAllCertificatesTagInput
+
+func (GetAllCertificatesTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAllCertificatesTag)(nil)).Elem()
+}
+
+func (i GetAllCertificatesTagArray) ToGetAllCertificatesTagArrayOutput() GetAllCertificatesTagArrayOutput {
+	return i.ToGetAllCertificatesTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetAllCertificatesTagArray) ToGetAllCertificatesTagArrayOutputWithContext(ctx context.Context) GetAllCertificatesTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAllCertificatesTagArrayOutput)
+}
+
+type GetAllCertificatesTagOutput struct{ *pulumi.OutputState }
+
+func (GetAllCertificatesTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAllCertificatesTag)(nil)).Elem()
+}
+
+func (o GetAllCertificatesTagOutput) ToGetAllCertificatesTagOutput() GetAllCertificatesTagOutput {
+	return o
+}
+
+func (o GetAllCertificatesTagOutput) ToGetAllCertificatesTagOutputWithContext(ctx context.Context) GetAllCertificatesTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetAllCertificatesTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllCertificatesTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetAllCertificatesTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllCertificatesTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetAllCertificatesTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAllCertificatesTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAllCertificatesTag)(nil)).Elem()
+}
+
+func (o GetAllCertificatesTagArrayOutput) ToGetAllCertificatesTagArrayOutput() GetAllCertificatesTagArrayOutput {
+	return o
+}
+
+func (o GetAllCertificatesTagArrayOutput) ToGetAllCertificatesTagArrayOutputWithContext(ctx context.Context) GetAllCertificatesTagArrayOutput {
+	return o
+}
+
+func (o GetAllCertificatesTagArrayOutput) Index(i pulumi.IntInput) GetAllCertificatesTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAllCertificatesTag {
+		return vs[0].([]GetAllCertificatesTag)[vs[1].(int)]
+	}).(GetAllCertificatesTagOutput)
+}
+
 type GetCaCertificatesCertificate struct {
 	// The ID of the CA certificate.
 	CaCertificateId string `pulumi:"caCertificateId"`
@@ -8763,6 +17251,8 @@ type GetCaCertificatesCertificate struct {
 	Listeners []string `pulumi:"listeners"`
 	// The project name of the CA certificate.
 	ProjectName string `pulumi:"projectName"`
+	// The san extension of the CA Certificate.
+	San string `pulumi:"san"`
 	// The status of the CA Certificate.
 	Status string `pulumi:"status"`
 }
@@ -8797,6 +17287,8 @@ type GetCaCertificatesCertificateArgs struct {
 	Listeners pulumi.StringArrayInput `pulumi:"listeners"`
 	// The project name of the CA certificate.
 	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The san extension of the CA Certificate.
+	San pulumi.StringInput `pulumi:"san"`
 	// The status of the CA Certificate.
 	Status pulumi.StringInput `pulumi:"status"`
 }
@@ -8897,6 +17389,11 @@ func (o GetCaCertificatesCertificateOutput) ProjectName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCaCertificatesCertificate) string { return v.ProjectName }).(pulumi.StringOutput)
 }
 
+// The san extension of the CA Certificate.
+func (o GetCaCertificatesCertificateOutput) San() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCaCertificatesCertificate) string { return v.San }).(pulumi.StringOutput)
+}
+
 // The status of the CA Certificate.
 func (o GetCaCertificatesCertificateOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCaCertificatesCertificate) string { return v.Status }).(pulumi.StringOutput)
@@ -8941,10 +17438,14 @@ type GetCertificatesCertificate struct {
 	Id string `pulumi:"id"`
 	// The ID list of the Listener.
 	Listeners []string `pulumi:"listeners"`
-	// The ProjectName of the Certificate.
+	// The project name to which the certificate belongs.
 	ProjectName string `pulumi:"projectName"`
+	// The san extension of the Certificate.
+	San string `pulumi:"san"`
 	// The status of the Certificate.
 	Status string `pulumi:"status"`
+	// Tags.
+	Tags []GetCertificatesCertificateTag `pulumi:"tags"`
 }
 
 // GetCertificatesCertificateInput is an input type that accepts GetCertificatesCertificateArgs and GetCertificatesCertificateOutput values.
@@ -8977,10 +17478,14 @@ type GetCertificatesCertificateArgs struct {
 	Id pulumi.StringInput `pulumi:"id"`
 	// The ID list of the Listener.
 	Listeners pulumi.StringArrayInput `pulumi:"listeners"`
-	// The ProjectName of the Certificate.
+	// The project name to which the certificate belongs.
 	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The san extension of the Certificate.
+	San pulumi.StringInput `pulumi:"san"`
 	// The status of the Certificate.
 	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags GetCertificatesCertificateTagArrayInput `pulumi:"tags"`
 }
 
 func (GetCertificatesCertificateArgs) ElementType() reflect.Type {
@@ -9079,14 +17584,24 @@ func (o GetCertificatesCertificateOutput) Listeners() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetCertificatesCertificate) []string { return v.Listeners }).(pulumi.StringArrayOutput)
 }
 
-// The ProjectName of the Certificate.
+// The project name to which the certificate belongs.
 func (o GetCertificatesCertificateOutput) ProjectName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCertificatesCertificate) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The san extension of the Certificate.
+func (o GetCertificatesCertificateOutput) San() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCertificatesCertificate) string { return v.San }).(pulumi.StringOutput)
 }
 
 // The status of the Certificate.
 func (o GetCertificatesCertificateOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCertificatesCertificate) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o GetCertificatesCertificateOutput) Tags() GetCertificatesCertificateTagArrayOutput {
+	return o.ApplyT(func(v GetCertificatesCertificate) []GetCertificatesCertificateTag { return v.Tags }).(GetCertificatesCertificateTagArrayOutput)
 }
 
 type GetCertificatesCertificateArrayOutput struct{ *pulumi.OutputState }
@@ -9109,6 +17624,218 @@ func (o GetCertificatesCertificateArrayOutput) Index(i pulumi.IntInput) GetCerti
 	}).(GetCertificatesCertificateOutput)
 }
 
+type GetCertificatesCertificateTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetCertificatesCertificateTagInput is an input type that accepts GetCertificatesCertificateTagArgs and GetCertificatesCertificateTagOutput values.
+// You can construct a concrete instance of `GetCertificatesCertificateTagInput` via:
+//
+//	GetCertificatesCertificateTagArgs{...}
+type GetCertificatesCertificateTagInput interface {
+	pulumi.Input
+
+	ToGetCertificatesCertificateTagOutput() GetCertificatesCertificateTagOutput
+	ToGetCertificatesCertificateTagOutputWithContext(context.Context) GetCertificatesCertificateTagOutput
+}
+
+type GetCertificatesCertificateTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetCertificatesCertificateTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCertificatesCertificateTag)(nil)).Elem()
+}
+
+func (i GetCertificatesCertificateTagArgs) ToGetCertificatesCertificateTagOutput() GetCertificatesCertificateTagOutput {
+	return i.ToGetCertificatesCertificateTagOutputWithContext(context.Background())
+}
+
+func (i GetCertificatesCertificateTagArgs) ToGetCertificatesCertificateTagOutputWithContext(ctx context.Context) GetCertificatesCertificateTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCertificatesCertificateTagOutput)
+}
+
+// GetCertificatesCertificateTagArrayInput is an input type that accepts GetCertificatesCertificateTagArray and GetCertificatesCertificateTagArrayOutput values.
+// You can construct a concrete instance of `GetCertificatesCertificateTagArrayInput` via:
+//
+//	GetCertificatesCertificateTagArray{ GetCertificatesCertificateTagArgs{...} }
+type GetCertificatesCertificateTagArrayInput interface {
+	pulumi.Input
+
+	ToGetCertificatesCertificateTagArrayOutput() GetCertificatesCertificateTagArrayOutput
+	ToGetCertificatesCertificateTagArrayOutputWithContext(context.Context) GetCertificatesCertificateTagArrayOutput
+}
+
+type GetCertificatesCertificateTagArray []GetCertificatesCertificateTagInput
+
+func (GetCertificatesCertificateTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCertificatesCertificateTag)(nil)).Elem()
+}
+
+func (i GetCertificatesCertificateTagArray) ToGetCertificatesCertificateTagArrayOutput() GetCertificatesCertificateTagArrayOutput {
+	return i.ToGetCertificatesCertificateTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetCertificatesCertificateTagArray) ToGetCertificatesCertificateTagArrayOutputWithContext(ctx context.Context) GetCertificatesCertificateTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCertificatesCertificateTagArrayOutput)
+}
+
+type GetCertificatesCertificateTagOutput struct{ *pulumi.OutputState }
+
+func (GetCertificatesCertificateTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCertificatesCertificateTag)(nil)).Elem()
+}
+
+func (o GetCertificatesCertificateTagOutput) ToGetCertificatesCertificateTagOutput() GetCertificatesCertificateTagOutput {
+	return o
+}
+
+func (o GetCertificatesCertificateTagOutput) ToGetCertificatesCertificateTagOutputWithContext(ctx context.Context) GetCertificatesCertificateTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetCertificatesCertificateTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCertificatesCertificateTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetCertificatesCertificateTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCertificatesCertificateTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetCertificatesCertificateTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCertificatesCertificateTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCertificatesCertificateTag)(nil)).Elem()
+}
+
+func (o GetCertificatesCertificateTagArrayOutput) ToGetCertificatesCertificateTagArrayOutput() GetCertificatesCertificateTagArrayOutput {
+	return o
+}
+
+func (o GetCertificatesCertificateTagArrayOutput) ToGetCertificatesCertificateTagArrayOutputWithContext(ctx context.Context) GetCertificatesCertificateTagArrayOutput {
+	return o
+}
+
+func (o GetCertificatesCertificateTagArrayOutput) Index(i pulumi.IntInput) GetCertificatesCertificateTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCertificatesCertificateTag {
+		return vs[0].([]GetCertificatesCertificateTag)[vs[1].(int)]
+	}).(GetCertificatesCertificateTagOutput)
+}
+
+type GetCertificatesTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetCertificatesTagInput is an input type that accepts GetCertificatesTagArgs and GetCertificatesTagOutput values.
+// You can construct a concrete instance of `GetCertificatesTagInput` via:
+//
+//	GetCertificatesTagArgs{...}
+type GetCertificatesTagInput interface {
+	pulumi.Input
+
+	ToGetCertificatesTagOutput() GetCertificatesTagOutput
+	ToGetCertificatesTagOutputWithContext(context.Context) GetCertificatesTagOutput
+}
+
+type GetCertificatesTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetCertificatesTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCertificatesTag)(nil)).Elem()
+}
+
+func (i GetCertificatesTagArgs) ToGetCertificatesTagOutput() GetCertificatesTagOutput {
+	return i.ToGetCertificatesTagOutputWithContext(context.Background())
+}
+
+func (i GetCertificatesTagArgs) ToGetCertificatesTagOutputWithContext(ctx context.Context) GetCertificatesTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCertificatesTagOutput)
+}
+
+// GetCertificatesTagArrayInput is an input type that accepts GetCertificatesTagArray and GetCertificatesTagArrayOutput values.
+// You can construct a concrete instance of `GetCertificatesTagArrayInput` via:
+//
+//	GetCertificatesTagArray{ GetCertificatesTagArgs{...} }
+type GetCertificatesTagArrayInput interface {
+	pulumi.Input
+
+	ToGetCertificatesTagArrayOutput() GetCertificatesTagArrayOutput
+	ToGetCertificatesTagArrayOutputWithContext(context.Context) GetCertificatesTagArrayOutput
+}
+
+type GetCertificatesTagArray []GetCertificatesTagInput
+
+func (GetCertificatesTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCertificatesTag)(nil)).Elem()
+}
+
+func (i GetCertificatesTagArray) ToGetCertificatesTagArrayOutput() GetCertificatesTagArrayOutput {
+	return i.ToGetCertificatesTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetCertificatesTagArray) ToGetCertificatesTagArrayOutputWithContext(ctx context.Context) GetCertificatesTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCertificatesTagArrayOutput)
+}
+
+type GetCertificatesTagOutput struct{ *pulumi.OutputState }
+
+func (GetCertificatesTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCertificatesTag)(nil)).Elem()
+}
+
+func (o GetCertificatesTagOutput) ToGetCertificatesTagOutput() GetCertificatesTagOutput {
+	return o
+}
+
+func (o GetCertificatesTagOutput) ToGetCertificatesTagOutputWithContext(ctx context.Context) GetCertificatesTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetCertificatesTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCertificatesTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetCertificatesTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCertificatesTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetCertificatesTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCertificatesTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCertificatesTag)(nil)).Elem()
+}
+
+func (o GetCertificatesTagArrayOutput) ToGetCertificatesTagArrayOutput() GetCertificatesTagArrayOutput {
+	return o
+}
+
+func (o GetCertificatesTagArrayOutput) ToGetCertificatesTagArrayOutputWithContext(ctx context.Context) GetCertificatesTagArrayOutput {
+	return o
+}
+
+func (o GetCertificatesTagArrayOutput) Index(i pulumi.IntInput) GetCertificatesTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCertificatesTag {
+		return vs[0].([]GetCertificatesTag)[vs[1].(int)]
+	}).(GetCertificatesTagOutput)
+}
+
 type GetCustomizedCfgsCfg struct {
 	// The create time of CustomizedCfg.
 	CreateTime string `pulumi:"createTime"`
@@ -9128,6 +17855,8 @@ type GetCustomizedCfgsCfg struct {
 	ProjectName string `pulumi:"projectName"`
 	// The status of CustomizedCfg.
 	Status string `pulumi:"status"`
+	// Tags.
+	Tags []GetCustomizedCfgsCfgTag `pulumi:"tags"`
 	// The update time of CustomizedCfg.
 	UpdateTime string `pulumi:"updateTime"`
 }
@@ -9162,6 +17891,8 @@ type GetCustomizedCfgsCfgArgs struct {
 	ProjectName pulumi.StringInput `pulumi:"projectName"`
 	// The status of CustomizedCfg.
 	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags GetCustomizedCfgsCfgTagArrayInput `pulumi:"tags"`
 	// The update time of CustomizedCfg.
 	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
 }
@@ -9260,6 +17991,11 @@ func (o GetCustomizedCfgsCfgOutput) ProjectName() pulumi.StringOutput {
 // The status of CustomizedCfg.
 func (o GetCustomizedCfgsCfgOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCustomizedCfgsCfg) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o GetCustomizedCfgsCfgOutput) Tags() GetCustomizedCfgsCfgTagArrayOutput {
+	return o.ApplyT(func(v GetCustomizedCfgsCfg) []GetCustomizedCfgsCfgTag { return v.Tags }).(GetCustomizedCfgsCfgTagArrayOutput)
 }
 
 // The update time of CustomizedCfg.
@@ -9411,7 +18147,221 @@ func (o GetCustomizedCfgsCfgListenerArrayOutput) Index(i pulumi.IntInput) GetCus
 	}).(GetCustomizedCfgsCfgListenerOutput)
 }
 
+type GetCustomizedCfgsCfgTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetCustomizedCfgsCfgTagInput is an input type that accepts GetCustomizedCfgsCfgTagArgs and GetCustomizedCfgsCfgTagOutput values.
+// You can construct a concrete instance of `GetCustomizedCfgsCfgTagInput` via:
+//
+//	GetCustomizedCfgsCfgTagArgs{...}
+type GetCustomizedCfgsCfgTagInput interface {
+	pulumi.Input
+
+	ToGetCustomizedCfgsCfgTagOutput() GetCustomizedCfgsCfgTagOutput
+	ToGetCustomizedCfgsCfgTagOutputWithContext(context.Context) GetCustomizedCfgsCfgTagOutput
+}
+
+type GetCustomizedCfgsCfgTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetCustomizedCfgsCfgTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCustomizedCfgsCfgTag)(nil)).Elem()
+}
+
+func (i GetCustomizedCfgsCfgTagArgs) ToGetCustomizedCfgsCfgTagOutput() GetCustomizedCfgsCfgTagOutput {
+	return i.ToGetCustomizedCfgsCfgTagOutputWithContext(context.Background())
+}
+
+func (i GetCustomizedCfgsCfgTagArgs) ToGetCustomizedCfgsCfgTagOutputWithContext(ctx context.Context) GetCustomizedCfgsCfgTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCustomizedCfgsCfgTagOutput)
+}
+
+// GetCustomizedCfgsCfgTagArrayInput is an input type that accepts GetCustomizedCfgsCfgTagArray and GetCustomizedCfgsCfgTagArrayOutput values.
+// You can construct a concrete instance of `GetCustomizedCfgsCfgTagArrayInput` via:
+//
+//	GetCustomizedCfgsCfgTagArray{ GetCustomizedCfgsCfgTagArgs{...} }
+type GetCustomizedCfgsCfgTagArrayInput interface {
+	pulumi.Input
+
+	ToGetCustomizedCfgsCfgTagArrayOutput() GetCustomizedCfgsCfgTagArrayOutput
+	ToGetCustomizedCfgsCfgTagArrayOutputWithContext(context.Context) GetCustomizedCfgsCfgTagArrayOutput
+}
+
+type GetCustomizedCfgsCfgTagArray []GetCustomizedCfgsCfgTagInput
+
+func (GetCustomizedCfgsCfgTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCustomizedCfgsCfgTag)(nil)).Elem()
+}
+
+func (i GetCustomizedCfgsCfgTagArray) ToGetCustomizedCfgsCfgTagArrayOutput() GetCustomizedCfgsCfgTagArrayOutput {
+	return i.ToGetCustomizedCfgsCfgTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetCustomizedCfgsCfgTagArray) ToGetCustomizedCfgsCfgTagArrayOutputWithContext(ctx context.Context) GetCustomizedCfgsCfgTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCustomizedCfgsCfgTagArrayOutput)
+}
+
+type GetCustomizedCfgsCfgTagOutput struct{ *pulumi.OutputState }
+
+func (GetCustomizedCfgsCfgTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCustomizedCfgsCfgTag)(nil)).Elem()
+}
+
+func (o GetCustomizedCfgsCfgTagOutput) ToGetCustomizedCfgsCfgTagOutput() GetCustomizedCfgsCfgTagOutput {
+	return o
+}
+
+func (o GetCustomizedCfgsCfgTagOutput) ToGetCustomizedCfgsCfgTagOutputWithContext(ctx context.Context) GetCustomizedCfgsCfgTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetCustomizedCfgsCfgTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCustomizedCfgsCfgTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetCustomizedCfgsCfgTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCustomizedCfgsCfgTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetCustomizedCfgsCfgTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCustomizedCfgsCfgTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCustomizedCfgsCfgTag)(nil)).Elem()
+}
+
+func (o GetCustomizedCfgsCfgTagArrayOutput) ToGetCustomizedCfgsCfgTagArrayOutput() GetCustomizedCfgsCfgTagArrayOutput {
+	return o
+}
+
+func (o GetCustomizedCfgsCfgTagArrayOutput) ToGetCustomizedCfgsCfgTagArrayOutputWithContext(ctx context.Context) GetCustomizedCfgsCfgTagArrayOutput {
+	return o
+}
+
+func (o GetCustomizedCfgsCfgTagArrayOutput) Index(i pulumi.IntInput) GetCustomizedCfgsCfgTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCustomizedCfgsCfgTag {
+		return vs[0].([]GetCustomizedCfgsCfgTag)[vs[1].(int)]
+	}).(GetCustomizedCfgsCfgTagOutput)
+}
+
+type GetCustomizedCfgsTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetCustomizedCfgsTagInput is an input type that accepts GetCustomizedCfgsTagArgs and GetCustomizedCfgsTagOutput values.
+// You can construct a concrete instance of `GetCustomizedCfgsTagInput` via:
+//
+//	GetCustomizedCfgsTagArgs{...}
+type GetCustomizedCfgsTagInput interface {
+	pulumi.Input
+
+	ToGetCustomizedCfgsTagOutput() GetCustomizedCfgsTagOutput
+	ToGetCustomizedCfgsTagOutputWithContext(context.Context) GetCustomizedCfgsTagOutput
+}
+
+type GetCustomizedCfgsTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetCustomizedCfgsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCustomizedCfgsTag)(nil)).Elem()
+}
+
+func (i GetCustomizedCfgsTagArgs) ToGetCustomizedCfgsTagOutput() GetCustomizedCfgsTagOutput {
+	return i.ToGetCustomizedCfgsTagOutputWithContext(context.Background())
+}
+
+func (i GetCustomizedCfgsTagArgs) ToGetCustomizedCfgsTagOutputWithContext(ctx context.Context) GetCustomizedCfgsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCustomizedCfgsTagOutput)
+}
+
+// GetCustomizedCfgsTagArrayInput is an input type that accepts GetCustomizedCfgsTagArray and GetCustomizedCfgsTagArrayOutput values.
+// You can construct a concrete instance of `GetCustomizedCfgsTagArrayInput` via:
+//
+//	GetCustomizedCfgsTagArray{ GetCustomizedCfgsTagArgs{...} }
+type GetCustomizedCfgsTagArrayInput interface {
+	pulumi.Input
+
+	ToGetCustomizedCfgsTagArrayOutput() GetCustomizedCfgsTagArrayOutput
+	ToGetCustomizedCfgsTagArrayOutputWithContext(context.Context) GetCustomizedCfgsTagArrayOutput
+}
+
+type GetCustomizedCfgsTagArray []GetCustomizedCfgsTagInput
+
+func (GetCustomizedCfgsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCustomizedCfgsTag)(nil)).Elem()
+}
+
+func (i GetCustomizedCfgsTagArray) ToGetCustomizedCfgsTagArrayOutput() GetCustomizedCfgsTagArrayOutput {
+	return i.ToGetCustomizedCfgsTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetCustomizedCfgsTagArray) ToGetCustomizedCfgsTagArrayOutputWithContext(ctx context.Context) GetCustomizedCfgsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCustomizedCfgsTagArrayOutput)
+}
+
+type GetCustomizedCfgsTagOutput struct{ *pulumi.OutputState }
+
+func (GetCustomizedCfgsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCustomizedCfgsTag)(nil)).Elem()
+}
+
+func (o GetCustomizedCfgsTagOutput) ToGetCustomizedCfgsTagOutput() GetCustomizedCfgsTagOutput {
+	return o
+}
+
+func (o GetCustomizedCfgsTagOutput) ToGetCustomizedCfgsTagOutputWithContext(ctx context.Context) GetCustomizedCfgsTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetCustomizedCfgsTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCustomizedCfgsTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetCustomizedCfgsTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCustomizedCfgsTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetCustomizedCfgsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCustomizedCfgsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCustomizedCfgsTag)(nil)).Elem()
+}
+
+func (o GetCustomizedCfgsTagArrayOutput) ToGetCustomizedCfgsTagArrayOutput() GetCustomizedCfgsTagArrayOutput {
+	return o
+}
+
+func (o GetCustomizedCfgsTagArrayOutput) ToGetCustomizedCfgsTagArrayOutputWithContext(ctx context.Context) GetCustomizedCfgsTagArrayOutput {
+	return o
+}
+
+func (o GetCustomizedCfgsTagArrayOutput) Index(i pulumi.IntInput) GetCustomizedCfgsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCustomizedCfgsTag {
+		return vs[0].([]GetCustomizedCfgsTag)[vs[1].(int)]
+	}).(GetCustomizedCfgsTagOutput)
+}
+
 type GetHealthCheckTemplatesHealthCheckTemplate struct {
+	// The creation time of the health check template.
+	CreateTime string `pulumi:"createTime"`
 	// The description of health check template.
 	Description string `pulumi:"description"`
 	// The domain name to health check.
@@ -9422,9 +18372,11 @@ type GetHealthCheckTemplatesHealthCheckTemplate struct {
 	HealthCheckHttpVersion string `pulumi:"healthCheckHttpVersion"`
 	// The interval for performing health checks, the default value is 2, and the value is 1-300.
 	HealthCheckInterval int `pulumi:"healthCheckInterval"`
-	// The health check method,default is `GET`,support `GET` and ``HEAD.
+	// The health check method, support `GET` and `HEAD`.
 	HealthCheckMethod string `pulumi:"healthCheckMethod"`
-	// The protocol of health check,only support HTTP.
+	// The port for health check. 0 means use backend server port for health check, 1-65535 means use the specified port.
+	HealthCheckPort int `pulumi:"healthCheckPort"`
+	// The protocol of health check, support HTTP and TCP.
 	HealthCheckProtocol string `pulumi:"healthCheckProtocol"`
 	// The ID of health check template.
 	HealthCheckTemplateId string `pulumi:"healthCheckTemplateId"`
@@ -9438,8 +18390,14 @@ type GetHealthCheckTemplatesHealthCheckTemplate struct {
 	HealthyThreshold int `pulumi:"healthyThreshold"`
 	// The id of the health check template.
 	Id string `pulumi:"id"`
+	// The project name to query.
+	ProjectName string `pulumi:"projectName"`
+	// Tags.
+	Tags []GetHealthCheckTemplatesHealthCheckTemplateTag `pulumi:"tags"`
 	// The unhealthy threshold of the health check, the default is 3, the value is 2-10.
 	UnhealthyThreshold int `pulumi:"unhealthyThreshold"`
+	// The last update time of the health check template.
+	UpdateTime string `pulumi:"updateTime"`
 }
 
 // GetHealthCheckTemplatesHealthCheckTemplateInput is an input type that accepts GetHealthCheckTemplatesHealthCheckTemplateArgs and GetHealthCheckTemplatesHealthCheckTemplateOutput values.
@@ -9454,6 +18412,8 @@ type GetHealthCheckTemplatesHealthCheckTemplateInput interface {
 }
 
 type GetHealthCheckTemplatesHealthCheckTemplateArgs struct {
+	// The creation time of the health check template.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
 	// The description of health check template.
 	Description pulumi.StringInput `pulumi:"description"`
 	// The domain name to health check.
@@ -9464,9 +18424,11 @@ type GetHealthCheckTemplatesHealthCheckTemplateArgs struct {
 	HealthCheckHttpVersion pulumi.StringInput `pulumi:"healthCheckHttpVersion"`
 	// The interval for performing health checks, the default value is 2, and the value is 1-300.
 	HealthCheckInterval pulumi.IntInput `pulumi:"healthCheckInterval"`
-	// The health check method,default is `GET`,support `GET` and ``HEAD.
+	// The health check method, support `GET` and `HEAD`.
 	HealthCheckMethod pulumi.StringInput `pulumi:"healthCheckMethod"`
-	// The protocol of health check,only support HTTP.
+	// The port for health check. 0 means use backend server port for health check, 1-65535 means use the specified port.
+	HealthCheckPort pulumi.IntInput `pulumi:"healthCheckPort"`
+	// The protocol of health check, support HTTP and TCP.
 	HealthCheckProtocol pulumi.StringInput `pulumi:"healthCheckProtocol"`
 	// The ID of health check template.
 	HealthCheckTemplateId pulumi.StringInput `pulumi:"healthCheckTemplateId"`
@@ -9480,8 +18442,14 @@ type GetHealthCheckTemplatesHealthCheckTemplateArgs struct {
 	HealthyThreshold pulumi.IntInput `pulumi:"healthyThreshold"`
 	// The id of the health check template.
 	Id pulumi.StringInput `pulumi:"id"`
+	// The project name to query.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// Tags.
+	Tags GetHealthCheckTemplatesHealthCheckTemplateTagArrayInput `pulumi:"tags"`
 	// The unhealthy threshold of the health check, the default is 3, the value is 2-10.
 	UnhealthyThreshold pulumi.IntInput `pulumi:"unhealthyThreshold"`
+	// The last update time of the health check template.
+	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
 }
 
 func (GetHealthCheckTemplatesHealthCheckTemplateArgs) ElementType() reflect.Type {
@@ -9535,6 +18503,11 @@ func (o GetHealthCheckTemplatesHealthCheckTemplateOutput) ToGetHealthCheckTempla
 	return o
 }
 
+// The creation time of the health check template.
+func (o GetHealthCheckTemplatesHealthCheckTemplateOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetHealthCheckTemplatesHealthCheckTemplate) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
 // The description of health check template.
 func (o GetHealthCheckTemplatesHealthCheckTemplateOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v GetHealthCheckTemplatesHealthCheckTemplate) string { return v.Description }).(pulumi.StringOutput)
@@ -9560,12 +18533,17 @@ func (o GetHealthCheckTemplatesHealthCheckTemplateOutput) HealthCheckInterval() 
 	return o.ApplyT(func(v GetHealthCheckTemplatesHealthCheckTemplate) int { return v.HealthCheckInterval }).(pulumi.IntOutput)
 }
 
-// The health check method,default is `GET`,support `GET` and “HEAD.
+// The health check method, support `GET` and `HEAD`.
 func (o GetHealthCheckTemplatesHealthCheckTemplateOutput) HealthCheckMethod() pulumi.StringOutput {
 	return o.ApplyT(func(v GetHealthCheckTemplatesHealthCheckTemplate) string { return v.HealthCheckMethod }).(pulumi.StringOutput)
 }
 
-// The protocol of health check,only support HTTP.
+// The port for health check. 0 means use backend server port for health check, 1-65535 means use the specified port.
+func (o GetHealthCheckTemplatesHealthCheckTemplateOutput) HealthCheckPort() pulumi.IntOutput {
+	return o.ApplyT(func(v GetHealthCheckTemplatesHealthCheckTemplate) int { return v.HealthCheckPort }).(pulumi.IntOutput)
+}
+
+// The protocol of health check, support HTTP and TCP.
 func (o GetHealthCheckTemplatesHealthCheckTemplateOutput) HealthCheckProtocol() pulumi.StringOutput {
 	return o.ApplyT(func(v GetHealthCheckTemplatesHealthCheckTemplate) string { return v.HealthCheckProtocol }).(pulumi.StringOutput)
 }
@@ -9600,9 +18578,26 @@ func (o GetHealthCheckTemplatesHealthCheckTemplateOutput) Id() pulumi.StringOutp
 	return o.ApplyT(func(v GetHealthCheckTemplatesHealthCheckTemplate) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// The project name to query.
+func (o GetHealthCheckTemplatesHealthCheckTemplateOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetHealthCheckTemplatesHealthCheckTemplate) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o GetHealthCheckTemplatesHealthCheckTemplateOutput) Tags() GetHealthCheckTemplatesHealthCheckTemplateTagArrayOutput {
+	return o.ApplyT(func(v GetHealthCheckTemplatesHealthCheckTemplate) []GetHealthCheckTemplatesHealthCheckTemplateTag {
+		return v.Tags
+	}).(GetHealthCheckTemplatesHealthCheckTemplateTagArrayOutput)
+}
+
 // The unhealthy threshold of the health check, the default is 3, the value is 2-10.
 func (o GetHealthCheckTemplatesHealthCheckTemplateOutput) UnhealthyThreshold() pulumi.IntOutput {
 	return o.ApplyT(func(v GetHealthCheckTemplatesHealthCheckTemplate) int { return v.UnhealthyThreshold }).(pulumi.IntOutput)
+}
+
+// The last update time of the health check template.
+func (o GetHealthCheckTemplatesHealthCheckTemplateOutput) UpdateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetHealthCheckTemplatesHealthCheckTemplate) string { return v.UpdateTime }).(pulumi.StringOutput)
 }
 
 type GetHealthCheckTemplatesHealthCheckTemplateArrayOutput struct{ *pulumi.OutputState }
@@ -9623,6 +18618,218 @@ func (o GetHealthCheckTemplatesHealthCheckTemplateArrayOutput) Index(i pulumi.In
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetHealthCheckTemplatesHealthCheckTemplate {
 		return vs[0].([]GetHealthCheckTemplatesHealthCheckTemplate)[vs[1].(int)]
 	}).(GetHealthCheckTemplatesHealthCheckTemplateOutput)
+}
+
+type GetHealthCheckTemplatesHealthCheckTemplateTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetHealthCheckTemplatesHealthCheckTemplateTagInput is an input type that accepts GetHealthCheckTemplatesHealthCheckTemplateTagArgs and GetHealthCheckTemplatesHealthCheckTemplateTagOutput values.
+// You can construct a concrete instance of `GetHealthCheckTemplatesHealthCheckTemplateTagInput` via:
+//
+//	GetHealthCheckTemplatesHealthCheckTemplateTagArgs{...}
+type GetHealthCheckTemplatesHealthCheckTemplateTagInput interface {
+	pulumi.Input
+
+	ToGetHealthCheckTemplatesHealthCheckTemplateTagOutput() GetHealthCheckTemplatesHealthCheckTemplateTagOutput
+	ToGetHealthCheckTemplatesHealthCheckTemplateTagOutputWithContext(context.Context) GetHealthCheckTemplatesHealthCheckTemplateTagOutput
+}
+
+type GetHealthCheckTemplatesHealthCheckTemplateTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetHealthCheckTemplatesHealthCheckTemplateTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetHealthCheckTemplatesHealthCheckTemplateTag)(nil)).Elem()
+}
+
+func (i GetHealthCheckTemplatesHealthCheckTemplateTagArgs) ToGetHealthCheckTemplatesHealthCheckTemplateTagOutput() GetHealthCheckTemplatesHealthCheckTemplateTagOutput {
+	return i.ToGetHealthCheckTemplatesHealthCheckTemplateTagOutputWithContext(context.Background())
+}
+
+func (i GetHealthCheckTemplatesHealthCheckTemplateTagArgs) ToGetHealthCheckTemplatesHealthCheckTemplateTagOutputWithContext(ctx context.Context) GetHealthCheckTemplatesHealthCheckTemplateTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetHealthCheckTemplatesHealthCheckTemplateTagOutput)
+}
+
+// GetHealthCheckTemplatesHealthCheckTemplateTagArrayInput is an input type that accepts GetHealthCheckTemplatesHealthCheckTemplateTagArray and GetHealthCheckTemplatesHealthCheckTemplateTagArrayOutput values.
+// You can construct a concrete instance of `GetHealthCheckTemplatesHealthCheckTemplateTagArrayInput` via:
+//
+//	GetHealthCheckTemplatesHealthCheckTemplateTagArray{ GetHealthCheckTemplatesHealthCheckTemplateTagArgs{...} }
+type GetHealthCheckTemplatesHealthCheckTemplateTagArrayInput interface {
+	pulumi.Input
+
+	ToGetHealthCheckTemplatesHealthCheckTemplateTagArrayOutput() GetHealthCheckTemplatesHealthCheckTemplateTagArrayOutput
+	ToGetHealthCheckTemplatesHealthCheckTemplateTagArrayOutputWithContext(context.Context) GetHealthCheckTemplatesHealthCheckTemplateTagArrayOutput
+}
+
+type GetHealthCheckTemplatesHealthCheckTemplateTagArray []GetHealthCheckTemplatesHealthCheckTemplateTagInput
+
+func (GetHealthCheckTemplatesHealthCheckTemplateTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetHealthCheckTemplatesHealthCheckTemplateTag)(nil)).Elem()
+}
+
+func (i GetHealthCheckTemplatesHealthCheckTemplateTagArray) ToGetHealthCheckTemplatesHealthCheckTemplateTagArrayOutput() GetHealthCheckTemplatesHealthCheckTemplateTagArrayOutput {
+	return i.ToGetHealthCheckTemplatesHealthCheckTemplateTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetHealthCheckTemplatesHealthCheckTemplateTagArray) ToGetHealthCheckTemplatesHealthCheckTemplateTagArrayOutputWithContext(ctx context.Context) GetHealthCheckTemplatesHealthCheckTemplateTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetHealthCheckTemplatesHealthCheckTemplateTagArrayOutput)
+}
+
+type GetHealthCheckTemplatesHealthCheckTemplateTagOutput struct{ *pulumi.OutputState }
+
+func (GetHealthCheckTemplatesHealthCheckTemplateTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetHealthCheckTemplatesHealthCheckTemplateTag)(nil)).Elem()
+}
+
+func (o GetHealthCheckTemplatesHealthCheckTemplateTagOutput) ToGetHealthCheckTemplatesHealthCheckTemplateTagOutput() GetHealthCheckTemplatesHealthCheckTemplateTagOutput {
+	return o
+}
+
+func (o GetHealthCheckTemplatesHealthCheckTemplateTagOutput) ToGetHealthCheckTemplatesHealthCheckTemplateTagOutputWithContext(ctx context.Context) GetHealthCheckTemplatesHealthCheckTemplateTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetHealthCheckTemplatesHealthCheckTemplateTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetHealthCheckTemplatesHealthCheckTemplateTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetHealthCheckTemplatesHealthCheckTemplateTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetHealthCheckTemplatesHealthCheckTemplateTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetHealthCheckTemplatesHealthCheckTemplateTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetHealthCheckTemplatesHealthCheckTemplateTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetHealthCheckTemplatesHealthCheckTemplateTag)(nil)).Elem()
+}
+
+func (o GetHealthCheckTemplatesHealthCheckTemplateTagArrayOutput) ToGetHealthCheckTemplatesHealthCheckTemplateTagArrayOutput() GetHealthCheckTemplatesHealthCheckTemplateTagArrayOutput {
+	return o
+}
+
+func (o GetHealthCheckTemplatesHealthCheckTemplateTagArrayOutput) ToGetHealthCheckTemplatesHealthCheckTemplateTagArrayOutputWithContext(ctx context.Context) GetHealthCheckTemplatesHealthCheckTemplateTagArrayOutput {
+	return o
+}
+
+func (o GetHealthCheckTemplatesHealthCheckTemplateTagArrayOutput) Index(i pulumi.IntInput) GetHealthCheckTemplatesHealthCheckTemplateTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetHealthCheckTemplatesHealthCheckTemplateTag {
+		return vs[0].([]GetHealthCheckTemplatesHealthCheckTemplateTag)[vs[1].(int)]
+	}).(GetHealthCheckTemplatesHealthCheckTemplateTagOutput)
+}
+
+type GetHealthCheckTemplatesTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetHealthCheckTemplatesTagInput is an input type that accepts GetHealthCheckTemplatesTagArgs and GetHealthCheckTemplatesTagOutput values.
+// You can construct a concrete instance of `GetHealthCheckTemplatesTagInput` via:
+//
+//	GetHealthCheckTemplatesTagArgs{...}
+type GetHealthCheckTemplatesTagInput interface {
+	pulumi.Input
+
+	ToGetHealthCheckTemplatesTagOutput() GetHealthCheckTemplatesTagOutput
+	ToGetHealthCheckTemplatesTagOutputWithContext(context.Context) GetHealthCheckTemplatesTagOutput
+}
+
+type GetHealthCheckTemplatesTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetHealthCheckTemplatesTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetHealthCheckTemplatesTag)(nil)).Elem()
+}
+
+func (i GetHealthCheckTemplatesTagArgs) ToGetHealthCheckTemplatesTagOutput() GetHealthCheckTemplatesTagOutput {
+	return i.ToGetHealthCheckTemplatesTagOutputWithContext(context.Background())
+}
+
+func (i GetHealthCheckTemplatesTagArgs) ToGetHealthCheckTemplatesTagOutputWithContext(ctx context.Context) GetHealthCheckTemplatesTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetHealthCheckTemplatesTagOutput)
+}
+
+// GetHealthCheckTemplatesTagArrayInput is an input type that accepts GetHealthCheckTemplatesTagArray and GetHealthCheckTemplatesTagArrayOutput values.
+// You can construct a concrete instance of `GetHealthCheckTemplatesTagArrayInput` via:
+//
+//	GetHealthCheckTemplatesTagArray{ GetHealthCheckTemplatesTagArgs{...} }
+type GetHealthCheckTemplatesTagArrayInput interface {
+	pulumi.Input
+
+	ToGetHealthCheckTemplatesTagArrayOutput() GetHealthCheckTemplatesTagArrayOutput
+	ToGetHealthCheckTemplatesTagArrayOutputWithContext(context.Context) GetHealthCheckTemplatesTagArrayOutput
+}
+
+type GetHealthCheckTemplatesTagArray []GetHealthCheckTemplatesTagInput
+
+func (GetHealthCheckTemplatesTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetHealthCheckTemplatesTag)(nil)).Elem()
+}
+
+func (i GetHealthCheckTemplatesTagArray) ToGetHealthCheckTemplatesTagArrayOutput() GetHealthCheckTemplatesTagArrayOutput {
+	return i.ToGetHealthCheckTemplatesTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetHealthCheckTemplatesTagArray) ToGetHealthCheckTemplatesTagArrayOutputWithContext(ctx context.Context) GetHealthCheckTemplatesTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetHealthCheckTemplatesTagArrayOutput)
+}
+
+type GetHealthCheckTemplatesTagOutput struct{ *pulumi.OutputState }
+
+func (GetHealthCheckTemplatesTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetHealthCheckTemplatesTag)(nil)).Elem()
+}
+
+func (o GetHealthCheckTemplatesTagOutput) ToGetHealthCheckTemplatesTagOutput() GetHealthCheckTemplatesTagOutput {
+	return o
+}
+
+func (o GetHealthCheckTemplatesTagOutput) ToGetHealthCheckTemplatesTagOutputWithContext(ctx context.Context) GetHealthCheckTemplatesTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetHealthCheckTemplatesTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetHealthCheckTemplatesTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetHealthCheckTemplatesTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetHealthCheckTemplatesTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetHealthCheckTemplatesTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetHealthCheckTemplatesTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetHealthCheckTemplatesTag)(nil)).Elem()
+}
+
+func (o GetHealthCheckTemplatesTagArrayOutput) ToGetHealthCheckTemplatesTagArrayOutput() GetHealthCheckTemplatesTagArrayOutput {
+	return o
+}
+
+func (o GetHealthCheckTemplatesTagArrayOutput) ToGetHealthCheckTemplatesTagArrayOutputWithContext(ctx context.Context) GetHealthCheckTemplatesTagArrayOutput {
+	return o
+}
+
+func (o GetHealthCheckTemplatesTagArrayOutput) Index(i pulumi.IntInput) GetHealthCheckTemplatesTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetHealthCheckTemplatesTag {
+		return vs[0].([]GetHealthCheckTemplatesTag)[vs[1].(int)]
+	}).(GetHealthCheckTemplatesTagOutput)
 }
 
 type GetListenerDomainExtensionsDomainExtension struct {
@@ -9758,7 +18965,311 @@ func (o GetListenerDomainExtensionsDomainExtensionArrayOutput) Index(i pulumi.In
 	}).(GetListenerDomainExtensionsDomainExtensionOutput)
 }
 
+type GetListenerHealthsListener struct {
+	// The list of backend server health details.
+	BackendServers []GetListenerHealthsListenerBackendServer `pulumi:"backendServers"`
+	// The ID of the listener.
+	ListenerId string `pulumi:"listenerId"`
+	// The status of the listener. Value: Active, Error, NoTarget, Disabled.
+	Status string `pulumi:"status"`
+	// The total count of backend servers under the listener.
+	TotalBackendServerCount int `pulumi:"totalBackendServerCount"`
+	// The count of backend servers with abnormal health check status.
+	UnHealthyCount int `pulumi:"unHealthyCount"`
+}
+
+// GetListenerHealthsListenerInput is an input type that accepts GetListenerHealthsListenerArgs and GetListenerHealthsListenerOutput values.
+// You can construct a concrete instance of `GetListenerHealthsListenerInput` via:
+//
+//	GetListenerHealthsListenerArgs{...}
+type GetListenerHealthsListenerInput interface {
+	pulumi.Input
+
+	ToGetListenerHealthsListenerOutput() GetListenerHealthsListenerOutput
+	ToGetListenerHealthsListenerOutputWithContext(context.Context) GetListenerHealthsListenerOutput
+}
+
+type GetListenerHealthsListenerArgs struct {
+	// The list of backend server health details.
+	BackendServers GetListenerHealthsListenerBackendServerArrayInput `pulumi:"backendServers"`
+	// The ID of the listener.
+	ListenerId pulumi.StringInput `pulumi:"listenerId"`
+	// The status of the listener. Value: Active, Error, NoTarget, Disabled.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The total count of backend servers under the listener.
+	TotalBackendServerCount pulumi.IntInput `pulumi:"totalBackendServerCount"`
+	// The count of backend servers with abnormal health check status.
+	UnHealthyCount pulumi.IntInput `pulumi:"unHealthyCount"`
+}
+
+func (GetListenerHealthsListenerArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetListenerHealthsListener)(nil)).Elem()
+}
+
+func (i GetListenerHealthsListenerArgs) ToGetListenerHealthsListenerOutput() GetListenerHealthsListenerOutput {
+	return i.ToGetListenerHealthsListenerOutputWithContext(context.Background())
+}
+
+func (i GetListenerHealthsListenerArgs) ToGetListenerHealthsListenerOutputWithContext(ctx context.Context) GetListenerHealthsListenerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetListenerHealthsListenerOutput)
+}
+
+// GetListenerHealthsListenerArrayInput is an input type that accepts GetListenerHealthsListenerArray and GetListenerHealthsListenerArrayOutput values.
+// You can construct a concrete instance of `GetListenerHealthsListenerArrayInput` via:
+//
+//	GetListenerHealthsListenerArray{ GetListenerHealthsListenerArgs{...} }
+type GetListenerHealthsListenerArrayInput interface {
+	pulumi.Input
+
+	ToGetListenerHealthsListenerArrayOutput() GetListenerHealthsListenerArrayOutput
+	ToGetListenerHealthsListenerArrayOutputWithContext(context.Context) GetListenerHealthsListenerArrayOutput
+}
+
+type GetListenerHealthsListenerArray []GetListenerHealthsListenerInput
+
+func (GetListenerHealthsListenerArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetListenerHealthsListener)(nil)).Elem()
+}
+
+func (i GetListenerHealthsListenerArray) ToGetListenerHealthsListenerArrayOutput() GetListenerHealthsListenerArrayOutput {
+	return i.ToGetListenerHealthsListenerArrayOutputWithContext(context.Background())
+}
+
+func (i GetListenerHealthsListenerArray) ToGetListenerHealthsListenerArrayOutputWithContext(ctx context.Context) GetListenerHealthsListenerArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetListenerHealthsListenerArrayOutput)
+}
+
+type GetListenerHealthsListenerOutput struct{ *pulumi.OutputState }
+
+func (GetListenerHealthsListenerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetListenerHealthsListener)(nil)).Elem()
+}
+
+func (o GetListenerHealthsListenerOutput) ToGetListenerHealthsListenerOutput() GetListenerHealthsListenerOutput {
+	return o
+}
+
+func (o GetListenerHealthsListenerOutput) ToGetListenerHealthsListenerOutputWithContext(ctx context.Context) GetListenerHealthsListenerOutput {
+	return o
+}
+
+// The list of backend server health details.
+func (o GetListenerHealthsListenerOutput) BackendServers() GetListenerHealthsListenerBackendServerArrayOutput {
+	return o.ApplyT(func(v GetListenerHealthsListener) []GetListenerHealthsListenerBackendServer { return v.BackendServers }).(GetListenerHealthsListenerBackendServerArrayOutput)
+}
+
+// The ID of the listener.
+func (o GetListenerHealthsListenerOutput) ListenerId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenerHealthsListener) string { return v.ListenerId }).(pulumi.StringOutput)
+}
+
+// The status of the listener. Value: Active, Error, NoTarget, Disabled.
+func (o GetListenerHealthsListenerOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenerHealthsListener) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The total count of backend servers under the listener.
+func (o GetListenerHealthsListenerOutput) TotalBackendServerCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetListenerHealthsListener) int { return v.TotalBackendServerCount }).(pulumi.IntOutput)
+}
+
+// The count of backend servers with abnormal health check status.
+func (o GetListenerHealthsListenerOutput) UnHealthyCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetListenerHealthsListener) int { return v.UnHealthyCount }).(pulumi.IntOutput)
+}
+
+type GetListenerHealthsListenerArrayOutput struct{ *pulumi.OutputState }
+
+func (GetListenerHealthsListenerArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetListenerHealthsListener)(nil)).Elem()
+}
+
+func (o GetListenerHealthsListenerArrayOutput) ToGetListenerHealthsListenerArrayOutput() GetListenerHealthsListenerArrayOutput {
+	return o
+}
+
+func (o GetListenerHealthsListenerArrayOutput) ToGetListenerHealthsListenerArrayOutputWithContext(ctx context.Context) GetListenerHealthsListenerArrayOutput {
+	return o
+}
+
+func (o GetListenerHealthsListenerArrayOutput) Index(i pulumi.IntInput) GetListenerHealthsListenerOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetListenerHealthsListener {
+		return vs[0].([]GetListenerHealthsListener)[vs[1].(int)]
+	}).(GetListenerHealthsListenerOutput)
+}
+
+type GetListenerHealthsListenerBackendServer struct {
+	// The ID of the ECS instance or ENI.
+	InstanceId string `pulumi:"instanceId"`
+	// The IP address of the backend server.
+	Ip string `pulumi:"ip"`
+	// The port of the backend server.
+	Port int `pulumi:"port"`
+	// The number of forwarding rules associated with the backend server.
+	RuleNumber int `pulumi:"ruleNumber"`
+	// The ID of the backend server group.
+	ServerGroupId string `pulumi:"serverGroupId"`
+	// The name of the backend server group.
+	ServerGroupName string `pulumi:"serverGroupName"`
+	// The ID of the backend server.
+	ServerId string `pulumi:"serverId"`
+	// The health status of the backend server. Value: Up, Down.
+	Status string `pulumi:"status"`
+	// The type of backend server. Value: ecs, eni.
+	Type string `pulumi:"type"`
+}
+
+// GetListenerHealthsListenerBackendServerInput is an input type that accepts GetListenerHealthsListenerBackendServerArgs and GetListenerHealthsListenerBackendServerOutput values.
+// You can construct a concrete instance of `GetListenerHealthsListenerBackendServerInput` via:
+//
+//	GetListenerHealthsListenerBackendServerArgs{...}
+type GetListenerHealthsListenerBackendServerInput interface {
+	pulumi.Input
+
+	ToGetListenerHealthsListenerBackendServerOutput() GetListenerHealthsListenerBackendServerOutput
+	ToGetListenerHealthsListenerBackendServerOutputWithContext(context.Context) GetListenerHealthsListenerBackendServerOutput
+}
+
+type GetListenerHealthsListenerBackendServerArgs struct {
+	// The ID of the ECS instance or ENI.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// The IP address of the backend server.
+	Ip pulumi.StringInput `pulumi:"ip"`
+	// The port of the backend server.
+	Port pulumi.IntInput `pulumi:"port"`
+	// The number of forwarding rules associated with the backend server.
+	RuleNumber pulumi.IntInput `pulumi:"ruleNumber"`
+	// The ID of the backend server group.
+	ServerGroupId pulumi.StringInput `pulumi:"serverGroupId"`
+	// The name of the backend server group.
+	ServerGroupName pulumi.StringInput `pulumi:"serverGroupName"`
+	// The ID of the backend server.
+	ServerId pulumi.StringInput `pulumi:"serverId"`
+	// The health status of the backend server. Value: Up, Down.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The type of backend server. Value: ecs, eni.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetListenerHealthsListenerBackendServerArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetListenerHealthsListenerBackendServer)(nil)).Elem()
+}
+
+func (i GetListenerHealthsListenerBackendServerArgs) ToGetListenerHealthsListenerBackendServerOutput() GetListenerHealthsListenerBackendServerOutput {
+	return i.ToGetListenerHealthsListenerBackendServerOutputWithContext(context.Background())
+}
+
+func (i GetListenerHealthsListenerBackendServerArgs) ToGetListenerHealthsListenerBackendServerOutputWithContext(ctx context.Context) GetListenerHealthsListenerBackendServerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetListenerHealthsListenerBackendServerOutput)
+}
+
+// GetListenerHealthsListenerBackendServerArrayInput is an input type that accepts GetListenerHealthsListenerBackendServerArray and GetListenerHealthsListenerBackendServerArrayOutput values.
+// You can construct a concrete instance of `GetListenerHealthsListenerBackendServerArrayInput` via:
+//
+//	GetListenerHealthsListenerBackendServerArray{ GetListenerHealthsListenerBackendServerArgs{...} }
+type GetListenerHealthsListenerBackendServerArrayInput interface {
+	pulumi.Input
+
+	ToGetListenerHealthsListenerBackendServerArrayOutput() GetListenerHealthsListenerBackendServerArrayOutput
+	ToGetListenerHealthsListenerBackendServerArrayOutputWithContext(context.Context) GetListenerHealthsListenerBackendServerArrayOutput
+}
+
+type GetListenerHealthsListenerBackendServerArray []GetListenerHealthsListenerBackendServerInput
+
+func (GetListenerHealthsListenerBackendServerArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetListenerHealthsListenerBackendServer)(nil)).Elem()
+}
+
+func (i GetListenerHealthsListenerBackendServerArray) ToGetListenerHealthsListenerBackendServerArrayOutput() GetListenerHealthsListenerBackendServerArrayOutput {
+	return i.ToGetListenerHealthsListenerBackendServerArrayOutputWithContext(context.Background())
+}
+
+func (i GetListenerHealthsListenerBackendServerArray) ToGetListenerHealthsListenerBackendServerArrayOutputWithContext(ctx context.Context) GetListenerHealthsListenerBackendServerArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetListenerHealthsListenerBackendServerArrayOutput)
+}
+
+type GetListenerHealthsListenerBackendServerOutput struct{ *pulumi.OutputState }
+
+func (GetListenerHealthsListenerBackendServerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetListenerHealthsListenerBackendServer)(nil)).Elem()
+}
+
+func (o GetListenerHealthsListenerBackendServerOutput) ToGetListenerHealthsListenerBackendServerOutput() GetListenerHealthsListenerBackendServerOutput {
+	return o
+}
+
+func (o GetListenerHealthsListenerBackendServerOutput) ToGetListenerHealthsListenerBackendServerOutputWithContext(ctx context.Context) GetListenerHealthsListenerBackendServerOutput {
+	return o
+}
+
+// The ID of the ECS instance or ENI.
+func (o GetListenerHealthsListenerBackendServerOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenerHealthsListenerBackendServer) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// The IP address of the backend server.
+func (o GetListenerHealthsListenerBackendServerOutput) Ip() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenerHealthsListenerBackendServer) string { return v.Ip }).(pulumi.StringOutput)
+}
+
+// The port of the backend server.
+func (o GetListenerHealthsListenerBackendServerOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v GetListenerHealthsListenerBackendServer) int { return v.Port }).(pulumi.IntOutput)
+}
+
+// The number of forwarding rules associated with the backend server.
+func (o GetListenerHealthsListenerBackendServerOutput) RuleNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v GetListenerHealthsListenerBackendServer) int { return v.RuleNumber }).(pulumi.IntOutput)
+}
+
+// The ID of the backend server group.
+func (o GetListenerHealthsListenerBackendServerOutput) ServerGroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenerHealthsListenerBackendServer) string { return v.ServerGroupId }).(pulumi.StringOutput)
+}
+
+// The name of the backend server group.
+func (o GetListenerHealthsListenerBackendServerOutput) ServerGroupName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenerHealthsListenerBackendServer) string { return v.ServerGroupName }).(pulumi.StringOutput)
+}
+
+// The ID of the backend server.
+func (o GetListenerHealthsListenerBackendServerOutput) ServerId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenerHealthsListenerBackendServer) string { return v.ServerId }).(pulumi.StringOutput)
+}
+
+// The health status of the backend server. Value: Up, Down.
+func (o GetListenerHealthsListenerBackendServerOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenerHealthsListenerBackendServer) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The type of backend server. Value: ecs, eni.
+func (o GetListenerHealthsListenerBackendServerOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenerHealthsListenerBackendServer) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetListenerHealthsListenerBackendServerArrayOutput struct{ *pulumi.OutputState }
+
+func (GetListenerHealthsListenerBackendServerArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetListenerHealthsListenerBackendServer)(nil)).Elem()
+}
+
+func (o GetListenerHealthsListenerBackendServerArrayOutput) ToGetListenerHealthsListenerBackendServerArrayOutput() GetListenerHealthsListenerBackendServerArrayOutput {
+	return o
+}
+
+func (o GetListenerHealthsListenerBackendServerArrayOutput) ToGetListenerHealthsListenerBackendServerArrayOutputWithContext(ctx context.Context) GetListenerHealthsListenerBackendServerArrayOutput {
+	return o
+}
+
+func (o GetListenerHealthsListenerBackendServerArrayOutput) Index(i pulumi.IntInput) GetListenerHealthsListenerBackendServerOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetListenerHealthsListenerBackendServer {
+		return vs[0].([]GetListenerHealthsListenerBackendServer)[vs[1].(int)]
+	}).(GetListenerHealthsListenerBackendServerOutput)
+}
+
 type GetListenersListener struct {
+	// Whether the listener has enabled the "Log custom headers in the access log" feature.
+	AccessLogRecordCustomizedHeadersEnabled string `pulumi:"accessLogRecordCustomizedHeadersEnabled"`
 	// The ID of the access control policy group bound to the listener, only returned when the AclStatus parameter is on.
 	AclIds []string `pulumi:"aclIds"`
 	// Whether to enable the access control function,valid value is on or off.
@@ -9767,7 +19278,9 @@ type GetListenersListener struct {
 	AclType string `pulumi:"aclType"`
 	// CA certificate ID associated with HTTPS listener.
 	CaCertificateId string `pulumi:"caCertificateId"`
-	// The certificate id associated with the listener. Source is `certCenter`.
+	// The source of the CA certificate associated with the HTTPS listener.
+	CaCertificateSource string `pulumi:"caCertificateSource"`
+	// The server certificate ID used by the domain name. It takes effect when the certificate source is cert_center.
 	CertCenterCertificateId string `pulumi:"certCenterCertificateId"`
 	// The server certificate ID that domain used.
 	CertificateId string `pulumi:"certificateId"`
@@ -9795,6 +19308,12 @@ type GetListenersListener struct {
 	ListenerName string `pulumi:"listenerName"`
 	// The id of the Alb.
 	LoadBalancerId string `pulumi:"loadBalancerId"`
+	// The certificate ID associated with the HTTPS listener. Effective when the certificate source is pca_leaf.
+	PcaLeafCertificateId string `pulumi:"pcaLeafCertificateId"`
+	// The CA certificate ID associated with the HTTPS listener. It takes effect when the certificate source is pca_root.
+	PcaRootCaCertificateId string `pulumi:"pcaRootCaCertificateId"`
+	// The CA certificate ID associated with the HTTPS listener. Effective when the certificate source is pca_sub.
+	PcaSubCaCertificateId string `pulumi:"pcaSubCaCertificateId"`
 	// The port receiving request of the Listener.
 	Port int `pulumi:"port"`
 	// The project name of the listener.
@@ -9807,6 +19326,8 @@ type GetListenersListener struct {
 	ServerGroups []GetListenersListenerServerGroup `pulumi:"serverGroups"`
 	// The status of the Listener.
 	Status string `pulumi:"status"`
+	// Tags.
+	Tags []GetListenersListenerTag `pulumi:"tags"`
 	// The update time of the Listener.
 	UpdateTime string `pulumi:"updateTime"`
 }
@@ -9823,6 +19344,8 @@ type GetListenersListenerInput interface {
 }
 
 type GetListenersListenerArgs struct {
+	// Whether the listener has enabled the "Log custom headers in the access log" feature.
+	AccessLogRecordCustomizedHeadersEnabled pulumi.StringInput `pulumi:"accessLogRecordCustomizedHeadersEnabled"`
 	// The ID of the access control policy group bound to the listener, only returned when the AclStatus parameter is on.
 	AclIds pulumi.StringArrayInput `pulumi:"aclIds"`
 	// Whether to enable the access control function,valid value is on or off.
@@ -9831,7 +19354,9 @@ type GetListenersListenerArgs struct {
 	AclType pulumi.StringInput `pulumi:"aclType"`
 	// CA certificate ID associated with HTTPS listener.
 	CaCertificateId pulumi.StringInput `pulumi:"caCertificateId"`
-	// The certificate id associated with the listener. Source is `certCenter`.
+	// The source of the CA certificate associated with the HTTPS listener.
+	CaCertificateSource pulumi.StringInput `pulumi:"caCertificateSource"`
+	// The server certificate ID used by the domain name. It takes effect when the certificate source is cert_center.
 	CertCenterCertificateId pulumi.StringInput `pulumi:"certCenterCertificateId"`
 	// The server certificate ID that domain used.
 	CertificateId pulumi.StringInput `pulumi:"certificateId"`
@@ -9859,6 +19384,12 @@ type GetListenersListenerArgs struct {
 	ListenerName pulumi.StringInput `pulumi:"listenerName"`
 	// The id of the Alb.
 	LoadBalancerId pulumi.StringInput `pulumi:"loadBalancerId"`
+	// The certificate ID associated with the HTTPS listener. Effective when the certificate source is pca_leaf.
+	PcaLeafCertificateId pulumi.StringInput `pulumi:"pcaLeafCertificateId"`
+	// The CA certificate ID associated with the HTTPS listener. It takes effect when the certificate source is pca_root.
+	PcaRootCaCertificateId pulumi.StringInput `pulumi:"pcaRootCaCertificateId"`
+	// The CA certificate ID associated with the HTTPS listener. Effective when the certificate source is pca_sub.
+	PcaSubCaCertificateId pulumi.StringInput `pulumi:"pcaSubCaCertificateId"`
 	// The port receiving request of the Listener.
 	Port pulumi.IntInput `pulumi:"port"`
 	// The project name of the listener.
@@ -9871,6 +19402,8 @@ type GetListenersListenerArgs struct {
 	ServerGroups GetListenersListenerServerGroupArrayInput `pulumi:"serverGroups"`
 	// The status of the Listener.
 	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags GetListenersListenerTagArrayInput `pulumi:"tags"`
 	// The update time of the Listener.
 	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
 }
@@ -9926,6 +19459,11 @@ func (o GetListenersListenerOutput) ToGetListenersListenerOutputWithContext(ctx 
 	return o
 }
 
+// Whether the listener has enabled the "Log custom headers in the access log" feature.
+func (o GetListenersListenerOutput) AccessLogRecordCustomizedHeadersEnabled() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersListener) string { return v.AccessLogRecordCustomizedHeadersEnabled }).(pulumi.StringOutput)
+}
+
 // The ID of the access control policy group bound to the listener, only returned when the AclStatus parameter is on.
 func (o GetListenersListenerOutput) AclIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetListenersListener) []string { return v.AclIds }).(pulumi.StringArrayOutput)
@@ -9946,7 +19484,12 @@ func (o GetListenersListenerOutput) CaCertificateId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetListenersListener) string { return v.CaCertificateId }).(pulumi.StringOutput)
 }
 
-// The certificate id associated with the listener. Source is `certCenter`.
+// The source of the CA certificate associated with the HTTPS listener.
+func (o GetListenersListenerOutput) CaCertificateSource() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersListener) string { return v.CaCertificateSource }).(pulumi.StringOutput)
+}
+
+// The server certificate ID used by the domain name. It takes effect when the certificate source is cert_center.
 func (o GetListenersListenerOutput) CertCenterCertificateId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetListenersListener) string { return v.CertCenterCertificateId }).(pulumi.StringOutput)
 }
@@ -10016,6 +19559,21 @@ func (o GetListenersListenerOutput) LoadBalancerId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetListenersListener) string { return v.LoadBalancerId }).(pulumi.StringOutput)
 }
 
+// The certificate ID associated with the HTTPS listener. Effective when the certificate source is pca_leaf.
+func (o GetListenersListenerOutput) PcaLeafCertificateId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersListener) string { return v.PcaLeafCertificateId }).(pulumi.StringOutput)
+}
+
+// The CA certificate ID associated with the HTTPS listener. It takes effect when the certificate source is pca_root.
+func (o GetListenersListenerOutput) PcaRootCaCertificateId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersListener) string { return v.PcaRootCaCertificateId }).(pulumi.StringOutput)
+}
+
+// The CA certificate ID associated with the HTTPS listener. Effective when the certificate source is pca_sub.
+func (o GetListenersListenerOutput) PcaSubCaCertificateId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersListener) string { return v.PcaSubCaCertificateId }).(pulumi.StringOutput)
+}
+
 // The port receiving request of the Listener.
 func (o GetListenersListenerOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v GetListenersListener) int { return v.Port }).(pulumi.IntOutput)
@@ -10046,6 +19604,11 @@ func (o GetListenersListenerOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v GetListenersListener) string { return v.Status }).(pulumi.StringOutput)
 }
 
+// Tags.
+func (o GetListenersListenerOutput) Tags() GetListenersListenerTagArrayOutput {
+	return o.ApplyT(func(v GetListenersListener) []GetListenersListenerTag { return v.Tags }).(GetListenersListenerTagArrayOutput)
+}
+
 // The update time of the Listener.
 func (o GetListenersListenerOutput) UpdateTime() pulumi.StringOutput {
 	return o.ApplyT(func(v GetListenersListener) string { return v.UpdateTime }).(pulumi.StringOutput)
@@ -10072,14 +19635,22 @@ func (o GetListenersListenerArrayOutput) Index(i pulumi.IntInput) GetListenersLi
 }
 
 type GetListenersListenerDomainExtension struct {
+	// The server certificate ID used by the domain name. It takes effect when the certificate source is cert_center.
+	CertCenterCertificateId string `pulumi:"certCenterCertificateId"`
 	// The server certificate ID that domain used.
 	CertificateId string `pulumi:"certificateId"`
+	// The source of the certificate.
+	CertificateSource string `pulumi:"certificateSource"`
 	// The domain.
 	Domain string `pulumi:"domain"`
 	// The extension domain ID.
 	DomainExtensionId string `pulumi:"domainExtensionId"`
 	// The ID of the Listener.
 	ListenerId string `pulumi:"listenerId"`
+	// The certificate ID associated with the HTTPS listener. Effective when the certificate source is pca_leaf.
+	PcaLeafCertificateId string `pulumi:"pcaLeafCertificateId"`
+	// The CommonName, extended domain names, and IPs of the certificate are separated by ','.
+	San string `pulumi:"san"`
 }
 
 // GetListenersListenerDomainExtensionInput is an input type that accepts GetListenersListenerDomainExtensionArgs and GetListenersListenerDomainExtensionOutput values.
@@ -10094,14 +19665,22 @@ type GetListenersListenerDomainExtensionInput interface {
 }
 
 type GetListenersListenerDomainExtensionArgs struct {
+	// The server certificate ID used by the domain name. It takes effect when the certificate source is cert_center.
+	CertCenterCertificateId pulumi.StringInput `pulumi:"certCenterCertificateId"`
 	// The server certificate ID that domain used.
 	CertificateId pulumi.StringInput `pulumi:"certificateId"`
+	// The source of the certificate.
+	CertificateSource pulumi.StringInput `pulumi:"certificateSource"`
 	// The domain.
 	Domain pulumi.StringInput `pulumi:"domain"`
 	// The extension domain ID.
 	DomainExtensionId pulumi.StringInput `pulumi:"domainExtensionId"`
 	// The ID of the Listener.
 	ListenerId pulumi.StringInput `pulumi:"listenerId"`
+	// The certificate ID associated with the HTTPS listener. Effective when the certificate source is pca_leaf.
+	PcaLeafCertificateId pulumi.StringInput `pulumi:"pcaLeafCertificateId"`
+	// The CommonName, extended domain names, and IPs of the certificate are separated by ','.
+	San pulumi.StringInput `pulumi:"san"`
 }
 
 func (GetListenersListenerDomainExtensionArgs) ElementType() reflect.Type {
@@ -10155,9 +19734,19 @@ func (o GetListenersListenerDomainExtensionOutput) ToGetListenersListenerDomainE
 	return o
 }
 
+// The server certificate ID used by the domain name. It takes effect when the certificate source is cert_center.
+func (o GetListenersListenerDomainExtensionOutput) CertCenterCertificateId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersListenerDomainExtension) string { return v.CertCenterCertificateId }).(pulumi.StringOutput)
+}
+
 // The server certificate ID that domain used.
 func (o GetListenersListenerDomainExtensionOutput) CertificateId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetListenersListenerDomainExtension) string { return v.CertificateId }).(pulumi.StringOutput)
+}
+
+// The source of the certificate.
+func (o GetListenersListenerDomainExtensionOutput) CertificateSource() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersListenerDomainExtension) string { return v.CertificateSource }).(pulumi.StringOutput)
 }
 
 // The domain.
@@ -10173,6 +19762,16 @@ func (o GetListenersListenerDomainExtensionOutput) DomainExtensionId() pulumi.St
 // The ID of the Listener.
 func (o GetListenersListenerDomainExtensionOutput) ListenerId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetListenersListenerDomainExtension) string { return v.ListenerId }).(pulumi.StringOutput)
+}
+
+// The certificate ID associated with the HTTPS listener. Effective when the certificate source is pca_leaf.
+func (o GetListenersListenerDomainExtensionOutput) PcaLeafCertificateId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersListenerDomainExtension) string { return v.PcaLeafCertificateId }).(pulumi.StringOutput)
+}
+
+// The CommonName, extended domain names, and IPs of the certificate are separated by ','.
+func (o GetListenersListenerDomainExtensionOutput) San() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersListenerDomainExtension) string { return v.San }).(pulumi.StringOutput)
 }
 
 type GetListenersListenerDomainExtensionArrayOutput struct{ *pulumi.OutputState }
@@ -10301,16 +19900,232 @@ func (o GetListenersListenerServerGroupArrayOutput) Index(i pulumi.IntInput) Get
 	}).(GetListenersListenerServerGroupOutput)
 }
 
+type GetListenersListenerTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetListenersListenerTagInput is an input type that accepts GetListenersListenerTagArgs and GetListenersListenerTagOutput values.
+// You can construct a concrete instance of `GetListenersListenerTagInput` via:
+//
+//	GetListenersListenerTagArgs{...}
+type GetListenersListenerTagInput interface {
+	pulumi.Input
+
+	ToGetListenersListenerTagOutput() GetListenersListenerTagOutput
+	ToGetListenersListenerTagOutputWithContext(context.Context) GetListenersListenerTagOutput
+}
+
+type GetListenersListenerTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetListenersListenerTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetListenersListenerTag)(nil)).Elem()
+}
+
+func (i GetListenersListenerTagArgs) ToGetListenersListenerTagOutput() GetListenersListenerTagOutput {
+	return i.ToGetListenersListenerTagOutputWithContext(context.Background())
+}
+
+func (i GetListenersListenerTagArgs) ToGetListenersListenerTagOutputWithContext(ctx context.Context) GetListenersListenerTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetListenersListenerTagOutput)
+}
+
+// GetListenersListenerTagArrayInput is an input type that accepts GetListenersListenerTagArray and GetListenersListenerTagArrayOutput values.
+// You can construct a concrete instance of `GetListenersListenerTagArrayInput` via:
+//
+//	GetListenersListenerTagArray{ GetListenersListenerTagArgs{...} }
+type GetListenersListenerTagArrayInput interface {
+	pulumi.Input
+
+	ToGetListenersListenerTagArrayOutput() GetListenersListenerTagArrayOutput
+	ToGetListenersListenerTagArrayOutputWithContext(context.Context) GetListenersListenerTagArrayOutput
+}
+
+type GetListenersListenerTagArray []GetListenersListenerTagInput
+
+func (GetListenersListenerTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetListenersListenerTag)(nil)).Elem()
+}
+
+func (i GetListenersListenerTagArray) ToGetListenersListenerTagArrayOutput() GetListenersListenerTagArrayOutput {
+	return i.ToGetListenersListenerTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetListenersListenerTagArray) ToGetListenersListenerTagArrayOutputWithContext(ctx context.Context) GetListenersListenerTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetListenersListenerTagArrayOutput)
+}
+
+type GetListenersListenerTagOutput struct{ *pulumi.OutputState }
+
+func (GetListenersListenerTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetListenersListenerTag)(nil)).Elem()
+}
+
+func (o GetListenersListenerTagOutput) ToGetListenersListenerTagOutput() GetListenersListenerTagOutput {
+	return o
+}
+
+func (o GetListenersListenerTagOutput) ToGetListenersListenerTagOutputWithContext(ctx context.Context) GetListenersListenerTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetListenersListenerTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersListenerTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetListenersListenerTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersListenerTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetListenersListenerTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetListenersListenerTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetListenersListenerTag)(nil)).Elem()
+}
+
+func (o GetListenersListenerTagArrayOutput) ToGetListenersListenerTagArrayOutput() GetListenersListenerTagArrayOutput {
+	return o
+}
+
+func (o GetListenersListenerTagArrayOutput) ToGetListenersListenerTagArrayOutputWithContext(ctx context.Context) GetListenersListenerTagArrayOutput {
+	return o
+}
+
+func (o GetListenersListenerTagArrayOutput) Index(i pulumi.IntInput) GetListenersListenerTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetListenersListenerTag {
+		return vs[0].([]GetListenersListenerTag)[vs[1].(int)]
+	}).(GetListenersListenerTagOutput)
+}
+
+type GetListenersTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetListenersTagInput is an input type that accepts GetListenersTagArgs and GetListenersTagOutput values.
+// You can construct a concrete instance of `GetListenersTagInput` via:
+//
+//	GetListenersTagArgs{...}
+type GetListenersTagInput interface {
+	pulumi.Input
+
+	ToGetListenersTagOutput() GetListenersTagOutput
+	ToGetListenersTagOutputWithContext(context.Context) GetListenersTagOutput
+}
+
+type GetListenersTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetListenersTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetListenersTag)(nil)).Elem()
+}
+
+func (i GetListenersTagArgs) ToGetListenersTagOutput() GetListenersTagOutput {
+	return i.ToGetListenersTagOutputWithContext(context.Background())
+}
+
+func (i GetListenersTagArgs) ToGetListenersTagOutputWithContext(ctx context.Context) GetListenersTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetListenersTagOutput)
+}
+
+// GetListenersTagArrayInput is an input type that accepts GetListenersTagArray and GetListenersTagArrayOutput values.
+// You can construct a concrete instance of `GetListenersTagArrayInput` via:
+//
+//	GetListenersTagArray{ GetListenersTagArgs{...} }
+type GetListenersTagArrayInput interface {
+	pulumi.Input
+
+	ToGetListenersTagArrayOutput() GetListenersTagArrayOutput
+	ToGetListenersTagArrayOutputWithContext(context.Context) GetListenersTagArrayOutput
+}
+
+type GetListenersTagArray []GetListenersTagInput
+
+func (GetListenersTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetListenersTag)(nil)).Elem()
+}
+
+func (i GetListenersTagArray) ToGetListenersTagArrayOutput() GetListenersTagArrayOutput {
+	return i.ToGetListenersTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetListenersTagArray) ToGetListenersTagArrayOutputWithContext(ctx context.Context) GetListenersTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetListenersTagArrayOutput)
+}
+
+type GetListenersTagOutput struct{ *pulumi.OutputState }
+
+func (GetListenersTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetListenersTag)(nil)).Elem()
+}
+
+func (o GetListenersTagOutput) ToGetListenersTagOutput() GetListenersTagOutput {
+	return o
+}
+
+func (o GetListenersTagOutput) ToGetListenersTagOutputWithContext(ctx context.Context) GetListenersTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetListenersTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetListenersTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetListenersTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetListenersTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetListenersTag)(nil)).Elem()
+}
+
+func (o GetListenersTagArrayOutput) ToGetListenersTagArrayOutput() GetListenersTagArrayOutput {
+	return o
+}
+
+func (o GetListenersTagArrayOutput) ToGetListenersTagArrayOutputWithContext(ctx context.Context) GetListenersTagArrayOutput {
+	return o
+}
+
+func (o GetListenersTagArrayOutput) Index(i pulumi.IntInput) GetListenersTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetListenersTag {
+		return vs[0].([]GetListenersTag)[vs[1].(int)]
+	}).(GetListenersTagOutput)
+}
+
 type GetRulesRule struct {
 	// The Description of Rule.
 	Description string `pulumi:"description"`
 	// The Domain of Rule.
 	Domain string `pulumi:"domain"`
+	// Forward group configuration for ForwardGroup type action.
+	ForwardGroupConfigs []GetRulesRuleForwardGroupConfig `pulumi:"forwardGroupConfigs"`
 	// The Id of Rule.
 	Id string `pulumi:"id"`
-	// Redirect related configuration.
+	// The priority of the Rule. Only the standard version is supported.
+	Priority int `pulumi:"priority"`
+	// Redirect configuration for Redirect type action.
 	RedirectConfigs []GetRulesRuleRedirectConfig `pulumi:"redirectConfigs"`
-	// The list of rewrite configurations.
+	// Rewrite configuration for Rewrite type action.
 	RewriteConfigs []GetRulesRuleRewriteConfig `pulumi:"rewriteConfigs"`
 	// Rewrite configuration switch for forwarding rules, only allows configuration and takes effect when RuleAction is empty (i.e., forwarding to server group). Only available for whitelist users, please submit an application to experience. Supported values are as follows:
 	// on: enable.
@@ -10318,6 +20133,10 @@ type GetRulesRule struct {
 	RewriteEnabled string `pulumi:"rewriteEnabled"`
 	// The forwarding rule action, if this parameter is empty, forward to server group, if value is `Redirect`, will redirect.
 	RuleAction string `pulumi:"ruleAction"`
+	// The rule actions for standard edition forwarding rules.
+	RuleActions []GetRulesRuleRuleAction `pulumi:"ruleActions"`
+	// The rule conditions for standard edition forwarding rules.
+	RuleConditions []GetRulesRuleRuleCondition `pulumi:"ruleConditions"`
 	// The Id of Rule.
 	RuleId string `pulumi:"ruleId"`
 	// The Id of Server Group.
@@ -10348,11 +20167,15 @@ type GetRulesRuleArgs struct {
 	Description pulumi.StringInput `pulumi:"description"`
 	// The Domain of Rule.
 	Domain pulumi.StringInput `pulumi:"domain"`
+	// Forward group configuration for ForwardGroup type action.
+	ForwardGroupConfigs GetRulesRuleForwardGroupConfigArrayInput `pulumi:"forwardGroupConfigs"`
 	// The Id of Rule.
 	Id pulumi.StringInput `pulumi:"id"`
-	// Redirect related configuration.
+	// The priority of the Rule. Only the standard version is supported.
+	Priority pulumi.IntInput `pulumi:"priority"`
+	// Redirect configuration for Redirect type action.
 	RedirectConfigs GetRulesRuleRedirectConfigArrayInput `pulumi:"redirectConfigs"`
-	// The list of rewrite configurations.
+	// Rewrite configuration for Rewrite type action.
 	RewriteConfigs GetRulesRuleRewriteConfigArrayInput `pulumi:"rewriteConfigs"`
 	// Rewrite configuration switch for forwarding rules, only allows configuration and takes effect when RuleAction is empty (i.e., forwarding to server group). Only available for whitelist users, please submit an application to experience. Supported values are as follows:
 	// on: enable.
@@ -10360,6 +20183,10 @@ type GetRulesRuleArgs struct {
 	RewriteEnabled pulumi.StringInput `pulumi:"rewriteEnabled"`
 	// The forwarding rule action, if this parameter is empty, forward to server group, if value is `Redirect`, will redirect.
 	RuleAction pulumi.StringInput `pulumi:"ruleAction"`
+	// The rule actions for standard edition forwarding rules.
+	RuleActions GetRulesRuleRuleActionArrayInput `pulumi:"ruleActions"`
+	// The rule conditions for standard edition forwarding rules.
+	RuleConditions GetRulesRuleRuleConditionArrayInput `pulumi:"ruleConditions"`
 	// The Id of Rule.
 	RuleId pulumi.StringInput `pulumi:"ruleId"`
 	// The Id of Server Group.
@@ -10435,17 +20262,27 @@ func (o GetRulesRuleOutput) Domain() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRulesRule) string { return v.Domain }).(pulumi.StringOutput)
 }
 
+// Forward group configuration for ForwardGroup type action.
+func (o GetRulesRuleOutput) ForwardGroupConfigs() GetRulesRuleForwardGroupConfigArrayOutput {
+	return o.ApplyT(func(v GetRulesRule) []GetRulesRuleForwardGroupConfig { return v.ForwardGroupConfigs }).(GetRulesRuleForwardGroupConfigArrayOutput)
+}
+
 // The Id of Rule.
 func (o GetRulesRuleOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRulesRule) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Redirect related configuration.
+// The priority of the Rule. Only the standard version is supported.
+func (o GetRulesRuleOutput) Priority() pulumi.IntOutput {
+	return o.ApplyT(func(v GetRulesRule) int { return v.Priority }).(pulumi.IntOutput)
+}
+
+// Redirect configuration for Redirect type action.
 func (o GetRulesRuleOutput) RedirectConfigs() GetRulesRuleRedirectConfigArrayOutput {
 	return o.ApplyT(func(v GetRulesRule) []GetRulesRuleRedirectConfig { return v.RedirectConfigs }).(GetRulesRuleRedirectConfigArrayOutput)
 }
 
-// The list of rewrite configurations.
+// Rewrite configuration for Rewrite type action.
 func (o GetRulesRuleOutput) RewriteConfigs() GetRulesRuleRewriteConfigArrayOutput {
 	return o.ApplyT(func(v GetRulesRule) []GetRulesRuleRewriteConfig { return v.RewriteConfigs }).(GetRulesRuleRewriteConfigArrayOutput)
 }
@@ -10460,6 +20297,16 @@ func (o GetRulesRuleOutput) RewriteEnabled() pulumi.StringOutput {
 // The forwarding rule action, if this parameter is empty, forward to server group, if value is `Redirect`, will redirect.
 func (o GetRulesRuleOutput) RuleAction() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRulesRule) string { return v.RuleAction }).(pulumi.StringOutput)
+}
+
+// The rule actions for standard edition forwarding rules.
+func (o GetRulesRuleOutput) RuleActions() GetRulesRuleRuleActionArrayOutput {
+	return o.ApplyT(func(v GetRulesRule) []GetRulesRuleRuleAction { return v.RuleActions }).(GetRulesRuleRuleActionArrayOutput)
+}
+
+// The rule conditions for standard edition forwarding rules.
+func (o GetRulesRuleOutput) RuleConditions() GetRulesRuleRuleConditionArrayOutput {
+	return o.ApplyT(func(v GetRulesRule) []GetRulesRuleRuleCondition { return v.RuleConditions }).(GetRulesRuleRuleConditionArrayOutput)
 }
 
 // The Id of Rule.
@@ -10509,14 +20356,237 @@ func (o GetRulesRuleArrayOutput) Index(i pulumi.IntInput) GetRulesRuleOutput {
 	}).(GetRulesRuleOutput)
 }
 
+type GetRulesRuleForwardGroupConfig struct {
+	// The server group tuples.
+	ServerGroupTuples []GetRulesRuleForwardGroupConfigServerGroupTuple `pulumi:"serverGroupTuples"`
+	// Whether to enable inter-group session hold.
+	StickySessionEnabled string `pulumi:"stickySessionEnabled"`
+	// The group session stickiness timeout, in seconds.
+	StickySessionTimeout int `pulumi:"stickySessionTimeout"`
+}
+
+// GetRulesRuleForwardGroupConfigInput is an input type that accepts GetRulesRuleForwardGroupConfigArgs and GetRulesRuleForwardGroupConfigOutput values.
+// You can construct a concrete instance of `GetRulesRuleForwardGroupConfigInput` via:
+//
+//	GetRulesRuleForwardGroupConfigArgs{...}
+type GetRulesRuleForwardGroupConfigInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleForwardGroupConfigOutput() GetRulesRuleForwardGroupConfigOutput
+	ToGetRulesRuleForwardGroupConfigOutputWithContext(context.Context) GetRulesRuleForwardGroupConfigOutput
+}
+
+type GetRulesRuleForwardGroupConfigArgs struct {
+	// The server group tuples.
+	ServerGroupTuples GetRulesRuleForwardGroupConfigServerGroupTupleArrayInput `pulumi:"serverGroupTuples"`
+	// Whether to enable inter-group session hold.
+	StickySessionEnabled pulumi.StringInput `pulumi:"stickySessionEnabled"`
+	// The group session stickiness timeout, in seconds.
+	StickySessionTimeout pulumi.IntInput `pulumi:"stickySessionTimeout"`
+}
+
+func (GetRulesRuleForwardGroupConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleForwardGroupConfig)(nil)).Elem()
+}
+
+func (i GetRulesRuleForwardGroupConfigArgs) ToGetRulesRuleForwardGroupConfigOutput() GetRulesRuleForwardGroupConfigOutput {
+	return i.ToGetRulesRuleForwardGroupConfigOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleForwardGroupConfigArgs) ToGetRulesRuleForwardGroupConfigOutputWithContext(ctx context.Context) GetRulesRuleForwardGroupConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleForwardGroupConfigOutput)
+}
+
+// GetRulesRuleForwardGroupConfigArrayInput is an input type that accepts GetRulesRuleForwardGroupConfigArray and GetRulesRuleForwardGroupConfigArrayOutput values.
+// You can construct a concrete instance of `GetRulesRuleForwardGroupConfigArrayInput` via:
+//
+//	GetRulesRuleForwardGroupConfigArray{ GetRulesRuleForwardGroupConfigArgs{...} }
+type GetRulesRuleForwardGroupConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleForwardGroupConfigArrayOutput() GetRulesRuleForwardGroupConfigArrayOutput
+	ToGetRulesRuleForwardGroupConfigArrayOutputWithContext(context.Context) GetRulesRuleForwardGroupConfigArrayOutput
+}
+
+type GetRulesRuleForwardGroupConfigArray []GetRulesRuleForwardGroupConfigInput
+
+func (GetRulesRuleForwardGroupConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleForwardGroupConfig)(nil)).Elem()
+}
+
+func (i GetRulesRuleForwardGroupConfigArray) ToGetRulesRuleForwardGroupConfigArrayOutput() GetRulesRuleForwardGroupConfigArrayOutput {
+	return i.ToGetRulesRuleForwardGroupConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleForwardGroupConfigArray) ToGetRulesRuleForwardGroupConfigArrayOutputWithContext(ctx context.Context) GetRulesRuleForwardGroupConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleForwardGroupConfigArrayOutput)
+}
+
+type GetRulesRuleForwardGroupConfigOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleForwardGroupConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleForwardGroupConfig)(nil)).Elem()
+}
+
+func (o GetRulesRuleForwardGroupConfigOutput) ToGetRulesRuleForwardGroupConfigOutput() GetRulesRuleForwardGroupConfigOutput {
+	return o
+}
+
+func (o GetRulesRuleForwardGroupConfigOutput) ToGetRulesRuleForwardGroupConfigOutputWithContext(ctx context.Context) GetRulesRuleForwardGroupConfigOutput {
+	return o
+}
+
+// The server group tuples.
+func (o GetRulesRuleForwardGroupConfigOutput) ServerGroupTuples() GetRulesRuleForwardGroupConfigServerGroupTupleArrayOutput {
+	return o.ApplyT(func(v GetRulesRuleForwardGroupConfig) []GetRulesRuleForwardGroupConfigServerGroupTuple {
+		return v.ServerGroupTuples
+	}).(GetRulesRuleForwardGroupConfigServerGroupTupleArrayOutput)
+}
+
+// Whether to enable inter-group session hold.
+func (o GetRulesRuleForwardGroupConfigOutput) StickySessionEnabled() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRuleForwardGroupConfig) string { return v.StickySessionEnabled }).(pulumi.StringOutput)
+}
+
+// The group session stickiness timeout, in seconds.
+func (o GetRulesRuleForwardGroupConfigOutput) StickySessionTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v GetRulesRuleForwardGroupConfig) int { return v.StickySessionTimeout }).(pulumi.IntOutput)
+}
+
+type GetRulesRuleForwardGroupConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleForwardGroupConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleForwardGroupConfig)(nil)).Elem()
+}
+
+func (o GetRulesRuleForwardGroupConfigArrayOutput) ToGetRulesRuleForwardGroupConfigArrayOutput() GetRulesRuleForwardGroupConfigArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleForwardGroupConfigArrayOutput) ToGetRulesRuleForwardGroupConfigArrayOutputWithContext(ctx context.Context) GetRulesRuleForwardGroupConfigArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleForwardGroupConfigArrayOutput) Index(i pulumi.IntInput) GetRulesRuleForwardGroupConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRulesRuleForwardGroupConfig {
+		return vs[0].([]GetRulesRuleForwardGroupConfig)[vs[1].(int)]
+	}).(GetRulesRuleForwardGroupConfigOutput)
+}
+
+type GetRulesRuleForwardGroupConfigServerGroupTuple struct {
+	// The Id of Server Group.
+	ServerGroupId string `pulumi:"serverGroupId"`
+	// The weight of the server group.
+	Weight string `pulumi:"weight"`
+}
+
+// GetRulesRuleForwardGroupConfigServerGroupTupleInput is an input type that accepts GetRulesRuleForwardGroupConfigServerGroupTupleArgs and GetRulesRuleForwardGroupConfigServerGroupTupleOutput values.
+// You can construct a concrete instance of `GetRulesRuleForwardGroupConfigServerGroupTupleInput` via:
+//
+//	GetRulesRuleForwardGroupConfigServerGroupTupleArgs{...}
+type GetRulesRuleForwardGroupConfigServerGroupTupleInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleForwardGroupConfigServerGroupTupleOutput() GetRulesRuleForwardGroupConfigServerGroupTupleOutput
+	ToGetRulesRuleForwardGroupConfigServerGroupTupleOutputWithContext(context.Context) GetRulesRuleForwardGroupConfigServerGroupTupleOutput
+}
+
+type GetRulesRuleForwardGroupConfigServerGroupTupleArgs struct {
+	// The Id of Server Group.
+	ServerGroupId pulumi.StringInput `pulumi:"serverGroupId"`
+	// The weight of the server group.
+	Weight pulumi.StringInput `pulumi:"weight"`
+}
+
+func (GetRulesRuleForwardGroupConfigServerGroupTupleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleForwardGroupConfigServerGroupTuple)(nil)).Elem()
+}
+
+func (i GetRulesRuleForwardGroupConfigServerGroupTupleArgs) ToGetRulesRuleForwardGroupConfigServerGroupTupleOutput() GetRulesRuleForwardGroupConfigServerGroupTupleOutput {
+	return i.ToGetRulesRuleForwardGroupConfigServerGroupTupleOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleForwardGroupConfigServerGroupTupleArgs) ToGetRulesRuleForwardGroupConfigServerGroupTupleOutputWithContext(ctx context.Context) GetRulesRuleForwardGroupConfigServerGroupTupleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleForwardGroupConfigServerGroupTupleOutput)
+}
+
+// GetRulesRuleForwardGroupConfigServerGroupTupleArrayInput is an input type that accepts GetRulesRuleForwardGroupConfigServerGroupTupleArray and GetRulesRuleForwardGroupConfigServerGroupTupleArrayOutput values.
+// You can construct a concrete instance of `GetRulesRuleForwardGroupConfigServerGroupTupleArrayInput` via:
+//
+//	GetRulesRuleForwardGroupConfigServerGroupTupleArray{ GetRulesRuleForwardGroupConfigServerGroupTupleArgs{...} }
+type GetRulesRuleForwardGroupConfigServerGroupTupleArrayInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleForwardGroupConfigServerGroupTupleArrayOutput() GetRulesRuleForwardGroupConfigServerGroupTupleArrayOutput
+	ToGetRulesRuleForwardGroupConfigServerGroupTupleArrayOutputWithContext(context.Context) GetRulesRuleForwardGroupConfigServerGroupTupleArrayOutput
+}
+
+type GetRulesRuleForwardGroupConfigServerGroupTupleArray []GetRulesRuleForwardGroupConfigServerGroupTupleInput
+
+func (GetRulesRuleForwardGroupConfigServerGroupTupleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleForwardGroupConfigServerGroupTuple)(nil)).Elem()
+}
+
+func (i GetRulesRuleForwardGroupConfigServerGroupTupleArray) ToGetRulesRuleForwardGroupConfigServerGroupTupleArrayOutput() GetRulesRuleForwardGroupConfigServerGroupTupleArrayOutput {
+	return i.ToGetRulesRuleForwardGroupConfigServerGroupTupleArrayOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleForwardGroupConfigServerGroupTupleArray) ToGetRulesRuleForwardGroupConfigServerGroupTupleArrayOutputWithContext(ctx context.Context) GetRulesRuleForwardGroupConfigServerGroupTupleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleForwardGroupConfigServerGroupTupleArrayOutput)
+}
+
+type GetRulesRuleForwardGroupConfigServerGroupTupleOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleForwardGroupConfigServerGroupTupleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleForwardGroupConfigServerGroupTuple)(nil)).Elem()
+}
+
+func (o GetRulesRuleForwardGroupConfigServerGroupTupleOutput) ToGetRulesRuleForwardGroupConfigServerGroupTupleOutput() GetRulesRuleForwardGroupConfigServerGroupTupleOutput {
+	return o
+}
+
+func (o GetRulesRuleForwardGroupConfigServerGroupTupleOutput) ToGetRulesRuleForwardGroupConfigServerGroupTupleOutputWithContext(ctx context.Context) GetRulesRuleForwardGroupConfigServerGroupTupleOutput {
+	return o
+}
+
+// The Id of Server Group.
+func (o GetRulesRuleForwardGroupConfigServerGroupTupleOutput) ServerGroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRuleForwardGroupConfigServerGroupTuple) string { return v.ServerGroupId }).(pulumi.StringOutput)
+}
+
+// The weight of the server group.
+func (o GetRulesRuleForwardGroupConfigServerGroupTupleOutput) Weight() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRuleForwardGroupConfigServerGroupTuple) string { return v.Weight }).(pulumi.StringOutput)
+}
+
+type GetRulesRuleForwardGroupConfigServerGroupTupleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleForwardGroupConfigServerGroupTupleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleForwardGroupConfigServerGroupTuple)(nil)).Elem()
+}
+
+func (o GetRulesRuleForwardGroupConfigServerGroupTupleArrayOutput) ToGetRulesRuleForwardGroupConfigServerGroupTupleArrayOutput() GetRulesRuleForwardGroupConfigServerGroupTupleArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleForwardGroupConfigServerGroupTupleArrayOutput) ToGetRulesRuleForwardGroupConfigServerGroupTupleArrayOutputWithContext(ctx context.Context) GetRulesRuleForwardGroupConfigServerGroupTupleArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleForwardGroupConfigServerGroupTupleArrayOutput) Index(i pulumi.IntInput) GetRulesRuleForwardGroupConfigServerGroupTupleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRulesRuleForwardGroupConfigServerGroupTuple {
+		return vs[0].([]GetRulesRuleForwardGroupConfigServerGroupTuple)[vs[1].(int)]
+	}).(GetRulesRuleForwardGroupConfigServerGroupTupleOutput)
+}
+
 type GetRulesRuleRedirectConfig struct {
 	// The redirect domain.
 	RedirectDomain string `pulumi:"redirectDomain"`
-	// The redirect HTTP code,support 301(default), 302, 307, 308.
+	// The redirect HTTP code.
 	RedirectHttpCode string `pulumi:"redirectHttpCode"`
 	// The redirect port.
 	RedirectPort string `pulumi:"redirectPort"`
-	// The redirect protocol,support HTTP,HTTPS(default).
+	// The redirect protocol.
 	RedirectProtocol string `pulumi:"redirectProtocol"`
 	// The redirect URI.
 	RedirectUri string `pulumi:"redirectUri"`
@@ -10536,11 +20606,11 @@ type GetRulesRuleRedirectConfigInput interface {
 type GetRulesRuleRedirectConfigArgs struct {
 	// The redirect domain.
 	RedirectDomain pulumi.StringInput `pulumi:"redirectDomain"`
-	// The redirect HTTP code,support 301(default), 302, 307, 308.
+	// The redirect HTTP code.
 	RedirectHttpCode pulumi.StringInput `pulumi:"redirectHttpCode"`
 	// The redirect port.
 	RedirectPort pulumi.StringInput `pulumi:"redirectPort"`
-	// The redirect protocol,support HTTP,HTTPS(default).
+	// The redirect protocol.
 	RedirectProtocol pulumi.StringInput `pulumi:"redirectProtocol"`
 	// The redirect URI.
 	RedirectUri pulumi.StringInput `pulumi:"redirectUri"`
@@ -10602,7 +20672,7 @@ func (o GetRulesRuleRedirectConfigOutput) RedirectDomain() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRulesRuleRedirectConfig) string { return v.RedirectDomain }).(pulumi.StringOutput)
 }
 
-// The redirect HTTP code,support 301(default), 302, 307, 308.
+// The redirect HTTP code.
 func (o GetRulesRuleRedirectConfigOutput) RedirectHttpCode() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRulesRuleRedirectConfig) string { return v.RedirectHttpCode }).(pulumi.StringOutput)
 }
@@ -10612,7 +20682,7 @@ func (o GetRulesRuleRedirectConfigOutput) RedirectPort() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRulesRuleRedirectConfig) string { return v.RedirectPort }).(pulumi.StringOutput)
 }
 
-// The redirect protocol,support HTTP,HTTPS(default).
+// The redirect protocol.
 func (o GetRulesRuleRedirectConfigOutput) RedirectProtocol() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRulesRuleRedirectConfig) string { return v.RedirectProtocol }).(pulumi.StringOutput)
 }
@@ -10739,6 +20809,1673 @@ func (o GetRulesRuleRewriteConfigArrayOutput) Index(i pulumi.IntInput) GetRulesR
 	}).(GetRulesRuleRewriteConfigOutput)
 }
 
+type GetRulesRuleRuleAction struct {
+	// Fixed response configuration for fixed response type rule.
+	FixedResponseConfigs []GetRulesRuleRuleActionFixedResponseConfig `pulumi:"fixedResponseConfigs"`
+	// Forward group configuration for ForwardGroup type action.
+	ForwardGroupConfigs []GetRulesRuleRuleActionForwardGroupConfig `pulumi:"forwardGroupConfigs"`
+	// Redirect configuration for Redirect type action.
+	RedirectConfigs []GetRulesRuleRuleActionRedirectConfig `pulumi:"redirectConfigs"`
+	// Rewrite configuration for Rewrite type action.
+	RewriteConfigs []GetRulesRuleRuleActionRewriteConfig `pulumi:"rewriteConfigs"`
+	// Traffic limit configuration for TrafficLimit type action.
+	TrafficLimitConfigs []GetRulesRuleRuleActionTrafficLimitConfig `pulumi:"trafficLimitConfigs"`
+	// The type of rule condition. Valid values: Host, Path, Header.
+	Type string `pulumi:"type"`
+}
+
+// GetRulesRuleRuleActionInput is an input type that accepts GetRulesRuleRuleActionArgs and GetRulesRuleRuleActionOutput values.
+// You can construct a concrete instance of `GetRulesRuleRuleActionInput` via:
+//
+//	GetRulesRuleRuleActionArgs{...}
+type GetRulesRuleRuleActionInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleRuleActionOutput() GetRulesRuleRuleActionOutput
+	ToGetRulesRuleRuleActionOutputWithContext(context.Context) GetRulesRuleRuleActionOutput
+}
+
+type GetRulesRuleRuleActionArgs struct {
+	// Fixed response configuration for fixed response type rule.
+	FixedResponseConfigs GetRulesRuleRuleActionFixedResponseConfigArrayInput `pulumi:"fixedResponseConfigs"`
+	// Forward group configuration for ForwardGroup type action.
+	ForwardGroupConfigs GetRulesRuleRuleActionForwardGroupConfigArrayInput `pulumi:"forwardGroupConfigs"`
+	// Redirect configuration for Redirect type action.
+	RedirectConfigs GetRulesRuleRuleActionRedirectConfigArrayInput `pulumi:"redirectConfigs"`
+	// Rewrite configuration for Rewrite type action.
+	RewriteConfigs GetRulesRuleRuleActionRewriteConfigArrayInput `pulumi:"rewriteConfigs"`
+	// Traffic limit configuration for TrafficLimit type action.
+	TrafficLimitConfigs GetRulesRuleRuleActionTrafficLimitConfigArrayInput `pulumi:"trafficLimitConfigs"`
+	// The type of rule condition. Valid values: Host, Path, Header.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetRulesRuleRuleActionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleRuleAction)(nil)).Elem()
+}
+
+func (i GetRulesRuleRuleActionArgs) ToGetRulesRuleRuleActionOutput() GetRulesRuleRuleActionOutput {
+	return i.ToGetRulesRuleRuleActionOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleRuleActionArgs) ToGetRulesRuleRuleActionOutputWithContext(ctx context.Context) GetRulesRuleRuleActionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleRuleActionOutput)
+}
+
+// GetRulesRuleRuleActionArrayInput is an input type that accepts GetRulesRuleRuleActionArray and GetRulesRuleRuleActionArrayOutput values.
+// You can construct a concrete instance of `GetRulesRuleRuleActionArrayInput` via:
+//
+//	GetRulesRuleRuleActionArray{ GetRulesRuleRuleActionArgs{...} }
+type GetRulesRuleRuleActionArrayInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleRuleActionArrayOutput() GetRulesRuleRuleActionArrayOutput
+	ToGetRulesRuleRuleActionArrayOutputWithContext(context.Context) GetRulesRuleRuleActionArrayOutput
+}
+
+type GetRulesRuleRuleActionArray []GetRulesRuleRuleActionInput
+
+func (GetRulesRuleRuleActionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleRuleAction)(nil)).Elem()
+}
+
+func (i GetRulesRuleRuleActionArray) ToGetRulesRuleRuleActionArrayOutput() GetRulesRuleRuleActionArrayOutput {
+	return i.ToGetRulesRuleRuleActionArrayOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleRuleActionArray) ToGetRulesRuleRuleActionArrayOutputWithContext(ctx context.Context) GetRulesRuleRuleActionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleRuleActionArrayOutput)
+}
+
+type GetRulesRuleRuleActionOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleRuleActionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleRuleAction)(nil)).Elem()
+}
+
+func (o GetRulesRuleRuleActionOutput) ToGetRulesRuleRuleActionOutput() GetRulesRuleRuleActionOutput {
+	return o
+}
+
+func (o GetRulesRuleRuleActionOutput) ToGetRulesRuleRuleActionOutputWithContext(ctx context.Context) GetRulesRuleRuleActionOutput {
+	return o
+}
+
+// Fixed response configuration for fixed response type rule.
+func (o GetRulesRuleRuleActionOutput) FixedResponseConfigs() GetRulesRuleRuleActionFixedResponseConfigArrayOutput {
+	return o.ApplyT(func(v GetRulesRuleRuleAction) []GetRulesRuleRuleActionFixedResponseConfig {
+		return v.FixedResponseConfigs
+	}).(GetRulesRuleRuleActionFixedResponseConfigArrayOutput)
+}
+
+// Forward group configuration for ForwardGroup type action.
+func (o GetRulesRuleRuleActionOutput) ForwardGroupConfigs() GetRulesRuleRuleActionForwardGroupConfigArrayOutput {
+	return o.ApplyT(func(v GetRulesRuleRuleAction) []GetRulesRuleRuleActionForwardGroupConfig {
+		return v.ForwardGroupConfigs
+	}).(GetRulesRuleRuleActionForwardGroupConfigArrayOutput)
+}
+
+// Redirect configuration for Redirect type action.
+func (o GetRulesRuleRuleActionOutput) RedirectConfigs() GetRulesRuleRuleActionRedirectConfigArrayOutput {
+	return o.ApplyT(func(v GetRulesRuleRuleAction) []GetRulesRuleRuleActionRedirectConfig { return v.RedirectConfigs }).(GetRulesRuleRuleActionRedirectConfigArrayOutput)
+}
+
+// Rewrite configuration for Rewrite type action.
+func (o GetRulesRuleRuleActionOutput) RewriteConfigs() GetRulesRuleRuleActionRewriteConfigArrayOutput {
+	return o.ApplyT(func(v GetRulesRuleRuleAction) []GetRulesRuleRuleActionRewriteConfig { return v.RewriteConfigs }).(GetRulesRuleRuleActionRewriteConfigArrayOutput)
+}
+
+// Traffic limit configuration for TrafficLimit type action.
+func (o GetRulesRuleRuleActionOutput) TrafficLimitConfigs() GetRulesRuleRuleActionTrafficLimitConfigArrayOutput {
+	return o.ApplyT(func(v GetRulesRuleRuleAction) []GetRulesRuleRuleActionTrafficLimitConfig {
+		return v.TrafficLimitConfigs
+	}).(GetRulesRuleRuleActionTrafficLimitConfigArrayOutput)
+}
+
+// The type of rule condition. Valid values: Host, Path, Header.
+func (o GetRulesRuleRuleActionOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRuleRuleAction) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetRulesRuleRuleActionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleRuleActionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleRuleAction)(nil)).Elem()
+}
+
+func (o GetRulesRuleRuleActionArrayOutput) ToGetRulesRuleRuleActionArrayOutput() GetRulesRuleRuleActionArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleRuleActionArrayOutput) ToGetRulesRuleRuleActionArrayOutputWithContext(ctx context.Context) GetRulesRuleRuleActionArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleRuleActionArrayOutput) Index(i pulumi.IntInput) GetRulesRuleRuleActionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRulesRuleRuleAction {
+		return vs[0].([]GetRulesRuleRuleAction)[vs[1].(int)]
+	}).(GetRulesRuleRuleActionOutput)
+}
+
+type GetRulesRuleRuleActionFixedResponseConfig struct {
+	// The content type of the fixed response.
+	ContentType string `pulumi:"contentType"`
+	// The response body of the fixed response.
+	ResponseBody string `pulumi:"responseBody"`
+	// The fixed response HTTP status code.
+	ResponseCode string `pulumi:"responseCode"`
+	// The fixed response message.
+	ResponseMessage string `pulumi:"responseMessage"`
+}
+
+// GetRulesRuleRuleActionFixedResponseConfigInput is an input type that accepts GetRulesRuleRuleActionFixedResponseConfigArgs and GetRulesRuleRuleActionFixedResponseConfigOutput values.
+// You can construct a concrete instance of `GetRulesRuleRuleActionFixedResponseConfigInput` via:
+//
+//	GetRulesRuleRuleActionFixedResponseConfigArgs{...}
+type GetRulesRuleRuleActionFixedResponseConfigInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleRuleActionFixedResponseConfigOutput() GetRulesRuleRuleActionFixedResponseConfigOutput
+	ToGetRulesRuleRuleActionFixedResponseConfigOutputWithContext(context.Context) GetRulesRuleRuleActionFixedResponseConfigOutput
+}
+
+type GetRulesRuleRuleActionFixedResponseConfigArgs struct {
+	// The content type of the fixed response.
+	ContentType pulumi.StringInput `pulumi:"contentType"`
+	// The response body of the fixed response.
+	ResponseBody pulumi.StringInput `pulumi:"responseBody"`
+	// The fixed response HTTP status code.
+	ResponseCode pulumi.StringInput `pulumi:"responseCode"`
+	// The fixed response message.
+	ResponseMessage pulumi.StringInput `pulumi:"responseMessage"`
+}
+
+func (GetRulesRuleRuleActionFixedResponseConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleRuleActionFixedResponseConfig)(nil)).Elem()
+}
+
+func (i GetRulesRuleRuleActionFixedResponseConfigArgs) ToGetRulesRuleRuleActionFixedResponseConfigOutput() GetRulesRuleRuleActionFixedResponseConfigOutput {
+	return i.ToGetRulesRuleRuleActionFixedResponseConfigOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleRuleActionFixedResponseConfigArgs) ToGetRulesRuleRuleActionFixedResponseConfigOutputWithContext(ctx context.Context) GetRulesRuleRuleActionFixedResponseConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleRuleActionFixedResponseConfigOutput)
+}
+
+// GetRulesRuleRuleActionFixedResponseConfigArrayInput is an input type that accepts GetRulesRuleRuleActionFixedResponseConfigArray and GetRulesRuleRuleActionFixedResponseConfigArrayOutput values.
+// You can construct a concrete instance of `GetRulesRuleRuleActionFixedResponseConfigArrayInput` via:
+//
+//	GetRulesRuleRuleActionFixedResponseConfigArray{ GetRulesRuleRuleActionFixedResponseConfigArgs{...} }
+type GetRulesRuleRuleActionFixedResponseConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleRuleActionFixedResponseConfigArrayOutput() GetRulesRuleRuleActionFixedResponseConfigArrayOutput
+	ToGetRulesRuleRuleActionFixedResponseConfigArrayOutputWithContext(context.Context) GetRulesRuleRuleActionFixedResponseConfigArrayOutput
+}
+
+type GetRulesRuleRuleActionFixedResponseConfigArray []GetRulesRuleRuleActionFixedResponseConfigInput
+
+func (GetRulesRuleRuleActionFixedResponseConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleRuleActionFixedResponseConfig)(nil)).Elem()
+}
+
+func (i GetRulesRuleRuleActionFixedResponseConfigArray) ToGetRulesRuleRuleActionFixedResponseConfigArrayOutput() GetRulesRuleRuleActionFixedResponseConfigArrayOutput {
+	return i.ToGetRulesRuleRuleActionFixedResponseConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleRuleActionFixedResponseConfigArray) ToGetRulesRuleRuleActionFixedResponseConfigArrayOutputWithContext(ctx context.Context) GetRulesRuleRuleActionFixedResponseConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleRuleActionFixedResponseConfigArrayOutput)
+}
+
+type GetRulesRuleRuleActionFixedResponseConfigOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleRuleActionFixedResponseConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleRuleActionFixedResponseConfig)(nil)).Elem()
+}
+
+func (o GetRulesRuleRuleActionFixedResponseConfigOutput) ToGetRulesRuleRuleActionFixedResponseConfigOutput() GetRulesRuleRuleActionFixedResponseConfigOutput {
+	return o
+}
+
+func (o GetRulesRuleRuleActionFixedResponseConfigOutput) ToGetRulesRuleRuleActionFixedResponseConfigOutputWithContext(ctx context.Context) GetRulesRuleRuleActionFixedResponseConfigOutput {
+	return o
+}
+
+// The content type of the fixed response.
+func (o GetRulesRuleRuleActionFixedResponseConfigOutput) ContentType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRuleRuleActionFixedResponseConfig) string { return v.ContentType }).(pulumi.StringOutput)
+}
+
+// The response body of the fixed response.
+func (o GetRulesRuleRuleActionFixedResponseConfigOutput) ResponseBody() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRuleRuleActionFixedResponseConfig) string { return v.ResponseBody }).(pulumi.StringOutput)
+}
+
+// The fixed response HTTP status code.
+func (o GetRulesRuleRuleActionFixedResponseConfigOutput) ResponseCode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRuleRuleActionFixedResponseConfig) string { return v.ResponseCode }).(pulumi.StringOutput)
+}
+
+// The fixed response message.
+func (o GetRulesRuleRuleActionFixedResponseConfigOutput) ResponseMessage() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRuleRuleActionFixedResponseConfig) string { return v.ResponseMessage }).(pulumi.StringOutput)
+}
+
+type GetRulesRuleRuleActionFixedResponseConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleRuleActionFixedResponseConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleRuleActionFixedResponseConfig)(nil)).Elem()
+}
+
+func (o GetRulesRuleRuleActionFixedResponseConfigArrayOutput) ToGetRulesRuleRuleActionFixedResponseConfigArrayOutput() GetRulesRuleRuleActionFixedResponseConfigArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleRuleActionFixedResponseConfigArrayOutput) ToGetRulesRuleRuleActionFixedResponseConfigArrayOutputWithContext(ctx context.Context) GetRulesRuleRuleActionFixedResponseConfigArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleRuleActionFixedResponseConfigArrayOutput) Index(i pulumi.IntInput) GetRulesRuleRuleActionFixedResponseConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRulesRuleRuleActionFixedResponseConfig {
+		return vs[0].([]GetRulesRuleRuleActionFixedResponseConfig)[vs[1].(int)]
+	}).(GetRulesRuleRuleActionFixedResponseConfigOutput)
+}
+
+type GetRulesRuleRuleActionForwardGroupConfig struct {
+	// The config of group session stickiness.
+	ServerGroupStickySessions []GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySession `pulumi:"serverGroupStickySessions"`
+	// The server group tuples.
+	ServerGroupTuples []GetRulesRuleRuleActionForwardGroupConfigServerGroupTuple `pulumi:"serverGroupTuples"`
+}
+
+// GetRulesRuleRuleActionForwardGroupConfigInput is an input type that accepts GetRulesRuleRuleActionForwardGroupConfigArgs and GetRulesRuleRuleActionForwardGroupConfigOutput values.
+// You can construct a concrete instance of `GetRulesRuleRuleActionForwardGroupConfigInput` via:
+//
+//	GetRulesRuleRuleActionForwardGroupConfigArgs{...}
+type GetRulesRuleRuleActionForwardGroupConfigInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleRuleActionForwardGroupConfigOutput() GetRulesRuleRuleActionForwardGroupConfigOutput
+	ToGetRulesRuleRuleActionForwardGroupConfigOutputWithContext(context.Context) GetRulesRuleRuleActionForwardGroupConfigOutput
+}
+
+type GetRulesRuleRuleActionForwardGroupConfigArgs struct {
+	// The config of group session stickiness.
+	ServerGroupStickySessions GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayInput `pulumi:"serverGroupStickySessions"`
+	// The server group tuples.
+	ServerGroupTuples GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayInput `pulumi:"serverGroupTuples"`
+}
+
+func (GetRulesRuleRuleActionForwardGroupConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleRuleActionForwardGroupConfig)(nil)).Elem()
+}
+
+func (i GetRulesRuleRuleActionForwardGroupConfigArgs) ToGetRulesRuleRuleActionForwardGroupConfigOutput() GetRulesRuleRuleActionForwardGroupConfigOutput {
+	return i.ToGetRulesRuleRuleActionForwardGroupConfigOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleRuleActionForwardGroupConfigArgs) ToGetRulesRuleRuleActionForwardGroupConfigOutputWithContext(ctx context.Context) GetRulesRuleRuleActionForwardGroupConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleRuleActionForwardGroupConfigOutput)
+}
+
+// GetRulesRuleRuleActionForwardGroupConfigArrayInput is an input type that accepts GetRulesRuleRuleActionForwardGroupConfigArray and GetRulesRuleRuleActionForwardGroupConfigArrayOutput values.
+// You can construct a concrete instance of `GetRulesRuleRuleActionForwardGroupConfigArrayInput` via:
+//
+//	GetRulesRuleRuleActionForwardGroupConfigArray{ GetRulesRuleRuleActionForwardGroupConfigArgs{...} }
+type GetRulesRuleRuleActionForwardGroupConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleRuleActionForwardGroupConfigArrayOutput() GetRulesRuleRuleActionForwardGroupConfigArrayOutput
+	ToGetRulesRuleRuleActionForwardGroupConfigArrayOutputWithContext(context.Context) GetRulesRuleRuleActionForwardGroupConfigArrayOutput
+}
+
+type GetRulesRuleRuleActionForwardGroupConfigArray []GetRulesRuleRuleActionForwardGroupConfigInput
+
+func (GetRulesRuleRuleActionForwardGroupConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleRuleActionForwardGroupConfig)(nil)).Elem()
+}
+
+func (i GetRulesRuleRuleActionForwardGroupConfigArray) ToGetRulesRuleRuleActionForwardGroupConfigArrayOutput() GetRulesRuleRuleActionForwardGroupConfigArrayOutput {
+	return i.ToGetRulesRuleRuleActionForwardGroupConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleRuleActionForwardGroupConfigArray) ToGetRulesRuleRuleActionForwardGroupConfigArrayOutputWithContext(ctx context.Context) GetRulesRuleRuleActionForwardGroupConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleRuleActionForwardGroupConfigArrayOutput)
+}
+
+type GetRulesRuleRuleActionForwardGroupConfigOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleRuleActionForwardGroupConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleRuleActionForwardGroupConfig)(nil)).Elem()
+}
+
+func (o GetRulesRuleRuleActionForwardGroupConfigOutput) ToGetRulesRuleRuleActionForwardGroupConfigOutput() GetRulesRuleRuleActionForwardGroupConfigOutput {
+	return o
+}
+
+func (o GetRulesRuleRuleActionForwardGroupConfigOutput) ToGetRulesRuleRuleActionForwardGroupConfigOutputWithContext(ctx context.Context) GetRulesRuleRuleActionForwardGroupConfigOutput {
+	return o
+}
+
+// The config of group session stickiness.
+func (o GetRulesRuleRuleActionForwardGroupConfigOutput) ServerGroupStickySessions() GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayOutput {
+	return o.ApplyT(func(v GetRulesRuleRuleActionForwardGroupConfig) []GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySession {
+		return v.ServerGroupStickySessions
+	}).(GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayOutput)
+}
+
+// The server group tuples.
+func (o GetRulesRuleRuleActionForwardGroupConfigOutput) ServerGroupTuples() GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput {
+	return o.ApplyT(func(v GetRulesRuleRuleActionForwardGroupConfig) []GetRulesRuleRuleActionForwardGroupConfigServerGroupTuple {
+		return v.ServerGroupTuples
+	}).(GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput)
+}
+
+type GetRulesRuleRuleActionForwardGroupConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleRuleActionForwardGroupConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleRuleActionForwardGroupConfig)(nil)).Elem()
+}
+
+func (o GetRulesRuleRuleActionForwardGroupConfigArrayOutput) ToGetRulesRuleRuleActionForwardGroupConfigArrayOutput() GetRulesRuleRuleActionForwardGroupConfigArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleRuleActionForwardGroupConfigArrayOutput) ToGetRulesRuleRuleActionForwardGroupConfigArrayOutputWithContext(ctx context.Context) GetRulesRuleRuleActionForwardGroupConfigArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleRuleActionForwardGroupConfigArrayOutput) Index(i pulumi.IntInput) GetRulesRuleRuleActionForwardGroupConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRulesRuleRuleActionForwardGroupConfig {
+		return vs[0].([]GetRulesRuleRuleActionForwardGroupConfig)[vs[1].(int)]
+	}).(GetRulesRuleRuleActionForwardGroupConfigOutput)
+}
+
+type GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySession struct {
+	// Whether to enable sticky session stickiness. Valid values are 'on' and 'off'.
+	Enabled string `pulumi:"enabled"`
+	// The sticky session timeout, in seconds.
+	Timeout int `pulumi:"timeout"`
+}
+
+// GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionInput is an input type that accepts GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArgs and GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionOutput values.
+// You can construct a concrete instance of `GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionInput` via:
+//
+//	GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArgs{...}
+type GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionOutput() GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionOutput
+	ToGetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionOutputWithContext(context.Context) GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionOutput
+}
+
+type GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArgs struct {
+	// Whether to enable sticky session stickiness. Valid values are 'on' and 'off'.
+	Enabled pulumi.StringInput `pulumi:"enabled"`
+	// The sticky session timeout, in seconds.
+	Timeout pulumi.IntInput `pulumi:"timeout"`
+}
+
+func (GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySession)(nil)).Elem()
+}
+
+func (i GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArgs) ToGetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionOutput() GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionOutput {
+	return i.ToGetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArgs) ToGetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionOutputWithContext(ctx context.Context) GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionOutput)
+}
+
+// GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayInput is an input type that accepts GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArray and GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayOutput values.
+// You can construct a concrete instance of `GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayInput` via:
+//
+//	GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArray{ GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArgs{...} }
+type GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayOutput() GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayOutput
+	ToGetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayOutputWithContext(context.Context) GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayOutput
+}
+
+type GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArray []GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionInput
+
+func (GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySession)(nil)).Elem()
+}
+
+func (i GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArray) ToGetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayOutput() GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayOutput {
+	return i.ToGetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArray) ToGetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayOutputWithContext(ctx context.Context) GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayOutput)
+}
+
+type GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySession)(nil)).Elem()
+}
+
+func (o GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionOutput) ToGetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionOutput() GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionOutput {
+	return o
+}
+
+func (o GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionOutput) ToGetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionOutputWithContext(ctx context.Context) GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionOutput {
+	return o
+}
+
+// Whether to enable sticky session stickiness. Valid values are 'on' and 'off'.
+func (o GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionOutput) Enabled() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySession) string { return v.Enabled }).(pulumi.StringOutput)
+}
+
+// The sticky session timeout, in seconds.
+func (o GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionOutput) Timeout() pulumi.IntOutput {
+	return o.ApplyT(func(v GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySession) int { return v.Timeout }).(pulumi.IntOutput)
+}
+
+type GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySession)(nil)).Elem()
+}
+
+func (o GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayOutput) ToGetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayOutput() GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayOutput) ToGetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayOutputWithContext(ctx context.Context) GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayOutput) Index(i pulumi.IntInput) GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySession {
+		return vs[0].([]GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySession)[vs[1].(int)]
+	}).(GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionOutput)
+}
+
+type GetRulesRuleRuleActionForwardGroupConfigServerGroupTuple struct {
+	// The Id of Server Group.
+	ServerGroupId string `pulumi:"serverGroupId"`
+	// The weight of the server group.
+	Weight int `pulumi:"weight"`
+}
+
+// GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleInput is an input type that accepts GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleArgs and GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleOutput values.
+// You can construct a concrete instance of `GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleInput` via:
+//
+//	GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleArgs{...}
+type GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleRuleActionForwardGroupConfigServerGroupTupleOutput() GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleOutput
+	ToGetRulesRuleRuleActionForwardGroupConfigServerGroupTupleOutputWithContext(context.Context) GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleOutput
+}
+
+type GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleArgs struct {
+	// The Id of Server Group.
+	ServerGroupId pulumi.StringInput `pulumi:"serverGroupId"`
+	// The weight of the server group.
+	Weight pulumi.IntInput `pulumi:"weight"`
+}
+
+func (GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleRuleActionForwardGroupConfigServerGroupTuple)(nil)).Elem()
+}
+
+func (i GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleArgs) ToGetRulesRuleRuleActionForwardGroupConfigServerGroupTupleOutput() GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleOutput {
+	return i.ToGetRulesRuleRuleActionForwardGroupConfigServerGroupTupleOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleArgs) ToGetRulesRuleRuleActionForwardGroupConfigServerGroupTupleOutputWithContext(ctx context.Context) GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleOutput)
+}
+
+// GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayInput is an input type that accepts GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleArray and GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput values.
+// You can construct a concrete instance of `GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayInput` via:
+//
+//	GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleArray{ GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleArgs{...} }
+type GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput() GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput
+	ToGetRulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutputWithContext(context.Context) GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput
+}
+
+type GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleArray []GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleInput
+
+func (GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleRuleActionForwardGroupConfigServerGroupTuple)(nil)).Elem()
+}
+
+func (i GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleArray) ToGetRulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput() GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput {
+	return i.ToGetRulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleArray) ToGetRulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutputWithContext(ctx context.Context) GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput)
+}
+
+type GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleRuleActionForwardGroupConfigServerGroupTuple)(nil)).Elem()
+}
+
+func (o GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleOutput) ToGetRulesRuleRuleActionForwardGroupConfigServerGroupTupleOutput() GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleOutput {
+	return o
+}
+
+func (o GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleOutput) ToGetRulesRuleRuleActionForwardGroupConfigServerGroupTupleOutputWithContext(ctx context.Context) GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleOutput {
+	return o
+}
+
+// The Id of Server Group.
+func (o GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleOutput) ServerGroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRuleRuleActionForwardGroupConfigServerGroupTuple) string { return v.ServerGroupId }).(pulumi.StringOutput)
+}
+
+// The weight of the server group.
+func (o GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleOutput) Weight() pulumi.IntOutput {
+	return o.ApplyT(func(v GetRulesRuleRuleActionForwardGroupConfigServerGroupTuple) int { return v.Weight }).(pulumi.IntOutput)
+}
+
+type GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleRuleActionForwardGroupConfigServerGroupTuple)(nil)).Elem()
+}
+
+func (o GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput) ToGetRulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput() GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput) ToGetRulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutputWithContext(ctx context.Context) GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput) Index(i pulumi.IntInput) GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRulesRuleRuleActionForwardGroupConfigServerGroupTuple {
+		return vs[0].([]GetRulesRuleRuleActionForwardGroupConfigServerGroupTuple)[vs[1].(int)]
+	}).(GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleOutput)
+}
+
+type GetRulesRuleRuleActionRedirectConfig struct {
+	// The redirect domain.
+	RedirectDomain string `pulumi:"redirectDomain"`
+	// The redirect HTTP code.
+	RedirectHttpCode string `pulumi:"redirectHttpCode"`
+	// The redirect port.
+	RedirectPort string `pulumi:"redirectPort"`
+	// The redirect protocol.
+	RedirectProtocol string `pulumi:"redirectProtocol"`
+	// The redirect URI.
+	RedirectUri string `pulumi:"redirectUri"`
+}
+
+// GetRulesRuleRuleActionRedirectConfigInput is an input type that accepts GetRulesRuleRuleActionRedirectConfigArgs and GetRulesRuleRuleActionRedirectConfigOutput values.
+// You can construct a concrete instance of `GetRulesRuleRuleActionRedirectConfigInput` via:
+//
+//	GetRulesRuleRuleActionRedirectConfigArgs{...}
+type GetRulesRuleRuleActionRedirectConfigInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleRuleActionRedirectConfigOutput() GetRulesRuleRuleActionRedirectConfigOutput
+	ToGetRulesRuleRuleActionRedirectConfigOutputWithContext(context.Context) GetRulesRuleRuleActionRedirectConfigOutput
+}
+
+type GetRulesRuleRuleActionRedirectConfigArgs struct {
+	// The redirect domain.
+	RedirectDomain pulumi.StringInput `pulumi:"redirectDomain"`
+	// The redirect HTTP code.
+	RedirectHttpCode pulumi.StringInput `pulumi:"redirectHttpCode"`
+	// The redirect port.
+	RedirectPort pulumi.StringInput `pulumi:"redirectPort"`
+	// The redirect protocol.
+	RedirectProtocol pulumi.StringInput `pulumi:"redirectProtocol"`
+	// The redirect URI.
+	RedirectUri pulumi.StringInput `pulumi:"redirectUri"`
+}
+
+func (GetRulesRuleRuleActionRedirectConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleRuleActionRedirectConfig)(nil)).Elem()
+}
+
+func (i GetRulesRuleRuleActionRedirectConfigArgs) ToGetRulesRuleRuleActionRedirectConfigOutput() GetRulesRuleRuleActionRedirectConfigOutput {
+	return i.ToGetRulesRuleRuleActionRedirectConfigOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleRuleActionRedirectConfigArgs) ToGetRulesRuleRuleActionRedirectConfigOutputWithContext(ctx context.Context) GetRulesRuleRuleActionRedirectConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleRuleActionRedirectConfigOutput)
+}
+
+// GetRulesRuleRuleActionRedirectConfigArrayInput is an input type that accepts GetRulesRuleRuleActionRedirectConfigArray and GetRulesRuleRuleActionRedirectConfigArrayOutput values.
+// You can construct a concrete instance of `GetRulesRuleRuleActionRedirectConfigArrayInput` via:
+//
+//	GetRulesRuleRuleActionRedirectConfigArray{ GetRulesRuleRuleActionRedirectConfigArgs{...} }
+type GetRulesRuleRuleActionRedirectConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleRuleActionRedirectConfigArrayOutput() GetRulesRuleRuleActionRedirectConfigArrayOutput
+	ToGetRulesRuleRuleActionRedirectConfigArrayOutputWithContext(context.Context) GetRulesRuleRuleActionRedirectConfigArrayOutput
+}
+
+type GetRulesRuleRuleActionRedirectConfigArray []GetRulesRuleRuleActionRedirectConfigInput
+
+func (GetRulesRuleRuleActionRedirectConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleRuleActionRedirectConfig)(nil)).Elem()
+}
+
+func (i GetRulesRuleRuleActionRedirectConfigArray) ToGetRulesRuleRuleActionRedirectConfigArrayOutput() GetRulesRuleRuleActionRedirectConfigArrayOutput {
+	return i.ToGetRulesRuleRuleActionRedirectConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleRuleActionRedirectConfigArray) ToGetRulesRuleRuleActionRedirectConfigArrayOutputWithContext(ctx context.Context) GetRulesRuleRuleActionRedirectConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleRuleActionRedirectConfigArrayOutput)
+}
+
+type GetRulesRuleRuleActionRedirectConfigOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleRuleActionRedirectConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleRuleActionRedirectConfig)(nil)).Elem()
+}
+
+func (o GetRulesRuleRuleActionRedirectConfigOutput) ToGetRulesRuleRuleActionRedirectConfigOutput() GetRulesRuleRuleActionRedirectConfigOutput {
+	return o
+}
+
+func (o GetRulesRuleRuleActionRedirectConfigOutput) ToGetRulesRuleRuleActionRedirectConfigOutputWithContext(ctx context.Context) GetRulesRuleRuleActionRedirectConfigOutput {
+	return o
+}
+
+// The redirect domain.
+func (o GetRulesRuleRuleActionRedirectConfigOutput) RedirectDomain() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRuleRuleActionRedirectConfig) string { return v.RedirectDomain }).(pulumi.StringOutput)
+}
+
+// The redirect HTTP code.
+func (o GetRulesRuleRuleActionRedirectConfigOutput) RedirectHttpCode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRuleRuleActionRedirectConfig) string { return v.RedirectHttpCode }).(pulumi.StringOutput)
+}
+
+// The redirect port.
+func (o GetRulesRuleRuleActionRedirectConfigOutput) RedirectPort() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRuleRuleActionRedirectConfig) string { return v.RedirectPort }).(pulumi.StringOutput)
+}
+
+// The redirect protocol.
+func (o GetRulesRuleRuleActionRedirectConfigOutput) RedirectProtocol() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRuleRuleActionRedirectConfig) string { return v.RedirectProtocol }).(pulumi.StringOutput)
+}
+
+// The redirect URI.
+func (o GetRulesRuleRuleActionRedirectConfigOutput) RedirectUri() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRuleRuleActionRedirectConfig) string { return v.RedirectUri }).(pulumi.StringOutput)
+}
+
+type GetRulesRuleRuleActionRedirectConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleRuleActionRedirectConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleRuleActionRedirectConfig)(nil)).Elem()
+}
+
+func (o GetRulesRuleRuleActionRedirectConfigArrayOutput) ToGetRulesRuleRuleActionRedirectConfigArrayOutput() GetRulesRuleRuleActionRedirectConfigArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleRuleActionRedirectConfigArrayOutput) ToGetRulesRuleRuleActionRedirectConfigArrayOutputWithContext(ctx context.Context) GetRulesRuleRuleActionRedirectConfigArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleRuleActionRedirectConfigArrayOutput) Index(i pulumi.IntInput) GetRulesRuleRuleActionRedirectConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRulesRuleRuleActionRedirectConfig {
+		return vs[0].([]GetRulesRuleRuleActionRedirectConfig)[vs[1].(int)]
+	}).(GetRulesRuleRuleActionRedirectConfigOutput)
+}
+
+type GetRulesRuleRuleActionRewriteConfig struct {
+	// The rewrite path.
+	Path string `pulumi:"path"`
+}
+
+// GetRulesRuleRuleActionRewriteConfigInput is an input type that accepts GetRulesRuleRuleActionRewriteConfigArgs and GetRulesRuleRuleActionRewriteConfigOutput values.
+// You can construct a concrete instance of `GetRulesRuleRuleActionRewriteConfigInput` via:
+//
+//	GetRulesRuleRuleActionRewriteConfigArgs{...}
+type GetRulesRuleRuleActionRewriteConfigInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleRuleActionRewriteConfigOutput() GetRulesRuleRuleActionRewriteConfigOutput
+	ToGetRulesRuleRuleActionRewriteConfigOutputWithContext(context.Context) GetRulesRuleRuleActionRewriteConfigOutput
+}
+
+type GetRulesRuleRuleActionRewriteConfigArgs struct {
+	// The rewrite path.
+	Path pulumi.StringInput `pulumi:"path"`
+}
+
+func (GetRulesRuleRuleActionRewriteConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleRuleActionRewriteConfig)(nil)).Elem()
+}
+
+func (i GetRulesRuleRuleActionRewriteConfigArgs) ToGetRulesRuleRuleActionRewriteConfigOutput() GetRulesRuleRuleActionRewriteConfigOutput {
+	return i.ToGetRulesRuleRuleActionRewriteConfigOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleRuleActionRewriteConfigArgs) ToGetRulesRuleRuleActionRewriteConfigOutputWithContext(ctx context.Context) GetRulesRuleRuleActionRewriteConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleRuleActionRewriteConfigOutput)
+}
+
+// GetRulesRuleRuleActionRewriteConfigArrayInput is an input type that accepts GetRulesRuleRuleActionRewriteConfigArray and GetRulesRuleRuleActionRewriteConfigArrayOutput values.
+// You can construct a concrete instance of `GetRulesRuleRuleActionRewriteConfigArrayInput` via:
+//
+//	GetRulesRuleRuleActionRewriteConfigArray{ GetRulesRuleRuleActionRewriteConfigArgs{...} }
+type GetRulesRuleRuleActionRewriteConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleRuleActionRewriteConfigArrayOutput() GetRulesRuleRuleActionRewriteConfigArrayOutput
+	ToGetRulesRuleRuleActionRewriteConfigArrayOutputWithContext(context.Context) GetRulesRuleRuleActionRewriteConfigArrayOutput
+}
+
+type GetRulesRuleRuleActionRewriteConfigArray []GetRulesRuleRuleActionRewriteConfigInput
+
+func (GetRulesRuleRuleActionRewriteConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleRuleActionRewriteConfig)(nil)).Elem()
+}
+
+func (i GetRulesRuleRuleActionRewriteConfigArray) ToGetRulesRuleRuleActionRewriteConfigArrayOutput() GetRulesRuleRuleActionRewriteConfigArrayOutput {
+	return i.ToGetRulesRuleRuleActionRewriteConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleRuleActionRewriteConfigArray) ToGetRulesRuleRuleActionRewriteConfigArrayOutputWithContext(ctx context.Context) GetRulesRuleRuleActionRewriteConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleRuleActionRewriteConfigArrayOutput)
+}
+
+type GetRulesRuleRuleActionRewriteConfigOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleRuleActionRewriteConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleRuleActionRewriteConfig)(nil)).Elem()
+}
+
+func (o GetRulesRuleRuleActionRewriteConfigOutput) ToGetRulesRuleRuleActionRewriteConfigOutput() GetRulesRuleRuleActionRewriteConfigOutput {
+	return o
+}
+
+func (o GetRulesRuleRuleActionRewriteConfigOutput) ToGetRulesRuleRuleActionRewriteConfigOutputWithContext(ctx context.Context) GetRulesRuleRuleActionRewriteConfigOutput {
+	return o
+}
+
+// The rewrite path.
+func (o GetRulesRuleRuleActionRewriteConfigOutput) Path() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRuleRuleActionRewriteConfig) string { return v.Path }).(pulumi.StringOutput)
+}
+
+type GetRulesRuleRuleActionRewriteConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleRuleActionRewriteConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleRuleActionRewriteConfig)(nil)).Elem()
+}
+
+func (o GetRulesRuleRuleActionRewriteConfigArrayOutput) ToGetRulesRuleRuleActionRewriteConfigArrayOutput() GetRulesRuleRuleActionRewriteConfigArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleRuleActionRewriteConfigArrayOutput) ToGetRulesRuleRuleActionRewriteConfigArrayOutputWithContext(ctx context.Context) GetRulesRuleRuleActionRewriteConfigArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleRuleActionRewriteConfigArrayOutput) Index(i pulumi.IntInput) GetRulesRuleRuleActionRewriteConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRulesRuleRuleActionRewriteConfig {
+		return vs[0].([]GetRulesRuleRuleActionRewriteConfig)[vs[1].(int)]
+	}).(GetRulesRuleRuleActionRewriteConfigOutput)
+}
+
+type GetRulesRuleRuleActionTrafficLimitConfig struct {
+	// The QPS limit.
+	Qps int `pulumi:"qps"`
+}
+
+// GetRulesRuleRuleActionTrafficLimitConfigInput is an input type that accepts GetRulesRuleRuleActionTrafficLimitConfigArgs and GetRulesRuleRuleActionTrafficLimitConfigOutput values.
+// You can construct a concrete instance of `GetRulesRuleRuleActionTrafficLimitConfigInput` via:
+//
+//	GetRulesRuleRuleActionTrafficLimitConfigArgs{...}
+type GetRulesRuleRuleActionTrafficLimitConfigInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleRuleActionTrafficLimitConfigOutput() GetRulesRuleRuleActionTrafficLimitConfigOutput
+	ToGetRulesRuleRuleActionTrafficLimitConfigOutputWithContext(context.Context) GetRulesRuleRuleActionTrafficLimitConfigOutput
+}
+
+type GetRulesRuleRuleActionTrafficLimitConfigArgs struct {
+	// The QPS limit.
+	Qps pulumi.IntInput `pulumi:"qps"`
+}
+
+func (GetRulesRuleRuleActionTrafficLimitConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleRuleActionTrafficLimitConfig)(nil)).Elem()
+}
+
+func (i GetRulesRuleRuleActionTrafficLimitConfigArgs) ToGetRulesRuleRuleActionTrafficLimitConfigOutput() GetRulesRuleRuleActionTrafficLimitConfigOutput {
+	return i.ToGetRulesRuleRuleActionTrafficLimitConfigOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleRuleActionTrafficLimitConfigArgs) ToGetRulesRuleRuleActionTrafficLimitConfigOutputWithContext(ctx context.Context) GetRulesRuleRuleActionTrafficLimitConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleRuleActionTrafficLimitConfigOutput)
+}
+
+// GetRulesRuleRuleActionTrafficLimitConfigArrayInput is an input type that accepts GetRulesRuleRuleActionTrafficLimitConfigArray and GetRulesRuleRuleActionTrafficLimitConfigArrayOutput values.
+// You can construct a concrete instance of `GetRulesRuleRuleActionTrafficLimitConfigArrayInput` via:
+//
+//	GetRulesRuleRuleActionTrafficLimitConfigArray{ GetRulesRuleRuleActionTrafficLimitConfigArgs{...} }
+type GetRulesRuleRuleActionTrafficLimitConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleRuleActionTrafficLimitConfigArrayOutput() GetRulesRuleRuleActionTrafficLimitConfigArrayOutput
+	ToGetRulesRuleRuleActionTrafficLimitConfigArrayOutputWithContext(context.Context) GetRulesRuleRuleActionTrafficLimitConfigArrayOutput
+}
+
+type GetRulesRuleRuleActionTrafficLimitConfigArray []GetRulesRuleRuleActionTrafficLimitConfigInput
+
+func (GetRulesRuleRuleActionTrafficLimitConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleRuleActionTrafficLimitConfig)(nil)).Elem()
+}
+
+func (i GetRulesRuleRuleActionTrafficLimitConfigArray) ToGetRulesRuleRuleActionTrafficLimitConfigArrayOutput() GetRulesRuleRuleActionTrafficLimitConfigArrayOutput {
+	return i.ToGetRulesRuleRuleActionTrafficLimitConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleRuleActionTrafficLimitConfigArray) ToGetRulesRuleRuleActionTrafficLimitConfigArrayOutputWithContext(ctx context.Context) GetRulesRuleRuleActionTrafficLimitConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleRuleActionTrafficLimitConfigArrayOutput)
+}
+
+type GetRulesRuleRuleActionTrafficLimitConfigOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleRuleActionTrafficLimitConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleRuleActionTrafficLimitConfig)(nil)).Elem()
+}
+
+func (o GetRulesRuleRuleActionTrafficLimitConfigOutput) ToGetRulesRuleRuleActionTrafficLimitConfigOutput() GetRulesRuleRuleActionTrafficLimitConfigOutput {
+	return o
+}
+
+func (o GetRulesRuleRuleActionTrafficLimitConfigOutput) ToGetRulesRuleRuleActionTrafficLimitConfigOutputWithContext(ctx context.Context) GetRulesRuleRuleActionTrafficLimitConfigOutput {
+	return o
+}
+
+// The QPS limit.
+func (o GetRulesRuleRuleActionTrafficLimitConfigOutput) Qps() pulumi.IntOutput {
+	return o.ApplyT(func(v GetRulesRuleRuleActionTrafficLimitConfig) int { return v.Qps }).(pulumi.IntOutput)
+}
+
+type GetRulesRuleRuleActionTrafficLimitConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleRuleActionTrafficLimitConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleRuleActionTrafficLimitConfig)(nil)).Elem()
+}
+
+func (o GetRulesRuleRuleActionTrafficLimitConfigArrayOutput) ToGetRulesRuleRuleActionTrafficLimitConfigArrayOutput() GetRulesRuleRuleActionTrafficLimitConfigArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleRuleActionTrafficLimitConfigArrayOutput) ToGetRulesRuleRuleActionTrafficLimitConfigArrayOutputWithContext(ctx context.Context) GetRulesRuleRuleActionTrafficLimitConfigArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleRuleActionTrafficLimitConfigArrayOutput) Index(i pulumi.IntInput) GetRulesRuleRuleActionTrafficLimitConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRulesRuleRuleActionTrafficLimitConfig {
+		return vs[0].([]GetRulesRuleRuleActionTrafficLimitConfig)[vs[1].(int)]
+	}).(GetRulesRuleRuleActionTrafficLimitConfigOutput)
+}
+
+type GetRulesRuleRuleCondition struct {
+	// Header configuration for Header type condition.
+	HeaderConfigs []GetRulesRuleRuleConditionHeaderConfig `pulumi:"headerConfigs"`
+	// Host configuration for host type condition.
+	HostConfigs []GetRulesRuleRuleConditionHostConfig `pulumi:"hostConfigs"`
+	// Method configuration for Method type condition.
+	MethodConfigs []GetRulesRuleRuleConditionMethodConfig `pulumi:"methodConfigs"`
+	// Path configuration for Path type condition.
+	PathConfigs []GetRulesRuleRuleConditionPathConfig `pulumi:"pathConfigs"`
+	// Query string configuration.
+	QueryStringConfigs []GetRulesRuleRuleConditionQueryStringConfig `pulumi:"queryStringConfigs"`
+	// The type of rule condition. Valid values: Host, Path, Header.
+	Type string `pulumi:"type"`
+}
+
+// GetRulesRuleRuleConditionInput is an input type that accepts GetRulesRuleRuleConditionArgs and GetRulesRuleRuleConditionOutput values.
+// You can construct a concrete instance of `GetRulesRuleRuleConditionInput` via:
+//
+//	GetRulesRuleRuleConditionArgs{...}
+type GetRulesRuleRuleConditionInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleRuleConditionOutput() GetRulesRuleRuleConditionOutput
+	ToGetRulesRuleRuleConditionOutputWithContext(context.Context) GetRulesRuleRuleConditionOutput
+}
+
+type GetRulesRuleRuleConditionArgs struct {
+	// Header configuration for Header type condition.
+	HeaderConfigs GetRulesRuleRuleConditionHeaderConfigArrayInput `pulumi:"headerConfigs"`
+	// Host configuration for host type condition.
+	HostConfigs GetRulesRuleRuleConditionHostConfigArrayInput `pulumi:"hostConfigs"`
+	// Method configuration for Method type condition.
+	MethodConfigs GetRulesRuleRuleConditionMethodConfigArrayInput `pulumi:"methodConfigs"`
+	// Path configuration for Path type condition.
+	PathConfigs GetRulesRuleRuleConditionPathConfigArrayInput `pulumi:"pathConfigs"`
+	// Query string configuration.
+	QueryStringConfigs GetRulesRuleRuleConditionQueryStringConfigArrayInput `pulumi:"queryStringConfigs"`
+	// The type of rule condition. Valid values: Host, Path, Header.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetRulesRuleRuleConditionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleRuleCondition)(nil)).Elem()
+}
+
+func (i GetRulesRuleRuleConditionArgs) ToGetRulesRuleRuleConditionOutput() GetRulesRuleRuleConditionOutput {
+	return i.ToGetRulesRuleRuleConditionOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleRuleConditionArgs) ToGetRulesRuleRuleConditionOutputWithContext(ctx context.Context) GetRulesRuleRuleConditionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleRuleConditionOutput)
+}
+
+// GetRulesRuleRuleConditionArrayInput is an input type that accepts GetRulesRuleRuleConditionArray and GetRulesRuleRuleConditionArrayOutput values.
+// You can construct a concrete instance of `GetRulesRuleRuleConditionArrayInput` via:
+//
+//	GetRulesRuleRuleConditionArray{ GetRulesRuleRuleConditionArgs{...} }
+type GetRulesRuleRuleConditionArrayInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleRuleConditionArrayOutput() GetRulesRuleRuleConditionArrayOutput
+	ToGetRulesRuleRuleConditionArrayOutputWithContext(context.Context) GetRulesRuleRuleConditionArrayOutput
+}
+
+type GetRulesRuleRuleConditionArray []GetRulesRuleRuleConditionInput
+
+func (GetRulesRuleRuleConditionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleRuleCondition)(nil)).Elem()
+}
+
+func (i GetRulesRuleRuleConditionArray) ToGetRulesRuleRuleConditionArrayOutput() GetRulesRuleRuleConditionArrayOutput {
+	return i.ToGetRulesRuleRuleConditionArrayOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleRuleConditionArray) ToGetRulesRuleRuleConditionArrayOutputWithContext(ctx context.Context) GetRulesRuleRuleConditionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleRuleConditionArrayOutput)
+}
+
+type GetRulesRuleRuleConditionOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleRuleConditionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleRuleCondition)(nil)).Elem()
+}
+
+func (o GetRulesRuleRuleConditionOutput) ToGetRulesRuleRuleConditionOutput() GetRulesRuleRuleConditionOutput {
+	return o
+}
+
+func (o GetRulesRuleRuleConditionOutput) ToGetRulesRuleRuleConditionOutputWithContext(ctx context.Context) GetRulesRuleRuleConditionOutput {
+	return o
+}
+
+// Header configuration for Header type condition.
+func (o GetRulesRuleRuleConditionOutput) HeaderConfigs() GetRulesRuleRuleConditionHeaderConfigArrayOutput {
+	return o.ApplyT(func(v GetRulesRuleRuleCondition) []GetRulesRuleRuleConditionHeaderConfig { return v.HeaderConfigs }).(GetRulesRuleRuleConditionHeaderConfigArrayOutput)
+}
+
+// Host configuration for host type condition.
+func (o GetRulesRuleRuleConditionOutput) HostConfigs() GetRulesRuleRuleConditionHostConfigArrayOutput {
+	return o.ApplyT(func(v GetRulesRuleRuleCondition) []GetRulesRuleRuleConditionHostConfig { return v.HostConfigs }).(GetRulesRuleRuleConditionHostConfigArrayOutput)
+}
+
+// Method configuration for Method type condition.
+func (o GetRulesRuleRuleConditionOutput) MethodConfigs() GetRulesRuleRuleConditionMethodConfigArrayOutput {
+	return o.ApplyT(func(v GetRulesRuleRuleCondition) []GetRulesRuleRuleConditionMethodConfig { return v.MethodConfigs }).(GetRulesRuleRuleConditionMethodConfigArrayOutput)
+}
+
+// Path configuration for Path type condition.
+func (o GetRulesRuleRuleConditionOutput) PathConfigs() GetRulesRuleRuleConditionPathConfigArrayOutput {
+	return o.ApplyT(func(v GetRulesRuleRuleCondition) []GetRulesRuleRuleConditionPathConfig { return v.PathConfigs }).(GetRulesRuleRuleConditionPathConfigArrayOutput)
+}
+
+// Query string configuration.
+func (o GetRulesRuleRuleConditionOutput) QueryStringConfigs() GetRulesRuleRuleConditionQueryStringConfigArrayOutput {
+	return o.ApplyT(func(v GetRulesRuleRuleCondition) []GetRulesRuleRuleConditionQueryStringConfig {
+		return v.QueryStringConfigs
+	}).(GetRulesRuleRuleConditionQueryStringConfigArrayOutput)
+}
+
+// The type of rule condition. Valid values: Host, Path, Header.
+func (o GetRulesRuleRuleConditionOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRuleRuleCondition) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetRulesRuleRuleConditionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleRuleConditionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleRuleCondition)(nil)).Elem()
+}
+
+func (o GetRulesRuleRuleConditionArrayOutput) ToGetRulesRuleRuleConditionArrayOutput() GetRulesRuleRuleConditionArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleRuleConditionArrayOutput) ToGetRulesRuleRuleConditionArrayOutputWithContext(ctx context.Context) GetRulesRuleRuleConditionArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleRuleConditionArrayOutput) Index(i pulumi.IntInput) GetRulesRuleRuleConditionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRulesRuleRuleCondition {
+		return vs[0].([]GetRulesRuleRuleCondition)[vs[1].(int)]
+	}).(GetRulesRuleRuleConditionOutput)
+}
+
+type GetRulesRuleRuleConditionHeaderConfig struct {
+	// The query string key.
+	Key string `pulumi:"key"`
+	// The list of query string values.
+	Values []string `pulumi:"values"`
+}
+
+// GetRulesRuleRuleConditionHeaderConfigInput is an input type that accepts GetRulesRuleRuleConditionHeaderConfigArgs and GetRulesRuleRuleConditionHeaderConfigOutput values.
+// You can construct a concrete instance of `GetRulesRuleRuleConditionHeaderConfigInput` via:
+//
+//	GetRulesRuleRuleConditionHeaderConfigArgs{...}
+type GetRulesRuleRuleConditionHeaderConfigInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleRuleConditionHeaderConfigOutput() GetRulesRuleRuleConditionHeaderConfigOutput
+	ToGetRulesRuleRuleConditionHeaderConfigOutputWithContext(context.Context) GetRulesRuleRuleConditionHeaderConfigOutput
+}
+
+type GetRulesRuleRuleConditionHeaderConfigArgs struct {
+	// The query string key.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The list of query string values.
+	Values pulumi.StringArrayInput `pulumi:"values"`
+}
+
+func (GetRulesRuleRuleConditionHeaderConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleRuleConditionHeaderConfig)(nil)).Elem()
+}
+
+func (i GetRulesRuleRuleConditionHeaderConfigArgs) ToGetRulesRuleRuleConditionHeaderConfigOutput() GetRulesRuleRuleConditionHeaderConfigOutput {
+	return i.ToGetRulesRuleRuleConditionHeaderConfigOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleRuleConditionHeaderConfigArgs) ToGetRulesRuleRuleConditionHeaderConfigOutputWithContext(ctx context.Context) GetRulesRuleRuleConditionHeaderConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleRuleConditionHeaderConfigOutput)
+}
+
+// GetRulesRuleRuleConditionHeaderConfigArrayInput is an input type that accepts GetRulesRuleRuleConditionHeaderConfigArray and GetRulesRuleRuleConditionHeaderConfigArrayOutput values.
+// You can construct a concrete instance of `GetRulesRuleRuleConditionHeaderConfigArrayInput` via:
+//
+//	GetRulesRuleRuleConditionHeaderConfigArray{ GetRulesRuleRuleConditionHeaderConfigArgs{...} }
+type GetRulesRuleRuleConditionHeaderConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleRuleConditionHeaderConfigArrayOutput() GetRulesRuleRuleConditionHeaderConfigArrayOutput
+	ToGetRulesRuleRuleConditionHeaderConfigArrayOutputWithContext(context.Context) GetRulesRuleRuleConditionHeaderConfigArrayOutput
+}
+
+type GetRulesRuleRuleConditionHeaderConfigArray []GetRulesRuleRuleConditionHeaderConfigInput
+
+func (GetRulesRuleRuleConditionHeaderConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleRuleConditionHeaderConfig)(nil)).Elem()
+}
+
+func (i GetRulesRuleRuleConditionHeaderConfigArray) ToGetRulesRuleRuleConditionHeaderConfigArrayOutput() GetRulesRuleRuleConditionHeaderConfigArrayOutput {
+	return i.ToGetRulesRuleRuleConditionHeaderConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleRuleConditionHeaderConfigArray) ToGetRulesRuleRuleConditionHeaderConfigArrayOutputWithContext(ctx context.Context) GetRulesRuleRuleConditionHeaderConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleRuleConditionHeaderConfigArrayOutput)
+}
+
+type GetRulesRuleRuleConditionHeaderConfigOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleRuleConditionHeaderConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleRuleConditionHeaderConfig)(nil)).Elem()
+}
+
+func (o GetRulesRuleRuleConditionHeaderConfigOutput) ToGetRulesRuleRuleConditionHeaderConfigOutput() GetRulesRuleRuleConditionHeaderConfigOutput {
+	return o
+}
+
+func (o GetRulesRuleRuleConditionHeaderConfigOutput) ToGetRulesRuleRuleConditionHeaderConfigOutputWithContext(ctx context.Context) GetRulesRuleRuleConditionHeaderConfigOutput {
+	return o
+}
+
+// The query string key.
+func (o GetRulesRuleRuleConditionHeaderConfigOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRuleRuleConditionHeaderConfig) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The list of query string values.
+func (o GetRulesRuleRuleConditionHeaderConfigOutput) Values() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetRulesRuleRuleConditionHeaderConfig) []string { return v.Values }).(pulumi.StringArrayOutput)
+}
+
+type GetRulesRuleRuleConditionHeaderConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleRuleConditionHeaderConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleRuleConditionHeaderConfig)(nil)).Elem()
+}
+
+func (o GetRulesRuleRuleConditionHeaderConfigArrayOutput) ToGetRulesRuleRuleConditionHeaderConfigArrayOutput() GetRulesRuleRuleConditionHeaderConfigArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleRuleConditionHeaderConfigArrayOutput) ToGetRulesRuleRuleConditionHeaderConfigArrayOutputWithContext(ctx context.Context) GetRulesRuleRuleConditionHeaderConfigArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleRuleConditionHeaderConfigArrayOutput) Index(i pulumi.IntInput) GetRulesRuleRuleConditionHeaderConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRulesRuleRuleConditionHeaderConfig {
+		return vs[0].([]GetRulesRuleRuleConditionHeaderConfig)[vs[1].(int)]
+	}).(GetRulesRuleRuleConditionHeaderConfigOutput)
+}
+
+type GetRulesRuleRuleConditionHostConfig struct {
+	// The list of query string values.
+	Values []string `pulumi:"values"`
+}
+
+// GetRulesRuleRuleConditionHostConfigInput is an input type that accepts GetRulesRuleRuleConditionHostConfigArgs and GetRulesRuleRuleConditionHostConfigOutput values.
+// You can construct a concrete instance of `GetRulesRuleRuleConditionHostConfigInput` via:
+//
+//	GetRulesRuleRuleConditionHostConfigArgs{...}
+type GetRulesRuleRuleConditionHostConfigInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleRuleConditionHostConfigOutput() GetRulesRuleRuleConditionHostConfigOutput
+	ToGetRulesRuleRuleConditionHostConfigOutputWithContext(context.Context) GetRulesRuleRuleConditionHostConfigOutput
+}
+
+type GetRulesRuleRuleConditionHostConfigArgs struct {
+	// The list of query string values.
+	Values pulumi.StringArrayInput `pulumi:"values"`
+}
+
+func (GetRulesRuleRuleConditionHostConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleRuleConditionHostConfig)(nil)).Elem()
+}
+
+func (i GetRulesRuleRuleConditionHostConfigArgs) ToGetRulesRuleRuleConditionHostConfigOutput() GetRulesRuleRuleConditionHostConfigOutput {
+	return i.ToGetRulesRuleRuleConditionHostConfigOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleRuleConditionHostConfigArgs) ToGetRulesRuleRuleConditionHostConfigOutputWithContext(ctx context.Context) GetRulesRuleRuleConditionHostConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleRuleConditionHostConfigOutput)
+}
+
+// GetRulesRuleRuleConditionHostConfigArrayInput is an input type that accepts GetRulesRuleRuleConditionHostConfigArray and GetRulesRuleRuleConditionHostConfigArrayOutput values.
+// You can construct a concrete instance of `GetRulesRuleRuleConditionHostConfigArrayInput` via:
+//
+//	GetRulesRuleRuleConditionHostConfigArray{ GetRulesRuleRuleConditionHostConfigArgs{...} }
+type GetRulesRuleRuleConditionHostConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleRuleConditionHostConfigArrayOutput() GetRulesRuleRuleConditionHostConfigArrayOutput
+	ToGetRulesRuleRuleConditionHostConfigArrayOutputWithContext(context.Context) GetRulesRuleRuleConditionHostConfigArrayOutput
+}
+
+type GetRulesRuleRuleConditionHostConfigArray []GetRulesRuleRuleConditionHostConfigInput
+
+func (GetRulesRuleRuleConditionHostConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleRuleConditionHostConfig)(nil)).Elem()
+}
+
+func (i GetRulesRuleRuleConditionHostConfigArray) ToGetRulesRuleRuleConditionHostConfigArrayOutput() GetRulesRuleRuleConditionHostConfigArrayOutput {
+	return i.ToGetRulesRuleRuleConditionHostConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleRuleConditionHostConfigArray) ToGetRulesRuleRuleConditionHostConfigArrayOutputWithContext(ctx context.Context) GetRulesRuleRuleConditionHostConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleRuleConditionHostConfigArrayOutput)
+}
+
+type GetRulesRuleRuleConditionHostConfigOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleRuleConditionHostConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleRuleConditionHostConfig)(nil)).Elem()
+}
+
+func (o GetRulesRuleRuleConditionHostConfigOutput) ToGetRulesRuleRuleConditionHostConfigOutput() GetRulesRuleRuleConditionHostConfigOutput {
+	return o
+}
+
+func (o GetRulesRuleRuleConditionHostConfigOutput) ToGetRulesRuleRuleConditionHostConfigOutputWithContext(ctx context.Context) GetRulesRuleRuleConditionHostConfigOutput {
+	return o
+}
+
+// The list of query string values.
+func (o GetRulesRuleRuleConditionHostConfigOutput) Values() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetRulesRuleRuleConditionHostConfig) []string { return v.Values }).(pulumi.StringArrayOutput)
+}
+
+type GetRulesRuleRuleConditionHostConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleRuleConditionHostConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleRuleConditionHostConfig)(nil)).Elem()
+}
+
+func (o GetRulesRuleRuleConditionHostConfigArrayOutput) ToGetRulesRuleRuleConditionHostConfigArrayOutput() GetRulesRuleRuleConditionHostConfigArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleRuleConditionHostConfigArrayOutput) ToGetRulesRuleRuleConditionHostConfigArrayOutputWithContext(ctx context.Context) GetRulesRuleRuleConditionHostConfigArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleRuleConditionHostConfigArrayOutput) Index(i pulumi.IntInput) GetRulesRuleRuleConditionHostConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRulesRuleRuleConditionHostConfig {
+		return vs[0].([]GetRulesRuleRuleConditionHostConfig)[vs[1].(int)]
+	}).(GetRulesRuleRuleConditionHostConfigOutput)
+}
+
+type GetRulesRuleRuleConditionMethodConfig struct {
+	// The list of query string values.
+	Values []string `pulumi:"values"`
+}
+
+// GetRulesRuleRuleConditionMethodConfigInput is an input type that accepts GetRulesRuleRuleConditionMethodConfigArgs and GetRulesRuleRuleConditionMethodConfigOutput values.
+// You can construct a concrete instance of `GetRulesRuleRuleConditionMethodConfigInput` via:
+//
+//	GetRulesRuleRuleConditionMethodConfigArgs{...}
+type GetRulesRuleRuleConditionMethodConfigInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleRuleConditionMethodConfigOutput() GetRulesRuleRuleConditionMethodConfigOutput
+	ToGetRulesRuleRuleConditionMethodConfigOutputWithContext(context.Context) GetRulesRuleRuleConditionMethodConfigOutput
+}
+
+type GetRulesRuleRuleConditionMethodConfigArgs struct {
+	// The list of query string values.
+	Values pulumi.StringArrayInput `pulumi:"values"`
+}
+
+func (GetRulesRuleRuleConditionMethodConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleRuleConditionMethodConfig)(nil)).Elem()
+}
+
+func (i GetRulesRuleRuleConditionMethodConfigArgs) ToGetRulesRuleRuleConditionMethodConfigOutput() GetRulesRuleRuleConditionMethodConfigOutput {
+	return i.ToGetRulesRuleRuleConditionMethodConfigOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleRuleConditionMethodConfigArgs) ToGetRulesRuleRuleConditionMethodConfigOutputWithContext(ctx context.Context) GetRulesRuleRuleConditionMethodConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleRuleConditionMethodConfigOutput)
+}
+
+// GetRulesRuleRuleConditionMethodConfigArrayInput is an input type that accepts GetRulesRuleRuleConditionMethodConfigArray and GetRulesRuleRuleConditionMethodConfigArrayOutput values.
+// You can construct a concrete instance of `GetRulesRuleRuleConditionMethodConfigArrayInput` via:
+//
+//	GetRulesRuleRuleConditionMethodConfigArray{ GetRulesRuleRuleConditionMethodConfigArgs{...} }
+type GetRulesRuleRuleConditionMethodConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleRuleConditionMethodConfigArrayOutput() GetRulesRuleRuleConditionMethodConfigArrayOutput
+	ToGetRulesRuleRuleConditionMethodConfigArrayOutputWithContext(context.Context) GetRulesRuleRuleConditionMethodConfigArrayOutput
+}
+
+type GetRulesRuleRuleConditionMethodConfigArray []GetRulesRuleRuleConditionMethodConfigInput
+
+func (GetRulesRuleRuleConditionMethodConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleRuleConditionMethodConfig)(nil)).Elem()
+}
+
+func (i GetRulesRuleRuleConditionMethodConfigArray) ToGetRulesRuleRuleConditionMethodConfigArrayOutput() GetRulesRuleRuleConditionMethodConfigArrayOutput {
+	return i.ToGetRulesRuleRuleConditionMethodConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleRuleConditionMethodConfigArray) ToGetRulesRuleRuleConditionMethodConfigArrayOutputWithContext(ctx context.Context) GetRulesRuleRuleConditionMethodConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleRuleConditionMethodConfigArrayOutput)
+}
+
+type GetRulesRuleRuleConditionMethodConfigOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleRuleConditionMethodConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleRuleConditionMethodConfig)(nil)).Elem()
+}
+
+func (o GetRulesRuleRuleConditionMethodConfigOutput) ToGetRulesRuleRuleConditionMethodConfigOutput() GetRulesRuleRuleConditionMethodConfigOutput {
+	return o
+}
+
+func (o GetRulesRuleRuleConditionMethodConfigOutput) ToGetRulesRuleRuleConditionMethodConfigOutputWithContext(ctx context.Context) GetRulesRuleRuleConditionMethodConfigOutput {
+	return o
+}
+
+// The list of query string values.
+func (o GetRulesRuleRuleConditionMethodConfigOutput) Values() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetRulesRuleRuleConditionMethodConfig) []string { return v.Values }).(pulumi.StringArrayOutput)
+}
+
+type GetRulesRuleRuleConditionMethodConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleRuleConditionMethodConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleRuleConditionMethodConfig)(nil)).Elem()
+}
+
+func (o GetRulesRuleRuleConditionMethodConfigArrayOutput) ToGetRulesRuleRuleConditionMethodConfigArrayOutput() GetRulesRuleRuleConditionMethodConfigArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleRuleConditionMethodConfigArrayOutput) ToGetRulesRuleRuleConditionMethodConfigArrayOutputWithContext(ctx context.Context) GetRulesRuleRuleConditionMethodConfigArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleRuleConditionMethodConfigArrayOutput) Index(i pulumi.IntInput) GetRulesRuleRuleConditionMethodConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRulesRuleRuleConditionMethodConfig {
+		return vs[0].([]GetRulesRuleRuleConditionMethodConfig)[vs[1].(int)]
+	}).(GetRulesRuleRuleConditionMethodConfigOutput)
+}
+
+type GetRulesRuleRuleConditionPathConfig struct {
+	// The list of query string values.
+	Values []string `pulumi:"values"`
+}
+
+// GetRulesRuleRuleConditionPathConfigInput is an input type that accepts GetRulesRuleRuleConditionPathConfigArgs and GetRulesRuleRuleConditionPathConfigOutput values.
+// You can construct a concrete instance of `GetRulesRuleRuleConditionPathConfigInput` via:
+//
+//	GetRulesRuleRuleConditionPathConfigArgs{...}
+type GetRulesRuleRuleConditionPathConfigInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleRuleConditionPathConfigOutput() GetRulesRuleRuleConditionPathConfigOutput
+	ToGetRulesRuleRuleConditionPathConfigOutputWithContext(context.Context) GetRulesRuleRuleConditionPathConfigOutput
+}
+
+type GetRulesRuleRuleConditionPathConfigArgs struct {
+	// The list of query string values.
+	Values pulumi.StringArrayInput `pulumi:"values"`
+}
+
+func (GetRulesRuleRuleConditionPathConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleRuleConditionPathConfig)(nil)).Elem()
+}
+
+func (i GetRulesRuleRuleConditionPathConfigArgs) ToGetRulesRuleRuleConditionPathConfigOutput() GetRulesRuleRuleConditionPathConfigOutput {
+	return i.ToGetRulesRuleRuleConditionPathConfigOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleRuleConditionPathConfigArgs) ToGetRulesRuleRuleConditionPathConfigOutputWithContext(ctx context.Context) GetRulesRuleRuleConditionPathConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleRuleConditionPathConfigOutput)
+}
+
+// GetRulesRuleRuleConditionPathConfigArrayInput is an input type that accepts GetRulesRuleRuleConditionPathConfigArray and GetRulesRuleRuleConditionPathConfigArrayOutput values.
+// You can construct a concrete instance of `GetRulesRuleRuleConditionPathConfigArrayInput` via:
+//
+//	GetRulesRuleRuleConditionPathConfigArray{ GetRulesRuleRuleConditionPathConfigArgs{...} }
+type GetRulesRuleRuleConditionPathConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleRuleConditionPathConfigArrayOutput() GetRulesRuleRuleConditionPathConfigArrayOutput
+	ToGetRulesRuleRuleConditionPathConfigArrayOutputWithContext(context.Context) GetRulesRuleRuleConditionPathConfigArrayOutput
+}
+
+type GetRulesRuleRuleConditionPathConfigArray []GetRulesRuleRuleConditionPathConfigInput
+
+func (GetRulesRuleRuleConditionPathConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleRuleConditionPathConfig)(nil)).Elem()
+}
+
+func (i GetRulesRuleRuleConditionPathConfigArray) ToGetRulesRuleRuleConditionPathConfigArrayOutput() GetRulesRuleRuleConditionPathConfigArrayOutput {
+	return i.ToGetRulesRuleRuleConditionPathConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleRuleConditionPathConfigArray) ToGetRulesRuleRuleConditionPathConfigArrayOutputWithContext(ctx context.Context) GetRulesRuleRuleConditionPathConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleRuleConditionPathConfigArrayOutput)
+}
+
+type GetRulesRuleRuleConditionPathConfigOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleRuleConditionPathConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleRuleConditionPathConfig)(nil)).Elem()
+}
+
+func (o GetRulesRuleRuleConditionPathConfigOutput) ToGetRulesRuleRuleConditionPathConfigOutput() GetRulesRuleRuleConditionPathConfigOutput {
+	return o
+}
+
+func (o GetRulesRuleRuleConditionPathConfigOutput) ToGetRulesRuleRuleConditionPathConfigOutputWithContext(ctx context.Context) GetRulesRuleRuleConditionPathConfigOutput {
+	return o
+}
+
+// The list of query string values.
+func (o GetRulesRuleRuleConditionPathConfigOutput) Values() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetRulesRuleRuleConditionPathConfig) []string { return v.Values }).(pulumi.StringArrayOutput)
+}
+
+type GetRulesRuleRuleConditionPathConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleRuleConditionPathConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleRuleConditionPathConfig)(nil)).Elem()
+}
+
+func (o GetRulesRuleRuleConditionPathConfigArrayOutput) ToGetRulesRuleRuleConditionPathConfigArrayOutput() GetRulesRuleRuleConditionPathConfigArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleRuleConditionPathConfigArrayOutput) ToGetRulesRuleRuleConditionPathConfigArrayOutputWithContext(ctx context.Context) GetRulesRuleRuleConditionPathConfigArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleRuleConditionPathConfigArrayOutput) Index(i pulumi.IntInput) GetRulesRuleRuleConditionPathConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRulesRuleRuleConditionPathConfig {
+		return vs[0].([]GetRulesRuleRuleConditionPathConfig)[vs[1].(int)]
+	}).(GetRulesRuleRuleConditionPathConfigOutput)
+}
+
+type GetRulesRuleRuleConditionQueryStringConfig struct {
+	// The list of query string values.
+	Values []GetRulesRuleRuleConditionQueryStringConfigValue `pulumi:"values"`
+}
+
+// GetRulesRuleRuleConditionQueryStringConfigInput is an input type that accepts GetRulesRuleRuleConditionQueryStringConfigArgs and GetRulesRuleRuleConditionQueryStringConfigOutput values.
+// You can construct a concrete instance of `GetRulesRuleRuleConditionQueryStringConfigInput` via:
+//
+//	GetRulesRuleRuleConditionQueryStringConfigArgs{...}
+type GetRulesRuleRuleConditionQueryStringConfigInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleRuleConditionQueryStringConfigOutput() GetRulesRuleRuleConditionQueryStringConfigOutput
+	ToGetRulesRuleRuleConditionQueryStringConfigOutputWithContext(context.Context) GetRulesRuleRuleConditionQueryStringConfigOutput
+}
+
+type GetRulesRuleRuleConditionQueryStringConfigArgs struct {
+	// The list of query string values.
+	Values GetRulesRuleRuleConditionQueryStringConfigValueArrayInput `pulumi:"values"`
+}
+
+func (GetRulesRuleRuleConditionQueryStringConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleRuleConditionQueryStringConfig)(nil)).Elem()
+}
+
+func (i GetRulesRuleRuleConditionQueryStringConfigArgs) ToGetRulesRuleRuleConditionQueryStringConfigOutput() GetRulesRuleRuleConditionQueryStringConfigOutput {
+	return i.ToGetRulesRuleRuleConditionQueryStringConfigOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleRuleConditionQueryStringConfigArgs) ToGetRulesRuleRuleConditionQueryStringConfigOutputWithContext(ctx context.Context) GetRulesRuleRuleConditionQueryStringConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleRuleConditionQueryStringConfigOutput)
+}
+
+// GetRulesRuleRuleConditionQueryStringConfigArrayInput is an input type that accepts GetRulesRuleRuleConditionQueryStringConfigArray and GetRulesRuleRuleConditionQueryStringConfigArrayOutput values.
+// You can construct a concrete instance of `GetRulesRuleRuleConditionQueryStringConfigArrayInput` via:
+//
+//	GetRulesRuleRuleConditionQueryStringConfigArray{ GetRulesRuleRuleConditionQueryStringConfigArgs{...} }
+type GetRulesRuleRuleConditionQueryStringConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleRuleConditionQueryStringConfigArrayOutput() GetRulesRuleRuleConditionQueryStringConfigArrayOutput
+	ToGetRulesRuleRuleConditionQueryStringConfigArrayOutputWithContext(context.Context) GetRulesRuleRuleConditionQueryStringConfigArrayOutput
+}
+
+type GetRulesRuleRuleConditionQueryStringConfigArray []GetRulesRuleRuleConditionQueryStringConfigInput
+
+func (GetRulesRuleRuleConditionQueryStringConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleRuleConditionQueryStringConfig)(nil)).Elem()
+}
+
+func (i GetRulesRuleRuleConditionQueryStringConfigArray) ToGetRulesRuleRuleConditionQueryStringConfigArrayOutput() GetRulesRuleRuleConditionQueryStringConfigArrayOutput {
+	return i.ToGetRulesRuleRuleConditionQueryStringConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleRuleConditionQueryStringConfigArray) ToGetRulesRuleRuleConditionQueryStringConfigArrayOutputWithContext(ctx context.Context) GetRulesRuleRuleConditionQueryStringConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleRuleConditionQueryStringConfigArrayOutput)
+}
+
+type GetRulesRuleRuleConditionQueryStringConfigOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleRuleConditionQueryStringConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleRuleConditionQueryStringConfig)(nil)).Elem()
+}
+
+func (o GetRulesRuleRuleConditionQueryStringConfigOutput) ToGetRulesRuleRuleConditionQueryStringConfigOutput() GetRulesRuleRuleConditionQueryStringConfigOutput {
+	return o
+}
+
+func (o GetRulesRuleRuleConditionQueryStringConfigOutput) ToGetRulesRuleRuleConditionQueryStringConfigOutputWithContext(ctx context.Context) GetRulesRuleRuleConditionQueryStringConfigOutput {
+	return o
+}
+
+// The list of query string values.
+func (o GetRulesRuleRuleConditionQueryStringConfigOutput) Values() GetRulesRuleRuleConditionQueryStringConfigValueArrayOutput {
+	return o.ApplyT(func(v GetRulesRuleRuleConditionQueryStringConfig) []GetRulesRuleRuleConditionQueryStringConfigValue {
+		return v.Values
+	}).(GetRulesRuleRuleConditionQueryStringConfigValueArrayOutput)
+}
+
+type GetRulesRuleRuleConditionQueryStringConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleRuleConditionQueryStringConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleRuleConditionQueryStringConfig)(nil)).Elem()
+}
+
+func (o GetRulesRuleRuleConditionQueryStringConfigArrayOutput) ToGetRulesRuleRuleConditionQueryStringConfigArrayOutput() GetRulesRuleRuleConditionQueryStringConfigArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleRuleConditionQueryStringConfigArrayOutput) ToGetRulesRuleRuleConditionQueryStringConfigArrayOutputWithContext(ctx context.Context) GetRulesRuleRuleConditionQueryStringConfigArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleRuleConditionQueryStringConfigArrayOutput) Index(i pulumi.IntInput) GetRulesRuleRuleConditionQueryStringConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRulesRuleRuleConditionQueryStringConfig {
+		return vs[0].([]GetRulesRuleRuleConditionQueryStringConfig)[vs[1].(int)]
+	}).(GetRulesRuleRuleConditionQueryStringConfigOutput)
+}
+
+type GetRulesRuleRuleConditionQueryStringConfigValue struct {
+	// The query string key.
+	Key string `pulumi:"key"`
+	// The query string value.
+	Value string `pulumi:"value"`
+}
+
+// GetRulesRuleRuleConditionQueryStringConfigValueInput is an input type that accepts GetRulesRuleRuleConditionQueryStringConfigValueArgs and GetRulesRuleRuleConditionQueryStringConfigValueOutput values.
+// You can construct a concrete instance of `GetRulesRuleRuleConditionQueryStringConfigValueInput` via:
+//
+//	GetRulesRuleRuleConditionQueryStringConfigValueArgs{...}
+type GetRulesRuleRuleConditionQueryStringConfigValueInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleRuleConditionQueryStringConfigValueOutput() GetRulesRuleRuleConditionQueryStringConfigValueOutput
+	ToGetRulesRuleRuleConditionQueryStringConfigValueOutputWithContext(context.Context) GetRulesRuleRuleConditionQueryStringConfigValueOutput
+}
+
+type GetRulesRuleRuleConditionQueryStringConfigValueArgs struct {
+	// The query string key.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The query string value.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetRulesRuleRuleConditionQueryStringConfigValueArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleRuleConditionQueryStringConfigValue)(nil)).Elem()
+}
+
+func (i GetRulesRuleRuleConditionQueryStringConfigValueArgs) ToGetRulesRuleRuleConditionQueryStringConfigValueOutput() GetRulesRuleRuleConditionQueryStringConfigValueOutput {
+	return i.ToGetRulesRuleRuleConditionQueryStringConfigValueOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleRuleConditionQueryStringConfigValueArgs) ToGetRulesRuleRuleConditionQueryStringConfigValueOutputWithContext(ctx context.Context) GetRulesRuleRuleConditionQueryStringConfigValueOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleRuleConditionQueryStringConfigValueOutput)
+}
+
+// GetRulesRuleRuleConditionQueryStringConfigValueArrayInput is an input type that accepts GetRulesRuleRuleConditionQueryStringConfigValueArray and GetRulesRuleRuleConditionQueryStringConfigValueArrayOutput values.
+// You can construct a concrete instance of `GetRulesRuleRuleConditionQueryStringConfigValueArrayInput` via:
+//
+//	GetRulesRuleRuleConditionQueryStringConfigValueArray{ GetRulesRuleRuleConditionQueryStringConfigValueArgs{...} }
+type GetRulesRuleRuleConditionQueryStringConfigValueArrayInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleRuleConditionQueryStringConfigValueArrayOutput() GetRulesRuleRuleConditionQueryStringConfigValueArrayOutput
+	ToGetRulesRuleRuleConditionQueryStringConfigValueArrayOutputWithContext(context.Context) GetRulesRuleRuleConditionQueryStringConfigValueArrayOutput
+}
+
+type GetRulesRuleRuleConditionQueryStringConfigValueArray []GetRulesRuleRuleConditionQueryStringConfigValueInput
+
+func (GetRulesRuleRuleConditionQueryStringConfigValueArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleRuleConditionQueryStringConfigValue)(nil)).Elem()
+}
+
+func (i GetRulesRuleRuleConditionQueryStringConfigValueArray) ToGetRulesRuleRuleConditionQueryStringConfigValueArrayOutput() GetRulesRuleRuleConditionQueryStringConfigValueArrayOutput {
+	return i.ToGetRulesRuleRuleConditionQueryStringConfigValueArrayOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleRuleConditionQueryStringConfigValueArray) ToGetRulesRuleRuleConditionQueryStringConfigValueArrayOutputWithContext(ctx context.Context) GetRulesRuleRuleConditionQueryStringConfigValueArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleRuleConditionQueryStringConfigValueArrayOutput)
+}
+
+type GetRulesRuleRuleConditionQueryStringConfigValueOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleRuleConditionQueryStringConfigValueOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleRuleConditionQueryStringConfigValue)(nil)).Elem()
+}
+
+func (o GetRulesRuleRuleConditionQueryStringConfigValueOutput) ToGetRulesRuleRuleConditionQueryStringConfigValueOutput() GetRulesRuleRuleConditionQueryStringConfigValueOutput {
+	return o
+}
+
+func (o GetRulesRuleRuleConditionQueryStringConfigValueOutput) ToGetRulesRuleRuleConditionQueryStringConfigValueOutputWithContext(ctx context.Context) GetRulesRuleRuleConditionQueryStringConfigValueOutput {
+	return o
+}
+
+// The query string key.
+func (o GetRulesRuleRuleConditionQueryStringConfigValueOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRuleRuleConditionQueryStringConfigValue) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The query string value.
+func (o GetRulesRuleRuleConditionQueryStringConfigValueOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRuleRuleConditionQueryStringConfigValue) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetRulesRuleRuleConditionQueryStringConfigValueArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleRuleConditionQueryStringConfigValueArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleRuleConditionQueryStringConfigValue)(nil)).Elem()
+}
+
+func (o GetRulesRuleRuleConditionQueryStringConfigValueArrayOutput) ToGetRulesRuleRuleConditionQueryStringConfigValueArrayOutput() GetRulesRuleRuleConditionQueryStringConfigValueArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleRuleConditionQueryStringConfigValueArrayOutput) ToGetRulesRuleRuleConditionQueryStringConfigValueArrayOutputWithContext(ctx context.Context) GetRulesRuleRuleConditionQueryStringConfigValueArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleRuleConditionQueryStringConfigValueArrayOutput) Index(i pulumi.IntInput) GetRulesRuleRuleConditionQueryStringConfigValueOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRulesRuleRuleConditionQueryStringConfigValue {
+		return vs[0].([]GetRulesRuleRuleConditionQueryStringConfigValue)[vs[1].(int)]
+	}).(GetRulesRuleRuleConditionQueryStringConfigValueOutput)
+}
+
 type GetServerGroupServersServer struct {
 	// The description of the instance.
 	Description string `pulumi:"description"`
@@ -10750,9 +22487,11 @@ type GetServerGroupServersServer struct {
 	Ip string `pulumi:"ip"`
 	// The port receiving request.
 	Port int `pulumi:"port"`
+	// Whether to enable remote IP function. Optional choice contains `on`, `off`.
+	RemoteEnabled string `pulumi:"remoteEnabled"`
 	// The server id of instance in ServerGroup.
 	ServerId string `pulumi:"serverId"`
-	// The type of instance. Optional choice contains `ecs`, `eni`.
+	// The type of instance. Optional choice contains `ecs`, `eni`, `ip`.
 	Type string `pulumi:"type"`
 	// The weight of the instance.
 	Weight int `pulumi:"weight"`
@@ -10780,9 +22519,11 @@ type GetServerGroupServersServerArgs struct {
 	Ip pulumi.StringInput `pulumi:"ip"`
 	// The port receiving request.
 	Port pulumi.IntInput `pulumi:"port"`
+	// Whether to enable remote IP function. Optional choice contains `on`, `off`.
+	RemoteEnabled pulumi.StringInput `pulumi:"remoteEnabled"`
 	// The server id of instance in ServerGroup.
 	ServerId pulumi.StringInput `pulumi:"serverId"`
-	// The type of instance. Optional choice contains `ecs`, `eni`.
+	// The type of instance. Optional choice contains `ecs`, `eni`, `ip`.
 	Type pulumi.StringInput `pulumi:"type"`
 	// The weight of the instance.
 	Weight pulumi.IntInput `pulumi:"weight"`
@@ -10864,12 +22605,17 @@ func (o GetServerGroupServersServerOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v GetServerGroupServersServer) int { return v.Port }).(pulumi.IntOutput)
 }
 
+// Whether to enable remote IP function. Optional choice contains `on`, `off`.
+func (o GetServerGroupServersServerOutput) RemoteEnabled() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerGroupServersServer) string { return v.RemoteEnabled }).(pulumi.StringOutput)
+}
+
 // The server id of instance in ServerGroup.
 func (o GetServerGroupServersServerOutput) ServerId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerGroupServersServer) string { return v.ServerId }).(pulumi.StringOutput)
 }
 
-// The type of instance. Optional choice contains `ecs`, `eni`.
+// The type of instance. Optional choice contains `ecs`, `eni`, `ip`.
 func (o GetServerGroupServersServerOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerGroupServersServer) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -10902,16 +22648,22 @@ func (o GetServerGroupServersServerArrayOutput) Index(i pulumi.IntInput) GetServ
 type GetServerGroupsServerGroup struct {
 	// The create time of the Alb server group.
 	CreateTime string `pulumi:"createTime"`
+	// Whether to enable cross-zone load balancing for the server group.
+	CrossZoneEnabled string `pulumi:"crossZoneEnabled"`
 	// The description of the server group server.
 	Description string `pulumi:"description"`
 	// The health check config of the Alb server group.
 	HealthChecks []GetServerGroupsServerGroupHealthCheck `pulumi:"healthChecks"`
 	// The ID of the Alb server group.
 	Id string `pulumi:"id"`
+	// The ip address type of the server group.
+	IpAddressType string `pulumi:"ipAddressType"`
 	// The listener information of the Alb server group.
 	Listeners []string `pulumi:"listeners"`
 	// The project name of Alb server group.
 	ProjectName string `pulumi:"projectName"`
+	// The backend protocol of the Alb server group.
+	Protocol string `pulumi:"protocol"`
 	// The scheduler algorithm of the Alb server group.
 	Scheduler string `pulumi:"scheduler"`
 	// The server count of the Alb server group.
@@ -10928,9 +22680,11 @@ type GetServerGroupsServerGroup struct {
 	Status string `pulumi:"status"`
 	// The sticky session config of the Alb server group.
 	StickySessionConfigs []GetServerGroupsServerGroupStickySessionConfig `pulumi:"stickySessionConfigs"`
+	// Tags.
+	Tags []GetServerGroupsServerGroupTag `pulumi:"tags"`
 	// The update time of the Alb server group.
 	UpdateTime string `pulumi:"updateTime"`
-	// The vpc id of the Alb server group.
+	// The vpc id of Alb server group.
 	VpcId string `pulumi:"vpcId"`
 }
 
@@ -10948,16 +22702,22 @@ type GetServerGroupsServerGroupInput interface {
 type GetServerGroupsServerGroupArgs struct {
 	// The create time of the Alb server group.
 	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// Whether to enable cross-zone load balancing for the server group.
+	CrossZoneEnabled pulumi.StringInput `pulumi:"crossZoneEnabled"`
 	// The description of the server group server.
 	Description pulumi.StringInput `pulumi:"description"`
 	// The health check config of the Alb server group.
 	HealthChecks GetServerGroupsServerGroupHealthCheckArrayInput `pulumi:"healthChecks"`
 	// The ID of the Alb server group.
 	Id pulumi.StringInput `pulumi:"id"`
+	// The ip address type of the server group.
+	IpAddressType pulumi.StringInput `pulumi:"ipAddressType"`
 	// The listener information of the Alb server group.
 	Listeners pulumi.StringArrayInput `pulumi:"listeners"`
 	// The project name of Alb server group.
 	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The backend protocol of the Alb server group.
+	Protocol pulumi.StringInput `pulumi:"protocol"`
 	// The scheduler algorithm of the Alb server group.
 	Scheduler pulumi.StringInput `pulumi:"scheduler"`
 	// The server count of the Alb server group.
@@ -10974,9 +22734,11 @@ type GetServerGroupsServerGroupArgs struct {
 	Status pulumi.StringInput `pulumi:"status"`
 	// The sticky session config of the Alb server group.
 	StickySessionConfigs GetServerGroupsServerGroupStickySessionConfigArrayInput `pulumi:"stickySessionConfigs"`
+	// Tags.
+	Tags GetServerGroupsServerGroupTagArrayInput `pulumi:"tags"`
 	// The update time of the Alb server group.
 	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
-	// The vpc id of the Alb server group.
+	// The vpc id of Alb server group.
 	VpcId pulumi.StringInput `pulumi:"vpcId"`
 }
 
@@ -11036,6 +22798,11 @@ func (o GetServerGroupsServerGroupOutput) CreateTime() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerGroupsServerGroup) string { return v.CreateTime }).(pulumi.StringOutput)
 }
 
+// Whether to enable cross-zone load balancing for the server group.
+func (o GetServerGroupsServerGroupOutput) CrossZoneEnabled() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerGroupsServerGroup) string { return v.CrossZoneEnabled }).(pulumi.StringOutput)
+}
+
 // The description of the server group server.
 func (o GetServerGroupsServerGroupOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerGroupsServerGroup) string { return v.Description }).(pulumi.StringOutput)
@@ -11051,6 +22818,11 @@ func (o GetServerGroupsServerGroupOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerGroupsServerGroup) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// The ip address type of the server group.
+func (o GetServerGroupsServerGroupOutput) IpAddressType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerGroupsServerGroup) string { return v.IpAddressType }).(pulumi.StringOutput)
+}
+
 // The listener information of the Alb server group.
 func (o GetServerGroupsServerGroupOutput) Listeners() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetServerGroupsServerGroup) []string { return v.Listeners }).(pulumi.StringArrayOutput)
@@ -11059,6 +22831,11 @@ func (o GetServerGroupsServerGroupOutput) Listeners() pulumi.StringArrayOutput {
 // The project name of Alb server group.
 func (o GetServerGroupsServerGroupOutput) ProjectName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerGroupsServerGroup) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The backend protocol of the Alb server group.
+func (o GetServerGroupsServerGroupOutput) Protocol() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerGroupsServerGroup) string { return v.Protocol }).(pulumi.StringOutput)
 }
 
 // The scheduler algorithm of the Alb server group.
@@ -11103,12 +22880,17 @@ func (o GetServerGroupsServerGroupOutput) StickySessionConfigs() GetServerGroups
 	}).(GetServerGroupsServerGroupStickySessionConfigArrayOutput)
 }
 
+// Tags.
+func (o GetServerGroupsServerGroupOutput) Tags() GetServerGroupsServerGroupTagArrayOutput {
+	return o.ApplyT(func(v GetServerGroupsServerGroup) []GetServerGroupsServerGroupTag { return v.Tags }).(GetServerGroupsServerGroupTagArrayOutput)
+}
+
 // The update time of the Alb server group.
 func (o GetServerGroupsServerGroupOutput) UpdateTime() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerGroupsServerGroup) string { return v.UpdateTime }).(pulumi.StringOutput)
 }
 
-// The vpc id of the Alb server group.
+// The vpc id of Alb server group.
 func (o GetServerGroupsServerGroupOutput) VpcId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerGroupsServerGroup) string { return v.VpcId }).(pulumi.StringOutput)
 }
@@ -11141,15 +22923,17 @@ type GetServerGroupsServerGroupHealthCheck struct {
 	// The healthy threshold of health check.
 	HealthyThreshold int `pulumi:"healthyThreshold"`
 	// The normal http status code of health check.
-	HttpCode *string `pulumi:"httpCode"`
+	HttpCode string `pulumi:"httpCode"`
 	// The http version of health check.
-	HttpVersion *string `pulumi:"httpVersion"`
+	HttpVersion string `pulumi:"httpVersion"`
 	// The interval executing health check.
 	Interval int `pulumi:"interval"`
 	// The method of health check.
 	Method string `pulumi:"method"`
-	// The protocol of health check.
-	Protocol *string `pulumi:"protocol"`
+	// The port receiving request of the server group server.
+	Port int `pulumi:"port"`
+	// The backend protocol of the Alb server group.
+	Protocol string `pulumi:"protocol"`
 	// The response timeout of health check.
 	Timeout *int `pulumi:"timeout"`
 	// The unhealthy threshold of health check.
@@ -11177,15 +22961,17 @@ type GetServerGroupsServerGroupHealthCheckArgs struct {
 	// The healthy threshold of health check.
 	HealthyThreshold pulumi.IntInput `pulumi:"healthyThreshold"`
 	// The normal http status code of health check.
-	HttpCode pulumi.StringPtrInput `pulumi:"httpCode"`
+	HttpCode pulumi.StringInput `pulumi:"httpCode"`
 	// The http version of health check.
-	HttpVersion pulumi.StringPtrInput `pulumi:"httpVersion"`
+	HttpVersion pulumi.StringInput `pulumi:"httpVersion"`
 	// The interval executing health check.
 	Interval pulumi.IntInput `pulumi:"interval"`
 	// The method of health check.
 	Method pulumi.StringInput `pulumi:"method"`
-	// The protocol of health check.
-	Protocol pulumi.StringPtrInput `pulumi:"protocol"`
+	// The port receiving request of the server group server.
+	Port pulumi.IntInput `pulumi:"port"`
+	// The backend protocol of the Alb server group.
+	Protocol pulumi.StringInput `pulumi:"protocol"`
 	// The response timeout of health check.
 	Timeout pulumi.IntPtrInput `pulumi:"timeout"`
 	// The unhealthy threshold of health check.
@@ -11261,13 +23047,13 @@ func (o GetServerGroupsServerGroupHealthCheckOutput) HealthyThreshold() pulumi.I
 }
 
 // The normal http status code of health check.
-func (o GetServerGroupsServerGroupHealthCheckOutput) HttpCode() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetServerGroupsServerGroupHealthCheck) *string { return v.HttpCode }).(pulumi.StringPtrOutput)
+func (o GetServerGroupsServerGroupHealthCheckOutput) HttpCode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerGroupsServerGroupHealthCheck) string { return v.HttpCode }).(pulumi.StringOutput)
 }
 
 // The http version of health check.
-func (o GetServerGroupsServerGroupHealthCheckOutput) HttpVersion() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetServerGroupsServerGroupHealthCheck) *string { return v.HttpVersion }).(pulumi.StringPtrOutput)
+func (o GetServerGroupsServerGroupHealthCheckOutput) HttpVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerGroupsServerGroupHealthCheck) string { return v.HttpVersion }).(pulumi.StringOutput)
 }
 
 // The interval executing health check.
@@ -11280,9 +23066,14 @@ func (o GetServerGroupsServerGroupHealthCheckOutput) Method() pulumi.StringOutpu
 	return o.ApplyT(func(v GetServerGroupsServerGroupHealthCheck) string { return v.Method }).(pulumi.StringOutput)
 }
 
-// The protocol of health check.
-func (o GetServerGroupsServerGroupHealthCheckOutput) Protocol() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetServerGroupsServerGroupHealthCheck) *string { return v.Protocol }).(pulumi.StringPtrOutput)
+// The port receiving request of the server group server.
+func (o GetServerGroupsServerGroupHealthCheckOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v GetServerGroupsServerGroupHealthCheck) int { return v.Port }).(pulumi.IntOutput)
+}
+
+// The backend protocol of the Alb server group.
+func (o GetServerGroupsServerGroupHealthCheckOutput) Protocol() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerGroupsServerGroupHealthCheck) string { return v.Protocol }).(pulumi.StringOutput)
 }
 
 // The response timeout of health check.
@@ -11604,6 +23395,218 @@ func (o GetServerGroupsServerGroupStickySessionConfigArrayOutput) Index(i pulumi
 	}).(GetServerGroupsServerGroupStickySessionConfigOutput)
 }
 
+type GetServerGroupsServerGroupTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetServerGroupsServerGroupTagInput is an input type that accepts GetServerGroupsServerGroupTagArgs and GetServerGroupsServerGroupTagOutput values.
+// You can construct a concrete instance of `GetServerGroupsServerGroupTagInput` via:
+//
+//	GetServerGroupsServerGroupTagArgs{...}
+type GetServerGroupsServerGroupTagInput interface {
+	pulumi.Input
+
+	ToGetServerGroupsServerGroupTagOutput() GetServerGroupsServerGroupTagOutput
+	ToGetServerGroupsServerGroupTagOutputWithContext(context.Context) GetServerGroupsServerGroupTagOutput
+}
+
+type GetServerGroupsServerGroupTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetServerGroupsServerGroupTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServerGroupsServerGroupTag)(nil)).Elem()
+}
+
+func (i GetServerGroupsServerGroupTagArgs) ToGetServerGroupsServerGroupTagOutput() GetServerGroupsServerGroupTagOutput {
+	return i.ToGetServerGroupsServerGroupTagOutputWithContext(context.Background())
+}
+
+func (i GetServerGroupsServerGroupTagArgs) ToGetServerGroupsServerGroupTagOutputWithContext(ctx context.Context) GetServerGroupsServerGroupTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServerGroupsServerGroupTagOutput)
+}
+
+// GetServerGroupsServerGroupTagArrayInput is an input type that accepts GetServerGroupsServerGroupTagArray and GetServerGroupsServerGroupTagArrayOutput values.
+// You can construct a concrete instance of `GetServerGroupsServerGroupTagArrayInput` via:
+//
+//	GetServerGroupsServerGroupTagArray{ GetServerGroupsServerGroupTagArgs{...} }
+type GetServerGroupsServerGroupTagArrayInput interface {
+	pulumi.Input
+
+	ToGetServerGroupsServerGroupTagArrayOutput() GetServerGroupsServerGroupTagArrayOutput
+	ToGetServerGroupsServerGroupTagArrayOutputWithContext(context.Context) GetServerGroupsServerGroupTagArrayOutput
+}
+
+type GetServerGroupsServerGroupTagArray []GetServerGroupsServerGroupTagInput
+
+func (GetServerGroupsServerGroupTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServerGroupsServerGroupTag)(nil)).Elem()
+}
+
+func (i GetServerGroupsServerGroupTagArray) ToGetServerGroupsServerGroupTagArrayOutput() GetServerGroupsServerGroupTagArrayOutput {
+	return i.ToGetServerGroupsServerGroupTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetServerGroupsServerGroupTagArray) ToGetServerGroupsServerGroupTagArrayOutputWithContext(ctx context.Context) GetServerGroupsServerGroupTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServerGroupsServerGroupTagArrayOutput)
+}
+
+type GetServerGroupsServerGroupTagOutput struct{ *pulumi.OutputState }
+
+func (GetServerGroupsServerGroupTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServerGroupsServerGroupTag)(nil)).Elem()
+}
+
+func (o GetServerGroupsServerGroupTagOutput) ToGetServerGroupsServerGroupTagOutput() GetServerGroupsServerGroupTagOutput {
+	return o
+}
+
+func (o GetServerGroupsServerGroupTagOutput) ToGetServerGroupsServerGroupTagOutputWithContext(ctx context.Context) GetServerGroupsServerGroupTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetServerGroupsServerGroupTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerGroupsServerGroupTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetServerGroupsServerGroupTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerGroupsServerGroupTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetServerGroupsServerGroupTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetServerGroupsServerGroupTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServerGroupsServerGroupTag)(nil)).Elem()
+}
+
+func (o GetServerGroupsServerGroupTagArrayOutput) ToGetServerGroupsServerGroupTagArrayOutput() GetServerGroupsServerGroupTagArrayOutput {
+	return o
+}
+
+func (o GetServerGroupsServerGroupTagArrayOutput) ToGetServerGroupsServerGroupTagArrayOutputWithContext(ctx context.Context) GetServerGroupsServerGroupTagArrayOutput {
+	return o
+}
+
+func (o GetServerGroupsServerGroupTagArrayOutput) Index(i pulumi.IntInput) GetServerGroupsServerGroupTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetServerGroupsServerGroupTag {
+		return vs[0].([]GetServerGroupsServerGroupTag)[vs[1].(int)]
+	}).(GetServerGroupsServerGroupTagOutput)
+}
+
+type GetServerGroupsTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetServerGroupsTagInput is an input type that accepts GetServerGroupsTagArgs and GetServerGroupsTagOutput values.
+// You can construct a concrete instance of `GetServerGroupsTagInput` via:
+//
+//	GetServerGroupsTagArgs{...}
+type GetServerGroupsTagInput interface {
+	pulumi.Input
+
+	ToGetServerGroupsTagOutput() GetServerGroupsTagOutput
+	ToGetServerGroupsTagOutputWithContext(context.Context) GetServerGroupsTagOutput
+}
+
+type GetServerGroupsTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetServerGroupsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServerGroupsTag)(nil)).Elem()
+}
+
+func (i GetServerGroupsTagArgs) ToGetServerGroupsTagOutput() GetServerGroupsTagOutput {
+	return i.ToGetServerGroupsTagOutputWithContext(context.Background())
+}
+
+func (i GetServerGroupsTagArgs) ToGetServerGroupsTagOutputWithContext(ctx context.Context) GetServerGroupsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServerGroupsTagOutput)
+}
+
+// GetServerGroupsTagArrayInput is an input type that accepts GetServerGroupsTagArray and GetServerGroupsTagArrayOutput values.
+// You can construct a concrete instance of `GetServerGroupsTagArrayInput` via:
+//
+//	GetServerGroupsTagArray{ GetServerGroupsTagArgs{...} }
+type GetServerGroupsTagArrayInput interface {
+	pulumi.Input
+
+	ToGetServerGroupsTagArrayOutput() GetServerGroupsTagArrayOutput
+	ToGetServerGroupsTagArrayOutputWithContext(context.Context) GetServerGroupsTagArrayOutput
+}
+
+type GetServerGroupsTagArray []GetServerGroupsTagInput
+
+func (GetServerGroupsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServerGroupsTag)(nil)).Elem()
+}
+
+func (i GetServerGroupsTagArray) ToGetServerGroupsTagArrayOutput() GetServerGroupsTagArrayOutput {
+	return i.ToGetServerGroupsTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetServerGroupsTagArray) ToGetServerGroupsTagArrayOutputWithContext(ctx context.Context) GetServerGroupsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServerGroupsTagArrayOutput)
+}
+
+type GetServerGroupsTagOutput struct{ *pulumi.OutputState }
+
+func (GetServerGroupsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServerGroupsTag)(nil)).Elem()
+}
+
+func (o GetServerGroupsTagOutput) ToGetServerGroupsTagOutput() GetServerGroupsTagOutput {
+	return o
+}
+
+func (o GetServerGroupsTagOutput) ToGetServerGroupsTagOutputWithContext(ctx context.Context) GetServerGroupsTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetServerGroupsTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerGroupsTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetServerGroupsTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerGroupsTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetServerGroupsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetServerGroupsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServerGroupsTag)(nil)).Elem()
+}
+
+func (o GetServerGroupsTagArrayOutput) ToGetServerGroupsTagArrayOutput() GetServerGroupsTagArrayOutput {
+	return o
+}
+
+func (o GetServerGroupsTagArrayOutput) ToGetServerGroupsTagArrayOutputWithContext(ctx context.Context) GetServerGroupsTagArrayOutput {
+	return o
+}
+
+func (o GetServerGroupsTagArrayOutput) Index(i pulumi.IntInput) GetServerGroupsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetServerGroupsTag {
+		return vs[0].([]GetServerGroupsTag)[vs[1].(int)]
+	}).(GetServerGroupsTagOutput)
+}
+
 type GetZonesZone struct {
 	// The id of the zone.
 	Id string `pulumi:"id"`
@@ -11713,14 +23716,22 @@ func (o GetZonesZoneArrayOutput) Index(i pulumi.IntInput) GetZonesZoneOutput {
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AclAclEntryInput)(nil)).Elem(), AclAclEntryArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AclAclEntryArrayInput)(nil)).Elem(), AclAclEntryArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AclTagInput)(nil)).Elem(), AclTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AclTagArrayInput)(nil)).Elem(), AclTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AclsAclInput)(nil)).Elem(), AclsAclArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AclsAclArrayInput)(nil)).Elem(), AclsAclArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AclsAclAclEntryInput)(nil)).Elem(), AclsAclAclEntryArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AclsAclAclEntryArrayInput)(nil)).Elem(), AclsAclAclEntryArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AclsAclListenerInput)(nil)).Elem(), AclsAclListenerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AclsAclListenerArrayInput)(nil)).Elem(), AclsAclListenerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AclsAclTagInput)(nil)).Elem(), AclsAclTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AclsAclTagArrayInput)(nil)).Elem(), AclsAclTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AclsTagInput)(nil)).Elem(), AclsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AclsTagArrayInput)(nil)).Elem(), AclsTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlbEipBillingConfigInput)(nil)).Elem(), AlbEipBillingConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlbEipBillingConfigPtrInput)(nil)).Elem(), AlbEipBillingConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlbGlobalAcceleratorInput)(nil)).Elem(), AlbGlobalAcceleratorArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlbGlobalAcceleratorPtrInput)(nil)).Elem(), AlbGlobalAcceleratorArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlbIpv6EipBillingConfigInput)(nil)).Elem(), AlbIpv6EipBillingConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlbIpv6EipBillingConfigPtrInput)(nil)).Elem(), AlbIpv6EipBillingConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlbTagInput)(nil)).Elem(), AlbTagArgs{})
@@ -11733,6 +23744,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AlbsAlbArrayInput)(nil)).Elem(), AlbsAlbArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlbsAlbAccessLogInput)(nil)).Elem(), AlbsAlbAccessLogArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlbsAlbAccessLogArrayInput)(nil)).Elem(), AlbsAlbAccessLogArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlbsAlbGlobalAcceleratorInput)(nil)).Elem(), AlbsAlbGlobalAcceleratorArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlbsAlbGlobalAcceleratorArrayInput)(nil)).Elem(), AlbsAlbGlobalAcceleratorArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlbsAlbHealthLogInput)(nil)).Elem(), AlbsAlbHealthLogArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlbsAlbHealthLogArrayInput)(nil)).Elem(), AlbsAlbHealthLogArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlbsAlbListenerInput)(nil)).Elem(), AlbsAlbListenerArgs{})
@@ -11753,40 +23766,144 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AlbsAlbZoneMappingLoadBalancerAddressIpv6EipArrayInput)(nil)).Elem(), AlbsAlbZoneMappingLoadBalancerAddressIpv6EipArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlbsTagInput)(nil)).Elem(), AlbsTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlbsTagArrayInput)(nil)).Elem(), AlbsTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AllCertificatesCertificateInput)(nil)).Elem(), AllCertificatesCertificateArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AllCertificatesCertificateArrayInput)(nil)).Elem(), AllCertificatesCertificateArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AllCertificatesCertificateTagInput)(nil)).Elem(), AllCertificatesCertificateTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AllCertificatesCertificateTagArrayInput)(nil)).Elem(), AllCertificatesCertificateTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AllCertificatesTagInput)(nil)).Elem(), AllCertificatesTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AllCertificatesTagArrayInput)(nil)).Elem(), AllCertificatesTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CaCertificatesCertificateInput)(nil)).Elem(), CaCertificatesCertificateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CaCertificatesCertificateArrayInput)(nil)).Elem(), CaCertificatesCertificateArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CertificateTagInput)(nil)).Elem(), CertificateTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CertificateTagArrayInput)(nil)).Elem(), CertificateTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CertificatesCertificateInput)(nil)).Elem(), CertificatesCertificateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CertificatesCertificateArrayInput)(nil)).Elem(), CertificatesCertificateArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CertificatesCertificateTagInput)(nil)).Elem(), CertificatesCertificateTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CertificatesCertificateTagArrayInput)(nil)).Elem(), CertificatesCertificateTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CertificatesTagInput)(nil)).Elem(), CertificatesTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CertificatesTagArrayInput)(nil)).Elem(), CertificatesTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CustomizedCfgTagInput)(nil)).Elem(), CustomizedCfgTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CustomizedCfgTagArrayInput)(nil)).Elem(), CustomizedCfgTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CustomizedCfgsCfgInput)(nil)).Elem(), CustomizedCfgsCfgArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CustomizedCfgsCfgArrayInput)(nil)).Elem(), CustomizedCfgsCfgArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CustomizedCfgsCfgListenerInput)(nil)).Elem(), CustomizedCfgsCfgListenerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CustomizedCfgsCfgListenerArrayInput)(nil)).Elem(), CustomizedCfgsCfgListenerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CustomizedCfgsCfgTagInput)(nil)).Elem(), CustomizedCfgsCfgTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CustomizedCfgsCfgTagArrayInput)(nil)).Elem(), CustomizedCfgsCfgTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CustomizedCfgsTagInput)(nil)).Elem(), CustomizedCfgsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CustomizedCfgsTagArrayInput)(nil)).Elem(), CustomizedCfgsTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*HealthCheckTemplateTagInput)(nil)).Elem(), HealthCheckTemplateTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*HealthCheckTemplateTagArrayInput)(nil)).Elem(), HealthCheckTemplateTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*HealthCheckTemplatesHealthCheckTemplateInput)(nil)).Elem(), HealthCheckTemplatesHealthCheckTemplateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*HealthCheckTemplatesHealthCheckTemplateArrayInput)(nil)).Elem(), HealthCheckTemplatesHealthCheckTemplateArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*HealthCheckTemplatesHealthCheckTemplateTagInput)(nil)).Elem(), HealthCheckTemplatesHealthCheckTemplateTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*HealthCheckTemplatesHealthCheckTemplateTagArrayInput)(nil)).Elem(), HealthCheckTemplatesHealthCheckTemplateTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*HealthCheckTemplatesTagInput)(nil)).Elem(), HealthCheckTemplatesTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*HealthCheckTemplatesTagArrayInput)(nil)).Elem(), HealthCheckTemplatesTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListenerDomainExtensionTypeInput)(nil)).Elem(), ListenerDomainExtensionTypeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListenerDomainExtensionTypeArrayInput)(nil)).Elem(), ListenerDomainExtensionTypeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ListenerDomainExtensionsDomainExtensionInput)(nil)).Elem(), ListenerDomainExtensionsDomainExtensionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ListenerDomainExtensionsDomainExtensionArrayInput)(nil)).Elem(), ListenerDomainExtensionsDomainExtensionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListenerHealthsListenerInput)(nil)).Elem(), ListenerHealthsListenerArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListenerHealthsListenerArrayInput)(nil)).Elem(), ListenerHealthsListenerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListenerHealthsListenerBackendServerInput)(nil)).Elem(), ListenerHealthsListenerBackendServerArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListenerHealthsListenerBackendServerArrayInput)(nil)).Elem(), ListenerHealthsListenerBackendServerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListenerTagInput)(nil)).Elem(), ListenerTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListenerTagArrayInput)(nil)).Elem(), ListenerTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ListenersListenerInput)(nil)).Elem(), ListenersListenerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ListenersListenerArrayInput)(nil)).Elem(), ListenersListenerArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ListenersListenerDomainExtensionInput)(nil)).Elem(), ListenersListenerDomainExtensionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ListenersListenerDomainExtensionArrayInput)(nil)).Elem(), ListenersListenerDomainExtensionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ListenersListenerServerGroupInput)(nil)).Elem(), ListenersListenerServerGroupArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ListenersListenerServerGroupArrayInput)(nil)).Elem(), ListenersListenerServerGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListenersListenerTagInput)(nil)).Elem(), ListenersListenerTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListenersListenerTagArrayInput)(nil)).Elem(), ListenersListenerTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListenersTagInput)(nil)).Elem(), ListenersTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListenersTagArrayInput)(nil)).Elem(), ListenersTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RuleRedirectConfigInput)(nil)).Elem(), RuleRedirectConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RuleRedirectConfigPtrInput)(nil)).Elem(), RuleRedirectConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RuleRewriteConfigInput)(nil)).Elem(), RuleRewriteConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RuleRewriteConfigPtrInput)(nil)).Elem(), RuleRewriteConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleRuleActionInput)(nil)).Elem(), RuleRuleActionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleRuleActionArrayInput)(nil)).Elem(), RuleRuleActionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleRuleActionFixedResponseConfigInput)(nil)).Elem(), RuleRuleActionFixedResponseConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleRuleActionFixedResponseConfigPtrInput)(nil)).Elem(), RuleRuleActionFixedResponseConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleRuleActionForwardGroupConfigInput)(nil)).Elem(), RuleRuleActionForwardGroupConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleRuleActionForwardGroupConfigPtrInput)(nil)).Elem(), RuleRuleActionForwardGroupConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleRuleActionForwardGroupConfigServerGroupStickySessionInput)(nil)).Elem(), RuleRuleActionForwardGroupConfigServerGroupStickySessionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleRuleActionForwardGroupConfigServerGroupStickySessionPtrInput)(nil)).Elem(), RuleRuleActionForwardGroupConfigServerGroupStickySessionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleRuleActionForwardGroupConfigServerGroupTupleInput)(nil)).Elem(), RuleRuleActionForwardGroupConfigServerGroupTupleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleRuleActionForwardGroupConfigServerGroupTupleArrayInput)(nil)).Elem(), RuleRuleActionForwardGroupConfigServerGroupTupleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleRuleActionRedirectConfigInput)(nil)).Elem(), RuleRuleActionRedirectConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleRuleActionRedirectConfigPtrInput)(nil)).Elem(), RuleRuleActionRedirectConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleRuleActionRewriteConfigInput)(nil)).Elem(), RuleRuleActionRewriteConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleRuleActionRewriteConfigPtrInput)(nil)).Elem(), RuleRuleActionRewriteConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleRuleActionTrafficLimitConfigInput)(nil)).Elem(), RuleRuleActionTrafficLimitConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleRuleActionTrafficLimitConfigPtrInput)(nil)).Elem(), RuleRuleActionTrafficLimitConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleRuleConditionInput)(nil)).Elem(), RuleRuleConditionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleRuleConditionArrayInput)(nil)).Elem(), RuleRuleConditionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleRuleConditionHeaderConfigInput)(nil)).Elem(), RuleRuleConditionHeaderConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleRuleConditionHeaderConfigPtrInput)(nil)).Elem(), RuleRuleConditionHeaderConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleRuleConditionHostConfigInput)(nil)).Elem(), RuleRuleConditionHostConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleRuleConditionHostConfigPtrInput)(nil)).Elem(), RuleRuleConditionHostConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleRuleConditionMethodConfigInput)(nil)).Elem(), RuleRuleConditionMethodConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleRuleConditionMethodConfigPtrInput)(nil)).Elem(), RuleRuleConditionMethodConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleRuleConditionPathConfigInput)(nil)).Elem(), RuleRuleConditionPathConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleRuleConditionPathConfigPtrInput)(nil)).Elem(), RuleRuleConditionPathConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleRuleConditionQueryStringConfigInput)(nil)).Elem(), RuleRuleConditionQueryStringConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleRuleConditionQueryStringConfigPtrInput)(nil)).Elem(), RuleRuleConditionQueryStringConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleRuleConditionQueryStringConfigValueInput)(nil)).Elem(), RuleRuleConditionQueryStringConfigValueArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleRuleConditionQueryStringConfigValueArrayInput)(nil)).Elem(), RuleRuleConditionQueryStringConfigValueArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleServerGroupTupleInput)(nil)).Elem(), RuleServerGroupTupleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleServerGroupTupleArrayInput)(nil)).Elem(), RuleServerGroupTupleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleInput)(nil)).Elem(), RulesRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleArrayInput)(nil)).Elem(), RulesRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleForwardGroupConfigInput)(nil)).Elem(), RulesRuleForwardGroupConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleForwardGroupConfigArrayInput)(nil)).Elem(), RulesRuleForwardGroupConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleForwardGroupConfigServerGroupTupleInput)(nil)).Elem(), RulesRuleForwardGroupConfigServerGroupTupleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleForwardGroupConfigServerGroupTupleArrayInput)(nil)).Elem(), RulesRuleForwardGroupConfigServerGroupTupleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleRedirectConfigInput)(nil)).Elem(), RulesRuleRedirectConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleRedirectConfigArrayInput)(nil)).Elem(), RulesRuleRedirectConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleRewriteConfigInput)(nil)).Elem(), RulesRuleRewriteConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleRewriteConfigArrayInput)(nil)).Elem(), RulesRuleRewriteConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleRuleActionInput)(nil)).Elem(), RulesRuleRuleActionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleRuleActionArrayInput)(nil)).Elem(), RulesRuleRuleActionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleRuleActionFixedResponseConfigInput)(nil)).Elem(), RulesRuleRuleActionFixedResponseConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleRuleActionFixedResponseConfigArrayInput)(nil)).Elem(), RulesRuleRuleActionFixedResponseConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleRuleActionForwardGroupConfigInput)(nil)).Elem(), RulesRuleRuleActionForwardGroupConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleRuleActionForwardGroupConfigArrayInput)(nil)).Elem(), RulesRuleRuleActionForwardGroupConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionInput)(nil)).Elem(), RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayInput)(nil)).Elem(), RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleRuleActionForwardGroupConfigServerGroupTupleInput)(nil)).Elem(), RulesRuleRuleActionForwardGroupConfigServerGroupTupleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayInput)(nil)).Elem(), RulesRuleRuleActionForwardGroupConfigServerGroupTupleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleRuleActionRedirectConfigInput)(nil)).Elem(), RulesRuleRuleActionRedirectConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleRuleActionRedirectConfigArrayInput)(nil)).Elem(), RulesRuleRuleActionRedirectConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleRuleActionRewriteConfigInput)(nil)).Elem(), RulesRuleRuleActionRewriteConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleRuleActionRewriteConfigArrayInput)(nil)).Elem(), RulesRuleRuleActionRewriteConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleRuleActionTrafficLimitConfigInput)(nil)).Elem(), RulesRuleRuleActionTrafficLimitConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleRuleActionTrafficLimitConfigArrayInput)(nil)).Elem(), RulesRuleRuleActionTrafficLimitConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleRuleConditionInput)(nil)).Elem(), RulesRuleRuleConditionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleRuleConditionArrayInput)(nil)).Elem(), RulesRuleRuleConditionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleRuleConditionHeaderConfigInput)(nil)).Elem(), RulesRuleRuleConditionHeaderConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleRuleConditionHeaderConfigArrayInput)(nil)).Elem(), RulesRuleRuleConditionHeaderConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleRuleConditionHostConfigInput)(nil)).Elem(), RulesRuleRuleConditionHostConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleRuleConditionHostConfigArrayInput)(nil)).Elem(), RulesRuleRuleConditionHostConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleRuleConditionMethodConfigInput)(nil)).Elem(), RulesRuleRuleConditionMethodConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleRuleConditionMethodConfigArrayInput)(nil)).Elem(), RulesRuleRuleConditionMethodConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleRuleConditionPathConfigInput)(nil)).Elem(), RulesRuleRuleConditionPathConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleRuleConditionPathConfigArrayInput)(nil)).Elem(), RulesRuleRuleConditionPathConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleRuleConditionQueryStringConfigInput)(nil)).Elem(), RulesRuleRuleConditionQueryStringConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleRuleConditionQueryStringConfigArrayInput)(nil)).Elem(), RulesRuleRuleConditionQueryStringConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleRuleConditionQueryStringConfigValueInput)(nil)).Elem(), RulesRuleRuleConditionQueryStringConfigValueArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleRuleConditionQueryStringConfigValueArrayInput)(nil)).Elem(), RulesRuleRuleConditionQueryStringConfigValueArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerGroupHealthCheckInput)(nil)).Elem(), ServerGroupHealthCheckArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerGroupHealthCheckPtrInput)(nil)).Elem(), ServerGroupHealthCheckArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerGroupServersServerInput)(nil)).Elem(), ServerGroupServersServerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerGroupServersServerArrayInput)(nil)).Elem(), ServerGroupServersServerArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerGroupStickySessionConfigInput)(nil)).Elem(), ServerGroupStickySessionConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerGroupStickySessionConfigPtrInput)(nil)).Elem(), ServerGroupStickySessionConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServerGroupTagInput)(nil)).Elem(), ServerGroupTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServerGroupTagArrayInput)(nil)).Elem(), ServerGroupTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerGroupsServerGroupInput)(nil)).Elem(), ServerGroupsServerGroupArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerGroupsServerGroupArrayInput)(nil)).Elem(), ServerGroupsServerGroupArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerGroupsServerGroupHealthCheckInput)(nil)).Elem(), ServerGroupsServerGroupHealthCheckArgs{})
@@ -11795,6 +23912,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerGroupsServerGroupServerArrayInput)(nil)).Elem(), ServerGroupsServerGroupServerArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerGroupsServerGroupStickySessionConfigInput)(nil)).Elem(), ServerGroupsServerGroupStickySessionConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerGroupsServerGroupStickySessionConfigArrayInput)(nil)).Elem(), ServerGroupsServerGroupStickySessionConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServerGroupsServerGroupTagInput)(nil)).Elem(), ServerGroupsServerGroupTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServerGroupsServerGroupTagArrayInput)(nil)).Elem(), ServerGroupsServerGroupTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServerGroupsTagInput)(nil)).Elem(), ServerGroupsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServerGroupsTagArrayInput)(nil)).Elem(), ServerGroupsTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ZonesZoneInput)(nil)).Elem(), ZonesZoneArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ZonesZoneArrayInput)(nil)).Elem(), ZonesZoneArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAclsAclInput)(nil)).Elem(), GetAclsAclArgs{})
@@ -11803,10 +23924,16 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAclsAclAclEntryArrayInput)(nil)).Elem(), GetAclsAclAclEntryArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAclsAclListenerInput)(nil)).Elem(), GetAclsAclListenerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAclsAclListenerArrayInput)(nil)).Elem(), GetAclsAclListenerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAclsAclTagInput)(nil)).Elem(), GetAclsAclTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAclsAclTagArrayInput)(nil)).Elem(), GetAclsAclTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAclsTagInput)(nil)).Elem(), GetAclsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAclsTagArrayInput)(nil)).Elem(), GetAclsTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAlbsAlbInput)(nil)).Elem(), GetAlbsAlbArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAlbsAlbArrayInput)(nil)).Elem(), GetAlbsAlbArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAlbsAlbAccessLogInput)(nil)).Elem(), GetAlbsAlbAccessLogArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAlbsAlbAccessLogArrayInput)(nil)).Elem(), GetAlbsAlbAccessLogArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAlbsAlbGlobalAcceleratorInput)(nil)).Elem(), GetAlbsAlbGlobalAcceleratorArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAlbsAlbGlobalAcceleratorArrayInput)(nil)).Elem(), GetAlbsAlbGlobalAcceleratorArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAlbsAlbHealthLogInput)(nil)).Elem(), GetAlbsAlbHealthLogArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAlbsAlbHealthLogArrayInput)(nil)).Elem(), GetAlbsAlbHealthLogArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAlbsAlbListenerInput)(nil)).Elem(), GetAlbsAlbListenerArgs{})
@@ -11827,30 +23954,90 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAlbsAlbZoneMappingLoadBalancerAddressIpv6EipArrayInput)(nil)).Elem(), GetAlbsAlbZoneMappingLoadBalancerAddressIpv6EipArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAlbsTagInput)(nil)).Elem(), GetAlbsTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAlbsTagArrayInput)(nil)).Elem(), GetAlbsTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAllCertificatesCertificateInput)(nil)).Elem(), GetAllCertificatesCertificateArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAllCertificatesCertificateArrayInput)(nil)).Elem(), GetAllCertificatesCertificateArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAllCertificatesCertificateTagInput)(nil)).Elem(), GetAllCertificatesCertificateTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAllCertificatesCertificateTagArrayInput)(nil)).Elem(), GetAllCertificatesCertificateTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAllCertificatesTagInput)(nil)).Elem(), GetAllCertificatesTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAllCertificatesTagArrayInput)(nil)).Elem(), GetAllCertificatesTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCaCertificatesCertificateInput)(nil)).Elem(), GetCaCertificatesCertificateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCaCertificatesCertificateArrayInput)(nil)).Elem(), GetCaCertificatesCertificateArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCertificatesCertificateInput)(nil)).Elem(), GetCertificatesCertificateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCertificatesCertificateArrayInput)(nil)).Elem(), GetCertificatesCertificateArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCertificatesCertificateTagInput)(nil)).Elem(), GetCertificatesCertificateTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCertificatesCertificateTagArrayInput)(nil)).Elem(), GetCertificatesCertificateTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCertificatesTagInput)(nil)).Elem(), GetCertificatesTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCertificatesTagArrayInput)(nil)).Elem(), GetCertificatesTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCustomizedCfgsCfgInput)(nil)).Elem(), GetCustomizedCfgsCfgArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCustomizedCfgsCfgArrayInput)(nil)).Elem(), GetCustomizedCfgsCfgArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCustomizedCfgsCfgListenerInput)(nil)).Elem(), GetCustomizedCfgsCfgListenerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCustomizedCfgsCfgListenerArrayInput)(nil)).Elem(), GetCustomizedCfgsCfgListenerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCustomizedCfgsCfgTagInput)(nil)).Elem(), GetCustomizedCfgsCfgTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCustomizedCfgsCfgTagArrayInput)(nil)).Elem(), GetCustomizedCfgsCfgTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCustomizedCfgsTagInput)(nil)).Elem(), GetCustomizedCfgsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCustomizedCfgsTagArrayInput)(nil)).Elem(), GetCustomizedCfgsTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetHealthCheckTemplatesHealthCheckTemplateInput)(nil)).Elem(), GetHealthCheckTemplatesHealthCheckTemplateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetHealthCheckTemplatesHealthCheckTemplateArrayInput)(nil)).Elem(), GetHealthCheckTemplatesHealthCheckTemplateArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetHealthCheckTemplatesHealthCheckTemplateTagInput)(nil)).Elem(), GetHealthCheckTemplatesHealthCheckTemplateTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetHealthCheckTemplatesHealthCheckTemplateTagArrayInput)(nil)).Elem(), GetHealthCheckTemplatesHealthCheckTemplateTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetHealthCheckTemplatesTagInput)(nil)).Elem(), GetHealthCheckTemplatesTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetHealthCheckTemplatesTagArrayInput)(nil)).Elem(), GetHealthCheckTemplatesTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetListenerDomainExtensionsDomainExtensionInput)(nil)).Elem(), GetListenerDomainExtensionsDomainExtensionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetListenerDomainExtensionsDomainExtensionArrayInput)(nil)).Elem(), GetListenerDomainExtensionsDomainExtensionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetListenerHealthsListenerInput)(nil)).Elem(), GetListenerHealthsListenerArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetListenerHealthsListenerArrayInput)(nil)).Elem(), GetListenerHealthsListenerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetListenerHealthsListenerBackendServerInput)(nil)).Elem(), GetListenerHealthsListenerBackendServerArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetListenerHealthsListenerBackendServerArrayInput)(nil)).Elem(), GetListenerHealthsListenerBackendServerArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetListenersListenerInput)(nil)).Elem(), GetListenersListenerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetListenersListenerArrayInput)(nil)).Elem(), GetListenersListenerArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetListenersListenerDomainExtensionInput)(nil)).Elem(), GetListenersListenerDomainExtensionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetListenersListenerDomainExtensionArrayInput)(nil)).Elem(), GetListenersListenerDomainExtensionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetListenersListenerServerGroupInput)(nil)).Elem(), GetListenersListenerServerGroupArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetListenersListenerServerGroupArrayInput)(nil)).Elem(), GetListenersListenerServerGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetListenersListenerTagInput)(nil)).Elem(), GetListenersListenerTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetListenersListenerTagArrayInput)(nil)).Elem(), GetListenersListenerTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetListenersTagInput)(nil)).Elem(), GetListenersTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetListenersTagArrayInput)(nil)).Elem(), GetListenersTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleInput)(nil)).Elem(), GetRulesRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleArrayInput)(nil)).Elem(), GetRulesRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleForwardGroupConfigInput)(nil)).Elem(), GetRulesRuleForwardGroupConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleForwardGroupConfigArrayInput)(nil)).Elem(), GetRulesRuleForwardGroupConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleForwardGroupConfigServerGroupTupleInput)(nil)).Elem(), GetRulesRuleForwardGroupConfigServerGroupTupleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleForwardGroupConfigServerGroupTupleArrayInput)(nil)).Elem(), GetRulesRuleForwardGroupConfigServerGroupTupleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleRedirectConfigInput)(nil)).Elem(), GetRulesRuleRedirectConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleRedirectConfigArrayInput)(nil)).Elem(), GetRulesRuleRedirectConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleRewriteConfigInput)(nil)).Elem(), GetRulesRuleRewriteConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleRewriteConfigArrayInput)(nil)).Elem(), GetRulesRuleRewriteConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleRuleActionInput)(nil)).Elem(), GetRulesRuleRuleActionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleRuleActionArrayInput)(nil)).Elem(), GetRulesRuleRuleActionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleRuleActionFixedResponseConfigInput)(nil)).Elem(), GetRulesRuleRuleActionFixedResponseConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleRuleActionFixedResponseConfigArrayInput)(nil)).Elem(), GetRulesRuleRuleActionFixedResponseConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleRuleActionForwardGroupConfigInput)(nil)).Elem(), GetRulesRuleRuleActionForwardGroupConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleRuleActionForwardGroupConfigArrayInput)(nil)).Elem(), GetRulesRuleRuleActionForwardGroupConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionInput)(nil)).Elem(), GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayInput)(nil)).Elem(), GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleInput)(nil)).Elem(), GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayInput)(nil)).Elem(), GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleRuleActionRedirectConfigInput)(nil)).Elem(), GetRulesRuleRuleActionRedirectConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleRuleActionRedirectConfigArrayInput)(nil)).Elem(), GetRulesRuleRuleActionRedirectConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleRuleActionRewriteConfigInput)(nil)).Elem(), GetRulesRuleRuleActionRewriteConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleRuleActionRewriteConfigArrayInput)(nil)).Elem(), GetRulesRuleRuleActionRewriteConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleRuleActionTrafficLimitConfigInput)(nil)).Elem(), GetRulesRuleRuleActionTrafficLimitConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleRuleActionTrafficLimitConfigArrayInput)(nil)).Elem(), GetRulesRuleRuleActionTrafficLimitConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleRuleConditionInput)(nil)).Elem(), GetRulesRuleRuleConditionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleRuleConditionArrayInput)(nil)).Elem(), GetRulesRuleRuleConditionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleRuleConditionHeaderConfigInput)(nil)).Elem(), GetRulesRuleRuleConditionHeaderConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleRuleConditionHeaderConfigArrayInput)(nil)).Elem(), GetRulesRuleRuleConditionHeaderConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleRuleConditionHostConfigInput)(nil)).Elem(), GetRulesRuleRuleConditionHostConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleRuleConditionHostConfigArrayInput)(nil)).Elem(), GetRulesRuleRuleConditionHostConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleRuleConditionMethodConfigInput)(nil)).Elem(), GetRulesRuleRuleConditionMethodConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleRuleConditionMethodConfigArrayInput)(nil)).Elem(), GetRulesRuleRuleConditionMethodConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleRuleConditionPathConfigInput)(nil)).Elem(), GetRulesRuleRuleConditionPathConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleRuleConditionPathConfigArrayInput)(nil)).Elem(), GetRulesRuleRuleConditionPathConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleRuleConditionQueryStringConfigInput)(nil)).Elem(), GetRulesRuleRuleConditionQueryStringConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleRuleConditionQueryStringConfigArrayInput)(nil)).Elem(), GetRulesRuleRuleConditionQueryStringConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleRuleConditionQueryStringConfigValueInput)(nil)).Elem(), GetRulesRuleRuleConditionQueryStringConfigValueArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleRuleConditionQueryStringConfigValueArrayInput)(nil)).Elem(), GetRulesRuleRuleConditionQueryStringConfigValueArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServerGroupServersServerInput)(nil)).Elem(), GetServerGroupServersServerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServerGroupServersServerArrayInput)(nil)).Elem(), GetServerGroupServersServerArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServerGroupsServerGroupInput)(nil)).Elem(), GetServerGroupsServerGroupArgs{})
@@ -11861,18 +24048,30 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServerGroupsServerGroupServerArrayInput)(nil)).Elem(), GetServerGroupsServerGroupServerArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServerGroupsServerGroupStickySessionConfigInput)(nil)).Elem(), GetServerGroupsServerGroupStickySessionConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServerGroupsServerGroupStickySessionConfigArrayInput)(nil)).Elem(), GetServerGroupsServerGroupStickySessionConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServerGroupsServerGroupTagInput)(nil)).Elem(), GetServerGroupsServerGroupTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServerGroupsServerGroupTagArrayInput)(nil)).Elem(), GetServerGroupsServerGroupTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServerGroupsTagInput)(nil)).Elem(), GetServerGroupsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServerGroupsTagArrayInput)(nil)).Elem(), GetServerGroupsTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetZonesZoneInput)(nil)).Elem(), GetZonesZoneArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetZonesZoneArrayInput)(nil)).Elem(), GetZonesZoneArray{})
 	pulumi.RegisterOutputType(AclAclEntryOutput{})
 	pulumi.RegisterOutputType(AclAclEntryArrayOutput{})
+	pulumi.RegisterOutputType(AclTagOutput{})
+	pulumi.RegisterOutputType(AclTagArrayOutput{})
 	pulumi.RegisterOutputType(AclsAclOutput{})
 	pulumi.RegisterOutputType(AclsAclArrayOutput{})
 	pulumi.RegisterOutputType(AclsAclAclEntryOutput{})
 	pulumi.RegisterOutputType(AclsAclAclEntryArrayOutput{})
 	pulumi.RegisterOutputType(AclsAclListenerOutput{})
 	pulumi.RegisterOutputType(AclsAclListenerArrayOutput{})
+	pulumi.RegisterOutputType(AclsAclTagOutput{})
+	pulumi.RegisterOutputType(AclsAclTagArrayOutput{})
+	pulumi.RegisterOutputType(AclsTagOutput{})
+	pulumi.RegisterOutputType(AclsTagArrayOutput{})
 	pulumi.RegisterOutputType(AlbEipBillingConfigOutput{})
 	pulumi.RegisterOutputType(AlbEipBillingConfigPtrOutput{})
+	pulumi.RegisterOutputType(AlbGlobalAcceleratorOutput{})
+	pulumi.RegisterOutputType(AlbGlobalAcceleratorPtrOutput{})
 	pulumi.RegisterOutputType(AlbIpv6EipBillingConfigOutput{})
 	pulumi.RegisterOutputType(AlbIpv6EipBillingConfigPtrOutput{})
 	pulumi.RegisterOutputType(AlbTagOutput{})
@@ -11885,6 +24084,8 @@ func init() {
 	pulumi.RegisterOutputType(AlbsAlbArrayOutput{})
 	pulumi.RegisterOutputType(AlbsAlbAccessLogOutput{})
 	pulumi.RegisterOutputType(AlbsAlbAccessLogArrayOutput{})
+	pulumi.RegisterOutputType(AlbsAlbGlobalAcceleratorOutput{})
+	pulumi.RegisterOutputType(AlbsAlbGlobalAcceleratorArrayOutput{})
 	pulumi.RegisterOutputType(AlbsAlbHealthLogOutput{})
 	pulumi.RegisterOutputType(AlbsAlbHealthLogArrayOutput{})
 	pulumi.RegisterOutputType(AlbsAlbListenerOutput{})
@@ -11905,40 +24106,144 @@ func init() {
 	pulumi.RegisterOutputType(AlbsAlbZoneMappingLoadBalancerAddressIpv6EipArrayOutput{})
 	pulumi.RegisterOutputType(AlbsTagOutput{})
 	pulumi.RegisterOutputType(AlbsTagArrayOutput{})
+	pulumi.RegisterOutputType(AllCertificatesCertificateOutput{})
+	pulumi.RegisterOutputType(AllCertificatesCertificateArrayOutput{})
+	pulumi.RegisterOutputType(AllCertificatesCertificateTagOutput{})
+	pulumi.RegisterOutputType(AllCertificatesCertificateTagArrayOutput{})
+	pulumi.RegisterOutputType(AllCertificatesTagOutput{})
+	pulumi.RegisterOutputType(AllCertificatesTagArrayOutput{})
 	pulumi.RegisterOutputType(CaCertificatesCertificateOutput{})
 	pulumi.RegisterOutputType(CaCertificatesCertificateArrayOutput{})
+	pulumi.RegisterOutputType(CertificateTagOutput{})
+	pulumi.RegisterOutputType(CertificateTagArrayOutput{})
 	pulumi.RegisterOutputType(CertificatesCertificateOutput{})
 	pulumi.RegisterOutputType(CertificatesCertificateArrayOutput{})
+	pulumi.RegisterOutputType(CertificatesCertificateTagOutput{})
+	pulumi.RegisterOutputType(CertificatesCertificateTagArrayOutput{})
+	pulumi.RegisterOutputType(CertificatesTagOutput{})
+	pulumi.RegisterOutputType(CertificatesTagArrayOutput{})
+	pulumi.RegisterOutputType(CustomizedCfgTagOutput{})
+	pulumi.RegisterOutputType(CustomizedCfgTagArrayOutput{})
 	pulumi.RegisterOutputType(CustomizedCfgsCfgOutput{})
 	pulumi.RegisterOutputType(CustomizedCfgsCfgArrayOutput{})
 	pulumi.RegisterOutputType(CustomizedCfgsCfgListenerOutput{})
 	pulumi.RegisterOutputType(CustomizedCfgsCfgListenerArrayOutput{})
+	pulumi.RegisterOutputType(CustomizedCfgsCfgTagOutput{})
+	pulumi.RegisterOutputType(CustomizedCfgsCfgTagArrayOutput{})
+	pulumi.RegisterOutputType(CustomizedCfgsTagOutput{})
+	pulumi.RegisterOutputType(CustomizedCfgsTagArrayOutput{})
+	pulumi.RegisterOutputType(HealthCheckTemplateTagOutput{})
+	pulumi.RegisterOutputType(HealthCheckTemplateTagArrayOutput{})
 	pulumi.RegisterOutputType(HealthCheckTemplatesHealthCheckTemplateOutput{})
 	pulumi.RegisterOutputType(HealthCheckTemplatesHealthCheckTemplateArrayOutput{})
+	pulumi.RegisterOutputType(HealthCheckTemplatesHealthCheckTemplateTagOutput{})
+	pulumi.RegisterOutputType(HealthCheckTemplatesHealthCheckTemplateTagArrayOutput{})
+	pulumi.RegisterOutputType(HealthCheckTemplatesTagOutput{})
+	pulumi.RegisterOutputType(HealthCheckTemplatesTagArrayOutput{})
+	pulumi.RegisterOutputType(ListenerDomainExtensionTypeOutput{})
+	pulumi.RegisterOutputType(ListenerDomainExtensionTypeArrayOutput{})
 	pulumi.RegisterOutputType(ListenerDomainExtensionsDomainExtensionOutput{})
 	pulumi.RegisterOutputType(ListenerDomainExtensionsDomainExtensionArrayOutput{})
+	pulumi.RegisterOutputType(ListenerHealthsListenerOutput{})
+	pulumi.RegisterOutputType(ListenerHealthsListenerArrayOutput{})
+	pulumi.RegisterOutputType(ListenerHealthsListenerBackendServerOutput{})
+	pulumi.RegisterOutputType(ListenerHealthsListenerBackendServerArrayOutput{})
+	pulumi.RegisterOutputType(ListenerTagOutput{})
+	pulumi.RegisterOutputType(ListenerTagArrayOutput{})
 	pulumi.RegisterOutputType(ListenersListenerOutput{})
 	pulumi.RegisterOutputType(ListenersListenerArrayOutput{})
 	pulumi.RegisterOutputType(ListenersListenerDomainExtensionOutput{})
 	pulumi.RegisterOutputType(ListenersListenerDomainExtensionArrayOutput{})
 	pulumi.RegisterOutputType(ListenersListenerServerGroupOutput{})
 	pulumi.RegisterOutputType(ListenersListenerServerGroupArrayOutput{})
+	pulumi.RegisterOutputType(ListenersListenerTagOutput{})
+	pulumi.RegisterOutputType(ListenersListenerTagArrayOutput{})
+	pulumi.RegisterOutputType(ListenersTagOutput{})
+	pulumi.RegisterOutputType(ListenersTagArrayOutput{})
 	pulumi.RegisterOutputType(RuleRedirectConfigOutput{})
 	pulumi.RegisterOutputType(RuleRedirectConfigPtrOutput{})
 	pulumi.RegisterOutputType(RuleRewriteConfigOutput{})
 	pulumi.RegisterOutputType(RuleRewriteConfigPtrOutput{})
+	pulumi.RegisterOutputType(RuleRuleActionOutput{})
+	pulumi.RegisterOutputType(RuleRuleActionArrayOutput{})
+	pulumi.RegisterOutputType(RuleRuleActionFixedResponseConfigOutput{})
+	pulumi.RegisterOutputType(RuleRuleActionFixedResponseConfigPtrOutput{})
+	pulumi.RegisterOutputType(RuleRuleActionForwardGroupConfigOutput{})
+	pulumi.RegisterOutputType(RuleRuleActionForwardGroupConfigPtrOutput{})
+	pulumi.RegisterOutputType(RuleRuleActionForwardGroupConfigServerGroupStickySessionOutput{})
+	pulumi.RegisterOutputType(RuleRuleActionForwardGroupConfigServerGroupStickySessionPtrOutput{})
+	pulumi.RegisterOutputType(RuleRuleActionForwardGroupConfigServerGroupTupleOutput{})
+	pulumi.RegisterOutputType(RuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput{})
+	pulumi.RegisterOutputType(RuleRuleActionRedirectConfigOutput{})
+	pulumi.RegisterOutputType(RuleRuleActionRedirectConfigPtrOutput{})
+	pulumi.RegisterOutputType(RuleRuleActionRewriteConfigOutput{})
+	pulumi.RegisterOutputType(RuleRuleActionRewriteConfigPtrOutput{})
+	pulumi.RegisterOutputType(RuleRuleActionTrafficLimitConfigOutput{})
+	pulumi.RegisterOutputType(RuleRuleActionTrafficLimitConfigPtrOutput{})
+	pulumi.RegisterOutputType(RuleRuleConditionOutput{})
+	pulumi.RegisterOutputType(RuleRuleConditionArrayOutput{})
+	pulumi.RegisterOutputType(RuleRuleConditionHeaderConfigOutput{})
+	pulumi.RegisterOutputType(RuleRuleConditionHeaderConfigPtrOutput{})
+	pulumi.RegisterOutputType(RuleRuleConditionHostConfigOutput{})
+	pulumi.RegisterOutputType(RuleRuleConditionHostConfigPtrOutput{})
+	pulumi.RegisterOutputType(RuleRuleConditionMethodConfigOutput{})
+	pulumi.RegisterOutputType(RuleRuleConditionMethodConfigPtrOutput{})
+	pulumi.RegisterOutputType(RuleRuleConditionPathConfigOutput{})
+	pulumi.RegisterOutputType(RuleRuleConditionPathConfigPtrOutput{})
+	pulumi.RegisterOutputType(RuleRuleConditionQueryStringConfigOutput{})
+	pulumi.RegisterOutputType(RuleRuleConditionQueryStringConfigPtrOutput{})
+	pulumi.RegisterOutputType(RuleRuleConditionQueryStringConfigValueOutput{})
+	pulumi.RegisterOutputType(RuleRuleConditionQueryStringConfigValueArrayOutput{})
+	pulumi.RegisterOutputType(RuleServerGroupTupleOutput{})
+	pulumi.RegisterOutputType(RuleServerGroupTupleArrayOutput{})
 	pulumi.RegisterOutputType(RulesRuleOutput{})
 	pulumi.RegisterOutputType(RulesRuleArrayOutput{})
+	pulumi.RegisterOutputType(RulesRuleForwardGroupConfigOutput{})
+	pulumi.RegisterOutputType(RulesRuleForwardGroupConfigArrayOutput{})
+	pulumi.RegisterOutputType(RulesRuleForwardGroupConfigServerGroupTupleOutput{})
+	pulumi.RegisterOutputType(RulesRuleForwardGroupConfigServerGroupTupleArrayOutput{})
 	pulumi.RegisterOutputType(RulesRuleRedirectConfigOutput{})
 	pulumi.RegisterOutputType(RulesRuleRedirectConfigArrayOutput{})
 	pulumi.RegisterOutputType(RulesRuleRewriteConfigOutput{})
 	pulumi.RegisterOutputType(RulesRuleRewriteConfigArrayOutput{})
+	pulumi.RegisterOutputType(RulesRuleRuleActionOutput{})
+	pulumi.RegisterOutputType(RulesRuleRuleActionArrayOutput{})
+	pulumi.RegisterOutputType(RulesRuleRuleActionFixedResponseConfigOutput{})
+	pulumi.RegisterOutputType(RulesRuleRuleActionFixedResponseConfigArrayOutput{})
+	pulumi.RegisterOutputType(RulesRuleRuleActionForwardGroupConfigOutput{})
+	pulumi.RegisterOutputType(RulesRuleRuleActionForwardGroupConfigArrayOutput{})
+	pulumi.RegisterOutputType(RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionOutput{})
+	pulumi.RegisterOutputType(RulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayOutput{})
+	pulumi.RegisterOutputType(RulesRuleRuleActionForwardGroupConfigServerGroupTupleOutput{})
+	pulumi.RegisterOutputType(RulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput{})
+	pulumi.RegisterOutputType(RulesRuleRuleActionRedirectConfigOutput{})
+	pulumi.RegisterOutputType(RulesRuleRuleActionRedirectConfigArrayOutput{})
+	pulumi.RegisterOutputType(RulesRuleRuleActionRewriteConfigOutput{})
+	pulumi.RegisterOutputType(RulesRuleRuleActionRewriteConfigArrayOutput{})
+	pulumi.RegisterOutputType(RulesRuleRuleActionTrafficLimitConfigOutput{})
+	pulumi.RegisterOutputType(RulesRuleRuleActionTrafficLimitConfigArrayOutput{})
+	pulumi.RegisterOutputType(RulesRuleRuleConditionOutput{})
+	pulumi.RegisterOutputType(RulesRuleRuleConditionArrayOutput{})
+	pulumi.RegisterOutputType(RulesRuleRuleConditionHeaderConfigOutput{})
+	pulumi.RegisterOutputType(RulesRuleRuleConditionHeaderConfigArrayOutput{})
+	pulumi.RegisterOutputType(RulesRuleRuleConditionHostConfigOutput{})
+	pulumi.RegisterOutputType(RulesRuleRuleConditionHostConfigArrayOutput{})
+	pulumi.RegisterOutputType(RulesRuleRuleConditionMethodConfigOutput{})
+	pulumi.RegisterOutputType(RulesRuleRuleConditionMethodConfigArrayOutput{})
+	pulumi.RegisterOutputType(RulesRuleRuleConditionPathConfigOutput{})
+	pulumi.RegisterOutputType(RulesRuleRuleConditionPathConfigArrayOutput{})
+	pulumi.RegisterOutputType(RulesRuleRuleConditionQueryStringConfigOutput{})
+	pulumi.RegisterOutputType(RulesRuleRuleConditionQueryStringConfigArrayOutput{})
+	pulumi.RegisterOutputType(RulesRuleRuleConditionQueryStringConfigValueOutput{})
+	pulumi.RegisterOutputType(RulesRuleRuleConditionQueryStringConfigValueArrayOutput{})
 	pulumi.RegisterOutputType(ServerGroupHealthCheckOutput{})
 	pulumi.RegisterOutputType(ServerGroupHealthCheckPtrOutput{})
 	pulumi.RegisterOutputType(ServerGroupServersServerOutput{})
 	pulumi.RegisterOutputType(ServerGroupServersServerArrayOutput{})
 	pulumi.RegisterOutputType(ServerGroupStickySessionConfigOutput{})
 	pulumi.RegisterOutputType(ServerGroupStickySessionConfigPtrOutput{})
+	pulumi.RegisterOutputType(ServerGroupTagOutput{})
+	pulumi.RegisterOutputType(ServerGroupTagArrayOutput{})
 	pulumi.RegisterOutputType(ServerGroupsServerGroupOutput{})
 	pulumi.RegisterOutputType(ServerGroupsServerGroupArrayOutput{})
 	pulumi.RegisterOutputType(ServerGroupsServerGroupHealthCheckOutput{})
@@ -11947,6 +24252,10 @@ func init() {
 	pulumi.RegisterOutputType(ServerGroupsServerGroupServerArrayOutput{})
 	pulumi.RegisterOutputType(ServerGroupsServerGroupStickySessionConfigOutput{})
 	pulumi.RegisterOutputType(ServerGroupsServerGroupStickySessionConfigArrayOutput{})
+	pulumi.RegisterOutputType(ServerGroupsServerGroupTagOutput{})
+	pulumi.RegisterOutputType(ServerGroupsServerGroupTagArrayOutput{})
+	pulumi.RegisterOutputType(ServerGroupsTagOutput{})
+	pulumi.RegisterOutputType(ServerGroupsTagArrayOutput{})
 	pulumi.RegisterOutputType(ZonesZoneOutput{})
 	pulumi.RegisterOutputType(ZonesZoneArrayOutput{})
 	pulumi.RegisterOutputType(GetAclsAclOutput{})
@@ -11955,10 +24264,16 @@ func init() {
 	pulumi.RegisterOutputType(GetAclsAclAclEntryArrayOutput{})
 	pulumi.RegisterOutputType(GetAclsAclListenerOutput{})
 	pulumi.RegisterOutputType(GetAclsAclListenerArrayOutput{})
+	pulumi.RegisterOutputType(GetAclsAclTagOutput{})
+	pulumi.RegisterOutputType(GetAclsAclTagArrayOutput{})
+	pulumi.RegisterOutputType(GetAclsTagOutput{})
+	pulumi.RegisterOutputType(GetAclsTagArrayOutput{})
 	pulumi.RegisterOutputType(GetAlbsAlbOutput{})
 	pulumi.RegisterOutputType(GetAlbsAlbArrayOutput{})
 	pulumi.RegisterOutputType(GetAlbsAlbAccessLogOutput{})
 	pulumi.RegisterOutputType(GetAlbsAlbAccessLogArrayOutput{})
+	pulumi.RegisterOutputType(GetAlbsAlbGlobalAcceleratorOutput{})
+	pulumi.RegisterOutputType(GetAlbsAlbGlobalAcceleratorArrayOutput{})
 	pulumi.RegisterOutputType(GetAlbsAlbHealthLogOutput{})
 	pulumi.RegisterOutputType(GetAlbsAlbHealthLogArrayOutput{})
 	pulumi.RegisterOutputType(GetAlbsAlbListenerOutput{})
@@ -11979,30 +24294,90 @@ func init() {
 	pulumi.RegisterOutputType(GetAlbsAlbZoneMappingLoadBalancerAddressIpv6EipArrayOutput{})
 	pulumi.RegisterOutputType(GetAlbsTagOutput{})
 	pulumi.RegisterOutputType(GetAlbsTagArrayOutput{})
+	pulumi.RegisterOutputType(GetAllCertificatesCertificateOutput{})
+	pulumi.RegisterOutputType(GetAllCertificatesCertificateArrayOutput{})
+	pulumi.RegisterOutputType(GetAllCertificatesCertificateTagOutput{})
+	pulumi.RegisterOutputType(GetAllCertificatesCertificateTagArrayOutput{})
+	pulumi.RegisterOutputType(GetAllCertificatesTagOutput{})
+	pulumi.RegisterOutputType(GetAllCertificatesTagArrayOutput{})
 	pulumi.RegisterOutputType(GetCaCertificatesCertificateOutput{})
 	pulumi.RegisterOutputType(GetCaCertificatesCertificateArrayOutput{})
 	pulumi.RegisterOutputType(GetCertificatesCertificateOutput{})
 	pulumi.RegisterOutputType(GetCertificatesCertificateArrayOutput{})
+	pulumi.RegisterOutputType(GetCertificatesCertificateTagOutput{})
+	pulumi.RegisterOutputType(GetCertificatesCertificateTagArrayOutput{})
+	pulumi.RegisterOutputType(GetCertificatesTagOutput{})
+	pulumi.RegisterOutputType(GetCertificatesTagArrayOutput{})
 	pulumi.RegisterOutputType(GetCustomizedCfgsCfgOutput{})
 	pulumi.RegisterOutputType(GetCustomizedCfgsCfgArrayOutput{})
 	pulumi.RegisterOutputType(GetCustomizedCfgsCfgListenerOutput{})
 	pulumi.RegisterOutputType(GetCustomizedCfgsCfgListenerArrayOutput{})
+	pulumi.RegisterOutputType(GetCustomizedCfgsCfgTagOutput{})
+	pulumi.RegisterOutputType(GetCustomizedCfgsCfgTagArrayOutput{})
+	pulumi.RegisterOutputType(GetCustomizedCfgsTagOutput{})
+	pulumi.RegisterOutputType(GetCustomizedCfgsTagArrayOutput{})
 	pulumi.RegisterOutputType(GetHealthCheckTemplatesHealthCheckTemplateOutput{})
 	pulumi.RegisterOutputType(GetHealthCheckTemplatesHealthCheckTemplateArrayOutput{})
+	pulumi.RegisterOutputType(GetHealthCheckTemplatesHealthCheckTemplateTagOutput{})
+	pulumi.RegisterOutputType(GetHealthCheckTemplatesHealthCheckTemplateTagArrayOutput{})
+	pulumi.RegisterOutputType(GetHealthCheckTemplatesTagOutput{})
+	pulumi.RegisterOutputType(GetHealthCheckTemplatesTagArrayOutput{})
 	pulumi.RegisterOutputType(GetListenerDomainExtensionsDomainExtensionOutput{})
 	pulumi.RegisterOutputType(GetListenerDomainExtensionsDomainExtensionArrayOutput{})
+	pulumi.RegisterOutputType(GetListenerHealthsListenerOutput{})
+	pulumi.RegisterOutputType(GetListenerHealthsListenerArrayOutput{})
+	pulumi.RegisterOutputType(GetListenerHealthsListenerBackendServerOutput{})
+	pulumi.RegisterOutputType(GetListenerHealthsListenerBackendServerArrayOutput{})
 	pulumi.RegisterOutputType(GetListenersListenerOutput{})
 	pulumi.RegisterOutputType(GetListenersListenerArrayOutput{})
 	pulumi.RegisterOutputType(GetListenersListenerDomainExtensionOutput{})
 	pulumi.RegisterOutputType(GetListenersListenerDomainExtensionArrayOutput{})
 	pulumi.RegisterOutputType(GetListenersListenerServerGroupOutput{})
 	pulumi.RegisterOutputType(GetListenersListenerServerGroupArrayOutput{})
+	pulumi.RegisterOutputType(GetListenersListenerTagOutput{})
+	pulumi.RegisterOutputType(GetListenersListenerTagArrayOutput{})
+	pulumi.RegisterOutputType(GetListenersTagOutput{})
+	pulumi.RegisterOutputType(GetListenersTagArrayOutput{})
 	pulumi.RegisterOutputType(GetRulesRuleOutput{})
 	pulumi.RegisterOutputType(GetRulesRuleArrayOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleForwardGroupConfigOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleForwardGroupConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleForwardGroupConfigServerGroupTupleOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleForwardGroupConfigServerGroupTupleArrayOutput{})
 	pulumi.RegisterOutputType(GetRulesRuleRedirectConfigOutput{})
 	pulumi.RegisterOutputType(GetRulesRuleRedirectConfigArrayOutput{})
 	pulumi.RegisterOutputType(GetRulesRuleRewriteConfigOutput{})
 	pulumi.RegisterOutputType(GetRulesRuleRewriteConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleRuleActionOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleRuleActionArrayOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleRuleActionFixedResponseConfigOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleRuleActionFixedResponseConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleRuleActionForwardGroupConfigOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleRuleActionForwardGroupConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySessionArrayOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleRuleActionForwardGroupConfigServerGroupTupleArrayOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleRuleActionRedirectConfigOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleRuleActionRedirectConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleRuleActionRewriteConfigOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleRuleActionRewriteConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleRuleActionTrafficLimitConfigOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleRuleActionTrafficLimitConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleRuleConditionOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleRuleConditionArrayOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleRuleConditionHeaderConfigOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleRuleConditionHeaderConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleRuleConditionHostConfigOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleRuleConditionHostConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleRuleConditionMethodConfigOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleRuleConditionMethodConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleRuleConditionPathConfigOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleRuleConditionPathConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleRuleConditionQueryStringConfigOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleRuleConditionQueryStringConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleRuleConditionQueryStringConfigValueOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleRuleConditionQueryStringConfigValueArrayOutput{})
 	pulumi.RegisterOutputType(GetServerGroupServersServerOutput{})
 	pulumi.RegisterOutputType(GetServerGroupServersServerArrayOutput{})
 	pulumi.RegisterOutputType(GetServerGroupsServerGroupOutput{})
@@ -12013,6 +24388,10 @@ func init() {
 	pulumi.RegisterOutputType(GetServerGroupsServerGroupServerArrayOutput{})
 	pulumi.RegisterOutputType(GetServerGroupsServerGroupStickySessionConfigOutput{})
 	pulumi.RegisterOutputType(GetServerGroupsServerGroupStickySessionConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetServerGroupsServerGroupTagOutput{})
+	pulumi.RegisterOutputType(GetServerGroupsServerGroupTagArrayOutput{})
+	pulumi.RegisterOutputType(GetServerGroupsTagOutput{})
+	pulumi.RegisterOutputType(GetServerGroupsTagArrayOutput{})
 	pulumi.RegisterOutputType(GetZonesZoneOutput{})
 	pulumi.RegisterOutputType(GetZonesZoneArrayOutput{})
 }

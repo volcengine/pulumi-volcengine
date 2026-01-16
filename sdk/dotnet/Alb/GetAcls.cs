@@ -99,6 +99,18 @@ namespace Pulumi.Volcengine.Alb
         [Input("projectName")]
         public string? ProjectName { get; set; }
 
+        [Input("tags")]
+        private List<Inputs.GetAclsTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public List<Inputs.GetAclsTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new List<Inputs.GetAclsTagArgs>());
+            set => _tags = value;
+        }
+
         public GetAclsArgs()
         {
         }
@@ -137,6 +149,18 @@ namespace Pulumi.Volcengine.Alb
         [Input("projectName")]
         public Input<string>? ProjectName { get; set; }
 
+        [Input("tags")]
+        private InputList<Inputs.GetAclsTagInputArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.GetAclsTagInputArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.GetAclsTagInputArgs>());
+            set => _tags = value;
+        }
+
         public GetAclsInvokeArgs()
         {
         }
@@ -166,6 +190,10 @@ namespace Pulumi.Volcengine.Alb
         /// </summary>
         public readonly string? ProjectName;
         /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetAclsTagResult> Tags;
+        /// <summary>
         /// The total count of Acl query.
         /// </summary>
         public readonly int TotalCount;
@@ -184,6 +212,8 @@ namespace Pulumi.Volcengine.Alb
 
             string? projectName,
 
+            ImmutableArray<Outputs.GetAclsTagResult> tags,
+
             int totalCount)
         {
             AclName = aclName;
@@ -192,6 +222,7 @@ namespace Pulumi.Volcengine.Alb
             Ids = ids;
             OutputFile = outputFile;
             ProjectName = projectName;
+            Tags = tags;
             TotalCount = totalCount;
         }
     }

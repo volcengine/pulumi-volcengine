@@ -164,6 +164,12 @@ namespace Pulumi.Volcengine.Alb
     public sealed class GetAlbsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
+        /// The public ip address of the Alb.
+        /// </summary>
+        [Input("eipAddress")]
+        public string? EipAddress { get; set; }
+
+        /// <summary>
         /// The private ip address of the Alb.
         /// </summary>
         [Input("eniAddress")]
@@ -218,6 +224,12 @@ namespace Pulumi.Volcengine.Alb
         }
 
         /// <summary>
+        /// The type of the Alb. public: public network ALB. private: private network ALB.
+        /// </summary>
+        [Input("type")]
+        public string? Type { get; set; }
+
+        /// <summary>
         /// The vpc id which Alb belongs to.
         /// </summary>
         [Input("vpcId")]
@@ -231,6 +243,12 @@ namespace Pulumi.Volcengine.Alb
 
     public sealed class GetAlbsInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The public ip address of the Alb.
+        /// </summary>
+        [Input("eipAddress")]
+        public Input<string>? EipAddress { get; set; }
+
         /// <summary>
         /// The private ip address of the Alb.
         /// </summary>
@@ -286,6 +304,12 @@ namespace Pulumi.Volcengine.Alb
         }
 
         /// <summary>
+        /// The type of the Alb. public: public network ALB. private: private network ALB.
+        /// </summary>
+        [Input("type")]
+        public Input<string>? Type { get; set; }
+
+        /// <summary>
         /// The vpc id which Alb belongs to.
         /// </summary>
         [Input("vpcId")]
@@ -305,6 +329,10 @@ namespace Pulumi.Volcengine.Alb
         /// The collection of query.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetAlbsAlbResult> Albs;
+        /// <summary>
+        /// The Eip address of the Alb.
+        /// </summary>
+        public readonly string? EipAddress;
         /// <summary>
         /// The Eni address of the Alb in this availability zone.
         /// </summary>
@@ -330,6 +358,10 @@ namespace Pulumi.Volcengine.Alb
         /// </summary>
         public readonly int TotalCount;
         /// <summary>
+        /// The type of the Alb, valid value: `public`, `private`.
+        /// </summary>
+        public readonly string? Type;
+        /// <summary>
         /// The vpc id of the Alb.
         /// </summary>
         public readonly string? VpcId;
@@ -337,6 +369,8 @@ namespace Pulumi.Volcengine.Alb
         [OutputConstructor]
         private GetAlbsResult(
             ImmutableArray<Outputs.GetAlbsAlbResult> albs,
+
+            string? eipAddress,
 
             string? eniAddress,
 
@@ -356,9 +390,12 @@ namespace Pulumi.Volcengine.Alb
 
             int totalCount,
 
+            string? type,
+
             string? vpcId)
         {
             Albs = albs;
+            EipAddress = eipAddress;
             EniAddress = eniAddress;
             Id = id;
             Ids = ids;
@@ -368,6 +405,7 @@ namespace Pulumi.Volcengine.Alb
             Project = project;
             Tags = tags;
             TotalCount = totalCount;
+            Type = type;
             VpcId = vpcId;
         }
     }

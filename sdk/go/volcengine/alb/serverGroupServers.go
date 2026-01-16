@@ -27,6 +27,9 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := alb.GetServerGroupServers(ctx, &alb.GetServerGroupServersArgs{
+//				InstanceIds: []string{
+//					"i-yecutyh340qc6io*****",
+//				},
 //				ServerGroupId: "rsp-1g7317vrcx3pc2zbhq4c3i6a2",
 //			}, nil)
 //			if err != nil {
@@ -51,6 +54,10 @@ func ServerGroupServers(ctx *pulumi.Context, args *ServerGroupServersArgs, opts 
 
 // A collection of arguments for invoking ServerGroupServers.
 type ServerGroupServersArgs struct {
+	// A list of instance IDs. When the backend server is ECS, the parameter value is the ID of the ECS. When the backend server is a secondary network interface card, the parameter value is the ID of the secondary network interface card.
+	InstanceIds []string `pulumi:"instanceIds"`
+	// A list of private IP addresses.
+	Ips []string `pulumi:"ips"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
 	// The ID of the ServerGroup.
@@ -60,9 +67,11 @@ type ServerGroupServersArgs struct {
 // A collection of values returned by ServerGroupServers.
 type ServerGroupServersResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id            string  `pulumi:"id"`
-	OutputFile    *string `pulumi:"outputFile"`
-	ServerGroupId string  `pulumi:"serverGroupId"`
+	Id            string   `pulumi:"id"`
+	InstanceIds   []string `pulumi:"instanceIds"`
+	Ips           []string `pulumi:"ips"`
+	OutputFile    *string  `pulumi:"outputFile"`
+	ServerGroupId string   `pulumi:"serverGroupId"`
 	// The server list of ServerGroup.
 	Servers []ServerGroupServersServer `pulumi:"servers"`
 	// The total count of ServerGroupServer query.
@@ -84,6 +93,10 @@ func ServerGroupServersOutput(ctx *pulumi.Context, args ServerGroupServersOutput
 
 // A collection of arguments for invoking ServerGroupServers.
 type ServerGroupServersOutputArgs struct {
+	// A list of instance IDs. When the backend server is ECS, the parameter value is the ID of the ECS. When the backend server is a secondary network interface card, the parameter value is the ID of the secondary network interface card.
+	InstanceIds pulumi.StringArrayInput `pulumi:"instanceIds"`
+	// A list of private IP addresses.
+	Ips pulumi.StringArrayInput `pulumi:"ips"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
 	// The ID of the ServerGroup.
@@ -112,6 +125,14 @@ func (o ServerGroupServersResultOutput) ToServerGroupServersResultOutputWithCont
 // The provider-assigned unique ID for this managed resource.
 func (o ServerGroupServersResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v ServerGroupServersResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o ServerGroupServersResultOutput) InstanceIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ServerGroupServersResult) []string { return v.InstanceIds }).(pulumi.StringArrayOutput)
+}
+
+func (o ServerGroupServersResultOutput) Ips() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ServerGroupServersResult) []string { return v.Ips }).(pulumi.StringArrayOutput)
 }
 
 func (o ServerGroupServersResultOutput) OutputFile() pulumi.StringPtrOutput {

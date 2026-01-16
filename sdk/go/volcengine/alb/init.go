@@ -21,6 +21,8 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "volcengine:alb/accessLog:AccessLog":
+		r = &AccessLog{}
 	case "volcengine:alb/acl:Acl":
 		r = &Acl{}
 	case "volcengine:alb/alb:Alb":
@@ -33,16 +35,22 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &CustomizedCfg{}
 	case "volcengine:alb/healthCheckTemplate:HealthCheckTemplate":
 		r = &HealthCheckTemplate{}
+	case "volcengine:alb/healthLog:HealthLog":
+		r = &HealthLog{}
 	case "volcengine:alb/listener:Listener":
 		r = &Listener{}
 	case "volcengine:alb/listenerDomainExtension:ListenerDomainExtension":
 		r = &ListenerDomainExtension{}
+	case "volcengine:alb/replaceCertificate:ReplaceCertificate":
+		r = &ReplaceCertificate{}
 	case "volcengine:alb/rule:Rule":
 		r = &Rule{}
 	case "volcengine:alb/serverGroup:ServerGroup":
 		r = &ServerGroup{}
 	case "volcengine:alb/serverGroupServer:ServerGroupServer":
 		r = &ServerGroupServer{}
+	case "volcengine:alb/tlsAccessLog:TlsAccessLog":
+		r = &TlsAccessLog{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -56,6 +64,11 @@ func init() {
 	if err != nil {
 		version = semver.Version{Major: 1}
 	}
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"alb/accessLog",
+		&module{version},
+	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
 		"alb/acl",
@@ -88,12 +101,22 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
+		"alb/healthLog",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
 		"alb/listener",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
 		"alb/listenerDomainExtension",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"alb/replaceCertificate",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -109,6 +132,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"volcengine",
 		"alb/serverGroupServer",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"alb/tlsAccessLog",
 		&module{version},
 	)
 }

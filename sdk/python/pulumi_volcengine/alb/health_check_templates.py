@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'HealthCheckTemplatesResult',
@@ -24,7 +25,7 @@ class HealthCheckTemplatesResult:
     """
     A collection of values returned by HealthCheckTemplates.
     """
-    def __init__(__self__, health_check_template_name=None, health_check_templates=None, id=None, ids=None, name_regex=None, output_file=None, total_count=None):
+    def __init__(__self__, health_check_template_name=None, health_check_templates=None, id=None, ids=None, name_regex=None, output_file=None, project_name=None, tags=None, total_count=None):
         if health_check_template_name and not isinstance(health_check_template_name, str):
             raise TypeError("Expected argument 'health_check_template_name' to be a str")
         pulumi.set(__self__, "health_check_template_name", health_check_template_name)
@@ -43,6 +44,12 @@ class HealthCheckTemplatesResult:
         if output_file and not isinstance(output_file, str):
             raise TypeError("Expected argument 'output_file' to be a str")
         pulumi.set(__self__, "output_file", output_file)
+        if project_name and not isinstance(project_name, str):
+            raise TypeError("Expected argument 'project_name' to be a str")
+        pulumi.set(__self__, "project_name", project_name)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
@@ -87,6 +94,22 @@ class HealthCheckTemplatesResult:
         return pulumi.get(self, "output_file")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[str]:
+        """
+        The project name to which the health check template belongs.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.HealthCheckTemplatesTagResult']]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="totalCount")
     def total_count(self) -> int:
         """
@@ -107,6 +130,8 @@ class AwaitableHealthCheckTemplatesResult(HealthCheckTemplatesResult):
             ids=self.ids,
             name_regex=self.name_regex,
             output_file=self.output_file,
+            project_name=self.project_name,
+            tags=self.tags,
             total_count=self.total_count)
 
 
@@ -114,6 +139,8 @@ def health_check_templates(health_check_template_name: Optional[str] = None,
                            ids: Optional[Sequence[str]] = None,
                            name_regex: Optional[str] = None,
                            output_file: Optional[str] = None,
+                           project_name: Optional[str] = None,
+                           tags: Optional[Sequence[pulumi.InputType['HealthCheckTemplatesTagArgs']]] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableHealthCheckTemplatesResult:
     """
     Use this data source to query detailed information of alb health check templates
@@ -123,7 +150,11 @@ def health_check_templates(health_check_template_name: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.alb.get_health_check_templates(ids=["hctpl-1iidd1tobnim874adhf708uwf"])
+    foo = volcengine.alb.get_health_check_templates(ids=["hctpl-1iidd1tobnim874adhf708uwf"],
+        tags=[volcengine.alb.GetHealthCheckTemplatesTagArgs(
+            key="key1",
+            value="value2",
+        )])
     ```
 
 
@@ -131,6 +162,8 @@ def health_check_templates(health_check_template_name: Optional[str] = None,
     :param Sequence[str] ids: The list of health check templates to query.
     :param str name_regex: A Name Regex of health check template.
     :param str output_file: File name where to save data source results.
+    :param str project_name: The project name to query.
+    :param Sequence[pulumi.InputType['HealthCheckTemplatesTagArgs']] tags: Tags.
     """
     pulumi.log.warn("""health_check_templates is deprecated: volcengine.alb.HealthCheckTemplates has been deprecated in favor of volcengine.alb.getHealthCheckTemplates""")
     __args__ = dict()
@@ -138,6 +171,8 @@ def health_check_templates(health_check_template_name: Optional[str] = None,
     __args__['ids'] = ids
     __args__['nameRegex'] = name_regex
     __args__['outputFile'] = output_file
+    __args__['projectName'] = project_name
+    __args__['tags'] = tags
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('volcengine:alb/healthCheckTemplates:HealthCheckTemplates', __args__, opts=opts, typ=HealthCheckTemplatesResult).value
 
@@ -148,6 +183,8 @@ def health_check_templates(health_check_template_name: Optional[str] = None,
         ids=pulumi.get(__ret__, 'ids'),
         name_regex=pulumi.get(__ret__, 'name_regex'),
         output_file=pulumi.get(__ret__, 'output_file'),
+        project_name=pulumi.get(__ret__, 'project_name'),
+        tags=pulumi.get(__ret__, 'tags'),
         total_count=pulumi.get(__ret__, 'total_count'))
 
 
@@ -156,6 +193,8 @@ def health_check_templates_output(health_check_template_name: Optional[pulumi.In
                                   ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                                   name_regex: Optional[pulumi.Input[Optional[str]]] = None,
                                   output_file: Optional[pulumi.Input[Optional[str]]] = None,
+                                  project_name: Optional[pulumi.Input[Optional[str]]] = None,
+                                  tags: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['HealthCheckTemplatesTagArgs']]]]] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[HealthCheckTemplatesResult]:
     """
     Use this data source to query detailed information of alb health check templates
@@ -165,7 +204,11 @@ def health_check_templates_output(health_check_template_name: Optional[pulumi.In
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.alb.get_health_check_templates(ids=["hctpl-1iidd1tobnim874adhf708uwf"])
+    foo = volcengine.alb.get_health_check_templates(ids=["hctpl-1iidd1tobnim874adhf708uwf"],
+        tags=[volcengine.alb.GetHealthCheckTemplatesTagArgs(
+            key="key1",
+            value="value2",
+        )])
     ```
 
 
@@ -173,6 +216,8 @@ def health_check_templates_output(health_check_template_name: Optional[pulumi.In
     :param Sequence[str] ids: The list of health check templates to query.
     :param str name_regex: A Name Regex of health check template.
     :param str output_file: File name where to save data source results.
+    :param str project_name: The project name to query.
+    :param Sequence[pulumi.InputType['HealthCheckTemplatesTagArgs']] tags: Tags.
     """
     pulumi.log.warn("""health_check_templates is deprecated: volcengine.alb.HealthCheckTemplates has been deprecated in favor of volcengine.alb.getHealthCheckTemplates""")
     ...
