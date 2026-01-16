@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -71,6 +73,18 @@ import * as utilities from "../utilities";
  *     certificateId: fooCertificate.id,
  *     serverGroupId: fooServerGroup.id,
  *     description: "acc test listener",
+ *     accessLogRecordCustomizedHeadersEnabled: "off",
+ *     caCertificateSource: "alb",
+ *     caCertificateId: "cert-xoekc6lpu9s054ov5eo*****",
+ *     domainExtensions: [{
+ *         domain: "example.com",
+ *         certificateSource: "alb",
+ *         certificateId: "cert-1pf4a8k8tokcg845wf******",
+ *     }],
+ *     tags: [{
+ *         key: "key1",
+ *         value: "value2",
+ *     }],
  * });
  * ```
  *
@@ -111,6 +125,10 @@ export class Listener extends pulumi.CustomResource {
     }
 
     /**
+     * Whether to enable custom headers in access logs. Default is `off`.
+     */
+    public readonly accessLogRecordCustomizedHeadersEnabled!: pulumi.Output<string | undefined>;
+    /**
      * The id list of the Acl. When the AclStatus parameter is configured as on, AclType and AclIds.N are required.
      */
     public readonly aclIds!: pulumi.Output<string[] | undefined>;
@@ -123,9 +141,13 @@ export class Listener extends pulumi.CustomResource {
      */
     public readonly aclType!: pulumi.Output<string>;
     /**
-     * The CA certificate id associated with the listener.
+     * The CA certificate id associated with the listener. When the value of caCertificateSource is alb, the caCertificateId parameter must be specified.
      */
     public readonly caCertificateId!: pulumi.Output<string | undefined>;
+    /**
+     * The source of the CA certificate associated with the listener. This parameter is only valid for HTTPS listeners and is used for two-way authentication. Valid values: `alb`, `pcaRoot`, `pcaSub`.
+     */
+    public readonly caCertificateSource!: pulumi.Output<string | undefined>;
     /**
      * The certificate id associated with the listener. Source is `certCenter`.
      */
@@ -146,6 +168,10 @@ export class Listener extends pulumi.CustomResource {
      * The description of the Listener.
      */
     public readonly description!: pulumi.Output<string | undefined>;
+    /**
+     * The domain extensions of the Listener.
+     */
+    public readonly domainExtensions!: pulumi.Output<outputs.alb.ListenerDomainExtension[] | undefined>;
     /**
      * The HTTP2 feature switch,valid value is on or off. Default is `off`.
      */
@@ -171,6 +197,18 @@ export class Listener extends pulumi.CustomResource {
      */
     public readonly loadBalancerId!: pulumi.Output<string>;
     /**
+     * The CA certificate id associated with the listener. When the value of caCertificateSource is pca_leaf, pcaLeafCertificateId parameter must be specified.
+     */
+    public readonly pcaLeafCertificateId!: pulumi.Output<string | undefined>;
+    /**
+     * The CA certificate id associated with the listener. When the value of caCertificateSource is pca_root, pcaRootCaCertificateId parameter must be specified.
+     */
+    public readonly pcaRootCaCertificateId!: pulumi.Output<string | undefined>;
+    /**
+     * The CA certificate id associated with the listener. When the value of caCertificateSource is pca_sub, pcaSubCaCertificateId parameter must be specified.
+     */
+    public readonly pcaSubCaCertificateId!: pulumi.Output<string | undefined>;
+    /**
      * The port receiving request of the Listener, the value range in 1~65535.
      */
     public readonly port!: pulumi.Output<number>;
@@ -182,6 +220,10 @@ export class Listener extends pulumi.CustomResource {
      * The server group id associated with the listener.
      */
     public readonly serverGroupId!: pulumi.Output<string>;
+    /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.alb.ListenerTag[] | undefined>;
 
     /**
      * Create a Listener resource with the given unique name, arguments, and options.
@@ -196,24 +238,31 @@ export class Listener extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ListenerState | undefined;
+            resourceInputs["accessLogRecordCustomizedHeadersEnabled"] = state ? state.accessLogRecordCustomizedHeadersEnabled : undefined;
             resourceInputs["aclIds"] = state ? state.aclIds : undefined;
             resourceInputs["aclStatus"] = state ? state.aclStatus : undefined;
             resourceInputs["aclType"] = state ? state.aclType : undefined;
             resourceInputs["caCertificateId"] = state ? state.caCertificateId : undefined;
+            resourceInputs["caCertificateSource"] = state ? state.caCertificateSource : undefined;
             resourceInputs["certCenterCertificateId"] = state ? state.certCenterCertificateId : undefined;
             resourceInputs["certificateId"] = state ? state.certificateId : undefined;
             resourceInputs["certificateSource"] = state ? state.certificateSource : undefined;
             resourceInputs["customizedCfgId"] = state ? state.customizedCfgId : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["domainExtensions"] = state ? state.domainExtensions : undefined;
             resourceInputs["enableHttp2"] = state ? state.enableHttp2 : undefined;
             resourceInputs["enableQuic"] = state ? state.enableQuic : undefined;
             resourceInputs["enabled"] = state ? state.enabled : undefined;
             resourceInputs["listenerId"] = state ? state.listenerId : undefined;
             resourceInputs["listenerName"] = state ? state.listenerName : undefined;
             resourceInputs["loadBalancerId"] = state ? state.loadBalancerId : undefined;
+            resourceInputs["pcaLeafCertificateId"] = state ? state.pcaLeafCertificateId : undefined;
+            resourceInputs["pcaRootCaCertificateId"] = state ? state.pcaRootCaCertificateId : undefined;
+            resourceInputs["pcaSubCaCertificateId"] = state ? state.pcaSubCaCertificateId : undefined;
             resourceInputs["port"] = state ? state.port : undefined;
             resourceInputs["protocol"] = state ? state.protocol : undefined;
             resourceInputs["serverGroupId"] = state ? state.serverGroupId : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
         } else {
             const args = argsOrState as ListenerArgs | undefined;
             if ((!args || args.loadBalancerId === undefined) && !opts.urn) {
@@ -228,23 +277,30 @@ export class Listener extends pulumi.CustomResource {
             if ((!args || args.serverGroupId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'serverGroupId'");
             }
+            resourceInputs["accessLogRecordCustomizedHeadersEnabled"] = args ? args.accessLogRecordCustomizedHeadersEnabled : undefined;
             resourceInputs["aclIds"] = args ? args.aclIds : undefined;
             resourceInputs["aclStatus"] = args ? args.aclStatus : undefined;
             resourceInputs["aclType"] = args ? args.aclType : undefined;
             resourceInputs["caCertificateId"] = args ? args.caCertificateId : undefined;
+            resourceInputs["caCertificateSource"] = args ? args.caCertificateSource : undefined;
             resourceInputs["certCenterCertificateId"] = args ? args.certCenterCertificateId : undefined;
             resourceInputs["certificateId"] = args ? args.certificateId : undefined;
             resourceInputs["certificateSource"] = args ? args.certificateSource : undefined;
             resourceInputs["customizedCfgId"] = args ? args.customizedCfgId : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["domainExtensions"] = args ? args.domainExtensions : undefined;
             resourceInputs["enableHttp2"] = args ? args.enableHttp2 : undefined;
             resourceInputs["enableQuic"] = args ? args.enableQuic : undefined;
             resourceInputs["enabled"] = args ? args.enabled : undefined;
             resourceInputs["listenerName"] = args ? args.listenerName : undefined;
             resourceInputs["loadBalancerId"] = args ? args.loadBalancerId : undefined;
+            resourceInputs["pcaLeafCertificateId"] = args ? args.pcaLeafCertificateId : undefined;
+            resourceInputs["pcaRootCaCertificateId"] = args ? args.pcaRootCaCertificateId : undefined;
+            resourceInputs["pcaSubCaCertificateId"] = args ? args.pcaSubCaCertificateId : undefined;
             resourceInputs["port"] = args ? args.port : undefined;
             resourceInputs["protocol"] = args ? args.protocol : undefined;
             resourceInputs["serverGroupId"] = args ? args.serverGroupId : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["listenerId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -256,6 +312,10 @@ export class Listener extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Listener resources.
  */
 export interface ListenerState {
+    /**
+     * Whether to enable custom headers in access logs. Default is `off`.
+     */
+    accessLogRecordCustomizedHeadersEnabled?: pulumi.Input<string>;
     /**
      * The id list of the Acl. When the AclStatus parameter is configured as on, AclType and AclIds.N are required.
      */
@@ -269,9 +329,13 @@ export interface ListenerState {
      */
     aclType?: pulumi.Input<string>;
     /**
-     * The CA certificate id associated with the listener.
+     * The CA certificate id associated with the listener. When the value of caCertificateSource is alb, the caCertificateId parameter must be specified.
      */
     caCertificateId?: pulumi.Input<string>;
+    /**
+     * The source of the CA certificate associated with the listener. This parameter is only valid for HTTPS listeners and is used for two-way authentication. Valid values: `alb`, `pcaRoot`, `pcaSub`.
+     */
+    caCertificateSource?: pulumi.Input<string>;
     /**
      * The certificate id associated with the listener. Source is `certCenter`.
      */
@@ -292,6 +356,10 @@ export interface ListenerState {
      * The description of the Listener.
      */
     description?: pulumi.Input<string>;
+    /**
+     * The domain extensions of the Listener.
+     */
+    domainExtensions?: pulumi.Input<pulumi.Input<inputs.alb.ListenerDomainExtension>[]>;
     /**
      * The HTTP2 feature switch,valid value is on or off. Default is `off`.
      */
@@ -317,6 +385,18 @@ export interface ListenerState {
      */
     loadBalancerId?: pulumi.Input<string>;
     /**
+     * The CA certificate id associated with the listener. When the value of caCertificateSource is pca_leaf, pcaLeafCertificateId parameter must be specified.
+     */
+    pcaLeafCertificateId?: pulumi.Input<string>;
+    /**
+     * The CA certificate id associated with the listener. When the value of caCertificateSource is pca_root, pcaRootCaCertificateId parameter must be specified.
+     */
+    pcaRootCaCertificateId?: pulumi.Input<string>;
+    /**
+     * The CA certificate id associated with the listener. When the value of caCertificateSource is pca_sub, pcaSubCaCertificateId parameter must be specified.
+     */
+    pcaSubCaCertificateId?: pulumi.Input<string>;
+    /**
      * The port receiving request of the Listener, the value range in 1~65535.
      */
     port?: pulumi.Input<number>;
@@ -328,12 +408,20 @@ export interface ListenerState {
      * The server group id associated with the listener.
      */
     serverGroupId?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.alb.ListenerTag>[]>;
 }
 
 /**
  * The set of arguments for constructing a Listener resource.
  */
 export interface ListenerArgs {
+    /**
+     * Whether to enable custom headers in access logs. Default is `off`.
+     */
+    accessLogRecordCustomizedHeadersEnabled?: pulumi.Input<string>;
     /**
      * The id list of the Acl. When the AclStatus parameter is configured as on, AclType and AclIds.N are required.
      */
@@ -347,9 +435,13 @@ export interface ListenerArgs {
      */
     aclType?: pulumi.Input<string>;
     /**
-     * The CA certificate id associated with the listener.
+     * The CA certificate id associated with the listener. When the value of caCertificateSource is alb, the caCertificateId parameter must be specified.
      */
     caCertificateId?: pulumi.Input<string>;
+    /**
+     * The source of the CA certificate associated with the listener. This parameter is only valid for HTTPS listeners and is used for two-way authentication. Valid values: `alb`, `pcaRoot`, `pcaSub`.
+     */
+    caCertificateSource?: pulumi.Input<string>;
     /**
      * The certificate id associated with the listener. Source is `certCenter`.
      */
@@ -371,6 +463,10 @@ export interface ListenerArgs {
      */
     description?: pulumi.Input<string>;
     /**
+     * The domain extensions of the Listener.
+     */
+    domainExtensions?: pulumi.Input<pulumi.Input<inputs.alb.ListenerDomainExtension>[]>;
+    /**
      * The HTTP2 feature switch,valid value is on or off. Default is `off`.
      */
     enableHttp2?: pulumi.Input<string>;
@@ -391,6 +487,18 @@ export interface ListenerArgs {
      */
     loadBalancerId: pulumi.Input<string>;
     /**
+     * The CA certificate id associated with the listener. When the value of caCertificateSource is pca_leaf, pcaLeafCertificateId parameter must be specified.
+     */
+    pcaLeafCertificateId?: pulumi.Input<string>;
+    /**
+     * The CA certificate id associated with the listener. When the value of caCertificateSource is pca_root, pcaRootCaCertificateId parameter must be specified.
+     */
+    pcaRootCaCertificateId?: pulumi.Input<string>;
+    /**
+     * The CA certificate id associated with the listener. When the value of caCertificateSource is pca_sub, pcaSubCaCertificateId parameter must be specified.
+     */
+    pcaSubCaCertificateId?: pulumi.Input<string>;
+    /**
      * The port receiving request of the Listener, the value range in 1~65535.
      */
     port: pulumi.Input<number>;
@@ -402,4 +510,8 @@ export interface ListenerArgs {
      * The server group id associated with the listener.
      */
     serverGroupId: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.alb.ListenerTag>[]>;
 }

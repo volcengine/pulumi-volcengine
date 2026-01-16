@@ -69,6 +69,12 @@ type Acl struct {
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The project name of the Acl.
 	ProjectName pulumi.StringOutput `pulumi:"projectName"`
+	// The status of the Acl.
+	Status pulumi.StringOutput `pulumi:"status"`
+	// Tags.
+	Tags AclTagArrayOutput `pulumi:"tags"`
+	// Update time of Acl.
+	UpdateTime pulumi.StringOutput `pulumi:"updateTime"`
 }
 
 // NewAcl registers a new resource with the given unique name, arguments, and options.
@@ -111,6 +117,12 @@ type aclState struct {
 	Description *string `pulumi:"description"`
 	// The project name of the Acl.
 	ProjectName *string `pulumi:"projectName"`
+	// The status of the Acl.
+	Status *string `pulumi:"status"`
+	// Tags.
+	Tags []AclTag `pulumi:"tags"`
+	// Update time of Acl.
+	UpdateTime *string `pulumi:"updateTime"`
 }
 
 type AclState struct {
@@ -124,6 +136,12 @@ type AclState struct {
 	Description pulumi.StringPtrInput
 	// The project name of the Acl.
 	ProjectName pulumi.StringPtrInput
+	// The status of the Acl.
+	Status pulumi.StringPtrInput
+	// Tags.
+	Tags AclTagArrayInput
+	// Update time of Acl.
+	UpdateTime pulumi.StringPtrInput
 }
 
 func (AclState) ElementType() reflect.Type {
@@ -139,6 +157,8 @@ type aclArgs struct {
 	Description *string `pulumi:"description"`
 	// The project name of the Acl.
 	ProjectName *string `pulumi:"projectName"`
+	// Tags.
+	Tags []AclTag `pulumi:"tags"`
 }
 
 // The set of arguments for constructing a Acl resource.
@@ -151,6 +171,8 @@ type AclArgs struct {
 	Description pulumi.StringPtrInput
 	// The project name of the Acl.
 	ProjectName pulumi.StringPtrInput
+	// Tags.
+	Tags AclTagArrayInput
 }
 
 func (AclArgs) ElementType() reflect.Type {
@@ -263,6 +285,21 @@ func (o AclOutput) Description() pulumi.StringPtrOutput {
 // The project name of the Acl.
 func (o AclOutput) ProjectName() pulumi.StringOutput {
 	return o.ApplyT(func(v *Acl) pulumi.StringOutput { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The status of the Acl.
+func (o AclOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *Acl) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o AclOutput) Tags() AclTagArrayOutput {
+	return o.ApplyT(func(v *Acl) AclTagArrayOutput { return v.Tags }).(AclTagArrayOutput)
+}
+
+// Update time of Acl.
+func (o AclOutput) UpdateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v *Acl) pulumi.StringOutput { return v.UpdateTime }).(pulumi.StringOutput)
 }
 
 type AclArrayOutput struct{ *pulumi.OutputState }

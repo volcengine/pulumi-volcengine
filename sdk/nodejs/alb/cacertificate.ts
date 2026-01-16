@@ -95,6 +95,10 @@ export class CACertificate extends pulumi.CustomResource {
      */
     public readonly projectName!: pulumi.Output<string>;
     /**
+     * The san extension of the Certificate.
+     */
+    public /*out*/ readonly san!: pulumi.Output<string>;
+    /**
      * The status of the CA Certificate.
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
@@ -121,6 +125,7 @@ export class CACertificate extends pulumi.CustomResource {
             resourceInputs["expiredAt"] = state ? state.expiredAt : undefined;
             resourceInputs["listeners"] = state ? state.listeners : undefined;
             resourceInputs["projectName"] = state ? state.projectName : undefined;
+            resourceInputs["san"] = state ? state.san : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
         } else {
             const args = argsOrState as CACertificateArgs | undefined;
@@ -136,6 +141,7 @@ export class CACertificate extends pulumi.CustomResource {
             resourceInputs["domainName"] = undefined /*out*/;
             resourceInputs["expiredAt"] = undefined /*out*/;
             resourceInputs["listeners"] = undefined /*out*/;
+            resourceInputs["san"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -183,6 +189,10 @@ export interface CACertificateState {
      * The project name of the CA certificate.
      */
     projectName?: pulumi.Input<string>;
+    /**
+     * The san extension of the Certificate.
+     */
+    san?: pulumi.Input<string>;
     /**
      * The status of the CA Certificate.
      */

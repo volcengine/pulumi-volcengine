@@ -17,31 +17,45 @@ __all__ = ['ServerGroupArgs', 'ServerGroup']
 class ServerGroupArgs:
     def __init__(__self__, *,
                  vpc_id: pulumi.Input[str],
+                 cross_zone_enabled: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  health_check: Optional[pulumi.Input['ServerGroupHealthCheckArgs']] = None,
+                 ip_address_type: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
+                 protocol: Optional[pulumi.Input[str]] = None,
                  scheduler: Optional[pulumi.Input[str]] = None,
                  server_group_name: Optional[pulumi.Input[str]] = None,
                  server_group_type: Optional[pulumi.Input[str]] = None,
-                 sticky_session_config: Optional[pulumi.Input['ServerGroupStickySessionConfigArgs']] = None):
+                 sticky_session_config: Optional[pulumi.Input['ServerGroupStickySessionConfigArgs']] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['ServerGroupTagArgs']]]] = None):
         """
         The set of arguments for constructing a ServerGroup resource.
         :param pulumi.Input[str] vpc_id: The vpc id of the Alb server group.
+        :param pulumi.Input[str] cross_zone_enabled: Whether to enable cross-zone load balancing for the server group. Valid values: `on`, `off`.
         :param pulumi.Input[str] description: The description of the Alb server group.
         :param pulumi.Input['ServerGroupHealthCheckArgs'] health_check: The health check config of the Alb server group. The enable status of health check function defaults to `on`.
+        :param pulumi.Input[str] ip_address_type: The ip address type of the server group.
         :param pulumi.Input[str] project_name: The project name of the Alb server group.
+        :param pulumi.Input[str] protocol: The backend protocol of the Alb server group. Valid values: `HTTP`, `HTTPS`, `gRPC`. Default is `HTTP`.
         :param pulumi.Input[str] scheduler: The scheduling algorithm of the Alb server group. Valid values: `wrr`, `wlc`, `sh`.
         :param pulumi.Input[str] server_group_name: The name of the Alb server group.
         :param pulumi.Input[str] server_group_type: The type of the Alb server group. Valid values: `instance`, `ip`. Default is `instance`.
         :param pulumi.Input['ServerGroupStickySessionConfigArgs'] sticky_session_config: The sticky session config of the Alb server group. The enable status of sticky session function defaults to `off`.
+        :param pulumi.Input[Sequence[pulumi.Input['ServerGroupTagArgs']]] tags: Tags.
         """
         pulumi.set(__self__, "vpc_id", vpc_id)
+        if cross_zone_enabled is not None:
+            pulumi.set(__self__, "cross_zone_enabled", cross_zone_enabled)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if health_check is not None:
             pulumi.set(__self__, "health_check", health_check)
+        if ip_address_type is not None:
+            pulumi.set(__self__, "ip_address_type", ip_address_type)
         if project_name is not None:
             pulumi.set(__self__, "project_name", project_name)
+        if protocol is not None:
+            pulumi.set(__self__, "protocol", protocol)
         if scheduler is not None:
             pulumi.set(__self__, "scheduler", scheduler)
         if server_group_name is not None:
@@ -50,6 +64,8 @@ class ServerGroupArgs:
             pulumi.set(__self__, "server_group_type", server_group_type)
         if sticky_session_config is not None:
             pulumi.set(__self__, "sticky_session_config", sticky_session_config)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter(name="vpcId")
@@ -62,6 +78,18 @@ class ServerGroupArgs:
     @vpc_id.setter
     def vpc_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "vpc_id", value)
+
+    @property
+    @pulumi.getter(name="crossZoneEnabled")
+    def cross_zone_enabled(self) -> Optional[pulumi.Input[str]]:
+        """
+        Whether to enable cross-zone load balancing for the server group. Valid values: `on`, `off`.
+        """
+        return pulumi.get(self, "cross_zone_enabled")
+
+    @cross_zone_enabled.setter
+    def cross_zone_enabled(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cross_zone_enabled", value)
 
     @property
     @pulumi.getter
@@ -88,6 +116,18 @@ class ServerGroupArgs:
         pulumi.set(self, "health_check", value)
 
     @property
+    @pulumi.getter(name="ipAddressType")
+    def ip_address_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ip address type of the server group.
+        """
+        return pulumi.get(self, "ip_address_type")
+
+    @ip_address_type.setter
+    def ip_address_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ip_address_type", value)
+
+    @property
     @pulumi.getter(name="projectName")
     def project_name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -98,6 +138,18 @@ class ServerGroupArgs:
     @project_name.setter
     def project_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "project_name", value)
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> Optional[pulumi.Input[str]]:
+        """
+        The backend protocol of the Alb server group. Valid values: `HTTP`, `HTTPS`, `gRPC`. Default is `HTTP`.
+        """
+        return pulumi.get(self, "protocol")
+
+    @protocol.setter
+    def protocol(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "protocol", value)
 
     @property
     @pulumi.getter
@@ -147,49 +199,75 @@ class ServerGroupArgs:
     def sticky_session_config(self, value: Optional[pulumi.Input['ServerGroupStickySessionConfigArgs']]):
         pulumi.set(self, "sticky_session_config", value)
 
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServerGroupTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServerGroupTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
 
 @pulumi.input_type
 class _ServerGroupState:
     def __init__(__self__, *,
                  create_time: Optional[pulumi.Input[str]] = None,
+                 cross_zone_enabled: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  health_check: Optional[pulumi.Input['ServerGroupHealthCheckArgs']] = None,
+                 ip_address_type: Optional[pulumi.Input[str]] = None,
                  listeners: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
+                 protocol: Optional[pulumi.Input[str]] = None,
                  scheduler: Optional[pulumi.Input[str]] = None,
                  server_count: Optional[pulumi.Input[int]] = None,
                  server_group_name: Optional[pulumi.Input[str]] = None,
                  server_group_type: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  sticky_session_config: Optional[pulumi.Input['ServerGroupStickySessionConfigArgs']] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['ServerGroupTagArgs']]]] = None,
                  update_time: Optional[pulumi.Input[str]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering ServerGroup resources.
         :param pulumi.Input[str] create_time: The create time of the Alb server group.
+        :param pulumi.Input[str] cross_zone_enabled: Whether to enable cross-zone load balancing for the server group. Valid values: `on`, `off`.
         :param pulumi.Input[str] description: The description of the Alb server group.
         :param pulumi.Input['ServerGroupHealthCheckArgs'] health_check: The health check config of the Alb server group. The enable status of health check function defaults to `on`.
+        :param pulumi.Input[str] ip_address_type: The ip address type of the server group.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] listeners: The listener information of the Alb server group.
         :param pulumi.Input[str] project_name: The project name of the Alb server group.
+        :param pulumi.Input[str] protocol: The backend protocol of the Alb server group. Valid values: `HTTP`, `HTTPS`, `gRPC`. Default is `HTTP`.
         :param pulumi.Input[str] scheduler: The scheduling algorithm of the Alb server group. Valid values: `wrr`, `wlc`, `sh`.
         :param pulumi.Input[int] server_count: The server count of the Alb server group.
         :param pulumi.Input[str] server_group_name: The name of the Alb server group.
         :param pulumi.Input[str] server_group_type: The type of the Alb server group. Valid values: `instance`, `ip`. Default is `instance`.
         :param pulumi.Input[str] status: The status of the Alb server group.
         :param pulumi.Input['ServerGroupStickySessionConfigArgs'] sticky_session_config: The sticky session config of the Alb server group. The enable status of sticky session function defaults to `off`.
+        :param pulumi.Input[Sequence[pulumi.Input['ServerGroupTagArgs']]] tags: Tags.
         :param pulumi.Input[str] update_time: The update time of the Alb server group.
         :param pulumi.Input[str] vpc_id: The vpc id of the Alb server group.
         """
         if create_time is not None:
             pulumi.set(__self__, "create_time", create_time)
+        if cross_zone_enabled is not None:
+            pulumi.set(__self__, "cross_zone_enabled", cross_zone_enabled)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if health_check is not None:
             pulumi.set(__self__, "health_check", health_check)
+        if ip_address_type is not None:
+            pulumi.set(__self__, "ip_address_type", ip_address_type)
         if listeners is not None:
             pulumi.set(__self__, "listeners", listeners)
         if project_name is not None:
             pulumi.set(__self__, "project_name", project_name)
+        if protocol is not None:
+            pulumi.set(__self__, "protocol", protocol)
         if scheduler is not None:
             pulumi.set(__self__, "scheduler", scheduler)
         if server_count is not None:
@@ -202,6 +280,8 @@ class _ServerGroupState:
             pulumi.set(__self__, "status", status)
         if sticky_session_config is not None:
             pulumi.set(__self__, "sticky_session_config", sticky_session_config)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if update_time is not None:
             pulumi.set(__self__, "update_time", update_time)
         if vpc_id is not None:
@@ -218,6 +298,18 @@ class _ServerGroupState:
     @create_time.setter
     def create_time(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "create_time", value)
+
+    @property
+    @pulumi.getter(name="crossZoneEnabled")
+    def cross_zone_enabled(self) -> Optional[pulumi.Input[str]]:
+        """
+        Whether to enable cross-zone load balancing for the server group. Valid values: `on`, `off`.
+        """
+        return pulumi.get(self, "cross_zone_enabled")
+
+    @cross_zone_enabled.setter
+    def cross_zone_enabled(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cross_zone_enabled", value)
 
     @property
     @pulumi.getter
@@ -244,6 +336,18 @@ class _ServerGroupState:
         pulumi.set(self, "health_check", value)
 
     @property
+    @pulumi.getter(name="ipAddressType")
+    def ip_address_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ip address type of the server group.
+        """
+        return pulumi.get(self, "ip_address_type")
+
+    @ip_address_type.setter
+    def ip_address_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ip_address_type", value)
+
+    @property
     @pulumi.getter
     def listeners(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -266,6 +370,18 @@ class _ServerGroupState:
     @project_name.setter
     def project_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "project_name", value)
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> Optional[pulumi.Input[str]]:
+        """
+        The backend protocol of the Alb server group. Valid values: `HTTP`, `HTTPS`, `gRPC`. Default is `HTTP`.
+        """
+        return pulumi.get(self, "protocol")
+
+    @protocol.setter
+    def protocol(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "protocol", value)
 
     @property
     @pulumi.getter
@@ -340,6 +456,18 @@ class _ServerGroupState:
         pulumi.set(self, "sticky_session_config", value)
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServerGroupTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServerGroupTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
     @pulumi.getter(name="updateTime")
     def update_time(self) -> Optional[pulumi.Input[str]]:
         """
@@ -369,13 +497,17 @@ class ServerGroup(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 cross_zone_enabled: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  health_check: Optional[pulumi.Input[pulumi.InputType['ServerGroupHealthCheckArgs']]] = None,
+                 ip_address_type: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
+                 protocol: Optional[pulumi.Input[str]] = None,
                  scheduler: Optional[pulumi.Input[str]] = None,
                  server_group_name: Optional[pulumi.Input[str]] = None,
                  server_group_type: Optional[pulumi.Input[str]] = None,
                  sticky_session_config: Optional[pulumi.Input[pulumi.InputType['ServerGroupStickySessionConfigArgs']]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerGroupTagArgs']]]]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -395,18 +527,30 @@ class ServerGroup(pulumi.CustomResource):
             description="acc-test",
             server_group_type="instance",
             scheduler="wlc",
+            protocol="HTTP",
+            ip_address_type="IPv4",
             project_name="default",
             health_check=volcengine.alb.ServerGroupHealthCheckArgs(
                 enabled="on",
                 interval=3,
                 timeout=3,
                 method="GET",
+                domain="www.test.com",
+                uri="/health",
+                http_code="http_2xx,http_3xx",
+                protocol="HTTP",
+                port=80,
+                http_version="HTTP1.1",
             ),
             sticky_session_config=volcengine.alb.ServerGroupStickySessionConfigArgs(
                 sticky_session_enabled="on",
                 sticky_session_type="insert",
                 cookie_timeout=1100,
-            ))
+            ),
+            tags=[volcengine.alb.ServerGroupTagArgs(
+                key="key1",
+                value="value2",
+            )])
         ```
 
         ## Import
@@ -419,13 +563,17 @@ class ServerGroup(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] cross_zone_enabled: Whether to enable cross-zone load balancing for the server group. Valid values: `on`, `off`.
         :param pulumi.Input[str] description: The description of the Alb server group.
         :param pulumi.Input[pulumi.InputType['ServerGroupHealthCheckArgs']] health_check: The health check config of the Alb server group. The enable status of health check function defaults to `on`.
+        :param pulumi.Input[str] ip_address_type: The ip address type of the server group.
         :param pulumi.Input[str] project_name: The project name of the Alb server group.
+        :param pulumi.Input[str] protocol: The backend protocol of the Alb server group. Valid values: `HTTP`, `HTTPS`, `gRPC`. Default is `HTTP`.
         :param pulumi.Input[str] scheduler: The scheduling algorithm of the Alb server group. Valid values: `wrr`, `wlc`, `sh`.
         :param pulumi.Input[str] server_group_name: The name of the Alb server group.
         :param pulumi.Input[str] server_group_type: The type of the Alb server group. Valid values: `instance`, `ip`. Default is `instance`.
         :param pulumi.Input[pulumi.InputType['ServerGroupStickySessionConfigArgs']] sticky_session_config: The sticky session config of the Alb server group. The enable status of sticky session function defaults to `off`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerGroupTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] vpc_id: The vpc id of the Alb server group.
         """
         ...
@@ -451,18 +599,30 @@ class ServerGroup(pulumi.CustomResource):
             description="acc-test",
             server_group_type="instance",
             scheduler="wlc",
+            protocol="HTTP",
+            ip_address_type="IPv4",
             project_name="default",
             health_check=volcengine.alb.ServerGroupHealthCheckArgs(
                 enabled="on",
                 interval=3,
                 timeout=3,
                 method="GET",
+                domain="www.test.com",
+                uri="/health",
+                http_code="http_2xx,http_3xx",
+                protocol="HTTP",
+                port=80,
+                http_version="HTTP1.1",
             ),
             sticky_session_config=volcengine.alb.ServerGroupStickySessionConfigArgs(
                 sticky_session_enabled="on",
                 sticky_session_type="insert",
                 cookie_timeout=1100,
-            ))
+            ),
+            tags=[volcengine.alb.ServerGroupTagArgs(
+                key="key1",
+                value="value2",
+            )])
         ```
 
         ## Import
@@ -488,13 +648,17 @@ class ServerGroup(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 cross_zone_enabled: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  health_check: Optional[pulumi.Input[pulumi.InputType['ServerGroupHealthCheckArgs']]] = None,
+                 ip_address_type: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
+                 protocol: Optional[pulumi.Input[str]] = None,
                  scheduler: Optional[pulumi.Input[str]] = None,
                  server_group_name: Optional[pulumi.Input[str]] = None,
                  server_group_type: Optional[pulumi.Input[str]] = None,
                  sticky_session_config: Optional[pulumi.Input[pulumi.InputType['ServerGroupStickySessionConfigArgs']]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerGroupTagArgs']]]]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -505,13 +669,17 @@ class ServerGroup(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ServerGroupArgs.__new__(ServerGroupArgs)
 
+            __props__.__dict__["cross_zone_enabled"] = cross_zone_enabled
             __props__.__dict__["description"] = description
             __props__.__dict__["health_check"] = health_check
+            __props__.__dict__["ip_address_type"] = ip_address_type
             __props__.__dict__["project_name"] = project_name
+            __props__.__dict__["protocol"] = protocol
             __props__.__dict__["scheduler"] = scheduler
             __props__.__dict__["server_group_name"] = server_group_name
             __props__.__dict__["server_group_type"] = server_group_type
             __props__.__dict__["sticky_session_config"] = sticky_session_config
+            __props__.__dict__["tags"] = tags
             if vpc_id is None and not opts.urn:
                 raise TypeError("Missing required property 'vpc_id'")
             __props__.__dict__["vpc_id"] = vpc_id
@@ -531,16 +699,20 @@ class ServerGroup(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             create_time: Optional[pulumi.Input[str]] = None,
+            cross_zone_enabled: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             health_check: Optional[pulumi.Input[pulumi.InputType['ServerGroupHealthCheckArgs']]] = None,
+            ip_address_type: Optional[pulumi.Input[str]] = None,
             listeners: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             project_name: Optional[pulumi.Input[str]] = None,
+            protocol: Optional[pulumi.Input[str]] = None,
             scheduler: Optional[pulumi.Input[str]] = None,
             server_count: Optional[pulumi.Input[int]] = None,
             server_group_name: Optional[pulumi.Input[str]] = None,
             server_group_type: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
             sticky_session_config: Optional[pulumi.Input[pulumi.InputType['ServerGroupStickySessionConfigArgs']]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerGroupTagArgs']]]]] = None,
             update_time: Optional[pulumi.Input[str]] = None,
             vpc_id: Optional[pulumi.Input[str]] = None) -> 'ServerGroup':
         """
@@ -551,16 +723,20 @@ class ServerGroup(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] create_time: The create time of the Alb server group.
+        :param pulumi.Input[str] cross_zone_enabled: Whether to enable cross-zone load balancing for the server group. Valid values: `on`, `off`.
         :param pulumi.Input[str] description: The description of the Alb server group.
         :param pulumi.Input[pulumi.InputType['ServerGroupHealthCheckArgs']] health_check: The health check config of the Alb server group. The enable status of health check function defaults to `on`.
+        :param pulumi.Input[str] ip_address_type: The ip address type of the server group.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] listeners: The listener information of the Alb server group.
         :param pulumi.Input[str] project_name: The project name of the Alb server group.
+        :param pulumi.Input[str] protocol: The backend protocol of the Alb server group. Valid values: `HTTP`, `HTTPS`, `gRPC`. Default is `HTTP`.
         :param pulumi.Input[str] scheduler: The scheduling algorithm of the Alb server group. Valid values: `wrr`, `wlc`, `sh`.
         :param pulumi.Input[int] server_count: The server count of the Alb server group.
         :param pulumi.Input[str] server_group_name: The name of the Alb server group.
         :param pulumi.Input[str] server_group_type: The type of the Alb server group. Valid values: `instance`, `ip`. Default is `instance`.
         :param pulumi.Input[str] status: The status of the Alb server group.
         :param pulumi.Input[pulumi.InputType['ServerGroupStickySessionConfigArgs']] sticky_session_config: The sticky session config of the Alb server group. The enable status of sticky session function defaults to `off`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerGroupTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] update_time: The update time of the Alb server group.
         :param pulumi.Input[str] vpc_id: The vpc id of the Alb server group.
         """
@@ -569,16 +745,20 @@ class ServerGroup(pulumi.CustomResource):
         __props__ = _ServerGroupState.__new__(_ServerGroupState)
 
         __props__.__dict__["create_time"] = create_time
+        __props__.__dict__["cross_zone_enabled"] = cross_zone_enabled
         __props__.__dict__["description"] = description
         __props__.__dict__["health_check"] = health_check
+        __props__.__dict__["ip_address_type"] = ip_address_type
         __props__.__dict__["listeners"] = listeners
         __props__.__dict__["project_name"] = project_name
+        __props__.__dict__["protocol"] = protocol
         __props__.__dict__["scheduler"] = scheduler
         __props__.__dict__["server_count"] = server_count
         __props__.__dict__["server_group_name"] = server_group_name
         __props__.__dict__["server_group_type"] = server_group_type
         __props__.__dict__["status"] = status
         __props__.__dict__["sticky_session_config"] = sticky_session_config
+        __props__.__dict__["tags"] = tags
         __props__.__dict__["update_time"] = update_time
         __props__.__dict__["vpc_id"] = vpc_id
         return ServerGroup(resource_name, opts=opts, __props__=__props__)
@@ -590,6 +770,14 @@ class ServerGroup(pulumi.CustomResource):
         The create time of the Alb server group.
         """
         return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter(name="crossZoneEnabled")
+    def cross_zone_enabled(self) -> pulumi.Output[str]:
+        """
+        Whether to enable cross-zone load balancing for the server group. Valid values: `on`, `off`.
+        """
+        return pulumi.get(self, "cross_zone_enabled")
 
     @property
     @pulumi.getter
@@ -608,6 +796,14 @@ class ServerGroup(pulumi.CustomResource):
         return pulumi.get(self, "health_check")
 
     @property
+    @pulumi.getter(name="ipAddressType")
+    def ip_address_type(self) -> pulumi.Output[str]:
+        """
+        The ip address type of the server group.
+        """
+        return pulumi.get(self, "ip_address_type")
+
+    @property
     @pulumi.getter
     def listeners(self) -> pulumi.Output[Sequence[str]]:
         """
@@ -622,6 +818,14 @@ class ServerGroup(pulumi.CustomResource):
         The project name of the Alb server group.
         """
         return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> pulumi.Output[Optional[str]]:
+        """
+        The backend protocol of the Alb server group. Valid values: `HTTP`, `HTTPS`, `gRPC`. Default is `HTTP`.
+        """
+        return pulumi.get(self, "protocol")
 
     @property
     @pulumi.getter
@@ -670,6 +874,14 @@ class ServerGroup(pulumi.CustomResource):
         The sticky session config of the Alb server group. The enable status of sticky session function defaults to `off`.
         """
         return pulumi.get(self, "sticky_session_config")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.ServerGroupTag']]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="updateTime")

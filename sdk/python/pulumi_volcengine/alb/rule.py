@@ -20,10 +20,16 @@ class RuleArgs:
                  rule_action: pulumi.Input[str],
                  description: Optional[pulumi.Input[str]] = None,
                  domain: Optional[pulumi.Input[str]] = None,
+                 priority: Optional[pulumi.Input[int]] = None,
                  redirect_config: Optional[pulumi.Input['RuleRedirectConfigArgs']] = None,
                  rewrite_config: Optional[pulumi.Input['RuleRewriteConfigArgs']] = None,
                  rewrite_enabled: Optional[pulumi.Input[str]] = None,
+                 rule_actions: Optional[pulumi.Input[Sequence[pulumi.Input['RuleRuleActionArgs']]]] = None,
+                 rule_conditions: Optional[pulumi.Input[Sequence[pulumi.Input['RuleRuleConditionArgs']]]] = None,
                  server_group_id: Optional[pulumi.Input[str]] = None,
+                 server_group_tuples: Optional[pulumi.Input[Sequence[pulumi.Input['RuleServerGroupTupleArgs']]]] = None,
+                 sticky_session_enabled: Optional[pulumi.Input[str]] = None,
+                 sticky_session_timeout: Optional[pulumi.Input[int]] = None,
                  traffic_limit_enabled: Optional[pulumi.Input[str]] = None,
                  traffic_limit_qps: Optional[pulumi.Input[int]] = None,
                  url: Optional[pulumi.Input[str]] = None):
@@ -33,12 +39,18 @@ class RuleArgs:
         :param pulumi.Input[str] rule_action: The forwarding rule action, if this parameter is empty(`""`), forward to server group, if value is `Redirect`, will redirect.
         :param pulumi.Input[str] description: The description of the Rule.
         :param pulumi.Input[str] domain: The domain of Rule.
+        :param pulumi.Input[int] priority: The priority of the Rule.Only the standard version is supported.
         :param pulumi.Input['RuleRedirectConfigArgs'] redirect_config: The redirect related configuration.
         :param pulumi.Input['RuleRewriteConfigArgs'] rewrite_config: The list of rewrite configurations.
         :param pulumi.Input[str] rewrite_enabled: Rewrite configuration switch for forwarding rules, only allows configuration and takes effect when RuleAction is empty (i.e., forwarding to server group). Only available for whitelist users, please submit an application to experience. Supported values are as follows:
                on: enable.
                off: disable.
+        :param pulumi.Input[Sequence[pulumi.Input['RuleRuleActionArgs']]] rule_actions: The rule actions for standard edition forwarding rules.
+        :param pulumi.Input[Sequence[pulumi.Input['RuleRuleConditionArgs']]] rule_conditions: The rule conditions for standard edition forwarding rules.
         :param pulumi.Input[str] server_group_id: Server group ID, this parameter is required if `rule_action` is empty.
+        :param pulumi.Input[Sequence[pulumi.Input['RuleServerGroupTupleArgs']]] server_group_tuples: Weight forwarded to the corresponding backend server group.
+        :param pulumi.Input[str] sticky_session_enabled: Whether to enable group session stickiness. Valid values are 'on' and 'off'.
+        :param pulumi.Input[int] sticky_session_timeout: The group session stickiness timeout, in seconds.
         :param pulumi.Input[str] traffic_limit_enabled: Forwarding rule QPS rate limiting switch:
                on: enable.
                off: disable (default).
@@ -51,14 +63,26 @@ class RuleArgs:
             pulumi.set(__self__, "description", description)
         if domain is not None:
             pulumi.set(__self__, "domain", domain)
+        if priority is not None:
+            pulumi.set(__self__, "priority", priority)
         if redirect_config is not None:
             pulumi.set(__self__, "redirect_config", redirect_config)
         if rewrite_config is not None:
             pulumi.set(__self__, "rewrite_config", rewrite_config)
         if rewrite_enabled is not None:
             pulumi.set(__self__, "rewrite_enabled", rewrite_enabled)
+        if rule_actions is not None:
+            pulumi.set(__self__, "rule_actions", rule_actions)
+        if rule_conditions is not None:
+            pulumi.set(__self__, "rule_conditions", rule_conditions)
         if server_group_id is not None:
             pulumi.set(__self__, "server_group_id", server_group_id)
+        if server_group_tuples is not None:
+            pulumi.set(__self__, "server_group_tuples", server_group_tuples)
+        if sticky_session_enabled is not None:
+            pulumi.set(__self__, "sticky_session_enabled", sticky_session_enabled)
+        if sticky_session_timeout is not None:
+            pulumi.set(__self__, "sticky_session_timeout", sticky_session_timeout)
         if traffic_limit_enabled is not None:
             pulumi.set(__self__, "traffic_limit_enabled", traffic_limit_enabled)
         if traffic_limit_qps is not None:
@@ -115,6 +139,18 @@ class RuleArgs:
         pulumi.set(self, "domain", value)
 
     @property
+    @pulumi.getter
+    def priority(self) -> Optional[pulumi.Input[int]]:
+        """
+        The priority of the Rule.Only the standard version is supported.
+        """
+        return pulumi.get(self, "priority")
+
+    @priority.setter
+    def priority(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "priority", value)
+
+    @property
     @pulumi.getter(name="redirectConfig")
     def redirect_config(self) -> Optional[pulumi.Input['RuleRedirectConfigArgs']]:
         """
@@ -153,6 +189,30 @@ class RuleArgs:
         pulumi.set(self, "rewrite_enabled", value)
 
     @property
+    @pulumi.getter(name="ruleActions")
+    def rule_actions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RuleRuleActionArgs']]]]:
+        """
+        The rule actions for standard edition forwarding rules.
+        """
+        return pulumi.get(self, "rule_actions")
+
+    @rule_actions.setter
+    def rule_actions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RuleRuleActionArgs']]]]):
+        pulumi.set(self, "rule_actions", value)
+
+    @property
+    @pulumi.getter(name="ruleConditions")
+    def rule_conditions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RuleRuleConditionArgs']]]]:
+        """
+        The rule conditions for standard edition forwarding rules.
+        """
+        return pulumi.get(self, "rule_conditions")
+
+    @rule_conditions.setter
+    def rule_conditions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RuleRuleConditionArgs']]]]):
+        pulumi.set(self, "rule_conditions", value)
+
+    @property
     @pulumi.getter(name="serverGroupId")
     def server_group_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -163,6 +223,42 @@ class RuleArgs:
     @server_group_id.setter
     def server_group_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "server_group_id", value)
+
+    @property
+    @pulumi.getter(name="serverGroupTuples")
+    def server_group_tuples(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RuleServerGroupTupleArgs']]]]:
+        """
+        Weight forwarded to the corresponding backend server group.
+        """
+        return pulumi.get(self, "server_group_tuples")
+
+    @server_group_tuples.setter
+    def server_group_tuples(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RuleServerGroupTupleArgs']]]]):
+        pulumi.set(self, "server_group_tuples", value)
+
+    @property
+    @pulumi.getter(name="stickySessionEnabled")
+    def sticky_session_enabled(self) -> Optional[pulumi.Input[str]]:
+        """
+        Whether to enable group session stickiness. Valid values are 'on' and 'off'.
+        """
+        return pulumi.get(self, "sticky_session_enabled")
+
+    @sticky_session_enabled.setter
+    def sticky_session_enabled(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sticky_session_enabled", value)
+
+    @property
+    @pulumi.getter(name="stickySessionTimeout")
+    def sticky_session_timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        The group session stickiness timeout, in seconds.
+        """
+        return pulumi.get(self, "sticky_session_timeout")
+
+    @sticky_session_timeout.setter
+    def sticky_session_timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "sticky_session_timeout", value)
 
     @property
     @pulumi.getter(name="trafficLimitEnabled")
@@ -209,12 +305,18 @@ class _RuleState:
                  description: Optional[pulumi.Input[str]] = None,
                  domain: Optional[pulumi.Input[str]] = None,
                  listener_id: Optional[pulumi.Input[str]] = None,
+                 priority: Optional[pulumi.Input[int]] = None,
                  redirect_config: Optional[pulumi.Input['RuleRedirectConfigArgs']] = None,
                  rewrite_config: Optional[pulumi.Input['RuleRewriteConfigArgs']] = None,
                  rewrite_enabled: Optional[pulumi.Input[str]] = None,
                  rule_action: Optional[pulumi.Input[str]] = None,
+                 rule_actions: Optional[pulumi.Input[Sequence[pulumi.Input['RuleRuleActionArgs']]]] = None,
+                 rule_conditions: Optional[pulumi.Input[Sequence[pulumi.Input['RuleRuleConditionArgs']]]] = None,
                  rule_id: Optional[pulumi.Input[str]] = None,
                  server_group_id: Optional[pulumi.Input[str]] = None,
+                 server_group_tuples: Optional[pulumi.Input[Sequence[pulumi.Input['RuleServerGroupTupleArgs']]]] = None,
+                 sticky_session_enabled: Optional[pulumi.Input[str]] = None,
+                 sticky_session_timeout: Optional[pulumi.Input[int]] = None,
                  traffic_limit_enabled: Optional[pulumi.Input[str]] = None,
                  traffic_limit_qps: Optional[pulumi.Input[int]] = None,
                  url: Optional[pulumi.Input[str]] = None):
@@ -223,14 +325,20 @@ class _RuleState:
         :param pulumi.Input[str] description: The description of the Rule.
         :param pulumi.Input[str] domain: The domain of Rule.
         :param pulumi.Input[str] listener_id: The ID of listener.
+        :param pulumi.Input[int] priority: The priority of the Rule.Only the standard version is supported.
         :param pulumi.Input['RuleRedirectConfigArgs'] redirect_config: The redirect related configuration.
         :param pulumi.Input['RuleRewriteConfigArgs'] rewrite_config: The list of rewrite configurations.
         :param pulumi.Input[str] rewrite_enabled: Rewrite configuration switch for forwarding rules, only allows configuration and takes effect when RuleAction is empty (i.e., forwarding to server group). Only available for whitelist users, please submit an application to experience. Supported values are as follows:
                on: enable.
                off: disable.
         :param pulumi.Input[str] rule_action: The forwarding rule action, if this parameter is empty(`""`), forward to server group, if value is `Redirect`, will redirect.
+        :param pulumi.Input[Sequence[pulumi.Input['RuleRuleActionArgs']]] rule_actions: The rule actions for standard edition forwarding rules.
+        :param pulumi.Input[Sequence[pulumi.Input['RuleRuleConditionArgs']]] rule_conditions: The rule conditions for standard edition forwarding rules.
         :param pulumi.Input[str] rule_id: The ID of rule.
         :param pulumi.Input[str] server_group_id: Server group ID, this parameter is required if `rule_action` is empty.
+        :param pulumi.Input[Sequence[pulumi.Input['RuleServerGroupTupleArgs']]] server_group_tuples: Weight forwarded to the corresponding backend server group.
+        :param pulumi.Input[str] sticky_session_enabled: Whether to enable group session stickiness. Valid values are 'on' and 'off'.
+        :param pulumi.Input[int] sticky_session_timeout: The group session stickiness timeout, in seconds.
         :param pulumi.Input[str] traffic_limit_enabled: Forwarding rule QPS rate limiting switch:
                on: enable.
                off: disable (default).
@@ -243,6 +351,8 @@ class _RuleState:
             pulumi.set(__self__, "domain", domain)
         if listener_id is not None:
             pulumi.set(__self__, "listener_id", listener_id)
+        if priority is not None:
+            pulumi.set(__self__, "priority", priority)
         if redirect_config is not None:
             pulumi.set(__self__, "redirect_config", redirect_config)
         if rewrite_config is not None:
@@ -251,10 +361,20 @@ class _RuleState:
             pulumi.set(__self__, "rewrite_enabled", rewrite_enabled)
         if rule_action is not None:
             pulumi.set(__self__, "rule_action", rule_action)
+        if rule_actions is not None:
+            pulumi.set(__self__, "rule_actions", rule_actions)
+        if rule_conditions is not None:
+            pulumi.set(__self__, "rule_conditions", rule_conditions)
         if rule_id is not None:
             pulumi.set(__self__, "rule_id", rule_id)
         if server_group_id is not None:
             pulumi.set(__self__, "server_group_id", server_group_id)
+        if server_group_tuples is not None:
+            pulumi.set(__self__, "server_group_tuples", server_group_tuples)
+        if sticky_session_enabled is not None:
+            pulumi.set(__self__, "sticky_session_enabled", sticky_session_enabled)
+        if sticky_session_timeout is not None:
+            pulumi.set(__self__, "sticky_session_timeout", sticky_session_timeout)
         if traffic_limit_enabled is not None:
             pulumi.set(__self__, "traffic_limit_enabled", traffic_limit_enabled)
         if traffic_limit_qps is not None:
@@ -297,6 +417,18 @@ class _RuleState:
     @listener_id.setter
     def listener_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "listener_id", value)
+
+    @property
+    @pulumi.getter
+    def priority(self) -> Optional[pulumi.Input[int]]:
+        """
+        The priority of the Rule.Only the standard version is supported.
+        """
+        return pulumi.get(self, "priority")
+
+    @priority.setter
+    def priority(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "priority", value)
 
     @property
     @pulumi.getter(name="redirectConfig")
@@ -349,6 +481,30 @@ class _RuleState:
         pulumi.set(self, "rule_action", value)
 
     @property
+    @pulumi.getter(name="ruleActions")
+    def rule_actions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RuleRuleActionArgs']]]]:
+        """
+        The rule actions for standard edition forwarding rules.
+        """
+        return pulumi.get(self, "rule_actions")
+
+    @rule_actions.setter
+    def rule_actions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RuleRuleActionArgs']]]]):
+        pulumi.set(self, "rule_actions", value)
+
+    @property
+    @pulumi.getter(name="ruleConditions")
+    def rule_conditions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RuleRuleConditionArgs']]]]:
+        """
+        The rule conditions for standard edition forwarding rules.
+        """
+        return pulumi.get(self, "rule_conditions")
+
+    @rule_conditions.setter
+    def rule_conditions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RuleRuleConditionArgs']]]]):
+        pulumi.set(self, "rule_conditions", value)
+
+    @property
     @pulumi.getter(name="ruleId")
     def rule_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -371,6 +527,42 @@ class _RuleState:
     @server_group_id.setter
     def server_group_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "server_group_id", value)
+
+    @property
+    @pulumi.getter(name="serverGroupTuples")
+    def server_group_tuples(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RuleServerGroupTupleArgs']]]]:
+        """
+        Weight forwarded to the corresponding backend server group.
+        """
+        return pulumi.get(self, "server_group_tuples")
+
+    @server_group_tuples.setter
+    def server_group_tuples(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RuleServerGroupTupleArgs']]]]):
+        pulumi.set(self, "server_group_tuples", value)
+
+    @property
+    @pulumi.getter(name="stickySessionEnabled")
+    def sticky_session_enabled(self) -> Optional[pulumi.Input[str]]:
+        """
+        Whether to enable group session stickiness. Valid values are 'on' and 'off'.
+        """
+        return pulumi.get(self, "sticky_session_enabled")
+
+    @sticky_session_enabled.setter
+    def sticky_session_enabled(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sticky_session_enabled", value)
+
+    @property
+    @pulumi.getter(name="stickySessionTimeout")
+    def sticky_session_timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        The group session stickiness timeout, in seconds.
+        """
+        return pulumi.get(self, "sticky_session_timeout")
+
+    @sticky_session_timeout.setter
+    def sticky_session_timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "sticky_session_timeout", value)
 
     @property
     @pulumi.getter(name="trafficLimitEnabled")
@@ -419,11 +611,17 @@ class Rule(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  domain: Optional[pulumi.Input[str]] = None,
                  listener_id: Optional[pulumi.Input[str]] = None,
+                 priority: Optional[pulumi.Input[int]] = None,
                  redirect_config: Optional[pulumi.Input[pulumi.InputType['RuleRedirectConfigArgs']]] = None,
                  rewrite_config: Optional[pulumi.Input[pulumi.InputType['RuleRewriteConfigArgs']]] = None,
                  rewrite_enabled: Optional[pulumi.Input[str]] = None,
                  rule_action: Optional[pulumi.Input[str]] = None,
+                 rule_actions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RuleRuleActionArgs']]]]] = None,
+                 rule_conditions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RuleRuleConditionArgs']]]]] = None,
                  server_group_id: Optional[pulumi.Input[str]] = None,
+                 server_group_tuples: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RuleServerGroupTupleArgs']]]]] = None,
+                 sticky_session_enabled: Optional[pulumi.Input[str]] = None,
+                 sticky_session_timeout: Optional[pulumi.Input[int]] = None,
                  traffic_limit_enabled: Optional[pulumi.Input[str]] = None,
                  traffic_limit_qps: Optional[pulumi.Input[int]] = None,
                  url: Optional[pulumi.Input[str]] = None,
@@ -436,6 +634,7 @@ class Rule(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
+        # Basic edition
         foo = volcengine.alb.Rule("foo",
             description="test",
             domain="www.test.com",
@@ -455,6 +654,39 @@ class Rule(pulumi.CustomResource):
             traffic_limit_enabled="off",
             traffic_limit_qps=100,
             url="/test")
+        # Standard edition
+        example = volcengine.alb.Rule("example",
+            description="standard edition alb rule",
+            listener_id="lsn-bddjp5fcof0g8dv40naga1yd",
+            priority=1,
+            rule_action="",
+            rule_actions=[volcengine.alb.RuleRuleActionArgs(
+                forward_group_config=volcengine.alb.RuleRuleActionForwardGroupConfigArgs(
+                    server_group_sticky_session=volcengine.alb.RuleRuleActionForwardGroupConfigServerGroupStickySessionArgs(
+                        enabled="off",
+                    ),
+                    server_group_tuples=[volcengine.alb.RuleRuleActionForwardGroupConfigServerGroupTupleArgs(
+                        server_group_id="rsp-bdd1lpcbvv288dv40ov1sye0",
+                        weight=50,
+                    )],
+                ),
+                type="ForwardGroup",
+            )],
+            rule_conditions=[
+                volcengine.alb.RuleRuleConditionArgs(
+                    host_config=volcengine.alb.RuleRuleConditionHostConfigArgs(
+                        values=["www.example.com"],
+                    ),
+                    type="Host",
+                ),
+                volcengine.alb.RuleRuleConditionArgs(
+                    path_config=volcengine.alb.RuleRuleConditionPathConfigArgs(
+                        values=["/app/*"],
+                    ),
+                    type="Path",
+                ),
+            ],
+            url="")
         ```
 
         ## Import
@@ -470,13 +702,19 @@ class Rule(pulumi.CustomResource):
         :param pulumi.Input[str] description: The description of the Rule.
         :param pulumi.Input[str] domain: The domain of Rule.
         :param pulumi.Input[str] listener_id: The ID of listener.
+        :param pulumi.Input[int] priority: The priority of the Rule.Only the standard version is supported.
         :param pulumi.Input[pulumi.InputType['RuleRedirectConfigArgs']] redirect_config: The redirect related configuration.
         :param pulumi.Input[pulumi.InputType['RuleRewriteConfigArgs']] rewrite_config: The list of rewrite configurations.
         :param pulumi.Input[str] rewrite_enabled: Rewrite configuration switch for forwarding rules, only allows configuration and takes effect when RuleAction is empty (i.e., forwarding to server group). Only available for whitelist users, please submit an application to experience. Supported values are as follows:
                on: enable.
                off: disable.
         :param pulumi.Input[str] rule_action: The forwarding rule action, if this parameter is empty(`""`), forward to server group, if value is `Redirect`, will redirect.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RuleRuleActionArgs']]]] rule_actions: The rule actions for standard edition forwarding rules.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RuleRuleConditionArgs']]]] rule_conditions: The rule conditions for standard edition forwarding rules.
         :param pulumi.Input[str] server_group_id: Server group ID, this parameter is required if `rule_action` is empty.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RuleServerGroupTupleArgs']]]] server_group_tuples: Weight forwarded to the corresponding backend server group.
+        :param pulumi.Input[str] sticky_session_enabled: Whether to enable group session stickiness. Valid values are 'on' and 'off'.
+        :param pulumi.Input[int] sticky_session_timeout: The group session stickiness timeout, in seconds.
         :param pulumi.Input[str] traffic_limit_enabled: Forwarding rule QPS rate limiting switch:
                on: enable.
                off: disable (default).
@@ -497,6 +735,7 @@ class Rule(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
+        # Basic edition
         foo = volcengine.alb.Rule("foo",
             description="test",
             domain="www.test.com",
@@ -516,6 +755,39 @@ class Rule(pulumi.CustomResource):
             traffic_limit_enabled="off",
             traffic_limit_qps=100,
             url="/test")
+        # Standard edition
+        example = volcengine.alb.Rule("example",
+            description="standard edition alb rule",
+            listener_id="lsn-bddjp5fcof0g8dv40naga1yd",
+            priority=1,
+            rule_action="",
+            rule_actions=[volcengine.alb.RuleRuleActionArgs(
+                forward_group_config=volcengine.alb.RuleRuleActionForwardGroupConfigArgs(
+                    server_group_sticky_session=volcengine.alb.RuleRuleActionForwardGroupConfigServerGroupStickySessionArgs(
+                        enabled="off",
+                    ),
+                    server_group_tuples=[volcengine.alb.RuleRuleActionForwardGroupConfigServerGroupTupleArgs(
+                        server_group_id="rsp-bdd1lpcbvv288dv40ov1sye0",
+                        weight=50,
+                    )],
+                ),
+                type="ForwardGroup",
+            )],
+            rule_conditions=[
+                volcengine.alb.RuleRuleConditionArgs(
+                    host_config=volcengine.alb.RuleRuleConditionHostConfigArgs(
+                        values=["www.example.com"],
+                    ),
+                    type="Host",
+                ),
+                volcengine.alb.RuleRuleConditionArgs(
+                    path_config=volcengine.alb.RuleRuleConditionPathConfigArgs(
+                        values=["/app/*"],
+                    ),
+                    type="Path",
+                ),
+            ],
+            url="")
         ```
 
         ## Import
@@ -544,11 +816,17 @@ class Rule(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  domain: Optional[pulumi.Input[str]] = None,
                  listener_id: Optional[pulumi.Input[str]] = None,
+                 priority: Optional[pulumi.Input[int]] = None,
                  redirect_config: Optional[pulumi.Input[pulumi.InputType['RuleRedirectConfigArgs']]] = None,
                  rewrite_config: Optional[pulumi.Input[pulumi.InputType['RuleRewriteConfigArgs']]] = None,
                  rewrite_enabled: Optional[pulumi.Input[str]] = None,
                  rule_action: Optional[pulumi.Input[str]] = None,
+                 rule_actions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RuleRuleActionArgs']]]]] = None,
+                 rule_conditions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RuleRuleConditionArgs']]]]] = None,
                  server_group_id: Optional[pulumi.Input[str]] = None,
+                 server_group_tuples: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RuleServerGroupTupleArgs']]]]] = None,
+                 sticky_session_enabled: Optional[pulumi.Input[str]] = None,
+                 sticky_session_timeout: Optional[pulumi.Input[int]] = None,
                  traffic_limit_enabled: Optional[pulumi.Input[str]] = None,
                  traffic_limit_qps: Optional[pulumi.Input[int]] = None,
                  url: Optional[pulumi.Input[str]] = None,
@@ -566,13 +844,19 @@ class Rule(pulumi.CustomResource):
             if listener_id is None and not opts.urn:
                 raise TypeError("Missing required property 'listener_id'")
             __props__.__dict__["listener_id"] = listener_id
+            __props__.__dict__["priority"] = priority
             __props__.__dict__["redirect_config"] = redirect_config
             __props__.__dict__["rewrite_config"] = rewrite_config
             __props__.__dict__["rewrite_enabled"] = rewrite_enabled
             if rule_action is None and not opts.urn:
                 raise TypeError("Missing required property 'rule_action'")
             __props__.__dict__["rule_action"] = rule_action
+            __props__.__dict__["rule_actions"] = rule_actions
+            __props__.__dict__["rule_conditions"] = rule_conditions
             __props__.__dict__["server_group_id"] = server_group_id
+            __props__.__dict__["server_group_tuples"] = server_group_tuples
+            __props__.__dict__["sticky_session_enabled"] = sticky_session_enabled
+            __props__.__dict__["sticky_session_timeout"] = sticky_session_timeout
             __props__.__dict__["traffic_limit_enabled"] = traffic_limit_enabled
             __props__.__dict__["traffic_limit_qps"] = traffic_limit_qps
             __props__.__dict__["url"] = url
@@ -590,12 +874,18 @@ class Rule(pulumi.CustomResource):
             description: Optional[pulumi.Input[str]] = None,
             domain: Optional[pulumi.Input[str]] = None,
             listener_id: Optional[pulumi.Input[str]] = None,
+            priority: Optional[pulumi.Input[int]] = None,
             redirect_config: Optional[pulumi.Input[pulumi.InputType['RuleRedirectConfigArgs']]] = None,
             rewrite_config: Optional[pulumi.Input[pulumi.InputType['RuleRewriteConfigArgs']]] = None,
             rewrite_enabled: Optional[pulumi.Input[str]] = None,
             rule_action: Optional[pulumi.Input[str]] = None,
+            rule_actions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RuleRuleActionArgs']]]]] = None,
+            rule_conditions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RuleRuleConditionArgs']]]]] = None,
             rule_id: Optional[pulumi.Input[str]] = None,
             server_group_id: Optional[pulumi.Input[str]] = None,
+            server_group_tuples: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RuleServerGroupTupleArgs']]]]] = None,
+            sticky_session_enabled: Optional[pulumi.Input[str]] = None,
+            sticky_session_timeout: Optional[pulumi.Input[int]] = None,
             traffic_limit_enabled: Optional[pulumi.Input[str]] = None,
             traffic_limit_qps: Optional[pulumi.Input[int]] = None,
             url: Optional[pulumi.Input[str]] = None) -> 'Rule':
@@ -609,14 +899,20 @@ class Rule(pulumi.CustomResource):
         :param pulumi.Input[str] description: The description of the Rule.
         :param pulumi.Input[str] domain: The domain of Rule.
         :param pulumi.Input[str] listener_id: The ID of listener.
+        :param pulumi.Input[int] priority: The priority of the Rule.Only the standard version is supported.
         :param pulumi.Input[pulumi.InputType['RuleRedirectConfigArgs']] redirect_config: The redirect related configuration.
         :param pulumi.Input[pulumi.InputType['RuleRewriteConfigArgs']] rewrite_config: The list of rewrite configurations.
         :param pulumi.Input[str] rewrite_enabled: Rewrite configuration switch for forwarding rules, only allows configuration and takes effect when RuleAction is empty (i.e., forwarding to server group). Only available for whitelist users, please submit an application to experience. Supported values are as follows:
                on: enable.
                off: disable.
         :param pulumi.Input[str] rule_action: The forwarding rule action, if this parameter is empty(`""`), forward to server group, if value is `Redirect`, will redirect.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RuleRuleActionArgs']]]] rule_actions: The rule actions for standard edition forwarding rules.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RuleRuleConditionArgs']]]] rule_conditions: The rule conditions for standard edition forwarding rules.
         :param pulumi.Input[str] rule_id: The ID of rule.
         :param pulumi.Input[str] server_group_id: Server group ID, this parameter is required if `rule_action` is empty.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RuleServerGroupTupleArgs']]]] server_group_tuples: Weight forwarded to the corresponding backend server group.
+        :param pulumi.Input[str] sticky_session_enabled: Whether to enable group session stickiness. Valid values are 'on' and 'off'.
+        :param pulumi.Input[int] sticky_session_timeout: The group session stickiness timeout, in seconds.
         :param pulumi.Input[str] traffic_limit_enabled: Forwarding rule QPS rate limiting switch:
                on: enable.
                off: disable (default).
@@ -630,12 +926,18 @@ class Rule(pulumi.CustomResource):
         __props__.__dict__["description"] = description
         __props__.__dict__["domain"] = domain
         __props__.__dict__["listener_id"] = listener_id
+        __props__.__dict__["priority"] = priority
         __props__.__dict__["redirect_config"] = redirect_config
         __props__.__dict__["rewrite_config"] = rewrite_config
         __props__.__dict__["rewrite_enabled"] = rewrite_enabled
         __props__.__dict__["rule_action"] = rule_action
+        __props__.__dict__["rule_actions"] = rule_actions
+        __props__.__dict__["rule_conditions"] = rule_conditions
         __props__.__dict__["rule_id"] = rule_id
         __props__.__dict__["server_group_id"] = server_group_id
+        __props__.__dict__["server_group_tuples"] = server_group_tuples
+        __props__.__dict__["sticky_session_enabled"] = sticky_session_enabled
+        __props__.__dict__["sticky_session_timeout"] = sticky_session_timeout
         __props__.__dict__["traffic_limit_enabled"] = traffic_limit_enabled
         __props__.__dict__["traffic_limit_qps"] = traffic_limit_qps
         __props__.__dict__["url"] = url
@@ -664,6 +966,14 @@ class Rule(pulumi.CustomResource):
         The ID of listener.
         """
         return pulumi.get(self, "listener_id")
+
+    @property
+    @pulumi.getter
+    def priority(self) -> pulumi.Output[int]:
+        """
+        The priority of the Rule.Only the standard version is supported.
+        """
+        return pulumi.get(self, "priority")
 
     @property
     @pulumi.getter(name="redirectConfig")
@@ -700,6 +1010,22 @@ class Rule(pulumi.CustomResource):
         return pulumi.get(self, "rule_action")
 
     @property
+    @pulumi.getter(name="ruleActions")
+    def rule_actions(self) -> pulumi.Output[Sequence['outputs.RuleRuleAction']]:
+        """
+        The rule actions for standard edition forwarding rules.
+        """
+        return pulumi.get(self, "rule_actions")
+
+    @property
+    @pulumi.getter(name="ruleConditions")
+    def rule_conditions(self) -> pulumi.Output[Sequence['outputs.RuleRuleCondition']]:
+        """
+        The rule conditions for standard edition forwarding rules.
+        """
+        return pulumi.get(self, "rule_conditions")
+
+    @property
     @pulumi.getter(name="ruleId")
     def rule_id(self) -> pulumi.Output[str]:
         """
@@ -714,6 +1040,30 @@ class Rule(pulumi.CustomResource):
         Server group ID, this parameter is required if `rule_action` is empty.
         """
         return pulumi.get(self, "server_group_id")
+
+    @property
+    @pulumi.getter(name="serverGroupTuples")
+    def server_group_tuples(self) -> pulumi.Output[Sequence['outputs.RuleServerGroupTuple']]:
+        """
+        Weight forwarded to the corresponding backend server group.
+        """
+        return pulumi.get(self, "server_group_tuples")
+
+    @property
+    @pulumi.getter(name="stickySessionEnabled")
+    def sticky_session_enabled(self) -> pulumi.Output[str]:
+        """
+        Whether to enable group session stickiness. Valid values are 'on' and 'off'.
+        """
+        return pulumi.get(self, "sticky_session_enabled")
+
+    @property
+    @pulumi.getter(name="stickySessionTimeout")
+    def sticky_session_timeout(self) -> pulumi.Output[int]:
+        """
+        The group session stickiness timeout, in seconds.
+        """
+        return pulumi.get(self, "sticky_session_timeout")
 
     @property
     @pulumi.getter(name="trafficLimitEnabled")

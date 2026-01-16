@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'ServerGroupsResult',
@@ -24,7 +25,7 @@ class ServerGroupsResult:
     """
     A collection of values returned by ServerGroups.
     """
-    def __init__(__self__, id=None, ids=None, name_regex=None, output_file=None, project_name=None, server_group_names=None, server_group_type=None, server_groups=None, total_count=None):
+    def __init__(__self__, id=None, ids=None, name_regex=None, output_file=None, project_name=None, server_group_names=None, server_group_type=None, server_groups=None, tags=None, total_count=None, vpc_id=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -49,9 +50,15 @@ class ServerGroupsResult:
         if server_groups and not isinstance(server_groups, list):
             raise TypeError("Expected argument 'server_groups' to be a list")
         pulumi.set(__self__, "server_groups", server_groups)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
+        if vpc_id and not isinstance(vpc_id, str):
+            raise TypeError("Expected argument 'vpc_id' to be a str")
+        pulumi.set(__self__, "vpc_id", vpc_id)
 
     @property
     @pulumi.getter
@@ -106,12 +113,28 @@ class ServerGroupsResult:
         return pulumi.get(self, "server_groups")
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.ServerGroupsTagResult']]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="totalCount")
     def total_count(self) -> int:
         """
         The total count of query.
         """
         return pulumi.get(self, "total_count")
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> Optional[str]:
+        """
+        The vpc id of the Alb server group.
+        """
+        return pulumi.get(self, "vpc_id")
 
 
 class AwaitableServerGroupsResult(ServerGroupsResult):
@@ -128,7 +151,9 @@ class AwaitableServerGroupsResult(ServerGroupsResult):
             server_group_names=self.server_group_names,
             server_group_type=self.server_group_type,
             server_groups=self.server_groups,
-            total_count=self.total_count)
+            tags=self.tags,
+            total_count=self.total_count,
+            vpc_id=self.vpc_id)
 
 
 def server_groups(ids: Optional[Sequence[str]] = None,
@@ -137,6 +162,8 @@ def server_groups(ids: Optional[Sequence[str]] = None,
                   project_name: Optional[str] = None,
                   server_group_names: Optional[Sequence[str]] = None,
                   server_group_type: Optional[str] = None,
+                  tags: Optional[Sequence[pulumi.InputType['ServerGroupsTagArgs']]] = None,
+                  vpc_id: Optional[str] = None,
                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableServerGroupsResult:
     """
     Use this data source to query detailed information of alb server groups
@@ -179,6 +206,8 @@ def server_groups(ids: Optional[Sequence[str]] = None,
     :param str project_name: The project name of Alb server group.
     :param Sequence[str] server_group_names: A list of Alb server group name.
     :param str server_group_type: The type of Alb server group. Valid values: `instance`, `ip`.
+    :param Sequence[pulumi.InputType['ServerGroupsTagArgs']] tags: Tags.
+    :param str vpc_id: The vpc id of Alb server group.
     """
     pulumi.log.warn("""server_groups is deprecated: volcengine.alb.ServerGroups has been deprecated in favor of volcengine.alb.getServerGroups""")
     __args__ = dict()
@@ -188,6 +217,8 @@ def server_groups(ids: Optional[Sequence[str]] = None,
     __args__['projectName'] = project_name
     __args__['serverGroupNames'] = server_group_names
     __args__['serverGroupType'] = server_group_type
+    __args__['tags'] = tags
+    __args__['vpcId'] = vpc_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('volcengine:alb/serverGroups:ServerGroups', __args__, opts=opts, typ=ServerGroupsResult).value
 
@@ -200,7 +231,9 @@ def server_groups(ids: Optional[Sequence[str]] = None,
         server_group_names=pulumi.get(__ret__, 'server_group_names'),
         server_group_type=pulumi.get(__ret__, 'server_group_type'),
         server_groups=pulumi.get(__ret__, 'server_groups'),
-        total_count=pulumi.get(__ret__, 'total_count'))
+        tags=pulumi.get(__ret__, 'tags'),
+        total_count=pulumi.get(__ret__, 'total_count'),
+        vpc_id=pulumi.get(__ret__, 'vpc_id'))
 
 
 @_utilities.lift_output_func(server_groups)
@@ -210,6 +243,8 @@ def server_groups_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = 
                          project_name: Optional[pulumi.Input[Optional[str]]] = None,
                          server_group_names: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                          server_group_type: Optional[pulumi.Input[Optional[str]]] = None,
+                         tags: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['ServerGroupsTagArgs']]]]] = None,
+                         vpc_id: Optional[pulumi.Input[Optional[str]]] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ServerGroupsResult]:
     """
     Use this data source to query detailed information of alb server groups
@@ -252,6 +287,8 @@ def server_groups_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = 
     :param str project_name: The project name of Alb server group.
     :param Sequence[str] server_group_names: A list of Alb server group name.
     :param str server_group_type: The type of Alb server group. Valid values: `instance`, `ip`.
+    :param Sequence[pulumi.InputType['ServerGroupsTagArgs']] tags: Tags.
+    :param str vpc_id: The vpc id of Alb server group.
     """
     pulumi.log.warn("""server_groups is deprecated: volcengine.alb.ServerGroups has been deprecated in favor of volcengine.alb.getServerGroups""")
     ...

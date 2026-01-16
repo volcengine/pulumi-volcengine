@@ -59,6 +59,8 @@ type GetCustomizedCfgsArgs struct {
 	OutputFile *string `pulumi:"outputFile"`
 	// The project name of the CustomizedCfg.
 	ProjectName *string `pulumi:"projectName"`
+	// Tags.
+	Tags []GetCustomizedCfgsTag `pulumi:"tags"`
 }
 
 // A collection of values returned by getCustomizedCfgs.
@@ -76,6 +78,8 @@ type GetCustomizedCfgsResult struct {
 	OutputFile *string `pulumi:"outputFile"`
 	// The project name of CustomizedCfg.
 	ProjectName *string `pulumi:"projectName"`
+	// Tags.
+	Tags []GetCustomizedCfgsTag `pulumi:"tags"`
 	// The total count of CustomizedCfg query.
 	TotalCount int `pulumi:"totalCount"`
 }
@@ -107,6 +111,8 @@ type GetCustomizedCfgsOutputArgs struct {
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
 	// The project name of the CustomizedCfg.
 	ProjectName pulumi.StringPtrInput `pulumi:"projectName"`
+	// Tags.
+	Tags GetCustomizedCfgsTagArrayInput `pulumi:"tags"`
 }
 
 func (GetCustomizedCfgsOutputArgs) ElementType() reflect.Type {
@@ -163,6 +169,11 @@ func (o GetCustomizedCfgsResultOutput) OutputFile() pulumi.StringPtrOutput {
 // The project name of CustomizedCfg.
 func (o GetCustomizedCfgsResultOutput) ProjectName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetCustomizedCfgsResult) *string { return v.ProjectName }).(pulumi.StringPtrOutput)
+}
+
+// Tags.
+func (o GetCustomizedCfgsResultOutput) Tags() GetCustomizedCfgsTagArrayOutput {
+	return o.ApplyT(func(v GetCustomizedCfgsResult) []GetCustomizedCfgsTag { return v.Tags }).(GetCustomizedCfgsTagArrayOutput)
 }
 
 // The total count of CustomizedCfg query.

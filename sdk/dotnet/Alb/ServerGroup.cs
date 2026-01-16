@@ -34,6 +34,8 @@ namespace Pulumi.Volcengine.Alb
     ///         Description = "acc-test",
     ///         ServerGroupType = "instance",
     ///         Scheduler = "wlc",
+    ///         Protocol = "HTTP",
+    ///         IpAddressType = "IPv4",
     ///         ProjectName = "default",
     ///         HealthCheck = new Volcengine.Alb.Inputs.ServerGroupHealthCheckArgs
     ///         {
@@ -41,12 +43,26 @@ namespace Pulumi.Volcengine.Alb
     ///             Interval = 3,
     ///             Timeout = 3,
     ///             Method = "GET",
+    ///             Domain = "www.test.com",
+    ///             Uri = "/health",
+    ///             HttpCode = "http_2xx,http_3xx",
+    ///             Protocol = "HTTP",
+    ///             Port = 80,
+    ///             HttpVersion = "HTTP1.1",
     ///         },
     ///         StickySessionConfig = new Volcengine.Alb.Inputs.ServerGroupStickySessionConfigArgs
     ///         {
     ///             StickySessionEnabled = "on",
     ///             StickySessionType = "insert",
     ///             CookieTimeout = 1100,
+    ///         },
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Alb.Inputs.ServerGroupTagArgs
+    ///             {
+    ///                 Key = "key1",
+    ///                 Value = "value2",
+    ///             },
     ///         },
     ///     });
     /// 
@@ -71,6 +87,12 @@ namespace Pulumi.Volcengine.Alb
         public Output<string> CreateTime { get; private set; } = null!;
 
         /// <summary>
+        /// Whether to enable cross-zone load balancing for the server group. Valid values: `on`, `off`.
+        /// </summary>
+        [Output("crossZoneEnabled")]
+        public Output<string> CrossZoneEnabled { get; private set; } = null!;
+
+        /// <summary>
         /// The description of the Alb server group.
         /// </summary>
         [Output("description")]
@@ -83,6 +105,12 @@ namespace Pulumi.Volcengine.Alb
         public Output<Outputs.ServerGroupHealthCheck> HealthCheck { get; private set; } = null!;
 
         /// <summary>
+        /// The ip address type of the server group.
+        /// </summary>
+        [Output("ipAddressType")]
+        public Output<string> IpAddressType { get; private set; } = null!;
+
+        /// <summary>
         /// The listener information of the Alb server group.
         /// </summary>
         [Output("listeners")]
@@ -93,6 +121,12 @@ namespace Pulumi.Volcengine.Alb
         /// </summary>
         [Output("projectName")]
         public Output<string> ProjectName { get; private set; } = null!;
+
+        /// <summary>
+        /// The backend protocol of the Alb server group. Valid values: `HTTP`, `HTTPS`, `gRPC`. Default is `HTTP`.
+        /// </summary>
+        [Output("protocol")]
+        public Output<string?> Protocol { get; private set; } = null!;
 
         /// <summary>
         /// The scheduling algorithm of the Alb server group. Valid values: `wrr`, `wlc`, `sh`.
@@ -129,6 +163,12 @@ namespace Pulumi.Volcengine.Alb
         /// </summary>
         [Output("stickySessionConfig")]
         public Output<Outputs.ServerGroupStickySessionConfig> StickySessionConfig { get; private set; } = null!;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<Outputs.ServerGroupTag>> Tags { get; private set; } = null!;
 
         /// <summary>
         /// The update time of the Alb server group.
@@ -190,6 +230,12 @@ namespace Pulumi.Volcengine.Alb
     public sealed class ServerGroupArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Whether to enable cross-zone load balancing for the server group. Valid values: `on`, `off`.
+        /// </summary>
+        [Input("crossZoneEnabled")]
+        public Input<string>? CrossZoneEnabled { get; set; }
+
+        /// <summary>
         /// The description of the Alb server group.
         /// </summary>
         [Input("description")]
@@ -202,10 +248,22 @@ namespace Pulumi.Volcengine.Alb
         public Input<Inputs.ServerGroupHealthCheckArgs>? HealthCheck { get; set; }
 
         /// <summary>
+        /// The ip address type of the server group.
+        /// </summary>
+        [Input("ipAddressType")]
+        public Input<string>? IpAddressType { get; set; }
+
+        /// <summary>
         /// The project name of the Alb server group.
         /// </summary>
         [Input("projectName")]
         public Input<string>? ProjectName { get; set; }
+
+        /// <summary>
+        /// The backend protocol of the Alb server group. Valid values: `HTTP`, `HTTPS`, `gRPC`. Default is `HTTP`.
+        /// </summary>
+        [Input("protocol")]
+        public Input<string>? Protocol { get; set; }
 
         /// <summary>
         /// The scheduling algorithm of the Alb server group. Valid values: `wrr`, `wlc`, `sh`.
@@ -231,6 +289,18 @@ namespace Pulumi.Volcengine.Alb
         [Input("stickySessionConfig")]
         public Input<Inputs.ServerGroupStickySessionConfigArgs>? StickySessionConfig { get; set; }
 
+        [Input("tags")]
+        private InputList<Inputs.ServerGroupTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.ServerGroupTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.ServerGroupTagArgs>());
+            set => _tags = value;
+        }
+
         /// <summary>
         /// The vpc id of the Alb server group.
         /// </summary>
@@ -252,6 +322,12 @@ namespace Pulumi.Volcengine.Alb
         public Input<string>? CreateTime { get; set; }
 
         /// <summary>
+        /// Whether to enable cross-zone load balancing for the server group. Valid values: `on`, `off`.
+        /// </summary>
+        [Input("crossZoneEnabled")]
+        public Input<string>? CrossZoneEnabled { get; set; }
+
+        /// <summary>
         /// The description of the Alb server group.
         /// </summary>
         [Input("description")]
@@ -262,6 +338,12 @@ namespace Pulumi.Volcengine.Alb
         /// </summary>
         [Input("healthCheck")]
         public Input<Inputs.ServerGroupHealthCheckGetArgs>? HealthCheck { get; set; }
+
+        /// <summary>
+        /// The ip address type of the server group.
+        /// </summary>
+        [Input("ipAddressType")]
+        public Input<string>? IpAddressType { get; set; }
 
         [Input("listeners")]
         private InputList<string>? _listeners;
@@ -280,6 +362,12 @@ namespace Pulumi.Volcengine.Alb
         /// </summary>
         [Input("projectName")]
         public Input<string>? ProjectName { get; set; }
+
+        /// <summary>
+        /// The backend protocol of the Alb server group. Valid values: `HTTP`, `HTTPS`, `gRPC`. Default is `HTTP`.
+        /// </summary>
+        [Input("protocol")]
+        public Input<string>? Protocol { get; set; }
 
         /// <summary>
         /// The scheduling algorithm of the Alb server group. Valid values: `wrr`, `wlc`, `sh`.
@@ -316,6 +404,18 @@ namespace Pulumi.Volcengine.Alb
         /// </summary>
         [Input("stickySessionConfig")]
         public Input<Inputs.ServerGroupStickySessionConfigGetArgs>? StickySessionConfig { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.ServerGroupTagGetArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.ServerGroupTagGetArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.ServerGroupTagGetArgs>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// The update time of the Alb server group.

@@ -14,9 +14,17 @@ namespace Pulumi.Volcengine.Alb.Outputs
     public sealed class ListenersListenerDomainExtensionResult
     {
         /// <summary>
+        /// The server certificate ID used by the domain name. It takes effect when the certificate source is cert_center.
+        /// </summary>
+        public readonly string CertCenterCertificateId;
+        /// <summary>
         /// The server certificate ID that domain used.
         /// </summary>
         public readonly string CertificateId;
+        /// <summary>
+        /// The source of the certificate.
+        /// </summary>
+        public readonly string CertificateSource;
         /// <summary>
         /// The domain.
         /// </summary>
@@ -29,21 +37,41 @@ namespace Pulumi.Volcengine.Alb.Outputs
         /// The ID of the Listener.
         /// </summary>
         public readonly string ListenerId;
+        /// <summary>
+        /// The certificate ID associated with the HTTPS listener. Effective when the certificate source is pca_leaf.
+        /// </summary>
+        public readonly string PcaLeafCertificateId;
+        /// <summary>
+        /// The CommonName, extended domain names, and IPs of the certificate are separated by ','.
+        /// </summary>
+        public readonly string San;
 
         [OutputConstructor]
         private ListenersListenerDomainExtensionResult(
+            string certCenterCertificateId,
+
             string certificateId,
+
+            string certificateSource,
 
             string domain,
 
             string domainExtensionId,
 
-            string listenerId)
+            string listenerId,
+
+            string pcaLeafCertificateId,
+
+            string san)
         {
+            CertCenterCertificateId = certCenterCertificateId;
             CertificateId = certificateId;
+            CertificateSource = certificateSource;
             Domain = domain;
             DomainExtensionId = domainExtensionId;
             ListenerId = listenerId;
+            PcaLeafCertificateId = pcaLeafCertificateId;
+            San = san;
         }
     }
 }

@@ -39,7 +39,13 @@ import (
 //				HealthCheckTimeout:      pulumi.Int(11),
 //				HealthCheckUri:          pulumi.String("/"),
 //				HealthyThreshold:        pulumi.Int(2),
-//				UnhealthyThreshold:      pulumi.Int(3),
+//				Tags: alb.HealthCheckTemplateTagArray{
+//					&alb.HealthCheckTemplateTagArgs{
+//						Key:   pulumi.String("key1"),
+//						Value: pulumi.String("value2"),
+//					},
+//				},
+//				UnhealthyThreshold: pulumi.Int(3),
 //			})
 //			if err != nil {
 //				return err
@@ -72,7 +78,9 @@ type HealthCheckTemplate struct {
 	HealthCheckInterval pulumi.IntOutput `pulumi:"healthCheckInterval"`
 	// The health check method,default is `GET`, support `GET` and `HEAD`.
 	HealthCheckMethod pulumi.StringOutput `pulumi:"healthCheckMethod"`
-	// THe protocol of health check,only support HTTP.
+	// The port for health check. 0 means use backend server port for health check, 1-65535 means use the specified port.
+	HealthCheckPort pulumi.IntOutput `pulumi:"healthCheckPort"`
+	// The protocol of health check, support HTTP and TCP.
 	HealthCheckProtocol pulumi.StringOutput `pulumi:"healthCheckProtocol"`
 	// The health check template name.
 	HealthCheckTemplateName pulumi.StringOutput `pulumi:"healthCheckTemplateName"`
@@ -82,6 +90,10 @@ type HealthCheckTemplate struct {
 	HealthCheckUri pulumi.StringOutput `pulumi:"healthCheckUri"`
 	// The healthy threshold of the health check, the default is 3, the value is 2-10.
 	HealthyThreshold pulumi.IntOutput `pulumi:"healthyThreshold"`
+	// The project name to which the health check template belongs.
+	ProjectName pulumi.StringOutput `pulumi:"projectName"`
+	// Tags.
+	Tags HealthCheckTemplateTagArrayOutput `pulumi:"tags"`
 	// The unhealthy threshold of the health check, the default is 3, the value is 2-10.
 	UnhealthyThreshold pulumi.IntOutput `pulumi:"unhealthyThreshold"`
 }
@@ -131,7 +143,9 @@ type healthCheckTemplateState struct {
 	HealthCheckInterval *int `pulumi:"healthCheckInterval"`
 	// The health check method,default is `GET`, support `GET` and `HEAD`.
 	HealthCheckMethod *string `pulumi:"healthCheckMethod"`
-	// THe protocol of health check,only support HTTP.
+	// The port for health check. 0 means use backend server port for health check, 1-65535 means use the specified port.
+	HealthCheckPort *int `pulumi:"healthCheckPort"`
+	// The protocol of health check, support HTTP and TCP.
 	HealthCheckProtocol *string `pulumi:"healthCheckProtocol"`
 	// The health check template name.
 	HealthCheckTemplateName *string `pulumi:"healthCheckTemplateName"`
@@ -141,6 +155,10 @@ type healthCheckTemplateState struct {
 	HealthCheckUri *string `pulumi:"healthCheckUri"`
 	// The healthy threshold of the health check, the default is 3, the value is 2-10.
 	HealthyThreshold *int `pulumi:"healthyThreshold"`
+	// The project name to which the health check template belongs.
+	ProjectName *string `pulumi:"projectName"`
+	// Tags.
+	Tags []HealthCheckTemplateTag `pulumi:"tags"`
 	// The unhealthy threshold of the health check, the default is 3, the value is 2-10.
 	UnhealthyThreshold *int `pulumi:"unhealthyThreshold"`
 }
@@ -158,7 +176,9 @@ type HealthCheckTemplateState struct {
 	HealthCheckInterval pulumi.IntPtrInput
 	// The health check method,default is `GET`, support `GET` and `HEAD`.
 	HealthCheckMethod pulumi.StringPtrInput
-	// THe protocol of health check,only support HTTP.
+	// The port for health check. 0 means use backend server port for health check, 1-65535 means use the specified port.
+	HealthCheckPort pulumi.IntPtrInput
+	// The protocol of health check, support HTTP and TCP.
 	HealthCheckProtocol pulumi.StringPtrInput
 	// The health check template name.
 	HealthCheckTemplateName pulumi.StringPtrInput
@@ -168,6 +188,10 @@ type HealthCheckTemplateState struct {
 	HealthCheckUri pulumi.StringPtrInput
 	// The healthy threshold of the health check, the default is 3, the value is 2-10.
 	HealthyThreshold pulumi.IntPtrInput
+	// The project name to which the health check template belongs.
+	ProjectName pulumi.StringPtrInput
+	// Tags.
+	Tags HealthCheckTemplateTagArrayInput
 	// The unhealthy threshold of the health check, the default is 3, the value is 2-10.
 	UnhealthyThreshold pulumi.IntPtrInput
 }
@@ -189,7 +213,9 @@ type healthCheckTemplateArgs struct {
 	HealthCheckInterval *int `pulumi:"healthCheckInterval"`
 	// The health check method,default is `GET`, support `GET` and `HEAD`.
 	HealthCheckMethod *string `pulumi:"healthCheckMethod"`
-	// THe protocol of health check,only support HTTP.
+	// The port for health check. 0 means use backend server port for health check, 1-65535 means use the specified port.
+	HealthCheckPort *int `pulumi:"healthCheckPort"`
+	// The protocol of health check, support HTTP and TCP.
 	HealthCheckProtocol *string `pulumi:"healthCheckProtocol"`
 	// The health check template name.
 	HealthCheckTemplateName string `pulumi:"healthCheckTemplateName"`
@@ -199,6 +225,10 @@ type healthCheckTemplateArgs struct {
 	HealthCheckUri *string `pulumi:"healthCheckUri"`
 	// The healthy threshold of the health check, the default is 3, the value is 2-10.
 	HealthyThreshold *int `pulumi:"healthyThreshold"`
+	// The project name to which the health check template belongs.
+	ProjectName *string `pulumi:"projectName"`
+	// Tags.
+	Tags []HealthCheckTemplateTag `pulumi:"tags"`
 	// The unhealthy threshold of the health check, the default is 3, the value is 2-10.
 	UnhealthyThreshold *int `pulumi:"unhealthyThreshold"`
 }
@@ -217,7 +247,9 @@ type HealthCheckTemplateArgs struct {
 	HealthCheckInterval pulumi.IntPtrInput
 	// The health check method,default is `GET`, support `GET` and `HEAD`.
 	HealthCheckMethod pulumi.StringPtrInput
-	// THe protocol of health check,only support HTTP.
+	// The port for health check. 0 means use backend server port for health check, 1-65535 means use the specified port.
+	HealthCheckPort pulumi.IntPtrInput
+	// The protocol of health check, support HTTP and TCP.
 	HealthCheckProtocol pulumi.StringPtrInput
 	// The health check template name.
 	HealthCheckTemplateName pulumi.StringInput
@@ -227,6 +259,10 @@ type HealthCheckTemplateArgs struct {
 	HealthCheckUri pulumi.StringPtrInput
 	// The healthy threshold of the health check, the default is 3, the value is 2-10.
 	HealthyThreshold pulumi.IntPtrInput
+	// The project name to which the health check template belongs.
+	ProjectName pulumi.StringPtrInput
+	// Tags.
+	Tags HealthCheckTemplateTagArrayInput
 	// The unhealthy threshold of the health check, the default is 3, the value is 2-10.
 	UnhealthyThreshold pulumi.IntPtrInput
 }
@@ -348,7 +384,12 @@ func (o HealthCheckTemplateOutput) HealthCheckMethod() pulumi.StringOutput {
 	return o.ApplyT(func(v *HealthCheckTemplate) pulumi.StringOutput { return v.HealthCheckMethod }).(pulumi.StringOutput)
 }
 
-// THe protocol of health check,only support HTTP.
+// The port for health check. 0 means use backend server port for health check, 1-65535 means use the specified port.
+func (o HealthCheckTemplateOutput) HealthCheckPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *HealthCheckTemplate) pulumi.IntOutput { return v.HealthCheckPort }).(pulumi.IntOutput)
+}
+
+// The protocol of health check, support HTTP and TCP.
 func (o HealthCheckTemplateOutput) HealthCheckProtocol() pulumi.StringOutput {
 	return o.ApplyT(func(v *HealthCheckTemplate) pulumi.StringOutput { return v.HealthCheckProtocol }).(pulumi.StringOutput)
 }
@@ -371,6 +412,16 @@ func (o HealthCheckTemplateOutput) HealthCheckUri() pulumi.StringOutput {
 // The healthy threshold of the health check, the default is 3, the value is 2-10.
 func (o HealthCheckTemplateOutput) HealthyThreshold() pulumi.IntOutput {
 	return o.ApplyT(func(v *HealthCheckTemplate) pulumi.IntOutput { return v.HealthyThreshold }).(pulumi.IntOutput)
+}
+
+// The project name to which the health check template belongs.
+func (o HealthCheckTemplateOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v *HealthCheckTemplate) pulumi.StringOutput { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o HealthCheckTemplateOutput) Tags() HealthCheckTemplateTagArrayOutput {
+	return o.ApplyT(func(v *HealthCheckTemplate) HealthCheckTemplateTagArrayOutput { return v.Tags }).(HealthCheckTemplateTagArrayOutput)
 }
 
 // The unhealthy threshold of the health check, the default is 3, the value is 2-10.

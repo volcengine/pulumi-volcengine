@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -16,6 +18,10 @@ import * as utilities from "../utilities";
  *     description: "test123",
  *     privateKey: "private key",
  *     publicKey: "public key",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
  * });
  * ```
  *
@@ -96,9 +102,17 @@ export class Certificate extends pulumi.CustomResource {
      */
     public readonly publicKey!: pulumi.Output<string>;
     /**
+     * The san extension of the Certificate.
+     */
+    public /*out*/ readonly san!: pulumi.Output<string>;
+    /**
      * The status of the Certificate.
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
+    /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.alb.CertificateTag[] | undefined>;
 
     /**
      * Create a Certificate resource with the given unique name, arguments, and options.
@@ -123,7 +137,9 @@ export class Certificate extends pulumi.CustomResource {
             resourceInputs["privateKey"] = state ? state.privateKey : undefined;
             resourceInputs["projectName"] = state ? state.projectName : undefined;
             resourceInputs["publicKey"] = state ? state.publicKey : undefined;
+            resourceInputs["san"] = state ? state.san : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
         } else {
             const args = argsOrState as CertificateArgs | undefined;
             if ((!args || args.privateKey === undefined) && !opts.urn) {
@@ -137,11 +153,13 @@ export class Certificate extends pulumi.CustomResource {
             resourceInputs["privateKey"] = args ? args.privateKey : undefined;
             resourceInputs["projectName"] = args ? args.projectName : undefined;
             resourceInputs["publicKey"] = args ? args.publicKey : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["certificateType"] = undefined /*out*/;
             resourceInputs["createTime"] = undefined /*out*/;
             resourceInputs["domainName"] = undefined /*out*/;
             resourceInputs["expiredAt"] = undefined /*out*/;
             resourceInputs["listeners"] = undefined /*out*/;
+            resourceInputs["san"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -194,9 +212,17 @@ export interface CertificateState {
      */
     publicKey?: pulumi.Input<string>;
     /**
+     * The san extension of the Certificate.
+     */
+    san?: pulumi.Input<string>;
+    /**
      * The status of the Certificate.
      */
     status?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.alb.CertificateTag>[]>;
 }
 
 /**
@@ -223,4 +249,8 @@ export interface CertificateArgs {
      * The public key of the Certificate.
      */
     publicKey: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.alb.CertificateTag>[]>;
 }

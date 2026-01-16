@@ -14,6 +14,10 @@ namespace Pulumi.Volcengine.Alb.Outputs
     public sealed class GetHealthCheckTemplatesHealthCheckTemplateResult
     {
         /// <summary>
+        /// The creation time of the health check template.
+        /// </summary>
+        public readonly string CreateTime;
+        /// <summary>
         /// The description of health check template.
         /// </summary>
         public readonly string Description;
@@ -34,11 +38,15 @@ namespace Pulumi.Volcengine.Alb.Outputs
         /// </summary>
         public readonly int HealthCheckInterval;
         /// <summary>
-        /// The health check method,default is `GET`,support `GET` and ``HEAD.
+        /// The health check method, support `GET` and `HEAD`.
         /// </summary>
         public readonly string HealthCheckMethod;
         /// <summary>
-        /// The protocol of health check,only support HTTP.
+        /// The port for health check. 0 means use backend server port for health check, 1-65535 means use the specified port.
+        /// </summary>
+        public readonly int HealthCheckPort;
+        /// <summary>
+        /// The protocol of health check, support HTTP and TCP.
         /// </summary>
         public readonly string HealthCheckProtocol;
         /// <summary>
@@ -66,12 +74,26 @@ namespace Pulumi.Volcengine.Alb.Outputs
         /// </summary>
         public readonly string Id;
         /// <summary>
+        /// The project name to query.
+        /// </summary>
+        public readonly string ProjectName;
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetHealthCheckTemplatesHealthCheckTemplateTagResult> Tags;
+        /// <summary>
         /// The unhealthy threshold of the health check, the default is 3, the value is 2-10.
         /// </summary>
         public readonly int UnhealthyThreshold;
+        /// <summary>
+        /// The last update time of the health check template.
+        /// </summary>
+        public readonly string UpdateTime;
 
         [OutputConstructor]
         private GetHealthCheckTemplatesHealthCheckTemplateResult(
+            string createTime,
+
             string description,
 
             string healthCheckDomain,
@@ -83,6 +105,8 @@ namespace Pulumi.Volcengine.Alb.Outputs
             int healthCheckInterval,
 
             string healthCheckMethod,
+
+            int healthCheckPort,
 
             string healthCheckProtocol,
 
@@ -98,14 +122,22 @@ namespace Pulumi.Volcengine.Alb.Outputs
 
             string id,
 
-            int unhealthyThreshold)
+            string projectName,
+
+            ImmutableArray<Outputs.GetHealthCheckTemplatesHealthCheckTemplateTagResult> tags,
+
+            int unhealthyThreshold,
+
+            string updateTime)
         {
+            CreateTime = createTime;
             Description = description;
             HealthCheckDomain = healthCheckDomain;
             HealthCheckHttpCode = healthCheckHttpCode;
             HealthCheckHttpVersion = healthCheckHttpVersion;
             HealthCheckInterval = healthCheckInterval;
             HealthCheckMethod = healthCheckMethod;
+            HealthCheckPort = healthCheckPort;
             HealthCheckProtocol = healthCheckProtocol;
             HealthCheckTemplateId = healthCheckTemplateId;
             HealthCheckTemplateName = healthCheckTemplateName;
@@ -113,7 +145,10 @@ namespace Pulumi.Volcengine.Alb.Outputs
             HealthCheckUri = healthCheckUri;
             HealthyThreshold = healthyThreshold;
             Id = id;
+            ProjectName = projectName;
+            Tags = tags;
             UnhealthyThreshold = unhealthyThreshold;
+            UpdateTime = updateTime;
         }
     }
 }

@@ -8,6 +8,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['HealthCheckTemplateArgs', 'HealthCheckTemplate']
 
@@ -21,10 +23,13 @@ class HealthCheckTemplateArgs:
                  health_check_http_version: Optional[pulumi.Input[str]] = None,
                  health_check_interval: Optional[pulumi.Input[int]] = None,
                  health_check_method: Optional[pulumi.Input[str]] = None,
+                 health_check_port: Optional[pulumi.Input[int]] = None,
                  health_check_protocol: Optional[pulumi.Input[str]] = None,
                  health_check_timeout: Optional[pulumi.Input[int]] = None,
                  health_check_uri: Optional[pulumi.Input[str]] = None,
                  healthy_threshold: Optional[pulumi.Input[int]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['HealthCheckTemplateTagArgs']]]] = None,
                  unhealthy_threshold: Optional[pulumi.Input[int]] = None):
         """
         The set of arguments for constructing a HealthCheckTemplate resource.
@@ -35,10 +40,13 @@ class HealthCheckTemplateArgs:
         :param pulumi.Input[str] health_check_http_version: The HTTP version of health check.
         :param pulumi.Input[int] health_check_interval: The interval for performing health checks, the default value is 2, and the value is 1-300.
         :param pulumi.Input[str] health_check_method: The health check method,default is `GET`, support `GET` and `HEAD`.
-        :param pulumi.Input[str] health_check_protocol: THe protocol of health check,only support HTTP.
+        :param pulumi.Input[int] health_check_port: The port for health check. 0 means use backend server port for health check, 1-65535 means use the specified port.
+        :param pulumi.Input[str] health_check_protocol: The protocol of health check, support HTTP and TCP.
         :param pulumi.Input[int] health_check_timeout: The timeout of health check response,the default value is 2, and the value is 1-60.
         :param pulumi.Input[str] health_check_uri: The uri to health check,default is `/`.
         :param pulumi.Input[int] healthy_threshold: The healthy threshold of the health check, the default is 3, the value is 2-10.
+        :param pulumi.Input[str] project_name: The project name to which the health check template belongs.
+        :param pulumi.Input[Sequence[pulumi.Input['HealthCheckTemplateTagArgs']]] tags: Tags.
         :param pulumi.Input[int] unhealthy_threshold: The unhealthy threshold of the health check, the default is 3, the value is 2-10.
         """
         pulumi.set(__self__, "health_check_template_name", health_check_template_name)
@@ -54,6 +62,8 @@ class HealthCheckTemplateArgs:
             pulumi.set(__self__, "health_check_interval", health_check_interval)
         if health_check_method is not None:
             pulumi.set(__self__, "health_check_method", health_check_method)
+        if health_check_port is not None:
+            pulumi.set(__self__, "health_check_port", health_check_port)
         if health_check_protocol is not None:
             pulumi.set(__self__, "health_check_protocol", health_check_protocol)
         if health_check_timeout is not None:
@@ -62,6 +72,10 @@ class HealthCheckTemplateArgs:
             pulumi.set(__self__, "health_check_uri", health_check_uri)
         if healthy_threshold is not None:
             pulumi.set(__self__, "healthy_threshold", healthy_threshold)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if unhealthy_threshold is not None:
             pulumi.set(__self__, "unhealthy_threshold", unhealthy_threshold)
 
@@ -150,10 +164,22 @@ class HealthCheckTemplateArgs:
         pulumi.set(self, "health_check_method", value)
 
     @property
+    @pulumi.getter(name="healthCheckPort")
+    def health_check_port(self) -> Optional[pulumi.Input[int]]:
+        """
+        The port for health check. 0 means use backend server port for health check, 1-65535 means use the specified port.
+        """
+        return pulumi.get(self, "health_check_port")
+
+    @health_check_port.setter
+    def health_check_port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "health_check_port", value)
+
+    @property
     @pulumi.getter(name="healthCheckProtocol")
     def health_check_protocol(self) -> Optional[pulumi.Input[str]]:
         """
-        THe protocol of health check,only support HTTP.
+        The protocol of health check, support HTTP and TCP.
         """
         return pulumi.get(self, "health_check_protocol")
 
@@ -198,6 +224,30 @@ class HealthCheckTemplateArgs:
         pulumi.set(self, "healthy_threshold", value)
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The project name to which the health check template belongs.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['HealthCheckTemplateTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['HealthCheckTemplateTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
     @pulumi.getter(name="unhealthyThreshold")
     def unhealthy_threshold(self) -> Optional[pulumi.Input[int]]:
         """
@@ -219,11 +269,14 @@ class _HealthCheckTemplateState:
                  health_check_http_version: Optional[pulumi.Input[str]] = None,
                  health_check_interval: Optional[pulumi.Input[int]] = None,
                  health_check_method: Optional[pulumi.Input[str]] = None,
+                 health_check_port: Optional[pulumi.Input[int]] = None,
                  health_check_protocol: Optional[pulumi.Input[str]] = None,
                  health_check_template_name: Optional[pulumi.Input[str]] = None,
                  health_check_timeout: Optional[pulumi.Input[int]] = None,
                  health_check_uri: Optional[pulumi.Input[str]] = None,
                  healthy_threshold: Optional[pulumi.Input[int]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['HealthCheckTemplateTagArgs']]]] = None,
                  unhealthy_threshold: Optional[pulumi.Input[int]] = None):
         """
         Input properties used for looking up and filtering HealthCheckTemplate resources.
@@ -233,11 +286,14 @@ class _HealthCheckTemplateState:
         :param pulumi.Input[str] health_check_http_version: The HTTP version of health check.
         :param pulumi.Input[int] health_check_interval: The interval for performing health checks, the default value is 2, and the value is 1-300.
         :param pulumi.Input[str] health_check_method: The health check method,default is `GET`, support `GET` and `HEAD`.
-        :param pulumi.Input[str] health_check_protocol: THe protocol of health check,only support HTTP.
+        :param pulumi.Input[int] health_check_port: The port for health check. 0 means use backend server port for health check, 1-65535 means use the specified port.
+        :param pulumi.Input[str] health_check_protocol: The protocol of health check, support HTTP and TCP.
         :param pulumi.Input[str] health_check_template_name: The health check template name.
         :param pulumi.Input[int] health_check_timeout: The timeout of health check response,the default value is 2, and the value is 1-60.
         :param pulumi.Input[str] health_check_uri: The uri to health check,default is `/`.
         :param pulumi.Input[int] healthy_threshold: The healthy threshold of the health check, the default is 3, the value is 2-10.
+        :param pulumi.Input[str] project_name: The project name to which the health check template belongs.
+        :param pulumi.Input[Sequence[pulumi.Input['HealthCheckTemplateTagArgs']]] tags: Tags.
         :param pulumi.Input[int] unhealthy_threshold: The unhealthy threshold of the health check, the default is 3, the value is 2-10.
         """
         if description is not None:
@@ -252,6 +308,8 @@ class _HealthCheckTemplateState:
             pulumi.set(__self__, "health_check_interval", health_check_interval)
         if health_check_method is not None:
             pulumi.set(__self__, "health_check_method", health_check_method)
+        if health_check_port is not None:
+            pulumi.set(__self__, "health_check_port", health_check_port)
         if health_check_protocol is not None:
             pulumi.set(__self__, "health_check_protocol", health_check_protocol)
         if health_check_template_name is not None:
@@ -262,6 +320,10 @@ class _HealthCheckTemplateState:
             pulumi.set(__self__, "health_check_uri", health_check_uri)
         if healthy_threshold is not None:
             pulumi.set(__self__, "healthy_threshold", healthy_threshold)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if unhealthy_threshold is not None:
             pulumi.set(__self__, "unhealthy_threshold", unhealthy_threshold)
 
@@ -338,10 +400,22 @@ class _HealthCheckTemplateState:
         pulumi.set(self, "health_check_method", value)
 
     @property
+    @pulumi.getter(name="healthCheckPort")
+    def health_check_port(self) -> Optional[pulumi.Input[int]]:
+        """
+        The port for health check. 0 means use backend server port for health check, 1-65535 means use the specified port.
+        """
+        return pulumi.get(self, "health_check_port")
+
+    @health_check_port.setter
+    def health_check_port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "health_check_port", value)
+
+    @property
     @pulumi.getter(name="healthCheckProtocol")
     def health_check_protocol(self) -> Optional[pulumi.Input[str]]:
         """
-        THe protocol of health check,only support HTTP.
+        The protocol of health check, support HTTP and TCP.
         """
         return pulumi.get(self, "health_check_protocol")
 
@@ -398,6 +472,30 @@ class _HealthCheckTemplateState:
         pulumi.set(self, "healthy_threshold", value)
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The project name to which the health check template belongs.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['HealthCheckTemplateTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['HealthCheckTemplateTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
     @pulumi.getter(name="unhealthyThreshold")
     def unhealthy_threshold(self) -> Optional[pulumi.Input[int]]:
         """
@@ -421,11 +519,14 @@ class HealthCheckTemplate(pulumi.CustomResource):
                  health_check_http_version: Optional[pulumi.Input[str]] = None,
                  health_check_interval: Optional[pulumi.Input[int]] = None,
                  health_check_method: Optional[pulumi.Input[str]] = None,
+                 health_check_port: Optional[pulumi.Input[int]] = None,
                  health_check_protocol: Optional[pulumi.Input[str]] = None,
                  health_check_template_name: Optional[pulumi.Input[str]] = None,
                  health_check_timeout: Optional[pulumi.Input[int]] = None,
                  health_check_uri: Optional[pulumi.Input[str]] = None,
                  healthy_threshold: Optional[pulumi.Input[int]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['HealthCheckTemplateTagArgs']]]]] = None,
                  unhealthy_threshold: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
@@ -448,6 +549,10 @@ class HealthCheckTemplate(pulumi.CustomResource):
             health_check_timeout=11,
             health_check_uri="/",
             healthy_threshold=2,
+            tags=[volcengine.alb.HealthCheckTemplateTagArgs(
+                key="key1",
+                value="value2",
+            )],
             unhealthy_threshold=3)
         ```
 
@@ -467,11 +572,14 @@ class HealthCheckTemplate(pulumi.CustomResource):
         :param pulumi.Input[str] health_check_http_version: The HTTP version of health check.
         :param pulumi.Input[int] health_check_interval: The interval for performing health checks, the default value is 2, and the value is 1-300.
         :param pulumi.Input[str] health_check_method: The health check method,default is `GET`, support `GET` and `HEAD`.
-        :param pulumi.Input[str] health_check_protocol: THe protocol of health check,only support HTTP.
+        :param pulumi.Input[int] health_check_port: The port for health check. 0 means use backend server port for health check, 1-65535 means use the specified port.
+        :param pulumi.Input[str] health_check_protocol: The protocol of health check, support HTTP and TCP.
         :param pulumi.Input[str] health_check_template_name: The health check template name.
         :param pulumi.Input[int] health_check_timeout: The timeout of health check response,the default value is 2, and the value is 1-60.
         :param pulumi.Input[str] health_check_uri: The uri to health check,default is `/`.
         :param pulumi.Input[int] healthy_threshold: The healthy threshold of the health check, the default is 3, the value is 2-10.
+        :param pulumi.Input[str] project_name: The project name to which the health check template belongs.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['HealthCheckTemplateTagArgs']]]] tags: Tags.
         :param pulumi.Input[int] unhealthy_threshold: The unhealthy threshold of the health check, the default is 3, the value is 2-10.
         """
         ...
@@ -500,6 +608,10 @@ class HealthCheckTemplate(pulumi.CustomResource):
             health_check_timeout=11,
             health_check_uri="/",
             healthy_threshold=2,
+            tags=[volcengine.alb.HealthCheckTemplateTagArgs(
+                key="key1",
+                value="value2",
+            )],
             unhealthy_threshold=3)
         ```
 
@@ -532,11 +644,14 @@ class HealthCheckTemplate(pulumi.CustomResource):
                  health_check_http_version: Optional[pulumi.Input[str]] = None,
                  health_check_interval: Optional[pulumi.Input[int]] = None,
                  health_check_method: Optional[pulumi.Input[str]] = None,
+                 health_check_port: Optional[pulumi.Input[int]] = None,
                  health_check_protocol: Optional[pulumi.Input[str]] = None,
                  health_check_template_name: Optional[pulumi.Input[str]] = None,
                  health_check_timeout: Optional[pulumi.Input[int]] = None,
                  health_check_uri: Optional[pulumi.Input[str]] = None,
                  healthy_threshold: Optional[pulumi.Input[int]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['HealthCheckTemplateTagArgs']]]]] = None,
                  unhealthy_threshold: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -553,6 +668,7 @@ class HealthCheckTemplate(pulumi.CustomResource):
             __props__.__dict__["health_check_http_version"] = health_check_http_version
             __props__.__dict__["health_check_interval"] = health_check_interval
             __props__.__dict__["health_check_method"] = health_check_method
+            __props__.__dict__["health_check_port"] = health_check_port
             __props__.__dict__["health_check_protocol"] = health_check_protocol
             if health_check_template_name is None and not opts.urn:
                 raise TypeError("Missing required property 'health_check_template_name'")
@@ -560,6 +676,8 @@ class HealthCheckTemplate(pulumi.CustomResource):
             __props__.__dict__["health_check_timeout"] = health_check_timeout
             __props__.__dict__["health_check_uri"] = health_check_uri
             __props__.__dict__["healthy_threshold"] = healthy_threshold
+            __props__.__dict__["project_name"] = project_name
+            __props__.__dict__["tags"] = tags
             __props__.__dict__["unhealthy_threshold"] = unhealthy_threshold
         super(HealthCheckTemplate, __self__).__init__(
             'volcengine:alb/healthCheckTemplate:HealthCheckTemplate',
@@ -577,11 +695,14 @@ class HealthCheckTemplate(pulumi.CustomResource):
             health_check_http_version: Optional[pulumi.Input[str]] = None,
             health_check_interval: Optional[pulumi.Input[int]] = None,
             health_check_method: Optional[pulumi.Input[str]] = None,
+            health_check_port: Optional[pulumi.Input[int]] = None,
             health_check_protocol: Optional[pulumi.Input[str]] = None,
             health_check_template_name: Optional[pulumi.Input[str]] = None,
             health_check_timeout: Optional[pulumi.Input[int]] = None,
             health_check_uri: Optional[pulumi.Input[str]] = None,
             healthy_threshold: Optional[pulumi.Input[int]] = None,
+            project_name: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['HealthCheckTemplateTagArgs']]]]] = None,
             unhealthy_threshold: Optional[pulumi.Input[int]] = None) -> 'HealthCheckTemplate':
         """
         Get an existing HealthCheckTemplate resource's state with the given name, id, and optional extra
@@ -596,11 +717,14 @@ class HealthCheckTemplate(pulumi.CustomResource):
         :param pulumi.Input[str] health_check_http_version: The HTTP version of health check.
         :param pulumi.Input[int] health_check_interval: The interval for performing health checks, the default value is 2, and the value is 1-300.
         :param pulumi.Input[str] health_check_method: The health check method,default is `GET`, support `GET` and `HEAD`.
-        :param pulumi.Input[str] health_check_protocol: THe protocol of health check,only support HTTP.
+        :param pulumi.Input[int] health_check_port: The port for health check. 0 means use backend server port for health check, 1-65535 means use the specified port.
+        :param pulumi.Input[str] health_check_protocol: The protocol of health check, support HTTP and TCP.
         :param pulumi.Input[str] health_check_template_name: The health check template name.
         :param pulumi.Input[int] health_check_timeout: The timeout of health check response,the default value is 2, and the value is 1-60.
         :param pulumi.Input[str] health_check_uri: The uri to health check,default is `/`.
         :param pulumi.Input[int] healthy_threshold: The healthy threshold of the health check, the default is 3, the value is 2-10.
+        :param pulumi.Input[str] project_name: The project name to which the health check template belongs.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['HealthCheckTemplateTagArgs']]]] tags: Tags.
         :param pulumi.Input[int] unhealthy_threshold: The unhealthy threshold of the health check, the default is 3, the value is 2-10.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -613,11 +737,14 @@ class HealthCheckTemplate(pulumi.CustomResource):
         __props__.__dict__["health_check_http_version"] = health_check_http_version
         __props__.__dict__["health_check_interval"] = health_check_interval
         __props__.__dict__["health_check_method"] = health_check_method
+        __props__.__dict__["health_check_port"] = health_check_port
         __props__.__dict__["health_check_protocol"] = health_check_protocol
         __props__.__dict__["health_check_template_name"] = health_check_template_name
         __props__.__dict__["health_check_timeout"] = health_check_timeout
         __props__.__dict__["health_check_uri"] = health_check_uri
         __props__.__dict__["healthy_threshold"] = healthy_threshold
+        __props__.__dict__["project_name"] = project_name
+        __props__.__dict__["tags"] = tags
         __props__.__dict__["unhealthy_threshold"] = unhealthy_threshold
         return HealthCheckTemplate(resource_name, opts=opts, __props__=__props__)
 
@@ -670,10 +797,18 @@ class HealthCheckTemplate(pulumi.CustomResource):
         return pulumi.get(self, "health_check_method")
 
     @property
+    @pulumi.getter(name="healthCheckPort")
+    def health_check_port(self) -> pulumi.Output[int]:
+        """
+        The port for health check. 0 means use backend server port for health check, 1-65535 means use the specified port.
+        """
+        return pulumi.get(self, "health_check_port")
+
+    @property
     @pulumi.getter(name="healthCheckProtocol")
     def health_check_protocol(self) -> pulumi.Output[str]:
         """
-        THe protocol of health check,only support HTTP.
+        The protocol of health check, support HTTP and TCP.
         """
         return pulumi.get(self, "health_check_protocol")
 
@@ -708,6 +843,22 @@ class HealthCheckTemplate(pulumi.CustomResource):
         The healthy threshold of the health check, the default is 3, the value is 2-10.
         """
         return pulumi.get(self, "healthy_threshold")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> pulumi.Output[str]:
+        """
+        The project name to which the health check template belongs.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.HealthCheckTemplateTag']]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="unhealthyThreshold")

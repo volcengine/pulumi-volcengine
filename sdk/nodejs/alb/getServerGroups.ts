@@ -57,6 +57,8 @@ export function getServerGroups(args?: GetServerGroupsArgs, opts?: pulumi.Invoke
         "projectName": args.projectName,
         "serverGroupNames": args.serverGroupNames,
         "serverGroupType": args.serverGroupType,
+        "tags": args.tags,
+        "vpcId": args.vpcId,
     }, opts);
 }
 
@@ -88,6 +90,14 @@ export interface GetServerGroupsArgs {
      * The type of Alb server group. Valid values: `instance`, `ip`.
      */
     serverGroupType?: string;
+    /**
+     * Tags.
+     */
+    tags?: inputs.alb.GetServerGroupsTag[];
+    /**
+     * The vpc id of Alb server group.
+     */
+    vpcId?: string;
 }
 
 /**
@@ -115,9 +125,17 @@ export interface GetServerGroupsResult {
      */
     readonly serverGroups: outputs.alb.GetServerGroupsServerGroup[];
     /**
+     * Tags.
+     */
+    readonly tags?: outputs.alb.GetServerGroupsTag[];
+    /**
      * The total count of query.
      */
     readonly totalCount: number;
+    /**
+     * The vpc id of the Alb server group.
+     */
+    readonly vpcId?: string;
 }
 /**
  * Use this data source to query detailed information of alb server groups
@@ -191,4 +209,12 @@ export interface GetServerGroupsOutputArgs {
      * The type of Alb server group. Valid values: `instance`, `ip`.
      */
     serverGroupType?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.alb.GetServerGroupsTagArgs>[]>;
+    /**
+     * The vpc id of Alb server group.
+     */
+    vpcId?: pulumi.Input<string>;
 }

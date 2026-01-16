@@ -5,10 +5,12 @@
 from .. import _utilities
 import typing
 # Export this package's modules as members:
+from .access_log import *
 from .acl import *
 from .acls import *
 from .alb import *
 from .albs import *
+from .all_certificates import *
 from .ca_certificate import *
 from .ca_certificates import *
 from .certificate import *
@@ -17,11 +19,13 @@ from .customized_cfg import *
 from .customized_cfgs import *
 from .get_acls import *
 from .get_albs import *
+from .get_all_certificates import *
 from .get_ca_certificates import *
 from .get_certificates import *
 from .get_customized_cfgs import *
 from .get_health_check_templates import *
 from .get_listener_domain_extensions import *
+from .get_listener_healths import *
 from .get_listeners import *
 from .get_rules import *
 from .get_server_group_servers import *
@@ -29,16 +33,20 @@ from .get_server_groups import *
 from .get_zones import *
 from .health_check_template import *
 from .health_check_templates import *
+from .health_log import *
 from .listener import *
 from .listener_domain_extension import *
 from .listener_domain_extensions import *
+from .listener_healths import *
 from .listeners import *
+from .replace_certificate import *
 from .rule import *
 from .rules import *
 from .server_group import *
 from .server_group_server import *
 from .server_group_servers import *
 from .server_groups import *
+from .tls_access_log import *
 from .zones import *
 from ._inputs import *
 from . import outputs

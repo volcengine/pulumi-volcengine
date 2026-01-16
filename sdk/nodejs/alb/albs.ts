@@ -63,6 +63,7 @@ export function albs(args?: AlbsArgs, opts?: pulumi.InvokeOptions): Promise<Albs
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:alb/albs:Albs", {
+        "eipAddress": args.eipAddress,
         "eniAddress": args.eniAddress,
         "ids": args.ids,
         "loadBalancerName": args.loadBalancerName,
@@ -70,6 +71,7 @@ export function albs(args?: AlbsArgs, opts?: pulumi.InvokeOptions): Promise<Albs
         "outputFile": args.outputFile,
         "project": args.project,
         "tags": args.tags,
+        "type": args.type,
         "vpcId": args.vpcId,
     }, opts);
 }
@@ -78,6 +80,10 @@ export function albs(args?: AlbsArgs, opts?: pulumi.InvokeOptions): Promise<Albs
  * A collection of arguments for invoking Albs.
  */
 export interface AlbsArgs {
+    /**
+     * The public ip address of the Alb.
+     */
+    eipAddress?: string;
     /**
      * The private ip address of the Alb.
      */
@@ -107,6 +113,10 @@ export interface AlbsArgs {
      */
     tags?: inputs.alb.AlbsTag[];
     /**
+     * The type of the Alb. public: public network ALB. private: private network ALB.
+     */
+    type?: string;
+    /**
      * The vpc id which Alb belongs to.
      */
     vpcId?: string;
@@ -120,6 +130,10 @@ export interface AlbsResult {
      * The collection of query.
      */
     readonly albs: outputs.alb.AlbsAlb[];
+    /**
+     * The Eip address of the Alb.
+     */
+    readonly eipAddress?: string;
     /**
      * The Eni address of the Alb in this availability zone.
      */
@@ -144,6 +158,10 @@ export interface AlbsResult {
      * The total count of query.
      */
     readonly totalCount: number;
+    /**
+     * The type of the Alb, valid value: `public`, `private`.
+     */
+    readonly type?: string;
     /**
      * The vpc id of the Alb.
      */
@@ -209,6 +227,10 @@ export function albsOutput(args?: AlbsOutputArgs, opts?: pulumi.InvokeOptions): 
  */
 export interface AlbsOutputArgs {
     /**
+     * The public ip address of the Alb.
+     */
+    eipAddress?: pulumi.Input<string>;
+    /**
      * The private ip address of the Alb.
      */
     eniAddress?: pulumi.Input<string>;
@@ -236,6 +258,10 @@ export interface AlbsOutputArgs {
      * Tags.
      */
     tags?: pulumi.Input<pulumi.Input<inputs.alb.AlbsTagArgs>[]>;
+    /**
+     * The type of the Alb. public: public network ALB. private: private network ALB.
+     */
+    type?: pulumi.Input<string>;
     /**
      * The vpc id which Alb belongs to.
      */

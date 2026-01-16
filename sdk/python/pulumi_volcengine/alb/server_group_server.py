@@ -20,15 +20,17 @@ class ServerGroupServerArgs:
                  server_group_id: pulumi.Input[str],
                  type: pulumi.Input[str],
                  description: Optional[pulumi.Input[str]] = None,
+                 remote_enabled: Optional[pulumi.Input[str]] = None,
                  weight: Optional[pulumi.Input[int]] = None):
         """
         The set of arguments for constructing a ServerGroupServer resource.
         :param pulumi.Input[str] instance_id: The ID of ecs instance or the network card bound to ecs instance.
         :param pulumi.Input[str] ip: The private ip of the instance.
-        :param pulumi.Input[int] port: The port receiving request.
+        :param pulumi.Input[int] port: The port receiving request. Value range: 1 ~ 65535.
         :param pulumi.Input[str] server_group_id: The ID of the ServerGroup.
-        :param pulumi.Input[str] type: The type of instance. Optional choice contains `ecs`, `eni`.
+        :param pulumi.Input[str] type: The type of instance. Optional choice contains `ecs`, `eni`, `ip`.
         :param pulumi.Input[str] description: The description of the instance.
+        :param pulumi.Input[str] remote_enabled: Whether to enable remote IP function. Optional choice contains `on`, `off`. Default value is `off`. This field is only effective when the type is `ip`.
         :param pulumi.Input[int] weight: The weight of the instance, range in 0~100.
         """
         pulumi.set(__self__, "instance_id", instance_id)
@@ -38,6 +40,8 @@ class ServerGroupServerArgs:
         pulumi.set(__self__, "type", type)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if remote_enabled is not None:
+            pulumi.set(__self__, "remote_enabled", remote_enabled)
         if weight is not None:
             pulumi.set(__self__, "weight", weight)
 
@@ -69,7 +73,7 @@ class ServerGroupServerArgs:
     @pulumi.getter
     def port(self) -> pulumi.Input[int]:
         """
-        The port receiving request.
+        The port receiving request. Value range: 1 ~ 65535.
         """
         return pulumi.get(self, "port")
 
@@ -93,7 +97,7 @@ class ServerGroupServerArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
         """
-        The type of instance. Optional choice contains `ecs`, `eni`.
+        The type of instance. Optional choice contains `ecs`, `eni`, `ip`.
         """
         return pulumi.get(self, "type")
 
@@ -112,6 +116,18 @@ class ServerGroupServerArgs:
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="remoteEnabled")
+    def remote_enabled(self) -> Optional[pulumi.Input[str]]:
+        """
+        Whether to enable remote IP function. Optional choice contains `on`, `off`. Default value is `off`. This field is only effective when the type is `ip`.
+        """
+        return pulumi.get(self, "remote_enabled")
+
+    @remote_enabled.setter
+    def remote_enabled(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "remote_enabled", value)
 
     @property
     @pulumi.getter
@@ -133,6 +149,7 @@ class _ServerGroupServerState:
                  instance_id: Optional[pulumi.Input[str]] = None,
                  ip: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[int]] = None,
+                 remote_enabled: Optional[pulumi.Input[str]] = None,
                  server_group_id: Optional[pulumi.Input[str]] = None,
                  server_id: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -142,10 +159,11 @@ class _ServerGroupServerState:
         :param pulumi.Input[str] description: The description of the instance.
         :param pulumi.Input[str] instance_id: The ID of ecs instance or the network card bound to ecs instance.
         :param pulumi.Input[str] ip: The private ip of the instance.
-        :param pulumi.Input[int] port: The port receiving request.
+        :param pulumi.Input[int] port: The port receiving request. Value range: 1 ~ 65535.
+        :param pulumi.Input[str] remote_enabled: Whether to enable remote IP function. Optional choice contains `on`, `off`. Default value is `off`. This field is only effective when the type is `ip`.
         :param pulumi.Input[str] server_group_id: The ID of the ServerGroup.
         :param pulumi.Input[str] server_id: The server id of instance in ServerGroup.
-        :param pulumi.Input[str] type: The type of instance. Optional choice contains `ecs`, `eni`.
+        :param pulumi.Input[str] type: The type of instance. Optional choice contains `ecs`, `eni`, `ip`.
         :param pulumi.Input[int] weight: The weight of the instance, range in 0~100.
         """
         if description is not None:
@@ -156,6 +174,8 @@ class _ServerGroupServerState:
             pulumi.set(__self__, "ip", ip)
         if port is not None:
             pulumi.set(__self__, "port", port)
+        if remote_enabled is not None:
+            pulumi.set(__self__, "remote_enabled", remote_enabled)
         if server_group_id is not None:
             pulumi.set(__self__, "server_group_id", server_group_id)
         if server_id is not None:
@@ -205,13 +225,25 @@ class _ServerGroupServerState:
     @pulumi.getter
     def port(self) -> Optional[pulumi.Input[int]]:
         """
-        The port receiving request.
+        The port receiving request. Value range: 1 ~ 65535.
         """
         return pulumi.get(self, "port")
 
     @port.setter
     def port(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "port", value)
+
+    @property
+    @pulumi.getter(name="remoteEnabled")
+    def remote_enabled(self) -> Optional[pulumi.Input[str]]:
+        """
+        Whether to enable remote IP function. Optional choice contains `on`, `off`. Default value is `off`. This field is only effective when the type is `ip`.
+        """
+        return pulumi.get(self, "remote_enabled")
+
+    @remote_enabled.setter
+    def remote_enabled(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "remote_enabled", value)
 
     @property
     @pulumi.getter(name="serverGroupId")
@@ -241,7 +273,7 @@ class _ServerGroupServerState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of instance. Optional choice contains `ecs`, `eni`.
+        The type of instance. Optional choice contains `ecs`, `eni`, `ip`.
         """
         return pulumi.get(self, "type")
 
@@ -271,6 +303,7 @@ class ServerGroupServer(pulumi.CustomResource):
                  instance_id: Optional[pulumi.Input[str]] = None,
                  ip: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[int]] = None,
+                 remote_enabled: Optional[pulumi.Input[str]] = None,
                  server_group_id: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  weight: Optional[pulumi.Input[int]] = None,
@@ -306,9 +339,10 @@ class ServerGroupServer(pulumi.CustomResource):
         :param pulumi.Input[str] description: The description of the instance.
         :param pulumi.Input[str] instance_id: The ID of ecs instance or the network card bound to ecs instance.
         :param pulumi.Input[str] ip: The private ip of the instance.
-        :param pulumi.Input[int] port: The port receiving request.
+        :param pulumi.Input[int] port: The port receiving request. Value range: 1 ~ 65535.
+        :param pulumi.Input[str] remote_enabled: Whether to enable remote IP function. Optional choice contains `on`, `off`. Default value is `off`. This field is only effective when the type is `ip`.
         :param pulumi.Input[str] server_group_id: The ID of the ServerGroup.
-        :param pulumi.Input[str] type: The type of instance. Optional choice contains `ecs`, `eni`.
+        :param pulumi.Input[str] type: The type of instance. Optional choice contains `ecs`, `eni`, `ip`.
         :param pulumi.Input[int] weight: The weight of the instance, range in 0~100.
         """
         ...
@@ -362,6 +396,7 @@ class ServerGroupServer(pulumi.CustomResource):
                  instance_id: Optional[pulumi.Input[str]] = None,
                  ip: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[int]] = None,
+                 remote_enabled: Optional[pulumi.Input[str]] = None,
                  server_group_id: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  weight: Optional[pulumi.Input[int]] = None,
@@ -384,6 +419,7 @@ class ServerGroupServer(pulumi.CustomResource):
             if port is None and not opts.urn:
                 raise TypeError("Missing required property 'port'")
             __props__.__dict__["port"] = port
+            __props__.__dict__["remote_enabled"] = remote_enabled
             if server_group_id is None and not opts.urn:
                 raise TypeError("Missing required property 'server_group_id'")
             __props__.__dict__["server_group_id"] = server_group_id
@@ -406,6 +442,7 @@ class ServerGroupServer(pulumi.CustomResource):
             instance_id: Optional[pulumi.Input[str]] = None,
             ip: Optional[pulumi.Input[str]] = None,
             port: Optional[pulumi.Input[int]] = None,
+            remote_enabled: Optional[pulumi.Input[str]] = None,
             server_group_id: Optional[pulumi.Input[str]] = None,
             server_id: Optional[pulumi.Input[str]] = None,
             type: Optional[pulumi.Input[str]] = None,
@@ -420,10 +457,11 @@ class ServerGroupServer(pulumi.CustomResource):
         :param pulumi.Input[str] description: The description of the instance.
         :param pulumi.Input[str] instance_id: The ID of ecs instance or the network card bound to ecs instance.
         :param pulumi.Input[str] ip: The private ip of the instance.
-        :param pulumi.Input[int] port: The port receiving request.
+        :param pulumi.Input[int] port: The port receiving request. Value range: 1 ~ 65535.
+        :param pulumi.Input[str] remote_enabled: Whether to enable remote IP function. Optional choice contains `on`, `off`. Default value is `off`. This field is only effective when the type is `ip`.
         :param pulumi.Input[str] server_group_id: The ID of the ServerGroup.
         :param pulumi.Input[str] server_id: The server id of instance in ServerGroup.
-        :param pulumi.Input[str] type: The type of instance. Optional choice contains `ecs`, `eni`.
+        :param pulumi.Input[str] type: The type of instance. Optional choice contains `ecs`, `eni`, `ip`.
         :param pulumi.Input[int] weight: The weight of the instance, range in 0~100.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -434,6 +472,7 @@ class ServerGroupServer(pulumi.CustomResource):
         __props__.__dict__["instance_id"] = instance_id
         __props__.__dict__["ip"] = ip
         __props__.__dict__["port"] = port
+        __props__.__dict__["remote_enabled"] = remote_enabled
         __props__.__dict__["server_group_id"] = server_group_id
         __props__.__dict__["server_id"] = server_id
         __props__.__dict__["type"] = type
@@ -468,9 +507,17 @@ class ServerGroupServer(pulumi.CustomResource):
     @pulumi.getter
     def port(self) -> pulumi.Output[int]:
         """
-        The port receiving request.
+        The port receiving request. Value range: 1 ~ 65535.
         """
         return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter(name="remoteEnabled")
+    def remote_enabled(self) -> pulumi.Output[Optional[str]]:
+        """
+        Whether to enable remote IP function. Optional choice contains `on`, `off`. Default value is `off`. This field is only effective when the type is `ip`.
+        """
+        return pulumi.get(self, "remote_enabled")
 
     @property
     @pulumi.getter(name="serverGroupId")
@@ -492,7 +539,7 @@ class ServerGroupServer(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[str]:
         """
-        The type of instance. Optional choice contains `ecs`, `eni`.
+        The type of instance. Optional choice contains `ecs`, `eni`, `ip`.
         """
         return pulumi.get(self, "type")
 

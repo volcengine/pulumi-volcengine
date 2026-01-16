@@ -24,18 +24,30 @@ import * as utilities from "../utilities";
  *     description: "acc-test",
  *     serverGroupType: "instance",
  *     scheduler: "wlc",
+ *     protocol: "HTTP",
+ *     ipAddressType: "IPv4",
  *     projectName: "default",
  *     healthCheck: {
  *         enabled: "on",
  *         interval: 3,
  *         timeout: 3,
  *         method: "GET",
+ *         domain: "www.test.com",
+ *         uri: "/health",
+ *         httpCode: "http_2xx,http_3xx",
+ *         protocol: "HTTP",
+ *         port: 80,
+ *         httpVersion: "HTTP1.1",
  *     },
  *     stickySessionConfig: {
  *         stickySessionEnabled: "on",
  *         stickySessionType: "insert",
  *         cookieTimeout: 1100,
  *     },
+ *     tags: [{
+ *         key: "key1",
+ *         value: "value2",
+ *     }],
  * });
  * ```
  *
@@ -80,6 +92,10 @@ export class ServerGroup extends pulumi.CustomResource {
      */
     public /*out*/ readonly createTime!: pulumi.Output<string>;
     /**
+     * Whether to enable cross-zone load balancing for the server group. Valid values: `on`, `off`.
+     */
+    public readonly crossZoneEnabled!: pulumi.Output<string>;
+    /**
      * The description of the Alb server group.
      */
     public readonly description!: pulumi.Output<string>;
@@ -88,6 +104,10 @@ export class ServerGroup extends pulumi.CustomResource {
      */
     public readonly healthCheck!: pulumi.Output<outputs.alb.ServerGroupHealthCheck>;
     /**
+     * The ip address type of the server group.
+     */
+    public readonly ipAddressType!: pulumi.Output<string>;
+    /**
      * The listener information of the Alb server group.
      */
     public /*out*/ readonly listeners!: pulumi.Output<string[]>;
@@ -95,6 +115,10 @@ export class ServerGroup extends pulumi.CustomResource {
      * The project name of the Alb server group.
      */
     public readonly projectName!: pulumi.Output<string>;
+    /**
+     * The backend protocol of the Alb server group. Valid values: `HTTP`, `HTTPS`, `gRPC`. Default is `HTTP`.
+     */
+    public readonly protocol!: pulumi.Output<string | undefined>;
     /**
      * The scheduling algorithm of the Alb server group. Valid values: `wrr`, `wlc`, `sh`.
      */
@@ -120,6 +144,10 @@ export class ServerGroup extends pulumi.CustomResource {
      */
     public readonly stickySessionConfig!: pulumi.Output<outputs.alb.ServerGroupStickySessionConfig>;
     /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.alb.ServerGroupTag[] | undefined>;
+    /**
      * The update time of the Alb server group.
      */
     public /*out*/ readonly updateTime!: pulumi.Output<string>;
@@ -142,16 +170,20 @@ export class ServerGroup extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as ServerGroupState | undefined;
             resourceInputs["createTime"] = state ? state.createTime : undefined;
+            resourceInputs["crossZoneEnabled"] = state ? state.crossZoneEnabled : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["healthCheck"] = state ? state.healthCheck : undefined;
+            resourceInputs["ipAddressType"] = state ? state.ipAddressType : undefined;
             resourceInputs["listeners"] = state ? state.listeners : undefined;
             resourceInputs["projectName"] = state ? state.projectName : undefined;
+            resourceInputs["protocol"] = state ? state.protocol : undefined;
             resourceInputs["scheduler"] = state ? state.scheduler : undefined;
             resourceInputs["serverCount"] = state ? state.serverCount : undefined;
             resourceInputs["serverGroupName"] = state ? state.serverGroupName : undefined;
             resourceInputs["serverGroupType"] = state ? state.serverGroupType : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["stickySessionConfig"] = state ? state.stickySessionConfig : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["updateTime"] = state ? state.updateTime : undefined;
             resourceInputs["vpcId"] = state ? state.vpcId : undefined;
         } else {
@@ -159,13 +191,17 @@ export class ServerGroup extends pulumi.CustomResource {
             if ((!args || args.vpcId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'vpcId'");
             }
+            resourceInputs["crossZoneEnabled"] = args ? args.crossZoneEnabled : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["healthCheck"] = args ? args.healthCheck : undefined;
+            resourceInputs["ipAddressType"] = args ? args.ipAddressType : undefined;
             resourceInputs["projectName"] = args ? args.projectName : undefined;
+            resourceInputs["protocol"] = args ? args.protocol : undefined;
             resourceInputs["scheduler"] = args ? args.scheduler : undefined;
             resourceInputs["serverGroupName"] = args ? args.serverGroupName : undefined;
             resourceInputs["serverGroupType"] = args ? args.serverGroupType : undefined;
             resourceInputs["stickySessionConfig"] = args ? args.stickySessionConfig : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["vpcId"] = args ? args.vpcId : undefined;
             resourceInputs["createTime"] = undefined /*out*/;
             resourceInputs["listeners"] = undefined /*out*/;
@@ -187,6 +223,10 @@ export interface ServerGroupState {
      */
     createTime?: pulumi.Input<string>;
     /**
+     * Whether to enable cross-zone load balancing for the server group. Valid values: `on`, `off`.
+     */
+    crossZoneEnabled?: pulumi.Input<string>;
+    /**
      * The description of the Alb server group.
      */
     description?: pulumi.Input<string>;
@@ -195,6 +235,10 @@ export interface ServerGroupState {
      */
     healthCheck?: pulumi.Input<inputs.alb.ServerGroupHealthCheck>;
     /**
+     * The ip address type of the server group.
+     */
+    ipAddressType?: pulumi.Input<string>;
+    /**
      * The listener information of the Alb server group.
      */
     listeners?: pulumi.Input<pulumi.Input<string>[]>;
@@ -202,6 +246,10 @@ export interface ServerGroupState {
      * The project name of the Alb server group.
      */
     projectName?: pulumi.Input<string>;
+    /**
+     * The backend protocol of the Alb server group. Valid values: `HTTP`, `HTTPS`, `gRPC`. Default is `HTTP`.
+     */
+    protocol?: pulumi.Input<string>;
     /**
      * The scheduling algorithm of the Alb server group. Valid values: `wrr`, `wlc`, `sh`.
      */
@@ -227,6 +275,10 @@ export interface ServerGroupState {
      */
     stickySessionConfig?: pulumi.Input<inputs.alb.ServerGroupStickySessionConfig>;
     /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.alb.ServerGroupTag>[]>;
+    /**
      * The update time of the Alb server group.
      */
     updateTime?: pulumi.Input<string>;
@@ -241,6 +293,10 @@ export interface ServerGroupState {
  */
 export interface ServerGroupArgs {
     /**
+     * Whether to enable cross-zone load balancing for the server group. Valid values: `on`, `off`.
+     */
+    crossZoneEnabled?: pulumi.Input<string>;
+    /**
      * The description of the Alb server group.
      */
     description?: pulumi.Input<string>;
@@ -249,9 +305,17 @@ export interface ServerGroupArgs {
      */
     healthCheck?: pulumi.Input<inputs.alb.ServerGroupHealthCheck>;
     /**
+     * The ip address type of the server group.
+     */
+    ipAddressType?: pulumi.Input<string>;
+    /**
      * The project name of the Alb server group.
      */
     projectName?: pulumi.Input<string>;
+    /**
+     * The backend protocol of the Alb server group. Valid values: `HTTP`, `HTTPS`, `gRPC`. Default is `HTTP`.
+     */
+    protocol?: pulumi.Input<string>;
     /**
      * The scheduling algorithm of the Alb server group. Valid values: `wrr`, `wlc`, `sh`.
      */
@@ -268,6 +332,10 @@ export interface ServerGroupArgs {
      * The sticky session config of the Alb server group. The enable status of sticky session function defaults to `off`.
      */
     stickySessionConfig?: pulumi.Input<inputs.alb.ServerGroupStickySessionConfig>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.alb.ServerGroupTag>[]>;
     /**
      * The vpc id of the Alb server group.
      */

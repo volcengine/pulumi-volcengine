@@ -28,11 +28,11 @@ namespace Pulumi.Volcengine.Alb.Outputs
         /// <summary>
         /// The normal http status code of health check.
         /// </summary>
-        public readonly string? HttpCode;
+        public readonly string HttpCode;
         /// <summary>
         /// The http version of health check.
         /// </summary>
-        public readonly string? HttpVersion;
+        public readonly string HttpVersion;
         /// <summary>
         /// The interval executing health check.
         /// </summary>
@@ -42,9 +42,13 @@ namespace Pulumi.Volcengine.Alb.Outputs
         /// </summary>
         public readonly string Method;
         /// <summary>
-        /// The protocol of health check.
+        /// The port receiving request of the server group server.
         /// </summary>
-        public readonly string? Protocol;
+        public readonly int Port;
+        /// <summary>
+        /// The backend protocol of the Alb server group.
+        /// </summary>
+        public readonly string Protocol;
         /// <summary>
         /// The response timeout of health check.
         /// </summary>
@@ -66,15 +70,17 @@ namespace Pulumi.Volcengine.Alb.Outputs
 
             int healthyThreshold,
 
-            string? httpCode,
+            string httpCode,
 
-            string? httpVersion,
+            string httpVersion,
 
             int interval,
 
             string method,
 
-            string? protocol,
+            int port,
+
+            string protocol,
 
             int? timeout,
 
@@ -89,6 +95,7 @@ namespace Pulumi.Volcengine.Alb.Outputs
             HttpVersion = httpVersion;
             Interval = interval;
             Method = method;
+            Port = port;
             Protocol = protocol;
             Timeout = timeout;
             UnhealthyThreshold = unhealthyThreshold;

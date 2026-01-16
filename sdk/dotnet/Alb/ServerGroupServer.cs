@@ -65,10 +65,16 @@ namespace Pulumi.Volcengine.Alb
         public Output<string> Ip { get; private set; } = null!;
 
         /// <summary>
-        /// The port receiving request.
+        /// The port receiving request. Value range: 1 ~ 65535.
         /// </summary>
         [Output("port")]
         public Output<int> Port { get; private set; } = null!;
+
+        /// <summary>
+        /// Whether to enable remote IP function. Optional choice contains `on`, `off`. Default value is `off`. This field is only effective when the type is `ip`.
+        /// </summary>
+        [Output("remoteEnabled")]
+        public Output<string?> RemoteEnabled { get; private set; } = null!;
 
         /// <summary>
         /// The ID of the ServerGroup.
@@ -83,7 +89,7 @@ namespace Pulumi.Volcengine.Alb
         public Output<string> ServerId { get; private set; } = null!;
 
         /// <summary>
-        /// The type of instance. Optional choice contains `ecs`, `eni`.
+        /// The type of instance. Optional choice contains `ecs`, `eni`, `ip`.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -160,10 +166,16 @@ namespace Pulumi.Volcengine.Alb
         public Input<string> Ip { get; set; } = null!;
 
         /// <summary>
-        /// The port receiving request.
+        /// The port receiving request. Value range: 1 ~ 65535.
         /// </summary>
         [Input("port", required: true)]
         public Input<int> Port { get; set; } = null!;
+
+        /// <summary>
+        /// Whether to enable remote IP function. Optional choice contains `on`, `off`. Default value is `off`. This field is only effective when the type is `ip`.
+        /// </summary>
+        [Input("remoteEnabled")]
+        public Input<string>? RemoteEnabled { get; set; }
 
         /// <summary>
         /// The ID of the ServerGroup.
@@ -172,7 +184,7 @@ namespace Pulumi.Volcengine.Alb
         public Input<string> ServerGroupId { get; set; } = null!;
 
         /// <summary>
-        /// The type of instance. Optional choice contains `ecs`, `eni`.
+        /// The type of instance. Optional choice contains `ecs`, `eni`, `ip`.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -210,10 +222,16 @@ namespace Pulumi.Volcengine.Alb
         public Input<string>? Ip { get; set; }
 
         /// <summary>
-        /// The port receiving request.
+        /// The port receiving request. Value range: 1 ~ 65535.
         /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
+
+        /// <summary>
+        /// Whether to enable remote IP function. Optional choice contains `on`, `off`. Default value is `off`. This field is only effective when the type is `ip`.
+        /// </summary>
+        [Input("remoteEnabled")]
+        public Input<string>? RemoteEnabled { get; set; }
 
         /// <summary>
         /// The ID of the ServerGroup.
@@ -228,7 +246,7 @@ namespace Pulumi.Volcengine.Alb
         public Input<string>? ServerId { get; set; }
 
         /// <summary>
-        /// The type of instance. Optional choice contains `ecs`, `eni`.
+        /// The type of instance. Optional choice contains `ecs`, `eni`, `ip`.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

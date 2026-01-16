@@ -98,6 +98,10 @@ type ServerGroupsArgs struct {
 	ServerGroupNames []string `pulumi:"serverGroupNames"`
 	// The type of Alb server group. Valid values: `instance`, `ip`.
 	ServerGroupType *string `pulumi:"serverGroupType"`
+	// Tags.
+	Tags []ServerGroupsTag `pulumi:"tags"`
+	// The vpc id of Alb server group.
+	VpcId *string `pulumi:"vpcId"`
 }
 
 // A collection of values returned by ServerGroups.
@@ -114,8 +118,12 @@ type ServerGroupsResult struct {
 	ServerGroupType *string `pulumi:"serverGroupType"`
 	// The collection of query.
 	ServerGroups []ServerGroupsServerGroup `pulumi:"serverGroups"`
+	// Tags.
+	Tags []ServerGroupsTag `pulumi:"tags"`
 	// The total count of query.
 	TotalCount int `pulumi:"totalCount"`
+	// The vpc id of the Alb server group.
+	VpcId *string `pulumi:"vpcId"`
 }
 
 func ServerGroupsOutput(ctx *pulumi.Context, args ServerGroupsOutputArgs, opts ...pulumi.InvokeOption) ServerGroupsResultOutput {
@@ -145,6 +153,10 @@ type ServerGroupsOutputArgs struct {
 	ServerGroupNames pulumi.StringArrayInput `pulumi:"serverGroupNames"`
 	// The type of Alb server group. Valid values: `instance`, `ip`.
 	ServerGroupType pulumi.StringPtrInput `pulumi:"serverGroupType"`
+	// Tags.
+	Tags ServerGroupsTagArrayInput `pulumi:"tags"`
+	// The vpc id of Alb server group.
+	VpcId pulumi.StringPtrInput `pulumi:"vpcId"`
 }
 
 func (ServerGroupsOutputArgs) ElementType() reflect.Type {
@@ -202,9 +214,19 @@ func (o ServerGroupsResultOutput) ServerGroups() ServerGroupsServerGroupArrayOut
 	return o.ApplyT(func(v ServerGroupsResult) []ServerGroupsServerGroup { return v.ServerGroups }).(ServerGroupsServerGroupArrayOutput)
 }
 
+// Tags.
+func (o ServerGroupsResultOutput) Tags() ServerGroupsTagArrayOutput {
+	return o.ApplyT(func(v ServerGroupsResult) []ServerGroupsTag { return v.Tags }).(ServerGroupsTagArrayOutput)
+}
+
 // The total count of query.
 func (o ServerGroupsResultOutput) TotalCount() pulumi.IntOutput {
 	return o.ApplyT(func(v ServerGroupsResult) int { return v.TotalCount }).(pulumi.IntOutput)
+}
+
+// The vpc id of the Alb server group.
+func (o ServerGroupsResultOutput) VpcId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServerGroupsResult) *string { return v.VpcId }).(pulumi.StringPtrOutput)
 }
 
 func init() {

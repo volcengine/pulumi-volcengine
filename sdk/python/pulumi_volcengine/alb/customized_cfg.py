@@ -8,6 +8,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['CustomizedCfgArgs', 'CustomizedCfg']
 
@@ -17,13 +19,15 @@ class CustomizedCfgArgs:
                  customized_cfg_content: pulumi.Input[str],
                  customized_cfg_name: pulumi.Input[str],
                  description: Optional[pulumi.Input[str]] = None,
-                 project_name: Optional[pulumi.Input[str]] = None):
+                 project_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['CustomizedCfgTagArgs']]]] = None):
         """
         The set of arguments for constructing a CustomizedCfg resource.
         :param pulumi.Input[str] customized_cfg_content: The content of CustomizedCfg. The length cannot exceed 4096 characters. Spaces and semicolons need to be escaped. Currently supported configuration items are `ssl_protocols`, `ssl_ciphers`, `client_max_body_size`, `keepalive_timeout`, `proxy_request_buffering` and `proxy_connect_timeout`.
         :param pulumi.Input[str] customized_cfg_name: The name of CustomizedCfg.
         :param pulumi.Input[str] description: The description of CustomizedCfg.
         :param pulumi.Input[str] project_name: The project name of the CustomizedCfg.
+        :param pulumi.Input[Sequence[pulumi.Input['CustomizedCfgTagArgs']]] tags: Tags.
         """
         pulumi.set(__self__, "customized_cfg_content", customized_cfg_content)
         pulumi.set(__self__, "customized_cfg_name", customized_cfg_name)
@@ -31,6 +35,8 @@ class CustomizedCfgArgs:
             pulumi.set(__self__, "description", description)
         if project_name is not None:
             pulumi.set(__self__, "project_name", project_name)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter(name="customizedCfgContent")
@@ -80,6 +86,18 @@ class CustomizedCfgArgs:
     def project_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "project_name", value)
 
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CustomizedCfgTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['CustomizedCfgTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
 
 @pulumi.input_type
 class _CustomizedCfgState:
@@ -87,13 +105,15 @@ class _CustomizedCfgState:
                  customized_cfg_content: Optional[pulumi.Input[str]] = None,
                  customized_cfg_name: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
-                 project_name: Optional[pulumi.Input[str]] = None):
+                 project_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['CustomizedCfgTagArgs']]]] = None):
         """
         Input properties used for looking up and filtering CustomizedCfg resources.
         :param pulumi.Input[str] customized_cfg_content: The content of CustomizedCfg. The length cannot exceed 4096 characters. Spaces and semicolons need to be escaped. Currently supported configuration items are `ssl_protocols`, `ssl_ciphers`, `client_max_body_size`, `keepalive_timeout`, `proxy_request_buffering` and `proxy_connect_timeout`.
         :param pulumi.Input[str] customized_cfg_name: The name of CustomizedCfg.
         :param pulumi.Input[str] description: The description of CustomizedCfg.
         :param pulumi.Input[str] project_name: The project name of the CustomizedCfg.
+        :param pulumi.Input[Sequence[pulumi.Input['CustomizedCfgTagArgs']]] tags: Tags.
         """
         if customized_cfg_content is not None:
             pulumi.set(__self__, "customized_cfg_content", customized_cfg_content)
@@ -103,6 +123,8 @@ class _CustomizedCfgState:
             pulumi.set(__self__, "description", description)
         if project_name is not None:
             pulumi.set(__self__, "project_name", project_name)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter(name="customizedCfgContent")
@@ -152,6 +174,18 @@ class _CustomizedCfgState:
     def project_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "project_name", value)
 
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CustomizedCfgTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['CustomizedCfgTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
 
 class CustomizedCfg(pulumi.CustomResource):
     @overload
@@ -162,6 +196,7 @@ class CustomizedCfg(pulumi.CustomResource):
                  customized_cfg_name: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CustomizedCfgTagArgs']]]]] = None,
                  __props__=None):
         """
         Provides a resource to manage alb customized cfg
@@ -192,6 +227,7 @@ class CustomizedCfg(pulumi.CustomResource):
         :param pulumi.Input[str] customized_cfg_name: The name of CustomizedCfg.
         :param pulumi.Input[str] description: The description of CustomizedCfg.
         :param pulumi.Input[str] project_name: The project name of the CustomizedCfg.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CustomizedCfgTagArgs']]]] tags: Tags.
         """
         ...
     @overload
@@ -241,6 +277,7 @@ class CustomizedCfg(pulumi.CustomResource):
                  customized_cfg_name: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CustomizedCfgTagArgs']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -258,6 +295,7 @@ class CustomizedCfg(pulumi.CustomResource):
             __props__.__dict__["customized_cfg_name"] = customized_cfg_name
             __props__.__dict__["description"] = description
             __props__.__dict__["project_name"] = project_name
+            __props__.__dict__["tags"] = tags
         super(CustomizedCfg, __self__).__init__(
             'volcengine:alb/customizedCfg:CustomizedCfg',
             resource_name,
@@ -271,7 +309,8 @@ class CustomizedCfg(pulumi.CustomResource):
             customized_cfg_content: Optional[pulumi.Input[str]] = None,
             customized_cfg_name: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
-            project_name: Optional[pulumi.Input[str]] = None) -> 'CustomizedCfg':
+            project_name: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CustomizedCfgTagArgs']]]]] = None) -> 'CustomizedCfg':
         """
         Get an existing CustomizedCfg resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -283,6 +322,7 @@ class CustomizedCfg(pulumi.CustomResource):
         :param pulumi.Input[str] customized_cfg_name: The name of CustomizedCfg.
         :param pulumi.Input[str] description: The description of CustomizedCfg.
         :param pulumi.Input[str] project_name: The project name of the CustomizedCfg.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CustomizedCfgTagArgs']]]] tags: Tags.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -292,6 +332,7 @@ class CustomizedCfg(pulumi.CustomResource):
         __props__.__dict__["customized_cfg_name"] = customized_cfg_name
         __props__.__dict__["description"] = description
         __props__.__dict__["project_name"] = project_name
+        __props__.__dict__["tags"] = tags
         return CustomizedCfg(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -325,4 +366,12 @@ class CustomizedCfg(pulumi.CustomResource):
         The project name of the CustomizedCfg.
         """
         return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.CustomizedCfgTag']]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 

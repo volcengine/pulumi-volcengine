@@ -17,6 +17,17 @@ export namespace alb {
         entry: string;
     }
 
+    export interface AclTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface AclsAcl {
         /**
          * The entries info of acl.
@@ -54,6 +65,14 @@ export namespace alb {
          * The name of project.
          */
         projectName: string;
+        /**
+         * The status of Acl.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.alb.AclsAclTag[];
         /**
          * Update time of Acl.
          */
@@ -94,6 +113,28 @@ export namespace alb {
         protocol: string;
     }
 
+    export interface AclsAclTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface AclsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface AlbEipBillingConfig {
         /**
          * The peek bandwidth of the EIP which automatically assigned to the Alb. Unit: Mbps.
@@ -107,6 +148,25 @@ export namespace alb {
          * The ISP of the EIP which automatically associated to the Alb, the value can be `BGP`.
          */
         isp: string;
+    }
+
+    export interface AlbGlobalAccelerator {
+        /**
+         * The global accelerator id.
+         */
+        acceleratorId: string;
+        /**
+         * The global accelerator listener id.
+         */
+        acceleratorListenerId?: string;
+        /**
+         * The global accelerator endpoint group id.
+         */
+        endpointGroupId?: string;
+        /**
+         * The traffic distribution weight of the endpoint. The value range is: 1 - 100.
+         */
+        weight?: number;
     }
 
     export interface AlbIpv6EipBillingConfig {
@@ -211,6 +271,14 @@ export namespace alb {
          */
         dnsName: string;
         /**
+         * Whether the tls access log function is enabled.
+         */
+        enabled: boolean;
+        /**
+         * The global accelerator bound to the ALB instance.
+         */
+        globalAccelerators: outputs.alb.AlbsAlbGlobalAccelerator[];
+        /**
          * The health log information of the Alb.
          */
         healthLogs: outputs.alb.AlbsAlbHealthLog[];
@@ -226,6 +294,10 @@ export namespace alb {
          * The billing type of the Alb.
          */
         loadBalancerBillingType: number;
+        /**
+         * The version of the ALB instance. Basic: Basic Edition. Standard: Standard Edition.
+         */
+        loadBalancerEdition: string;
         /**
          * The ID of the Alb.
          */
@@ -243,6 +315,14 @@ export namespace alb {
          */
         lockReason: string;
         /**
+         * The reason for enabling instance modification protection.
+         */
+        modificationProtectionReason: string;
+        /**
+         * Whether the instance modification protection function is enabled. NonProtection: Not enabled. ConsoleProtection: Enabled.
+         */
+        modificationProtectionStatus: string;
+        /**
          * The overdue time of the Alb. This parameter has a query value only when the status of the Alb instance is `FinancialLocked`.
          */
         overdueTime: string;
@@ -250,6 +330,14 @@ export namespace alb {
          * The project name of the Alb.
          */
         projectName: string;
+        /**
+         * ALB can support the Proxy Protocol and record the real IP of the client.
+         */
+        proxyProtocolEnabled: string;
+        /**
+         * Listeners under the instance support automatically selecting extended certificates.
+         */
+        sniAutoMatch: string;
         /**
          * The status of the Alb.
          */
@@ -263,7 +351,7 @@ export namespace alb {
          */
         tlsAccessLogs: outputs.alb.AlbsAlbTlsAccessLog[];
         /**
-         * The type of the Alb, valid value: `public`, `private`.
+         * The type of the Alb. public: public network ALB. private: private network ALB.
          */
         type: string;
         /**
@@ -274,6 +362,14 @@ export namespace alb {
          * The vpc id which Alb belongs to.
          */
         vpcId: string;
+        /**
+         * The ID of the WAF security protection instance bound to the ALB instance.
+         */
+        wafInstanceId: string;
+        /**
+         * The WAF security protection switch.
+         */
+        wafProtectionEnabled: string;
         /**
          * Configuration information of the Alb instance in different Availability Zones.
          */
@@ -289,6 +385,17 @@ export namespace alb {
          * Whether the tls access log function is enabled.
          */
         enabled: boolean;
+    }
+
+    export interface AlbsAlbGlobalAccelerator {
+        /**
+         * The global accelerator id.
+         */
+        acceleratorId: string;
+        /**
+         * The name of the global accelerator.
+         */
+        acceleratorName: string;
     }
 
     export interface AlbsAlbHealthLog {
@@ -360,7 +467,7 @@ export namespace alb {
 
     export interface AlbsAlbZoneMappingLoadBalancerAddress {
         /**
-         * The Eip address of the Alb.
+         * The public ip address of the Alb.
          */
         eipAddress: string;
         /**
@@ -403,7 +510,7 @@ export namespace alb {
          */
         bandwidth: number;
         /**
-         * The Eip address of the Alb.
+         * The public ip address of the Alb.
          */
         eipAddress: string;
         /**
@@ -465,6 +572,83 @@ export namespace alb {
         value: string;
     }
 
+    export interface AllCertificatesCertificate {
+        /**
+         * The ID of the Certificate.
+         */
+        certificateId: string;
+        /**
+         * The name of the Certificate.
+         */
+        certificateName: string;
+        /**
+         * The type of the Certificate.
+         */
+        certificateType: string;
+        /**
+         * The create time of the Certificate.
+         */
+        createTime: string;
+        /**
+         * The description of the Certificate.
+         */
+        description: string;
+        /**
+         * The domain name of the Certificate.
+         */
+        domainName: string;
+        /**
+         * The expire time of the Certificate.
+         */
+        expiredAt: string;
+        /**
+         * The ID of the Certificate.
+         */
+        id: string;
+        /**
+         * The ID list of the Listener.
+         */
+        listeners: string[];
+        /**
+         * The ProjectName of the Certificate.
+         */
+        projectName: string;
+        /**
+         * The list of extended domain names for the certificate, separated by English commas ',', including (commonName, DnsName, IP).
+         */
+        san: string;
+        /**
+         * The status of the Certificate.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.alb.AllCertificatesCertificateTag[];
+    }
+
+    export interface AllCertificatesCertificateTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface AllCertificatesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface CaCertificatesCertificate {
         /**
          * The ID of the CA certificate.
@@ -503,9 +687,24 @@ export namespace alb {
          */
         projectName: string;
         /**
+         * The san extension of the CA Certificate.
+         */
+        san: string;
+        /**
          * The status of the CA Certificate.
          */
         status: string;
+    }
+
+    export interface CertificateTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface CertificatesCertificate {
@@ -546,13 +745,54 @@ export namespace alb {
          */
         listeners: string[];
         /**
-         * The ProjectName of the Certificate.
+         * The project name to which the certificate belongs.
          */
         projectName: string;
+        /**
+         * The san extension of the Certificate.
+         */
+        san: string;
         /**
          * The status of the Certificate.
          */
         status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.alb.CertificatesCertificateTag[];
+    }
+
+    export interface CertificatesCertificateTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface CertificatesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface CustomizedCfgTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface CustomizedCfgsCfg {
@@ -593,6 +833,10 @@ export namespace alb {
          */
         status: string;
         /**
+         * Tags.
+         */
+        tags: outputs.alb.CustomizedCfgsCfgTag[];
+        /**
          * The update time of CustomizedCfg.
          */
         updateTime: string;
@@ -615,6 +859,28 @@ export namespace alb {
          * The protocol info of listener.
          */
         protocol: string;
+    }
+
+    export interface CustomizedCfgsCfgTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface CustomizedCfgsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface GetAclsAcl {
@@ -655,6 +921,14 @@ export namespace alb {
          */
         projectName: string;
         /**
+         * The status of Acl.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.alb.GetAclsAclTag[];
+        /**
          * Update time of Acl.
          */
         updateTime: string;
@@ -694,6 +968,28 @@ export namespace alb {
         protocol: string;
     }
 
+    export interface GetAclsAclTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetAclsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface GetAlbsAlb {
         /**
          * The access log information of the Alb.
@@ -728,6 +1024,14 @@ export namespace alb {
          */
         dnsName: string;
         /**
+         * Whether the tls access log function is enabled.
+         */
+        enabled: boolean;
+        /**
+         * The global accelerator bound to the ALB instance.
+         */
+        globalAccelerators: outputs.alb.GetAlbsAlbGlobalAccelerator[];
+        /**
          * The health log information of the Alb.
          */
         healthLogs: outputs.alb.GetAlbsAlbHealthLog[];
@@ -743,6 +1047,10 @@ export namespace alb {
          * The billing type of the Alb.
          */
         loadBalancerBillingType: number;
+        /**
+         * The version of the ALB instance. Basic: Basic Edition. Standard: Standard Edition.
+         */
+        loadBalancerEdition: string;
         /**
          * The ID of the Alb.
          */
@@ -760,6 +1068,14 @@ export namespace alb {
          */
         lockReason: string;
         /**
+         * The reason for enabling instance modification protection.
+         */
+        modificationProtectionReason: string;
+        /**
+         * Whether the instance modification protection function is enabled. NonProtection: Not enabled. ConsoleProtection: Enabled.
+         */
+        modificationProtectionStatus: string;
+        /**
          * The overdue time of the Alb. This parameter has a query value only when the status of the Alb instance is `FinancialLocked`.
          */
         overdueTime: string;
@@ -767,6 +1083,14 @@ export namespace alb {
          * The project name of the Alb.
          */
         projectName: string;
+        /**
+         * ALB can support the Proxy Protocol and record the real IP of the client.
+         */
+        proxyProtocolEnabled: string;
+        /**
+         * Listeners under the instance support automatically selecting extended certificates.
+         */
+        sniAutoMatch: string;
         /**
          * The status of the Alb.
          */
@@ -780,7 +1104,7 @@ export namespace alb {
          */
         tlsAccessLogs: outputs.alb.GetAlbsAlbTlsAccessLog[];
         /**
-         * The type of the Alb, valid value: `public`, `private`.
+         * The type of the Alb. public: public network ALB. private: private network ALB.
          */
         type: string;
         /**
@@ -791,6 +1115,14 @@ export namespace alb {
          * The vpc id which Alb belongs to.
          */
         vpcId: string;
+        /**
+         * The ID of the WAF security protection instance bound to the ALB instance.
+         */
+        wafInstanceId: string;
+        /**
+         * The WAF security protection switch.
+         */
+        wafProtectionEnabled: string;
         /**
          * Configuration information of the Alb instance in different Availability Zones.
          */
@@ -806,6 +1138,17 @@ export namespace alb {
          * Whether the tls access log function is enabled.
          */
         enabled: boolean;
+    }
+
+    export interface GetAlbsAlbGlobalAccelerator {
+        /**
+         * The global accelerator id.
+         */
+        acceleratorId: string;
+        /**
+         * The name of the global accelerator.
+         */
+        acceleratorName: string;
     }
 
     export interface GetAlbsAlbHealthLog {
@@ -877,7 +1220,7 @@ export namespace alb {
 
     export interface GetAlbsAlbZoneMappingLoadBalancerAddress {
         /**
-         * The Eip address of the Alb.
+         * The public ip address of the Alb.
          */
         eipAddress: string;
         /**
@@ -920,7 +1263,7 @@ export namespace alb {
          */
         bandwidth: number;
         /**
-         * The Eip address of the Alb.
+         * The public ip address of the Alb.
          */
         eipAddress: string;
         /**
@@ -982,6 +1325,83 @@ export namespace alb {
         value: string;
     }
 
+    export interface GetAllCertificatesCertificate {
+        /**
+         * The ID of the Certificate.
+         */
+        certificateId: string;
+        /**
+         * The name of the Certificate.
+         */
+        certificateName: string;
+        /**
+         * The type of the Certificate.
+         */
+        certificateType: string;
+        /**
+         * The create time of the Certificate.
+         */
+        createTime: string;
+        /**
+         * The description of the Certificate.
+         */
+        description: string;
+        /**
+         * The domain name of the Certificate.
+         */
+        domainName: string;
+        /**
+         * The expire time of the Certificate.
+         */
+        expiredAt: string;
+        /**
+         * The ID of the Certificate.
+         */
+        id: string;
+        /**
+         * The ID list of the Listener.
+         */
+        listeners: string[];
+        /**
+         * The ProjectName of the Certificate.
+         */
+        projectName: string;
+        /**
+         * The list of extended domain names for the certificate, separated by English commas ',', including (commonName, DnsName, IP).
+         */
+        san: string;
+        /**
+         * The status of the Certificate.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.alb.GetAllCertificatesCertificateTag[];
+    }
+
+    export interface GetAllCertificatesCertificateTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetAllCertificatesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface GetCaCertificatesCertificate {
         /**
          * The ID of the CA certificate.
@@ -1019,6 +1439,10 @@ export namespace alb {
          * The project name of the CA certificate.
          */
         projectName: string;
+        /**
+         * The san extension of the CA Certificate.
+         */
+        san: string;
         /**
          * The status of the CA Certificate.
          */
@@ -1063,13 +1487,43 @@ export namespace alb {
          */
         listeners: string[];
         /**
-         * The ProjectName of the Certificate.
+         * The project name to which the certificate belongs.
          */
         projectName: string;
+        /**
+         * The san extension of the Certificate.
+         */
+        san: string;
         /**
          * The status of the Certificate.
          */
         status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.alb.GetCertificatesCertificateTag[];
+    }
+
+    export interface GetCertificatesCertificateTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetCertificatesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface GetCustomizedCfgsCfg {
@@ -1110,6 +1564,10 @@ export namespace alb {
          */
         status: string;
         /**
+         * Tags.
+         */
+        tags: outputs.alb.GetCustomizedCfgsCfgTag[];
+        /**
          * The update time of CustomizedCfg.
          */
         updateTime: string;
@@ -1134,7 +1592,33 @@ export namespace alb {
         protocol: string;
     }
 
+    export interface GetCustomizedCfgsCfgTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetCustomizedCfgsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface GetHealthCheckTemplatesHealthCheckTemplate {
+        /**
+         * The creation time of the health check template.
+         */
+        createTime: string;
         /**
          * The description of health check template.
          */
@@ -1156,11 +1640,15 @@ export namespace alb {
          */
         healthCheckInterval: number;
         /**
-         * The health check method,default is `GET`,support `GET` and ``HEAD.
+         * The health check method, support `GET` and `HEAD`.
          */
         healthCheckMethod: string;
         /**
-         * The protocol of health check,only support HTTP.
+         * The port for health check. 0 means use backend server port for health check, 1-65535 means use the specified port.
+         */
+        healthCheckPort: number;
+        /**
+         * The protocol of health check, support HTTP and TCP.
          */
         healthCheckProtocol: string;
         /**
@@ -1188,9 +1676,43 @@ export namespace alb {
          */
         id: string;
         /**
+         * The project name to query.
+         */
+        projectName: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.alb.GetHealthCheckTemplatesHealthCheckTemplateTag[];
+        /**
          * The unhealthy threshold of the health check, the default is 3, the value is 2-10.
          */
         unhealthyThreshold: number;
+        /**
+         * The last update time of the health check template.
+         */
+        updateTime: string;
+    }
+
+    export interface GetHealthCheckTemplatesHealthCheckTemplateTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetHealthCheckTemplatesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface GetListenerDomainExtensionsDomainExtension {
@@ -1216,7 +1738,73 @@ export namespace alb {
         listenerId: string;
     }
 
+    export interface GetListenerHealthsListener {
+        /**
+         * The list of backend server health details.
+         */
+        backendServers: outputs.alb.GetListenerHealthsListenerBackendServer[];
+        /**
+         * The ID of the listener.
+         */
+        listenerId: string;
+        /**
+         * The status of the listener. Value: Active, Error, NoTarget, Disabled.
+         */
+        status: string;
+        /**
+         * The total count of backend servers under the listener.
+         */
+        totalBackendServerCount: number;
+        /**
+         * The count of backend servers with abnormal health check status.
+         */
+        unHealthyCount: number;
+    }
+
+    export interface GetListenerHealthsListenerBackendServer {
+        /**
+         * The ID of the ECS instance or ENI.
+         */
+        instanceId: string;
+        /**
+         * The IP address of the backend server.
+         */
+        ip: string;
+        /**
+         * The port of the backend server.
+         */
+        port: number;
+        /**
+         * The number of forwarding rules associated with the backend server.
+         */
+        ruleNumber: number;
+        /**
+         * The ID of the backend server group.
+         */
+        serverGroupId: string;
+        /**
+         * The name of the backend server group.
+         */
+        serverGroupName: string;
+        /**
+         * The ID of the backend server.
+         */
+        serverId: string;
+        /**
+         * The health status of the backend server. Value: Up, Down.
+         */
+        status: string;
+        /**
+         * The type of backend server. Value: ecs, eni.
+         */
+        type: string;
+    }
+
     export interface GetListenersListener {
+        /**
+         * Whether the listener has enabled the "Log custom headers in the access log" feature.
+         */
+        accessLogRecordCustomizedHeadersEnabled: string;
         /**
          * The ID of the access control policy group bound to the listener, only returned when the AclStatus parameter is on.
          */
@@ -1234,7 +1822,11 @@ export namespace alb {
          */
         caCertificateId: string;
         /**
-         * The certificate id associated with the listener. Source is `certCenter`.
+         * The source of the CA certificate associated with the HTTPS listener.
+         */
+        caCertificateSource: string;
+        /**
+         * The server certificate ID used by the domain name. It takes effect when the certificate source is cert_center.
          */
         certCenterCertificateId: string;
         /**
@@ -1290,6 +1882,18 @@ export namespace alb {
          */
         loadBalancerId: string;
         /**
+         * The certificate ID associated with the HTTPS listener. Effective when the certificate source is pca_leaf.
+         */
+        pcaLeafCertificateId: string;
+        /**
+         * The CA certificate ID associated with the HTTPS listener. It takes effect when the certificate source is pca_root.
+         */
+        pcaRootCaCertificateId: string;
+        /**
+         * The CA certificate ID associated with the HTTPS listener. Effective when the certificate source is pca_sub.
+         */
+        pcaSubCaCertificateId: string;
+        /**
          * The port receiving request of the Listener.
          */
         port: number;
@@ -1314,6 +1918,10 @@ export namespace alb {
          */
         status: string;
         /**
+         * Tags.
+         */
+        tags: outputs.alb.GetListenersListenerTag[];
+        /**
          * The update time of the Listener.
          */
         updateTime: string;
@@ -1321,9 +1929,17 @@ export namespace alb {
 
     export interface GetListenersListenerDomainExtension {
         /**
+         * The server certificate ID used by the domain name. It takes effect when the certificate source is cert_center.
+         */
+        certCenterCertificateId: string;
+        /**
          * The server certificate ID that domain used.
          */
         certificateId: string;
+        /**
+         * The source of the certificate.
+         */
+        certificateSource: string;
         /**
          * The domain.
          */
@@ -1336,6 +1952,14 @@ export namespace alb {
          * The ID of the Listener.
          */
         listenerId: string;
+        /**
+         * The certificate ID associated with the HTTPS listener. Effective when the certificate source is pca_leaf.
+         */
+        pcaLeafCertificateId: string;
+        /**
+         * The CommonName, extended domain names, and IPs of the certificate are separated by ','.
+         */
+        san: string;
     }
 
     export interface GetListenersListenerServerGroup {
@@ -1349,6 +1973,28 @@ export namespace alb {
         serverGroupName: string;
     }
 
+    export interface GetListenersListenerTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetListenersTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface GetRulesRule {
         /**
          * The Description of Rule.
@@ -1359,15 +2005,23 @@ export namespace alb {
          */
         domain: string;
         /**
+         * Forward group configuration for ForwardGroup type action.
+         */
+        forwardGroupConfigs: outputs.alb.GetRulesRuleForwardGroupConfig[];
+        /**
          * The Id of Rule.
          */
         id: string;
         /**
-         * Redirect related configuration.
+         * The priority of the Rule. Only the standard version is supported.
+         */
+        priority: number;
+        /**
+         * Redirect configuration for Redirect type action.
          */
         redirectConfigs: outputs.alb.GetRulesRuleRedirectConfig[];
         /**
-         * The list of rewrite configurations.
+         * Rewrite configuration for Rewrite type action.
          */
         rewriteConfigs: outputs.alb.GetRulesRuleRewriteConfig[];
         /**
@@ -1380,6 +2034,14 @@ export namespace alb {
          * The forwarding rule action, if this parameter is empty, forward to server group, if value is `Redirect`, will redirect.
          */
         ruleAction: string;
+        /**
+         * The rule actions for standard edition forwarding rules.
+         */
+        ruleActions: outputs.alb.GetRulesRuleRuleAction[];
+        /**
+         * The rule conditions for standard edition forwarding rules.
+         */
+        ruleConditions: outputs.alb.GetRulesRuleRuleCondition[];
         /**
          * The Id of Rule.
          */
@@ -1404,13 +2066,39 @@ export namespace alb {
         url: string;
     }
 
+    export interface GetRulesRuleForwardGroupConfig {
+        /**
+         * The server group tuples.
+         */
+        serverGroupTuples: outputs.alb.GetRulesRuleForwardGroupConfigServerGroupTuple[];
+        /**
+         * Whether to enable inter-group session hold.
+         */
+        stickySessionEnabled: string;
+        /**
+         * The group session stickiness timeout, in seconds.
+         */
+        stickySessionTimeout: number;
+    }
+
+    export interface GetRulesRuleForwardGroupConfigServerGroupTuple {
+        /**
+         * The Id of Server Group.
+         */
+        serverGroupId: string;
+        /**
+         * The weight of the server group.
+         */
+        weight: string;
+    }
+
     export interface GetRulesRuleRedirectConfig {
         /**
          * The redirect domain.
          */
         redirectDomain: string;
         /**
-         * The redirect HTTP code,support 301(default), 302, 307, 308.
+         * The redirect HTTP code.
          */
         redirectHttpCode: string;
         /**
@@ -1418,7 +2106,7 @@ export namespace alb {
          */
         redirectPort: string;
         /**
-         * The redirect protocol,support HTTP,HTTPS(default).
+         * The redirect protocol.
          */
         redirectProtocol: string;
         /**
@@ -1432,6 +2120,199 @@ export namespace alb {
          * Rewrite path.
          */
         rewritePath: string;
+    }
+
+    export interface GetRulesRuleRuleAction {
+        /**
+         * Fixed response configuration for fixed response type rule.
+         */
+        fixedResponseConfigs: outputs.alb.GetRulesRuleRuleActionFixedResponseConfig[];
+        /**
+         * Forward group configuration for ForwardGroup type action.
+         */
+        forwardGroupConfigs: outputs.alb.GetRulesRuleRuleActionForwardGroupConfig[];
+        /**
+         * Redirect configuration for Redirect type action.
+         */
+        redirectConfigs: outputs.alb.GetRulesRuleRuleActionRedirectConfig[];
+        /**
+         * Rewrite configuration for Rewrite type action.
+         */
+        rewriteConfigs: outputs.alb.GetRulesRuleRuleActionRewriteConfig[];
+        /**
+         * Traffic limit configuration for TrafficLimit type action.
+         */
+        trafficLimitConfigs: outputs.alb.GetRulesRuleRuleActionTrafficLimitConfig[];
+        /**
+         * The type of rule condition. Valid values: Host, Path, Header.
+         */
+        type: string;
+    }
+
+    export interface GetRulesRuleRuleActionFixedResponseConfig {
+        /**
+         * The content type of the fixed response.
+         */
+        contentType: string;
+        /**
+         * The response body of the fixed response.
+         */
+        responseBody: string;
+        /**
+         * The fixed response HTTP status code.
+         */
+        responseCode: string;
+        /**
+         * The fixed response message.
+         */
+        responseMessage: string;
+    }
+
+    export interface GetRulesRuleRuleActionForwardGroupConfig {
+        /**
+         * The config of group session stickiness.
+         */
+        serverGroupStickySessions: outputs.alb.GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySession[];
+        /**
+         * The server group tuples.
+         */
+        serverGroupTuples: outputs.alb.GetRulesRuleRuleActionForwardGroupConfigServerGroupTuple[];
+    }
+
+    export interface GetRulesRuleRuleActionForwardGroupConfigServerGroupStickySession {
+        /**
+         * Whether to enable sticky session stickiness. Valid values are 'on' and 'off'.
+         */
+        enabled: string;
+        /**
+         * The sticky session timeout, in seconds.
+         */
+        timeout: number;
+    }
+
+    export interface GetRulesRuleRuleActionForwardGroupConfigServerGroupTuple {
+        /**
+         * The Id of Server Group.
+         */
+        serverGroupId: string;
+        /**
+         * The weight of the server group.
+         */
+        weight: number;
+    }
+
+    export interface GetRulesRuleRuleActionRedirectConfig {
+        /**
+         * The redirect domain.
+         */
+        redirectDomain: string;
+        /**
+         * The redirect HTTP code.
+         */
+        redirectHttpCode: string;
+        /**
+         * The redirect port.
+         */
+        redirectPort: string;
+        /**
+         * The redirect protocol.
+         */
+        redirectProtocol: string;
+        /**
+         * The redirect URI.
+         */
+        redirectUri: string;
+    }
+
+    export interface GetRulesRuleRuleActionRewriteConfig {
+        /**
+         * The rewrite path.
+         */
+        path: string;
+    }
+
+    export interface GetRulesRuleRuleActionTrafficLimitConfig {
+        /**
+         * The QPS limit.
+         */
+        qps: number;
+    }
+
+    export interface GetRulesRuleRuleCondition {
+        /**
+         * Header configuration for Header type condition.
+         */
+        headerConfigs: outputs.alb.GetRulesRuleRuleConditionHeaderConfig[];
+        /**
+         * Host configuration for host type condition.
+         */
+        hostConfigs: outputs.alb.GetRulesRuleRuleConditionHostConfig[];
+        /**
+         * Method configuration for Method type condition.
+         */
+        methodConfigs: outputs.alb.GetRulesRuleRuleConditionMethodConfig[];
+        /**
+         * Path configuration for Path type condition.
+         */
+        pathConfigs: outputs.alb.GetRulesRuleRuleConditionPathConfig[];
+        /**
+         * Query string configuration.
+         */
+        queryStringConfigs: outputs.alb.GetRulesRuleRuleConditionQueryStringConfig[];
+        /**
+         * The type of rule condition. Valid values: Host, Path, Header.
+         */
+        type: string;
+    }
+
+    export interface GetRulesRuleRuleConditionHeaderConfig {
+        /**
+         * The query string key.
+         */
+        key: string;
+        /**
+         * The list of query string values.
+         */
+        values: string[];
+    }
+
+    export interface GetRulesRuleRuleConditionHostConfig {
+        /**
+         * The list of query string values.
+         */
+        values: string[];
+    }
+
+    export interface GetRulesRuleRuleConditionMethodConfig {
+        /**
+         * The list of query string values.
+         */
+        values: string[];
+    }
+
+    export interface GetRulesRuleRuleConditionPathConfig {
+        /**
+         * The list of query string values.
+         */
+        values: string[];
+    }
+
+    export interface GetRulesRuleRuleConditionQueryStringConfig {
+        /**
+         * The list of query string values.
+         */
+        values: outputs.alb.GetRulesRuleRuleConditionQueryStringConfigValue[];
+    }
+
+    export interface GetRulesRuleRuleConditionQueryStringConfigValue {
+        /**
+         * The query string key.
+         */
+        key: string;
+        /**
+         * The query string value.
+         */
+        value: string;
     }
 
     export interface GetServerGroupServersServer {
@@ -1456,11 +2337,15 @@ export namespace alb {
          */
         port: number;
         /**
+         * Whether to enable remote IP function. Optional choice contains `on`, `off`.
+         */
+        remoteEnabled: string;
+        /**
          * The server id of instance in ServerGroup.
          */
         serverId: string;
         /**
-         * The type of instance. Optional choice contains `ecs`, `eni`.
+         * The type of instance. Optional choice contains `ecs`, `eni`, `ip`.
          */
         type: string;
         /**
@@ -1475,6 +2360,10 @@ export namespace alb {
          */
         createTime: string;
         /**
+         * Whether to enable cross-zone load balancing for the server group.
+         */
+        crossZoneEnabled: string;
+        /**
          * The description of the server group server.
          */
         description: string;
@@ -1487,6 +2376,10 @@ export namespace alb {
          */
         id: string;
         /**
+         * The ip address type of the server group.
+         */
+        ipAddressType: string;
+        /**
          * The listener information of the Alb server group.
          */
         listeners: string[];
@@ -1494,6 +2387,10 @@ export namespace alb {
          * The project name of Alb server group.
          */
         projectName: string;
+        /**
+         * The backend protocol of the Alb server group.
+         */
+        protocol: string;
         /**
          * The scheduler algorithm of the Alb server group.
          */
@@ -1527,11 +2424,15 @@ export namespace alb {
          */
         stickySessionConfigs: outputs.alb.GetServerGroupsServerGroupStickySessionConfig[];
         /**
+         * Tags.
+         */
+        tags: outputs.alb.GetServerGroupsServerGroupTag[];
+        /**
          * The update time of the Alb server group.
          */
         updateTime: string;
         /**
-         * The vpc id of the Alb server group.
+         * The vpc id of Alb server group.
          */
         vpcId: string;
     }
@@ -1552,11 +2453,11 @@ export namespace alb {
         /**
          * The normal http status code of health check.
          */
-        httpCode?: string;
+        httpCode: string;
         /**
          * The http version of health check.
          */
-        httpVersion?: string;
+        httpVersion: string;
         /**
          * The interval executing health check.
          */
@@ -1566,9 +2467,13 @@ export namespace alb {
          */
         method: string;
         /**
-         * The protocol of health check.
+         * The port receiving request of the server group server.
          */
-        protocol?: string;
+        port: number;
+        /**
+         * The backend protocol of the Alb server group.
+         */
+        protocol: string;
         /**
          * The response timeout of health check.
          */
@@ -1637,6 +2542,28 @@ export namespace alb {
         stickySessionType: string;
     }
 
+    export interface GetServerGroupsServerGroupTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetServerGroupsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface GetZonesZone {
         /**
          * The id of the zone.
@@ -1648,7 +2575,22 @@ export namespace alb {
         zoneId: string;
     }
 
+    export interface HealthCheckTemplateTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface HealthCheckTemplatesHealthCheckTemplate {
+        /**
+         * The creation time of the health check template.
+         */
+        createTime: string;
         /**
          * The description of health check template.
          */
@@ -1670,11 +2612,15 @@ export namespace alb {
          */
         healthCheckInterval: number;
         /**
-         * The health check method,default is `GET`,support `GET` and ``HEAD.
+         * The health check method, support `GET` and `HEAD`.
          */
         healthCheckMethod: string;
         /**
-         * The protocol of health check,only support HTTP.
+         * The port for health check. 0 means use backend server port for health check, 1-65535 means use the specified port.
+         */
+        healthCheckPort: number;
+        /**
+         * The protocol of health check, support HTTP and TCP.
          */
         healthCheckProtocol: string;
         /**
@@ -1702,9 +2648,70 @@ export namespace alb {
          */
         id: string;
         /**
+         * The project name to query.
+         */
+        projectName: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.alb.HealthCheckTemplatesHealthCheckTemplateTag[];
+        /**
          * The unhealthy threshold of the health check, the default is 3, the value is 2-10.
          */
         unhealthyThreshold: number;
+        /**
+         * The last update time of the health check template.
+         */
+        updateTime: string;
+    }
+
+    export interface HealthCheckTemplatesHealthCheckTemplateTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface HealthCheckTemplatesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface ListenerDomainExtension {
+        /**
+         * The server certificate ID used by the domain name. Valid when the certificateSource is `certCenter`.
+         */
+        certCenterCertificateId?: string;
+        /**
+         * The server certificate ID used by the domain name. Valid when the certificateSource is `alb`.
+         */
+        certificateId?: string;
+        /**
+         * The source of the certificate. Valid values: `alb`, `certCenter`.
+         */
+        certificateSource?: string;
+        /**
+         * The domain name.
+         */
+        domain?: string;
+        /**
+         * The extended domain ID, required only for deletion and modification.
+         */
+        domainExtensionId: string;
+        /**
+         * The server certificate ID used by the domain name. Valid when the certificate source is `pcaLeaf`.
+         */
+        pcaLeafCertificateId?: string;
     }
 
     export interface ListenerDomainExtensionsDomainExtension {
@@ -1730,7 +2737,84 @@ export namespace alb {
         listenerId: string;
     }
 
+    export interface ListenerHealthsListener {
+        /**
+         * The list of backend server health details.
+         */
+        backendServers: outputs.alb.ListenerHealthsListenerBackendServer[];
+        /**
+         * The ID of the listener.
+         */
+        listenerId: string;
+        /**
+         * The status of the listener. Value: Active, Error, NoTarget, Disabled.
+         */
+        status: string;
+        /**
+         * The total count of backend servers under the listener.
+         */
+        totalBackendServerCount: number;
+        /**
+         * The count of backend servers with abnormal health check status.
+         */
+        unHealthyCount: number;
+    }
+
+    export interface ListenerHealthsListenerBackendServer {
+        /**
+         * The ID of the ECS instance or ENI.
+         */
+        instanceId: string;
+        /**
+         * The IP address of the backend server.
+         */
+        ip: string;
+        /**
+         * The port of the backend server.
+         */
+        port: number;
+        /**
+         * The number of forwarding rules associated with the backend server.
+         */
+        ruleNumber: number;
+        /**
+         * The ID of the backend server group.
+         */
+        serverGroupId: string;
+        /**
+         * The name of the backend server group.
+         */
+        serverGroupName: string;
+        /**
+         * The ID of the backend server.
+         */
+        serverId: string;
+        /**
+         * The health status of the backend server. Value: Up, Down.
+         */
+        status: string;
+        /**
+         * The type of backend server. Value: ecs, eni.
+         */
+        type: string;
+    }
+
+    export interface ListenerTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface ListenersListener {
+        /**
+         * Whether the listener has enabled the "Log custom headers in the access log" feature.
+         */
+        accessLogRecordCustomizedHeadersEnabled: string;
         /**
          * The ID of the access control policy group bound to the listener, only returned when the AclStatus parameter is on.
          */
@@ -1748,7 +2832,11 @@ export namespace alb {
          */
         caCertificateId: string;
         /**
-         * The certificate id associated with the listener. Source is `certCenter`.
+         * The source of the CA certificate associated with the HTTPS listener.
+         */
+        caCertificateSource: string;
+        /**
+         * The server certificate ID used by the domain name. It takes effect when the certificate source is cert_center.
          */
         certCenterCertificateId: string;
         /**
@@ -1804,6 +2892,18 @@ export namespace alb {
          */
         loadBalancerId: string;
         /**
+         * The certificate ID associated with the HTTPS listener. Effective when the certificate source is pca_leaf.
+         */
+        pcaLeafCertificateId: string;
+        /**
+         * The CA certificate ID associated with the HTTPS listener. It takes effect when the certificate source is pca_root.
+         */
+        pcaRootCaCertificateId: string;
+        /**
+         * The CA certificate ID associated with the HTTPS listener. Effective when the certificate source is pca_sub.
+         */
+        pcaSubCaCertificateId: string;
+        /**
          * The port receiving request of the Listener.
          */
         port: number;
@@ -1828,6 +2928,10 @@ export namespace alb {
          */
         status: string;
         /**
+         * Tags.
+         */
+        tags: outputs.alb.ListenersListenerTag[];
+        /**
          * The update time of the Listener.
          */
         updateTime: string;
@@ -1835,9 +2939,17 @@ export namespace alb {
 
     export interface ListenersListenerDomainExtension {
         /**
+         * The server certificate ID used by the domain name. It takes effect when the certificate source is cert_center.
+         */
+        certCenterCertificateId: string;
+        /**
          * The server certificate ID that domain used.
          */
         certificateId: string;
+        /**
+         * The source of the certificate.
+         */
+        certificateSource: string;
         /**
          * The domain.
          */
@@ -1850,6 +2962,14 @@ export namespace alb {
          * The ID of the Listener.
          */
         listenerId: string;
+        /**
+         * The certificate ID associated with the HTTPS listener. Effective when the certificate source is pca_leaf.
+         */
+        pcaLeafCertificateId: string;
+        /**
+         * The CommonName, extended domain names, and IPs of the certificate are separated by ','.
+         */
+        san: string;
     }
 
     export interface ListenersListenerServerGroup {
@@ -1861,6 +2981,28 @@ export namespace alb {
          * The name of server group.
          */
         serverGroupName: string;
+    }
+
+    export interface ListenersListenerTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface ListenersTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface RuleRedirectConfig {
@@ -1893,6 +3035,210 @@ export namespace alb {
         rewritePath: string;
     }
 
+    export interface RuleRuleAction {
+        /**
+         * Fixed response configuration for fixed response type rule.
+         */
+        fixedResponseConfig: outputs.alb.RuleRuleActionFixedResponseConfig;
+        /**
+         * Forward group configuration for ForwardGroup type action.
+         */
+        forwardGroupConfig: outputs.alb.RuleRuleActionForwardGroupConfig;
+        /**
+         * Redirect configuration for Redirect type action.
+         */
+        redirectConfig: outputs.alb.RuleRuleActionRedirectConfig;
+        /**
+         * Rewrite configuration for Rewrite type action.
+         */
+        rewriteConfig: outputs.alb.RuleRuleActionRewriteConfig;
+        /**
+         * Traffic limit configuration for TrafficLimit type action.
+         */
+        trafficLimitConfig: outputs.alb.RuleRuleActionTrafficLimitConfig;
+        /**
+         * The type of rule action. Valid values: ForwardGroup, Redirect, Rewrite, TrafficLimit.
+         */
+        type: string;
+    }
+
+    export interface RuleRuleActionFixedResponseConfig {
+        /**
+         * The content type of the fixed response.
+         */
+        contentType: string;
+        /**
+         * The response body of the fixed response.
+         */
+        responseBody: string;
+        /**
+         * The fixed response HTTP status code.
+         */
+        responseCode: string;
+        /**
+         * The fixed response message.
+         */
+        responseMessage: string;
+    }
+
+    export interface RuleRuleActionForwardGroupConfig {
+        /**
+         * The config of group session stickiness.
+         */
+        serverGroupStickySession: outputs.alb.RuleRuleActionForwardGroupConfigServerGroupStickySession;
+        /**
+         * The server group tuples.
+         */
+        serverGroupTuples: outputs.alb.RuleRuleActionForwardGroupConfigServerGroupTuple[];
+    }
+
+    export interface RuleRuleActionForwardGroupConfigServerGroupStickySession {
+        /**
+         * Whether to enable sticky session stickiness. Valid values are 'on' and 'off'.
+         */
+        enabled: string;
+        /**
+         * The sticky session timeout, in seconds.
+         */
+        timeout: number;
+    }
+
+    export interface RuleRuleActionForwardGroupConfigServerGroupTuple {
+        /**
+         * The server group ID. The priority of this parameter is higher than that of `serverGroupId`.
+         */
+        serverGroupId: string;
+        /**
+         * The weight of the server group.
+         */
+        weight: number;
+    }
+
+    export interface RuleRuleActionRedirectConfig {
+        /**
+         * The domain name to which the request was redirected.
+         */
+        host: string;
+        /**
+         * The redirect HTTP code.
+         */
+        httpCode: string;
+        /**
+         * The path to which the request was redirected.
+         */
+        path: string;
+        /**
+         * The redirect port.
+         */
+        port: string;
+        /**
+         * The redirect protocol.
+         */
+        protocol: string;
+    }
+
+    export interface RuleRuleActionRewriteConfig {
+        /**
+         * The rewrite path.
+         */
+        path: string;
+    }
+
+    export interface RuleRuleActionTrafficLimitConfig {
+        /**
+         * The QPS limit.
+         */
+        qps: number;
+    }
+
+    export interface RuleRuleCondition {
+        /**
+         * Header configuration for Header type condition.
+         */
+        headerConfig: outputs.alb.RuleRuleConditionHeaderConfig;
+        /**
+         * Host configuration for Host type condition.
+         */
+        hostConfig: outputs.alb.RuleRuleConditionHostConfig;
+        /**
+         * Method configuration for Method type condition.
+         */
+        methodConfig: outputs.alb.RuleRuleConditionMethodConfig;
+        /**
+         * Path configuration for Path type condition.
+         */
+        pathConfig: outputs.alb.RuleRuleConditionPathConfig;
+        /**
+         * Query string configuration for QueryString type condition.
+         */
+        queryStringConfig: outputs.alb.RuleRuleConditionQueryStringConfig;
+        /**
+         * The type of rule condition. Valid values: Host, Path, Header, Method, QueryString.
+         */
+        type?: string;
+    }
+
+    export interface RuleRuleConditionHeaderConfig {
+        /**
+         * The header key.
+         */
+        key: string;
+        /**
+         * The list of header values.
+         */
+        values: string[];
+    }
+
+    export interface RuleRuleConditionHostConfig {
+        /**
+         * The list of domain names.
+         */
+        values: string[];
+    }
+
+    export interface RuleRuleConditionMethodConfig {
+        /**
+         * The values of the method. Vaild values: HEAD,GET,POST,OPTIONS,PUT,PATCH,DELETE.
+         */
+        values: string[];
+    }
+
+    export interface RuleRuleConditionPathConfig {
+        /**
+         * The list of absolute paths.
+         */
+        values?: string[];
+    }
+
+    export interface RuleRuleConditionQueryStringConfig {
+        /**
+         * The list of query string values.
+         */
+        values: outputs.alb.RuleRuleConditionQueryStringConfigValue[];
+    }
+
+    export interface RuleRuleConditionQueryStringConfigValue {
+        /**
+         * The query string key.
+         */
+        key: string;
+        /**
+         * The query string value.
+         */
+        value: string;
+    }
+
+    export interface RuleServerGroupTuple {
+        /**
+         * The server group ID. The priority of this parameter is higher than that of `serverGroupId`.
+         */
+        serverGroupId: string;
+        /**
+         * The weight of the server group.
+         */
+        weight?: number;
+    }
+
     export interface RulesRule {
         /**
          * The Description of Rule.
@@ -1903,15 +3249,23 @@ export namespace alb {
          */
         domain: string;
         /**
+         * Forward group configuration for ForwardGroup type action.
+         */
+        forwardGroupConfigs: outputs.alb.RulesRuleForwardGroupConfig[];
+        /**
          * The Id of Rule.
          */
         id: string;
         /**
-         * Redirect related configuration.
+         * The priority of the Rule. Only the standard version is supported.
+         */
+        priority: number;
+        /**
+         * Redirect configuration for Redirect type action.
          */
         redirectConfigs: outputs.alb.RulesRuleRedirectConfig[];
         /**
-         * The list of rewrite configurations.
+         * Rewrite configuration for Rewrite type action.
          */
         rewriteConfigs: outputs.alb.RulesRuleRewriteConfig[];
         /**
@@ -1924,6 +3278,14 @@ export namespace alb {
          * The forwarding rule action, if this parameter is empty, forward to server group, if value is `Redirect`, will redirect.
          */
         ruleAction: string;
+        /**
+         * The rule actions for standard edition forwarding rules.
+         */
+        ruleActions: outputs.alb.RulesRuleRuleAction[];
+        /**
+         * The rule conditions for standard edition forwarding rules.
+         */
+        ruleConditions: outputs.alb.RulesRuleRuleCondition[];
         /**
          * The Id of Rule.
          */
@@ -1948,13 +3310,39 @@ export namespace alb {
         url: string;
     }
 
+    export interface RulesRuleForwardGroupConfig {
+        /**
+         * The server group tuples.
+         */
+        serverGroupTuples: outputs.alb.RulesRuleForwardGroupConfigServerGroupTuple[];
+        /**
+         * Whether to enable inter-group session hold.
+         */
+        stickySessionEnabled: string;
+        /**
+         * The group session stickiness timeout, in seconds.
+         */
+        stickySessionTimeout: number;
+    }
+
+    export interface RulesRuleForwardGroupConfigServerGroupTuple {
+        /**
+         * The Id of Server Group.
+         */
+        serverGroupId: string;
+        /**
+         * The weight of the server group.
+         */
+        weight: string;
+    }
+
     export interface RulesRuleRedirectConfig {
         /**
          * The redirect domain.
          */
         redirectDomain: string;
         /**
-         * The redirect HTTP code,support 301(default), 302, 307, 308.
+         * The redirect HTTP code.
          */
         redirectHttpCode: string;
         /**
@@ -1962,7 +3350,7 @@ export namespace alb {
          */
         redirectPort: string;
         /**
-         * The redirect protocol,support HTTP,HTTPS(default).
+         * The redirect protocol.
          */
         redirectProtocol: string;
         /**
@@ -1976,6 +3364,199 @@ export namespace alb {
          * Rewrite path.
          */
         rewritePath: string;
+    }
+
+    export interface RulesRuleRuleAction {
+        /**
+         * Fixed response configuration for fixed response type rule.
+         */
+        fixedResponseConfigs: outputs.alb.RulesRuleRuleActionFixedResponseConfig[];
+        /**
+         * Forward group configuration for ForwardGroup type action.
+         */
+        forwardGroupConfigs: outputs.alb.RulesRuleRuleActionForwardGroupConfig[];
+        /**
+         * Redirect configuration for Redirect type action.
+         */
+        redirectConfigs: outputs.alb.RulesRuleRuleActionRedirectConfig[];
+        /**
+         * Rewrite configuration for Rewrite type action.
+         */
+        rewriteConfigs: outputs.alb.RulesRuleRuleActionRewriteConfig[];
+        /**
+         * Traffic limit configuration for TrafficLimit type action.
+         */
+        trafficLimitConfigs: outputs.alb.RulesRuleRuleActionTrafficLimitConfig[];
+        /**
+         * The type of rule condition. Valid values: Host, Path, Header.
+         */
+        type: string;
+    }
+
+    export interface RulesRuleRuleActionFixedResponseConfig {
+        /**
+         * The content type of the fixed response.
+         */
+        contentType: string;
+        /**
+         * The response body of the fixed response.
+         */
+        responseBody: string;
+        /**
+         * The fixed response HTTP status code.
+         */
+        responseCode: string;
+        /**
+         * The fixed response message.
+         */
+        responseMessage: string;
+    }
+
+    export interface RulesRuleRuleActionForwardGroupConfig {
+        /**
+         * The config of group session stickiness.
+         */
+        serverGroupStickySessions: outputs.alb.RulesRuleRuleActionForwardGroupConfigServerGroupStickySession[];
+        /**
+         * The server group tuples.
+         */
+        serverGroupTuples: outputs.alb.RulesRuleRuleActionForwardGroupConfigServerGroupTuple[];
+    }
+
+    export interface RulesRuleRuleActionForwardGroupConfigServerGroupStickySession {
+        /**
+         * Whether to enable sticky session stickiness. Valid values are 'on' and 'off'.
+         */
+        enabled: string;
+        /**
+         * The sticky session timeout, in seconds.
+         */
+        timeout: number;
+    }
+
+    export interface RulesRuleRuleActionForwardGroupConfigServerGroupTuple {
+        /**
+         * The Id of Server Group.
+         */
+        serverGroupId: string;
+        /**
+         * The weight of the server group.
+         */
+        weight: number;
+    }
+
+    export interface RulesRuleRuleActionRedirectConfig {
+        /**
+         * The redirect domain.
+         */
+        redirectDomain: string;
+        /**
+         * The redirect HTTP code.
+         */
+        redirectHttpCode: string;
+        /**
+         * The redirect port.
+         */
+        redirectPort: string;
+        /**
+         * The redirect protocol.
+         */
+        redirectProtocol: string;
+        /**
+         * The redirect URI.
+         */
+        redirectUri: string;
+    }
+
+    export interface RulesRuleRuleActionRewriteConfig {
+        /**
+         * The rewrite path.
+         */
+        path: string;
+    }
+
+    export interface RulesRuleRuleActionTrafficLimitConfig {
+        /**
+         * The QPS limit.
+         */
+        qps: number;
+    }
+
+    export interface RulesRuleRuleCondition {
+        /**
+         * Header configuration for Header type condition.
+         */
+        headerConfigs: outputs.alb.RulesRuleRuleConditionHeaderConfig[];
+        /**
+         * Host configuration for host type condition.
+         */
+        hostConfigs: outputs.alb.RulesRuleRuleConditionHostConfig[];
+        /**
+         * Method configuration for Method type condition.
+         */
+        methodConfigs: outputs.alb.RulesRuleRuleConditionMethodConfig[];
+        /**
+         * Path configuration for Path type condition.
+         */
+        pathConfigs: outputs.alb.RulesRuleRuleConditionPathConfig[];
+        /**
+         * Query string configuration.
+         */
+        queryStringConfigs: outputs.alb.RulesRuleRuleConditionQueryStringConfig[];
+        /**
+         * The type of rule condition. Valid values: Host, Path, Header.
+         */
+        type: string;
+    }
+
+    export interface RulesRuleRuleConditionHeaderConfig {
+        /**
+         * The query string key.
+         */
+        key: string;
+        /**
+         * The list of query string values.
+         */
+        values: string[];
+    }
+
+    export interface RulesRuleRuleConditionHostConfig {
+        /**
+         * The list of query string values.
+         */
+        values: string[];
+    }
+
+    export interface RulesRuleRuleConditionMethodConfig {
+        /**
+         * The list of query string values.
+         */
+        values: string[];
+    }
+
+    export interface RulesRuleRuleConditionPathConfig {
+        /**
+         * The list of query string values.
+         */
+        values: string[];
+    }
+
+    export interface RulesRuleRuleConditionQueryStringConfig {
+        /**
+         * The list of query string values.
+         */
+        values: outputs.alb.RulesRuleRuleConditionQueryStringConfigValue[];
+    }
+
+    export interface RulesRuleRuleConditionQueryStringConfigValue {
+        /**
+         * The query string key.
+         */
+        key: string;
+        /**
+         * The query string value.
+         */
+        value: string;
     }
 
     export interface ServerGroupHealthCheck {
@@ -1992,9 +3573,9 @@ export namespace alb {
          */
         healthyThreshold?: number;
         /**
-         * The normal http status code of health check, the value can be `http2xx` or `http3xx` or `http4xx` or `http5xx`.
+         * The normal http status code of health check, the value can be `http2xx`, `http3xx`, `http4xx` or `http5xx`. Default is `http_2xx,http_3xx`.
          */
-        httpCode: string;
+        httpCode?: string;
         /**
          * The http version of health check. Valid values: `HTTP1.0`, `HTTP1.1`. Default is `HTTP1.0`.
          */
@@ -2007,6 +3588,14 @@ export namespace alb {
          * The method of health check. Valid values: `GET` or `HEAD`. Default is `HEAD`.
          */
         method?: string;
+        /**
+         * The port of health check. When the value is 0, it means use the backend server port for health check. Valid value range in 0~65535.
+         */
+        port?: number;
+        /**
+         * The protocol of health check. Valid values: `HTTP`, `TCP`. Default is `HTTP`.
+         */
+        protocol?: string;
         /**
          * The response timeout of health check. Unit: second. Valid value range in 1~60. Default is 2.
          */
@@ -2043,11 +3632,15 @@ export namespace alb {
          */
         port: number;
         /**
+         * Whether to enable remote IP function. Optional choice contains `on`, `off`.
+         */
+        remoteEnabled: string;
+        /**
          * The server id of instance in ServerGroup.
          */
         serverId: string;
         /**
-         * The type of instance. Optional choice contains `ecs`, `eni`.
+         * The type of instance. Optional choice contains `ecs`, `eni`, `ip`.
          */
         type: string;
         /**
@@ -2075,11 +3668,26 @@ export namespace alb {
         stickySessionType?: string;
     }
 
+    export interface ServerGroupTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface ServerGroupsServerGroup {
         /**
          * The create time of the Alb server group.
          */
         createTime: string;
+        /**
+         * Whether to enable cross-zone load balancing for the server group.
+         */
+        crossZoneEnabled: string;
         /**
          * The description of the server group server.
          */
@@ -2093,6 +3701,10 @@ export namespace alb {
          */
         id: string;
         /**
+         * The ip address type of the server group.
+         */
+        ipAddressType: string;
+        /**
          * The listener information of the Alb server group.
          */
         listeners: string[];
@@ -2100,6 +3712,10 @@ export namespace alb {
          * The project name of Alb server group.
          */
         projectName: string;
+        /**
+         * The backend protocol of the Alb server group.
+         */
+        protocol: string;
         /**
          * The scheduler algorithm of the Alb server group.
          */
@@ -2133,11 +3749,15 @@ export namespace alb {
          */
         stickySessionConfigs: outputs.alb.ServerGroupsServerGroupStickySessionConfig[];
         /**
+         * Tags.
+         */
+        tags: outputs.alb.ServerGroupsServerGroupTag[];
+        /**
          * The update time of the Alb server group.
          */
         updateTime: string;
         /**
-         * The vpc id of the Alb server group.
+         * The vpc id of Alb server group.
          */
         vpcId: string;
     }
@@ -2158,11 +3778,11 @@ export namespace alb {
         /**
          * The normal http status code of health check.
          */
-        httpCode?: string;
+        httpCode: string;
         /**
          * The http version of health check.
          */
-        httpVersion?: string;
+        httpVersion: string;
         /**
          * The interval executing health check.
          */
@@ -2172,9 +3792,13 @@ export namespace alb {
          */
         method: string;
         /**
-         * The protocol of health check.
+         * The port receiving request of the server group server.
          */
-        protocol?: string;
+        port: number;
+        /**
+         * The backend protocol of the Alb server group.
+         */
+        protocol: string;
         /**
          * The response timeout of health check.
          */
@@ -2241,6 +3865,28 @@ export namespace alb {
          * The cookie handle type of the sticky session.
          */
         stickySessionType: string;
+    }
+
+    export interface ServerGroupsServerGroupTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface ServerGroupsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface ZonesZone {

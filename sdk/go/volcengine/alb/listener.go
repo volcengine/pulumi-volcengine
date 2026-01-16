@@ -100,15 +100,31 @@ import (
 //				return err
 //			}
 //			_, err = alb.NewListener(ctx, "fooListener", &alb.ListenerArgs{
-//				LoadBalancerId:    fooAlb.ID(),
-//				ListenerName:      pulumi.String("acc-test-listener"),
-//				Protocol:          pulumi.String("HTTPS"),
-//				Port:              pulumi.Int(6666),
-//				Enabled:           pulumi.String("off"),
-//				CertificateSource: pulumi.String("alb"),
-//				CertificateId:     fooCertificate.ID(),
-//				ServerGroupId:     fooServerGroup.ID(),
-//				Description:       pulumi.String("acc test listener"),
+//				LoadBalancerId:                          fooAlb.ID(),
+//				ListenerName:                            pulumi.String("acc-test-listener"),
+//				Protocol:                                pulumi.String("HTTPS"),
+//				Port:                                    pulumi.Int(6666),
+//				Enabled:                                 pulumi.String("off"),
+//				CertificateSource:                       pulumi.String("alb"),
+//				CertificateId:                           fooCertificate.ID(),
+//				ServerGroupId:                           fooServerGroup.ID(),
+//				Description:                             pulumi.String("acc test listener"),
+//				AccessLogRecordCustomizedHeadersEnabled: pulumi.String("off"),
+//				CaCertificateSource:                     pulumi.String("alb"),
+//				CaCertificateId:                         pulumi.String("cert-xoekc6lpu9s054ov5eo*****"),
+//				DomainExtensions: alb.ListenerDomainExtensionTypeArray{
+//					&alb.ListenerDomainExtensionTypeArgs{
+//						Domain:            pulumi.String("example.com"),
+//						CertificateSource: pulumi.String("alb"),
+//						CertificateId:     pulumi.String("cert-1pf4a8k8tokcg845wf******"),
+//					},
+//				},
+//				Tags: alb.ListenerTagArray{
+//					&alb.ListenerTagArgs{
+//						Key:   pulumi.String("key1"),
+//						Value: pulumi.String("value2"),
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -129,14 +145,18 @@ import (
 type Listener struct {
 	pulumi.CustomResourceState
 
+	// Whether to enable custom headers in access logs. Default is `off`.
+	AccessLogRecordCustomizedHeadersEnabled pulumi.StringPtrOutput `pulumi:"accessLogRecordCustomizedHeadersEnabled"`
 	// The id list of the Acl. When the AclStatus parameter is configured as on, AclType and AclIds.N are required.
 	AclIds pulumi.StringArrayOutput `pulumi:"aclIds"`
 	// The enable status of Acl. Optional choice contains `on`, `off`. Default is `off`.
 	AclStatus pulumi.StringPtrOutput `pulumi:"aclStatus"`
 	// The type of the Acl. Optional choice contains `white`, `black`. When the AclStatus parameter is configured as on, AclType and AclIds.N are required.
 	AclType pulumi.StringOutput `pulumi:"aclType"`
-	// The CA certificate id associated with the listener.
+	// The CA certificate id associated with the listener. When the value of caCertificateSource is alb, the caCertificateId parameter must be specified.
 	CaCertificateId pulumi.StringPtrOutput `pulumi:"caCertificateId"`
+	// The source of the CA certificate associated with the listener. This parameter is only valid for HTTPS listeners and is used for two-way authentication. Valid values: `alb`, `pcaRoot`, `pcaSub`.
+	CaCertificateSource pulumi.StringPtrOutput `pulumi:"caCertificateSource"`
 	// The certificate id associated with the listener. Source is `certCenter`.
 	CertCenterCertificateId pulumi.StringPtrOutput `pulumi:"certCenterCertificateId"`
 	// The certificate id associated with the listener. Source is `alb`.
@@ -147,6 +167,8 @@ type Listener struct {
 	CustomizedCfgId pulumi.StringPtrOutput `pulumi:"customizedCfgId"`
 	// The description of the Listener.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// The domain extensions of the Listener.
+	DomainExtensions ListenerDomainExtensionTypeArrayOutput `pulumi:"domainExtensions"`
 	// The HTTP2 feature switch,valid value is on or off. Default is `off`.
 	EnableHttp2 pulumi.StringPtrOutput `pulumi:"enableHttp2"`
 	// The QUIC feature switch,valid value is on or off. Default is `off`.
@@ -159,12 +181,20 @@ type Listener struct {
 	ListenerName pulumi.StringOutput `pulumi:"listenerName"`
 	// The Id of the load balancer.
 	LoadBalancerId pulumi.StringOutput `pulumi:"loadBalancerId"`
+	// The CA certificate id associated with the listener. When the value of caCertificateSource is pca_leaf, pcaLeafCertificateId parameter must be specified.
+	PcaLeafCertificateId pulumi.StringPtrOutput `pulumi:"pcaLeafCertificateId"`
+	// The CA certificate id associated with the listener. When the value of caCertificateSource is pca_root, pcaRootCaCertificateId parameter must be specified.
+	PcaRootCaCertificateId pulumi.StringPtrOutput `pulumi:"pcaRootCaCertificateId"`
+	// The CA certificate id associated with the listener. When the value of caCertificateSource is pca_sub, pcaSubCaCertificateId parameter must be specified.
+	PcaSubCaCertificateId pulumi.StringPtrOutput `pulumi:"pcaSubCaCertificateId"`
 	// The port receiving request of the Listener, the value range in 1~65535.
 	Port pulumi.IntOutput `pulumi:"port"`
 	// The protocol of the Listener. Optional choice contains `HTTP`, `HTTPS`.
 	Protocol pulumi.StringOutput `pulumi:"protocol"`
 	// The server group id associated with the listener.
 	ServerGroupId pulumi.StringOutput `pulumi:"serverGroupId"`
+	// Tags.
+	Tags ListenerTagArrayOutput `pulumi:"tags"`
 }
 
 // NewListener registers a new resource with the given unique name, arguments, and options.
@@ -209,14 +239,18 @@ func GetListener(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Listener resources.
 type listenerState struct {
+	// Whether to enable custom headers in access logs. Default is `off`.
+	AccessLogRecordCustomizedHeadersEnabled *string `pulumi:"accessLogRecordCustomizedHeadersEnabled"`
 	// The id list of the Acl. When the AclStatus parameter is configured as on, AclType and AclIds.N are required.
 	AclIds []string `pulumi:"aclIds"`
 	// The enable status of Acl. Optional choice contains `on`, `off`. Default is `off`.
 	AclStatus *string `pulumi:"aclStatus"`
 	// The type of the Acl. Optional choice contains `white`, `black`. When the AclStatus parameter is configured as on, AclType and AclIds.N are required.
 	AclType *string `pulumi:"aclType"`
-	// The CA certificate id associated with the listener.
+	// The CA certificate id associated with the listener. When the value of caCertificateSource is alb, the caCertificateId parameter must be specified.
 	CaCertificateId *string `pulumi:"caCertificateId"`
+	// The source of the CA certificate associated with the listener. This parameter is only valid for HTTPS listeners and is used for two-way authentication. Valid values: `alb`, `pcaRoot`, `pcaSub`.
+	CaCertificateSource *string `pulumi:"caCertificateSource"`
 	// The certificate id associated with the listener. Source is `certCenter`.
 	CertCenterCertificateId *string `pulumi:"certCenterCertificateId"`
 	// The certificate id associated with the listener. Source is `alb`.
@@ -227,6 +261,8 @@ type listenerState struct {
 	CustomizedCfgId *string `pulumi:"customizedCfgId"`
 	// The description of the Listener.
 	Description *string `pulumi:"description"`
+	// The domain extensions of the Listener.
+	DomainExtensions []ListenerDomainExtensionType `pulumi:"domainExtensions"`
 	// The HTTP2 feature switch,valid value is on or off. Default is `off`.
 	EnableHttp2 *string `pulumi:"enableHttp2"`
 	// The QUIC feature switch,valid value is on or off. Default is `off`.
@@ -239,23 +275,35 @@ type listenerState struct {
 	ListenerName *string `pulumi:"listenerName"`
 	// The Id of the load balancer.
 	LoadBalancerId *string `pulumi:"loadBalancerId"`
+	// The CA certificate id associated with the listener. When the value of caCertificateSource is pca_leaf, pcaLeafCertificateId parameter must be specified.
+	PcaLeafCertificateId *string `pulumi:"pcaLeafCertificateId"`
+	// The CA certificate id associated with the listener. When the value of caCertificateSource is pca_root, pcaRootCaCertificateId parameter must be specified.
+	PcaRootCaCertificateId *string `pulumi:"pcaRootCaCertificateId"`
+	// The CA certificate id associated with the listener. When the value of caCertificateSource is pca_sub, pcaSubCaCertificateId parameter must be specified.
+	PcaSubCaCertificateId *string `pulumi:"pcaSubCaCertificateId"`
 	// The port receiving request of the Listener, the value range in 1~65535.
 	Port *int `pulumi:"port"`
 	// The protocol of the Listener. Optional choice contains `HTTP`, `HTTPS`.
 	Protocol *string `pulumi:"protocol"`
 	// The server group id associated with the listener.
 	ServerGroupId *string `pulumi:"serverGroupId"`
+	// Tags.
+	Tags []ListenerTag `pulumi:"tags"`
 }
 
 type ListenerState struct {
+	// Whether to enable custom headers in access logs. Default is `off`.
+	AccessLogRecordCustomizedHeadersEnabled pulumi.StringPtrInput
 	// The id list of the Acl. When the AclStatus parameter is configured as on, AclType and AclIds.N are required.
 	AclIds pulumi.StringArrayInput
 	// The enable status of Acl. Optional choice contains `on`, `off`. Default is `off`.
 	AclStatus pulumi.StringPtrInput
 	// The type of the Acl. Optional choice contains `white`, `black`. When the AclStatus parameter is configured as on, AclType and AclIds.N are required.
 	AclType pulumi.StringPtrInput
-	// The CA certificate id associated with the listener.
+	// The CA certificate id associated with the listener. When the value of caCertificateSource is alb, the caCertificateId parameter must be specified.
 	CaCertificateId pulumi.StringPtrInput
+	// The source of the CA certificate associated with the listener. This parameter is only valid for HTTPS listeners and is used for two-way authentication. Valid values: `alb`, `pcaRoot`, `pcaSub`.
+	CaCertificateSource pulumi.StringPtrInput
 	// The certificate id associated with the listener. Source is `certCenter`.
 	CertCenterCertificateId pulumi.StringPtrInput
 	// The certificate id associated with the listener. Source is `alb`.
@@ -266,6 +314,8 @@ type ListenerState struct {
 	CustomizedCfgId pulumi.StringPtrInput
 	// The description of the Listener.
 	Description pulumi.StringPtrInput
+	// The domain extensions of the Listener.
+	DomainExtensions ListenerDomainExtensionTypeArrayInput
 	// The HTTP2 feature switch,valid value is on or off. Default is `off`.
 	EnableHttp2 pulumi.StringPtrInput
 	// The QUIC feature switch,valid value is on or off. Default is `off`.
@@ -278,12 +328,20 @@ type ListenerState struct {
 	ListenerName pulumi.StringPtrInput
 	// The Id of the load balancer.
 	LoadBalancerId pulumi.StringPtrInput
+	// The CA certificate id associated with the listener. When the value of caCertificateSource is pca_leaf, pcaLeafCertificateId parameter must be specified.
+	PcaLeafCertificateId pulumi.StringPtrInput
+	// The CA certificate id associated with the listener. When the value of caCertificateSource is pca_root, pcaRootCaCertificateId parameter must be specified.
+	PcaRootCaCertificateId pulumi.StringPtrInput
+	// The CA certificate id associated with the listener. When the value of caCertificateSource is pca_sub, pcaSubCaCertificateId parameter must be specified.
+	PcaSubCaCertificateId pulumi.StringPtrInput
 	// The port receiving request of the Listener, the value range in 1~65535.
 	Port pulumi.IntPtrInput
 	// The protocol of the Listener. Optional choice contains `HTTP`, `HTTPS`.
 	Protocol pulumi.StringPtrInput
 	// The server group id associated with the listener.
 	ServerGroupId pulumi.StringPtrInput
+	// Tags.
+	Tags ListenerTagArrayInput
 }
 
 func (ListenerState) ElementType() reflect.Type {
@@ -291,14 +349,18 @@ func (ListenerState) ElementType() reflect.Type {
 }
 
 type listenerArgs struct {
+	// Whether to enable custom headers in access logs. Default is `off`.
+	AccessLogRecordCustomizedHeadersEnabled *string `pulumi:"accessLogRecordCustomizedHeadersEnabled"`
 	// The id list of the Acl. When the AclStatus parameter is configured as on, AclType and AclIds.N are required.
 	AclIds []string `pulumi:"aclIds"`
 	// The enable status of Acl. Optional choice contains `on`, `off`. Default is `off`.
 	AclStatus *string `pulumi:"aclStatus"`
 	// The type of the Acl. Optional choice contains `white`, `black`. When the AclStatus parameter is configured as on, AclType and AclIds.N are required.
 	AclType *string `pulumi:"aclType"`
-	// The CA certificate id associated with the listener.
+	// The CA certificate id associated with the listener. When the value of caCertificateSource is alb, the caCertificateId parameter must be specified.
 	CaCertificateId *string `pulumi:"caCertificateId"`
+	// The source of the CA certificate associated with the listener. This parameter is only valid for HTTPS listeners and is used for two-way authentication. Valid values: `alb`, `pcaRoot`, `pcaSub`.
+	CaCertificateSource *string `pulumi:"caCertificateSource"`
 	// The certificate id associated with the listener. Source is `certCenter`.
 	CertCenterCertificateId *string `pulumi:"certCenterCertificateId"`
 	// The certificate id associated with the listener. Source is `alb`.
@@ -309,6 +371,8 @@ type listenerArgs struct {
 	CustomizedCfgId *string `pulumi:"customizedCfgId"`
 	// The description of the Listener.
 	Description *string `pulumi:"description"`
+	// The domain extensions of the Listener.
+	DomainExtensions []ListenerDomainExtensionType `pulumi:"domainExtensions"`
 	// The HTTP2 feature switch,valid value is on or off. Default is `off`.
 	EnableHttp2 *string `pulumi:"enableHttp2"`
 	// The QUIC feature switch,valid value is on or off. Default is `off`.
@@ -319,24 +383,36 @@ type listenerArgs struct {
 	ListenerName *string `pulumi:"listenerName"`
 	// The Id of the load balancer.
 	LoadBalancerId string `pulumi:"loadBalancerId"`
+	// The CA certificate id associated with the listener. When the value of caCertificateSource is pca_leaf, pcaLeafCertificateId parameter must be specified.
+	PcaLeafCertificateId *string `pulumi:"pcaLeafCertificateId"`
+	// The CA certificate id associated with the listener. When the value of caCertificateSource is pca_root, pcaRootCaCertificateId parameter must be specified.
+	PcaRootCaCertificateId *string `pulumi:"pcaRootCaCertificateId"`
+	// The CA certificate id associated with the listener. When the value of caCertificateSource is pca_sub, pcaSubCaCertificateId parameter must be specified.
+	PcaSubCaCertificateId *string `pulumi:"pcaSubCaCertificateId"`
 	// The port receiving request of the Listener, the value range in 1~65535.
 	Port int `pulumi:"port"`
 	// The protocol of the Listener. Optional choice contains `HTTP`, `HTTPS`.
 	Protocol string `pulumi:"protocol"`
 	// The server group id associated with the listener.
 	ServerGroupId string `pulumi:"serverGroupId"`
+	// Tags.
+	Tags []ListenerTag `pulumi:"tags"`
 }
 
 // The set of arguments for constructing a Listener resource.
 type ListenerArgs struct {
+	// Whether to enable custom headers in access logs. Default is `off`.
+	AccessLogRecordCustomizedHeadersEnabled pulumi.StringPtrInput
 	// The id list of the Acl. When the AclStatus parameter is configured as on, AclType and AclIds.N are required.
 	AclIds pulumi.StringArrayInput
 	// The enable status of Acl. Optional choice contains `on`, `off`. Default is `off`.
 	AclStatus pulumi.StringPtrInput
 	// The type of the Acl. Optional choice contains `white`, `black`. When the AclStatus parameter is configured as on, AclType and AclIds.N are required.
 	AclType pulumi.StringPtrInput
-	// The CA certificate id associated with the listener.
+	// The CA certificate id associated with the listener. When the value of caCertificateSource is alb, the caCertificateId parameter must be specified.
 	CaCertificateId pulumi.StringPtrInput
+	// The source of the CA certificate associated with the listener. This parameter is only valid for HTTPS listeners and is used for two-way authentication. Valid values: `alb`, `pcaRoot`, `pcaSub`.
+	CaCertificateSource pulumi.StringPtrInput
 	// The certificate id associated with the listener. Source is `certCenter`.
 	CertCenterCertificateId pulumi.StringPtrInput
 	// The certificate id associated with the listener. Source is `alb`.
@@ -347,6 +423,8 @@ type ListenerArgs struct {
 	CustomizedCfgId pulumi.StringPtrInput
 	// The description of the Listener.
 	Description pulumi.StringPtrInput
+	// The domain extensions of the Listener.
+	DomainExtensions ListenerDomainExtensionTypeArrayInput
 	// The HTTP2 feature switch,valid value is on or off. Default is `off`.
 	EnableHttp2 pulumi.StringPtrInput
 	// The QUIC feature switch,valid value is on or off. Default is `off`.
@@ -357,12 +435,20 @@ type ListenerArgs struct {
 	ListenerName pulumi.StringPtrInput
 	// The Id of the load balancer.
 	LoadBalancerId pulumi.StringInput
+	// The CA certificate id associated with the listener. When the value of caCertificateSource is pca_leaf, pcaLeafCertificateId parameter must be specified.
+	PcaLeafCertificateId pulumi.StringPtrInput
+	// The CA certificate id associated with the listener. When the value of caCertificateSource is pca_root, pcaRootCaCertificateId parameter must be specified.
+	PcaRootCaCertificateId pulumi.StringPtrInput
+	// The CA certificate id associated with the listener. When the value of caCertificateSource is pca_sub, pcaSubCaCertificateId parameter must be specified.
+	PcaSubCaCertificateId pulumi.StringPtrInput
 	// The port receiving request of the Listener, the value range in 1~65535.
 	Port pulumi.IntInput
 	// The protocol of the Listener. Optional choice contains `HTTP`, `HTTPS`.
 	Protocol pulumi.StringInput
 	// The server group id associated with the listener.
 	ServerGroupId pulumi.StringInput
+	// Tags.
+	Tags ListenerTagArrayInput
 }
 
 func (ListenerArgs) ElementType() reflect.Type {
@@ -452,6 +538,11 @@ func (o ListenerOutput) ToListenerOutputWithContext(ctx context.Context) Listene
 	return o
 }
 
+// Whether to enable custom headers in access logs. Default is `off`.
+func (o ListenerOutput) AccessLogRecordCustomizedHeadersEnabled() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Listener) pulumi.StringPtrOutput { return v.AccessLogRecordCustomizedHeadersEnabled }).(pulumi.StringPtrOutput)
+}
+
 // The id list of the Acl. When the AclStatus parameter is configured as on, AclType and AclIds.N are required.
 func (o ListenerOutput) AclIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Listener) pulumi.StringArrayOutput { return v.AclIds }).(pulumi.StringArrayOutput)
@@ -467,9 +558,14 @@ func (o ListenerOutput) AclType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Listener) pulumi.StringOutput { return v.AclType }).(pulumi.StringOutput)
 }
 
-// The CA certificate id associated with the listener.
+// The CA certificate id associated with the listener. When the value of caCertificateSource is alb, the caCertificateId parameter must be specified.
 func (o ListenerOutput) CaCertificateId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Listener) pulumi.StringPtrOutput { return v.CaCertificateId }).(pulumi.StringPtrOutput)
+}
+
+// The source of the CA certificate associated with the listener. This parameter is only valid for HTTPS listeners and is used for two-way authentication. Valid values: `alb`, `pcaRoot`, `pcaSub`.
+func (o ListenerOutput) CaCertificateSource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Listener) pulumi.StringPtrOutput { return v.CaCertificateSource }).(pulumi.StringPtrOutput)
 }
 
 // The certificate id associated with the listener. Source is `certCenter`.
@@ -495,6 +591,11 @@ func (o ListenerOutput) CustomizedCfgId() pulumi.StringPtrOutput {
 // The description of the Listener.
 func (o ListenerOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Listener) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// The domain extensions of the Listener.
+func (o ListenerOutput) DomainExtensions() ListenerDomainExtensionTypeArrayOutput {
+	return o.ApplyT(func(v *Listener) ListenerDomainExtensionTypeArrayOutput { return v.DomainExtensions }).(ListenerDomainExtensionTypeArrayOutput)
 }
 
 // The HTTP2 feature switch,valid value is on or off. Default is `off`.
@@ -527,6 +628,21 @@ func (o ListenerOutput) LoadBalancerId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Listener) pulumi.StringOutput { return v.LoadBalancerId }).(pulumi.StringOutput)
 }
 
+// The CA certificate id associated with the listener. When the value of caCertificateSource is pca_leaf, pcaLeafCertificateId parameter must be specified.
+func (o ListenerOutput) PcaLeafCertificateId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Listener) pulumi.StringPtrOutput { return v.PcaLeafCertificateId }).(pulumi.StringPtrOutput)
+}
+
+// The CA certificate id associated with the listener. When the value of caCertificateSource is pca_root, pcaRootCaCertificateId parameter must be specified.
+func (o ListenerOutput) PcaRootCaCertificateId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Listener) pulumi.StringPtrOutput { return v.PcaRootCaCertificateId }).(pulumi.StringPtrOutput)
+}
+
+// The CA certificate id associated with the listener. When the value of caCertificateSource is pca_sub, pcaSubCaCertificateId parameter must be specified.
+func (o ListenerOutput) PcaSubCaCertificateId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Listener) pulumi.StringPtrOutput { return v.PcaSubCaCertificateId }).(pulumi.StringPtrOutput)
+}
+
 // The port receiving request of the Listener, the value range in 1~65535.
 func (o ListenerOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v *Listener) pulumi.IntOutput { return v.Port }).(pulumi.IntOutput)
@@ -540,6 +656,11 @@ func (o ListenerOutput) Protocol() pulumi.StringOutput {
 // The server group id associated with the listener.
 func (o ListenerOutput) ServerGroupId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Listener) pulumi.StringOutput { return v.ServerGroupId }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o ListenerOutput) Tags() ListenerTagArrayOutput {
+	return o.ApplyT(func(v *Listener) ListenerTagArrayOutput { return v.Tags }).(ListenerTagArrayOutput)
 }
 
 type ListenerArrayOutput struct{ *pulumi.OutputState }

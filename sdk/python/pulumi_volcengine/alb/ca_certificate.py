@@ -94,6 +94,7 @@ class _CACertificateState:
                  expired_at: Optional[pulumi.Input[str]] = None,
                  listeners: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
+                 san: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering CACertificate resources.
@@ -106,6 +107,7 @@ class _CACertificateState:
         :param pulumi.Input[str] expired_at: The expire time of the CA Certificate.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] listeners: The ID list of the Listener.
         :param pulumi.Input[str] project_name: The project name of the CA certificate.
+        :param pulumi.Input[str] san: The san extension of the Certificate.
         :param pulumi.Input[str] status: The status of the CA Certificate.
         """
         if ca_certificate is not None:
@@ -126,6 +128,8 @@ class _CACertificateState:
             pulumi.set(__self__, "listeners", listeners)
         if project_name is not None:
             pulumi.set(__self__, "project_name", project_name)
+        if san is not None:
+            pulumi.set(__self__, "san", san)
         if status is not None:
             pulumi.set(__self__, "status", status)
 
@@ -236,6 +240,18 @@ class _CACertificateState:
     @project_name.setter
     def project_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "project_name", value)
+
+    @property
+    @pulumi.getter
+    def san(self) -> Optional[pulumi.Input[str]]:
+        """
+        The san extension of the Certificate.
+        """
+        return pulumi.get(self, "san")
+
+    @san.setter
+    def san(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "san", value)
 
     @property
     @pulumi.getter
@@ -362,6 +378,7 @@ class CACertificate(pulumi.CustomResource):
             __props__.__dict__["domain_name"] = None
             __props__.__dict__["expired_at"] = None
             __props__.__dict__["listeners"] = None
+            __props__.__dict__["san"] = None
             __props__.__dict__["status"] = None
         super(CACertificate, __self__).__init__(
             'volcengine:alb/cACertificate:CACertificate',
@@ -382,6 +399,7 @@ class CACertificate(pulumi.CustomResource):
             expired_at: Optional[pulumi.Input[str]] = None,
             listeners: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             project_name: Optional[pulumi.Input[str]] = None,
+            san: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None) -> 'CACertificate':
         """
         Get an existing CACertificate resource's state with the given name, id, and optional extra
@@ -399,6 +417,7 @@ class CACertificate(pulumi.CustomResource):
         :param pulumi.Input[str] expired_at: The expire time of the CA Certificate.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] listeners: The ID list of the Listener.
         :param pulumi.Input[str] project_name: The project name of the CA certificate.
+        :param pulumi.Input[str] san: The san extension of the Certificate.
         :param pulumi.Input[str] status: The status of the CA Certificate.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -414,6 +433,7 @@ class CACertificate(pulumi.CustomResource):
         __props__.__dict__["expired_at"] = expired_at
         __props__.__dict__["listeners"] = listeners
         __props__.__dict__["project_name"] = project_name
+        __props__.__dict__["san"] = san
         __props__.__dict__["status"] = status
         return CACertificate(resource_name, opts=opts, __props__=__props__)
 
@@ -488,6 +508,14 @@ class CACertificate(pulumi.CustomResource):
         The project name of the CA certificate.
         """
         return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter
+    def san(self) -> pulumi.Output[str]:
+        """
+        The san extension of the Certificate.
+        """
+        return pulumi.get(self, "san")
 
     @property
     @pulumi.getter

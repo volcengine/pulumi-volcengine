@@ -46,6 +46,14 @@ namespace Pulumi.Volcengine.Alb.Outputs
         /// </summary>
         public readonly string DnsName;
         /// <summary>
+        /// Whether the tls access log function is enabled.
+        /// </summary>
+        public readonly bool Enabled;
+        /// <summary>
+        /// The global accelerator bound to the ALB instance.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.AlbsAlbGlobalAcceleratorResult> GlobalAccelerators;
+        /// <summary>
         /// The health log information of the Alb.
         /// </summary>
         public readonly ImmutableArray<Outputs.AlbsAlbHealthLogResult> HealthLogs;
@@ -61,6 +69,10 @@ namespace Pulumi.Volcengine.Alb.Outputs
         /// The billing type of the Alb.
         /// </summary>
         public readonly int LoadBalancerBillingType;
+        /// <summary>
+        /// The version of the ALB instance. Basic: Basic Edition. Standard: Standard Edition.
+        /// </summary>
+        public readonly string LoadBalancerEdition;
         /// <summary>
         /// The ID of the Alb.
         /// </summary>
@@ -78,6 +90,14 @@ namespace Pulumi.Volcengine.Alb.Outputs
         /// </summary>
         public readonly string LockReason;
         /// <summary>
+        /// The reason for enabling instance modification protection.
+        /// </summary>
+        public readonly string ModificationProtectionReason;
+        /// <summary>
+        /// Whether the instance modification protection function is enabled. NonProtection: Not enabled. ConsoleProtection: Enabled.
+        /// </summary>
+        public readonly string ModificationProtectionStatus;
+        /// <summary>
         /// The overdue time of the Alb. This parameter has a query value only when the status of the Alb instance is `FinancialLocked`.
         /// </summary>
         public readonly string OverdueTime;
@@ -85,6 +105,14 @@ namespace Pulumi.Volcengine.Alb.Outputs
         /// The project name of the Alb.
         /// </summary>
         public readonly string ProjectName;
+        /// <summary>
+        /// ALB can support the Proxy Protocol and record the real IP of the client.
+        /// </summary>
+        public readonly string ProxyProtocolEnabled;
+        /// <summary>
+        /// Listeners under the instance support automatically selecting extended certificates.
+        /// </summary>
+        public readonly string SniAutoMatch;
         /// <summary>
         /// The status of the Alb.
         /// </summary>
@@ -98,7 +126,7 @@ namespace Pulumi.Volcengine.Alb.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.AlbsAlbTlsAccessLogResult> TlsAccessLogs;
         /// <summary>
-        /// The type of the Alb, valid value: `public`, `private`.
+        /// The type of the Alb. public: public network ALB. private: private network ALB.
         /// </summary>
         public readonly string Type;
         /// <summary>
@@ -109,6 +137,14 @@ namespace Pulumi.Volcengine.Alb.Outputs
         /// The vpc id which Alb belongs to.
         /// </summary>
         public readonly string VpcId;
+        /// <summary>
+        /// The ID of the WAF security protection instance bound to the ALB instance.
+        /// </summary>
+        public readonly string WafInstanceId;
+        /// <summary>
+        /// The WAF security protection switch.
+        /// </summary>
+        public readonly string WafProtectionEnabled;
         /// <summary>
         /// Configuration information of the Alb instance in different Availability Zones.
         /// </summary>
@@ -132,6 +168,10 @@ namespace Pulumi.Volcengine.Alb.Outputs
 
             string dnsName,
 
+            bool enabled,
+
+            ImmutableArray<Outputs.AlbsAlbGlobalAcceleratorResult> globalAccelerators,
+
             ImmutableArray<Outputs.AlbsAlbHealthLogResult> healthLogs,
 
             string id,
@@ -139,6 +179,8 @@ namespace Pulumi.Volcengine.Alb.Outputs
             ImmutableArray<Outputs.AlbsAlbListenerResult> listeners,
 
             int loadBalancerBillingType,
+
+            string loadBalancerEdition,
 
             string loadBalancerId,
 
@@ -148,9 +190,17 @@ namespace Pulumi.Volcengine.Alb.Outputs
 
             string lockReason,
 
+            string modificationProtectionReason,
+
+            string modificationProtectionStatus,
+
             string overdueTime,
 
             string projectName,
+
+            string proxyProtocolEnabled,
+
+            string sniAutoMatch,
 
             string status,
 
@@ -164,6 +214,10 @@ namespace Pulumi.Volcengine.Alb.Outputs
 
             string vpcId,
 
+            string wafInstanceId,
+
+            string wafProtectionEnabled,
+
             ImmutableArray<Outputs.AlbsAlbZoneMappingResult> zoneMappings)
         {
             AccessLogs = accessLogs;
@@ -174,22 +228,31 @@ namespace Pulumi.Volcengine.Alb.Outputs
             DeletedTime = deletedTime;
             Description = description;
             DnsName = dnsName;
+            Enabled = enabled;
+            GlobalAccelerators = globalAccelerators;
             HealthLogs = healthLogs;
             Id = id;
             Listeners = listeners;
             LoadBalancerBillingType = loadBalancerBillingType;
+            LoadBalancerEdition = loadBalancerEdition;
             LoadBalancerId = loadBalancerId;
             LoadBalancerName = loadBalancerName;
             LocalAddresses = localAddresses;
             LockReason = lockReason;
+            ModificationProtectionReason = modificationProtectionReason;
+            ModificationProtectionStatus = modificationProtectionStatus;
             OverdueTime = overdueTime;
             ProjectName = projectName;
+            ProxyProtocolEnabled = proxyProtocolEnabled;
+            SniAutoMatch = sniAutoMatch;
             Status = status;
             Tags = tags;
             TlsAccessLogs = tlsAccessLogs;
             Type = type;
             UpdateTime = updateTime;
             VpcId = vpcId;
+            WafInstanceId = wafInstanceId;
+            WafProtectionEnabled = wafProtectionEnabled;
             ZoneMappings = zoneMappings;
         }
     }

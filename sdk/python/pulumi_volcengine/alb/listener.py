@@ -8,6 +8,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['ListenerArgs', 'Listener']
 
@@ -18,43 +20,59 @@ class ListenerArgs:
                  port: pulumi.Input[int],
                  protocol: pulumi.Input[str],
                  server_group_id: pulumi.Input[str],
+                 access_log_record_customized_headers_enabled: Optional[pulumi.Input[str]] = None,
                  acl_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  acl_status: Optional[pulumi.Input[str]] = None,
                  acl_type: Optional[pulumi.Input[str]] = None,
                  ca_certificate_id: Optional[pulumi.Input[str]] = None,
+                 ca_certificate_source: Optional[pulumi.Input[str]] = None,
                  cert_center_certificate_id: Optional[pulumi.Input[str]] = None,
                  certificate_id: Optional[pulumi.Input[str]] = None,
                  certificate_source: Optional[pulumi.Input[str]] = None,
                  customized_cfg_id: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 domain_extensions: Optional[pulumi.Input[Sequence[pulumi.Input['ListenerDomainExtensionArgs']]]] = None,
                  enable_http2: Optional[pulumi.Input[str]] = None,
                  enable_quic: Optional[pulumi.Input[str]] = None,
                  enabled: Optional[pulumi.Input[str]] = None,
-                 listener_name: Optional[pulumi.Input[str]] = None):
+                 listener_name: Optional[pulumi.Input[str]] = None,
+                 pca_leaf_certificate_id: Optional[pulumi.Input[str]] = None,
+                 pca_root_ca_certificate_id: Optional[pulumi.Input[str]] = None,
+                 pca_sub_ca_certificate_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['ListenerTagArgs']]]] = None):
         """
         The set of arguments for constructing a Listener resource.
         :param pulumi.Input[str] load_balancer_id: The Id of the load balancer.
         :param pulumi.Input[int] port: The port receiving request of the Listener, the value range in 1~65535.
         :param pulumi.Input[str] protocol: The protocol of the Listener. Optional choice contains `HTTP`, `HTTPS`.
         :param pulumi.Input[str] server_group_id: The server group id associated with the listener.
+        :param pulumi.Input[str] access_log_record_customized_headers_enabled: Whether to enable custom headers in access logs. Default is `off`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] acl_ids: The id list of the Acl. When the AclStatus parameter is configured as on, AclType and AclIds.N are required.
         :param pulumi.Input[str] acl_status: The enable status of Acl. Optional choice contains `on`, `off`. Default is `off`.
         :param pulumi.Input[str] acl_type: The type of the Acl. Optional choice contains `white`, `black`. When the AclStatus parameter is configured as on, AclType and AclIds.N are required.
-        :param pulumi.Input[str] ca_certificate_id: The CA certificate id associated with the listener.
+        :param pulumi.Input[str] ca_certificate_id: The CA certificate id associated with the listener. When the value of ca_certificate_source is alb, the ca_certificate_id parameter must be specified.
+        :param pulumi.Input[str] ca_certificate_source: The source of the CA certificate associated with the listener. This parameter is only valid for HTTPS listeners and is used for two-way authentication. Valid values: `alb`, `pca_root`, `pca_sub`.
         :param pulumi.Input[str] cert_center_certificate_id: The certificate id associated with the listener. Source is `cert_center`.
         :param pulumi.Input[str] certificate_id: The certificate id associated with the listener. Source is `alb`.
         :param pulumi.Input[str] certificate_source: The source of the certificate. Valid values: `alb`, `cert_center`. Default is `alb`.
         :param pulumi.Input[str] customized_cfg_id: Personalized configuration ID, with a value of " " when not bound.
         :param pulumi.Input[str] description: The description of the Listener.
+        :param pulumi.Input[Sequence[pulumi.Input['ListenerDomainExtensionArgs']]] domain_extensions: The domain extensions of the Listener.
         :param pulumi.Input[str] enable_http2: The HTTP2 feature switch,valid value is on or off. Default is `off`.
         :param pulumi.Input[str] enable_quic: The QUIC feature switch,valid value is on or off. Default is `off`.
         :param pulumi.Input[str] enabled: The enable status of the Listener. Optional choice contains `on`, `off`. Default is `on`.
         :param pulumi.Input[str] listener_name: The name of the Listener.
+        :param pulumi.Input[str] pca_leaf_certificate_id: The CA certificate id associated with the listener. When the value of ca_certificate_source is pca_leaf, pca_leaf_certificate_id parameter must be specified.
+        :param pulumi.Input[str] pca_root_ca_certificate_id: The CA certificate id associated with the listener. When the value of ca_certificate_source is pca_root, pca_root_ca_certificate_id parameter must be specified.
+        :param pulumi.Input[str] pca_sub_ca_certificate_id: The CA certificate id associated with the listener. When the value of ca_certificate_source is pca_sub, pca_sub_ca_certificate_id parameter must be specified.
+        :param pulumi.Input[Sequence[pulumi.Input['ListenerTagArgs']]] tags: Tags.
         """
         pulumi.set(__self__, "load_balancer_id", load_balancer_id)
         pulumi.set(__self__, "port", port)
         pulumi.set(__self__, "protocol", protocol)
         pulumi.set(__self__, "server_group_id", server_group_id)
+        if access_log_record_customized_headers_enabled is not None:
+            pulumi.set(__self__, "access_log_record_customized_headers_enabled", access_log_record_customized_headers_enabled)
         if acl_ids is not None:
             pulumi.set(__self__, "acl_ids", acl_ids)
         if acl_status is not None:
@@ -63,6 +81,8 @@ class ListenerArgs:
             pulumi.set(__self__, "acl_type", acl_type)
         if ca_certificate_id is not None:
             pulumi.set(__self__, "ca_certificate_id", ca_certificate_id)
+        if ca_certificate_source is not None:
+            pulumi.set(__self__, "ca_certificate_source", ca_certificate_source)
         if cert_center_certificate_id is not None:
             pulumi.set(__self__, "cert_center_certificate_id", cert_center_certificate_id)
         if certificate_id is not None:
@@ -73,6 +93,8 @@ class ListenerArgs:
             pulumi.set(__self__, "customized_cfg_id", customized_cfg_id)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if domain_extensions is not None:
+            pulumi.set(__self__, "domain_extensions", domain_extensions)
         if enable_http2 is not None:
             pulumi.set(__self__, "enable_http2", enable_http2)
         if enable_quic is not None:
@@ -81,6 +103,14 @@ class ListenerArgs:
             pulumi.set(__self__, "enabled", enabled)
         if listener_name is not None:
             pulumi.set(__self__, "listener_name", listener_name)
+        if pca_leaf_certificate_id is not None:
+            pulumi.set(__self__, "pca_leaf_certificate_id", pca_leaf_certificate_id)
+        if pca_root_ca_certificate_id is not None:
+            pulumi.set(__self__, "pca_root_ca_certificate_id", pca_root_ca_certificate_id)
+        if pca_sub_ca_certificate_id is not None:
+            pulumi.set(__self__, "pca_sub_ca_certificate_id", pca_sub_ca_certificate_id)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter(name="loadBalancerId")
@@ -131,6 +161,18 @@ class ListenerArgs:
         pulumi.set(self, "server_group_id", value)
 
     @property
+    @pulumi.getter(name="accessLogRecordCustomizedHeadersEnabled")
+    def access_log_record_customized_headers_enabled(self) -> Optional[pulumi.Input[str]]:
+        """
+        Whether to enable custom headers in access logs. Default is `off`.
+        """
+        return pulumi.get(self, "access_log_record_customized_headers_enabled")
+
+    @access_log_record_customized_headers_enabled.setter
+    def access_log_record_customized_headers_enabled(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "access_log_record_customized_headers_enabled", value)
+
+    @property
     @pulumi.getter(name="aclIds")
     def acl_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -170,13 +212,25 @@ class ListenerArgs:
     @pulumi.getter(name="caCertificateId")
     def ca_certificate_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The CA certificate id associated with the listener.
+        The CA certificate id associated with the listener. When the value of ca_certificate_source is alb, the ca_certificate_id parameter must be specified.
         """
         return pulumi.get(self, "ca_certificate_id")
 
     @ca_certificate_id.setter
     def ca_certificate_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ca_certificate_id", value)
+
+    @property
+    @pulumi.getter(name="caCertificateSource")
+    def ca_certificate_source(self) -> Optional[pulumi.Input[str]]:
+        """
+        The source of the CA certificate associated with the listener. This parameter is only valid for HTTPS listeners and is used for two-way authentication. Valid values: `alb`, `pca_root`, `pca_sub`.
+        """
+        return pulumi.get(self, "ca_certificate_source")
+
+    @ca_certificate_source.setter
+    def ca_certificate_source(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ca_certificate_source", value)
 
     @property
     @pulumi.getter(name="certCenterCertificateId")
@@ -237,6 +291,18 @@ class ListenerArgs:
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="domainExtensions")
+    def domain_extensions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ListenerDomainExtensionArgs']]]]:
+        """
+        The domain extensions of the Listener.
+        """
+        return pulumi.get(self, "domain_extensions")
+
+    @domain_extensions.setter
+    def domain_extensions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ListenerDomainExtensionArgs']]]]):
+        pulumi.set(self, "domain_extensions", value)
 
     @property
     @pulumi.getter(name="enableHttp2")
@@ -286,49 +352,113 @@ class ListenerArgs:
     def listener_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "listener_name", value)
 
+    @property
+    @pulumi.getter(name="pcaLeafCertificateId")
+    def pca_leaf_certificate_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The CA certificate id associated with the listener. When the value of ca_certificate_source is pca_leaf, pca_leaf_certificate_id parameter must be specified.
+        """
+        return pulumi.get(self, "pca_leaf_certificate_id")
+
+    @pca_leaf_certificate_id.setter
+    def pca_leaf_certificate_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pca_leaf_certificate_id", value)
+
+    @property
+    @pulumi.getter(name="pcaRootCaCertificateId")
+    def pca_root_ca_certificate_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The CA certificate id associated with the listener. When the value of ca_certificate_source is pca_root, pca_root_ca_certificate_id parameter must be specified.
+        """
+        return pulumi.get(self, "pca_root_ca_certificate_id")
+
+    @pca_root_ca_certificate_id.setter
+    def pca_root_ca_certificate_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pca_root_ca_certificate_id", value)
+
+    @property
+    @pulumi.getter(name="pcaSubCaCertificateId")
+    def pca_sub_ca_certificate_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The CA certificate id associated with the listener. When the value of ca_certificate_source is pca_sub, pca_sub_ca_certificate_id parameter must be specified.
+        """
+        return pulumi.get(self, "pca_sub_ca_certificate_id")
+
+    @pca_sub_ca_certificate_id.setter
+    def pca_sub_ca_certificate_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pca_sub_ca_certificate_id", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ListenerTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ListenerTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
 
 @pulumi.input_type
 class _ListenerState:
     def __init__(__self__, *,
+                 access_log_record_customized_headers_enabled: Optional[pulumi.Input[str]] = None,
                  acl_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  acl_status: Optional[pulumi.Input[str]] = None,
                  acl_type: Optional[pulumi.Input[str]] = None,
                  ca_certificate_id: Optional[pulumi.Input[str]] = None,
+                 ca_certificate_source: Optional[pulumi.Input[str]] = None,
                  cert_center_certificate_id: Optional[pulumi.Input[str]] = None,
                  certificate_id: Optional[pulumi.Input[str]] = None,
                  certificate_source: Optional[pulumi.Input[str]] = None,
                  customized_cfg_id: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 domain_extensions: Optional[pulumi.Input[Sequence[pulumi.Input['ListenerDomainExtensionArgs']]]] = None,
                  enable_http2: Optional[pulumi.Input[str]] = None,
                  enable_quic: Optional[pulumi.Input[str]] = None,
                  enabled: Optional[pulumi.Input[str]] = None,
                  listener_id: Optional[pulumi.Input[str]] = None,
                  listener_name: Optional[pulumi.Input[str]] = None,
                  load_balancer_id: Optional[pulumi.Input[str]] = None,
+                 pca_leaf_certificate_id: Optional[pulumi.Input[str]] = None,
+                 pca_root_ca_certificate_id: Optional[pulumi.Input[str]] = None,
+                 pca_sub_ca_certificate_id: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[int]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
-                 server_group_id: Optional[pulumi.Input[str]] = None):
+                 server_group_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['ListenerTagArgs']]]] = None):
         """
         Input properties used for looking up and filtering Listener resources.
+        :param pulumi.Input[str] access_log_record_customized_headers_enabled: Whether to enable custom headers in access logs. Default is `off`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] acl_ids: The id list of the Acl. When the AclStatus parameter is configured as on, AclType and AclIds.N are required.
         :param pulumi.Input[str] acl_status: The enable status of Acl. Optional choice contains `on`, `off`. Default is `off`.
         :param pulumi.Input[str] acl_type: The type of the Acl. Optional choice contains `white`, `black`. When the AclStatus parameter is configured as on, AclType and AclIds.N are required.
-        :param pulumi.Input[str] ca_certificate_id: The CA certificate id associated with the listener.
+        :param pulumi.Input[str] ca_certificate_id: The CA certificate id associated with the listener. When the value of ca_certificate_source is alb, the ca_certificate_id parameter must be specified.
+        :param pulumi.Input[str] ca_certificate_source: The source of the CA certificate associated with the listener. This parameter is only valid for HTTPS listeners and is used for two-way authentication. Valid values: `alb`, `pca_root`, `pca_sub`.
         :param pulumi.Input[str] cert_center_certificate_id: The certificate id associated with the listener. Source is `cert_center`.
         :param pulumi.Input[str] certificate_id: The certificate id associated with the listener. Source is `alb`.
         :param pulumi.Input[str] certificate_source: The source of the certificate. Valid values: `alb`, `cert_center`. Default is `alb`.
         :param pulumi.Input[str] customized_cfg_id: Personalized configuration ID, with a value of " " when not bound.
         :param pulumi.Input[str] description: The description of the Listener.
+        :param pulumi.Input[Sequence[pulumi.Input['ListenerDomainExtensionArgs']]] domain_extensions: The domain extensions of the Listener.
         :param pulumi.Input[str] enable_http2: The HTTP2 feature switch,valid value is on or off. Default is `off`.
         :param pulumi.Input[str] enable_quic: The QUIC feature switch,valid value is on or off. Default is `off`.
         :param pulumi.Input[str] enabled: The enable status of the Listener. Optional choice contains `on`, `off`. Default is `on`.
         :param pulumi.Input[str] listener_id: The ID of the Listener.
         :param pulumi.Input[str] listener_name: The name of the Listener.
         :param pulumi.Input[str] load_balancer_id: The Id of the load balancer.
+        :param pulumi.Input[str] pca_leaf_certificate_id: The CA certificate id associated with the listener. When the value of ca_certificate_source is pca_leaf, pca_leaf_certificate_id parameter must be specified.
+        :param pulumi.Input[str] pca_root_ca_certificate_id: The CA certificate id associated with the listener. When the value of ca_certificate_source is pca_root, pca_root_ca_certificate_id parameter must be specified.
+        :param pulumi.Input[str] pca_sub_ca_certificate_id: The CA certificate id associated with the listener. When the value of ca_certificate_source is pca_sub, pca_sub_ca_certificate_id parameter must be specified.
         :param pulumi.Input[int] port: The port receiving request of the Listener, the value range in 1~65535.
         :param pulumi.Input[str] protocol: The protocol of the Listener. Optional choice contains `HTTP`, `HTTPS`.
         :param pulumi.Input[str] server_group_id: The server group id associated with the listener.
+        :param pulumi.Input[Sequence[pulumi.Input['ListenerTagArgs']]] tags: Tags.
         """
+        if access_log_record_customized_headers_enabled is not None:
+            pulumi.set(__self__, "access_log_record_customized_headers_enabled", access_log_record_customized_headers_enabled)
         if acl_ids is not None:
             pulumi.set(__self__, "acl_ids", acl_ids)
         if acl_status is not None:
@@ -337,6 +467,8 @@ class _ListenerState:
             pulumi.set(__self__, "acl_type", acl_type)
         if ca_certificate_id is not None:
             pulumi.set(__self__, "ca_certificate_id", ca_certificate_id)
+        if ca_certificate_source is not None:
+            pulumi.set(__self__, "ca_certificate_source", ca_certificate_source)
         if cert_center_certificate_id is not None:
             pulumi.set(__self__, "cert_center_certificate_id", cert_center_certificate_id)
         if certificate_id is not None:
@@ -347,6 +479,8 @@ class _ListenerState:
             pulumi.set(__self__, "customized_cfg_id", customized_cfg_id)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if domain_extensions is not None:
+            pulumi.set(__self__, "domain_extensions", domain_extensions)
         if enable_http2 is not None:
             pulumi.set(__self__, "enable_http2", enable_http2)
         if enable_quic is not None:
@@ -359,12 +493,32 @@ class _ListenerState:
             pulumi.set(__self__, "listener_name", listener_name)
         if load_balancer_id is not None:
             pulumi.set(__self__, "load_balancer_id", load_balancer_id)
+        if pca_leaf_certificate_id is not None:
+            pulumi.set(__self__, "pca_leaf_certificate_id", pca_leaf_certificate_id)
+        if pca_root_ca_certificate_id is not None:
+            pulumi.set(__self__, "pca_root_ca_certificate_id", pca_root_ca_certificate_id)
+        if pca_sub_ca_certificate_id is not None:
+            pulumi.set(__self__, "pca_sub_ca_certificate_id", pca_sub_ca_certificate_id)
         if port is not None:
             pulumi.set(__self__, "port", port)
         if protocol is not None:
             pulumi.set(__self__, "protocol", protocol)
         if server_group_id is not None:
             pulumi.set(__self__, "server_group_id", server_group_id)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @property
+    @pulumi.getter(name="accessLogRecordCustomizedHeadersEnabled")
+    def access_log_record_customized_headers_enabled(self) -> Optional[pulumi.Input[str]]:
+        """
+        Whether to enable custom headers in access logs. Default is `off`.
+        """
+        return pulumi.get(self, "access_log_record_customized_headers_enabled")
+
+    @access_log_record_customized_headers_enabled.setter
+    def access_log_record_customized_headers_enabled(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "access_log_record_customized_headers_enabled", value)
 
     @property
     @pulumi.getter(name="aclIds")
@@ -406,13 +560,25 @@ class _ListenerState:
     @pulumi.getter(name="caCertificateId")
     def ca_certificate_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The CA certificate id associated with the listener.
+        The CA certificate id associated with the listener. When the value of ca_certificate_source is alb, the ca_certificate_id parameter must be specified.
         """
         return pulumi.get(self, "ca_certificate_id")
 
     @ca_certificate_id.setter
     def ca_certificate_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ca_certificate_id", value)
+
+    @property
+    @pulumi.getter(name="caCertificateSource")
+    def ca_certificate_source(self) -> Optional[pulumi.Input[str]]:
+        """
+        The source of the CA certificate associated with the listener. This parameter is only valid for HTTPS listeners and is used for two-way authentication. Valid values: `alb`, `pca_root`, `pca_sub`.
+        """
+        return pulumi.get(self, "ca_certificate_source")
+
+    @ca_certificate_source.setter
+    def ca_certificate_source(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ca_certificate_source", value)
 
     @property
     @pulumi.getter(name="certCenterCertificateId")
@@ -473,6 +639,18 @@ class _ListenerState:
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="domainExtensions")
+    def domain_extensions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ListenerDomainExtensionArgs']]]]:
+        """
+        The domain extensions of the Listener.
+        """
+        return pulumi.get(self, "domain_extensions")
+
+    @domain_extensions.setter
+    def domain_extensions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ListenerDomainExtensionArgs']]]]):
+        pulumi.set(self, "domain_extensions", value)
 
     @property
     @pulumi.getter(name="enableHttp2")
@@ -547,6 +725,42 @@ class _ListenerState:
         pulumi.set(self, "load_balancer_id", value)
 
     @property
+    @pulumi.getter(name="pcaLeafCertificateId")
+    def pca_leaf_certificate_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The CA certificate id associated with the listener. When the value of ca_certificate_source is pca_leaf, pca_leaf_certificate_id parameter must be specified.
+        """
+        return pulumi.get(self, "pca_leaf_certificate_id")
+
+    @pca_leaf_certificate_id.setter
+    def pca_leaf_certificate_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pca_leaf_certificate_id", value)
+
+    @property
+    @pulumi.getter(name="pcaRootCaCertificateId")
+    def pca_root_ca_certificate_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The CA certificate id associated with the listener. When the value of ca_certificate_source is pca_root, pca_root_ca_certificate_id parameter must be specified.
+        """
+        return pulumi.get(self, "pca_root_ca_certificate_id")
+
+    @pca_root_ca_certificate_id.setter
+    def pca_root_ca_certificate_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pca_root_ca_certificate_id", value)
+
+    @property
+    @pulumi.getter(name="pcaSubCaCertificateId")
+    def pca_sub_ca_certificate_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The CA certificate id associated with the listener. When the value of ca_certificate_source is pca_sub, pca_sub_ca_certificate_id parameter must be specified.
+        """
+        return pulumi.get(self, "pca_sub_ca_certificate_id")
+
+    @pca_sub_ca_certificate_id.setter
+    def pca_sub_ca_certificate_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pca_sub_ca_certificate_id", value)
+
+    @property
     @pulumi.getter
     def port(self) -> Optional[pulumi.Input[int]]:
         """
@@ -582,29 +796,48 @@ class _ListenerState:
     def server_group_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "server_group_id", value)
 
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ListenerTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ListenerTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
 
 class Listener(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 access_log_record_customized_headers_enabled: Optional[pulumi.Input[str]] = None,
                  acl_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  acl_status: Optional[pulumi.Input[str]] = None,
                  acl_type: Optional[pulumi.Input[str]] = None,
                  ca_certificate_id: Optional[pulumi.Input[str]] = None,
+                 ca_certificate_source: Optional[pulumi.Input[str]] = None,
                  cert_center_certificate_id: Optional[pulumi.Input[str]] = None,
                  certificate_id: Optional[pulumi.Input[str]] = None,
                  certificate_source: Optional[pulumi.Input[str]] = None,
                  customized_cfg_id: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 domain_extensions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ListenerDomainExtensionArgs']]]]] = None,
                  enable_http2: Optional[pulumi.Input[str]] = None,
                  enable_quic: Optional[pulumi.Input[str]] = None,
                  enabled: Optional[pulumi.Input[str]] = None,
                  listener_name: Optional[pulumi.Input[str]] = None,
                  load_balancer_id: Optional[pulumi.Input[str]] = None,
+                 pca_leaf_certificate_id: Optional[pulumi.Input[str]] = None,
+                 pca_root_ca_certificate_id: Optional[pulumi.Input[str]] = None,
+                 pca_sub_ca_certificate_id: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[int]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
                  server_group_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ListenerTagArgs']]]]] = None,
                  __props__=None):
         """
         Provides a resource to manage alb listener
@@ -666,7 +899,19 @@ class Listener(pulumi.CustomResource):
             certificate_source="alb",
             certificate_id=foo_certificate.id,
             server_group_id=foo_server_group.id,
-            description="acc test listener")
+            description="acc test listener",
+            access_log_record_customized_headers_enabled="off",
+            ca_certificate_source="alb",
+            ca_certificate_id="cert-xoekc6lpu9s054ov5eo*****",
+            domain_extensions=[volcengine.alb.ListenerDomainExtensionArgs(
+                domain="example.com",
+                certificate_source="alb",
+                certificate_id="cert-1pf4a8k8tokcg845wf******",
+            )],
+            tags=[volcengine.alb.ListenerTagArgs(
+                key="key1",
+                value="value2",
+            )])
         ```
 
         ## Import
@@ -679,23 +924,30 @@ class Listener(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] access_log_record_customized_headers_enabled: Whether to enable custom headers in access logs. Default is `off`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] acl_ids: The id list of the Acl. When the AclStatus parameter is configured as on, AclType and AclIds.N are required.
         :param pulumi.Input[str] acl_status: The enable status of Acl. Optional choice contains `on`, `off`. Default is `off`.
         :param pulumi.Input[str] acl_type: The type of the Acl. Optional choice contains `white`, `black`. When the AclStatus parameter is configured as on, AclType and AclIds.N are required.
-        :param pulumi.Input[str] ca_certificate_id: The CA certificate id associated with the listener.
+        :param pulumi.Input[str] ca_certificate_id: The CA certificate id associated with the listener. When the value of ca_certificate_source is alb, the ca_certificate_id parameter must be specified.
+        :param pulumi.Input[str] ca_certificate_source: The source of the CA certificate associated with the listener. This parameter is only valid for HTTPS listeners and is used for two-way authentication. Valid values: `alb`, `pca_root`, `pca_sub`.
         :param pulumi.Input[str] cert_center_certificate_id: The certificate id associated with the listener. Source is `cert_center`.
         :param pulumi.Input[str] certificate_id: The certificate id associated with the listener. Source is `alb`.
         :param pulumi.Input[str] certificate_source: The source of the certificate. Valid values: `alb`, `cert_center`. Default is `alb`.
         :param pulumi.Input[str] customized_cfg_id: Personalized configuration ID, with a value of " " when not bound.
         :param pulumi.Input[str] description: The description of the Listener.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ListenerDomainExtensionArgs']]]] domain_extensions: The domain extensions of the Listener.
         :param pulumi.Input[str] enable_http2: The HTTP2 feature switch,valid value is on or off. Default is `off`.
         :param pulumi.Input[str] enable_quic: The QUIC feature switch,valid value is on or off. Default is `off`.
         :param pulumi.Input[str] enabled: The enable status of the Listener. Optional choice contains `on`, `off`. Default is `on`.
         :param pulumi.Input[str] listener_name: The name of the Listener.
         :param pulumi.Input[str] load_balancer_id: The Id of the load balancer.
+        :param pulumi.Input[str] pca_leaf_certificate_id: The CA certificate id associated with the listener. When the value of ca_certificate_source is pca_leaf, pca_leaf_certificate_id parameter must be specified.
+        :param pulumi.Input[str] pca_root_ca_certificate_id: The CA certificate id associated with the listener. When the value of ca_certificate_source is pca_root, pca_root_ca_certificate_id parameter must be specified.
+        :param pulumi.Input[str] pca_sub_ca_certificate_id: The CA certificate id associated with the listener. When the value of ca_certificate_source is pca_sub, pca_sub_ca_certificate_id parameter must be specified.
         :param pulumi.Input[int] port: The port receiving request of the Listener, the value range in 1~65535.
         :param pulumi.Input[str] protocol: The protocol of the Listener. Optional choice contains `HTTP`, `HTTPS`.
         :param pulumi.Input[str] server_group_id: The server group id associated with the listener.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ListenerTagArgs']]]] tags: Tags.
         """
         ...
     @overload
@@ -763,7 +1015,19 @@ class Listener(pulumi.CustomResource):
             certificate_source="alb",
             certificate_id=foo_certificate.id,
             server_group_id=foo_server_group.id,
-            description="acc test listener")
+            description="acc test listener",
+            access_log_record_customized_headers_enabled="off",
+            ca_certificate_source="alb",
+            ca_certificate_id="cert-xoekc6lpu9s054ov5eo*****",
+            domain_extensions=[volcengine.alb.ListenerDomainExtensionArgs(
+                domain="example.com",
+                certificate_source="alb",
+                certificate_id="cert-1pf4a8k8tokcg845wf******",
+            )],
+            tags=[volcengine.alb.ListenerTagArgs(
+                key="key1",
+                value="value2",
+            )])
         ```
 
         ## Import
@@ -789,23 +1053,30 @@ class Listener(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 access_log_record_customized_headers_enabled: Optional[pulumi.Input[str]] = None,
                  acl_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  acl_status: Optional[pulumi.Input[str]] = None,
                  acl_type: Optional[pulumi.Input[str]] = None,
                  ca_certificate_id: Optional[pulumi.Input[str]] = None,
+                 ca_certificate_source: Optional[pulumi.Input[str]] = None,
                  cert_center_certificate_id: Optional[pulumi.Input[str]] = None,
                  certificate_id: Optional[pulumi.Input[str]] = None,
                  certificate_source: Optional[pulumi.Input[str]] = None,
                  customized_cfg_id: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 domain_extensions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ListenerDomainExtensionArgs']]]]] = None,
                  enable_http2: Optional[pulumi.Input[str]] = None,
                  enable_quic: Optional[pulumi.Input[str]] = None,
                  enabled: Optional[pulumi.Input[str]] = None,
                  listener_name: Optional[pulumi.Input[str]] = None,
                  load_balancer_id: Optional[pulumi.Input[str]] = None,
+                 pca_leaf_certificate_id: Optional[pulumi.Input[str]] = None,
+                 pca_root_ca_certificate_id: Optional[pulumi.Input[str]] = None,
+                 pca_sub_ca_certificate_id: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[int]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
                  server_group_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ListenerTagArgs']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -815,15 +1086,18 @@ class Listener(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ListenerArgs.__new__(ListenerArgs)
 
+            __props__.__dict__["access_log_record_customized_headers_enabled"] = access_log_record_customized_headers_enabled
             __props__.__dict__["acl_ids"] = acl_ids
             __props__.__dict__["acl_status"] = acl_status
             __props__.__dict__["acl_type"] = acl_type
             __props__.__dict__["ca_certificate_id"] = ca_certificate_id
+            __props__.__dict__["ca_certificate_source"] = ca_certificate_source
             __props__.__dict__["cert_center_certificate_id"] = cert_center_certificate_id
             __props__.__dict__["certificate_id"] = certificate_id
             __props__.__dict__["certificate_source"] = certificate_source
             __props__.__dict__["customized_cfg_id"] = customized_cfg_id
             __props__.__dict__["description"] = description
+            __props__.__dict__["domain_extensions"] = domain_extensions
             __props__.__dict__["enable_http2"] = enable_http2
             __props__.__dict__["enable_quic"] = enable_quic
             __props__.__dict__["enabled"] = enabled
@@ -831,6 +1105,9 @@ class Listener(pulumi.CustomResource):
             if load_balancer_id is None and not opts.urn:
                 raise TypeError("Missing required property 'load_balancer_id'")
             __props__.__dict__["load_balancer_id"] = load_balancer_id
+            __props__.__dict__["pca_leaf_certificate_id"] = pca_leaf_certificate_id
+            __props__.__dict__["pca_root_ca_certificate_id"] = pca_root_ca_certificate_id
+            __props__.__dict__["pca_sub_ca_certificate_id"] = pca_sub_ca_certificate_id
             if port is None and not opts.urn:
                 raise TypeError("Missing required property 'port'")
             __props__.__dict__["port"] = port
@@ -840,6 +1117,7 @@ class Listener(pulumi.CustomResource):
             if server_group_id is None and not opts.urn:
                 raise TypeError("Missing required property 'server_group_id'")
             __props__.__dict__["server_group_id"] = server_group_id
+            __props__.__dict__["tags"] = tags
             __props__.__dict__["listener_id"] = None
         super(Listener, __self__).__init__(
             'volcengine:alb/listener:Listener',
@@ -851,24 +1129,31 @@ class Listener(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            access_log_record_customized_headers_enabled: Optional[pulumi.Input[str]] = None,
             acl_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             acl_status: Optional[pulumi.Input[str]] = None,
             acl_type: Optional[pulumi.Input[str]] = None,
             ca_certificate_id: Optional[pulumi.Input[str]] = None,
+            ca_certificate_source: Optional[pulumi.Input[str]] = None,
             cert_center_certificate_id: Optional[pulumi.Input[str]] = None,
             certificate_id: Optional[pulumi.Input[str]] = None,
             certificate_source: Optional[pulumi.Input[str]] = None,
             customized_cfg_id: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
+            domain_extensions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ListenerDomainExtensionArgs']]]]] = None,
             enable_http2: Optional[pulumi.Input[str]] = None,
             enable_quic: Optional[pulumi.Input[str]] = None,
             enabled: Optional[pulumi.Input[str]] = None,
             listener_id: Optional[pulumi.Input[str]] = None,
             listener_name: Optional[pulumi.Input[str]] = None,
             load_balancer_id: Optional[pulumi.Input[str]] = None,
+            pca_leaf_certificate_id: Optional[pulumi.Input[str]] = None,
+            pca_root_ca_certificate_id: Optional[pulumi.Input[str]] = None,
+            pca_sub_ca_certificate_id: Optional[pulumi.Input[str]] = None,
             port: Optional[pulumi.Input[int]] = None,
             protocol: Optional[pulumi.Input[str]] = None,
-            server_group_id: Optional[pulumi.Input[str]] = None) -> 'Listener':
+            server_group_id: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ListenerTagArgs']]]]] = None) -> 'Listener':
         """
         Get an existing Listener resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -876,48 +1161,70 @@ class Listener(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] access_log_record_customized_headers_enabled: Whether to enable custom headers in access logs. Default is `off`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] acl_ids: The id list of the Acl. When the AclStatus parameter is configured as on, AclType and AclIds.N are required.
         :param pulumi.Input[str] acl_status: The enable status of Acl. Optional choice contains `on`, `off`. Default is `off`.
         :param pulumi.Input[str] acl_type: The type of the Acl. Optional choice contains `white`, `black`. When the AclStatus parameter is configured as on, AclType and AclIds.N are required.
-        :param pulumi.Input[str] ca_certificate_id: The CA certificate id associated with the listener.
+        :param pulumi.Input[str] ca_certificate_id: The CA certificate id associated with the listener. When the value of ca_certificate_source is alb, the ca_certificate_id parameter must be specified.
+        :param pulumi.Input[str] ca_certificate_source: The source of the CA certificate associated with the listener. This parameter is only valid for HTTPS listeners and is used for two-way authentication. Valid values: `alb`, `pca_root`, `pca_sub`.
         :param pulumi.Input[str] cert_center_certificate_id: The certificate id associated with the listener. Source is `cert_center`.
         :param pulumi.Input[str] certificate_id: The certificate id associated with the listener. Source is `alb`.
         :param pulumi.Input[str] certificate_source: The source of the certificate. Valid values: `alb`, `cert_center`. Default is `alb`.
         :param pulumi.Input[str] customized_cfg_id: Personalized configuration ID, with a value of " " when not bound.
         :param pulumi.Input[str] description: The description of the Listener.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ListenerDomainExtensionArgs']]]] domain_extensions: The domain extensions of the Listener.
         :param pulumi.Input[str] enable_http2: The HTTP2 feature switch,valid value is on or off. Default is `off`.
         :param pulumi.Input[str] enable_quic: The QUIC feature switch,valid value is on or off. Default is `off`.
         :param pulumi.Input[str] enabled: The enable status of the Listener. Optional choice contains `on`, `off`. Default is `on`.
         :param pulumi.Input[str] listener_id: The ID of the Listener.
         :param pulumi.Input[str] listener_name: The name of the Listener.
         :param pulumi.Input[str] load_balancer_id: The Id of the load balancer.
+        :param pulumi.Input[str] pca_leaf_certificate_id: The CA certificate id associated with the listener. When the value of ca_certificate_source is pca_leaf, pca_leaf_certificate_id parameter must be specified.
+        :param pulumi.Input[str] pca_root_ca_certificate_id: The CA certificate id associated with the listener. When the value of ca_certificate_source is pca_root, pca_root_ca_certificate_id parameter must be specified.
+        :param pulumi.Input[str] pca_sub_ca_certificate_id: The CA certificate id associated with the listener. When the value of ca_certificate_source is pca_sub, pca_sub_ca_certificate_id parameter must be specified.
         :param pulumi.Input[int] port: The port receiving request of the Listener, the value range in 1~65535.
         :param pulumi.Input[str] protocol: The protocol of the Listener. Optional choice contains `HTTP`, `HTTPS`.
         :param pulumi.Input[str] server_group_id: The server group id associated with the listener.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ListenerTagArgs']]]] tags: Tags.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _ListenerState.__new__(_ListenerState)
 
+        __props__.__dict__["access_log_record_customized_headers_enabled"] = access_log_record_customized_headers_enabled
         __props__.__dict__["acl_ids"] = acl_ids
         __props__.__dict__["acl_status"] = acl_status
         __props__.__dict__["acl_type"] = acl_type
         __props__.__dict__["ca_certificate_id"] = ca_certificate_id
+        __props__.__dict__["ca_certificate_source"] = ca_certificate_source
         __props__.__dict__["cert_center_certificate_id"] = cert_center_certificate_id
         __props__.__dict__["certificate_id"] = certificate_id
         __props__.__dict__["certificate_source"] = certificate_source
         __props__.__dict__["customized_cfg_id"] = customized_cfg_id
         __props__.__dict__["description"] = description
+        __props__.__dict__["domain_extensions"] = domain_extensions
         __props__.__dict__["enable_http2"] = enable_http2
         __props__.__dict__["enable_quic"] = enable_quic
         __props__.__dict__["enabled"] = enabled
         __props__.__dict__["listener_id"] = listener_id
         __props__.__dict__["listener_name"] = listener_name
         __props__.__dict__["load_balancer_id"] = load_balancer_id
+        __props__.__dict__["pca_leaf_certificate_id"] = pca_leaf_certificate_id
+        __props__.__dict__["pca_root_ca_certificate_id"] = pca_root_ca_certificate_id
+        __props__.__dict__["pca_sub_ca_certificate_id"] = pca_sub_ca_certificate_id
         __props__.__dict__["port"] = port
         __props__.__dict__["protocol"] = protocol
         __props__.__dict__["server_group_id"] = server_group_id
+        __props__.__dict__["tags"] = tags
         return Listener(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="accessLogRecordCustomizedHeadersEnabled")
+    def access_log_record_customized_headers_enabled(self) -> pulumi.Output[Optional[str]]:
+        """
+        Whether to enable custom headers in access logs. Default is `off`.
+        """
+        return pulumi.get(self, "access_log_record_customized_headers_enabled")
 
     @property
     @pulumi.getter(name="aclIds")
@@ -947,9 +1254,17 @@ class Listener(pulumi.CustomResource):
     @pulumi.getter(name="caCertificateId")
     def ca_certificate_id(self) -> pulumi.Output[Optional[str]]:
         """
-        The CA certificate id associated with the listener.
+        The CA certificate id associated with the listener. When the value of ca_certificate_source is alb, the ca_certificate_id parameter must be specified.
         """
         return pulumi.get(self, "ca_certificate_id")
+
+    @property
+    @pulumi.getter(name="caCertificateSource")
+    def ca_certificate_source(self) -> pulumi.Output[Optional[str]]:
+        """
+        The source of the CA certificate associated with the listener. This parameter is only valid for HTTPS listeners and is used for two-way authentication. Valid values: `alb`, `pca_root`, `pca_sub`.
+        """
+        return pulumi.get(self, "ca_certificate_source")
 
     @property
     @pulumi.getter(name="certCenterCertificateId")
@@ -990,6 +1305,14 @@ class Listener(pulumi.CustomResource):
         The description of the Listener.
         """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="domainExtensions")
+    def domain_extensions(self) -> pulumi.Output[Optional[Sequence['outputs.ListenerDomainExtension']]]:
+        """
+        The domain extensions of the Listener.
+        """
+        return pulumi.get(self, "domain_extensions")
 
     @property
     @pulumi.getter(name="enableHttp2")
@@ -1040,6 +1363,30 @@ class Listener(pulumi.CustomResource):
         return pulumi.get(self, "load_balancer_id")
 
     @property
+    @pulumi.getter(name="pcaLeafCertificateId")
+    def pca_leaf_certificate_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        The CA certificate id associated with the listener. When the value of ca_certificate_source is pca_leaf, pca_leaf_certificate_id parameter must be specified.
+        """
+        return pulumi.get(self, "pca_leaf_certificate_id")
+
+    @property
+    @pulumi.getter(name="pcaRootCaCertificateId")
+    def pca_root_ca_certificate_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        The CA certificate id associated with the listener. When the value of ca_certificate_source is pca_root, pca_root_ca_certificate_id parameter must be specified.
+        """
+        return pulumi.get(self, "pca_root_ca_certificate_id")
+
+    @property
+    @pulumi.getter(name="pcaSubCaCertificateId")
+    def pca_sub_ca_certificate_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        The CA certificate id associated with the listener. When the value of ca_certificate_source is pca_sub, pca_sub_ca_certificate_id parameter must be specified.
+        """
+        return pulumi.get(self, "pca_sub_ca_certificate_id")
+
+    @property
     @pulumi.getter
     def port(self) -> pulumi.Output[int]:
         """
@@ -1062,4 +1409,12 @@ class Listener(pulumi.CustomResource):
         The server group id associated with the listener.
         """
         return pulumi.get(self, "server_group_id")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.ListenerTag']]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 

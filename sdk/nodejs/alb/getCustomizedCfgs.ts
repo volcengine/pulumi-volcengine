@@ -28,6 +28,7 @@ export function getCustomizedCfgs(args?: GetCustomizedCfgsArgs, opts?: pulumi.In
         "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
         "projectName": args.projectName,
+        "tags": args.tags,
     }, opts);
 }
 
@@ -59,6 +60,10 @@ export interface GetCustomizedCfgsArgs {
      * The project name of the CustomizedCfg.
      */
     projectName?: string;
+    /**
+     * Tags.
+     */
+    tags?: inputs.alb.GetCustomizedCfgsTag[];
 }
 
 /**
@@ -88,6 +93,10 @@ export interface GetCustomizedCfgsResult {
      * The project name of CustomizedCfg.
      */
     readonly projectName?: string;
+    /**
+     * Tags.
+     */
+    readonly tags?: outputs.alb.GetCustomizedCfgsTag[];
     /**
      * The total count of CustomizedCfg query.
      */
@@ -136,4 +145,8 @@ export interface GetCustomizedCfgsOutputArgs {
      * The project name of the CustomizedCfg.
      */
     projectName?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.alb.GetCustomizedCfgsTagArgs>[]>;
 }
