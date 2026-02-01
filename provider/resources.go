@@ -16,8 +16,6 @@ package volcengine
 
 import (
 	"fmt"
-	"path/filepath"
-
 	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
@@ -26,6 +24,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
 	"github.com/volcengine/pulumi-volcengine/provider/pkg/version"
 	"github.com/volcengine/terraform-provider-volcengine/volcengine"
+	"path/filepath"
 )
 
 // all of the token components used below.
