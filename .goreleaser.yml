@@ -19,6 +19,7 @@ builds:
     ldflags:
       - -X github.com/volcengine/pulumi-volcengine/provider/pkg/version.Version={{.Tag}}
     main: ./cmd/pulumi-resource-volcengine/
+    parallelism: 2
 changelog:
   skip: true
 release:
