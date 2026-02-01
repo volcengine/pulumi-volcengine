@@ -21,6 +21,6 @@ import (
 )
 
 func main() {
-	// Modify the path to point to the new provider
+	// modify the path to point to a new provider
 	tfgen.Main("volcengine", version.Version, volcengine.Provider())
 }
