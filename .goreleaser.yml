@@ -16,6 +16,9 @@ builds:
       - darwin
       - windows
       - linux
+    # 限制并行构建数量，减少内存使用
+    gobuildflags:
+      - -p=1
     ldflags:
       - -X github.com/volcengine/pulumi-volcengine/provider/pkg/version.Version={{.Tag}}
     main: ./cmd/pulumi-resource-volcengine/
