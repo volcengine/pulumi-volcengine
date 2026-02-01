@@ -57,7 +57,7 @@ class ListenerArgs:
         :param pulumi.Input[str] certificate_source: The source of the certificate. Valid values: `alb`, `cert_center`. Default is `alb`.
         :param pulumi.Input[str] customized_cfg_id: Personalized configuration ID, with a value of " " when not bound.
         :param pulumi.Input[str] description: The description of the Listener.
-        :param pulumi.Input[Sequence[pulumi.Input['ListenerDomainExtensionArgs']]] domain_extensions: The domain extensions of the Listener.
+        :param pulumi.Input[Sequence[pulumi.Input['ListenerDomainExtensionArgs']]] domain_extensions: The domain extensions of the Listener. Only HTTPS listener is effective.
         :param pulumi.Input[str] enable_http2: The HTTP2 feature switch,valid value is on or off. Default is `off`.
         :param pulumi.Input[str] enable_quic: The QUIC feature switch,valid value is on or off. Default is `off`.
         :param pulumi.Input[str] enabled: The enable status of the Listener. Optional choice contains `on`, `off`. Default is `on`.
@@ -296,7 +296,7 @@ class ListenerArgs:
     @pulumi.getter(name="domainExtensions")
     def domain_extensions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ListenerDomainExtensionArgs']]]]:
         """
-        The domain extensions of the Listener.
+        The domain extensions of the Listener. Only HTTPS listener is effective.
         """
         return pulumi.get(self, "domain_extensions")
 
@@ -442,7 +442,7 @@ class _ListenerState:
         :param pulumi.Input[str] certificate_source: The source of the certificate. Valid values: `alb`, `cert_center`. Default is `alb`.
         :param pulumi.Input[str] customized_cfg_id: Personalized configuration ID, with a value of " " when not bound.
         :param pulumi.Input[str] description: The description of the Listener.
-        :param pulumi.Input[Sequence[pulumi.Input['ListenerDomainExtensionArgs']]] domain_extensions: The domain extensions of the Listener.
+        :param pulumi.Input[Sequence[pulumi.Input['ListenerDomainExtensionArgs']]] domain_extensions: The domain extensions of the Listener. Only HTTPS listener is effective.
         :param pulumi.Input[str] enable_http2: The HTTP2 feature switch,valid value is on or off. Default is `off`.
         :param pulumi.Input[str] enable_quic: The QUIC feature switch,valid value is on or off. Default is `off`.
         :param pulumi.Input[str] enabled: The enable status of the Listener. Optional choice contains `on`, `off`. Default is `on`.
@@ -644,7 +644,7 @@ class _ListenerState:
     @pulumi.getter(name="domainExtensions")
     def domain_extensions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ListenerDomainExtensionArgs']]]]:
         """
-        The domain extensions of the Listener.
+        The domain extensions of the Listener. Only HTTPS listener is effective.
         """
         return pulumi.get(self, "domain_extensions")
 
@@ -935,7 +935,7 @@ class Listener(pulumi.CustomResource):
         :param pulumi.Input[str] certificate_source: The source of the certificate. Valid values: `alb`, `cert_center`. Default is `alb`.
         :param pulumi.Input[str] customized_cfg_id: Personalized configuration ID, with a value of " " when not bound.
         :param pulumi.Input[str] description: The description of the Listener.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ListenerDomainExtensionArgs']]]] domain_extensions: The domain extensions of the Listener.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ListenerDomainExtensionArgs']]]] domain_extensions: The domain extensions of the Listener. Only HTTPS listener is effective.
         :param pulumi.Input[str] enable_http2: The HTTP2 feature switch,valid value is on or off. Default is `off`.
         :param pulumi.Input[str] enable_quic: The QUIC feature switch,valid value is on or off. Default is `off`.
         :param pulumi.Input[str] enabled: The enable status of the Listener. Optional choice contains `on`, `off`. Default is `on`.
@@ -1172,7 +1172,7 @@ class Listener(pulumi.CustomResource):
         :param pulumi.Input[str] certificate_source: The source of the certificate. Valid values: `alb`, `cert_center`. Default is `alb`.
         :param pulumi.Input[str] customized_cfg_id: Personalized configuration ID, with a value of " " when not bound.
         :param pulumi.Input[str] description: The description of the Listener.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ListenerDomainExtensionArgs']]]] domain_extensions: The domain extensions of the Listener.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ListenerDomainExtensionArgs']]]] domain_extensions: The domain extensions of the Listener. Only HTTPS listener is effective.
         :param pulumi.Input[str] enable_http2: The HTTP2 feature switch,valid value is on or off. Default is `off`.
         :param pulumi.Input[str] enable_quic: The QUIC feature switch,valid value is on or off. Default is `off`.
         :param pulumi.Input[str] enabled: The enable status of the Listener. Optional choice contains `on`, `off`. Default is `on`.
@@ -1310,7 +1310,7 @@ class Listener(pulumi.CustomResource):
     @pulumi.getter(name="domainExtensions")
     def domain_extensions(self) -> pulumi.Output[Optional[Sequence['outputs.ListenerDomainExtension']]]:
         """
-        The domain extensions of the Listener.
+        The domain extensions of the Listener. Only HTTPS listener is effective.
         """
         return pulumi.get(self, "domain_extensions")
 

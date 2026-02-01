@@ -58,16 +58,25 @@ class GetAllCertificatesResult:
     @property
     @pulumi.getter(name="certificateName")
     def certificate_name(self) -> Optional[str]:
+        """
+        The name of the Certificate.
+        """
         return pulumi.get(self, "certificate_name")
 
     @property
     @pulumi.getter(name="certificateType")
     def certificate_type(self) -> Optional[str]:
+        """
+        The type of the Certificate.
+        """
         return pulumi.get(self, "certificate_type")
 
     @property
     @pulumi.getter
     def certificates(self) -> Sequence['outputs.GetAllCertificatesCertificateResult']:
+        """
+        The collection of Certificate query.
+        """
         return pulumi.get(self, "certificates")
 
     @property
@@ -96,16 +105,25 @@ class GetAllCertificatesResult:
     @property
     @pulumi.getter(name="projectName")
     def project_name(self) -> Optional[str]:
+        """
+        The ProjectName of the Certificate.
+        """
         return pulumi.get(self, "project_name")
 
     @property
     @pulumi.getter
     def tags(self) -> Optional[Sequence['outputs.GetAllCertificatesTagResult']]:
+        """
+        Tags.
+        """
         return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="totalCount")
     def total_count(self) -> int:
+        """
+        The total count of query.
+        """
         return pulumi.get(self, "total_count")
 
 
@@ -136,7 +154,32 @@ def get_all_certificates(certificate_name: Optional[str] = None,
                          tags: Optional[Sequence[pulumi.InputType['GetAllCertificatesTagArgs']]] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAllCertificatesResult:
     """
-    Use this data source to access information about an existing resource.
+    Use this data source to query detailed information of alb all certificates
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_volcengine as volcengine
+
+    default = volcengine.alb.get_all_certificates(ids=[
+            "cert-1pf4a8k8tokcg845wfariphc2",
+            "cert-xoekc6lpu9s054ov5eohm3bj",
+        ],
+        project_name="default",
+        tags=[volcengine.alb.GetAllCertificatesTagArgs(
+            key="key1",
+            value="value2",
+        )])
+    ```
+
+
+    :param str certificate_name: The Name of Certificate.
+    :param str certificate_type: The type of Certificate. Valid values: `CA`, `Server`.
+    :param Sequence[str] ids: A list of IDs.
+    :param str name_regex: A Name Regex of Resource.
+    :param str output_file: File name where to save data source results.
+    :param str project_name: The project name of Certificate.
+    :param Sequence[pulumi.InputType['GetAllCertificatesTagArgs']] tags: Tags.
     """
     __args__ = dict()
     __args__['certificateName'] = certificate_name
@@ -172,6 +215,31 @@ def get_all_certificates_output(certificate_name: Optional[pulumi.Input[Optional
                                 tags: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetAllCertificatesTagArgs']]]]] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAllCertificatesResult]:
     """
-    Use this data source to access information about an existing resource.
+    Use this data source to query detailed information of alb all certificates
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_volcengine as volcengine
+
+    default = volcengine.alb.get_all_certificates(ids=[
+            "cert-1pf4a8k8tokcg845wfariphc2",
+            "cert-xoekc6lpu9s054ov5eohm3bj",
+        ],
+        project_name="default",
+        tags=[volcengine.alb.GetAllCertificatesTagArgs(
+            key="key1",
+            value="value2",
+        )])
+    ```
+
+
+    :param str certificate_name: The Name of Certificate.
+    :param str certificate_type: The type of Certificate. Valid values: `CA`, `Server`.
+    :param Sequence[str] ids: A list of IDs.
+    :param str name_regex: A Name Regex of Resource.
+    :param str output_file: File name where to save data source results.
+    :param str project_name: The project name of Certificate.
+    :param Sequence[pulumi.InputType['GetAllCertificatesTagArgs']] tags: Tags.
     """
     ...

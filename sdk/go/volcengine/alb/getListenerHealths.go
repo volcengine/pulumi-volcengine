@@ -11,6 +11,37 @@ import (
 	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
+// Use this data source to query detailed information of alb listener healths
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/alb"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := alb.GetListenerHealths(ctx, &alb.GetListenerHealthsArgs{
+//				ListenerIds: []string{
+//					"lsn-xoetdjk3dzwg54ov5ewpam7c",
+//					"lsn-bdcxfof3fy808dv40ofappua",
+//				},
+//				OnlyUnHealthy: pulumi.BoolRef(true),
+//				ProjectName:   pulumi.StringRef("default"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func GetListenerHealths(ctx *pulumi.Context, args *GetListenerHealthsArgs, opts ...pulumi.InvokeOption) (*GetListenerHealthsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetListenerHealthsResult
@@ -23,22 +54,28 @@ func GetListenerHealths(ctx *pulumi.Context, args *GetListenerHealthsArgs, opts 
 
 // A collection of arguments for invoking getListenerHealths.
 type GetListenerHealthsArgs struct {
-	ListenerIds   []string `pulumi:"listenerIds"`
-	OnlyUnHealthy *bool    `pulumi:"onlyUnHealthy"`
-	OutputFile    *string  `pulumi:"outputFile"`
-	ProjectName   *string  `pulumi:"projectName"`
+	// A list of Listener IDs.
+	ListenerIds []string `pulumi:"listenerIds"`
+	// Whether to return only backend servers with abnormal health check status.
+	OnlyUnHealthy *bool `pulumi:"onlyUnHealthy"`
+	// File name where to save data source results.
+	OutputFile *string `pulumi:"outputFile"`
+	// The project name of the listener.
+	ProjectName *string `pulumi:"projectName"`
 }
 
 // A collection of values returned by getListenerHealths.
 type GetListenerHealthsResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id            string                       `pulumi:"id"`
-	ListenerIds   []string                     `pulumi:"listenerIds"`
+	Id          string   `pulumi:"id"`
+	ListenerIds []string `pulumi:"listenerIds"`
+	// The collection of listener health query.
 	Listeners     []GetListenerHealthsListener `pulumi:"listeners"`
 	OnlyUnHealthy *bool                        `pulumi:"onlyUnHealthy"`
 	OutputFile    *string                      `pulumi:"outputFile"`
 	ProjectName   *string                      `pulumi:"projectName"`
-	TotalCount    int                          `pulumi:"totalCount"`
+	// The total count of query.
+	TotalCount int `pulumi:"totalCount"`
 }
 
 func GetListenerHealthsOutput(ctx *pulumi.Context, args GetListenerHealthsOutputArgs, opts ...pulumi.InvokeOption) GetListenerHealthsResultOutput {
@@ -56,10 +93,14 @@ func GetListenerHealthsOutput(ctx *pulumi.Context, args GetListenerHealthsOutput
 
 // A collection of arguments for invoking getListenerHealths.
 type GetListenerHealthsOutputArgs struct {
-	ListenerIds   pulumi.StringArrayInput `pulumi:"listenerIds"`
-	OnlyUnHealthy pulumi.BoolPtrInput     `pulumi:"onlyUnHealthy"`
-	OutputFile    pulumi.StringPtrInput   `pulumi:"outputFile"`
-	ProjectName   pulumi.StringPtrInput   `pulumi:"projectName"`
+	// A list of Listener IDs.
+	ListenerIds pulumi.StringArrayInput `pulumi:"listenerIds"`
+	// Whether to return only backend servers with abnormal health check status.
+	OnlyUnHealthy pulumi.BoolPtrInput `pulumi:"onlyUnHealthy"`
+	// File name where to save data source results.
+	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// The project name of the listener.
+	ProjectName pulumi.StringPtrInput `pulumi:"projectName"`
 }
 
 func (GetListenerHealthsOutputArgs) ElementType() reflect.Type {
@@ -90,6 +131,7 @@ func (o GetListenerHealthsResultOutput) ListenerIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetListenerHealthsResult) []string { return v.ListenerIds }).(pulumi.StringArrayOutput)
 }
 
+// The collection of listener health query.
 func (o GetListenerHealthsResultOutput) Listeners() GetListenerHealthsListenerArrayOutput {
 	return o.ApplyT(func(v GetListenerHealthsResult) []GetListenerHealthsListener { return v.Listeners }).(GetListenerHealthsListenerArrayOutput)
 }
@@ -106,6 +148,7 @@ func (o GetListenerHealthsResultOutput) ProjectName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetListenerHealthsResult) *string { return v.ProjectName }).(pulumi.StringPtrOutput)
 }
 
+// The total count of query.
 func (o GetListenerHealthsResultOutput) TotalCount() pulumi.IntOutput {
 	return o.ApplyT(func(v GetListenerHealthsResult) int { return v.TotalCount }).(pulumi.IntOutput)
 }

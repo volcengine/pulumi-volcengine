@@ -133,6 +133,8 @@ type RulesArgs struct {
 	ListenerId string `pulumi:"listenerId"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
+	// Tags.
+	Tags []RulesTag `pulumi:"tags"`
 }
 
 // A collection of values returned by Rules.
@@ -144,6 +146,8 @@ type RulesResult struct {
 	OutputFile *string  `pulumi:"outputFile"`
 	// The collection of Rule query.
 	Rules []RulesRule `pulumi:"rules"`
+	// Tags.
+	Tags []RulesTag `pulumi:"tags"`
 }
 
 func RulesOutput(ctx *pulumi.Context, args RulesOutputArgs, opts ...pulumi.InvokeOption) RulesResultOutput {
@@ -167,6 +171,8 @@ type RulesOutputArgs struct {
 	ListenerId pulumi.StringInput `pulumi:"listenerId"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// Tags.
+	Tags RulesTagArrayInput `pulumi:"tags"`
 }
 
 func (RulesOutputArgs) ElementType() reflect.Type {
@@ -208,6 +214,11 @@ func (o RulesResultOutput) OutputFile() pulumi.StringPtrOutput {
 // The collection of Rule query.
 func (o RulesResultOutput) Rules() RulesRuleArrayOutput {
 	return o.ApplyT(func(v RulesResult) []RulesRule { return v.Rules }).(RulesRuleArrayOutput)
+}
+
+// Tags.
+func (o RulesResultOutput) Tags() RulesTagArrayOutput {
+	return o.ApplyT(func(v RulesResult) []RulesTag { return v.Tags }).(RulesTagArrayOutput)
 }
 
 func init() {

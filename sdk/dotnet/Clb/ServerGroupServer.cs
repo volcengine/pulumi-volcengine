@@ -57,6 +57,15 @@ namespace Pulumi.Volcengine.Clb
     ///         LoadBalancerId = fooClb.Id,
     ///         ServerGroupName = "acc-test-create",
     ///         Description = "hello demo11",
+    ///         Type = "instance",
+    ///     });
+    /// 
+    ///     var fooIpServerGroup = new Volcengine.Clb.ServerGroup("fooIpServerGroup", new()
+    ///     {
+    ///         LoadBalancerId = fooClb.Id,
+    ///         ServerGroupName = "acc-test-create-ip",
+    ///         Description = "hello demo ip server group",
+    ///         Type = "ip",
     ///     });
     /// 
     ///     var fooSecurityGroup = new Volcengine.Vpc.SecurityGroup("fooSecurityGroup", new()
@@ -91,6 +100,27 @@ namespace Pulumi.Volcengine.Clb
     ///         Description = "This is a acc test server",
     ///     });
     /// 
+    ///     var fooEni = new Volcengine.Clb.ServerGroupServer("fooEni", new()
+    ///     {
+    ///         ServerGroupId = fooServerGroup.Id,
+    ///         InstanceId = "eni-btgpz5my7ta85h0b2ur*****",
+    ///         Type = "eni",
+    ///         Weight = 100,
+    ///         Port = 8080,
+    ///         Description = "This is a acc test server use eni",
+    ///     });
+    /// 
+    ///     var fooIpServerGroupServer = new Volcengine.Clb.ServerGroupServer("fooIpServerGroupServer", new()
+    ///     {
+    ///         ServerGroupId = fooIpServerGroup.Id,
+    ///         InstanceId = "192.168.*.*",
+    ///         Ip = "192.168.*.*",
+    ///         Type = "ip",
+    ///         Weight = 80,
+    ///         Port = 400,
+    ///         Description = "This is a acc test server use ip",
+    ///     });
+    /// 
     /// });
     /// ```
     /// 
@@ -112,7 +142,7 @@ namespace Pulumi.Volcengine.Clb
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of ecs instance or the network card bound to ecs instance.
+        /// The ID of ecs instance or the network card bound to ecs instance. When the `type` is `ip`, this parameter is an IP address.
         /// </summary>
         [Output("instanceId")]
         public Output<string> InstanceId { get; private set; } = null!;
@@ -142,7 +172,7 @@ namespace Pulumi.Volcengine.Clb
         public Output<string> ServerId { get; private set; } = null!;
 
         /// <summary>
-        /// The type of instance. Optional choice contains `ecs`, `eni`.
+        /// The type of instance. Optional choice contains `ecs`, `eni`, `ip`. When the `type` of `server_group_id` is `ip`, only `ip` is supported.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -207,7 +237,7 @@ namespace Pulumi.Volcengine.Clb
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The ID of ecs instance or the network card bound to ecs instance.
+        /// The ID of ecs instance or the network card bound to ecs instance. When the `type` is `ip`, this parameter is an IP address.
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<string> InstanceId { get; set; } = null!;
@@ -231,7 +261,7 @@ namespace Pulumi.Volcengine.Clb
         public Input<string> ServerGroupId { get; set; } = null!;
 
         /// <summary>
-        /// The type of instance. Optional choice contains `ecs`, `eni`.
+        /// The type of instance. Optional choice contains `ecs`, `eni`, `ip`. When the `type` of `server_group_id` is `ip`, only `ip` is supported.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -257,7 +287,7 @@ namespace Pulumi.Volcengine.Clb
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The ID of ecs instance or the network card bound to ecs instance.
+        /// The ID of ecs instance or the network card bound to ecs instance. When the `type` is `ip`, this parameter is an IP address.
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }
@@ -287,7 +317,7 @@ namespace Pulumi.Volcengine.Clb
         public Input<string>? ServerId { get; set; }
 
         /// <summary>
-        /// The type of instance. Optional choice contains `ecs`, `eni`.
+        /// The type of instance. Optional choice contains `ecs`, `eni`, `ip`. When the `type` of `server_group_id` is `ip`, only `ip` is supported.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

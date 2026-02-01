@@ -203,7 +203,7 @@ namespace Pulumi.Volcengine.Alb
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// The domain extensions of the Listener.
+        /// The domain extensions of the Listener. Only HTTPS listener is effective.
         /// </summary>
         [Output("domainExtensions")]
         public Output<ImmutableArray<Outputs.ListenerDomainExtension>> DomainExtensions { get; private set; } = null!;
@@ -409,7 +409,7 @@ namespace Pulumi.Volcengine.Alb
         private InputList<Inputs.ListenerDomainExtensionArgs>? _domainExtensions;
 
         /// <summary>
-        /// The domain extensions of the Listener.
+        /// The domain extensions of the Listener. Only HTTPS listener is effective.
         /// </summary>
         public InputList<Inputs.ListenerDomainExtensionArgs> DomainExtensions
         {
@@ -579,7 +579,7 @@ namespace Pulumi.Volcengine.Alb
         private InputList<Inputs.ListenerDomainExtensionGetArgs>? _domainExtensions;
 
         /// <summary>
-        /// The domain extensions of the Listener.
+        /// The domain extensions of the Listener. Only HTTPS listener is effective.
         /// </summary>
         public InputList<Inputs.ListenerDomainExtensionGetArgs> DomainExtensions
         {

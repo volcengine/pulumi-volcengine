@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'GetRulesResult',
@@ -22,7 +23,7 @@ class GetRulesResult:
     """
     A collection of values returned by getRules.
     """
-    def __init__(__self__, id=None, ids=None, listener_id=None, output_file=None, rules=None):
+    def __init__(__self__, id=None, ids=None, listener_id=None, output_file=None, rules=None, tags=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -38,6 +39,9 @@ class GetRulesResult:
         if rules and not isinstance(rules, list):
             raise TypeError("Expected argument 'rules' to be a list")
         pulumi.set(__self__, "rules", rules)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter
@@ -70,6 +74,14 @@ class GetRulesResult:
         """
         return pulumi.get(self, "rules")
 
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.GetRulesTagResult']]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
 
 class AwaitableGetRulesResult(GetRulesResult):
     # pylint: disable=using-constant-test
@@ -81,12 +93,14 @@ class AwaitableGetRulesResult(GetRulesResult):
             ids=self.ids,
             listener_id=self.listener_id,
             output_file=self.output_file,
-            rules=self.rules)
+            rules=self.rules,
+            tags=self.tags)
 
 
 def get_rules(ids: Optional[Sequence[str]] = None,
               listener_id: Optional[str] = None,
               output_file: Optional[str] = None,
+              tags: Optional[Sequence[pulumi.InputType['GetRulesTagArgs']]] = None,
               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRulesResult:
     """
     Use this data source to query detailed information of clb rules
@@ -151,11 +165,13 @@ def get_rules(ids: Optional[Sequence[str]] = None,
     :param Sequence[str] ids: A list of Rule IDs.
     :param str listener_id: The Id of listener.
     :param str output_file: File name where to save data source results.
+    :param Sequence[pulumi.InputType['GetRulesTagArgs']] tags: Tags.
     """
     __args__ = dict()
     __args__['ids'] = ids
     __args__['listenerId'] = listener_id
     __args__['outputFile'] = output_file
+    __args__['tags'] = tags
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('volcengine:clb/getRules:getRules', __args__, opts=opts, typ=GetRulesResult).value
 
@@ -164,13 +180,15 @@ def get_rules(ids: Optional[Sequence[str]] = None,
         ids=pulumi.get(__ret__, 'ids'),
         listener_id=pulumi.get(__ret__, 'listener_id'),
         output_file=pulumi.get(__ret__, 'output_file'),
-        rules=pulumi.get(__ret__, 'rules'))
+        rules=pulumi.get(__ret__, 'rules'),
+        tags=pulumi.get(__ret__, 'tags'))
 
 
 @_utilities.lift_output_func(get_rules)
 def get_rules_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                      listener_id: Optional[pulumi.Input[str]] = None,
                      output_file: Optional[pulumi.Input[Optional[str]]] = None,
+                     tags: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetRulesTagArgs']]]]] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRulesResult]:
     """
     Use this data source to query detailed information of clb rules
@@ -235,5 +253,6 @@ def get_rules_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None
     :param Sequence[str] ids: A list of Rule IDs.
     :param str listener_id: The Id of listener.
     :param str output_file: File name where to save data source results.
+    :param Sequence[pulumi.InputType['GetRulesTagArgs']] tags: Tags.
     """
     ...

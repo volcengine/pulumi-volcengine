@@ -38,6 +38,10 @@ namespace Pulumi.Volcengine.Clb.Outputs
         /// </summary>
         public readonly string? Method;
         /// <summary>
+        /// The port for health check, with a value range of 1-65535.
+        /// </summary>
+        public readonly int? Port;
+        /// <summary>
         /// The response timeout of health check, default 2, range in 1~60..
         /// </summary>
         public readonly int? Timeout;
@@ -72,6 +76,8 @@ namespace Pulumi.Volcengine.Clb.Outputs
 
             string? method,
 
+            int? port,
+
             int? timeout,
 
             string? udpExpect,
@@ -88,6 +94,7 @@ namespace Pulumi.Volcengine.Clb.Outputs
             HttpCode = httpCode;
             Interval = interval;
             Method = method;
+            Port = port;
             Timeout = timeout;
             UdpExpect = udpExpect;
             UdpRequest = udpRequest;

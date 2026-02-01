@@ -30,11 +30,16 @@ import (
 //			_, err := tls.NewProject(ctx, "foo", &tls.ProjectArgs{
 //				Description:    pulumi.String("tf-desc"),
 //				IamProjectName: pulumi.String("default"),
-//				ProjectName:    pulumi.String("tf-test"),
+//				ProjectName:    pulumi.String("tf-project-m"),
+//				Region:         pulumi.String("cn-guilin-boe"),
 //				Tags: tls.ProjectTagArray{
 //					&tls.ProjectTagArgs{
 //						Key:   pulumi.String("k1"),
 //						Value: pulumi.String("v1"),
+//					},
+//					&tls.ProjectTagArgs{
+//						Key:   pulumi.String("k2"),
+//						Value: pulumi.String("v3"),
 //					},
 //				},
 //			})
@@ -57,20 +62,16 @@ import (
 type Project struct {
 	pulumi.CustomResourceState
 
-	// The create time of the tls project.
-	CreateTime pulumi.StringOutput `pulumi:"createTime"`
 	// The description of the tls project.
 	Description pulumi.StringOutput `pulumi:"description"`
 	// The IAM project name of the tls project.
 	IamProjectName pulumi.StringOutput `pulumi:"iamProjectName"`
-	// The inner net domain of the tls project.
-	InnerNetDomain pulumi.StringOutput `pulumi:"innerNetDomain"`
 	// The name of the tls project.
 	ProjectName pulumi.StringOutput `pulumi:"projectName"`
+	// The region of the tls project.
+	Region pulumi.StringOutput `pulumi:"region"`
 	// Tags.
 	Tags ProjectTagArrayOutput `pulumi:"tags"`
-	// The count of topics in the tls project.
-	TopicCount pulumi.IntOutput `pulumi:"topicCount"`
 }
 
 // NewProject registers a new resource with the given unique name, arguments, and options.
@@ -82,6 +83,9 @@ func NewProject(ctx *pulumi.Context,
 
 	if args.ProjectName == nil {
 		return nil, errors.New("invalid value for required argument 'ProjectName'")
+	}
+	if args.Region == nil {
+		return nil, errors.New("invalid value for required argument 'Region'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Project
@@ -106,37 +110,29 @@ func GetProject(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Project resources.
 type projectState struct {
-	// The create time of the tls project.
-	CreateTime *string `pulumi:"createTime"`
 	// The description of the tls project.
 	Description *string `pulumi:"description"`
 	// The IAM project name of the tls project.
 	IamProjectName *string `pulumi:"iamProjectName"`
-	// The inner net domain of the tls project.
-	InnerNetDomain *string `pulumi:"innerNetDomain"`
 	// The name of the tls project.
 	ProjectName *string `pulumi:"projectName"`
+	// The region of the tls project.
+	Region *string `pulumi:"region"`
 	// Tags.
 	Tags []ProjectTag `pulumi:"tags"`
-	// The count of topics in the tls project.
-	TopicCount *int `pulumi:"topicCount"`
 }
 
 type ProjectState struct {
-	// The create time of the tls project.
-	CreateTime pulumi.StringPtrInput
 	// The description of the tls project.
 	Description pulumi.StringPtrInput
 	// The IAM project name of the tls project.
 	IamProjectName pulumi.StringPtrInput
-	// The inner net domain of the tls project.
-	InnerNetDomain pulumi.StringPtrInput
 	// The name of the tls project.
 	ProjectName pulumi.StringPtrInput
+	// The region of the tls project.
+	Region pulumi.StringPtrInput
 	// Tags.
 	Tags ProjectTagArrayInput
-	// The count of topics in the tls project.
-	TopicCount pulumi.IntPtrInput
 }
 
 func (ProjectState) ElementType() reflect.Type {
@@ -150,6 +146,8 @@ type projectArgs struct {
 	IamProjectName *string `pulumi:"iamProjectName"`
 	// The name of the tls project.
 	ProjectName string `pulumi:"projectName"`
+	// The region of the tls project.
+	Region string `pulumi:"region"`
 	// Tags.
 	Tags []ProjectTag `pulumi:"tags"`
 }
@@ -162,6 +160,8 @@ type ProjectArgs struct {
 	IamProjectName pulumi.StringPtrInput
 	// The name of the tls project.
 	ProjectName pulumi.StringInput
+	// The region of the tls project.
+	Region pulumi.StringInput
 	// Tags.
 	Tags ProjectTagArrayInput
 }
@@ -253,11 +253,6 @@ func (o ProjectOutput) ToProjectOutputWithContext(ctx context.Context) ProjectOu
 	return o
 }
 
-// The create time of the tls project.
-func (o ProjectOutput) CreateTime() pulumi.StringOutput {
-	return o.ApplyT(func(v *Project) pulumi.StringOutput { return v.CreateTime }).(pulumi.StringOutput)
-}
-
 // The description of the tls project.
 func (o ProjectOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v *Project) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
@@ -268,24 +263,19 @@ func (o ProjectOutput) IamProjectName() pulumi.StringOutput {
 	return o.ApplyT(func(v *Project) pulumi.StringOutput { return v.IamProjectName }).(pulumi.StringOutput)
 }
 
-// The inner net domain of the tls project.
-func (o ProjectOutput) InnerNetDomain() pulumi.StringOutput {
-	return o.ApplyT(func(v *Project) pulumi.StringOutput { return v.InnerNetDomain }).(pulumi.StringOutput)
-}
-
 // The name of the tls project.
 func (o ProjectOutput) ProjectName() pulumi.StringOutput {
 	return o.ApplyT(func(v *Project) pulumi.StringOutput { return v.ProjectName }).(pulumi.StringOutput)
 }
 
+// The region of the tls project.
+func (o ProjectOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *Project) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+}
+
 // Tags.
 func (o ProjectOutput) Tags() ProjectTagArrayOutput {
 	return o.ApplyT(func(v *Project) ProjectTagArrayOutput { return v.Tags }).(ProjectTagArrayOutput)
-}
-
-// The count of topics in the tls project.
-func (o ProjectOutput) TopicCount() pulumi.IntOutput {
-	return o.ApplyT(func(v *Project) pulumi.IntOutput { return v.TopicCount }).(pulumi.IntOutput)
 }
 
 type ProjectArrayOutput struct{ *pulumi.OutputState }

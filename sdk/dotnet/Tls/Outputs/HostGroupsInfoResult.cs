@@ -14,127 +14,14 @@ namespace Pulumi.Volcengine.Tls.Outputs
     public sealed class HostGroupsInfoResult
     {
         /// <summary>
-        /// The abnormal heartbeat status count of host.
+        /// The info of host group.
         /// </summary>
-        public readonly int AbnormalHeartbeatStatusCount;
-        /// <summary>
-        /// The latest version of log collector.
-        /// </summary>
-        public readonly string AgentLatestVersion;
-        /// <summary>
-        /// Whether enable auto update.
-        /// </summary>
-        public readonly bool AutoUpdate;
-        /// <summary>
-        /// The create time of host group.
-        /// </summary>
-        public readonly string CreateTime;
-        /// <summary>
-        /// The count of host.
-        /// </summary>
-        public readonly int HostCount;
-        /// <summary>
-        /// The id of host group.
-        /// </summary>
-        public readonly string HostGroupId;
-        /// <summary>
-        /// The name of host group.
-        /// </summary>
-        public readonly string HostGroupName;
-        /// <summary>
-        /// The type of host group.
-        /// </summary>
-        public readonly string HostGroupType;
-        /// <summary>
-        /// The identifier of host.
-        /// </summary>
-        public readonly string HostIdentifier;
-        /// <summary>
-        /// The ip list of host group.
-        /// </summary>
-        public readonly ImmutableArray<string> HostIpLists;
-        /// <summary>
-        /// The project name of iam.
-        /// </summary>
-        public readonly string IamProjectName;
-        /// <summary>
-        /// The modify time of host group.
-        /// </summary>
-        public readonly string ModifyTime;
-        /// <summary>
-        /// The normal heartbeat status count of host.
-        /// </summary>
-        public readonly int NormalHeartbeatStatusCount;
-        /// <summary>
-        /// The rule count of host.
-        /// </summary>
-        public readonly int RuleCount;
-        /// <summary>
-        /// Whether enable service logging.
-        /// </summary>
-        public readonly bool ServiceLogging;
-        /// <summary>
-        /// The update end time of log collector.
-        /// </summary>
-        public readonly string UpdateEndTime;
-        /// <summary>
-        /// The update start time of log collector.
-        /// </summary>
-        public readonly string UpdateStartTime;
+        public readonly ImmutableArray<Outputs.HostGroupsInfoHostGroupInfoResult> HostGroupInfos;
 
         [OutputConstructor]
-        private HostGroupsInfoResult(
-            int abnormalHeartbeatStatusCount,
-
-            string agentLatestVersion,
-
-            bool autoUpdate,
-
-            string createTime,
-
-            int hostCount,
-
-            string hostGroupId,
-
-            string hostGroupName,
-
-            string hostGroupType,
-
-            string hostIdentifier,
-
-            ImmutableArray<string> hostIpLists,
-
-            string iamProjectName,
-
-            string modifyTime,
-
-            int normalHeartbeatStatusCount,
-
-            int ruleCount,
-
-            bool serviceLogging,
-
-            string updateEndTime,
-
-            string updateStartTime)
+        private HostGroupsInfoResult(ImmutableArray<Outputs.HostGroupsInfoHostGroupInfoResult> hostGroupInfos)
         {
-            AbnormalHeartbeatStatusCount = abnormalHeartbeatStatusCount;
-            AgentLatestVersion = agentLatestVersion;
-            AutoUpdate = autoUpdate;
-            CreateTime = createTime;
-            HostCount = hostCount;
-            HostGroupId = hostGroupId;
-            HostGroupName = hostGroupName;
-            HostGroupType = hostGroupType;
-            HostIdentifier = hostIdentifier;
-            HostIpLists = hostIpLists;
-            IamProjectName = iamProjectName;
-            ModifyTime = modifyTime;
-            NormalHeartbeatStatusCount = normalHeartbeatStatusCount;
-            RuleCount = ruleCount;
-            ServiceLogging = serviceLogging;
-            UpdateEndTime = updateEndTime;
-            UpdateStartTime = updateStartTime;
+            HostGroupInfos = hostGroupInfos;
         }
     }
 }

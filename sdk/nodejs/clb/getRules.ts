@@ -81,6 +81,7 @@ export function getRules(args: GetRulesArgs, opts?: pulumi.InvokeOptions): Promi
         "ids": args.ids,
         "listenerId": args.listenerId,
         "outputFile": args.outputFile,
+        "tags": args.tags,
     }, opts);
 }
 
@@ -100,6 +101,10 @@ export interface GetRulesArgs {
      * File name where to save data source results.
      */
     outputFile?: string;
+    /**
+     * Tags.
+     */
+    tags?: inputs.clb.GetRulesTag[];
 }
 
 /**
@@ -117,6 +122,10 @@ export interface GetRulesResult {
      * The collection of Rule query.
      */
     readonly rules: outputs.clb.GetRulesRule[];
+    /**
+     * Tags.
+     */
+    readonly tags?: outputs.clb.GetRulesTag[];
 }
 /**
  * Use this data source to query detailed information of clb rules
@@ -206,4 +215,8 @@ export interface GetRulesOutputArgs {
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.clb.GetRulesTagArgs>[]>;
 }

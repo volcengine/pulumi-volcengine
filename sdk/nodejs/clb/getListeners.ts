@@ -77,6 +77,8 @@ export function getListeners(args?: GetListenersArgs, opts?: pulumi.InvokeOption
         "loadBalancerId": args.loadBalancerId,
         "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
+        "protocol": args.protocol,
+        "tags": args.tags,
     }, opts);
 }
 
@@ -104,6 +106,14 @@ export interface GetListenersArgs {
      * File name where to save data source results.
      */
     outputFile?: string;
+    /**
+     * The protocol of the Listener. Values: `TCP`, `UDP`, `HTTP`, `HTTPS`.
+     */
+    protocol?: string;
+    /**
+     * Tags.
+     */
+    tags?: inputs.clb.GetListenersTag[];
 }
 
 /**
@@ -123,9 +133,20 @@ export interface GetListenersResult {
      * The collection of Listener query.
      */
     readonly listeners: outputs.clb.GetListenersListener[];
+    /**
+     * The id of the Clb.
+     */
     readonly loadBalancerId?: string;
     readonly nameRegex?: string;
     readonly outputFile?: string;
+    /**
+     * The protocol of the Listener.
+     */
+    readonly protocol?: string;
+    /**
+     * Tags.
+     */
+    readonly tags?: outputs.clb.GetListenersTag[];
     /**
      * The total count of Listener query.
      */
@@ -220,4 +241,12 @@ export interface GetListenersOutputArgs {
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
+    /**
+     * The protocol of the Listener. Values: `TCP`, `UDP`, `HTTP`, `HTTPS`.
+     */
+    protocol?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.clb.GetListenersTagArgs>[]>;
 }

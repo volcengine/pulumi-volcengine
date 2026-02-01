@@ -578,11 +578,11 @@ export namespace alb {
          */
         certificateId: string;
         /**
-         * The name of the Certificate.
+         * The Name of Certificate.
          */
         certificateName: string;
         /**
-         * The type of the Certificate.
+         * The type of Certificate. Valid values: `CA`, `Server`.
          */
         certificateType: string;
         /**
@@ -610,7 +610,7 @@ export namespace alb {
          */
         listeners: string[];
         /**
-         * The ProjectName of the Certificate.
+         * The project name of Certificate.
          */
         projectName: string;
         /**
@@ -1331,11 +1331,11 @@ export namespace alb {
          */
         certificateId: string;
         /**
-         * The name of the Certificate.
+         * The Name of Certificate.
          */
         certificateName: string;
         /**
-         * The type of the Certificate.
+         * The type of Certificate. Valid values: `CA`, `Server`.
          */
         certificateType: string;
         /**
@@ -1363,7 +1363,7 @@ export namespace alb {
          */
         listeners: string[];
         /**
-         * The ProjectName of the Certificate.
+         * The project name of Certificate.
          */
         projectName: string;
         /**
@@ -1717,9 +1717,17 @@ export namespace alb {
 
     export interface GetListenerDomainExtensionsDomainExtension {
         /**
+         * The server certificate ID used by the domain name. It takes effect when the certificate source is cert_center.
+         */
+        certCenterCertificateId: string;
+        /**
          * The server certificate ID that domain used.
          */
         certificateId: string;
+        /**
+         * The source of the certificate.
+         */
+        certificateSource: string;
         /**
          * The domain.
          */
@@ -1736,6 +1744,14 @@ export namespace alb {
          * A Listener ID.
          */
         listenerId: string;
+        /**
+         * The server certificate ID used by the domain name. It takes effect when the certificate source is pca_leaf.
+         */
+        pcaLeafCertificateId: string;
+        /**
+         * The CommonName, extended domain names, and IPs of the certificate are separated by ','.
+         */
+        san: string;
     }
 
     export interface GetListenerHealthsListener {
@@ -1791,7 +1807,7 @@ export namespace alb {
          */
         serverId: string;
         /**
-         * The health status of the backend server. Value: Up, Down.
+         * The status of the listener. Value: Active, Error, NoTarget, Disabled.
          */
         status: string;
         /**
@@ -2716,9 +2732,17 @@ export namespace alb {
 
     export interface ListenerDomainExtensionsDomainExtension {
         /**
+         * The server certificate ID used by the domain name. It takes effect when the certificate source is cert_center.
+         */
+        certCenterCertificateId: string;
+        /**
          * The server certificate ID that domain used.
          */
         certificateId: string;
+        /**
+         * The source of the certificate.
+         */
+        certificateSource: string;
         /**
          * The domain.
          */
@@ -2735,6 +2759,14 @@ export namespace alb {
          * A Listener ID.
          */
         listenerId: string;
+        /**
+         * The server certificate ID used by the domain name. It takes effect when the certificate source is pca_leaf.
+         */
+        pcaLeafCertificateId: string;
+        /**
+         * The CommonName, extended domain names, and IPs of the certificate are separated by ','.
+         */
+        san: string;
     }
 
     export interface ListenerHealthsListener {
@@ -2790,7 +2822,7 @@ export namespace alb {
          */
         serverId: string;
         /**
-         * The health status of the backend server. Value: Up, Down.
+         * The status of the listener. Value: Active, Error, NoTarget, Disabled.
          */
         status: string;
         /**
@@ -10256,7 +10288,22 @@ export namespace clb {
         entry: string;
     }
 
+    export interface AclTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface AclsAcl {
+        /**
+         * The acl entry list of the Acl.
+         */
+        aclEntries: outputs.clb.AclsAclAclEntry[];
         /**
          * The count of acl entry.
          */
@@ -10282,6 +10329,10 @@ export namespace clb {
          */
         id: string;
         /**
+         * The listener details of the Acl.
+         */
+        listenerDetails: outputs.clb.AclsAclListenerDetail[];
+        /**
          * The listeners of Acl.
          */
         listeners: string[];
@@ -10290,9 +10341,77 @@ export namespace clb {
          */
         projectName: string;
         /**
+         * Whether the Acl is managed by service.
+         */
+        serviceManaged: boolean;
+        /**
+         * The status of the Acl.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.clb.AclsAclTag[];
+        /**
          * Update time of Acl.
          */
         updateTime: string;
+    }
+
+    export interface AclsAclAclEntry {
+        /**
+         * The description of Acl.
+         */
+        description: string;
+        /**
+         * The address range of the IP entry.
+         */
+        entry: string;
+    }
+
+    export interface AclsAclListenerDetail {
+        /**
+         * The control method of the listener for this Acl. Valid values: `black`, `white`.
+         */
+        aclType: string;
+        /**
+         * The ID of the listener.
+         */
+        listenerId: string;
+        /**
+         * The name of the listener.
+         */
+        listenerName: string;
+        /**
+         * The port receiving request of the listener.
+         */
+        port: number;
+        /**
+         * The protocol of the listener.
+         */
+        protocol: string;
+    }
+
+    export interface AclsAclTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface AclsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface CertificateTag {
@@ -10344,6 +10463,14 @@ export namespace clb {
          */
         projectName: string;
         /**
+         * Whether the Certificate is managed by the CLB service.
+         */
+        serviceManaged: boolean;
+        /**
+         * The subject alternative domain names of the Certificate.
+         */
+        subjectAlternativeNames: string[];
+        /**
          * Tags.
          */
         tags: outputs.clb.CertificatesCertificateTag[];
@@ -10377,6 +10504,10 @@ export namespace clb {
          */
         bandwidth: number;
         /**
+         * The ID of the shared bandwidth package that the EIP is to be added to. Only valid when the eipBillingType is `PostPaidByBandwidth` or `PostPaidByTraffic`.
+         */
+        bandwidthPackageId: string;
+        /**
          * The billing type of the EIP which automatically assigned to CLB. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.When creating a `PrePaid` public CLB, this field must be specified as `PrePaid` simultaneously.When the LoadBalancerBillingType changes from `PostPaid` to `PrePaid`, please manually modify the value of this field to `PrePaid` simultaneously.
          */
         eipBillingType: string;
@@ -10384,6 +10515,14 @@ export namespace clb {
          * The ISP of the EIP which automatically associated to CLB, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP` or `Fusion_BGP`.
          */
         isp: string;
+        /**
+         * The ID of the DDoS native protection (Enterprise Edition) instance.
+         */
+        securityProtectionInstanceId: string;
+        /**
+         * The security protection types of the EIP. Only valid when the eipBillingType is `PostPaidByBandwidth` or `PostPaidByTraffic`.
+         */
+        securityProtectionTypes: string[];
     }
 
     export interface ClbTag {
@@ -10399,13 +10538,25 @@ export namespace clb {
 
     export interface ClbsClb {
         /**
-         * The address ip version of the Clb.
+         * The access log configuration of the CLB instance.
+         */
+        accessLogs: outputs.clb.ClbsClbAccessLog[];
+        /**
+         * The address IP version of the CLB.
          */
         addressIpVersion: string;
+        /**
+         * The billing type of the Ipv6 EIP assigned to CLB. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic`.
+         */
+        billingType: string;
         /**
          * The business status of the Clb.
          */
         businessStatus: string;
+        /**
+         * Whether the CLB instance has enabled the "Allow Backend Security Groups" function.
+         */
+        bypassSecurityGroupEnabled: string;
         /**
          * The create time of the Clb.
          */
@@ -10419,7 +10570,7 @@ export namespace clb {
          */
         description: string;
         /**
-         * The Eip address of the Clb.
+         * The public ip address of the Clb.
          */
         eipAddress: string;
         /**
@@ -10427,13 +10578,25 @@ export namespace clb {
          */
         eipBillingConfigs: outputs.clb.ClbsClbEipBillingConfig[];
         /**
-         * The Eip ID of the Clb.
+         * The eip ID of the public IP bound to the private IPv4 address.
          */
         eipId: string;
+        /**
+         * Whether the CLB instance is enabled.
+         */
+        enabled: boolean;
         /**
          * The private ip address of the Clb.
          */
         eniAddress: string;
+        /**
+         * The ENI address num of the CLB.
+         */
+        eniAddressNum: number;
+        /**
+         * The ENI addresses of the CLB.
+         */
+        eniAddresses: outputs.clb.ClbsClbEniAddress[];
         /**
          * The Eni ID of the Clb.
          */
@@ -10442,6 +10605,10 @@ export namespace clb {
          * The eni ipv6 address of the Clb.
          */
         eniIpv6Address: string;
+        /**
+         * The ID of the exclusive cluster to which the CLB instance belongs.
+         */
+        exclusiveClusterId: string;
         /**
          * The expired time of the CLB.
          */
@@ -10463,6 +10630,10 @@ export namespace clb {
          */
         ipv6EipId: string;
         /**
+         * The information of the listeners in the CLB instance.
+         */
+        listeners: outputs.clb.ClbsClbListener[];
+        /**
          * The billing type of the Clb.
          */
         loadBalancerBillingType: string;
@@ -10482,6 +10653,10 @@ export namespace clb {
          * The reason why Clb is locked.
          */
         lockReason: string;
+        /**
+         * The log topic ID of the Clb.
+         */
+        logTopicId: string;
         /**
          * The master zone ID of the CLB.
          */
@@ -10523,11 +10698,19 @@ export namespace clb {
          */
         renewType: string;
         /**
+         * The information of the server groups in the CLB instance.
+         */
+        serverGroups: outputs.clb.ClbsClbServerGroup[];
+        /**
+         * Whether the CLB instance is a managed resource.
+         */
+        serviceManaged: boolean;
+        /**
          * The slave zone ID of the CLB.
          */
         slaveZoneId: string;
         /**
-         * The status of the Clb.
+         * The status of the CLB.
          */
         status: string;
         /**
@@ -10539,7 +10722,11 @@ export namespace clb {
          */
         tags: outputs.clb.ClbsClbTag[];
         /**
-         * The type of the Clb.
+         * Whether to enable the function of clearing the timestamp of TCP/HTTP/HTTPS packets (i.e., time stamp).
+         */
+        timestampRemoveEnabled: string;
+        /**
+         * The network type of the CLB.
          */
         type: string;
         /**
@@ -10552,11 +10739,42 @@ export namespace clb {
         vpcId: string;
     }
 
+    export interface ClbsClbAccessLog {
+        /**
+         * The name of the bucket to which the access logs are delivered.
+         */
+        bucketName: string;
+        /**
+         * Whether the CLB instance is enabled.
+         */
+        enabled: boolean;
+        /**
+         * Whether to enable the function of delivering access logs (layer 7) to the log service TLS.
+         */
+        tlsEnabled: boolean;
+        /**
+         * The project ID of the log service TLS.
+         */
+        tlsProjectId: string;
+        /**
+         * The topic ID of the log service TLS.
+         */
+        tlsTopicId: string;
+    }
+
     export interface ClbsClbEipBillingConfig {
         /**
          * The peek bandwidth of the Ipv6 EIP assigned to CLB. Units: Mbps.
          */
         bandwidth: number;
+        /**
+         * The bandwidth package id of the Ipv6 EIP assigned to CLB.
+         */
+        bandwidthPackageId: string;
+        /**
+         * The public ip address of the Clb.
+         */
+        eipAddress: string;
         /**
          * The billing type of the EIP assigned to CLB. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.
          */
@@ -10565,6 +10783,25 @@ export namespace clb {
          * The ISP of the Ipv6 EIP assigned to CLB, the value can be `BGP`.
          */
         isp: string;
+        /**
+         * The security protection types of the EIP assigned to CLB.
+         */
+        securityProtectionTypes: string[];
+    }
+
+    export interface ClbsClbEniAddress {
+        /**
+         * The public ip address of the Clb.
+         */
+        eipAddress: string;
+        /**
+         * The eip ID of the public IP bound to the private IPv4 address.
+         */
+        eipId: string;
+        /**
+         * The private ip address of the Clb.
+         */
+        eniAddress: string;
     }
 
     export interface ClbsClbIpv6AddressBandwidth {
@@ -10588,6 +10825,28 @@ export namespace clb {
          * The network type of the CLB Ipv6 address.
          */
         networkType: string;
+    }
+
+    export interface ClbsClbListener {
+        /**
+         * The ID of the Listener.
+         */
+        listenerId: string;
+        /**
+         * The name of the Listener.
+         */
+        listenerName: string;
+    }
+
+    export interface ClbsClbServerGroup {
+        /**
+         * The ID of the server group.
+         */
+        serverGroupId: string;
+        /**
+         * The name of the server group.
+         */
+        serverGroupName: string;
     }
 
     export interface ClbsClbTag {
@@ -10614,6 +10873,10 @@ export namespace clb {
 
     export interface GetAclsAcl {
         /**
+         * The acl entry list of the Acl.
+         */
+        aclEntries: outputs.clb.GetAclsAclAclEntry[];
+        /**
          * The count of acl entry.
          */
         aclEntryCount: number;
@@ -10638,6 +10901,10 @@ export namespace clb {
          */
         id: string;
         /**
+         * The listener details of the Acl.
+         */
+        listenerDetails: outputs.clb.GetAclsAclListenerDetail[];
+        /**
          * The listeners of Acl.
          */
         listeners: string[];
@@ -10646,9 +10913,77 @@ export namespace clb {
          */
         projectName: string;
         /**
+         * Whether the Acl is managed by service.
+         */
+        serviceManaged: boolean;
+        /**
+         * The status of the Acl.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.clb.GetAclsAclTag[];
+        /**
          * Update time of Acl.
          */
         updateTime: string;
+    }
+
+    export interface GetAclsAclAclEntry {
+        /**
+         * The description of Acl.
+         */
+        description: string;
+        /**
+         * The address range of the IP entry.
+         */
+        entry: string;
+    }
+
+    export interface GetAclsAclListenerDetail {
+        /**
+         * The control method of the listener for this Acl. Valid values: `black`, `white`.
+         */
+        aclType: string;
+        /**
+         * The ID of the listener.
+         */
+        listenerId: string;
+        /**
+         * The name of the listener.
+         */
+        listenerName: string;
+        /**
+         * The port receiving request of the listener.
+         */
+        port: number;
+        /**
+         * The protocol of the listener.
+         */
+        protocol: string;
+    }
+
+    export interface GetAclsAclTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetAclsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface GetCertificatesCertificate {
@@ -10689,6 +11024,14 @@ export namespace clb {
          */
         projectName: string;
         /**
+         * Whether the Certificate is managed by the CLB service.
+         */
+        serviceManaged: boolean;
+        /**
+         * The subject alternative domain names of the Certificate.
+         */
+        subjectAlternativeNames: string[];
+        /**
          * Tags.
          */
         tags: outputs.clb.GetCertificatesCertificateTag[];
@@ -10718,13 +11061,25 @@ export namespace clb {
 
     export interface GetClbsClb {
         /**
-         * The address ip version of the Clb.
+         * The access log configuration of the CLB instance.
+         */
+        accessLogs: outputs.clb.GetClbsClbAccessLog[];
+        /**
+         * The address IP version of the CLB.
          */
         addressIpVersion: string;
+        /**
+         * The billing type of the Ipv6 EIP assigned to CLB. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic`.
+         */
+        billingType: string;
         /**
          * The business status of the Clb.
          */
         businessStatus: string;
+        /**
+         * Whether the CLB instance has enabled the "Allow Backend Security Groups" function.
+         */
+        bypassSecurityGroupEnabled: string;
         /**
          * The create time of the Clb.
          */
@@ -10738,7 +11093,7 @@ export namespace clb {
          */
         description: string;
         /**
-         * The Eip address of the Clb.
+         * The public ip address of the Clb.
          */
         eipAddress: string;
         /**
@@ -10746,13 +11101,25 @@ export namespace clb {
          */
         eipBillingConfigs: outputs.clb.GetClbsClbEipBillingConfig[];
         /**
-         * The Eip ID of the Clb.
+         * The eip ID of the public IP bound to the private IPv4 address.
          */
         eipId: string;
+        /**
+         * Whether the CLB instance is enabled.
+         */
+        enabled: boolean;
         /**
          * The private ip address of the Clb.
          */
         eniAddress: string;
+        /**
+         * The ENI address num of the CLB.
+         */
+        eniAddressNum: number;
+        /**
+         * The ENI addresses of the CLB.
+         */
+        eniAddresses: outputs.clb.GetClbsClbEniAddress[];
         /**
          * The Eni ID of the Clb.
          */
@@ -10761,6 +11128,10 @@ export namespace clb {
          * The eni ipv6 address of the Clb.
          */
         eniIpv6Address: string;
+        /**
+         * The ID of the exclusive cluster to which the CLB instance belongs.
+         */
+        exclusiveClusterId: string;
         /**
          * The expired time of the CLB.
          */
@@ -10782,6 +11153,10 @@ export namespace clb {
          */
         ipv6EipId: string;
         /**
+         * The information of the listeners in the CLB instance.
+         */
+        listeners: outputs.clb.GetClbsClbListener[];
+        /**
          * The billing type of the Clb.
          */
         loadBalancerBillingType: string;
@@ -10801,6 +11176,10 @@ export namespace clb {
          * The reason why Clb is locked.
          */
         lockReason: string;
+        /**
+         * The log topic ID of the Clb.
+         */
+        logTopicId: string;
         /**
          * The master zone ID of the CLB.
          */
@@ -10842,11 +11221,19 @@ export namespace clb {
          */
         renewType: string;
         /**
+         * The information of the server groups in the CLB instance.
+         */
+        serverGroups: outputs.clb.GetClbsClbServerGroup[];
+        /**
+         * Whether the CLB instance is a managed resource.
+         */
+        serviceManaged: boolean;
+        /**
          * The slave zone ID of the CLB.
          */
         slaveZoneId: string;
         /**
-         * The status of the Clb.
+         * The status of the CLB.
          */
         status: string;
         /**
@@ -10858,7 +11245,11 @@ export namespace clb {
          */
         tags: outputs.clb.GetClbsClbTag[];
         /**
-         * The type of the Clb.
+         * Whether to enable the function of clearing the timestamp of TCP/HTTP/HTTPS packets (i.e., time stamp).
+         */
+        timestampRemoveEnabled: string;
+        /**
+         * The network type of the CLB.
          */
         type: string;
         /**
@@ -10871,11 +11262,42 @@ export namespace clb {
         vpcId: string;
     }
 
+    export interface GetClbsClbAccessLog {
+        /**
+         * The name of the bucket to which the access logs are delivered.
+         */
+        bucketName: string;
+        /**
+         * Whether the CLB instance is enabled.
+         */
+        enabled: boolean;
+        /**
+         * Whether to enable the function of delivering access logs (layer 7) to the log service TLS.
+         */
+        tlsEnabled: boolean;
+        /**
+         * The project ID of the log service TLS.
+         */
+        tlsProjectId: string;
+        /**
+         * The topic ID of the log service TLS.
+         */
+        tlsTopicId: string;
+    }
+
     export interface GetClbsClbEipBillingConfig {
         /**
          * The peek bandwidth of the Ipv6 EIP assigned to CLB. Units: Mbps.
          */
         bandwidth: number;
+        /**
+         * The bandwidth package id of the Ipv6 EIP assigned to CLB.
+         */
+        bandwidthPackageId: string;
+        /**
+         * The public ip address of the Clb.
+         */
+        eipAddress: string;
         /**
          * The billing type of the EIP assigned to CLB. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.
          */
@@ -10884,6 +11306,25 @@ export namespace clb {
          * The ISP of the Ipv6 EIP assigned to CLB, the value can be `BGP`.
          */
         isp: string;
+        /**
+         * The security protection types of the EIP assigned to CLB.
+         */
+        securityProtectionTypes: string[];
+    }
+
+    export interface GetClbsClbEniAddress {
+        /**
+         * The public ip address of the Clb.
+         */
+        eipAddress: string;
+        /**
+         * The eip ID of the public IP bound to the private IPv4 address.
+         */
+        eipId: string;
+        /**
+         * The private ip address of the Clb.
+         */
+        eniAddress: string;
     }
 
     export interface GetClbsClbIpv6AddressBandwidth {
@@ -10909,6 +11350,28 @@ export namespace clb {
         networkType: string;
     }
 
+    export interface GetClbsClbListener {
+        /**
+         * The ID of the Listener.
+         */
+        listenerId: string;
+        /**
+         * The name of the Listener.
+         */
+        listenerName: string;
+    }
+
+    export interface GetClbsClbServerGroup {
+        /**
+         * The ID of the server group.
+         */
+        serverGroupId: string;
+        /**
+         * The name of the server group.
+         */
+        serverGroupName: string;
+    }
+
     export interface GetClbsClbTag {
         /**
          * The Key of Tags.
@@ -10931,6 +11394,78 @@ export namespace clb {
         value: string;
     }
 
+    export interface GetHealthCheckLogProjectsHealthCheckLogProject {
+        /**
+         * The ID of the health check log project.
+         */
+        id: string;
+        /**
+         * The ID of the health check log project.
+         */
+        logProjectId: string;
+    }
+
+    export interface GetHealthCheckLogTopicsHealthCheckLogTopic {
+        /**
+         * The ID of the CLB instance.
+         */
+        loadBalancerIds: string[];
+    }
+
+    export interface GetListenerHealthsHealthInfo {
+        /**
+         * The health check status of the listener. Valid values: `Active`, `Error`, `Disabled`, `NoTarget`.
+         */
+        listenerStatus: string;
+        /**
+         * The backend server health status results.
+         */
+        results: outputs.clb.GetListenerHealthsHealthInfoResult[];
+        /**
+         * The count of unhealthy backend servers.
+         */
+        unHealthyCount: number;
+    }
+
+    export interface GetListenerHealthsHealthInfoResult {
+        /**
+         * The ECS instance or ENI ID.
+         */
+        instanceId: string;
+        /**
+         * The IP address of the backend server.
+         */
+        ip: string;
+        /**
+         * The port of the backend server.
+         */
+        port: number;
+        /**
+         * The number of forwarding rules associated with the backend server. TCP/UDP listeners return 0.
+         */
+        ruleNumber: number;
+        /**
+         * The server group ID that the backend server belongs to.
+         */
+        serverGroupId: string;
+        /**
+         * The backend server ID.
+         */
+        serverId: string;
+        /**
+         * The backend server type. Valid values: `ecs`, `eni`.
+         */
+        serverType: string;
+        /**
+         * The health status of the backend server. Valid values: `Up`, `Down`.
+         */
+        status: string;
+        /**
+         * The last update time of the backend server.
+         */
+        updatedAt: string;
+    }
+
     export interface GetListenersListener {
         /**
          * The acl ID list to which the Listener is bound.
@@ -10949,9 +11484,33 @@ export namespace clb {
          */
         bandwidth: number;
         /**
+         * The ID of the CA certificate which is associated with the Listener. When `caEnabled` is `true`, this parameter is returned.
+         */
+        caCertificateId: string;
+        /**
+         * Whether to enable CACertificate two-way authentication.
+         */
+        caEnabled: string;
+        /**
+         * The ID of the certificate in Certificate Center. When `certificateSource` is `certCenter`, this parameter is returned.
+         */
+        certCenterCertificateId: string;
+        /**
          * The ID of the certificate which is associated with the Listener.
          */
         certificateId: string;
+        /**
+         * The source of the certificate which is associated with the Listener. Values: `clb`, `certCenter`.
+         */
+        certificateSource: string;
+        /**
+         * The client body timeout of the Listener. Only HTTP/HTTPS listeners return this parameter.
+         */
+        clientBodyTimeout: number;
+        /**
+         * The client header timeout of the Listener. Only HTTP/HTTPS listeners return this parameter.
+         */
+        clientHeaderTimeout: number;
         /**
          * Whether to enable connection drain of the Listener.
          */
@@ -10965,13 +11524,29 @@ export namespace clb {
          */
         cookie: string;
         /**
+         * The maximum number of new connections for Lsistener.
+         */
+        cps: number;
+        /**
          * The create time of the Listener.
          */
         createTime: string;
         /**
+         * The description of the Listener.
+         */
+        description: string;
+        /**
          * The enable status of the Listener.
          */
         enabled: string;
+        /**
+         * The end port of the Listener. This parameter is returned only when full-port listening is enabled.
+         */
+        endPort: number;
+        /**
+         * The established timeout of the Listener.
+         */
+        establishedTimeout: number;
         /**
          * The domain of health check.
          */
@@ -11017,9 +11592,21 @@ export namespace clb {
          */
         healthCheckUri: string;
         /**
+         * The backend server port for health checks. When full-port listening is enabled, this parameter is returned to indicate the port used for health checks. When full-port listening is not enabled, this parameter is not returned, and the health check uses the service port of the backend server.
+         */
+        helthCheckPort: number;
+        /**
+         * Whether the HTTPS protocol listener enables the front-end HTTP 2.0 protocol.
+         */
+        http2Enabled: string;
+        /**
          * The ID of the Listener.
          */
         id: string;
+        /**
+         * The timeout period for the long connection between the client and the CLB. Only HTTP/HTTPS listeners return this parameter.
+         */
+        keepaliveTimeout: number;
         /**
          * The ID of the Listener.
          */
@@ -11028,6 +11615,14 @@ export namespace clb {
          * The name of the Listener.
          */
         listenerName: string;
+        /**
+         * The id of the Clb.
+         */
+        loadBalancerId: string;
+        /**
+         * The maximum number of connections for the Listener.
+         */
+        maxConnections: number;
         /**
          * The persistence timeout of the Listener.
          */
@@ -11041,28 +11636,90 @@ export namespace clb {
          */
         port: number;
         /**
-         * The protocol of the Listener.
+         * The protocol of the Listener. Values: `TCP`, `UDP`, `HTTP`, `HTTPS`.
          */
         protocol: string;
+        /**
+         * The timeout period for establishing a connection between the CLB and the backend server. Only HTTP/HTTPS listeners return this parameter.
+         */
+        proxyConnectTimeout: number;
         /**
          * Whether to enable proxy protocol.
          */
         proxyProtocolType: string;
         /**
+         * The timeout period for CLB to read the response from the backend server. Only HTTP/HTTPS listeners return this parameter.
+         */
+        proxyReadTimeout: number;
+        /**
+         * The timeout period for CLB to transmit requests to backend servers. Only HTTP/HTTPS listeners return this parameter.
+         */
+        proxySendTimeout: number;
+        /**
+         * The scheduling algorithm of the Listener. Values: `wrr`, `wlc`, `sh`.
+         */
+        scheduler: string;
+        /**
+         * The TLS security policy of the HTTPS listener. Only HTTPS listeners return this parameter.
+         */
+        securityPolicyId: string;
+        /**
+         * The timeout period for CLB to send responses to the client. Only HTTP/HTTPS listeners return this parameter.
+         */
+        sendTimeout: number;
+        /**
          * The ID of the backend server group which is associated with the Listener.
          */
         serverGroupId: string;
+        /**
+         * The start port of the Listener. This parameter is returned only when full-port listening is enabled.
+         */
+        startPort: number;
         /**
          * The status of the Listener.
          */
         status: string;
         /**
+         * Tags.
+         */
+        tags: outputs.clb.GetListenersListenerTag[];
+        /**
          * The update time of the Listener.
          */
         updateTime: string;
+        /**
+         * Whether to enable WAF protection.
+         */
+        wafProtectionEnabled: string;
+    }
+
+    export interface GetListenersListenerTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetListenersTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface GetRulesRule {
+        /**
+         * The action type of Rule. values: `Forward`, `Redirect`.
+         */
+        actionType: string;
         /**
          * The Description of Rule.
          */
@@ -11076,6 +11733,10 @@ export namespace clb {
          */
         id: string;
         /**
+         * The redirect configuration. When `actionType` is `Redirect`, this parameter is returned.
+         */
+        redirectConfigs: outputs.clb.GetRulesRuleRedirectConfig[];
+        /**
          * The Id of Rule.
          */
         ruleId: string;
@@ -11084,12 +11745,65 @@ export namespace clb {
          */
         serverGroupId: string;
         /**
+         * Tags.
+         */
+        tags: outputs.clb.GetRulesRuleTag[];
+        /**
          * The Url of Rule.
          */
         url: string;
     }
 
+    export interface GetRulesRuleRedirectConfig {
+        /**
+         * The redirect host.
+         */
+        host: string;
+        /**
+         * The redirect path.
+         */
+        path: string;
+        /**
+         * The redirect port.
+         */
+        port: string;
+        /**
+         * The redirect protocol.
+         */
+        protocol: string;
+        /**
+         * The redirect status code.
+         */
+        statusCode: string;
+    }
+
+    export interface GetRulesRuleTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetRulesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface GetServerGroupServersServer {
+        /**
+         * Whether full port forwarding is enabled. Values: `on`, `off`.
+         */
+        anyPortEnabled: string;
         /**
          * The description of the instance.
          */
@@ -11107,7 +11821,7 @@ export namespace clb {
          */
         ip: string;
         /**
-         * The port receiving request.
+         * The port receiving request. Return empty when `anyPortEnabled` is `on`.
          */
         port: number;
         /**
@@ -11115,7 +11829,7 @@ export namespace clb {
          */
         serverId: string;
         /**
-         * The type of instance. Optional choice contains `ecs`, `eni`.
+         * The type of instance. Optional choice contains `ecs`, `eni`, `ip`.
          */
         type: string;
         /**
@@ -11126,9 +11840,13 @@ export namespace clb {
 
     export interface GetServerGroupsGroup {
         /**
-         * The address ip version of the ServerGroup.
+         * The address IP version of the ServerGroup.
          */
         addressIpVersion: string;
+        /**
+         * Whether full port forwarding is enabled.
+         */
+        anyPortEnabled: string;
         /**
          * The create time of the ServerGroup.
          */
@@ -11142,6 +11860,14 @@ export namespace clb {
          */
         id: string;
         /**
+         * The listeners of the ServerGroup.
+         */
+        listeners: string[];
+        /**
+         * The id of the Clb.
+         */
+        loadBalancerId: string;
+        /**
          * The ID of the ServerGroup.
          */
         serverGroupId: string;
@@ -11150,9 +11876,39 @@ export namespace clb {
          */
         serverGroupName: string;
         /**
+         * Tags.
+         */
+        tags: outputs.clb.GetServerGroupsGroupTag[];
+        /**
+         * The type of ServerGroup. Valid values: `instance`, `ip`.
+         */
+        type: string;
+        /**
          * The update time of the ServerGroup.
          */
         updateTime: string;
+    }
+
+    export interface GetServerGroupsGroupTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetServerGroupsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface GetZonesMasterZone {
@@ -11171,6 +11927,24 @@ export namespace clb {
          * The master zone id.
          */
         zoneId: string;
+    }
+
+    export interface HealthCheckLogProjectsHealthCheckLogProject {
+        /**
+         * The ID of the health check log project.
+         */
+        id: string;
+        /**
+         * The ID of the health check log project.
+         */
+        logProjectId: string;
+    }
+
+    export interface HealthCheckLogTopicsHealthCheckLogTopic {
+        /**
+         * The ID of the CLB instance.
+         */
+        loadBalancerIds: string[];
     }
 
     export interface ListenerHealthCheck {
@@ -11199,6 +11973,10 @@ export namespace clb {
          */
         method?: string;
         /**
+         * The port for health check, with a value range of 1-65535.
+         */
+        port?: number;
+        /**
          * The response timeout of health check, default 2, range in 1~60..
          */
         timeout?: number;
@@ -11220,6 +11998,71 @@ export namespace clb {
         uri?: string;
     }
 
+    export interface ListenerHealthsHealthInfo {
+        /**
+         * The health check status of the listener. Valid values: `Active`, `Error`, `Disabled`, `NoTarget`.
+         */
+        listenerStatus: string;
+        /**
+         * The backend server health status results.
+         */
+        results: outputs.clb.ListenerHealthsHealthInfoResult[];
+        /**
+         * The count of unhealthy backend servers.
+         */
+        unHealthyCount: number;
+    }
+
+    export interface ListenerHealthsHealthInfoResult {
+        /**
+         * The ECS instance or ENI ID.
+         */
+        instanceId: string;
+        /**
+         * The IP address of the backend server.
+         */
+        ip: string;
+        /**
+         * The port of the backend server.
+         */
+        port: number;
+        /**
+         * The number of forwarding rules associated with the backend server. TCP/UDP listeners return 0.
+         */
+        ruleNumber: number;
+        /**
+         * The server group ID that the backend server belongs to.
+         */
+        serverGroupId: string;
+        /**
+         * The backend server ID.
+         */
+        serverId: string;
+        /**
+         * The backend server type. Valid values: `ecs`, `eni`.
+         */
+        serverType: string;
+        /**
+         * The health status of the backend server. Valid values: `Up`, `Down`.
+         */
+        status: string;
+        /**
+         * The last update time of the backend server.
+         */
+        updatedAt: string;
+    }
+
+    export interface ListenerTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface ListenersListener {
         /**
          * The acl ID list to which the Listener is bound.
@@ -11238,9 +12081,33 @@ export namespace clb {
          */
         bandwidth: number;
         /**
+         * The ID of the CA certificate which is associated with the Listener. When `caEnabled` is `true`, this parameter is returned.
+         */
+        caCertificateId: string;
+        /**
+         * Whether to enable CACertificate two-way authentication.
+         */
+        caEnabled: string;
+        /**
+         * The ID of the certificate in Certificate Center. When `certificateSource` is `certCenter`, this parameter is returned.
+         */
+        certCenterCertificateId: string;
+        /**
          * The ID of the certificate which is associated with the Listener.
          */
         certificateId: string;
+        /**
+         * The source of the certificate which is associated with the Listener. Values: `clb`, `certCenter`.
+         */
+        certificateSource: string;
+        /**
+         * The client body timeout of the Listener. Only HTTP/HTTPS listeners return this parameter.
+         */
+        clientBodyTimeout: number;
+        /**
+         * The client header timeout of the Listener. Only HTTP/HTTPS listeners return this parameter.
+         */
+        clientHeaderTimeout: number;
         /**
          * Whether to enable connection drain of the Listener.
          */
@@ -11254,13 +12121,29 @@ export namespace clb {
          */
         cookie: string;
         /**
+         * The maximum number of new connections for Lsistener.
+         */
+        cps: number;
+        /**
          * The create time of the Listener.
          */
         createTime: string;
         /**
+         * The description of the Listener.
+         */
+        description: string;
+        /**
          * The enable status of the Listener.
          */
         enabled: string;
+        /**
+         * The end port of the Listener. This parameter is returned only when full-port listening is enabled.
+         */
+        endPort: number;
+        /**
+         * The established timeout of the Listener.
+         */
+        establishedTimeout: number;
         /**
          * The domain of health check.
          */
@@ -11306,9 +12189,21 @@ export namespace clb {
          */
         healthCheckUri: string;
         /**
+         * The backend server port for health checks. When full-port listening is enabled, this parameter is returned to indicate the port used for health checks. When full-port listening is not enabled, this parameter is not returned, and the health check uses the service port of the backend server.
+         */
+        helthCheckPort: number;
+        /**
+         * Whether the HTTPS protocol listener enables the front-end HTTP 2.0 protocol.
+         */
+        http2Enabled: string;
+        /**
          * The ID of the Listener.
          */
         id: string;
+        /**
+         * The timeout period for the long connection between the client and the CLB. Only HTTP/HTTPS listeners return this parameter.
+         */
+        keepaliveTimeout: number;
         /**
          * The ID of the Listener.
          */
@@ -11317,6 +12212,14 @@ export namespace clb {
          * The name of the Listener.
          */
         listenerName: string;
+        /**
+         * The id of the Clb.
+         */
+        loadBalancerId: string;
+        /**
+         * The maximum number of connections for the Listener.
+         */
+        maxConnections: number;
         /**
          * The persistence timeout of the Listener.
          */
@@ -11330,28 +12233,124 @@ export namespace clb {
          */
         port: number;
         /**
-         * The protocol of the Listener.
+         * The protocol of the Listener. Values: `TCP`, `UDP`, `HTTP`, `HTTPS`.
          */
         protocol: string;
+        /**
+         * The timeout period for establishing a connection between the CLB and the backend server. Only HTTP/HTTPS listeners return this parameter.
+         */
+        proxyConnectTimeout: number;
         /**
          * Whether to enable proxy protocol.
          */
         proxyProtocolType: string;
         /**
+         * The timeout period for CLB to read the response from the backend server. Only HTTP/HTTPS listeners return this parameter.
+         */
+        proxyReadTimeout: number;
+        /**
+         * The timeout period for CLB to transmit requests to backend servers. Only HTTP/HTTPS listeners return this parameter.
+         */
+        proxySendTimeout: number;
+        /**
+         * The scheduling algorithm of the Listener. Values: `wrr`, `wlc`, `sh`.
+         */
+        scheduler: string;
+        /**
+         * The TLS security policy of the HTTPS listener. Only HTTPS listeners return this parameter.
+         */
+        securityPolicyId: string;
+        /**
+         * The timeout period for CLB to send responses to the client. Only HTTP/HTTPS listeners return this parameter.
+         */
+        sendTimeout: number;
+        /**
          * The ID of the backend server group which is associated with the Listener.
          */
         serverGroupId: string;
+        /**
+         * The start port of the Listener. This parameter is returned only when full-port listening is enabled.
+         */
+        startPort: number;
         /**
          * The status of the Listener.
          */
         status: string;
         /**
+         * Tags.
+         */
+        tags: outputs.clb.ListenersListenerTag[];
+        /**
          * The update time of the Listener.
          */
         updateTime: string;
+        /**
+         * Whether to enable WAF protection.
+         */
+        wafProtectionEnabled: string;
+    }
+
+    export interface ListenersListenerTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface ListenersTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface RuleRedirectConfig {
+        /**
+         * The redirect host, i.e. the domain name redirected by the rule.
+         */
+        host?: string;
+        /**
+         * The redirect path.
+         */
+        path?: string;
+        /**
+         * The redirect port, valid range: 1~65535.
+         */
+        port?: string;
+        /**
+         * The redirect protocol. Valid values: `HTTP`, `HTTPS`.
+         */
+        protocol?: string;
+        /**
+         * The redirect status code. Valid values: 301, 302, 307, 308.
+         */
+        statusCode?: string;
+    }
+
+    export interface RuleTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface RulesRule {
+        /**
+         * The action type of Rule. values: `Forward`, `Redirect`.
+         */
+        actionType: string;
         /**
          * The Description of Rule.
          */
@@ -11365,6 +12364,10 @@ export namespace clb {
          */
         id: string;
         /**
+         * The redirect configuration. When `actionType` is `Redirect`, this parameter is returned.
+         */
+        redirectConfigs: outputs.clb.RulesRuleRedirectConfig[];
+        /**
          * The Id of Rule.
          */
         ruleId: string;
@@ -11373,12 +12376,65 @@ export namespace clb {
          */
         serverGroupId: string;
         /**
+         * Tags.
+         */
+        tags: outputs.clb.RulesRuleTag[];
+        /**
          * The Url of Rule.
          */
         url: string;
     }
 
+    export interface RulesRuleRedirectConfig {
+        /**
+         * The redirect host.
+         */
+        host: string;
+        /**
+         * The redirect path.
+         */
+        path: string;
+        /**
+         * The redirect port.
+         */
+        port: string;
+        /**
+         * The redirect protocol.
+         */
+        protocol: string;
+        /**
+         * The redirect status code.
+         */
+        statusCode: string;
+    }
+
+    export interface RulesRuleTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface RulesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface ServerGroupServersServer {
+        /**
+         * Whether full port forwarding is enabled. Values: `on`, `off`.
+         */
+        anyPortEnabled: string;
         /**
          * The description of the instance.
          */
@@ -11396,7 +12452,7 @@ export namespace clb {
          */
         ip: string;
         /**
-         * The port receiving request.
+         * The port receiving request. Return empty when `anyPortEnabled` is `on`.
          */
         port: number;
         /**
@@ -11404,7 +12460,7 @@ export namespace clb {
          */
         serverId: string;
         /**
-         * The type of instance. Optional choice contains `ecs`, `eni`.
+         * The type of instance. Optional choice contains `ecs`, `eni`, `ip`.
          */
         type: string;
         /**
@@ -11413,11 +12469,26 @@ export namespace clb {
         weight: number;
     }
 
+    export interface ServerGroupTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface ServerGroupsGroup {
         /**
-         * The address ip version of the ServerGroup.
+         * The address IP version of the ServerGroup.
          */
         addressIpVersion: string;
+        /**
+         * Whether full port forwarding is enabled.
+         */
+        anyPortEnabled: string;
         /**
          * The create time of the ServerGroup.
          */
@@ -11431,6 +12502,14 @@ export namespace clb {
          */
         id: string;
         /**
+         * The listeners of the ServerGroup.
+         */
+        listeners: string[];
+        /**
+         * The id of the Clb.
+         */
+        loadBalancerId: string;
+        /**
          * The ID of the ServerGroup.
          */
         serverGroupId: string;
@@ -11439,9 +12518,39 @@ export namespace clb {
          */
         serverGroupName: string;
         /**
+         * Tags.
+         */
+        tags: outputs.clb.ServerGroupsGroupTag[];
+        /**
+         * The type of ServerGroup. Valid values: `instance`, `ip`.
+         */
+        type: string;
+        /**
          * The update time of the ServerGroup.
          */
         updateTime: string;
+    }
+
+    export interface ServerGroupsGroupTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface ServerGroupsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface ZonesMasterZone {
@@ -43065,6 +44174,17 @@ export namespace rocketmq {
 }
 
 export namespace tls {
+    export interface AccountsTlsAccount {
+        /**
+         * The version of the log service architecture. Valid values: 2.0 (new architecture), 1.0 (old architecture).
+         */
+        archVersion: string;
+        /**
+         * The status of the log service. Valid values: Activated (already activated), NonActivated (not activated).
+         */
+        status: string;
+    }
+
     export interface AlarmAlarmPeriodDetail {
         /**
          * Email alarm period, the unit is minutes, and the value range is 1~1440.
@@ -43084,11 +44204,406 @@ export namespace tls {
         sms: number;
     }
 
+    export interface AlarmContentTemplateDingTalk {
+        /**
+         * The content of the dingTalk content template.
+         */
+        content: string;
+        /**
+         * The locale of the dingTalk content template.
+         */
+        locale: string;
+        /**
+         * The title of the dingTalk content template.
+         */
+        title: string;
+    }
+
+    export interface AlarmContentTemplateEmail {
+        /**
+         * The content of the email content template.
+         */
+        content: string;
+        /**
+         * The locale of the email content template.
+         */
+        locale: string;
+        /**
+         * The subject of the email content template.
+         */
+        subject: string;
+    }
+
+    export interface AlarmContentTemplateLark {
+        /**
+         * The content of the lark content template.
+         */
+        content: string;
+        /**
+         * The locale of the lark content template.
+         */
+        locale: string;
+        /**
+         * The title of the lark content template.
+         */
+        title: string;
+    }
+
+    export interface AlarmContentTemplateSm {
+        /**
+         * The content of the sms content template.
+         */
+        content: string;
+        /**
+         * The locale of the sms content template.
+         */
+        locale: string;
+    }
+
+    export interface AlarmContentTemplateVm {
+        /**
+         * The content of the vms content template.
+         */
+        content: string;
+        /**
+         * The locale of the vms content template.
+         */
+        locale: string;
+    }
+
+    export interface AlarmContentTemplateWebhook {
+        /**
+         * The content of the webhook content template.
+         */
+        content: string;
+    }
+
+    export interface AlarmContentTemplateWechat {
+        /**
+         * The content of the wechat content template.
+         */
+        content: string;
+        /**
+         * The locale of the wechat content template.
+         */
+        locale: string;
+    }
+
+    export interface AlarmContentTemplatesTemplate {
+        /**
+         * The id of the alarm content template.
+         */
+        alarmContentTemplateId: string;
+        /**
+         * The name of the alarm content template. Fuzzy matching is supported.
+         */
+        alarmContentTemplateName: string;
+        /**
+         * The content of the wechat content template.
+         */
+        content: string;
+        /**
+         * The creation time of the alarm content template.
+         */
+        createTime: string;
+        /**
+         * The description of the alarm content template.
+         */
+        description: string;
+        /**
+         * The dingTalk content of the alarm content template.
+         */
+        dingTalks: outputs.tls.AlarmContentTemplatesTemplateDingTalk[];
+        /**
+         * The email content of the alarm content template.
+         */
+        emails: outputs.tls.AlarmContentTemplatesTemplateEmail[];
+        /**
+         * Whether the alarm content template is default.
+         */
+        isDefault: boolean;
+        /**
+         * The lark content of the alarm content template.
+         */
+        larks: outputs.tls.AlarmContentTemplatesTemplateLark[];
+        /**
+         * The sms content of the alarm content template.
+         */
+        sms: outputs.tls.AlarmContentTemplatesTemplateSm[];
+        /**
+         * The type of the alarm content template.
+         */
+        type: string;
+        /**
+         * The update time of the alarm content template.
+         */
+        updateTime: string;
+        /**
+         * The vms content of the alarm content template.
+         */
+        vms: outputs.tls.AlarmContentTemplatesTemplateVm[];
+        /**
+         * The webhook content of the alarm content template.
+         */
+        webhooks: outputs.tls.AlarmContentTemplatesTemplateWebhook[];
+        /**
+         * The wechat content of the alarm content template.
+         */
+        wechats: outputs.tls.AlarmContentTemplatesTemplateWechat[];
+    }
+
+    export interface AlarmContentTemplatesTemplateDingTalk {
+        /**
+         * The content of the wechat content template.
+         */
+        content: string;
+        /**
+         * The locale of the wechat content template.
+         */
+        locale: string;
+        /**
+         * The title of the lark content template.
+         */
+        title: string;
+    }
+
+    export interface AlarmContentTemplatesTemplateEmail {
+        /**
+         * The content of the wechat content template.
+         */
+        content: string;
+        /**
+         * The locale of the wechat content template.
+         */
+        locale: string;
+        /**
+         * The subject of the email content template.
+         */
+        subject: string;
+    }
+
+    export interface AlarmContentTemplatesTemplateLark {
+        /**
+         * The content of the wechat content template.
+         */
+        content: string;
+        /**
+         * The locale of the wechat content template.
+         */
+        locale: string;
+        /**
+         * The title of the lark content template.
+         */
+        title: string;
+    }
+
+    export interface AlarmContentTemplatesTemplateSm {
+        /**
+         * The content of the wechat content template.
+         */
+        content: string;
+        /**
+         * The locale of the wechat content template.
+         */
+        locale: string;
+    }
+
+    export interface AlarmContentTemplatesTemplateVm {
+        /**
+         * The content of the wechat content template.
+         */
+        content: string;
+        /**
+         * The locale of the wechat content template.
+         */
+        locale: string;
+    }
+
+    export interface AlarmContentTemplatesTemplateWebhook {
+        /**
+         * The content of the wechat content template.
+         */
+        content: string;
+    }
+
+    export interface AlarmContentTemplatesTemplateWechat {
+        /**
+         * The content of the wechat content template.
+         */
+        content: string;
+        /**
+         * The locale of the wechat content template.
+         */
+        locale: string;
+    }
+
+    export interface AlarmJoinConfiguration {
+        /**
+         * The condition.
+         */
+        condition?: string;
+        /**
+         * The set operation type.
+         */
+        setOperationType?: string;
+    }
+
+    export interface AlarmNotifyGroupNoticeRule {
+        /**
+         * Whether there is an end node behind.
+         */
+        hasEndNode?: boolean;
+        /**
+         * Whether to continue to the next level of condition judgment.
+         */
+        hasNext?: boolean;
+        /**
+         * List of IAM users to receive alerts.
+         */
+        receiverInfos?: outputs.tls.AlarmNotifyGroupNoticeRuleReceiverInfo[];
+        /**
+         * The rule node.
+         */
+        ruleNode?: outputs.tls.AlarmNotifyGroupNoticeRuleRuleNode;
+    }
+
+    export interface AlarmNotifyGroupNoticeRuleReceiverInfo {
+        /**
+         * The alarm content template id.
+         */
+        alarmContentTemplateId?: string;
+        /**
+         * The alarm webhook at users.
+         */
+        alarmWebhookAtUsers?: string[];
+        /**
+         * The alarm webhook integration id.
+         */
+        alarmWebhookIntegrationId?: string;
+        /**
+         * The alarm webhook integration name.
+         */
+        alarmWebhookIntegrationName?: string;
+        /**
+         * The alarm webhook is at all.
+         */
+        alarmWebhookIsAtAll?: boolean;
+        /**
+         * The end time.
+         */
+        endTime?: string;
+        /**
+         * The webhook body.
+         */
+        generalWebhookBody?: string;
+        /**
+         * The general webhook headers.
+         */
+        generalWebhookHeaders?: outputs.tls.AlarmNotifyGroupNoticeRuleReceiverInfoGeneralWebhookHeader[];
+        /**
+         * The general webhook method.
+         */
+        generalWebhookMethod?: string;
+        /**
+         * The webhook url.
+         */
+        generalWebhookUrl?: string;
+        /**
+         * The list of the receiver channels.
+         */
+        receiverChannels?: string[];
+        /**
+         * List of the receiver names.
+         */
+        receiverNames?: string[];
+        /**
+         * The receiver type.
+         */
+        receiverType?: string;
+        /**
+         * The start time.
+         */
+        startTime?: string;
+    }
+
+    export interface AlarmNotifyGroupNoticeRuleReceiverInfoGeneralWebhookHeader {
+        /**
+         * The key of the header.
+         */
+        key?: string;
+        /**
+         * The value of the header.
+         */
+        value?: string;
+    }
+
+    export interface AlarmNotifyGroupNoticeRuleRuleNode {
+        /**
+         * The children of the rule node.
+         */
+        childrens?: outputs.tls.AlarmNotifyGroupNoticeRuleRuleNodeChildren[];
+        /**
+         * The type of the rule node.
+         */
+        type?: string;
+        /**
+         * The value of the rule node.
+         */
+        values?: string[];
+    }
+
+    export interface AlarmNotifyGroupNoticeRuleRuleNodeChildren {
+        /**
+         * The type of the rule node.
+         */
+        type?: string;
+        /**
+         * The value of the rule node.
+         */
+        values?: string[];
+    }
+
     export interface AlarmNotifyGroupReceiver {
+        /**
+         * The alarm content template id.
+         */
+        alarmContentTemplateId?: string;
+        /**
+         * The alarm webhook at users.
+         */
+        alarmWebhookAtUsers?: string[];
+        /**
+         * The alarm webhook integration id.
+         */
+        alarmWebhookIntegrationId?: string;
+        /**
+         * The alarm webhook integration name.
+         */
+        alarmWebhookIntegrationName?: string;
+        /**
+         * The alarm webhook is at all.
+         */
+        alarmWebhookIsAtAll?: boolean;
         /**
          * The end time.
          */
         endTime: string;
+        /**
+         * The webhook body.
+         */
+        generalWebhookBody?: string;
+        /**
+         * The general webhook headers.
+         */
+        generalWebhookHeaders?: outputs.tls.AlarmNotifyGroupReceiverGeneralWebhookHeader[];
+        /**
+         * The general webhook method.
+         */
+        generalWebhookMethod?: string;
+        /**
+         * The webhook url.
+         */
+        generalWebhookUrl?: string;
         /**
          * The list of the receiver channels. Currently supported channels: Email, Sms, Phone.
          */
@@ -43105,6 +44620,17 @@ export namespace tls {
          * The start time.
          */
         startTime: string;
+    }
+
+    export interface AlarmNotifyGroupReceiverGeneralWebhookHeader {
+        /**
+         * The key of the header.
+         */
+        key?: string;
+        /**
+         * The value of the header.
+         */
+        value?: string;
     }
 
     export interface AlarmNotifyGroupsGroup {
@@ -43129,6 +44655,10 @@ export namespace tls {
          */
         modifyTime: string;
         /**
+         * The list of the notice rules.
+         */
+        noticeRules: outputs.tls.AlarmNotifyGroupsGroupNoticeRule[];
+        /**
          * The notify group type.
          */
         notifyTypes: string[];
@@ -43138,11 +44668,70 @@ export namespace tls {
         receivers: outputs.tls.AlarmNotifyGroupsGroupReceiver[];
     }
 
-    export interface AlarmNotifyGroupsGroupReceiver {
+    export interface AlarmNotifyGroupsGroupNoticeRule {
+        /**
+         * Whether there is an end node behind.
+         */
+        hasEndNode: boolean;
+        /**
+         * Whether to continue to the next level of condition judgment.
+         */
+        hasNext: boolean;
+        /**
+         * List of IAM users to receive alerts.
+         */
+        receiverInfos: outputs.tls.AlarmNotifyGroupsGroupNoticeRuleReceiverInfo[];
+        /**
+         * The rule node.
+         */
+        ruleNodes: outputs.tls.AlarmNotifyGroupsGroupNoticeRuleRuleNode[];
+    }
+
+    export interface AlarmNotifyGroupsGroupNoticeRuleReceiverInfo {
+        /**
+         * The alarm content template id.
+         */
+        alarmContentTemplateId: string;
+        /**
+         * The alarm webhook at users.
+         */
+        alarmWebhookAtUsers: string[];
+        /**
+         * The alarm webhook integration id.
+         */
+        alarmWebhookIntegrationId: string;
+        /**
+         * The alarm webhook integration name.
+         */
+        alarmWebhookIntegrationName: string;
+        /**
+         * The alarm webhook is at all.
+         */
+        alarmWebhookIsAtAll: boolean;
         /**
          * The end time.
          */
         endTime: string;
+        /**
+         * The general webhook.
+         */
+        generalWebhook: string;
+        /**
+         * The webhook body.
+         */
+        generalWebhookBody: string;
+        /**
+         * The general webhook headers.
+         */
+        generalWebhookHeaders: outputs.tls.AlarmNotifyGroupsGroupNoticeRuleReceiverInfoGeneralWebhookHeader[];
+        /**
+         * The general webhook method.
+         */
+        generalWebhookMethod: string;
+        /**
+         * The webhook url.
+         */
+        generalWebhookUrl: string;
         /**
          * The list of the receiver channels.
          */
@@ -43161,11 +44750,126 @@ export namespace tls {
         startTime: string;
     }
 
+    export interface AlarmNotifyGroupsGroupNoticeRuleReceiverInfoGeneralWebhookHeader {
+        /**
+         * The key of the header.
+         */
+        key: string;
+        /**
+         * The value of the header.
+         */
+        value: string;
+    }
+
+    export interface AlarmNotifyGroupsGroupNoticeRuleRuleNode {
+        /**
+         * The children of the rule node.
+         */
+        childrens: outputs.tls.AlarmNotifyGroupsGroupNoticeRuleRuleNodeChildren[];
+        /**
+         * The type of the rule node.
+         */
+        type: string;
+        /**
+         * The value of the header.
+         */
+        values: string[];
+    }
+
+    export interface AlarmNotifyGroupsGroupNoticeRuleRuleNodeChildren {
+        /**
+         * The type of the rule node.
+         */
+        type: string;
+        /**
+         * The value of the header.
+         */
+        values: string[];
+    }
+
+    export interface AlarmNotifyGroupsGroupReceiver {
+        /**
+         * The alarm content template id.
+         */
+        alarmContentTemplateId: string;
+        /**
+         * The alarm webhook at users.
+         */
+        alarmWebhookAtUsers: string[];
+        /**
+         * The alarm webhook integration id.
+         */
+        alarmWebhookIntegrationId: string;
+        /**
+         * The alarm webhook integration name.
+         */
+        alarmWebhookIntegrationName: string;
+        /**
+         * The alarm webhook is at all.
+         */
+        alarmWebhookIsAtAll: boolean;
+        /**
+         * The end time.
+         */
+        endTime: string;
+        /**
+         * The general webhook.
+         */
+        generalWebhook: string;
+        /**
+         * The webhook body.
+         */
+        generalWebhookBody: string;
+        /**
+         * The general webhook headers.
+         */
+        generalWebhookHeaders: outputs.tls.AlarmNotifyGroupsGroupReceiverGeneralWebhookHeader[];
+        /**
+         * The general webhook method.
+         */
+        generalWebhookMethod: string;
+        /**
+         * The webhook url.
+         */
+        generalWebhookUrl: string;
+        /**
+         * The list of the receiver channels.
+         */
+        receiverChannels: string[];
+        /**
+         * List of the receiver names.
+         */
+        receiverNames: string[];
+        /**
+         * The receiver type.
+         */
+        receiverType: string;
+        /**
+         * The start time.
+         */
+        startTime: string;
+    }
+
+    export interface AlarmNotifyGroupsGroupReceiverGeneralWebhookHeader {
+        /**
+         * The key of the header.
+         */
+        key: string;
+        /**
+         * The value of the header.
+         */
+        value: string;
+    }
+
     export interface AlarmQueryRequest {
         /**
          * The end time of the query range is relative to the current historical time. The unit is minutes. The value is not positive and must be greater than StartTimeOffset. The maximum value is 0 and the minimum value is -1440.
          */
         endTimeOffset: number;
+        /**
+         * The end time offset unit.
+         */
+        endTimeOffsetUnit?: string;
         /**
          * Alarm object sequence number; increments from 1.
          */
@@ -43179,22 +44883,116 @@ export namespace tls {
          */
         startTimeOffset: number;
         /**
+         * The start time offset unit.
+         */
+        startTimeOffsetUnit?: string;
+        /**
+         * The time span type.
+         */
+        timeSpanType?: string;
+        /**
          * The id of the topic.
          */
         topicId: string;
+        /**
+         * The truncated time.
+         */
+        truncatedTime?: string;
     }
 
     export interface AlarmRequestCycle {
         /**
+         * The cron tab.
+         */
+        cronTab?: string;
+        /**
          * The cycle of alarm task execution, or the time point of periodic execution. The unit is minutes, and the value range is 1~1440.
          */
-        time: number;
+        time?: number;
         /**
          * Execution cycle type.
-         * Period: Periodic execution, which means executing once every certain period of time.
-         * Fixed: Regular execution, which means executing at a fixed time point every day.
          */
-        type: string;
+        type?: string;
+    }
+
+    export interface AlarmTriggerCondition {
+        /**
+         * The condition.
+         */
+        condition?: string;
+        /**
+         * The count condition.
+         */
+        countCondition?: string;
+        /**
+         * The no data.
+         */
+        noData?: boolean;
+        /**
+         * The severity.
+         */
+        severity?: string;
+    }
+
+    export interface AlarmWebhookIntegrationWebhookHeader {
+        /**
+         * The key of the header.
+         */
+        key?: string;
+        /**
+         * The value of the header.
+         */
+        value?: string;
+    }
+
+    export interface AlarmWebhookIntegrationsIntegration {
+        /**
+         * The creation time of the webhook integration.
+         */
+        createTime: string;
+        /**
+         * The update time of the webhook integration.
+         */
+        modifyTime: string;
+        /**
+         * The headers of the webhook.
+         */
+        webhookHeaders: outputs.tls.AlarmWebhookIntegrationsIntegrationWebhookHeader[];
+        /**
+         * The ID of the alarm webhook integration.
+         */
+        webhookId: string;
+        /**
+         * The method of the webhook.
+         */
+        webhookMethod: string;
+        /**
+         * The name of the webhook integration. Fuzzy matching is supported.
+         */
+        webhookName: string;
+        /**
+         * The secret of the webhook.
+         */
+        webhookSecret: string;
+        /**
+         * The type of the webhook integration.
+         */
+        webhookType: string;
+        /**
+         * The URL of the webhook.
+         */
+        webhookUrl: string;
+    }
+
+    export interface AlarmWebhookIntegrationsIntegrationWebhookHeader {
+        /**
+         * The key of the header.
+         */
+        key: string;
+        /**
+         * The value of the header.
+         */
+        value: string;
     }
 
     export interface AlarmsAlarm {
@@ -43219,13 +45017,17 @@ export namespace tls {
          */
         alarmPeriodDetails: outputs.tls.AlarmsAlarmAlarmPeriodDetail[];
         /**
-         * Alarm trigger condition.
+         * The condition.
          */
         condition: string;
         /**
          * The create time.
          */
         createTime: string;
+        /**
+         * The list of join configurations.
+         */
+        joinConfigurations: outputs.tls.AlarmsAlarmJoinConfiguration[];
         /**
          * The modify time.
          */
@@ -43243,9 +45045,21 @@ export namespace tls {
          */
         requestCycles: outputs.tls.AlarmsAlarmRequestCycle[];
         /**
+         * Whether to send resolved.
+         */
+        sendResolved: boolean;
+        /**
+         * The severity.
+         */
+        severity: string;
+        /**
          * The status.
          */
         status: boolean;
+        /**
+         * The list of trigger conditions.
+         */
+        triggerConditions: outputs.tls.AlarmsAlarmTriggerCondition[];
         /**
          * Continuous cycle. The alarm will be issued after the trigger condition is continuously met for TriggerPeriod periods; the minimum value is 1, the maximum value is 10, and the default value is 1.
          */
@@ -43329,11 +45143,26 @@ export namespace tls {
         sms: number;
     }
 
+    export interface AlarmsAlarmJoinConfiguration {
+        /**
+         * The condition.
+         */
+        condition: string;
+        /**
+         * The set operation type.
+         */
+        setOperationType: string;
+    }
+
     export interface AlarmsAlarmQueryRequest {
         /**
          * The end time of the query range is relative to the current historical time. The unit is minutes. The value is not positive and must be greater than StartTimeOffset. The maximum value is 0 and the minimum value is -1440.
          */
         endTimeOffset: number;
+        /**
+         * The end time offset unit.
+         */
+        endTimeOffsetUnit: string;
         /**
          * Alarm object sequence number; increments from 1.
          */
@@ -43347,6 +45176,14 @@ export namespace tls {
          */
         startTimeOffset: number;
         /**
+         * The start time offset unit.
+         */
+        startTimeOffsetUnit: string;
+        /**
+         * The time span type.
+         */
+        timeSpanType: string;
+        /**
          * The topic id.
          */
         topicId: string;
@@ -43354,9 +45191,17 @@ export namespace tls {
          * The topic name.
          */
         topicName: string;
+        /**
+         * The truncated time.
+         */
+        truncatedTime: string;
     }
 
     export interface AlarmsAlarmRequestCycle {
+        /**
+         * The cron tab.
+         */
+        cronTab: string;
         /**
          * The cycle of alarm task execution, or the time point of periodic execution. The unit is minutes, and the value range is 1~1440.
          */
@@ -43365,6 +45210,25 @@ export namespace tls {
          * Execution cycle type.
          */
         type: string;
+    }
+
+    export interface AlarmsAlarmTriggerCondition {
+        /**
+         * The condition.
+         */
+        condition: string;
+        /**
+         * The count condition.
+         */
+        countCondition: string;
+        /**
+         * The no data.
+         */
+        noData: boolean;
+        /**
+         * The severity.
+         */
+        severity: string;
     }
 
     export interface ConsumerGroupsConsumerGroup {
@@ -43392,6 +45256,288 @@ export namespace tls {
          * The log topic ID to which the consumer belongs.
          */
         topicIds: string[];
+    }
+
+    export interface DescribeTracesTrace {
+        /**
+         * The collection of spans.
+         */
+        spans: outputs.tls.DescribeTracesTraceSpan[];
+        /**
+         * Trace ID.
+         */
+        traceId: string;
+    }
+
+    export interface DescribeTracesTraceSpan {
+        /**
+         * Resource attributes.
+         */
+        attributes: outputs.tls.DescribeTracesTraceSpanAttribute[];
+        /**
+         * Span end time.
+         */
+        endTime: number;
+        /**
+         * Span events.
+         */
+        events: outputs.tls.DescribeTracesTraceSpanEvent[];
+        /**
+         * Instrumentation library information.
+         */
+        instrumentationLibraries: outputs.tls.DescribeTracesTraceSpanInstrumentationLibrary[];
+        /**
+         * Span type.
+         */
+        kind: string;
+        /**
+         * Span links.
+         */
+        links: outputs.tls.DescribeTracesTraceSpanLink[];
+        /**
+         * Span name.
+         */
+        name: string;
+        /**
+         * Parent Span ID.
+         */
+        parentSpanId: string;
+        /**
+         * Resource information.
+         */
+        resources: outputs.tls.DescribeTracesTraceSpanResource[];
+        /**
+         * Span ID.
+         */
+        spanId: string;
+        /**
+         * Span start time.
+         */
+        startTime: number;
+        /**
+         * Span status.
+         */
+        statuses: outputs.tls.DescribeTracesTraceSpanStatus[];
+        /**
+         * Trace ID.
+         */
+        traceId: string;
+        /**
+         * Trace state.
+         */
+        traceState: string;
+    }
+
+    export interface DescribeTracesTraceSpanAttribute {
+        /**
+         * Attribute key.
+         */
+        key: string;
+        /**
+         * Attribute value.
+         */
+        value: string;
+    }
+
+    export interface DescribeTracesTraceSpanEvent {
+        /**
+         * Resource attributes.
+         */
+        attributes: outputs.tls.DescribeTracesTraceSpanEventAttribute[];
+        /**
+         * Span name.
+         */
+        name: string;
+        /**
+         * Event timestamp.
+         */
+        timestamp: number;
+    }
+
+    export interface DescribeTracesTraceSpanEventAttribute {
+        /**
+         * Attribute key.
+         */
+        key: string;
+        /**
+         * Attribute value.
+         */
+        value: string;
+    }
+
+    export interface DescribeTracesTraceSpanInstrumentationLibrary {
+        /**
+         * Span name.
+         */
+        name: string;
+        /**
+         * Library version.
+         */
+        version: string;
+    }
+
+    export interface DescribeTracesTraceSpanLink {
+        /**
+         * Resource attributes.
+         */
+        attributes: outputs.tls.DescribeTracesTraceSpanLinkAttribute[];
+        /**
+         * Span ID.
+         */
+        spanId: string;
+        /**
+         * Trace ID.
+         */
+        traceId: string;
+        /**
+         * Trace state.
+         */
+        traceState: string;
+    }
+
+    export interface DescribeTracesTraceSpanLinkAttribute {
+        /**
+         * Attribute key.
+         */
+        key: string;
+        /**
+         * Attribute value.
+         */
+        value: string;
+    }
+
+    export interface DescribeTracesTraceSpanResource {
+        /**
+         * Resource attributes.
+         */
+        attributes: outputs.tls.DescribeTracesTraceSpanResourceAttribute[];
+    }
+
+    export interface DescribeTracesTraceSpanResourceAttribute {
+        /**
+         * Attribute key.
+         */
+        key: string;
+        /**
+         * Attribute value.
+         */
+        value: string;
+    }
+
+    export interface DescribeTracesTraceSpanStatus {
+        /**
+         * Status code.
+         */
+        code: string;
+        /**
+         * Error message.
+         */
+        message: string;
+    }
+
+    export interface DownloadTaskLogContextInfos {
+        /**
+         * The context flow of the log.
+         */
+        contextFlow?: string;
+        /**
+         * The package offset of the log.
+         */
+        packageOffset?: number;
+        /**
+         * The source of the log.
+         */
+        source?: string;
+    }
+
+    export interface DownloadTasksDownloadTask {
+        /**
+         * Whether to allow incomplete download.
+         */
+        allowIncomplete: boolean;
+        /**
+         * The compression format of the downloaded file.
+         */
+        compression: string;
+        /**
+         * The create time of the download task.
+         */
+        createTime: string;
+        /**
+         * The data format of the downloaded file.
+         */
+        dataFormat: string;
+        /**
+         * The download URL for the completed task.
+         */
+        downloadUrl: string;
+        /**
+         * The end time of the log data to download, in Unix timestamp format.
+         */
+        endTime: number;
+        /**
+         * The maximum number of log entries to download.
+         */
+        limit: number;
+        /**
+         * The info of the log context.
+         */
+        logContextInfos: outputs.tls.DownloadTasksDownloadTaskLogContextInfo[];
+        /**
+         * The number of the downloaded logs.
+         */
+        logCount: number;
+        /**
+         * The size of the downloaded log data.
+         */
+        logSize: number;
+        /**
+         * The query statement for the download task.
+         */
+        query: string;
+        /**
+         * The sorting order of the log data.
+         */
+        sort: string;
+        /**
+         * The start time of the log data to download, in Unix timestamp format.
+         */
+        startTime: number;
+        /**
+         * The ID of the download task.
+         */
+        taskId: string;
+        /**
+         * The name of the download task.
+         */
+        taskName: string;
+        /**
+         * The status of the download task.
+         */
+        taskStatus: string;
+        /**
+         * The type of the download task.
+         */
+        taskType: number;
+        /**
+         * The ID of the log topic to which the download tasks belong.
+         */
+        topicId: string;
+    }
+
+    export interface DownloadTasksDownloadTaskLogContextInfo {
+        /**
+         * The context flow of the log.
+         */
+        contextFlow: string;
+        /**
+         * The package offset of the log.
+         */
+        packageOffset: number;
+        /**
+         * The source of the log.
+         */
+        source: string;
     }
 
     export interface EtlTaskTargetResource {
@@ -43507,6 +45653,165 @@ export namespace tls {
         topicName: string;
     }
 
+    export interface GetAccountsTlsAccount {
+        /**
+         * The version of the log service architecture. Valid values: 2.0 (new architecture), 1.0 (old architecture).
+         */
+        archVersion: string;
+        /**
+         * The status of the log service. Valid values: Activated (already activated), NonActivated (not activated).
+         */
+        status: string;
+    }
+
+    export interface GetAlarmContentTemplatesTemplate {
+        /**
+         * The id of the alarm content template.
+         */
+        alarmContentTemplateId: string;
+        /**
+         * The name of the alarm content template. Fuzzy matching is supported.
+         */
+        alarmContentTemplateName: string;
+        /**
+         * The content of the wechat content template.
+         */
+        content: string;
+        /**
+         * The creation time of the alarm content template.
+         */
+        createTime: string;
+        /**
+         * The description of the alarm content template.
+         */
+        description: string;
+        /**
+         * The dingTalk content of the alarm content template.
+         */
+        dingTalks: outputs.tls.GetAlarmContentTemplatesTemplateDingTalk[];
+        /**
+         * The email content of the alarm content template.
+         */
+        emails: outputs.tls.GetAlarmContentTemplatesTemplateEmail[];
+        /**
+         * Whether the alarm content template is default.
+         */
+        isDefault: boolean;
+        /**
+         * The lark content of the alarm content template.
+         */
+        larks: outputs.tls.GetAlarmContentTemplatesTemplateLark[];
+        /**
+         * The sms content of the alarm content template.
+         */
+        sms: outputs.tls.GetAlarmContentTemplatesTemplateSm[];
+        /**
+         * The type of the alarm content template.
+         */
+        type: string;
+        /**
+         * The update time of the alarm content template.
+         */
+        updateTime: string;
+        /**
+         * The vms content of the alarm content template.
+         */
+        vms: outputs.tls.GetAlarmContentTemplatesTemplateVm[];
+        /**
+         * The webhook content of the alarm content template.
+         */
+        webhooks: outputs.tls.GetAlarmContentTemplatesTemplateWebhook[];
+        /**
+         * The wechat content of the alarm content template.
+         */
+        wechats: outputs.tls.GetAlarmContentTemplatesTemplateWechat[];
+    }
+
+    export interface GetAlarmContentTemplatesTemplateDingTalk {
+        /**
+         * The content of the wechat content template.
+         */
+        content: string;
+        /**
+         * The locale of the wechat content template.
+         */
+        locale: string;
+        /**
+         * The title of the lark content template.
+         */
+        title: string;
+    }
+
+    export interface GetAlarmContentTemplatesTemplateEmail {
+        /**
+         * The content of the wechat content template.
+         */
+        content: string;
+        /**
+         * The locale of the wechat content template.
+         */
+        locale: string;
+        /**
+         * The subject of the email content template.
+         */
+        subject: string;
+    }
+
+    export interface GetAlarmContentTemplatesTemplateLark {
+        /**
+         * The content of the wechat content template.
+         */
+        content: string;
+        /**
+         * The locale of the wechat content template.
+         */
+        locale: string;
+        /**
+         * The title of the lark content template.
+         */
+        title: string;
+    }
+
+    export interface GetAlarmContentTemplatesTemplateSm {
+        /**
+         * The content of the wechat content template.
+         */
+        content: string;
+        /**
+         * The locale of the wechat content template.
+         */
+        locale: string;
+    }
+
+    export interface GetAlarmContentTemplatesTemplateVm {
+        /**
+         * The content of the wechat content template.
+         */
+        content: string;
+        /**
+         * The locale of the wechat content template.
+         */
+        locale: string;
+    }
+
+    export interface GetAlarmContentTemplatesTemplateWebhook {
+        /**
+         * The content of the wechat content template.
+         */
+        content: string;
+    }
+
+    export interface GetAlarmContentTemplatesTemplateWechat {
+        /**
+         * The content of the wechat content template.
+         */
+        content: string;
+        /**
+         * The locale of the wechat content template.
+         */
+        locale: string;
+    }
+
     export interface GetAlarmNotifyGroupsGroup {
         /**
          * The id of the alarm notify group.
@@ -43529,6 +45834,10 @@ export namespace tls {
          */
         modifyTime: string;
         /**
+         * The list of the notice rules.
+         */
+        noticeRules: outputs.tls.GetAlarmNotifyGroupsGroupNoticeRule[];
+        /**
          * The notify group type.
          */
         notifyTypes: string[];
@@ -43538,11 +45847,70 @@ export namespace tls {
         receivers: outputs.tls.GetAlarmNotifyGroupsGroupReceiver[];
     }
 
-    export interface GetAlarmNotifyGroupsGroupReceiver {
+    export interface GetAlarmNotifyGroupsGroupNoticeRule {
+        /**
+         * Whether there is an end node behind.
+         */
+        hasEndNode: boolean;
+        /**
+         * Whether to continue to the next level of condition judgment.
+         */
+        hasNext: boolean;
+        /**
+         * List of IAM users to receive alerts.
+         */
+        receiverInfos: outputs.tls.GetAlarmNotifyGroupsGroupNoticeRuleReceiverInfo[];
+        /**
+         * The rule node.
+         */
+        ruleNodes: outputs.tls.GetAlarmNotifyGroupsGroupNoticeRuleRuleNode[];
+    }
+
+    export interface GetAlarmNotifyGroupsGroupNoticeRuleReceiverInfo {
+        /**
+         * The alarm content template id.
+         */
+        alarmContentTemplateId: string;
+        /**
+         * The alarm webhook at users.
+         */
+        alarmWebhookAtUsers: string[];
+        /**
+         * The alarm webhook integration id.
+         */
+        alarmWebhookIntegrationId: string;
+        /**
+         * The alarm webhook integration name.
+         */
+        alarmWebhookIntegrationName: string;
+        /**
+         * The alarm webhook is at all.
+         */
+        alarmWebhookIsAtAll: boolean;
         /**
          * The end time.
          */
         endTime: string;
+        /**
+         * The general webhook.
+         */
+        generalWebhook: string;
+        /**
+         * The webhook body.
+         */
+        generalWebhookBody: string;
+        /**
+         * The general webhook headers.
+         */
+        generalWebhookHeaders: outputs.tls.GetAlarmNotifyGroupsGroupNoticeRuleReceiverInfoGeneralWebhookHeader[];
+        /**
+         * The general webhook method.
+         */
+        generalWebhookMethod: string;
+        /**
+         * The webhook url.
+         */
+        generalWebhookUrl: string;
         /**
          * The list of the receiver channels.
          */
@@ -43559,6 +45927,167 @@ export namespace tls {
          * The start time.
          */
         startTime: string;
+    }
+
+    export interface GetAlarmNotifyGroupsGroupNoticeRuleReceiverInfoGeneralWebhookHeader {
+        /**
+         * The key of the header.
+         */
+        key: string;
+        /**
+         * The value of the header.
+         */
+        value: string;
+    }
+
+    export interface GetAlarmNotifyGroupsGroupNoticeRuleRuleNode {
+        /**
+         * The children of the rule node.
+         */
+        childrens: outputs.tls.GetAlarmNotifyGroupsGroupNoticeRuleRuleNodeChildren[];
+        /**
+         * The type of the rule node.
+         */
+        type: string;
+        /**
+         * The value of the header.
+         */
+        values: string[];
+    }
+
+    export interface GetAlarmNotifyGroupsGroupNoticeRuleRuleNodeChildren {
+        /**
+         * The type of the rule node.
+         */
+        type: string;
+        /**
+         * The value of the header.
+         */
+        values: string[];
+    }
+
+    export interface GetAlarmNotifyGroupsGroupReceiver {
+        /**
+         * The alarm content template id.
+         */
+        alarmContentTemplateId: string;
+        /**
+         * The alarm webhook at users.
+         */
+        alarmWebhookAtUsers: string[];
+        /**
+         * The alarm webhook integration id.
+         */
+        alarmWebhookIntegrationId: string;
+        /**
+         * The alarm webhook integration name.
+         */
+        alarmWebhookIntegrationName: string;
+        /**
+         * The alarm webhook is at all.
+         */
+        alarmWebhookIsAtAll: boolean;
+        /**
+         * The end time.
+         */
+        endTime: string;
+        /**
+         * The general webhook.
+         */
+        generalWebhook: string;
+        /**
+         * The webhook body.
+         */
+        generalWebhookBody: string;
+        /**
+         * The general webhook headers.
+         */
+        generalWebhookHeaders: outputs.tls.GetAlarmNotifyGroupsGroupReceiverGeneralWebhookHeader[];
+        /**
+         * The general webhook method.
+         */
+        generalWebhookMethod: string;
+        /**
+         * The webhook url.
+         */
+        generalWebhookUrl: string;
+        /**
+         * The list of the receiver channels.
+         */
+        receiverChannels: string[];
+        /**
+         * List of the receiver names.
+         */
+        receiverNames: string[];
+        /**
+         * The receiver type.
+         */
+        receiverType: string;
+        /**
+         * The start time.
+         */
+        startTime: string;
+    }
+
+    export interface GetAlarmNotifyGroupsGroupReceiverGeneralWebhookHeader {
+        /**
+         * The key of the header.
+         */
+        key: string;
+        /**
+         * The value of the header.
+         */
+        value: string;
+    }
+
+    export interface GetAlarmWebhookIntegrationsIntegration {
+        /**
+         * The creation time of the webhook integration.
+         */
+        createTime: string;
+        /**
+         * The update time of the webhook integration.
+         */
+        modifyTime: string;
+        /**
+         * The headers of the webhook.
+         */
+        webhookHeaders: outputs.tls.GetAlarmWebhookIntegrationsIntegrationWebhookHeader[];
+        /**
+         * The ID of the alarm webhook integration.
+         */
+        webhookId: string;
+        /**
+         * The method of the webhook.
+         */
+        webhookMethod: string;
+        /**
+         * The name of the webhook integration. Fuzzy matching is supported.
+         */
+        webhookName: string;
+        /**
+         * The secret of the webhook.
+         */
+        webhookSecret: string;
+        /**
+         * The type of the webhook integration.
+         */
+        webhookType: string;
+        /**
+         * The URL of the webhook.
+         */
+        webhookUrl: string;
+    }
+
+    export interface GetAlarmWebhookIntegrationsIntegrationWebhookHeader {
+        /**
+         * The key of the header.
+         */
+        key: string;
+        /**
+         * The value of the header.
+         */
+        value: string;
     }
 
     export interface GetAlarmsAlarm {
@@ -43583,13 +46112,17 @@ export namespace tls {
          */
         alarmPeriodDetails: outputs.tls.GetAlarmsAlarmAlarmPeriodDetail[];
         /**
-         * Alarm trigger condition.
+         * The condition.
          */
         condition: string;
         /**
          * The create time.
          */
         createTime: string;
+        /**
+         * The list of join configurations.
+         */
+        joinConfigurations: outputs.tls.GetAlarmsAlarmJoinConfiguration[];
         /**
          * The modify time.
          */
@@ -43607,9 +46140,21 @@ export namespace tls {
          */
         requestCycles: outputs.tls.GetAlarmsAlarmRequestCycle[];
         /**
+         * Whether to send resolved.
+         */
+        sendResolved: boolean;
+        /**
+         * The severity.
+         */
+        severity: string;
+        /**
          * The status.
          */
         status: boolean;
+        /**
+         * The list of trigger conditions.
+         */
+        triggerConditions: outputs.tls.GetAlarmsAlarmTriggerCondition[];
         /**
          * Continuous cycle. The alarm will be issued after the trigger condition is continuously met for TriggerPeriod periods; the minimum value is 1, the maximum value is 10, and the default value is 1.
          */
@@ -43693,11 +46238,26 @@ export namespace tls {
         sms: number;
     }
 
+    export interface GetAlarmsAlarmJoinConfiguration {
+        /**
+         * The condition.
+         */
+        condition: string;
+        /**
+         * The set operation type.
+         */
+        setOperationType: string;
+    }
+
     export interface GetAlarmsAlarmQueryRequest {
         /**
          * The end time of the query range is relative to the current historical time. The unit is minutes. The value is not positive and must be greater than StartTimeOffset. The maximum value is 0 and the minimum value is -1440.
          */
         endTimeOffset: number;
+        /**
+         * The end time offset unit.
+         */
+        endTimeOffsetUnit: string;
         /**
          * Alarm object sequence number; increments from 1.
          */
@@ -43711,6 +46271,14 @@ export namespace tls {
          */
         startTimeOffset: number;
         /**
+         * The start time offset unit.
+         */
+        startTimeOffsetUnit: string;
+        /**
+         * The time span type.
+         */
+        timeSpanType: string;
+        /**
          * The topic id.
          */
         topicId: string;
@@ -43718,9 +46286,17 @@ export namespace tls {
          * The topic name.
          */
         topicName: string;
+        /**
+         * The truncated time.
+         */
+        truncatedTime: string;
     }
 
     export interface GetAlarmsAlarmRequestCycle {
+        /**
+         * The cron tab.
+         */
+        cronTab: string;
         /**
          * The cycle of alarm task execution, or the time point of periodic execution. The unit is minutes, and the value range is 1~1440.
          */
@@ -43729,6 +46305,25 @@ export namespace tls {
          * Execution cycle type.
          */
         type: string;
+    }
+
+    export interface GetAlarmsAlarmTriggerCondition {
+        /**
+         * The condition.
+         */
+        condition: string;
+        /**
+         * The count condition.
+         */
+        countCondition: string;
+        /**
+         * The no data.
+         */
+        noData: boolean;
+        /**
+         * The severity.
+         */
+        severity: string;
     }
 
     export interface GetConsumerGroupsConsumerGroup {
@@ -43756,6 +46351,273 @@ export namespace tls {
          * The log topic ID to which the consumer belongs.
          */
         topicIds: string[];
+    }
+
+    export interface GetDescribeTracesTrace {
+        /**
+         * The collection of spans.
+         */
+        spans: outputs.tls.GetDescribeTracesTraceSpan[];
+        /**
+         * Trace ID.
+         */
+        traceId: string;
+    }
+
+    export interface GetDescribeTracesTraceSpan {
+        /**
+         * Resource attributes.
+         */
+        attributes: outputs.tls.GetDescribeTracesTraceSpanAttribute[];
+        /**
+         * Span end time.
+         */
+        endTime: number;
+        /**
+         * Span events.
+         */
+        events: outputs.tls.GetDescribeTracesTraceSpanEvent[];
+        /**
+         * Instrumentation library information.
+         */
+        instrumentationLibraries: outputs.tls.GetDescribeTracesTraceSpanInstrumentationLibrary[];
+        /**
+         * Span type.
+         */
+        kind: string;
+        /**
+         * Span links.
+         */
+        links: outputs.tls.GetDescribeTracesTraceSpanLink[];
+        /**
+         * Span name.
+         */
+        name: string;
+        /**
+         * Parent Span ID.
+         */
+        parentSpanId: string;
+        /**
+         * Resource information.
+         */
+        resources: outputs.tls.GetDescribeTracesTraceSpanResource[];
+        /**
+         * Span ID.
+         */
+        spanId: string;
+        /**
+         * Span start time.
+         */
+        startTime: number;
+        /**
+         * Span status.
+         */
+        statuses: outputs.tls.GetDescribeTracesTraceSpanStatus[];
+        /**
+         * Trace ID.
+         */
+        traceId: string;
+        /**
+         * Trace state.
+         */
+        traceState: string;
+    }
+
+    export interface GetDescribeTracesTraceSpanAttribute {
+        /**
+         * Attribute key.
+         */
+        key: string;
+        /**
+         * Attribute value.
+         */
+        value: string;
+    }
+
+    export interface GetDescribeTracesTraceSpanEvent {
+        /**
+         * Resource attributes.
+         */
+        attributes: outputs.tls.GetDescribeTracesTraceSpanEventAttribute[];
+        /**
+         * Span name.
+         */
+        name: string;
+        /**
+         * Event timestamp.
+         */
+        timestamp: number;
+    }
+
+    export interface GetDescribeTracesTraceSpanEventAttribute {
+        /**
+         * Attribute key.
+         */
+        key: string;
+        /**
+         * Attribute value.
+         */
+        value: string;
+    }
+
+    export interface GetDescribeTracesTraceSpanInstrumentationLibrary {
+        /**
+         * Span name.
+         */
+        name: string;
+        /**
+         * Library version.
+         */
+        version: string;
+    }
+
+    export interface GetDescribeTracesTraceSpanLink {
+        /**
+         * Resource attributes.
+         */
+        attributes: outputs.tls.GetDescribeTracesTraceSpanLinkAttribute[];
+        /**
+         * Span ID.
+         */
+        spanId: string;
+        /**
+         * Trace ID.
+         */
+        traceId: string;
+        /**
+         * Trace state.
+         */
+        traceState: string;
+    }
+
+    export interface GetDescribeTracesTraceSpanLinkAttribute {
+        /**
+         * Attribute key.
+         */
+        key: string;
+        /**
+         * Attribute value.
+         */
+        value: string;
+    }
+
+    export interface GetDescribeTracesTraceSpanResource {
+        /**
+         * Resource attributes.
+         */
+        attributes: outputs.tls.GetDescribeTracesTraceSpanResourceAttribute[];
+    }
+
+    export interface GetDescribeTracesTraceSpanResourceAttribute {
+        /**
+         * Attribute key.
+         */
+        key: string;
+        /**
+         * Attribute value.
+         */
+        value: string;
+    }
+
+    export interface GetDescribeTracesTraceSpanStatus {
+        /**
+         * Status code.
+         */
+        code: string;
+        /**
+         * Error message.
+         */
+        message: string;
+    }
+
+    export interface GetDownloadTasksDownloadTask {
+        /**
+         * Whether to allow incomplete download.
+         */
+        allowIncomplete: boolean;
+        /**
+         * The compression format of the downloaded file.
+         */
+        compression: string;
+        /**
+         * The create time of the download task.
+         */
+        createTime: string;
+        /**
+         * The data format of the downloaded file.
+         */
+        dataFormat: string;
+        /**
+         * The download URL for the completed task.
+         */
+        downloadUrl: string;
+        /**
+         * The end time of the log data to download, in Unix timestamp format.
+         */
+        endTime: number;
+        /**
+         * The maximum number of log entries to download.
+         */
+        limit: number;
+        /**
+         * The info of the log context.
+         */
+        logContextInfos: outputs.tls.GetDownloadTasksDownloadTaskLogContextInfo[];
+        /**
+         * The number of the downloaded logs.
+         */
+        logCount: number;
+        /**
+         * The size of the downloaded log data.
+         */
+        logSize: number;
+        /**
+         * The query statement for the download task.
+         */
+        query: string;
+        /**
+         * The sorting order of the log data.
+         */
+        sort: string;
+        /**
+         * The start time of the log data to download, in Unix timestamp format.
+         */
+        startTime: number;
+        /**
+         * The ID of the download task.
+         */
+        taskId: string;
+        /**
+         * The name of the download task.
+         */
+        taskName: string;
+        /**
+         * The status of the download task.
+         */
+        taskStatus: string;
+        /**
+         * The type of the download task.
+         */
+        taskType: number;
+        /**
+         * The ID of the log topic to which the download tasks belong.
+         */
+        topicId: string;
+    }
+
+    export interface GetDownloadTasksDownloadTaskLogContextInfo {
+        /**
+         * The context flow of the log.
+         */
+        contextFlow: string;
+        /**
+         * The package offset of the log.
+         */
+        packageOffset: number;
+        /**
+         * The source of the log.
+         */
+        source: string;
     }
 
     export interface GetEtlTasksTask {
@@ -43856,15 +46718,159 @@ export namespace tls {
         topicName: string;
     }
 
+    export interface GetHostGroupRulesRuleInfo {
+        /**
+         * Container collection rules.
+         */
+        containerRules: outputs.tls.GetHostGroupRulesRuleInfoContainerRule[];
+        /**
+         * The create time of rule.
+         */
+        createTime: string;
+        /**
+         * Collect the blacklist list.
+         */
+        excludePaths: outputs.tls.GetHostGroupRulesRuleInfoExcludePath[];
+        /**
+         * The extract rule.
+         */
+        extractRules: outputs.tls.GetHostGroupRulesRuleInfoExtractRule[];
+        /**
+         * The type of input.
+         */
+        inputType: number;
+        /**
+         * The sample of the log.
+         */
+        logSample: string;
+        /**
+         * The type of log.
+         */
+        logType: string;
+        /**
+         * The modify time of rule.
+         */
+        modifyTime: string;
+        /**
+         * The paths of rule.
+         */
+        paths: string[];
+        /**
+         * The pause status of rule.
+         */
+        pause: number;
+        /**
+         * The id of rule.
+         */
+        ruleId: string;
+        /**
+         * The name of rule.
+         */
+        ruleName: string;
+        /**
+         * The id of topic.
+         */
+        topicId: string;
+        /**
+         * The name of topic.
+         */
+        topicName: string;
+        /**
+         * User-defined collection rules.
+         */
+        userDefineRules: outputs.tls.GetHostGroupRulesRuleInfoUserDefineRule[];
+    }
+
+    export interface GetHostGroupRulesRuleInfoContainerRule {
+        containerNameRegex: string;
+        envTag: {[key: string]: string};
+        excludeContainerEnvRegex: {[key: string]: string};
+        excludeContainerLabelRegex: {[key: string]: string};
+        includeContainerEnvRegex: {[key: string]: string};
+        includeContainerLabelRegex: {[key: string]: string};
+        kubernetesRules: outputs.tls.GetHostGroupRulesRuleInfoContainerRuleKubernetesRule[];
+        stream: string;
+    }
+
+    export interface GetHostGroupRulesRuleInfoContainerRuleKubernetesRule {
+        annotationTag: {[key: string]: string};
+        excludePodLabelRegex: {[key: string]: string};
+        includePodLabelRegex: {[key: string]: string};
+        labelTag: {[key: string]: string};
+        namespaceNameRegex: string;
+        podNameRegex: string;
+        workloadNameRegex: string;
+        workloadType: string;
+    }
+
+    export interface GetHostGroupRulesRuleInfoExcludePath {
+        type: string;
+        value: string;
+    }
+
+    export interface GetHostGroupRulesRuleInfoExtractRule {
+        beginRegex: string;
+        delimiter: string;
+        filterKeyRegexes: outputs.tls.GetHostGroupRulesRuleInfoExtractRuleFilterKeyRegex[];
+        keys: string[];
+        logRegex: string;
+        logTemplates: outputs.tls.GetHostGroupRulesRuleInfoExtractRuleLogTemplate[];
+        timeFormat: string;
+        timeKey: string;
+        unMatchLogKey: string;
+        unMatchUpLoadSwitch: boolean;
+    }
+
+    export interface GetHostGroupRulesRuleInfoExtractRuleFilterKeyRegex {
+        key: string;
+        regex: string;
+    }
+
+    export interface GetHostGroupRulesRuleInfoExtractRuleLogTemplate {
+        format: string;
+        type: string;
+    }
+
+    export interface GetHostGroupRulesRuleInfoUserDefineRule {
+        advanceds: outputs.tls.GetHostGroupRulesRuleInfoUserDefineRuleAdvanced[];
+        enableRawLog: boolean;
+        fields: {[key: string]: string};
+        parsePathRules: outputs.tls.GetHostGroupRulesRuleInfoUserDefineRuleParsePathRule[];
+        plugins: outputs.tls.GetHostGroupRulesRuleInfoUserDefineRulePlugin[];
+        shardHashKeys: outputs.tls.GetHostGroupRulesRuleInfoUserDefineRuleShardHashKey[];
+        tailFiles: boolean;
+    }
+
+    export interface GetHostGroupRulesRuleInfoUserDefineRuleAdvanced {
+        closeEof: boolean;
+        closeInactive: number;
+        closeRemoved: boolean;
+        closeRenamed: boolean;
+        closeTimeout: number;
+    }
+
+    export interface GetHostGroupRulesRuleInfoUserDefineRuleParsePathRule {
+        keys: string[];
+        pathSample: string;
+        regex: string;
+    }
+
+    export interface GetHostGroupRulesRuleInfoUserDefineRulePlugin {
+        processors: string[];
+    }
+
+    export interface GetHostGroupRulesRuleInfoUserDefineRuleShardHashKey {
+        hashKey: string;
+    }
+
     export interface GetHostGroupsInfo {
         /**
-         * The abnormal heartbeat status count of host.
+         * The info of host group.
          */
-        abnormalHeartbeatStatusCount: number;
-        /**
-         * The latest version of log collector.
-         */
-        agentLatestVersion: string;
+        hostGroupInfos: outputs.tls.GetHostGroupsInfoHostGroupInfo[];
+    }
+
+    export interface GetHostGroupsInfoHostGroupInfo {
         /**
          * Whether enable auto update.
          */
@@ -43874,7 +46880,7 @@ export namespace tls {
          */
         createTime: string;
         /**
-         * The count of host.
+         * The host count of host group.
          */
         hostCount: number;
         /**
@@ -43894,10 +46900,6 @@ export namespace tls {
          */
         hostIdentifier: string;
         /**
-         * The ip list of host group.
-         */
-        hostIpLists: string[];
-        /**
          * The project name of iam.
          */
         iamProjectName: string;
@@ -43905,10 +46907,6 @@ export namespace tls {
          * The modify time of host group.
          */
         modifyTime: string;
-        /**
-         * The normal heartbeat status count of host.
-         */
-        normalHeartbeatStatusCount: number;
         /**
          * The rule count of host.
          */
@@ -44189,6 +47187,10 @@ export namespace tls {
          */
         createTime: string;
         /**
+         * Whether to enable auto index.
+         */
+        enableAutoIndex: boolean;
+        /**
          * The FullText index of the tls topic.
          */
         fullText: outputs.tls.GetIndexesTlsIndexFullText;
@@ -44200,6 +47202,10 @@ export namespace tls {
          * The KeyValue index of the tls topic.
          */
         keyValues: outputs.tls.GetIndexesTlsIndexKeyValue[];
+        /**
+         * The max text length of the tls index.
+         */
+        maxTextLen: number;
         /**
          * The modify time of the tls index.
          */
@@ -44364,6 +47370,117 @@ export namespace tls {
         topicId: string;
     }
 
+    export interface GetLogContextsLogContext {
+        /**
+         * The infos of context log.
+         */
+        logContextInfos: {[key: string]: any}[];
+        /**
+         * Whether the next logs are over.
+         */
+        nextOver: boolean;
+        /**
+         * Whether the previous logs are over.
+         */
+        prevOver: boolean;
+    }
+
+    export interface GetLogHistogramsHistogramInfo {
+        /**
+         * The count.
+         */
+        count: number;
+        /**
+         * The end time.
+         */
+        endTime: number;
+        /**
+         * The result status.
+         */
+        resultStatus: string;
+        /**
+         * The start time.
+         */
+        startTime: number;
+    }
+
+    export interface GetLogSearchesLog {
+        /**
+         * Whether the result is analysis.
+         */
+        analysis: boolean;
+        /**
+         * The analysis result of the query.
+         */
+        analysisResult: {[key: string]: any};
+        /**
+         * The context of the log.
+         */
+        context: string;
+        /**
+         * The elapsed time of the query.
+         */
+        elapsedMillisecond: number;
+        /**
+         * Whether to highlight the log.
+         */
+        highlights: outputs.tls.GetLogSearchesLogHighlight[];
+        /**
+         * The count of the logs.
+         */
+        hitCount: number;
+        /**
+         * The limit of the logs.
+         */
+        limit: number;
+        /**
+         * Whether the list is over.
+         */
+        listOver: boolean;
+        /**
+         * The list of the logs.
+         */
+        logs: outputs.tls.GetLogSearchesLogLog[];
+        /**
+         * The status of the query.
+         */
+        resultStatus: string;
+    }
+
+    export interface GetLogSearchesLogHighlight {
+        /**
+         * The key of the highlight.
+         */
+        key: string;
+        /**
+         * The value of the highlight.
+         */
+        values: string[];
+    }
+
+    export interface GetLogSearchesLogLog {
+        /**
+         * The content of the log.
+         */
+        content: {[key: string]: any};
+        /**
+         * The filename of the log.
+         */
+        filename: string;
+        /**
+         * The ID of the log.
+         */
+        logId: string;
+        /**
+         * The source of the log.
+         */
+        source: string;
+        /**
+         * The timestamp of the log.
+         */
+        timestamp: number;
+    }
+
     export interface GetProjectsTag {
         /**
          * The Key of Tags.
@@ -44425,292 +47542,106 @@ export namespace tls {
         value: string;
     }
 
-    export interface GetRuleAppliersRule {
+    export interface GetRuleAppliersHostGroupInfo {
         /**
-         * Container collection rules.
+         * Whether to auto update.
          */
-        containerRules: outputs.tls.GetRuleAppliersRuleContainerRule[];
+        autoUpdate: boolean;
         /**
-         * The creation time.
+         * The create time.
          */
         createTime: string;
         /**
-         * Collect the blacklist list.
+         * The host count.
          */
-        excludePaths: outputs.tls.GetRuleAppliersRuleExcludePath[];
+        hostCount: number;
         /**
-         * The extract rule.
+         * The host group id.
          */
-        extractRules: outputs.tls.GetRuleAppliersRuleExtractRule[];
+        hostGroupId: string;
         /**
-         * The collection type.
+         * The host group name.
          */
-        inputType: number;
+        hostGroupName: string;
         /**
-         * Log sample.
+         * The host group type.
          */
-        logSample: string;
+        hostGroupType: string;
         /**
-         * The log type.
+         * The host identifier.
          */
-        logType: string;
+        hostIdentifier: string;
         /**
-         * The modification time.
+         * The iam project name.
+         */
+        iamProjectName: string;
+        /**
+         * The modify time.
          */
         modifyTime: string;
         /**
-         * Collection path list.
+         * The rule count.
          */
-        paths: string[];
+        ruleCount: number;
         /**
-         * The rule id.
+         * Whether to service logging.
          */
-        ruleId: string;
+        serviceLogging: boolean;
         /**
-         * The rule name.
+         * The update end time.
          */
-        ruleName: string;
+        updateEndTime: string;
         /**
-         * The topic id.
+         * The update start time.
          */
-        topicId: string;
-        /**
-         * The topic name.
-         */
-        topicName: string;
-        /**
-         * User-defined collection rules.
-         */
-        userDefineRules: outputs.tls.GetRuleAppliersRuleUserDefineRule[];
+        updateStartTime: string;
     }
 
-    export interface GetRuleAppliersRuleContainerRule {
+    export interface GetRuleBoundHostGroupsHostGroup {
         /**
-         * The name of the container to be collected.
+         * Whether to enable auto update.
          */
-        containerNameRegex: string;
+        autoUpdate: boolean;
         /**
-         * Whether to add environment variables as log tags to raw log data.
+         * The creation time of the host group.
          */
-        envTag: {[key: string]: any};
+        createTime: string;
         /**
-         * The container environment variable blacklist is used to specify the range of containers not to be collected.
+         * The ID of the host group.
          */
-        excludeContainerEnvRegex: {[key: string]: any};
+        hostGroupId: string;
         /**
-         * The container Label blacklist is used to specify the range of containers not to be collected.
+         * The name of the host group.
          */
-        excludeContainerLabelRegex: {[key: string]: any};
+        hostGroupName: string;
         /**
-         * The container environment variable whitelist specifies the container to be collected through the container environment variable. If the whitelist is not enabled, it means that all containers are specified to be collected.
+         * The type of the host group.
          */
-        includeContainerEnvRegex: {[key: string]: any};
+        hostGroupType: string;
         /**
-         * The container label whitelist specifies the containers to be collected through the container label. If the whitelist is not enabled, all containers are specified to be collected.
+         * The identifier of the host.
          */
-        includeContainerLabelRegex: {[key: string]: any};
+        hostIdentifier: string;
         /**
-         * Collection rules for Kubernetes containers.
+         * The name of the iam project.
          */
-        kubernetesRules: outputs.tls.GetRuleAppliersRuleContainerRuleKubernetesRule[];
+        iamProjectName: string;
         /**
-         * The collection mode.
+         * The modification time of the host group.
          */
-        stream: string;
-    }
-
-    export interface GetRuleAppliersRuleContainerRuleKubernetesRule {
+        modifyTime: string;
         /**
-         * Whether to add Kubernetes Annotation as a log tag to the raw log data.
+         * Whether to enable service logging.
          */
-        annotationTag: {[key: string]: any};
+        serviceLogging: boolean;
         /**
-         * Specify the containers not to be collected through the Pod Label blacklist, and not enable means to collect all containers.
+         * The end time of auto update.
          */
-        excludePodLabelRegex: {[key: string]: any};
+        updateEndTime: string;
         /**
-         * The Pod Label whitelist is used to specify containers to be collected. When the Pod Label whitelist is not enabled, it means that all containers are collected.
+         * The start time of auto update.
          */
-        includePodLabelRegex: {[key: string]: any};
-        /**
-         * Whether to add Kubernetes Label as a log label to the original log data.
-         */
-        labelTag: {[key: string]: any};
-        /**
-         * The name of the Kubernetes Namespace to be collected. If no Namespace name is specified, all containers will be collected. Namespace names support regular matching.
-         */
-        namespaceNameRegex: string;
-        /**
-         * The Pod name is used to specify the container to be collected. When no Pod name is specified, it means to collect all containers.
-         */
-        podNameRegex: string;
-        /**
-         * Specify the container to be collected by the name of the workload. When no workload name is specified, all containers are collected. The workload name supports regular matching.
-         */
-        workloadNameRegex: string;
-        /**
-         * Specify the container to be collected by the type of workload. Only one type can be selected. When no type is specified, it means to collect all types of containers.
-         */
-        workloadType: string;
-    }
-
-    export interface GetRuleAppliersRuleExcludePath {
-        /**
-         * The type of the log template.
-         */
-        type: string;
-        /**
-         * Collection path.
-         */
-        value: string;
-    }
-
-    export interface GetRuleAppliersRuleExtractRule {
-        /**
-         * The first log line needs to match the regular expression.
-         */
-        beginRegex: string;
-        /**
-         * The delimiter of the log.
-         */
-        delimiter: string;
-        /**
-         * The filter key list.
-         */
-        filterKeyRegexes: outputs.tls.GetRuleAppliersRuleExtractRuleFilterKeyRegex[];
-        /**
-         * A list of field names. Log Service will parse the path sample (PathSample) into multiple fields according to the regular expression (Regex), and Keys is used to specify the field name of each field.
-         */
-        keys: string[];
-        /**
-         * The entire log needs to match the regular expression.
-         */
-        logRegex: string;
-        /**
-         * Automatically extract log fields according to the specified log template.
-         */
-        logTemplates: outputs.tls.GetRuleAppliersRuleExtractRuleLogTemplate[];
-        /**
-         * Parsing format of the time field.
-         */
-        timeFormat: string;
-        /**
-         * The field name of the log time field.
-         */
-        timeKey: string;
-        /**
-         * When uploading the failed log, the key name of the failed log.
-         */
-        unMatchLogKey: string;
-        /**
-         * Whether to upload the log of parsing failure.
-         */
-        unMatchUpLoadSwitch: boolean;
-    }
-
-    export interface GetRuleAppliersRuleExtractRuleFilterKeyRegex {
-        /**
-         * The name of the filter key.
-         */
-        key: string;
-        /**
-         * Regular expression for extracting path fields. It must match the collection path sample, otherwise it cannot be extracted successfully.
-         */
-        regex: string;
-    }
-
-    export interface GetRuleAppliersRuleExtractRuleLogTemplate {
-        /**
-         * Log template content.
-         */
-        format: string;
-        /**
-         * The type of the log template.
-         */
-        type: string;
-    }
-
-    export interface GetRuleAppliersRuleUserDefineRule {
-        /**
-         * LogCollector extension configuration.
-         */
-        advanceds: outputs.tls.GetRuleAppliersRuleUserDefineRuleAdvanced[];
-        /**
-         * Whether to upload raw logs.
-         */
-        enableRawLog: boolean;
-        /**
-         * Add constant fields to logs.
-         */
-        fields: {[key: string]: any};
-        /**
-         * Rules for parsing collection paths. After the rules are set, the fields in the collection path will be extracted through the regular expressions specified in the rules, and added to the log data as metadata.
-         */
-        parsePathRules: outputs.tls.GetRuleAppliersRuleUserDefineRuleParsePathRule[];
-        /**
-         * Plugin configuration. After the plugin configuration is enabled, one or more LogCollector processor plugins can be added to parse logs with complex or variable structures.
-         */
-        plugins: outputs.tls.GetRuleAppliersRuleUserDefineRulePlugin[];
-        /**
-         * Rules for routing log partitions. Setting this parameter indicates that the HashKey routing shard mode is used when collecting logs, and Log Service will write the data to the shard containing the specified Key value.
-         */
-        shardHashKeys: outputs.tls.GetRuleAppliersRuleUserDefineRuleShardHashKey[];
-        /**
-         * LogCollector collection strategy, which specifies whether LogCollector collects incremental logs or full logs. The default is false, which means to collect all logs.
-         */
-        tailFiles: boolean;
-    }
-
-    export interface GetRuleAppliersRuleUserDefineRuleAdvanced {
-        /**
-         * Whether to release the log file handle after reading to the end of the log file. The default is false.
-         */
-        closeEof: boolean;
-        /**
-         * The wait time to release the log file handle. When the log file has not written a new log for more than the specified time, release the handle of the log file.
-         */
-        closeInactive: number;
-        /**
-         * After the log file is removed, whether to release the handle of the log file. The default is false.
-         */
-        closeRemoved: boolean;
-        /**
-         * After the log file is renamed, whether to release the handle of the log file. The default is false.
-         */
-        closeRenamed: boolean;
-        /**
-         * The maximum length of time that LogCollector monitors log files. The unit is seconds, and the default is 0 seconds, which means that there is no limit to the length of time LogCollector monitors log files.
-         */
-        closeTimeout: number;
-    }
-
-    export interface GetRuleAppliersRuleUserDefineRuleParsePathRule {
-        /**
-         * A list of field names. Log Service will parse the path sample (PathSample) into multiple fields according to the regular expression (Regex), and Keys is used to specify the field name of each field.
-         */
-        keys: string[];
-        /**
-         * Sample capture path for a real scene.
-         */
-        pathSample: string;
-        /**
-         * Regular expression for extracting path fields. It must match the collection path sample, otherwise it cannot be extracted successfully.
-         */
-        regex: string;
-    }
-
-    export interface GetRuleAppliersRuleUserDefineRulePlugin {
-        /**
-         * LogCollector plugin.
-         */
-        processors: string;
-    }
-
-    export interface GetRuleAppliersRuleUserDefineRuleShardHashKey {
-        /**
-         * The HashKey of the log group is used to specify the partition (shard) to be written to by the current log group.
-         */
-        hashKey: string;
+        updateStartTime: string;
     }
 
     export interface GetRulesRule {
@@ -45103,6 +48034,111 @@ export namespace tls {
         type: string;
     }
 
+    export interface GetSearchTracesQuery {
+        /**
+         * Whether to sort results in ascending order. true means ascending, false means descending.
+         */
+        asc?: boolean;
+        /**
+         * Attributes.
+         */
+        attributes?: outputs.tls.GetSearchTracesQueryAttribute[];
+        /**
+         * Maximum trace duration in microseconds.
+         */
+        durationMax?: number;
+        /**
+         * Minimum trace duration in microseconds.
+         */
+        durationMin?: number;
+        /**
+         * Type of the trace.
+         */
+        kind?: string;
+        /**
+         * Maximum number of records to return, used for pagination.
+         */
+        limit?: number;
+        /**
+         * Offset for paginated query.
+         */
+        offset?: number;
+        /**
+         * Operation name, used to filter traces with specific operation.
+         */
+        operationName?: string;
+        /**
+         * Sorting field. Supported fields: Kind, Name, ServiceName, Start, End, Duration, and indexed fields in Attributes.
+         */
+        order?: string;
+        /**
+         * Service name, used to filter traces from specific service.
+         */
+        serviceName?: string;
+        /**
+         * Maximum start time for searching traces, in microsecond timestamp format.
+         */
+        startTimeMax?: number;
+        /**
+         * Minimum start time for searching traces, in microsecond timestamp format.
+         */
+        startTimeMin?: number;
+        /**
+         * Trace status code, used to filter traces with specific status.
+         */
+        statusCode?: string;
+        /**
+         * Trace ID.
+         */
+        traceId?: string;
+    }
+
+    export interface GetSearchTracesQueryAttribute {
+        /**
+         * Attribute key.
+         */
+        key: string;
+        /**
+         * Attribute value.
+         */
+        value: string;
+    }
+
+    export interface GetSearchTracesTrace {
+        /**
+         * Trace attributes.
+         */
+        attributes: {[key: string]: string};
+        /**
+         * Trace duration in microseconds.
+         */
+        duration: number;
+        /**
+         * Trace end time in microseconds.
+         */
+        endTime: number;
+        /**
+         * Operation name.
+         */
+        operationName: string;
+        /**
+         * Service name.
+         */
+        serviceName: string;
+        /**
+         * Trace start time in microseconds.
+         */
+        startTime: number;
+        /**
+         * Trace status code.
+         */
+        statusCode: string;
+        /**
+         * Trace ID.
+         */
+        traceId: string;
+    }
+
     export interface GetShardsShard {
         /**
          * The end key info.
@@ -45163,6 +48199,10 @@ export namespace tls {
          * Specify the name of the log item for querying the data delivery configuration under the specified log item. Support fuzzy matching.
          */
         projectName: string;
+        /**
+         * The role trn.
+         */
+        roleTrn: string;
         /**
          * Delivery end time, millisecond timestamp. If not configured, it will keep delivering.
          */
@@ -45304,6 +48344,66 @@ export namespace tls {
         prefix: string;
     }
 
+    export interface GetTagResourcesTag {
+        /**
+         * The key of the tag.
+         */
+        key: string;
+        /**
+         * The ID of the resource.
+         */
+        resourceId: string;
+        /**
+         * The type of the resource. Valid values: project, topic, shipper, host_group, host, consumer_group, rule, alarm, alarm_notify_group, etl_task, import_task, schedule_sql_task, download_task, trace_instance.
+         */
+        resourceType: string;
+        /**
+         * The value of the tag.
+         */
+        value: string;
+    }
+
+    export interface GetTagResourcesTagFilter {
+        /**
+         * The key of the tag filter.
+         */
+        key: string;
+        /**
+         * The values of the tag filter.
+         */
+        values: string[];
+    }
+
+    export interface GetTagsTag {
+        /**
+         * The key of the tag.
+         */
+        key: string;
+        /**
+         * The ID of the resource.
+         */
+        resourceId: string;
+        /**
+         * The type of the resource. Valid values: project, topic, shipper, host_group, host, consumer_group, rule, alarm, alarm_notify_group, etl_task, import_task, schedule_sql_task, download_task, trace_instance.
+         */
+        resourceType: string;
+        /**
+         * The value of the tag.
+         */
+        value: string;
+    }
+
+    export interface GetTagsTagFilter {
+        /**
+         * The key of the tag filter.
+         */
+        key: string;
+        /**
+         * The values of the tag filter.
+         */
+        values: string[];
+    }
+
     export interface GetTopicsTag {
         /**
          * The Key of Tags.
@@ -45317,9 +48417,17 @@ export namespace tls {
 
     export interface GetTopicsTlsTopic {
         /**
+         * Archive storage duration, valid when enableHotTtl is true.
+         */
+        archiveTtl: number;
+        /**
          * Whether to enable automatic partition splitting function of the tls topic.
          */
         autoSplit: boolean;
+        /**
+         * Infrequent storage duration, valid when enableHotTtl is true.
+         */
+        coldTtl: number;
         /**
          * The create time of the tls topic.
          */
@@ -45329,13 +48437,29 @@ export namespace tls {
          */
         description: string;
         /**
+         * Whether to enable tiered storage.
+         */
+        enableHotTtl: boolean;
+        /**
          * Whether to enable WebTracking function of the tls topic.
          */
         enableTracking: boolean;
         /**
+         * Data encryption configuration.
+         */
+        encryptConf: outputs.tls.GetTopicsTlsTopicEncryptConf;
+        /**
+         * Standard storage duration, valid when enableHotTtl is true.
+         */
+        hotTtl: number;
+        /**
          * The ID of the tls topic.
          */
         id: string;
+        /**
+         * Whether to enable the function of recording public IP.
+         */
+        logPublicIp: boolean;
         /**
          * The max count of shards in the tls topic.
          */
@@ -45378,6 +48502,36 @@ export namespace tls {
         ttl: number;
     }
 
+    export interface GetTopicsTlsTopicEncryptConf {
+        /**
+         * Whether to enable data encryption.
+         */
+        enable: boolean;
+        /**
+         * The encryption type.
+         */
+        encryptType: string;
+        /**
+         * The user custom key.
+         */
+        userCmkInfo: outputs.tls.GetTopicsTlsTopicEncryptConfUserCmkInfo;
+    }
+
+    export interface GetTopicsTlsTopicEncryptConfUserCmkInfo {
+        /**
+         * The key region.
+         */
+        regionId: string;
+        /**
+         * The key trn.
+         */
+        trn: string;
+        /**
+         * The key id.
+         */
+        userCmkId: string;
+    }
+
     export interface GetTopicsTlsTopicTag {
         /**
          * The Key of Tags.
@@ -45389,15 +48543,249 @@ export namespace tls {
         value: string;
     }
 
+    export interface GetTraceInstancesTraceInstance {
+        /**
+         * The backend config of the trace instance.
+         */
+        backendConfig: outputs.tls.GetTraceInstancesTraceInstanceBackendConfig;
+        /**
+         * The create time of the trace instance.
+         */
+        createTime: string;
+        /**
+         * CS account channel identifier.
+         */
+        csAccountChannel: string;
+        /**
+         * The ID of the dependency topic.
+         */
+        dependencyTopicId: string;
+        /**
+         * The name of the dependency topic.
+         */
+        dependencyTopicTopicName: string;
+        /**
+         * The description of the trace instance.
+         */
+        description: string;
+        /**
+         * The update time of the trace instance.
+         */
+        modifyTime: string;
+        /**
+         * The ID of the project.
+         */
+        projectId: string;
+        /**
+         * The name of the project.
+         */
+        projectName: string;
+        /**
+         * The ID of the trace instance.
+         */
+        traceInstanceId: string;
+        /**
+         * The name of the trace instance.
+         */
+        traceInstanceName: string;
+        /**
+         * The status of the trace instance.
+         */
+        traceInstanceStatus: string;
+        /**
+         * The ID of the trace topic.
+         */
+        traceTopicId: string;
+        /**
+         * The name of the trace topic.
+         */
+        traceTopicName: string;
+    }
+
+    export interface GetTraceInstancesTraceInstanceBackendConfig {
+        /**
+         * Archive storage duration in days.
+         */
+        archiveTtl: number;
+        /**
+         * Whether to enable auto split.
+         */
+        autoSplit: boolean;
+        /**
+         * Infrequent storage duration in days.
+         */
+        coldTtl: number;
+        /**
+         * Whether to enable tiered storage.
+         */
+        enableHotTtl: boolean;
+        /**
+         * Standard storage duration in days.
+         */
+        hotTtl: number;
+        /**
+         * Max split partitions.
+         */
+        maxSplitPartitions: number;
+        /**
+         * Total log retention time in days.
+         */
+        ttl: number;
+    }
+
+    export interface HostGroupRulesRuleInfo {
+        /**
+         * Container collection rules.
+         */
+        containerRules: outputs.tls.HostGroupRulesRuleInfoContainerRule[];
+        /**
+         * The create time of rule.
+         */
+        createTime: string;
+        /**
+         * Collect the blacklist list.
+         */
+        excludePaths: outputs.tls.HostGroupRulesRuleInfoExcludePath[];
+        /**
+         * The extract rule.
+         */
+        extractRules: outputs.tls.HostGroupRulesRuleInfoExtractRule[];
+        /**
+         * The type of input.
+         */
+        inputType: number;
+        /**
+         * The sample of the log.
+         */
+        logSample: string;
+        /**
+         * The type of log.
+         */
+        logType: string;
+        /**
+         * The modify time of rule.
+         */
+        modifyTime: string;
+        /**
+         * The paths of rule.
+         */
+        paths: string[];
+        /**
+         * The pause status of rule.
+         */
+        pause: number;
+        /**
+         * The id of rule.
+         */
+        ruleId: string;
+        /**
+         * The name of rule.
+         */
+        ruleName: string;
+        /**
+         * The id of topic.
+         */
+        topicId: string;
+        /**
+         * The name of topic.
+         */
+        topicName: string;
+        /**
+         * User-defined collection rules.
+         */
+        userDefineRules: outputs.tls.HostGroupRulesRuleInfoUserDefineRule[];
+    }
+
+    export interface HostGroupRulesRuleInfoContainerRule {
+        containerNameRegex: string;
+        envTag: {[key: string]: string};
+        excludeContainerEnvRegex: {[key: string]: string};
+        excludeContainerLabelRegex: {[key: string]: string};
+        includeContainerEnvRegex: {[key: string]: string};
+        includeContainerLabelRegex: {[key: string]: string};
+        kubernetesRules: outputs.tls.HostGroupRulesRuleInfoContainerRuleKubernetesRule[];
+        stream: string;
+    }
+
+    export interface HostGroupRulesRuleInfoContainerRuleKubernetesRule {
+        annotationTag: {[key: string]: string};
+        excludePodLabelRegex: {[key: string]: string};
+        includePodLabelRegex: {[key: string]: string};
+        labelTag: {[key: string]: string};
+        namespaceNameRegex: string;
+        podNameRegex: string;
+        workloadNameRegex: string;
+        workloadType: string;
+    }
+
+    export interface HostGroupRulesRuleInfoExcludePath {
+        type: string;
+        value: string;
+    }
+
+    export interface HostGroupRulesRuleInfoExtractRule {
+        beginRegex: string;
+        delimiter: string;
+        filterKeyRegexes: outputs.tls.HostGroupRulesRuleInfoExtractRuleFilterKeyRegex[];
+        keys: string[];
+        logRegex: string;
+        logTemplates: outputs.tls.HostGroupRulesRuleInfoExtractRuleLogTemplate[];
+        timeFormat: string;
+        timeKey: string;
+        unMatchLogKey: string;
+        unMatchUpLoadSwitch: boolean;
+    }
+
+    export interface HostGroupRulesRuleInfoExtractRuleFilterKeyRegex {
+        key: string;
+        regex: string;
+    }
+
+    export interface HostGroupRulesRuleInfoExtractRuleLogTemplate {
+        format: string;
+        type: string;
+    }
+
+    export interface HostGroupRulesRuleInfoUserDefineRule {
+        advanceds: outputs.tls.HostGroupRulesRuleInfoUserDefineRuleAdvanced[];
+        enableRawLog: boolean;
+        fields: {[key: string]: string};
+        parsePathRules: outputs.tls.HostGroupRulesRuleInfoUserDefineRuleParsePathRule[];
+        plugins: outputs.tls.HostGroupRulesRuleInfoUserDefineRulePlugin[];
+        shardHashKeys: outputs.tls.HostGroupRulesRuleInfoUserDefineRuleShardHashKey[];
+        tailFiles: boolean;
+    }
+
+    export interface HostGroupRulesRuleInfoUserDefineRuleAdvanced {
+        closeEof: boolean;
+        closeInactive: number;
+        closeRemoved: boolean;
+        closeRenamed: boolean;
+        closeTimeout: number;
+    }
+
+    export interface HostGroupRulesRuleInfoUserDefineRuleParsePathRule {
+        keys: string[];
+        pathSample: string;
+        regex: string;
+    }
+
+    export interface HostGroupRulesRuleInfoUserDefineRulePlugin {
+        processors: string[];
+    }
+
+    export interface HostGroupRulesRuleInfoUserDefineRuleShardHashKey {
+        hashKey: string;
+    }
+
     export interface HostGroupsInfo {
         /**
-         * The abnormal heartbeat status count of host.
+         * The info of host group.
          */
-        abnormalHeartbeatStatusCount: number;
-        /**
-         * The latest version of log collector.
-         */
-        agentLatestVersion: string;
+        hostGroupInfos: outputs.tls.HostGroupsInfoHostGroupInfo[];
+    }
+
+    export interface HostGroupsInfoHostGroupInfo {
         /**
          * Whether enable auto update.
          */
@@ -45407,7 +48795,7 @@ export namespace tls {
          */
         createTime: string;
         /**
-         * The count of host.
+         * The host count of host group.
          */
         hostCount: number;
         /**
@@ -45427,10 +48815,6 @@ export namespace tls {
          */
         hostIdentifier: string;
         /**
-         * The ip list of host group.
-         */
-        hostIpLists: string[];
-        /**
          * The project name of iam.
          */
         iamProjectName: string;
@@ -45438,10 +48822,6 @@ export namespace tls {
          * The modify time of host group.
          */
         modifyTime: string;
-        /**
-         * The normal heartbeat status count of host.
-         */
-        normalHeartbeatStatusCount: number;
         /**
          * The rule count of host.
          */
@@ -45972,6 +49352,10 @@ export namespace tls {
          */
         createTime: string;
         /**
+         * Whether to enable auto index.
+         */
+        enableAutoIndex: boolean;
+        /**
          * The FullText index of the tls topic.
          */
         fullText: outputs.tls.IndexesTlsIndexFullText;
@@ -45983,6 +49367,10 @@ export namespace tls {
          * The KeyValue index of the tls topic.
          */
         keyValues: outputs.tls.IndexesTlsIndexKeyValue[];
+        /**
+         * The max text length of the tls index.
+         */
+        maxTextLen: number;
         /**
          * The modify time of the tls index.
          */
@@ -46147,6 +49535,117 @@ export namespace tls {
         topicId: string;
     }
 
+    export interface LogContextsLogContext {
+        /**
+         * The infos of context log.
+         */
+        logContextInfos: {[key: string]: any}[];
+        /**
+         * Whether the next logs are over.
+         */
+        nextOver: boolean;
+        /**
+         * Whether the previous logs are over.
+         */
+        prevOver: boolean;
+    }
+
+    export interface LogHistogramsHistogramInfo {
+        /**
+         * The count.
+         */
+        count: number;
+        /**
+         * The end time.
+         */
+        endTime: number;
+        /**
+         * The result status.
+         */
+        resultStatus: string;
+        /**
+         * The start time.
+         */
+        startTime: number;
+    }
+
+    export interface LogSearchesLog {
+        /**
+         * Whether the result is analysis.
+         */
+        analysis: boolean;
+        /**
+         * The analysis result of the query.
+         */
+        analysisResult: {[key: string]: any};
+        /**
+         * The context of the log.
+         */
+        context: string;
+        /**
+         * The elapsed time of the query.
+         */
+        elapsedMillisecond: number;
+        /**
+         * Whether to highlight the log.
+         */
+        highlights: outputs.tls.LogSearchesLogHighlight[];
+        /**
+         * The count of the logs.
+         */
+        hitCount: number;
+        /**
+         * The limit of the logs.
+         */
+        limit: number;
+        /**
+         * Whether the list is over.
+         */
+        listOver: boolean;
+        /**
+         * The list of the logs.
+         */
+        logs: outputs.tls.LogSearchesLogLog[];
+        /**
+         * The status of the query.
+         */
+        resultStatus: string;
+    }
+
+    export interface LogSearchesLogHighlight {
+        /**
+         * The key of the highlight.
+         */
+        key: string;
+        /**
+         * The value of the highlight.
+         */
+        values: string[];
+    }
+
+    export interface LogSearchesLogLog {
+        /**
+         * The content of the log.
+         */
+        content: {[key: string]: any};
+        /**
+         * The filename of the log.
+         */
+        filename: string;
+        /**
+         * The ID of the log.
+         */
+        logId: string;
+        /**
+         * The source of the log.
+         */
+        source: string;
+        /**
+         * The timestamp of the log.
+         */
+        timestamp: number;
+    }
+
     export interface ProjectTag {
         /**
          * The Key of Tags.
@@ -46219,292 +49718,106 @@ export namespace tls {
         value: string;
     }
 
-    export interface RuleAppliersRule {
+    export interface RuleAppliersHostGroupInfo {
         /**
-         * Container collection rules.
+         * Whether to auto update.
          */
-        containerRules: outputs.tls.RuleAppliersRuleContainerRule[];
+        autoUpdate: boolean;
         /**
-         * The creation time.
+         * The create time.
          */
         createTime: string;
         /**
-         * Collect the blacklist list.
+         * The host count.
          */
-        excludePaths: outputs.tls.RuleAppliersRuleExcludePath[];
+        hostCount: number;
         /**
-         * The extract rule.
+         * The host group id.
          */
-        extractRules: outputs.tls.RuleAppliersRuleExtractRule[];
+        hostGroupId: string;
         /**
-         * The collection type.
+         * The host group name.
          */
-        inputType: number;
+        hostGroupName: string;
         /**
-         * Log sample.
+         * The host group type.
          */
-        logSample: string;
+        hostGroupType: string;
         /**
-         * The log type.
+         * The host identifier.
          */
-        logType: string;
+        hostIdentifier: string;
         /**
-         * The modification time.
+         * The iam project name.
+         */
+        iamProjectName: string;
+        /**
+         * The modify time.
          */
         modifyTime: string;
         /**
-         * Collection path list.
+         * The rule count.
          */
-        paths: string[];
+        ruleCount: number;
         /**
-         * The rule id.
+         * Whether to service logging.
          */
-        ruleId: string;
+        serviceLogging: boolean;
         /**
-         * The rule name.
+         * The update end time.
          */
-        ruleName: string;
+        updateEndTime: string;
         /**
-         * The topic id.
+         * The update start time.
          */
-        topicId: string;
-        /**
-         * The topic name.
-         */
-        topicName: string;
-        /**
-         * User-defined collection rules.
-         */
-        userDefineRules: outputs.tls.RuleAppliersRuleUserDefineRule[];
+        updateStartTime: string;
     }
 
-    export interface RuleAppliersRuleContainerRule {
+    export interface RuleBoundHostGroupsHostGroup {
         /**
-         * The name of the container to be collected.
+         * Whether to enable auto update.
          */
-        containerNameRegex: string;
+        autoUpdate: boolean;
         /**
-         * Whether to add environment variables as log tags to raw log data.
+         * The creation time of the host group.
          */
-        envTag: {[key: string]: any};
+        createTime: string;
         /**
-         * The container environment variable blacklist is used to specify the range of containers not to be collected.
+         * The ID of the host group.
          */
-        excludeContainerEnvRegex: {[key: string]: any};
+        hostGroupId: string;
         /**
-         * The container Label blacklist is used to specify the range of containers not to be collected.
+         * The name of the host group.
          */
-        excludeContainerLabelRegex: {[key: string]: any};
+        hostGroupName: string;
         /**
-         * The container environment variable whitelist specifies the container to be collected through the container environment variable. If the whitelist is not enabled, it means that all containers are specified to be collected.
+         * The type of the host group.
          */
-        includeContainerEnvRegex: {[key: string]: any};
+        hostGroupType: string;
         /**
-         * The container label whitelist specifies the containers to be collected through the container label. If the whitelist is not enabled, all containers are specified to be collected.
+         * The identifier of the host.
          */
-        includeContainerLabelRegex: {[key: string]: any};
+        hostIdentifier: string;
         /**
-         * Collection rules for Kubernetes containers.
+         * The name of the iam project.
          */
-        kubernetesRules: outputs.tls.RuleAppliersRuleContainerRuleKubernetesRule[];
+        iamProjectName: string;
         /**
-         * The collection mode.
+         * The modification time of the host group.
          */
-        stream: string;
-    }
-
-    export interface RuleAppliersRuleContainerRuleKubernetesRule {
+        modifyTime: string;
         /**
-         * Whether to add Kubernetes Annotation as a log tag to the raw log data.
+         * Whether to enable service logging.
          */
-        annotationTag: {[key: string]: any};
+        serviceLogging: boolean;
         /**
-         * Specify the containers not to be collected through the Pod Label blacklist, and not enable means to collect all containers.
+         * The end time of auto update.
          */
-        excludePodLabelRegex: {[key: string]: any};
+        updateEndTime: string;
         /**
-         * The Pod Label whitelist is used to specify containers to be collected. When the Pod Label whitelist is not enabled, it means that all containers are collected.
+         * The start time of auto update.
          */
-        includePodLabelRegex: {[key: string]: any};
-        /**
-         * Whether to add Kubernetes Label as a log label to the original log data.
-         */
-        labelTag: {[key: string]: any};
-        /**
-         * The name of the Kubernetes Namespace to be collected. If no Namespace name is specified, all containers will be collected. Namespace names support regular matching.
-         */
-        namespaceNameRegex: string;
-        /**
-         * The Pod name is used to specify the container to be collected. When no Pod name is specified, it means to collect all containers.
-         */
-        podNameRegex: string;
-        /**
-         * Specify the container to be collected by the name of the workload. When no workload name is specified, all containers are collected. The workload name supports regular matching.
-         */
-        workloadNameRegex: string;
-        /**
-         * Specify the container to be collected by the type of workload. Only one type can be selected. When no type is specified, it means to collect all types of containers.
-         */
-        workloadType: string;
-    }
-
-    export interface RuleAppliersRuleExcludePath {
-        /**
-         * The type of the log template.
-         */
-        type: string;
-        /**
-         * Collection path.
-         */
-        value: string;
-    }
-
-    export interface RuleAppliersRuleExtractRule {
-        /**
-         * The first log line needs to match the regular expression.
-         */
-        beginRegex: string;
-        /**
-         * The delimiter of the log.
-         */
-        delimiter: string;
-        /**
-         * The filter key list.
-         */
-        filterKeyRegexes: outputs.tls.RuleAppliersRuleExtractRuleFilterKeyRegex[];
-        /**
-         * A list of field names. Log Service will parse the path sample (PathSample) into multiple fields according to the regular expression (Regex), and Keys is used to specify the field name of each field.
-         */
-        keys: string[];
-        /**
-         * The entire log needs to match the regular expression.
-         */
-        logRegex: string;
-        /**
-         * Automatically extract log fields according to the specified log template.
-         */
-        logTemplates: outputs.tls.RuleAppliersRuleExtractRuleLogTemplate[];
-        /**
-         * Parsing format of the time field.
-         */
-        timeFormat: string;
-        /**
-         * The field name of the log time field.
-         */
-        timeKey: string;
-        /**
-         * When uploading the failed log, the key name of the failed log.
-         */
-        unMatchLogKey: string;
-        /**
-         * Whether to upload the log of parsing failure.
-         */
-        unMatchUpLoadSwitch: boolean;
-    }
-
-    export interface RuleAppliersRuleExtractRuleFilterKeyRegex {
-        /**
-         * The name of the filter key.
-         */
-        key: string;
-        /**
-         * Regular expression for extracting path fields. It must match the collection path sample, otherwise it cannot be extracted successfully.
-         */
-        regex: string;
-    }
-
-    export interface RuleAppliersRuleExtractRuleLogTemplate {
-        /**
-         * Log template content.
-         */
-        format: string;
-        /**
-         * The type of the log template.
-         */
-        type: string;
-    }
-
-    export interface RuleAppliersRuleUserDefineRule {
-        /**
-         * LogCollector extension configuration.
-         */
-        advanceds: outputs.tls.RuleAppliersRuleUserDefineRuleAdvanced[];
-        /**
-         * Whether to upload raw logs.
-         */
-        enableRawLog: boolean;
-        /**
-         * Add constant fields to logs.
-         */
-        fields: {[key: string]: any};
-        /**
-         * Rules for parsing collection paths. After the rules are set, the fields in the collection path will be extracted through the regular expressions specified in the rules, and added to the log data as metadata.
-         */
-        parsePathRules: outputs.tls.RuleAppliersRuleUserDefineRuleParsePathRule[];
-        /**
-         * Plugin configuration. After the plugin configuration is enabled, one or more LogCollector processor plugins can be added to parse logs with complex or variable structures.
-         */
-        plugins: outputs.tls.RuleAppliersRuleUserDefineRulePlugin[];
-        /**
-         * Rules for routing log partitions. Setting this parameter indicates that the HashKey routing shard mode is used when collecting logs, and Log Service will write the data to the shard containing the specified Key value.
-         */
-        shardHashKeys: outputs.tls.RuleAppliersRuleUserDefineRuleShardHashKey[];
-        /**
-         * LogCollector collection strategy, which specifies whether LogCollector collects incremental logs or full logs. The default is false, which means to collect all logs.
-         */
-        tailFiles: boolean;
-    }
-
-    export interface RuleAppliersRuleUserDefineRuleAdvanced {
-        /**
-         * Whether to release the log file handle after reading to the end of the log file. The default is false.
-         */
-        closeEof: boolean;
-        /**
-         * The wait time to release the log file handle. When the log file has not written a new log for more than the specified time, release the handle of the log file.
-         */
-        closeInactive: number;
-        /**
-         * After the log file is removed, whether to release the handle of the log file. The default is false.
-         */
-        closeRemoved: boolean;
-        /**
-         * After the log file is renamed, whether to release the handle of the log file. The default is false.
-         */
-        closeRenamed: boolean;
-        /**
-         * The maximum length of time that LogCollector monitors log files. The unit is seconds, and the default is 0 seconds, which means that there is no limit to the length of time LogCollector monitors log files.
-         */
-        closeTimeout: number;
-    }
-
-    export interface RuleAppliersRuleUserDefineRuleParsePathRule {
-        /**
-         * A list of field names. Log Service will parse the path sample (PathSample) into multiple fields according to the regular expression (Regex), and Keys is used to specify the field name of each field.
-         */
-        keys: string[];
-        /**
-         * Sample capture path for a real scene.
-         */
-        pathSample: string;
-        /**
-         * Regular expression for extracting path fields. It must match the collection path sample, otherwise it cannot be extracted successfully.
-         */
-        regex: string;
-    }
-
-    export interface RuleAppliersRuleUserDefineRulePlugin {
-        /**
-         * LogCollector plugin.
-         */
-        processors: string;
-    }
-
-    export interface RuleAppliersRuleUserDefineRuleShardHashKey {
-        /**
-         * The HashKey of the log group is used to specify the partition (shard) to be written to by the current log group.
-         */
-        hashKey: string;
+        updateStartTime: string;
     }
 
     export interface RuleContainerRule {
@@ -46619,6 +49932,10 @@ export namespace tls {
          */
         logTemplate?: outputs.tls.RuleExtractRuleLogTemplate;
         /**
+         * The quote symbol.
+         */
+        quote?: string;
+        /**
          * Parsing format of the time field.
          */
         timeFormat?: string;
@@ -46626,6 +49943,10 @@ export namespace tls {
          * The field name of the log time field.
          */
         timeKey?: string;
+        /**
+         * The time zone.
+         */
+        timeZone?: string;
         /**
          * When uploading the failed log, the key name of the failed log.
          */
@@ -47150,6 +50471,142 @@ export namespace tls {
         type: string;
     }
 
+    export interface SearchTracesQuery {
+        /**
+         * Whether to sort results in ascending order. true means ascending, false means descending.
+         */
+        asc?: boolean;
+        /**
+         * Attributes.
+         */
+        attributes?: outputs.tls.SearchTracesQueryAttribute[];
+        /**
+         * Maximum trace duration in microseconds.
+         */
+        durationMax?: number;
+        /**
+         * Minimum trace duration in microseconds.
+         */
+        durationMin?: number;
+        /**
+         * Type of the trace.
+         */
+        kind?: string;
+        /**
+         * Maximum number of records to return, used for pagination.
+         */
+        limit?: number;
+        /**
+         * Offset for paginated query.
+         */
+        offset?: number;
+        /**
+         * Operation name, used to filter traces with specific operation.
+         */
+        operationName?: string;
+        /**
+         * Sorting field. Supported fields: Kind, Name, ServiceName, Start, End, Duration, and indexed fields in Attributes.
+         */
+        order?: string;
+        /**
+         * Service name, used to filter traces from specific service.
+         */
+        serviceName?: string;
+        /**
+         * Maximum start time for searching traces, in microsecond timestamp format.
+         */
+        startTimeMax?: number;
+        /**
+         * Minimum start time for searching traces, in microsecond timestamp format.
+         */
+        startTimeMin?: number;
+        /**
+         * Trace status code, used to filter traces with specific status.
+         */
+        statusCode?: string;
+        /**
+         * Trace ID.
+         */
+        traceId?: string;
+    }
+
+    export interface SearchTracesQueryAttribute {
+        /**
+         * Attribute key.
+         */
+        key: string;
+        /**
+         * Attribute value.
+         */
+        value: string;
+    }
+
+    export interface SearchTracesTrace {
+        /**
+         * Trace attributes.
+         */
+        attributes: {[key: string]: string};
+        /**
+         * Trace duration in microseconds.
+         */
+        duration: number;
+        /**
+         * Trace end time in microseconds.
+         */
+        endTime: number;
+        /**
+         * Operation name.
+         */
+        operationName: string;
+        /**
+         * Service name.
+         */
+        serviceName: string;
+        /**
+         * Trace start time in microseconds.
+         */
+        startTime: number;
+        /**
+         * Trace status code.
+         */
+        statusCode: string;
+        /**
+         * Trace ID.
+         */
+        traceId: string;
+    }
+
+    export interface ShardShard {
+        /**
+         * The exclusive end key of the shard.
+         */
+        exclusiveEndKey: string;
+        /**
+         * The inclusive begin key of the shard.
+         */
+        inclusiveBeginKey: string;
+        /**
+         * The modification time of the shard.
+         */
+        modifyTime: string;
+        /**
+         * The ID of the shard to split.
+         */
+        shardId: number;
+        /**
+         * The status of the shard.
+         */
+        status: string;
+        /**
+         * The stop write time of the shard.
+         */
+        stopWriteTime: string;
+        /**
+         * The ID of the topic.
+         */
+        topicId: string;
+    }
+
     export interface ShardsShard {
         /**
          * The end key info.
@@ -47314,6 +50771,10 @@ export namespace tls {
          */
         projectName: string;
         /**
+         * The role trn.
+         */
+        roleTrn: string;
+        /**
          * Delivery end time, millisecond timestamp. If not configured, it will keep delivering.
          */
         shipperEndTime: number;
@@ -47454,6 +50915,118 @@ export namespace tls {
         prefix: string;
     }
 
+    export interface TagResourceTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface TagResourcesTag {
+        /**
+         * The key of the tag.
+         */
+        key: string;
+        /**
+         * The ID of the resource.
+         */
+        resourceId: string;
+        /**
+         * The type of the resource. Valid values: project, topic, shipper, host_group, host, consumer_group, rule, alarm, alarm_notify_group, etl_task, import_task, schedule_sql_task, download_task, trace_instance.
+         */
+        resourceType: string;
+        /**
+         * The value of the tag.
+         */
+        value: string;
+    }
+
+    export interface TagResourcesTagFilter {
+        /**
+         * The key of the tag filter.
+         */
+        key: string;
+        /**
+         * The values of the tag filter.
+         */
+        values: string[];
+    }
+
+    export interface TagTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface TagsTag {
+        /**
+         * The key of the tag.
+         */
+        key: string;
+        /**
+         * The ID of the resource.
+         */
+        resourceId: string;
+        /**
+         * The type of the resource. Valid values: project, topic, shipper, host_group, host, consumer_group, rule, alarm, alarm_notify_group, etl_task, import_task, schedule_sql_task, download_task, trace_instance.
+         */
+        resourceType: string;
+        /**
+         * The value of the tag.
+         */
+        value: string;
+    }
+
+    export interface TagsTagFilter {
+        /**
+         * The key of the tag filter.
+         */
+        key: string;
+        /**
+         * The values of the tag filter.
+         */
+        values: string[];
+    }
+
+    export interface TopicEncryptConf {
+        /**
+         * Whether to enable data encryption.
+         */
+        enable?: boolean;
+        /**
+         * The encryption type.
+         */
+        encryptType?: string;
+        /**
+         * The user custom key.
+         */
+        userCmkInfo?: outputs.tls.TopicEncryptConfUserCmkInfo;
+    }
+
+    export interface TopicEncryptConfUserCmkInfo {
+        /**
+         * The key region.
+         */
+        regionId?: string;
+        /**
+         * The key trn.
+         */
+        trn?: string;
+        /**
+         * The key id.
+         */
+        userCmkId?: string;
+    }
+
     export interface TopicTag {
         /**
          * The Key of Tags.
@@ -47478,9 +51051,17 @@ export namespace tls {
 
     export interface TopicsTlsTopic {
         /**
+         * Archive storage duration, valid when enableHotTtl is true.
+         */
+        archiveTtl: number;
+        /**
          * Whether to enable automatic partition splitting function of the tls topic.
          */
         autoSplit: boolean;
+        /**
+         * Infrequent storage duration, valid when enableHotTtl is true.
+         */
+        coldTtl: number;
         /**
          * The create time of the tls topic.
          */
@@ -47490,13 +51071,29 @@ export namespace tls {
          */
         description: string;
         /**
+         * Whether to enable tiered storage.
+         */
+        enableHotTtl: boolean;
+        /**
          * Whether to enable WebTracking function of the tls topic.
          */
         enableTracking: boolean;
         /**
+         * Data encryption configuration.
+         */
+        encryptConf: outputs.tls.TopicsTlsTopicEncryptConf;
+        /**
+         * Standard storage duration, valid when enableHotTtl is true.
+         */
+        hotTtl: number;
+        /**
          * The ID of the tls topic.
          */
         id: string;
+        /**
+         * Whether to enable the function of recording public IP.
+         */
+        logPublicIp: boolean;
         /**
          * The max count of shards in the tls topic.
          */
@@ -47539,6 +51136,36 @@ export namespace tls {
         ttl: number;
     }
 
+    export interface TopicsTlsTopicEncryptConf {
+        /**
+         * Whether to enable data encryption.
+         */
+        enable: boolean;
+        /**
+         * The encryption type.
+         */
+        encryptType: string;
+        /**
+         * The user custom key.
+         */
+        userCmkInfo: outputs.tls.TopicsTlsTopicEncryptConfUserCmkInfo;
+    }
+
+    export interface TopicsTlsTopicEncryptConfUserCmkInfo {
+        /**
+         * The key region.
+         */
+        regionId: string;
+        /**
+         * The key trn.
+         */
+        trn: string;
+        /**
+         * The key id.
+         */
+        userCmkId: string;
+    }
+
     export interface TopicsTlsTopicTag {
         /**
          * The Key of Tags.
@@ -47548,6 +51175,127 @@ export namespace tls {
          * The Value of Tags.
          */
         value: string;
+    }
+
+    export interface TraceInstanceBackendConfig {
+        /**
+         * Archive storage duration in days.
+         */
+        archiveTtl?: number;
+        /**
+         * Whether to enable auto split.
+         */
+        autoSplit?: boolean;
+        /**
+         * Infrequent storage duration in days.
+         */
+        coldTtl?: number;
+        /**
+         * Whether to enable tiered storage.
+         */
+        enableHotTtl?: boolean;
+        /**
+         * Standard storage duration in days.
+         */
+        hotTtl?: number;
+        /**
+         * Max split partitions.
+         */
+        maxSplitPartitions?: number;
+        /**
+         * Total log retention time in days.
+         */
+        ttl?: number;
+    }
+
+    export interface TraceInstancesTraceInstance {
+        /**
+         * The backend config of the trace instance.
+         */
+        backendConfig: outputs.tls.TraceInstancesTraceInstanceBackendConfig;
+        /**
+         * The create time of the trace instance.
+         */
+        createTime: string;
+        /**
+         * CS account channel identifier.
+         */
+        csAccountChannel: string;
+        /**
+         * The ID of the dependency topic.
+         */
+        dependencyTopicId: string;
+        /**
+         * The name of the dependency topic.
+         */
+        dependencyTopicTopicName: string;
+        /**
+         * The description of the trace instance.
+         */
+        description: string;
+        /**
+         * The update time of the trace instance.
+         */
+        modifyTime: string;
+        /**
+         * The ID of the project.
+         */
+        projectId: string;
+        /**
+         * The name of the project.
+         */
+        projectName: string;
+        /**
+         * The ID of the trace instance.
+         */
+        traceInstanceId: string;
+        /**
+         * The name of the trace instance.
+         */
+        traceInstanceName: string;
+        /**
+         * The status of the trace instance.
+         */
+        traceInstanceStatus: string;
+        /**
+         * The ID of the trace topic.
+         */
+        traceTopicId: string;
+        /**
+         * The name of the trace topic.
+         */
+        traceTopicName: string;
+    }
+
+    export interface TraceInstancesTraceInstanceBackendConfig {
+        /**
+         * Archive storage duration in days.
+         */
+        archiveTtl: number;
+        /**
+         * Whether to enable auto split.
+         */
+        autoSplit: boolean;
+        /**
+         * Infrequent storage duration in days.
+         */
+        coldTtl: number;
+        /**
+         * Whether to enable tiered storage.
+         */
+        enableHotTtl: boolean;
+        /**
+         * Standard storage duration in days.
+         */
+        hotTtl: number;
+        /**
+         * Max split partitions.
+         */
+        maxSplitPartitions: number;
+        /**
+         * Total log retention time in days.
+         */
+        ttl: number;
     }
 
 }

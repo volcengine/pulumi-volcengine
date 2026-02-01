@@ -29,6 +29,39 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			fooProject, err := tls.NewProject(ctx, "fooProject", &tls.ProjectArgs{
+//				ProjectName: pulumi.String("tf-test-project-ttt"),
+//				Description: pulumi.String("tf-test-project-desc"),
+//				Region:      pulumi.String("cn-guilin-boe"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooTopic, err := tls.NewTopic(ctx, "fooTopic", &tls.TopicArgs{
+//				ProjectId:      fooProject.ID(),
+//				TopicName:      pulumi.String("tf-test-topic-rule-1"),
+//				Ttl:            pulumi.Int(60),
+//				ShardCount:     pulumi.Int(2),
+//				AutoSplit:      pulumi.Bool(true),
+//				MaxSplitShard:  pulumi.Int(10),
+//				EnableTracking: pulumi.Bool(true),
+//				TimeKey:        pulumi.String("request_time"),
+//				TimeFormat:     pulumi.String("%Y-%m-%dT%H:%M:%S,%f"),
+//				Tags: tls.TopicTagArray{
+//					&tls.TopicTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
+//				LogPublicIp:  pulumi.Bool(true),
+//				EnableHotTtl: pulumi.Bool(true),
+//				HotTtl:       pulumi.Int(30),
+//				ColdTtl:      pulumi.Int(30),
+//				ArchiveTtl:   pulumi.Int(0),
+//			})
+//			if err != nil {
+//				return err
+//			}
 //			tmpJSON0, err := json.Marshal(map[string]interface{}{
 //				"json": map[string]interface{}{
 //					"field": "__content__",
@@ -48,41 +81,58 @@ import (
 //				return err
 //			}
 //			json0 := string(tmpJSON0)
-//			tmpJSON1, err := json.Marshal(map[string]interface{}{
-//				"json": map[string]interface{}{
-//					"field": "__content__",
-//					"trim_keys": map[string]interface{}{
-//						"mode":  "all",
-//						"chars": "#xx",
-//					},
-//					"trim_values": map[string]interface{}{
-//						"mode":  "all",
-//						"chars": "#txxxt",
-//					},
-//					"allow_overwrite_keys": true,
-//					"allow_empty_values":   true,
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			json1 := string(tmpJSON1)
-//			_, err = tls.NewRule(ctx, "foo", &tls.RuleArgs{
-//				TopicId:   pulumi.String("7bfa2cdc-4f8b-4cf9-b4c9-0ed05c33349f"),
-//				RuleName:  pulumi.String("test"),
-//				LogType:   pulumi.String("minimalist_log"),
-//				LogSample: pulumi.String("2018-05-22 15:35:53.850 INFO XXXX"),
+//			_, err = tls.NewRule(ctx, "fooRule", &tls.RuleArgs{
+//				TopicId:   fooTopic.ID(),
+//				RuleName:  pulumi.String("tf-test-rule-modify"),
+//				LogType:   pulumi.String("delimiter_log"),
+//				LogSample: pulumi.String("2018-05-22 15:35:53.850,INFO,XXXX"),
 //				InputType: pulumi.Int(1),
+//				ExtractRule: &tls.RuleExtractRuleArgs{
+//					Delimiter: pulumi.String(","),
+//					Keys: pulumi.StringArray{
+//						pulumi.String("time"),
+//						pulumi.String("level"),
+//						pulumi.String("msg"),
+//					},
+//					TimeKey:    pulumi.String("time"),
+//					TimeFormat: pulumi.String("%Y-%m-%d %H:%M:%S.%f"),
+//					Quote:      pulumi.String("\""),
+//					TimeZone:   pulumi.String("GMT+08:00"),
+//					BeginRegex: pulumi.String(""),
+//					LogRegex:   pulumi.String(""),
+//					FilterKeyRegexes: tls.RuleExtractRuleFilterKeyRegexArray{
+//						&tls.RuleExtractRuleFilterKeyRegexArgs{
+//							Key:   pulumi.String("__content__"),
+//							Regex: pulumi.String(".*ERROR.*"),
+//						},
+//					},
+//					UnMatchUpLoadSwitch: pulumi.Bool(true),
+//					UnMatchLogKey:       pulumi.String("LogParseFailed"),
+//					LogTemplate: &tls.RuleExtractRuleLogTemplateArgs{
+//						Type:   pulumi.String(""),
+//						Format: pulumi.String(""),
+//					},
+//				},
 //				UserDefineRule: &tls.RuleUserDefineRuleArgs{
-//					EnableRawLog: pulumi.Bool(false),
+//					EnableRawLog: pulumi.Bool(true),
 //					TailFiles:    pulumi.Bool(true),
+//					Fields: pulumi.StringMap{
+//						"cluster_id": pulumi.String("dabaad5f-7a10-4771-b3ea-d821f73e****"),
+//					},
+//					ParsePathRule: &tls.RuleUserDefineRuleParsePathRuleArgs{
+//						PathSample: pulumi.String("/data/nginx/log/dabaad5f-7a10/tls/app.log"),
+//						Regex:      pulumi.String("\\/data\\/nginx\\/log\\/(\\w+)-(\\w+)\\/tls\\/app\\.log"),
+//						Keys: pulumi.StringArray{
+//							pulumi.String("instance-id"),
+//							pulumi.String("pod-name"),
+//						},
+//					},
 //					ShardHashKey: &tls.RuleUserDefineRuleShardHashKeyArgs{
 //						HashKey: pulumi.String("3C"),
 //					},
 //					Plugin: &tls.RuleUserDefineRulePluginArgs{
 //						Processors: pulumi.StringArray{
 //							pulumi.String(json0),
-//							pulumi.String(json1),
 //						},
 //					},
 //					Advanced: &tls.RuleUserDefineRuleAdvancedArgs{

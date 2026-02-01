@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -65,6 +67,23 @@ import * as utilities from "../utilities";
  *     serverGroupId: fooServerGroup.id,
  *     domain: "test-volc123.com",
  *     url: "/tftest",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
+ * });
+ * const fooRedirect = new volcengine.clb.Rule("fooRedirect", {
+ *     listenerId: fooListener.id,
+ *     actionType: "Redirect",
+ *     description: "Redirect rule",
+ *     domain: "example1.com",
+ *     redirectConfig: {
+ *         protocol: "HTTP",
+ *         host: "example3.com",
+ *         path: "/test",
+ *         port: "443",
+ *         statusCode: "301",
+ *     },
  * });
  * ```
  *
@@ -107,6 +126,10 @@ export class Rule extends pulumi.CustomResource {
     }
 
     /**
+     * The action type of Rule, valid values: `Forward`, `Redirect`.
+     */
+    public readonly actionType!: pulumi.Output<string | undefined>;
+    /**
      * The description of the Rule.
      */
     public readonly description!: pulumi.Output<string | undefined>;
@@ -119,9 +142,17 @@ export class Rule extends pulumi.CustomResource {
      */
     public readonly listenerId!: pulumi.Output<string>;
     /**
-     * Server Group Id.
+     * The redirect configuration. Required when actionType is `Redirect`.
+     */
+    public readonly redirectConfig!: pulumi.Output<outputs.clb.RuleRedirectConfig | undefined>;
+    /**
+     * Server Group Id. Required when actionType is Forward.
      */
     public readonly serverGroupId!: pulumi.Output<string>;
+    /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.clb.RuleTag[] | undefined>;
     /**
      * The Url of Rule.
      */
@@ -140,23 +171,26 @@ export class Rule extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RuleState | undefined;
+            resourceInputs["actionType"] = state ? state.actionType : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["domain"] = state ? state.domain : undefined;
             resourceInputs["listenerId"] = state ? state.listenerId : undefined;
+            resourceInputs["redirectConfig"] = state ? state.redirectConfig : undefined;
             resourceInputs["serverGroupId"] = state ? state.serverGroupId : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["url"] = state ? state.url : undefined;
         } else {
             const args = argsOrState as RuleArgs | undefined;
             if ((!args || args.listenerId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'listenerId'");
             }
-            if ((!args || args.serverGroupId === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'serverGroupId'");
-            }
+            resourceInputs["actionType"] = args ? args.actionType : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["domain"] = args ? args.domain : undefined;
             resourceInputs["listenerId"] = args ? args.listenerId : undefined;
+            resourceInputs["redirectConfig"] = args ? args.redirectConfig : undefined;
             resourceInputs["serverGroupId"] = args ? args.serverGroupId : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["url"] = args ? args.url : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -168,6 +202,10 @@ export class Rule extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Rule resources.
  */
 export interface RuleState {
+    /**
+     * The action type of Rule, valid values: `Forward`, `Redirect`.
+     */
+    actionType?: pulumi.Input<string>;
     /**
      * The description of the Rule.
      */
@@ -181,9 +219,17 @@ export interface RuleState {
      */
     listenerId?: pulumi.Input<string>;
     /**
-     * Server Group Id.
+     * The redirect configuration. Required when actionType is `Redirect`.
+     */
+    redirectConfig?: pulumi.Input<inputs.clb.RuleRedirectConfig>;
+    /**
+     * Server Group Id. Required when actionType is Forward.
      */
     serverGroupId?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.clb.RuleTag>[]>;
     /**
      * The Url of Rule.
      */
@@ -194,6 +240,10 @@ export interface RuleState {
  * The set of arguments for constructing a Rule resource.
  */
 export interface RuleArgs {
+    /**
+     * The action type of Rule, valid values: `Forward`, `Redirect`.
+     */
+    actionType?: pulumi.Input<string>;
     /**
      * The description of the Rule.
      */
@@ -207,9 +257,17 @@ export interface RuleArgs {
      */
     listenerId: pulumi.Input<string>;
     /**
-     * Server Group Id.
+     * The redirect configuration. Required when actionType is `Redirect`.
      */
-    serverGroupId: pulumi.Input<string>;
+    redirectConfig?: pulumi.Input<inputs.clb.RuleRedirectConfig>;
+    /**
+     * Server Group Id. Required when actionType is Forward.
+     */
+    serverGroupId?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.clb.RuleTag>[]>;
     /**
      * The Url of Rule.
      */

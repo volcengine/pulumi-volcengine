@@ -26,10 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := tls.GetHostGroups(ctx, &tls.GetHostGroupsArgs{
-//				HostGroupId:   pulumi.StringRef("fbea6619-7b0c-40f3-ac7e-45c63e3f676e"),
-//				HostGroupName: pulumi.StringRef("cn"),
-//			}, nil)
+//			_, err := tls.GetHostGroups(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -54,6 +51,8 @@ func HostGroups(ctx *pulumi.Context, args *HostGroupsArgs, opts ...pulumi.Invoke
 type HostGroupsArgs struct {
 	// Whether enable auto update.
 	AutoUpdate *bool `pulumi:"autoUpdate"`
+	// Whether to hide host groups in exclusive resources.
+	Hidden *bool `pulumi:"hidden"`
 	// The id of host group.
 	HostGroupId *string `pulumi:"hostGroupId"`
 	// The name of host group.
@@ -72,6 +71,7 @@ type HostGroupsArgs struct {
 type HostGroupsResult struct {
 	// Whether enable auto update.
 	AutoUpdate *bool `pulumi:"autoUpdate"`
+	Hidden     *bool `pulumi:"hidden"`
 	// The id of host group.
 	HostGroupId *string `pulumi:"hostGroupId"`
 	// The name of host group.
@@ -108,6 +108,8 @@ func HostGroupsOutput(ctx *pulumi.Context, args HostGroupsOutputArgs, opts ...pu
 type HostGroupsOutputArgs struct {
 	// Whether enable auto update.
 	AutoUpdate pulumi.BoolPtrInput `pulumi:"autoUpdate"`
+	// Whether to hide host groups in exclusive resources.
+	Hidden pulumi.BoolPtrInput `pulumi:"hidden"`
 	// The id of host group.
 	HostGroupId pulumi.StringPtrInput `pulumi:"hostGroupId"`
 	// The name of host group.
@@ -144,6 +146,10 @@ func (o HostGroupsResultOutput) ToHostGroupsResultOutputWithContext(ctx context.
 // Whether enable auto update.
 func (o HostGroupsResultOutput) AutoUpdate() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v HostGroupsResult) *bool { return v.AutoUpdate }).(pulumi.BoolPtrOutput)
+}
+
+func (o HostGroupsResultOutput) Hidden() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v HostGroupsResult) *bool { return v.Hidden }).(pulumi.BoolPtrOutput)
 }
 
 // The id of host group.

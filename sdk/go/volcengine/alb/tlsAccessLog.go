@@ -12,6 +12,39 @@ import (
 	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
+// Provides a resource to manage alb tls access log
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/alb"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Enable ALB TLS Access Log (TLS Topic)
+//			_, err := alb.NewTlsAccessLog(ctx, "default", &alb.TlsAccessLogArgs{
+//				LoadBalancerId: pulumi.String("alb-bdchexlt87pc8dv40nbr6mu7"),
+//				ProjectId:      pulumi.String("3746fa99-3eda-42ab-b2c2-a0bf5d6b26ac"),
+//				TopicId:        pulumi.String("a63a5016-3a68-4723-a754-235a09653ce8"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// The AlbTlsAccessLog is not support import.
 type TlsAccessLog struct {
 	pulumi.CustomResourceState
 

@@ -20,9 +20,15 @@ class TopicArgs:
                  shard_count: pulumi.Input[int],
                  topic_name: pulumi.Input[str],
                  ttl: pulumi.Input[int],
+                 archive_ttl: Optional[pulumi.Input[int]] = None,
                  auto_split: Optional[pulumi.Input[bool]] = None,
+                 cold_ttl: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 enable_hot_ttl: Optional[pulumi.Input[bool]] = None,
                  enable_tracking: Optional[pulumi.Input[bool]] = None,
+                 encrypt_conf: Optional[pulumi.Input['TopicEncryptConfArgs']] = None,
+                 hot_ttl: Optional[pulumi.Input[int]] = None,
+                 log_public_ip: Optional[pulumi.Input[bool]] = None,
                  manual_split_shard_id: Optional[pulumi.Input[int]] = None,
                  manual_split_shard_number: Optional[pulumi.Input[int]] = None,
                  max_split_shard: Optional[pulumi.Input[int]] = None,
@@ -35,11 +41,17 @@ class TopicArgs:
         :param pulumi.Input[int] shard_count: The count of shards in the tls topic. Valid value range: 1-10. This field is only valid when creating tls topic.
         :param pulumi.Input[str] topic_name: The name of the tls topic.
         :param pulumi.Input[int] ttl: The data storage time of the tls topic. Unit: Day. Valid value range: 1-3650.
+        :param pulumi.Input[int] archive_ttl: Archive storage duration, valid when enable_hot_ttl is true.
         :param pulumi.Input[bool] auto_split: Whether to enable automatic partition splitting function of the tls topic.
                true: (default) When the amount of data written exceeds the capacity of existing partitions for 5 consecutive minutes, Log Service will automatically split partitions based on the data volume to meet business needs. However, the number of partitions after splitting cannot exceed the maximum number of partitions. Newly split partitions within the last 15 minutes will not be automatically split again.
                false: Disables automatic partition splitting.
+        :param pulumi.Input[int] cold_ttl: Infrequent storage duration, valid when enable_hot_ttl is true.
         :param pulumi.Input[str] description: The description of the tls project.
+        :param pulumi.Input[bool] enable_hot_ttl: Whether to enable tiered storage.
         :param pulumi.Input[bool] enable_tracking: Whether to enable WebTracking function of the tls topic.
+        :param pulumi.Input['TopicEncryptConfArgs'] encrypt_conf: Data encryption configuration.
+        :param pulumi.Input[int] hot_ttl: Standard storage duration, valid when enable_hot_ttl is true.
+        :param pulumi.Input[bool] log_public_ip: Whether to enable the function of recording public IP.
         :param pulumi.Input[int] manual_split_shard_id: The id of shard to be manually split. This field is valid only when modifying the topic. 
                When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[int] manual_split_shard_number: The split number of shard. The valid number should be a non-zero even number, such as 2, 4, 8, or 16. The total number of read-write status shards after splitting cannot exceed 50. 
@@ -53,12 +65,24 @@ class TopicArgs:
         pulumi.set(__self__, "shard_count", shard_count)
         pulumi.set(__self__, "topic_name", topic_name)
         pulumi.set(__self__, "ttl", ttl)
+        if archive_ttl is not None:
+            pulumi.set(__self__, "archive_ttl", archive_ttl)
         if auto_split is not None:
             pulumi.set(__self__, "auto_split", auto_split)
+        if cold_ttl is not None:
+            pulumi.set(__self__, "cold_ttl", cold_ttl)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if enable_hot_ttl is not None:
+            pulumi.set(__self__, "enable_hot_ttl", enable_hot_ttl)
         if enable_tracking is not None:
             pulumi.set(__self__, "enable_tracking", enable_tracking)
+        if encrypt_conf is not None:
+            pulumi.set(__self__, "encrypt_conf", encrypt_conf)
+        if hot_ttl is not None:
+            pulumi.set(__self__, "hot_ttl", hot_ttl)
+        if log_public_ip is not None:
+            pulumi.set(__self__, "log_public_ip", log_public_ip)
         if manual_split_shard_id is not None:
             pulumi.set(__self__, "manual_split_shard_id", manual_split_shard_id)
         if manual_split_shard_number is not None:
@@ -121,6 +145,18 @@ class TopicArgs:
         pulumi.set(self, "ttl", value)
 
     @property
+    @pulumi.getter(name="archiveTtl")
+    def archive_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        Archive storage duration, valid when enable_hot_ttl is true.
+        """
+        return pulumi.get(self, "archive_ttl")
+
+    @archive_ttl.setter
+    def archive_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "archive_ttl", value)
+
+    @property
     @pulumi.getter(name="autoSplit")
     def auto_split(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -135,6 +171,18 @@ class TopicArgs:
         pulumi.set(self, "auto_split", value)
 
     @property
+    @pulumi.getter(name="coldTtl")
+    def cold_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        Infrequent storage duration, valid when enable_hot_ttl is true.
+        """
+        return pulumi.get(self, "cold_ttl")
+
+    @cold_ttl.setter
+    def cold_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "cold_ttl", value)
+
+    @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
@@ -147,6 +195,18 @@ class TopicArgs:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter(name="enableHotTtl")
+    def enable_hot_ttl(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to enable tiered storage.
+        """
+        return pulumi.get(self, "enable_hot_ttl")
+
+    @enable_hot_ttl.setter
+    def enable_hot_ttl(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enable_hot_ttl", value)
+
+    @property
     @pulumi.getter(name="enableTracking")
     def enable_tracking(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -157,6 +217,42 @@ class TopicArgs:
     @enable_tracking.setter
     def enable_tracking(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "enable_tracking", value)
+
+    @property
+    @pulumi.getter(name="encryptConf")
+    def encrypt_conf(self) -> Optional[pulumi.Input['TopicEncryptConfArgs']]:
+        """
+        Data encryption configuration.
+        """
+        return pulumi.get(self, "encrypt_conf")
+
+    @encrypt_conf.setter
+    def encrypt_conf(self, value: Optional[pulumi.Input['TopicEncryptConfArgs']]):
+        pulumi.set(self, "encrypt_conf", value)
+
+    @property
+    @pulumi.getter(name="hotTtl")
+    def hot_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        Standard storage duration, valid when enable_hot_ttl is true.
+        """
+        return pulumi.get(self, "hot_ttl")
+
+    @hot_ttl.setter
+    def hot_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "hot_ttl", value)
+
+    @property
+    @pulumi.getter(name="logPublicIp")
+    def log_public_ip(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to enable the function of recording public IP.
+        """
+        return pulumi.get(self, "log_public_ip")
+
+    @log_public_ip.setter
+    def log_public_ip(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "log_public_ip", value)
 
     @property
     @pulumi.getter(name="manualSplitShardId")
@@ -236,10 +332,16 @@ class TopicArgs:
 @pulumi.input_type
 class _TopicState:
     def __init__(__self__, *,
+                 archive_ttl: Optional[pulumi.Input[int]] = None,
                  auto_split: Optional[pulumi.Input[bool]] = None,
+                 cold_ttl: Optional[pulumi.Input[int]] = None,
                  create_time: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 enable_hot_ttl: Optional[pulumi.Input[bool]] = None,
                  enable_tracking: Optional[pulumi.Input[bool]] = None,
+                 encrypt_conf: Optional[pulumi.Input['TopicEncryptConfArgs']] = None,
+                 hot_ttl: Optional[pulumi.Input[int]] = None,
+                 log_public_ip: Optional[pulumi.Input[bool]] = None,
                  manual_split_shard_id: Optional[pulumi.Input[int]] = None,
                  manual_split_shard_number: Optional[pulumi.Input[int]] = None,
                  max_split_shard: Optional[pulumi.Input[int]] = None,
@@ -253,12 +355,18 @@ class _TopicState:
                  ttl: Optional[pulumi.Input[int]] = None):
         """
         Input properties used for looking up and filtering Topic resources.
+        :param pulumi.Input[int] archive_ttl: Archive storage duration, valid when enable_hot_ttl is true.
         :param pulumi.Input[bool] auto_split: Whether to enable automatic partition splitting function of the tls topic.
                true: (default) When the amount of data written exceeds the capacity of existing partitions for 5 consecutive minutes, Log Service will automatically split partitions based on the data volume to meet business needs. However, the number of partitions after splitting cannot exceed the maximum number of partitions. Newly split partitions within the last 15 minutes will not be automatically split again.
                false: Disables automatic partition splitting.
+        :param pulumi.Input[int] cold_ttl: Infrequent storage duration, valid when enable_hot_ttl is true.
         :param pulumi.Input[str] create_time: The create time of the tls topic.
         :param pulumi.Input[str] description: The description of the tls project.
+        :param pulumi.Input[bool] enable_hot_ttl: Whether to enable tiered storage.
         :param pulumi.Input[bool] enable_tracking: Whether to enable WebTracking function of the tls topic.
+        :param pulumi.Input['TopicEncryptConfArgs'] encrypt_conf: Data encryption configuration.
+        :param pulumi.Input[int] hot_ttl: Standard storage duration, valid when enable_hot_ttl is true.
+        :param pulumi.Input[bool] log_public_ip: Whether to enable the function of recording public IP.
         :param pulumi.Input[int] manual_split_shard_id: The id of shard to be manually split. This field is valid only when modifying the topic. 
                When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[int] manual_split_shard_number: The split number of shard. The valid number should be a non-zero even number, such as 2, 4, 8, or 16. The total number of read-write status shards after splitting cannot exceed 50. 
@@ -273,14 +381,26 @@ class _TopicState:
         :param pulumi.Input[str] topic_name: The name of the tls topic.
         :param pulumi.Input[int] ttl: The data storage time of the tls topic. Unit: Day. Valid value range: 1-3650.
         """
+        if archive_ttl is not None:
+            pulumi.set(__self__, "archive_ttl", archive_ttl)
         if auto_split is not None:
             pulumi.set(__self__, "auto_split", auto_split)
+        if cold_ttl is not None:
+            pulumi.set(__self__, "cold_ttl", cold_ttl)
         if create_time is not None:
             pulumi.set(__self__, "create_time", create_time)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if enable_hot_ttl is not None:
+            pulumi.set(__self__, "enable_hot_ttl", enable_hot_ttl)
         if enable_tracking is not None:
             pulumi.set(__self__, "enable_tracking", enable_tracking)
+        if encrypt_conf is not None:
+            pulumi.set(__self__, "encrypt_conf", encrypt_conf)
+        if hot_ttl is not None:
+            pulumi.set(__self__, "hot_ttl", hot_ttl)
+        if log_public_ip is not None:
+            pulumi.set(__self__, "log_public_ip", log_public_ip)
         if manual_split_shard_id is not None:
             pulumi.set(__self__, "manual_split_shard_id", manual_split_shard_id)
         if manual_split_shard_number is not None:
@@ -305,6 +425,18 @@ class _TopicState:
             pulumi.set(__self__, "ttl", ttl)
 
     @property
+    @pulumi.getter(name="archiveTtl")
+    def archive_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        Archive storage duration, valid when enable_hot_ttl is true.
+        """
+        return pulumi.get(self, "archive_ttl")
+
+    @archive_ttl.setter
+    def archive_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "archive_ttl", value)
+
+    @property
     @pulumi.getter(name="autoSplit")
     def auto_split(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -317,6 +449,18 @@ class _TopicState:
     @auto_split.setter
     def auto_split(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "auto_split", value)
+
+    @property
+    @pulumi.getter(name="coldTtl")
+    def cold_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        Infrequent storage duration, valid when enable_hot_ttl is true.
+        """
+        return pulumi.get(self, "cold_ttl")
+
+    @cold_ttl.setter
+    def cold_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "cold_ttl", value)
 
     @property
     @pulumi.getter(name="createTime")
@@ -343,6 +487,18 @@ class _TopicState:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter(name="enableHotTtl")
+    def enable_hot_ttl(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to enable tiered storage.
+        """
+        return pulumi.get(self, "enable_hot_ttl")
+
+    @enable_hot_ttl.setter
+    def enable_hot_ttl(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enable_hot_ttl", value)
+
+    @property
     @pulumi.getter(name="enableTracking")
     def enable_tracking(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -353,6 +509,42 @@ class _TopicState:
     @enable_tracking.setter
     def enable_tracking(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "enable_tracking", value)
+
+    @property
+    @pulumi.getter(name="encryptConf")
+    def encrypt_conf(self) -> Optional[pulumi.Input['TopicEncryptConfArgs']]:
+        """
+        Data encryption configuration.
+        """
+        return pulumi.get(self, "encrypt_conf")
+
+    @encrypt_conf.setter
+    def encrypt_conf(self, value: Optional[pulumi.Input['TopicEncryptConfArgs']]):
+        pulumi.set(self, "encrypt_conf", value)
+
+    @property
+    @pulumi.getter(name="hotTtl")
+    def hot_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        Standard storage duration, valid when enable_hot_ttl is true.
+        """
+        return pulumi.get(self, "hot_ttl")
+
+    @hot_ttl.setter
+    def hot_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "hot_ttl", value)
+
+    @property
+    @pulumi.getter(name="logPublicIp")
+    def log_public_ip(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to enable the function of recording public IP.
+        """
+        return pulumi.get(self, "log_public_ip")
+
+    @log_public_ip.setter
+    def log_public_ip(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "log_public_ip", value)
 
     @property
     @pulumi.getter(name="manualSplitShardId")
@@ -494,9 +686,15 @@ class Topic(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 archive_ttl: Optional[pulumi.Input[int]] = None,
                  auto_split: Optional[pulumi.Input[bool]] = None,
+                 cold_ttl: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 enable_hot_ttl: Optional[pulumi.Input[bool]] = None,
                  enable_tracking: Optional[pulumi.Input[bool]] = None,
+                 encrypt_conf: Optional[pulumi.Input[pulumi.InputType['TopicEncryptConfArgs']]] = None,
+                 hot_ttl: Optional[pulumi.Input[int]] = None,
+                 log_public_ip: Optional[pulumi.Input[bool]] = None,
                  manual_split_shard_id: Optional[pulumi.Input[int]] = None,
                  manual_split_shard_number: Optional[pulumi.Input[int]] = None,
                  max_split_shard: Optional[pulumi.Input[int]] = None,
@@ -517,11 +715,20 @@ class Topic(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.tls.Topic("foo",
+            archive_ttl=0,
             auto_split=True,
+            cold_ttl=30,
             description="test",
+            enable_hot_ttl=True,
             enable_tracking=True,
+            encrypt_conf=volcengine.tls.TopicEncryptConfArgs(
+                enable=True,
+                encrypt_type="default",
+            ),
+            hot_ttl=30,
+            log_public_ip=True,
             max_split_shard=10,
-            project_id="e020c978-4f05-40e1-9167-0113d3ef****",
+            project_id="bdb87e4d-7dad-4b96-ac43-e1b09e9dc8ac",
             shard_count=2,
             tags=[volcengine.tls.TopicTagArgs(
                 key="k1",
@@ -529,8 +736,8 @@ class Topic(pulumi.CustomResource):
             )],
             time_format="%Y-%m-%dT%H:%M:%S,%f",
             time_key="request_time",
-            topic_name="tf-test-topic",
-            ttl=10)
+            topic_name="tf-topic-5",
+            ttl=60)
         ```
 
         ## Import
@@ -543,11 +750,17 @@ class Topic(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[int] archive_ttl: Archive storage duration, valid when enable_hot_ttl is true.
         :param pulumi.Input[bool] auto_split: Whether to enable automatic partition splitting function of the tls topic.
                true: (default) When the amount of data written exceeds the capacity of existing partitions for 5 consecutive minutes, Log Service will automatically split partitions based on the data volume to meet business needs. However, the number of partitions after splitting cannot exceed the maximum number of partitions. Newly split partitions within the last 15 minutes will not be automatically split again.
                false: Disables automatic partition splitting.
+        :param pulumi.Input[int] cold_ttl: Infrequent storage duration, valid when enable_hot_ttl is true.
         :param pulumi.Input[str] description: The description of the tls project.
+        :param pulumi.Input[bool] enable_hot_ttl: Whether to enable tiered storage.
         :param pulumi.Input[bool] enable_tracking: Whether to enable WebTracking function of the tls topic.
+        :param pulumi.Input[pulumi.InputType['TopicEncryptConfArgs']] encrypt_conf: Data encryption configuration.
+        :param pulumi.Input[int] hot_ttl: Standard storage duration, valid when enable_hot_ttl is true.
+        :param pulumi.Input[bool] log_public_ip: Whether to enable the function of recording public IP.
         :param pulumi.Input[int] manual_split_shard_id: The id of shard to be manually split. This field is valid only when modifying the topic. 
                When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[int] manual_split_shard_number: The split number of shard. The valid number should be a non-zero even number, such as 2, 4, 8, or 16. The total number of read-write status shards after splitting cannot exceed 50. 
@@ -576,11 +789,20 @@ class Topic(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.tls.Topic("foo",
+            archive_ttl=0,
             auto_split=True,
+            cold_ttl=30,
             description="test",
+            enable_hot_ttl=True,
             enable_tracking=True,
+            encrypt_conf=volcengine.tls.TopicEncryptConfArgs(
+                enable=True,
+                encrypt_type="default",
+            ),
+            hot_ttl=30,
+            log_public_ip=True,
             max_split_shard=10,
-            project_id="e020c978-4f05-40e1-9167-0113d3ef****",
+            project_id="bdb87e4d-7dad-4b96-ac43-e1b09e9dc8ac",
             shard_count=2,
             tags=[volcengine.tls.TopicTagArgs(
                 key="k1",
@@ -588,8 +810,8 @@ class Topic(pulumi.CustomResource):
             )],
             time_format="%Y-%m-%dT%H:%M:%S,%f",
             time_key="request_time",
-            topic_name="tf-test-topic",
-            ttl=10)
+            topic_name="tf-topic-5",
+            ttl=60)
         ```
 
         ## Import
@@ -615,9 +837,15 @@ class Topic(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 archive_ttl: Optional[pulumi.Input[int]] = None,
                  auto_split: Optional[pulumi.Input[bool]] = None,
+                 cold_ttl: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 enable_hot_ttl: Optional[pulumi.Input[bool]] = None,
                  enable_tracking: Optional[pulumi.Input[bool]] = None,
+                 encrypt_conf: Optional[pulumi.Input[pulumi.InputType['TopicEncryptConfArgs']]] = None,
+                 hot_ttl: Optional[pulumi.Input[int]] = None,
+                 log_public_ip: Optional[pulumi.Input[bool]] = None,
                  manual_split_shard_id: Optional[pulumi.Input[int]] = None,
                  manual_split_shard_number: Optional[pulumi.Input[int]] = None,
                  max_split_shard: Optional[pulumi.Input[int]] = None,
@@ -637,9 +865,15 @@ class Topic(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = TopicArgs.__new__(TopicArgs)
 
+            __props__.__dict__["archive_ttl"] = archive_ttl
             __props__.__dict__["auto_split"] = auto_split
+            __props__.__dict__["cold_ttl"] = cold_ttl
             __props__.__dict__["description"] = description
+            __props__.__dict__["enable_hot_ttl"] = enable_hot_ttl
             __props__.__dict__["enable_tracking"] = enable_tracking
+            __props__.__dict__["encrypt_conf"] = encrypt_conf
+            __props__.__dict__["hot_ttl"] = hot_ttl
+            __props__.__dict__["log_public_ip"] = log_public_ip
             __props__.__dict__["manual_split_shard_id"] = manual_split_shard_id
             __props__.__dict__["manual_split_shard_number"] = manual_split_shard_number
             __props__.__dict__["max_split_shard"] = max_split_shard
@@ -670,10 +904,16 @@ class Topic(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            archive_ttl: Optional[pulumi.Input[int]] = None,
             auto_split: Optional[pulumi.Input[bool]] = None,
+            cold_ttl: Optional[pulumi.Input[int]] = None,
             create_time: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
+            enable_hot_ttl: Optional[pulumi.Input[bool]] = None,
             enable_tracking: Optional[pulumi.Input[bool]] = None,
+            encrypt_conf: Optional[pulumi.Input[pulumi.InputType['TopicEncryptConfArgs']]] = None,
+            hot_ttl: Optional[pulumi.Input[int]] = None,
+            log_public_ip: Optional[pulumi.Input[bool]] = None,
             manual_split_shard_id: Optional[pulumi.Input[int]] = None,
             manual_split_shard_number: Optional[pulumi.Input[int]] = None,
             max_split_shard: Optional[pulumi.Input[int]] = None,
@@ -692,12 +932,18 @@ class Topic(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[int] archive_ttl: Archive storage duration, valid when enable_hot_ttl is true.
         :param pulumi.Input[bool] auto_split: Whether to enable automatic partition splitting function of the tls topic.
                true: (default) When the amount of data written exceeds the capacity of existing partitions for 5 consecutive minutes, Log Service will automatically split partitions based on the data volume to meet business needs. However, the number of partitions after splitting cannot exceed the maximum number of partitions. Newly split partitions within the last 15 minutes will not be automatically split again.
                false: Disables automatic partition splitting.
+        :param pulumi.Input[int] cold_ttl: Infrequent storage duration, valid when enable_hot_ttl is true.
         :param pulumi.Input[str] create_time: The create time of the tls topic.
         :param pulumi.Input[str] description: The description of the tls project.
+        :param pulumi.Input[bool] enable_hot_ttl: Whether to enable tiered storage.
         :param pulumi.Input[bool] enable_tracking: Whether to enable WebTracking function of the tls topic.
+        :param pulumi.Input[pulumi.InputType['TopicEncryptConfArgs']] encrypt_conf: Data encryption configuration.
+        :param pulumi.Input[int] hot_ttl: Standard storage duration, valid when enable_hot_ttl is true.
+        :param pulumi.Input[bool] log_public_ip: Whether to enable the function of recording public IP.
         :param pulumi.Input[int] manual_split_shard_id: The id of shard to be manually split. This field is valid only when modifying the topic. 
                When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[int] manual_split_shard_number: The split number of shard. The valid number should be a non-zero even number, such as 2, 4, 8, or 16. The total number of read-write status shards after splitting cannot exceed 50. 
@@ -716,10 +962,16 @@ class Topic(pulumi.CustomResource):
 
         __props__ = _TopicState.__new__(_TopicState)
 
+        __props__.__dict__["archive_ttl"] = archive_ttl
         __props__.__dict__["auto_split"] = auto_split
+        __props__.__dict__["cold_ttl"] = cold_ttl
         __props__.__dict__["create_time"] = create_time
         __props__.__dict__["description"] = description
+        __props__.__dict__["enable_hot_ttl"] = enable_hot_ttl
         __props__.__dict__["enable_tracking"] = enable_tracking
+        __props__.__dict__["encrypt_conf"] = encrypt_conf
+        __props__.__dict__["hot_ttl"] = hot_ttl
+        __props__.__dict__["log_public_ip"] = log_public_ip
         __props__.__dict__["manual_split_shard_id"] = manual_split_shard_id
         __props__.__dict__["manual_split_shard_number"] = manual_split_shard_number
         __props__.__dict__["max_split_shard"] = max_split_shard
@@ -734,6 +986,14 @@ class Topic(pulumi.CustomResource):
         return Topic(resource_name, opts=opts, __props__=__props__)
 
     @property
+    @pulumi.getter(name="archiveTtl")
+    def archive_ttl(self) -> pulumi.Output[Optional[int]]:
+        """
+        Archive storage duration, valid when enable_hot_ttl is true.
+        """
+        return pulumi.get(self, "archive_ttl")
+
+    @property
     @pulumi.getter(name="autoSplit")
     def auto_split(self) -> pulumi.Output[bool]:
         """
@@ -742,6 +1002,14 @@ class Topic(pulumi.CustomResource):
         false: Disables automatic partition splitting.
         """
         return pulumi.get(self, "auto_split")
+
+    @property
+    @pulumi.getter(name="coldTtl")
+    def cold_ttl(self) -> pulumi.Output[Optional[int]]:
+        """
+        Infrequent storage duration, valid when enable_hot_ttl is true.
+        """
+        return pulumi.get(self, "cold_ttl")
 
     @property
     @pulumi.getter(name="createTime")
@@ -760,12 +1028,44 @@ class Topic(pulumi.CustomResource):
         return pulumi.get(self, "description")
 
     @property
+    @pulumi.getter(name="enableHotTtl")
+    def enable_hot_ttl(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Whether to enable tiered storage.
+        """
+        return pulumi.get(self, "enable_hot_ttl")
+
+    @property
     @pulumi.getter(name="enableTracking")
     def enable_tracking(self) -> pulumi.Output[bool]:
         """
         Whether to enable WebTracking function of the tls topic.
         """
         return pulumi.get(self, "enable_tracking")
+
+    @property
+    @pulumi.getter(name="encryptConf")
+    def encrypt_conf(self) -> pulumi.Output[Optional['outputs.TopicEncryptConf']]:
+        """
+        Data encryption configuration.
+        """
+        return pulumi.get(self, "encrypt_conf")
+
+    @property
+    @pulumi.getter(name="hotTtl")
+    def hot_ttl(self) -> pulumi.Output[Optional[int]]:
+        """
+        Standard storage duration, valid when enable_hot_ttl is true.
+        """
+        return pulumi.get(self, "hot_ttl")
+
+    @property
+    @pulumi.getter(name="logPublicIp")
+    def log_public_ip(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Whether to enable the function of recording public IP.
+        """
+        return pulumi.get(self, "log_public_ip")
 
     @property
     @pulumi.getter(name="manualSplitShardId")

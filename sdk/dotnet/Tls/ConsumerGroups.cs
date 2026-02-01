@@ -24,8 +24,37 @@ namespace Pulumi.Volcengine.Tls
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Tls.GetConsumerGroups.Invoke();
+        ///     var all = Volcengine.Tls.GetConsumerGroups.Invoke();
         /// 
+        ///     var byName = Volcengine.Tls.GetConsumerGroups.Invoke(new()
+        ///     {
+        ///         ConsumerGroupName = "test-consumer-group",
+        ///     });
+        /// 
+        ///     var byProject = Volcengine.Tls.GetConsumerGroups.Invoke(new()
+        ///     {
+        ///         ProjectId = "project-123456",
+        ///     });
+        /// 
+        ///     var byTopic = Volcengine.Tls.GetConsumerGroups.Invoke(new()
+        ///     {
+        ///         TopicId = "topic-123456",
+        ///     });
+        /// 
+        ///     var withMultipleFilters = Volcengine.Tls.GetConsumerGroups.Invoke(new()
+        ///     {
+        ///         ProjectId = "project-123456",
+        ///         ConsumerGroupName = "test",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["allConsumerGroups"] = all.Apply(getConsumerGroupsResult =&gt; getConsumerGroupsResult.ConsumerGroups),
+        ///         ["byNameConsumerGroups"] = byName.Apply(getConsumerGroupsResult =&gt; getConsumerGroupsResult.ConsumerGroups),
+        ///         ["byProjectConsumerGroups"] = byProject.Apply(getConsumerGroupsResult =&gt; getConsumerGroupsResult.ConsumerGroups),
+        ///         ["byTopicConsumerGroups"] = byTopic.Apply(getConsumerGroupsResult =&gt; getConsumerGroupsResult.ConsumerGroups),
+        ///         ["multipleFiltersConsumerGroups"] = withMultipleFilters.Apply(getConsumerGroupsResult =&gt; getConsumerGroupsResult.ConsumerGroups),
+        ///     };
         /// });
         /// ```
         /// </summary>
@@ -44,8 +73,37 @@ namespace Pulumi.Volcengine.Tls
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Tls.GetConsumerGroups.Invoke();
+        ///     var all = Volcengine.Tls.GetConsumerGroups.Invoke();
         /// 
+        ///     var byName = Volcengine.Tls.GetConsumerGroups.Invoke(new()
+        ///     {
+        ///         ConsumerGroupName = "test-consumer-group",
+        ///     });
+        /// 
+        ///     var byProject = Volcengine.Tls.GetConsumerGroups.Invoke(new()
+        ///     {
+        ///         ProjectId = "project-123456",
+        ///     });
+        /// 
+        ///     var byTopic = Volcengine.Tls.GetConsumerGroups.Invoke(new()
+        ///     {
+        ///         TopicId = "topic-123456",
+        ///     });
+        /// 
+        ///     var withMultipleFilters = Volcengine.Tls.GetConsumerGroups.Invoke(new()
+        ///     {
+        ///         ProjectId = "project-123456",
+        ///         ConsumerGroupName = "test",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["allConsumerGroups"] = all.Apply(getConsumerGroupsResult =&gt; getConsumerGroupsResult.ConsumerGroups),
+        ///         ["byNameConsumerGroups"] = byName.Apply(getConsumerGroupsResult =&gt; getConsumerGroupsResult.ConsumerGroups),
+        ///         ["byProjectConsumerGroups"] = byProject.Apply(getConsumerGroupsResult =&gt; getConsumerGroupsResult.ConsumerGroups),
+        ///         ["byTopicConsumerGroups"] = byTopic.Apply(getConsumerGroupsResult =&gt; getConsumerGroupsResult.ConsumerGroups),
+        ///         ["multipleFiltersConsumerGroups"] = withMultipleFilters.Apply(getConsumerGroupsResult =&gt; getConsumerGroupsResult.ConsumerGroups),
+        ///     };
         /// });
         /// ```
         /// </summary>

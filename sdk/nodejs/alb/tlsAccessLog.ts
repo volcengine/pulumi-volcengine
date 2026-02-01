@@ -4,6 +4,26 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * Provides a resource to manage alb tls access log
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@volcengine/pulumi";
+ *
+ * // Enable ALB TLS Access Log (TLS Topic)
+ * const _default = new volcengine.alb.TlsAccessLog("default", {
+ *     loadBalancerId: "alb-bdchexlt87pc8dv40nbr6mu7",
+ *     projectId: "3746fa99-3eda-42ab-b2c2-a0bf5d6b26ac",
+ *     topicId: "a63a5016-3a68-4723-a754-235a09653ce8",
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * The AlbTlsAccessLog is not support import.
+ */
 export class TlsAccessLog extends pulumi.CustomResource {
     /**
      * Get an existing TlsAccessLog resource's state with the given name, ID, and optional extra

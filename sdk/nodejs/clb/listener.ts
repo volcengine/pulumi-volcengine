@@ -60,6 +60,10 @@ import * as utilities from "../utilities";
  *         method: "GET",
  *         uri: "/",
  *     },
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
  *     enabled: "on",
  * });
  * const fooTcp = new volcengine.clb.Listener("fooTcp", {
@@ -75,6 +79,37 @@ import * as utilities from "../utilities";
  *     persistenceTimeout: 100,
  *     connectionDrainEnabled: "on",
  *     connectionDrainTimeout: 100,
+ * });
+ * const fooHttps = new volcengine.clb.Listener("fooHttps", {
+ *     loadBalancerId: fooClb.id,
+ *     listenerName: "acc-test-listener-https",
+ *     protocol: "HTTPS",
+ *     port: 100,
+ *     serverGroupId: fooServerGroup.id,
+ *     healthCheck: {
+ *         enabled: "on",
+ *         interval: 10,
+ *         timeout: 3,
+ *         healthyThreshold: 5,
+ *         unHealthyThreshold: 2,
+ *         domain: "volcengine.com",
+ *         httpCode: "http_2xx,http_3xx",
+ *         method: "GET",
+ *         uri: "/",
+ *     },
+ *     enabled: "on",
+ *     clientHeaderTimeout: 80,
+ *     clientBodyTimeout: 80,
+ *     keepaliveTimeout: 80,
+ *     proxyConnectTimeout: 20,
+ *     proxySendTimeout: 1800,
+ *     proxyReadTimeout: 1800,
+ *     certificateSource: "clb",
+ *     certificateId: "cert-mjpctunmog745smt1a******",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
  * });
  * ```
  *
@@ -131,9 +166,33 @@ export class Listener extends pulumi.CustomResource {
      */
     public readonly bandwidth!: pulumi.Output<number | undefined>;
     /**
+     * The ID of the CA certificate which is associated with the listener. When `caEnabled` is `on`, this parameter is required.
+     */
+    public readonly caCertificateId!: pulumi.Output<string>;
+    /**
+     * Whether to enable CACertificate two-way authentication. Values: on, off.
+     */
+    public readonly caEnabled!: pulumi.Output<string>;
+    /**
+     * The ID of the certificate in Certificate Center. When `certificateSource` is `certCenter`, this parameter is required.
+     */
+    public readonly certCenterCertificateId!: pulumi.Output<string>;
+    /**
      * The certificate id associated with the listener.
      */
     public readonly certificateId!: pulumi.Output<string | undefined>;
+    /**
+     * The source of the certificate which is associated with the listener. Values: `clb`, `certCenter`.
+     */
+    public readonly certificateSource!: pulumi.Output<string>;
+    /**
+     * The client body timeout of the Listener. Only HTTP/HTTPS listeners support this parameter. value range: 30-120.
+     */
+    public readonly clientBodyTimeout!: pulumi.Output<number>;
+    /**
+     * The client header timeout of the Listener. Only HTTP/HTTPS listeners support this parameter, i.e., `protocol`=`HTTP` or `HTTPS`. value range: 30-120.
+     */
+    public readonly clientHeaderTimeout!: pulumi.Output<number>;
     /**
      * Whether to enable connection drain of the Listener. Valid values: `off`, `on`. Default is `off`.
      * This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
@@ -149,6 +208,10 @@ export class Listener extends pulumi.CustomResource {
      */
     public readonly cookie!: pulumi.Output<string | undefined>;
     /**
+     * The maximum number of new connections per second allowed for the Listener. Default value: `-1`, no limit, which is the upper limit of new connections for the CLB instance.
+     */
+    public readonly cps!: pulumi.Output<number>;
+    /**
      * The description of the Listener.
      */
     public readonly description!: pulumi.Output<string | undefined>;
@@ -157,6 +220,10 @@ export class Listener extends pulumi.CustomResource {
      */
     public readonly enabled!: pulumi.Output<string>;
     /**
+     * The end port for full port listening, with a value range of 1-65535. When `port` is 0, this parameter is required, and must be greater than `startPort`.
+     */
+    public readonly endPort!: pulumi.Output<number>;
+    /**
      * The connection timeout of the Listener.
      */
     public readonly establishedTimeout!: pulumi.Output<number>;
@@ -164,6 +231,14 @@ export class Listener extends pulumi.CustomResource {
      * The config of health check.
      */
     public readonly healthCheck!: pulumi.Output<outputs.clb.ListenerHealthCheck>;
+    /**
+     * Whether the HTTPS protocol listener enables the front-end HTTP 2.0 protocol. value range: `on`, `off`.
+     */
+    public readonly http2Enabled!: pulumi.Output<string>;
+    /**
+     * The timeout period for the long connection between the client and the CLB. Only HTTP/HTTPS listeners support this parameter. value range: 0-900.
+     */
+    public readonly keepaliveTimeout!: pulumi.Output<number>;
     /**
      * The ID of the Listener.
      */
@@ -177,6 +252,10 @@ export class Listener extends pulumi.CustomResource {
      */
     public readonly loadBalancerId!: pulumi.Output<string>;
     /**
+     * The maximum number of connections allowed for the Listener. Default value: `-1`, no limit, which is the upper limit of new connections for the CLB instance.
+     */
+    public readonly maxConnections!: pulumi.Output<number>;
+    /**
      * The persistence timeout of the Listener. Unit: second. Default is `1000`. When PersistenceType is configured as source_ip, the value range is 1-3600. When PersistenceType is configured as insert, the value range is 1-86400. This filed is valid only when the value of field `persistenceType` is `sourceIp` or `insert`.
      */
     public readonly persistenceTimeout!: pulumi.Output<number | undefined>;
@@ -186,7 +265,7 @@ export class Listener extends pulumi.CustomResource {
      */
     public readonly persistenceType!: pulumi.Output<string | undefined>;
     /**
-     * The port receiving request of the Listener, the value range in 1~65535.
+     * The port receiving request of the Listener, the value range in 0~65535. When `protocol` is `TCP` or `UDP`, 0 can be passed in, indicating that full port listening is enabled.
      */
     public readonly port!: pulumi.Output<number>;
     /**
@@ -194,18 +273,46 @@ export class Listener extends pulumi.CustomResource {
      */
     public readonly protocol!: pulumi.Output<string>;
     /**
+     * The timeout period for establishing a connection between the CLB and the backend server. Only HTTP/HTTPS listeners support this parameter. value range: 4-120.
+     */
+    public readonly proxyConnectTimeout!: pulumi.Output<number>;
+    /**
      * Whether to enable proxy protocol. Valid values: `off`, `standard`. Default is `off`.
      * This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
      */
     public readonly proxyProtocolType!: pulumi.Output<string | undefined>;
     /**
+     * The timeout period for CLB to read the response from the backend server. Only HTTP/HTTPS listeners support this parameter. value range: 30-3600.
+     */
+    public readonly proxyReadTimeout!: pulumi.Output<number>;
+    /**
+     * The timeout period for CLB to transmit requests to backend servers. Only HTTP/HTTPS listeners support this parameter. value range: 30-3600.
+     */
+    public readonly proxySendTimeout!: pulumi.Output<number>;
+    /**
      * The scheduling algorithm of the Listener. Optional choice contains `wrr`, `wlc`, `sh`.
      */
     public readonly scheduler!: pulumi.Output<string>;
     /**
+     * The TLS security policy of the HTTPS listener. Only HTTPS listeners support this parameter. value range: `defaultPolicy`, `tlsCipherPolicy10`, `tlsCipherPolicy11`, `tlsCipherPolicy12`, `tlsCipherPolicy12Strict`.
+     */
+    public readonly securityPolicyId!: pulumi.Output<string>;
+    /**
+     * The timeout period for CLB to send responses to the client. Only HTTP/HTTPS listeners support this parameter. value range: 1-3600.
+     */
+    public readonly sendTimeout!: pulumi.Output<number>;
+    /**
      * The server group id associated with the listener.
      */
     public readonly serverGroupId!: pulumi.Output<string>;
+    /**
+     * The start port for full port listening, with a value range of 1-65535. When `port` is 0, this parameter is required.
+     */
+    public readonly startPort!: pulumi.Output<number>;
+    /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.clb.ListenerTag[] | undefined>;
 
     /**
      * Create a Listener resource with the given unique name, arguments, and options.
@@ -224,24 +331,42 @@ export class Listener extends pulumi.CustomResource {
             resourceInputs["aclStatus"] = state ? state.aclStatus : undefined;
             resourceInputs["aclType"] = state ? state.aclType : undefined;
             resourceInputs["bandwidth"] = state ? state.bandwidth : undefined;
+            resourceInputs["caCertificateId"] = state ? state.caCertificateId : undefined;
+            resourceInputs["caEnabled"] = state ? state.caEnabled : undefined;
+            resourceInputs["certCenterCertificateId"] = state ? state.certCenterCertificateId : undefined;
             resourceInputs["certificateId"] = state ? state.certificateId : undefined;
+            resourceInputs["certificateSource"] = state ? state.certificateSource : undefined;
+            resourceInputs["clientBodyTimeout"] = state ? state.clientBodyTimeout : undefined;
+            resourceInputs["clientHeaderTimeout"] = state ? state.clientHeaderTimeout : undefined;
             resourceInputs["connectionDrainEnabled"] = state ? state.connectionDrainEnabled : undefined;
             resourceInputs["connectionDrainTimeout"] = state ? state.connectionDrainTimeout : undefined;
             resourceInputs["cookie"] = state ? state.cookie : undefined;
+            resourceInputs["cps"] = state ? state.cps : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["enabled"] = state ? state.enabled : undefined;
+            resourceInputs["endPort"] = state ? state.endPort : undefined;
             resourceInputs["establishedTimeout"] = state ? state.establishedTimeout : undefined;
             resourceInputs["healthCheck"] = state ? state.healthCheck : undefined;
+            resourceInputs["http2Enabled"] = state ? state.http2Enabled : undefined;
+            resourceInputs["keepaliveTimeout"] = state ? state.keepaliveTimeout : undefined;
             resourceInputs["listenerId"] = state ? state.listenerId : undefined;
             resourceInputs["listenerName"] = state ? state.listenerName : undefined;
             resourceInputs["loadBalancerId"] = state ? state.loadBalancerId : undefined;
+            resourceInputs["maxConnections"] = state ? state.maxConnections : undefined;
             resourceInputs["persistenceTimeout"] = state ? state.persistenceTimeout : undefined;
             resourceInputs["persistenceType"] = state ? state.persistenceType : undefined;
             resourceInputs["port"] = state ? state.port : undefined;
             resourceInputs["protocol"] = state ? state.protocol : undefined;
+            resourceInputs["proxyConnectTimeout"] = state ? state.proxyConnectTimeout : undefined;
             resourceInputs["proxyProtocolType"] = state ? state.proxyProtocolType : undefined;
+            resourceInputs["proxyReadTimeout"] = state ? state.proxyReadTimeout : undefined;
+            resourceInputs["proxySendTimeout"] = state ? state.proxySendTimeout : undefined;
             resourceInputs["scheduler"] = state ? state.scheduler : undefined;
+            resourceInputs["securityPolicyId"] = state ? state.securityPolicyId : undefined;
+            resourceInputs["sendTimeout"] = state ? state.sendTimeout : undefined;
             resourceInputs["serverGroupId"] = state ? state.serverGroupId : undefined;
+            resourceInputs["startPort"] = state ? state.startPort : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
         } else {
             const args = argsOrState as ListenerArgs | undefined;
             if ((!args || args.loadBalancerId === undefined) && !opts.urn) {
@@ -260,23 +385,41 @@ export class Listener extends pulumi.CustomResource {
             resourceInputs["aclStatus"] = args ? args.aclStatus : undefined;
             resourceInputs["aclType"] = args ? args.aclType : undefined;
             resourceInputs["bandwidth"] = args ? args.bandwidth : undefined;
+            resourceInputs["caCertificateId"] = args ? args.caCertificateId : undefined;
+            resourceInputs["caEnabled"] = args ? args.caEnabled : undefined;
+            resourceInputs["certCenterCertificateId"] = args ? args.certCenterCertificateId : undefined;
             resourceInputs["certificateId"] = args ? args.certificateId : undefined;
+            resourceInputs["certificateSource"] = args ? args.certificateSource : undefined;
+            resourceInputs["clientBodyTimeout"] = args ? args.clientBodyTimeout : undefined;
+            resourceInputs["clientHeaderTimeout"] = args ? args.clientHeaderTimeout : undefined;
             resourceInputs["connectionDrainEnabled"] = args ? args.connectionDrainEnabled : undefined;
             resourceInputs["connectionDrainTimeout"] = args ? args.connectionDrainTimeout : undefined;
             resourceInputs["cookie"] = args ? args.cookie : undefined;
+            resourceInputs["cps"] = args ? args.cps : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["enabled"] = args ? args.enabled : undefined;
+            resourceInputs["endPort"] = args ? args.endPort : undefined;
             resourceInputs["establishedTimeout"] = args ? args.establishedTimeout : undefined;
             resourceInputs["healthCheck"] = args ? args.healthCheck : undefined;
+            resourceInputs["http2Enabled"] = args ? args.http2Enabled : undefined;
+            resourceInputs["keepaliveTimeout"] = args ? args.keepaliveTimeout : undefined;
             resourceInputs["listenerName"] = args ? args.listenerName : undefined;
             resourceInputs["loadBalancerId"] = args ? args.loadBalancerId : undefined;
+            resourceInputs["maxConnections"] = args ? args.maxConnections : undefined;
             resourceInputs["persistenceTimeout"] = args ? args.persistenceTimeout : undefined;
             resourceInputs["persistenceType"] = args ? args.persistenceType : undefined;
             resourceInputs["port"] = args ? args.port : undefined;
             resourceInputs["protocol"] = args ? args.protocol : undefined;
+            resourceInputs["proxyConnectTimeout"] = args ? args.proxyConnectTimeout : undefined;
             resourceInputs["proxyProtocolType"] = args ? args.proxyProtocolType : undefined;
+            resourceInputs["proxyReadTimeout"] = args ? args.proxyReadTimeout : undefined;
+            resourceInputs["proxySendTimeout"] = args ? args.proxySendTimeout : undefined;
             resourceInputs["scheduler"] = args ? args.scheduler : undefined;
+            resourceInputs["securityPolicyId"] = args ? args.securityPolicyId : undefined;
+            resourceInputs["sendTimeout"] = args ? args.sendTimeout : undefined;
             resourceInputs["serverGroupId"] = args ? args.serverGroupId : undefined;
+            resourceInputs["startPort"] = args ? args.startPort : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["listenerId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -305,9 +448,33 @@ export interface ListenerState {
      */
     bandwidth?: pulumi.Input<number>;
     /**
+     * The ID of the CA certificate which is associated with the listener. When `caEnabled` is `on`, this parameter is required.
+     */
+    caCertificateId?: pulumi.Input<string>;
+    /**
+     * Whether to enable CACertificate two-way authentication. Values: on, off.
+     */
+    caEnabled?: pulumi.Input<string>;
+    /**
+     * The ID of the certificate in Certificate Center. When `certificateSource` is `certCenter`, this parameter is required.
+     */
+    certCenterCertificateId?: pulumi.Input<string>;
+    /**
      * The certificate id associated with the listener.
      */
     certificateId?: pulumi.Input<string>;
+    /**
+     * The source of the certificate which is associated with the listener. Values: `clb`, `certCenter`.
+     */
+    certificateSource?: pulumi.Input<string>;
+    /**
+     * The client body timeout of the Listener. Only HTTP/HTTPS listeners support this parameter. value range: 30-120.
+     */
+    clientBodyTimeout?: pulumi.Input<number>;
+    /**
+     * The client header timeout of the Listener. Only HTTP/HTTPS listeners support this parameter, i.e., `protocol`=`HTTP` or `HTTPS`. value range: 30-120.
+     */
+    clientHeaderTimeout?: pulumi.Input<number>;
     /**
      * Whether to enable connection drain of the Listener. Valid values: `off`, `on`. Default is `off`.
      * This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
@@ -323,6 +490,10 @@ export interface ListenerState {
      */
     cookie?: pulumi.Input<string>;
     /**
+     * The maximum number of new connections per second allowed for the Listener. Default value: `-1`, no limit, which is the upper limit of new connections for the CLB instance.
+     */
+    cps?: pulumi.Input<number>;
+    /**
      * The description of the Listener.
      */
     description?: pulumi.Input<string>;
@@ -331,6 +502,10 @@ export interface ListenerState {
      */
     enabled?: pulumi.Input<string>;
     /**
+     * The end port for full port listening, with a value range of 1-65535. When `port` is 0, this parameter is required, and must be greater than `startPort`.
+     */
+    endPort?: pulumi.Input<number>;
+    /**
      * The connection timeout of the Listener.
      */
     establishedTimeout?: pulumi.Input<number>;
@@ -338,6 +513,14 @@ export interface ListenerState {
      * The config of health check.
      */
     healthCheck?: pulumi.Input<inputs.clb.ListenerHealthCheck>;
+    /**
+     * Whether the HTTPS protocol listener enables the front-end HTTP 2.0 protocol. value range: `on`, `off`.
+     */
+    http2Enabled?: pulumi.Input<string>;
+    /**
+     * The timeout period for the long connection between the client and the CLB. Only HTTP/HTTPS listeners support this parameter. value range: 0-900.
+     */
+    keepaliveTimeout?: pulumi.Input<number>;
     /**
      * The ID of the Listener.
      */
@@ -351,6 +534,10 @@ export interface ListenerState {
      */
     loadBalancerId?: pulumi.Input<string>;
     /**
+     * The maximum number of connections allowed for the Listener. Default value: `-1`, no limit, which is the upper limit of new connections for the CLB instance.
+     */
+    maxConnections?: pulumi.Input<number>;
+    /**
      * The persistence timeout of the Listener. Unit: second. Default is `1000`. When PersistenceType is configured as source_ip, the value range is 1-3600. When PersistenceType is configured as insert, the value range is 1-86400. This filed is valid only when the value of field `persistenceType` is `sourceIp` or `insert`.
      */
     persistenceTimeout?: pulumi.Input<number>;
@@ -360,7 +547,7 @@ export interface ListenerState {
      */
     persistenceType?: pulumi.Input<string>;
     /**
-     * The port receiving request of the Listener, the value range in 1~65535.
+     * The port receiving request of the Listener, the value range in 0~65535. When `protocol` is `TCP` or `UDP`, 0 can be passed in, indicating that full port listening is enabled.
      */
     port?: pulumi.Input<number>;
     /**
@@ -368,18 +555,46 @@ export interface ListenerState {
      */
     protocol?: pulumi.Input<string>;
     /**
+     * The timeout period for establishing a connection between the CLB and the backend server. Only HTTP/HTTPS listeners support this parameter. value range: 4-120.
+     */
+    proxyConnectTimeout?: pulumi.Input<number>;
+    /**
      * Whether to enable proxy protocol. Valid values: `off`, `standard`. Default is `off`.
      * This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
      */
     proxyProtocolType?: pulumi.Input<string>;
     /**
+     * The timeout period for CLB to read the response from the backend server. Only HTTP/HTTPS listeners support this parameter. value range: 30-3600.
+     */
+    proxyReadTimeout?: pulumi.Input<number>;
+    /**
+     * The timeout period for CLB to transmit requests to backend servers. Only HTTP/HTTPS listeners support this parameter. value range: 30-3600.
+     */
+    proxySendTimeout?: pulumi.Input<number>;
+    /**
      * The scheduling algorithm of the Listener. Optional choice contains `wrr`, `wlc`, `sh`.
      */
     scheduler?: pulumi.Input<string>;
     /**
+     * The TLS security policy of the HTTPS listener. Only HTTPS listeners support this parameter. value range: `defaultPolicy`, `tlsCipherPolicy10`, `tlsCipherPolicy11`, `tlsCipherPolicy12`, `tlsCipherPolicy12Strict`.
+     */
+    securityPolicyId?: pulumi.Input<string>;
+    /**
+     * The timeout period for CLB to send responses to the client. Only HTTP/HTTPS listeners support this parameter. value range: 1-3600.
+     */
+    sendTimeout?: pulumi.Input<number>;
+    /**
      * The server group id associated with the listener.
      */
     serverGroupId?: pulumi.Input<string>;
+    /**
+     * The start port for full port listening, with a value range of 1-65535. When `port` is 0, this parameter is required.
+     */
+    startPort?: pulumi.Input<number>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.clb.ListenerTag>[]>;
 }
 
 /**
@@ -403,9 +618,33 @@ export interface ListenerArgs {
      */
     bandwidth?: pulumi.Input<number>;
     /**
+     * The ID of the CA certificate which is associated with the listener. When `caEnabled` is `on`, this parameter is required.
+     */
+    caCertificateId?: pulumi.Input<string>;
+    /**
+     * Whether to enable CACertificate two-way authentication. Values: on, off.
+     */
+    caEnabled?: pulumi.Input<string>;
+    /**
+     * The ID of the certificate in Certificate Center. When `certificateSource` is `certCenter`, this parameter is required.
+     */
+    certCenterCertificateId?: pulumi.Input<string>;
+    /**
      * The certificate id associated with the listener.
      */
     certificateId?: pulumi.Input<string>;
+    /**
+     * The source of the certificate which is associated with the listener. Values: `clb`, `certCenter`.
+     */
+    certificateSource?: pulumi.Input<string>;
+    /**
+     * The client body timeout of the Listener. Only HTTP/HTTPS listeners support this parameter. value range: 30-120.
+     */
+    clientBodyTimeout?: pulumi.Input<number>;
+    /**
+     * The client header timeout of the Listener. Only HTTP/HTTPS listeners support this parameter, i.e., `protocol`=`HTTP` or `HTTPS`. value range: 30-120.
+     */
+    clientHeaderTimeout?: pulumi.Input<number>;
     /**
      * Whether to enable connection drain of the Listener. Valid values: `off`, `on`. Default is `off`.
      * This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
@@ -421,6 +660,10 @@ export interface ListenerArgs {
      */
     cookie?: pulumi.Input<string>;
     /**
+     * The maximum number of new connections per second allowed for the Listener. Default value: `-1`, no limit, which is the upper limit of new connections for the CLB instance.
+     */
+    cps?: pulumi.Input<number>;
+    /**
      * The description of the Listener.
      */
     description?: pulumi.Input<string>;
@@ -428,6 +671,10 @@ export interface ListenerArgs {
      * The enable status of the Listener. Optional choice contains `on`, `off`.
      */
     enabled?: pulumi.Input<string>;
+    /**
+     * The end port for full port listening, with a value range of 1-65535. When `port` is 0, this parameter is required, and must be greater than `startPort`.
+     */
+    endPort?: pulumi.Input<number>;
     /**
      * The connection timeout of the Listener.
      */
@@ -437,6 +684,14 @@ export interface ListenerArgs {
      */
     healthCheck?: pulumi.Input<inputs.clb.ListenerHealthCheck>;
     /**
+     * Whether the HTTPS protocol listener enables the front-end HTTP 2.0 protocol. value range: `on`, `off`.
+     */
+    http2Enabled?: pulumi.Input<string>;
+    /**
+     * The timeout period for the long connection between the client and the CLB. Only HTTP/HTTPS listeners support this parameter. value range: 0-900.
+     */
+    keepaliveTimeout?: pulumi.Input<number>;
+    /**
      * The name of the Listener.
      */
     listenerName?: pulumi.Input<string>;
@@ -444,6 +699,10 @@ export interface ListenerArgs {
      * The region of the request.
      */
     loadBalancerId: pulumi.Input<string>;
+    /**
+     * The maximum number of connections allowed for the Listener. Default value: `-1`, no limit, which is the upper limit of new connections for the CLB instance.
+     */
+    maxConnections?: pulumi.Input<number>;
     /**
      * The persistence timeout of the Listener. Unit: second. Default is `1000`. When PersistenceType is configured as source_ip, the value range is 1-3600. When PersistenceType is configured as insert, the value range is 1-86400. This filed is valid only when the value of field `persistenceType` is `sourceIp` or `insert`.
      */
@@ -454,7 +713,7 @@ export interface ListenerArgs {
      */
     persistenceType?: pulumi.Input<string>;
     /**
-     * The port receiving request of the Listener, the value range in 1~65535.
+     * The port receiving request of the Listener, the value range in 0~65535. When `protocol` is `TCP` or `UDP`, 0 can be passed in, indicating that full port listening is enabled.
      */
     port: pulumi.Input<number>;
     /**
@@ -462,16 +721,44 @@ export interface ListenerArgs {
      */
     protocol: pulumi.Input<string>;
     /**
+     * The timeout period for establishing a connection between the CLB and the backend server. Only HTTP/HTTPS listeners support this parameter. value range: 4-120.
+     */
+    proxyConnectTimeout?: pulumi.Input<number>;
+    /**
      * Whether to enable proxy protocol. Valid values: `off`, `standard`. Default is `off`.
      * This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
      */
     proxyProtocolType?: pulumi.Input<string>;
     /**
+     * The timeout period for CLB to read the response from the backend server. Only HTTP/HTTPS listeners support this parameter. value range: 30-3600.
+     */
+    proxyReadTimeout?: pulumi.Input<number>;
+    /**
+     * The timeout period for CLB to transmit requests to backend servers. Only HTTP/HTTPS listeners support this parameter. value range: 30-3600.
+     */
+    proxySendTimeout?: pulumi.Input<number>;
+    /**
      * The scheduling algorithm of the Listener. Optional choice contains `wrr`, `wlc`, `sh`.
      */
     scheduler?: pulumi.Input<string>;
     /**
+     * The TLS security policy of the HTTPS listener. Only HTTPS listeners support this parameter. value range: `defaultPolicy`, `tlsCipherPolicy10`, `tlsCipherPolicy11`, `tlsCipherPolicy12`, `tlsCipherPolicy12Strict`.
+     */
+    securityPolicyId?: pulumi.Input<string>;
+    /**
+     * The timeout period for CLB to send responses to the client. Only HTTP/HTTPS listeners support this parameter. value range: 1-3600.
+     */
+    sendTimeout?: pulumi.Input<number>;
+    /**
      * The server group id associated with the listener.
      */
     serverGroupId: pulumi.Input<string>;
+    /**
+     * The start port for full port listening, with a value range of 1-65535. When `port` is 0, this parameter is required.
+     */
+    startPort?: pulumi.Input<number>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.clb.ListenerTag>[]>;
 }

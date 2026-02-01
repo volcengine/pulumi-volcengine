@@ -9,6 +9,33 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Alb
 {
+    /// <summary>
+    /// Provides a resource to manage alb tls access log
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Volcengine = Pulumi.Volcengine;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // Enable ALB TLS Access Log (TLS Topic)
+    ///     var @default = new Volcengine.Alb.TlsAccessLog("default", new()
+    ///     {
+    ///         LoadBalancerId = "alb-bdchexlt87pc8dv40nbr6mu7",
+    ///         ProjectId = "3746fa99-3eda-42ab-b2c2-a0bf5d6b26ac",
+    ///         TopicId = "a63a5016-3a68-4723-a754-235a09653ce8",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// The AlbTlsAccessLog is not support import.
+    /// </summary>
     [VolcengineResourceType("volcengine:alb/tlsAccessLog:TlsAccessLog")]
     public partial class TlsAccessLog : global::Pulumi.CustomResource
     {

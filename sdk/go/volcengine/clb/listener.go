@@ -89,6 +89,12 @@ import (
 //					Method:             pulumi.String("GET"),
 //					Uri:                pulumi.String("/"),
 //				},
+//				Tags: clb.ListenerTagArray{
+//					&clb.ListenerTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
 //				Enabled: pulumi.String("on"),
 //			})
 //			if err != nil {
@@ -107,6 +113,42 @@ import (
 //				PersistenceTimeout:     pulumi.Int(100),
 //				ConnectionDrainEnabled: pulumi.String("on"),
 //				ConnectionDrainTimeout: pulumi.Int(100),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = clb.NewListener(ctx, "fooHttps", &clb.ListenerArgs{
+//				LoadBalancerId: fooClb.ID(),
+//				ListenerName:   pulumi.String("acc-test-listener-https"),
+//				Protocol:       pulumi.String("HTTPS"),
+//				Port:           pulumi.Int(100),
+//				ServerGroupId:  fooServerGroup.ID(),
+//				HealthCheck: &clb.ListenerHealthCheckArgs{
+//					Enabled:            pulumi.String("on"),
+//					Interval:           pulumi.Int(10),
+//					Timeout:            pulumi.Int(3),
+//					HealthyThreshold:   pulumi.Int(5),
+//					UnHealthyThreshold: pulumi.Int(2),
+//					Domain:             pulumi.String("volcengine.com"),
+//					HttpCode:           pulumi.String("http_2xx,http_3xx"),
+//					Method:             pulumi.String("GET"),
+//					Uri:                pulumi.String("/"),
+//				},
+//				Enabled:             pulumi.String("on"),
+//				ClientHeaderTimeout: pulumi.Int(80),
+//				ClientBodyTimeout:   pulumi.Int(80),
+//				KeepaliveTimeout:    pulumi.Int(80),
+//				ProxyConnectTimeout: pulumi.Int(20),
+//				ProxySendTimeout:    pulumi.Int(1800),
+//				ProxyReadTimeout:    pulumi.Int(1800),
+//				CertificateSource:   pulumi.String("clb"),
+//				CertificateId:       pulumi.String("cert-mjpctunmog745smt1a******"),
+//				Tags: clb.ListenerTagArray{
+//					&clb.ListenerTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -135,8 +177,20 @@ type Listener struct {
 	AclType pulumi.StringOutput `pulumi:"aclType"`
 	// The bandwidth of the Listener. Unit: Mbps. Default is -1, indicating that the Listener does not specify a speed limit.
 	Bandwidth pulumi.IntPtrOutput `pulumi:"bandwidth"`
+	// The ID of the CA certificate which is associated with the listener. When `caEnabled` is `on`, this parameter is required.
+	CaCertificateId pulumi.StringOutput `pulumi:"caCertificateId"`
+	// Whether to enable CACertificate two-way authentication. Values: on, off.
+	CaEnabled pulumi.StringOutput `pulumi:"caEnabled"`
+	// The ID of the certificate in Certificate Center. When `certificateSource` is `certCenter`, this parameter is required.
+	CertCenterCertificateId pulumi.StringOutput `pulumi:"certCenterCertificateId"`
 	// The certificate id associated with the listener.
 	CertificateId pulumi.StringPtrOutput `pulumi:"certificateId"`
+	// The source of the certificate which is associated with the listener. Values: `clb`, `certCenter`.
+	CertificateSource pulumi.StringOutput `pulumi:"certificateSource"`
+	// The client body timeout of the Listener. Only HTTP/HTTPS listeners support this parameter. value range: 30-120.
+	ClientBodyTimeout pulumi.IntOutput `pulumi:"clientBodyTimeout"`
+	// The client header timeout of the Listener. Only HTTP/HTTPS listeners support this parameter, i.e., `protocol`=`HTTP` or `HTTPS`. value range: 30-120.
+	ClientHeaderTimeout pulumi.IntOutput `pulumi:"clientHeaderTimeout"`
 	// Whether to enable connection drain of the Listener. Valid values: `off`, `on`. Default is `off`.
 	// This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
 	ConnectionDrainEnabled pulumi.StringPtrOutput `pulumi:"connectionDrainEnabled"`
@@ -145,36 +199,60 @@ type Listener struct {
 	ConnectionDrainTimeout pulumi.IntOutput `pulumi:"connectionDrainTimeout"`
 	// The name of the cookie for session persistence configured on the backend server. When PersistenceType is configured as `server`, this parameter is required. When PersistenceType is configured as any other value, this parameter is not effective.
 	Cookie pulumi.StringPtrOutput `pulumi:"cookie"`
+	// The maximum number of new connections per second allowed for the Listener. Default value: `-1`, no limit, which is the upper limit of new connections for the CLB instance.
+	Cps pulumi.IntOutput `pulumi:"cps"`
 	// The description of the Listener.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The enable status of the Listener. Optional choice contains `on`, `off`.
 	Enabled pulumi.StringOutput `pulumi:"enabled"`
+	// The end port for full port listening, with a value range of 1-65535. When `port` is 0, this parameter is required, and must be greater than `startPort`.
+	EndPort pulumi.IntOutput `pulumi:"endPort"`
 	// The connection timeout of the Listener.
 	EstablishedTimeout pulumi.IntOutput `pulumi:"establishedTimeout"`
 	// The config of health check.
 	HealthCheck ListenerHealthCheckOutput `pulumi:"healthCheck"`
+	// Whether the HTTPS protocol listener enables the front-end HTTP 2.0 protocol. value range: `on`, `off`.
+	Http2Enabled pulumi.StringOutput `pulumi:"http2Enabled"`
+	// The timeout period for the long connection between the client and the CLB. Only HTTP/HTTPS listeners support this parameter. value range: 0-900.
+	KeepaliveTimeout pulumi.IntOutput `pulumi:"keepaliveTimeout"`
 	// The ID of the Listener.
 	ListenerId pulumi.StringOutput `pulumi:"listenerId"`
 	// The name of the Listener.
 	ListenerName pulumi.StringOutput `pulumi:"listenerName"`
 	// The region of the request.
 	LoadBalancerId pulumi.StringOutput `pulumi:"loadBalancerId"`
+	// The maximum number of connections allowed for the Listener. Default value: `-1`, no limit, which is the upper limit of new connections for the CLB instance.
+	MaxConnections pulumi.IntOutput `pulumi:"maxConnections"`
 	// The persistence timeout of the Listener. Unit: second. Default is `1000`. When PersistenceType is configured as source_ip, the value range is 1-3600. When PersistenceType is configured as insert, the value range is 1-86400. This filed is valid only when the value of field `persistenceType` is `sourceIp` or `insert`.
 	PersistenceTimeout pulumi.IntPtrOutput `pulumi:"persistenceTimeout"`
 	// The persistence type of the Listener. Valid values: `off`, `sourceIp`, `insert`, `server`. Default is `off`.
 	// `sourceIp`: Represents the source IP address, only effective for TCP/UDP protocols. `insert`: means implanting a cookie, only effective for HTTP/HTTPS protocol and when the scheduler is `wrr`. `server`: Indicates rewriting cookies, only effective for HTTP/HTTPS protocols and when the scheduler is `wrr`.
 	PersistenceType pulumi.StringPtrOutput `pulumi:"persistenceType"`
-	// The port receiving request of the Listener, the value range in 1~65535.
+	// The port receiving request of the Listener, the value range in 0~65535. When `protocol` is `TCP` or `UDP`, 0 can be passed in, indicating that full port listening is enabled.
 	Port pulumi.IntOutput `pulumi:"port"`
 	// The protocol of the Listener. Optional choice contains `TCP`, `UDP`, `HTTP`, `HTTPS`.
 	Protocol pulumi.StringOutput `pulumi:"protocol"`
+	// The timeout period for establishing a connection between the CLB and the backend server. Only HTTP/HTTPS listeners support this parameter. value range: 4-120.
+	ProxyConnectTimeout pulumi.IntOutput `pulumi:"proxyConnectTimeout"`
 	// Whether to enable proxy protocol. Valid values: `off`, `standard`. Default is `off`.
 	// This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
 	ProxyProtocolType pulumi.StringPtrOutput `pulumi:"proxyProtocolType"`
+	// The timeout period for CLB to read the response from the backend server. Only HTTP/HTTPS listeners support this parameter. value range: 30-3600.
+	ProxyReadTimeout pulumi.IntOutput `pulumi:"proxyReadTimeout"`
+	// The timeout period for CLB to transmit requests to backend servers. Only HTTP/HTTPS listeners support this parameter. value range: 30-3600.
+	ProxySendTimeout pulumi.IntOutput `pulumi:"proxySendTimeout"`
 	// The scheduling algorithm of the Listener. Optional choice contains `wrr`, `wlc`, `sh`.
 	Scheduler pulumi.StringOutput `pulumi:"scheduler"`
+	// The TLS security policy of the HTTPS listener. Only HTTPS listeners support this parameter. value range: `defaultPolicy`, `tlsCipherPolicy10`, `tlsCipherPolicy11`, `tlsCipherPolicy12`, `tlsCipherPolicy12Strict`.
+	SecurityPolicyId pulumi.StringOutput `pulumi:"securityPolicyId"`
+	// The timeout period for CLB to send responses to the client. Only HTTP/HTTPS listeners support this parameter. value range: 1-3600.
+	SendTimeout pulumi.IntOutput `pulumi:"sendTimeout"`
 	// The server group id associated with the listener.
 	ServerGroupId pulumi.StringOutput `pulumi:"serverGroupId"`
+	// The start port for full port listening, with a value range of 1-65535. When `port` is 0, this parameter is required.
+	StartPort pulumi.IntOutput `pulumi:"startPort"`
+	// Tags.
+	Tags ListenerTagArrayOutput `pulumi:"tags"`
 }
 
 // NewListener registers a new resource with the given unique name, arguments, and options.
@@ -227,8 +305,20 @@ type listenerState struct {
 	AclType *string `pulumi:"aclType"`
 	// The bandwidth of the Listener. Unit: Mbps. Default is -1, indicating that the Listener does not specify a speed limit.
 	Bandwidth *int `pulumi:"bandwidth"`
+	// The ID of the CA certificate which is associated with the listener. When `caEnabled` is `on`, this parameter is required.
+	CaCertificateId *string `pulumi:"caCertificateId"`
+	// Whether to enable CACertificate two-way authentication. Values: on, off.
+	CaEnabled *string `pulumi:"caEnabled"`
+	// The ID of the certificate in Certificate Center. When `certificateSource` is `certCenter`, this parameter is required.
+	CertCenterCertificateId *string `pulumi:"certCenterCertificateId"`
 	// The certificate id associated with the listener.
 	CertificateId *string `pulumi:"certificateId"`
+	// The source of the certificate which is associated with the listener. Values: `clb`, `certCenter`.
+	CertificateSource *string `pulumi:"certificateSource"`
+	// The client body timeout of the Listener. Only HTTP/HTTPS listeners support this parameter. value range: 30-120.
+	ClientBodyTimeout *int `pulumi:"clientBodyTimeout"`
+	// The client header timeout of the Listener. Only HTTP/HTTPS listeners support this parameter, i.e., `protocol`=`HTTP` or `HTTPS`. value range: 30-120.
+	ClientHeaderTimeout *int `pulumi:"clientHeaderTimeout"`
 	// Whether to enable connection drain of the Listener. Valid values: `off`, `on`. Default is `off`.
 	// This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
 	ConnectionDrainEnabled *string `pulumi:"connectionDrainEnabled"`
@@ -237,36 +327,60 @@ type listenerState struct {
 	ConnectionDrainTimeout *int `pulumi:"connectionDrainTimeout"`
 	// The name of the cookie for session persistence configured on the backend server. When PersistenceType is configured as `server`, this parameter is required. When PersistenceType is configured as any other value, this parameter is not effective.
 	Cookie *string `pulumi:"cookie"`
+	// The maximum number of new connections per second allowed for the Listener. Default value: `-1`, no limit, which is the upper limit of new connections for the CLB instance.
+	Cps *int `pulumi:"cps"`
 	// The description of the Listener.
 	Description *string `pulumi:"description"`
 	// The enable status of the Listener. Optional choice contains `on`, `off`.
 	Enabled *string `pulumi:"enabled"`
+	// The end port for full port listening, with a value range of 1-65535. When `port` is 0, this parameter is required, and must be greater than `startPort`.
+	EndPort *int `pulumi:"endPort"`
 	// The connection timeout of the Listener.
 	EstablishedTimeout *int `pulumi:"establishedTimeout"`
 	// The config of health check.
 	HealthCheck *ListenerHealthCheck `pulumi:"healthCheck"`
+	// Whether the HTTPS protocol listener enables the front-end HTTP 2.0 protocol. value range: `on`, `off`.
+	Http2Enabled *string `pulumi:"http2Enabled"`
+	// The timeout period for the long connection between the client and the CLB. Only HTTP/HTTPS listeners support this parameter. value range: 0-900.
+	KeepaliveTimeout *int `pulumi:"keepaliveTimeout"`
 	// The ID of the Listener.
 	ListenerId *string `pulumi:"listenerId"`
 	// The name of the Listener.
 	ListenerName *string `pulumi:"listenerName"`
 	// The region of the request.
 	LoadBalancerId *string `pulumi:"loadBalancerId"`
+	// The maximum number of connections allowed for the Listener. Default value: `-1`, no limit, which is the upper limit of new connections for the CLB instance.
+	MaxConnections *int `pulumi:"maxConnections"`
 	// The persistence timeout of the Listener. Unit: second. Default is `1000`. When PersistenceType is configured as source_ip, the value range is 1-3600. When PersistenceType is configured as insert, the value range is 1-86400. This filed is valid only when the value of field `persistenceType` is `sourceIp` or `insert`.
 	PersistenceTimeout *int `pulumi:"persistenceTimeout"`
 	// The persistence type of the Listener. Valid values: `off`, `sourceIp`, `insert`, `server`. Default is `off`.
 	// `sourceIp`: Represents the source IP address, only effective for TCP/UDP protocols. `insert`: means implanting a cookie, only effective for HTTP/HTTPS protocol and when the scheduler is `wrr`. `server`: Indicates rewriting cookies, only effective for HTTP/HTTPS protocols and when the scheduler is `wrr`.
 	PersistenceType *string `pulumi:"persistenceType"`
-	// The port receiving request of the Listener, the value range in 1~65535.
+	// The port receiving request of the Listener, the value range in 0~65535. When `protocol` is `TCP` or `UDP`, 0 can be passed in, indicating that full port listening is enabled.
 	Port *int `pulumi:"port"`
 	// The protocol of the Listener. Optional choice contains `TCP`, `UDP`, `HTTP`, `HTTPS`.
 	Protocol *string `pulumi:"protocol"`
+	// The timeout period for establishing a connection between the CLB and the backend server. Only HTTP/HTTPS listeners support this parameter. value range: 4-120.
+	ProxyConnectTimeout *int `pulumi:"proxyConnectTimeout"`
 	// Whether to enable proxy protocol. Valid values: `off`, `standard`. Default is `off`.
 	// This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
 	ProxyProtocolType *string `pulumi:"proxyProtocolType"`
+	// The timeout period for CLB to read the response from the backend server. Only HTTP/HTTPS listeners support this parameter. value range: 30-3600.
+	ProxyReadTimeout *int `pulumi:"proxyReadTimeout"`
+	// The timeout period for CLB to transmit requests to backend servers. Only HTTP/HTTPS listeners support this parameter. value range: 30-3600.
+	ProxySendTimeout *int `pulumi:"proxySendTimeout"`
 	// The scheduling algorithm of the Listener. Optional choice contains `wrr`, `wlc`, `sh`.
 	Scheduler *string `pulumi:"scheduler"`
+	// The TLS security policy of the HTTPS listener. Only HTTPS listeners support this parameter. value range: `defaultPolicy`, `tlsCipherPolicy10`, `tlsCipherPolicy11`, `tlsCipherPolicy12`, `tlsCipherPolicy12Strict`.
+	SecurityPolicyId *string `pulumi:"securityPolicyId"`
+	// The timeout period for CLB to send responses to the client. Only HTTP/HTTPS listeners support this parameter. value range: 1-3600.
+	SendTimeout *int `pulumi:"sendTimeout"`
 	// The server group id associated with the listener.
 	ServerGroupId *string `pulumi:"serverGroupId"`
+	// The start port for full port listening, with a value range of 1-65535. When `port` is 0, this parameter is required.
+	StartPort *int `pulumi:"startPort"`
+	// Tags.
+	Tags []ListenerTag `pulumi:"tags"`
 }
 
 type ListenerState struct {
@@ -278,8 +392,20 @@ type ListenerState struct {
 	AclType pulumi.StringPtrInput
 	// The bandwidth of the Listener. Unit: Mbps. Default is -1, indicating that the Listener does not specify a speed limit.
 	Bandwidth pulumi.IntPtrInput
+	// The ID of the CA certificate which is associated with the listener. When `caEnabled` is `on`, this parameter is required.
+	CaCertificateId pulumi.StringPtrInput
+	// Whether to enable CACertificate two-way authentication. Values: on, off.
+	CaEnabled pulumi.StringPtrInput
+	// The ID of the certificate in Certificate Center. When `certificateSource` is `certCenter`, this parameter is required.
+	CertCenterCertificateId pulumi.StringPtrInput
 	// The certificate id associated with the listener.
 	CertificateId pulumi.StringPtrInput
+	// The source of the certificate which is associated with the listener. Values: `clb`, `certCenter`.
+	CertificateSource pulumi.StringPtrInput
+	// The client body timeout of the Listener. Only HTTP/HTTPS listeners support this parameter. value range: 30-120.
+	ClientBodyTimeout pulumi.IntPtrInput
+	// The client header timeout of the Listener. Only HTTP/HTTPS listeners support this parameter, i.e., `protocol`=`HTTP` or `HTTPS`. value range: 30-120.
+	ClientHeaderTimeout pulumi.IntPtrInput
 	// Whether to enable connection drain of the Listener. Valid values: `off`, `on`. Default is `off`.
 	// This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
 	ConnectionDrainEnabled pulumi.StringPtrInput
@@ -288,36 +414,60 @@ type ListenerState struct {
 	ConnectionDrainTimeout pulumi.IntPtrInput
 	// The name of the cookie for session persistence configured on the backend server. When PersistenceType is configured as `server`, this parameter is required. When PersistenceType is configured as any other value, this parameter is not effective.
 	Cookie pulumi.StringPtrInput
+	// The maximum number of new connections per second allowed for the Listener. Default value: `-1`, no limit, which is the upper limit of new connections for the CLB instance.
+	Cps pulumi.IntPtrInput
 	// The description of the Listener.
 	Description pulumi.StringPtrInput
 	// The enable status of the Listener. Optional choice contains `on`, `off`.
 	Enabled pulumi.StringPtrInput
+	// The end port for full port listening, with a value range of 1-65535. When `port` is 0, this parameter is required, and must be greater than `startPort`.
+	EndPort pulumi.IntPtrInput
 	// The connection timeout of the Listener.
 	EstablishedTimeout pulumi.IntPtrInput
 	// The config of health check.
 	HealthCheck ListenerHealthCheckPtrInput
+	// Whether the HTTPS protocol listener enables the front-end HTTP 2.0 protocol. value range: `on`, `off`.
+	Http2Enabled pulumi.StringPtrInput
+	// The timeout period for the long connection between the client and the CLB. Only HTTP/HTTPS listeners support this parameter. value range: 0-900.
+	KeepaliveTimeout pulumi.IntPtrInput
 	// The ID of the Listener.
 	ListenerId pulumi.StringPtrInput
 	// The name of the Listener.
 	ListenerName pulumi.StringPtrInput
 	// The region of the request.
 	LoadBalancerId pulumi.StringPtrInput
+	// The maximum number of connections allowed for the Listener. Default value: `-1`, no limit, which is the upper limit of new connections for the CLB instance.
+	MaxConnections pulumi.IntPtrInput
 	// The persistence timeout of the Listener. Unit: second. Default is `1000`. When PersistenceType is configured as source_ip, the value range is 1-3600. When PersistenceType is configured as insert, the value range is 1-86400. This filed is valid only when the value of field `persistenceType` is `sourceIp` or `insert`.
 	PersistenceTimeout pulumi.IntPtrInput
 	// The persistence type of the Listener. Valid values: `off`, `sourceIp`, `insert`, `server`. Default is `off`.
 	// `sourceIp`: Represents the source IP address, only effective for TCP/UDP protocols. `insert`: means implanting a cookie, only effective for HTTP/HTTPS protocol and when the scheduler is `wrr`. `server`: Indicates rewriting cookies, only effective for HTTP/HTTPS protocols and when the scheduler is `wrr`.
 	PersistenceType pulumi.StringPtrInput
-	// The port receiving request of the Listener, the value range in 1~65535.
+	// The port receiving request of the Listener, the value range in 0~65535. When `protocol` is `TCP` or `UDP`, 0 can be passed in, indicating that full port listening is enabled.
 	Port pulumi.IntPtrInput
 	// The protocol of the Listener. Optional choice contains `TCP`, `UDP`, `HTTP`, `HTTPS`.
 	Protocol pulumi.StringPtrInput
+	// The timeout period for establishing a connection between the CLB and the backend server. Only HTTP/HTTPS listeners support this parameter. value range: 4-120.
+	ProxyConnectTimeout pulumi.IntPtrInput
 	// Whether to enable proxy protocol. Valid values: `off`, `standard`. Default is `off`.
 	// This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
 	ProxyProtocolType pulumi.StringPtrInput
+	// The timeout period for CLB to read the response from the backend server. Only HTTP/HTTPS listeners support this parameter. value range: 30-3600.
+	ProxyReadTimeout pulumi.IntPtrInput
+	// The timeout period for CLB to transmit requests to backend servers. Only HTTP/HTTPS listeners support this parameter. value range: 30-3600.
+	ProxySendTimeout pulumi.IntPtrInput
 	// The scheduling algorithm of the Listener. Optional choice contains `wrr`, `wlc`, `sh`.
 	Scheduler pulumi.StringPtrInput
+	// The TLS security policy of the HTTPS listener. Only HTTPS listeners support this parameter. value range: `defaultPolicy`, `tlsCipherPolicy10`, `tlsCipherPolicy11`, `tlsCipherPolicy12`, `tlsCipherPolicy12Strict`.
+	SecurityPolicyId pulumi.StringPtrInput
+	// The timeout period for CLB to send responses to the client. Only HTTP/HTTPS listeners support this parameter. value range: 1-3600.
+	SendTimeout pulumi.IntPtrInput
 	// The server group id associated with the listener.
 	ServerGroupId pulumi.StringPtrInput
+	// The start port for full port listening, with a value range of 1-65535. When `port` is 0, this parameter is required.
+	StartPort pulumi.IntPtrInput
+	// Tags.
+	Tags ListenerTagArrayInput
 }
 
 func (ListenerState) ElementType() reflect.Type {
@@ -333,8 +483,20 @@ type listenerArgs struct {
 	AclType *string `pulumi:"aclType"`
 	// The bandwidth of the Listener. Unit: Mbps. Default is -1, indicating that the Listener does not specify a speed limit.
 	Bandwidth *int `pulumi:"bandwidth"`
+	// The ID of the CA certificate which is associated with the listener. When `caEnabled` is `on`, this parameter is required.
+	CaCertificateId *string `pulumi:"caCertificateId"`
+	// Whether to enable CACertificate two-way authentication. Values: on, off.
+	CaEnabled *string `pulumi:"caEnabled"`
+	// The ID of the certificate in Certificate Center. When `certificateSource` is `certCenter`, this parameter is required.
+	CertCenterCertificateId *string `pulumi:"certCenterCertificateId"`
 	// The certificate id associated with the listener.
 	CertificateId *string `pulumi:"certificateId"`
+	// The source of the certificate which is associated with the listener. Values: `clb`, `certCenter`.
+	CertificateSource *string `pulumi:"certificateSource"`
+	// The client body timeout of the Listener. Only HTTP/HTTPS listeners support this parameter. value range: 30-120.
+	ClientBodyTimeout *int `pulumi:"clientBodyTimeout"`
+	// The client header timeout of the Listener. Only HTTP/HTTPS listeners support this parameter, i.e., `protocol`=`HTTP` or `HTTPS`. value range: 30-120.
+	ClientHeaderTimeout *int `pulumi:"clientHeaderTimeout"`
 	// Whether to enable connection drain of the Listener. Valid values: `off`, `on`. Default is `off`.
 	// This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
 	ConnectionDrainEnabled *string `pulumi:"connectionDrainEnabled"`
@@ -343,34 +505,58 @@ type listenerArgs struct {
 	ConnectionDrainTimeout *int `pulumi:"connectionDrainTimeout"`
 	// The name of the cookie for session persistence configured on the backend server. When PersistenceType is configured as `server`, this parameter is required. When PersistenceType is configured as any other value, this parameter is not effective.
 	Cookie *string `pulumi:"cookie"`
+	// The maximum number of new connections per second allowed for the Listener. Default value: `-1`, no limit, which is the upper limit of new connections for the CLB instance.
+	Cps *int `pulumi:"cps"`
 	// The description of the Listener.
 	Description *string `pulumi:"description"`
 	// The enable status of the Listener. Optional choice contains `on`, `off`.
 	Enabled *string `pulumi:"enabled"`
+	// The end port for full port listening, with a value range of 1-65535. When `port` is 0, this parameter is required, and must be greater than `startPort`.
+	EndPort *int `pulumi:"endPort"`
 	// The connection timeout of the Listener.
 	EstablishedTimeout *int `pulumi:"establishedTimeout"`
 	// The config of health check.
 	HealthCheck *ListenerHealthCheck `pulumi:"healthCheck"`
+	// Whether the HTTPS protocol listener enables the front-end HTTP 2.0 protocol. value range: `on`, `off`.
+	Http2Enabled *string `pulumi:"http2Enabled"`
+	// The timeout period for the long connection between the client and the CLB. Only HTTP/HTTPS listeners support this parameter. value range: 0-900.
+	KeepaliveTimeout *int `pulumi:"keepaliveTimeout"`
 	// The name of the Listener.
 	ListenerName *string `pulumi:"listenerName"`
 	// The region of the request.
 	LoadBalancerId string `pulumi:"loadBalancerId"`
+	// The maximum number of connections allowed for the Listener. Default value: `-1`, no limit, which is the upper limit of new connections for the CLB instance.
+	MaxConnections *int `pulumi:"maxConnections"`
 	// The persistence timeout of the Listener. Unit: second. Default is `1000`. When PersistenceType is configured as source_ip, the value range is 1-3600. When PersistenceType is configured as insert, the value range is 1-86400. This filed is valid only when the value of field `persistenceType` is `sourceIp` or `insert`.
 	PersistenceTimeout *int `pulumi:"persistenceTimeout"`
 	// The persistence type of the Listener. Valid values: `off`, `sourceIp`, `insert`, `server`. Default is `off`.
 	// `sourceIp`: Represents the source IP address, only effective for TCP/UDP protocols. `insert`: means implanting a cookie, only effective for HTTP/HTTPS protocol and when the scheduler is `wrr`. `server`: Indicates rewriting cookies, only effective for HTTP/HTTPS protocols and when the scheduler is `wrr`.
 	PersistenceType *string `pulumi:"persistenceType"`
-	// The port receiving request of the Listener, the value range in 1~65535.
+	// The port receiving request of the Listener, the value range in 0~65535. When `protocol` is `TCP` or `UDP`, 0 can be passed in, indicating that full port listening is enabled.
 	Port int `pulumi:"port"`
 	// The protocol of the Listener. Optional choice contains `TCP`, `UDP`, `HTTP`, `HTTPS`.
 	Protocol string `pulumi:"protocol"`
+	// The timeout period for establishing a connection between the CLB and the backend server. Only HTTP/HTTPS listeners support this parameter. value range: 4-120.
+	ProxyConnectTimeout *int `pulumi:"proxyConnectTimeout"`
 	// Whether to enable proxy protocol. Valid values: `off`, `standard`. Default is `off`.
 	// This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
 	ProxyProtocolType *string `pulumi:"proxyProtocolType"`
+	// The timeout period for CLB to read the response from the backend server. Only HTTP/HTTPS listeners support this parameter. value range: 30-3600.
+	ProxyReadTimeout *int `pulumi:"proxyReadTimeout"`
+	// The timeout period for CLB to transmit requests to backend servers. Only HTTP/HTTPS listeners support this parameter. value range: 30-3600.
+	ProxySendTimeout *int `pulumi:"proxySendTimeout"`
 	// The scheduling algorithm of the Listener. Optional choice contains `wrr`, `wlc`, `sh`.
 	Scheduler *string `pulumi:"scheduler"`
+	// The TLS security policy of the HTTPS listener. Only HTTPS listeners support this parameter. value range: `defaultPolicy`, `tlsCipherPolicy10`, `tlsCipherPolicy11`, `tlsCipherPolicy12`, `tlsCipherPolicy12Strict`.
+	SecurityPolicyId *string `pulumi:"securityPolicyId"`
+	// The timeout period for CLB to send responses to the client. Only HTTP/HTTPS listeners support this parameter. value range: 1-3600.
+	SendTimeout *int `pulumi:"sendTimeout"`
 	// The server group id associated with the listener.
 	ServerGroupId string `pulumi:"serverGroupId"`
+	// The start port for full port listening, with a value range of 1-65535. When `port` is 0, this parameter is required.
+	StartPort *int `pulumi:"startPort"`
+	// Tags.
+	Tags []ListenerTag `pulumi:"tags"`
 }
 
 // The set of arguments for constructing a Listener resource.
@@ -383,8 +569,20 @@ type ListenerArgs struct {
 	AclType pulumi.StringPtrInput
 	// The bandwidth of the Listener. Unit: Mbps. Default is -1, indicating that the Listener does not specify a speed limit.
 	Bandwidth pulumi.IntPtrInput
+	// The ID of the CA certificate which is associated with the listener. When `caEnabled` is `on`, this parameter is required.
+	CaCertificateId pulumi.StringPtrInput
+	// Whether to enable CACertificate two-way authentication. Values: on, off.
+	CaEnabled pulumi.StringPtrInput
+	// The ID of the certificate in Certificate Center. When `certificateSource` is `certCenter`, this parameter is required.
+	CertCenterCertificateId pulumi.StringPtrInput
 	// The certificate id associated with the listener.
 	CertificateId pulumi.StringPtrInput
+	// The source of the certificate which is associated with the listener. Values: `clb`, `certCenter`.
+	CertificateSource pulumi.StringPtrInput
+	// The client body timeout of the Listener. Only HTTP/HTTPS listeners support this parameter. value range: 30-120.
+	ClientBodyTimeout pulumi.IntPtrInput
+	// The client header timeout of the Listener. Only HTTP/HTTPS listeners support this parameter, i.e., `protocol`=`HTTP` or `HTTPS`. value range: 30-120.
+	ClientHeaderTimeout pulumi.IntPtrInput
 	// Whether to enable connection drain of the Listener. Valid values: `off`, `on`. Default is `off`.
 	// This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
 	ConnectionDrainEnabled pulumi.StringPtrInput
@@ -393,34 +591,58 @@ type ListenerArgs struct {
 	ConnectionDrainTimeout pulumi.IntPtrInput
 	// The name of the cookie for session persistence configured on the backend server. When PersistenceType is configured as `server`, this parameter is required. When PersistenceType is configured as any other value, this parameter is not effective.
 	Cookie pulumi.StringPtrInput
+	// The maximum number of new connections per second allowed for the Listener. Default value: `-1`, no limit, which is the upper limit of new connections for the CLB instance.
+	Cps pulumi.IntPtrInput
 	// The description of the Listener.
 	Description pulumi.StringPtrInput
 	// The enable status of the Listener. Optional choice contains `on`, `off`.
 	Enabled pulumi.StringPtrInput
+	// The end port for full port listening, with a value range of 1-65535. When `port` is 0, this parameter is required, and must be greater than `startPort`.
+	EndPort pulumi.IntPtrInput
 	// The connection timeout of the Listener.
 	EstablishedTimeout pulumi.IntPtrInput
 	// The config of health check.
 	HealthCheck ListenerHealthCheckPtrInput
+	// Whether the HTTPS protocol listener enables the front-end HTTP 2.0 protocol. value range: `on`, `off`.
+	Http2Enabled pulumi.StringPtrInput
+	// The timeout period for the long connection between the client and the CLB. Only HTTP/HTTPS listeners support this parameter. value range: 0-900.
+	KeepaliveTimeout pulumi.IntPtrInput
 	// The name of the Listener.
 	ListenerName pulumi.StringPtrInput
 	// The region of the request.
 	LoadBalancerId pulumi.StringInput
+	// The maximum number of connections allowed for the Listener. Default value: `-1`, no limit, which is the upper limit of new connections for the CLB instance.
+	MaxConnections pulumi.IntPtrInput
 	// The persistence timeout of the Listener. Unit: second. Default is `1000`. When PersistenceType is configured as source_ip, the value range is 1-3600. When PersistenceType is configured as insert, the value range is 1-86400. This filed is valid only when the value of field `persistenceType` is `sourceIp` or `insert`.
 	PersistenceTimeout pulumi.IntPtrInput
 	// The persistence type of the Listener. Valid values: `off`, `sourceIp`, `insert`, `server`. Default is `off`.
 	// `sourceIp`: Represents the source IP address, only effective for TCP/UDP protocols. `insert`: means implanting a cookie, only effective for HTTP/HTTPS protocol and when the scheduler is `wrr`. `server`: Indicates rewriting cookies, only effective for HTTP/HTTPS protocols and when the scheduler is `wrr`.
 	PersistenceType pulumi.StringPtrInput
-	// The port receiving request of the Listener, the value range in 1~65535.
+	// The port receiving request of the Listener, the value range in 0~65535. When `protocol` is `TCP` or `UDP`, 0 can be passed in, indicating that full port listening is enabled.
 	Port pulumi.IntInput
 	// The protocol of the Listener. Optional choice contains `TCP`, `UDP`, `HTTP`, `HTTPS`.
 	Protocol pulumi.StringInput
+	// The timeout period for establishing a connection between the CLB and the backend server. Only HTTP/HTTPS listeners support this parameter. value range: 4-120.
+	ProxyConnectTimeout pulumi.IntPtrInput
 	// Whether to enable proxy protocol. Valid values: `off`, `standard`. Default is `off`.
 	// This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
 	ProxyProtocolType pulumi.StringPtrInput
+	// The timeout period for CLB to read the response from the backend server. Only HTTP/HTTPS listeners support this parameter. value range: 30-3600.
+	ProxyReadTimeout pulumi.IntPtrInput
+	// The timeout period for CLB to transmit requests to backend servers. Only HTTP/HTTPS listeners support this parameter. value range: 30-3600.
+	ProxySendTimeout pulumi.IntPtrInput
 	// The scheduling algorithm of the Listener. Optional choice contains `wrr`, `wlc`, `sh`.
 	Scheduler pulumi.StringPtrInput
+	// The TLS security policy of the HTTPS listener. Only HTTPS listeners support this parameter. value range: `defaultPolicy`, `tlsCipherPolicy10`, `tlsCipherPolicy11`, `tlsCipherPolicy12`, `tlsCipherPolicy12Strict`.
+	SecurityPolicyId pulumi.StringPtrInput
+	// The timeout period for CLB to send responses to the client. Only HTTP/HTTPS listeners support this parameter. value range: 1-3600.
+	SendTimeout pulumi.IntPtrInput
 	// The server group id associated with the listener.
 	ServerGroupId pulumi.StringInput
+	// The start port for full port listening, with a value range of 1-65535. When `port` is 0, this parameter is required.
+	StartPort pulumi.IntPtrInput
+	// Tags.
+	Tags ListenerTagArrayInput
 }
 
 func (ListenerArgs) ElementType() reflect.Type {
@@ -530,9 +752,39 @@ func (o ListenerOutput) Bandwidth() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *Listener) pulumi.IntPtrOutput { return v.Bandwidth }).(pulumi.IntPtrOutput)
 }
 
+// The ID of the CA certificate which is associated with the listener. When `caEnabled` is `on`, this parameter is required.
+func (o ListenerOutput) CaCertificateId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Listener) pulumi.StringOutput { return v.CaCertificateId }).(pulumi.StringOutput)
+}
+
+// Whether to enable CACertificate two-way authentication. Values: on, off.
+func (o ListenerOutput) CaEnabled() pulumi.StringOutput {
+	return o.ApplyT(func(v *Listener) pulumi.StringOutput { return v.CaEnabled }).(pulumi.StringOutput)
+}
+
+// The ID of the certificate in Certificate Center. When `certificateSource` is `certCenter`, this parameter is required.
+func (o ListenerOutput) CertCenterCertificateId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Listener) pulumi.StringOutput { return v.CertCenterCertificateId }).(pulumi.StringOutput)
+}
+
 // The certificate id associated with the listener.
 func (o ListenerOutput) CertificateId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Listener) pulumi.StringPtrOutput { return v.CertificateId }).(pulumi.StringPtrOutput)
+}
+
+// The source of the certificate which is associated with the listener. Values: `clb`, `certCenter`.
+func (o ListenerOutput) CertificateSource() pulumi.StringOutput {
+	return o.ApplyT(func(v *Listener) pulumi.StringOutput { return v.CertificateSource }).(pulumi.StringOutput)
+}
+
+// The client body timeout of the Listener. Only HTTP/HTTPS listeners support this parameter. value range: 30-120.
+func (o ListenerOutput) ClientBodyTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *Listener) pulumi.IntOutput { return v.ClientBodyTimeout }).(pulumi.IntOutput)
+}
+
+// The client header timeout of the Listener. Only HTTP/HTTPS listeners support this parameter, i.e., `protocol`=`HTTP` or `HTTPS`. value range: 30-120.
+func (o ListenerOutput) ClientHeaderTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *Listener) pulumi.IntOutput { return v.ClientHeaderTimeout }).(pulumi.IntOutput)
 }
 
 // Whether to enable connection drain of the Listener. Valid values: `off`, `on`. Default is `off`.
@@ -552,6 +804,11 @@ func (o ListenerOutput) Cookie() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Listener) pulumi.StringPtrOutput { return v.Cookie }).(pulumi.StringPtrOutput)
 }
 
+// The maximum number of new connections per second allowed for the Listener. Default value: `-1`, no limit, which is the upper limit of new connections for the CLB instance.
+func (o ListenerOutput) Cps() pulumi.IntOutput {
+	return o.ApplyT(func(v *Listener) pulumi.IntOutput { return v.Cps }).(pulumi.IntOutput)
+}
+
 // The description of the Listener.
 func (o ListenerOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Listener) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
@@ -562,6 +819,11 @@ func (o ListenerOutput) Enabled() pulumi.StringOutput {
 	return o.ApplyT(func(v *Listener) pulumi.StringOutput { return v.Enabled }).(pulumi.StringOutput)
 }
 
+// The end port for full port listening, with a value range of 1-65535. When `port` is 0, this parameter is required, and must be greater than `startPort`.
+func (o ListenerOutput) EndPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *Listener) pulumi.IntOutput { return v.EndPort }).(pulumi.IntOutput)
+}
+
 // The connection timeout of the Listener.
 func (o ListenerOutput) EstablishedTimeout() pulumi.IntOutput {
 	return o.ApplyT(func(v *Listener) pulumi.IntOutput { return v.EstablishedTimeout }).(pulumi.IntOutput)
@@ -570,6 +832,16 @@ func (o ListenerOutput) EstablishedTimeout() pulumi.IntOutput {
 // The config of health check.
 func (o ListenerOutput) HealthCheck() ListenerHealthCheckOutput {
 	return o.ApplyT(func(v *Listener) ListenerHealthCheckOutput { return v.HealthCheck }).(ListenerHealthCheckOutput)
+}
+
+// Whether the HTTPS protocol listener enables the front-end HTTP 2.0 protocol. value range: `on`, `off`.
+func (o ListenerOutput) Http2Enabled() pulumi.StringOutput {
+	return o.ApplyT(func(v *Listener) pulumi.StringOutput { return v.Http2Enabled }).(pulumi.StringOutput)
+}
+
+// The timeout period for the long connection between the client and the CLB. Only HTTP/HTTPS listeners support this parameter. value range: 0-900.
+func (o ListenerOutput) KeepaliveTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *Listener) pulumi.IntOutput { return v.KeepaliveTimeout }).(pulumi.IntOutput)
 }
 
 // The ID of the Listener.
@@ -587,6 +859,11 @@ func (o ListenerOutput) LoadBalancerId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Listener) pulumi.StringOutput { return v.LoadBalancerId }).(pulumi.StringOutput)
 }
 
+// The maximum number of connections allowed for the Listener. Default value: `-1`, no limit, which is the upper limit of new connections for the CLB instance.
+func (o ListenerOutput) MaxConnections() pulumi.IntOutput {
+	return o.ApplyT(func(v *Listener) pulumi.IntOutput { return v.MaxConnections }).(pulumi.IntOutput)
+}
+
 // The persistence timeout of the Listener. Unit: second. Default is `1000`. When PersistenceType is configured as source_ip, the value range is 1-3600. When PersistenceType is configured as insert, the value range is 1-86400. This filed is valid only when the value of field `persistenceType` is `sourceIp` or `insert`.
 func (o ListenerOutput) PersistenceTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *Listener) pulumi.IntPtrOutput { return v.PersistenceTimeout }).(pulumi.IntPtrOutput)
@@ -598,7 +875,7 @@ func (o ListenerOutput) PersistenceType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Listener) pulumi.StringPtrOutput { return v.PersistenceType }).(pulumi.StringPtrOutput)
 }
 
-// The port receiving request of the Listener, the value range in 1~65535.
+// The port receiving request of the Listener, the value range in 0~65535. When `protocol` is `TCP` or `UDP`, 0 can be passed in, indicating that full port listening is enabled.
 func (o ListenerOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v *Listener) pulumi.IntOutput { return v.Port }).(pulumi.IntOutput)
 }
@@ -608,10 +885,25 @@ func (o ListenerOutput) Protocol() pulumi.StringOutput {
 	return o.ApplyT(func(v *Listener) pulumi.StringOutput { return v.Protocol }).(pulumi.StringOutput)
 }
 
+// The timeout period for establishing a connection between the CLB and the backend server. Only HTTP/HTTPS listeners support this parameter. value range: 4-120.
+func (o ListenerOutput) ProxyConnectTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *Listener) pulumi.IntOutput { return v.ProxyConnectTimeout }).(pulumi.IntOutput)
+}
+
 // Whether to enable proxy protocol. Valid values: `off`, `standard`. Default is `off`.
 // This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
 func (o ListenerOutput) ProxyProtocolType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Listener) pulumi.StringPtrOutput { return v.ProxyProtocolType }).(pulumi.StringPtrOutput)
+}
+
+// The timeout period for CLB to read the response from the backend server. Only HTTP/HTTPS listeners support this parameter. value range: 30-3600.
+func (o ListenerOutput) ProxyReadTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *Listener) pulumi.IntOutput { return v.ProxyReadTimeout }).(pulumi.IntOutput)
+}
+
+// The timeout period for CLB to transmit requests to backend servers. Only HTTP/HTTPS listeners support this parameter. value range: 30-3600.
+func (o ListenerOutput) ProxySendTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *Listener) pulumi.IntOutput { return v.ProxySendTimeout }).(pulumi.IntOutput)
 }
 
 // The scheduling algorithm of the Listener. Optional choice contains `wrr`, `wlc`, `sh`.
@@ -619,9 +911,29 @@ func (o ListenerOutput) Scheduler() pulumi.StringOutput {
 	return o.ApplyT(func(v *Listener) pulumi.StringOutput { return v.Scheduler }).(pulumi.StringOutput)
 }
 
+// The TLS security policy of the HTTPS listener. Only HTTPS listeners support this parameter. value range: `defaultPolicy`, `tlsCipherPolicy10`, `tlsCipherPolicy11`, `tlsCipherPolicy12`, `tlsCipherPolicy12Strict`.
+func (o ListenerOutput) SecurityPolicyId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Listener) pulumi.StringOutput { return v.SecurityPolicyId }).(pulumi.StringOutput)
+}
+
+// The timeout period for CLB to send responses to the client. Only HTTP/HTTPS listeners support this parameter. value range: 1-3600.
+func (o ListenerOutput) SendTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *Listener) pulumi.IntOutput { return v.SendTimeout }).(pulumi.IntOutput)
+}
+
 // The server group id associated with the listener.
 func (o ListenerOutput) ServerGroupId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Listener) pulumi.StringOutput { return v.ServerGroupId }).(pulumi.StringOutput)
+}
+
+// The start port for full port listening, with a value range of 1-65535. When `port` is 0, this parameter is required.
+func (o ListenerOutput) StartPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *Listener) pulumi.IntOutput { return v.StartPort }).(pulumi.IntOutput)
+}
+
+// Tags.
+func (o ListenerOutput) Tags() ListenerTagArrayOutput {
+	return o.ApplyT(func(v *Listener) ListenerTagArrayOutput { return v.Tags }).(ListenerTagArrayOutput)
 }
 
 type ListenerArrayOutput struct{ *pulumi.OutputState }

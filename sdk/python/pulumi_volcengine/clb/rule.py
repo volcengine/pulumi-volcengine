@@ -8,6 +8,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['RuleArgs', 'Rule']
 
@@ -15,24 +17,37 @@ __all__ = ['RuleArgs', 'Rule']
 class RuleArgs:
     def __init__(__self__, *,
                  listener_id: pulumi.Input[str],
-                 server_group_id: pulumi.Input[str],
+                 action_type: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  domain: Optional[pulumi.Input[str]] = None,
+                 redirect_config: Optional[pulumi.Input['RuleRedirectConfigArgs']] = None,
+                 server_group_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['RuleTagArgs']]]] = None,
                  url: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Rule resource.
         :param pulumi.Input[str] listener_id: The ID of listener.
-        :param pulumi.Input[str] server_group_id: Server Group Id.
+        :param pulumi.Input[str] action_type: The action type of Rule, valid values: `Forward`, `Redirect`.
         :param pulumi.Input[str] description: The description of the Rule.
         :param pulumi.Input[str] domain: The domain of Rule.
+        :param pulumi.Input['RuleRedirectConfigArgs'] redirect_config: The redirect configuration. Required when action_type is `Redirect`.
+        :param pulumi.Input[str] server_group_id: Server Group Id. Required when action_type is Forward.
+        :param pulumi.Input[Sequence[pulumi.Input['RuleTagArgs']]] tags: Tags.
         :param pulumi.Input[str] url: The Url of Rule.
         """
         pulumi.set(__self__, "listener_id", listener_id)
-        pulumi.set(__self__, "server_group_id", server_group_id)
+        if action_type is not None:
+            pulumi.set(__self__, "action_type", action_type)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if domain is not None:
             pulumi.set(__self__, "domain", domain)
+        if redirect_config is not None:
+            pulumi.set(__self__, "redirect_config", redirect_config)
+        if server_group_id is not None:
+            pulumi.set(__self__, "server_group_id", server_group_id)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if url is not None:
             pulumi.set(__self__, "url", url)
 
@@ -49,16 +64,16 @@ class RuleArgs:
         pulumi.set(self, "listener_id", value)
 
     @property
-    @pulumi.getter(name="serverGroupId")
-    def server_group_id(self) -> pulumi.Input[str]:
+    @pulumi.getter(name="actionType")
+    def action_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Server Group Id.
+        The action type of Rule, valid values: `Forward`, `Redirect`.
         """
-        return pulumi.get(self, "server_group_id")
+        return pulumi.get(self, "action_type")
 
-    @server_group_id.setter
-    def server_group_id(self, value: pulumi.Input[str]):
-        pulumi.set(self, "server_group_id", value)
+    @action_type.setter
+    def action_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "action_type", value)
 
     @property
     @pulumi.getter
@@ -85,6 +100,42 @@ class RuleArgs:
         pulumi.set(self, "domain", value)
 
     @property
+    @pulumi.getter(name="redirectConfig")
+    def redirect_config(self) -> Optional[pulumi.Input['RuleRedirectConfigArgs']]:
+        """
+        The redirect configuration. Required when action_type is `Redirect`.
+        """
+        return pulumi.get(self, "redirect_config")
+
+    @redirect_config.setter
+    def redirect_config(self, value: Optional[pulumi.Input['RuleRedirectConfigArgs']]):
+        pulumi.set(self, "redirect_config", value)
+
+    @property
+    @pulumi.getter(name="serverGroupId")
+    def server_group_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Server Group Id. Required when action_type is Forward.
+        """
+        return pulumi.get(self, "server_group_id")
+
+    @server_group_id.setter
+    def server_group_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "server_group_id", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RuleTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RuleTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
     @pulumi.getter
     def url(self) -> Optional[pulumi.Input[str]]:
         """
@@ -100,29 +151,53 @@ class RuleArgs:
 @pulumi.input_type
 class _RuleState:
     def __init__(__self__, *,
+                 action_type: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  domain: Optional[pulumi.Input[str]] = None,
                  listener_id: Optional[pulumi.Input[str]] = None,
+                 redirect_config: Optional[pulumi.Input['RuleRedirectConfigArgs']] = None,
                  server_group_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['RuleTagArgs']]]] = None,
                  url: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Rule resources.
+        :param pulumi.Input[str] action_type: The action type of Rule, valid values: `Forward`, `Redirect`.
         :param pulumi.Input[str] description: The description of the Rule.
         :param pulumi.Input[str] domain: The domain of Rule.
         :param pulumi.Input[str] listener_id: The ID of listener.
-        :param pulumi.Input[str] server_group_id: Server Group Id.
+        :param pulumi.Input['RuleRedirectConfigArgs'] redirect_config: The redirect configuration. Required when action_type is `Redirect`.
+        :param pulumi.Input[str] server_group_id: Server Group Id. Required when action_type is Forward.
+        :param pulumi.Input[Sequence[pulumi.Input['RuleTagArgs']]] tags: Tags.
         :param pulumi.Input[str] url: The Url of Rule.
         """
+        if action_type is not None:
+            pulumi.set(__self__, "action_type", action_type)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if domain is not None:
             pulumi.set(__self__, "domain", domain)
         if listener_id is not None:
             pulumi.set(__self__, "listener_id", listener_id)
+        if redirect_config is not None:
+            pulumi.set(__self__, "redirect_config", redirect_config)
         if server_group_id is not None:
             pulumi.set(__self__, "server_group_id", server_group_id)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if url is not None:
             pulumi.set(__self__, "url", url)
+
+    @property
+    @pulumi.getter(name="actionType")
+    def action_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The action type of Rule, valid values: `Forward`, `Redirect`.
+        """
+        return pulumi.get(self, "action_type")
+
+    @action_type.setter
+    def action_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "action_type", value)
 
     @property
     @pulumi.getter
@@ -161,16 +236,40 @@ class _RuleState:
         pulumi.set(self, "listener_id", value)
 
     @property
+    @pulumi.getter(name="redirectConfig")
+    def redirect_config(self) -> Optional[pulumi.Input['RuleRedirectConfigArgs']]:
+        """
+        The redirect configuration. Required when action_type is `Redirect`.
+        """
+        return pulumi.get(self, "redirect_config")
+
+    @redirect_config.setter
+    def redirect_config(self, value: Optional[pulumi.Input['RuleRedirectConfigArgs']]):
+        pulumi.set(self, "redirect_config", value)
+
+    @property
     @pulumi.getter(name="serverGroupId")
     def server_group_id(self) -> Optional[pulumi.Input[str]]:
         """
-        Server Group Id.
+        Server Group Id. Required when action_type is Forward.
         """
         return pulumi.get(self, "server_group_id")
 
     @server_group_id.setter
     def server_group_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "server_group_id", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RuleTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RuleTagArgs']]]]):
+        pulumi.set(self, "tags", value)
 
     @property
     @pulumi.getter
@@ -190,10 +289,13 @@ class Rule(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 action_type: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  domain: Optional[pulumi.Input[str]] = None,
                  listener_id: Optional[pulumi.Input[str]] = None,
+                 redirect_config: Optional[pulumi.Input[pulumi.InputType['RuleRedirectConfigArgs']]] = None,
                  server_group_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RuleTagArgs']]]]] = None,
                  url: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -250,7 +352,23 @@ class Rule(pulumi.CustomResource):
             listener_id=foo_listener.id,
             server_group_id=foo_server_group.id,
             domain="test-volc123.com",
-            url="/tftest")
+            url="/tftest",
+            tags=[volcengine.clb.RuleTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        foo_redirect = volcengine.clb.Rule("fooRedirect",
+            listener_id=foo_listener.id,
+            action_type="Redirect",
+            description="Redirect rule",
+            domain="example1.com",
+            redirect_config=volcengine.clb.RuleRedirectConfigArgs(
+                protocol="HTTP",
+                host="example3.com",
+                path="/test",
+                port="443",
+                status_code="301",
+            ))
         ```
 
         ## Import
@@ -265,10 +383,13 @@ class Rule(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] action_type: The action type of Rule, valid values: `Forward`, `Redirect`.
         :param pulumi.Input[str] description: The description of the Rule.
         :param pulumi.Input[str] domain: The domain of Rule.
         :param pulumi.Input[str] listener_id: The ID of listener.
-        :param pulumi.Input[str] server_group_id: Server Group Id.
+        :param pulumi.Input[pulumi.InputType['RuleRedirectConfigArgs']] redirect_config: The redirect configuration. Required when action_type is `Redirect`.
+        :param pulumi.Input[str] server_group_id: Server Group Id. Required when action_type is Forward.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RuleTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] url: The Url of Rule.
         """
         ...
@@ -331,7 +452,23 @@ class Rule(pulumi.CustomResource):
             listener_id=foo_listener.id,
             server_group_id=foo_server_group.id,
             domain="test-volc123.com",
-            url="/tftest")
+            url="/tftest",
+            tags=[volcengine.clb.RuleTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        foo_redirect = volcengine.clb.Rule("fooRedirect",
+            listener_id=foo_listener.id,
+            action_type="Redirect",
+            description="Redirect rule",
+            domain="example1.com",
+            redirect_config=volcengine.clb.RuleRedirectConfigArgs(
+                protocol="HTTP",
+                host="example3.com",
+                path="/test",
+                port="443",
+                status_code="301",
+            ))
         ```
 
         ## Import
@@ -359,10 +496,13 @@ class Rule(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 action_type: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  domain: Optional[pulumi.Input[str]] = None,
                  listener_id: Optional[pulumi.Input[str]] = None,
+                 redirect_config: Optional[pulumi.Input[pulumi.InputType['RuleRedirectConfigArgs']]] = None,
                  server_group_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RuleTagArgs']]]]] = None,
                  url: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -373,14 +513,15 @@ class Rule(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = RuleArgs.__new__(RuleArgs)
 
+            __props__.__dict__["action_type"] = action_type
             __props__.__dict__["description"] = description
             __props__.__dict__["domain"] = domain
             if listener_id is None and not opts.urn:
                 raise TypeError("Missing required property 'listener_id'")
             __props__.__dict__["listener_id"] = listener_id
-            if server_group_id is None and not opts.urn:
-                raise TypeError("Missing required property 'server_group_id'")
+            __props__.__dict__["redirect_config"] = redirect_config
             __props__.__dict__["server_group_id"] = server_group_id
+            __props__.__dict__["tags"] = tags
             __props__.__dict__["url"] = url
         super(Rule, __self__).__init__(
             'volcengine:clb/rule:Rule',
@@ -392,10 +533,13 @@ class Rule(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            action_type: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             domain: Optional[pulumi.Input[str]] = None,
             listener_id: Optional[pulumi.Input[str]] = None,
+            redirect_config: Optional[pulumi.Input[pulumi.InputType['RuleRedirectConfigArgs']]] = None,
             server_group_id: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RuleTagArgs']]]]] = None,
             url: Optional[pulumi.Input[str]] = None) -> 'Rule':
         """
         Get an existing Rule resource's state with the given name, id, and optional extra
@@ -404,22 +548,36 @@ class Rule(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] action_type: The action type of Rule, valid values: `Forward`, `Redirect`.
         :param pulumi.Input[str] description: The description of the Rule.
         :param pulumi.Input[str] domain: The domain of Rule.
         :param pulumi.Input[str] listener_id: The ID of listener.
-        :param pulumi.Input[str] server_group_id: Server Group Id.
+        :param pulumi.Input[pulumi.InputType['RuleRedirectConfigArgs']] redirect_config: The redirect configuration. Required when action_type is `Redirect`.
+        :param pulumi.Input[str] server_group_id: Server Group Id. Required when action_type is Forward.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RuleTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] url: The Url of Rule.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _RuleState.__new__(_RuleState)
 
+        __props__.__dict__["action_type"] = action_type
         __props__.__dict__["description"] = description
         __props__.__dict__["domain"] = domain
         __props__.__dict__["listener_id"] = listener_id
+        __props__.__dict__["redirect_config"] = redirect_config
         __props__.__dict__["server_group_id"] = server_group_id
+        __props__.__dict__["tags"] = tags
         __props__.__dict__["url"] = url
         return Rule(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="actionType")
+    def action_type(self) -> pulumi.Output[Optional[str]]:
+        """
+        The action type of Rule, valid values: `Forward`, `Redirect`.
+        """
+        return pulumi.get(self, "action_type")
 
     @property
     @pulumi.getter
@@ -446,12 +604,28 @@ class Rule(pulumi.CustomResource):
         return pulumi.get(self, "listener_id")
 
     @property
+    @pulumi.getter(name="redirectConfig")
+    def redirect_config(self) -> pulumi.Output[Optional['outputs.RuleRedirectConfig']]:
+        """
+        The redirect configuration. Required when action_type is `Redirect`.
+        """
+        return pulumi.get(self, "redirect_config")
+
+    @property
     @pulumi.getter(name="serverGroupId")
     def server_group_id(self) -> pulumi.Output[str]:
         """
-        Server Group Id.
+        Server Group Id. Required when action_type is Forward.
         """
         return pulumi.get(self, "server_group_id")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.RuleTag']]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter

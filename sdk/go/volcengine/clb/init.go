@@ -21,6 +21,8 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "volcengine:clb/accessLog:AccessLog":
+		r = &AccessLog{}
 	case "volcengine:clb/acl:Acl":
 		r = &Acl{}
 	case "volcengine:clb/aclEntry:AclEntry":
@@ -29,6 +31,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Certificate{}
 	case "volcengine:clb/clb:Clb":
 		r = &Clb{}
+	case "volcengine:clb/healthCheckLogProject:HealthCheckLogProject":
+		r = &HealthCheckLogProject{}
+	case "volcengine:clb/healthCheckLogTopic:HealthCheckLogTopic":
+		r = &HealthCheckLogTopic{}
 	case "volcengine:clb/listener:Listener":
 		r = &Listener{}
 	case "volcengine:clb/rule:Rule":
@@ -52,6 +58,11 @@ func init() {
 	}
 	pulumi.RegisterResourceModule(
 		"volcengine",
+		"clb/accessLog",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
 		"clb/acl",
 		&module{version},
 	)
@@ -68,6 +79,16 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"volcengine",
 		"clb/clb",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"clb/healthCheckLogProject",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"clb/healthCheckLogTopic",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

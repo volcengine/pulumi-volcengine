@@ -9,6 +9,32 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Alb
 {
+    /// <summary>
+    /// Provides a resource to manage alb access log
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Volcengine = Pulumi.Volcengine;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // Enable ALB Access Log (TOS Bucket)
+    ///     var @default = new Volcengine.Alb.AccessLog("default", new()
+    ///     {
+    ///         BucketName = "tos-buket",
+    ///         LoadBalancerId = "alb-bdchexlt87pc8dv40nbr6mu7",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// The AlbAccessLog is not support import.
+    /// </summary>
     [VolcengineResourceType("volcengine:alb/accessLog:AccessLog")]
     public partial class AccessLog : global::Pulumi.CustomResource
     {

@@ -5,6 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { AccessLogArgs, AccessLogState } from "./accessLog";
+export type AccessLog = import("./accessLog").AccessLog;
+export const AccessLog: typeof import("./accessLog").AccessLog = null as any;
+utilities.lazyLoad(exports, ["AccessLog"], () => require("./accessLog"));
+
 export { AclArgs, AclState } from "./acl";
 export type Acl = import("./acl").Acl;
 export const Acl: typeof import("./acl").Acl = null as any;
@@ -55,6 +60,21 @@ export const getClbs: typeof import("./getClbs").getClbs = null as any;
 export const getClbsOutput: typeof import("./getClbs").getClbsOutput = null as any;
 utilities.lazyLoad(exports, ["getClbs","getClbsOutput"], () => require("./getClbs"));
 
+export { GetHealthCheckLogProjectsArgs, GetHealthCheckLogProjectsResult, GetHealthCheckLogProjectsOutputArgs } from "./getHealthCheckLogProjects";
+export const getHealthCheckLogProjects: typeof import("./getHealthCheckLogProjects").getHealthCheckLogProjects = null as any;
+export const getHealthCheckLogProjectsOutput: typeof import("./getHealthCheckLogProjects").getHealthCheckLogProjectsOutput = null as any;
+utilities.lazyLoad(exports, ["getHealthCheckLogProjects","getHealthCheckLogProjectsOutput"], () => require("./getHealthCheckLogProjects"));
+
+export { GetHealthCheckLogTopicsArgs, GetHealthCheckLogTopicsResult, GetHealthCheckLogTopicsOutputArgs } from "./getHealthCheckLogTopics";
+export const getHealthCheckLogTopics: typeof import("./getHealthCheckLogTopics").getHealthCheckLogTopics = null as any;
+export const getHealthCheckLogTopicsOutput: typeof import("./getHealthCheckLogTopics").getHealthCheckLogTopicsOutput = null as any;
+utilities.lazyLoad(exports, ["getHealthCheckLogTopics","getHealthCheckLogTopicsOutput"], () => require("./getHealthCheckLogTopics"));
+
+export { GetListenerHealthsArgs, GetListenerHealthsResult, GetListenerHealthsOutputArgs } from "./getListenerHealths";
+export const getListenerHealths: typeof import("./getListenerHealths").getListenerHealths = null as any;
+export const getListenerHealthsOutput: typeof import("./getListenerHealths").getListenerHealthsOutput = null as any;
+utilities.lazyLoad(exports, ["getListenerHealths","getListenerHealthsOutput"], () => require("./getListenerHealths"));
+
 export { GetListenersArgs, GetListenersResult, GetListenersOutputArgs } from "./getListeners";
 export const getListeners: typeof import("./getListeners").getListeners = null as any;
 export const getListenersOutput: typeof import("./getListeners").getListenersOutput = null as any;
@@ -80,10 +100,35 @@ export const getZones: typeof import("./getZones").getZones = null as any;
 export const getZonesOutput: typeof import("./getZones").getZonesOutput = null as any;
 utilities.lazyLoad(exports, ["getZones","getZonesOutput"], () => require("./getZones"));
 
+export { HealthCheckLogProjectArgs, HealthCheckLogProjectState } from "./healthCheckLogProject";
+export type HealthCheckLogProject = import("./healthCheckLogProject").HealthCheckLogProject;
+export const HealthCheckLogProject: typeof import("./healthCheckLogProject").HealthCheckLogProject = null as any;
+utilities.lazyLoad(exports, ["HealthCheckLogProject"], () => require("./healthCheckLogProject"));
+
+export { HealthCheckLogProjectsArgs, HealthCheckLogProjectsResult, HealthCheckLogProjectsOutputArgs } from "./healthCheckLogProjects";
+export const healthCheckLogProjects: typeof import("./healthCheckLogProjects").healthCheckLogProjects = null as any;
+export const healthCheckLogProjectsOutput: typeof import("./healthCheckLogProjects").healthCheckLogProjectsOutput = null as any;
+utilities.lazyLoad(exports, ["healthCheckLogProjects","healthCheckLogProjectsOutput"], () => require("./healthCheckLogProjects"));
+
+export { HealthCheckLogTopicArgs, HealthCheckLogTopicState } from "./healthCheckLogTopic";
+export type HealthCheckLogTopic = import("./healthCheckLogTopic").HealthCheckLogTopic;
+export const HealthCheckLogTopic: typeof import("./healthCheckLogTopic").HealthCheckLogTopic = null as any;
+utilities.lazyLoad(exports, ["HealthCheckLogTopic"], () => require("./healthCheckLogTopic"));
+
+export { HealthCheckLogTopicsArgs, HealthCheckLogTopicsResult, HealthCheckLogTopicsOutputArgs } from "./healthCheckLogTopics";
+export const healthCheckLogTopics: typeof import("./healthCheckLogTopics").healthCheckLogTopics = null as any;
+export const healthCheckLogTopicsOutput: typeof import("./healthCheckLogTopics").healthCheckLogTopicsOutput = null as any;
+utilities.lazyLoad(exports, ["healthCheckLogTopics","healthCheckLogTopicsOutput"], () => require("./healthCheckLogTopics"));
+
 export { ListenerArgs, ListenerState } from "./listener";
 export type Listener = import("./listener").Listener;
 export const Listener: typeof import("./listener").Listener = null as any;
 utilities.lazyLoad(exports, ["Listener"], () => require("./listener"));
+
+export { ListenerHealthsArgs, ListenerHealthsResult, ListenerHealthsOutputArgs } from "./listenerHealths";
+export const listenerHealths: typeof import("./listenerHealths").listenerHealths = null as any;
+export const listenerHealthsOutput: typeof import("./listenerHealths").listenerHealthsOutput = null as any;
+utilities.lazyLoad(exports, ["listenerHealths","listenerHealthsOutput"], () => require("./listenerHealths"));
 
 export { ListenersArgs, ListenersResult, ListenersOutputArgs } from "./listeners";
 export const listeners: typeof import("./listeners").listeners = null as any;
@@ -130,6 +175,8 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "volcengine:clb/accessLog:AccessLog":
+                return new AccessLog(name, <any>undefined, { urn })
             case "volcengine:clb/acl:Acl":
                 return new Acl(name, <any>undefined, { urn })
             case "volcengine:clb/aclEntry:AclEntry":
@@ -138,6 +185,10 @@ const _module = {
                 return new Certificate(name, <any>undefined, { urn })
             case "volcengine:clb/clb:Clb":
                 return new Clb(name, <any>undefined, { urn })
+            case "volcengine:clb/healthCheckLogProject:HealthCheckLogProject":
+                return new HealthCheckLogProject(name, <any>undefined, { urn })
+            case "volcengine:clb/healthCheckLogTopic:HealthCheckLogTopic":
+                return new HealthCheckLogTopic(name, <any>undefined, { urn })
             case "volcengine:clb/listener:Listener":
                 return new Listener(name, <any>undefined, { urn })
             case "volcengine:clb/rule:Rule":
@@ -151,10 +202,13 @@ const _module = {
         }
     },
 };
+pulumi.runtime.registerResourceModule("volcengine", "clb/accessLog", _module)
 pulumi.runtime.registerResourceModule("volcengine", "clb/acl", _module)
 pulumi.runtime.registerResourceModule("volcengine", "clb/aclEntry", _module)
 pulumi.runtime.registerResourceModule("volcengine", "clb/certificate", _module)
 pulumi.runtime.registerResourceModule("volcengine", "clb/clb", _module)
+pulumi.runtime.registerResourceModule("volcengine", "clb/healthCheckLogProject", _module)
+pulumi.runtime.registerResourceModule("volcengine", "clb/healthCheckLogTopic", _module)
 pulumi.runtime.registerResourceModule("volcengine", "clb/listener", _module)
 pulumi.runtime.registerResourceModule("volcengine", "clb/rule", _module)
 pulumi.runtime.registerResourceModule("volcengine", "clb/serverGroup", _module)

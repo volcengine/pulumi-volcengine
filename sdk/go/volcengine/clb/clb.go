@@ -175,6 +175,8 @@ type Clb struct {
 	// The address ip version of the Clb. Valid values: `ipv4`, `DualStack`. Default is `ipv4`.
 	// When the value of this field is `DualStack`, the type of the CLB must be `private`, and suggest using a combination of resource `vpc.Ipv6Gateway` and `vpc.Ipv6AddressBandwidth` to achieve ipv6 public network access function.
 	AddressIpVersion pulumi.StringPtrOutput `pulumi:"addressIpVersion"`
+	// Whether the CLB instance enables the "Allow Backend Security Group" function. value range: `on`, `off`.
+	BypassSecurityGroupEnabled pulumi.StringOutput `pulumi:"bypassSecurityGroupEnabled"`
 	// The description of the CLB.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The Eip address of the Clb.
@@ -185,6 +187,8 @@ type Clb struct {
 	EipId pulumi.StringOutput `pulumi:"eipId"`
 	// The eni address of the CLB.
 	EniAddress pulumi.StringOutput `pulumi:"eniAddress"`
+	// The number of private IPv4 addresses for the CLB instance. This parameter is valid only when the type parameter is set to private and eniAddress is not passed in.
+	EniAddressNum pulumi.IntPtrOutput `pulumi:"eniAddressNum"`
 	// The eni ipv6 address of the Clb.
 	EniIpv6Address pulumi.StringOutput `pulumi:"eniIpv6Address"`
 	// The Ipv6 Eip ID of the Clb.
@@ -207,7 +211,11 @@ type Clb struct {
 	ProjectName pulumi.StringOutput `pulumi:"projectName"`
 	// The region of the request.
 	RegionId pulumi.StringOutput `pulumi:"regionId"`
-	// The renew type of the CLB. When the value of the loadBalancerBillingType is `PrePaid`, the query returns this field.
+	// The remain renew times of the CLB. When the value of the renewType is `AutoRenew`, this field is effective. Valid values: `-1`, `1~100`. The `-1` indicates unlimited automatic renewals.
+	RemainRenewTimes pulumi.IntOutput `pulumi:"remainRenewTimes"`
+	// The renew period times of the CLB. When the value of the renewType is `AutoRenew`, this field is effective. Valid values: `1`, `2`, `3`, `6`, `12`.
+	RenewPeriodTimes pulumi.IntOutput `pulumi:"renewPeriodTimes"`
+	// The renew type of the CLB. When the value of the loadBalancerBillingType is `PrePaid`, the query returns this field. Valid values: `AutoRenew`, `ManualRenew`.
 	RenewType pulumi.StringOutput `pulumi:"renewType"`
 	// The slave zone ID of the CLB.
 	SlaveZoneId pulumi.StringOutput `pulumi:"slaveZoneId"`
@@ -215,10 +223,14 @@ type Clb struct {
 	SubnetId pulumi.StringOutput `pulumi:"subnetId"`
 	// Tags.
 	Tags ClbTagArrayOutput `pulumi:"tags"`
+	// Whether to enable the function of clearing the timestamp of TCP/HTTP/HTTPS packets (i.e., the time stamp). value range: `on`, `off`.
+	TimestampRemoveEnabled pulumi.StringOutput `pulumi:"timestampRemoveEnabled"`
 	// The type of the CLB. And optional choice contains `public` or `private`.
 	Type pulumi.StringOutput `pulumi:"type"`
 	// The id of the VPC.
 	VpcId pulumi.StringOutput `pulumi:"vpcId"`
+	// The zone type of the CLB. And optional choice contains `single` or `active-standby`.
+	ZoneType pulumi.StringPtrOutput `pulumi:"zoneType"`
 }
 
 // NewClb registers a new resource with the given unique name, arguments, and options.
@@ -260,6 +272,8 @@ type clbState struct {
 	// The address ip version of the Clb. Valid values: `ipv4`, `DualStack`. Default is `ipv4`.
 	// When the value of this field is `DualStack`, the type of the CLB must be `private`, and suggest using a combination of resource `vpc.Ipv6Gateway` and `vpc.Ipv6AddressBandwidth` to achieve ipv6 public network access function.
 	AddressIpVersion *string `pulumi:"addressIpVersion"`
+	// Whether the CLB instance enables the "Allow Backend Security Group" function. value range: `on`, `off`.
+	BypassSecurityGroupEnabled *string `pulumi:"bypassSecurityGroupEnabled"`
 	// The description of the CLB.
 	Description *string `pulumi:"description"`
 	// The Eip address of the Clb.
@@ -270,6 +284,8 @@ type clbState struct {
 	EipId *string `pulumi:"eipId"`
 	// The eni address of the CLB.
 	EniAddress *string `pulumi:"eniAddress"`
+	// The number of private IPv4 addresses for the CLB instance. This parameter is valid only when the type parameter is set to private and eniAddress is not passed in.
+	EniAddressNum *int `pulumi:"eniAddressNum"`
 	// The eni ipv6 address of the Clb.
 	EniIpv6Address *string `pulumi:"eniIpv6Address"`
 	// The Ipv6 Eip ID of the Clb.
@@ -292,7 +308,11 @@ type clbState struct {
 	ProjectName *string `pulumi:"projectName"`
 	// The region of the request.
 	RegionId *string `pulumi:"regionId"`
-	// The renew type of the CLB. When the value of the loadBalancerBillingType is `PrePaid`, the query returns this field.
+	// The remain renew times of the CLB. When the value of the renewType is `AutoRenew`, this field is effective. Valid values: `-1`, `1~100`. The `-1` indicates unlimited automatic renewals.
+	RemainRenewTimes *int `pulumi:"remainRenewTimes"`
+	// The renew period times of the CLB. When the value of the renewType is `AutoRenew`, this field is effective. Valid values: `1`, `2`, `3`, `6`, `12`.
+	RenewPeriodTimes *int `pulumi:"renewPeriodTimes"`
+	// The renew type of the CLB. When the value of the loadBalancerBillingType is `PrePaid`, the query returns this field. Valid values: `AutoRenew`, `ManualRenew`.
 	RenewType *string `pulumi:"renewType"`
 	// The slave zone ID of the CLB.
 	SlaveZoneId *string `pulumi:"slaveZoneId"`
@@ -300,16 +320,22 @@ type clbState struct {
 	SubnetId *string `pulumi:"subnetId"`
 	// Tags.
 	Tags []ClbTag `pulumi:"tags"`
+	// Whether to enable the function of clearing the timestamp of TCP/HTTP/HTTPS packets (i.e., the time stamp). value range: `on`, `off`.
+	TimestampRemoveEnabled *string `pulumi:"timestampRemoveEnabled"`
 	// The type of the CLB. And optional choice contains `public` or `private`.
 	Type *string `pulumi:"type"`
 	// The id of the VPC.
 	VpcId *string `pulumi:"vpcId"`
+	// The zone type of the CLB. And optional choice contains `single` or `active-standby`.
+	ZoneType *string `pulumi:"zoneType"`
 }
 
 type ClbState struct {
 	// The address ip version of the Clb. Valid values: `ipv4`, `DualStack`. Default is `ipv4`.
 	// When the value of this field is `DualStack`, the type of the CLB must be `private`, and suggest using a combination of resource `vpc.Ipv6Gateway` and `vpc.Ipv6AddressBandwidth` to achieve ipv6 public network access function.
 	AddressIpVersion pulumi.StringPtrInput
+	// Whether the CLB instance enables the "Allow Backend Security Group" function. value range: `on`, `off`.
+	BypassSecurityGroupEnabled pulumi.StringPtrInput
 	// The description of the CLB.
 	Description pulumi.StringPtrInput
 	// The Eip address of the Clb.
@@ -320,6 +346,8 @@ type ClbState struct {
 	EipId pulumi.StringPtrInput
 	// The eni address of the CLB.
 	EniAddress pulumi.StringPtrInput
+	// The number of private IPv4 addresses for the CLB instance. This parameter is valid only when the type parameter is set to private and eniAddress is not passed in.
+	EniAddressNum pulumi.IntPtrInput
 	// The eni ipv6 address of the Clb.
 	EniIpv6Address pulumi.StringPtrInput
 	// The Ipv6 Eip ID of the Clb.
@@ -342,7 +370,11 @@ type ClbState struct {
 	ProjectName pulumi.StringPtrInput
 	// The region of the request.
 	RegionId pulumi.StringPtrInput
-	// The renew type of the CLB. When the value of the loadBalancerBillingType is `PrePaid`, the query returns this field.
+	// The remain renew times of the CLB. When the value of the renewType is `AutoRenew`, this field is effective. Valid values: `-1`, `1~100`. The `-1` indicates unlimited automatic renewals.
+	RemainRenewTimes pulumi.IntPtrInput
+	// The renew period times of the CLB. When the value of the renewType is `AutoRenew`, this field is effective. Valid values: `1`, `2`, `3`, `6`, `12`.
+	RenewPeriodTimes pulumi.IntPtrInput
+	// The renew type of the CLB. When the value of the loadBalancerBillingType is `PrePaid`, the query returns this field. Valid values: `AutoRenew`, `ManualRenew`.
 	RenewType pulumi.StringPtrInput
 	// The slave zone ID of the CLB.
 	SlaveZoneId pulumi.StringPtrInput
@@ -350,10 +382,14 @@ type ClbState struct {
 	SubnetId pulumi.StringPtrInput
 	// Tags.
 	Tags ClbTagArrayInput
+	// Whether to enable the function of clearing the timestamp of TCP/HTTP/HTTPS packets (i.e., the time stamp). value range: `on`, `off`.
+	TimestampRemoveEnabled pulumi.StringPtrInput
 	// The type of the CLB. And optional choice contains `public` or `private`.
 	Type pulumi.StringPtrInput
 	// The id of the VPC.
 	VpcId pulumi.StringPtrInput
+	// The zone type of the CLB. And optional choice contains `single` or `active-standby`.
+	ZoneType pulumi.StringPtrInput
 }
 
 func (ClbState) ElementType() reflect.Type {
@@ -364,12 +400,16 @@ type clbArgs struct {
 	// The address ip version of the Clb. Valid values: `ipv4`, `DualStack`. Default is `ipv4`.
 	// When the value of this field is `DualStack`, the type of the CLB must be `private`, and suggest using a combination of resource `vpc.Ipv6Gateway` and `vpc.Ipv6AddressBandwidth` to achieve ipv6 public network access function.
 	AddressIpVersion *string `pulumi:"addressIpVersion"`
+	// Whether the CLB instance enables the "Allow Backend Security Group" function. value range: `on`, `off`.
+	BypassSecurityGroupEnabled *string `pulumi:"bypassSecurityGroupEnabled"`
 	// The description of the CLB.
 	Description *string `pulumi:"description"`
 	// The billing configuration of the EIP which automatically associated to CLB. This field is valid when the type of CLB is `public`.When the type of the CLB is `private`, suggest using a combination of resource `eip.Address` and `eip.Associate` to achieve public network access function.
 	EipBillingConfig *ClbEipBillingConfig `pulumi:"eipBillingConfig"`
 	// The eni address of the CLB.
 	EniAddress *string `pulumi:"eniAddress"`
+	// The number of private IPv4 addresses for the CLB instance. This parameter is valid only when the type parameter is set to private and eniAddress is not passed in.
+	EniAddressNum *int `pulumi:"eniAddressNum"`
 	// The eni ipv6 address of the Clb.
 	EniIpv6Address *string `pulumi:"eniIpv6Address"`
 	// The billing type of the CLB, valid values: `PostPaid`, `PrePaid`, `PostPaidByLCU`. Default is `PostPaid`.
@@ -390,16 +430,26 @@ type clbArgs struct {
 	ProjectName *string `pulumi:"projectName"`
 	// The region of the request.
 	RegionId *string `pulumi:"regionId"`
+	// The remain renew times of the CLB. When the value of the renewType is `AutoRenew`, this field is effective. Valid values: `-1`, `1~100`. The `-1` indicates unlimited automatic renewals.
+	RemainRenewTimes *int `pulumi:"remainRenewTimes"`
+	// The renew period times of the CLB. When the value of the renewType is `AutoRenew`, this field is effective. Valid values: `1`, `2`, `3`, `6`, `12`.
+	RenewPeriodTimes *int `pulumi:"renewPeriodTimes"`
+	// The renew type of the CLB. When the value of the loadBalancerBillingType is `PrePaid`, the query returns this field. Valid values: `AutoRenew`, `ManualRenew`.
+	RenewType *string `pulumi:"renewType"`
 	// The slave zone ID of the CLB.
 	SlaveZoneId *string `pulumi:"slaveZoneId"`
 	// The id of the Subnet.
 	SubnetId string `pulumi:"subnetId"`
 	// Tags.
 	Tags []ClbTag `pulumi:"tags"`
+	// Whether to enable the function of clearing the timestamp of TCP/HTTP/HTTPS packets (i.e., the time stamp). value range: `on`, `off`.
+	TimestampRemoveEnabled *string `pulumi:"timestampRemoveEnabled"`
 	// The type of the CLB. And optional choice contains `public` or `private`.
 	Type string `pulumi:"type"`
 	// The id of the VPC.
 	VpcId *string `pulumi:"vpcId"`
+	// The zone type of the CLB. And optional choice contains `single` or `active-standby`.
+	ZoneType *string `pulumi:"zoneType"`
 }
 
 // The set of arguments for constructing a Clb resource.
@@ -407,12 +457,16 @@ type ClbArgs struct {
 	// The address ip version of the Clb. Valid values: `ipv4`, `DualStack`. Default is `ipv4`.
 	// When the value of this field is `DualStack`, the type of the CLB must be `private`, and suggest using a combination of resource `vpc.Ipv6Gateway` and `vpc.Ipv6AddressBandwidth` to achieve ipv6 public network access function.
 	AddressIpVersion pulumi.StringPtrInput
+	// Whether the CLB instance enables the "Allow Backend Security Group" function. value range: `on`, `off`.
+	BypassSecurityGroupEnabled pulumi.StringPtrInput
 	// The description of the CLB.
 	Description pulumi.StringPtrInput
 	// The billing configuration of the EIP which automatically associated to CLB. This field is valid when the type of CLB is `public`.When the type of the CLB is `private`, suggest using a combination of resource `eip.Address` and `eip.Associate` to achieve public network access function.
 	EipBillingConfig ClbEipBillingConfigPtrInput
 	// The eni address of the CLB.
 	EniAddress pulumi.StringPtrInput
+	// The number of private IPv4 addresses for the CLB instance. This parameter is valid only when the type parameter is set to private and eniAddress is not passed in.
+	EniAddressNum pulumi.IntPtrInput
 	// The eni ipv6 address of the Clb.
 	EniIpv6Address pulumi.StringPtrInput
 	// The billing type of the CLB, valid values: `PostPaid`, `PrePaid`, `PostPaidByLCU`. Default is `PostPaid`.
@@ -433,16 +487,26 @@ type ClbArgs struct {
 	ProjectName pulumi.StringPtrInput
 	// The region of the request.
 	RegionId pulumi.StringPtrInput
+	// The remain renew times of the CLB. When the value of the renewType is `AutoRenew`, this field is effective. Valid values: `-1`, `1~100`. The `-1` indicates unlimited automatic renewals.
+	RemainRenewTimes pulumi.IntPtrInput
+	// The renew period times of the CLB. When the value of the renewType is `AutoRenew`, this field is effective. Valid values: `1`, `2`, `3`, `6`, `12`.
+	RenewPeriodTimes pulumi.IntPtrInput
+	// The renew type of the CLB. When the value of the loadBalancerBillingType is `PrePaid`, the query returns this field. Valid values: `AutoRenew`, `ManualRenew`.
+	RenewType pulumi.StringPtrInput
 	// The slave zone ID of the CLB.
 	SlaveZoneId pulumi.StringPtrInput
 	// The id of the Subnet.
 	SubnetId pulumi.StringInput
 	// Tags.
 	Tags ClbTagArrayInput
+	// Whether to enable the function of clearing the timestamp of TCP/HTTP/HTTPS packets (i.e., the time stamp). value range: `on`, `off`.
+	TimestampRemoveEnabled pulumi.StringPtrInput
 	// The type of the CLB. And optional choice contains `public` or `private`.
 	Type pulumi.StringInput
 	// The id of the VPC.
 	VpcId pulumi.StringPtrInput
+	// The zone type of the CLB. And optional choice contains `single` or `active-standby`.
+	ZoneType pulumi.StringPtrInput
 }
 
 func (ClbArgs) ElementType() reflect.Type {
@@ -538,6 +602,11 @@ func (o ClbOutput) AddressIpVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Clb) pulumi.StringPtrOutput { return v.AddressIpVersion }).(pulumi.StringPtrOutput)
 }
 
+// Whether the CLB instance enables the "Allow Backend Security Group" function. value range: `on`, `off`.
+func (o ClbOutput) BypassSecurityGroupEnabled() pulumi.StringOutput {
+	return o.ApplyT(func(v *Clb) pulumi.StringOutput { return v.BypassSecurityGroupEnabled }).(pulumi.StringOutput)
+}
+
 // The description of the CLB.
 func (o ClbOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Clb) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
@@ -561,6 +630,11 @@ func (o ClbOutput) EipId() pulumi.StringOutput {
 // The eni address of the CLB.
 func (o ClbOutput) EniAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v *Clb) pulumi.StringOutput { return v.EniAddress }).(pulumi.StringOutput)
+}
+
+// The number of private IPv4 addresses for the CLB instance. This parameter is valid only when the type parameter is set to private and eniAddress is not passed in.
+func (o ClbOutput) EniAddressNum() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Clb) pulumi.IntPtrOutput { return v.EniAddressNum }).(pulumi.IntPtrOutput)
 }
 
 // The eni ipv6 address of the Clb.
@@ -618,7 +692,17 @@ func (o ClbOutput) RegionId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Clb) pulumi.StringOutput { return v.RegionId }).(pulumi.StringOutput)
 }
 
-// The renew type of the CLB. When the value of the loadBalancerBillingType is `PrePaid`, the query returns this field.
+// The remain renew times of the CLB. When the value of the renewType is `AutoRenew`, this field is effective. Valid values: `-1`, `1~100`. The `-1` indicates unlimited automatic renewals.
+func (o ClbOutput) RemainRenewTimes() pulumi.IntOutput {
+	return o.ApplyT(func(v *Clb) pulumi.IntOutput { return v.RemainRenewTimes }).(pulumi.IntOutput)
+}
+
+// The renew period times of the CLB. When the value of the renewType is `AutoRenew`, this field is effective. Valid values: `1`, `2`, `3`, `6`, `12`.
+func (o ClbOutput) RenewPeriodTimes() pulumi.IntOutput {
+	return o.ApplyT(func(v *Clb) pulumi.IntOutput { return v.RenewPeriodTimes }).(pulumi.IntOutput)
+}
+
+// The renew type of the CLB. When the value of the loadBalancerBillingType is `PrePaid`, the query returns this field. Valid values: `AutoRenew`, `ManualRenew`.
 func (o ClbOutput) RenewType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Clb) pulumi.StringOutput { return v.RenewType }).(pulumi.StringOutput)
 }
@@ -638,6 +722,11 @@ func (o ClbOutput) Tags() ClbTagArrayOutput {
 	return o.ApplyT(func(v *Clb) ClbTagArrayOutput { return v.Tags }).(ClbTagArrayOutput)
 }
 
+// Whether to enable the function of clearing the timestamp of TCP/HTTP/HTTPS packets (i.e., the time stamp). value range: `on`, `off`.
+func (o ClbOutput) TimestampRemoveEnabled() pulumi.StringOutput {
+	return o.ApplyT(func(v *Clb) pulumi.StringOutput { return v.TimestampRemoveEnabled }).(pulumi.StringOutput)
+}
+
 // The type of the CLB. And optional choice contains `public` or `private`.
 func (o ClbOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *Clb) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
@@ -646,6 +735,11 @@ func (o ClbOutput) Type() pulumi.StringOutput {
 // The id of the VPC.
 func (o ClbOutput) VpcId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Clb) pulumi.StringOutput { return v.VpcId }).(pulumi.StringOutput)
+}
+
+// The zone type of the CLB. And optional choice contains `single` or `active-standby`.
+func (o ClbOutput) ZoneType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Clb) pulumi.StringPtrOutput { return v.ZoneType }).(pulumi.StringPtrOutput)
 }
 
 type ClbArrayOutput struct{ *pulumi.OutputState }

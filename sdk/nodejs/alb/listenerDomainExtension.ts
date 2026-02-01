@@ -72,9 +72,17 @@ export class ListenerDomainExtension extends pulumi.CustomResource {
     }
 
     /**
-     * Server certificate used for the domain name.
+     * The server certificate ID used by the domain name. Valid when the certificateSource is `certCenter`.
      */
-    public readonly certificateId!: pulumi.Output<string>;
+    public readonly certCenterCertificateId!: pulumi.Output<string | undefined>;
+    /**
+     * Server certificate used for the domain name. Valid when the certificateSource is `alb`.
+     */
+    public readonly certificateId!: pulumi.Output<string | undefined>;
+    /**
+     * The source of the certificate. Valid values: `alb`, `certCenter`, `pcaLeaf`. Default is `alb`.
+     */
+    public readonly certificateSource!: pulumi.Output<string | undefined>;
     /**
      * The domain name. The maximum number of associated domain names for an HTTPS listener is 20, with a value range of 1 to 20.
      */
@@ -87,6 +95,10 @@ export class ListenerDomainExtension extends pulumi.CustomResource {
      * The listener id. Only HTTPS listener is effective.
      */
     public readonly listenerId!: pulumi.Output<string>;
+    /**
+     * The server certificate ID used by the domain name. Valid when the certificate source is `pcaLeaf`.
+     */
+    public readonly pcaLeafCertificateId!: pulumi.Output<string | undefined>;
 
     /**
      * Create a ListenerDomainExtension resource with the given unique name, arguments, and options.
@@ -101,24 +113,27 @@ export class ListenerDomainExtension extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ListenerDomainExtensionState | undefined;
+            resourceInputs["certCenterCertificateId"] = state ? state.certCenterCertificateId : undefined;
             resourceInputs["certificateId"] = state ? state.certificateId : undefined;
+            resourceInputs["certificateSource"] = state ? state.certificateSource : undefined;
             resourceInputs["domain"] = state ? state.domain : undefined;
             resourceInputs["domainExtensionId"] = state ? state.domainExtensionId : undefined;
             resourceInputs["listenerId"] = state ? state.listenerId : undefined;
+            resourceInputs["pcaLeafCertificateId"] = state ? state.pcaLeafCertificateId : undefined;
         } else {
             const args = argsOrState as ListenerDomainExtensionArgs | undefined;
-            if ((!args || args.certificateId === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'certificateId'");
-            }
             if ((!args || args.domain === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'domain'");
             }
             if ((!args || args.listenerId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'listenerId'");
             }
+            resourceInputs["certCenterCertificateId"] = args ? args.certCenterCertificateId : undefined;
             resourceInputs["certificateId"] = args ? args.certificateId : undefined;
+            resourceInputs["certificateSource"] = args ? args.certificateSource : undefined;
             resourceInputs["domain"] = args ? args.domain : undefined;
             resourceInputs["listenerId"] = args ? args.listenerId : undefined;
+            resourceInputs["pcaLeafCertificateId"] = args ? args.pcaLeafCertificateId : undefined;
             resourceInputs["domainExtensionId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -131,9 +146,17 @@ export class ListenerDomainExtension extends pulumi.CustomResource {
  */
 export interface ListenerDomainExtensionState {
     /**
-     * Server certificate used for the domain name.
+     * The server certificate ID used by the domain name. Valid when the certificateSource is `certCenter`.
+     */
+    certCenterCertificateId?: pulumi.Input<string>;
+    /**
+     * Server certificate used for the domain name. Valid when the certificateSource is `alb`.
      */
     certificateId?: pulumi.Input<string>;
+    /**
+     * The source of the certificate. Valid values: `alb`, `certCenter`, `pcaLeaf`. Default is `alb`.
+     */
+    certificateSource?: pulumi.Input<string>;
     /**
      * The domain name. The maximum number of associated domain names for an HTTPS listener is 20, with a value range of 1 to 20.
      */
@@ -146,6 +169,10 @@ export interface ListenerDomainExtensionState {
      * The listener id. Only HTTPS listener is effective.
      */
     listenerId?: pulumi.Input<string>;
+    /**
+     * The server certificate ID used by the domain name. Valid when the certificate source is `pcaLeaf`.
+     */
+    pcaLeafCertificateId?: pulumi.Input<string>;
 }
 
 /**
@@ -153,9 +180,17 @@ export interface ListenerDomainExtensionState {
  */
 export interface ListenerDomainExtensionArgs {
     /**
-     * Server certificate used for the domain name.
+     * The server certificate ID used by the domain name. Valid when the certificateSource is `certCenter`.
      */
-    certificateId: pulumi.Input<string>;
+    certCenterCertificateId?: pulumi.Input<string>;
+    /**
+     * Server certificate used for the domain name. Valid when the certificateSource is `alb`.
+     */
+    certificateId?: pulumi.Input<string>;
+    /**
+     * The source of the certificate. Valid values: `alb`, `certCenter`, `pcaLeaf`. Default is `alb`.
+     */
+    certificateSource?: pulumi.Input<string>;
     /**
      * The domain name. The maximum number of associated domain names for an HTTPS listener is 20, with a value range of 1 to 20.
      */
@@ -164,4 +199,8 @@ export interface ListenerDomainExtensionArgs {
      * The listener id. Only HTTPS listener is effective.
      */
     listenerId: pulumi.Input<string>;
+    /**
+     * The server certificate ID used by the domain name. Valid when the certificate source is `pcaLeaf`.
+     */
+    pcaLeafCertificateId?: pulumi.Input<string>;
 }

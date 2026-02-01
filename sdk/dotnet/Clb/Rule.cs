@@ -87,6 +87,30 @@ namespace Pulumi.Volcengine.Clb
     ///         ServerGroupId = fooServerGroup.Id,
     ///         Domain = "test-volc123.com",
     ///         Url = "/tftest",
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Clb.Inputs.RuleTagArgs
+    ///             {
+    ///                 Key = "k1",
+    ///                 Value = "v1",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var fooRedirect = new Volcengine.Clb.Rule("fooRedirect", new()
+    ///     {
+    ///         ListenerId = fooListener.Id,
+    ///         ActionType = "Redirect",
+    ///         Description = "Redirect rule",
+    ///         Domain = "example1.com",
+    ///         RedirectConfig = new Volcengine.Clb.Inputs.RuleRedirectConfigArgs
+    ///         {
+    ///             Protocol = "HTTP",
+    ///             Host = "example3.com",
+    ///             Path = "/test",
+    ///             Port = "443",
+    ///             StatusCode = "301",
+    ///         },
     ///     });
     /// 
     /// });
@@ -106,6 +130,12 @@ namespace Pulumi.Volcengine.Clb
     public partial class Rule : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// The action type of Rule, valid values: `Forward`, `Redirect`.
+        /// </summary>
+        [Output("actionType")]
+        public Output<string?> ActionType { get; private set; } = null!;
+
+        /// <summary>
         /// The description of the Rule.
         /// </summary>
         [Output("description")]
@@ -124,10 +154,22 @@ namespace Pulumi.Volcengine.Clb
         public Output<string> ListenerId { get; private set; } = null!;
 
         /// <summary>
-        /// Server Group Id.
+        /// The redirect configuration. Required when action_type is `Redirect`.
+        /// </summary>
+        [Output("redirectConfig")]
+        public Output<Outputs.RuleRedirectConfig?> RedirectConfig { get; private set; } = null!;
+
+        /// <summary>
+        /// Server Group Id. Required when action_type is Forward.
         /// </summary>
         [Output("serverGroupId")]
         public Output<string> ServerGroupId { get; private set; } = null!;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<Outputs.RuleTag>> Tags { get; private set; } = null!;
 
         /// <summary>
         /// The Url of Rule.
@@ -183,6 +225,12 @@ namespace Pulumi.Volcengine.Clb
     public sealed class RuleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The action type of Rule, valid values: `Forward`, `Redirect`.
+        /// </summary>
+        [Input("actionType")]
+        public Input<string>? ActionType { get; set; }
+
+        /// <summary>
         /// The description of the Rule.
         /// </summary>
         [Input("description")]
@@ -201,10 +249,28 @@ namespace Pulumi.Volcengine.Clb
         public Input<string> ListenerId { get; set; } = null!;
 
         /// <summary>
-        /// Server Group Id.
+        /// The redirect configuration. Required when action_type is `Redirect`.
         /// </summary>
-        [Input("serverGroupId", required: true)]
-        public Input<string> ServerGroupId { get; set; } = null!;
+        [Input("redirectConfig")]
+        public Input<Inputs.RuleRedirectConfigArgs>? RedirectConfig { get; set; }
+
+        /// <summary>
+        /// Server Group Id. Required when action_type is Forward.
+        /// </summary>
+        [Input("serverGroupId")]
+        public Input<string>? ServerGroupId { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.RuleTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.RuleTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.RuleTagArgs>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// The Url of Rule.
@@ -220,6 +286,12 @@ namespace Pulumi.Volcengine.Clb
 
     public sealed class RuleState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The action type of Rule, valid values: `Forward`, `Redirect`.
+        /// </summary>
+        [Input("actionType")]
+        public Input<string>? ActionType { get; set; }
+
         /// <summary>
         /// The description of the Rule.
         /// </summary>
@@ -239,10 +311,28 @@ namespace Pulumi.Volcengine.Clb
         public Input<string>? ListenerId { get; set; }
 
         /// <summary>
-        /// Server Group Id.
+        /// The redirect configuration. Required when action_type is `Redirect`.
+        /// </summary>
+        [Input("redirectConfig")]
+        public Input<Inputs.RuleRedirectConfigGetArgs>? RedirectConfig { get; set; }
+
+        /// <summary>
+        /// Server Group Id. Required when action_type is Forward.
         /// </summary>
         [Input("serverGroupId")]
         public Input<string>? ServerGroupId { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.RuleTagGetArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.RuleTagGetArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.RuleTagGetArgs>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// The Url of Rule.

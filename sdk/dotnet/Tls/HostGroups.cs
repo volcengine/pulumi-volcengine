@@ -24,11 +24,7 @@ namespace Pulumi.Volcengine.Tls
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Tls.GetHostGroups.Invoke(new()
-        ///     {
-        ///         HostGroupId = "fbea6619-7b0c-40f3-ac7e-45c63e3f676e",
-        ///         HostGroupName = "cn",
-        ///     });
+        ///     var @default = Volcengine.Tls.GetHostGroups.Invoke();
         /// 
         /// });
         /// ```
@@ -48,11 +44,7 @@ namespace Pulumi.Volcengine.Tls
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Tls.GetHostGroups.Invoke(new()
-        ///     {
-        ///         HostGroupId = "fbea6619-7b0c-40f3-ac7e-45c63e3f676e",
-        ///         HostGroupName = "cn",
-        ///     });
+        ///     var @default = Volcengine.Tls.GetHostGroups.Invoke();
         /// 
         /// });
         /// ```
@@ -69,6 +61,12 @@ namespace Pulumi.Volcengine.Tls
         /// </summary>
         [Input("autoUpdate")]
         public bool? AutoUpdate { get; set; }
+
+        /// <summary>
+        /// Whether to hide host groups in exclusive resources.
+        /// </summary>
+        [Input("hidden")]
+        public bool? Hidden { get; set; }
 
         /// <summary>
         /// The id of host group.
@@ -121,6 +119,12 @@ namespace Pulumi.Volcengine.Tls
         public Input<bool>? AutoUpdate { get; set; }
 
         /// <summary>
+        /// Whether to hide host groups in exclusive resources.
+        /// </summary>
+        [Input("hidden")]
+        public Input<bool>? Hidden { get; set; }
+
+        /// <summary>
         /// The id of host group.
         /// </summary>
         [Input("hostGroupId")]
@@ -170,6 +174,7 @@ namespace Pulumi.Volcengine.Tls
         /// Whether enable auto update.
         /// </summary>
         public readonly bool? AutoUpdate;
+        public readonly bool? Hidden;
         /// <summary>
         /// The id of host group.
         /// </summary>
@@ -208,6 +213,8 @@ namespace Pulumi.Volcengine.Tls
         private HostGroupsResult(
             bool? autoUpdate,
 
+            bool? hidden,
+
             string? hostGroupId,
 
             string? hostGroupName,
@@ -227,6 +234,7 @@ namespace Pulumi.Volcengine.Tls
             int totalCount)
         {
             AutoUpdate = autoUpdate;
+            Hidden = hidden;
             HostGroupId = hostGroupId;
             HostGroupName = hostGroupName;
             HostIdentifier = hostIdentifier;

@@ -20,18 +20,145 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/tls"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := tls.GetRuleAppliers(ctx, &tls.GetRuleAppliersArgs{
-//				HostGroupId: "fbea6619-7b0c-40f3-ac7e-45c63e3f676e",
-//			}, nil)
+//			cfg := config.New(ctx, "")
+//			name := "tf-test-rule-applier"
+//			if param := cfg.Get("name"); param != "" {
+//				name = param
+//			}
+//			fooProject, err := tls.NewProject(ctx, "fooProject", &tls.ProjectArgs{
+//				ProjectName: pulumi.String(name),
+//				Description: pulumi.String("tf-test-project-desc"),
+//			})
 //			if err != nil {
 //				return err
 //			}
+//			fooTopic, err := tls.NewTopic(ctx, "fooTopic", &tls.TopicArgs{
+//				ProjectId:      fooProject.ID(),
+//				TopicName:      pulumi.String(name),
+//				Ttl:            pulumi.Int(60),
+//				ShardCount:     pulumi.Int(2),
+//				AutoSplit:      pulumi.Bool(true),
+//				MaxSplitShard:  pulumi.Int(10),
+//				EnableTracking: pulumi.Bool(true),
+//				TimeKey:        pulumi.String("request_time"),
+//				TimeFormat:     pulumi.String("%Y-%m-%dT%H:%M:%S,%f"),
+//				Tags: tls.TopicTagArray{
+//					&tls.TopicTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
+//				LogPublicIp:  pulumi.Bool(true),
+//				EnableHotTtl: pulumi.Bool(true),
+//				HotTtl:       pulumi.Int(30),
+//				ColdTtl:      pulumi.Int(30),
+//				ArchiveTtl:   pulumi.Int(0),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooRule, err := tls.NewRule(ctx, "fooRule", &tls.RuleArgs{
+//				TopicId:   fooTopic.ID(),
+//				RuleName:  pulumi.String("tf-test-rule"),
+//				LogType:   pulumi.String("delimiter_log"),
+//				LogSample: pulumi.String("2018-05-22 15:35:53.850,INFO,XXXX"),
+//				InputType: pulumi.Int(1),
+//				ExtractRule: &tls.RuleExtractRuleArgs{
+//					Delimiter: pulumi.String(","),
+//					Keys: pulumi.StringArray{
+//						pulumi.String("time"),
+//						pulumi.String("level"),
+//						pulumi.String("msg"),
+//					},
+//					TimeKey:    pulumi.String("time"),
+//					TimeFormat: pulumi.String("%Y-%m-%d %H:%M:%S.%f"),
+//					Quote:      pulumi.String("\""),
+//					TimeZone:   pulumi.String("GMT+08:00"),
+//				},
+//				UserDefineRule: &tls.RuleUserDefineRuleArgs{
+//					EnableRawLog: pulumi.Bool(true),
+//					TailFiles:    pulumi.Bool(true),
+//					ShardHashKey: &tls.RuleUserDefineRuleShardHashKeyArgs{
+//						HashKey: pulumi.String("3C"),
+//					},
+//					Advanced: &tls.RuleUserDefineRuleAdvancedArgs{
+//						CloseInactive: pulumi.Int(10),
+//						CloseRemoved:  pulumi.Bool(false),
+//						CloseRenamed:  pulumi.Bool(false),
+//						CloseEof:      pulumi.Bool(false),
+//						CloseTimeout:  pulumi.Int(1),
+//					},
+//				},
+//				ContainerRule: &tls.RuleContainerRuleArgs{
+//					Stream:             pulumi.String("all"),
+//					ContainerNameRegex: pulumi.String(".*test.*"),
+//					IncludeContainerLabelRegex: pulumi.StringMap{
+//						"Key1": pulumi.String("Value12"),
+//						"Key2": pulumi.String("Value23"),
+//					},
+//					ExcludeContainerLabelRegex: pulumi.StringMap{
+//						"Key1": pulumi.String("Value12"),
+//						"Key2": pulumi.String("Value22"),
+//					},
+//					IncludeContainerEnvRegex: pulumi.StringMap{
+//						"Key1": pulumi.String("Value1"),
+//						"Key2": pulumi.String("Value2"),
+//					},
+//					ExcludeContainerEnvRegex: pulumi.StringMap{
+//						"Key1": pulumi.String("Value1"),
+//						"Key2": pulumi.String("Value2"),
+//					},
+//					EnvTag: pulumi.StringMap{
+//						"Key1": pulumi.String("Value1"),
+//						"Key2": pulumi.String("Value2"),
+//					},
+//					KubernetesRule: &tls.RuleContainerRuleKubernetesRuleArgs{
+//						NamespaceNameRegex: pulumi.String(".*test.*"),
+//						WorkloadType:       pulumi.String("Deployment"),
+//						WorkloadNameRegex:  pulumi.String(".*test.*"),
+//						IncludePodLabelRegex: pulumi.StringMap{
+//							"Key1": pulumi.String("Value1"),
+//							"Key2": pulumi.String("Value2"),
+//						},
+//						ExcludePodLabelRegex: pulumi.StringMap{
+//							"Key1": pulumi.String("Value1"),
+//							"Key2": pulumi.String("Value2"),
+//						},
+//						PodNameRegex: pulumi.String(".*test.*"),
+//						LabelTag: pulumi.StringMap{
+//							"Key1": pulumi.String("Value1"),
+//							"Key2": pulumi.String("Value2"),
+//						},
+//						AnnotationTag: pulumi.StringMap{
+//							"Key1": pulumi.String("Value1"),
+//							"Key2": pulumi.String("Value2"),
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = tls.NewHostGroup(ctx, "fooHostGroup", &tls.HostGroupArgs{
+//				HostGroupName:  pulumi.String(name),
+//				HostGroupType:  pulumi.String("Label"),
+//				HostIdentifier: pulumi.String("tf-controller"),
+//				AutoUpdate:     pulumi.Bool(false),
+//				ServiceLogging: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = tls.GetRuleAppliersOutput(ctx, tls.GetRuleAppliersOutputArgs{
+//				RuleId: fooRule.ID(),
+//			}, nil)
 //			return nil
 //		})
 //	}
@@ -51,20 +178,20 @@ func RuleAppliers(ctx *pulumi.Context, args *RuleAppliersArgs, opts ...pulumi.In
 
 // A collection of arguments for invoking RuleAppliers.
 type RuleAppliersArgs struct {
-	// The host group id.
-	HostGroupId string `pulumi:"hostGroupId"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
+	// The rule id.
+	RuleId string `pulumi:"ruleId"`
 }
 
 // A collection of values returned by RuleAppliers.
 type RuleAppliersResult struct {
-	HostGroupId string `pulumi:"hostGroupId"`
+	// The host group info list.
+	HostGroupInfos []RuleAppliersHostGroupInfo `pulumi:"hostGroupInfos"`
 	// The provider-assigned unique ID for this managed resource.
 	Id         string  `pulumi:"id"`
 	OutputFile *string `pulumi:"outputFile"`
-	// The rules list.
-	Rules []RuleAppliersRule `pulumi:"rules"`
+	RuleId     string  `pulumi:"ruleId"`
 	// The total count of query.
 	TotalCount int `pulumi:"totalCount"`
 }
@@ -84,10 +211,10 @@ func RuleAppliersOutput(ctx *pulumi.Context, args RuleAppliersOutputArgs, opts .
 
 // A collection of arguments for invoking RuleAppliers.
 type RuleAppliersOutputArgs struct {
-	// The host group id.
-	HostGroupId pulumi.StringInput `pulumi:"hostGroupId"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// The rule id.
+	RuleId pulumi.StringInput `pulumi:"ruleId"`
 }
 
 func (RuleAppliersOutputArgs) ElementType() reflect.Type {
@@ -109,8 +236,9 @@ func (o RuleAppliersResultOutput) ToRuleAppliersResultOutputWithContext(ctx cont
 	return o
 }
 
-func (o RuleAppliersResultOutput) HostGroupId() pulumi.StringOutput {
-	return o.ApplyT(func(v RuleAppliersResult) string { return v.HostGroupId }).(pulumi.StringOutput)
+// The host group info list.
+func (o RuleAppliersResultOutput) HostGroupInfos() RuleAppliersHostGroupInfoArrayOutput {
+	return o.ApplyT(func(v RuleAppliersResult) []RuleAppliersHostGroupInfo { return v.HostGroupInfos }).(RuleAppliersHostGroupInfoArrayOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.
@@ -122,9 +250,8 @@ func (o RuleAppliersResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RuleAppliersResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
 }
 
-// The rules list.
-func (o RuleAppliersResultOutput) Rules() RuleAppliersRuleArrayOutput {
-	return o.ApplyT(func(v RuleAppliersResult) []RuleAppliersRule { return v.Rules }).(RuleAppliersRuleArrayOutput)
+func (o RuleAppliersResultOutput) RuleId() pulumi.StringOutput {
+	return o.ApplyT(func(v RuleAppliersResult) string { return v.RuleId }).(pulumi.StringOutput)
 }
 
 // The total count of query.

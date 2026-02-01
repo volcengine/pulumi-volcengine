@@ -18,11 +18,11 @@ namespace Pulumi.Volcengine.Alb.Outputs
         /// </summary>
         public readonly string CertificateId;
         /// <summary>
-        /// The name of the Certificate.
+        /// The Name of Certificate.
         /// </summary>
         public readonly string CertificateName;
         /// <summary>
-        /// The type of the Certificate.
+        /// The type of Certificate. Valid values: `CA`, `Server`.
         /// </summary>
         public readonly string CertificateType;
         /// <summary>
@@ -50,7 +50,7 @@ namespace Pulumi.Volcengine.Alb.Outputs
         /// </summary>
         public readonly ImmutableArray<string> Listeners;
         /// <summary>
-        /// The ProjectName of the Certificate.
+        /// The project name of Certificate.
         /// </summary>
         public readonly string ProjectName;
         /// <summary>

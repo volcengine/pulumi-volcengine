@@ -1842,15 +1842,15 @@ class AllCertificatesCertificateResult(dict):
                  tags: Sequence['outputs.AllCertificatesCertificateTagResult']):
         """
         :param str certificate_id: The ID of the Certificate.
-        :param str certificate_name: The name of the Certificate.
-        :param str certificate_type: The type of the Certificate.
+        :param str certificate_name: The Name of Certificate.
+        :param str certificate_type: The type of Certificate. Valid values: `CA`, `Server`.
         :param str create_time: The create time of the Certificate.
         :param str description: The description of the Certificate.
         :param str domain_name: The domain name of the Certificate.
         :param str expired_at: The expire time of the Certificate.
         :param str id: The ID of the Certificate.
         :param Sequence[str] listeners: The ID list of the Listener.
-        :param str project_name: The ProjectName of the Certificate.
+        :param str project_name: The project name of Certificate.
         :param str san: The list of extended domain names for the certificate, separated by English commas ',', including (commonName, DnsName, IP).
         :param str status: The status of the Certificate.
         :param Sequence['AllCertificatesCertificateTagArgs'] tags: Tags.
@@ -1881,7 +1881,7 @@ class AllCertificatesCertificateResult(dict):
     @pulumi.getter(name="certificateName")
     def certificate_name(self) -> str:
         """
-        The name of the Certificate.
+        The Name of Certificate.
         """
         return pulumi.get(self, "certificate_name")
 
@@ -1889,7 +1889,7 @@ class AllCertificatesCertificateResult(dict):
     @pulumi.getter(name="certificateType")
     def certificate_type(self) -> str:
         """
-        The type of the Certificate.
+        The type of Certificate. Valid values: `CA`, `Server`.
         """
         return pulumi.get(self, "certificate_type")
 
@@ -1945,7 +1945,7 @@ class AllCertificatesCertificateResult(dict):
     @pulumi.getter(name="projectName")
     def project_name(self) -> str:
         """
-        The ProjectName of the Certificate.
+        The project name of Certificate.
         """
         return pulumi.get(self, "project_name")
 
@@ -3073,23 +3073,43 @@ class ListenerDomainExtension(dict):
 @pulumi.output_type
 class ListenerDomainExtensionsDomainExtensionResult(dict):
     def __init__(__self__, *,
+                 cert_center_certificate_id: str,
                  certificate_id: str,
+                 certificate_source: str,
                  domain: str,
                  domain_extension_id: str,
                  id: str,
-                 listener_id: str):
+                 listener_id: str,
+                 pca_leaf_certificate_id: str,
+                 san: str):
         """
+        :param str cert_center_certificate_id: The server certificate ID used by the domain name. It takes effect when the certificate source is cert_center.
         :param str certificate_id: The server certificate ID that domain used.
+        :param str certificate_source: The source of the certificate.
         :param str domain: The domain.
         :param str domain_extension_id: The extension domain ID.
         :param str id: The ID of the Listener.
         :param str listener_id: A Listener ID.
+        :param str pca_leaf_certificate_id: The server certificate ID used by the domain name. It takes effect when the certificate source is pca_leaf.
+        :param str san: The CommonName, extended domain names, and IPs of the certificate are separated by ','.
         """
+        pulumi.set(__self__, "cert_center_certificate_id", cert_center_certificate_id)
         pulumi.set(__self__, "certificate_id", certificate_id)
+        pulumi.set(__self__, "certificate_source", certificate_source)
         pulumi.set(__self__, "domain", domain)
         pulumi.set(__self__, "domain_extension_id", domain_extension_id)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "listener_id", listener_id)
+        pulumi.set(__self__, "pca_leaf_certificate_id", pca_leaf_certificate_id)
+        pulumi.set(__self__, "san", san)
+
+    @property
+    @pulumi.getter(name="certCenterCertificateId")
+    def cert_center_certificate_id(self) -> str:
+        """
+        The server certificate ID used by the domain name. It takes effect when the certificate source is cert_center.
+        """
+        return pulumi.get(self, "cert_center_certificate_id")
 
     @property
     @pulumi.getter(name="certificateId")
@@ -3098,6 +3118,14 @@ class ListenerDomainExtensionsDomainExtensionResult(dict):
         The server certificate ID that domain used.
         """
         return pulumi.get(self, "certificate_id")
+
+    @property
+    @pulumi.getter(name="certificateSource")
+    def certificate_source(self) -> str:
+        """
+        The source of the certificate.
+        """
+        return pulumi.get(self, "certificate_source")
 
     @property
     @pulumi.getter
@@ -3130,6 +3158,22 @@ class ListenerDomainExtensionsDomainExtensionResult(dict):
         A Listener ID.
         """
         return pulumi.get(self, "listener_id")
+
+    @property
+    @pulumi.getter(name="pcaLeafCertificateId")
+    def pca_leaf_certificate_id(self) -> str:
+        """
+        The server certificate ID used by the domain name. It takes effect when the certificate source is pca_leaf.
+        """
+        return pulumi.get(self, "pca_leaf_certificate_id")
+
+    @property
+    @pulumi.getter
+    def san(self) -> str:
+        """
+        The CommonName, extended domain names, and IPs of the certificate are separated by ','.
+        """
+        return pulumi.get(self, "san")
 
 
 @pulumi.output_type
@@ -3214,7 +3258,7 @@ class ListenerHealthsListenerBackendServerResult(dict):
         :param str server_group_id: The ID of the backend server group.
         :param str server_group_name: The name of the backend server group.
         :param str server_id: The ID of the backend server.
-        :param str status: The health status of the backend server. Value: Up, Down.
+        :param str status: The status of the listener. Value: Active, Error, NoTarget, Disabled.
         :param str type: The type of backend server. Value: ecs, eni.
         """
         pulumi.set(__self__, "instance_id", instance_id)
@@ -3287,7 +3331,7 @@ class ListenerHealthsListenerBackendServerResult(dict):
     @pulumi.getter
     def status(self) -> str:
         """
-        The health status of the backend server. Value: Up, Down.
+        The status of the listener. Value: Active, Error, NoTarget, Disabled.
         """
         return pulumi.get(self, "status")
 
@@ -7752,15 +7796,15 @@ class GetAllCertificatesCertificateResult(dict):
                  tags: Sequence['outputs.GetAllCertificatesCertificateTagResult']):
         """
         :param str certificate_id: The ID of the Certificate.
-        :param str certificate_name: The name of the Certificate.
-        :param str certificate_type: The type of the Certificate.
+        :param str certificate_name: The Name of Certificate.
+        :param str certificate_type: The type of Certificate. Valid values: `CA`, `Server`.
         :param str create_time: The create time of the Certificate.
         :param str description: The description of the Certificate.
         :param str domain_name: The domain name of the Certificate.
         :param str expired_at: The expire time of the Certificate.
         :param str id: The ID of the Certificate.
         :param Sequence[str] listeners: The ID list of the Listener.
-        :param str project_name: The ProjectName of the Certificate.
+        :param str project_name: The project name of Certificate.
         :param str san: The list of extended domain names for the certificate, separated by English commas ',', including (commonName, DnsName, IP).
         :param str status: The status of the Certificate.
         :param Sequence['GetAllCertificatesCertificateTagArgs'] tags: Tags.
@@ -7791,7 +7835,7 @@ class GetAllCertificatesCertificateResult(dict):
     @pulumi.getter(name="certificateName")
     def certificate_name(self) -> str:
         """
-        The name of the Certificate.
+        The Name of Certificate.
         """
         return pulumi.get(self, "certificate_name")
 
@@ -7799,7 +7843,7 @@ class GetAllCertificatesCertificateResult(dict):
     @pulumi.getter(name="certificateType")
     def certificate_type(self) -> str:
         """
-        The type of the Certificate.
+        The type of Certificate. Valid values: `CA`, `Server`.
         """
         return pulumi.get(self, "certificate_type")
 
@@ -7855,7 +7899,7 @@ class GetAllCertificatesCertificateResult(dict):
     @pulumi.getter(name="projectName")
     def project_name(self) -> str:
         """
-        The ProjectName of the Certificate.
+        The project name of Certificate.
         """
         return pulumi.get(self, "project_name")
 
@@ -8792,23 +8836,43 @@ class GetHealthCheckTemplatesTagResult(dict):
 @pulumi.output_type
 class GetListenerDomainExtensionsDomainExtensionResult(dict):
     def __init__(__self__, *,
+                 cert_center_certificate_id: str,
                  certificate_id: str,
+                 certificate_source: str,
                  domain: str,
                  domain_extension_id: str,
                  id: str,
-                 listener_id: str):
+                 listener_id: str,
+                 pca_leaf_certificate_id: str,
+                 san: str):
         """
+        :param str cert_center_certificate_id: The server certificate ID used by the domain name. It takes effect when the certificate source is cert_center.
         :param str certificate_id: The server certificate ID that domain used.
+        :param str certificate_source: The source of the certificate.
         :param str domain: The domain.
         :param str domain_extension_id: The extension domain ID.
         :param str id: The ID of the Listener.
         :param str listener_id: A Listener ID.
+        :param str pca_leaf_certificate_id: The server certificate ID used by the domain name. It takes effect when the certificate source is pca_leaf.
+        :param str san: The CommonName, extended domain names, and IPs of the certificate are separated by ','.
         """
+        pulumi.set(__self__, "cert_center_certificate_id", cert_center_certificate_id)
         pulumi.set(__self__, "certificate_id", certificate_id)
+        pulumi.set(__self__, "certificate_source", certificate_source)
         pulumi.set(__self__, "domain", domain)
         pulumi.set(__self__, "domain_extension_id", domain_extension_id)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "listener_id", listener_id)
+        pulumi.set(__self__, "pca_leaf_certificate_id", pca_leaf_certificate_id)
+        pulumi.set(__self__, "san", san)
+
+    @property
+    @pulumi.getter(name="certCenterCertificateId")
+    def cert_center_certificate_id(self) -> str:
+        """
+        The server certificate ID used by the domain name. It takes effect when the certificate source is cert_center.
+        """
+        return pulumi.get(self, "cert_center_certificate_id")
 
     @property
     @pulumi.getter(name="certificateId")
@@ -8817,6 +8881,14 @@ class GetListenerDomainExtensionsDomainExtensionResult(dict):
         The server certificate ID that domain used.
         """
         return pulumi.get(self, "certificate_id")
+
+    @property
+    @pulumi.getter(name="certificateSource")
+    def certificate_source(self) -> str:
+        """
+        The source of the certificate.
+        """
+        return pulumi.get(self, "certificate_source")
 
     @property
     @pulumi.getter
@@ -8849,6 +8921,22 @@ class GetListenerDomainExtensionsDomainExtensionResult(dict):
         A Listener ID.
         """
         return pulumi.get(self, "listener_id")
+
+    @property
+    @pulumi.getter(name="pcaLeafCertificateId")
+    def pca_leaf_certificate_id(self) -> str:
+        """
+        The server certificate ID used by the domain name. It takes effect when the certificate source is pca_leaf.
+        """
+        return pulumi.get(self, "pca_leaf_certificate_id")
+
+    @property
+    @pulumi.getter
+    def san(self) -> str:
+        """
+        The CommonName, extended domain names, and IPs of the certificate are separated by ','.
+        """
+        return pulumi.get(self, "san")
 
 
 @pulumi.output_type
@@ -8933,7 +9021,7 @@ class GetListenerHealthsListenerBackendServerResult(dict):
         :param str server_group_id: The ID of the backend server group.
         :param str server_group_name: The name of the backend server group.
         :param str server_id: The ID of the backend server.
-        :param str status: The health status of the backend server. Value: Up, Down.
+        :param str status: The status of the listener. Value: Active, Error, NoTarget, Disabled.
         :param str type: The type of backend server. Value: ecs, eni.
         """
         pulumi.set(__self__, "instance_id", instance_id)
@@ -9006,7 +9094,7 @@ class GetListenerHealthsListenerBackendServerResult(dict):
     @pulumi.getter
     def status(self) -> str:
         """
-        The health status of the backend server. Value: Up, Down.
+        The status of the listener. Value: Active, Error, NoTarget, Disabled.
         """
         return pulumi.get(self, "status")
 

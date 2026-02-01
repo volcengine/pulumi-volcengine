@@ -23,6 +23,15 @@ namespace Pulumi.Volcengine.Tls
     /// {
     ///     var foo = new Volcengine.Tls.Index("foo", new()
     ///     {
+    ///         EnableAutoIndex = true,
+    ///         FullText = new Volcengine.Tls.Inputs.IndexFullTextArgs
+    ///         {
+    ///             CaseSensitive = false,
+    ///             Delimiter = @", ;/
+    /// 	
+    /// ",
+    ///             IncludeChinese = false,
+    ///         },
     ///         KeyValues = new[]
     ///         {
     ///             new Volcengine.Tls.Inputs.IndexKeyValueArgs
@@ -35,12 +44,12 @@ namespace Pulumi.Volcengine.Tls
     ///                 {
     ///                     new Volcengine.Tls.Inputs.IndexKeyValueJsonKeyArgs
     ///                     {
-    ///                         Key = "class",
+    ///                         Key = "name",
     ///                         ValueType = "text",
     ///                     },
     ///                     new Volcengine.Tls.Inputs.IndexKeyValueJsonKeyArgs
     ///                     {
-    ///                         Key = "age",
+    ///                         Key = "key",
     ///                         ValueType = "long",
     ///                     },
     ///                 },
@@ -48,17 +57,9 @@ namespace Pulumi.Volcengine.Tls
     ///                 SqlFlag = true,
     ///                 ValueType = "json",
     ///             },
-    ///             new Volcengine.Tls.Inputs.IndexKeyValueArgs
-    ///             {
-    ///                 CaseSensitive = true,
-    ///                 Delimiter = "!",
-    ///                 IncludeChinese = false,
-    ///                 Key = "k5",
-    ///                 SqlFlag = false,
-    ///                 ValueType = "text",
-    ///             },
     ///         },
-    ///         TopicId = "227a8d0c-b85b-48df-bee1-0927a595****",
+    ///         MaxTextLen = 2048,
+    ///         TopicId = "b600dc34-503f-42fc-8e32-953af55463d1",
     ///         UserInnerKeyValues = new[]
     ///         {
     ///             new Volcengine.Tls.Inputs.IndexUserInnerKeyValueArgs
@@ -70,12 +71,12 @@ namespace Pulumi.Volcengine.Tls
     ///                 {
     ///                     new Volcengine.Tls.Inputs.IndexUserInnerKeyValueJsonKeyArgs
     ///                     {
-    ///                         Key = "age",
+    ///                         Key = "app",
     ///                         ValueType = "long",
     ///                     },
     ///                     new Volcengine.Tls.Inputs.IndexUserInnerKeyValueJsonKeyArgs
     ///                     {
-    ///                         Key = "name",
+    ///                         Key = "tag",
     ///                         ValueType = "long",
     ///                     },
     ///                 },
@@ -107,6 +108,12 @@ namespace Pulumi.Volcengine.Tls
         public Output<string> CreateTime { get; private set; } = null!;
 
         /// <summary>
+        /// Whether to enable auto index.
+        /// </summary>
+        [Output("enableAutoIndex")]
+        public Output<bool?> EnableAutoIndex { get; private set; } = null!;
+
+        /// <summary>
         /// The full text info of the tls index.
         /// </summary>
         [Output("fullText")]
@@ -117,6 +124,12 @@ namespace Pulumi.Volcengine.Tls
         /// </summary>
         [Output("keyValues")]
         public Output<ImmutableArray<Outputs.IndexKeyValue>> KeyValues { get; private set; } = null!;
+
+        /// <summary>
+        /// The max text length of the tls index.
+        /// </summary>
+        [Output("maxTextLen")]
+        public Output<int?> MaxTextLen { get; private set; } = null!;
 
         /// <summary>
         /// The modify time of the tls index.
@@ -184,6 +197,12 @@ namespace Pulumi.Volcengine.Tls
     public sealed class IndexArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Whether to enable auto index.
+        /// </summary>
+        [Input("enableAutoIndex")]
+        public Input<bool>? EnableAutoIndex { get; set; }
+
+        /// <summary>
         /// The full text info of the tls index.
         /// </summary>
         [Input("fullText")]
@@ -200,6 +219,12 @@ namespace Pulumi.Volcengine.Tls
             get => _keyValues ?? (_keyValues = new InputList<Inputs.IndexKeyValueArgs>());
             set => _keyValues = value;
         }
+
+        /// <summary>
+        /// The max text length of the tls index.
+        /// </summary>
+        [Input("maxTextLen")]
+        public Input<int>? MaxTextLen { get; set; }
 
         /// <summary>
         /// The topic id of the tls index.
@@ -234,6 +259,12 @@ namespace Pulumi.Volcengine.Tls
         public Input<string>? CreateTime { get; set; }
 
         /// <summary>
+        /// Whether to enable auto index.
+        /// </summary>
+        [Input("enableAutoIndex")]
+        public Input<bool>? EnableAutoIndex { get; set; }
+
+        /// <summary>
         /// The full text info of the tls index.
         /// </summary>
         [Input("fullText")]
@@ -250,6 +281,12 @@ namespace Pulumi.Volcengine.Tls
             get => _keyValues ?? (_keyValues = new InputList<Inputs.IndexKeyValueGetArgs>());
             set => _keyValues = value;
         }
+
+        /// <summary>
+        /// The max text length of the tls index.
+        /// </summary>
+        [Input("maxTextLen")]
+        public Input<int>? MaxTextLen { get; set; }
 
         /// <summary>
         /// The modify time of the tls index.

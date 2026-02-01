@@ -26,10 +26,40 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := tls.GetConsumerGroups(ctx, nil, nil)
+//			all, err := tls.GetConsumerGroups(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
+//			ctx.Export("allConsumerGroups", all.ConsumerGroups)
+//			byName, err := tls.GetConsumerGroups(ctx, &tls.GetConsumerGroupsArgs{
+//				ConsumerGroupName: pulumi.StringRef("test-consumer-group"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("byNameConsumerGroups", byName.ConsumerGroups)
+//			byProject, err := tls.GetConsumerGroups(ctx, &tls.GetConsumerGroupsArgs{
+//				ProjectId: pulumi.StringRef("project-123456"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("byProjectConsumerGroups", byProject.ConsumerGroups)
+//			byTopic, err := tls.GetConsumerGroups(ctx, &tls.GetConsumerGroupsArgs{
+//				TopicId: pulumi.StringRef("topic-123456"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("byTopicConsumerGroups", byTopic.ConsumerGroups)
+//			withMultipleFilters, err := tls.GetConsumerGroups(ctx, &tls.GetConsumerGroupsArgs{
+//				ProjectId:         pulumi.StringRef("project-123456"),
+//				ConsumerGroupName: pulumi.StringRef("test"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("multipleFiltersConsumerGroups", withMultipleFilters.ConsumerGroups)
 //			return nil
 //		})
 //	}

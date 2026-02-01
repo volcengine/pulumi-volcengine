@@ -19,6 +19,12 @@ namespace Pulumi.Volcengine.Clb.Inputs
         public Input<int>? Bandwidth { get; set; }
 
         /// <summary>
+        /// The ID of the shared bandwidth package that the EIP is to be added to. Only valid when the eip_billing_type is `PostPaidByBandwidth` or `PostPaidByTraffic`.
+        /// </summary>
+        [Input("bandwidthPackageId")]
+        public Input<string>? BandwidthPackageId { get; set; }
+
+        /// <summary>
         /// The billing type of the EIP which automatically assigned to CLB. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.When creating a `PrePaid` public CLB, this field must be specified as `PrePaid` simultaneously.When the LoadBalancerBillingType changes from `PostPaid` to `PrePaid`, please manually modify the value of this field to `PrePaid` simultaneously.
         /// </summary>
         [Input("eipBillingType", required: true)]
@@ -29,6 +35,24 @@ namespace Pulumi.Volcengine.Clb.Inputs
         /// </summary>
         [Input("isp", required: true)]
         public Input<string> Isp { get; set; } = null!;
+
+        /// <summary>
+        /// The ID of the DDoS native protection (Enterprise Edition) instance.
+        /// </summary>
+        [Input("securityProtectionInstanceId")]
+        public Input<string>? SecurityProtectionInstanceId { get; set; }
+
+        [Input("securityProtectionTypes")]
+        private InputList<string>? _securityProtectionTypes;
+
+        /// <summary>
+        /// The security protection types of the EIP. Only valid when the eip_billing_type is `PostPaidByBandwidth` or `PostPaidByTraffic`.
+        /// </summary>
+        public InputList<string> SecurityProtectionTypes
+        {
+            get => _securityProtectionTypes ?? (_securityProtectionTypes = new InputList<string>());
+            set => _securityProtectionTypes = value;
+        }
 
         public ClbEipBillingConfigGetArgs()
         {

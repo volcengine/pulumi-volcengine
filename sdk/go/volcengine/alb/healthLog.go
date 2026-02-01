@@ -12,6 +12,39 @@ import (
 	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
+// Provides a resource to manage alb health log
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/alb"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Enable health check log collection
+//			_, err := alb.NewHealthLog(ctx, "example", &alb.HealthLogArgs{
+//				LoadBalancerId: pulumi.String("alb-bdchexlt87pc8dv40nbr6mu7"),
+//				ProjectId:      pulumi.String("29018d87-858b-4d24-bb8e-5ac958fa5ca5"),
+//				TopicId:        pulumi.String("cd507e58-64d2-48e3-9e98-f384430d773a"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// The AlbHealthLog is not support import.
 type HealthLog struct {
 	pulumi.CustomResourceState
 

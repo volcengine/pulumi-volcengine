@@ -15,8 +15,8 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  *
  * const default = volcengine.tls.getTopics({
- *     projectId: "e020c978-4f05-40e1-9167-0113d3ef****",
- *     topicId: "edf051ed-3c46-49ba-9339-bea628fe****",
+ *     projectId: "bdb87e4d-7dad-4b96-ac43-e1b09e9dc8ac",
+ *     topicId: "9b756385-1dfb-4306-a094-0c88e04b34a5",
  * });
  * ```
  */
@@ -26,7 +26,6 @@ export function topics(args: TopicsArgs, opts?: pulumi.InvokeOptions): Promise<T
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:tls/topics:Topics", {
-        "isFullName": args.isFullName,
         "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
         "projectId": args.projectId,
@@ -40,10 +39,6 @@ export function topics(args: TopicsArgs, opts?: pulumi.InvokeOptions): Promise<T
  * A collection of arguments for invoking Topics.
  */
 export interface TopicsArgs {
-    /**
-     * Whether to match accurately when filtering based on TopicName.
-     */
-    isFullName?: boolean;
     /**
      * A Name Regex of tls topic.
      */
@@ -78,7 +73,6 @@ export interface TopicsResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    readonly isFullName?: boolean;
     readonly nameRegex?: string;
     readonly outputFile?: string;
     /**
@@ -115,8 +109,8 @@ export interface TopicsResult {
  * import * as volcengine from "@pulumi/volcengine";
  *
  * const default = volcengine.tls.getTopics({
- *     projectId: "e020c978-4f05-40e1-9167-0113d3ef****",
- *     topicId: "edf051ed-3c46-49ba-9339-bea628fe****",
+ *     projectId: "bdb87e4d-7dad-4b96-ac43-e1b09e9dc8ac",
+ *     topicId: "9b756385-1dfb-4306-a094-0c88e04b34a5",
  * });
  * ```
  */
@@ -129,10 +123,6 @@ export function topicsOutput(args: TopicsOutputArgs, opts?: pulumi.InvokeOptions
  * A collection of arguments for invoking Topics.
  */
 export interface TopicsOutputArgs {
-    /**
-     * Whether to match accurately when filtering based on TopicName.
-     */
-    isFullName?: pulumi.Input<boolean>;
     /**
      * A Name Regex of tls topic.
      */

@@ -18,6 +18,10 @@ namespace Pulumi.Volcengine.Tls.Outputs
         /// </summary>
         public readonly int EndTimeOffset;
         /// <summary>
+        /// The end time offset unit.
+        /// </summary>
+        public readonly string EndTimeOffsetUnit;
+        /// <summary>
         /// Alarm object sequence number; increments from 1.
         /// </summary>
         public readonly int Number;
@@ -30,6 +34,14 @@ namespace Pulumi.Volcengine.Tls.Outputs
         /// </summary>
         public readonly int StartTimeOffset;
         /// <summary>
+        /// The start time offset unit.
+        /// </summary>
+        public readonly string StartTimeOffsetUnit;
+        /// <summary>
+        /// The time span type.
+        /// </summary>
+        public readonly string TimeSpanType;
+        /// <summary>
         /// The topic id.
         /// </summary>
         public readonly string TopicId;
@@ -37,10 +49,16 @@ namespace Pulumi.Volcengine.Tls.Outputs
         /// The topic name.
         /// </summary>
         public readonly string TopicName;
+        /// <summary>
+        /// The truncated time.
+        /// </summary>
+        public readonly string TruncatedTime;
 
         [OutputConstructor]
         private GetAlarmsAlarmQueryRequestResult(
             int endTimeOffset,
+
+            string endTimeOffsetUnit,
 
             int number,
 
@@ -48,16 +66,26 @@ namespace Pulumi.Volcengine.Tls.Outputs
 
             int startTimeOffset,
 
+            string startTimeOffsetUnit,
+
+            string timeSpanType,
+
             string topicId,
 
-            string topicName)
+            string topicName,
+
+            string truncatedTime)
         {
             EndTimeOffset = endTimeOffset;
+            EndTimeOffsetUnit = endTimeOffsetUnit;
             Number = number;
             Query = query;
             StartTimeOffset = startTimeOffset;
+            StartTimeOffsetUnit = startTimeOffsetUnit;
+            TimeSpanType = timeSpanType;
             TopicId = topicId;
             TopicName = topicName;
+            TruncatedTime = truncatedTime;
         }
     }
 }

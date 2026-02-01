@@ -27,7 +27,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := tls.GetHosts(ctx, &tls.GetHostsArgs{
-//				HostGroupId: "527102e2-1e4f-45f4-a990-751152125da7",
+//				HostGroupId: "2123af96-d057-4234-8f34-6fae9c9da6d0",
 //			}, nil)
 //			if err != nil {
 //				return err

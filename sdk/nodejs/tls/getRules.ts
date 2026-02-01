@@ -15,16 +15,25 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  *
  * const default = volcengine.tls.getRules({
- *     projectId: "cc44f8b6-0328-4622-b043-023fca735cd4",
+ *     logType: "minimalist_log",
+ *     pause: 0,
+ *     projectId: "39ed1cf8-dbf3-41c3-939d-999bab54313d",
+ *     ruleId: "048dc010-6bb1-4189-858a-281d654d6686",
+ *     topicId: "b600dc34-503f-42fc-8e32-953af55463d1",
  * });
  * ```
  */
-export function getRules(args: GetRulesArgs, opts?: pulumi.InvokeOptions): Promise<GetRulesResult> {
+export function getRules(args?: GetRulesArgs, opts?: pulumi.InvokeOptions): Promise<GetRulesResult> {
+    args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:tls/getRules:getRules", {
+        "iamProjectName": args.iamProjectName,
+        "logType": args.logType,
         "outputFile": args.outputFile,
+        "pause": args.pause,
         "projectId": args.projectId,
+        "projectName": args.projectName,
         "ruleId": args.ruleId,
         "ruleName": args.ruleName,
         "topicId": args.topicId,
@@ -37,13 +46,29 @@ export function getRules(args: GetRulesArgs, opts?: pulumi.InvokeOptions): Promi
  */
 export interface GetRulesArgs {
     /**
+     * The iam project name.
+     */
+    iamProjectName?: string;
+    /**
+     * The log type.
+     */
+    logType?: string;
+    /**
      * File name where to save data source results.
      */
     outputFile?: string;
     /**
+     * Whether to pause collection configuration.
+     */
+    pause?: number;
+    /**
      * The project id.
      */
-    projectId: string;
+    projectId?: string;
+    /**
+     * The project name.
+     */
+    projectName?: string;
     /**
      * The rule id.
      */
@@ -66,12 +91,19 @@ export interface GetRulesArgs {
  * A collection of values returned by getRules.
  */
 export interface GetRulesResult {
+    readonly iamProjectName?: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * The log type.
+     */
+    readonly logType?: string;
     readonly outputFile?: string;
-    readonly projectId: string;
+    readonly pause?: number;
+    readonly projectId?: string;
+    readonly projectName?: string;
     /**
      * The rule id.
      */
@@ -106,11 +138,15 @@ export interface GetRulesResult {
  * import * as volcengine from "@pulumi/volcengine";
  *
  * const default = volcengine.tls.getRules({
- *     projectId: "cc44f8b6-0328-4622-b043-023fca735cd4",
+ *     logType: "minimalist_log",
+ *     pause: 0,
+ *     projectId: "39ed1cf8-dbf3-41c3-939d-999bab54313d",
+ *     ruleId: "048dc010-6bb1-4189-858a-281d654d6686",
+ *     topicId: "b600dc34-503f-42fc-8e32-953af55463d1",
  * });
  * ```
  */
-export function getRulesOutput(args: GetRulesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRulesResult> {
+export function getRulesOutput(args?: GetRulesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRulesResult> {
     return pulumi.output(args).apply((a: any) => getRules(a, opts))
 }
 
@@ -119,13 +155,29 @@ export function getRulesOutput(args: GetRulesOutputArgs, opts?: pulumi.InvokeOpt
  */
 export interface GetRulesOutputArgs {
     /**
+     * The iam project name.
+     */
+    iamProjectName?: pulumi.Input<string>;
+    /**
+     * The log type.
+     */
+    logType?: pulumi.Input<string>;
+    /**
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
     /**
+     * Whether to pause collection configuration.
+     */
+    pause?: pulumi.Input<number>;
+    /**
      * The project id.
      */
-    projectId: pulumi.Input<string>;
+    projectId?: pulumi.Input<string>;
+    /**
+     * The project name.
+     */
+    projectName?: pulumi.Input<string>;
     /**
      * The rule id.
      */

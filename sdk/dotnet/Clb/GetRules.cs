@@ -229,6 +229,18 @@ namespace Pulumi.Volcengine.Clb
         [Input("outputFile")]
         public string? OutputFile { get; set; }
 
+        [Input("tags")]
+        private List<Inputs.GetRulesTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public List<Inputs.GetRulesTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new List<Inputs.GetRulesTagArgs>());
+            set => _tags = value;
+        }
+
         public GetRulesArgs()
         {
         }
@@ -261,6 +273,18 @@ namespace Pulumi.Volcengine.Clb
         [Input("outputFile")]
         public Input<string>? OutputFile { get; set; }
 
+        [Input("tags")]
+        private InputList<Inputs.GetRulesTagInputArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.GetRulesTagInputArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.GetRulesTagInputArgs>());
+            set => _tags = value;
+        }
+
         public GetRulesInvokeArgs()
         {
         }
@@ -282,6 +306,10 @@ namespace Pulumi.Volcengine.Clb
         /// The collection of Rule query.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetRulesRuleResult> Rules;
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetRulesTagResult> Tags;
 
         [OutputConstructor]
         private GetRulesResult(
@@ -293,13 +321,16 @@ namespace Pulumi.Volcengine.Clb
 
             string? outputFile,
 
-            ImmutableArray<Outputs.GetRulesRuleResult> rules)
+            ImmutableArray<Outputs.GetRulesRuleResult> rules,
+
+            ImmutableArray<Outputs.GetRulesTagResult> tags)
         {
             Id = id;
             Ids = ids;
             ListenerId = listenerId;
             OutputFile = outputFile;
             Rules = rules;
+            Tags = tags;
         }
     }
 }

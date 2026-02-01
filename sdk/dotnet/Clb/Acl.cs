@@ -38,6 +38,14 @@ namespace Pulumi.Volcengine.Clb
     ///         },
     ///         AclName = "tf-test-2",
     ///         ProjectName = "default",
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Clb.Inputs.AclTagArgs
+    ///             {
+    ///                 Key = "key1",
+    ///                 Value = "value2",
+    ///             },
+    ///         },
     ///     });
     /// 
     /// });
@@ -83,6 +91,12 @@ namespace Pulumi.Volcengine.Clb
         /// </summary>
         [Output("projectName")]
         public Output<string> ProjectName { get; private set; } = null!;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<Outputs.AclTag>> Tags { get; private set; } = null!;
 
 
         /// <summary>
@@ -161,6 +175,18 @@ namespace Pulumi.Volcengine.Clb
         [Input("projectName")]
         public Input<string>? ProjectName { get; set; }
 
+        [Input("tags")]
+        private InputList<Inputs.AclTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.AclTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.AclTagArgs>());
+            set => _tags = value;
+        }
+
         public AclArgs()
         {
         }
@@ -204,6 +230,18 @@ namespace Pulumi.Volcengine.Clb
         /// </summary>
         [Input("projectName")]
         public Input<string>? ProjectName { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.AclTagGetArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.AclTagGetArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.AclTagGetArgs>());
+            set => _tags = value;
+        }
 
         public AclState()
         {

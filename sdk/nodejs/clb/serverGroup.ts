@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -40,6 +42,11 @@ import * as utilities from "../utilities";
  *     loadBalancerId: fooClb.id,
  *     serverGroupName: "acc-test-create",
  *     description: "hello demo11",
+ *     type: "ip",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
  * });
  * ```
  *
@@ -84,6 +91,10 @@ export class ServerGroup extends pulumi.CustomResource {
      */
     public readonly addressIpVersion!: pulumi.Output<string | undefined>;
     /**
+     * Whether to enable full port forwarding. This feature is in beta.
+     */
+    public readonly anyPortEnabled!: pulumi.Output<boolean | undefined>;
+    /**
      * The description of ServerGroup.
      */
     public readonly description!: pulumi.Output<string>;
@@ -99,6 +110,14 @@ export class ServerGroup extends pulumi.CustomResource {
      * The name of the ServerGroup.
      */
     public readonly serverGroupName!: pulumi.Output<string>;
+    /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.clb.ServerGroupTag[] | undefined>;
+    /**
+     * The type of the ServerGroup. Valid values: `instance`, `ip`. Default is `instance`.
+     */
+    public readonly type!: pulumi.Output<string | undefined>;
 
     /**
      * Create a ServerGroup resource with the given unique name, arguments, and options.
@@ -114,20 +133,26 @@ export class ServerGroup extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as ServerGroupState | undefined;
             resourceInputs["addressIpVersion"] = state ? state.addressIpVersion : undefined;
+            resourceInputs["anyPortEnabled"] = state ? state.anyPortEnabled : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["loadBalancerId"] = state ? state.loadBalancerId : undefined;
             resourceInputs["serverGroupId"] = state ? state.serverGroupId : undefined;
             resourceInputs["serverGroupName"] = state ? state.serverGroupName : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as ServerGroupArgs | undefined;
             if ((!args || args.loadBalancerId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'loadBalancerId'");
             }
             resourceInputs["addressIpVersion"] = args ? args.addressIpVersion : undefined;
+            resourceInputs["anyPortEnabled"] = args ? args.anyPortEnabled : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["loadBalancerId"] = args ? args.loadBalancerId : undefined;
             resourceInputs["serverGroupId"] = args ? args.serverGroupId : undefined;
             resourceInputs["serverGroupName"] = args ? args.serverGroupName : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(ServerGroup.__pulumiType, name, resourceInputs, opts);
@@ -142,6 +167,10 @@ export interface ServerGroupState {
      * The address ip version of the ServerGroup. Valid values: `ipv4`, `ipv6`. Default is `ipv4`.
      */
     addressIpVersion?: pulumi.Input<string>;
+    /**
+     * Whether to enable full port forwarding. This feature is in beta.
+     */
+    anyPortEnabled?: pulumi.Input<boolean>;
     /**
      * The description of ServerGroup.
      */
@@ -158,6 +187,14 @@ export interface ServerGroupState {
      * The name of the ServerGroup.
      */
     serverGroupName?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.clb.ServerGroupTag>[]>;
+    /**
+     * The type of the ServerGroup. Valid values: `instance`, `ip`. Default is `instance`.
+     */
+    type?: pulumi.Input<string>;
 }
 
 /**
@@ -168,6 +205,10 @@ export interface ServerGroupArgs {
      * The address ip version of the ServerGroup. Valid values: `ipv4`, `ipv6`. Default is `ipv4`.
      */
     addressIpVersion?: pulumi.Input<string>;
+    /**
+     * Whether to enable full port forwarding. This feature is in beta.
+     */
+    anyPortEnabled?: pulumi.Input<boolean>;
     /**
      * The description of ServerGroup.
      */
@@ -184,4 +225,12 @@ export interface ServerGroupArgs {
      * The name of the ServerGroup.
      */
     serverGroupName?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.clb.ServerGroupTag>[]>;
+    /**
+     * The type of the ServerGroup. Valid values: `instance`, `ip`. Default is `instance`.
+     */
+    type?: pulumi.Input<string>;
 }

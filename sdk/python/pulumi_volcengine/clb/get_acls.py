@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'GetAclsResult',
@@ -22,7 +23,7 @@ class GetAclsResult:
     """
     A collection of values returned by getAcls.
     """
-    def __init__(__self__, acl_name=None, acls=None, id=None, ids=None, name_regex=None, output_file=None, project_name=None, total_count=None):
+    def __init__(__self__, acl_name=None, acls=None, id=None, ids=None, name_regex=None, output_file=None, project_name=None, tags=None, total_count=None):
         if acl_name and not isinstance(acl_name, str):
             raise TypeError("Expected argument 'acl_name' to be a str")
         pulumi.set(__self__, "acl_name", acl_name)
@@ -44,6 +45,9 @@ class GetAclsResult:
         if project_name and not isinstance(project_name, str):
             raise TypeError("Expected argument 'project_name' to be a str")
         pulumi.set(__self__, "project_name", project_name)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
@@ -96,6 +100,14 @@ class GetAclsResult:
         return pulumi.get(self, "project_name")
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.GetAclsTagResult']]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="totalCount")
     def total_count(self) -> int:
         """
@@ -117,6 +129,7 @@ class AwaitableGetAclsResult(GetAclsResult):
             name_regex=self.name_regex,
             output_file=self.output_file,
             project_name=self.project_name,
+            tags=self.tags,
             total_count=self.total_count)
 
 
@@ -125,6 +138,7 @@ def get_acls(acl_name: Optional[str] = None,
              name_regex: Optional[str] = None,
              output_file: Optional[str] = None,
              project_name: Optional[str] = None,
+             tags: Optional[Sequence[pulumi.InputType['GetAclsTagArgs']]] = None,
              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAclsResult:
     """
     Use this data source to query detailed information of acls
@@ -134,7 +148,11 @@ def get_acls(acl_name: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.clb.get_acls(ids=["acl-3ti8n0rurx4bwbh9jzdy"])
+    default = volcengine.clb.get_acls(ids=["acl-3ti8n0rurx4bwbh9jzdy"],
+        tags=[volcengine.clb.GetAclsTagArgs(
+            key="k1",
+            value="v1",
+        )])
     ```
 
 
@@ -143,6 +161,7 @@ def get_acls(acl_name: Optional[str] = None,
     :param str name_regex: A Name Regex of Acl.
     :param str output_file: File name where to save data source results.
     :param str project_name: The ProjectName of Acl.
+    :param Sequence[pulumi.InputType['GetAclsTagArgs']] tags: Tags.
     """
     __args__ = dict()
     __args__['aclName'] = acl_name
@@ -150,6 +169,7 @@ def get_acls(acl_name: Optional[str] = None,
     __args__['nameRegex'] = name_regex
     __args__['outputFile'] = output_file
     __args__['projectName'] = project_name
+    __args__['tags'] = tags
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('volcengine:clb/getAcls:getAcls', __args__, opts=opts, typ=GetAclsResult).value
 
@@ -161,6 +181,7 @@ def get_acls(acl_name: Optional[str] = None,
         name_regex=pulumi.get(__ret__, 'name_regex'),
         output_file=pulumi.get(__ret__, 'output_file'),
         project_name=pulumi.get(__ret__, 'project_name'),
+        tags=pulumi.get(__ret__, 'tags'),
         total_count=pulumi.get(__ret__, 'total_count'))
 
 
@@ -170,6 +191,7 @@ def get_acls_output(acl_name: Optional[pulumi.Input[Optional[str]]] = None,
                     name_regex: Optional[pulumi.Input[Optional[str]]] = None,
                     output_file: Optional[pulumi.Input[Optional[str]]] = None,
                     project_name: Optional[pulumi.Input[Optional[str]]] = None,
+                    tags: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetAclsTagArgs']]]]] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAclsResult]:
     """
     Use this data source to query detailed information of acls
@@ -179,7 +201,11 @@ def get_acls_output(acl_name: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.clb.get_acls(ids=["acl-3ti8n0rurx4bwbh9jzdy"])
+    default = volcengine.clb.get_acls(ids=["acl-3ti8n0rurx4bwbh9jzdy"],
+        tags=[volcengine.clb.GetAclsTagArgs(
+            key="k1",
+            value="v1",
+        )])
     ```
 
 
@@ -188,5 +214,6 @@ def get_acls_output(acl_name: Optional[pulumi.Input[Optional[str]]] = None,
     :param str name_regex: A Name Regex of Acl.
     :param str output_file: File name where to save data source results.
     :param str project_name: The ProjectName of Acl.
+    :param Sequence[pulumi.InputType['GetAclsTagArgs']] tags: Tags.
     """
     ...

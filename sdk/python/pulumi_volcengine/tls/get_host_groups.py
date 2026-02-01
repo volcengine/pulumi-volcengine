@@ -22,10 +22,13 @@ class GetHostGroupsResult:
     """
     A collection of values returned by getHostGroups.
     """
-    def __init__(__self__, auto_update=None, host_group_id=None, host_group_name=None, host_identifier=None, iam_project_name=None, id=None, infos=None, output_file=None, service_logging=None, total_count=None):
+    def __init__(__self__, auto_update=None, hidden=None, host_group_id=None, host_group_name=None, host_identifier=None, iam_project_name=None, id=None, infos=None, output_file=None, service_logging=None, total_count=None):
         if auto_update and not isinstance(auto_update, bool):
             raise TypeError("Expected argument 'auto_update' to be a bool")
         pulumi.set(__self__, "auto_update", auto_update)
+        if hidden and not isinstance(hidden, bool):
+            raise TypeError("Expected argument 'hidden' to be a bool")
+        pulumi.set(__self__, "hidden", hidden)
         if host_group_id and not isinstance(host_group_id, str):
             raise TypeError("Expected argument 'host_group_id' to be a str")
         pulumi.set(__self__, "host_group_id", host_group_id)
@@ -61,6 +64,11 @@ class GetHostGroupsResult:
         Whether enable auto update.
         """
         return pulumi.get(self, "auto_update")
+
+    @property
+    @pulumi.getter
+    def hidden(self) -> Optional[bool]:
+        return pulumi.get(self, "hidden")
 
     @property
     @pulumi.getter(name="hostGroupId")
@@ -139,6 +147,7 @@ class AwaitableGetHostGroupsResult(GetHostGroupsResult):
             yield self
         return GetHostGroupsResult(
             auto_update=self.auto_update,
+            hidden=self.hidden,
             host_group_id=self.host_group_id,
             host_group_name=self.host_group_name,
             host_identifier=self.host_identifier,
@@ -151,6 +160,7 @@ class AwaitableGetHostGroupsResult(GetHostGroupsResult):
 
 
 def get_host_groups(auto_update: Optional[bool] = None,
+                    hidden: Optional[bool] = None,
                     host_group_id: Optional[str] = None,
                     host_group_name: Optional[str] = None,
                     host_identifier: Optional[str] = None,
@@ -166,12 +176,12 @@ def get_host_groups(auto_update: Optional[bool] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.get_host_groups(host_group_id="fbea6619-7b0c-40f3-ac7e-45c63e3f676e",
-        host_group_name="cn")
+    default = volcengine.tls.get_host_groups()
     ```
 
 
     :param bool auto_update: Whether enable auto update.
+    :param bool hidden: Whether to hide host groups in exclusive resources.
     :param str host_group_id: The id of host group.
     :param str host_group_name: The name of host group.
     :param str host_identifier: The identifier of host.
@@ -181,6 +191,7 @@ def get_host_groups(auto_update: Optional[bool] = None,
     """
     __args__ = dict()
     __args__['autoUpdate'] = auto_update
+    __args__['hidden'] = hidden
     __args__['hostGroupId'] = host_group_id
     __args__['hostGroupName'] = host_group_name
     __args__['hostIdentifier'] = host_identifier
@@ -192,6 +203,7 @@ def get_host_groups(auto_update: Optional[bool] = None,
 
     return AwaitableGetHostGroupsResult(
         auto_update=pulumi.get(__ret__, 'auto_update'),
+        hidden=pulumi.get(__ret__, 'hidden'),
         host_group_id=pulumi.get(__ret__, 'host_group_id'),
         host_group_name=pulumi.get(__ret__, 'host_group_name'),
         host_identifier=pulumi.get(__ret__, 'host_identifier'),
@@ -205,6 +217,7 @@ def get_host_groups(auto_update: Optional[bool] = None,
 
 @_utilities.lift_output_func(get_host_groups)
 def get_host_groups_output(auto_update: Optional[pulumi.Input[Optional[bool]]] = None,
+                           hidden: Optional[pulumi.Input[Optional[bool]]] = None,
                            host_group_id: Optional[pulumi.Input[Optional[str]]] = None,
                            host_group_name: Optional[pulumi.Input[Optional[str]]] = None,
                            host_identifier: Optional[pulumi.Input[Optional[str]]] = None,
@@ -220,12 +233,12 @@ def get_host_groups_output(auto_update: Optional[pulumi.Input[Optional[bool]]] =
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.get_host_groups(host_group_id="fbea6619-7b0c-40f3-ac7e-45c63e3f676e",
-        host_group_name="cn")
+    default = volcengine.tls.get_host_groups()
     ```
 
 
     :param bool auto_update: Whether enable auto update.
+    :param bool hidden: Whether to hide host groups in exclusive resources.
     :param str host_group_id: The id of host group.
     :param str host_group_name: The name of host group.
     :param str host_identifier: The identifier of host.

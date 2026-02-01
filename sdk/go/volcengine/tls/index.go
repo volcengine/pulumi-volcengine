@@ -28,6 +28,12 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := tls.NewIndex(ctx, "foo", &tls.IndexArgs{
+//				EnableAutoIndex: pulumi.Bool(true),
+//				FullText: &tls.IndexFullTextArgs{
+//					CaseSensitive:  pulumi.Bool(false),
+//					Delimiter:      pulumi.String(", ;/\n	\n"),
+//					IncludeChinese: pulumi.Bool(false),
+//				},
 //				KeyValues: tls.IndexKeyValueArray{
 //					&tls.IndexKeyValueArgs{
 //						CaseSensitive:  pulumi.Bool(true),
@@ -36,11 +42,11 @@ import (
 //						IndexAll:       pulumi.Bool(true),
 //						JsonKeys: tls.IndexKeyValueJsonKeyArray{
 //							&tls.IndexKeyValueJsonKeyArgs{
-//								Key:       pulumi.String("class"),
+//								Key:       pulumi.String("name"),
 //								ValueType: pulumi.String("text"),
 //							},
 //							&tls.IndexKeyValueJsonKeyArgs{
-//								Key:       pulumi.String("age"),
+//								Key:       pulumi.String("key"),
 //								ValueType: pulumi.String("long"),
 //							},
 //						},
@@ -48,16 +54,9 @@ import (
 //						SqlFlag:   pulumi.Bool(true),
 //						ValueType: pulumi.String("json"),
 //					},
-//					&tls.IndexKeyValueArgs{
-//						CaseSensitive:  pulumi.Bool(true),
-//						Delimiter:      pulumi.String("!"),
-//						IncludeChinese: pulumi.Bool(false),
-//						Key:            pulumi.String("k5"),
-//						SqlFlag:        pulumi.Bool(false),
-//						ValueType:      pulumi.String("text"),
-//					},
 //				},
-//				TopicId: pulumi.String("227a8d0c-b85b-48df-bee1-0927a595****"),
+//				MaxTextLen: pulumi.Int(2048),
+//				TopicId:    pulumi.String("b600dc34-503f-42fc-8e32-953af55463d1"),
 //				UserInnerKeyValues: tls.IndexUserInnerKeyValueArray{
 //					&tls.IndexUserInnerKeyValueArgs{
 //						CaseSensitive:  pulumi.Bool(false),
@@ -65,11 +64,11 @@ import (
 //						IncludeChinese: pulumi.Bool(false),
 //						JsonKeys: tls.IndexUserInnerKeyValueJsonKeyArray{
 //							&tls.IndexUserInnerKeyValueJsonKeyArgs{
-//								Key:       pulumi.String("age"),
+//								Key:       pulumi.String("app"),
 //								ValueType: pulumi.String("long"),
 //							},
 //							&tls.IndexUserInnerKeyValueJsonKeyArgs{
-//								Key:       pulumi.String("name"),
+//								Key:       pulumi.String("tag"),
 //								ValueType: pulumi.String("long"),
 //							},
 //						},
@@ -100,10 +99,14 @@ type Index struct {
 
 	// The create time of the tls index.
 	CreateTime pulumi.StringOutput `pulumi:"createTime"`
+	// Whether to enable auto index.
+	EnableAutoIndex pulumi.BoolPtrOutput `pulumi:"enableAutoIndex"`
 	// The full text info of the tls index.
 	FullText IndexFullTextPtrOutput `pulumi:"fullText"`
 	// The key value info of the tls index.
 	KeyValues IndexKeyValueArrayOutput `pulumi:"keyValues"`
+	// The max text length of the tls index.
+	MaxTextLen pulumi.IntPtrOutput `pulumi:"maxTextLen"`
 	// The modify time of the tls index.
 	ModifyTime pulumi.StringOutput `pulumi:"modifyTime"`
 	// The topic id of the tls index.
@@ -147,10 +150,14 @@ func GetIndex(ctx *pulumi.Context,
 type indexState struct {
 	// The create time of the tls index.
 	CreateTime *string `pulumi:"createTime"`
+	// Whether to enable auto index.
+	EnableAutoIndex *bool `pulumi:"enableAutoIndex"`
 	// The full text info of the tls index.
 	FullText *IndexFullText `pulumi:"fullText"`
 	// The key value info of the tls index.
 	KeyValues []IndexKeyValue `pulumi:"keyValues"`
+	// The max text length of the tls index.
+	MaxTextLen *int `pulumi:"maxTextLen"`
 	// The modify time of the tls index.
 	ModifyTime *string `pulumi:"modifyTime"`
 	// The topic id of the tls index.
@@ -162,10 +169,14 @@ type indexState struct {
 type IndexState struct {
 	// The create time of the tls index.
 	CreateTime pulumi.StringPtrInput
+	// Whether to enable auto index.
+	EnableAutoIndex pulumi.BoolPtrInput
 	// The full text info of the tls index.
 	FullText IndexFullTextPtrInput
 	// The key value info of the tls index.
 	KeyValues IndexKeyValueArrayInput
+	// The max text length of the tls index.
+	MaxTextLen pulumi.IntPtrInput
 	// The modify time of the tls index.
 	ModifyTime pulumi.StringPtrInput
 	// The topic id of the tls index.
@@ -179,10 +190,14 @@ func (IndexState) ElementType() reflect.Type {
 }
 
 type indexArgs struct {
+	// Whether to enable auto index.
+	EnableAutoIndex *bool `pulumi:"enableAutoIndex"`
 	// The full text info of the tls index.
 	FullText *IndexFullText `pulumi:"fullText"`
 	// The key value info of the tls index.
 	KeyValues []IndexKeyValue `pulumi:"keyValues"`
+	// The max text length of the tls index.
+	MaxTextLen *int `pulumi:"maxTextLen"`
 	// The topic id of the tls index.
 	TopicId string `pulumi:"topicId"`
 	// The reserved field index configuration of the tls index.
@@ -191,10 +206,14 @@ type indexArgs struct {
 
 // The set of arguments for constructing a Index resource.
 type IndexArgs struct {
+	// Whether to enable auto index.
+	EnableAutoIndex pulumi.BoolPtrInput
 	// The full text info of the tls index.
 	FullText IndexFullTextPtrInput
 	// The key value info of the tls index.
 	KeyValues IndexKeyValueArrayInput
+	// The max text length of the tls index.
+	MaxTextLen pulumi.IntPtrInput
 	// The topic id of the tls index.
 	TopicId pulumi.StringInput
 	// The reserved field index configuration of the tls index.
@@ -293,6 +312,11 @@ func (o IndexOutput) CreateTime() pulumi.StringOutput {
 	return o.ApplyT(func(v *Index) pulumi.StringOutput { return v.CreateTime }).(pulumi.StringOutput)
 }
 
+// Whether to enable auto index.
+func (o IndexOutput) EnableAutoIndex() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Index) pulumi.BoolPtrOutput { return v.EnableAutoIndex }).(pulumi.BoolPtrOutput)
+}
+
 // The full text info of the tls index.
 func (o IndexOutput) FullText() IndexFullTextPtrOutput {
 	return o.ApplyT(func(v *Index) IndexFullTextPtrOutput { return v.FullText }).(IndexFullTextPtrOutput)
@@ -301,6 +325,11 @@ func (o IndexOutput) FullText() IndexFullTextPtrOutput {
 // The key value info of the tls index.
 func (o IndexOutput) KeyValues() IndexKeyValueArrayOutput {
 	return o.ApplyT(func(v *Index) IndexKeyValueArrayOutput { return v.KeyValues }).(IndexKeyValueArrayOutput)
+}
+
+// The max text length of the tls index.
+func (o IndexOutput) MaxTextLen() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Index) pulumi.IntPtrOutput { return v.MaxTextLen }).(pulumi.IntPtrOutput)
 }
 
 // The modify time of the tls index.

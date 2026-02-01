@@ -14,12 +14,11 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.tls.getAlarms({
- *     projectId: "cc44f8b6-0328-4622-b043-023fca735cd4",
- * });
+ * const default = volcengine.tls.getAlarms({});
  * ```
  */
-export function getAlarms(args: GetAlarmsArgs, opts?: pulumi.InvokeOptions): Promise<GetAlarmsResult> {
+export function getAlarms(args?: GetAlarmsArgs, opts?: pulumi.InvokeOptions): Promise<GetAlarmsResult> {
+    args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:tls/getAlarms:getAlarms", {
@@ -52,7 +51,7 @@ export interface GetAlarmsArgs {
     /**
      * The project id.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * The status.
      */
@@ -91,7 +90,7 @@ export interface GetAlarmsResult {
     /**
      * The project id.
      */
-    readonly projectId: string;
+    readonly projectId?: string;
     /**
      * Whether to enable the alert policy. The default value is true, that is, on.
      */
@@ -117,12 +116,10 @@ export interface GetAlarmsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.tls.getAlarms({
- *     projectId: "cc44f8b6-0328-4622-b043-023fca735cd4",
- * });
+ * const default = volcengine.tls.getAlarms({});
  * ```
  */
-export function getAlarmsOutput(args: GetAlarmsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAlarmsResult> {
+export function getAlarmsOutput(args?: GetAlarmsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAlarmsResult> {
     return pulumi.output(args).apply((a: any) => getAlarms(a, opts))
 }
 
@@ -145,7 +142,7 @@ export interface GetAlarmsOutputArgs {
     /**
      * The project id.
      */
-    projectId: pulumi.Input<string>;
+    projectId?: pulumi.Input<string>;
     /**
      * The status.
      */

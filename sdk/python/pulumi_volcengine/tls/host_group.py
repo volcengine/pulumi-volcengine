@@ -164,8 +164,6 @@ class HostGroupArgs:
 @pulumi.input_type
 class _HostGroupState:
     def __init__(__self__, *,
-                 abnormal_heartbeat_status_count: Optional[pulumi.Input[int]] = None,
-                 agent_latest_version: Optional[pulumi.Input[str]] = None,
                  auto_update: Optional[pulumi.Input[bool]] = None,
                  create_time: Optional[pulumi.Input[str]] = None,
                  host_count: Optional[pulumi.Input[int]] = None,
@@ -175,15 +173,12 @@ class _HostGroupState:
                  host_ip_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  iam_project_name: Optional[pulumi.Input[str]] = None,
                  modify_time: Optional[pulumi.Input[str]] = None,
-                 normal_heartbeat_status_count: Optional[pulumi.Input[int]] = None,
                  rule_count: Optional[pulumi.Input[int]] = None,
                  service_logging: Optional[pulumi.Input[bool]] = None,
                  update_end_time: Optional[pulumi.Input[str]] = None,
                  update_start_time: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering HostGroup resources.
-        :param pulumi.Input[int] abnormal_heartbeat_status_count: The abnormal heartbeat status count of host.
-        :param pulumi.Input[str] agent_latest_version: The latest version of log collector.
         :param pulumi.Input[bool] auto_update: Whether enable auto update.
         :param pulumi.Input[str] create_time: The create time of host group.
         :param pulumi.Input[int] host_count: The count of host.
@@ -193,16 +188,11 @@ class _HostGroupState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] host_ip_lists: The ip list of host group.
         :param pulumi.Input[str] iam_project_name: The project name of iam.
         :param pulumi.Input[str] modify_time: The modify time of host group.
-        :param pulumi.Input[int] normal_heartbeat_status_count: The normal heartbeat status count of host.
         :param pulumi.Input[int] rule_count: The rule count of host.
         :param pulumi.Input[bool] service_logging: Whether enable service logging.
         :param pulumi.Input[str] update_end_time: The update end time of log collector.
         :param pulumi.Input[str] update_start_time: The update start time of log collector.
         """
-        if abnormal_heartbeat_status_count is not None:
-            pulumi.set(__self__, "abnormal_heartbeat_status_count", abnormal_heartbeat_status_count)
-        if agent_latest_version is not None:
-            pulumi.set(__self__, "agent_latest_version", agent_latest_version)
         if auto_update is not None:
             pulumi.set(__self__, "auto_update", auto_update)
         if create_time is not None:
@@ -221,8 +211,6 @@ class _HostGroupState:
             pulumi.set(__self__, "iam_project_name", iam_project_name)
         if modify_time is not None:
             pulumi.set(__self__, "modify_time", modify_time)
-        if normal_heartbeat_status_count is not None:
-            pulumi.set(__self__, "normal_heartbeat_status_count", normal_heartbeat_status_count)
         if rule_count is not None:
             pulumi.set(__self__, "rule_count", rule_count)
         if service_logging is not None:
@@ -231,30 +219,6 @@ class _HostGroupState:
             pulumi.set(__self__, "update_end_time", update_end_time)
         if update_start_time is not None:
             pulumi.set(__self__, "update_start_time", update_start_time)
-
-    @property
-    @pulumi.getter(name="abnormalHeartbeatStatusCount")
-    def abnormal_heartbeat_status_count(self) -> Optional[pulumi.Input[int]]:
-        """
-        The abnormal heartbeat status count of host.
-        """
-        return pulumi.get(self, "abnormal_heartbeat_status_count")
-
-    @abnormal_heartbeat_status_count.setter
-    def abnormal_heartbeat_status_count(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "abnormal_heartbeat_status_count", value)
-
-    @property
-    @pulumi.getter(name="agentLatestVersion")
-    def agent_latest_version(self) -> Optional[pulumi.Input[str]]:
-        """
-        The latest version of log collector.
-        """
-        return pulumi.get(self, "agent_latest_version")
-
-    @agent_latest_version.setter
-    def agent_latest_version(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "agent_latest_version", value)
 
     @property
     @pulumi.getter(name="autoUpdate")
@@ -365,18 +329,6 @@ class _HostGroupState:
         pulumi.set(self, "modify_time", value)
 
     @property
-    @pulumi.getter(name="normalHeartbeatStatusCount")
-    def normal_heartbeat_status_count(self) -> Optional[pulumi.Input[int]]:
-        """
-        The normal heartbeat status count of host.
-        """
-        return pulumi.get(self, "normal_heartbeat_status_count")
-
-    @normal_heartbeat_status_count.setter
-    def normal_heartbeat_status_count(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "normal_heartbeat_status_count", value)
-
-    @property
     @pulumi.getter(name="ruleCount")
     def rule_count(self) -> Optional[pulumi.Input[int]]:
         """
@@ -449,11 +401,27 @@ class HostGroup(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.tls.HostGroup("foo",
-            auto_update=False,
-            host_group_name="tfgroup",
+            auto_update=True,
+            host_group_name="tfgroup-test-1",
             host_group_type="Label",
-            host_identifier="tf-controller",
-            service_logging=False)
+            host_identifier="hostlable",
+            iam_project_name="default",
+            service_logging=False,
+            update_end_time="02:00",
+            update_start_time="00:00")
+        foo_ip = volcengine.tls.HostGroup("fooIp",
+            auto_update=True,
+            host_group_name="tfgroup-ip-1",
+            host_group_type="IP",
+            host_ip_lists=[
+                "192.168.0.1",
+                "192.168.0.2",
+                "192.168.0.3",
+            ],
+            iam_project_name="default",
+            service_logging=False,
+            update_end_time="02:00",
+            update_start_time="00:00")
         ```
 
         ## Import
@@ -491,11 +459,27 @@ class HostGroup(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.tls.HostGroup("foo",
-            auto_update=False,
-            host_group_name="tfgroup",
+            auto_update=True,
+            host_group_name="tfgroup-test-1",
             host_group_type="Label",
-            host_identifier="tf-controller",
-            service_logging=False)
+            host_identifier="hostlable",
+            iam_project_name="default",
+            service_logging=False,
+            update_end_time="02:00",
+            update_start_time="00:00")
+        foo_ip = volcengine.tls.HostGroup("fooIp",
+            auto_update=True,
+            host_group_name="tfgroup-ip-1",
+            host_group_type="IP",
+            host_ip_lists=[
+                "192.168.0.1",
+                "192.168.0.2",
+                "192.168.0.3",
+            ],
+            iam_project_name="default",
+            service_logging=False,
+            update_end_time="02:00",
+            update_start_time="00:00")
         ```
 
         ## Import
@@ -552,12 +536,9 @@ class HostGroup(pulumi.CustomResource):
             __props__.__dict__["service_logging"] = service_logging
             __props__.__dict__["update_end_time"] = update_end_time
             __props__.__dict__["update_start_time"] = update_start_time
-            __props__.__dict__["abnormal_heartbeat_status_count"] = None
-            __props__.__dict__["agent_latest_version"] = None
             __props__.__dict__["create_time"] = None
             __props__.__dict__["host_count"] = None
             __props__.__dict__["modify_time"] = None
-            __props__.__dict__["normal_heartbeat_status_count"] = None
             __props__.__dict__["rule_count"] = None
         super(HostGroup, __self__).__init__(
             'volcengine:tls/hostGroup:HostGroup',
@@ -569,8 +550,6 @@ class HostGroup(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            abnormal_heartbeat_status_count: Optional[pulumi.Input[int]] = None,
-            agent_latest_version: Optional[pulumi.Input[str]] = None,
             auto_update: Optional[pulumi.Input[bool]] = None,
             create_time: Optional[pulumi.Input[str]] = None,
             host_count: Optional[pulumi.Input[int]] = None,
@@ -580,7 +559,6 @@ class HostGroup(pulumi.CustomResource):
             host_ip_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             iam_project_name: Optional[pulumi.Input[str]] = None,
             modify_time: Optional[pulumi.Input[str]] = None,
-            normal_heartbeat_status_count: Optional[pulumi.Input[int]] = None,
             rule_count: Optional[pulumi.Input[int]] = None,
             service_logging: Optional[pulumi.Input[bool]] = None,
             update_end_time: Optional[pulumi.Input[str]] = None,
@@ -592,8 +570,6 @@ class HostGroup(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] abnormal_heartbeat_status_count: The abnormal heartbeat status count of host.
-        :param pulumi.Input[str] agent_latest_version: The latest version of log collector.
         :param pulumi.Input[bool] auto_update: Whether enable auto update.
         :param pulumi.Input[str] create_time: The create time of host group.
         :param pulumi.Input[int] host_count: The count of host.
@@ -603,7 +579,6 @@ class HostGroup(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] host_ip_lists: The ip list of host group.
         :param pulumi.Input[str] iam_project_name: The project name of iam.
         :param pulumi.Input[str] modify_time: The modify time of host group.
-        :param pulumi.Input[int] normal_heartbeat_status_count: The normal heartbeat status count of host.
         :param pulumi.Input[int] rule_count: The rule count of host.
         :param pulumi.Input[bool] service_logging: Whether enable service logging.
         :param pulumi.Input[str] update_end_time: The update end time of log collector.
@@ -613,8 +588,6 @@ class HostGroup(pulumi.CustomResource):
 
         __props__ = _HostGroupState.__new__(_HostGroupState)
 
-        __props__.__dict__["abnormal_heartbeat_status_count"] = abnormal_heartbeat_status_count
-        __props__.__dict__["agent_latest_version"] = agent_latest_version
         __props__.__dict__["auto_update"] = auto_update
         __props__.__dict__["create_time"] = create_time
         __props__.__dict__["host_count"] = host_count
@@ -624,28 +597,11 @@ class HostGroup(pulumi.CustomResource):
         __props__.__dict__["host_ip_lists"] = host_ip_lists
         __props__.__dict__["iam_project_name"] = iam_project_name
         __props__.__dict__["modify_time"] = modify_time
-        __props__.__dict__["normal_heartbeat_status_count"] = normal_heartbeat_status_count
         __props__.__dict__["rule_count"] = rule_count
         __props__.__dict__["service_logging"] = service_logging
         __props__.__dict__["update_end_time"] = update_end_time
         __props__.__dict__["update_start_time"] = update_start_time
         return HostGroup(resource_name, opts=opts, __props__=__props__)
-
-    @property
-    @pulumi.getter(name="abnormalHeartbeatStatusCount")
-    def abnormal_heartbeat_status_count(self) -> pulumi.Output[int]:
-        """
-        The abnormal heartbeat status count of host.
-        """
-        return pulumi.get(self, "abnormal_heartbeat_status_count")
-
-    @property
-    @pulumi.getter(name="agentLatestVersion")
-    def agent_latest_version(self) -> pulumi.Output[str]:
-        """
-        The latest version of log collector.
-        """
-        return pulumi.get(self, "agent_latest_version")
 
     @property
     @pulumi.getter(name="autoUpdate")
@@ -718,14 +674,6 @@ class HostGroup(pulumi.CustomResource):
         The modify time of host group.
         """
         return pulumi.get(self, "modify_time")
-
-    @property
-    @pulumi.getter(name="normalHeartbeatStatusCount")
-    def normal_heartbeat_status_count(self) -> pulumi.Output[int]:
-        """
-        The normal heartbeat status count of host.
-        """
-        return pulumi.get(self, "normal_heartbeat_status_count")
 
     @property
     @pulumi.getter(name="ruleCount")

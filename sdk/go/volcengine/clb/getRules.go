@@ -131,6 +131,8 @@ type GetRulesArgs struct {
 	ListenerId string `pulumi:"listenerId"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
+	// Tags.
+	Tags []GetRulesTag `pulumi:"tags"`
 }
 
 // A collection of values returned by getRules.
@@ -142,6 +144,8 @@ type GetRulesResult struct {
 	OutputFile *string  `pulumi:"outputFile"`
 	// The collection of Rule query.
 	Rules []GetRulesRule `pulumi:"rules"`
+	// Tags.
+	Tags []GetRulesTag `pulumi:"tags"`
 }
 
 func GetRulesOutput(ctx *pulumi.Context, args GetRulesOutputArgs, opts ...pulumi.InvokeOption) GetRulesResultOutput {
@@ -165,6 +169,8 @@ type GetRulesOutputArgs struct {
 	ListenerId pulumi.StringInput `pulumi:"listenerId"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// Tags.
+	Tags GetRulesTagArrayInput `pulumi:"tags"`
 }
 
 func (GetRulesOutputArgs) ElementType() reflect.Type {
@@ -206,6 +212,11 @@ func (o GetRulesResultOutput) OutputFile() pulumi.StringPtrOutput {
 // The collection of Rule query.
 func (o GetRulesResultOutput) Rules() GetRulesRuleArrayOutput {
 	return o.ApplyT(func(v GetRulesResult) []GetRulesRule { return v.Rules }).(GetRulesRuleArrayOutput)
+}
+
+// Tags.
+func (o GetRulesResultOutput) Tags() GetRulesTagArrayOutput {
+	return o.ApplyT(func(v GetRulesResult) []GetRulesTag { return v.Tags }).(GetRulesTagArrayOutput)
 }
 
 func init() {

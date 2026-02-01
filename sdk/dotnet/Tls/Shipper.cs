@@ -33,22 +33,21 @@ namespace Pulumi.Volcengine.Tls
     ///                 {
     ///                     "__content",
     ///                     "__pod_name__",
-    ///                     "__path__",
-    ///                     "__tf-test__",
     ///                 },
     ///             },
     ///         },
+    ///         RoleTrn = "",
     ///         ShipperEndTime = 1751255700021,
-    ///         ShipperName = "tf-test",
+    ///         ShipperName = "tf-test-modify",
     ///         ShipperStartTime = 1750737324521,
     ///         ShipperType = "tos",
-    ///         TopicId = "8ba48bd7-2493-4300-b1d0-cb7xxxxxx",
+    ///         TopicId = "8ba48bd7-2493-4300-b1d0-cb760b89e51b",
     ///         TosShipperInfo = new Volcengine.Tls.Inputs.ShipperTosShipperInfoArgs
     ///         {
     ///             Bucket = "tf-test",
     ///             Compress = "snappy",
-    ///             Interval = 100,
-    ///             MaxSize = 100,
+    ///             Interval = 200,
+    ///             MaxSize = 50,
     ///             PartitionFormat = "%Y/%m/%d/%H/%M",
     ///             Prefix = "terraform_1.9.4_linux_amd64.zip",
     ///         },
@@ -79,6 +78,12 @@ namespace Pulumi.Volcengine.Tls
         /// </summary>
         [Output("kafkaShipperInfo")]
         public Output<Outputs.ShipperKafkaShipperInfo> KafkaShipperInfo { get; private set; } = null!;
+
+        /// <summary>
+        /// The role trn.
+        /// </summary>
+        [Output("roleTrn")]
+        public Output<string?> RoleTrn { get; private set; } = null!;
 
         /// <summary>
         /// Delivery end time, millisecond timestamp. If not configured, it will keep delivering. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
@@ -182,6 +187,12 @@ namespace Pulumi.Volcengine.Tls
         public Input<Inputs.ShipperKafkaShipperInfoArgs>? KafkaShipperInfo { get; set; }
 
         /// <summary>
+        /// The role trn.
+        /// </summary>
+        [Input("roleTrn")]
+        public Input<string>? RoleTrn { get; set; }
+
+        /// <summary>
         /// Delivery end time, millisecond timestamp. If not configured, it will keep delivering. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         /// </summary>
         [Input("shipperEndTime")]
@@ -242,6 +253,12 @@ namespace Pulumi.Volcengine.Tls
         /// </summary>
         [Input("kafkaShipperInfo")]
         public Input<Inputs.ShipperKafkaShipperInfoGetArgs>? KafkaShipperInfo { get; set; }
+
+        /// <summary>
+        /// The role trn.
+        /// </summary>
+        [Input("roleTrn")]
+        public Input<string>? RoleTrn { get; set; }
 
         /// <summary>
         /// Delivery end time, millisecond timestamp. If not configured, it will keep delivering. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.

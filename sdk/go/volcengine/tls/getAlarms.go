@@ -26,9 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := tls.GetAlarms(ctx, &tls.GetAlarmsArgs{
-//				ProjectId: "cc44f8b6-0328-4622-b043-023fca735cd4",
-//			}, nil)
+//			_, err := tls.GetAlarms(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -56,7 +54,7 @@ type GetAlarmsArgs struct {
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
 	// The project id.
-	ProjectId string `pulumi:"projectId"`
+	ProjectId *string `pulumi:"projectId"`
 	// The status.
 	Status *bool `pulumi:"status"`
 	// The topic id.
@@ -77,7 +75,7 @@ type GetAlarmsResult struct {
 	Id         string  `pulumi:"id"`
 	OutputFile *string `pulumi:"outputFile"`
 	// The project id.
-	ProjectId string `pulumi:"projectId"`
+	ProjectId *string `pulumi:"projectId"`
 	// Whether to enable the alert policy. The default value is true, that is, on.
 	Status *bool `pulumi:"status"`
 	// The id of the topic.
@@ -110,7 +108,7 @@ type GetAlarmsOutputArgs struct {
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
 	// The project id.
-	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	// The status.
 	Status pulumi.BoolPtrInput `pulumi:"status"`
 	// The topic id.
@@ -163,8 +161,8 @@ func (o GetAlarmsResultOutput) OutputFile() pulumi.StringPtrOutput {
 }
 
 // The project id.
-func (o GetAlarmsResultOutput) ProjectId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetAlarmsResult) string { return v.ProjectId }).(pulumi.StringOutput)
+func (o GetAlarmsResultOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetAlarmsResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
 // Whether to enable the alert policy. The default value is true, that is, on.

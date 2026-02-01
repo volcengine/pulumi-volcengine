@@ -40,6 +40,13 @@ import * as utilities from "../utilities";
  *     loadBalancerId: fooClb.id,
  *     serverGroupName: "acc-test-create",
  *     description: "hello demo11",
+ *     type: "instance",
+ * });
+ * const fooIpServerGroup = new volcengine.clb.ServerGroup("fooIpServerGroup", {
+ *     loadBalancerId: fooClb.id,
+ *     serverGroupName: "acc-test-create-ip",
+ *     description: "hello demo ip server group",
+ *     type: "ip",
  * });
  * const fooSecurityGroup = new volcengine.vpc.SecurityGroup("fooSecurityGroup", {
  *     vpcId: fooVpc.id,
@@ -63,6 +70,23 @@ import * as utilities from "../utilities";
  *     weight: 100,
  *     port: 80,
  *     description: "This is a acc test server",
+ * });
+ * const fooEni = new volcengine.clb.ServerGroupServer("fooEni", {
+ *     serverGroupId: fooServerGroup.id,
+ *     instanceId: "eni-btgpz5my7ta85h0b2ur*****",
+ *     type: "eni",
+ *     weight: 100,
+ *     port: 8080,
+ *     description: "This is a acc test server use eni",
+ * });
+ * const fooIpServerGroupServer = new volcengine.clb.ServerGroupServer("fooIpServerGroupServer", {
+ *     serverGroupId: fooIpServerGroup.id,
+ *     instanceId: "192.168.*.*",
+ *     ip: "192.168.*.*",
+ *     type: "ip",
+ *     weight: 80,
+ *     port: 400,
+ *     description: "This is a acc test server use ip",
  * });
  * ```
  *
@@ -107,7 +131,7 @@ export class ServerGroupServer extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * The ID of ecs instance or the network card bound to ecs instance.
+     * The ID of ecs instance or the network card bound to ecs instance. When the `type` is `ip`, this parameter is an IP address.
      */
     public readonly instanceId!: pulumi.Output<string>;
     /**
@@ -127,7 +151,7 @@ export class ServerGroupServer extends pulumi.CustomResource {
      */
     public /*out*/ readonly serverId!: pulumi.Output<string>;
     /**
-     * The type of instance. Optional choice contains `ecs`, `eni`.
+     * The type of instance. Optional choice contains `ecs`, `eni`, `ip`. When the `type` of `serverGroupId` is `ip`, only `ip` is supported.
      */
     public readonly type!: pulumi.Output<string>;
     /**
@@ -193,7 +217,7 @@ export interface ServerGroupServerState {
      */
     description?: pulumi.Input<string>;
     /**
-     * The ID of ecs instance or the network card bound to ecs instance.
+     * The ID of ecs instance or the network card bound to ecs instance. When the `type` is `ip`, this parameter is an IP address.
      */
     instanceId?: pulumi.Input<string>;
     /**
@@ -213,7 +237,7 @@ export interface ServerGroupServerState {
      */
     serverId?: pulumi.Input<string>;
     /**
-     * The type of instance. Optional choice contains `ecs`, `eni`.
+     * The type of instance. Optional choice contains `ecs`, `eni`, `ip`. When the `type` of `serverGroupId` is `ip`, only `ip` is supported.
      */
     type?: pulumi.Input<string>;
     /**
@@ -231,7 +255,7 @@ export interface ServerGroupServerArgs {
      */
     description?: pulumi.Input<string>;
     /**
-     * The ID of ecs instance or the network card bound to ecs instance.
+     * The ID of ecs instance or the network card bound to ecs instance. When the `type` is `ip`, this parameter is an IP address.
      */
     instanceId: pulumi.Input<string>;
     /**
@@ -247,7 +271,7 @@ export interface ServerGroupServerArgs {
      */
     serverGroupId: pulumi.Input<string>;
     /**
-     * The type of instance. Optional choice contains `ecs`, `eni`.
+     * The type of instance. Optional choice contains `ecs`, `eni`, `ip`. When the `type` of `serverGroupId` is `ip`, only `ip` is supported.
      */
     type: pulumi.Input<string>;
     /**

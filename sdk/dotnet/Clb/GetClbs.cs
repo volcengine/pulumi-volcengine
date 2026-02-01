@@ -150,6 +150,18 @@ namespace Pulumi.Volcengine.Clb
     public sealed class GetClbsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
+        /// The address IP version of the CLB.
+        /// </summary>
+        [Input("addressIpVersion")]
+        public string? AddressIpVersion { get; set; }
+
+        /// <summary>
+        /// The public ip address of the Clb.
+        /// </summary>
+        [Input("eipAddress")]
+        public string? EipAddress { get; set; }
+
+        /// <summary>
         /// The private ip address of the Clb.
         /// </summary>
         [Input("eniAddress")]
@@ -167,11 +179,41 @@ namespace Pulumi.Volcengine.Clb
             set => _ids = value;
         }
 
+        [Input("instanceIds")]
+        private List<string>? _instanceIds;
+
+        /// <summary>
+        /// The IDs of the backend server of the CLB.
+        /// </summary>
+        public List<string> InstanceIds
+        {
+            get => _instanceIds ?? (_instanceIds = new List<string>());
+            set => _instanceIds = value;
+        }
+
+        [Input("instanceIps")]
+        private List<string>? _instanceIps;
+
+        /// <summary>
+        /// The IP address of the backend server of the CLB.
+        /// </summary>
+        public List<string> InstanceIps
+        {
+            get => _instanceIps ?? (_instanceIps = new List<string>());
+            set => _instanceIps = value;
+        }
+
         /// <summary>
         /// The name of the Clb.
         /// </summary>
         [Input("loadBalancerName")]
         public string? LoadBalancerName { get; set; }
+
+        /// <summary>
+        /// The master zone ID of the CLB.
+        /// </summary>
+        [Input("masterZoneId")]
+        public string? MasterZoneId { get; set; }
 
         /// <summary>
         /// A Name Regex of Clb.
@@ -191,6 +233,12 @@ namespace Pulumi.Volcengine.Clb
         [Input("projectName")]
         public string? ProjectName { get; set; }
 
+        /// <summary>
+        /// The status of the CLB.
+        /// </summary>
+        [Input("status")]
+        public string? Status { get; set; }
+
         [Input("tags")]
         private List<Inputs.GetClbsTagArgs>? _tags;
 
@@ -202,6 +250,12 @@ namespace Pulumi.Volcengine.Clb
             get => _tags ?? (_tags = new List<Inputs.GetClbsTagArgs>());
             set => _tags = value;
         }
+
+        /// <summary>
+        /// The network type of the CLB.
+        /// </summary>
+        [Input("type")]
+        public string? Type { get; set; }
 
         /// <summary>
         /// The id of the VPC.
@@ -217,6 +271,18 @@ namespace Pulumi.Volcengine.Clb
 
     public sealed class GetClbsInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The address IP version of the CLB.
+        /// </summary>
+        [Input("addressIpVersion")]
+        public Input<string>? AddressIpVersion { get; set; }
+
+        /// <summary>
+        /// The public ip address of the Clb.
+        /// </summary>
+        [Input("eipAddress")]
+        public Input<string>? EipAddress { get; set; }
+
         /// <summary>
         /// The private ip address of the Clb.
         /// </summary>
@@ -235,11 +301,41 @@ namespace Pulumi.Volcengine.Clb
             set => _ids = value;
         }
 
+        [Input("instanceIds")]
+        private InputList<string>? _instanceIds;
+
+        /// <summary>
+        /// The IDs of the backend server of the CLB.
+        /// </summary>
+        public InputList<string> InstanceIds
+        {
+            get => _instanceIds ?? (_instanceIds = new InputList<string>());
+            set => _instanceIds = value;
+        }
+
+        [Input("instanceIps")]
+        private InputList<string>? _instanceIps;
+
+        /// <summary>
+        /// The IP address of the backend server of the CLB.
+        /// </summary>
+        public InputList<string> InstanceIps
+        {
+            get => _instanceIps ?? (_instanceIps = new InputList<string>());
+            set => _instanceIps = value;
+        }
+
         /// <summary>
         /// The name of the Clb.
         /// </summary>
         [Input("loadBalancerName")]
         public Input<string>? LoadBalancerName { get; set; }
+
+        /// <summary>
+        /// The master zone ID of the CLB.
+        /// </summary>
+        [Input("masterZoneId")]
+        public Input<string>? MasterZoneId { get; set; }
 
         /// <summary>
         /// A Name Regex of Clb.
@@ -259,6 +355,12 @@ namespace Pulumi.Volcengine.Clb
         [Input("projectName")]
         public Input<string>? ProjectName { get; set; }
 
+        /// <summary>
+        /// The status of the CLB.
+        /// </summary>
+        [Input("status")]
+        public Input<string>? Status { get; set; }
+
         [Input("tags")]
         private InputList<Inputs.GetClbsTagInputArgs>? _tags;
 
@@ -270,6 +372,12 @@ namespace Pulumi.Volcengine.Clb
             get => _tags ?? (_tags = new InputList<Inputs.GetClbsTagInputArgs>());
             set => _tags = value;
         }
+
+        /// <summary>
+        /// The network type of the CLB.
+        /// </summary>
+        [Input("type")]
+        public Input<string>? Type { get; set; }
 
         /// <summary>
         /// The id of the VPC.
@@ -288,11 +396,19 @@ namespace Pulumi.Volcengine.Clb
     public sealed class GetClbsResult
     {
         /// <summary>
+        /// The address ip version of the Clb.
+        /// </summary>
+        public readonly string? AddressIpVersion;
+        /// <summary>
         /// The collection of Clb query.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetClbsClbResult> Clbs;
         /// <summary>
-        /// The Eni address of the Clb.
+        /// The public IPv4 address bound to the private IPv4 address.
+        /// </summary>
+        public readonly string? EipAddress;
+        /// <summary>
+        /// The private IPv4 address of the CLB instance.
         /// </summary>
         public readonly string? EniAddress;
         /// <summary>
@@ -300,16 +416,26 @@ namespace Pulumi.Volcengine.Clb
         /// </summary>
         public readonly string Id;
         public readonly ImmutableArray<string> Ids;
+        public readonly ImmutableArray<string> InstanceIds;
+        public readonly ImmutableArray<string> InstanceIps;
         /// <summary>
         /// The name of the Clb.
         /// </summary>
         public readonly string? LoadBalancerName;
+        /// <summary>
+        /// The master zone ID of the CLB.
+        /// </summary>
+        public readonly string? MasterZoneId;
         public readonly string? NameRegex;
         public readonly string? OutputFile;
         /// <summary>
         /// The ProjectName of the Clb.
         /// </summary>
         public readonly string? ProjectName;
+        /// <summary>
+        /// The status of the Clb.
+        /// </summary>
+        public readonly string? Status;
         /// <summary>
         /// Tags.
         /// </summary>
@@ -319,13 +445,21 @@ namespace Pulumi.Volcengine.Clb
         /// </summary>
         public readonly int TotalCount;
         /// <summary>
+        /// The type of the Clb.
+        /// </summary>
+        public readonly string? Type;
+        /// <summary>
         /// The vpc ID of the Clb.
         /// </summary>
         public readonly string? VpcId;
 
         [OutputConstructor]
         private GetClbsResult(
+            string? addressIpVersion,
+
             ImmutableArray<Outputs.GetClbsClbResult> clbs,
+
+            string? eipAddress,
 
             string? eniAddress,
 
@@ -333,7 +467,13 @@ namespace Pulumi.Volcengine.Clb
 
             ImmutableArray<string> ids,
 
+            ImmutableArray<string> instanceIds,
+
+            ImmutableArray<string> instanceIps,
+
             string? loadBalancerName,
+
+            string? masterZoneId,
 
             string? nameRegex,
 
@@ -341,22 +481,33 @@ namespace Pulumi.Volcengine.Clb
 
             string? projectName,
 
+            string? status,
+
             ImmutableArray<Outputs.GetClbsTagResult> tags,
 
             int totalCount,
 
+            string? type,
+
             string? vpcId)
         {
+            AddressIpVersion = addressIpVersion;
             Clbs = clbs;
+            EipAddress = eipAddress;
             EniAddress = eniAddress;
             Id = id;
             Ids = ids;
+            InstanceIds = instanceIds;
+            InstanceIps = instanceIps;
             LoadBalancerName = loadBalancerName;
+            MasterZoneId = masterZoneId;
             NameRegex = nameRegex;
             OutputFile = outputFile;
             ProjectName = projectName;
+            Status = status;
             Tags = tags;
             TotalCount = totalCount;
+            Type = type;
             VpcId = vpcId;
         }
     }

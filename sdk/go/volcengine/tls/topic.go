@@ -28,12 +28,21 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := tls.NewTopic(ctx, "foo", &tls.TopicArgs{
+//				ArchiveTtl:     pulumi.Int(0),
 //				AutoSplit:      pulumi.Bool(true),
+//				ColdTtl:        pulumi.Int(30),
 //				Description:    pulumi.String("test"),
+//				EnableHotTtl:   pulumi.Bool(true),
 //				EnableTracking: pulumi.Bool(true),
-//				MaxSplitShard:  pulumi.Int(10),
-//				ProjectId:      pulumi.String("e020c978-4f05-40e1-9167-0113d3ef****"),
-//				ShardCount:     pulumi.Int(2),
+//				EncryptConf: &tls.TopicEncryptConfArgs{
+//					Enable:      pulumi.Bool(true),
+//					EncryptType: pulumi.String("default"),
+//				},
+//				HotTtl:        pulumi.Int(30),
+//				LogPublicIp:   pulumi.Bool(true),
+//				MaxSplitShard: pulumi.Int(10),
+//				ProjectId:     pulumi.String("bdb87e4d-7dad-4b96-ac43-e1b09e9dc8ac"),
+//				ShardCount:    pulumi.Int(2),
 //				Tags: tls.TopicTagArray{
 //					&tls.TopicTagArgs{
 //						Key:   pulumi.String("k1"),
@@ -42,8 +51,8 @@ import (
 //				},
 //				TimeFormat: pulumi.String("%Y-%m-%dT%H:%M:%S,%f"),
 //				TimeKey:    pulumi.String("request_time"),
-//				TopicName:  pulumi.String("tf-test-topic"),
-//				Ttl:        pulumi.Int(10),
+//				TopicName:  pulumi.String("tf-topic-5"),
+//				Ttl:        pulumi.Int(60),
 //			})
 //			if err != nil {
 //				return err
@@ -64,16 +73,28 @@ import (
 type Topic struct {
 	pulumi.CustomResourceState
 
+	// Archive storage duration, valid when enableHotTtl is true.
+	ArchiveTtl pulumi.IntPtrOutput `pulumi:"archiveTtl"`
 	// Whether to enable automatic partition splitting function of the tls topic.
 	// true: (default) When the amount of data written exceeds the capacity of existing partitions for 5 consecutive minutes, Log Service will automatically split partitions based on the data volume to meet business needs. However, the number of partitions after splitting cannot exceed the maximum number of partitions. Newly split partitions within the last 15 minutes will not be automatically split again.
 	// false: Disables automatic partition splitting.
 	AutoSplit pulumi.BoolOutput `pulumi:"autoSplit"`
+	// Infrequent storage duration, valid when enableHotTtl is true.
+	ColdTtl pulumi.IntPtrOutput `pulumi:"coldTtl"`
 	// The create time of the tls topic.
 	CreateTime pulumi.StringOutput `pulumi:"createTime"`
 	// The description of the tls project.
 	Description pulumi.StringOutput `pulumi:"description"`
+	// Whether to enable tiered storage.
+	EnableHotTtl pulumi.BoolPtrOutput `pulumi:"enableHotTtl"`
 	// Whether to enable WebTracking function of the tls topic.
 	EnableTracking pulumi.BoolOutput `pulumi:"enableTracking"`
+	// Data encryption configuration.
+	EncryptConf TopicEncryptConfPtrOutput `pulumi:"encryptConf"`
+	// Standard storage duration, valid when enableHotTtl is true.
+	HotTtl pulumi.IntPtrOutput `pulumi:"hotTtl"`
+	// Whether to enable the function of recording public IP.
+	LogPublicIp pulumi.BoolPtrOutput `pulumi:"logPublicIp"`
 	// The id of shard to be manually split. This field is valid only when modifying the topic.
 	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	ManualSplitShardId pulumi.IntPtrOutput `pulumi:"manualSplitShardId"`
@@ -142,16 +163,28 @@ func GetTopic(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Topic resources.
 type topicState struct {
+	// Archive storage duration, valid when enableHotTtl is true.
+	ArchiveTtl *int `pulumi:"archiveTtl"`
 	// Whether to enable automatic partition splitting function of the tls topic.
 	// true: (default) When the amount of data written exceeds the capacity of existing partitions for 5 consecutive minutes, Log Service will automatically split partitions based on the data volume to meet business needs. However, the number of partitions after splitting cannot exceed the maximum number of partitions. Newly split partitions within the last 15 minutes will not be automatically split again.
 	// false: Disables automatic partition splitting.
 	AutoSplit *bool `pulumi:"autoSplit"`
+	// Infrequent storage duration, valid when enableHotTtl is true.
+	ColdTtl *int `pulumi:"coldTtl"`
 	// The create time of the tls topic.
 	CreateTime *string `pulumi:"createTime"`
 	// The description of the tls project.
 	Description *string `pulumi:"description"`
+	// Whether to enable tiered storage.
+	EnableHotTtl *bool `pulumi:"enableHotTtl"`
 	// Whether to enable WebTracking function of the tls topic.
 	EnableTracking *bool `pulumi:"enableTracking"`
+	// Data encryption configuration.
+	EncryptConf *TopicEncryptConf `pulumi:"encryptConf"`
+	// Standard storage duration, valid when enableHotTtl is true.
+	HotTtl *int `pulumi:"hotTtl"`
+	// Whether to enable the function of recording public IP.
+	LogPublicIp *bool `pulumi:"logPublicIp"`
 	// The id of shard to be manually split. This field is valid only when modifying the topic.
 	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	ManualSplitShardId *int `pulumi:"manualSplitShardId"`
@@ -179,16 +212,28 @@ type topicState struct {
 }
 
 type TopicState struct {
+	// Archive storage duration, valid when enableHotTtl is true.
+	ArchiveTtl pulumi.IntPtrInput
 	// Whether to enable automatic partition splitting function of the tls topic.
 	// true: (default) When the amount of data written exceeds the capacity of existing partitions for 5 consecutive minutes, Log Service will automatically split partitions based on the data volume to meet business needs. However, the number of partitions after splitting cannot exceed the maximum number of partitions. Newly split partitions within the last 15 minutes will not be automatically split again.
 	// false: Disables automatic partition splitting.
 	AutoSplit pulumi.BoolPtrInput
+	// Infrequent storage duration, valid when enableHotTtl is true.
+	ColdTtl pulumi.IntPtrInput
 	// The create time of the tls topic.
 	CreateTime pulumi.StringPtrInput
 	// The description of the tls project.
 	Description pulumi.StringPtrInput
+	// Whether to enable tiered storage.
+	EnableHotTtl pulumi.BoolPtrInput
 	// Whether to enable WebTracking function of the tls topic.
 	EnableTracking pulumi.BoolPtrInput
+	// Data encryption configuration.
+	EncryptConf TopicEncryptConfPtrInput
+	// Standard storage duration, valid when enableHotTtl is true.
+	HotTtl pulumi.IntPtrInput
+	// Whether to enable the function of recording public IP.
+	LogPublicIp pulumi.BoolPtrInput
 	// The id of shard to be manually split. This field is valid only when modifying the topic.
 	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	ManualSplitShardId pulumi.IntPtrInput
@@ -220,14 +265,26 @@ func (TopicState) ElementType() reflect.Type {
 }
 
 type topicArgs struct {
+	// Archive storage duration, valid when enableHotTtl is true.
+	ArchiveTtl *int `pulumi:"archiveTtl"`
 	// Whether to enable automatic partition splitting function of the tls topic.
 	// true: (default) When the amount of data written exceeds the capacity of existing partitions for 5 consecutive minutes, Log Service will automatically split partitions based on the data volume to meet business needs. However, the number of partitions after splitting cannot exceed the maximum number of partitions. Newly split partitions within the last 15 minutes will not be automatically split again.
 	// false: Disables automatic partition splitting.
 	AutoSplit *bool `pulumi:"autoSplit"`
+	// Infrequent storage duration, valid when enableHotTtl is true.
+	ColdTtl *int `pulumi:"coldTtl"`
 	// The description of the tls project.
 	Description *string `pulumi:"description"`
+	// Whether to enable tiered storage.
+	EnableHotTtl *bool `pulumi:"enableHotTtl"`
 	// Whether to enable WebTracking function of the tls topic.
 	EnableTracking *bool `pulumi:"enableTracking"`
+	// Data encryption configuration.
+	EncryptConf *TopicEncryptConf `pulumi:"encryptConf"`
+	// Standard storage duration, valid when enableHotTtl is true.
+	HotTtl *int `pulumi:"hotTtl"`
+	// Whether to enable the function of recording public IP.
+	LogPublicIp *bool `pulumi:"logPublicIp"`
 	// The id of shard to be manually split. This field is valid only when modifying the topic.
 	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	ManualSplitShardId *int `pulumi:"manualSplitShardId"`
@@ -254,14 +311,26 @@ type topicArgs struct {
 
 // The set of arguments for constructing a Topic resource.
 type TopicArgs struct {
+	// Archive storage duration, valid when enableHotTtl is true.
+	ArchiveTtl pulumi.IntPtrInput
 	// Whether to enable automatic partition splitting function of the tls topic.
 	// true: (default) When the amount of data written exceeds the capacity of existing partitions for 5 consecutive minutes, Log Service will automatically split partitions based on the data volume to meet business needs. However, the number of partitions after splitting cannot exceed the maximum number of partitions. Newly split partitions within the last 15 minutes will not be automatically split again.
 	// false: Disables automatic partition splitting.
 	AutoSplit pulumi.BoolPtrInput
+	// Infrequent storage duration, valid when enableHotTtl is true.
+	ColdTtl pulumi.IntPtrInput
 	// The description of the tls project.
 	Description pulumi.StringPtrInput
+	// Whether to enable tiered storage.
+	EnableHotTtl pulumi.BoolPtrInput
 	// Whether to enable WebTracking function of the tls topic.
 	EnableTracking pulumi.BoolPtrInput
+	// Data encryption configuration.
+	EncryptConf TopicEncryptConfPtrInput
+	// Standard storage duration, valid when enableHotTtl is true.
+	HotTtl pulumi.IntPtrInput
+	// Whether to enable the function of recording public IP.
+	LogPublicIp pulumi.BoolPtrInput
 	// The id of shard to be manually split. This field is valid only when modifying the topic.
 	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	ManualSplitShardId pulumi.IntPtrInput
@@ -373,11 +442,21 @@ func (o TopicOutput) ToTopicOutputWithContext(ctx context.Context) TopicOutput {
 	return o
 }
 
+// Archive storage duration, valid when enableHotTtl is true.
+func (o TopicOutput) ArchiveTtl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Topic) pulumi.IntPtrOutput { return v.ArchiveTtl }).(pulumi.IntPtrOutput)
+}
+
 // Whether to enable automatic partition splitting function of the tls topic.
 // true: (default) When the amount of data written exceeds the capacity of existing partitions for 5 consecutive minutes, Log Service will automatically split partitions based on the data volume to meet business needs. However, the number of partitions after splitting cannot exceed the maximum number of partitions. Newly split partitions within the last 15 minutes will not be automatically split again.
 // false: Disables automatic partition splitting.
 func (o TopicOutput) AutoSplit() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Topic) pulumi.BoolOutput { return v.AutoSplit }).(pulumi.BoolOutput)
+}
+
+// Infrequent storage duration, valid when enableHotTtl is true.
+func (o TopicOutput) ColdTtl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Topic) pulumi.IntPtrOutput { return v.ColdTtl }).(pulumi.IntPtrOutput)
 }
 
 // The create time of the tls topic.
@@ -390,9 +469,29 @@ func (o TopicOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v *Topic) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
 }
 
+// Whether to enable tiered storage.
+func (o TopicOutput) EnableHotTtl() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Topic) pulumi.BoolPtrOutput { return v.EnableHotTtl }).(pulumi.BoolPtrOutput)
+}
+
 // Whether to enable WebTracking function of the tls topic.
 func (o TopicOutput) EnableTracking() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Topic) pulumi.BoolOutput { return v.EnableTracking }).(pulumi.BoolOutput)
+}
+
+// Data encryption configuration.
+func (o TopicOutput) EncryptConf() TopicEncryptConfPtrOutput {
+	return o.ApplyT(func(v *Topic) TopicEncryptConfPtrOutput { return v.EncryptConf }).(TopicEncryptConfPtrOutput)
+}
+
+// Standard storage duration, valid when enableHotTtl is true.
+func (o TopicOutput) HotTtl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Topic) pulumi.IntPtrOutput { return v.HotTtl }).(pulumi.IntPtrOutput)
+}
+
+// Whether to enable the function of recording public IP.
+func (o TopicOutput) LogPublicIp() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Topic) pulumi.BoolPtrOutput { return v.LogPublicIp }).(pulumi.BoolPtrOutput)
 }
 
 // The id of shard to be manually split. This field is valid only when modifying the topic.

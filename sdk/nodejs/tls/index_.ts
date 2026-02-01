@@ -15,47 +15,46 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@volcengine/pulumi";
  *
  * const foo = new volcengine.tls.Index("foo", {
- *     keyValues: [
- *         {
- *             caseSensitive: true,
- *             delimiter: "!",
- *             includeChinese: false,
- *             indexAll: true,
- *             jsonKeys: [
- *                 {
- *                     key: "class",
- *                     valueType: "text",
- *                 },
- *                 {
- *                     key: "age",
- *                     valueType: "long",
- *                 },
- *             ],
- *             key: "k1",
- *             sqlFlag: true,
- *             valueType: "json",
- *         },
- *         {
- *             caseSensitive: true,
- *             delimiter: "!",
- *             includeChinese: false,
- *             key: "k5",
- *             sqlFlag: false,
- *             valueType: "text",
- *         },
- *     ],
- *     topicId: "227a8d0c-b85b-48df-bee1-0927a595****",
+ *     enableAutoIndex: true,
+ *     fullText: {
+ *         caseSensitive: false,
+ *         delimiter: `, ;/
+ * \x09
+ * `,
+ *         includeChinese: false,
+ *     },
+ *     keyValues: [{
+ *         caseSensitive: true,
+ *         delimiter: "!",
+ *         includeChinese: false,
+ *         indexAll: true,
+ *         jsonKeys: [
+ *             {
+ *                 key: "name",
+ *                 valueType: "text",
+ *             },
+ *             {
+ *                 key: "key",
+ *                 valueType: "long",
+ *             },
+ *         ],
+ *         key: "k1",
+ *         sqlFlag: true,
+ *         valueType: "json",
+ *     }],
+ *     maxTextLen: 2048,
+ *     topicId: "b600dc34-503f-42fc-8e32-953af55463d1",
  *     userInnerKeyValues: [{
  *         caseSensitive: false,
  *         delimiter: ",:-/ ",
  *         includeChinese: false,
  *         jsonKeys: [
  *             {
- *                 key: "age",
+ *                 key: "app",
  *                 valueType: "long",
  *             },
  *             {
- *                 key: "name",
+ *                 key: "tag",
  *                 valueType: "long",
  *             },
  *         ],
@@ -107,6 +106,10 @@ export class Index extends pulumi.CustomResource {
      */
     public /*out*/ readonly createTime!: pulumi.Output<string>;
     /**
+     * Whether to enable auto index.
+     */
+    public readonly enableAutoIndex!: pulumi.Output<boolean | undefined>;
+    /**
      * The full text info of the tls index.
      */
     public readonly fullText!: pulumi.Output<outputs.tls.IndexFullText | undefined>;
@@ -114,6 +117,10 @@ export class Index extends pulumi.CustomResource {
      * The key value info of the tls index.
      */
     public readonly keyValues!: pulumi.Output<outputs.tls.IndexKeyValue[] | undefined>;
+    /**
+     * The max text length of the tls index.
+     */
+    public readonly maxTextLen!: pulumi.Output<number | undefined>;
     /**
      * The modify time of the tls index.
      */
@@ -141,8 +148,10 @@ export class Index extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as IndexState | undefined;
             resourceInputs["createTime"] = state ? state.createTime : undefined;
+            resourceInputs["enableAutoIndex"] = state ? state.enableAutoIndex : undefined;
             resourceInputs["fullText"] = state ? state.fullText : undefined;
             resourceInputs["keyValues"] = state ? state.keyValues : undefined;
+            resourceInputs["maxTextLen"] = state ? state.maxTextLen : undefined;
             resourceInputs["modifyTime"] = state ? state.modifyTime : undefined;
             resourceInputs["topicId"] = state ? state.topicId : undefined;
             resourceInputs["userInnerKeyValues"] = state ? state.userInnerKeyValues : undefined;
@@ -151,8 +160,10 @@ export class Index extends pulumi.CustomResource {
             if ((!args || args.topicId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'topicId'");
             }
+            resourceInputs["enableAutoIndex"] = args ? args.enableAutoIndex : undefined;
             resourceInputs["fullText"] = args ? args.fullText : undefined;
             resourceInputs["keyValues"] = args ? args.keyValues : undefined;
+            resourceInputs["maxTextLen"] = args ? args.maxTextLen : undefined;
             resourceInputs["topicId"] = args ? args.topicId : undefined;
             resourceInputs["userInnerKeyValues"] = args ? args.userInnerKeyValues : undefined;
             resourceInputs["createTime"] = undefined /*out*/;
@@ -172,6 +183,10 @@ export interface IndexState {
      */
     createTime?: pulumi.Input<string>;
     /**
+     * Whether to enable auto index.
+     */
+    enableAutoIndex?: pulumi.Input<boolean>;
+    /**
      * The full text info of the tls index.
      */
     fullText?: pulumi.Input<inputs.tls.IndexFullText>;
@@ -179,6 +194,10 @@ export interface IndexState {
      * The key value info of the tls index.
      */
     keyValues?: pulumi.Input<pulumi.Input<inputs.tls.IndexKeyValue>[]>;
+    /**
+     * The max text length of the tls index.
+     */
+    maxTextLen?: pulumi.Input<number>;
     /**
      * The modify time of the tls index.
      */
@@ -198,6 +217,10 @@ export interface IndexState {
  */
 export interface IndexArgs {
     /**
+     * Whether to enable auto index.
+     */
+    enableAutoIndex?: pulumi.Input<boolean>;
+    /**
      * The full text info of the tls index.
      */
     fullText?: pulumi.Input<inputs.tls.IndexFullText>;
@@ -205,6 +228,10 @@ export interface IndexArgs {
      * The key value info of the tls index.
      */
     keyValues?: pulumi.Input<pulumi.Input<inputs.tls.IndexKeyValue>[]>;
+    /**
+     * The max text length of the tls index.
+     */
+    maxTextLen?: pulumi.Input<number>;
     /**
      * The topic id of the tls index.
      */
