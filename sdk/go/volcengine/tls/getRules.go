@@ -27,7 +27,11 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := tls.GetRules(ctx, &tls.GetRulesArgs{
-//				ProjectId: "cc44f8b6-0328-4622-b043-023fca735cd4",
+//				LogType:   pulumi.StringRef("minimalist_log"),
+//				Pause:     pulumi.IntRef(0),
+//				ProjectId: pulumi.StringRef("39ed1cf8-dbf3-41c3-939d-999bab54313d"),
+//				RuleId:    pulumi.StringRef("048dc010-6bb1-4189-858a-281d654d6686"),
+//				TopicId:   pulumi.StringRef("b600dc34-503f-42fc-8e32-953af55463d1"),
 //			}, nil)
 //			if err != nil {
 //				return err
@@ -49,10 +53,18 @@ func GetRules(ctx *pulumi.Context, args *GetRulesArgs, opts ...pulumi.InvokeOpti
 
 // A collection of arguments for invoking getRules.
 type GetRulesArgs struct {
+	// The iam project name.
+	IamProjectName *string `pulumi:"iamProjectName"`
+	// The log type.
+	LogType *string `pulumi:"logType"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
+	// Whether to pause collection configuration.
+	Pause *int `pulumi:"pause"`
 	// The project id.
-	ProjectId string `pulumi:"projectId"`
+	ProjectId *string `pulumi:"projectId"`
+	// The project name.
+	ProjectName *string `pulumi:"projectName"`
 	// The rule id.
 	RuleId *string `pulumi:"ruleId"`
 	// The rule name.
@@ -65,10 +77,15 @@ type GetRulesArgs struct {
 
 // A collection of values returned by getRules.
 type GetRulesResult struct {
+	IamProjectName *string `pulumi:"iamProjectName"`
 	// The provider-assigned unique ID for this managed resource.
-	Id         string  `pulumi:"id"`
-	OutputFile *string `pulumi:"outputFile"`
-	ProjectId  string  `pulumi:"projectId"`
+	Id string `pulumi:"id"`
+	// The log type.
+	LogType     *string `pulumi:"logType"`
+	OutputFile  *string `pulumi:"outputFile"`
+	Pause       *int    `pulumi:"pause"`
+	ProjectId   *string `pulumi:"projectId"`
+	ProjectName *string `pulumi:"projectName"`
 	// The rule id.
 	RuleId *string `pulumi:"ruleId"`
 	// The rule name.
@@ -98,10 +115,18 @@ func GetRulesOutput(ctx *pulumi.Context, args GetRulesOutputArgs, opts ...pulumi
 
 // A collection of arguments for invoking getRules.
 type GetRulesOutputArgs struct {
+	// The iam project name.
+	IamProjectName pulumi.StringPtrInput `pulumi:"iamProjectName"`
+	// The log type.
+	LogType pulumi.StringPtrInput `pulumi:"logType"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// Whether to pause collection configuration.
+	Pause pulumi.IntPtrInput `pulumi:"pause"`
 	// The project id.
-	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
+	// The project name.
+	ProjectName pulumi.StringPtrInput `pulumi:"projectName"`
 	// The rule id.
 	RuleId pulumi.StringPtrInput `pulumi:"ruleId"`
 	// The rule name.
@@ -131,17 +156,34 @@ func (o GetRulesResultOutput) ToGetRulesResultOutputWithContext(ctx context.Cont
 	return o
 }
 
+func (o GetRulesResultOutput) IamProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetRulesResult) *string { return v.IamProjectName }).(pulumi.StringPtrOutput)
+}
+
 // The provider-assigned unique ID for this managed resource.
 func (o GetRulesResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRulesResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The log type.
+func (o GetRulesResultOutput) LogType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetRulesResult) *string { return v.LogType }).(pulumi.StringPtrOutput)
 }
 
 func (o GetRulesResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetRulesResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
 }
 
-func (o GetRulesResultOutput) ProjectId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetRulesResult) string { return v.ProjectId }).(pulumi.StringOutput)
+func (o GetRulesResultOutput) Pause() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetRulesResult) *int { return v.Pause }).(pulumi.IntPtrOutput)
+}
+
+func (o GetRulesResultOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetRulesResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
+}
+
+func (o GetRulesResultOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetRulesResult) *string { return v.ProjectName }).(pulumi.StringPtrOutput)
 }
 
 // The rule id.

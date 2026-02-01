@@ -2191,6 +2191,39 @@ export namespace clb {
         entry: pulumi.Input<string>;
     }
 
+    export interface AclTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface AclsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface AclsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
     export interface CertificateTag {
         /**
          * The Key of Tags.
@@ -2230,6 +2263,10 @@ export namespace clb {
          */
         bandwidth?: pulumi.Input<number>;
         /**
+         * The ID of the shared bandwidth package that the EIP is to be added to. Only valid when the eipBillingType is `PostPaidByBandwidth` or `PostPaidByTraffic`.
+         */
+        bandwidthPackageId?: pulumi.Input<string>;
+        /**
          * The billing type of the EIP which automatically assigned to CLB. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.When creating a `PrePaid` public CLB, this field must be specified as `PrePaid` simultaneously.When the LoadBalancerBillingType changes from `PostPaid` to `PrePaid`, please manually modify the value of this field to `PrePaid` simultaneously.
          */
         eipBillingType: pulumi.Input<string>;
@@ -2237,6 +2274,14 @@ export namespace clb {
          * The ISP of the EIP which automatically associated to CLB, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP` or `Fusion_BGP`.
          */
         isp: pulumi.Input<string>;
+        /**
+         * The ID of the DDoS native protection (Enterprise Edition) instance.
+         */
+        securityProtectionInstanceId?: pulumi.Input<string>;
+        /**
+         * The security protection types of the EIP. Only valid when the eipBillingType is `PostPaidByBandwidth` or `PostPaidByTraffic`.
+         */
+        securityProtectionTypes?: pulumi.Input<pulumi.Input<string>[]>;
     }
 
     export interface ClbTag {
@@ -2262,6 +2307,28 @@ export namespace clb {
     }
 
     export interface ClbsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetAclsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetAclsTagArgs {
         /**
          * The Key of Tags.
          */
@@ -2316,6 +2383,72 @@ export namespace clb {
         value: pulumi.Input<string>;
     }
 
+    export interface GetListenersTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetListenersTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetRulesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetRulesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetServerGroupsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetServerGroupsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
     export interface ListenerHealthCheck {
         /**
          * The domain of health check.
@@ -2342,6 +2475,10 @@ export namespace clb {
          */
         method?: pulumi.Input<string>;
         /**
+         * The port for health check, with a value range of 1-65535.
+         */
+        port?: pulumi.Input<number>;
+        /**
          * The response timeout of health check, default 2, range in 1~60..
          */
         timeout?: pulumi.Input<number>;
@@ -2361,6 +2498,128 @@ export namespace clb {
          * The uri of health check.
          */
         uri?: pulumi.Input<string>;
+    }
+
+    export interface ListenerTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface ListenersTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface ListenersTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface RuleRedirectConfig {
+        /**
+         * The redirect host, i.e. the domain name redirected by the rule.
+         */
+        host?: pulumi.Input<string>;
+        /**
+         * The redirect path.
+         */
+        path?: pulumi.Input<string>;
+        /**
+         * The redirect port, valid range: 1~65535.
+         */
+        port?: pulumi.Input<string>;
+        /**
+         * The redirect protocol. Valid values: `HTTP`, `HTTPS`.
+         */
+        protocol?: pulumi.Input<string>;
+        /**
+         * The redirect status code. Valid values: 301, 302, 307, 308.
+         */
+        statusCode?: pulumi.Input<string>;
+    }
+
+    export interface RuleTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface RulesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface RulesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface ServerGroupTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface ServerGroupsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface ServerGroupsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
     }
 
 }
@@ -6691,11 +6950,258 @@ export namespace tls {
         sms: pulumi.Input<number>;
     }
 
+    export interface AlarmContentTemplateDingTalk {
+        /**
+         * The content of the dingTalk content template.
+         */
+        content: pulumi.Input<string>;
+        /**
+         * The locale of the dingTalk content template.
+         */
+        locale: pulumi.Input<string>;
+        /**
+         * The title of the dingTalk content template.
+         */
+        title: pulumi.Input<string>;
+    }
+
+    export interface AlarmContentTemplateEmail {
+        /**
+         * The content of the email content template.
+         */
+        content: pulumi.Input<string>;
+        /**
+         * The locale of the email content template.
+         */
+        locale: pulumi.Input<string>;
+        /**
+         * The subject of the email content template.
+         */
+        subject: pulumi.Input<string>;
+    }
+
+    export interface AlarmContentTemplateLark {
+        /**
+         * The content of the lark content template.
+         */
+        content: pulumi.Input<string>;
+        /**
+         * The locale of the lark content template.
+         */
+        locale: pulumi.Input<string>;
+        /**
+         * The title of the lark content template.
+         */
+        title: pulumi.Input<string>;
+    }
+
+    export interface AlarmContentTemplateSm {
+        /**
+         * The content of the sms content template.
+         */
+        content: pulumi.Input<string>;
+        /**
+         * The locale of the sms content template.
+         */
+        locale: pulumi.Input<string>;
+    }
+
+    export interface AlarmContentTemplateVm {
+        /**
+         * The content of the vms content template.
+         */
+        content: pulumi.Input<string>;
+        /**
+         * The locale of the vms content template.
+         */
+        locale: pulumi.Input<string>;
+    }
+
+    export interface AlarmContentTemplateWebhook {
+        /**
+         * The content of the webhook content template.
+         */
+        content: pulumi.Input<string>;
+    }
+
+    export interface AlarmContentTemplateWechat {
+        /**
+         * The content of the wechat content template.
+         */
+        content: pulumi.Input<string>;
+        /**
+         * The locale of the wechat content template.
+         */
+        locale: pulumi.Input<string>;
+    }
+
+    export interface AlarmJoinConfiguration {
+        /**
+         * The condition.
+         */
+        condition?: pulumi.Input<string>;
+        /**
+         * The set operation type.
+         */
+        setOperationType?: pulumi.Input<string>;
+    }
+
+    export interface AlarmNotifyGroupNoticeRule {
+        /**
+         * Whether there is an end node behind.
+         */
+        hasEndNode?: pulumi.Input<boolean>;
+        /**
+         * Whether to continue to the next level of condition judgment.
+         */
+        hasNext?: pulumi.Input<boolean>;
+        /**
+         * List of IAM users to receive alerts.
+         */
+        receiverInfos?: pulumi.Input<pulumi.Input<inputs.tls.AlarmNotifyGroupNoticeRuleReceiverInfo>[]>;
+        /**
+         * The rule node.
+         */
+        ruleNode?: pulumi.Input<inputs.tls.AlarmNotifyGroupNoticeRuleRuleNode>;
+    }
+
+    export interface AlarmNotifyGroupNoticeRuleReceiverInfo {
+        /**
+         * The alarm content template id.
+         */
+        alarmContentTemplateId?: pulumi.Input<string>;
+        /**
+         * The alarm webhook at users.
+         */
+        alarmWebhookAtUsers?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The alarm webhook integration id.
+         */
+        alarmWebhookIntegrationId?: pulumi.Input<string>;
+        /**
+         * The alarm webhook integration name.
+         */
+        alarmWebhookIntegrationName?: pulumi.Input<string>;
+        /**
+         * The alarm webhook is at all.
+         */
+        alarmWebhookIsAtAll?: pulumi.Input<boolean>;
+        /**
+         * The end time.
+         */
+        endTime?: pulumi.Input<string>;
+        /**
+         * The webhook body.
+         */
+        generalWebhookBody?: pulumi.Input<string>;
+        /**
+         * The general webhook headers.
+         */
+        generalWebhookHeaders?: pulumi.Input<pulumi.Input<inputs.tls.AlarmNotifyGroupNoticeRuleReceiverInfoGeneralWebhookHeader>[]>;
+        /**
+         * The general webhook method.
+         */
+        generalWebhookMethod?: pulumi.Input<string>;
+        /**
+         * The webhook url.
+         */
+        generalWebhookUrl?: pulumi.Input<string>;
+        /**
+         * The list of the receiver channels.
+         */
+        receiverChannels?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * List of the receiver names.
+         */
+        receiverNames?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The receiver type.
+         */
+        receiverType?: pulumi.Input<string>;
+        /**
+         * The start time.
+         */
+        startTime?: pulumi.Input<string>;
+    }
+
+    export interface AlarmNotifyGroupNoticeRuleReceiverInfoGeneralWebhookHeader {
+        /**
+         * The key of the header.
+         */
+        key?: pulumi.Input<string>;
+        /**
+         * The value of the header.
+         */
+        value?: pulumi.Input<string>;
+    }
+
+    export interface AlarmNotifyGroupNoticeRuleRuleNode {
+        /**
+         * The children of the rule node.
+         */
+        childrens?: pulumi.Input<pulumi.Input<inputs.tls.AlarmNotifyGroupNoticeRuleRuleNodeChildren>[]>;
+        /**
+         * The type of the rule node.
+         */
+        type?: pulumi.Input<string>;
+        /**
+         * The value of the rule node.
+         */
+        values?: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface AlarmNotifyGroupNoticeRuleRuleNodeChildren {
+        /**
+         * The type of the rule node.
+         */
+        type?: pulumi.Input<string>;
+        /**
+         * The value of the rule node.
+         */
+        values?: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
     export interface AlarmNotifyGroupReceiver {
+        /**
+         * The alarm content template id.
+         */
+        alarmContentTemplateId?: pulumi.Input<string>;
+        /**
+         * The alarm webhook at users.
+         */
+        alarmWebhookAtUsers?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The alarm webhook integration id.
+         */
+        alarmWebhookIntegrationId?: pulumi.Input<string>;
+        /**
+         * The alarm webhook integration name.
+         */
+        alarmWebhookIntegrationName?: pulumi.Input<string>;
+        /**
+         * The alarm webhook is at all.
+         */
+        alarmWebhookIsAtAll?: pulumi.Input<boolean>;
         /**
          * The end time.
          */
         endTime: pulumi.Input<string>;
+        /**
+         * The webhook body.
+         */
+        generalWebhookBody?: pulumi.Input<string>;
+        /**
+         * The general webhook headers.
+         */
+        generalWebhookHeaders?: pulumi.Input<pulumi.Input<inputs.tls.AlarmNotifyGroupReceiverGeneralWebhookHeader>[]>;
+        /**
+         * The general webhook method.
+         */
+        generalWebhookMethod?: pulumi.Input<string>;
+        /**
+         * The webhook url.
+         */
+        generalWebhookUrl?: pulumi.Input<string>;
         /**
          * The list of the receiver channels. Currently supported channels: Email, Sms, Phone.
          */
@@ -6714,11 +7220,26 @@ export namespace tls {
         startTime: pulumi.Input<string>;
     }
 
+    export interface AlarmNotifyGroupReceiverGeneralWebhookHeader {
+        /**
+         * The key of the header.
+         */
+        key?: pulumi.Input<string>;
+        /**
+         * The value of the header.
+         */
+        value?: pulumi.Input<string>;
+    }
+
     export interface AlarmQueryRequest {
         /**
          * The end time of the query range is relative to the current historical time. The unit is minutes. The value is not positive and must be greater than StartTimeOffset. The maximum value is 0 and the minimum value is -1440.
          */
         endTimeOffset: pulumi.Input<number>;
+        /**
+         * The end time offset unit.
+         */
+        endTimeOffsetUnit?: pulumi.Input<string>;
         /**
          * Alarm object sequence number; increments from 1.
          */
@@ -6732,22 +7253,81 @@ export namespace tls {
          */
         startTimeOffset: pulumi.Input<number>;
         /**
+         * The start time offset unit.
+         */
+        startTimeOffsetUnit?: pulumi.Input<string>;
+        /**
+         * The time span type.
+         */
+        timeSpanType?: pulumi.Input<string>;
+        /**
          * The id of the topic.
          */
         topicId: pulumi.Input<string>;
+        /**
+         * The truncated time.
+         */
+        truncatedTime?: pulumi.Input<string>;
     }
 
     export interface AlarmRequestCycle {
         /**
+         * The cron tab.
+         */
+        cronTab?: pulumi.Input<string>;
+        /**
          * The cycle of alarm task execution, or the time point of periodic execution. The unit is minutes, and the value range is 1~1440.
          */
-        time: pulumi.Input<number>;
+        time?: pulumi.Input<number>;
         /**
          * Execution cycle type.
-         * Period: Periodic execution, which means executing once every certain period of time.
-         * Fixed: Regular execution, which means executing at a fixed time point every day.
          */
-        type: pulumi.Input<string>;
+        type?: pulumi.Input<string>;
+    }
+
+    export interface AlarmTriggerCondition {
+        /**
+         * The condition.
+         */
+        condition?: pulumi.Input<string>;
+        /**
+         * The count condition.
+         */
+        countCondition?: pulumi.Input<string>;
+        /**
+         * The no data.
+         */
+        noData?: pulumi.Input<boolean>;
+        /**
+         * The severity.
+         */
+        severity?: pulumi.Input<string>;
+    }
+
+    export interface AlarmWebhookIntegrationWebhookHeader {
+        /**
+         * The key of the header.
+         */
+        key?: pulumi.Input<string>;
+        /**
+         * The value of the header.
+         */
+        value?: pulumi.Input<string>;
+    }
+
+    export interface DownloadTaskLogContextInfos {
+        /**
+         * The context flow of the log.
+         */
+        contextFlow?: pulumi.Input<string>;
+        /**
+         * The package offset of the log.
+         */
+        packageOffset?: pulumi.Input<number>;
+        /**
+         * The source of the log.
+         */
+        source?: pulumi.Input<string>;
     }
 
     export interface EtlTaskTargetResource {
@@ -6785,6 +7365,190 @@ export namespace tls {
          * The Value of Tags.
          */
         value: pulumi.Input<string>;
+    }
+
+    export interface GetSearchTracesQuery {
+        /**
+         * Whether to sort results in ascending order. true means ascending, false means descending.
+         */
+        asc?: boolean;
+        /**
+         * Attributes.
+         */
+        attributes?: inputs.tls.GetSearchTracesQueryAttribute[];
+        /**
+         * Maximum trace duration in microseconds.
+         */
+        durationMax?: number;
+        /**
+         * Minimum trace duration in microseconds.
+         */
+        durationMin?: number;
+        /**
+         * Type of the trace.
+         */
+        kind?: string;
+        /**
+         * Maximum number of records to return, used for pagination.
+         */
+        limit?: number;
+        /**
+         * Offset for paginated query.
+         */
+        offset?: number;
+        /**
+         * Operation name, used to filter traces with specific operation.
+         */
+        operationName?: string;
+        /**
+         * Sorting field. Supported fields: Kind, Name, ServiceName, Start, End, Duration, and indexed fields in Attributes.
+         */
+        order?: string;
+        /**
+         * Service name, used to filter traces from specific service.
+         */
+        serviceName?: string;
+        /**
+         * Maximum start time for searching traces, in microsecond timestamp format.
+         */
+        startTimeMax?: number;
+        /**
+         * Minimum start time for searching traces, in microsecond timestamp format.
+         */
+        startTimeMin?: number;
+        /**
+         * Trace status code, used to filter traces with specific status.
+         */
+        statusCode?: string;
+        /**
+         * Trace ID.
+         */
+        traceId?: string;
+    }
+
+    export interface GetSearchTracesQueryArgs {
+        /**
+         * Whether to sort results in ascending order. true means ascending, false means descending.
+         */
+        asc?: pulumi.Input<boolean>;
+        /**
+         * Attributes.
+         */
+        attributes?: pulumi.Input<pulumi.Input<inputs.tls.GetSearchTracesQueryAttributeArgs>[]>;
+        /**
+         * Maximum trace duration in microseconds.
+         */
+        durationMax?: pulumi.Input<number>;
+        /**
+         * Minimum trace duration in microseconds.
+         */
+        durationMin?: pulumi.Input<number>;
+        /**
+         * Type of the trace.
+         */
+        kind?: pulumi.Input<string>;
+        /**
+         * Maximum number of records to return, used for pagination.
+         */
+        limit?: pulumi.Input<number>;
+        /**
+         * Offset for paginated query.
+         */
+        offset?: pulumi.Input<number>;
+        /**
+         * Operation name, used to filter traces with specific operation.
+         */
+        operationName?: pulumi.Input<string>;
+        /**
+         * Sorting field. Supported fields: Kind, Name, ServiceName, Start, End, Duration, and indexed fields in Attributes.
+         */
+        order?: pulumi.Input<string>;
+        /**
+         * Service name, used to filter traces from specific service.
+         */
+        serviceName?: pulumi.Input<string>;
+        /**
+         * Maximum start time for searching traces, in microsecond timestamp format.
+         */
+        startTimeMax?: pulumi.Input<number>;
+        /**
+         * Minimum start time for searching traces, in microsecond timestamp format.
+         */
+        startTimeMin?: pulumi.Input<number>;
+        /**
+         * Trace status code, used to filter traces with specific status.
+         */
+        statusCode?: pulumi.Input<string>;
+        /**
+         * Trace ID.
+         */
+        traceId?: pulumi.Input<string>;
+    }
+
+    export interface GetSearchTracesQueryAttribute {
+        /**
+         * Attribute key.
+         */
+        key: string;
+        /**
+         * Attribute value.
+         */
+        value: string;
+    }
+
+    export interface GetSearchTracesQueryAttributeArgs {
+        /**
+         * Attribute key.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * Attribute value.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetTagResourcesTagFilter {
+        /**
+         * The key of the tag filter.
+         */
+        key: string;
+        /**
+         * The values of the tag filter.
+         */
+        values: string[];
+    }
+
+    export interface GetTagResourcesTagFilterArgs {
+        /**
+         * The key of the tag filter.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The values of the tag filter.
+         */
+        values: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface GetTagsTagFilter {
+        /**
+         * The key of the tag filter.
+         */
+        key: string;
+        /**
+         * The values of the tag filter.
+         */
+        values: string[];
+    }
+
+    export interface GetTagsTagFilterArgs {
+        /**
+         * The key of the tag filter.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The values of the tag filter.
+         */
+        values: pulumi.Input<pulumi.Input<string>[]>;
     }
 
     export interface GetTopicsTag {
@@ -7204,6 +7968,10 @@ export namespace tls {
          */
         logTemplate?: pulumi.Input<inputs.tls.RuleExtractRuleLogTemplate>;
         /**
+         * The quote symbol.
+         */
+        quote?: pulumi.Input<string>;
+        /**
          * Parsing format of the time field.
          */
         timeFormat?: pulumi.Input<string>;
@@ -7211,6 +7979,10 @@ export namespace tls {
          * The field name of the log time field.
          */
         timeKey?: pulumi.Input<string>;
+        /**
+         * The time zone.
+         */
+        timeZone?: pulumi.Input<string>;
         /**
          * When uploading the failed log, the key name of the failed log.
          */
@@ -7345,6 +8117,177 @@ export namespace tls {
         type: pulumi.Input<string>;
     }
 
+    export interface SearchTracesQuery {
+        /**
+         * Whether to sort results in ascending order. true means ascending, false means descending.
+         */
+        asc?: boolean;
+        /**
+         * Attributes.
+         */
+        attributes?: inputs.tls.SearchTracesQueryAttribute[];
+        /**
+         * Maximum trace duration in microseconds.
+         */
+        durationMax?: number;
+        /**
+         * Minimum trace duration in microseconds.
+         */
+        durationMin?: number;
+        /**
+         * Type of the trace.
+         */
+        kind?: string;
+        /**
+         * Maximum number of records to return, used for pagination.
+         */
+        limit?: number;
+        /**
+         * Offset for paginated query.
+         */
+        offset?: number;
+        /**
+         * Operation name, used to filter traces with specific operation.
+         */
+        operationName?: string;
+        /**
+         * Sorting field. Supported fields: Kind, Name, ServiceName, Start, End, Duration, and indexed fields in Attributes.
+         */
+        order?: string;
+        /**
+         * Service name, used to filter traces from specific service.
+         */
+        serviceName?: string;
+        /**
+         * Maximum start time for searching traces, in microsecond timestamp format.
+         */
+        startTimeMax?: number;
+        /**
+         * Minimum start time for searching traces, in microsecond timestamp format.
+         */
+        startTimeMin?: number;
+        /**
+         * Trace status code, used to filter traces with specific status.
+         */
+        statusCode?: string;
+        /**
+         * Trace ID.
+         */
+        traceId?: string;
+    }
+
+    export interface SearchTracesQueryArgs {
+        /**
+         * Whether to sort results in ascending order. true means ascending, false means descending.
+         */
+        asc?: pulumi.Input<boolean>;
+        /**
+         * Attributes.
+         */
+        attributes?: pulumi.Input<pulumi.Input<inputs.tls.SearchTracesQueryAttributeArgs>[]>;
+        /**
+         * Maximum trace duration in microseconds.
+         */
+        durationMax?: pulumi.Input<number>;
+        /**
+         * Minimum trace duration in microseconds.
+         */
+        durationMin?: pulumi.Input<number>;
+        /**
+         * Type of the trace.
+         */
+        kind?: pulumi.Input<string>;
+        /**
+         * Maximum number of records to return, used for pagination.
+         */
+        limit?: pulumi.Input<number>;
+        /**
+         * Offset for paginated query.
+         */
+        offset?: pulumi.Input<number>;
+        /**
+         * Operation name, used to filter traces with specific operation.
+         */
+        operationName?: pulumi.Input<string>;
+        /**
+         * Sorting field. Supported fields: Kind, Name, ServiceName, Start, End, Duration, and indexed fields in Attributes.
+         */
+        order?: pulumi.Input<string>;
+        /**
+         * Service name, used to filter traces from specific service.
+         */
+        serviceName?: pulumi.Input<string>;
+        /**
+         * Maximum start time for searching traces, in microsecond timestamp format.
+         */
+        startTimeMax?: pulumi.Input<number>;
+        /**
+         * Minimum start time for searching traces, in microsecond timestamp format.
+         */
+        startTimeMin?: pulumi.Input<number>;
+        /**
+         * Trace status code, used to filter traces with specific status.
+         */
+        statusCode?: pulumi.Input<string>;
+        /**
+         * Trace ID.
+         */
+        traceId?: pulumi.Input<string>;
+    }
+
+    export interface SearchTracesQueryAttribute {
+        /**
+         * Attribute key.
+         */
+        key: string;
+        /**
+         * Attribute value.
+         */
+        value: string;
+    }
+
+    export interface SearchTracesQueryAttributeArgs {
+        /**
+         * Attribute key.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * Attribute value.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface ShardShard {
+        /**
+         * The exclusive end key of the shard.
+         */
+        exclusiveEndKey?: pulumi.Input<string>;
+        /**
+         * The inclusive begin key of the shard.
+         */
+        inclusiveBeginKey?: pulumi.Input<string>;
+        /**
+         * The modification time of the shard.
+         */
+        modifyTime?: pulumi.Input<string>;
+        /**
+         * The ID of the shard to split.
+         */
+        shardId?: pulumi.Input<number>;
+        /**
+         * The status of the shard.
+         */
+        status?: pulumi.Input<string>;
+        /**
+         * The stop write time of the shard.
+         */
+        stopWriteTime?: pulumi.Input<string>;
+        /**
+         * The ID of the topic.
+         */
+        topicId?: pulumi.Input<string>;
+    }
+
     export interface ShipperContentInfo {
         /**
          * CSV format log content configuration.
@@ -7448,6 +8391,102 @@ export namespace tls {
         prefix?: pulumi.Input<string>;
     }
 
+    export interface TagResourceTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface TagResourcesTagFilter {
+        /**
+         * The key of the tag filter.
+         */
+        key: string;
+        /**
+         * The values of the tag filter.
+         */
+        values: string[];
+    }
+
+    export interface TagResourcesTagFilterArgs {
+        /**
+         * The key of the tag filter.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The values of the tag filter.
+         */
+        values: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface TagTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface TagsTagFilter {
+        /**
+         * The key of the tag filter.
+         */
+        key: string;
+        /**
+         * The values of the tag filter.
+         */
+        values: string[];
+    }
+
+    export interface TagsTagFilterArgs {
+        /**
+         * The key of the tag filter.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The values of the tag filter.
+         */
+        values: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface TopicEncryptConf {
+        /**
+         * Whether to enable data encryption.
+         */
+        enable?: pulumi.Input<boolean>;
+        /**
+         * The encryption type.
+         */
+        encryptType?: pulumi.Input<string>;
+        /**
+         * The user custom key.
+         */
+        userCmkInfo?: pulumi.Input<inputs.tls.TopicEncryptConfUserCmkInfo>;
+    }
+
+    export interface TopicEncryptConfUserCmkInfo {
+        /**
+         * The key region.
+         */
+        regionId?: pulumi.Input<string>;
+        /**
+         * The key trn.
+         */
+        trn?: pulumi.Input<string>;
+        /**
+         * The key id.
+         */
+        userCmkId?: pulumi.Input<string>;
+    }
+
     export interface TopicTag {
         /**
          * The Key of Tags.
@@ -7479,6 +8518,37 @@ export namespace tls {
          * The Value of Tags.
          */
         value: pulumi.Input<string>;
+    }
+
+    export interface TraceInstanceBackendConfig {
+        /**
+         * Archive storage duration in days.
+         */
+        archiveTtl?: pulumi.Input<number>;
+        /**
+         * Whether to enable auto split.
+         */
+        autoSplit?: pulumi.Input<boolean>;
+        /**
+         * Infrequent storage duration in days.
+         */
+        coldTtl?: pulumi.Input<number>;
+        /**
+         * Whether to enable tiered storage.
+         */
+        enableHotTtl?: pulumi.Input<boolean>;
+        /**
+         * Standard storage duration in days.
+         */
+        hotTtl?: pulumi.Input<number>;
+        /**
+         * Max split partitions.
+         */
+        maxSplitPartitions?: pulumi.Input<number>;
+        /**
+         * Total log retention time in days.
+         */
+        ttl?: pulumi.Input<number>;
     }
 
 }

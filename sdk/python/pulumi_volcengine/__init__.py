@@ -533,6 +533,14 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "clb/accessLog",
+  "fqn": "pulumi_volcengine.clb",
+  "classes": {
+   "volcengine:clb/accessLog:AccessLog": "AccessLog"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "clb/acl",
   "fqn": "pulumi_volcengine.clb",
   "classes": {
@@ -561,6 +569,22 @@ _utilities.register(
   "fqn": "pulumi_volcengine.clb",
   "classes": {
    "volcengine:clb/clb:Clb": "Clb"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "clb/healthCheckLogProject",
+  "fqn": "pulumi_volcengine.clb",
+  "classes": {
+   "volcengine:clb/healthCheckLogProject:HealthCheckLogProject": "HealthCheckLogProject"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "clb/healthCheckLogTopic",
+  "fqn": "pulumi_volcengine.clb",
+  "classes": {
+   "volcengine:clb/healthCheckLogTopic:HealthCheckLogTopic": "HealthCheckLogTopic"
   }
  },
  {
@@ -2077,10 +2101,26 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "tls/account",
+  "fqn": "pulumi_volcengine.tls",
+  "classes": {
+   "volcengine:tls/account:Account": "Account"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "tls/alarm",
   "fqn": "pulumi_volcengine.tls",
   "classes": {
    "volcengine:tls/alarm:Alarm": "Alarm"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "tls/alarmContentTemplate",
+  "fqn": "pulumi_volcengine.tls",
+  "classes": {
+   "volcengine:tls/alarmContentTemplate:AlarmContentTemplate": "AlarmContentTemplate"
   }
  },
  {
@@ -2093,10 +2133,26 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "tls/alarmWebhookIntegration",
+  "fqn": "pulumi_volcengine.tls",
+  "classes": {
+   "volcengine:tls/alarmWebhookIntegration:AlarmWebhookIntegration": "AlarmWebhookIntegration"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "tls/consumerGroup",
   "fqn": "pulumi_volcengine.tls",
   "classes": {
    "volcengine:tls/consumerGroup:ConsumerGroup": "ConsumerGroup"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "tls/downloadTask",
+  "fqn": "pulumi_volcengine.tls",
+  "classes": {
+   "volcengine:tls/downloadTask:DownloadTask": "DownloadTask"
   }
  },
  {
@@ -2173,10 +2229,26 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "tls/ruleBoundHostGroup",
+  "fqn": "pulumi_volcengine.tls",
+  "classes": {
+   "volcengine:tls/ruleBoundHostGroup:RuleBoundHostGroup": "RuleBoundHostGroup"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "tls/scheduleSqlTask",
   "fqn": "pulumi_volcengine.tls",
   "classes": {
    "volcengine:tls/scheduleSqlTask:ScheduleSqlTask": "ScheduleSqlTask"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "tls/shard",
+  "fqn": "pulumi_volcengine.tls",
+  "classes": {
+   "volcengine:tls/shard:Shard": "Shard"
   }
  },
  {
@@ -2189,10 +2261,34 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "tls/tag",
+  "fqn": "pulumi_volcengine.tls",
+  "classes": {
+   "volcengine:tls/tag:Tag": "Tag"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "tls/tagResource",
+  "fqn": "pulumi_volcengine.tls",
+  "classes": {
+   "volcengine:tls/tagResource:TagResource": "TagResource"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "tls/topic",
   "fqn": "pulumi_volcengine.tls",
   "classes": {
    "volcengine:tls/topic:Topic": "Topic"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "tls/traceInstance",
+  "fqn": "pulumi_volcengine.tls",
+  "classes": {
+   "volcengine:tls/traceInstance:TraceInstance": "TraceInstance"
   }
  },
  {

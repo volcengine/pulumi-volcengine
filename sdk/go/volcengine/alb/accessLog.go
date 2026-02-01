@@ -12,6 +12,38 @@ import (
 	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
+// Provides a resource to manage alb access log
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/alb"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Enable ALB Access Log (TOS Bucket)
+//			_, err := alb.NewAccessLog(ctx, "default", &alb.AccessLogArgs{
+//				BucketName:     pulumi.String("tos-buket"),
+//				LoadBalancerId: pulumi.String("alb-bdchexlt87pc8dv40nbr6mu7"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// The AlbAccessLog is not support import.
 type AccessLog struct {
 	pulumi.CustomResourceState
 

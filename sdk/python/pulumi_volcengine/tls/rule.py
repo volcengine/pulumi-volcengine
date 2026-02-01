@@ -388,51 +388,92 @@ class Rule(pulumi.CustomResource):
         import json
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.tls.Rule("foo",
-            topic_id="7bfa2cdc-4f8b-4cf9-b4c9-0ed05c33349f",
-            rule_name="test",
-            log_type="minimalist_log",
-            log_sample="2018-05-22 15:35:53.850 INFO XXXX",
+        foo_project = volcengine.tls.Project("fooProject",
+            project_name="tf-test-project-ttt",
+            description="tf-test-project-desc",
+            region="cn-guilin-boe")
+        foo_topic = volcengine.tls.Topic("fooTopic",
+            project_id=foo_project.id,
+            topic_name="tf-test-topic-rule-1",
+            ttl=60,
+            shard_count=2,
+            auto_split=True,
+            max_split_shard=10,
+            enable_tracking=True,
+            time_key="request_time",
+            time_format="%Y-%m-%dT%H:%M:%S,%f",
+            tags=[volcengine.tls.TopicTagArgs(
+                key="k1",
+                value="v1",
+            )],
+            log_public_ip=True,
+            enable_hot_ttl=True,
+            hot_ttl=30,
+            cold_ttl=30,
+            archive_ttl=0)
+        foo_rule = volcengine.tls.Rule("fooRule",
+            topic_id=foo_topic.id,
+            rule_name="tf-test-rule-modify",
+            log_type="delimiter_log",
+            log_sample="2018-05-22 15:35:53.850,INFO,XXXX",
             input_type=1,
+            extract_rule=volcengine.tls.RuleExtractRuleArgs(
+                delimiter=",",
+                keys=[
+                    "time",
+                    "level",
+                    "msg",
+                ],
+                time_key="time",
+                time_format="%Y-%m-%d %H:%M:%S.%f",
+                quote="\\"",
+                time_zone="GMT+08:00",
+                begin_regex="",
+                log_regex="",
+                filter_key_regexes=[volcengine.tls.RuleExtractRuleFilterKeyRegexArgs(
+                    key="__content__",
+                    regex=".*ERROR.*",
+                )],
+                un_match_up_load_switch=True,
+                un_match_log_key="LogParseFailed",
+                log_template=volcengine.tls.RuleExtractRuleLogTemplateArgs(
+                    type="",
+                    format="",
+                ),
+            ),
             user_define_rule=volcengine.tls.RuleUserDefineRuleArgs(
-                enable_raw_log=False,
+                enable_raw_log=True,
                 tail_files=True,
+                fields={
+                    "cluster_id": "dabaad5f-7a10-4771-b3ea-d821f73e****",
+                },
+                parse_path_rule=volcengine.tls.RuleUserDefineRuleParsePathRuleArgs(
+                    path_sample="/data/nginx/log/dabaad5f-7a10/tls/app.log",
+                    regex="\\\\/data\\\\/nginx\\\\/log\\\\/(\\\\w+)-(\\\\w+)\\\\/tls\\\\/app\\\\.log",
+                    keys=[
+                        "instance-id",
+                        "pod-name",
+                    ],
+                ),
                 shard_hash_key=volcengine.tls.RuleUserDefineRuleShardHashKeyArgs(
                     hash_key="3C",
                 ),
                 plugin=volcengine.tls.RuleUserDefineRulePluginArgs(
-                    processors=[
-                        json.dumps({
-                            "json": {
-                                "field": "__content__",
-                                "trim_keys": {
-                                    "mode": "all",
-                                    "chars": "#",
-                                },
-                                "trim_values": {
-                                    "mode": "all",
-                                    "chars": "#t",
-                                },
-                                "allow_overwrite_keys": True,
-                                "allow_empty_values": True,
+                    processors=[json.dumps({
+                        "json": {
+                            "field": "__content__",
+                            "trim_keys": {
+                                "mode": "all",
+                                "chars": "#",
                             },
-                        }),
-                        json.dumps({
-                            "json": {
-                                "field": "__content__",
-                                "trim_keys": {
-                                    "mode": "all",
-                                    "chars": "#xx",
-                                },
-                                "trim_values": {
-                                    "mode": "all",
-                                    "chars": "#txxxt",
-                                },
-                                "allow_overwrite_keys": True,
-                                "allow_empty_values": True,
+                            "trim_values": {
+                                "mode": "all",
+                                "chars": "#t",
                             },
-                        }),
-                    ],
+                            "allow_overwrite_keys": True,
+                            "allow_empty_values": True,
+                        },
+                    })],
                 ),
                 advanced=volcengine.tls.RuleUserDefineRuleAdvancedArgs(
                     close_inactive=10,
@@ -526,51 +567,92 @@ class Rule(pulumi.CustomResource):
         import json
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.tls.Rule("foo",
-            topic_id="7bfa2cdc-4f8b-4cf9-b4c9-0ed05c33349f",
-            rule_name="test",
-            log_type="minimalist_log",
-            log_sample="2018-05-22 15:35:53.850 INFO XXXX",
+        foo_project = volcengine.tls.Project("fooProject",
+            project_name="tf-test-project-ttt",
+            description="tf-test-project-desc",
+            region="cn-guilin-boe")
+        foo_topic = volcengine.tls.Topic("fooTopic",
+            project_id=foo_project.id,
+            topic_name="tf-test-topic-rule-1",
+            ttl=60,
+            shard_count=2,
+            auto_split=True,
+            max_split_shard=10,
+            enable_tracking=True,
+            time_key="request_time",
+            time_format="%Y-%m-%dT%H:%M:%S,%f",
+            tags=[volcengine.tls.TopicTagArgs(
+                key="k1",
+                value="v1",
+            )],
+            log_public_ip=True,
+            enable_hot_ttl=True,
+            hot_ttl=30,
+            cold_ttl=30,
+            archive_ttl=0)
+        foo_rule = volcengine.tls.Rule("fooRule",
+            topic_id=foo_topic.id,
+            rule_name="tf-test-rule-modify",
+            log_type="delimiter_log",
+            log_sample="2018-05-22 15:35:53.850,INFO,XXXX",
             input_type=1,
+            extract_rule=volcengine.tls.RuleExtractRuleArgs(
+                delimiter=",",
+                keys=[
+                    "time",
+                    "level",
+                    "msg",
+                ],
+                time_key="time",
+                time_format="%Y-%m-%d %H:%M:%S.%f",
+                quote="\\"",
+                time_zone="GMT+08:00",
+                begin_regex="",
+                log_regex="",
+                filter_key_regexes=[volcengine.tls.RuleExtractRuleFilterKeyRegexArgs(
+                    key="__content__",
+                    regex=".*ERROR.*",
+                )],
+                un_match_up_load_switch=True,
+                un_match_log_key="LogParseFailed",
+                log_template=volcengine.tls.RuleExtractRuleLogTemplateArgs(
+                    type="",
+                    format="",
+                ),
+            ),
             user_define_rule=volcengine.tls.RuleUserDefineRuleArgs(
-                enable_raw_log=False,
+                enable_raw_log=True,
                 tail_files=True,
+                fields={
+                    "cluster_id": "dabaad5f-7a10-4771-b3ea-d821f73e****",
+                },
+                parse_path_rule=volcengine.tls.RuleUserDefineRuleParsePathRuleArgs(
+                    path_sample="/data/nginx/log/dabaad5f-7a10/tls/app.log",
+                    regex="\\\\/data\\\\/nginx\\\\/log\\\\/(\\\\w+)-(\\\\w+)\\\\/tls\\\\/app\\\\.log",
+                    keys=[
+                        "instance-id",
+                        "pod-name",
+                    ],
+                ),
                 shard_hash_key=volcengine.tls.RuleUserDefineRuleShardHashKeyArgs(
                     hash_key="3C",
                 ),
                 plugin=volcengine.tls.RuleUserDefineRulePluginArgs(
-                    processors=[
-                        json.dumps({
-                            "json": {
-                                "field": "__content__",
-                                "trim_keys": {
-                                    "mode": "all",
-                                    "chars": "#",
-                                },
-                                "trim_values": {
-                                    "mode": "all",
-                                    "chars": "#t",
-                                },
-                                "allow_overwrite_keys": True,
-                                "allow_empty_values": True,
+                    processors=[json.dumps({
+                        "json": {
+                            "field": "__content__",
+                            "trim_keys": {
+                                "mode": "all",
+                                "chars": "#",
                             },
-                        }),
-                        json.dumps({
-                            "json": {
-                                "field": "__content__",
-                                "trim_keys": {
-                                    "mode": "all",
-                                    "chars": "#xx",
-                                },
-                                "trim_values": {
-                                    "mode": "all",
-                                    "chars": "#txxxt",
-                                },
-                                "allow_overwrite_keys": True,
-                                "allow_empty_values": True,
+                            "trim_values": {
+                                "mode": "all",
+                                "chars": "#t",
                             },
-                        }),
-                    ],
+                            "allow_overwrite_keys": True,
+                            "allow_empty_values": True,
+                        },
+                    })],
                 ),
                 advanced=volcengine.tls.RuleUserDefineRuleAdvancedArgs(
                     close_inactive=10,

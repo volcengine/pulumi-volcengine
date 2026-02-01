@@ -35,21 +35,20 @@ import (
 //						Keys: pulumi.StringArray{
 //							pulumi.String("__content"),
 //							pulumi.String("__pod_name__"),
-//							pulumi.String("__path__"),
-//							pulumi.String("__tf-test__"),
 //						},
 //					},
 //				},
+//				RoleTrn:          pulumi.String(""),
 //				ShipperEndTime:   pulumi.Int(1751255700021),
-//				ShipperName:      pulumi.String("tf-test"),
+//				ShipperName:      pulumi.String("tf-test-modify"),
 //				ShipperStartTime: pulumi.Int(1750737324521),
 //				ShipperType:      pulumi.String("tos"),
-//				TopicId:          pulumi.String("8ba48bd7-2493-4300-b1d0-cb7xxxxxx"),
+//				TopicId:          pulumi.String("8ba48bd7-2493-4300-b1d0-cb760b89e51b"),
 //				TosShipperInfo: &tls.ShipperTosShipperInfoArgs{
 //					Bucket:          pulumi.String("tf-test"),
 //					Compress:        pulumi.String("snappy"),
-//					Interval:        pulumi.Int(100),
-//					MaxSize:         pulumi.Int(100),
+//					Interval:        pulumi.Int(200),
+//					MaxSize:         pulumi.Int(50),
 //					PartitionFormat: pulumi.String("%Y/%m/%d/%H/%M"),
 //					Prefix:          pulumi.String("terraform_1.9.4_linux_amd64.zip"),
 //				},
@@ -77,6 +76,8 @@ type Shipper struct {
 	ContentInfo ShipperContentInfoOutput `pulumi:"contentInfo"`
 	// JSON format log content configuration.
 	KafkaShipperInfo ShipperKafkaShipperInfoOutput `pulumi:"kafkaShipperInfo"`
+	// The role trn.
+	RoleTrn pulumi.StringPtrOutput `pulumi:"roleTrn"`
 	// Delivery end time, millisecond timestamp. If not configured, it will keep delivering. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	ShipperEndTime pulumi.IntPtrOutput `pulumi:"shipperEndTime"`
 	// Delivery configuration name.
@@ -136,6 +137,8 @@ type shipperState struct {
 	ContentInfo *ShipperContentInfo `pulumi:"contentInfo"`
 	// JSON format log content configuration.
 	KafkaShipperInfo *ShipperKafkaShipperInfo `pulumi:"kafkaShipperInfo"`
+	// The role trn.
+	RoleTrn *string `pulumi:"roleTrn"`
 	// Delivery end time, millisecond timestamp. If not configured, it will keep delivering. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	ShipperEndTime *int `pulumi:"shipperEndTime"`
 	// Delivery configuration name.
@@ -157,6 +160,8 @@ type ShipperState struct {
 	ContentInfo ShipperContentInfoPtrInput
 	// JSON format log content configuration.
 	KafkaShipperInfo ShipperKafkaShipperInfoPtrInput
+	// The role trn.
+	RoleTrn pulumi.StringPtrInput
 	// Delivery end time, millisecond timestamp. If not configured, it will keep delivering. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	ShipperEndTime pulumi.IntPtrInput
 	// Delivery configuration name.
@@ -182,6 +187,8 @@ type shipperArgs struct {
 	ContentInfo ShipperContentInfo `pulumi:"contentInfo"`
 	// JSON format log content configuration.
 	KafkaShipperInfo *ShipperKafkaShipperInfo `pulumi:"kafkaShipperInfo"`
+	// The role trn.
+	RoleTrn *string `pulumi:"roleTrn"`
 	// Delivery end time, millisecond timestamp. If not configured, it will keep delivering. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	ShipperEndTime *int `pulumi:"shipperEndTime"`
 	// Delivery configuration name.
@@ -204,6 +211,8 @@ type ShipperArgs struct {
 	ContentInfo ShipperContentInfoInput
 	// JSON format log content configuration.
 	KafkaShipperInfo ShipperKafkaShipperInfoPtrInput
+	// The role trn.
+	RoleTrn pulumi.StringPtrInput
 	// Delivery end time, millisecond timestamp. If not configured, it will keep delivering. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	ShipperEndTime pulumi.IntPtrInput
 	// Delivery configuration name.
@@ -315,6 +324,11 @@ func (o ShipperOutput) ContentInfo() ShipperContentInfoOutput {
 // JSON format log content configuration.
 func (o ShipperOutput) KafkaShipperInfo() ShipperKafkaShipperInfoOutput {
 	return o.ApplyT(func(v *Shipper) ShipperKafkaShipperInfoOutput { return v.KafkaShipperInfo }).(ShipperKafkaShipperInfoOutput)
+}
+
+// The role trn.
+func (o ShipperOutput) RoleTrn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Shipper) pulumi.StringPtrOutput { return v.RoleTrn }).(pulumi.StringPtrOutput)
 }
 
 // Delivery end time, millisecond timestamp. If not configured, it will keep delivering. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.

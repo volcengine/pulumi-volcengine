@@ -12,19 +12,32 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = new volcengine.tls.Host("foo", {
- *     hostGroupId: "fbea6619-7b0c-40f3-ac7e-45c63e3f676e",
- *     ip: "10.180.50.18",
+ * const foo = new volcengine.tls.HostGroup("foo", {
+ *     hostGroupName: "tfgroup-ip-tf",
+ *     hostGroupType: "IP",
+ *     hostIpLists: [
+ *         "192.168.0.1",
+ *         "192.168.0.2",
+ *         "192.168.0.3",
+ *     ],
+ *     autoUpdate: true,
+ *     updateStartTime: "00:00",
+ *     updateEndTime: "02:00",
+ *     serviceLogging: false,
+ *     iamProjectName: "default",
  * });
+ * // 删除指定 IP
+ * const deleteFoo = new volcengine.tls.Host("deleteFoo", {
+ *     hostGroupId: foo.id,
+ *     ip: "192.168.0.1",
+ * });
+ * // 删除异常机器
+ * const deleteAbnormal = new volcengine.tls.Host("deleteAbnormal", {hostGroupId: foo.id});
  * ```
  *
  * ## Import
  *
- * Tls Host can be imported using the host_group_id:ip, e.g.
- *
- * ```sh
- * $ pulumi import volcengine:tls/host:Host default edf051ed-3c46-49:1.1.1.1
- * ```
+ * The TlsHost is not support import.
  */
 export class Host extends pulumi.CustomResource {
     /**
@@ -61,7 +74,7 @@ export class Host extends pulumi.CustomResource {
     /**
      * The ip address.
      */
-    public readonly ip!: pulumi.Output<string>;
+    public readonly ip!: pulumi.Output<string | undefined>;
 
     /**
      * Create a Host resource with the given unique name, arguments, and options.
@@ -82,9 +95,6 @@ export class Host extends pulumi.CustomResource {
             const args = argsOrState as HostArgs | undefined;
             if ((!args || args.hostGroupId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'hostGroupId'");
-            }
-            if ((!args || args.ip === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'ip'");
             }
             resourceInputs["hostGroupId"] = args ? args.hostGroupId : undefined;
             resourceInputs["ip"] = args ? args.ip : undefined;
@@ -119,5 +129,5 @@ export interface HostArgs {
     /**
      * The ip address.
      */
-    ip: pulumi.Input<string>;
+    ip?: pulumi.Input<string>;
 }

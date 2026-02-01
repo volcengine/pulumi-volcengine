@@ -14,10 +14,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.tls.getHostGroups({
- *     hostGroupId: "fbea6619-7b0c-40f3-ac7e-45c63e3f676e",
- *     hostGroupName: "cn",
- * });
+ * const default = volcengine.tls.getHostGroups({});
  * ```
  */
 export function getHostGroups(args?: GetHostGroupsArgs, opts?: pulumi.InvokeOptions): Promise<GetHostGroupsResult> {
@@ -26,6 +23,7 @@ export function getHostGroups(args?: GetHostGroupsArgs, opts?: pulumi.InvokeOpti
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:tls/getHostGroups:getHostGroups", {
         "autoUpdate": args.autoUpdate,
+        "hidden": args.hidden,
         "hostGroupId": args.hostGroupId,
         "hostGroupName": args.hostGroupName,
         "hostIdentifier": args.hostIdentifier,
@@ -43,6 +41,10 @@ export interface GetHostGroupsArgs {
      * Whether enable auto update.
      */
     autoUpdate?: boolean;
+    /**
+     * Whether to hide host groups in exclusive resources.
+     */
+    hidden?: boolean;
     /**
      * The id of host group.
      */
@@ -77,6 +79,7 @@ export interface GetHostGroupsResult {
      * Whether enable auto update.
      */
     readonly autoUpdate?: boolean;
+    readonly hidden?: boolean;
     /**
      * The id of host group.
      */
@@ -119,10 +122,7 @@ export interface GetHostGroupsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.tls.getHostGroups({
- *     hostGroupId: "fbea6619-7b0c-40f3-ac7e-45c63e3f676e",
- *     hostGroupName: "cn",
- * });
+ * const default = volcengine.tls.getHostGroups({});
  * ```
  */
 export function getHostGroupsOutput(args?: GetHostGroupsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetHostGroupsResult> {
@@ -137,6 +137,10 @@ export interface GetHostGroupsOutputArgs {
      * Whether enable auto update.
      */
     autoUpdate?: pulumi.Input<boolean>;
+    /**
+     * Whether to hide host groups in exclusive resources.
+     */
+    hidden?: pulumi.Input<boolean>;
     /**
      * The id of host group.
      */

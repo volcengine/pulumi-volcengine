@@ -19,9 +19,11 @@ class ClbArgs:
                  subnet_id: pulumi.Input[str],
                  type: pulumi.Input[str],
                  address_ip_version: Optional[pulumi.Input[str]] = None,
+                 bypass_security_group_enabled: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  eip_billing_config: Optional[pulumi.Input['ClbEipBillingConfigArgs']] = None,
                  eni_address: Optional[pulumi.Input[str]] = None,
+                 eni_address_num: Optional[pulumi.Input[int]] = None,
                  eni_ipv6_address: Optional[pulumi.Input[str]] = None,
                  load_balancer_billing_type: Optional[pulumi.Input[str]] = None,
                  load_balancer_name: Optional[pulumi.Input[str]] = None,
@@ -32,18 +34,25 @@ class ClbArgs:
                  period: Optional[pulumi.Input[int]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  region_id: Optional[pulumi.Input[str]] = None,
+                 remain_renew_times: Optional[pulumi.Input[int]] = None,
+                 renew_period_times: Optional[pulumi.Input[int]] = None,
+                 renew_type: Optional[pulumi.Input[str]] = None,
                  slave_zone_id: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input['ClbTagArgs']]]] = None,
-                 vpc_id: Optional[pulumi.Input[str]] = None):
+                 timestamp_remove_enabled: Optional[pulumi.Input[str]] = None,
+                 vpc_id: Optional[pulumi.Input[str]] = None,
+                 zone_type: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Clb resource.
         :param pulumi.Input[str] subnet_id: The id of the Subnet.
         :param pulumi.Input[str] type: The type of the CLB. And optional choice contains `public` or `private`.
         :param pulumi.Input[str] address_ip_version: The address ip version of the Clb. Valid values: `ipv4`, `DualStack`. Default is `ipv4`.
                When the value of this field is `DualStack`, the type of the CLB must be `private`, and suggest using a combination of resource `vpc.Ipv6Gateway` and `vpc.Ipv6AddressBandwidth` to achieve ipv6 public network access function.
+        :param pulumi.Input[str] bypass_security_group_enabled: Whether the CLB instance enables the "Allow Backend Security Group" function. value range: `on`, `off`.
         :param pulumi.Input[str] description: The description of the CLB.
         :param pulumi.Input['ClbEipBillingConfigArgs'] eip_billing_config: The billing configuration of the EIP which automatically associated to CLB. This field is valid when the type of CLB is `public`.When the type of the CLB is `private`, suggest using a combination of resource `eip.Address` and `eip.Associate` to achieve public network access function.
         :param pulumi.Input[str] eni_address: The eni address of the CLB.
+        :param pulumi.Input[int] eni_address_num: The number of private IPv4 addresses for the CLB instance. This parameter is valid only when the type parameter is set to private and eni_address is not passed in.
         :param pulumi.Input[str] eni_ipv6_address: The eni ipv6 address of the Clb.
         :param pulumi.Input[str] load_balancer_billing_type: The billing type of the CLB, valid values: `PostPaid`, `PrePaid`, `PostPaidByLCU`. Default is `PostPaid`.
         :param pulumi.Input[str] load_balancer_name: The name of the CLB.
@@ -54,20 +63,29 @@ class ClbArgs:
         :param pulumi.Input[int] period: The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] project_name: The ProjectName of the CLB.
         :param pulumi.Input[str] region_id: The region of the request.
+        :param pulumi.Input[int] remain_renew_times: The remain renew times of the CLB. When the value of the renew_type is `AutoRenew`, this field is effective. Valid values: `-1`, `1~100`. The `-1` indicates unlimited automatic renewals.
+        :param pulumi.Input[int] renew_period_times: The renew period times of the CLB. When the value of the renew_type is `AutoRenew`, this field is effective. Valid values: `1`, `2`, `3`, `6`, `12`.
+        :param pulumi.Input[str] renew_type: The renew type of the CLB. When the value of the load_balancer_billing_type is `PrePaid`, the query returns this field. Valid values: `AutoRenew`, `ManualRenew`.
         :param pulumi.Input[str] slave_zone_id: The slave zone ID of the CLB.
         :param pulumi.Input[Sequence[pulumi.Input['ClbTagArgs']]] tags: Tags.
+        :param pulumi.Input[str] timestamp_remove_enabled: Whether to enable the function of clearing the timestamp of TCP/HTTP/HTTPS packets (i.e., the time stamp). value range: `on`, `off`.
         :param pulumi.Input[str] vpc_id: The id of the VPC.
+        :param pulumi.Input[str] zone_type: The zone type of the CLB. And optional choice contains `single` or `active-standby`.
         """
         pulumi.set(__self__, "subnet_id", subnet_id)
         pulumi.set(__self__, "type", type)
         if address_ip_version is not None:
             pulumi.set(__self__, "address_ip_version", address_ip_version)
+        if bypass_security_group_enabled is not None:
+            pulumi.set(__self__, "bypass_security_group_enabled", bypass_security_group_enabled)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if eip_billing_config is not None:
             pulumi.set(__self__, "eip_billing_config", eip_billing_config)
         if eni_address is not None:
             pulumi.set(__self__, "eni_address", eni_address)
+        if eni_address_num is not None:
+            pulumi.set(__self__, "eni_address_num", eni_address_num)
         if eni_ipv6_address is not None:
             pulumi.set(__self__, "eni_ipv6_address", eni_ipv6_address)
         if load_balancer_billing_type is not None:
@@ -88,12 +106,22 @@ class ClbArgs:
             pulumi.set(__self__, "project_name", project_name)
         if region_id is not None:
             pulumi.set(__self__, "region_id", region_id)
+        if remain_renew_times is not None:
+            pulumi.set(__self__, "remain_renew_times", remain_renew_times)
+        if renew_period_times is not None:
+            pulumi.set(__self__, "renew_period_times", renew_period_times)
+        if renew_type is not None:
+            pulumi.set(__self__, "renew_type", renew_type)
         if slave_zone_id is not None:
             pulumi.set(__self__, "slave_zone_id", slave_zone_id)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
+        if timestamp_remove_enabled is not None:
+            pulumi.set(__self__, "timestamp_remove_enabled", timestamp_remove_enabled)
         if vpc_id is not None:
             pulumi.set(__self__, "vpc_id", vpc_id)
+        if zone_type is not None:
+            pulumi.set(__self__, "zone_type", zone_type)
 
     @property
     @pulumi.getter(name="subnetId")
@@ -133,6 +161,18 @@ class ClbArgs:
         pulumi.set(self, "address_ip_version", value)
 
     @property
+    @pulumi.getter(name="bypassSecurityGroupEnabled")
+    def bypass_security_group_enabled(self) -> Optional[pulumi.Input[str]]:
+        """
+        Whether the CLB instance enables the "Allow Backend Security Group" function. value range: `on`, `off`.
+        """
+        return pulumi.get(self, "bypass_security_group_enabled")
+
+    @bypass_security_group_enabled.setter
+    def bypass_security_group_enabled(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "bypass_security_group_enabled", value)
+
+    @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
@@ -167,6 +207,18 @@ class ClbArgs:
     @eni_address.setter
     def eni_address(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "eni_address", value)
+
+    @property
+    @pulumi.getter(name="eniAddressNum")
+    def eni_address_num(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of private IPv4 addresses for the CLB instance. This parameter is valid only when the type parameter is set to private and eni_address is not passed in.
+        """
+        return pulumi.get(self, "eni_address_num")
+
+    @eni_address_num.setter
+    def eni_address_num(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "eni_address_num", value)
 
     @property
     @pulumi.getter(name="eniIpv6Address")
@@ -289,6 +341,42 @@ class ClbArgs:
         pulumi.set(self, "region_id", value)
 
     @property
+    @pulumi.getter(name="remainRenewTimes")
+    def remain_renew_times(self) -> Optional[pulumi.Input[int]]:
+        """
+        The remain renew times of the CLB. When the value of the renew_type is `AutoRenew`, this field is effective. Valid values: `-1`, `1~100`. The `-1` indicates unlimited automatic renewals.
+        """
+        return pulumi.get(self, "remain_renew_times")
+
+    @remain_renew_times.setter
+    def remain_renew_times(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "remain_renew_times", value)
+
+    @property
+    @pulumi.getter(name="renewPeriodTimes")
+    def renew_period_times(self) -> Optional[pulumi.Input[int]]:
+        """
+        The renew period times of the CLB. When the value of the renew_type is `AutoRenew`, this field is effective. Valid values: `1`, `2`, `3`, `6`, `12`.
+        """
+        return pulumi.get(self, "renew_period_times")
+
+    @renew_period_times.setter
+    def renew_period_times(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "renew_period_times", value)
+
+    @property
+    @pulumi.getter(name="renewType")
+    def renew_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The renew type of the CLB. When the value of the load_balancer_billing_type is `PrePaid`, the query returns this field. Valid values: `AutoRenew`, `ManualRenew`.
+        """
+        return pulumi.get(self, "renew_type")
+
+    @renew_type.setter
+    def renew_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "renew_type", value)
+
+    @property
     @pulumi.getter(name="slaveZoneId")
     def slave_zone_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -313,6 +401,18 @@ class ClbArgs:
         pulumi.set(self, "tags", value)
 
     @property
+    @pulumi.getter(name="timestampRemoveEnabled")
+    def timestamp_remove_enabled(self) -> Optional[pulumi.Input[str]]:
+        """
+        Whether to enable the function of clearing the timestamp of TCP/HTTP/HTTPS packets (i.e., the time stamp). value range: `on`, `off`.
+        """
+        return pulumi.get(self, "timestamp_remove_enabled")
+
+    @timestamp_remove_enabled.setter
+    def timestamp_remove_enabled(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "timestamp_remove_enabled", value)
+
+    @property
     @pulumi.getter(name="vpcId")
     def vpc_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -324,16 +424,30 @@ class ClbArgs:
     def vpc_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "vpc_id", value)
 
+    @property
+    @pulumi.getter(name="zoneType")
+    def zone_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The zone type of the CLB. And optional choice contains `single` or `active-standby`.
+        """
+        return pulumi.get(self, "zone_type")
+
+    @zone_type.setter
+    def zone_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "zone_type", value)
+
 
 @pulumi.input_type
 class _ClbState:
     def __init__(__self__, *,
                  address_ip_version: Optional[pulumi.Input[str]] = None,
+                 bypass_security_group_enabled: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  eip_address: Optional[pulumi.Input[str]] = None,
                  eip_billing_config: Optional[pulumi.Input['ClbEipBillingConfigArgs']] = None,
                  eip_id: Optional[pulumi.Input[str]] = None,
                  eni_address: Optional[pulumi.Input[str]] = None,
+                 eni_address_num: Optional[pulumi.Input[int]] = None,
                  eni_ipv6_address: Optional[pulumi.Input[str]] = None,
                  ipv6_eip_id: Optional[pulumi.Input[str]] = None,
                  load_balancer_billing_type: Optional[pulumi.Input[str]] = None,
@@ -345,21 +459,27 @@ class _ClbState:
                  period: Optional[pulumi.Input[int]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  region_id: Optional[pulumi.Input[str]] = None,
+                 remain_renew_times: Optional[pulumi.Input[int]] = None,
+                 renew_period_times: Optional[pulumi.Input[int]] = None,
                  renew_type: Optional[pulumi.Input[str]] = None,
                  slave_zone_id: Optional[pulumi.Input[str]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input['ClbTagArgs']]]] = None,
+                 timestamp_remove_enabled: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
-                 vpc_id: Optional[pulumi.Input[str]] = None):
+                 vpc_id: Optional[pulumi.Input[str]] = None,
+                 zone_type: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Clb resources.
         :param pulumi.Input[str] address_ip_version: The address ip version of the Clb. Valid values: `ipv4`, `DualStack`. Default is `ipv4`.
                When the value of this field is `DualStack`, the type of the CLB must be `private`, and suggest using a combination of resource `vpc.Ipv6Gateway` and `vpc.Ipv6AddressBandwidth` to achieve ipv6 public network access function.
+        :param pulumi.Input[str] bypass_security_group_enabled: Whether the CLB instance enables the "Allow Backend Security Group" function. value range: `on`, `off`.
         :param pulumi.Input[str] description: The description of the CLB.
         :param pulumi.Input[str] eip_address: The Eip address of the Clb.
         :param pulumi.Input['ClbEipBillingConfigArgs'] eip_billing_config: The billing configuration of the EIP which automatically associated to CLB. This field is valid when the type of CLB is `public`.When the type of the CLB is `private`, suggest using a combination of resource `eip.Address` and `eip.Associate` to achieve public network access function.
         :param pulumi.Input[str] eip_id: The Eip ID of the Clb.
         :param pulumi.Input[str] eni_address: The eni address of the CLB.
+        :param pulumi.Input[int] eni_address_num: The number of private IPv4 addresses for the CLB instance. This parameter is valid only when the type parameter is set to private and eni_address is not passed in.
         :param pulumi.Input[str] eni_ipv6_address: The eni ipv6 address of the Clb.
         :param pulumi.Input[str] ipv6_eip_id: The Ipv6 Eip ID of the Clb.
         :param pulumi.Input[str] load_balancer_billing_type: The billing type of the CLB, valid values: `PostPaid`, `PrePaid`, `PostPaidByLCU`. Default is `PostPaid`.
@@ -371,15 +491,21 @@ class _ClbState:
         :param pulumi.Input[int] period: The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] project_name: The ProjectName of the CLB.
         :param pulumi.Input[str] region_id: The region of the request.
-        :param pulumi.Input[str] renew_type: The renew type of the CLB. When the value of the load_balancer_billing_type is `PrePaid`, the query returns this field.
+        :param pulumi.Input[int] remain_renew_times: The remain renew times of the CLB. When the value of the renew_type is `AutoRenew`, this field is effective. Valid values: `-1`, `1~100`. The `-1` indicates unlimited automatic renewals.
+        :param pulumi.Input[int] renew_period_times: The renew period times of the CLB. When the value of the renew_type is `AutoRenew`, this field is effective. Valid values: `1`, `2`, `3`, `6`, `12`.
+        :param pulumi.Input[str] renew_type: The renew type of the CLB. When the value of the load_balancer_billing_type is `PrePaid`, the query returns this field. Valid values: `AutoRenew`, `ManualRenew`.
         :param pulumi.Input[str] slave_zone_id: The slave zone ID of the CLB.
         :param pulumi.Input[str] subnet_id: The id of the Subnet.
         :param pulumi.Input[Sequence[pulumi.Input['ClbTagArgs']]] tags: Tags.
+        :param pulumi.Input[str] timestamp_remove_enabled: Whether to enable the function of clearing the timestamp of TCP/HTTP/HTTPS packets (i.e., the time stamp). value range: `on`, `off`.
         :param pulumi.Input[str] type: The type of the CLB. And optional choice contains `public` or `private`.
         :param pulumi.Input[str] vpc_id: The id of the VPC.
+        :param pulumi.Input[str] zone_type: The zone type of the CLB. And optional choice contains `single` or `active-standby`.
         """
         if address_ip_version is not None:
             pulumi.set(__self__, "address_ip_version", address_ip_version)
+        if bypass_security_group_enabled is not None:
+            pulumi.set(__self__, "bypass_security_group_enabled", bypass_security_group_enabled)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if eip_address is not None:
@@ -390,6 +516,8 @@ class _ClbState:
             pulumi.set(__self__, "eip_id", eip_id)
         if eni_address is not None:
             pulumi.set(__self__, "eni_address", eni_address)
+        if eni_address_num is not None:
+            pulumi.set(__self__, "eni_address_num", eni_address_num)
         if eni_ipv6_address is not None:
             pulumi.set(__self__, "eni_ipv6_address", eni_ipv6_address)
         if ipv6_eip_id is not None:
@@ -412,6 +540,10 @@ class _ClbState:
             pulumi.set(__self__, "project_name", project_name)
         if region_id is not None:
             pulumi.set(__self__, "region_id", region_id)
+        if remain_renew_times is not None:
+            pulumi.set(__self__, "remain_renew_times", remain_renew_times)
+        if renew_period_times is not None:
+            pulumi.set(__self__, "renew_period_times", renew_period_times)
         if renew_type is not None:
             pulumi.set(__self__, "renew_type", renew_type)
         if slave_zone_id is not None:
@@ -420,10 +552,14 @@ class _ClbState:
             pulumi.set(__self__, "subnet_id", subnet_id)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
+        if timestamp_remove_enabled is not None:
+            pulumi.set(__self__, "timestamp_remove_enabled", timestamp_remove_enabled)
         if type is not None:
             pulumi.set(__self__, "type", type)
         if vpc_id is not None:
             pulumi.set(__self__, "vpc_id", vpc_id)
+        if zone_type is not None:
+            pulumi.set(__self__, "zone_type", zone_type)
 
     @property
     @pulumi.getter(name="addressIpVersion")
@@ -437,6 +573,18 @@ class _ClbState:
     @address_ip_version.setter
     def address_ip_version(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "address_ip_version", value)
+
+    @property
+    @pulumi.getter(name="bypassSecurityGroupEnabled")
+    def bypass_security_group_enabled(self) -> Optional[pulumi.Input[str]]:
+        """
+        Whether the CLB instance enables the "Allow Backend Security Group" function. value range: `on`, `off`.
+        """
+        return pulumi.get(self, "bypass_security_group_enabled")
+
+    @bypass_security_group_enabled.setter
+    def bypass_security_group_enabled(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "bypass_security_group_enabled", value)
 
     @property
     @pulumi.getter
@@ -497,6 +645,18 @@ class _ClbState:
     @eni_address.setter
     def eni_address(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "eni_address", value)
+
+    @property
+    @pulumi.getter(name="eniAddressNum")
+    def eni_address_num(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of private IPv4 addresses for the CLB instance. This parameter is valid only when the type parameter is set to private and eni_address is not passed in.
+        """
+        return pulumi.get(self, "eni_address_num")
+
+    @eni_address_num.setter
+    def eni_address_num(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "eni_address_num", value)
 
     @property
     @pulumi.getter(name="eniIpv6Address")
@@ -631,10 +791,34 @@ class _ClbState:
         pulumi.set(self, "region_id", value)
 
     @property
+    @pulumi.getter(name="remainRenewTimes")
+    def remain_renew_times(self) -> Optional[pulumi.Input[int]]:
+        """
+        The remain renew times of the CLB. When the value of the renew_type is `AutoRenew`, this field is effective. Valid values: `-1`, `1~100`. The `-1` indicates unlimited automatic renewals.
+        """
+        return pulumi.get(self, "remain_renew_times")
+
+    @remain_renew_times.setter
+    def remain_renew_times(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "remain_renew_times", value)
+
+    @property
+    @pulumi.getter(name="renewPeriodTimes")
+    def renew_period_times(self) -> Optional[pulumi.Input[int]]:
+        """
+        The renew period times of the CLB. When the value of the renew_type is `AutoRenew`, this field is effective. Valid values: `1`, `2`, `3`, `6`, `12`.
+        """
+        return pulumi.get(self, "renew_period_times")
+
+    @renew_period_times.setter
+    def renew_period_times(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "renew_period_times", value)
+
+    @property
     @pulumi.getter(name="renewType")
     def renew_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The renew type of the CLB. When the value of the load_balancer_billing_type is `PrePaid`, the query returns this field.
+        The renew type of the CLB. When the value of the load_balancer_billing_type is `PrePaid`, the query returns this field. Valid values: `AutoRenew`, `ManualRenew`.
         """
         return pulumi.get(self, "renew_type")
 
@@ -679,6 +863,18 @@ class _ClbState:
         pulumi.set(self, "tags", value)
 
     @property
+    @pulumi.getter(name="timestampRemoveEnabled")
+    def timestamp_remove_enabled(self) -> Optional[pulumi.Input[str]]:
+        """
+        Whether to enable the function of clearing the timestamp of TCP/HTTP/HTTPS packets (i.e., the time stamp). value range: `on`, `off`.
+        """
+        return pulumi.get(self, "timestamp_remove_enabled")
+
+    @timestamp_remove_enabled.setter
+    def timestamp_remove_enabled(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "timestamp_remove_enabled", value)
+
+    @property
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
@@ -702,6 +898,18 @@ class _ClbState:
     def vpc_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "vpc_id", value)
 
+    @property
+    @pulumi.getter(name="zoneType")
+    def zone_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The zone type of the CLB. And optional choice contains `single` or `active-standby`.
+        """
+        return pulumi.get(self, "zone_type")
+
+    @zone_type.setter
+    def zone_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "zone_type", value)
+
 
 class Clb(pulumi.CustomResource):
     @overload
@@ -709,9 +917,11 @@ class Clb(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  address_ip_version: Optional[pulumi.Input[str]] = None,
+                 bypass_security_group_enabled: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  eip_billing_config: Optional[pulumi.Input[pulumi.InputType['ClbEipBillingConfigArgs']]] = None,
                  eni_address: Optional[pulumi.Input[str]] = None,
+                 eni_address_num: Optional[pulumi.Input[int]] = None,
                  eni_ipv6_address: Optional[pulumi.Input[str]] = None,
                  load_balancer_billing_type: Optional[pulumi.Input[str]] = None,
                  load_balancer_name: Optional[pulumi.Input[str]] = None,
@@ -722,11 +932,16 @@ class Clb(pulumi.CustomResource):
                  period: Optional[pulumi.Input[int]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  region_id: Optional[pulumi.Input[str]] = None,
+                 remain_renew_times: Optional[pulumi.Input[int]] = None,
+                 renew_period_times: Optional[pulumi.Input[int]] = None,
+                 renew_type: Optional[pulumi.Input[str]] = None,
                  slave_zone_id: Optional[pulumi.Input[str]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClbTagArgs']]]]] = None,
+                 timestamp_remove_enabled: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None,
+                 zone_type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         ## Example Usage
@@ -825,9 +1040,11 @@ class Clb(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] address_ip_version: The address ip version of the Clb. Valid values: `ipv4`, `DualStack`. Default is `ipv4`.
                When the value of this field is `DualStack`, the type of the CLB must be `private`, and suggest using a combination of resource `vpc.Ipv6Gateway` and `vpc.Ipv6AddressBandwidth` to achieve ipv6 public network access function.
+        :param pulumi.Input[str] bypass_security_group_enabled: Whether the CLB instance enables the "Allow Backend Security Group" function. value range: `on`, `off`.
         :param pulumi.Input[str] description: The description of the CLB.
         :param pulumi.Input[pulumi.InputType['ClbEipBillingConfigArgs']] eip_billing_config: The billing configuration of the EIP which automatically associated to CLB. This field is valid when the type of CLB is `public`.When the type of the CLB is `private`, suggest using a combination of resource `eip.Address` and `eip.Associate` to achieve public network access function.
         :param pulumi.Input[str] eni_address: The eni address of the CLB.
+        :param pulumi.Input[int] eni_address_num: The number of private IPv4 addresses for the CLB instance. This parameter is valid only when the type parameter is set to private and eni_address is not passed in.
         :param pulumi.Input[str] eni_ipv6_address: The eni ipv6 address of the Clb.
         :param pulumi.Input[str] load_balancer_billing_type: The billing type of the CLB, valid values: `PostPaid`, `PrePaid`, `PostPaidByLCU`. Default is `PostPaid`.
         :param pulumi.Input[str] load_balancer_name: The name of the CLB.
@@ -838,11 +1055,16 @@ class Clb(pulumi.CustomResource):
         :param pulumi.Input[int] period: The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] project_name: The ProjectName of the CLB.
         :param pulumi.Input[str] region_id: The region of the request.
+        :param pulumi.Input[int] remain_renew_times: The remain renew times of the CLB. When the value of the renew_type is `AutoRenew`, this field is effective. Valid values: `-1`, `1~100`. The `-1` indicates unlimited automatic renewals.
+        :param pulumi.Input[int] renew_period_times: The renew period times of the CLB. When the value of the renew_type is `AutoRenew`, this field is effective. Valid values: `1`, `2`, `3`, `6`, `12`.
+        :param pulumi.Input[str] renew_type: The renew type of the CLB. When the value of the load_balancer_billing_type is `PrePaid`, the query returns this field. Valid values: `AutoRenew`, `ManualRenew`.
         :param pulumi.Input[str] slave_zone_id: The slave zone ID of the CLB.
         :param pulumi.Input[str] subnet_id: The id of the Subnet.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClbTagArgs']]]] tags: Tags.
+        :param pulumi.Input[str] timestamp_remove_enabled: Whether to enable the function of clearing the timestamp of TCP/HTTP/HTTPS packets (i.e., the time stamp). value range: `on`, `off`.
         :param pulumi.Input[str] type: The type of the CLB. And optional choice contains `public` or `private`.
         :param pulumi.Input[str] vpc_id: The id of the VPC.
+        :param pulumi.Input[str] zone_type: The zone type of the CLB. And optional choice contains `single` or `active-standby`.
         """
         ...
     @overload
@@ -959,9 +1181,11 @@ class Clb(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  address_ip_version: Optional[pulumi.Input[str]] = None,
+                 bypass_security_group_enabled: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  eip_billing_config: Optional[pulumi.Input[pulumi.InputType['ClbEipBillingConfigArgs']]] = None,
                  eni_address: Optional[pulumi.Input[str]] = None,
+                 eni_address_num: Optional[pulumi.Input[int]] = None,
                  eni_ipv6_address: Optional[pulumi.Input[str]] = None,
                  load_balancer_billing_type: Optional[pulumi.Input[str]] = None,
                  load_balancer_name: Optional[pulumi.Input[str]] = None,
@@ -972,11 +1196,16 @@ class Clb(pulumi.CustomResource):
                  period: Optional[pulumi.Input[int]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  region_id: Optional[pulumi.Input[str]] = None,
+                 remain_renew_times: Optional[pulumi.Input[int]] = None,
+                 renew_period_times: Optional[pulumi.Input[int]] = None,
+                 renew_type: Optional[pulumi.Input[str]] = None,
                  slave_zone_id: Optional[pulumi.Input[str]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClbTagArgs']]]]] = None,
+                 timestamp_remove_enabled: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None,
+                 zone_type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -987,9 +1216,11 @@ class Clb(pulumi.CustomResource):
             __props__ = ClbArgs.__new__(ClbArgs)
 
             __props__.__dict__["address_ip_version"] = address_ip_version
+            __props__.__dict__["bypass_security_group_enabled"] = bypass_security_group_enabled
             __props__.__dict__["description"] = description
             __props__.__dict__["eip_billing_config"] = eip_billing_config
             __props__.__dict__["eni_address"] = eni_address
+            __props__.__dict__["eni_address_num"] = eni_address_num
             __props__.__dict__["eni_ipv6_address"] = eni_ipv6_address
             __props__.__dict__["load_balancer_billing_type"] = load_balancer_billing_type
             __props__.__dict__["load_balancer_name"] = load_balancer_name
@@ -1000,19 +1231,23 @@ class Clb(pulumi.CustomResource):
             __props__.__dict__["period"] = period
             __props__.__dict__["project_name"] = project_name
             __props__.__dict__["region_id"] = region_id
+            __props__.__dict__["remain_renew_times"] = remain_renew_times
+            __props__.__dict__["renew_period_times"] = renew_period_times
+            __props__.__dict__["renew_type"] = renew_type
             __props__.__dict__["slave_zone_id"] = slave_zone_id
             if subnet_id is None and not opts.urn:
                 raise TypeError("Missing required property 'subnet_id'")
             __props__.__dict__["subnet_id"] = subnet_id
             __props__.__dict__["tags"] = tags
+            __props__.__dict__["timestamp_remove_enabled"] = timestamp_remove_enabled
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
             __props__.__dict__["type"] = type
             __props__.__dict__["vpc_id"] = vpc_id
+            __props__.__dict__["zone_type"] = zone_type
             __props__.__dict__["eip_address"] = None
             __props__.__dict__["eip_id"] = None
             __props__.__dict__["ipv6_eip_id"] = None
-            __props__.__dict__["renew_type"] = None
         super(Clb, __self__).__init__(
             'volcengine:clb/clb:Clb',
             resource_name,
@@ -1024,11 +1259,13 @@ class Clb(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             address_ip_version: Optional[pulumi.Input[str]] = None,
+            bypass_security_group_enabled: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             eip_address: Optional[pulumi.Input[str]] = None,
             eip_billing_config: Optional[pulumi.Input[pulumi.InputType['ClbEipBillingConfigArgs']]] = None,
             eip_id: Optional[pulumi.Input[str]] = None,
             eni_address: Optional[pulumi.Input[str]] = None,
+            eni_address_num: Optional[pulumi.Input[int]] = None,
             eni_ipv6_address: Optional[pulumi.Input[str]] = None,
             ipv6_eip_id: Optional[pulumi.Input[str]] = None,
             load_balancer_billing_type: Optional[pulumi.Input[str]] = None,
@@ -1040,12 +1277,16 @@ class Clb(pulumi.CustomResource):
             period: Optional[pulumi.Input[int]] = None,
             project_name: Optional[pulumi.Input[str]] = None,
             region_id: Optional[pulumi.Input[str]] = None,
+            remain_renew_times: Optional[pulumi.Input[int]] = None,
+            renew_period_times: Optional[pulumi.Input[int]] = None,
             renew_type: Optional[pulumi.Input[str]] = None,
             slave_zone_id: Optional[pulumi.Input[str]] = None,
             subnet_id: Optional[pulumi.Input[str]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClbTagArgs']]]]] = None,
+            timestamp_remove_enabled: Optional[pulumi.Input[str]] = None,
             type: Optional[pulumi.Input[str]] = None,
-            vpc_id: Optional[pulumi.Input[str]] = None) -> 'Clb':
+            vpc_id: Optional[pulumi.Input[str]] = None,
+            zone_type: Optional[pulumi.Input[str]] = None) -> 'Clb':
         """
         Get an existing Clb resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -1055,11 +1296,13 @@ class Clb(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] address_ip_version: The address ip version of the Clb. Valid values: `ipv4`, `DualStack`. Default is `ipv4`.
                When the value of this field is `DualStack`, the type of the CLB must be `private`, and suggest using a combination of resource `vpc.Ipv6Gateway` and `vpc.Ipv6AddressBandwidth` to achieve ipv6 public network access function.
+        :param pulumi.Input[str] bypass_security_group_enabled: Whether the CLB instance enables the "Allow Backend Security Group" function. value range: `on`, `off`.
         :param pulumi.Input[str] description: The description of the CLB.
         :param pulumi.Input[str] eip_address: The Eip address of the Clb.
         :param pulumi.Input[pulumi.InputType['ClbEipBillingConfigArgs']] eip_billing_config: The billing configuration of the EIP which automatically associated to CLB. This field is valid when the type of CLB is `public`.When the type of the CLB is `private`, suggest using a combination of resource `eip.Address` and `eip.Associate` to achieve public network access function.
         :param pulumi.Input[str] eip_id: The Eip ID of the Clb.
         :param pulumi.Input[str] eni_address: The eni address of the CLB.
+        :param pulumi.Input[int] eni_address_num: The number of private IPv4 addresses for the CLB instance. This parameter is valid only when the type parameter is set to private and eni_address is not passed in.
         :param pulumi.Input[str] eni_ipv6_address: The eni ipv6 address of the Clb.
         :param pulumi.Input[str] ipv6_eip_id: The Ipv6 Eip ID of the Clb.
         :param pulumi.Input[str] load_balancer_billing_type: The billing type of the CLB, valid values: `PostPaid`, `PrePaid`, `PostPaidByLCU`. Default is `PostPaid`.
@@ -1071,23 +1314,29 @@ class Clb(pulumi.CustomResource):
         :param pulumi.Input[int] period: The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] project_name: The ProjectName of the CLB.
         :param pulumi.Input[str] region_id: The region of the request.
-        :param pulumi.Input[str] renew_type: The renew type of the CLB. When the value of the load_balancer_billing_type is `PrePaid`, the query returns this field.
+        :param pulumi.Input[int] remain_renew_times: The remain renew times of the CLB. When the value of the renew_type is `AutoRenew`, this field is effective. Valid values: `-1`, `1~100`. The `-1` indicates unlimited automatic renewals.
+        :param pulumi.Input[int] renew_period_times: The renew period times of the CLB. When the value of the renew_type is `AutoRenew`, this field is effective. Valid values: `1`, `2`, `3`, `6`, `12`.
+        :param pulumi.Input[str] renew_type: The renew type of the CLB. When the value of the load_balancer_billing_type is `PrePaid`, the query returns this field. Valid values: `AutoRenew`, `ManualRenew`.
         :param pulumi.Input[str] slave_zone_id: The slave zone ID of the CLB.
         :param pulumi.Input[str] subnet_id: The id of the Subnet.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClbTagArgs']]]] tags: Tags.
+        :param pulumi.Input[str] timestamp_remove_enabled: Whether to enable the function of clearing the timestamp of TCP/HTTP/HTTPS packets (i.e., the time stamp). value range: `on`, `off`.
         :param pulumi.Input[str] type: The type of the CLB. And optional choice contains `public` or `private`.
         :param pulumi.Input[str] vpc_id: The id of the VPC.
+        :param pulumi.Input[str] zone_type: The zone type of the CLB. And optional choice contains `single` or `active-standby`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _ClbState.__new__(_ClbState)
 
         __props__.__dict__["address_ip_version"] = address_ip_version
+        __props__.__dict__["bypass_security_group_enabled"] = bypass_security_group_enabled
         __props__.__dict__["description"] = description
         __props__.__dict__["eip_address"] = eip_address
         __props__.__dict__["eip_billing_config"] = eip_billing_config
         __props__.__dict__["eip_id"] = eip_id
         __props__.__dict__["eni_address"] = eni_address
+        __props__.__dict__["eni_address_num"] = eni_address_num
         __props__.__dict__["eni_ipv6_address"] = eni_ipv6_address
         __props__.__dict__["ipv6_eip_id"] = ipv6_eip_id
         __props__.__dict__["load_balancer_billing_type"] = load_balancer_billing_type
@@ -1099,12 +1348,16 @@ class Clb(pulumi.CustomResource):
         __props__.__dict__["period"] = period
         __props__.__dict__["project_name"] = project_name
         __props__.__dict__["region_id"] = region_id
+        __props__.__dict__["remain_renew_times"] = remain_renew_times
+        __props__.__dict__["renew_period_times"] = renew_period_times
         __props__.__dict__["renew_type"] = renew_type
         __props__.__dict__["slave_zone_id"] = slave_zone_id
         __props__.__dict__["subnet_id"] = subnet_id
         __props__.__dict__["tags"] = tags
+        __props__.__dict__["timestamp_remove_enabled"] = timestamp_remove_enabled
         __props__.__dict__["type"] = type
         __props__.__dict__["vpc_id"] = vpc_id
+        __props__.__dict__["zone_type"] = zone_type
         return Clb(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -1115,6 +1368,14 @@ class Clb(pulumi.CustomResource):
         When the value of this field is `DualStack`, the type of the CLB must be `private`, and suggest using a combination of resource `vpc.Ipv6Gateway` and `vpc.Ipv6AddressBandwidth` to achieve ipv6 public network access function.
         """
         return pulumi.get(self, "address_ip_version")
+
+    @property
+    @pulumi.getter(name="bypassSecurityGroupEnabled")
+    def bypass_security_group_enabled(self) -> pulumi.Output[str]:
+        """
+        Whether the CLB instance enables the "Allow Backend Security Group" function. value range: `on`, `off`.
+        """
+        return pulumi.get(self, "bypass_security_group_enabled")
 
     @property
     @pulumi.getter
@@ -1155,6 +1416,14 @@ class Clb(pulumi.CustomResource):
         The eni address of the CLB.
         """
         return pulumi.get(self, "eni_address")
+
+    @property
+    @pulumi.getter(name="eniAddressNum")
+    def eni_address_num(self) -> pulumi.Output[Optional[int]]:
+        """
+        The number of private IPv4 addresses for the CLB instance. This parameter is valid only when the type parameter is set to private and eni_address is not passed in.
+        """
+        return pulumi.get(self, "eni_address_num")
 
     @property
     @pulumi.getter(name="eniIpv6Address")
@@ -1245,10 +1514,26 @@ class Clb(pulumi.CustomResource):
         return pulumi.get(self, "region_id")
 
     @property
+    @pulumi.getter(name="remainRenewTimes")
+    def remain_renew_times(self) -> pulumi.Output[int]:
+        """
+        The remain renew times of the CLB. When the value of the renew_type is `AutoRenew`, this field is effective. Valid values: `-1`, `1~100`. The `-1` indicates unlimited automatic renewals.
+        """
+        return pulumi.get(self, "remain_renew_times")
+
+    @property
+    @pulumi.getter(name="renewPeriodTimes")
+    def renew_period_times(self) -> pulumi.Output[int]:
+        """
+        The renew period times of the CLB. When the value of the renew_type is `AutoRenew`, this field is effective. Valid values: `1`, `2`, `3`, `6`, `12`.
+        """
+        return pulumi.get(self, "renew_period_times")
+
+    @property
     @pulumi.getter(name="renewType")
     def renew_type(self) -> pulumi.Output[str]:
         """
-        The renew type of the CLB. When the value of the load_balancer_billing_type is `PrePaid`, the query returns this field.
+        The renew type of the CLB. When the value of the load_balancer_billing_type is `PrePaid`, the query returns this field. Valid values: `AutoRenew`, `ManualRenew`.
         """
         return pulumi.get(self, "renew_type")
 
@@ -1277,6 +1562,14 @@ class Clb(pulumi.CustomResource):
         return pulumi.get(self, "tags")
 
     @property
+    @pulumi.getter(name="timestampRemoveEnabled")
+    def timestamp_remove_enabled(self) -> pulumi.Output[str]:
+        """
+        Whether to enable the function of clearing the timestamp of TCP/HTTP/HTTPS packets (i.e., the time stamp). value range: `on`, `off`.
+        """
+        return pulumi.get(self, "timestamp_remove_enabled")
+
+    @property
     @pulumi.getter
     def type(self) -> pulumi.Output[str]:
         """
@@ -1291,4 +1584,12 @@ class Clb(pulumi.CustomResource):
         The id of the VPC.
         """
         return pulumi.get(self, "vpc_id")
+
+    @property
+    @pulumi.getter(name="zoneType")
+    def zone_type(self) -> pulumi.Output[Optional[str]]:
+        """
+        The zone type of the CLB. And optional choice contains `single` or `active-standby`.
+        """
+        return pulumi.get(self, "zone_type")
 

@@ -163,6 +163,12 @@ namespace Pulumi.Volcengine.Clb
         public Output<string?> AddressIpVersion { get; private set; } = null!;
 
         /// <summary>
+        /// Whether the CLB instance enables the "Allow Backend Security Group" function. value range: `on`, `off`.
+        /// </summary>
+        [Output("bypassSecurityGroupEnabled")]
+        public Output<string> BypassSecurityGroupEnabled { get; private set; } = null!;
+
+        /// <summary>
         /// The description of the CLB.
         /// </summary>
         [Output("description")]
@@ -191,6 +197,12 @@ namespace Pulumi.Volcengine.Clb
         /// </summary>
         [Output("eniAddress")]
         public Output<string> EniAddress { get; private set; } = null!;
+
+        /// <summary>
+        /// The number of private IPv4 addresses for the CLB instance. This parameter is valid only when the type parameter is set to private and eni_address is not passed in.
+        /// </summary>
+        [Output("eniAddressNum")]
+        public Output<int?> EniAddressNum { get; private set; } = null!;
 
         /// <summary>
         /// The eni ipv6 address of the Clb.
@@ -259,7 +271,19 @@ namespace Pulumi.Volcengine.Clb
         public Output<string> RegionId { get; private set; } = null!;
 
         /// <summary>
-        /// The renew type of the CLB. When the value of the load_balancer_billing_type is `PrePaid`, the query returns this field.
+        /// The remain renew times of the CLB. When the value of the renew_type is `AutoRenew`, this field is effective. Valid values: `-1`, `1~100`. The `-1` indicates unlimited automatic renewals.
+        /// </summary>
+        [Output("remainRenewTimes")]
+        public Output<int> RemainRenewTimes { get; private set; } = null!;
+
+        /// <summary>
+        /// The renew period times of the CLB. When the value of the renew_type is `AutoRenew`, this field is effective. Valid values: `1`, `2`, `3`, `6`, `12`.
+        /// </summary>
+        [Output("renewPeriodTimes")]
+        public Output<int> RenewPeriodTimes { get; private set; } = null!;
+
+        /// <summary>
+        /// The renew type of the CLB. When the value of the load_balancer_billing_type is `PrePaid`, the query returns this field. Valid values: `AutoRenew`, `ManualRenew`.
         /// </summary>
         [Output("renewType")]
         public Output<string> RenewType { get; private set; } = null!;
@@ -283,6 +307,12 @@ namespace Pulumi.Volcengine.Clb
         public Output<ImmutableArray<Outputs.ClbTag>> Tags { get; private set; } = null!;
 
         /// <summary>
+        /// Whether to enable the function of clearing the timestamp of TCP/HTTP/HTTPS packets (i.e., the time stamp). value range: `on`, `off`.
+        /// </summary>
+        [Output("timestampRemoveEnabled")]
+        public Output<string> TimestampRemoveEnabled { get; private set; } = null!;
+
+        /// <summary>
         /// The type of the CLB. And optional choice contains `public` or `private`.
         /// </summary>
         [Output("type")]
@@ -293,6 +323,12 @@ namespace Pulumi.Volcengine.Clb
         /// </summary>
         [Output("vpcId")]
         public Output<string> VpcId { get; private set; } = null!;
+
+        /// <summary>
+        /// The zone type of the CLB. And optional choice contains `single` or `active-standby`.
+        /// </summary>
+        [Output("zoneType")]
+        public Output<string?> ZoneType { get; private set; } = null!;
 
 
         /// <summary>
@@ -349,6 +385,12 @@ namespace Pulumi.Volcengine.Clb
         public Input<string>? AddressIpVersion { get; set; }
 
         /// <summary>
+        /// Whether the CLB instance enables the "Allow Backend Security Group" function. value range: `on`, `off`.
+        /// </summary>
+        [Input("bypassSecurityGroupEnabled")]
+        public Input<string>? BypassSecurityGroupEnabled { get; set; }
+
+        /// <summary>
         /// The description of the CLB.
         /// </summary>
         [Input("description")]
@@ -365,6 +407,12 @@ namespace Pulumi.Volcengine.Clb
         /// </summary>
         [Input("eniAddress")]
         public Input<string>? EniAddress { get; set; }
+
+        /// <summary>
+        /// The number of private IPv4 addresses for the CLB instance. This parameter is valid only when the type parameter is set to private and eni_address is not passed in.
+        /// </summary>
+        [Input("eniAddressNum")]
+        public Input<int>? EniAddressNum { get; set; }
 
         /// <summary>
         /// The eni ipv6 address of the Clb.
@@ -427,6 +475,24 @@ namespace Pulumi.Volcengine.Clb
         public Input<string>? RegionId { get; set; }
 
         /// <summary>
+        /// The remain renew times of the CLB. When the value of the renew_type is `AutoRenew`, this field is effective. Valid values: `-1`, `1~100`. The `-1` indicates unlimited automatic renewals.
+        /// </summary>
+        [Input("remainRenewTimes")]
+        public Input<int>? RemainRenewTimes { get; set; }
+
+        /// <summary>
+        /// The renew period times of the CLB. When the value of the renew_type is `AutoRenew`, this field is effective. Valid values: `1`, `2`, `3`, `6`, `12`.
+        /// </summary>
+        [Input("renewPeriodTimes")]
+        public Input<int>? RenewPeriodTimes { get; set; }
+
+        /// <summary>
+        /// The renew type of the CLB. When the value of the load_balancer_billing_type is `PrePaid`, the query returns this field. Valid values: `AutoRenew`, `ManualRenew`.
+        /// </summary>
+        [Input("renewType")]
+        public Input<string>? RenewType { get; set; }
+
+        /// <summary>
         /// The slave zone ID of the CLB.
         /// </summary>
         [Input("slaveZoneId")]
@@ -451,6 +517,12 @@ namespace Pulumi.Volcengine.Clb
         }
 
         /// <summary>
+        /// Whether to enable the function of clearing the timestamp of TCP/HTTP/HTTPS packets (i.e., the time stamp). value range: `on`, `off`.
+        /// </summary>
+        [Input("timestampRemoveEnabled")]
+        public Input<string>? TimestampRemoveEnabled { get; set; }
+
+        /// <summary>
         /// The type of the CLB. And optional choice contains `public` or `private`.
         /// </summary>
         [Input("type", required: true)]
@@ -461,6 +533,12 @@ namespace Pulumi.Volcengine.Clb
         /// </summary>
         [Input("vpcId")]
         public Input<string>? VpcId { get; set; }
+
+        /// <summary>
+        /// The zone type of the CLB. And optional choice contains `single` or `active-standby`.
+        /// </summary>
+        [Input("zoneType")]
+        public Input<string>? ZoneType { get; set; }
 
         public ClbArgs()
         {
@@ -476,6 +554,12 @@ namespace Pulumi.Volcengine.Clb
         /// </summary>
         [Input("addressIpVersion")]
         public Input<string>? AddressIpVersion { get; set; }
+
+        /// <summary>
+        /// Whether the CLB instance enables the "Allow Backend Security Group" function. value range: `on`, `off`.
+        /// </summary>
+        [Input("bypassSecurityGroupEnabled")]
+        public Input<string>? BypassSecurityGroupEnabled { get; set; }
 
         /// <summary>
         /// The description of the CLB.
@@ -506,6 +590,12 @@ namespace Pulumi.Volcengine.Clb
         /// </summary>
         [Input("eniAddress")]
         public Input<string>? EniAddress { get; set; }
+
+        /// <summary>
+        /// The number of private IPv4 addresses for the CLB instance. This parameter is valid only when the type parameter is set to private and eni_address is not passed in.
+        /// </summary>
+        [Input("eniAddressNum")]
+        public Input<int>? EniAddressNum { get; set; }
 
         /// <summary>
         /// The eni ipv6 address of the Clb.
@@ -574,7 +664,19 @@ namespace Pulumi.Volcengine.Clb
         public Input<string>? RegionId { get; set; }
 
         /// <summary>
-        /// The renew type of the CLB. When the value of the load_balancer_billing_type is `PrePaid`, the query returns this field.
+        /// The remain renew times of the CLB. When the value of the renew_type is `AutoRenew`, this field is effective. Valid values: `-1`, `1~100`. The `-1` indicates unlimited automatic renewals.
+        /// </summary>
+        [Input("remainRenewTimes")]
+        public Input<int>? RemainRenewTimes { get; set; }
+
+        /// <summary>
+        /// The renew period times of the CLB. When the value of the renew_type is `AutoRenew`, this field is effective. Valid values: `1`, `2`, `3`, `6`, `12`.
+        /// </summary>
+        [Input("renewPeriodTimes")]
+        public Input<int>? RenewPeriodTimes { get; set; }
+
+        /// <summary>
+        /// The renew type of the CLB. When the value of the load_balancer_billing_type is `PrePaid`, the query returns this field. Valid values: `AutoRenew`, `ManualRenew`.
         /// </summary>
         [Input("renewType")]
         public Input<string>? RenewType { get; set; }
@@ -604,6 +706,12 @@ namespace Pulumi.Volcengine.Clb
         }
 
         /// <summary>
+        /// Whether to enable the function of clearing the timestamp of TCP/HTTP/HTTPS packets (i.e., the time stamp). value range: `on`, `off`.
+        /// </summary>
+        [Input("timestampRemoveEnabled")]
+        public Input<string>? TimestampRemoveEnabled { get; set; }
+
+        /// <summary>
         /// The type of the CLB. And optional choice contains `public` or `private`.
         /// </summary>
         [Input("type")]
@@ -614,6 +722,12 @@ namespace Pulumi.Volcengine.Clb
         /// </summary>
         [Input("vpcId")]
         public Input<string>? VpcId { get; set; }
+
+        /// <summary>
+        /// The zone type of the CLB. And optional choice contains `single` or `active-standby`.
+        /// </summary>
+        [Input("zoneType")]
+        public Input<string>? ZoneType { get; set; }
 
         public ClbState()
         {

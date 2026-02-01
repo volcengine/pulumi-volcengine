@@ -13,50 +13,6 @@ import (
 )
 
 // Provides a resource to manage tls alarm notify group
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/tls"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := tls.NewAlarmNotifyGroup(ctx, "foo", &tls.AlarmNotifyGroupArgs{
-//				AlarmNotifyGroupName: pulumi.String("tf-test"),
-//				IamProjectName:       pulumi.String("yyy"),
-//				NotifyTypes: pulumi.StringArray{
-//					pulumi.String("Trigger"),
-//				},
-//				Receivers: tls.AlarmNotifyGroupReceiverArray{
-//					&tls.AlarmNotifyGroupReceiverArgs{
-//						EndTime: pulumi.String("23:59:59"),
-//						ReceiverChannels: pulumi.StringArray{
-//							pulumi.String("Email"),
-//							pulumi.String("Sms"),
-//						},
-//						ReceiverNames: pulumi.StringArray{
-//							pulumi.String("vke-qs"),
-//						},
-//						ReceiverType: pulumi.String("User"),
-//						StartTime:    pulumi.String("23:00:00"),
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // tls alarm notify group can be imported using the id, e.g.
@@ -73,6 +29,8 @@ type AlarmNotifyGroup struct {
 	AlarmNotifyGroupName pulumi.StringOutput `pulumi:"alarmNotifyGroupName"`
 	// The name of the iam project.
 	IamProjectName pulumi.StringOutput `pulumi:"iamProjectName"`
+	// The list of the notice rules.
+	NoticeRules AlarmNotifyGroupNoticeRuleArrayOutput `pulumi:"noticeRules"`
 	// The notify type.
 	// Trigger: Alarm Trigger
 	// Recovery: Alarm Recovery.
@@ -90,12 +48,6 @@ func NewAlarmNotifyGroup(ctx *pulumi.Context,
 
 	if args.AlarmNotifyGroupName == nil {
 		return nil, errors.New("invalid value for required argument 'AlarmNotifyGroupName'")
-	}
-	if args.NotifyTypes == nil {
-		return nil, errors.New("invalid value for required argument 'NotifyTypes'")
-	}
-	if args.Receivers == nil {
-		return nil, errors.New("invalid value for required argument 'Receivers'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource AlarmNotifyGroup
@@ -126,6 +78,8 @@ type alarmNotifyGroupState struct {
 	AlarmNotifyGroupName *string `pulumi:"alarmNotifyGroupName"`
 	// The name of the iam project.
 	IamProjectName *string `pulumi:"iamProjectName"`
+	// The list of the notice rules.
+	NoticeRules []AlarmNotifyGroupNoticeRule `pulumi:"noticeRules"`
 	// The notify type.
 	// Trigger: Alarm Trigger
 	// Recovery: Alarm Recovery.
@@ -141,6 +95,8 @@ type AlarmNotifyGroupState struct {
 	AlarmNotifyGroupName pulumi.StringPtrInput
 	// The name of the iam project.
 	IamProjectName pulumi.StringPtrInput
+	// The list of the notice rules.
+	NoticeRules AlarmNotifyGroupNoticeRuleArrayInput
 	// The notify type.
 	// Trigger: Alarm Trigger
 	// Recovery: Alarm Recovery.
@@ -158,6 +114,8 @@ type alarmNotifyGroupArgs struct {
 	AlarmNotifyGroupName string `pulumi:"alarmNotifyGroupName"`
 	// The name of the iam project.
 	IamProjectName *string `pulumi:"iamProjectName"`
+	// The list of the notice rules.
+	NoticeRules []AlarmNotifyGroupNoticeRule `pulumi:"noticeRules"`
 	// The notify type.
 	// Trigger: Alarm Trigger
 	// Recovery: Alarm Recovery.
@@ -172,6 +130,8 @@ type AlarmNotifyGroupArgs struct {
 	AlarmNotifyGroupName pulumi.StringInput
 	// The name of the iam project.
 	IamProjectName pulumi.StringPtrInput
+	// The list of the notice rules.
+	NoticeRules AlarmNotifyGroupNoticeRuleArrayInput
 	// The notify type.
 	// Trigger: Alarm Trigger
 	// Recovery: Alarm Recovery.
@@ -280,6 +240,11 @@ func (o AlarmNotifyGroupOutput) AlarmNotifyGroupName() pulumi.StringOutput {
 // The name of the iam project.
 func (o AlarmNotifyGroupOutput) IamProjectName() pulumi.StringOutput {
 	return o.ApplyT(func(v *AlarmNotifyGroup) pulumi.StringOutput { return v.IamProjectName }).(pulumi.StringOutput)
+}
+
+// The list of the notice rules.
+func (o AlarmNotifyGroupOutput) NoticeRules() AlarmNotifyGroupNoticeRuleArrayOutput {
+	return o.ApplyT(func(v *AlarmNotifyGroup) AlarmNotifyGroupNoticeRuleArrayOutput { return v.NoticeRules }).(AlarmNotifyGroupNoticeRuleArrayOutput)
 }
 
 // The notify type.

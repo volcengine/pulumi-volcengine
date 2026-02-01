@@ -30,6 +30,12 @@ import (
 //				Ids: []string{
 //					"acl-3ti8n0rurx4bwbh9jzdy",
 //				},
+//				Tags: []clb.GetAclsTag{
+//					{
+//						Key:   "k1",
+//						Value: "v1",
+//					},
+//				},
 //			}, nil)
 //			if err != nil {
 //				return err
@@ -61,6 +67,8 @@ type GetAclsArgs struct {
 	OutputFile *string `pulumi:"outputFile"`
 	// The ProjectName of Acl.
 	ProjectName *string `pulumi:"projectName"`
+	// Tags.
+	Tags []GetAclsTag `pulumi:"tags"`
 }
 
 // A collection of values returned by getAcls.
@@ -76,6 +84,8 @@ type GetAclsResult struct {
 	OutputFile *string  `pulumi:"outputFile"`
 	// The ProjectName of Acl.
 	ProjectName *string `pulumi:"projectName"`
+	// Tags.
+	Tags []GetAclsTag `pulumi:"tags"`
 	// The total count of Acl query.
 	TotalCount int `pulumi:"totalCount"`
 }
@@ -105,6 +115,8 @@ type GetAclsOutputArgs struct {
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
 	// The ProjectName of Acl.
 	ProjectName pulumi.StringPtrInput `pulumi:"projectName"`
+	// Tags.
+	Tags GetAclsTagArrayInput `pulumi:"tags"`
 }
 
 func (GetAclsOutputArgs) ElementType() reflect.Type {
@@ -156,6 +168,11 @@ func (o GetAclsResultOutput) OutputFile() pulumi.StringPtrOutput {
 // The ProjectName of Acl.
 func (o GetAclsResultOutput) ProjectName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetAclsResult) *string { return v.ProjectName }).(pulumi.StringPtrOutput)
+}
+
+// Tags.
+func (o GetAclsResultOutput) Tags() GetAclsTagArrayOutput {
+	return o.ApplyT(func(v GetAclsResult) []GetAclsTag { return v.Tags }).(GetAclsTagArrayOutput)
 }
 
 // The total count of Acl query.

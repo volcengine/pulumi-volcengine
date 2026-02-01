@@ -24,46 +24,82 @@ class ListenerArgs:
                  acl_status: Optional[pulumi.Input[str]] = None,
                  acl_type: Optional[pulumi.Input[str]] = None,
                  bandwidth: Optional[pulumi.Input[int]] = None,
+                 ca_certificate_id: Optional[pulumi.Input[str]] = None,
+                 ca_enabled: Optional[pulumi.Input[str]] = None,
+                 cert_center_certificate_id: Optional[pulumi.Input[str]] = None,
                  certificate_id: Optional[pulumi.Input[str]] = None,
+                 certificate_source: Optional[pulumi.Input[str]] = None,
+                 client_body_timeout: Optional[pulumi.Input[int]] = None,
+                 client_header_timeout: Optional[pulumi.Input[int]] = None,
                  connection_drain_enabled: Optional[pulumi.Input[str]] = None,
                  connection_drain_timeout: Optional[pulumi.Input[int]] = None,
                  cookie: Optional[pulumi.Input[str]] = None,
+                 cps: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  enabled: Optional[pulumi.Input[str]] = None,
+                 end_port: Optional[pulumi.Input[int]] = None,
                  established_timeout: Optional[pulumi.Input[int]] = None,
                  health_check: Optional[pulumi.Input['ListenerHealthCheckArgs']] = None,
+                 http2_enabled: Optional[pulumi.Input[str]] = None,
+                 keepalive_timeout: Optional[pulumi.Input[int]] = None,
                  listener_name: Optional[pulumi.Input[str]] = None,
+                 max_connections: Optional[pulumi.Input[int]] = None,
                  persistence_timeout: Optional[pulumi.Input[int]] = None,
                  persistence_type: Optional[pulumi.Input[str]] = None,
+                 proxy_connect_timeout: Optional[pulumi.Input[int]] = None,
                  proxy_protocol_type: Optional[pulumi.Input[str]] = None,
-                 scheduler: Optional[pulumi.Input[str]] = None):
+                 proxy_read_timeout: Optional[pulumi.Input[int]] = None,
+                 proxy_send_timeout: Optional[pulumi.Input[int]] = None,
+                 scheduler: Optional[pulumi.Input[str]] = None,
+                 security_policy_id: Optional[pulumi.Input[str]] = None,
+                 send_timeout: Optional[pulumi.Input[int]] = None,
+                 start_port: Optional[pulumi.Input[int]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['ListenerTagArgs']]]] = None):
         """
         The set of arguments for constructing a Listener resource.
         :param pulumi.Input[str] load_balancer_id: The region of the request.
-        :param pulumi.Input[int] port: The port receiving request of the Listener, the value range in 1~65535.
+        :param pulumi.Input[int] port: The port receiving request of the Listener, the value range in 0~65535. When `protocol` is `TCP` or `UDP`, 0 can be passed in, indicating that full port listening is enabled.
         :param pulumi.Input[str] protocol: The protocol of the Listener. Optional choice contains `TCP`, `UDP`, `HTTP`, `HTTPS`.
         :param pulumi.Input[str] server_group_id: The server group id associated with the listener.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] acl_ids: The id list of the Acl.
         :param pulumi.Input[str] acl_status: The enable status of Acl. Optional choice contains `on`, `off`.
         :param pulumi.Input[str] acl_type: The type of the Acl. Optional choice contains `white`, `black`.
         :param pulumi.Input[int] bandwidth: The bandwidth of the Listener. Unit: Mbps. Default is -1, indicating that the Listener does not specify a speed limit.
+        :param pulumi.Input[str] ca_certificate_id: The ID of the CA certificate which is associated with the listener. When `ca_enabled` is `on`, this parameter is required.
+        :param pulumi.Input[str] ca_enabled: Whether to enable CACertificate two-way authentication. Values: on, off.
+        :param pulumi.Input[str] cert_center_certificate_id: The ID of the certificate in Certificate Center. When `certificate_source` is `cert_center`, this parameter is required.
         :param pulumi.Input[str] certificate_id: The certificate id associated with the listener.
+        :param pulumi.Input[str] certificate_source: The source of the certificate which is associated with the listener. Values: `clb`, `cert_center`.
+        :param pulumi.Input[int] client_body_timeout: The client body timeout of the Listener. Only HTTP/HTTPS listeners support this parameter. value range: 30-120.
+        :param pulumi.Input[int] client_header_timeout: The client header timeout of the Listener. Only HTTP/HTTPS listeners support this parameter, i.e., `protocol`=`HTTP` or `HTTPS`. value range: 30-120.
         :param pulumi.Input[str] connection_drain_enabled: Whether to enable connection drain of the Listener. Valid values: `off`, `on`. Default is `off`.
                This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
         :param pulumi.Input[int] connection_drain_timeout: The connection drain timeout of the Listener. Valid value range is `0-900`.
                This filed is required when the value of field `connection_drain_enabled` is `on`.
         :param pulumi.Input[str] cookie: The name of the cookie for session persistence configured on the backend server. When PersistenceType is configured as `server`, this parameter is required. When PersistenceType is configured as any other value, this parameter is not effective.
+        :param pulumi.Input[int] cps: The maximum number of new connections per second allowed for the Listener. Default value: `-1`, no limit, which is the upper limit of new connections for the CLB instance.
         :param pulumi.Input[str] description: The description of the Listener.
         :param pulumi.Input[str] enabled: The enable status of the Listener. Optional choice contains `on`, `off`.
+        :param pulumi.Input[int] end_port: The end port for full port listening, with a value range of 1-65535. When `port` is 0, this parameter is required, and must be greater than `start_port`.
         :param pulumi.Input[int] established_timeout: The connection timeout of the Listener.
         :param pulumi.Input['ListenerHealthCheckArgs'] health_check: The config of health check.
+        :param pulumi.Input[str] http2_enabled: Whether the HTTPS protocol listener enables the front-end HTTP 2.0 protocol. value range: `on`, `off`.
+        :param pulumi.Input[int] keepalive_timeout: The timeout period for the long connection between the client and the CLB. Only HTTP/HTTPS listeners support this parameter. value range: 0-900.
         :param pulumi.Input[str] listener_name: The name of the Listener.
+        :param pulumi.Input[int] max_connections: The maximum number of connections allowed for the Listener. Default value: `-1`, no limit, which is the upper limit of new connections for the CLB instance.
         :param pulumi.Input[int] persistence_timeout: The persistence timeout of the Listener. Unit: second. Default is `1000`. When PersistenceType is configured as source_ip, the value range is 1-3600. When PersistenceType is configured as insert, the value range is 1-86400. This filed is valid only when the value of field `persistence_type` is `source_ip` or `insert`.
         :param pulumi.Input[str] persistence_type: The persistence type of the Listener. Valid values: `off`, `source_ip`, `insert`, `server`. Default is `off`.
                `source_ip`: Represents the source IP address, only effective for TCP/UDP protocols. `insert`: means implanting a cookie, only effective for HTTP/HTTPS protocol and when the scheduler is `wrr`. `server`: Indicates rewriting cookies, only effective for HTTP/HTTPS protocols and when the scheduler is `wrr`.
+        :param pulumi.Input[int] proxy_connect_timeout: The timeout period for establishing a connection between the CLB and the backend server. Only HTTP/HTTPS listeners support this parameter. value range: 4-120.
         :param pulumi.Input[str] proxy_protocol_type: Whether to enable proxy protocol. Valid values: `off`, `standard`. Default is `off`.
                This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+        :param pulumi.Input[int] proxy_read_timeout: The timeout period for CLB to read the response from the backend server. Only HTTP/HTTPS listeners support this parameter. value range: 30-3600.
+        :param pulumi.Input[int] proxy_send_timeout: The timeout period for CLB to transmit requests to backend servers. Only HTTP/HTTPS listeners support this parameter. value range: 30-3600.
         :param pulumi.Input[str] scheduler: The scheduling algorithm of the Listener. Optional choice contains `wrr`, `wlc`, `sh`.
+        :param pulumi.Input[str] security_policy_id: The TLS security policy of the HTTPS listener. Only HTTPS listeners support this parameter. value range: `default_policy`, `tls_cipher_policy_1_0`, `tls_cipher_policy_1_1`, `tls_cipher_policy_1_2`, `tls_cipher_policy_1_2_strict`.
+        :param pulumi.Input[int] send_timeout: The timeout period for CLB to send responses to the client. Only HTTP/HTTPS listeners support this parameter. value range: 1-3600.
+        :param pulumi.Input[int] start_port: The start port for full port listening, with a value range of 1-65535. When `port` is 0, this parameter is required.
+        :param pulumi.Input[Sequence[pulumi.Input['ListenerTagArgs']]] tags: Tags.
         """
         pulumi.set(__self__, "load_balancer_id", load_balancer_id)
         pulumi.set(__self__, "port", port)
@@ -77,32 +113,68 @@ class ListenerArgs:
             pulumi.set(__self__, "acl_type", acl_type)
         if bandwidth is not None:
             pulumi.set(__self__, "bandwidth", bandwidth)
+        if ca_certificate_id is not None:
+            pulumi.set(__self__, "ca_certificate_id", ca_certificate_id)
+        if ca_enabled is not None:
+            pulumi.set(__self__, "ca_enabled", ca_enabled)
+        if cert_center_certificate_id is not None:
+            pulumi.set(__self__, "cert_center_certificate_id", cert_center_certificate_id)
         if certificate_id is not None:
             pulumi.set(__self__, "certificate_id", certificate_id)
+        if certificate_source is not None:
+            pulumi.set(__self__, "certificate_source", certificate_source)
+        if client_body_timeout is not None:
+            pulumi.set(__self__, "client_body_timeout", client_body_timeout)
+        if client_header_timeout is not None:
+            pulumi.set(__self__, "client_header_timeout", client_header_timeout)
         if connection_drain_enabled is not None:
             pulumi.set(__self__, "connection_drain_enabled", connection_drain_enabled)
         if connection_drain_timeout is not None:
             pulumi.set(__self__, "connection_drain_timeout", connection_drain_timeout)
         if cookie is not None:
             pulumi.set(__self__, "cookie", cookie)
+        if cps is not None:
+            pulumi.set(__self__, "cps", cps)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
+        if end_port is not None:
+            pulumi.set(__self__, "end_port", end_port)
         if established_timeout is not None:
             pulumi.set(__self__, "established_timeout", established_timeout)
         if health_check is not None:
             pulumi.set(__self__, "health_check", health_check)
+        if http2_enabled is not None:
+            pulumi.set(__self__, "http2_enabled", http2_enabled)
+        if keepalive_timeout is not None:
+            pulumi.set(__self__, "keepalive_timeout", keepalive_timeout)
         if listener_name is not None:
             pulumi.set(__self__, "listener_name", listener_name)
+        if max_connections is not None:
+            pulumi.set(__self__, "max_connections", max_connections)
         if persistence_timeout is not None:
             pulumi.set(__self__, "persistence_timeout", persistence_timeout)
         if persistence_type is not None:
             pulumi.set(__self__, "persistence_type", persistence_type)
+        if proxy_connect_timeout is not None:
+            pulumi.set(__self__, "proxy_connect_timeout", proxy_connect_timeout)
         if proxy_protocol_type is not None:
             pulumi.set(__self__, "proxy_protocol_type", proxy_protocol_type)
+        if proxy_read_timeout is not None:
+            pulumi.set(__self__, "proxy_read_timeout", proxy_read_timeout)
+        if proxy_send_timeout is not None:
+            pulumi.set(__self__, "proxy_send_timeout", proxy_send_timeout)
         if scheduler is not None:
             pulumi.set(__self__, "scheduler", scheduler)
+        if security_policy_id is not None:
+            pulumi.set(__self__, "security_policy_id", security_policy_id)
+        if send_timeout is not None:
+            pulumi.set(__self__, "send_timeout", send_timeout)
+        if start_port is not None:
+            pulumi.set(__self__, "start_port", start_port)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter(name="loadBalancerId")
@@ -120,7 +192,7 @@ class ListenerArgs:
     @pulumi.getter
     def port(self) -> pulumi.Input[int]:
         """
-        The port receiving request of the Listener, the value range in 1~65535.
+        The port receiving request of the Listener, the value range in 0~65535. When `protocol` is `TCP` or `UDP`, 0 can be passed in, indicating that full port listening is enabled.
         """
         return pulumi.get(self, "port")
 
@@ -201,6 +273,42 @@ class ListenerArgs:
         pulumi.set(self, "bandwidth", value)
 
     @property
+    @pulumi.getter(name="caCertificateId")
+    def ca_certificate_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the CA certificate which is associated with the listener. When `ca_enabled` is `on`, this parameter is required.
+        """
+        return pulumi.get(self, "ca_certificate_id")
+
+    @ca_certificate_id.setter
+    def ca_certificate_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ca_certificate_id", value)
+
+    @property
+    @pulumi.getter(name="caEnabled")
+    def ca_enabled(self) -> Optional[pulumi.Input[str]]:
+        """
+        Whether to enable CACertificate two-way authentication. Values: on, off.
+        """
+        return pulumi.get(self, "ca_enabled")
+
+    @ca_enabled.setter
+    def ca_enabled(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ca_enabled", value)
+
+    @property
+    @pulumi.getter(name="certCenterCertificateId")
+    def cert_center_certificate_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the certificate in Certificate Center. When `certificate_source` is `cert_center`, this parameter is required.
+        """
+        return pulumi.get(self, "cert_center_certificate_id")
+
+    @cert_center_certificate_id.setter
+    def cert_center_certificate_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cert_center_certificate_id", value)
+
+    @property
     @pulumi.getter(name="certificateId")
     def certificate_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -211,6 +319,42 @@ class ListenerArgs:
     @certificate_id.setter
     def certificate_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "certificate_id", value)
+
+    @property
+    @pulumi.getter(name="certificateSource")
+    def certificate_source(self) -> Optional[pulumi.Input[str]]:
+        """
+        The source of the certificate which is associated with the listener. Values: `clb`, `cert_center`.
+        """
+        return pulumi.get(self, "certificate_source")
+
+    @certificate_source.setter
+    def certificate_source(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "certificate_source", value)
+
+    @property
+    @pulumi.getter(name="clientBodyTimeout")
+    def client_body_timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        The client body timeout of the Listener. Only HTTP/HTTPS listeners support this parameter. value range: 30-120.
+        """
+        return pulumi.get(self, "client_body_timeout")
+
+    @client_body_timeout.setter
+    def client_body_timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "client_body_timeout", value)
+
+    @property
+    @pulumi.getter(name="clientHeaderTimeout")
+    def client_header_timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        The client header timeout of the Listener. Only HTTP/HTTPS listeners support this parameter, i.e., `protocol`=`HTTP` or `HTTPS`. value range: 30-120.
+        """
+        return pulumi.get(self, "client_header_timeout")
+
+    @client_header_timeout.setter
+    def client_header_timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "client_header_timeout", value)
 
     @property
     @pulumi.getter(name="connectionDrainEnabled")
@@ -252,6 +396,18 @@ class ListenerArgs:
 
     @property
     @pulumi.getter
+    def cps(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum number of new connections per second allowed for the Listener. Default value: `-1`, no limit, which is the upper limit of new connections for the CLB instance.
+        """
+        return pulumi.get(self, "cps")
+
+    @cps.setter
+    def cps(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "cps", value)
+
+    @property
+    @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
         The description of the Listener.
@@ -273,6 +429,18 @@ class ListenerArgs:
     @enabled.setter
     def enabled(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "enabled", value)
+
+    @property
+    @pulumi.getter(name="endPort")
+    def end_port(self) -> Optional[pulumi.Input[int]]:
+        """
+        The end port for full port listening, with a value range of 1-65535. When `port` is 0, this parameter is required, and must be greater than `start_port`.
+        """
+        return pulumi.get(self, "end_port")
+
+    @end_port.setter
+    def end_port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "end_port", value)
 
     @property
     @pulumi.getter(name="establishedTimeout")
@@ -299,6 +467,30 @@ class ListenerArgs:
         pulumi.set(self, "health_check", value)
 
     @property
+    @pulumi.getter(name="http2Enabled")
+    def http2_enabled(self) -> Optional[pulumi.Input[str]]:
+        """
+        Whether the HTTPS protocol listener enables the front-end HTTP 2.0 protocol. value range: `on`, `off`.
+        """
+        return pulumi.get(self, "http2_enabled")
+
+    @http2_enabled.setter
+    def http2_enabled(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "http2_enabled", value)
+
+    @property
+    @pulumi.getter(name="keepaliveTimeout")
+    def keepalive_timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        The timeout period for the long connection between the client and the CLB. Only HTTP/HTTPS listeners support this parameter. value range: 0-900.
+        """
+        return pulumi.get(self, "keepalive_timeout")
+
+    @keepalive_timeout.setter
+    def keepalive_timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "keepalive_timeout", value)
+
+    @property
     @pulumi.getter(name="listenerName")
     def listener_name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -309,6 +501,18 @@ class ListenerArgs:
     @listener_name.setter
     def listener_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "listener_name", value)
+
+    @property
+    @pulumi.getter(name="maxConnections")
+    def max_connections(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum number of connections allowed for the Listener. Default value: `-1`, no limit, which is the upper limit of new connections for the CLB instance.
+        """
+        return pulumi.get(self, "max_connections")
+
+    @max_connections.setter
+    def max_connections(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_connections", value)
 
     @property
     @pulumi.getter(name="persistenceTimeout")
@@ -336,6 +540,18 @@ class ListenerArgs:
         pulumi.set(self, "persistence_type", value)
 
     @property
+    @pulumi.getter(name="proxyConnectTimeout")
+    def proxy_connect_timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        The timeout period for establishing a connection between the CLB and the backend server. Only HTTP/HTTPS listeners support this parameter. value range: 4-120.
+        """
+        return pulumi.get(self, "proxy_connect_timeout")
+
+    @proxy_connect_timeout.setter
+    def proxy_connect_timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "proxy_connect_timeout", value)
+
+    @property
     @pulumi.getter(name="proxyProtocolType")
     def proxy_protocol_type(self) -> Optional[pulumi.Input[str]]:
         """
@@ -349,6 +565,30 @@ class ListenerArgs:
         pulumi.set(self, "proxy_protocol_type", value)
 
     @property
+    @pulumi.getter(name="proxyReadTimeout")
+    def proxy_read_timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        The timeout period for CLB to read the response from the backend server. Only HTTP/HTTPS listeners support this parameter. value range: 30-3600.
+        """
+        return pulumi.get(self, "proxy_read_timeout")
+
+    @proxy_read_timeout.setter
+    def proxy_read_timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "proxy_read_timeout", value)
+
+    @property
+    @pulumi.getter(name="proxySendTimeout")
+    def proxy_send_timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        The timeout period for CLB to transmit requests to backend servers. Only HTTP/HTTPS listeners support this parameter. value range: 30-3600.
+        """
+        return pulumi.get(self, "proxy_send_timeout")
+
+    @proxy_send_timeout.setter
+    def proxy_send_timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "proxy_send_timeout", value)
+
+    @property
     @pulumi.getter
     def scheduler(self) -> Optional[pulumi.Input[str]]:
         """
@@ -360,6 +600,54 @@ class ListenerArgs:
     def scheduler(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "scheduler", value)
 
+    @property
+    @pulumi.getter(name="securityPolicyId")
+    def security_policy_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The TLS security policy of the HTTPS listener. Only HTTPS listeners support this parameter. value range: `default_policy`, `tls_cipher_policy_1_0`, `tls_cipher_policy_1_1`, `tls_cipher_policy_1_2`, `tls_cipher_policy_1_2_strict`.
+        """
+        return pulumi.get(self, "security_policy_id")
+
+    @security_policy_id.setter
+    def security_policy_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "security_policy_id", value)
+
+    @property
+    @pulumi.getter(name="sendTimeout")
+    def send_timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        The timeout period for CLB to send responses to the client. Only HTTP/HTTPS listeners support this parameter. value range: 1-3600.
+        """
+        return pulumi.get(self, "send_timeout")
+
+    @send_timeout.setter
+    def send_timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "send_timeout", value)
+
+    @property
+    @pulumi.getter(name="startPort")
+    def start_port(self) -> Optional[pulumi.Input[int]]:
+        """
+        The start port for full port listening, with a value range of 1-65535. When `port` is 0, this parameter is required.
+        """
+        return pulumi.get(self, "start_port")
+
+    @start_port.setter
+    def start_port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "start_port", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ListenerTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ListenerTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
 
 @pulumi.input_type
 class _ListenerState:
@@ -368,52 +656,88 @@ class _ListenerState:
                  acl_status: Optional[pulumi.Input[str]] = None,
                  acl_type: Optional[pulumi.Input[str]] = None,
                  bandwidth: Optional[pulumi.Input[int]] = None,
+                 ca_certificate_id: Optional[pulumi.Input[str]] = None,
+                 ca_enabled: Optional[pulumi.Input[str]] = None,
+                 cert_center_certificate_id: Optional[pulumi.Input[str]] = None,
                  certificate_id: Optional[pulumi.Input[str]] = None,
+                 certificate_source: Optional[pulumi.Input[str]] = None,
+                 client_body_timeout: Optional[pulumi.Input[int]] = None,
+                 client_header_timeout: Optional[pulumi.Input[int]] = None,
                  connection_drain_enabled: Optional[pulumi.Input[str]] = None,
                  connection_drain_timeout: Optional[pulumi.Input[int]] = None,
                  cookie: Optional[pulumi.Input[str]] = None,
+                 cps: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  enabled: Optional[pulumi.Input[str]] = None,
+                 end_port: Optional[pulumi.Input[int]] = None,
                  established_timeout: Optional[pulumi.Input[int]] = None,
                  health_check: Optional[pulumi.Input['ListenerHealthCheckArgs']] = None,
+                 http2_enabled: Optional[pulumi.Input[str]] = None,
+                 keepalive_timeout: Optional[pulumi.Input[int]] = None,
                  listener_id: Optional[pulumi.Input[str]] = None,
                  listener_name: Optional[pulumi.Input[str]] = None,
                  load_balancer_id: Optional[pulumi.Input[str]] = None,
+                 max_connections: Optional[pulumi.Input[int]] = None,
                  persistence_timeout: Optional[pulumi.Input[int]] = None,
                  persistence_type: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[int]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
+                 proxy_connect_timeout: Optional[pulumi.Input[int]] = None,
                  proxy_protocol_type: Optional[pulumi.Input[str]] = None,
+                 proxy_read_timeout: Optional[pulumi.Input[int]] = None,
+                 proxy_send_timeout: Optional[pulumi.Input[int]] = None,
                  scheduler: Optional[pulumi.Input[str]] = None,
-                 server_group_id: Optional[pulumi.Input[str]] = None):
+                 security_policy_id: Optional[pulumi.Input[str]] = None,
+                 send_timeout: Optional[pulumi.Input[int]] = None,
+                 server_group_id: Optional[pulumi.Input[str]] = None,
+                 start_port: Optional[pulumi.Input[int]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['ListenerTagArgs']]]] = None):
         """
         Input properties used for looking up and filtering Listener resources.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] acl_ids: The id list of the Acl.
         :param pulumi.Input[str] acl_status: The enable status of Acl. Optional choice contains `on`, `off`.
         :param pulumi.Input[str] acl_type: The type of the Acl. Optional choice contains `white`, `black`.
         :param pulumi.Input[int] bandwidth: The bandwidth of the Listener. Unit: Mbps. Default is -1, indicating that the Listener does not specify a speed limit.
+        :param pulumi.Input[str] ca_certificate_id: The ID of the CA certificate which is associated with the listener. When `ca_enabled` is `on`, this parameter is required.
+        :param pulumi.Input[str] ca_enabled: Whether to enable CACertificate two-way authentication. Values: on, off.
+        :param pulumi.Input[str] cert_center_certificate_id: The ID of the certificate in Certificate Center. When `certificate_source` is `cert_center`, this parameter is required.
         :param pulumi.Input[str] certificate_id: The certificate id associated with the listener.
+        :param pulumi.Input[str] certificate_source: The source of the certificate which is associated with the listener. Values: `clb`, `cert_center`.
+        :param pulumi.Input[int] client_body_timeout: The client body timeout of the Listener. Only HTTP/HTTPS listeners support this parameter. value range: 30-120.
+        :param pulumi.Input[int] client_header_timeout: The client header timeout of the Listener. Only HTTP/HTTPS listeners support this parameter, i.e., `protocol`=`HTTP` or `HTTPS`. value range: 30-120.
         :param pulumi.Input[str] connection_drain_enabled: Whether to enable connection drain of the Listener. Valid values: `off`, `on`. Default is `off`.
                This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
         :param pulumi.Input[int] connection_drain_timeout: The connection drain timeout of the Listener. Valid value range is `0-900`.
                This filed is required when the value of field `connection_drain_enabled` is `on`.
         :param pulumi.Input[str] cookie: The name of the cookie for session persistence configured on the backend server. When PersistenceType is configured as `server`, this parameter is required. When PersistenceType is configured as any other value, this parameter is not effective.
+        :param pulumi.Input[int] cps: The maximum number of new connections per second allowed for the Listener. Default value: `-1`, no limit, which is the upper limit of new connections for the CLB instance.
         :param pulumi.Input[str] description: The description of the Listener.
         :param pulumi.Input[str] enabled: The enable status of the Listener. Optional choice contains `on`, `off`.
+        :param pulumi.Input[int] end_port: The end port for full port listening, with a value range of 1-65535. When `port` is 0, this parameter is required, and must be greater than `start_port`.
         :param pulumi.Input[int] established_timeout: The connection timeout of the Listener.
         :param pulumi.Input['ListenerHealthCheckArgs'] health_check: The config of health check.
+        :param pulumi.Input[str] http2_enabled: Whether the HTTPS protocol listener enables the front-end HTTP 2.0 protocol. value range: `on`, `off`.
+        :param pulumi.Input[int] keepalive_timeout: The timeout period for the long connection between the client and the CLB. Only HTTP/HTTPS listeners support this parameter. value range: 0-900.
         :param pulumi.Input[str] listener_id: The ID of the Listener.
         :param pulumi.Input[str] listener_name: The name of the Listener.
         :param pulumi.Input[str] load_balancer_id: The region of the request.
+        :param pulumi.Input[int] max_connections: The maximum number of connections allowed for the Listener. Default value: `-1`, no limit, which is the upper limit of new connections for the CLB instance.
         :param pulumi.Input[int] persistence_timeout: The persistence timeout of the Listener. Unit: second. Default is `1000`. When PersistenceType is configured as source_ip, the value range is 1-3600. When PersistenceType is configured as insert, the value range is 1-86400. This filed is valid only when the value of field `persistence_type` is `source_ip` or `insert`.
         :param pulumi.Input[str] persistence_type: The persistence type of the Listener. Valid values: `off`, `source_ip`, `insert`, `server`. Default is `off`.
                `source_ip`: Represents the source IP address, only effective for TCP/UDP protocols. `insert`: means implanting a cookie, only effective for HTTP/HTTPS protocol and when the scheduler is `wrr`. `server`: Indicates rewriting cookies, only effective for HTTP/HTTPS protocols and when the scheduler is `wrr`.
-        :param pulumi.Input[int] port: The port receiving request of the Listener, the value range in 1~65535.
+        :param pulumi.Input[int] port: The port receiving request of the Listener, the value range in 0~65535. When `protocol` is `TCP` or `UDP`, 0 can be passed in, indicating that full port listening is enabled.
         :param pulumi.Input[str] protocol: The protocol of the Listener. Optional choice contains `TCP`, `UDP`, `HTTP`, `HTTPS`.
+        :param pulumi.Input[int] proxy_connect_timeout: The timeout period for establishing a connection between the CLB and the backend server. Only HTTP/HTTPS listeners support this parameter. value range: 4-120.
         :param pulumi.Input[str] proxy_protocol_type: Whether to enable proxy protocol. Valid values: `off`, `standard`. Default is `off`.
                This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+        :param pulumi.Input[int] proxy_read_timeout: The timeout period for CLB to read the response from the backend server. Only HTTP/HTTPS listeners support this parameter. value range: 30-3600.
+        :param pulumi.Input[int] proxy_send_timeout: The timeout period for CLB to transmit requests to backend servers. Only HTTP/HTTPS listeners support this parameter. value range: 30-3600.
         :param pulumi.Input[str] scheduler: The scheduling algorithm of the Listener. Optional choice contains `wrr`, `wlc`, `sh`.
+        :param pulumi.Input[str] security_policy_id: The TLS security policy of the HTTPS listener. Only HTTPS listeners support this parameter. value range: `default_policy`, `tls_cipher_policy_1_0`, `tls_cipher_policy_1_1`, `tls_cipher_policy_1_2`, `tls_cipher_policy_1_2_strict`.
+        :param pulumi.Input[int] send_timeout: The timeout period for CLB to send responses to the client. Only HTTP/HTTPS listeners support this parameter. value range: 1-3600.
         :param pulumi.Input[str] server_group_id: The server group id associated with the listener.
+        :param pulumi.Input[int] start_port: The start port for full port listening, with a value range of 1-65535. When `port` is 0, this parameter is required.
+        :param pulumi.Input[Sequence[pulumi.Input['ListenerTagArgs']]] tags: Tags.
         """
         if acl_ids is not None:
             pulumi.set(__self__, "acl_ids", acl_ids)
@@ -423,28 +747,50 @@ class _ListenerState:
             pulumi.set(__self__, "acl_type", acl_type)
         if bandwidth is not None:
             pulumi.set(__self__, "bandwidth", bandwidth)
+        if ca_certificate_id is not None:
+            pulumi.set(__self__, "ca_certificate_id", ca_certificate_id)
+        if ca_enabled is not None:
+            pulumi.set(__self__, "ca_enabled", ca_enabled)
+        if cert_center_certificate_id is not None:
+            pulumi.set(__self__, "cert_center_certificate_id", cert_center_certificate_id)
         if certificate_id is not None:
             pulumi.set(__self__, "certificate_id", certificate_id)
+        if certificate_source is not None:
+            pulumi.set(__self__, "certificate_source", certificate_source)
+        if client_body_timeout is not None:
+            pulumi.set(__self__, "client_body_timeout", client_body_timeout)
+        if client_header_timeout is not None:
+            pulumi.set(__self__, "client_header_timeout", client_header_timeout)
         if connection_drain_enabled is not None:
             pulumi.set(__self__, "connection_drain_enabled", connection_drain_enabled)
         if connection_drain_timeout is not None:
             pulumi.set(__self__, "connection_drain_timeout", connection_drain_timeout)
         if cookie is not None:
             pulumi.set(__self__, "cookie", cookie)
+        if cps is not None:
+            pulumi.set(__self__, "cps", cps)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
+        if end_port is not None:
+            pulumi.set(__self__, "end_port", end_port)
         if established_timeout is not None:
             pulumi.set(__self__, "established_timeout", established_timeout)
         if health_check is not None:
             pulumi.set(__self__, "health_check", health_check)
+        if http2_enabled is not None:
+            pulumi.set(__self__, "http2_enabled", http2_enabled)
+        if keepalive_timeout is not None:
+            pulumi.set(__self__, "keepalive_timeout", keepalive_timeout)
         if listener_id is not None:
             pulumi.set(__self__, "listener_id", listener_id)
         if listener_name is not None:
             pulumi.set(__self__, "listener_name", listener_name)
         if load_balancer_id is not None:
             pulumi.set(__self__, "load_balancer_id", load_balancer_id)
+        if max_connections is not None:
+            pulumi.set(__self__, "max_connections", max_connections)
         if persistence_timeout is not None:
             pulumi.set(__self__, "persistence_timeout", persistence_timeout)
         if persistence_type is not None:
@@ -453,12 +799,26 @@ class _ListenerState:
             pulumi.set(__self__, "port", port)
         if protocol is not None:
             pulumi.set(__self__, "protocol", protocol)
+        if proxy_connect_timeout is not None:
+            pulumi.set(__self__, "proxy_connect_timeout", proxy_connect_timeout)
         if proxy_protocol_type is not None:
             pulumi.set(__self__, "proxy_protocol_type", proxy_protocol_type)
+        if proxy_read_timeout is not None:
+            pulumi.set(__self__, "proxy_read_timeout", proxy_read_timeout)
+        if proxy_send_timeout is not None:
+            pulumi.set(__self__, "proxy_send_timeout", proxy_send_timeout)
         if scheduler is not None:
             pulumi.set(__self__, "scheduler", scheduler)
+        if security_policy_id is not None:
+            pulumi.set(__self__, "security_policy_id", security_policy_id)
+        if send_timeout is not None:
+            pulumi.set(__self__, "send_timeout", send_timeout)
         if server_group_id is not None:
             pulumi.set(__self__, "server_group_id", server_group_id)
+        if start_port is not None:
+            pulumi.set(__self__, "start_port", start_port)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter(name="aclIds")
@@ -509,6 +869,42 @@ class _ListenerState:
         pulumi.set(self, "bandwidth", value)
 
     @property
+    @pulumi.getter(name="caCertificateId")
+    def ca_certificate_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the CA certificate which is associated with the listener. When `ca_enabled` is `on`, this parameter is required.
+        """
+        return pulumi.get(self, "ca_certificate_id")
+
+    @ca_certificate_id.setter
+    def ca_certificate_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ca_certificate_id", value)
+
+    @property
+    @pulumi.getter(name="caEnabled")
+    def ca_enabled(self) -> Optional[pulumi.Input[str]]:
+        """
+        Whether to enable CACertificate two-way authentication. Values: on, off.
+        """
+        return pulumi.get(self, "ca_enabled")
+
+    @ca_enabled.setter
+    def ca_enabled(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ca_enabled", value)
+
+    @property
+    @pulumi.getter(name="certCenterCertificateId")
+    def cert_center_certificate_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the certificate in Certificate Center. When `certificate_source` is `cert_center`, this parameter is required.
+        """
+        return pulumi.get(self, "cert_center_certificate_id")
+
+    @cert_center_certificate_id.setter
+    def cert_center_certificate_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cert_center_certificate_id", value)
+
+    @property
     @pulumi.getter(name="certificateId")
     def certificate_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -519,6 +915,42 @@ class _ListenerState:
     @certificate_id.setter
     def certificate_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "certificate_id", value)
+
+    @property
+    @pulumi.getter(name="certificateSource")
+    def certificate_source(self) -> Optional[pulumi.Input[str]]:
+        """
+        The source of the certificate which is associated with the listener. Values: `clb`, `cert_center`.
+        """
+        return pulumi.get(self, "certificate_source")
+
+    @certificate_source.setter
+    def certificate_source(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "certificate_source", value)
+
+    @property
+    @pulumi.getter(name="clientBodyTimeout")
+    def client_body_timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        The client body timeout of the Listener. Only HTTP/HTTPS listeners support this parameter. value range: 30-120.
+        """
+        return pulumi.get(self, "client_body_timeout")
+
+    @client_body_timeout.setter
+    def client_body_timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "client_body_timeout", value)
+
+    @property
+    @pulumi.getter(name="clientHeaderTimeout")
+    def client_header_timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        The client header timeout of the Listener. Only HTTP/HTTPS listeners support this parameter, i.e., `protocol`=`HTTP` or `HTTPS`. value range: 30-120.
+        """
+        return pulumi.get(self, "client_header_timeout")
+
+    @client_header_timeout.setter
+    def client_header_timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "client_header_timeout", value)
 
     @property
     @pulumi.getter(name="connectionDrainEnabled")
@@ -560,6 +992,18 @@ class _ListenerState:
 
     @property
     @pulumi.getter
+    def cps(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum number of new connections per second allowed for the Listener. Default value: `-1`, no limit, which is the upper limit of new connections for the CLB instance.
+        """
+        return pulumi.get(self, "cps")
+
+    @cps.setter
+    def cps(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "cps", value)
+
+    @property
+    @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
         The description of the Listener.
@@ -581,6 +1025,18 @@ class _ListenerState:
     @enabled.setter
     def enabled(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "enabled", value)
+
+    @property
+    @pulumi.getter(name="endPort")
+    def end_port(self) -> Optional[pulumi.Input[int]]:
+        """
+        The end port for full port listening, with a value range of 1-65535. When `port` is 0, this parameter is required, and must be greater than `start_port`.
+        """
+        return pulumi.get(self, "end_port")
+
+    @end_port.setter
+    def end_port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "end_port", value)
 
     @property
     @pulumi.getter(name="establishedTimeout")
@@ -605,6 +1061,30 @@ class _ListenerState:
     @health_check.setter
     def health_check(self, value: Optional[pulumi.Input['ListenerHealthCheckArgs']]):
         pulumi.set(self, "health_check", value)
+
+    @property
+    @pulumi.getter(name="http2Enabled")
+    def http2_enabled(self) -> Optional[pulumi.Input[str]]:
+        """
+        Whether the HTTPS protocol listener enables the front-end HTTP 2.0 protocol. value range: `on`, `off`.
+        """
+        return pulumi.get(self, "http2_enabled")
+
+    @http2_enabled.setter
+    def http2_enabled(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "http2_enabled", value)
+
+    @property
+    @pulumi.getter(name="keepaliveTimeout")
+    def keepalive_timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        The timeout period for the long connection between the client and the CLB. Only HTTP/HTTPS listeners support this parameter. value range: 0-900.
+        """
+        return pulumi.get(self, "keepalive_timeout")
+
+    @keepalive_timeout.setter
+    def keepalive_timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "keepalive_timeout", value)
 
     @property
     @pulumi.getter(name="listenerId")
@@ -643,6 +1123,18 @@ class _ListenerState:
         pulumi.set(self, "load_balancer_id", value)
 
     @property
+    @pulumi.getter(name="maxConnections")
+    def max_connections(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum number of connections allowed for the Listener. Default value: `-1`, no limit, which is the upper limit of new connections for the CLB instance.
+        """
+        return pulumi.get(self, "max_connections")
+
+    @max_connections.setter
+    def max_connections(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_connections", value)
+
+    @property
     @pulumi.getter(name="persistenceTimeout")
     def persistence_timeout(self) -> Optional[pulumi.Input[int]]:
         """
@@ -671,7 +1163,7 @@ class _ListenerState:
     @pulumi.getter
     def port(self) -> Optional[pulumi.Input[int]]:
         """
-        The port receiving request of the Listener, the value range in 1~65535.
+        The port receiving request of the Listener, the value range in 0~65535. When `protocol` is `TCP` or `UDP`, 0 can be passed in, indicating that full port listening is enabled.
         """
         return pulumi.get(self, "port")
 
@@ -692,6 +1184,18 @@ class _ListenerState:
         pulumi.set(self, "protocol", value)
 
     @property
+    @pulumi.getter(name="proxyConnectTimeout")
+    def proxy_connect_timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        The timeout period for establishing a connection between the CLB and the backend server. Only HTTP/HTTPS listeners support this parameter. value range: 4-120.
+        """
+        return pulumi.get(self, "proxy_connect_timeout")
+
+    @proxy_connect_timeout.setter
+    def proxy_connect_timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "proxy_connect_timeout", value)
+
+    @property
     @pulumi.getter(name="proxyProtocolType")
     def proxy_protocol_type(self) -> Optional[pulumi.Input[str]]:
         """
@@ -703,6 +1207,30 @@ class _ListenerState:
     @proxy_protocol_type.setter
     def proxy_protocol_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "proxy_protocol_type", value)
+
+    @property
+    @pulumi.getter(name="proxyReadTimeout")
+    def proxy_read_timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        The timeout period for CLB to read the response from the backend server. Only HTTP/HTTPS listeners support this parameter. value range: 30-3600.
+        """
+        return pulumi.get(self, "proxy_read_timeout")
+
+    @proxy_read_timeout.setter
+    def proxy_read_timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "proxy_read_timeout", value)
+
+    @property
+    @pulumi.getter(name="proxySendTimeout")
+    def proxy_send_timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        The timeout period for CLB to transmit requests to backend servers. Only HTTP/HTTPS listeners support this parameter. value range: 30-3600.
+        """
+        return pulumi.get(self, "proxy_send_timeout")
+
+    @proxy_send_timeout.setter
+    def proxy_send_timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "proxy_send_timeout", value)
 
     @property
     @pulumi.getter
@@ -717,6 +1245,30 @@ class _ListenerState:
         pulumi.set(self, "scheduler", value)
 
     @property
+    @pulumi.getter(name="securityPolicyId")
+    def security_policy_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The TLS security policy of the HTTPS listener. Only HTTPS listeners support this parameter. value range: `default_policy`, `tls_cipher_policy_1_0`, `tls_cipher_policy_1_1`, `tls_cipher_policy_1_2`, `tls_cipher_policy_1_2_strict`.
+        """
+        return pulumi.get(self, "security_policy_id")
+
+    @security_policy_id.setter
+    def security_policy_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "security_policy_id", value)
+
+    @property
+    @pulumi.getter(name="sendTimeout")
+    def send_timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        The timeout period for CLB to send responses to the client. Only HTTP/HTTPS listeners support this parameter. value range: 1-3600.
+        """
+        return pulumi.get(self, "send_timeout")
+
+    @send_timeout.setter
+    def send_timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "send_timeout", value)
+
+    @property
     @pulumi.getter(name="serverGroupId")
     def server_group_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -728,6 +1280,30 @@ class _ListenerState:
     def server_group_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "server_group_id", value)
 
+    @property
+    @pulumi.getter(name="startPort")
+    def start_port(self) -> Optional[pulumi.Input[int]]:
+        """
+        The start port for full port listening, with a value range of 1-65535. When `port` is 0, this parameter is required.
+        """
+        return pulumi.get(self, "start_port")
+
+    @start_port.setter
+    def start_port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "start_port", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ListenerTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ListenerTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
 
 class Listener(pulumi.CustomResource):
     @overload
@@ -738,23 +1314,41 @@ class Listener(pulumi.CustomResource):
                  acl_status: Optional[pulumi.Input[str]] = None,
                  acl_type: Optional[pulumi.Input[str]] = None,
                  bandwidth: Optional[pulumi.Input[int]] = None,
+                 ca_certificate_id: Optional[pulumi.Input[str]] = None,
+                 ca_enabled: Optional[pulumi.Input[str]] = None,
+                 cert_center_certificate_id: Optional[pulumi.Input[str]] = None,
                  certificate_id: Optional[pulumi.Input[str]] = None,
+                 certificate_source: Optional[pulumi.Input[str]] = None,
+                 client_body_timeout: Optional[pulumi.Input[int]] = None,
+                 client_header_timeout: Optional[pulumi.Input[int]] = None,
                  connection_drain_enabled: Optional[pulumi.Input[str]] = None,
                  connection_drain_timeout: Optional[pulumi.Input[int]] = None,
                  cookie: Optional[pulumi.Input[str]] = None,
+                 cps: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  enabled: Optional[pulumi.Input[str]] = None,
+                 end_port: Optional[pulumi.Input[int]] = None,
                  established_timeout: Optional[pulumi.Input[int]] = None,
                  health_check: Optional[pulumi.Input[pulumi.InputType['ListenerHealthCheckArgs']]] = None,
+                 http2_enabled: Optional[pulumi.Input[str]] = None,
+                 keepalive_timeout: Optional[pulumi.Input[int]] = None,
                  listener_name: Optional[pulumi.Input[str]] = None,
                  load_balancer_id: Optional[pulumi.Input[str]] = None,
+                 max_connections: Optional[pulumi.Input[int]] = None,
                  persistence_timeout: Optional[pulumi.Input[int]] = None,
                  persistence_type: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[int]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
+                 proxy_connect_timeout: Optional[pulumi.Input[int]] = None,
                  proxy_protocol_type: Optional[pulumi.Input[str]] = None,
+                 proxy_read_timeout: Optional[pulumi.Input[int]] = None,
+                 proxy_send_timeout: Optional[pulumi.Input[int]] = None,
                  scheduler: Optional[pulumi.Input[str]] = None,
+                 security_policy_id: Optional[pulumi.Input[str]] = None,
+                 send_timeout: Optional[pulumi.Input[int]] = None,
                  server_group_id: Optional[pulumi.Input[str]] = None,
+                 start_port: Optional[pulumi.Input[int]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ListenerTagArgs']]]]] = None,
                  __props__=None):
         """
         Provides a resource to manage listener
@@ -805,6 +1399,10 @@ class Listener(pulumi.CustomResource):
                 method="GET",
                 uri="/",
             ),
+            tags=[volcengine.clb.ListenerTagArgs(
+                key="k1",
+                value="v1",
+            )],
             enabled="on")
         foo_tcp = volcengine.clb.Listener("fooTcp",
             load_balancer_id=foo_clb.id,
@@ -819,6 +1417,36 @@ class Listener(pulumi.CustomResource):
             persistence_timeout=100,
             connection_drain_enabled="on",
             connection_drain_timeout=100)
+        foo_https = volcengine.clb.Listener("fooHttps",
+            load_balancer_id=foo_clb.id,
+            listener_name="acc-test-listener-https",
+            protocol="HTTPS",
+            port=100,
+            server_group_id=foo_server_group.id,
+            health_check=volcengine.clb.ListenerHealthCheckArgs(
+                enabled="on",
+                interval=10,
+                timeout=3,
+                healthy_threshold=5,
+                un_healthy_threshold=2,
+                domain="volcengine.com",
+                http_code="http_2xx,http_3xx",
+                method="GET",
+                uri="/",
+            ),
+            enabled="on",
+            client_header_timeout=80,
+            client_body_timeout=80,
+            keepalive_timeout=80,
+            proxy_connect_timeout=20,
+            proxy_send_timeout=1800,
+            proxy_read_timeout=1800,
+            certificate_source="clb",
+            certificate_id="cert-mjpctunmog745smt1a******",
+            tags=[volcengine.clb.ListenerTagArgs(
+                key="k1",
+                value="v1",
+            )])
         ```
 
         ## Import
@@ -835,27 +1463,45 @@ class Listener(pulumi.CustomResource):
         :param pulumi.Input[str] acl_status: The enable status of Acl. Optional choice contains `on`, `off`.
         :param pulumi.Input[str] acl_type: The type of the Acl. Optional choice contains `white`, `black`.
         :param pulumi.Input[int] bandwidth: The bandwidth of the Listener. Unit: Mbps. Default is -1, indicating that the Listener does not specify a speed limit.
+        :param pulumi.Input[str] ca_certificate_id: The ID of the CA certificate which is associated with the listener. When `ca_enabled` is `on`, this parameter is required.
+        :param pulumi.Input[str] ca_enabled: Whether to enable CACertificate two-way authentication. Values: on, off.
+        :param pulumi.Input[str] cert_center_certificate_id: The ID of the certificate in Certificate Center. When `certificate_source` is `cert_center`, this parameter is required.
         :param pulumi.Input[str] certificate_id: The certificate id associated with the listener.
+        :param pulumi.Input[str] certificate_source: The source of the certificate which is associated with the listener. Values: `clb`, `cert_center`.
+        :param pulumi.Input[int] client_body_timeout: The client body timeout of the Listener. Only HTTP/HTTPS listeners support this parameter. value range: 30-120.
+        :param pulumi.Input[int] client_header_timeout: The client header timeout of the Listener. Only HTTP/HTTPS listeners support this parameter, i.e., `protocol`=`HTTP` or `HTTPS`. value range: 30-120.
         :param pulumi.Input[str] connection_drain_enabled: Whether to enable connection drain of the Listener. Valid values: `off`, `on`. Default is `off`.
                This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
         :param pulumi.Input[int] connection_drain_timeout: The connection drain timeout of the Listener. Valid value range is `0-900`.
                This filed is required when the value of field `connection_drain_enabled` is `on`.
         :param pulumi.Input[str] cookie: The name of the cookie for session persistence configured on the backend server. When PersistenceType is configured as `server`, this parameter is required. When PersistenceType is configured as any other value, this parameter is not effective.
+        :param pulumi.Input[int] cps: The maximum number of new connections per second allowed for the Listener. Default value: `-1`, no limit, which is the upper limit of new connections for the CLB instance.
         :param pulumi.Input[str] description: The description of the Listener.
         :param pulumi.Input[str] enabled: The enable status of the Listener. Optional choice contains `on`, `off`.
+        :param pulumi.Input[int] end_port: The end port for full port listening, with a value range of 1-65535. When `port` is 0, this parameter is required, and must be greater than `start_port`.
         :param pulumi.Input[int] established_timeout: The connection timeout of the Listener.
         :param pulumi.Input[pulumi.InputType['ListenerHealthCheckArgs']] health_check: The config of health check.
+        :param pulumi.Input[str] http2_enabled: Whether the HTTPS protocol listener enables the front-end HTTP 2.0 protocol. value range: `on`, `off`.
+        :param pulumi.Input[int] keepalive_timeout: The timeout period for the long connection between the client and the CLB. Only HTTP/HTTPS listeners support this parameter. value range: 0-900.
         :param pulumi.Input[str] listener_name: The name of the Listener.
         :param pulumi.Input[str] load_balancer_id: The region of the request.
+        :param pulumi.Input[int] max_connections: The maximum number of connections allowed for the Listener. Default value: `-1`, no limit, which is the upper limit of new connections for the CLB instance.
         :param pulumi.Input[int] persistence_timeout: The persistence timeout of the Listener. Unit: second. Default is `1000`. When PersistenceType is configured as source_ip, the value range is 1-3600. When PersistenceType is configured as insert, the value range is 1-86400. This filed is valid only when the value of field `persistence_type` is `source_ip` or `insert`.
         :param pulumi.Input[str] persistence_type: The persistence type of the Listener. Valid values: `off`, `source_ip`, `insert`, `server`. Default is `off`.
                `source_ip`: Represents the source IP address, only effective for TCP/UDP protocols. `insert`: means implanting a cookie, only effective for HTTP/HTTPS protocol and when the scheduler is `wrr`. `server`: Indicates rewriting cookies, only effective for HTTP/HTTPS protocols and when the scheduler is `wrr`.
-        :param pulumi.Input[int] port: The port receiving request of the Listener, the value range in 1~65535.
+        :param pulumi.Input[int] port: The port receiving request of the Listener, the value range in 0~65535. When `protocol` is `TCP` or `UDP`, 0 can be passed in, indicating that full port listening is enabled.
         :param pulumi.Input[str] protocol: The protocol of the Listener. Optional choice contains `TCP`, `UDP`, `HTTP`, `HTTPS`.
+        :param pulumi.Input[int] proxy_connect_timeout: The timeout period for establishing a connection between the CLB and the backend server. Only HTTP/HTTPS listeners support this parameter. value range: 4-120.
         :param pulumi.Input[str] proxy_protocol_type: Whether to enable proxy protocol. Valid values: `off`, `standard`. Default is `off`.
                This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+        :param pulumi.Input[int] proxy_read_timeout: The timeout period for CLB to read the response from the backend server. Only HTTP/HTTPS listeners support this parameter. value range: 30-3600.
+        :param pulumi.Input[int] proxy_send_timeout: The timeout period for CLB to transmit requests to backend servers. Only HTTP/HTTPS listeners support this parameter. value range: 30-3600.
         :param pulumi.Input[str] scheduler: The scheduling algorithm of the Listener. Optional choice contains `wrr`, `wlc`, `sh`.
+        :param pulumi.Input[str] security_policy_id: The TLS security policy of the HTTPS listener. Only HTTPS listeners support this parameter. value range: `default_policy`, `tls_cipher_policy_1_0`, `tls_cipher_policy_1_1`, `tls_cipher_policy_1_2`, `tls_cipher_policy_1_2_strict`.
+        :param pulumi.Input[int] send_timeout: The timeout period for CLB to send responses to the client. Only HTTP/HTTPS listeners support this parameter. value range: 1-3600.
         :param pulumi.Input[str] server_group_id: The server group id associated with the listener.
+        :param pulumi.Input[int] start_port: The start port for full port listening, with a value range of 1-65535. When `port` is 0, this parameter is required.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ListenerTagArgs']]]] tags: Tags.
         """
         ...
     @overload
@@ -912,6 +1558,10 @@ class Listener(pulumi.CustomResource):
                 method="GET",
                 uri="/",
             ),
+            tags=[volcengine.clb.ListenerTagArgs(
+                key="k1",
+                value="v1",
+            )],
             enabled="on")
         foo_tcp = volcengine.clb.Listener("fooTcp",
             load_balancer_id=foo_clb.id,
@@ -926,6 +1576,36 @@ class Listener(pulumi.CustomResource):
             persistence_timeout=100,
             connection_drain_enabled="on",
             connection_drain_timeout=100)
+        foo_https = volcengine.clb.Listener("fooHttps",
+            load_balancer_id=foo_clb.id,
+            listener_name="acc-test-listener-https",
+            protocol="HTTPS",
+            port=100,
+            server_group_id=foo_server_group.id,
+            health_check=volcengine.clb.ListenerHealthCheckArgs(
+                enabled="on",
+                interval=10,
+                timeout=3,
+                healthy_threshold=5,
+                un_healthy_threshold=2,
+                domain="volcengine.com",
+                http_code="http_2xx,http_3xx",
+                method="GET",
+                uri="/",
+            ),
+            enabled="on",
+            client_header_timeout=80,
+            client_body_timeout=80,
+            keepalive_timeout=80,
+            proxy_connect_timeout=20,
+            proxy_send_timeout=1800,
+            proxy_read_timeout=1800,
+            certificate_source="clb",
+            certificate_id="cert-mjpctunmog745smt1a******",
+            tags=[volcengine.clb.ListenerTagArgs(
+                key="k1",
+                value="v1",
+            )])
         ```
 
         ## Import
@@ -955,23 +1635,41 @@ class Listener(pulumi.CustomResource):
                  acl_status: Optional[pulumi.Input[str]] = None,
                  acl_type: Optional[pulumi.Input[str]] = None,
                  bandwidth: Optional[pulumi.Input[int]] = None,
+                 ca_certificate_id: Optional[pulumi.Input[str]] = None,
+                 ca_enabled: Optional[pulumi.Input[str]] = None,
+                 cert_center_certificate_id: Optional[pulumi.Input[str]] = None,
                  certificate_id: Optional[pulumi.Input[str]] = None,
+                 certificate_source: Optional[pulumi.Input[str]] = None,
+                 client_body_timeout: Optional[pulumi.Input[int]] = None,
+                 client_header_timeout: Optional[pulumi.Input[int]] = None,
                  connection_drain_enabled: Optional[pulumi.Input[str]] = None,
                  connection_drain_timeout: Optional[pulumi.Input[int]] = None,
                  cookie: Optional[pulumi.Input[str]] = None,
+                 cps: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  enabled: Optional[pulumi.Input[str]] = None,
+                 end_port: Optional[pulumi.Input[int]] = None,
                  established_timeout: Optional[pulumi.Input[int]] = None,
                  health_check: Optional[pulumi.Input[pulumi.InputType['ListenerHealthCheckArgs']]] = None,
+                 http2_enabled: Optional[pulumi.Input[str]] = None,
+                 keepalive_timeout: Optional[pulumi.Input[int]] = None,
                  listener_name: Optional[pulumi.Input[str]] = None,
                  load_balancer_id: Optional[pulumi.Input[str]] = None,
+                 max_connections: Optional[pulumi.Input[int]] = None,
                  persistence_timeout: Optional[pulumi.Input[int]] = None,
                  persistence_type: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[int]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
+                 proxy_connect_timeout: Optional[pulumi.Input[int]] = None,
                  proxy_protocol_type: Optional[pulumi.Input[str]] = None,
+                 proxy_read_timeout: Optional[pulumi.Input[int]] = None,
+                 proxy_send_timeout: Optional[pulumi.Input[int]] = None,
                  scheduler: Optional[pulumi.Input[str]] = None,
+                 security_policy_id: Optional[pulumi.Input[str]] = None,
+                 send_timeout: Optional[pulumi.Input[int]] = None,
                  server_group_id: Optional[pulumi.Input[str]] = None,
+                 start_port: Optional[pulumi.Input[int]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ListenerTagArgs']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -985,18 +1683,29 @@ class Listener(pulumi.CustomResource):
             __props__.__dict__["acl_status"] = acl_status
             __props__.__dict__["acl_type"] = acl_type
             __props__.__dict__["bandwidth"] = bandwidth
+            __props__.__dict__["ca_certificate_id"] = ca_certificate_id
+            __props__.__dict__["ca_enabled"] = ca_enabled
+            __props__.__dict__["cert_center_certificate_id"] = cert_center_certificate_id
             __props__.__dict__["certificate_id"] = certificate_id
+            __props__.__dict__["certificate_source"] = certificate_source
+            __props__.__dict__["client_body_timeout"] = client_body_timeout
+            __props__.__dict__["client_header_timeout"] = client_header_timeout
             __props__.__dict__["connection_drain_enabled"] = connection_drain_enabled
             __props__.__dict__["connection_drain_timeout"] = connection_drain_timeout
             __props__.__dict__["cookie"] = cookie
+            __props__.__dict__["cps"] = cps
             __props__.__dict__["description"] = description
             __props__.__dict__["enabled"] = enabled
+            __props__.__dict__["end_port"] = end_port
             __props__.__dict__["established_timeout"] = established_timeout
             __props__.__dict__["health_check"] = health_check
+            __props__.__dict__["http2_enabled"] = http2_enabled
+            __props__.__dict__["keepalive_timeout"] = keepalive_timeout
             __props__.__dict__["listener_name"] = listener_name
             if load_balancer_id is None and not opts.urn:
                 raise TypeError("Missing required property 'load_balancer_id'")
             __props__.__dict__["load_balancer_id"] = load_balancer_id
+            __props__.__dict__["max_connections"] = max_connections
             __props__.__dict__["persistence_timeout"] = persistence_timeout
             __props__.__dict__["persistence_type"] = persistence_type
             if port is None and not opts.urn:
@@ -1005,11 +1714,18 @@ class Listener(pulumi.CustomResource):
             if protocol is None and not opts.urn:
                 raise TypeError("Missing required property 'protocol'")
             __props__.__dict__["protocol"] = protocol
+            __props__.__dict__["proxy_connect_timeout"] = proxy_connect_timeout
             __props__.__dict__["proxy_protocol_type"] = proxy_protocol_type
+            __props__.__dict__["proxy_read_timeout"] = proxy_read_timeout
+            __props__.__dict__["proxy_send_timeout"] = proxy_send_timeout
             __props__.__dict__["scheduler"] = scheduler
+            __props__.__dict__["security_policy_id"] = security_policy_id
+            __props__.__dict__["send_timeout"] = send_timeout
             if server_group_id is None and not opts.urn:
                 raise TypeError("Missing required property 'server_group_id'")
             __props__.__dict__["server_group_id"] = server_group_id
+            __props__.__dict__["start_port"] = start_port
+            __props__.__dict__["tags"] = tags
             __props__.__dict__["listener_id"] = None
         super(Listener, __self__).__init__(
             'volcengine:clb/listener:Listener',
@@ -1025,24 +1741,42 @@ class Listener(pulumi.CustomResource):
             acl_status: Optional[pulumi.Input[str]] = None,
             acl_type: Optional[pulumi.Input[str]] = None,
             bandwidth: Optional[pulumi.Input[int]] = None,
+            ca_certificate_id: Optional[pulumi.Input[str]] = None,
+            ca_enabled: Optional[pulumi.Input[str]] = None,
+            cert_center_certificate_id: Optional[pulumi.Input[str]] = None,
             certificate_id: Optional[pulumi.Input[str]] = None,
+            certificate_source: Optional[pulumi.Input[str]] = None,
+            client_body_timeout: Optional[pulumi.Input[int]] = None,
+            client_header_timeout: Optional[pulumi.Input[int]] = None,
             connection_drain_enabled: Optional[pulumi.Input[str]] = None,
             connection_drain_timeout: Optional[pulumi.Input[int]] = None,
             cookie: Optional[pulumi.Input[str]] = None,
+            cps: Optional[pulumi.Input[int]] = None,
             description: Optional[pulumi.Input[str]] = None,
             enabled: Optional[pulumi.Input[str]] = None,
+            end_port: Optional[pulumi.Input[int]] = None,
             established_timeout: Optional[pulumi.Input[int]] = None,
             health_check: Optional[pulumi.Input[pulumi.InputType['ListenerHealthCheckArgs']]] = None,
+            http2_enabled: Optional[pulumi.Input[str]] = None,
+            keepalive_timeout: Optional[pulumi.Input[int]] = None,
             listener_id: Optional[pulumi.Input[str]] = None,
             listener_name: Optional[pulumi.Input[str]] = None,
             load_balancer_id: Optional[pulumi.Input[str]] = None,
+            max_connections: Optional[pulumi.Input[int]] = None,
             persistence_timeout: Optional[pulumi.Input[int]] = None,
             persistence_type: Optional[pulumi.Input[str]] = None,
             port: Optional[pulumi.Input[int]] = None,
             protocol: Optional[pulumi.Input[str]] = None,
+            proxy_connect_timeout: Optional[pulumi.Input[int]] = None,
             proxy_protocol_type: Optional[pulumi.Input[str]] = None,
+            proxy_read_timeout: Optional[pulumi.Input[int]] = None,
+            proxy_send_timeout: Optional[pulumi.Input[int]] = None,
             scheduler: Optional[pulumi.Input[str]] = None,
-            server_group_id: Optional[pulumi.Input[str]] = None) -> 'Listener':
+            security_policy_id: Optional[pulumi.Input[str]] = None,
+            send_timeout: Optional[pulumi.Input[int]] = None,
+            server_group_id: Optional[pulumi.Input[str]] = None,
+            start_port: Optional[pulumi.Input[int]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ListenerTagArgs']]]]] = None) -> 'Listener':
         """
         Get an existing Listener resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -1054,28 +1788,46 @@ class Listener(pulumi.CustomResource):
         :param pulumi.Input[str] acl_status: The enable status of Acl. Optional choice contains `on`, `off`.
         :param pulumi.Input[str] acl_type: The type of the Acl. Optional choice contains `white`, `black`.
         :param pulumi.Input[int] bandwidth: The bandwidth of the Listener. Unit: Mbps. Default is -1, indicating that the Listener does not specify a speed limit.
+        :param pulumi.Input[str] ca_certificate_id: The ID of the CA certificate which is associated with the listener. When `ca_enabled` is `on`, this parameter is required.
+        :param pulumi.Input[str] ca_enabled: Whether to enable CACertificate two-way authentication. Values: on, off.
+        :param pulumi.Input[str] cert_center_certificate_id: The ID of the certificate in Certificate Center. When `certificate_source` is `cert_center`, this parameter is required.
         :param pulumi.Input[str] certificate_id: The certificate id associated with the listener.
+        :param pulumi.Input[str] certificate_source: The source of the certificate which is associated with the listener. Values: `clb`, `cert_center`.
+        :param pulumi.Input[int] client_body_timeout: The client body timeout of the Listener. Only HTTP/HTTPS listeners support this parameter. value range: 30-120.
+        :param pulumi.Input[int] client_header_timeout: The client header timeout of the Listener. Only HTTP/HTTPS listeners support this parameter, i.e., `protocol`=`HTTP` or `HTTPS`. value range: 30-120.
         :param pulumi.Input[str] connection_drain_enabled: Whether to enable connection drain of the Listener. Valid values: `off`, `on`. Default is `off`.
                This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
         :param pulumi.Input[int] connection_drain_timeout: The connection drain timeout of the Listener. Valid value range is `0-900`.
                This filed is required when the value of field `connection_drain_enabled` is `on`.
         :param pulumi.Input[str] cookie: The name of the cookie for session persistence configured on the backend server. When PersistenceType is configured as `server`, this parameter is required. When PersistenceType is configured as any other value, this parameter is not effective.
+        :param pulumi.Input[int] cps: The maximum number of new connections per second allowed for the Listener. Default value: `-1`, no limit, which is the upper limit of new connections for the CLB instance.
         :param pulumi.Input[str] description: The description of the Listener.
         :param pulumi.Input[str] enabled: The enable status of the Listener. Optional choice contains `on`, `off`.
+        :param pulumi.Input[int] end_port: The end port for full port listening, with a value range of 1-65535. When `port` is 0, this parameter is required, and must be greater than `start_port`.
         :param pulumi.Input[int] established_timeout: The connection timeout of the Listener.
         :param pulumi.Input[pulumi.InputType['ListenerHealthCheckArgs']] health_check: The config of health check.
+        :param pulumi.Input[str] http2_enabled: Whether the HTTPS protocol listener enables the front-end HTTP 2.0 protocol. value range: `on`, `off`.
+        :param pulumi.Input[int] keepalive_timeout: The timeout period for the long connection between the client and the CLB. Only HTTP/HTTPS listeners support this parameter. value range: 0-900.
         :param pulumi.Input[str] listener_id: The ID of the Listener.
         :param pulumi.Input[str] listener_name: The name of the Listener.
         :param pulumi.Input[str] load_balancer_id: The region of the request.
+        :param pulumi.Input[int] max_connections: The maximum number of connections allowed for the Listener. Default value: `-1`, no limit, which is the upper limit of new connections for the CLB instance.
         :param pulumi.Input[int] persistence_timeout: The persistence timeout of the Listener. Unit: second. Default is `1000`. When PersistenceType is configured as source_ip, the value range is 1-3600. When PersistenceType is configured as insert, the value range is 1-86400. This filed is valid only when the value of field `persistence_type` is `source_ip` or `insert`.
         :param pulumi.Input[str] persistence_type: The persistence type of the Listener. Valid values: `off`, `source_ip`, `insert`, `server`. Default is `off`.
                `source_ip`: Represents the source IP address, only effective for TCP/UDP protocols. `insert`: means implanting a cookie, only effective for HTTP/HTTPS protocol and when the scheduler is `wrr`. `server`: Indicates rewriting cookies, only effective for HTTP/HTTPS protocols and when the scheduler is `wrr`.
-        :param pulumi.Input[int] port: The port receiving request of the Listener, the value range in 1~65535.
+        :param pulumi.Input[int] port: The port receiving request of the Listener, the value range in 0~65535. When `protocol` is `TCP` or `UDP`, 0 can be passed in, indicating that full port listening is enabled.
         :param pulumi.Input[str] protocol: The protocol of the Listener. Optional choice contains `TCP`, `UDP`, `HTTP`, `HTTPS`.
+        :param pulumi.Input[int] proxy_connect_timeout: The timeout period for establishing a connection between the CLB and the backend server. Only HTTP/HTTPS listeners support this parameter. value range: 4-120.
         :param pulumi.Input[str] proxy_protocol_type: Whether to enable proxy protocol. Valid values: `off`, `standard`. Default is `off`.
                This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+        :param pulumi.Input[int] proxy_read_timeout: The timeout period for CLB to read the response from the backend server. Only HTTP/HTTPS listeners support this parameter. value range: 30-3600.
+        :param pulumi.Input[int] proxy_send_timeout: The timeout period for CLB to transmit requests to backend servers. Only HTTP/HTTPS listeners support this parameter. value range: 30-3600.
         :param pulumi.Input[str] scheduler: The scheduling algorithm of the Listener. Optional choice contains `wrr`, `wlc`, `sh`.
+        :param pulumi.Input[str] security_policy_id: The TLS security policy of the HTTPS listener. Only HTTPS listeners support this parameter. value range: `default_policy`, `tls_cipher_policy_1_0`, `tls_cipher_policy_1_1`, `tls_cipher_policy_1_2`, `tls_cipher_policy_1_2_strict`.
+        :param pulumi.Input[int] send_timeout: The timeout period for CLB to send responses to the client. Only HTTP/HTTPS listeners support this parameter. value range: 1-3600.
         :param pulumi.Input[str] server_group_id: The server group id associated with the listener.
+        :param pulumi.Input[int] start_port: The start port for full port listening, with a value range of 1-65535. When `port` is 0, this parameter is required.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ListenerTagArgs']]]] tags: Tags.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1085,24 +1837,42 @@ class Listener(pulumi.CustomResource):
         __props__.__dict__["acl_status"] = acl_status
         __props__.__dict__["acl_type"] = acl_type
         __props__.__dict__["bandwidth"] = bandwidth
+        __props__.__dict__["ca_certificate_id"] = ca_certificate_id
+        __props__.__dict__["ca_enabled"] = ca_enabled
+        __props__.__dict__["cert_center_certificate_id"] = cert_center_certificate_id
         __props__.__dict__["certificate_id"] = certificate_id
+        __props__.__dict__["certificate_source"] = certificate_source
+        __props__.__dict__["client_body_timeout"] = client_body_timeout
+        __props__.__dict__["client_header_timeout"] = client_header_timeout
         __props__.__dict__["connection_drain_enabled"] = connection_drain_enabled
         __props__.__dict__["connection_drain_timeout"] = connection_drain_timeout
         __props__.__dict__["cookie"] = cookie
+        __props__.__dict__["cps"] = cps
         __props__.__dict__["description"] = description
         __props__.__dict__["enabled"] = enabled
+        __props__.__dict__["end_port"] = end_port
         __props__.__dict__["established_timeout"] = established_timeout
         __props__.__dict__["health_check"] = health_check
+        __props__.__dict__["http2_enabled"] = http2_enabled
+        __props__.__dict__["keepalive_timeout"] = keepalive_timeout
         __props__.__dict__["listener_id"] = listener_id
         __props__.__dict__["listener_name"] = listener_name
         __props__.__dict__["load_balancer_id"] = load_balancer_id
+        __props__.__dict__["max_connections"] = max_connections
         __props__.__dict__["persistence_timeout"] = persistence_timeout
         __props__.__dict__["persistence_type"] = persistence_type
         __props__.__dict__["port"] = port
         __props__.__dict__["protocol"] = protocol
+        __props__.__dict__["proxy_connect_timeout"] = proxy_connect_timeout
         __props__.__dict__["proxy_protocol_type"] = proxy_protocol_type
+        __props__.__dict__["proxy_read_timeout"] = proxy_read_timeout
+        __props__.__dict__["proxy_send_timeout"] = proxy_send_timeout
         __props__.__dict__["scheduler"] = scheduler
+        __props__.__dict__["security_policy_id"] = security_policy_id
+        __props__.__dict__["send_timeout"] = send_timeout
         __props__.__dict__["server_group_id"] = server_group_id
+        __props__.__dict__["start_port"] = start_port
+        __props__.__dict__["tags"] = tags
         return Listener(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -1138,12 +1908,60 @@ class Listener(pulumi.CustomResource):
         return pulumi.get(self, "bandwidth")
 
     @property
+    @pulumi.getter(name="caCertificateId")
+    def ca_certificate_id(self) -> pulumi.Output[str]:
+        """
+        The ID of the CA certificate which is associated with the listener. When `ca_enabled` is `on`, this parameter is required.
+        """
+        return pulumi.get(self, "ca_certificate_id")
+
+    @property
+    @pulumi.getter(name="caEnabled")
+    def ca_enabled(self) -> pulumi.Output[str]:
+        """
+        Whether to enable CACertificate two-way authentication. Values: on, off.
+        """
+        return pulumi.get(self, "ca_enabled")
+
+    @property
+    @pulumi.getter(name="certCenterCertificateId")
+    def cert_center_certificate_id(self) -> pulumi.Output[str]:
+        """
+        The ID of the certificate in Certificate Center. When `certificate_source` is `cert_center`, this parameter is required.
+        """
+        return pulumi.get(self, "cert_center_certificate_id")
+
+    @property
     @pulumi.getter(name="certificateId")
     def certificate_id(self) -> pulumi.Output[Optional[str]]:
         """
         The certificate id associated with the listener.
         """
         return pulumi.get(self, "certificate_id")
+
+    @property
+    @pulumi.getter(name="certificateSource")
+    def certificate_source(self) -> pulumi.Output[str]:
+        """
+        The source of the certificate which is associated with the listener. Values: `clb`, `cert_center`.
+        """
+        return pulumi.get(self, "certificate_source")
+
+    @property
+    @pulumi.getter(name="clientBodyTimeout")
+    def client_body_timeout(self) -> pulumi.Output[int]:
+        """
+        The client body timeout of the Listener. Only HTTP/HTTPS listeners support this parameter. value range: 30-120.
+        """
+        return pulumi.get(self, "client_body_timeout")
+
+    @property
+    @pulumi.getter(name="clientHeaderTimeout")
+    def client_header_timeout(self) -> pulumi.Output[int]:
+        """
+        The client header timeout of the Listener. Only HTTP/HTTPS listeners support this parameter, i.e., `protocol`=`HTTP` or `HTTPS`. value range: 30-120.
+        """
+        return pulumi.get(self, "client_header_timeout")
 
     @property
     @pulumi.getter(name="connectionDrainEnabled")
@@ -1173,6 +1991,14 @@ class Listener(pulumi.CustomResource):
 
     @property
     @pulumi.getter
+    def cps(self) -> pulumi.Output[int]:
+        """
+        The maximum number of new connections per second allowed for the Listener. Default value: `-1`, no limit, which is the upper limit of new connections for the CLB instance.
+        """
+        return pulumi.get(self, "cps")
+
+    @property
+    @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
         """
         The description of the Listener.
@@ -1186,6 +2012,14 @@ class Listener(pulumi.CustomResource):
         The enable status of the Listener. Optional choice contains `on`, `off`.
         """
         return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter(name="endPort")
+    def end_port(self) -> pulumi.Output[int]:
+        """
+        The end port for full port listening, with a value range of 1-65535. When `port` is 0, this parameter is required, and must be greater than `start_port`.
+        """
+        return pulumi.get(self, "end_port")
 
     @property
     @pulumi.getter(name="establishedTimeout")
@@ -1202,6 +2036,22 @@ class Listener(pulumi.CustomResource):
         The config of health check.
         """
         return pulumi.get(self, "health_check")
+
+    @property
+    @pulumi.getter(name="http2Enabled")
+    def http2_enabled(self) -> pulumi.Output[str]:
+        """
+        Whether the HTTPS protocol listener enables the front-end HTTP 2.0 protocol. value range: `on`, `off`.
+        """
+        return pulumi.get(self, "http2_enabled")
+
+    @property
+    @pulumi.getter(name="keepaliveTimeout")
+    def keepalive_timeout(self) -> pulumi.Output[int]:
+        """
+        The timeout period for the long connection between the client and the CLB. Only HTTP/HTTPS listeners support this parameter. value range: 0-900.
+        """
+        return pulumi.get(self, "keepalive_timeout")
 
     @property
     @pulumi.getter(name="listenerId")
@@ -1228,6 +2078,14 @@ class Listener(pulumi.CustomResource):
         return pulumi.get(self, "load_balancer_id")
 
     @property
+    @pulumi.getter(name="maxConnections")
+    def max_connections(self) -> pulumi.Output[int]:
+        """
+        The maximum number of connections allowed for the Listener. Default value: `-1`, no limit, which is the upper limit of new connections for the CLB instance.
+        """
+        return pulumi.get(self, "max_connections")
+
+    @property
     @pulumi.getter(name="persistenceTimeout")
     def persistence_timeout(self) -> pulumi.Output[Optional[int]]:
         """
@@ -1248,7 +2106,7 @@ class Listener(pulumi.CustomResource):
     @pulumi.getter
     def port(self) -> pulumi.Output[int]:
         """
-        The port receiving request of the Listener, the value range in 1~65535.
+        The port receiving request of the Listener, the value range in 0~65535. When `protocol` is `TCP` or `UDP`, 0 can be passed in, indicating that full port listening is enabled.
         """
         return pulumi.get(self, "port")
 
@@ -1261,6 +2119,14 @@ class Listener(pulumi.CustomResource):
         return pulumi.get(self, "protocol")
 
     @property
+    @pulumi.getter(name="proxyConnectTimeout")
+    def proxy_connect_timeout(self) -> pulumi.Output[int]:
+        """
+        The timeout period for establishing a connection between the CLB and the backend server. Only HTTP/HTTPS listeners support this parameter. value range: 4-120.
+        """
+        return pulumi.get(self, "proxy_connect_timeout")
+
+    @property
     @pulumi.getter(name="proxyProtocolType")
     def proxy_protocol_type(self) -> pulumi.Output[Optional[str]]:
         """
@@ -1268,6 +2134,22 @@ class Listener(pulumi.CustomResource):
         This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
         """
         return pulumi.get(self, "proxy_protocol_type")
+
+    @property
+    @pulumi.getter(name="proxyReadTimeout")
+    def proxy_read_timeout(self) -> pulumi.Output[int]:
+        """
+        The timeout period for CLB to read the response from the backend server. Only HTTP/HTTPS listeners support this parameter. value range: 30-3600.
+        """
+        return pulumi.get(self, "proxy_read_timeout")
+
+    @property
+    @pulumi.getter(name="proxySendTimeout")
+    def proxy_send_timeout(self) -> pulumi.Output[int]:
+        """
+        The timeout period for CLB to transmit requests to backend servers. Only HTTP/HTTPS listeners support this parameter. value range: 30-3600.
+        """
+        return pulumi.get(self, "proxy_send_timeout")
 
     @property
     @pulumi.getter
@@ -1278,10 +2160,42 @@ class Listener(pulumi.CustomResource):
         return pulumi.get(self, "scheduler")
 
     @property
+    @pulumi.getter(name="securityPolicyId")
+    def security_policy_id(self) -> pulumi.Output[str]:
+        """
+        The TLS security policy of the HTTPS listener. Only HTTPS listeners support this parameter. value range: `default_policy`, `tls_cipher_policy_1_0`, `tls_cipher_policy_1_1`, `tls_cipher_policy_1_2`, `tls_cipher_policy_1_2_strict`.
+        """
+        return pulumi.get(self, "security_policy_id")
+
+    @property
+    @pulumi.getter(name="sendTimeout")
+    def send_timeout(self) -> pulumi.Output[int]:
+        """
+        The timeout period for CLB to send responses to the client. Only HTTP/HTTPS listeners support this parameter. value range: 1-3600.
+        """
+        return pulumi.get(self, "send_timeout")
+
+    @property
     @pulumi.getter(name="serverGroupId")
     def server_group_id(self) -> pulumi.Output[str]:
         """
         The server group id associated with the listener.
         """
         return pulumi.get(self, "server_group_id")
+
+    @property
+    @pulumi.getter(name="startPort")
+    def start_port(self) -> pulumi.Output[int]:
+        """
+        The start port for full port listening, with a value range of 1-65535. When `port` is 0, this parameter is required.
+        """
+        return pulumi.get(self, "start_port")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.ListenerTag']]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 

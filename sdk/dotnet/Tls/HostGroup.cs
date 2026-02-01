@@ -23,11 +23,31 @@ namespace Pulumi.Volcengine.Tls
     /// {
     ///     var foo = new Volcengine.Tls.HostGroup("foo", new()
     ///     {
-    ///         AutoUpdate = false,
-    ///         HostGroupName = "tfgroup",
+    ///         AutoUpdate = true,
+    ///         HostGroupName = "tfgroup-test-1",
     ///         HostGroupType = "Label",
-    ///         HostIdentifier = "tf-controller",
+    ///         HostIdentifier = "hostlable",
+    ///         IamProjectName = "default",
     ///         ServiceLogging = false,
+    ///         UpdateEndTime = "02:00",
+    ///         UpdateStartTime = "00:00",
+    ///     });
+    /// 
+    ///     var fooIp = new Volcengine.Tls.HostGroup("fooIp", new()
+    ///     {
+    ///         AutoUpdate = true,
+    ///         HostGroupName = "tfgroup-ip-1",
+    ///         HostGroupType = "IP",
+    ///         HostIpLists = new[]
+    ///         {
+    ///             "192.168.0.1",
+    ///             "192.168.0.2",
+    ///             "192.168.0.3",
+    ///         },
+    ///         IamProjectName = "default",
+    ///         ServiceLogging = false,
+    ///         UpdateEndTime = "02:00",
+    ///         UpdateStartTime = "00:00",
     ///     });
     /// 
     /// });
@@ -44,18 +64,6 @@ namespace Pulumi.Volcengine.Tls
     [VolcengineResourceType("volcengine:tls/hostGroup:HostGroup")]
     public partial class HostGroup : global::Pulumi.CustomResource
     {
-        /// <summary>
-        /// The abnormal heartbeat status count of host.
-        /// </summary>
-        [Output("abnormalHeartbeatStatusCount")]
-        public Output<int> AbnormalHeartbeatStatusCount { get; private set; } = null!;
-
-        /// <summary>
-        /// The latest version of log collector.
-        /// </summary>
-        [Output("agentLatestVersion")]
-        public Output<string> AgentLatestVersion { get; private set; } = null!;
-
         /// <summary>
         /// Whether enable auto update.
         /// </summary>
@@ -109,12 +117,6 @@ namespace Pulumi.Volcengine.Tls
         /// </summary>
         [Output("modifyTime")]
         public Output<string> ModifyTime { get; private set; } = null!;
-
-        /// <summary>
-        /// The normal heartbeat status count of host.
-        /// </summary>
-        [Output("normalHeartbeatStatusCount")]
-        public Output<int> NormalHeartbeatStatusCount { get; private set; } = null!;
 
         /// <summary>
         /// The rule count of host.
@@ -256,18 +258,6 @@ namespace Pulumi.Volcengine.Tls
     public sealed class HostGroupState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The abnormal heartbeat status count of host.
-        /// </summary>
-        [Input("abnormalHeartbeatStatusCount")]
-        public Input<int>? AbnormalHeartbeatStatusCount { get; set; }
-
-        /// <summary>
-        /// The latest version of log collector.
-        /// </summary>
-        [Input("agentLatestVersion")]
-        public Input<string>? AgentLatestVersion { get; set; }
-
-        /// <summary>
         /// Whether enable auto update.
         /// </summary>
         [Input("autoUpdate")]
@@ -326,12 +316,6 @@ namespace Pulumi.Volcengine.Tls
         /// </summary>
         [Input("modifyTime")]
         public Input<string>? ModifyTime { get; set; }
-
-        /// <summary>
-        /// The normal heartbeat status count of host.
-        /// </summary>
-        [Input("normalHeartbeatStatusCount")]
-        public Input<int>? NormalHeartbeatStatusCount { get; set; }
 
         /// <summary>
         /// The rule count of host.

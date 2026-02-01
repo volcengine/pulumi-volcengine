@@ -38,6 +38,10 @@ namespace Pulumi.Volcengine.Tls.Outputs
         /// </summary>
         public readonly Outputs.RuleExtractRuleLogTemplate? LogTemplate;
         /// <summary>
+        /// The quote symbol.
+        /// </summary>
+        public readonly string? Quote;
+        /// <summary>
         /// Parsing format of the time field.
         /// </summary>
         public readonly string? TimeFormat;
@@ -45,6 +49,10 @@ namespace Pulumi.Volcengine.Tls.Outputs
         /// The field name of the log time field.
         /// </summary>
         public readonly string? TimeKey;
+        /// <summary>
+        /// The time zone.
+        /// </summary>
+        public readonly string? TimeZone;
         /// <summary>
         /// When uploading the failed log, the key name of the failed log.
         /// </summary>
@@ -68,9 +76,13 @@ namespace Pulumi.Volcengine.Tls.Outputs
 
             Outputs.RuleExtractRuleLogTemplate? logTemplate,
 
+            string? quote,
+
             string? timeFormat,
 
             string? timeKey,
+
+            string? timeZone,
 
             string? unMatchLogKey,
 
@@ -82,8 +94,10 @@ namespace Pulumi.Volcengine.Tls.Outputs
             Keys = keys;
             LogRegex = logRegex;
             LogTemplate = logTemplate;
+            Quote = quote;
             TimeFormat = timeFormat;
             TimeKey = timeKey;
+            TimeZone = timeZone;
             UnMatchLogKey = unMatchLogKey;
             UnMatchUpLoadSwitch = unMatchUpLoadSwitch;
         }

@@ -13,18 +13,22 @@ namespace Pulumi.Volcengine.Tls.Inputs
     public sealed class AlarmRequestCycleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The cron tab.
+        /// </summary>
+        [Input("cronTab")]
+        public Input<string>? CronTab { get; set; }
+
+        /// <summary>
         /// The cycle of alarm task execution, or the time point of periodic execution. The unit is minutes, and the value range is 1~1440.
         /// </summary>
-        [Input("time", required: true)]
-        public Input<int> Time { get; set; } = null!;
+        [Input("time")]
+        public Input<int>? Time { get; set; }
 
         /// <summary>
         /// Execution cycle type.
-        /// Period: Periodic execution, which means executing once every certain period of time.
-        /// Fixed: Regular execution, which means executing at a fixed time point every day.
         /// </summary>
-        [Input("type", required: true)]
-        public Input<string> Type { get; set; } = null!;
+        [Input("type")]
+        public Input<string>? Type { get; set; }
 
         public AlarmRequestCycleArgs()
         {

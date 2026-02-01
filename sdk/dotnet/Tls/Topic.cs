@@ -23,11 +23,21 @@ namespace Pulumi.Volcengine.Tls
     /// {
     ///     var foo = new Volcengine.Tls.Topic("foo", new()
     ///     {
+    ///         ArchiveTtl = 0,
     ///         AutoSplit = true,
+    ///         ColdTtl = 30,
     ///         Description = "test",
+    ///         EnableHotTtl = true,
     ///         EnableTracking = true,
+    ///         EncryptConf = new Volcengine.Tls.Inputs.TopicEncryptConfArgs
+    ///         {
+    ///             Enable = true,
+    ///             EncryptType = "default",
+    ///         },
+    ///         HotTtl = 30,
+    ///         LogPublicIp = true,
     ///         MaxSplitShard = 10,
-    ///         ProjectId = "e020c978-4f05-40e1-9167-0113d3ef****",
+    ///         ProjectId = "bdb87e4d-7dad-4b96-ac43-e1b09e9dc8ac",
     ///         ShardCount = 2,
     ///         Tags = new[]
     ///         {
@@ -39,8 +49,8 @@ namespace Pulumi.Volcengine.Tls
     ///         },
     ///         TimeFormat = "%Y-%m-%dT%H:%M:%S,%f",
     ///         TimeKey = "request_time",
-    ///         TopicName = "tf-test-topic",
-    ///         Ttl = 10,
+    ///         TopicName = "tf-topic-5",
+    ///         Ttl = 60,
     ///     });
     /// 
     /// });
@@ -58,12 +68,24 @@ namespace Pulumi.Volcengine.Tls
     public partial class Topic : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Archive storage duration, valid when enable_hot_ttl is true.
+        /// </summary>
+        [Output("archiveTtl")]
+        public Output<int?> ArchiveTtl { get; private set; } = null!;
+
+        /// <summary>
         /// Whether to enable automatic partition splitting function of the tls topic.
         /// true: (default) When the amount of data written exceeds the capacity of existing partitions for 5 consecutive minutes, Log Service will automatically split partitions based on the data volume to meet business needs. However, the number of partitions after splitting cannot exceed the maximum number of partitions. Newly split partitions within the last 15 minutes will not be automatically split again.
         /// false: Disables automatic partition splitting.
         /// </summary>
         [Output("autoSplit")]
         public Output<bool> AutoSplit { get; private set; } = null!;
+
+        /// <summary>
+        /// Infrequent storage duration, valid when enable_hot_ttl is true.
+        /// </summary>
+        [Output("coldTtl")]
+        public Output<int?> ColdTtl { get; private set; } = null!;
 
         /// <summary>
         /// The create time of the tls topic.
@@ -78,10 +100,34 @@ namespace Pulumi.Volcengine.Tls
         public Output<string> Description { get; private set; } = null!;
 
         /// <summary>
+        /// Whether to enable tiered storage.
+        /// </summary>
+        [Output("enableHotTtl")]
+        public Output<bool?> EnableHotTtl { get; private set; } = null!;
+
+        /// <summary>
         /// Whether to enable WebTracking function of the tls topic.
         /// </summary>
         [Output("enableTracking")]
         public Output<bool> EnableTracking { get; private set; } = null!;
+
+        /// <summary>
+        /// Data encryption configuration.
+        /// </summary>
+        [Output("encryptConf")]
+        public Output<Outputs.TopicEncryptConf?> EncryptConf { get; private set; } = null!;
+
+        /// <summary>
+        /// Standard storage duration, valid when enable_hot_ttl is true.
+        /// </summary>
+        [Output("hotTtl")]
+        public Output<int?> HotTtl { get; private set; } = null!;
+
+        /// <summary>
+        /// Whether to enable the function of recording public IP.
+        /// </summary>
+        [Output("logPublicIp")]
+        public Output<bool?> LogPublicIp { get; private set; } = null!;
 
         /// <summary>
         /// The id of shard to be manually split. This field is valid only when modifying the topic. 
@@ -199,6 +245,12 @@ namespace Pulumi.Volcengine.Tls
     public sealed class TopicArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Archive storage duration, valid when enable_hot_ttl is true.
+        /// </summary>
+        [Input("archiveTtl")]
+        public Input<int>? ArchiveTtl { get; set; }
+
+        /// <summary>
         /// Whether to enable automatic partition splitting function of the tls topic.
         /// true: (default) When the amount of data written exceeds the capacity of existing partitions for 5 consecutive minutes, Log Service will automatically split partitions based on the data volume to meet business needs. However, the number of partitions after splitting cannot exceed the maximum number of partitions. Newly split partitions within the last 15 minutes will not be automatically split again.
         /// false: Disables automatic partition splitting.
@@ -207,16 +259,46 @@ namespace Pulumi.Volcengine.Tls
         public Input<bool>? AutoSplit { get; set; }
 
         /// <summary>
+        /// Infrequent storage duration, valid when enable_hot_ttl is true.
+        /// </summary>
+        [Input("coldTtl")]
+        public Input<int>? ColdTtl { get; set; }
+
+        /// <summary>
         /// The description of the tls project.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// Whether to enable tiered storage.
+        /// </summary>
+        [Input("enableHotTtl")]
+        public Input<bool>? EnableHotTtl { get; set; }
+
+        /// <summary>
         /// Whether to enable WebTracking function of the tls topic.
         /// </summary>
         [Input("enableTracking")]
         public Input<bool>? EnableTracking { get; set; }
+
+        /// <summary>
+        /// Data encryption configuration.
+        /// </summary>
+        [Input("encryptConf")]
+        public Input<Inputs.TopicEncryptConfArgs>? EncryptConf { get; set; }
+
+        /// <summary>
+        /// Standard storage duration, valid when enable_hot_ttl is true.
+        /// </summary>
+        [Input("hotTtl")]
+        public Input<int>? HotTtl { get; set; }
+
+        /// <summary>
+        /// Whether to enable the function of recording public IP.
+        /// </summary>
+        [Input("logPublicIp")]
+        public Input<bool>? LogPublicIp { get; set; }
 
         /// <summary>
         /// The id of shard to be manually split. This field is valid only when modifying the topic. 
@@ -295,12 +377,24 @@ namespace Pulumi.Volcengine.Tls
     public sealed class TopicState : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Archive storage duration, valid when enable_hot_ttl is true.
+        /// </summary>
+        [Input("archiveTtl")]
+        public Input<int>? ArchiveTtl { get; set; }
+
+        /// <summary>
         /// Whether to enable automatic partition splitting function of the tls topic.
         /// true: (default) When the amount of data written exceeds the capacity of existing partitions for 5 consecutive minutes, Log Service will automatically split partitions based on the data volume to meet business needs. However, the number of partitions after splitting cannot exceed the maximum number of partitions. Newly split partitions within the last 15 minutes will not be automatically split again.
         /// false: Disables automatic partition splitting.
         /// </summary>
         [Input("autoSplit")]
         public Input<bool>? AutoSplit { get; set; }
+
+        /// <summary>
+        /// Infrequent storage duration, valid when enable_hot_ttl is true.
+        /// </summary>
+        [Input("coldTtl")]
+        public Input<int>? ColdTtl { get; set; }
 
         /// <summary>
         /// The create time of the tls topic.
@@ -315,10 +409,34 @@ namespace Pulumi.Volcengine.Tls
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// Whether to enable tiered storage.
+        /// </summary>
+        [Input("enableHotTtl")]
+        public Input<bool>? EnableHotTtl { get; set; }
+
+        /// <summary>
         /// Whether to enable WebTracking function of the tls topic.
         /// </summary>
         [Input("enableTracking")]
         public Input<bool>? EnableTracking { get; set; }
+
+        /// <summary>
+        /// Data encryption configuration.
+        /// </summary>
+        [Input("encryptConf")]
+        public Input<Inputs.TopicEncryptConfGetArgs>? EncryptConf { get; set; }
+
+        /// <summary>
+        /// Standard storage duration, valid when enable_hot_ttl is true.
+        /// </summary>
+        [Input("hotTtl")]
+        public Input<int>? HotTtl { get; set; }
+
+        /// <summary>
+        /// Whether to enable the function of recording public IP.
+        /// </summary>
+        [Input("logPublicIp")]
+        public Input<bool>? LogPublicIp { get; set; }
 
         /// <summary>
         /// The id of shard to be manually split. This field is valid only when modifying the topic. 

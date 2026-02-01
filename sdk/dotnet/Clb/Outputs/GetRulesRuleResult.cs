@@ -14,6 +14,10 @@ namespace Pulumi.Volcengine.Clb.Outputs
     public sealed class GetRulesRuleResult
     {
         /// <summary>
+        /// The action type of Rule. values: `Forward`, `Redirect`.
+        /// </summary>
+        public readonly string ActionType;
+        /// <summary>
         /// The Description of Rule.
         /// </summary>
         public readonly string Description;
@@ -26,6 +30,10 @@ namespace Pulumi.Volcengine.Clb.Outputs
         /// </summary>
         public readonly string Id;
         /// <summary>
+        /// The redirect configuration. When `action_type` is `Redirect`, this parameter is returned.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetRulesRuleRedirectConfigResult> RedirectConfigs;
+        /// <summary>
         /// The Id of Rule.
         /// </summary>
         public readonly string RuleId;
@@ -34,29 +42,42 @@ namespace Pulumi.Volcengine.Clb.Outputs
         /// </summary>
         public readonly string ServerGroupId;
         /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetRulesRuleTagResult> Tags;
+        /// <summary>
         /// The Url of Rule.
         /// </summary>
         public readonly string Url;
 
         [OutputConstructor]
         private GetRulesRuleResult(
+            string actionType,
+
             string description,
 
             string domain,
 
             string id,
 
+            ImmutableArray<Outputs.GetRulesRuleRedirectConfigResult> redirectConfigs,
+
             string ruleId,
 
             string serverGroupId,
 
+            ImmutableArray<Outputs.GetRulesRuleTagResult> tags,
+
             string url)
         {
+            ActionType = actionType;
             Description = description;
             Domain = domain;
             Id = id;
+            RedirectConfigs = redirectConfigs;
             RuleId = ruleId;
             ServerGroupId = serverGroupId;
+            Tags = tags;
             Url = url;
         }
     }

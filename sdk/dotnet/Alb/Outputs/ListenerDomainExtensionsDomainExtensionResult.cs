@@ -14,9 +14,17 @@ namespace Pulumi.Volcengine.Alb.Outputs
     public sealed class ListenerDomainExtensionsDomainExtensionResult
     {
         /// <summary>
+        /// The server certificate ID used by the domain name. It takes effect when the certificate source is cert_center.
+        /// </summary>
+        public readonly string CertCenterCertificateId;
+        /// <summary>
         /// The server certificate ID that domain used.
         /// </summary>
         public readonly string CertificateId;
+        /// <summary>
+        /// The source of the certificate.
+        /// </summary>
+        public readonly string CertificateSource;
         /// <summary>
         /// The domain.
         /// </summary>
@@ -33,10 +41,22 @@ namespace Pulumi.Volcengine.Alb.Outputs
         /// A Listener ID.
         /// </summary>
         public readonly string ListenerId;
+        /// <summary>
+        /// The server certificate ID used by the domain name. It takes effect when the certificate source is pca_leaf.
+        /// </summary>
+        public readonly string PcaLeafCertificateId;
+        /// <summary>
+        /// The CommonName, extended domain names, and IPs of the certificate are separated by ','.
+        /// </summary>
+        public readonly string San;
 
         [OutputConstructor]
         private ListenerDomainExtensionsDomainExtensionResult(
+            string certCenterCertificateId,
+
             string certificateId,
+
+            string certificateSource,
 
             string domain,
 
@@ -44,13 +64,21 @@ namespace Pulumi.Volcengine.Alb.Outputs
 
             string id,
 
-            string listenerId)
+            string listenerId,
+
+            string pcaLeafCertificateId,
+
+            string san)
         {
+            CertCenterCertificateId = certCenterCertificateId;
             CertificateId = certificateId;
+            CertificateSource = certificateSource;
             Domain = domain;
             DomainExtensionId = domainExtensionId;
             Id = id;
             ListenerId = listenerId;
+            PcaLeafCertificateId = pcaLeafCertificateId;
+            San = san;
         }
     }
 }

@@ -98,7 +98,23 @@ class AccessLog(pulumi.CustomResource):
                  load_balancer_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a AccessLog resource with the given unique name, props, and options.
+        Provides a resource to manage alb access log
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_volcengine as volcengine
+
+        # Enable ALB Access Log (TOS Bucket)
+        default = volcengine.alb.AccessLog("default",
+            bucket_name="tos-buket",
+            load_balancer_id="alb-bdchexlt87pc8dv40nbr6mu7")
+        ```
+
+        ## Import
+
+        The AlbAccessLog is not support import.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] bucket_name: The name of the TOS bucket for storing access logs.
@@ -111,7 +127,23 @@ class AccessLog(pulumi.CustomResource):
                  args: AccessLogArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a AccessLog resource with the given unique name, props, and options.
+        Provides a resource to manage alb access log
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_volcengine as volcengine
+
+        # Enable ALB Access Log (TOS Bucket)
+        default = volcengine.alb.AccessLog("default",
+            bucket_name="tos-buket",
+            load_balancer_id="alb-bdchexlt87pc8dv40nbr6mu7")
+        ```
+
+        ## Import
+
+        The AlbAccessLog is not support import.
+
         :param str resource_name: The name of the resource.
         :param AccessLogArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

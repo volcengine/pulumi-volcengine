@@ -13,11 +13,11 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@volcengine/pulumi";
  *
  * const foo = new volcengine.tls.ConsumerGroup("foo", {
- *     consumerGroupName: "tf-test-consumer-group",
+ *     consumerGroupName: "tf-consumer-group-t",
  *     heartbeatTtl: 120,
  *     orderedConsume: false,
- *     projectId: "17ba378d-de43-495e-8906-03aexxxxxx",
- *     topicIdLists: ["0ed72ac8-9531-4967-b216-ac30xxxxxx"],
+ *     projectId: "7a8ac13e-8e3e-4392-ae77-aea8efa49bbf",
+ *     topicIdLists: ["33124cc3-15c4-4cdc-9a8a-cc64a9d593dd"],
  * });
  * ```
  *

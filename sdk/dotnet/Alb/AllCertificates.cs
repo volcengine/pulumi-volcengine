@@ -12,9 +12,75 @@ namespace Pulumi.Volcengine.Alb
     [Obsolete(@"volcengine.alb.AllCertificates has been deprecated in favor of volcengine.alb.getAllCertificates")]
     public static class AllCertificates
     {
+        /// <summary>
+        /// Use this data source to query detailed information of alb all certificates
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Volcengine = Pulumi.Volcengine;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var @default = Volcengine.Alb.GetAllCertificates.Invoke(new()
+        ///     {
+        ///         Ids = new[]
+        ///         {
+        ///             "cert-1pf4a8k8tokcg845wfariphc2",
+        ///             "cert-xoekc6lpu9s054ov5eohm3bj",
+        ///         },
+        ///         ProjectName = "default",
+        ///         Tags = new[]
+        ///         {
+        ///             new Volcengine.Alb.Inputs.GetAllCertificatesTagInputArgs
+        ///             {
+        ///                 Key = "key1",
+        ///                 Value = "value2",
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
         public static Task<AllCertificatesResult> InvokeAsync(AllCertificatesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<AllCertificatesResult>("volcengine:alb/allCertificates:AllCertificates", args ?? new AllCertificatesArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Use this data source to query detailed information of alb all certificates
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Volcengine = Pulumi.Volcengine;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var @default = Volcengine.Alb.GetAllCertificates.Invoke(new()
+        ///     {
+        ///         Ids = new[]
+        ///         {
+        ///             "cert-1pf4a8k8tokcg845wfariphc2",
+        ///             "cert-xoekc6lpu9s054ov5eohm3bj",
+        ///         },
+        ///         ProjectName = "default",
+        ///         Tags = new[]
+        ///         {
+        ///             new Volcengine.Alb.Inputs.GetAllCertificatesTagInputArgs
+        ///             {
+        ///                 Key = "key1",
+        ///                 Value = "value2",
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
         public static Output<AllCertificatesResult> Invoke(AllCertificatesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<AllCertificatesResult>("volcengine:alb/allCertificates:AllCertificates", args ?? new AllCertificatesInvokeArgs(), options.WithDefaults());
     }
@@ -22,31 +88,54 @@ namespace Pulumi.Volcengine.Alb
 
     public sealed class AllCertificatesArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The Name of Certificate.
+        /// </summary>
         [Input("certificateName")]
         public string? CertificateName { get; set; }
 
+        /// <summary>
+        /// The type of Certificate. Valid values: `CA`, `Server`.
+        /// </summary>
         [Input("certificateType")]
         public string? CertificateType { get; set; }
 
         [Input("ids")]
         private List<string>? _ids;
+
+        /// <summary>
+        /// A list of IDs.
+        /// </summary>
         public List<string> Ids
         {
             get => _ids ?? (_ids = new List<string>());
             set => _ids = value;
         }
 
+        /// <summary>
+        /// A Name Regex of Resource.
+        /// </summary>
         [Input("nameRegex")]
         public string? NameRegex { get; set; }
 
+        /// <summary>
+        /// File name where to save data source results.
+        /// </summary>
         [Input("outputFile")]
         public string? OutputFile { get; set; }
 
+        /// <summary>
+        /// The project name of Certificate.
+        /// </summary>
         [Input("projectName")]
         public string? ProjectName { get; set; }
 
         [Input("tags")]
         private List<Inputs.AllCertificatesTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
         public List<Inputs.AllCertificatesTagArgs> Tags
         {
             get => _tags ?? (_tags = new List<Inputs.AllCertificatesTagArgs>());
@@ -61,31 +150,54 @@ namespace Pulumi.Volcengine.Alb
 
     public sealed class AllCertificatesInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The Name of Certificate.
+        /// </summary>
         [Input("certificateName")]
         public Input<string>? CertificateName { get; set; }
 
+        /// <summary>
+        /// The type of Certificate. Valid values: `CA`, `Server`.
+        /// </summary>
         [Input("certificateType")]
         public Input<string>? CertificateType { get; set; }
 
         [Input("ids")]
         private InputList<string>? _ids;
+
+        /// <summary>
+        /// A list of IDs.
+        /// </summary>
         public InputList<string> Ids
         {
             get => _ids ?? (_ids = new InputList<string>());
             set => _ids = value;
         }
 
+        /// <summary>
+        /// A Name Regex of Resource.
+        /// </summary>
         [Input("nameRegex")]
         public Input<string>? NameRegex { get; set; }
 
+        /// <summary>
+        /// File name where to save data source results.
+        /// </summary>
         [Input("outputFile")]
         public Input<string>? OutputFile { get; set; }
 
+        /// <summary>
+        /// The project name of Certificate.
+        /// </summary>
         [Input("projectName")]
         public Input<string>? ProjectName { get; set; }
 
         [Input("tags")]
         private InputList<Inputs.AllCertificatesTagInputArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
         public InputList<Inputs.AllCertificatesTagInputArgs> Tags
         {
             get => _tags ?? (_tags = new InputList<Inputs.AllCertificatesTagInputArgs>());
@@ -102,8 +214,17 @@ namespace Pulumi.Volcengine.Alb
     [OutputType]
     public sealed class AllCertificatesResult
     {
+        /// <summary>
+        /// The name of the Certificate.
+        /// </summary>
         public readonly string? CertificateName;
+        /// <summary>
+        /// The type of the Certificate.
+        /// </summary>
         public readonly string? CertificateType;
+        /// <summary>
+        /// The collection of Certificate query.
+        /// </summary>
         public readonly ImmutableArray<Outputs.AllCertificatesCertificateResult> Certificates;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
@@ -112,8 +233,17 @@ namespace Pulumi.Volcengine.Alb
         public readonly ImmutableArray<string> Ids;
         public readonly string? NameRegex;
         public readonly string? OutputFile;
+        /// <summary>
+        /// The ProjectName of the Certificate.
+        /// </summary>
         public readonly string? ProjectName;
+        /// <summary>
+        /// Tags.
+        /// </summary>
         public readonly ImmutableArray<Outputs.AllCertificatesTagResult> Tags;
+        /// <summary>
+        /// The total count of query.
+        /// </summary>
         public readonly int TotalCount;
 
         [OutputConstructor]

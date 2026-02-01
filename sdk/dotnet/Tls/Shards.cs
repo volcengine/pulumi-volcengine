@@ -26,7 +26,7 @@ namespace Pulumi.Volcengine.Tls
         /// {
         ///     var @default = Volcengine.Tls.GetShards.Invoke(new()
         ///     {
-        ///         TopicId = "edf051ed-3c46-49ba-9339-bea628fedc15",
+        ///         TopicId = "b600dc34-503f-42fc-8e32-953af55463d1",
         ///     });
         /// 
         /// });
@@ -49,7 +49,7 @@ namespace Pulumi.Volcengine.Tls
         /// {
         ///     var @default = Volcengine.Tls.GetShards.Invoke(new()
         ///     {
-        ///         TopicId = "edf051ed-3c46-49ba-9339-bea628fedc15",
+        ///         TopicId = "b600dc34-503f-42fc-8e32-953af55463d1",
         ///     });
         /// 
         /// });

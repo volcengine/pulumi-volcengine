@@ -34,6 +34,10 @@ namespace Pulumi.Volcengine.Tls.Outputs
         /// </summary>
         public readonly string ModifyTime;
         /// <summary>
+        /// The list of the notice rules.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.AlarmNotifyGroupsGroupNoticeRuleResult> NoticeRules;
+        /// <summary>
         /// The notify group type.
         /// </summary>
         public readonly ImmutableArray<string> NotifyTypes;
@@ -54,6 +58,8 @@ namespace Pulumi.Volcengine.Tls.Outputs
 
             string modifyTime,
 
+            ImmutableArray<Outputs.AlarmNotifyGroupsGroupNoticeRuleResult> noticeRules,
+
             ImmutableArray<string> notifyTypes,
 
             ImmutableArray<Outputs.AlarmNotifyGroupsGroupReceiverResult> receivers)
@@ -63,6 +69,7 @@ namespace Pulumi.Volcengine.Tls.Outputs
             CreateTime = createTime;
             IamProjectName = iamProjectName;
             ModifyTime = modifyTime;
+            NoticeRules = noticeRules;
             NotifyTypes = notifyTypes;
             Receivers = receivers;
         }

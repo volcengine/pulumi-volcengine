@@ -14,9 +14,13 @@ namespace Pulumi.Volcengine.Clb.Outputs
     public sealed class GetServerGroupsGroupResult
     {
         /// <summary>
-        /// The address ip version of the ServerGroup.
+        /// The address IP version of the ServerGroup.
         /// </summary>
         public readonly string AddressIpVersion;
+        /// <summary>
+        /// Whether full port forwarding is enabled.
+        /// </summary>
+        public readonly string AnyPortEnabled;
         /// <summary>
         /// The create time of the ServerGroup.
         /// </summary>
@@ -30,6 +34,14 @@ namespace Pulumi.Volcengine.Clb.Outputs
         /// </summary>
         public readonly string Id;
         /// <summary>
+        /// The listeners of the ServerGroup.
+        /// </summary>
+        public readonly ImmutableArray<string> Listeners;
+        /// <summary>
+        /// The id of the Clb.
+        /// </summary>
+        public readonly string LoadBalancerId;
+        /// <summary>
         /// The ID of the ServerGroup.
         /// </summary>
         public readonly string ServerGroupId;
@@ -37,6 +49,14 @@ namespace Pulumi.Volcengine.Clb.Outputs
         /// The name of the ServerGroup.
         /// </summary>
         public readonly string ServerGroupName;
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetServerGroupsGroupTagResult> Tags;
+        /// <summary>
+        /// The type of ServerGroup. Valid values: `instance`, `ip`.
+        /// </summary>
+        public readonly string Type;
         /// <summary>
         /// The update time of the ServerGroup.
         /// </summary>
@@ -46,24 +66,39 @@ namespace Pulumi.Volcengine.Clb.Outputs
         private GetServerGroupsGroupResult(
             string addressIpVersion,
 
+            string anyPortEnabled,
+
             string createTime,
 
             string description,
 
             string id,
 
+            ImmutableArray<string> listeners,
+
+            string loadBalancerId,
+
             string serverGroupId,
 
             string serverGroupName,
 
+            ImmutableArray<Outputs.GetServerGroupsGroupTagResult> tags,
+
+            string type,
+
             string updateTime)
         {
             AddressIpVersion = addressIpVersion;
+            AnyPortEnabled = anyPortEnabled;
             CreateTime = createTime;
             Description = description;
             Id = id;
+            Listeners = listeners;
+            LoadBalancerId = loadBalancerId;
             ServerGroupId = serverGroupId;
             ServerGroupName = serverGroupName;
+            Tags = tags;
+            Type = type;
             UpdateTime = updateTime;
         }
     }

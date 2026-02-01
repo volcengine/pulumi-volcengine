@@ -27,6 +27,10 @@ import * as utilities from "../utilities";
  *     ],
  *     aclName: "tf-test-2",
  *     projectName: "default",
+ *     tags: [{
+ *         key: "key1",
+ *         value: "value2",
+ *     }],
  * });
  * ```
  *
@@ -86,6 +90,10 @@ export class Acl extends pulumi.CustomResource {
      * The ProjectName of the Acl.
      */
     public readonly projectName!: pulumi.Output<string>;
+    /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.clb.AclTag[] | undefined>;
 
     /**
      * Create a Acl resource with the given unique name, arguments, and options.
@@ -105,12 +113,14 @@ export class Acl extends pulumi.CustomResource {
             resourceInputs["createTime"] = state ? state.createTime : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["projectName"] = state ? state.projectName : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
         } else {
             const args = argsOrState as AclArgs | undefined;
             resourceInputs["aclEntries"] = args ? args.aclEntries : undefined;
             resourceInputs["aclName"] = args ? args.aclName : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["projectName"] = args ? args.projectName : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["createTime"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -142,6 +152,10 @@ export interface AclState {
      * The ProjectName of the Acl.
      */
     projectName?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.clb.AclTag>[]>;
 }
 
 /**
@@ -164,4 +178,8 @@ export interface AclArgs {
      * The ProjectName of the Acl.
      */
     projectName?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.clb.AclTag>[]>;
 }

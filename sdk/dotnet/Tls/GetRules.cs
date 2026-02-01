@@ -25,13 +25,17 @@ namespace Pulumi.Volcengine.Tls
         /// {
         ///     var @default = Volcengine.Tls.GetRules.Invoke(new()
         ///     {
-        ///         ProjectId = "cc44f8b6-0328-4622-b043-023fca735cd4",
+        ///         LogType = "minimalist_log",
+        ///         Pause = 0,
+        ///         ProjectId = "39ed1cf8-dbf3-41c3-939d-999bab54313d",
+        ///         RuleId = "048dc010-6bb1-4189-858a-281d654d6686",
+        ///         TopicId = "b600dc34-503f-42fc-8e32-953af55463d1",
         ///     });
         /// 
         /// });
         /// ```
         /// </summary>
-        public static Task<GetRulesResult> InvokeAsync(GetRulesArgs args, InvokeOptions? options = null)
+        public static Task<GetRulesResult> InvokeAsync(GetRulesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetRulesResult>("volcengine:tls/getRules:getRules", args ?? new GetRulesArgs(), options.WithDefaults());
 
         /// <summary>
@@ -48,13 +52,17 @@ namespace Pulumi.Volcengine.Tls
         /// {
         ///     var @default = Volcengine.Tls.GetRules.Invoke(new()
         ///     {
-        ///         ProjectId = "cc44f8b6-0328-4622-b043-023fca735cd4",
+        ///         LogType = "minimalist_log",
+        ///         Pause = 0,
+        ///         ProjectId = "39ed1cf8-dbf3-41c3-939d-999bab54313d",
+        ///         RuleId = "048dc010-6bb1-4189-858a-281d654d6686",
+        ///         TopicId = "b600dc34-503f-42fc-8e32-953af55463d1",
         ///     });
         /// 
         /// });
         /// ```
         /// </summary>
-        public static Output<GetRulesResult> Invoke(GetRulesInvokeArgs args, InvokeOptions? options = null)
+        public static Output<GetRulesResult> Invoke(GetRulesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetRulesResult>("volcengine:tls/getRules:getRules", args ?? new GetRulesInvokeArgs(), options.WithDefaults());
     }
 
@@ -62,16 +70,40 @@ namespace Pulumi.Volcengine.Tls
     public sealed class GetRulesArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
+        /// The iam project name.
+        /// </summary>
+        [Input("iamProjectName")]
+        public string? IamProjectName { get; set; }
+
+        /// <summary>
+        /// The log type.
+        /// </summary>
+        [Input("logType")]
+        public string? LogType { get; set; }
+
+        /// <summary>
         /// File name where to save data source results.
         /// </summary>
         [Input("outputFile")]
         public string? OutputFile { get; set; }
 
         /// <summary>
+        /// Whether to pause collection configuration.
+        /// </summary>
+        [Input("pause")]
+        public int? Pause { get; set; }
+
+        /// <summary>
         /// The project id.
         /// </summary>
-        [Input("projectId", required: true)]
-        public string ProjectId { get; set; } = null!;
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
+
+        /// <summary>
+        /// The project name.
+        /// </summary>
+        [Input("projectName")]
+        public string? ProjectName { get; set; }
 
         /// <summary>
         /// The rule id.
@@ -106,16 +138,40 @@ namespace Pulumi.Volcengine.Tls
     public sealed class GetRulesInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
+        /// The iam project name.
+        /// </summary>
+        [Input("iamProjectName")]
+        public Input<string>? IamProjectName { get; set; }
+
+        /// <summary>
+        /// The log type.
+        /// </summary>
+        [Input("logType")]
+        public Input<string>? LogType { get; set; }
+
+        /// <summary>
         /// File name where to save data source results.
         /// </summary>
         [Input("outputFile")]
         public Input<string>? OutputFile { get; set; }
 
         /// <summary>
+        /// Whether to pause collection configuration.
+        /// </summary>
+        [Input("pause")]
+        public Input<int>? Pause { get; set; }
+
+        /// <summary>
         /// The project id.
         /// </summary>
-        [Input("projectId", required: true)]
-        public Input<string> ProjectId { get; set; } = null!;
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
+        /// The project name.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
 
         /// <summary>
         /// The rule id.
@@ -151,12 +207,19 @@ namespace Pulumi.Volcengine.Tls
     [OutputType]
     public sealed class GetRulesResult
     {
+        public readonly string? IamProjectName;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// The log type.
+        /// </summary>
+        public readonly string? LogType;
         public readonly string? OutputFile;
-        public readonly string ProjectId;
+        public readonly int? Pause;
+        public readonly string? ProjectId;
+        public readonly string? ProjectName;
         /// <summary>
         /// The rule id.
         /// </summary>
@@ -184,11 +247,19 @@ namespace Pulumi.Volcengine.Tls
 
         [OutputConstructor]
         private GetRulesResult(
+            string? iamProjectName,
+
             string id,
+
+            string? logType,
 
             string? outputFile,
 
-            string projectId,
+            int? pause,
+
+            string? projectId,
+
+            string? projectName,
 
             string? ruleId,
 
@@ -202,9 +273,13 @@ namespace Pulumi.Volcengine.Tls
 
             int totalCount)
         {
+            IamProjectName = iamProjectName;
             Id = id;
+            LogType = logType;
             OutputFile = outputFile;
+            Pause = pause;
             ProjectId = projectId;
+            ProjectName = projectName;
             RuleId = ruleId;
             RuleName = ruleName;
             Rules = rules;

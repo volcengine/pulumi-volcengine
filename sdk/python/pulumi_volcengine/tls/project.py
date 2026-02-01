@@ -17,17 +17,20 @@ __all__ = ['ProjectArgs', 'Project']
 class ProjectArgs:
     def __init__(__self__, *,
                  project_name: pulumi.Input[str],
+                 region: pulumi.Input[str],
                  description: Optional[pulumi.Input[str]] = None,
                  iam_project_name: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectTagArgs']]]] = None):
         """
         The set of arguments for constructing a Project resource.
         :param pulumi.Input[str] project_name: The name of the tls project.
+        :param pulumi.Input[str] region: The region of the tls project.
         :param pulumi.Input[str] description: The description of the tls project.
         :param pulumi.Input[str] iam_project_name: The IAM project name of the tls project.
         :param pulumi.Input[Sequence[pulumi.Input['ProjectTagArgs']]] tags: Tags.
         """
         pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "region", region)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if iam_project_name is not None:
@@ -46,6 +49,18 @@ class ProjectArgs:
     @project_name.setter
     def project_name(self, value: pulumi.Input[str]):
         pulumi.set(self, "project_name", value)
+
+    @property
+    @pulumi.getter
+    def region(self) -> pulumi.Input[str]:
+        """
+        The region of the tls project.
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: pulumi.Input[str]):
+        pulumi.set(self, "region", value)
 
     @property
     @pulumi.getter
@@ -87,49 +102,29 @@ class ProjectArgs:
 @pulumi.input_type
 class _ProjectState:
     def __init__(__self__, *,
-                 create_time: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  iam_project_name: Optional[pulumi.Input[str]] = None,
-                 inner_net_domain: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectTagArgs']]]] = None,
-                 topic_count: Optional[pulumi.Input[int]] = None):
+                 region: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectTagArgs']]]] = None):
         """
         Input properties used for looking up and filtering Project resources.
-        :param pulumi.Input[str] create_time: The create time of the tls project.
         :param pulumi.Input[str] description: The description of the tls project.
         :param pulumi.Input[str] iam_project_name: The IAM project name of the tls project.
-        :param pulumi.Input[str] inner_net_domain: The inner net domain of the tls project.
         :param pulumi.Input[str] project_name: The name of the tls project.
+        :param pulumi.Input[str] region: The region of the tls project.
         :param pulumi.Input[Sequence[pulumi.Input['ProjectTagArgs']]] tags: Tags.
-        :param pulumi.Input[int] topic_count: The count of topics in the tls project.
         """
-        if create_time is not None:
-            pulumi.set(__self__, "create_time", create_time)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if iam_project_name is not None:
             pulumi.set(__self__, "iam_project_name", iam_project_name)
-        if inner_net_domain is not None:
-            pulumi.set(__self__, "inner_net_domain", inner_net_domain)
         if project_name is not None:
             pulumi.set(__self__, "project_name", project_name)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
-        if topic_count is not None:
-            pulumi.set(__self__, "topic_count", topic_count)
-
-    @property
-    @pulumi.getter(name="createTime")
-    def create_time(self) -> Optional[pulumi.Input[str]]:
-        """
-        The create time of the tls project.
-        """
-        return pulumi.get(self, "create_time")
-
-    @create_time.setter
-    def create_time(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "create_time", value)
 
     @property
     @pulumi.getter
@@ -156,18 +151,6 @@ class _ProjectState:
         pulumi.set(self, "iam_project_name", value)
 
     @property
-    @pulumi.getter(name="innerNetDomain")
-    def inner_net_domain(self) -> Optional[pulumi.Input[str]]:
-        """
-        The inner net domain of the tls project.
-        """
-        return pulumi.get(self, "inner_net_domain")
-
-    @inner_net_domain.setter
-    def inner_net_domain(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "inner_net_domain", value)
-
-    @property
     @pulumi.getter(name="projectName")
     def project_name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -181,6 +164,18 @@ class _ProjectState:
 
     @property
     @pulumi.getter
+    def region(self) -> Optional[pulumi.Input[str]]:
+        """
+        The region of the tls project.
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "region", value)
+
+    @property
+    @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProjectTagArgs']]]]:
         """
         Tags.
@@ -191,18 +186,6 @@ class _ProjectState:
     def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectTagArgs']]]]):
         pulumi.set(self, "tags", value)
 
-    @property
-    @pulumi.getter(name="topicCount")
-    def topic_count(self) -> Optional[pulumi.Input[int]]:
-        """
-        The count of topics in the tls project.
-        """
-        return pulumi.get(self, "topic_count")
-
-    @topic_count.setter
-    def topic_count(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "topic_count", value)
-
 
 class Project(pulumi.CustomResource):
     @overload
@@ -212,6 +195,7 @@ class Project(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  iam_project_name: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectTagArgs']]]]] = None,
                  __props__=None):
         """
@@ -225,11 +209,18 @@ class Project(pulumi.CustomResource):
         foo = volcengine.tls.Project("foo",
             description="tf-desc",
             iam_project_name="default",
-            project_name="tf-test",
-            tags=[volcengine.tls.ProjectTagArgs(
-                key="k1",
-                value="v1",
-            )])
+            project_name="tf-project-m",
+            region="cn-guilin-boe",
+            tags=[
+                volcengine.tls.ProjectTagArgs(
+                    key="k1",
+                    value="v1",
+                ),
+                volcengine.tls.ProjectTagArgs(
+                    key="k2",
+                    value="v3",
+                ),
+            ])
         ```
 
         ## Import
@@ -245,6 +236,7 @@ class Project(pulumi.CustomResource):
         :param pulumi.Input[str] description: The description of the tls project.
         :param pulumi.Input[str] iam_project_name: The IAM project name of the tls project.
         :param pulumi.Input[str] project_name: The name of the tls project.
+        :param pulumi.Input[str] region: The region of the tls project.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectTagArgs']]]] tags: Tags.
         """
         ...
@@ -264,11 +256,18 @@ class Project(pulumi.CustomResource):
         foo = volcengine.tls.Project("foo",
             description="tf-desc",
             iam_project_name="default",
-            project_name="tf-test",
-            tags=[volcengine.tls.ProjectTagArgs(
-                key="k1",
-                value="v1",
-            )])
+            project_name="tf-project-m",
+            region="cn-guilin-boe",
+            tags=[
+                volcengine.tls.ProjectTagArgs(
+                    key="k1",
+                    value="v1",
+                ),
+                volcengine.tls.ProjectTagArgs(
+                    key="k2",
+                    value="v3",
+                ),
+            ])
         ```
 
         ## Import
@@ -297,6 +296,7 @@ class Project(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  iam_project_name: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectTagArgs']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -312,10 +312,10 @@ class Project(pulumi.CustomResource):
             if project_name is None and not opts.urn:
                 raise TypeError("Missing required property 'project_name'")
             __props__.__dict__["project_name"] = project_name
+            if region is None and not opts.urn:
+                raise TypeError("Missing required property 'region'")
+            __props__.__dict__["region"] = region
             __props__.__dict__["tags"] = tags
-            __props__.__dict__["create_time"] = None
-            __props__.__dict__["inner_net_domain"] = None
-            __props__.__dict__["topic_count"] = None
         super(Project, __self__).__init__(
             'volcengine:tls/project:Project',
             resource_name,
@@ -326,13 +326,11 @@ class Project(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            create_time: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             iam_project_name: Optional[pulumi.Input[str]] = None,
-            inner_net_domain: Optional[pulumi.Input[str]] = None,
             project_name: Optional[pulumi.Input[str]] = None,
-            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectTagArgs']]]]] = None,
-            topic_count: Optional[pulumi.Input[int]] = None) -> 'Project':
+            region: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectTagArgs']]]]] = None) -> 'Project':
         """
         Get an existing Project resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -340,34 +338,22 @@ class Project(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] create_time: The create time of the tls project.
         :param pulumi.Input[str] description: The description of the tls project.
         :param pulumi.Input[str] iam_project_name: The IAM project name of the tls project.
-        :param pulumi.Input[str] inner_net_domain: The inner net domain of the tls project.
         :param pulumi.Input[str] project_name: The name of the tls project.
+        :param pulumi.Input[str] region: The region of the tls project.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectTagArgs']]]] tags: Tags.
-        :param pulumi.Input[int] topic_count: The count of topics in the tls project.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _ProjectState.__new__(_ProjectState)
 
-        __props__.__dict__["create_time"] = create_time
         __props__.__dict__["description"] = description
         __props__.__dict__["iam_project_name"] = iam_project_name
-        __props__.__dict__["inner_net_domain"] = inner_net_domain
         __props__.__dict__["project_name"] = project_name
+        __props__.__dict__["region"] = region
         __props__.__dict__["tags"] = tags
-        __props__.__dict__["topic_count"] = topic_count
         return Project(resource_name, opts=opts, __props__=__props__)
-
-    @property
-    @pulumi.getter(name="createTime")
-    def create_time(self) -> pulumi.Output[str]:
-        """
-        The create time of the tls project.
-        """
-        return pulumi.get(self, "create_time")
 
     @property
     @pulumi.getter
@@ -386,14 +372,6 @@ class Project(pulumi.CustomResource):
         return pulumi.get(self, "iam_project_name")
 
     @property
-    @pulumi.getter(name="innerNetDomain")
-    def inner_net_domain(self) -> pulumi.Output[str]:
-        """
-        The inner net domain of the tls project.
-        """
-        return pulumi.get(self, "inner_net_domain")
-
-    @property
     @pulumi.getter(name="projectName")
     def project_name(self) -> pulumi.Output[str]:
         """
@@ -403,17 +381,17 @@ class Project(pulumi.CustomResource):
 
     @property
     @pulumi.getter
+    def region(self) -> pulumi.Output[str]:
+        """
+        The region of the tls project.
+        """
+        return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter
     def tags(self) -> pulumi.Output[Optional[Sequence['outputs.ProjectTag']]]:
         """
         Tags.
         """
         return pulumi.get(self, "tags")
-
-    @property
-    @pulumi.getter(name="topicCount")
-    def topic_count(self) -> pulumi.Output[int]:
-        """
-        The count of topics in the tls project.
-        """
-        return pulumi.get(self, "topic_count")
 

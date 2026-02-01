@@ -61,6 +61,12 @@ namespace Pulumi.Volcengine.Tls.Inputs
         public Input<Inputs.RuleExtractRuleLogTemplateArgs>? LogTemplate { get; set; }
 
         /// <summary>
+        /// The quote symbol.
+        /// </summary>
+        [Input("quote")]
+        public Input<string>? Quote { get; set; }
+
+        /// <summary>
         /// Parsing format of the time field.
         /// </summary>
         [Input("timeFormat")]
@@ -71,6 +77,12 @@ namespace Pulumi.Volcengine.Tls.Inputs
         /// </summary>
         [Input("timeKey")]
         public Input<string>? TimeKey { get; set; }
+
+        /// <summary>
+        /// The time zone.
+        /// </summary>
+        [Input("timeZone")]
+        public Input<string>? TimeZone { get; set; }
 
         /// <summary>
         /// When uploading the failed log, the key name of the failed log.

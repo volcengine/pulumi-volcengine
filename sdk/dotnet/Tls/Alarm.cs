@@ -23,36 +23,52 @@ namespace Pulumi.Volcengine.Tls
     /// {
     ///     var foo = new Volcengine.Tls.Alarm("foo", new()
     ///     {
-    ///         AlarmName = "test",
+    ///         AlarmName = "test-terraform-tf",
     ///         AlarmNotifyGroups = new[]
     ///         {
-    ///             "3019107f-28a2-4208-a2b6-c33fcb97ac3a",
+    ///             "bf3ecf26-2081-4e27-ae18-f44dbe5c6138",
     ///         },
     ///         AlarmPeriodDetail = new Volcengine.Tls.Inputs.AlarmAlarmPeriodDetailArgs
     ///         {
-    ///             Email = 2,
-    ///             GeneralWebhook = 3,
-    ///             Phone = 10,
-    ///             Sms = 10,
+    ///             Email = 20,
+    ///             GeneralWebhook = 20,
+    ///             Phone = 20,
+    ///             Sms = 20,
     ///         },
-    ///         Condition = "$1.errNum&gt;0",
-    ///         ProjectId = "cc44f8b6-0328-4622-b043-023fca735cd4",
+    ///         ProjectId = "88d31abb-62c7-40f5-998e-889747c2a116",
     ///         QueryRequests = new[]
     ///         {
     ///             new Volcengine.Tls.Inputs.AlarmQueryRequestArgs
     ///             {
     ///                 EndTimeOffset = 0,
+    ///                 EndTimeOffsetUnit = "Minute",
     ///                 Number = 1,
     ///                 Query = "Failed | select count(*) as errNum",
     ///                 StartTimeOffset = -15,
-    ///                 TopicId = "af1a2240-ba62-4f18-b421-bde2f9684e57",
+    ///                 StartTimeOffsetUnit = "Minute",
+    ///                 TimeSpanType = "Relative",
+    ///                 TopicId = "a690a9b8-72c1-40a3-b8c6-f89a81d3748e",
+    ///                 TruncatedTime = "Minute",
     ///             },
     ///         },
     ///         RequestCycle = new Volcengine.Tls.Inputs.AlarmRequestCycleArgs
     ///         {
-    ///             Time = 11,
+    ///             Time = 20,
     ///             Type = "Period",
     ///         },
+    ///         SendResolved = true,
+    ///         Status = false,
+    ///         TriggerConditions = new[]
+    ///         {
+    ///             new Volcengine.Tls.Inputs.AlarmTriggerConditionArgs
+    ///             {
+    ///                 Condition = "$1.errNum&gt;0",
+    ///                 CountCondition = "__count__ &gt; 0",
+    ///                 NoData = false,
+    ///                 Severity = "critical",
+    ///             },
+    ///         },
+    ///         TriggerPeriod = 2,
     ///         UserDefineMsg = "test for terraform",
     ///     });
     /// 
@@ -104,7 +120,13 @@ namespace Pulumi.Volcengine.Tls
         /// Alarm trigger condition.
         /// </summary>
         [Output("condition")]
-        public Output<string> Condition { get; private set; } = null!;
+        public Output<string?> Condition { get; private set; } = null!;
+
+        /// <summary>
+        /// The list of join configurations.
+        /// </summary>
+        [Output("joinConfigurations")]
+        public Output<ImmutableArray<Outputs.AlarmJoinConfiguration>> JoinConfigurations { get; private set; } = null!;
 
         /// <summary>
         /// The project id.
@@ -125,16 +147,34 @@ namespace Pulumi.Volcengine.Tls
         public Output<Outputs.AlarmRequestCycle> RequestCycle { get; private set; } = null!;
 
         /// <summary>
+        /// Whether to send resolved.
+        /// </summary>
+        [Output("sendResolved")]
+        public Output<bool?> SendResolved { get; private set; } = null!;
+
+        /// <summary>
+        /// The severity of the alarm.
+        /// </summary>
+        [Output("severity")]
+        public Output<string?> Severity { get; private set; } = null!;
+
+        /// <summary>
         /// Whether to enable the alert policy. The default value is true, that is, on.
         /// </summary>
         [Output("status")]
         public Output<bool?> Status { get; private set; } = null!;
 
         /// <summary>
+        /// The list of trigger conditions.
+        /// </summary>
+        [Output("triggerConditions")]
+        public Output<ImmutableArray<Outputs.AlarmTriggerCondition>> TriggerConditions { get; private set; } = null!;
+
+        /// <summary>
         /// Continuous cycle. The alarm will be issued after the trigger condition is continuously met for TriggerPeriod periods; the minimum value is 1, the maximum value is 10, and the default value is 1.
         /// </summary>
         [Output("triggerPeriod")]
-        public Output<int?> TriggerPeriod { get; private set; } = null!;
+        public Output<int> TriggerPeriod { get; private set; } = null!;
 
         /// <summary>
         /// Customize the alarm notification content.
@@ -222,8 +262,20 @@ namespace Pulumi.Volcengine.Tls
         /// <summary>
         /// Alarm trigger condition.
         /// </summary>
-        [Input("condition", required: true)]
-        public Input<string> Condition { get; set; } = null!;
+        [Input("condition")]
+        public Input<string>? Condition { get; set; }
+
+        [Input("joinConfigurations")]
+        private InputList<Inputs.AlarmJoinConfigurationArgs>? _joinConfigurations;
+
+        /// <summary>
+        /// The list of join configurations.
+        /// </summary>
+        public InputList<Inputs.AlarmJoinConfigurationArgs> JoinConfigurations
+        {
+            get => _joinConfigurations ?? (_joinConfigurations = new InputList<Inputs.AlarmJoinConfigurationArgs>());
+            set => _joinConfigurations = value;
+        }
 
         /// <summary>
         /// The project id.
@@ -250,16 +302,40 @@ namespace Pulumi.Volcengine.Tls
         public Input<Inputs.AlarmRequestCycleArgs> RequestCycle { get; set; } = null!;
 
         /// <summary>
+        /// Whether to send resolved.
+        /// </summary>
+        [Input("sendResolved")]
+        public Input<bool>? SendResolved { get; set; }
+
+        /// <summary>
+        /// The severity of the alarm.
+        /// </summary>
+        [Input("severity")]
+        public Input<string>? Severity { get; set; }
+
+        /// <summary>
         /// Whether to enable the alert policy. The default value is true, that is, on.
         /// </summary>
         [Input("status")]
         public Input<bool>? Status { get; set; }
 
+        [Input("triggerConditions")]
+        private InputList<Inputs.AlarmTriggerConditionArgs>? _triggerConditions;
+
+        /// <summary>
+        /// The list of trigger conditions.
+        /// </summary>
+        public InputList<Inputs.AlarmTriggerConditionArgs> TriggerConditions
+        {
+            get => _triggerConditions ?? (_triggerConditions = new InputList<Inputs.AlarmTriggerConditionArgs>());
+            set => _triggerConditions = value;
+        }
+
         /// <summary>
         /// Continuous cycle. The alarm will be issued after the trigger condition is continuously met for TriggerPeriod periods; the minimum value is 1, the maximum value is 10, and the default value is 1.
         /// </summary>
-        [Input("triggerPeriod")]
-        public Input<int>? TriggerPeriod { get; set; }
+        [Input("triggerPeriod", required: true)]
+        public Input<int> TriggerPeriod { get; set; } = null!;
 
         /// <summary>
         /// Customize the alarm notification content.
@@ -317,6 +393,18 @@ namespace Pulumi.Volcengine.Tls
         [Input("condition")]
         public Input<string>? Condition { get; set; }
 
+        [Input("joinConfigurations")]
+        private InputList<Inputs.AlarmJoinConfigurationGetArgs>? _joinConfigurations;
+
+        /// <summary>
+        /// The list of join configurations.
+        /// </summary>
+        public InputList<Inputs.AlarmJoinConfigurationGetArgs> JoinConfigurations
+        {
+            get => _joinConfigurations ?? (_joinConfigurations = new InputList<Inputs.AlarmJoinConfigurationGetArgs>());
+            set => _joinConfigurations = value;
+        }
+
         /// <summary>
         /// The project id.
         /// </summary>
@@ -342,10 +430,34 @@ namespace Pulumi.Volcengine.Tls
         public Input<Inputs.AlarmRequestCycleGetArgs>? RequestCycle { get; set; }
 
         /// <summary>
+        /// Whether to send resolved.
+        /// </summary>
+        [Input("sendResolved")]
+        public Input<bool>? SendResolved { get; set; }
+
+        /// <summary>
+        /// The severity of the alarm.
+        /// </summary>
+        [Input("severity")]
+        public Input<string>? Severity { get; set; }
+
+        /// <summary>
         /// Whether to enable the alert policy. The default value is true, that is, on.
         /// </summary>
         [Input("status")]
         public Input<bool>? Status { get; set; }
+
+        [Input("triggerConditions")]
+        private InputList<Inputs.AlarmTriggerConditionGetArgs>? _triggerConditions;
+
+        /// <summary>
+        /// The list of trigger conditions.
+        /// </summary>
+        public InputList<Inputs.AlarmTriggerConditionGetArgs> TriggerConditions
+        {
+            get => _triggerConditions ?? (_triggerConditions = new InputList<Inputs.AlarmTriggerConditionGetArgs>());
+            set => _triggerConditions = value;
+        }
 
         /// <summary>
         /// Continuous cycle. The alarm will be issued after the trigger condition is continuously met for TriggerPeriod periods; the minimum value is 1, the maximum value is 10, and the default value is 1.

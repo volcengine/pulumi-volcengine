@@ -42,6 +42,10 @@ namespace Pulumi.Volcengine.Tls.Outputs
         /// </summary>
         public readonly string ProjectName;
         /// <summary>
+        /// The role trn.
+        /// </summary>
+        public readonly string RoleTrn;
+        /// <summary>
         /// Delivery end time, millisecond timestamp. If not configured, it will keep delivering.
         /// </summary>
         public readonly int ShipperEndTime;
@@ -94,6 +98,8 @@ namespace Pulumi.Volcengine.Tls.Outputs
 
             string projectName,
 
+            string roleTrn,
+
             int shipperEndTime,
 
             string shipperId,
@@ -119,6 +125,7 @@ namespace Pulumi.Volcengine.Tls.Outputs
             ModifyTime = modifyTime;
             ProjectId = projectId;
             ProjectName = projectName;
+            RoleTrn = roleTrn;
             ShipperEndTime = shipperEndTime;
             ShipperId = shipperId;
             ShipperName = shipperName;

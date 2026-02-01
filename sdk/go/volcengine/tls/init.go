@@ -21,12 +21,20 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "volcengine:tls/account:Account":
+		r = &Account{}
 	case "volcengine:tls/alarm:Alarm":
 		r = &Alarm{}
+	case "volcengine:tls/alarmContentTemplate:AlarmContentTemplate":
+		r = &AlarmContentTemplate{}
 	case "volcengine:tls/alarmNotifyGroup:AlarmNotifyGroup":
 		r = &AlarmNotifyGroup{}
+	case "volcengine:tls/alarmWebhookIntegration:AlarmWebhookIntegration":
+		r = &AlarmWebhookIntegration{}
 	case "volcengine:tls/consumerGroup:ConsumerGroup":
 		r = &ConsumerGroup{}
+	case "volcengine:tls/downloadTask:DownloadTask":
+		r = &DownloadTask{}
 	case "volcengine:tls/etlTask:EtlTask":
 		r = &EtlTask{}
 	case "volcengine:tls/host:Host":
@@ -45,12 +53,22 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Rule{}
 	case "volcengine:tls/ruleApplier:RuleApplier":
 		r = &RuleApplier{}
+	case "volcengine:tls/ruleBoundHostGroup:RuleBoundHostGroup":
+		r = &RuleBoundHostGroup{}
 	case "volcengine:tls/scheduleSqlTask:ScheduleSqlTask":
 		r = &ScheduleSqlTask{}
+	case "volcengine:tls/shard:Shard":
+		r = &Shard{}
 	case "volcengine:tls/shipper:Shipper":
 		r = &Shipper{}
+	case "volcengine:tls/tag:Tag":
+		r = &Tag{}
+	case "volcengine:tls/tagResource:TagResource":
+		r = &TagResource{}
 	case "volcengine:tls/topic:Topic":
 		r = &Topic{}
+	case "volcengine:tls/traceInstance:TraceInstance":
+		r = &TraceInstance{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -66,7 +84,17 @@ func init() {
 	}
 	pulumi.RegisterResourceModule(
 		"volcengine",
+		"tls/account",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
 		"tls/alarm",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"tls/alarmContentTemplate",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -76,7 +104,17 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
+		"tls/alarmWebhookIntegration",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
 		"tls/consumerGroup",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"tls/downloadTask",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -126,7 +164,17 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
+		"tls/ruleBoundHostGroup",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
 		"tls/scheduleSqlTask",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"tls/shard",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -136,7 +184,22 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
+		"tls/tag",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"tls/tagResource",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
 		"tls/topic",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"tls/traceInstance",
 		&module{version},
 	)
 }

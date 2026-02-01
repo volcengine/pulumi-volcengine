@@ -15,27 +15,39 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@volcengine/pulumi";
  *
  * const foo = new volcengine.tls.Alarm("foo", {
- *     alarmName: "test",
- *     alarmNotifyGroups: ["3019107f-28a2-4208-a2b6-c33fcb97ac3a"],
+ *     alarmName: "test-terraform-tf",
+ *     alarmNotifyGroups: ["bf3ecf26-2081-4e27-ae18-f44dbe5c6138"],
  *     alarmPeriodDetail: {
- *         email: 2,
- *         generalWebhook: 3,
- *         phone: 10,
- *         sms: 10,
+ *         email: 20,
+ *         generalWebhook: 20,
+ *         phone: 20,
+ *         sms: 20,
  *     },
- *     condition: "$1.errNum>0",
- *     projectId: "cc44f8b6-0328-4622-b043-023fca735cd4",
+ *     projectId: "88d31abb-62c7-40f5-998e-889747c2a116",
  *     queryRequests: [{
  *         endTimeOffset: 0,
+ *         endTimeOffsetUnit: "Minute",
  *         number: 1,
  *         query: "Failed | select count(*) as errNum",
  *         startTimeOffset: -15,
- *         topicId: "af1a2240-ba62-4f18-b421-bde2f9684e57",
+ *         startTimeOffsetUnit: "Minute",
+ *         timeSpanType: "Relative",
+ *         topicId: "a690a9b8-72c1-40a3-b8c6-f89a81d3748e",
+ *         truncatedTime: "Minute",
  *     }],
  *     requestCycle: {
- *         time: 11,
+ *         time: 20,
  *         type: "Period",
  *     },
+ *     sendResolved: true,
+ *     status: false,
+ *     triggerConditions: [{
+ *         condition: "$1.errNum>0",
+ *         countCondition: "__count__ > 0",
+ *         noData: false,
+ *         severity: "critical",
+ *     }],
+ *     triggerPeriod: 2,
  *     userDefineMsg: "test for terraform",
  * });
  * ```
@@ -99,7 +111,11 @@ export class Alarm extends pulumi.CustomResource {
     /**
      * Alarm trigger condition.
      */
-    public readonly condition!: pulumi.Output<string>;
+    public readonly condition!: pulumi.Output<string | undefined>;
+    /**
+     * The list of join configurations.
+     */
+    public readonly joinConfigurations!: pulumi.Output<outputs.tls.AlarmJoinConfiguration[] | undefined>;
     /**
      * The project id.
      */
@@ -113,13 +129,25 @@ export class Alarm extends pulumi.CustomResource {
      */
     public readonly requestCycle!: pulumi.Output<outputs.tls.AlarmRequestCycle>;
     /**
+     * Whether to send resolved.
+     */
+    public readonly sendResolved!: pulumi.Output<boolean | undefined>;
+    /**
+     * The severity of the alarm.
+     */
+    public readonly severity!: pulumi.Output<string | undefined>;
+    /**
      * Whether to enable the alert policy. The default value is true, that is, on.
      */
     public readonly status!: pulumi.Output<boolean | undefined>;
     /**
+     * The list of trigger conditions.
+     */
+    public readonly triggerConditions!: pulumi.Output<outputs.tls.AlarmTriggerCondition[] | undefined>;
+    /**
      * Continuous cycle. The alarm will be issued after the trigger condition is continuously met for TriggerPeriod periods; the minimum value is 1, the maximum value is 10, and the default value is 1.
      */
-    public readonly triggerPeriod!: pulumi.Output<number | undefined>;
+    public readonly triggerPeriod!: pulumi.Output<number>;
     /**
      * Customize the alarm notification content.
      */
@@ -144,10 +172,14 @@ export class Alarm extends pulumi.CustomResource {
             resourceInputs["alarmPeriod"] = state ? state.alarmPeriod : undefined;
             resourceInputs["alarmPeriodDetail"] = state ? state.alarmPeriodDetail : undefined;
             resourceInputs["condition"] = state ? state.condition : undefined;
+            resourceInputs["joinConfigurations"] = state ? state.joinConfigurations : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["queryRequests"] = state ? state.queryRequests : undefined;
             resourceInputs["requestCycle"] = state ? state.requestCycle : undefined;
+            resourceInputs["sendResolved"] = state ? state.sendResolved : undefined;
+            resourceInputs["severity"] = state ? state.severity : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["triggerConditions"] = state ? state.triggerConditions : undefined;
             resourceInputs["triggerPeriod"] = state ? state.triggerPeriod : undefined;
             resourceInputs["userDefineMsg"] = state ? state.userDefineMsg : undefined;
         } else {
@@ -158,9 +190,6 @@ export class Alarm extends pulumi.CustomResource {
             if ((!args || args.alarmNotifyGroups === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'alarmNotifyGroups'");
             }
-            if ((!args || args.condition === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'condition'");
-            }
             if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
@@ -170,15 +199,22 @@ export class Alarm extends pulumi.CustomResource {
             if ((!args || args.requestCycle === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'requestCycle'");
             }
+            if ((!args || args.triggerPeriod === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'triggerPeriod'");
+            }
             resourceInputs["alarmName"] = args ? args.alarmName : undefined;
             resourceInputs["alarmNotifyGroups"] = args ? args.alarmNotifyGroups : undefined;
             resourceInputs["alarmPeriod"] = args ? args.alarmPeriod : undefined;
             resourceInputs["alarmPeriodDetail"] = args ? args.alarmPeriodDetail : undefined;
             resourceInputs["condition"] = args ? args.condition : undefined;
+            resourceInputs["joinConfigurations"] = args ? args.joinConfigurations : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["queryRequests"] = args ? args.queryRequests : undefined;
             resourceInputs["requestCycle"] = args ? args.requestCycle : undefined;
+            resourceInputs["sendResolved"] = args ? args.sendResolved : undefined;
+            resourceInputs["severity"] = args ? args.severity : undefined;
             resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["triggerConditions"] = args ? args.triggerConditions : undefined;
             resourceInputs["triggerPeriod"] = args ? args.triggerPeriod : undefined;
             resourceInputs["userDefineMsg"] = args ? args.userDefineMsg : undefined;
             resourceInputs["alarmId"] = undefined /*out*/;
@@ -217,6 +253,10 @@ export interface AlarmState {
      */
     condition?: pulumi.Input<string>;
     /**
+     * The list of join configurations.
+     */
+    joinConfigurations?: pulumi.Input<pulumi.Input<inputs.tls.AlarmJoinConfiguration>[]>;
+    /**
      * The project id.
      */
     projectId?: pulumi.Input<string>;
@@ -229,9 +269,21 @@ export interface AlarmState {
      */
     requestCycle?: pulumi.Input<inputs.tls.AlarmRequestCycle>;
     /**
+     * Whether to send resolved.
+     */
+    sendResolved?: pulumi.Input<boolean>;
+    /**
+     * The severity of the alarm.
+     */
+    severity?: pulumi.Input<string>;
+    /**
      * Whether to enable the alert policy. The default value is true, that is, on.
      */
     status?: pulumi.Input<boolean>;
+    /**
+     * The list of trigger conditions.
+     */
+    triggerConditions?: pulumi.Input<pulumi.Input<inputs.tls.AlarmTriggerCondition>[]>;
     /**
      * Continuous cycle. The alarm will be issued after the trigger condition is continuously met for TriggerPeriod periods; the minimum value is 1, the maximum value is 10, and the default value is 1.
      */
@@ -265,7 +317,11 @@ export interface AlarmArgs {
     /**
      * Alarm trigger condition.
      */
-    condition: pulumi.Input<string>;
+    condition?: pulumi.Input<string>;
+    /**
+     * The list of join configurations.
+     */
+    joinConfigurations?: pulumi.Input<pulumi.Input<inputs.tls.AlarmJoinConfiguration>[]>;
     /**
      * The project id.
      */
@@ -279,13 +335,25 @@ export interface AlarmArgs {
      */
     requestCycle: pulumi.Input<inputs.tls.AlarmRequestCycle>;
     /**
+     * Whether to send resolved.
+     */
+    sendResolved?: pulumi.Input<boolean>;
+    /**
+     * The severity of the alarm.
+     */
+    severity?: pulumi.Input<string>;
+    /**
      * Whether to enable the alert policy. The default value is true, that is, on.
      */
     status?: pulumi.Input<boolean>;
     /**
+     * The list of trigger conditions.
+     */
+    triggerConditions?: pulumi.Input<pulumi.Input<inputs.tls.AlarmTriggerCondition>[]>;
+    /**
      * Continuous cycle. The alarm will be issued after the trigger condition is continuously met for TriggerPeriod periods; the minimum value is 1, the maximum value is 10, and the default value is 1.
      */
-    triggerPeriod?: pulumi.Input<number>;
+    triggerPeriod: pulumi.Input<number>;
     /**
      * Customize the alarm notification content.
      */

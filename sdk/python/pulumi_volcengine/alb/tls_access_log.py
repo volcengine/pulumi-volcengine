@@ -130,7 +130,24 @@ class TlsAccessLog(pulumi.CustomResource):
                  topic_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a TlsAccessLog resource with the given unique name, props, and options.
+        Provides a resource to manage alb tls access log
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_volcengine as volcengine
+
+        # Enable ALB TLS Access Log (TLS Topic)
+        default = volcengine.alb.TlsAccessLog("default",
+            load_balancer_id="alb-bdchexlt87pc8dv40nbr6mu7",
+            project_id="3746fa99-3eda-42ab-b2c2-a0bf5d6b26ac",
+            topic_id="a63a5016-3a68-4723-a754-235a09653ce8")
+        ```
+
+        ## Import
+
+        The AlbTlsAccessLog is not support import.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] load_balancer_id: The ID of the LoadBalancer.
@@ -144,7 +161,24 @@ class TlsAccessLog(pulumi.CustomResource):
                  args: TlsAccessLogArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a TlsAccessLog resource with the given unique name, props, and options.
+        Provides a resource to manage alb tls access log
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_volcengine as volcengine
+
+        # Enable ALB TLS Access Log (TLS Topic)
+        default = volcengine.alb.TlsAccessLog("default",
+            load_balancer_id="alb-bdchexlt87pc8dv40nbr6mu7",
+            project_id="3746fa99-3eda-42ab-b2c2-a0bf5d6b26ac",
+            topic_id="a63a5016-3a68-4723-a754-235a09653ce8")
+        ```
+
+        ## Import
+
+        The AlbTlsAccessLog is not support import.
+
         :param str resource_name: The name of the resource.
         :param TlsAccessLogArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

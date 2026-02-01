@@ -20,6 +20,7 @@ class ShipperArgs:
                  shipper_name: pulumi.Input[str],
                  topic_id: pulumi.Input[str],
                  kafka_shipper_info: Optional[pulumi.Input['ShipperKafkaShipperInfoArgs']] = None,
+                 role_trn: Optional[pulumi.Input[str]] = None,
                  shipper_end_time: Optional[pulumi.Input[int]] = None,
                  shipper_start_time: Optional[pulumi.Input[int]] = None,
                  shipper_type: Optional[pulumi.Input[str]] = None,
@@ -31,6 +32,7 @@ class ShipperArgs:
         :param pulumi.Input[str] shipper_name: Delivery configuration name.
         :param pulumi.Input[str] topic_id: The log topic ID where the log to be delivered is located.
         :param pulumi.Input['ShipperKafkaShipperInfoArgs'] kafka_shipper_info: JSON format log content configuration.
+        :param pulumi.Input[str] role_trn: The role trn.
         :param pulumi.Input[int] shipper_end_time: Delivery end time, millisecond timestamp. If not configured, it will keep delivering. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[int] shipper_start_time: Delivery start time, millisecond timestamp. If not configured, it defaults to the current time. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] shipper_type: The type of delivery.
@@ -42,6 +44,8 @@ class ShipperArgs:
         pulumi.set(__self__, "topic_id", topic_id)
         if kafka_shipper_info is not None:
             pulumi.set(__self__, "kafka_shipper_info", kafka_shipper_info)
+        if role_trn is not None:
+            pulumi.set(__self__, "role_trn", role_trn)
         if shipper_end_time is not None:
             pulumi.set(__self__, "shipper_end_time", shipper_end_time)
         if shipper_start_time is not None:
@@ -100,6 +104,18 @@ class ShipperArgs:
     @kafka_shipper_info.setter
     def kafka_shipper_info(self, value: Optional[pulumi.Input['ShipperKafkaShipperInfoArgs']]):
         pulumi.set(self, "kafka_shipper_info", value)
+
+    @property
+    @pulumi.getter(name="roleTrn")
+    def role_trn(self) -> Optional[pulumi.Input[str]]:
+        """
+        The role trn.
+        """
+        return pulumi.get(self, "role_trn")
+
+    @role_trn.setter
+    def role_trn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "role_trn", value)
 
     @property
     @pulumi.getter(name="shipperEndTime")
@@ -167,6 +183,7 @@ class _ShipperState:
     def __init__(__self__, *,
                  content_info: Optional[pulumi.Input['ShipperContentInfoArgs']] = None,
                  kafka_shipper_info: Optional[pulumi.Input['ShipperKafkaShipperInfoArgs']] = None,
+                 role_trn: Optional[pulumi.Input[str]] = None,
                  shipper_end_time: Optional[pulumi.Input[int]] = None,
                  shipper_name: Optional[pulumi.Input[str]] = None,
                  shipper_start_time: Optional[pulumi.Input[int]] = None,
@@ -178,6 +195,7 @@ class _ShipperState:
         Input properties used for looking up and filtering Shipper resources.
         :param pulumi.Input['ShipperContentInfoArgs'] content_info: Configuration of the delivery format for log content.
         :param pulumi.Input['ShipperKafkaShipperInfoArgs'] kafka_shipper_info: JSON format log content configuration.
+        :param pulumi.Input[str] role_trn: The role trn.
         :param pulumi.Input[int] shipper_end_time: Delivery end time, millisecond timestamp. If not configured, it will keep delivering. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] shipper_name: Delivery configuration name.
         :param pulumi.Input[int] shipper_start_time: Delivery start time, millisecond timestamp. If not configured, it defaults to the current time. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
@@ -190,6 +208,8 @@ class _ShipperState:
             pulumi.set(__self__, "content_info", content_info)
         if kafka_shipper_info is not None:
             pulumi.set(__self__, "kafka_shipper_info", kafka_shipper_info)
+        if role_trn is not None:
+            pulumi.set(__self__, "role_trn", role_trn)
         if shipper_end_time is not None:
             pulumi.set(__self__, "shipper_end_time", shipper_end_time)
         if shipper_name is not None:
@@ -228,6 +248,18 @@ class _ShipperState:
     @kafka_shipper_info.setter
     def kafka_shipper_info(self, value: Optional[pulumi.Input['ShipperKafkaShipperInfoArgs']]):
         pulumi.set(self, "kafka_shipper_info", value)
+
+    @property
+    @pulumi.getter(name="roleTrn")
+    def role_trn(self) -> Optional[pulumi.Input[str]]:
+        """
+        The role trn.
+        """
+        return pulumi.get(self, "role_trn")
+
+    @role_trn.setter
+    def role_trn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "role_trn", value)
 
     @property
     @pulumi.getter(name="shipperEndTime")
@@ -321,6 +353,7 @@ class Shipper(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  content_info: Optional[pulumi.Input[pulumi.InputType['ShipperContentInfoArgs']]] = None,
                  kafka_shipper_info: Optional[pulumi.Input[pulumi.InputType['ShipperKafkaShipperInfoArgs']]] = None,
+                 role_trn: Optional[pulumi.Input[str]] = None,
                  shipper_end_time: Optional[pulumi.Input[int]] = None,
                  shipper_name: Optional[pulumi.Input[str]] = None,
                  shipper_start_time: Optional[pulumi.Input[int]] = None,
@@ -345,21 +378,20 @@ class Shipper(pulumi.CustomResource):
                     keys=[
                         "__content",
                         "__pod_name__",
-                        "__path__",
-                        "__tf-test__",
                     ],
                 ),
             ),
+            role_trn="",
             shipper_end_time=1751255700021,
-            shipper_name="tf-test",
+            shipper_name="tf-test-modify",
             shipper_start_time=1750737324521,
             shipper_type="tos",
-            topic_id="8ba48bd7-2493-4300-b1d0-cb7xxxxxx",
+            topic_id="8ba48bd7-2493-4300-b1d0-cb760b89e51b",
             tos_shipper_info=volcengine.tls.ShipperTosShipperInfoArgs(
                 bucket="tf-test",
                 compress="snappy",
-                interval=100,
-                max_size=100,
+                interval=200,
+                max_size=50,
                 partition_format="%Y/%m/%d/%H/%M",
                 prefix="terraform_1.9.4_linux_amd64.zip",
             ))
@@ -377,6 +409,7 @@ class Shipper(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['ShipperContentInfoArgs']] content_info: Configuration of the delivery format for log content.
         :param pulumi.Input[pulumi.InputType['ShipperKafkaShipperInfoArgs']] kafka_shipper_info: JSON format log content configuration.
+        :param pulumi.Input[str] role_trn: The role trn.
         :param pulumi.Input[int] shipper_end_time: Delivery end time, millisecond timestamp. If not configured, it will keep delivering. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] shipper_name: Delivery configuration name.
         :param pulumi.Input[int] shipper_start_time: Delivery start time, millisecond timestamp. If not configured, it defaults to the current time. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
@@ -407,21 +440,20 @@ class Shipper(pulumi.CustomResource):
                     keys=[
                         "__content",
                         "__pod_name__",
-                        "__path__",
-                        "__tf-test__",
                     ],
                 ),
             ),
+            role_trn="",
             shipper_end_time=1751255700021,
-            shipper_name="tf-test",
+            shipper_name="tf-test-modify",
             shipper_start_time=1750737324521,
             shipper_type="tos",
-            topic_id="8ba48bd7-2493-4300-b1d0-cb7xxxxxx",
+            topic_id="8ba48bd7-2493-4300-b1d0-cb760b89e51b",
             tos_shipper_info=volcengine.tls.ShipperTosShipperInfoArgs(
                 bucket="tf-test",
                 compress="snappy",
-                interval=100,
-                max_size=100,
+                interval=200,
+                max_size=50,
                 partition_format="%Y/%m/%d/%H/%M",
                 prefix="terraform_1.9.4_linux_amd64.zip",
             ))
@@ -452,6 +484,7 @@ class Shipper(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  content_info: Optional[pulumi.Input[pulumi.InputType['ShipperContentInfoArgs']]] = None,
                  kafka_shipper_info: Optional[pulumi.Input[pulumi.InputType['ShipperKafkaShipperInfoArgs']]] = None,
+                 role_trn: Optional[pulumi.Input[str]] = None,
                  shipper_end_time: Optional[pulumi.Input[int]] = None,
                  shipper_name: Optional[pulumi.Input[str]] = None,
                  shipper_start_time: Optional[pulumi.Input[int]] = None,
@@ -472,6 +505,7 @@ class Shipper(pulumi.CustomResource):
                 raise TypeError("Missing required property 'content_info'")
             __props__.__dict__["content_info"] = content_info
             __props__.__dict__["kafka_shipper_info"] = kafka_shipper_info
+            __props__.__dict__["role_trn"] = role_trn
             __props__.__dict__["shipper_end_time"] = shipper_end_time
             if shipper_name is None and not opts.urn:
                 raise TypeError("Missing required property 'shipper_name'")
@@ -495,6 +529,7 @@ class Shipper(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             content_info: Optional[pulumi.Input[pulumi.InputType['ShipperContentInfoArgs']]] = None,
             kafka_shipper_info: Optional[pulumi.Input[pulumi.InputType['ShipperKafkaShipperInfoArgs']]] = None,
+            role_trn: Optional[pulumi.Input[str]] = None,
             shipper_end_time: Optional[pulumi.Input[int]] = None,
             shipper_name: Optional[pulumi.Input[str]] = None,
             shipper_start_time: Optional[pulumi.Input[int]] = None,
@@ -511,6 +546,7 @@ class Shipper(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['ShipperContentInfoArgs']] content_info: Configuration of the delivery format for log content.
         :param pulumi.Input[pulumi.InputType['ShipperKafkaShipperInfoArgs']] kafka_shipper_info: JSON format log content configuration.
+        :param pulumi.Input[str] role_trn: The role trn.
         :param pulumi.Input[int] shipper_end_time: Delivery end time, millisecond timestamp. If not configured, it will keep delivering. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] shipper_name: Delivery configuration name.
         :param pulumi.Input[int] shipper_start_time: Delivery start time, millisecond timestamp. If not configured, it defaults to the current time. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
@@ -525,6 +561,7 @@ class Shipper(pulumi.CustomResource):
 
         __props__.__dict__["content_info"] = content_info
         __props__.__dict__["kafka_shipper_info"] = kafka_shipper_info
+        __props__.__dict__["role_trn"] = role_trn
         __props__.__dict__["shipper_end_time"] = shipper_end_time
         __props__.__dict__["shipper_name"] = shipper_name
         __props__.__dict__["shipper_start_time"] = shipper_start_time
@@ -549,6 +586,14 @@ class Shipper(pulumi.CustomResource):
         JSON format log content configuration.
         """
         return pulumi.get(self, "kafka_shipper_info")
+
+    @property
+    @pulumi.getter(name="roleTrn")
+    def role_trn(self) -> pulumi.Output[Optional[str]]:
+        """
+        The role trn.
+        """
+        return pulumi.get(self, "role_trn")
 
     @property
     @pulumi.getter(name="shipperEndTime")

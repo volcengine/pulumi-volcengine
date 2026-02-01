@@ -3598,9 +3598,9 @@ func (o AlbsTagArrayOutput) Index(i pulumi.IntInput) AlbsTagOutput {
 type AllCertificatesCertificate struct {
 	// The ID of the Certificate.
 	CertificateId string `pulumi:"certificateId"`
-	// The name of the Certificate.
+	// The Name of Certificate.
 	CertificateName string `pulumi:"certificateName"`
-	// The type of the Certificate.
+	// The type of Certificate. Valid values: `CA`, `Server`.
 	CertificateType string `pulumi:"certificateType"`
 	// The create time of the Certificate.
 	CreateTime string `pulumi:"createTime"`
@@ -3614,7 +3614,7 @@ type AllCertificatesCertificate struct {
 	Id string `pulumi:"id"`
 	// The ID list of the Listener.
 	Listeners []string `pulumi:"listeners"`
-	// The ProjectName of the Certificate.
+	// The project name of Certificate.
 	ProjectName string `pulumi:"projectName"`
 	// The list of extended domain names for the certificate, separated by English commas ',', including (commonName, DnsName, IP).
 	San string `pulumi:"san"`
@@ -3638,9 +3638,9 @@ type AllCertificatesCertificateInput interface {
 type AllCertificatesCertificateArgs struct {
 	// The ID of the Certificate.
 	CertificateId pulumi.StringInput `pulumi:"certificateId"`
-	// The name of the Certificate.
+	// The Name of Certificate.
 	CertificateName pulumi.StringInput `pulumi:"certificateName"`
-	// The type of the Certificate.
+	// The type of Certificate. Valid values: `CA`, `Server`.
 	CertificateType pulumi.StringInput `pulumi:"certificateType"`
 	// The create time of the Certificate.
 	CreateTime pulumi.StringInput `pulumi:"createTime"`
@@ -3654,7 +3654,7 @@ type AllCertificatesCertificateArgs struct {
 	Id pulumi.StringInput `pulumi:"id"`
 	// The ID list of the Listener.
 	Listeners pulumi.StringArrayInput `pulumi:"listeners"`
-	// The ProjectName of the Certificate.
+	// The project name of Certificate.
 	ProjectName pulumi.StringInput `pulumi:"projectName"`
 	// The list of extended domain names for the certificate, separated by English commas ',', including (commonName, DnsName, IP).
 	San pulumi.StringInput `pulumi:"san"`
@@ -3720,12 +3720,12 @@ func (o AllCertificatesCertificateOutput) CertificateId() pulumi.StringOutput {
 	return o.ApplyT(func(v AllCertificatesCertificate) string { return v.CertificateId }).(pulumi.StringOutput)
 }
 
-// The name of the Certificate.
+// The Name of Certificate.
 func (o AllCertificatesCertificateOutput) CertificateName() pulumi.StringOutput {
 	return o.ApplyT(func(v AllCertificatesCertificate) string { return v.CertificateName }).(pulumi.StringOutput)
 }
 
-// The type of the Certificate.
+// The type of Certificate. Valid values: `CA`, `Server`.
 func (o AllCertificatesCertificateOutput) CertificateType() pulumi.StringOutput {
 	return o.ApplyT(func(v AllCertificatesCertificate) string { return v.CertificateType }).(pulumi.StringOutput)
 }
@@ -3760,7 +3760,7 @@ func (o AllCertificatesCertificateOutput) Listeners() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v AllCertificatesCertificate) []string { return v.Listeners }).(pulumi.StringArrayOutput)
 }
 
-// The ProjectName of the Certificate.
+// The project name of Certificate.
 func (o AllCertificatesCertificateOutput) ProjectName() pulumi.StringOutput {
 	return o.ApplyT(func(v AllCertificatesCertificate) string { return v.ProjectName }).(pulumi.StringOutput)
 }
@@ -6073,8 +6073,12 @@ func (o ListenerDomainExtensionTypeArrayOutput) Index(i pulumi.IntInput) Listene
 }
 
 type ListenerDomainExtensionsDomainExtension struct {
+	// The server certificate ID used by the domain name. It takes effect when the certificate source is cert_center.
+	CertCenterCertificateId string `pulumi:"certCenterCertificateId"`
 	// The server certificate ID that domain used.
 	CertificateId string `pulumi:"certificateId"`
+	// The source of the certificate.
+	CertificateSource string `pulumi:"certificateSource"`
 	// The domain.
 	Domain string `pulumi:"domain"`
 	// The extension domain ID.
@@ -6083,6 +6087,10 @@ type ListenerDomainExtensionsDomainExtension struct {
 	Id string `pulumi:"id"`
 	// A Listener ID.
 	ListenerId string `pulumi:"listenerId"`
+	// The server certificate ID used by the domain name. It takes effect when the certificate source is pca_leaf.
+	PcaLeafCertificateId string `pulumi:"pcaLeafCertificateId"`
+	// The CommonName, extended domain names, and IPs of the certificate are separated by ','.
+	San string `pulumi:"san"`
 }
 
 // ListenerDomainExtensionsDomainExtensionInput is an input type that accepts ListenerDomainExtensionsDomainExtensionArgs and ListenerDomainExtensionsDomainExtensionOutput values.
@@ -6097,8 +6105,12 @@ type ListenerDomainExtensionsDomainExtensionInput interface {
 }
 
 type ListenerDomainExtensionsDomainExtensionArgs struct {
+	// The server certificate ID used by the domain name. It takes effect when the certificate source is cert_center.
+	CertCenterCertificateId pulumi.StringInput `pulumi:"certCenterCertificateId"`
 	// The server certificate ID that domain used.
 	CertificateId pulumi.StringInput `pulumi:"certificateId"`
+	// The source of the certificate.
+	CertificateSource pulumi.StringInput `pulumi:"certificateSource"`
 	// The domain.
 	Domain pulumi.StringInput `pulumi:"domain"`
 	// The extension domain ID.
@@ -6107,6 +6119,10 @@ type ListenerDomainExtensionsDomainExtensionArgs struct {
 	Id pulumi.StringInput `pulumi:"id"`
 	// A Listener ID.
 	ListenerId pulumi.StringInput `pulumi:"listenerId"`
+	// The server certificate ID used by the domain name. It takes effect when the certificate source is pca_leaf.
+	PcaLeafCertificateId pulumi.StringInput `pulumi:"pcaLeafCertificateId"`
+	// The CommonName, extended domain names, and IPs of the certificate are separated by ','.
+	San pulumi.StringInput `pulumi:"san"`
 }
 
 func (ListenerDomainExtensionsDomainExtensionArgs) ElementType() reflect.Type {
@@ -6160,9 +6176,19 @@ func (o ListenerDomainExtensionsDomainExtensionOutput) ToListenerDomainExtension
 	return o
 }
 
+// The server certificate ID used by the domain name. It takes effect when the certificate source is cert_center.
+func (o ListenerDomainExtensionsDomainExtensionOutput) CertCenterCertificateId() pulumi.StringOutput {
+	return o.ApplyT(func(v ListenerDomainExtensionsDomainExtension) string { return v.CertCenterCertificateId }).(pulumi.StringOutput)
+}
+
 // The server certificate ID that domain used.
 func (o ListenerDomainExtensionsDomainExtensionOutput) CertificateId() pulumi.StringOutput {
 	return o.ApplyT(func(v ListenerDomainExtensionsDomainExtension) string { return v.CertificateId }).(pulumi.StringOutput)
+}
+
+// The source of the certificate.
+func (o ListenerDomainExtensionsDomainExtensionOutput) CertificateSource() pulumi.StringOutput {
+	return o.ApplyT(func(v ListenerDomainExtensionsDomainExtension) string { return v.CertificateSource }).(pulumi.StringOutput)
 }
 
 // The domain.
@@ -6183,6 +6209,16 @@ func (o ListenerDomainExtensionsDomainExtensionOutput) Id() pulumi.StringOutput 
 // A Listener ID.
 func (o ListenerDomainExtensionsDomainExtensionOutput) ListenerId() pulumi.StringOutput {
 	return o.ApplyT(func(v ListenerDomainExtensionsDomainExtension) string { return v.ListenerId }).(pulumi.StringOutput)
+}
+
+// The server certificate ID used by the domain name. It takes effect when the certificate source is pca_leaf.
+func (o ListenerDomainExtensionsDomainExtensionOutput) PcaLeafCertificateId() pulumi.StringOutput {
+	return o.ApplyT(func(v ListenerDomainExtensionsDomainExtension) string { return v.PcaLeafCertificateId }).(pulumi.StringOutput)
+}
+
+// The CommonName, extended domain names, and IPs of the certificate are separated by ','.
+func (o ListenerDomainExtensionsDomainExtensionOutput) San() pulumi.StringOutput {
+	return o.ApplyT(func(v ListenerDomainExtensionsDomainExtension) string { return v.San }).(pulumi.StringOutput)
 }
 
 type ListenerDomainExtensionsDomainExtensionArrayOutput struct{ *pulumi.OutputState }
@@ -6353,7 +6389,7 @@ type ListenerHealthsListenerBackendServer struct {
 	ServerGroupName string `pulumi:"serverGroupName"`
 	// The ID of the backend server.
 	ServerId string `pulumi:"serverId"`
-	// The health status of the backend server. Value: Up, Down.
+	// The status of the listener. Value: Active, Error, NoTarget, Disabled.
 	Status string `pulumi:"status"`
 	// The type of backend server. Value: ecs, eni.
 	Type string `pulumi:"type"`
@@ -6385,7 +6421,7 @@ type ListenerHealthsListenerBackendServerArgs struct {
 	ServerGroupName pulumi.StringInput `pulumi:"serverGroupName"`
 	// The ID of the backend server.
 	ServerId pulumi.StringInput `pulumi:"serverId"`
-	// The health status of the backend server. Value: Up, Down.
+	// The status of the listener. Value: Active, Error, NoTarget, Disabled.
 	Status pulumi.StringInput `pulumi:"status"`
 	// The type of backend server. Value: ecs, eni.
 	Type pulumi.StringInput `pulumi:"type"`
@@ -6477,7 +6513,7 @@ func (o ListenerHealthsListenerBackendServerOutput) ServerId() pulumi.StringOutp
 	return o.ApplyT(func(v ListenerHealthsListenerBackendServer) string { return v.ServerId }).(pulumi.StringOutput)
 }
 
-// The health status of the backend server. Value: Up, Down.
+// The status of the listener. Value: Active, Error, NoTarget, Disabled.
 func (o ListenerHealthsListenerBackendServerOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v ListenerHealthsListenerBackendServer) string { return v.Status }).(pulumi.StringOutput)
 }
@@ -16818,9 +16854,9 @@ func (o GetAlbsTagArrayOutput) Index(i pulumi.IntInput) GetAlbsTagOutput {
 type GetAllCertificatesCertificate struct {
 	// The ID of the Certificate.
 	CertificateId string `pulumi:"certificateId"`
-	// The name of the Certificate.
+	// The Name of Certificate.
 	CertificateName string `pulumi:"certificateName"`
-	// The type of the Certificate.
+	// The type of Certificate. Valid values: `CA`, `Server`.
 	CertificateType string `pulumi:"certificateType"`
 	// The create time of the Certificate.
 	CreateTime string `pulumi:"createTime"`
@@ -16834,7 +16870,7 @@ type GetAllCertificatesCertificate struct {
 	Id string `pulumi:"id"`
 	// The ID list of the Listener.
 	Listeners []string `pulumi:"listeners"`
-	// The ProjectName of the Certificate.
+	// The project name of Certificate.
 	ProjectName string `pulumi:"projectName"`
 	// The list of extended domain names for the certificate, separated by English commas ',', including (commonName, DnsName, IP).
 	San string `pulumi:"san"`
@@ -16858,9 +16894,9 @@ type GetAllCertificatesCertificateInput interface {
 type GetAllCertificatesCertificateArgs struct {
 	// The ID of the Certificate.
 	CertificateId pulumi.StringInput `pulumi:"certificateId"`
-	// The name of the Certificate.
+	// The Name of Certificate.
 	CertificateName pulumi.StringInput `pulumi:"certificateName"`
-	// The type of the Certificate.
+	// The type of Certificate. Valid values: `CA`, `Server`.
 	CertificateType pulumi.StringInput `pulumi:"certificateType"`
 	// The create time of the Certificate.
 	CreateTime pulumi.StringInput `pulumi:"createTime"`
@@ -16874,7 +16910,7 @@ type GetAllCertificatesCertificateArgs struct {
 	Id pulumi.StringInput `pulumi:"id"`
 	// The ID list of the Listener.
 	Listeners pulumi.StringArrayInput `pulumi:"listeners"`
-	// The ProjectName of the Certificate.
+	// The project name of Certificate.
 	ProjectName pulumi.StringInput `pulumi:"projectName"`
 	// The list of extended domain names for the certificate, separated by English commas ',', including (commonName, DnsName, IP).
 	San pulumi.StringInput `pulumi:"san"`
@@ -16940,12 +16976,12 @@ func (o GetAllCertificatesCertificateOutput) CertificateId() pulumi.StringOutput
 	return o.ApplyT(func(v GetAllCertificatesCertificate) string { return v.CertificateId }).(pulumi.StringOutput)
 }
 
-// The name of the Certificate.
+// The Name of Certificate.
 func (o GetAllCertificatesCertificateOutput) CertificateName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAllCertificatesCertificate) string { return v.CertificateName }).(pulumi.StringOutput)
 }
 
-// The type of the Certificate.
+// The type of Certificate. Valid values: `CA`, `Server`.
 func (o GetAllCertificatesCertificateOutput) CertificateType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAllCertificatesCertificate) string { return v.CertificateType }).(pulumi.StringOutput)
 }
@@ -16980,7 +17016,7 @@ func (o GetAllCertificatesCertificateOutput) Listeners() pulumi.StringArrayOutpu
 	return o.ApplyT(func(v GetAllCertificatesCertificate) []string { return v.Listeners }).(pulumi.StringArrayOutput)
 }
 
-// The ProjectName of the Certificate.
+// The project name of Certificate.
 func (o GetAllCertificatesCertificateOutput) ProjectName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAllCertificatesCertificate) string { return v.ProjectName }).(pulumi.StringOutput)
 }
@@ -18833,8 +18869,12 @@ func (o GetHealthCheckTemplatesTagArrayOutput) Index(i pulumi.IntInput) GetHealt
 }
 
 type GetListenerDomainExtensionsDomainExtension struct {
+	// The server certificate ID used by the domain name. It takes effect when the certificate source is cert_center.
+	CertCenterCertificateId string `pulumi:"certCenterCertificateId"`
 	// The server certificate ID that domain used.
 	CertificateId string `pulumi:"certificateId"`
+	// The source of the certificate.
+	CertificateSource string `pulumi:"certificateSource"`
 	// The domain.
 	Domain string `pulumi:"domain"`
 	// The extension domain ID.
@@ -18843,6 +18883,10 @@ type GetListenerDomainExtensionsDomainExtension struct {
 	Id string `pulumi:"id"`
 	// A Listener ID.
 	ListenerId string `pulumi:"listenerId"`
+	// The server certificate ID used by the domain name. It takes effect when the certificate source is pca_leaf.
+	PcaLeafCertificateId string `pulumi:"pcaLeafCertificateId"`
+	// The CommonName, extended domain names, and IPs of the certificate are separated by ','.
+	San string `pulumi:"san"`
 }
 
 // GetListenerDomainExtensionsDomainExtensionInput is an input type that accepts GetListenerDomainExtensionsDomainExtensionArgs and GetListenerDomainExtensionsDomainExtensionOutput values.
@@ -18857,8 +18901,12 @@ type GetListenerDomainExtensionsDomainExtensionInput interface {
 }
 
 type GetListenerDomainExtensionsDomainExtensionArgs struct {
+	// The server certificate ID used by the domain name. It takes effect when the certificate source is cert_center.
+	CertCenterCertificateId pulumi.StringInput `pulumi:"certCenterCertificateId"`
 	// The server certificate ID that domain used.
 	CertificateId pulumi.StringInput `pulumi:"certificateId"`
+	// The source of the certificate.
+	CertificateSource pulumi.StringInput `pulumi:"certificateSource"`
 	// The domain.
 	Domain pulumi.StringInput `pulumi:"domain"`
 	// The extension domain ID.
@@ -18867,6 +18915,10 @@ type GetListenerDomainExtensionsDomainExtensionArgs struct {
 	Id pulumi.StringInput `pulumi:"id"`
 	// A Listener ID.
 	ListenerId pulumi.StringInput `pulumi:"listenerId"`
+	// The server certificate ID used by the domain name. It takes effect when the certificate source is pca_leaf.
+	PcaLeafCertificateId pulumi.StringInput `pulumi:"pcaLeafCertificateId"`
+	// The CommonName, extended domain names, and IPs of the certificate are separated by ','.
+	San pulumi.StringInput `pulumi:"san"`
 }
 
 func (GetListenerDomainExtensionsDomainExtensionArgs) ElementType() reflect.Type {
@@ -18920,9 +18972,19 @@ func (o GetListenerDomainExtensionsDomainExtensionOutput) ToGetListenerDomainExt
 	return o
 }
 
+// The server certificate ID used by the domain name. It takes effect when the certificate source is cert_center.
+func (o GetListenerDomainExtensionsDomainExtensionOutput) CertCenterCertificateId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenerDomainExtensionsDomainExtension) string { return v.CertCenterCertificateId }).(pulumi.StringOutput)
+}
+
 // The server certificate ID that domain used.
 func (o GetListenerDomainExtensionsDomainExtensionOutput) CertificateId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetListenerDomainExtensionsDomainExtension) string { return v.CertificateId }).(pulumi.StringOutput)
+}
+
+// The source of the certificate.
+func (o GetListenerDomainExtensionsDomainExtensionOutput) CertificateSource() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenerDomainExtensionsDomainExtension) string { return v.CertificateSource }).(pulumi.StringOutput)
 }
 
 // The domain.
@@ -18943,6 +19005,16 @@ func (o GetListenerDomainExtensionsDomainExtensionOutput) Id() pulumi.StringOutp
 // A Listener ID.
 func (o GetListenerDomainExtensionsDomainExtensionOutput) ListenerId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetListenerDomainExtensionsDomainExtension) string { return v.ListenerId }).(pulumi.StringOutput)
+}
+
+// The server certificate ID used by the domain name. It takes effect when the certificate source is pca_leaf.
+func (o GetListenerDomainExtensionsDomainExtensionOutput) PcaLeafCertificateId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenerDomainExtensionsDomainExtension) string { return v.PcaLeafCertificateId }).(pulumi.StringOutput)
+}
+
+// The CommonName, extended domain names, and IPs of the certificate are separated by ','.
+func (o GetListenerDomainExtensionsDomainExtensionOutput) San() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenerDomainExtensionsDomainExtension) string { return v.San }).(pulumi.StringOutput)
 }
 
 type GetListenerDomainExtensionsDomainExtensionArrayOutput struct{ *pulumi.OutputState }
@@ -19113,7 +19185,7 @@ type GetListenerHealthsListenerBackendServer struct {
 	ServerGroupName string `pulumi:"serverGroupName"`
 	// The ID of the backend server.
 	ServerId string `pulumi:"serverId"`
-	// The health status of the backend server. Value: Up, Down.
+	// The status of the listener. Value: Active, Error, NoTarget, Disabled.
 	Status string `pulumi:"status"`
 	// The type of backend server. Value: ecs, eni.
 	Type string `pulumi:"type"`
@@ -19145,7 +19217,7 @@ type GetListenerHealthsListenerBackendServerArgs struct {
 	ServerGroupName pulumi.StringInput `pulumi:"serverGroupName"`
 	// The ID of the backend server.
 	ServerId pulumi.StringInput `pulumi:"serverId"`
-	// The health status of the backend server. Value: Up, Down.
+	// The status of the listener. Value: Active, Error, NoTarget, Disabled.
 	Status pulumi.StringInput `pulumi:"status"`
 	// The type of backend server. Value: ecs, eni.
 	Type pulumi.StringInput `pulumi:"type"`
@@ -19237,7 +19309,7 @@ func (o GetListenerHealthsListenerBackendServerOutput) ServerId() pulumi.StringO
 	return o.ApplyT(func(v GetListenerHealthsListenerBackendServer) string { return v.ServerId }).(pulumi.StringOutput)
 }
 
-// The health status of the backend server. Value: Up, Down.
+// The status of the listener. Value: Active, Error, NoTarget, Disabled.
 func (o GetListenerHealthsListenerBackendServerOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v GetListenerHealthsListenerBackendServer) string { return v.Status }).(pulumi.StringOutput)
 }

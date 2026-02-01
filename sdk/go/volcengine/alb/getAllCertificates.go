@@ -11,6 +11,42 @@ import (
 	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
+// Use this data source to query detailed information of alb all certificates
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/alb"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := alb.GetAllCertificates(ctx, &alb.GetAllCertificatesArgs{
+//				Ids: []string{
+//					"cert-1pf4a8k8tokcg845wfariphc2",
+//					"cert-xoekc6lpu9s054ov5eohm3bj",
+//				},
+//				ProjectName: pulumi.StringRef("default"),
+//				Tags: []alb.GetAllCertificatesTag{
+//					{
+//						Key:   "key1",
+//						Value: "value2",
+//					},
+//				},
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func GetAllCertificates(ctx *pulumi.Context, args *GetAllCertificatesArgs, opts ...pulumi.InvokeOption) (*GetAllCertificatesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetAllCertificatesResult
@@ -23,28 +59,41 @@ func GetAllCertificates(ctx *pulumi.Context, args *GetAllCertificatesArgs, opts 
 
 // A collection of arguments for invoking getAllCertificates.
 type GetAllCertificatesArgs struct {
-	CertificateName *string                 `pulumi:"certificateName"`
-	CertificateType *string                 `pulumi:"certificateType"`
-	Ids             []string                `pulumi:"ids"`
-	NameRegex       *string                 `pulumi:"nameRegex"`
-	OutputFile      *string                 `pulumi:"outputFile"`
-	ProjectName     *string                 `pulumi:"projectName"`
-	Tags            []GetAllCertificatesTag `pulumi:"tags"`
+	// The Name of Certificate.
+	CertificateName *string `pulumi:"certificateName"`
+	// The type of Certificate. Valid values: `CA`, `Server`.
+	CertificateType *string `pulumi:"certificateType"`
+	// A list of IDs.
+	Ids []string `pulumi:"ids"`
+	// A Name Regex of Resource.
+	NameRegex *string `pulumi:"nameRegex"`
+	// File name where to save data source results.
+	OutputFile *string `pulumi:"outputFile"`
+	// The project name of Certificate.
+	ProjectName *string `pulumi:"projectName"`
+	// Tags.
+	Tags []GetAllCertificatesTag `pulumi:"tags"`
 }
 
 // A collection of values returned by getAllCertificates.
 type GetAllCertificatesResult struct {
-	CertificateName *string                         `pulumi:"certificateName"`
-	CertificateType *string                         `pulumi:"certificateType"`
-	Certificates    []GetAllCertificatesCertificate `pulumi:"certificates"`
+	// The name of the Certificate.
+	CertificateName *string `pulumi:"certificateName"`
+	// The type of the Certificate.
+	CertificateType *string `pulumi:"certificateType"`
+	// The collection of Certificate query.
+	Certificates []GetAllCertificatesCertificate `pulumi:"certificates"`
 	// The provider-assigned unique ID for this managed resource.
-	Id          string                  `pulumi:"id"`
-	Ids         []string                `pulumi:"ids"`
-	NameRegex   *string                 `pulumi:"nameRegex"`
-	OutputFile  *string                 `pulumi:"outputFile"`
-	ProjectName *string                 `pulumi:"projectName"`
-	Tags        []GetAllCertificatesTag `pulumi:"tags"`
-	TotalCount  int                     `pulumi:"totalCount"`
+	Id         string   `pulumi:"id"`
+	Ids        []string `pulumi:"ids"`
+	NameRegex  *string  `pulumi:"nameRegex"`
+	OutputFile *string  `pulumi:"outputFile"`
+	// The ProjectName of the Certificate.
+	ProjectName *string `pulumi:"projectName"`
+	// Tags.
+	Tags []GetAllCertificatesTag `pulumi:"tags"`
+	// The total count of query.
+	TotalCount int `pulumi:"totalCount"`
 }
 
 func GetAllCertificatesOutput(ctx *pulumi.Context, args GetAllCertificatesOutputArgs, opts ...pulumi.InvokeOption) GetAllCertificatesResultOutput {
@@ -62,13 +111,20 @@ func GetAllCertificatesOutput(ctx *pulumi.Context, args GetAllCertificatesOutput
 
 // A collection of arguments for invoking getAllCertificates.
 type GetAllCertificatesOutputArgs struct {
-	CertificateName pulumi.StringPtrInput           `pulumi:"certificateName"`
-	CertificateType pulumi.StringPtrInput           `pulumi:"certificateType"`
-	Ids             pulumi.StringArrayInput         `pulumi:"ids"`
-	NameRegex       pulumi.StringPtrInput           `pulumi:"nameRegex"`
-	OutputFile      pulumi.StringPtrInput           `pulumi:"outputFile"`
-	ProjectName     pulumi.StringPtrInput           `pulumi:"projectName"`
-	Tags            GetAllCertificatesTagArrayInput `pulumi:"tags"`
+	// The Name of Certificate.
+	CertificateName pulumi.StringPtrInput `pulumi:"certificateName"`
+	// The type of Certificate. Valid values: `CA`, `Server`.
+	CertificateType pulumi.StringPtrInput `pulumi:"certificateType"`
+	// A list of IDs.
+	Ids pulumi.StringArrayInput `pulumi:"ids"`
+	// A Name Regex of Resource.
+	NameRegex pulumi.StringPtrInput `pulumi:"nameRegex"`
+	// File name where to save data source results.
+	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// The project name of Certificate.
+	ProjectName pulumi.StringPtrInput `pulumi:"projectName"`
+	// Tags.
+	Tags GetAllCertificatesTagArrayInput `pulumi:"tags"`
 }
 
 func (GetAllCertificatesOutputArgs) ElementType() reflect.Type {
@@ -90,14 +146,17 @@ func (o GetAllCertificatesResultOutput) ToGetAllCertificatesResultOutputWithCont
 	return o
 }
 
+// The name of the Certificate.
 func (o GetAllCertificatesResultOutput) CertificateName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetAllCertificatesResult) *string { return v.CertificateName }).(pulumi.StringPtrOutput)
 }
 
+// The type of the Certificate.
 func (o GetAllCertificatesResultOutput) CertificateType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetAllCertificatesResult) *string { return v.CertificateType }).(pulumi.StringPtrOutput)
 }
 
+// The collection of Certificate query.
 func (o GetAllCertificatesResultOutput) Certificates() GetAllCertificatesCertificateArrayOutput {
 	return o.ApplyT(func(v GetAllCertificatesResult) []GetAllCertificatesCertificate { return v.Certificates }).(GetAllCertificatesCertificateArrayOutput)
 }
@@ -119,14 +178,17 @@ func (o GetAllCertificatesResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetAllCertificatesResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
 }
 
+// The ProjectName of the Certificate.
 func (o GetAllCertificatesResultOutput) ProjectName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetAllCertificatesResult) *string { return v.ProjectName }).(pulumi.StringPtrOutput)
 }
 
+// Tags.
 func (o GetAllCertificatesResultOutput) Tags() GetAllCertificatesTagArrayOutput {
 	return o.ApplyT(func(v GetAllCertificatesResult) []GetAllCertificatesTag { return v.Tags }).(GetAllCertificatesTagArrayOutput)
 }
 
+// The total count of query.
 func (o GetAllCertificatesResultOutput) TotalCount() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAllCertificatesResult) int { return v.TotalCount }).(pulumi.IntOutput)
 }

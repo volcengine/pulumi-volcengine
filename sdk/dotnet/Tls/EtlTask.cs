@@ -25,21 +25,21 @@ namespace Pulumi.Volcengine.Tls
     ///     {
     ///         Description = "for-tf-test",
     ///         DslType = "NORMAL",
-    ///         Enable = true,
+    ///         Enable = false,
     ///         FromTime = 1750649545,
     ///         Script = "",
-    ///         SourceTopicId = "8ba48bd7-2493-4300-b1d0-cb7xxxxxxx",
+    ///         SourceTopicId = "9b756385-1dfb-4306-a094-0c88e04b34a5",
     ///         TargetResources = new[]
     ///         {
     ///             new Volcengine.Tls.Inputs.EtlTaskTargetResourceArgs
     ///             {
     ///                 Alias = "tf-test-1",
-    ///                 TopicId = "b966e41a-d6a6-4999-bd75-39962xxxxxx",
+    ///                 TopicId = "a690a9b8-72c1-40a3-b8c6-f89a81d3748e",
     ///             },
     ///             new Volcengine.Tls.Inputs.EtlTaskTargetResourceArgs
     ///             {
     ///                 Alias = "tf-test-2",
-    ///                 TopicId = "0ed72ac8-9531-4967-b216-ac3xxxxx",
+    ///                 TopicId = "bdf4f23b-a889-456c-ac5f-09d727427557",
     ///             },
     ///         },
     ///         TaskType = "Resident",

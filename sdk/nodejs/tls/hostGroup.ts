@@ -13,11 +13,28 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@volcengine/pulumi";
  *
  * const foo = new volcengine.tls.HostGroup("foo", {
- *     autoUpdate: false,
- *     hostGroupName: "tfgroup",
+ *     autoUpdate: true,
+ *     hostGroupName: "tfgroup-test-1",
  *     hostGroupType: "Label",
- *     hostIdentifier: "tf-controller",
+ *     hostIdentifier: "hostlable",
+ *     iamProjectName: "default",
  *     serviceLogging: false,
+ *     updateEndTime: "02:00",
+ *     updateStartTime: "00:00",
+ * });
+ * const fooIp = new volcengine.tls.HostGroup("fooIp", {
+ *     autoUpdate: true,
+ *     hostGroupName: "tfgroup-ip-1",
+ *     hostGroupType: "IP",
+ *     hostIpLists: [
+ *         "192.168.0.1",
+ *         "192.168.0.2",
+ *         "192.168.0.3",
+ *     ],
+ *     iamProjectName: "default",
+ *     serviceLogging: false,
+ *     updateEndTime: "02:00",
+ *     updateStartTime: "00:00",
  * });
  * ```
  *
@@ -58,14 +75,6 @@ export class HostGroup extends pulumi.CustomResource {
     }
 
     /**
-     * The abnormal heartbeat status count of host.
-     */
-    public /*out*/ readonly abnormalHeartbeatStatusCount!: pulumi.Output<number>;
-    /**
-     * The latest version of log collector.
-     */
-    public /*out*/ readonly agentLatestVersion!: pulumi.Output<string>;
-    /**
      * Whether enable auto update.
      */
     public readonly autoUpdate!: pulumi.Output<boolean | undefined>;
@@ -102,10 +111,6 @@ export class HostGroup extends pulumi.CustomResource {
      */
     public /*out*/ readonly modifyTime!: pulumi.Output<string>;
     /**
-     * The normal heartbeat status count of host.
-     */
-    public /*out*/ readonly normalHeartbeatStatusCount!: pulumi.Output<number>;
-    /**
      * The rule count of host.
      */
     public /*out*/ readonly ruleCount!: pulumi.Output<number>;
@@ -135,8 +140,6 @@ export class HostGroup extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as HostGroupState | undefined;
-            resourceInputs["abnormalHeartbeatStatusCount"] = state ? state.abnormalHeartbeatStatusCount : undefined;
-            resourceInputs["agentLatestVersion"] = state ? state.agentLatestVersion : undefined;
             resourceInputs["autoUpdate"] = state ? state.autoUpdate : undefined;
             resourceInputs["createTime"] = state ? state.createTime : undefined;
             resourceInputs["hostCount"] = state ? state.hostCount : undefined;
@@ -146,7 +149,6 @@ export class HostGroup extends pulumi.CustomResource {
             resourceInputs["hostIpLists"] = state ? state.hostIpLists : undefined;
             resourceInputs["iamProjectName"] = state ? state.iamProjectName : undefined;
             resourceInputs["modifyTime"] = state ? state.modifyTime : undefined;
-            resourceInputs["normalHeartbeatStatusCount"] = state ? state.normalHeartbeatStatusCount : undefined;
             resourceInputs["ruleCount"] = state ? state.ruleCount : undefined;
             resourceInputs["serviceLogging"] = state ? state.serviceLogging : undefined;
             resourceInputs["updateEndTime"] = state ? state.updateEndTime : undefined;
@@ -168,12 +170,9 @@ export class HostGroup extends pulumi.CustomResource {
             resourceInputs["serviceLogging"] = args ? args.serviceLogging : undefined;
             resourceInputs["updateEndTime"] = args ? args.updateEndTime : undefined;
             resourceInputs["updateStartTime"] = args ? args.updateStartTime : undefined;
-            resourceInputs["abnormalHeartbeatStatusCount"] = undefined /*out*/;
-            resourceInputs["agentLatestVersion"] = undefined /*out*/;
             resourceInputs["createTime"] = undefined /*out*/;
             resourceInputs["hostCount"] = undefined /*out*/;
             resourceInputs["modifyTime"] = undefined /*out*/;
-            resourceInputs["normalHeartbeatStatusCount"] = undefined /*out*/;
             resourceInputs["ruleCount"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -185,14 +184,6 @@ export class HostGroup extends pulumi.CustomResource {
  * Input properties used for looking up and filtering HostGroup resources.
  */
 export interface HostGroupState {
-    /**
-     * The abnormal heartbeat status count of host.
-     */
-    abnormalHeartbeatStatusCount?: pulumi.Input<number>;
-    /**
-     * The latest version of log collector.
-     */
-    agentLatestVersion?: pulumi.Input<string>;
     /**
      * Whether enable auto update.
      */
@@ -229,10 +220,6 @@ export interface HostGroupState {
      * The modify time of host group.
      */
     modifyTime?: pulumi.Input<string>;
-    /**
-     * The normal heartbeat status count of host.
-     */
-    normalHeartbeatStatusCount?: pulumi.Input<number>;
     /**
      * The rule count of host.
      */

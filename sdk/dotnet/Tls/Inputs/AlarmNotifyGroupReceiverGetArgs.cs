@@ -13,10 +13,76 @@ namespace Pulumi.Volcengine.Tls.Inputs
     public sealed class AlarmNotifyGroupReceiverGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The alarm content template id.
+        /// </summary>
+        [Input("alarmContentTemplateId")]
+        public Input<string>? AlarmContentTemplateId { get; set; }
+
+        [Input("alarmWebhookAtUsers")]
+        private InputList<string>? _alarmWebhookAtUsers;
+
+        /// <summary>
+        /// The alarm webhook at users.
+        /// </summary>
+        public InputList<string> AlarmWebhookAtUsers
+        {
+            get => _alarmWebhookAtUsers ?? (_alarmWebhookAtUsers = new InputList<string>());
+            set => _alarmWebhookAtUsers = value;
+        }
+
+        /// <summary>
+        /// The alarm webhook integration id.
+        /// </summary>
+        [Input("alarmWebhookIntegrationId")]
+        public Input<string>? AlarmWebhookIntegrationId { get; set; }
+
+        /// <summary>
+        /// The alarm webhook integration name.
+        /// </summary>
+        [Input("alarmWebhookIntegrationName")]
+        public Input<string>? AlarmWebhookIntegrationName { get; set; }
+
+        /// <summary>
+        /// The alarm webhook is at all.
+        /// </summary>
+        [Input("alarmWebhookIsAtAll")]
+        public Input<bool>? AlarmWebhookIsAtAll { get; set; }
+
+        /// <summary>
         /// The end time.
         /// </summary>
         [Input("endTime", required: true)]
         public Input<string> EndTime { get; set; } = null!;
+
+        /// <summary>
+        /// The webhook body.
+        /// </summary>
+        [Input("generalWebhookBody")]
+        public Input<string>? GeneralWebhookBody { get; set; }
+
+        [Input("generalWebhookHeaders")]
+        private InputList<Inputs.AlarmNotifyGroupReceiverGeneralWebhookHeaderGetArgs>? _generalWebhookHeaders;
+
+        /// <summary>
+        /// The general webhook headers.
+        /// </summary>
+        public InputList<Inputs.AlarmNotifyGroupReceiverGeneralWebhookHeaderGetArgs> GeneralWebhookHeaders
+        {
+            get => _generalWebhookHeaders ?? (_generalWebhookHeaders = new InputList<Inputs.AlarmNotifyGroupReceiverGeneralWebhookHeaderGetArgs>());
+            set => _generalWebhookHeaders = value;
+        }
+
+        /// <summary>
+        /// The general webhook method.
+        /// </summary>
+        [Input("generalWebhookMethod")]
+        public Input<string>? GeneralWebhookMethod { get; set; }
+
+        /// <summary>
+        /// The webhook url.
+        /// </summary>
+        [Input("generalWebhookUrl")]
+        public Input<string>? GeneralWebhookUrl { get; set; }
 
         [Input("receiverChannels", required: true)]
         private InputList<string>? _receiverChannels;

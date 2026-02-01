@@ -24,9 +24,153 @@ namespace Pulumi.Volcengine.Tls
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Tls.GetRuleAppliers.Invoke(new()
+        ///     var config = new Config();
+        ///     var name = config.Get("name") ?? "tf-test-rule-applier";
+        ///     var fooProject = new Volcengine.Tls.Project("fooProject", new()
         ///     {
-        ///         HostGroupId = "fbea6619-7b0c-40f3-ac7e-45c63e3f676e",
+        ///         ProjectName = name,
+        ///         Description = "tf-test-project-desc",
+        ///     });
+        /// 
+        ///     var fooTopic = new Volcengine.Tls.Topic("fooTopic", new()
+        ///     {
+        ///         ProjectId = fooProject.Id,
+        ///         TopicName = name,
+        ///         Ttl = 60,
+        ///         ShardCount = 2,
+        ///         AutoSplit = true,
+        ///         MaxSplitShard = 10,
+        ///         EnableTracking = true,
+        ///         TimeKey = "request_time",
+        ///         TimeFormat = "%Y-%m-%dT%H:%M:%S,%f",
+        ///         Tags = new[]
+        ///         {
+        ///             new Volcengine.Tls.Inputs.TopicTagArgs
+        ///             {
+        ///                 Key = "k1",
+        ///                 Value = "v1",
+        ///             },
+        ///         },
+        ///         LogPublicIp = true,
+        ///         EnableHotTtl = true,
+        ///         HotTtl = 30,
+        ///         ColdTtl = 30,
+        ///         ArchiveTtl = 0,
+        ///     });
+        /// 
+        ///     var fooRule = new Volcengine.Tls.Rule("fooRule", new()
+        ///     {
+        ///         TopicId = fooTopic.Id,
+        ///         RuleName = "tf-test-rule",
+        ///         LogType = "delimiter_log",
+        ///         LogSample = "2018-05-22 15:35:53.850,INFO,XXXX",
+        ///         InputType = 1,
+        ///         ExtractRule = new Volcengine.Tls.Inputs.RuleExtractRuleArgs
+        ///         {
+        ///             Delimiter = ",",
+        ///             Keys = new[]
+        ///             {
+        ///                 "time",
+        ///                 "level",
+        ///                 "msg",
+        ///             },
+        ///             TimeKey = "time",
+        ///             TimeFormat = "%Y-%m-%d %H:%M:%S.%f",
+        ///             Quote = "\"",
+        ///             TimeZone = "GMT+08:00",
+        ///         },
+        ///         UserDefineRule = new Volcengine.Tls.Inputs.RuleUserDefineRuleArgs
+        ///         {
+        ///             EnableRawLog = true,
+        ///             TailFiles = true,
+        ///             ShardHashKey = new Volcengine.Tls.Inputs.RuleUserDefineRuleShardHashKeyArgs
+        ///             {
+        ///                 HashKey = "3C",
+        ///             },
+        ///             Advanced = new Volcengine.Tls.Inputs.RuleUserDefineRuleAdvancedArgs
+        ///             {
+        ///                 CloseInactive = 10,
+        ///                 CloseRemoved = false,
+        ///                 CloseRenamed = false,
+        ///                 CloseEof = false,
+        ///                 CloseTimeout = 1,
+        ///             },
+        ///         },
+        ///         ContainerRule = new Volcengine.Tls.Inputs.RuleContainerRuleArgs
+        ///         {
+        ///             Stream = "all",
+        ///             ContainerNameRegex = ".*test.*",
+        ///             IncludeContainerLabelRegex = 
+        ///             {
+        ///                 { "Key1", "Value12" },
+        ///                 { "Key2", "Value23" },
+        ///             },
+        ///             ExcludeContainerLabelRegex = 
+        ///             {
+        ///                 { "Key1", "Value12" },
+        ///                 { "Key2", "Value22" },
+        ///             },
+        ///             IncludeContainerEnvRegex = 
+        ///             {
+        ///                 { "Key1", "Value1" },
+        ///                 { "Key2", "Value2" },
+        ///             },
+        ///             ExcludeContainerEnvRegex = 
+        ///             {
+        ///                 { "Key1", "Value1" },
+        ///                 { "Key2", "Value2" },
+        ///             },
+        ///             EnvTag = 
+        ///             {
+        ///                 { "Key1", "Value1" },
+        ///                 { "Key2", "Value2" },
+        ///             },
+        ///             KubernetesRule = new Volcengine.Tls.Inputs.RuleContainerRuleKubernetesRuleArgs
+        ///             {
+        ///                 NamespaceNameRegex = ".*test.*",
+        ///                 WorkloadType = "Deployment",
+        ///                 WorkloadNameRegex = ".*test.*",
+        ///                 IncludePodLabelRegex = 
+        ///                 {
+        ///                     { "Key1", "Value1" },
+        ///                     { "Key2", "Value2" },
+        ///                 },
+        ///                 ExcludePodLabelRegex = 
+        ///                 {
+        ///                     { "Key1", "Value1" },
+        ///                     { "Key2", "Value2" },
+        ///                 },
+        ///                 PodNameRegex = ".*test.*",
+        ///                 LabelTag = 
+        ///                 {
+        ///                     { "Key1", "Value1" },
+        ///                     { "Key2", "Value2" },
+        ///                 },
+        ///                 AnnotationTag = 
+        ///                 {
+        ///                     { "Key1", "Value1" },
+        ///                     { "Key2", "Value2" },
+        ///                 },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var fooHostGroup = new Volcengine.Tls.HostGroup("fooHostGroup", new()
+        ///     {
+        ///         HostGroupName = name,
+        ///         HostGroupType = "Label",
+        ///         HostIdentifier = "tf-controller",
+        ///         AutoUpdate = false,
+        ///         ServiceLogging = false,
+        ///     });
+        /// 
+        ///     // resource "volcengine_tls_rule_applier" "foo" {
+        ///     //   rule_id       = volcengine_tls_rule.foo.id
+        ///     //   host_group_id = volcengine_tls_host_group.foo.id
+        ///     // }
+        ///     var fooRuleAppliers = Volcengine.Tls.GetRuleAppliers.Invoke(new()
+        ///     {
+        ///         RuleId = fooRule.Id,
         ///     });
         /// 
         /// });
@@ -47,9 +191,153 @@ namespace Pulumi.Volcengine.Tls
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Tls.GetRuleAppliers.Invoke(new()
+        ///     var config = new Config();
+        ///     var name = config.Get("name") ?? "tf-test-rule-applier";
+        ///     var fooProject = new Volcengine.Tls.Project("fooProject", new()
         ///     {
-        ///         HostGroupId = "fbea6619-7b0c-40f3-ac7e-45c63e3f676e",
+        ///         ProjectName = name,
+        ///         Description = "tf-test-project-desc",
+        ///     });
+        /// 
+        ///     var fooTopic = new Volcengine.Tls.Topic("fooTopic", new()
+        ///     {
+        ///         ProjectId = fooProject.Id,
+        ///         TopicName = name,
+        ///         Ttl = 60,
+        ///         ShardCount = 2,
+        ///         AutoSplit = true,
+        ///         MaxSplitShard = 10,
+        ///         EnableTracking = true,
+        ///         TimeKey = "request_time",
+        ///         TimeFormat = "%Y-%m-%dT%H:%M:%S,%f",
+        ///         Tags = new[]
+        ///         {
+        ///             new Volcengine.Tls.Inputs.TopicTagArgs
+        ///             {
+        ///                 Key = "k1",
+        ///                 Value = "v1",
+        ///             },
+        ///         },
+        ///         LogPublicIp = true,
+        ///         EnableHotTtl = true,
+        ///         HotTtl = 30,
+        ///         ColdTtl = 30,
+        ///         ArchiveTtl = 0,
+        ///     });
+        /// 
+        ///     var fooRule = new Volcengine.Tls.Rule("fooRule", new()
+        ///     {
+        ///         TopicId = fooTopic.Id,
+        ///         RuleName = "tf-test-rule",
+        ///         LogType = "delimiter_log",
+        ///         LogSample = "2018-05-22 15:35:53.850,INFO,XXXX",
+        ///         InputType = 1,
+        ///         ExtractRule = new Volcengine.Tls.Inputs.RuleExtractRuleArgs
+        ///         {
+        ///             Delimiter = ",",
+        ///             Keys = new[]
+        ///             {
+        ///                 "time",
+        ///                 "level",
+        ///                 "msg",
+        ///             },
+        ///             TimeKey = "time",
+        ///             TimeFormat = "%Y-%m-%d %H:%M:%S.%f",
+        ///             Quote = "\"",
+        ///             TimeZone = "GMT+08:00",
+        ///         },
+        ///         UserDefineRule = new Volcengine.Tls.Inputs.RuleUserDefineRuleArgs
+        ///         {
+        ///             EnableRawLog = true,
+        ///             TailFiles = true,
+        ///             ShardHashKey = new Volcengine.Tls.Inputs.RuleUserDefineRuleShardHashKeyArgs
+        ///             {
+        ///                 HashKey = "3C",
+        ///             },
+        ///             Advanced = new Volcengine.Tls.Inputs.RuleUserDefineRuleAdvancedArgs
+        ///             {
+        ///                 CloseInactive = 10,
+        ///                 CloseRemoved = false,
+        ///                 CloseRenamed = false,
+        ///                 CloseEof = false,
+        ///                 CloseTimeout = 1,
+        ///             },
+        ///         },
+        ///         ContainerRule = new Volcengine.Tls.Inputs.RuleContainerRuleArgs
+        ///         {
+        ///             Stream = "all",
+        ///             ContainerNameRegex = ".*test.*",
+        ///             IncludeContainerLabelRegex = 
+        ///             {
+        ///                 { "Key1", "Value12" },
+        ///                 { "Key2", "Value23" },
+        ///             },
+        ///             ExcludeContainerLabelRegex = 
+        ///             {
+        ///                 { "Key1", "Value12" },
+        ///                 { "Key2", "Value22" },
+        ///             },
+        ///             IncludeContainerEnvRegex = 
+        ///             {
+        ///                 { "Key1", "Value1" },
+        ///                 { "Key2", "Value2" },
+        ///             },
+        ///             ExcludeContainerEnvRegex = 
+        ///             {
+        ///                 { "Key1", "Value1" },
+        ///                 { "Key2", "Value2" },
+        ///             },
+        ///             EnvTag = 
+        ///             {
+        ///                 { "Key1", "Value1" },
+        ///                 { "Key2", "Value2" },
+        ///             },
+        ///             KubernetesRule = new Volcengine.Tls.Inputs.RuleContainerRuleKubernetesRuleArgs
+        ///             {
+        ///                 NamespaceNameRegex = ".*test.*",
+        ///                 WorkloadType = "Deployment",
+        ///                 WorkloadNameRegex = ".*test.*",
+        ///                 IncludePodLabelRegex = 
+        ///                 {
+        ///                     { "Key1", "Value1" },
+        ///                     { "Key2", "Value2" },
+        ///                 },
+        ///                 ExcludePodLabelRegex = 
+        ///                 {
+        ///                     { "Key1", "Value1" },
+        ///                     { "Key2", "Value2" },
+        ///                 },
+        ///                 PodNameRegex = ".*test.*",
+        ///                 LabelTag = 
+        ///                 {
+        ///                     { "Key1", "Value1" },
+        ///                     { "Key2", "Value2" },
+        ///                 },
+        ///                 AnnotationTag = 
+        ///                 {
+        ///                     { "Key1", "Value1" },
+        ///                     { "Key2", "Value2" },
+        ///                 },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var fooHostGroup = new Volcengine.Tls.HostGroup("fooHostGroup", new()
+        ///     {
+        ///         HostGroupName = name,
+        ///         HostGroupType = "Label",
+        ///         HostIdentifier = "tf-controller",
+        ///         AutoUpdate = false,
+        ///         ServiceLogging = false,
+        ///     });
+        /// 
+        ///     // resource "volcengine_tls_rule_applier" "foo" {
+        ///     //   rule_id       = volcengine_tls_rule.foo.id
+        ///     //   host_group_id = volcengine_tls_host_group.foo.id
+        ///     // }
+        ///     var fooRuleAppliers = Volcengine.Tls.GetRuleAppliers.Invoke(new()
+        ///     {
+        ///         RuleId = fooRule.Id,
         ///     });
         /// 
         /// });
@@ -63,16 +351,16 @@ namespace Pulumi.Volcengine.Tls
     public sealed class RuleAppliersArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The host group id.
-        /// </summary>
-        [Input("hostGroupId", required: true)]
-        public string HostGroupId { get; set; } = null!;
-
-        /// <summary>
         /// File name where to save data source results.
         /// </summary>
         [Input("outputFile")]
         public string? OutputFile { get; set; }
+
+        /// <summary>
+        /// The rule id.
+        /// </summary>
+        [Input("ruleId", required: true)]
+        public string RuleId { get; set; } = null!;
 
         public RuleAppliersArgs()
         {
@@ -83,16 +371,16 @@ namespace Pulumi.Volcengine.Tls
     public sealed class RuleAppliersInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The host group id.
-        /// </summary>
-        [Input("hostGroupId", required: true)]
-        public Input<string> HostGroupId { get; set; } = null!;
-
-        /// <summary>
         /// File name where to save data source results.
         /// </summary>
         [Input("outputFile")]
         public Input<string>? OutputFile { get; set; }
+
+        /// <summary>
+        /// The rule id.
+        /// </summary>
+        [Input("ruleId", required: true)]
+        public Input<string> RuleId { get; set; } = null!;
 
         public RuleAppliersInvokeArgs()
         {
@@ -104,16 +392,16 @@ namespace Pulumi.Volcengine.Tls
     [OutputType]
     public sealed class RuleAppliersResult
     {
-        public readonly string HostGroupId;
+        /// <summary>
+        /// The host group info list.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.RuleAppliersHostGroupInfoResult> HostGroupInfos;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
         public readonly string? OutputFile;
-        /// <summary>
-        /// The rules list.
-        /// </summary>
-        public readonly ImmutableArray<Outputs.RuleAppliersRuleResult> Rules;
+        public readonly string RuleId;
         /// <summary>
         /// The total count of query.
         /// </summary>
@@ -121,20 +409,20 @@ namespace Pulumi.Volcengine.Tls
 
         [OutputConstructor]
         private RuleAppliersResult(
-            string hostGroupId,
+            ImmutableArray<Outputs.RuleAppliersHostGroupInfoResult> hostGroupInfos,
 
             string id,
 
             string? outputFile,
 
-            ImmutableArray<Outputs.RuleAppliersRuleResult> rules,
+            string ruleId,
 
             int totalCount)
         {
-            HostGroupId = hostGroupId;
+            HostGroupInfos = hostGroupInfos;
             Id = id;
             OutputFile = outputFile;
-            Rules = rules;
+            RuleId = ruleId;
             TotalCount = totalCount;
         }
     }

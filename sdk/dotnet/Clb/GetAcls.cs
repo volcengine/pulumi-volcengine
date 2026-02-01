@@ -29,6 +29,14 @@ namespace Pulumi.Volcengine.Clb
         ///         {
         ///             "acl-3ti8n0rurx4bwbh9jzdy",
         ///         },
+        ///         Tags = new[]
+        ///         {
+        ///             new Volcengine.Clb.Inputs.GetAclsTagInputArgs
+        ///             {
+        ///                 Key = "k1",
+        ///                 Value = "v1",
+        ///             },
+        ///         },
         ///     });
         /// 
         /// });
@@ -54,6 +62,14 @@ namespace Pulumi.Volcengine.Clb
         ///         Ids = new[]
         ///         {
         ///             "acl-3ti8n0rurx4bwbh9jzdy",
+        ///         },
+        ///         Tags = new[]
+        ///         {
+        ///             new Volcengine.Clb.Inputs.GetAclsTagInputArgs
+        ///             {
+        ///                 Key = "k1",
+        ///                 Value = "v1",
+        ///             },
         ///         },
         ///     });
         /// 
@@ -103,6 +119,18 @@ namespace Pulumi.Volcengine.Clb
         [Input("projectName")]
         public string? ProjectName { get; set; }
 
+        [Input("tags")]
+        private List<Inputs.GetAclsTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public List<Inputs.GetAclsTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new List<Inputs.GetAclsTagArgs>());
+            set => _tags = value;
+        }
+
         public GetAclsArgs()
         {
         }
@@ -147,6 +175,18 @@ namespace Pulumi.Volcengine.Clb
         [Input("projectName")]
         public Input<string>? ProjectName { get; set; }
 
+        [Input("tags")]
+        private InputList<Inputs.GetAclsTagInputArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.GetAclsTagInputArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.GetAclsTagInputArgs>());
+            set => _tags = value;
+        }
+
         public GetAclsInvokeArgs()
         {
         }
@@ -177,6 +217,10 @@ namespace Pulumi.Volcengine.Clb
         /// </summary>
         public readonly string? ProjectName;
         /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetAclsTagResult> Tags;
+        /// <summary>
         /// The total count of Acl query.
         /// </summary>
         public readonly int TotalCount;
@@ -197,6 +241,8 @@ namespace Pulumi.Volcengine.Clb
 
             string? projectName,
 
+            ImmutableArray<Outputs.GetAclsTagResult> tags,
+
             int totalCount)
         {
             AclName = aclName;
@@ -206,6 +252,7 @@ namespace Pulumi.Volcengine.Clb
             NameRegex = nameRegex;
             OutputFile = outputFile;
             ProjectName = projectName;
+            Tags = tags;
             TotalCount = totalCount;
         }
     }

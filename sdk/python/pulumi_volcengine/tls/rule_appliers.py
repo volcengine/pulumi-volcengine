@@ -24,27 +24,30 @@ class RuleAppliersResult:
     """
     A collection of values returned by RuleAppliers.
     """
-    def __init__(__self__, host_group_id=None, id=None, output_file=None, rules=None, total_count=None):
-        if host_group_id and not isinstance(host_group_id, str):
-            raise TypeError("Expected argument 'host_group_id' to be a str")
-        pulumi.set(__self__, "host_group_id", host_group_id)
+    def __init__(__self__, host_group_infos=None, id=None, output_file=None, rule_id=None, total_count=None):
+        if host_group_infos and not isinstance(host_group_infos, list):
+            raise TypeError("Expected argument 'host_group_infos' to be a list")
+        pulumi.set(__self__, "host_group_infos", host_group_infos)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
         if output_file and not isinstance(output_file, str):
             raise TypeError("Expected argument 'output_file' to be a str")
         pulumi.set(__self__, "output_file", output_file)
-        if rules and not isinstance(rules, list):
-            raise TypeError("Expected argument 'rules' to be a list")
-        pulumi.set(__self__, "rules", rules)
+        if rule_id and not isinstance(rule_id, str):
+            raise TypeError("Expected argument 'rule_id' to be a str")
+        pulumi.set(__self__, "rule_id", rule_id)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
 
     @property
-    @pulumi.getter(name="hostGroupId")
-    def host_group_id(self) -> str:
-        return pulumi.get(self, "host_group_id")
+    @pulumi.getter(name="hostGroupInfos")
+    def host_group_infos(self) -> Sequence['outputs.RuleAppliersHostGroupInfoResult']:
+        """
+        The host group info list.
+        """
+        return pulumi.get(self, "host_group_infos")
 
     @property
     @pulumi.getter
@@ -60,12 +63,9 @@ class RuleAppliersResult:
         return pulumi.get(self, "output_file")
 
     @property
-    @pulumi.getter
-    def rules(self) -> Sequence['outputs.RuleAppliersRuleResult']:
-        """
-        The rules list.
-        """
-        return pulumi.get(self, "rules")
+    @pulumi.getter(name="ruleId")
+    def rule_id(self) -> str:
+        return pulumi.get(self, "rule_id")
 
     @property
     @pulumi.getter(name="totalCount")
@@ -82,15 +82,15 @@ class AwaitableRuleAppliersResult(RuleAppliersResult):
         if False:
             yield self
         return RuleAppliersResult(
-            host_group_id=self.host_group_id,
+            host_group_infos=self.host_group_infos,
             id=self.id,
             output_file=self.output_file,
-            rules=self.rules,
+            rule_id=self.rule_id,
             total_count=self.total_count)
 
 
-def rule_appliers(host_group_id: Optional[str] = None,
-                  output_file: Optional[str] = None,
+def rule_appliers(output_file: Optional[str] = None,
+                  rule_id: Optional[str] = None,
                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableRuleAppliersResult:
     """
     Use this data source to query detailed information of tls rule appliers
@@ -100,31 +100,145 @@ def rule_appliers(host_group_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.get_rule_appliers(host_group_id="fbea6619-7b0c-40f3-ac7e-45c63e3f676e")
+    config = pulumi.Config()
+    name = config.get("name")
+    if name is None:
+        name = "tf-test-rule-applier"
+    foo_project = volcengine.tls.Project("fooProject",
+        project_name=name,
+        description="tf-test-project-desc")
+    foo_topic = volcengine.tls.Topic("fooTopic",
+        project_id=foo_project.id,
+        topic_name=name,
+        ttl=60,
+        shard_count=2,
+        auto_split=True,
+        max_split_shard=10,
+        enable_tracking=True,
+        time_key="request_time",
+        time_format="%Y-%m-%dT%H:%M:%S,%f",
+        tags=[volcengine.tls.TopicTagArgs(
+            key="k1",
+            value="v1",
+        )],
+        log_public_ip=True,
+        enable_hot_ttl=True,
+        hot_ttl=30,
+        cold_ttl=30,
+        archive_ttl=0)
+    foo_rule = volcengine.tls.Rule("fooRule",
+        topic_id=foo_topic.id,
+        rule_name="tf-test-rule",
+        log_type="delimiter_log",
+        log_sample="2018-05-22 15:35:53.850,INFO,XXXX",
+        input_type=1,
+        extract_rule=volcengine.tls.RuleExtractRuleArgs(
+            delimiter=",",
+            keys=[
+                "time",
+                "level",
+                "msg",
+            ],
+            time_key="time",
+            time_format="%Y-%m-%d %H:%M:%S.%f",
+            quote="\\"",
+            time_zone="GMT+08:00",
+        ),
+        user_define_rule=volcengine.tls.RuleUserDefineRuleArgs(
+            enable_raw_log=True,
+            tail_files=True,
+            shard_hash_key=volcengine.tls.RuleUserDefineRuleShardHashKeyArgs(
+                hash_key="3C",
+            ),
+            advanced=volcengine.tls.RuleUserDefineRuleAdvancedArgs(
+                close_inactive=10,
+                close_removed=False,
+                close_renamed=False,
+                close_eof=False,
+                close_timeout=1,
+            ),
+        ),
+        container_rule=volcengine.tls.RuleContainerRuleArgs(
+            stream="all",
+            container_name_regex=".*test.*",
+            include_container_label_regex={
+                "Key1": "Value12",
+                "Key2": "Value23",
+            },
+            exclude_container_label_regex={
+                "Key1": "Value12",
+                "Key2": "Value22",
+            },
+            include_container_env_regex={
+                "Key1": "Value1",
+                "Key2": "Value2",
+            },
+            exclude_container_env_regex={
+                "Key1": "Value1",
+                "Key2": "Value2",
+            },
+            env_tag={
+                "Key1": "Value1",
+                "Key2": "Value2",
+            },
+            kubernetes_rule=volcengine.tls.RuleContainerRuleKubernetesRuleArgs(
+                namespace_name_regex=".*test.*",
+                workload_type="Deployment",
+                workload_name_regex=".*test.*",
+                include_pod_label_regex={
+                    "Key1": "Value1",
+                    "Key2": "Value2",
+                },
+                exclude_pod_label_regex={
+                    "Key1": "Value1",
+                    "Key2": "Value2",
+                },
+                pod_name_regex=".*test.*",
+                label_tag={
+                    "Key1": "Value1",
+                    "Key2": "Value2",
+                },
+                annotation_tag={
+                    "Key1": "Value1",
+                    "Key2": "Value2",
+                },
+            ),
+        ))
+    foo_host_group = volcengine.tls.HostGroup("fooHostGroup",
+        host_group_name=name,
+        host_group_type="Label",
+        host_identifier="tf-controller",
+        auto_update=False,
+        service_logging=False)
+    # resource "volcengine_tls_rule_applier" "foo" {
+    #   rule_id       = volcengine_tls_rule.foo.id
+    #   host_group_id = volcengine_tls_host_group.foo.id
+    # }
+    foo_rule_appliers = volcengine.tls.get_rule_appliers_output(rule_id=foo_rule.id)
     ```
 
 
-    :param str host_group_id: The host group id.
     :param str output_file: File name where to save data source results.
+    :param str rule_id: The rule id.
     """
     pulumi.log.warn("""rule_appliers is deprecated: volcengine.tls.RuleAppliers has been deprecated in favor of volcengine.tls.getRuleAppliers""")
     __args__ = dict()
-    __args__['hostGroupId'] = host_group_id
     __args__['outputFile'] = output_file
+    __args__['ruleId'] = rule_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('volcengine:tls/ruleAppliers:RuleAppliers', __args__, opts=opts, typ=RuleAppliersResult).value
 
     return AwaitableRuleAppliersResult(
-        host_group_id=pulumi.get(__ret__, 'host_group_id'),
+        host_group_infos=pulumi.get(__ret__, 'host_group_infos'),
         id=pulumi.get(__ret__, 'id'),
         output_file=pulumi.get(__ret__, 'output_file'),
-        rules=pulumi.get(__ret__, 'rules'),
+        rule_id=pulumi.get(__ret__, 'rule_id'),
         total_count=pulumi.get(__ret__, 'total_count'))
 
 
 @_utilities.lift_output_func(rule_appliers)
-def rule_appliers_output(host_group_id: Optional[pulumi.Input[str]] = None,
-                         output_file: Optional[pulumi.Input[Optional[str]]] = None,
+def rule_appliers_output(output_file: Optional[pulumi.Input[Optional[str]]] = None,
+                         rule_id: Optional[pulumi.Input[str]] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[RuleAppliersResult]:
     """
     Use this data source to query detailed information of tls rule appliers
@@ -134,12 +248,126 @@ def rule_appliers_output(host_group_id: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.get_rule_appliers(host_group_id="fbea6619-7b0c-40f3-ac7e-45c63e3f676e")
+    config = pulumi.Config()
+    name = config.get("name")
+    if name is None:
+        name = "tf-test-rule-applier"
+    foo_project = volcengine.tls.Project("fooProject",
+        project_name=name,
+        description="tf-test-project-desc")
+    foo_topic = volcengine.tls.Topic("fooTopic",
+        project_id=foo_project.id,
+        topic_name=name,
+        ttl=60,
+        shard_count=2,
+        auto_split=True,
+        max_split_shard=10,
+        enable_tracking=True,
+        time_key="request_time",
+        time_format="%Y-%m-%dT%H:%M:%S,%f",
+        tags=[volcengine.tls.TopicTagArgs(
+            key="k1",
+            value="v1",
+        )],
+        log_public_ip=True,
+        enable_hot_ttl=True,
+        hot_ttl=30,
+        cold_ttl=30,
+        archive_ttl=0)
+    foo_rule = volcengine.tls.Rule("fooRule",
+        topic_id=foo_topic.id,
+        rule_name="tf-test-rule",
+        log_type="delimiter_log",
+        log_sample="2018-05-22 15:35:53.850,INFO,XXXX",
+        input_type=1,
+        extract_rule=volcengine.tls.RuleExtractRuleArgs(
+            delimiter=",",
+            keys=[
+                "time",
+                "level",
+                "msg",
+            ],
+            time_key="time",
+            time_format="%Y-%m-%d %H:%M:%S.%f",
+            quote="\\"",
+            time_zone="GMT+08:00",
+        ),
+        user_define_rule=volcengine.tls.RuleUserDefineRuleArgs(
+            enable_raw_log=True,
+            tail_files=True,
+            shard_hash_key=volcengine.tls.RuleUserDefineRuleShardHashKeyArgs(
+                hash_key="3C",
+            ),
+            advanced=volcengine.tls.RuleUserDefineRuleAdvancedArgs(
+                close_inactive=10,
+                close_removed=False,
+                close_renamed=False,
+                close_eof=False,
+                close_timeout=1,
+            ),
+        ),
+        container_rule=volcengine.tls.RuleContainerRuleArgs(
+            stream="all",
+            container_name_regex=".*test.*",
+            include_container_label_regex={
+                "Key1": "Value12",
+                "Key2": "Value23",
+            },
+            exclude_container_label_regex={
+                "Key1": "Value12",
+                "Key2": "Value22",
+            },
+            include_container_env_regex={
+                "Key1": "Value1",
+                "Key2": "Value2",
+            },
+            exclude_container_env_regex={
+                "Key1": "Value1",
+                "Key2": "Value2",
+            },
+            env_tag={
+                "Key1": "Value1",
+                "Key2": "Value2",
+            },
+            kubernetes_rule=volcengine.tls.RuleContainerRuleKubernetesRuleArgs(
+                namespace_name_regex=".*test.*",
+                workload_type="Deployment",
+                workload_name_regex=".*test.*",
+                include_pod_label_regex={
+                    "Key1": "Value1",
+                    "Key2": "Value2",
+                },
+                exclude_pod_label_regex={
+                    "Key1": "Value1",
+                    "Key2": "Value2",
+                },
+                pod_name_regex=".*test.*",
+                label_tag={
+                    "Key1": "Value1",
+                    "Key2": "Value2",
+                },
+                annotation_tag={
+                    "Key1": "Value1",
+                    "Key2": "Value2",
+                },
+            ),
+        ))
+    foo_host_group = volcengine.tls.HostGroup("fooHostGroup",
+        host_group_name=name,
+        host_group_type="Label",
+        host_identifier="tf-controller",
+        auto_update=False,
+        service_logging=False)
+    # resource "volcengine_tls_rule_applier" "foo" {
+    #   rule_id       = volcengine_tls_rule.foo.id
+    #   host_group_id = volcengine_tls_host_group.foo.id
+    # }
+    foo_rule_appliers = volcengine.tls.get_rule_appliers_output(rule_id=foo_rule.id)
     ```
 
 
-    :param str host_group_id: The host group id.
     :param str output_file: File name where to save data source results.
+    :param str rule_id: The rule id.
     """
     pulumi.log.warn("""rule_appliers is deprecated: volcengine.tls.RuleAppliers has been deprecated in favor of volcengine.tls.getRuleAppliers""")
     ...

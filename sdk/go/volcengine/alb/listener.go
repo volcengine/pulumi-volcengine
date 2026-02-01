@@ -167,7 +167,7 @@ type Listener struct {
 	CustomizedCfgId pulumi.StringPtrOutput `pulumi:"customizedCfgId"`
 	// The description of the Listener.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// The domain extensions of the Listener.
+	// The domain extensions of the Listener. Only HTTPS listener is effective.
 	DomainExtensions ListenerDomainExtensionTypeArrayOutput `pulumi:"domainExtensions"`
 	// The HTTP2 feature switch,valid value is on or off. Default is `off`.
 	EnableHttp2 pulumi.StringPtrOutput `pulumi:"enableHttp2"`
@@ -261,7 +261,7 @@ type listenerState struct {
 	CustomizedCfgId *string `pulumi:"customizedCfgId"`
 	// The description of the Listener.
 	Description *string `pulumi:"description"`
-	// The domain extensions of the Listener.
+	// The domain extensions of the Listener. Only HTTPS listener is effective.
 	DomainExtensions []ListenerDomainExtensionType `pulumi:"domainExtensions"`
 	// The HTTP2 feature switch,valid value is on or off. Default is `off`.
 	EnableHttp2 *string `pulumi:"enableHttp2"`
@@ -314,7 +314,7 @@ type ListenerState struct {
 	CustomizedCfgId pulumi.StringPtrInput
 	// The description of the Listener.
 	Description pulumi.StringPtrInput
-	// The domain extensions of the Listener.
+	// The domain extensions of the Listener. Only HTTPS listener is effective.
 	DomainExtensions ListenerDomainExtensionTypeArrayInput
 	// The HTTP2 feature switch,valid value is on or off. Default is `off`.
 	EnableHttp2 pulumi.StringPtrInput
@@ -371,7 +371,7 @@ type listenerArgs struct {
 	CustomizedCfgId *string `pulumi:"customizedCfgId"`
 	// The description of the Listener.
 	Description *string `pulumi:"description"`
-	// The domain extensions of the Listener.
+	// The domain extensions of the Listener. Only HTTPS listener is effective.
 	DomainExtensions []ListenerDomainExtensionType `pulumi:"domainExtensions"`
 	// The HTTP2 feature switch,valid value is on or off. Default is `off`.
 	EnableHttp2 *string `pulumi:"enableHttp2"`
@@ -423,7 +423,7 @@ type ListenerArgs struct {
 	CustomizedCfgId pulumi.StringPtrInput
 	// The description of the Listener.
 	Description pulumi.StringPtrInput
-	// The domain extensions of the Listener.
+	// The domain extensions of the Listener. Only HTTPS listener is effective.
 	DomainExtensions ListenerDomainExtensionTypeArrayInput
 	// The HTTP2 feature switch,valid value is on or off. Default is `off`.
 	EnableHttp2 pulumi.StringPtrInput
@@ -593,7 +593,7 @@ func (o ListenerOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Listener) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// The domain extensions of the Listener.
+// The domain extensions of the Listener. Only HTTPS listener is effective.
 func (o ListenerOutput) DomainExtensions() ListenerDomainExtensionTypeArrayOutput {
 	return o.ApplyT(func(v *Listener) ListenerDomainExtensionTypeArrayOutput { return v.DomainExtensions }).(ListenerDomainExtensionTypeArrayOutput)
 }

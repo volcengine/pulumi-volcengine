@@ -99,6 +99,28 @@ import (
 //				ServerGroupId: fooServerGroup.ID(),
 //				Domain:        pulumi.String("test-volc123.com"),
 //				Url:           pulumi.String("/tftest"),
+//				Tags: clb.RuleTagArray{
+//					&clb.RuleTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = clb.NewRule(ctx, "fooRedirect", &clb.RuleArgs{
+//				ListenerId:  fooListener.ID(),
+//				ActionType:  pulumi.String("Redirect"),
+//				Description: pulumi.String("Redirect rule"),
+//				Domain:      pulumi.String("example1.com"),
+//				RedirectConfig: &clb.RuleRedirectConfigArgs{
+//					Protocol:   pulumi.String("HTTP"),
+//					Host:       pulumi.String("example3.com"),
+//					Path:       pulumi.String("/test"),
+//					Port:       pulumi.String("443"),
+//					StatusCode: pulumi.String("301"),
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -121,14 +143,20 @@ import (
 type Rule struct {
 	pulumi.CustomResourceState
 
+	// The action type of Rule, valid values: `Forward`, `Redirect`.
+	ActionType pulumi.StringPtrOutput `pulumi:"actionType"`
 	// The description of the Rule.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The domain of Rule.
 	Domain pulumi.StringPtrOutput `pulumi:"domain"`
 	// The ID of listener.
 	ListenerId pulumi.StringOutput `pulumi:"listenerId"`
-	// Server Group Id.
+	// The redirect configuration. Required when actionType is `Redirect`.
+	RedirectConfig RuleRedirectConfigPtrOutput `pulumi:"redirectConfig"`
+	// Server Group Id. Required when actionType is Forward.
 	ServerGroupId pulumi.StringOutput `pulumi:"serverGroupId"`
+	// Tags.
+	Tags RuleTagArrayOutput `pulumi:"tags"`
 	// The Url of Rule.
 	Url pulumi.StringPtrOutput `pulumi:"url"`
 }
@@ -142,9 +170,6 @@ func NewRule(ctx *pulumi.Context,
 
 	if args.ListenerId == nil {
 		return nil, errors.New("invalid value for required argument 'ListenerId'")
-	}
-	if args.ServerGroupId == nil {
-		return nil, errors.New("invalid value for required argument 'ServerGroupId'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Rule
@@ -169,27 +194,39 @@ func GetRule(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Rule resources.
 type ruleState struct {
+	// The action type of Rule, valid values: `Forward`, `Redirect`.
+	ActionType *string `pulumi:"actionType"`
 	// The description of the Rule.
 	Description *string `pulumi:"description"`
 	// The domain of Rule.
 	Domain *string `pulumi:"domain"`
 	// The ID of listener.
 	ListenerId *string `pulumi:"listenerId"`
-	// Server Group Id.
+	// The redirect configuration. Required when actionType is `Redirect`.
+	RedirectConfig *RuleRedirectConfig `pulumi:"redirectConfig"`
+	// Server Group Id. Required when actionType is Forward.
 	ServerGroupId *string `pulumi:"serverGroupId"`
+	// Tags.
+	Tags []RuleTag `pulumi:"tags"`
 	// The Url of Rule.
 	Url *string `pulumi:"url"`
 }
 
 type RuleState struct {
+	// The action type of Rule, valid values: `Forward`, `Redirect`.
+	ActionType pulumi.StringPtrInput
 	// The description of the Rule.
 	Description pulumi.StringPtrInput
 	// The domain of Rule.
 	Domain pulumi.StringPtrInput
 	// The ID of listener.
 	ListenerId pulumi.StringPtrInput
-	// Server Group Id.
+	// The redirect configuration. Required when actionType is `Redirect`.
+	RedirectConfig RuleRedirectConfigPtrInput
+	// Server Group Id. Required when actionType is Forward.
 	ServerGroupId pulumi.StringPtrInput
+	// Tags.
+	Tags RuleTagArrayInput
 	// The Url of Rule.
 	Url pulumi.StringPtrInput
 }
@@ -199,28 +236,40 @@ func (RuleState) ElementType() reflect.Type {
 }
 
 type ruleArgs struct {
+	// The action type of Rule, valid values: `Forward`, `Redirect`.
+	ActionType *string `pulumi:"actionType"`
 	// The description of the Rule.
 	Description *string `pulumi:"description"`
 	// The domain of Rule.
 	Domain *string `pulumi:"domain"`
 	// The ID of listener.
 	ListenerId string `pulumi:"listenerId"`
-	// Server Group Id.
-	ServerGroupId string `pulumi:"serverGroupId"`
+	// The redirect configuration. Required when actionType is `Redirect`.
+	RedirectConfig *RuleRedirectConfig `pulumi:"redirectConfig"`
+	// Server Group Id. Required when actionType is Forward.
+	ServerGroupId *string `pulumi:"serverGroupId"`
+	// Tags.
+	Tags []RuleTag `pulumi:"tags"`
 	// The Url of Rule.
 	Url *string `pulumi:"url"`
 }
 
 // The set of arguments for constructing a Rule resource.
 type RuleArgs struct {
+	// The action type of Rule, valid values: `Forward`, `Redirect`.
+	ActionType pulumi.StringPtrInput
 	// The description of the Rule.
 	Description pulumi.StringPtrInput
 	// The domain of Rule.
 	Domain pulumi.StringPtrInput
 	// The ID of listener.
 	ListenerId pulumi.StringInput
-	// Server Group Id.
-	ServerGroupId pulumi.StringInput
+	// The redirect configuration. Required when actionType is `Redirect`.
+	RedirectConfig RuleRedirectConfigPtrInput
+	// Server Group Id. Required when actionType is Forward.
+	ServerGroupId pulumi.StringPtrInput
+	// Tags.
+	Tags RuleTagArrayInput
 	// The Url of Rule.
 	Url pulumi.StringPtrInput
 }
@@ -312,6 +361,11 @@ func (o RuleOutput) ToRuleOutputWithContext(ctx context.Context) RuleOutput {
 	return o
 }
 
+// The action type of Rule, valid values: `Forward`, `Redirect`.
+func (o RuleOutput) ActionType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Rule) pulumi.StringPtrOutput { return v.ActionType }).(pulumi.StringPtrOutput)
+}
+
 // The description of the Rule.
 func (o RuleOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Rule) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
@@ -327,9 +381,19 @@ func (o RuleOutput) ListenerId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Rule) pulumi.StringOutput { return v.ListenerId }).(pulumi.StringOutput)
 }
 
-// Server Group Id.
+// The redirect configuration. Required when actionType is `Redirect`.
+func (o RuleOutput) RedirectConfig() RuleRedirectConfigPtrOutput {
+	return o.ApplyT(func(v *Rule) RuleRedirectConfigPtrOutput { return v.RedirectConfig }).(RuleRedirectConfigPtrOutput)
+}
+
+// Server Group Id. Required when actionType is Forward.
 func (o RuleOutput) ServerGroupId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Rule) pulumi.StringOutput { return v.ServerGroupId }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o RuleOutput) Tags() RuleTagArrayOutput {
+	return o.ApplyT(func(v *Rule) RuleTagArrayOutput { return v.Tags }).(RuleTagArrayOutput)
 }
 
 // The Url of Rule.

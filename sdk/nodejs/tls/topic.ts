@@ -15,11 +15,20 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@volcengine/pulumi";
  *
  * const foo = new volcengine.tls.Topic("foo", {
+ *     archiveTtl: 0,
  *     autoSplit: true,
+ *     coldTtl: 30,
  *     description: "test",
+ *     enableHotTtl: true,
  *     enableTracking: true,
+ *     encryptConf: {
+ *         enable: true,
+ *         encryptType: "default",
+ *     },
+ *     hotTtl: 30,
+ *     logPublicIp: true,
  *     maxSplitShard: 10,
- *     projectId: "e020c978-4f05-40e1-9167-0113d3ef****",
+ *     projectId: "bdb87e4d-7dad-4b96-ac43-e1b09e9dc8ac",
  *     shardCount: 2,
  *     tags: [{
  *         key: "k1",
@@ -27,8 +36,8 @@ import * as utilities from "../utilities";
  *     }],
  *     timeFormat: "%Y-%m-%dT%H:%M:%S,%f",
  *     timeKey: "request_time",
- *     topicName: "tf-test-topic",
- *     ttl: 10,
+ *     topicName: "tf-topic-5",
+ *     ttl: 60,
  * });
  * ```
  *
@@ -69,11 +78,19 @@ export class Topic extends pulumi.CustomResource {
     }
 
     /**
+     * Archive storage duration, valid when enableHotTtl is true.
+     */
+    public readonly archiveTtl!: pulumi.Output<number | undefined>;
+    /**
      * Whether to enable automatic partition splitting function of the tls topic.
      * true: (default) When the amount of data written exceeds the capacity of existing partitions for 5 consecutive minutes, Log Service will automatically split partitions based on the data volume to meet business needs. However, the number of partitions after splitting cannot exceed the maximum number of partitions. Newly split partitions within the last 15 minutes will not be automatically split again.
      * false: Disables automatic partition splitting.
      */
     public readonly autoSplit!: pulumi.Output<boolean>;
+    /**
+     * Infrequent storage duration, valid when enableHotTtl is true.
+     */
+    public readonly coldTtl!: pulumi.Output<number | undefined>;
     /**
      * The create time of the tls topic.
      */
@@ -83,9 +100,25 @@ export class Topic extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string>;
     /**
+     * Whether to enable tiered storage.
+     */
+    public readonly enableHotTtl!: pulumi.Output<boolean | undefined>;
+    /**
      * Whether to enable WebTracking function of the tls topic.
      */
     public readonly enableTracking!: pulumi.Output<boolean>;
+    /**
+     * Data encryption configuration.
+     */
+    public readonly encryptConf!: pulumi.Output<outputs.tls.TopicEncryptConf | undefined>;
+    /**
+     * Standard storage duration, valid when enableHotTtl is true.
+     */
+    public readonly hotTtl!: pulumi.Output<number | undefined>;
+    /**
+     * Whether to enable the function of recording public IP.
+     */
+    public readonly logPublicIp!: pulumi.Output<boolean | undefined>;
     /**
      * The id of shard to be manually split. This field is valid only when modifying the topic. 
      * When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
@@ -146,10 +179,16 @@ export class Topic extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as TopicState | undefined;
+            resourceInputs["archiveTtl"] = state ? state.archiveTtl : undefined;
             resourceInputs["autoSplit"] = state ? state.autoSplit : undefined;
+            resourceInputs["coldTtl"] = state ? state.coldTtl : undefined;
             resourceInputs["createTime"] = state ? state.createTime : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["enableHotTtl"] = state ? state.enableHotTtl : undefined;
             resourceInputs["enableTracking"] = state ? state.enableTracking : undefined;
+            resourceInputs["encryptConf"] = state ? state.encryptConf : undefined;
+            resourceInputs["hotTtl"] = state ? state.hotTtl : undefined;
+            resourceInputs["logPublicIp"] = state ? state.logPublicIp : undefined;
             resourceInputs["manualSplitShardId"] = state ? state.manualSplitShardId : undefined;
             resourceInputs["manualSplitShardNumber"] = state ? state.manualSplitShardNumber : undefined;
             resourceInputs["maxSplitShard"] = state ? state.maxSplitShard : undefined;
@@ -175,9 +214,15 @@ export class Topic extends pulumi.CustomResource {
             if ((!args || args.ttl === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'ttl'");
             }
+            resourceInputs["archiveTtl"] = args ? args.archiveTtl : undefined;
             resourceInputs["autoSplit"] = args ? args.autoSplit : undefined;
+            resourceInputs["coldTtl"] = args ? args.coldTtl : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["enableHotTtl"] = args ? args.enableHotTtl : undefined;
             resourceInputs["enableTracking"] = args ? args.enableTracking : undefined;
+            resourceInputs["encryptConf"] = args ? args.encryptConf : undefined;
+            resourceInputs["hotTtl"] = args ? args.hotTtl : undefined;
+            resourceInputs["logPublicIp"] = args ? args.logPublicIp : undefined;
             resourceInputs["manualSplitShardId"] = args ? args.manualSplitShardId : undefined;
             resourceInputs["manualSplitShardNumber"] = args ? args.manualSplitShardNumber : undefined;
             resourceInputs["maxSplitShard"] = args ? args.maxSplitShard : undefined;
@@ -201,11 +246,19 @@ export class Topic extends pulumi.CustomResource {
  */
 export interface TopicState {
     /**
+     * Archive storage duration, valid when enableHotTtl is true.
+     */
+    archiveTtl?: pulumi.Input<number>;
+    /**
      * Whether to enable automatic partition splitting function of the tls topic.
      * true: (default) When the amount of data written exceeds the capacity of existing partitions for 5 consecutive minutes, Log Service will automatically split partitions based on the data volume to meet business needs. However, the number of partitions after splitting cannot exceed the maximum number of partitions. Newly split partitions within the last 15 minutes will not be automatically split again.
      * false: Disables automatic partition splitting.
      */
     autoSplit?: pulumi.Input<boolean>;
+    /**
+     * Infrequent storage duration, valid when enableHotTtl is true.
+     */
+    coldTtl?: pulumi.Input<number>;
     /**
      * The create time of the tls topic.
      */
@@ -215,9 +268,25 @@ export interface TopicState {
      */
     description?: pulumi.Input<string>;
     /**
+     * Whether to enable tiered storage.
+     */
+    enableHotTtl?: pulumi.Input<boolean>;
+    /**
      * Whether to enable WebTracking function of the tls topic.
      */
     enableTracking?: pulumi.Input<boolean>;
+    /**
+     * Data encryption configuration.
+     */
+    encryptConf?: pulumi.Input<inputs.tls.TopicEncryptConf>;
+    /**
+     * Standard storage duration, valid when enableHotTtl is true.
+     */
+    hotTtl?: pulumi.Input<number>;
+    /**
+     * Whether to enable the function of recording public IP.
+     */
+    logPublicIp?: pulumi.Input<boolean>;
     /**
      * The id of shard to be manually split. This field is valid only when modifying the topic. 
      * When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
@@ -271,19 +340,43 @@ export interface TopicState {
  */
 export interface TopicArgs {
     /**
+     * Archive storage duration, valid when enableHotTtl is true.
+     */
+    archiveTtl?: pulumi.Input<number>;
+    /**
      * Whether to enable automatic partition splitting function of the tls topic.
      * true: (default) When the amount of data written exceeds the capacity of existing partitions for 5 consecutive minutes, Log Service will automatically split partitions based on the data volume to meet business needs. However, the number of partitions after splitting cannot exceed the maximum number of partitions. Newly split partitions within the last 15 minutes will not be automatically split again.
      * false: Disables automatic partition splitting.
      */
     autoSplit?: pulumi.Input<boolean>;
     /**
+     * Infrequent storage duration, valid when enableHotTtl is true.
+     */
+    coldTtl?: pulumi.Input<number>;
+    /**
      * The description of the tls project.
      */
     description?: pulumi.Input<string>;
     /**
+     * Whether to enable tiered storage.
+     */
+    enableHotTtl?: pulumi.Input<boolean>;
+    /**
      * Whether to enable WebTracking function of the tls topic.
      */
     enableTracking?: pulumi.Input<boolean>;
+    /**
+     * Data encryption configuration.
+     */
+    encryptConf?: pulumi.Input<inputs.tls.TopicEncryptConf>;
+    /**
+     * Standard storage duration, valid when enableHotTtl is true.
+     */
+    hotTtl?: pulumi.Input<number>;
+    /**
+     * Whether to enable the function of recording public IP.
+     */
+    logPublicIp?: pulumi.Input<boolean>;
     /**
      * The id of shard to be manually split. This field is valid only when modifying the topic. 
      * When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.

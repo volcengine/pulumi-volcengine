@@ -30,18 +30,18 @@ import (
 //			_, err := tls.NewEtlTask(ctx, "foo", &tls.EtlTaskArgs{
 //				Description:   pulumi.String("for-tf-test"),
 //				DslType:       pulumi.String("NORMAL"),
-//				Enable:        pulumi.Bool(true),
+//				Enable:        pulumi.Bool(false),
 //				FromTime:      pulumi.Int(1750649545),
 //				Script:        pulumi.String(""),
-//				SourceTopicId: pulumi.String("8ba48bd7-2493-4300-b1d0-cb7xxxxxxx"),
+//				SourceTopicId: pulumi.String("9b756385-1dfb-4306-a094-0c88e04b34a5"),
 //				TargetResources: tls.EtlTaskTargetResourceArray{
 //					&tls.EtlTaskTargetResourceArgs{
 //						Alias:   pulumi.String("tf-test-1"),
-//						TopicId: pulumi.String("b966e41a-d6a6-4999-bd75-39962xxxxxx"),
+//						TopicId: pulumi.String("a690a9b8-72c1-40a3-b8c6-f89a81d3748e"),
 //					},
 //					&tls.EtlTaskTargetResourceArgs{
 //						Alias:   pulumi.String("tf-test-2"),
-//						TopicId: pulumi.String("0ed72ac8-9531-4967-b216-ac3xxxxx"),
+//						TopicId: pulumi.String("bdf4f23b-a889-456c-ac5f-09d727427557"),
 //					},
 //				},
 //				TaskType: pulumi.String("Resident"),

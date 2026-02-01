@@ -103,7 +103,7 @@ def shards(output_file: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.get_shards(topic_id="edf051ed-3c46-49ba-9339-bea628fedc15")
+    default = volcengine.tls.get_shards(topic_id="b600dc34-503f-42fc-8e32-953af55463d1")
     ```
 
 
@@ -137,7 +137,7 @@ def shards_output(output_file: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.get_shards(topic_id="edf051ed-3c46-49ba-9339-bea628fedc15")
+    default = volcengine.tls.get_shards(topic_id="b600dc34-503f-42fc-8e32-953af55463d1")
     ```
 
 

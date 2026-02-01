@@ -18,6 +18,10 @@ namespace Pulumi.Volcengine.Clb.Outputs
         /// </summary>
         public readonly int? Bandwidth;
         /// <summary>
+        /// The ID of the shared bandwidth package that the EIP is to be added to. Only valid when the eip_billing_type is `PostPaidByBandwidth` or `PostPaidByTraffic`.
+        /// </summary>
+        public readonly string? BandwidthPackageId;
+        /// <summary>
         /// The billing type of the EIP which automatically assigned to CLB. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.When creating a `PrePaid` public CLB, this field must be specified as `PrePaid` simultaneously.When the LoadBalancerBillingType changes from `PostPaid` to `PrePaid`, please manually modify the value of this field to `PrePaid` simultaneously.
         /// </summary>
         public readonly string EipBillingType;
@@ -25,18 +29,35 @@ namespace Pulumi.Volcengine.Clb.Outputs
         /// The ISP of the EIP which automatically associated to CLB, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP` or `Fusion_BGP`.
         /// </summary>
         public readonly string Isp;
+        /// <summary>
+        /// The ID of the DDoS native protection (Enterprise Edition) instance.
+        /// </summary>
+        public readonly string? SecurityProtectionInstanceId;
+        /// <summary>
+        /// The security protection types of the EIP. Only valid when the eip_billing_type is `PostPaidByBandwidth` or `PostPaidByTraffic`.
+        /// </summary>
+        public readonly ImmutableArray<string> SecurityProtectionTypes;
 
         [OutputConstructor]
         private ClbEipBillingConfig(
             int? bandwidth,
 
+            string? bandwidthPackageId,
+
             string eipBillingType,
 
-            string isp)
+            string isp,
+
+            string? securityProtectionInstanceId,
+
+            ImmutableArray<string> securityProtectionTypes)
         {
             Bandwidth = bandwidth;
+            BandwidthPackageId = bandwidthPackageId;
             EipBillingType = eipBillingType;
             Isp = isp;
+            SecurityProtectionInstanceId = securityProtectionInstanceId;
+            SecurityProtectionTypes = securityProtectionTypes;
         }
     }
 }

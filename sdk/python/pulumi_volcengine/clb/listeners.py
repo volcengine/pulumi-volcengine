@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'ListenersResult',
@@ -24,7 +25,7 @@ class ListenersResult:
     """
     A collection of values returned by Listeners.
     """
-    def __init__(__self__, id=None, ids=None, listener_name=None, listeners=None, load_balancer_id=None, name_regex=None, output_file=None, total_count=None):
+    def __init__(__self__, id=None, ids=None, listener_name=None, listeners=None, load_balancer_id=None, name_regex=None, output_file=None, protocol=None, tags=None, total_count=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -46,6 +47,12 @@ class ListenersResult:
         if output_file and not isinstance(output_file, str):
             raise TypeError("Expected argument 'output_file' to be a str")
         pulumi.set(__self__, "output_file", output_file)
+        if protocol and not isinstance(protocol, str):
+            raise TypeError("Expected argument 'protocol' to be a str")
+        pulumi.set(__self__, "protocol", protocol)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
@@ -82,6 +89,9 @@ class ListenersResult:
     @property
     @pulumi.getter(name="loadBalancerId")
     def load_balancer_id(self) -> Optional[str]:
+        """
+        The id of the Clb.
+        """
         return pulumi.get(self, "load_balancer_id")
 
     @property
@@ -93,6 +103,22 @@ class ListenersResult:
     @pulumi.getter(name="outputFile")
     def output_file(self) -> Optional[str]:
         return pulumi.get(self, "output_file")
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> Optional[str]:
+        """
+        The protocol of the Listener.
+        """
+        return pulumi.get(self, "protocol")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.ListenersTagResult']]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="totalCount")
@@ -116,6 +142,8 @@ class AwaitableListenersResult(ListenersResult):
             load_balancer_id=self.load_balancer_id,
             name_regex=self.name_regex,
             output_file=self.output_file,
+            protocol=self.protocol,
+            tags=self.tags,
             total_count=self.total_count)
 
 
@@ -124,6 +152,8 @@ def listeners(ids: Optional[Sequence[str]] = None,
               load_balancer_id: Optional[str] = None,
               name_regex: Optional[str] = None,
               output_file: Optional[str] = None,
+              protocol: Optional[str] = None,
+              tags: Optional[Sequence[pulumi.InputType['ListenersTagArgs']]] = None,
               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListenersResult:
     """
     Use this data source to query detailed information of listeners
@@ -184,6 +214,8 @@ def listeners(ids: Optional[Sequence[str]] = None,
     :param str load_balancer_id: The id of the Clb.
     :param str name_regex: A Name Regex of Listener.
     :param str output_file: File name where to save data source results.
+    :param str protocol: The protocol of the Listener. Values: `TCP`, `UDP`, `HTTP`, `HTTPS`.
+    :param Sequence[pulumi.InputType['ListenersTagArgs']] tags: Tags.
     """
     pulumi.log.warn("""listeners is deprecated: volcengine.clb.Listeners has been deprecated in favor of volcengine.clb.getListeners""")
     __args__ = dict()
@@ -192,6 +224,8 @@ def listeners(ids: Optional[Sequence[str]] = None,
     __args__['loadBalancerId'] = load_balancer_id
     __args__['nameRegex'] = name_regex
     __args__['outputFile'] = output_file
+    __args__['protocol'] = protocol
+    __args__['tags'] = tags
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('volcengine:clb/listeners:Listeners', __args__, opts=opts, typ=ListenersResult).value
 
@@ -203,6 +237,8 @@ def listeners(ids: Optional[Sequence[str]] = None,
         load_balancer_id=pulumi.get(__ret__, 'load_balancer_id'),
         name_regex=pulumi.get(__ret__, 'name_regex'),
         output_file=pulumi.get(__ret__, 'output_file'),
+        protocol=pulumi.get(__ret__, 'protocol'),
+        tags=pulumi.get(__ret__, 'tags'),
         total_count=pulumi.get(__ret__, 'total_count'))
 
 
@@ -212,6 +248,8 @@ def listeners_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None
                      load_balancer_id: Optional[pulumi.Input[Optional[str]]] = None,
                      name_regex: Optional[pulumi.Input[Optional[str]]] = None,
                      output_file: Optional[pulumi.Input[Optional[str]]] = None,
+                     protocol: Optional[pulumi.Input[Optional[str]]] = None,
+                     tags: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['ListenersTagArgs']]]]] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListenersResult]:
     """
     Use this data source to query detailed information of listeners
@@ -272,6 +310,8 @@ def listeners_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None
     :param str load_balancer_id: The id of the Clb.
     :param str name_regex: A Name Regex of Listener.
     :param str output_file: File name where to save data source results.
+    :param str protocol: The protocol of the Listener. Values: `TCP`, `UDP`, `HTTP`, `HTTPS`.
+    :param Sequence[pulumi.InputType['ListenersTagArgs']] tags: Tags.
     """
     pulumi.log.warn("""listeners is deprecated: volcengine.clb.Listeners has been deprecated in favor of volcengine.clb.getListeners""")
     ...

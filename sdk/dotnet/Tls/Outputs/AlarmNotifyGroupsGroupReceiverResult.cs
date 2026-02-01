@@ -14,9 +14,49 @@ namespace Pulumi.Volcengine.Tls.Outputs
     public sealed class AlarmNotifyGroupsGroupReceiverResult
     {
         /// <summary>
+        /// The alarm content template id.
+        /// </summary>
+        public readonly string AlarmContentTemplateId;
+        /// <summary>
+        /// The alarm webhook at users.
+        /// </summary>
+        public readonly ImmutableArray<string> AlarmWebhookAtUsers;
+        /// <summary>
+        /// The alarm webhook integration id.
+        /// </summary>
+        public readonly string AlarmWebhookIntegrationId;
+        /// <summary>
+        /// The alarm webhook integration name.
+        /// </summary>
+        public readonly string AlarmWebhookIntegrationName;
+        /// <summary>
+        /// The alarm webhook is at all.
+        /// </summary>
+        public readonly bool AlarmWebhookIsAtAll;
+        /// <summary>
         /// The end time.
         /// </summary>
         public readonly string EndTime;
+        /// <summary>
+        /// The general webhook.
+        /// </summary>
+        public readonly string GeneralWebhook;
+        /// <summary>
+        /// The webhook body.
+        /// </summary>
+        public readonly string GeneralWebhookBody;
+        /// <summary>
+        /// The general webhook headers.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.AlarmNotifyGroupsGroupReceiverGeneralWebhookHeaderResult> GeneralWebhookHeaders;
+        /// <summary>
+        /// The general webhook method.
+        /// </summary>
+        public readonly string GeneralWebhookMethod;
+        /// <summary>
+        /// The webhook url.
+        /// </summary>
+        public readonly string GeneralWebhookUrl;
         /// <summary>
         /// The list of the receiver channels.
         /// </summary>
@@ -36,7 +76,27 @@ namespace Pulumi.Volcengine.Tls.Outputs
 
         [OutputConstructor]
         private AlarmNotifyGroupsGroupReceiverResult(
+            string alarmContentTemplateId,
+
+            ImmutableArray<string> alarmWebhookAtUsers,
+
+            string alarmWebhookIntegrationId,
+
+            string alarmWebhookIntegrationName,
+
+            bool alarmWebhookIsAtAll,
+
             string endTime,
+
+            string generalWebhook,
+
+            string generalWebhookBody,
+
+            ImmutableArray<Outputs.AlarmNotifyGroupsGroupReceiverGeneralWebhookHeaderResult> generalWebhookHeaders,
+
+            string generalWebhookMethod,
+
+            string generalWebhookUrl,
 
             ImmutableArray<string> receiverChannels,
 
@@ -46,7 +106,17 @@ namespace Pulumi.Volcengine.Tls.Outputs
 
             string startTime)
         {
+            AlarmContentTemplateId = alarmContentTemplateId;
+            AlarmWebhookAtUsers = alarmWebhookAtUsers;
+            AlarmWebhookIntegrationId = alarmWebhookIntegrationId;
+            AlarmWebhookIntegrationName = alarmWebhookIntegrationName;
+            AlarmWebhookIsAtAll = alarmWebhookIsAtAll;
             EndTime = endTime;
+            GeneralWebhook = generalWebhook;
+            GeneralWebhookBody = generalWebhookBody;
+            GeneralWebhookHeaders = generalWebhookHeaders;
+            GeneralWebhookMethod = generalWebhookMethod;
+            GeneralWebhookUrl = generalWebhookUrl;
             ReceiverChannels = receiverChannels;
             ReceiverNames = receiverNames;
             ReceiverType = receiverType;

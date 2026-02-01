@@ -13,9 +13,126 @@ import * as utilities from "../utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const default = volcengine.tls.getRuleAppliers({
- *     hostGroupId: "fbea6619-7b0c-40f3-ac7e-45c63e3f676e",
+ * const config = new pulumi.Config();
+ * const name = config.get("name") || "tf-test-rule-applier";
+ * const fooProject = new volcengine.tls.Project("fooProject", {
+ *     projectName: name,
+ *     description: "tf-test-project-desc",
+ * });
+ * const fooTopic = new volcengine.tls.Topic("fooTopic", {
+ *     projectId: fooProject.id,
+ *     topicName: name,
+ *     ttl: 60,
+ *     shardCount: 2,
+ *     autoSplit: true,
+ *     maxSplitShard: 10,
+ *     enableTracking: true,
+ *     timeKey: "request_time",
+ *     timeFormat: "%Y-%m-%dT%H:%M:%S,%f",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
+ *     logPublicIp: true,
+ *     enableHotTtl: true,
+ *     hotTtl: 30,
+ *     coldTtl: 30,
+ *     archiveTtl: 0,
+ * });
+ * const fooRule = new volcengine.tls.Rule("fooRule", {
+ *     topicId: fooTopic.id,
+ *     ruleName: "tf-test-rule",
+ *     logType: "delimiter_log",
+ *     logSample: "2018-05-22 15:35:53.850,INFO,XXXX",
+ *     inputType: 1,
+ *     extractRule: {
+ *         delimiter: ",",
+ *         keys: [
+ *             "time",
+ *             "level",
+ *             "msg",
+ *         ],
+ *         timeKey: "time",
+ *         timeFormat: "%Y-%m-%d %H:%M:%S.%f",
+ *         quote: "\"",
+ *         timeZone: "GMT+08:00",
+ *     },
+ *     userDefineRule: {
+ *         enableRawLog: true,
+ *         tailFiles: true,
+ *         shardHashKey: {
+ *             hashKey: "3C",
+ *         },
+ *         advanced: {
+ *             closeInactive: 10,
+ *             closeRemoved: false,
+ *             closeRenamed: false,
+ *             closeEof: false,
+ *             closeTimeout: 1,
+ *         },
+ *     },
+ *     containerRule: {
+ *         stream: "all",
+ *         containerNameRegex: ".*test.*",
+ *         includeContainerLabelRegex: {
+ *             Key1: "Value12",
+ *             Key2: "Value23",
+ *         },
+ *         excludeContainerLabelRegex: {
+ *             Key1: "Value12",
+ *             Key2: "Value22",
+ *         },
+ *         includeContainerEnvRegex: {
+ *             Key1: "Value1",
+ *             Key2: "Value2",
+ *         },
+ *         excludeContainerEnvRegex: {
+ *             Key1: "Value1",
+ *             Key2: "Value2",
+ *         },
+ *         envTag: {
+ *             Key1: "Value1",
+ *             Key2: "Value2",
+ *         },
+ *         kubernetesRule: {
+ *             namespaceNameRegex: ".*test.*",
+ *             workloadType: "Deployment",
+ *             workloadNameRegex: ".*test.*",
+ *             includePodLabelRegex: {
+ *                 Key1: "Value1",
+ *                 Key2: "Value2",
+ *             },
+ *             excludePodLabelRegex: {
+ *                 Key1: "Value1",
+ *                 Key2: "Value2",
+ *             },
+ *             podNameRegex: ".*test.*",
+ *             labelTag: {
+ *                 Key1: "Value1",
+ *                 Key2: "Value2",
+ *             },
+ *             annotationTag: {
+ *                 Key1: "Value1",
+ *                 Key2: "Value2",
+ *             },
+ *         },
+ *     },
+ * });
+ * const fooHostGroup = new volcengine.tls.HostGroup("fooHostGroup", {
+ *     hostGroupName: name,
+ *     hostGroupType: "Label",
+ *     hostIdentifier: "tf-controller",
+ *     autoUpdate: false,
+ *     serviceLogging: false,
+ * });
+ * // resource "volcengine_tls_rule_applier" "foo" {
+ * //   rule_id       = volcengine_tls_rule.foo.id
+ * //   host_group_id = volcengine_tls_host_group.foo.id
+ * // }
+ * const fooRuleAppliers = volcengine.tls.getRuleAppliersOutput({
+ *     ruleId: fooRule.id,
  * });
  * ```
  */
@@ -23,8 +140,8 @@ export function getRuleAppliers(args: GetRuleAppliersArgs, opts?: pulumi.InvokeO
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:tls/getRuleAppliers:getRuleAppliers", {
-        "hostGroupId": args.hostGroupId,
         "outputFile": args.outputFile,
+        "ruleId": args.ruleId,
     }, opts);
 }
 
@@ -33,29 +150,29 @@ export function getRuleAppliers(args: GetRuleAppliersArgs, opts?: pulumi.InvokeO
  */
 export interface GetRuleAppliersArgs {
     /**
-     * The host group id.
-     */
-    hostGroupId: string;
-    /**
      * File name where to save data source results.
      */
     outputFile?: string;
+    /**
+     * The rule id.
+     */
+    ruleId: string;
 }
 
 /**
  * A collection of values returned by getRuleAppliers.
  */
 export interface GetRuleAppliersResult {
-    readonly hostGroupId: string;
+    /**
+     * The host group info list.
+     */
+    readonly hostGroupInfos: outputs.tls.GetRuleAppliersHostGroupInfo[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
     readonly outputFile?: string;
-    /**
-     * The rules list.
-     */
-    readonly rules: outputs.tls.GetRuleAppliersRule[];
+    readonly ruleId: string;
     /**
      * The total count of query.
      */
@@ -68,9 +185,126 @@ export interface GetRuleAppliersResult {
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const default = volcengine.tls.getRuleAppliers({
- *     hostGroupId: "fbea6619-7b0c-40f3-ac7e-45c63e3f676e",
+ * const config = new pulumi.Config();
+ * const name = config.get("name") || "tf-test-rule-applier";
+ * const fooProject = new volcengine.tls.Project("fooProject", {
+ *     projectName: name,
+ *     description: "tf-test-project-desc",
+ * });
+ * const fooTopic = new volcengine.tls.Topic("fooTopic", {
+ *     projectId: fooProject.id,
+ *     topicName: name,
+ *     ttl: 60,
+ *     shardCount: 2,
+ *     autoSplit: true,
+ *     maxSplitShard: 10,
+ *     enableTracking: true,
+ *     timeKey: "request_time",
+ *     timeFormat: "%Y-%m-%dT%H:%M:%S,%f",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
+ *     logPublicIp: true,
+ *     enableHotTtl: true,
+ *     hotTtl: 30,
+ *     coldTtl: 30,
+ *     archiveTtl: 0,
+ * });
+ * const fooRule = new volcengine.tls.Rule("fooRule", {
+ *     topicId: fooTopic.id,
+ *     ruleName: "tf-test-rule",
+ *     logType: "delimiter_log",
+ *     logSample: "2018-05-22 15:35:53.850,INFO,XXXX",
+ *     inputType: 1,
+ *     extractRule: {
+ *         delimiter: ",",
+ *         keys: [
+ *             "time",
+ *             "level",
+ *             "msg",
+ *         ],
+ *         timeKey: "time",
+ *         timeFormat: "%Y-%m-%d %H:%M:%S.%f",
+ *         quote: "\"",
+ *         timeZone: "GMT+08:00",
+ *     },
+ *     userDefineRule: {
+ *         enableRawLog: true,
+ *         tailFiles: true,
+ *         shardHashKey: {
+ *             hashKey: "3C",
+ *         },
+ *         advanced: {
+ *             closeInactive: 10,
+ *             closeRemoved: false,
+ *             closeRenamed: false,
+ *             closeEof: false,
+ *             closeTimeout: 1,
+ *         },
+ *     },
+ *     containerRule: {
+ *         stream: "all",
+ *         containerNameRegex: ".*test.*",
+ *         includeContainerLabelRegex: {
+ *             Key1: "Value12",
+ *             Key2: "Value23",
+ *         },
+ *         excludeContainerLabelRegex: {
+ *             Key1: "Value12",
+ *             Key2: "Value22",
+ *         },
+ *         includeContainerEnvRegex: {
+ *             Key1: "Value1",
+ *             Key2: "Value2",
+ *         },
+ *         excludeContainerEnvRegex: {
+ *             Key1: "Value1",
+ *             Key2: "Value2",
+ *         },
+ *         envTag: {
+ *             Key1: "Value1",
+ *             Key2: "Value2",
+ *         },
+ *         kubernetesRule: {
+ *             namespaceNameRegex: ".*test.*",
+ *             workloadType: "Deployment",
+ *             workloadNameRegex: ".*test.*",
+ *             includePodLabelRegex: {
+ *                 Key1: "Value1",
+ *                 Key2: "Value2",
+ *             },
+ *             excludePodLabelRegex: {
+ *                 Key1: "Value1",
+ *                 Key2: "Value2",
+ *             },
+ *             podNameRegex: ".*test.*",
+ *             labelTag: {
+ *                 Key1: "Value1",
+ *                 Key2: "Value2",
+ *             },
+ *             annotationTag: {
+ *                 Key1: "Value1",
+ *                 Key2: "Value2",
+ *             },
+ *         },
+ *     },
+ * });
+ * const fooHostGroup = new volcengine.tls.HostGroup("fooHostGroup", {
+ *     hostGroupName: name,
+ *     hostGroupType: "Label",
+ *     hostIdentifier: "tf-controller",
+ *     autoUpdate: false,
+ *     serviceLogging: false,
+ * });
+ * // resource "volcengine_tls_rule_applier" "foo" {
+ * //   rule_id       = volcengine_tls_rule.foo.id
+ * //   host_group_id = volcengine_tls_host_group.foo.id
+ * // }
+ * const fooRuleAppliers = volcengine.tls.getRuleAppliersOutput({
+ *     ruleId: fooRule.id,
  * });
  * ```
  */
@@ -83,11 +317,11 @@ export function getRuleAppliersOutput(args: GetRuleAppliersOutputArgs, opts?: pu
  */
 export interface GetRuleAppliersOutputArgs {
     /**
-     * The host group id.
-     */
-    hostGroupId: pulumi.Input<string>;
-    /**
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
+    /**
+     * The rule id.
+     */
+    ruleId: pulumi.Input<string>;
 }

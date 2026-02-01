@@ -129,7 +129,7 @@ def hosts(heartbeat_status: Optional[int] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.get_hosts(host_group_id="527102e2-1e4f-45f4-a990-751152125da7")
+    default = volcengine.tls.get_hosts(host_group_id="2123af96-d057-4234-8f34-6fae9c9da6d0")
     ```
 
 
@@ -171,7 +171,7 @@ def hosts_output(heartbeat_status: Optional[pulumi.Input[Optional[int]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.get_hosts(host_group_id="527102e2-1e4f-45f4-a990-751152125da7")
+    default = volcengine.tls.get_hosts(host_group_id="2123af96-d057-4234-8f34-6fae9c9da6d0")
     ```
 
 

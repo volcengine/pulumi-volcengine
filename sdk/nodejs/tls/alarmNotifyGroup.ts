@@ -8,29 +8,6 @@ import * as utilities from "../utilities";
 
 /**
  * Provides a resource to manage tls alarm notify group
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as volcengine from "@volcengine/pulumi";
- *
- * const foo = new volcengine.tls.AlarmNotifyGroup("foo", {
- *     alarmNotifyGroupName: "tf-test",
- *     iamProjectName: "yyy",
- *     notifyTypes: ["Trigger"],
- *     receivers: [{
- *         endTime: "23:59:59",
- *         receiverChannels: [
- *             "Email",
- *             "Sms",
- *         ],
- *         receiverNames: ["vke-qs"],
- *         receiverType: "User",
- *         startTime: "23:00:00",
- *     }],
- * });
- * ```
- *
  * ## Import
  *
  * tls alarm notify group can be imported using the id, e.g.
@@ -80,15 +57,19 @@ export class AlarmNotifyGroup extends pulumi.CustomResource {
      */
     public readonly iamProjectName!: pulumi.Output<string>;
     /**
+     * The list of the notice rules.
+     */
+    public readonly noticeRules!: pulumi.Output<outputs.tls.AlarmNotifyGroupNoticeRule[] | undefined>;
+    /**
      * The notify type.
      * Trigger: Alarm Trigger
      * Recovery: Alarm Recovery.
      */
-    public readonly notifyTypes!: pulumi.Output<string[]>;
+    public readonly notifyTypes!: pulumi.Output<string[] | undefined>;
     /**
      * List of IAM users to receive alerts.
      */
-    public readonly receivers!: pulumi.Output<outputs.tls.AlarmNotifyGroupReceiver[]>;
+    public readonly receivers!: pulumi.Output<outputs.tls.AlarmNotifyGroupReceiver[] | undefined>;
 
     /**
      * Create a AlarmNotifyGroup resource with the given unique name, arguments, and options.
@@ -106,6 +87,7 @@ export class AlarmNotifyGroup extends pulumi.CustomResource {
             resourceInputs["alarmNotifyGroupId"] = state ? state.alarmNotifyGroupId : undefined;
             resourceInputs["alarmNotifyGroupName"] = state ? state.alarmNotifyGroupName : undefined;
             resourceInputs["iamProjectName"] = state ? state.iamProjectName : undefined;
+            resourceInputs["noticeRules"] = state ? state.noticeRules : undefined;
             resourceInputs["notifyTypes"] = state ? state.notifyTypes : undefined;
             resourceInputs["receivers"] = state ? state.receivers : undefined;
         } else {
@@ -113,14 +95,9 @@ export class AlarmNotifyGroup extends pulumi.CustomResource {
             if ((!args || args.alarmNotifyGroupName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'alarmNotifyGroupName'");
             }
-            if ((!args || args.notifyTypes === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'notifyTypes'");
-            }
-            if ((!args || args.receivers === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'receivers'");
-            }
             resourceInputs["alarmNotifyGroupName"] = args ? args.alarmNotifyGroupName : undefined;
             resourceInputs["iamProjectName"] = args ? args.iamProjectName : undefined;
+            resourceInputs["noticeRules"] = args ? args.noticeRules : undefined;
             resourceInputs["notifyTypes"] = args ? args.notifyTypes : undefined;
             resourceInputs["receivers"] = args ? args.receivers : undefined;
             resourceInputs["alarmNotifyGroupId"] = undefined /*out*/;
@@ -147,6 +124,10 @@ export interface AlarmNotifyGroupState {
      */
     iamProjectName?: pulumi.Input<string>;
     /**
+     * The list of the notice rules.
+     */
+    noticeRules?: pulumi.Input<pulumi.Input<inputs.tls.AlarmNotifyGroupNoticeRule>[]>;
+    /**
      * The notify type.
      * Trigger: Alarm Trigger
      * Recovery: Alarm Recovery.
@@ -171,13 +152,17 @@ export interface AlarmNotifyGroupArgs {
      */
     iamProjectName?: pulumi.Input<string>;
     /**
+     * The list of the notice rules.
+     */
+    noticeRules?: pulumi.Input<pulumi.Input<inputs.tls.AlarmNotifyGroupNoticeRule>[]>;
+    /**
      * The notify type.
      * Trigger: Alarm Trigger
      * Recovery: Alarm Recovery.
      */
-    notifyTypes: pulumi.Input<pulumi.Input<string>[]>;
+    notifyTypes?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * List of IAM users to receive alerts.
      */
-    receivers: pulumi.Input<pulumi.Input<inputs.tls.AlarmNotifyGroupReceiver>[]>;
+    receivers?: pulumi.Input<pulumi.Input<inputs.tls.AlarmNotifyGroupReceiver>[]>;
 }

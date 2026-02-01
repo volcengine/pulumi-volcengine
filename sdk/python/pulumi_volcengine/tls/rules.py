@@ -24,16 +24,28 @@ class RulesResult:
     """
     A collection of values returned by Rules.
     """
-    def __init__(__self__, id=None, output_file=None, project_id=None, rule_id=None, rule_name=None, rules=None, topic_id=None, topic_name=None, total_count=None):
+    def __init__(__self__, iam_project_name=None, id=None, log_type=None, output_file=None, pause=None, project_id=None, project_name=None, rule_id=None, rule_name=None, rules=None, topic_id=None, topic_name=None, total_count=None):
+        if iam_project_name and not isinstance(iam_project_name, str):
+            raise TypeError("Expected argument 'iam_project_name' to be a str")
+        pulumi.set(__self__, "iam_project_name", iam_project_name)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if log_type and not isinstance(log_type, str):
+            raise TypeError("Expected argument 'log_type' to be a str")
+        pulumi.set(__self__, "log_type", log_type)
         if output_file and not isinstance(output_file, str):
             raise TypeError("Expected argument 'output_file' to be a str")
         pulumi.set(__self__, "output_file", output_file)
+        if pause and not isinstance(pause, int):
+            raise TypeError("Expected argument 'pause' to be a int")
+        pulumi.set(__self__, "pause", pause)
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
+        if project_name and not isinstance(project_name, str):
+            raise TypeError("Expected argument 'project_name' to be a str")
+        pulumi.set(__self__, "project_name", project_name)
         if rule_id and not isinstance(rule_id, str):
             raise TypeError("Expected argument 'rule_id' to be a str")
         pulumi.set(__self__, "rule_id", rule_id)
@@ -54,6 +66,11 @@ class RulesResult:
         pulumi.set(__self__, "total_count", total_count)
 
     @property
+    @pulumi.getter(name="iamProjectName")
+    def iam_project_name(self) -> Optional[str]:
+        return pulumi.get(self, "iam_project_name")
+
+    @property
     @pulumi.getter
     def id(self) -> str:
         """
@@ -62,14 +79,32 @@ class RulesResult:
         return pulumi.get(self, "id")
 
     @property
+    @pulumi.getter(name="logType")
+    def log_type(self) -> Optional[str]:
+        """
+        The log type.
+        """
+        return pulumi.get(self, "log_type")
+
+    @property
     @pulumi.getter(name="outputFile")
     def output_file(self) -> Optional[str]:
         return pulumi.get(self, "output_file")
 
     @property
+    @pulumi.getter
+    def pause(self) -> Optional[int]:
+        return pulumi.get(self, "pause")
+
+    @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> str:
+    def project_id(self) -> Optional[str]:
         return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[str]:
+        return pulumi.get(self, "project_name")
 
     @property
     @pulumi.getter(name="ruleId")
@@ -126,9 +161,13 @@ class AwaitableRulesResult(RulesResult):
         if False:
             yield self
         return RulesResult(
+            iam_project_name=self.iam_project_name,
             id=self.id,
+            log_type=self.log_type,
             output_file=self.output_file,
+            pause=self.pause,
             project_id=self.project_id,
+            project_name=self.project_name,
             rule_id=self.rule_id,
             rule_name=self.rule_name,
             rules=self.rules,
@@ -137,8 +176,12 @@ class AwaitableRulesResult(RulesResult):
             total_count=self.total_count)
 
 
-def rules(output_file: Optional[str] = None,
+def rules(iam_project_name: Optional[str] = None,
+          log_type: Optional[str] = None,
+          output_file: Optional[str] = None,
+          pause: Optional[int] = None,
           project_id: Optional[str] = None,
+          project_name: Optional[str] = None,
           rule_id: Optional[str] = None,
           rule_name: Optional[str] = None,
           topic_id: Optional[str] = None,
@@ -152,12 +195,20 @@ def rules(output_file: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.get_rules(project_id="cc44f8b6-0328-4622-b043-023fca735cd4")
+    default = volcengine.tls.get_rules(log_type="minimalist_log",
+        pause=0,
+        project_id="39ed1cf8-dbf3-41c3-939d-999bab54313d",
+        rule_id="048dc010-6bb1-4189-858a-281d654d6686",
+        topic_id="b600dc34-503f-42fc-8e32-953af55463d1")
     ```
 
 
+    :param str iam_project_name: The iam project name.
+    :param str log_type: The log type.
     :param str output_file: File name where to save data source results.
+    :param int pause: Whether to pause collection configuration.
     :param str project_id: The project id.
+    :param str project_name: The project name.
     :param str rule_id: The rule id.
     :param str rule_name: The rule name.
     :param str topic_id: The topic id.
@@ -165,8 +216,12 @@ def rules(output_file: Optional[str] = None,
     """
     pulumi.log.warn("""rules is deprecated: volcengine.tls.Rules has been deprecated in favor of volcengine.tls.getRules""")
     __args__ = dict()
+    __args__['iamProjectName'] = iam_project_name
+    __args__['logType'] = log_type
     __args__['outputFile'] = output_file
+    __args__['pause'] = pause
     __args__['projectId'] = project_id
+    __args__['projectName'] = project_name
     __args__['ruleId'] = rule_id
     __args__['ruleName'] = rule_name
     __args__['topicId'] = topic_id
@@ -175,9 +230,13 @@ def rules(output_file: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('volcengine:tls/rules:Rules', __args__, opts=opts, typ=RulesResult).value
 
     return AwaitableRulesResult(
+        iam_project_name=pulumi.get(__ret__, 'iam_project_name'),
         id=pulumi.get(__ret__, 'id'),
+        log_type=pulumi.get(__ret__, 'log_type'),
         output_file=pulumi.get(__ret__, 'output_file'),
+        pause=pulumi.get(__ret__, 'pause'),
         project_id=pulumi.get(__ret__, 'project_id'),
+        project_name=pulumi.get(__ret__, 'project_name'),
         rule_id=pulumi.get(__ret__, 'rule_id'),
         rule_name=pulumi.get(__ret__, 'rule_name'),
         rules=pulumi.get(__ret__, 'rules'),
@@ -187,8 +246,12 @@ def rules(output_file: Optional[str] = None,
 
 
 @_utilities.lift_output_func(rules)
-def rules_output(output_file: Optional[pulumi.Input[Optional[str]]] = None,
-                 project_id: Optional[pulumi.Input[str]] = None,
+def rules_output(iam_project_name: Optional[pulumi.Input[Optional[str]]] = None,
+                 log_type: Optional[pulumi.Input[Optional[str]]] = None,
+                 output_file: Optional[pulumi.Input[Optional[str]]] = None,
+                 pause: Optional[pulumi.Input[Optional[int]]] = None,
+                 project_id: Optional[pulumi.Input[Optional[str]]] = None,
+                 project_name: Optional[pulumi.Input[Optional[str]]] = None,
                  rule_id: Optional[pulumi.Input[Optional[str]]] = None,
                  rule_name: Optional[pulumi.Input[Optional[str]]] = None,
                  topic_id: Optional[pulumi.Input[Optional[str]]] = None,
@@ -202,12 +265,20 @@ def rules_output(output_file: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.get_rules(project_id="cc44f8b6-0328-4622-b043-023fca735cd4")
+    default = volcengine.tls.get_rules(log_type="minimalist_log",
+        pause=0,
+        project_id="39ed1cf8-dbf3-41c3-939d-999bab54313d",
+        rule_id="048dc010-6bb1-4189-858a-281d654d6686",
+        topic_id="b600dc34-503f-42fc-8e32-953af55463d1")
     ```
 
 
+    :param str iam_project_name: The iam project name.
+    :param str log_type: The log type.
     :param str output_file: File name where to save data source results.
+    :param int pause: Whether to pause collection configuration.
     :param str project_id: The project id.
+    :param str project_name: The project name.
     :param str rule_id: The rule id.
     :param str rule_name: The rule name.
     :param str topic_id: The topic id.

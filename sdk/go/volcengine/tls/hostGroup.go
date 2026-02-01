@@ -28,11 +28,31 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := tls.NewHostGroup(ctx, "foo", &tls.HostGroupArgs{
-//				AutoUpdate:     pulumi.Bool(false),
-//				HostGroupName:  pulumi.String("tfgroup"),
-//				HostGroupType:  pulumi.String("Label"),
-//				HostIdentifier: pulumi.String("tf-controller"),
-//				ServiceLogging: pulumi.Bool(false),
+//				AutoUpdate:      pulumi.Bool(true),
+//				HostGroupName:   pulumi.String("tfgroup-test-1"),
+//				HostGroupType:   pulumi.String("Label"),
+//				HostIdentifier:  pulumi.String("hostlable"),
+//				IamProjectName:  pulumi.String("default"),
+//				ServiceLogging:  pulumi.Bool(false),
+//				UpdateEndTime:   pulumi.String("02:00"),
+//				UpdateStartTime: pulumi.String("00:00"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = tls.NewHostGroup(ctx, "fooIp", &tls.HostGroupArgs{
+//				AutoUpdate:    pulumi.Bool(true),
+//				HostGroupName: pulumi.String("tfgroup-ip-1"),
+//				HostGroupType: pulumi.String("IP"),
+//				HostIpLists: pulumi.StringArray{
+//					pulumi.String("192.168.0.1"),
+//					pulumi.String("192.168.0.2"),
+//					pulumi.String("192.168.0.3"),
+//				},
+//				IamProjectName:  pulumi.String("default"),
+//				ServiceLogging:  pulumi.Bool(false),
+//				UpdateEndTime:   pulumi.String("02:00"),
+//				UpdateStartTime: pulumi.String("00:00"),
 //			})
 //			if err != nil {
 //				return err
@@ -53,10 +73,6 @@ import (
 type HostGroup struct {
 	pulumi.CustomResourceState
 
-	// The abnormal heartbeat status count of host.
-	AbnormalHeartbeatStatusCount pulumi.IntOutput `pulumi:"abnormalHeartbeatStatusCount"`
-	// The latest version of log collector.
-	AgentLatestVersion pulumi.StringOutput `pulumi:"agentLatestVersion"`
 	// Whether enable auto update.
 	AutoUpdate pulumi.BoolPtrOutput `pulumi:"autoUpdate"`
 	// The create time of host group.
@@ -75,8 +91,6 @@ type HostGroup struct {
 	IamProjectName pulumi.StringOutput `pulumi:"iamProjectName"`
 	// The modify time of host group.
 	ModifyTime pulumi.StringOutput `pulumi:"modifyTime"`
-	// The normal heartbeat status count of host.
-	NormalHeartbeatStatusCount pulumi.IntOutput `pulumi:"normalHeartbeatStatusCount"`
 	// The rule count of host.
 	RuleCount pulumi.IntOutput `pulumi:"ruleCount"`
 	// Whether enable service logging.
@@ -123,10 +137,6 @@ func GetHostGroup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering HostGroup resources.
 type hostGroupState struct {
-	// The abnormal heartbeat status count of host.
-	AbnormalHeartbeatStatusCount *int `pulumi:"abnormalHeartbeatStatusCount"`
-	// The latest version of log collector.
-	AgentLatestVersion *string `pulumi:"agentLatestVersion"`
 	// Whether enable auto update.
 	AutoUpdate *bool `pulumi:"autoUpdate"`
 	// The create time of host group.
@@ -145,8 +155,6 @@ type hostGroupState struct {
 	IamProjectName *string `pulumi:"iamProjectName"`
 	// The modify time of host group.
 	ModifyTime *string `pulumi:"modifyTime"`
-	// The normal heartbeat status count of host.
-	NormalHeartbeatStatusCount *int `pulumi:"normalHeartbeatStatusCount"`
 	// The rule count of host.
 	RuleCount *int `pulumi:"ruleCount"`
 	// Whether enable service logging.
@@ -158,10 +166,6 @@ type hostGroupState struct {
 }
 
 type HostGroupState struct {
-	// The abnormal heartbeat status count of host.
-	AbnormalHeartbeatStatusCount pulumi.IntPtrInput
-	// The latest version of log collector.
-	AgentLatestVersion pulumi.StringPtrInput
 	// Whether enable auto update.
 	AutoUpdate pulumi.BoolPtrInput
 	// The create time of host group.
@@ -180,8 +184,6 @@ type HostGroupState struct {
 	IamProjectName pulumi.StringPtrInput
 	// The modify time of host group.
 	ModifyTime pulumi.StringPtrInput
-	// The normal heartbeat status count of host.
-	NormalHeartbeatStatusCount pulumi.IntPtrInput
 	// The rule count of host.
 	RuleCount pulumi.IntPtrInput
 	// Whether enable service logging.
@@ -326,16 +328,6 @@ func (o HostGroupOutput) ToHostGroupOutputWithContext(ctx context.Context) HostG
 	return o
 }
 
-// The abnormal heartbeat status count of host.
-func (o HostGroupOutput) AbnormalHeartbeatStatusCount() pulumi.IntOutput {
-	return o.ApplyT(func(v *HostGroup) pulumi.IntOutput { return v.AbnormalHeartbeatStatusCount }).(pulumi.IntOutput)
-}
-
-// The latest version of log collector.
-func (o HostGroupOutput) AgentLatestVersion() pulumi.StringOutput {
-	return o.ApplyT(func(v *HostGroup) pulumi.StringOutput { return v.AgentLatestVersion }).(pulumi.StringOutput)
-}
-
 // Whether enable auto update.
 func (o HostGroupOutput) AutoUpdate() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *HostGroup) pulumi.BoolPtrOutput { return v.AutoUpdate }).(pulumi.BoolPtrOutput)
@@ -379,11 +371,6 @@ func (o HostGroupOutput) IamProjectName() pulumi.StringOutput {
 // The modify time of host group.
 func (o HostGroupOutput) ModifyTime() pulumi.StringOutput {
 	return o.ApplyT(func(v *HostGroup) pulumi.StringOutput { return v.ModifyTime }).(pulumi.StringOutput)
-}
-
-// The normal heartbeat status count of host.
-func (o HostGroupOutput) NormalHeartbeatStatusCount() pulumi.IntOutput {
-	return o.ApplyT(func(v *HostGroup) pulumi.IntOutput { return v.NormalHeartbeatStatusCount }).(pulumi.IntOutput)
 }
 
 // The rule count of host.

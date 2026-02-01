@@ -223,6 +223,24 @@ namespace Pulumi.Volcengine.Clb
         [Input("outputFile")]
         public string? OutputFile { get; set; }
 
+        /// <summary>
+        /// The protocol of the Listener. Values: `TCP`, `UDP`, `HTTP`, `HTTPS`.
+        /// </summary>
+        [Input("protocol")]
+        public string? Protocol { get; set; }
+
+        [Input("tags")]
+        private List<Inputs.GetListenersTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public List<Inputs.GetListenersTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new List<Inputs.GetListenersTagArgs>());
+            set => _tags = value;
+        }
+
         public GetListenersArgs()
         {
         }
@@ -267,6 +285,24 @@ namespace Pulumi.Volcengine.Clb
         [Input("outputFile")]
         public Input<string>? OutputFile { get; set; }
 
+        /// <summary>
+        /// The protocol of the Listener. Values: `TCP`, `UDP`, `HTTP`, `HTTPS`.
+        /// </summary>
+        [Input("protocol")]
+        public Input<string>? Protocol { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.GetListenersTagInputArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.GetListenersTagInputArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.GetListenersTagInputArgs>());
+            set => _tags = value;
+        }
+
         public GetListenersInvokeArgs()
         {
         }
@@ -290,9 +326,20 @@ namespace Pulumi.Volcengine.Clb
         /// The collection of Listener query.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetListenersListenerResult> Listeners;
+        /// <summary>
+        /// The id of the Clb.
+        /// </summary>
         public readonly string? LoadBalancerId;
         public readonly string? NameRegex;
         public readonly string? OutputFile;
+        /// <summary>
+        /// The protocol of the Listener.
+        /// </summary>
+        public readonly string? Protocol;
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetListenersTagResult> Tags;
         /// <summary>
         /// The total count of Listener query.
         /// </summary>
@@ -314,6 +361,10 @@ namespace Pulumi.Volcengine.Clb
 
             string? outputFile,
 
+            string? protocol,
+
+            ImmutableArray<Outputs.GetListenersTagResult> tags,
+
             int totalCount)
         {
             Id = id;
@@ -323,6 +374,8 @@ namespace Pulumi.Volcengine.Clb
             LoadBalancerId = loadBalancerId;
             NameRegex = nameRegex;
             OutputFile = outputFile;
+            Protocol = protocol;
+            Tags = tags;
             TotalCount = totalCount;
         }
     }
