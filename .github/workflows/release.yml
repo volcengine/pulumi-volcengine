@@ -61,8 +61,9 @@ jobs:
           gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
       - name: Run GoReleaser
-        uses: goreleaser/goreleaser-action@v3.0.0
+        uses: goreleaser/goreleaser-action@v6.4.0
         with:
+          distribution: goreleaser
           version: v2.13.3
           args: release --clean --parallelism=2
         env:
