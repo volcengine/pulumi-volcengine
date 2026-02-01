@@ -27,9 +27,34 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := tls.NewHost(ctx, "foo", &tls.HostArgs{
-//				HostGroupId: pulumi.String("fbea6619-7b0c-40f3-ac7e-45c63e3f676e"),
-//				Ip:          pulumi.String("10.180.50.18"),
+//			foo, err := tls.NewHostGroup(ctx, "foo", &tls.HostGroupArgs{
+//				HostGroupName: pulumi.String("tfgroup-ip-tf"),
+//				HostGroupType: pulumi.String("IP"),
+//				HostIpLists: pulumi.StringArray{
+//					pulumi.String("192.168.0.1"),
+//					pulumi.String("192.168.0.2"),
+//					pulumi.String("192.168.0.3"),
+//				},
+//				AutoUpdate:      pulumi.Bool(true),
+//				UpdateStartTime: pulumi.String("00:00"),
+//				UpdateEndTime:   pulumi.String("02:00"),
+//				ServiceLogging:  pulumi.Bool(false),
+//				IamProjectName:  pulumi.String("default"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// 删除指定 IP
+//			_, err = tls.NewHost(ctx, "deleteFoo", &tls.HostArgs{
+//				HostGroupId: foo.ID(),
+//				Ip:          pulumi.String("192.168.0.1"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// 删除异常机器
+//			_, err = tls.NewHost(ctx, "deleteAbnormal", &tls.HostArgs{
+//				HostGroupId: foo.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -42,18 +67,14 @@ import (
 //
 // ## Import
 //
-// Tls Host can be imported using the host_group_id:ip, e.g.
-//
-// ```sh
-// $ pulumi import volcengine:tls/host:Host default edf051ed-3c46-49:1.1.1.1
-// ```
+// The TlsHost is not support import.
 type Host struct {
 	pulumi.CustomResourceState
 
 	// The id of host group.
 	HostGroupId pulumi.StringOutput `pulumi:"hostGroupId"`
 	// The ip address.
-	Ip pulumi.StringOutput `pulumi:"ip"`
+	Ip pulumi.StringPtrOutput `pulumi:"ip"`
 }
 
 // NewHost registers a new resource with the given unique name, arguments, and options.
@@ -65,9 +86,6 @@ func NewHost(ctx *pulumi.Context,
 
 	if args.HostGroupId == nil {
 		return nil, errors.New("invalid value for required argument 'HostGroupId'")
-	}
-	if args.Ip == nil {
-		return nil, errors.New("invalid value for required argument 'Ip'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Host
@@ -113,7 +131,7 @@ type hostArgs struct {
 	// The id of host group.
 	HostGroupId string `pulumi:"hostGroupId"`
 	// The ip address.
-	Ip string `pulumi:"ip"`
+	Ip *string `pulumi:"ip"`
 }
 
 // The set of arguments for constructing a Host resource.
@@ -121,7 +139,7 @@ type HostArgs struct {
 	// The id of host group.
 	HostGroupId pulumi.StringInput
 	// The ip address.
-	Ip pulumi.StringInput
+	Ip pulumi.StringPtrInput
 }
 
 func (HostArgs) ElementType() reflect.Type {
@@ -217,8 +235,8 @@ func (o HostOutput) HostGroupId() pulumi.StringOutput {
 }
 
 // The ip address.
-func (o HostOutput) Ip() pulumi.StringOutput {
-	return o.ApplyT(func(v *Host) pulumi.StringOutput { return v.Ip }).(pulumi.StringOutput)
+func (o HostOutput) Ip() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Host) pulumi.StringPtrOutput { return v.Ip }).(pulumi.StringPtrOutput)
 }
 
 type HostArrayOutput struct{ *pulumi.OutputState }

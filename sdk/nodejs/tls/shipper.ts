@@ -22,21 +22,20 @@ import * as utilities from "../utilities";
  *             keys: [
  *                 "__content",
  *                 "__pod_name__",
- *                 "__path__",
- *                 "__tf-test__",
  *             ],
  *         },
  *     },
+ *     roleTrn: "",
  *     shipperEndTime: 1751255700021,
- *     shipperName: "tf-test",
+ *     shipperName: "tf-test-modify",
  *     shipperStartTime: 1750737324521,
  *     shipperType: "tos",
- *     topicId: "8ba48bd7-2493-4300-b1d0-cb7xxxxxx",
+ *     topicId: "8ba48bd7-2493-4300-b1d0-cb760b89e51b",
  *     tosShipperInfo: {
  *         bucket: "tf-test",
  *         compress: "snappy",
- *         interval: 100,
- *         maxSize: 100,
+ *         interval: 200,
+ *         maxSize: 50,
  *         partitionFormat: "%Y/%m/%d/%H/%M",
  *         prefix: "terraform_1.9.4_linux_amd64.zip",
  *     },
@@ -88,6 +87,10 @@ export class Shipper extends pulumi.CustomResource {
      */
     public readonly kafkaShipperInfo!: pulumi.Output<outputs.tls.ShipperKafkaShipperInfo>;
     /**
+     * The role trn.
+     */
+    public readonly roleTrn!: pulumi.Output<string | undefined>;
+    /**
      * Delivery end time, millisecond timestamp. If not configured, it will keep delivering. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
      */
     public readonly shipperEndTime!: pulumi.Output<number | undefined>;
@@ -131,6 +134,7 @@ export class Shipper extends pulumi.CustomResource {
             const state = argsOrState as ShipperState | undefined;
             resourceInputs["contentInfo"] = state ? state.contentInfo : undefined;
             resourceInputs["kafkaShipperInfo"] = state ? state.kafkaShipperInfo : undefined;
+            resourceInputs["roleTrn"] = state ? state.roleTrn : undefined;
             resourceInputs["shipperEndTime"] = state ? state.shipperEndTime : undefined;
             resourceInputs["shipperName"] = state ? state.shipperName : undefined;
             resourceInputs["shipperStartTime"] = state ? state.shipperStartTime : undefined;
@@ -151,6 +155,7 @@ export class Shipper extends pulumi.CustomResource {
             }
             resourceInputs["contentInfo"] = args ? args.contentInfo : undefined;
             resourceInputs["kafkaShipperInfo"] = args ? args.kafkaShipperInfo : undefined;
+            resourceInputs["roleTrn"] = args ? args.roleTrn : undefined;
             resourceInputs["shipperEndTime"] = args ? args.shipperEndTime : undefined;
             resourceInputs["shipperName"] = args ? args.shipperName : undefined;
             resourceInputs["shipperStartTime"] = args ? args.shipperStartTime : undefined;
@@ -176,6 +181,10 @@ export interface ShipperState {
      * JSON format log content configuration.
      */
     kafkaShipperInfo?: pulumi.Input<inputs.tls.ShipperKafkaShipperInfo>;
+    /**
+     * The role trn.
+     */
+    roleTrn?: pulumi.Input<string>;
     /**
      * Delivery end time, millisecond timestamp. If not configured, it will keep delivering. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
      */
@@ -218,6 +227,10 @@ export interface ShipperArgs {
      * JSON format log content configuration.
      */
     kafkaShipperInfo?: pulumi.Input<inputs.tls.ShipperKafkaShipperInfo>;
+    /**
+     * The role trn.
+     */
+    roleTrn?: pulumi.Input<string>;
     /**
      * Delivery end time, millisecond timestamp. If not configured, it will keep delivering. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
      */

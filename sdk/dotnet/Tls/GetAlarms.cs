@@ -23,15 +23,12 @@ namespace Pulumi.Volcengine.Tls
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Tls.GetAlarms.Invoke(new()
-        ///     {
-        ///         ProjectId = "cc44f8b6-0328-4622-b043-023fca735cd4",
-        ///     });
+        ///     var @default = Volcengine.Tls.GetAlarms.Invoke();
         /// 
         /// });
         /// ```
         /// </summary>
-        public static Task<GetAlarmsResult> InvokeAsync(GetAlarmsArgs args, InvokeOptions? options = null)
+        public static Task<GetAlarmsResult> InvokeAsync(GetAlarmsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAlarmsResult>("volcengine:tls/getAlarms:getAlarms", args ?? new GetAlarmsArgs(), options.WithDefaults());
 
         /// <summary>
@@ -46,15 +43,12 @@ namespace Pulumi.Volcengine.Tls
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Tls.GetAlarms.Invoke(new()
-        ///     {
-        ///         ProjectId = "cc44f8b6-0328-4622-b043-023fca735cd4",
-        ///     });
+        ///     var @default = Volcengine.Tls.GetAlarms.Invoke();
         /// 
         /// });
         /// ```
         /// </summary>
-        public static Output<GetAlarmsResult> Invoke(GetAlarmsInvokeArgs args, InvokeOptions? options = null)
+        public static Output<GetAlarmsResult> Invoke(GetAlarmsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAlarmsResult>("volcengine:tls/getAlarms:getAlarms", args ?? new GetAlarmsInvokeArgs(), options.WithDefaults());
     }
 
@@ -82,8 +76,8 @@ namespace Pulumi.Volcengine.Tls
         /// <summary>
         /// The project id.
         /// </summary>
-        [Input("projectId", required: true)]
-        public string ProjectId { get; set; } = null!;
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
 
         /// <summary>
         /// The status.
@@ -132,8 +126,8 @@ namespace Pulumi.Volcengine.Tls
         /// <summary>
         /// The project id.
         /// </summary>
-        [Input("projectId", required: true)]
-        public Input<string> ProjectId { get; set; } = null!;
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// The status.
@@ -183,7 +177,7 @@ namespace Pulumi.Volcengine.Tls
         /// <summary>
         /// The project id.
         /// </summary>
-        public readonly string ProjectId;
+        public readonly string? ProjectId;
         /// <summary>
         /// Whether to enable the alert policy. The default value is true, that is, on.
         /// </summary>
@@ -213,7 +207,7 @@ namespace Pulumi.Volcengine.Tls
 
             string? outputFile,
 
-            string projectId,
+            string? projectId,
 
             bool? status,
 

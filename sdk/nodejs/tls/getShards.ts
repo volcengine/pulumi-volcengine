@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  *
  * const default = volcengine.tls.getShards({
- *     topicId: "edf051ed-3c46-49ba-9339-bea628fedc15",
+ *     topicId: "b600dc34-503f-42fc-8e32-953af55463d1",
  * });
  * ```
  */
@@ -73,7 +73,7 @@ export interface GetShardsResult {
  * import * as volcengine from "@pulumi/volcengine";
  *
  * const default = volcengine.tls.getShards({
- *     topicId: "edf051ed-3c46-49ba-9339-bea628fedc15",
+ *     topicId: "b600dc34-503f-42fc-8e32-953af55463d1",
  * });
  * ```
  */

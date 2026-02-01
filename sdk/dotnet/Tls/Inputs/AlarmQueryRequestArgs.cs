@@ -19,6 +19,12 @@ namespace Pulumi.Volcengine.Tls.Inputs
         public Input<int> EndTimeOffset { get; set; } = null!;
 
         /// <summary>
+        /// The end time offset unit.
+        /// </summary>
+        [Input("endTimeOffsetUnit")]
+        public Input<string>? EndTimeOffsetUnit { get; set; }
+
+        /// <summary>
         /// Alarm object sequence number; increments from 1.
         /// </summary>
         [Input("number", required: true)]
@@ -37,10 +43,28 @@ namespace Pulumi.Volcengine.Tls.Inputs
         public Input<int> StartTimeOffset { get; set; } = null!;
 
         /// <summary>
+        /// The start time offset unit.
+        /// </summary>
+        [Input("startTimeOffsetUnit")]
+        public Input<string>? StartTimeOffsetUnit { get; set; }
+
+        /// <summary>
+        /// The time span type.
+        /// </summary>
+        [Input("timeSpanType")]
+        public Input<string>? TimeSpanType { get; set; }
+
+        /// <summary>
         /// The id of the topic.
         /// </summary>
         [Input("topicId", required: true)]
         public Input<string> TopicId { get; set; } = null!;
+
+        /// <summary>
+        /// The truncated time.
+        /// </summary>
+        [Input("truncatedTime")]
+        public Input<string>? TruncatedTime { get; set; }
 
         public AlarmQueryRequestArgs()
         {

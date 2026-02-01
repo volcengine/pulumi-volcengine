@@ -21,10 +21,34 @@ namespace Pulumi.Volcengine.Tls
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var foo = new Volcengine.Tls.Host("foo", new()
+    ///     var foo = new Volcengine.Tls.HostGroup("foo", new()
     ///     {
-    ///         HostGroupId = "fbea6619-7b0c-40f3-ac7e-45c63e3f676e",
-    ///         Ip = "10.180.50.18",
+    ///         HostGroupName = "tfgroup-ip-tf",
+    ///         HostGroupType = "IP",
+    ///         HostIpLists = new[]
+    ///         {
+    ///             "192.168.0.1",
+    ///             "192.168.0.2",
+    ///             "192.168.0.3",
+    ///         },
+    ///         AutoUpdate = true,
+    ///         UpdateStartTime = "00:00",
+    ///         UpdateEndTime = "02:00",
+    ///         ServiceLogging = false,
+    ///         IamProjectName = "default",
+    ///     });
+    /// 
+    ///     // 删除指定 IP
+    ///     var deleteFoo = new Volcengine.Tls.Host("deleteFoo", new()
+    ///     {
+    ///         HostGroupId = foo.Id,
+    ///         Ip = "192.168.0.1",
+    ///     });
+    /// 
+    ///     // 删除异常机器
+    ///     var deleteAbnormal = new Volcengine.Tls.Host("deleteAbnormal", new()
+    ///     {
+    ///         HostGroupId = foo.Id,
     ///     });
     /// 
     /// });
@@ -32,11 +56,7 @@ namespace Pulumi.Volcengine.Tls
     /// 
     /// ## Import
     /// 
-    /// Tls Host can be imported using the host_group_id:ip, e.g.
-    /// 
-    /// ```sh
-    /// $ pulumi import volcengine:tls/host:Host default edf051ed-3c46-49:1.1.1.1
-    /// ```
+    /// The TlsHost is not support import.
     /// </summary>
     [VolcengineResourceType("volcengine:tls/host:Host")]
     public partial class Host : global::Pulumi.CustomResource
@@ -51,7 +71,7 @@ namespace Pulumi.Volcengine.Tls
         /// The ip address.
         /// </summary>
         [Output("ip")]
-        public Output<string> Ip { get; private set; } = null!;
+        public Output<string?> Ip { get; private set; } = null!;
 
 
         /// <summary>
@@ -109,8 +129,8 @@ namespace Pulumi.Volcengine.Tls
         /// <summary>
         /// The ip address.
         /// </summary>
-        [Input("ip", required: true)]
-        public Input<string> Ip { get; set; } = null!;
+        [Input("ip")]
+        public Input<string>? Ip { get; set; }
 
         public HostArgs()
         {

@@ -57,6 +57,15 @@ namespace Pulumi.Volcengine.Clb
     ///         LoadBalancerId = fooClb.Id,
     ///         ServerGroupName = "acc-test-create",
     ///         Description = "hello demo11",
+    ///         Type = "ip",
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Clb.Inputs.ServerGroupTagArgs
+    ///             {
+    ///                 Key = "k1",
+    ///                 Value = "v1",
+    ///             },
+    ///         },
     ///     });
     /// 
     /// });
@@ -78,6 +87,12 @@ namespace Pulumi.Volcengine.Clb
         /// </summary>
         [Output("addressIpVersion")]
         public Output<string?> AddressIpVersion { get; private set; } = null!;
+
+        /// <summary>
+        /// Whether to enable full port forwarding. This feature is in beta.
+        /// </summary>
+        [Output("anyPortEnabled")]
+        public Output<bool?> AnyPortEnabled { get; private set; } = null!;
 
         /// <summary>
         /// The description of ServerGroup.
@@ -102,6 +117,18 @@ namespace Pulumi.Volcengine.Clb
         /// </summary>
         [Output("serverGroupName")]
         public Output<string> ServerGroupName { get; private set; } = null!;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<Outputs.ServerGroupTag>> Tags { get; private set; } = null!;
+
+        /// <summary>
+        /// The type of the ServerGroup. Valid values: `instance`, `ip`. Default is `instance`.
+        /// </summary>
+        [Output("type")]
+        public Output<string?> Type { get; private set; } = null!;
 
 
         /// <summary>
@@ -157,6 +184,12 @@ namespace Pulumi.Volcengine.Clb
         public Input<string>? AddressIpVersion { get; set; }
 
         /// <summary>
+        /// Whether to enable full port forwarding. This feature is in beta.
+        /// </summary>
+        [Input("anyPortEnabled")]
+        public Input<bool>? AnyPortEnabled { get; set; }
+
+        /// <summary>
         /// The description of ServerGroup.
         /// </summary>
         [Input("description")]
@@ -180,6 +213,24 @@ namespace Pulumi.Volcengine.Clb
         [Input("serverGroupName")]
         public Input<string>? ServerGroupName { get; set; }
 
+        [Input("tags")]
+        private InputList<Inputs.ServerGroupTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.ServerGroupTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.ServerGroupTagArgs>());
+            set => _tags = value;
+        }
+
+        /// <summary>
+        /// The type of the ServerGroup. Valid values: `instance`, `ip`. Default is `instance`.
+        /// </summary>
+        [Input("type")]
+        public Input<string>? Type { get; set; }
+
         public ServerGroupArgs()
         {
         }
@@ -193,6 +244,12 @@ namespace Pulumi.Volcengine.Clb
         /// </summary>
         [Input("addressIpVersion")]
         public Input<string>? AddressIpVersion { get; set; }
+
+        /// <summary>
+        /// Whether to enable full port forwarding. This feature is in beta.
+        /// </summary>
+        [Input("anyPortEnabled")]
+        public Input<bool>? AnyPortEnabled { get; set; }
 
         /// <summary>
         /// The description of ServerGroup.
@@ -217,6 +274,24 @@ namespace Pulumi.Volcengine.Clb
         /// </summary>
         [Input("serverGroupName")]
         public Input<string>? ServerGroupName { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.ServerGroupTagGetArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.ServerGroupTagGetArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.ServerGroupTagGetArgs>());
+            set => _tags = value;
+        }
+
+        /// <summary>
+        /// The type of the ServerGroup. Valid values: `instance`, `ip`. Default is `instance`.
+        /// </summary>
+        [Input("type")]
+        public Input<string>? Type { get; set; }
 
         public ServerGroupState()
         {

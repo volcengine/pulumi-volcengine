@@ -14,6 +14,10 @@ namespace Pulumi.Volcengine.Clb.Outputs
     public sealed class GetAclsAclResult
     {
         /// <summary>
+        /// The acl entry list of the Acl.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetAclsAclAclEntryResult> AclEntries;
+        /// <summary>
         /// The count of acl entry.
         /// </summary>
         public readonly int AclEntryCount;
@@ -38,6 +42,10 @@ namespace Pulumi.Volcengine.Clb.Outputs
         /// </summary>
         public readonly string Id;
         /// <summary>
+        /// The listener details of the Acl.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetAclsAclListenerDetailResult> ListenerDetails;
+        /// <summary>
         /// The listeners of Acl.
         /// </summary>
         public readonly ImmutableArray<string> Listeners;
@@ -46,12 +54,26 @@ namespace Pulumi.Volcengine.Clb.Outputs
         /// </summary>
         public readonly string ProjectName;
         /// <summary>
+        /// Whether the Acl is managed by service.
+        /// </summary>
+        public readonly bool ServiceManaged;
+        /// <summary>
+        /// The status of the Acl.
+        /// </summary>
+        public readonly string Status;
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetAclsAclTagResult> Tags;
+        /// <summary>
         /// Update time of Acl.
         /// </summary>
         public readonly string UpdateTime;
 
         [OutputConstructor]
         private GetAclsAclResult(
+            ImmutableArray<Outputs.GetAclsAclAclEntryResult> aclEntries,
+
             int aclEntryCount,
 
             string aclId,
@@ -64,20 +86,33 @@ namespace Pulumi.Volcengine.Clb.Outputs
 
             string id,
 
+            ImmutableArray<Outputs.GetAclsAclListenerDetailResult> listenerDetails,
+
             ImmutableArray<string> listeners,
 
             string projectName,
 
+            bool serviceManaged,
+
+            string status,
+
+            ImmutableArray<Outputs.GetAclsAclTagResult> tags,
+
             string updateTime)
         {
+            AclEntries = aclEntries;
             AclEntryCount = aclEntryCount;
             AclId = aclId;
             AclName = aclName;
             CreateTime = createTime;
             Description = description;
             Id = id;
+            ListenerDetails = listenerDetails;
             Listeners = listeners;
             ProjectName = projectName;
+            ServiceManaged = serviceManaged;
+            Status = status;
+            Tags = tags;
             UpdateTime = updateTime;
         }
     }

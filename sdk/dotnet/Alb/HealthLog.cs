@@ -9,6 +9,33 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Alb
 {
+    /// <summary>
+    /// Provides a resource to manage alb health log
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Volcengine = Pulumi.Volcengine;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // Enable health check log collection
+    ///     var example = new Volcengine.Alb.HealthLog("example", new()
+    ///     {
+    ///         LoadBalancerId = "alb-bdchexlt87pc8dv40nbr6mu7",
+    ///         ProjectId = "29018d87-858b-4d24-bb8e-5ac958fa5ca5",
+    ///         TopicId = "cd507e58-64d2-48e3-9e98-f384430d773a",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// The AlbHealthLog is not support import.
+    /// </summary>
     [VolcengineResourceType("volcengine:alb/healthLog:HealthLog")]
     public partial class HealthLog : global::Pulumi.CustomResource
     {

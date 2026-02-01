@@ -64,10 +64,22 @@ namespace Pulumi.Volcengine.Alb
     public partial class ListenerDomainExtension : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Server certificate used for the domain name.
+        /// The server certificate ID used by the domain name. Valid when the certificate_source is `cert_center`.
+        /// </summary>
+        [Output("certCenterCertificateId")]
+        public Output<string?> CertCenterCertificateId { get; private set; } = null!;
+
+        /// <summary>
+        /// Server certificate used for the domain name. Valid when the certificate_source is `alb`.
         /// </summary>
         [Output("certificateId")]
-        public Output<string> CertificateId { get; private set; } = null!;
+        public Output<string?> CertificateId { get; private set; } = null!;
+
+        /// <summary>
+        /// The source of the certificate. Valid values: `alb`, `cert_center`, `pca_leaf`. Default is `alb`.
+        /// </summary>
+        [Output("certificateSource")]
+        public Output<string?> CertificateSource { get; private set; } = null!;
 
         /// <summary>
         /// The domain name. The maximum number of associated domain names for an HTTPS listener is 20, with a value range of 1 to 20.
@@ -86,6 +98,12 @@ namespace Pulumi.Volcengine.Alb
         /// </summary>
         [Output("listenerId")]
         public Output<string> ListenerId { get; private set; } = null!;
+
+        /// <summary>
+        /// The server certificate ID used by the domain name. Valid when the certificate source is `pca_leaf`.
+        /// </summary>
+        [Output("pcaLeafCertificateId")]
+        public Output<string?> PcaLeafCertificateId { get; private set; } = null!;
 
 
         /// <summary>
@@ -135,10 +153,22 @@ namespace Pulumi.Volcengine.Alb
     public sealed class ListenerDomainExtensionArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Server certificate used for the domain name.
+        /// The server certificate ID used by the domain name. Valid when the certificate_source is `cert_center`.
         /// </summary>
-        [Input("certificateId", required: true)]
-        public Input<string> CertificateId { get; set; } = null!;
+        [Input("certCenterCertificateId")]
+        public Input<string>? CertCenterCertificateId { get; set; }
+
+        /// <summary>
+        /// Server certificate used for the domain name. Valid when the certificate_source is `alb`.
+        /// </summary>
+        [Input("certificateId")]
+        public Input<string>? CertificateId { get; set; }
+
+        /// <summary>
+        /// The source of the certificate. Valid values: `alb`, `cert_center`, `pca_leaf`. Default is `alb`.
+        /// </summary>
+        [Input("certificateSource")]
+        public Input<string>? CertificateSource { get; set; }
 
         /// <summary>
         /// The domain name. The maximum number of associated domain names for an HTTPS listener is 20, with a value range of 1 to 20.
@@ -152,6 +182,12 @@ namespace Pulumi.Volcengine.Alb
         [Input("listenerId", required: true)]
         public Input<string> ListenerId { get; set; } = null!;
 
+        /// <summary>
+        /// The server certificate ID used by the domain name. Valid when the certificate source is `pca_leaf`.
+        /// </summary>
+        [Input("pcaLeafCertificateId")]
+        public Input<string>? PcaLeafCertificateId { get; set; }
+
         public ListenerDomainExtensionArgs()
         {
         }
@@ -161,10 +197,22 @@ namespace Pulumi.Volcengine.Alb
     public sealed class ListenerDomainExtensionState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Server certificate used for the domain name.
+        /// The server certificate ID used by the domain name. Valid when the certificate_source is `cert_center`.
+        /// </summary>
+        [Input("certCenterCertificateId")]
+        public Input<string>? CertCenterCertificateId { get; set; }
+
+        /// <summary>
+        /// Server certificate used for the domain name. Valid when the certificate_source is `alb`.
         /// </summary>
         [Input("certificateId")]
         public Input<string>? CertificateId { get; set; }
+
+        /// <summary>
+        /// The source of the certificate. Valid values: `alb`, `cert_center`, `pca_leaf`. Default is `alb`.
+        /// </summary>
+        [Input("certificateSource")]
+        public Input<string>? CertificateSource { get; set; }
 
         /// <summary>
         /// The domain name. The maximum number of associated domain names for an HTTPS listener is 20, with a value range of 1 to 20.
@@ -183,6 +231,12 @@ namespace Pulumi.Volcengine.Alb
         /// </summary>
         [Input("listenerId")]
         public Input<string>? ListenerId { get; set; }
+
+        /// <summary>
+        /// The server certificate ID used by the domain name. Valid when the certificate source is `pca_leaf`.
+        /// </summary>
+        [Input("pcaLeafCertificateId")]
+        public Input<string>? PcaLeafCertificateId { get; set; }
 
         public ListenerDomainExtensionState()
         {

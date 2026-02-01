@@ -130,7 +130,24 @@ class HealthLog(pulumi.CustomResource):
                  topic_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a HealthLog resource with the given unique name, props, and options.
+        Provides a resource to manage alb health log
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_volcengine as volcengine
+
+        # Enable health check log collection
+        example = volcengine.alb.HealthLog("example",
+            load_balancer_id="alb-bdchexlt87pc8dv40nbr6mu7",
+            project_id="29018d87-858b-4d24-bb8e-5ac958fa5ca5",
+            topic_id="cd507e58-64d2-48e3-9e98-f384430d773a")
+        ```
+
+        ## Import
+
+        The AlbHealthLog is not support import.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] load_balancer_id: The ID of the LoadBalancer.
@@ -144,7 +161,24 @@ class HealthLog(pulumi.CustomResource):
                  args: HealthLogArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a HealthLog resource with the given unique name, props, and options.
+        Provides a resource to manage alb health log
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_volcengine as volcengine
+
+        # Enable health check log collection
+        example = volcengine.alb.HealthLog("example",
+            load_balancer_id="alb-bdchexlt87pc8dv40nbr6mu7",
+            project_id="29018d87-858b-4d24-bb8e-5ac958fa5ca5",
+            topic_id="cd507e58-64d2-48e3-9e98-f384430d773a")
+        ```
+
+        ## Import
+
+        The AlbHealthLog is not support import.
+
         :param str resource_name: The name of the resource.
         :param HealthLogArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

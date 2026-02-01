@@ -25,8 +25,8 @@ namespace Pulumi.Volcengine.Tls
         /// {
         ///     var @default = Volcengine.Tls.GetTopics.Invoke(new()
         ///     {
-        ///         ProjectId = "e020c978-4f05-40e1-9167-0113d3ef****",
-        ///         TopicId = "edf051ed-3c46-49ba-9339-bea628fe****",
+        ///         ProjectId = "bdb87e4d-7dad-4b96-ac43-e1b09e9dc8ac",
+        ///         TopicId = "9b756385-1dfb-4306-a094-0c88e04b34a5",
         ///     });
         /// 
         /// });
@@ -49,8 +49,8 @@ namespace Pulumi.Volcengine.Tls
         /// {
         ///     var @default = Volcengine.Tls.GetTopics.Invoke(new()
         ///     {
-        ///         ProjectId = "e020c978-4f05-40e1-9167-0113d3ef****",
-        ///         TopicId = "edf051ed-3c46-49ba-9339-bea628fe****",
+        ///         ProjectId = "bdb87e4d-7dad-4b96-ac43-e1b09e9dc8ac",
+        ///         TopicId = "9b756385-1dfb-4306-a094-0c88e04b34a5",
         ///     });
         /// 
         /// });
@@ -63,12 +63,6 @@ namespace Pulumi.Volcengine.Tls
 
     public sealed class GetTopicsArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// Whether to match accurately when filtering based on TopicName.
-        /// </summary>
-        [Input("isFullName")]
-        public bool? IsFullName { get; set; }
-
         /// <summary>
         /// A Name Regex of tls topic.
         /// </summary>
@@ -119,12 +113,6 @@ namespace Pulumi.Volcengine.Tls
 
     public sealed class GetTopicsInvokeArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// Whether to match accurately when filtering based on TopicName.
-        /// </summary>
-        [Input("isFullName")]
-        public Input<bool>? IsFullName { get; set; }
-
         /// <summary>
         /// A Name Regex of tls topic.
         /// </summary>
@@ -181,7 +169,6 @@ namespace Pulumi.Volcengine.Tls
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
-        public readonly bool? IsFullName;
         public readonly string? NameRegex;
         public readonly string? OutputFile;
         /// <summary>
@@ -213,8 +200,6 @@ namespace Pulumi.Volcengine.Tls
         private GetTopicsResult(
             string id,
 
-            bool? isFullName,
-
             string? nameRegex,
 
             string? outputFile,
@@ -232,7 +217,6 @@ namespace Pulumi.Volcengine.Tls
             int totalCount)
         {
             Id = id;
-            IsFullName = isFullName;
             NameRegex = nameRegex;
             OutputFile = outputFile;
             ProjectId = projectId;

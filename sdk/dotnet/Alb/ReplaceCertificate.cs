@@ -9,6 +9,63 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Volcengine.Alb
 {
+    /// <summary>
+    /// Provides a resource to manage alb replace certificate
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.IO;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Volcengine = Pulumi.Volcengine;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // replace server certificate
+    ///     var foo1 = new Volcengine.Alb.ReplaceCertificate("foo1", new()
+    ///     {
+    ///         CertificateType = "server",
+    ///         OldCertificateId = "cert-bdde0znk524g8dv40or*****",
+    ///         UpdateMode = "new",
+    ///         CertificateName = "replaced-server-cert",
+    ///         Description = "Replaced server certificate",
+    ///         ProjectName = "default",
+    ///         PublicKey = File.ReadAllText("/path/server_certificate.pem"),
+    ///         PrivateKey = File.ReadAllText("/path/private_key_rsa.pem"),
+    ///     });
+    /// 
+    ///     var foo2 = new Volcengine.Alb.ReplaceCertificate("foo2", new()
+    ///     {
+    ///         CertificateType = "server",
+    ///         OldCertificateId = "cert-1pf4a8k8tokcg845wfar*****",
+    ///         UpdateMode = "stock",
+    ///         CertificateSource = "alb",
+    ///         CertificateId = "cert-bdde0znk524g8dv40or*****",
+    ///         CertificateName = "replaced-server-cert-stock",
+    ///         Description = "Replaced server certificate (stock)",
+    ///         ProjectName = "default",
+    ///     });
+    /// 
+    ///     // replace ca certificate
+    ///     var foo3 = new Volcengine.Alb.ReplaceCertificate("foo3", new()
+    ///     {
+    ///         CertificateType = "ca",
+    ///         OldCertificateId = "cert-xoekc6lpu9s054ov5eo*****",
+    ///         UpdateMode = "new",
+    ///         CertificateName = "acc-test-replace",
+    ///         CaCertificate = File.ReadAllText("/path/server_certificate.pem"),
+    ///         Description = "acc-test-replace",
+    ///         ProjectName = "default",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// The AlbReplaceCertificate is not support import.
+    /// </summary>
     [VolcengineResourceType("volcengine:alb/replaceCertificate:ReplaceCertificate")]
     public partial class ReplaceCertificate : global::Pulumi.CustomResource
     {
@@ -79,8 +136,7 @@ namespace Pulumi.Volcengine.Alb
         public Output<string?> PublicKey { get; private set; } = null!;
 
         /// <summary>
-        /// The mode of certificate replacement. Valid values: 'new' for uploading new certificate, 'stock' for using existing
-        /// certificate.
+        /// The mode of certificate replacement. Valid values: 'new' for uploading new certificate, 'stock' for using existing certificate.
         /// </summary>
         [Output("updateMode")]
         public Output<string> UpdateMode { get; private set; } = null!;
@@ -213,8 +269,7 @@ namespace Pulumi.Volcengine.Alb
         public Input<string>? PublicKey { get; set; }
 
         /// <summary>
-        /// The mode of certificate replacement. Valid values: 'new' for uploading new certificate, 'stock' for using existing
-        /// certificate.
+        /// The mode of certificate replacement. Valid values: 'new' for uploading new certificate, 'stock' for using existing certificate.
         /// </summary>
         [Input("updateMode", required: true)]
         public Input<string> UpdateMode { get; set; } = null!;
@@ -304,8 +359,7 @@ namespace Pulumi.Volcengine.Alb
         public Input<string>? PublicKey { get; set; }
 
         /// <summary>
-        /// The mode of certificate replacement. Valid values: 'new' for uploading new certificate, 'stock' for using existing
-        /// certificate.
+        /// The mode of certificate replacement. Valid values: 'new' for uploading new certificate, 'stock' for using existing certificate.
         /// </summary>
         [Input("updateMode")]
         public Input<string>? UpdateMode { get; set; }

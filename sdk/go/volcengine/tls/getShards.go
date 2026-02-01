@@ -27,7 +27,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := tls.GetShards(ctx, &tls.GetShardsArgs{
-//				TopicId: "edf051ed-3c46-49ba-9339-bea628fedc15",
+//				TopicId: "b600dc34-503f-42fc-8e32-953af55463d1",
 //			}, nil)
 //			if err != nil {
 //				return err

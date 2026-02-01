@@ -14,9 +14,17 @@ namespace Pulumi.Volcengine.Tls.Outputs
     public sealed class TopicsTlsTopicResult
     {
         /// <summary>
+        /// Archive storage duration, valid when enable_hot_ttl is true.
+        /// </summary>
+        public readonly int ArchiveTtl;
+        /// <summary>
         /// Whether to enable automatic partition splitting function of the tls topic.
         /// </summary>
         public readonly bool AutoSplit;
+        /// <summary>
+        /// Infrequent storage duration, valid when enable_hot_ttl is true.
+        /// </summary>
+        public readonly int ColdTtl;
         /// <summary>
         /// The create time of the tls topic.
         /// </summary>
@@ -26,13 +34,29 @@ namespace Pulumi.Volcengine.Tls.Outputs
         /// </summary>
         public readonly string Description;
         /// <summary>
+        /// Whether to enable tiered storage.
+        /// </summary>
+        public readonly bool EnableHotTtl;
+        /// <summary>
         /// Whether to enable WebTracking function of the tls topic.
         /// </summary>
         public readonly bool EnableTracking;
         /// <summary>
+        /// Data encryption configuration.
+        /// </summary>
+        public readonly Outputs.TopicsTlsTopicEncryptConfResult EncryptConf;
+        /// <summary>
+        /// Standard storage duration, valid when enable_hot_ttl is true.
+        /// </summary>
+        public readonly int HotTtl;
+        /// <summary>
         /// The ID of the tls topic.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Whether to enable the function of recording public IP.
+        /// </summary>
+        public readonly bool LogPublicIp;
         /// <summary>
         /// The max count of shards in the tls topic.
         /// </summary>
@@ -76,15 +100,27 @@ namespace Pulumi.Volcengine.Tls.Outputs
 
         [OutputConstructor]
         private TopicsTlsTopicResult(
+            int archiveTtl,
+
             bool autoSplit,
+
+            int coldTtl,
 
             string createTime,
 
             string description,
 
+            bool enableHotTtl,
+
             bool enableTracking,
 
+            Outputs.TopicsTlsTopicEncryptConfResult encryptConf,
+
+            int hotTtl,
+
             string id,
+
+            bool logPublicIp,
 
             int maxSplitShard,
 
@@ -106,11 +142,17 @@ namespace Pulumi.Volcengine.Tls.Outputs
 
             int ttl)
         {
+            ArchiveTtl = archiveTtl;
             AutoSplit = autoSplit;
+            ColdTtl = coldTtl;
             CreateTime = createTime;
             Description = description;
+            EnableHotTtl = enableHotTtl;
             EnableTracking = enableTracking;
+            EncryptConf = encryptConf;
+            HotTtl = hotTtl;
             Id = id;
+            LogPublicIp = logPublicIp;
             MaxSplitShard = maxSplitShard;
             ModifyTime = modifyTime;
             ProjectId = projectId;

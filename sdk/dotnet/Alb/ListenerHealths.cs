@@ -12,9 +12,61 @@ namespace Pulumi.Volcengine.Alb
     [Obsolete(@"volcengine.alb.ListenerHealths has been deprecated in favor of volcengine.alb.getListenerHealths")]
     public static class ListenerHealths
     {
+        /// <summary>
+        /// Use this data source to query detailed information of alb listener healths
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Volcengine = Pulumi.Volcengine;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Volcengine.Alb.GetListenerHealths.Invoke(new()
+        ///     {
+        ///         ListenerIds = new[]
+        ///         {
+        ///             "lsn-xoetdjk3dzwg54ov5ewpam7c",
+        ///             "lsn-bdcxfof3fy808dv40ofappua",
+        ///         },
+        ///         OnlyUnHealthy = true,
+        ///         ProjectName = "default",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
         public static Task<ListenerHealthsResult> InvokeAsync(ListenerHealthsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<ListenerHealthsResult>("volcengine:alb/listenerHealths:ListenerHealths", args ?? new ListenerHealthsArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Use this data source to query detailed information of alb listener healths
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Volcengine = Pulumi.Volcengine;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Volcengine.Alb.GetListenerHealths.Invoke(new()
+        ///     {
+        ///         ListenerIds = new[]
+        ///         {
+        ///             "lsn-xoetdjk3dzwg54ov5ewpam7c",
+        ///             "lsn-bdcxfof3fy808dv40ofappua",
+        ///         },
+        ///         OnlyUnHealthy = true,
+        ///         ProjectName = "default",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
         public static Output<ListenerHealthsResult> Invoke(ListenerHealthsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<ListenerHealthsResult>("volcengine:alb/listenerHealths:ListenerHealths", args ?? new ListenerHealthsInvokeArgs(), options.WithDefaults());
     }
@@ -24,18 +76,31 @@ namespace Pulumi.Volcengine.Alb
     {
         [Input("listenerIds", required: true)]
         private List<string>? _listenerIds;
+
+        /// <summary>
+        /// A list of Listener IDs.
+        /// </summary>
         public List<string> ListenerIds
         {
             get => _listenerIds ?? (_listenerIds = new List<string>());
             set => _listenerIds = value;
         }
 
+        /// <summary>
+        /// Whether to return only backend servers with abnormal health check status.
+        /// </summary>
         [Input("onlyUnHealthy")]
         public bool? OnlyUnHealthy { get; set; }
 
+        /// <summary>
+        /// File name where to save data source results.
+        /// </summary>
         [Input("outputFile")]
         public string? OutputFile { get; set; }
 
+        /// <summary>
+        /// The project name of the listener.
+        /// </summary>
         [Input("projectName")]
         public string? ProjectName { get; set; }
 
@@ -49,18 +114,31 @@ namespace Pulumi.Volcengine.Alb
     {
         [Input("listenerIds", required: true)]
         private InputList<string>? _listenerIds;
+
+        /// <summary>
+        /// A list of Listener IDs.
+        /// </summary>
         public InputList<string> ListenerIds
         {
             get => _listenerIds ?? (_listenerIds = new InputList<string>());
             set => _listenerIds = value;
         }
 
+        /// <summary>
+        /// Whether to return only backend servers with abnormal health check status.
+        /// </summary>
         [Input("onlyUnHealthy")]
         public Input<bool>? OnlyUnHealthy { get; set; }
 
+        /// <summary>
+        /// File name where to save data source results.
+        /// </summary>
         [Input("outputFile")]
         public Input<string>? OutputFile { get; set; }
 
+        /// <summary>
+        /// The project name of the listener.
+        /// </summary>
         [Input("projectName")]
         public Input<string>? ProjectName { get; set; }
 
@@ -79,10 +157,16 @@ namespace Pulumi.Volcengine.Alb
         /// </summary>
         public readonly string Id;
         public readonly ImmutableArray<string> ListenerIds;
+        /// <summary>
+        /// The collection of listener health query.
+        /// </summary>
         public readonly ImmutableArray<Outputs.ListenerHealthsListenerResult> Listeners;
         public readonly bool? OnlyUnHealthy;
         public readonly string? OutputFile;
         public readonly string? ProjectName;
+        /// <summary>
+        /// The total count of query.
+        /// </summary>
         public readonly int TotalCount;
 
         [OutputConstructor]

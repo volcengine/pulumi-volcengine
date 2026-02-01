@@ -58,13 +58,20 @@ export function clbs(args?: ClbsArgs, opts?: pulumi.InvokeOptions): Promise<Clbs
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:clb/clbs:Clbs", {
+        "addressIpVersion": args.addressIpVersion,
+        "eipAddress": args.eipAddress,
         "eniAddress": args.eniAddress,
         "ids": args.ids,
+        "instanceIds": args.instanceIds,
+        "instanceIps": args.instanceIps,
         "loadBalancerName": args.loadBalancerName,
+        "masterZoneId": args.masterZoneId,
         "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
         "projectName": args.projectName,
+        "status": args.status,
         "tags": args.tags,
+        "type": args.type,
         "vpcId": args.vpcId,
     }, opts);
 }
@@ -74,6 +81,14 @@ export function clbs(args?: ClbsArgs, opts?: pulumi.InvokeOptions): Promise<Clbs
  */
 export interface ClbsArgs {
     /**
+     * The address IP version of the CLB.
+     */
+    addressIpVersion?: string;
+    /**
+     * The public ip address of the Clb.
+     */
+    eipAddress?: string;
+    /**
      * The private ip address of the Clb.
      */
     eniAddress?: string;
@@ -82,9 +97,21 @@ export interface ClbsArgs {
      */
     ids?: string[];
     /**
+     * The IDs of the backend server of the CLB.
+     */
+    instanceIds?: string[];
+    /**
+     * The IP address of the backend server of the CLB.
+     */
+    instanceIps?: string[];
+    /**
      * The name of the Clb.
      */
     loadBalancerName?: string;
+    /**
+     * The master zone ID of the CLB.
+     */
+    masterZoneId?: string;
     /**
      * A Name Regex of Clb.
      */
@@ -98,9 +125,17 @@ export interface ClbsArgs {
      */
     projectName?: string;
     /**
+     * The status of the CLB.
+     */
+    status?: string;
+    /**
      * Tags.
      */
     tags?: inputs.clb.ClbsTag[];
+    /**
+     * The network type of the CLB.
+     */
+    type?: string;
     /**
      * The id of the VPC.
      */
@@ -112,11 +147,19 @@ export interface ClbsArgs {
  */
 export interface ClbsResult {
     /**
+     * The address ip version of the Clb.
+     */
+    readonly addressIpVersion?: string;
+    /**
      * The collection of Clb query.
      */
     readonly clbs: outputs.clb.ClbsClb[];
     /**
-     * The Eni address of the Clb.
+     * The public IPv4 address bound to the private IPv4 address.
+     */
+    readonly eipAddress?: string;
+    /**
+     * The private IPv4 address of the CLB instance.
      */
     readonly eniAddress?: string;
     /**
@@ -124,16 +167,26 @@ export interface ClbsResult {
      */
     readonly id: string;
     readonly ids?: string[];
+    readonly instanceIds?: string[];
+    readonly instanceIps?: string[];
     /**
      * The name of the Clb.
      */
     readonly loadBalancerName?: string;
+    /**
+     * The master zone ID of the CLB.
+     */
+    readonly masterZoneId?: string;
     readonly nameRegex?: string;
     readonly outputFile?: string;
     /**
      * The ProjectName of the Clb.
      */
     readonly projectName?: string;
+    /**
+     * The status of the Clb.
+     */
+    readonly status?: string;
     /**
      * Tags.
      */
@@ -142,6 +195,10 @@ export interface ClbsResult {
      * The total count of Clb query.
      */
     readonly totalCount: number;
+    /**
+     * The type of the Clb.
+     */
+    readonly type?: string;
     /**
      * The vpc ID of the Clb.
      */
@@ -202,6 +259,14 @@ export function clbsOutput(args?: ClbsOutputArgs, opts?: pulumi.InvokeOptions): 
  */
 export interface ClbsOutputArgs {
     /**
+     * The address IP version of the CLB.
+     */
+    addressIpVersion?: pulumi.Input<string>;
+    /**
+     * The public ip address of the Clb.
+     */
+    eipAddress?: pulumi.Input<string>;
+    /**
      * The private ip address of the Clb.
      */
     eniAddress?: pulumi.Input<string>;
@@ -210,9 +275,21 @@ export interface ClbsOutputArgs {
      */
     ids?: pulumi.Input<pulumi.Input<string>[]>;
     /**
+     * The IDs of the backend server of the CLB.
+     */
+    instanceIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The IP address of the backend server of the CLB.
+     */
+    instanceIps?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * The name of the Clb.
      */
     loadBalancerName?: pulumi.Input<string>;
+    /**
+     * The master zone ID of the CLB.
+     */
+    masterZoneId?: pulumi.Input<string>;
     /**
      * A Name Regex of Clb.
      */
@@ -226,9 +303,17 @@ export interface ClbsOutputArgs {
      */
     projectName?: pulumi.Input<string>;
     /**
+     * The status of the CLB.
+     */
+    status?: pulumi.Input<string>;
+    /**
      * Tags.
      */
     tags?: pulumi.Input<pulumi.Input<inputs.clb.ClbsTagArgs>[]>;
+    /**
+     * The network type of the CLB.
+     */
+    type?: pulumi.Input<string>;
     /**
      * The id of the VPC.
      */

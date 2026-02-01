@@ -25,13 +25,19 @@ namespace Pulumi.Volcengine.Tls
     ///     {
     ///         Description = "tf-desc",
     ///         IamProjectName = "default",
-    ///         ProjectName = "tf-test",
+    ///         ProjectName = "tf-project-m",
+    ///         Region = "cn-guilin-boe",
     ///         Tags = new[]
     ///         {
     ///             new Volcengine.Tls.Inputs.ProjectTagArgs
     ///             {
     ///                 Key = "k1",
     ///                 Value = "v1",
+    ///             },
+    ///             new Volcengine.Tls.Inputs.ProjectTagArgs
+    ///             {
+    ///                 Key = "k2",
+    ///                 Value = "v3",
     ///             },
     ///         },
     ///     });
@@ -51,12 +57,6 @@ namespace Pulumi.Volcengine.Tls
     public partial class Project : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The create time of the tls project.
-        /// </summary>
-        [Output("createTime")]
-        public Output<string> CreateTime { get; private set; } = null!;
-
-        /// <summary>
         /// The description of the tls project.
         /// </summary>
         [Output("description")]
@@ -69,28 +69,22 @@ namespace Pulumi.Volcengine.Tls
         public Output<string> IamProjectName { get; private set; } = null!;
 
         /// <summary>
-        /// The inner net domain of the tls project.
-        /// </summary>
-        [Output("innerNetDomain")]
-        public Output<string> InnerNetDomain { get; private set; } = null!;
-
-        /// <summary>
         /// The name of the tls project.
         /// </summary>
         [Output("projectName")]
         public Output<string> ProjectName { get; private set; } = null!;
 
         /// <summary>
+        /// The region of the tls project.
+        /// </summary>
+        [Output("region")]
+        public Output<string> Region { get; private set; } = null!;
+
+        /// <summary>
         /// Tags.
         /// </summary>
         [Output("tags")]
         public Output<ImmutableArray<Outputs.ProjectTag>> Tags { get; private set; } = null!;
-
-        /// <summary>
-        /// The count of topics in the tls project.
-        /// </summary>
-        [Output("topicCount")]
-        public Output<int> TopicCount { get; private set; } = null!;
 
 
         /// <summary>
@@ -157,6 +151,12 @@ namespace Pulumi.Volcengine.Tls
         [Input("projectName", required: true)]
         public Input<string> ProjectName { get; set; } = null!;
 
+        /// <summary>
+        /// The region of the tls project.
+        /// </summary>
+        [Input("region", required: true)]
+        public Input<string> Region { get; set; } = null!;
+
         [Input("tags")]
         private InputList<Inputs.ProjectTagArgs>? _tags;
 
@@ -178,12 +178,6 @@ namespace Pulumi.Volcengine.Tls
     public sealed class ProjectState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The create time of the tls project.
-        /// </summary>
-        [Input("createTime")]
-        public Input<string>? CreateTime { get; set; }
-
-        /// <summary>
         /// The description of the tls project.
         /// </summary>
         [Input("description")]
@@ -196,16 +190,16 @@ namespace Pulumi.Volcengine.Tls
         public Input<string>? IamProjectName { get; set; }
 
         /// <summary>
-        /// The inner net domain of the tls project.
-        /// </summary>
-        [Input("innerNetDomain")]
-        public Input<string>? InnerNetDomain { get; set; }
-
-        /// <summary>
         /// The name of the tls project.
         /// </summary>
         [Input("projectName")]
         public Input<string>? ProjectName { get; set; }
+
+        /// <summary>
+        /// The region of the tls project.
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
 
         [Input("tags")]
         private InputList<Inputs.ProjectTagGetArgs>? _tags;
@@ -218,12 +212,6 @@ namespace Pulumi.Volcengine.Tls
             get => _tags ?? (_tags = new InputList<Inputs.ProjectTagGetArgs>());
             set => _tags = value;
         }
-
-        /// <summary>
-        /// The count of topics in the tls project.
-        /// </summary>
-        [Input("topicCount")]
-        public Input<int>? TopicCount { get; set; }
 
         public ProjectState()
         {

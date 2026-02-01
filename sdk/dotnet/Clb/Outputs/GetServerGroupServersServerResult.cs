@@ -14,6 +14,10 @@ namespace Pulumi.Volcengine.Clb.Outputs
     public sealed class GetServerGroupServersServerResult
     {
         /// <summary>
+        /// Whether full port forwarding is enabled. Values: `on`, `off`.
+        /// </summary>
+        public readonly string AnyPortEnabled;
+        /// <summary>
         /// The description of the instance.
         /// </summary>
         public readonly string Description;
@@ -30,7 +34,7 @@ namespace Pulumi.Volcengine.Clb.Outputs
         /// </summary>
         public readonly string Ip;
         /// <summary>
-        /// The port receiving request.
+        /// The port receiving request. Return empty when `any_port_enabled` is `on`.
         /// </summary>
         public readonly int Port;
         /// <summary>
@@ -38,7 +42,7 @@ namespace Pulumi.Volcengine.Clb.Outputs
         /// </summary>
         public readonly string ServerId;
         /// <summary>
-        /// The type of instance. Optional choice contains `ecs`, `eni`.
+        /// The type of instance. Optional choice contains `ecs`, `eni`, `ip`.
         /// </summary>
         public readonly string Type;
         /// <summary>
@@ -48,6 +52,8 @@ namespace Pulumi.Volcengine.Clb.Outputs
 
         [OutputConstructor]
         private GetServerGroupServersServerResult(
+            string anyPortEnabled,
+
             string description,
 
             string id,
@@ -64,6 +70,7 @@ namespace Pulumi.Volcengine.Clb.Outputs
 
             int weight)
         {
+            AnyPortEnabled = anyPortEnabled;
             Description = description;
             Id = id;
             InstanceId = instanceId;

@@ -103,6 +103,10 @@ type GetServerGroupsArgs struct {
 	OutputFile *string `pulumi:"outputFile"`
 	// The name of the ServerGroup.
 	ServerGroupName *string `pulumi:"serverGroupName"`
+	// Tags.
+	Tags []GetServerGroupsTag `pulumi:"tags"`
+	// The type of ServerGroup. Valid values: `instance`, `ip`.
+	Type *string `pulumi:"type"`
 }
 
 // A collection of values returned by getServerGroups.
@@ -110,15 +114,20 @@ type GetServerGroupsResult struct {
 	// The collection of ServerGroup query.
 	Groups []GetServerGroupsGroup `pulumi:"groups"`
 	// The provider-assigned unique ID for this managed resource.
-	Id             string   `pulumi:"id"`
-	Ids            []string `pulumi:"ids"`
-	LoadBalancerId *string  `pulumi:"loadBalancerId"`
-	NameRegex      *string  `pulumi:"nameRegex"`
-	OutputFile     *string  `pulumi:"outputFile"`
+	Id  string   `pulumi:"id"`
+	Ids []string `pulumi:"ids"`
+	// The ID of the LoadBalancer.
+	LoadBalancerId *string `pulumi:"loadBalancerId"`
+	NameRegex      *string `pulumi:"nameRegex"`
+	OutputFile     *string `pulumi:"outputFile"`
 	// The name of the ServerGroup.
 	ServerGroupName *string `pulumi:"serverGroupName"`
+	// Tags.
+	Tags []GetServerGroupsTag `pulumi:"tags"`
 	// The total count of ServerGroup query.
 	TotalCount int `pulumi:"totalCount"`
+	// The type of the ServerGroup.
+	Type *string `pulumi:"type"`
 }
 
 func GetServerGroupsOutput(ctx *pulumi.Context, args GetServerGroupsOutputArgs, opts ...pulumi.InvokeOption) GetServerGroupsResultOutput {
@@ -146,6 +155,10 @@ type GetServerGroupsOutputArgs struct {
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
 	// The name of the ServerGroup.
 	ServerGroupName pulumi.StringPtrInput `pulumi:"serverGroupName"`
+	// Tags.
+	Tags GetServerGroupsTagArrayInput `pulumi:"tags"`
+	// The type of ServerGroup. Valid values: `instance`, `ip`.
+	Type pulumi.StringPtrInput `pulumi:"type"`
 }
 
 func (GetServerGroupsOutputArgs) ElementType() reflect.Type {
@@ -181,6 +194,7 @@ func (o GetServerGroupsResultOutput) Ids() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetServerGroupsResult) []string { return v.Ids }).(pulumi.StringArrayOutput)
 }
 
+// The ID of the LoadBalancer.
 func (o GetServerGroupsResultOutput) LoadBalancerId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetServerGroupsResult) *string { return v.LoadBalancerId }).(pulumi.StringPtrOutput)
 }
@@ -198,9 +212,19 @@ func (o GetServerGroupsResultOutput) ServerGroupName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetServerGroupsResult) *string { return v.ServerGroupName }).(pulumi.StringPtrOutput)
 }
 
+// Tags.
+func (o GetServerGroupsResultOutput) Tags() GetServerGroupsTagArrayOutput {
+	return o.ApplyT(func(v GetServerGroupsResult) []GetServerGroupsTag { return v.Tags }).(GetServerGroupsTagArrayOutput)
+}
+
 // The total count of ServerGroup query.
 func (o GetServerGroupsResultOutput) TotalCount() pulumi.IntOutput {
 	return o.ApplyT(func(v GetServerGroupsResult) int { return v.TotalCount }).(pulumi.IntOutput)
+}
+
+// The type of the ServerGroup.
+func (o GetServerGroupsResultOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetServerGroupsResult) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
 
 func init() {

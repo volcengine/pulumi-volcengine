@@ -95,7 +95,7 @@ class AlarmsResult:
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> str:
+    def project_id(self) -> Optional[str]:
         """
         The project id.
         """
@@ -168,7 +168,7 @@ def alarms(alarm_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.get_alarms(project_id="cc44f8b6-0328-4622-b043-023fca735cd4")
+    default = volcengine.tls.get_alarms()
     ```
 
 
@@ -209,7 +209,7 @@ def alarms(alarm_id: Optional[str] = None,
 def alarms_output(alarm_id: Optional[pulumi.Input[Optional[str]]] = None,
                   alarm_name: Optional[pulumi.Input[Optional[str]]] = None,
                   output_file: Optional[pulumi.Input[Optional[str]]] = None,
-                  project_id: Optional[pulumi.Input[str]] = None,
+                  project_id: Optional[pulumi.Input[Optional[str]]] = None,
                   status: Optional[pulumi.Input[Optional[bool]]] = None,
                   topic_id: Optional[pulumi.Input[Optional[str]]] = None,
                   topic_name: Optional[pulumi.Input[Optional[str]]] = None,
@@ -222,7 +222,7 @@ def alarms_output(alarm_id: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.get_alarms(project_id="cc44f8b6-0328-4622-b043-023fca735cd4")
+    default = volcengine.tls.get_alarms()
     ```
 
 

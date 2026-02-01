@@ -30,9 +30,33 @@ namespace Pulumi.Volcengine.Clb.Outputs
         /// </summary>
         public readonly int Bandwidth;
         /// <summary>
+        /// The ID of the CA certificate which is associated with the Listener. When `ca_enabled` is `true`, this parameter is returned.
+        /// </summary>
+        public readonly string CaCertificateId;
+        /// <summary>
+        /// Whether to enable CACertificate two-way authentication.
+        /// </summary>
+        public readonly string CaEnabled;
+        /// <summary>
+        /// The ID of the certificate in Certificate Center. When `certificate_source` is `cert_center`, this parameter is returned.
+        /// </summary>
+        public readonly string CertCenterCertificateId;
+        /// <summary>
         /// The ID of the certificate which is associated with the Listener.
         /// </summary>
         public readonly string CertificateId;
+        /// <summary>
+        /// The source of the certificate which is associated with the Listener. Values: `clb`, `cert_center`.
+        /// </summary>
+        public readonly string CertificateSource;
+        /// <summary>
+        /// The client body timeout of the Listener. Only HTTP/HTTPS listeners return this parameter.
+        /// </summary>
+        public readonly int ClientBodyTimeout;
+        /// <summary>
+        /// The client header timeout of the Listener. Only HTTP/HTTPS listeners return this parameter.
+        /// </summary>
+        public readonly int ClientHeaderTimeout;
         /// <summary>
         /// Whether to enable connection drain of the Listener.
         /// </summary>
@@ -46,13 +70,29 @@ namespace Pulumi.Volcengine.Clb.Outputs
         /// </summary>
         public readonly string Cookie;
         /// <summary>
+        /// The maximum number of new connections for Lsistener.
+        /// </summary>
+        public readonly int Cps;
+        /// <summary>
         /// The create time of the Listener.
         /// </summary>
         public readonly string CreateTime;
         /// <summary>
+        /// The description of the Listener.
+        /// </summary>
+        public readonly string Description;
+        /// <summary>
         /// The enable status of the Listener.
         /// </summary>
         public readonly string Enabled;
+        /// <summary>
+        /// The end port of the Listener. This parameter is returned only when full-port listening is enabled.
+        /// </summary>
+        public readonly int EndPort;
+        /// <summary>
+        /// The established timeout of the Listener.
+        /// </summary>
+        public readonly int EstablishedTimeout;
         /// <summary>
         /// The domain of health check.
         /// </summary>
@@ -98,9 +138,21 @@ namespace Pulumi.Volcengine.Clb.Outputs
         /// </summary>
         public readonly string HealthCheckUri;
         /// <summary>
+        /// The backend server port for health checks. When full-port listening is enabled, this parameter is returned to indicate the port used for health checks. When full-port listening is not enabled, this parameter is not returned, and the health check uses the service port of the backend server.
+        /// </summary>
+        public readonly int HelthCheckPort;
+        /// <summary>
+        /// Whether the HTTPS protocol listener enables the front-end HTTP 2.0 protocol.
+        /// </summary>
+        public readonly string Http2Enabled;
+        /// <summary>
         /// The ID of the Listener.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// The timeout period for the long connection between the client and the CLB. Only HTTP/HTTPS listeners return this parameter.
+        /// </summary>
+        public readonly int KeepaliveTimeout;
         /// <summary>
         /// The ID of the Listener.
         /// </summary>
@@ -109,6 +161,14 @@ namespace Pulumi.Volcengine.Clb.Outputs
         /// The name of the Listener.
         /// </summary>
         public readonly string ListenerName;
+        /// <summary>
+        /// The id of the Clb.
+        /// </summary>
+        public readonly string LoadBalancerId;
+        /// <summary>
+        /// The maximum number of connections for the Listener.
+        /// </summary>
+        public readonly int MaxConnections;
         /// <summary>
         /// The persistence timeout of the Listener.
         /// </summary>
@@ -122,25 +182,61 @@ namespace Pulumi.Volcengine.Clb.Outputs
         /// </summary>
         public readonly int Port;
         /// <summary>
-        /// The protocol of the Listener.
+        /// The protocol of the Listener. Values: `TCP`, `UDP`, `HTTP`, `HTTPS`.
         /// </summary>
         public readonly string Protocol;
+        /// <summary>
+        /// The timeout period for establishing a connection between the CLB and the backend server. Only HTTP/HTTPS listeners return this parameter.
+        /// </summary>
+        public readonly int ProxyConnectTimeout;
         /// <summary>
         /// Whether to enable proxy protocol.
         /// </summary>
         public readonly string ProxyProtocolType;
         /// <summary>
+        /// The timeout period for CLB to read the response from the backend server. Only HTTP/HTTPS listeners return this parameter.
+        /// </summary>
+        public readonly int ProxyReadTimeout;
+        /// <summary>
+        /// The timeout period for CLB to transmit requests to backend servers. Only HTTP/HTTPS listeners return this parameter.
+        /// </summary>
+        public readonly int ProxySendTimeout;
+        /// <summary>
+        /// The scheduling algorithm of the Listener. Values: `wrr`, `wlc`, `sh`.
+        /// </summary>
+        public readonly string Scheduler;
+        /// <summary>
+        /// The TLS security policy of the HTTPS listener. Only HTTPS listeners return this parameter.
+        /// </summary>
+        public readonly string SecurityPolicyId;
+        /// <summary>
+        /// The timeout period for CLB to send responses to the client. Only HTTP/HTTPS listeners return this parameter.
+        /// </summary>
+        public readonly int SendTimeout;
+        /// <summary>
         /// The ID of the backend server group which is associated with the Listener.
         /// </summary>
         public readonly string ServerGroupId;
+        /// <summary>
+        /// The start port of the Listener. This parameter is returned only when full-port listening is enabled.
+        /// </summary>
+        public readonly int StartPort;
         /// <summary>
         /// The status of the Listener.
         /// </summary>
         public readonly string Status;
         /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.ListenersListenerTagResult> Tags;
+        /// <summary>
         /// The update time of the Listener.
         /// </summary>
         public readonly string UpdateTime;
+        /// <summary>
+        /// Whether to enable WAF protection.
+        /// </summary>
+        public readonly string WafProtectionEnabled;
 
         [OutputConstructor]
         private ListenersListenerResult(
@@ -152,7 +248,19 @@ namespace Pulumi.Volcengine.Clb.Outputs
 
             int bandwidth,
 
+            string caCertificateId,
+
+            string caEnabled,
+
+            string certCenterCertificateId,
+
             string certificateId,
+
+            string certificateSource,
+
+            int clientBodyTimeout,
+
+            int clientHeaderTimeout,
 
             string connectionDrainEnabled,
 
@@ -160,9 +268,17 @@ namespace Pulumi.Volcengine.Clb.Outputs
 
             string cookie,
 
+            int cps,
+
             string createTime,
 
+            string description,
+
             string enabled,
+
+            int endPort,
+
+            int establishedTimeout,
 
             string healthCheckDomain,
 
@@ -186,11 +302,21 @@ namespace Pulumi.Volcengine.Clb.Outputs
 
             string healthCheckUri,
 
+            int helthCheckPort,
+
+            string http2Enabled,
+
             string id,
+
+            int keepaliveTimeout,
 
             string listenerId,
 
             string listenerName,
+
+            string loadBalancerId,
+
+            int maxConnections,
 
             int persistenceTimeout,
 
@@ -200,24 +326,52 @@ namespace Pulumi.Volcengine.Clb.Outputs
 
             string protocol,
 
+            int proxyConnectTimeout,
+
             string proxyProtocolType,
+
+            int proxyReadTimeout,
+
+            int proxySendTimeout,
+
+            string scheduler,
+
+            string securityPolicyId,
+
+            int sendTimeout,
 
             string serverGroupId,
 
+            int startPort,
+
             string status,
 
-            string updateTime)
+            ImmutableArray<Outputs.ListenersListenerTagResult> tags,
+
+            string updateTime,
+
+            string wafProtectionEnabled)
         {
             AclIds = aclIds;
             AclStatus = aclStatus;
             AclType = aclType;
             Bandwidth = bandwidth;
+            CaCertificateId = caCertificateId;
+            CaEnabled = caEnabled;
+            CertCenterCertificateId = certCenterCertificateId;
             CertificateId = certificateId;
+            CertificateSource = certificateSource;
+            ClientBodyTimeout = clientBodyTimeout;
+            ClientHeaderTimeout = clientHeaderTimeout;
             ConnectionDrainEnabled = connectionDrainEnabled;
             ConnectionDrainTimeout = connectionDrainTimeout;
             Cookie = cookie;
+            Cps = cps;
             CreateTime = createTime;
+            Description = description;
             Enabled = enabled;
+            EndPort = endPort;
+            EstablishedTimeout = establishedTimeout;
             HealthCheckDomain = healthCheckDomain;
             HealthCheckEnabled = healthCheckEnabled;
             HealthCheckHealthyThreshold = healthCheckHealthyThreshold;
@@ -229,17 +383,31 @@ namespace Pulumi.Volcengine.Clb.Outputs
             HealthCheckUdpRequest = healthCheckUdpRequest;
             HealthCheckUnHealthyThreshold = healthCheckUnHealthyThreshold;
             HealthCheckUri = healthCheckUri;
+            HelthCheckPort = helthCheckPort;
+            Http2Enabled = http2Enabled;
             Id = id;
+            KeepaliveTimeout = keepaliveTimeout;
             ListenerId = listenerId;
             ListenerName = listenerName;
+            LoadBalancerId = loadBalancerId;
+            MaxConnections = maxConnections;
             PersistenceTimeout = persistenceTimeout;
             PersistenceType = persistenceType;
             Port = port;
             Protocol = protocol;
+            ProxyConnectTimeout = proxyConnectTimeout;
             ProxyProtocolType = proxyProtocolType;
+            ProxyReadTimeout = proxyReadTimeout;
+            ProxySendTimeout = proxySendTimeout;
+            Scheduler = scheduler;
+            SecurityPolicyId = securityPolicyId;
+            SendTimeout = sendTimeout;
             ServerGroupId = serverGroupId;
+            StartPort = startPort;
             Status = status;
+            Tags = tags;
             UpdateTime = updateTime;
+            WafProtectionEnabled = wafProtectionEnabled;
         }
     }
 }

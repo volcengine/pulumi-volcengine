@@ -11,9 +11,26 @@ from .. import _utilities
 
 __all__ = [
     'AlarmAlarmPeriodDetailArgs',
+    'AlarmContentTemplateDingTalkArgs',
+    'AlarmContentTemplateEmailArgs',
+    'AlarmContentTemplateLarkArgs',
+    'AlarmContentTemplateSmArgs',
+    'AlarmContentTemplateVmArgs',
+    'AlarmContentTemplateWebhookArgs',
+    'AlarmContentTemplateWechatArgs',
+    'AlarmJoinConfigurationArgs',
+    'AlarmNotifyGroupNoticeRuleArgs',
+    'AlarmNotifyGroupNoticeRuleReceiverInfoArgs',
+    'AlarmNotifyGroupNoticeRuleReceiverInfoGeneralWebhookHeaderArgs',
+    'AlarmNotifyGroupNoticeRuleRuleNodeArgs',
+    'AlarmNotifyGroupNoticeRuleRuleNodeChildrenArgs',
     'AlarmNotifyGroupReceiverArgs',
+    'AlarmNotifyGroupReceiverGeneralWebhookHeaderArgs',
     'AlarmQueryRequestArgs',
     'AlarmRequestCycleArgs',
+    'AlarmTriggerConditionArgs',
+    'AlarmWebhookIntegrationWebhookHeaderArgs',
+    'DownloadTaskLogContextInfosArgs',
     'EtlTaskTargetResourceArgs',
     'ImportTaskImportSourceInfoArgs',
     'ImportTaskImportSourceInfoKafkaSourceInfoArgs',
@@ -39,14 +56,28 @@ __all__ = [
     'RuleUserDefineRulePluginArgs',
     'RuleUserDefineRuleShardHashKeyArgs',
     'ScheduleSqlTaskRequestCycleArgs',
+    'SearchTracesQueryArgs',
+    'SearchTracesQueryAttributeArgs',
+    'ShardShardArgs',
     'ShipperContentInfoArgs',
     'ShipperContentInfoCsvInfoArgs',
     'ShipperContentInfoJsonInfoArgs',
     'ShipperKafkaShipperInfoArgs',
     'ShipperTosShipperInfoArgs',
+    'TagResourceTagArgs',
+    'TagResourcesTagFilterArgs',
+    'TagTagArgs',
+    'TagsTagFilterArgs',
+    'TopicEncryptConfArgs',
+    'TopicEncryptConfUserCmkInfoArgs',
     'TopicTagArgs',
     'TopicsTagArgs',
+    'TraceInstanceBackendConfigArgs',
     'GetProjectsTagArgs',
+    'GetSearchTracesQueryArgs',
+    'GetSearchTracesQueryAttributeArgs',
+    'GetTagResourcesTagFilterArgs',
+    'GetTagsTagFilterArgs',
     'GetTopicsTagArgs',
 ]
 
@@ -118,25 +149,824 @@ class AlarmAlarmPeriodDetailArgs:
 
 
 @pulumi.input_type
+class AlarmContentTemplateDingTalkArgs:
+    def __init__(__self__, *,
+                 content: pulumi.Input[str],
+                 locale: pulumi.Input[str],
+                 title: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] content: The content of the ding_talk content template.
+        :param pulumi.Input[str] locale: The locale of the ding_talk content template.
+        :param pulumi.Input[str] title: The title of the ding_talk content template.
+        """
+        pulumi.set(__self__, "content", content)
+        pulumi.set(__self__, "locale", locale)
+        pulumi.set(__self__, "title", title)
+
+    @property
+    @pulumi.getter
+    def content(self) -> pulumi.Input[str]:
+        """
+        The content of the ding_talk content template.
+        """
+        return pulumi.get(self, "content")
+
+    @content.setter
+    def content(self, value: pulumi.Input[str]):
+        pulumi.set(self, "content", value)
+
+    @property
+    @pulumi.getter
+    def locale(self) -> pulumi.Input[str]:
+        """
+        The locale of the ding_talk content template.
+        """
+        return pulumi.get(self, "locale")
+
+    @locale.setter
+    def locale(self, value: pulumi.Input[str]):
+        pulumi.set(self, "locale", value)
+
+    @property
+    @pulumi.getter
+    def title(self) -> pulumi.Input[str]:
+        """
+        The title of the ding_talk content template.
+        """
+        return pulumi.get(self, "title")
+
+    @title.setter
+    def title(self, value: pulumi.Input[str]):
+        pulumi.set(self, "title", value)
+
+
+@pulumi.input_type
+class AlarmContentTemplateEmailArgs:
+    def __init__(__self__, *,
+                 content: pulumi.Input[str],
+                 locale: pulumi.Input[str],
+                 subject: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] content: The content of the email content template.
+        :param pulumi.Input[str] locale: The locale of the email content template.
+        :param pulumi.Input[str] subject: The subject of the email content template.
+        """
+        pulumi.set(__self__, "content", content)
+        pulumi.set(__self__, "locale", locale)
+        pulumi.set(__self__, "subject", subject)
+
+    @property
+    @pulumi.getter
+    def content(self) -> pulumi.Input[str]:
+        """
+        The content of the email content template.
+        """
+        return pulumi.get(self, "content")
+
+    @content.setter
+    def content(self, value: pulumi.Input[str]):
+        pulumi.set(self, "content", value)
+
+    @property
+    @pulumi.getter
+    def locale(self) -> pulumi.Input[str]:
+        """
+        The locale of the email content template.
+        """
+        return pulumi.get(self, "locale")
+
+    @locale.setter
+    def locale(self, value: pulumi.Input[str]):
+        pulumi.set(self, "locale", value)
+
+    @property
+    @pulumi.getter
+    def subject(self) -> pulumi.Input[str]:
+        """
+        The subject of the email content template.
+        """
+        return pulumi.get(self, "subject")
+
+    @subject.setter
+    def subject(self, value: pulumi.Input[str]):
+        pulumi.set(self, "subject", value)
+
+
+@pulumi.input_type
+class AlarmContentTemplateLarkArgs:
+    def __init__(__self__, *,
+                 content: pulumi.Input[str],
+                 locale: pulumi.Input[str],
+                 title: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] content: The content of the lark content template.
+        :param pulumi.Input[str] locale: The locale of the lark content template.
+        :param pulumi.Input[str] title: The title of the lark content template.
+        """
+        pulumi.set(__self__, "content", content)
+        pulumi.set(__self__, "locale", locale)
+        pulumi.set(__self__, "title", title)
+
+    @property
+    @pulumi.getter
+    def content(self) -> pulumi.Input[str]:
+        """
+        The content of the lark content template.
+        """
+        return pulumi.get(self, "content")
+
+    @content.setter
+    def content(self, value: pulumi.Input[str]):
+        pulumi.set(self, "content", value)
+
+    @property
+    @pulumi.getter
+    def locale(self) -> pulumi.Input[str]:
+        """
+        The locale of the lark content template.
+        """
+        return pulumi.get(self, "locale")
+
+    @locale.setter
+    def locale(self, value: pulumi.Input[str]):
+        pulumi.set(self, "locale", value)
+
+    @property
+    @pulumi.getter
+    def title(self) -> pulumi.Input[str]:
+        """
+        The title of the lark content template.
+        """
+        return pulumi.get(self, "title")
+
+    @title.setter
+    def title(self, value: pulumi.Input[str]):
+        pulumi.set(self, "title", value)
+
+
+@pulumi.input_type
+class AlarmContentTemplateSmArgs:
+    def __init__(__self__, *,
+                 content: pulumi.Input[str],
+                 locale: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] content: The content of the sms content template.
+        :param pulumi.Input[str] locale: The locale of the sms content template.
+        """
+        pulumi.set(__self__, "content", content)
+        pulumi.set(__self__, "locale", locale)
+
+    @property
+    @pulumi.getter
+    def content(self) -> pulumi.Input[str]:
+        """
+        The content of the sms content template.
+        """
+        return pulumi.get(self, "content")
+
+    @content.setter
+    def content(self, value: pulumi.Input[str]):
+        pulumi.set(self, "content", value)
+
+    @property
+    @pulumi.getter
+    def locale(self) -> pulumi.Input[str]:
+        """
+        The locale of the sms content template.
+        """
+        return pulumi.get(self, "locale")
+
+    @locale.setter
+    def locale(self, value: pulumi.Input[str]):
+        pulumi.set(self, "locale", value)
+
+
+@pulumi.input_type
+class AlarmContentTemplateVmArgs:
+    def __init__(__self__, *,
+                 content: pulumi.Input[str],
+                 locale: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] content: The content of the vms content template.
+        :param pulumi.Input[str] locale: The locale of the vms content template.
+        """
+        pulumi.set(__self__, "content", content)
+        pulumi.set(__self__, "locale", locale)
+
+    @property
+    @pulumi.getter
+    def content(self) -> pulumi.Input[str]:
+        """
+        The content of the vms content template.
+        """
+        return pulumi.get(self, "content")
+
+    @content.setter
+    def content(self, value: pulumi.Input[str]):
+        pulumi.set(self, "content", value)
+
+    @property
+    @pulumi.getter
+    def locale(self) -> pulumi.Input[str]:
+        """
+        The locale of the vms content template.
+        """
+        return pulumi.get(self, "locale")
+
+    @locale.setter
+    def locale(self, value: pulumi.Input[str]):
+        pulumi.set(self, "locale", value)
+
+
+@pulumi.input_type
+class AlarmContentTemplateWebhookArgs:
+    def __init__(__self__, *,
+                 content: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] content: The content of the webhook content template.
+        """
+        pulumi.set(__self__, "content", content)
+
+    @property
+    @pulumi.getter
+    def content(self) -> pulumi.Input[str]:
+        """
+        The content of the webhook content template.
+        """
+        return pulumi.get(self, "content")
+
+    @content.setter
+    def content(self, value: pulumi.Input[str]):
+        pulumi.set(self, "content", value)
+
+
+@pulumi.input_type
+class AlarmContentTemplateWechatArgs:
+    def __init__(__self__, *,
+                 content: pulumi.Input[str],
+                 locale: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] content: The content of the wechat content template.
+        :param pulumi.Input[str] locale: The locale of the wechat content template.
+        """
+        pulumi.set(__self__, "content", content)
+        pulumi.set(__self__, "locale", locale)
+
+    @property
+    @pulumi.getter
+    def content(self) -> pulumi.Input[str]:
+        """
+        The content of the wechat content template.
+        """
+        return pulumi.get(self, "content")
+
+    @content.setter
+    def content(self, value: pulumi.Input[str]):
+        pulumi.set(self, "content", value)
+
+    @property
+    @pulumi.getter
+    def locale(self) -> pulumi.Input[str]:
+        """
+        The locale of the wechat content template.
+        """
+        return pulumi.get(self, "locale")
+
+    @locale.setter
+    def locale(self, value: pulumi.Input[str]):
+        pulumi.set(self, "locale", value)
+
+
+@pulumi.input_type
+class AlarmJoinConfigurationArgs:
+    def __init__(__self__, *,
+                 condition: Optional[pulumi.Input[str]] = None,
+                 set_operation_type: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] condition: The condition.
+        :param pulumi.Input[str] set_operation_type: The set operation type.
+        """
+        if condition is not None:
+            pulumi.set(__self__, "condition", condition)
+        if set_operation_type is not None:
+            pulumi.set(__self__, "set_operation_type", set_operation_type)
+
+    @property
+    @pulumi.getter
+    def condition(self) -> Optional[pulumi.Input[str]]:
+        """
+        The condition.
+        """
+        return pulumi.get(self, "condition")
+
+    @condition.setter
+    def condition(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "condition", value)
+
+    @property
+    @pulumi.getter(name="setOperationType")
+    def set_operation_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The set operation type.
+        """
+        return pulumi.get(self, "set_operation_type")
+
+    @set_operation_type.setter
+    def set_operation_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "set_operation_type", value)
+
+
+@pulumi.input_type
+class AlarmNotifyGroupNoticeRuleArgs:
+    def __init__(__self__, *,
+                 has_end_node: Optional[pulumi.Input[bool]] = None,
+                 has_next: Optional[pulumi.Input[bool]] = None,
+                 receiver_infos: Optional[pulumi.Input[Sequence[pulumi.Input['AlarmNotifyGroupNoticeRuleReceiverInfoArgs']]]] = None,
+                 rule_node: Optional[pulumi.Input['AlarmNotifyGroupNoticeRuleRuleNodeArgs']] = None):
+        """
+        :param pulumi.Input[bool] has_end_node: Whether there is an end node behind.
+        :param pulumi.Input[bool] has_next: Whether to continue to the next level of condition judgment.
+        :param pulumi.Input[Sequence[pulumi.Input['AlarmNotifyGroupNoticeRuleReceiverInfoArgs']]] receiver_infos: List of IAM users to receive alerts.
+        :param pulumi.Input['AlarmNotifyGroupNoticeRuleRuleNodeArgs'] rule_node: The rule node.
+        """
+        if has_end_node is not None:
+            pulumi.set(__self__, "has_end_node", has_end_node)
+        if has_next is not None:
+            pulumi.set(__self__, "has_next", has_next)
+        if receiver_infos is not None:
+            pulumi.set(__self__, "receiver_infos", receiver_infos)
+        if rule_node is not None:
+            pulumi.set(__self__, "rule_node", rule_node)
+
+    @property
+    @pulumi.getter(name="hasEndNode")
+    def has_end_node(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether there is an end node behind.
+        """
+        return pulumi.get(self, "has_end_node")
+
+    @has_end_node.setter
+    def has_end_node(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "has_end_node", value)
+
+    @property
+    @pulumi.getter(name="hasNext")
+    def has_next(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to continue to the next level of condition judgment.
+        """
+        return pulumi.get(self, "has_next")
+
+    @has_next.setter
+    def has_next(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "has_next", value)
+
+    @property
+    @pulumi.getter(name="receiverInfos")
+    def receiver_infos(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AlarmNotifyGroupNoticeRuleReceiverInfoArgs']]]]:
+        """
+        List of IAM users to receive alerts.
+        """
+        return pulumi.get(self, "receiver_infos")
+
+    @receiver_infos.setter
+    def receiver_infos(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AlarmNotifyGroupNoticeRuleReceiverInfoArgs']]]]):
+        pulumi.set(self, "receiver_infos", value)
+
+    @property
+    @pulumi.getter(name="ruleNode")
+    def rule_node(self) -> Optional[pulumi.Input['AlarmNotifyGroupNoticeRuleRuleNodeArgs']]:
+        """
+        The rule node.
+        """
+        return pulumi.get(self, "rule_node")
+
+    @rule_node.setter
+    def rule_node(self, value: Optional[pulumi.Input['AlarmNotifyGroupNoticeRuleRuleNodeArgs']]):
+        pulumi.set(self, "rule_node", value)
+
+
+@pulumi.input_type
+class AlarmNotifyGroupNoticeRuleReceiverInfoArgs:
+    def __init__(__self__, *,
+                 alarm_content_template_id: Optional[pulumi.Input[str]] = None,
+                 alarm_webhook_at_users: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 alarm_webhook_integration_id: Optional[pulumi.Input[str]] = None,
+                 alarm_webhook_integration_name: Optional[pulumi.Input[str]] = None,
+                 alarm_webhook_is_at_all: Optional[pulumi.Input[bool]] = None,
+                 end_time: Optional[pulumi.Input[str]] = None,
+                 general_webhook_body: Optional[pulumi.Input[str]] = None,
+                 general_webhook_headers: Optional[pulumi.Input[Sequence[pulumi.Input['AlarmNotifyGroupNoticeRuleReceiverInfoGeneralWebhookHeaderArgs']]]] = None,
+                 general_webhook_method: Optional[pulumi.Input[str]] = None,
+                 general_webhook_url: Optional[pulumi.Input[str]] = None,
+                 receiver_channels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 receiver_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 receiver_type: Optional[pulumi.Input[str]] = None,
+                 start_time: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] alarm_content_template_id: The alarm content template id.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] alarm_webhook_at_users: The alarm webhook at users.
+        :param pulumi.Input[str] alarm_webhook_integration_id: The alarm webhook integration id.
+        :param pulumi.Input[str] alarm_webhook_integration_name: The alarm webhook integration name.
+        :param pulumi.Input[bool] alarm_webhook_is_at_all: The alarm webhook is at all.
+        :param pulumi.Input[str] end_time: The end time.
+        :param pulumi.Input[str] general_webhook_body: The webhook body.
+        :param pulumi.Input[Sequence[pulumi.Input['AlarmNotifyGroupNoticeRuleReceiverInfoGeneralWebhookHeaderArgs']]] general_webhook_headers: The general webhook headers.
+        :param pulumi.Input[str] general_webhook_method: The general webhook method.
+        :param pulumi.Input[str] general_webhook_url: The webhook url.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] receiver_channels: The list of the receiver channels.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] receiver_names: List of the receiver names.
+        :param pulumi.Input[str] receiver_type: The receiver type.
+        :param pulumi.Input[str] start_time: The start time.
+        """
+        if alarm_content_template_id is not None:
+            pulumi.set(__self__, "alarm_content_template_id", alarm_content_template_id)
+        if alarm_webhook_at_users is not None:
+            pulumi.set(__self__, "alarm_webhook_at_users", alarm_webhook_at_users)
+        if alarm_webhook_integration_id is not None:
+            pulumi.set(__self__, "alarm_webhook_integration_id", alarm_webhook_integration_id)
+        if alarm_webhook_integration_name is not None:
+            pulumi.set(__self__, "alarm_webhook_integration_name", alarm_webhook_integration_name)
+        if alarm_webhook_is_at_all is not None:
+            pulumi.set(__self__, "alarm_webhook_is_at_all", alarm_webhook_is_at_all)
+        if end_time is not None:
+            pulumi.set(__self__, "end_time", end_time)
+        if general_webhook_body is not None:
+            pulumi.set(__self__, "general_webhook_body", general_webhook_body)
+        if general_webhook_headers is not None:
+            pulumi.set(__self__, "general_webhook_headers", general_webhook_headers)
+        if general_webhook_method is not None:
+            pulumi.set(__self__, "general_webhook_method", general_webhook_method)
+        if general_webhook_url is not None:
+            pulumi.set(__self__, "general_webhook_url", general_webhook_url)
+        if receiver_channels is not None:
+            pulumi.set(__self__, "receiver_channels", receiver_channels)
+        if receiver_names is not None:
+            pulumi.set(__self__, "receiver_names", receiver_names)
+        if receiver_type is not None:
+            pulumi.set(__self__, "receiver_type", receiver_type)
+        if start_time is not None:
+            pulumi.set(__self__, "start_time", start_time)
+
+    @property
+    @pulumi.getter(name="alarmContentTemplateId")
+    def alarm_content_template_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The alarm content template id.
+        """
+        return pulumi.get(self, "alarm_content_template_id")
+
+    @alarm_content_template_id.setter
+    def alarm_content_template_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "alarm_content_template_id", value)
+
+    @property
+    @pulumi.getter(name="alarmWebhookAtUsers")
+    def alarm_webhook_at_users(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The alarm webhook at users.
+        """
+        return pulumi.get(self, "alarm_webhook_at_users")
+
+    @alarm_webhook_at_users.setter
+    def alarm_webhook_at_users(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "alarm_webhook_at_users", value)
+
+    @property
+    @pulumi.getter(name="alarmWebhookIntegrationId")
+    def alarm_webhook_integration_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The alarm webhook integration id.
+        """
+        return pulumi.get(self, "alarm_webhook_integration_id")
+
+    @alarm_webhook_integration_id.setter
+    def alarm_webhook_integration_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "alarm_webhook_integration_id", value)
+
+    @property
+    @pulumi.getter(name="alarmWebhookIntegrationName")
+    def alarm_webhook_integration_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The alarm webhook integration name.
+        """
+        return pulumi.get(self, "alarm_webhook_integration_name")
+
+    @alarm_webhook_integration_name.setter
+    def alarm_webhook_integration_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "alarm_webhook_integration_name", value)
+
+    @property
+    @pulumi.getter(name="alarmWebhookIsAtAll")
+    def alarm_webhook_is_at_all(self) -> Optional[pulumi.Input[bool]]:
+        """
+        The alarm webhook is at all.
+        """
+        return pulumi.get(self, "alarm_webhook_is_at_all")
+
+    @alarm_webhook_is_at_all.setter
+    def alarm_webhook_is_at_all(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "alarm_webhook_is_at_all", value)
+
+    @property
+    @pulumi.getter(name="endTime")
+    def end_time(self) -> Optional[pulumi.Input[str]]:
+        """
+        The end time.
+        """
+        return pulumi.get(self, "end_time")
+
+    @end_time.setter
+    def end_time(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "end_time", value)
+
+    @property
+    @pulumi.getter(name="generalWebhookBody")
+    def general_webhook_body(self) -> Optional[pulumi.Input[str]]:
+        """
+        The webhook body.
+        """
+        return pulumi.get(self, "general_webhook_body")
+
+    @general_webhook_body.setter
+    def general_webhook_body(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "general_webhook_body", value)
+
+    @property
+    @pulumi.getter(name="generalWebhookHeaders")
+    def general_webhook_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AlarmNotifyGroupNoticeRuleReceiverInfoGeneralWebhookHeaderArgs']]]]:
+        """
+        The general webhook headers.
+        """
+        return pulumi.get(self, "general_webhook_headers")
+
+    @general_webhook_headers.setter
+    def general_webhook_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AlarmNotifyGroupNoticeRuleReceiverInfoGeneralWebhookHeaderArgs']]]]):
+        pulumi.set(self, "general_webhook_headers", value)
+
+    @property
+    @pulumi.getter(name="generalWebhookMethod")
+    def general_webhook_method(self) -> Optional[pulumi.Input[str]]:
+        """
+        The general webhook method.
+        """
+        return pulumi.get(self, "general_webhook_method")
+
+    @general_webhook_method.setter
+    def general_webhook_method(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "general_webhook_method", value)
+
+    @property
+    @pulumi.getter(name="generalWebhookUrl")
+    def general_webhook_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        The webhook url.
+        """
+        return pulumi.get(self, "general_webhook_url")
+
+    @general_webhook_url.setter
+    def general_webhook_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "general_webhook_url", value)
+
+    @property
+    @pulumi.getter(name="receiverChannels")
+    def receiver_channels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The list of the receiver channels.
+        """
+        return pulumi.get(self, "receiver_channels")
+
+    @receiver_channels.setter
+    def receiver_channels(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "receiver_channels", value)
+
+    @property
+    @pulumi.getter(name="receiverNames")
+    def receiver_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of the receiver names.
+        """
+        return pulumi.get(self, "receiver_names")
+
+    @receiver_names.setter
+    def receiver_names(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "receiver_names", value)
+
+    @property
+    @pulumi.getter(name="receiverType")
+    def receiver_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The receiver type.
+        """
+        return pulumi.get(self, "receiver_type")
+
+    @receiver_type.setter
+    def receiver_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "receiver_type", value)
+
+    @property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> Optional[pulumi.Input[str]]:
+        """
+        The start time.
+        """
+        return pulumi.get(self, "start_time")
+
+    @start_time.setter
+    def start_time(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "start_time", value)
+
+
+@pulumi.input_type
+class AlarmNotifyGroupNoticeRuleReceiverInfoGeneralWebhookHeaderArgs:
+    def __init__(__self__, *,
+                 key: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] key: The key of the header.
+        :param pulumi.Input[str] value: The value of the header.
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The key of the header.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        """
+        The value of the header.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class AlarmNotifyGroupNoticeRuleRuleNodeArgs:
+    def __init__(__self__, *,
+                 childrens: Optional[pulumi.Input[Sequence[pulumi.Input['AlarmNotifyGroupNoticeRuleRuleNodeChildrenArgs']]]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
+                 values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['AlarmNotifyGroupNoticeRuleRuleNodeChildrenArgs']]] childrens: The children of the rule node.
+        :param pulumi.Input[str] type: The type of the rule node.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] values: The value of the rule node.
+        """
+        if childrens is not None:
+            pulumi.set(__self__, "childrens", childrens)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+
+    @property
+    @pulumi.getter
+    def childrens(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AlarmNotifyGroupNoticeRuleRuleNodeChildrenArgs']]]]:
+        """
+        The children of the rule node.
+        """
+        return pulumi.get(self, "childrens")
+
+    @childrens.setter
+    def childrens(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AlarmNotifyGroupNoticeRuleRuleNodeChildrenArgs']]]]):
+        pulumi.set(self, "childrens", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The type of the rule node.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter
+    def values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The value of the rule node.
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "values", value)
+
+
+@pulumi.input_type
+class AlarmNotifyGroupNoticeRuleRuleNodeChildrenArgs:
+    def __init__(__self__, *,
+                 type: Optional[pulumi.Input[str]] = None,
+                 values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[str] type: The type of the rule node.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] values: The value of the rule node.
+        """
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The type of the rule node.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter
+    def values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The value of the rule node.
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "values", value)
+
+
+@pulumi.input_type
 class AlarmNotifyGroupReceiverArgs:
     def __init__(__self__, *,
                  end_time: pulumi.Input[str],
                  receiver_channels: pulumi.Input[Sequence[pulumi.Input[str]]],
                  receiver_names: pulumi.Input[Sequence[pulumi.Input[str]]],
                  receiver_type: pulumi.Input[str],
-                 start_time: pulumi.Input[str]):
+                 start_time: pulumi.Input[str],
+                 alarm_content_template_id: Optional[pulumi.Input[str]] = None,
+                 alarm_webhook_at_users: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 alarm_webhook_integration_id: Optional[pulumi.Input[str]] = None,
+                 alarm_webhook_integration_name: Optional[pulumi.Input[str]] = None,
+                 alarm_webhook_is_at_all: Optional[pulumi.Input[bool]] = None,
+                 general_webhook_body: Optional[pulumi.Input[str]] = None,
+                 general_webhook_headers: Optional[pulumi.Input[Sequence[pulumi.Input['AlarmNotifyGroupReceiverGeneralWebhookHeaderArgs']]]] = None,
+                 general_webhook_method: Optional[pulumi.Input[str]] = None,
+                 general_webhook_url: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] end_time: The end time.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] receiver_channels: The list of the receiver channels. Currently supported channels: Email, Sms, Phone.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] receiver_names: List of the receiver names.
         :param pulumi.Input[str] receiver_type: The receiver type, Can be set as: `User`(The id of user).
         :param pulumi.Input[str] start_time: The start time.
+        :param pulumi.Input[str] alarm_content_template_id: The alarm content template id.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] alarm_webhook_at_users: The alarm webhook at users.
+        :param pulumi.Input[str] alarm_webhook_integration_id: The alarm webhook integration id.
+        :param pulumi.Input[str] alarm_webhook_integration_name: The alarm webhook integration name.
+        :param pulumi.Input[bool] alarm_webhook_is_at_all: The alarm webhook is at all.
+        :param pulumi.Input[str] general_webhook_body: The webhook body.
+        :param pulumi.Input[Sequence[pulumi.Input['AlarmNotifyGroupReceiverGeneralWebhookHeaderArgs']]] general_webhook_headers: The general webhook headers.
+        :param pulumi.Input[str] general_webhook_method: The general webhook method.
+        :param pulumi.Input[str] general_webhook_url: The webhook url.
         """
         pulumi.set(__self__, "end_time", end_time)
         pulumi.set(__self__, "receiver_channels", receiver_channels)
         pulumi.set(__self__, "receiver_names", receiver_names)
         pulumi.set(__self__, "receiver_type", receiver_type)
         pulumi.set(__self__, "start_time", start_time)
+        if alarm_content_template_id is not None:
+            pulumi.set(__self__, "alarm_content_template_id", alarm_content_template_id)
+        if alarm_webhook_at_users is not None:
+            pulumi.set(__self__, "alarm_webhook_at_users", alarm_webhook_at_users)
+        if alarm_webhook_integration_id is not None:
+            pulumi.set(__self__, "alarm_webhook_integration_id", alarm_webhook_integration_id)
+        if alarm_webhook_integration_name is not None:
+            pulumi.set(__self__, "alarm_webhook_integration_name", alarm_webhook_integration_name)
+        if alarm_webhook_is_at_all is not None:
+            pulumi.set(__self__, "alarm_webhook_is_at_all", alarm_webhook_is_at_all)
+        if general_webhook_body is not None:
+            pulumi.set(__self__, "general_webhook_body", general_webhook_body)
+        if general_webhook_headers is not None:
+            pulumi.set(__self__, "general_webhook_headers", general_webhook_headers)
+        if general_webhook_method is not None:
+            pulumi.set(__self__, "general_webhook_method", general_webhook_method)
+        if general_webhook_url is not None:
+            pulumi.set(__self__, "general_webhook_url", general_webhook_url)
 
     @property
     @pulumi.getter(name="endTime")
@@ -198,6 +1028,153 @@ class AlarmNotifyGroupReceiverArgs:
     def start_time(self, value: pulumi.Input[str]):
         pulumi.set(self, "start_time", value)
 
+    @property
+    @pulumi.getter(name="alarmContentTemplateId")
+    def alarm_content_template_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The alarm content template id.
+        """
+        return pulumi.get(self, "alarm_content_template_id")
+
+    @alarm_content_template_id.setter
+    def alarm_content_template_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "alarm_content_template_id", value)
+
+    @property
+    @pulumi.getter(name="alarmWebhookAtUsers")
+    def alarm_webhook_at_users(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The alarm webhook at users.
+        """
+        return pulumi.get(self, "alarm_webhook_at_users")
+
+    @alarm_webhook_at_users.setter
+    def alarm_webhook_at_users(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "alarm_webhook_at_users", value)
+
+    @property
+    @pulumi.getter(name="alarmWebhookIntegrationId")
+    def alarm_webhook_integration_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The alarm webhook integration id.
+        """
+        return pulumi.get(self, "alarm_webhook_integration_id")
+
+    @alarm_webhook_integration_id.setter
+    def alarm_webhook_integration_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "alarm_webhook_integration_id", value)
+
+    @property
+    @pulumi.getter(name="alarmWebhookIntegrationName")
+    def alarm_webhook_integration_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The alarm webhook integration name.
+        """
+        return pulumi.get(self, "alarm_webhook_integration_name")
+
+    @alarm_webhook_integration_name.setter
+    def alarm_webhook_integration_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "alarm_webhook_integration_name", value)
+
+    @property
+    @pulumi.getter(name="alarmWebhookIsAtAll")
+    def alarm_webhook_is_at_all(self) -> Optional[pulumi.Input[bool]]:
+        """
+        The alarm webhook is at all.
+        """
+        return pulumi.get(self, "alarm_webhook_is_at_all")
+
+    @alarm_webhook_is_at_all.setter
+    def alarm_webhook_is_at_all(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "alarm_webhook_is_at_all", value)
+
+    @property
+    @pulumi.getter(name="generalWebhookBody")
+    def general_webhook_body(self) -> Optional[pulumi.Input[str]]:
+        """
+        The webhook body.
+        """
+        return pulumi.get(self, "general_webhook_body")
+
+    @general_webhook_body.setter
+    def general_webhook_body(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "general_webhook_body", value)
+
+    @property
+    @pulumi.getter(name="generalWebhookHeaders")
+    def general_webhook_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AlarmNotifyGroupReceiverGeneralWebhookHeaderArgs']]]]:
+        """
+        The general webhook headers.
+        """
+        return pulumi.get(self, "general_webhook_headers")
+
+    @general_webhook_headers.setter
+    def general_webhook_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AlarmNotifyGroupReceiverGeneralWebhookHeaderArgs']]]]):
+        pulumi.set(self, "general_webhook_headers", value)
+
+    @property
+    @pulumi.getter(name="generalWebhookMethod")
+    def general_webhook_method(self) -> Optional[pulumi.Input[str]]:
+        """
+        The general webhook method.
+        """
+        return pulumi.get(self, "general_webhook_method")
+
+    @general_webhook_method.setter
+    def general_webhook_method(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "general_webhook_method", value)
+
+    @property
+    @pulumi.getter(name="generalWebhookUrl")
+    def general_webhook_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        The webhook url.
+        """
+        return pulumi.get(self, "general_webhook_url")
+
+    @general_webhook_url.setter
+    def general_webhook_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "general_webhook_url", value)
+
+
+@pulumi.input_type
+class AlarmNotifyGroupReceiverGeneralWebhookHeaderArgs:
+    def __init__(__self__, *,
+                 key: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] key: The key of the header.
+        :param pulumi.Input[str] value: The value of the header.
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The key of the header.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        """
+        The value of the header.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
 
 @pulumi.input_type
 class AlarmQueryRequestArgs:
@@ -206,19 +1183,35 @@ class AlarmQueryRequestArgs:
                  number: pulumi.Input[int],
                  query: pulumi.Input[str],
                  start_time_offset: pulumi.Input[int],
-                 topic_id: pulumi.Input[str]):
+                 topic_id: pulumi.Input[str],
+                 end_time_offset_unit: Optional[pulumi.Input[str]] = None,
+                 start_time_offset_unit: Optional[pulumi.Input[str]] = None,
+                 time_span_type: Optional[pulumi.Input[str]] = None,
+                 truncated_time: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[int] end_time_offset: The end time of the query range is relative to the current historical time. The unit is minutes. The value is not positive and must be greater than StartTimeOffset. The maximum value is 0 and the minimum value is -1440.
         :param pulumi.Input[int] number: Alarm object sequence number; increments from 1.
         :param pulumi.Input[str] query: Query statement, the maximum supported length is 1024.
         :param pulumi.Input[int] start_time_offset: The start time of the query range is relative to the current historical time, in minutes. The value is non-positive, the maximum value is 0, and the minimum value is -1440.
         :param pulumi.Input[str] topic_id: The id of the topic.
+        :param pulumi.Input[str] end_time_offset_unit: The end time offset unit.
+        :param pulumi.Input[str] start_time_offset_unit: The start time offset unit.
+        :param pulumi.Input[str] time_span_type: The time span type.
+        :param pulumi.Input[str] truncated_time: The truncated time.
         """
         pulumi.set(__self__, "end_time_offset", end_time_offset)
         pulumi.set(__self__, "number", number)
         pulumi.set(__self__, "query", query)
         pulumi.set(__self__, "start_time_offset", start_time_offset)
         pulumi.set(__self__, "topic_id", topic_id)
+        if end_time_offset_unit is not None:
+            pulumi.set(__self__, "end_time_offset_unit", end_time_offset_unit)
+        if start_time_offset_unit is not None:
+            pulumi.set(__self__, "start_time_offset_unit", start_time_offset_unit)
+        if time_span_type is not None:
+            pulumi.set(__self__, "time_span_type", time_span_type)
+        if truncated_time is not None:
+            pulumi.set(__self__, "truncated_time", truncated_time)
 
     @property
     @pulumi.getter(name="endTimeOffset")
@@ -280,46 +1273,273 @@ class AlarmQueryRequestArgs:
     def topic_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "topic_id", value)
 
+    @property
+    @pulumi.getter(name="endTimeOffsetUnit")
+    def end_time_offset_unit(self) -> Optional[pulumi.Input[str]]:
+        """
+        The end time offset unit.
+        """
+        return pulumi.get(self, "end_time_offset_unit")
+
+    @end_time_offset_unit.setter
+    def end_time_offset_unit(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "end_time_offset_unit", value)
+
+    @property
+    @pulumi.getter(name="startTimeOffsetUnit")
+    def start_time_offset_unit(self) -> Optional[pulumi.Input[str]]:
+        """
+        The start time offset unit.
+        """
+        return pulumi.get(self, "start_time_offset_unit")
+
+    @start_time_offset_unit.setter
+    def start_time_offset_unit(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "start_time_offset_unit", value)
+
+    @property
+    @pulumi.getter(name="timeSpanType")
+    def time_span_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The time span type.
+        """
+        return pulumi.get(self, "time_span_type")
+
+    @time_span_type.setter
+    def time_span_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "time_span_type", value)
+
+    @property
+    @pulumi.getter(name="truncatedTime")
+    def truncated_time(self) -> Optional[pulumi.Input[str]]:
+        """
+        The truncated time.
+        """
+        return pulumi.get(self, "truncated_time")
+
+    @truncated_time.setter
+    def truncated_time(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "truncated_time", value)
+
 
 @pulumi.input_type
 class AlarmRequestCycleArgs:
     def __init__(__self__, *,
-                 time: pulumi.Input[int],
-                 type: pulumi.Input[str]):
+                 cron_tab: Optional[pulumi.Input[str]] = None,
+                 time: Optional[pulumi.Input[int]] = None,
+                 type: Optional[pulumi.Input[str]] = None):
         """
+        :param pulumi.Input[str] cron_tab: The cron tab.
         :param pulumi.Input[int] time: The cycle of alarm task execution, or the time point of periodic execution. The unit is minutes, and the value range is 1~1440.
         :param pulumi.Input[str] type: Execution cycle type.
-               Period: Periodic execution, which means executing once every certain period of time.
-               Fixed: Regular execution, which means executing at a fixed time point every day.
         """
-        pulumi.set(__self__, "time", time)
-        pulumi.set(__self__, "type", type)
+        if cron_tab is not None:
+            pulumi.set(__self__, "cron_tab", cron_tab)
+        if time is not None:
+            pulumi.set(__self__, "time", time)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="cronTab")
+    def cron_tab(self) -> Optional[pulumi.Input[str]]:
+        """
+        The cron tab.
+        """
+        return pulumi.get(self, "cron_tab")
+
+    @cron_tab.setter
+    def cron_tab(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cron_tab", value)
 
     @property
     @pulumi.getter
-    def time(self) -> pulumi.Input[int]:
+    def time(self) -> Optional[pulumi.Input[int]]:
         """
         The cycle of alarm task execution, or the time point of periodic execution. The unit is minutes, and the value range is 1~1440.
         """
         return pulumi.get(self, "time")
 
     @time.setter
-    def time(self, value: pulumi.Input[int]):
+    def time(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "time", value)
 
     @property
     @pulumi.getter
-    def type(self) -> pulumi.Input[str]:
+    def type(self) -> Optional[pulumi.Input[str]]:
         """
         Execution cycle type.
-        Period: Periodic execution, which means executing once every certain period of time.
-        Fixed: Regular execution, which means executing at a fixed time point every day.
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: pulumi.Input[str]):
+    def type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "type", value)
+
+
+@pulumi.input_type
+class AlarmTriggerConditionArgs:
+    def __init__(__self__, *,
+                 condition: Optional[pulumi.Input[str]] = None,
+                 count_condition: Optional[pulumi.Input[str]] = None,
+                 no_data: Optional[pulumi.Input[bool]] = None,
+                 severity: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] condition: The condition.
+        :param pulumi.Input[str] count_condition: The count condition.
+        :param pulumi.Input[bool] no_data: The no data.
+        :param pulumi.Input[str] severity: The severity.
+        """
+        if condition is not None:
+            pulumi.set(__self__, "condition", condition)
+        if count_condition is not None:
+            pulumi.set(__self__, "count_condition", count_condition)
+        if no_data is not None:
+            pulumi.set(__self__, "no_data", no_data)
+        if severity is not None:
+            pulumi.set(__self__, "severity", severity)
+
+    @property
+    @pulumi.getter
+    def condition(self) -> Optional[pulumi.Input[str]]:
+        """
+        The condition.
+        """
+        return pulumi.get(self, "condition")
+
+    @condition.setter
+    def condition(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "condition", value)
+
+    @property
+    @pulumi.getter(name="countCondition")
+    def count_condition(self) -> Optional[pulumi.Input[str]]:
+        """
+        The count condition.
+        """
+        return pulumi.get(self, "count_condition")
+
+    @count_condition.setter
+    def count_condition(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "count_condition", value)
+
+    @property
+    @pulumi.getter(name="noData")
+    def no_data(self) -> Optional[pulumi.Input[bool]]:
+        """
+        The no data.
+        """
+        return pulumi.get(self, "no_data")
+
+    @no_data.setter
+    def no_data(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "no_data", value)
+
+    @property
+    @pulumi.getter
+    def severity(self) -> Optional[pulumi.Input[str]]:
+        """
+        The severity.
+        """
+        return pulumi.get(self, "severity")
+
+    @severity.setter
+    def severity(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "severity", value)
+
+
+@pulumi.input_type
+class AlarmWebhookIntegrationWebhookHeaderArgs:
+    def __init__(__self__, *,
+                 key: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] key: The key of the header.
+        :param pulumi.Input[str] value: The value of the header.
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The key of the header.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        """
+        The value of the header.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class DownloadTaskLogContextInfosArgs:
+    def __init__(__self__, *,
+                 context_flow: Optional[pulumi.Input[str]] = None,
+                 package_offset: Optional[pulumi.Input[int]] = None,
+                 source: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] context_flow: The context flow of the log.
+        :param pulumi.Input[int] package_offset: The package offset of the log.
+        :param pulumi.Input[str] source: The source of the log.
+        """
+        if context_flow is not None:
+            pulumi.set(__self__, "context_flow", context_flow)
+        if package_offset is not None:
+            pulumi.set(__self__, "package_offset", package_offset)
+        if source is not None:
+            pulumi.set(__self__, "source", source)
+
+    @property
+    @pulumi.getter(name="contextFlow")
+    def context_flow(self) -> Optional[pulumi.Input[str]]:
+        """
+        The context flow of the log.
+        """
+        return pulumi.get(self, "context_flow")
+
+    @context_flow.setter
+    def context_flow(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "context_flow", value)
+
+    @property
+    @pulumi.getter(name="packageOffset")
+    def package_offset(self) -> Optional[pulumi.Input[int]]:
+        """
+        The package offset of the log.
+        """
+        return pulumi.get(self, "package_offset")
+
+    @package_offset.setter
+    def package_offset(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "package_offset", value)
+
+    @property
+    @pulumi.getter
+    def source(self) -> Optional[pulumi.Input[str]]:
+        """
+        The source of the log.
+        """
+        return pulumi.get(self, "source")
+
+    @source.setter
+    def source(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "source", value)
 
 
 @pulumi.input_type
@@ -1713,8 +2933,10 @@ class RuleExtractRuleArgs:
                  keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  log_regex: Optional[pulumi.Input[str]] = None,
                  log_template: Optional[pulumi.Input['RuleExtractRuleLogTemplateArgs']] = None,
+                 quote: Optional[pulumi.Input[str]] = None,
                  time_format: Optional[pulumi.Input[str]] = None,
                  time_key: Optional[pulumi.Input[str]] = None,
+                 time_zone: Optional[pulumi.Input[str]] = None,
                  un_match_log_key: Optional[pulumi.Input[str]] = None,
                  un_match_up_load_switch: Optional[pulumi.Input[bool]] = None):
         """
@@ -1724,8 +2946,10 @@ class RuleExtractRuleArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] keys: A list of log field names (Key).
         :param pulumi.Input[str] log_regex: The entire log needs to match the regular expression.
         :param pulumi.Input['RuleExtractRuleLogTemplateArgs'] log_template: Automatically extract log fields according to the specified log template.
+        :param pulumi.Input[str] quote: The quote symbol.
         :param pulumi.Input[str] time_format: Parsing format of the time field.
         :param pulumi.Input[str] time_key: The field name of the log time field.
+        :param pulumi.Input[str] time_zone: The time zone.
         :param pulumi.Input[str] un_match_log_key: When uploading the failed log, the key name of the failed log.
         :param pulumi.Input[bool] un_match_up_load_switch: Whether to upload the log of parsing failure.
         """
@@ -1741,10 +2965,14 @@ class RuleExtractRuleArgs:
             pulumi.set(__self__, "log_regex", log_regex)
         if log_template is not None:
             pulumi.set(__self__, "log_template", log_template)
+        if quote is not None:
+            pulumi.set(__self__, "quote", quote)
         if time_format is not None:
             pulumi.set(__self__, "time_format", time_format)
         if time_key is not None:
             pulumi.set(__self__, "time_key", time_key)
+        if time_zone is not None:
+            pulumi.set(__self__, "time_zone", time_zone)
         if un_match_log_key is not None:
             pulumi.set(__self__, "un_match_log_key", un_match_log_key)
         if un_match_up_load_switch is not None:
@@ -1823,6 +3051,18 @@ class RuleExtractRuleArgs:
         pulumi.set(self, "log_template", value)
 
     @property
+    @pulumi.getter
+    def quote(self) -> Optional[pulumi.Input[str]]:
+        """
+        The quote symbol.
+        """
+        return pulumi.get(self, "quote")
+
+    @quote.setter
+    def quote(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "quote", value)
+
+    @property
     @pulumi.getter(name="timeFormat")
     def time_format(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1845,6 +3085,18 @@ class RuleExtractRuleArgs:
     @time_key.setter
     def time_key(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "time_key", value)
+
+    @property
+    @pulumi.getter(name="timeZone")
+    def time_zone(self) -> Optional[pulumi.Input[str]]:
+        """
+        The time zone.
+        """
+        return pulumi.get(self, "time_zone")
+
+    @time_zone.setter
+    def time_zone(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "time_zone", value)
 
     @property
     @pulumi.getter(name="unMatchLogKey")
@@ -2320,6 +3572,393 @@ class ScheduleSqlTaskRequestCycleArgs:
 
 
 @pulumi.input_type
+class SearchTracesQueryArgs:
+    def __init__(__self__, *,
+                 asc: Optional[bool] = None,
+                 attributes: Optional[Sequence['SearchTracesQueryAttributeArgs']] = None,
+                 duration_max: Optional[int] = None,
+                 duration_min: Optional[int] = None,
+                 kind: Optional[str] = None,
+                 limit: Optional[int] = None,
+                 offset: Optional[int] = None,
+                 operation_name: Optional[str] = None,
+                 order: Optional[str] = None,
+                 service_name: Optional[str] = None,
+                 start_time_max: Optional[int] = None,
+                 start_time_min: Optional[int] = None,
+                 status_code: Optional[str] = None,
+                 trace_id: Optional[str] = None):
+        """
+        :param bool asc: Whether to sort results in ascending order. true means ascending, false means descending.
+        :param Sequence['SearchTracesQueryAttributeArgs'] attributes: Attributes.
+        :param int duration_max: Maximum trace duration in microseconds.
+        :param int duration_min: Minimum trace duration in microseconds.
+        :param str kind: Type of the trace.
+        :param int limit: Maximum number of records to return, used for pagination.
+        :param int offset: Offset for paginated query.
+        :param str operation_name: Operation name, used to filter traces with specific operation.
+        :param str order: Sorting field. Supported fields: Kind, Name, ServiceName, Start, End, Duration, and indexed fields in Attributes.
+        :param str service_name: Service name, used to filter traces from specific service.
+        :param int start_time_max: Maximum start time for searching traces, in microsecond timestamp format.
+        :param int start_time_min: Minimum start time for searching traces, in microsecond timestamp format.
+        :param str status_code: Trace status code, used to filter traces with specific status.
+        :param str trace_id: Trace ID.
+        """
+        if asc is not None:
+            pulumi.set(__self__, "asc", asc)
+        if attributes is not None:
+            pulumi.set(__self__, "attributes", attributes)
+        if duration_max is not None:
+            pulumi.set(__self__, "duration_max", duration_max)
+        if duration_min is not None:
+            pulumi.set(__self__, "duration_min", duration_min)
+        if kind is not None:
+            pulumi.set(__self__, "kind", kind)
+        if limit is not None:
+            pulumi.set(__self__, "limit", limit)
+        if offset is not None:
+            pulumi.set(__self__, "offset", offset)
+        if operation_name is not None:
+            pulumi.set(__self__, "operation_name", operation_name)
+        if order is not None:
+            pulumi.set(__self__, "order", order)
+        if service_name is not None:
+            pulumi.set(__self__, "service_name", service_name)
+        if start_time_max is not None:
+            pulumi.set(__self__, "start_time_max", start_time_max)
+        if start_time_min is not None:
+            pulumi.set(__self__, "start_time_min", start_time_min)
+        if status_code is not None:
+            pulumi.set(__self__, "status_code", status_code)
+        if trace_id is not None:
+            pulumi.set(__self__, "trace_id", trace_id)
+
+    @property
+    @pulumi.getter
+    def asc(self) -> Optional[bool]:
+        """
+        Whether to sort results in ascending order. true means ascending, false means descending.
+        """
+        return pulumi.get(self, "asc")
+
+    @asc.setter
+    def asc(self, value: Optional[bool]):
+        pulumi.set(self, "asc", value)
+
+    @property
+    @pulumi.getter
+    def attributes(self) -> Optional[Sequence['SearchTracesQueryAttributeArgs']]:
+        """
+        Attributes.
+        """
+        return pulumi.get(self, "attributes")
+
+    @attributes.setter
+    def attributes(self, value: Optional[Sequence['SearchTracesQueryAttributeArgs']]):
+        pulumi.set(self, "attributes", value)
+
+    @property
+    @pulumi.getter(name="durationMax")
+    def duration_max(self) -> Optional[int]:
+        """
+        Maximum trace duration in microseconds.
+        """
+        return pulumi.get(self, "duration_max")
+
+    @duration_max.setter
+    def duration_max(self, value: Optional[int]):
+        pulumi.set(self, "duration_max", value)
+
+    @property
+    @pulumi.getter(name="durationMin")
+    def duration_min(self) -> Optional[int]:
+        """
+        Minimum trace duration in microseconds.
+        """
+        return pulumi.get(self, "duration_min")
+
+    @duration_min.setter
+    def duration_min(self, value: Optional[int]):
+        pulumi.set(self, "duration_min", value)
+
+    @property
+    @pulumi.getter
+    def kind(self) -> Optional[str]:
+        """
+        Type of the trace.
+        """
+        return pulumi.get(self, "kind")
+
+    @kind.setter
+    def kind(self, value: Optional[str]):
+        pulumi.set(self, "kind", value)
+
+    @property
+    @pulumi.getter
+    def limit(self) -> Optional[int]:
+        """
+        Maximum number of records to return, used for pagination.
+        """
+        return pulumi.get(self, "limit")
+
+    @limit.setter
+    def limit(self, value: Optional[int]):
+        pulumi.set(self, "limit", value)
+
+    @property
+    @pulumi.getter
+    def offset(self) -> Optional[int]:
+        """
+        Offset for paginated query.
+        """
+        return pulumi.get(self, "offset")
+
+    @offset.setter
+    def offset(self, value: Optional[int]):
+        pulumi.set(self, "offset", value)
+
+    @property
+    @pulumi.getter(name="operationName")
+    def operation_name(self) -> Optional[str]:
+        """
+        Operation name, used to filter traces with specific operation.
+        """
+        return pulumi.get(self, "operation_name")
+
+    @operation_name.setter
+    def operation_name(self, value: Optional[str]):
+        pulumi.set(self, "operation_name", value)
+
+    @property
+    @pulumi.getter
+    def order(self) -> Optional[str]:
+        """
+        Sorting field. Supported fields: Kind, Name, ServiceName, Start, End, Duration, and indexed fields in Attributes.
+        """
+        return pulumi.get(self, "order")
+
+    @order.setter
+    def order(self, value: Optional[str]):
+        pulumi.set(self, "order", value)
+
+    @property
+    @pulumi.getter(name="serviceName")
+    def service_name(self) -> Optional[str]:
+        """
+        Service name, used to filter traces from specific service.
+        """
+        return pulumi.get(self, "service_name")
+
+    @service_name.setter
+    def service_name(self, value: Optional[str]):
+        pulumi.set(self, "service_name", value)
+
+    @property
+    @pulumi.getter(name="startTimeMax")
+    def start_time_max(self) -> Optional[int]:
+        """
+        Maximum start time for searching traces, in microsecond timestamp format.
+        """
+        return pulumi.get(self, "start_time_max")
+
+    @start_time_max.setter
+    def start_time_max(self, value: Optional[int]):
+        pulumi.set(self, "start_time_max", value)
+
+    @property
+    @pulumi.getter(name="startTimeMin")
+    def start_time_min(self) -> Optional[int]:
+        """
+        Minimum start time for searching traces, in microsecond timestamp format.
+        """
+        return pulumi.get(self, "start_time_min")
+
+    @start_time_min.setter
+    def start_time_min(self, value: Optional[int]):
+        pulumi.set(self, "start_time_min", value)
+
+    @property
+    @pulumi.getter(name="statusCode")
+    def status_code(self) -> Optional[str]:
+        """
+        Trace status code, used to filter traces with specific status.
+        """
+        return pulumi.get(self, "status_code")
+
+    @status_code.setter
+    def status_code(self, value: Optional[str]):
+        pulumi.set(self, "status_code", value)
+
+    @property
+    @pulumi.getter(name="traceId")
+    def trace_id(self) -> Optional[str]:
+        """
+        Trace ID.
+        """
+        return pulumi.get(self, "trace_id")
+
+    @trace_id.setter
+    def trace_id(self, value: Optional[str]):
+        pulumi.set(self, "trace_id", value)
+
+
+@pulumi.input_type
+class SearchTracesQueryAttributeArgs:
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: Attribute key.
+        :param str value: Attribute value.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        Attribute key.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: str):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        Attribute value.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: str):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ShardShardArgs:
+    def __init__(__self__, *,
+                 exclusive_end_key: Optional[pulumi.Input[str]] = None,
+                 inclusive_begin_key: Optional[pulumi.Input[str]] = None,
+                 modify_time: Optional[pulumi.Input[str]] = None,
+                 shard_id: Optional[pulumi.Input[int]] = None,
+                 status: Optional[pulumi.Input[str]] = None,
+                 stop_write_time: Optional[pulumi.Input[str]] = None,
+                 topic_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] exclusive_end_key: The exclusive end key of the shard.
+        :param pulumi.Input[str] inclusive_begin_key: The inclusive begin key of the shard.
+        :param pulumi.Input[str] modify_time: The modification time of the shard.
+        :param pulumi.Input[int] shard_id: The ID of the shard to split.
+        :param pulumi.Input[str] status: The status of the shard.
+        :param pulumi.Input[str] stop_write_time: The stop write time of the shard.
+        :param pulumi.Input[str] topic_id: The ID of the topic.
+        """
+        if exclusive_end_key is not None:
+            pulumi.set(__self__, "exclusive_end_key", exclusive_end_key)
+        if inclusive_begin_key is not None:
+            pulumi.set(__self__, "inclusive_begin_key", inclusive_begin_key)
+        if modify_time is not None:
+            pulumi.set(__self__, "modify_time", modify_time)
+        if shard_id is not None:
+            pulumi.set(__self__, "shard_id", shard_id)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if stop_write_time is not None:
+            pulumi.set(__self__, "stop_write_time", stop_write_time)
+        if topic_id is not None:
+            pulumi.set(__self__, "topic_id", topic_id)
+
+    @property
+    @pulumi.getter(name="exclusiveEndKey")
+    def exclusive_end_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The exclusive end key of the shard.
+        """
+        return pulumi.get(self, "exclusive_end_key")
+
+    @exclusive_end_key.setter
+    def exclusive_end_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "exclusive_end_key", value)
+
+    @property
+    @pulumi.getter(name="inclusiveBeginKey")
+    def inclusive_begin_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The inclusive begin key of the shard.
+        """
+        return pulumi.get(self, "inclusive_begin_key")
+
+    @inclusive_begin_key.setter
+    def inclusive_begin_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "inclusive_begin_key", value)
+
+    @property
+    @pulumi.getter(name="modifyTime")
+    def modify_time(self) -> Optional[pulumi.Input[str]]:
+        """
+        The modification time of the shard.
+        """
+        return pulumi.get(self, "modify_time")
+
+    @modify_time.setter
+    def modify_time(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "modify_time", value)
+
+    @property
+    @pulumi.getter(name="shardId")
+    def shard_id(self) -> Optional[pulumi.Input[int]]:
+        """
+        The ID of the shard to split.
+        """
+        return pulumi.get(self, "shard_id")
+
+    @shard_id.setter
+    def shard_id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "shard_id", value)
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[pulumi.Input[str]]:
+        """
+        The status of the shard.
+        """
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "status", value)
+
+    @property
+    @pulumi.getter(name="stopWriteTime")
+    def stop_write_time(self) -> Optional[pulumi.Input[str]]:
+        """
+        The stop write time of the shard.
+        """
+        return pulumi.get(self, "stop_write_time")
+
+    @stop_write_time.setter
+    def stop_write_time(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "stop_write_time", value)
+
+    @property
+    @pulumi.getter(name="topicId")
+    def topic_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the topic.
+        """
+        return pulumi.get(self, "topic_id")
+
+    @topic_id.setter
+    def topic_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "topic_id", value)
+
+
+@pulumi.input_type
 class ShipperContentInfoArgs:
     def __init__(__self__, *,
                  csv_info: Optional[pulumi.Input['ShipperContentInfoCsvInfoArgs']] = None,
@@ -2697,6 +4336,264 @@ class ShipperTosShipperInfoArgs:
 
 
 @pulumi.input_type
+class TagResourceTagArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] key: The Key of Tags.
+        :param pulumi.Input[str] value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class TagResourcesTagFilterArgs:
+    def __init__(__self__, *,
+                 key: str,
+                 values: Sequence[str]):
+        """
+        :param str key: The key of the tag filter.
+        :param Sequence[str] values: The values of the tag filter.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The key of the tag filter.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: str):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def values(self) -> Sequence[str]:
+        """
+        The values of the tag filter.
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[str]):
+        pulumi.set(self, "values", value)
+
+
+@pulumi.input_type
+class TagTagArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] key: The Key of Tags.
+        :param pulumi.Input[str] value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class TagsTagFilterArgs:
+    def __init__(__self__, *,
+                 key: str,
+                 values: Sequence[str]):
+        """
+        :param str key: The key of the tag filter.
+        :param Sequence[str] values: The values of the tag filter.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The key of the tag filter.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: str):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def values(self) -> Sequence[str]:
+        """
+        The values of the tag filter.
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[str]):
+        pulumi.set(self, "values", value)
+
+
+@pulumi.input_type
+class TopicEncryptConfArgs:
+    def __init__(__self__, *,
+                 enable: Optional[pulumi.Input[bool]] = None,
+                 encrypt_type: Optional[pulumi.Input[str]] = None,
+                 user_cmk_info: Optional[pulumi.Input['TopicEncryptConfUserCmkInfoArgs']] = None):
+        """
+        :param pulumi.Input[bool] enable: Whether to enable data encryption.
+        :param pulumi.Input[str] encrypt_type: The encryption type.
+        :param pulumi.Input['TopicEncryptConfUserCmkInfoArgs'] user_cmk_info: The user custom key.
+        """
+        if enable is not None:
+            pulumi.set(__self__, "enable", enable)
+        if encrypt_type is not None:
+            pulumi.set(__self__, "encrypt_type", encrypt_type)
+        if user_cmk_info is not None:
+            pulumi.set(__self__, "user_cmk_info", user_cmk_info)
+
+    @property
+    @pulumi.getter
+    def enable(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to enable data encryption.
+        """
+        return pulumi.get(self, "enable")
+
+    @enable.setter
+    def enable(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enable", value)
+
+    @property
+    @pulumi.getter(name="encryptType")
+    def encrypt_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The encryption type.
+        """
+        return pulumi.get(self, "encrypt_type")
+
+    @encrypt_type.setter
+    def encrypt_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "encrypt_type", value)
+
+    @property
+    @pulumi.getter(name="userCmkInfo")
+    def user_cmk_info(self) -> Optional[pulumi.Input['TopicEncryptConfUserCmkInfoArgs']]:
+        """
+        The user custom key.
+        """
+        return pulumi.get(self, "user_cmk_info")
+
+    @user_cmk_info.setter
+    def user_cmk_info(self, value: Optional[pulumi.Input['TopicEncryptConfUserCmkInfoArgs']]):
+        pulumi.set(self, "user_cmk_info", value)
+
+
+@pulumi.input_type
+class TopicEncryptConfUserCmkInfoArgs:
+    def __init__(__self__, *,
+                 region_id: Optional[pulumi.Input[str]] = None,
+                 trn: Optional[pulumi.Input[str]] = None,
+                 user_cmk_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] region_id: The key region.
+        :param pulumi.Input[str] trn: The key trn.
+        :param pulumi.Input[str] user_cmk_id: The key id.
+        """
+        if region_id is not None:
+            pulumi.set(__self__, "region_id", region_id)
+        if trn is not None:
+            pulumi.set(__self__, "trn", trn)
+        if user_cmk_id is not None:
+            pulumi.set(__self__, "user_cmk_id", user_cmk_id)
+
+    @property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The key region.
+        """
+        return pulumi.get(self, "region_id")
+
+    @region_id.setter
+    def region_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "region_id", value)
+
+    @property
+    @pulumi.getter
+    def trn(self) -> Optional[pulumi.Input[str]]:
+        """
+        The key trn.
+        """
+        return pulumi.get(self, "trn")
+
+    @trn.setter
+    def trn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "trn", value)
+
+    @property
+    @pulumi.getter(name="userCmkId")
+    def user_cmk_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The key id.
+        """
+        return pulumi.get(self, "user_cmk_id")
+
+    @user_cmk_id.setter
+    def user_cmk_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "user_cmk_id", value)
+
+
+@pulumi.input_type
 class TopicTagArgs:
     def __init__(__self__, *,
                  key: pulumi.Input[str],
@@ -2771,6 +4668,125 @@ class TopicsTagArgs:
 
 
 @pulumi.input_type
+class TraceInstanceBackendConfigArgs:
+    def __init__(__self__, *,
+                 archive_ttl: Optional[pulumi.Input[int]] = None,
+                 auto_split: Optional[pulumi.Input[bool]] = None,
+                 cold_ttl: Optional[pulumi.Input[int]] = None,
+                 enable_hot_ttl: Optional[pulumi.Input[bool]] = None,
+                 hot_ttl: Optional[pulumi.Input[int]] = None,
+                 max_split_partitions: Optional[pulumi.Input[int]] = None,
+                 ttl: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[int] archive_ttl: Archive storage duration in days.
+        :param pulumi.Input[bool] auto_split: Whether to enable auto split.
+        :param pulumi.Input[int] cold_ttl: Infrequent storage duration in days.
+        :param pulumi.Input[bool] enable_hot_ttl: Whether to enable tiered storage.
+        :param pulumi.Input[int] hot_ttl: Standard storage duration in days.
+        :param pulumi.Input[int] max_split_partitions: Max split partitions.
+        :param pulumi.Input[int] ttl: Total log retention time in days.
+        """
+        if archive_ttl is not None:
+            pulumi.set(__self__, "archive_ttl", archive_ttl)
+        if auto_split is not None:
+            pulumi.set(__self__, "auto_split", auto_split)
+        if cold_ttl is not None:
+            pulumi.set(__self__, "cold_ttl", cold_ttl)
+        if enable_hot_ttl is not None:
+            pulumi.set(__self__, "enable_hot_ttl", enable_hot_ttl)
+        if hot_ttl is not None:
+            pulumi.set(__self__, "hot_ttl", hot_ttl)
+        if max_split_partitions is not None:
+            pulumi.set(__self__, "max_split_partitions", max_split_partitions)
+        if ttl is not None:
+            pulumi.set(__self__, "ttl", ttl)
+
+    @property
+    @pulumi.getter(name="archiveTtl")
+    def archive_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        Archive storage duration in days.
+        """
+        return pulumi.get(self, "archive_ttl")
+
+    @archive_ttl.setter
+    def archive_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "archive_ttl", value)
+
+    @property
+    @pulumi.getter(name="autoSplit")
+    def auto_split(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to enable auto split.
+        """
+        return pulumi.get(self, "auto_split")
+
+    @auto_split.setter
+    def auto_split(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "auto_split", value)
+
+    @property
+    @pulumi.getter(name="coldTtl")
+    def cold_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        Infrequent storage duration in days.
+        """
+        return pulumi.get(self, "cold_ttl")
+
+    @cold_ttl.setter
+    def cold_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "cold_ttl", value)
+
+    @property
+    @pulumi.getter(name="enableHotTtl")
+    def enable_hot_ttl(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to enable tiered storage.
+        """
+        return pulumi.get(self, "enable_hot_ttl")
+
+    @enable_hot_ttl.setter
+    def enable_hot_ttl(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enable_hot_ttl", value)
+
+    @property
+    @pulumi.getter(name="hotTtl")
+    def hot_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        Standard storage duration in days.
+        """
+        return pulumi.get(self, "hot_ttl")
+
+    @hot_ttl.setter
+    def hot_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "hot_ttl", value)
+
+    @property
+    @pulumi.getter(name="maxSplitPartitions")
+    def max_split_partitions(self) -> Optional[pulumi.Input[int]]:
+        """
+        Max split partitions.
+        """
+        return pulumi.get(self, "max_split_partitions")
+
+    @max_split_partitions.setter
+    def max_split_partitions(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_split_partitions", value)
+
+    @property
+    @pulumi.getter
+    def ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        Total log retention time in days.
+        """
+        return pulumi.get(self, "ttl")
+
+    @ttl.setter
+    def ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ttl", value)
+
+
+@pulumi.input_type
 class GetProjectsTagArgs:
     def __init__(__self__, *,
                  key: str,
@@ -2805,6 +4821,348 @@ class GetProjectsTagArgs:
     @value.setter
     def value(self, value: str):
         pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class GetSearchTracesQueryArgs:
+    def __init__(__self__, *,
+                 asc: Optional[bool] = None,
+                 attributes: Optional[Sequence['GetSearchTracesQueryAttributeArgs']] = None,
+                 duration_max: Optional[int] = None,
+                 duration_min: Optional[int] = None,
+                 kind: Optional[str] = None,
+                 limit: Optional[int] = None,
+                 offset: Optional[int] = None,
+                 operation_name: Optional[str] = None,
+                 order: Optional[str] = None,
+                 service_name: Optional[str] = None,
+                 start_time_max: Optional[int] = None,
+                 start_time_min: Optional[int] = None,
+                 status_code: Optional[str] = None,
+                 trace_id: Optional[str] = None):
+        """
+        :param bool asc: Whether to sort results in ascending order. true means ascending, false means descending.
+        :param Sequence['GetSearchTracesQueryAttributeArgs'] attributes: Attributes.
+        :param int duration_max: Maximum trace duration in microseconds.
+        :param int duration_min: Minimum trace duration in microseconds.
+        :param str kind: Type of the trace.
+        :param int limit: Maximum number of records to return, used for pagination.
+        :param int offset: Offset for paginated query.
+        :param str operation_name: Operation name, used to filter traces with specific operation.
+        :param str order: Sorting field. Supported fields: Kind, Name, ServiceName, Start, End, Duration, and indexed fields in Attributes.
+        :param str service_name: Service name, used to filter traces from specific service.
+        :param int start_time_max: Maximum start time for searching traces, in microsecond timestamp format.
+        :param int start_time_min: Minimum start time for searching traces, in microsecond timestamp format.
+        :param str status_code: Trace status code, used to filter traces with specific status.
+        :param str trace_id: Trace ID.
+        """
+        if asc is not None:
+            pulumi.set(__self__, "asc", asc)
+        if attributes is not None:
+            pulumi.set(__self__, "attributes", attributes)
+        if duration_max is not None:
+            pulumi.set(__self__, "duration_max", duration_max)
+        if duration_min is not None:
+            pulumi.set(__self__, "duration_min", duration_min)
+        if kind is not None:
+            pulumi.set(__self__, "kind", kind)
+        if limit is not None:
+            pulumi.set(__self__, "limit", limit)
+        if offset is not None:
+            pulumi.set(__self__, "offset", offset)
+        if operation_name is not None:
+            pulumi.set(__self__, "operation_name", operation_name)
+        if order is not None:
+            pulumi.set(__self__, "order", order)
+        if service_name is not None:
+            pulumi.set(__self__, "service_name", service_name)
+        if start_time_max is not None:
+            pulumi.set(__self__, "start_time_max", start_time_max)
+        if start_time_min is not None:
+            pulumi.set(__self__, "start_time_min", start_time_min)
+        if status_code is not None:
+            pulumi.set(__self__, "status_code", status_code)
+        if trace_id is not None:
+            pulumi.set(__self__, "trace_id", trace_id)
+
+    @property
+    @pulumi.getter
+    def asc(self) -> Optional[bool]:
+        """
+        Whether to sort results in ascending order. true means ascending, false means descending.
+        """
+        return pulumi.get(self, "asc")
+
+    @asc.setter
+    def asc(self, value: Optional[bool]):
+        pulumi.set(self, "asc", value)
+
+    @property
+    @pulumi.getter
+    def attributes(self) -> Optional[Sequence['GetSearchTracesQueryAttributeArgs']]:
+        """
+        Attributes.
+        """
+        return pulumi.get(self, "attributes")
+
+    @attributes.setter
+    def attributes(self, value: Optional[Sequence['GetSearchTracesQueryAttributeArgs']]):
+        pulumi.set(self, "attributes", value)
+
+    @property
+    @pulumi.getter(name="durationMax")
+    def duration_max(self) -> Optional[int]:
+        """
+        Maximum trace duration in microseconds.
+        """
+        return pulumi.get(self, "duration_max")
+
+    @duration_max.setter
+    def duration_max(self, value: Optional[int]):
+        pulumi.set(self, "duration_max", value)
+
+    @property
+    @pulumi.getter(name="durationMin")
+    def duration_min(self) -> Optional[int]:
+        """
+        Minimum trace duration in microseconds.
+        """
+        return pulumi.get(self, "duration_min")
+
+    @duration_min.setter
+    def duration_min(self, value: Optional[int]):
+        pulumi.set(self, "duration_min", value)
+
+    @property
+    @pulumi.getter
+    def kind(self) -> Optional[str]:
+        """
+        Type of the trace.
+        """
+        return pulumi.get(self, "kind")
+
+    @kind.setter
+    def kind(self, value: Optional[str]):
+        pulumi.set(self, "kind", value)
+
+    @property
+    @pulumi.getter
+    def limit(self) -> Optional[int]:
+        """
+        Maximum number of records to return, used for pagination.
+        """
+        return pulumi.get(self, "limit")
+
+    @limit.setter
+    def limit(self, value: Optional[int]):
+        pulumi.set(self, "limit", value)
+
+    @property
+    @pulumi.getter
+    def offset(self) -> Optional[int]:
+        """
+        Offset for paginated query.
+        """
+        return pulumi.get(self, "offset")
+
+    @offset.setter
+    def offset(self, value: Optional[int]):
+        pulumi.set(self, "offset", value)
+
+    @property
+    @pulumi.getter(name="operationName")
+    def operation_name(self) -> Optional[str]:
+        """
+        Operation name, used to filter traces with specific operation.
+        """
+        return pulumi.get(self, "operation_name")
+
+    @operation_name.setter
+    def operation_name(self, value: Optional[str]):
+        pulumi.set(self, "operation_name", value)
+
+    @property
+    @pulumi.getter
+    def order(self) -> Optional[str]:
+        """
+        Sorting field. Supported fields: Kind, Name, ServiceName, Start, End, Duration, and indexed fields in Attributes.
+        """
+        return pulumi.get(self, "order")
+
+    @order.setter
+    def order(self, value: Optional[str]):
+        pulumi.set(self, "order", value)
+
+    @property
+    @pulumi.getter(name="serviceName")
+    def service_name(self) -> Optional[str]:
+        """
+        Service name, used to filter traces from specific service.
+        """
+        return pulumi.get(self, "service_name")
+
+    @service_name.setter
+    def service_name(self, value: Optional[str]):
+        pulumi.set(self, "service_name", value)
+
+    @property
+    @pulumi.getter(name="startTimeMax")
+    def start_time_max(self) -> Optional[int]:
+        """
+        Maximum start time for searching traces, in microsecond timestamp format.
+        """
+        return pulumi.get(self, "start_time_max")
+
+    @start_time_max.setter
+    def start_time_max(self, value: Optional[int]):
+        pulumi.set(self, "start_time_max", value)
+
+    @property
+    @pulumi.getter(name="startTimeMin")
+    def start_time_min(self) -> Optional[int]:
+        """
+        Minimum start time for searching traces, in microsecond timestamp format.
+        """
+        return pulumi.get(self, "start_time_min")
+
+    @start_time_min.setter
+    def start_time_min(self, value: Optional[int]):
+        pulumi.set(self, "start_time_min", value)
+
+    @property
+    @pulumi.getter(name="statusCode")
+    def status_code(self) -> Optional[str]:
+        """
+        Trace status code, used to filter traces with specific status.
+        """
+        return pulumi.get(self, "status_code")
+
+    @status_code.setter
+    def status_code(self, value: Optional[str]):
+        pulumi.set(self, "status_code", value)
+
+    @property
+    @pulumi.getter(name="traceId")
+    def trace_id(self) -> Optional[str]:
+        """
+        Trace ID.
+        """
+        return pulumi.get(self, "trace_id")
+
+    @trace_id.setter
+    def trace_id(self, value: Optional[str]):
+        pulumi.set(self, "trace_id", value)
+
+
+@pulumi.input_type
+class GetSearchTracesQueryAttributeArgs:
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: Attribute key.
+        :param str value: Attribute value.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        Attribute key.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: str):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        Attribute value.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: str):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class GetTagResourcesTagFilterArgs:
+    def __init__(__self__, *,
+                 key: str,
+                 values: Sequence[str]):
+        """
+        :param str key: The key of the tag filter.
+        :param Sequence[str] values: The values of the tag filter.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The key of the tag filter.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: str):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def values(self) -> Sequence[str]:
+        """
+        The values of the tag filter.
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[str]):
+        pulumi.set(self, "values", value)
+
+
+@pulumi.input_type
+class GetTagsTagFilterArgs:
+    def __init__(__self__, *,
+                 key: str,
+                 values: Sequence[str]):
+        """
+        :param str key: The key of the tag filter.
+        :param Sequence[str] values: The values of the tag filter.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The key of the tag filter.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: str):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def values(self) -> Sequence[str]:
+        """
+        The values of the tag filter.
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[str]):
+        pulumi.set(self, "values", value)
 
 
 @pulumi.input_type

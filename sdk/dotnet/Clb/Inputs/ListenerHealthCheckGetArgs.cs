@@ -49,6 +49,12 @@ namespace Pulumi.Volcengine.Clb.Inputs
         public Input<string>? Method { get; set; }
 
         /// <summary>
+        /// The port for health check, with a value range of 1-65535.
+        /// </summary>
+        [Input("port")]
+        public Input<int>? Port { get; set; }
+
+        /// <summary>
         /// The response timeout of health check, default 2, range in 1~60..
         /// </summary>
         [Input("timeout")]

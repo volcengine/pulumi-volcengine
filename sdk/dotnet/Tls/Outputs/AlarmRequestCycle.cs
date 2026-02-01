@@ -14,22 +14,27 @@ namespace Pulumi.Volcengine.Tls.Outputs
     public sealed class AlarmRequestCycle
     {
         /// <summary>
+        /// The cron tab.
+        /// </summary>
+        public readonly string? CronTab;
+        /// <summary>
         /// The cycle of alarm task execution, or the time point of periodic execution. The unit is minutes, and the value range is 1~1440.
         /// </summary>
-        public readonly int Time;
+        public readonly int? Time;
         /// <summary>
         /// Execution cycle type.
-        /// Period: Periodic execution, which means executing once every certain period of time.
-        /// Fixed: Regular execution, which means executing at a fixed time point every day.
         /// </summary>
-        public readonly string Type;
+        public readonly string? Type;
 
         [OutputConstructor]
         private AlarmRequestCycle(
-            int time,
+            string? cronTab,
 
-            string type)
+            int? time,
+
+            string? type)
         {
+            CronTab = cronTab;
             Time = time;
             Type = type;
         }

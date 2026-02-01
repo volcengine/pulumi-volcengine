@@ -22,17 +22,95 @@ namespace Pulumi.Volcengine.Tls
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var foo = new Volcengine.Tls.Rule("foo", new()
+    ///     var fooProject = new Volcengine.Tls.Project("fooProject", new()
     ///     {
-    ///         TopicId = "7bfa2cdc-4f8b-4cf9-b4c9-0ed05c33349f",
-    ///         RuleName = "test",
-    ///         LogType = "minimalist_log",
-    ///         LogSample = "2018-05-22 15:35:53.850 INFO XXXX",
+    ///         ProjectName = "tf-test-project-ttt",
+    ///         Description = "tf-test-project-desc",
+    ///         Region = "cn-guilin-boe",
+    ///     });
+    /// 
+    ///     var fooTopic = new Volcengine.Tls.Topic("fooTopic", new()
+    ///     {
+    ///         ProjectId = fooProject.Id,
+    ///         TopicName = "tf-test-topic-rule-1",
+    ///         Ttl = 60,
+    ///         ShardCount = 2,
+    ///         AutoSplit = true,
+    ///         MaxSplitShard = 10,
+    ///         EnableTracking = true,
+    ///         TimeKey = "request_time",
+    ///         TimeFormat = "%Y-%m-%dT%H:%M:%S,%f",
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Tls.Inputs.TopicTagArgs
+    ///             {
+    ///                 Key = "k1",
+    ///                 Value = "v1",
+    ///             },
+    ///         },
+    ///         LogPublicIp = true,
+    ///         EnableHotTtl = true,
+    ///         HotTtl = 30,
+    ///         ColdTtl = 30,
+    ///         ArchiveTtl = 0,
+    ///     });
+    /// 
+    ///     var fooRule = new Volcengine.Tls.Rule("fooRule", new()
+    ///     {
+    ///         TopicId = fooTopic.Id,
+    ///         RuleName = "tf-test-rule-modify",
+    ///         LogType = "delimiter_log",
+    ///         LogSample = "2018-05-22 15:35:53.850,INFO,XXXX",
     ///         InputType = 1,
+    ///         ExtractRule = new Volcengine.Tls.Inputs.RuleExtractRuleArgs
+    ///         {
+    ///             Delimiter = ",",
+    ///             Keys = new[]
+    ///             {
+    ///                 "time",
+    ///                 "level",
+    ///                 "msg",
+    ///             },
+    ///             TimeKey = "time",
+    ///             TimeFormat = "%Y-%m-%d %H:%M:%S.%f",
+    ///             Quote = "\"",
+    ///             TimeZone = "GMT+08:00",
+    ///             BeginRegex = "",
+    ///             LogRegex = "",
+    ///             FilterKeyRegexes = new[]
+    ///             {
+    ///                 new Volcengine.Tls.Inputs.RuleExtractRuleFilterKeyRegexArgs
+    ///                 {
+    ///                     Key = "__content__",
+    ///                     Regex = ".*ERROR.*",
+    ///                 },
+    ///             },
+    ///             UnMatchUpLoadSwitch = true,
+    ///             UnMatchLogKey = "LogParseFailed",
+    ///             LogTemplate = new Volcengine.Tls.Inputs.RuleExtractRuleLogTemplateArgs
+    ///             {
+    ///                 Type = "",
+    ///                 Format = "",
+    ///             },
+    ///         },
     ///         UserDefineRule = new Volcengine.Tls.Inputs.RuleUserDefineRuleArgs
     ///         {
-    ///             EnableRawLog = false,
+    ///             EnableRawLog = true,
     ///             TailFiles = true,
+    ///             Fields = 
+    ///             {
+    ///                 { "cluster_id", "dabaad5f-7a10-4771-b3ea-d821f73e****" },
+    ///             },
+    ///             ParsePathRule = new Volcengine.Tls.Inputs.RuleUserDefineRuleParsePathRuleArgs
+    ///             {
+    ///                 PathSample = "/data/nginx/log/dabaad5f-7a10/tls/app.log",
+    ///                 Regex = "\\/data\\/nginx\\/log\\/(\\w+)-(\\w+)\\/tls\\/app\\.log",
+    ///                 Keys = new[]
+    ///                 {
+    ///                     "instance-id",
+    ///                     "pod-name",
+    ///                 },
+    ///             },
     ///             ShardHashKey = new Volcengine.Tls.Inputs.RuleUserDefineRuleShardHashKeyArgs
     ///             {
     ///                 HashKey = "3C",
@@ -55,25 +133,6 @@ namespace Pulumi.Volcengine.Tls
     ///                             {
     ///                                 ["mode"] = "all",
     ///                                 ["chars"] = "#t",
-    ///                             },
-    ///                             ["allow_overwrite_keys"] = true,
-    ///                             ["allow_empty_values"] = true,
-    ///                         },
-    ///                     }),
-    ///                     JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
-    ///                     {
-    ///                         ["json"] = new Dictionary&lt;string, object?&gt;
-    ///                         {
-    ///                             ["field"] = "__content__",
-    ///                             ["trim_keys"] = new Dictionary&lt;string, object?&gt;
-    ///                             {
-    ///                                 ["mode"] = "all",
-    ///                                 ["chars"] = "#xx",
-    ///                             },
-    ///                             ["trim_values"] = new Dictionary&lt;string, object?&gt;
-    ///                             {
-    ///                                 ["mode"] = "all",
-    ///                                 ["chars"] = "#txxxt",
     ///                             },
     ///                             ["allow_overwrite_keys"] = true,
     ///                             ["allow_empty_values"] = true,

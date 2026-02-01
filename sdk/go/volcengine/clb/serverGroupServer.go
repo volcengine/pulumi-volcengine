@@ -68,6 +68,16 @@ import (
 //				LoadBalancerId:  fooClb.ID(),
 //				ServerGroupName: pulumi.String("acc-test-create"),
 //				Description:     pulumi.String("hello demo11"),
+//				Type:            pulumi.String("instance"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooIpServerGroup, err := clb.NewServerGroup(ctx, "fooIpServerGroup", &clb.ServerGroupArgs{
+//				LoadBalancerId:  fooClb.ID(),
+//				ServerGroupName: pulumi.String("acc-test-create-ip"),
+//				Description:     pulumi.String("hello demo ip server group"),
+//				Type:            pulumi.String("ip"),
 //			})
 //			if err != nil {
 //				return err
@@ -106,6 +116,29 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			_, err = clb.NewServerGroupServer(ctx, "fooEni", &clb.ServerGroupServerArgs{
+//				ServerGroupId: fooServerGroup.ID(),
+//				InstanceId:    pulumi.String("eni-btgpz5my7ta85h0b2ur*****"),
+//				Type:          pulumi.String("eni"),
+//				Weight:        pulumi.Int(100),
+//				Port:          pulumi.Int(8080),
+//				Description:   pulumi.String("This is a acc test server use eni"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = clb.NewServerGroupServer(ctx, "fooIpServerGroupServer", &clb.ServerGroupServerArgs{
+//				ServerGroupId: fooIpServerGroup.ID(),
+//				InstanceId:    pulumi.String("192.168.*.*"),
+//				Ip:            pulumi.String("192.168.*.*"),
+//				Type:          pulumi.String("ip"),
+//				Weight:        pulumi.Int(80),
+//				Port:          pulumi.Int(400),
+//				Description:   pulumi.String("This is a acc test server use ip"),
+//			})
+//			if err != nil {
+//				return err
+//			}
 //			return nil
 //		})
 //	}
@@ -124,7 +157,7 @@ type ServerGroupServer struct {
 
 	// The description of the instance.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// The ID of ecs instance or the network card bound to ecs instance.
+	// The ID of ecs instance or the network card bound to ecs instance. When the `type` is `ip`, this parameter is an IP address.
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
 	// The private ip of the instance.
 	Ip pulumi.StringOutput `pulumi:"ip"`
@@ -134,7 +167,7 @@ type ServerGroupServer struct {
 	ServerGroupId pulumi.StringOutput `pulumi:"serverGroupId"`
 	// The server id of instance in ServerGroup.
 	ServerId pulumi.StringOutput `pulumi:"serverId"`
-	// The type of instance. Optional choice contains `ecs`, `eni`.
+	// The type of instance. Optional choice contains `ecs`, `eni`, `ip`. When the `type` of `serverGroupId` is `ip`, only `ip` is supported.
 	Type pulumi.StringOutput `pulumi:"type"`
 	// The weight of the instance, range in 0~100.
 	Weight pulumi.IntPtrOutput `pulumi:"weight"`
@@ -184,7 +217,7 @@ func GetServerGroupServer(ctx *pulumi.Context,
 type serverGroupServerState struct {
 	// The description of the instance.
 	Description *string `pulumi:"description"`
-	// The ID of ecs instance or the network card bound to ecs instance.
+	// The ID of ecs instance or the network card bound to ecs instance. When the `type` is `ip`, this parameter is an IP address.
 	InstanceId *string `pulumi:"instanceId"`
 	// The private ip of the instance.
 	Ip *string `pulumi:"ip"`
@@ -194,7 +227,7 @@ type serverGroupServerState struct {
 	ServerGroupId *string `pulumi:"serverGroupId"`
 	// The server id of instance in ServerGroup.
 	ServerId *string `pulumi:"serverId"`
-	// The type of instance. Optional choice contains `ecs`, `eni`.
+	// The type of instance. Optional choice contains `ecs`, `eni`, `ip`. When the `type` of `serverGroupId` is `ip`, only `ip` is supported.
 	Type *string `pulumi:"type"`
 	// The weight of the instance, range in 0~100.
 	Weight *int `pulumi:"weight"`
@@ -203,7 +236,7 @@ type serverGroupServerState struct {
 type ServerGroupServerState struct {
 	// The description of the instance.
 	Description pulumi.StringPtrInput
-	// The ID of ecs instance or the network card bound to ecs instance.
+	// The ID of ecs instance or the network card bound to ecs instance. When the `type` is `ip`, this parameter is an IP address.
 	InstanceId pulumi.StringPtrInput
 	// The private ip of the instance.
 	Ip pulumi.StringPtrInput
@@ -213,7 +246,7 @@ type ServerGroupServerState struct {
 	ServerGroupId pulumi.StringPtrInput
 	// The server id of instance in ServerGroup.
 	ServerId pulumi.StringPtrInput
-	// The type of instance. Optional choice contains `ecs`, `eni`.
+	// The type of instance. Optional choice contains `ecs`, `eni`, `ip`. When the `type` of `serverGroupId` is `ip`, only `ip` is supported.
 	Type pulumi.StringPtrInput
 	// The weight of the instance, range in 0~100.
 	Weight pulumi.IntPtrInput
@@ -226,7 +259,7 @@ func (ServerGroupServerState) ElementType() reflect.Type {
 type serverGroupServerArgs struct {
 	// The description of the instance.
 	Description *string `pulumi:"description"`
-	// The ID of ecs instance or the network card bound to ecs instance.
+	// The ID of ecs instance or the network card bound to ecs instance. When the `type` is `ip`, this parameter is an IP address.
 	InstanceId string `pulumi:"instanceId"`
 	// The private ip of the instance.
 	Ip *string `pulumi:"ip"`
@@ -234,7 +267,7 @@ type serverGroupServerArgs struct {
 	Port int `pulumi:"port"`
 	// The ID of the ServerGroup.
 	ServerGroupId string `pulumi:"serverGroupId"`
-	// The type of instance. Optional choice contains `ecs`, `eni`.
+	// The type of instance. Optional choice contains `ecs`, `eni`, `ip`. When the `type` of `serverGroupId` is `ip`, only `ip` is supported.
 	Type string `pulumi:"type"`
 	// The weight of the instance, range in 0~100.
 	Weight *int `pulumi:"weight"`
@@ -244,7 +277,7 @@ type serverGroupServerArgs struct {
 type ServerGroupServerArgs struct {
 	// The description of the instance.
 	Description pulumi.StringPtrInput
-	// The ID of ecs instance or the network card bound to ecs instance.
+	// The ID of ecs instance or the network card bound to ecs instance. When the `type` is `ip`, this parameter is an IP address.
 	InstanceId pulumi.StringInput
 	// The private ip of the instance.
 	Ip pulumi.StringPtrInput
@@ -252,7 +285,7 @@ type ServerGroupServerArgs struct {
 	Port pulumi.IntInput
 	// The ID of the ServerGroup.
 	ServerGroupId pulumi.StringInput
-	// The type of instance. Optional choice contains `ecs`, `eni`.
+	// The type of instance. Optional choice contains `ecs`, `eni`, `ip`. When the `type` of `serverGroupId` is `ip`, only `ip` is supported.
 	Type pulumi.StringInput
 	// The weight of the instance, range in 0~100.
 	Weight pulumi.IntPtrInput
@@ -350,7 +383,7 @@ func (o ServerGroupServerOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ServerGroupServer) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// The ID of ecs instance or the network card bound to ecs instance.
+// The ID of ecs instance or the network card bound to ecs instance. When the `type` is `ip`, this parameter is an IP address.
 func (o ServerGroupServerOutput) InstanceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ServerGroupServer) pulumi.StringOutput { return v.InstanceId }).(pulumi.StringOutput)
 }
@@ -375,7 +408,7 @@ func (o ServerGroupServerOutput) ServerId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ServerGroupServer) pulumi.StringOutput { return v.ServerId }).(pulumi.StringOutput)
 }
 
-// The type of instance. Optional choice contains `ecs`, `eni`.
+// The type of instance. Optional choice contains `ecs`, `eni`, `ip`. When the `type` of `serverGroupId` is `ip`, only `ip` is supported.
 func (o ServerGroupServerOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *ServerGroupServer) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }

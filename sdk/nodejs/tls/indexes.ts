@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  *
  * const default = volcengine.tls.getIndexes({
- *     ids: ["7ce12237-6670-44a7-9d79-2e36961586e6"],
+ *     ids: ["9b756385-1dfb-4306-a094-0c88e04b34a5"],
  * });
  * ```
  */
@@ -72,7 +72,7 @@ export interface IndexesResult {
  * import * as volcengine from "@pulumi/volcengine";
  *
  * const default = volcengine.tls.getIndexes({
- *     ids: ["7ce12237-6670-44a7-9d79-2e36961586e6"],
+ *     ids: ["9b756385-1dfb-4306-a094-0c88e04b34a5"],
  * });
  * ```
  */

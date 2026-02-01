@@ -28,31 +28,45 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := tls.NewAlarm(ctx, "foo", &tls.AlarmArgs{
-//				AlarmName: pulumi.String("test"),
+//				AlarmName: pulumi.String("test-terraform-tf"),
 //				AlarmNotifyGroups: pulumi.StringArray{
-//					pulumi.String("3019107f-28a2-4208-a2b6-c33fcb97ac3a"),
+//					pulumi.String("bf3ecf26-2081-4e27-ae18-f44dbe5c6138"),
 //				},
 //				AlarmPeriodDetail: &tls.AlarmAlarmPeriodDetailArgs{
-//					Email:          pulumi.Int(2),
-//					GeneralWebhook: pulumi.Int(3),
-//					Phone:          pulumi.Int(10),
-//					Sms:            pulumi.Int(10),
+//					Email:          pulumi.Int(20),
+//					GeneralWebhook: pulumi.Int(20),
+//					Phone:          pulumi.Int(20),
+//					Sms:            pulumi.Int(20),
 //				},
-//				Condition: pulumi.String("$1.errNum>0"),
-//				ProjectId: pulumi.String("cc44f8b6-0328-4622-b043-023fca735cd4"),
+//				ProjectId: pulumi.String("88d31abb-62c7-40f5-998e-889747c2a116"),
 //				QueryRequests: tls.AlarmQueryRequestArray{
 //					&tls.AlarmQueryRequestArgs{
-//						EndTimeOffset:   pulumi.Int(0),
-//						Number:          pulumi.Int(1),
-//						Query:           pulumi.String("Failed | select count(*) as errNum"),
-//						StartTimeOffset: -15,
-//						TopicId:         pulumi.String("af1a2240-ba62-4f18-b421-bde2f9684e57"),
+//						EndTimeOffset:       pulumi.Int(0),
+//						EndTimeOffsetUnit:   pulumi.String("Minute"),
+//						Number:              pulumi.Int(1),
+//						Query:               pulumi.String("Failed | select count(*) as errNum"),
+//						StartTimeOffset:     -15,
+//						StartTimeOffsetUnit: pulumi.String("Minute"),
+//						TimeSpanType:        pulumi.String("Relative"),
+//						TopicId:             pulumi.String("a690a9b8-72c1-40a3-b8c6-f89a81d3748e"),
+//						TruncatedTime:       pulumi.String("Minute"),
 //					},
 //				},
 //				RequestCycle: &tls.AlarmRequestCycleArgs{
-//					Time: pulumi.Int(11),
+//					Time: pulumi.Int(20),
 //					Type: pulumi.String("Period"),
 //				},
+//				SendResolved: pulumi.Bool(true),
+//				Status:       pulumi.Bool(false),
+//				TriggerConditions: tls.AlarmTriggerConditionArray{
+//					&tls.AlarmTriggerConditionArgs{
+//						Condition:      pulumi.String("$1.errNum>0"),
+//						CountCondition: pulumi.String("__count__ > 0"),
+//						NoData:         pulumi.Bool(false),
+//						Severity:       pulumi.String("critical"),
+//					},
+//				},
+//				TriggerPeriod: pulumi.Int(2),
 //				UserDefineMsg: pulumi.String("test for terraform"),
 //			})
 //			if err != nil {
@@ -85,17 +99,25 @@ type Alarm struct {
 	// Period for sending alarm notifications. When the number of continuous alarm triggers reaches the specified limit (TriggerPeriod), Log Service will send alarm notifications according to the specified period.
 	AlarmPeriodDetail AlarmAlarmPeriodDetailPtrOutput `pulumi:"alarmPeriodDetail"`
 	// Alarm trigger condition.
-	Condition pulumi.StringOutput `pulumi:"condition"`
+	Condition pulumi.StringPtrOutput `pulumi:"condition"`
+	// The list of join configurations.
+	JoinConfigurations AlarmJoinConfigurationArrayOutput `pulumi:"joinConfigurations"`
 	// The project id.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Search and analyze sentences, 1~3 can be configured.
 	QueryRequests AlarmQueryRequestArrayOutput `pulumi:"queryRequests"`
 	// The execution period of the alarm task.
 	RequestCycle AlarmRequestCycleOutput `pulumi:"requestCycle"`
+	// Whether to send resolved.
+	SendResolved pulumi.BoolPtrOutput `pulumi:"sendResolved"`
+	// The severity of the alarm.
+	Severity pulumi.StringPtrOutput `pulumi:"severity"`
 	// Whether to enable the alert policy. The default value is true, that is, on.
 	Status pulumi.BoolPtrOutput `pulumi:"status"`
+	// The list of trigger conditions.
+	TriggerConditions AlarmTriggerConditionArrayOutput `pulumi:"triggerConditions"`
 	// Continuous cycle. The alarm will be issued after the trigger condition is continuously met for TriggerPeriod periods; the minimum value is 1, the maximum value is 10, and the default value is 1.
-	TriggerPeriod pulumi.IntPtrOutput `pulumi:"triggerPeriod"`
+	TriggerPeriod pulumi.IntOutput `pulumi:"triggerPeriod"`
 	// Customize the alarm notification content.
 	UserDefineMsg pulumi.StringPtrOutput `pulumi:"userDefineMsg"`
 }
@@ -113,9 +135,6 @@ func NewAlarm(ctx *pulumi.Context,
 	if args.AlarmNotifyGroups == nil {
 		return nil, errors.New("invalid value for required argument 'AlarmNotifyGroups'")
 	}
-	if args.Condition == nil {
-		return nil, errors.New("invalid value for required argument 'Condition'")
-	}
 	if args.ProjectId == nil {
 		return nil, errors.New("invalid value for required argument 'ProjectId'")
 	}
@@ -124,6 +143,9 @@ func NewAlarm(ctx *pulumi.Context,
 	}
 	if args.RequestCycle == nil {
 		return nil, errors.New("invalid value for required argument 'RequestCycle'")
+	}
+	if args.TriggerPeriod == nil {
+		return nil, errors.New("invalid value for required argument 'TriggerPeriod'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Alarm
@@ -160,14 +182,22 @@ type alarmState struct {
 	AlarmPeriodDetail *AlarmAlarmPeriodDetail `pulumi:"alarmPeriodDetail"`
 	// Alarm trigger condition.
 	Condition *string `pulumi:"condition"`
+	// The list of join configurations.
+	JoinConfigurations []AlarmJoinConfiguration `pulumi:"joinConfigurations"`
 	// The project id.
 	ProjectId *string `pulumi:"projectId"`
 	// Search and analyze sentences, 1~3 can be configured.
 	QueryRequests []AlarmQueryRequest `pulumi:"queryRequests"`
 	// The execution period of the alarm task.
 	RequestCycle *AlarmRequestCycle `pulumi:"requestCycle"`
+	// Whether to send resolved.
+	SendResolved *bool `pulumi:"sendResolved"`
+	// The severity of the alarm.
+	Severity *string `pulumi:"severity"`
 	// Whether to enable the alert policy. The default value is true, that is, on.
 	Status *bool `pulumi:"status"`
+	// The list of trigger conditions.
+	TriggerConditions []AlarmTriggerCondition `pulumi:"triggerConditions"`
 	// Continuous cycle. The alarm will be issued after the trigger condition is continuously met for TriggerPeriod periods; the minimum value is 1, the maximum value is 10, and the default value is 1.
 	TriggerPeriod *int `pulumi:"triggerPeriod"`
 	// Customize the alarm notification content.
@@ -187,14 +217,22 @@ type AlarmState struct {
 	AlarmPeriodDetail AlarmAlarmPeriodDetailPtrInput
 	// Alarm trigger condition.
 	Condition pulumi.StringPtrInput
+	// The list of join configurations.
+	JoinConfigurations AlarmJoinConfigurationArrayInput
 	// The project id.
 	ProjectId pulumi.StringPtrInput
 	// Search and analyze sentences, 1~3 can be configured.
 	QueryRequests AlarmQueryRequestArrayInput
 	// The execution period of the alarm task.
 	RequestCycle AlarmRequestCyclePtrInput
+	// Whether to send resolved.
+	SendResolved pulumi.BoolPtrInput
+	// The severity of the alarm.
+	Severity pulumi.StringPtrInput
 	// Whether to enable the alert policy. The default value is true, that is, on.
 	Status pulumi.BoolPtrInput
+	// The list of trigger conditions.
+	TriggerConditions AlarmTriggerConditionArrayInput
 	// Continuous cycle. The alarm will be issued after the trigger condition is continuously met for TriggerPeriod periods; the minimum value is 1, the maximum value is 10, and the default value is 1.
 	TriggerPeriod pulumi.IntPtrInput
 	// Customize the alarm notification content.
@@ -215,17 +253,25 @@ type alarmArgs struct {
 	// Period for sending alarm notifications. When the number of continuous alarm triggers reaches the specified limit (TriggerPeriod), Log Service will send alarm notifications according to the specified period.
 	AlarmPeriodDetail *AlarmAlarmPeriodDetail `pulumi:"alarmPeriodDetail"`
 	// Alarm trigger condition.
-	Condition string `pulumi:"condition"`
+	Condition *string `pulumi:"condition"`
+	// The list of join configurations.
+	JoinConfigurations []AlarmJoinConfiguration `pulumi:"joinConfigurations"`
 	// The project id.
 	ProjectId string `pulumi:"projectId"`
 	// Search and analyze sentences, 1~3 can be configured.
 	QueryRequests []AlarmQueryRequest `pulumi:"queryRequests"`
 	// The execution period of the alarm task.
 	RequestCycle AlarmRequestCycle `pulumi:"requestCycle"`
+	// Whether to send resolved.
+	SendResolved *bool `pulumi:"sendResolved"`
+	// The severity of the alarm.
+	Severity *string `pulumi:"severity"`
 	// Whether to enable the alert policy. The default value is true, that is, on.
 	Status *bool `pulumi:"status"`
+	// The list of trigger conditions.
+	TriggerConditions []AlarmTriggerCondition `pulumi:"triggerConditions"`
 	// Continuous cycle. The alarm will be issued after the trigger condition is continuously met for TriggerPeriod periods; the minimum value is 1, the maximum value is 10, and the default value is 1.
-	TriggerPeriod *int `pulumi:"triggerPeriod"`
+	TriggerPeriod int `pulumi:"triggerPeriod"`
 	// Customize the alarm notification content.
 	UserDefineMsg *string `pulumi:"userDefineMsg"`
 }
@@ -241,17 +287,25 @@ type AlarmArgs struct {
 	// Period for sending alarm notifications. When the number of continuous alarm triggers reaches the specified limit (TriggerPeriod), Log Service will send alarm notifications according to the specified period.
 	AlarmPeriodDetail AlarmAlarmPeriodDetailPtrInput
 	// Alarm trigger condition.
-	Condition pulumi.StringInput
+	Condition pulumi.StringPtrInput
+	// The list of join configurations.
+	JoinConfigurations AlarmJoinConfigurationArrayInput
 	// The project id.
 	ProjectId pulumi.StringInput
 	// Search and analyze sentences, 1~3 can be configured.
 	QueryRequests AlarmQueryRequestArrayInput
 	// The execution period of the alarm task.
 	RequestCycle AlarmRequestCycleInput
+	// Whether to send resolved.
+	SendResolved pulumi.BoolPtrInput
+	// The severity of the alarm.
+	Severity pulumi.StringPtrInput
 	// Whether to enable the alert policy. The default value is true, that is, on.
 	Status pulumi.BoolPtrInput
+	// The list of trigger conditions.
+	TriggerConditions AlarmTriggerConditionArrayInput
 	// Continuous cycle. The alarm will be issued after the trigger condition is continuously met for TriggerPeriod periods; the minimum value is 1, the maximum value is 10, and the default value is 1.
-	TriggerPeriod pulumi.IntPtrInput
+	TriggerPeriod pulumi.IntInput
 	// Customize the alarm notification content.
 	UserDefineMsg pulumi.StringPtrInput
 }
@@ -369,8 +423,13 @@ func (o AlarmOutput) AlarmPeriodDetail() AlarmAlarmPeriodDetailPtrOutput {
 }
 
 // Alarm trigger condition.
-func (o AlarmOutput) Condition() pulumi.StringOutput {
-	return o.ApplyT(func(v *Alarm) pulumi.StringOutput { return v.Condition }).(pulumi.StringOutput)
+func (o AlarmOutput) Condition() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Alarm) pulumi.StringPtrOutput { return v.Condition }).(pulumi.StringPtrOutput)
+}
+
+// The list of join configurations.
+func (o AlarmOutput) JoinConfigurations() AlarmJoinConfigurationArrayOutput {
+	return o.ApplyT(func(v *Alarm) AlarmJoinConfigurationArrayOutput { return v.JoinConfigurations }).(AlarmJoinConfigurationArrayOutput)
 }
 
 // The project id.
@@ -388,14 +447,29 @@ func (o AlarmOutput) RequestCycle() AlarmRequestCycleOutput {
 	return o.ApplyT(func(v *Alarm) AlarmRequestCycleOutput { return v.RequestCycle }).(AlarmRequestCycleOutput)
 }
 
+// Whether to send resolved.
+func (o AlarmOutput) SendResolved() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Alarm) pulumi.BoolPtrOutput { return v.SendResolved }).(pulumi.BoolPtrOutput)
+}
+
+// The severity of the alarm.
+func (o AlarmOutput) Severity() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Alarm) pulumi.StringPtrOutput { return v.Severity }).(pulumi.StringPtrOutput)
+}
+
 // Whether to enable the alert policy. The default value is true, that is, on.
 func (o AlarmOutput) Status() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Alarm) pulumi.BoolPtrOutput { return v.Status }).(pulumi.BoolPtrOutput)
 }
 
+// The list of trigger conditions.
+func (o AlarmOutput) TriggerConditions() AlarmTriggerConditionArrayOutput {
+	return o.ApplyT(func(v *Alarm) AlarmTriggerConditionArrayOutput { return v.TriggerConditions }).(AlarmTriggerConditionArrayOutput)
+}
+
 // Continuous cycle. The alarm will be issued after the trigger condition is continuously met for TriggerPeriod periods; the minimum value is 1, the maximum value is 10, and the default value is 1.
-func (o AlarmOutput) TriggerPeriod() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *Alarm) pulumi.IntPtrOutput { return v.TriggerPeriod }).(pulumi.IntPtrOutput)
+func (o AlarmOutput) TriggerPeriod() pulumi.IntOutput {
+	return o.ApplyT(func(v *Alarm) pulumi.IntOutput { return v.TriggerPeriod }).(pulumi.IntOutput)
 }
 
 // Customize the alarm notification content.

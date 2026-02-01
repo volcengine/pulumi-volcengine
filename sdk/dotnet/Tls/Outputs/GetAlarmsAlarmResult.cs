@@ -34,13 +34,17 @@ namespace Pulumi.Volcengine.Tls.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.GetAlarmsAlarmAlarmPeriodDetailResult> AlarmPeriodDetails;
         /// <summary>
-        /// Alarm trigger condition.
+        /// The condition.
         /// </summary>
         public readonly string Condition;
         /// <summary>
         /// The create time.
         /// </summary>
         public readonly string CreateTime;
+        /// <summary>
+        /// The list of join configurations.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetAlarmsAlarmJoinConfigurationResult> JoinConfigurations;
         /// <summary>
         /// The modify time.
         /// </summary>
@@ -58,9 +62,21 @@ namespace Pulumi.Volcengine.Tls.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.GetAlarmsAlarmRequestCycleResult> RequestCycles;
         /// <summary>
+        /// Whether to send resolved.
+        /// </summary>
+        public readonly bool SendResolved;
+        /// <summary>
+        /// The severity.
+        /// </summary>
+        public readonly string Severity;
+        /// <summary>
         /// The status.
         /// </summary>
         public readonly bool Status;
+        /// <summary>
+        /// The list of trigger conditions.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetAlarmsAlarmTriggerConditionResult> TriggerConditions;
         /// <summary>
         /// Continuous cycle. The alarm will be issued after the trigger condition is continuously met for TriggerPeriod periods; the minimum value is 1, the maximum value is 10, and the default value is 1.
         /// </summary>
@@ -86,6 +102,8 @@ namespace Pulumi.Volcengine.Tls.Outputs
 
             string createTime,
 
+            ImmutableArray<Outputs.GetAlarmsAlarmJoinConfigurationResult> joinConfigurations,
+
             string modifyTime,
 
             string projectId,
@@ -94,7 +112,13 @@ namespace Pulumi.Volcengine.Tls.Outputs
 
             ImmutableArray<Outputs.GetAlarmsAlarmRequestCycleResult> requestCycles,
 
+            bool sendResolved,
+
+            string severity,
+
             bool status,
+
+            ImmutableArray<Outputs.GetAlarmsAlarmTriggerConditionResult> triggerConditions,
 
             int triggerPeriod,
 
@@ -107,11 +131,15 @@ namespace Pulumi.Volcengine.Tls.Outputs
             AlarmPeriodDetails = alarmPeriodDetails;
             Condition = condition;
             CreateTime = createTime;
+            JoinConfigurations = joinConfigurations;
             ModifyTime = modifyTime;
             ProjectId = projectId;
             QueryRequests = queryRequests;
             RequestCycles = requestCycles;
+            SendResolved = sendResolved;
+            Severity = severity;
             Status = status;
+            TriggerConditions = triggerConditions;
             TriggerPeriod = triggerPeriod;
             UserDefineMsg = userDefineMsg;
         }

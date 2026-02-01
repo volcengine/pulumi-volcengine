@@ -50,6 +50,14 @@ namespace Pulumi.Volcengine.Clb.Outputs
         /// </summary>
         public readonly string ProjectName;
         /// <summary>
+        /// Whether the Certificate is managed by the CLB service.
+        /// </summary>
+        public readonly bool ServiceManaged;
+        /// <summary>
+        /// The subject alternative domain names of the Certificate.
+        /// </summary>
+        public readonly ImmutableArray<string> SubjectAlternativeNames;
+        /// <summary>
         /// Tags.
         /// </summary>
         public readonly ImmutableArray<Outputs.CertificatesCertificateTagResult> Tags;
@@ -74,6 +82,10 @@ namespace Pulumi.Volcengine.Clb.Outputs
 
             string projectName,
 
+            bool serviceManaged,
+
+            ImmutableArray<string> subjectAlternativeNames,
+
             ImmutableArray<Outputs.CertificatesCertificateTagResult> tags)
         {
             CertificateId = certificateId;
@@ -85,6 +97,8 @@ namespace Pulumi.Volcengine.Clb.Outputs
             Id = id;
             Listeners = listeners;
             ProjectName = projectName;
+            ServiceManaged = serviceManaged;
+            SubjectAlternativeNames = subjectAlternativeNames;
             Tags = tags;
         }
     }

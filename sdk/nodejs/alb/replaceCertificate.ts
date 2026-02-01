@@ -4,6 +4,52 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * Provides a resource to manage alb replace certificate
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fs from "fs";
+ * import * as volcengine from "@volcengine/pulumi";
+ *
+ * // replace server certificate
+ * const foo1 = new volcengine.alb.ReplaceCertificate("foo1", {
+ *     certificateType: "server",
+ *     oldCertificateId: "cert-bdde0znk524g8dv40or*****",
+ *     updateMode: "new",
+ *     certificateName: "replaced-server-cert",
+ *     description: "Replaced server certificate",
+ *     projectName: "default",
+ *     publicKey: fs.readFileSync("/path/server_certificate.pem", "utf8"),
+ *     privateKey: fs.readFileSync("/path/private_key_rsa.pem", "utf8"),
+ * });
+ * const foo2 = new volcengine.alb.ReplaceCertificate("foo2", {
+ *     certificateType: "server",
+ *     oldCertificateId: "cert-1pf4a8k8tokcg845wfar*****",
+ *     updateMode: "stock",
+ *     certificateSource: "alb",
+ *     certificateId: "cert-bdde0znk524g8dv40or*****",
+ *     certificateName: "replaced-server-cert-stock",
+ *     description: "Replaced server certificate (stock)",
+ *     projectName: "default",
+ * });
+ * // replace ca certificate
+ * const foo3 = new volcengine.alb.ReplaceCertificate("foo3", {
+ *     certificateType: "ca",
+ *     oldCertificateId: "cert-xoekc6lpu9s054ov5eo*****",
+ *     updateMode: "new",
+ *     certificateName: "acc-test-replace",
+ *     caCertificate: fs.readFileSync("/path/server_certificate.pem", "utf8"),
+ *     description: "acc-test-replace",
+ *     projectName: "default",
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * The AlbReplaceCertificate is not support import.
+ */
 export class ReplaceCertificate extends pulumi.CustomResource {
     /**
      * Get an existing ReplaceCertificate resource's state with the given name, ID, and optional extra
@@ -33,15 +79,15 @@ export class ReplaceCertificate extends pulumi.CustomResource {
     }
 
     /**
-     * The content of the CA certificate. Required when certificate_type is 'ca' and update_mode is 'new'.
+     * The content of the CA certificate. Required when certificateType is 'ca' and updateMode is 'new'.
      */
     public readonly caCertificate!: pulumi.Output<string | undefined>;
     /**
-     * The ID of the new certificate. Required when certificate_source is 'cert_center' and update_mode is 'stock'.
+     * The ID of the new certificate. Required when certificateSource is 'cert_center' and updateMode is 'stock'.
      */
     public readonly certCenterCertificateId!: pulumi.Output<string | undefined>;
     /**
-     * The ID of the new certificate or CA certificate. Required when certificate_source is 'alb' and update_mode is 'stock'.
+     * The ID of the new certificate or CA certificate. Required when certificateSource is 'alb' and updateMode is 'stock'.
      */
     public readonly certificateId!: pulumi.Output<string | undefined>;
     /**
@@ -49,7 +95,7 @@ export class ReplaceCertificate extends pulumi.CustomResource {
      */
     public readonly certificateName!: pulumi.Output<string | undefined>;
     /**
-     * The source of the server certificate. Valid values: `alb`, `cert_center`. Required when update_mode is 'stock'.
+     * The source of the server certificate. Valid values: `alb`, `certCenter`. Required when updateMode is 'stock'.
      */
     public readonly certificateSource!: pulumi.Output<string | undefined>;
     /**
@@ -65,7 +111,7 @@ export class ReplaceCertificate extends pulumi.CustomResource {
      */
     public readonly oldCertificateId!: pulumi.Output<string>;
     /**
-     * The private key of the server certificate. Required when certificate_type is 'server' and update_mode is 'new'.
+     * The private key of the server certificate. Required when certificateType is 'server' and updateMode is 'new'.
      */
     public readonly privateKey!: pulumi.Output<string | undefined>;
     /**
@@ -73,12 +119,11 @@ export class ReplaceCertificate extends pulumi.CustomResource {
      */
     public readonly projectName!: pulumi.Output<string | undefined>;
     /**
-     * The public key of the server certificate. Required when certificate_type is 'server' and update_mode is 'new'.
+     * The public key of the server certificate. Required when certificateType is 'server' and updateMode is 'new'.
      */
     public readonly publicKey!: pulumi.Output<string | undefined>;
     /**
-     * The mode of certificate replacement. Valid values: 'new' for uploading new certificate, 'stock' for using existing
-     * certificate.
+     * The mode of certificate replacement. Valid values: 'new' for uploading new certificate, 'stock' for using existing certificate.
      */
     public readonly updateMode!: pulumi.Output<string>;
 
@@ -143,15 +188,15 @@ export class ReplaceCertificate extends pulumi.CustomResource {
  */
 export interface ReplaceCertificateState {
     /**
-     * The content of the CA certificate. Required when certificate_type is 'ca' and update_mode is 'new'.
+     * The content of the CA certificate. Required when certificateType is 'ca' and updateMode is 'new'.
      */
     caCertificate?: pulumi.Input<string>;
     /**
-     * The ID of the new certificate. Required when certificate_source is 'cert_center' and update_mode is 'stock'.
+     * The ID of the new certificate. Required when certificateSource is 'cert_center' and updateMode is 'stock'.
      */
     certCenterCertificateId?: pulumi.Input<string>;
     /**
-     * The ID of the new certificate or CA certificate. Required when certificate_source is 'alb' and update_mode is 'stock'.
+     * The ID of the new certificate or CA certificate. Required when certificateSource is 'alb' and updateMode is 'stock'.
      */
     certificateId?: pulumi.Input<string>;
     /**
@@ -159,7 +204,7 @@ export interface ReplaceCertificateState {
      */
     certificateName?: pulumi.Input<string>;
     /**
-     * The source of the server certificate. Valid values: `alb`, `cert_center`. Required when update_mode is 'stock'.
+     * The source of the server certificate. Valid values: `alb`, `certCenter`. Required when updateMode is 'stock'.
      */
     certificateSource?: pulumi.Input<string>;
     /**
@@ -175,7 +220,7 @@ export interface ReplaceCertificateState {
      */
     oldCertificateId?: pulumi.Input<string>;
     /**
-     * The private key of the server certificate. Required when certificate_type is 'server' and update_mode is 'new'.
+     * The private key of the server certificate. Required when certificateType is 'server' and updateMode is 'new'.
      */
     privateKey?: pulumi.Input<string>;
     /**
@@ -183,12 +228,11 @@ export interface ReplaceCertificateState {
      */
     projectName?: pulumi.Input<string>;
     /**
-     * The public key of the server certificate. Required when certificate_type is 'server' and update_mode is 'new'.
+     * The public key of the server certificate. Required when certificateType is 'server' and updateMode is 'new'.
      */
     publicKey?: pulumi.Input<string>;
     /**
-     * The mode of certificate replacement. Valid values: 'new' for uploading new certificate, 'stock' for using existing
-     * certificate.
+     * The mode of certificate replacement. Valid values: 'new' for uploading new certificate, 'stock' for using existing certificate.
      */
     updateMode?: pulumi.Input<string>;
 }
@@ -198,15 +242,15 @@ export interface ReplaceCertificateState {
  */
 export interface ReplaceCertificateArgs {
     /**
-     * The content of the CA certificate. Required when certificate_type is 'ca' and update_mode is 'new'.
+     * The content of the CA certificate. Required when certificateType is 'ca' and updateMode is 'new'.
      */
     caCertificate?: pulumi.Input<string>;
     /**
-     * The ID of the new certificate. Required when certificate_source is 'cert_center' and update_mode is 'stock'.
+     * The ID of the new certificate. Required when certificateSource is 'cert_center' and updateMode is 'stock'.
      */
     certCenterCertificateId?: pulumi.Input<string>;
     /**
-     * The ID of the new certificate or CA certificate. Required when certificate_source is 'alb' and update_mode is 'stock'.
+     * The ID of the new certificate or CA certificate. Required when certificateSource is 'alb' and updateMode is 'stock'.
      */
     certificateId?: pulumi.Input<string>;
     /**
@@ -214,7 +258,7 @@ export interface ReplaceCertificateArgs {
      */
     certificateName?: pulumi.Input<string>;
     /**
-     * The source of the server certificate. Valid values: `alb`, `cert_center`. Required when update_mode is 'stock'.
+     * The source of the server certificate. Valid values: `alb`, `certCenter`. Required when updateMode is 'stock'.
      */
     certificateSource?: pulumi.Input<string>;
     /**
@@ -230,7 +274,7 @@ export interface ReplaceCertificateArgs {
      */
     oldCertificateId: pulumi.Input<string>;
     /**
-     * The private key of the server certificate. Required when certificate_type is 'server' and update_mode is 'new'.
+     * The private key of the server certificate. Required when certificateType is 'server' and updateMode is 'new'.
      */
     privateKey?: pulumi.Input<string>;
     /**
@@ -238,12 +282,11 @@ export interface ReplaceCertificateArgs {
      */
     projectName?: pulumi.Input<string>;
     /**
-     * The public key of the server certificate. Required when certificate_type is 'server' and update_mode is 'new'.
+     * The public key of the server certificate. Required when certificateType is 'server' and updateMode is 'new'.
      */
     publicKey?: pulumi.Input<string>;
     /**
-     * The mode of certificate replacement. Valid values: 'new' for uploading new certificate, 'stock' for using existing
-     * certificate.
+     * The mode of certificate replacement. Valid values: 'new' for uploading new certificate, 'stock' for using existing certificate.
      */
     updateMode: pulumi.Input<string>;
 }

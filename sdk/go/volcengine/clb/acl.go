@@ -39,6 +39,12 @@ import (
 //				},
 //				AclName:     pulumi.String("tf-test-2"),
 //				ProjectName: pulumi.String("default"),
+//				Tags: clb.AclTagArray{
+//					&clb.AclTagArgs{
+//						Key:   pulumi.String("key1"),
+//						Value: pulumi.String("value2"),
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -69,6 +75,8 @@ type Acl struct {
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The ProjectName of the Acl.
 	ProjectName pulumi.StringOutput `pulumi:"projectName"`
+	// Tags.
+	Tags AclTagArrayOutput `pulumi:"tags"`
 }
 
 // NewAcl registers a new resource with the given unique name, arguments, and options.
@@ -111,6 +119,8 @@ type aclState struct {
 	Description *string `pulumi:"description"`
 	// The ProjectName of the Acl.
 	ProjectName *string `pulumi:"projectName"`
+	// Tags.
+	Tags []AclTag `pulumi:"tags"`
 }
 
 type AclState struct {
@@ -124,6 +134,8 @@ type AclState struct {
 	Description pulumi.StringPtrInput
 	// The ProjectName of the Acl.
 	ProjectName pulumi.StringPtrInput
+	// Tags.
+	Tags AclTagArrayInput
 }
 
 func (AclState) ElementType() reflect.Type {
@@ -139,6 +151,8 @@ type aclArgs struct {
 	Description *string `pulumi:"description"`
 	// The ProjectName of the Acl.
 	ProjectName *string `pulumi:"projectName"`
+	// Tags.
+	Tags []AclTag `pulumi:"tags"`
 }
 
 // The set of arguments for constructing a Acl resource.
@@ -151,6 +165,8 @@ type AclArgs struct {
 	Description pulumi.StringPtrInput
 	// The ProjectName of the Acl.
 	ProjectName pulumi.StringPtrInput
+	// Tags.
+	Tags AclTagArrayInput
 }
 
 func (AclArgs) ElementType() reflect.Type {
@@ -263,6 +279,11 @@ func (o AclOutput) Description() pulumi.StringPtrOutput {
 // The ProjectName of the Acl.
 func (o AclOutput) ProjectName() pulumi.StringOutput {
 	return o.ApplyT(func(v *Acl) pulumi.StringOutput { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o AclOutput) Tags() AclTagArrayOutput {
+	return o.ApplyT(func(v *Acl) AclTagArrayOutput { return v.Tags }).(AclTagArrayOutput)
 }
 
 type AclArrayOutput struct{ *pulumi.OutputState }

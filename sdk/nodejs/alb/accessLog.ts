@@ -4,6 +4,25 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * Provides a resource to manage alb access log
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@volcengine/pulumi";
+ *
+ * // Enable ALB Access Log (TOS Bucket)
+ * const _default = new volcengine.alb.AccessLog("default", {
+ *     bucketName: "tos-buket",
+ *     loadBalancerId: "alb-bdchexlt87pc8dv40nbr6mu7",
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * The AlbAccessLog is not support import.
+ */
 export class AccessLog extends pulumi.CustomResource {
     /**
      * Get an existing AccessLog resource's state with the given name, ID, and optional extra

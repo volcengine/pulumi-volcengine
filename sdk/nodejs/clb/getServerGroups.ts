@@ -58,6 +58,8 @@ export function getServerGroups(args?: GetServerGroupsArgs, opts?: pulumi.Invoke
         "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
         "serverGroupName": args.serverGroupName,
+        "tags": args.tags,
+        "type": args.type,
     }, opts);
 }
 
@@ -85,6 +87,14 @@ export interface GetServerGroupsArgs {
      * The name of the ServerGroup.
      */
     serverGroupName?: string;
+    /**
+     * Tags.
+     */
+    tags?: inputs.clb.GetServerGroupsTag[];
+    /**
+     * The type of ServerGroup. Valid values: `instance`, `ip`.
+     */
+    type?: string;
 }
 
 /**
@@ -100,6 +110,9 @@ export interface GetServerGroupsResult {
      */
     readonly id: string;
     readonly ids?: string[];
+    /**
+     * The ID of the LoadBalancer.
+     */
     readonly loadBalancerId?: string;
     readonly nameRegex?: string;
     readonly outputFile?: string;
@@ -108,9 +121,17 @@ export interface GetServerGroupsResult {
      */
     readonly serverGroupName?: string;
     /**
+     * Tags.
+     */
+    readonly tags?: outputs.clb.GetServerGroupsTag[];
+    /**
      * The total count of ServerGroup query.
      */
     readonly totalCount: number;
+    /**
+     * The type of the ServerGroup.
+     */
+    readonly type?: string;
 }
 /**
  * Use this data source to query detailed information of server groups
@@ -182,4 +203,12 @@ export interface GetServerGroupsOutputArgs {
      * The name of the ServerGroup.
      */
     serverGroupName?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.clb.GetServerGroupsTagArgs>[]>;
+    /**
+     * The type of ServerGroup. Valid values: `instance`, `ip`.
+     */
+    type?: pulumi.Input<string>;
 }

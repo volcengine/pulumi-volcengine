@@ -11,23 +11,85 @@ from .. import _utilities
 from . import outputs
 
 __all__ = [
+    'AccountsTlsAccountResult',
     'AlarmAlarmPeriodDetail',
+    'AlarmContentTemplateDingTalk',
+    'AlarmContentTemplateEmail',
+    'AlarmContentTemplateLark',
+    'AlarmContentTemplateSm',
+    'AlarmContentTemplateVm',
+    'AlarmContentTemplateWebhook',
+    'AlarmContentTemplateWechat',
+    'AlarmContentTemplatesTemplateResult',
+    'AlarmContentTemplatesTemplateDingTalkResult',
+    'AlarmContentTemplatesTemplateEmailResult',
+    'AlarmContentTemplatesTemplateLarkResult',
+    'AlarmContentTemplatesTemplateSmResult',
+    'AlarmContentTemplatesTemplateVmResult',
+    'AlarmContentTemplatesTemplateWebhookResult',
+    'AlarmContentTemplatesTemplateWechatResult',
+    'AlarmJoinConfiguration',
+    'AlarmNotifyGroupNoticeRule',
+    'AlarmNotifyGroupNoticeRuleReceiverInfo',
+    'AlarmNotifyGroupNoticeRuleReceiverInfoGeneralWebhookHeader',
+    'AlarmNotifyGroupNoticeRuleRuleNode',
+    'AlarmNotifyGroupNoticeRuleRuleNodeChildren',
     'AlarmNotifyGroupReceiver',
+    'AlarmNotifyGroupReceiverGeneralWebhookHeader',
     'AlarmNotifyGroupsGroupResult',
+    'AlarmNotifyGroupsGroupNoticeRuleResult',
+    'AlarmNotifyGroupsGroupNoticeRuleReceiverInfoResult',
+    'AlarmNotifyGroupsGroupNoticeRuleReceiverInfoGeneralWebhookHeaderResult',
+    'AlarmNotifyGroupsGroupNoticeRuleRuleNodeResult',
+    'AlarmNotifyGroupsGroupNoticeRuleRuleNodeChildrenResult',
     'AlarmNotifyGroupsGroupReceiverResult',
+    'AlarmNotifyGroupsGroupReceiverGeneralWebhookHeaderResult',
     'AlarmQueryRequest',
     'AlarmRequestCycle',
+    'AlarmTriggerCondition',
+    'AlarmWebhookIntegrationWebhookHeader',
+    'AlarmWebhookIntegrationsIntegrationResult',
+    'AlarmWebhookIntegrationsIntegrationWebhookHeaderResult',
     'AlarmsAlarmResult',
     'AlarmsAlarmAlarmNotifyGroupResult',
     'AlarmsAlarmAlarmNotifyGroupReceiverResult',
     'AlarmsAlarmAlarmPeriodDetailResult',
+    'AlarmsAlarmJoinConfigurationResult',
     'AlarmsAlarmQueryRequestResult',
     'AlarmsAlarmRequestCycleResult',
+    'AlarmsAlarmTriggerConditionResult',
     'ConsumerGroupsConsumerGroupResult',
+    'DescribeTracesTraceResult',
+    'DescribeTracesTraceSpanResult',
+    'DescribeTracesTraceSpanAttributeResult',
+    'DescribeTracesTraceSpanEventResult',
+    'DescribeTracesTraceSpanEventAttributeResult',
+    'DescribeTracesTraceSpanInstrumentationLibraryResult',
+    'DescribeTracesTraceSpanLinkResult',
+    'DescribeTracesTraceSpanLinkAttributeResult',
+    'DescribeTracesTraceSpanResourceResult',
+    'DescribeTracesTraceSpanResourceAttributeResult',
+    'DescribeTracesTraceSpanStatusResult',
+    'DownloadTaskLogContextInfos',
+    'DownloadTasksDownloadTaskResult',
+    'DownloadTasksDownloadTaskLogContextInfoResult',
     'EtlTaskTargetResource',
     'EtlTasksTaskResult',
     'EtlTasksTaskTargetResourceResult',
+    'HostGroupRulesRuleInfoResult',
+    'HostGroupRulesRuleInfoContainerRuleResult',
+    'HostGroupRulesRuleInfoContainerRuleKubernetesRuleResult',
+    'HostGroupRulesRuleInfoExcludePathResult',
+    'HostGroupRulesRuleInfoExtractRuleResult',
+    'HostGroupRulesRuleInfoExtractRuleFilterKeyRegexResult',
+    'HostGroupRulesRuleInfoExtractRuleLogTemplateResult',
+    'HostGroupRulesRuleInfoUserDefineRuleResult',
+    'HostGroupRulesRuleInfoUserDefineRuleAdvancedResult',
+    'HostGroupRulesRuleInfoUserDefineRuleParsePathRuleResult',
+    'HostGroupRulesRuleInfoUserDefineRulePluginResult',
+    'HostGroupRulesRuleInfoUserDefineRuleShardHashKeyResult',
     'HostGroupsInfoResult',
+    'HostGroupsInfoHostGroupInfoResult',
     'HostsHostInfoResult',
     'ImportTaskImportSourceInfo',
     'ImportTaskImportSourceInfoKafkaSourceInfo',
@@ -53,22 +115,17 @@ __all__ = [
     'IndexesTlsIndexUserInnerKeyValueResult',
     'IndexesTlsIndexUserInnerKeyValueJsonKeyResult',
     'KafkaConsumersDataResult',
+    'LogContextsLogContextResult',
+    'LogHistogramsHistogramInfoResult',
+    'LogSearchesLogResult',
+    'LogSearchesLogHighlightResult',
+    'LogSearchesLogLogResult',
     'ProjectTag',
     'ProjectsTagResult',
     'ProjectsTlsProjectResult',
     'ProjectsTlsProjectTagResult',
-    'RuleAppliersRuleResult',
-    'RuleAppliersRuleContainerRuleResult',
-    'RuleAppliersRuleContainerRuleKubernetesRuleResult',
-    'RuleAppliersRuleExcludePathResult',
-    'RuleAppliersRuleExtractRuleResult',
-    'RuleAppliersRuleExtractRuleFilterKeyRegexResult',
-    'RuleAppliersRuleExtractRuleLogTemplateResult',
-    'RuleAppliersRuleUserDefineRuleResult',
-    'RuleAppliersRuleUserDefineRuleAdvancedResult',
-    'RuleAppliersRuleUserDefineRuleParsePathRuleResult',
-    'RuleAppliersRuleUserDefineRulePluginResult',
-    'RuleAppliersRuleUserDefineRuleShardHashKeyResult',
+    'RuleAppliersHostGroupInfoResult',
+    'RuleBoundHostGroupsHostGroupResult',
     'RuleContainerRule',
     'RuleContainerRuleKubernetesRule',
     'RuleExcludePath',
@@ -95,6 +152,10 @@ __all__ = [
     'ScheduleSqlTaskRequestCycle',
     'ScheduleSqlTasksTaskResult',
     'ScheduleSqlTasksTaskRequestCycleResult',
+    'SearchTracesQueryResult',
+    'SearchTracesQueryAttributeResult',
+    'SearchTracesTraceResult',
+    'ShardShard',
     'ShardsShardResult',
     'ShipperContentInfo',
     'ShipperContentInfoCsvInfo',
@@ -107,22 +168,80 @@ __all__ = [
     'ShippersShipperContentInfoJsonInfoResult',
     'ShippersShipperKafkaShipperInfoResult',
     'ShippersShipperTosShipperInfoResult',
+    'TagResourceTag',
+    'TagResourcesTagResult',
+    'TagResourcesTagFilterResult',
+    'TagTag',
+    'TagsTagResult',
+    'TagsTagFilterResult',
+    'TopicEncryptConf',
+    'TopicEncryptConfUserCmkInfo',
     'TopicTag',
     'TopicsTagResult',
     'TopicsTlsTopicResult',
+    'TopicsTlsTopicEncryptConfResult',
+    'TopicsTlsTopicEncryptConfUserCmkInfoResult',
     'TopicsTlsTopicTagResult',
+    'TraceInstanceBackendConfig',
+    'TraceInstancesTraceInstanceResult',
+    'TraceInstancesTraceInstanceBackendConfigResult',
+    'GetAccountsTlsAccountResult',
+    'GetAlarmContentTemplatesTemplateResult',
+    'GetAlarmContentTemplatesTemplateDingTalkResult',
+    'GetAlarmContentTemplatesTemplateEmailResult',
+    'GetAlarmContentTemplatesTemplateLarkResult',
+    'GetAlarmContentTemplatesTemplateSmResult',
+    'GetAlarmContentTemplatesTemplateVmResult',
+    'GetAlarmContentTemplatesTemplateWebhookResult',
+    'GetAlarmContentTemplatesTemplateWechatResult',
     'GetAlarmNotifyGroupsGroupResult',
+    'GetAlarmNotifyGroupsGroupNoticeRuleResult',
+    'GetAlarmNotifyGroupsGroupNoticeRuleReceiverInfoResult',
+    'GetAlarmNotifyGroupsGroupNoticeRuleReceiverInfoGeneralWebhookHeaderResult',
+    'GetAlarmNotifyGroupsGroupNoticeRuleRuleNodeResult',
+    'GetAlarmNotifyGroupsGroupNoticeRuleRuleNodeChildrenResult',
     'GetAlarmNotifyGroupsGroupReceiverResult',
+    'GetAlarmNotifyGroupsGroupReceiverGeneralWebhookHeaderResult',
+    'GetAlarmWebhookIntegrationsIntegrationResult',
+    'GetAlarmWebhookIntegrationsIntegrationWebhookHeaderResult',
     'GetAlarmsAlarmResult',
     'GetAlarmsAlarmAlarmNotifyGroupResult',
     'GetAlarmsAlarmAlarmNotifyGroupReceiverResult',
     'GetAlarmsAlarmAlarmPeriodDetailResult',
+    'GetAlarmsAlarmJoinConfigurationResult',
     'GetAlarmsAlarmQueryRequestResult',
     'GetAlarmsAlarmRequestCycleResult',
+    'GetAlarmsAlarmTriggerConditionResult',
     'GetConsumerGroupsConsumerGroupResult',
+    'GetDescribeTracesTraceResult',
+    'GetDescribeTracesTraceSpanResult',
+    'GetDescribeTracesTraceSpanAttributeResult',
+    'GetDescribeTracesTraceSpanEventResult',
+    'GetDescribeTracesTraceSpanEventAttributeResult',
+    'GetDescribeTracesTraceSpanInstrumentationLibraryResult',
+    'GetDescribeTracesTraceSpanLinkResult',
+    'GetDescribeTracesTraceSpanLinkAttributeResult',
+    'GetDescribeTracesTraceSpanResourceResult',
+    'GetDescribeTracesTraceSpanResourceAttributeResult',
+    'GetDescribeTracesTraceSpanStatusResult',
+    'GetDownloadTasksDownloadTaskResult',
+    'GetDownloadTasksDownloadTaskLogContextInfoResult',
     'GetEtlTasksTaskResult',
     'GetEtlTasksTaskTargetResourceResult',
+    'GetHostGroupRulesRuleInfoResult',
+    'GetHostGroupRulesRuleInfoContainerRuleResult',
+    'GetHostGroupRulesRuleInfoContainerRuleKubernetesRuleResult',
+    'GetHostGroupRulesRuleInfoExcludePathResult',
+    'GetHostGroupRulesRuleInfoExtractRuleResult',
+    'GetHostGroupRulesRuleInfoExtractRuleFilterKeyRegexResult',
+    'GetHostGroupRulesRuleInfoExtractRuleLogTemplateResult',
+    'GetHostGroupRulesRuleInfoUserDefineRuleResult',
+    'GetHostGroupRulesRuleInfoUserDefineRuleAdvancedResult',
+    'GetHostGroupRulesRuleInfoUserDefineRuleParsePathRuleResult',
+    'GetHostGroupRulesRuleInfoUserDefineRulePluginResult',
+    'GetHostGroupRulesRuleInfoUserDefineRuleShardHashKeyResult',
     'GetHostGroupsInfoResult',
+    'GetHostGroupsInfoHostGroupInfoResult',
     'GetHostsHostInfoResult',
     'GetImportTasksTaskInfoResult',
     'GetImportTasksTaskInfoImportSourceInfoResult',
@@ -138,21 +257,16 @@ __all__ = [
     'GetIndexesTlsIndexUserInnerKeyValueResult',
     'GetIndexesTlsIndexUserInnerKeyValueJsonKeyResult',
     'GetKafkaConsumersDataResult',
+    'GetLogContextsLogContextResult',
+    'GetLogHistogramsHistogramInfoResult',
+    'GetLogSearchesLogResult',
+    'GetLogSearchesLogHighlightResult',
+    'GetLogSearchesLogLogResult',
     'GetProjectsTagResult',
     'GetProjectsTlsProjectResult',
     'GetProjectsTlsProjectTagResult',
-    'GetRuleAppliersRuleResult',
-    'GetRuleAppliersRuleContainerRuleResult',
-    'GetRuleAppliersRuleContainerRuleKubernetesRuleResult',
-    'GetRuleAppliersRuleExcludePathResult',
-    'GetRuleAppliersRuleExtractRuleResult',
-    'GetRuleAppliersRuleExtractRuleFilterKeyRegexResult',
-    'GetRuleAppliersRuleExtractRuleLogTemplateResult',
-    'GetRuleAppliersRuleUserDefineRuleResult',
-    'GetRuleAppliersRuleUserDefineRuleAdvancedResult',
-    'GetRuleAppliersRuleUserDefineRuleParsePathRuleResult',
-    'GetRuleAppliersRuleUserDefineRulePluginResult',
-    'GetRuleAppliersRuleUserDefineRuleShardHashKeyResult',
+    'GetRuleAppliersHostGroupInfoResult',
+    'GetRuleBoundHostGroupsHostGroupResult',
     'GetRulesRuleResult',
     'GetRulesRuleContainerRuleResult',
     'GetRulesRuleContainerRuleKubernetesRuleResult',
@@ -167,6 +281,9 @@ __all__ = [
     'GetRulesRuleUserDefineRuleShardHashKeyResult',
     'GetScheduleSqlTasksTaskResult',
     'GetScheduleSqlTasksTaskRequestCycleResult',
+    'GetSearchTracesQueryResult',
+    'GetSearchTracesQueryAttributeResult',
+    'GetSearchTracesTraceResult',
     'GetShardsShardResult',
     'GetShippersShipperResult',
     'GetShippersShipperContentInfoResult',
@@ -174,10 +291,47 @@ __all__ = [
     'GetShippersShipperContentInfoJsonInfoResult',
     'GetShippersShipperKafkaShipperInfoResult',
     'GetShippersShipperTosShipperInfoResult',
+    'GetTagResourcesTagResult',
+    'GetTagResourcesTagFilterResult',
+    'GetTagsTagResult',
+    'GetTagsTagFilterResult',
     'GetTopicsTagResult',
     'GetTopicsTlsTopicResult',
+    'GetTopicsTlsTopicEncryptConfResult',
+    'GetTopicsTlsTopicEncryptConfUserCmkInfoResult',
     'GetTopicsTlsTopicTagResult',
+    'GetTraceInstancesTraceInstanceResult',
+    'GetTraceInstancesTraceInstanceBackendConfigResult',
 ]
+
+@pulumi.output_type
+class AccountsTlsAccountResult(dict):
+    def __init__(__self__, *,
+                 arch_version: str,
+                 status: str):
+        """
+        :param str arch_version: The version of the log service architecture. Valid values: 2.0 (new architecture), 1.0 (old architecture).
+        :param str status: The status of the log service. Valid values: Activated (already activated), NonActivated (not activated).
+        """
+        pulumi.set(__self__, "arch_version", arch_version)
+        pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter(name="archVersion")
+    def arch_version(self) -> str:
+        """
+        The version of the log service architecture. Valid values: 2.0 (new architecture), 1.0 (old architecture).
+        """
+        return pulumi.get(self, "arch_version")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of the log service. Valid values: Activated (already activated), NonActivated (not activated).
+        """
+        return pulumi.get(self, "status")
+
 
 @pulumi.output_type
 class AlarmAlarmPeriodDetail(dict):
@@ -248,6 +402,1077 @@ class AlarmAlarmPeriodDetail(dict):
 
 
 @pulumi.output_type
+class AlarmContentTemplateDingTalk(dict):
+    def __init__(__self__, *,
+                 content: str,
+                 locale: str,
+                 title: str):
+        """
+        :param str content: The content of the ding_talk content template.
+        :param str locale: The locale of the ding_talk content template.
+        :param str title: The title of the ding_talk content template.
+        """
+        pulumi.set(__self__, "content", content)
+        pulumi.set(__self__, "locale", locale)
+        pulumi.set(__self__, "title", title)
+
+    @property
+    @pulumi.getter
+    def content(self) -> str:
+        """
+        The content of the ding_talk content template.
+        """
+        return pulumi.get(self, "content")
+
+    @property
+    @pulumi.getter
+    def locale(self) -> str:
+        """
+        The locale of the ding_talk content template.
+        """
+        return pulumi.get(self, "locale")
+
+    @property
+    @pulumi.getter
+    def title(self) -> str:
+        """
+        The title of the ding_talk content template.
+        """
+        return pulumi.get(self, "title")
+
+
+@pulumi.output_type
+class AlarmContentTemplateEmail(dict):
+    def __init__(__self__, *,
+                 content: str,
+                 locale: str,
+                 subject: str):
+        """
+        :param str content: The content of the email content template.
+        :param str locale: The locale of the email content template.
+        :param str subject: The subject of the email content template.
+        """
+        pulumi.set(__self__, "content", content)
+        pulumi.set(__self__, "locale", locale)
+        pulumi.set(__self__, "subject", subject)
+
+    @property
+    @pulumi.getter
+    def content(self) -> str:
+        """
+        The content of the email content template.
+        """
+        return pulumi.get(self, "content")
+
+    @property
+    @pulumi.getter
+    def locale(self) -> str:
+        """
+        The locale of the email content template.
+        """
+        return pulumi.get(self, "locale")
+
+    @property
+    @pulumi.getter
+    def subject(self) -> str:
+        """
+        The subject of the email content template.
+        """
+        return pulumi.get(self, "subject")
+
+
+@pulumi.output_type
+class AlarmContentTemplateLark(dict):
+    def __init__(__self__, *,
+                 content: str,
+                 locale: str,
+                 title: str):
+        """
+        :param str content: The content of the lark content template.
+        :param str locale: The locale of the lark content template.
+        :param str title: The title of the lark content template.
+        """
+        pulumi.set(__self__, "content", content)
+        pulumi.set(__self__, "locale", locale)
+        pulumi.set(__self__, "title", title)
+
+    @property
+    @pulumi.getter
+    def content(self) -> str:
+        """
+        The content of the lark content template.
+        """
+        return pulumi.get(self, "content")
+
+    @property
+    @pulumi.getter
+    def locale(self) -> str:
+        """
+        The locale of the lark content template.
+        """
+        return pulumi.get(self, "locale")
+
+    @property
+    @pulumi.getter
+    def title(self) -> str:
+        """
+        The title of the lark content template.
+        """
+        return pulumi.get(self, "title")
+
+
+@pulumi.output_type
+class AlarmContentTemplateSm(dict):
+    def __init__(__self__, *,
+                 content: str,
+                 locale: str):
+        """
+        :param str content: The content of the sms content template.
+        :param str locale: The locale of the sms content template.
+        """
+        pulumi.set(__self__, "content", content)
+        pulumi.set(__self__, "locale", locale)
+
+    @property
+    @pulumi.getter
+    def content(self) -> str:
+        """
+        The content of the sms content template.
+        """
+        return pulumi.get(self, "content")
+
+    @property
+    @pulumi.getter
+    def locale(self) -> str:
+        """
+        The locale of the sms content template.
+        """
+        return pulumi.get(self, "locale")
+
+
+@pulumi.output_type
+class AlarmContentTemplateVm(dict):
+    def __init__(__self__, *,
+                 content: str,
+                 locale: str):
+        """
+        :param str content: The content of the vms content template.
+        :param str locale: The locale of the vms content template.
+        """
+        pulumi.set(__self__, "content", content)
+        pulumi.set(__self__, "locale", locale)
+
+    @property
+    @pulumi.getter
+    def content(self) -> str:
+        """
+        The content of the vms content template.
+        """
+        return pulumi.get(self, "content")
+
+    @property
+    @pulumi.getter
+    def locale(self) -> str:
+        """
+        The locale of the vms content template.
+        """
+        return pulumi.get(self, "locale")
+
+
+@pulumi.output_type
+class AlarmContentTemplateWebhook(dict):
+    def __init__(__self__, *,
+                 content: str):
+        """
+        :param str content: The content of the webhook content template.
+        """
+        pulumi.set(__self__, "content", content)
+
+    @property
+    @pulumi.getter
+    def content(self) -> str:
+        """
+        The content of the webhook content template.
+        """
+        return pulumi.get(self, "content")
+
+
+@pulumi.output_type
+class AlarmContentTemplateWechat(dict):
+    def __init__(__self__, *,
+                 content: str,
+                 locale: str):
+        """
+        :param str content: The content of the wechat content template.
+        :param str locale: The locale of the wechat content template.
+        """
+        pulumi.set(__self__, "content", content)
+        pulumi.set(__self__, "locale", locale)
+
+    @property
+    @pulumi.getter
+    def content(self) -> str:
+        """
+        The content of the wechat content template.
+        """
+        return pulumi.get(self, "content")
+
+    @property
+    @pulumi.getter
+    def locale(self) -> str:
+        """
+        The locale of the wechat content template.
+        """
+        return pulumi.get(self, "locale")
+
+
+@pulumi.output_type
+class AlarmContentTemplatesTemplateResult(dict):
+    def __init__(__self__, *,
+                 alarm_content_template_id: str,
+                 alarm_content_template_name: str,
+                 content: str,
+                 create_time: str,
+                 description: str,
+                 ding_talks: Sequence['outputs.AlarmContentTemplatesTemplateDingTalkResult'],
+                 emails: Sequence['outputs.AlarmContentTemplatesTemplateEmailResult'],
+                 is_default: bool,
+                 larks: Sequence['outputs.AlarmContentTemplatesTemplateLarkResult'],
+                 sms: Sequence['outputs.AlarmContentTemplatesTemplateSmResult'],
+                 type: str,
+                 update_time: str,
+                 vms: Sequence['outputs.AlarmContentTemplatesTemplateVmResult'],
+                 webhooks: Sequence['outputs.AlarmContentTemplatesTemplateWebhookResult'],
+                 wechats: Sequence['outputs.AlarmContentTemplatesTemplateWechatResult']):
+        """
+        :param str alarm_content_template_id: The id of the alarm content template.
+        :param str alarm_content_template_name: The name of the alarm content template. Fuzzy matching is supported.
+        :param str content: The content of the wechat content template.
+        :param str create_time: The creation time of the alarm content template.
+        :param str description: The description of the alarm content template.
+        :param Sequence['AlarmContentTemplatesTemplateDingTalkArgs'] ding_talks: The ding_talk content of the alarm content template.
+        :param Sequence['AlarmContentTemplatesTemplateEmailArgs'] emails: The email content of the alarm content template.
+        :param bool is_default: Whether the alarm content template is default.
+        :param Sequence['AlarmContentTemplatesTemplateLarkArgs'] larks: The lark content of the alarm content template.
+        :param Sequence['AlarmContentTemplatesTemplateSmArgs'] sms: The sms content of the alarm content template.
+        :param str type: The type of the alarm content template.
+        :param str update_time: The update time of the alarm content template.
+        :param Sequence['AlarmContentTemplatesTemplateVmArgs'] vms: The vms content of the alarm content template.
+        :param Sequence['AlarmContentTemplatesTemplateWebhookArgs'] webhooks: The webhook content of the alarm content template.
+        :param Sequence['AlarmContentTemplatesTemplateWechatArgs'] wechats: The wechat content of the alarm content template.
+        """
+        pulumi.set(__self__, "alarm_content_template_id", alarm_content_template_id)
+        pulumi.set(__self__, "alarm_content_template_name", alarm_content_template_name)
+        pulumi.set(__self__, "content", content)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "ding_talks", ding_talks)
+        pulumi.set(__self__, "emails", emails)
+        pulumi.set(__self__, "is_default", is_default)
+        pulumi.set(__self__, "larks", larks)
+        pulumi.set(__self__, "sms", sms)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "update_time", update_time)
+        pulumi.set(__self__, "vms", vms)
+        pulumi.set(__self__, "webhooks", webhooks)
+        pulumi.set(__self__, "wechats", wechats)
+
+    @property
+    @pulumi.getter(name="alarmContentTemplateId")
+    def alarm_content_template_id(self) -> str:
+        """
+        The id of the alarm content template.
+        """
+        return pulumi.get(self, "alarm_content_template_id")
+
+    @property
+    @pulumi.getter(name="alarmContentTemplateName")
+    def alarm_content_template_name(self) -> str:
+        """
+        The name of the alarm content template. Fuzzy matching is supported.
+        """
+        return pulumi.get(self, "alarm_content_template_name")
+
+    @property
+    @pulumi.getter
+    def content(self) -> str:
+        """
+        The content of the wechat content template.
+        """
+        return pulumi.get(self, "content")
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        The creation time of the alarm content template.
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the alarm content template.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="dingTalks")
+    def ding_talks(self) -> Sequence['outputs.AlarmContentTemplatesTemplateDingTalkResult']:
+        """
+        The ding_talk content of the alarm content template.
+        """
+        return pulumi.get(self, "ding_talks")
+
+    @property
+    @pulumi.getter
+    def emails(self) -> Sequence['outputs.AlarmContentTemplatesTemplateEmailResult']:
+        """
+        The email content of the alarm content template.
+        """
+        return pulumi.get(self, "emails")
+
+    @property
+    @pulumi.getter(name="isDefault")
+    def is_default(self) -> bool:
+        """
+        Whether the alarm content template is default.
+        """
+        return pulumi.get(self, "is_default")
+
+    @property
+    @pulumi.getter
+    def larks(self) -> Sequence['outputs.AlarmContentTemplatesTemplateLarkResult']:
+        """
+        The lark content of the alarm content template.
+        """
+        return pulumi.get(self, "larks")
+
+    @property
+    @pulumi.getter
+    def sms(self) -> Sequence['outputs.AlarmContentTemplatesTemplateSmResult']:
+        """
+        The sms content of the alarm content template.
+        """
+        return pulumi.get(self, "sms")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of the alarm content template.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> str:
+        """
+        The update time of the alarm content template.
+        """
+        return pulumi.get(self, "update_time")
+
+    @property
+    @pulumi.getter
+    def vms(self) -> Sequence['outputs.AlarmContentTemplatesTemplateVmResult']:
+        """
+        The vms content of the alarm content template.
+        """
+        return pulumi.get(self, "vms")
+
+    @property
+    @pulumi.getter
+    def webhooks(self) -> Sequence['outputs.AlarmContentTemplatesTemplateWebhookResult']:
+        """
+        The webhook content of the alarm content template.
+        """
+        return pulumi.get(self, "webhooks")
+
+    @property
+    @pulumi.getter
+    def wechats(self) -> Sequence['outputs.AlarmContentTemplatesTemplateWechatResult']:
+        """
+        The wechat content of the alarm content template.
+        """
+        return pulumi.get(self, "wechats")
+
+
+@pulumi.output_type
+class AlarmContentTemplatesTemplateDingTalkResult(dict):
+    def __init__(__self__, *,
+                 content: str,
+                 locale: str,
+                 title: str):
+        """
+        :param str content: The content of the wechat content template.
+        :param str locale: The locale of the wechat content template.
+        :param str title: The title of the lark content template.
+        """
+        pulumi.set(__self__, "content", content)
+        pulumi.set(__self__, "locale", locale)
+        pulumi.set(__self__, "title", title)
+
+    @property
+    @pulumi.getter
+    def content(self) -> str:
+        """
+        The content of the wechat content template.
+        """
+        return pulumi.get(self, "content")
+
+    @property
+    @pulumi.getter
+    def locale(self) -> str:
+        """
+        The locale of the wechat content template.
+        """
+        return pulumi.get(self, "locale")
+
+    @property
+    @pulumi.getter
+    def title(self) -> str:
+        """
+        The title of the lark content template.
+        """
+        return pulumi.get(self, "title")
+
+
+@pulumi.output_type
+class AlarmContentTemplatesTemplateEmailResult(dict):
+    def __init__(__self__, *,
+                 content: str,
+                 locale: str,
+                 subject: str):
+        """
+        :param str content: The content of the wechat content template.
+        :param str locale: The locale of the wechat content template.
+        :param str subject: The subject of the email content template.
+        """
+        pulumi.set(__self__, "content", content)
+        pulumi.set(__self__, "locale", locale)
+        pulumi.set(__self__, "subject", subject)
+
+    @property
+    @pulumi.getter
+    def content(self) -> str:
+        """
+        The content of the wechat content template.
+        """
+        return pulumi.get(self, "content")
+
+    @property
+    @pulumi.getter
+    def locale(self) -> str:
+        """
+        The locale of the wechat content template.
+        """
+        return pulumi.get(self, "locale")
+
+    @property
+    @pulumi.getter
+    def subject(self) -> str:
+        """
+        The subject of the email content template.
+        """
+        return pulumi.get(self, "subject")
+
+
+@pulumi.output_type
+class AlarmContentTemplatesTemplateLarkResult(dict):
+    def __init__(__self__, *,
+                 content: str,
+                 locale: str,
+                 title: str):
+        """
+        :param str content: The content of the wechat content template.
+        :param str locale: The locale of the wechat content template.
+        :param str title: The title of the lark content template.
+        """
+        pulumi.set(__self__, "content", content)
+        pulumi.set(__self__, "locale", locale)
+        pulumi.set(__self__, "title", title)
+
+    @property
+    @pulumi.getter
+    def content(self) -> str:
+        """
+        The content of the wechat content template.
+        """
+        return pulumi.get(self, "content")
+
+    @property
+    @pulumi.getter
+    def locale(self) -> str:
+        """
+        The locale of the wechat content template.
+        """
+        return pulumi.get(self, "locale")
+
+    @property
+    @pulumi.getter
+    def title(self) -> str:
+        """
+        The title of the lark content template.
+        """
+        return pulumi.get(self, "title")
+
+
+@pulumi.output_type
+class AlarmContentTemplatesTemplateSmResult(dict):
+    def __init__(__self__, *,
+                 content: str,
+                 locale: str):
+        """
+        :param str content: The content of the wechat content template.
+        :param str locale: The locale of the wechat content template.
+        """
+        pulumi.set(__self__, "content", content)
+        pulumi.set(__self__, "locale", locale)
+
+    @property
+    @pulumi.getter
+    def content(self) -> str:
+        """
+        The content of the wechat content template.
+        """
+        return pulumi.get(self, "content")
+
+    @property
+    @pulumi.getter
+    def locale(self) -> str:
+        """
+        The locale of the wechat content template.
+        """
+        return pulumi.get(self, "locale")
+
+
+@pulumi.output_type
+class AlarmContentTemplatesTemplateVmResult(dict):
+    def __init__(__self__, *,
+                 content: str,
+                 locale: str):
+        """
+        :param str content: The content of the wechat content template.
+        :param str locale: The locale of the wechat content template.
+        """
+        pulumi.set(__self__, "content", content)
+        pulumi.set(__self__, "locale", locale)
+
+    @property
+    @pulumi.getter
+    def content(self) -> str:
+        """
+        The content of the wechat content template.
+        """
+        return pulumi.get(self, "content")
+
+    @property
+    @pulumi.getter
+    def locale(self) -> str:
+        """
+        The locale of the wechat content template.
+        """
+        return pulumi.get(self, "locale")
+
+
+@pulumi.output_type
+class AlarmContentTemplatesTemplateWebhookResult(dict):
+    def __init__(__self__, *,
+                 content: str):
+        """
+        :param str content: The content of the wechat content template.
+        """
+        pulumi.set(__self__, "content", content)
+
+    @property
+    @pulumi.getter
+    def content(self) -> str:
+        """
+        The content of the wechat content template.
+        """
+        return pulumi.get(self, "content")
+
+
+@pulumi.output_type
+class AlarmContentTemplatesTemplateWechatResult(dict):
+    def __init__(__self__, *,
+                 content: str,
+                 locale: str):
+        """
+        :param str content: The content of the wechat content template.
+        :param str locale: The locale of the wechat content template.
+        """
+        pulumi.set(__self__, "content", content)
+        pulumi.set(__self__, "locale", locale)
+
+    @property
+    @pulumi.getter
+    def content(self) -> str:
+        """
+        The content of the wechat content template.
+        """
+        return pulumi.get(self, "content")
+
+    @property
+    @pulumi.getter
+    def locale(self) -> str:
+        """
+        The locale of the wechat content template.
+        """
+        return pulumi.get(self, "locale")
+
+
+@pulumi.output_type
+class AlarmJoinConfiguration(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "setOperationType":
+            suggest = "set_operation_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AlarmJoinConfiguration. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AlarmJoinConfiguration.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AlarmJoinConfiguration.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 condition: Optional[str] = None,
+                 set_operation_type: Optional[str] = None):
+        """
+        :param str condition: The condition.
+        :param str set_operation_type: The set operation type.
+        """
+        if condition is not None:
+            pulumi.set(__self__, "condition", condition)
+        if set_operation_type is not None:
+            pulumi.set(__self__, "set_operation_type", set_operation_type)
+
+    @property
+    @pulumi.getter
+    def condition(self) -> Optional[str]:
+        """
+        The condition.
+        """
+        return pulumi.get(self, "condition")
+
+    @property
+    @pulumi.getter(name="setOperationType")
+    def set_operation_type(self) -> Optional[str]:
+        """
+        The set operation type.
+        """
+        return pulumi.get(self, "set_operation_type")
+
+
+@pulumi.output_type
+class AlarmNotifyGroupNoticeRule(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "hasEndNode":
+            suggest = "has_end_node"
+        elif key == "hasNext":
+            suggest = "has_next"
+        elif key == "receiverInfos":
+            suggest = "receiver_infos"
+        elif key == "ruleNode":
+            suggest = "rule_node"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AlarmNotifyGroupNoticeRule. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AlarmNotifyGroupNoticeRule.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AlarmNotifyGroupNoticeRule.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 has_end_node: Optional[bool] = None,
+                 has_next: Optional[bool] = None,
+                 receiver_infos: Optional[Sequence['outputs.AlarmNotifyGroupNoticeRuleReceiverInfo']] = None,
+                 rule_node: Optional['outputs.AlarmNotifyGroupNoticeRuleRuleNode'] = None):
+        """
+        :param bool has_end_node: Whether there is an end node behind.
+        :param bool has_next: Whether to continue to the next level of condition judgment.
+        :param Sequence['AlarmNotifyGroupNoticeRuleReceiverInfoArgs'] receiver_infos: List of IAM users to receive alerts.
+        :param 'AlarmNotifyGroupNoticeRuleRuleNodeArgs' rule_node: The rule node.
+        """
+        if has_end_node is not None:
+            pulumi.set(__self__, "has_end_node", has_end_node)
+        if has_next is not None:
+            pulumi.set(__self__, "has_next", has_next)
+        if receiver_infos is not None:
+            pulumi.set(__self__, "receiver_infos", receiver_infos)
+        if rule_node is not None:
+            pulumi.set(__self__, "rule_node", rule_node)
+
+    @property
+    @pulumi.getter(name="hasEndNode")
+    def has_end_node(self) -> Optional[bool]:
+        """
+        Whether there is an end node behind.
+        """
+        return pulumi.get(self, "has_end_node")
+
+    @property
+    @pulumi.getter(name="hasNext")
+    def has_next(self) -> Optional[bool]:
+        """
+        Whether to continue to the next level of condition judgment.
+        """
+        return pulumi.get(self, "has_next")
+
+    @property
+    @pulumi.getter(name="receiverInfos")
+    def receiver_infos(self) -> Optional[Sequence['outputs.AlarmNotifyGroupNoticeRuleReceiverInfo']]:
+        """
+        List of IAM users to receive alerts.
+        """
+        return pulumi.get(self, "receiver_infos")
+
+    @property
+    @pulumi.getter(name="ruleNode")
+    def rule_node(self) -> Optional['outputs.AlarmNotifyGroupNoticeRuleRuleNode']:
+        """
+        The rule node.
+        """
+        return pulumi.get(self, "rule_node")
+
+
+@pulumi.output_type
+class AlarmNotifyGroupNoticeRuleReceiverInfo(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "alarmContentTemplateId":
+            suggest = "alarm_content_template_id"
+        elif key == "alarmWebhookAtUsers":
+            suggest = "alarm_webhook_at_users"
+        elif key == "alarmWebhookIntegrationId":
+            suggest = "alarm_webhook_integration_id"
+        elif key == "alarmWebhookIntegrationName":
+            suggest = "alarm_webhook_integration_name"
+        elif key == "alarmWebhookIsAtAll":
+            suggest = "alarm_webhook_is_at_all"
+        elif key == "endTime":
+            suggest = "end_time"
+        elif key == "generalWebhookBody":
+            suggest = "general_webhook_body"
+        elif key == "generalWebhookHeaders":
+            suggest = "general_webhook_headers"
+        elif key == "generalWebhookMethod":
+            suggest = "general_webhook_method"
+        elif key == "generalWebhookUrl":
+            suggest = "general_webhook_url"
+        elif key == "receiverChannels":
+            suggest = "receiver_channels"
+        elif key == "receiverNames":
+            suggest = "receiver_names"
+        elif key == "receiverType":
+            suggest = "receiver_type"
+        elif key == "startTime":
+            suggest = "start_time"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AlarmNotifyGroupNoticeRuleReceiverInfo. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AlarmNotifyGroupNoticeRuleReceiverInfo.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AlarmNotifyGroupNoticeRuleReceiverInfo.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 alarm_content_template_id: Optional[str] = None,
+                 alarm_webhook_at_users: Optional[Sequence[str]] = None,
+                 alarm_webhook_integration_id: Optional[str] = None,
+                 alarm_webhook_integration_name: Optional[str] = None,
+                 alarm_webhook_is_at_all: Optional[bool] = None,
+                 end_time: Optional[str] = None,
+                 general_webhook_body: Optional[str] = None,
+                 general_webhook_headers: Optional[Sequence['outputs.AlarmNotifyGroupNoticeRuleReceiverInfoGeneralWebhookHeader']] = None,
+                 general_webhook_method: Optional[str] = None,
+                 general_webhook_url: Optional[str] = None,
+                 receiver_channels: Optional[Sequence[str]] = None,
+                 receiver_names: Optional[Sequence[str]] = None,
+                 receiver_type: Optional[str] = None,
+                 start_time: Optional[str] = None):
+        """
+        :param str alarm_content_template_id: The alarm content template id.
+        :param Sequence[str] alarm_webhook_at_users: The alarm webhook at users.
+        :param str alarm_webhook_integration_id: The alarm webhook integration id.
+        :param str alarm_webhook_integration_name: The alarm webhook integration name.
+        :param bool alarm_webhook_is_at_all: The alarm webhook is at all.
+        :param str end_time: The end time.
+        :param str general_webhook_body: The webhook body.
+        :param Sequence['AlarmNotifyGroupNoticeRuleReceiverInfoGeneralWebhookHeaderArgs'] general_webhook_headers: The general webhook headers.
+        :param str general_webhook_method: The general webhook method.
+        :param str general_webhook_url: The webhook url.
+        :param Sequence[str] receiver_channels: The list of the receiver channels.
+        :param Sequence[str] receiver_names: List of the receiver names.
+        :param str receiver_type: The receiver type.
+        :param str start_time: The start time.
+        """
+        if alarm_content_template_id is not None:
+            pulumi.set(__self__, "alarm_content_template_id", alarm_content_template_id)
+        if alarm_webhook_at_users is not None:
+            pulumi.set(__self__, "alarm_webhook_at_users", alarm_webhook_at_users)
+        if alarm_webhook_integration_id is not None:
+            pulumi.set(__self__, "alarm_webhook_integration_id", alarm_webhook_integration_id)
+        if alarm_webhook_integration_name is not None:
+            pulumi.set(__self__, "alarm_webhook_integration_name", alarm_webhook_integration_name)
+        if alarm_webhook_is_at_all is not None:
+            pulumi.set(__self__, "alarm_webhook_is_at_all", alarm_webhook_is_at_all)
+        if end_time is not None:
+            pulumi.set(__self__, "end_time", end_time)
+        if general_webhook_body is not None:
+            pulumi.set(__self__, "general_webhook_body", general_webhook_body)
+        if general_webhook_headers is not None:
+            pulumi.set(__self__, "general_webhook_headers", general_webhook_headers)
+        if general_webhook_method is not None:
+            pulumi.set(__self__, "general_webhook_method", general_webhook_method)
+        if general_webhook_url is not None:
+            pulumi.set(__self__, "general_webhook_url", general_webhook_url)
+        if receiver_channels is not None:
+            pulumi.set(__self__, "receiver_channels", receiver_channels)
+        if receiver_names is not None:
+            pulumi.set(__self__, "receiver_names", receiver_names)
+        if receiver_type is not None:
+            pulumi.set(__self__, "receiver_type", receiver_type)
+        if start_time is not None:
+            pulumi.set(__self__, "start_time", start_time)
+
+    @property
+    @pulumi.getter(name="alarmContentTemplateId")
+    def alarm_content_template_id(self) -> Optional[str]:
+        """
+        The alarm content template id.
+        """
+        return pulumi.get(self, "alarm_content_template_id")
+
+    @property
+    @pulumi.getter(name="alarmWebhookAtUsers")
+    def alarm_webhook_at_users(self) -> Optional[Sequence[str]]:
+        """
+        The alarm webhook at users.
+        """
+        return pulumi.get(self, "alarm_webhook_at_users")
+
+    @property
+    @pulumi.getter(name="alarmWebhookIntegrationId")
+    def alarm_webhook_integration_id(self) -> Optional[str]:
+        """
+        The alarm webhook integration id.
+        """
+        return pulumi.get(self, "alarm_webhook_integration_id")
+
+    @property
+    @pulumi.getter(name="alarmWebhookIntegrationName")
+    def alarm_webhook_integration_name(self) -> Optional[str]:
+        """
+        The alarm webhook integration name.
+        """
+        return pulumi.get(self, "alarm_webhook_integration_name")
+
+    @property
+    @pulumi.getter(name="alarmWebhookIsAtAll")
+    def alarm_webhook_is_at_all(self) -> Optional[bool]:
+        """
+        The alarm webhook is at all.
+        """
+        return pulumi.get(self, "alarm_webhook_is_at_all")
+
+    @property
+    @pulumi.getter(name="endTime")
+    def end_time(self) -> Optional[str]:
+        """
+        The end time.
+        """
+        return pulumi.get(self, "end_time")
+
+    @property
+    @pulumi.getter(name="generalWebhookBody")
+    def general_webhook_body(self) -> Optional[str]:
+        """
+        The webhook body.
+        """
+        return pulumi.get(self, "general_webhook_body")
+
+    @property
+    @pulumi.getter(name="generalWebhookHeaders")
+    def general_webhook_headers(self) -> Optional[Sequence['outputs.AlarmNotifyGroupNoticeRuleReceiverInfoGeneralWebhookHeader']]:
+        """
+        The general webhook headers.
+        """
+        return pulumi.get(self, "general_webhook_headers")
+
+    @property
+    @pulumi.getter(name="generalWebhookMethod")
+    def general_webhook_method(self) -> Optional[str]:
+        """
+        The general webhook method.
+        """
+        return pulumi.get(self, "general_webhook_method")
+
+    @property
+    @pulumi.getter(name="generalWebhookUrl")
+    def general_webhook_url(self) -> Optional[str]:
+        """
+        The webhook url.
+        """
+        return pulumi.get(self, "general_webhook_url")
+
+    @property
+    @pulumi.getter(name="receiverChannels")
+    def receiver_channels(self) -> Optional[Sequence[str]]:
+        """
+        The list of the receiver channels.
+        """
+        return pulumi.get(self, "receiver_channels")
+
+    @property
+    @pulumi.getter(name="receiverNames")
+    def receiver_names(self) -> Optional[Sequence[str]]:
+        """
+        List of the receiver names.
+        """
+        return pulumi.get(self, "receiver_names")
+
+    @property
+    @pulumi.getter(name="receiverType")
+    def receiver_type(self) -> Optional[str]:
+        """
+        The receiver type.
+        """
+        return pulumi.get(self, "receiver_type")
+
+    @property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> Optional[str]:
+        """
+        The start time.
+        """
+        return pulumi.get(self, "start_time")
+
+
+@pulumi.output_type
+class AlarmNotifyGroupNoticeRuleReceiverInfoGeneralWebhookHeader(dict):
+    def __init__(__self__, *,
+                 key: Optional[str] = None,
+                 value: Optional[str] = None):
+        """
+        :param str key: The key of the header.
+        :param str value: The value of the header.
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[str]:
+        """
+        The key of the header.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        """
+        The value of the header.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class AlarmNotifyGroupNoticeRuleRuleNode(dict):
+    def __init__(__self__, *,
+                 childrens: Optional[Sequence['outputs.AlarmNotifyGroupNoticeRuleRuleNodeChildren']] = None,
+                 type: Optional[str] = None,
+                 values: Optional[Sequence[str]] = None):
+        """
+        :param Sequence['AlarmNotifyGroupNoticeRuleRuleNodeChildrenArgs'] childrens: The children of the rule node.
+        :param str type: The type of the rule node.
+        :param Sequence[str] values: The value of the rule node.
+        """
+        if childrens is not None:
+            pulumi.set(__self__, "childrens", childrens)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+
+    @property
+    @pulumi.getter
+    def childrens(self) -> Optional[Sequence['outputs.AlarmNotifyGroupNoticeRuleRuleNodeChildren']]:
+        """
+        The children of the rule node.
+        """
+        return pulumi.get(self, "childrens")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        """
+        The type of the rule node.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def values(self) -> Optional[Sequence[str]]:
+        """
+        The value of the rule node.
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class AlarmNotifyGroupNoticeRuleRuleNodeChildren(dict):
+    def __init__(__self__, *,
+                 type: Optional[str] = None,
+                 values: Optional[Sequence[str]] = None):
+        """
+        :param str type: The type of the rule node.
+        :param Sequence[str] values: The value of the rule node.
+        """
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        """
+        The type of the rule node.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def values(self) -> Optional[Sequence[str]]:
+        """
+        The value of the rule node.
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
 class AlarmNotifyGroupReceiver(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -262,6 +1487,24 @@ class AlarmNotifyGroupReceiver(dict):
             suggest = "receiver_type"
         elif key == "startTime":
             suggest = "start_time"
+        elif key == "alarmContentTemplateId":
+            suggest = "alarm_content_template_id"
+        elif key == "alarmWebhookAtUsers":
+            suggest = "alarm_webhook_at_users"
+        elif key == "alarmWebhookIntegrationId":
+            suggest = "alarm_webhook_integration_id"
+        elif key == "alarmWebhookIntegrationName":
+            suggest = "alarm_webhook_integration_name"
+        elif key == "alarmWebhookIsAtAll":
+            suggest = "alarm_webhook_is_at_all"
+        elif key == "generalWebhookBody":
+            suggest = "general_webhook_body"
+        elif key == "generalWebhookHeaders":
+            suggest = "general_webhook_headers"
+        elif key == "generalWebhookMethod":
+            suggest = "general_webhook_method"
+        elif key == "generalWebhookUrl":
+            suggest = "general_webhook_url"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in AlarmNotifyGroupReceiver. Access the value via the '{suggest}' property getter instead.")
@@ -279,19 +1522,55 @@ class AlarmNotifyGroupReceiver(dict):
                  receiver_channels: Sequence[str],
                  receiver_names: Sequence[str],
                  receiver_type: str,
-                 start_time: str):
+                 start_time: str,
+                 alarm_content_template_id: Optional[str] = None,
+                 alarm_webhook_at_users: Optional[Sequence[str]] = None,
+                 alarm_webhook_integration_id: Optional[str] = None,
+                 alarm_webhook_integration_name: Optional[str] = None,
+                 alarm_webhook_is_at_all: Optional[bool] = None,
+                 general_webhook_body: Optional[str] = None,
+                 general_webhook_headers: Optional[Sequence['outputs.AlarmNotifyGroupReceiverGeneralWebhookHeader']] = None,
+                 general_webhook_method: Optional[str] = None,
+                 general_webhook_url: Optional[str] = None):
         """
         :param str end_time: The end time.
         :param Sequence[str] receiver_channels: The list of the receiver channels. Currently supported channels: Email, Sms, Phone.
         :param Sequence[str] receiver_names: List of the receiver names.
         :param str receiver_type: The receiver type, Can be set as: `User`(The id of user).
         :param str start_time: The start time.
+        :param str alarm_content_template_id: The alarm content template id.
+        :param Sequence[str] alarm_webhook_at_users: The alarm webhook at users.
+        :param str alarm_webhook_integration_id: The alarm webhook integration id.
+        :param str alarm_webhook_integration_name: The alarm webhook integration name.
+        :param bool alarm_webhook_is_at_all: The alarm webhook is at all.
+        :param str general_webhook_body: The webhook body.
+        :param Sequence['AlarmNotifyGroupReceiverGeneralWebhookHeaderArgs'] general_webhook_headers: The general webhook headers.
+        :param str general_webhook_method: The general webhook method.
+        :param str general_webhook_url: The webhook url.
         """
         pulumi.set(__self__, "end_time", end_time)
         pulumi.set(__self__, "receiver_channels", receiver_channels)
         pulumi.set(__self__, "receiver_names", receiver_names)
         pulumi.set(__self__, "receiver_type", receiver_type)
         pulumi.set(__self__, "start_time", start_time)
+        if alarm_content_template_id is not None:
+            pulumi.set(__self__, "alarm_content_template_id", alarm_content_template_id)
+        if alarm_webhook_at_users is not None:
+            pulumi.set(__self__, "alarm_webhook_at_users", alarm_webhook_at_users)
+        if alarm_webhook_integration_id is not None:
+            pulumi.set(__self__, "alarm_webhook_integration_id", alarm_webhook_integration_id)
+        if alarm_webhook_integration_name is not None:
+            pulumi.set(__self__, "alarm_webhook_integration_name", alarm_webhook_integration_name)
+        if alarm_webhook_is_at_all is not None:
+            pulumi.set(__self__, "alarm_webhook_is_at_all", alarm_webhook_is_at_all)
+        if general_webhook_body is not None:
+            pulumi.set(__self__, "general_webhook_body", general_webhook_body)
+        if general_webhook_headers is not None:
+            pulumi.set(__self__, "general_webhook_headers", general_webhook_headers)
+        if general_webhook_method is not None:
+            pulumi.set(__self__, "general_webhook_method", general_webhook_method)
+        if general_webhook_url is not None:
+            pulumi.set(__self__, "general_webhook_url", general_webhook_url)
 
     @property
     @pulumi.getter(name="endTime")
@@ -333,6 +1612,109 @@ class AlarmNotifyGroupReceiver(dict):
         """
         return pulumi.get(self, "start_time")
 
+    @property
+    @pulumi.getter(name="alarmContentTemplateId")
+    def alarm_content_template_id(self) -> Optional[str]:
+        """
+        The alarm content template id.
+        """
+        return pulumi.get(self, "alarm_content_template_id")
+
+    @property
+    @pulumi.getter(name="alarmWebhookAtUsers")
+    def alarm_webhook_at_users(self) -> Optional[Sequence[str]]:
+        """
+        The alarm webhook at users.
+        """
+        return pulumi.get(self, "alarm_webhook_at_users")
+
+    @property
+    @pulumi.getter(name="alarmWebhookIntegrationId")
+    def alarm_webhook_integration_id(self) -> Optional[str]:
+        """
+        The alarm webhook integration id.
+        """
+        return pulumi.get(self, "alarm_webhook_integration_id")
+
+    @property
+    @pulumi.getter(name="alarmWebhookIntegrationName")
+    def alarm_webhook_integration_name(self) -> Optional[str]:
+        """
+        The alarm webhook integration name.
+        """
+        return pulumi.get(self, "alarm_webhook_integration_name")
+
+    @property
+    @pulumi.getter(name="alarmWebhookIsAtAll")
+    def alarm_webhook_is_at_all(self) -> Optional[bool]:
+        """
+        The alarm webhook is at all.
+        """
+        return pulumi.get(self, "alarm_webhook_is_at_all")
+
+    @property
+    @pulumi.getter(name="generalWebhookBody")
+    def general_webhook_body(self) -> Optional[str]:
+        """
+        The webhook body.
+        """
+        return pulumi.get(self, "general_webhook_body")
+
+    @property
+    @pulumi.getter(name="generalWebhookHeaders")
+    def general_webhook_headers(self) -> Optional[Sequence['outputs.AlarmNotifyGroupReceiverGeneralWebhookHeader']]:
+        """
+        The general webhook headers.
+        """
+        return pulumi.get(self, "general_webhook_headers")
+
+    @property
+    @pulumi.getter(name="generalWebhookMethod")
+    def general_webhook_method(self) -> Optional[str]:
+        """
+        The general webhook method.
+        """
+        return pulumi.get(self, "general_webhook_method")
+
+    @property
+    @pulumi.getter(name="generalWebhookUrl")
+    def general_webhook_url(self) -> Optional[str]:
+        """
+        The webhook url.
+        """
+        return pulumi.get(self, "general_webhook_url")
+
+
+@pulumi.output_type
+class AlarmNotifyGroupReceiverGeneralWebhookHeader(dict):
+    def __init__(__self__, *,
+                 key: Optional[str] = None,
+                 value: Optional[str] = None):
+        """
+        :param str key: The key of the header.
+        :param str value: The value of the header.
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[str]:
+        """
+        The key of the header.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        """
+        The value of the header.
+        """
+        return pulumi.get(self, "value")
+
 
 @pulumi.output_type
 class AlarmNotifyGroupsGroupResult(dict):
@@ -342,6 +1724,7 @@ class AlarmNotifyGroupsGroupResult(dict):
                  create_time: str,
                  iam_project_name: str,
                  modify_time: str,
+                 notice_rules: Sequence['outputs.AlarmNotifyGroupsGroupNoticeRuleResult'],
                  notify_types: Sequence[str],
                  receivers: Sequence['outputs.AlarmNotifyGroupsGroupReceiverResult']):
         """
@@ -350,6 +1733,7 @@ class AlarmNotifyGroupsGroupResult(dict):
         :param str create_time: The create time the notification.
         :param str iam_project_name: The name of the iam project.
         :param str modify_time: The modification time the notification.
+        :param Sequence['AlarmNotifyGroupsGroupNoticeRuleArgs'] notice_rules: The list of the notice rules.
         :param Sequence[str] notify_types: The notify group type.
         :param Sequence['AlarmNotifyGroupsGroupReceiverArgs'] receivers: List of IAM users to receive alerts.
         """
@@ -358,6 +1742,7 @@ class AlarmNotifyGroupsGroupResult(dict):
         pulumi.set(__self__, "create_time", create_time)
         pulumi.set(__self__, "iam_project_name", iam_project_name)
         pulumi.set(__self__, "modify_time", modify_time)
+        pulumi.set(__self__, "notice_rules", notice_rules)
         pulumi.set(__self__, "notify_types", notify_types)
         pulumi.set(__self__, "receivers", receivers)
 
@@ -402,6 +1787,14 @@ class AlarmNotifyGroupsGroupResult(dict):
         return pulumi.get(self, "modify_time")
 
     @property
+    @pulumi.getter(name="noticeRules")
+    def notice_rules(self) -> Sequence['outputs.AlarmNotifyGroupsGroupNoticeRuleResult']:
+        """
+        The list of the notice rules.
+        """
+        return pulumi.get(self, "notice_rules")
+
+    @property
     @pulumi.getter(name="notifyTypes")
     def notify_types(self) -> Sequence[str]:
         """
@@ -419,25 +1812,146 @@ class AlarmNotifyGroupsGroupResult(dict):
 
 
 @pulumi.output_type
-class AlarmNotifyGroupsGroupReceiverResult(dict):
+class AlarmNotifyGroupsGroupNoticeRuleResult(dict):
     def __init__(__self__, *,
+                 has_end_node: bool,
+                 has_next: bool,
+                 receiver_infos: Sequence['outputs.AlarmNotifyGroupsGroupNoticeRuleReceiverInfoResult'],
+                 rule_nodes: Sequence['outputs.AlarmNotifyGroupsGroupNoticeRuleRuleNodeResult']):
+        """
+        :param bool has_end_node: Whether there is an end node behind.
+        :param bool has_next: Whether to continue to the next level of condition judgment.
+        :param Sequence['AlarmNotifyGroupsGroupNoticeRuleReceiverInfoArgs'] receiver_infos: List of IAM users to receive alerts.
+        :param Sequence['AlarmNotifyGroupsGroupNoticeRuleRuleNodeArgs'] rule_nodes: The rule node.
+        """
+        pulumi.set(__self__, "has_end_node", has_end_node)
+        pulumi.set(__self__, "has_next", has_next)
+        pulumi.set(__self__, "receiver_infos", receiver_infos)
+        pulumi.set(__self__, "rule_nodes", rule_nodes)
+
+    @property
+    @pulumi.getter(name="hasEndNode")
+    def has_end_node(self) -> bool:
+        """
+        Whether there is an end node behind.
+        """
+        return pulumi.get(self, "has_end_node")
+
+    @property
+    @pulumi.getter(name="hasNext")
+    def has_next(self) -> bool:
+        """
+        Whether to continue to the next level of condition judgment.
+        """
+        return pulumi.get(self, "has_next")
+
+    @property
+    @pulumi.getter(name="receiverInfos")
+    def receiver_infos(self) -> Sequence['outputs.AlarmNotifyGroupsGroupNoticeRuleReceiverInfoResult']:
+        """
+        List of IAM users to receive alerts.
+        """
+        return pulumi.get(self, "receiver_infos")
+
+    @property
+    @pulumi.getter(name="ruleNodes")
+    def rule_nodes(self) -> Sequence['outputs.AlarmNotifyGroupsGroupNoticeRuleRuleNodeResult']:
+        """
+        The rule node.
+        """
+        return pulumi.get(self, "rule_nodes")
+
+
+@pulumi.output_type
+class AlarmNotifyGroupsGroupNoticeRuleReceiverInfoResult(dict):
+    def __init__(__self__, *,
+                 alarm_content_template_id: str,
+                 alarm_webhook_at_users: Sequence[str],
+                 alarm_webhook_integration_id: str,
+                 alarm_webhook_integration_name: str,
+                 alarm_webhook_is_at_all: bool,
                  end_time: str,
+                 general_webhook: str,
+                 general_webhook_body: str,
+                 general_webhook_headers: Sequence['outputs.AlarmNotifyGroupsGroupNoticeRuleReceiverInfoGeneralWebhookHeaderResult'],
+                 general_webhook_method: str,
+                 general_webhook_url: str,
                  receiver_channels: Sequence[str],
                  receiver_names: Sequence[str],
                  receiver_type: str,
                  start_time: str):
         """
+        :param str alarm_content_template_id: The alarm content template id.
+        :param Sequence[str] alarm_webhook_at_users: The alarm webhook at users.
+        :param str alarm_webhook_integration_id: The alarm webhook integration id.
+        :param str alarm_webhook_integration_name: The alarm webhook integration name.
+        :param bool alarm_webhook_is_at_all: The alarm webhook is at all.
         :param str end_time: The end time.
+        :param str general_webhook: The general webhook.
+        :param str general_webhook_body: The webhook body.
+        :param Sequence['AlarmNotifyGroupsGroupNoticeRuleReceiverInfoGeneralWebhookHeaderArgs'] general_webhook_headers: The general webhook headers.
+        :param str general_webhook_method: The general webhook method.
+        :param str general_webhook_url: The webhook url.
         :param Sequence[str] receiver_channels: The list of the receiver channels.
         :param Sequence[str] receiver_names: List of the receiver names.
         :param str receiver_type: The receiver type.
         :param str start_time: The start time.
         """
+        pulumi.set(__self__, "alarm_content_template_id", alarm_content_template_id)
+        pulumi.set(__self__, "alarm_webhook_at_users", alarm_webhook_at_users)
+        pulumi.set(__self__, "alarm_webhook_integration_id", alarm_webhook_integration_id)
+        pulumi.set(__self__, "alarm_webhook_integration_name", alarm_webhook_integration_name)
+        pulumi.set(__self__, "alarm_webhook_is_at_all", alarm_webhook_is_at_all)
         pulumi.set(__self__, "end_time", end_time)
+        pulumi.set(__self__, "general_webhook", general_webhook)
+        pulumi.set(__self__, "general_webhook_body", general_webhook_body)
+        pulumi.set(__self__, "general_webhook_headers", general_webhook_headers)
+        pulumi.set(__self__, "general_webhook_method", general_webhook_method)
+        pulumi.set(__self__, "general_webhook_url", general_webhook_url)
         pulumi.set(__self__, "receiver_channels", receiver_channels)
         pulumi.set(__self__, "receiver_names", receiver_names)
         pulumi.set(__self__, "receiver_type", receiver_type)
         pulumi.set(__self__, "start_time", start_time)
+
+    @property
+    @pulumi.getter(name="alarmContentTemplateId")
+    def alarm_content_template_id(self) -> str:
+        """
+        The alarm content template id.
+        """
+        return pulumi.get(self, "alarm_content_template_id")
+
+    @property
+    @pulumi.getter(name="alarmWebhookAtUsers")
+    def alarm_webhook_at_users(self) -> Sequence[str]:
+        """
+        The alarm webhook at users.
+        """
+        return pulumi.get(self, "alarm_webhook_at_users")
+
+    @property
+    @pulumi.getter(name="alarmWebhookIntegrationId")
+    def alarm_webhook_integration_id(self) -> str:
+        """
+        The alarm webhook integration id.
+        """
+        return pulumi.get(self, "alarm_webhook_integration_id")
+
+    @property
+    @pulumi.getter(name="alarmWebhookIntegrationName")
+    def alarm_webhook_integration_name(self) -> str:
+        """
+        The alarm webhook integration name.
+        """
+        return pulumi.get(self, "alarm_webhook_integration_name")
+
+    @property
+    @pulumi.getter(name="alarmWebhookIsAtAll")
+    def alarm_webhook_is_at_all(self) -> bool:
+        """
+        The alarm webhook is at all.
+        """
+        return pulumi.get(self, "alarm_webhook_is_at_all")
 
     @property
     @pulumi.getter(name="endTime")
@@ -446,6 +1960,46 @@ class AlarmNotifyGroupsGroupReceiverResult(dict):
         The end time.
         """
         return pulumi.get(self, "end_time")
+
+    @property
+    @pulumi.getter(name="generalWebhook")
+    def general_webhook(self) -> str:
+        """
+        The general webhook.
+        """
+        return pulumi.get(self, "general_webhook")
+
+    @property
+    @pulumi.getter(name="generalWebhookBody")
+    def general_webhook_body(self) -> str:
+        """
+        The webhook body.
+        """
+        return pulumi.get(self, "general_webhook_body")
+
+    @property
+    @pulumi.getter(name="generalWebhookHeaders")
+    def general_webhook_headers(self) -> Sequence['outputs.AlarmNotifyGroupsGroupNoticeRuleReceiverInfoGeneralWebhookHeaderResult']:
+        """
+        The general webhook headers.
+        """
+        return pulumi.get(self, "general_webhook_headers")
+
+    @property
+    @pulumi.getter(name="generalWebhookMethod")
+    def general_webhook_method(self) -> str:
+        """
+        The general webhook method.
+        """
+        return pulumi.get(self, "general_webhook_method")
+
+    @property
+    @pulumi.getter(name="generalWebhookUrl")
+    def general_webhook_url(self) -> str:
+        """
+        The webhook url.
+        """
+        return pulumi.get(self, "general_webhook_url")
 
     @property
     @pulumi.getter(name="receiverChannels")
@@ -481,6 +2035,305 @@ class AlarmNotifyGroupsGroupReceiverResult(dict):
 
 
 @pulumi.output_type
+class AlarmNotifyGroupsGroupNoticeRuleReceiverInfoGeneralWebhookHeaderResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The key of the header.
+        :param str value: The value of the header.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The key of the header.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The value of the header.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class AlarmNotifyGroupsGroupNoticeRuleRuleNodeResult(dict):
+    def __init__(__self__, *,
+                 childrens: Sequence['outputs.AlarmNotifyGroupsGroupNoticeRuleRuleNodeChildrenResult'],
+                 type: str,
+                 values: Sequence[str]):
+        """
+        :param Sequence['AlarmNotifyGroupsGroupNoticeRuleRuleNodeChildrenArgs'] childrens: The children of the rule node.
+        :param str type: The type of the rule node.
+        :param Sequence[str] values: The value of the header.
+        """
+        pulumi.set(__self__, "childrens", childrens)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "values", values)
+
+    @property
+    @pulumi.getter
+    def childrens(self) -> Sequence['outputs.AlarmNotifyGroupsGroupNoticeRuleRuleNodeChildrenResult']:
+        """
+        The children of the rule node.
+        """
+        return pulumi.get(self, "childrens")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of the rule node.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def values(self) -> Sequence[str]:
+        """
+        The value of the header.
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class AlarmNotifyGroupsGroupNoticeRuleRuleNodeChildrenResult(dict):
+    def __init__(__self__, *,
+                 type: str,
+                 values: Sequence[str]):
+        """
+        :param str type: The type of the rule node.
+        :param Sequence[str] values: The value of the header.
+        """
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "values", values)
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of the rule node.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def values(self) -> Sequence[str]:
+        """
+        The value of the header.
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class AlarmNotifyGroupsGroupReceiverResult(dict):
+    def __init__(__self__, *,
+                 alarm_content_template_id: str,
+                 alarm_webhook_at_users: Sequence[str],
+                 alarm_webhook_integration_id: str,
+                 alarm_webhook_integration_name: str,
+                 alarm_webhook_is_at_all: bool,
+                 end_time: str,
+                 general_webhook: str,
+                 general_webhook_body: str,
+                 general_webhook_headers: Sequence['outputs.AlarmNotifyGroupsGroupReceiverGeneralWebhookHeaderResult'],
+                 general_webhook_method: str,
+                 general_webhook_url: str,
+                 receiver_channels: Sequence[str],
+                 receiver_names: Sequence[str],
+                 receiver_type: str,
+                 start_time: str):
+        """
+        :param str alarm_content_template_id: The alarm content template id.
+        :param Sequence[str] alarm_webhook_at_users: The alarm webhook at users.
+        :param str alarm_webhook_integration_id: The alarm webhook integration id.
+        :param str alarm_webhook_integration_name: The alarm webhook integration name.
+        :param bool alarm_webhook_is_at_all: The alarm webhook is at all.
+        :param str end_time: The end time.
+        :param str general_webhook: The general webhook.
+        :param str general_webhook_body: The webhook body.
+        :param Sequence['AlarmNotifyGroupsGroupReceiverGeneralWebhookHeaderArgs'] general_webhook_headers: The general webhook headers.
+        :param str general_webhook_method: The general webhook method.
+        :param str general_webhook_url: The webhook url.
+        :param Sequence[str] receiver_channels: The list of the receiver channels.
+        :param Sequence[str] receiver_names: List of the receiver names.
+        :param str receiver_type: The receiver type.
+        :param str start_time: The start time.
+        """
+        pulumi.set(__self__, "alarm_content_template_id", alarm_content_template_id)
+        pulumi.set(__self__, "alarm_webhook_at_users", alarm_webhook_at_users)
+        pulumi.set(__self__, "alarm_webhook_integration_id", alarm_webhook_integration_id)
+        pulumi.set(__self__, "alarm_webhook_integration_name", alarm_webhook_integration_name)
+        pulumi.set(__self__, "alarm_webhook_is_at_all", alarm_webhook_is_at_all)
+        pulumi.set(__self__, "end_time", end_time)
+        pulumi.set(__self__, "general_webhook", general_webhook)
+        pulumi.set(__self__, "general_webhook_body", general_webhook_body)
+        pulumi.set(__self__, "general_webhook_headers", general_webhook_headers)
+        pulumi.set(__self__, "general_webhook_method", general_webhook_method)
+        pulumi.set(__self__, "general_webhook_url", general_webhook_url)
+        pulumi.set(__self__, "receiver_channels", receiver_channels)
+        pulumi.set(__self__, "receiver_names", receiver_names)
+        pulumi.set(__self__, "receiver_type", receiver_type)
+        pulumi.set(__self__, "start_time", start_time)
+
+    @property
+    @pulumi.getter(name="alarmContentTemplateId")
+    def alarm_content_template_id(self) -> str:
+        """
+        The alarm content template id.
+        """
+        return pulumi.get(self, "alarm_content_template_id")
+
+    @property
+    @pulumi.getter(name="alarmWebhookAtUsers")
+    def alarm_webhook_at_users(self) -> Sequence[str]:
+        """
+        The alarm webhook at users.
+        """
+        return pulumi.get(self, "alarm_webhook_at_users")
+
+    @property
+    @pulumi.getter(name="alarmWebhookIntegrationId")
+    def alarm_webhook_integration_id(self) -> str:
+        """
+        The alarm webhook integration id.
+        """
+        return pulumi.get(self, "alarm_webhook_integration_id")
+
+    @property
+    @pulumi.getter(name="alarmWebhookIntegrationName")
+    def alarm_webhook_integration_name(self) -> str:
+        """
+        The alarm webhook integration name.
+        """
+        return pulumi.get(self, "alarm_webhook_integration_name")
+
+    @property
+    @pulumi.getter(name="alarmWebhookIsAtAll")
+    def alarm_webhook_is_at_all(self) -> bool:
+        """
+        The alarm webhook is at all.
+        """
+        return pulumi.get(self, "alarm_webhook_is_at_all")
+
+    @property
+    @pulumi.getter(name="endTime")
+    def end_time(self) -> str:
+        """
+        The end time.
+        """
+        return pulumi.get(self, "end_time")
+
+    @property
+    @pulumi.getter(name="generalWebhook")
+    def general_webhook(self) -> str:
+        """
+        The general webhook.
+        """
+        return pulumi.get(self, "general_webhook")
+
+    @property
+    @pulumi.getter(name="generalWebhookBody")
+    def general_webhook_body(self) -> str:
+        """
+        The webhook body.
+        """
+        return pulumi.get(self, "general_webhook_body")
+
+    @property
+    @pulumi.getter(name="generalWebhookHeaders")
+    def general_webhook_headers(self) -> Sequence['outputs.AlarmNotifyGroupsGroupReceiverGeneralWebhookHeaderResult']:
+        """
+        The general webhook headers.
+        """
+        return pulumi.get(self, "general_webhook_headers")
+
+    @property
+    @pulumi.getter(name="generalWebhookMethod")
+    def general_webhook_method(self) -> str:
+        """
+        The general webhook method.
+        """
+        return pulumi.get(self, "general_webhook_method")
+
+    @property
+    @pulumi.getter(name="generalWebhookUrl")
+    def general_webhook_url(self) -> str:
+        """
+        The webhook url.
+        """
+        return pulumi.get(self, "general_webhook_url")
+
+    @property
+    @pulumi.getter(name="receiverChannels")
+    def receiver_channels(self) -> Sequence[str]:
+        """
+        The list of the receiver channels.
+        """
+        return pulumi.get(self, "receiver_channels")
+
+    @property
+    @pulumi.getter(name="receiverNames")
+    def receiver_names(self) -> Sequence[str]:
+        """
+        List of the receiver names.
+        """
+        return pulumi.get(self, "receiver_names")
+
+    @property
+    @pulumi.getter(name="receiverType")
+    def receiver_type(self) -> str:
+        """
+        The receiver type.
+        """
+        return pulumi.get(self, "receiver_type")
+
+    @property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> str:
+        """
+        The start time.
+        """
+        return pulumi.get(self, "start_time")
+
+
+@pulumi.output_type
+class AlarmNotifyGroupsGroupReceiverGeneralWebhookHeaderResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The key of the header.
+        :param str value: The value of the header.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The key of the header.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The value of the header.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class AlarmQueryRequest(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -491,6 +2344,14 @@ class AlarmQueryRequest(dict):
             suggest = "start_time_offset"
         elif key == "topicId":
             suggest = "topic_id"
+        elif key == "endTimeOffsetUnit":
+            suggest = "end_time_offset_unit"
+        elif key == "startTimeOffsetUnit":
+            suggest = "start_time_offset_unit"
+        elif key == "timeSpanType":
+            suggest = "time_span_type"
+        elif key == "truncatedTime":
+            suggest = "truncated_time"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in AlarmQueryRequest. Access the value via the '{suggest}' property getter instead.")
@@ -508,19 +2369,35 @@ class AlarmQueryRequest(dict):
                  number: int,
                  query: str,
                  start_time_offset: int,
-                 topic_id: str):
+                 topic_id: str,
+                 end_time_offset_unit: Optional[str] = None,
+                 start_time_offset_unit: Optional[str] = None,
+                 time_span_type: Optional[str] = None,
+                 truncated_time: Optional[str] = None):
         """
         :param int end_time_offset: The end time of the query range is relative to the current historical time. The unit is minutes. The value is not positive and must be greater than StartTimeOffset. The maximum value is 0 and the minimum value is -1440.
         :param int number: Alarm object sequence number; increments from 1.
         :param str query: Query statement, the maximum supported length is 1024.
         :param int start_time_offset: The start time of the query range is relative to the current historical time, in minutes. The value is non-positive, the maximum value is 0, and the minimum value is -1440.
         :param str topic_id: The id of the topic.
+        :param str end_time_offset_unit: The end time offset unit.
+        :param str start_time_offset_unit: The start time offset unit.
+        :param str time_span_type: The time span type.
+        :param str truncated_time: The truncated time.
         """
         pulumi.set(__self__, "end_time_offset", end_time_offset)
         pulumi.set(__self__, "number", number)
         pulumi.set(__self__, "query", query)
         pulumi.set(__self__, "start_time_offset", start_time_offset)
         pulumi.set(__self__, "topic_id", topic_id)
+        if end_time_offset_unit is not None:
+            pulumi.set(__self__, "end_time_offset_unit", end_time_offset_unit)
+        if start_time_offset_unit is not None:
+            pulumi.set(__self__, "start_time_offset_unit", start_time_offset_unit)
+        if time_span_type is not None:
+            pulumi.set(__self__, "time_span_type", time_span_type)
+        if truncated_time is not None:
+            pulumi.set(__self__, "truncated_time", truncated_time)
 
     @property
     @pulumi.getter(name="endTimeOffset")
@@ -562,24 +2439,85 @@ class AlarmQueryRequest(dict):
         """
         return pulumi.get(self, "topic_id")
 
+    @property
+    @pulumi.getter(name="endTimeOffsetUnit")
+    def end_time_offset_unit(self) -> Optional[str]:
+        """
+        The end time offset unit.
+        """
+        return pulumi.get(self, "end_time_offset_unit")
+
+    @property
+    @pulumi.getter(name="startTimeOffsetUnit")
+    def start_time_offset_unit(self) -> Optional[str]:
+        """
+        The start time offset unit.
+        """
+        return pulumi.get(self, "start_time_offset_unit")
+
+    @property
+    @pulumi.getter(name="timeSpanType")
+    def time_span_type(self) -> Optional[str]:
+        """
+        The time span type.
+        """
+        return pulumi.get(self, "time_span_type")
+
+    @property
+    @pulumi.getter(name="truncatedTime")
+    def truncated_time(self) -> Optional[str]:
+        """
+        The truncated time.
+        """
+        return pulumi.get(self, "truncated_time")
+
 
 @pulumi.output_type
 class AlarmRequestCycle(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "cronTab":
+            suggest = "cron_tab"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AlarmRequestCycle. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AlarmRequestCycle.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AlarmRequestCycle.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
-                 time: int,
-                 type: str):
+                 cron_tab: Optional[str] = None,
+                 time: Optional[int] = None,
+                 type: Optional[str] = None):
         """
+        :param str cron_tab: The cron tab.
         :param int time: The cycle of alarm task execution, or the time point of periodic execution. The unit is minutes, and the value range is 1~1440.
         :param str type: Execution cycle type.
-               Period: Periodic execution, which means executing once every certain period of time.
-               Fixed: Regular execution, which means executing at a fixed time point every day.
         """
-        pulumi.set(__self__, "time", time)
-        pulumi.set(__self__, "type", type)
+        if cron_tab is not None:
+            pulumi.set(__self__, "cron_tab", cron_tab)
+        if time is not None:
+            pulumi.set(__self__, "time", time)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="cronTab")
+    def cron_tab(self) -> Optional[str]:
+        """
+        The cron tab.
+        """
+        return pulumi.get(self, "cron_tab")
 
     @property
     @pulumi.getter
-    def time(self) -> int:
+    def time(self) -> Optional[int]:
         """
         The cycle of alarm task execution, or the time point of periodic execution. The unit is minutes, and the value range is 1~1440.
         """
@@ -587,13 +2525,251 @@ class AlarmRequestCycle(dict):
 
     @property
     @pulumi.getter
-    def type(self) -> str:
+    def type(self) -> Optional[str]:
         """
         Execution cycle type.
-        Period: Periodic execution, which means executing once every certain period of time.
-        Fixed: Regular execution, which means executing at a fixed time point every day.
         """
         return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class AlarmTriggerCondition(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "countCondition":
+            suggest = "count_condition"
+        elif key == "noData":
+            suggest = "no_data"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AlarmTriggerCondition. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AlarmTriggerCondition.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AlarmTriggerCondition.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 condition: Optional[str] = None,
+                 count_condition: Optional[str] = None,
+                 no_data: Optional[bool] = None,
+                 severity: Optional[str] = None):
+        """
+        :param str condition: The condition.
+        :param str count_condition: The count condition.
+        :param bool no_data: The no data.
+        :param str severity: The severity.
+        """
+        if condition is not None:
+            pulumi.set(__self__, "condition", condition)
+        if count_condition is not None:
+            pulumi.set(__self__, "count_condition", count_condition)
+        if no_data is not None:
+            pulumi.set(__self__, "no_data", no_data)
+        if severity is not None:
+            pulumi.set(__self__, "severity", severity)
+
+    @property
+    @pulumi.getter
+    def condition(self) -> Optional[str]:
+        """
+        The condition.
+        """
+        return pulumi.get(self, "condition")
+
+    @property
+    @pulumi.getter(name="countCondition")
+    def count_condition(self) -> Optional[str]:
+        """
+        The count condition.
+        """
+        return pulumi.get(self, "count_condition")
+
+    @property
+    @pulumi.getter(name="noData")
+    def no_data(self) -> Optional[bool]:
+        """
+        The no data.
+        """
+        return pulumi.get(self, "no_data")
+
+    @property
+    @pulumi.getter
+    def severity(self) -> Optional[str]:
+        """
+        The severity.
+        """
+        return pulumi.get(self, "severity")
+
+
+@pulumi.output_type
+class AlarmWebhookIntegrationWebhookHeader(dict):
+    def __init__(__self__, *,
+                 key: Optional[str] = None,
+                 value: Optional[str] = None):
+        """
+        :param str key: The key of the header.
+        :param str value: The value of the header.
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[str]:
+        """
+        The key of the header.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        """
+        The value of the header.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class AlarmWebhookIntegrationsIntegrationResult(dict):
+    def __init__(__self__, *,
+                 create_time: str,
+                 modify_time: str,
+                 webhook_headers: Sequence['outputs.AlarmWebhookIntegrationsIntegrationWebhookHeaderResult'],
+                 webhook_id: str,
+                 webhook_method: str,
+                 webhook_name: str,
+                 webhook_secret: str,
+                 webhook_type: str,
+                 webhook_url: str):
+        """
+        :param str create_time: The creation time of the webhook integration.
+        :param str modify_time: The update time of the webhook integration.
+        :param Sequence['AlarmWebhookIntegrationsIntegrationWebhookHeaderArgs'] webhook_headers: The headers of the webhook.
+        :param str webhook_id: The ID of the alarm webhook integration.
+        :param str webhook_method: The method of the webhook.
+        :param str webhook_name: The name of the webhook integration. Fuzzy matching is supported.
+        :param str webhook_secret: The secret of the webhook.
+        :param str webhook_type: The type of the webhook integration.
+        :param str webhook_url: The URL of the webhook.
+        """
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "modify_time", modify_time)
+        pulumi.set(__self__, "webhook_headers", webhook_headers)
+        pulumi.set(__self__, "webhook_id", webhook_id)
+        pulumi.set(__self__, "webhook_method", webhook_method)
+        pulumi.set(__self__, "webhook_name", webhook_name)
+        pulumi.set(__self__, "webhook_secret", webhook_secret)
+        pulumi.set(__self__, "webhook_type", webhook_type)
+        pulumi.set(__self__, "webhook_url", webhook_url)
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        The creation time of the webhook integration.
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter(name="modifyTime")
+    def modify_time(self) -> str:
+        """
+        The update time of the webhook integration.
+        """
+        return pulumi.get(self, "modify_time")
+
+    @property
+    @pulumi.getter(name="webhookHeaders")
+    def webhook_headers(self) -> Sequence['outputs.AlarmWebhookIntegrationsIntegrationWebhookHeaderResult']:
+        """
+        The headers of the webhook.
+        """
+        return pulumi.get(self, "webhook_headers")
+
+    @property
+    @pulumi.getter(name="webhookId")
+    def webhook_id(self) -> str:
+        """
+        The ID of the alarm webhook integration.
+        """
+        return pulumi.get(self, "webhook_id")
+
+    @property
+    @pulumi.getter(name="webhookMethod")
+    def webhook_method(self) -> str:
+        """
+        The method of the webhook.
+        """
+        return pulumi.get(self, "webhook_method")
+
+    @property
+    @pulumi.getter(name="webhookName")
+    def webhook_name(self) -> str:
+        """
+        The name of the webhook integration. Fuzzy matching is supported.
+        """
+        return pulumi.get(self, "webhook_name")
+
+    @property
+    @pulumi.getter(name="webhookSecret")
+    def webhook_secret(self) -> str:
+        """
+        The secret of the webhook.
+        """
+        return pulumi.get(self, "webhook_secret")
+
+    @property
+    @pulumi.getter(name="webhookType")
+    def webhook_type(self) -> str:
+        """
+        The type of the webhook integration.
+        """
+        return pulumi.get(self, "webhook_type")
+
+    @property
+    @pulumi.getter(name="webhookUrl")
+    def webhook_url(self) -> str:
+        """
+        The URL of the webhook.
+        """
+        return pulumi.get(self, "webhook_url")
+
+
+@pulumi.output_type
+class AlarmWebhookIntegrationsIntegrationWebhookHeaderResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The key of the header.
+        :param str value: The value of the header.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The key of the header.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The value of the header.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -606,11 +2782,15 @@ class AlarmsAlarmResult(dict):
                  alarm_period_details: Sequence['outputs.AlarmsAlarmAlarmPeriodDetailResult'],
                  condition: str,
                  create_time: str,
+                 join_configurations: Sequence['outputs.AlarmsAlarmJoinConfigurationResult'],
                  modify_time: str,
                  project_id: str,
                  query_requests: Sequence['outputs.AlarmsAlarmQueryRequestResult'],
                  request_cycles: Sequence['outputs.AlarmsAlarmRequestCycleResult'],
+                 send_resolved: bool,
+                 severity: str,
                  status: bool,
+                 trigger_conditions: Sequence['outputs.AlarmsAlarmTriggerConditionResult'],
                  trigger_period: int,
                  user_define_msg: str):
         """
@@ -619,13 +2799,17 @@ class AlarmsAlarmResult(dict):
         :param Sequence['AlarmsAlarmAlarmNotifyGroupArgs'] alarm_notify_groups: List of notification groups corresponding to the alarm.
         :param int alarm_period: Period for sending alarm notifications. When the number of continuous alarm triggers reaches the specified limit (TriggerPeriod), Log Service will send alarm notifications according to the specified period.
         :param Sequence['AlarmsAlarmAlarmPeriodDetailArgs'] alarm_period_details: Period for sending alarm notifications. When the number of continuous alarm triggers reaches the specified limit (TriggerPeriod), Log Service will send alarm notifications according to the specified period.
-        :param str condition: Alarm trigger condition.
+        :param str condition: The condition.
         :param str create_time: The create time.
+        :param Sequence['AlarmsAlarmJoinConfigurationArgs'] join_configurations: The list of join configurations.
         :param str modify_time: The modify time.
         :param str project_id: The project id.
         :param Sequence['AlarmsAlarmQueryRequestArgs'] query_requests: Search and analyze sentences, 1~3 can be configured.
         :param Sequence['AlarmsAlarmRequestCycleArgs'] request_cycles: The execution period of the alarm task.
+        :param bool send_resolved: Whether to send resolved.
+        :param str severity: The severity.
         :param bool status: The status.
+        :param Sequence['AlarmsAlarmTriggerConditionArgs'] trigger_conditions: The list of trigger conditions.
         :param int trigger_period: Continuous cycle. The alarm will be issued after the trigger condition is continuously met for TriggerPeriod periods; the minimum value is 1, the maximum value is 10, and the default value is 1.
         :param str user_define_msg: Customize the alarm notification content.
         """
@@ -636,11 +2820,15 @@ class AlarmsAlarmResult(dict):
         pulumi.set(__self__, "alarm_period_details", alarm_period_details)
         pulumi.set(__self__, "condition", condition)
         pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "join_configurations", join_configurations)
         pulumi.set(__self__, "modify_time", modify_time)
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "query_requests", query_requests)
         pulumi.set(__self__, "request_cycles", request_cycles)
+        pulumi.set(__self__, "send_resolved", send_resolved)
+        pulumi.set(__self__, "severity", severity)
         pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "trigger_conditions", trigger_conditions)
         pulumi.set(__self__, "trigger_period", trigger_period)
         pulumi.set(__self__, "user_define_msg", user_define_msg)
 
@@ -688,7 +2876,7 @@ class AlarmsAlarmResult(dict):
     @pulumi.getter
     def condition(self) -> str:
         """
-        Alarm trigger condition.
+        The condition.
         """
         return pulumi.get(self, "condition")
 
@@ -699,6 +2887,14 @@ class AlarmsAlarmResult(dict):
         The create time.
         """
         return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter(name="joinConfigurations")
+    def join_configurations(self) -> Sequence['outputs.AlarmsAlarmJoinConfigurationResult']:
+        """
+        The list of join configurations.
+        """
+        return pulumi.get(self, "join_configurations")
 
     @property
     @pulumi.getter(name="modifyTime")
@@ -733,12 +2929,36 @@ class AlarmsAlarmResult(dict):
         return pulumi.get(self, "request_cycles")
 
     @property
+    @pulumi.getter(name="sendResolved")
+    def send_resolved(self) -> bool:
+        """
+        Whether to send resolved.
+        """
+        return pulumi.get(self, "send_resolved")
+
+    @property
+    @pulumi.getter
+    def severity(self) -> str:
+        """
+        The severity.
+        """
+        return pulumi.get(self, "severity")
+
+    @property
     @pulumi.getter
     def status(self) -> bool:
         """
         The status.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="triggerConditions")
+    def trigger_conditions(self) -> Sequence['outputs.AlarmsAlarmTriggerConditionResult']:
+        """
+        The list of trigger conditions.
+        """
+        return pulumi.get(self, "trigger_conditions")
 
     @property
     @pulumi.getter(name="triggerPeriod")
@@ -955,28 +3175,69 @@ class AlarmsAlarmAlarmPeriodDetailResult(dict):
 
 
 @pulumi.output_type
+class AlarmsAlarmJoinConfigurationResult(dict):
+    def __init__(__self__, *,
+                 condition: str,
+                 set_operation_type: str):
+        """
+        :param str condition: The condition.
+        :param str set_operation_type: The set operation type.
+        """
+        pulumi.set(__self__, "condition", condition)
+        pulumi.set(__self__, "set_operation_type", set_operation_type)
+
+    @property
+    @pulumi.getter
+    def condition(self) -> str:
+        """
+        The condition.
+        """
+        return pulumi.get(self, "condition")
+
+    @property
+    @pulumi.getter(name="setOperationType")
+    def set_operation_type(self) -> str:
+        """
+        The set operation type.
+        """
+        return pulumi.get(self, "set_operation_type")
+
+
+@pulumi.output_type
 class AlarmsAlarmQueryRequestResult(dict):
     def __init__(__self__, *,
                  end_time_offset: int,
+                 end_time_offset_unit: str,
                  number: int,
                  query: str,
                  start_time_offset: int,
+                 start_time_offset_unit: str,
+                 time_span_type: str,
                  topic_id: str,
-                 topic_name: str):
+                 topic_name: str,
+                 truncated_time: str):
         """
         :param int end_time_offset: The end time of the query range is relative to the current historical time. The unit is minutes. The value is not positive and must be greater than StartTimeOffset. The maximum value is 0 and the minimum value is -1440.
+        :param str end_time_offset_unit: The end time offset unit.
         :param int number: Alarm object sequence number; increments from 1.
         :param str query: Query statement, the maximum supported length is 1024.
         :param int start_time_offset: The start time of the query range is relative to the current historical time, in minutes. The value is non-positive, the maximum value is 0, and the minimum value is -1440.
+        :param str start_time_offset_unit: The start time offset unit.
+        :param str time_span_type: The time span type.
         :param str topic_id: The topic id.
         :param str topic_name: The topic name.
+        :param str truncated_time: The truncated time.
         """
         pulumi.set(__self__, "end_time_offset", end_time_offset)
+        pulumi.set(__self__, "end_time_offset_unit", end_time_offset_unit)
         pulumi.set(__self__, "number", number)
         pulumi.set(__self__, "query", query)
         pulumi.set(__self__, "start_time_offset", start_time_offset)
+        pulumi.set(__self__, "start_time_offset_unit", start_time_offset_unit)
+        pulumi.set(__self__, "time_span_type", time_span_type)
         pulumi.set(__self__, "topic_id", topic_id)
         pulumi.set(__self__, "topic_name", topic_name)
+        pulumi.set(__self__, "truncated_time", truncated_time)
 
     @property
     @pulumi.getter(name="endTimeOffset")
@@ -985,6 +3246,14 @@ class AlarmsAlarmQueryRequestResult(dict):
         The end time of the query range is relative to the current historical time. The unit is minutes. The value is not positive and must be greater than StartTimeOffset. The maximum value is 0 and the minimum value is -1440.
         """
         return pulumi.get(self, "end_time_offset")
+
+    @property
+    @pulumi.getter(name="endTimeOffsetUnit")
+    def end_time_offset_unit(self) -> str:
+        """
+        The end time offset unit.
+        """
+        return pulumi.get(self, "end_time_offset_unit")
 
     @property
     @pulumi.getter
@@ -1011,6 +3280,22 @@ class AlarmsAlarmQueryRequestResult(dict):
         return pulumi.get(self, "start_time_offset")
 
     @property
+    @pulumi.getter(name="startTimeOffsetUnit")
+    def start_time_offset_unit(self) -> str:
+        """
+        The start time offset unit.
+        """
+        return pulumi.get(self, "start_time_offset_unit")
+
+    @property
+    @pulumi.getter(name="timeSpanType")
+    def time_span_type(self) -> str:
+        """
+        The time span type.
+        """
+        return pulumi.get(self, "time_span_type")
+
+    @property
     @pulumi.getter(name="topicId")
     def topic_id(self) -> str:
         """
@@ -1026,18 +3311,37 @@ class AlarmsAlarmQueryRequestResult(dict):
         """
         return pulumi.get(self, "topic_name")
 
+    @property
+    @pulumi.getter(name="truncatedTime")
+    def truncated_time(self) -> str:
+        """
+        The truncated time.
+        """
+        return pulumi.get(self, "truncated_time")
+
 
 @pulumi.output_type
 class AlarmsAlarmRequestCycleResult(dict):
     def __init__(__self__, *,
+                 cron_tab: str,
                  time: int,
                  type: str):
         """
+        :param str cron_tab: The cron tab.
         :param int time: The cycle of alarm task execution, or the time point of periodic execution. The unit is minutes, and the value range is 1~1440.
         :param str type: Execution cycle type.
         """
+        pulumi.set(__self__, "cron_tab", cron_tab)
         pulumi.set(__self__, "time", time)
         pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="cronTab")
+    def cron_tab(self) -> str:
+        """
+        The cron tab.
+        """
+        return pulumi.get(self, "cron_tab")
 
     @property
     @pulumi.getter
@@ -1054,6 +3358,57 @@ class AlarmsAlarmRequestCycleResult(dict):
         Execution cycle type.
         """
         return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class AlarmsAlarmTriggerConditionResult(dict):
+    def __init__(__self__, *,
+                 condition: str,
+                 count_condition: str,
+                 no_data: bool,
+                 severity: str):
+        """
+        :param str condition: The condition.
+        :param str count_condition: The count condition.
+        :param bool no_data: The no data.
+        :param str severity: The severity.
+        """
+        pulumi.set(__self__, "condition", condition)
+        pulumi.set(__self__, "count_condition", count_condition)
+        pulumi.set(__self__, "no_data", no_data)
+        pulumi.set(__self__, "severity", severity)
+
+    @property
+    @pulumi.getter
+    def condition(self) -> str:
+        """
+        The condition.
+        """
+        return pulumi.get(self, "condition")
+
+    @property
+    @pulumi.getter(name="countCondition")
+    def count_condition(self) -> str:
+        """
+        The count condition.
+        """
+        return pulumi.get(self, "count_condition")
+
+    @property
+    @pulumi.getter(name="noData")
+    def no_data(self) -> bool:
+        """
+        The no data.
+        """
+        return pulumi.get(self, "no_data")
+
+    @property
+    @pulumi.getter
+    def severity(self) -> str:
+        """
+        The severity.
+        """
+        return pulumi.get(self, "severity")
 
 
 @pulumi.output_type
@@ -1127,6 +3482,786 @@ class ConsumerGroupsConsumerGroupResult(dict):
         The log topic ID to which the consumer belongs.
         """
         return pulumi.get(self, "topic_ids")
+
+
+@pulumi.output_type
+class DescribeTracesTraceResult(dict):
+    def __init__(__self__, *,
+                 spans: Sequence['outputs.DescribeTracesTraceSpanResult'],
+                 trace_id: str):
+        """
+        :param Sequence['DescribeTracesTraceSpanArgs'] spans: The collection of spans.
+        :param str trace_id: Trace ID.
+        """
+        pulumi.set(__self__, "spans", spans)
+        pulumi.set(__self__, "trace_id", trace_id)
+
+    @property
+    @pulumi.getter
+    def spans(self) -> Sequence['outputs.DescribeTracesTraceSpanResult']:
+        """
+        The collection of spans.
+        """
+        return pulumi.get(self, "spans")
+
+    @property
+    @pulumi.getter(name="traceId")
+    def trace_id(self) -> str:
+        """
+        Trace ID.
+        """
+        return pulumi.get(self, "trace_id")
+
+
+@pulumi.output_type
+class DescribeTracesTraceSpanResult(dict):
+    def __init__(__self__, *,
+                 attributes: Sequence['outputs.DescribeTracesTraceSpanAttributeResult'],
+                 end_time: int,
+                 events: Sequence['outputs.DescribeTracesTraceSpanEventResult'],
+                 instrumentation_libraries: Sequence['outputs.DescribeTracesTraceSpanInstrumentationLibraryResult'],
+                 kind: str,
+                 links: Sequence['outputs.DescribeTracesTraceSpanLinkResult'],
+                 name: str,
+                 parent_span_id: str,
+                 resources: Sequence['outputs.DescribeTracesTraceSpanResourceResult'],
+                 span_id: str,
+                 start_time: int,
+                 statuses: Sequence['outputs.DescribeTracesTraceSpanStatusResult'],
+                 trace_id: str,
+                 trace_state: str):
+        """
+        :param Sequence['DescribeTracesTraceSpanAttributeArgs'] attributes: Resource attributes.
+        :param int end_time: Span end time.
+        :param Sequence['DescribeTracesTraceSpanEventArgs'] events: Span events.
+        :param Sequence['DescribeTracesTraceSpanInstrumentationLibraryArgs'] instrumentation_libraries: Instrumentation library information.
+        :param str kind: Span type.
+        :param Sequence['DescribeTracesTraceSpanLinkArgs'] links: Span links.
+        :param str name: Span name.
+        :param str parent_span_id: Parent Span ID.
+        :param Sequence['DescribeTracesTraceSpanResourceArgs'] resources: Resource information.
+        :param str span_id: Span ID.
+        :param int start_time: Span start time.
+        :param Sequence['DescribeTracesTraceSpanStatusArgs'] statuses: Span status.
+        :param str trace_id: Trace ID.
+        :param str trace_state: Trace state.
+        """
+        pulumi.set(__self__, "attributes", attributes)
+        pulumi.set(__self__, "end_time", end_time)
+        pulumi.set(__self__, "events", events)
+        pulumi.set(__self__, "instrumentation_libraries", instrumentation_libraries)
+        pulumi.set(__self__, "kind", kind)
+        pulumi.set(__self__, "links", links)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "parent_span_id", parent_span_id)
+        pulumi.set(__self__, "resources", resources)
+        pulumi.set(__self__, "span_id", span_id)
+        pulumi.set(__self__, "start_time", start_time)
+        pulumi.set(__self__, "statuses", statuses)
+        pulumi.set(__self__, "trace_id", trace_id)
+        pulumi.set(__self__, "trace_state", trace_state)
+
+    @property
+    @pulumi.getter
+    def attributes(self) -> Sequence['outputs.DescribeTracesTraceSpanAttributeResult']:
+        """
+        Resource attributes.
+        """
+        return pulumi.get(self, "attributes")
+
+    @property
+    @pulumi.getter(name="endTime")
+    def end_time(self) -> int:
+        """
+        Span end time.
+        """
+        return pulumi.get(self, "end_time")
+
+    @property
+    @pulumi.getter
+    def events(self) -> Sequence['outputs.DescribeTracesTraceSpanEventResult']:
+        """
+        Span events.
+        """
+        return pulumi.get(self, "events")
+
+    @property
+    @pulumi.getter(name="instrumentationLibraries")
+    def instrumentation_libraries(self) -> Sequence['outputs.DescribeTracesTraceSpanInstrumentationLibraryResult']:
+        """
+        Instrumentation library information.
+        """
+        return pulumi.get(self, "instrumentation_libraries")
+
+    @property
+    @pulumi.getter
+    def kind(self) -> str:
+        """
+        Span type.
+        """
+        return pulumi.get(self, "kind")
+
+    @property
+    @pulumi.getter
+    def links(self) -> Sequence['outputs.DescribeTracesTraceSpanLinkResult']:
+        """
+        Span links.
+        """
+        return pulumi.get(self, "links")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Span name.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="parentSpanId")
+    def parent_span_id(self) -> str:
+        """
+        Parent Span ID.
+        """
+        return pulumi.get(self, "parent_span_id")
+
+    @property
+    @pulumi.getter
+    def resources(self) -> Sequence['outputs.DescribeTracesTraceSpanResourceResult']:
+        """
+        Resource information.
+        """
+        return pulumi.get(self, "resources")
+
+    @property
+    @pulumi.getter(name="spanId")
+    def span_id(self) -> str:
+        """
+        Span ID.
+        """
+        return pulumi.get(self, "span_id")
+
+    @property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> int:
+        """
+        Span start time.
+        """
+        return pulumi.get(self, "start_time")
+
+    @property
+    @pulumi.getter
+    def statuses(self) -> Sequence['outputs.DescribeTracesTraceSpanStatusResult']:
+        """
+        Span status.
+        """
+        return pulumi.get(self, "statuses")
+
+    @property
+    @pulumi.getter(name="traceId")
+    def trace_id(self) -> str:
+        """
+        Trace ID.
+        """
+        return pulumi.get(self, "trace_id")
+
+    @property
+    @pulumi.getter(name="traceState")
+    def trace_state(self) -> str:
+        """
+        Trace state.
+        """
+        return pulumi.get(self, "trace_state")
+
+
+@pulumi.output_type
+class DescribeTracesTraceSpanAttributeResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: Attribute key.
+        :param str value: Attribute value.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        Attribute key.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        Attribute value.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class DescribeTracesTraceSpanEventResult(dict):
+    def __init__(__self__, *,
+                 attributes: Sequence['outputs.DescribeTracesTraceSpanEventAttributeResult'],
+                 name: str,
+                 timestamp: int):
+        """
+        :param Sequence['DescribeTracesTraceSpanEventAttributeArgs'] attributes: Resource attributes.
+        :param str name: Span name.
+        :param int timestamp: Event timestamp.
+        """
+        pulumi.set(__self__, "attributes", attributes)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "timestamp", timestamp)
+
+    @property
+    @pulumi.getter
+    def attributes(self) -> Sequence['outputs.DescribeTracesTraceSpanEventAttributeResult']:
+        """
+        Resource attributes.
+        """
+        return pulumi.get(self, "attributes")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Span name.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def timestamp(self) -> int:
+        """
+        Event timestamp.
+        """
+        return pulumi.get(self, "timestamp")
+
+
+@pulumi.output_type
+class DescribeTracesTraceSpanEventAttributeResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: Attribute key.
+        :param str value: Attribute value.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        Attribute key.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        Attribute value.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class DescribeTracesTraceSpanInstrumentationLibraryResult(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 version: str):
+        """
+        :param str name: Span name.
+        :param str version: Library version.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Span name.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def version(self) -> str:
+        """
+        Library version.
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class DescribeTracesTraceSpanLinkResult(dict):
+    def __init__(__self__, *,
+                 attributes: Sequence['outputs.DescribeTracesTraceSpanLinkAttributeResult'],
+                 span_id: str,
+                 trace_id: str,
+                 trace_state: str):
+        """
+        :param Sequence['DescribeTracesTraceSpanLinkAttributeArgs'] attributes: Resource attributes.
+        :param str span_id: Span ID.
+        :param str trace_id: Trace ID.
+        :param str trace_state: Trace state.
+        """
+        pulumi.set(__self__, "attributes", attributes)
+        pulumi.set(__self__, "span_id", span_id)
+        pulumi.set(__self__, "trace_id", trace_id)
+        pulumi.set(__self__, "trace_state", trace_state)
+
+    @property
+    @pulumi.getter
+    def attributes(self) -> Sequence['outputs.DescribeTracesTraceSpanLinkAttributeResult']:
+        """
+        Resource attributes.
+        """
+        return pulumi.get(self, "attributes")
+
+    @property
+    @pulumi.getter(name="spanId")
+    def span_id(self) -> str:
+        """
+        Span ID.
+        """
+        return pulumi.get(self, "span_id")
+
+    @property
+    @pulumi.getter(name="traceId")
+    def trace_id(self) -> str:
+        """
+        Trace ID.
+        """
+        return pulumi.get(self, "trace_id")
+
+    @property
+    @pulumi.getter(name="traceState")
+    def trace_state(self) -> str:
+        """
+        Trace state.
+        """
+        return pulumi.get(self, "trace_state")
+
+
+@pulumi.output_type
+class DescribeTracesTraceSpanLinkAttributeResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: Attribute key.
+        :param str value: Attribute value.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        Attribute key.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        Attribute value.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class DescribeTracesTraceSpanResourceResult(dict):
+    def __init__(__self__, *,
+                 attributes: Sequence['outputs.DescribeTracesTraceSpanResourceAttributeResult']):
+        """
+        :param Sequence['DescribeTracesTraceSpanResourceAttributeArgs'] attributes: Resource attributes.
+        """
+        pulumi.set(__self__, "attributes", attributes)
+
+    @property
+    @pulumi.getter
+    def attributes(self) -> Sequence['outputs.DescribeTracesTraceSpanResourceAttributeResult']:
+        """
+        Resource attributes.
+        """
+        return pulumi.get(self, "attributes")
+
+
+@pulumi.output_type
+class DescribeTracesTraceSpanResourceAttributeResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: Attribute key.
+        :param str value: Attribute value.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        Attribute key.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        Attribute value.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class DescribeTracesTraceSpanStatusResult(dict):
+    def __init__(__self__, *,
+                 code: str,
+                 message: str):
+        """
+        :param str code: Status code.
+        :param str message: Error message.
+        """
+        pulumi.set(__self__, "code", code)
+        pulumi.set(__self__, "message", message)
+
+    @property
+    @pulumi.getter
+    def code(self) -> str:
+        """
+        Status code.
+        """
+        return pulumi.get(self, "code")
+
+    @property
+    @pulumi.getter
+    def message(self) -> str:
+        """
+        Error message.
+        """
+        return pulumi.get(self, "message")
+
+
+@pulumi.output_type
+class DownloadTaskLogContextInfos(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "contextFlow":
+            suggest = "context_flow"
+        elif key == "packageOffset":
+            suggest = "package_offset"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DownloadTaskLogContextInfos. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DownloadTaskLogContextInfos.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DownloadTaskLogContextInfos.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 context_flow: Optional[str] = None,
+                 package_offset: Optional[int] = None,
+                 source: Optional[str] = None):
+        """
+        :param str context_flow: The context flow of the log.
+        :param int package_offset: The package offset of the log.
+        :param str source: The source of the log.
+        """
+        if context_flow is not None:
+            pulumi.set(__self__, "context_flow", context_flow)
+        if package_offset is not None:
+            pulumi.set(__self__, "package_offset", package_offset)
+        if source is not None:
+            pulumi.set(__self__, "source", source)
+
+    @property
+    @pulumi.getter(name="contextFlow")
+    def context_flow(self) -> Optional[str]:
+        """
+        The context flow of the log.
+        """
+        return pulumi.get(self, "context_flow")
+
+    @property
+    @pulumi.getter(name="packageOffset")
+    def package_offset(self) -> Optional[int]:
+        """
+        The package offset of the log.
+        """
+        return pulumi.get(self, "package_offset")
+
+    @property
+    @pulumi.getter
+    def source(self) -> Optional[str]:
+        """
+        The source of the log.
+        """
+        return pulumi.get(self, "source")
+
+
+@pulumi.output_type
+class DownloadTasksDownloadTaskResult(dict):
+    def __init__(__self__, *,
+                 allow_incomplete: bool,
+                 compression: str,
+                 create_time: str,
+                 data_format: str,
+                 download_url: str,
+                 end_time: int,
+                 limit: int,
+                 log_context_infos: Sequence['outputs.DownloadTasksDownloadTaskLogContextInfoResult'],
+                 log_count: int,
+                 log_size: int,
+                 query: str,
+                 sort: str,
+                 start_time: int,
+                 task_id: str,
+                 task_name: str,
+                 task_status: str,
+                 task_type: int,
+                 topic_id: str):
+        """
+        :param bool allow_incomplete: Whether to allow incomplete download.
+        :param str compression: The compression format of the downloaded file.
+        :param str create_time: The create time of the download task.
+        :param str data_format: The data format of the downloaded file.
+        :param str download_url: The download URL for the completed task.
+        :param int end_time: The end time of the log data to download, in Unix timestamp format.
+        :param int limit: The maximum number of log entries to download.
+        :param Sequence['DownloadTasksDownloadTaskLogContextInfoArgs'] log_context_infos: The info of the log context.
+        :param int log_count: The number of the downloaded logs.
+        :param int log_size: The size of the downloaded log data.
+        :param str query: The query statement for the download task.
+        :param str sort: The sorting order of the log data.
+        :param int start_time: The start time of the log data to download, in Unix timestamp format.
+        :param str task_id: The ID of the download task.
+        :param str task_name: The name of the download task.
+        :param str task_status: The status of the download task.
+        :param int task_type: The type of the download task.
+        :param str topic_id: The ID of the log topic to which the download tasks belong.
+        """
+        pulumi.set(__self__, "allow_incomplete", allow_incomplete)
+        pulumi.set(__self__, "compression", compression)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "data_format", data_format)
+        pulumi.set(__self__, "download_url", download_url)
+        pulumi.set(__self__, "end_time", end_time)
+        pulumi.set(__self__, "limit", limit)
+        pulumi.set(__self__, "log_context_infos", log_context_infos)
+        pulumi.set(__self__, "log_count", log_count)
+        pulumi.set(__self__, "log_size", log_size)
+        pulumi.set(__self__, "query", query)
+        pulumi.set(__self__, "sort", sort)
+        pulumi.set(__self__, "start_time", start_time)
+        pulumi.set(__self__, "task_id", task_id)
+        pulumi.set(__self__, "task_name", task_name)
+        pulumi.set(__self__, "task_status", task_status)
+        pulumi.set(__self__, "task_type", task_type)
+        pulumi.set(__self__, "topic_id", topic_id)
+
+    @property
+    @pulumi.getter(name="allowIncomplete")
+    def allow_incomplete(self) -> bool:
+        """
+        Whether to allow incomplete download.
+        """
+        return pulumi.get(self, "allow_incomplete")
+
+    @property
+    @pulumi.getter
+    def compression(self) -> str:
+        """
+        The compression format of the downloaded file.
+        """
+        return pulumi.get(self, "compression")
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        The create time of the download task.
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter(name="dataFormat")
+    def data_format(self) -> str:
+        """
+        The data format of the downloaded file.
+        """
+        return pulumi.get(self, "data_format")
+
+    @property
+    @pulumi.getter(name="downloadUrl")
+    def download_url(self) -> str:
+        """
+        The download URL for the completed task.
+        """
+        return pulumi.get(self, "download_url")
+
+    @property
+    @pulumi.getter(name="endTime")
+    def end_time(self) -> int:
+        """
+        The end time of the log data to download, in Unix timestamp format.
+        """
+        return pulumi.get(self, "end_time")
+
+    @property
+    @pulumi.getter
+    def limit(self) -> int:
+        """
+        The maximum number of log entries to download.
+        """
+        return pulumi.get(self, "limit")
+
+    @property
+    @pulumi.getter(name="logContextInfos")
+    def log_context_infos(self) -> Sequence['outputs.DownloadTasksDownloadTaskLogContextInfoResult']:
+        """
+        The info of the log context.
+        """
+        return pulumi.get(self, "log_context_infos")
+
+    @property
+    @pulumi.getter(name="logCount")
+    def log_count(self) -> int:
+        """
+        The number of the downloaded logs.
+        """
+        return pulumi.get(self, "log_count")
+
+    @property
+    @pulumi.getter(name="logSize")
+    def log_size(self) -> int:
+        """
+        The size of the downloaded log data.
+        """
+        return pulumi.get(self, "log_size")
+
+    @property
+    @pulumi.getter
+    def query(self) -> str:
+        """
+        The query statement for the download task.
+        """
+        return pulumi.get(self, "query")
+
+    @property
+    @pulumi.getter
+    def sort(self) -> str:
+        """
+        The sorting order of the log data.
+        """
+        return pulumi.get(self, "sort")
+
+    @property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> int:
+        """
+        The start time of the log data to download, in Unix timestamp format.
+        """
+        return pulumi.get(self, "start_time")
+
+    @property
+    @pulumi.getter(name="taskId")
+    def task_id(self) -> str:
+        """
+        The ID of the download task.
+        """
+        return pulumi.get(self, "task_id")
+
+    @property
+    @pulumi.getter(name="taskName")
+    def task_name(self) -> str:
+        """
+        The name of the download task.
+        """
+        return pulumi.get(self, "task_name")
+
+    @property
+    @pulumi.getter(name="taskStatus")
+    def task_status(self) -> str:
+        """
+        The status of the download task.
+        """
+        return pulumi.get(self, "task_status")
+
+    @property
+    @pulumi.getter(name="taskType")
+    def task_type(self) -> int:
+        """
+        The type of the download task.
+        """
+        return pulumi.get(self, "task_type")
+
+    @property
+    @pulumi.getter(name="topicId")
+    def topic_id(self) -> str:
+        """
+        The ID of the log topic to which the download tasks belong.
+        """
+        return pulumi.get(self, "topic_id")
+
+
+@pulumi.output_type
+class DownloadTasksDownloadTaskLogContextInfoResult(dict):
+    def __init__(__self__, *,
+                 context_flow: str,
+                 package_offset: int,
+                 source: str):
+        """
+        :param str context_flow: The context flow of the log.
+        :param int package_offset: The package offset of the log.
+        :param str source: The source of the log.
+        """
+        pulumi.set(__self__, "context_flow", context_flow)
+        pulumi.set(__self__, "package_offset", package_offset)
+        pulumi.set(__self__, "source", source)
+
+    @property
+    @pulumi.getter(name="contextFlow")
+    def context_flow(self) -> str:
+        """
+        The context flow of the log.
+        """
+        return pulumi.get(self, "context_flow")
+
+    @property
+    @pulumi.getter(name="packageOffset")
+    def package_offset(self) -> int:
+        """
+        The package offset of the log.
+        """
+        return pulumi.get(self, "package_offset")
+
+    @property
+    @pulumi.getter
+    def source(self) -> str:
+        """
+        The source of the log.
+        """
+        return pulumi.get(self, "source")
 
 
 @pulumi.output_type
@@ -1457,10 +4592,596 @@ class EtlTasksTaskTargetResourceResult(dict):
 
 
 @pulumi.output_type
+class HostGroupRulesRuleInfoResult(dict):
+    def __init__(__self__, *,
+                 container_rules: Sequence['outputs.HostGroupRulesRuleInfoContainerRuleResult'],
+                 create_time: str,
+                 exclude_paths: Sequence['outputs.HostGroupRulesRuleInfoExcludePathResult'],
+                 extract_rules: Sequence['outputs.HostGroupRulesRuleInfoExtractRuleResult'],
+                 input_type: int,
+                 log_sample: str,
+                 log_type: str,
+                 modify_time: str,
+                 paths: Sequence[str],
+                 pause: int,
+                 rule_id: str,
+                 rule_name: str,
+                 topic_id: str,
+                 topic_name: str,
+                 user_define_rules: Sequence['outputs.HostGroupRulesRuleInfoUserDefineRuleResult']):
+        """
+        :param Sequence['HostGroupRulesRuleInfoContainerRuleArgs'] container_rules: Container collection rules.
+        :param str create_time: The create time of rule.
+        :param Sequence['HostGroupRulesRuleInfoExcludePathArgs'] exclude_paths: Collect the blacklist list.
+        :param Sequence['HostGroupRulesRuleInfoExtractRuleArgs'] extract_rules: The extract rule.
+        :param int input_type: The type of input.
+        :param str log_sample: The sample of the log.
+        :param str log_type: The type of log.
+        :param str modify_time: The modify time of rule.
+        :param Sequence[str] paths: The paths of rule.
+        :param int pause: The pause status of rule.
+        :param str rule_id: The id of rule.
+        :param str rule_name: The name of rule.
+        :param str topic_id: The id of topic.
+        :param str topic_name: The name of topic.
+        :param Sequence['HostGroupRulesRuleInfoUserDefineRuleArgs'] user_define_rules: User-defined collection rules.
+        """
+        pulumi.set(__self__, "container_rules", container_rules)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "exclude_paths", exclude_paths)
+        pulumi.set(__self__, "extract_rules", extract_rules)
+        pulumi.set(__self__, "input_type", input_type)
+        pulumi.set(__self__, "log_sample", log_sample)
+        pulumi.set(__self__, "log_type", log_type)
+        pulumi.set(__self__, "modify_time", modify_time)
+        pulumi.set(__self__, "paths", paths)
+        pulumi.set(__self__, "pause", pause)
+        pulumi.set(__self__, "rule_id", rule_id)
+        pulumi.set(__self__, "rule_name", rule_name)
+        pulumi.set(__self__, "topic_id", topic_id)
+        pulumi.set(__self__, "topic_name", topic_name)
+        pulumi.set(__self__, "user_define_rules", user_define_rules)
+
+    @property
+    @pulumi.getter(name="containerRules")
+    def container_rules(self) -> Sequence['outputs.HostGroupRulesRuleInfoContainerRuleResult']:
+        """
+        Container collection rules.
+        """
+        return pulumi.get(self, "container_rules")
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        The create time of rule.
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter(name="excludePaths")
+    def exclude_paths(self) -> Sequence['outputs.HostGroupRulesRuleInfoExcludePathResult']:
+        """
+        Collect the blacklist list.
+        """
+        return pulumi.get(self, "exclude_paths")
+
+    @property
+    @pulumi.getter(name="extractRules")
+    def extract_rules(self) -> Sequence['outputs.HostGroupRulesRuleInfoExtractRuleResult']:
+        """
+        The extract rule.
+        """
+        return pulumi.get(self, "extract_rules")
+
+    @property
+    @pulumi.getter(name="inputType")
+    def input_type(self) -> int:
+        """
+        The type of input.
+        """
+        return pulumi.get(self, "input_type")
+
+    @property
+    @pulumi.getter(name="logSample")
+    def log_sample(self) -> str:
+        """
+        The sample of the log.
+        """
+        return pulumi.get(self, "log_sample")
+
+    @property
+    @pulumi.getter(name="logType")
+    def log_type(self) -> str:
+        """
+        The type of log.
+        """
+        return pulumi.get(self, "log_type")
+
+    @property
+    @pulumi.getter(name="modifyTime")
+    def modify_time(self) -> str:
+        """
+        The modify time of rule.
+        """
+        return pulumi.get(self, "modify_time")
+
+    @property
+    @pulumi.getter
+    def paths(self) -> Sequence[str]:
+        """
+        The paths of rule.
+        """
+        return pulumi.get(self, "paths")
+
+    @property
+    @pulumi.getter
+    def pause(self) -> int:
+        """
+        The pause status of rule.
+        """
+        return pulumi.get(self, "pause")
+
+    @property
+    @pulumi.getter(name="ruleId")
+    def rule_id(self) -> str:
+        """
+        The id of rule.
+        """
+        return pulumi.get(self, "rule_id")
+
+    @property
+    @pulumi.getter(name="ruleName")
+    def rule_name(self) -> str:
+        """
+        The name of rule.
+        """
+        return pulumi.get(self, "rule_name")
+
+    @property
+    @pulumi.getter(name="topicId")
+    def topic_id(self) -> str:
+        """
+        The id of topic.
+        """
+        return pulumi.get(self, "topic_id")
+
+    @property
+    @pulumi.getter(name="topicName")
+    def topic_name(self) -> str:
+        """
+        The name of topic.
+        """
+        return pulumi.get(self, "topic_name")
+
+    @property
+    @pulumi.getter(name="userDefineRules")
+    def user_define_rules(self) -> Sequence['outputs.HostGroupRulesRuleInfoUserDefineRuleResult']:
+        """
+        User-defined collection rules.
+        """
+        return pulumi.get(self, "user_define_rules")
+
+
+@pulumi.output_type
+class HostGroupRulesRuleInfoContainerRuleResult(dict):
+    def __init__(__self__, *,
+                 container_name_regex: str,
+                 env_tag: Mapping[str, str],
+                 exclude_container_env_regex: Mapping[str, str],
+                 exclude_container_label_regex: Mapping[str, str],
+                 include_container_env_regex: Mapping[str, str],
+                 include_container_label_regex: Mapping[str, str],
+                 kubernetes_rules: Sequence['outputs.HostGroupRulesRuleInfoContainerRuleKubernetesRuleResult'],
+                 stream: str):
+        pulumi.set(__self__, "container_name_regex", container_name_regex)
+        pulumi.set(__self__, "env_tag", env_tag)
+        pulumi.set(__self__, "exclude_container_env_regex", exclude_container_env_regex)
+        pulumi.set(__self__, "exclude_container_label_regex", exclude_container_label_regex)
+        pulumi.set(__self__, "include_container_env_regex", include_container_env_regex)
+        pulumi.set(__self__, "include_container_label_regex", include_container_label_regex)
+        pulumi.set(__self__, "kubernetes_rules", kubernetes_rules)
+        pulumi.set(__self__, "stream", stream)
+
+    @property
+    @pulumi.getter(name="containerNameRegex")
+    def container_name_regex(self) -> str:
+        return pulumi.get(self, "container_name_regex")
+
+    @property
+    @pulumi.getter(name="envTag")
+    def env_tag(self) -> Mapping[str, str]:
+        return pulumi.get(self, "env_tag")
+
+    @property
+    @pulumi.getter(name="excludeContainerEnvRegex")
+    def exclude_container_env_regex(self) -> Mapping[str, str]:
+        return pulumi.get(self, "exclude_container_env_regex")
+
+    @property
+    @pulumi.getter(name="excludeContainerLabelRegex")
+    def exclude_container_label_regex(self) -> Mapping[str, str]:
+        return pulumi.get(self, "exclude_container_label_regex")
+
+    @property
+    @pulumi.getter(name="includeContainerEnvRegex")
+    def include_container_env_regex(self) -> Mapping[str, str]:
+        return pulumi.get(self, "include_container_env_regex")
+
+    @property
+    @pulumi.getter(name="includeContainerLabelRegex")
+    def include_container_label_regex(self) -> Mapping[str, str]:
+        return pulumi.get(self, "include_container_label_regex")
+
+    @property
+    @pulumi.getter(name="kubernetesRules")
+    def kubernetes_rules(self) -> Sequence['outputs.HostGroupRulesRuleInfoContainerRuleKubernetesRuleResult']:
+        return pulumi.get(self, "kubernetes_rules")
+
+    @property
+    @pulumi.getter
+    def stream(self) -> str:
+        return pulumi.get(self, "stream")
+
+
+@pulumi.output_type
+class HostGroupRulesRuleInfoContainerRuleKubernetesRuleResult(dict):
+    def __init__(__self__, *,
+                 annotation_tag: Mapping[str, str],
+                 exclude_pod_label_regex: Mapping[str, str],
+                 include_pod_label_regex: Mapping[str, str],
+                 label_tag: Mapping[str, str],
+                 namespace_name_regex: str,
+                 pod_name_regex: str,
+                 workload_name_regex: str,
+                 workload_type: str):
+        pulumi.set(__self__, "annotation_tag", annotation_tag)
+        pulumi.set(__self__, "exclude_pod_label_regex", exclude_pod_label_regex)
+        pulumi.set(__self__, "include_pod_label_regex", include_pod_label_regex)
+        pulumi.set(__self__, "label_tag", label_tag)
+        pulumi.set(__self__, "namespace_name_regex", namespace_name_regex)
+        pulumi.set(__self__, "pod_name_regex", pod_name_regex)
+        pulumi.set(__self__, "workload_name_regex", workload_name_regex)
+        pulumi.set(__self__, "workload_type", workload_type)
+
+    @property
+    @pulumi.getter(name="annotationTag")
+    def annotation_tag(self) -> Mapping[str, str]:
+        return pulumi.get(self, "annotation_tag")
+
+    @property
+    @pulumi.getter(name="excludePodLabelRegex")
+    def exclude_pod_label_regex(self) -> Mapping[str, str]:
+        return pulumi.get(self, "exclude_pod_label_regex")
+
+    @property
+    @pulumi.getter(name="includePodLabelRegex")
+    def include_pod_label_regex(self) -> Mapping[str, str]:
+        return pulumi.get(self, "include_pod_label_regex")
+
+    @property
+    @pulumi.getter(name="labelTag")
+    def label_tag(self) -> Mapping[str, str]:
+        return pulumi.get(self, "label_tag")
+
+    @property
+    @pulumi.getter(name="namespaceNameRegex")
+    def namespace_name_regex(self) -> str:
+        return pulumi.get(self, "namespace_name_regex")
+
+    @property
+    @pulumi.getter(name="podNameRegex")
+    def pod_name_regex(self) -> str:
+        return pulumi.get(self, "pod_name_regex")
+
+    @property
+    @pulumi.getter(name="workloadNameRegex")
+    def workload_name_regex(self) -> str:
+        return pulumi.get(self, "workload_name_regex")
+
+    @property
+    @pulumi.getter(name="workloadType")
+    def workload_type(self) -> str:
+        return pulumi.get(self, "workload_type")
+
+
+@pulumi.output_type
+class HostGroupRulesRuleInfoExcludePathResult(dict):
+    def __init__(__self__, *,
+                 type: str,
+                 value: str):
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class HostGroupRulesRuleInfoExtractRuleResult(dict):
+    def __init__(__self__, *,
+                 begin_regex: str,
+                 delimiter: str,
+                 filter_key_regexes: Sequence['outputs.HostGroupRulesRuleInfoExtractRuleFilterKeyRegexResult'],
+                 keys: Sequence[str],
+                 log_regex: str,
+                 log_templates: Sequence['outputs.HostGroupRulesRuleInfoExtractRuleLogTemplateResult'],
+                 time_format: str,
+                 time_key: str,
+                 un_match_log_key: str,
+                 un_match_up_load_switch: bool):
+        pulumi.set(__self__, "begin_regex", begin_regex)
+        pulumi.set(__self__, "delimiter", delimiter)
+        pulumi.set(__self__, "filter_key_regexes", filter_key_regexes)
+        pulumi.set(__self__, "keys", keys)
+        pulumi.set(__self__, "log_regex", log_regex)
+        pulumi.set(__self__, "log_templates", log_templates)
+        pulumi.set(__self__, "time_format", time_format)
+        pulumi.set(__self__, "time_key", time_key)
+        pulumi.set(__self__, "un_match_log_key", un_match_log_key)
+        pulumi.set(__self__, "un_match_up_load_switch", un_match_up_load_switch)
+
+    @property
+    @pulumi.getter(name="beginRegex")
+    def begin_regex(self) -> str:
+        return pulumi.get(self, "begin_regex")
+
+    @property
+    @pulumi.getter
+    def delimiter(self) -> str:
+        return pulumi.get(self, "delimiter")
+
+    @property
+    @pulumi.getter(name="filterKeyRegexes")
+    def filter_key_regexes(self) -> Sequence['outputs.HostGroupRulesRuleInfoExtractRuleFilterKeyRegexResult']:
+        return pulumi.get(self, "filter_key_regexes")
+
+    @property
+    @pulumi.getter
+    def keys(self) -> Sequence[str]:
+        return pulumi.get(self, "keys")
+
+    @property
+    @pulumi.getter(name="logRegex")
+    def log_regex(self) -> str:
+        return pulumi.get(self, "log_regex")
+
+    @property
+    @pulumi.getter(name="logTemplates")
+    def log_templates(self) -> Sequence['outputs.HostGroupRulesRuleInfoExtractRuleLogTemplateResult']:
+        return pulumi.get(self, "log_templates")
+
+    @property
+    @pulumi.getter(name="timeFormat")
+    def time_format(self) -> str:
+        return pulumi.get(self, "time_format")
+
+    @property
+    @pulumi.getter(name="timeKey")
+    def time_key(self) -> str:
+        return pulumi.get(self, "time_key")
+
+    @property
+    @pulumi.getter(name="unMatchLogKey")
+    def un_match_log_key(self) -> str:
+        return pulumi.get(self, "un_match_log_key")
+
+    @property
+    @pulumi.getter(name="unMatchUpLoadSwitch")
+    def un_match_up_load_switch(self) -> bool:
+        return pulumi.get(self, "un_match_up_load_switch")
+
+
+@pulumi.output_type
+class HostGroupRulesRuleInfoExtractRuleFilterKeyRegexResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 regex: str):
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "regex", regex)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def regex(self) -> str:
+        return pulumi.get(self, "regex")
+
+
+@pulumi.output_type
+class HostGroupRulesRuleInfoExtractRuleLogTemplateResult(dict):
+    def __init__(__self__, *,
+                 format: str,
+                 type: str):
+        pulumi.set(__self__, "format", format)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def format(self) -> str:
+        return pulumi.get(self, "format")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class HostGroupRulesRuleInfoUserDefineRuleResult(dict):
+    def __init__(__self__, *,
+                 advanceds: Sequence['outputs.HostGroupRulesRuleInfoUserDefineRuleAdvancedResult'],
+                 enable_raw_log: bool,
+                 fields: Mapping[str, str],
+                 parse_path_rules: Sequence['outputs.HostGroupRulesRuleInfoUserDefineRuleParsePathRuleResult'],
+                 plugins: Sequence['outputs.HostGroupRulesRuleInfoUserDefineRulePluginResult'],
+                 shard_hash_keys: Sequence['outputs.HostGroupRulesRuleInfoUserDefineRuleShardHashKeyResult'],
+                 tail_files: bool):
+        pulumi.set(__self__, "advanceds", advanceds)
+        pulumi.set(__self__, "enable_raw_log", enable_raw_log)
+        pulumi.set(__self__, "fields", fields)
+        pulumi.set(__self__, "parse_path_rules", parse_path_rules)
+        pulumi.set(__self__, "plugins", plugins)
+        pulumi.set(__self__, "shard_hash_keys", shard_hash_keys)
+        pulumi.set(__self__, "tail_files", tail_files)
+
+    @property
+    @pulumi.getter
+    def advanceds(self) -> Sequence['outputs.HostGroupRulesRuleInfoUserDefineRuleAdvancedResult']:
+        return pulumi.get(self, "advanceds")
+
+    @property
+    @pulumi.getter(name="enableRawLog")
+    def enable_raw_log(self) -> bool:
+        return pulumi.get(self, "enable_raw_log")
+
+    @property
+    @pulumi.getter
+    def fields(self) -> Mapping[str, str]:
+        return pulumi.get(self, "fields")
+
+    @property
+    @pulumi.getter(name="parsePathRules")
+    def parse_path_rules(self) -> Sequence['outputs.HostGroupRulesRuleInfoUserDefineRuleParsePathRuleResult']:
+        return pulumi.get(self, "parse_path_rules")
+
+    @property
+    @pulumi.getter
+    def plugins(self) -> Sequence['outputs.HostGroupRulesRuleInfoUserDefineRulePluginResult']:
+        return pulumi.get(self, "plugins")
+
+    @property
+    @pulumi.getter(name="shardHashKeys")
+    def shard_hash_keys(self) -> Sequence['outputs.HostGroupRulesRuleInfoUserDefineRuleShardHashKeyResult']:
+        return pulumi.get(self, "shard_hash_keys")
+
+    @property
+    @pulumi.getter(name="tailFiles")
+    def tail_files(self) -> bool:
+        return pulumi.get(self, "tail_files")
+
+
+@pulumi.output_type
+class HostGroupRulesRuleInfoUserDefineRuleAdvancedResult(dict):
+    def __init__(__self__, *,
+                 close_eof: bool,
+                 close_inactive: int,
+                 close_removed: bool,
+                 close_renamed: bool,
+                 close_timeout: int):
+        pulumi.set(__self__, "close_eof", close_eof)
+        pulumi.set(__self__, "close_inactive", close_inactive)
+        pulumi.set(__self__, "close_removed", close_removed)
+        pulumi.set(__self__, "close_renamed", close_renamed)
+        pulumi.set(__self__, "close_timeout", close_timeout)
+
+    @property
+    @pulumi.getter(name="closeEof")
+    def close_eof(self) -> bool:
+        return pulumi.get(self, "close_eof")
+
+    @property
+    @pulumi.getter(name="closeInactive")
+    def close_inactive(self) -> int:
+        return pulumi.get(self, "close_inactive")
+
+    @property
+    @pulumi.getter(name="closeRemoved")
+    def close_removed(self) -> bool:
+        return pulumi.get(self, "close_removed")
+
+    @property
+    @pulumi.getter(name="closeRenamed")
+    def close_renamed(self) -> bool:
+        return pulumi.get(self, "close_renamed")
+
+    @property
+    @pulumi.getter(name="closeTimeout")
+    def close_timeout(self) -> int:
+        return pulumi.get(self, "close_timeout")
+
+
+@pulumi.output_type
+class HostGroupRulesRuleInfoUserDefineRuleParsePathRuleResult(dict):
+    def __init__(__self__, *,
+                 keys: Sequence[str],
+                 path_sample: str,
+                 regex: str):
+        pulumi.set(__self__, "keys", keys)
+        pulumi.set(__self__, "path_sample", path_sample)
+        pulumi.set(__self__, "regex", regex)
+
+    @property
+    @pulumi.getter
+    def keys(self) -> Sequence[str]:
+        return pulumi.get(self, "keys")
+
+    @property
+    @pulumi.getter(name="pathSample")
+    def path_sample(self) -> str:
+        return pulumi.get(self, "path_sample")
+
+    @property
+    @pulumi.getter
+    def regex(self) -> str:
+        return pulumi.get(self, "regex")
+
+
+@pulumi.output_type
+class HostGroupRulesRuleInfoUserDefineRulePluginResult(dict):
+    def __init__(__self__, *,
+                 processors: Sequence[str]):
+        pulumi.set(__self__, "processors", processors)
+
+    @property
+    @pulumi.getter
+    def processors(self) -> Sequence[str]:
+        return pulumi.get(self, "processors")
+
+
+@pulumi.output_type
+class HostGroupRulesRuleInfoUserDefineRuleShardHashKeyResult(dict):
+    def __init__(__self__, *,
+                 hash_key: str):
+        pulumi.set(__self__, "hash_key", hash_key)
+
+    @property
+    @pulumi.getter(name="hashKey")
+    def hash_key(self) -> str:
+        return pulumi.get(self, "hash_key")
+
+
+@pulumi.output_type
 class HostGroupsInfoResult(dict):
     def __init__(__self__, *,
-                 abnormal_heartbeat_status_count: int,
-                 agent_latest_version: str,
+                 host_group_infos: Sequence['outputs.HostGroupsInfoHostGroupInfoResult']):
+        """
+        :param Sequence['HostGroupsInfoHostGroupInfoArgs'] host_group_infos: The info of host group.
+        """
+        pulumi.set(__self__, "host_group_infos", host_group_infos)
+
+    @property
+    @pulumi.getter(name="hostGroupInfos")
+    def host_group_infos(self) -> Sequence['outputs.HostGroupsInfoHostGroupInfoResult']:
+        """
+        The info of host group.
+        """
+        return pulumi.get(self, "host_group_infos")
+
+
+@pulumi.output_type
+class HostGroupsInfoHostGroupInfoResult(dict):
+    def __init__(__self__, *,
                  auto_update: bool,
                  create_time: str,
                  host_count: int,
@@ -1468,35 +5189,27 @@ class HostGroupsInfoResult(dict):
                  host_group_name: str,
                  host_group_type: str,
                  host_identifier: str,
-                 host_ip_lists: Sequence[str],
                  iam_project_name: str,
                  modify_time: str,
-                 normal_heartbeat_status_count: int,
                  rule_count: int,
                  service_logging: bool,
                  update_end_time: str,
                  update_start_time: str):
         """
-        :param int abnormal_heartbeat_status_count: The abnormal heartbeat status count of host.
-        :param str agent_latest_version: The latest version of log collector.
         :param bool auto_update: Whether enable auto update.
         :param str create_time: The create time of host group.
-        :param int host_count: The count of host.
+        :param int host_count: The host count of host group.
         :param str host_group_id: The id of host group.
         :param str host_group_name: The name of host group.
         :param str host_group_type: The type of host group.
         :param str host_identifier: The identifier of host.
-        :param Sequence[str] host_ip_lists: The ip list of host group.
         :param str iam_project_name: The project name of iam.
         :param str modify_time: The modify time of host group.
-        :param int normal_heartbeat_status_count: The normal heartbeat status count of host.
         :param int rule_count: The rule count of host.
         :param bool service_logging: Whether enable service logging.
         :param str update_end_time: The update end time of log collector.
         :param str update_start_time: The update start time of log collector.
         """
-        pulumi.set(__self__, "abnormal_heartbeat_status_count", abnormal_heartbeat_status_count)
-        pulumi.set(__self__, "agent_latest_version", agent_latest_version)
         pulumi.set(__self__, "auto_update", auto_update)
         pulumi.set(__self__, "create_time", create_time)
         pulumi.set(__self__, "host_count", host_count)
@@ -1504,30 +5217,12 @@ class HostGroupsInfoResult(dict):
         pulumi.set(__self__, "host_group_name", host_group_name)
         pulumi.set(__self__, "host_group_type", host_group_type)
         pulumi.set(__self__, "host_identifier", host_identifier)
-        pulumi.set(__self__, "host_ip_lists", host_ip_lists)
         pulumi.set(__self__, "iam_project_name", iam_project_name)
         pulumi.set(__self__, "modify_time", modify_time)
-        pulumi.set(__self__, "normal_heartbeat_status_count", normal_heartbeat_status_count)
         pulumi.set(__self__, "rule_count", rule_count)
         pulumi.set(__self__, "service_logging", service_logging)
         pulumi.set(__self__, "update_end_time", update_end_time)
         pulumi.set(__self__, "update_start_time", update_start_time)
-
-    @property
-    @pulumi.getter(name="abnormalHeartbeatStatusCount")
-    def abnormal_heartbeat_status_count(self) -> int:
-        """
-        The abnormal heartbeat status count of host.
-        """
-        return pulumi.get(self, "abnormal_heartbeat_status_count")
-
-    @property
-    @pulumi.getter(name="agentLatestVersion")
-    def agent_latest_version(self) -> str:
-        """
-        The latest version of log collector.
-        """
-        return pulumi.get(self, "agent_latest_version")
 
     @property
     @pulumi.getter(name="autoUpdate")
@@ -1549,7 +5244,7 @@ class HostGroupsInfoResult(dict):
     @pulumi.getter(name="hostCount")
     def host_count(self) -> int:
         """
-        The count of host.
+        The host count of host group.
         """
         return pulumi.get(self, "host_count")
 
@@ -1586,14 +5281,6 @@ class HostGroupsInfoResult(dict):
         return pulumi.get(self, "host_identifier")
 
     @property
-    @pulumi.getter(name="hostIpLists")
-    def host_ip_lists(self) -> Sequence[str]:
-        """
-        The ip list of host group.
-        """
-        return pulumi.get(self, "host_ip_lists")
-
-    @property
     @pulumi.getter(name="iamProjectName")
     def iam_project_name(self) -> str:
         """
@@ -1608,14 +5295,6 @@ class HostGroupsInfoResult(dict):
         The modify time of host group.
         """
         return pulumi.get(self, "modify_time")
-
-    @property
-    @pulumi.getter(name="normalHeartbeatStatusCount")
-    def normal_heartbeat_status_count(self) -> int:
-        """
-        The normal heartbeat status count of host.
-        """
-        return pulumi.get(self, "normal_heartbeat_status_count")
 
     @property
     @pulumi.getter(name="ruleCount")
@@ -3284,25 +6963,31 @@ class IndexUserInnerKeyValueJsonKey(dict):
 class IndexesTlsIndexResult(dict):
     def __init__(__self__, *,
                  create_time: str,
+                 enable_auto_index: bool,
                  full_text: 'outputs.IndexesTlsIndexFullTextResult',
                  id: str,
                  key_values: Sequence['outputs.IndexesTlsIndexKeyValueResult'],
+                 max_text_len: int,
                  modify_time: str,
                  topic_id: str,
                  user_inner_key_values: Sequence['outputs.IndexesTlsIndexUserInnerKeyValueResult']):
         """
         :param str create_time: The create time of the tls index.
+        :param bool enable_auto_index: Whether to enable auto index.
         :param 'IndexesTlsIndexFullTextArgs' full_text: The FullText index of the tls topic.
         :param str id: The topic id of the tls index.
         :param Sequence['IndexesTlsIndexKeyValueArgs'] key_values: The KeyValue index of the tls topic.
+        :param int max_text_len: The max text length of the tls index.
         :param str modify_time: The modify time of the tls index.
         :param str topic_id: The topic id of the tls index.
         :param Sequence['IndexesTlsIndexUserInnerKeyValueArgs'] user_inner_key_values: The reserved field index configuration of the tls topic.
         """
         pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "enable_auto_index", enable_auto_index)
         pulumi.set(__self__, "full_text", full_text)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "key_values", key_values)
+        pulumi.set(__self__, "max_text_len", max_text_len)
         pulumi.set(__self__, "modify_time", modify_time)
         pulumi.set(__self__, "topic_id", topic_id)
         pulumi.set(__self__, "user_inner_key_values", user_inner_key_values)
@@ -3314,6 +6999,14 @@ class IndexesTlsIndexResult(dict):
         The create time of the tls index.
         """
         return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter(name="enableAutoIndex")
+    def enable_auto_index(self) -> bool:
+        """
+        Whether to enable auto index.
+        """
+        return pulumi.get(self, "enable_auto_index")
 
     @property
     @pulumi.getter(name="fullText")
@@ -3338,6 +7031,14 @@ class IndexesTlsIndexResult(dict):
         The KeyValue index of the tls topic.
         """
         return pulumi.get(self, "key_values")
+
+    @property
+    @pulumi.getter(name="maxTextLen")
+    def max_text_len(self) -> int:
+        """
+        The max text length of the tls index.
+        """
+        return pulumi.get(self, "max_text_len")
 
     @property
     @pulumi.getter(name="modifyTime")
@@ -3770,6 +7471,305 @@ class KafkaConsumersDataResult(dict):
 
 
 @pulumi.output_type
+class LogContextsLogContextResult(dict):
+    def __init__(__self__, *,
+                 log_context_infos: Sequence[Mapping[str, Any]],
+                 next_over: bool,
+                 prev_over: bool):
+        """
+        :param Sequence[Mapping[str, Any]] log_context_infos: The infos of context log.
+        :param bool next_over: Whether the next logs are over.
+        :param bool prev_over: Whether the previous logs are over.
+        """
+        pulumi.set(__self__, "log_context_infos", log_context_infos)
+        pulumi.set(__self__, "next_over", next_over)
+        pulumi.set(__self__, "prev_over", prev_over)
+
+    @property
+    @pulumi.getter(name="logContextInfos")
+    def log_context_infos(self) -> Sequence[Mapping[str, Any]]:
+        """
+        The infos of context log.
+        """
+        return pulumi.get(self, "log_context_infos")
+
+    @property
+    @pulumi.getter(name="nextOver")
+    def next_over(self) -> bool:
+        """
+        Whether the next logs are over.
+        """
+        return pulumi.get(self, "next_over")
+
+    @property
+    @pulumi.getter(name="prevOver")
+    def prev_over(self) -> bool:
+        """
+        Whether the previous logs are over.
+        """
+        return pulumi.get(self, "prev_over")
+
+
+@pulumi.output_type
+class LogHistogramsHistogramInfoResult(dict):
+    def __init__(__self__, *,
+                 count: int,
+                 end_time: int,
+                 result_status: str,
+                 start_time: int):
+        """
+        :param int count: The count.
+        :param int end_time: The end time.
+        :param str result_status: The result status.
+        :param int start_time: The start time.
+        """
+        pulumi.set(__self__, "count", count)
+        pulumi.set(__self__, "end_time", end_time)
+        pulumi.set(__self__, "result_status", result_status)
+        pulumi.set(__self__, "start_time", start_time)
+
+    @property
+    @pulumi.getter
+    def count(self) -> int:
+        """
+        The count.
+        """
+        return pulumi.get(self, "count")
+
+    @property
+    @pulumi.getter(name="endTime")
+    def end_time(self) -> int:
+        """
+        The end time.
+        """
+        return pulumi.get(self, "end_time")
+
+    @property
+    @pulumi.getter(name="resultStatus")
+    def result_status(self) -> str:
+        """
+        The result status.
+        """
+        return pulumi.get(self, "result_status")
+
+    @property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> int:
+        """
+        The start time.
+        """
+        return pulumi.get(self, "start_time")
+
+
+@pulumi.output_type
+class LogSearchesLogResult(dict):
+    def __init__(__self__, *,
+                 analysis: bool,
+                 analysis_result: Mapping[str, Any],
+                 context: str,
+                 elapsed_millisecond: int,
+                 highlights: Sequence['outputs.LogSearchesLogHighlightResult'],
+                 hit_count: int,
+                 limit: int,
+                 list_over: bool,
+                 logs: Sequence['outputs.LogSearchesLogLogResult'],
+                 result_status: str):
+        """
+        :param bool analysis: Whether the result is analysis.
+        :param Mapping[str, Any] analysis_result: The analysis result of the query.
+        :param str context: The context of the log.
+        :param int elapsed_millisecond: The elapsed time of the query.
+        :param Sequence['LogSearchesLogHighlightArgs'] highlights: Whether to highlight the log.
+        :param int hit_count: The count of the logs.
+        :param int limit: The limit of the logs.
+        :param bool list_over: Whether the list is over.
+        :param Sequence['LogSearchesLogLogArgs'] logs: The list of the logs.
+        :param str result_status: The status of the query.
+        """
+        pulumi.set(__self__, "analysis", analysis)
+        pulumi.set(__self__, "analysis_result", analysis_result)
+        pulumi.set(__self__, "context", context)
+        pulumi.set(__self__, "elapsed_millisecond", elapsed_millisecond)
+        pulumi.set(__self__, "highlights", highlights)
+        pulumi.set(__self__, "hit_count", hit_count)
+        pulumi.set(__self__, "limit", limit)
+        pulumi.set(__self__, "list_over", list_over)
+        pulumi.set(__self__, "logs", logs)
+        pulumi.set(__self__, "result_status", result_status)
+
+    @property
+    @pulumi.getter
+    def analysis(self) -> bool:
+        """
+        Whether the result is analysis.
+        """
+        return pulumi.get(self, "analysis")
+
+    @property
+    @pulumi.getter(name="analysisResult")
+    def analysis_result(self) -> Mapping[str, Any]:
+        """
+        The analysis result of the query.
+        """
+        return pulumi.get(self, "analysis_result")
+
+    @property
+    @pulumi.getter
+    def context(self) -> str:
+        """
+        The context of the log.
+        """
+        return pulumi.get(self, "context")
+
+    @property
+    @pulumi.getter(name="elapsedMillisecond")
+    def elapsed_millisecond(self) -> int:
+        """
+        The elapsed time of the query.
+        """
+        return pulumi.get(self, "elapsed_millisecond")
+
+    @property
+    @pulumi.getter
+    def highlights(self) -> Sequence['outputs.LogSearchesLogHighlightResult']:
+        """
+        Whether to highlight the log.
+        """
+        return pulumi.get(self, "highlights")
+
+    @property
+    @pulumi.getter(name="hitCount")
+    def hit_count(self) -> int:
+        """
+        The count of the logs.
+        """
+        return pulumi.get(self, "hit_count")
+
+    @property
+    @pulumi.getter
+    def limit(self) -> int:
+        """
+        The limit of the logs.
+        """
+        return pulumi.get(self, "limit")
+
+    @property
+    @pulumi.getter(name="listOver")
+    def list_over(self) -> bool:
+        """
+        Whether the list is over.
+        """
+        return pulumi.get(self, "list_over")
+
+    @property
+    @pulumi.getter
+    def logs(self) -> Sequence['outputs.LogSearchesLogLogResult']:
+        """
+        The list of the logs.
+        """
+        return pulumi.get(self, "logs")
+
+    @property
+    @pulumi.getter(name="resultStatus")
+    def result_status(self) -> str:
+        """
+        The status of the query.
+        """
+        return pulumi.get(self, "result_status")
+
+
+@pulumi.output_type
+class LogSearchesLogHighlightResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 values: Sequence[str]):
+        """
+        :param str key: The key of the highlight.
+        :param Sequence[str] values: The value of the highlight.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The key of the highlight.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def values(self) -> Sequence[str]:
+        """
+        The value of the highlight.
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class LogSearchesLogLogResult(dict):
+    def __init__(__self__, *,
+                 content: Mapping[str, Any],
+                 filename: str,
+                 log_id: str,
+                 source: str,
+                 timestamp: int):
+        """
+        :param Mapping[str, Any] content: The content of the log.
+        :param str filename: The filename of the log.
+        :param str log_id: The ID of the log.
+        :param str source: The source of the log.
+        :param int timestamp: The timestamp of the log.
+        """
+        pulumi.set(__self__, "content", content)
+        pulumi.set(__self__, "filename", filename)
+        pulumi.set(__self__, "log_id", log_id)
+        pulumi.set(__self__, "source", source)
+        pulumi.set(__self__, "timestamp", timestamp)
+
+    @property
+    @pulumi.getter
+    def content(self) -> Mapping[str, Any]:
+        """
+        The content of the log.
+        """
+        return pulumi.get(self, "content")
+
+    @property
+    @pulumi.getter
+    def filename(self) -> str:
+        """
+        The filename of the log.
+        """
+        return pulumi.get(self, "filename")
+
+    @property
+    @pulumi.getter(name="logId")
+    def log_id(self) -> str:
+        """
+        The ID of the log.
+        """
+        return pulumi.get(self, "log_id")
+
+    @property
+    @pulumi.getter
+    def source(self) -> str:
+        """
+        The source of the log.
+        """
+        return pulumi.get(self, "source")
+
+    @property
+    @pulumi.getter
+    def timestamp(self) -> int:
+        """
+        The timestamp of the log.
+        """
+        return pulumi.get(self, "timestamp")
+
+
+@pulumi.output_type
 class ProjectTag(dict):
     def __init__(__self__, *,
                  key: str,
@@ -3963,780 +7963,281 @@ class ProjectsTlsProjectTagResult(dict):
 
 
 @pulumi.output_type
-class RuleAppliersRuleResult(dict):
+class RuleAppliersHostGroupInfoResult(dict):
     def __init__(__self__, *,
-                 container_rules: Sequence['outputs.RuleAppliersRuleContainerRuleResult'],
+                 auto_update: bool,
                  create_time: str,
-                 exclude_paths: Sequence['outputs.RuleAppliersRuleExcludePathResult'],
-                 extract_rules: Sequence['outputs.RuleAppliersRuleExtractRuleResult'],
-                 input_type: int,
-                 log_sample: str,
-                 log_type: str,
+                 host_count: int,
+                 host_group_id: str,
+                 host_group_name: str,
+                 host_group_type: str,
+                 host_identifier: str,
+                 iam_project_name: str,
                  modify_time: str,
-                 paths: Sequence[str],
-                 rule_id: str,
-                 rule_name: str,
-                 topic_id: str,
-                 topic_name: str,
-                 user_define_rules: Sequence['outputs.RuleAppliersRuleUserDefineRuleResult']):
+                 rule_count: int,
+                 service_logging: bool,
+                 update_end_time: str,
+                 update_start_time: str):
         """
-        :param Sequence['RuleAppliersRuleContainerRuleArgs'] container_rules: Container collection rules.
-        :param str create_time: The creation time.
-        :param Sequence['RuleAppliersRuleExcludePathArgs'] exclude_paths: Collect the blacklist list.
-        :param Sequence['RuleAppliersRuleExtractRuleArgs'] extract_rules: The extract rule.
-        :param int input_type: The collection type.
-        :param str log_sample: Log sample.
-        :param str log_type: The log type.
-        :param str modify_time: The modification time.
-        :param Sequence[str] paths: Collection path list.
-        :param str rule_id: The rule id.
-        :param str rule_name: The rule name.
-        :param str topic_id: The topic id.
-        :param str topic_name: The topic name.
-        :param Sequence['RuleAppliersRuleUserDefineRuleArgs'] user_define_rules: User-defined collection rules.
+        :param bool auto_update: Whether to auto update.
+        :param str create_time: The create time.
+        :param int host_count: The host count.
+        :param str host_group_id: The host group id.
+        :param str host_group_name: The host group name.
+        :param str host_group_type: The host group type.
+        :param str host_identifier: The host identifier.
+        :param str iam_project_name: The iam project name.
+        :param str modify_time: The modify time.
+        :param int rule_count: The rule count.
+        :param bool service_logging: Whether to service logging.
+        :param str update_end_time: The update end time.
+        :param str update_start_time: The update start time.
         """
-        pulumi.set(__self__, "container_rules", container_rules)
+        pulumi.set(__self__, "auto_update", auto_update)
         pulumi.set(__self__, "create_time", create_time)
-        pulumi.set(__self__, "exclude_paths", exclude_paths)
-        pulumi.set(__self__, "extract_rules", extract_rules)
-        pulumi.set(__self__, "input_type", input_type)
-        pulumi.set(__self__, "log_sample", log_sample)
-        pulumi.set(__self__, "log_type", log_type)
+        pulumi.set(__self__, "host_count", host_count)
+        pulumi.set(__self__, "host_group_id", host_group_id)
+        pulumi.set(__self__, "host_group_name", host_group_name)
+        pulumi.set(__self__, "host_group_type", host_group_type)
+        pulumi.set(__self__, "host_identifier", host_identifier)
+        pulumi.set(__self__, "iam_project_name", iam_project_name)
         pulumi.set(__self__, "modify_time", modify_time)
-        pulumi.set(__self__, "paths", paths)
-        pulumi.set(__self__, "rule_id", rule_id)
-        pulumi.set(__self__, "rule_name", rule_name)
-        pulumi.set(__self__, "topic_id", topic_id)
-        pulumi.set(__self__, "topic_name", topic_name)
-        pulumi.set(__self__, "user_define_rules", user_define_rules)
+        pulumi.set(__self__, "rule_count", rule_count)
+        pulumi.set(__self__, "service_logging", service_logging)
+        pulumi.set(__self__, "update_end_time", update_end_time)
+        pulumi.set(__self__, "update_start_time", update_start_time)
 
     @property
-    @pulumi.getter(name="containerRules")
-    def container_rules(self) -> Sequence['outputs.RuleAppliersRuleContainerRuleResult']:
+    @pulumi.getter(name="autoUpdate")
+    def auto_update(self) -> bool:
         """
-        Container collection rules.
+        Whether to auto update.
         """
-        return pulumi.get(self, "container_rules")
+        return pulumi.get(self, "auto_update")
 
     @property
     @pulumi.getter(name="createTime")
     def create_time(self) -> str:
         """
-        The creation time.
+        The create time.
         """
         return pulumi.get(self, "create_time")
 
     @property
-    @pulumi.getter(name="excludePaths")
-    def exclude_paths(self) -> Sequence['outputs.RuleAppliersRuleExcludePathResult']:
+    @pulumi.getter(name="hostCount")
+    def host_count(self) -> int:
         """
-        Collect the blacklist list.
+        The host count.
         """
-        return pulumi.get(self, "exclude_paths")
+        return pulumi.get(self, "host_count")
 
     @property
-    @pulumi.getter(name="extractRules")
-    def extract_rules(self) -> Sequence['outputs.RuleAppliersRuleExtractRuleResult']:
+    @pulumi.getter(name="hostGroupId")
+    def host_group_id(self) -> str:
         """
-        The extract rule.
+        The host group id.
         """
-        return pulumi.get(self, "extract_rules")
+        return pulumi.get(self, "host_group_id")
 
     @property
-    @pulumi.getter(name="inputType")
-    def input_type(self) -> int:
+    @pulumi.getter(name="hostGroupName")
+    def host_group_name(self) -> str:
         """
-        The collection type.
+        The host group name.
         """
-        return pulumi.get(self, "input_type")
+        return pulumi.get(self, "host_group_name")
 
     @property
-    @pulumi.getter(name="logSample")
-    def log_sample(self) -> str:
+    @pulumi.getter(name="hostGroupType")
+    def host_group_type(self) -> str:
         """
-        Log sample.
+        The host group type.
         """
-        return pulumi.get(self, "log_sample")
+        return pulumi.get(self, "host_group_type")
 
     @property
-    @pulumi.getter(name="logType")
-    def log_type(self) -> str:
+    @pulumi.getter(name="hostIdentifier")
+    def host_identifier(self) -> str:
         """
-        The log type.
+        The host identifier.
         """
-        return pulumi.get(self, "log_type")
+        return pulumi.get(self, "host_identifier")
+
+    @property
+    @pulumi.getter(name="iamProjectName")
+    def iam_project_name(self) -> str:
+        """
+        The iam project name.
+        """
+        return pulumi.get(self, "iam_project_name")
 
     @property
     @pulumi.getter(name="modifyTime")
     def modify_time(self) -> str:
         """
-        The modification time.
+        The modify time.
         """
         return pulumi.get(self, "modify_time")
 
     @property
-    @pulumi.getter
-    def paths(self) -> Sequence[str]:
+    @pulumi.getter(name="ruleCount")
+    def rule_count(self) -> int:
         """
-        Collection path list.
+        The rule count.
         """
-        return pulumi.get(self, "paths")
+        return pulumi.get(self, "rule_count")
 
     @property
-    @pulumi.getter(name="ruleId")
-    def rule_id(self) -> str:
+    @pulumi.getter(name="serviceLogging")
+    def service_logging(self) -> bool:
         """
-        The rule id.
+        Whether to service logging.
         """
-        return pulumi.get(self, "rule_id")
+        return pulumi.get(self, "service_logging")
 
     @property
-    @pulumi.getter(name="ruleName")
-    def rule_name(self) -> str:
+    @pulumi.getter(name="updateEndTime")
+    def update_end_time(self) -> str:
         """
-        The rule name.
+        The update end time.
         """
-        return pulumi.get(self, "rule_name")
+        return pulumi.get(self, "update_end_time")
 
     @property
-    @pulumi.getter(name="topicId")
-    def topic_id(self) -> str:
+    @pulumi.getter(name="updateStartTime")
+    def update_start_time(self) -> str:
         """
-        The topic id.
+        The update start time.
         """
-        return pulumi.get(self, "topic_id")
-
-    @property
-    @pulumi.getter(name="topicName")
-    def topic_name(self) -> str:
-        """
-        The topic name.
-        """
-        return pulumi.get(self, "topic_name")
-
-    @property
-    @pulumi.getter(name="userDefineRules")
-    def user_define_rules(self) -> Sequence['outputs.RuleAppliersRuleUserDefineRuleResult']:
-        """
-        User-defined collection rules.
-        """
-        return pulumi.get(self, "user_define_rules")
+        return pulumi.get(self, "update_start_time")
 
 
 @pulumi.output_type
-class RuleAppliersRuleContainerRuleResult(dict):
+class RuleBoundHostGroupsHostGroupResult(dict):
     def __init__(__self__, *,
-                 container_name_regex: str,
-                 env_tag: Mapping[str, Any],
-                 exclude_container_env_regex: Mapping[str, Any],
-                 exclude_container_label_regex: Mapping[str, Any],
-                 include_container_env_regex: Mapping[str, Any],
-                 include_container_label_regex: Mapping[str, Any],
-                 kubernetes_rules: Sequence['outputs.RuleAppliersRuleContainerRuleKubernetesRuleResult'],
-                 stream: str):
+                 auto_update: bool,
+                 create_time: str,
+                 host_group_id: str,
+                 host_group_name: str,
+                 host_group_type: str,
+                 host_identifier: str,
+                 iam_project_name: str,
+                 modify_time: str,
+                 service_logging: bool,
+                 update_end_time: str,
+                 update_start_time: str):
         """
-        :param str container_name_regex: The name of the container to be collected.
-        :param Mapping[str, Any] env_tag: Whether to add environment variables as log tags to raw log data.
-        :param Mapping[str, Any] exclude_container_env_regex: The container environment variable blacklist is used to specify the range of containers not to be collected.
-        :param Mapping[str, Any] exclude_container_label_regex: The container Label blacklist is used to specify the range of containers not to be collected.
-        :param Mapping[str, Any] include_container_env_regex: The container environment variable whitelist specifies the container to be collected through the container environment variable. If the whitelist is not enabled, it means that all containers are specified to be collected.
-        :param Mapping[str, Any] include_container_label_regex: The container label whitelist specifies the containers to be collected through the container label. If the whitelist is not enabled, all containers are specified to be collected.
-        :param Sequence['RuleAppliersRuleContainerRuleKubernetesRuleArgs'] kubernetes_rules: Collection rules for Kubernetes containers.
-        :param str stream: The collection mode.
+        :param bool auto_update: Whether to enable auto update.
+        :param str create_time: The creation time of the host group.
+        :param str host_group_id: The ID of the host group.
+        :param str host_group_name: The name of the host group.
+        :param str host_group_type: The type of the host group.
+        :param str host_identifier: The identifier of the host.
+        :param str iam_project_name: The name of the iam project.
+        :param str modify_time: The modification time of the host group.
+        :param bool service_logging: Whether to enable service logging.
+        :param str update_end_time: The end time of auto update.
+        :param str update_start_time: The start time of auto update.
         """
-        pulumi.set(__self__, "container_name_regex", container_name_regex)
-        pulumi.set(__self__, "env_tag", env_tag)
-        pulumi.set(__self__, "exclude_container_env_regex", exclude_container_env_regex)
-        pulumi.set(__self__, "exclude_container_label_regex", exclude_container_label_regex)
-        pulumi.set(__self__, "include_container_env_regex", include_container_env_regex)
-        pulumi.set(__self__, "include_container_label_regex", include_container_label_regex)
-        pulumi.set(__self__, "kubernetes_rules", kubernetes_rules)
-        pulumi.set(__self__, "stream", stream)
+        pulumi.set(__self__, "auto_update", auto_update)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "host_group_id", host_group_id)
+        pulumi.set(__self__, "host_group_name", host_group_name)
+        pulumi.set(__self__, "host_group_type", host_group_type)
+        pulumi.set(__self__, "host_identifier", host_identifier)
+        pulumi.set(__self__, "iam_project_name", iam_project_name)
+        pulumi.set(__self__, "modify_time", modify_time)
+        pulumi.set(__self__, "service_logging", service_logging)
+        pulumi.set(__self__, "update_end_time", update_end_time)
+        pulumi.set(__self__, "update_start_time", update_start_time)
 
     @property
-    @pulumi.getter(name="containerNameRegex")
-    def container_name_regex(self) -> str:
+    @pulumi.getter(name="autoUpdate")
+    def auto_update(self) -> bool:
         """
-        The name of the container to be collected.
+        Whether to enable auto update.
         """
-        return pulumi.get(self, "container_name_regex")
+        return pulumi.get(self, "auto_update")
 
     @property
-    @pulumi.getter(name="envTag")
-    def env_tag(self) -> Mapping[str, Any]:
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
         """
-        Whether to add environment variables as log tags to raw log data.
+        The creation time of the host group.
         """
-        return pulumi.get(self, "env_tag")
+        return pulumi.get(self, "create_time")
 
     @property
-    @pulumi.getter(name="excludeContainerEnvRegex")
-    def exclude_container_env_regex(self) -> Mapping[str, Any]:
+    @pulumi.getter(name="hostGroupId")
+    def host_group_id(self) -> str:
         """
-        The container environment variable blacklist is used to specify the range of containers not to be collected.
+        The ID of the host group.
         """
-        return pulumi.get(self, "exclude_container_env_regex")
+        return pulumi.get(self, "host_group_id")
 
     @property
-    @pulumi.getter(name="excludeContainerLabelRegex")
-    def exclude_container_label_regex(self) -> Mapping[str, Any]:
+    @pulumi.getter(name="hostGroupName")
+    def host_group_name(self) -> str:
         """
-        The container Label blacklist is used to specify the range of containers not to be collected.
+        The name of the host group.
         """
-        return pulumi.get(self, "exclude_container_label_regex")
+        return pulumi.get(self, "host_group_name")
 
     @property
-    @pulumi.getter(name="includeContainerEnvRegex")
-    def include_container_env_regex(self) -> Mapping[str, Any]:
+    @pulumi.getter(name="hostGroupType")
+    def host_group_type(self) -> str:
         """
-        The container environment variable whitelist specifies the container to be collected through the container environment variable. If the whitelist is not enabled, it means that all containers are specified to be collected.
+        The type of the host group.
         """
-        return pulumi.get(self, "include_container_env_regex")
+        return pulumi.get(self, "host_group_type")
 
     @property
-    @pulumi.getter(name="includeContainerLabelRegex")
-    def include_container_label_regex(self) -> Mapping[str, Any]:
+    @pulumi.getter(name="hostIdentifier")
+    def host_identifier(self) -> str:
         """
-        The container label whitelist specifies the containers to be collected through the container label. If the whitelist is not enabled, all containers are specified to be collected.
+        The identifier of the host.
         """
-        return pulumi.get(self, "include_container_label_regex")
+        return pulumi.get(self, "host_identifier")
 
     @property
-    @pulumi.getter(name="kubernetesRules")
-    def kubernetes_rules(self) -> Sequence['outputs.RuleAppliersRuleContainerRuleKubernetesRuleResult']:
+    @pulumi.getter(name="iamProjectName")
+    def iam_project_name(self) -> str:
         """
-        Collection rules for Kubernetes containers.
+        The name of the iam project.
         """
-        return pulumi.get(self, "kubernetes_rules")
+        return pulumi.get(self, "iam_project_name")
 
     @property
-    @pulumi.getter
-    def stream(self) -> str:
+    @pulumi.getter(name="modifyTime")
+    def modify_time(self) -> str:
         """
-        The collection mode.
+        The modification time of the host group.
         """
-        return pulumi.get(self, "stream")
-
-
-@pulumi.output_type
-class RuleAppliersRuleContainerRuleKubernetesRuleResult(dict):
-    def __init__(__self__, *,
-                 annotation_tag: Mapping[str, Any],
-                 exclude_pod_label_regex: Mapping[str, Any],
-                 include_pod_label_regex: Mapping[str, Any],
-                 label_tag: Mapping[str, Any],
-                 namespace_name_regex: str,
-                 pod_name_regex: str,
-                 workload_name_regex: str,
-                 workload_type: str):
-        """
-        :param Mapping[str, Any] annotation_tag: Whether to add Kubernetes Annotation as a log tag to the raw log data.
-        :param Mapping[str, Any] exclude_pod_label_regex: Specify the containers not to be collected through the Pod Label blacklist, and not enable means to collect all containers.
-        :param Mapping[str, Any] include_pod_label_regex: The Pod Label whitelist is used to specify containers to be collected. When the Pod Label whitelist is not enabled, it means that all containers are collected.
-        :param Mapping[str, Any] label_tag: Whether to add Kubernetes Label as a log label to the original log data.
-        :param str namespace_name_regex: The name of the Kubernetes Namespace to be collected. If no Namespace name is specified, all containers will be collected. Namespace names support regular matching.
-        :param str pod_name_regex: The Pod name is used to specify the container to be collected. When no Pod name is specified, it means to collect all containers.
-        :param str workload_name_regex: Specify the container to be collected by the name of the workload. When no workload name is specified, all containers are collected. The workload name supports regular matching.
-        :param str workload_type: Specify the container to be collected by the type of workload. Only one type can be selected. When no type is specified, it means to collect all types of containers.
-        """
-        pulumi.set(__self__, "annotation_tag", annotation_tag)
-        pulumi.set(__self__, "exclude_pod_label_regex", exclude_pod_label_regex)
-        pulumi.set(__self__, "include_pod_label_regex", include_pod_label_regex)
-        pulumi.set(__self__, "label_tag", label_tag)
-        pulumi.set(__self__, "namespace_name_regex", namespace_name_regex)
-        pulumi.set(__self__, "pod_name_regex", pod_name_regex)
-        pulumi.set(__self__, "workload_name_regex", workload_name_regex)
-        pulumi.set(__self__, "workload_type", workload_type)
+        return pulumi.get(self, "modify_time")
 
     @property
-    @pulumi.getter(name="annotationTag")
-    def annotation_tag(self) -> Mapping[str, Any]:
+    @pulumi.getter(name="serviceLogging")
+    def service_logging(self) -> bool:
         """
-        Whether to add Kubernetes Annotation as a log tag to the raw log data.
+        Whether to enable service logging.
         """
-        return pulumi.get(self, "annotation_tag")
+        return pulumi.get(self, "service_logging")
 
     @property
-    @pulumi.getter(name="excludePodLabelRegex")
-    def exclude_pod_label_regex(self) -> Mapping[str, Any]:
+    @pulumi.getter(name="updateEndTime")
+    def update_end_time(self) -> str:
         """
-        Specify the containers not to be collected through the Pod Label blacklist, and not enable means to collect all containers.
+        The end time of auto update.
         """
-        return pulumi.get(self, "exclude_pod_label_regex")
+        return pulumi.get(self, "update_end_time")
 
     @property
-    @pulumi.getter(name="includePodLabelRegex")
-    def include_pod_label_regex(self) -> Mapping[str, Any]:
+    @pulumi.getter(name="updateStartTime")
+    def update_start_time(self) -> str:
         """
-        The Pod Label whitelist is used to specify containers to be collected. When the Pod Label whitelist is not enabled, it means that all containers are collected.
+        The start time of auto update.
         """
-        return pulumi.get(self, "include_pod_label_regex")
-
-    @property
-    @pulumi.getter(name="labelTag")
-    def label_tag(self) -> Mapping[str, Any]:
-        """
-        Whether to add Kubernetes Label as a log label to the original log data.
-        """
-        return pulumi.get(self, "label_tag")
-
-    @property
-    @pulumi.getter(name="namespaceNameRegex")
-    def namespace_name_regex(self) -> str:
-        """
-        The name of the Kubernetes Namespace to be collected. If no Namespace name is specified, all containers will be collected. Namespace names support regular matching.
-        """
-        return pulumi.get(self, "namespace_name_regex")
-
-    @property
-    @pulumi.getter(name="podNameRegex")
-    def pod_name_regex(self) -> str:
-        """
-        The Pod name is used to specify the container to be collected. When no Pod name is specified, it means to collect all containers.
-        """
-        return pulumi.get(self, "pod_name_regex")
-
-    @property
-    @pulumi.getter(name="workloadNameRegex")
-    def workload_name_regex(self) -> str:
-        """
-        Specify the container to be collected by the name of the workload. When no workload name is specified, all containers are collected. The workload name supports regular matching.
-        """
-        return pulumi.get(self, "workload_name_regex")
-
-    @property
-    @pulumi.getter(name="workloadType")
-    def workload_type(self) -> str:
-        """
-        Specify the container to be collected by the type of workload. Only one type can be selected. When no type is specified, it means to collect all types of containers.
-        """
-        return pulumi.get(self, "workload_type")
-
-
-@pulumi.output_type
-class RuleAppliersRuleExcludePathResult(dict):
-    def __init__(__self__, *,
-                 type: str,
-                 value: str):
-        """
-        :param str type: The type of the log template.
-        :param str value: Collection path.
-        """
-        pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "value", value)
-
-    @property
-    @pulumi.getter
-    def type(self) -> str:
-        """
-        The type of the log template.
-        """
-        return pulumi.get(self, "type")
-
-    @property
-    @pulumi.getter
-    def value(self) -> str:
-        """
-        Collection path.
-        """
-        return pulumi.get(self, "value")
-
-
-@pulumi.output_type
-class RuleAppliersRuleExtractRuleResult(dict):
-    def __init__(__self__, *,
-                 begin_regex: str,
-                 delimiter: str,
-                 filter_key_regexes: Sequence['outputs.RuleAppliersRuleExtractRuleFilterKeyRegexResult'],
-                 keys: Sequence[str],
-                 log_regex: str,
-                 log_templates: Sequence['outputs.RuleAppliersRuleExtractRuleLogTemplateResult'],
-                 time_format: str,
-                 time_key: str,
-                 un_match_log_key: str,
-                 un_match_up_load_switch: bool):
-        """
-        :param str begin_regex: The first log line needs to match the regular expression.
-        :param str delimiter: The delimiter of the log.
-        :param Sequence['RuleAppliersRuleExtractRuleFilterKeyRegexArgs'] filter_key_regexes: The filter key list.
-        :param Sequence[str] keys: A list of field names. Log Service will parse the path sample (PathSample) into multiple fields according to the regular expression (Regex), and Keys is used to specify the field name of each field.
-        :param str log_regex: The entire log needs to match the regular expression.
-        :param Sequence['RuleAppliersRuleExtractRuleLogTemplateArgs'] log_templates: Automatically extract log fields according to the specified log template.
-        :param str time_format: Parsing format of the time field.
-        :param str time_key: The field name of the log time field.
-        :param str un_match_log_key: When uploading the failed log, the key name of the failed log.
-        :param bool un_match_up_load_switch: Whether to upload the log of parsing failure.
-        """
-        pulumi.set(__self__, "begin_regex", begin_regex)
-        pulumi.set(__self__, "delimiter", delimiter)
-        pulumi.set(__self__, "filter_key_regexes", filter_key_regexes)
-        pulumi.set(__self__, "keys", keys)
-        pulumi.set(__self__, "log_regex", log_regex)
-        pulumi.set(__self__, "log_templates", log_templates)
-        pulumi.set(__self__, "time_format", time_format)
-        pulumi.set(__self__, "time_key", time_key)
-        pulumi.set(__self__, "un_match_log_key", un_match_log_key)
-        pulumi.set(__self__, "un_match_up_load_switch", un_match_up_load_switch)
-
-    @property
-    @pulumi.getter(name="beginRegex")
-    def begin_regex(self) -> str:
-        """
-        The first log line needs to match the regular expression.
-        """
-        return pulumi.get(self, "begin_regex")
-
-    @property
-    @pulumi.getter
-    def delimiter(self) -> str:
-        """
-        The delimiter of the log.
-        """
-        return pulumi.get(self, "delimiter")
-
-    @property
-    @pulumi.getter(name="filterKeyRegexes")
-    def filter_key_regexes(self) -> Sequence['outputs.RuleAppliersRuleExtractRuleFilterKeyRegexResult']:
-        """
-        The filter key list.
-        """
-        return pulumi.get(self, "filter_key_regexes")
-
-    @property
-    @pulumi.getter
-    def keys(self) -> Sequence[str]:
-        """
-        A list of field names. Log Service will parse the path sample (PathSample) into multiple fields according to the regular expression (Regex), and Keys is used to specify the field name of each field.
-        """
-        return pulumi.get(self, "keys")
-
-    @property
-    @pulumi.getter(name="logRegex")
-    def log_regex(self) -> str:
-        """
-        The entire log needs to match the regular expression.
-        """
-        return pulumi.get(self, "log_regex")
-
-    @property
-    @pulumi.getter(name="logTemplates")
-    def log_templates(self) -> Sequence['outputs.RuleAppliersRuleExtractRuleLogTemplateResult']:
-        """
-        Automatically extract log fields according to the specified log template.
-        """
-        return pulumi.get(self, "log_templates")
-
-    @property
-    @pulumi.getter(name="timeFormat")
-    def time_format(self) -> str:
-        """
-        Parsing format of the time field.
-        """
-        return pulumi.get(self, "time_format")
-
-    @property
-    @pulumi.getter(name="timeKey")
-    def time_key(self) -> str:
-        """
-        The field name of the log time field.
-        """
-        return pulumi.get(self, "time_key")
-
-    @property
-    @pulumi.getter(name="unMatchLogKey")
-    def un_match_log_key(self) -> str:
-        """
-        When uploading the failed log, the key name of the failed log.
-        """
-        return pulumi.get(self, "un_match_log_key")
-
-    @property
-    @pulumi.getter(name="unMatchUpLoadSwitch")
-    def un_match_up_load_switch(self) -> bool:
-        """
-        Whether to upload the log of parsing failure.
-        """
-        return pulumi.get(self, "un_match_up_load_switch")
-
-
-@pulumi.output_type
-class RuleAppliersRuleExtractRuleFilterKeyRegexResult(dict):
-    def __init__(__self__, *,
-                 key: str,
-                 regex: str):
-        """
-        :param str key: The name of the filter key.
-        :param str regex: Regular expression for extracting path fields. It must match the collection path sample, otherwise it cannot be extracted successfully.
-        """
-        pulumi.set(__self__, "key", key)
-        pulumi.set(__self__, "regex", regex)
-
-    @property
-    @pulumi.getter
-    def key(self) -> str:
-        """
-        The name of the filter key.
-        """
-        return pulumi.get(self, "key")
-
-    @property
-    @pulumi.getter
-    def regex(self) -> str:
-        """
-        Regular expression for extracting path fields. It must match the collection path sample, otherwise it cannot be extracted successfully.
-        """
-        return pulumi.get(self, "regex")
-
-
-@pulumi.output_type
-class RuleAppliersRuleExtractRuleLogTemplateResult(dict):
-    def __init__(__self__, *,
-                 format: str,
-                 type: str):
-        """
-        :param str format: Log template content.
-        :param str type: The type of the log template.
-        """
-        pulumi.set(__self__, "format", format)
-        pulumi.set(__self__, "type", type)
-
-    @property
-    @pulumi.getter
-    def format(self) -> str:
-        """
-        Log template content.
-        """
-        return pulumi.get(self, "format")
-
-    @property
-    @pulumi.getter
-    def type(self) -> str:
-        """
-        The type of the log template.
-        """
-        return pulumi.get(self, "type")
-
-
-@pulumi.output_type
-class RuleAppliersRuleUserDefineRuleResult(dict):
-    def __init__(__self__, *,
-                 advanceds: Sequence['outputs.RuleAppliersRuleUserDefineRuleAdvancedResult'],
-                 enable_raw_log: bool,
-                 fields: Mapping[str, Any],
-                 parse_path_rules: Sequence['outputs.RuleAppliersRuleUserDefineRuleParsePathRuleResult'],
-                 plugins: Sequence['outputs.RuleAppliersRuleUserDefineRulePluginResult'],
-                 shard_hash_keys: Sequence['outputs.RuleAppliersRuleUserDefineRuleShardHashKeyResult'],
-                 tail_files: bool):
-        """
-        :param Sequence['RuleAppliersRuleUserDefineRuleAdvancedArgs'] advanceds: LogCollector extension configuration.
-        :param bool enable_raw_log: Whether to upload raw logs.
-        :param Mapping[str, Any] fields: Add constant fields to logs.
-        :param Sequence['RuleAppliersRuleUserDefineRuleParsePathRuleArgs'] parse_path_rules: Rules for parsing collection paths. After the rules are set, the fields in the collection path will be extracted through the regular expressions specified in the rules, and added to the log data as metadata.
-        :param Sequence['RuleAppliersRuleUserDefineRulePluginArgs'] plugins: Plugin configuration. After the plugin configuration is enabled, one or more LogCollector processor plugins can be added to parse logs with complex or variable structures.
-        :param Sequence['RuleAppliersRuleUserDefineRuleShardHashKeyArgs'] shard_hash_keys: Rules for routing log partitions. Setting this parameter indicates that the HashKey routing shard mode is used when collecting logs, and Log Service will write the data to the shard containing the specified Key value.
-        :param bool tail_files: LogCollector collection strategy, which specifies whether LogCollector collects incremental logs or full logs. The default is false, which means to collect all logs.
-        """
-        pulumi.set(__self__, "advanceds", advanceds)
-        pulumi.set(__self__, "enable_raw_log", enable_raw_log)
-        pulumi.set(__self__, "fields", fields)
-        pulumi.set(__self__, "parse_path_rules", parse_path_rules)
-        pulumi.set(__self__, "plugins", plugins)
-        pulumi.set(__self__, "shard_hash_keys", shard_hash_keys)
-        pulumi.set(__self__, "tail_files", tail_files)
-
-    @property
-    @pulumi.getter
-    def advanceds(self) -> Sequence['outputs.RuleAppliersRuleUserDefineRuleAdvancedResult']:
-        """
-        LogCollector extension configuration.
-        """
-        return pulumi.get(self, "advanceds")
-
-    @property
-    @pulumi.getter(name="enableRawLog")
-    def enable_raw_log(self) -> bool:
-        """
-        Whether to upload raw logs.
-        """
-        return pulumi.get(self, "enable_raw_log")
-
-    @property
-    @pulumi.getter
-    def fields(self) -> Mapping[str, Any]:
-        """
-        Add constant fields to logs.
-        """
-        return pulumi.get(self, "fields")
-
-    @property
-    @pulumi.getter(name="parsePathRules")
-    def parse_path_rules(self) -> Sequence['outputs.RuleAppliersRuleUserDefineRuleParsePathRuleResult']:
-        """
-        Rules for parsing collection paths. After the rules are set, the fields in the collection path will be extracted through the regular expressions specified in the rules, and added to the log data as metadata.
-        """
-        return pulumi.get(self, "parse_path_rules")
-
-    @property
-    @pulumi.getter
-    def plugins(self) -> Sequence['outputs.RuleAppliersRuleUserDefineRulePluginResult']:
-        """
-        Plugin configuration. After the plugin configuration is enabled, one or more LogCollector processor plugins can be added to parse logs with complex or variable structures.
-        """
-        return pulumi.get(self, "plugins")
-
-    @property
-    @pulumi.getter(name="shardHashKeys")
-    def shard_hash_keys(self) -> Sequence['outputs.RuleAppliersRuleUserDefineRuleShardHashKeyResult']:
-        """
-        Rules for routing log partitions. Setting this parameter indicates that the HashKey routing shard mode is used when collecting logs, and Log Service will write the data to the shard containing the specified Key value.
-        """
-        return pulumi.get(self, "shard_hash_keys")
-
-    @property
-    @pulumi.getter(name="tailFiles")
-    def tail_files(self) -> bool:
-        """
-        LogCollector collection strategy, which specifies whether LogCollector collects incremental logs or full logs. The default is false, which means to collect all logs.
-        """
-        return pulumi.get(self, "tail_files")
-
-
-@pulumi.output_type
-class RuleAppliersRuleUserDefineRuleAdvancedResult(dict):
-    def __init__(__self__, *,
-                 close_eof: bool,
-                 close_inactive: int,
-                 close_removed: bool,
-                 close_renamed: bool,
-                 close_timeout: int):
-        """
-        :param bool close_eof: Whether to release the log file handle after reading to the end of the log file. The default is false.
-        :param int close_inactive: The wait time to release the log file handle. When the log file has not written a new log for more than the specified time, release the handle of the log file.
-        :param bool close_removed: After the log file is removed, whether to release the handle of the log file. The default is false.
-        :param bool close_renamed: After the log file is renamed, whether to release the handle of the log file. The default is false.
-        :param int close_timeout: The maximum length of time that LogCollector monitors log files. The unit is seconds, and the default is 0 seconds, which means that there is no limit to the length of time LogCollector monitors log files.
-        """
-        pulumi.set(__self__, "close_eof", close_eof)
-        pulumi.set(__self__, "close_inactive", close_inactive)
-        pulumi.set(__self__, "close_removed", close_removed)
-        pulumi.set(__self__, "close_renamed", close_renamed)
-        pulumi.set(__self__, "close_timeout", close_timeout)
-
-    @property
-    @pulumi.getter(name="closeEof")
-    def close_eof(self) -> bool:
-        """
-        Whether to release the log file handle after reading to the end of the log file. The default is false.
-        """
-        return pulumi.get(self, "close_eof")
-
-    @property
-    @pulumi.getter(name="closeInactive")
-    def close_inactive(self) -> int:
-        """
-        The wait time to release the log file handle. When the log file has not written a new log for more than the specified time, release the handle of the log file.
-        """
-        return pulumi.get(self, "close_inactive")
-
-    @property
-    @pulumi.getter(name="closeRemoved")
-    def close_removed(self) -> bool:
-        """
-        After the log file is removed, whether to release the handle of the log file. The default is false.
-        """
-        return pulumi.get(self, "close_removed")
-
-    @property
-    @pulumi.getter(name="closeRenamed")
-    def close_renamed(self) -> bool:
-        """
-        After the log file is renamed, whether to release the handle of the log file. The default is false.
-        """
-        return pulumi.get(self, "close_renamed")
-
-    @property
-    @pulumi.getter(name="closeTimeout")
-    def close_timeout(self) -> int:
-        """
-        The maximum length of time that LogCollector monitors log files. The unit is seconds, and the default is 0 seconds, which means that there is no limit to the length of time LogCollector monitors log files.
-        """
-        return pulumi.get(self, "close_timeout")
-
-
-@pulumi.output_type
-class RuleAppliersRuleUserDefineRuleParsePathRuleResult(dict):
-    def __init__(__self__, *,
-                 keys: Sequence[str],
-                 path_sample: str,
-                 regex: str):
-        """
-        :param Sequence[str] keys: A list of field names. Log Service will parse the path sample (PathSample) into multiple fields according to the regular expression (Regex), and Keys is used to specify the field name of each field.
-        :param str path_sample: Sample capture path for a real scene.
-        :param str regex: Regular expression for extracting path fields. It must match the collection path sample, otherwise it cannot be extracted successfully.
-        """
-        pulumi.set(__self__, "keys", keys)
-        pulumi.set(__self__, "path_sample", path_sample)
-        pulumi.set(__self__, "regex", regex)
-
-    @property
-    @pulumi.getter
-    def keys(self) -> Sequence[str]:
-        """
-        A list of field names. Log Service will parse the path sample (PathSample) into multiple fields according to the regular expression (Regex), and Keys is used to specify the field name of each field.
-        """
-        return pulumi.get(self, "keys")
-
-    @property
-    @pulumi.getter(name="pathSample")
-    def path_sample(self) -> str:
-        """
-        Sample capture path for a real scene.
-        """
-        return pulumi.get(self, "path_sample")
-
-    @property
-    @pulumi.getter
-    def regex(self) -> str:
-        """
-        Regular expression for extracting path fields. It must match the collection path sample, otherwise it cannot be extracted successfully.
-        """
-        return pulumi.get(self, "regex")
-
-
-@pulumi.output_type
-class RuleAppliersRuleUserDefineRulePluginResult(dict):
-    def __init__(__self__, *,
-                 processors: str):
-        """
-        :param str processors: LogCollector plugin.
-        """
-        pulumi.set(__self__, "processors", processors)
-
-    @property
-    @pulumi.getter
-    def processors(self) -> str:
-        """
-        LogCollector plugin.
-        """
-        return pulumi.get(self, "processors")
-
-
-@pulumi.output_type
-class RuleAppliersRuleUserDefineRuleShardHashKeyResult(dict):
-    def __init__(__self__, *,
-                 hash_key: str):
-        """
-        :param str hash_key: The HashKey of the log group is used to specify the partition (shard) to be written to by the current log group.
-        """
-        pulumi.set(__self__, "hash_key", hash_key)
-
-    @property
-    @pulumi.getter(name="hashKey")
-    def hash_key(self) -> str:
-        """
-        The HashKey of the log group is used to specify the partition (shard) to be written to by the current log group.
-        """
-        return pulumi.get(self, "hash_key")
+        return pulumi.get(self, "update_start_time")
 
 
 @pulumi.output_type
@@ -5060,6 +8561,8 @@ class RuleExtractRule(dict):
             suggest = "time_format"
         elif key == "timeKey":
             suggest = "time_key"
+        elif key == "timeZone":
+            suggest = "time_zone"
         elif key == "unMatchLogKey":
             suggest = "un_match_log_key"
         elif key == "unMatchUpLoadSwitch":
@@ -5083,8 +8586,10 @@ class RuleExtractRule(dict):
                  keys: Optional[Sequence[str]] = None,
                  log_regex: Optional[str] = None,
                  log_template: Optional['outputs.RuleExtractRuleLogTemplate'] = None,
+                 quote: Optional[str] = None,
                  time_format: Optional[str] = None,
                  time_key: Optional[str] = None,
+                 time_zone: Optional[str] = None,
                  un_match_log_key: Optional[str] = None,
                  un_match_up_load_switch: Optional[bool] = None):
         """
@@ -5094,8 +8599,10 @@ class RuleExtractRule(dict):
         :param Sequence[str] keys: A list of log field names (Key).
         :param str log_regex: The entire log needs to match the regular expression.
         :param 'RuleExtractRuleLogTemplateArgs' log_template: Automatically extract log fields according to the specified log template.
+        :param str quote: The quote symbol.
         :param str time_format: Parsing format of the time field.
         :param str time_key: The field name of the log time field.
+        :param str time_zone: The time zone.
         :param str un_match_log_key: When uploading the failed log, the key name of the failed log.
         :param bool un_match_up_load_switch: Whether to upload the log of parsing failure.
         """
@@ -5111,10 +8618,14 @@ class RuleExtractRule(dict):
             pulumi.set(__self__, "log_regex", log_regex)
         if log_template is not None:
             pulumi.set(__self__, "log_template", log_template)
+        if quote is not None:
+            pulumi.set(__self__, "quote", quote)
         if time_format is not None:
             pulumi.set(__self__, "time_format", time_format)
         if time_key is not None:
             pulumi.set(__self__, "time_key", time_key)
+        if time_zone is not None:
+            pulumi.set(__self__, "time_zone", time_zone)
         if un_match_log_key is not None:
             pulumi.set(__self__, "un_match_log_key", un_match_log_key)
         if un_match_up_load_switch is not None:
@@ -5169,6 +8680,14 @@ class RuleExtractRule(dict):
         return pulumi.get(self, "log_template")
 
     @property
+    @pulumi.getter
+    def quote(self) -> Optional[str]:
+        """
+        The quote symbol.
+        """
+        return pulumi.get(self, "quote")
+
+    @property
     @pulumi.getter(name="timeFormat")
     def time_format(self) -> Optional[str]:
         """
@@ -5183,6 +8702,14 @@ class RuleExtractRule(dict):
         The field name of the log time field.
         """
         return pulumi.get(self, "time_key")
+
+    @property
+    @pulumi.getter(name="timeZone")
+    def time_zone(self) -> Optional[str]:
+        """
+        The time zone.
+        """
+        return pulumi.get(self, "time_zone")
 
     @property
     @pulumi.getter(name="unMatchLogKey")
@@ -6706,6 +10233,423 @@ class ScheduleSqlTasksTaskRequestCycleResult(dict):
 
 
 @pulumi.output_type
+class SearchTracesQueryResult(dict):
+    def __init__(__self__, *,
+                 asc: Optional[bool] = None,
+                 attributes: Optional[Sequence['outputs.SearchTracesQueryAttributeResult']] = None,
+                 duration_max: Optional[int] = None,
+                 duration_min: Optional[int] = None,
+                 kind: Optional[str] = None,
+                 limit: Optional[int] = None,
+                 offset: Optional[int] = None,
+                 operation_name: Optional[str] = None,
+                 order: Optional[str] = None,
+                 service_name: Optional[str] = None,
+                 start_time_max: Optional[int] = None,
+                 start_time_min: Optional[int] = None,
+                 status_code: Optional[str] = None,
+                 trace_id: Optional[str] = None):
+        """
+        :param bool asc: Whether to sort results in ascending order. true means ascending, false means descending.
+        :param Sequence['SearchTracesQueryAttributeArgs'] attributes: Attributes.
+        :param int duration_max: Maximum trace duration in microseconds.
+        :param int duration_min: Minimum trace duration in microseconds.
+        :param str kind: Type of the trace.
+        :param int limit: Maximum number of records to return, used for pagination.
+        :param int offset: Offset for paginated query.
+        :param str operation_name: Operation name, used to filter traces with specific operation.
+        :param str order: Sorting field. Supported fields: Kind, Name, ServiceName, Start, End, Duration, and indexed fields in Attributes.
+        :param str service_name: Service name, used to filter traces from specific service.
+        :param int start_time_max: Maximum start time for searching traces, in microsecond timestamp format.
+        :param int start_time_min: Minimum start time for searching traces, in microsecond timestamp format.
+        :param str status_code: Trace status code, used to filter traces with specific status.
+        :param str trace_id: Trace ID.
+        """
+        if asc is not None:
+            pulumi.set(__self__, "asc", asc)
+        if attributes is not None:
+            pulumi.set(__self__, "attributes", attributes)
+        if duration_max is not None:
+            pulumi.set(__self__, "duration_max", duration_max)
+        if duration_min is not None:
+            pulumi.set(__self__, "duration_min", duration_min)
+        if kind is not None:
+            pulumi.set(__self__, "kind", kind)
+        if limit is not None:
+            pulumi.set(__self__, "limit", limit)
+        if offset is not None:
+            pulumi.set(__self__, "offset", offset)
+        if operation_name is not None:
+            pulumi.set(__self__, "operation_name", operation_name)
+        if order is not None:
+            pulumi.set(__self__, "order", order)
+        if service_name is not None:
+            pulumi.set(__self__, "service_name", service_name)
+        if start_time_max is not None:
+            pulumi.set(__self__, "start_time_max", start_time_max)
+        if start_time_min is not None:
+            pulumi.set(__self__, "start_time_min", start_time_min)
+        if status_code is not None:
+            pulumi.set(__self__, "status_code", status_code)
+        if trace_id is not None:
+            pulumi.set(__self__, "trace_id", trace_id)
+
+    @property
+    @pulumi.getter
+    def asc(self) -> Optional[bool]:
+        """
+        Whether to sort results in ascending order. true means ascending, false means descending.
+        """
+        return pulumi.get(self, "asc")
+
+    @property
+    @pulumi.getter
+    def attributes(self) -> Optional[Sequence['outputs.SearchTracesQueryAttributeResult']]:
+        """
+        Attributes.
+        """
+        return pulumi.get(self, "attributes")
+
+    @property
+    @pulumi.getter(name="durationMax")
+    def duration_max(self) -> Optional[int]:
+        """
+        Maximum trace duration in microseconds.
+        """
+        return pulumi.get(self, "duration_max")
+
+    @property
+    @pulumi.getter(name="durationMin")
+    def duration_min(self) -> Optional[int]:
+        """
+        Minimum trace duration in microseconds.
+        """
+        return pulumi.get(self, "duration_min")
+
+    @property
+    @pulumi.getter
+    def kind(self) -> Optional[str]:
+        """
+        Type of the trace.
+        """
+        return pulumi.get(self, "kind")
+
+    @property
+    @pulumi.getter
+    def limit(self) -> Optional[int]:
+        """
+        Maximum number of records to return, used for pagination.
+        """
+        return pulumi.get(self, "limit")
+
+    @property
+    @pulumi.getter
+    def offset(self) -> Optional[int]:
+        """
+        Offset for paginated query.
+        """
+        return pulumi.get(self, "offset")
+
+    @property
+    @pulumi.getter(name="operationName")
+    def operation_name(self) -> Optional[str]:
+        """
+        Operation name, used to filter traces with specific operation.
+        """
+        return pulumi.get(self, "operation_name")
+
+    @property
+    @pulumi.getter
+    def order(self) -> Optional[str]:
+        """
+        Sorting field. Supported fields: Kind, Name, ServiceName, Start, End, Duration, and indexed fields in Attributes.
+        """
+        return pulumi.get(self, "order")
+
+    @property
+    @pulumi.getter(name="serviceName")
+    def service_name(self) -> Optional[str]:
+        """
+        Service name, used to filter traces from specific service.
+        """
+        return pulumi.get(self, "service_name")
+
+    @property
+    @pulumi.getter(name="startTimeMax")
+    def start_time_max(self) -> Optional[int]:
+        """
+        Maximum start time for searching traces, in microsecond timestamp format.
+        """
+        return pulumi.get(self, "start_time_max")
+
+    @property
+    @pulumi.getter(name="startTimeMin")
+    def start_time_min(self) -> Optional[int]:
+        """
+        Minimum start time for searching traces, in microsecond timestamp format.
+        """
+        return pulumi.get(self, "start_time_min")
+
+    @property
+    @pulumi.getter(name="statusCode")
+    def status_code(self) -> Optional[str]:
+        """
+        Trace status code, used to filter traces with specific status.
+        """
+        return pulumi.get(self, "status_code")
+
+    @property
+    @pulumi.getter(name="traceId")
+    def trace_id(self) -> Optional[str]:
+        """
+        Trace ID.
+        """
+        return pulumi.get(self, "trace_id")
+
+
+@pulumi.output_type
+class SearchTracesQueryAttributeResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: Attribute key.
+        :param str value: Attribute value.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        Attribute key.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        Attribute value.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class SearchTracesTraceResult(dict):
+    def __init__(__self__, *,
+                 attributes: Mapping[str, str],
+                 duration: int,
+                 end_time: int,
+                 operation_name: str,
+                 service_name: str,
+                 start_time: int,
+                 status_code: str,
+                 trace_id: str):
+        """
+        :param Mapping[str, str] attributes: Trace attributes.
+        :param int duration: Trace duration in microseconds.
+        :param int end_time: Trace end time in microseconds.
+        :param str operation_name: Operation name.
+        :param str service_name: Service name.
+        :param int start_time: Trace start time in microseconds.
+        :param str status_code: Trace status code.
+        :param str trace_id: Trace ID.
+        """
+        pulumi.set(__self__, "attributes", attributes)
+        pulumi.set(__self__, "duration", duration)
+        pulumi.set(__self__, "end_time", end_time)
+        pulumi.set(__self__, "operation_name", operation_name)
+        pulumi.set(__self__, "service_name", service_name)
+        pulumi.set(__self__, "start_time", start_time)
+        pulumi.set(__self__, "status_code", status_code)
+        pulumi.set(__self__, "trace_id", trace_id)
+
+    @property
+    @pulumi.getter
+    def attributes(self) -> Mapping[str, str]:
+        """
+        Trace attributes.
+        """
+        return pulumi.get(self, "attributes")
+
+    @property
+    @pulumi.getter
+    def duration(self) -> int:
+        """
+        Trace duration in microseconds.
+        """
+        return pulumi.get(self, "duration")
+
+    @property
+    @pulumi.getter(name="endTime")
+    def end_time(self) -> int:
+        """
+        Trace end time in microseconds.
+        """
+        return pulumi.get(self, "end_time")
+
+    @property
+    @pulumi.getter(name="operationName")
+    def operation_name(self) -> str:
+        """
+        Operation name.
+        """
+        return pulumi.get(self, "operation_name")
+
+    @property
+    @pulumi.getter(name="serviceName")
+    def service_name(self) -> str:
+        """
+        Service name.
+        """
+        return pulumi.get(self, "service_name")
+
+    @property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> int:
+        """
+        Trace start time in microseconds.
+        """
+        return pulumi.get(self, "start_time")
+
+    @property
+    @pulumi.getter(name="statusCode")
+    def status_code(self) -> str:
+        """
+        Trace status code.
+        """
+        return pulumi.get(self, "status_code")
+
+    @property
+    @pulumi.getter(name="traceId")
+    def trace_id(self) -> str:
+        """
+        Trace ID.
+        """
+        return pulumi.get(self, "trace_id")
+
+
+@pulumi.output_type
+class ShardShard(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "exclusiveEndKey":
+            suggest = "exclusive_end_key"
+        elif key == "inclusiveBeginKey":
+            suggest = "inclusive_begin_key"
+        elif key == "modifyTime":
+            suggest = "modify_time"
+        elif key == "shardId":
+            suggest = "shard_id"
+        elif key == "stopWriteTime":
+            suggest = "stop_write_time"
+        elif key == "topicId":
+            suggest = "topic_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ShardShard. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ShardShard.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ShardShard.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 exclusive_end_key: Optional[str] = None,
+                 inclusive_begin_key: Optional[str] = None,
+                 modify_time: Optional[str] = None,
+                 shard_id: Optional[int] = None,
+                 status: Optional[str] = None,
+                 stop_write_time: Optional[str] = None,
+                 topic_id: Optional[str] = None):
+        """
+        :param str exclusive_end_key: The exclusive end key of the shard.
+        :param str inclusive_begin_key: The inclusive begin key of the shard.
+        :param str modify_time: The modification time of the shard.
+        :param int shard_id: The ID of the shard to split.
+        :param str status: The status of the shard.
+        :param str stop_write_time: The stop write time of the shard.
+        :param str topic_id: The ID of the topic.
+        """
+        if exclusive_end_key is not None:
+            pulumi.set(__self__, "exclusive_end_key", exclusive_end_key)
+        if inclusive_begin_key is not None:
+            pulumi.set(__self__, "inclusive_begin_key", inclusive_begin_key)
+        if modify_time is not None:
+            pulumi.set(__self__, "modify_time", modify_time)
+        if shard_id is not None:
+            pulumi.set(__self__, "shard_id", shard_id)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if stop_write_time is not None:
+            pulumi.set(__self__, "stop_write_time", stop_write_time)
+        if topic_id is not None:
+            pulumi.set(__self__, "topic_id", topic_id)
+
+    @property
+    @pulumi.getter(name="exclusiveEndKey")
+    def exclusive_end_key(self) -> Optional[str]:
+        """
+        The exclusive end key of the shard.
+        """
+        return pulumi.get(self, "exclusive_end_key")
+
+    @property
+    @pulumi.getter(name="inclusiveBeginKey")
+    def inclusive_begin_key(self) -> Optional[str]:
+        """
+        The inclusive begin key of the shard.
+        """
+        return pulumi.get(self, "inclusive_begin_key")
+
+    @property
+    @pulumi.getter(name="modifyTime")
+    def modify_time(self) -> Optional[str]:
+        """
+        The modification time of the shard.
+        """
+        return pulumi.get(self, "modify_time")
+
+    @property
+    @pulumi.getter(name="shardId")
+    def shard_id(self) -> Optional[int]:
+        """
+        The ID of the shard to split.
+        """
+        return pulumi.get(self, "shard_id")
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[str]:
+        """
+        The status of the shard.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="stopWriteTime")
+    def stop_write_time(self) -> Optional[str]:
+        """
+        The stop write time of the shard.
+        """
+        return pulumi.get(self, "stop_write_time")
+
+    @property
+    @pulumi.getter(name="topicId")
+    def topic_id(self) -> Optional[str]:
+        """
+        The ID of the topic.
+        """
+        return pulumi.get(self, "topic_id")
+
+
+@pulumi.output_type
 class ShardsShardResult(dict):
     def __init__(__self__, *,
                  exclusive_end_key: str,
@@ -7168,6 +11112,7 @@ class ShippersShipperResult(dict):
                  modify_time: str,
                  project_id: str,
                  project_name: str,
+                 role_trn: str,
                  shipper_end_time: int,
                  shipper_id: str,
                  shipper_name: str,
@@ -7185,6 +11130,7 @@ class ShippersShipperResult(dict):
         :param str modify_time: The most recent modification time of the processing task.
         :param str project_id: Specify the log item ID for querying the data delivery configuration under the specified log item.
         :param str project_name: Specify the name of the log item for querying the data delivery configuration under the specified log item. Support fuzzy matching.
+        :param str role_trn: The role trn.
         :param int shipper_end_time: Delivery end time, millisecond timestamp. If not configured, it will keep delivering.
         :param str shipper_id: Delivery configuration ID.
         :param str shipper_name: Delivery configuration name.
@@ -7202,6 +11148,7 @@ class ShippersShipperResult(dict):
         pulumi.set(__self__, "modify_time", modify_time)
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "role_trn", role_trn)
         pulumi.set(__self__, "shipper_end_time", shipper_end_time)
         pulumi.set(__self__, "shipper_id", shipper_id)
         pulumi.set(__self__, "shipper_name", shipper_name)
@@ -7267,6 +11214,14 @@ class ShippersShipperResult(dict):
         Specify the name of the log item for querying the data delivery configuration under the specified log item. Support fuzzy matching.
         """
         return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="roleTrn")
+    def role_trn(self) -> str:
+        """
+        The role trn.
+        """
+        return pulumi.get(self, "role_trn")
 
     @property
     @pulumi.getter(name="shipperEndTime")
@@ -7619,6 +11574,348 @@ class ShippersShipperTosShipperInfoResult(dict):
 
 
 @pulumi.output_type
+class TagResourceTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class TagResourcesTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 resource_id: str,
+                 resource_type: str,
+                 value: str):
+        """
+        :param str key: The key of the tag.
+        :param str resource_id: The ID of the resource.
+        :param str resource_type: The type of the resource. Valid values: project, topic, shipper, host_group, host, consumer_group, rule, alarm, alarm_notify_group, etl_task, import_task, schedule_sql_task, download_task, trace_instance.
+        :param str value: The value of the tag.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "resource_id", resource_id)
+        pulumi.set(__self__, "resource_type", resource_type)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The key of the tag.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> str:
+        """
+        The ID of the resource.
+        """
+        return pulumi.get(self, "resource_id")
+
+    @property
+    @pulumi.getter(name="resourceType")
+    def resource_type(self) -> str:
+        """
+        The type of the resource. Valid values: project, topic, shipper, host_group, host, consumer_group, rule, alarm, alarm_notify_group, etl_task, import_task, schedule_sql_task, download_task, trace_instance.
+        """
+        return pulumi.get(self, "resource_type")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The value of the tag.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class TagResourcesTagFilterResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 values: Sequence[str]):
+        """
+        :param str key: The key of the tag filter.
+        :param Sequence[str] values: The values of the tag filter.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The key of the tag filter.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def values(self) -> Sequence[str]:
+        """
+        The values of the tag filter.
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class TagTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class TagsTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 resource_id: str,
+                 resource_type: str,
+                 value: str):
+        """
+        :param str key: The key of the tag.
+        :param str resource_id: The ID of the resource.
+        :param str resource_type: The type of the resource. Valid values: project, topic, shipper, host_group, host, consumer_group, rule, alarm, alarm_notify_group, etl_task, import_task, schedule_sql_task, download_task, trace_instance.
+        :param str value: The value of the tag.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "resource_id", resource_id)
+        pulumi.set(__self__, "resource_type", resource_type)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The key of the tag.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> str:
+        """
+        The ID of the resource.
+        """
+        return pulumi.get(self, "resource_id")
+
+    @property
+    @pulumi.getter(name="resourceType")
+    def resource_type(self) -> str:
+        """
+        The type of the resource. Valid values: project, topic, shipper, host_group, host, consumer_group, rule, alarm, alarm_notify_group, etl_task, import_task, schedule_sql_task, download_task, trace_instance.
+        """
+        return pulumi.get(self, "resource_type")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The value of the tag.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class TagsTagFilterResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 values: Sequence[str]):
+        """
+        :param str key: The key of the tag filter.
+        :param Sequence[str] values: The values of the tag filter.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The key of the tag filter.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def values(self) -> Sequence[str]:
+        """
+        The values of the tag filter.
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class TopicEncryptConf(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "encryptType":
+            suggest = "encrypt_type"
+        elif key == "userCmkInfo":
+            suggest = "user_cmk_info"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in TopicEncryptConf. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        TopicEncryptConf.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        TopicEncryptConf.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 enable: Optional[bool] = None,
+                 encrypt_type: Optional[str] = None,
+                 user_cmk_info: Optional['outputs.TopicEncryptConfUserCmkInfo'] = None):
+        """
+        :param bool enable: Whether to enable data encryption.
+        :param str encrypt_type: The encryption type.
+        :param 'TopicEncryptConfUserCmkInfoArgs' user_cmk_info: The user custom key.
+        """
+        if enable is not None:
+            pulumi.set(__self__, "enable", enable)
+        if encrypt_type is not None:
+            pulumi.set(__self__, "encrypt_type", encrypt_type)
+        if user_cmk_info is not None:
+            pulumi.set(__self__, "user_cmk_info", user_cmk_info)
+
+    @property
+    @pulumi.getter
+    def enable(self) -> Optional[bool]:
+        """
+        Whether to enable data encryption.
+        """
+        return pulumi.get(self, "enable")
+
+    @property
+    @pulumi.getter(name="encryptType")
+    def encrypt_type(self) -> Optional[str]:
+        """
+        The encryption type.
+        """
+        return pulumi.get(self, "encrypt_type")
+
+    @property
+    @pulumi.getter(name="userCmkInfo")
+    def user_cmk_info(self) -> Optional['outputs.TopicEncryptConfUserCmkInfo']:
+        """
+        The user custom key.
+        """
+        return pulumi.get(self, "user_cmk_info")
+
+
+@pulumi.output_type
+class TopicEncryptConfUserCmkInfo(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "regionId":
+            suggest = "region_id"
+        elif key == "userCmkId":
+            suggest = "user_cmk_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in TopicEncryptConfUserCmkInfo. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        TopicEncryptConfUserCmkInfo.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        TopicEncryptConfUserCmkInfo.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 region_id: Optional[str] = None,
+                 trn: Optional[str] = None,
+                 user_cmk_id: Optional[str] = None):
+        """
+        :param str region_id: The key region.
+        :param str trn: The key trn.
+        :param str user_cmk_id: The key id.
+        """
+        if region_id is not None:
+            pulumi.set(__self__, "region_id", region_id)
+        if trn is not None:
+            pulumi.set(__self__, "trn", trn)
+        if user_cmk_id is not None:
+            pulumi.set(__self__, "user_cmk_id", user_cmk_id)
+
+    @property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> Optional[str]:
+        """
+        The key region.
+        """
+        return pulumi.get(self, "region_id")
+
+    @property
+    @pulumi.getter
+    def trn(self) -> Optional[str]:
+        """
+        The key trn.
+        """
+        return pulumi.get(self, "trn")
+
+    @property
+    @pulumi.getter(name="userCmkId")
+    def user_cmk_id(self) -> Optional[str]:
+        """
+        The key id.
+        """
+        return pulumi.get(self, "user_cmk_id")
+
+
+@pulumi.output_type
 class TopicTag(dict):
     def __init__(__self__, *,
                  key: str,
@@ -7679,11 +11976,17 @@ class TopicsTagResult(dict):
 @pulumi.output_type
 class TopicsTlsTopicResult(dict):
     def __init__(__self__, *,
+                 archive_ttl: int,
                  auto_split: bool,
+                 cold_ttl: int,
                  create_time: str,
                  description: str,
+                 enable_hot_ttl: bool,
                  enable_tracking: bool,
+                 encrypt_conf: 'outputs.TopicsTlsTopicEncryptConfResult',
+                 hot_ttl: int,
                  id: str,
+                 log_public_ip: bool,
                  max_split_shard: int,
                  modify_time: str,
                  project_id: str,
@@ -7695,11 +11998,17 @@ class TopicsTlsTopicResult(dict):
                  topic_name: str,
                  ttl: int):
         """
+        :param int archive_ttl: Archive storage duration, valid when enable_hot_ttl is true.
         :param bool auto_split: Whether to enable automatic partition splitting function of the tls topic.
+        :param int cold_ttl: Infrequent storage duration, valid when enable_hot_ttl is true.
         :param str create_time: The create time of the tls topic.
         :param str description: The description of the tls topic.
+        :param bool enable_hot_ttl: Whether to enable tiered storage.
         :param bool enable_tracking: Whether to enable WebTracking function of the tls topic.
+        :param 'TopicsTlsTopicEncryptConfArgs' encrypt_conf: Data encryption configuration.
+        :param int hot_ttl: Standard storage duration, valid when enable_hot_ttl is true.
         :param str id: The ID of the tls topic.
+        :param bool log_public_ip: Whether to enable the function of recording public IP.
         :param int max_split_shard: The max count of shards in the tls topic.
         :param str modify_time: The modify time of the tls topic.
         :param str project_id: The project id of tls topic.
@@ -7711,11 +12020,17 @@ class TopicsTlsTopicResult(dict):
         :param str topic_name: The name of tls topic. This field supports fuzzy queries. It is not supported to specify both TopicName and TopicId at the same time.
         :param int ttl: The data storage time of the tls topic. Unit: Day.
         """
+        pulumi.set(__self__, "archive_ttl", archive_ttl)
         pulumi.set(__self__, "auto_split", auto_split)
+        pulumi.set(__self__, "cold_ttl", cold_ttl)
         pulumi.set(__self__, "create_time", create_time)
         pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "enable_hot_ttl", enable_hot_ttl)
         pulumi.set(__self__, "enable_tracking", enable_tracking)
+        pulumi.set(__self__, "encrypt_conf", encrypt_conf)
+        pulumi.set(__self__, "hot_ttl", hot_ttl)
         pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "log_public_ip", log_public_ip)
         pulumi.set(__self__, "max_split_shard", max_split_shard)
         pulumi.set(__self__, "modify_time", modify_time)
         pulumi.set(__self__, "project_id", project_id)
@@ -7728,12 +12043,28 @@ class TopicsTlsTopicResult(dict):
         pulumi.set(__self__, "ttl", ttl)
 
     @property
+    @pulumi.getter(name="archiveTtl")
+    def archive_ttl(self) -> int:
+        """
+        Archive storage duration, valid when enable_hot_ttl is true.
+        """
+        return pulumi.get(self, "archive_ttl")
+
+    @property
     @pulumi.getter(name="autoSplit")
     def auto_split(self) -> bool:
         """
         Whether to enable automatic partition splitting function of the tls topic.
         """
         return pulumi.get(self, "auto_split")
+
+    @property
+    @pulumi.getter(name="coldTtl")
+    def cold_ttl(self) -> int:
+        """
+        Infrequent storage duration, valid when enable_hot_ttl is true.
+        """
+        return pulumi.get(self, "cold_ttl")
 
     @property
     @pulumi.getter(name="createTime")
@@ -7752,6 +12083,14 @@ class TopicsTlsTopicResult(dict):
         return pulumi.get(self, "description")
 
     @property
+    @pulumi.getter(name="enableHotTtl")
+    def enable_hot_ttl(self) -> bool:
+        """
+        Whether to enable tiered storage.
+        """
+        return pulumi.get(self, "enable_hot_ttl")
+
+    @property
     @pulumi.getter(name="enableTracking")
     def enable_tracking(self) -> bool:
         """
@@ -7760,12 +12099,36 @@ class TopicsTlsTopicResult(dict):
         return pulumi.get(self, "enable_tracking")
 
     @property
+    @pulumi.getter(name="encryptConf")
+    def encrypt_conf(self) -> 'outputs.TopicsTlsTopicEncryptConfResult':
+        """
+        Data encryption configuration.
+        """
+        return pulumi.get(self, "encrypt_conf")
+
+    @property
+    @pulumi.getter(name="hotTtl")
+    def hot_ttl(self) -> int:
+        """
+        Standard storage duration, valid when enable_hot_ttl is true.
+        """
+        return pulumi.get(self, "hot_ttl")
+
+    @property
     @pulumi.getter
     def id(self) -> str:
         """
         The ID of the tls topic.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="logPublicIp")
+    def log_public_ip(self) -> bool:
+        """
+        Whether to enable the function of recording public IP.
+        """
+        return pulumi.get(self, "log_public_ip")
 
     @property
     @pulumi.getter(name="maxSplitShard")
@@ -7849,6 +12212,86 @@ class TopicsTlsTopicResult(dict):
 
 
 @pulumi.output_type
+class TopicsTlsTopicEncryptConfResult(dict):
+    def __init__(__self__, *,
+                 enable: bool,
+                 encrypt_type: str,
+                 user_cmk_info: 'outputs.TopicsTlsTopicEncryptConfUserCmkInfoResult'):
+        """
+        :param bool enable: Whether to enable data encryption.
+        :param str encrypt_type: The encryption type.
+        :param 'TopicsTlsTopicEncryptConfUserCmkInfoArgs' user_cmk_info: The user custom key.
+        """
+        pulumi.set(__self__, "enable", enable)
+        pulumi.set(__self__, "encrypt_type", encrypt_type)
+        pulumi.set(__self__, "user_cmk_info", user_cmk_info)
+
+    @property
+    @pulumi.getter
+    def enable(self) -> bool:
+        """
+        Whether to enable data encryption.
+        """
+        return pulumi.get(self, "enable")
+
+    @property
+    @pulumi.getter(name="encryptType")
+    def encrypt_type(self) -> str:
+        """
+        The encryption type.
+        """
+        return pulumi.get(self, "encrypt_type")
+
+    @property
+    @pulumi.getter(name="userCmkInfo")
+    def user_cmk_info(self) -> 'outputs.TopicsTlsTopicEncryptConfUserCmkInfoResult':
+        """
+        The user custom key.
+        """
+        return pulumi.get(self, "user_cmk_info")
+
+
+@pulumi.output_type
+class TopicsTlsTopicEncryptConfUserCmkInfoResult(dict):
+    def __init__(__self__, *,
+                 region_id: str,
+                 trn: str,
+                 user_cmk_id: str):
+        """
+        :param str region_id: The key region.
+        :param str trn: The key trn.
+        :param str user_cmk_id: The key id.
+        """
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "trn", trn)
+        pulumi.set(__self__, "user_cmk_id", user_cmk_id)
+
+    @property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> str:
+        """
+        The key region.
+        """
+        return pulumi.get(self, "region_id")
+
+    @property
+    @pulumi.getter
+    def trn(self) -> str:
+        """
+        The key trn.
+        """
+        return pulumi.get(self, "trn")
+
+    @property
+    @pulumi.getter(name="userCmkId")
+    def user_cmk_id(self) -> str:
+        """
+        The key id.
+        """
+        return pulumi.get(self, "user_cmk_id")
+
+
+@pulumi.output_type
 class TopicsTlsTopicTagResult(dict):
     def __init__(__self__, *,
                  key: str,
@@ -7878,6 +12321,795 @@ class TopicsTlsTopicTagResult(dict):
 
 
 @pulumi.output_type
+class TraceInstanceBackendConfig(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "archiveTtl":
+            suggest = "archive_ttl"
+        elif key == "autoSplit":
+            suggest = "auto_split"
+        elif key == "coldTtl":
+            suggest = "cold_ttl"
+        elif key == "enableHotTtl":
+            suggest = "enable_hot_ttl"
+        elif key == "hotTtl":
+            suggest = "hot_ttl"
+        elif key == "maxSplitPartitions":
+            suggest = "max_split_partitions"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in TraceInstanceBackendConfig. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        TraceInstanceBackendConfig.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        TraceInstanceBackendConfig.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 archive_ttl: Optional[int] = None,
+                 auto_split: Optional[bool] = None,
+                 cold_ttl: Optional[int] = None,
+                 enable_hot_ttl: Optional[bool] = None,
+                 hot_ttl: Optional[int] = None,
+                 max_split_partitions: Optional[int] = None,
+                 ttl: Optional[int] = None):
+        """
+        :param int archive_ttl: Archive storage duration in days.
+        :param bool auto_split: Whether to enable auto split.
+        :param int cold_ttl: Infrequent storage duration in days.
+        :param bool enable_hot_ttl: Whether to enable tiered storage.
+        :param int hot_ttl: Standard storage duration in days.
+        :param int max_split_partitions: Max split partitions.
+        :param int ttl: Total log retention time in days.
+        """
+        if archive_ttl is not None:
+            pulumi.set(__self__, "archive_ttl", archive_ttl)
+        if auto_split is not None:
+            pulumi.set(__self__, "auto_split", auto_split)
+        if cold_ttl is not None:
+            pulumi.set(__self__, "cold_ttl", cold_ttl)
+        if enable_hot_ttl is not None:
+            pulumi.set(__self__, "enable_hot_ttl", enable_hot_ttl)
+        if hot_ttl is not None:
+            pulumi.set(__self__, "hot_ttl", hot_ttl)
+        if max_split_partitions is not None:
+            pulumi.set(__self__, "max_split_partitions", max_split_partitions)
+        if ttl is not None:
+            pulumi.set(__self__, "ttl", ttl)
+
+    @property
+    @pulumi.getter(name="archiveTtl")
+    def archive_ttl(self) -> Optional[int]:
+        """
+        Archive storage duration in days.
+        """
+        return pulumi.get(self, "archive_ttl")
+
+    @property
+    @pulumi.getter(name="autoSplit")
+    def auto_split(self) -> Optional[bool]:
+        """
+        Whether to enable auto split.
+        """
+        return pulumi.get(self, "auto_split")
+
+    @property
+    @pulumi.getter(name="coldTtl")
+    def cold_ttl(self) -> Optional[int]:
+        """
+        Infrequent storage duration in days.
+        """
+        return pulumi.get(self, "cold_ttl")
+
+    @property
+    @pulumi.getter(name="enableHotTtl")
+    def enable_hot_ttl(self) -> Optional[bool]:
+        """
+        Whether to enable tiered storage.
+        """
+        return pulumi.get(self, "enable_hot_ttl")
+
+    @property
+    @pulumi.getter(name="hotTtl")
+    def hot_ttl(self) -> Optional[int]:
+        """
+        Standard storage duration in days.
+        """
+        return pulumi.get(self, "hot_ttl")
+
+    @property
+    @pulumi.getter(name="maxSplitPartitions")
+    def max_split_partitions(self) -> Optional[int]:
+        """
+        Max split partitions.
+        """
+        return pulumi.get(self, "max_split_partitions")
+
+    @property
+    @pulumi.getter
+    def ttl(self) -> Optional[int]:
+        """
+        Total log retention time in days.
+        """
+        return pulumi.get(self, "ttl")
+
+
+@pulumi.output_type
+class TraceInstancesTraceInstanceResult(dict):
+    def __init__(__self__, *,
+                 backend_config: 'outputs.TraceInstancesTraceInstanceBackendConfigResult',
+                 create_time: str,
+                 cs_account_channel: str,
+                 dependency_topic_id: str,
+                 dependency_topic_topic_name: str,
+                 description: str,
+                 modify_time: str,
+                 project_id: str,
+                 project_name: str,
+                 trace_instance_id: str,
+                 trace_instance_name: str,
+                 trace_instance_status: str,
+                 trace_topic_id: str,
+                 trace_topic_name: str):
+        """
+        :param 'TraceInstancesTraceInstanceBackendConfigArgs' backend_config: The backend config of the trace instance.
+        :param str create_time: The create time of the trace instance.
+        :param str cs_account_channel: CS account channel identifier.
+        :param str dependency_topic_id: The ID of the dependency topic.
+        :param str dependency_topic_topic_name: The name of the dependency topic.
+        :param str description: The description of the trace instance.
+        :param str modify_time: The update time of the trace instance.
+        :param str project_id: The ID of the project.
+        :param str project_name: The name of the project.
+        :param str trace_instance_id: The ID of the trace instance.
+        :param str trace_instance_name: The name of the trace instance.
+        :param str trace_instance_status: The status of the trace instance.
+        :param str trace_topic_id: The ID of the trace topic.
+        :param str trace_topic_name: The name of the trace topic.
+        """
+        pulumi.set(__self__, "backend_config", backend_config)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "cs_account_channel", cs_account_channel)
+        pulumi.set(__self__, "dependency_topic_id", dependency_topic_id)
+        pulumi.set(__self__, "dependency_topic_topic_name", dependency_topic_topic_name)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "modify_time", modify_time)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "trace_instance_id", trace_instance_id)
+        pulumi.set(__self__, "trace_instance_name", trace_instance_name)
+        pulumi.set(__self__, "trace_instance_status", trace_instance_status)
+        pulumi.set(__self__, "trace_topic_id", trace_topic_id)
+        pulumi.set(__self__, "trace_topic_name", trace_topic_name)
+
+    @property
+    @pulumi.getter(name="backendConfig")
+    def backend_config(self) -> 'outputs.TraceInstancesTraceInstanceBackendConfigResult':
+        """
+        The backend config of the trace instance.
+        """
+        return pulumi.get(self, "backend_config")
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        The create time of the trace instance.
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter(name="csAccountChannel")
+    def cs_account_channel(self) -> str:
+        """
+        CS account channel identifier.
+        """
+        return pulumi.get(self, "cs_account_channel")
+
+    @property
+    @pulumi.getter(name="dependencyTopicId")
+    def dependency_topic_id(self) -> str:
+        """
+        The ID of the dependency topic.
+        """
+        return pulumi.get(self, "dependency_topic_id")
+
+    @property
+    @pulumi.getter(name="dependencyTopicTopicName")
+    def dependency_topic_topic_name(self) -> str:
+        """
+        The name of the dependency topic.
+        """
+        return pulumi.get(self, "dependency_topic_topic_name")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the trace instance.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="modifyTime")
+    def modify_time(self) -> str:
+        """
+        The update time of the trace instance.
+        """
+        return pulumi.get(self, "modify_time")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        """
+        The ID of the project.
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The name of the project.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="traceInstanceId")
+    def trace_instance_id(self) -> str:
+        """
+        The ID of the trace instance.
+        """
+        return pulumi.get(self, "trace_instance_id")
+
+    @property
+    @pulumi.getter(name="traceInstanceName")
+    def trace_instance_name(self) -> str:
+        """
+        The name of the trace instance.
+        """
+        return pulumi.get(self, "trace_instance_name")
+
+    @property
+    @pulumi.getter(name="traceInstanceStatus")
+    def trace_instance_status(self) -> str:
+        """
+        The status of the trace instance.
+        """
+        return pulumi.get(self, "trace_instance_status")
+
+    @property
+    @pulumi.getter(name="traceTopicId")
+    def trace_topic_id(self) -> str:
+        """
+        The ID of the trace topic.
+        """
+        return pulumi.get(self, "trace_topic_id")
+
+    @property
+    @pulumi.getter(name="traceTopicName")
+    def trace_topic_name(self) -> str:
+        """
+        The name of the trace topic.
+        """
+        return pulumi.get(self, "trace_topic_name")
+
+
+@pulumi.output_type
+class TraceInstancesTraceInstanceBackendConfigResult(dict):
+    def __init__(__self__, *,
+                 archive_ttl: int,
+                 auto_split: bool,
+                 cold_ttl: int,
+                 enable_hot_ttl: bool,
+                 hot_ttl: int,
+                 max_split_partitions: int,
+                 ttl: int):
+        """
+        :param int archive_ttl: Archive storage duration in days.
+        :param bool auto_split: Whether to enable auto split.
+        :param int cold_ttl: Infrequent storage duration in days.
+        :param bool enable_hot_ttl: Whether to enable tiered storage.
+        :param int hot_ttl: Standard storage duration in days.
+        :param int max_split_partitions: Max split partitions.
+        :param int ttl: Total log retention time in days.
+        """
+        pulumi.set(__self__, "archive_ttl", archive_ttl)
+        pulumi.set(__self__, "auto_split", auto_split)
+        pulumi.set(__self__, "cold_ttl", cold_ttl)
+        pulumi.set(__self__, "enable_hot_ttl", enable_hot_ttl)
+        pulumi.set(__self__, "hot_ttl", hot_ttl)
+        pulumi.set(__self__, "max_split_partitions", max_split_partitions)
+        pulumi.set(__self__, "ttl", ttl)
+
+    @property
+    @pulumi.getter(name="archiveTtl")
+    def archive_ttl(self) -> int:
+        """
+        Archive storage duration in days.
+        """
+        return pulumi.get(self, "archive_ttl")
+
+    @property
+    @pulumi.getter(name="autoSplit")
+    def auto_split(self) -> bool:
+        """
+        Whether to enable auto split.
+        """
+        return pulumi.get(self, "auto_split")
+
+    @property
+    @pulumi.getter(name="coldTtl")
+    def cold_ttl(self) -> int:
+        """
+        Infrequent storage duration in days.
+        """
+        return pulumi.get(self, "cold_ttl")
+
+    @property
+    @pulumi.getter(name="enableHotTtl")
+    def enable_hot_ttl(self) -> bool:
+        """
+        Whether to enable tiered storage.
+        """
+        return pulumi.get(self, "enable_hot_ttl")
+
+    @property
+    @pulumi.getter(name="hotTtl")
+    def hot_ttl(self) -> int:
+        """
+        Standard storage duration in days.
+        """
+        return pulumi.get(self, "hot_ttl")
+
+    @property
+    @pulumi.getter(name="maxSplitPartitions")
+    def max_split_partitions(self) -> int:
+        """
+        Max split partitions.
+        """
+        return pulumi.get(self, "max_split_partitions")
+
+    @property
+    @pulumi.getter
+    def ttl(self) -> int:
+        """
+        Total log retention time in days.
+        """
+        return pulumi.get(self, "ttl")
+
+
+@pulumi.output_type
+class GetAccountsTlsAccountResult(dict):
+    def __init__(__self__, *,
+                 arch_version: str,
+                 status: str):
+        """
+        :param str arch_version: The version of the log service architecture. Valid values: 2.0 (new architecture), 1.0 (old architecture).
+        :param str status: The status of the log service. Valid values: Activated (already activated), NonActivated (not activated).
+        """
+        pulumi.set(__self__, "arch_version", arch_version)
+        pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter(name="archVersion")
+    def arch_version(self) -> str:
+        """
+        The version of the log service architecture. Valid values: 2.0 (new architecture), 1.0 (old architecture).
+        """
+        return pulumi.get(self, "arch_version")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of the log service. Valid values: Activated (already activated), NonActivated (not activated).
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetAlarmContentTemplatesTemplateResult(dict):
+    def __init__(__self__, *,
+                 alarm_content_template_id: str,
+                 alarm_content_template_name: str,
+                 content: str,
+                 create_time: str,
+                 description: str,
+                 ding_talks: Sequence['outputs.GetAlarmContentTemplatesTemplateDingTalkResult'],
+                 emails: Sequence['outputs.GetAlarmContentTemplatesTemplateEmailResult'],
+                 is_default: bool,
+                 larks: Sequence['outputs.GetAlarmContentTemplatesTemplateLarkResult'],
+                 sms: Sequence['outputs.GetAlarmContentTemplatesTemplateSmResult'],
+                 type: str,
+                 update_time: str,
+                 vms: Sequence['outputs.GetAlarmContentTemplatesTemplateVmResult'],
+                 webhooks: Sequence['outputs.GetAlarmContentTemplatesTemplateWebhookResult'],
+                 wechats: Sequence['outputs.GetAlarmContentTemplatesTemplateWechatResult']):
+        """
+        :param str alarm_content_template_id: The id of the alarm content template.
+        :param str alarm_content_template_name: The name of the alarm content template. Fuzzy matching is supported.
+        :param str content: The content of the wechat content template.
+        :param str create_time: The creation time of the alarm content template.
+        :param str description: The description of the alarm content template.
+        :param Sequence['GetAlarmContentTemplatesTemplateDingTalkArgs'] ding_talks: The ding_talk content of the alarm content template.
+        :param Sequence['GetAlarmContentTemplatesTemplateEmailArgs'] emails: The email content of the alarm content template.
+        :param bool is_default: Whether the alarm content template is default.
+        :param Sequence['GetAlarmContentTemplatesTemplateLarkArgs'] larks: The lark content of the alarm content template.
+        :param Sequence['GetAlarmContentTemplatesTemplateSmArgs'] sms: The sms content of the alarm content template.
+        :param str type: The type of the alarm content template.
+        :param str update_time: The update time of the alarm content template.
+        :param Sequence['GetAlarmContentTemplatesTemplateVmArgs'] vms: The vms content of the alarm content template.
+        :param Sequence['GetAlarmContentTemplatesTemplateWebhookArgs'] webhooks: The webhook content of the alarm content template.
+        :param Sequence['GetAlarmContentTemplatesTemplateWechatArgs'] wechats: The wechat content of the alarm content template.
+        """
+        pulumi.set(__self__, "alarm_content_template_id", alarm_content_template_id)
+        pulumi.set(__self__, "alarm_content_template_name", alarm_content_template_name)
+        pulumi.set(__self__, "content", content)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "ding_talks", ding_talks)
+        pulumi.set(__self__, "emails", emails)
+        pulumi.set(__self__, "is_default", is_default)
+        pulumi.set(__self__, "larks", larks)
+        pulumi.set(__self__, "sms", sms)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "update_time", update_time)
+        pulumi.set(__self__, "vms", vms)
+        pulumi.set(__self__, "webhooks", webhooks)
+        pulumi.set(__self__, "wechats", wechats)
+
+    @property
+    @pulumi.getter(name="alarmContentTemplateId")
+    def alarm_content_template_id(self) -> str:
+        """
+        The id of the alarm content template.
+        """
+        return pulumi.get(self, "alarm_content_template_id")
+
+    @property
+    @pulumi.getter(name="alarmContentTemplateName")
+    def alarm_content_template_name(self) -> str:
+        """
+        The name of the alarm content template. Fuzzy matching is supported.
+        """
+        return pulumi.get(self, "alarm_content_template_name")
+
+    @property
+    @pulumi.getter
+    def content(self) -> str:
+        """
+        The content of the wechat content template.
+        """
+        return pulumi.get(self, "content")
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        The creation time of the alarm content template.
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the alarm content template.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="dingTalks")
+    def ding_talks(self) -> Sequence['outputs.GetAlarmContentTemplatesTemplateDingTalkResult']:
+        """
+        The ding_talk content of the alarm content template.
+        """
+        return pulumi.get(self, "ding_talks")
+
+    @property
+    @pulumi.getter
+    def emails(self) -> Sequence['outputs.GetAlarmContentTemplatesTemplateEmailResult']:
+        """
+        The email content of the alarm content template.
+        """
+        return pulumi.get(self, "emails")
+
+    @property
+    @pulumi.getter(name="isDefault")
+    def is_default(self) -> bool:
+        """
+        Whether the alarm content template is default.
+        """
+        return pulumi.get(self, "is_default")
+
+    @property
+    @pulumi.getter
+    def larks(self) -> Sequence['outputs.GetAlarmContentTemplatesTemplateLarkResult']:
+        """
+        The lark content of the alarm content template.
+        """
+        return pulumi.get(self, "larks")
+
+    @property
+    @pulumi.getter
+    def sms(self) -> Sequence['outputs.GetAlarmContentTemplatesTemplateSmResult']:
+        """
+        The sms content of the alarm content template.
+        """
+        return pulumi.get(self, "sms")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of the alarm content template.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> str:
+        """
+        The update time of the alarm content template.
+        """
+        return pulumi.get(self, "update_time")
+
+    @property
+    @pulumi.getter
+    def vms(self) -> Sequence['outputs.GetAlarmContentTemplatesTemplateVmResult']:
+        """
+        The vms content of the alarm content template.
+        """
+        return pulumi.get(self, "vms")
+
+    @property
+    @pulumi.getter
+    def webhooks(self) -> Sequence['outputs.GetAlarmContentTemplatesTemplateWebhookResult']:
+        """
+        The webhook content of the alarm content template.
+        """
+        return pulumi.get(self, "webhooks")
+
+    @property
+    @pulumi.getter
+    def wechats(self) -> Sequence['outputs.GetAlarmContentTemplatesTemplateWechatResult']:
+        """
+        The wechat content of the alarm content template.
+        """
+        return pulumi.get(self, "wechats")
+
+
+@pulumi.output_type
+class GetAlarmContentTemplatesTemplateDingTalkResult(dict):
+    def __init__(__self__, *,
+                 content: str,
+                 locale: str,
+                 title: str):
+        """
+        :param str content: The content of the wechat content template.
+        :param str locale: The locale of the wechat content template.
+        :param str title: The title of the lark content template.
+        """
+        pulumi.set(__self__, "content", content)
+        pulumi.set(__self__, "locale", locale)
+        pulumi.set(__self__, "title", title)
+
+    @property
+    @pulumi.getter
+    def content(self) -> str:
+        """
+        The content of the wechat content template.
+        """
+        return pulumi.get(self, "content")
+
+    @property
+    @pulumi.getter
+    def locale(self) -> str:
+        """
+        The locale of the wechat content template.
+        """
+        return pulumi.get(self, "locale")
+
+    @property
+    @pulumi.getter
+    def title(self) -> str:
+        """
+        The title of the lark content template.
+        """
+        return pulumi.get(self, "title")
+
+
+@pulumi.output_type
+class GetAlarmContentTemplatesTemplateEmailResult(dict):
+    def __init__(__self__, *,
+                 content: str,
+                 locale: str,
+                 subject: str):
+        """
+        :param str content: The content of the wechat content template.
+        :param str locale: The locale of the wechat content template.
+        :param str subject: The subject of the email content template.
+        """
+        pulumi.set(__self__, "content", content)
+        pulumi.set(__self__, "locale", locale)
+        pulumi.set(__self__, "subject", subject)
+
+    @property
+    @pulumi.getter
+    def content(self) -> str:
+        """
+        The content of the wechat content template.
+        """
+        return pulumi.get(self, "content")
+
+    @property
+    @pulumi.getter
+    def locale(self) -> str:
+        """
+        The locale of the wechat content template.
+        """
+        return pulumi.get(self, "locale")
+
+    @property
+    @pulumi.getter
+    def subject(self) -> str:
+        """
+        The subject of the email content template.
+        """
+        return pulumi.get(self, "subject")
+
+
+@pulumi.output_type
+class GetAlarmContentTemplatesTemplateLarkResult(dict):
+    def __init__(__self__, *,
+                 content: str,
+                 locale: str,
+                 title: str):
+        """
+        :param str content: The content of the wechat content template.
+        :param str locale: The locale of the wechat content template.
+        :param str title: The title of the lark content template.
+        """
+        pulumi.set(__self__, "content", content)
+        pulumi.set(__self__, "locale", locale)
+        pulumi.set(__self__, "title", title)
+
+    @property
+    @pulumi.getter
+    def content(self) -> str:
+        """
+        The content of the wechat content template.
+        """
+        return pulumi.get(self, "content")
+
+    @property
+    @pulumi.getter
+    def locale(self) -> str:
+        """
+        The locale of the wechat content template.
+        """
+        return pulumi.get(self, "locale")
+
+    @property
+    @pulumi.getter
+    def title(self) -> str:
+        """
+        The title of the lark content template.
+        """
+        return pulumi.get(self, "title")
+
+
+@pulumi.output_type
+class GetAlarmContentTemplatesTemplateSmResult(dict):
+    def __init__(__self__, *,
+                 content: str,
+                 locale: str):
+        """
+        :param str content: The content of the wechat content template.
+        :param str locale: The locale of the wechat content template.
+        """
+        pulumi.set(__self__, "content", content)
+        pulumi.set(__self__, "locale", locale)
+
+    @property
+    @pulumi.getter
+    def content(self) -> str:
+        """
+        The content of the wechat content template.
+        """
+        return pulumi.get(self, "content")
+
+    @property
+    @pulumi.getter
+    def locale(self) -> str:
+        """
+        The locale of the wechat content template.
+        """
+        return pulumi.get(self, "locale")
+
+
+@pulumi.output_type
+class GetAlarmContentTemplatesTemplateVmResult(dict):
+    def __init__(__self__, *,
+                 content: str,
+                 locale: str):
+        """
+        :param str content: The content of the wechat content template.
+        :param str locale: The locale of the wechat content template.
+        """
+        pulumi.set(__self__, "content", content)
+        pulumi.set(__self__, "locale", locale)
+
+    @property
+    @pulumi.getter
+    def content(self) -> str:
+        """
+        The content of the wechat content template.
+        """
+        return pulumi.get(self, "content")
+
+    @property
+    @pulumi.getter
+    def locale(self) -> str:
+        """
+        The locale of the wechat content template.
+        """
+        return pulumi.get(self, "locale")
+
+
+@pulumi.output_type
+class GetAlarmContentTemplatesTemplateWebhookResult(dict):
+    def __init__(__self__, *,
+                 content: str):
+        """
+        :param str content: The content of the wechat content template.
+        """
+        pulumi.set(__self__, "content", content)
+
+    @property
+    @pulumi.getter
+    def content(self) -> str:
+        """
+        The content of the wechat content template.
+        """
+        return pulumi.get(self, "content")
+
+
+@pulumi.output_type
+class GetAlarmContentTemplatesTemplateWechatResult(dict):
+    def __init__(__self__, *,
+                 content: str,
+                 locale: str):
+        """
+        :param str content: The content of the wechat content template.
+        :param str locale: The locale of the wechat content template.
+        """
+        pulumi.set(__self__, "content", content)
+        pulumi.set(__self__, "locale", locale)
+
+    @property
+    @pulumi.getter
+    def content(self) -> str:
+        """
+        The content of the wechat content template.
+        """
+        return pulumi.get(self, "content")
+
+    @property
+    @pulumi.getter
+    def locale(self) -> str:
+        """
+        The locale of the wechat content template.
+        """
+        return pulumi.get(self, "locale")
+
+
+@pulumi.output_type
 class GetAlarmNotifyGroupsGroupResult(dict):
     def __init__(__self__, *,
                  alarm_notify_group_id: str,
@@ -7885,6 +13117,7 @@ class GetAlarmNotifyGroupsGroupResult(dict):
                  create_time: str,
                  iam_project_name: str,
                  modify_time: str,
+                 notice_rules: Sequence['outputs.GetAlarmNotifyGroupsGroupNoticeRuleResult'],
                  notify_types: Sequence[str],
                  receivers: Sequence['outputs.GetAlarmNotifyGroupsGroupReceiverResult']):
         """
@@ -7893,6 +13126,7 @@ class GetAlarmNotifyGroupsGroupResult(dict):
         :param str create_time: The create time the notification.
         :param str iam_project_name: The name of the iam project.
         :param str modify_time: The modification time the notification.
+        :param Sequence['GetAlarmNotifyGroupsGroupNoticeRuleArgs'] notice_rules: The list of the notice rules.
         :param Sequence[str] notify_types: The notify group type.
         :param Sequence['GetAlarmNotifyGroupsGroupReceiverArgs'] receivers: List of IAM users to receive alerts.
         """
@@ -7901,6 +13135,7 @@ class GetAlarmNotifyGroupsGroupResult(dict):
         pulumi.set(__self__, "create_time", create_time)
         pulumi.set(__self__, "iam_project_name", iam_project_name)
         pulumi.set(__self__, "modify_time", modify_time)
+        pulumi.set(__self__, "notice_rules", notice_rules)
         pulumi.set(__self__, "notify_types", notify_types)
         pulumi.set(__self__, "receivers", receivers)
 
@@ -7945,6 +13180,14 @@ class GetAlarmNotifyGroupsGroupResult(dict):
         return pulumi.get(self, "modify_time")
 
     @property
+    @pulumi.getter(name="noticeRules")
+    def notice_rules(self) -> Sequence['outputs.GetAlarmNotifyGroupsGroupNoticeRuleResult']:
+        """
+        The list of the notice rules.
+        """
+        return pulumi.get(self, "notice_rules")
+
+    @property
     @pulumi.getter(name="notifyTypes")
     def notify_types(self) -> Sequence[str]:
         """
@@ -7962,25 +13205,146 @@ class GetAlarmNotifyGroupsGroupResult(dict):
 
 
 @pulumi.output_type
-class GetAlarmNotifyGroupsGroupReceiverResult(dict):
+class GetAlarmNotifyGroupsGroupNoticeRuleResult(dict):
     def __init__(__self__, *,
+                 has_end_node: bool,
+                 has_next: bool,
+                 receiver_infos: Sequence['outputs.GetAlarmNotifyGroupsGroupNoticeRuleReceiverInfoResult'],
+                 rule_nodes: Sequence['outputs.GetAlarmNotifyGroupsGroupNoticeRuleRuleNodeResult']):
+        """
+        :param bool has_end_node: Whether there is an end node behind.
+        :param bool has_next: Whether to continue to the next level of condition judgment.
+        :param Sequence['GetAlarmNotifyGroupsGroupNoticeRuleReceiverInfoArgs'] receiver_infos: List of IAM users to receive alerts.
+        :param Sequence['GetAlarmNotifyGroupsGroupNoticeRuleRuleNodeArgs'] rule_nodes: The rule node.
+        """
+        pulumi.set(__self__, "has_end_node", has_end_node)
+        pulumi.set(__self__, "has_next", has_next)
+        pulumi.set(__self__, "receiver_infos", receiver_infos)
+        pulumi.set(__self__, "rule_nodes", rule_nodes)
+
+    @property
+    @pulumi.getter(name="hasEndNode")
+    def has_end_node(self) -> bool:
+        """
+        Whether there is an end node behind.
+        """
+        return pulumi.get(self, "has_end_node")
+
+    @property
+    @pulumi.getter(name="hasNext")
+    def has_next(self) -> bool:
+        """
+        Whether to continue to the next level of condition judgment.
+        """
+        return pulumi.get(self, "has_next")
+
+    @property
+    @pulumi.getter(name="receiverInfos")
+    def receiver_infos(self) -> Sequence['outputs.GetAlarmNotifyGroupsGroupNoticeRuleReceiverInfoResult']:
+        """
+        List of IAM users to receive alerts.
+        """
+        return pulumi.get(self, "receiver_infos")
+
+    @property
+    @pulumi.getter(name="ruleNodes")
+    def rule_nodes(self) -> Sequence['outputs.GetAlarmNotifyGroupsGroupNoticeRuleRuleNodeResult']:
+        """
+        The rule node.
+        """
+        return pulumi.get(self, "rule_nodes")
+
+
+@pulumi.output_type
+class GetAlarmNotifyGroupsGroupNoticeRuleReceiverInfoResult(dict):
+    def __init__(__self__, *,
+                 alarm_content_template_id: str,
+                 alarm_webhook_at_users: Sequence[str],
+                 alarm_webhook_integration_id: str,
+                 alarm_webhook_integration_name: str,
+                 alarm_webhook_is_at_all: bool,
                  end_time: str,
+                 general_webhook: str,
+                 general_webhook_body: str,
+                 general_webhook_headers: Sequence['outputs.GetAlarmNotifyGroupsGroupNoticeRuleReceiverInfoGeneralWebhookHeaderResult'],
+                 general_webhook_method: str,
+                 general_webhook_url: str,
                  receiver_channels: Sequence[str],
                  receiver_names: Sequence[str],
                  receiver_type: str,
                  start_time: str):
         """
+        :param str alarm_content_template_id: The alarm content template id.
+        :param Sequence[str] alarm_webhook_at_users: The alarm webhook at users.
+        :param str alarm_webhook_integration_id: The alarm webhook integration id.
+        :param str alarm_webhook_integration_name: The alarm webhook integration name.
+        :param bool alarm_webhook_is_at_all: The alarm webhook is at all.
         :param str end_time: The end time.
+        :param str general_webhook: The general webhook.
+        :param str general_webhook_body: The webhook body.
+        :param Sequence['GetAlarmNotifyGroupsGroupNoticeRuleReceiverInfoGeneralWebhookHeaderArgs'] general_webhook_headers: The general webhook headers.
+        :param str general_webhook_method: The general webhook method.
+        :param str general_webhook_url: The webhook url.
         :param Sequence[str] receiver_channels: The list of the receiver channels.
         :param Sequence[str] receiver_names: List of the receiver names.
         :param str receiver_type: The receiver type.
         :param str start_time: The start time.
         """
+        pulumi.set(__self__, "alarm_content_template_id", alarm_content_template_id)
+        pulumi.set(__self__, "alarm_webhook_at_users", alarm_webhook_at_users)
+        pulumi.set(__self__, "alarm_webhook_integration_id", alarm_webhook_integration_id)
+        pulumi.set(__self__, "alarm_webhook_integration_name", alarm_webhook_integration_name)
+        pulumi.set(__self__, "alarm_webhook_is_at_all", alarm_webhook_is_at_all)
         pulumi.set(__self__, "end_time", end_time)
+        pulumi.set(__self__, "general_webhook", general_webhook)
+        pulumi.set(__self__, "general_webhook_body", general_webhook_body)
+        pulumi.set(__self__, "general_webhook_headers", general_webhook_headers)
+        pulumi.set(__self__, "general_webhook_method", general_webhook_method)
+        pulumi.set(__self__, "general_webhook_url", general_webhook_url)
         pulumi.set(__self__, "receiver_channels", receiver_channels)
         pulumi.set(__self__, "receiver_names", receiver_names)
         pulumi.set(__self__, "receiver_type", receiver_type)
         pulumi.set(__self__, "start_time", start_time)
+
+    @property
+    @pulumi.getter(name="alarmContentTemplateId")
+    def alarm_content_template_id(self) -> str:
+        """
+        The alarm content template id.
+        """
+        return pulumi.get(self, "alarm_content_template_id")
+
+    @property
+    @pulumi.getter(name="alarmWebhookAtUsers")
+    def alarm_webhook_at_users(self) -> Sequence[str]:
+        """
+        The alarm webhook at users.
+        """
+        return pulumi.get(self, "alarm_webhook_at_users")
+
+    @property
+    @pulumi.getter(name="alarmWebhookIntegrationId")
+    def alarm_webhook_integration_id(self) -> str:
+        """
+        The alarm webhook integration id.
+        """
+        return pulumi.get(self, "alarm_webhook_integration_id")
+
+    @property
+    @pulumi.getter(name="alarmWebhookIntegrationName")
+    def alarm_webhook_integration_name(self) -> str:
+        """
+        The alarm webhook integration name.
+        """
+        return pulumi.get(self, "alarm_webhook_integration_name")
+
+    @property
+    @pulumi.getter(name="alarmWebhookIsAtAll")
+    def alarm_webhook_is_at_all(self) -> bool:
+        """
+        The alarm webhook is at all.
+        """
+        return pulumi.get(self, "alarm_webhook_is_at_all")
 
     @property
     @pulumi.getter(name="endTime")
@@ -7989,6 +13353,46 @@ class GetAlarmNotifyGroupsGroupReceiverResult(dict):
         The end time.
         """
         return pulumi.get(self, "end_time")
+
+    @property
+    @pulumi.getter(name="generalWebhook")
+    def general_webhook(self) -> str:
+        """
+        The general webhook.
+        """
+        return pulumi.get(self, "general_webhook")
+
+    @property
+    @pulumi.getter(name="generalWebhookBody")
+    def general_webhook_body(self) -> str:
+        """
+        The webhook body.
+        """
+        return pulumi.get(self, "general_webhook_body")
+
+    @property
+    @pulumi.getter(name="generalWebhookHeaders")
+    def general_webhook_headers(self) -> Sequence['outputs.GetAlarmNotifyGroupsGroupNoticeRuleReceiverInfoGeneralWebhookHeaderResult']:
+        """
+        The general webhook headers.
+        """
+        return pulumi.get(self, "general_webhook_headers")
+
+    @property
+    @pulumi.getter(name="generalWebhookMethod")
+    def general_webhook_method(self) -> str:
+        """
+        The general webhook method.
+        """
+        return pulumi.get(self, "general_webhook_method")
+
+    @property
+    @pulumi.getter(name="generalWebhookUrl")
+    def general_webhook_url(self) -> str:
+        """
+        The webhook url.
+        """
+        return pulumi.get(self, "general_webhook_url")
 
     @property
     @pulumi.getter(name="receiverChannels")
@@ -8024,6 +13428,440 @@ class GetAlarmNotifyGroupsGroupReceiverResult(dict):
 
 
 @pulumi.output_type
+class GetAlarmNotifyGroupsGroupNoticeRuleReceiverInfoGeneralWebhookHeaderResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The key of the header.
+        :param str value: The value of the header.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The key of the header.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The value of the header.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetAlarmNotifyGroupsGroupNoticeRuleRuleNodeResult(dict):
+    def __init__(__self__, *,
+                 childrens: Sequence['outputs.GetAlarmNotifyGroupsGroupNoticeRuleRuleNodeChildrenResult'],
+                 type: str,
+                 values: Sequence[str]):
+        """
+        :param Sequence['GetAlarmNotifyGroupsGroupNoticeRuleRuleNodeChildrenArgs'] childrens: The children of the rule node.
+        :param str type: The type of the rule node.
+        :param Sequence[str] values: The value of the header.
+        """
+        pulumi.set(__self__, "childrens", childrens)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "values", values)
+
+    @property
+    @pulumi.getter
+    def childrens(self) -> Sequence['outputs.GetAlarmNotifyGroupsGroupNoticeRuleRuleNodeChildrenResult']:
+        """
+        The children of the rule node.
+        """
+        return pulumi.get(self, "childrens")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of the rule node.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def values(self) -> Sequence[str]:
+        """
+        The value of the header.
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetAlarmNotifyGroupsGroupNoticeRuleRuleNodeChildrenResult(dict):
+    def __init__(__self__, *,
+                 type: str,
+                 values: Sequence[str]):
+        """
+        :param str type: The type of the rule node.
+        :param Sequence[str] values: The value of the header.
+        """
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "values", values)
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of the rule node.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def values(self) -> Sequence[str]:
+        """
+        The value of the header.
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetAlarmNotifyGroupsGroupReceiverResult(dict):
+    def __init__(__self__, *,
+                 alarm_content_template_id: str,
+                 alarm_webhook_at_users: Sequence[str],
+                 alarm_webhook_integration_id: str,
+                 alarm_webhook_integration_name: str,
+                 alarm_webhook_is_at_all: bool,
+                 end_time: str,
+                 general_webhook: str,
+                 general_webhook_body: str,
+                 general_webhook_headers: Sequence['outputs.GetAlarmNotifyGroupsGroupReceiverGeneralWebhookHeaderResult'],
+                 general_webhook_method: str,
+                 general_webhook_url: str,
+                 receiver_channels: Sequence[str],
+                 receiver_names: Sequence[str],
+                 receiver_type: str,
+                 start_time: str):
+        """
+        :param str alarm_content_template_id: The alarm content template id.
+        :param Sequence[str] alarm_webhook_at_users: The alarm webhook at users.
+        :param str alarm_webhook_integration_id: The alarm webhook integration id.
+        :param str alarm_webhook_integration_name: The alarm webhook integration name.
+        :param bool alarm_webhook_is_at_all: The alarm webhook is at all.
+        :param str end_time: The end time.
+        :param str general_webhook: The general webhook.
+        :param str general_webhook_body: The webhook body.
+        :param Sequence['GetAlarmNotifyGroupsGroupReceiverGeneralWebhookHeaderArgs'] general_webhook_headers: The general webhook headers.
+        :param str general_webhook_method: The general webhook method.
+        :param str general_webhook_url: The webhook url.
+        :param Sequence[str] receiver_channels: The list of the receiver channels.
+        :param Sequence[str] receiver_names: List of the receiver names.
+        :param str receiver_type: The receiver type.
+        :param str start_time: The start time.
+        """
+        pulumi.set(__self__, "alarm_content_template_id", alarm_content_template_id)
+        pulumi.set(__self__, "alarm_webhook_at_users", alarm_webhook_at_users)
+        pulumi.set(__self__, "alarm_webhook_integration_id", alarm_webhook_integration_id)
+        pulumi.set(__self__, "alarm_webhook_integration_name", alarm_webhook_integration_name)
+        pulumi.set(__self__, "alarm_webhook_is_at_all", alarm_webhook_is_at_all)
+        pulumi.set(__self__, "end_time", end_time)
+        pulumi.set(__self__, "general_webhook", general_webhook)
+        pulumi.set(__self__, "general_webhook_body", general_webhook_body)
+        pulumi.set(__self__, "general_webhook_headers", general_webhook_headers)
+        pulumi.set(__self__, "general_webhook_method", general_webhook_method)
+        pulumi.set(__self__, "general_webhook_url", general_webhook_url)
+        pulumi.set(__self__, "receiver_channels", receiver_channels)
+        pulumi.set(__self__, "receiver_names", receiver_names)
+        pulumi.set(__self__, "receiver_type", receiver_type)
+        pulumi.set(__self__, "start_time", start_time)
+
+    @property
+    @pulumi.getter(name="alarmContentTemplateId")
+    def alarm_content_template_id(self) -> str:
+        """
+        The alarm content template id.
+        """
+        return pulumi.get(self, "alarm_content_template_id")
+
+    @property
+    @pulumi.getter(name="alarmWebhookAtUsers")
+    def alarm_webhook_at_users(self) -> Sequence[str]:
+        """
+        The alarm webhook at users.
+        """
+        return pulumi.get(self, "alarm_webhook_at_users")
+
+    @property
+    @pulumi.getter(name="alarmWebhookIntegrationId")
+    def alarm_webhook_integration_id(self) -> str:
+        """
+        The alarm webhook integration id.
+        """
+        return pulumi.get(self, "alarm_webhook_integration_id")
+
+    @property
+    @pulumi.getter(name="alarmWebhookIntegrationName")
+    def alarm_webhook_integration_name(self) -> str:
+        """
+        The alarm webhook integration name.
+        """
+        return pulumi.get(self, "alarm_webhook_integration_name")
+
+    @property
+    @pulumi.getter(name="alarmWebhookIsAtAll")
+    def alarm_webhook_is_at_all(self) -> bool:
+        """
+        The alarm webhook is at all.
+        """
+        return pulumi.get(self, "alarm_webhook_is_at_all")
+
+    @property
+    @pulumi.getter(name="endTime")
+    def end_time(self) -> str:
+        """
+        The end time.
+        """
+        return pulumi.get(self, "end_time")
+
+    @property
+    @pulumi.getter(name="generalWebhook")
+    def general_webhook(self) -> str:
+        """
+        The general webhook.
+        """
+        return pulumi.get(self, "general_webhook")
+
+    @property
+    @pulumi.getter(name="generalWebhookBody")
+    def general_webhook_body(self) -> str:
+        """
+        The webhook body.
+        """
+        return pulumi.get(self, "general_webhook_body")
+
+    @property
+    @pulumi.getter(name="generalWebhookHeaders")
+    def general_webhook_headers(self) -> Sequence['outputs.GetAlarmNotifyGroupsGroupReceiverGeneralWebhookHeaderResult']:
+        """
+        The general webhook headers.
+        """
+        return pulumi.get(self, "general_webhook_headers")
+
+    @property
+    @pulumi.getter(name="generalWebhookMethod")
+    def general_webhook_method(self) -> str:
+        """
+        The general webhook method.
+        """
+        return pulumi.get(self, "general_webhook_method")
+
+    @property
+    @pulumi.getter(name="generalWebhookUrl")
+    def general_webhook_url(self) -> str:
+        """
+        The webhook url.
+        """
+        return pulumi.get(self, "general_webhook_url")
+
+    @property
+    @pulumi.getter(name="receiverChannels")
+    def receiver_channels(self) -> Sequence[str]:
+        """
+        The list of the receiver channels.
+        """
+        return pulumi.get(self, "receiver_channels")
+
+    @property
+    @pulumi.getter(name="receiverNames")
+    def receiver_names(self) -> Sequence[str]:
+        """
+        List of the receiver names.
+        """
+        return pulumi.get(self, "receiver_names")
+
+    @property
+    @pulumi.getter(name="receiverType")
+    def receiver_type(self) -> str:
+        """
+        The receiver type.
+        """
+        return pulumi.get(self, "receiver_type")
+
+    @property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> str:
+        """
+        The start time.
+        """
+        return pulumi.get(self, "start_time")
+
+
+@pulumi.output_type
+class GetAlarmNotifyGroupsGroupReceiverGeneralWebhookHeaderResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The key of the header.
+        :param str value: The value of the header.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The key of the header.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The value of the header.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetAlarmWebhookIntegrationsIntegrationResult(dict):
+    def __init__(__self__, *,
+                 create_time: str,
+                 modify_time: str,
+                 webhook_headers: Sequence['outputs.GetAlarmWebhookIntegrationsIntegrationWebhookHeaderResult'],
+                 webhook_id: str,
+                 webhook_method: str,
+                 webhook_name: str,
+                 webhook_secret: str,
+                 webhook_type: str,
+                 webhook_url: str):
+        """
+        :param str create_time: The creation time of the webhook integration.
+        :param str modify_time: The update time of the webhook integration.
+        :param Sequence['GetAlarmWebhookIntegrationsIntegrationWebhookHeaderArgs'] webhook_headers: The headers of the webhook.
+        :param str webhook_id: The ID of the alarm webhook integration.
+        :param str webhook_method: The method of the webhook.
+        :param str webhook_name: The name of the webhook integration. Fuzzy matching is supported.
+        :param str webhook_secret: The secret of the webhook.
+        :param str webhook_type: The type of the webhook integration.
+        :param str webhook_url: The URL of the webhook.
+        """
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "modify_time", modify_time)
+        pulumi.set(__self__, "webhook_headers", webhook_headers)
+        pulumi.set(__self__, "webhook_id", webhook_id)
+        pulumi.set(__self__, "webhook_method", webhook_method)
+        pulumi.set(__self__, "webhook_name", webhook_name)
+        pulumi.set(__self__, "webhook_secret", webhook_secret)
+        pulumi.set(__self__, "webhook_type", webhook_type)
+        pulumi.set(__self__, "webhook_url", webhook_url)
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        The creation time of the webhook integration.
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter(name="modifyTime")
+    def modify_time(self) -> str:
+        """
+        The update time of the webhook integration.
+        """
+        return pulumi.get(self, "modify_time")
+
+    @property
+    @pulumi.getter(name="webhookHeaders")
+    def webhook_headers(self) -> Sequence['outputs.GetAlarmWebhookIntegrationsIntegrationWebhookHeaderResult']:
+        """
+        The headers of the webhook.
+        """
+        return pulumi.get(self, "webhook_headers")
+
+    @property
+    @pulumi.getter(name="webhookId")
+    def webhook_id(self) -> str:
+        """
+        The ID of the alarm webhook integration.
+        """
+        return pulumi.get(self, "webhook_id")
+
+    @property
+    @pulumi.getter(name="webhookMethod")
+    def webhook_method(self) -> str:
+        """
+        The method of the webhook.
+        """
+        return pulumi.get(self, "webhook_method")
+
+    @property
+    @pulumi.getter(name="webhookName")
+    def webhook_name(self) -> str:
+        """
+        The name of the webhook integration. Fuzzy matching is supported.
+        """
+        return pulumi.get(self, "webhook_name")
+
+    @property
+    @pulumi.getter(name="webhookSecret")
+    def webhook_secret(self) -> str:
+        """
+        The secret of the webhook.
+        """
+        return pulumi.get(self, "webhook_secret")
+
+    @property
+    @pulumi.getter(name="webhookType")
+    def webhook_type(self) -> str:
+        """
+        The type of the webhook integration.
+        """
+        return pulumi.get(self, "webhook_type")
+
+    @property
+    @pulumi.getter(name="webhookUrl")
+    def webhook_url(self) -> str:
+        """
+        The URL of the webhook.
+        """
+        return pulumi.get(self, "webhook_url")
+
+
+@pulumi.output_type
+class GetAlarmWebhookIntegrationsIntegrationWebhookHeaderResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The key of the header.
+        :param str value: The value of the header.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The key of the header.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The value of the header.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class GetAlarmsAlarmResult(dict):
     def __init__(__self__, *,
                  alarm_id: str,
@@ -8033,11 +13871,15 @@ class GetAlarmsAlarmResult(dict):
                  alarm_period_details: Sequence['outputs.GetAlarmsAlarmAlarmPeriodDetailResult'],
                  condition: str,
                  create_time: str,
+                 join_configurations: Sequence['outputs.GetAlarmsAlarmJoinConfigurationResult'],
                  modify_time: str,
                  project_id: str,
                  query_requests: Sequence['outputs.GetAlarmsAlarmQueryRequestResult'],
                  request_cycles: Sequence['outputs.GetAlarmsAlarmRequestCycleResult'],
+                 send_resolved: bool,
+                 severity: str,
                  status: bool,
+                 trigger_conditions: Sequence['outputs.GetAlarmsAlarmTriggerConditionResult'],
                  trigger_period: int,
                  user_define_msg: str):
         """
@@ -8046,13 +13888,17 @@ class GetAlarmsAlarmResult(dict):
         :param Sequence['GetAlarmsAlarmAlarmNotifyGroupArgs'] alarm_notify_groups: List of notification groups corresponding to the alarm.
         :param int alarm_period: Period for sending alarm notifications. When the number of continuous alarm triggers reaches the specified limit (TriggerPeriod), Log Service will send alarm notifications according to the specified period.
         :param Sequence['GetAlarmsAlarmAlarmPeriodDetailArgs'] alarm_period_details: Period for sending alarm notifications. When the number of continuous alarm triggers reaches the specified limit (TriggerPeriod), Log Service will send alarm notifications according to the specified period.
-        :param str condition: Alarm trigger condition.
+        :param str condition: The condition.
         :param str create_time: The create time.
+        :param Sequence['GetAlarmsAlarmJoinConfigurationArgs'] join_configurations: The list of join configurations.
         :param str modify_time: The modify time.
         :param str project_id: The project id.
         :param Sequence['GetAlarmsAlarmQueryRequestArgs'] query_requests: Search and analyze sentences, 1~3 can be configured.
         :param Sequence['GetAlarmsAlarmRequestCycleArgs'] request_cycles: The execution period of the alarm task.
+        :param bool send_resolved: Whether to send resolved.
+        :param str severity: The severity.
         :param bool status: The status.
+        :param Sequence['GetAlarmsAlarmTriggerConditionArgs'] trigger_conditions: The list of trigger conditions.
         :param int trigger_period: Continuous cycle. The alarm will be issued after the trigger condition is continuously met for TriggerPeriod periods; the minimum value is 1, the maximum value is 10, and the default value is 1.
         :param str user_define_msg: Customize the alarm notification content.
         """
@@ -8063,11 +13909,15 @@ class GetAlarmsAlarmResult(dict):
         pulumi.set(__self__, "alarm_period_details", alarm_period_details)
         pulumi.set(__self__, "condition", condition)
         pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "join_configurations", join_configurations)
         pulumi.set(__self__, "modify_time", modify_time)
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "query_requests", query_requests)
         pulumi.set(__self__, "request_cycles", request_cycles)
+        pulumi.set(__self__, "send_resolved", send_resolved)
+        pulumi.set(__self__, "severity", severity)
         pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "trigger_conditions", trigger_conditions)
         pulumi.set(__self__, "trigger_period", trigger_period)
         pulumi.set(__self__, "user_define_msg", user_define_msg)
 
@@ -8115,7 +13965,7 @@ class GetAlarmsAlarmResult(dict):
     @pulumi.getter
     def condition(self) -> str:
         """
-        Alarm trigger condition.
+        The condition.
         """
         return pulumi.get(self, "condition")
 
@@ -8126,6 +13976,14 @@ class GetAlarmsAlarmResult(dict):
         The create time.
         """
         return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter(name="joinConfigurations")
+    def join_configurations(self) -> Sequence['outputs.GetAlarmsAlarmJoinConfigurationResult']:
+        """
+        The list of join configurations.
+        """
+        return pulumi.get(self, "join_configurations")
 
     @property
     @pulumi.getter(name="modifyTime")
@@ -8160,12 +14018,36 @@ class GetAlarmsAlarmResult(dict):
         return pulumi.get(self, "request_cycles")
 
     @property
+    @pulumi.getter(name="sendResolved")
+    def send_resolved(self) -> bool:
+        """
+        Whether to send resolved.
+        """
+        return pulumi.get(self, "send_resolved")
+
+    @property
+    @pulumi.getter
+    def severity(self) -> str:
+        """
+        The severity.
+        """
+        return pulumi.get(self, "severity")
+
+    @property
     @pulumi.getter
     def status(self) -> bool:
         """
         The status.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="triggerConditions")
+    def trigger_conditions(self) -> Sequence['outputs.GetAlarmsAlarmTriggerConditionResult']:
+        """
+        The list of trigger conditions.
+        """
+        return pulumi.get(self, "trigger_conditions")
 
     @property
     @pulumi.getter(name="triggerPeriod")
@@ -8382,28 +14264,69 @@ class GetAlarmsAlarmAlarmPeriodDetailResult(dict):
 
 
 @pulumi.output_type
+class GetAlarmsAlarmJoinConfigurationResult(dict):
+    def __init__(__self__, *,
+                 condition: str,
+                 set_operation_type: str):
+        """
+        :param str condition: The condition.
+        :param str set_operation_type: The set operation type.
+        """
+        pulumi.set(__self__, "condition", condition)
+        pulumi.set(__self__, "set_operation_type", set_operation_type)
+
+    @property
+    @pulumi.getter
+    def condition(self) -> str:
+        """
+        The condition.
+        """
+        return pulumi.get(self, "condition")
+
+    @property
+    @pulumi.getter(name="setOperationType")
+    def set_operation_type(self) -> str:
+        """
+        The set operation type.
+        """
+        return pulumi.get(self, "set_operation_type")
+
+
+@pulumi.output_type
 class GetAlarmsAlarmQueryRequestResult(dict):
     def __init__(__self__, *,
                  end_time_offset: int,
+                 end_time_offset_unit: str,
                  number: int,
                  query: str,
                  start_time_offset: int,
+                 start_time_offset_unit: str,
+                 time_span_type: str,
                  topic_id: str,
-                 topic_name: str):
+                 topic_name: str,
+                 truncated_time: str):
         """
         :param int end_time_offset: The end time of the query range is relative to the current historical time. The unit is minutes. The value is not positive and must be greater than StartTimeOffset. The maximum value is 0 and the minimum value is -1440.
+        :param str end_time_offset_unit: The end time offset unit.
         :param int number: Alarm object sequence number; increments from 1.
         :param str query: Query statement, the maximum supported length is 1024.
         :param int start_time_offset: The start time of the query range is relative to the current historical time, in minutes. The value is non-positive, the maximum value is 0, and the minimum value is -1440.
+        :param str start_time_offset_unit: The start time offset unit.
+        :param str time_span_type: The time span type.
         :param str topic_id: The topic id.
         :param str topic_name: The topic name.
+        :param str truncated_time: The truncated time.
         """
         pulumi.set(__self__, "end_time_offset", end_time_offset)
+        pulumi.set(__self__, "end_time_offset_unit", end_time_offset_unit)
         pulumi.set(__self__, "number", number)
         pulumi.set(__self__, "query", query)
         pulumi.set(__self__, "start_time_offset", start_time_offset)
+        pulumi.set(__self__, "start_time_offset_unit", start_time_offset_unit)
+        pulumi.set(__self__, "time_span_type", time_span_type)
         pulumi.set(__self__, "topic_id", topic_id)
         pulumi.set(__self__, "topic_name", topic_name)
+        pulumi.set(__self__, "truncated_time", truncated_time)
 
     @property
     @pulumi.getter(name="endTimeOffset")
@@ -8412,6 +14335,14 @@ class GetAlarmsAlarmQueryRequestResult(dict):
         The end time of the query range is relative to the current historical time. The unit is minutes. The value is not positive and must be greater than StartTimeOffset. The maximum value is 0 and the minimum value is -1440.
         """
         return pulumi.get(self, "end_time_offset")
+
+    @property
+    @pulumi.getter(name="endTimeOffsetUnit")
+    def end_time_offset_unit(self) -> str:
+        """
+        The end time offset unit.
+        """
+        return pulumi.get(self, "end_time_offset_unit")
 
     @property
     @pulumi.getter
@@ -8438,6 +14369,22 @@ class GetAlarmsAlarmQueryRequestResult(dict):
         return pulumi.get(self, "start_time_offset")
 
     @property
+    @pulumi.getter(name="startTimeOffsetUnit")
+    def start_time_offset_unit(self) -> str:
+        """
+        The start time offset unit.
+        """
+        return pulumi.get(self, "start_time_offset_unit")
+
+    @property
+    @pulumi.getter(name="timeSpanType")
+    def time_span_type(self) -> str:
+        """
+        The time span type.
+        """
+        return pulumi.get(self, "time_span_type")
+
+    @property
     @pulumi.getter(name="topicId")
     def topic_id(self) -> str:
         """
@@ -8453,18 +14400,37 @@ class GetAlarmsAlarmQueryRequestResult(dict):
         """
         return pulumi.get(self, "topic_name")
 
+    @property
+    @pulumi.getter(name="truncatedTime")
+    def truncated_time(self) -> str:
+        """
+        The truncated time.
+        """
+        return pulumi.get(self, "truncated_time")
+
 
 @pulumi.output_type
 class GetAlarmsAlarmRequestCycleResult(dict):
     def __init__(__self__, *,
+                 cron_tab: str,
                  time: int,
                  type: str):
         """
+        :param str cron_tab: The cron tab.
         :param int time: The cycle of alarm task execution, or the time point of periodic execution. The unit is minutes, and the value range is 1~1440.
         :param str type: Execution cycle type.
         """
+        pulumi.set(__self__, "cron_tab", cron_tab)
         pulumi.set(__self__, "time", time)
         pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="cronTab")
+    def cron_tab(self) -> str:
+        """
+        The cron tab.
+        """
+        return pulumi.get(self, "cron_tab")
 
     @property
     @pulumi.getter
@@ -8481,6 +14447,57 @@ class GetAlarmsAlarmRequestCycleResult(dict):
         Execution cycle type.
         """
         return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetAlarmsAlarmTriggerConditionResult(dict):
+    def __init__(__self__, *,
+                 condition: str,
+                 count_condition: str,
+                 no_data: bool,
+                 severity: str):
+        """
+        :param str condition: The condition.
+        :param str count_condition: The count condition.
+        :param bool no_data: The no data.
+        :param str severity: The severity.
+        """
+        pulumi.set(__self__, "condition", condition)
+        pulumi.set(__self__, "count_condition", count_condition)
+        pulumi.set(__self__, "no_data", no_data)
+        pulumi.set(__self__, "severity", severity)
+
+    @property
+    @pulumi.getter
+    def condition(self) -> str:
+        """
+        The condition.
+        """
+        return pulumi.get(self, "condition")
+
+    @property
+    @pulumi.getter(name="countCondition")
+    def count_condition(self) -> str:
+        """
+        The count condition.
+        """
+        return pulumi.get(self, "count_condition")
+
+    @property
+    @pulumi.getter(name="noData")
+    def no_data(self) -> bool:
+        """
+        The no data.
+        """
+        return pulumi.get(self, "no_data")
+
+    @property
+    @pulumi.getter
+    def severity(self) -> str:
+        """
+        The severity.
+        """
+        return pulumi.get(self, "severity")
 
 
 @pulumi.output_type
@@ -8554,6 +14571,724 @@ class GetConsumerGroupsConsumerGroupResult(dict):
         The log topic ID to which the consumer belongs.
         """
         return pulumi.get(self, "topic_ids")
+
+
+@pulumi.output_type
+class GetDescribeTracesTraceResult(dict):
+    def __init__(__self__, *,
+                 spans: Sequence['outputs.GetDescribeTracesTraceSpanResult'],
+                 trace_id: str):
+        """
+        :param Sequence['GetDescribeTracesTraceSpanArgs'] spans: The collection of spans.
+        :param str trace_id: Trace ID.
+        """
+        pulumi.set(__self__, "spans", spans)
+        pulumi.set(__self__, "trace_id", trace_id)
+
+    @property
+    @pulumi.getter
+    def spans(self) -> Sequence['outputs.GetDescribeTracesTraceSpanResult']:
+        """
+        The collection of spans.
+        """
+        return pulumi.get(self, "spans")
+
+    @property
+    @pulumi.getter(name="traceId")
+    def trace_id(self) -> str:
+        """
+        Trace ID.
+        """
+        return pulumi.get(self, "trace_id")
+
+
+@pulumi.output_type
+class GetDescribeTracesTraceSpanResult(dict):
+    def __init__(__self__, *,
+                 attributes: Sequence['outputs.GetDescribeTracesTraceSpanAttributeResult'],
+                 end_time: int,
+                 events: Sequence['outputs.GetDescribeTracesTraceSpanEventResult'],
+                 instrumentation_libraries: Sequence['outputs.GetDescribeTracesTraceSpanInstrumentationLibraryResult'],
+                 kind: str,
+                 links: Sequence['outputs.GetDescribeTracesTraceSpanLinkResult'],
+                 name: str,
+                 parent_span_id: str,
+                 resources: Sequence['outputs.GetDescribeTracesTraceSpanResourceResult'],
+                 span_id: str,
+                 start_time: int,
+                 statuses: Sequence['outputs.GetDescribeTracesTraceSpanStatusResult'],
+                 trace_id: str,
+                 trace_state: str):
+        """
+        :param Sequence['GetDescribeTracesTraceSpanAttributeArgs'] attributes: Resource attributes.
+        :param int end_time: Span end time.
+        :param Sequence['GetDescribeTracesTraceSpanEventArgs'] events: Span events.
+        :param Sequence['GetDescribeTracesTraceSpanInstrumentationLibraryArgs'] instrumentation_libraries: Instrumentation library information.
+        :param str kind: Span type.
+        :param Sequence['GetDescribeTracesTraceSpanLinkArgs'] links: Span links.
+        :param str name: Span name.
+        :param str parent_span_id: Parent Span ID.
+        :param Sequence['GetDescribeTracesTraceSpanResourceArgs'] resources: Resource information.
+        :param str span_id: Span ID.
+        :param int start_time: Span start time.
+        :param Sequence['GetDescribeTracesTraceSpanStatusArgs'] statuses: Span status.
+        :param str trace_id: Trace ID.
+        :param str trace_state: Trace state.
+        """
+        pulumi.set(__self__, "attributes", attributes)
+        pulumi.set(__self__, "end_time", end_time)
+        pulumi.set(__self__, "events", events)
+        pulumi.set(__self__, "instrumentation_libraries", instrumentation_libraries)
+        pulumi.set(__self__, "kind", kind)
+        pulumi.set(__self__, "links", links)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "parent_span_id", parent_span_id)
+        pulumi.set(__self__, "resources", resources)
+        pulumi.set(__self__, "span_id", span_id)
+        pulumi.set(__self__, "start_time", start_time)
+        pulumi.set(__self__, "statuses", statuses)
+        pulumi.set(__self__, "trace_id", trace_id)
+        pulumi.set(__self__, "trace_state", trace_state)
+
+    @property
+    @pulumi.getter
+    def attributes(self) -> Sequence['outputs.GetDescribeTracesTraceSpanAttributeResult']:
+        """
+        Resource attributes.
+        """
+        return pulumi.get(self, "attributes")
+
+    @property
+    @pulumi.getter(name="endTime")
+    def end_time(self) -> int:
+        """
+        Span end time.
+        """
+        return pulumi.get(self, "end_time")
+
+    @property
+    @pulumi.getter
+    def events(self) -> Sequence['outputs.GetDescribeTracesTraceSpanEventResult']:
+        """
+        Span events.
+        """
+        return pulumi.get(self, "events")
+
+    @property
+    @pulumi.getter(name="instrumentationLibraries")
+    def instrumentation_libraries(self) -> Sequence['outputs.GetDescribeTracesTraceSpanInstrumentationLibraryResult']:
+        """
+        Instrumentation library information.
+        """
+        return pulumi.get(self, "instrumentation_libraries")
+
+    @property
+    @pulumi.getter
+    def kind(self) -> str:
+        """
+        Span type.
+        """
+        return pulumi.get(self, "kind")
+
+    @property
+    @pulumi.getter
+    def links(self) -> Sequence['outputs.GetDescribeTracesTraceSpanLinkResult']:
+        """
+        Span links.
+        """
+        return pulumi.get(self, "links")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Span name.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="parentSpanId")
+    def parent_span_id(self) -> str:
+        """
+        Parent Span ID.
+        """
+        return pulumi.get(self, "parent_span_id")
+
+    @property
+    @pulumi.getter
+    def resources(self) -> Sequence['outputs.GetDescribeTracesTraceSpanResourceResult']:
+        """
+        Resource information.
+        """
+        return pulumi.get(self, "resources")
+
+    @property
+    @pulumi.getter(name="spanId")
+    def span_id(self) -> str:
+        """
+        Span ID.
+        """
+        return pulumi.get(self, "span_id")
+
+    @property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> int:
+        """
+        Span start time.
+        """
+        return pulumi.get(self, "start_time")
+
+    @property
+    @pulumi.getter
+    def statuses(self) -> Sequence['outputs.GetDescribeTracesTraceSpanStatusResult']:
+        """
+        Span status.
+        """
+        return pulumi.get(self, "statuses")
+
+    @property
+    @pulumi.getter(name="traceId")
+    def trace_id(self) -> str:
+        """
+        Trace ID.
+        """
+        return pulumi.get(self, "trace_id")
+
+    @property
+    @pulumi.getter(name="traceState")
+    def trace_state(self) -> str:
+        """
+        Trace state.
+        """
+        return pulumi.get(self, "trace_state")
+
+
+@pulumi.output_type
+class GetDescribeTracesTraceSpanAttributeResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: Attribute key.
+        :param str value: Attribute value.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        Attribute key.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        Attribute value.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetDescribeTracesTraceSpanEventResult(dict):
+    def __init__(__self__, *,
+                 attributes: Sequence['outputs.GetDescribeTracesTraceSpanEventAttributeResult'],
+                 name: str,
+                 timestamp: int):
+        """
+        :param Sequence['GetDescribeTracesTraceSpanEventAttributeArgs'] attributes: Resource attributes.
+        :param str name: Span name.
+        :param int timestamp: Event timestamp.
+        """
+        pulumi.set(__self__, "attributes", attributes)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "timestamp", timestamp)
+
+    @property
+    @pulumi.getter
+    def attributes(self) -> Sequence['outputs.GetDescribeTracesTraceSpanEventAttributeResult']:
+        """
+        Resource attributes.
+        """
+        return pulumi.get(self, "attributes")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Span name.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def timestamp(self) -> int:
+        """
+        Event timestamp.
+        """
+        return pulumi.get(self, "timestamp")
+
+
+@pulumi.output_type
+class GetDescribeTracesTraceSpanEventAttributeResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: Attribute key.
+        :param str value: Attribute value.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        Attribute key.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        Attribute value.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetDescribeTracesTraceSpanInstrumentationLibraryResult(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 version: str):
+        """
+        :param str name: Span name.
+        :param str version: Library version.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Span name.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def version(self) -> str:
+        """
+        Library version.
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class GetDescribeTracesTraceSpanLinkResult(dict):
+    def __init__(__self__, *,
+                 attributes: Sequence['outputs.GetDescribeTracesTraceSpanLinkAttributeResult'],
+                 span_id: str,
+                 trace_id: str,
+                 trace_state: str):
+        """
+        :param Sequence['GetDescribeTracesTraceSpanLinkAttributeArgs'] attributes: Resource attributes.
+        :param str span_id: Span ID.
+        :param str trace_id: Trace ID.
+        :param str trace_state: Trace state.
+        """
+        pulumi.set(__self__, "attributes", attributes)
+        pulumi.set(__self__, "span_id", span_id)
+        pulumi.set(__self__, "trace_id", trace_id)
+        pulumi.set(__self__, "trace_state", trace_state)
+
+    @property
+    @pulumi.getter
+    def attributes(self) -> Sequence['outputs.GetDescribeTracesTraceSpanLinkAttributeResult']:
+        """
+        Resource attributes.
+        """
+        return pulumi.get(self, "attributes")
+
+    @property
+    @pulumi.getter(name="spanId")
+    def span_id(self) -> str:
+        """
+        Span ID.
+        """
+        return pulumi.get(self, "span_id")
+
+    @property
+    @pulumi.getter(name="traceId")
+    def trace_id(self) -> str:
+        """
+        Trace ID.
+        """
+        return pulumi.get(self, "trace_id")
+
+    @property
+    @pulumi.getter(name="traceState")
+    def trace_state(self) -> str:
+        """
+        Trace state.
+        """
+        return pulumi.get(self, "trace_state")
+
+
+@pulumi.output_type
+class GetDescribeTracesTraceSpanLinkAttributeResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: Attribute key.
+        :param str value: Attribute value.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        Attribute key.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        Attribute value.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetDescribeTracesTraceSpanResourceResult(dict):
+    def __init__(__self__, *,
+                 attributes: Sequence['outputs.GetDescribeTracesTraceSpanResourceAttributeResult']):
+        """
+        :param Sequence['GetDescribeTracesTraceSpanResourceAttributeArgs'] attributes: Resource attributes.
+        """
+        pulumi.set(__self__, "attributes", attributes)
+
+    @property
+    @pulumi.getter
+    def attributes(self) -> Sequence['outputs.GetDescribeTracesTraceSpanResourceAttributeResult']:
+        """
+        Resource attributes.
+        """
+        return pulumi.get(self, "attributes")
+
+
+@pulumi.output_type
+class GetDescribeTracesTraceSpanResourceAttributeResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: Attribute key.
+        :param str value: Attribute value.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        Attribute key.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        Attribute value.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetDescribeTracesTraceSpanStatusResult(dict):
+    def __init__(__self__, *,
+                 code: str,
+                 message: str):
+        """
+        :param str code: Status code.
+        :param str message: Error message.
+        """
+        pulumi.set(__self__, "code", code)
+        pulumi.set(__self__, "message", message)
+
+    @property
+    @pulumi.getter
+    def code(self) -> str:
+        """
+        Status code.
+        """
+        return pulumi.get(self, "code")
+
+    @property
+    @pulumi.getter
+    def message(self) -> str:
+        """
+        Error message.
+        """
+        return pulumi.get(self, "message")
+
+
+@pulumi.output_type
+class GetDownloadTasksDownloadTaskResult(dict):
+    def __init__(__self__, *,
+                 allow_incomplete: bool,
+                 compression: str,
+                 create_time: str,
+                 data_format: str,
+                 download_url: str,
+                 end_time: int,
+                 limit: int,
+                 log_context_infos: Sequence['outputs.GetDownloadTasksDownloadTaskLogContextInfoResult'],
+                 log_count: int,
+                 log_size: int,
+                 query: str,
+                 sort: str,
+                 start_time: int,
+                 task_id: str,
+                 task_name: str,
+                 task_status: str,
+                 task_type: int,
+                 topic_id: str):
+        """
+        :param bool allow_incomplete: Whether to allow incomplete download.
+        :param str compression: The compression format of the downloaded file.
+        :param str create_time: The create time of the download task.
+        :param str data_format: The data format of the downloaded file.
+        :param str download_url: The download URL for the completed task.
+        :param int end_time: The end time of the log data to download, in Unix timestamp format.
+        :param int limit: The maximum number of log entries to download.
+        :param Sequence['GetDownloadTasksDownloadTaskLogContextInfoArgs'] log_context_infos: The info of the log context.
+        :param int log_count: The number of the downloaded logs.
+        :param int log_size: The size of the downloaded log data.
+        :param str query: The query statement for the download task.
+        :param str sort: The sorting order of the log data.
+        :param int start_time: The start time of the log data to download, in Unix timestamp format.
+        :param str task_id: The ID of the download task.
+        :param str task_name: The name of the download task.
+        :param str task_status: The status of the download task.
+        :param int task_type: The type of the download task.
+        :param str topic_id: The ID of the log topic to which the download tasks belong.
+        """
+        pulumi.set(__self__, "allow_incomplete", allow_incomplete)
+        pulumi.set(__self__, "compression", compression)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "data_format", data_format)
+        pulumi.set(__self__, "download_url", download_url)
+        pulumi.set(__self__, "end_time", end_time)
+        pulumi.set(__self__, "limit", limit)
+        pulumi.set(__self__, "log_context_infos", log_context_infos)
+        pulumi.set(__self__, "log_count", log_count)
+        pulumi.set(__self__, "log_size", log_size)
+        pulumi.set(__self__, "query", query)
+        pulumi.set(__self__, "sort", sort)
+        pulumi.set(__self__, "start_time", start_time)
+        pulumi.set(__self__, "task_id", task_id)
+        pulumi.set(__self__, "task_name", task_name)
+        pulumi.set(__self__, "task_status", task_status)
+        pulumi.set(__self__, "task_type", task_type)
+        pulumi.set(__self__, "topic_id", topic_id)
+
+    @property
+    @pulumi.getter(name="allowIncomplete")
+    def allow_incomplete(self) -> bool:
+        """
+        Whether to allow incomplete download.
+        """
+        return pulumi.get(self, "allow_incomplete")
+
+    @property
+    @pulumi.getter
+    def compression(self) -> str:
+        """
+        The compression format of the downloaded file.
+        """
+        return pulumi.get(self, "compression")
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        The create time of the download task.
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter(name="dataFormat")
+    def data_format(self) -> str:
+        """
+        The data format of the downloaded file.
+        """
+        return pulumi.get(self, "data_format")
+
+    @property
+    @pulumi.getter(name="downloadUrl")
+    def download_url(self) -> str:
+        """
+        The download URL for the completed task.
+        """
+        return pulumi.get(self, "download_url")
+
+    @property
+    @pulumi.getter(name="endTime")
+    def end_time(self) -> int:
+        """
+        The end time of the log data to download, in Unix timestamp format.
+        """
+        return pulumi.get(self, "end_time")
+
+    @property
+    @pulumi.getter
+    def limit(self) -> int:
+        """
+        The maximum number of log entries to download.
+        """
+        return pulumi.get(self, "limit")
+
+    @property
+    @pulumi.getter(name="logContextInfos")
+    def log_context_infos(self) -> Sequence['outputs.GetDownloadTasksDownloadTaskLogContextInfoResult']:
+        """
+        The info of the log context.
+        """
+        return pulumi.get(self, "log_context_infos")
+
+    @property
+    @pulumi.getter(name="logCount")
+    def log_count(self) -> int:
+        """
+        The number of the downloaded logs.
+        """
+        return pulumi.get(self, "log_count")
+
+    @property
+    @pulumi.getter(name="logSize")
+    def log_size(self) -> int:
+        """
+        The size of the downloaded log data.
+        """
+        return pulumi.get(self, "log_size")
+
+    @property
+    @pulumi.getter
+    def query(self) -> str:
+        """
+        The query statement for the download task.
+        """
+        return pulumi.get(self, "query")
+
+    @property
+    @pulumi.getter
+    def sort(self) -> str:
+        """
+        The sorting order of the log data.
+        """
+        return pulumi.get(self, "sort")
+
+    @property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> int:
+        """
+        The start time of the log data to download, in Unix timestamp format.
+        """
+        return pulumi.get(self, "start_time")
+
+    @property
+    @pulumi.getter(name="taskId")
+    def task_id(self) -> str:
+        """
+        The ID of the download task.
+        """
+        return pulumi.get(self, "task_id")
+
+    @property
+    @pulumi.getter(name="taskName")
+    def task_name(self) -> str:
+        """
+        The name of the download task.
+        """
+        return pulumi.get(self, "task_name")
+
+    @property
+    @pulumi.getter(name="taskStatus")
+    def task_status(self) -> str:
+        """
+        The status of the download task.
+        """
+        return pulumi.get(self, "task_status")
+
+    @property
+    @pulumi.getter(name="taskType")
+    def task_type(self) -> int:
+        """
+        The type of the download task.
+        """
+        return pulumi.get(self, "task_type")
+
+    @property
+    @pulumi.getter(name="topicId")
+    def topic_id(self) -> str:
+        """
+        The ID of the log topic to which the download tasks belong.
+        """
+        return pulumi.get(self, "topic_id")
+
+
+@pulumi.output_type
+class GetDownloadTasksDownloadTaskLogContextInfoResult(dict):
+    def __init__(__self__, *,
+                 context_flow: str,
+                 package_offset: int,
+                 source: str):
+        """
+        :param str context_flow: The context flow of the log.
+        :param int package_offset: The package offset of the log.
+        :param str source: The source of the log.
+        """
+        pulumi.set(__self__, "context_flow", context_flow)
+        pulumi.set(__self__, "package_offset", package_offset)
+        pulumi.set(__self__, "source", source)
+
+    @property
+    @pulumi.getter(name="contextFlow")
+    def context_flow(self) -> str:
+        """
+        The context flow of the log.
+        """
+        return pulumi.get(self, "context_flow")
+
+    @property
+    @pulumi.getter(name="packageOffset")
+    def package_offset(self) -> int:
+        """
+        The package offset of the log.
+        """
+        return pulumi.get(self, "package_offset")
+
+    @property
+    @pulumi.getter
+    def source(self) -> str:
+        """
+        The source of the log.
+        """
+        return pulumi.get(self, "source")
 
 
 @pulumi.output_type
@@ -8824,10 +15559,596 @@ class GetEtlTasksTaskTargetResourceResult(dict):
 
 
 @pulumi.output_type
+class GetHostGroupRulesRuleInfoResult(dict):
+    def __init__(__self__, *,
+                 container_rules: Sequence['outputs.GetHostGroupRulesRuleInfoContainerRuleResult'],
+                 create_time: str,
+                 exclude_paths: Sequence['outputs.GetHostGroupRulesRuleInfoExcludePathResult'],
+                 extract_rules: Sequence['outputs.GetHostGroupRulesRuleInfoExtractRuleResult'],
+                 input_type: int,
+                 log_sample: str,
+                 log_type: str,
+                 modify_time: str,
+                 paths: Sequence[str],
+                 pause: int,
+                 rule_id: str,
+                 rule_name: str,
+                 topic_id: str,
+                 topic_name: str,
+                 user_define_rules: Sequence['outputs.GetHostGroupRulesRuleInfoUserDefineRuleResult']):
+        """
+        :param Sequence['GetHostGroupRulesRuleInfoContainerRuleArgs'] container_rules: Container collection rules.
+        :param str create_time: The create time of rule.
+        :param Sequence['GetHostGroupRulesRuleInfoExcludePathArgs'] exclude_paths: Collect the blacklist list.
+        :param Sequence['GetHostGroupRulesRuleInfoExtractRuleArgs'] extract_rules: The extract rule.
+        :param int input_type: The type of input.
+        :param str log_sample: The sample of the log.
+        :param str log_type: The type of log.
+        :param str modify_time: The modify time of rule.
+        :param Sequence[str] paths: The paths of rule.
+        :param int pause: The pause status of rule.
+        :param str rule_id: The id of rule.
+        :param str rule_name: The name of rule.
+        :param str topic_id: The id of topic.
+        :param str topic_name: The name of topic.
+        :param Sequence['GetHostGroupRulesRuleInfoUserDefineRuleArgs'] user_define_rules: User-defined collection rules.
+        """
+        pulumi.set(__self__, "container_rules", container_rules)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "exclude_paths", exclude_paths)
+        pulumi.set(__self__, "extract_rules", extract_rules)
+        pulumi.set(__self__, "input_type", input_type)
+        pulumi.set(__self__, "log_sample", log_sample)
+        pulumi.set(__self__, "log_type", log_type)
+        pulumi.set(__self__, "modify_time", modify_time)
+        pulumi.set(__self__, "paths", paths)
+        pulumi.set(__self__, "pause", pause)
+        pulumi.set(__self__, "rule_id", rule_id)
+        pulumi.set(__self__, "rule_name", rule_name)
+        pulumi.set(__self__, "topic_id", topic_id)
+        pulumi.set(__self__, "topic_name", topic_name)
+        pulumi.set(__self__, "user_define_rules", user_define_rules)
+
+    @property
+    @pulumi.getter(name="containerRules")
+    def container_rules(self) -> Sequence['outputs.GetHostGroupRulesRuleInfoContainerRuleResult']:
+        """
+        Container collection rules.
+        """
+        return pulumi.get(self, "container_rules")
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        The create time of rule.
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter(name="excludePaths")
+    def exclude_paths(self) -> Sequence['outputs.GetHostGroupRulesRuleInfoExcludePathResult']:
+        """
+        Collect the blacklist list.
+        """
+        return pulumi.get(self, "exclude_paths")
+
+    @property
+    @pulumi.getter(name="extractRules")
+    def extract_rules(self) -> Sequence['outputs.GetHostGroupRulesRuleInfoExtractRuleResult']:
+        """
+        The extract rule.
+        """
+        return pulumi.get(self, "extract_rules")
+
+    @property
+    @pulumi.getter(name="inputType")
+    def input_type(self) -> int:
+        """
+        The type of input.
+        """
+        return pulumi.get(self, "input_type")
+
+    @property
+    @pulumi.getter(name="logSample")
+    def log_sample(self) -> str:
+        """
+        The sample of the log.
+        """
+        return pulumi.get(self, "log_sample")
+
+    @property
+    @pulumi.getter(name="logType")
+    def log_type(self) -> str:
+        """
+        The type of log.
+        """
+        return pulumi.get(self, "log_type")
+
+    @property
+    @pulumi.getter(name="modifyTime")
+    def modify_time(self) -> str:
+        """
+        The modify time of rule.
+        """
+        return pulumi.get(self, "modify_time")
+
+    @property
+    @pulumi.getter
+    def paths(self) -> Sequence[str]:
+        """
+        The paths of rule.
+        """
+        return pulumi.get(self, "paths")
+
+    @property
+    @pulumi.getter
+    def pause(self) -> int:
+        """
+        The pause status of rule.
+        """
+        return pulumi.get(self, "pause")
+
+    @property
+    @pulumi.getter(name="ruleId")
+    def rule_id(self) -> str:
+        """
+        The id of rule.
+        """
+        return pulumi.get(self, "rule_id")
+
+    @property
+    @pulumi.getter(name="ruleName")
+    def rule_name(self) -> str:
+        """
+        The name of rule.
+        """
+        return pulumi.get(self, "rule_name")
+
+    @property
+    @pulumi.getter(name="topicId")
+    def topic_id(self) -> str:
+        """
+        The id of topic.
+        """
+        return pulumi.get(self, "topic_id")
+
+    @property
+    @pulumi.getter(name="topicName")
+    def topic_name(self) -> str:
+        """
+        The name of topic.
+        """
+        return pulumi.get(self, "topic_name")
+
+    @property
+    @pulumi.getter(name="userDefineRules")
+    def user_define_rules(self) -> Sequence['outputs.GetHostGroupRulesRuleInfoUserDefineRuleResult']:
+        """
+        User-defined collection rules.
+        """
+        return pulumi.get(self, "user_define_rules")
+
+
+@pulumi.output_type
+class GetHostGroupRulesRuleInfoContainerRuleResult(dict):
+    def __init__(__self__, *,
+                 container_name_regex: str,
+                 env_tag: Mapping[str, str],
+                 exclude_container_env_regex: Mapping[str, str],
+                 exclude_container_label_regex: Mapping[str, str],
+                 include_container_env_regex: Mapping[str, str],
+                 include_container_label_regex: Mapping[str, str],
+                 kubernetes_rules: Sequence['outputs.GetHostGroupRulesRuleInfoContainerRuleKubernetesRuleResult'],
+                 stream: str):
+        pulumi.set(__self__, "container_name_regex", container_name_regex)
+        pulumi.set(__self__, "env_tag", env_tag)
+        pulumi.set(__self__, "exclude_container_env_regex", exclude_container_env_regex)
+        pulumi.set(__self__, "exclude_container_label_regex", exclude_container_label_regex)
+        pulumi.set(__self__, "include_container_env_regex", include_container_env_regex)
+        pulumi.set(__self__, "include_container_label_regex", include_container_label_regex)
+        pulumi.set(__self__, "kubernetes_rules", kubernetes_rules)
+        pulumi.set(__self__, "stream", stream)
+
+    @property
+    @pulumi.getter(name="containerNameRegex")
+    def container_name_regex(self) -> str:
+        return pulumi.get(self, "container_name_regex")
+
+    @property
+    @pulumi.getter(name="envTag")
+    def env_tag(self) -> Mapping[str, str]:
+        return pulumi.get(self, "env_tag")
+
+    @property
+    @pulumi.getter(name="excludeContainerEnvRegex")
+    def exclude_container_env_regex(self) -> Mapping[str, str]:
+        return pulumi.get(self, "exclude_container_env_regex")
+
+    @property
+    @pulumi.getter(name="excludeContainerLabelRegex")
+    def exclude_container_label_regex(self) -> Mapping[str, str]:
+        return pulumi.get(self, "exclude_container_label_regex")
+
+    @property
+    @pulumi.getter(name="includeContainerEnvRegex")
+    def include_container_env_regex(self) -> Mapping[str, str]:
+        return pulumi.get(self, "include_container_env_regex")
+
+    @property
+    @pulumi.getter(name="includeContainerLabelRegex")
+    def include_container_label_regex(self) -> Mapping[str, str]:
+        return pulumi.get(self, "include_container_label_regex")
+
+    @property
+    @pulumi.getter(name="kubernetesRules")
+    def kubernetes_rules(self) -> Sequence['outputs.GetHostGroupRulesRuleInfoContainerRuleKubernetesRuleResult']:
+        return pulumi.get(self, "kubernetes_rules")
+
+    @property
+    @pulumi.getter
+    def stream(self) -> str:
+        return pulumi.get(self, "stream")
+
+
+@pulumi.output_type
+class GetHostGroupRulesRuleInfoContainerRuleKubernetesRuleResult(dict):
+    def __init__(__self__, *,
+                 annotation_tag: Mapping[str, str],
+                 exclude_pod_label_regex: Mapping[str, str],
+                 include_pod_label_regex: Mapping[str, str],
+                 label_tag: Mapping[str, str],
+                 namespace_name_regex: str,
+                 pod_name_regex: str,
+                 workload_name_regex: str,
+                 workload_type: str):
+        pulumi.set(__self__, "annotation_tag", annotation_tag)
+        pulumi.set(__self__, "exclude_pod_label_regex", exclude_pod_label_regex)
+        pulumi.set(__self__, "include_pod_label_regex", include_pod_label_regex)
+        pulumi.set(__self__, "label_tag", label_tag)
+        pulumi.set(__self__, "namespace_name_regex", namespace_name_regex)
+        pulumi.set(__self__, "pod_name_regex", pod_name_regex)
+        pulumi.set(__self__, "workload_name_regex", workload_name_regex)
+        pulumi.set(__self__, "workload_type", workload_type)
+
+    @property
+    @pulumi.getter(name="annotationTag")
+    def annotation_tag(self) -> Mapping[str, str]:
+        return pulumi.get(self, "annotation_tag")
+
+    @property
+    @pulumi.getter(name="excludePodLabelRegex")
+    def exclude_pod_label_regex(self) -> Mapping[str, str]:
+        return pulumi.get(self, "exclude_pod_label_regex")
+
+    @property
+    @pulumi.getter(name="includePodLabelRegex")
+    def include_pod_label_regex(self) -> Mapping[str, str]:
+        return pulumi.get(self, "include_pod_label_regex")
+
+    @property
+    @pulumi.getter(name="labelTag")
+    def label_tag(self) -> Mapping[str, str]:
+        return pulumi.get(self, "label_tag")
+
+    @property
+    @pulumi.getter(name="namespaceNameRegex")
+    def namespace_name_regex(self) -> str:
+        return pulumi.get(self, "namespace_name_regex")
+
+    @property
+    @pulumi.getter(name="podNameRegex")
+    def pod_name_regex(self) -> str:
+        return pulumi.get(self, "pod_name_regex")
+
+    @property
+    @pulumi.getter(name="workloadNameRegex")
+    def workload_name_regex(self) -> str:
+        return pulumi.get(self, "workload_name_regex")
+
+    @property
+    @pulumi.getter(name="workloadType")
+    def workload_type(self) -> str:
+        return pulumi.get(self, "workload_type")
+
+
+@pulumi.output_type
+class GetHostGroupRulesRuleInfoExcludePathResult(dict):
+    def __init__(__self__, *,
+                 type: str,
+                 value: str):
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetHostGroupRulesRuleInfoExtractRuleResult(dict):
+    def __init__(__self__, *,
+                 begin_regex: str,
+                 delimiter: str,
+                 filter_key_regexes: Sequence['outputs.GetHostGroupRulesRuleInfoExtractRuleFilterKeyRegexResult'],
+                 keys: Sequence[str],
+                 log_regex: str,
+                 log_templates: Sequence['outputs.GetHostGroupRulesRuleInfoExtractRuleLogTemplateResult'],
+                 time_format: str,
+                 time_key: str,
+                 un_match_log_key: str,
+                 un_match_up_load_switch: bool):
+        pulumi.set(__self__, "begin_regex", begin_regex)
+        pulumi.set(__self__, "delimiter", delimiter)
+        pulumi.set(__self__, "filter_key_regexes", filter_key_regexes)
+        pulumi.set(__self__, "keys", keys)
+        pulumi.set(__self__, "log_regex", log_regex)
+        pulumi.set(__self__, "log_templates", log_templates)
+        pulumi.set(__self__, "time_format", time_format)
+        pulumi.set(__self__, "time_key", time_key)
+        pulumi.set(__self__, "un_match_log_key", un_match_log_key)
+        pulumi.set(__self__, "un_match_up_load_switch", un_match_up_load_switch)
+
+    @property
+    @pulumi.getter(name="beginRegex")
+    def begin_regex(self) -> str:
+        return pulumi.get(self, "begin_regex")
+
+    @property
+    @pulumi.getter
+    def delimiter(self) -> str:
+        return pulumi.get(self, "delimiter")
+
+    @property
+    @pulumi.getter(name="filterKeyRegexes")
+    def filter_key_regexes(self) -> Sequence['outputs.GetHostGroupRulesRuleInfoExtractRuleFilterKeyRegexResult']:
+        return pulumi.get(self, "filter_key_regexes")
+
+    @property
+    @pulumi.getter
+    def keys(self) -> Sequence[str]:
+        return pulumi.get(self, "keys")
+
+    @property
+    @pulumi.getter(name="logRegex")
+    def log_regex(self) -> str:
+        return pulumi.get(self, "log_regex")
+
+    @property
+    @pulumi.getter(name="logTemplates")
+    def log_templates(self) -> Sequence['outputs.GetHostGroupRulesRuleInfoExtractRuleLogTemplateResult']:
+        return pulumi.get(self, "log_templates")
+
+    @property
+    @pulumi.getter(name="timeFormat")
+    def time_format(self) -> str:
+        return pulumi.get(self, "time_format")
+
+    @property
+    @pulumi.getter(name="timeKey")
+    def time_key(self) -> str:
+        return pulumi.get(self, "time_key")
+
+    @property
+    @pulumi.getter(name="unMatchLogKey")
+    def un_match_log_key(self) -> str:
+        return pulumi.get(self, "un_match_log_key")
+
+    @property
+    @pulumi.getter(name="unMatchUpLoadSwitch")
+    def un_match_up_load_switch(self) -> bool:
+        return pulumi.get(self, "un_match_up_load_switch")
+
+
+@pulumi.output_type
+class GetHostGroupRulesRuleInfoExtractRuleFilterKeyRegexResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 regex: str):
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "regex", regex)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def regex(self) -> str:
+        return pulumi.get(self, "regex")
+
+
+@pulumi.output_type
+class GetHostGroupRulesRuleInfoExtractRuleLogTemplateResult(dict):
+    def __init__(__self__, *,
+                 format: str,
+                 type: str):
+        pulumi.set(__self__, "format", format)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def format(self) -> str:
+        return pulumi.get(self, "format")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetHostGroupRulesRuleInfoUserDefineRuleResult(dict):
+    def __init__(__self__, *,
+                 advanceds: Sequence['outputs.GetHostGroupRulesRuleInfoUserDefineRuleAdvancedResult'],
+                 enable_raw_log: bool,
+                 fields: Mapping[str, str],
+                 parse_path_rules: Sequence['outputs.GetHostGroupRulesRuleInfoUserDefineRuleParsePathRuleResult'],
+                 plugins: Sequence['outputs.GetHostGroupRulesRuleInfoUserDefineRulePluginResult'],
+                 shard_hash_keys: Sequence['outputs.GetHostGroupRulesRuleInfoUserDefineRuleShardHashKeyResult'],
+                 tail_files: bool):
+        pulumi.set(__self__, "advanceds", advanceds)
+        pulumi.set(__self__, "enable_raw_log", enable_raw_log)
+        pulumi.set(__self__, "fields", fields)
+        pulumi.set(__self__, "parse_path_rules", parse_path_rules)
+        pulumi.set(__self__, "plugins", plugins)
+        pulumi.set(__self__, "shard_hash_keys", shard_hash_keys)
+        pulumi.set(__self__, "tail_files", tail_files)
+
+    @property
+    @pulumi.getter
+    def advanceds(self) -> Sequence['outputs.GetHostGroupRulesRuleInfoUserDefineRuleAdvancedResult']:
+        return pulumi.get(self, "advanceds")
+
+    @property
+    @pulumi.getter(name="enableRawLog")
+    def enable_raw_log(self) -> bool:
+        return pulumi.get(self, "enable_raw_log")
+
+    @property
+    @pulumi.getter
+    def fields(self) -> Mapping[str, str]:
+        return pulumi.get(self, "fields")
+
+    @property
+    @pulumi.getter(name="parsePathRules")
+    def parse_path_rules(self) -> Sequence['outputs.GetHostGroupRulesRuleInfoUserDefineRuleParsePathRuleResult']:
+        return pulumi.get(self, "parse_path_rules")
+
+    @property
+    @pulumi.getter
+    def plugins(self) -> Sequence['outputs.GetHostGroupRulesRuleInfoUserDefineRulePluginResult']:
+        return pulumi.get(self, "plugins")
+
+    @property
+    @pulumi.getter(name="shardHashKeys")
+    def shard_hash_keys(self) -> Sequence['outputs.GetHostGroupRulesRuleInfoUserDefineRuleShardHashKeyResult']:
+        return pulumi.get(self, "shard_hash_keys")
+
+    @property
+    @pulumi.getter(name="tailFiles")
+    def tail_files(self) -> bool:
+        return pulumi.get(self, "tail_files")
+
+
+@pulumi.output_type
+class GetHostGroupRulesRuleInfoUserDefineRuleAdvancedResult(dict):
+    def __init__(__self__, *,
+                 close_eof: bool,
+                 close_inactive: int,
+                 close_removed: bool,
+                 close_renamed: bool,
+                 close_timeout: int):
+        pulumi.set(__self__, "close_eof", close_eof)
+        pulumi.set(__self__, "close_inactive", close_inactive)
+        pulumi.set(__self__, "close_removed", close_removed)
+        pulumi.set(__self__, "close_renamed", close_renamed)
+        pulumi.set(__self__, "close_timeout", close_timeout)
+
+    @property
+    @pulumi.getter(name="closeEof")
+    def close_eof(self) -> bool:
+        return pulumi.get(self, "close_eof")
+
+    @property
+    @pulumi.getter(name="closeInactive")
+    def close_inactive(self) -> int:
+        return pulumi.get(self, "close_inactive")
+
+    @property
+    @pulumi.getter(name="closeRemoved")
+    def close_removed(self) -> bool:
+        return pulumi.get(self, "close_removed")
+
+    @property
+    @pulumi.getter(name="closeRenamed")
+    def close_renamed(self) -> bool:
+        return pulumi.get(self, "close_renamed")
+
+    @property
+    @pulumi.getter(name="closeTimeout")
+    def close_timeout(self) -> int:
+        return pulumi.get(self, "close_timeout")
+
+
+@pulumi.output_type
+class GetHostGroupRulesRuleInfoUserDefineRuleParsePathRuleResult(dict):
+    def __init__(__self__, *,
+                 keys: Sequence[str],
+                 path_sample: str,
+                 regex: str):
+        pulumi.set(__self__, "keys", keys)
+        pulumi.set(__self__, "path_sample", path_sample)
+        pulumi.set(__self__, "regex", regex)
+
+    @property
+    @pulumi.getter
+    def keys(self) -> Sequence[str]:
+        return pulumi.get(self, "keys")
+
+    @property
+    @pulumi.getter(name="pathSample")
+    def path_sample(self) -> str:
+        return pulumi.get(self, "path_sample")
+
+    @property
+    @pulumi.getter
+    def regex(self) -> str:
+        return pulumi.get(self, "regex")
+
+
+@pulumi.output_type
+class GetHostGroupRulesRuleInfoUserDefineRulePluginResult(dict):
+    def __init__(__self__, *,
+                 processors: Sequence[str]):
+        pulumi.set(__self__, "processors", processors)
+
+    @property
+    @pulumi.getter
+    def processors(self) -> Sequence[str]:
+        return pulumi.get(self, "processors")
+
+
+@pulumi.output_type
+class GetHostGroupRulesRuleInfoUserDefineRuleShardHashKeyResult(dict):
+    def __init__(__self__, *,
+                 hash_key: str):
+        pulumi.set(__self__, "hash_key", hash_key)
+
+    @property
+    @pulumi.getter(name="hashKey")
+    def hash_key(self) -> str:
+        return pulumi.get(self, "hash_key")
+
+
+@pulumi.output_type
 class GetHostGroupsInfoResult(dict):
     def __init__(__self__, *,
-                 abnormal_heartbeat_status_count: int,
-                 agent_latest_version: str,
+                 host_group_infos: Sequence['outputs.GetHostGroupsInfoHostGroupInfoResult']):
+        """
+        :param Sequence['GetHostGroupsInfoHostGroupInfoArgs'] host_group_infos: The info of host group.
+        """
+        pulumi.set(__self__, "host_group_infos", host_group_infos)
+
+    @property
+    @pulumi.getter(name="hostGroupInfos")
+    def host_group_infos(self) -> Sequence['outputs.GetHostGroupsInfoHostGroupInfoResult']:
+        """
+        The info of host group.
+        """
+        return pulumi.get(self, "host_group_infos")
+
+
+@pulumi.output_type
+class GetHostGroupsInfoHostGroupInfoResult(dict):
+    def __init__(__self__, *,
                  auto_update: bool,
                  create_time: str,
                  host_count: int,
@@ -8835,35 +16156,27 @@ class GetHostGroupsInfoResult(dict):
                  host_group_name: str,
                  host_group_type: str,
                  host_identifier: str,
-                 host_ip_lists: Sequence[str],
                  iam_project_name: str,
                  modify_time: str,
-                 normal_heartbeat_status_count: int,
                  rule_count: int,
                  service_logging: bool,
                  update_end_time: str,
                  update_start_time: str):
         """
-        :param int abnormal_heartbeat_status_count: The abnormal heartbeat status count of host.
-        :param str agent_latest_version: The latest version of log collector.
         :param bool auto_update: Whether enable auto update.
         :param str create_time: The create time of host group.
-        :param int host_count: The count of host.
+        :param int host_count: The host count of host group.
         :param str host_group_id: The id of host group.
         :param str host_group_name: The name of host group.
         :param str host_group_type: The type of host group.
         :param str host_identifier: The identifier of host.
-        :param Sequence[str] host_ip_lists: The ip list of host group.
         :param str iam_project_name: The project name of iam.
         :param str modify_time: The modify time of host group.
-        :param int normal_heartbeat_status_count: The normal heartbeat status count of host.
         :param int rule_count: The rule count of host.
         :param bool service_logging: Whether enable service logging.
         :param str update_end_time: The update end time of log collector.
         :param str update_start_time: The update start time of log collector.
         """
-        pulumi.set(__self__, "abnormal_heartbeat_status_count", abnormal_heartbeat_status_count)
-        pulumi.set(__self__, "agent_latest_version", agent_latest_version)
         pulumi.set(__self__, "auto_update", auto_update)
         pulumi.set(__self__, "create_time", create_time)
         pulumi.set(__self__, "host_count", host_count)
@@ -8871,30 +16184,12 @@ class GetHostGroupsInfoResult(dict):
         pulumi.set(__self__, "host_group_name", host_group_name)
         pulumi.set(__self__, "host_group_type", host_group_type)
         pulumi.set(__self__, "host_identifier", host_identifier)
-        pulumi.set(__self__, "host_ip_lists", host_ip_lists)
         pulumi.set(__self__, "iam_project_name", iam_project_name)
         pulumi.set(__self__, "modify_time", modify_time)
-        pulumi.set(__self__, "normal_heartbeat_status_count", normal_heartbeat_status_count)
         pulumi.set(__self__, "rule_count", rule_count)
         pulumi.set(__self__, "service_logging", service_logging)
         pulumi.set(__self__, "update_end_time", update_end_time)
         pulumi.set(__self__, "update_start_time", update_start_time)
-
-    @property
-    @pulumi.getter(name="abnormalHeartbeatStatusCount")
-    def abnormal_heartbeat_status_count(self) -> int:
-        """
-        The abnormal heartbeat status count of host.
-        """
-        return pulumi.get(self, "abnormal_heartbeat_status_count")
-
-    @property
-    @pulumi.getter(name="agentLatestVersion")
-    def agent_latest_version(self) -> str:
-        """
-        The latest version of log collector.
-        """
-        return pulumi.get(self, "agent_latest_version")
 
     @property
     @pulumi.getter(name="autoUpdate")
@@ -8916,7 +16211,7 @@ class GetHostGroupsInfoResult(dict):
     @pulumi.getter(name="hostCount")
     def host_count(self) -> int:
         """
-        The count of host.
+        The host count of host group.
         """
         return pulumi.get(self, "host_count")
 
@@ -8953,14 +16248,6 @@ class GetHostGroupsInfoResult(dict):
         return pulumi.get(self, "host_identifier")
 
     @property
-    @pulumi.getter(name="hostIpLists")
-    def host_ip_lists(self) -> Sequence[str]:
-        """
-        The ip list of host group.
-        """
-        return pulumi.get(self, "host_ip_lists")
-
-    @property
     @pulumi.getter(name="iamProjectName")
     def iam_project_name(self) -> str:
         """
@@ -8975,14 +16262,6 @@ class GetHostGroupsInfoResult(dict):
         The modify time of host group.
         """
         return pulumi.get(self, "modify_time")
-
-    @property
-    @pulumi.getter(name="normalHeartbeatStatusCount")
-    def normal_heartbeat_status_count(self) -> int:
-        """
-        The normal heartbeat status count of host.
-        """
-        return pulumi.get(self, "normal_heartbeat_status_count")
 
     @property
     @pulumi.getter(name="ruleCount")
@@ -9716,25 +16995,31 @@ class GetImportTasksTaskInfoTaskStatisticsResult(dict):
 class GetIndexesTlsIndexResult(dict):
     def __init__(__self__, *,
                  create_time: str,
+                 enable_auto_index: bool,
                  full_text: 'outputs.GetIndexesTlsIndexFullTextResult',
                  id: str,
                  key_values: Sequence['outputs.GetIndexesTlsIndexKeyValueResult'],
+                 max_text_len: int,
                  modify_time: str,
                  topic_id: str,
                  user_inner_key_values: Sequence['outputs.GetIndexesTlsIndexUserInnerKeyValueResult']):
         """
         :param str create_time: The create time of the tls index.
+        :param bool enable_auto_index: Whether to enable auto index.
         :param 'GetIndexesTlsIndexFullTextArgs' full_text: The FullText index of the tls topic.
         :param str id: The topic id of the tls index.
         :param Sequence['GetIndexesTlsIndexKeyValueArgs'] key_values: The KeyValue index of the tls topic.
+        :param int max_text_len: The max text length of the tls index.
         :param str modify_time: The modify time of the tls index.
         :param str topic_id: The topic id of the tls index.
         :param Sequence['GetIndexesTlsIndexUserInnerKeyValueArgs'] user_inner_key_values: The reserved field index configuration of the tls topic.
         """
         pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "enable_auto_index", enable_auto_index)
         pulumi.set(__self__, "full_text", full_text)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "key_values", key_values)
+        pulumi.set(__self__, "max_text_len", max_text_len)
         pulumi.set(__self__, "modify_time", modify_time)
         pulumi.set(__self__, "topic_id", topic_id)
         pulumi.set(__self__, "user_inner_key_values", user_inner_key_values)
@@ -9746,6 +17031,14 @@ class GetIndexesTlsIndexResult(dict):
         The create time of the tls index.
         """
         return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter(name="enableAutoIndex")
+    def enable_auto_index(self) -> bool:
+        """
+        Whether to enable auto index.
+        """
+        return pulumi.get(self, "enable_auto_index")
 
     @property
     @pulumi.getter(name="fullText")
@@ -9770,6 +17063,14 @@ class GetIndexesTlsIndexResult(dict):
         The KeyValue index of the tls topic.
         """
         return pulumi.get(self, "key_values")
+
+    @property
+    @pulumi.getter(name="maxTextLen")
+    def max_text_len(self) -> int:
+        """
+        The max text length of the tls index.
+        """
+        return pulumi.get(self, "max_text_len")
 
     @property
     @pulumi.getter(name="modifyTime")
@@ -10202,6 +17503,305 @@ class GetKafkaConsumersDataResult(dict):
 
 
 @pulumi.output_type
+class GetLogContextsLogContextResult(dict):
+    def __init__(__self__, *,
+                 log_context_infos: Sequence[Mapping[str, Any]],
+                 next_over: bool,
+                 prev_over: bool):
+        """
+        :param Sequence[Mapping[str, Any]] log_context_infos: The infos of context log.
+        :param bool next_over: Whether the next logs are over.
+        :param bool prev_over: Whether the previous logs are over.
+        """
+        pulumi.set(__self__, "log_context_infos", log_context_infos)
+        pulumi.set(__self__, "next_over", next_over)
+        pulumi.set(__self__, "prev_over", prev_over)
+
+    @property
+    @pulumi.getter(name="logContextInfos")
+    def log_context_infos(self) -> Sequence[Mapping[str, Any]]:
+        """
+        The infos of context log.
+        """
+        return pulumi.get(self, "log_context_infos")
+
+    @property
+    @pulumi.getter(name="nextOver")
+    def next_over(self) -> bool:
+        """
+        Whether the next logs are over.
+        """
+        return pulumi.get(self, "next_over")
+
+    @property
+    @pulumi.getter(name="prevOver")
+    def prev_over(self) -> bool:
+        """
+        Whether the previous logs are over.
+        """
+        return pulumi.get(self, "prev_over")
+
+
+@pulumi.output_type
+class GetLogHistogramsHistogramInfoResult(dict):
+    def __init__(__self__, *,
+                 count: int,
+                 end_time: int,
+                 result_status: str,
+                 start_time: int):
+        """
+        :param int count: The count.
+        :param int end_time: The end time.
+        :param str result_status: The result status.
+        :param int start_time: The start time.
+        """
+        pulumi.set(__self__, "count", count)
+        pulumi.set(__self__, "end_time", end_time)
+        pulumi.set(__self__, "result_status", result_status)
+        pulumi.set(__self__, "start_time", start_time)
+
+    @property
+    @pulumi.getter
+    def count(self) -> int:
+        """
+        The count.
+        """
+        return pulumi.get(self, "count")
+
+    @property
+    @pulumi.getter(name="endTime")
+    def end_time(self) -> int:
+        """
+        The end time.
+        """
+        return pulumi.get(self, "end_time")
+
+    @property
+    @pulumi.getter(name="resultStatus")
+    def result_status(self) -> str:
+        """
+        The result status.
+        """
+        return pulumi.get(self, "result_status")
+
+    @property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> int:
+        """
+        The start time.
+        """
+        return pulumi.get(self, "start_time")
+
+
+@pulumi.output_type
+class GetLogSearchesLogResult(dict):
+    def __init__(__self__, *,
+                 analysis: bool,
+                 analysis_result: Mapping[str, Any],
+                 context: str,
+                 elapsed_millisecond: int,
+                 highlights: Sequence['outputs.GetLogSearchesLogHighlightResult'],
+                 hit_count: int,
+                 limit: int,
+                 list_over: bool,
+                 logs: Sequence['outputs.GetLogSearchesLogLogResult'],
+                 result_status: str):
+        """
+        :param bool analysis: Whether the result is analysis.
+        :param Mapping[str, Any] analysis_result: The analysis result of the query.
+        :param str context: The context of the log.
+        :param int elapsed_millisecond: The elapsed time of the query.
+        :param Sequence['GetLogSearchesLogHighlightArgs'] highlights: Whether to highlight the log.
+        :param int hit_count: The count of the logs.
+        :param int limit: The limit of the logs.
+        :param bool list_over: Whether the list is over.
+        :param Sequence['GetLogSearchesLogLogArgs'] logs: The list of the logs.
+        :param str result_status: The status of the query.
+        """
+        pulumi.set(__self__, "analysis", analysis)
+        pulumi.set(__self__, "analysis_result", analysis_result)
+        pulumi.set(__self__, "context", context)
+        pulumi.set(__self__, "elapsed_millisecond", elapsed_millisecond)
+        pulumi.set(__self__, "highlights", highlights)
+        pulumi.set(__self__, "hit_count", hit_count)
+        pulumi.set(__self__, "limit", limit)
+        pulumi.set(__self__, "list_over", list_over)
+        pulumi.set(__self__, "logs", logs)
+        pulumi.set(__self__, "result_status", result_status)
+
+    @property
+    @pulumi.getter
+    def analysis(self) -> bool:
+        """
+        Whether the result is analysis.
+        """
+        return pulumi.get(self, "analysis")
+
+    @property
+    @pulumi.getter(name="analysisResult")
+    def analysis_result(self) -> Mapping[str, Any]:
+        """
+        The analysis result of the query.
+        """
+        return pulumi.get(self, "analysis_result")
+
+    @property
+    @pulumi.getter
+    def context(self) -> str:
+        """
+        The context of the log.
+        """
+        return pulumi.get(self, "context")
+
+    @property
+    @pulumi.getter(name="elapsedMillisecond")
+    def elapsed_millisecond(self) -> int:
+        """
+        The elapsed time of the query.
+        """
+        return pulumi.get(self, "elapsed_millisecond")
+
+    @property
+    @pulumi.getter
+    def highlights(self) -> Sequence['outputs.GetLogSearchesLogHighlightResult']:
+        """
+        Whether to highlight the log.
+        """
+        return pulumi.get(self, "highlights")
+
+    @property
+    @pulumi.getter(name="hitCount")
+    def hit_count(self) -> int:
+        """
+        The count of the logs.
+        """
+        return pulumi.get(self, "hit_count")
+
+    @property
+    @pulumi.getter
+    def limit(self) -> int:
+        """
+        The limit of the logs.
+        """
+        return pulumi.get(self, "limit")
+
+    @property
+    @pulumi.getter(name="listOver")
+    def list_over(self) -> bool:
+        """
+        Whether the list is over.
+        """
+        return pulumi.get(self, "list_over")
+
+    @property
+    @pulumi.getter
+    def logs(self) -> Sequence['outputs.GetLogSearchesLogLogResult']:
+        """
+        The list of the logs.
+        """
+        return pulumi.get(self, "logs")
+
+    @property
+    @pulumi.getter(name="resultStatus")
+    def result_status(self) -> str:
+        """
+        The status of the query.
+        """
+        return pulumi.get(self, "result_status")
+
+
+@pulumi.output_type
+class GetLogSearchesLogHighlightResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 values: Sequence[str]):
+        """
+        :param str key: The key of the highlight.
+        :param Sequence[str] values: The value of the highlight.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The key of the highlight.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def values(self) -> Sequence[str]:
+        """
+        The value of the highlight.
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetLogSearchesLogLogResult(dict):
+    def __init__(__self__, *,
+                 content: Mapping[str, Any],
+                 filename: str,
+                 log_id: str,
+                 source: str,
+                 timestamp: int):
+        """
+        :param Mapping[str, Any] content: The content of the log.
+        :param str filename: The filename of the log.
+        :param str log_id: The ID of the log.
+        :param str source: The source of the log.
+        :param int timestamp: The timestamp of the log.
+        """
+        pulumi.set(__self__, "content", content)
+        pulumi.set(__self__, "filename", filename)
+        pulumi.set(__self__, "log_id", log_id)
+        pulumi.set(__self__, "source", source)
+        pulumi.set(__self__, "timestamp", timestamp)
+
+    @property
+    @pulumi.getter
+    def content(self) -> Mapping[str, Any]:
+        """
+        The content of the log.
+        """
+        return pulumi.get(self, "content")
+
+    @property
+    @pulumi.getter
+    def filename(self) -> str:
+        """
+        The filename of the log.
+        """
+        return pulumi.get(self, "filename")
+
+    @property
+    @pulumi.getter(name="logId")
+    def log_id(self) -> str:
+        """
+        The ID of the log.
+        """
+        return pulumi.get(self, "log_id")
+
+    @property
+    @pulumi.getter
+    def source(self) -> str:
+        """
+        The source of the log.
+        """
+        return pulumi.get(self, "source")
+
+    @property
+    @pulumi.getter
+    def timestamp(self) -> int:
+        """
+        The timestamp of the log.
+        """
+        return pulumi.get(self, "timestamp")
+
+
+@pulumi.output_type
 class GetProjectsTagResult(dict):
     def __init__(__self__, *,
                  key: str,
@@ -10366,780 +17966,281 @@ class GetProjectsTlsProjectTagResult(dict):
 
 
 @pulumi.output_type
-class GetRuleAppliersRuleResult(dict):
+class GetRuleAppliersHostGroupInfoResult(dict):
     def __init__(__self__, *,
-                 container_rules: Sequence['outputs.GetRuleAppliersRuleContainerRuleResult'],
+                 auto_update: bool,
                  create_time: str,
-                 exclude_paths: Sequence['outputs.GetRuleAppliersRuleExcludePathResult'],
-                 extract_rules: Sequence['outputs.GetRuleAppliersRuleExtractRuleResult'],
-                 input_type: int,
-                 log_sample: str,
-                 log_type: str,
+                 host_count: int,
+                 host_group_id: str,
+                 host_group_name: str,
+                 host_group_type: str,
+                 host_identifier: str,
+                 iam_project_name: str,
                  modify_time: str,
-                 paths: Sequence[str],
-                 rule_id: str,
-                 rule_name: str,
-                 topic_id: str,
-                 topic_name: str,
-                 user_define_rules: Sequence['outputs.GetRuleAppliersRuleUserDefineRuleResult']):
+                 rule_count: int,
+                 service_logging: bool,
+                 update_end_time: str,
+                 update_start_time: str):
         """
-        :param Sequence['GetRuleAppliersRuleContainerRuleArgs'] container_rules: Container collection rules.
-        :param str create_time: The creation time.
-        :param Sequence['GetRuleAppliersRuleExcludePathArgs'] exclude_paths: Collect the blacklist list.
-        :param Sequence['GetRuleAppliersRuleExtractRuleArgs'] extract_rules: The extract rule.
-        :param int input_type: The collection type.
-        :param str log_sample: Log sample.
-        :param str log_type: The log type.
-        :param str modify_time: The modification time.
-        :param Sequence[str] paths: Collection path list.
-        :param str rule_id: The rule id.
-        :param str rule_name: The rule name.
-        :param str topic_id: The topic id.
-        :param str topic_name: The topic name.
-        :param Sequence['GetRuleAppliersRuleUserDefineRuleArgs'] user_define_rules: User-defined collection rules.
+        :param bool auto_update: Whether to auto update.
+        :param str create_time: The create time.
+        :param int host_count: The host count.
+        :param str host_group_id: The host group id.
+        :param str host_group_name: The host group name.
+        :param str host_group_type: The host group type.
+        :param str host_identifier: The host identifier.
+        :param str iam_project_name: The iam project name.
+        :param str modify_time: The modify time.
+        :param int rule_count: The rule count.
+        :param bool service_logging: Whether to service logging.
+        :param str update_end_time: The update end time.
+        :param str update_start_time: The update start time.
         """
-        pulumi.set(__self__, "container_rules", container_rules)
+        pulumi.set(__self__, "auto_update", auto_update)
         pulumi.set(__self__, "create_time", create_time)
-        pulumi.set(__self__, "exclude_paths", exclude_paths)
-        pulumi.set(__self__, "extract_rules", extract_rules)
-        pulumi.set(__self__, "input_type", input_type)
-        pulumi.set(__self__, "log_sample", log_sample)
-        pulumi.set(__self__, "log_type", log_type)
+        pulumi.set(__self__, "host_count", host_count)
+        pulumi.set(__self__, "host_group_id", host_group_id)
+        pulumi.set(__self__, "host_group_name", host_group_name)
+        pulumi.set(__self__, "host_group_type", host_group_type)
+        pulumi.set(__self__, "host_identifier", host_identifier)
+        pulumi.set(__self__, "iam_project_name", iam_project_name)
         pulumi.set(__self__, "modify_time", modify_time)
-        pulumi.set(__self__, "paths", paths)
-        pulumi.set(__self__, "rule_id", rule_id)
-        pulumi.set(__self__, "rule_name", rule_name)
-        pulumi.set(__self__, "topic_id", topic_id)
-        pulumi.set(__self__, "topic_name", topic_name)
-        pulumi.set(__self__, "user_define_rules", user_define_rules)
+        pulumi.set(__self__, "rule_count", rule_count)
+        pulumi.set(__self__, "service_logging", service_logging)
+        pulumi.set(__self__, "update_end_time", update_end_time)
+        pulumi.set(__self__, "update_start_time", update_start_time)
 
     @property
-    @pulumi.getter(name="containerRules")
-    def container_rules(self) -> Sequence['outputs.GetRuleAppliersRuleContainerRuleResult']:
+    @pulumi.getter(name="autoUpdate")
+    def auto_update(self) -> bool:
         """
-        Container collection rules.
+        Whether to auto update.
         """
-        return pulumi.get(self, "container_rules")
+        return pulumi.get(self, "auto_update")
 
     @property
     @pulumi.getter(name="createTime")
     def create_time(self) -> str:
         """
-        The creation time.
+        The create time.
         """
         return pulumi.get(self, "create_time")
 
     @property
-    @pulumi.getter(name="excludePaths")
-    def exclude_paths(self) -> Sequence['outputs.GetRuleAppliersRuleExcludePathResult']:
+    @pulumi.getter(name="hostCount")
+    def host_count(self) -> int:
         """
-        Collect the blacklist list.
+        The host count.
         """
-        return pulumi.get(self, "exclude_paths")
+        return pulumi.get(self, "host_count")
 
     @property
-    @pulumi.getter(name="extractRules")
-    def extract_rules(self) -> Sequence['outputs.GetRuleAppliersRuleExtractRuleResult']:
+    @pulumi.getter(name="hostGroupId")
+    def host_group_id(self) -> str:
         """
-        The extract rule.
+        The host group id.
         """
-        return pulumi.get(self, "extract_rules")
+        return pulumi.get(self, "host_group_id")
 
     @property
-    @pulumi.getter(name="inputType")
-    def input_type(self) -> int:
+    @pulumi.getter(name="hostGroupName")
+    def host_group_name(self) -> str:
         """
-        The collection type.
+        The host group name.
         """
-        return pulumi.get(self, "input_type")
+        return pulumi.get(self, "host_group_name")
 
     @property
-    @pulumi.getter(name="logSample")
-    def log_sample(self) -> str:
+    @pulumi.getter(name="hostGroupType")
+    def host_group_type(self) -> str:
         """
-        Log sample.
+        The host group type.
         """
-        return pulumi.get(self, "log_sample")
+        return pulumi.get(self, "host_group_type")
 
     @property
-    @pulumi.getter(name="logType")
-    def log_type(self) -> str:
+    @pulumi.getter(name="hostIdentifier")
+    def host_identifier(self) -> str:
         """
-        The log type.
+        The host identifier.
         """
-        return pulumi.get(self, "log_type")
+        return pulumi.get(self, "host_identifier")
+
+    @property
+    @pulumi.getter(name="iamProjectName")
+    def iam_project_name(self) -> str:
+        """
+        The iam project name.
+        """
+        return pulumi.get(self, "iam_project_name")
 
     @property
     @pulumi.getter(name="modifyTime")
     def modify_time(self) -> str:
         """
-        The modification time.
+        The modify time.
         """
         return pulumi.get(self, "modify_time")
 
     @property
-    @pulumi.getter
-    def paths(self) -> Sequence[str]:
+    @pulumi.getter(name="ruleCount")
+    def rule_count(self) -> int:
         """
-        Collection path list.
+        The rule count.
         """
-        return pulumi.get(self, "paths")
+        return pulumi.get(self, "rule_count")
 
     @property
-    @pulumi.getter(name="ruleId")
-    def rule_id(self) -> str:
+    @pulumi.getter(name="serviceLogging")
+    def service_logging(self) -> bool:
         """
-        The rule id.
+        Whether to service logging.
         """
-        return pulumi.get(self, "rule_id")
+        return pulumi.get(self, "service_logging")
 
     @property
-    @pulumi.getter(name="ruleName")
-    def rule_name(self) -> str:
+    @pulumi.getter(name="updateEndTime")
+    def update_end_time(self) -> str:
         """
-        The rule name.
+        The update end time.
         """
-        return pulumi.get(self, "rule_name")
+        return pulumi.get(self, "update_end_time")
 
     @property
-    @pulumi.getter(name="topicId")
-    def topic_id(self) -> str:
+    @pulumi.getter(name="updateStartTime")
+    def update_start_time(self) -> str:
         """
-        The topic id.
+        The update start time.
         """
-        return pulumi.get(self, "topic_id")
-
-    @property
-    @pulumi.getter(name="topicName")
-    def topic_name(self) -> str:
-        """
-        The topic name.
-        """
-        return pulumi.get(self, "topic_name")
-
-    @property
-    @pulumi.getter(name="userDefineRules")
-    def user_define_rules(self) -> Sequence['outputs.GetRuleAppliersRuleUserDefineRuleResult']:
-        """
-        User-defined collection rules.
-        """
-        return pulumi.get(self, "user_define_rules")
+        return pulumi.get(self, "update_start_time")
 
 
 @pulumi.output_type
-class GetRuleAppliersRuleContainerRuleResult(dict):
+class GetRuleBoundHostGroupsHostGroupResult(dict):
     def __init__(__self__, *,
-                 container_name_regex: str,
-                 env_tag: Mapping[str, Any],
-                 exclude_container_env_regex: Mapping[str, Any],
-                 exclude_container_label_regex: Mapping[str, Any],
-                 include_container_env_regex: Mapping[str, Any],
-                 include_container_label_regex: Mapping[str, Any],
-                 kubernetes_rules: Sequence['outputs.GetRuleAppliersRuleContainerRuleKubernetesRuleResult'],
-                 stream: str):
+                 auto_update: bool,
+                 create_time: str,
+                 host_group_id: str,
+                 host_group_name: str,
+                 host_group_type: str,
+                 host_identifier: str,
+                 iam_project_name: str,
+                 modify_time: str,
+                 service_logging: bool,
+                 update_end_time: str,
+                 update_start_time: str):
         """
-        :param str container_name_regex: The name of the container to be collected.
-        :param Mapping[str, Any] env_tag: Whether to add environment variables as log tags to raw log data.
-        :param Mapping[str, Any] exclude_container_env_regex: The container environment variable blacklist is used to specify the range of containers not to be collected.
-        :param Mapping[str, Any] exclude_container_label_regex: The container Label blacklist is used to specify the range of containers not to be collected.
-        :param Mapping[str, Any] include_container_env_regex: The container environment variable whitelist specifies the container to be collected through the container environment variable. If the whitelist is not enabled, it means that all containers are specified to be collected.
-        :param Mapping[str, Any] include_container_label_regex: The container label whitelist specifies the containers to be collected through the container label. If the whitelist is not enabled, all containers are specified to be collected.
-        :param Sequence['GetRuleAppliersRuleContainerRuleKubernetesRuleArgs'] kubernetes_rules: Collection rules for Kubernetes containers.
-        :param str stream: The collection mode.
+        :param bool auto_update: Whether to enable auto update.
+        :param str create_time: The creation time of the host group.
+        :param str host_group_id: The ID of the host group.
+        :param str host_group_name: The name of the host group.
+        :param str host_group_type: The type of the host group.
+        :param str host_identifier: The identifier of the host.
+        :param str iam_project_name: The name of the iam project.
+        :param str modify_time: The modification time of the host group.
+        :param bool service_logging: Whether to enable service logging.
+        :param str update_end_time: The end time of auto update.
+        :param str update_start_time: The start time of auto update.
         """
-        pulumi.set(__self__, "container_name_regex", container_name_regex)
-        pulumi.set(__self__, "env_tag", env_tag)
-        pulumi.set(__self__, "exclude_container_env_regex", exclude_container_env_regex)
-        pulumi.set(__self__, "exclude_container_label_regex", exclude_container_label_regex)
-        pulumi.set(__self__, "include_container_env_regex", include_container_env_regex)
-        pulumi.set(__self__, "include_container_label_regex", include_container_label_regex)
-        pulumi.set(__self__, "kubernetes_rules", kubernetes_rules)
-        pulumi.set(__self__, "stream", stream)
+        pulumi.set(__self__, "auto_update", auto_update)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "host_group_id", host_group_id)
+        pulumi.set(__self__, "host_group_name", host_group_name)
+        pulumi.set(__self__, "host_group_type", host_group_type)
+        pulumi.set(__self__, "host_identifier", host_identifier)
+        pulumi.set(__self__, "iam_project_name", iam_project_name)
+        pulumi.set(__self__, "modify_time", modify_time)
+        pulumi.set(__self__, "service_logging", service_logging)
+        pulumi.set(__self__, "update_end_time", update_end_time)
+        pulumi.set(__self__, "update_start_time", update_start_time)
 
     @property
-    @pulumi.getter(name="containerNameRegex")
-    def container_name_regex(self) -> str:
+    @pulumi.getter(name="autoUpdate")
+    def auto_update(self) -> bool:
         """
-        The name of the container to be collected.
+        Whether to enable auto update.
         """
-        return pulumi.get(self, "container_name_regex")
+        return pulumi.get(self, "auto_update")
 
     @property
-    @pulumi.getter(name="envTag")
-    def env_tag(self) -> Mapping[str, Any]:
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
         """
-        Whether to add environment variables as log tags to raw log data.
+        The creation time of the host group.
         """
-        return pulumi.get(self, "env_tag")
+        return pulumi.get(self, "create_time")
 
     @property
-    @pulumi.getter(name="excludeContainerEnvRegex")
-    def exclude_container_env_regex(self) -> Mapping[str, Any]:
+    @pulumi.getter(name="hostGroupId")
+    def host_group_id(self) -> str:
         """
-        The container environment variable blacklist is used to specify the range of containers not to be collected.
+        The ID of the host group.
         """
-        return pulumi.get(self, "exclude_container_env_regex")
+        return pulumi.get(self, "host_group_id")
 
     @property
-    @pulumi.getter(name="excludeContainerLabelRegex")
-    def exclude_container_label_regex(self) -> Mapping[str, Any]:
+    @pulumi.getter(name="hostGroupName")
+    def host_group_name(self) -> str:
         """
-        The container Label blacklist is used to specify the range of containers not to be collected.
+        The name of the host group.
         """
-        return pulumi.get(self, "exclude_container_label_regex")
+        return pulumi.get(self, "host_group_name")
 
     @property
-    @pulumi.getter(name="includeContainerEnvRegex")
-    def include_container_env_regex(self) -> Mapping[str, Any]:
+    @pulumi.getter(name="hostGroupType")
+    def host_group_type(self) -> str:
         """
-        The container environment variable whitelist specifies the container to be collected through the container environment variable. If the whitelist is not enabled, it means that all containers are specified to be collected.
+        The type of the host group.
         """
-        return pulumi.get(self, "include_container_env_regex")
+        return pulumi.get(self, "host_group_type")
 
     @property
-    @pulumi.getter(name="includeContainerLabelRegex")
-    def include_container_label_regex(self) -> Mapping[str, Any]:
+    @pulumi.getter(name="hostIdentifier")
+    def host_identifier(self) -> str:
         """
-        The container label whitelist specifies the containers to be collected through the container label. If the whitelist is not enabled, all containers are specified to be collected.
+        The identifier of the host.
         """
-        return pulumi.get(self, "include_container_label_regex")
+        return pulumi.get(self, "host_identifier")
 
     @property
-    @pulumi.getter(name="kubernetesRules")
-    def kubernetes_rules(self) -> Sequence['outputs.GetRuleAppliersRuleContainerRuleKubernetesRuleResult']:
+    @pulumi.getter(name="iamProjectName")
+    def iam_project_name(self) -> str:
         """
-        Collection rules for Kubernetes containers.
+        The name of the iam project.
         """
-        return pulumi.get(self, "kubernetes_rules")
+        return pulumi.get(self, "iam_project_name")
 
     @property
-    @pulumi.getter
-    def stream(self) -> str:
+    @pulumi.getter(name="modifyTime")
+    def modify_time(self) -> str:
         """
-        The collection mode.
+        The modification time of the host group.
         """
-        return pulumi.get(self, "stream")
-
-
-@pulumi.output_type
-class GetRuleAppliersRuleContainerRuleKubernetesRuleResult(dict):
-    def __init__(__self__, *,
-                 annotation_tag: Mapping[str, Any],
-                 exclude_pod_label_regex: Mapping[str, Any],
-                 include_pod_label_regex: Mapping[str, Any],
-                 label_tag: Mapping[str, Any],
-                 namespace_name_regex: str,
-                 pod_name_regex: str,
-                 workload_name_regex: str,
-                 workload_type: str):
-        """
-        :param Mapping[str, Any] annotation_tag: Whether to add Kubernetes Annotation as a log tag to the raw log data.
-        :param Mapping[str, Any] exclude_pod_label_regex: Specify the containers not to be collected through the Pod Label blacklist, and not enable means to collect all containers.
-        :param Mapping[str, Any] include_pod_label_regex: The Pod Label whitelist is used to specify containers to be collected. When the Pod Label whitelist is not enabled, it means that all containers are collected.
-        :param Mapping[str, Any] label_tag: Whether to add Kubernetes Label as a log label to the original log data.
-        :param str namespace_name_regex: The name of the Kubernetes Namespace to be collected. If no Namespace name is specified, all containers will be collected. Namespace names support regular matching.
-        :param str pod_name_regex: The Pod name is used to specify the container to be collected. When no Pod name is specified, it means to collect all containers.
-        :param str workload_name_regex: Specify the container to be collected by the name of the workload. When no workload name is specified, all containers are collected. The workload name supports regular matching.
-        :param str workload_type: Specify the container to be collected by the type of workload. Only one type can be selected. When no type is specified, it means to collect all types of containers.
-        """
-        pulumi.set(__self__, "annotation_tag", annotation_tag)
-        pulumi.set(__self__, "exclude_pod_label_regex", exclude_pod_label_regex)
-        pulumi.set(__self__, "include_pod_label_regex", include_pod_label_regex)
-        pulumi.set(__self__, "label_tag", label_tag)
-        pulumi.set(__self__, "namespace_name_regex", namespace_name_regex)
-        pulumi.set(__self__, "pod_name_regex", pod_name_regex)
-        pulumi.set(__self__, "workload_name_regex", workload_name_regex)
-        pulumi.set(__self__, "workload_type", workload_type)
+        return pulumi.get(self, "modify_time")
 
     @property
-    @pulumi.getter(name="annotationTag")
-    def annotation_tag(self) -> Mapping[str, Any]:
+    @pulumi.getter(name="serviceLogging")
+    def service_logging(self) -> bool:
         """
-        Whether to add Kubernetes Annotation as a log tag to the raw log data.
+        Whether to enable service logging.
         """
-        return pulumi.get(self, "annotation_tag")
+        return pulumi.get(self, "service_logging")
 
     @property
-    @pulumi.getter(name="excludePodLabelRegex")
-    def exclude_pod_label_regex(self) -> Mapping[str, Any]:
+    @pulumi.getter(name="updateEndTime")
+    def update_end_time(self) -> str:
         """
-        Specify the containers not to be collected through the Pod Label blacklist, and not enable means to collect all containers.
+        The end time of auto update.
         """
-        return pulumi.get(self, "exclude_pod_label_regex")
+        return pulumi.get(self, "update_end_time")
 
     @property
-    @pulumi.getter(name="includePodLabelRegex")
-    def include_pod_label_regex(self) -> Mapping[str, Any]:
+    @pulumi.getter(name="updateStartTime")
+    def update_start_time(self) -> str:
         """
-        The Pod Label whitelist is used to specify containers to be collected. When the Pod Label whitelist is not enabled, it means that all containers are collected.
+        The start time of auto update.
         """
-        return pulumi.get(self, "include_pod_label_regex")
-
-    @property
-    @pulumi.getter(name="labelTag")
-    def label_tag(self) -> Mapping[str, Any]:
-        """
-        Whether to add Kubernetes Label as a log label to the original log data.
-        """
-        return pulumi.get(self, "label_tag")
-
-    @property
-    @pulumi.getter(name="namespaceNameRegex")
-    def namespace_name_regex(self) -> str:
-        """
-        The name of the Kubernetes Namespace to be collected. If no Namespace name is specified, all containers will be collected. Namespace names support regular matching.
-        """
-        return pulumi.get(self, "namespace_name_regex")
-
-    @property
-    @pulumi.getter(name="podNameRegex")
-    def pod_name_regex(self) -> str:
-        """
-        The Pod name is used to specify the container to be collected. When no Pod name is specified, it means to collect all containers.
-        """
-        return pulumi.get(self, "pod_name_regex")
-
-    @property
-    @pulumi.getter(name="workloadNameRegex")
-    def workload_name_regex(self) -> str:
-        """
-        Specify the container to be collected by the name of the workload. When no workload name is specified, all containers are collected. The workload name supports regular matching.
-        """
-        return pulumi.get(self, "workload_name_regex")
-
-    @property
-    @pulumi.getter(name="workloadType")
-    def workload_type(self) -> str:
-        """
-        Specify the container to be collected by the type of workload. Only one type can be selected. When no type is specified, it means to collect all types of containers.
-        """
-        return pulumi.get(self, "workload_type")
-
-
-@pulumi.output_type
-class GetRuleAppliersRuleExcludePathResult(dict):
-    def __init__(__self__, *,
-                 type: str,
-                 value: str):
-        """
-        :param str type: The type of the log template.
-        :param str value: Collection path.
-        """
-        pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "value", value)
-
-    @property
-    @pulumi.getter
-    def type(self) -> str:
-        """
-        The type of the log template.
-        """
-        return pulumi.get(self, "type")
-
-    @property
-    @pulumi.getter
-    def value(self) -> str:
-        """
-        Collection path.
-        """
-        return pulumi.get(self, "value")
-
-
-@pulumi.output_type
-class GetRuleAppliersRuleExtractRuleResult(dict):
-    def __init__(__self__, *,
-                 begin_regex: str,
-                 delimiter: str,
-                 filter_key_regexes: Sequence['outputs.GetRuleAppliersRuleExtractRuleFilterKeyRegexResult'],
-                 keys: Sequence[str],
-                 log_regex: str,
-                 log_templates: Sequence['outputs.GetRuleAppliersRuleExtractRuleLogTemplateResult'],
-                 time_format: str,
-                 time_key: str,
-                 un_match_log_key: str,
-                 un_match_up_load_switch: bool):
-        """
-        :param str begin_regex: The first log line needs to match the regular expression.
-        :param str delimiter: The delimiter of the log.
-        :param Sequence['GetRuleAppliersRuleExtractRuleFilterKeyRegexArgs'] filter_key_regexes: The filter key list.
-        :param Sequence[str] keys: A list of field names. Log Service will parse the path sample (PathSample) into multiple fields according to the regular expression (Regex), and Keys is used to specify the field name of each field.
-        :param str log_regex: The entire log needs to match the regular expression.
-        :param Sequence['GetRuleAppliersRuleExtractRuleLogTemplateArgs'] log_templates: Automatically extract log fields according to the specified log template.
-        :param str time_format: Parsing format of the time field.
-        :param str time_key: The field name of the log time field.
-        :param str un_match_log_key: When uploading the failed log, the key name of the failed log.
-        :param bool un_match_up_load_switch: Whether to upload the log of parsing failure.
-        """
-        pulumi.set(__self__, "begin_regex", begin_regex)
-        pulumi.set(__self__, "delimiter", delimiter)
-        pulumi.set(__self__, "filter_key_regexes", filter_key_regexes)
-        pulumi.set(__self__, "keys", keys)
-        pulumi.set(__self__, "log_regex", log_regex)
-        pulumi.set(__self__, "log_templates", log_templates)
-        pulumi.set(__self__, "time_format", time_format)
-        pulumi.set(__self__, "time_key", time_key)
-        pulumi.set(__self__, "un_match_log_key", un_match_log_key)
-        pulumi.set(__self__, "un_match_up_load_switch", un_match_up_load_switch)
-
-    @property
-    @pulumi.getter(name="beginRegex")
-    def begin_regex(self) -> str:
-        """
-        The first log line needs to match the regular expression.
-        """
-        return pulumi.get(self, "begin_regex")
-
-    @property
-    @pulumi.getter
-    def delimiter(self) -> str:
-        """
-        The delimiter of the log.
-        """
-        return pulumi.get(self, "delimiter")
-
-    @property
-    @pulumi.getter(name="filterKeyRegexes")
-    def filter_key_regexes(self) -> Sequence['outputs.GetRuleAppliersRuleExtractRuleFilterKeyRegexResult']:
-        """
-        The filter key list.
-        """
-        return pulumi.get(self, "filter_key_regexes")
-
-    @property
-    @pulumi.getter
-    def keys(self) -> Sequence[str]:
-        """
-        A list of field names. Log Service will parse the path sample (PathSample) into multiple fields according to the regular expression (Regex), and Keys is used to specify the field name of each field.
-        """
-        return pulumi.get(self, "keys")
-
-    @property
-    @pulumi.getter(name="logRegex")
-    def log_regex(self) -> str:
-        """
-        The entire log needs to match the regular expression.
-        """
-        return pulumi.get(self, "log_regex")
-
-    @property
-    @pulumi.getter(name="logTemplates")
-    def log_templates(self) -> Sequence['outputs.GetRuleAppliersRuleExtractRuleLogTemplateResult']:
-        """
-        Automatically extract log fields according to the specified log template.
-        """
-        return pulumi.get(self, "log_templates")
-
-    @property
-    @pulumi.getter(name="timeFormat")
-    def time_format(self) -> str:
-        """
-        Parsing format of the time field.
-        """
-        return pulumi.get(self, "time_format")
-
-    @property
-    @pulumi.getter(name="timeKey")
-    def time_key(self) -> str:
-        """
-        The field name of the log time field.
-        """
-        return pulumi.get(self, "time_key")
-
-    @property
-    @pulumi.getter(name="unMatchLogKey")
-    def un_match_log_key(self) -> str:
-        """
-        When uploading the failed log, the key name of the failed log.
-        """
-        return pulumi.get(self, "un_match_log_key")
-
-    @property
-    @pulumi.getter(name="unMatchUpLoadSwitch")
-    def un_match_up_load_switch(self) -> bool:
-        """
-        Whether to upload the log of parsing failure.
-        """
-        return pulumi.get(self, "un_match_up_load_switch")
-
-
-@pulumi.output_type
-class GetRuleAppliersRuleExtractRuleFilterKeyRegexResult(dict):
-    def __init__(__self__, *,
-                 key: str,
-                 regex: str):
-        """
-        :param str key: The name of the filter key.
-        :param str regex: Regular expression for extracting path fields. It must match the collection path sample, otherwise it cannot be extracted successfully.
-        """
-        pulumi.set(__self__, "key", key)
-        pulumi.set(__self__, "regex", regex)
-
-    @property
-    @pulumi.getter
-    def key(self) -> str:
-        """
-        The name of the filter key.
-        """
-        return pulumi.get(self, "key")
-
-    @property
-    @pulumi.getter
-    def regex(self) -> str:
-        """
-        Regular expression for extracting path fields. It must match the collection path sample, otherwise it cannot be extracted successfully.
-        """
-        return pulumi.get(self, "regex")
-
-
-@pulumi.output_type
-class GetRuleAppliersRuleExtractRuleLogTemplateResult(dict):
-    def __init__(__self__, *,
-                 format: str,
-                 type: str):
-        """
-        :param str format: Log template content.
-        :param str type: The type of the log template.
-        """
-        pulumi.set(__self__, "format", format)
-        pulumi.set(__self__, "type", type)
-
-    @property
-    @pulumi.getter
-    def format(self) -> str:
-        """
-        Log template content.
-        """
-        return pulumi.get(self, "format")
-
-    @property
-    @pulumi.getter
-    def type(self) -> str:
-        """
-        The type of the log template.
-        """
-        return pulumi.get(self, "type")
-
-
-@pulumi.output_type
-class GetRuleAppliersRuleUserDefineRuleResult(dict):
-    def __init__(__self__, *,
-                 advanceds: Sequence['outputs.GetRuleAppliersRuleUserDefineRuleAdvancedResult'],
-                 enable_raw_log: bool,
-                 fields: Mapping[str, Any],
-                 parse_path_rules: Sequence['outputs.GetRuleAppliersRuleUserDefineRuleParsePathRuleResult'],
-                 plugins: Sequence['outputs.GetRuleAppliersRuleUserDefineRulePluginResult'],
-                 shard_hash_keys: Sequence['outputs.GetRuleAppliersRuleUserDefineRuleShardHashKeyResult'],
-                 tail_files: bool):
-        """
-        :param Sequence['GetRuleAppliersRuleUserDefineRuleAdvancedArgs'] advanceds: LogCollector extension configuration.
-        :param bool enable_raw_log: Whether to upload raw logs.
-        :param Mapping[str, Any] fields: Add constant fields to logs.
-        :param Sequence['GetRuleAppliersRuleUserDefineRuleParsePathRuleArgs'] parse_path_rules: Rules for parsing collection paths. After the rules are set, the fields in the collection path will be extracted through the regular expressions specified in the rules, and added to the log data as metadata.
-        :param Sequence['GetRuleAppliersRuleUserDefineRulePluginArgs'] plugins: Plugin configuration. After the plugin configuration is enabled, one or more LogCollector processor plugins can be added to parse logs with complex or variable structures.
-        :param Sequence['GetRuleAppliersRuleUserDefineRuleShardHashKeyArgs'] shard_hash_keys: Rules for routing log partitions. Setting this parameter indicates that the HashKey routing shard mode is used when collecting logs, and Log Service will write the data to the shard containing the specified Key value.
-        :param bool tail_files: LogCollector collection strategy, which specifies whether LogCollector collects incremental logs or full logs. The default is false, which means to collect all logs.
-        """
-        pulumi.set(__self__, "advanceds", advanceds)
-        pulumi.set(__self__, "enable_raw_log", enable_raw_log)
-        pulumi.set(__self__, "fields", fields)
-        pulumi.set(__self__, "parse_path_rules", parse_path_rules)
-        pulumi.set(__self__, "plugins", plugins)
-        pulumi.set(__self__, "shard_hash_keys", shard_hash_keys)
-        pulumi.set(__self__, "tail_files", tail_files)
-
-    @property
-    @pulumi.getter
-    def advanceds(self) -> Sequence['outputs.GetRuleAppliersRuleUserDefineRuleAdvancedResult']:
-        """
-        LogCollector extension configuration.
-        """
-        return pulumi.get(self, "advanceds")
-
-    @property
-    @pulumi.getter(name="enableRawLog")
-    def enable_raw_log(self) -> bool:
-        """
-        Whether to upload raw logs.
-        """
-        return pulumi.get(self, "enable_raw_log")
-
-    @property
-    @pulumi.getter
-    def fields(self) -> Mapping[str, Any]:
-        """
-        Add constant fields to logs.
-        """
-        return pulumi.get(self, "fields")
-
-    @property
-    @pulumi.getter(name="parsePathRules")
-    def parse_path_rules(self) -> Sequence['outputs.GetRuleAppliersRuleUserDefineRuleParsePathRuleResult']:
-        """
-        Rules for parsing collection paths. After the rules are set, the fields in the collection path will be extracted through the regular expressions specified in the rules, and added to the log data as metadata.
-        """
-        return pulumi.get(self, "parse_path_rules")
-
-    @property
-    @pulumi.getter
-    def plugins(self) -> Sequence['outputs.GetRuleAppliersRuleUserDefineRulePluginResult']:
-        """
-        Plugin configuration. After the plugin configuration is enabled, one or more LogCollector processor plugins can be added to parse logs with complex or variable structures.
-        """
-        return pulumi.get(self, "plugins")
-
-    @property
-    @pulumi.getter(name="shardHashKeys")
-    def shard_hash_keys(self) -> Sequence['outputs.GetRuleAppliersRuleUserDefineRuleShardHashKeyResult']:
-        """
-        Rules for routing log partitions. Setting this parameter indicates that the HashKey routing shard mode is used when collecting logs, and Log Service will write the data to the shard containing the specified Key value.
-        """
-        return pulumi.get(self, "shard_hash_keys")
-
-    @property
-    @pulumi.getter(name="tailFiles")
-    def tail_files(self) -> bool:
-        """
-        LogCollector collection strategy, which specifies whether LogCollector collects incremental logs or full logs. The default is false, which means to collect all logs.
-        """
-        return pulumi.get(self, "tail_files")
-
-
-@pulumi.output_type
-class GetRuleAppliersRuleUserDefineRuleAdvancedResult(dict):
-    def __init__(__self__, *,
-                 close_eof: bool,
-                 close_inactive: int,
-                 close_removed: bool,
-                 close_renamed: bool,
-                 close_timeout: int):
-        """
-        :param bool close_eof: Whether to release the log file handle after reading to the end of the log file. The default is false.
-        :param int close_inactive: The wait time to release the log file handle. When the log file has not written a new log for more than the specified time, release the handle of the log file.
-        :param bool close_removed: After the log file is removed, whether to release the handle of the log file. The default is false.
-        :param bool close_renamed: After the log file is renamed, whether to release the handle of the log file. The default is false.
-        :param int close_timeout: The maximum length of time that LogCollector monitors log files. The unit is seconds, and the default is 0 seconds, which means that there is no limit to the length of time LogCollector monitors log files.
-        """
-        pulumi.set(__self__, "close_eof", close_eof)
-        pulumi.set(__self__, "close_inactive", close_inactive)
-        pulumi.set(__self__, "close_removed", close_removed)
-        pulumi.set(__self__, "close_renamed", close_renamed)
-        pulumi.set(__self__, "close_timeout", close_timeout)
-
-    @property
-    @pulumi.getter(name="closeEof")
-    def close_eof(self) -> bool:
-        """
-        Whether to release the log file handle after reading to the end of the log file. The default is false.
-        """
-        return pulumi.get(self, "close_eof")
-
-    @property
-    @pulumi.getter(name="closeInactive")
-    def close_inactive(self) -> int:
-        """
-        The wait time to release the log file handle. When the log file has not written a new log for more than the specified time, release the handle of the log file.
-        """
-        return pulumi.get(self, "close_inactive")
-
-    @property
-    @pulumi.getter(name="closeRemoved")
-    def close_removed(self) -> bool:
-        """
-        After the log file is removed, whether to release the handle of the log file. The default is false.
-        """
-        return pulumi.get(self, "close_removed")
-
-    @property
-    @pulumi.getter(name="closeRenamed")
-    def close_renamed(self) -> bool:
-        """
-        After the log file is renamed, whether to release the handle of the log file. The default is false.
-        """
-        return pulumi.get(self, "close_renamed")
-
-    @property
-    @pulumi.getter(name="closeTimeout")
-    def close_timeout(self) -> int:
-        """
-        The maximum length of time that LogCollector monitors log files. The unit is seconds, and the default is 0 seconds, which means that there is no limit to the length of time LogCollector monitors log files.
-        """
-        return pulumi.get(self, "close_timeout")
-
-
-@pulumi.output_type
-class GetRuleAppliersRuleUserDefineRuleParsePathRuleResult(dict):
-    def __init__(__self__, *,
-                 keys: Sequence[str],
-                 path_sample: str,
-                 regex: str):
-        """
-        :param Sequence[str] keys: A list of field names. Log Service will parse the path sample (PathSample) into multiple fields according to the regular expression (Regex), and Keys is used to specify the field name of each field.
-        :param str path_sample: Sample capture path for a real scene.
-        :param str regex: Regular expression for extracting path fields. It must match the collection path sample, otherwise it cannot be extracted successfully.
-        """
-        pulumi.set(__self__, "keys", keys)
-        pulumi.set(__self__, "path_sample", path_sample)
-        pulumi.set(__self__, "regex", regex)
-
-    @property
-    @pulumi.getter
-    def keys(self) -> Sequence[str]:
-        """
-        A list of field names. Log Service will parse the path sample (PathSample) into multiple fields according to the regular expression (Regex), and Keys is used to specify the field name of each field.
-        """
-        return pulumi.get(self, "keys")
-
-    @property
-    @pulumi.getter(name="pathSample")
-    def path_sample(self) -> str:
-        """
-        Sample capture path for a real scene.
-        """
-        return pulumi.get(self, "path_sample")
-
-    @property
-    @pulumi.getter
-    def regex(self) -> str:
-        """
-        Regular expression for extracting path fields. It must match the collection path sample, otherwise it cannot be extracted successfully.
-        """
-        return pulumi.get(self, "regex")
-
-
-@pulumi.output_type
-class GetRuleAppliersRuleUserDefineRulePluginResult(dict):
-    def __init__(__self__, *,
-                 processors: str):
-        """
-        :param str processors: LogCollector plugin.
-        """
-        pulumi.set(__self__, "processors", processors)
-
-    @property
-    @pulumi.getter
-    def processors(self) -> str:
-        """
-        LogCollector plugin.
-        """
-        return pulumi.get(self, "processors")
-
-
-@pulumi.output_type
-class GetRuleAppliersRuleUserDefineRuleShardHashKeyResult(dict):
-    def __init__(__self__, *,
-                 hash_key: str):
-        """
-        :param str hash_key: The HashKey of the log group is used to specify the partition (shard) to be written to by the current log group.
-        """
-        pulumi.set(__self__, "hash_key", hash_key)
-
-    @property
-    @pulumi.getter(name="hashKey")
-    def hash_key(self) -> str:
-        """
-        The HashKey of the log group is used to specify the partition (shard) to be written to by the current log group.
-        """
-        return pulumi.get(self, "hash_key")
+        return pulumi.get(self, "update_start_time")
 
 
 @pulumi.output_type
@@ -12198,6 +19299,305 @@ class GetScheduleSqlTasksTaskRequestCycleResult(dict):
 
 
 @pulumi.output_type
+class GetSearchTracesQueryResult(dict):
+    def __init__(__self__, *,
+                 asc: Optional[bool] = None,
+                 attributes: Optional[Sequence['outputs.GetSearchTracesQueryAttributeResult']] = None,
+                 duration_max: Optional[int] = None,
+                 duration_min: Optional[int] = None,
+                 kind: Optional[str] = None,
+                 limit: Optional[int] = None,
+                 offset: Optional[int] = None,
+                 operation_name: Optional[str] = None,
+                 order: Optional[str] = None,
+                 service_name: Optional[str] = None,
+                 start_time_max: Optional[int] = None,
+                 start_time_min: Optional[int] = None,
+                 status_code: Optional[str] = None,
+                 trace_id: Optional[str] = None):
+        """
+        :param bool asc: Whether to sort results in ascending order. true means ascending, false means descending.
+        :param Sequence['GetSearchTracesQueryAttributeArgs'] attributes: Attributes.
+        :param int duration_max: Maximum trace duration in microseconds.
+        :param int duration_min: Minimum trace duration in microseconds.
+        :param str kind: Type of the trace.
+        :param int limit: Maximum number of records to return, used for pagination.
+        :param int offset: Offset for paginated query.
+        :param str operation_name: Operation name, used to filter traces with specific operation.
+        :param str order: Sorting field. Supported fields: Kind, Name, ServiceName, Start, End, Duration, and indexed fields in Attributes.
+        :param str service_name: Service name, used to filter traces from specific service.
+        :param int start_time_max: Maximum start time for searching traces, in microsecond timestamp format.
+        :param int start_time_min: Minimum start time for searching traces, in microsecond timestamp format.
+        :param str status_code: Trace status code, used to filter traces with specific status.
+        :param str trace_id: Trace ID.
+        """
+        if asc is not None:
+            pulumi.set(__self__, "asc", asc)
+        if attributes is not None:
+            pulumi.set(__self__, "attributes", attributes)
+        if duration_max is not None:
+            pulumi.set(__self__, "duration_max", duration_max)
+        if duration_min is not None:
+            pulumi.set(__self__, "duration_min", duration_min)
+        if kind is not None:
+            pulumi.set(__self__, "kind", kind)
+        if limit is not None:
+            pulumi.set(__self__, "limit", limit)
+        if offset is not None:
+            pulumi.set(__self__, "offset", offset)
+        if operation_name is not None:
+            pulumi.set(__self__, "operation_name", operation_name)
+        if order is not None:
+            pulumi.set(__self__, "order", order)
+        if service_name is not None:
+            pulumi.set(__self__, "service_name", service_name)
+        if start_time_max is not None:
+            pulumi.set(__self__, "start_time_max", start_time_max)
+        if start_time_min is not None:
+            pulumi.set(__self__, "start_time_min", start_time_min)
+        if status_code is not None:
+            pulumi.set(__self__, "status_code", status_code)
+        if trace_id is not None:
+            pulumi.set(__self__, "trace_id", trace_id)
+
+    @property
+    @pulumi.getter
+    def asc(self) -> Optional[bool]:
+        """
+        Whether to sort results in ascending order. true means ascending, false means descending.
+        """
+        return pulumi.get(self, "asc")
+
+    @property
+    @pulumi.getter
+    def attributes(self) -> Optional[Sequence['outputs.GetSearchTracesQueryAttributeResult']]:
+        """
+        Attributes.
+        """
+        return pulumi.get(self, "attributes")
+
+    @property
+    @pulumi.getter(name="durationMax")
+    def duration_max(self) -> Optional[int]:
+        """
+        Maximum trace duration in microseconds.
+        """
+        return pulumi.get(self, "duration_max")
+
+    @property
+    @pulumi.getter(name="durationMin")
+    def duration_min(self) -> Optional[int]:
+        """
+        Minimum trace duration in microseconds.
+        """
+        return pulumi.get(self, "duration_min")
+
+    @property
+    @pulumi.getter
+    def kind(self) -> Optional[str]:
+        """
+        Type of the trace.
+        """
+        return pulumi.get(self, "kind")
+
+    @property
+    @pulumi.getter
+    def limit(self) -> Optional[int]:
+        """
+        Maximum number of records to return, used for pagination.
+        """
+        return pulumi.get(self, "limit")
+
+    @property
+    @pulumi.getter
+    def offset(self) -> Optional[int]:
+        """
+        Offset for paginated query.
+        """
+        return pulumi.get(self, "offset")
+
+    @property
+    @pulumi.getter(name="operationName")
+    def operation_name(self) -> Optional[str]:
+        """
+        Operation name, used to filter traces with specific operation.
+        """
+        return pulumi.get(self, "operation_name")
+
+    @property
+    @pulumi.getter
+    def order(self) -> Optional[str]:
+        """
+        Sorting field. Supported fields: Kind, Name, ServiceName, Start, End, Duration, and indexed fields in Attributes.
+        """
+        return pulumi.get(self, "order")
+
+    @property
+    @pulumi.getter(name="serviceName")
+    def service_name(self) -> Optional[str]:
+        """
+        Service name, used to filter traces from specific service.
+        """
+        return pulumi.get(self, "service_name")
+
+    @property
+    @pulumi.getter(name="startTimeMax")
+    def start_time_max(self) -> Optional[int]:
+        """
+        Maximum start time for searching traces, in microsecond timestamp format.
+        """
+        return pulumi.get(self, "start_time_max")
+
+    @property
+    @pulumi.getter(name="startTimeMin")
+    def start_time_min(self) -> Optional[int]:
+        """
+        Minimum start time for searching traces, in microsecond timestamp format.
+        """
+        return pulumi.get(self, "start_time_min")
+
+    @property
+    @pulumi.getter(name="statusCode")
+    def status_code(self) -> Optional[str]:
+        """
+        Trace status code, used to filter traces with specific status.
+        """
+        return pulumi.get(self, "status_code")
+
+    @property
+    @pulumi.getter(name="traceId")
+    def trace_id(self) -> Optional[str]:
+        """
+        Trace ID.
+        """
+        return pulumi.get(self, "trace_id")
+
+
+@pulumi.output_type
+class GetSearchTracesQueryAttributeResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: Attribute key.
+        :param str value: Attribute value.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        Attribute key.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        Attribute value.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetSearchTracesTraceResult(dict):
+    def __init__(__self__, *,
+                 attributes: Mapping[str, str],
+                 duration: int,
+                 end_time: int,
+                 operation_name: str,
+                 service_name: str,
+                 start_time: int,
+                 status_code: str,
+                 trace_id: str):
+        """
+        :param Mapping[str, str] attributes: Trace attributes.
+        :param int duration: Trace duration in microseconds.
+        :param int end_time: Trace end time in microseconds.
+        :param str operation_name: Operation name.
+        :param str service_name: Service name.
+        :param int start_time: Trace start time in microseconds.
+        :param str status_code: Trace status code.
+        :param str trace_id: Trace ID.
+        """
+        pulumi.set(__self__, "attributes", attributes)
+        pulumi.set(__self__, "duration", duration)
+        pulumi.set(__self__, "end_time", end_time)
+        pulumi.set(__self__, "operation_name", operation_name)
+        pulumi.set(__self__, "service_name", service_name)
+        pulumi.set(__self__, "start_time", start_time)
+        pulumi.set(__self__, "status_code", status_code)
+        pulumi.set(__self__, "trace_id", trace_id)
+
+    @property
+    @pulumi.getter
+    def attributes(self) -> Mapping[str, str]:
+        """
+        Trace attributes.
+        """
+        return pulumi.get(self, "attributes")
+
+    @property
+    @pulumi.getter
+    def duration(self) -> int:
+        """
+        Trace duration in microseconds.
+        """
+        return pulumi.get(self, "duration")
+
+    @property
+    @pulumi.getter(name="endTime")
+    def end_time(self) -> int:
+        """
+        Trace end time in microseconds.
+        """
+        return pulumi.get(self, "end_time")
+
+    @property
+    @pulumi.getter(name="operationName")
+    def operation_name(self) -> str:
+        """
+        Operation name.
+        """
+        return pulumi.get(self, "operation_name")
+
+    @property
+    @pulumi.getter(name="serviceName")
+    def service_name(self) -> str:
+        """
+        Service name.
+        """
+        return pulumi.get(self, "service_name")
+
+    @property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> int:
+        """
+        Trace start time in microseconds.
+        """
+        return pulumi.get(self, "start_time")
+
+    @property
+    @pulumi.getter(name="statusCode")
+    def status_code(self) -> str:
+        """
+        Trace status code.
+        """
+        return pulumi.get(self, "status_code")
+
+    @property
+    @pulumi.getter(name="traceId")
+    def trace_id(self) -> str:
+        """
+        Trace ID.
+        """
+        return pulumi.get(self, "trace_id")
+
+
+@pulumi.output_type
 class GetShardsShardResult(dict):
     def __init__(__self__, *,
                  exclusive_end_key: str,
@@ -12291,6 +19691,7 @@ class GetShippersShipperResult(dict):
                  modify_time: str,
                  project_id: str,
                  project_name: str,
+                 role_trn: str,
                  shipper_end_time: int,
                  shipper_id: str,
                  shipper_name: str,
@@ -12308,6 +19709,7 @@ class GetShippersShipperResult(dict):
         :param str modify_time: The most recent modification time of the processing task.
         :param str project_id: Specify the log item ID for querying the data delivery configuration under the specified log item.
         :param str project_name: Specify the name of the log item for querying the data delivery configuration under the specified log item. Support fuzzy matching.
+        :param str role_trn: The role trn.
         :param int shipper_end_time: Delivery end time, millisecond timestamp. If not configured, it will keep delivering.
         :param str shipper_id: Delivery configuration ID.
         :param str shipper_name: Delivery configuration name.
@@ -12325,6 +19727,7 @@ class GetShippersShipperResult(dict):
         pulumi.set(__self__, "modify_time", modify_time)
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "role_trn", role_trn)
         pulumi.set(__self__, "shipper_end_time", shipper_end_time)
         pulumi.set(__self__, "shipper_id", shipper_id)
         pulumi.set(__self__, "shipper_name", shipper_name)
@@ -12390,6 +19793,14 @@ class GetShippersShipperResult(dict):
         Specify the name of the log item for querying the data delivery configuration under the specified log item. Support fuzzy matching.
         """
         return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="roleTrn")
+    def role_trn(self) -> str:
+        """
+        The role trn.
+        """
+        return pulumi.get(self, "role_trn")
 
     @property
     @pulumi.getter(name="shipperEndTime")
@@ -12742,6 +20153,166 @@ class GetShippersShipperTosShipperInfoResult(dict):
 
 
 @pulumi.output_type
+class GetTagResourcesTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 resource_id: str,
+                 resource_type: str,
+                 value: str):
+        """
+        :param str key: The key of the tag.
+        :param str resource_id: The ID of the resource.
+        :param str resource_type: The type of the resource. Valid values: project, topic, shipper, host_group, host, consumer_group, rule, alarm, alarm_notify_group, etl_task, import_task, schedule_sql_task, download_task, trace_instance.
+        :param str value: The value of the tag.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "resource_id", resource_id)
+        pulumi.set(__self__, "resource_type", resource_type)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The key of the tag.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> str:
+        """
+        The ID of the resource.
+        """
+        return pulumi.get(self, "resource_id")
+
+    @property
+    @pulumi.getter(name="resourceType")
+    def resource_type(self) -> str:
+        """
+        The type of the resource. Valid values: project, topic, shipper, host_group, host, consumer_group, rule, alarm, alarm_notify_group, etl_task, import_task, schedule_sql_task, download_task, trace_instance.
+        """
+        return pulumi.get(self, "resource_type")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The value of the tag.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetTagResourcesTagFilterResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 values: Sequence[str]):
+        """
+        :param str key: The key of the tag filter.
+        :param Sequence[str] values: The values of the tag filter.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The key of the tag filter.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def values(self) -> Sequence[str]:
+        """
+        The values of the tag filter.
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetTagsTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 resource_id: str,
+                 resource_type: str,
+                 value: str):
+        """
+        :param str key: The key of the tag.
+        :param str resource_id: The ID of the resource.
+        :param str resource_type: The type of the resource. Valid values: project, topic, shipper, host_group, host, consumer_group, rule, alarm, alarm_notify_group, etl_task, import_task, schedule_sql_task, download_task, trace_instance.
+        :param str value: The value of the tag.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "resource_id", resource_id)
+        pulumi.set(__self__, "resource_type", resource_type)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The key of the tag.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> str:
+        """
+        The ID of the resource.
+        """
+        return pulumi.get(self, "resource_id")
+
+    @property
+    @pulumi.getter(name="resourceType")
+    def resource_type(self) -> str:
+        """
+        The type of the resource. Valid values: project, topic, shipper, host_group, host, consumer_group, rule, alarm, alarm_notify_group, etl_task, import_task, schedule_sql_task, download_task, trace_instance.
+        """
+        return pulumi.get(self, "resource_type")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The value of the tag.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetTagsTagFilterResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 values: Sequence[str]):
+        """
+        :param str key: The key of the tag filter.
+        :param Sequence[str] values: The values of the tag filter.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The key of the tag filter.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def values(self) -> Sequence[str]:
+        """
+        The values of the tag filter.
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
 class GetTopicsTagResult(dict):
     def __init__(__self__, *,
                  key: str,
@@ -12773,11 +20344,17 @@ class GetTopicsTagResult(dict):
 @pulumi.output_type
 class GetTopicsTlsTopicResult(dict):
     def __init__(__self__, *,
+                 archive_ttl: int,
                  auto_split: bool,
+                 cold_ttl: int,
                  create_time: str,
                  description: str,
+                 enable_hot_ttl: bool,
                  enable_tracking: bool,
+                 encrypt_conf: 'outputs.GetTopicsTlsTopicEncryptConfResult',
+                 hot_ttl: int,
                  id: str,
+                 log_public_ip: bool,
                  max_split_shard: int,
                  modify_time: str,
                  project_id: str,
@@ -12789,11 +20366,17 @@ class GetTopicsTlsTopicResult(dict):
                  topic_name: str,
                  ttl: int):
         """
+        :param int archive_ttl: Archive storage duration, valid when enable_hot_ttl is true.
         :param bool auto_split: Whether to enable automatic partition splitting function of the tls topic.
+        :param int cold_ttl: Infrequent storage duration, valid when enable_hot_ttl is true.
         :param str create_time: The create time of the tls topic.
         :param str description: The description of the tls topic.
+        :param bool enable_hot_ttl: Whether to enable tiered storage.
         :param bool enable_tracking: Whether to enable WebTracking function of the tls topic.
+        :param 'GetTopicsTlsTopicEncryptConfArgs' encrypt_conf: Data encryption configuration.
+        :param int hot_ttl: Standard storage duration, valid when enable_hot_ttl is true.
         :param str id: The ID of the tls topic.
+        :param bool log_public_ip: Whether to enable the function of recording public IP.
         :param int max_split_shard: The max count of shards in the tls topic.
         :param str modify_time: The modify time of the tls topic.
         :param str project_id: The project id of tls topic.
@@ -12805,11 +20388,17 @@ class GetTopicsTlsTopicResult(dict):
         :param str topic_name: The name of tls topic. This field supports fuzzy queries. It is not supported to specify both TopicName and TopicId at the same time.
         :param int ttl: The data storage time of the tls topic. Unit: Day.
         """
+        pulumi.set(__self__, "archive_ttl", archive_ttl)
         pulumi.set(__self__, "auto_split", auto_split)
+        pulumi.set(__self__, "cold_ttl", cold_ttl)
         pulumi.set(__self__, "create_time", create_time)
         pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "enable_hot_ttl", enable_hot_ttl)
         pulumi.set(__self__, "enable_tracking", enable_tracking)
+        pulumi.set(__self__, "encrypt_conf", encrypt_conf)
+        pulumi.set(__self__, "hot_ttl", hot_ttl)
         pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "log_public_ip", log_public_ip)
         pulumi.set(__self__, "max_split_shard", max_split_shard)
         pulumi.set(__self__, "modify_time", modify_time)
         pulumi.set(__self__, "project_id", project_id)
@@ -12822,12 +20411,28 @@ class GetTopicsTlsTopicResult(dict):
         pulumi.set(__self__, "ttl", ttl)
 
     @property
+    @pulumi.getter(name="archiveTtl")
+    def archive_ttl(self) -> int:
+        """
+        Archive storage duration, valid when enable_hot_ttl is true.
+        """
+        return pulumi.get(self, "archive_ttl")
+
+    @property
     @pulumi.getter(name="autoSplit")
     def auto_split(self) -> bool:
         """
         Whether to enable automatic partition splitting function of the tls topic.
         """
         return pulumi.get(self, "auto_split")
+
+    @property
+    @pulumi.getter(name="coldTtl")
+    def cold_ttl(self) -> int:
+        """
+        Infrequent storage duration, valid when enable_hot_ttl is true.
+        """
+        return pulumi.get(self, "cold_ttl")
 
     @property
     @pulumi.getter(name="createTime")
@@ -12846,6 +20451,14 @@ class GetTopicsTlsTopicResult(dict):
         return pulumi.get(self, "description")
 
     @property
+    @pulumi.getter(name="enableHotTtl")
+    def enable_hot_ttl(self) -> bool:
+        """
+        Whether to enable tiered storage.
+        """
+        return pulumi.get(self, "enable_hot_ttl")
+
+    @property
     @pulumi.getter(name="enableTracking")
     def enable_tracking(self) -> bool:
         """
@@ -12854,12 +20467,36 @@ class GetTopicsTlsTopicResult(dict):
         return pulumi.get(self, "enable_tracking")
 
     @property
+    @pulumi.getter(name="encryptConf")
+    def encrypt_conf(self) -> 'outputs.GetTopicsTlsTopicEncryptConfResult':
+        """
+        Data encryption configuration.
+        """
+        return pulumi.get(self, "encrypt_conf")
+
+    @property
+    @pulumi.getter(name="hotTtl")
+    def hot_ttl(self) -> int:
+        """
+        Standard storage duration, valid when enable_hot_ttl is true.
+        """
+        return pulumi.get(self, "hot_ttl")
+
+    @property
     @pulumi.getter
     def id(self) -> str:
         """
         The ID of the tls topic.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="logPublicIp")
+    def log_public_ip(self) -> bool:
+        """
+        Whether to enable the function of recording public IP.
+        """
+        return pulumi.get(self, "log_public_ip")
 
     @property
     @pulumi.getter(name="maxSplitShard")
@@ -12943,6 +20580,86 @@ class GetTopicsTlsTopicResult(dict):
 
 
 @pulumi.output_type
+class GetTopicsTlsTopicEncryptConfResult(dict):
+    def __init__(__self__, *,
+                 enable: bool,
+                 encrypt_type: str,
+                 user_cmk_info: 'outputs.GetTopicsTlsTopicEncryptConfUserCmkInfoResult'):
+        """
+        :param bool enable: Whether to enable data encryption.
+        :param str encrypt_type: The encryption type.
+        :param 'GetTopicsTlsTopicEncryptConfUserCmkInfoArgs' user_cmk_info: The user custom key.
+        """
+        pulumi.set(__self__, "enable", enable)
+        pulumi.set(__self__, "encrypt_type", encrypt_type)
+        pulumi.set(__self__, "user_cmk_info", user_cmk_info)
+
+    @property
+    @pulumi.getter
+    def enable(self) -> bool:
+        """
+        Whether to enable data encryption.
+        """
+        return pulumi.get(self, "enable")
+
+    @property
+    @pulumi.getter(name="encryptType")
+    def encrypt_type(self) -> str:
+        """
+        The encryption type.
+        """
+        return pulumi.get(self, "encrypt_type")
+
+    @property
+    @pulumi.getter(name="userCmkInfo")
+    def user_cmk_info(self) -> 'outputs.GetTopicsTlsTopicEncryptConfUserCmkInfoResult':
+        """
+        The user custom key.
+        """
+        return pulumi.get(self, "user_cmk_info")
+
+
+@pulumi.output_type
+class GetTopicsTlsTopicEncryptConfUserCmkInfoResult(dict):
+    def __init__(__self__, *,
+                 region_id: str,
+                 trn: str,
+                 user_cmk_id: str):
+        """
+        :param str region_id: The key region.
+        :param str trn: The key trn.
+        :param str user_cmk_id: The key id.
+        """
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "trn", trn)
+        pulumi.set(__self__, "user_cmk_id", user_cmk_id)
+
+    @property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> str:
+        """
+        The key region.
+        """
+        return pulumi.get(self, "region_id")
+
+    @property
+    @pulumi.getter
+    def trn(self) -> str:
+        """
+        The key trn.
+        """
+        return pulumi.get(self, "trn")
+
+    @property
+    @pulumi.getter(name="userCmkId")
+    def user_cmk_id(self) -> str:
+        """
+        The key id.
+        """
+        return pulumi.get(self, "user_cmk_id")
+
+
+@pulumi.output_type
 class GetTopicsTlsTopicTagResult(dict):
     def __init__(__self__, *,
                  key: str,
@@ -12969,5 +20686,250 @@ class GetTopicsTlsTopicTagResult(dict):
         The Value of Tags.
         """
         return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetTraceInstancesTraceInstanceResult(dict):
+    def __init__(__self__, *,
+                 backend_config: 'outputs.GetTraceInstancesTraceInstanceBackendConfigResult',
+                 create_time: str,
+                 cs_account_channel: str,
+                 dependency_topic_id: str,
+                 dependency_topic_topic_name: str,
+                 description: str,
+                 modify_time: str,
+                 project_id: str,
+                 project_name: str,
+                 trace_instance_id: str,
+                 trace_instance_name: str,
+                 trace_instance_status: str,
+                 trace_topic_id: str,
+                 trace_topic_name: str):
+        """
+        :param 'GetTraceInstancesTraceInstanceBackendConfigArgs' backend_config: The backend config of the trace instance.
+        :param str create_time: The create time of the trace instance.
+        :param str cs_account_channel: CS account channel identifier.
+        :param str dependency_topic_id: The ID of the dependency topic.
+        :param str dependency_topic_topic_name: The name of the dependency topic.
+        :param str description: The description of the trace instance.
+        :param str modify_time: The update time of the trace instance.
+        :param str project_id: The ID of the project.
+        :param str project_name: The name of the project.
+        :param str trace_instance_id: The ID of the trace instance.
+        :param str trace_instance_name: The name of the trace instance.
+        :param str trace_instance_status: The status of the trace instance.
+        :param str trace_topic_id: The ID of the trace topic.
+        :param str trace_topic_name: The name of the trace topic.
+        """
+        pulumi.set(__self__, "backend_config", backend_config)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "cs_account_channel", cs_account_channel)
+        pulumi.set(__self__, "dependency_topic_id", dependency_topic_id)
+        pulumi.set(__self__, "dependency_topic_topic_name", dependency_topic_topic_name)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "modify_time", modify_time)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "trace_instance_id", trace_instance_id)
+        pulumi.set(__self__, "trace_instance_name", trace_instance_name)
+        pulumi.set(__self__, "trace_instance_status", trace_instance_status)
+        pulumi.set(__self__, "trace_topic_id", trace_topic_id)
+        pulumi.set(__self__, "trace_topic_name", trace_topic_name)
+
+    @property
+    @pulumi.getter(name="backendConfig")
+    def backend_config(self) -> 'outputs.GetTraceInstancesTraceInstanceBackendConfigResult':
+        """
+        The backend config of the trace instance.
+        """
+        return pulumi.get(self, "backend_config")
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        The create time of the trace instance.
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter(name="csAccountChannel")
+    def cs_account_channel(self) -> str:
+        """
+        CS account channel identifier.
+        """
+        return pulumi.get(self, "cs_account_channel")
+
+    @property
+    @pulumi.getter(name="dependencyTopicId")
+    def dependency_topic_id(self) -> str:
+        """
+        The ID of the dependency topic.
+        """
+        return pulumi.get(self, "dependency_topic_id")
+
+    @property
+    @pulumi.getter(name="dependencyTopicTopicName")
+    def dependency_topic_topic_name(self) -> str:
+        """
+        The name of the dependency topic.
+        """
+        return pulumi.get(self, "dependency_topic_topic_name")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the trace instance.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="modifyTime")
+    def modify_time(self) -> str:
+        """
+        The update time of the trace instance.
+        """
+        return pulumi.get(self, "modify_time")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        """
+        The ID of the project.
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The name of the project.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="traceInstanceId")
+    def trace_instance_id(self) -> str:
+        """
+        The ID of the trace instance.
+        """
+        return pulumi.get(self, "trace_instance_id")
+
+    @property
+    @pulumi.getter(name="traceInstanceName")
+    def trace_instance_name(self) -> str:
+        """
+        The name of the trace instance.
+        """
+        return pulumi.get(self, "trace_instance_name")
+
+    @property
+    @pulumi.getter(name="traceInstanceStatus")
+    def trace_instance_status(self) -> str:
+        """
+        The status of the trace instance.
+        """
+        return pulumi.get(self, "trace_instance_status")
+
+    @property
+    @pulumi.getter(name="traceTopicId")
+    def trace_topic_id(self) -> str:
+        """
+        The ID of the trace topic.
+        """
+        return pulumi.get(self, "trace_topic_id")
+
+    @property
+    @pulumi.getter(name="traceTopicName")
+    def trace_topic_name(self) -> str:
+        """
+        The name of the trace topic.
+        """
+        return pulumi.get(self, "trace_topic_name")
+
+
+@pulumi.output_type
+class GetTraceInstancesTraceInstanceBackendConfigResult(dict):
+    def __init__(__self__, *,
+                 archive_ttl: int,
+                 auto_split: bool,
+                 cold_ttl: int,
+                 enable_hot_ttl: bool,
+                 hot_ttl: int,
+                 max_split_partitions: int,
+                 ttl: int):
+        """
+        :param int archive_ttl: Archive storage duration in days.
+        :param bool auto_split: Whether to enable auto split.
+        :param int cold_ttl: Infrequent storage duration in days.
+        :param bool enable_hot_ttl: Whether to enable tiered storage.
+        :param int hot_ttl: Standard storage duration in days.
+        :param int max_split_partitions: Max split partitions.
+        :param int ttl: Total log retention time in days.
+        """
+        pulumi.set(__self__, "archive_ttl", archive_ttl)
+        pulumi.set(__self__, "auto_split", auto_split)
+        pulumi.set(__self__, "cold_ttl", cold_ttl)
+        pulumi.set(__self__, "enable_hot_ttl", enable_hot_ttl)
+        pulumi.set(__self__, "hot_ttl", hot_ttl)
+        pulumi.set(__self__, "max_split_partitions", max_split_partitions)
+        pulumi.set(__self__, "ttl", ttl)
+
+    @property
+    @pulumi.getter(name="archiveTtl")
+    def archive_ttl(self) -> int:
+        """
+        Archive storage duration in days.
+        """
+        return pulumi.get(self, "archive_ttl")
+
+    @property
+    @pulumi.getter(name="autoSplit")
+    def auto_split(self) -> bool:
+        """
+        Whether to enable auto split.
+        """
+        return pulumi.get(self, "auto_split")
+
+    @property
+    @pulumi.getter(name="coldTtl")
+    def cold_ttl(self) -> int:
+        """
+        Infrequent storage duration in days.
+        """
+        return pulumi.get(self, "cold_ttl")
+
+    @property
+    @pulumi.getter(name="enableHotTtl")
+    def enable_hot_ttl(self) -> bool:
+        """
+        Whether to enable tiered storage.
+        """
+        return pulumi.get(self, "enable_hot_ttl")
+
+    @property
+    @pulumi.getter(name="hotTtl")
+    def hot_ttl(self) -> int:
+        """
+        Standard storage duration in days.
+        """
+        return pulumi.get(self, "hot_ttl")
+
+    @property
+    @pulumi.getter(name="maxSplitPartitions")
+    def max_split_partitions(self) -> int:
+        """
+        Max split partitions.
+        """
+        return pulumi.get(self, "max_split_partitions")
+
+    @property
+    @pulumi.getter
+    def ttl(self) -> int:
+        """
+        Total log retention time in days.
+        """
+        return pulumi.get(self, "ttl")
 
 

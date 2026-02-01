@@ -172,7 +172,17 @@ def consumer_groups(consumer_group_name: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.get_consumer_groups()
+    all = volcengine.tls.get_consumer_groups()
+    pulumi.export("allConsumerGroups", all.consumer_groups)
+    by_name = volcengine.tls.get_consumer_groups(consumer_group_name="test-consumer-group")
+    pulumi.export("byNameConsumerGroups", by_name.consumer_groups)
+    by_project = volcengine.tls.get_consumer_groups(project_id="project-123456")
+    pulumi.export("byProjectConsumerGroups", by_project.consumer_groups)
+    by_topic = volcengine.tls.get_consumer_groups(topic_id="topic-123456")
+    pulumi.export("byTopicConsumerGroups", by_topic.consumer_groups)
+    with_multiple_filters = volcengine.tls.get_consumer_groups(project_id="project-123456",
+        consumer_group_name="test")
+    pulumi.export("multipleFiltersConsumerGroups", with_multiple_filters.consumer_groups)
     ```
 
 
@@ -230,7 +240,17 @@ def consumer_groups_output(consumer_group_name: Optional[pulumi.Input[Optional[s
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.get_consumer_groups()
+    all = volcengine.tls.get_consumer_groups()
+    pulumi.export("allConsumerGroups", all.consumer_groups)
+    by_name = volcengine.tls.get_consumer_groups(consumer_group_name="test-consumer-group")
+    pulumi.export("byNameConsumerGroups", by_name.consumer_groups)
+    by_project = volcengine.tls.get_consumer_groups(project_id="project-123456")
+    pulumi.export("byProjectConsumerGroups", by_project.consumer_groups)
+    by_topic = volcengine.tls.get_consumer_groups(topic_id="topic-123456")
+    pulumi.export("byTopicConsumerGroups", by_topic.consumer_groups)
+    with_multiple_filters = volcengine.tls.get_consumer_groups(project_id="project-123456",
+        consumer_group_name="test")
+    pulumi.export("multipleFiltersConsumerGroups", with_multiple_filters.consumer_groups)
     ```
 
 

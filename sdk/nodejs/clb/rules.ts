@@ -83,6 +83,7 @@ export function rules(args: RulesArgs, opts?: pulumi.InvokeOptions): Promise<Rul
         "ids": args.ids,
         "listenerId": args.listenerId,
         "outputFile": args.outputFile,
+        "tags": args.tags,
     }, opts);
 }
 
@@ -102,6 +103,10 @@ export interface RulesArgs {
      * File name where to save data source results.
      */
     outputFile?: string;
+    /**
+     * Tags.
+     */
+    tags?: inputs.clb.RulesTag[];
 }
 
 /**
@@ -119,6 +124,10 @@ export interface RulesResult {
      * The collection of Rule query.
      */
     readonly rules: outputs.clb.RulesRule[];
+    /**
+     * Tags.
+     */
+    readonly tags?: outputs.clb.RulesTag[];
 }
 /**
  * Use this data source to query detailed information of clb rules
@@ -209,4 +218,8 @@ export interface RulesOutputArgs {
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.clb.RulesTagArgs>[]>;
 }

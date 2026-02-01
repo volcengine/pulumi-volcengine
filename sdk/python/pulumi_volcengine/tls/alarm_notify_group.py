@@ -17,23 +17,29 @@ __all__ = ['AlarmNotifyGroupArgs', 'AlarmNotifyGroup']
 class AlarmNotifyGroupArgs:
     def __init__(__self__, *,
                  alarm_notify_group_name: pulumi.Input[str],
-                 notify_types: pulumi.Input[Sequence[pulumi.Input[str]]],
-                 receivers: pulumi.Input[Sequence[pulumi.Input['AlarmNotifyGroupReceiverArgs']]],
-                 iam_project_name: Optional[pulumi.Input[str]] = None):
+                 iam_project_name: Optional[pulumi.Input[str]] = None,
+                 notice_rules: Optional[pulumi.Input[Sequence[pulumi.Input['AlarmNotifyGroupNoticeRuleArgs']]]] = None,
+                 notify_types: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 receivers: Optional[pulumi.Input[Sequence[pulumi.Input['AlarmNotifyGroupReceiverArgs']]]] = None):
         """
         The set of arguments for constructing a AlarmNotifyGroup resource.
         :param pulumi.Input[str] alarm_notify_group_name: The name of the notify group.
+        :param pulumi.Input[str] iam_project_name: The name of the iam project.
+        :param pulumi.Input[Sequence[pulumi.Input['AlarmNotifyGroupNoticeRuleArgs']]] notice_rules: The list of the notice rules.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] notify_types: The notify type.
                Trigger: Alarm Trigger
                Recovery: Alarm Recovery.
         :param pulumi.Input[Sequence[pulumi.Input['AlarmNotifyGroupReceiverArgs']]] receivers: List of IAM users to receive alerts.
-        :param pulumi.Input[str] iam_project_name: The name of the iam project.
         """
         pulumi.set(__self__, "alarm_notify_group_name", alarm_notify_group_name)
-        pulumi.set(__self__, "notify_types", notify_types)
-        pulumi.set(__self__, "receivers", receivers)
         if iam_project_name is not None:
             pulumi.set(__self__, "iam_project_name", iam_project_name)
+        if notice_rules is not None:
+            pulumi.set(__self__, "notice_rules", notice_rules)
+        if notify_types is not None:
+            pulumi.set(__self__, "notify_types", notify_types)
+        if receivers is not None:
+            pulumi.set(__self__, "receivers", receivers)
 
     @property
     @pulumi.getter(name="alarmNotifyGroupName")
@@ -48,32 +54,6 @@ class AlarmNotifyGroupArgs:
         pulumi.set(self, "alarm_notify_group_name", value)
 
     @property
-    @pulumi.getter(name="notifyTypes")
-    def notify_types(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
-        """
-        The notify type.
-        Trigger: Alarm Trigger
-        Recovery: Alarm Recovery.
-        """
-        return pulumi.get(self, "notify_types")
-
-    @notify_types.setter
-    def notify_types(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
-        pulumi.set(self, "notify_types", value)
-
-    @property
-    @pulumi.getter
-    def receivers(self) -> pulumi.Input[Sequence[pulumi.Input['AlarmNotifyGroupReceiverArgs']]]:
-        """
-        List of IAM users to receive alerts.
-        """
-        return pulumi.get(self, "receivers")
-
-    @receivers.setter
-    def receivers(self, value: pulumi.Input[Sequence[pulumi.Input['AlarmNotifyGroupReceiverArgs']]]):
-        pulumi.set(self, "receivers", value)
-
-    @property
     @pulumi.getter(name="iamProjectName")
     def iam_project_name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -85,6 +65,44 @@ class AlarmNotifyGroupArgs:
     def iam_project_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "iam_project_name", value)
 
+    @property
+    @pulumi.getter(name="noticeRules")
+    def notice_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AlarmNotifyGroupNoticeRuleArgs']]]]:
+        """
+        The list of the notice rules.
+        """
+        return pulumi.get(self, "notice_rules")
+
+    @notice_rules.setter
+    def notice_rules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AlarmNotifyGroupNoticeRuleArgs']]]]):
+        pulumi.set(self, "notice_rules", value)
+
+    @property
+    @pulumi.getter(name="notifyTypes")
+    def notify_types(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The notify type.
+        Trigger: Alarm Trigger
+        Recovery: Alarm Recovery.
+        """
+        return pulumi.get(self, "notify_types")
+
+    @notify_types.setter
+    def notify_types(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "notify_types", value)
+
+    @property
+    @pulumi.getter
+    def receivers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AlarmNotifyGroupReceiverArgs']]]]:
+        """
+        List of IAM users to receive alerts.
+        """
+        return pulumi.get(self, "receivers")
+
+    @receivers.setter
+    def receivers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AlarmNotifyGroupReceiverArgs']]]]):
+        pulumi.set(self, "receivers", value)
+
 
 @pulumi.input_type
 class _AlarmNotifyGroupState:
@@ -92,6 +110,7 @@ class _AlarmNotifyGroupState:
                  alarm_notify_group_id: Optional[pulumi.Input[str]] = None,
                  alarm_notify_group_name: Optional[pulumi.Input[str]] = None,
                  iam_project_name: Optional[pulumi.Input[str]] = None,
+                 notice_rules: Optional[pulumi.Input[Sequence[pulumi.Input['AlarmNotifyGroupNoticeRuleArgs']]]] = None,
                  notify_types: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  receivers: Optional[pulumi.Input[Sequence[pulumi.Input['AlarmNotifyGroupReceiverArgs']]]] = None):
         """
@@ -99,6 +118,7 @@ class _AlarmNotifyGroupState:
         :param pulumi.Input[str] alarm_notify_group_id: The alarm notification group id.
         :param pulumi.Input[str] alarm_notify_group_name: The name of the notify group.
         :param pulumi.Input[str] iam_project_name: The name of the iam project.
+        :param pulumi.Input[Sequence[pulumi.Input['AlarmNotifyGroupNoticeRuleArgs']]] notice_rules: The list of the notice rules.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] notify_types: The notify type.
                Trigger: Alarm Trigger
                Recovery: Alarm Recovery.
@@ -110,6 +130,8 @@ class _AlarmNotifyGroupState:
             pulumi.set(__self__, "alarm_notify_group_name", alarm_notify_group_name)
         if iam_project_name is not None:
             pulumi.set(__self__, "iam_project_name", iam_project_name)
+        if notice_rules is not None:
+            pulumi.set(__self__, "notice_rules", notice_rules)
         if notify_types is not None:
             pulumi.set(__self__, "notify_types", notify_types)
         if receivers is not None:
@@ -152,6 +174,18 @@ class _AlarmNotifyGroupState:
         pulumi.set(self, "iam_project_name", value)
 
     @property
+    @pulumi.getter(name="noticeRules")
+    def notice_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AlarmNotifyGroupNoticeRuleArgs']]]]:
+        """
+        The list of the notice rules.
+        """
+        return pulumi.get(self, "notice_rules")
+
+    @notice_rules.setter
+    def notice_rules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AlarmNotifyGroupNoticeRuleArgs']]]]):
+        pulumi.set(self, "notice_rules", value)
+
+    @property
     @pulumi.getter(name="notifyTypes")
     def notify_types(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -185,33 +219,12 @@ class AlarmNotifyGroup(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  alarm_notify_group_name: Optional[pulumi.Input[str]] = None,
                  iam_project_name: Optional[pulumi.Input[str]] = None,
+                 notice_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlarmNotifyGroupNoticeRuleArgs']]]]] = None,
                  notify_types: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  receivers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlarmNotifyGroupReceiverArgs']]]]] = None,
                  __props__=None):
         """
         Provides a resource to manage tls alarm notify group
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_volcengine as volcengine
-
-        foo = volcengine.tls.AlarmNotifyGroup("foo",
-            alarm_notify_group_name="tf-test",
-            iam_project_name="yyy",
-            notify_types=["Trigger"],
-            receivers=[volcengine.tls.AlarmNotifyGroupReceiverArgs(
-                end_time="23:59:59",
-                receiver_channels=[
-                    "Email",
-                    "Sms",
-                ],
-                receiver_names=["vke-qs"],
-                receiver_type="User",
-                start_time="23:00:00",
-            )])
-        ```
-
         ## Import
 
         tls alarm notify group can be imported using the id, e.g.
@@ -224,6 +237,7 @@ class AlarmNotifyGroup(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] alarm_notify_group_name: The name of the notify group.
         :param pulumi.Input[str] iam_project_name: The name of the iam project.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlarmNotifyGroupNoticeRuleArgs']]]] notice_rules: The list of the notice rules.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] notify_types: The notify type.
                Trigger: Alarm Trigger
                Recovery: Alarm Recovery.
@@ -237,28 +251,6 @@ class AlarmNotifyGroup(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Provides a resource to manage tls alarm notify group
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_volcengine as volcengine
-
-        foo = volcengine.tls.AlarmNotifyGroup("foo",
-            alarm_notify_group_name="tf-test",
-            iam_project_name="yyy",
-            notify_types=["Trigger"],
-            receivers=[volcengine.tls.AlarmNotifyGroupReceiverArgs(
-                end_time="23:59:59",
-                receiver_channels=[
-                    "Email",
-                    "Sms",
-                ],
-                receiver_names=["vke-qs"],
-                receiver_type="User",
-                start_time="23:00:00",
-            )])
-        ```
-
         ## Import
 
         tls alarm notify group can be imported using the id, e.g.
@@ -284,6 +276,7 @@ class AlarmNotifyGroup(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  alarm_notify_group_name: Optional[pulumi.Input[str]] = None,
                  iam_project_name: Optional[pulumi.Input[str]] = None,
+                 notice_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlarmNotifyGroupNoticeRuleArgs']]]]] = None,
                  notify_types: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  receivers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlarmNotifyGroupReceiverArgs']]]]] = None,
                  __props__=None):
@@ -299,11 +292,8 @@ class AlarmNotifyGroup(pulumi.CustomResource):
                 raise TypeError("Missing required property 'alarm_notify_group_name'")
             __props__.__dict__["alarm_notify_group_name"] = alarm_notify_group_name
             __props__.__dict__["iam_project_name"] = iam_project_name
-            if notify_types is None and not opts.urn:
-                raise TypeError("Missing required property 'notify_types'")
+            __props__.__dict__["notice_rules"] = notice_rules
             __props__.__dict__["notify_types"] = notify_types
-            if receivers is None and not opts.urn:
-                raise TypeError("Missing required property 'receivers'")
             __props__.__dict__["receivers"] = receivers
             __props__.__dict__["alarm_notify_group_id"] = None
         super(AlarmNotifyGroup, __self__).__init__(
@@ -319,6 +309,7 @@ class AlarmNotifyGroup(pulumi.CustomResource):
             alarm_notify_group_id: Optional[pulumi.Input[str]] = None,
             alarm_notify_group_name: Optional[pulumi.Input[str]] = None,
             iam_project_name: Optional[pulumi.Input[str]] = None,
+            notice_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlarmNotifyGroupNoticeRuleArgs']]]]] = None,
             notify_types: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             receivers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlarmNotifyGroupReceiverArgs']]]]] = None) -> 'AlarmNotifyGroup':
         """
@@ -331,6 +322,7 @@ class AlarmNotifyGroup(pulumi.CustomResource):
         :param pulumi.Input[str] alarm_notify_group_id: The alarm notification group id.
         :param pulumi.Input[str] alarm_notify_group_name: The name of the notify group.
         :param pulumi.Input[str] iam_project_name: The name of the iam project.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlarmNotifyGroupNoticeRuleArgs']]]] notice_rules: The list of the notice rules.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] notify_types: The notify type.
                Trigger: Alarm Trigger
                Recovery: Alarm Recovery.
@@ -343,6 +335,7 @@ class AlarmNotifyGroup(pulumi.CustomResource):
         __props__.__dict__["alarm_notify_group_id"] = alarm_notify_group_id
         __props__.__dict__["alarm_notify_group_name"] = alarm_notify_group_name
         __props__.__dict__["iam_project_name"] = iam_project_name
+        __props__.__dict__["notice_rules"] = notice_rules
         __props__.__dict__["notify_types"] = notify_types
         __props__.__dict__["receivers"] = receivers
         return AlarmNotifyGroup(resource_name, opts=opts, __props__=__props__)
@@ -372,8 +365,16 @@ class AlarmNotifyGroup(pulumi.CustomResource):
         return pulumi.get(self, "iam_project_name")
 
     @property
+    @pulumi.getter(name="noticeRules")
+    def notice_rules(self) -> pulumi.Output[Optional[Sequence['outputs.AlarmNotifyGroupNoticeRule']]]:
+        """
+        The list of the notice rules.
+        """
+        return pulumi.get(self, "notice_rules")
+
+    @property
     @pulumi.getter(name="notifyTypes")
-    def notify_types(self) -> pulumi.Output[Sequence[str]]:
+    def notify_types(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         The notify type.
         Trigger: Alarm Trigger
@@ -383,7 +384,7 @@ class AlarmNotifyGroup(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def receivers(self) -> pulumi.Output[Sequence['outputs.AlarmNotifyGroupReceiver']]:
+    def receivers(self) -> pulumi.Output[Optional[Sequence['outputs.AlarmNotifyGroupReceiver']]]:
         """
         List of IAM users to receive alerts.
         """

@@ -5,10 +5,30 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { AccountArgs, AccountState } from "./account";
+export type Account = import("./account").Account;
+export const Account: typeof import("./account").Account = null as any;
+utilities.lazyLoad(exports, ["Account"], () => require("./account"));
+
+export { AccountsArgs, AccountsResult, AccountsOutputArgs } from "./accounts";
+export const accounts: typeof import("./accounts").accounts = null as any;
+export const accountsOutput: typeof import("./accounts").accountsOutput = null as any;
+utilities.lazyLoad(exports, ["accounts","accountsOutput"], () => require("./accounts"));
+
 export { AlarmArgs, AlarmState } from "./alarm";
 export type Alarm = import("./alarm").Alarm;
 export const Alarm: typeof import("./alarm").Alarm = null as any;
 utilities.lazyLoad(exports, ["Alarm"], () => require("./alarm"));
+
+export { AlarmContentTemplateArgs, AlarmContentTemplateState } from "./alarmContentTemplate";
+export type AlarmContentTemplate = import("./alarmContentTemplate").AlarmContentTemplate;
+export const AlarmContentTemplate: typeof import("./alarmContentTemplate").AlarmContentTemplate = null as any;
+utilities.lazyLoad(exports, ["AlarmContentTemplate"], () => require("./alarmContentTemplate"));
+
+export { AlarmContentTemplatesArgs, AlarmContentTemplatesResult, AlarmContentTemplatesOutputArgs } from "./alarmContentTemplates";
+export const alarmContentTemplates: typeof import("./alarmContentTemplates").alarmContentTemplates = null as any;
+export const alarmContentTemplatesOutput: typeof import("./alarmContentTemplates").alarmContentTemplatesOutput = null as any;
+utilities.lazyLoad(exports, ["alarmContentTemplates","alarmContentTemplatesOutput"], () => require("./alarmContentTemplates"));
 
 export { AlarmNotifyGroupArgs, AlarmNotifyGroupState } from "./alarmNotifyGroup";
 export type AlarmNotifyGroup = import("./alarmNotifyGroup").AlarmNotifyGroup;
@@ -19,6 +39,16 @@ export { AlarmNotifyGroupsArgs, AlarmNotifyGroupsResult, AlarmNotifyGroupsOutput
 export const alarmNotifyGroups: typeof import("./alarmNotifyGroups").alarmNotifyGroups = null as any;
 export const alarmNotifyGroupsOutput: typeof import("./alarmNotifyGroups").alarmNotifyGroupsOutput = null as any;
 utilities.lazyLoad(exports, ["alarmNotifyGroups","alarmNotifyGroupsOutput"], () => require("./alarmNotifyGroups"));
+
+export { AlarmWebhookIntegrationArgs, AlarmWebhookIntegrationState } from "./alarmWebhookIntegration";
+export type AlarmWebhookIntegration = import("./alarmWebhookIntegration").AlarmWebhookIntegration;
+export const AlarmWebhookIntegration: typeof import("./alarmWebhookIntegration").AlarmWebhookIntegration = null as any;
+utilities.lazyLoad(exports, ["AlarmWebhookIntegration"], () => require("./alarmWebhookIntegration"));
+
+export { AlarmWebhookIntegrationsArgs, AlarmWebhookIntegrationsResult, AlarmWebhookIntegrationsOutputArgs } from "./alarmWebhookIntegrations";
+export const alarmWebhookIntegrations: typeof import("./alarmWebhookIntegrations").alarmWebhookIntegrations = null as any;
+export const alarmWebhookIntegrationsOutput: typeof import("./alarmWebhookIntegrations").alarmWebhookIntegrationsOutput = null as any;
+utilities.lazyLoad(exports, ["alarmWebhookIntegrations","alarmWebhookIntegrationsOutput"], () => require("./alarmWebhookIntegrations"));
 
 export { AlarmsArgs, AlarmsResult, AlarmsOutputArgs } from "./alarms";
 export const alarms: typeof import("./alarms").alarms = null as any;
@@ -35,6 +65,26 @@ export const consumerGroups: typeof import("./consumerGroups").consumerGroups = 
 export const consumerGroupsOutput: typeof import("./consumerGroups").consumerGroupsOutput = null as any;
 utilities.lazyLoad(exports, ["consumerGroups","consumerGroupsOutput"], () => require("./consumerGroups"));
 
+export { DescribeTracesArgs, DescribeTracesResult, DescribeTracesOutputArgs } from "./describeTraces";
+export const describeTraces: typeof import("./describeTraces").describeTraces = null as any;
+export const describeTracesOutput: typeof import("./describeTraces").describeTracesOutput = null as any;
+utilities.lazyLoad(exports, ["describeTraces","describeTracesOutput"], () => require("./describeTraces"));
+
+export { DownloadTaskArgs, DownloadTaskState } from "./downloadTask";
+export type DownloadTask = import("./downloadTask").DownloadTask;
+export const DownloadTask: typeof import("./downloadTask").DownloadTask = null as any;
+utilities.lazyLoad(exports, ["DownloadTask"], () => require("./downloadTask"));
+
+export { DownloadTasksArgs, DownloadTasksResult, DownloadTasksOutputArgs } from "./downloadTasks";
+export const downloadTasks: typeof import("./downloadTasks").downloadTasks = null as any;
+export const downloadTasksOutput: typeof import("./downloadTasks").downloadTasksOutput = null as any;
+utilities.lazyLoad(exports, ["downloadTasks","downloadTasksOutput"], () => require("./downloadTasks"));
+
+export { DownloadUrlsArgs, DownloadUrlsResult, DownloadUrlsOutputArgs } from "./downloadUrls";
+export const downloadUrls: typeof import("./downloadUrls").downloadUrls = null as any;
+export const downloadUrlsOutput: typeof import("./downloadUrls").downloadUrlsOutput = null as any;
+utilities.lazyLoad(exports, ["downloadUrls","downloadUrlsOutput"], () => require("./downloadUrls"));
+
 export { EtlTaskArgs, EtlTaskState } from "./etlTask";
 export type EtlTask = import("./etlTask").EtlTask;
 export const EtlTask: typeof import("./etlTask").EtlTask = null as any;
@@ -45,10 +95,25 @@ export const etlTasks: typeof import("./etlTasks").etlTasks = null as any;
 export const etlTasksOutput: typeof import("./etlTasks").etlTasksOutput = null as any;
 utilities.lazyLoad(exports, ["etlTasks","etlTasksOutput"], () => require("./etlTasks"));
 
+export { GetAccountsArgs, GetAccountsResult, GetAccountsOutputArgs } from "./getAccounts";
+export const getAccounts: typeof import("./getAccounts").getAccounts = null as any;
+export const getAccountsOutput: typeof import("./getAccounts").getAccountsOutput = null as any;
+utilities.lazyLoad(exports, ["getAccounts","getAccountsOutput"], () => require("./getAccounts"));
+
+export { GetAlarmContentTemplatesArgs, GetAlarmContentTemplatesResult, GetAlarmContentTemplatesOutputArgs } from "./getAlarmContentTemplates";
+export const getAlarmContentTemplates: typeof import("./getAlarmContentTemplates").getAlarmContentTemplates = null as any;
+export const getAlarmContentTemplatesOutput: typeof import("./getAlarmContentTemplates").getAlarmContentTemplatesOutput = null as any;
+utilities.lazyLoad(exports, ["getAlarmContentTemplates","getAlarmContentTemplatesOutput"], () => require("./getAlarmContentTemplates"));
+
 export { GetAlarmNotifyGroupsArgs, GetAlarmNotifyGroupsResult, GetAlarmNotifyGroupsOutputArgs } from "./getAlarmNotifyGroups";
 export const getAlarmNotifyGroups: typeof import("./getAlarmNotifyGroups").getAlarmNotifyGroups = null as any;
 export const getAlarmNotifyGroupsOutput: typeof import("./getAlarmNotifyGroups").getAlarmNotifyGroupsOutput = null as any;
 utilities.lazyLoad(exports, ["getAlarmNotifyGroups","getAlarmNotifyGroupsOutput"], () => require("./getAlarmNotifyGroups"));
+
+export { GetAlarmWebhookIntegrationsArgs, GetAlarmWebhookIntegrationsResult, GetAlarmWebhookIntegrationsOutputArgs } from "./getAlarmWebhookIntegrations";
+export const getAlarmWebhookIntegrations: typeof import("./getAlarmWebhookIntegrations").getAlarmWebhookIntegrations = null as any;
+export const getAlarmWebhookIntegrationsOutput: typeof import("./getAlarmWebhookIntegrations").getAlarmWebhookIntegrationsOutput = null as any;
+utilities.lazyLoad(exports, ["getAlarmWebhookIntegrations","getAlarmWebhookIntegrationsOutput"], () => require("./getAlarmWebhookIntegrations"));
 
 export { GetAlarmsArgs, GetAlarmsResult, GetAlarmsOutputArgs } from "./getAlarms";
 export const getAlarms: typeof import("./getAlarms").getAlarms = null as any;
@@ -60,10 +125,30 @@ export const getConsumerGroups: typeof import("./getConsumerGroups").getConsumer
 export const getConsumerGroupsOutput: typeof import("./getConsumerGroups").getConsumerGroupsOutput = null as any;
 utilities.lazyLoad(exports, ["getConsumerGroups","getConsumerGroupsOutput"], () => require("./getConsumerGroups"));
 
+export { GetDescribeTracesArgs, GetDescribeTracesResult, GetDescribeTracesOutputArgs } from "./getDescribeTraces";
+export const getDescribeTraces: typeof import("./getDescribeTraces").getDescribeTraces = null as any;
+export const getDescribeTracesOutput: typeof import("./getDescribeTraces").getDescribeTracesOutput = null as any;
+utilities.lazyLoad(exports, ["getDescribeTraces","getDescribeTracesOutput"], () => require("./getDescribeTraces"));
+
+export { GetDownloadTasksArgs, GetDownloadTasksResult, GetDownloadTasksOutputArgs } from "./getDownloadTasks";
+export const getDownloadTasks: typeof import("./getDownloadTasks").getDownloadTasks = null as any;
+export const getDownloadTasksOutput: typeof import("./getDownloadTasks").getDownloadTasksOutput = null as any;
+utilities.lazyLoad(exports, ["getDownloadTasks","getDownloadTasksOutput"], () => require("./getDownloadTasks"));
+
+export { GetDownloadUrlsArgs, GetDownloadUrlsResult, GetDownloadUrlsOutputArgs } from "./getDownloadUrls";
+export const getDownloadUrls: typeof import("./getDownloadUrls").getDownloadUrls = null as any;
+export const getDownloadUrlsOutput: typeof import("./getDownloadUrls").getDownloadUrlsOutput = null as any;
+utilities.lazyLoad(exports, ["getDownloadUrls","getDownloadUrlsOutput"], () => require("./getDownloadUrls"));
+
 export { GetEtlTasksArgs, GetEtlTasksResult, GetEtlTasksOutputArgs } from "./getEtlTasks";
 export const getEtlTasks: typeof import("./getEtlTasks").getEtlTasks = null as any;
 export const getEtlTasksOutput: typeof import("./getEtlTasks").getEtlTasksOutput = null as any;
 utilities.lazyLoad(exports, ["getEtlTasks","getEtlTasksOutput"], () => require("./getEtlTasks"));
+
+export { GetHostGroupRulesArgs, GetHostGroupRulesResult, GetHostGroupRulesOutputArgs } from "./getHostGroupRules";
+export const getHostGroupRules: typeof import("./getHostGroupRules").getHostGroupRules = null as any;
+export const getHostGroupRulesOutput: typeof import("./getHostGroupRules").getHostGroupRulesOutput = null as any;
+utilities.lazyLoad(exports, ["getHostGroupRules","getHostGroupRulesOutput"], () => require("./getHostGroupRules"));
 
 export { GetHostGroupsArgs, GetHostGroupsResult, GetHostGroupsOutputArgs } from "./getHostGroups";
 export const getHostGroups: typeof import("./getHostGroups").getHostGroups = null as any;
@@ -90,6 +175,21 @@ export const getKafkaConsumers: typeof import("./getKafkaConsumers").getKafkaCon
 export const getKafkaConsumersOutput: typeof import("./getKafkaConsumers").getKafkaConsumersOutput = null as any;
 utilities.lazyLoad(exports, ["getKafkaConsumers","getKafkaConsumersOutput"], () => require("./getKafkaConsumers"));
 
+export { GetLogContextsArgs, GetLogContextsResult, GetLogContextsOutputArgs } from "./getLogContexts";
+export const getLogContexts: typeof import("./getLogContexts").getLogContexts = null as any;
+export const getLogContextsOutput: typeof import("./getLogContexts").getLogContextsOutput = null as any;
+utilities.lazyLoad(exports, ["getLogContexts","getLogContextsOutput"], () => require("./getLogContexts"));
+
+export { GetLogHistogramsArgs, GetLogHistogramsResult, GetLogHistogramsOutputArgs } from "./getLogHistograms";
+export const getLogHistograms: typeof import("./getLogHistograms").getLogHistograms = null as any;
+export const getLogHistogramsOutput: typeof import("./getLogHistograms").getLogHistogramsOutput = null as any;
+utilities.lazyLoad(exports, ["getLogHistograms","getLogHistogramsOutput"], () => require("./getLogHistograms"));
+
+export { GetLogSearchesArgs, GetLogSearchesResult, GetLogSearchesOutputArgs } from "./getLogSearches";
+export const getLogSearches: typeof import("./getLogSearches").getLogSearches = null as any;
+export const getLogSearchesOutput: typeof import("./getLogSearches").getLogSearchesOutput = null as any;
+utilities.lazyLoad(exports, ["getLogSearches","getLogSearchesOutput"], () => require("./getLogSearches"));
+
 export { GetProjectsArgs, GetProjectsResult, GetProjectsOutputArgs } from "./getProjects";
 export const getProjects: typeof import("./getProjects").getProjects = null as any;
 export const getProjectsOutput: typeof import("./getProjects").getProjectsOutput = null as any;
@@ -99,6 +199,11 @@ export { GetRuleAppliersArgs, GetRuleAppliersResult, GetRuleAppliersOutputArgs }
 export const getRuleAppliers: typeof import("./getRuleAppliers").getRuleAppliers = null as any;
 export const getRuleAppliersOutput: typeof import("./getRuleAppliers").getRuleAppliersOutput = null as any;
 utilities.lazyLoad(exports, ["getRuleAppliers","getRuleAppliersOutput"], () => require("./getRuleAppliers"));
+
+export { GetRuleBoundHostGroupsArgs, GetRuleBoundHostGroupsResult, GetRuleBoundHostGroupsOutputArgs } from "./getRuleBoundHostGroups";
+export const getRuleBoundHostGroups: typeof import("./getRuleBoundHostGroups").getRuleBoundHostGroups = null as any;
+export const getRuleBoundHostGroupsOutput: typeof import("./getRuleBoundHostGroups").getRuleBoundHostGroupsOutput = null as any;
+utilities.lazyLoad(exports, ["getRuleBoundHostGroups","getRuleBoundHostGroupsOutput"], () => require("./getRuleBoundHostGroups"));
 
 export { GetRulesArgs, GetRulesResult, GetRulesOutputArgs } from "./getRules";
 export const getRules: typeof import("./getRules").getRules = null as any;
@@ -110,6 +215,11 @@ export const getScheduleSqlTasks: typeof import("./getScheduleSqlTasks").getSche
 export const getScheduleSqlTasksOutput: typeof import("./getScheduleSqlTasks").getScheduleSqlTasksOutput = null as any;
 utilities.lazyLoad(exports, ["getScheduleSqlTasks","getScheduleSqlTasksOutput"], () => require("./getScheduleSqlTasks"));
 
+export { GetSearchTracesArgs, GetSearchTracesResult, GetSearchTracesOutputArgs } from "./getSearchTraces";
+export const getSearchTraces: typeof import("./getSearchTraces").getSearchTraces = null as any;
+export const getSearchTracesOutput: typeof import("./getSearchTraces").getSearchTracesOutput = null as any;
+utilities.lazyLoad(exports, ["getSearchTraces","getSearchTracesOutput"], () => require("./getSearchTraces"));
+
 export { GetShardsArgs, GetShardsResult, GetShardsOutputArgs } from "./getShards";
 export const getShards: typeof import("./getShards").getShards = null as any;
 export const getShardsOutput: typeof import("./getShards").getShardsOutput = null as any;
@@ -120,10 +230,25 @@ export const getShippers: typeof import("./getShippers").getShippers = null as a
 export const getShippersOutput: typeof import("./getShippers").getShippersOutput = null as any;
 utilities.lazyLoad(exports, ["getShippers","getShippersOutput"], () => require("./getShippers"));
 
+export { GetTagResourcesArgs, GetTagResourcesResult, GetTagResourcesOutputArgs } from "./getTagResources";
+export const getTagResources: typeof import("./getTagResources").getTagResources = null as any;
+export const getTagResourcesOutput: typeof import("./getTagResources").getTagResourcesOutput = null as any;
+utilities.lazyLoad(exports, ["getTagResources","getTagResourcesOutput"], () => require("./getTagResources"));
+
+export { GetTagsArgs, GetTagsResult, GetTagsOutputArgs } from "./getTags";
+export const getTags: typeof import("./getTags").getTags = null as any;
+export const getTagsOutput: typeof import("./getTags").getTagsOutput = null as any;
+utilities.lazyLoad(exports, ["getTags","getTagsOutput"], () => require("./getTags"));
+
 export { GetTopicsArgs, GetTopicsResult, GetTopicsOutputArgs } from "./getTopics";
 export const getTopics: typeof import("./getTopics").getTopics = null as any;
 export const getTopicsOutput: typeof import("./getTopics").getTopicsOutput = null as any;
 utilities.lazyLoad(exports, ["getTopics","getTopicsOutput"], () => require("./getTopics"));
+
+export { GetTraceInstancesArgs, GetTraceInstancesResult, GetTraceInstancesOutputArgs } from "./getTraceInstances";
+export const getTraceInstances: typeof import("./getTraceInstances").getTraceInstances = null as any;
+export const getTraceInstancesOutput: typeof import("./getTraceInstances").getTraceInstancesOutput = null as any;
+utilities.lazyLoad(exports, ["getTraceInstances","getTraceInstancesOutput"], () => require("./getTraceInstances"));
 
 export { HostArgs, HostState } from "./host";
 export type Host = import("./host").Host;
@@ -134,6 +259,11 @@ export { HostGroupArgs, HostGroupState } from "./hostGroup";
 export type HostGroup = import("./hostGroup").HostGroup;
 export const HostGroup: typeof import("./hostGroup").HostGroup = null as any;
 utilities.lazyLoad(exports, ["HostGroup"], () => require("./hostGroup"));
+
+export { HostGroupRulesArgs, HostGroupRulesResult, HostGroupRulesOutputArgs } from "./hostGroupRules";
+export const hostGroupRules: typeof import("./hostGroupRules").hostGroupRules = null as any;
+export const hostGroupRulesOutput: typeof import("./hostGroupRules").hostGroupRulesOutput = null as any;
+utilities.lazyLoad(exports, ["hostGroupRules","hostGroupRulesOutput"], () => require("./hostGroupRules"));
 
 export { HostGroupsArgs, HostGroupsResult, HostGroupsOutputArgs } from "./hostGroups";
 export const hostGroups: typeof import("./hostGroups").hostGroups = null as any;
@@ -175,6 +305,21 @@ export const kafkaConsumers: typeof import("./kafkaConsumers").kafkaConsumers = 
 export const kafkaConsumersOutput: typeof import("./kafkaConsumers").kafkaConsumersOutput = null as any;
 utilities.lazyLoad(exports, ["kafkaConsumers","kafkaConsumersOutput"], () => require("./kafkaConsumers"));
 
+export { LogContextsArgs, LogContextsResult, LogContextsOutputArgs } from "./logContexts";
+export const logContexts: typeof import("./logContexts").logContexts = null as any;
+export const logContextsOutput: typeof import("./logContexts").logContextsOutput = null as any;
+utilities.lazyLoad(exports, ["logContexts","logContextsOutput"], () => require("./logContexts"));
+
+export { LogHistogramsArgs, LogHistogramsResult, LogHistogramsOutputArgs } from "./logHistograms";
+export const logHistograms: typeof import("./logHistograms").logHistograms = null as any;
+export const logHistogramsOutput: typeof import("./logHistograms").logHistogramsOutput = null as any;
+utilities.lazyLoad(exports, ["logHistograms","logHistogramsOutput"], () => require("./logHistograms"));
+
+export { LogSearchesArgs, LogSearchesResult, LogSearchesOutputArgs } from "./logSearches";
+export const logSearches: typeof import("./logSearches").logSearches = null as any;
+export const logSearchesOutput: typeof import("./logSearches").logSearchesOutput = null as any;
+utilities.lazyLoad(exports, ["logSearches","logSearchesOutput"], () => require("./logSearches"));
+
 export { ProjectArgs, ProjectState } from "./project";
 export type Project = import("./project").Project;
 export const Project: typeof import("./project").Project = null as any;
@@ -200,6 +345,16 @@ export const ruleAppliers: typeof import("./ruleAppliers").ruleAppliers = null a
 export const ruleAppliersOutput: typeof import("./ruleAppliers").ruleAppliersOutput = null as any;
 utilities.lazyLoad(exports, ["ruleAppliers","ruleAppliersOutput"], () => require("./ruleAppliers"));
 
+export { RuleBoundHostGroupArgs, RuleBoundHostGroupState } from "./ruleBoundHostGroup";
+export type RuleBoundHostGroup = import("./ruleBoundHostGroup").RuleBoundHostGroup;
+export const RuleBoundHostGroup: typeof import("./ruleBoundHostGroup").RuleBoundHostGroup = null as any;
+utilities.lazyLoad(exports, ["RuleBoundHostGroup"], () => require("./ruleBoundHostGroup"));
+
+export { RuleBoundHostGroupsArgs, RuleBoundHostGroupsResult, RuleBoundHostGroupsOutputArgs } from "./ruleBoundHostGroups";
+export const ruleBoundHostGroups: typeof import("./ruleBoundHostGroups").ruleBoundHostGroups = null as any;
+export const ruleBoundHostGroupsOutput: typeof import("./ruleBoundHostGroups").ruleBoundHostGroupsOutput = null as any;
+utilities.lazyLoad(exports, ["ruleBoundHostGroups","ruleBoundHostGroupsOutput"], () => require("./ruleBoundHostGroups"));
+
 export { RulesArgs, RulesResult, RulesOutputArgs } from "./rules";
 export const rules: typeof import("./rules").rules = null as any;
 export const rulesOutput: typeof import("./rules").rulesOutput = null as any;
@@ -214,6 +369,16 @@ export { ScheduleSqlTasksArgs, ScheduleSqlTasksResult, ScheduleSqlTasksOutputArg
 export const scheduleSqlTasks: typeof import("./scheduleSqlTasks").scheduleSqlTasks = null as any;
 export const scheduleSqlTasksOutput: typeof import("./scheduleSqlTasks").scheduleSqlTasksOutput = null as any;
 utilities.lazyLoad(exports, ["scheduleSqlTasks","scheduleSqlTasksOutput"], () => require("./scheduleSqlTasks"));
+
+export { SearchTracesArgs, SearchTracesResult, SearchTracesOutputArgs } from "./searchTraces";
+export const searchTraces: typeof import("./searchTraces").searchTraces = null as any;
+export const searchTracesOutput: typeof import("./searchTraces").searchTracesOutput = null as any;
+utilities.lazyLoad(exports, ["searchTraces","searchTracesOutput"], () => require("./searchTraces"));
+
+export { ShardArgs, ShardState } from "./shard";
+export type Shard = import("./shard").Shard;
+export const Shard: typeof import("./shard").Shard = null as any;
+utilities.lazyLoad(exports, ["Shard"], () => require("./shard"));
 
 export { ShardsArgs, ShardsResult, ShardsOutputArgs } from "./shards";
 export const shards: typeof import("./shards").shards = null as any;
@@ -230,6 +395,26 @@ export const shippers: typeof import("./shippers").shippers = null as any;
 export const shippersOutput: typeof import("./shippers").shippersOutput = null as any;
 utilities.lazyLoad(exports, ["shippers","shippersOutput"], () => require("./shippers"));
 
+export { TagArgs, TagState } from "./tag";
+export type Tag = import("./tag").Tag;
+export const Tag: typeof import("./tag").Tag = null as any;
+utilities.lazyLoad(exports, ["Tag"], () => require("./tag"));
+
+export { TagResourceArgs, TagResourceState } from "./tagResource";
+export type TagResource = import("./tagResource").TagResource;
+export const TagResource: typeof import("./tagResource").TagResource = null as any;
+utilities.lazyLoad(exports, ["TagResource"], () => require("./tagResource"));
+
+export { TagResourcesArgs, TagResourcesResult, TagResourcesOutputArgs } from "./tagResources";
+export const tagResources: typeof import("./tagResources").tagResources = null as any;
+export const tagResourcesOutput: typeof import("./tagResources").tagResourcesOutput = null as any;
+utilities.lazyLoad(exports, ["tagResources","tagResourcesOutput"], () => require("./tagResources"));
+
+export { TagsArgs, TagsResult, TagsOutputArgs } from "./tags";
+export const tags: typeof import("./tags").tags = null as any;
+export const tagsOutput: typeof import("./tags").tagsOutput = null as any;
+utilities.lazyLoad(exports, ["tags","tagsOutput"], () => require("./tags"));
+
 export { TopicArgs, TopicState } from "./topic";
 export type Topic = import("./topic").Topic;
 export const Topic: typeof import("./topic").Topic = null as any;
@@ -240,17 +425,35 @@ export const topics: typeof import("./topics").topics = null as any;
 export const topicsOutput: typeof import("./topics").topicsOutput = null as any;
 utilities.lazyLoad(exports, ["topics","topicsOutput"], () => require("./topics"));
 
+export { TraceInstanceArgs, TraceInstanceState } from "./traceInstance";
+export type TraceInstance = import("./traceInstance").TraceInstance;
+export const TraceInstance: typeof import("./traceInstance").TraceInstance = null as any;
+utilities.lazyLoad(exports, ["TraceInstance"], () => require("./traceInstance"));
+
+export { TraceInstancesArgs, TraceInstancesResult, TraceInstancesOutputArgs } from "./traceInstances";
+export const traceInstances: typeof import("./traceInstances").traceInstances = null as any;
+export const traceInstancesOutput: typeof import("./traceInstances").traceInstancesOutput = null as any;
+utilities.lazyLoad(exports, ["traceInstances","traceInstancesOutput"], () => require("./traceInstances"));
+
 
 const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "volcengine:tls/account:Account":
+                return new Account(name, <any>undefined, { urn })
             case "volcengine:tls/alarm:Alarm":
                 return new Alarm(name, <any>undefined, { urn })
+            case "volcengine:tls/alarmContentTemplate:AlarmContentTemplate":
+                return new AlarmContentTemplate(name, <any>undefined, { urn })
             case "volcengine:tls/alarmNotifyGroup:AlarmNotifyGroup":
                 return new AlarmNotifyGroup(name, <any>undefined, { urn })
+            case "volcengine:tls/alarmWebhookIntegration:AlarmWebhookIntegration":
+                return new AlarmWebhookIntegration(name, <any>undefined, { urn })
             case "volcengine:tls/consumerGroup:ConsumerGroup":
                 return new ConsumerGroup(name, <any>undefined, { urn })
+            case "volcengine:tls/downloadTask:DownloadTask":
+                return new DownloadTask(name, <any>undefined, { urn })
             case "volcengine:tls/etlTask:EtlTask":
                 return new EtlTask(name, <any>undefined, { urn })
             case "volcengine:tls/host:Host":
@@ -269,20 +472,34 @@ const _module = {
                 return new Rule(name, <any>undefined, { urn })
             case "volcengine:tls/ruleApplier:RuleApplier":
                 return new RuleApplier(name, <any>undefined, { urn })
+            case "volcengine:tls/ruleBoundHostGroup:RuleBoundHostGroup":
+                return new RuleBoundHostGroup(name, <any>undefined, { urn })
             case "volcengine:tls/scheduleSqlTask:ScheduleSqlTask":
                 return new ScheduleSqlTask(name, <any>undefined, { urn })
+            case "volcengine:tls/shard:Shard":
+                return new Shard(name, <any>undefined, { urn })
             case "volcengine:tls/shipper:Shipper":
                 return new Shipper(name, <any>undefined, { urn })
+            case "volcengine:tls/tag:Tag":
+                return new Tag(name, <any>undefined, { urn })
+            case "volcengine:tls/tagResource:TagResource":
+                return new TagResource(name, <any>undefined, { urn })
             case "volcengine:tls/topic:Topic":
                 return new Topic(name, <any>undefined, { urn })
+            case "volcengine:tls/traceInstance:TraceInstance":
+                return new TraceInstance(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
     },
 };
+pulumi.runtime.registerResourceModule("volcengine", "tls/account", _module)
 pulumi.runtime.registerResourceModule("volcengine", "tls/alarm", _module)
+pulumi.runtime.registerResourceModule("volcengine", "tls/alarmContentTemplate", _module)
 pulumi.runtime.registerResourceModule("volcengine", "tls/alarmNotifyGroup", _module)
+pulumi.runtime.registerResourceModule("volcengine", "tls/alarmWebhookIntegration", _module)
 pulumi.runtime.registerResourceModule("volcengine", "tls/consumerGroup", _module)
+pulumi.runtime.registerResourceModule("volcengine", "tls/downloadTask", _module)
 pulumi.runtime.registerResourceModule("volcengine", "tls/etlTask", _module)
 pulumi.runtime.registerResourceModule("volcengine", "tls/host", _module)
 pulumi.runtime.registerResourceModule("volcengine", "tls/hostGroup", _module)
@@ -292,6 +509,11 @@ pulumi.runtime.registerResourceModule("volcengine", "tls/kafkaConsumer", _module
 pulumi.runtime.registerResourceModule("volcengine", "tls/project", _module)
 pulumi.runtime.registerResourceModule("volcengine", "tls/rule", _module)
 pulumi.runtime.registerResourceModule("volcengine", "tls/ruleApplier", _module)
+pulumi.runtime.registerResourceModule("volcengine", "tls/ruleBoundHostGroup", _module)
 pulumi.runtime.registerResourceModule("volcengine", "tls/scheduleSqlTask", _module)
+pulumi.runtime.registerResourceModule("volcengine", "tls/shard", _module)
 pulumi.runtime.registerResourceModule("volcengine", "tls/shipper", _module)
+pulumi.runtime.registerResourceModule("volcengine", "tls/tag", _module)
+pulumi.runtime.registerResourceModule("volcengine", "tls/tagResource", _module)
 pulumi.runtime.registerResourceModule("volcengine", "tls/topic", _module)
+pulumi.runtime.registerResourceModule("volcengine", "tls/traceInstance", _module)

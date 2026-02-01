@@ -17,18 +17,18 @@ import * as utilities from "../utilities";
  * const foo = new volcengine.tls.EtlTask("foo", {
  *     description: "for-tf-test",
  *     dslType: "NORMAL",
- *     enable: true,
+ *     enable: false,
  *     fromTime: 1750649545,
  *     script: "",
- *     sourceTopicId: "8ba48bd7-2493-4300-b1d0-cb7xxxxxxx",
+ *     sourceTopicId: "9b756385-1dfb-4306-a094-0c88e04b34a5",
  *     targetResources: [
  *         {
  *             alias: "tf-test-1",
- *             topicId: "b966e41a-d6a6-4999-bd75-39962xxxxxx",
+ *             topicId: "a690a9b8-72c1-40a3-b8c6-f89a81d3748e",
  *         },
  *         {
  *             alias: "tf-test-2",
- *             topicId: "0ed72ac8-9531-4967-b216-ac3xxxxx",
+ *             topicId: "bdf4f23b-a889-456c-ac5f-09d727427557",
  *         },
  *     ],
  *     taskType: "Resident",

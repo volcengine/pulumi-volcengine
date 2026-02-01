@@ -78,6 +78,14 @@ namespace Pulumi.Volcengine.Clb
     ///             Method = "GET",
     ///             Uri = "/",
     ///         },
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Clb.Inputs.ListenerTagArgs
+    ///             {
+    ///                 Key = "k1",
+    ///                 Value = "v1",
+    ///             },
+    ///         },
     ///         Enabled = "on",
     ///     });
     /// 
@@ -95,6 +103,44 @@ namespace Pulumi.Volcengine.Clb
     ///         PersistenceTimeout = 100,
     ///         ConnectionDrainEnabled = "on",
     ///         ConnectionDrainTimeout = 100,
+    ///     });
+    /// 
+    ///     var fooHttps = new Volcengine.Clb.Listener("fooHttps", new()
+    ///     {
+    ///         LoadBalancerId = fooClb.Id,
+    ///         ListenerName = "acc-test-listener-https",
+    ///         Protocol = "HTTPS",
+    ///         Port = 100,
+    ///         ServerGroupId = fooServerGroup.Id,
+    ///         HealthCheck = new Volcengine.Clb.Inputs.ListenerHealthCheckArgs
+    ///         {
+    ///             Enabled = "on",
+    ///             Interval = 10,
+    ///             Timeout = 3,
+    ///             HealthyThreshold = 5,
+    ///             UnHealthyThreshold = 2,
+    ///             Domain = "volcengine.com",
+    ///             HttpCode = "http_2xx,http_3xx",
+    ///             Method = "GET",
+    ///             Uri = "/",
+    ///         },
+    ///         Enabled = "on",
+    ///         ClientHeaderTimeout = 80,
+    ///         ClientBodyTimeout = 80,
+    ///         KeepaliveTimeout = 80,
+    ///         ProxyConnectTimeout = 20,
+    ///         ProxySendTimeout = 1800,
+    ///         ProxyReadTimeout = 1800,
+    ///         CertificateSource = "clb",
+    ///         CertificateId = "cert-mjpctunmog745smt1a******",
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Clb.Inputs.ListenerTagArgs
+    ///             {
+    ///                 Key = "k1",
+    ///                 Value = "v1",
+    ///             },
+    ///         },
     ///     });
     /// 
     /// });
@@ -136,10 +182,46 @@ namespace Pulumi.Volcengine.Clb
         public Output<int?> Bandwidth { get; private set; } = null!;
 
         /// <summary>
+        /// The ID of the CA certificate which is associated with the listener. When `ca_enabled` is `on`, this parameter is required.
+        /// </summary>
+        [Output("caCertificateId")]
+        public Output<string> CaCertificateId { get; private set; } = null!;
+
+        /// <summary>
+        /// Whether to enable CACertificate two-way authentication. Values: on, off.
+        /// </summary>
+        [Output("caEnabled")]
+        public Output<string> CaEnabled { get; private set; } = null!;
+
+        /// <summary>
+        /// The ID of the certificate in Certificate Center. When `certificate_source` is `cert_center`, this parameter is required.
+        /// </summary>
+        [Output("certCenterCertificateId")]
+        public Output<string> CertCenterCertificateId { get; private set; } = null!;
+
+        /// <summary>
         /// The certificate id associated with the listener.
         /// </summary>
         [Output("certificateId")]
         public Output<string?> CertificateId { get; private set; } = null!;
+
+        /// <summary>
+        /// The source of the certificate which is associated with the listener. Values: `clb`, `cert_center`.
+        /// </summary>
+        [Output("certificateSource")]
+        public Output<string> CertificateSource { get; private set; } = null!;
+
+        /// <summary>
+        /// The client body timeout of the Listener. Only HTTP/HTTPS listeners support this parameter. value range: 30-120.
+        /// </summary>
+        [Output("clientBodyTimeout")]
+        public Output<int> ClientBodyTimeout { get; private set; } = null!;
+
+        /// <summary>
+        /// The client header timeout of the Listener. Only HTTP/HTTPS listeners support this parameter, i.e., `protocol`=`HTTP` or `HTTPS`. value range: 30-120.
+        /// </summary>
+        [Output("clientHeaderTimeout")]
+        public Output<int> ClientHeaderTimeout { get; private set; } = null!;
 
         /// <summary>
         /// Whether to enable connection drain of the Listener. Valid values: `off`, `on`. Default is `off`.
@@ -162,6 +244,12 @@ namespace Pulumi.Volcengine.Clb
         public Output<string?> Cookie { get; private set; } = null!;
 
         /// <summary>
+        /// The maximum number of new connections per second allowed for the Listener. Default value: `-1`, no limit, which is the upper limit of new connections for the CLB instance.
+        /// </summary>
+        [Output("cps")]
+        public Output<int> Cps { get; private set; } = null!;
+
+        /// <summary>
         /// The description of the Listener.
         /// </summary>
         [Output("description")]
@@ -174,6 +262,12 @@ namespace Pulumi.Volcengine.Clb
         public Output<string> Enabled { get; private set; } = null!;
 
         /// <summary>
+        /// The end port for full port listening, with a value range of 1-65535. When `port` is 0, this parameter is required, and must be greater than `start_port`.
+        /// </summary>
+        [Output("endPort")]
+        public Output<int> EndPort { get; private set; } = null!;
+
+        /// <summary>
         /// The connection timeout of the Listener.
         /// </summary>
         [Output("establishedTimeout")]
@@ -184,6 +278,18 @@ namespace Pulumi.Volcengine.Clb
         /// </summary>
         [Output("healthCheck")]
         public Output<Outputs.ListenerHealthCheck> HealthCheck { get; private set; } = null!;
+
+        /// <summary>
+        /// Whether the HTTPS protocol listener enables the front-end HTTP 2.0 protocol. value range: `on`, `off`.
+        /// </summary>
+        [Output("http2Enabled")]
+        public Output<string> Http2Enabled { get; private set; } = null!;
+
+        /// <summary>
+        /// The timeout period for the long connection between the client and the CLB. Only HTTP/HTTPS listeners support this parameter. value range: 0-900.
+        /// </summary>
+        [Output("keepaliveTimeout")]
+        public Output<int> KeepaliveTimeout { get; private set; } = null!;
 
         /// <summary>
         /// The ID of the Listener.
@@ -204,6 +310,12 @@ namespace Pulumi.Volcengine.Clb
         public Output<string> LoadBalancerId { get; private set; } = null!;
 
         /// <summary>
+        /// The maximum number of connections allowed for the Listener. Default value: `-1`, no limit, which is the upper limit of new connections for the CLB instance.
+        /// </summary>
+        [Output("maxConnections")]
+        public Output<int> MaxConnections { get; private set; } = null!;
+
+        /// <summary>
         /// The persistence timeout of the Listener. Unit: second. Default is `1000`. When PersistenceType is configured as source_ip, the value range is 1-3600. When PersistenceType is configured as insert, the value range is 1-86400. This filed is valid only when the value of field `persistence_type` is `source_ip` or `insert`.
         /// </summary>
         [Output("persistenceTimeout")]
@@ -217,7 +329,7 @@ namespace Pulumi.Volcengine.Clb
         public Output<string?> PersistenceType { get; private set; } = null!;
 
         /// <summary>
-        /// The port receiving request of the Listener, the value range in 1~65535.
+        /// The port receiving request of the Listener, the value range in 0~65535. When `protocol` is `TCP` or `UDP`, 0 can be passed in, indicating that full port listening is enabled.
         /// </summary>
         [Output("port")]
         public Output<int> Port { get; private set; } = null!;
@@ -229,11 +341,29 @@ namespace Pulumi.Volcengine.Clb
         public Output<string> Protocol { get; private set; } = null!;
 
         /// <summary>
+        /// The timeout period for establishing a connection between the CLB and the backend server. Only HTTP/HTTPS listeners support this parameter. value range: 4-120.
+        /// </summary>
+        [Output("proxyConnectTimeout")]
+        public Output<int> ProxyConnectTimeout { get; private set; } = null!;
+
+        /// <summary>
         /// Whether to enable proxy protocol. Valid values: `off`, `standard`. Default is `off`.
         /// This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
         /// </summary>
         [Output("proxyProtocolType")]
         public Output<string?> ProxyProtocolType { get; private set; } = null!;
+
+        /// <summary>
+        /// The timeout period for CLB to read the response from the backend server. Only HTTP/HTTPS listeners support this parameter. value range: 30-3600.
+        /// </summary>
+        [Output("proxyReadTimeout")]
+        public Output<int> ProxyReadTimeout { get; private set; } = null!;
+
+        /// <summary>
+        /// The timeout period for CLB to transmit requests to backend servers. Only HTTP/HTTPS listeners support this parameter. value range: 30-3600.
+        /// </summary>
+        [Output("proxySendTimeout")]
+        public Output<int> ProxySendTimeout { get; private set; } = null!;
 
         /// <summary>
         /// The scheduling algorithm of the Listener. Optional choice contains `wrr`, `wlc`, `sh`.
@@ -242,10 +372,34 @@ namespace Pulumi.Volcengine.Clb
         public Output<string> Scheduler { get; private set; } = null!;
 
         /// <summary>
+        /// The TLS security policy of the HTTPS listener. Only HTTPS listeners support this parameter. value range: `default_policy`, `tls_cipher_policy_1_0`, `tls_cipher_policy_1_1`, `tls_cipher_policy_1_2`, `tls_cipher_policy_1_2_strict`.
+        /// </summary>
+        [Output("securityPolicyId")]
+        public Output<string> SecurityPolicyId { get; private set; } = null!;
+
+        /// <summary>
+        /// The timeout period for CLB to send responses to the client. Only HTTP/HTTPS listeners support this parameter. value range: 1-3600.
+        /// </summary>
+        [Output("sendTimeout")]
+        public Output<int> SendTimeout { get; private set; } = null!;
+
+        /// <summary>
         /// The server group id associated with the listener.
         /// </summary>
         [Output("serverGroupId")]
         public Output<string> ServerGroupId { get; private set; } = null!;
+
+        /// <summary>
+        /// The start port for full port listening, with a value range of 1-65535. When `port` is 0, this parameter is required.
+        /// </summary>
+        [Output("startPort")]
+        public Output<int> StartPort { get; private set; } = null!;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<Outputs.ListenerTag>> Tags { get; private set; } = null!;
 
 
         /// <summary>
@@ -325,10 +479,46 @@ namespace Pulumi.Volcengine.Clb
         public Input<int>? Bandwidth { get; set; }
 
         /// <summary>
+        /// The ID of the CA certificate which is associated with the listener. When `ca_enabled` is `on`, this parameter is required.
+        /// </summary>
+        [Input("caCertificateId")]
+        public Input<string>? CaCertificateId { get; set; }
+
+        /// <summary>
+        /// Whether to enable CACertificate two-way authentication. Values: on, off.
+        /// </summary>
+        [Input("caEnabled")]
+        public Input<string>? CaEnabled { get; set; }
+
+        /// <summary>
+        /// The ID of the certificate in Certificate Center. When `certificate_source` is `cert_center`, this parameter is required.
+        /// </summary>
+        [Input("certCenterCertificateId")]
+        public Input<string>? CertCenterCertificateId { get; set; }
+
+        /// <summary>
         /// The certificate id associated with the listener.
         /// </summary>
         [Input("certificateId")]
         public Input<string>? CertificateId { get; set; }
+
+        /// <summary>
+        /// The source of the certificate which is associated with the listener. Values: `clb`, `cert_center`.
+        /// </summary>
+        [Input("certificateSource")]
+        public Input<string>? CertificateSource { get; set; }
+
+        /// <summary>
+        /// The client body timeout of the Listener. Only HTTP/HTTPS listeners support this parameter. value range: 30-120.
+        /// </summary>
+        [Input("clientBodyTimeout")]
+        public Input<int>? ClientBodyTimeout { get; set; }
+
+        /// <summary>
+        /// The client header timeout of the Listener. Only HTTP/HTTPS listeners support this parameter, i.e., `protocol`=`HTTP` or `HTTPS`. value range: 30-120.
+        /// </summary>
+        [Input("clientHeaderTimeout")]
+        public Input<int>? ClientHeaderTimeout { get; set; }
 
         /// <summary>
         /// Whether to enable connection drain of the Listener. Valid values: `off`, `on`. Default is `off`.
@@ -351,6 +541,12 @@ namespace Pulumi.Volcengine.Clb
         public Input<string>? Cookie { get; set; }
 
         /// <summary>
+        /// The maximum number of new connections per second allowed for the Listener. Default value: `-1`, no limit, which is the upper limit of new connections for the CLB instance.
+        /// </summary>
+        [Input("cps")]
+        public Input<int>? Cps { get; set; }
+
+        /// <summary>
         /// The description of the Listener.
         /// </summary>
         [Input("description")]
@@ -361,6 +557,12 @@ namespace Pulumi.Volcengine.Clb
         /// </summary>
         [Input("enabled")]
         public Input<string>? Enabled { get; set; }
+
+        /// <summary>
+        /// The end port for full port listening, with a value range of 1-65535. When `port` is 0, this parameter is required, and must be greater than `start_port`.
+        /// </summary>
+        [Input("endPort")]
+        public Input<int>? EndPort { get; set; }
 
         /// <summary>
         /// The connection timeout of the Listener.
@@ -375,6 +577,18 @@ namespace Pulumi.Volcengine.Clb
         public Input<Inputs.ListenerHealthCheckArgs>? HealthCheck { get; set; }
 
         /// <summary>
+        /// Whether the HTTPS protocol listener enables the front-end HTTP 2.0 protocol. value range: `on`, `off`.
+        /// </summary>
+        [Input("http2Enabled")]
+        public Input<string>? Http2Enabled { get; set; }
+
+        /// <summary>
+        /// The timeout period for the long connection between the client and the CLB. Only HTTP/HTTPS listeners support this parameter. value range: 0-900.
+        /// </summary>
+        [Input("keepaliveTimeout")]
+        public Input<int>? KeepaliveTimeout { get; set; }
+
+        /// <summary>
         /// The name of the Listener.
         /// </summary>
         [Input("listenerName")]
@@ -385,6 +599,12 @@ namespace Pulumi.Volcengine.Clb
         /// </summary>
         [Input("loadBalancerId", required: true)]
         public Input<string> LoadBalancerId { get; set; } = null!;
+
+        /// <summary>
+        /// The maximum number of connections allowed for the Listener. Default value: `-1`, no limit, which is the upper limit of new connections for the CLB instance.
+        /// </summary>
+        [Input("maxConnections")]
+        public Input<int>? MaxConnections { get; set; }
 
         /// <summary>
         /// The persistence timeout of the Listener. Unit: second. Default is `1000`. When PersistenceType is configured as source_ip, the value range is 1-3600. When PersistenceType is configured as insert, the value range is 1-86400. This filed is valid only when the value of field `persistence_type` is `source_ip` or `insert`.
@@ -400,7 +620,7 @@ namespace Pulumi.Volcengine.Clb
         public Input<string>? PersistenceType { get; set; }
 
         /// <summary>
-        /// The port receiving request of the Listener, the value range in 1~65535.
+        /// The port receiving request of the Listener, the value range in 0~65535. When `protocol` is `TCP` or `UDP`, 0 can be passed in, indicating that full port listening is enabled.
         /// </summary>
         [Input("port", required: true)]
         public Input<int> Port { get; set; } = null!;
@@ -412,11 +632,29 @@ namespace Pulumi.Volcengine.Clb
         public Input<string> Protocol { get; set; } = null!;
 
         /// <summary>
+        /// The timeout period for establishing a connection between the CLB and the backend server. Only HTTP/HTTPS listeners support this parameter. value range: 4-120.
+        /// </summary>
+        [Input("proxyConnectTimeout")]
+        public Input<int>? ProxyConnectTimeout { get; set; }
+
+        /// <summary>
         /// Whether to enable proxy protocol. Valid values: `off`, `standard`. Default is `off`.
         /// This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
         /// </summary>
         [Input("proxyProtocolType")]
         public Input<string>? ProxyProtocolType { get; set; }
+
+        /// <summary>
+        /// The timeout period for CLB to read the response from the backend server. Only HTTP/HTTPS listeners support this parameter. value range: 30-3600.
+        /// </summary>
+        [Input("proxyReadTimeout")]
+        public Input<int>? ProxyReadTimeout { get; set; }
+
+        /// <summary>
+        /// The timeout period for CLB to transmit requests to backend servers. Only HTTP/HTTPS listeners support this parameter. value range: 30-3600.
+        /// </summary>
+        [Input("proxySendTimeout")]
+        public Input<int>? ProxySendTimeout { get; set; }
 
         /// <summary>
         /// The scheduling algorithm of the Listener. Optional choice contains `wrr`, `wlc`, `sh`.
@@ -425,10 +663,40 @@ namespace Pulumi.Volcengine.Clb
         public Input<string>? Scheduler { get; set; }
 
         /// <summary>
+        /// The TLS security policy of the HTTPS listener. Only HTTPS listeners support this parameter. value range: `default_policy`, `tls_cipher_policy_1_0`, `tls_cipher_policy_1_1`, `tls_cipher_policy_1_2`, `tls_cipher_policy_1_2_strict`.
+        /// </summary>
+        [Input("securityPolicyId")]
+        public Input<string>? SecurityPolicyId { get; set; }
+
+        /// <summary>
+        /// The timeout period for CLB to send responses to the client. Only HTTP/HTTPS listeners support this parameter. value range: 1-3600.
+        /// </summary>
+        [Input("sendTimeout")]
+        public Input<int>? SendTimeout { get; set; }
+
+        /// <summary>
         /// The server group id associated with the listener.
         /// </summary>
         [Input("serverGroupId", required: true)]
         public Input<string> ServerGroupId { get; set; } = null!;
+
+        /// <summary>
+        /// The start port for full port listening, with a value range of 1-65535. When `port` is 0, this parameter is required.
+        /// </summary>
+        [Input("startPort")]
+        public Input<int>? StartPort { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.ListenerTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.ListenerTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.ListenerTagArgs>());
+            set => _tags = value;
+        }
 
         public ListenerArgs()
         {
@@ -469,10 +737,46 @@ namespace Pulumi.Volcengine.Clb
         public Input<int>? Bandwidth { get; set; }
 
         /// <summary>
+        /// The ID of the CA certificate which is associated with the listener. When `ca_enabled` is `on`, this parameter is required.
+        /// </summary>
+        [Input("caCertificateId")]
+        public Input<string>? CaCertificateId { get; set; }
+
+        /// <summary>
+        /// Whether to enable CACertificate two-way authentication. Values: on, off.
+        /// </summary>
+        [Input("caEnabled")]
+        public Input<string>? CaEnabled { get; set; }
+
+        /// <summary>
+        /// The ID of the certificate in Certificate Center. When `certificate_source` is `cert_center`, this parameter is required.
+        /// </summary>
+        [Input("certCenterCertificateId")]
+        public Input<string>? CertCenterCertificateId { get; set; }
+
+        /// <summary>
         /// The certificate id associated with the listener.
         /// </summary>
         [Input("certificateId")]
         public Input<string>? CertificateId { get; set; }
+
+        /// <summary>
+        /// The source of the certificate which is associated with the listener. Values: `clb`, `cert_center`.
+        /// </summary>
+        [Input("certificateSource")]
+        public Input<string>? CertificateSource { get; set; }
+
+        /// <summary>
+        /// The client body timeout of the Listener. Only HTTP/HTTPS listeners support this parameter. value range: 30-120.
+        /// </summary>
+        [Input("clientBodyTimeout")]
+        public Input<int>? ClientBodyTimeout { get; set; }
+
+        /// <summary>
+        /// The client header timeout of the Listener. Only HTTP/HTTPS listeners support this parameter, i.e., `protocol`=`HTTP` or `HTTPS`. value range: 30-120.
+        /// </summary>
+        [Input("clientHeaderTimeout")]
+        public Input<int>? ClientHeaderTimeout { get; set; }
 
         /// <summary>
         /// Whether to enable connection drain of the Listener. Valid values: `off`, `on`. Default is `off`.
@@ -495,6 +799,12 @@ namespace Pulumi.Volcengine.Clb
         public Input<string>? Cookie { get; set; }
 
         /// <summary>
+        /// The maximum number of new connections per second allowed for the Listener. Default value: `-1`, no limit, which is the upper limit of new connections for the CLB instance.
+        /// </summary>
+        [Input("cps")]
+        public Input<int>? Cps { get; set; }
+
+        /// <summary>
         /// The description of the Listener.
         /// </summary>
         [Input("description")]
@@ -507,6 +817,12 @@ namespace Pulumi.Volcengine.Clb
         public Input<string>? Enabled { get; set; }
 
         /// <summary>
+        /// The end port for full port listening, with a value range of 1-65535. When `port` is 0, this parameter is required, and must be greater than `start_port`.
+        /// </summary>
+        [Input("endPort")]
+        public Input<int>? EndPort { get; set; }
+
+        /// <summary>
         /// The connection timeout of the Listener.
         /// </summary>
         [Input("establishedTimeout")]
@@ -517,6 +833,18 @@ namespace Pulumi.Volcengine.Clb
         /// </summary>
         [Input("healthCheck")]
         public Input<Inputs.ListenerHealthCheckGetArgs>? HealthCheck { get; set; }
+
+        /// <summary>
+        /// Whether the HTTPS protocol listener enables the front-end HTTP 2.0 protocol. value range: `on`, `off`.
+        /// </summary>
+        [Input("http2Enabled")]
+        public Input<string>? Http2Enabled { get; set; }
+
+        /// <summary>
+        /// The timeout period for the long connection between the client and the CLB. Only HTTP/HTTPS listeners support this parameter. value range: 0-900.
+        /// </summary>
+        [Input("keepaliveTimeout")]
+        public Input<int>? KeepaliveTimeout { get; set; }
 
         /// <summary>
         /// The ID of the Listener.
@@ -537,6 +865,12 @@ namespace Pulumi.Volcengine.Clb
         public Input<string>? LoadBalancerId { get; set; }
 
         /// <summary>
+        /// The maximum number of connections allowed for the Listener. Default value: `-1`, no limit, which is the upper limit of new connections for the CLB instance.
+        /// </summary>
+        [Input("maxConnections")]
+        public Input<int>? MaxConnections { get; set; }
+
+        /// <summary>
         /// The persistence timeout of the Listener. Unit: second. Default is `1000`. When PersistenceType is configured as source_ip, the value range is 1-3600. When PersistenceType is configured as insert, the value range is 1-86400. This filed is valid only when the value of field `persistence_type` is `source_ip` or `insert`.
         /// </summary>
         [Input("persistenceTimeout")]
@@ -550,7 +884,7 @@ namespace Pulumi.Volcengine.Clb
         public Input<string>? PersistenceType { get; set; }
 
         /// <summary>
-        /// The port receiving request of the Listener, the value range in 1~65535.
+        /// The port receiving request of the Listener, the value range in 0~65535. When `protocol` is `TCP` or `UDP`, 0 can be passed in, indicating that full port listening is enabled.
         /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
@@ -562,11 +896,29 @@ namespace Pulumi.Volcengine.Clb
         public Input<string>? Protocol { get; set; }
 
         /// <summary>
+        /// The timeout period for establishing a connection between the CLB and the backend server. Only HTTP/HTTPS listeners support this parameter. value range: 4-120.
+        /// </summary>
+        [Input("proxyConnectTimeout")]
+        public Input<int>? ProxyConnectTimeout { get; set; }
+
+        /// <summary>
         /// Whether to enable proxy protocol. Valid values: `off`, `standard`. Default is `off`.
         /// This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
         /// </summary>
         [Input("proxyProtocolType")]
         public Input<string>? ProxyProtocolType { get; set; }
+
+        /// <summary>
+        /// The timeout period for CLB to read the response from the backend server. Only HTTP/HTTPS listeners support this parameter. value range: 30-3600.
+        /// </summary>
+        [Input("proxyReadTimeout")]
+        public Input<int>? ProxyReadTimeout { get; set; }
+
+        /// <summary>
+        /// The timeout period for CLB to transmit requests to backend servers. Only HTTP/HTTPS listeners support this parameter. value range: 30-3600.
+        /// </summary>
+        [Input("proxySendTimeout")]
+        public Input<int>? ProxySendTimeout { get; set; }
 
         /// <summary>
         /// The scheduling algorithm of the Listener. Optional choice contains `wrr`, `wlc`, `sh`.
@@ -575,10 +927,40 @@ namespace Pulumi.Volcengine.Clb
         public Input<string>? Scheduler { get; set; }
 
         /// <summary>
+        /// The TLS security policy of the HTTPS listener. Only HTTPS listeners support this parameter. value range: `default_policy`, `tls_cipher_policy_1_0`, `tls_cipher_policy_1_1`, `tls_cipher_policy_1_2`, `tls_cipher_policy_1_2_strict`.
+        /// </summary>
+        [Input("securityPolicyId")]
+        public Input<string>? SecurityPolicyId { get; set; }
+
+        /// <summary>
+        /// The timeout period for CLB to send responses to the client. Only HTTP/HTTPS listeners support this parameter. value range: 1-3600.
+        /// </summary>
+        [Input("sendTimeout")]
+        public Input<int>? SendTimeout { get; set; }
+
+        /// <summary>
         /// The server group id associated with the listener.
         /// </summary>
         [Input("serverGroupId")]
         public Input<string>? ServerGroupId { get; set; }
+
+        /// <summary>
+        /// The start port for full port listening, with a value range of 1-65535. When `port` is 0, this parameter is required.
+        /// </summary>
+        [Input("startPort")]
+        public Input<int>? StartPort { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.ListenerTagGetArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.ListenerTagGetArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.ListenerTagGetArgs>());
+            set => _tags = value;
+        }
 
         public ListenerState()
         {

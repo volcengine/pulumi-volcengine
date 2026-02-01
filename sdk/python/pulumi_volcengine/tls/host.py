@@ -15,14 +15,15 @@ __all__ = ['HostArgs', 'Host']
 class HostArgs:
     def __init__(__self__, *,
                  host_group_id: pulumi.Input[str],
-                 ip: pulumi.Input[str]):
+                 ip: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Host resource.
         :param pulumi.Input[str] host_group_id: The id of host group.
         :param pulumi.Input[str] ip: The ip address.
         """
         pulumi.set(__self__, "host_group_id", host_group_id)
-        pulumi.set(__self__, "ip", ip)
+        if ip is not None:
+            pulumi.set(__self__, "ip", ip)
 
     @property
     @pulumi.getter(name="hostGroupId")
@@ -38,14 +39,14 @@ class HostArgs:
 
     @property
     @pulumi.getter
-    def ip(self) -> pulumi.Input[str]:
+    def ip(self) -> Optional[pulumi.Input[str]]:
         """
         The ip address.
         """
         return pulumi.get(self, "ip")
 
     @ip.setter
-    def ip(self, value: pulumi.Input[str]):
+    def ip(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ip", value)
 
 
@@ -105,18 +106,30 @@ class Host(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.tls.Host("foo",
-            host_group_id="fbea6619-7b0c-40f3-ac7e-45c63e3f676e",
-            ip="10.180.50.18")
+        foo = volcengine.tls.HostGroup("foo",
+            host_group_name="tfgroup-ip-tf",
+            host_group_type="IP",
+            host_ip_lists=[
+                "192.168.0.1",
+                "192.168.0.2",
+                "192.168.0.3",
+            ],
+            auto_update=True,
+            update_start_time="00:00",
+            update_end_time="02:00",
+            service_logging=False,
+            iam_project_name="default")
+        # 删除指定 IP
+        delete_foo = volcengine.tls.Host("deleteFoo",
+            host_group_id=foo.id,
+            ip="192.168.0.1")
+        # 删除异常机器
+        delete_abnormal = volcengine.tls.Host("deleteAbnormal", host_group_id=foo.id)
         ```
 
         ## Import
 
-        Tls Host can be imported using the host_group_id:ip, e.g.
-
-        ```sh
-        $ pulumi import volcengine:tls/host:Host default edf051ed-3c46-49:1.1.1.1
-        ```
+        The TlsHost is not support import.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -137,18 +150,30 @@ class Host(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.tls.Host("foo",
-            host_group_id="fbea6619-7b0c-40f3-ac7e-45c63e3f676e",
-            ip="10.180.50.18")
+        foo = volcengine.tls.HostGroup("foo",
+            host_group_name="tfgroup-ip-tf",
+            host_group_type="IP",
+            host_ip_lists=[
+                "192.168.0.1",
+                "192.168.0.2",
+                "192.168.0.3",
+            ],
+            auto_update=True,
+            update_start_time="00:00",
+            update_end_time="02:00",
+            service_logging=False,
+            iam_project_name="default")
+        # 删除指定 IP
+        delete_foo = volcengine.tls.Host("deleteFoo",
+            host_group_id=foo.id,
+            ip="192.168.0.1")
+        # 删除异常机器
+        delete_abnormal = volcengine.tls.Host("deleteAbnormal", host_group_id=foo.id)
         ```
 
         ## Import
 
-        Tls Host can be imported using the host_group_id:ip, e.g.
-
-        ```sh
-        $ pulumi import volcengine:tls/host:Host default edf051ed-3c46-49:1.1.1.1
-        ```
+        The TlsHost is not support import.
 
         :param str resource_name: The name of the resource.
         :param HostArgs args: The arguments to use to populate this resource's properties.
@@ -179,8 +204,6 @@ class Host(pulumi.CustomResource):
             if host_group_id is None and not opts.urn:
                 raise TypeError("Missing required property 'host_group_id'")
             __props__.__dict__["host_group_id"] = host_group_id
-            if ip is None and not opts.urn:
-                raise TypeError("Missing required property 'ip'")
             __props__.__dict__["ip"] = ip
         super(Host, __self__).__init__(
             'volcengine:tls/host:Host',
@@ -222,7 +245,7 @@ class Host(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def ip(self) -> pulumi.Output[str]:
+    def ip(self) -> pulumi.Output[Optional[str]]:
         """
         The ip address.
         """

@@ -17,21 +17,29 @@ __all__ = ['IndexArgs', 'Index']
 class IndexArgs:
     def __init__(__self__, *,
                  topic_id: pulumi.Input[str],
+                 enable_auto_index: Optional[pulumi.Input[bool]] = None,
                  full_text: Optional[pulumi.Input['IndexFullTextArgs']] = None,
                  key_values: Optional[pulumi.Input[Sequence[pulumi.Input['IndexKeyValueArgs']]]] = None,
+                 max_text_len: Optional[pulumi.Input[int]] = None,
                  user_inner_key_values: Optional[pulumi.Input[Sequence[pulumi.Input['IndexUserInnerKeyValueArgs']]]] = None):
         """
         The set of arguments for constructing a Index resource.
         :param pulumi.Input[str] topic_id: The topic id of the tls index.
+        :param pulumi.Input[bool] enable_auto_index: Whether to enable auto index.
         :param pulumi.Input['IndexFullTextArgs'] full_text: The full text info of the tls index.
         :param pulumi.Input[Sequence[pulumi.Input['IndexKeyValueArgs']]] key_values: The key value info of the tls index.
+        :param pulumi.Input[int] max_text_len: The max text length of the tls index.
         :param pulumi.Input[Sequence[pulumi.Input['IndexUserInnerKeyValueArgs']]] user_inner_key_values: The reserved field index configuration of the tls index.
         """
         pulumi.set(__self__, "topic_id", topic_id)
+        if enable_auto_index is not None:
+            pulumi.set(__self__, "enable_auto_index", enable_auto_index)
         if full_text is not None:
             pulumi.set(__self__, "full_text", full_text)
         if key_values is not None:
             pulumi.set(__self__, "key_values", key_values)
+        if max_text_len is not None:
+            pulumi.set(__self__, "max_text_len", max_text_len)
         if user_inner_key_values is not None:
             pulumi.set(__self__, "user_inner_key_values", user_inner_key_values)
 
@@ -46,6 +54,18 @@ class IndexArgs:
     @topic_id.setter
     def topic_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "topic_id", value)
+
+    @property
+    @pulumi.getter(name="enableAutoIndex")
+    def enable_auto_index(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to enable auto index.
+        """
+        return pulumi.get(self, "enable_auto_index")
+
+    @enable_auto_index.setter
+    def enable_auto_index(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enable_auto_index", value)
 
     @property
     @pulumi.getter(name="fullText")
@@ -72,6 +92,18 @@ class IndexArgs:
         pulumi.set(self, "key_values", value)
 
     @property
+    @pulumi.getter(name="maxTextLen")
+    def max_text_len(self) -> Optional[pulumi.Input[int]]:
+        """
+        The max text length of the tls index.
+        """
+        return pulumi.get(self, "max_text_len")
+
+    @max_text_len.setter
+    def max_text_len(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_text_len", value)
+
+    @property
     @pulumi.getter(name="userInnerKeyValues")
     def user_inner_key_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['IndexUserInnerKeyValueArgs']]]]:
         """
@@ -88,26 +120,34 @@ class IndexArgs:
 class _IndexState:
     def __init__(__self__, *,
                  create_time: Optional[pulumi.Input[str]] = None,
+                 enable_auto_index: Optional[pulumi.Input[bool]] = None,
                  full_text: Optional[pulumi.Input['IndexFullTextArgs']] = None,
                  key_values: Optional[pulumi.Input[Sequence[pulumi.Input['IndexKeyValueArgs']]]] = None,
+                 max_text_len: Optional[pulumi.Input[int]] = None,
                  modify_time: Optional[pulumi.Input[str]] = None,
                  topic_id: Optional[pulumi.Input[str]] = None,
                  user_inner_key_values: Optional[pulumi.Input[Sequence[pulumi.Input['IndexUserInnerKeyValueArgs']]]] = None):
         """
         Input properties used for looking up and filtering Index resources.
         :param pulumi.Input[str] create_time: The create time of the tls index.
+        :param pulumi.Input[bool] enable_auto_index: Whether to enable auto index.
         :param pulumi.Input['IndexFullTextArgs'] full_text: The full text info of the tls index.
         :param pulumi.Input[Sequence[pulumi.Input['IndexKeyValueArgs']]] key_values: The key value info of the tls index.
+        :param pulumi.Input[int] max_text_len: The max text length of the tls index.
         :param pulumi.Input[str] modify_time: The modify time of the tls index.
         :param pulumi.Input[str] topic_id: The topic id of the tls index.
         :param pulumi.Input[Sequence[pulumi.Input['IndexUserInnerKeyValueArgs']]] user_inner_key_values: The reserved field index configuration of the tls index.
         """
         if create_time is not None:
             pulumi.set(__self__, "create_time", create_time)
+        if enable_auto_index is not None:
+            pulumi.set(__self__, "enable_auto_index", enable_auto_index)
         if full_text is not None:
             pulumi.set(__self__, "full_text", full_text)
         if key_values is not None:
             pulumi.set(__self__, "key_values", key_values)
+        if max_text_len is not None:
+            pulumi.set(__self__, "max_text_len", max_text_len)
         if modify_time is not None:
             pulumi.set(__self__, "modify_time", modify_time)
         if topic_id is not None:
@@ -128,6 +168,18 @@ class _IndexState:
         pulumi.set(self, "create_time", value)
 
     @property
+    @pulumi.getter(name="enableAutoIndex")
+    def enable_auto_index(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to enable auto index.
+        """
+        return pulumi.get(self, "enable_auto_index")
+
+    @enable_auto_index.setter
+    def enable_auto_index(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enable_auto_index", value)
+
+    @property
     @pulumi.getter(name="fullText")
     def full_text(self) -> Optional[pulumi.Input['IndexFullTextArgs']]:
         """
@@ -150,6 +202,18 @@ class _IndexState:
     @key_values.setter
     def key_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['IndexKeyValueArgs']]]]):
         pulumi.set(self, "key_values", value)
+
+    @property
+    @pulumi.getter(name="maxTextLen")
+    def max_text_len(self) -> Optional[pulumi.Input[int]]:
+        """
+        The max text length of the tls index.
+        """
+        return pulumi.get(self, "max_text_len")
+
+    @max_text_len.setter
+    def max_text_len(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_text_len", value)
 
     @property
     @pulumi.getter(name="modifyTime")
@@ -193,8 +257,10 @@ class Index(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 enable_auto_index: Optional[pulumi.Input[bool]] = None,
                  full_text: Optional[pulumi.Input[pulumi.InputType['IndexFullTextArgs']]] = None,
                  key_values: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IndexKeyValueArgs']]]]] = None,
+                 max_text_len: Optional[pulumi.Input[int]] = None,
                  topic_id: Optional[pulumi.Input[str]] = None,
                  user_inner_key_values: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IndexUserInnerKeyValueArgs']]]]] = None,
                  __props__=None):
@@ -207,47 +273,46 @@ class Index(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.tls.Index("foo",
-            key_values=[
-                volcengine.tls.IndexKeyValueArgs(
-                    case_sensitive=True,
-                    delimiter="!",
-                    include_chinese=False,
-                    index_all=True,
-                    json_keys=[
-                        volcengine.tls.IndexKeyValueJsonKeyArgs(
-                            key="class",
-                            value_type="text",
-                        ),
-                        volcengine.tls.IndexKeyValueJsonKeyArgs(
-                            key="age",
-                            value_type="long",
-                        ),
-                    ],
-                    key="k1",
-                    sql_flag=True,
-                    value_type="json",
-                ),
-                volcengine.tls.IndexKeyValueArgs(
-                    case_sensitive=True,
-                    delimiter="!",
-                    include_chinese=False,
-                    key="k5",
-                    sql_flag=False,
-                    value_type="text",
-                ),
-            ],
-            topic_id="227a8d0c-b85b-48df-bee1-0927a595****",
+            enable_auto_index=True,
+            full_text=volcengine.tls.IndexFullTextArgs(
+                case_sensitive=False,
+                delimiter=\"\"\", ;/
+        \\x09
+        \"\"\",
+                include_chinese=False,
+            ),
+            key_values=[volcengine.tls.IndexKeyValueArgs(
+                case_sensitive=True,
+                delimiter="!",
+                include_chinese=False,
+                index_all=True,
+                json_keys=[
+                    volcengine.tls.IndexKeyValueJsonKeyArgs(
+                        key="name",
+                        value_type="text",
+                    ),
+                    volcengine.tls.IndexKeyValueJsonKeyArgs(
+                        key="key",
+                        value_type="long",
+                    ),
+                ],
+                key="k1",
+                sql_flag=True,
+                value_type="json",
+            )],
+            max_text_len=2048,
+            topic_id="b600dc34-503f-42fc-8e32-953af55463d1",
             user_inner_key_values=[volcengine.tls.IndexUserInnerKeyValueArgs(
                 case_sensitive=False,
                 delimiter=",:-/ ",
                 include_chinese=False,
                 json_keys=[
                     volcengine.tls.IndexUserInnerKeyValueJsonKeyArgs(
-                        key="age",
+                        key="app",
                         value_type="long",
                     ),
                     volcengine.tls.IndexUserInnerKeyValueJsonKeyArgs(
-                        key="name",
+                        key="tag",
                         value_type="long",
                     ),
                 ],
@@ -267,8 +332,10 @@ class Index(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] enable_auto_index: Whether to enable auto index.
         :param pulumi.Input[pulumi.InputType['IndexFullTextArgs']] full_text: The full text info of the tls index.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IndexKeyValueArgs']]]] key_values: The key value info of the tls index.
+        :param pulumi.Input[int] max_text_len: The max text length of the tls index.
         :param pulumi.Input[str] topic_id: The topic id of the tls index.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IndexUserInnerKeyValueArgs']]]] user_inner_key_values: The reserved field index configuration of the tls index.
         """
@@ -287,47 +354,46 @@ class Index(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.tls.Index("foo",
-            key_values=[
-                volcengine.tls.IndexKeyValueArgs(
-                    case_sensitive=True,
-                    delimiter="!",
-                    include_chinese=False,
-                    index_all=True,
-                    json_keys=[
-                        volcengine.tls.IndexKeyValueJsonKeyArgs(
-                            key="class",
-                            value_type="text",
-                        ),
-                        volcengine.tls.IndexKeyValueJsonKeyArgs(
-                            key="age",
-                            value_type="long",
-                        ),
-                    ],
-                    key="k1",
-                    sql_flag=True,
-                    value_type="json",
-                ),
-                volcengine.tls.IndexKeyValueArgs(
-                    case_sensitive=True,
-                    delimiter="!",
-                    include_chinese=False,
-                    key="k5",
-                    sql_flag=False,
-                    value_type="text",
-                ),
-            ],
-            topic_id="227a8d0c-b85b-48df-bee1-0927a595****",
+            enable_auto_index=True,
+            full_text=volcengine.tls.IndexFullTextArgs(
+                case_sensitive=False,
+                delimiter=\"\"\", ;/
+        \\x09
+        \"\"\",
+                include_chinese=False,
+            ),
+            key_values=[volcengine.tls.IndexKeyValueArgs(
+                case_sensitive=True,
+                delimiter="!",
+                include_chinese=False,
+                index_all=True,
+                json_keys=[
+                    volcengine.tls.IndexKeyValueJsonKeyArgs(
+                        key="name",
+                        value_type="text",
+                    ),
+                    volcengine.tls.IndexKeyValueJsonKeyArgs(
+                        key="key",
+                        value_type="long",
+                    ),
+                ],
+                key="k1",
+                sql_flag=True,
+                value_type="json",
+            )],
+            max_text_len=2048,
+            topic_id="b600dc34-503f-42fc-8e32-953af55463d1",
             user_inner_key_values=[volcengine.tls.IndexUserInnerKeyValueArgs(
                 case_sensitive=False,
                 delimiter=",:-/ ",
                 include_chinese=False,
                 json_keys=[
                     volcengine.tls.IndexUserInnerKeyValueJsonKeyArgs(
-                        key="age",
+                        key="app",
                         value_type="long",
                     ),
                     volcengine.tls.IndexUserInnerKeyValueJsonKeyArgs(
-                        key="name",
+                        key="tag",
                         value_type="long",
                     ),
                 ],
@@ -360,8 +426,10 @@ class Index(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 enable_auto_index: Optional[pulumi.Input[bool]] = None,
                  full_text: Optional[pulumi.Input[pulumi.InputType['IndexFullTextArgs']]] = None,
                  key_values: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IndexKeyValueArgs']]]]] = None,
+                 max_text_len: Optional[pulumi.Input[int]] = None,
                  topic_id: Optional[pulumi.Input[str]] = None,
                  user_inner_key_values: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IndexUserInnerKeyValueArgs']]]]] = None,
                  __props__=None):
@@ -373,8 +441,10 @@ class Index(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = IndexArgs.__new__(IndexArgs)
 
+            __props__.__dict__["enable_auto_index"] = enable_auto_index
             __props__.__dict__["full_text"] = full_text
             __props__.__dict__["key_values"] = key_values
+            __props__.__dict__["max_text_len"] = max_text_len
             if topic_id is None and not opts.urn:
                 raise TypeError("Missing required property 'topic_id'")
             __props__.__dict__["topic_id"] = topic_id
@@ -392,8 +462,10 @@ class Index(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             create_time: Optional[pulumi.Input[str]] = None,
+            enable_auto_index: Optional[pulumi.Input[bool]] = None,
             full_text: Optional[pulumi.Input[pulumi.InputType['IndexFullTextArgs']]] = None,
             key_values: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IndexKeyValueArgs']]]]] = None,
+            max_text_len: Optional[pulumi.Input[int]] = None,
             modify_time: Optional[pulumi.Input[str]] = None,
             topic_id: Optional[pulumi.Input[str]] = None,
             user_inner_key_values: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IndexUserInnerKeyValueArgs']]]]] = None) -> 'Index':
@@ -405,8 +477,10 @@ class Index(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] create_time: The create time of the tls index.
+        :param pulumi.Input[bool] enable_auto_index: Whether to enable auto index.
         :param pulumi.Input[pulumi.InputType['IndexFullTextArgs']] full_text: The full text info of the tls index.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IndexKeyValueArgs']]]] key_values: The key value info of the tls index.
+        :param pulumi.Input[int] max_text_len: The max text length of the tls index.
         :param pulumi.Input[str] modify_time: The modify time of the tls index.
         :param pulumi.Input[str] topic_id: The topic id of the tls index.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IndexUserInnerKeyValueArgs']]]] user_inner_key_values: The reserved field index configuration of the tls index.
@@ -416,8 +490,10 @@ class Index(pulumi.CustomResource):
         __props__ = _IndexState.__new__(_IndexState)
 
         __props__.__dict__["create_time"] = create_time
+        __props__.__dict__["enable_auto_index"] = enable_auto_index
         __props__.__dict__["full_text"] = full_text
         __props__.__dict__["key_values"] = key_values
+        __props__.__dict__["max_text_len"] = max_text_len
         __props__.__dict__["modify_time"] = modify_time
         __props__.__dict__["topic_id"] = topic_id
         __props__.__dict__["user_inner_key_values"] = user_inner_key_values
@@ -430,6 +506,14 @@ class Index(pulumi.CustomResource):
         The create time of the tls index.
         """
         return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter(name="enableAutoIndex")
+    def enable_auto_index(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Whether to enable auto index.
+        """
+        return pulumi.get(self, "enable_auto_index")
 
     @property
     @pulumi.getter(name="fullText")
@@ -446,6 +530,14 @@ class Index(pulumi.CustomResource):
         The key value info of the tls index.
         """
         return pulumi.get(self, "key_values")
+
+    @property
+    @pulumi.getter(name="maxTextLen")
+    def max_text_len(self) -> pulumi.Output[Optional[int]]:
+        """
+        The max text length of the tls index.
+        """
+        return pulumi.get(self, "max_text_len")
 
     @property
     @pulumi.getter(name="modifyTime")

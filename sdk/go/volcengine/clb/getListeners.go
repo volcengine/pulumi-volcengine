@@ -125,6 +125,10 @@ type GetListenersArgs struct {
 	NameRegex *string `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
+	// The protocol of the Listener. Values: `TCP`, `UDP`, `HTTP`, `HTTPS`.
+	Protocol *string `pulumi:"protocol"`
+	// Tags.
+	Tags []GetListenersTag `pulumi:"tags"`
 }
 
 // A collection of values returned by getListeners.
@@ -135,10 +139,15 @@ type GetListenersResult struct {
 	// The name of the Listener.
 	ListenerName *string `pulumi:"listenerName"`
 	// The collection of Listener query.
-	Listeners      []GetListenersListener `pulumi:"listeners"`
-	LoadBalancerId *string                `pulumi:"loadBalancerId"`
-	NameRegex      *string                `pulumi:"nameRegex"`
-	OutputFile     *string                `pulumi:"outputFile"`
+	Listeners []GetListenersListener `pulumi:"listeners"`
+	// The id of the Clb.
+	LoadBalancerId *string `pulumi:"loadBalancerId"`
+	NameRegex      *string `pulumi:"nameRegex"`
+	OutputFile     *string `pulumi:"outputFile"`
+	// The protocol of the Listener.
+	Protocol *string `pulumi:"protocol"`
+	// Tags.
+	Tags []GetListenersTag `pulumi:"tags"`
 	// The total count of Listener query.
 	TotalCount int `pulumi:"totalCount"`
 }
@@ -168,6 +177,10 @@ type GetListenersOutputArgs struct {
 	NameRegex pulumi.StringPtrInput `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// The protocol of the Listener. Values: `TCP`, `UDP`, `HTTP`, `HTTPS`.
+	Protocol pulumi.StringPtrInput `pulumi:"protocol"`
+	// Tags.
+	Tags GetListenersTagArrayInput `pulumi:"tags"`
 }
 
 func (GetListenersOutputArgs) ElementType() reflect.Type {
@@ -208,6 +221,7 @@ func (o GetListenersResultOutput) Listeners() GetListenersListenerArrayOutput {
 	return o.ApplyT(func(v GetListenersResult) []GetListenersListener { return v.Listeners }).(GetListenersListenerArrayOutput)
 }
 
+// The id of the Clb.
 func (o GetListenersResultOutput) LoadBalancerId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetListenersResult) *string { return v.LoadBalancerId }).(pulumi.StringPtrOutput)
 }
@@ -218,6 +232,16 @@ func (o GetListenersResultOutput) NameRegex() pulumi.StringPtrOutput {
 
 func (o GetListenersResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetListenersResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
+}
+
+// The protocol of the Listener.
+func (o GetListenersResultOutput) Protocol() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetListenersResult) *string { return v.Protocol }).(pulumi.StringPtrOutput)
+}
+
+// Tags.
+func (o GetListenersResultOutput) Tags() GetListenersTagArrayOutput {
+	return o.ApplyT(func(v GetListenersResult) []GetListenersTag { return v.Tags }).(GetListenersTagArrayOutput)
 }
 
 // The total count of Listener query.

@@ -180,6 +180,24 @@ namespace Pulumi.Volcengine.Clb
         [Input("serverGroupName")]
         public string? ServerGroupName { get; set; }
 
+        [Input("tags")]
+        private List<Inputs.ServerGroupsTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public List<Inputs.ServerGroupsTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new List<Inputs.ServerGroupsTagArgs>());
+            set => _tags = value;
+        }
+
+        /// <summary>
+        /// The type of ServerGroup. Valid values: `instance`, `ip`.
+        /// </summary>
+        [Input("type")]
+        public string? Type { get; set; }
+
         public ServerGroupsArgs()
         {
         }
@@ -224,6 +242,24 @@ namespace Pulumi.Volcengine.Clb
         [Input("serverGroupName")]
         public Input<string>? ServerGroupName { get; set; }
 
+        [Input("tags")]
+        private InputList<Inputs.ServerGroupsTagInputArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.ServerGroupsTagInputArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.ServerGroupsTagInputArgs>());
+            set => _tags = value;
+        }
+
+        /// <summary>
+        /// The type of ServerGroup. Valid values: `instance`, `ip`.
+        /// </summary>
+        [Input("type")]
+        public Input<string>? Type { get; set; }
+
         public ServerGroupsInvokeArgs()
         {
         }
@@ -243,6 +279,9 @@ namespace Pulumi.Volcengine.Clb
         /// </summary>
         public readonly string Id;
         public readonly ImmutableArray<string> Ids;
+        /// <summary>
+        /// The ID of the LoadBalancer.
+        /// </summary>
         public readonly string? LoadBalancerId;
         public readonly string? NameRegex;
         public readonly string? OutputFile;
@@ -251,9 +290,17 @@ namespace Pulumi.Volcengine.Clb
         /// </summary>
         public readonly string? ServerGroupName;
         /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.ServerGroupsTagResult> Tags;
+        /// <summary>
         /// The total count of ServerGroup query.
         /// </summary>
         public readonly int TotalCount;
+        /// <summary>
+        /// The type of the ServerGroup.
+        /// </summary>
+        public readonly string? Type;
 
         [OutputConstructor]
         private ServerGroupsResult(
@@ -271,7 +318,11 @@ namespace Pulumi.Volcengine.Clb
 
             string? serverGroupName,
 
-            int totalCount)
+            ImmutableArray<Outputs.ServerGroupsTagResult> tags,
+
+            int totalCount,
+
+            string? type)
         {
             Groups = groups;
             Id = id;
@@ -280,7 +331,9 @@ namespace Pulumi.Volcengine.Clb
             NameRegex = nameRegex;
             OutputFile = outputFile;
             ServerGroupName = serverGroupName;
+            Tags = tags;
             TotalCount = totalCount;
+            Type = type;
         }
     }
 }

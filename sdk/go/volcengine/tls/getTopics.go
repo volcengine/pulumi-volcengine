@@ -27,8 +27,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := tls.GetTopics(ctx, &tls.GetTopicsArgs{
-//				ProjectId: "e020c978-4f05-40e1-9167-0113d3ef****",
-//				TopicId:   pulumi.StringRef("edf051ed-3c46-49ba-9339-bea628fe****"),
+//				ProjectId: "bdb87e4d-7dad-4b96-ac43-e1b09e9dc8ac",
+//				TopicId:   pulumi.StringRef("9b756385-1dfb-4306-a094-0c88e04b34a5"),
 //			}, nil)
 //			if err != nil {
 //				return err
@@ -50,8 +50,6 @@ func GetTopics(ctx *pulumi.Context, args *GetTopicsArgs, opts ...pulumi.InvokeOp
 
 // A collection of arguments for invoking getTopics.
 type GetTopicsArgs struct {
-	// Whether to match accurately when filtering based on TopicName.
-	IsFullName *bool `pulumi:"isFullName"`
 	// A Name Regex of tls topic.
 	NameRegex *string `pulumi:"nameRegex"`
 	// File name where to save data source results.
@@ -70,7 +68,6 @@ type GetTopicsArgs struct {
 type GetTopicsResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id         string  `pulumi:"id"`
-	IsFullName *bool   `pulumi:"isFullName"`
 	NameRegex  *string `pulumi:"nameRegex"`
 	OutputFile *string `pulumi:"outputFile"`
 	// The project id of the tls topic.
@@ -102,8 +99,6 @@ func GetTopicsOutput(ctx *pulumi.Context, args GetTopicsOutputArgs, opts ...pulu
 
 // A collection of arguments for invoking getTopics.
 type GetTopicsOutputArgs struct {
-	// Whether to match accurately when filtering based on TopicName.
-	IsFullName pulumi.BoolPtrInput `pulumi:"isFullName"`
 	// A Name Regex of tls topic.
 	NameRegex pulumi.StringPtrInput `pulumi:"nameRegex"`
 	// File name where to save data source results.
@@ -140,10 +135,6 @@ func (o GetTopicsResultOutput) ToGetTopicsResultOutputWithContext(ctx context.Co
 // The provider-assigned unique ID for this managed resource.
 func (o GetTopicsResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetTopicsResult) string { return v.Id }).(pulumi.StringOutput)
-}
-
-func (o GetTopicsResultOutput) IsFullName() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v GetTopicsResult) *bool { return v.IsFullName }).(pulumi.BoolPtrOutput)
 }
 
 func (o GetTopicsResultOutput) NameRegex() pulumi.StringPtrOutput {

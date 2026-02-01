@@ -61,6 +61,9 @@ class GetListenerHealthsResult:
     @property
     @pulumi.getter
     def listeners(self) -> Sequence['outputs.GetListenerHealthsListenerResult']:
+        """
+        The collection of listener health query.
+        """
         return pulumi.get(self, "listeners")
 
     @property
@@ -81,6 +84,9 @@ class GetListenerHealthsResult:
     @property
     @pulumi.getter(name="totalCount")
     def total_count(self) -> int:
+        """
+        The total count of query.
+        """
         return pulumi.get(self, "total_count")
 
 
@@ -105,7 +111,26 @@ def get_listener_healths(listener_ids: Optional[Sequence[str]] = None,
                          project_name: Optional[str] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetListenerHealthsResult:
     """
-    Use this data source to access information about an existing resource.
+    Use this data source to query detailed information of alb listener healths
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_volcengine as volcengine
+
+    example = volcengine.alb.get_listener_healths(listener_ids=[
+            "lsn-xoetdjk3dzwg54ov5ewpam7c",
+            "lsn-bdcxfof3fy808dv40ofappua",
+        ],
+        only_un_healthy=True,
+        project_name="default")
+    ```
+
+
+    :param Sequence[str] listener_ids: A list of Listener IDs.
+    :param bool only_un_healthy: Whether to return only backend servers with abnormal health check status.
+    :param str output_file: File name where to save data source results.
+    :param str project_name: The project name of the listener.
     """
     __args__ = dict()
     __args__['listenerIds'] = listener_ids
@@ -132,6 +157,25 @@ def get_listener_healths_output(listener_ids: Optional[pulumi.Input[Sequence[str
                                 project_name: Optional[pulumi.Input[Optional[str]]] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetListenerHealthsResult]:
     """
-    Use this data source to access information about an existing resource.
+    Use this data source to query detailed information of alb listener healths
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_volcengine as volcengine
+
+    example = volcengine.alb.get_listener_healths(listener_ids=[
+            "lsn-xoetdjk3dzwg54ov5ewpam7c",
+            "lsn-bdcxfof3fy808dv40ofappua",
+        ],
+        only_un_healthy=True,
+        project_name="default")
+    ```
+
+
+    :param Sequence[str] listener_ids: A list of Listener IDs.
+    :param bool only_un_healthy: Whether to return only backend servers with abnormal health check status.
+    :param str output_file: File name where to save data source results.
+    :param str project_name: The project name of the listener.
     """
     ...

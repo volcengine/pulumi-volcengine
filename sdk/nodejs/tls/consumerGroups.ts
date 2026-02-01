@@ -14,7 +14,25 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.tls.getConsumerGroups({});
+ * const all = volcengine.tls.getConsumerGroups({});
+ * export const allConsumerGroups = all.then(all => all.consumerGroups);
+ * const byName = volcengine.tls.getConsumerGroups({
+ *     consumerGroupName: "test-consumer-group",
+ * });
+ * export const byNameConsumerGroups = byName.then(byName => byName.consumerGroups);
+ * const byProject = volcengine.tls.getConsumerGroups({
+ *     projectId: "project-123456",
+ * });
+ * export const byProjectConsumerGroups = byProject.then(byProject => byProject.consumerGroups);
+ * const byTopic = volcengine.tls.getConsumerGroups({
+ *     topicId: "topic-123456",
+ * });
+ * export const byTopicConsumerGroups = byTopic.then(byTopic => byTopic.consumerGroups);
+ * const withMultipleFilters = volcengine.tls.getConsumerGroups({
+ *     projectId: "project-123456",
+ *     consumerGroupName: "test",
+ * });
+ * export const multipleFiltersConsumerGroups = withMultipleFilters.then(withMultipleFilters => withMultipleFilters.consumerGroups);
  * ```
  */
 /** @deprecated volcengine.tls.ConsumerGroups has been deprecated in favor of volcengine.tls.getConsumerGroups */
@@ -118,7 +136,25 @@ export interface ConsumerGroupsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.tls.getConsumerGroups({});
+ * const all = volcengine.tls.getConsumerGroups({});
+ * export const allConsumerGroups = all.then(all => all.consumerGroups);
+ * const byName = volcengine.tls.getConsumerGroups({
+ *     consumerGroupName: "test-consumer-group",
+ * });
+ * export const byNameConsumerGroups = byName.then(byName => byName.consumerGroups);
+ * const byProject = volcengine.tls.getConsumerGroups({
+ *     projectId: "project-123456",
+ * });
+ * export const byProjectConsumerGroups = byProject.then(byProject => byProject.consumerGroups);
+ * const byTopic = volcengine.tls.getConsumerGroups({
+ *     topicId: "topic-123456",
+ * });
+ * export const byTopicConsumerGroups = byTopic.then(byTopic => byTopic.consumerGroups);
+ * const withMultipleFilters = volcengine.tls.getConsumerGroups({
+ *     projectId: "project-123456",
+ *     consumerGroupName: "test",
+ * });
+ * export const multipleFiltersConsumerGroups = withMultipleFilters.then(withMultipleFilters => withMultipleFilters.consumerGroups);
  * ```
  */
 /** @deprecated volcengine.tls.ConsumerGroups has been deprecated in favor of volcengine.tls.getConsumerGroups */

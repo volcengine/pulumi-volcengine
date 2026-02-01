@@ -100,43 +100,69 @@ func Clbs(ctx *pulumi.Context, args *ClbsArgs, opts ...pulumi.InvokeOption) (*Cl
 
 // A collection of arguments for invoking Clbs.
 type ClbsArgs struct {
+	// The address IP version of the CLB.
+	AddressIpVersion *string `pulumi:"addressIpVersion"`
+	// The public ip address of the Clb.
+	EipAddress *string `pulumi:"eipAddress"`
 	// The private ip address of the Clb.
 	EniAddress *string `pulumi:"eniAddress"`
 	// A list of Clb IDs.
 	Ids []string `pulumi:"ids"`
+	// The IDs of the backend server of the CLB.
+	InstanceIds []string `pulumi:"instanceIds"`
+	// The IP address of the backend server of the CLB.
+	InstanceIps []string `pulumi:"instanceIps"`
 	// The name of the Clb.
 	LoadBalancerName *string `pulumi:"loadBalancerName"`
+	// The master zone ID of the CLB.
+	MasterZoneId *string `pulumi:"masterZoneId"`
 	// A Name Regex of Clb.
 	NameRegex *string `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
 	// The ProjectName of Clb.
 	ProjectName *string `pulumi:"projectName"`
+	// The status of the CLB.
+	Status *string `pulumi:"status"`
 	// Tags.
 	Tags []ClbsTag `pulumi:"tags"`
+	// The network type of the CLB.
+	Type *string `pulumi:"type"`
 	// The id of the VPC.
 	VpcId *string `pulumi:"vpcId"`
 }
 
 // A collection of values returned by Clbs.
 type ClbsResult struct {
+	// The address ip version of the Clb.
+	AddressIpVersion *string `pulumi:"addressIpVersion"`
 	// The collection of Clb query.
 	Clbs []ClbsClb `pulumi:"clbs"`
-	// The Eni address of the Clb.
+	// The public IPv4 address bound to the private IPv4 address.
+	EipAddress *string `pulumi:"eipAddress"`
+	// The private IPv4 address of the CLB instance.
 	EniAddress *string `pulumi:"eniAddress"`
 	// The provider-assigned unique ID for this managed resource.
-	Id  string   `pulumi:"id"`
-	Ids []string `pulumi:"ids"`
+	Id          string   `pulumi:"id"`
+	Ids         []string `pulumi:"ids"`
+	InstanceIds []string `pulumi:"instanceIds"`
+	InstanceIps []string `pulumi:"instanceIps"`
 	// The name of the Clb.
 	LoadBalancerName *string `pulumi:"loadBalancerName"`
-	NameRegex        *string `pulumi:"nameRegex"`
-	OutputFile       *string `pulumi:"outputFile"`
+	// The master zone ID of the CLB.
+	MasterZoneId *string `pulumi:"masterZoneId"`
+	NameRegex    *string `pulumi:"nameRegex"`
+	OutputFile   *string `pulumi:"outputFile"`
 	// The ProjectName of the Clb.
 	ProjectName *string `pulumi:"projectName"`
+	// The status of the Clb.
+	Status *string `pulumi:"status"`
 	// Tags.
 	Tags []ClbsTag `pulumi:"tags"`
 	// The total count of Clb query.
 	TotalCount int `pulumi:"totalCount"`
+	// The type of the Clb.
+	Type *string `pulumi:"type"`
 	// The vpc ID of the Clb.
 	VpcId *string `pulumi:"vpcId"`
 }
@@ -156,20 +182,34 @@ func ClbsOutput(ctx *pulumi.Context, args ClbsOutputArgs, opts ...pulumi.InvokeO
 
 // A collection of arguments for invoking Clbs.
 type ClbsOutputArgs struct {
+	// The address IP version of the CLB.
+	AddressIpVersion pulumi.StringPtrInput `pulumi:"addressIpVersion"`
+	// The public ip address of the Clb.
+	EipAddress pulumi.StringPtrInput `pulumi:"eipAddress"`
 	// The private ip address of the Clb.
 	EniAddress pulumi.StringPtrInput `pulumi:"eniAddress"`
 	// A list of Clb IDs.
 	Ids pulumi.StringArrayInput `pulumi:"ids"`
+	// The IDs of the backend server of the CLB.
+	InstanceIds pulumi.StringArrayInput `pulumi:"instanceIds"`
+	// The IP address of the backend server of the CLB.
+	InstanceIps pulumi.StringArrayInput `pulumi:"instanceIps"`
 	// The name of the Clb.
 	LoadBalancerName pulumi.StringPtrInput `pulumi:"loadBalancerName"`
+	// The master zone ID of the CLB.
+	MasterZoneId pulumi.StringPtrInput `pulumi:"masterZoneId"`
 	// A Name Regex of Clb.
 	NameRegex pulumi.StringPtrInput `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
 	// The ProjectName of Clb.
 	ProjectName pulumi.StringPtrInput `pulumi:"projectName"`
+	// The status of the CLB.
+	Status pulumi.StringPtrInput `pulumi:"status"`
 	// Tags.
 	Tags ClbsTagArrayInput `pulumi:"tags"`
+	// The network type of the CLB.
+	Type pulumi.StringPtrInput `pulumi:"type"`
 	// The id of the VPC.
 	VpcId pulumi.StringPtrInput `pulumi:"vpcId"`
 }
@@ -193,12 +233,22 @@ func (o ClbsResultOutput) ToClbsResultOutputWithContext(ctx context.Context) Clb
 	return o
 }
 
+// The address ip version of the Clb.
+func (o ClbsResultOutput) AddressIpVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClbsResult) *string { return v.AddressIpVersion }).(pulumi.StringPtrOutput)
+}
+
 // The collection of Clb query.
 func (o ClbsResultOutput) Clbs() ClbsClbArrayOutput {
 	return o.ApplyT(func(v ClbsResult) []ClbsClb { return v.Clbs }).(ClbsClbArrayOutput)
 }
 
-// The Eni address of the Clb.
+// The public IPv4 address bound to the private IPv4 address.
+func (o ClbsResultOutput) EipAddress() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClbsResult) *string { return v.EipAddress }).(pulumi.StringPtrOutput)
+}
+
+// The private IPv4 address of the CLB instance.
 func (o ClbsResultOutput) EniAddress() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClbsResult) *string { return v.EniAddress }).(pulumi.StringPtrOutput)
 }
@@ -212,9 +262,22 @@ func (o ClbsResultOutput) Ids() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ClbsResult) []string { return v.Ids }).(pulumi.StringArrayOutput)
 }
 
+func (o ClbsResultOutput) InstanceIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ClbsResult) []string { return v.InstanceIds }).(pulumi.StringArrayOutput)
+}
+
+func (o ClbsResultOutput) InstanceIps() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ClbsResult) []string { return v.InstanceIps }).(pulumi.StringArrayOutput)
+}
+
 // The name of the Clb.
 func (o ClbsResultOutput) LoadBalancerName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClbsResult) *string { return v.LoadBalancerName }).(pulumi.StringPtrOutput)
+}
+
+// The master zone ID of the CLB.
+func (o ClbsResultOutput) MasterZoneId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClbsResult) *string { return v.MasterZoneId }).(pulumi.StringPtrOutput)
 }
 
 func (o ClbsResultOutput) NameRegex() pulumi.StringPtrOutput {
@@ -230,6 +293,11 @@ func (o ClbsResultOutput) ProjectName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClbsResult) *string { return v.ProjectName }).(pulumi.StringPtrOutput)
 }
 
+// The status of the Clb.
+func (o ClbsResultOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClbsResult) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
 // Tags.
 func (o ClbsResultOutput) Tags() ClbsTagArrayOutput {
 	return o.ApplyT(func(v ClbsResult) []ClbsTag { return v.Tags }).(ClbsTagArrayOutput)
@@ -238,6 +306,11 @@ func (o ClbsResultOutput) Tags() ClbsTagArrayOutput {
 // The total count of Clb query.
 func (o ClbsResultOutput) TotalCount() pulumi.IntOutput {
 	return o.ApplyT(func(v ClbsResult) int { return v.TotalCount }).(pulumi.IntOutput)
+}
+
+// The type of the Clb.
+func (o ClbsResultOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClbsResult) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
 
 // The vpc ID of the Clb.

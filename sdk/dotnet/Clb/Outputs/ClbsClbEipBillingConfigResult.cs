@@ -18,6 +18,14 @@ namespace Pulumi.Volcengine.Clb.Outputs
         /// </summary>
         public readonly int Bandwidth;
         /// <summary>
+        /// The bandwidth package id of the Ipv6 EIP assigned to CLB.
+        /// </summary>
+        public readonly string BandwidthPackageId;
+        /// <summary>
+        /// The public ip address of the Clb.
+        /// </summary>
+        public readonly string EipAddress;
+        /// <summary>
         /// The billing type of the EIP assigned to CLB. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.
         /// </summary>
         public readonly string EipBillingType;
@@ -25,18 +33,31 @@ namespace Pulumi.Volcengine.Clb.Outputs
         /// The ISP of the Ipv6 EIP assigned to CLB, the value can be `BGP`.
         /// </summary>
         public readonly string Isp;
+        /// <summary>
+        /// The security protection types of the EIP assigned to CLB.
+        /// </summary>
+        public readonly ImmutableArray<string> SecurityProtectionTypes;
 
         [OutputConstructor]
         private ClbsClbEipBillingConfigResult(
             int bandwidth,
 
+            string bandwidthPackageId,
+
+            string eipAddress,
+
             string eipBillingType,
 
-            string isp)
+            string isp,
+
+            ImmutableArray<string> securityProtectionTypes)
         {
             Bandwidth = bandwidth;
+            BandwidthPackageId = bandwidthPackageId;
+            EipAddress = eipAddress;
             EipBillingType = eipBillingType;
             Isp = isp;
+            SecurityProtectionTypes = securityProtectionTypes;
         }
     }
 }

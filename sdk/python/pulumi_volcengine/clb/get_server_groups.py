@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'GetServerGroupsResult',
@@ -22,7 +23,7 @@ class GetServerGroupsResult:
     """
     A collection of values returned by getServerGroups.
     """
-    def __init__(__self__, groups=None, id=None, ids=None, load_balancer_id=None, name_regex=None, output_file=None, server_group_name=None, total_count=None):
+    def __init__(__self__, groups=None, id=None, ids=None, load_balancer_id=None, name_regex=None, output_file=None, server_group_name=None, tags=None, total_count=None, type=None):
         if groups and not isinstance(groups, list):
             raise TypeError("Expected argument 'groups' to be a list")
         pulumi.set(__self__, "groups", groups)
@@ -44,9 +45,15 @@ class GetServerGroupsResult:
         if server_group_name and not isinstance(server_group_name, str):
             raise TypeError("Expected argument 'server_group_name' to be a str")
         pulumi.set(__self__, "server_group_name", server_group_name)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
+        if type and not isinstance(type, str):
+            raise TypeError("Expected argument 'type' to be a str")
+        pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter
@@ -72,6 +79,9 @@ class GetServerGroupsResult:
     @property
     @pulumi.getter(name="loadBalancerId")
     def load_balancer_id(self) -> Optional[str]:
+        """
+        The ID of the LoadBalancer.
+        """
         return pulumi.get(self, "load_balancer_id")
 
     @property
@@ -93,12 +103,28 @@ class GetServerGroupsResult:
         return pulumi.get(self, "server_group_name")
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.GetServerGroupsTagResult']]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="totalCount")
     def total_count(self) -> int:
         """
         The total count of ServerGroup query.
         """
         return pulumi.get(self, "total_count")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        """
+        The type of the ServerGroup.
+        """
+        return pulumi.get(self, "type")
 
 
 class AwaitableGetServerGroupsResult(GetServerGroupsResult):
@@ -114,7 +140,9 @@ class AwaitableGetServerGroupsResult(GetServerGroupsResult):
             name_regex=self.name_regex,
             output_file=self.output_file,
             server_group_name=self.server_group_name,
-            total_count=self.total_count)
+            tags=self.tags,
+            total_count=self.total_count,
+            type=self.type)
 
 
 def get_server_groups(ids: Optional[Sequence[str]] = None,
@@ -122,6 +150,8 @@ def get_server_groups(ids: Optional[Sequence[str]] = None,
                       name_regex: Optional[str] = None,
                       output_file: Optional[str] = None,
                       server_group_name: Optional[str] = None,
+                      tags: Optional[Sequence[pulumi.InputType['GetServerGroupsTagArgs']]] = None,
+                      type: Optional[str] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetServerGroupsResult:
     """
     Use this data source to query detailed information of server groups
@@ -164,6 +194,8 @@ def get_server_groups(ids: Optional[Sequence[str]] = None,
     :param str name_regex: A Name Regex of ServerGroup.
     :param str output_file: File name where to save data source results.
     :param str server_group_name: The name of the ServerGroup.
+    :param Sequence[pulumi.InputType['GetServerGroupsTagArgs']] tags: Tags.
+    :param str type: The type of ServerGroup. Valid values: `instance`, `ip`.
     """
     __args__ = dict()
     __args__['ids'] = ids
@@ -171,6 +203,8 @@ def get_server_groups(ids: Optional[Sequence[str]] = None,
     __args__['nameRegex'] = name_regex
     __args__['outputFile'] = output_file
     __args__['serverGroupName'] = server_group_name
+    __args__['tags'] = tags
+    __args__['type'] = type
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('volcengine:clb/getServerGroups:getServerGroups', __args__, opts=opts, typ=GetServerGroupsResult).value
 
@@ -182,7 +216,9 @@ def get_server_groups(ids: Optional[Sequence[str]] = None,
         name_regex=pulumi.get(__ret__, 'name_regex'),
         output_file=pulumi.get(__ret__, 'output_file'),
         server_group_name=pulumi.get(__ret__, 'server_group_name'),
-        total_count=pulumi.get(__ret__, 'total_count'))
+        tags=pulumi.get(__ret__, 'tags'),
+        total_count=pulumi.get(__ret__, 'total_count'),
+        type=pulumi.get(__ret__, 'type'))
 
 
 @_utilities.lift_output_func(get_server_groups)
@@ -191,6 +227,8 @@ def get_server_groups_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]
                              name_regex: Optional[pulumi.Input[Optional[str]]] = None,
                              output_file: Optional[pulumi.Input[Optional[str]]] = None,
                              server_group_name: Optional[pulumi.Input[Optional[str]]] = None,
+                             tags: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetServerGroupsTagArgs']]]]] = None,
+                             type: Optional[pulumi.Input[Optional[str]]] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetServerGroupsResult]:
     """
     Use this data source to query detailed information of server groups
@@ -233,5 +271,7 @@ def get_server_groups_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]
     :param str name_regex: A Name Regex of ServerGroup.
     :param str output_file: File name where to save data source results.
     :param str server_group_name: The name of the ServerGroup.
+    :param Sequence[pulumi.InputType['GetServerGroupsTagArgs']] tags: Tags.
+    :param str type: The type of ServerGroup. Valid values: `instance`, `ip`.
     """
     ...

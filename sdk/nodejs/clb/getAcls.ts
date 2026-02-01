@@ -16,6 +16,10 @@ import * as utilities from "../utilities";
  *
  * const default = volcengine.clb.getAcls({
  *     ids: ["acl-3ti8n0rurx4bwbh9jzdy"],
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
  * });
  * ```
  */
@@ -29,6 +33,7 @@ export function getAcls(args?: GetAclsArgs, opts?: pulumi.InvokeOptions): Promis
         "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
         "projectName": args.projectName,
+        "tags": args.tags,
     }, opts);
 }
 
@@ -56,6 +61,10 @@ export interface GetAclsArgs {
      * The ProjectName of Acl.
      */
     projectName?: string;
+    /**
+     * Tags.
+     */
+    tags?: inputs.clb.GetAclsTag[];
 }
 
 /**
@@ -82,6 +91,10 @@ export interface GetAclsResult {
      */
     readonly projectName?: string;
     /**
+     * Tags.
+     */
+    readonly tags?: outputs.clb.GetAclsTag[];
+    /**
      * The total count of Acl query.
      */
     readonly totalCount: number;
@@ -96,6 +109,10 @@ export interface GetAclsResult {
  *
  * const default = volcengine.clb.getAcls({
  *     ids: ["acl-3ti8n0rurx4bwbh9jzdy"],
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
  * });
  * ```
  */
@@ -127,4 +144,8 @@ export interface GetAclsOutputArgs {
      * The ProjectName of Acl.
      */
     projectName?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.clb.GetAclsTagArgs>[]>;
 }

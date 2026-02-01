@@ -11,47 +11,6 @@ namespace Pulumi.Volcengine.Tls
 {
     /// <summary>
     /// Provides a resource to manage tls alarm notify group
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Volcengine = Pulumi.Volcengine;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var foo = new Volcengine.Tls.AlarmNotifyGroup("foo", new()
-    ///     {
-    ///         AlarmNotifyGroupName = "tf-test",
-    ///         IamProjectName = "yyy",
-    ///         NotifyTypes = new[]
-    ///         {
-    ///             "Trigger",
-    ///         },
-    ///         Receivers = new[]
-    ///         {
-    ///             new Volcengine.Tls.Inputs.AlarmNotifyGroupReceiverArgs
-    ///             {
-    ///                 EndTime = "23:59:59",
-    ///                 ReceiverChannels = new[]
-    ///                 {
-    ///                     "Email",
-    ///                     "Sms",
-    ///                 },
-    ///                 ReceiverNames = new[]
-    ///                 {
-    ///                     "vke-qs",
-    ///                 },
-    ///                 ReceiverType = "User",
-    ///                 StartTime = "23:00:00",
-    ///             },
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// tls alarm notify group can be imported using the id, e.g.
@@ -80,6 +39,12 @@ namespace Pulumi.Volcengine.Tls
         /// </summary>
         [Output("iamProjectName")]
         public Output<string> IamProjectName { get; private set; } = null!;
+
+        /// <summary>
+        /// The list of the notice rules.
+        /// </summary>
+        [Output("noticeRules")]
+        public Output<ImmutableArray<Outputs.AlarmNotifyGroupNoticeRule>> NoticeRules { get; private set; } = null!;
 
         /// <summary>
         /// The notify type.
@@ -154,7 +119,19 @@ namespace Pulumi.Volcengine.Tls
         [Input("iamProjectName")]
         public Input<string>? IamProjectName { get; set; }
 
-        [Input("notifyTypes", required: true)]
+        [Input("noticeRules")]
+        private InputList<Inputs.AlarmNotifyGroupNoticeRuleArgs>? _noticeRules;
+
+        /// <summary>
+        /// The list of the notice rules.
+        /// </summary>
+        public InputList<Inputs.AlarmNotifyGroupNoticeRuleArgs> NoticeRules
+        {
+            get => _noticeRules ?? (_noticeRules = new InputList<Inputs.AlarmNotifyGroupNoticeRuleArgs>());
+            set => _noticeRules = value;
+        }
+
+        [Input("notifyTypes")]
         private InputList<string>? _notifyTypes;
 
         /// <summary>
@@ -168,7 +145,7 @@ namespace Pulumi.Volcengine.Tls
             set => _notifyTypes = value;
         }
 
-        [Input("receivers", required: true)]
+        [Input("receivers")]
         private InputList<Inputs.AlarmNotifyGroupReceiverArgs>? _receivers;
 
         /// <summary>
@@ -205,6 +182,18 @@ namespace Pulumi.Volcengine.Tls
         /// </summary>
         [Input("iamProjectName")]
         public Input<string>? IamProjectName { get; set; }
+
+        [Input("noticeRules")]
+        private InputList<Inputs.AlarmNotifyGroupNoticeRuleGetArgs>? _noticeRules;
+
+        /// <summary>
+        /// The list of the notice rules.
+        /// </summary>
+        public InputList<Inputs.AlarmNotifyGroupNoticeRuleGetArgs> NoticeRules
+        {
+            get => _noticeRules ?? (_noticeRules = new InputList<Inputs.AlarmNotifyGroupNoticeRuleGetArgs>());
+            set => _noticeRules = value;
+        }
 
         [Input("notifyTypes")]
         private InputList<string>? _notifyTypes;

@@ -72,14 +72,20 @@ import (
 type ListenerDomainExtension struct {
 	pulumi.CustomResourceState
 
-	// Server certificate used for the domain name.
-	CertificateId pulumi.StringOutput `pulumi:"certificateId"`
+	// The server certificate ID used by the domain name. Valid when the certificateSource is `certCenter`.
+	CertCenterCertificateId pulumi.StringPtrOutput `pulumi:"certCenterCertificateId"`
+	// Server certificate used for the domain name. Valid when the certificateSource is `alb`.
+	CertificateId pulumi.StringPtrOutput `pulumi:"certificateId"`
+	// The source of the certificate. Valid values: `alb`, `certCenter`, `pcaLeaf`. Default is `alb`.
+	CertificateSource pulumi.StringPtrOutput `pulumi:"certificateSource"`
 	// The domain name. The maximum number of associated domain names for an HTTPS listener is 20, with a value range of 1 to 20.
 	Domain pulumi.StringOutput `pulumi:"domain"`
 	// The id of the domain extension.
 	DomainExtensionId pulumi.StringOutput `pulumi:"domainExtensionId"`
 	// The listener id. Only HTTPS listener is effective.
 	ListenerId pulumi.StringOutput `pulumi:"listenerId"`
+	// The server certificate ID used by the domain name. Valid when the certificate source is `pcaLeaf`.
+	PcaLeafCertificateId pulumi.StringPtrOutput `pulumi:"pcaLeafCertificateId"`
 }
 
 // NewListenerDomainExtension registers a new resource with the given unique name, arguments, and options.
@@ -89,9 +95,6 @@ func NewListenerDomainExtension(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.CertificateId == nil {
-		return nil, errors.New("invalid value for required argument 'CertificateId'")
-	}
 	if args.Domain == nil {
 		return nil, errors.New("invalid value for required argument 'Domain'")
 	}
@@ -121,25 +124,37 @@ func GetListenerDomainExtension(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ListenerDomainExtension resources.
 type listenerDomainExtensionState struct {
-	// Server certificate used for the domain name.
+	// The server certificate ID used by the domain name. Valid when the certificateSource is `certCenter`.
+	CertCenterCertificateId *string `pulumi:"certCenterCertificateId"`
+	// Server certificate used for the domain name. Valid when the certificateSource is `alb`.
 	CertificateId *string `pulumi:"certificateId"`
+	// The source of the certificate. Valid values: `alb`, `certCenter`, `pcaLeaf`. Default is `alb`.
+	CertificateSource *string `pulumi:"certificateSource"`
 	// The domain name. The maximum number of associated domain names for an HTTPS listener is 20, with a value range of 1 to 20.
 	Domain *string `pulumi:"domain"`
 	// The id of the domain extension.
 	DomainExtensionId *string `pulumi:"domainExtensionId"`
 	// The listener id. Only HTTPS listener is effective.
 	ListenerId *string `pulumi:"listenerId"`
+	// The server certificate ID used by the domain name. Valid when the certificate source is `pcaLeaf`.
+	PcaLeafCertificateId *string `pulumi:"pcaLeafCertificateId"`
 }
 
 type ListenerDomainExtensionState struct {
-	// Server certificate used for the domain name.
+	// The server certificate ID used by the domain name. Valid when the certificateSource is `certCenter`.
+	CertCenterCertificateId pulumi.StringPtrInput
+	// Server certificate used for the domain name. Valid when the certificateSource is `alb`.
 	CertificateId pulumi.StringPtrInput
+	// The source of the certificate. Valid values: `alb`, `certCenter`, `pcaLeaf`. Default is `alb`.
+	CertificateSource pulumi.StringPtrInput
 	// The domain name. The maximum number of associated domain names for an HTTPS listener is 20, with a value range of 1 to 20.
 	Domain pulumi.StringPtrInput
 	// The id of the domain extension.
 	DomainExtensionId pulumi.StringPtrInput
 	// The listener id. Only HTTPS listener is effective.
 	ListenerId pulumi.StringPtrInput
+	// The server certificate ID used by the domain name. Valid when the certificate source is `pcaLeaf`.
+	PcaLeafCertificateId pulumi.StringPtrInput
 }
 
 func (ListenerDomainExtensionState) ElementType() reflect.Type {
@@ -147,22 +162,34 @@ func (ListenerDomainExtensionState) ElementType() reflect.Type {
 }
 
 type listenerDomainExtensionArgs struct {
-	// Server certificate used for the domain name.
-	CertificateId string `pulumi:"certificateId"`
+	// The server certificate ID used by the domain name. Valid when the certificateSource is `certCenter`.
+	CertCenterCertificateId *string `pulumi:"certCenterCertificateId"`
+	// Server certificate used for the domain name. Valid when the certificateSource is `alb`.
+	CertificateId *string `pulumi:"certificateId"`
+	// The source of the certificate. Valid values: `alb`, `certCenter`, `pcaLeaf`. Default is `alb`.
+	CertificateSource *string `pulumi:"certificateSource"`
 	// The domain name. The maximum number of associated domain names for an HTTPS listener is 20, with a value range of 1 to 20.
 	Domain string `pulumi:"domain"`
 	// The listener id. Only HTTPS listener is effective.
 	ListenerId string `pulumi:"listenerId"`
+	// The server certificate ID used by the domain name. Valid when the certificate source is `pcaLeaf`.
+	PcaLeafCertificateId *string `pulumi:"pcaLeafCertificateId"`
 }
 
 // The set of arguments for constructing a ListenerDomainExtension resource.
 type ListenerDomainExtensionArgs struct {
-	// Server certificate used for the domain name.
-	CertificateId pulumi.StringInput
+	// The server certificate ID used by the domain name. Valid when the certificateSource is `certCenter`.
+	CertCenterCertificateId pulumi.StringPtrInput
+	// Server certificate used for the domain name. Valid when the certificateSource is `alb`.
+	CertificateId pulumi.StringPtrInput
+	// The source of the certificate. Valid values: `alb`, `certCenter`, `pcaLeaf`. Default is `alb`.
+	CertificateSource pulumi.StringPtrInput
 	// The domain name. The maximum number of associated domain names for an HTTPS listener is 20, with a value range of 1 to 20.
 	Domain pulumi.StringInput
 	// The listener id. Only HTTPS listener is effective.
 	ListenerId pulumi.StringInput
+	// The server certificate ID used by the domain name. Valid when the certificate source is `pcaLeaf`.
+	PcaLeafCertificateId pulumi.StringPtrInput
 }
 
 func (ListenerDomainExtensionArgs) ElementType() reflect.Type {
@@ -252,9 +279,19 @@ func (o ListenerDomainExtensionOutput) ToListenerDomainExtensionOutputWithContex
 	return o
 }
 
-// Server certificate used for the domain name.
-func (o ListenerDomainExtensionOutput) CertificateId() pulumi.StringOutput {
-	return o.ApplyT(func(v *ListenerDomainExtension) pulumi.StringOutput { return v.CertificateId }).(pulumi.StringOutput)
+// The server certificate ID used by the domain name. Valid when the certificateSource is `certCenter`.
+func (o ListenerDomainExtensionOutput) CertCenterCertificateId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListenerDomainExtension) pulumi.StringPtrOutput { return v.CertCenterCertificateId }).(pulumi.StringPtrOutput)
+}
+
+// Server certificate used for the domain name. Valid when the certificateSource is `alb`.
+func (o ListenerDomainExtensionOutput) CertificateId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListenerDomainExtension) pulumi.StringPtrOutput { return v.CertificateId }).(pulumi.StringPtrOutput)
+}
+
+// The source of the certificate. Valid values: `alb`, `certCenter`, `pcaLeaf`. Default is `alb`.
+func (o ListenerDomainExtensionOutput) CertificateSource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListenerDomainExtension) pulumi.StringPtrOutput { return v.CertificateSource }).(pulumi.StringPtrOutput)
 }
 
 // The domain name. The maximum number of associated domain names for an HTTPS listener is 20, with a value range of 1 to 20.
@@ -270,6 +307,11 @@ func (o ListenerDomainExtensionOutput) DomainExtensionId() pulumi.StringOutput {
 // The listener id. Only HTTPS listener is effective.
 func (o ListenerDomainExtensionOutput) ListenerId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ListenerDomainExtension) pulumi.StringOutput { return v.ListenerId }).(pulumi.StringOutput)
+}
+
+// The server certificate ID used by the domain name. Valid when the certificate source is `pcaLeaf`.
+func (o ListenerDomainExtensionOutput) PcaLeafCertificateId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListenerDomainExtension) pulumi.StringPtrOutput { return v.PcaLeafCertificateId }).(pulumi.StringPtrOutput)
 }
 
 type ListenerDomainExtensionArrayOutput struct{ *pulumi.OutputState }

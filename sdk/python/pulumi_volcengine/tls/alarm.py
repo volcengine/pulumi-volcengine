@@ -18,43 +18,59 @@ class AlarmArgs:
     def __init__(__self__, *,
                  alarm_name: pulumi.Input[str],
                  alarm_notify_groups: pulumi.Input[Sequence[pulumi.Input[str]]],
-                 condition: pulumi.Input[str],
                  project_id: pulumi.Input[str],
                  query_requests: pulumi.Input[Sequence[pulumi.Input['AlarmQueryRequestArgs']]],
                  request_cycle: pulumi.Input['AlarmRequestCycleArgs'],
+                 trigger_period: pulumi.Input[int],
                  alarm_period: Optional[pulumi.Input[int]] = None,
                  alarm_period_detail: Optional[pulumi.Input['AlarmAlarmPeriodDetailArgs']] = None,
+                 condition: Optional[pulumi.Input[str]] = None,
+                 join_configurations: Optional[pulumi.Input[Sequence[pulumi.Input['AlarmJoinConfigurationArgs']]]] = None,
+                 send_resolved: Optional[pulumi.Input[bool]] = None,
+                 severity: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[bool]] = None,
-                 trigger_period: Optional[pulumi.Input[int]] = None,
+                 trigger_conditions: Optional[pulumi.Input[Sequence[pulumi.Input['AlarmTriggerConditionArgs']]]] = None,
                  user_define_msg: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Alarm resource.
         :param pulumi.Input[str] alarm_name: The name of the alarm.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] alarm_notify_groups: List of notification groups corresponding to the alarm.
-        :param pulumi.Input[str] condition: Alarm trigger condition.
         :param pulumi.Input[str] project_id: The project id.
         :param pulumi.Input[Sequence[pulumi.Input['AlarmQueryRequestArgs']]] query_requests: Search and analyze sentences, 1~3 can be configured.
         :param pulumi.Input['AlarmRequestCycleArgs'] request_cycle: The execution period of the alarm task.
+        :param pulumi.Input[int] trigger_period: Continuous cycle. The alarm will be issued after the trigger condition is continuously met for TriggerPeriod periods; the minimum value is 1, the maximum value is 10, and the default value is 1.
         :param pulumi.Input[int] alarm_period: Period for sending alarm notifications. When the number of continuous alarm triggers reaches the specified limit (TriggerPeriod), Log Service will send alarm notifications according to the specified period.
         :param pulumi.Input['AlarmAlarmPeriodDetailArgs'] alarm_period_detail: Period for sending alarm notifications. When the number of continuous alarm triggers reaches the specified limit (TriggerPeriod), Log Service will send alarm notifications according to the specified period.
+        :param pulumi.Input[str] condition: Alarm trigger condition.
+        :param pulumi.Input[Sequence[pulumi.Input['AlarmJoinConfigurationArgs']]] join_configurations: The list of join configurations.
+        :param pulumi.Input[bool] send_resolved: Whether to send resolved.
+        :param pulumi.Input[str] severity: The severity of the alarm.
         :param pulumi.Input[bool] status: Whether to enable the alert policy. The default value is true, that is, on.
-        :param pulumi.Input[int] trigger_period: Continuous cycle. The alarm will be issued after the trigger condition is continuously met for TriggerPeriod periods; the minimum value is 1, the maximum value is 10, and the default value is 1.
+        :param pulumi.Input[Sequence[pulumi.Input['AlarmTriggerConditionArgs']]] trigger_conditions: The list of trigger conditions.
         :param pulumi.Input[str] user_define_msg: Customize the alarm notification content.
         """
         pulumi.set(__self__, "alarm_name", alarm_name)
         pulumi.set(__self__, "alarm_notify_groups", alarm_notify_groups)
-        pulumi.set(__self__, "condition", condition)
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "query_requests", query_requests)
         pulumi.set(__self__, "request_cycle", request_cycle)
+        pulumi.set(__self__, "trigger_period", trigger_period)
         if alarm_period is not None:
             pulumi.set(__self__, "alarm_period", alarm_period)
         if alarm_period_detail is not None:
             pulumi.set(__self__, "alarm_period_detail", alarm_period_detail)
+        if condition is not None:
+            pulumi.set(__self__, "condition", condition)
+        if join_configurations is not None:
+            pulumi.set(__self__, "join_configurations", join_configurations)
+        if send_resolved is not None:
+            pulumi.set(__self__, "send_resolved", send_resolved)
+        if severity is not None:
+            pulumi.set(__self__, "severity", severity)
         if status is not None:
             pulumi.set(__self__, "status", status)
-        if trigger_period is not None:
-            pulumi.set(__self__, "trigger_period", trigger_period)
+        if trigger_conditions is not None:
+            pulumi.set(__self__, "trigger_conditions", trigger_conditions)
         if user_define_msg is not None:
             pulumi.set(__self__, "user_define_msg", user_define_msg)
 
@@ -81,18 +97,6 @@ class AlarmArgs:
     @alarm_notify_groups.setter
     def alarm_notify_groups(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "alarm_notify_groups", value)
-
-    @property
-    @pulumi.getter
-    def condition(self) -> pulumi.Input[str]:
-        """
-        Alarm trigger condition.
-        """
-        return pulumi.get(self, "condition")
-
-    @condition.setter
-    def condition(self, value: pulumi.Input[str]):
-        pulumi.set(self, "condition", value)
 
     @property
     @pulumi.getter(name="projectId")
@@ -131,6 +135,18 @@ class AlarmArgs:
         pulumi.set(self, "request_cycle", value)
 
     @property
+    @pulumi.getter(name="triggerPeriod")
+    def trigger_period(self) -> pulumi.Input[int]:
+        """
+        Continuous cycle. The alarm will be issued after the trigger condition is continuously met for TriggerPeriod periods; the minimum value is 1, the maximum value is 10, and the default value is 1.
+        """
+        return pulumi.get(self, "trigger_period")
+
+    @trigger_period.setter
+    def trigger_period(self, value: pulumi.Input[int]):
+        pulumi.set(self, "trigger_period", value)
+
+    @property
     @pulumi.getter(name="alarmPeriod")
     def alarm_period(self) -> Optional[pulumi.Input[int]]:
         """
@@ -156,6 +172,54 @@ class AlarmArgs:
 
     @property
     @pulumi.getter
+    def condition(self) -> Optional[pulumi.Input[str]]:
+        """
+        Alarm trigger condition.
+        """
+        return pulumi.get(self, "condition")
+
+    @condition.setter
+    def condition(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "condition", value)
+
+    @property
+    @pulumi.getter(name="joinConfigurations")
+    def join_configurations(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AlarmJoinConfigurationArgs']]]]:
+        """
+        The list of join configurations.
+        """
+        return pulumi.get(self, "join_configurations")
+
+    @join_configurations.setter
+    def join_configurations(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AlarmJoinConfigurationArgs']]]]):
+        pulumi.set(self, "join_configurations", value)
+
+    @property
+    @pulumi.getter(name="sendResolved")
+    def send_resolved(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to send resolved.
+        """
+        return pulumi.get(self, "send_resolved")
+
+    @send_resolved.setter
+    def send_resolved(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "send_resolved", value)
+
+    @property
+    @pulumi.getter
+    def severity(self) -> Optional[pulumi.Input[str]]:
+        """
+        The severity of the alarm.
+        """
+        return pulumi.get(self, "severity")
+
+    @severity.setter
+    def severity(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "severity", value)
+
+    @property
+    @pulumi.getter
     def status(self) -> Optional[pulumi.Input[bool]]:
         """
         Whether to enable the alert policy. The default value is true, that is, on.
@@ -167,16 +231,16 @@ class AlarmArgs:
         pulumi.set(self, "status", value)
 
     @property
-    @pulumi.getter(name="triggerPeriod")
-    def trigger_period(self) -> Optional[pulumi.Input[int]]:
+    @pulumi.getter(name="triggerConditions")
+    def trigger_conditions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AlarmTriggerConditionArgs']]]]:
         """
-        Continuous cycle. The alarm will be issued after the trigger condition is continuously met for TriggerPeriod periods; the minimum value is 1, the maximum value is 10, and the default value is 1.
+        The list of trigger conditions.
         """
-        return pulumi.get(self, "trigger_period")
+        return pulumi.get(self, "trigger_conditions")
 
-    @trigger_period.setter
-    def trigger_period(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "trigger_period", value)
+    @trigger_conditions.setter
+    def trigger_conditions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AlarmTriggerConditionArgs']]]]):
+        pulumi.set(self, "trigger_conditions", value)
 
     @property
     @pulumi.getter(name="userDefineMsg")
@@ -200,10 +264,14 @@ class _AlarmState:
                  alarm_period: Optional[pulumi.Input[int]] = None,
                  alarm_period_detail: Optional[pulumi.Input['AlarmAlarmPeriodDetailArgs']] = None,
                  condition: Optional[pulumi.Input[str]] = None,
+                 join_configurations: Optional[pulumi.Input[Sequence[pulumi.Input['AlarmJoinConfigurationArgs']]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  query_requests: Optional[pulumi.Input[Sequence[pulumi.Input['AlarmQueryRequestArgs']]]] = None,
                  request_cycle: Optional[pulumi.Input['AlarmRequestCycleArgs']] = None,
+                 send_resolved: Optional[pulumi.Input[bool]] = None,
+                 severity: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[bool]] = None,
+                 trigger_conditions: Optional[pulumi.Input[Sequence[pulumi.Input['AlarmTriggerConditionArgs']]]] = None,
                  trigger_period: Optional[pulumi.Input[int]] = None,
                  user_define_msg: Optional[pulumi.Input[str]] = None):
         """
@@ -214,10 +282,14 @@ class _AlarmState:
         :param pulumi.Input[int] alarm_period: Period for sending alarm notifications. When the number of continuous alarm triggers reaches the specified limit (TriggerPeriod), Log Service will send alarm notifications according to the specified period.
         :param pulumi.Input['AlarmAlarmPeriodDetailArgs'] alarm_period_detail: Period for sending alarm notifications. When the number of continuous alarm triggers reaches the specified limit (TriggerPeriod), Log Service will send alarm notifications according to the specified period.
         :param pulumi.Input[str] condition: Alarm trigger condition.
+        :param pulumi.Input[Sequence[pulumi.Input['AlarmJoinConfigurationArgs']]] join_configurations: The list of join configurations.
         :param pulumi.Input[str] project_id: The project id.
         :param pulumi.Input[Sequence[pulumi.Input['AlarmQueryRequestArgs']]] query_requests: Search and analyze sentences, 1~3 can be configured.
         :param pulumi.Input['AlarmRequestCycleArgs'] request_cycle: The execution period of the alarm task.
+        :param pulumi.Input[bool] send_resolved: Whether to send resolved.
+        :param pulumi.Input[str] severity: The severity of the alarm.
         :param pulumi.Input[bool] status: Whether to enable the alert policy. The default value is true, that is, on.
+        :param pulumi.Input[Sequence[pulumi.Input['AlarmTriggerConditionArgs']]] trigger_conditions: The list of trigger conditions.
         :param pulumi.Input[int] trigger_period: Continuous cycle. The alarm will be issued after the trigger condition is continuously met for TriggerPeriod periods; the minimum value is 1, the maximum value is 10, and the default value is 1.
         :param pulumi.Input[str] user_define_msg: Customize the alarm notification content.
         """
@@ -233,14 +305,22 @@ class _AlarmState:
             pulumi.set(__self__, "alarm_period_detail", alarm_period_detail)
         if condition is not None:
             pulumi.set(__self__, "condition", condition)
+        if join_configurations is not None:
+            pulumi.set(__self__, "join_configurations", join_configurations)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if query_requests is not None:
             pulumi.set(__self__, "query_requests", query_requests)
         if request_cycle is not None:
             pulumi.set(__self__, "request_cycle", request_cycle)
+        if send_resolved is not None:
+            pulumi.set(__self__, "send_resolved", send_resolved)
+        if severity is not None:
+            pulumi.set(__self__, "severity", severity)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if trigger_conditions is not None:
+            pulumi.set(__self__, "trigger_conditions", trigger_conditions)
         if trigger_period is not None:
             pulumi.set(__self__, "trigger_period", trigger_period)
         if user_define_msg is not None:
@@ -319,6 +399,18 @@ class _AlarmState:
         pulumi.set(self, "condition", value)
 
     @property
+    @pulumi.getter(name="joinConfigurations")
+    def join_configurations(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AlarmJoinConfigurationArgs']]]]:
+        """
+        The list of join configurations.
+        """
+        return pulumi.get(self, "join_configurations")
+
+    @join_configurations.setter
+    def join_configurations(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AlarmJoinConfigurationArgs']]]]):
+        pulumi.set(self, "join_configurations", value)
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -355,6 +447,30 @@ class _AlarmState:
         pulumi.set(self, "request_cycle", value)
 
     @property
+    @pulumi.getter(name="sendResolved")
+    def send_resolved(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to send resolved.
+        """
+        return pulumi.get(self, "send_resolved")
+
+    @send_resolved.setter
+    def send_resolved(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "send_resolved", value)
+
+    @property
+    @pulumi.getter
+    def severity(self) -> Optional[pulumi.Input[str]]:
+        """
+        The severity of the alarm.
+        """
+        return pulumi.get(self, "severity")
+
+    @severity.setter
+    def severity(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "severity", value)
+
+    @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -365,6 +481,18 @@ class _AlarmState:
     @status.setter
     def status(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "status", value)
+
+    @property
+    @pulumi.getter(name="triggerConditions")
+    def trigger_conditions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AlarmTriggerConditionArgs']]]]:
+        """
+        The list of trigger conditions.
+        """
+        return pulumi.get(self, "trigger_conditions")
+
+    @trigger_conditions.setter
+    def trigger_conditions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AlarmTriggerConditionArgs']]]]):
+        pulumi.set(self, "trigger_conditions", value)
 
     @property
     @pulumi.getter(name="triggerPeriod")
@@ -401,10 +529,14 @@ class Alarm(pulumi.CustomResource):
                  alarm_period: Optional[pulumi.Input[int]] = None,
                  alarm_period_detail: Optional[pulumi.Input[pulumi.InputType['AlarmAlarmPeriodDetailArgs']]] = None,
                  condition: Optional[pulumi.Input[str]] = None,
+                 join_configurations: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlarmJoinConfigurationArgs']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  query_requests: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlarmQueryRequestArgs']]]]] = None,
                  request_cycle: Optional[pulumi.Input[pulumi.InputType['AlarmRequestCycleArgs']]] = None,
+                 send_resolved: Optional[pulumi.Input[bool]] = None,
+                 severity: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[bool]] = None,
+                 trigger_conditions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlarmTriggerConditionArgs']]]]] = None,
                  trigger_period: Optional[pulumi.Input[int]] = None,
                  user_define_msg: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -417,27 +549,39 @@ class Alarm(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.tls.Alarm("foo",
-            alarm_name="test",
-            alarm_notify_groups=["3019107f-28a2-4208-a2b6-c33fcb97ac3a"],
+            alarm_name="test-terraform-tf",
+            alarm_notify_groups=["bf3ecf26-2081-4e27-ae18-f44dbe5c6138"],
             alarm_period_detail=volcengine.tls.AlarmAlarmPeriodDetailArgs(
-                email=2,
-                general_webhook=3,
-                phone=10,
-                sms=10,
+                email=20,
+                general_webhook=20,
+                phone=20,
+                sms=20,
             ),
-            condition="$1.errNum>0",
-            project_id="cc44f8b6-0328-4622-b043-023fca735cd4",
+            project_id="88d31abb-62c7-40f5-998e-889747c2a116",
             query_requests=[volcengine.tls.AlarmQueryRequestArgs(
                 end_time_offset=0,
+                end_time_offset_unit="Minute",
                 number=1,
                 query="Failed | select count(*) as errNum",
                 start_time_offset=-15,
-                topic_id="af1a2240-ba62-4f18-b421-bde2f9684e57",
+                start_time_offset_unit="Minute",
+                time_span_type="Relative",
+                topic_id="a690a9b8-72c1-40a3-b8c6-f89a81d3748e",
+                truncated_time="Minute",
             )],
             request_cycle=volcengine.tls.AlarmRequestCycleArgs(
-                time=11,
+                time=20,
                 type="Period",
             ),
+            send_resolved=True,
+            status=False,
+            trigger_conditions=[volcengine.tls.AlarmTriggerConditionArgs(
+                condition="$1.errNum>0",
+                count_condition="__count__ > 0",
+                no_data=False,
+                severity="critical",
+            )],
+            trigger_period=2,
             user_define_msg="test for terraform")
         ```
 
@@ -456,10 +600,14 @@ class Alarm(pulumi.CustomResource):
         :param pulumi.Input[int] alarm_period: Period for sending alarm notifications. When the number of continuous alarm triggers reaches the specified limit (TriggerPeriod), Log Service will send alarm notifications according to the specified period.
         :param pulumi.Input[pulumi.InputType['AlarmAlarmPeriodDetailArgs']] alarm_period_detail: Period for sending alarm notifications. When the number of continuous alarm triggers reaches the specified limit (TriggerPeriod), Log Service will send alarm notifications according to the specified period.
         :param pulumi.Input[str] condition: Alarm trigger condition.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlarmJoinConfigurationArgs']]]] join_configurations: The list of join configurations.
         :param pulumi.Input[str] project_id: The project id.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlarmQueryRequestArgs']]]] query_requests: Search and analyze sentences, 1~3 can be configured.
         :param pulumi.Input[pulumi.InputType['AlarmRequestCycleArgs']] request_cycle: The execution period of the alarm task.
+        :param pulumi.Input[bool] send_resolved: Whether to send resolved.
+        :param pulumi.Input[str] severity: The severity of the alarm.
         :param pulumi.Input[bool] status: Whether to enable the alert policy. The default value is true, that is, on.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlarmTriggerConditionArgs']]]] trigger_conditions: The list of trigger conditions.
         :param pulumi.Input[int] trigger_period: Continuous cycle. The alarm will be issued after the trigger condition is continuously met for TriggerPeriod periods; the minimum value is 1, the maximum value is 10, and the default value is 1.
         :param pulumi.Input[str] user_define_msg: Customize the alarm notification content.
         """
@@ -478,27 +626,39 @@ class Alarm(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.tls.Alarm("foo",
-            alarm_name="test",
-            alarm_notify_groups=["3019107f-28a2-4208-a2b6-c33fcb97ac3a"],
+            alarm_name="test-terraform-tf",
+            alarm_notify_groups=["bf3ecf26-2081-4e27-ae18-f44dbe5c6138"],
             alarm_period_detail=volcengine.tls.AlarmAlarmPeriodDetailArgs(
-                email=2,
-                general_webhook=3,
-                phone=10,
-                sms=10,
+                email=20,
+                general_webhook=20,
+                phone=20,
+                sms=20,
             ),
-            condition="$1.errNum>0",
-            project_id="cc44f8b6-0328-4622-b043-023fca735cd4",
+            project_id="88d31abb-62c7-40f5-998e-889747c2a116",
             query_requests=[volcengine.tls.AlarmQueryRequestArgs(
                 end_time_offset=0,
+                end_time_offset_unit="Minute",
                 number=1,
                 query="Failed | select count(*) as errNum",
                 start_time_offset=-15,
-                topic_id="af1a2240-ba62-4f18-b421-bde2f9684e57",
+                start_time_offset_unit="Minute",
+                time_span_type="Relative",
+                topic_id="a690a9b8-72c1-40a3-b8c6-f89a81d3748e",
+                truncated_time="Minute",
             )],
             request_cycle=volcengine.tls.AlarmRequestCycleArgs(
-                time=11,
+                time=20,
                 type="Period",
             ),
+            send_resolved=True,
+            status=False,
+            trigger_conditions=[volcengine.tls.AlarmTriggerConditionArgs(
+                condition="$1.errNum>0",
+                count_condition="__count__ > 0",
+                no_data=False,
+                severity="critical",
+            )],
+            trigger_period=2,
             user_define_msg="test for terraform")
         ```
 
@@ -530,10 +690,14 @@ class Alarm(pulumi.CustomResource):
                  alarm_period: Optional[pulumi.Input[int]] = None,
                  alarm_period_detail: Optional[pulumi.Input[pulumi.InputType['AlarmAlarmPeriodDetailArgs']]] = None,
                  condition: Optional[pulumi.Input[str]] = None,
+                 join_configurations: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlarmJoinConfigurationArgs']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  query_requests: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlarmQueryRequestArgs']]]]] = None,
                  request_cycle: Optional[pulumi.Input[pulumi.InputType['AlarmRequestCycleArgs']]] = None,
+                 send_resolved: Optional[pulumi.Input[bool]] = None,
+                 severity: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[bool]] = None,
+                 trigger_conditions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlarmTriggerConditionArgs']]]]] = None,
                  trigger_period: Optional[pulumi.Input[int]] = None,
                  user_define_msg: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -553,9 +717,8 @@ class Alarm(pulumi.CustomResource):
             __props__.__dict__["alarm_notify_groups"] = alarm_notify_groups
             __props__.__dict__["alarm_period"] = alarm_period
             __props__.__dict__["alarm_period_detail"] = alarm_period_detail
-            if condition is None and not opts.urn:
-                raise TypeError("Missing required property 'condition'")
             __props__.__dict__["condition"] = condition
+            __props__.__dict__["join_configurations"] = join_configurations
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
@@ -565,7 +728,12 @@ class Alarm(pulumi.CustomResource):
             if request_cycle is None and not opts.urn:
                 raise TypeError("Missing required property 'request_cycle'")
             __props__.__dict__["request_cycle"] = request_cycle
+            __props__.__dict__["send_resolved"] = send_resolved
+            __props__.__dict__["severity"] = severity
             __props__.__dict__["status"] = status
+            __props__.__dict__["trigger_conditions"] = trigger_conditions
+            if trigger_period is None and not opts.urn:
+                raise TypeError("Missing required property 'trigger_period'")
             __props__.__dict__["trigger_period"] = trigger_period
             __props__.__dict__["user_define_msg"] = user_define_msg
             __props__.__dict__["alarm_id"] = None
@@ -585,10 +753,14 @@ class Alarm(pulumi.CustomResource):
             alarm_period: Optional[pulumi.Input[int]] = None,
             alarm_period_detail: Optional[pulumi.Input[pulumi.InputType['AlarmAlarmPeriodDetailArgs']]] = None,
             condition: Optional[pulumi.Input[str]] = None,
+            join_configurations: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlarmJoinConfigurationArgs']]]]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             query_requests: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlarmQueryRequestArgs']]]]] = None,
             request_cycle: Optional[pulumi.Input[pulumi.InputType['AlarmRequestCycleArgs']]] = None,
+            send_resolved: Optional[pulumi.Input[bool]] = None,
+            severity: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[bool]] = None,
+            trigger_conditions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlarmTriggerConditionArgs']]]]] = None,
             trigger_period: Optional[pulumi.Input[int]] = None,
             user_define_msg: Optional[pulumi.Input[str]] = None) -> 'Alarm':
         """
@@ -604,10 +776,14 @@ class Alarm(pulumi.CustomResource):
         :param pulumi.Input[int] alarm_period: Period for sending alarm notifications. When the number of continuous alarm triggers reaches the specified limit (TriggerPeriod), Log Service will send alarm notifications according to the specified period.
         :param pulumi.Input[pulumi.InputType['AlarmAlarmPeriodDetailArgs']] alarm_period_detail: Period for sending alarm notifications. When the number of continuous alarm triggers reaches the specified limit (TriggerPeriod), Log Service will send alarm notifications according to the specified period.
         :param pulumi.Input[str] condition: Alarm trigger condition.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlarmJoinConfigurationArgs']]]] join_configurations: The list of join configurations.
         :param pulumi.Input[str] project_id: The project id.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlarmQueryRequestArgs']]]] query_requests: Search and analyze sentences, 1~3 can be configured.
         :param pulumi.Input[pulumi.InputType['AlarmRequestCycleArgs']] request_cycle: The execution period of the alarm task.
+        :param pulumi.Input[bool] send_resolved: Whether to send resolved.
+        :param pulumi.Input[str] severity: The severity of the alarm.
         :param pulumi.Input[bool] status: Whether to enable the alert policy. The default value is true, that is, on.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlarmTriggerConditionArgs']]]] trigger_conditions: The list of trigger conditions.
         :param pulumi.Input[int] trigger_period: Continuous cycle. The alarm will be issued after the trigger condition is continuously met for TriggerPeriod periods; the minimum value is 1, the maximum value is 10, and the default value is 1.
         :param pulumi.Input[str] user_define_msg: Customize the alarm notification content.
         """
@@ -621,10 +797,14 @@ class Alarm(pulumi.CustomResource):
         __props__.__dict__["alarm_period"] = alarm_period
         __props__.__dict__["alarm_period_detail"] = alarm_period_detail
         __props__.__dict__["condition"] = condition
+        __props__.__dict__["join_configurations"] = join_configurations
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["query_requests"] = query_requests
         __props__.__dict__["request_cycle"] = request_cycle
+        __props__.__dict__["send_resolved"] = send_resolved
+        __props__.__dict__["severity"] = severity
         __props__.__dict__["status"] = status
+        __props__.__dict__["trigger_conditions"] = trigger_conditions
         __props__.__dict__["trigger_period"] = trigger_period
         __props__.__dict__["user_define_msg"] = user_define_msg
         return Alarm(resource_name, opts=opts, __props__=__props__)
@@ -671,11 +851,19 @@ class Alarm(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def condition(self) -> pulumi.Output[str]:
+    def condition(self) -> pulumi.Output[Optional[str]]:
         """
         Alarm trigger condition.
         """
         return pulumi.get(self, "condition")
+
+    @property
+    @pulumi.getter(name="joinConfigurations")
+    def join_configurations(self) -> pulumi.Output[Optional[Sequence['outputs.AlarmJoinConfiguration']]]:
+        """
+        The list of join configurations.
+        """
+        return pulumi.get(self, "join_configurations")
 
     @property
     @pulumi.getter(name="projectId")
@@ -702,6 +890,22 @@ class Alarm(pulumi.CustomResource):
         return pulumi.get(self, "request_cycle")
 
     @property
+    @pulumi.getter(name="sendResolved")
+    def send_resolved(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Whether to send resolved.
+        """
+        return pulumi.get(self, "send_resolved")
+
+    @property
+    @pulumi.getter
+    def severity(self) -> pulumi.Output[Optional[str]]:
+        """
+        The severity of the alarm.
+        """
+        return pulumi.get(self, "severity")
+
+    @property
     @pulumi.getter
     def status(self) -> pulumi.Output[Optional[bool]]:
         """
@@ -710,8 +914,16 @@ class Alarm(pulumi.CustomResource):
         return pulumi.get(self, "status")
 
     @property
+    @pulumi.getter(name="triggerConditions")
+    def trigger_conditions(self) -> pulumi.Output[Optional[Sequence['outputs.AlarmTriggerCondition']]]:
+        """
+        The list of trigger conditions.
+        """
+        return pulumi.get(self, "trigger_conditions")
+
+    @property
     @pulumi.getter(name="triggerPeriod")
-    def trigger_period(self) -> pulumi.Output[Optional[int]]:
+    def trigger_period(self) -> pulumi.Output[int]:
         """
         Continuous cycle. The alarm will be issued after the trigger condition is continuously met for TriggerPeriod periods; the minimum value is 1, the maximum value is 10, and the default value is 1.
         """

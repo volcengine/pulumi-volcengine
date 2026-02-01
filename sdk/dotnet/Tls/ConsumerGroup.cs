@@ -23,13 +23,13 @@ namespace Pulumi.Volcengine.Tls
     /// {
     ///     var foo = new Volcengine.Tls.ConsumerGroup("foo", new()
     ///     {
-    ///         ConsumerGroupName = "tf-test-consumer-group",
+    ///         ConsumerGroupName = "tf-consumer-group-t",
     ///         HeartbeatTtl = 120,
     ///         OrderedConsume = false,
-    ///         ProjectId = "17ba378d-de43-495e-8906-03aexxxxxx",
+    ///         ProjectId = "7a8ac13e-8e3e-4392-ae77-aea8efa49bbf",
     ///         TopicIdLists = new[]
     ///         {
-    ///             "0ed72ac8-9531-4967-b216-ac30xxxxxx",
+    ///             "33124cc3-15c4-4cdc-9a8a-cc64a9d593dd",
     ///         },
     ///     });
     /// 

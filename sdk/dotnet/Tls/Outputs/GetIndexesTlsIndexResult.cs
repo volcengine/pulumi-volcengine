@@ -18,6 +18,10 @@ namespace Pulumi.Volcengine.Tls.Outputs
         /// </summary>
         public readonly string CreateTime;
         /// <summary>
+        /// Whether to enable auto index.
+        /// </summary>
+        public readonly bool EnableAutoIndex;
+        /// <summary>
         /// The FullText index of the tls topic.
         /// </summary>
         public readonly Outputs.GetIndexesTlsIndexFullTextResult FullText;
@@ -29,6 +33,10 @@ namespace Pulumi.Volcengine.Tls.Outputs
         /// The KeyValue index of the tls topic.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetIndexesTlsIndexKeyValueResult> KeyValues;
+        /// <summary>
+        /// The max text length of the tls index.
+        /// </summary>
+        public readonly int MaxTextLen;
         /// <summary>
         /// The modify time of the tls index.
         /// </summary>
@@ -46,11 +54,15 @@ namespace Pulumi.Volcengine.Tls.Outputs
         private GetIndexesTlsIndexResult(
             string createTime,
 
+            bool enableAutoIndex,
+
             Outputs.GetIndexesTlsIndexFullTextResult fullText,
 
             string id,
 
             ImmutableArray<Outputs.GetIndexesTlsIndexKeyValueResult> keyValues,
+
+            int maxTextLen,
 
             string modifyTime,
 
@@ -59,9 +71,11 @@ namespace Pulumi.Volcengine.Tls.Outputs
             ImmutableArray<Outputs.GetIndexesTlsIndexUserInnerKeyValueResult> userInnerKeyValues)
         {
             CreateTime = createTime;
+            EnableAutoIndex = enableAutoIndex;
             FullText = fullText;
             Id = id;
             KeyValues = keyValues;
+            MaxTextLen = maxTextLen;
             ModifyTime = modifyTime;
             TopicId = topicId;
             UserInnerKeyValues = userInnerKeyValues;

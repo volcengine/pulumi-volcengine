@@ -6,6 +6,27 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
+/**
+ * Use this data source to query detailed information of alb all certificates
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.alb.getAllCertificates({
+ *     ids: [
+ *         "cert-1pf4a8k8tokcg845wfariphc2",
+ *         "cert-xoekc6lpu9s054ov5eohm3bj",
+ *     ],
+ *     projectName: "default",
+ *     tags: [{
+ *         key: "key1",
+ *         value: "value2",
+ *     }],
+ * });
+ * ```
+ */
 export function getAllCertificates(args?: GetAllCertificatesArgs, opts?: pulumi.InvokeOptions): Promise<GetAllCertificatesResult> {
     args = args || {};
 
@@ -25,12 +46,33 @@ export function getAllCertificates(args?: GetAllCertificatesArgs, opts?: pulumi.
  * A collection of arguments for invoking getAllCertificates.
  */
 export interface GetAllCertificatesArgs {
+    /**
+     * The Name of Certificate.
+     */
     certificateName?: string;
+    /**
+     * The type of Certificate. Valid values: `CA`, `Server`.
+     */
     certificateType?: string;
+    /**
+     * A list of IDs.
+     */
     ids?: string[];
+    /**
+     * A Name Regex of Resource.
+     */
     nameRegex?: string;
+    /**
+     * File name where to save data source results.
+     */
     outputFile?: string;
+    /**
+     * The project name of Certificate.
+     */
     projectName?: string;
+    /**
+     * Tags.
+     */
     tags?: inputs.alb.GetAllCertificatesTag[];
 }
 
@@ -38,8 +80,17 @@ export interface GetAllCertificatesArgs {
  * A collection of values returned by getAllCertificates.
  */
 export interface GetAllCertificatesResult {
+    /**
+     * The name of the Certificate.
+     */
     readonly certificateName?: string;
+    /**
+     * The type of the Certificate.
+     */
     readonly certificateType?: string;
+    /**
+     * The collection of Certificate query.
+     */
     readonly certificates: outputs.alb.GetAllCertificatesCertificate[];
     /**
      * The provider-assigned unique ID for this managed resource.
@@ -48,10 +99,40 @@ export interface GetAllCertificatesResult {
     readonly ids?: string[];
     readonly nameRegex?: string;
     readonly outputFile?: string;
+    /**
+     * The ProjectName of the Certificate.
+     */
     readonly projectName?: string;
+    /**
+     * Tags.
+     */
     readonly tags?: outputs.alb.GetAllCertificatesTag[];
+    /**
+     * The total count of query.
+     */
     readonly totalCount: number;
 }
+/**
+ * Use this data source to query detailed information of alb all certificates
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.alb.getAllCertificates({
+ *     ids: [
+ *         "cert-1pf4a8k8tokcg845wfariphc2",
+ *         "cert-xoekc6lpu9s054ov5eohm3bj",
+ *     ],
+ *     projectName: "default",
+ *     tags: [{
+ *         key: "key1",
+ *         value: "value2",
+ *     }],
+ * });
+ * ```
+ */
 export function getAllCertificatesOutput(args?: GetAllCertificatesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAllCertificatesResult> {
     return pulumi.output(args).apply((a: any) => getAllCertificates(a, opts))
 }
@@ -60,11 +141,32 @@ export function getAllCertificatesOutput(args?: GetAllCertificatesOutputArgs, op
  * A collection of arguments for invoking getAllCertificates.
  */
 export interface GetAllCertificatesOutputArgs {
+    /**
+     * The Name of Certificate.
+     */
     certificateName?: pulumi.Input<string>;
+    /**
+     * The type of Certificate. Valid values: `CA`, `Server`.
+     */
     certificateType?: pulumi.Input<string>;
+    /**
+     * A list of IDs.
+     */
     ids?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * A Name Regex of Resource.
+     */
     nameRegex?: pulumi.Input<string>;
+    /**
+     * File name where to save data source results.
+     */
     outputFile?: pulumi.Input<string>;
+    /**
+     * The project name of Certificate.
+     */
     projectName?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
     tags?: pulumi.Input<pulumi.Input<inputs.alb.GetAllCertificatesTagArgs>[]>;
 }

@@ -23,13 +23,10 @@ class GetTopicsResult:
     """
     A collection of values returned by getTopics.
     """
-    def __init__(__self__, id=None, is_full_name=None, name_regex=None, output_file=None, project_id=None, tags=None, tls_topics=None, topic_id=None, topic_name=None, total_count=None):
+    def __init__(__self__, id=None, name_regex=None, output_file=None, project_id=None, tags=None, tls_topics=None, topic_id=None, topic_name=None, total_count=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
-        if is_full_name and not isinstance(is_full_name, bool):
-            raise TypeError("Expected argument 'is_full_name' to be a bool")
-        pulumi.set(__self__, "is_full_name", is_full_name)
         if name_regex and not isinstance(name_regex, str):
             raise TypeError("Expected argument 'name_regex' to be a str")
         pulumi.set(__self__, "name_regex", name_regex)
@@ -62,11 +59,6 @@ class GetTopicsResult:
         The provider-assigned unique ID for this managed resource.
         """
         return pulumi.get(self, "id")
-
-    @property
-    @pulumi.getter(name="isFullName")
-    def is_full_name(self) -> Optional[bool]:
-        return pulumi.get(self, "is_full_name")
 
     @property
     @pulumi.getter(name="nameRegex")
@@ -134,7 +126,6 @@ class AwaitableGetTopicsResult(GetTopicsResult):
             yield self
         return GetTopicsResult(
             id=self.id,
-            is_full_name=self.is_full_name,
             name_regex=self.name_regex,
             output_file=self.output_file,
             project_id=self.project_id,
@@ -145,8 +136,7 @@ class AwaitableGetTopicsResult(GetTopicsResult):
             total_count=self.total_count)
 
 
-def get_topics(is_full_name: Optional[bool] = None,
-               name_regex: Optional[str] = None,
+def get_topics(name_regex: Optional[str] = None,
                output_file: Optional[str] = None,
                project_id: Optional[str] = None,
                tags: Optional[Sequence[pulumi.InputType['GetTopicsTagArgs']]] = None,
@@ -161,12 +151,11 @@ def get_topics(is_full_name: Optional[bool] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.get_topics(project_id="e020c978-4f05-40e1-9167-0113d3ef****",
-        topic_id="edf051ed-3c46-49ba-9339-bea628fe****")
+    default = volcengine.tls.get_topics(project_id="bdb87e4d-7dad-4b96-ac43-e1b09e9dc8ac",
+        topic_id="9b756385-1dfb-4306-a094-0c88e04b34a5")
     ```
 
 
-    :param bool is_full_name: Whether to match accurately when filtering based on TopicName.
     :param str name_regex: A Name Regex of tls topic.
     :param str output_file: File name where to save data source results.
     :param str project_id: The project id of tls topic.
@@ -175,7 +164,6 @@ def get_topics(is_full_name: Optional[bool] = None,
     :param str topic_name: The name of tls topic. This field supports fuzzy queries. It is not supported to specify both TopicName and TopicId at the same time.
     """
     __args__ = dict()
-    __args__['isFullName'] = is_full_name
     __args__['nameRegex'] = name_regex
     __args__['outputFile'] = output_file
     __args__['projectId'] = project_id
@@ -187,7 +175,6 @@ def get_topics(is_full_name: Optional[bool] = None,
 
     return AwaitableGetTopicsResult(
         id=pulumi.get(__ret__, 'id'),
-        is_full_name=pulumi.get(__ret__, 'is_full_name'),
         name_regex=pulumi.get(__ret__, 'name_regex'),
         output_file=pulumi.get(__ret__, 'output_file'),
         project_id=pulumi.get(__ret__, 'project_id'),
@@ -199,8 +186,7 @@ def get_topics(is_full_name: Optional[bool] = None,
 
 
 @_utilities.lift_output_func(get_topics)
-def get_topics_output(is_full_name: Optional[pulumi.Input[Optional[bool]]] = None,
-                      name_regex: Optional[pulumi.Input[Optional[str]]] = None,
+def get_topics_output(name_regex: Optional[pulumi.Input[Optional[str]]] = None,
                       output_file: Optional[pulumi.Input[Optional[str]]] = None,
                       project_id: Optional[pulumi.Input[str]] = None,
                       tags: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetTopicsTagArgs']]]]] = None,
@@ -215,12 +201,11 @@ def get_topics_output(is_full_name: Optional[pulumi.Input[Optional[bool]]] = Non
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.get_topics(project_id="e020c978-4f05-40e1-9167-0113d3ef****",
-        topic_id="edf051ed-3c46-49ba-9339-bea628fe****")
+    default = volcengine.tls.get_topics(project_id="bdb87e4d-7dad-4b96-ac43-e1b09e9dc8ac",
+        topic_id="9b756385-1dfb-4306-a094-0c88e04b34a5")
     ```
 
 
-    :param bool is_full_name: Whether to match accurately when filtering based on TopicName.
     :param str name_regex: A Name Regex of tls topic.
     :param str output_file: File name where to save data source results.
     :param str project_id: The project id of tls topic.

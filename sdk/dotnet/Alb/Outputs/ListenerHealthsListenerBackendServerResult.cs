@@ -42,7 +42,7 @@ namespace Pulumi.Volcengine.Alb.Outputs
         /// </summary>
         public readonly string ServerId;
         /// <summary>
-        /// The health status of the backend server. Value: Up, Down.
+        /// The status of the listener. Value: Active, Error, NoTarget, Disabled.
         /// </summary>
         public readonly string Status;
         /// <summary>

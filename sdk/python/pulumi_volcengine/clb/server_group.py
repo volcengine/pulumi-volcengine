@@ -8,6 +8,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['ServerGroupArgs', 'ServerGroup']
 
@@ -16,26 +18,38 @@ class ServerGroupArgs:
     def __init__(__self__, *,
                  load_balancer_id: pulumi.Input[str],
                  address_ip_version: Optional[pulumi.Input[str]] = None,
+                 any_port_enabled: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  server_group_id: Optional[pulumi.Input[str]] = None,
-                 server_group_name: Optional[pulumi.Input[str]] = None):
+                 server_group_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['ServerGroupTagArgs']]]] = None,
+                 type: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a ServerGroup resource.
         :param pulumi.Input[str] load_balancer_id: The ID of the Clb.
         :param pulumi.Input[str] address_ip_version: The address ip version of the ServerGroup. Valid values: `ipv4`, `ipv6`. Default is `ipv4`.
+        :param pulumi.Input[bool] any_port_enabled: Whether to enable full port forwarding. This feature is in beta.
         :param pulumi.Input[str] description: The description of ServerGroup.
         :param pulumi.Input[str] server_group_id: The ID of the ServerGroup.
         :param pulumi.Input[str] server_group_name: The name of the ServerGroup.
+        :param pulumi.Input[Sequence[pulumi.Input['ServerGroupTagArgs']]] tags: Tags.
+        :param pulumi.Input[str] type: The type of the ServerGroup. Valid values: `instance`, `ip`. Default is `instance`.
         """
         pulumi.set(__self__, "load_balancer_id", load_balancer_id)
         if address_ip_version is not None:
             pulumi.set(__self__, "address_ip_version", address_ip_version)
+        if any_port_enabled is not None:
+            pulumi.set(__self__, "any_port_enabled", any_port_enabled)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if server_group_id is not None:
             pulumi.set(__self__, "server_group_id", server_group_id)
         if server_group_name is not None:
             pulumi.set(__self__, "server_group_name", server_group_name)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter(name="loadBalancerId")
@@ -60,6 +74,18 @@ class ServerGroupArgs:
     @address_ip_version.setter
     def address_ip_version(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "address_ip_version", value)
+
+    @property
+    @pulumi.getter(name="anyPortEnabled")
+    def any_port_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to enable full port forwarding. This feature is in beta.
+        """
+        return pulumi.get(self, "any_port_enabled")
+
+    @any_port_enabled.setter
+    def any_port_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "any_port_enabled", value)
 
     @property
     @pulumi.getter
@@ -97,25 +123,57 @@ class ServerGroupArgs:
     def server_group_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "server_group_name", value)
 
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServerGroupTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServerGroupTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The type of the ServerGroup. Valid values: `instance`, `ip`. Default is `instance`.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
+
 
 @pulumi.input_type
 class _ServerGroupState:
     def __init__(__self__, *,
                  address_ip_version: Optional[pulumi.Input[str]] = None,
+                 any_port_enabled: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  load_balancer_id: Optional[pulumi.Input[str]] = None,
                  server_group_id: Optional[pulumi.Input[str]] = None,
-                 server_group_name: Optional[pulumi.Input[str]] = None):
+                 server_group_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['ServerGroupTagArgs']]]] = None,
+                 type: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering ServerGroup resources.
         :param pulumi.Input[str] address_ip_version: The address ip version of the ServerGroup. Valid values: `ipv4`, `ipv6`. Default is `ipv4`.
+        :param pulumi.Input[bool] any_port_enabled: Whether to enable full port forwarding. This feature is in beta.
         :param pulumi.Input[str] description: The description of ServerGroup.
         :param pulumi.Input[str] load_balancer_id: The ID of the Clb.
         :param pulumi.Input[str] server_group_id: The ID of the ServerGroup.
         :param pulumi.Input[str] server_group_name: The name of the ServerGroup.
+        :param pulumi.Input[Sequence[pulumi.Input['ServerGroupTagArgs']]] tags: Tags.
+        :param pulumi.Input[str] type: The type of the ServerGroup. Valid values: `instance`, `ip`. Default is `instance`.
         """
         if address_ip_version is not None:
             pulumi.set(__self__, "address_ip_version", address_ip_version)
+        if any_port_enabled is not None:
+            pulumi.set(__self__, "any_port_enabled", any_port_enabled)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if load_balancer_id is not None:
@@ -124,6 +182,10 @@ class _ServerGroupState:
             pulumi.set(__self__, "server_group_id", server_group_id)
         if server_group_name is not None:
             pulumi.set(__self__, "server_group_name", server_group_name)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter(name="addressIpVersion")
@@ -136,6 +198,18 @@ class _ServerGroupState:
     @address_ip_version.setter
     def address_ip_version(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "address_ip_version", value)
+
+    @property
+    @pulumi.getter(name="anyPortEnabled")
+    def any_port_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to enable full port forwarding. This feature is in beta.
+        """
+        return pulumi.get(self, "any_port_enabled")
+
+    @any_port_enabled.setter
+    def any_port_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "any_port_enabled", value)
 
     @property
     @pulumi.getter
@@ -185,6 +259,30 @@ class _ServerGroupState:
     def server_group_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "server_group_name", value)
 
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServerGroupTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServerGroupTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The type of the ServerGroup. Valid values: `instance`, `ip`. Default is `instance`.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
+
 
 class ServerGroup(pulumi.CustomResource):
     @overload
@@ -192,10 +290,13 @@ class ServerGroup(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  address_ip_version: Optional[pulumi.Input[str]] = None,
+                 any_port_enabled: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  load_balancer_id: Optional[pulumi.Input[str]] = None,
                  server_group_id: Optional[pulumi.Input[str]] = None,
                  server_group_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerGroupTagArgs']]]]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Provides a resource to manage server group
@@ -228,7 +329,12 @@ class ServerGroup(pulumi.CustomResource):
         foo_server_group = volcengine.clb.ServerGroup("fooServerGroup",
             load_balancer_id=foo_clb.id,
             server_group_name="acc-test-create",
-            description="hello demo11")
+            description="hello demo11",
+            type="ip",
+            tags=[volcengine.clb.ServerGroupTagArgs(
+                key="k1",
+                value="v1",
+            )])
         ```
 
         ## Import
@@ -242,10 +348,13 @@ class ServerGroup(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] address_ip_version: The address ip version of the ServerGroup. Valid values: `ipv4`, `ipv6`. Default is `ipv4`.
+        :param pulumi.Input[bool] any_port_enabled: Whether to enable full port forwarding. This feature is in beta.
         :param pulumi.Input[str] description: The description of ServerGroup.
         :param pulumi.Input[str] load_balancer_id: The ID of the Clb.
         :param pulumi.Input[str] server_group_id: The ID of the ServerGroup.
         :param pulumi.Input[str] server_group_name: The name of the ServerGroup.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerGroupTagArgs']]]] tags: Tags.
+        :param pulumi.Input[str] type: The type of the ServerGroup. Valid values: `instance`, `ip`. Default is `instance`.
         """
         ...
     @overload
@@ -284,7 +393,12 @@ class ServerGroup(pulumi.CustomResource):
         foo_server_group = volcengine.clb.ServerGroup("fooServerGroup",
             load_balancer_id=foo_clb.id,
             server_group_name="acc-test-create",
-            description="hello demo11")
+            description="hello demo11",
+            type="ip",
+            tags=[volcengine.clb.ServerGroupTagArgs(
+                key="k1",
+                value="v1",
+            )])
         ```
 
         ## Import
@@ -311,10 +425,13 @@ class ServerGroup(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  address_ip_version: Optional[pulumi.Input[str]] = None,
+                 any_port_enabled: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  load_balancer_id: Optional[pulumi.Input[str]] = None,
                  server_group_id: Optional[pulumi.Input[str]] = None,
                  server_group_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerGroupTagArgs']]]]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -325,12 +442,15 @@ class ServerGroup(pulumi.CustomResource):
             __props__ = ServerGroupArgs.__new__(ServerGroupArgs)
 
             __props__.__dict__["address_ip_version"] = address_ip_version
+            __props__.__dict__["any_port_enabled"] = any_port_enabled
             __props__.__dict__["description"] = description
             if load_balancer_id is None and not opts.urn:
                 raise TypeError("Missing required property 'load_balancer_id'")
             __props__.__dict__["load_balancer_id"] = load_balancer_id
             __props__.__dict__["server_group_id"] = server_group_id
             __props__.__dict__["server_group_name"] = server_group_name
+            __props__.__dict__["tags"] = tags
+            __props__.__dict__["type"] = type
         super(ServerGroup, __self__).__init__(
             'volcengine:clb/serverGroup:ServerGroup',
             resource_name,
@@ -342,10 +462,13 @@ class ServerGroup(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             address_ip_version: Optional[pulumi.Input[str]] = None,
+            any_port_enabled: Optional[pulumi.Input[bool]] = None,
             description: Optional[pulumi.Input[str]] = None,
             load_balancer_id: Optional[pulumi.Input[str]] = None,
             server_group_id: Optional[pulumi.Input[str]] = None,
-            server_group_name: Optional[pulumi.Input[str]] = None) -> 'ServerGroup':
+            server_group_name: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerGroupTagArgs']]]]] = None,
+            type: Optional[pulumi.Input[str]] = None) -> 'ServerGroup':
         """
         Get an existing ServerGroup resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -354,20 +477,26 @@ class ServerGroup(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] address_ip_version: The address ip version of the ServerGroup. Valid values: `ipv4`, `ipv6`. Default is `ipv4`.
+        :param pulumi.Input[bool] any_port_enabled: Whether to enable full port forwarding. This feature is in beta.
         :param pulumi.Input[str] description: The description of ServerGroup.
         :param pulumi.Input[str] load_balancer_id: The ID of the Clb.
         :param pulumi.Input[str] server_group_id: The ID of the ServerGroup.
         :param pulumi.Input[str] server_group_name: The name of the ServerGroup.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerGroupTagArgs']]]] tags: Tags.
+        :param pulumi.Input[str] type: The type of the ServerGroup. Valid values: `instance`, `ip`. Default is `instance`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _ServerGroupState.__new__(_ServerGroupState)
 
         __props__.__dict__["address_ip_version"] = address_ip_version
+        __props__.__dict__["any_port_enabled"] = any_port_enabled
         __props__.__dict__["description"] = description
         __props__.__dict__["load_balancer_id"] = load_balancer_id
         __props__.__dict__["server_group_id"] = server_group_id
         __props__.__dict__["server_group_name"] = server_group_name
+        __props__.__dict__["tags"] = tags
+        __props__.__dict__["type"] = type
         return ServerGroup(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -377,6 +506,14 @@ class ServerGroup(pulumi.CustomResource):
         The address ip version of the ServerGroup. Valid values: `ipv4`, `ipv6`. Default is `ipv4`.
         """
         return pulumi.get(self, "address_ip_version")
+
+    @property
+    @pulumi.getter(name="anyPortEnabled")
+    def any_port_enabled(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Whether to enable full port forwarding. This feature is in beta.
+        """
+        return pulumi.get(self, "any_port_enabled")
 
     @property
     @pulumi.getter
@@ -409,4 +546,20 @@ class ServerGroup(pulumi.CustomResource):
         The name of the ServerGroup.
         """
         return pulumi.get(self, "server_group_name")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.ServerGroupTag']]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter
+    def type(self) -> pulumi.Output[Optional[str]]:
+        """
+        The type of the ServerGroup. Valid values: `instance`, `ip`. Default is `instance`.
+        """
+        return pulumi.get(self, "type")
 

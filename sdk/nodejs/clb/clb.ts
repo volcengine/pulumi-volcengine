@@ -145,6 +145,10 @@ export class Clb extends pulumi.CustomResource {
      */
     public readonly addressIpVersion!: pulumi.Output<string | undefined>;
     /**
+     * Whether the CLB instance enables the "Allow Backend Security Group" function. value range: `on`, `off`.
+     */
+    public readonly bypassSecurityGroupEnabled!: pulumi.Output<string>;
+    /**
      * The description of the CLB.
      */
     public readonly description!: pulumi.Output<string | undefined>;
@@ -164,6 +168,10 @@ export class Clb extends pulumi.CustomResource {
      * The eni address of the CLB.
      */
     public readonly eniAddress!: pulumi.Output<string>;
+    /**
+     * The number of private IPv4 addresses for the CLB instance. This parameter is valid only when the type parameter is set to private and eniAddress is not passed in.
+     */
+    public readonly eniAddressNum!: pulumi.Output<number | undefined>;
     /**
      * The eni ipv6 address of the Clb.
      */
@@ -209,9 +217,17 @@ export class Clb extends pulumi.CustomResource {
      */
     public readonly regionId!: pulumi.Output<string>;
     /**
-     * The renew type of the CLB. When the value of the loadBalancerBillingType is `PrePaid`, the query returns this field.
+     * The remain renew times of the CLB. When the value of the renewType is `AutoRenew`, this field is effective. Valid values: `-1`, `1~100`. The `-1` indicates unlimited automatic renewals.
      */
-    public /*out*/ readonly renewType!: pulumi.Output<string>;
+    public readonly remainRenewTimes!: pulumi.Output<number>;
+    /**
+     * The renew period times of the CLB. When the value of the renewType is `AutoRenew`, this field is effective. Valid values: `1`, `2`, `3`, `6`, `12`.
+     */
+    public readonly renewPeriodTimes!: pulumi.Output<number>;
+    /**
+     * The renew type of the CLB. When the value of the loadBalancerBillingType is `PrePaid`, the query returns this field. Valid values: `AutoRenew`, `ManualRenew`.
+     */
+    public readonly renewType!: pulumi.Output<string>;
     /**
      * The slave zone ID of the CLB.
      */
@@ -225,6 +241,10 @@ export class Clb extends pulumi.CustomResource {
      */
     public readonly tags!: pulumi.Output<outputs.clb.ClbTag[] | undefined>;
     /**
+     * Whether to enable the function of clearing the timestamp of TCP/HTTP/HTTPS packets (i.e., the time stamp). value range: `on`, `off`.
+     */
+    public readonly timestampRemoveEnabled!: pulumi.Output<string>;
+    /**
      * The type of the CLB. And optional choice contains `public` or `private`.
      */
     public readonly type!: pulumi.Output<string>;
@@ -232,6 +252,10 @@ export class Clb extends pulumi.CustomResource {
      * The id of the VPC.
      */
     public readonly vpcId!: pulumi.Output<string>;
+    /**
+     * The zone type of the CLB. And optional choice contains `single` or `active-standby`.
+     */
+    public readonly zoneType!: pulumi.Output<string | undefined>;
 
     /**
      * Create a Clb resource with the given unique name, arguments, and options.
@@ -247,11 +271,13 @@ export class Clb extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as ClbState | undefined;
             resourceInputs["addressIpVersion"] = state ? state.addressIpVersion : undefined;
+            resourceInputs["bypassSecurityGroupEnabled"] = state ? state.bypassSecurityGroupEnabled : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["eipAddress"] = state ? state.eipAddress : undefined;
             resourceInputs["eipBillingConfig"] = state ? state.eipBillingConfig : undefined;
             resourceInputs["eipId"] = state ? state.eipId : undefined;
             resourceInputs["eniAddress"] = state ? state.eniAddress : undefined;
+            resourceInputs["eniAddressNum"] = state ? state.eniAddressNum : undefined;
             resourceInputs["eniIpv6Address"] = state ? state.eniIpv6Address : undefined;
             resourceInputs["ipv6EipId"] = state ? state.ipv6EipId : undefined;
             resourceInputs["loadBalancerBillingType"] = state ? state.loadBalancerBillingType : undefined;
@@ -263,12 +289,16 @@ export class Clb extends pulumi.CustomResource {
             resourceInputs["period"] = state ? state.period : undefined;
             resourceInputs["projectName"] = state ? state.projectName : undefined;
             resourceInputs["regionId"] = state ? state.regionId : undefined;
+            resourceInputs["remainRenewTimes"] = state ? state.remainRenewTimes : undefined;
+            resourceInputs["renewPeriodTimes"] = state ? state.renewPeriodTimes : undefined;
             resourceInputs["renewType"] = state ? state.renewType : undefined;
             resourceInputs["slaveZoneId"] = state ? state.slaveZoneId : undefined;
             resourceInputs["subnetId"] = state ? state.subnetId : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
+            resourceInputs["timestampRemoveEnabled"] = state ? state.timestampRemoveEnabled : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
             resourceInputs["vpcId"] = state ? state.vpcId : undefined;
+            resourceInputs["zoneType"] = state ? state.zoneType : undefined;
         } else {
             const args = argsOrState as ClbArgs | undefined;
             if ((!args || args.subnetId === undefined) && !opts.urn) {
@@ -278,9 +308,11 @@ export class Clb extends pulumi.CustomResource {
                 throw new Error("Missing required property 'type'");
             }
             resourceInputs["addressIpVersion"] = args ? args.addressIpVersion : undefined;
+            resourceInputs["bypassSecurityGroupEnabled"] = args ? args.bypassSecurityGroupEnabled : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["eipBillingConfig"] = args ? args.eipBillingConfig : undefined;
             resourceInputs["eniAddress"] = args ? args.eniAddress : undefined;
+            resourceInputs["eniAddressNum"] = args ? args.eniAddressNum : undefined;
             resourceInputs["eniIpv6Address"] = args ? args.eniIpv6Address : undefined;
             resourceInputs["loadBalancerBillingType"] = args ? args.loadBalancerBillingType : undefined;
             resourceInputs["loadBalancerName"] = args ? args.loadBalancerName : undefined;
@@ -291,15 +323,19 @@ export class Clb extends pulumi.CustomResource {
             resourceInputs["period"] = args ? args.period : undefined;
             resourceInputs["projectName"] = args ? args.projectName : undefined;
             resourceInputs["regionId"] = args ? args.regionId : undefined;
+            resourceInputs["remainRenewTimes"] = args ? args.remainRenewTimes : undefined;
+            resourceInputs["renewPeriodTimes"] = args ? args.renewPeriodTimes : undefined;
+            resourceInputs["renewType"] = args ? args.renewType : undefined;
             resourceInputs["slaveZoneId"] = args ? args.slaveZoneId : undefined;
             resourceInputs["subnetId"] = args ? args.subnetId : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
+            resourceInputs["timestampRemoveEnabled"] = args ? args.timestampRemoveEnabled : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["vpcId"] = args ? args.vpcId : undefined;
+            resourceInputs["zoneType"] = args ? args.zoneType : undefined;
             resourceInputs["eipAddress"] = undefined /*out*/;
             resourceInputs["eipId"] = undefined /*out*/;
             resourceInputs["ipv6EipId"] = undefined /*out*/;
-            resourceInputs["renewType"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Clb.__pulumiType, name, resourceInputs, opts);
@@ -315,6 +351,10 @@ export interface ClbState {
      * When the value of this field is `DualStack`, the type of the CLB must be `private`, and suggest using a combination of resource `volcengine.vpc.Ipv6Gateway` and `volcengine.vpc.Ipv6AddressBandwidth` to achieve ipv6 public network access function.
      */
     addressIpVersion?: pulumi.Input<string>;
+    /**
+     * Whether the CLB instance enables the "Allow Backend Security Group" function. value range: `on`, `off`.
+     */
+    bypassSecurityGroupEnabled?: pulumi.Input<string>;
     /**
      * The description of the CLB.
      */
@@ -335,6 +375,10 @@ export interface ClbState {
      * The eni address of the CLB.
      */
     eniAddress?: pulumi.Input<string>;
+    /**
+     * The number of private IPv4 addresses for the CLB instance. This parameter is valid only when the type parameter is set to private and eniAddress is not passed in.
+     */
+    eniAddressNum?: pulumi.Input<number>;
     /**
      * The eni ipv6 address of the Clb.
      */
@@ -380,7 +424,15 @@ export interface ClbState {
      */
     regionId?: pulumi.Input<string>;
     /**
-     * The renew type of the CLB. When the value of the loadBalancerBillingType is `PrePaid`, the query returns this field.
+     * The remain renew times of the CLB. When the value of the renewType is `AutoRenew`, this field is effective. Valid values: `-1`, `1~100`. The `-1` indicates unlimited automatic renewals.
+     */
+    remainRenewTimes?: pulumi.Input<number>;
+    /**
+     * The renew period times of the CLB. When the value of the renewType is `AutoRenew`, this field is effective. Valid values: `1`, `2`, `3`, `6`, `12`.
+     */
+    renewPeriodTimes?: pulumi.Input<number>;
+    /**
+     * The renew type of the CLB. When the value of the loadBalancerBillingType is `PrePaid`, the query returns this field. Valid values: `AutoRenew`, `ManualRenew`.
      */
     renewType?: pulumi.Input<string>;
     /**
@@ -396,6 +448,10 @@ export interface ClbState {
      */
     tags?: pulumi.Input<pulumi.Input<inputs.clb.ClbTag>[]>;
     /**
+     * Whether to enable the function of clearing the timestamp of TCP/HTTP/HTTPS packets (i.e., the time stamp). value range: `on`, `off`.
+     */
+    timestampRemoveEnabled?: pulumi.Input<string>;
+    /**
      * The type of the CLB. And optional choice contains `public` or `private`.
      */
     type?: pulumi.Input<string>;
@@ -403,6 +459,10 @@ export interface ClbState {
      * The id of the VPC.
      */
     vpcId?: pulumi.Input<string>;
+    /**
+     * The zone type of the CLB. And optional choice contains `single` or `active-standby`.
+     */
+    zoneType?: pulumi.Input<string>;
 }
 
 /**
@@ -415,6 +475,10 @@ export interface ClbArgs {
      */
     addressIpVersion?: pulumi.Input<string>;
     /**
+     * Whether the CLB instance enables the "Allow Backend Security Group" function. value range: `on`, `off`.
+     */
+    bypassSecurityGroupEnabled?: pulumi.Input<string>;
+    /**
      * The description of the CLB.
      */
     description?: pulumi.Input<string>;
@@ -426,6 +490,10 @@ export interface ClbArgs {
      * The eni address of the CLB.
      */
     eniAddress?: pulumi.Input<string>;
+    /**
+     * The number of private IPv4 addresses for the CLB instance. This parameter is valid only when the type parameter is set to private and eniAddress is not passed in.
+     */
+    eniAddressNum?: pulumi.Input<number>;
     /**
      * The eni ipv6 address of the Clb.
      */
@@ -467,6 +535,18 @@ export interface ClbArgs {
      */
     regionId?: pulumi.Input<string>;
     /**
+     * The remain renew times of the CLB. When the value of the renewType is `AutoRenew`, this field is effective. Valid values: `-1`, `1~100`. The `-1` indicates unlimited automatic renewals.
+     */
+    remainRenewTimes?: pulumi.Input<number>;
+    /**
+     * The renew period times of the CLB. When the value of the renewType is `AutoRenew`, this field is effective. Valid values: `1`, `2`, `3`, `6`, `12`.
+     */
+    renewPeriodTimes?: pulumi.Input<number>;
+    /**
+     * The renew type of the CLB. When the value of the loadBalancerBillingType is `PrePaid`, the query returns this field. Valid values: `AutoRenew`, `ManualRenew`.
+     */
+    renewType?: pulumi.Input<string>;
+    /**
      * The slave zone ID of the CLB.
      */
     slaveZoneId?: pulumi.Input<string>;
@@ -479,6 +559,10 @@ export interface ClbArgs {
      */
     tags?: pulumi.Input<pulumi.Input<inputs.clb.ClbTag>[]>;
     /**
+     * Whether to enable the function of clearing the timestamp of TCP/HTTP/HTTPS packets (i.e., the time stamp). value range: `on`, `off`.
+     */
+    timestampRemoveEnabled?: pulumi.Input<string>;
+    /**
      * The type of the CLB. And optional choice contains `public` or `private`.
      */
     type: pulumi.Input<string>;
@@ -486,4 +570,8 @@ export interface ClbArgs {
      * The id of the VPC.
      */
     vpcId?: pulumi.Input<string>;
+    /**
+     * The zone type of the CLB. And optional choice contains `single` or `active-standby`.
+     */
+    zoneType?: pulumi.Input<string>;
 }

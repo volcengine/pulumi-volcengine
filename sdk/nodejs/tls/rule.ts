@@ -14,51 +14,94 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = new volcengine.tls.Rule("foo", {
- *     topicId: "7bfa2cdc-4f8b-4cf9-b4c9-0ed05c33349f",
- *     ruleName: "test",
- *     logType: "minimalist_log",
- *     logSample: "2018-05-22 15:35:53.850 INFO XXXX",
+ * const fooProject = new volcengine.tls.Project("fooProject", {
+ *     projectName: "tf-test-project-ttt",
+ *     description: "tf-test-project-desc",
+ *     region: "cn-guilin-boe",
+ * });
+ * const fooTopic = new volcengine.tls.Topic("fooTopic", {
+ *     projectId: fooProject.id,
+ *     topicName: "tf-test-topic-rule-1",
+ *     ttl: 60,
+ *     shardCount: 2,
+ *     autoSplit: true,
+ *     maxSplitShard: 10,
+ *     enableTracking: true,
+ *     timeKey: "request_time",
+ *     timeFormat: "%Y-%m-%dT%H:%M:%S,%f",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
+ *     logPublicIp: true,
+ *     enableHotTtl: true,
+ *     hotTtl: 30,
+ *     coldTtl: 30,
+ *     archiveTtl: 0,
+ * });
+ * const fooRule = new volcengine.tls.Rule("fooRule", {
+ *     topicId: fooTopic.id,
+ *     ruleName: "tf-test-rule-modify",
+ *     logType: "delimiter_log",
+ *     logSample: "2018-05-22 15:35:53.850,INFO,XXXX",
  *     inputType: 1,
+ *     extractRule: {
+ *         delimiter: ",",
+ *         keys: [
+ *             "time",
+ *             "level",
+ *             "msg",
+ *         ],
+ *         timeKey: "time",
+ *         timeFormat: "%Y-%m-%d %H:%M:%S.%f",
+ *         quote: "\"",
+ *         timeZone: "GMT+08:00",
+ *         beginRegex: "",
+ *         logRegex: "",
+ *         filterKeyRegexes: [{
+ *             key: "__content__",
+ *             regex: ".*ERROR.*",
+ *         }],
+ *         unMatchUpLoadSwitch: true,
+ *         unMatchLogKey: "LogParseFailed",
+ *         logTemplate: {
+ *             type: "",
+ *             format: "",
+ *         },
+ *     },
  *     userDefineRule: {
- *         enableRawLog: false,
+ *         enableRawLog: true,
  *         tailFiles: true,
+ *         fields: {
+ *             cluster_id: "dabaad5f-7a10-4771-b3ea-d821f73e****",
+ *         },
+ *         parsePathRule: {
+ *             pathSample: "/data/nginx/log/dabaad5f-7a10/tls/app.log",
+ *             regex: "\\/data\\/nginx\\/log\\/(\\w+)-(\\w+)\\/tls\\/app\\.log",
+ *             keys: [
+ *                 "instance-id",
+ *                 "pod-name",
+ *             ],
+ *         },
  *         shardHashKey: {
  *             hashKey: "3C",
  *         },
  *         plugin: {
- *             processors: [
- *                 JSON.stringify({
- *                     json: {
- *                         field: "__content__",
- *                         trim_keys: {
- *                             mode: "all",
- *                             chars: "#",
- *                         },
- *                         trim_values: {
- *                             mode: "all",
- *                             chars: "#t",
- *                         },
- *                         allow_overwrite_keys: true,
- *                         allow_empty_values: true,
+ *             processors: [JSON.stringify({
+ *                 json: {
+ *                     field: "__content__",
+ *                     trim_keys: {
+ *                         mode: "all",
+ *                         chars: "#",
  *                     },
- *                 }),
- *                 JSON.stringify({
- *                     json: {
- *                         field: "__content__",
- *                         trim_keys: {
- *                             mode: "all",
- *                             chars: "#xx",
- *                         },
- *                         trim_values: {
- *                             mode: "all",
- *                             chars: "#txxxt",
- *                         },
- *                         allow_overwrite_keys: true,
- *                         allow_empty_values: true,
+ *                     trim_values: {
+ *                         mode: "all",
+ *                         chars: "#t",
  *                     },
- *                 }),
- *             ],
+ *                     allow_overwrite_keys: true,
+ *                     allow_empty_values: true,
+ *                 },
+ *             })],
  *         },
  *         advanced: {
  *             closeInactive: 10,

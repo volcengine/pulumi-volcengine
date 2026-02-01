@@ -18,6 +18,10 @@ namespace Pulumi.Volcengine.Tls.Outputs
         /// </summary>
         public readonly int EndTimeOffset;
         /// <summary>
+        /// The end time offset unit.
+        /// </summary>
+        public readonly string? EndTimeOffsetUnit;
+        /// <summary>
         /// Alarm object sequence number; increments from 1.
         /// </summary>
         public readonly int Number;
@@ -30,13 +34,27 @@ namespace Pulumi.Volcengine.Tls.Outputs
         /// </summary>
         public readonly int StartTimeOffset;
         /// <summary>
+        /// The start time offset unit.
+        /// </summary>
+        public readonly string? StartTimeOffsetUnit;
+        /// <summary>
+        /// The time span type.
+        /// </summary>
+        public readonly string? TimeSpanType;
+        /// <summary>
         /// The id of the topic.
         /// </summary>
         public readonly string TopicId;
+        /// <summary>
+        /// The truncated time.
+        /// </summary>
+        public readonly string? TruncatedTime;
 
         [OutputConstructor]
         private AlarmQueryRequest(
             int endTimeOffset,
+
+            string? endTimeOffsetUnit,
 
             int number,
 
@@ -44,13 +62,23 @@ namespace Pulumi.Volcengine.Tls.Outputs
 
             int startTimeOffset,
 
-            string topicId)
+            string? startTimeOffsetUnit,
+
+            string? timeSpanType,
+
+            string topicId,
+
+            string? truncatedTime)
         {
             EndTimeOffset = endTimeOffset;
+            EndTimeOffsetUnit = endTimeOffsetUnit;
             Number = number;
             Query = query;
             StartTimeOffset = startTimeOffset;
+            StartTimeOffsetUnit = startTimeOffsetUnit;
+            TimeSpanType = timeSpanType;
             TopicId = topicId;
+            TruncatedTime = truncatedTime;
         }
     }
 }

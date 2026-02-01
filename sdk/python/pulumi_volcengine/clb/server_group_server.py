@@ -23,10 +23,10 @@ class ServerGroupServerArgs:
                  weight: Optional[pulumi.Input[int]] = None):
         """
         The set of arguments for constructing a ServerGroupServer resource.
-        :param pulumi.Input[str] instance_id: The ID of ecs instance or the network card bound to ecs instance.
+        :param pulumi.Input[str] instance_id: The ID of ecs instance or the network card bound to ecs instance. When the `type` is `ip`, this parameter is an IP address.
         :param pulumi.Input[int] port: The port receiving request.
         :param pulumi.Input[str] server_group_id: The ID of the ServerGroup.
-        :param pulumi.Input[str] type: The type of instance. Optional choice contains `ecs`, `eni`.
+        :param pulumi.Input[str] type: The type of instance. Optional choice contains `ecs`, `eni`, `ip`. When the `type` of `server_group_id` is `ip`, only `ip` is supported.
         :param pulumi.Input[str] description: The description of the instance.
         :param pulumi.Input[str] ip: The private ip of the instance.
         :param pulumi.Input[int] weight: The weight of the instance, range in 0~100.
@@ -46,7 +46,7 @@ class ServerGroupServerArgs:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Input[str]:
         """
-        The ID of ecs instance or the network card bound to ecs instance.
+        The ID of ecs instance or the network card bound to ecs instance. When the `type` is `ip`, this parameter is an IP address.
         """
         return pulumi.get(self, "instance_id")
 
@@ -82,7 +82,7 @@ class ServerGroupServerArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
         """
-        The type of instance. Optional choice contains `ecs`, `eni`.
+        The type of instance. Optional choice contains `ecs`, `eni`, `ip`. When the `type` of `server_group_id` is `ip`, only `ip` is supported.
         """
         return pulumi.get(self, "type")
 
@@ -141,12 +141,12 @@ class _ServerGroupServerState:
         """
         Input properties used for looking up and filtering ServerGroupServer resources.
         :param pulumi.Input[str] description: The description of the instance.
-        :param pulumi.Input[str] instance_id: The ID of ecs instance or the network card bound to ecs instance.
+        :param pulumi.Input[str] instance_id: The ID of ecs instance or the network card bound to ecs instance. When the `type` is `ip`, this parameter is an IP address.
         :param pulumi.Input[str] ip: The private ip of the instance.
         :param pulumi.Input[int] port: The port receiving request.
         :param pulumi.Input[str] server_group_id: The ID of the ServerGroup.
         :param pulumi.Input[str] server_id: The server id of instance in ServerGroup.
-        :param pulumi.Input[str] type: The type of instance. Optional choice contains `ecs`, `eni`.
+        :param pulumi.Input[str] type: The type of instance. Optional choice contains `ecs`, `eni`, `ip`. When the `type` of `server_group_id` is `ip`, only `ip` is supported.
         :param pulumi.Input[int] weight: The weight of the instance, range in 0~100.
         """
         if description is not None:
@@ -182,7 +182,7 @@ class _ServerGroupServerState:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of ecs instance or the network card bound to ecs instance.
+        The ID of ecs instance or the network card bound to ecs instance. When the `type` is `ip`, this parameter is an IP address.
         """
         return pulumi.get(self, "instance_id")
 
@@ -242,7 +242,7 @@ class _ServerGroupServerState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of instance. Optional choice contains `ecs`, `eni`.
+        The type of instance. Optional choice contains `ecs`, `eni`, `ip`. When the `type` of `server_group_id` is `ip`, only `ip` is supported.
         """
         return pulumi.get(self, "type")
 
@@ -307,7 +307,13 @@ class ServerGroupServer(pulumi.CustomResource):
         foo_server_group = volcengine.clb.ServerGroup("fooServerGroup",
             load_balancer_id=foo_clb.id,
             server_group_name="acc-test-create",
-            description="hello demo11")
+            description="hello demo11",
+            type="instance")
+        foo_ip_server_group = volcengine.clb.ServerGroup("fooIpServerGroup",
+            load_balancer_id=foo_clb.id,
+            server_group_name="acc-test-create-ip",
+            description="hello demo ip server group",
+            type="ip")
         foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
             vpc_id=foo_vpc.id,
             security_group_name="acc-test-security-group")
@@ -328,6 +334,21 @@ class ServerGroupServer(pulumi.CustomResource):
             weight=100,
             port=80,
             description="This is a acc test server")
+        foo_eni = volcengine.clb.ServerGroupServer("fooEni",
+            server_group_id=foo_server_group.id,
+            instance_id="eni-btgpz5my7ta85h0b2ur*****",
+            type="eni",
+            weight=100,
+            port=8080,
+            description="This is a acc test server use eni")
+        foo_ip_server_group_server = volcengine.clb.ServerGroupServer("fooIpServerGroupServer",
+            server_group_id=foo_ip_server_group.id,
+            instance_id="192.168.*.*",
+            ip="192.168.*.*",
+            type="ip",
+            weight=80,
+            port=400,
+            description="This is a acc test server use ip")
         ```
 
         ## Import
@@ -341,11 +362,11 @@ class ServerGroupServer(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: The description of the instance.
-        :param pulumi.Input[str] instance_id: The ID of ecs instance or the network card bound to ecs instance.
+        :param pulumi.Input[str] instance_id: The ID of ecs instance or the network card bound to ecs instance. When the `type` is `ip`, this parameter is an IP address.
         :param pulumi.Input[str] ip: The private ip of the instance.
         :param pulumi.Input[int] port: The port receiving request.
         :param pulumi.Input[str] server_group_id: The ID of the ServerGroup.
-        :param pulumi.Input[str] type: The type of instance. Optional choice contains `ecs`, `eni`.
+        :param pulumi.Input[str] type: The type of instance. Optional choice contains `ecs`, `eni`, `ip`. When the `type` of `server_group_id` is `ip`, only `ip` is supported.
         :param pulumi.Input[int] weight: The weight of the instance, range in 0~100.
         """
         ...
@@ -385,7 +406,13 @@ class ServerGroupServer(pulumi.CustomResource):
         foo_server_group = volcengine.clb.ServerGroup("fooServerGroup",
             load_balancer_id=foo_clb.id,
             server_group_name="acc-test-create",
-            description="hello demo11")
+            description="hello demo11",
+            type="instance")
+        foo_ip_server_group = volcengine.clb.ServerGroup("fooIpServerGroup",
+            load_balancer_id=foo_clb.id,
+            server_group_name="acc-test-create-ip",
+            description="hello demo ip server group",
+            type="ip")
         foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
             vpc_id=foo_vpc.id,
             security_group_name="acc-test-security-group")
@@ -406,6 +433,21 @@ class ServerGroupServer(pulumi.CustomResource):
             weight=100,
             port=80,
             description="This is a acc test server")
+        foo_eni = volcengine.clb.ServerGroupServer("fooEni",
+            server_group_id=foo_server_group.id,
+            instance_id="eni-btgpz5my7ta85h0b2ur*****",
+            type="eni",
+            weight=100,
+            port=8080,
+            description="This is a acc test server use eni")
+        foo_ip_server_group_server = volcengine.clb.ServerGroupServer("fooIpServerGroupServer",
+            server_group_id=foo_ip_server_group.id,
+            instance_id="192.168.*.*",
+            ip="192.168.*.*",
+            type="ip",
+            weight=80,
+            port=400,
+            description="This is a acc test server use ip")
         ```
 
         ## Import
@@ -489,12 +531,12 @@ class ServerGroupServer(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: The description of the instance.
-        :param pulumi.Input[str] instance_id: The ID of ecs instance or the network card bound to ecs instance.
+        :param pulumi.Input[str] instance_id: The ID of ecs instance or the network card bound to ecs instance. When the `type` is `ip`, this parameter is an IP address.
         :param pulumi.Input[str] ip: The private ip of the instance.
         :param pulumi.Input[int] port: The port receiving request.
         :param pulumi.Input[str] server_group_id: The ID of the ServerGroup.
         :param pulumi.Input[str] server_id: The server id of instance in ServerGroup.
-        :param pulumi.Input[str] type: The type of instance. Optional choice contains `ecs`, `eni`.
+        :param pulumi.Input[str] type: The type of instance. Optional choice contains `ecs`, `eni`, `ip`. When the `type` of `server_group_id` is `ip`, only `ip` is supported.
         :param pulumi.Input[int] weight: The weight of the instance, range in 0~100.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -523,7 +565,7 @@ class ServerGroupServer(pulumi.CustomResource):
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Output[str]:
         """
-        The ID of ecs instance or the network card bound to ecs instance.
+        The ID of ecs instance or the network card bound to ecs instance. When the `type` is `ip`, this parameter is an IP address.
         """
         return pulumi.get(self, "instance_id")
 
@@ -563,7 +605,7 @@ class ServerGroupServer(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[str]:
         """
-        The type of instance. Optional choice contains `ecs`, `eni`.
+        The type of instance. Optional choice contains `ecs`, `eni`, `ip`. When the `type` of `server_group_id` is `ip`, only `ip` is supported.
         """
         return pulumi.get(self, "type")
 

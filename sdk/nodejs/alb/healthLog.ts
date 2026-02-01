@@ -4,6 +4,26 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * Provides a resource to manage alb health log
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@volcengine/pulumi";
+ *
+ * // Enable health check log collection
+ * const example = new volcengine.alb.HealthLog("example", {
+ *     loadBalancerId: "alb-bdchexlt87pc8dv40nbr6mu7",
+ *     projectId: "29018d87-858b-4d24-bb8e-5ac958fa5ca5",
+ *     topicId: "cd507e58-64d2-48e3-9e98-f384430d773a",
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * The AlbHealthLog is not support import.
+ */
 export class HealthLog extends pulumi.CustomResource {
     /**
      * Get an existing HealthLog resource's state with the given name, ID, and optional extra

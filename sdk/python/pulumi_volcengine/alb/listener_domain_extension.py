@@ -14,30 +14,31 @@ __all__ = ['ListenerDomainExtensionInitArgs', 'ListenerDomainExtension']
 @pulumi.input_type
 class ListenerDomainExtensionInitArgs:
     def __init__(__self__, *,
-                 certificate_id: pulumi.Input[str],
                  domain: pulumi.Input[str],
-                 listener_id: pulumi.Input[str]):
+                 listener_id: pulumi.Input[str],
+                 cert_center_certificate_id: Optional[pulumi.Input[str]] = None,
+                 certificate_id: Optional[pulumi.Input[str]] = None,
+                 certificate_source: Optional[pulumi.Input[str]] = None,
+                 pca_leaf_certificate_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a ListenerDomainExtension resource.
-        :param pulumi.Input[str] certificate_id: Server certificate used for the domain name.
         :param pulumi.Input[str] domain: The domain name. The maximum number of associated domain names for an HTTPS listener is 20, with a value range of 1 to 20.
         :param pulumi.Input[str] listener_id: The listener id. Only HTTPS listener is effective.
+        :param pulumi.Input[str] cert_center_certificate_id: The server certificate ID used by the domain name. Valid when the certificate_source is `cert_center`.
+        :param pulumi.Input[str] certificate_id: Server certificate used for the domain name. Valid when the certificate_source is `alb`.
+        :param pulumi.Input[str] certificate_source: The source of the certificate. Valid values: `alb`, `cert_center`, `pca_leaf`. Default is `alb`.
+        :param pulumi.Input[str] pca_leaf_certificate_id: The server certificate ID used by the domain name. Valid when the certificate source is `pca_leaf`.
         """
-        pulumi.set(__self__, "certificate_id", certificate_id)
         pulumi.set(__self__, "domain", domain)
         pulumi.set(__self__, "listener_id", listener_id)
-
-    @property
-    @pulumi.getter(name="certificateId")
-    def certificate_id(self) -> pulumi.Input[str]:
-        """
-        Server certificate used for the domain name.
-        """
-        return pulumi.get(self, "certificate_id")
-
-    @certificate_id.setter
-    def certificate_id(self, value: pulumi.Input[str]):
-        pulumi.set(self, "certificate_id", value)
+        if cert_center_certificate_id is not None:
+            pulumi.set(__self__, "cert_center_certificate_id", cert_center_certificate_id)
+        if certificate_id is not None:
+            pulumi.set(__self__, "certificate_id", certificate_id)
+        if certificate_source is not None:
+            pulumi.set(__self__, "certificate_source", certificate_source)
+        if pca_leaf_certificate_id is not None:
+            pulumi.set(__self__, "pca_leaf_certificate_id", pca_leaf_certificate_id)
 
     @property
     @pulumi.getter
@@ -63,41 +64,125 @@ class ListenerDomainExtensionInitArgs:
     def listener_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "listener_id", value)
 
+    @property
+    @pulumi.getter(name="certCenterCertificateId")
+    def cert_center_certificate_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The server certificate ID used by the domain name. Valid when the certificate_source is `cert_center`.
+        """
+        return pulumi.get(self, "cert_center_certificate_id")
 
-@pulumi.input_type
-class _ListenerDomainExtensionState:
-    def __init__(__self__, *,
-                 certificate_id: Optional[pulumi.Input[str]] = None,
-                 domain: Optional[pulumi.Input[str]] = None,
-                 domain_extension_id: Optional[pulumi.Input[str]] = None,
-                 listener_id: Optional[pulumi.Input[str]] = None):
-        """
-        Input properties used for looking up and filtering ListenerDomainExtension resources.
-        :param pulumi.Input[str] certificate_id: Server certificate used for the domain name.
-        :param pulumi.Input[str] domain: The domain name. The maximum number of associated domain names for an HTTPS listener is 20, with a value range of 1 to 20.
-        :param pulumi.Input[str] domain_extension_id: The id of the domain extension.
-        :param pulumi.Input[str] listener_id: The listener id. Only HTTPS listener is effective.
-        """
-        if certificate_id is not None:
-            pulumi.set(__self__, "certificate_id", certificate_id)
-        if domain is not None:
-            pulumi.set(__self__, "domain", domain)
-        if domain_extension_id is not None:
-            pulumi.set(__self__, "domain_extension_id", domain_extension_id)
-        if listener_id is not None:
-            pulumi.set(__self__, "listener_id", listener_id)
+    @cert_center_certificate_id.setter
+    def cert_center_certificate_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cert_center_certificate_id", value)
 
     @property
     @pulumi.getter(name="certificateId")
     def certificate_id(self) -> Optional[pulumi.Input[str]]:
         """
-        Server certificate used for the domain name.
+        Server certificate used for the domain name. Valid when the certificate_source is `alb`.
         """
         return pulumi.get(self, "certificate_id")
 
     @certificate_id.setter
     def certificate_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "certificate_id", value)
+
+    @property
+    @pulumi.getter(name="certificateSource")
+    def certificate_source(self) -> Optional[pulumi.Input[str]]:
+        """
+        The source of the certificate. Valid values: `alb`, `cert_center`, `pca_leaf`. Default is `alb`.
+        """
+        return pulumi.get(self, "certificate_source")
+
+    @certificate_source.setter
+    def certificate_source(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "certificate_source", value)
+
+    @property
+    @pulumi.getter(name="pcaLeafCertificateId")
+    def pca_leaf_certificate_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The server certificate ID used by the domain name. Valid when the certificate source is `pca_leaf`.
+        """
+        return pulumi.get(self, "pca_leaf_certificate_id")
+
+    @pca_leaf_certificate_id.setter
+    def pca_leaf_certificate_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pca_leaf_certificate_id", value)
+
+
+@pulumi.input_type
+class _ListenerDomainExtensionState:
+    def __init__(__self__, *,
+                 cert_center_certificate_id: Optional[pulumi.Input[str]] = None,
+                 certificate_id: Optional[pulumi.Input[str]] = None,
+                 certificate_source: Optional[pulumi.Input[str]] = None,
+                 domain: Optional[pulumi.Input[str]] = None,
+                 domain_extension_id: Optional[pulumi.Input[str]] = None,
+                 listener_id: Optional[pulumi.Input[str]] = None,
+                 pca_leaf_certificate_id: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering ListenerDomainExtension resources.
+        :param pulumi.Input[str] cert_center_certificate_id: The server certificate ID used by the domain name. Valid when the certificate_source is `cert_center`.
+        :param pulumi.Input[str] certificate_id: Server certificate used for the domain name. Valid when the certificate_source is `alb`.
+        :param pulumi.Input[str] certificate_source: The source of the certificate. Valid values: `alb`, `cert_center`, `pca_leaf`. Default is `alb`.
+        :param pulumi.Input[str] domain: The domain name. The maximum number of associated domain names for an HTTPS listener is 20, with a value range of 1 to 20.
+        :param pulumi.Input[str] domain_extension_id: The id of the domain extension.
+        :param pulumi.Input[str] listener_id: The listener id. Only HTTPS listener is effective.
+        :param pulumi.Input[str] pca_leaf_certificate_id: The server certificate ID used by the domain name. Valid when the certificate source is `pca_leaf`.
+        """
+        if cert_center_certificate_id is not None:
+            pulumi.set(__self__, "cert_center_certificate_id", cert_center_certificate_id)
+        if certificate_id is not None:
+            pulumi.set(__self__, "certificate_id", certificate_id)
+        if certificate_source is not None:
+            pulumi.set(__self__, "certificate_source", certificate_source)
+        if domain is not None:
+            pulumi.set(__self__, "domain", domain)
+        if domain_extension_id is not None:
+            pulumi.set(__self__, "domain_extension_id", domain_extension_id)
+        if listener_id is not None:
+            pulumi.set(__self__, "listener_id", listener_id)
+        if pca_leaf_certificate_id is not None:
+            pulumi.set(__self__, "pca_leaf_certificate_id", pca_leaf_certificate_id)
+
+    @property
+    @pulumi.getter(name="certCenterCertificateId")
+    def cert_center_certificate_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The server certificate ID used by the domain name. Valid when the certificate_source is `cert_center`.
+        """
+        return pulumi.get(self, "cert_center_certificate_id")
+
+    @cert_center_certificate_id.setter
+    def cert_center_certificate_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cert_center_certificate_id", value)
+
+    @property
+    @pulumi.getter(name="certificateId")
+    def certificate_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Server certificate used for the domain name. Valid when the certificate_source is `alb`.
+        """
+        return pulumi.get(self, "certificate_id")
+
+    @certificate_id.setter
+    def certificate_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "certificate_id", value)
+
+    @property
+    @pulumi.getter(name="certificateSource")
+    def certificate_source(self) -> Optional[pulumi.Input[str]]:
+        """
+        The source of the certificate. Valid values: `alb`, `cert_center`, `pca_leaf`. Default is `alb`.
+        """
+        return pulumi.get(self, "certificate_source")
+
+    @certificate_source.setter
+    def certificate_source(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "certificate_source", value)
 
     @property
     @pulumi.getter
@@ -135,15 +220,30 @@ class _ListenerDomainExtensionState:
     def listener_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "listener_id", value)
 
+    @property
+    @pulumi.getter(name="pcaLeafCertificateId")
+    def pca_leaf_certificate_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The server certificate ID used by the domain name. Valid when the certificate source is `pca_leaf`.
+        """
+        return pulumi.get(self, "pca_leaf_certificate_id")
+
+    @pca_leaf_certificate_id.setter
+    def pca_leaf_certificate_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pca_leaf_certificate_id", value)
+
 
 class ListenerDomainExtension(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 cert_center_certificate_id: Optional[pulumi.Input[str]] = None,
                  certificate_id: Optional[pulumi.Input[str]] = None,
+                 certificate_source: Optional[pulumi.Input[str]] = None,
                  domain: Optional[pulumi.Input[str]] = None,
                  listener_id: Optional[pulumi.Input[str]] = None,
+                 pca_leaf_certificate_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Provides a resource to manage alb listener domain extension
@@ -184,9 +284,12 @@ class ListenerDomainExtension(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] certificate_id: Server certificate used for the domain name.
+        :param pulumi.Input[str] cert_center_certificate_id: The server certificate ID used by the domain name. Valid when the certificate_source is `cert_center`.
+        :param pulumi.Input[str] certificate_id: Server certificate used for the domain name. Valid when the certificate_source is `alb`.
+        :param pulumi.Input[str] certificate_source: The source of the certificate. Valid values: `alb`, `cert_center`, `pca_leaf`. Default is `alb`.
         :param pulumi.Input[str] domain: The domain name. The maximum number of associated domain names for an HTTPS listener is 20, with a value range of 1 to 20.
         :param pulumi.Input[str] listener_id: The listener id. Only HTTPS listener is effective.
+        :param pulumi.Input[str] pca_leaf_certificate_id: The server certificate ID used by the domain name. Valid when the certificate source is `pca_leaf`.
         """
         ...
     @overload
@@ -246,9 +349,12 @@ class ListenerDomainExtension(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 cert_center_certificate_id: Optional[pulumi.Input[str]] = None,
                  certificate_id: Optional[pulumi.Input[str]] = None,
+                 certificate_source: Optional[pulumi.Input[str]] = None,
                  domain: Optional[pulumi.Input[str]] = None,
                  listener_id: Optional[pulumi.Input[str]] = None,
+                 pca_leaf_certificate_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -258,15 +364,16 @@ class ListenerDomainExtension(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ListenerDomainExtensionInitArgs.__new__(ListenerDomainExtensionInitArgs)
 
-            if certificate_id is None and not opts.urn:
-                raise TypeError("Missing required property 'certificate_id'")
+            __props__.__dict__["cert_center_certificate_id"] = cert_center_certificate_id
             __props__.__dict__["certificate_id"] = certificate_id
+            __props__.__dict__["certificate_source"] = certificate_source
             if domain is None and not opts.urn:
                 raise TypeError("Missing required property 'domain'")
             __props__.__dict__["domain"] = domain
             if listener_id is None and not opts.urn:
                 raise TypeError("Missing required property 'listener_id'")
             __props__.__dict__["listener_id"] = listener_id
+            __props__.__dict__["pca_leaf_certificate_id"] = pca_leaf_certificate_id
             __props__.__dict__["domain_extension_id"] = None
         super(ListenerDomainExtension, __self__).__init__(
             'volcengine:alb/listenerDomainExtension:ListenerDomainExtension',
@@ -278,10 +385,13 @@ class ListenerDomainExtension(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            cert_center_certificate_id: Optional[pulumi.Input[str]] = None,
             certificate_id: Optional[pulumi.Input[str]] = None,
+            certificate_source: Optional[pulumi.Input[str]] = None,
             domain: Optional[pulumi.Input[str]] = None,
             domain_extension_id: Optional[pulumi.Input[str]] = None,
-            listener_id: Optional[pulumi.Input[str]] = None) -> 'ListenerDomainExtension':
+            listener_id: Optional[pulumi.Input[str]] = None,
+            pca_leaf_certificate_id: Optional[pulumi.Input[str]] = None) -> 'ListenerDomainExtension':
         """
         Get an existing ListenerDomainExtension resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -289,28 +399,50 @@ class ListenerDomainExtension(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] certificate_id: Server certificate used for the domain name.
+        :param pulumi.Input[str] cert_center_certificate_id: The server certificate ID used by the domain name. Valid when the certificate_source is `cert_center`.
+        :param pulumi.Input[str] certificate_id: Server certificate used for the domain name. Valid when the certificate_source is `alb`.
+        :param pulumi.Input[str] certificate_source: The source of the certificate. Valid values: `alb`, `cert_center`, `pca_leaf`. Default is `alb`.
         :param pulumi.Input[str] domain: The domain name. The maximum number of associated domain names for an HTTPS listener is 20, with a value range of 1 to 20.
         :param pulumi.Input[str] domain_extension_id: The id of the domain extension.
         :param pulumi.Input[str] listener_id: The listener id. Only HTTPS listener is effective.
+        :param pulumi.Input[str] pca_leaf_certificate_id: The server certificate ID used by the domain name. Valid when the certificate source is `pca_leaf`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _ListenerDomainExtensionState.__new__(_ListenerDomainExtensionState)
 
+        __props__.__dict__["cert_center_certificate_id"] = cert_center_certificate_id
         __props__.__dict__["certificate_id"] = certificate_id
+        __props__.__dict__["certificate_source"] = certificate_source
         __props__.__dict__["domain"] = domain
         __props__.__dict__["domain_extension_id"] = domain_extension_id
         __props__.__dict__["listener_id"] = listener_id
+        __props__.__dict__["pca_leaf_certificate_id"] = pca_leaf_certificate_id
         return ListenerDomainExtension(resource_name, opts=opts, __props__=__props__)
 
     @property
-    @pulumi.getter(name="certificateId")
-    def certificate_id(self) -> pulumi.Output[str]:
+    @pulumi.getter(name="certCenterCertificateId")
+    def cert_center_certificate_id(self) -> pulumi.Output[Optional[str]]:
         """
-        Server certificate used for the domain name.
+        The server certificate ID used by the domain name. Valid when the certificate_source is `cert_center`.
+        """
+        return pulumi.get(self, "cert_center_certificate_id")
+
+    @property
+    @pulumi.getter(name="certificateId")
+    def certificate_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        Server certificate used for the domain name. Valid when the certificate_source is `alb`.
         """
         return pulumi.get(self, "certificate_id")
+
+    @property
+    @pulumi.getter(name="certificateSource")
+    def certificate_source(self) -> pulumi.Output[Optional[str]]:
+        """
+        The source of the certificate. Valid values: `alb`, `cert_center`, `pca_leaf`. Default is `alb`.
+        """
+        return pulumi.get(self, "certificate_source")
 
     @property
     @pulumi.getter
@@ -335,4 +467,12 @@ class ListenerDomainExtension(pulumi.CustomResource):
         The listener id. Only HTTPS listener is effective.
         """
         return pulumi.get(self, "listener_id")
+
+    @property
+    @pulumi.getter(name="pcaLeafCertificateId")
+    def pca_leaf_certificate_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        The server certificate ID used by the domain name. Valid when the certificate source is `pca_leaf`.
+        """
+        return pulumi.get(self, "pca_leaf_certificate_id")
 

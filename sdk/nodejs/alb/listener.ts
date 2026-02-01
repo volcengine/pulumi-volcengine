@@ -169,7 +169,7 @@ export class Listener extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * The domain extensions of the Listener.
+     * The domain extensions of the Listener. Only HTTPS listener is effective.
      */
     public readonly domainExtensions!: pulumi.Output<outputs.alb.ListenerDomainExtension[] | undefined>;
     /**
@@ -357,7 +357,7 @@ export interface ListenerState {
      */
     description?: pulumi.Input<string>;
     /**
-     * The domain extensions of the Listener.
+     * The domain extensions of the Listener. Only HTTPS listener is effective.
      */
     domainExtensions?: pulumi.Input<pulumi.Input<inputs.alb.ListenerDomainExtension>[]>;
     /**
@@ -463,7 +463,7 @@ export interface ListenerArgs {
      */
     description?: pulumi.Input<string>;
     /**
-     * The domain extensions of the Listener.
+     * The domain extensions of the Listener. Only HTTPS listener is effective.
      */
     domainExtensions?: pulumi.Input<pulumi.Input<inputs.alb.ListenerDomainExtension>[]>;
     /**

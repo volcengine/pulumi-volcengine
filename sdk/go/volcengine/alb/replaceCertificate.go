@@ -12,18 +12,92 @@ import (
 	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
+// Provides a resource to manage alb replace certificate
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"os"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/alb"
+//
+// )
+//
+//	func readFileOrPanic(path string) pulumi.StringPtrInput {
+//		data, err := os.ReadFile(path)
+//		if err != nil {
+//			panic(err.Error())
+//		}
+//		return pulumi.String(string(data))
+//	}
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// replace server certificate
+//			_, err := alb.NewReplaceCertificate(ctx, "foo1", &alb.ReplaceCertificateArgs{
+//				CertificateType:  pulumi.String("server"),
+//				OldCertificateId: pulumi.String("cert-bdde0znk524g8dv40or*****"),
+//				UpdateMode:       pulumi.String("new"),
+//				CertificateName:  pulumi.String("replaced-server-cert"),
+//				Description:      pulumi.String("Replaced server certificate"),
+//				ProjectName:      pulumi.String("default"),
+//				PublicKey:        readFileOrPanic("/path/server_certificate.pem"),
+//				PrivateKey:       readFileOrPanic("/path/private_key_rsa.pem"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = alb.NewReplaceCertificate(ctx, "foo2", &alb.ReplaceCertificateArgs{
+//				CertificateType:   pulumi.String("server"),
+//				OldCertificateId:  pulumi.String("cert-1pf4a8k8tokcg845wfar*****"),
+//				UpdateMode:        pulumi.String("stock"),
+//				CertificateSource: pulumi.String("alb"),
+//				CertificateId:     pulumi.String("cert-bdde0znk524g8dv40or*****"),
+//				CertificateName:   pulumi.String("replaced-server-cert-stock"),
+//				Description:       pulumi.String("Replaced server certificate (stock)"),
+//				ProjectName:       pulumi.String("default"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// replace ca certificate
+//			_, err = alb.NewReplaceCertificate(ctx, "foo3", &alb.ReplaceCertificateArgs{
+//				CertificateType:  pulumi.String("ca"),
+//				OldCertificateId: pulumi.String("cert-xoekc6lpu9s054ov5eo*****"),
+//				UpdateMode:       pulumi.String("new"),
+//				CertificateName:  pulumi.String("acc-test-replace"),
+//				CaCertificate:    readFileOrPanic("/path/server_certificate.pem"),
+//				Description:      pulumi.String("acc-test-replace"),
+//				ProjectName:      pulumi.String("default"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// The AlbReplaceCertificate is not support import.
 type ReplaceCertificate struct {
 	pulumi.CustomResourceState
 
-	// The content of the CA certificate. Required when certificate_type is 'ca' and update_mode is 'new'.
+	// The content of the CA certificate. Required when certificateType is 'ca' and updateMode is 'new'.
 	CaCertificate pulumi.StringPtrOutput `pulumi:"caCertificate"`
-	// The ID of the new certificate. Required when certificate_source is 'cert_center' and update_mode is 'stock'.
+	// The ID of the new certificate. Required when certificateSource is 'cert_center' and updateMode is 'stock'.
 	CertCenterCertificateId pulumi.StringPtrOutput `pulumi:"certCenterCertificateId"`
-	// The ID of the new certificate or CA certificate. Required when certificate_source is 'alb' and update_mode is 'stock'.
+	// The ID of the new certificate or CA certificate. Required when certificateSource is 'alb' and updateMode is 'stock'.
 	CertificateId pulumi.StringPtrOutput `pulumi:"certificateId"`
 	// The name of the certificate.
 	CertificateName pulumi.StringPtrOutput `pulumi:"certificateName"`
-	// The source of the server certificate. Valid values: `alb`, `cert_center`. Required when update_mode is 'stock'.
+	// The source of the server certificate. Valid values: `alb`, `certCenter`. Required when updateMode is 'stock'.
 	CertificateSource pulumi.StringPtrOutput `pulumi:"certificateSource"`
 	// The type of the certificate. Valid values: 'server' for server certificates, 'ca' for CA certificates.
 	CertificateType pulumi.StringOutput `pulumi:"certificateType"`
@@ -31,14 +105,13 @@ type ReplaceCertificate struct {
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The ID of the old certificate to be replaced.
 	OldCertificateId pulumi.StringOutput `pulumi:"oldCertificateId"`
-	// The private key of the server certificate. Required when certificate_type is 'server' and update_mode is 'new'.
+	// The private key of the server certificate. Required when certificateType is 'server' and updateMode is 'new'.
 	PrivateKey pulumi.StringPtrOutput `pulumi:"privateKey"`
 	// The project name of the certificate.
 	ProjectName pulumi.StringPtrOutput `pulumi:"projectName"`
-	// The public key of the server certificate. Required when certificate_type is 'server' and update_mode is 'new'.
+	// The public key of the server certificate. Required when certificateType is 'server' and updateMode is 'new'.
 	PublicKey pulumi.StringPtrOutput `pulumi:"publicKey"`
-	// The mode of certificate replacement. Valid values: 'new' for uploading new certificate, 'stock' for using existing
-	// certificate.
+	// The mode of certificate replacement. Valid values: 'new' for uploading new certificate, 'stock' for using existing certificate.
 	UpdateMode pulumi.StringOutput `pulumi:"updateMode"`
 }
 
@@ -88,15 +161,15 @@ func GetReplaceCertificate(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ReplaceCertificate resources.
 type replaceCertificateState struct {
-	// The content of the CA certificate. Required when certificate_type is 'ca' and update_mode is 'new'.
+	// The content of the CA certificate. Required when certificateType is 'ca' and updateMode is 'new'.
 	CaCertificate *string `pulumi:"caCertificate"`
-	// The ID of the new certificate. Required when certificate_source is 'cert_center' and update_mode is 'stock'.
+	// The ID of the new certificate. Required when certificateSource is 'cert_center' and updateMode is 'stock'.
 	CertCenterCertificateId *string `pulumi:"certCenterCertificateId"`
-	// The ID of the new certificate or CA certificate. Required when certificate_source is 'alb' and update_mode is 'stock'.
+	// The ID of the new certificate or CA certificate. Required when certificateSource is 'alb' and updateMode is 'stock'.
 	CertificateId *string `pulumi:"certificateId"`
 	// The name of the certificate.
 	CertificateName *string `pulumi:"certificateName"`
-	// The source of the server certificate. Valid values: `alb`, `cert_center`. Required when update_mode is 'stock'.
+	// The source of the server certificate. Valid values: `alb`, `certCenter`. Required when updateMode is 'stock'.
 	CertificateSource *string `pulumi:"certificateSource"`
 	// The type of the certificate. Valid values: 'server' for server certificates, 'ca' for CA certificates.
 	CertificateType *string `pulumi:"certificateType"`
@@ -104,27 +177,26 @@ type replaceCertificateState struct {
 	Description *string `pulumi:"description"`
 	// The ID of the old certificate to be replaced.
 	OldCertificateId *string `pulumi:"oldCertificateId"`
-	// The private key of the server certificate. Required when certificate_type is 'server' and update_mode is 'new'.
+	// The private key of the server certificate. Required when certificateType is 'server' and updateMode is 'new'.
 	PrivateKey *string `pulumi:"privateKey"`
 	// The project name of the certificate.
 	ProjectName *string `pulumi:"projectName"`
-	// The public key of the server certificate. Required when certificate_type is 'server' and update_mode is 'new'.
+	// The public key of the server certificate. Required when certificateType is 'server' and updateMode is 'new'.
 	PublicKey *string `pulumi:"publicKey"`
-	// The mode of certificate replacement. Valid values: 'new' for uploading new certificate, 'stock' for using existing
-	// certificate.
+	// The mode of certificate replacement. Valid values: 'new' for uploading new certificate, 'stock' for using existing certificate.
 	UpdateMode *string `pulumi:"updateMode"`
 }
 
 type ReplaceCertificateState struct {
-	// The content of the CA certificate. Required when certificate_type is 'ca' and update_mode is 'new'.
+	// The content of the CA certificate. Required when certificateType is 'ca' and updateMode is 'new'.
 	CaCertificate pulumi.StringPtrInput
-	// The ID of the new certificate. Required when certificate_source is 'cert_center' and update_mode is 'stock'.
+	// The ID of the new certificate. Required when certificateSource is 'cert_center' and updateMode is 'stock'.
 	CertCenterCertificateId pulumi.StringPtrInput
-	// The ID of the new certificate or CA certificate. Required when certificate_source is 'alb' and update_mode is 'stock'.
+	// The ID of the new certificate or CA certificate. Required when certificateSource is 'alb' and updateMode is 'stock'.
 	CertificateId pulumi.StringPtrInput
 	// The name of the certificate.
 	CertificateName pulumi.StringPtrInput
-	// The source of the server certificate. Valid values: `alb`, `cert_center`. Required when update_mode is 'stock'.
+	// The source of the server certificate. Valid values: `alb`, `certCenter`. Required when updateMode is 'stock'.
 	CertificateSource pulumi.StringPtrInput
 	// The type of the certificate. Valid values: 'server' for server certificates, 'ca' for CA certificates.
 	CertificateType pulumi.StringPtrInput
@@ -132,14 +204,13 @@ type ReplaceCertificateState struct {
 	Description pulumi.StringPtrInput
 	// The ID of the old certificate to be replaced.
 	OldCertificateId pulumi.StringPtrInput
-	// The private key of the server certificate. Required when certificate_type is 'server' and update_mode is 'new'.
+	// The private key of the server certificate. Required when certificateType is 'server' and updateMode is 'new'.
 	PrivateKey pulumi.StringPtrInput
 	// The project name of the certificate.
 	ProjectName pulumi.StringPtrInput
-	// The public key of the server certificate. Required when certificate_type is 'server' and update_mode is 'new'.
+	// The public key of the server certificate. Required when certificateType is 'server' and updateMode is 'new'.
 	PublicKey pulumi.StringPtrInput
-	// The mode of certificate replacement. Valid values: 'new' for uploading new certificate, 'stock' for using existing
-	// certificate.
+	// The mode of certificate replacement. Valid values: 'new' for uploading new certificate, 'stock' for using existing certificate.
 	UpdateMode pulumi.StringPtrInput
 }
 
@@ -148,15 +219,15 @@ func (ReplaceCertificateState) ElementType() reflect.Type {
 }
 
 type replaceCertificateArgs struct {
-	// The content of the CA certificate. Required when certificate_type is 'ca' and update_mode is 'new'.
+	// The content of the CA certificate. Required when certificateType is 'ca' and updateMode is 'new'.
 	CaCertificate *string `pulumi:"caCertificate"`
-	// The ID of the new certificate. Required when certificate_source is 'cert_center' and update_mode is 'stock'.
+	// The ID of the new certificate. Required when certificateSource is 'cert_center' and updateMode is 'stock'.
 	CertCenterCertificateId *string `pulumi:"certCenterCertificateId"`
-	// The ID of the new certificate or CA certificate. Required when certificate_source is 'alb' and update_mode is 'stock'.
+	// The ID of the new certificate or CA certificate. Required when certificateSource is 'alb' and updateMode is 'stock'.
 	CertificateId *string `pulumi:"certificateId"`
 	// The name of the certificate.
 	CertificateName *string `pulumi:"certificateName"`
-	// The source of the server certificate. Valid values: `alb`, `cert_center`. Required when update_mode is 'stock'.
+	// The source of the server certificate. Valid values: `alb`, `certCenter`. Required when updateMode is 'stock'.
 	CertificateSource *string `pulumi:"certificateSource"`
 	// The type of the certificate. Valid values: 'server' for server certificates, 'ca' for CA certificates.
 	CertificateType string `pulumi:"certificateType"`
@@ -164,28 +235,27 @@ type replaceCertificateArgs struct {
 	Description *string `pulumi:"description"`
 	// The ID of the old certificate to be replaced.
 	OldCertificateId string `pulumi:"oldCertificateId"`
-	// The private key of the server certificate. Required when certificate_type is 'server' and update_mode is 'new'.
+	// The private key of the server certificate. Required when certificateType is 'server' and updateMode is 'new'.
 	PrivateKey *string `pulumi:"privateKey"`
 	// The project name of the certificate.
 	ProjectName *string `pulumi:"projectName"`
-	// The public key of the server certificate. Required when certificate_type is 'server' and update_mode is 'new'.
+	// The public key of the server certificate. Required when certificateType is 'server' and updateMode is 'new'.
 	PublicKey *string `pulumi:"publicKey"`
-	// The mode of certificate replacement. Valid values: 'new' for uploading new certificate, 'stock' for using existing
-	// certificate.
+	// The mode of certificate replacement. Valid values: 'new' for uploading new certificate, 'stock' for using existing certificate.
 	UpdateMode string `pulumi:"updateMode"`
 }
 
 // The set of arguments for constructing a ReplaceCertificate resource.
 type ReplaceCertificateArgs struct {
-	// The content of the CA certificate. Required when certificate_type is 'ca' and update_mode is 'new'.
+	// The content of the CA certificate. Required when certificateType is 'ca' and updateMode is 'new'.
 	CaCertificate pulumi.StringPtrInput
-	// The ID of the new certificate. Required when certificate_source is 'cert_center' and update_mode is 'stock'.
+	// The ID of the new certificate. Required when certificateSource is 'cert_center' and updateMode is 'stock'.
 	CertCenterCertificateId pulumi.StringPtrInput
-	// The ID of the new certificate or CA certificate. Required when certificate_source is 'alb' and update_mode is 'stock'.
+	// The ID of the new certificate or CA certificate. Required when certificateSource is 'alb' and updateMode is 'stock'.
 	CertificateId pulumi.StringPtrInput
 	// The name of the certificate.
 	CertificateName pulumi.StringPtrInput
-	// The source of the server certificate. Valid values: `alb`, `cert_center`. Required when update_mode is 'stock'.
+	// The source of the server certificate. Valid values: `alb`, `certCenter`. Required when updateMode is 'stock'.
 	CertificateSource pulumi.StringPtrInput
 	// The type of the certificate. Valid values: 'server' for server certificates, 'ca' for CA certificates.
 	CertificateType pulumi.StringInput
@@ -193,14 +263,13 @@ type ReplaceCertificateArgs struct {
 	Description pulumi.StringPtrInput
 	// The ID of the old certificate to be replaced.
 	OldCertificateId pulumi.StringInput
-	// The private key of the server certificate. Required when certificate_type is 'server' and update_mode is 'new'.
+	// The private key of the server certificate. Required when certificateType is 'server' and updateMode is 'new'.
 	PrivateKey pulumi.StringPtrInput
 	// The project name of the certificate.
 	ProjectName pulumi.StringPtrInput
-	// The public key of the server certificate. Required when certificate_type is 'server' and update_mode is 'new'.
+	// The public key of the server certificate. Required when certificateType is 'server' and updateMode is 'new'.
 	PublicKey pulumi.StringPtrInput
-	// The mode of certificate replacement. Valid values: 'new' for uploading new certificate, 'stock' for using existing
-	// certificate.
+	// The mode of certificate replacement. Valid values: 'new' for uploading new certificate, 'stock' for using existing certificate.
 	UpdateMode pulumi.StringInput
 }
 
@@ -291,17 +360,17 @@ func (o ReplaceCertificateOutput) ToReplaceCertificateOutputWithContext(ctx cont
 	return o
 }
 
-// The content of the CA certificate. Required when certificate_type is 'ca' and update_mode is 'new'.
+// The content of the CA certificate. Required when certificateType is 'ca' and updateMode is 'new'.
 func (o ReplaceCertificateOutput) CaCertificate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ReplaceCertificate) pulumi.StringPtrOutput { return v.CaCertificate }).(pulumi.StringPtrOutput)
 }
 
-// The ID of the new certificate. Required when certificate_source is 'cert_center' and update_mode is 'stock'.
+// The ID of the new certificate. Required when certificateSource is 'cert_center' and updateMode is 'stock'.
 func (o ReplaceCertificateOutput) CertCenterCertificateId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ReplaceCertificate) pulumi.StringPtrOutput { return v.CertCenterCertificateId }).(pulumi.StringPtrOutput)
 }
 
-// The ID of the new certificate or CA certificate. Required when certificate_source is 'alb' and update_mode is 'stock'.
+// The ID of the new certificate or CA certificate. Required when certificateSource is 'alb' and updateMode is 'stock'.
 func (o ReplaceCertificateOutput) CertificateId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ReplaceCertificate) pulumi.StringPtrOutput { return v.CertificateId }).(pulumi.StringPtrOutput)
 }
@@ -311,7 +380,7 @@ func (o ReplaceCertificateOutput) CertificateName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ReplaceCertificate) pulumi.StringPtrOutput { return v.CertificateName }).(pulumi.StringPtrOutput)
 }
 
-// The source of the server certificate. Valid values: `alb`, `cert_center`. Required when update_mode is 'stock'.
+// The source of the server certificate. Valid values: `alb`, `certCenter`. Required when updateMode is 'stock'.
 func (o ReplaceCertificateOutput) CertificateSource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ReplaceCertificate) pulumi.StringPtrOutput { return v.CertificateSource }).(pulumi.StringPtrOutput)
 }
@@ -331,7 +400,7 @@ func (o ReplaceCertificateOutput) OldCertificateId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ReplaceCertificate) pulumi.StringOutput { return v.OldCertificateId }).(pulumi.StringOutput)
 }
 
-// The private key of the server certificate. Required when certificate_type is 'server' and update_mode is 'new'.
+// The private key of the server certificate. Required when certificateType is 'server' and updateMode is 'new'.
 func (o ReplaceCertificateOutput) PrivateKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ReplaceCertificate) pulumi.StringPtrOutput { return v.PrivateKey }).(pulumi.StringPtrOutput)
 }
@@ -341,13 +410,12 @@ func (o ReplaceCertificateOutput) ProjectName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ReplaceCertificate) pulumi.StringPtrOutput { return v.ProjectName }).(pulumi.StringPtrOutput)
 }
 
-// The public key of the server certificate. Required when certificate_type is 'server' and update_mode is 'new'.
+// The public key of the server certificate. Required when certificateType is 'server' and updateMode is 'new'.
 func (o ReplaceCertificateOutput) PublicKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ReplaceCertificate) pulumi.StringPtrOutput { return v.PublicKey }).(pulumi.StringPtrOutput)
 }
 
-// The mode of certificate replacement. Valid values: 'new' for uploading new certificate, 'stock' for using existing
-// certificate.
+// The mode of certificate replacement. Valid values: 'new' for uploading new certificate, 'stock' for using existing certificate.
 func (o ReplaceCertificateOutput) UpdateMode() pulumi.StringOutput {
 	return o.ApplyT(func(v *ReplaceCertificate) pulumi.StringOutput { return v.UpdateMode }).(pulumi.StringOutput)
 }

@@ -14,13 +14,25 @@ namespace Pulumi.Volcengine.Clb.Outputs
     public sealed class ClbsClbResult
     {
         /// <summary>
-        /// The address ip version of the Clb.
+        /// The access log configuration of the CLB instance.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.ClbsClbAccessLogResult> AccessLogs;
+        /// <summary>
+        /// The address IP version of the CLB.
         /// </summary>
         public readonly string AddressIpVersion;
+        /// <summary>
+        /// The billing type of the Ipv6 EIP assigned to CLB. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic`.
+        /// </summary>
+        public readonly string BillingType;
         /// <summary>
         /// The business status of the Clb.
         /// </summary>
         public readonly string BusinessStatus;
+        /// <summary>
+        /// Whether the CLB instance has enabled the "Allow Backend Security Groups" function.
+        /// </summary>
+        public readonly string BypassSecurityGroupEnabled;
         /// <summary>
         /// The create time of the Clb.
         /// </summary>
@@ -34,7 +46,7 @@ namespace Pulumi.Volcengine.Clb.Outputs
         /// </summary>
         public readonly string Description;
         /// <summary>
-        /// The Eip address of the Clb.
+        /// The public ip address of the Clb.
         /// </summary>
         public readonly string EipAddress;
         /// <summary>
@@ -42,13 +54,25 @@ namespace Pulumi.Volcengine.Clb.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.ClbsClbEipBillingConfigResult> EipBillingConfigs;
         /// <summary>
-        /// The Eip ID of the Clb.
+        /// The eip ID of the public IP bound to the private IPv4 address.
         /// </summary>
         public readonly string EipId;
+        /// <summary>
+        /// Whether the CLB instance is enabled.
+        /// </summary>
+        public readonly bool Enabled;
         /// <summary>
         /// The private ip address of the Clb.
         /// </summary>
         public readonly string EniAddress;
+        /// <summary>
+        /// The ENI address num of the CLB.
+        /// </summary>
+        public readonly int EniAddressNum;
+        /// <summary>
+        /// The ENI addresses of the CLB.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.ClbsClbEniAddressResult> EniAddresses;
         /// <summary>
         /// The Eni ID of the Clb.
         /// </summary>
@@ -57,6 +81,10 @@ namespace Pulumi.Volcengine.Clb.Outputs
         /// The eni ipv6 address of the Clb.
         /// </summary>
         public readonly string EniIpv6Address;
+        /// <summary>
+        /// The ID of the exclusive cluster to which the CLB instance belongs.
+        /// </summary>
+        public readonly string ExclusiveClusterId;
         /// <summary>
         /// The expired time of the CLB.
         /// </summary>
@@ -78,6 +106,10 @@ namespace Pulumi.Volcengine.Clb.Outputs
         /// </summary>
         public readonly string Ipv6EipId;
         /// <summary>
+        /// The information of the listeners in the CLB instance.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.ClbsClbListenerResult> Listeners;
+        /// <summary>
         /// The billing type of the Clb.
         /// </summary>
         public readonly string LoadBalancerBillingType;
@@ -97,6 +129,10 @@ namespace Pulumi.Volcengine.Clb.Outputs
         /// The reason why Clb is locked.
         /// </summary>
         public readonly string LockReason;
+        /// <summary>
+        /// The log topic ID of the Clb.
+        /// </summary>
+        public readonly string LogTopicId;
         /// <summary>
         /// The master zone ID of the CLB.
         /// </summary>
@@ -138,11 +174,19 @@ namespace Pulumi.Volcengine.Clb.Outputs
         /// </summary>
         public readonly string RenewType;
         /// <summary>
+        /// The information of the server groups in the CLB instance.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.ClbsClbServerGroupResult> ServerGroups;
+        /// <summary>
+        /// Whether the CLB instance is a managed resource.
+        /// </summary>
+        public readonly bool ServiceManaged;
+        /// <summary>
         /// The slave zone ID of the CLB.
         /// </summary>
         public readonly string SlaveZoneId;
         /// <summary>
-        /// The status of the Clb.
+        /// The status of the CLB.
         /// </summary>
         public readonly string Status;
         /// <summary>
@@ -154,7 +198,11 @@ namespace Pulumi.Volcengine.Clb.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.ClbsClbTagResult> Tags;
         /// <summary>
-        /// The type of the Clb.
+        /// Whether to enable the function of clearing the timestamp of TCP/HTTP/HTTPS packets (i.e., time stamp).
+        /// </summary>
+        public readonly string TimestampRemoveEnabled;
+        /// <summary>
+        /// The network type of the CLB.
         /// </summary>
         public readonly string Type;
         /// <summary>
@@ -168,9 +216,15 @@ namespace Pulumi.Volcengine.Clb.Outputs
 
         [OutputConstructor]
         private ClbsClbResult(
+            ImmutableArray<Outputs.ClbsClbAccessLogResult> accessLogs,
+
             string addressIpVersion,
 
+            string billingType,
+
             string businessStatus,
+
+            string bypassSecurityGroupEnabled,
 
             string createTime,
 
@@ -184,11 +238,19 @@ namespace Pulumi.Volcengine.Clb.Outputs
 
             string eipId,
 
+            bool enabled,
+
             string eniAddress,
+
+            int eniAddressNum,
+
+            ImmutableArray<Outputs.ClbsClbEniAddressResult> eniAddresses,
 
             string eniId,
 
             string eniIpv6Address,
+
+            string exclusiveClusterId,
 
             string expiredTime,
 
@@ -200,6 +262,8 @@ namespace Pulumi.Volcengine.Clb.Outputs
 
             string ipv6EipId,
 
+            ImmutableArray<Outputs.ClbsClbListenerResult> listeners,
+
             string loadBalancerBillingType,
 
             string loadBalancerId,
@@ -209,6 +273,8 @@ namespace Pulumi.Volcengine.Clb.Outputs
             string loadBalancerSpec,
 
             string lockReason,
+
+            string logTopicId,
 
             string masterZoneId,
 
@@ -230,6 +296,10 @@ namespace Pulumi.Volcengine.Clb.Outputs
 
             string renewType,
 
+            ImmutableArray<Outputs.ClbsClbServerGroupResult> serverGroups,
+
+            bool serviceManaged,
+
             string slaveZoneId,
 
             string status,
@@ -238,33 +308,44 @@ namespace Pulumi.Volcengine.Clb.Outputs
 
             ImmutableArray<Outputs.ClbsClbTagResult> tags,
 
+            string timestampRemoveEnabled,
+
             string type,
 
             string updateTime,
 
             string vpcId)
         {
+            AccessLogs = accessLogs;
             AddressIpVersion = addressIpVersion;
+            BillingType = billingType;
             BusinessStatus = businessStatus;
+            BypassSecurityGroupEnabled = bypassSecurityGroupEnabled;
             CreateTime = createTime;
             DeletedTime = deletedTime;
             Description = description;
             EipAddress = eipAddress;
             EipBillingConfigs = eipBillingConfigs;
             EipId = eipId;
+            Enabled = enabled;
             EniAddress = eniAddress;
+            EniAddressNum = eniAddressNum;
+            EniAddresses = eniAddresses;
             EniId = eniId;
             EniIpv6Address = eniIpv6Address;
+            ExclusiveClusterId = exclusiveClusterId;
             ExpiredTime = expiredTime;
             Id = id;
             InstanceStatus = instanceStatus;
             Ipv6AddressBandwidths = ipv6AddressBandwidths;
             Ipv6EipId = ipv6EipId;
+            Listeners = listeners;
             LoadBalancerBillingType = loadBalancerBillingType;
             LoadBalancerId = loadBalancerId;
             LoadBalancerName = loadBalancerName;
             LoadBalancerSpec = loadBalancerSpec;
             LockReason = lockReason;
+            LogTopicId = logTopicId;
             MasterZoneId = masterZoneId;
             ModificationProtectionReason = modificationProtectionReason;
             ModificationProtectionStatus = modificationProtectionStatus;
@@ -275,10 +356,13 @@ namespace Pulumi.Volcengine.Clb.Outputs
             RemainRenewTimes = remainRenewTimes;
             RenewPeriodTimes = renewPeriodTimes;
             RenewType = renewType;
+            ServerGroups = serverGroups;
+            ServiceManaged = serviceManaged;
             SlaveZoneId = slaveZoneId;
             Status = status;
             SubnetId = subnetId;
             Tags = tags;
+            TimestampRemoveEnabled = timestampRemoveEnabled;
             Type = type;
             UpdateTime = updateTime;
             VpcId = vpcId;

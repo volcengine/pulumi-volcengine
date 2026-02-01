@@ -6,6 +6,24 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
+/**
+ * Use this data source to query detailed information of alb listener healths
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const example = volcengine.alb.getListenerHealths({
+ *     listenerIds: [
+ *         "lsn-xoetdjk3dzwg54ov5ewpam7c",
+ *         "lsn-bdcxfof3fy808dv40ofappua",
+ *     ],
+ *     onlyUnHealthy: true,
+ *     projectName: "default",
+ * });
+ * ```
+ */
 /** @deprecated volcengine.alb.ListenerHealths has been deprecated in favor of volcengine.alb.getListenerHealths */
 export function listenerHealths(args: ListenerHealthsArgs, opts?: pulumi.InvokeOptions): Promise<ListenerHealthsResult> {
     pulumi.log.warn("listenerHealths is deprecated: volcengine.alb.ListenerHealths has been deprecated in favor of volcengine.alb.getListenerHealths")
@@ -23,9 +41,21 @@ export function listenerHealths(args: ListenerHealthsArgs, opts?: pulumi.InvokeO
  * A collection of arguments for invoking ListenerHealths.
  */
 export interface ListenerHealthsArgs {
+    /**
+     * A list of Listener IDs.
+     */
     listenerIds: string[];
+    /**
+     * Whether to return only backend servers with abnormal health check status.
+     */
     onlyUnHealthy?: boolean;
+    /**
+     * File name where to save data source results.
+     */
     outputFile?: string;
+    /**
+     * The project name of the listener.
+     */
     projectName?: string;
 }
 
@@ -38,12 +68,36 @@ export interface ListenerHealthsResult {
      */
     readonly id: string;
     readonly listenerIds: string[];
+    /**
+     * The collection of listener health query.
+     */
     readonly listeners: outputs.alb.ListenerHealthsListener[];
     readonly onlyUnHealthy?: boolean;
     readonly outputFile?: string;
     readonly projectName?: string;
+    /**
+     * The total count of query.
+     */
     readonly totalCount: number;
 }
+/**
+ * Use this data source to query detailed information of alb listener healths
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const example = volcengine.alb.getListenerHealths({
+ *     listenerIds: [
+ *         "lsn-xoetdjk3dzwg54ov5ewpam7c",
+ *         "lsn-bdcxfof3fy808dv40ofappua",
+ *     ],
+ *     onlyUnHealthy: true,
+ *     projectName: "default",
+ * });
+ * ```
+ */
 /** @deprecated volcengine.alb.ListenerHealths has been deprecated in favor of volcengine.alb.getListenerHealths */
 export function listenerHealthsOutput(args: ListenerHealthsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ListenerHealthsResult> {
     return pulumi.output(args).apply((a: any) => listenerHealths(a, opts))
@@ -53,8 +107,20 @@ export function listenerHealthsOutput(args: ListenerHealthsOutputArgs, opts?: pu
  * A collection of arguments for invoking ListenerHealths.
  */
 export interface ListenerHealthsOutputArgs {
+    /**
+     * A list of Listener IDs.
+     */
     listenerIds: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Whether to return only backend servers with abnormal health check status.
+     */
     onlyUnHealthy?: pulumi.Input<boolean>;
+    /**
+     * File name where to save data source results.
+     */
     outputFile?: pulumi.Input<string>;
+    /**
+     * The project name of the listener.
+     */
     projectName?: pulumi.Input<string>;
 }

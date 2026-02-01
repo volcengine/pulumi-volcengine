@@ -68,6 +68,13 @@ import (
 //				LoadBalancerId:  fooClb.ID(),
 //				ServerGroupName: pulumi.String("acc-test-create"),
 //				Description:     pulumi.String("hello demo11"),
+//				Type:            pulumi.String("ip"),
+//				Tags: clb.ServerGroupTagArray{
+//					&clb.ServerGroupTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -90,6 +97,8 @@ type ServerGroup struct {
 
 	// The address ip version of the ServerGroup. Valid values: `ipv4`, `ipv6`. Default is `ipv4`.
 	AddressIpVersion pulumi.StringPtrOutput `pulumi:"addressIpVersion"`
+	// Whether to enable full port forwarding. This feature is in beta.
+	AnyPortEnabled pulumi.BoolPtrOutput `pulumi:"anyPortEnabled"`
 	// The description of ServerGroup.
 	Description pulumi.StringOutput `pulumi:"description"`
 	// The ID of the Clb.
@@ -98,6 +107,10 @@ type ServerGroup struct {
 	ServerGroupId pulumi.StringOutput `pulumi:"serverGroupId"`
 	// The name of the ServerGroup.
 	ServerGroupName pulumi.StringOutput `pulumi:"serverGroupName"`
+	// Tags.
+	Tags ServerGroupTagArrayOutput `pulumi:"tags"`
+	// The type of the ServerGroup. Valid values: `instance`, `ip`. Default is `instance`.
+	Type pulumi.StringPtrOutput `pulumi:"type"`
 }
 
 // NewServerGroup registers a new resource with the given unique name, arguments, and options.
@@ -135,6 +148,8 @@ func GetServerGroup(ctx *pulumi.Context,
 type serverGroupState struct {
 	// The address ip version of the ServerGroup. Valid values: `ipv4`, `ipv6`. Default is `ipv4`.
 	AddressIpVersion *string `pulumi:"addressIpVersion"`
+	// Whether to enable full port forwarding. This feature is in beta.
+	AnyPortEnabled *bool `pulumi:"anyPortEnabled"`
 	// The description of ServerGroup.
 	Description *string `pulumi:"description"`
 	// The ID of the Clb.
@@ -143,11 +158,17 @@ type serverGroupState struct {
 	ServerGroupId *string `pulumi:"serverGroupId"`
 	// The name of the ServerGroup.
 	ServerGroupName *string `pulumi:"serverGroupName"`
+	// Tags.
+	Tags []ServerGroupTag `pulumi:"tags"`
+	// The type of the ServerGroup. Valid values: `instance`, `ip`. Default is `instance`.
+	Type *string `pulumi:"type"`
 }
 
 type ServerGroupState struct {
 	// The address ip version of the ServerGroup. Valid values: `ipv4`, `ipv6`. Default is `ipv4`.
 	AddressIpVersion pulumi.StringPtrInput
+	// Whether to enable full port forwarding. This feature is in beta.
+	AnyPortEnabled pulumi.BoolPtrInput
 	// The description of ServerGroup.
 	Description pulumi.StringPtrInput
 	// The ID of the Clb.
@@ -156,6 +177,10 @@ type ServerGroupState struct {
 	ServerGroupId pulumi.StringPtrInput
 	// The name of the ServerGroup.
 	ServerGroupName pulumi.StringPtrInput
+	// Tags.
+	Tags ServerGroupTagArrayInput
+	// The type of the ServerGroup. Valid values: `instance`, `ip`. Default is `instance`.
+	Type pulumi.StringPtrInput
 }
 
 func (ServerGroupState) ElementType() reflect.Type {
@@ -165,6 +190,8 @@ func (ServerGroupState) ElementType() reflect.Type {
 type serverGroupArgs struct {
 	// The address ip version of the ServerGroup. Valid values: `ipv4`, `ipv6`. Default is `ipv4`.
 	AddressIpVersion *string `pulumi:"addressIpVersion"`
+	// Whether to enable full port forwarding. This feature is in beta.
+	AnyPortEnabled *bool `pulumi:"anyPortEnabled"`
 	// The description of ServerGroup.
 	Description *string `pulumi:"description"`
 	// The ID of the Clb.
@@ -173,12 +200,18 @@ type serverGroupArgs struct {
 	ServerGroupId *string `pulumi:"serverGroupId"`
 	// The name of the ServerGroup.
 	ServerGroupName *string `pulumi:"serverGroupName"`
+	// Tags.
+	Tags []ServerGroupTag `pulumi:"tags"`
+	// The type of the ServerGroup. Valid values: `instance`, `ip`. Default is `instance`.
+	Type *string `pulumi:"type"`
 }
 
 // The set of arguments for constructing a ServerGroup resource.
 type ServerGroupArgs struct {
 	// The address ip version of the ServerGroup. Valid values: `ipv4`, `ipv6`. Default is `ipv4`.
 	AddressIpVersion pulumi.StringPtrInput
+	// Whether to enable full port forwarding. This feature is in beta.
+	AnyPortEnabled pulumi.BoolPtrInput
 	// The description of ServerGroup.
 	Description pulumi.StringPtrInput
 	// The ID of the Clb.
@@ -187,6 +220,10 @@ type ServerGroupArgs struct {
 	ServerGroupId pulumi.StringPtrInput
 	// The name of the ServerGroup.
 	ServerGroupName pulumi.StringPtrInput
+	// Tags.
+	Tags ServerGroupTagArrayInput
+	// The type of the ServerGroup. Valid values: `instance`, `ip`. Default is `instance`.
+	Type pulumi.StringPtrInput
 }
 
 func (ServerGroupArgs) ElementType() reflect.Type {
@@ -281,6 +318,11 @@ func (o ServerGroupOutput) AddressIpVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ServerGroup) pulumi.StringPtrOutput { return v.AddressIpVersion }).(pulumi.StringPtrOutput)
 }
 
+// Whether to enable full port forwarding. This feature is in beta.
+func (o ServerGroupOutput) AnyPortEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ServerGroup) pulumi.BoolPtrOutput { return v.AnyPortEnabled }).(pulumi.BoolPtrOutput)
+}
+
 // The description of ServerGroup.
 func (o ServerGroupOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v *ServerGroup) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
@@ -299,6 +341,16 @@ func (o ServerGroupOutput) ServerGroupId() pulumi.StringOutput {
 // The name of the ServerGroup.
 func (o ServerGroupOutput) ServerGroupName() pulumi.StringOutput {
 	return o.ApplyT(func(v *ServerGroup) pulumi.StringOutput { return v.ServerGroupName }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o ServerGroupOutput) Tags() ServerGroupTagArrayOutput {
+	return o.ApplyT(func(v *ServerGroup) ServerGroupTagArrayOutput { return v.Tags }).(ServerGroupTagArrayOutput)
+}
+
+// The type of the ServerGroup. Valid values: `instance`, `ip`. Default is `instance`.
+func (o ServerGroupOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServerGroup) pulumi.StringPtrOutput { return v.Type }).(pulumi.StringPtrOutput)
 }
 
 type ServerGroupArrayOutput struct{ *pulumi.OutputState }

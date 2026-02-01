@@ -25,10 +25,16 @@ class ClbsResult:
     """
     A collection of values returned by Clbs.
     """
-    def __init__(__self__, clbs=None, eni_address=None, id=None, ids=None, load_balancer_name=None, name_regex=None, output_file=None, project_name=None, tags=None, total_count=None, vpc_id=None):
+    def __init__(__self__, address_ip_version=None, clbs=None, eip_address=None, eni_address=None, id=None, ids=None, instance_ids=None, instance_ips=None, load_balancer_name=None, master_zone_id=None, name_regex=None, output_file=None, project_name=None, status=None, tags=None, total_count=None, type=None, vpc_id=None):
+        if address_ip_version and not isinstance(address_ip_version, str):
+            raise TypeError("Expected argument 'address_ip_version' to be a str")
+        pulumi.set(__self__, "address_ip_version", address_ip_version)
         if clbs and not isinstance(clbs, list):
             raise TypeError("Expected argument 'clbs' to be a list")
         pulumi.set(__self__, "clbs", clbs)
+        if eip_address and not isinstance(eip_address, str):
+            raise TypeError("Expected argument 'eip_address' to be a str")
+        pulumi.set(__self__, "eip_address", eip_address)
         if eni_address and not isinstance(eni_address, str):
             raise TypeError("Expected argument 'eni_address' to be a str")
         pulumi.set(__self__, "eni_address", eni_address)
@@ -38,9 +44,18 @@ class ClbsResult:
         if ids and not isinstance(ids, list):
             raise TypeError("Expected argument 'ids' to be a list")
         pulumi.set(__self__, "ids", ids)
+        if instance_ids and not isinstance(instance_ids, list):
+            raise TypeError("Expected argument 'instance_ids' to be a list")
+        pulumi.set(__self__, "instance_ids", instance_ids)
+        if instance_ips and not isinstance(instance_ips, list):
+            raise TypeError("Expected argument 'instance_ips' to be a list")
+        pulumi.set(__self__, "instance_ips", instance_ips)
         if load_balancer_name and not isinstance(load_balancer_name, str):
             raise TypeError("Expected argument 'load_balancer_name' to be a str")
         pulumi.set(__self__, "load_balancer_name", load_balancer_name)
+        if master_zone_id and not isinstance(master_zone_id, str):
+            raise TypeError("Expected argument 'master_zone_id' to be a str")
+        pulumi.set(__self__, "master_zone_id", master_zone_id)
         if name_regex and not isinstance(name_regex, str):
             raise TypeError("Expected argument 'name_regex' to be a str")
         pulumi.set(__self__, "name_regex", name_regex)
@@ -50,15 +65,29 @@ class ClbsResult:
         if project_name and not isinstance(project_name, str):
             raise TypeError("Expected argument 'project_name' to be a str")
         pulumi.set(__self__, "project_name", project_name)
+        if status and not isinstance(status, str):
+            raise TypeError("Expected argument 'status' to be a str")
+        pulumi.set(__self__, "status", status)
         if tags and not isinstance(tags, list):
             raise TypeError("Expected argument 'tags' to be a list")
         pulumi.set(__self__, "tags", tags)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
+        if type and not isinstance(type, str):
+            raise TypeError("Expected argument 'type' to be a str")
+        pulumi.set(__self__, "type", type)
         if vpc_id and not isinstance(vpc_id, str):
             raise TypeError("Expected argument 'vpc_id' to be a str")
         pulumi.set(__self__, "vpc_id", vpc_id)
+
+    @property
+    @pulumi.getter(name="addressIpVersion")
+    def address_ip_version(self) -> Optional[str]:
+        """
+        The address ip version of the Clb.
+        """
+        return pulumi.get(self, "address_ip_version")
 
     @property
     @pulumi.getter
@@ -69,10 +98,18 @@ class ClbsResult:
         return pulumi.get(self, "clbs")
 
     @property
+    @pulumi.getter(name="eipAddress")
+    def eip_address(self) -> Optional[str]:
+        """
+        The public IPv4 address bound to the private IPv4 address.
+        """
+        return pulumi.get(self, "eip_address")
+
+    @property
     @pulumi.getter(name="eniAddress")
     def eni_address(self) -> Optional[str]:
         """
-        The Eni address of the Clb.
+        The private IPv4 address of the CLB instance.
         """
         return pulumi.get(self, "eni_address")
 
@@ -90,12 +127,30 @@ class ClbsResult:
         return pulumi.get(self, "ids")
 
     @property
+    @pulumi.getter(name="instanceIds")
+    def instance_ids(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "instance_ids")
+
+    @property
+    @pulumi.getter(name="instanceIps")
+    def instance_ips(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "instance_ips")
+
+    @property
     @pulumi.getter(name="loadBalancerName")
     def load_balancer_name(self) -> Optional[str]:
         """
         The name of the Clb.
         """
         return pulumi.get(self, "load_balancer_name")
+
+    @property
+    @pulumi.getter(name="masterZoneId")
+    def master_zone_id(self) -> Optional[str]:
+        """
+        The master zone ID of the CLB.
+        """
+        return pulumi.get(self, "master_zone_id")
 
     @property
     @pulumi.getter(name="nameRegex")
@@ -117,6 +172,14 @@ class ClbsResult:
 
     @property
     @pulumi.getter
+    def status(self) -> Optional[str]:
+        """
+        The status of the Clb.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
     def tags(self) -> Optional[Sequence['outputs.ClbsTagResult']]:
         """
         Tags.
@@ -130,6 +193,14 @@ class ClbsResult:
         The total count of Clb query.
         """
         return pulumi.get(self, "total_count")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        """
+        The type of the Clb.
+        """
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter(name="vpcId")
@@ -146,26 +217,40 @@ class AwaitableClbsResult(ClbsResult):
         if False:
             yield self
         return ClbsResult(
+            address_ip_version=self.address_ip_version,
             clbs=self.clbs,
+            eip_address=self.eip_address,
             eni_address=self.eni_address,
             id=self.id,
             ids=self.ids,
+            instance_ids=self.instance_ids,
+            instance_ips=self.instance_ips,
             load_balancer_name=self.load_balancer_name,
+            master_zone_id=self.master_zone_id,
             name_regex=self.name_regex,
             output_file=self.output_file,
             project_name=self.project_name,
+            status=self.status,
             tags=self.tags,
             total_count=self.total_count,
+            type=self.type,
             vpc_id=self.vpc_id)
 
 
-def clbs(eni_address: Optional[str] = None,
+def clbs(address_ip_version: Optional[str] = None,
+         eip_address: Optional[str] = None,
+         eni_address: Optional[str] = None,
          ids: Optional[Sequence[str]] = None,
+         instance_ids: Optional[Sequence[str]] = None,
+         instance_ips: Optional[Sequence[str]] = None,
          load_balancer_name: Optional[str] = None,
+         master_zone_id: Optional[str] = None,
          name_regex: Optional[str] = None,
          output_file: Optional[str] = None,
          project_name: Optional[str] = None,
+         status: Optional[str] = None,
          tags: Optional[Sequence[pulumi.InputType['ClbsTagArgs']]] = None,
+         type: Optional[str] = None,
          vpc_id: Optional[str] = None,
          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableClbsResult:
     """
@@ -207,50 +292,78 @@ def clbs(eni_address: Optional[str] = None,
     ```
 
 
+    :param str address_ip_version: The address IP version of the CLB.
+    :param str eip_address: The public ip address of the Clb.
     :param str eni_address: The private ip address of the Clb.
     :param Sequence[str] ids: A list of Clb IDs.
+    :param Sequence[str] instance_ids: The IDs of the backend server of the CLB.
+    :param Sequence[str] instance_ips: The IP address of the backend server of the CLB.
     :param str load_balancer_name: The name of the Clb.
+    :param str master_zone_id: The master zone ID of the CLB.
     :param str name_regex: A Name Regex of Clb.
     :param str output_file: File name where to save data source results.
     :param str project_name: The ProjectName of Clb.
+    :param str status: The status of the CLB.
     :param Sequence[pulumi.InputType['ClbsTagArgs']] tags: Tags.
+    :param str type: The network type of the CLB.
     :param str vpc_id: The id of the VPC.
     """
     pulumi.log.warn("""clbs is deprecated: volcengine.clb.Clbs has been deprecated in favor of volcengine.clb.getClbs""")
     __args__ = dict()
+    __args__['addressIpVersion'] = address_ip_version
+    __args__['eipAddress'] = eip_address
     __args__['eniAddress'] = eni_address
     __args__['ids'] = ids
+    __args__['instanceIds'] = instance_ids
+    __args__['instanceIps'] = instance_ips
     __args__['loadBalancerName'] = load_balancer_name
+    __args__['masterZoneId'] = master_zone_id
     __args__['nameRegex'] = name_regex
     __args__['outputFile'] = output_file
     __args__['projectName'] = project_name
+    __args__['status'] = status
     __args__['tags'] = tags
+    __args__['type'] = type
     __args__['vpcId'] = vpc_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('volcengine:clb/clbs:Clbs', __args__, opts=opts, typ=ClbsResult).value
 
     return AwaitableClbsResult(
+        address_ip_version=pulumi.get(__ret__, 'address_ip_version'),
         clbs=pulumi.get(__ret__, 'clbs'),
+        eip_address=pulumi.get(__ret__, 'eip_address'),
         eni_address=pulumi.get(__ret__, 'eni_address'),
         id=pulumi.get(__ret__, 'id'),
         ids=pulumi.get(__ret__, 'ids'),
+        instance_ids=pulumi.get(__ret__, 'instance_ids'),
+        instance_ips=pulumi.get(__ret__, 'instance_ips'),
         load_balancer_name=pulumi.get(__ret__, 'load_balancer_name'),
+        master_zone_id=pulumi.get(__ret__, 'master_zone_id'),
         name_regex=pulumi.get(__ret__, 'name_regex'),
         output_file=pulumi.get(__ret__, 'output_file'),
         project_name=pulumi.get(__ret__, 'project_name'),
+        status=pulumi.get(__ret__, 'status'),
         tags=pulumi.get(__ret__, 'tags'),
         total_count=pulumi.get(__ret__, 'total_count'),
+        type=pulumi.get(__ret__, 'type'),
         vpc_id=pulumi.get(__ret__, 'vpc_id'))
 
 
 @_utilities.lift_output_func(clbs)
-def clbs_output(eni_address: Optional[pulumi.Input[Optional[str]]] = None,
+def clbs_output(address_ip_version: Optional[pulumi.Input[Optional[str]]] = None,
+                eip_address: Optional[pulumi.Input[Optional[str]]] = None,
+                eni_address: Optional[pulumi.Input[Optional[str]]] = None,
                 ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
+                instance_ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
+                instance_ips: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                 load_balancer_name: Optional[pulumi.Input[Optional[str]]] = None,
+                master_zone_id: Optional[pulumi.Input[Optional[str]]] = None,
                 name_regex: Optional[pulumi.Input[Optional[str]]] = None,
                 output_file: Optional[pulumi.Input[Optional[str]]] = None,
                 project_name: Optional[pulumi.Input[Optional[str]]] = None,
+                status: Optional[pulumi.Input[Optional[str]]] = None,
                 tags: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['ClbsTagArgs']]]]] = None,
+                type: Optional[pulumi.Input[Optional[str]]] = None,
                 vpc_id: Optional[pulumi.Input[Optional[str]]] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ClbsResult]:
     """
@@ -292,13 +405,20 @@ def clbs_output(eni_address: Optional[pulumi.Input[Optional[str]]] = None,
     ```
 
 
+    :param str address_ip_version: The address IP version of the CLB.
+    :param str eip_address: The public ip address of the Clb.
     :param str eni_address: The private ip address of the Clb.
     :param Sequence[str] ids: A list of Clb IDs.
+    :param Sequence[str] instance_ids: The IDs of the backend server of the CLB.
+    :param Sequence[str] instance_ips: The IP address of the backend server of the CLB.
     :param str load_balancer_name: The name of the Clb.
+    :param str master_zone_id: The master zone ID of the CLB.
     :param str name_regex: A Name Regex of Clb.
     :param str output_file: File name where to save data source results.
     :param str project_name: The ProjectName of Clb.
+    :param str status: The status of the CLB.
     :param Sequence[pulumi.InputType['ClbsTagArgs']] tags: Tags.
+    :param str type: The network type of the CLB.
     :param str vpc_id: The id of the VPC.
     """
     pulumi.log.warn("""clbs is deprecated: volcengine.clb.Clbs has been deprecated in favor of volcengine.clb.getClbs""")

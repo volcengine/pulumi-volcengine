@@ -30,8 +30,7 @@ class ReplaceCertificateArgs:
         The set of arguments for constructing a ReplaceCertificate resource.
         :param pulumi.Input[str] certificate_type: The type of the certificate. Valid values: 'server' for server certificates, 'ca' for CA certificates.
         :param pulumi.Input[str] old_certificate_id: The ID of the old certificate to be replaced.
-        :param pulumi.Input[str] update_mode: The mode of certificate replacement. Valid values: 'new' for uploading new certificate, 'stock' for using existing
-               certificate.
+        :param pulumi.Input[str] update_mode: The mode of certificate replacement. Valid values: 'new' for uploading new certificate, 'stock' for using existing certificate.
         :param pulumi.Input[str] ca_certificate: The content of the CA certificate. Required when certificate_type is 'ca' and update_mode is 'new'.
         :param pulumi.Input[str] cert_center_certificate_id: The ID of the new certificate. Required when certificate_source is 'cert_center' and update_mode is 'stock'.
         :param pulumi.Input[str] certificate_id: The ID of the new certificate or CA certificate. Required when certificate_source is 'alb' and update_mode is 'stock'.
@@ -92,8 +91,7 @@ class ReplaceCertificateArgs:
     @pulumi.getter(name="updateMode")
     def update_mode(self) -> pulumi.Input[str]:
         """
-        The mode of certificate replacement. Valid values: 'new' for uploading new certificate, 'stock' for using existing
-        certificate.
+        The mode of certificate replacement. Valid values: 'new' for uploading new certificate, 'stock' for using existing certificate.
         """
         return pulumi.get(self, "update_mode")
 
@@ -238,8 +236,7 @@ class _ReplaceCertificateState:
         :param pulumi.Input[str] private_key: The private key of the server certificate. Required when certificate_type is 'server' and update_mode is 'new'.
         :param pulumi.Input[str] project_name: The project name of the certificate.
         :param pulumi.Input[str] public_key: The public key of the server certificate. Required when certificate_type is 'server' and update_mode is 'new'.
-        :param pulumi.Input[str] update_mode: The mode of certificate replacement. Valid values: 'new' for uploading new certificate, 'stock' for using existing
-               certificate.
+        :param pulumi.Input[str] update_mode: The mode of certificate replacement. Valid values: 'new' for uploading new certificate, 'stock' for using existing certificate.
         """
         if ca_certificate is not None:
             pulumi.set(__self__, "ca_certificate", ca_certificate)
@@ -402,8 +399,7 @@ class _ReplaceCertificateState:
     @pulumi.getter(name="updateMode")
     def update_mode(self) -> Optional[pulumi.Input[str]]:
         """
-        The mode of certificate replacement. Valid values: 'new' for uploading new certificate, 'stock' for using existing
-        certificate.
+        The mode of certificate replacement. Valid values: 'new' for uploading new certificate, 'stock' for using existing certificate.
         """
         return pulumi.get(self, "update_mode")
 
@@ -431,7 +427,47 @@ class ReplaceCertificate(pulumi.CustomResource):
                  update_mode: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a ReplaceCertificate resource with the given unique name, props, and options.
+        Provides a resource to manage alb replace certificate
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_volcengine as volcengine
+
+        # replace server certificate
+        foo1 = volcengine.alb.ReplaceCertificate("foo1",
+            certificate_type="server",
+            old_certificate_id="cert-bdde0znk524g8dv40or*****",
+            update_mode="new",
+            certificate_name="replaced-server-cert",
+            description="Replaced server certificate",
+            project_name="default",
+            public_key=(lambda path: open(path).read())("/path/server_certificate.pem"),
+            private_key=(lambda path: open(path).read())("/path/private_key_rsa.pem"))
+        foo2 = volcengine.alb.ReplaceCertificate("foo2",
+            certificate_type="server",
+            old_certificate_id="cert-1pf4a8k8tokcg845wfar*****",
+            update_mode="stock",
+            certificate_source="alb",
+            certificate_id="cert-bdde0znk524g8dv40or*****",
+            certificate_name="replaced-server-cert-stock",
+            description="Replaced server certificate (stock)",
+            project_name="default")
+        # replace ca certificate
+        foo3 = volcengine.alb.ReplaceCertificate("foo3",
+            certificate_type="ca",
+            old_certificate_id="cert-xoekc6lpu9s054ov5eo*****",
+            update_mode="new",
+            certificate_name="acc-test-replace",
+            ca_certificate=(lambda path: open(path).read())("/path/server_certificate.pem"),
+            description="acc-test-replace",
+            project_name="default")
+        ```
+
+        ## Import
+
+        The AlbReplaceCertificate is not support import.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] ca_certificate: The content of the CA certificate. Required when certificate_type is 'ca' and update_mode is 'new'.
@@ -445,8 +481,7 @@ class ReplaceCertificate(pulumi.CustomResource):
         :param pulumi.Input[str] private_key: The private key of the server certificate. Required when certificate_type is 'server' and update_mode is 'new'.
         :param pulumi.Input[str] project_name: The project name of the certificate.
         :param pulumi.Input[str] public_key: The public key of the server certificate. Required when certificate_type is 'server' and update_mode is 'new'.
-        :param pulumi.Input[str] update_mode: The mode of certificate replacement. Valid values: 'new' for uploading new certificate, 'stock' for using existing
-               certificate.
+        :param pulumi.Input[str] update_mode: The mode of certificate replacement. Valid values: 'new' for uploading new certificate, 'stock' for using existing certificate.
         """
         ...
     @overload
@@ -455,7 +490,47 @@ class ReplaceCertificate(pulumi.CustomResource):
                  args: ReplaceCertificateArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a ReplaceCertificate resource with the given unique name, props, and options.
+        Provides a resource to manage alb replace certificate
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_volcengine as volcengine
+
+        # replace server certificate
+        foo1 = volcengine.alb.ReplaceCertificate("foo1",
+            certificate_type="server",
+            old_certificate_id="cert-bdde0znk524g8dv40or*****",
+            update_mode="new",
+            certificate_name="replaced-server-cert",
+            description="Replaced server certificate",
+            project_name="default",
+            public_key=(lambda path: open(path).read())("/path/server_certificate.pem"),
+            private_key=(lambda path: open(path).read())("/path/private_key_rsa.pem"))
+        foo2 = volcengine.alb.ReplaceCertificate("foo2",
+            certificate_type="server",
+            old_certificate_id="cert-1pf4a8k8tokcg845wfar*****",
+            update_mode="stock",
+            certificate_source="alb",
+            certificate_id="cert-bdde0znk524g8dv40or*****",
+            certificate_name="replaced-server-cert-stock",
+            description="Replaced server certificate (stock)",
+            project_name="default")
+        # replace ca certificate
+        foo3 = volcengine.alb.ReplaceCertificate("foo3",
+            certificate_type="ca",
+            old_certificate_id="cert-xoekc6lpu9s054ov5eo*****",
+            update_mode="new",
+            certificate_name="acc-test-replace",
+            ca_certificate=(lambda path: open(path).read())("/path/server_certificate.pem"),
+            description="acc-test-replace",
+            project_name="default")
+        ```
+
+        ## Import
+
+        The AlbReplaceCertificate is not support import.
+
         :param str resource_name: The name of the resource.
         :param ReplaceCertificateArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -552,8 +627,7 @@ class ReplaceCertificate(pulumi.CustomResource):
         :param pulumi.Input[str] private_key: The private key of the server certificate. Required when certificate_type is 'server' and update_mode is 'new'.
         :param pulumi.Input[str] project_name: The project name of the certificate.
         :param pulumi.Input[str] public_key: The public key of the server certificate. Required when certificate_type is 'server' and update_mode is 'new'.
-        :param pulumi.Input[str] update_mode: The mode of certificate replacement. Valid values: 'new' for uploading new certificate, 'stock' for using existing
-               certificate.
+        :param pulumi.Input[str] update_mode: The mode of certificate replacement. Valid values: 'new' for uploading new certificate, 'stock' for using existing certificate.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -665,8 +739,7 @@ class ReplaceCertificate(pulumi.CustomResource):
     @pulumi.getter(name="updateMode")
     def update_mode(self) -> pulumi.Output[str]:
         """
-        The mode of certificate replacement. Valid values: 'new' for uploading new certificate, 'stock' for using existing
-        certificate.
+        The mode of certificate replacement. Valid values: 'new' for uploading new certificate, 'stock' for using existing certificate.
         """
         return pulumi.get(self, "update_mode")
 
