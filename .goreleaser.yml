@@ -1,3 +1,4 @@
+version: 2
 archives:
   - id: archive
     name_template: "{{ .Binary }}-{{ .Tag }}-{{ .Os }}-{{ .Arch }}"
@@ -19,9 +20,7 @@ builds:
     ldflags:
       - -X github.com/volcengine/pulumi-volcengine/provider/pkg/version.Version={{.Tag}}
     main: ./cmd/pulumi-resource-volcengine/
-    parallelism: 2
-changelog:
-  skip: true
+changelog: {}
 release:
   disable: false
   prerelease: auto
