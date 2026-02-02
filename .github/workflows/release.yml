@@ -65,6 +65,7 @@ jobs:
         with:
           distribution: goreleaser
           version: v2.13.3
+          # 注意要配置下并发，防止github进行二进制构建的时候由于资源不足从而导致进程被Kill掉（github这种情况下不会返回错误日志，很难排查）
           args: release --clean --parallelism=2
         env:
           GPG_FINGERPRINT: ${{ steps.import_gpg.outputs.fingerprint }}
