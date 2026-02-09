@@ -28,7 +28,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			foo, err := tls.NewDownloadTask(ctx, "foo", &tls.DownloadTaskArgs{
 //				TopicId:         pulumi.String("36be6c75-0733-4bee-b63d-48e0eae37f87"),
-//				TaskName:        pulumi.String("tf-test-download-task"),
+//				TaskName:        pulumi.String("tf-test-download-mm"),
 //				Query:           pulumi.String("*"),
 //				StartTime:       pulumi.Int(1740426022),
 //				EndTime:         pulumi.Int(1740626022),

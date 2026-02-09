@@ -13,6 +13,121 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type AccessKeyLastUsedsAccessKeyLastUsed struct {
+	// The region of the last used.
+	Region string `pulumi:"region"`
+	// The request time of the last used.
+	RequestTime string `pulumi:"requestTime"`
+	// The service of the last used.
+	Service string `pulumi:"service"`
+}
+
+// AccessKeyLastUsedsAccessKeyLastUsedInput is an input type that accepts AccessKeyLastUsedsAccessKeyLastUsedArgs and AccessKeyLastUsedsAccessKeyLastUsedOutput values.
+// You can construct a concrete instance of `AccessKeyLastUsedsAccessKeyLastUsedInput` via:
+//
+//	AccessKeyLastUsedsAccessKeyLastUsedArgs{...}
+type AccessKeyLastUsedsAccessKeyLastUsedInput interface {
+	pulumi.Input
+
+	ToAccessKeyLastUsedsAccessKeyLastUsedOutput() AccessKeyLastUsedsAccessKeyLastUsedOutput
+	ToAccessKeyLastUsedsAccessKeyLastUsedOutputWithContext(context.Context) AccessKeyLastUsedsAccessKeyLastUsedOutput
+}
+
+type AccessKeyLastUsedsAccessKeyLastUsedArgs struct {
+	// The region of the last used.
+	Region pulumi.StringInput `pulumi:"region"`
+	// The request time of the last used.
+	RequestTime pulumi.StringInput `pulumi:"requestTime"`
+	// The service of the last used.
+	Service pulumi.StringInput `pulumi:"service"`
+}
+
+func (AccessKeyLastUsedsAccessKeyLastUsedArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AccessKeyLastUsedsAccessKeyLastUsed)(nil)).Elem()
+}
+
+func (i AccessKeyLastUsedsAccessKeyLastUsedArgs) ToAccessKeyLastUsedsAccessKeyLastUsedOutput() AccessKeyLastUsedsAccessKeyLastUsedOutput {
+	return i.ToAccessKeyLastUsedsAccessKeyLastUsedOutputWithContext(context.Background())
+}
+
+func (i AccessKeyLastUsedsAccessKeyLastUsedArgs) ToAccessKeyLastUsedsAccessKeyLastUsedOutputWithContext(ctx context.Context) AccessKeyLastUsedsAccessKeyLastUsedOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AccessKeyLastUsedsAccessKeyLastUsedOutput)
+}
+
+// AccessKeyLastUsedsAccessKeyLastUsedArrayInput is an input type that accepts AccessKeyLastUsedsAccessKeyLastUsedArray and AccessKeyLastUsedsAccessKeyLastUsedArrayOutput values.
+// You can construct a concrete instance of `AccessKeyLastUsedsAccessKeyLastUsedArrayInput` via:
+//
+//	AccessKeyLastUsedsAccessKeyLastUsedArray{ AccessKeyLastUsedsAccessKeyLastUsedArgs{...} }
+type AccessKeyLastUsedsAccessKeyLastUsedArrayInput interface {
+	pulumi.Input
+
+	ToAccessKeyLastUsedsAccessKeyLastUsedArrayOutput() AccessKeyLastUsedsAccessKeyLastUsedArrayOutput
+	ToAccessKeyLastUsedsAccessKeyLastUsedArrayOutputWithContext(context.Context) AccessKeyLastUsedsAccessKeyLastUsedArrayOutput
+}
+
+type AccessKeyLastUsedsAccessKeyLastUsedArray []AccessKeyLastUsedsAccessKeyLastUsedInput
+
+func (AccessKeyLastUsedsAccessKeyLastUsedArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AccessKeyLastUsedsAccessKeyLastUsed)(nil)).Elem()
+}
+
+func (i AccessKeyLastUsedsAccessKeyLastUsedArray) ToAccessKeyLastUsedsAccessKeyLastUsedArrayOutput() AccessKeyLastUsedsAccessKeyLastUsedArrayOutput {
+	return i.ToAccessKeyLastUsedsAccessKeyLastUsedArrayOutputWithContext(context.Background())
+}
+
+func (i AccessKeyLastUsedsAccessKeyLastUsedArray) ToAccessKeyLastUsedsAccessKeyLastUsedArrayOutputWithContext(ctx context.Context) AccessKeyLastUsedsAccessKeyLastUsedArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AccessKeyLastUsedsAccessKeyLastUsedArrayOutput)
+}
+
+type AccessKeyLastUsedsAccessKeyLastUsedOutput struct{ *pulumi.OutputState }
+
+func (AccessKeyLastUsedsAccessKeyLastUsedOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AccessKeyLastUsedsAccessKeyLastUsed)(nil)).Elem()
+}
+
+func (o AccessKeyLastUsedsAccessKeyLastUsedOutput) ToAccessKeyLastUsedsAccessKeyLastUsedOutput() AccessKeyLastUsedsAccessKeyLastUsedOutput {
+	return o
+}
+
+func (o AccessKeyLastUsedsAccessKeyLastUsedOutput) ToAccessKeyLastUsedsAccessKeyLastUsedOutputWithContext(ctx context.Context) AccessKeyLastUsedsAccessKeyLastUsedOutput {
+	return o
+}
+
+// The region of the last used.
+func (o AccessKeyLastUsedsAccessKeyLastUsedOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v AccessKeyLastUsedsAccessKeyLastUsed) string { return v.Region }).(pulumi.StringOutput)
+}
+
+// The request time of the last used.
+func (o AccessKeyLastUsedsAccessKeyLastUsedOutput) RequestTime() pulumi.StringOutput {
+	return o.ApplyT(func(v AccessKeyLastUsedsAccessKeyLastUsed) string { return v.RequestTime }).(pulumi.StringOutput)
+}
+
+// The service of the last used.
+func (o AccessKeyLastUsedsAccessKeyLastUsedOutput) Service() pulumi.StringOutput {
+	return o.ApplyT(func(v AccessKeyLastUsedsAccessKeyLastUsed) string { return v.Service }).(pulumi.StringOutput)
+}
+
+type AccessKeyLastUsedsAccessKeyLastUsedArrayOutput struct{ *pulumi.OutputState }
+
+func (AccessKeyLastUsedsAccessKeyLastUsedArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AccessKeyLastUsedsAccessKeyLastUsed)(nil)).Elem()
+}
+
+func (o AccessKeyLastUsedsAccessKeyLastUsedArrayOutput) ToAccessKeyLastUsedsAccessKeyLastUsedArrayOutput() AccessKeyLastUsedsAccessKeyLastUsedArrayOutput {
+	return o
+}
+
+func (o AccessKeyLastUsedsAccessKeyLastUsedArrayOutput) ToAccessKeyLastUsedsAccessKeyLastUsedArrayOutputWithContext(ctx context.Context) AccessKeyLastUsedsAccessKeyLastUsedArrayOutput {
+	return o
+}
+
+func (o AccessKeyLastUsedsAccessKeyLastUsedArrayOutput) Index(i pulumi.IntInput) AccessKeyLastUsedsAccessKeyLastUsedOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AccessKeyLastUsedsAccessKeyLastUsed {
+		return vs[0].([]AccessKeyLastUsedsAccessKeyLastUsed)[vs[1].(int)]
+	}).(AccessKeyLastUsedsAccessKeyLastUsedOutput)
+}
+
 type AccessKeysAccessKeyMetadata struct {
 	// The user access key id.
 	AccessKeyId string `pulumi:"accessKeyId"`
@@ -22,7 +137,7 @@ type AccessKeysAccessKeyMetadata struct {
 	Status string `pulumi:"status"`
 	// The user access key update date.
 	UpdateDate string `pulumi:"updateDate"`
-	// The user names.
+	// The user name.
 	UserName string `pulumi:"userName"`
 }
 
@@ -46,7 +161,7 @@ type AccessKeysAccessKeyMetadataArgs struct {
 	Status pulumi.StringInput `pulumi:"status"`
 	// The user access key update date.
 	UpdateDate pulumi.StringInput `pulumi:"updateDate"`
-	// The user names.
+	// The user name.
 	UserName pulumi.StringInput `pulumi:"userName"`
 }
 
@@ -121,7 +236,7 @@ func (o AccessKeysAccessKeyMetadataOutput) UpdateDate() pulumi.StringOutput {
 	return o.ApplyT(func(v AccessKeysAccessKeyMetadata) string { return v.UpdateDate }).(pulumi.StringOutput)
 }
 
-// The user names.
+// The user name.
 func (o AccessKeysAccessKeyMetadataOutput) UserName() pulumi.StringOutput {
 	return o.ApplyT(func(v AccessKeysAccessKeyMetadata) string { return v.UserName }).(pulumi.StringOutput)
 }
@@ -144,6 +259,2273 @@ func (o AccessKeysAccessKeyMetadataArrayOutput) Index(i pulumi.IntInput) AccessK
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AccessKeysAccessKeyMetadata {
 		return vs[0].([]AccessKeysAccessKeyMetadata)[vs[1].(int)]
 	}).(AccessKeysAccessKeyMetadataOutput)
+}
+
+type AccountSummariesAccountSummary struct {
+	// The quota of access keys per account.
+	AccessKeysPerAccountQuota int `pulumi:"accessKeysPerAccountQuota"`
+	// The quota of access keys per user.
+	AccessKeysPerUserQuota int `pulumi:"accessKeysPerUserQuota"`
+	// The quota of attached policies per group.
+	AttachedPoliciesPerGroupQuota int `pulumi:"attachedPoliciesPerGroupQuota"`
+	// The quota of attached policies per role.
+	AttachedPoliciesPerRoleQuota int `pulumi:"attachedPoliciesPerRoleQuota"`
+	// The quota of attached policies per user.
+	AttachedPoliciesPerUserQuota int `pulumi:"attachedPoliciesPerUserQuota"`
+	// The quota of attached system policies per group.
+	AttachedSystemPoliciesPerGroupQuota int `pulumi:"attachedSystemPoliciesPerGroupQuota"`
+	// The quota of attached system policies per role.
+	AttachedSystemPoliciesPerRoleQuota int `pulumi:"attachedSystemPoliciesPerRoleQuota"`
+	// The quota of attached system policies per user.
+	AttachedSystemPoliciesPerUserQuota int `pulumi:"attachedSystemPoliciesPerUserQuota"`
+	// The quota of groups per user.
+	GroupsPerUserQuota int `pulumi:"groupsPerUserQuota"`
+	// The quota of groups.
+	GroupsQuota int `pulumi:"groupsQuota"`
+	// The usage of groups.
+	GroupsUsage int `pulumi:"groupsUsage"`
+	// The quota of policies.
+	PoliciesQuota int `pulumi:"policiesQuota"`
+	// The usage of policies.
+	PoliciesUsage int `pulumi:"policiesUsage"`
+	// The size of policy.
+	PolicySize int `pulumi:"policySize"`
+	// The quota of roles.
+	RolesQuota int `pulumi:"rolesQuota"`
+	// The usage of roles.
+	RolesUsage int `pulumi:"rolesUsage"`
+	// The quota of users.
+	UsersQuota int `pulumi:"usersQuota"`
+	// The usage of users.
+	UsersUsage int `pulumi:"usersUsage"`
+}
+
+// AccountSummariesAccountSummaryInput is an input type that accepts AccountSummariesAccountSummaryArgs and AccountSummariesAccountSummaryOutput values.
+// You can construct a concrete instance of `AccountSummariesAccountSummaryInput` via:
+//
+//	AccountSummariesAccountSummaryArgs{...}
+type AccountSummariesAccountSummaryInput interface {
+	pulumi.Input
+
+	ToAccountSummariesAccountSummaryOutput() AccountSummariesAccountSummaryOutput
+	ToAccountSummariesAccountSummaryOutputWithContext(context.Context) AccountSummariesAccountSummaryOutput
+}
+
+type AccountSummariesAccountSummaryArgs struct {
+	// The quota of access keys per account.
+	AccessKeysPerAccountQuota pulumi.IntInput `pulumi:"accessKeysPerAccountQuota"`
+	// The quota of access keys per user.
+	AccessKeysPerUserQuota pulumi.IntInput `pulumi:"accessKeysPerUserQuota"`
+	// The quota of attached policies per group.
+	AttachedPoliciesPerGroupQuota pulumi.IntInput `pulumi:"attachedPoliciesPerGroupQuota"`
+	// The quota of attached policies per role.
+	AttachedPoliciesPerRoleQuota pulumi.IntInput `pulumi:"attachedPoliciesPerRoleQuota"`
+	// The quota of attached policies per user.
+	AttachedPoliciesPerUserQuota pulumi.IntInput `pulumi:"attachedPoliciesPerUserQuota"`
+	// The quota of attached system policies per group.
+	AttachedSystemPoliciesPerGroupQuota pulumi.IntInput `pulumi:"attachedSystemPoliciesPerGroupQuota"`
+	// The quota of attached system policies per role.
+	AttachedSystemPoliciesPerRoleQuota pulumi.IntInput `pulumi:"attachedSystemPoliciesPerRoleQuota"`
+	// The quota of attached system policies per user.
+	AttachedSystemPoliciesPerUserQuota pulumi.IntInput `pulumi:"attachedSystemPoliciesPerUserQuota"`
+	// The quota of groups per user.
+	GroupsPerUserQuota pulumi.IntInput `pulumi:"groupsPerUserQuota"`
+	// The quota of groups.
+	GroupsQuota pulumi.IntInput `pulumi:"groupsQuota"`
+	// The usage of groups.
+	GroupsUsage pulumi.IntInput `pulumi:"groupsUsage"`
+	// The quota of policies.
+	PoliciesQuota pulumi.IntInput `pulumi:"policiesQuota"`
+	// The usage of policies.
+	PoliciesUsage pulumi.IntInput `pulumi:"policiesUsage"`
+	// The size of policy.
+	PolicySize pulumi.IntInput `pulumi:"policySize"`
+	// The quota of roles.
+	RolesQuota pulumi.IntInput `pulumi:"rolesQuota"`
+	// The usage of roles.
+	RolesUsage pulumi.IntInput `pulumi:"rolesUsage"`
+	// The quota of users.
+	UsersQuota pulumi.IntInput `pulumi:"usersQuota"`
+	// The usage of users.
+	UsersUsage pulumi.IntInput `pulumi:"usersUsage"`
+}
+
+func (AccountSummariesAccountSummaryArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AccountSummariesAccountSummary)(nil)).Elem()
+}
+
+func (i AccountSummariesAccountSummaryArgs) ToAccountSummariesAccountSummaryOutput() AccountSummariesAccountSummaryOutput {
+	return i.ToAccountSummariesAccountSummaryOutputWithContext(context.Background())
+}
+
+func (i AccountSummariesAccountSummaryArgs) ToAccountSummariesAccountSummaryOutputWithContext(ctx context.Context) AccountSummariesAccountSummaryOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AccountSummariesAccountSummaryOutput)
+}
+
+// AccountSummariesAccountSummaryArrayInput is an input type that accepts AccountSummariesAccountSummaryArray and AccountSummariesAccountSummaryArrayOutput values.
+// You can construct a concrete instance of `AccountSummariesAccountSummaryArrayInput` via:
+//
+//	AccountSummariesAccountSummaryArray{ AccountSummariesAccountSummaryArgs{...} }
+type AccountSummariesAccountSummaryArrayInput interface {
+	pulumi.Input
+
+	ToAccountSummariesAccountSummaryArrayOutput() AccountSummariesAccountSummaryArrayOutput
+	ToAccountSummariesAccountSummaryArrayOutputWithContext(context.Context) AccountSummariesAccountSummaryArrayOutput
+}
+
+type AccountSummariesAccountSummaryArray []AccountSummariesAccountSummaryInput
+
+func (AccountSummariesAccountSummaryArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AccountSummariesAccountSummary)(nil)).Elem()
+}
+
+func (i AccountSummariesAccountSummaryArray) ToAccountSummariesAccountSummaryArrayOutput() AccountSummariesAccountSummaryArrayOutput {
+	return i.ToAccountSummariesAccountSummaryArrayOutputWithContext(context.Background())
+}
+
+func (i AccountSummariesAccountSummaryArray) ToAccountSummariesAccountSummaryArrayOutputWithContext(ctx context.Context) AccountSummariesAccountSummaryArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AccountSummariesAccountSummaryArrayOutput)
+}
+
+type AccountSummariesAccountSummaryOutput struct{ *pulumi.OutputState }
+
+func (AccountSummariesAccountSummaryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AccountSummariesAccountSummary)(nil)).Elem()
+}
+
+func (o AccountSummariesAccountSummaryOutput) ToAccountSummariesAccountSummaryOutput() AccountSummariesAccountSummaryOutput {
+	return o
+}
+
+func (o AccountSummariesAccountSummaryOutput) ToAccountSummariesAccountSummaryOutputWithContext(ctx context.Context) AccountSummariesAccountSummaryOutput {
+	return o
+}
+
+// The quota of access keys per account.
+func (o AccountSummariesAccountSummaryOutput) AccessKeysPerAccountQuota() pulumi.IntOutput {
+	return o.ApplyT(func(v AccountSummariesAccountSummary) int { return v.AccessKeysPerAccountQuota }).(pulumi.IntOutput)
+}
+
+// The quota of access keys per user.
+func (o AccountSummariesAccountSummaryOutput) AccessKeysPerUserQuota() pulumi.IntOutput {
+	return o.ApplyT(func(v AccountSummariesAccountSummary) int { return v.AccessKeysPerUserQuota }).(pulumi.IntOutput)
+}
+
+// The quota of attached policies per group.
+func (o AccountSummariesAccountSummaryOutput) AttachedPoliciesPerGroupQuota() pulumi.IntOutput {
+	return o.ApplyT(func(v AccountSummariesAccountSummary) int { return v.AttachedPoliciesPerGroupQuota }).(pulumi.IntOutput)
+}
+
+// The quota of attached policies per role.
+func (o AccountSummariesAccountSummaryOutput) AttachedPoliciesPerRoleQuota() pulumi.IntOutput {
+	return o.ApplyT(func(v AccountSummariesAccountSummary) int { return v.AttachedPoliciesPerRoleQuota }).(pulumi.IntOutput)
+}
+
+// The quota of attached policies per user.
+func (o AccountSummariesAccountSummaryOutput) AttachedPoliciesPerUserQuota() pulumi.IntOutput {
+	return o.ApplyT(func(v AccountSummariesAccountSummary) int { return v.AttachedPoliciesPerUserQuota }).(pulumi.IntOutput)
+}
+
+// The quota of attached system policies per group.
+func (o AccountSummariesAccountSummaryOutput) AttachedSystemPoliciesPerGroupQuota() pulumi.IntOutput {
+	return o.ApplyT(func(v AccountSummariesAccountSummary) int { return v.AttachedSystemPoliciesPerGroupQuota }).(pulumi.IntOutput)
+}
+
+// The quota of attached system policies per role.
+func (o AccountSummariesAccountSummaryOutput) AttachedSystemPoliciesPerRoleQuota() pulumi.IntOutput {
+	return o.ApplyT(func(v AccountSummariesAccountSummary) int { return v.AttachedSystemPoliciesPerRoleQuota }).(pulumi.IntOutput)
+}
+
+// The quota of attached system policies per user.
+func (o AccountSummariesAccountSummaryOutput) AttachedSystemPoliciesPerUserQuota() pulumi.IntOutput {
+	return o.ApplyT(func(v AccountSummariesAccountSummary) int { return v.AttachedSystemPoliciesPerUserQuota }).(pulumi.IntOutput)
+}
+
+// The quota of groups per user.
+func (o AccountSummariesAccountSummaryOutput) GroupsPerUserQuota() pulumi.IntOutput {
+	return o.ApplyT(func(v AccountSummariesAccountSummary) int { return v.GroupsPerUserQuota }).(pulumi.IntOutput)
+}
+
+// The quota of groups.
+func (o AccountSummariesAccountSummaryOutput) GroupsQuota() pulumi.IntOutput {
+	return o.ApplyT(func(v AccountSummariesAccountSummary) int { return v.GroupsQuota }).(pulumi.IntOutput)
+}
+
+// The usage of groups.
+func (o AccountSummariesAccountSummaryOutput) GroupsUsage() pulumi.IntOutput {
+	return o.ApplyT(func(v AccountSummariesAccountSummary) int { return v.GroupsUsage }).(pulumi.IntOutput)
+}
+
+// The quota of policies.
+func (o AccountSummariesAccountSummaryOutput) PoliciesQuota() pulumi.IntOutput {
+	return o.ApplyT(func(v AccountSummariesAccountSummary) int { return v.PoliciesQuota }).(pulumi.IntOutput)
+}
+
+// The usage of policies.
+func (o AccountSummariesAccountSummaryOutput) PoliciesUsage() pulumi.IntOutput {
+	return o.ApplyT(func(v AccountSummariesAccountSummary) int { return v.PoliciesUsage }).(pulumi.IntOutput)
+}
+
+// The size of policy.
+func (o AccountSummariesAccountSummaryOutput) PolicySize() pulumi.IntOutput {
+	return o.ApplyT(func(v AccountSummariesAccountSummary) int { return v.PolicySize }).(pulumi.IntOutput)
+}
+
+// The quota of roles.
+func (o AccountSummariesAccountSummaryOutput) RolesQuota() pulumi.IntOutput {
+	return o.ApplyT(func(v AccountSummariesAccountSummary) int { return v.RolesQuota }).(pulumi.IntOutput)
+}
+
+// The usage of roles.
+func (o AccountSummariesAccountSummaryOutput) RolesUsage() pulumi.IntOutput {
+	return o.ApplyT(func(v AccountSummariesAccountSummary) int { return v.RolesUsage }).(pulumi.IntOutput)
+}
+
+// The quota of users.
+func (o AccountSummariesAccountSummaryOutput) UsersQuota() pulumi.IntOutput {
+	return o.ApplyT(func(v AccountSummariesAccountSummary) int { return v.UsersQuota }).(pulumi.IntOutput)
+}
+
+// The usage of users.
+func (o AccountSummariesAccountSummaryOutput) UsersUsage() pulumi.IntOutput {
+	return o.ApplyT(func(v AccountSummariesAccountSummary) int { return v.UsersUsage }).(pulumi.IntOutput)
+}
+
+type AccountSummariesAccountSummaryArrayOutput struct{ *pulumi.OutputState }
+
+func (AccountSummariesAccountSummaryArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AccountSummariesAccountSummary)(nil)).Elem()
+}
+
+func (o AccountSummariesAccountSummaryArrayOutput) ToAccountSummariesAccountSummaryArrayOutput() AccountSummariesAccountSummaryArrayOutput {
+	return o
+}
+
+func (o AccountSummariesAccountSummaryArrayOutput) ToAccountSummariesAccountSummaryArrayOutputWithContext(ctx context.Context) AccountSummariesAccountSummaryArrayOutput {
+	return o
+}
+
+func (o AccountSummariesAccountSummaryArrayOutput) Index(i pulumi.IntInput) AccountSummariesAccountSummaryOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AccountSummariesAccountSummary {
+		return vs[0].([]AccountSummariesAccountSummary)[vs[1].(int)]
+	}).(AccountSummariesAccountSummaryOutput)
+}
+
+type AllowedIpAddressIpList struct {
+	// The description of the IP address.
+	Description *string `pulumi:"description"`
+	// The IP address.
+	Ip string `pulumi:"ip"`
+}
+
+// AllowedIpAddressIpListInput is an input type that accepts AllowedIpAddressIpListArgs and AllowedIpAddressIpListOutput values.
+// You can construct a concrete instance of `AllowedIpAddressIpListInput` via:
+//
+//	AllowedIpAddressIpListArgs{...}
+type AllowedIpAddressIpListInput interface {
+	pulumi.Input
+
+	ToAllowedIpAddressIpListOutput() AllowedIpAddressIpListOutput
+	ToAllowedIpAddressIpListOutputWithContext(context.Context) AllowedIpAddressIpListOutput
+}
+
+type AllowedIpAddressIpListArgs struct {
+	// The description of the IP address.
+	Description pulumi.StringPtrInput `pulumi:"description"`
+	// The IP address.
+	Ip pulumi.StringInput `pulumi:"ip"`
+}
+
+func (AllowedIpAddressIpListArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AllowedIpAddressIpList)(nil)).Elem()
+}
+
+func (i AllowedIpAddressIpListArgs) ToAllowedIpAddressIpListOutput() AllowedIpAddressIpListOutput {
+	return i.ToAllowedIpAddressIpListOutputWithContext(context.Background())
+}
+
+func (i AllowedIpAddressIpListArgs) ToAllowedIpAddressIpListOutputWithContext(ctx context.Context) AllowedIpAddressIpListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AllowedIpAddressIpListOutput)
+}
+
+// AllowedIpAddressIpListArrayInput is an input type that accepts AllowedIpAddressIpListArray and AllowedIpAddressIpListArrayOutput values.
+// You can construct a concrete instance of `AllowedIpAddressIpListArrayInput` via:
+//
+//	AllowedIpAddressIpListArray{ AllowedIpAddressIpListArgs{...} }
+type AllowedIpAddressIpListArrayInput interface {
+	pulumi.Input
+
+	ToAllowedIpAddressIpListArrayOutput() AllowedIpAddressIpListArrayOutput
+	ToAllowedIpAddressIpListArrayOutputWithContext(context.Context) AllowedIpAddressIpListArrayOutput
+}
+
+type AllowedIpAddressIpListArray []AllowedIpAddressIpListInput
+
+func (AllowedIpAddressIpListArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AllowedIpAddressIpList)(nil)).Elem()
+}
+
+func (i AllowedIpAddressIpListArray) ToAllowedIpAddressIpListArrayOutput() AllowedIpAddressIpListArrayOutput {
+	return i.ToAllowedIpAddressIpListArrayOutputWithContext(context.Background())
+}
+
+func (i AllowedIpAddressIpListArray) ToAllowedIpAddressIpListArrayOutputWithContext(ctx context.Context) AllowedIpAddressIpListArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AllowedIpAddressIpListArrayOutput)
+}
+
+type AllowedIpAddressIpListOutput struct{ *pulumi.OutputState }
+
+func (AllowedIpAddressIpListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AllowedIpAddressIpList)(nil)).Elem()
+}
+
+func (o AllowedIpAddressIpListOutput) ToAllowedIpAddressIpListOutput() AllowedIpAddressIpListOutput {
+	return o
+}
+
+func (o AllowedIpAddressIpListOutput) ToAllowedIpAddressIpListOutputWithContext(ctx context.Context) AllowedIpAddressIpListOutput {
+	return o
+}
+
+// The description of the IP address.
+func (o AllowedIpAddressIpListOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AllowedIpAddressIpList) *string { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// The IP address.
+func (o AllowedIpAddressIpListOutput) Ip() pulumi.StringOutput {
+	return o.ApplyT(func(v AllowedIpAddressIpList) string { return v.Ip }).(pulumi.StringOutput)
+}
+
+type AllowedIpAddressIpListArrayOutput struct{ *pulumi.OutputState }
+
+func (AllowedIpAddressIpListArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AllowedIpAddressIpList)(nil)).Elem()
+}
+
+func (o AllowedIpAddressIpListArrayOutput) ToAllowedIpAddressIpListArrayOutput() AllowedIpAddressIpListArrayOutput {
+	return o
+}
+
+func (o AllowedIpAddressIpListArrayOutput) ToAllowedIpAddressIpListArrayOutputWithContext(ctx context.Context) AllowedIpAddressIpListArrayOutput {
+	return o
+}
+
+func (o AllowedIpAddressIpListArrayOutput) Index(i pulumi.IntInput) AllowedIpAddressIpListOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AllowedIpAddressIpList {
+		return vs[0].([]AllowedIpAddressIpList)[vs[1].(int)]
+	}).(AllowedIpAddressIpListOutput)
+}
+
+type AllowedIpAddressesAllowedIpAddress struct {
+	// Whether to enable the IP whitelist.
+	EnableIpList bool `pulumi:"enableIpList"`
+	// The IP whitelist list.
+	IpLists []AllowedIpAddressesAllowedIpAddressIpList `pulumi:"ipLists"`
+	// The quota of the IP whitelist.
+	Quota int `pulumi:"quota"`
+}
+
+// AllowedIpAddressesAllowedIpAddressInput is an input type that accepts AllowedIpAddressesAllowedIpAddressArgs and AllowedIpAddressesAllowedIpAddressOutput values.
+// You can construct a concrete instance of `AllowedIpAddressesAllowedIpAddressInput` via:
+//
+//	AllowedIpAddressesAllowedIpAddressArgs{...}
+type AllowedIpAddressesAllowedIpAddressInput interface {
+	pulumi.Input
+
+	ToAllowedIpAddressesAllowedIpAddressOutput() AllowedIpAddressesAllowedIpAddressOutput
+	ToAllowedIpAddressesAllowedIpAddressOutputWithContext(context.Context) AllowedIpAddressesAllowedIpAddressOutput
+}
+
+type AllowedIpAddressesAllowedIpAddressArgs struct {
+	// Whether to enable the IP whitelist.
+	EnableIpList pulumi.BoolInput `pulumi:"enableIpList"`
+	// The IP whitelist list.
+	IpLists AllowedIpAddressesAllowedIpAddressIpListArrayInput `pulumi:"ipLists"`
+	// The quota of the IP whitelist.
+	Quota pulumi.IntInput `pulumi:"quota"`
+}
+
+func (AllowedIpAddressesAllowedIpAddressArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AllowedIpAddressesAllowedIpAddress)(nil)).Elem()
+}
+
+func (i AllowedIpAddressesAllowedIpAddressArgs) ToAllowedIpAddressesAllowedIpAddressOutput() AllowedIpAddressesAllowedIpAddressOutput {
+	return i.ToAllowedIpAddressesAllowedIpAddressOutputWithContext(context.Background())
+}
+
+func (i AllowedIpAddressesAllowedIpAddressArgs) ToAllowedIpAddressesAllowedIpAddressOutputWithContext(ctx context.Context) AllowedIpAddressesAllowedIpAddressOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AllowedIpAddressesAllowedIpAddressOutput)
+}
+
+// AllowedIpAddressesAllowedIpAddressArrayInput is an input type that accepts AllowedIpAddressesAllowedIpAddressArray and AllowedIpAddressesAllowedIpAddressArrayOutput values.
+// You can construct a concrete instance of `AllowedIpAddressesAllowedIpAddressArrayInput` via:
+//
+//	AllowedIpAddressesAllowedIpAddressArray{ AllowedIpAddressesAllowedIpAddressArgs{...} }
+type AllowedIpAddressesAllowedIpAddressArrayInput interface {
+	pulumi.Input
+
+	ToAllowedIpAddressesAllowedIpAddressArrayOutput() AllowedIpAddressesAllowedIpAddressArrayOutput
+	ToAllowedIpAddressesAllowedIpAddressArrayOutputWithContext(context.Context) AllowedIpAddressesAllowedIpAddressArrayOutput
+}
+
+type AllowedIpAddressesAllowedIpAddressArray []AllowedIpAddressesAllowedIpAddressInput
+
+func (AllowedIpAddressesAllowedIpAddressArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AllowedIpAddressesAllowedIpAddress)(nil)).Elem()
+}
+
+func (i AllowedIpAddressesAllowedIpAddressArray) ToAllowedIpAddressesAllowedIpAddressArrayOutput() AllowedIpAddressesAllowedIpAddressArrayOutput {
+	return i.ToAllowedIpAddressesAllowedIpAddressArrayOutputWithContext(context.Background())
+}
+
+func (i AllowedIpAddressesAllowedIpAddressArray) ToAllowedIpAddressesAllowedIpAddressArrayOutputWithContext(ctx context.Context) AllowedIpAddressesAllowedIpAddressArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AllowedIpAddressesAllowedIpAddressArrayOutput)
+}
+
+type AllowedIpAddressesAllowedIpAddressOutput struct{ *pulumi.OutputState }
+
+func (AllowedIpAddressesAllowedIpAddressOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AllowedIpAddressesAllowedIpAddress)(nil)).Elem()
+}
+
+func (o AllowedIpAddressesAllowedIpAddressOutput) ToAllowedIpAddressesAllowedIpAddressOutput() AllowedIpAddressesAllowedIpAddressOutput {
+	return o
+}
+
+func (o AllowedIpAddressesAllowedIpAddressOutput) ToAllowedIpAddressesAllowedIpAddressOutputWithContext(ctx context.Context) AllowedIpAddressesAllowedIpAddressOutput {
+	return o
+}
+
+// Whether to enable the IP whitelist.
+func (o AllowedIpAddressesAllowedIpAddressOutput) EnableIpList() pulumi.BoolOutput {
+	return o.ApplyT(func(v AllowedIpAddressesAllowedIpAddress) bool { return v.EnableIpList }).(pulumi.BoolOutput)
+}
+
+// The IP whitelist list.
+func (o AllowedIpAddressesAllowedIpAddressOutput) IpLists() AllowedIpAddressesAllowedIpAddressIpListArrayOutput {
+	return o.ApplyT(func(v AllowedIpAddressesAllowedIpAddress) []AllowedIpAddressesAllowedIpAddressIpList {
+		return v.IpLists
+	}).(AllowedIpAddressesAllowedIpAddressIpListArrayOutput)
+}
+
+// The quota of the IP whitelist.
+func (o AllowedIpAddressesAllowedIpAddressOutput) Quota() pulumi.IntOutput {
+	return o.ApplyT(func(v AllowedIpAddressesAllowedIpAddress) int { return v.Quota }).(pulumi.IntOutput)
+}
+
+type AllowedIpAddressesAllowedIpAddressArrayOutput struct{ *pulumi.OutputState }
+
+func (AllowedIpAddressesAllowedIpAddressArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AllowedIpAddressesAllowedIpAddress)(nil)).Elem()
+}
+
+func (o AllowedIpAddressesAllowedIpAddressArrayOutput) ToAllowedIpAddressesAllowedIpAddressArrayOutput() AllowedIpAddressesAllowedIpAddressArrayOutput {
+	return o
+}
+
+func (o AllowedIpAddressesAllowedIpAddressArrayOutput) ToAllowedIpAddressesAllowedIpAddressArrayOutputWithContext(ctx context.Context) AllowedIpAddressesAllowedIpAddressArrayOutput {
+	return o
+}
+
+func (o AllowedIpAddressesAllowedIpAddressArrayOutput) Index(i pulumi.IntInput) AllowedIpAddressesAllowedIpAddressOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AllowedIpAddressesAllowedIpAddress {
+		return vs[0].([]AllowedIpAddressesAllowedIpAddress)[vs[1].(int)]
+	}).(AllowedIpAddressesAllowedIpAddressOutput)
+}
+
+type AllowedIpAddressesAllowedIpAddressIpList struct {
+	// The description of the IP address.
+	Description string `pulumi:"description"`
+	// The IP address.
+	Ip string `pulumi:"ip"`
+}
+
+// AllowedIpAddressesAllowedIpAddressIpListInput is an input type that accepts AllowedIpAddressesAllowedIpAddressIpListArgs and AllowedIpAddressesAllowedIpAddressIpListOutput values.
+// You can construct a concrete instance of `AllowedIpAddressesAllowedIpAddressIpListInput` via:
+//
+//	AllowedIpAddressesAllowedIpAddressIpListArgs{...}
+type AllowedIpAddressesAllowedIpAddressIpListInput interface {
+	pulumi.Input
+
+	ToAllowedIpAddressesAllowedIpAddressIpListOutput() AllowedIpAddressesAllowedIpAddressIpListOutput
+	ToAllowedIpAddressesAllowedIpAddressIpListOutputWithContext(context.Context) AllowedIpAddressesAllowedIpAddressIpListOutput
+}
+
+type AllowedIpAddressesAllowedIpAddressIpListArgs struct {
+	// The description of the IP address.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The IP address.
+	Ip pulumi.StringInput `pulumi:"ip"`
+}
+
+func (AllowedIpAddressesAllowedIpAddressIpListArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AllowedIpAddressesAllowedIpAddressIpList)(nil)).Elem()
+}
+
+func (i AllowedIpAddressesAllowedIpAddressIpListArgs) ToAllowedIpAddressesAllowedIpAddressIpListOutput() AllowedIpAddressesAllowedIpAddressIpListOutput {
+	return i.ToAllowedIpAddressesAllowedIpAddressIpListOutputWithContext(context.Background())
+}
+
+func (i AllowedIpAddressesAllowedIpAddressIpListArgs) ToAllowedIpAddressesAllowedIpAddressIpListOutputWithContext(ctx context.Context) AllowedIpAddressesAllowedIpAddressIpListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AllowedIpAddressesAllowedIpAddressIpListOutput)
+}
+
+// AllowedIpAddressesAllowedIpAddressIpListArrayInput is an input type that accepts AllowedIpAddressesAllowedIpAddressIpListArray and AllowedIpAddressesAllowedIpAddressIpListArrayOutput values.
+// You can construct a concrete instance of `AllowedIpAddressesAllowedIpAddressIpListArrayInput` via:
+//
+//	AllowedIpAddressesAllowedIpAddressIpListArray{ AllowedIpAddressesAllowedIpAddressIpListArgs{...} }
+type AllowedIpAddressesAllowedIpAddressIpListArrayInput interface {
+	pulumi.Input
+
+	ToAllowedIpAddressesAllowedIpAddressIpListArrayOutput() AllowedIpAddressesAllowedIpAddressIpListArrayOutput
+	ToAllowedIpAddressesAllowedIpAddressIpListArrayOutputWithContext(context.Context) AllowedIpAddressesAllowedIpAddressIpListArrayOutput
+}
+
+type AllowedIpAddressesAllowedIpAddressIpListArray []AllowedIpAddressesAllowedIpAddressIpListInput
+
+func (AllowedIpAddressesAllowedIpAddressIpListArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AllowedIpAddressesAllowedIpAddressIpList)(nil)).Elem()
+}
+
+func (i AllowedIpAddressesAllowedIpAddressIpListArray) ToAllowedIpAddressesAllowedIpAddressIpListArrayOutput() AllowedIpAddressesAllowedIpAddressIpListArrayOutput {
+	return i.ToAllowedIpAddressesAllowedIpAddressIpListArrayOutputWithContext(context.Background())
+}
+
+func (i AllowedIpAddressesAllowedIpAddressIpListArray) ToAllowedIpAddressesAllowedIpAddressIpListArrayOutputWithContext(ctx context.Context) AllowedIpAddressesAllowedIpAddressIpListArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AllowedIpAddressesAllowedIpAddressIpListArrayOutput)
+}
+
+type AllowedIpAddressesAllowedIpAddressIpListOutput struct{ *pulumi.OutputState }
+
+func (AllowedIpAddressesAllowedIpAddressIpListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AllowedIpAddressesAllowedIpAddressIpList)(nil)).Elem()
+}
+
+func (o AllowedIpAddressesAllowedIpAddressIpListOutput) ToAllowedIpAddressesAllowedIpAddressIpListOutput() AllowedIpAddressesAllowedIpAddressIpListOutput {
+	return o
+}
+
+func (o AllowedIpAddressesAllowedIpAddressIpListOutput) ToAllowedIpAddressesAllowedIpAddressIpListOutputWithContext(ctx context.Context) AllowedIpAddressesAllowedIpAddressIpListOutput {
+	return o
+}
+
+// The description of the IP address.
+func (o AllowedIpAddressesAllowedIpAddressIpListOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v AllowedIpAddressesAllowedIpAddressIpList) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The IP address.
+func (o AllowedIpAddressesAllowedIpAddressIpListOutput) Ip() pulumi.StringOutput {
+	return o.ApplyT(func(v AllowedIpAddressesAllowedIpAddressIpList) string { return v.Ip }).(pulumi.StringOutput)
+}
+
+type AllowedIpAddressesAllowedIpAddressIpListArrayOutput struct{ *pulumi.OutputState }
+
+func (AllowedIpAddressesAllowedIpAddressIpListArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AllowedIpAddressesAllowedIpAddressIpList)(nil)).Elem()
+}
+
+func (o AllowedIpAddressesAllowedIpAddressIpListArrayOutput) ToAllowedIpAddressesAllowedIpAddressIpListArrayOutput() AllowedIpAddressesAllowedIpAddressIpListArrayOutput {
+	return o
+}
+
+func (o AllowedIpAddressesAllowedIpAddressIpListArrayOutput) ToAllowedIpAddressesAllowedIpAddressIpListArrayOutputWithContext(ctx context.Context) AllowedIpAddressesAllowedIpAddressIpListArrayOutput {
+	return o
+}
+
+func (o AllowedIpAddressesAllowedIpAddressIpListArrayOutput) Index(i pulumi.IntInput) AllowedIpAddressesAllowedIpAddressIpListOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AllowedIpAddressesAllowedIpAddressIpList {
+		return vs[0].([]AllowedIpAddressesAllowedIpAddressIpList)[vs[1].(int)]
+	}).(AllowedIpAddressesAllowedIpAddressIpListOutput)
+}
+
+type CallerIdentitiesCallerIdentity struct {
+	// The account id.
+	AccountId string `pulumi:"accountId"`
+	// The identity id.
+	IdentityId string `pulumi:"identityId"`
+	// The identity type.
+	IdentityType string `pulumi:"identityType"`
+	// The trn.
+	Trn string `pulumi:"trn"`
+}
+
+// CallerIdentitiesCallerIdentityInput is an input type that accepts CallerIdentitiesCallerIdentityArgs and CallerIdentitiesCallerIdentityOutput values.
+// You can construct a concrete instance of `CallerIdentitiesCallerIdentityInput` via:
+//
+//	CallerIdentitiesCallerIdentityArgs{...}
+type CallerIdentitiesCallerIdentityInput interface {
+	pulumi.Input
+
+	ToCallerIdentitiesCallerIdentityOutput() CallerIdentitiesCallerIdentityOutput
+	ToCallerIdentitiesCallerIdentityOutputWithContext(context.Context) CallerIdentitiesCallerIdentityOutput
+}
+
+type CallerIdentitiesCallerIdentityArgs struct {
+	// The account id.
+	AccountId pulumi.StringInput `pulumi:"accountId"`
+	// The identity id.
+	IdentityId pulumi.StringInput `pulumi:"identityId"`
+	// The identity type.
+	IdentityType pulumi.StringInput `pulumi:"identityType"`
+	// The trn.
+	Trn pulumi.StringInput `pulumi:"trn"`
+}
+
+func (CallerIdentitiesCallerIdentityArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CallerIdentitiesCallerIdentity)(nil)).Elem()
+}
+
+func (i CallerIdentitiesCallerIdentityArgs) ToCallerIdentitiesCallerIdentityOutput() CallerIdentitiesCallerIdentityOutput {
+	return i.ToCallerIdentitiesCallerIdentityOutputWithContext(context.Background())
+}
+
+func (i CallerIdentitiesCallerIdentityArgs) ToCallerIdentitiesCallerIdentityOutputWithContext(ctx context.Context) CallerIdentitiesCallerIdentityOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CallerIdentitiesCallerIdentityOutput)
+}
+
+// CallerIdentitiesCallerIdentityArrayInput is an input type that accepts CallerIdentitiesCallerIdentityArray and CallerIdentitiesCallerIdentityArrayOutput values.
+// You can construct a concrete instance of `CallerIdentitiesCallerIdentityArrayInput` via:
+//
+//	CallerIdentitiesCallerIdentityArray{ CallerIdentitiesCallerIdentityArgs{...} }
+type CallerIdentitiesCallerIdentityArrayInput interface {
+	pulumi.Input
+
+	ToCallerIdentitiesCallerIdentityArrayOutput() CallerIdentitiesCallerIdentityArrayOutput
+	ToCallerIdentitiesCallerIdentityArrayOutputWithContext(context.Context) CallerIdentitiesCallerIdentityArrayOutput
+}
+
+type CallerIdentitiesCallerIdentityArray []CallerIdentitiesCallerIdentityInput
+
+func (CallerIdentitiesCallerIdentityArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CallerIdentitiesCallerIdentity)(nil)).Elem()
+}
+
+func (i CallerIdentitiesCallerIdentityArray) ToCallerIdentitiesCallerIdentityArrayOutput() CallerIdentitiesCallerIdentityArrayOutput {
+	return i.ToCallerIdentitiesCallerIdentityArrayOutputWithContext(context.Background())
+}
+
+func (i CallerIdentitiesCallerIdentityArray) ToCallerIdentitiesCallerIdentityArrayOutputWithContext(ctx context.Context) CallerIdentitiesCallerIdentityArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CallerIdentitiesCallerIdentityArrayOutput)
+}
+
+type CallerIdentitiesCallerIdentityOutput struct{ *pulumi.OutputState }
+
+func (CallerIdentitiesCallerIdentityOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CallerIdentitiesCallerIdentity)(nil)).Elem()
+}
+
+func (o CallerIdentitiesCallerIdentityOutput) ToCallerIdentitiesCallerIdentityOutput() CallerIdentitiesCallerIdentityOutput {
+	return o
+}
+
+func (o CallerIdentitiesCallerIdentityOutput) ToCallerIdentitiesCallerIdentityOutputWithContext(ctx context.Context) CallerIdentitiesCallerIdentityOutput {
+	return o
+}
+
+// The account id.
+func (o CallerIdentitiesCallerIdentityOutput) AccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v CallerIdentitiesCallerIdentity) string { return v.AccountId }).(pulumi.StringOutput)
+}
+
+// The identity id.
+func (o CallerIdentitiesCallerIdentityOutput) IdentityId() pulumi.StringOutput {
+	return o.ApplyT(func(v CallerIdentitiesCallerIdentity) string { return v.IdentityId }).(pulumi.StringOutput)
+}
+
+// The identity type.
+func (o CallerIdentitiesCallerIdentityOutput) IdentityType() pulumi.StringOutput {
+	return o.ApplyT(func(v CallerIdentitiesCallerIdentity) string { return v.IdentityType }).(pulumi.StringOutput)
+}
+
+// The trn.
+func (o CallerIdentitiesCallerIdentityOutput) Trn() pulumi.StringOutput {
+	return o.ApplyT(func(v CallerIdentitiesCallerIdentity) string { return v.Trn }).(pulumi.StringOutput)
+}
+
+type CallerIdentitiesCallerIdentityArrayOutput struct{ *pulumi.OutputState }
+
+func (CallerIdentitiesCallerIdentityArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CallerIdentitiesCallerIdentity)(nil)).Elem()
+}
+
+func (o CallerIdentitiesCallerIdentityArrayOutput) ToCallerIdentitiesCallerIdentityArrayOutput() CallerIdentitiesCallerIdentityArrayOutput {
+	return o
+}
+
+func (o CallerIdentitiesCallerIdentityArrayOutput) ToCallerIdentitiesCallerIdentityArrayOutputWithContext(ctx context.Context) CallerIdentitiesCallerIdentityArrayOutput {
+	return o
+}
+
+func (o CallerIdentitiesCallerIdentityArrayOutput) Index(i pulumi.IntInput) CallerIdentitiesCallerIdentityOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CallerIdentitiesCallerIdentity {
+		return vs[0].([]CallerIdentitiesCallerIdentity)[vs[1].(int)]
+	}).(CallerIdentitiesCallerIdentityOutput)
+}
+
+type EntitiesPoliciesRole struct {
+	// The attach date of the policy scope.
+	AttachDate string `pulumi:"attachDate"`
+	// The description of the user.
+	Description string `pulumi:"description"`
+	// The display name of the user.
+	DisplayName string `pulumi:"displayName"`
+	// The id of the user.
+	Id int `pulumi:"id"`
+	// The scope of the policy.
+	PolicyScopes []EntitiesPoliciesRolePolicyScope `pulumi:"policyScopes"`
+	// The name of the role.
+	RoleName string `pulumi:"roleName"`
+}
+
+// EntitiesPoliciesRoleInput is an input type that accepts EntitiesPoliciesRoleArgs and EntitiesPoliciesRoleOutput values.
+// You can construct a concrete instance of `EntitiesPoliciesRoleInput` via:
+//
+//	EntitiesPoliciesRoleArgs{...}
+type EntitiesPoliciesRoleInput interface {
+	pulumi.Input
+
+	ToEntitiesPoliciesRoleOutput() EntitiesPoliciesRoleOutput
+	ToEntitiesPoliciesRoleOutputWithContext(context.Context) EntitiesPoliciesRoleOutput
+}
+
+type EntitiesPoliciesRoleArgs struct {
+	// The attach date of the policy scope.
+	AttachDate pulumi.StringInput `pulumi:"attachDate"`
+	// The description of the user.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The display name of the user.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The id of the user.
+	Id pulumi.IntInput `pulumi:"id"`
+	// The scope of the policy.
+	PolicyScopes EntitiesPoliciesRolePolicyScopeArrayInput `pulumi:"policyScopes"`
+	// The name of the role.
+	RoleName pulumi.StringInput `pulumi:"roleName"`
+}
+
+func (EntitiesPoliciesRoleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EntitiesPoliciesRole)(nil)).Elem()
+}
+
+func (i EntitiesPoliciesRoleArgs) ToEntitiesPoliciesRoleOutput() EntitiesPoliciesRoleOutput {
+	return i.ToEntitiesPoliciesRoleOutputWithContext(context.Background())
+}
+
+func (i EntitiesPoliciesRoleArgs) ToEntitiesPoliciesRoleOutputWithContext(ctx context.Context) EntitiesPoliciesRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EntitiesPoliciesRoleOutput)
+}
+
+// EntitiesPoliciesRoleArrayInput is an input type that accepts EntitiesPoliciesRoleArray and EntitiesPoliciesRoleArrayOutput values.
+// You can construct a concrete instance of `EntitiesPoliciesRoleArrayInput` via:
+//
+//	EntitiesPoliciesRoleArray{ EntitiesPoliciesRoleArgs{...} }
+type EntitiesPoliciesRoleArrayInput interface {
+	pulumi.Input
+
+	ToEntitiesPoliciesRoleArrayOutput() EntitiesPoliciesRoleArrayOutput
+	ToEntitiesPoliciesRoleArrayOutputWithContext(context.Context) EntitiesPoliciesRoleArrayOutput
+}
+
+type EntitiesPoliciesRoleArray []EntitiesPoliciesRoleInput
+
+func (EntitiesPoliciesRoleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EntitiesPoliciesRole)(nil)).Elem()
+}
+
+func (i EntitiesPoliciesRoleArray) ToEntitiesPoliciesRoleArrayOutput() EntitiesPoliciesRoleArrayOutput {
+	return i.ToEntitiesPoliciesRoleArrayOutputWithContext(context.Background())
+}
+
+func (i EntitiesPoliciesRoleArray) ToEntitiesPoliciesRoleArrayOutputWithContext(ctx context.Context) EntitiesPoliciesRoleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EntitiesPoliciesRoleArrayOutput)
+}
+
+type EntitiesPoliciesRoleOutput struct{ *pulumi.OutputState }
+
+func (EntitiesPoliciesRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EntitiesPoliciesRole)(nil)).Elem()
+}
+
+func (o EntitiesPoliciesRoleOutput) ToEntitiesPoliciesRoleOutput() EntitiesPoliciesRoleOutput {
+	return o
+}
+
+func (o EntitiesPoliciesRoleOutput) ToEntitiesPoliciesRoleOutputWithContext(ctx context.Context) EntitiesPoliciesRoleOutput {
+	return o
+}
+
+// The attach date of the policy scope.
+func (o EntitiesPoliciesRoleOutput) AttachDate() pulumi.StringOutput {
+	return o.ApplyT(func(v EntitiesPoliciesRole) string { return v.AttachDate }).(pulumi.StringOutput)
+}
+
+// The description of the user.
+func (o EntitiesPoliciesRoleOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v EntitiesPoliciesRole) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The display name of the user.
+func (o EntitiesPoliciesRoleOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v EntitiesPoliciesRole) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The id of the user.
+func (o EntitiesPoliciesRoleOutput) Id() pulumi.IntOutput {
+	return o.ApplyT(func(v EntitiesPoliciesRole) int { return v.Id }).(pulumi.IntOutput)
+}
+
+// The scope of the policy.
+func (o EntitiesPoliciesRoleOutput) PolicyScopes() EntitiesPoliciesRolePolicyScopeArrayOutput {
+	return o.ApplyT(func(v EntitiesPoliciesRole) []EntitiesPoliciesRolePolicyScope { return v.PolicyScopes }).(EntitiesPoliciesRolePolicyScopeArrayOutput)
+}
+
+// The name of the role.
+func (o EntitiesPoliciesRoleOutput) RoleName() pulumi.StringOutput {
+	return o.ApplyT(func(v EntitiesPoliciesRole) string { return v.RoleName }).(pulumi.StringOutput)
+}
+
+type EntitiesPoliciesRoleArrayOutput struct{ *pulumi.OutputState }
+
+func (EntitiesPoliciesRoleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EntitiesPoliciesRole)(nil)).Elem()
+}
+
+func (o EntitiesPoliciesRoleArrayOutput) ToEntitiesPoliciesRoleArrayOutput() EntitiesPoliciesRoleArrayOutput {
+	return o
+}
+
+func (o EntitiesPoliciesRoleArrayOutput) ToEntitiesPoliciesRoleArrayOutputWithContext(ctx context.Context) EntitiesPoliciesRoleArrayOutput {
+	return o
+}
+
+func (o EntitiesPoliciesRoleArrayOutput) Index(i pulumi.IntInput) EntitiesPoliciesRoleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EntitiesPoliciesRole {
+		return vs[0].([]EntitiesPoliciesRole)[vs[1].(int)]
+	}).(EntitiesPoliciesRoleOutput)
+}
+
+type EntitiesPoliciesRolePolicyScope struct {
+	// The attach date of the policy scope.
+	AttachDate string `pulumi:"attachDate"`
+	// The type of the policy scope.
+	PolicyScopeType string `pulumi:"policyScopeType"`
+	// The display name of the project.
+	ProjectDisplayName string `pulumi:"projectDisplayName"`
+	// The name of the project.
+	ProjectName string `pulumi:"projectName"`
+}
+
+// EntitiesPoliciesRolePolicyScopeInput is an input type that accepts EntitiesPoliciesRolePolicyScopeArgs and EntitiesPoliciesRolePolicyScopeOutput values.
+// You can construct a concrete instance of `EntitiesPoliciesRolePolicyScopeInput` via:
+//
+//	EntitiesPoliciesRolePolicyScopeArgs{...}
+type EntitiesPoliciesRolePolicyScopeInput interface {
+	pulumi.Input
+
+	ToEntitiesPoliciesRolePolicyScopeOutput() EntitiesPoliciesRolePolicyScopeOutput
+	ToEntitiesPoliciesRolePolicyScopeOutputWithContext(context.Context) EntitiesPoliciesRolePolicyScopeOutput
+}
+
+type EntitiesPoliciesRolePolicyScopeArgs struct {
+	// The attach date of the policy scope.
+	AttachDate pulumi.StringInput `pulumi:"attachDate"`
+	// The type of the policy scope.
+	PolicyScopeType pulumi.StringInput `pulumi:"policyScopeType"`
+	// The display name of the project.
+	ProjectDisplayName pulumi.StringInput `pulumi:"projectDisplayName"`
+	// The name of the project.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+}
+
+func (EntitiesPoliciesRolePolicyScopeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EntitiesPoliciesRolePolicyScope)(nil)).Elem()
+}
+
+func (i EntitiesPoliciesRolePolicyScopeArgs) ToEntitiesPoliciesRolePolicyScopeOutput() EntitiesPoliciesRolePolicyScopeOutput {
+	return i.ToEntitiesPoliciesRolePolicyScopeOutputWithContext(context.Background())
+}
+
+func (i EntitiesPoliciesRolePolicyScopeArgs) ToEntitiesPoliciesRolePolicyScopeOutputWithContext(ctx context.Context) EntitiesPoliciesRolePolicyScopeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EntitiesPoliciesRolePolicyScopeOutput)
+}
+
+// EntitiesPoliciesRolePolicyScopeArrayInput is an input type that accepts EntitiesPoliciesRolePolicyScopeArray and EntitiesPoliciesRolePolicyScopeArrayOutput values.
+// You can construct a concrete instance of `EntitiesPoliciesRolePolicyScopeArrayInput` via:
+//
+//	EntitiesPoliciesRolePolicyScopeArray{ EntitiesPoliciesRolePolicyScopeArgs{...} }
+type EntitiesPoliciesRolePolicyScopeArrayInput interface {
+	pulumi.Input
+
+	ToEntitiesPoliciesRolePolicyScopeArrayOutput() EntitiesPoliciesRolePolicyScopeArrayOutput
+	ToEntitiesPoliciesRolePolicyScopeArrayOutputWithContext(context.Context) EntitiesPoliciesRolePolicyScopeArrayOutput
+}
+
+type EntitiesPoliciesRolePolicyScopeArray []EntitiesPoliciesRolePolicyScopeInput
+
+func (EntitiesPoliciesRolePolicyScopeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EntitiesPoliciesRolePolicyScope)(nil)).Elem()
+}
+
+func (i EntitiesPoliciesRolePolicyScopeArray) ToEntitiesPoliciesRolePolicyScopeArrayOutput() EntitiesPoliciesRolePolicyScopeArrayOutput {
+	return i.ToEntitiesPoliciesRolePolicyScopeArrayOutputWithContext(context.Background())
+}
+
+func (i EntitiesPoliciesRolePolicyScopeArray) ToEntitiesPoliciesRolePolicyScopeArrayOutputWithContext(ctx context.Context) EntitiesPoliciesRolePolicyScopeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EntitiesPoliciesRolePolicyScopeArrayOutput)
+}
+
+type EntitiesPoliciesRolePolicyScopeOutput struct{ *pulumi.OutputState }
+
+func (EntitiesPoliciesRolePolicyScopeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EntitiesPoliciesRolePolicyScope)(nil)).Elem()
+}
+
+func (o EntitiesPoliciesRolePolicyScopeOutput) ToEntitiesPoliciesRolePolicyScopeOutput() EntitiesPoliciesRolePolicyScopeOutput {
+	return o
+}
+
+func (o EntitiesPoliciesRolePolicyScopeOutput) ToEntitiesPoliciesRolePolicyScopeOutputWithContext(ctx context.Context) EntitiesPoliciesRolePolicyScopeOutput {
+	return o
+}
+
+// The attach date of the policy scope.
+func (o EntitiesPoliciesRolePolicyScopeOutput) AttachDate() pulumi.StringOutput {
+	return o.ApplyT(func(v EntitiesPoliciesRolePolicyScope) string { return v.AttachDate }).(pulumi.StringOutput)
+}
+
+// The type of the policy scope.
+func (o EntitiesPoliciesRolePolicyScopeOutput) PolicyScopeType() pulumi.StringOutput {
+	return o.ApplyT(func(v EntitiesPoliciesRolePolicyScope) string { return v.PolicyScopeType }).(pulumi.StringOutput)
+}
+
+// The display name of the project.
+func (o EntitiesPoliciesRolePolicyScopeOutput) ProjectDisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v EntitiesPoliciesRolePolicyScope) string { return v.ProjectDisplayName }).(pulumi.StringOutput)
+}
+
+// The name of the project.
+func (o EntitiesPoliciesRolePolicyScopeOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v EntitiesPoliciesRolePolicyScope) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+type EntitiesPoliciesRolePolicyScopeArrayOutput struct{ *pulumi.OutputState }
+
+func (EntitiesPoliciesRolePolicyScopeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EntitiesPoliciesRolePolicyScope)(nil)).Elem()
+}
+
+func (o EntitiesPoliciesRolePolicyScopeArrayOutput) ToEntitiesPoliciesRolePolicyScopeArrayOutput() EntitiesPoliciesRolePolicyScopeArrayOutput {
+	return o
+}
+
+func (o EntitiesPoliciesRolePolicyScopeArrayOutput) ToEntitiesPoliciesRolePolicyScopeArrayOutputWithContext(ctx context.Context) EntitiesPoliciesRolePolicyScopeArrayOutput {
+	return o
+}
+
+func (o EntitiesPoliciesRolePolicyScopeArrayOutput) Index(i pulumi.IntInput) EntitiesPoliciesRolePolicyScopeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EntitiesPoliciesRolePolicyScope {
+		return vs[0].([]EntitiesPoliciesRolePolicyScope)[vs[1].(int)]
+	}).(EntitiesPoliciesRolePolicyScopeOutput)
+}
+
+type EntitiesPoliciesUser struct {
+	// The attach date of the policy scope.
+	AttachDate string `pulumi:"attachDate"`
+	// The description of the user.
+	Description string `pulumi:"description"`
+	// The display name of the user.
+	DisplayName string `pulumi:"displayName"`
+	// The id of the user.
+	Id int `pulumi:"id"`
+	// The scope of the policy.
+	PolicyScopes []EntitiesPoliciesUserPolicyScope `pulumi:"policyScopes"`
+	// The name of the user.
+	UserName string `pulumi:"userName"`
+}
+
+// EntitiesPoliciesUserInput is an input type that accepts EntitiesPoliciesUserArgs and EntitiesPoliciesUserOutput values.
+// You can construct a concrete instance of `EntitiesPoliciesUserInput` via:
+//
+//	EntitiesPoliciesUserArgs{...}
+type EntitiesPoliciesUserInput interface {
+	pulumi.Input
+
+	ToEntitiesPoliciesUserOutput() EntitiesPoliciesUserOutput
+	ToEntitiesPoliciesUserOutputWithContext(context.Context) EntitiesPoliciesUserOutput
+}
+
+type EntitiesPoliciesUserArgs struct {
+	// The attach date of the policy scope.
+	AttachDate pulumi.StringInput `pulumi:"attachDate"`
+	// The description of the user.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The display name of the user.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The id of the user.
+	Id pulumi.IntInput `pulumi:"id"`
+	// The scope of the policy.
+	PolicyScopes EntitiesPoliciesUserPolicyScopeArrayInput `pulumi:"policyScopes"`
+	// The name of the user.
+	UserName pulumi.StringInput `pulumi:"userName"`
+}
+
+func (EntitiesPoliciesUserArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EntitiesPoliciesUser)(nil)).Elem()
+}
+
+func (i EntitiesPoliciesUserArgs) ToEntitiesPoliciesUserOutput() EntitiesPoliciesUserOutput {
+	return i.ToEntitiesPoliciesUserOutputWithContext(context.Background())
+}
+
+func (i EntitiesPoliciesUserArgs) ToEntitiesPoliciesUserOutputWithContext(ctx context.Context) EntitiesPoliciesUserOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EntitiesPoliciesUserOutput)
+}
+
+// EntitiesPoliciesUserArrayInput is an input type that accepts EntitiesPoliciesUserArray and EntitiesPoliciesUserArrayOutput values.
+// You can construct a concrete instance of `EntitiesPoliciesUserArrayInput` via:
+//
+//	EntitiesPoliciesUserArray{ EntitiesPoliciesUserArgs{...} }
+type EntitiesPoliciesUserArrayInput interface {
+	pulumi.Input
+
+	ToEntitiesPoliciesUserArrayOutput() EntitiesPoliciesUserArrayOutput
+	ToEntitiesPoliciesUserArrayOutputWithContext(context.Context) EntitiesPoliciesUserArrayOutput
+}
+
+type EntitiesPoliciesUserArray []EntitiesPoliciesUserInput
+
+func (EntitiesPoliciesUserArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EntitiesPoliciesUser)(nil)).Elem()
+}
+
+func (i EntitiesPoliciesUserArray) ToEntitiesPoliciesUserArrayOutput() EntitiesPoliciesUserArrayOutput {
+	return i.ToEntitiesPoliciesUserArrayOutputWithContext(context.Background())
+}
+
+func (i EntitiesPoliciesUserArray) ToEntitiesPoliciesUserArrayOutputWithContext(ctx context.Context) EntitiesPoliciesUserArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EntitiesPoliciesUserArrayOutput)
+}
+
+type EntitiesPoliciesUserOutput struct{ *pulumi.OutputState }
+
+func (EntitiesPoliciesUserOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EntitiesPoliciesUser)(nil)).Elem()
+}
+
+func (o EntitiesPoliciesUserOutput) ToEntitiesPoliciesUserOutput() EntitiesPoliciesUserOutput {
+	return o
+}
+
+func (o EntitiesPoliciesUserOutput) ToEntitiesPoliciesUserOutputWithContext(ctx context.Context) EntitiesPoliciesUserOutput {
+	return o
+}
+
+// The attach date of the policy scope.
+func (o EntitiesPoliciesUserOutput) AttachDate() pulumi.StringOutput {
+	return o.ApplyT(func(v EntitiesPoliciesUser) string { return v.AttachDate }).(pulumi.StringOutput)
+}
+
+// The description of the user.
+func (o EntitiesPoliciesUserOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v EntitiesPoliciesUser) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The display name of the user.
+func (o EntitiesPoliciesUserOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v EntitiesPoliciesUser) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The id of the user.
+func (o EntitiesPoliciesUserOutput) Id() pulumi.IntOutput {
+	return o.ApplyT(func(v EntitiesPoliciesUser) int { return v.Id }).(pulumi.IntOutput)
+}
+
+// The scope of the policy.
+func (o EntitiesPoliciesUserOutput) PolicyScopes() EntitiesPoliciesUserPolicyScopeArrayOutput {
+	return o.ApplyT(func(v EntitiesPoliciesUser) []EntitiesPoliciesUserPolicyScope { return v.PolicyScopes }).(EntitiesPoliciesUserPolicyScopeArrayOutput)
+}
+
+// The name of the user.
+func (o EntitiesPoliciesUserOutput) UserName() pulumi.StringOutput {
+	return o.ApplyT(func(v EntitiesPoliciesUser) string { return v.UserName }).(pulumi.StringOutput)
+}
+
+type EntitiesPoliciesUserArrayOutput struct{ *pulumi.OutputState }
+
+func (EntitiesPoliciesUserArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EntitiesPoliciesUser)(nil)).Elem()
+}
+
+func (o EntitiesPoliciesUserArrayOutput) ToEntitiesPoliciesUserArrayOutput() EntitiesPoliciesUserArrayOutput {
+	return o
+}
+
+func (o EntitiesPoliciesUserArrayOutput) ToEntitiesPoliciesUserArrayOutputWithContext(ctx context.Context) EntitiesPoliciesUserArrayOutput {
+	return o
+}
+
+func (o EntitiesPoliciesUserArrayOutput) Index(i pulumi.IntInput) EntitiesPoliciesUserOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EntitiesPoliciesUser {
+		return vs[0].([]EntitiesPoliciesUser)[vs[1].(int)]
+	}).(EntitiesPoliciesUserOutput)
+}
+
+type EntitiesPoliciesUserGroup struct {
+	// The attach date of the policy scope.
+	AttachDate string `pulumi:"attachDate"`
+	// The description of the user.
+	Description string `pulumi:"description"`
+	// The display name of the user.
+	DisplayName string `pulumi:"displayName"`
+	// The id of the user.
+	Id int `pulumi:"id"`
+	// The scope of the policy.
+	PolicyScopes []EntitiesPoliciesUserGroupPolicyScope `pulumi:"policyScopes"`
+	// The name of the user group.
+	UserGroupName string `pulumi:"userGroupName"`
+}
+
+// EntitiesPoliciesUserGroupInput is an input type that accepts EntitiesPoliciesUserGroupArgs and EntitiesPoliciesUserGroupOutput values.
+// You can construct a concrete instance of `EntitiesPoliciesUserGroupInput` via:
+//
+//	EntitiesPoliciesUserGroupArgs{...}
+type EntitiesPoliciesUserGroupInput interface {
+	pulumi.Input
+
+	ToEntitiesPoliciesUserGroupOutput() EntitiesPoliciesUserGroupOutput
+	ToEntitiesPoliciesUserGroupOutputWithContext(context.Context) EntitiesPoliciesUserGroupOutput
+}
+
+type EntitiesPoliciesUserGroupArgs struct {
+	// The attach date of the policy scope.
+	AttachDate pulumi.StringInput `pulumi:"attachDate"`
+	// The description of the user.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The display name of the user.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The id of the user.
+	Id pulumi.IntInput `pulumi:"id"`
+	// The scope of the policy.
+	PolicyScopes EntitiesPoliciesUserGroupPolicyScopeArrayInput `pulumi:"policyScopes"`
+	// The name of the user group.
+	UserGroupName pulumi.StringInput `pulumi:"userGroupName"`
+}
+
+func (EntitiesPoliciesUserGroupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EntitiesPoliciesUserGroup)(nil)).Elem()
+}
+
+func (i EntitiesPoliciesUserGroupArgs) ToEntitiesPoliciesUserGroupOutput() EntitiesPoliciesUserGroupOutput {
+	return i.ToEntitiesPoliciesUserGroupOutputWithContext(context.Background())
+}
+
+func (i EntitiesPoliciesUserGroupArgs) ToEntitiesPoliciesUserGroupOutputWithContext(ctx context.Context) EntitiesPoliciesUserGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EntitiesPoliciesUserGroupOutput)
+}
+
+// EntitiesPoliciesUserGroupArrayInput is an input type that accepts EntitiesPoliciesUserGroupArray and EntitiesPoliciesUserGroupArrayOutput values.
+// You can construct a concrete instance of `EntitiesPoliciesUserGroupArrayInput` via:
+//
+//	EntitiesPoliciesUserGroupArray{ EntitiesPoliciesUserGroupArgs{...} }
+type EntitiesPoliciesUserGroupArrayInput interface {
+	pulumi.Input
+
+	ToEntitiesPoliciesUserGroupArrayOutput() EntitiesPoliciesUserGroupArrayOutput
+	ToEntitiesPoliciesUserGroupArrayOutputWithContext(context.Context) EntitiesPoliciesUserGroupArrayOutput
+}
+
+type EntitiesPoliciesUserGroupArray []EntitiesPoliciesUserGroupInput
+
+func (EntitiesPoliciesUserGroupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EntitiesPoliciesUserGroup)(nil)).Elem()
+}
+
+func (i EntitiesPoliciesUserGroupArray) ToEntitiesPoliciesUserGroupArrayOutput() EntitiesPoliciesUserGroupArrayOutput {
+	return i.ToEntitiesPoliciesUserGroupArrayOutputWithContext(context.Background())
+}
+
+func (i EntitiesPoliciesUserGroupArray) ToEntitiesPoliciesUserGroupArrayOutputWithContext(ctx context.Context) EntitiesPoliciesUserGroupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EntitiesPoliciesUserGroupArrayOutput)
+}
+
+type EntitiesPoliciesUserGroupOutput struct{ *pulumi.OutputState }
+
+func (EntitiesPoliciesUserGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EntitiesPoliciesUserGroup)(nil)).Elem()
+}
+
+func (o EntitiesPoliciesUserGroupOutput) ToEntitiesPoliciesUserGroupOutput() EntitiesPoliciesUserGroupOutput {
+	return o
+}
+
+func (o EntitiesPoliciesUserGroupOutput) ToEntitiesPoliciesUserGroupOutputWithContext(ctx context.Context) EntitiesPoliciesUserGroupOutput {
+	return o
+}
+
+// The attach date of the policy scope.
+func (o EntitiesPoliciesUserGroupOutput) AttachDate() pulumi.StringOutput {
+	return o.ApplyT(func(v EntitiesPoliciesUserGroup) string { return v.AttachDate }).(pulumi.StringOutput)
+}
+
+// The description of the user.
+func (o EntitiesPoliciesUserGroupOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v EntitiesPoliciesUserGroup) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The display name of the user.
+func (o EntitiesPoliciesUserGroupOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v EntitiesPoliciesUserGroup) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The id of the user.
+func (o EntitiesPoliciesUserGroupOutput) Id() pulumi.IntOutput {
+	return o.ApplyT(func(v EntitiesPoliciesUserGroup) int { return v.Id }).(pulumi.IntOutput)
+}
+
+// The scope of the policy.
+func (o EntitiesPoliciesUserGroupOutput) PolicyScopes() EntitiesPoliciesUserGroupPolicyScopeArrayOutput {
+	return o.ApplyT(func(v EntitiesPoliciesUserGroup) []EntitiesPoliciesUserGroupPolicyScope { return v.PolicyScopes }).(EntitiesPoliciesUserGroupPolicyScopeArrayOutput)
+}
+
+// The name of the user group.
+func (o EntitiesPoliciesUserGroupOutput) UserGroupName() pulumi.StringOutput {
+	return o.ApplyT(func(v EntitiesPoliciesUserGroup) string { return v.UserGroupName }).(pulumi.StringOutput)
+}
+
+type EntitiesPoliciesUserGroupArrayOutput struct{ *pulumi.OutputState }
+
+func (EntitiesPoliciesUserGroupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EntitiesPoliciesUserGroup)(nil)).Elem()
+}
+
+func (o EntitiesPoliciesUserGroupArrayOutput) ToEntitiesPoliciesUserGroupArrayOutput() EntitiesPoliciesUserGroupArrayOutput {
+	return o
+}
+
+func (o EntitiesPoliciesUserGroupArrayOutput) ToEntitiesPoliciesUserGroupArrayOutputWithContext(ctx context.Context) EntitiesPoliciesUserGroupArrayOutput {
+	return o
+}
+
+func (o EntitiesPoliciesUserGroupArrayOutput) Index(i pulumi.IntInput) EntitiesPoliciesUserGroupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EntitiesPoliciesUserGroup {
+		return vs[0].([]EntitiesPoliciesUserGroup)[vs[1].(int)]
+	}).(EntitiesPoliciesUserGroupOutput)
+}
+
+type EntitiesPoliciesUserGroupPolicyScope struct {
+	// The attach date of the policy scope.
+	AttachDate string `pulumi:"attachDate"`
+	// The type of the policy scope.
+	PolicyScopeType string `pulumi:"policyScopeType"`
+	// The display name of the project.
+	ProjectDisplayName string `pulumi:"projectDisplayName"`
+	// The name of the project.
+	ProjectName string `pulumi:"projectName"`
+}
+
+// EntitiesPoliciesUserGroupPolicyScopeInput is an input type that accepts EntitiesPoliciesUserGroupPolicyScopeArgs and EntitiesPoliciesUserGroupPolicyScopeOutput values.
+// You can construct a concrete instance of `EntitiesPoliciesUserGroupPolicyScopeInput` via:
+//
+//	EntitiesPoliciesUserGroupPolicyScopeArgs{...}
+type EntitiesPoliciesUserGroupPolicyScopeInput interface {
+	pulumi.Input
+
+	ToEntitiesPoliciesUserGroupPolicyScopeOutput() EntitiesPoliciesUserGroupPolicyScopeOutput
+	ToEntitiesPoliciesUserGroupPolicyScopeOutputWithContext(context.Context) EntitiesPoliciesUserGroupPolicyScopeOutput
+}
+
+type EntitiesPoliciesUserGroupPolicyScopeArgs struct {
+	// The attach date of the policy scope.
+	AttachDate pulumi.StringInput `pulumi:"attachDate"`
+	// The type of the policy scope.
+	PolicyScopeType pulumi.StringInput `pulumi:"policyScopeType"`
+	// The display name of the project.
+	ProjectDisplayName pulumi.StringInput `pulumi:"projectDisplayName"`
+	// The name of the project.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+}
+
+func (EntitiesPoliciesUserGroupPolicyScopeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EntitiesPoliciesUserGroupPolicyScope)(nil)).Elem()
+}
+
+func (i EntitiesPoliciesUserGroupPolicyScopeArgs) ToEntitiesPoliciesUserGroupPolicyScopeOutput() EntitiesPoliciesUserGroupPolicyScopeOutput {
+	return i.ToEntitiesPoliciesUserGroupPolicyScopeOutputWithContext(context.Background())
+}
+
+func (i EntitiesPoliciesUserGroupPolicyScopeArgs) ToEntitiesPoliciesUserGroupPolicyScopeOutputWithContext(ctx context.Context) EntitiesPoliciesUserGroupPolicyScopeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EntitiesPoliciesUserGroupPolicyScopeOutput)
+}
+
+// EntitiesPoliciesUserGroupPolicyScopeArrayInput is an input type that accepts EntitiesPoliciesUserGroupPolicyScopeArray and EntitiesPoliciesUserGroupPolicyScopeArrayOutput values.
+// You can construct a concrete instance of `EntitiesPoliciesUserGroupPolicyScopeArrayInput` via:
+//
+//	EntitiesPoliciesUserGroupPolicyScopeArray{ EntitiesPoliciesUserGroupPolicyScopeArgs{...} }
+type EntitiesPoliciesUserGroupPolicyScopeArrayInput interface {
+	pulumi.Input
+
+	ToEntitiesPoliciesUserGroupPolicyScopeArrayOutput() EntitiesPoliciesUserGroupPolicyScopeArrayOutput
+	ToEntitiesPoliciesUserGroupPolicyScopeArrayOutputWithContext(context.Context) EntitiesPoliciesUserGroupPolicyScopeArrayOutput
+}
+
+type EntitiesPoliciesUserGroupPolicyScopeArray []EntitiesPoliciesUserGroupPolicyScopeInput
+
+func (EntitiesPoliciesUserGroupPolicyScopeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EntitiesPoliciesUserGroupPolicyScope)(nil)).Elem()
+}
+
+func (i EntitiesPoliciesUserGroupPolicyScopeArray) ToEntitiesPoliciesUserGroupPolicyScopeArrayOutput() EntitiesPoliciesUserGroupPolicyScopeArrayOutput {
+	return i.ToEntitiesPoliciesUserGroupPolicyScopeArrayOutputWithContext(context.Background())
+}
+
+func (i EntitiesPoliciesUserGroupPolicyScopeArray) ToEntitiesPoliciesUserGroupPolicyScopeArrayOutputWithContext(ctx context.Context) EntitiesPoliciesUserGroupPolicyScopeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EntitiesPoliciesUserGroupPolicyScopeArrayOutput)
+}
+
+type EntitiesPoliciesUserGroupPolicyScopeOutput struct{ *pulumi.OutputState }
+
+func (EntitiesPoliciesUserGroupPolicyScopeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EntitiesPoliciesUserGroupPolicyScope)(nil)).Elem()
+}
+
+func (o EntitiesPoliciesUserGroupPolicyScopeOutput) ToEntitiesPoliciesUserGroupPolicyScopeOutput() EntitiesPoliciesUserGroupPolicyScopeOutput {
+	return o
+}
+
+func (o EntitiesPoliciesUserGroupPolicyScopeOutput) ToEntitiesPoliciesUserGroupPolicyScopeOutputWithContext(ctx context.Context) EntitiesPoliciesUserGroupPolicyScopeOutput {
+	return o
+}
+
+// The attach date of the policy scope.
+func (o EntitiesPoliciesUserGroupPolicyScopeOutput) AttachDate() pulumi.StringOutput {
+	return o.ApplyT(func(v EntitiesPoliciesUserGroupPolicyScope) string { return v.AttachDate }).(pulumi.StringOutput)
+}
+
+// The type of the policy scope.
+func (o EntitiesPoliciesUserGroupPolicyScopeOutput) PolicyScopeType() pulumi.StringOutput {
+	return o.ApplyT(func(v EntitiesPoliciesUserGroupPolicyScope) string { return v.PolicyScopeType }).(pulumi.StringOutput)
+}
+
+// The display name of the project.
+func (o EntitiesPoliciesUserGroupPolicyScopeOutput) ProjectDisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v EntitiesPoliciesUserGroupPolicyScope) string { return v.ProjectDisplayName }).(pulumi.StringOutput)
+}
+
+// The name of the project.
+func (o EntitiesPoliciesUserGroupPolicyScopeOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v EntitiesPoliciesUserGroupPolicyScope) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+type EntitiesPoliciesUserGroupPolicyScopeArrayOutput struct{ *pulumi.OutputState }
+
+func (EntitiesPoliciesUserGroupPolicyScopeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EntitiesPoliciesUserGroupPolicyScope)(nil)).Elem()
+}
+
+func (o EntitiesPoliciesUserGroupPolicyScopeArrayOutput) ToEntitiesPoliciesUserGroupPolicyScopeArrayOutput() EntitiesPoliciesUserGroupPolicyScopeArrayOutput {
+	return o
+}
+
+func (o EntitiesPoliciesUserGroupPolicyScopeArrayOutput) ToEntitiesPoliciesUserGroupPolicyScopeArrayOutputWithContext(ctx context.Context) EntitiesPoliciesUserGroupPolicyScopeArrayOutput {
+	return o
+}
+
+func (o EntitiesPoliciesUserGroupPolicyScopeArrayOutput) Index(i pulumi.IntInput) EntitiesPoliciesUserGroupPolicyScopeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EntitiesPoliciesUserGroupPolicyScope {
+		return vs[0].([]EntitiesPoliciesUserGroupPolicyScope)[vs[1].(int)]
+	}).(EntitiesPoliciesUserGroupPolicyScopeOutput)
+}
+
+type EntitiesPoliciesUserPolicyScope struct {
+	// The attach date of the policy scope.
+	AttachDate string `pulumi:"attachDate"`
+	// The type of the policy scope.
+	PolicyScopeType string `pulumi:"policyScopeType"`
+	// The display name of the project.
+	ProjectDisplayName string `pulumi:"projectDisplayName"`
+	// The name of the project.
+	ProjectName string `pulumi:"projectName"`
+}
+
+// EntitiesPoliciesUserPolicyScopeInput is an input type that accepts EntitiesPoliciesUserPolicyScopeArgs and EntitiesPoliciesUserPolicyScopeOutput values.
+// You can construct a concrete instance of `EntitiesPoliciesUserPolicyScopeInput` via:
+//
+//	EntitiesPoliciesUserPolicyScopeArgs{...}
+type EntitiesPoliciesUserPolicyScopeInput interface {
+	pulumi.Input
+
+	ToEntitiesPoliciesUserPolicyScopeOutput() EntitiesPoliciesUserPolicyScopeOutput
+	ToEntitiesPoliciesUserPolicyScopeOutputWithContext(context.Context) EntitiesPoliciesUserPolicyScopeOutput
+}
+
+type EntitiesPoliciesUserPolicyScopeArgs struct {
+	// The attach date of the policy scope.
+	AttachDate pulumi.StringInput `pulumi:"attachDate"`
+	// The type of the policy scope.
+	PolicyScopeType pulumi.StringInput `pulumi:"policyScopeType"`
+	// The display name of the project.
+	ProjectDisplayName pulumi.StringInput `pulumi:"projectDisplayName"`
+	// The name of the project.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+}
+
+func (EntitiesPoliciesUserPolicyScopeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EntitiesPoliciesUserPolicyScope)(nil)).Elem()
+}
+
+func (i EntitiesPoliciesUserPolicyScopeArgs) ToEntitiesPoliciesUserPolicyScopeOutput() EntitiesPoliciesUserPolicyScopeOutput {
+	return i.ToEntitiesPoliciesUserPolicyScopeOutputWithContext(context.Background())
+}
+
+func (i EntitiesPoliciesUserPolicyScopeArgs) ToEntitiesPoliciesUserPolicyScopeOutputWithContext(ctx context.Context) EntitiesPoliciesUserPolicyScopeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EntitiesPoliciesUserPolicyScopeOutput)
+}
+
+// EntitiesPoliciesUserPolicyScopeArrayInput is an input type that accepts EntitiesPoliciesUserPolicyScopeArray and EntitiesPoliciesUserPolicyScopeArrayOutput values.
+// You can construct a concrete instance of `EntitiesPoliciesUserPolicyScopeArrayInput` via:
+//
+//	EntitiesPoliciesUserPolicyScopeArray{ EntitiesPoliciesUserPolicyScopeArgs{...} }
+type EntitiesPoliciesUserPolicyScopeArrayInput interface {
+	pulumi.Input
+
+	ToEntitiesPoliciesUserPolicyScopeArrayOutput() EntitiesPoliciesUserPolicyScopeArrayOutput
+	ToEntitiesPoliciesUserPolicyScopeArrayOutputWithContext(context.Context) EntitiesPoliciesUserPolicyScopeArrayOutput
+}
+
+type EntitiesPoliciesUserPolicyScopeArray []EntitiesPoliciesUserPolicyScopeInput
+
+func (EntitiesPoliciesUserPolicyScopeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EntitiesPoliciesUserPolicyScope)(nil)).Elem()
+}
+
+func (i EntitiesPoliciesUserPolicyScopeArray) ToEntitiesPoliciesUserPolicyScopeArrayOutput() EntitiesPoliciesUserPolicyScopeArrayOutput {
+	return i.ToEntitiesPoliciesUserPolicyScopeArrayOutputWithContext(context.Background())
+}
+
+func (i EntitiesPoliciesUserPolicyScopeArray) ToEntitiesPoliciesUserPolicyScopeArrayOutputWithContext(ctx context.Context) EntitiesPoliciesUserPolicyScopeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EntitiesPoliciesUserPolicyScopeArrayOutput)
+}
+
+type EntitiesPoliciesUserPolicyScopeOutput struct{ *pulumi.OutputState }
+
+func (EntitiesPoliciesUserPolicyScopeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EntitiesPoliciesUserPolicyScope)(nil)).Elem()
+}
+
+func (o EntitiesPoliciesUserPolicyScopeOutput) ToEntitiesPoliciesUserPolicyScopeOutput() EntitiesPoliciesUserPolicyScopeOutput {
+	return o
+}
+
+func (o EntitiesPoliciesUserPolicyScopeOutput) ToEntitiesPoliciesUserPolicyScopeOutputWithContext(ctx context.Context) EntitiesPoliciesUserPolicyScopeOutput {
+	return o
+}
+
+// The attach date of the policy scope.
+func (o EntitiesPoliciesUserPolicyScopeOutput) AttachDate() pulumi.StringOutput {
+	return o.ApplyT(func(v EntitiesPoliciesUserPolicyScope) string { return v.AttachDate }).(pulumi.StringOutput)
+}
+
+// The type of the policy scope.
+func (o EntitiesPoliciesUserPolicyScopeOutput) PolicyScopeType() pulumi.StringOutput {
+	return o.ApplyT(func(v EntitiesPoliciesUserPolicyScope) string { return v.PolicyScopeType }).(pulumi.StringOutput)
+}
+
+// The display name of the project.
+func (o EntitiesPoliciesUserPolicyScopeOutput) ProjectDisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v EntitiesPoliciesUserPolicyScope) string { return v.ProjectDisplayName }).(pulumi.StringOutput)
+}
+
+// The name of the project.
+func (o EntitiesPoliciesUserPolicyScopeOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v EntitiesPoliciesUserPolicyScope) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+type EntitiesPoliciesUserPolicyScopeArrayOutput struct{ *pulumi.OutputState }
+
+func (EntitiesPoliciesUserPolicyScopeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EntitiesPoliciesUserPolicyScope)(nil)).Elem()
+}
+
+func (o EntitiesPoliciesUserPolicyScopeArrayOutput) ToEntitiesPoliciesUserPolicyScopeArrayOutput() EntitiesPoliciesUserPolicyScopeArrayOutput {
+	return o
+}
+
+func (o EntitiesPoliciesUserPolicyScopeArrayOutput) ToEntitiesPoliciesUserPolicyScopeArrayOutputWithContext(ctx context.Context) EntitiesPoliciesUserPolicyScopeArrayOutput {
+	return o
+}
+
+func (o EntitiesPoliciesUserPolicyScopeArrayOutput) Index(i pulumi.IntInput) EntitiesPoliciesUserPolicyScopeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EntitiesPoliciesUserPolicyScope {
+		return vs[0].([]EntitiesPoliciesUserPolicyScope)[vs[1].(int)]
+	}).(EntitiesPoliciesUserPolicyScopeOutput)
+}
+
+type GroupUsersUserGroup struct {
+	// The description of the user group.
+	Description string `pulumi:"description"`
+	// The display name of the user group.
+	DisplayName string `pulumi:"displayName"`
+	// The join date of the user group.
+	JoinDate string `pulumi:"joinDate"`
+	// The id of the user group.
+	UserGroupId int `pulumi:"userGroupId"`
+	// The name of the user group.
+	UserGroupName string `pulumi:"userGroupName"`
+}
+
+// GroupUsersUserGroupInput is an input type that accepts GroupUsersUserGroupArgs and GroupUsersUserGroupOutput values.
+// You can construct a concrete instance of `GroupUsersUserGroupInput` via:
+//
+//	GroupUsersUserGroupArgs{...}
+type GroupUsersUserGroupInput interface {
+	pulumi.Input
+
+	ToGroupUsersUserGroupOutput() GroupUsersUserGroupOutput
+	ToGroupUsersUserGroupOutputWithContext(context.Context) GroupUsersUserGroupOutput
+}
+
+type GroupUsersUserGroupArgs struct {
+	// The description of the user group.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The display name of the user group.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The join date of the user group.
+	JoinDate pulumi.StringInput `pulumi:"joinDate"`
+	// The id of the user group.
+	UserGroupId pulumi.IntInput `pulumi:"userGroupId"`
+	// The name of the user group.
+	UserGroupName pulumi.StringInput `pulumi:"userGroupName"`
+}
+
+func (GroupUsersUserGroupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GroupUsersUserGroup)(nil)).Elem()
+}
+
+func (i GroupUsersUserGroupArgs) ToGroupUsersUserGroupOutput() GroupUsersUserGroupOutput {
+	return i.ToGroupUsersUserGroupOutputWithContext(context.Background())
+}
+
+func (i GroupUsersUserGroupArgs) ToGroupUsersUserGroupOutputWithContext(ctx context.Context) GroupUsersUserGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GroupUsersUserGroupOutput)
+}
+
+// GroupUsersUserGroupArrayInput is an input type that accepts GroupUsersUserGroupArray and GroupUsersUserGroupArrayOutput values.
+// You can construct a concrete instance of `GroupUsersUserGroupArrayInput` via:
+//
+//	GroupUsersUserGroupArray{ GroupUsersUserGroupArgs{...} }
+type GroupUsersUserGroupArrayInput interface {
+	pulumi.Input
+
+	ToGroupUsersUserGroupArrayOutput() GroupUsersUserGroupArrayOutput
+	ToGroupUsersUserGroupArrayOutputWithContext(context.Context) GroupUsersUserGroupArrayOutput
+}
+
+type GroupUsersUserGroupArray []GroupUsersUserGroupInput
+
+func (GroupUsersUserGroupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GroupUsersUserGroup)(nil)).Elem()
+}
+
+func (i GroupUsersUserGroupArray) ToGroupUsersUserGroupArrayOutput() GroupUsersUserGroupArrayOutput {
+	return i.ToGroupUsersUserGroupArrayOutputWithContext(context.Background())
+}
+
+func (i GroupUsersUserGroupArray) ToGroupUsersUserGroupArrayOutputWithContext(ctx context.Context) GroupUsersUserGroupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GroupUsersUserGroupArrayOutput)
+}
+
+type GroupUsersUserGroupOutput struct{ *pulumi.OutputState }
+
+func (GroupUsersUserGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GroupUsersUserGroup)(nil)).Elem()
+}
+
+func (o GroupUsersUserGroupOutput) ToGroupUsersUserGroupOutput() GroupUsersUserGroupOutput {
+	return o
+}
+
+func (o GroupUsersUserGroupOutput) ToGroupUsersUserGroupOutputWithContext(ctx context.Context) GroupUsersUserGroupOutput {
+	return o
+}
+
+// The description of the user group.
+func (o GroupUsersUserGroupOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GroupUsersUserGroup) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The display name of the user group.
+func (o GroupUsersUserGroupOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GroupUsersUserGroup) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The join date of the user group.
+func (o GroupUsersUserGroupOutput) JoinDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GroupUsersUserGroup) string { return v.JoinDate }).(pulumi.StringOutput)
+}
+
+// The id of the user group.
+func (o GroupUsersUserGroupOutput) UserGroupId() pulumi.IntOutput {
+	return o.ApplyT(func(v GroupUsersUserGroup) int { return v.UserGroupId }).(pulumi.IntOutput)
+}
+
+// The name of the user group.
+func (o GroupUsersUserGroupOutput) UserGroupName() pulumi.StringOutput {
+	return o.ApplyT(func(v GroupUsersUserGroup) string { return v.UserGroupName }).(pulumi.StringOutput)
+}
+
+type GroupUsersUserGroupArrayOutput struct{ *pulumi.OutputState }
+
+func (GroupUsersUserGroupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GroupUsersUserGroup)(nil)).Elem()
+}
+
+func (o GroupUsersUserGroupArrayOutput) ToGroupUsersUserGroupArrayOutput() GroupUsersUserGroupArrayOutput {
+	return o
+}
+
+func (o GroupUsersUserGroupArrayOutput) ToGroupUsersUserGroupArrayOutputWithContext(ctx context.Context) GroupUsersUserGroupArrayOutput {
+	return o
+}
+
+func (o GroupUsersUserGroupArrayOutput) Index(i pulumi.IntInput) GroupUsersUserGroupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GroupUsersUserGroup {
+		return vs[0].([]GroupUsersUserGroup)[vs[1].(int)]
+	}).(GroupUsersUserGroupOutput)
+}
+
+type IdentityProvidersProvider struct {
+	// The create date of the identity provider.
+	CreateDate string `pulumi:"createDate"`
+	// The description of the identity provider.
+	Description string `pulumi:"description"`
+	// The type of the identity provider.
+	IdpType int `pulumi:"idpType"`
+	// The name of the identity provider.
+	ProviderName string `pulumi:"providerName"`
+	// The SSO type of the identity provider.
+	SsoType int `pulumi:"ssoType"`
+	// The status of the identity provider.
+	Status int `pulumi:"status"`
+	// The TRN of the identity provider.
+	Trn string `pulumi:"trn"`
+	// The update date of the identity provider.
+	UpdateDate string `pulumi:"updateDate"`
+}
+
+// IdentityProvidersProviderInput is an input type that accepts IdentityProvidersProviderArgs and IdentityProvidersProviderOutput values.
+// You can construct a concrete instance of `IdentityProvidersProviderInput` via:
+//
+//	IdentityProvidersProviderArgs{...}
+type IdentityProvidersProviderInput interface {
+	pulumi.Input
+
+	ToIdentityProvidersProviderOutput() IdentityProvidersProviderOutput
+	ToIdentityProvidersProviderOutputWithContext(context.Context) IdentityProvidersProviderOutput
+}
+
+type IdentityProvidersProviderArgs struct {
+	// The create date of the identity provider.
+	CreateDate pulumi.StringInput `pulumi:"createDate"`
+	// The description of the identity provider.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The type of the identity provider.
+	IdpType pulumi.IntInput `pulumi:"idpType"`
+	// The name of the identity provider.
+	ProviderName pulumi.StringInput `pulumi:"providerName"`
+	// The SSO type of the identity provider.
+	SsoType pulumi.IntInput `pulumi:"ssoType"`
+	// The status of the identity provider.
+	Status pulumi.IntInput `pulumi:"status"`
+	// The TRN of the identity provider.
+	Trn pulumi.StringInput `pulumi:"trn"`
+	// The update date of the identity provider.
+	UpdateDate pulumi.StringInput `pulumi:"updateDate"`
+}
+
+func (IdentityProvidersProviderArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*IdentityProvidersProvider)(nil)).Elem()
+}
+
+func (i IdentityProvidersProviderArgs) ToIdentityProvidersProviderOutput() IdentityProvidersProviderOutput {
+	return i.ToIdentityProvidersProviderOutputWithContext(context.Background())
+}
+
+func (i IdentityProvidersProviderArgs) ToIdentityProvidersProviderOutputWithContext(ctx context.Context) IdentityProvidersProviderOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IdentityProvidersProviderOutput)
+}
+
+// IdentityProvidersProviderArrayInput is an input type that accepts IdentityProvidersProviderArray and IdentityProvidersProviderArrayOutput values.
+// You can construct a concrete instance of `IdentityProvidersProviderArrayInput` via:
+//
+//	IdentityProvidersProviderArray{ IdentityProvidersProviderArgs{...} }
+type IdentityProvidersProviderArrayInput interface {
+	pulumi.Input
+
+	ToIdentityProvidersProviderArrayOutput() IdentityProvidersProviderArrayOutput
+	ToIdentityProvidersProviderArrayOutputWithContext(context.Context) IdentityProvidersProviderArrayOutput
+}
+
+type IdentityProvidersProviderArray []IdentityProvidersProviderInput
+
+func (IdentityProvidersProviderArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]IdentityProvidersProvider)(nil)).Elem()
+}
+
+func (i IdentityProvidersProviderArray) ToIdentityProvidersProviderArrayOutput() IdentityProvidersProviderArrayOutput {
+	return i.ToIdentityProvidersProviderArrayOutputWithContext(context.Background())
+}
+
+func (i IdentityProvidersProviderArray) ToIdentityProvidersProviderArrayOutputWithContext(ctx context.Context) IdentityProvidersProviderArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IdentityProvidersProviderArrayOutput)
+}
+
+type IdentityProvidersProviderOutput struct{ *pulumi.OutputState }
+
+func (IdentityProvidersProviderOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IdentityProvidersProvider)(nil)).Elem()
+}
+
+func (o IdentityProvidersProviderOutput) ToIdentityProvidersProviderOutput() IdentityProvidersProviderOutput {
+	return o
+}
+
+func (o IdentityProvidersProviderOutput) ToIdentityProvidersProviderOutputWithContext(ctx context.Context) IdentityProvidersProviderOutput {
+	return o
+}
+
+// The create date of the identity provider.
+func (o IdentityProvidersProviderOutput) CreateDate() pulumi.StringOutput {
+	return o.ApplyT(func(v IdentityProvidersProvider) string { return v.CreateDate }).(pulumi.StringOutput)
+}
+
+// The description of the identity provider.
+func (o IdentityProvidersProviderOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v IdentityProvidersProvider) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The type of the identity provider.
+func (o IdentityProvidersProviderOutput) IdpType() pulumi.IntOutput {
+	return o.ApplyT(func(v IdentityProvidersProvider) int { return v.IdpType }).(pulumi.IntOutput)
+}
+
+// The name of the identity provider.
+func (o IdentityProvidersProviderOutput) ProviderName() pulumi.StringOutput {
+	return o.ApplyT(func(v IdentityProvidersProvider) string { return v.ProviderName }).(pulumi.StringOutput)
+}
+
+// The SSO type of the identity provider.
+func (o IdentityProvidersProviderOutput) SsoType() pulumi.IntOutput {
+	return o.ApplyT(func(v IdentityProvidersProvider) int { return v.SsoType }).(pulumi.IntOutput)
+}
+
+// The status of the identity provider.
+func (o IdentityProvidersProviderOutput) Status() pulumi.IntOutput {
+	return o.ApplyT(func(v IdentityProvidersProvider) int { return v.Status }).(pulumi.IntOutput)
+}
+
+// The TRN of the identity provider.
+func (o IdentityProvidersProviderOutput) Trn() pulumi.StringOutput {
+	return o.ApplyT(func(v IdentityProvidersProvider) string { return v.Trn }).(pulumi.StringOutput)
+}
+
+// The update date of the identity provider.
+func (o IdentityProvidersProviderOutput) UpdateDate() pulumi.StringOutput {
+	return o.ApplyT(func(v IdentityProvidersProvider) string { return v.UpdateDate }).(pulumi.StringOutput)
+}
+
+type IdentityProvidersProviderArrayOutput struct{ *pulumi.OutputState }
+
+func (IdentityProvidersProviderArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]IdentityProvidersProvider)(nil)).Elem()
+}
+
+func (o IdentityProvidersProviderArrayOutput) ToIdentityProvidersProviderArrayOutput() IdentityProvidersProviderArrayOutput {
+	return o
+}
+
+func (o IdentityProvidersProviderArrayOutput) ToIdentityProvidersProviderArrayOutputWithContext(ctx context.Context) IdentityProvidersProviderArrayOutput {
+	return o
+}
+
+func (o IdentityProvidersProviderArrayOutput) Index(i pulumi.IntInput) IdentityProvidersProviderOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) IdentityProvidersProvider {
+		return vs[0].([]IdentityProvidersProvider)[vs[1].(int)]
+	}).(IdentityProvidersProviderOutput)
+}
+
+type LoginProfilesLoginProfile struct {
+	// The create date.
+	CreateDate string `pulumi:"createDate"`
+	// The last login date.
+	LastLoginDate string `pulumi:"lastLoginDate"`
+	// The last login ip.
+	LastLoginIp string `pulumi:"lastLoginIp"`
+	// The last reset password time.
+	LastResetPasswordTime int `pulumi:"lastResetPasswordTime"`
+	// The flag of login allowed.
+	LoginAllowed bool `pulumi:"loginAllowed"`
+	// The flag of login locked.
+	LoginLocked bool `pulumi:"loginLocked"`
+	// The password expire at.
+	PasswordExpireAt int `pulumi:"passwordExpireAt"`
+	// Is required reset password when next time login in.
+	PasswordResetRequired bool `pulumi:"passwordResetRequired"`
+	// The duration of safe auth exempt.
+	SafeAuthExemptDuration int `pulumi:"safeAuthExemptDuration"`
+	// The flag of safe auth exempt required.
+	SafeAuthExemptRequired int `pulumi:"safeAuthExemptRequired"`
+	// The unit of safe auth exempt.
+	SafeAuthExemptUnit int `pulumi:"safeAuthExemptUnit"`
+	// The flag of safe auth.
+	SafeAuthFlag bool `pulumi:"safeAuthFlag"`
+	// The type of safe auth.
+	SafeAuthType string `pulumi:"safeAuthType"`
+	// The update date.
+	UpdateDate string `pulumi:"updateDate"`
+	// The user id.
+	UserId int `pulumi:"userId"`
+	// The user name.
+	UserName string `pulumi:"userName"`
+}
+
+// LoginProfilesLoginProfileInput is an input type that accepts LoginProfilesLoginProfileArgs and LoginProfilesLoginProfileOutput values.
+// You can construct a concrete instance of `LoginProfilesLoginProfileInput` via:
+//
+//	LoginProfilesLoginProfileArgs{...}
+type LoginProfilesLoginProfileInput interface {
+	pulumi.Input
+
+	ToLoginProfilesLoginProfileOutput() LoginProfilesLoginProfileOutput
+	ToLoginProfilesLoginProfileOutputWithContext(context.Context) LoginProfilesLoginProfileOutput
+}
+
+type LoginProfilesLoginProfileArgs struct {
+	// The create date.
+	CreateDate pulumi.StringInput `pulumi:"createDate"`
+	// The last login date.
+	LastLoginDate pulumi.StringInput `pulumi:"lastLoginDate"`
+	// The last login ip.
+	LastLoginIp pulumi.StringInput `pulumi:"lastLoginIp"`
+	// The last reset password time.
+	LastResetPasswordTime pulumi.IntInput `pulumi:"lastResetPasswordTime"`
+	// The flag of login allowed.
+	LoginAllowed pulumi.BoolInput `pulumi:"loginAllowed"`
+	// The flag of login locked.
+	LoginLocked pulumi.BoolInput `pulumi:"loginLocked"`
+	// The password expire at.
+	PasswordExpireAt pulumi.IntInput `pulumi:"passwordExpireAt"`
+	// Is required reset password when next time login in.
+	PasswordResetRequired pulumi.BoolInput `pulumi:"passwordResetRequired"`
+	// The duration of safe auth exempt.
+	SafeAuthExemptDuration pulumi.IntInput `pulumi:"safeAuthExemptDuration"`
+	// The flag of safe auth exempt required.
+	SafeAuthExemptRequired pulumi.IntInput `pulumi:"safeAuthExemptRequired"`
+	// The unit of safe auth exempt.
+	SafeAuthExemptUnit pulumi.IntInput `pulumi:"safeAuthExemptUnit"`
+	// The flag of safe auth.
+	SafeAuthFlag pulumi.BoolInput `pulumi:"safeAuthFlag"`
+	// The type of safe auth.
+	SafeAuthType pulumi.StringInput `pulumi:"safeAuthType"`
+	// The update date.
+	UpdateDate pulumi.StringInput `pulumi:"updateDate"`
+	// The user id.
+	UserId pulumi.IntInput `pulumi:"userId"`
+	// The user name.
+	UserName pulumi.StringInput `pulumi:"userName"`
+}
+
+func (LoginProfilesLoginProfileArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LoginProfilesLoginProfile)(nil)).Elem()
+}
+
+func (i LoginProfilesLoginProfileArgs) ToLoginProfilesLoginProfileOutput() LoginProfilesLoginProfileOutput {
+	return i.ToLoginProfilesLoginProfileOutputWithContext(context.Background())
+}
+
+func (i LoginProfilesLoginProfileArgs) ToLoginProfilesLoginProfileOutputWithContext(ctx context.Context) LoginProfilesLoginProfileOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LoginProfilesLoginProfileOutput)
+}
+
+// LoginProfilesLoginProfileArrayInput is an input type that accepts LoginProfilesLoginProfileArray and LoginProfilesLoginProfileArrayOutput values.
+// You can construct a concrete instance of `LoginProfilesLoginProfileArrayInput` via:
+//
+//	LoginProfilesLoginProfileArray{ LoginProfilesLoginProfileArgs{...} }
+type LoginProfilesLoginProfileArrayInput interface {
+	pulumi.Input
+
+	ToLoginProfilesLoginProfileArrayOutput() LoginProfilesLoginProfileArrayOutput
+	ToLoginProfilesLoginProfileArrayOutputWithContext(context.Context) LoginProfilesLoginProfileArrayOutput
+}
+
+type LoginProfilesLoginProfileArray []LoginProfilesLoginProfileInput
+
+func (LoginProfilesLoginProfileArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LoginProfilesLoginProfile)(nil)).Elem()
+}
+
+func (i LoginProfilesLoginProfileArray) ToLoginProfilesLoginProfileArrayOutput() LoginProfilesLoginProfileArrayOutput {
+	return i.ToLoginProfilesLoginProfileArrayOutputWithContext(context.Background())
+}
+
+func (i LoginProfilesLoginProfileArray) ToLoginProfilesLoginProfileArrayOutputWithContext(ctx context.Context) LoginProfilesLoginProfileArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LoginProfilesLoginProfileArrayOutput)
+}
+
+type LoginProfilesLoginProfileOutput struct{ *pulumi.OutputState }
+
+func (LoginProfilesLoginProfileOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LoginProfilesLoginProfile)(nil)).Elem()
+}
+
+func (o LoginProfilesLoginProfileOutput) ToLoginProfilesLoginProfileOutput() LoginProfilesLoginProfileOutput {
+	return o
+}
+
+func (o LoginProfilesLoginProfileOutput) ToLoginProfilesLoginProfileOutputWithContext(ctx context.Context) LoginProfilesLoginProfileOutput {
+	return o
+}
+
+// The create date.
+func (o LoginProfilesLoginProfileOutput) CreateDate() pulumi.StringOutput {
+	return o.ApplyT(func(v LoginProfilesLoginProfile) string { return v.CreateDate }).(pulumi.StringOutput)
+}
+
+// The last login date.
+func (o LoginProfilesLoginProfileOutput) LastLoginDate() pulumi.StringOutput {
+	return o.ApplyT(func(v LoginProfilesLoginProfile) string { return v.LastLoginDate }).(pulumi.StringOutput)
+}
+
+// The last login ip.
+func (o LoginProfilesLoginProfileOutput) LastLoginIp() pulumi.StringOutput {
+	return o.ApplyT(func(v LoginProfilesLoginProfile) string { return v.LastLoginIp }).(pulumi.StringOutput)
+}
+
+// The last reset password time.
+func (o LoginProfilesLoginProfileOutput) LastResetPasswordTime() pulumi.IntOutput {
+	return o.ApplyT(func(v LoginProfilesLoginProfile) int { return v.LastResetPasswordTime }).(pulumi.IntOutput)
+}
+
+// The flag of login allowed.
+func (o LoginProfilesLoginProfileOutput) LoginAllowed() pulumi.BoolOutput {
+	return o.ApplyT(func(v LoginProfilesLoginProfile) bool { return v.LoginAllowed }).(pulumi.BoolOutput)
+}
+
+// The flag of login locked.
+func (o LoginProfilesLoginProfileOutput) LoginLocked() pulumi.BoolOutput {
+	return o.ApplyT(func(v LoginProfilesLoginProfile) bool { return v.LoginLocked }).(pulumi.BoolOutput)
+}
+
+// The password expire at.
+func (o LoginProfilesLoginProfileOutput) PasswordExpireAt() pulumi.IntOutput {
+	return o.ApplyT(func(v LoginProfilesLoginProfile) int { return v.PasswordExpireAt }).(pulumi.IntOutput)
+}
+
+// Is required reset password when next time login in.
+func (o LoginProfilesLoginProfileOutput) PasswordResetRequired() pulumi.BoolOutput {
+	return o.ApplyT(func(v LoginProfilesLoginProfile) bool { return v.PasswordResetRequired }).(pulumi.BoolOutput)
+}
+
+// The duration of safe auth exempt.
+func (o LoginProfilesLoginProfileOutput) SafeAuthExemptDuration() pulumi.IntOutput {
+	return o.ApplyT(func(v LoginProfilesLoginProfile) int { return v.SafeAuthExemptDuration }).(pulumi.IntOutput)
+}
+
+// The flag of safe auth exempt required.
+func (o LoginProfilesLoginProfileOutput) SafeAuthExemptRequired() pulumi.IntOutput {
+	return o.ApplyT(func(v LoginProfilesLoginProfile) int { return v.SafeAuthExemptRequired }).(pulumi.IntOutput)
+}
+
+// The unit of safe auth exempt.
+func (o LoginProfilesLoginProfileOutput) SafeAuthExemptUnit() pulumi.IntOutput {
+	return o.ApplyT(func(v LoginProfilesLoginProfile) int { return v.SafeAuthExemptUnit }).(pulumi.IntOutput)
+}
+
+// The flag of safe auth.
+func (o LoginProfilesLoginProfileOutput) SafeAuthFlag() pulumi.BoolOutput {
+	return o.ApplyT(func(v LoginProfilesLoginProfile) bool { return v.SafeAuthFlag }).(pulumi.BoolOutput)
+}
+
+// The type of safe auth.
+func (o LoginProfilesLoginProfileOutput) SafeAuthType() pulumi.StringOutput {
+	return o.ApplyT(func(v LoginProfilesLoginProfile) string { return v.SafeAuthType }).(pulumi.StringOutput)
+}
+
+// The update date.
+func (o LoginProfilesLoginProfileOutput) UpdateDate() pulumi.StringOutput {
+	return o.ApplyT(func(v LoginProfilesLoginProfile) string { return v.UpdateDate }).(pulumi.StringOutput)
+}
+
+// The user id.
+func (o LoginProfilesLoginProfileOutput) UserId() pulumi.IntOutput {
+	return o.ApplyT(func(v LoginProfilesLoginProfile) int { return v.UserId }).(pulumi.IntOutput)
+}
+
+// The user name.
+func (o LoginProfilesLoginProfileOutput) UserName() pulumi.StringOutput {
+	return o.ApplyT(func(v LoginProfilesLoginProfile) string { return v.UserName }).(pulumi.StringOutput)
+}
+
+type LoginProfilesLoginProfileArrayOutput struct{ *pulumi.OutputState }
+
+func (LoginProfilesLoginProfileArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LoginProfilesLoginProfile)(nil)).Elem()
+}
+
+func (o LoginProfilesLoginProfileArrayOutput) ToLoginProfilesLoginProfileArrayOutput() LoginProfilesLoginProfileArrayOutput {
+	return o
+}
+
+func (o LoginProfilesLoginProfileArrayOutput) ToLoginProfilesLoginProfileArrayOutputWithContext(ctx context.Context) LoginProfilesLoginProfileArrayOutput {
+	return o
+}
+
+func (o LoginProfilesLoginProfileArrayOutput) Index(i pulumi.IntInput) LoginProfilesLoginProfileOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LoginProfilesLoginProfile {
+		return vs[0].([]LoginProfilesLoginProfile)[vs[1].(int)]
+	}).(LoginProfilesLoginProfileOutput)
+}
+
+type OauthProvidersProvider struct {
+	// The authorize template of the OAuth provider.
+	AuthorizeTemplate string `pulumi:"authorizeTemplate"`
+	// The authorize url of the OAuth provider.
+	AuthorizeUrl string `pulumi:"authorizeUrl"`
+	// The client id of the OAuth provider.
+	ClientId string `pulumi:"clientId"`
+	// The client secret of the OAuth provider.
+	ClientSecret string `pulumi:"clientSecret"`
+	// The create date of the OAuth provider.
+	CreateDate string `pulumi:"createDate"`
+	// The description of the OAuth provider.
+	Description string `pulumi:"description"`
+	// The identity map type of the OAuth provider.
+	IdentityMapType int `pulumi:"identityMapType"`
+	// The idp identity key of the OAuth provider.
+	IdpIdentityKey string `pulumi:"idpIdentityKey"`
+	// The name of the OAuth provider.
+	OauthProviderName string `pulumi:"oauthProviderName"`
+	// The id of the OAuth provider.
+	ProviderId string `pulumi:"providerId"`
+	// The scope of the OAuth provider.
+	Scope string `pulumi:"scope"`
+	// The SSO type of the OAuth provider.
+	SsoType int `pulumi:"ssoType"`
+	// The status of the OAuth provider.
+	Status int `pulumi:"status"`
+	// The token url of the OAuth provider.
+	TokenUrl string `pulumi:"tokenUrl"`
+	// The trn of the OAuth provider.
+	Trn string `pulumi:"trn"`
+	// The update date of the OAuth provider.
+	UpdateDate string `pulumi:"updateDate"`
+	// The user info url of the OAuth provider.
+	UserInfoUrl string `pulumi:"userInfoUrl"`
+}
+
+// OauthProvidersProviderInput is an input type that accepts OauthProvidersProviderArgs and OauthProvidersProviderOutput values.
+// You can construct a concrete instance of `OauthProvidersProviderInput` via:
+//
+//	OauthProvidersProviderArgs{...}
+type OauthProvidersProviderInput interface {
+	pulumi.Input
+
+	ToOauthProvidersProviderOutput() OauthProvidersProviderOutput
+	ToOauthProvidersProviderOutputWithContext(context.Context) OauthProvidersProviderOutput
+}
+
+type OauthProvidersProviderArgs struct {
+	// The authorize template of the OAuth provider.
+	AuthorizeTemplate pulumi.StringInput `pulumi:"authorizeTemplate"`
+	// The authorize url of the OAuth provider.
+	AuthorizeUrl pulumi.StringInput `pulumi:"authorizeUrl"`
+	// The client id of the OAuth provider.
+	ClientId pulumi.StringInput `pulumi:"clientId"`
+	// The client secret of the OAuth provider.
+	ClientSecret pulumi.StringInput `pulumi:"clientSecret"`
+	// The create date of the OAuth provider.
+	CreateDate pulumi.StringInput `pulumi:"createDate"`
+	// The description of the OAuth provider.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The identity map type of the OAuth provider.
+	IdentityMapType pulumi.IntInput `pulumi:"identityMapType"`
+	// The idp identity key of the OAuth provider.
+	IdpIdentityKey pulumi.StringInput `pulumi:"idpIdentityKey"`
+	// The name of the OAuth provider.
+	OauthProviderName pulumi.StringInput `pulumi:"oauthProviderName"`
+	// The id of the OAuth provider.
+	ProviderId pulumi.StringInput `pulumi:"providerId"`
+	// The scope of the OAuth provider.
+	Scope pulumi.StringInput `pulumi:"scope"`
+	// The SSO type of the OAuth provider.
+	SsoType pulumi.IntInput `pulumi:"ssoType"`
+	// The status of the OAuth provider.
+	Status pulumi.IntInput `pulumi:"status"`
+	// The token url of the OAuth provider.
+	TokenUrl pulumi.StringInput `pulumi:"tokenUrl"`
+	// The trn of the OAuth provider.
+	Trn pulumi.StringInput `pulumi:"trn"`
+	// The update date of the OAuth provider.
+	UpdateDate pulumi.StringInput `pulumi:"updateDate"`
+	// The user info url of the OAuth provider.
+	UserInfoUrl pulumi.StringInput `pulumi:"userInfoUrl"`
+}
+
+func (OauthProvidersProviderArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*OauthProvidersProvider)(nil)).Elem()
+}
+
+func (i OauthProvidersProviderArgs) ToOauthProvidersProviderOutput() OauthProvidersProviderOutput {
+	return i.ToOauthProvidersProviderOutputWithContext(context.Background())
+}
+
+func (i OauthProvidersProviderArgs) ToOauthProvidersProviderOutputWithContext(ctx context.Context) OauthProvidersProviderOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OauthProvidersProviderOutput)
+}
+
+// OauthProvidersProviderArrayInput is an input type that accepts OauthProvidersProviderArray and OauthProvidersProviderArrayOutput values.
+// You can construct a concrete instance of `OauthProvidersProviderArrayInput` via:
+//
+//	OauthProvidersProviderArray{ OauthProvidersProviderArgs{...} }
+type OauthProvidersProviderArrayInput interface {
+	pulumi.Input
+
+	ToOauthProvidersProviderArrayOutput() OauthProvidersProviderArrayOutput
+	ToOauthProvidersProviderArrayOutputWithContext(context.Context) OauthProvidersProviderArrayOutput
+}
+
+type OauthProvidersProviderArray []OauthProvidersProviderInput
+
+func (OauthProvidersProviderArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]OauthProvidersProvider)(nil)).Elem()
+}
+
+func (i OauthProvidersProviderArray) ToOauthProvidersProviderArrayOutput() OauthProvidersProviderArrayOutput {
+	return i.ToOauthProvidersProviderArrayOutputWithContext(context.Background())
+}
+
+func (i OauthProvidersProviderArray) ToOauthProvidersProviderArrayOutputWithContext(ctx context.Context) OauthProvidersProviderArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OauthProvidersProviderArrayOutput)
+}
+
+type OauthProvidersProviderOutput struct{ *pulumi.OutputState }
+
+func (OauthProvidersProviderOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*OauthProvidersProvider)(nil)).Elem()
+}
+
+func (o OauthProvidersProviderOutput) ToOauthProvidersProviderOutput() OauthProvidersProviderOutput {
+	return o
+}
+
+func (o OauthProvidersProviderOutput) ToOauthProvidersProviderOutputWithContext(ctx context.Context) OauthProvidersProviderOutput {
+	return o
+}
+
+// The authorize template of the OAuth provider.
+func (o OauthProvidersProviderOutput) AuthorizeTemplate() pulumi.StringOutput {
+	return o.ApplyT(func(v OauthProvidersProvider) string { return v.AuthorizeTemplate }).(pulumi.StringOutput)
+}
+
+// The authorize url of the OAuth provider.
+func (o OauthProvidersProviderOutput) AuthorizeUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v OauthProvidersProvider) string { return v.AuthorizeUrl }).(pulumi.StringOutput)
+}
+
+// The client id of the OAuth provider.
+func (o OauthProvidersProviderOutput) ClientId() pulumi.StringOutput {
+	return o.ApplyT(func(v OauthProvidersProvider) string { return v.ClientId }).(pulumi.StringOutput)
+}
+
+// The client secret of the OAuth provider.
+func (o OauthProvidersProviderOutput) ClientSecret() pulumi.StringOutput {
+	return o.ApplyT(func(v OauthProvidersProvider) string { return v.ClientSecret }).(pulumi.StringOutput)
+}
+
+// The create date of the OAuth provider.
+func (o OauthProvidersProviderOutput) CreateDate() pulumi.StringOutput {
+	return o.ApplyT(func(v OauthProvidersProvider) string { return v.CreateDate }).(pulumi.StringOutput)
+}
+
+// The description of the OAuth provider.
+func (o OauthProvidersProviderOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v OauthProvidersProvider) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The identity map type of the OAuth provider.
+func (o OauthProvidersProviderOutput) IdentityMapType() pulumi.IntOutput {
+	return o.ApplyT(func(v OauthProvidersProvider) int { return v.IdentityMapType }).(pulumi.IntOutput)
+}
+
+// The idp identity key of the OAuth provider.
+func (o OauthProvidersProviderOutput) IdpIdentityKey() pulumi.StringOutput {
+	return o.ApplyT(func(v OauthProvidersProvider) string { return v.IdpIdentityKey }).(pulumi.StringOutput)
+}
+
+// The name of the OAuth provider.
+func (o OauthProvidersProviderOutput) OauthProviderName() pulumi.StringOutput {
+	return o.ApplyT(func(v OauthProvidersProvider) string { return v.OauthProviderName }).(pulumi.StringOutput)
+}
+
+// The id of the OAuth provider.
+func (o OauthProvidersProviderOutput) ProviderId() pulumi.StringOutput {
+	return o.ApplyT(func(v OauthProvidersProvider) string { return v.ProviderId }).(pulumi.StringOutput)
+}
+
+// The scope of the OAuth provider.
+func (o OauthProvidersProviderOutput) Scope() pulumi.StringOutput {
+	return o.ApplyT(func(v OauthProvidersProvider) string { return v.Scope }).(pulumi.StringOutput)
+}
+
+// The SSO type of the OAuth provider.
+func (o OauthProvidersProviderOutput) SsoType() pulumi.IntOutput {
+	return o.ApplyT(func(v OauthProvidersProvider) int { return v.SsoType }).(pulumi.IntOutput)
+}
+
+// The status of the OAuth provider.
+func (o OauthProvidersProviderOutput) Status() pulumi.IntOutput {
+	return o.ApplyT(func(v OauthProvidersProvider) int { return v.Status }).(pulumi.IntOutput)
+}
+
+// The token url of the OAuth provider.
+func (o OauthProvidersProviderOutput) TokenUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v OauthProvidersProvider) string { return v.TokenUrl }).(pulumi.StringOutput)
+}
+
+// The trn of the OAuth provider.
+func (o OauthProvidersProviderOutput) Trn() pulumi.StringOutput {
+	return o.ApplyT(func(v OauthProvidersProvider) string { return v.Trn }).(pulumi.StringOutput)
+}
+
+// The update date of the OAuth provider.
+func (o OauthProvidersProviderOutput) UpdateDate() pulumi.StringOutput {
+	return o.ApplyT(func(v OauthProvidersProvider) string { return v.UpdateDate }).(pulumi.StringOutput)
+}
+
+// The user info url of the OAuth provider.
+func (o OauthProvidersProviderOutput) UserInfoUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v OauthProvidersProvider) string { return v.UserInfoUrl }).(pulumi.StringOutput)
+}
+
+type OauthProvidersProviderArrayOutput struct{ *pulumi.OutputState }
+
+func (OauthProvidersProviderArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]OauthProvidersProvider)(nil)).Elem()
+}
+
+func (o OauthProvidersProviderArrayOutput) ToOauthProvidersProviderArrayOutput() OauthProvidersProviderArrayOutput {
+	return o
+}
+
+func (o OauthProvidersProviderArrayOutput) ToOauthProvidersProviderArrayOutputWithContext(ctx context.Context) OauthProvidersProviderArrayOutput {
+	return o
+}
+
+func (o OauthProvidersProviderArrayOutput) Index(i pulumi.IntInput) OauthProvidersProviderOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) OauthProvidersProvider {
+		return vs[0].([]OauthProvidersProvider)[vs[1].(int)]
+	}).(OauthProvidersProviderOutput)
 }
 
 type OidcProvidersOidcProvider struct {
@@ -316,12 +2698,18 @@ func (o OidcProvidersOidcProviderArrayOutput) Index(i pulumi.IntInput) OidcProvi
 }
 
 type PoliciesPolicy struct {
+	// The attachment count of the Policy.
+	AttachmentCount int `pulumi:"attachmentCount"`
+	// The category of the Policy.
+	Category string `pulumi:"category"`
 	// The create time of the Policy.
 	CreateDate string `pulumi:"createDate"`
 	// The description of the Policy.
 	Description string `pulumi:"description"`
 	// The ID of the Policy.
 	Id string `pulumi:"id"`
+	// Whether the Policy is a service role policy.
+	IsServiceRolePolicy int `pulumi:"isServiceRolePolicy"`
 	// The document of the Policy.
 	PolicyDocument string `pulumi:"policyDocument"`
 	// The name of the Policy.
@@ -330,16 +2718,8 @@ type PoliciesPolicy struct {
 	PolicyTrn string `pulumi:"policyTrn"`
 	// The type of the Policy.
 	PolicyType string `pulumi:"policyType"`
-	// The role attach time of the Policy.The data show only query with role_name.
-	RoleAttachDate string `pulumi:"roleAttachDate"`
-	// The name of the IAM role.
-	RoleName string `pulumi:"roleName"`
 	// The update time of the Policy.
 	UpdateDate string `pulumi:"updateDate"`
-	// The user attach time of the Policy.The data show only query with user_name.
-	UserAttachDate string `pulumi:"userAttachDate"`
-	// The name of the IAM user.
-	UserName string `pulumi:"userName"`
 }
 
 // PoliciesPolicyInput is an input type that accepts PoliciesPolicyArgs and PoliciesPolicyOutput values.
@@ -354,12 +2734,18 @@ type PoliciesPolicyInput interface {
 }
 
 type PoliciesPolicyArgs struct {
+	// The attachment count of the Policy.
+	AttachmentCount pulumi.IntInput `pulumi:"attachmentCount"`
+	// The category of the Policy.
+	Category pulumi.StringInput `pulumi:"category"`
 	// The create time of the Policy.
 	CreateDate pulumi.StringInput `pulumi:"createDate"`
 	// The description of the Policy.
 	Description pulumi.StringInput `pulumi:"description"`
 	// The ID of the Policy.
 	Id pulumi.StringInput `pulumi:"id"`
+	// Whether the Policy is a service role policy.
+	IsServiceRolePolicy pulumi.IntInput `pulumi:"isServiceRolePolicy"`
 	// The document of the Policy.
 	PolicyDocument pulumi.StringInput `pulumi:"policyDocument"`
 	// The name of the Policy.
@@ -368,16 +2754,8 @@ type PoliciesPolicyArgs struct {
 	PolicyTrn pulumi.StringInput `pulumi:"policyTrn"`
 	// The type of the Policy.
 	PolicyType pulumi.StringInput `pulumi:"policyType"`
-	// The role attach time of the Policy.The data show only query with role_name.
-	RoleAttachDate pulumi.StringInput `pulumi:"roleAttachDate"`
-	// The name of the IAM role.
-	RoleName pulumi.StringInput `pulumi:"roleName"`
 	// The update time of the Policy.
 	UpdateDate pulumi.StringInput `pulumi:"updateDate"`
-	// The user attach time of the Policy.The data show only query with user_name.
-	UserAttachDate pulumi.StringInput `pulumi:"userAttachDate"`
-	// The name of the IAM user.
-	UserName pulumi.StringInput `pulumi:"userName"`
 }
 
 func (PoliciesPolicyArgs) ElementType() reflect.Type {
@@ -431,6 +2809,16 @@ func (o PoliciesPolicyOutput) ToPoliciesPolicyOutputWithContext(ctx context.Cont
 	return o
 }
 
+// The attachment count of the Policy.
+func (o PoliciesPolicyOutput) AttachmentCount() pulumi.IntOutput {
+	return o.ApplyT(func(v PoliciesPolicy) int { return v.AttachmentCount }).(pulumi.IntOutput)
+}
+
+// The category of the Policy.
+func (o PoliciesPolicyOutput) Category() pulumi.StringOutput {
+	return o.ApplyT(func(v PoliciesPolicy) string { return v.Category }).(pulumi.StringOutput)
+}
+
 // The create time of the Policy.
 func (o PoliciesPolicyOutput) CreateDate() pulumi.StringOutput {
 	return o.ApplyT(func(v PoliciesPolicy) string { return v.CreateDate }).(pulumi.StringOutput)
@@ -444,6 +2832,11 @@ func (o PoliciesPolicyOutput) Description() pulumi.StringOutput {
 // The ID of the Policy.
 func (o PoliciesPolicyOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v PoliciesPolicy) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Whether the Policy is a service role policy.
+func (o PoliciesPolicyOutput) IsServiceRolePolicy() pulumi.IntOutput {
+	return o.ApplyT(func(v PoliciesPolicy) int { return v.IsServiceRolePolicy }).(pulumi.IntOutput)
 }
 
 // The document of the Policy.
@@ -466,29 +2859,9 @@ func (o PoliciesPolicyOutput) PolicyType() pulumi.StringOutput {
 	return o.ApplyT(func(v PoliciesPolicy) string { return v.PolicyType }).(pulumi.StringOutput)
 }
 
-// The role attach time of the Policy.The data show only query with role_name.
-func (o PoliciesPolicyOutput) RoleAttachDate() pulumi.StringOutput {
-	return o.ApplyT(func(v PoliciesPolicy) string { return v.RoleAttachDate }).(pulumi.StringOutput)
-}
-
-// The name of the IAM role.
-func (o PoliciesPolicyOutput) RoleName() pulumi.StringOutput {
-	return o.ApplyT(func(v PoliciesPolicy) string { return v.RoleName }).(pulumi.StringOutput)
-}
-
 // The update time of the Policy.
 func (o PoliciesPolicyOutput) UpdateDate() pulumi.StringOutput {
 	return o.ApplyT(func(v PoliciesPolicy) string { return v.UpdateDate }).(pulumi.StringOutput)
-}
-
-// The user attach time of the Policy.The data show only query with user_name.
-func (o PoliciesPolicyOutput) UserAttachDate() pulumi.StringOutput {
-	return o.ApplyT(func(v PoliciesPolicy) string { return v.UserAttachDate }).(pulumi.StringOutput)
-}
-
-// The name of the IAM user.
-func (o PoliciesPolicyOutput) UserName() pulumi.StringOutput {
-	return o.ApplyT(func(v PoliciesPolicy) string { return v.UserName }).(pulumi.StringOutput)
 }
 
 type PoliciesPolicyArrayOutput struct{ *pulumi.OutputState }
@@ -511,19 +2884,401 @@ func (o PoliciesPolicyArrayOutput) Index(i pulumi.IntInput) PoliciesPolicyOutput
 	}).(PoliciesPolicyOutput)
 }
 
+type RolePolicyAttachmentsPolicy struct {
+	// The attach date of the policy scope.
+	AttachDate string `pulumi:"attachDate"`
+	// The description of the policy.
+	Description string `pulumi:"description"`
+	// The name of the policy.
+	PolicyName string `pulumi:"policyName"`
+	// The scope of the policy.
+	PolicyScopes []RolePolicyAttachmentsPolicyPolicyScope `pulumi:"policyScopes"`
+	// The trn of the policy.
+	PolicyTrn string `pulumi:"policyTrn"`
+	// The type of the policy.
+	PolicyType string `pulumi:"policyType"`
+}
+
+// RolePolicyAttachmentsPolicyInput is an input type that accepts RolePolicyAttachmentsPolicyArgs and RolePolicyAttachmentsPolicyOutput values.
+// You can construct a concrete instance of `RolePolicyAttachmentsPolicyInput` via:
+//
+//	RolePolicyAttachmentsPolicyArgs{...}
+type RolePolicyAttachmentsPolicyInput interface {
+	pulumi.Input
+
+	ToRolePolicyAttachmentsPolicyOutput() RolePolicyAttachmentsPolicyOutput
+	ToRolePolicyAttachmentsPolicyOutputWithContext(context.Context) RolePolicyAttachmentsPolicyOutput
+}
+
+type RolePolicyAttachmentsPolicyArgs struct {
+	// The attach date of the policy scope.
+	AttachDate pulumi.StringInput `pulumi:"attachDate"`
+	// The description of the policy.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The name of the policy.
+	PolicyName pulumi.StringInput `pulumi:"policyName"`
+	// The scope of the policy.
+	PolicyScopes RolePolicyAttachmentsPolicyPolicyScopeArrayInput `pulumi:"policyScopes"`
+	// The trn of the policy.
+	PolicyTrn pulumi.StringInput `pulumi:"policyTrn"`
+	// The type of the policy.
+	PolicyType pulumi.StringInput `pulumi:"policyType"`
+}
+
+func (RolePolicyAttachmentsPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RolePolicyAttachmentsPolicy)(nil)).Elem()
+}
+
+func (i RolePolicyAttachmentsPolicyArgs) ToRolePolicyAttachmentsPolicyOutput() RolePolicyAttachmentsPolicyOutput {
+	return i.ToRolePolicyAttachmentsPolicyOutputWithContext(context.Background())
+}
+
+func (i RolePolicyAttachmentsPolicyArgs) ToRolePolicyAttachmentsPolicyOutputWithContext(ctx context.Context) RolePolicyAttachmentsPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RolePolicyAttachmentsPolicyOutput)
+}
+
+// RolePolicyAttachmentsPolicyArrayInput is an input type that accepts RolePolicyAttachmentsPolicyArray and RolePolicyAttachmentsPolicyArrayOutput values.
+// You can construct a concrete instance of `RolePolicyAttachmentsPolicyArrayInput` via:
+//
+//	RolePolicyAttachmentsPolicyArray{ RolePolicyAttachmentsPolicyArgs{...} }
+type RolePolicyAttachmentsPolicyArrayInput interface {
+	pulumi.Input
+
+	ToRolePolicyAttachmentsPolicyArrayOutput() RolePolicyAttachmentsPolicyArrayOutput
+	ToRolePolicyAttachmentsPolicyArrayOutputWithContext(context.Context) RolePolicyAttachmentsPolicyArrayOutput
+}
+
+type RolePolicyAttachmentsPolicyArray []RolePolicyAttachmentsPolicyInput
+
+func (RolePolicyAttachmentsPolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RolePolicyAttachmentsPolicy)(nil)).Elem()
+}
+
+func (i RolePolicyAttachmentsPolicyArray) ToRolePolicyAttachmentsPolicyArrayOutput() RolePolicyAttachmentsPolicyArrayOutput {
+	return i.ToRolePolicyAttachmentsPolicyArrayOutputWithContext(context.Background())
+}
+
+func (i RolePolicyAttachmentsPolicyArray) ToRolePolicyAttachmentsPolicyArrayOutputWithContext(ctx context.Context) RolePolicyAttachmentsPolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RolePolicyAttachmentsPolicyArrayOutput)
+}
+
+type RolePolicyAttachmentsPolicyOutput struct{ *pulumi.OutputState }
+
+func (RolePolicyAttachmentsPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RolePolicyAttachmentsPolicy)(nil)).Elem()
+}
+
+func (o RolePolicyAttachmentsPolicyOutput) ToRolePolicyAttachmentsPolicyOutput() RolePolicyAttachmentsPolicyOutput {
+	return o
+}
+
+func (o RolePolicyAttachmentsPolicyOutput) ToRolePolicyAttachmentsPolicyOutputWithContext(ctx context.Context) RolePolicyAttachmentsPolicyOutput {
+	return o
+}
+
+// The attach date of the policy scope.
+func (o RolePolicyAttachmentsPolicyOutput) AttachDate() pulumi.StringOutput {
+	return o.ApplyT(func(v RolePolicyAttachmentsPolicy) string { return v.AttachDate }).(pulumi.StringOutput)
+}
+
+// The description of the policy.
+func (o RolePolicyAttachmentsPolicyOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v RolePolicyAttachmentsPolicy) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The name of the policy.
+func (o RolePolicyAttachmentsPolicyOutput) PolicyName() pulumi.StringOutput {
+	return o.ApplyT(func(v RolePolicyAttachmentsPolicy) string { return v.PolicyName }).(pulumi.StringOutput)
+}
+
+// The scope of the policy.
+func (o RolePolicyAttachmentsPolicyOutput) PolicyScopes() RolePolicyAttachmentsPolicyPolicyScopeArrayOutput {
+	return o.ApplyT(func(v RolePolicyAttachmentsPolicy) []RolePolicyAttachmentsPolicyPolicyScope { return v.PolicyScopes }).(RolePolicyAttachmentsPolicyPolicyScopeArrayOutput)
+}
+
+// The trn of the policy.
+func (o RolePolicyAttachmentsPolicyOutput) PolicyTrn() pulumi.StringOutput {
+	return o.ApplyT(func(v RolePolicyAttachmentsPolicy) string { return v.PolicyTrn }).(pulumi.StringOutput)
+}
+
+// The type of the policy.
+func (o RolePolicyAttachmentsPolicyOutput) PolicyType() pulumi.StringOutput {
+	return o.ApplyT(func(v RolePolicyAttachmentsPolicy) string { return v.PolicyType }).(pulumi.StringOutput)
+}
+
+type RolePolicyAttachmentsPolicyArrayOutput struct{ *pulumi.OutputState }
+
+func (RolePolicyAttachmentsPolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RolePolicyAttachmentsPolicy)(nil)).Elem()
+}
+
+func (o RolePolicyAttachmentsPolicyArrayOutput) ToRolePolicyAttachmentsPolicyArrayOutput() RolePolicyAttachmentsPolicyArrayOutput {
+	return o
+}
+
+func (o RolePolicyAttachmentsPolicyArrayOutput) ToRolePolicyAttachmentsPolicyArrayOutputWithContext(ctx context.Context) RolePolicyAttachmentsPolicyArrayOutput {
+	return o
+}
+
+func (o RolePolicyAttachmentsPolicyArrayOutput) Index(i pulumi.IntInput) RolePolicyAttachmentsPolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RolePolicyAttachmentsPolicy {
+		return vs[0].([]RolePolicyAttachmentsPolicy)[vs[1].(int)]
+	}).(RolePolicyAttachmentsPolicyOutput)
+}
+
+type RolePolicyAttachmentsPolicyPolicyScope struct {
+	// The attach date of the policy scope.
+	AttachDate string `pulumi:"attachDate"`
+	// The type of the policy scope.
+	PolicyScopeType string `pulumi:"policyScopeType"`
+	// The display name of the project.
+	ProjectDisplayName string `pulumi:"projectDisplayName"`
+	// The name of the project.
+	ProjectName string `pulumi:"projectName"`
+}
+
+// RolePolicyAttachmentsPolicyPolicyScopeInput is an input type that accepts RolePolicyAttachmentsPolicyPolicyScopeArgs and RolePolicyAttachmentsPolicyPolicyScopeOutput values.
+// You can construct a concrete instance of `RolePolicyAttachmentsPolicyPolicyScopeInput` via:
+//
+//	RolePolicyAttachmentsPolicyPolicyScopeArgs{...}
+type RolePolicyAttachmentsPolicyPolicyScopeInput interface {
+	pulumi.Input
+
+	ToRolePolicyAttachmentsPolicyPolicyScopeOutput() RolePolicyAttachmentsPolicyPolicyScopeOutput
+	ToRolePolicyAttachmentsPolicyPolicyScopeOutputWithContext(context.Context) RolePolicyAttachmentsPolicyPolicyScopeOutput
+}
+
+type RolePolicyAttachmentsPolicyPolicyScopeArgs struct {
+	// The attach date of the policy scope.
+	AttachDate pulumi.StringInput `pulumi:"attachDate"`
+	// The type of the policy scope.
+	PolicyScopeType pulumi.StringInput `pulumi:"policyScopeType"`
+	// The display name of the project.
+	ProjectDisplayName pulumi.StringInput `pulumi:"projectDisplayName"`
+	// The name of the project.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+}
+
+func (RolePolicyAttachmentsPolicyPolicyScopeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RolePolicyAttachmentsPolicyPolicyScope)(nil)).Elem()
+}
+
+func (i RolePolicyAttachmentsPolicyPolicyScopeArgs) ToRolePolicyAttachmentsPolicyPolicyScopeOutput() RolePolicyAttachmentsPolicyPolicyScopeOutput {
+	return i.ToRolePolicyAttachmentsPolicyPolicyScopeOutputWithContext(context.Background())
+}
+
+func (i RolePolicyAttachmentsPolicyPolicyScopeArgs) ToRolePolicyAttachmentsPolicyPolicyScopeOutputWithContext(ctx context.Context) RolePolicyAttachmentsPolicyPolicyScopeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RolePolicyAttachmentsPolicyPolicyScopeOutput)
+}
+
+// RolePolicyAttachmentsPolicyPolicyScopeArrayInput is an input type that accepts RolePolicyAttachmentsPolicyPolicyScopeArray and RolePolicyAttachmentsPolicyPolicyScopeArrayOutput values.
+// You can construct a concrete instance of `RolePolicyAttachmentsPolicyPolicyScopeArrayInput` via:
+//
+//	RolePolicyAttachmentsPolicyPolicyScopeArray{ RolePolicyAttachmentsPolicyPolicyScopeArgs{...} }
+type RolePolicyAttachmentsPolicyPolicyScopeArrayInput interface {
+	pulumi.Input
+
+	ToRolePolicyAttachmentsPolicyPolicyScopeArrayOutput() RolePolicyAttachmentsPolicyPolicyScopeArrayOutput
+	ToRolePolicyAttachmentsPolicyPolicyScopeArrayOutputWithContext(context.Context) RolePolicyAttachmentsPolicyPolicyScopeArrayOutput
+}
+
+type RolePolicyAttachmentsPolicyPolicyScopeArray []RolePolicyAttachmentsPolicyPolicyScopeInput
+
+func (RolePolicyAttachmentsPolicyPolicyScopeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RolePolicyAttachmentsPolicyPolicyScope)(nil)).Elem()
+}
+
+func (i RolePolicyAttachmentsPolicyPolicyScopeArray) ToRolePolicyAttachmentsPolicyPolicyScopeArrayOutput() RolePolicyAttachmentsPolicyPolicyScopeArrayOutput {
+	return i.ToRolePolicyAttachmentsPolicyPolicyScopeArrayOutputWithContext(context.Background())
+}
+
+func (i RolePolicyAttachmentsPolicyPolicyScopeArray) ToRolePolicyAttachmentsPolicyPolicyScopeArrayOutputWithContext(ctx context.Context) RolePolicyAttachmentsPolicyPolicyScopeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RolePolicyAttachmentsPolicyPolicyScopeArrayOutput)
+}
+
+type RolePolicyAttachmentsPolicyPolicyScopeOutput struct{ *pulumi.OutputState }
+
+func (RolePolicyAttachmentsPolicyPolicyScopeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RolePolicyAttachmentsPolicyPolicyScope)(nil)).Elem()
+}
+
+func (o RolePolicyAttachmentsPolicyPolicyScopeOutput) ToRolePolicyAttachmentsPolicyPolicyScopeOutput() RolePolicyAttachmentsPolicyPolicyScopeOutput {
+	return o
+}
+
+func (o RolePolicyAttachmentsPolicyPolicyScopeOutput) ToRolePolicyAttachmentsPolicyPolicyScopeOutputWithContext(ctx context.Context) RolePolicyAttachmentsPolicyPolicyScopeOutput {
+	return o
+}
+
+// The attach date of the policy scope.
+func (o RolePolicyAttachmentsPolicyPolicyScopeOutput) AttachDate() pulumi.StringOutput {
+	return o.ApplyT(func(v RolePolicyAttachmentsPolicyPolicyScope) string { return v.AttachDate }).(pulumi.StringOutput)
+}
+
+// The type of the policy scope.
+func (o RolePolicyAttachmentsPolicyPolicyScopeOutput) PolicyScopeType() pulumi.StringOutput {
+	return o.ApplyT(func(v RolePolicyAttachmentsPolicyPolicyScope) string { return v.PolicyScopeType }).(pulumi.StringOutput)
+}
+
+// The display name of the project.
+func (o RolePolicyAttachmentsPolicyPolicyScopeOutput) ProjectDisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v RolePolicyAttachmentsPolicyPolicyScope) string { return v.ProjectDisplayName }).(pulumi.StringOutput)
+}
+
+// The name of the project.
+func (o RolePolicyAttachmentsPolicyPolicyScopeOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v RolePolicyAttachmentsPolicyPolicyScope) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+type RolePolicyAttachmentsPolicyPolicyScopeArrayOutput struct{ *pulumi.OutputState }
+
+func (RolePolicyAttachmentsPolicyPolicyScopeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RolePolicyAttachmentsPolicyPolicyScope)(nil)).Elem()
+}
+
+func (o RolePolicyAttachmentsPolicyPolicyScopeArrayOutput) ToRolePolicyAttachmentsPolicyPolicyScopeArrayOutput() RolePolicyAttachmentsPolicyPolicyScopeArrayOutput {
+	return o
+}
+
+func (o RolePolicyAttachmentsPolicyPolicyScopeArrayOutput) ToRolePolicyAttachmentsPolicyPolicyScopeArrayOutputWithContext(ctx context.Context) RolePolicyAttachmentsPolicyPolicyScopeArrayOutput {
+	return o
+}
+
+func (o RolePolicyAttachmentsPolicyPolicyScopeArrayOutput) Index(i pulumi.IntInput) RolePolicyAttachmentsPolicyPolicyScopeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RolePolicyAttachmentsPolicyPolicyScope {
+		return vs[0].([]RolePolicyAttachmentsPolicyPolicyScope)[vs[1].(int)]
+	}).(RolePolicyAttachmentsPolicyPolicyScopeOutput)
+}
+
+type RoleTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// RoleTagInput is an input type that accepts RoleTagArgs and RoleTagOutput values.
+// You can construct a concrete instance of `RoleTagInput` via:
+//
+//	RoleTagArgs{...}
+type RoleTagInput interface {
+	pulumi.Input
+
+	ToRoleTagOutput() RoleTagOutput
+	ToRoleTagOutputWithContext(context.Context) RoleTagOutput
+}
+
+type RoleTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (RoleTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RoleTag)(nil)).Elem()
+}
+
+func (i RoleTagArgs) ToRoleTagOutput() RoleTagOutput {
+	return i.ToRoleTagOutputWithContext(context.Background())
+}
+
+func (i RoleTagArgs) ToRoleTagOutputWithContext(ctx context.Context) RoleTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RoleTagOutput)
+}
+
+// RoleTagArrayInput is an input type that accepts RoleTagArray and RoleTagArrayOutput values.
+// You can construct a concrete instance of `RoleTagArrayInput` via:
+//
+//	RoleTagArray{ RoleTagArgs{...} }
+type RoleTagArrayInput interface {
+	pulumi.Input
+
+	ToRoleTagArrayOutput() RoleTagArrayOutput
+	ToRoleTagArrayOutputWithContext(context.Context) RoleTagArrayOutput
+}
+
+type RoleTagArray []RoleTagInput
+
+func (RoleTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RoleTag)(nil)).Elem()
+}
+
+func (i RoleTagArray) ToRoleTagArrayOutput() RoleTagArrayOutput {
+	return i.ToRoleTagArrayOutputWithContext(context.Background())
+}
+
+func (i RoleTagArray) ToRoleTagArrayOutputWithContext(ctx context.Context) RoleTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RoleTagArrayOutput)
+}
+
+type RoleTagOutput struct{ *pulumi.OutputState }
+
+func (RoleTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RoleTag)(nil)).Elem()
+}
+
+func (o RoleTagOutput) ToRoleTagOutput() RoleTagOutput {
+	return o
+}
+
+func (o RoleTagOutput) ToRoleTagOutputWithContext(ctx context.Context) RoleTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o RoleTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v RoleTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o RoleTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v RoleTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type RoleTagArrayOutput struct{ *pulumi.OutputState }
+
+func (RoleTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RoleTag)(nil)).Elem()
+}
+
+func (o RoleTagArrayOutput) ToRoleTagArrayOutput() RoleTagArrayOutput {
+	return o
+}
+
+func (o RoleTagArrayOutput) ToRoleTagArrayOutputWithContext(ctx context.Context) RoleTagArrayOutput {
+	return o
+}
+
+func (o RoleTagArrayOutput) Index(i pulumi.IntInput) RoleTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RoleTag {
+		return vs[0].([]RoleTag)[vs[1].(int)]
+	}).(RoleTagOutput)
+}
+
 type RolesRole struct {
 	// The create time of the Role.
 	CreateDate string `pulumi:"createDate"`
 	// The description of the Role.
 	Description string `pulumi:"description"`
-	// The ID of the Role.
-	Id string `pulumi:"id"`
-	// The name of the Role, comma separated.
+	// The display name of the Role.
+	DisplayName string `pulumi:"displayName"`
+	// Whether the Role is a service linked role.
+	IsServiceLinkedRole int `pulumi:"isServiceLinkedRole"`
+	// The max session duration of the Role.
+	MaxSessionDuration int `pulumi:"maxSessionDuration"`
+	// The id of the Role.
+	RoleId int `pulumi:"roleId"`
+	// The name of the Role.
 	RoleName string `pulumi:"roleName"`
+	// Tags.
+	Tags []RolesRoleTag `pulumi:"tags"`
 	// The resource name of the Role.
 	Trn string `pulumi:"trn"`
 	// The trust policy document of the Role.
 	TrustPolicyDocument string `pulumi:"trustPolicyDocument"`
+	// The update time of the Role.
+	UpdateDate string `pulumi:"updateDate"`
 }
 
 // RolesRoleInput is an input type that accepts RolesRoleArgs and RolesRoleOutput values.
@@ -542,14 +3297,24 @@ type RolesRoleArgs struct {
 	CreateDate pulumi.StringInput `pulumi:"createDate"`
 	// The description of the Role.
 	Description pulumi.StringInput `pulumi:"description"`
-	// The ID of the Role.
-	Id pulumi.StringInput `pulumi:"id"`
-	// The name of the Role, comma separated.
+	// The display name of the Role.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// Whether the Role is a service linked role.
+	IsServiceLinkedRole pulumi.IntInput `pulumi:"isServiceLinkedRole"`
+	// The max session duration of the Role.
+	MaxSessionDuration pulumi.IntInput `pulumi:"maxSessionDuration"`
+	// The id of the Role.
+	RoleId pulumi.IntInput `pulumi:"roleId"`
+	// The name of the Role.
 	RoleName pulumi.StringInput `pulumi:"roleName"`
+	// Tags.
+	Tags RolesRoleTagArrayInput `pulumi:"tags"`
 	// The resource name of the Role.
 	Trn pulumi.StringInput `pulumi:"trn"`
 	// The trust policy document of the Role.
 	TrustPolicyDocument pulumi.StringInput `pulumi:"trustPolicyDocument"`
+	// The update time of the Role.
+	UpdateDate pulumi.StringInput `pulumi:"updateDate"`
 }
 
 func (RolesRoleArgs) ElementType() reflect.Type {
@@ -613,14 +3378,34 @@ func (o RolesRoleOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v RolesRole) string { return v.Description }).(pulumi.StringOutput)
 }
 
-// The ID of the Role.
-func (o RolesRoleOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v RolesRole) string { return v.Id }).(pulumi.StringOutput)
+// The display name of the Role.
+func (o RolesRoleOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v RolesRole) string { return v.DisplayName }).(pulumi.StringOutput)
 }
 
-// The name of the Role, comma separated.
+// Whether the Role is a service linked role.
+func (o RolesRoleOutput) IsServiceLinkedRole() pulumi.IntOutput {
+	return o.ApplyT(func(v RolesRole) int { return v.IsServiceLinkedRole }).(pulumi.IntOutput)
+}
+
+// The max session duration of the Role.
+func (o RolesRoleOutput) MaxSessionDuration() pulumi.IntOutput {
+	return o.ApplyT(func(v RolesRole) int { return v.MaxSessionDuration }).(pulumi.IntOutput)
+}
+
+// The id of the Role.
+func (o RolesRoleOutput) RoleId() pulumi.IntOutput {
+	return o.ApplyT(func(v RolesRole) int { return v.RoleId }).(pulumi.IntOutput)
+}
+
+// The name of the Role.
 func (o RolesRoleOutput) RoleName() pulumi.StringOutput {
 	return o.ApplyT(func(v RolesRole) string { return v.RoleName }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o RolesRoleOutput) Tags() RolesRoleTagArrayOutput {
+	return o.ApplyT(func(v RolesRole) []RolesRoleTag { return v.Tags }).(RolesRoleTagArrayOutput)
 }
 
 // The resource name of the Role.
@@ -631,6 +3416,11 @@ func (o RolesRoleOutput) Trn() pulumi.StringOutput {
 // The trust policy document of the Role.
 func (o RolesRoleOutput) TrustPolicyDocument() pulumi.StringOutput {
 	return o.ApplyT(func(v RolesRole) string { return v.TrustPolicyDocument }).(pulumi.StringOutput)
+}
+
+// The update time of the Role.
+func (o RolesRoleOutput) UpdateDate() pulumi.StringOutput {
+	return o.ApplyT(func(v RolesRole) string { return v.UpdateDate }).(pulumi.StringOutput)
 }
 
 type RolesRoleArrayOutput struct{ *pulumi.OutputState }
@@ -651,6 +3441,112 @@ func (o RolesRoleArrayOutput) Index(i pulumi.IntInput) RolesRoleOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RolesRole {
 		return vs[0].([]RolesRole)[vs[1].(int)]
 	}).(RolesRoleOutput)
+}
+
+type RolesRoleTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// RolesRoleTagInput is an input type that accepts RolesRoleTagArgs and RolesRoleTagOutput values.
+// You can construct a concrete instance of `RolesRoleTagInput` via:
+//
+//	RolesRoleTagArgs{...}
+type RolesRoleTagInput interface {
+	pulumi.Input
+
+	ToRolesRoleTagOutput() RolesRoleTagOutput
+	ToRolesRoleTagOutputWithContext(context.Context) RolesRoleTagOutput
+}
+
+type RolesRoleTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (RolesRoleTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RolesRoleTag)(nil)).Elem()
+}
+
+func (i RolesRoleTagArgs) ToRolesRoleTagOutput() RolesRoleTagOutput {
+	return i.ToRolesRoleTagOutputWithContext(context.Background())
+}
+
+func (i RolesRoleTagArgs) ToRolesRoleTagOutputWithContext(ctx context.Context) RolesRoleTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RolesRoleTagOutput)
+}
+
+// RolesRoleTagArrayInput is an input type that accepts RolesRoleTagArray and RolesRoleTagArrayOutput values.
+// You can construct a concrete instance of `RolesRoleTagArrayInput` via:
+//
+//	RolesRoleTagArray{ RolesRoleTagArgs{...} }
+type RolesRoleTagArrayInput interface {
+	pulumi.Input
+
+	ToRolesRoleTagArrayOutput() RolesRoleTagArrayOutput
+	ToRolesRoleTagArrayOutputWithContext(context.Context) RolesRoleTagArrayOutput
+}
+
+type RolesRoleTagArray []RolesRoleTagInput
+
+func (RolesRoleTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RolesRoleTag)(nil)).Elem()
+}
+
+func (i RolesRoleTagArray) ToRolesRoleTagArrayOutput() RolesRoleTagArrayOutput {
+	return i.ToRolesRoleTagArrayOutputWithContext(context.Background())
+}
+
+func (i RolesRoleTagArray) ToRolesRoleTagArrayOutputWithContext(ctx context.Context) RolesRoleTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RolesRoleTagArrayOutput)
+}
+
+type RolesRoleTagOutput struct{ *pulumi.OutputState }
+
+func (RolesRoleTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RolesRoleTag)(nil)).Elem()
+}
+
+func (o RolesRoleTagOutput) ToRolesRoleTagOutput() RolesRoleTagOutput {
+	return o
+}
+
+func (o RolesRoleTagOutput) ToRolesRoleTagOutputWithContext(ctx context.Context) RolesRoleTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o RolesRoleTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v RolesRoleTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o RolesRoleTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v RolesRoleTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type RolesRoleTagArrayOutput struct{ *pulumi.OutputState }
+
+func (RolesRoleTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RolesRoleTag)(nil)).Elem()
+}
+
+func (o RolesRoleTagArrayOutput) ToRolesRoleTagArrayOutput() RolesRoleTagArrayOutput {
+	return o
+}
+
+func (o RolesRoleTagArrayOutput) ToRolesRoleTagArrayOutputWithContext(ctx context.Context) RolesRoleTagArrayOutput {
+	return o
+}
+
+func (o RolesRoleTagArrayOutput) Index(i pulumi.IntInput) RolesRoleTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RolesRoleTag {
+		return vs[0].([]RolesRoleTag)[vs[1].(int)]
+	}).(RolesRoleTagOutput)
 }
 
 type SamlProvidersProvider struct {
@@ -813,13 +3709,617 @@ func (o SamlProvidersProviderArrayOutput) Index(i pulumi.IntInput) SamlProviders
 	}).(SamlProvidersProviderOutput)
 }
 
+type SecurityConfigsSecurityConfig struct {
+	// The status of safe auth.
+	SafeAuthClose int `pulumi:"safeAuthClose"`
+	// The exempt duration of safe auth.
+	SafeAuthExemptDuration int `pulumi:"safeAuthExemptDuration"`
+	// The type of safe auth.
+	SafeAuthType string `pulumi:"safeAuthType"`
+	// The user id.
+	UserId int `pulumi:"userId"`
+	// The user name.
+	UserName string `pulumi:"userName"`
+}
+
+// SecurityConfigsSecurityConfigInput is an input type that accepts SecurityConfigsSecurityConfigArgs and SecurityConfigsSecurityConfigOutput values.
+// You can construct a concrete instance of `SecurityConfigsSecurityConfigInput` via:
+//
+//	SecurityConfigsSecurityConfigArgs{...}
+type SecurityConfigsSecurityConfigInput interface {
+	pulumi.Input
+
+	ToSecurityConfigsSecurityConfigOutput() SecurityConfigsSecurityConfigOutput
+	ToSecurityConfigsSecurityConfigOutputWithContext(context.Context) SecurityConfigsSecurityConfigOutput
+}
+
+type SecurityConfigsSecurityConfigArgs struct {
+	// The status of safe auth.
+	SafeAuthClose pulumi.IntInput `pulumi:"safeAuthClose"`
+	// The exempt duration of safe auth.
+	SafeAuthExemptDuration pulumi.IntInput `pulumi:"safeAuthExemptDuration"`
+	// The type of safe auth.
+	SafeAuthType pulumi.StringInput `pulumi:"safeAuthType"`
+	// The user id.
+	UserId pulumi.IntInput `pulumi:"userId"`
+	// The user name.
+	UserName pulumi.StringInput `pulumi:"userName"`
+}
+
+func (SecurityConfigsSecurityConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecurityConfigsSecurityConfig)(nil)).Elem()
+}
+
+func (i SecurityConfigsSecurityConfigArgs) ToSecurityConfigsSecurityConfigOutput() SecurityConfigsSecurityConfigOutput {
+	return i.ToSecurityConfigsSecurityConfigOutputWithContext(context.Background())
+}
+
+func (i SecurityConfigsSecurityConfigArgs) ToSecurityConfigsSecurityConfigOutputWithContext(ctx context.Context) SecurityConfigsSecurityConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityConfigsSecurityConfigOutput)
+}
+
+// SecurityConfigsSecurityConfigArrayInput is an input type that accepts SecurityConfigsSecurityConfigArray and SecurityConfigsSecurityConfigArrayOutput values.
+// You can construct a concrete instance of `SecurityConfigsSecurityConfigArrayInput` via:
+//
+//	SecurityConfigsSecurityConfigArray{ SecurityConfigsSecurityConfigArgs{...} }
+type SecurityConfigsSecurityConfigArrayInput interface {
+	pulumi.Input
+
+	ToSecurityConfigsSecurityConfigArrayOutput() SecurityConfigsSecurityConfigArrayOutput
+	ToSecurityConfigsSecurityConfigArrayOutputWithContext(context.Context) SecurityConfigsSecurityConfigArrayOutput
+}
+
+type SecurityConfigsSecurityConfigArray []SecurityConfigsSecurityConfigInput
+
+func (SecurityConfigsSecurityConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecurityConfigsSecurityConfig)(nil)).Elem()
+}
+
+func (i SecurityConfigsSecurityConfigArray) ToSecurityConfigsSecurityConfigArrayOutput() SecurityConfigsSecurityConfigArrayOutput {
+	return i.ToSecurityConfigsSecurityConfigArrayOutputWithContext(context.Background())
+}
+
+func (i SecurityConfigsSecurityConfigArray) ToSecurityConfigsSecurityConfigArrayOutputWithContext(ctx context.Context) SecurityConfigsSecurityConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityConfigsSecurityConfigArrayOutput)
+}
+
+type SecurityConfigsSecurityConfigOutput struct{ *pulumi.OutputState }
+
+func (SecurityConfigsSecurityConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecurityConfigsSecurityConfig)(nil)).Elem()
+}
+
+func (o SecurityConfigsSecurityConfigOutput) ToSecurityConfigsSecurityConfigOutput() SecurityConfigsSecurityConfigOutput {
+	return o
+}
+
+func (o SecurityConfigsSecurityConfigOutput) ToSecurityConfigsSecurityConfigOutputWithContext(ctx context.Context) SecurityConfigsSecurityConfigOutput {
+	return o
+}
+
+// The status of safe auth.
+func (o SecurityConfigsSecurityConfigOutput) SafeAuthClose() pulumi.IntOutput {
+	return o.ApplyT(func(v SecurityConfigsSecurityConfig) int { return v.SafeAuthClose }).(pulumi.IntOutput)
+}
+
+// The exempt duration of safe auth.
+func (o SecurityConfigsSecurityConfigOutput) SafeAuthExemptDuration() pulumi.IntOutput {
+	return o.ApplyT(func(v SecurityConfigsSecurityConfig) int { return v.SafeAuthExemptDuration }).(pulumi.IntOutput)
+}
+
+// The type of safe auth.
+func (o SecurityConfigsSecurityConfigOutput) SafeAuthType() pulumi.StringOutput {
+	return o.ApplyT(func(v SecurityConfigsSecurityConfig) string { return v.SafeAuthType }).(pulumi.StringOutput)
+}
+
+// The user id.
+func (o SecurityConfigsSecurityConfigOutput) UserId() pulumi.IntOutput {
+	return o.ApplyT(func(v SecurityConfigsSecurityConfig) int { return v.UserId }).(pulumi.IntOutput)
+}
+
+// The user name.
+func (o SecurityConfigsSecurityConfigOutput) UserName() pulumi.StringOutput {
+	return o.ApplyT(func(v SecurityConfigsSecurityConfig) string { return v.UserName }).(pulumi.StringOutput)
+}
+
+type SecurityConfigsSecurityConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (SecurityConfigsSecurityConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecurityConfigsSecurityConfig)(nil)).Elem()
+}
+
+func (o SecurityConfigsSecurityConfigArrayOutput) ToSecurityConfigsSecurityConfigArrayOutput() SecurityConfigsSecurityConfigArrayOutput {
+	return o
+}
+
+func (o SecurityConfigsSecurityConfigArrayOutput) ToSecurityConfigsSecurityConfigArrayOutputWithContext(ctx context.Context) SecurityConfigsSecurityConfigArrayOutput {
+	return o
+}
+
+func (o SecurityConfigsSecurityConfigArrayOutput) Index(i pulumi.IntInput) SecurityConfigsSecurityConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecurityConfigsSecurityConfig {
+		return vs[0].([]SecurityConfigsSecurityConfig)[vs[1].(int)]
+	}).(SecurityConfigsSecurityConfigOutput)
+}
+
+type ServiceLinkedRoleTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// ServiceLinkedRoleTagInput is an input type that accepts ServiceLinkedRoleTagArgs and ServiceLinkedRoleTagOutput values.
+// You can construct a concrete instance of `ServiceLinkedRoleTagInput` via:
+//
+//	ServiceLinkedRoleTagArgs{...}
+type ServiceLinkedRoleTagInput interface {
+	pulumi.Input
+
+	ToServiceLinkedRoleTagOutput() ServiceLinkedRoleTagOutput
+	ToServiceLinkedRoleTagOutputWithContext(context.Context) ServiceLinkedRoleTagOutput
+}
+
+type ServiceLinkedRoleTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (ServiceLinkedRoleTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceLinkedRoleTag)(nil)).Elem()
+}
+
+func (i ServiceLinkedRoleTagArgs) ToServiceLinkedRoleTagOutput() ServiceLinkedRoleTagOutput {
+	return i.ToServiceLinkedRoleTagOutputWithContext(context.Background())
+}
+
+func (i ServiceLinkedRoleTagArgs) ToServiceLinkedRoleTagOutputWithContext(ctx context.Context) ServiceLinkedRoleTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceLinkedRoleTagOutput)
+}
+
+// ServiceLinkedRoleTagArrayInput is an input type that accepts ServiceLinkedRoleTagArray and ServiceLinkedRoleTagArrayOutput values.
+// You can construct a concrete instance of `ServiceLinkedRoleTagArrayInput` via:
+//
+//	ServiceLinkedRoleTagArray{ ServiceLinkedRoleTagArgs{...} }
+type ServiceLinkedRoleTagArrayInput interface {
+	pulumi.Input
+
+	ToServiceLinkedRoleTagArrayOutput() ServiceLinkedRoleTagArrayOutput
+	ToServiceLinkedRoleTagArrayOutputWithContext(context.Context) ServiceLinkedRoleTagArrayOutput
+}
+
+type ServiceLinkedRoleTagArray []ServiceLinkedRoleTagInput
+
+func (ServiceLinkedRoleTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceLinkedRoleTag)(nil)).Elem()
+}
+
+func (i ServiceLinkedRoleTagArray) ToServiceLinkedRoleTagArrayOutput() ServiceLinkedRoleTagArrayOutput {
+	return i.ToServiceLinkedRoleTagArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceLinkedRoleTagArray) ToServiceLinkedRoleTagArrayOutputWithContext(ctx context.Context) ServiceLinkedRoleTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceLinkedRoleTagArrayOutput)
+}
+
+type ServiceLinkedRoleTagOutput struct{ *pulumi.OutputState }
+
+func (ServiceLinkedRoleTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceLinkedRoleTag)(nil)).Elem()
+}
+
+func (o ServiceLinkedRoleTagOutput) ToServiceLinkedRoleTagOutput() ServiceLinkedRoleTagOutput {
+	return o
+}
+
+func (o ServiceLinkedRoleTagOutput) ToServiceLinkedRoleTagOutputWithContext(ctx context.Context) ServiceLinkedRoleTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o ServiceLinkedRoleTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceLinkedRoleTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o ServiceLinkedRoleTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceLinkedRoleTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type ServiceLinkedRoleTagArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceLinkedRoleTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceLinkedRoleTag)(nil)).Elem()
+}
+
+func (o ServiceLinkedRoleTagArrayOutput) ToServiceLinkedRoleTagArrayOutput() ServiceLinkedRoleTagArrayOutput {
+	return o
+}
+
+func (o ServiceLinkedRoleTagArrayOutput) ToServiceLinkedRoleTagArrayOutputWithContext(ctx context.Context) ServiceLinkedRoleTagArrayOutput {
+	return o
+}
+
+func (o ServiceLinkedRoleTagArrayOutput) Index(i pulumi.IntInput) ServiceLinkedRoleTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceLinkedRoleTag {
+		return vs[0].([]ServiceLinkedRoleTag)[vs[1].(int)]
+	}).(ServiceLinkedRoleTagOutput)
+}
+
+type TagTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// TagTagInput is an input type that accepts TagTagArgs and TagTagOutput values.
+// You can construct a concrete instance of `TagTagInput` via:
+//
+//	TagTagArgs{...}
+type TagTagInput interface {
+	pulumi.Input
+
+	ToTagTagOutput() TagTagOutput
+	ToTagTagOutputWithContext(context.Context) TagTagOutput
+}
+
+type TagTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (TagTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TagTag)(nil)).Elem()
+}
+
+func (i TagTagArgs) ToTagTagOutput() TagTagOutput {
+	return i.ToTagTagOutputWithContext(context.Background())
+}
+
+func (i TagTagArgs) ToTagTagOutputWithContext(ctx context.Context) TagTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TagTagOutput)
+}
+
+// TagTagArrayInput is an input type that accepts TagTagArray and TagTagArrayOutput values.
+// You can construct a concrete instance of `TagTagArrayInput` via:
+//
+//	TagTagArray{ TagTagArgs{...} }
+type TagTagArrayInput interface {
+	pulumi.Input
+
+	ToTagTagArrayOutput() TagTagArrayOutput
+	ToTagTagArrayOutputWithContext(context.Context) TagTagArrayOutput
+}
+
+type TagTagArray []TagTagInput
+
+func (TagTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TagTag)(nil)).Elem()
+}
+
+func (i TagTagArray) ToTagTagArrayOutput() TagTagArrayOutput {
+	return i.ToTagTagArrayOutputWithContext(context.Background())
+}
+
+func (i TagTagArray) ToTagTagArrayOutputWithContext(ctx context.Context) TagTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TagTagArrayOutput)
+}
+
+type TagTagOutput struct{ *pulumi.OutputState }
+
+func (TagTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TagTag)(nil)).Elem()
+}
+
+func (o TagTagOutput) ToTagTagOutput() TagTagOutput {
+	return o
+}
+
+func (o TagTagOutput) ToTagTagOutputWithContext(ctx context.Context) TagTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o TagTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v TagTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o TagTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v TagTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type TagTagArrayOutput struct{ *pulumi.OutputState }
+
+func (TagTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TagTag)(nil)).Elem()
+}
+
+func (o TagTagArrayOutput) ToTagTagArrayOutput() TagTagArrayOutput {
+	return o
+}
+
+func (o TagTagArrayOutput) ToTagTagArrayOutputWithContext(ctx context.Context) TagTagArrayOutput {
+	return o
+}
+
+func (o TagTagArrayOutput) Index(i pulumi.IntInput) TagTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TagTag {
+		return vs[0].([]TagTag)[vs[1].(int)]
+	}).(TagTagOutput)
+}
+
+type TagsResourceTag struct {
+	// The name of the resource.
+	ResourceName string `pulumi:"resourceName"`
+	// The type of the resource. Valid values: User, Role.
+	ResourceType string `pulumi:"resourceType"`
+	// The key of the tag.
+	TagKey string `pulumi:"tagKey"`
+	// The value of the tag.
+	TagValue string `pulumi:"tagValue"`
+}
+
+// TagsResourceTagInput is an input type that accepts TagsResourceTagArgs and TagsResourceTagOutput values.
+// You can construct a concrete instance of `TagsResourceTagInput` via:
+//
+//	TagsResourceTagArgs{...}
+type TagsResourceTagInput interface {
+	pulumi.Input
+
+	ToTagsResourceTagOutput() TagsResourceTagOutput
+	ToTagsResourceTagOutputWithContext(context.Context) TagsResourceTagOutput
+}
+
+type TagsResourceTagArgs struct {
+	// The name of the resource.
+	ResourceName pulumi.StringInput `pulumi:"resourceName"`
+	// The type of the resource. Valid values: User, Role.
+	ResourceType pulumi.StringInput `pulumi:"resourceType"`
+	// The key of the tag.
+	TagKey pulumi.StringInput `pulumi:"tagKey"`
+	// The value of the tag.
+	TagValue pulumi.StringInput `pulumi:"tagValue"`
+}
+
+func (TagsResourceTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TagsResourceTag)(nil)).Elem()
+}
+
+func (i TagsResourceTagArgs) ToTagsResourceTagOutput() TagsResourceTagOutput {
+	return i.ToTagsResourceTagOutputWithContext(context.Background())
+}
+
+func (i TagsResourceTagArgs) ToTagsResourceTagOutputWithContext(ctx context.Context) TagsResourceTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TagsResourceTagOutput)
+}
+
+// TagsResourceTagArrayInput is an input type that accepts TagsResourceTagArray and TagsResourceTagArrayOutput values.
+// You can construct a concrete instance of `TagsResourceTagArrayInput` via:
+//
+//	TagsResourceTagArray{ TagsResourceTagArgs{...} }
+type TagsResourceTagArrayInput interface {
+	pulumi.Input
+
+	ToTagsResourceTagArrayOutput() TagsResourceTagArrayOutput
+	ToTagsResourceTagArrayOutputWithContext(context.Context) TagsResourceTagArrayOutput
+}
+
+type TagsResourceTagArray []TagsResourceTagInput
+
+func (TagsResourceTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TagsResourceTag)(nil)).Elem()
+}
+
+func (i TagsResourceTagArray) ToTagsResourceTagArrayOutput() TagsResourceTagArrayOutput {
+	return i.ToTagsResourceTagArrayOutputWithContext(context.Background())
+}
+
+func (i TagsResourceTagArray) ToTagsResourceTagArrayOutputWithContext(ctx context.Context) TagsResourceTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TagsResourceTagArrayOutput)
+}
+
+type TagsResourceTagOutput struct{ *pulumi.OutputState }
+
+func (TagsResourceTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TagsResourceTag)(nil)).Elem()
+}
+
+func (o TagsResourceTagOutput) ToTagsResourceTagOutput() TagsResourceTagOutput {
+	return o
+}
+
+func (o TagsResourceTagOutput) ToTagsResourceTagOutputWithContext(ctx context.Context) TagsResourceTagOutput {
+	return o
+}
+
+// The name of the resource.
+func (o TagsResourceTagOutput) ResourceName() pulumi.StringOutput {
+	return o.ApplyT(func(v TagsResourceTag) string { return v.ResourceName }).(pulumi.StringOutput)
+}
+
+// The type of the resource. Valid values: User, Role.
+func (o TagsResourceTagOutput) ResourceType() pulumi.StringOutput {
+	return o.ApplyT(func(v TagsResourceTag) string { return v.ResourceType }).(pulumi.StringOutput)
+}
+
+// The key of the tag.
+func (o TagsResourceTagOutput) TagKey() pulumi.StringOutput {
+	return o.ApplyT(func(v TagsResourceTag) string { return v.TagKey }).(pulumi.StringOutput)
+}
+
+// The value of the tag.
+func (o TagsResourceTagOutput) TagValue() pulumi.StringOutput {
+	return o.ApplyT(func(v TagsResourceTag) string { return v.TagValue }).(pulumi.StringOutput)
+}
+
+type TagsResourceTagArrayOutput struct{ *pulumi.OutputState }
+
+func (TagsResourceTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TagsResourceTag)(nil)).Elem()
+}
+
+func (o TagsResourceTagArrayOutput) ToTagsResourceTagArrayOutput() TagsResourceTagArrayOutput {
+	return o
+}
+
+func (o TagsResourceTagArrayOutput) ToTagsResourceTagArrayOutputWithContext(ctx context.Context) TagsResourceTagArrayOutput {
+	return o
+}
+
+func (o TagsResourceTagArrayOutput) Index(i pulumi.IntInput) TagsResourceTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TagsResourceTag {
+		return vs[0].([]TagsResourceTag)[vs[1].(int)]
+	}).(TagsResourceTagOutput)
+}
+
+type UserGroupAttachmentsUser struct {
+	// The description of the user.
+	Description string `pulumi:"description"`
+	// The display name of the user.
+	DisplayName string `pulumi:"displayName"`
+	// The join date of the user.
+	JoinDate string `pulumi:"joinDate"`
+	// The id of the user.
+	UserId int `pulumi:"userId"`
+	// The name of the user.
+	UserName string `pulumi:"userName"`
+}
+
+// UserGroupAttachmentsUserInput is an input type that accepts UserGroupAttachmentsUserArgs and UserGroupAttachmentsUserOutput values.
+// You can construct a concrete instance of `UserGroupAttachmentsUserInput` via:
+//
+//	UserGroupAttachmentsUserArgs{...}
+type UserGroupAttachmentsUserInput interface {
+	pulumi.Input
+
+	ToUserGroupAttachmentsUserOutput() UserGroupAttachmentsUserOutput
+	ToUserGroupAttachmentsUserOutputWithContext(context.Context) UserGroupAttachmentsUserOutput
+}
+
+type UserGroupAttachmentsUserArgs struct {
+	// The description of the user.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The display name of the user.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The join date of the user.
+	JoinDate pulumi.StringInput `pulumi:"joinDate"`
+	// The id of the user.
+	UserId pulumi.IntInput `pulumi:"userId"`
+	// The name of the user.
+	UserName pulumi.StringInput `pulumi:"userName"`
+}
+
+func (UserGroupAttachmentsUserArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserGroupAttachmentsUser)(nil)).Elem()
+}
+
+func (i UserGroupAttachmentsUserArgs) ToUserGroupAttachmentsUserOutput() UserGroupAttachmentsUserOutput {
+	return i.ToUserGroupAttachmentsUserOutputWithContext(context.Background())
+}
+
+func (i UserGroupAttachmentsUserArgs) ToUserGroupAttachmentsUserOutputWithContext(ctx context.Context) UserGroupAttachmentsUserOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserGroupAttachmentsUserOutput)
+}
+
+// UserGroupAttachmentsUserArrayInput is an input type that accepts UserGroupAttachmentsUserArray and UserGroupAttachmentsUserArrayOutput values.
+// You can construct a concrete instance of `UserGroupAttachmentsUserArrayInput` via:
+//
+//	UserGroupAttachmentsUserArray{ UserGroupAttachmentsUserArgs{...} }
+type UserGroupAttachmentsUserArrayInput interface {
+	pulumi.Input
+
+	ToUserGroupAttachmentsUserArrayOutput() UserGroupAttachmentsUserArrayOutput
+	ToUserGroupAttachmentsUserArrayOutputWithContext(context.Context) UserGroupAttachmentsUserArrayOutput
+}
+
+type UserGroupAttachmentsUserArray []UserGroupAttachmentsUserInput
+
+func (UserGroupAttachmentsUserArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserGroupAttachmentsUser)(nil)).Elem()
+}
+
+func (i UserGroupAttachmentsUserArray) ToUserGroupAttachmentsUserArrayOutput() UserGroupAttachmentsUserArrayOutput {
+	return i.ToUserGroupAttachmentsUserArrayOutputWithContext(context.Background())
+}
+
+func (i UserGroupAttachmentsUserArray) ToUserGroupAttachmentsUserArrayOutputWithContext(ctx context.Context) UserGroupAttachmentsUserArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserGroupAttachmentsUserArrayOutput)
+}
+
+type UserGroupAttachmentsUserOutput struct{ *pulumi.OutputState }
+
+func (UserGroupAttachmentsUserOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserGroupAttachmentsUser)(nil)).Elem()
+}
+
+func (o UserGroupAttachmentsUserOutput) ToUserGroupAttachmentsUserOutput() UserGroupAttachmentsUserOutput {
+	return o
+}
+
+func (o UserGroupAttachmentsUserOutput) ToUserGroupAttachmentsUserOutputWithContext(ctx context.Context) UserGroupAttachmentsUserOutput {
+	return o
+}
+
+// The description of the user.
+func (o UserGroupAttachmentsUserOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v UserGroupAttachmentsUser) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The display name of the user.
+func (o UserGroupAttachmentsUserOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v UserGroupAttachmentsUser) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The join date of the user.
+func (o UserGroupAttachmentsUserOutput) JoinDate() pulumi.StringOutput {
+	return o.ApplyT(func(v UserGroupAttachmentsUser) string { return v.JoinDate }).(pulumi.StringOutput)
+}
+
+// The id of the user.
+func (o UserGroupAttachmentsUserOutput) UserId() pulumi.IntOutput {
+	return o.ApplyT(func(v UserGroupAttachmentsUser) int { return v.UserId }).(pulumi.IntOutput)
+}
+
+// The name of the user.
+func (o UserGroupAttachmentsUserOutput) UserName() pulumi.StringOutput {
+	return o.ApplyT(func(v UserGroupAttachmentsUser) string { return v.UserName }).(pulumi.StringOutput)
+}
+
+type UserGroupAttachmentsUserArrayOutput struct{ *pulumi.OutputState }
+
+func (UserGroupAttachmentsUserArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserGroupAttachmentsUser)(nil)).Elem()
+}
+
+func (o UserGroupAttachmentsUserArrayOutput) ToUserGroupAttachmentsUserArrayOutput() UserGroupAttachmentsUserArrayOutput {
+	return o
+}
+
+func (o UserGroupAttachmentsUserArrayOutput) ToUserGroupAttachmentsUserArrayOutputWithContext(ctx context.Context) UserGroupAttachmentsUserArrayOutput {
+	return o
+}
+
+func (o UserGroupAttachmentsUserArrayOutput) Index(i pulumi.IntInput) UserGroupAttachmentsUserOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserGroupAttachmentsUser {
+		return vs[0].([]UserGroupAttachmentsUser)[vs[1].(int)]
+	}).(UserGroupAttachmentsUserOutput)
+}
+
 type UserGroupPolicyAttachmentsPolicy struct {
-	// Attached time.
+	// The attach date of the policy scope.
 	AttachDate string `pulumi:"attachDate"`
 	// The description.
 	Description string `pulumi:"description"`
 	// Name of the policy.
 	PolicyName string `pulumi:"policyName"`
+	// The scope of the policy.
+	PolicyScopes []UserGroupPolicyAttachmentsPolicyPolicyScope `pulumi:"policyScopes"`
 	// Resource name of the strategy.
 	PolicyTrn string `pulumi:"policyTrn"`
 	// The type of the policy.
@@ -838,12 +4338,14 @@ type UserGroupPolicyAttachmentsPolicyInput interface {
 }
 
 type UserGroupPolicyAttachmentsPolicyArgs struct {
-	// Attached time.
+	// The attach date of the policy scope.
 	AttachDate pulumi.StringInput `pulumi:"attachDate"`
 	// The description.
 	Description pulumi.StringInput `pulumi:"description"`
 	// Name of the policy.
 	PolicyName pulumi.StringInput `pulumi:"policyName"`
+	// The scope of the policy.
+	PolicyScopes UserGroupPolicyAttachmentsPolicyPolicyScopeArrayInput `pulumi:"policyScopes"`
 	// Resource name of the strategy.
 	PolicyTrn pulumi.StringInput `pulumi:"policyTrn"`
 	// The type of the policy.
@@ -901,7 +4403,7 @@ func (o UserGroupPolicyAttachmentsPolicyOutput) ToUserGroupPolicyAttachmentsPoli
 	return o
 }
 
-// Attached time.
+// The attach date of the policy scope.
 func (o UserGroupPolicyAttachmentsPolicyOutput) AttachDate() pulumi.StringOutput {
 	return o.ApplyT(func(v UserGroupPolicyAttachmentsPolicy) string { return v.AttachDate }).(pulumi.StringOutput)
 }
@@ -914,6 +4416,13 @@ func (o UserGroupPolicyAttachmentsPolicyOutput) Description() pulumi.StringOutpu
 // Name of the policy.
 func (o UserGroupPolicyAttachmentsPolicyOutput) PolicyName() pulumi.StringOutput {
 	return o.ApplyT(func(v UserGroupPolicyAttachmentsPolicy) string { return v.PolicyName }).(pulumi.StringOutput)
+}
+
+// The scope of the policy.
+func (o UserGroupPolicyAttachmentsPolicyOutput) PolicyScopes() UserGroupPolicyAttachmentsPolicyPolicyScopeArrayOutput {
+	return o.ApplyT(func(v UserGroupPolicyAttachmentsPolicy) []UserGroupPolicyAttachmentsPolicyPolicyScope {
+		return v.PolicyScopes
+	}).(UserGroupPolicyAttachmentsPolicyPolicyScopeArrayOutput)
 }
 
 // Resource name of the strategy.
@@ -946,6 +4455,130 @@ func (o UserGroupPolicyAttachmentsPolicyArrayOutput) Index(i pulumi.IntInput) Us
 	}).(UserGroupPolicyAttachmentsPolicyOutput)
 }
 
+type UserGroupPolicyAttachmentsPolicyPolicyScope struct {
+	// The attach date of the policy scope.
+	AttachDate string `pulumi:"attachDate"`
+	// The type of the policy scope.
+	PolicyScopeType string `pulumi:"policyScopeType"`
+	// The display name of the project.
+	ProjectDisplayName string `pulumi:"projectDisplayName"`
+	// The name of the project.
+	ProjectName string `pulumi:"projectName"`
+}
+
+// UserGroupPolicyAttachmentsPolicyPolicyScopeInput is an input type that accepts UserGroupPolicyAttachmentsPolicyPolicyScopeArgs and UserGroupPolicyAttachmentsPolicyPolicyScopeOutput values.
+// You can construct a concrete instance of `UserGroupPolicyAttachmentsPolicyPolicyScopeInput` via:
+//
+//	UserGroupPolicyAttachmentsPolicyPolicyScopeArgs{...}
+type UserGroupPolicyAttachmentsPolicyPolicyScopeInput interface {
+	pulumi.Input
+
+	ToUserGroupPolicyAttachmentsPolicyPolicyScopeOutput() UserGroupPolicyAttachmentsPolicyPolicyScopeOutput
+	ToUserGroupPolicyAttachmentsPolicyPolicyScopeOutputWithContext(context.Context) UserGroupPolicyAttachmentsPolicyPolicyScopeOutput
+}
+
+type UserGroupPolicyAttachmentsPolicyPolicyScopeArgs struct {
+	// The attach date of the policy scope.
+	AttachDate pulumi.StringInput `pulumi:"attachDate"`
+	// The type of the policy scope.
+	PolicyScopeType pulumi.StringInput `pulumi:"policyScopeType"`
+	// The display name of the project.
+	ProjectDisplayName pulumi.StringInput `pulumi:"projectDisplayName"`
+	// The name of the project.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+}
+
+func (UserGroupPolicyAttachmentsPolicyPolicyScopeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserGroupPolicyAttachmentsPolicyPolicyScope)(nil)).Elem()
+}
+
+func (i UserGroupPolicyAttachmentsPolicyPolicyScopeArgs) ToUserGroupPolicyAttachmentsPolicyPolicyScopeOutput() UserGroupPolicyAttachmentsPolicyPolicyScopeOutput {
+	return i.ToUserGroupPolicyAttachmentsPolicyPolicyScopeOutputWithContext(context.Background())
+}
+
+func (i UserGroupPolicyAttachmentsPolicyPolicyScopeArgs) ToUserGroupPolicyAttachmentsPolicyPolicyScopeOutputWithContext(ctx context.Context) UserGroupPolicyAttachmentsPolicyPolicyScopeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserGroupPolicyAttachmentsPolicyPolicyScopeOutput)
+}
+
+// UserGroupPolicyAttachmentsPolicyPolicyScopeArrayInput is an input type that accepts UserGroupPolicyAttachmentsPolicyPolicyScopeArray and UserGroupPolicyAttachmentsPolicyPolicyScopeArrayOutput values.
+// You can construct a concrete instance of `UserGroupPolicyAttachmentsPolicyPolicyScopeArrayInput` via:
+//
+//	UserGroupPolicyAttachmentsPolicyPolicyScopeArray{ UserGroupPolicyAttachmentsPolicyPolicyScopeArgs{...} }
+type UserGroupPolicyAttachmentsPolicyPolicyScopeArrayInput interface {
+	pulumi.Input
+
+	ToUserGroupPolicyAttachmentsPolicyPolicyScopeArrayOutput() UserGroupPolicyAttachmentsPolicyPolicyScopeArrayOutput
+	ToUserGroupPolicyAttachmentsPolicyPolicyScopeArrayOutputWithContext(context.Context) UserGroupPolicyAttachmentsPolicyPolicyScopeArrayOutput
+}
+
+type UserGroupPolicyAttachmentsPolicyPolicyScopeArray []UserGroupPolicyAttachmentsPolicyPolicyScopeInput
+
+func (UserGroupPolicyAttachmentsPolicyPolicyScopeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserGroupPolicyAttachmentsPolicyPolicyScope)(nil)).Elem()
+}
+
+func (i UserGroupPolicyAttachmentsPolicyPolicyScopeArray) ToUserGroupPolicyAttachmentsPolicyPolicyScopeArrayOutput() UserGroupPolicyAttachmentsPolicyPolicyScopeArrayOutput {
+	return i.ToUserGroupPolicyAttachmentsPolicyPolicyScopeArrayOutputWithContext(context.Background())
+}
+
+func (i UserGroupPolicyAttachmentsPolicyPolicyScopeArray) ToUserGroupPolicyAttachmentsPolicyPolicyScopeArrayOutputWithContext(ctx context.Context) UserGroupPolicyAttachmentsPolicyPolicyScopeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserGroupPolicyAttachmentsPolicyPolicyScopeArrayOutput)
+}
+
+type UserGroupPolicyAttachmentsPolicyPolicyScopeOutput struct{ *pulumi.OutputState }
+
+func (UserGroupPolicyAttachmentsPolicyPolicyScopeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserGroupPolicyAttachmentsPolicyPolicyScope)(nil)).Elem()
+}
+
+func (o UserGroupPolicyAttachmentsPolicyPolicyScopeOutput) ToUserGroupPolicyAttachmentsPolicyPolicyScopeOutput() UserGroupPolicyAttachmentsPolicyPolicyScopeOutput {
+	return o
+}
+
+func (o UserGroupPolicyAttachmentsPolicyPolicyScopeOutput) ToUserGroupPolicyAttachmentsPolicyPolicyScopeOutputWithContext(ctx context.Context) UserGroupPolicyAttachmentsPolicyPolicyScopeOutput {
+	return o
+}
+
+// The attach date of the policy scope.
+func (o UserGroupPolicyAttachmentsPolicyPolicyScopeOutput) AttachDate() pulumi.StringOutput {
+	return o.ApplyT(func(v UserGroupPolicyAttachmentsPolicyPolicyScope) string { return v.AttachDate }).(pulumi.StringOutput)
+}
+
+// The type of the policy scope.
+func (o UserGroupPolicyAttachmentsPolicyPolicyScopeOutput) PolicyScopeType() pulumi.StringOutput {
+	return o.ApplyT(func(v UserGroupPolicyAttachmentsPolicyPolicyScope) string { return v.PolicyScopeType }).(pulumi.StringOutput)
+}
+
+// The display name of the project.
+func (o UserGroupPolicyAttachmentsPolicyPolicyScopeOutput) ProjectDisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v UserGroupPolicyAttachmentsPolicyPolicyScope) string { return v.ProjectDisplayName }).(pulumi.StringOutput)
+}
+
+// The name of the project.
+func (o UserGroupPolicyAttachmentsPolicyPolicyScopeOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v UserGroupPolicyAttachmentsPolicyPolicyScope) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+type UserGroupPolicyAttachmentsPolicyPolicyScopeArrayOutput struct{ *pulumi.OutputState }
+
+func (UserGroupPolicyAttachmentsPolicyPolicyScopeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserGroupPolicyAttachmentsPolicyPolicyScope)(nil)).Elem()
+}
+
+func (o UserGroupPolicyAttachmentsPolicyPolicyScopeArrayOutput) ToUserGroupPolicyAttachmentsPolicyPolicyScopeArrayOutput() UserGroupPolicyAttachmentsPolicyPolicyScopeArrayOutput {
+	return o
+}
+
+func (o UserGroupPolicyAttachmentsPolicyPolicyScopeArrayOutput) ToUserGroupPolicyAttachmentsPolicyPolicyScopeArrayOutputWithContext(ctx context.Context) UserGroupPolicyAttachmentsPolicyPolicyScopeArrayOutput {
+	return o
+}
+
+func (o UserGroupPolicyAttachmentsPolicyPolicyScopeArrayOutput) Index(i pulumi.IntInput) UserGroupPolicyAttachmentsPolicyPolicyScopeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserGroupPolicyAttachmentsPolicyPolicyScope {
+		return vs[0].([]UserGroupPolicyAttachmentsPolicyPolicyScope)[vs[1].(int)]
+	}).(UserGroupPolicyAttachmentsPolicyPolicyScopeOutput)
+}
+
 type UserGroupsUserGroup struct {
 	// The id of the account.
 	AccountId int `pulumi:"accountId"`
@@ -957,6 +4590,8 @@ type UserGroupsUserGroup struct {
 	DisplayName string `pulumi:"displayName"`
 	// The update date of the user group.
 	UpdateDate string `pulumi:"updateDate"`
+	// The id of the user group.
+	UserGroupId int `pulumi:"userGroupId"`
 	// The name of the user group.
 	UserGroupName string `pulumi:"userGroupName"`
 }
@@ -983,6 +4618,8 @@ type UserGroupsUserGroupArgs struct {
 	DisplayName pulumi.StringInput `pulumi:"displayName"`
 	// The update date of the user group.
 	UpdateDate pulumi.StringInput `pulumi:"updateDate"`
+	// The id of the user group.
+	UserGroupId pulumi.IntInput `pulumi:"userGroupId"`
 	// The name of the user group.
 	UserGroupName pulumi.StringInput `pulumi:"userGroupName"`
 }
@@ -1063,6 +4700,11 @@ func (o UserGroupsUserGroupOutput) UpdateDate() pulumi.StringOutput {
 	return o.ApplyT(func(v UserGroupsUserGroup) string { return v.UpdateDate }).(pulumi.StringOutput)
 }
 
+// The id of the user group.
+func (o UserGroupsUserGroupOutput) UserGroupId() pulumi.IntOutput {
+	return o.ApplyT(func(v UserGroupsUserGroup) int { return v.UserGroupId }).(pulumi.IntOutput)
+}
+
 // The name of the user group.
 func (o UserGroupsUserGroupOutput) UserGroupName() pulumi.StringOutput {
 	return o.ApplyT(func(v UserGroupsUserGroup) string { return v.UserGroupName }).(pulumi.StringOutput)
@@ -1088,6 +4730,378 @@ func (o UserGroupsUserGroupArrayOutput) Index(i pulumi.IntInput) UserGroupsUserG
 	}).(UserGroupsUserGroupOutput)
 }
 
+type UserPolicyAttachmentsPolicy struct {
+	// The attach date of the policy scope.
+	AttachDate string `pulumi:"attachDate"`
+	// The description of the policy.
+	Description string `pulumi:"description"`
+	// The name of the policy.
+	PolicyName string `pulumi:"policyName"`
+	// The scope of the policy.
+	PolicyScopes []UserPolicyAttachmentsPolicyPolicyScope `pulumi:"policyScopes"`
+	// The trn of the policy.
+	PolicyTrn string `pulumi:"policyTrn"`
+	// The type of the policy.
+	PolicyType string `pulumi:"policyType"`
+}
+
+// UserPolicyAttachmentsPolicyInput is an input type that accepts UserPolicyAttachmentsPolicyArgs and UserPolicyAttachmentsPolicyOutput values.
+// You can construct a concrete instance of `UserPolicyAttachmentsPolicyInput` via:
+//
+//	UserPolicyAttachmentsPolicyArgs{...}
+type UserPolicyAttachmentsPolicyInput interface {
+	pulumi.Input
+
+	ToUserPolicyAttachmentsPolicyOutput() UserPolicyAttachmentsPolicyOutput
+	ToUserPolicyAttachmentsPolicyOutputWithContext(context.Context) UserPolicyAttachmentsPolicyOutput
+}
+
+type UserPolicyAttachmentsPolicyArgs struct {
+	// The attach date of the policy scope.
+	AttachDate pulumi.StringInput `pulumi:"attachDate"`
+	// The description of the policy.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The name of the policy.
+	PolicyName pulumi.StringInput `pulumi:"policyName"`
+	// The scope of the policy.
+	PolicyScopes UserPolicyAttachmentsPolicyPolicyScopeArrayInput `pulumi:"policyScopes"`
+	// The trn of the policy.
+	PolicyTrn pulumi.StringInput `pulumi:"policyTrn"`
+	// The type of the policy.
+	PolicyType pulumi.StringInput `pulumi:"policyType"`
+}
+
+func (UserPolicyAttachmentsPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserPolicyAttachmentsPolicy)(nil)).Elem()
+}
+
+func (i UserPolicyAttachmentsPolicyArgs) ToUserPolicyAttachmentsPolicyOutput() UserPolicyAttachmentsPolicyOutput {
+	return i.ToUserPolicyAttachmentsPolicyOutputWithContext(context.Background())
+}
+
+func (i UserPolicyAttachmentsPolicyArgs) ToUserPolicyAttachmentsPolicyOutputWithContext(ctx context.Context) UserPolicyAttachmentsPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserPolicyAttachmentsPolicyOutput)
+}
+
+// UserPolicyAttachmentsPolicyArrayInput is an input type that accepts UserPolicyAttachmentsPolicyArray and UserPolicyAttachmentsPolicyArrayOutput values.
+// You can construct a concrete instance of `UserPolicyAttachmentsPolicyArrayInput` via:
+//
+//	UserPolicyAttachmentsPolicyArray{ UserPolicyAttachmentsPolicyArgs{...} }
+type UserPolicyAttachmentsPolicyArrayInput interface {
+	pulumi.Input
+
+	ToUserPolicyAttachmentsPolicyArrayOutput() UserPolicyAttachmentsPolicyArrayOutput
+	ToUserPolicyAttachmentsPolicyArrayOutputWithContext(context.Context) UserPolicyAttachmentsPolicyArrayOutput
+}
+
+type UserPolicyAttachmentsPolicyArray []UserPolicyAttachmentsPolicyInput
+
+func (UserPolicyAttachmentsPolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserPolicyAttachmentsPolicy)(nil)).Elem()
+}
+
+func (i UserPolicyAttachmentsPolicyArray) ToUserPolicyAttachmentsPolicyArrayOutput() UserPolicyAttachmentsPolicyArrayOutput {
+	return i.ToUserPolicyAttachmentsPolicyArrayOutputWithContext(context.Background())
+}
+
+func (i UserPolicyAttachmentsPolicyArray) ToUserPolicyAttachmentsPolicyArrayOutputWithContext(ctx context.Context) UserPolicyAttachmentsPolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserPolicyAttachmentsPolicyArrayOutput)
+}
+
+type UserPolicyAttachmentsPolicyOutput struct{ *pulumi.OutputState }
+
+func (UserPolicyAttachmentsPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserPolicyAttachmentsPolicy)(nil)).Elem()
+}
+
+func (o UserPolicyAttachmentsPolicyOutput) ToUserPolicyAttachmentsPolicyOutput() UserPolicyAttachmentsPolicyOutput {
+	return o
+}
+
+func (o UserPolicyAttachmentsPolicyOutput) ToUserPolicyAttachmentsPolicyOutputWithContext(ctx context.Context) UserPolicyAttachmentsPolicyOutput {
+	return o
+}
+
+// The attach date of the policy scope.
+func (o UserPolicyAttachmentsPolicyOutput) AttachDate() pulumi.StringOutput {
+	return o.ApplyT(func(v UserPolicyAttachmentsPolicy) string { return v.AttachDate }).(pulumi.StringOutput)
+}
+
+// The description of the policy.
+func (o UserPolicyAttachmentsPolicyOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v UserPolicyAttachmentsPolicy) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The name of the policy.
+func (o UserPolicyAttachmentsPolicyOutput) PolicyName() pulumi.StringOutput {
+	return o.ApplyT(func(v UserPolicyAttachmentsPolicy) string { return v.PolicyName }).(pulumi.StringOutput)
+}
+
+// The scope of the policy.
+func (o UserPolicyAttachmentsPolicyOutput) PolicyScopes() UserPolicyAttachmentsPolicyPolicyScopeArrayOutput {
+	return o.ApplyT(func(v UserPolicyAttachmentsPolicy) []UserPolicyAttachmentsPolicyPolicyScope { return v.PolicyScopes }).(UserPolicyAttachmentsPolicyPolicyScopeArrayOutput)
+}
+
+// The trn of the policy.
+func (o UserPolicyAttachmentsPolicyOutput) PolicyTrn() pulumi.StringOutput {
+	return o.ApplyT(func(v UserPolicyAttachmentsPolicy) string { return v.PolicyTrn }).(pulumi.StringOutput)
+}
+
+// The type of the policy.
+func (o UserPolicyAttachmentsPolicyOutput) PolicyType() pulumi.StringOutput {
+	return o.ApplyT(func(v UserPolicyAttachmentsPolicy) string { return v.PolicyType }).(pulumi.StringOutput)
+}
+
+type UserPolicyAttachmentsPolicyArrayOutput struct{ *pulumi.OutputState }
+
+func (UserPolicyAttachmentsPolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserPolicyAttachmentsPolicy)(nil)).Elem()
+}
+
+func (o UserPolicyAttachmentsPolicyArrayOutput) ToUserPolicyAttachmentsPolicyArrayOutput() UserPolicyAttachmentsPolicyArrayOutput {
+	return o
+}
+
+func (o UserPolicyAttachmentsPolicyArrayOutput) ToUserPolicyAttachmentsPolicyArrayOutputWithContext(ctx context.Context) UserPolicyAttachmentsPolicyArrayOutput {
+	return o
+}
+
+func (o UserPolicyAttachmentsPolicyArrayOutput) Index(i pulumi.IntInput) UserPolicyAttachmentsPolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserPolicyAttachmentsPolicy {
+		return vs[0].([]UserPolicyAttachmentsPolicy)[vs[1].(int)]
+	}).(UserPolicyAttachmentsPolicyOutput)
+}
+
+type UserPolicyAttachmentsPolicyPolicyScope struct {
+	// The attach date of the policy scope.
+	AttachDate string `pulumi:"attachDate"`
+	// The type of the policy scope.
+	PolicyScopeType string `pulumi:"policyScopeType"`
+	// The display name of the project.
+	ProjectDisplayName string `pulumi:"projectDisplayName"`
+	// The name of the project.
+	ProjectName string `pulumi:"projectName"`
+}
+
+// UserPolicyAttachmentsPolicyPolicyScopeInput is an input type that accepts UserPolicyAttachmentsPolicyPolicyScopeArgs and UserPolicyAttachmentsPolicyPolicyScopeOutput values.
+// You can construct a concrete instance of `UserPolicyAttachmentsPolicyPolicyScopeInput` via:
+//
+//	UserPolicyAttachmentsPolicyPolicyScopeArgs{...}
+type UserPolicyAttachmentsPolicyPolicyScopeInput interface {
+	pulumi.Input
+
+	ToUserPolicyAttachmentsPolicyPolicyScopeOutput() UserPolicyAttachmentsPolicyPolicyScopeOutput
+	ToUserPolicyAttachmentsPolicyPolicyScopeOutputWithContext(context.Context) UserPolicyAttachmentsPolicyPolicyScopeOutput
+}
+
+type UserPolicyAttachmentsPolicyPolicyScopeArgs struct {
+	// The attach date of the policy scope.
+	AttachDate pulumi.StringInput `pulumi:"attachDate"`
+	// The type of the policy scope.
+	PolicyScopeType pulumi.StringInput `pulumi:"policyScopeType"`
+	// The display name of the project.
+	ProjectDisplayName pulumi.StringInput `pulumi:"projectDisplayName"`
+	// The name of the project.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+}
+
+func (UserPolicyAttachmentsPolicyPolicyScopeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserPolicyAttachmentsPolicyPolicyScope)(nil)).Elem()
+}
+
+func (i UserPolicyAttachmentsPolicyPolicyScopeArgs) ToUserPolicyAttachmentsPolicyPolicyScopeOutput() UserPolicyAttachmentsPolicyPolicyScopeOutput {
+	return i.ToUserPolicyAttachmentsPolicyPolicyScopeOutputWithContext(context.Background())
+}
+
+func (i UserPolicyAttachmentsPolicyPolicyScopeArgs) ToUserPolicyAttachmentsPolicyPolicyScopeOutputWithContext(ctx context.Context) UserPolicyAttachmentsPolicyPolicyScopeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserPolicyAttachmentsPolicyPolicyScopeOutput)
+}
+
+// UserPolicyAttachmentsPolicyPolicyScopeArrayInput is an input type that accepts UserPolicyAttachmentsPolicyPolicyScopeArray and UserPolicyAttachmentsPolicyPolicyScopeArrayOutput values.
+// You can construct a concrete instance of `UserPolicyAttachmentsPolicyPolicyScopeArrayInput` via:
+//
+//	UserPolicyAttachmentsPolicyPolicyScopeArray{ UserPolicyAttachmentsPolicyPolicyScopeArgs{...} }
+type UserPolicyAttachmentsPolicyPolicyScopeArrayInput interface {
+	pulumi.Input
+
+	ToUserPolicyAttachmentsPolicyPolicyScopeArrayOutput() UserPolicyAttachmentsPolicyPolicyScopeArrayOutput
+	ToUserPolicyAttachmentsPolicyPolicyScopeArrayOutputWithContext(context.Context) UserPolicyAttachmentsPolicyPolicyScopeArrayOutput
+}
+
+type UserPolicyAttachmentsPolicyPolicyScopeArray []UserPolicyAttachmentsPolicyPolicyScopeInput
+
+func (UserPolicyAttachmentsPolicyPolicyScopeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserPolicyAttachmentsPolicyPolicyScope)(nil)).Elem()
+}
+
+func (i UserPolicyAttachmentsPolicyPolicyScopeArray) ToUserPolicyAttachmentsPolicyPolicyScopeArrayOutput() UserPolicyAttachmentsPolicyPolicyScopeArrayOutput {
+	return i.ToUserPolicyAttachmentsPolicyPolicyScopeArrayOutputWithContext(context.Background())
+}
+
+func (i UserPolicyAttachmentsPolicyPolicyScopeArray) ToUserPolicyAttachmentsPolicyPolicyScopeArrayOutputWithContext(ctx context.Context) UserPolicyAttachmentsPolicyPolicyScopeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserPolicyAttachmentsPolicyPolicyScopeArrayOutput)
+}
+
+type UserPolicyAttachmentsPolicyPolicyScopeOutput struct{ *pulumi.OutputState }
+
+func (UserPolicyAttachmentsPolicyPolicyScopeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserPolicyAttachmentsPolicyPolicyScope)(nil)).Elem()
+}
+
+func (o UserPolicyAttachmentsPolicyPolicyScopeOutput) ToUserPolicyAttachmentsPolicyPolicyScopeOutput() UserPolicyAttachmentsPolicyPolicyScopeOutput {
+	return o
+}
+
+func (o UserPolicyAttachmentsPolicyPolicyScopeOutput) ToUserPolicyAttachmentsPolicyPolicyScopeOutputWithContext(ctx context.Context) UserPolicyAttachmentsPolicyPolicyScopeOutput {
+	return o
+}
+
+// The attach date of the policy scope.
+func (o UserPolicyAttachmentsPolicyPolicyScopeOutput) AttachDate() pulumi.StringOutput {
+	return o.ApplyT(func(v UserPolicyAttachmentsPolicyPolicyScope) string { return v.AttachDate }).(pulumi.StringOutput)
+}
+
+// The type of the policy scope.
+func (o UserPolicyAttachmentsPolicyPolicyScopeOutput) PolicyScopeType() pulumi.StringOutput {
+	return o.ApplyT(func(v UserPolicyAttachmentsPolicyPolicyScope) string { return v.PolicyScopeType }).(pulumi.StringOutput)
+}
+
+// The display name of the project.
+func (o UserPolicyAttachmentsPolicyPolicyScopeOutput) ProjectDisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v UserPolicyAttachmentsPolicyPolicyScope) string { return v.ProjectDisplayName }).(pulumi.StringOutput)
+}
+
+// The name of the project.
+func (o UserPolicyAttachmentsPolicyPolicyScopeOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v UserPolicyAttachmentsPolicyPolicyScope) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+type UserPolicyAttachmentsPolicyPolicyScopeArrayOutput struct{ *pulumi.OutputState }
+
+func (UserPolicyAttachmentsPolicyPolicyScopeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserPolicyAttachmentsPolicyPolicyScope)(nil)).Elem()
+}
+
+func (o UserPolicyAttachmentsPolicyPolicyScopeArrayOutput) ToUserPolicyAttachmentsPolicyPolicyScopeArrayOutput() UserPolicyAttachmentsPolicyPolicyScopeArrayOutput {
+	return o
+}
+
+func (o UserPolicyAttachmentsPolicyPolicyScopeArrayOutput) ToUserPolicyAttachmentsPolicyPolicyScopeArrayOutputWithContext(ctx context.Context) UserPolicyAttachmentsPolicyPolicyScopeArrayOutput {
+	return o
+}
+
+func (o UserPolicyAttachmentsPolicyPolicyScopeArrayOutput) Index(i pulumi.IntInput) UserPolicyAttachmentsPolicyPolicyScopeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserPolicyAttachmentsPolicyPolicyScope {
+		return vs[0].([]UserPolicyAttachmentsPolicyPolicyScope)[vs[1].(int)]
+	}).(UserPolicyAttachmentsPolicyPolicyScopeOutput)
+}
+
+type UserTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// UserTagInput is an input type that accepts UserTagArgs and UserTagOutput values.
+// You can construct a concrete instance of `UserTagInput` via:
+//
+//	UserTagArgs{...}
+type UserTagInput interface {
+	pulumi.Input
+
+	ToUserTagOutput() UserTagOutput
+	ToUserTagOutputWithContext(context.Context) UserTagOutput
+}
+
+type UserTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (UserTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserTag)(nil)).Elem()
+}
+
+func (i UserTagArgs) ToUserTagOutput() UserTagOutput {
+	return i.ToUserTagOutputWithContext(context.Background())
+}
+
+func (i UserTagArgs) ToUserTagOutputWithContext(ctx context.Context) UserTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserTagOutput)
+}
+
+// UserTagArrayInput is an input type that accepts UserTagArray and UserTagArrayOutput values.
+// You can construct a concrete instance of `UserTagArrayInput` via:
+//
+//	UserTagArray{ UserTagArgs{...} }
+type UserTagArrayInput interface {
+	pulumi.Input
+
+	ToUserTagArrayOutput() UserTagArrayOutput
+	ToUserTagArrayOutputWithContext(context.Context) UserTagArrayOutput
+}
+
+type UserTagArray []UserTagInput
+
+func (UserTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserTag)(nil)).Elem()
+}
+
+func (i UserTagArray) ToUserTagArrayOutput() UserTagArrayOutput {
+	return i.ToUserTagArrayOutputWithContext(context.Background())
+}
+
+func (i UserTagArray) ToUserTagArrayOutputWithContext(ctx context.Context) UserTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserTagArrayOutput)
+}
+
+type UserTagOutput struct{ *pulumi.OutputState }
+
+func (UserTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserTag)(nil)).Elem()
+}
+
+func (o UserTagOutput) ToUserTagOutput() UserTagOutput {
+	return o
+}
+
+func (o UserTagOutput) ToUserTagOutputWithContext(ctx context.Context) UserTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o UserTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v UserTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o UserTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v UserTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type UserTagArrayOutput struct{ *pulumi.OutputState }
+
+func (UserTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserTag)(nil)).Elem()
+}
+
+func (o UserTagArrayOutput) ToUserTagArrayOutput() UserTagArrayOutput {
+	return o
+}
+
+func (o UserTagArrayOutput) ToUserTagArrayOutputWithContext(ctx context.Context) UserTagArrayOutput {
+	return o
+}
+
+func (o UserTagArrayOutput) Index(i pulumi.IntInput) UserTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserTag {
+		return vs[0].([]UserTag)[vs[1].(int)]
+	}).(UserTagOutput)
+}
+
 type UsersUser struct {
 	// Main account ID to which the sub-user belongs.
 	AccountId string `pulumi:"accountId"`
@@ -1105,6 +5119,8 @@ type UsersUser struct {
 	MobilePhone string `pulumi:"mobilePhone"`
 	// Whether the phone number has been verified.
 	MobilePhoneIsVerify bool `pulumi:"mobilePhoneIsVerify"`
+	// Tags.
+	Tags []UsersUserTag `pulumi:"tags"`
 	// The trn of the user.
 	Trn string `pulumi:"trn"`
 	// The update date of the user.
@@ -1143,6 +5159,8 @@ type UsersUserArgs struct {
 	MobilePhone pulumi.StringInput `pulumi:"mobilePhone"`
 	// Whether the phone number has been verified.
 	MobilePhoneIsVerify pulumi.BoolInput `pulumi:"mobilePhoneIsVerify"`
+	// Tags.
+	Tags UsersUserTagArrayInput `pulumi:"tags"`
 	// The trn of the user.
 	Trn pulumi.StringInput `pulumi:"trn"`
 	// The update date of the user.
@@ -1244,6 +5262,11 @@ func (o UsersUserOutput) MobilePhoneIsVerify() pulumi.BoolOutput {
 	return o.ApplyT(func(v UsersUser) bool { return v.MobilePhoneIsVerify }).(pulumi.BoolOutput)
 }
 
+// Tags.
+func (o UsersUserOutput) Tags() UsersUserTagArrayOutput {
+	return o.ApplyT(func(v UsersUser) []UsersUserTag { return v.Tags }).(UsersUserTagArrayOutput)
+}
+
 // The trn of the user.
 func (o UsersUserOutput) Trn() pulumi.StringOutput {
 	return o.ApplyT(func(v UsersUser) string { return v.Trn }).(pulumi.StringOutput)
@@ -1284,6 +5307,227 @@ func (o UsersUserArrayOutput) Index(i pulumi.IntInput) UsersUserOutput {
 	}).(UsersUserOutput)
 }
 
+type UsersUserTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// UsersUserTagInput is an input type that accepts UsersUserTagArgs and UsersUserTagOutput values.
+// You can construct a concrete instance of `UsersUserTagInput` via:
+//
+//	UsersUserTagArgs{...}
+type UsersUserTagInput interface {
+	pulumi.Input
+
+	ToUsersUserTagOutput() UsersUserTagOutput
+	ToUsersUserTagOutputWithContext(context.Context) UsersUserTagOutput
+}
+
+type UsersUserTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (UsersUserTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*UsersUserTag)(nil)).Elem()
+}
+
+func (i UsersUserTagArgs) ToUsersUserTagOutput() UsersUserTagOutput {
+	return i.ToUsersUserTagOutputWithContext(context.Background())
+}
+
+func (i UsersUserTagArgs) ToUsersUserTagOutputWithContext(ctx context.Context) UsersUserTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UsersUserTagOutput)
+}
+
+// UsersUserTagArrayInput is an input type that accepts UsersUserTagArray and UsersUserTagArrayOutput values.
+// You can construct a concrete instance of `UsersUserTagArrayInput` via:
+//
+//	UsersUserTagArray{ UsersUserTagArgs{...} }
+type UsersUserTagArrayInput interface {
+	pulumi.Input
+
+	ToUsersUserTagArrayOutput() UsersUserTagArrayOutput
+	ToUsersUserTagArrayOutputWithContext(context.Context) UsersUserTagArrayOutput
+}
+
+type UsersUserTagArray []UsersUserTagInput
+
+func (UsersUserTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UsersUserTag)(nil)).Elem()
+}
+
+func (i UsersUserTagArray) ToUsersUserTagArrayOutput() UsersUserTagArrayOutput {
+	return i.ToUsersUserTagArrayOutputWithContext(context.Background())
+}
+
+func (i UsersUserTagArray) ToUsersUserTagArrayOutputWithContext(ctx context.Context) UsersUserTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UsersUserTagArrayOutput)
+}
+
+type UsersUserTagOutput struct{ *pulumi.OutputState }
+
+func (UsersUserTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UsersUserTag)(nil)).Elem()
+}
+
+func (o UsersUserTagOutput) ToUsersUserTagOutput() UsersUserTagOutput {
+	return o
+}
+
+func (o UsersUserTagOutput) ToUsersUserTagOutputWithContext(ctx context.Context) UsersUserTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o UsersUserTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v UsersUserTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o UsersUserTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v UsersUserTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type UsersUserTagArrayOutput struct{ *pulumi.OutputState }
+
+func (UsersUserTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UsersUserTag)(nil)).Elem()
+}
+
+func (o UsersUserTagArrayOutput) ToUsersUserTagArrayOutput() UsersUserTagArrayOutput {
+	return o
+}
+
+func (o UsersUserTagArrayOutput) ToUsersUserTagArrayOutputWithContext(ctx context.Context) UsersUserTagArrayOutput {
+	return o
+}
+
+func (o UsersUserTagArrayOutput) Index(i pulumi.IntInput) UsersUserTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UsersUserTag {
+		return vs[0].([]UsersUserTag)[vs[1].(int)]
+	}).(UsersUserTagOutput)
+}
+
+type GetAccessKeyLastUsedsAccessKeyLastUsed struct {
+	// The region of the last used.
+	Region string `pulumi:"region"`
+	// The request time of the last used.
+	RequestTime string `pulumi:"requestTime"`
+	// The service of the last used.
+	Service string `pulumi:"service"`
+}
+
+// GetAccessKeyLastUsedsAccessKeyLastUsedInput is an input type that accepts GetAccessKeyLastUsedsAccessKeyLastUsedArgs and GetAccessKeyLastUsedsAccessKeyLastUsedOutput values.
+// You can construct a concrete instance of `GetAccessKeyLastUsedsAccessKeyLastUsedInput` via:
+//
+//	GetAccessKeyLastUsedsAccessKeyLastUsedArgs{...}
+type GetAccessKeyLastUsedsAccessKeyLastUsedInput interface {
+	pulumi.Input
+
+	ToGetAccessKeyLastUsedsAccessKeyLastUsedOutput() GetAccessKeyLastUsedsAccessKeyLastUsedOutput
+	ToGetAccessKeyLastUsedsAccessKeyLastUsedOutputWithContext(context.Context) GetAccessKeyLastUsedsAccessKeyLastUsedOutput
+}
+
+type GetAccessKeyLastUsedsAccessKeyLastUsedArgs struct {
+	// The region of the last used.
+	Region pulumi.StringInput `pulumi:"region"`
+	// The request time of the last used.
+	RequestTime pulumi.StringInput `pulumi:"requestTime"`
+	// The service of the last used.
+	Service pulumi.StringInput `pulumi:"service"`
+}
+
+func (GetAccessKeyLastUsedsAccessKeyLastUsedArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAccessKeyLastUsedsAccessKeyLastUsed)(nil)).Elem()
+}
+
+func (i GetAccessKeyLastUsedsAccessKeyLastUsedArgs) ToGetAccessKeyLastUsedsAccessKeyLastUsedOutput() GetAccessKeyLastUsedsAccessKeyLastUsedOutput {
+	return i.ToGetAccessKeyLastUsedsAccessKeyLastUsedOutputWithContext(context.Background())
+}
+
+func (i GetAccessKeyLastUsedsAccessKeyLastUsedArgs) ToGetAccessKeyLastUsedsAccessKeyLastUsedOutputWithContext(ctx context.Context) GetAccessKeyLastUsedsAccessKeyLastUsedOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAccessKeyLastUsedsAccessKeyLastUsedOutput)
+}
+
+// GetAccessKeyLastUsedsAccessKeyLastUsedArrayInput is an input type that accepts GetAccessKeyLastUsedsAccessKeyLastUsedArray and GetAccessKeyLastUsedsAccessKeyLastUsedArrayOutput values.
+// You can construct a concrete instance of `GetAccessKeyLastUsedsAccessKeyLastUsedArrayInput` via:
+//
+//	GetAccessKeyLastUsedsAccessKeyLastUsedArray{ GetAccessKeyLastUsedsAccessKeyLastUsedArgs{...} }
+type GetAccessKeyLastUsedsAccessKeyLastUsedArrayInput interface {
+	pulumi.Input
+
+	ToGetAccessKeyLastUsedsAccessKeyLastUsedArrayOutput() GetAccessKeyLastUsedsAccessKeyLastUsedArrayOutput
+	ToGetAccessKeyLastUsedsAccessKeyLastUsedArrayOutputWithContext(context.Context) GetAccessKeyLastUsedsAccessKeyLastUsedArrayOutput
+}
+
+type GetAccessKeyLastUsedsAccessKeyLastUsedArray []GetAccessKeyLastUsedsAccessKeyLastUsedInput
+
+func (GetAccessKeyLastUsedsAccessKeyLastUsedArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAccessKeyLastUsedsAccessKeyLastUsed)(nil)).Elem()
+}
+
+func (i GetAccessKeyLastUsedsAccessKeyLastUsedArray) ToGetAccessKeyLastUsedsAccessKeyLastUsedArrayOutput() GetAccessKeyLastUsedsAccessKeyLastUsedArrayOutput {
+	return i.ToGetAccessKeyLastUsedsAccessKeyLastUsedArrayOutputWithContext(context.Background())
+}
+
+func (i GetAccessKeyLastUsedsAccessKeyLastUsedArray) ToGetAccessKeyLastUsedsAccessKeyLastUsedArrayOutputWithContext(ctx context.Context) GetAccessKeyLastUsedsAccessKeyLastUsedArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAccessKeyLastUsedsAccessKeyLastUsedArrayOutput)
+}
+
+type GetAccessKeyLastUsedsAccessKeyLastUsedOutput struct{ *pulumi.OutputState }
+
+func (GetAccessKeyLastUsedsAccessKeyLastUsedOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAccessKeyLastUsedsAccessKeyLastUsed)(nil)).Elem()
+}
+
+func (o GetAccessKeyLastUsedsAccessKeyLastUsedOutput) ToGetAccessKeyLastUsedsAccessKeyLastUsedOutput() GetAccessKeyLastUsedsAccessKeyLastUsedOutput {
+	return o
+}
+
+func (o GetAccessKeyLastUsedsAccessKeyLastUsedOutput) ToGetAccessKeyLastUsedsAccessKeyLastUsedOutputWithContext(ctx context.Context) GetAccessKeyLastUsedsAccessKeyLastUsedOutput {
+	return o
+}
+
+// The region of the last used.
+func (o GetAccessKeyLastUsedsAccessKeyLastUsedOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccessKeyLastUsedsAccessKeyLastUsed) string { return v.Region }).(pulumi.StringOutput)
+}
+
+// The request time of the last used.
+func (o GetAccessKeyLastUsedsAccessKeyLastUsedOutput) RequestTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccessKeyLastUsedsAccessKeyLastUsed) string { return v.RequestTime }).(pulumi.StringOutput)
+}
+
+// The service of the last used.
+func (o GetAccessKeyLastUsedsAccessKeyLastUsedOutput) Service() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccessKeyLastUsedsAccessKeyLastUsed) string { return v.Service }).(pulumi.StringOutput)
+}
+
+type GetAccessKeyLastUsedsAccessKeyLastUsedArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAccessKeyLastUsedsAccessKeyLastUsedArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAccessKeyLastUsedsAccessKeyLastUsed)(nil)).Elem()
+}
+
+func (o GetAccessKeyLastUsedsAccessKeyLastUsedArrayOutput) ToGetAccessKeyLastUsedsAccessKeyLastUsedArrayOutput() GetAccessKeyLastUsedsAccessKeyLastUsedArrayOutput {
+	return o
+}
+
+func (o GetAccessKeyLastUsedsAccessKeyLastUsedArrayOutput) ToGetAccessKeyLastUsedsAccessKeyLastUsedArrayOutputWithContext(ctx context.Context) GetAccessKeyLastUsedsAccessKeyLastUsedArrayOutput {
+	return o
+}
+
+func (o GetAccessKeyLastUsedsAccessKeyLastUsedArrayOutput) Index(i pulumi.IntInput) GetAccessKeyLastUsedsAccessKeyLastUsedOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAccessKeyLastUsedsAccessKeyLastUsed {
+		return vs[0].([]GetAccessKeyLastUsedsAccessKeyLastUsed)[vs[1].(int)]
+	}).(GetAccessKeyLastUsedsAccessKeyLastUsedOutput)
+}
+
 type GetAccessKeysAccessKeyMetadata struct {
 	// The user access key id.
 	AccessKeyId string `pulumi:"accessKeyId"`
@@ -1293,7 +5537,7 @@ type GetAccessKeysAccessKeyMetadata struct {
 	Status string `pulumi:"status"`
 	// The user access key update date.
 	UpdateDate string `pulumi:"updateDate"`
-	// The user names.
+	// The user name.
 	UserName string `pulumi:"userName"`
 }
 
@@ -1317,7 +5561,7 @@ type GetAccessKeysAccessKeyMetadataArgs struct {
 	Status pulumi.StringInput `pulumi:"status"`
 	// The user access key update date.
 	UpdateDate pulumi.StringInput `pulumi:"updateDate"`
-	// The user names.
+	// The user name.
 	UserName pulumi.StringInput `pulumi:"userName"`
 }
 
@@ -1392,7 +5636,7 @@ func (o GetAccessKeysAccessKeyMetadataOutput) UpdateDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAccessKeysAccessKeyMetadata) string { return v.UpdateDate }).(pulumi.StringOutput)
 }
 
-// The user names.
+// The user name.
 func (o GetAccessKeysAccessKeyMetadataOutput) UserName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAccessKeysAccessKeyMetadata) string { return v.UserName }).(pulumi.StringOutput)
 }
@@ -1415,6 +5659,2167 @@ func (o GetAccessKeysAccessKeyMetadataArrayOutput) Index(i pulumi.IntInput) GetA
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAccessKeysAccessKeyMetadata {
 		return vs[0].([]GetAccessKeysAccessKeyMetadata)[vs[1].(int)]
 	}).(GetAccessKeysAccessKeyMetadataOutput)
+}
+
+type GetAccountSummariesAccountSummary struct {
+	// The quota of access keys per account.
+	AccessKeysPerAccountQuota int `pulumi:"accessKeysPerAccountQuota"`
+	// The quota of access keys per user.
+	AccessKeysPerUserQuota int `pulumi:"accessKeysPerUserQuota"`
+	// The quota of attached policies per group.
+	AttachedPoliciesPerGroupQuota int `pulumi:"attachedPoliciesPerGroupQuota"`
+	// The quota of attached policies per role.
+	AttachedPoliciesPerRoleQuota int `pulumi:"attachedPoliciesPerRoleQuota"`
+	// The quota of attached policies per user.
+	AttachedPoliciesPerUserQuota int `pulumi:"attachedPoliciesPerUserQuota"`
+	// The quota of attached system policies per group.
+	AttachedSystemPoliciesPerGroupQuota int `pulumi:"attachedSystemPoliciesPerGroupQuota"`
+	// The quota of attached system policies per role.
+	AttachedSystemPoliciesPerRoleQuota int `pulumi:"attachedSystemPoliciesPerRoleQuota"`
+	// The quota of attached system policies per user.
+	AttachedSystemPoliciesPerUserQuota int `pulumi:"attachedSystemPoliciesPerUserQuota"`
+	// The quota of groups per user.
+	GroupsPerUserQuota int `pulumi:"groupsPerUserQuota"`
+	// The quota of groups.
+	GroupsQuota int `pulumi:"groupsQuota"`
+	// The usage of groups.
+	GroupsUsage int `pulumi:"groupsUsage"`
+	// The quota of policies.
+	PoliciesQuota int `pulumi:"policiesQuota"`
+	// The usage of policies.
+	PoliciesUsage int `pulumi:"policiesUsage"`
+	// The size of policy.
+	PolicySize int `pulumi:"policySize"`
+	// The quota of roles.
+	RolesQuota int `pulumi:"rolesQuota"`
+	// The usage of roles.
+	RolesUsage int `pulumi:"rolesUsage"`
+	// The quota of users.
+	UsersQuota int `pulumi:"usersQuota"`
+	// The usage of users.
+	UsersUsage int `pulumi:"usersUsage"`
+}
+
+// GetAccountSummariesAccountSummaryInput is an input type that accepts GetAccountSummariesAccountSummaryArgs and GetAccountSummariesAccountSummaryOutput values.
+// You can construct a concrete instance of `GetAccountSummariesAccountSummaryInput` via:
+//
+//	GetAccountSummariesAccountSummaryArgs{...}
+type GetAccountSummariesAccountSummaryInput interface {
+	pulumi.Input
+
+	ToGetAccountSummariesAccountSummaryOutput() GetAccountSummariesAccountSummaryOutput
+	ToGetAccountSummariesAccountSummaryOutputWithContext(context.Context) GetAccountSummariesAccountSummaryOutput
+}
+
+type GetAccountSummariesAccountSummaryArgs struct {
+	// The quota of access keys per account.
+	AccessKeysPerAccountQuota pulumi.IntInput `pulumi:"accessKeysPerAccountQuota"`
+	// The quota of access keys per user.
+	AccessKeysPerUserQuota pulumi.IntInput `pulumi:"accessKeysPerUserQuota"`
+	// The quota of attached policies per group.
+	AttachedPoliciesPerGroupQuota pulumi.IntInput `pulumi:"attachedPoliciesPerGroupQuota"`
+	// The quota of attached policies per role.
+	AttachedPoliciesPerRoleQuota pulumi.IntInput `pulumi:"attachedPoliciesPerRoleQuota"`
+	// The quota of attached policies per user.
+	AttachedPoliciesPerUserQuota pulumi.IntInput `pulumi:"attachedPoliciesPerUserQuota"`
+	// The quota of attached system policies per group.
+	AttachedSystemPoliciesPerGroupQuota pulumi.IntInput `pulumi:"attachedSystemPoliciesPerGroupQuota"`
+	// The quota of attached system policies per role.
+	AttachedSystemPoliciesPerRoleQuota pulumi.IntInput `pulumi:"attachedSystemPoliciesPerRoleQuota"`
+	// The quota of attached system policies per user.
+	AttachedSystemPoliciesPerUserQuota pulumi.IntInput `pulumi:"attachedSystemPoliciesPerUserQuota"`
+	// The quota of groups per user.
+	GroupsPerUserQuota pulumi.IntInput `pulumi:"groupsPerUserQuota"`
+	// The quota of groups.
+	GroupsQuota pulumi.IntInput `pulumi:"groupsQuota"`
+	// The usage of groups.
+	GroupsUsage pulumi.IntInput `pulumi:"groupsUsage"`
+	// The quota of policies.
+	PoliciesQuota pulumi.IntInput `pulumi:"policiesQuota"`
+	// The usage of policies.
+	PoliciesUsage pulumi.IntInput `pulumi:"policiesUsage"`
+	// The size of policy.
+	PolicySize pulumi.IntInput `pulumi:"policySize"`
+	// The quota of roles.
+	RolesQuota pulumi.IntInput `pulumi:"rolesQuota"`
+	// The usage of roles.
+	RolesUsage pulumi.IntInput `pulumi:"rolesUsage"`
+	// The quota of users.
+	UsersQuota pulumi.IntInput `pulumi:"usersQuota"`
+	// The usage of users.
+	UsersUsage pulumi.IntInput `pulumi:"usersUsage"`
+}
+
+func (GetAccountSummariesAccountSummaryArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAccountSummariesAccountSummary)(nil)).Elem()
+}
+
+func (i GetAccountSummariesAccountSummaryArgs) ToGetAccountSummariesAccountSummaryOutput() GetAccountSummariesAccountSummaryOutput {
+	return i.ToGetAccountSummariesAccountSummaryOutputWithContext(context.Background())
+}
+
+func (i GetAccountSummariesAccountSummaryArgs) ToGetAccountSummariesAccountSummaryOutputWithContext(ctx context.Context) GetAccountSummariesAccountSummaryOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAccountSummariesAccountSummaryOutput)
+}
+
+// GetAccountSummariesAccountSummaryArrayInput is an input type that accepts GetAccountSummariesAccountSummaryArray and GetAccountSummariesAccountSummaryArrayOutput values.
+// You can construct a concrete instance of `GetAccountSummariesAccountSummaryArrayInput` via:
+//
+//	GetAccountSummariesAccountSummaryArray{ GetAccountSummariesAccountSummaryArgs{...} }
+type GetAccountSummariesAccountSummaryArrayInput interface {
+	pulumi.Input
+
+	ToGetAccountSummariesAccountSummaryArrayOutput() GetAccountSummariesAccountSummaryArrayOutput
+	ToGetAccountSummariesAccountSummaryArrayOutputWithContext(context.Context) GetAccountSummariesAccountSummaryArrayOutput
+}
+
+type GetAccountSummariesAccountSummaryArray []GetAccountSummariesAccountSummaryInput
+
+func (GetAccountSummariesAccountSummaryArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAccountSummariesAccountSummary)(nil)).Elem()
+}
+
+func (i GetAccountSummariesAccountSummaryArray) ToGetAccountSummariesAccountSummaryArrayOutput() GetAccountSummariesAccountSummaryArrayOutput {
+	return i.ToGetAccountSummariesAccountSummaryArrayOutputWithContext(context.Background())
+}
+
+func (i GetAccountSummariesAccountSummaryArray) ToGetAccountSummariesAccountSummaryArrayOutputWithContext(ctx context.Context) GetAccountSummariesAccountSummaryArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAccountSummariesAccountSummaryArrayOutput)
+}
+
+type GetAccountSummariesAccountSummaryOutput struct{ *pulumi.OutputState }
+
+func (GetAccountSummariesAccountSummaryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAccountSummariesAccountSummary)(nil)).Elem()
+}
+
+func (o GetAccountSummariesAccountSummaryOutput) ToGetAccountSummariesAccountSummaryOutput() GetAccountSummariesAccountSummaryOutput {
+	return o
+}
+
+func (o GetAccountSummariesAccountSummaryOutput) ToGetAccountSummariesAccountSummaryOutputWithContext(ctx context.Context) GetAccountSummariesAccountSummaryOutput {
+	return o
+}
+
+// The quota of access keys per account.
+func (o GetAccountSummariesAccountSummaryOutput) AccessKeysPerAccountQuota() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAccountSummariesAccountSummary) int { return v.AccessKeysPerAccountQuota }).(pulumi.IntOutput)
+}
+
+// The quota of access keys per user.
+func (o GetAccountSummariesAccountSummaryOutput) AccessKeysPerUserQuota() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAccountSummariesAccountSummary) int { return v.AccessKeysPerUserQuota }).(pulumi.IntOutput)
+}
+
+// The quota of attached policies per group.
+func (o GetAccountSummariesAccountSummaryOutput) AttachedPoliciesPerGroupQuota() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAccountSummariesAccountSummary) int { return v.AttachedPoliciesPerGroupQuota }).(pulumi.IntOutput)
+}
+
+// The quota of attached policies per role.
+func (o GetAccountSummariesAccountSummaryOutput) AttachedPoliciesPerRoleQuota() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAccountSummariesAccountSummary) int { return v.AttachedPoliciesPerRoleQuota }).(pulumi.IntOutput)
+}
+
+// The quota of attached policies per user.
+func (o GetAccountSummariesAccountSummaryOutput) AttachedPoliciesPerUserQuota() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAccountSummariesAccountSummary) int { return v.AttachedPoliciesPerUserQuota }).(pulumi.IntOutput)
+}
+
+// The quota of attached system policies per group.
+func (o GetAccountSummariesAccountSummaryOutput) AttachedSystemPoliciesPerGroupQuota() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAccountSummariesAccountSummary) int { return v.AttachedSystemPoliciesPerGroupQuota }).(pulumi.IntOutput)
+}
+
+// The quota of attached system policies per role.
+func (o GetAccountSummariesAccountSummaryOutput) AttachedSystemPoliciesPerRoleQuota() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAccountSummariesAccountSummary) int { return v.AttachedSystemPoliciesPerRoleQuota }).(pulumi.IntOutput)
+}
+
+// The quota of attached system policies per user.
+func (o GetAccountSummariesAccountSummaryOutput) AttachedSystemPoliciesPerUserQuota() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAccountSummariesAccountSummary) int { return v.AttachedSystemPoliciesPerUserQuota }).(pulumi.IntOutput)
+}
+
+// The quota of groups per user.
+func (o GetAccountSummariesAccountSummaryOutput) GroupsPerUserQuota() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAccountSummariesAccountSummary) int { return v.GroupsPerUserQuota }).(pulumi.IntOutput)
+}
+
+// The quota of groups.
+func (o GetAccountSummariesAccountSummaryOutput) GroupsQuota() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAccountSummariesAccountSummary) int { return v.GroupsQuota }).(pulumi.IntOutput)
+}
+
+// The usage of groups.
+func (o GetAccountSummariesAccountSummaryOutput) GroupsUsage() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAccountSummariesAccountSummary) int { return v.GroupsUsage }).(pulumi.IntOutput)
+}
+
+// The quota of policies.
+func (o GetAccountSummariesAccountSummaryOutput) PoliciesQuota() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAccountSummariesAccountSummary) int { return v.PoliciesQuota }).(pulumi.IntOutput)
+}
+
+// The usage of policies.
+func (o GetAccountSummariesAccountSummaryOutput) PoliciesUsage() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAccountSummariesAccountSummary) int { return v.PoliciesUsage }).(pulumi.IntOutput)
+}
+
+// The size of policy.
+func (o GetAccountSummariesAccountSummaryOutput) PolicySize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAccountSummariesAccountSummary) int { return v.PolicySize }).(pulumi.IntOutput)
+}
+
+// The quota of roles.
+func (o GetAccountSummariesAccountSummaryOutput) RolesQuota() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAccountSummariesAccountSummary) int { return v.RolesQuota }).(pulumi.IntOutput)
+}
+
+// The usage of roles.
+func (o GetAccountSummariesAccountSummaryOutput) RolesUsage() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAccountSummariesAccountSummary) int { return v.RolesUsage }).(pulumi.IntOutput)
+}
+
+// The quota of users.
+func (o GetAccountSummariesAccountSummaryOutput) UsersQuota() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAccountSummariesAccountSummary) int { return v.UsersQuota }).(pulumi.IntOutput)
+}
+
+// The usage of users.
+func (o GetAccountSummariesAccountSummaryOutput) UsersUsage() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAccountSummariesAccountSummary) int { return v.UsersUsage }).(pulumi.IntOutput)
+}
+
+type GetAccountSummariesAccountSummaryArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAccountSummariesAccountSummaryArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAccountSummariesAccountSummary)(nil)).Elem()
+}
+
+func (o GetAccountSummariesAccountSummaryArrayOutput) ToGetAccountSummariesAccountSummaryArrayOutput() GetAccountSummariesAccountSummaryArrayOutput {
+	return o
+}
+
+func (o GetAccountSummariesAccountSummaryArrayOutput) ToGetAccountSummariesAccountSummaryArrayOutputWithContext(ctx context.Context) GetAccountSummariesAccountSummaryArrayOutput {
+	return o
+}
+
+func (o GetAccountSummariesAccountSummaryArrayOutput) Index(i pulumi.IntInput) GetAccountSummariesAccountSummaryOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAccountSummariesAccountSummary {
+		return vs[0].([]GetAccountSummariesAccountSummary)[vs[1].(int)]
+	}).(GetAccountSummariesAccountSummaryOutput)
+}
+
+type GetAllowedIpAddressesAllowedIpAddress struct {
+	// Whether to enable the IP whitelist.
+	EnableIpList bool `pulumi:"enableIpList"`
+	// The IP whitelist list.
+	IpLists []GetAllowedIpAddressesAllowedIpAddressIpList `pulumi:"ipLists"`
+	// The quota of the IP whitelist.
+	Quota int `pulumi:"quota"`
+}
+
+// GetAllowedIpAddressesAllowedIpAddressInput is an input type that accepts GetAllowedIpAddressesAllowedIpAddressArgs and GetAllowedIpAddressesAllowedIpAddressOutput values.
+// You can construct a concrete instance of `GetAllowedIpAddressesAllowedIpAddressInput` via:
+//
+//	GetAllowedIpAddressesAllowedIpAddressArgs{...}
+type GetAllowedIpAddressesAllowedIpAddressInput interface {
+	pulumi.Input
+
+	ToGetAllowedIpAddressesAllowedIpAddressOutput() GetAllowedIpAddressesAllowedIpAddressOutput
+	ToGetAllowedIpAddressesAllowedIpAddressOutputWithContext(context.Context) GetAllowedIpAddressesAllowedIpAddressOutput
+}
+
+type GetAllowedIpAddressesAllowedIpAddressArgs struct {
+	// Whether to enable the IP whitelist.
+	EnableIpList pulumi.BoolInput `pulumi:"enableIpList"`
+	// The IP whitelist list.
+	IpLists GetAllowedIpAddressesAllowedIpAddressIpListArrayInput `pulumi:"ipLists"`
+	// The quota of the IP whitelist.
+	Quota pulumi.IntInput `pulumi:"quota"`
+}
+
+func (GetAllowedIpAddressesAllowedIpAddressArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAllowedIpAddressesAllowedIpAddress)(nil)).Elem()
+}
+
+func (i GetAllowedIpAddressesAllowedIpAddressArgs) ToGetAllowedIpAddressesAllowedIpAddressOutput() GetAllowedIpAddressesAllowedIpAddressOutput {
+	return i.ToGetAllowedIpAddressesAllowedIpAddressOutputWithContext(context.Background())
+}
+
+func (i GetAllowedIpAddressesAllowedIpAddressArgs) ToGetAllowedIpAddressesAllowedIpAddressOutputWithContext(ctx context.Context) GetAllowedIpAddressesAllowedIpAddressOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAllowedIpAddressesAllowedIpAddressOutput)
+}
+
+// GetAllowedIpAddressesAllowedIpAddressArrayInput is an input type that accepts GetAllowedIpAddressesAllowedIpAddressArray and GetAllowedIpAddressesAllowedIpAddressArrayOutput values.
+// You can construct a concrete instance of `GetAllowedIpAddressesAllowedIpAddressArrayInput` via:
+//
+//	GetAllowedIpAddressesAllowedIpAddressArray{ GetAllowedIpAddressesAllowedIpAddressArgs{...} }
+type GetAllowedIpAddressesAllowedIpAddressArrayInput interface {
+	pulumi.Input
+
+	ToGetAllowedIpAddressesAllowedIpAddressArrayOutput() GetAllowedIpAddressesAllowedIpAddressArrayOutput
+	ToGetAllowedIpAddressesAllowedIpAddressArrayOutputWithContext(context.Context) GetAllowedIpAddressesAllowedIpAddressArrayOutput
+}
+
+type GetAllowedIpAddressesAllowedIpAddressArray []GetAllowedIpAddressesAllowedIpAddressInput
+
+func (GetAllowedIpAddressesAllowedIpAddressArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAllowedIpAddressesAllowedIpAddress)(nil)).Elem()
+}
+
+func (i GetAllowedIpAddressesAllowedIpAddressArray) ToGetAllowedIpAddressesAllowedIpAddressArrayOutput() GetAllowedIpAddressesAllowedIpAddressArrayOutput {
+	return i.ToGetAllowedIpAddressesAllowedIpAddressArrayOutputWithContext(context.Background())
+}
+
+func (i GetAllowedIpAddressesAllowedIpAddressArray) ToGetAllowedIpAddressesAllowedIpAddressArrayOutputWithContext(ctx context.Context) GetAllowedIpAddressesAllowedIpAddressArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAllowedIpAddressesAllowedIpAddressArrayOutput)
+}
+
+type GetAllowedIpAddressesAllowedIpAddressOutput struct{ *pulumi.OutputState }
+
+func (GetAllowedIpAddressesAllowedIpAddressOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAllowedIpAddressesAllowedIpAddress)(nil)).Elem()
+}
+
+func (o GetAllowedIpAddressesAllowedIpAddressOutput) ToGetAllowedIpAddressesAllowedIpAddressOutput() GetAllowedIpAddressesAllowedIpAddressOutput {
+	return o
+}
+
+func (o GetAllowedIpAddressesAllowedIpAddressOutput) ToGetAllowedIpAddressesAllowedIpAddressOutputWithContext(ctx context.Context) GetAllowedIpAddressesAllowedIpAddressOutput {
+	return o
+}
+
+// Whether to enable the IP whitelist.
+func (o GetAllowedIpAddressesAllowedIpAddressOutput) EnableIpList() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetAllowedIpAddressesAllowedIpAddress) bool { return v.EnableIpList }).(pulumi.BoolOutput)
+}
+
+// The IP whitelist list.
+func (o GetAllowedIpAddressesAllowedIpAddressOutput) IpLists() GetAllowedIpAddressesAllowedIpAddressIpListArrayOutput {
+	return o.ApplyT(func(v GetAllowedIpAddressesAllowedIpAddress) []GetAllowedIpAddressesAllowedIpAddressIpList {
+		return v.IpLists
+	}).(GetAllowedIpAddressesAllowedIpAddressIpListArrayOutput)
+}
+
+// The quota of the IP whitelist.
+func (o GetAllowedIpAddressesAllowedIpAddressOutput) Quota() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAllowedIpAddressesAllowedIpAddress) int { return v.Quota }).(pulumi.IntOutput)
+}
+
+type GetAllowedIpAddressesAllowedIpAddressArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAllowedIpAddressesAllowedIpAddressArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAllowedIpAddressesAllowedIpAddress)(nil)).Elem()
+}
+
+func (o GetAllowedIpAddressesAllowedIpAddressArrayOutput) ToGetAllowedIpAddressesAllowedIpAddressArrayOutput() GetAllowedIpAddressesAllowedIpAddressArrayOutput {
+	return o
+}
+
+func (o GetAllowedIpAddressesAllowedIpAddressArrayOutput) ToGetAllowedIpAddressesAllowedIpAddressArrayOutputWithContext(ctx context.Context) GetAllowedIpAddressesAllowedIpAddressArrayOutput {
+	return o
+}
+
+func (o GetAllowedIpAddressesAllowedIpAddressArrayOutput) Index(i pulumi.IntInput) GetAllowedIpAddressesAllowedIpAddressOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAllowedIpAddressesAllowedIpAddress {
+		return vs[0].([]GetAllowedIpAddressesAllowedIpAddress)[vs[1].(int)]
+	}).(GetAllowedIpAddressesAllowedIpAddressOutput)
+}
+
+type GetAllowedIpAddressesAllowedIpAddressIpList struct {
+	// The description of the IP address.
+	Description string `pulumi:"description"`
+	// The IP address.
+	Ip string `pulumi:"ip"`
+}
+
+// GetAllowedIpAddressesAllowedIpAddressIpListInput is an input type that accepts GetAllowedIpAddressesAllowedIpAddressIpListArgs and GetAllowedIpAddressesAllowedIpAddressIpListOutput values.
+// You can construct a concrete instance of `GetAllowedIpAddressesAllowedIpAddressIpListInput` via:
+//
+//	GetAllowedIpAddressesAllowedIpAddressIpListArgs{...}
+type GetAllowedIpAddressesAllowedIpAddressIpListInput interface {
+	pulumi.Input
+
+	ToGetAllowedIpAddressesAllowedIpAddressIpListOutput() GetAllowedIpAddressesAllowedIpAddressIpListOutput
+	ToGetAllowedIpAddressesAllowedIpAddressIpListOutputWithContext(context.Context) GetAllowedIpAddressesAllowedIpAddressIpListOutput
+}
+
+type GetAllowedIpAddressesAllowedIpAddressIpListArgs struct {
+	// The description of the IP address.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The IP address.
+	Ip pulumi.StringInput `pulumi:"ip"`
+}
+
+func (GetAllowedIpAddressesAllowedIpAddressIpListArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAllowedIpAddressesAllowedIpAddressIpList)(nil)).Elem()
+}
+
+func (i GetAllowedIpAddressesAllowedIpAddressIpListArgs) ToGetAllowedIpAddressesAllowedIpAddressIpListOutput() GetAllowedIpAddressesAllowedIpAddressIpListOutput {
+	return i.ToGetAllowedIpAddressesAllowedIpAddressIpListOutputWithContext(context.Background())
+}
+
+func (i GetAllowedIpAddressesAllowedIpAddressIpListArgs) ToGetAllowedIpAddressesAllowedIpAddressIpListOutputWithContext(ctx context.Context) GetAllowedIpAddressesAllowedIpAddressIpListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAllowedIpAddressesAllowedIpAddressIpListOutput)
+}
+
+// GetAllowedIpAddressesAllowedIpAddressIpListArrayInput is an input type that accepts GetAllowedIpAddressesAllowedIpAddressIpListArray and GetAllowedIpAddressesAllowedIpAddressIpListArrayOutput values.
+// You can construct a concrete instance of `GetAllowedIpAddressesAllowedIpAddressIpListArrayInput` via:
+//
+//	GetAllowedIpAddressesAllowedIpAddressIpListArray{ GetAllowedIpAddressesAllowedIpAddressIpListArgs{...} }
+type GetAllowedIpAddressesAllowedIpAddressIpListArrayInput interface {
+	pulumi.Input
+
+	ToGetAllowedIpAddressesAllowedIpAddressIpListArrayOutput() GetAllowedIpAddressesAllowedIpAddressIpListArrayOutput
+	ToGetAllowedIpAddressesAllowedIpAddressIpListArrayOutputWithContext(context.Context) GetAllowedIpAddressesAllowedIpAddressIpListArrayOutput
+}
+
+type GetAllowedIpAddressesAllowedIpAddressIpListArray []GetAllowedIpAddressesAllowedIpAddressIpListInput
+
+func (GetAllowedIpAddressesAllowedIpAddressIpListArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAllowedIpAddressesAllowedIpAddressIpList)(nil)).Elem()
+}
+
+func (i GetAllowedIpAddressesAllowedIpAddressIpListArray) ToGetAllowedIpAddressesAllowedIpAddressIpListArrayOutput() GetAllowedIpAddressesAllowedIpAddressIpListArrayOutput {
+	return i.ToGetAllowedIpAddressesAllowedIpAddressIpListArrayOutputWithContext(context.Background())
+}
+
+func (i GetAllowedIpAddressesAllowedIpAddressIpListArray) ToGetAllowedIpAddressesAllowedIpAddressIpListArrayOutputWithContext(ctx context.Context) GetAllowedIpAddressesAllowedIpAddressIpListArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAllowedIpAddressesAllowedIpAddressIpListArrayOutput)
+}
+
+type GetAllowedIpAddressesAllowedIpAddressIpListOutput struct{ *pulumi.OutputState }
+
+func (GetAllowedIpAddressesAllowedIpAddressIpListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAllowedIpAddressesAllowedIpAddressIpList)(nil)).Elem()
+}
+
+func (o GetAllowedIpAddressesAllowedIpAddressIpListOutput) ToGetAllowedIpAddressesAllowedIpAddressIpListOutput() GetAllowedIpAddressesAllowedIpAddressIpListOutput {
+	return o
+}
+
+func (o GetAllowedIpAddressesAllowedIpAddressIpListOutput) ToGetAllowedIpAddressesAllowedIpAddressIpListOutputWithContext(ctx context.Context) GetAllowedIpAddressesAllowedIpAddressIpListOutput {
+	return o
+}
+
+// The description of the IP address.
+func (o GetAllowedIpAddressesAllowedIpAddressIpListOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllowedIpAddressesAllowedIpAddressIpList) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The IP address.
+func (o GetAllowedIpAddressesAllowedIpAddressIpListOutput) Ip() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllowedIpAddressesAllowedIpAddressIpList) string { return v.Ip }).(pulumi.StringOutput)
+}
+
+type GetAllowedIpAddressesAllowedIpAddressIpListArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAllowedIpAddressesAllowedIpAddressIpListArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAllowedIpAddressesAllowedIpAddressIpList)(nil)).Elem()
+}
+
+func (o GetAllowedIpAddressesAllowedIpAddressIpListArrayOutput) ToGetAllowedIpAddressesAllowedIpAddressIpListArrayOutput() GetAllowedIpAddressesAllowedIpAddressIpListArrayOutput {
+	return o
+}
+
+func (o GetAllowedIpAddressesAllowedIpAddressIpListArrayOutput) ToGetAllowedIpAddressesAllowedIpAddressIpListArrayOutputWithContext(ctx context.Context) GetAllowedIpAddressesAllowedIpAddressIpListArrayOutput {
+	return o
+}
+
+func (o GetAllowedIpAddressesAllowedIpAddressIpListArrayOutput) Index(i pulumi.IntInput) GetAllowedIpAddressesAllowedIpAddressIpListOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAllowedIpAddressesAllowedIpAddressIpList {
+		return vs[0].([]GetAllowedIpAddressesAllowedIpAddressIpList)[vs[1].(int)]
+	}).(GetAllowedIpAddressesAllowedIpAddressIpListOutput)
+}
+
+type GetCallerIdentitiesCallerIdentity struct {
+	// The account id.
+	AccountId string `pulumi:"accountId"`
+	// The identity id.
+	IdentityId string `pulumi:"identityId"`
+	// The identity type.
+	IdentityType string `pulumi:"identityType"`
+	// The trn.
+	Trn string `pulumi:"trn"`
+}
+
+// GetCallerIdentitiesCallerIdentityInput is an input type that accepts GetCallerIdentitiesCallerIdentityArgs and GetCallerIdentitiesCallerIdentityOutput values.
+// You can construct a concrete instance of `GetCallerIdentitiesCallerIdentityInput` via:
+//
+//	GetCallerIdentitiesCallerIdentityArgs{...}
+type GetCallerIdentitiesCallerIdentityInput interface {
+	pulumi.Input
+
+	ToGetCallerIdentitiesCallerIdentityOutput() GetCallerIdentitiesCallerIdentityOutput
+	ToGetCallerIdentitiesCallerIdentityOutputWithContext(context.Context) GetCallerIdentitiesCallerIdentityOutput
+}
+
+type GetCallerIdentitiesCallerIdentityArgs struct {
+	// The account id.
+	AccountId pulumi.StringInput `pulumi:"accountId"`
+	// The identity id.
+	IdentityId pulumi.StringInput `pulumi:"identityId"`
+	// The identity type.
+	IdentityType pulumi.StringInput `pulumi:"identityType"`
+	// The trn.
+	Trn pulumi.StringInput `pulumi:"trn"`
+}
+
+func (GetCallerIdentitiesCallerIdentityArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCallerIdentitiesCallerIdentity)(nil)).Elem()
+}
+
+func (i GetCallerIdentitiesCallerIdentityArgs) ToGetCallerIdentitiesCallerIdentityOutput() GetCallerIdentitiesCallerIdentityOutput {
+	return i.ToGetCallerIdentitiesCallerIdentityOutputWithContext(context.Background())
+}
+
+func (i GetCallerIdentitiesCallerIdentityArgs) ToGetCallerIdentitiesCallerIdentityOutputWithContext(ctx context.Context) GetCallerIdentitiesCallerIdentityOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCallerIdentitiesCallerIdentityOutput)
+}
+
+// GetCallerIdentitiesCallerIdentityArrayInput is an input type that accepts GetCallerIdentitiesCallerIdentityArray and GetCallerIdentitiesCallerIdentityArrayOutput values.
+// You can construct a concrete instance of `GetCallerIdentitiesCallerIdentityArrayInput` via:
+//
+//	GetCallerIdentitiesCallerIdentityArray{ GetCallerIdentitiesCallerIdentityArgs{...} }
+type GetCallerIdentitiesCallerIdentityArrayInput interface {
+	pulumi.Input
+
+	ToGetCallerIdentitiesCallerIdentityArrayOutput() GetCallerIdentitiesCallerIdentityArrayOutput
+	ToGetCallerIdentitiesCallerIdentityArrayOutputWithContext(context.Context) GetCallerIdentitiesCallerIdentityArrayOutput
+}
+
+type GetCallerIdentitiesCallerIdentityArray []GetCallerIdentitiesCallerIdentityInput
+
+func (GetCallerIdentitiesCallerIdentityArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCallerIdentitiesCallerIdentity)(nil)).Elem()
+}
+
+func (i GetCallerIdentitiesCallerIdentityArray) ToGetCallerIdentitiesCallerIdentityArrayOutput() GetCallerIdentitiesCallerIdentityArrayOutput {
+	return i.ToGetCallerIdentitiesCallerIdentityArrayOutputWithContext(context.Background())
+}
+
+func (i GetCallerIdentitiesCallerIdentityArray) ToGetCallerIdentitiesCallerIdentityArrayOutputWithContext(ctx context.Context) GetCallerIdentitiesCallerIdentityArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCallerIdentitiesCallerIdentityArrayOutput)
+}
+
+type GetCallerIdentitiesCallerIdentityOutput struct{ *pulumi.OutputState }
+
+func (GetCallerIdentitiesCallerIdentityOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCallerIdentitiesCallerIdentity)(nil)).Elem()
+}
+
+func (o GetCallerIdentitiesCallerIdentityOutput) ToGetCallerIdentitiesCallerIdentityOutput() GetCallerIdentitiesCallerIdentityOutput {
+	return o
+}
+
+func (o GetCallerIdentitiesCallerIdentityOutput) ToGetCallerIdentitiesCallerIdentityOutputWithContext(ctx context.Context) GetCallerIdentitiesCallerIdentityOutput {
+	return o
+}
+
+// The account id.
+func (o GetCallerIdentitiesCallerIdentityOutput) AccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCallerIdentitiesCallerIdentity) string { return v.AccountId }).(pulumi.StringOutput)
+}
+
+// The identity id.
+func (o GetCallerIdentitiesCallerIdentityOutput) IdentityId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCallerIdentitiesCallerIdentity) string { return v.IdentityId }).(pulumi.StringOutput)
+}
+
+// The identity type.
+func (o GetCallerIdentitiesCallerIdentityOutput) IdentityType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCallerIdentitiesCallerIdentity) string { return v.IdentityType }).(pulumi.StringOutput)
+}
+
+// The trn.
+func (o GetCallerIdentitiesCallerIdentityOutput) Trn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCallerIdentitiesCallerIdentity) string { return v.Trn }).(pulumi.StringOutput)
+}
+
+type GetCallerIdentitiesCallerIdentityArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCallerIdentitiesCallerIdentityArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCallerIdentitiesCallerIdentity)(nil)).Elem()
+}
+
+func (o GetCallerIdentitiesCallerIdentityArrayOutput) ToGetCallerIdentitiesCallerIdentityArrayOutput() GetCallerIdentitiesCallerIdentityArrayOutput {
+	return o
+}
+
+func (o GetCallerIdentitiesCallerIdentityArrayOutput) ToGetCallerIdentitiesCallerIdentityArrayOutputWithContext(ctx context.Context) GetCallerIdentitiesCallerIdentityArrayOutput {
+	return o
+}
+
+func (o GetCallerIdentitiesCallerIdentityArrayOutput) Index(i pulumi.IntInput) GetCallerIdentitiesCallerIdentityOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCallerIdentitiesCallerIdentity {
+		return vs[0].([]GetCallerIdentitiesCallerIdentity)[vs[1].(int)]
+	}).(GetCallerIdentitiesCallerIdentityOutput)
+}
+
+type GetEntitiesPoliciesRole struct {
+	// The attach date of the policy scope.
+	AttachDate string `pulumi:"attachDate"`
+	// The description of the user.
+	Description string `pulumi:"description"`
+	// The display name of the user.
+	DisplayName string `pulumi:"displayName"`
+	// The id of the user.
+	Id int `pulumi:"id"`
+	// The scope of the policy.
+	PolicyScopes []GetEntitiesPoliciesRolePolicyScope `pulumi:"policyScopes"`
+	// The name of the role.
+	RoleName string `pulumi:"roleName"`
+}
+
+// GetEntitiesPoliciesRoleInput is an input type that accepts GetEntitiesPoliciesRoleArgs and GetEntitiesPoliciesRoleOutput values.
+// You can construct a concrete instance of `GetEntitiesPoliciesRoleInput` via:
+//
+//	GetEntitiesPoliciesRoleArgs{...}
+type GetEntitiesPoliciesRoleInput interface {
+	pulumi.Input
+
+	ToGetEntitiesPoliciesRoleOutput() GetEntitiesPoliciesRoleOutput
+	ToGetEntitiesPoliciesRoleOutputWithContext(context.Context) GetEntitiesPoliciesRoleOutput
+}
+
+type GetEntitiesPoliciesRoleArgs struct {
+	// The attach date of the policy scope.
+	AttachDate pulumi.StringInput `pulumi:"attachDate"`
+	// The description of the user.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The display name of the user.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The id of the user.
+	Id pulumi.IntInput `pulumi:"id"`
+	// The scope of the policy.
+	PolicyScopes GetEntitiesPoliciesRolePolicyScopeArrayInput `pulumi:"policyScopes"`
+	// The name of the role.
+	RoleName pulumi.StringInput `pulumi:"roleName"`
+}
+
+func (GetEntitiesPoliciesRoleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEntitiesPoliciesRole)(nil)).Elem()
+}
+
+func (i GetEntitiesPoliciesRoleArgs) ToGetEntitiesPoliciesRoleOutput() GetEntitiesPoliciesRoleOutput {
+	return i.ToGetEntitiesPoliciesRoleOutputWithContext(context.Background())
+}
+
+func (i GetEntitiesPoliciesRoleArgs) ToGetEntitiesPoliciesRoleOutputWithContext(ctx context.Context) GetEntitiesPoliciesRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEntitiesPoliciesRoleOutput)
+}
+
+// GetEntitiesPoliciesRoleArrayInput is an input type that accepts GetEntitiesPoliciesRoleArray and GetEntitiesPoliciesRoleArrayOutput values.
+// You can construct a concrete instance of `GetEntitiesPoliciesRoleArrayInput` via:
+//
+//	GetEntitiesPoliciesRoleArray{ GetEntitiesPoliciesRoleArgs{...} }
+type GetEntitiesPoliciesRoleArrayInput interface {
+	pulumi.Input
+
+	ToGetEntitiesPoliciesRoleArrayOutput() GetEntitiesPoliciesRoleArrayOutput
+	ToGetEntitiesPoliciesRoleArrayOutputWithContext(context.Context) GetEntitiesPoliciesRoleArrayOutput
+}
+
+type GetEntitiesPoliciesRoleArray []GetEntitiesPoliciesRoleInput
+
+func (GetEntitiesPoliciesRoleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEntitiesPoliciesRole)(nil)).Elem()
+}
+
+func (i GetEntitiesPoliciesRoleArray) ToGetEntitiesPoliciesRoleArrayOutput() GetEntitiesPoliciesRoleArrayOutput {
+	return i.ToGetEntitiesPoliciesRoleArrayOutputWithContext(context.Background())
+}
+
+func (i GetEntitiesPoliciesRoleArray) ToGetEntitiesPoliciesRoleArrayOutputWithContext(ctx context.Context) GetEntitiesPoliciesRoleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEntitiesPoliciesRoleArrayOutput)
+}
+
+type GetEntitiesPoliciesRoleOutput struct{ *pulumi.OutputState }
+
+func (GetEntitiesPoliciesRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEntitiesPoliciesRole)(nil)).Elem()
+}
+
+func (o GetEntitiesPoliciesRoleOutput) ToGetEntitiesPoliciesRoleOutput() GetEntitiesPoliciesRoleOutput {
+	return o
+}
+
+func (o GetEntitiesPoliciesRoleOutput) ToGetEntitiesPoliciesRoleOutputWithContext(ctx context.Context) GetEntitiesPoliciesRoleOutput {
+	return o
+}
+
+// The attach date of the policy scope.
+func (o GetEntitiesPoliciesRoleOutput) AttachDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEntitiesPoliciesRole) string { return v.AttachDate }).(pulumi.StringOutput)
+}
+
+// The description of the user.
+func (o GetEntitiesPoliciesRoleOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEntitiesPoliciesRole) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The display name of the user.
+func (o GetEntitiesPoliciesRoleOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEntitiesPoliciesRole) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The id of the user.
+func (o GetEntitiesPoliciesRoleOutput) Id() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEntitiesPoliciesRole) int { return v.Id }).(pulumi.IntOutput)
+}
+
+// The scope of the policy.
+func (o GetEntitiesPoliciesRoleOutput) PolicyScopes() GetEntitiesPoliciesRolePolicyScopeArrayOutput {
+	return o.ApplyT(func(v GetEntitiesPoliciesRole) []GetEntitiesPoliciesRolePolicyScope { return v.PolicyScopes }).(GetEntitiesPoliciesRolePolicyScopeArrayOutput)
+}
+
+// The name of the role.
+func (o GetEntitiesPoliciesRoleOutput) RoleName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEntitiesPoliciesRole) string { return v.RoleName }).(pulumi.StringOutput)
+}
+
+type GetEntitiesPoliciesRoleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEntitiesPoliciesRoleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEntitiesPoliciesRole)(nil)).Elem()
+}
+
+func (o GetEntitiesPoliciesRoleArrayOutput) ToGetEntitiesPoliciesRoleArrayOutput() GetEntitiesPoliciesRoleArrayOutput {
+	return o
+}
+
+func (o GetEntitiesPoliciesRoleArrayOutput) ToGetEntitiesPoliciesRoleArrayOutputWithContext(ctx context.Context) GetEntitiesPoliciesRoleArrayOutput {
+	return o
+}
+
+func (o GetEntitiesPoliciesRoleArrayOutput) Index(i pulumi.IntInput) GetEntitiesPoliciesRoleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEntitiesPoliciesRole {
+		return vs[0].([]GetEntitiesPoliciesRole)[vs[1].(int)]
+	}).(GetEntitiesPoliciesRoleOutput)
+}
+
+type GetEntitiesPoliciesRolePolicyScope struct {
+	// The attach date of the policy scope.
+	AttachDate string `pulumi:"attachDate"`
+	// The type of the policy scope.
+	PolicyScopeType string `pulumi:"policyScopeType"`
+	// The display name of the project.
+	ProjectDisplayName string `pulumi:"projectDisplayName"`
+	// The name of the project.
+	ProjectName string `pulumi:"projectName"`
+}
+
+// GetEntitiesPoliciesRolePolicyScopeInput is an input type that accepts GetEntitiesPoliciesRolePolicyScopeArgs and GetEntitiesPoliciesRolePolicyScopeOutput values.
+// You can construct a concrete instance of `GetEntitiesPoliciesRolePolicyScopeInput` via:
+//
+//	GetEntitiesPoliciesRolePolicyScopeArgs{...}
+type GetEntitiesPoliciesRolePolicyScopeInput interface {
+	pulumi.Input
+
+	ToGetEntitiesPoliciesRolePolicyScopeOutput() GetEntitiesPoliciesRolePolicyScopeOutput
+	ToGetEntitiesPoliciesRolePolicyScopeOutputWithContext(context.Context) GetEntitiesPoliciesRolePolicyScopeOutput
+}
+
+type GetEntitiesPoliciesRolePolicyScopeArgs struct {
+	// The attach date of the policy scope.
+	AttachDate pulumi.StringInput `pulumi:"attachDate"`
+	// The type of the policy scope.
+	PolicyScopeType pulumi.StringInput `pulumi:"policyScopeType"`
+	// The display name of the project.
+	ProjectDisplayName pulumi.StringInput `pulumi:"projectDisplayName"`
+	// The name of the project.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+}
+
+func (GetEntitiesPoliciesRolePolicyScopeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEntitiesPoliciesRolePolicyScope)(nil)).Elem()
+}
+
+func (i GetEntitiesPoliciesRolePolicyScopeArgs) ToGetEntitiesPoliciesRolePolicyScopeOutput() GetEntitiesPoliciesRolePolicyScopeOutput {
+	return i.ToGetEntitiesPoliciesRolePolicyScopeOutputWithContext(context.Background())
+}
+
+func (i GetEntitiesPoliciesRolePolicyScopeArgs) ToGetEntitiesPoliciesRolePolicyScopeOutputWithContext(ctx context.Context) GetEntitiesPoliciesRolePolicyScopeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEntitiesPoliciesRolePolicyScopeOutput)
+}
+
+// GetEntitiesPoliciesRolePolicyScopeArrayInput is an input type that accepts GetEntitiesPoliciesRolePolicyScopeArray and GetEntitiesPoliciesRolePolicyScopeArrayOutput values.
+// You can construct a concrete instance of `GetEntitiesPoliciesRolePolicyScopeArrayInput` via:
+//
+//	GetEntitiesPoliciesRolePolicyScopeArray{ GetEntitiesPoliciesRolePolicyScopeArgs{...} }
+type GetEntitiesPoliciesRolePolicyScopeArrayInput interface {
+	pulumi.Input
+
+	ToGetEntitiesPoliciesRolePolicyScopeArrayOutput() GetEntitiesPoliciesRolePolicyScopeArrayOutput
+	ToGetEntitiesPoliciesRolePolicyScopeArrayOutputWithContext(context.Context) GetEntitiesPoliciesRolePolicyScopeArrayOutput
+}
+
+type GetEntitiesPoliciesRolePolicyScopeArray []GetEntitiesPoliciesRolePolicyScopeInput
+
+func (GetEntitiesPoliciesRolePolicyScopeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEntitiesPoliciesRolePolicyScope)(nil)).Elem()
+}
+
+func (i GetEntitiesPoliciesRolePolicyScopeArray) ToGetEntitiesPoliciesRolePolicyScopeArrayOutput() GetEntitiesPoliciesRolePolicyScopeArrayOutput {
+	return i.ToGetEntitiesPoliciesRolePolicyScopeArrayOutputWithContext(context.Background())
+}
+
+func (i GetEntitiesPoliciesRolePolicyScopeArray) ToGetEntitiesPoliciesRolePolicyScopeArrayOutputWithContext(ctx context.Context) GetEntitiesPoliciesRolePolicyScopeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEntitiesPoliciesRolePolicyScopeArrayOutput)
+}
+
+type GetEntitiesPoliciesRolePolicyScopeOutput struct{ *pulumi.OutputState }
+
+func (GetEntitiesPoliciesRolePolicyScopeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEntitiesPoliciesRolePolicyScope)(nil)).Elem()
+}
+
+func (o GetEntitiesPoliciesRolePolicyScopeOutput) ToGetEntitiesPoliciesRolePolicyScopeOutput() GetEntitiesPoliciesRolePolicyScopeOutput {
+	return o
+}
+
+func (o GetEntitiesPoliciesRolePolicyScopeOutput) ToGetEntitiesPoliciesRolePolicyScopeOutputWithContext(ctx context.Context) GetEntitiesPoliciesRolePolicyScopeOutput {
+	return o
+}
+
+// The attach date of the policy scope.
+func (o GetEntitiesPoliciesRolePolicyScopeOutput) AttachDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEntitiesPoliciesRolePolicyScope) string { return v.AttachDate }).(pulumi.StringOutput)
+}
+
+// The type of the policy scope.
+func (o GetEntitiesPoliciesRolePolicyScopeOutput) PolicyScopeType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEntitiesPoliciesRolePolicyScope) string { return v.PolicyScopeType }).(pulumi.StringOutput)
+}
+
+// The display name of the project.
+func (o GetEntitiesPoliciesRolePolicyScopeOutput) ProjectDisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEntitiesPoliciesRolePolicyScope) string { return v.ProjectDisplayName }).(pulumi.StringOutput)
+}
+
+// The name of the project.
+func (o GetEntitiesPoliciesRolePolicyScopeOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEntitiesPoliciesRolePolicyScope) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+type GetEntitiesPoliciesRolePolicyScopeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEntitiesPoliciesRolePolicyScopeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEntitiesPoliciesRolePolicyScope)(nil)).Elem()
+}
+
+func (o GetEntitiesPoliciesRolePolicyScopeArrayOutput) ToGetEntitiesPoliciesRolePolicyScopeArrayOutput() GetEntitiesPoliciesRolePolicyScopeArrayOutput {
+	return o
+}
+
+func (o GetEntitiesPoliciesRolePolicyScopeArrayOutput) ToGetEntitiesPoliciesRolePolicyScopeArrayOutputWithContext(ctx context.Context) GetEntitiesPoliciesRolePolicyScopeArrayOutput {
+	return o
+}
+
+func (o GetEntitiesPoliciesRolePolicyScopeArrayOutput) Index(i pulumi.IntInput) GetEntitiesPoliciesRolePolicyScopeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEntitiesPoliciesRolePolicyScope {
+		return vs[0].([]GetEntitiesPoliciesRolePolicyScope)[vs[1].(int)]
+	}).(GetEntitiesPoliciesRolePolicyScopeOutput)
+}
+
+type GetEntitiesPoliciesUser struct {
+	// The attach date of the policy scope.
+	AttachDate string `pulumi:"attachDate"`
+	// The description of the user.
+	Description string `pulumi:"description"`
+	// The display name of the user.
+	DisplayName string `pulumi:"displayName"`
+	// The id of the user.
+	Id int `pulumi:"id"`
+	// The scope of the policy.
+	PolicyScopes []GetEntitiesPoliciesUserPolicyScope `pulumi:"policyScopes"`
+	// The name of the user.
+	UserName string `pulumi:"userName"`
+}
+
+// GetEntitiesPoliciesUserInput is an input type that accepts GetEntitiesPoliciesUserArgs and GetEntitiesPoliciesUserOutput values.
+// You can construct a concrete instance of `GetEntitiesPoliciesUserInput` via:
+//
+//	GetEntitiesPoliciesUserArgs{...}
+type GetEntitiesPoliciesUserInput interface {
+	pulumi.Input
+
+	ToGetEntitiesPoliciesUserOutput() GetEntitiesPoliciesUserOutput
+	ToGetEntitiesPoliciesUserOutputWithContext(context.Context) GetEntitiesPoliciesUserOutput
+}
+
+type GetEntitiesPoliciesUserArgs struct {
+	// The attach date of the policy scope.
+	AttachDate pulumi.StringInput `pulumi:"attachDate"`
+	// The description of the user.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The display name of the user.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The id of the user.
+	Id pulumi.IntInput `pulumi:"id"`
+	// The scope of the policy.
+	PolicyScopes GetEntitiesPoliciesUserPolicyScopeArrayInput `pulumi:"policyScopes"`
+	// The name of the user.
+	UserName pulumi.StringInput `pulumi:"userName"`
+}
+
+func (GetEntitiesPoliciesUserArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEntitiesPoliciesUser)(nil)).Elem()
+}
+
+func (i GetEntitiesPoliciesUserArgs) ToGetEntitiesPoliciesUserOutput() GetEntitiesPoliciesUserOutput {
+	return i.ToGetEntitiesPoliciesUserOutputWithContext(context.Background())
+}
+
+func (i GetEntitiesPoliciesUserArgs) ToGetEntitiesPoliciesUserOutputWithContext(ctx context.Context) GetEntitiesPoliciesUserOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEntitiesPoliciesUserOutput)
+}
+
+// GetEntitiesPoliciesUserArrayInput is an input type that accepts GetEntitiesPoliciesUserArray and GetEntitiesPoliciesUserArrayOutput values.
+// You can construct a concrete instance of `GetEntitiesPoliciesUserArrayInput` via:
+//
+//	GetEntitiesPoliciesUserArray{ GetEntitiesPoliciesUserArgs{...} }
+type GetEntitiesPoliciesUserArrayInput interface {
+	pulumi.Input
+
+	ToGetEntitiesPoliciesUserArrayOutput() GetEntitiesPoliciesUserArrayOutput
+	ToGetEntitiesPoliciesUserArrayOutputWithContext(context.Context) GetEntitiesPoliciesUserArrayOutput
+}
+
+type GetEntitiesPoliciesUserArray []GetEntitiesPoliciesUserInput
+
+func (GetEntitiesPoliciesUserArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEntitiesPoliciesUser)(nil)).Elem()
+}
+
+func (i GetEntitiesPoliciesUserArray) ToGetEntitiesPoliciesUserArrayOutput() GetEntitiesPoliciesUserArrayOutput {
+	return i.ToGetEntitiesPoliciesUserArrayOutputWithContext(context.Background())
+}
+
+func (i GetEntitiesPoliciesUserArray) ToGetEntitiesPoliciesUserArrayOutputWithContext(ctx context.Context) GetEntitiesPoliciesUserArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEntitiesPoliciesUserArrayOutput)
+}
+
+type GetEntitiesPoliciesUserOutput struct{ *pulumi.OutputState }
+
+func (GetEntitiesPoliciesUserOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEntitiesPoliciesUser)(nil)).Elem()
+}
+
+func (o GetEntitiesPoliciesUserOutput) ToGetEntitiesPoliciesUserOutput() GetEntitiesPoliciesUserOutput {
+	return o
+}
+
+func (o GetEntitiesPoliciesUserOutput) ToGetEntitiesPoliciesUserOutputWithContext(ctx context.Context) GetEntitiesPoliciesUserOutput {
+	return o
+}
+
+// The attach date of the policy scope.
+func (o GetEntitiesPoliciesUserOutput) AttachDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEntitiesPoliciesUser) string { return v.AttachDate }).(pulumi.StringOutput)
+}
+
+// The description of the user.
+func (o GetEntitiesPoliciesUserOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEntitiesPoliciesUser) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The display name of the user.
+func (o GetEntitiesPoliciesUserOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEntitiesPoliciesUser) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The id of the user.
+func (o GetEntitiesPoliciesUserOutput) Id() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEntitiesPoliciesUser) int { return v.Id }).(pulumi.IntOutput)
+}
+
+// The scope of the policy.
+func (o GetEntitiesPoliciesUserOutput) PolicyScopes() GetEntitiesPoliciesUserPolicyScopeArrayOutput {
+	return o.ApplyT(func(v GetEntitiesPoliciesUser) []GetEntitiesPoliciesUserPolicyScope { return v.PolicyScopes }).(GetEntitiesPoliciesUserPolicyScopeArrayOutput)
+}
+
+// The name of the user.
+func (o GetEntitiesPoliciesUserOutput) UserName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEntitiesPoliciesUser) string { return v.UserName }).(pulumi.StringOutput)
+}
+
+type GetEntitiesPoliciesUserArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEntitiesPoliciesUserArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEntitiesPoliciesUser)(nil)).Elem()
+}
+
+func (o GetEntitiesPoliciesUserArrayOutput) ToGetEntitiesPoliciesUserArrayOutput() GetEntitiesPoliciesUserArrayOutput {
+	return o
+}
+
+func (o GetEntitiesPoliciesUserArrayOutput) ToGetEntitiesPoliciesUserArrayOutputWithContext(ctx context.Context) GetEntitiesPoliciesUserArrayOutput {
+	return o
+}
+
+func (o GetEntitiesPoliciesUserArrayOutput) Index(i pulumi.IntInput) GetEntitiesPoliciesUserOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEntitiesPoliciesUser {
+		return vs[0].([]GetEntitiesPoliciesUser)[vs[1].(int)]
+	}).(GetEntitiesPoliciesUserOutput)
+}
+
+type GetEntitiesPoliciesUserGroup struct {
+	// The attach date of the policy scope.
+	AttachDate string `pulumi:"attachDate"`
+	// The description of the user.
+	Description string `pulumi:"description"`
+	// The display name of the user.
+	DisplayName string `pulumi:"displayName"`
+	// The id of the user.
+	Id int `pulumi:"id"`
+	// The scope of the policy.
+	PolicyScopes []GetEntitiesPoliciesUserGroupPolicyScope `pulumi:"policyScopes"`
+	// The name of the user group.
+	UserGroupName string `pulumi:"userGroupName"`
+}
+
+// GetEntitiesPoliciesUserGroupInput is an input type that accepts GetEntitiesPoliciesUserGroupArgs and GetEntitiesPoliciesUserGroupOutput values.
+// You can construct a concrete instance of `GetEntitiesPoliciesUserGroupInput` via:
+//
+//	GetEntitiesPoliciesUserGroupArgs{...}
+type GetEntitiesPoliciesUserGroupInput interface {
+	pulumi.Input
+
+	ToGetEntitiesPoliciesUserGroupOutput() GetEntitiesPoliciesUserGroupOutput
+	ToGetEntitiesPoliciesUserGroupOutputWithContext(context.Context) GetEntitiesPoliciesUserGroupOutput
+}
+
+type GetEntitiesPoliciesUserGroupArgs struct {
+	// The attach date of the policy scope.
+	AttachDate pulumi.StringInput `pulumi:"attachDate"`
+	// The description of the user.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The display name of the user.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The id of the user.
+	Id pulumi.IntInput `pulumi:"id"`
+	// The scope of the policy.
+	PolicyScopes GetEntitiesPoliciesUserGroupPolicyScopeArrayInput `pulumi:"policyScopes"`
+	// The name of the user group.
+	UserGroupName pulumi.StringInput `pulumi:"userGroupName"`
+}
+
+func (GetEntitiesPoliciesUserGroupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEntitiesPoliciesUserGroup)(nil)).Elem()
+}
+
+func (i GetEntitiesPoliciesUserGroupArgs) ToGetEntitiesPoliciesUserGroupOutput() GetEntitiesPoliciesUserGroupOutput {
+	return i.ToGetEntitiesPoliciesUserGroupOutputWithContext(context.Background())
+}
+
+func (i GetEntitiesPoliciesUserGroupArgs) ToGetEntitiesPoliciesUserGroupOutputWithContext(ctx context.Context) GetEntitiesPoliciesUserGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEntitiesPoliciesUserGroupOutput)
+}
+
+// GetEntitiesPoliciesUserGroupArrayInput is an input type that accepts GetEntitiesPoliciesUserGroupArray and GetEntitiesPoliciesUserGroupArrayOutput values.
+// You can construct a concrete instance of `GetEntitiesPoliciesUserGroupArrayInput` via:
+//
+//	GetEntitiesPoliciesUserGroupArray{ GetEntitiesPoliciesUserGroupArgs{...} }
+type GetEntitiesPoliciesUserGroupArrayInput interface {
+	pulumi.Input
+
+	ToGetEntitiesPoliciesUserGroupArrayOutput() GetEntitiesPoliciesUserGroupArrayOutput
+	ToGetEntitiesPoliciesUserGroupArrayOutputWithContext(context.Context) GetEntitiesPoliciesUserGroupArrayOutput
+}
+
+type GetEntitiesPoliciesUserGroupArray []GetEntitiesPoliciesUserGroupInput
+
+func (GetEntitiesPoliciesUserGroupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEntitiesPoliciesUserGroup)(nil)).Elem()
+}
+
+func (i GetEntitiesPoliciesUserGroupArray) ToGetEntitiesPoliciesUserGroupArrayOutput() GetEntitiesPoliciesUserGroupArrayOutput {
+	return i.ToGetEntitiesPoliciesUserGroupArrayOutputWithContext(context.Background())
+}
+
+func (i GetEntitiesPoliciesUserGroupArray) ToGetEntitiesPoliciesUserGroupArrayOutputWithContext(ctx context.Context) GetEntitiesPoliciesUserGroupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEntitiesPoliciesUserGroupArrayOutput)
+}
+
+type GetEntitiesPoliciesUserGroupOutput struct{ *pulumi.OutputState }
+
+func (GetEntitiesPoliciesUserGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEntitiesPoliciesUserGroup)(nil)).Elem()
+}
+
+func (o GetEntitiesPoliciesUserGroupOutput) ToGetEntitiesPoliciesUserGroupOutput() GetEntitiesPoliciesUserGroupOutput {
+	return o
+}
+
+func (o GetEntitiesPoliciesUserGroupOutput) ToGetEntitiesPoliciesUserGroupOutputWithContext(ctx context.Context) GetEntitiesPoliciesUserGroupOutput {
+	return o
+}
+
+// The attach date of the policy scope.
+func (o GetEntitiesPoliciesUserGroupOutput) AttachDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEntitiesPoliciesUserGroup) string { return v.AttachDate }).(pulumi.StringOutput)
+}
+
+// The description of the user.
+func (o GetEntitiesPoliciesUserGroupOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEntitiesPoliciesUserGroup) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The display name of the user.
+func (o GetEntitiesPoliciesUserGroupOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEntitiesPoliciesUserGroup) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The id of the user.
+func (o GetEntitiesPoliciesUserGroupOutput) Id() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEntitiesPoliciesUserGroup) int { return v.Id }).(pulumi.IntOutput)
+}
+
+// The scope of the policy.
+func (o GetEntitiesPoliciesUserGroupOutput) PolicyScopes() GetEntitiesPoliciesUserGroupPolicyScopeArrayOutput {
+	return o.ApplyT(func(v GetEntitiesPoliciesUserGroup) []GetEntitiesPoliciesUserGroupPolicyScope { return v.PolicyScopes }).(GetEntitiesPoliciesUserGroupPolicyScopeArrayOutput)
+}
+
+// The name of the user group.
+func (o GetEntitiesPoliciesUserGroupOutput) UserGroupName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEntitiesPoliciesUserGroup) string { return v.UserGroupName }).(pulumi.StringOutput)
+}
+
+type GetEntitiesPoliciesUserGroupArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEntitiesPoliciesUserGroupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEntitiesPoliciesUserGroup)(nil)).Elem()
+}
+
+func (o GetEntitiesPoliciesUserGroupArrayOutput) ToGetEntitiesPoliciesUserGroupArrayOutput() GetEntitiesPoliciesUserGroupArrayOutput {
+	return o
+}
+
+func (o GetEntitiesPoliciesUserGroupArrayOutput) ToGetEntitiesPoliciesUserGroupArrayOutputWithContext(ctx context.Context) GetEntitiesPoliciesUserGroupArrayOutput {
+	return o
+}
+
+func (o GetEntitiesPoliciesUserGroupArrayOutput) Index(i pulumi.IntInput) GetEntitiesPoliciesUserGroupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEntitiesPoliciesUserGroup {
+		return vs[0].([]GetEntitiesPoliciesUserGroup)[vs[1].(int)]
+	}).(GetEntitiesPoliciesUserGroupOutput)
+}
+
+type GetEntitiesPoliciesUserGroupPolicyScope struct {
+	// The attach date of the policy scope.
+	AttachDate string `pulumi:"attachDate"`
+	// The type of the policy scope.
+	PolicyScopeType string `pulumi:"policyScopeType"`
+	// The display name of the project.
+	ProjectDisplayName string `pulumi:"projectDisplayName"`
+	// The name of the project.
+	ProjectName string `pulumi:"projectName"`
+}
+
+// GetEntitiesPoliciesUserGroupPolicyScopeInput is an input type that accepts GetEntitiesPoliciesUserGroupPolicyScopeArgs and GetEntitiesPoliciesUserGroupPolicyScopeOutput values.
+// You can construct a concrete instance of `GetEntitiesPoliciesUserGroupPolicyScopeInput` via:
+//
+//	GetEntitiesPoliciesUserGroupPolicyScopeArgs{...}
+type GetEntitiesPoliciesUserGroupPolicyScopeInput interface {
+	pulumi.Input
+
+	ToGetEntitiesPoliciesUserGroupPolicyScopeOutput() GetEntitiesPoliciesUserGroupPolicyScopeOutput
+	ToGetEntitiesPoliciesUserGroupPolicyScopeOutputWithContext(context.Context) GetEntitiesPoliciesUserGroupPolicyScopeOutput
+}
+
+type GetEntitiesPoliciesUserGroupPolicyScopeArgs struct {
+	// The attach date of the policy scope.
+	AttachDate pulumi.StringInput `pulumi:"attachDate"`
+	// The type of the policy scope.
+	PolicyScopeType pulumi.StringInput `pulumi:"policyScopeType"`
+	// The display name of the project.
+	ProjectDisplayName pulumi.StringInput `pulumi:"projectDisplayName"`
+	// The name of the project.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+}
+
+func (GetEntitiesPoliciesUserGroupPolicyScopeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEntitiesPoliciesUserGroupPolicyScope)(nil)).Elem()
+}
+
+func (i GetEntitiesPoliciesUserGroupPolicyScopeArgs) ToGetEntitiesPoliciesUserGroupPolicyScopeOutput() GetEntitiesPoliciesUserGroupPolicyScopeOutput {
+	return i.ToGetEntitiesPoliciesUserGroupPolicyScopeOutputWithContext(context.Background())
+}
+
+func (i GetEntitiesPoliciesUserGroupPolicyScopeArgs) ToGetEntitiesPoliciesUserGroupPolicyScopeOutputWithContext(ctx context.Context) GetEntitiesPoliciesUserGroupPolicyScopeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEntitiesPoliciesUserGroupPolicyScopeOutput)
+}
+
+// GetEntitiesPoliciesUserGroupPolicyScopeArrayInput is an input type that accepts GetEntitiesPoliciesUserGroupPolicyScopeArray and GetEntitiesPoliciesUserGroupPolicyScopeArrayOutput values.
+// You can construct a concrete instance of `GetEntitiesPoliciesUserGroupPolicyScopeArrayInput` via:
+//
+//	GetEntitiesPoliciesUserGroupPolicyScopeArray{ GetEntitiesPoliciesUserGroupPolicyScopeArgs{...} }
+type GetEntitiesPoliciesUserGroupPolicyScopeArrayInput interface {
+	pulumi.Input
+
+	ToGetEntitiesPoliciesUserGroupPolicyScopeArrayOutput() GetEntitiesPoliciesUserGroupPolicyScopeArrayOutput
+	ToGetEntitiesPoliciesUserGroupPolicyScopeArrayOutputWithContext(context.Context) GetEntitiesPoliciesUserGroupPolicyScopeArrayOutput
+}
+
+type GetEntitiesPoliciesUserGroupPolicyScopeArray []GetEntitiesPoliciesUserGroupPolicyScopeInput
+
+func (GetEntitiesPoliciesUserGroupPolicyScopeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEntitiesPoliciesUserGroupPolicyScope)(nil)).Elem()
+}
+
+func (i GetEntitiesPoliciesUserGroupPolicyScopeArray) ToGetEntitiesPoliciesUserGroupPolicyScopeArrayOutput() GetEntitiesPoliciesUserGroupPolicyScopeArrayOutput {
+	return i.ToGetEntitiesPoliciesUserGroupPolicyScopeArrayOutputWithContext(context.Background())
+}
+
+func (i GetEntitiesPoliciesUserGroupPolicyScopeArray) ToGetEntitiesPoliciesUserGroupPolicyScopeArrayOutputWithContext(ctx context.Context) GetEntitiesPoliciesUserGroupPolicyScopeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEntitiesPoliciesUserGroupPolicyScopeArrayOutput)
+}
+
+type GetEntitiesPoliciesUserGroupPolicyScopeOutput struct{ *pulumi.OutputState }
+
+func (GetEntitiesPoliciesUserGroupPolicyScopeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEntitiesPoliciesUserGroupPolicyScope)(nil)).Elem()
+}
+
+func (o GetEntitiesPoliciesUserGroupPolicyScopeOutput) ToGetEntitiesPoliciesUserGroupPolicyScopeOutput() GetEntitiesPoliciesUserGroupPolicyScopeOutput {
+	return o
+}
+
+func (o GetEntitiesPoliciesUserGroupPolicyScopeOutput) ToGetEntitiesPoliciesUserGroupPolicyScopeOutputWithContext(ctx context.Context) GetEntitiesPoliciesUserGroupPolicyScopeOutput {
+	return o
+}
+
+// The attach date of the policy scope.
+func (o GetEntitiesPoliciesUserGroupPolicyScopeOutput) AttachDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEntitiesPoliciesUserGroupPolicyScope) string { return v.AttachDate }).(pulumi.StringOutput)
+}
+
+// The type of the policy scope.
+func (o GetEntitiesPoliciesUserGroupPolicyScopeOutput) PolicyScopeType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEntitiesPoliciesUserGroupPolicyScope) string { return v.PolicyScopeType }).(pulumi.StringOutput)
+}
+
+// The display name of the project.
+func (o GetEntitiesPoliciesUserGroupPolicyScopeOutput) ProjectDisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEntitiesPoliciesUserGroupPolicyScope) string { return v.ProjectDisplayName }).(pulumi.StringOutput)
+}
+
+// The name of the project.
+func (o GetEntitiesPoliciesUserGroupPolicyScopeOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEntitiesPoliciesUserGroupPolicyScope) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+type GetEntitiesPoliciesUserGroupPolicyScopeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEntitiesPoliciesUserGroupPolicyScopeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEntitiesPoliciesUserGroupPolicyScope)(nil)).Elem()
+}
+
+func (o GetEntitiesPoliciesUserGroupPolicyScopeArrayOutput) ToGetEntitiesPoliciesUserGroupPolicyScopeArrayOutput() GetEntitiesPoliciesUserGroupPolicyScopeArrayOutput {
+	return o
+}
+
+func (o GetEntitiesPoliciesUserGroupPolicyScopeArrayOutput) ToGetEntitiesPoliciesUserGroupPolicyScopeArrayOutputWithContext(ctx context.Context) GetEntitiesPoliciesUserGroupPolicyScopeArrayOutput {
+	return o
+}
+
+func (o GetEntitiesPoliciesUserGroupPolicyScopeArrayOutput) Index(i pulumi.IntInput) GetEntitiesPoliciesUserGroupPolicyScopeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEntitiesPoliciesUserGroupPolicyScope {
+		return vs[0].([]GetEntitiesPoliciesUserGroupPolicyScope)[vs[1].(int)]
+	}).(GetEntitiesPoliciesUserGroupPolicyScopeOutput)
+}
+
+type GetEntitiesPoliciesUserPolicyScope struct {
+	// The attach date of the policy scope.
+	AttachDate string `pulumi:"attachDate"`
+	// The type of the policy scope.
+	PolicyScopeType string `pulumi:"policyScopeType"`
+	// The display name of the project.
+	ProjectDisplayName string `pulumi:"projectDisplayName"`
+	// The name of the project.
+	ProjectName string `pulumi:"projectName"`
+}
+
+// GetEntitiesPoliciesUserPolicyScopeInput is an input type that accepts GetEntitiesPoliciesUserPolicyScopeArgs and GetEntitiesPoliciesUserPolicyScopeOutput values.
+// You can construct a concrete instance of `GetEntitiesPoliciesUserPolicyScopeInput` via:
+//
+//	GetEntitiesPoliciesUserPolicyScopeArgs{...}
+type GetEntitiesPoliciesUserPolicyScopeInput interface {
+	pulumi.Input
+
+	ToGetEntitiesPoliciesUserPolicyScopeOutput() GetEntitiesPoliciesUserPolicyScopeOutput
+	ToGetEntitiesPoliciesUserPolicyScopeOutputWithContext(context.Context) GetEntitiesPoliciesUserPolicyScopeOutput
+}
+
+type GetEntitiesPoliciesUserPolicyScopeArgs struct {
+	// The attach date of the policy scope.
+	AttachDate pulumi.StringInput `pulumi:"attachDate"`
+	// The type of the policy scope.
+	PolicyScopeType pulumi.StringInput `pulumi:"policyScopeType"`
+	// The display name of the project.
+	ProjectDisplayName pulumi.StringInput `pulumi:"projectDisplayName"`
+	// The name of the project.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+}
+
+func (GetEntitiesPoliciesUserPolicyScopeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEntitiesPoliciesUserPolicyScope)(nil)).Elem()
+}
+
+func (i GetEntitiesPoliciesUserPolicyScopeArgs) ToGetEntitiesPoliciesUserPolicyScopeOutput() GetEntitiesPoliciesUserPolicyScopeOutput {
+	return i.ToGetEntitiesPoliciesUserPolicyScopeOutputWithContext(context.Background())
+}
+
+func (i GetEntitiesPoliciesUserPolicyScopeArgs) ToGetEntitiesPoliciesUserPolicyScopeOutputWithContext(ctx context.Context) GetEntitiesPoliciesUserPolicyScopeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEntitiesPoliciesUserPolicyScopeOutput)
+}
+
+// GetEntitiesPoliciesUserPolicyScopeArrayInput is an input type that accepts GetEntitiesPoliciesUserPolicyScopeArray and GetEntitiesPoliciesUserPolicyScopeArrayOutput values.
+// You can construct a concrete instance of `GetEntitiesPoliciesUserPolicyScopeArrayInput` via:
+//
+//	GetEntitiesPoliciesUserPolicyScopeArray{ GetEntitiesPoliciesUserPolicyScopeArgs{...} }
+type GetEntitiesPoliciesUserPolicyScopeArrayInput interface {
+	pulumi.Input
+
+	ToGetEntitiesPoliciesUserPolicyScopeArrayOutput() GetEntitiesPoliciesUserPolicyScopeArrayOutput
+	ToGetEntitiesPoliciesUserPolicyScopeArrayOutputWithContext(context.Context) GetEntitiesPoliciesUserPolicyScopeArrayOutput
+}
+
+type GetEntitiesPoliciesUserPolicyScopeArray []GetEntitiesPoliciesUserPolicyScopeInput
+
+func (GetEntitiesPoliciesUserPolicyScopeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEntitiesPoliciesUserPolicyScope)(nil)).Elem()
+}
+
+func (i GetEntitiesPoliciesUserPolicyScopeArray) ToGetEntitiesPoliciesUserPolicyScopeArrayOutput() GetEntitiesPoliciesUserPolicyScopeArrayOutput {
+	return i.ToGetEntitiesPoliciesUserPolicyScopeArrayOutputWithContext(context.Background())
+}
+
+func (i GetEntitiesPoliciesUserPolicyScopeArray) ToGetEntitiesPoliciesUserPolicyScopeArrayOutputWithContext(ctx context.Context) GetEntitiesPoliciesUserPolicyScopeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEntitiesPoliciesUserPolicyScopeArrayOutput)
+}
+
+type GetEntitiesPoliciesUserPolicyScopeOutput struct{ *pulumi.OutputState }
+
+func (GetEntitiesPoliciesUserPolicyScopeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEntitiesPoliciesUserPolicyScope)(nil)).Elem()
+}
+
+func (o GetEntitiesPoliciesUserPolicyScopeOutput) ToGetEntitiesPoliciesUserPolicyScopeOutput() GetEntitiesPoliciesUserPolicyScopeOutput {
+	return o
+}
+
+func (o GetEntitiesPoliciesUserPolicyScopeOutput) ToGetEntitiesPoliciesUserPolicyScopeOutputWithContext(ctx context.Context) GetEntitiesPoliciesUserPolicyScopeOutput {
+	return o
+}
+
+// The attach date of the policy scope.
+func (o GetEntitiesPoliciesUserPolicyScopeOutput) AttachDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEntitiesPoliciesUserPolicyScope) string { return v.AttachDate }).(pulumi.StringOutput)
+}
+
+// The type of the policy scope.
+func (o GetEntitiesPoliciesUserPolicyScopeOutput) PolicyScopeType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEntitiesPoliciesUserPolicyScope) string { return v.PolicyScopeType }).(pulumi.StringOutput)
+}
+
+// The display name of the project.
+func (o GetEntitiesPoliciesUserPolicyScopeOutput) ProjectDisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEntitiesPoliciesUserPolicyScope) string { return v.ProjectDisplayName }).(pulumi.StringOutput)
+}
+
+// The name of the project.
+func (o GetEntitiesPoliciesUserPolicyScopeOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEntitiesPoliciesUserPolicyScope) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+type GetEntitiesPoliciesUserPolicyScopeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEntitiesPoliciesUserPolicyScopeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEntitiesPoliciesUserPolicyScope)(nil)).Elem()
+}
+
+func (o GetEntitiesPoliciesUserPolicyScopeArrayOutput) ToGetEntitiesPoliciesUserPolicyScopeArrayOutput() GetEntitiesPoliciesUserPolicyScopeArrayOutput {
+	return o
+}
+
+func (o GetEntitiesPoliciesUserPolicyScopeArrayOutput) ToGetEntitiesPoliciesUserPolicyScopeArrayOutputWithContext(ctx context.Context) GetEntitiesPoliciesUserPolicyScopeArrayOutput {
+	return o
+}
+
+func (o GetEntitiesPoliciesUserPolicyScopeArrayOutput) Index(i pulumi.IntInput) GetEntitiesPoliciesUserPolicyScopeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEntitiesPoliciesUserPolicyScope {
+		return vs[0].([]GetEntitiesPoliciesUserPolicyScope)[vs[1].(int)]
+	}).(GetEntitiesPoliciesUserPolicyScopeOutput)
+}
+
+type GetGroupUsersUserGroup struct {
+	// The description of the user group.
+	Description string `pulumi:"description"`
+	// The display name of the user group.
+	DisplayName string `pulumi:"displayName"`
+	// The join date of the user group.
+	JoinDate string `pulumi:"joinDate"`
+	// The id of the user group.
+	UserGroupId int `pulumi:"userGroupId"`
+	// The name of the user group.
+	UserGroupName string `pulumi:"userGroupName"`
+}
+
+// GetGroupUsersUserGroupInput is an input type that accepts GetGroupUsersUserGroupArgs and GetGroupUsersUserGroupOutput values.
+// You can construct a concrete instance of `GetGroupUsersUserGroupInput` via:
+//
+//	GetGroupUsersUserGroupArgs{...}
+type GetGroupUsersUserGroupInput interface {
+	pulumi.Input
+
+	ToGetGroupUsersUserGroupOutput() GetGroupUsersUserGroupOutput
+	ToGetGroupUsersUserGroupOutputWithContext(context.Context) GetGroupUsersUserGroupOutput
+}
+
+type GetGroupUsersUserGroupArgs struct {
+	// The description of the user group.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The display name of the user group.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The join date of the user group.
+	JoinDate pulumi.StringInput `pulumi:"joinDate"`
+	// The id of the user group.
+	UserGroupId pulumi.IntInput `pulumi:"userGroupId"`
+	// The name of the user group.
+	UserGroupName pulumi.StringInput `pulumi:"userGroupName"`
+}
+
+func (GetGroupUsersUserGroupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGroupUsersUserGroup)(nil)).Elem()
+}
+
+func (i GetGroupUsersUserGroupArgs) ToGetGroupUsersUserGroupOutput() GetGroupUsersUserGroupOutput {
+	return i.ToGetGroupUsersUserGroupOutputWithContext(context.Background())
+}
+
+func (i GetGroupUsersUserGroupArgs) ToGetGroupUsersUserGroupOutputWithContext(ctx context.Context) GetGroupUsersUserGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGroupUsersUserGroupOutput)
+}
+
+// GetGroupUsersUserGroupArrayInput is an input type that accepts GetGroupUsersUserGroupArray and GetGroupUsersUserGroupArrayOutput values.
+// You can construct a concrete instance of `GetGroupUsersUserGroupArrayInput` via:
+//
+//	GetGroupUsersUserGroupArray{ GetGroupUsersUserGroupArgs{...} }
+type GetGroupUsersUserGroupArrayInput interface {
+	pulumi.Input
+
+	ToGetGroupUsersUserGroupArrayOutput() GetGroupUsersUserGroupArrayOutput
+	ToGetGroupUsersUserGroupArrayOutputWithContext(context.Context) GetGroupUsersUserGroupArrayOutput
+}
+
+type GetGroupUsersUserGroupArray []GetGroupUsersUserGroupInput
+
+func (GetGroupUsersUserGroupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGroupUsersUserGroup)(nil)).Elem()
+}
+
+func (i GetGroupUsersUserGroupArray) ToGetGroupUsersUserGroupArrayOutput() GetGroupUsersUserGroupArrayOutput {
+	return i.ToGetGroupUsersUserGroupArrayOutputWithContext(context.Background())
+}
+
+func (i GetGroupUsersUserGroupArray) ToGetGroupUsersUserGroupArrayOutputWithContext(ctx context.Context) GetGroupUsersUserGroupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGroupUsersUserGroupArrayOutput)
+}
+
+type GetGroupUsersUserGroupOutput struct{ *pulumi.OutputState }
+
+func (GetGroupUsersUserGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGroupUsersUserGroup)(nil)).Elem()
+}
+
+func (o GetGroupUsersUserGroupOutput) ToGetGroupUsersUserGroupOutput() GetGroupUsersUserGroupOutput {
+	return o
+}
+
+func (o GetGroupUsersUserGroupOutput) ToGetGroupUsersUserGroupOutputWithContext(ctx context.Context) GetGroupUsersUserGroupOutput {
+	return o
+}
+
+// The description of the user group.
+func (o GetGroupUsersUserGroupOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupUsersUserGroup) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The display name of the user group.
+func (o GetGroupUsersUserGroupOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupUsersUserGroup) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The join date of the user group.
+func (o GetGroupUsersUserGroupOutput) JoinDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupUsersUserGroup) string { return v.JoinDate }).(pulumi.StringOutput)
+}
+
+// The id of the user group.
+func (o GetGroupUsersUserGroupOutput) UserGroupId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetGroupUsersUserGroup) int { return v.UserGroupId }).(pulumi.IntOutput)
+}
+
+// The name of the user group.
+func (o GetGroupUsersUserGroupOutput) UserGroupName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupUsersUserGroup) string { return v.UserGroupName }).(pulumi.StringOutput)
+}
+
+type GetGroupUsersUserGroupArrayOutput struct{ *pulumi.OutputState }
+
+func (GetGroupUsersUserGroupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGroupUsersUserGroup)(nil)).Elem()
+}
+
+func (o GetGroupUsersUserGroupArrayOutput) ToGetGroupUsersUserGroupArrayOutput() GetGroupUsersUserGroupArrayOutput {
+	return o
+}
+
+func (o GetGroupUsersUserGroupArrayOutput) ToGetGroupUsersUserGroupArrayOutputWithContext(ctx context.Context) GetGroupUsersUserGroupArrayOutput {
+	return o
+}
+
+func (o GetGroupUsersUserGroupArrayOutput) Index(i pulumi.IntInput) GetGroupUsersUserGroupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetGroupUsersUserGroup {
+		return vs[0].([]GetGroupUsersUserGroup)[vs[1].(int)]
+	}).(GetGroupUsersUserGroupOutput)
+}
+
+type GetIdentityProvidersProvider struct {
+	// The create date of the identity provider.
+	CreateDate string `pulumi:"createDate"`
+	// The description of the identity provider.
+	Description string `pulumi:"description"`
+	// The type of the identity provider.
+	IdpType int `pulumi:"idpType"`
+	// The name of the identity provider.
+	ProviderName string `pulumi:"providerName"`
+	// The SSO type of the identity provider.
+	SsoType int `pulumi:"ssoType"`
+	// The status of the identity provider.
+	Status int `pulumi:"status"`
+	// The TRN of the identity provider.
+	Trn string `pulumi:"trn"`
+	// The update date of the identity provider.
+	UpdateDate string `pulumi:"updateDate"`
+}
+
+// GetIdentityProvidersProviderInput is an input type that accepts GetIdentityProvidersProviderArgs and GetIdentityProvidersProviderOutput values.
+// You can construct a concrete instance of `GetIdentityProvidersProviderInput` via:
+//
+//	GetIdentityProvidersProviderArgs{...}
+type GetIdentityProvidersProviderInput interface {
+	pulumi.Input
+
+	ToGetIdentityProvidersProviderOutput() GetIdentityProvidersProviderOutput
+	ToGetIdentityProvidersProviderOutputWithContext(context.Context) GetIdentityProvidersProviderOutput
+}
+
+type GetIdentityProvidersProviderArgs struct {
+	// The create date of the identity provider.
+	CreateDate pulumi.StringInput `pulumi:"createDate"`
+	// The description of the identity provider.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The type of the identity provider.
+	IdpType pulumi.IntInput `pulumi:"idpType"`
+	// The name of the identity provider.
+	ProviderName pulumi.StringInput `pulumi:"providerName"`
+	// The SSO type of the identity provider.
+	SsoType pulumi.IntInput `pulumi:"ssoType"`
+	// The status of the identity provider.
+	Status pulumi.IntInput `pulumi:"status"`
+	// The TRN of the identity provider.
+	Trn pulumi.StringInput `pulumi:"trn"`
+	// The update date of the identity provider.
+	UpdateDate pulumi.StringInput `pulumi:"updateDate"`
+}
+
+func (GetIdentityProvidersProviderArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetIdentityProvidersProvider)(nil)).Elem()
+}
+
+func (i GetIdentityProvidersProviderArgs) ToGetIdentityProvidersProviderOutput() GetIdentityProvidersProviderOutput {
+	return i.ToGetIdentityProvidersProviderOutputWithContext(context.Background())
+}
+
+func (i GetIdentityProvidersProviderArgs) ToGetIdentityProvidersProviderOutputWithContext(ctx context.Context) GetIdentityProvidersProviderOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetIdentityProvidersProviderOutput)
+}
+
+// GetIdentityProvidersProviderArrayInput is an input type that accepts GetIdentityProvidersProviderArray and GetIdentityProvidersProviderArrayOutput values.
+// You can construct a concrete instance of `GetIdentityProvidersProviderArrayInput` via:
+//
+//	GetIdentityProvidersProviderArray{ GetIdentityProvidersProviderArgs{...} }
+type GetIdentityProvidersProviderArrayInput interface {
+	pulumi.Input
+
+	ToGetIdentityProvidersProviderArrayOutput() GetIdentityProvidersProviderArrayOutput
+	ToGetIdentityProvidersProviderArrayOutputWithContext(context.Context) GetIdentityProvidersProviderArrayOutput
+}
+
+type GetIdentityProvidersProviderArray []GetIdentityProvidersProviderInput
+
+func (GetIdentityProvidersProviderArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetIdentityProvidersProvider)(nil)).Elem()
+}
+
+func (i GetIdentityProvidersProviderArray) ToGetIdentityProvidersProviderArrayOutput() GetIdentityProvidersProviderArrayOutput {
+	return i.ToGetIdentityProvidersProviderArrayOutputWithContext(context.Background())
+}
+
+func (i GetIdentityProvidersProviderArray) ToGetIdentityProvidersProviderArrayOutputWithContext(ctx context.Context) GetIdentityProvidersProviderArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetIdentityProvidersProviderArrayOutput)
+}
+
+type GetIdentityProvidersProviderOutput struct{ *pulumi.OutputState }
+
+func (GetIdentityProvidersProviderOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetIdentityProvidersProvider)(nil)).Elem()
+}
+
+func (o GetIdentityProvidersProviderOutput) ToGetIdentityProvidersProviderOutput() GetIdentityProvidersProviderOutput {
+	return o
+}
+
+func (o GetIdentityProvidersProviderOutput) ToGetIdentityProvidersProviderOutputWithContext(ctx context.Context) GetIdentityProvidersProviderOutput {
+	return o
+}
+
+// The create date of the identity provider.
+func (o GetIdentityProvidersProviderOutput) CreateDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIdentityProvidersProvider) string { return v.CreateDate }).(pulumi.StringOutput)
+}
+
+// The description of the identity provider.
+func (o GetIdentityProvidersProviderOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIdentityProvidersProvider) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The type of the identity provider.
+func (o GetIdentityProvidersProviderOutput) IdpType() pulumi.IntOutput {
+	return o.ApplyT(func(v GetIdentityProvidersProvider) int { return v.IdpType }).(pulumi.IntOutput)
+}
+
+// The name of the identity provider.
+func (o GetIdentityProvidersProviderOutput) ProviderName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIdentityProvidersProvider) string { return v.ProviderName }).(pulumi.StringOutput)
+}
+
+// The SSO type of the identity provider.
+func (o GetIdentityProvidersProviderOutput) SsoType() pulumi.IntOutput {
+	return o.ApplyT(func(v GetIdentityProvidersProvider) int { return v.SsoType }).(pulumi.IntOutput)
+}
+
+// The status of the identity provider.
+func (o GetIdentityProvidersProviderOutput) Status() pulumi.IntOutput {
+	return o.ApplyT(func(v GetIdentityProvidersProvider) int { return v.Status }).(pulumi.IntOutput)
+}
+
+// The TRN of the identity provider.
+func (o GetIdentityProvidersProviderOutput) Trn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIdentityProvidersProvider) string { return v.Trn }).(pulumi.StringOutput)
+}
+
+// The update date of the identity provider.
+func (o GetIdentityProvidersProviderOutput) UpdateDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIdentityProvidersProvider) string { return v.UpdateDate }).(pulumi.StringOutput)
+}
+
+type GetIdentityProvidersProviderArrayOutput struct{ *pulumi.OutputState }
+
+func (GetIdentityProvidersProviderArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetIdentityProvidersProvider)(nil)).Elem()
+}
+
+func (o GetIdentityProvidersProviderArrayOutput) ToGetIdentityProvidersProviderArrayOutput() GetIdentityProvidersProviderArrayOutput {
+	return o
+}
+
+func (o GetIdentityProvidersProviderArrayOutput) ToGetIdentityProvidersProviderArrayOutputWithContext(ctx context.Context) GetIdentityProvidersProviderArrayOutput {
+	return o
+}
+
+func (o GetIdentityProvidersProviderArrayOutput) Index(i pulumi.IntInput) GetIdentityProvidersProviderOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetIdentityProvidersProvider {
+		return vs[0].([]GetIdentityProvidersProvider)[vs[1].(int)]
+	}).(GetIdentityProvidersProviderOutput)
+}
+
+type GetLoginProfilesLoginProfile struct {
+	// The create date.
+	CreateDate string `pulumi:"createDate"`
+	// The last login date.
+	LastLoginDate string `pulumi:"lastLoginDate"`
+	// The last login ip.
+	LastLoginIp string `pulumi:"lastLoginIp"`
+	// The last reset password time.
+	LastResetPasswordTime int `pulumi:"lastResetPasswordTime"`
+	// The flag of login allowed.
+	LoginAllowed bool `pulumi:"loginAllowed"`
+	// The flag of login locked.
+	LoginLocked bool `pulumi:"loginLocked"`
+	// The password expire at.
+	PasswordExpireAt int `pulumi:"passwordExpireAt"`
+	// Is required reset password when next time login in.
+	PasswordResetRequired bool `pulumi:"passwordResetRequired"`
+	// The duration of safe auth exempt.
+	SafeAuthExemptDuration int `pulumi:"safeAuthExemptDuration"`
+	// The flag of safe auth exempt required.
+	SafeAuthExemptRequired int `pulumi:"safeAuthExemptRequired"`
+	// The unit of safe auth exempt.
+	SafeAuthExemptUnit int `pulumi:"safeAuthExemptUnit"`
+	// The flag of safe auth.
+	SafeAuthFlag bool `pulumi:"safeAuthFlag"`
+	// The type of safe auth.
+	SafeAuthType string `pulumi:"safeAuthType"`
+	// The update date.
+	UpdateDate string `pulumi:"updateDate"`
+	// The user id.
+	UserId int `pulumi:"userId"`
+	// The user name.
+	UserName string `pulumi:"userName"`
+}
+
+// GetLoginProfilesLoginProfileInput is an input type that accepts GetLoginProfilesLoginProfileArgs and GetLoginProfilesLoginProfileOutput values.
+// You can construct a concrete instance of `GetLoginProfilesLoginProfileInput` via:
+//
+//	GetLoginProfilesLoginProfileArgs{...}
+type GetLoginProfilesLoginProfileInput interface {
+	pulumi.Input
+
+	ToGetLoginProfilesLoginProfileOutput() GetLoginProfilesLoginProfileOutput
+	ToGetLoginProfilesLoginProfileOutputWithContext(context.Context) GetLoginProfilesLoginProfileOutput
+}
+
+type GetLoginProfilesLoginProfileArgs struct {
+	// The create date.
+	CreateDate pulumi.StringInput `pulumi:"createDate"`
+	// The last login date.
+	LastLoginDate pulumi.StringInput `pulumi:"lastLoginDate"`
+	// The last login ip.
+	LastLoginIp pulumi.StringInput `pulumi:"lastLoginIp"`
+	// The last reset password time.
+	LastResetPasswordTime pulumi.IntInput `pulumi:"lastResetPasswordTime"`
+	// The flag of login allowed.
+	LoginAllowed pulumi.BoolInput `pulumi:"loginAllowed"`
+	// The flag of login locked.
+	LoginLocked pulumi.BoolInput `pulumi:"loginLocked"`
+	// The password expire at.
+	PasswordExpireAt pulumi.IntInput `pulumi:"passwordExpireAt"`
+	// Is required reset password when next time login in.
+	PasswordResetRequired pulumi.BoolInput `pulumi:"passwordResetRequired"`
+	// The duration of safe auth exempt.
+	SafeAuthExemptDuration pulumi.IntInput `pulumi:"safeAuthExemptDuration"`
+	// The flag of safe auth exempt required.
+	SafeAuthExemptRequired pulumi.IntInput `pulumi:"safeAuthExemptRequired"`
+	// The unit of safe auth exempt.
+	SafeAuthExemptUnit pulumi.IntInput `pulumi:"safeAuthExemptUnit"`
+	// The flag of safe auth.
+	SafeAuthFlag pulumi.BoolInput `pulumi:"safeAuthFlag"`
+	// The type of safe auth.
+	SafeAuthType pulumi.StringInput `pulumi:"safeAuthType"`
+	// The update date.
+	UpdateDate pulumi.StringInput `pulumi:"updateDate"`
+	// The user id.
+	UserId pulumi.IntInput `pulumi:"userId"`
+	// The user name.
+	UserName pulumi.StringInput `pulumi:"userName"`
+}
+
+func (GetLoginProfilesLoginProfileArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLoginProfilesLoginProfile)(nil)).Elem()
+}
+
+func (i GetLoginProfilesLoginProfileArgs) ToGetLoginProfilesLoginProfileOutput() GetLoginProfilesLoginProfileOutput {
+	return i.ToGetLoginProfilesLoginProfileOutputWithContext(context.Background())
+}
+
+func (i GetLoginProfilesLoginProfileArgs) ToGetLoginProfilesLoginProfileOutputWithContext(ctx context.Context) GetLoginProfilesLoginProfileOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLoginProfilesLoginProfileOutput)
+}
+
+// GetLoginProfilesLoginProfileArrayInput is an input type that accepts GetLoginProfilesLoginProfileArray and GetLoginProfilesLoginProfileArrayOutput values.
+// You can construct a concrete instance of `GetLoginProfilesLoginProfileArrayInput` via:
+//
+//	GetLoginProfilesLoginProfileArray{ GetLoginProfilesLoginProfileArgs{...} }
+type GetLoginProfilesLoginProfileArrayInput interface {
+	pulumi.Input
+
+	ToGetLoginProfilesLoginProfileArrayOutput() GetLoginProfilesLoginProfileArrayOutput
+	ToGetLoginProfilesLoginProfileArrayOutputWithContext(context.Context) GetLoginProfilesLoginProfileArrayOutput
+}
+
+type GetLoginProfilesLoginProfileArray []GetLoginProfilesLoginProfileInput
+
+func (GetLoginProfilesLoginProfileArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLoginProfilesLoginProfile)(nil)).Elem()
+}
+
+func (i GetLoginProfilesLoginProfileArray) ToGetLoginProfilesLoginProfileArrayOutput() GetLoginProfilesLoginProfileArrayOutput {
+	return i.ToGetLoginProfilesLoginProfileArrayOutputWithContext(context.Background())
+}
+
+func (i GetLoginProfilesLoginProfileArray) ToGetLoginProfilesLoginProfileArrayOutputWithContext(ctx context.Context) GetLoginProfilesLoginProfileArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLoginProfilesLoginProfileArrayOutput)
+}
+
+type GetLoginProfilesLoginProfileOutput struct{ *pulumi.OutputState }
+
+func (GetLoginProfilesLoginProfileOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLoginProfilesLoginProfile)(nil)).Elem()
+}
+
+func (o GetLoginProfilesLoginProfileOutput) ToGetLoginProfilesLoginProfileOutput() GetLoginProfilesLoginProfileOutput {
+	return o
+}
+
+func (o GetLoginProfilesLoginProfileOutput) ToGetLoginProfilesLoginProfileOutputWithContext(ctx context.Context) GetLoginProfilesLoginProfileOutput {
+	return o
+}
+
+// The create date.
+func (o GetLoginProfilesLoginProfileOutput) CreateDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLoginProfilesLoginProfile) string { return v.CreateDate }).(pulumi.StringOutput)
+}
+
+// The last login date.
+func (o GetLoginProfilesLoginProfileOutput) LastLoginDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLoginProfilesLoginProfile) string { return v.LastLoginDate }).(pulumi.StringOutput)
+}
+
+// The last login ip.
+func (o GetLoginProfilesLoginProfileOutput) LastLoginIp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLoginProfilesLoginProfile) string { return v.LastLoginIp }).(pulumi.StringOutput)
+}
+
+// The last reset password time.
+func (o GetLoginProfilesLoginProfileOutput) LastResetPasswordTime() pulumi.IntOutput {
+	return o.ApplyT(func(v GetLoginProfilesLoginProfile) int { return v.LastResetPasswordTime }).(pulumi.IntOutput)
+}
+
+// The flag of login allowed.
+func (o GetLoginProfilesLoginProfileOutput) LoginAllowed() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetLoginProfilesLoginProfile) bool { return v.LoginAllowed }).(pulumi.BoolOutput)
+}
+
+// The flag of login locked.
+func (o GetLoginProfilesLoginProfileOutput) LoginLocked() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetLoginProfilesLoginProfile) bool { return v.LoginLocked }).(pulumi.BoolOutput)
+}
+
+// The password expire at.
+func (o GetLoginProfilesLoginProfileOutput) PasswordExpireAt() pulumi.IntOutput {
+	return o.ApplyT(func(v GetLoginProfilesLoginProfile) int { return v.PasswordExpireAt }).(pulumi.IntOutput)
+}
+
+// Is required reset password when next time login in.
+func (o GetLoginProfilesLoginProfileOutput) PasswordResetRequired() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetLoginProfilesLoginProfile) bool { return v.PasswordResetRequired }).(pulumi.BoolOutput)
+}
+
+// The duration of safe auth exempt.
+func (o GetLoginProfilesLoginProfileOutput) SafeAuthExemptDuration() pulumi.IntOutput {
+	return o.ApplyT(func(v GetLoginProfilesLoginProfile) int { return v.SafeAuthExemptDuration }).(pulumi.IntOutput)
+}
+
+// The flag of safe auth exempt required.
+func (o GetLoginProfilesLoginProfileOutput) SafeAuthExemptRequired() pulumi.IntOutput {
+	return o.ApplyT(func(v GetLoginProfilesLoginProfile) int { return v.SafeAuthExemptRequired }).(pulumi.IntOutput)
+}
+
+// The unit of safe auth exempt.
+func (o GetLoginProfilesLoginProfileOutput) SafeAuthExemptUnit() pulumi.IntOutput {
+	return o.ApplyT(func(v GetLoginProfilesLoginProfile) int { return v.SafeAuthExemptUnit }).(pulumi.IntOutput)
+}
+
+// The flag of safe auth.
+func (o GetLoginProfilesLoginProfileOutput) SafeAuthFlag() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetLoginProfilesLoginProfile) bool { return v.SafeAuthFlag }).(pulumi.BoolOutput)
+}
+
+// The type of safe auth.
+func (o GetLoginProfilesLoginProfileOutput) SafeAuthType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLoginProfilesLoginProfile) string { return v.SafeAuthType }).(pulumi.StringOutput)
+}
+
+// The update date.
+func (o GetLoginProfilesLoginProfileOutput) UpdateDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLoginProfilesLoginProfile) string { return v.UpdateDate }).(pulumi.StringOutput)
+}
+
+// The user id.
+func (o GetLoginProfilesLoginProfileOutput) UserId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetLoginProfilesLoginProfile) int { return v.UserId }).(pulumi.IntOutput)
+}
+
+// The user name.
+func (o GetLoginProfilesLoginProfileOutput) UserName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLoginProfilesLoginProfile) string { return v.UserName }).(pulumi.StringOutput)
+}
+
+type GetLoginProfilesLoginProfileArrayOutput struct{ *pulumi.OutputState }
+
+func (GetLoginProfilesLoginProfileArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLoginProfilesLoginProfile)(nil)).Elem()
+}
+
+func (o GetLoginProfilesLoginProfileArrayOutput) ToGetLoginProfilesLoginProfileArrayOutput() GetLoginProfilesLoginProfileArrayOutput {
+	return o
+}
+
+func (o GetLoginProfilesLoginProfileArrayOutput) ToGetLoginProfilesLoginProfileArrayOutputWithContext(ctx context.Context) GetLoginProfilesLoginProfileArrayOutput {
+	return o
+}
+
+func (o GetLoginProfilesLoginProfileArrayOutput) Index(i pulumi.IntInput) GetLoginProfilesLoginProfileOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLoginProfilesLoginProfile {
+		return vs[0].([]GetLoginProfilesLoginProfile)[vs[1].(int)]
+	}).(GetLoginProfilesLoginProfileOutput)
+}
+
+type GetOauthProvidersProvider struct {
+	// The authorize template of the OAuth provider.
+	AuthorizeTemplate string `pulumi:"authorizeTemplate"`
+	// The authorize url of the OAuth provider.
+	AuthorizeUrl string `pulumi:"authorizeUrl"`
+	// The client id of the OAuth provider.
+	ClientId string `pulumi:"clientId"`
+	// The client secret of the OAuth provider.
+	ClientSecret string `pulumi:"clientSecret"`
+	// The create date of the OAuth provider.
+	CreateDate string `pulumi:"createDate"`
+	// The description of the OAuth provider.
+	Description string `pulumi:"description"`
+	// The identity map type of the OAuth provider.
+	IdentityMapType int `pulumi:"identityMapType"`
+	// The idp identity key of the OAuth provider.
+	IdpIdentityKey string `pulumi:"idpIdentityKey"`
+	// The name of the OAuth provider.
+	OauthProviderName string `pulumi:"oauthProviderName"`
+	// The id of the OAuth provider.
+	ProviderId string `pulumi:"providerId"`
+	// The scope of the OAuth provider.
+	Scope string `pulumi:"scope"`
+	// The SSO type of the OAuth provider.
+	SsoType int `pulumi:"ssoType"`
+	// The status of the OAuth provider.
+	Status int `pulumi:"status"`
+	// The token url of the OAuth provider.
+	TokenUrl string `pulumi:"tokenUrl"`
+	// The trn of the OAuth provider.
+	Trn string `pulumi:"trn"`
+	// The update date of the OAuth provider.
+	UpdateDate string `pulumi:"updateDate"`
+	// The user info url of the OAuth provider.
+	UserInfoUrl string `pulumi:"userInfoUrl"`
+}
+
+// GetOauthProvidersProviderInput is an input type that accepts GetOauthProvidersProviderArgs and GetOauthProvidersProviderOutput values.
+// You can construct a concrete instance of `GetOauthProvidersProviderInput` via:
+//
+//	GetOauthProvidersProviderArgs{...}
+type GetOauthProvidersProviderInput interface {
+	pulumi.Input
+
+	ToGetOauthProvidersProviderOutput() GetOauthProvidersProviderOutput
+	ToGetOauthProvidersProviderOutputWithContext(context.Context) GetOauthProvidersProviderOutput
+}
+
+type GetOauthProvidersProviderArgs struct {
+	// The authorize template of the OAuth provider.
+	AuthorizeTemplate pulumi.StringInput `pulumi:"authorizeTemplate"`
+	// The authorize url of the OAuth provider.
+	AuthorizeUrl pulumi.StringInput `pulumi:"authorizeUrl"`
+	// The client id of the OAuth provider.
+	ClientId pulumi.StringInput `pulumi:"clientId"`
+	// The client secret of the OAuth provider.
+	ClientSecret pulumi.StringInput `pulumi:"clientSecret"`
+	// The create date of the OAuth provider.
+	CreateDate pulumi.StringInput `pulumi:"createDate"`
+	// The description of the OAuth provider.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The identity map type of the OAuth provider.
+	IdentityMapType pulumi.IntInput `pulumi:"identityMapType"`
+	// The idp identity key of the OAuth provider.
+	IdpIdentityKey pulumi.StringInput `pulumi:"idpIdentityKey"`
+	// The name of the OAuth provider.
+	OauthProviderName pulumi.StringInput `pulumi:"oauthProviderName"`
+	// The id of the OAuth provider.
+	ProviderId pulumi.StringInput `pulumi:"providerId"`
+	// The scope of the OAuth provider.
+	Scope pulumi.StringInput `pulumi:"scope"`
+	// The SSO type of the OAuth provider.
+	SsoType pulumi.IntInput `pulumi:"ssoType"`
+	// The status of the OAuth provider.
+	Status pulumi.IntInput `pulumi:"status"`
+	// The token url of the OAuth provider.
+	TokenUrl pulumi.StringInput `pulumi:"tokenUrl"`
+	// The trn of the OAuth provider.
+	Trn pulumi.StringInput `pulumi:"trn"`
+	// The update date of the OAuth provider.
+	UpdateDate pulumi.StringInput `pulumi:"updateDate"`
+	// The user info url of the OAuth provider.
+	UserInfoUrl pulumi.StringInput `pulumi:"userInfoUrl"`
+}
+
+func (GetOauthProvidersProviderArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetOauthProvidersProvider)(nil)).Elem()
+}
+
+func (i GetOauthProvidersProviderArgs) ToGetOauthProvidersProviderOutput() GetOauthProvidersProviderOutput {
+	return i.ToGetOauthProvidersProviderOutputWithContext(context.Background())
+}
+
+func (i GetOauthProvidersProviderArgs) ToGetOauthProvidersProviderOutputWithContext(ctx context.Context) GetOauthProvidersProviderOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetOauthProvidersProviderOutput)
+}
+
+// GetOauthProvidersProviderArrayInput is an input type that accepts GetOauthProvidersProviderArray and GetOauthProvidersProviderArrayOutput values.
+// You can construct a concrete instance of `GetOauthProvidersProviderArrayInput` via:
+//
+//	GetOauthProvidersProviderArray{ GetOauthProvidersProviderArgs{...} }
+type GetOauthProvidersProviderArrayInput interface {
+	pulumi.Input
+
+	ToGetOauthProvidersProviderArrayOutput() GetOauthProvidersProviderArrayOutput
+	ToGetOauthProvidersProviderArrayOutputWithContext(context.Context) GetOauthProvidersProviderArrayOutput
+}
+
+type GetOauthProvidersProviderArray []GetOauthProvidersProviderInput
+
+func (GetOauthProvidersProviderArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetOauthProvidersProvider)(nil)).Elem()
+}
+
+func (i GetOauthProvidersProviderArray) ToGetOauthProvidersProviderArrayOutput() GetOauthProvidersProviderArrayOutput {
+	return i.ToGetOauthProvidersProviderArrayOutputWithContext(context.Background())
+}
+
+func (i GetOauthProvidersProviderArray) ToGetOauthProvidersProviderArrayOutputWithContext(ctx context.Context) GetOauthProvidersProviderArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetOauthProvidersProviderArrayOutput)
+}
+
+type GetOauthProvidersProviderOutput struct{ *pulumi.OutputState }
+
+func (GetOauthProvidersProviderOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetOauthProvidersProvider)(nil)).Elem()
+}
+
+func (o GetOauthProvidersProviderOutput) ToGetOauthProvidersProviderOutput() GetOauthProvidersProviderOutput {
+	return o
+}
+
+func (o GetOauthProvidersProviderOutput) ToGetOauthProvidersProviderOutputWithContext(ctx context.Context) GetOauthProvidersProviderOutput {
+	return o
+}
+
+// The authorize template of the OAuth provider.
+func (o GetOauthProvidersProviderOutput) AuthorizeTemplate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOauthProvidersProvider) string { return v.AuthorizeTemplate }).(pulumi.StringOutput)
+}
+
+// The authorize url of the OAuth provider.
+func (o GetOauthProvidersProviderOutput) AuthorizeUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOauthProvidersProvider) string { return v.AuthorizeUrl }).(pulumi.StringOutput)
+}
+
+// The client id of the OAuth provider.
+func (o GetOauthProvidersProviderOutput) ClientId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOauthProvidersProvider) string { return v.ClientId }).(pulumi.StringOutput)
+}
+
+// The client secret of the OAuth provider.
+func (o GetOauthProvidersProviderOutput) ClientSecret() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOauthProvidersProvider) string { return v.ClientSecret }).(pulumi.StringOutput)
+}
+
+// The create date of the OAuth provider.
+func (o GetOauthProvidersProviderOutput) CreateDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOauthProvidersProvider) string { return v.CreateDate }).(pulumi.StringOutput)
+}
+
+// The description of the OAuth provider.
+func (o GetOauthProvidersProviderOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOauthProvidersProvider) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The identity map type of the OAuth provider.
+func (o GetOauthProvidersProviderOutput) IdentityMapType() pulumi.IntOutput {
+	return o.ApplyT(func(v GetOauthProvidersProvider) int { return v.IdentityMapType }).(pulumi.IntOutput)
+}
+
+// The idp identity key of the OAuth provider.
+func (o GetOauthProvidersProviderOutput) IdpIdentityKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOauthProvidersProvider) string { return v.IdpIdentityKey }).(pulumi.StringOutput)
+}
+
+// The name of the OAuth provider.
+func (o GetOauthProvidersProviderOutput) OauthProviderName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOauthProvidersProvider) string { return v.OauthProviderName }).(pulumi.StringOutput)
+}
+
+// The id of the OAuth provider.
+func (o GetOauthProvidersProviderOutput) ProviderId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOauthProvidersProvider) string { return v.ProviderId }).(pulumi.StringOutput)
+}
+
+// The scope of the OAuth provider.
+func (o GetOauthProvidersProviderOutput) Scope() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOauthProvidersProvider) string { return v.Scope }).(pulumi.StringOutput)
+}
+
+// The SSO type of the OAuth provider.
+func (o GetOauthProvidersProviderOutput) SsoType() pulumi.IntOutput {
+	return o.ApplyT(func(v GetOauthProvidersProvider) int { return v.SsoType }).(pulumi.IntOutput)
+}
+
+// The status of the OAuth provider.
+func (o GetOauthProvidersProviderOutput) Status() pulumi.IntOutput {
+	return o.ApplyT(func(v GetOauthProvidersProvider) int { return v.Status }).(pulumi.IntOutput)
+}
+
+// The token url of the OAuth provider.
+func (o GetOauthProvidersProviderOutput) TokenUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOauthProvidersProvider) string { return v.TokenUrl }).(pulumi.StringOutput)
+}
+
+// The trn of the OAuth provider.
+func (o GetOauthProvidersProviderOutput) Trn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOauthProvidersProvider) string { return v.Trn }).(pulumi.StringOutput)
+}
+
+// The update date of the OAuth provider.
+func (o GetOauthProvidersProviderOutput) UpdateDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOauthProvidersProvider) string { return v.UpdateDate }).(pulumi.StringOutput)
+}
+
+// The user info url of the OAuth provider.
+func (o GetOauthProvidersProviderOutput) UserInfoUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOauthProvidersProvider) string { return v.UserInfoUrl }).(pulumi.StringOutput)
+}
+
+type GetOauthProvidersProviderArrayOutput struct{ *pulumi.OutputState }
+
+func (GetOauthProvidersProviderArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetOauthProvidersProvider)(nil)).Elem()
+}
+
+func (o GetOauthProvidersProviderArrayOutput) ToGetOauthProvidersProviderArrayOutput() GetOauthProvidersProviderArrayOutput {
+	return o
+}
+
+func (o GetOauthProvidersProviderArrayOutput) ToGetOauthProvidersProviderArrayOutputWithContext(ctx context.Context) GetOauthProvidersProviderArrayOutput {
+	return o
+}
+
+func (o GetOauthProvidersProviderArrayOutput) Index(i pulumi.IntInput) GetOauthProvidersProviderOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetOauthProvidersProvider {
+		return vs[0].([]GetOauthProvidersProvider)[vs[1].(int)]
+	}).(GetOauthProvidersProviderOutput)
 }
 
 type GetOidcProvidersOidcProvider struct {
@@ -1587,12 +7992,18 @@ func (o GetOidcProvidersOidcProviderArrayOutput) Index(i pulumi.IntInput) GetOid
 }
 
 type GetPoliciesPolicy struct {
+	// The attachment count of the Policy.
+	AttachmentCount int `pulumi:"attachmentCount"`
+	// The category of the Policy.
+	Category string `pulumi:"category"`
 	// The create time of the Policy.
 	CreateDate string `pulumi:"createDate"`
 	// The description of the Policy.
 	Description string `pulumi:"description"`
 	// The ID of the Policy.
 	Id string `pulumi:"id"`
+	// Whether the Policy is a service role policy.
+	IsServiceRolePolicy int `pulumi:"isServiceRolePolicy"`
 	// The document of the Policy.
 	PolicyDocument string `pulumi:"policyDocument"`
 	// The name of the Policy.
@@ -1601,16 +8012,8 @@ type GetPoliciesPolicy struct {
 	PolicyTrn string `pulumi:"policyTrn"`
 	// The type of the Policy.
 	PolicyType string `pulumi:"policyType"`
-	// The role attach time of the Policy.The data show only query with role_name.
-	RoleAttachDate string `pulumi:"roleAttachDate"`
-	// The name of the IAM role.
-	RoleName string `pulumi:"roleName"`
 	// The update time of the Policy.
 	UpdateDate string `pulumi:"updateDate"`
-	// The user attach time of the Policy.The data show only query with user_name.
-	UserAttachDate string `pulumi:"userAttachDate"`
-	// The name of the IAM user.
-	UserName string `pulumi:"userName"`
 }
 
 // GetPoliciesPolicyInput is an input type that accepts GetPoliciesPolicyArgs and GetPoliciesPolicyOutput values.
@@ -1625,12 +8028,18 @@ type GetPoliciesPolicyInput interface {
 }
 
 type GetPoliciesPolicyArgs struct {
+	// The attachment count of the Policy.
+	AttachmentCount pulumi.IntInput `pulumi:"attachmentCount"`
+	// The category of the Policy.
+	Category pulumi.StringInput `pulumi:"category"`
 	// The create time of the Policy.
 	CreateDate pulumi.StringInput `pulumi:"createDate"`
 	// The description of the Policy.
 	Description pulumi.StringInput `pulumi:"description"`
 	// The ID of the Policy.
 	Id pulumi.StringInput `pulumi:"id"`
+	// Whether the Policy is a service role policy.
+	IsServiceRolePolicy pulumi.IntInput `pulumi:"isServiceRolePolicy"`
 	// The document of the Policy.
 	PolicyDocument pulumi.StringInput `pulumi:"policyDocument"`
 	// The name of the Policy.
@@ -1639,16 +8048,8 @@ type GetPoliciesPolicyArgs struct {
 	PolicyTrn pulumi.StringInput `pulumi:"policyTrn"`
 	// The type of the Policy.
 	PolicyType pulumi.StringInput `pulumi:"policyType"`
-	// The role attach time of the Policy.The data show only query with role_name.
-	RoleAttachDate pulumi.StringInput `pulumi:"roleAttachDate"`
-	// The name of the IAM role.
-	RoleName pulumi.StringInput `pulumi:"roleName"`
 	// The update time of the Policy.
 	UpdateDate pulumi.StringInput `pulumi:"updateDate"`
-	// The user attach time of the Policy.The data show only query with user_name.
-	UserAttachDate pulumi.StringInput `pulumi:"userAttachDate"`
-	// The name of the IAM user.
-	UserName pulumi.StringInput `pulumi:"userName"`
 }
 
 func (GetPoliciesPolicyArgs) ElementType() reflect.Type {
@@ -1702,6 +8103,16 @@ func (o GetPoliciesPolicyOutput) ToGetPoliciesPolicyOutputWithContext(ctx contex
 	return o
 }
 
+// The attachment count of the Policy.
+func (o GetPoliciesPolicyOutput) AttachmentCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetPoliciesPolicy) int { return v.AttachmentCount }).(pulumi.IntOutput)
+}
+
+// The category of the Policy.
+func (o GetPoliciesPolicyOutput) Category() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPoliciesPolicy) string { return v.Category }).(pulumi.StringOutput)
+}
+
 // The create time of the Policy.
 func (o GetPoliciesPolicyOutput) CreateDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPoliciesPolicy) string { return v.CreateDate }).(pulumi.StringOutput)
@@ -1715,6 +8126,11 @@ func (o GetPoliciesPolicyOutput) Description() pulumi.StringOutput {
 // The ID of the Policy.
 func (o GetPoliciesPolicyOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPoliciesPolicy) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Whether the Policy is a service role policy.
+func (o GetPoliciesPolicyOutput) IsServiceRolePolicy() pulumi.IntOutput {
+	return o.ApplyT(func(v GetPoliciesPolicy) int { return v.IsServiceRolePolicy }).(pulumi.IntOutput)
 }
 
 // The document of the Policy.
@@ -1737,29 +8153,9 @@ func (o GetPoliciesPolicyOutput) PolicyType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPoliciesPolicy) string { return v.PolicyType }).(pulumi.StringOutput)
 }
 
-// The role attach time of the Policy.The data show only query with role_name.
-func (o GetPoliciesPolicyOutput) RoleAttachDate() pulumi.StringOutput {
-	return o.ApplyT(func(v GetPoliciesPolicy) string { return v.RoleAttachDate }).(pulumi.StringOutput)
-}
-
-// The name of the IAM role.
-func (o GetPoliciesPolicyOutput) RoleName() pulumi.StringOutput {
-	return o.ApplyT(func(v GetPoliciesPolicy) string { return v.RoleName }).(pulumi.StringOutput)
-}
-
 // The update time of the Policy.
 func (o GetPoliciesPolicyOutput) UpdateDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPoliciesPolicy) string { return v.UpdateDate }).(pulumi.StringOutput)
-}
-
-// The user attach time of the Policy.The data show only query with user_name.
-func (o GetPoliciesPolicyOutput) UserAttachDate() pulumi.StringOutput {
-	return o.ApplyT(func(v GetPoliciesPolicy) string { return v.UserAttachDate }).(pulumi.StringOutput)
-}
-
-// The name of the IAM user.
-func (o GetPoliciesPolicyOutput) UserName() pulumi.StringOutput {
-	return o.ApplyT(func(v GetPoliciesPolicy) string { return v.UserName }).(pulumi.StringOutput)
 }
 
 type GetPoliciesPolicyArrayOutput struct{ *pulumi.OutputState }
@@ -1782,19 +8178,297 @@ func (o GetPoliciesPolicyArrayOutput) Index(i pulumi.IntInput) GetPoliciesPolicy
 	}).(GetPoliciesPolicyOutput)
 }
 
+type GetRolePolicyAttachmentsPolicy struct {
+	// The attach date of the policy scope.
+	AttachDate string `pulumi:"attachDate"`
+	// The description of the policy.
+	Description string `pulumi:"description"`
+	// The name of the policy.
+	PolicyName string `pulumi:"policyName"`
+	// The scope of the policy.
+	PolicyScopes []GetRolePolicyAttachmentsPolicyPolicyScope `pulumi:"policyScopes"`
+	// The trn of the policy.
+	PolicyTrn string `pulumi:"policyTrn"`
+	// The type of the policy.
+	PolicyType string `pulumi:"policyType"`
+}
+
+// GetRolePolicyAttachmentsPolicyInput is an input type that accepts GetRolePolicyAttachmentsPolicyArgs and GetRolePolicyAttachmentsPolicyOutput values.
+// You can construct a concrete instance of `GetRolePolicyAttachmentsPolicyInput` via:
+//
+//	GetRolePolicyAttachmentsPolicyArgs{...}
+type GetRolePolicyAttachmentsPolicyInput interface {
+	pulumi.Input
+
+	ToGetRolePolicyAttachmentsPolicyOutput() GetRolePolicyAttachmentsPolicyOutput
+	ToGetRolePolicyAttachmentsPolicyOutputWithContext(context.Context) GetRolePolicyAttachmentsPolicyOutput
+}
+
+type GetRolePolicyAttachmentsPolicyArgs struct {
+	// The attach date of the policy scope.
+	AttachDate pulumi.StringInput `pulumi:"attachDate"`
+	// The description of the policy.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The name of the policy.
+	PolicyName pulumi.StringInput `pulumi:"policyName"`
+	// The scope of the policy.
+	PolicyScopes GetRolePolicyAttachmentsPolicyPolicyScopeArrayInput `pulumi:"policyScopes"`
+	// The trn of the policy.
+	PolicyTrn pulumi.StringInput `pulumi:"policyTrn"`
+	// The type of the policy.
+	PolicyType pulumi.StringInput `pulumi:"policyType"`
+}
+
+func (GetRolePolicyAttachmentsPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRolePolicyAttachmentsPolicy)(nil)).Elem()
+}
+
+func (i GetRolePolicyAttachmentsPolicyArgs) ToGetRolePolicyAttachmentsPolicyOutput() GetRolePolicyAttachmentsPolicyOutput {
+	return i.ToGetRolePolicyAttachmentsPolicyOutputWithContext(context.Background())
+}
+
+func (i GetRolePolicyAttachmentsPolicyArgs) ToGetRolePolicyAttachmentsPolicyOutputWithContext(ctx context.Context) GetRolePolicyAttachmentsPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRolePolicyAttachmentsPolicyOutput)
+}
+
+// GetRolePolicyAttachmentsPolicyArrayInput is an input type that accepts GetRolePolicyAttachmentsPolicyArray and GetRolePolicyAttachmentsPolicyArrayOutput values.
+// You can construct a concrete instance of `GetRolePolicyAttachmentsPolicyArrayInput` via:
+//
+//	GetRolePolicyAttachmentsPolicyArray{ GetRolePolicyAttachmentsPolicyArgs{...} }
+type GetRolePolicyAttachmentsPolicyArrayInput interface {
+	pulumi.Input
+
+	ToGetRolePolicyAttachmentsPolicyArrayOutput() GetRolePolicyAttachmentsPolicyArrayOutput
+	ToGetRolePolicyAttachmentsPolicyArrayOutputWithContext(context.Context) GetRolePolicyAttachmentsPolicyArrayOutput
+}
+
+type GetRolePolicyAttachmentsPolicyArray []GetRolePolicyAttachmentsPolicyInput
+
+func (GetRolePolicyAttachmentsPolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRolePolicyAttachmentsPolicy)(nil)).Elem()
+}
+
+func (i GetRolePolicyAttachmentsPolicyArray) ToGetRolePolicyAttachmentsPolicyArrayOutput() GetRolePolicyAttachmentsPolicyArrayOutput {
+	return i.ToGetRolePolicyAttachmentsPolicyArrayOutputWithContext(context.Background())
+}
+
+func (i GetRolePolicyAttachmentsPolicyArray) ToGetRolePolicyAttachmentsPolicyArrayOutputWithContext(ctx context.Context) GetRolePolicyAttachmentsPolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRolePolicyAttachmentsPolicyArrayOutput)
+}
+
+type GetRolePolicyAttachmentsPolicyOutput struct{ *pulumi.OutputState }
+
+func (GetRolePolicyAttachmentsPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRolePolicyAttachmentsPolicy)(nil)).Elem()
+}
+
+func (o GetRolePolicyAttachmentsPolicyOutput) ToGetRolePolicyAttachmentsPolicyOutput() GetRolePolicyAttachmentsPolicyOutput {
+	return o
+}
+
+func (o GetRolePolicyAttachmentsPolicyOutput) ToGetRolePolicyAttachmentsPolicyOutputWithContext(ctx context.Context) GetRolePolicyAttachmentsPolicyOutput {
+	return o
+}
+
+// The attach date of the policy scope.
+func (o GetRolePolicyAttachmentsPolicyOutput) AttachDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRolePolicyAttachmentsPolicy) string { return v.AttachDate }).(pulumi.StringOutput)
+}
+
+// The description of the policy.
+func (o GetRolePolicyAttachmentsPolicyOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRolePolicyAttachmentsPolicy) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The name of the policy.
+func (o GetRolePolicyAttachmentsPolicyOutput) PolicyName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRolePolicyAttachmentsPolicy) string { return v.PolicyName }).(pulumi.StringOutput)
+}
+
+// The scope of the policy.
+func (o GetRolePolicyAttachmentsPolicyOutput) PolicyScopes() GetRolePolicyAttachmentsPolicyPolicyScopeArrayOutput {
+	return o.ApplyT(func(v GetRolePolicyAttachmentsPolicy) []GetRolePolicyAttachmentsPolicyPolicyScope {
+		return v.PolicyScopes
+	}).(GetRolePolicyAttachmentsPolicyPolicyScopeArrayOutput)
+}
+
+// The trn of the policy.
+func (o GetRolePolicyAttachmentsPolicyOutput) PolicyTrn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRolePolicyAttachmentsPolicy) string { return v.PolicyTrn }).(pulumi.StringOutput)
+}
+
+// The type of the policy.
+func (o GetRolePolicyAttachmentsPolicyOutput) PolicyType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRolePolicyAttachmentsPolicy) string { return v.PolicyType }).(pulumi.StringOutput)
+}
+
+type GetRolePolicyAttachmentsPolicyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRolePolicyAttachmentsPolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRolePolicyAttachmentsPolicy)(nil)).Elem()
+}
+
+func (o GetRolePolicyAttachmentsPolicyArrayOutput) ToGetRolePolicyAttachmentsPolicyArrayOutput() GetRolePolicyAttachmentsPolicyArrayOutput {
+	return o
+}
+
+func (o GetRolePolicyAttachmentsPolicyArrayOutput) ToGetRolePolicyAttachmentsPolicyArrayOutputWithContext(ctx context.Context) GetRolePolicyAttachmentsPolicyArrayOutput {
+	return o
+}
+
+func (o GetRolePolicyAttachmentsPolicyArrayOutput) Index(i pulumi.IntInput) GetRolePolicyAttachmentsPolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRolePolicyAttachmentsPolicy {
+		return vs[0].([]GetRolePolicyAttachmentsPolicy)[vs[1].(int)]
+	}).(GetRolePolicyAttachmentsPolicyOutput)
+}
+
+type GetRolePolicyAttachmentsPolicyPolicyScope struct {
+	// The attach date of the policy scope.
+	AttachDate string `pulumi:"attachDate"`
+	// The type of the policy scope.
+	PolicyScopeType string `pulumi:"policyScopeType"`
+	// The display name of the project.
+	ProjectDisplayName string `pulumi:"projectDisplayName"`
+	// The name of the project.
+	ProjectName string `pulumi:"projectName"`
+}
+
+// GetRolePolicyAttachmentsPolicyPolicyScopeInput is an input type that accepts GetRolePolicyAttachmentsPolicyPolicyScopeArgs and GetRolePolicyAttachmentsPolicyPolicyScopeOutput values.
+// You can construct a concrete instance of `GetRolePolicyAttachmentsPolicyPolicyScopeInput` via:
+//
+//	GetRolePolicyAttachmentsPolicyPolicyScopeArgs{...}
+type GetRolePolicyAttachmentsPolicyPolicyScopeInput interface {
+	pulumi.Input
+
+	ToGetRolePolicyAttachmentsPolicyPolicyScopeOutput() GetRolePolicyAttachmentsPolicyPolicyScopeOutput
+	ToGetRolePolicyAttachmentsPolicyPolicyScopeOutputWithContext(context.Context) GetRolePolicyAttachmentsPolicyPolicyScopeOutput
+}
+
+type GetRolePolicyAttachmentsPolicyPolicyScopeArgs struct {
+	// The attach date of the policy scope.
+	AttachDate pulumi.StringInput `pulumi:"attachDate"`
+	// The type of the policy scope.
+	PolicyScopeType pulumi.StringInput `pulumi:"policyScopeType"`
+	// The display name of the project.
+	ProjectDisplayName pulumi.StringInput `pulumi:"projectDisplayName"`
+	// The name of the project.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+}
+
+func (GetRolePolicyAttachmentsPolicyPolicyScopeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRolePolicyAttachmentsPolicyPolicyScope)(nil)).Elem()
+}
+
+func (i GetRolePolicyAttachmentsPolicyPolicyScopeArgs) ToGetRolePolicyAttachmentsPolicyPolicyScopeOutput() GetRolePolicyAttachmentsPolicyPolicyScopeOutput {
+	return i.ToGetRolePolicyAttachmentsPolicyPolicyScopeOutputWithContext(context.Background())
+}
+
+func (i GetRolePolicyAttachmentsPolicyPolicyScopeArgs) ToGetRolePolicyAttachmentsPolicyPolicyScopeOutputWithContext(ctx context.Context) GetRolePolicyAttachmentsPolicyPolicyScopeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRolePolicyAttachmentsPolicyPolicyScopeOutput)
+}
+
+// GetRolePolicyAttachmentsPolicyPolicyScopeArrayInput is an input type that accepts GetRolePolicyAttachmentsPolicyPolicyScopeArray and GetRolePolicyAttachmentsPolicyPolicyScopeArrayOutput values.
+// You can construct a concrete instance of `GetRolePolicyAttachmentsPolicyPolicyScopeArrayInput` via:
+//
+//	GetRolePolicyAttachmentsPolicyPolicyScopeArray{ GetRolePolicyAttachmentsPolicyPolicyScopeArgs{...} }
+type GetRolePolicyAttachmentsPolicyPolicyScopeArrayInput interface {
+	pulumi.Input
+
+	ToGetRolePolicyAttachmentsPolicyPolicyScopeArrayOutput() GetRolePolicyAttachmentsPolicyPolicyScopeArrayOutput
+	ToGetRolePolicyAttachmentsPolicyPolicyScopeArrayOutputWithContext(context.Context) GetRolePolicyAttachmentsPolicyPolicyScopeArrayOutput
+}
+
+type GetRolePolicyAttachmentsPolicyPolicyScopeArray []GetRolePolicyAttachmentsPolicyPolicyScopeInput
+
+func (GetRolePolicyAttachmentsPolicyPolicyScopeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRolePolicyAttachmentsPolicyPolicyScope)(nil)).Elem()
+}
+
+func (i GetRolePolicyAttachmentsPolicyPolicyScopeArray) ToGetRolePolicyAttachmentsPolicyPolicyScopeArrayOutput() GetRolePolicyAttachmentsPolicyPolicyScopeArrayOutput {
+	return i.ToGetRolePolicyAttachmentsPolicyPolicyScopeArrayOutputWithContext(context.Background())
+}
+
+func (i GetRolePolicyAttachmentsPolicyPolicyScopeArray) ToGetRolePolicyAttachmentsPolicyPolicyScopeArrayOutputWithContext(ctx context.Context) GetRolePolicyAttachmentsPolicyPolicyScopeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRolePolicyAttachmentsPolicyPolicyScopeArrayOutput)
+}
+
+type GetRolePolicyAttachmentsPolicyPolicyScopeOutput struct{ *pulumi.OutputState }
+
+func (GetRolePolicyAttachmentsPolicyPolicyScopeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRolePolicyAttachmentsPolicyPolicyScope)(nil)).Elem()
+}
+
+func (o GetRolePolicyAttachmentsPolicyPolicyScopeOutput) ToGetRolePolicyAttachmentsPolicyPolicyScopeOutput() GetRolePolicyAttachmentsPolicyPolicyScopeOutput {
+	return o
+}
+
+func (o GetRolePolicyAttachmentsPolicyPolicyScopeOutput) ToGetRolePolicyAttachmentsPolicyPolicyScopeOutputWithContext(ctx context.Context) GetRolePolicyAttachmentsPolicyPolicyScopeOutput {
+	return o
+}
+
+// The attach date of the policy scope.
+func (o GetRolePolicyAttachmentsPolicyPolicyScopeOutput) AttachDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRolePolicyAttachmentsPolicyPolicyScope) string { return v.AttachDate }).(pulumi.StringOutput)
+}
+
+// The type of the policy scope.
+func (o GetRolePolicyAttachmentsPolicyPolicyScopeOutput) PolicyScopeType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRolePolicyAttachmentsPolicyPolicyScope) string { return v.PolicyScopeType }).(pulumi.StringOutput)
+}
+
+// The display name of the project.
+func (o GetRolePolicyAttachmentsPolicyPolicyScopeOutput) ProjectDisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRolePolicyAttachmentsPolicyPolicyScope) string { return v.ProjectDisplayName }).(pulumi.StringOutput)
+}
+
+// The name of the project.
+func (o GetRolePolicyAttachmentsPolicyPolicyScopeOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRolePolicyAttachmentsPolicyPolicyScope) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+type GetRolePolicyAttachmentsPolicyPolicyScopeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRolePolicyAttachmentsPolicyPolicyScopeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRolePolicyAttachmentsPolicyPolicyScope)(nil)).Elem()
+}
+
+func (o GetRolePolicyAttachmentsPolicyPolicyScopeArrayOutput) ToGetRolePolicyAttachmentsPolicyPolicyScopeArrayOutput() GetRolePolicyAttachmentsPolicyPolicyScopeArrayOutput {
+	return o
+}
+
+func (o GetRolePolicyAttachmentsPolicyPolicyScopeArrayOutput) ToGetRolePolicyAttachmentsPolicyPolicyScopeArrayOutputWithContext(ctx context.Context) GetRolePolicyAttachmentsPolicyPolicyScopeArrayOutput {
+	return o
+}
+
+func (o GetRolePolicyAttachmentsPolicyPolicyScopeArrayOutput) Index(i pulumi.IntInput) GetRolePolicyAttachmentsPolicyPolicyScopeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRolePolicyAttachmentsPolicyPolicyScope {
+		return vs[0].([]GetRolePolicyAttachmentsPolicyPolicyScope)[vs[1].(int)]
+	}).(GetRolePolicyAttachmentsPolicyPolicyScopeOutput)
+}
+
 type GetRolesRole struct {
 	// The create time of the Role.
 	CreateDate string `pulumi:"createDate"`
 	// The description of the Role.
 	Description string `pulumi:"description"`
-	// The ID of the Role.
-	Id string `pulumi:"id"`
-	// The name of the Role, comma separated.
+	// The display name of the Role.
+	DisplayName string `pulumi:"displayName"`
+	// Whether the Role is a service linked role.
+	IsServiceLinkedRole int `pulumi:"isServiceLinkedRole"`
+	// The max session duration of the Role.
+	MaxSessionDuration int `pulumi:"maxSessionDuration"`
+	// The id of the Role.
+	RoleId int `pulumi:"roleId"`
+	// The name of the Role.
 	RoleName string `pulumi:"roleName"`
+	// Tags.
+	Tags []GetRolesRoleTag `pulumi:"tags"`
 	// The resource name of the Role.
 	Trn string `pulumi:"trn"`
 	// The trust policy document of the Role.
 	TrustPolicyDocument string `pulumi:"trustPolicyDocument"`
+	// The update time of the Role.
+	UpdateDate string `pulumi:"updateDate"`
 }
 
 // GetRolesRoleInput is an input type that accepts GetRolesRoleArgs and GetRolesRoleOutput values.
@@ -1813,14 +8487,24 @@ type GetRolesRoleArgs struct {
 	CreateDate pulumi.StringInput `pulumi:"createDate"`
 	// The description of the Role.
 	Description pulumi.StringInput `pulumi:"description"`
-	// The ID of the Role.
-	Id pulumi.StringInput `pulumi:"id"`
-	// The name of the Role, comma separated.
+	// The display name of the Role.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// Whether the Role is a service linked role.
+	IsServiceLinkedRole pulumi.IntInput `pulumi:"isServiceLinkedRole"`
+	// The max session duration of the Role.
+	MaxSessionDuration pulumi.IntInput `pulumi:"maxSessionDuration"`
+	// The id of the Role.
+	RoleId pulumi.IntInput `pulumi:"roleId"`
+	// The name of the Role.
 	RoleName pulumi.StringInput `pulumi:"roleName"`
+	// Tags.
+	Tags GetRolesRoleTagArrayInput `pulumi:"tags"`
 	// The resource name of the Role.
 	Trn pulumi.StringInput `pulumi:"trn"`
 	// The trust policy document of the Role.
 	TrustPolicyDocument pulumi.StringInput `pulumi:"trustPolicyDocument"`
+	// The update time of the Role.
+	UpdateDate pulumi.StringInput `pulumi:"updateDate"`
 }
 
 func (GetRolesRoleArgs) ElementType() reflect.Type {
@@ -1884,14 +8568,34 @@ func (o GetRolesRoleOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRolesRole) string { return v.Description }).(pulumi.StringOutput)
 }
 
-// The ID of the Role.
-func (o GetRolesRoleOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetRolesRole) string { return v.Id }).(pulumi.StringOutput)
+// The display name of the Role.
+func (o GetRolesRoleOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRolesRole) string { return v.DisplayName }).(pulumi.StringOutput)
 }
 
-// The name of the Role, comma separated.
+// Whether the Role is a service linked role.
+func (o GetRolesRoleOutput) IsServiceLinkedRole() pulumi.IntOutput {
+	return o.ApplyT(func(v GetRolesRole) int { return v.IsServiceLinkedRole }).(pulumi.IntOutput)
+}
+
+// The max session duration of the Role.
+func (o GetRolesRoleOutput) MaxSessionDuration() pulumi.IntOutput {
+	return o.ApplyT(func(v GetRolesRole) int { return v.MaxSessionDuration }).(pulumi.IntOutput)
+}
+
+// The id of the Role.
+func (o GetRolesRoleOutput) RoleId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetRolesRole) int { return v.RoleId }).(pulumi.IntOutput)
+}
+
+// The name of the Role.
 func (o GetRolesRoleOutput) RoleName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRolesRole) string { return v.RoleName }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o GetRolesRoleOutput) Tags() GetRolesRoleTagArrayOutput {
+	return o.ApplyT(func(v GetRolesRole) []GetRolesRoleTag { return v.Tags }).(GetRolesRoleTagArrayOutput)
 }
 
 // The resource name of the Role.
@@ -1902,6 +8606,11 @@ func (o GetRolesRoleOutput) Trn() pulumi.StringOutput {
 // The trust policy document of the Role.
 func (o GetRolesRoleOutput) TrustPolicyDocument() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRolesRole) string { return v.TrustPolicyDocument }).(pulumi.StringOutput)
+}
+
+// The update time of the Role.
+func (o GetRolesRoleOutput) UpdateDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRolesRole) string { return v.UpdateDate }).(pulumi.StringOutput)
 }
 
 type GetRolesRoleArrayOutput struct{ *pulumi.OutputState }
@@ -1922,6 +8631,112 @@ func (o GetRolesRoleArrayOutput) Index(i pulumi.IntInput) GetRolesRoleOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRolesRole {
 		return vs[0].([]GetRolesRole)[vs[1].(int)]
 	}).(GetRolesRoleOutput)
+}
+
+type GetRolesRoleTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetRolesRoleTagInput is an input type that accepts GetRolesRoleTagArgs and GetRolesRoleTagOutput values.
+// You can construct a concrete instance of `GetRolesRoleTagInput` via:
+//
+//	GetRolesRoleTagArgs{...}
+type GetRolesRoleTagInput interface {
+	pulumi.Input
+
+	ToGetRolesRoleTagOutput() GetRolesRoleTagOutput
+	ToGetRolesRoleTagOutputWithContext(context.Context) GetRolesRoleTagOutput
+}
+
+type GetRolesRoleTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetRolesRoleTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRolesRoleTag)(nil)).Elem()
+}
+
+func (i GetRolesRoleTagArgs) ToGetRolesRoleTagOutput() GetRolesRoleTagOutput {
+	return i.ToGetRolesRoleTagOutputWithContext(context.Background())
+}
+
+func (i GetRolesRoleTagArgs) ToGetRolesRoleTagOutputWithContext(ctx context.Context) GetRolesRoleTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRolesRoleTagOutput)
+}
+
+// GetRolesRoleTagArrayInput is an input type that accepts GetRolesRoleTagArray and GetRolesRoleTagArrayOutput values.
+// You can construct a concrete instance of `GetRolesRoleTagArrayInput` via:
+//
+//	GetRolesRoleTagArray{ GetRolesRoleTagArgs{...} }
+type GetRolesRoleTagArrayInput interface {
+	pulumi.Input
+
+	ToGetRolesRoleTagArrayOutput() GetRolesRoleTagArrayOutput
+	ToGetRolesRoleTagArrayOutputWithContext(context.Context) GetRolesRoleTagArrayOutput
+}
+
+type GetRolesRoleTagArray []GetRolesRoleTagInput
+
+func (GetRolesRoleTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRolesRoleTag)(nil)).Elem()
+}
+
+func (i GetRolesRoleTagArray) ToGetRolesRoleTagArrayOutput() GetRolesRoleTagArrayOutput {
+	return i.ToGetRolesRoleTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetRolesRoleTagArray) ToGetRolesRoleTagArrayOutputWithContext(ctx context.Context) GetRolesRoleTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRolesRoleTagArrayOutput)
+}
+
+type GetRolesRoleTagOutput struct{ *pulumi.OutputState }
+
+func (GetRolesRoleTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRolesRoleTag)(nil)).Elem()
+}
+
+func (o GetRolesRoleTagOutput) ToGetRolesRoleTagOutput() GetRolesRoleTagOutput {
+	return o
+}
+
+func (o GetRolesRoleTagOutput) ToGetRolesRoleTagOutputWithContext(ctx context.Context) GetRolesRoleTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetRolesRoleTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRolesRoleTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetRolesRoleTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRolesRoleTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetRolesRoleTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRolesRoleTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRolesRoleTag)(nil)).Elem()
+}
+
+func (o GetRolesRoleTagArrayOutput) ToGetRolesRoleTagArrayOutput() GetRolesRoleTagArrayOutput {
+	return o
+}
+
+func (o GetRolesRoleTagArrayOutput) ToGetRolesRoleTagArrayOutputWithContext(ctx context.Context) GetRolesRoleTagArrayOutput {
+	return o
+}
+
+func (o GetRolesRoleTagArrayOutput) Index(i pulumi.IntInput) GetRolesRoleTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRolesRoleTag {
+		return vs[0].([]GetRolesRoleTag)[vs[1].(int)]
+	}).(GetRolesRoleTagOutput)
 }
 
 type GetSamlProvidersProvider struct {
@@ -2084,13 +8899,405 @@ func (o GetSamlProvidersProviderArrayOutput) Index(i pulumi.IntInput) GetSamlPro
 	}).(GetSamlProvidersProviderOutput)
 }
 
+type GetSecurityConfigsSecurityConfig struct {
+	// The status of safe auth.
+	SafeAuthClose int `pulumi:"safeAuthClose"`
+	// The exempt duration of safe auth.
+	SafeAuthExemptDuration int `pulumi:"safeAuthExemptDuration"`
+	// The type of safe auth.
+	SafeAuthType string `pulumi:"safeAuthType"`
+	// The user id.
+	UserId int `pulumi:"userId"`
+	// The user name.
+	UserName string `pulumi:"userName"`
+}
+
+// GetSecurityConfigsSecurityConfigInput is an input type that accepts GetSecurityConfigsSecurityConfigArgs and GetSecurityConfigsSecurityConfigOutput values.
+// You can construct a concrete instance of `GetSecurityConfigsSecurityConfigInput` via:
+//
+//	GetSecurityConfigsSecurityConfigArgs{...}
+type GetSecurityConfigsSecurityConfigInput interface {
+	pulumi.Input
+
+	ToGetSecurityConfigsSecurityConfigOutput() GetSecurityConfigsSecurityConfigOutput
+	ToGetSecurityConfigsSecurityConfigOutputWithContext(context.Context) GetSecurityConfigsSecurityConfigOutput
+}
+
+type GetSecurityConfigsSecurityConfigArgs struct {
+	// The status of safe auth.
+	SafeAuthClose pulumi.IntInput `pulumi:"safeAuthClose"`
+	// The exempt duration of safe auth.
+	SafeAuthExemptDuration pulumi.IntInput `pulumi:"safeAuthExemptDuration"`
+	// The type of safe auth.
+	SafeAuthType pulumi.StringInput `pulumi:"safeAuthType"`
+	// The user id.
+	UserId pulumi.IntInput `pulumi:"userId"`
+	// The user name.
+	UserName pulumi.StringInput `pulumi:"userName"`
+}
+
+func (GetSecurityConfigsSecurityConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSecurityConfigsSecurityConfig)(nil)).Elem()
+}
+
+func (i GetSecurityConfigsSecurityConfigArgs) ToGetSecurityConfigsSecurityConfigOutput() GetSecurityConfigsSecurityConfigOutput {
+	return i.ToGetSecurityConfigsSecurityConfigOutputWithContext(context.Background())
+}
+
+func (i GetSecurityConfigsSecurityConfigArgs) ToGetSecurityConfigsSecurityConfigOutputWithContext(ctx context.Context) GetSecurityConfigsSecurityConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSecurityConfigsSecurityConfigOutput)
+}
+
+// GetSecurityConfigsSecurityConfigArrayInput is an input type that accepts GetSecurityConfigsSecurityConfigArray and GetSecurityConfigsSecurityConfigArrayOutput values.
+// You can construct a concrete instance of `GetSecurityConfigsSecurityConfigArrayInput` via:
+//
+//	GetSecurityConfigsSecurityConfigArray{ GetSecurityConfigsSecurityConfigArgs{...} }
+type GetSecurityConfigsSecurityConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetSecurityConfigsSecurityConfigArrayOutput() GetSecurityConfigsSecurityConfigArrayOutput
+	ToGetSecurityConfigsSecurityConfigArrayOutputWithContext(context.Context) GetSecurityConfigsSecurityConfigArrayOutput
+}
+
+type GetSecurityConfigsSecurityConfigArray []GetSecurityConfigsSecurityConfigInput
+
+func (GetSecurityConfigsSecurityConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSecurityConfigsSecurityConfig)(nil)).Elem()
+}
+
+func (i GetSecurityConfigsSecurityConfigArray) ToGetSecurityConfigsSecurityConfigArrayOutput() GetSecurityConfigsSecurityConfigArrayOutput {
+	return i.ToGetSecurityConfigsSecurityConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetSecurityConfigsSecurityConfigArray) ToGetSecurityConfigsSecurityConfigArrayOutputWithContext(ctx context.Context) GetSecurityConfigsSecurityConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSecurityConfigsSecurityConfigArrayOutput)
+}
+
+type GetSecurityConfigsSecurityConfigOutput struct{ *pulumi.OutputState }
+
+func (GetSecurityConfigsSecurityConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSecurityConfigsSecurityConfig)(nil)).Elem()
+}
+
+func (o GetSecurityConfigsSecurityConfigOutput) ToGetSecurityConfigsSecurityConfigOutput() GetSecurityConfigsSecurityConfigOutput {
+	return o
+}
+
+func (o GetSecurityConfigsSecurityConfigOutput) ToGetSecurityConfigsSecurityConfigOutputWithContext(ctx context.Context) GetSecurityConfigsSecurityConfigOutput {
+	return o
+}
+
+// The status of safe auth.
+func (o GetSecurityConfigsSecurityConfigOutput) SafeAuthClose() pulumi.IntOutput {
+	return o.ApplyT(func(v GetSecurityConfigsSecurityConfig) int { return v.SafeAuthClose }).(pulumi.IntOutput)
+}
+
+// The exempt duration of safe auth.
+func (o GetSecurityConfigsSecurityConfigOutput) SafeAuthExemptDuration() pulumi.IntOutput {
+	return o.ApplyT(func(v GetSecurityConfigsSecurityConfig) int { return v.SafeAuthExemptDuration }).(pulumi.IntOutput)
+}
+
+// The type of safe auth.
+func (o GetSecurityConfigsSecurityConfigOutput) SafeAuthType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSecurityConfigsSecurityConfig) string { return v.SafeAuthType }).(pulumi.StringOutput)
+}
+
+// The user id.
+func (o GetSecurityConfigsSecurityConfigOutput) UserId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetSecurityConfigsSecurityConfig) int { return v.UserId }).(pulumi.IntOutput)
+}
+
+// The user name.
+func (o GetSecurityConfigsSecurityConfigOutput) UserName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSecurityConfigsSecurityConfig) string { return v.UserName }).(pulumi.StringOutput)
+}
+
+type GetSecurityConfigsSecurityConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSecurityConfigsSecurityConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSecurityConfigsSecurityConfig)(nil)).Elem()
+}
+
+func (o GetSecurityConfigsSecurityConfigArrayOutput) ToGetSecurityConfigsSecurityConfigArrayOutput() GetSecurityConfigsSecurityConfigArrayOutput {
+	return o
+}
+
+func (o GetSecurityConfigsSecurityConfigArrayOutput) ToGetSecurityConfigsSecurityConfigArrayOutputWithContext(ctx context.Context) GetSecurityConfigsSecurityConfigArrayOutput {
+	return o
+}
+
+func (o GetSecurityConfigsSecurityConfigArrayOutput) Index(i pulumi.IntInput) GetSecurityConfigsSecurityConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSecurityConfigsSecurityConfig {
+		return vs[0].([]GetSecurityConfigsSecurityConfig)[vs[1].(int)]
+	}).(GetSecurityConfigsSecurityConfigOutput)
+}
+
+type GetTagsResourceTag struct {
+	// The name of the resource.
+	ResourceName string `pulumi:"resourceName"`
+	// The type of the resource. Valid values: User, Role.
+	ResourceType string `pulumi:"resourceType"`
+	// The key of the tag.
+	TagKey string `pulumi:"tagKey"`
+	// The value of the tag.
+	TagValue string `pulumi:"tagValue"`
+}
+
+// GetTagsResourceTagInput is an input type that accepts GetTagsResourceTagArgs and GetTagsResourceTagOutput values.
+// You can construct a concrete instance of `GetTagsResourceTagInput` via:
+//
+//	GetTagsResourceTagArgs{...}
+type GetTagsResourceTagInput interface {
+	pulumi.Input
+
+	ToGetTagsResourceTagOutput() GetTagsResourceTagOutput
+	ToGetTagsResourceTagOutputWithContext(context.Context) GetTagsResourceTagOutput
+}
+
+type GetTagsResourceTagArgs struct {
+	// The name of the resource.
+	ResourceName pulumi.StringInput `pulumi:"resourceName"`
+	// The type of the resource. Valid values: User, Role.
+	ResourceType pulumi.StringInput `pulumi:"resourceType"`
+	// The key of the tag.
+	TagKey pulumi.StringInput `pulumi:"tagKey"`
+	// The value of the tag.
+	TagValue pulumi.StringInput `pulumi:"tagValue"`
+}
+
+func (GetTagsResourceTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTagsResourceTag)(nil)).Elem()
+}
+
+func (i GetTagsResourceTagArgs) ToGetTagsResourceTagOutput() GetTagsResourceTagOutput {
+	return i.ToGetTagsResourceTagOutputWithContext(context.Background())
+}
+
+func (i GetTagsResourceTagArgs) ToGetTagsResourceTagOutputWithContext(ctx context.Context) GetTagsResourceTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTagsResourceTagOutput)
+}
+
+// GetTagsResourceTagArrayInput is an input type that accepts GetTagsResourceTagArray and GetTagsResourceTagArrayOutput values.
+// You can construct a concrete instance of `GetTagsResourceTagArrayInput` via:
+//
+//	GetTagsResourceTagArray{ GetTagsResourceTagArgs{...} }
+type GetTagsResourceTagArrayInput interface {
+	pulumi.Input
+
+	ToGetTagsResourceTagArrayOutput() GetTagsResourceTagArrayOutput
+	ToGetTagsResourceTagArrayOutputWithContext(context.Context) GetTagsResourceTagArrayOutput
+}
+
+type GetTagsResourceTagArray []GetTagsResourceTagInput
+
+func (GetTagsResourceTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTagsResourceTag)(nil)).Elem()
+}
+
+func (i GetTagsResourceTagArray) ToGetTagsResourceTagArrayOutput() GetTagsResourceTagArrayOutput {
+	return i.ToGetTagsResourceTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetTagsResourceTagArray) ToGetTagsResourceTagArrayOutputWithContext(ctx context.Context) GetTagsResourceTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTagsResourceTagArrayOutput)
+}
+
+type GetTagsResourceTagOutput struct{ *pulumi.OutputState }
+
+func (GetTagsResourceTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTagsResourceTag)(nil)).Elem()
+}
+
+func (o GetTagsResourceTagOutput) ToGetTagsResourceTagOutput() GetTagsResourceTagOutput {
+	return o
+}
+
+func (o GetTagsResourceTagOutput) ToGetTagsResourceTagOutputWithContext(ctx context.Context) GetTagsResourceTagOutput {
+	return o
+}
+
+// The name of the resource.
+func (o GetTagsResourceTagOutput) ResourceName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTagsResourceTag) string { return v.ResourceName }).(pulumi.StringOutput)
+}
+
+// The type of the resource. Valid values: User, Role.
+func (o GetTagsResourceTagOutput) ResourceType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTagsResourceTag) string { return v.ResourceType }).(pulumi.StringOutput)
+}
+
+// The key of the tag.
+func (o GetTagsResourceTagOutput) TagKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTagsResourceTag) string { return v.TagKey }).(pulumi.StringOutput)
+}
+
+// The value of the tag.
+func (o GetTagsResourceTagOutput) TagValue() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTagsResourceTag) string { return v.TagValue }).(pulumi.StringOutput)
+}
+
+type GetTagsResourceTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTagsResourceTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTagsResourceTag)(nil)).Elem()
+}
+
+func (o GetTagsResourceTagArrayOutput) ToGetTagsResourceTagArrayOutput() GetTagsResourceTagArrayOutput {
+	return o
+}
+
+func (o GetTagsResourceTagArrayOutput) ToGetTagsResourceTagArrayOutputWithContext(ctx context.Context) GetTagsResourceTagArrayOutput {
+	return o
+}
+
+func (o GetTagsResourceTagArrayOutput) Index(i pulumi.IntInput) GetTagsResourceTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTagsResourceTag {
+		return vs[0].([]GetTagsResourceTag)[vs[1].(int)]
+	}).(GetTagsResourceTagOutput)
+}
+
+type GetUserGroupAttachmentsUser struct {
+	// The description of the user.
+	Description string `pulumi:"description"`
+	// The display name of the user.
+	DisplayName string `pulumi:"displayName"`
+	// The join date of the user.
+	JoinDate string `pulumi:"joinDate"`
+	// The id of the user.
+	UserId int `pulumi:"userId"`
+	// The name of the user.
+	UserName string `pulumi:"userName"`
+}
+
+// GetUserGroupAttachmentsUserInput is an input type that accepts GetUserGroupAttachmentsUserArgs and GetUserGroupAttachmentsUserOutput values.
+// You can construct a concrete instance of `GetUserGroupAttachmentsUserInput` via:
+//
+//	GetUserGroupAttachmentsUserArgs{...}
+type GetUserGroupAttachmentsUserInput interface {
+	pulumi.Input
+
+	ToGetUserGroupAttachmentsUserOutput() GetUserGroupAttachmentsUserOutput
+	ToGetUserGroupAttachmentsUserOutputWithContext(context.Context) GetUserGroupAttachmentsUserOutput
+}
+
+type GetUserGroupAttachmentsUserArgs struct {
+	// The description of the user.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The display name of the user.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The join date of the user.
+	JoinDate pulumi.StringInput `pulumi:"joinDate"`
+	// The id of the user.
+	UserId pulumi.IntInput `pulumi:"userId"`
+	// The name of the user.
+	UserName pulumi.StringInput `pulumi:"userName"`
+}
+
+func (GetUserGroupAttachmentsUserArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUserGroupAttachmentsUser)(nil)).Elem()
+}
+
+func (i GetUserGroupAttachmentsUserArgs) ToGetUserGroupAttachmentsUserOutput() GetUserGroupAttachmentsUserOutput {
+	return i.ToGetUserGroupAttachmentsUserOutputWithContext(context.Background())
+}
+
+func (i GetUserGroupAttachmentsUserArgs) ToGetUserGroupAttachmentsUserOutputWithContext(ctx context.Context) GetUserGroupAttachmentsUserOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUserGroupAttachmentsUserOutput)
+}
+
+// GetUserGroupAttachmentsUserArrayInput is an input type that accepts GetUserGroupAttachmentsUserArray and GetUserGroupAttachmentsUserArrayOutput values.
+// You can construct a concrete instance of `GetUserGroupAttachmentsUserArrayInput` via:
+//
+//	GetUserGroupAttachmentsUserArray{ GetUserGroupAttachmentsUserArgs{...} }
+type GetUserGroupAttachmentsUserArrayInput interface {
+	pulumi.Input
+
+	ToGetUserGroupAttachmentsUserArrayOutput() GetUserGroupAttachmentsUserArrayOutput
+	ToGetUserGroupAttachmentsUserArrayOutputWithContext(context.Context) GetUserGroupAttachmentsUserArrayOutput
+}
+
+type GetUserGroupAttachmentsUserArray []GetUserGroupAttachmentsUserInput
+
+func (GetUserGroupAttachmentsUserArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetUserGroupAttachmentsUser)(nil)).Elem()
+}
+
+func (i GetUserGroupAttachmentsUserArray) ToGetUserGroupAttachmentsUserArrayOutput() GetUserGroupAttachmentsUserArrayOutput {
+	return i.ToGetUserGroupAttachmentsUserArrayOutputWithContext(context.Background())
+}
+
+func (i GetUserGroupAttachmentsUserArray) ToGetUserGroupAttachmentsUserArrayOutputWithContext(ctx context.Context) GetUserGroupAttachmentsUserArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUserGroupAttachmentsUserArrayOutput)
+}
+
+type GetUserGroupAttachmentsUserOutput struct{ *pulumi.OutputState }
+
+func (GetUserGroupAttachmentsUserOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUserGroupAttachmentsUser)(nil)).Elem()
+}
+
+func (o GetUserGroupAttachmentsUserOutput) ToGetUserGroupAttachmentsUserOutput() GetUserGroupAttachmentsUserOutput {
+	return o
+}
+
+func (o GetUserGroupAttachmentsUserOutput) ToGetUserGroupAttachmentsUserOutputWithContext(ctx context.Context) GetUserGroupAttachmentsUserOutput {
+	return o
+}
+
+// The description of the user.
+func (o GetUserGroupAttachmentsUserOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserGroupAttachmentsUser) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The display name of the user.
+func (o GetUserGroupAttachmentsUserOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserGroupAttachmentsUser) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The join date of the user.
+func (o GetUserGroupAttachmentsUserOutput) JoinDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserGroupAttachmentsUser) string { return v.JoinDate }).(pulumi.StringOutput)
+}
+
+// The id of the user.
+func (o GetUserGroupAttachmentsUserOutput) UserId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetUserGroupAttachmentsUser) int { return v.UserId }).(pulumi.IntOutput)
+}
+
+// The name of the user.
+func (o GetUserGroupAttachmentsUserOutput) UserName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserGroupAttachmentsUser) string { return v.UserName }).(pulumi.StringOutput)
+}
+
+type GetUserGroupAttachmentsUserArrayOutput struct{ *pulumi.OutputState }
+
+func (GetUserGroupAttachmentsUserArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetUserGroupAttachmentsUser)(nil)).Elem()
+}
+
+func (o GetUserGroupAttachmentsUserArrayOutput) ToGetUserGroupAttachmentsUserArrayOutput() GetUserGroupAttachmentsUserArrayOutput {
+	return o
+}
+
+func (o GetUserGroupAttachmentsUserArrayOutput) ToGetUserGroupAttachmentsUserArrayOutputWithContext(ctx context.Context) GetUserGroupAttachmentsUserArrayOutput {
+	return o
+}
+
+func (o GetUserGroupAttachmentsUserArrayOutput) Index(i pulumi.IntInput) GetUserGroupAttachmentsUserOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetUserGroupAttachmentsUser {
+		return vs[0].([]GetUserGroupAttachmentsUser)[vs[1].(int)]
+	}).(GetUserGroupAttachmentsUserOutput)
+}
+
 type GetUserGroupPolicyAttachmentsPolicy struct {
-	// Attached time.
+	// The attach date of the policy scope.
 	AttachDate string `pulumi:"attachDate"`
 	// The description.
 	Description string `pulumi:"description"`
 	// Name of the policy.
 	PolicyName string `pulumi:"policyName"`
+	// The scope of the policy.
+	PolicyScopes []GetUserGroupPolicyAttachmentsPolicyPolicyScope `pulumi:"policyScopes"`
 	// Resource name of the strategy.
 	PolicyTrn string `pulumi:"policyTrn"`
 	// The type of the policy.
@@ -2109,12 +9316,14 @@ type GetUserGroupPolicyAttachmentsPolicyInput interface {
 }
 
 type GetUserGroupPolicyAttachmentsPolicyArgs struct {
-	// Attached time.
+	// The attach date of the policy scope.
 	AttachDate pulumi.StringInput `pulumi:"attachDate"`
 	// The description.
 	Description pulumi.StringInput `pulumi:"description"`
 	// Name of the policy.
 	PolicyName pulumi.StringInput `pulumi:"policyName"`
+	// The scope of the policy.
+	PolicyScopes GetUserGroupPolicyAttachmentsPolicyPolicyScopeArrayInput `pulumi:"policyScopes"`
 	// Resource name of the strategy.
 	PolicyTrn pulumi.StringInput `pulumi:"policyTrn"`
 	// The type of the policy.
@@ -2172,7 +9381,7 @@ func (o GetUserGroupPolicyAttachmentsPolicyOutput) ToGetUserGroupPolicyAttachmen
 	return o
 }
 
-// Attached time.
+// The attach date of the policy scope.
 func (o GetUserGroupPolicyAttachmentsPolicyOutput) AttachDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetUserGroupPolicyAttachmentsPolicy) string { return v.AttachDate }).(pulumi.StringOutput)
 }
@@ -2185,6 +9394,13 @@ func (o GetUserGroupPolicyAttachmentsPolicyOutput) Description() pulumi.StringOu
 // Name of the policy.
 func (o GetUserGroupPolicyAttachmentsPolicyOutput) PolicyName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetUserGroupPolicyAttachmentsPolicy) string { return v.PolicyName }).(pulumi.StringOutput)
+}
+
+// The scope of the policy.
+func (o GetUserGroupPolicyAttachmentsPolicyOutput) PolicyScopes() GetUserGroupPolicyAttachmentsPolicyPolicyScopeArrayOutput {
+	return o.ApplyT(func(v GetUserGroupPolicyAttachmentsPolicy) []GetUserGroupPolicyAttachmentsPolicyPolicyScope {
+		return v.PolicyScopes
+	}).(GetUserGroupPolicyAttachmentsPolicyPolicyScopeArrayOutput)
 }
 
 // Resource name of the strategy.
@@ -2217,6 +9433,130 @@ func (o GetUserGroupPolicyAttachmentsPolicyArrayOutput) Index(i pulumi.IntInput)
 	}).(GetUserGroupPolicyAttachmentsPolicyOutput)
 }
 
+type GetUserGroupPolicyAttachmentsPolicyPolicyScope struct {
+	// The attach date of the policy scope.
+	AttachDate string `pulumi:"attachDate"`
+	// The type of the policy scope.
+	PolicyScopeType string `pulumi:"policyScopeType"`
+	// The display name of the project.
+	ProjectDisplayName string `pulumi:"projectDisplayName"`
+	// The name of the project.
+	ProjectName string `pulumi:"projectName"`
+}
+
+// GetUserGroupPolicyAttachmentsPolicyPolicyScopeInput is an input type that accepts GetUserGroupPolicyAttachmentsPolicyPolicyScopeArgs and GetUserGroupPolicyAttachmentsPolicyPolicyScopeOutput values.
+// You can construct a concrete instance of `GetUserGroupPolicyAttachmentsPolicyPolicyScopeInput` via:
+//
+//	GetUserGroupPolicyAttachmentsPolicyPolicyScopeArgs{...}
+type GetUserGroupPolicyAttachmentsPolicyPolicyScopeInput interface {
+	pulumi.Input
+
+	ToGetUserGroupPolicyAttachmentsPolicyPolicyScopeOutput() GetUserGroupPolicyAttachmentsPolicyPolicyScopeOutput
+	ToGetUserGroupPolicyAttachmentsPolicyPolicyScopeOutputWithContext(context.Context) GetUserGroupPolicyAttachmentsPolicyPolicyScopeOutput
+}
+
+type GetUserGroupPolicyAttachmentsPolicyPolicyScopeArgs struct {
+	// The attach date of the policy scope.
+	AttachDate pulumi.StringInput `pulumi:"attachDate"`
+	// The type of the policy scope.
+	PolicyScopeType pulumi.StringInput `pulumi:"policyScopeType"`
+	// The display name of the project.
+	ProjectDisplayName pulumi.StringInput `pulumi:"projectDisplayName"`
+	// The name of the project.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+}
+
+func (GetUserGroupPolicyAttachmentsPolicyPolicyScopeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUserGroupPolicyAttachmentsPolicyPolicyScope)(nil)).Elem()
+}
+
+func (i GetUserGroupPolicyAttachmentsPolicyPolicyScopeArgs) ToGetUserGroupPolicyAttachmentsPolicyPolicyScopeOutput() GetUserGroupPolicyAttachmentsPolicyPolicyScopeOutput {
+	return i.ToGetUserGroupPolicyAttachmentsPolicyPolicyScopeOutputWithContext(context.Background())
+}
+
+func (i GetUserGroupPolicyAttachmentsPolicyPolicyScopeArgs) ToGetUserGroupPolicyAttachmentsPolicyPolicyScopeOutputWithContext(ctx context.Context) GetUserGroupPolicyAttachmentsPolicyPolicyScopeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUserGroupPolicyAttachmentsPolicyPolicyScopeOutput)
+}
+
+// GetUserGroupPolicyAttachmentsPolicyPolicyScopeArrayInput is an input type that accepts GetUserGroupPolicyAttachmentsPolicyPolicyScopeArray and GetUserGroupPolicyAttachmentsPolicyPolicyScopeArrayOutput values.
+// You can construct a concrete instance of `GetUserGroupPolicyAttachmentsPolicyPolicyScopeArrayInput` via:
+//
+//	GetUserGroupPolicyAttachmentsPolicyPolicyScopeArray{ GetUserGroupPolicyAttachmentsPolicyPolicyScopeArgs{...} }
+type GetUserGroupPolicyAttachmentsPolicyPolicyScopeArrayInput interface {
+	pulumi.Input
+
+	ToGetUserGroupPolicyAttachmentsPolicyPolicyScopeArrayOutput() GetUserGroupPolicyAttachmentsPolicyPolicyScopeArrayOutput
+	ToGetUserGroupPolicyAttachmentsPolicyPolicyScopeArrayOutputWithContext(context.Context) GetUserGroupPolicyAttachmentsPolicyPolicyScopeArrayOutput
+}
+
+type GetUserGroupPolicyAttachmentsPolicyPolicyScopeArray []GetUserGroupPolicyAttachmentsPolicyPolicyScopeInput
+
+func (GetUserGroupPolicyAttachmentsPolicyPolicyScopeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetUserGroupPolicyAttachmentsPolicyPolicyScope)(nil)).Elem()
+}
+
+func (i GetUserGroupPolicyAttachmentsPolicyPolicyScopeArray) ToGetUserGroupPolicyAttachmentsPolicyPolicyScopeArrayOutput() GetUserGroupPolicyAttachmentsPolicyPolicyScopeArrayOutput {
+	return i.ToGetUserGroupPolicyAttachmentsPolicyPolicyScopeArrayOutputWithContext(context.Background())
+}
+
+func (i GetUserGroupPolicyAttachmentsPolicyPolicyScopeArray) ToGetUserGroupPolicyAttachmentsPolicyPolicyScopeArrayOutputWithContext(ctx context.Context) GetUserGroupPolicyAttachmentsPolicyPolicyScopeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUserGroupPolicyAttachmentsPolicyPolicyScopeArrayOutput)
+}
+
+type GetUserGroupPolicyAttachmentsPolicyPolicyScopeOutput struct{ *pulumi.OutputState }
+
+func (GetUserGroupPolicyAttachmentsPolicyPolicyScopeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUserGroupPolicyAttachmentsPolicyPolicyScope)(nil)).Elem()
+}
+
+func (o GetUserGroupPolicyAttachmentsPolicyPolicyScopeOutput) ToGetUserGroupPolicyAttachmentsPolicyPolicyScopeOutput() GetUserGroupPolicyAttachmentsPolicyPolicyScopeOutput {
+	return o
+}
+
+func (o GetUserGroupPolicyAttachmentsPolicyPolicyScopeOutput) ToGetUserGroupPolicyAttachmentsPolicyPolicyScopeOutputWithContext(ctx context.Context) GetUserGroupPolicyAttachmentsPolicyPolicyScopeOutput {
+	return o
+}
+
+// The attach date of the policy scope.
+func (o GetUserGroupPolicyAttachmentsPolicyPolicyScopeOutput) AttachDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserGroupPolicyAttachmentsPolicyPolicyScope) string { return v.AttachDate }).(pulumi.StringOutput)
+}
+
+// The type of the policy scope.
+func (o GetUserGroupPolicyAttachmentsPolicyPolicyScopeOutput) PolicyScopeType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserGroupPolicyAttachmentsPolicyPolicyScope) string { return v.PolicyScopeType }).(pulumi.StringOutput)
+}
+
+// The display name of the project.
+func (o GetUserGroupPolicyAttachmentsPolicyPolicyScopeOutput) ProjectDisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserGroupPolicyAttachmentsPolicyPolicyScope) string { return v.ProjectDisplayName }).(pulumi.StringOutput)
+}
+
+// The name of the project.
+func (o GetUserGroupPolicyAttachmentsPolicyPolicyScopeOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserGroupPolicyAttachmentsPolicyPolicyScope) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+type GetUserGroupPolicyAttachmentsPolicyPolicyScopeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetUserGroupPolicyAttachmentsPolicyPolicyScopeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetUserGroupPolicyAttachmentsPolicyPolicyScope)(nil)).Elem()
+}
+
+func (o GetUserGroupPolicyAttachmentsPolicyPolicyScopeArrayOutput) ToGetUserGroupPolicyAttachmentsPolicyPolicyScopeArrayOutput() GetUserGroupPolicyAttachmentsPolicyPolicyScopeArrayOutput {
+	return o
+}
+
+func (o GetUserGroupPolicyAttachmentsPolicyPolicyScopeArrayOutput) ToGetUserGroupPolicyAttachmentsPolicyPolicyScopeArrayOutputWithContext(ctx context.Context) GetUserGroupPolicyAttachmentsPolicyPolicyScopeArrayOutput {
+	return o
+}
+
+func (o GetUserGroupPolicyAttachmentsPolicyPolicyScopeArrayOutput) Index(i pulumi.IntInput) GetUserGroupPolicyAttachmentsPolicyPolicyScopeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetUserGroupPolicyAttachmentsPolicyPolicyScope {
+		return vs[0].([]GetUserGroupPolicyAttachmentsPolicyPolicyScope)[vs[1].(int)]
+	}).(GetUserGroupPolicyAttachmentsPolicyPolicyScopeOutput)
+}
+
 type GetUserGroupsUserGroup struct {
 	// The id of the account.
 	AccountId int `pulumi:"accountId"`
@@ -2228,6 +9568,8 @@ type GetUserGroupsUserGroup struct {
 	DisplayName string `pulumi:"displayName"`
 	// The update date of the user group.
 	UpdateDate string `pulumi:"updateDate"`
+	// The id of the user group.
+	UserGroupId int `pulumi:"userGroupId"`
 	// The name of the user group.
 	UserGroupName string `pulumi:"userGroupName"`
 }
@@ -2254,6 +9596,8 @@ type GetUserGroupsUserGroupArgs struct {
 	DisplayName pulumi.StringInput `pulumi:"displayName"`
 	// The update date of the user group.
 	UpdateDate pulumi.StringInput `pulumi:"updateDate"`
+	// The id of the user group.
+	UserGroupId pulumi.IntInput `pulumi:"userGroupId"`
 	// The name of the user group.
 	UserGroupName pulumi.StringInput `pulumi:"userGroupName"`
 }
@@ -2334,6 +9678,11 @@ func (o GetUserGroupsUserGroupOutput) UpdateDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetUserGroupsUserGroup) string { return v.UpdateDate }).(pulumi.StringOutput)
 }
 
+// The id of the user group.
+func (o GetUserGroupsUserGroupOutput) UserGroupId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetUserGroupsUserGroup) int { return v.UserGroupId }).(pulumi.IntOutput)
+}
+
 // The name of the user group.
 func (o GetUserGroupsUserGroupOutput) UserGroupName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetUserGroupsUserGroup) string { return v.UserGroupName }).(pulumi.StringOutput)
@@ -2359,6 +9708,274 @@ func (o GetUserGroupsUserGroupArrayOutput) Index(i pulumi.IntInput) GetUserGroup
 	}).(GetUserGroupsUserGroupOutput)
 }
 
+type GetUserPolicyAttachmentsPolicy struct {
+	// The attach date of the policy scope.
+	AttachDate string `pulumi:"attachDate"`
+	// The description of the policy.
+	Description string `pulumi:"description"`
+	// The name of the policy.
+	PolicyName string `pulumi:"policyName"`
+	// The scope of the policy.
+	PolicyScopes []GetUserPolicyAttachmentsPolicyPolicyScope `pulumi:"policyScopes"`
+	// The trn of the policy.
+	PolicyTrn string `pulumi:"policyTrn"`
+	// The type of the policy.
+	PolicyType string `pulumi:"policyType"`
+}
+
+// GetUserPolicyAttachmentsPolicyInput is an input type that accepts GetUserPolicyAttachmentsPolicyArgs and GetUserPolicyAttachmentsPolicyOutput values.
+// You can construct a concrete instance of `GetUserPolicyAttachmentsPolicyInput` via:
+//
+//	GetUserPolicyAttachmentsPolicyArgs{...}
+type GetUserPolicyAttachmentsPolicyInput interface {
+	pulumi.Input
+
+	ToGetUserPolicyAttachmentsPolicyOutput() GetUserPolicyAttachmentsPolicyOutput
+	ToGetUserPolicyAttachmentsPolicyOutputWithContext(context.Context) GetUserPolicyAttachmentsPolicyOutput
+}
+
+type GetUserPolicyAttachmentsPolicyArgs struct {
+	// The attach date of the policy scope.
+	AttachDate pulumi.StringInput `pulumi:"attachDate"`
+	// The description of the policy.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The name of the policy.
+	PolicyName pulumi.StringInput `pulumi:"policyName"`
+	// The scope of the policy.
+	PolicyScopes GetUserPolicyAttachmentsPolicyPolicyScopeArrayInput `pulumi:"policyScopes"`
+	// The trn of the policy.
+	PolicyTrn pulumi.StringInput `pulumi:"policyTrn"`
+	// The type of the policy.
+	PolicyType pulumi.StringInput `pulumi:"policyType"`
+}
+
+func (GetUserPolicyAttachmentsPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUserPolicyAttachmentsPolicy)(nil)).Elem()
+}
+
+func (i GetUserPolicyAttachmentsPolicyArgs) ToGetUserPolicyAttachmentsPolicyOutput() GetUserPolicyAttachmentsPolicyOutput {
+	return i.ToGetUserPolicyAttachmentsPolicyOutputWithContext(context.Background())
+}
+
+func (i GetUserPolicyAttachmentsPolicyArgs) ToGetUserPolicyAttachmentsPolicyOutputWithContext(ctx context.Context) GetUserPolicyAttachmentsPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUserPolicyAttachmentsPolicyOutput)
+}
+
+// GetUserPolicyAttachmentsPolicyArrayInput is an input type that accepts GetUserPolicyAttachmentsPolicyArray and GetUserPolicyAttachmentsPolicyArrayOutput values.
+// You can construct a concrete instance of `GetUserPolicyAttachmentsPolicyArrayInput` via:
+//
+//	GetUserPolicyAttachmentsPolicyArray{ GetUserPolicyAttachmentsPolicyArgs{...} }
+type GetUserPolicyAttachmentsPolicyArrayInput interface {
+	pulumi.Input
+
+	ToGetUserPolicyAttachmentsPolicyArrayOutput() GetUserPolicyAttachmentsPolicyArrayOutput
+	ToGetUserPolicyAttachmentsPolicyArrayOutputWithContext(context.Context) GetUserPolicyAttachmentsPolicyArrayOutput
+}
+
+type GetUserPolicyAttachmentsPolicyArray []GetUserPolicyAttachmentsPolicyInput
+
+func (GetUserPolicyAttachmentsPolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetUserPolicyAttachmentsPolicy)(nil)).Elem()
+}
+
+func (i GetUserPolicyAttachmentsPolicyArray) ToGetUserPolicyAttachmentsPolicyArrayOutput() GetUserPolicyAttachmentsPolicyArrayOutput {
+	return i.ToGetUserPolicyAttachmentsPolicyArrayOutputWithContext(context.Background())
+}
+
+func (i GetUserPolicyAttachmentsPolicyArray) ToGetUserPolicyAttachmentsPolicyArrayOutputWithContext(ctx context.Context) GetUserPolicyAttachmentsPolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUserPolicyAttachmentsPolicyArrayOutput)
+}
+
+type GetUserPolicyAttachmentsPolicyOutput struct{ *pulumi.OutputState }
+
+func (GetUserPolicyAttachmentsPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUserPolicyAttachmentsPolicy)(nil)).Elem()
+}
+
+func (o GetUserPolicyAttachmentsPolicyOutput) ToGetUserPolicyAttachmentsPolicyOutput() GetUserPolicyAttachmentsPolicyOutput {
+	return o
+}
+
+func (o GetUserPolicyAttachmentsPolicyOutput) ToGetUserPolicyAttachmentsPolicyOutputWithContext(ctx context.Context) GetUserPolicyAttachmentsPolicyOutput {
+	return o
+}
+
+// The attach date of the policy scope.
+func (o GetUserPolicyAttachmentsPolicyOutput) AttachDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserPolicyAttachmentsPolicy) string { return v.AttachDate }).(pulumi.StringOutput)
+}
+
+// The description of the policy.
+func (o GetUserPolicyAttachmentsPolicyOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserPolicyAttachmentsPolicy) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The name of the policy.
+func (o GetUserPolicyAttachmentsPolicyOutput) PolicyName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserPolicyAttachmentsPolicy) string { return v.PolicyName }).(pulumi.StringOutput)
+}
+
+// The scope of the policy.
+func (o GetUserPolicyAttachmentsPolicyOutput) PolicyScopes() GetUserPolicyAttachmentsPolicyPolicyScopeArrayOutput {
+	return o.ApplyT(func(v GetUserPolicyAttachmentsPolicy) []GetUserPolicyAttachmentsPolicyPolicyScope {
+		return v.PolicyScopes
+	}).(GetUserPolicyAttachmentsPolicyPolicyScopeArrayOutput)
+}
+
+// The trn of the policy.
+func (o GetUserPolicyAttachmentsPolicyOutput) PolicyTrn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserPolicyAttachmentsPolicy) string { return v.PolicyTrn }).(pulumi.StringOutput)
+}
+
+// The type of the policy.
+func (o GetUserPolicyAttachmentsPolicyOutput) PolicyType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserPolicyAttachmentsPolicy) string { return v.PolicyType }).(pulumi.StringOutput)
+}
+
+type GetUserPolicyAttachmentsPolicyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetUserPolicyAttachmentsPolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetUserPolicyAttachmentsPolicy)(nil)).Elem()
+}
+
+func (o GetUserPolicyAttachmentsPolicyArrayOutput) ToGetUserPolicyAttachmentsPolicyArrayOutput() GetUserPolicyAttachmentsPolicyArrayOutput {
+	return o
+}
+
+func (o GetUserPolicyAttachmentsPolicyArrayOutput) ToGetUserPolicyAttachmentsPolicyArrayOutputWithContext(ctx context.Context) GetUserPolicyAttachmentsPolicyArrayOutput {
+	return o
+}
+
+func (o GetUserPolicyAttachmentsPolicyArrayOutput) Index(i pulumi.IntInput) GetUserPolicyAttachmentsPolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetUserPolicyAttachmentsPolicy {
+		return vs[0].([]GetUserPolicyAttachmentsPolicy)[vs[1].(int)]
+	}).(GetUserPolicyAttachmentsPolicyOutput)
+}
+
+type GetUserPolicyAttachmentsPolicyPolicyScope struct {
+	// The attach date of the policy scope.
+	AttachDate string `pulumi:"attachDate"`
+	// The type of the policy scope.
+	PolicyScopeType string `pulumi:"policyScopeType"`
+	// The display name of the project.
+	ProjectDisplayName string `pulumi:"projectDisplayName"`
+	// The name of the project.
+	ProjectName string `pulumi:"projectName"`
+}
+
+// GetUserPolicyAttachmentsPolicyPolicyScopeInput is an input type that accepts GetUserPolicyAttachmentsPolicyPolicyScopeArgs and GetUserPolicyAttachmentsPolicyPolicyScopeOutput values.
+// You can construct a concrete instance of `GetUserPolicyAttachmentsPolicyPolicyScopeInput` via:
+//
+//	GetUserPolicyAttachmentsPolicyPolicyScopeArgs{...}
+type GetUserPolicyAttachmentsPolicyPolicyScopeInput interface {
+	pulumi.Input
+
+	ToGetUserPolicyAttachmentsPolicyPolicyScopeOutput() GetUserPolicyAttachmentsPolicyPolicyScopeOutput
+	ToGetUserPolicyAttachmentsPolicyPolicyScopeOutputWithContext(context.Context) GetUserPolicyAttachmentsPolicyPolicyScopeOutput
+}
+
+type GetUserPolicyAttachmentsPolicyPolicyScopeArgs struct {
+	// The attach date of the policy scope.
+	AttachDate pulumi.StringInput `pulumi:"attachDate"`
+	// The type of the policy scope.
+	PolicyScopeType pulumi.StringInput `pulumi:"policyScopeType"`
+	// The display name of the project.
+	ProjectDisplayName pulumi.StringInput `pulumi:"projectDisplayName"`
+	// The name of the project.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+}
+
+func (GetUserPolicyAttachmentsPolicyPolicyScopeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUserPolicyAttachmentsPolicyPolicyScope)(nil)).Elem()
+}
+
+func (i GetUserPolicyAttachmentsPolicyPolicyScopeArgs) ToGetUserPolicyAttachmentsPolicyPolicyScopeOutput() GetUserPolicyAttachmentsPolicyPolicyScopeOutput {
+	return i.ToGetUserPolicyAttachmentsPolicyPolicyScopeOutputWithContext(context.Background())
+}
+
+func (i GetUserPolicyAttachmentsPolicyPolicyScopeArgs) ToGetUserPolicyAttachmentsPolicyPolicyScopeOutputWithContext(ctx context.Context) GetUserPolicyAttachmentsPolicyPolicyScopeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUserPolicyAttachmentsPolicyPolicyScopeOutput)
+}
+
+// GetUserPolicyAttachmentsPolicyPolicyScopeArrayInput is an input type that accepts GetUserPolicyAttachmentsPolicyPolicyScopeArray and GetUserPolicyAttachmentsPolicyPolicyScopeArrayOutput values.
+// You can construct a concrete instance of `GetUserPolicyAttachmentsPolicyPolicyScopeArrayInput` via:
+//
+//	GetUserPolicyAttachmentsPolicyPolicyScopeArray{ GetUserPolicyAttachmentsPolicyPolicyScopeArgs{...} }
+type GetUserPolicyAttachmentsPolicyPolicyScopeArrayInput interface {
+	pulumi.Input
+
+	ToGetUserPolicyAttachmentsPolicyPolicyScopeArrayOutput() GetUserPolicyAttachmentsPolicyPolicyScopeArrayOutput
+	ToGetUserPolicyAttachmentsPolicyPolicyScopeArrayOutputWithContext(context.Context) GetUserPolicyAttachmentsPolicyPolicyScopeArrayOutput
+}
+
+type GetUserPolicyAttachmentsPolicyPolicyScopeArray []GetUserPolicyAttachmentsPolicyPolicyScopeInput
+
+func (GetUserPolicyAttachmentsPolicyPolicyScopeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetUserPolicyAttachmentsPolicyPolicyScope)(nil)).Elem()
+}
+
+func (i GetUserPolicyAttachmentsPolicyPolicyScopeArray) ToGetUserPolicyAttachmentsPolicyPolicyScopeArrayOutput() GetUserPolicyAttachmentsPolicyPolicyScopeArrayOutput {
+	return i.ToGetUserPolicyAttachmentsPolicyPolicyScopeArrayOutputWithContext(context.Background())
+}
+
+func (i GetUserPolicyAttachmentsPolicyPolicyScopeArray) ToGetUserPolicyAttachmentsPolicyPolicyScopeArrayOutputWithContext(ctx context.Context) GetUserPolicyAttachmentsPolicyPolicyScopeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUserPolicyAttachmentsPolicyPolicyScopeArrayOutput)
+}
+
+type GetUserPolicyAttachmentsPolicyPolicyScopeOutput struct{ *pulumi.OutputState }
+
+func (GetUserPolicyAttachmentsPolicyPolicyScopeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUserPolicyAttachmentsPolicyPolicyScope)(nil)).Elem()
+}
+
+func (o GetUserPolicyAttachmentsPolicyPolicyScopeOutput) ToGetUserPolicyAttachmentsPolicyPolicyScopeOutput() GetUserPolicyAttachmentsPolicyPolicyScopeOutput {
+	return o
+}
+
+func (o GetUserPolicyAttachmentsPolicyPolicyScopeOutput) ToGetUserPolicyAttachmentsPolicyPolicyScopeOutputWithContext(ctx context.Context) GetUserPolicyAttachmentsPolicyPolicyScopeOutput {
+	return o
+}
+
+// The attach date of the policy scope.
+func (o GetUserPolicyAttachmentsPolicyPolicyScopeOutput) AttachDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserPolicyAttachmentsPolicyPolicyScope) string { return v.AttachDate }).(pulumi.StringOutput)
+}
+
+// The type of the policy scope.
+func (o GetUserPolicyAttachmentsPolicyPolicyScopeOutput) PolicyScopeType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserPolicyAttachmentsPolicyPolicyScope) string { return v.PolicyScopeType }).(pulumi.StringOutput)
+}
+
+// The display name of the project.
+func (o GetUserPolicyAttachmentsPolicyPolicyScopeOutput) ProjectDisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserPolicyAttachmentsPolicyPolicyScope) string { return v.ProjectDisplayName }).(pulumi.StringOutput)
+}
+
+// The name of the project.
+func (o GetUserPolicyAttachmentsPolicyPolicyScopeOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserPolicyAttachmentsPolicyPolicyScope) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+type GetUserPolicyAttachmentsPolicyPolicyScopeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetUserPolicyAttachmentsPolicyPolicyScopeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetUserPolicyAttachmentsPolicyPolicyScope)(nil)).Elem()
+}
+
+func (o GetUserPolicyAttachmentsPolicyPolicyScopeArrayOutput) ToGetUserPolicyAttachmentsPolicyPolicyScopeArrayOutput() GetUserPolicyAttachmentsPolicyPolicyScopeArrayOutput {
+	return o
+}
+
+func (o GetUserPolicyAttachmentsPolicyPolicyScopeArrayOutput) ToGetUserPolicyAttachmentsPolicyPolicyScopeArrayOutputWithContext(ctx context.Context) GetUserPolicyAttachmentsPolicyPolicyScopeArrayOutput {
+	return o
+}
+
+func (o GetUserPolicyAttachmentsPolicyPolicyScopeArrayOutput) Index(i pulumi.IntInput) GetUserPolicyAttachmentsPolicyPolicyScopeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetUserPolicyAttachmentsPolicyPolicyScope {
+		return vs[0].([]GetUserPolicyAttachmentsPolicyPolicyScope)[vs[1].(int)]
+	}).(GetUserPolicyAttachmentsPolicyPolicyScopeOutput)
+}
+
 type GetUsersUser struct {
 	// Main account ID to which the sub-user belongs.
 	AccountId string `pulumi:"accountId"`
@@ -2376,6 +9993,8 @@ type GetUsersUser struct {
 	MobilePhone string `pulumi:"mobilePhone"`
 	// Whether the phone number has been verified.
 	MobilePhoneIsVerify bool `pulumi:"mobilePhoneIsVerify"`
+	// Tags.
+	Tags []GetUsersUserTag `pulumi:"tags"`
 	// The trn of the user.
 	Trn string `pulumi:"trn"`
 	// The update date of the user.
@@ -2414,6 +10033,8 @@ type GetUsersUserArgs struct {
 	MobilePhone pulumi.StringInput `pulumi:"mobilePhone"`
 	// Whether the phone number has been verified.
 	MobilePhoneIsVerify pulumi.BoolInput `pulumi:"mobilePhoneIsVerify"`
+	// Tags.
+	Tags GetUsersUserTagArrayInput `pulumi:"tags"`
 	// The trn of the user.
 	Trn pulumi.StringInput `pulumi:"trn"`
 	// The update date of the user.
@@ -2515,6 +10136,11 @@ func (o GetUsersUserOutput) MobilePhoneIsVerify() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetUsersUser) bool { return v.MobilePhoneIsVerify }).(pulumi.BoolOutput)
 }
 
+// Tags.
+func (o GetUsersUserOutput) Tags() GetUsersUserTagArrayOutput {
+	return o.ApplyT(func(v GetUsersUser) []GetUsersUserTag { return v.Tags }).(GetUsersUserTagArrayOutput)
+}
+
 // The trn of the user.
 func (o GetUsersUserOutput) Trn() pulumi.StringOutput {
 	return o.ApplyT(func(v GetUsersUser) string { return v.Trn }).(pulumi.StringOutput)
@@ -2555,69 +10181,395 @@ func (o GetUsersUserArrayOutput) Index(i pulumi.IntInput) GetUsersUserOutput {
 	}).(GetUsersUserOutput)
 }
 
+type GetUsersUserTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetUsersUserTagInput is an input type that accepts GetUsersUserTagArgs and GetUsersUserTagOutput values.
+// You can construct a concrete instance of `GetUsersUserTagInput` via:
+//
+//	GetUsersUserTagArgs{...}
+type GetUsersUserTagInput interface {
+	pulumi.Input
+
+	ToGetUsersUserTagOutput() GetUsersUserTagOutput
+	ToGetUsersUserTagOutputWithContext(context.Context) GetUsersUserTagOutput
+}
+
+type GetUsersUserTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetUsersUserTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUsersUserTag)(nil)).Elem()
+}
+
+func (i GetUsersUserTagArgs) ToGetUsersUserTagOutput() GetUsersUserTagOutput {
+	return i.ToGetUsersUserTagOutputWithContext(context.Background())
+}
+
+func (i GetUsersUserTagArgs) ToGetUsersUserTagOutputWithContext(ctx context.Context) GetUsersUserTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUsersUserTagOutput)
+}
+
+// GetUsersUserTagArrayInput is an input type that accepts GetUsersUserTagArray and GetUsersUserTagArrayOutput values.
+// You can construct a concrete instance of `GetUsersUserTagArrayInput` via:
+//
+//	GetUsersUserTagArray{ GetUsersUserTagArgs{...} }
+type GetUsersUserTagArrayInput interface {
+	pulumi.Input
+
+	ToGetUsersUserTagArrayOutput() GetUsersUserTagArrayOutput
+	ToGetUsersUserTagArrayOutputWithContext(context.Context) GetUsersUserTagArrayOutput
+}
+
+type GetUsersUserTagArray []GetUsersUserTagInput
+
+func (GetUsersUserTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetUsersUserTag)(nil)).Elem()
+}
+
+func (i GetUsersUserTagArray) ToGetUsersUserTagArrayOutput() GetUsersUserTagArrayOutput {
+	return i.ToGetUsersUserTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetUsersUserTagArray) ToGetUsersUserTagArrayOutputWithContext(ctx context.Context) GetUsersUserTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUsersUserTagArrayOutput)
+}
+
+type GetUsersUserTagOutput struct{ *pulumi.OutputState }
+
+func (GetUsersUserTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUsersUserTag)(nil)).Elem()
+}
+
+func (o GetUsersUserTagOutput) ToGetUsersUserTagOutput() GetUsersUserTagOutput {
+	return o
+}
+
+func (o GetUsersUserTagOutput) ToGetUsersUserTagOutputWithContext(ctx context.Context) GetUsersUserTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetUsersUserTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUserTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetUsersUserTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUserTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetUsersUserTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetUsersUserTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetUsersUserTag)(nil)).Elem()
+}
+
+func (o GetUsersUserTagArrayOutput) ToGetUsersUserTagArrayOutput() GetUsersUserTagArrayOutput {
+	return o
+}
+
+func (o GetUsersUserTagArrayOutput) ToGetUsersUserTagArrayOutputWithContext(ctx context.Context) GetUsersUserTagArrayOutput {
+	return o
+}
+
+func (o GetUsersUserTagArrayOutput) Index(i pulumi.IntInput) GetUsersUserTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetUsersUserTag {
+		return vs[0].([]GetUsersUserTag)[vs[1].(int)]
+	}).(GetUsersUserTagOutput)
+}
+
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AccessKeyLastUsedsAccessKeyLastUsedInput)(nil)).Elem(), AccessKeyLastUsedsAccessKeyLastUsedArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AccessKeyLastUsedsAccessKeyLastUsedArrayInput)(nil)).Elem(), AccessKeyLastUsedsAccessKeyLastUsedArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AccessKeysAccessKeyMetadataInput)(nil)).Elem(), AccessKeysAccessKeyMetadataArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AccessKeysAccessKeyMetadataArrayInput)(nil)).Elem(), AccessKeysAccessKeyMetadataArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AccountSummariesAccountSummaryInput)(nil)).Elem(), AccountSummariesAccountSummaryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AccountSummariesAccountSummaryArrayInput)(nil)).Elem(), AccountSummariesAccountSummaryArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AllowedIpAddressIpListInput)(nil)).Elem(), AllowedIpAddressIpListArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AllowedIpAddressIpListArrayInput)(nil)).Elem(), AllowedIpAddressIpListArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AllowedIpAddressesAllowedIpAddressInput)(nil)).Elem(), AllowedIpAddressesAllowedIpAddressArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AllowedIpAddressesAllowedIpAddressArrayInput)(nil)).Elem(), AllowedIpAddressesAllowedIpAddressArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AllowedIpAddressesAllowedIpAddressIpListInput)(nil)).Elem(), AllowedIpAddressesAllowedIpAddressIpListArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AllowedIpAddressesAllowedIpAddressIpListArrayInput)(nil)).Elem(), AllowedIpAddressesAllowedIpAddressIpListArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CallerIdentitiesCallerIdentityInput)(nil)).Elem(), CallerIdentitiesCallerIdentityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CallerIdentitiesCallerIdentityArrayInput)(nil)).Elem(), CallerIdentitiesCallerIdentityArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EntitiesPoliciesRoleInput)(nil)).Elem(), EntitiesPoliciesRoleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EntitiesPoliciesRoleArrayInput)(nil)).Elem(), EntitiesPoliciesRoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EntitiesPoliciesRolePolicyScopeInput)(nil)).Elem(), EntitiesPoliciesRolePolicyScopeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EntitiesPoliciesRolePolicyScopeArrayInput)(nil)).Elem(), EntitiesPoliciesRolePolicyScopeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EntitiesPoliciesUserInput)(nil)).Elem(), EntitiesPoliciesUserArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EntitiesPoliciesUserArrayInput)(nil)).Elem(), EntitiesPoliciesUserArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EntitiesPoliciesUserGroupInput)(nil)).Elem(), EntitiesPoliciesUserGroupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EntitiesPoliciesUserGroupArrayInput)(nil)).Elem(), EntitiesPoliciesUserGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EntitiesPoliciesUserGroupPolicyScopeInput)(nil)).Elem(), EntitiesPoliciesUserGroupPolicyScopeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EntitiesPoliciesUserGroupPolicyScopeArrayInput)(nil)).Elem(), EntitiesPoliciesUserGroupPolicyScopeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EntitiesPoliciesUserPolicyScopeInput)(nil)).Elem(), EntitiesPoliciesUserPolicyScopeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EntitiesPoliciesUserPolicyScopeArrayInput)(nil)).Elem(), EntitiesPoliciesUserPolicyScopeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GroupUsersUserGroupInput)(nil)).Elem(), GroupUsersUserGroupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GroupUsersUserGroupArrayInput)(nil)).Elem(), GroupUsersUserGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IdentityProvidersProviderInput)(nil)).Elem(), IdentityProvidersProviderArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IdentityProvidersProviderArrayInput)(nil)).Elem(), IdentityProvidersProviderArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LoginProfilesLoginProfileInput)(nil)).Elem(), LoginProfilesLoginProfileArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LoginProfilesLoginProfileArrayInput)(nil)).Elem(), LoginProfilesLoginProfileArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OauthProvidersProviderInput)(nil)).Elem(), OauthProvidersProviderArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OauthProvidersProviderArrayInput)(nil)).Elem(), OauthProvidersProviderArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OidcProvidersOidcProviderInput)(nil)).Elem(), OidcProvidersOidcProviderArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OidcProvidersOidcProviderArrayInput)(nil)).Elem(), OidcProvidersOidcProviderArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PoliciesPolicyInput)(nil)).Elem(), PoliciesPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PoliciesPolicyArrayInput)(nil)).Elem(), PoliciesPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RolePolicyAttachmentsPolicyInput)(nil)).Elem(), RolePolicyAttachmentsPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RolePolicyAttachmentsPolicyArrayInput)(nil)).Elem(), RolePolicyAttachmentsPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RolePolicyAttachmentsPolicyPolicyScopeInput)(nil)).Elem(), RolePolicyAttachmentsPolicyPolicyScopeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RolePolicyAttachmentsPolicyPolicyScopeArrayInput)(nil)).Elem(), RolePolicyAttachmentsPolicyPolicyScopeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RoleTagInput)(nil)).Elem(), RoleTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RoleTagArrayInput)(nil)).Elem(), RoleTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RolesRoleInput)(nil)).Elem(), RolesRoleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RolesRoleArrayInput)(nil)).Elem(), RolesRoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RolesRoleTagInput)(nil)).Elem(), RolesRoleTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RolesRoleTagArrayInput)(nil)).Elem(), RolesRoleTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SamlProvidersProviderInput)(nil)).Elem(), SamlProvidersProviderArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SamlProvidersProviderArrayInput)(nil)).Elem(), SamlProvidersProviderArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecurityConfigsSecurityConfigInput)(nil)).Elem(), SecurityConfigsSecurityConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecurityConfigsSecurityConfigArrayInput)(nil)).Elem(), SecurityConfigsSecurityConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceLinkedRoleTagInput)(nil)).Elem(), ServiceLinkedRoleTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceLinkedRoleTagArrayInput)(nil)).Elem(), ServiceLinkedRoleTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TagTagInput)(nil)).Elem(), TagTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TagTagArrayInput)(nil)).Elem(), TagTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TagsResourceTagInput)(nil)).Elem(), TagsResourceTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TagsResourceTagArrayInput)(nil)).Elem(), TagsResourceTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserGroupAttachmentsUserInput)(nil)).Elem(), UserGroupAttachmentsUserArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserGroupAttachmentsUserArrayInput)(nil)).Elem(), UserGroupAttachmentsUserArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*UserGroupPolicyAttachmentsPolicyInput)(nil)).Elem(), UserGroupPolicyAttachmentsPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*UserGroupPolicyAttachmentsPolicyArrayInput)(nil)).Elem(), UserGroupPolicyAttachmentsPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserGroupPolicyAttachmentsPolicyPolicyScopeInput)(nil)).Elem(), UserGroupPolicyAttachmentsPolicyPolicyScopeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserGroupPolicyAttachmentsPolicyPolicyScopeArrayInput)(nil)).Elem(), UserGroupPolicyAttachmentsPolicyPolicyScopeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*UserGroupsUserGroupInput)(nil)).Elem(), UserGroupsUserGroupArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*UserGroupsUserGroupArrayInput)(nil)).Elem(), UserGroupsUserGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserPolicyAttachmentsPolicyInput)(nil)).Elem(), UserPolicyAttachmentsPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserPolicyAttachmentsPolicyArrayInput)(nil)).Elem(), UserPolicyAttachmentsPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserPolicyAttachmentsPolicyPolicyScopeInput)(nil)).Elem(), UserPolicyAttachmentsPolicyPolicyScopeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserPolicyAttachmentsPolicyPolicyScopeArrayInput)(nil)).Elem(), UserPolicyAttachmentsPolicyPolicyScopeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserTagInput)(nil)).Elem(), UserTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserTagArrayInput)(nil)).Elem(), UserTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*UsersUserInput)(nil)).Elem(), UsersUserArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*UsersUserArrayInput)(nil)).Elem(), UsersUserArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UsersUserTagInput)(nil)).Elem(), UsersUserTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UsersUserTagArrayInput)(nil)).Elem(), UsersUserTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAccessKeyLastUsedsAccessKeyLastUsedInput)(nil)).Elem(), GetAccessKeyLastUsedsAccessKeyLastUsedArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAccessKeyLastUsedsAccessKeyLastUsedArrayInput)(nil)).Elem(), GetAccessKeyLastUsedsAccessKeyLastUsedArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAccessKeysAccessKeyMetadataInput)(nil)).Elem(), GetAccessKeysAccessKeyMetadataArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAccessKeysAccessKeyMetadataArrayInput)(nil)).Elem(), GetAccessKeysAccessKeyMetadataArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAccountSummariesAccountSummaryInput)(nil)).Elem(), GetAccountSummariesAccountSummaryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAccountSummariesAccountSummaryArrayInput)(nil)).Elem(), GetAccountSummariesAccountSummaryArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAllowedIpAddressesAllowedIpAddressInput)(nil)).Elem(), GetAllowedIpAddressesAllowedIpAddressArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAllowedIpAddressesAllowedIpAddressArrayInput)(nil)).Elem(), GetAllowedIpAddressesAllowedIpAddressArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAllowedIpAddressesAllowedIpAddressIpListInput)(nil)).Elem(), GetAllowedIpAddressesAllowedIpAddressIpListArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAllowedIpAddressesAllowedIpAddressIpListArrayInput)(nil)).Elem(), GetAllowedIpAddressesAllowedIpAddressIpListArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCallerIdentitiesCallerIdentityInput)(nil)).Elem(), GetCallerIdentitiesCallerIdentityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCallerIdentitiesCallerIdentityArrayInput)(nil)).Elem(), GetCallerIdentitiesCallerIdentityArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEntitiesPoliciesRoleInput)(nil)).Elem(), GetEntitiesPoliciesRoleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEntitiesPoliciesRoleArrayInput)(nil)).Elem(), GetEntitiesPoliciesRoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEntitiesPoliciesRolePolicyScopeInput)(nil)).Elem(), GetEntitiesPoliciesRolePolicyScopeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEntitiesPoliciesRolePolicyScopeArrayInput)(nil)).Elem(), GetEntitiesPoliciesRolePolicyScopeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEntitiesPoliciesUserInput)(nil)).Elem(), GetEntitiesPoliciesUserArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEntitiesPoliciesUserArrayInput)(nil)).Elem(), GetEntitiesPoliciesUserArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEntitiesPoliciesUserGroupInput)(nil)).Elem(), GetEntitiesPoliciesUserGroupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEntitiesPoliciesUserGroupArrayInput)(nil)).Elem(), GetEntitiesPoliciesUserGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEntitiesPoliciesUserGroupPolicyScopeInput)(nil)).Elem(), GetEntitiesPoliciesUserGroupPolicyScopeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEntitiesPoliciesUserGroupPolicyScopeArrayInput)(nil)).Elem(), GetEntitiesPoliciesUserGroupPolicyScopeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEntitiesPoliciesUserPolicyScopeInput)(nil)).Elem(), GetEntitiesPoliciesUserPolicyScopeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEntitiesPoliciesUserPolicyScopeArrayInput)(nil)).Elem(), GetEntitiesPoliciesUserPolicyScopeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupUsersUserGroupInput)(nil)).Elem(), GetGroupUsersUserGroupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupUsersUserGroupArrayInput)(nil)).Elem(), GetGroupUsersUserGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetIdentityProvidersProviderInput)(nil)).Elem(), GetIdentityProvidersProviderArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetIdentityProvidersProviderArrayInput)(nil)).Elem(), GetIdentityProvidersProviderArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLoginProfilesLoginProfileInput)(nil)).Elem(), GetLoginProfilesLoginProfileArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLoginProfilesLoginProfileArrayInput)(nil)).Elem(), GetLoginProfilesLoginProfileArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetOauthProvidersProviderInput)(nil)).Elem(), GetOauthProvidersProviderArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetOauthProvidersProviderArrayInput)(nil)).Elem(), GetOauthProvidersProviderArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOidcProvidersOidcProviderInput)(nil)).Elem(), GetOidcProvidersOidcProviderArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOidcProvidersOidcProviderArrayInput)(nil)).Elem(), GetOidcProvidersOidcProviderArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPoliciesPolicyInput)(nil)).Elem(), GetPoliciesPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPoliciesPolicyArrayInput)(nil)).Elem(), GetPoliciesPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRolePolicyAttachmentsPolicyInput)(nil)).Elem(), GetRolePolicyAttachmentsPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRolePolicyAttachmentsPolicyArrayInput)(nil)).Elem(), GetRolePolicyAttachmentsPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRolePolicyAttachmentsPolicyPolicyScopeInput)(nil)).Elem(), GetRolePolicyAttachmentsPolicyPolicyScopeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRolePolicyAttachmentsPolicyPolicyScopeArrayInput)(nil)).Elem(), GetRolePolicyAttachmentsPolicyPolicyScopeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRolesRoleInput)(nil)).Elem(), GetRolesRoleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRolesRoleArrayInput)(nil)).Elem(), GetRolesRoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRolesRoleTagInput)(nil)).Elem(), GetRolesRoleTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRolesRoleTagArrayInput)(nil)).Elem(), GetRolesRoleTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSamlProvidersProviderInput)(nil)).Elem(), GetSamlProvidersProviderArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSamlProvidersProviderArrayInput)(nil)).Elem(), GetSamlProvidersProviderArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSecurityConfigsSecurityConfigInput)(nil)).Elem(), GetSecurityConfigsSecurityConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSecurityConfigsSecurityConfigArrayInput)(nil)).Elem(), GetSecurityConfigsSecurityConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTagsResourceTagInput)(nil)).Elem(), GetTagsResourceTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTagsResourceTagArrayInput)(nil)).Elem(), GetTagsResourceTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUserGroupAttachmentsUserInput)(nil)).Elem(), GetUserGroupAttachmentsUserArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUserGroupAttachmentsUserArrayInput)(nil)).Elem(), GetUserGroupAttachmentsUserArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetUserGroupPolicyAttachmentsPolicyInput)(nil)).Elem(), GetUserGroupPolicyAttachmentsPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetUserGroupPolicyAttachmentsPolicyArrayInput)(nil)).Elem(), GetUserGroupPolicyAttachmentsPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUserGroupPolicyAttachmentsPolicyPolicyScopeInput)(nil)).Elem(), GetUserGroupPolicyAttachmentsPolicyPolicyScopeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUserGroupPolicyAttachmentsPolicyPolicyScopeArrayInput)(nil)).Elem(), GetUserGroupPolicyAttachmentsPolicyPolicyScopeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetUserGroupsUserGroupInput)(nil)).Elem(), GetUserGroupsUserGroupArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetUserGroupsUserGroupArrayInput)(nil)).Elem(), GetUserGroupsUserGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUserPolicyAttachmentsPolicyInput)(nil)).Elem(), GetUserPolicyAttachmentsPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUserPolicyAttachmentsPolicyArrayInput)(nil)).Elem(), GetUserPolicyAttachmentsPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUserPolicyAttachmentsPolicyPolicyScopeInput)(nil)).Elem(), GetUserPolicyAttachmentsPolicyPolicyScopeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUserPolicyAttachmentsPolicyPolicyScopeArrayInput)(nil)).Elem(), GetUserPolicyAttachmentsPolicyPolicyScopeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserInput)(nil)).Elem(), GetUsersUserArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserArrayInput)(nil)).Elem(), GetUsersUserArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserTagInput)(nil)).Elem(), GetUsersUserTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserTagArrayInput)(nil)).Elem(), GetUsersUserTagArray{})
+	pulumi.RegisterOutputType(AccessKeyLastUsedsAccessKeyLastUsedOutput{})
+	pulumi.RegisterOutputType(AccessKeyLastUsedsAccessKeyLastUsedArrayOutput{})
 	pulumi.RegisterOutputType(AccessKeysAccessKeyMetadataOutput{})
 	pulumi.RegisterOutputType(AccessKeysAccessKeyMetadataArrayOutput{})
+	pulumi.RegisterOutputType(AccountSummariesAccountSummaryOutput{})
+	pulumi.RegisterOutputType(AccountSummariesAccountSummaryArrayOutput{})
+	pulumi.RegisterOutputType(AllowedIpAddressIpListOutput{})
+	pulumi.RegisterOutputType(AllowedIpAddressIpListArrayOutput{})
+	pulumi.RegisterOutputType(AllowedIpAddressesAllowedIpAddressOutput{})
+	pulumi.RegisterOutputType(AllowedIpAddressesAllowedIpAddressArrayOutput{})
+	pulumi.RegisterOutputType(AllowedIpAddressesAllowedIpAddressIpListOutput{})
+	pulumi.RegisterOutputType(AllowedIpAddressesAllowedIpAddressIpListArrayOutput{})
+	pulumi.RegisterOutputType(CallerIdentitiesCallerIdentityOutput{})
+	pulumi.RegisterOutputType(CallerIdentitiesCallerIdentityArrayOutput{})
+	pulumi.RegisterOutputType(EntitiesPoliciesRoleOutput{})
+	pulumi.RegisterOutputType(EntitiesPoliciesRoleArrayOutput{})
+	pulumi.RegisterOutputType(EntitiesPoliciesRolePolicyScopeOutput{})
+	pulumi.RegisterOutputType(EntitiesPoliciesRolePolicyScopeArrayOutput{})
+	pulumi.RegisterOutputType(EntitiesPoliciesUserOutput{})
+	pulumi.RegisterOutputType(EntitiesPoliciesUserArrayOutput{})
+	pulumi.RegisterOutputType(EntitiesPoliciesUserGroupOutput{})
+	pulumi.RegisterOutputType(EntitiesPoliciesUserGroupArrayOutput{})
+	pulumi.RegisterOutputType(EntitiesPoliciesUserGroupPolicyScopeOutput{})
+	pulumi.RegisterOutputType(EntitiesPoliciesUserGroupPolicyScopeArrayOutput{})
+	pulumi.RegisterOutputType(EntitiesPoliciesUserPolicyScopeOutput{})
+	pulumi.RegisterOutputType(EntitiesPoliciesUserPolicyScopeArrayOutput{})
+	pulumi.RegisterOutputType(GroupUsersUserGroupOutput{})
+	pulumi.RegisterOutputType(GroupUsersUserGroupArrayOutput{})
+	pulumi.RegisterOutputType(IdentityProvidersProviderOutput{})
+	pulumi.RegisterOutputType(IdentityProvidersProviderArrayOutput{})
+	pulumi.RegisterOutputType(LoginProfilesLoginProfileOutput{})
+	pulumi.RegisterOutputType(LoginProfilesLoginProfileArrayOutput{})
+	pulumi.RegisterOutputType(OauthProvidersProviderOutput{})
+	pulumi.RegisterOutputType(OauthProvidersProviderArrayOutput{})
 	pulumi.RegisterOutputType(OidcProvidersOidcProviderOutput{})
 	pulumi.RegisterOutputType(OidcProvidersOidcProviderArrayOutput{})
 	pulumi.RegisterOutputType(PoliciesPolicyOutput{})
 	pulumi.RegisterOutputType(PoliciesPolicyArrayOutput{})
+	pulumi.RegisterOutputType(RolePolicyAttachmentsPolicyOutput{})
+	pulumi.RegisterOutputType(RolePolicyAttachmentsPolicyArrayOutput{})
+	pulumi.RegisterOutputType(RolePolicyAttachmentsPolicyPolicyScopeOutput{})
+	pulumi.RegisterOutputType(RolePolicyAttachmentsPolicyPolicyScopeArrayOutput{})
+	pulumi.RegisterOutputType(RoleTagOutput{})
+	pulumi.RegisterOutputType(RoleTagArrayOutput{})
 	pulumi.RegisterOutputType(RolesRoleOutput{})
 	pulumi.RegisterOutputType(RolesRoleArrayOutput{})
+	pulumi.RegisterOutputType(RolesRoleTagOutput{})
+	pulumi.RegisterOutputType(RolesRoleTagArrayOutput{})
 	pulumi.RegisterOutputType(SamlProvidersProviderOutput{})
 	pulumi.RegisterOutputType(SamlProvidersProviderArrayOutput{})
+	pulumi.RegisterOutputType(SecurityConfigsSecurityConfigOutput{})
+	pulumi.RegisterOutputType(SecurityConfigsSecurityConfigArrayOutput{})
+	pulumi.RegisterOutputType(ServiceLinkedRoleTagOutput{})
+	pulumi.RegisterOutputType(ServiceLinkedRoleTagArrayOutput{})
+	pulumi.RegisterOutputType(TagTagOutput{})
+	pulumi.RegisterOutputType(TagTagArrayOutput{})
+	pulumi.RegisterOutputType(TagsResourceTagOutput{})
+	pulumi.RegisterOutputType(TagsResourceTagArrayOutput{})
+	pulumi.RegisterOutputType(UserGroupAttachmentsUserOutput{})
+	pulumi.RegisterOutputType(UserGroupAttachmentsUserArrayOutput{})
 	pulumi.RegisterOutputType(UserGroupPolicyAttachmentsPolicyOutput{})
 	pulumi.RegisterOutputType(UserGroupPolicyAttachmentsPolicyArrayOutput{})
+	pulumi.RegisterOutputType(UserGroupPolicyAttachmentsPolicyPolicyScopeOutput{})
+	pulumi.RegisterOutputType(UserGroupPolicyAttachmentsPolicyPolicyScopeArrayOutput{})
 	pulumi.RegisterOutputType(UserGroupsUserGroupOutput{})
 	pulumi.RegisterOutputType(UserGroupsUserGroupArrayOutput{})
+	pulumi.RegisterOutputType(UserPolicyAttachmentsPolicyOutput{})
+	pulumi.RegisterOutputType(UserPolicyAttachmentsPolicyArrayOutput{})
+	pulumi.RegisterOutputType(UserPolicyAttachmentsPolicyPolicyScopeOutput{})
+	pulumi.RegisterOutputType(UserPolicyAttachmentsPolicyPolicyScopeArrayOutput{})
+	pulumi.RegisterOutputType(UserTagOutput{})
+	pulumi.RegisterOutputType(UserTagArrayOutput{})
 	pulumi.RegisterOutputType(UsersUserOutput{})
 	pulumi.RegisterOutputType(UsersUserArrayOutput{})
+	pulumi.RegisterOutputType(UsersUserTagOutput{})
+	pulumi.RegisterOutputType(UsersUserTagArrayOutput{})
+	pulumi.RegisterOutputType(GetAccessKeyLastUsedsAccessKeyLastUsedOutput{})
+	pulumi.RegisterOutputType(GetAccessKeyLastUsedsAccessKeyLastUsedArrayOutput{})
 	pulumi.RegisterOutputType(GetAccessKeysAccessKeyMetadataOutput{})
 	pulumi.RegisterOutputType(GetAccessKeysAccessKeyMetadataArrayOutput{})
+	pulumi.RegisterOutputType(GetAccountSummariesAccountSummaryOutput{})
+	pulumi.RegisterOutputType(GetAccountSummariesAccountSummaryArrayOutput{})
+	pulumi.RegisterOutputType(GetAllowedIpAddressesAllowedIpAddressOutput{})
+	pulumi.RegisterOutputType(GetAllowedIpAddressesAllowedIpAddressArrayOutput{})
+	pulumi.RegisterOutputType(GetAllowedIpAddressesAllowedIpAddressIpListOutput{})
+	pulumi.RegisterOutputType(GetAllowedIpAddressesAllowedIpAddressIpListArrayOutput{})
+	pulumi.RegisterOutputType(GetCallerIdentitiesCallerIdentityOutput{})
+	pulumi.RegisterOutputType(GetCallerIdentitiesCallerIdentityArrayOutput{})
+	pulumi.RegisterOutputType(GetEntitiesPoliciesRoleOutput{})
+	pulumi.RegisterOutputType(GetEntitiesPoliciesRoleArrayOutput{})
+	pulumi.RegisterOutputType(GetEntitiesPoliciesRolePolicyScopeOutput{})
+	pulumi.RegisterOutputType(GetEntitiesPoliciesRolePolicyScopeArrayOutput{})
+	pulumi.RegisterOutputType(GetEntitiesPoliciesUserOutput{})
+	pulumi.RegisterOutputType(GetEntitiesPoliciesUserArrayOutput{})
+	pulumi.RegisterOutputType(GetEntitiesPoliciesUserGroupOutput{})
+	pulumi.RegisterOutputType(GetEntitiesPoliciesUserGroupArrayOutput{})
+	pulumi.RegisterOutputType(GetEntitiesPoliciesUserGroupPolicyScopeOutput{})
+	pulumi.RegisterOutputType(GetEntitiesPoliciesUserGroupPolicyScopeArrayOutput{})
+	pulumi.RegisterOutputType(GetEntitiesPoliciesUserPolicyScopeOutput{})
+	pulumi.RegisterOutputType(GetEntitiesPoliciesUserPolicyScopeArrayOutput{})
+	pulumi.RegisterOutputType(GetGroupUsersUserGroupOutput{})
+	pulumi.RegisterOutputType(GetGroupUsersUserGroupArrayOutput{})
+	pulumi.RegisterOutputType(GetIdentityProvidersProviderOutput{})
+	pulumi.RegisterOutputType(GetIdentityProvidersProviderArrayOutput{})
+	pulumi.RegisterOutputType(GetLoginProfilesLoginProfileOutput{})
+	pulumi.RegisterOutputType(GetLoginProfilesLoginProfileArrayOutput{})
+	pulumi.RegisterOutputType(GetOauthProvidersProviderOutput{})
+	pulumi.RegisterOutputType(GetOauthProvidersProviderArrayOutput{})
 	pulumi.RegisterOutputType(GetOidcProvidersOidcProviderOutput{})
 	pulumi.RegisterOutputType(GetOidcProvidersOidcProviderArrayOutput{})
 	pulumi.RegisterOutputType(GetPoliciesPolicyOutput{})
 	pulumi.RegisterOutputType(GetPoliciesPolicyArrayOutput{})
+	pulumi.RegisterOutputType(GetRolePolicyAttachmentsPolicyOutput{})
+	pulumi.RegisterOutputType(GetRolePolicyAttachmentsPolicyArrayOutput{})
+	pulumi.RegisterOutputType(GetRolePolicyAttachmentsPolicyPolicyScopeOutput{})
+	pulumi.RegisterOutputType(GetRolePolicyAttachmentsPolicyPolicyScopeArrayOutput{})
 	pulumi.RegisterOutputType(GetRolesRoleOutput{})
 	pulumi.RegisterOutputType(GetRolesRoleArrayOutput{})
+	pulumi.RegisterOutputType(GetRolesRoleTagOutput{})
+	pulumi.RegisterOutputType(GetRolesRoleTagArrayOutput{})
 	pulumi.RegisterOutputType(GetSamlProvidersProviderOutput{})
 	pulumi.RegisterOutputType(GetSamlProvidersProviderArrayOutput{})
+	pulumi.RegisterOutputType(GetSecurityConfigsSecurityConfigOutput{})
+	pulumi.RegisterOutputType(GetSecurityConfigsSecurityConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetTagsResourceTagOutput{})
+	pulumi.RegisterOutputType(GetTagsResourceTagArrayOutput{})
+	pulumi.RegisterOutputType(GetUserGroupAttachmentsUserOutput{})
+	pulumi.RegisterOutputType(GetUserGroupAttachmentsUserArrayOutput{})
 	pulumi.RegisterOutputType(GetUserGroupPolicyAttachmentsPolicyOutput{})
 	pulumi.RegisterOutputType(GetUserGroupPolicyAttachmentsPolicyArrayOutput{})
+	pulumi.RegisterOutputType(GetUserGroupPolicyAttachmentsPolicyPolicyScopeOutput{})
+	pulumi.RegisterOutputType(GetUserGroupPolicyAttachmentsPolicyPolicyScopeArrayOutput{})
 	pulumi.RegisterOutputType(GetUserGroupsUserGroupOutput{})
 	pulumi.RegisterOutputType(GetUserGroupsUserGroupArrayOutput{})
+	pulumi.RegisterOutputType(GetUserPolicyAttachmentsPolicyOutput{})
+	pulumi.RegisterOutputType(GetUserPolicyAttachmentsPolicyArrayOutput{})
+	pulumi.RegisterOutputType(GetUserPolicyAttachmentsPolicyPolicyScopeOutput{})
+	pulumi.RegisterOutputType(GetUserPolicyAttachmentsPolicyPolicyScopeArrayOutput{})
 	pulumi.RegisterOutputType(GetUsersUserOutput{})
 	pulumi.RegisterOutputType(GetUsersUserArrayOutput{})
+	pulumi.RegisterOutputType(GetUsersUserTagOutput{})
+	pulumi.RegisterOutputType(GetUsersUserTagArrayOutput{})
 }

@@ -49,11 +49,9 @@ func AccessKeys(ctx *pulumi.Context, args *AccessKeysArgs, opts ...pulumi.Invoke
 
 // A collection of arguments for invoking AccessKeys.
 type AccessKeysArgs struct {
-	// A Name Regex of IAM.
-	NameRegex *string `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
-	// The user names.
+	// The user name.
 	UserName *string `pulumi:"userName"`
 }
 
@@ -63,7 +61,6 @@ type AccessKeysResult struct {
 	AccessKeyMetadatas []AccessKeysAccessKeyMetadata `pulumi:"accessKeyMetadatas"`
 	// The provider-assigned unique ID for this managed resource.
 	Id         string  `pulumi:"id"`
-	NameRegex  *string `pulumi:"nameRegex"`
 	OutputFile *string `pulumi:"outputFile"`
 	// The total count of user query.
 	TotalCount int `pulumi:"totalCount"`
@@ -86,11 +83,9 @@ func AccessKeysOutput(ctx *pulumi.Context, args AccessKeysOutputArgs, opts ...pu
 
 // A collection of arguments for invoking AccessKeys.
 type AccessKeysOutputArgs struct {
-	// A Name Regex of IAM.
-	NameRegex pulumi.StringPtrInput `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
-	// The user names.
+	// The user name.
 	UserName pulumi.StringPtrInput `pulumi:"userName"`
 }
 
@@ -121,10 +116,6 @@ func (o AccessKeysResultOutput) AccessKeyMetadatas() AccessKeysAccessKeyMetadata
 // The provider-assigned unique ID for this managed resource.
 func (o AccessKeysResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v AccessKeysResult) string { return v.Id }).(pulumi.StringOutput)
-}
-
-func (o AccessKeysResultOutput) NameRegex() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AccessKeysResult) *string { return v.NameRegex }).(pulumi.StringPtrOutput)
 }
 
 func (o AccessKeysResultOutput) OutputFile() pulumi.StringPtrOutput {

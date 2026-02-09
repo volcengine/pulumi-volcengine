@@ -27,25 +27,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooUser, err := iam.NewUser(ctx, "fooUser", &iam.UserArgs{
-//				UserName:    pulumi.String("acc-test-user"),
-//				Description: pulumi.String("acc test"),
-//				DisplayName: pulumi.String("name"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			fooUserGroup, err := iam.NewUserGroup(ctx, "fooUserGroup", &iam.UserGroupArgs{
-//				UserGroupName: pulumi.String("acc-test-group"),
-//				Description:   pulumi.String("acc-test"),
-//				DisplayName:   pulumi.String("acctest"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = iam.NewUserGroupAttachment(ctx, "fooUserGroupAttachment", &iam.UserGroupAttachmentArgs{
-//				UserGroupName: fooUserGroup.UserGroupName,
-//				UserName:      fooUser.UserName,
+//			_, err := iam.NewUserGroupAttachment(ctx, "foo", &iam.UserGroupAttachmentArgs{
+//				UserGroupName: pulumi.String("xRqElT"),
+//				UserName:      pulumi.String("jonny-tt"),
 //			})
 //			if err != nil {
 //				return err

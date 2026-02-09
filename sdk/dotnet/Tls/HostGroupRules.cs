@@ -26,7 +26,7 @@ namespace Pulumi.Volcengine.Tls
         /// {
         ///     var @default = Volcengine.Tls.GetHostGroupRules.Invoke(new()
         ///     {
-        ///         HostGroupId = "59989043-5422-4440-a981-63d241563fc0",
+        ///         HostGroupId = "4af86d32-cb9c-4eac-adb1-75f2567789be",
         ///     });
         /// 
         /// });
@@ -49,7 +49,7 @@ namespace Pulumi.Volcengine.Tls
         /// {
         ///     var @default = Volcengine.Tls.GetHostGroupRules.Invoke(new()
         ///     {
-        ///         HostGroupId = "59989043-5422-4440-a981-63d241563fc0",
+        ///         HostGroupId = "4af86d32-cb9c-4eac-adb1-75f2567789be",
         ///     });
         /// 
         /// });

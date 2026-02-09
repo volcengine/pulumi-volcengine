@@ -12,7 +12,7 @@ require (
 	github.com/hashicorp/terraform-plugin-sdk v1.9.1
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.81.0
 	github.com/pulumi/pulumi/sdk/v3 v3.113.0
-	github.com/volcengine/terraform-provider-volcengine v0.0.187
+	github.com/volcengine/terraform-provider-volcengine v0.0.190
 )
 
 require (
@@ -40,7 +40,6 @@ require (
 	github.com/ProtonMail/go-crypto v1.1.0-alpha.0 // indirect
 	github.com/aead/chacha20 v0.0.0-20180709150244-8b13a72661da // indirect
 	github.com/agext/levenshtein v1.2.3 // indirect
-	github.com/agl/ed25519 v0.0.0-20170116200512-5312a6153412 // indirect
 	github.com/apparentlymart/go-cidr v1.1.0 // indirect
 	github.com/apparentlymart/go-textseg/v15 v15.0.0 // indirect
 	github.com/armon/go-metrics v0.4.0 // indirect
@@ -142,7 +141,6 @@ require (
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/kevinburke/ssh_config v1.2.0 // indirect
-	github.com/keybase/go-crypto v0.0.0-20161004153544-93f5b35093ba // indirect
 	github.com/kylelemons/godebug v1.1.0 // indirect
 	github.com/lucasb-eyer/go-colorful v1.2.0 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect

@@ -14,8 +14,11 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const example = volcengine.tls.getSearchTraces({
- *     traceInstanceId: "b28b19bd-a539-453a-8919-fda3ef6a22fe",
+ * const default = volcengine.tls.getSearchTraces({
+ *     query: {
+ *         limit: 10,
+ *     },
+ *     traceInstanceId: "ac368174-2353-4e5d-859d-84c8bd255590",
  * });
  * ```
  */
@@ -75,8 +78,11 @@ export interface GetSearchTracesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const example = volcengine.tls.getSearchTraces({
- *     traceInstanceId: "b28b19bd-a539-453a-8919-fda3ef6a22fe",
+ * const default = volcengine.tls.getSearchTraces({
+ *     query: {
+ *         limit: 10,
+ *     },
+ *     traceInstanceId: "ac368174-2353-4e5d-859d-84c8bd255590",
  * });
  * ```
  */

@@ -8,6 +8,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['UserArgs', 'User']
 
@@ -18,14 +20,16 @@ class UserArgs:
                  description: Optional[pulumi.Input[str]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
                  email: Optional[pulumi.Input[str]] = None,
-                 mobile_phone: Optional[pulumi.Input[str]] = None):
+                 mobile_phone: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['UserTagArgs']]]] = None):
         """
         The set of arguments for constructing a User resource.
         :param pulumi.Input[str] user_name: The name of the user.
         :param pulumi.Input[str] description: The description of the user.
         :param pulumi.Input[str] display_name: The display name of the user.
         :param pulumi.Input[str] email: The email of the user.
-        :param pulumi.Input[str] mobile_phone: The mobile phone of the user.
+        :param pulumi.Input[str] mobile_phone: The mobile phone of the user, reference: +8618088888888.
+        :param pulumi.Input[Sequence[pulumi.Input['UserTagArgs']]] tags: Tags.
         """
         pulumi.set(__self__, "user_name", user_name)
         if description is not None:
@@ -36,6 +40,8 @@ class UserArgs:
             pulumi.set(__self__, "email", email)
         if mobile_phone is not None:
             pulumi.set(__self__, "mobile_phone", mobile_phone)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter(name="userName")
@@ -89,13 +95,25 @@ class UserArgs:
     @pulumi.getter(name="mobilePhone")
     def mobile_phone(self) -> Optional[pulumi.Input[str]]:
         """
-        The mobile phone of the user.
+        The mobile phone of the user, reference: +8618088888888.
         """
         return pulumi.get(self, "mobile_phone")
 
     @mobile_phone.setter
     def mobile_phone(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "mobile_phone", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['UserTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['UserTagArgs']]]]):
+        pulumi.set(self, "tags", value)
 
 
 @pulumi.input_type
@@ -109,6 +127,7 @@ class _UserState:
                  email_is_verify: Optional[pulumi.Input[bool]] = None,
                  mobile_phone: Optional[pulumi.Input[str]] = None,
                  mobile_phone_is_verify: Optional[pulumi.Input[bool]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['UserTagArgs']]]] = None,
                  trn: Optional[pulumi.Input[str]] = None,
                  update_date: Optional[pulumi.Input[str]] = None,
                  user_id: Optional[pulumi.Input[str]] = None,
@@ -121,8 +140,9 @@ class _UserState:
         :param pulumi.Input[str] display_name: The display name of the user.
         :param pulumi.Input[str] email: The email of the user.
         :param pulumi.Input[bool] email_is_verify: Whether the email has been verified.
-        :param pulumi.Input[str] mobile_phone: The mobile phone of the user.
+        :param pulumi.Input[str] mobile_phone: The mobile phone of the user, reference: +8618088888888.
         :param pulumi.Input[bool] mobile_phone_is_verify: Whether the phone number has been verified.
+        :param pulumi.Input[Sequence[pulumi.Input['UserTagArgs']]] tags: Tags.
         :param pulumi.Input[str] trn: The trn of the user.
         :param pulumi.Input[str] update_date: The update date of the user.
         :param pulumi.Input[str] user_id: The id of the user.
@@ -144,6 +164,8 @@ class _UserState:
             pulumi.set(__self__, "mobile_phone", mobile_phone)
         if mobile_phone_is_verify is not None:
             pulumi.set(__self__, "mobile_phone_is_verify", mobile_phone_is_verify)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if trn is not None:
             pulumi.set(__self__, "trn", trn)
         if update_date is not None:
@@ -229,7 +251,7 @@ class _UserState:
     @pulumi.getter(name="mobilePhone")
     def mobile_phone(self) -> Optional[pulumi.Input[str]]:
         """
-        The mobile phone of the user.
+        The mobile phone of the user, reference: +8618088888888.
         """
         return pulumi.get(self, "mobile_phone")
 
@@ -248,6 +270,18 @@ class _UserState:
     @mobile_phone_is_verify.setter
     def mobile_phone_is_verify(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "mobile_phone_is_verify", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['UserTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['UserTagArgs']]]]):
+        pulumi.set(self, "tags", value)
 
     @property
     @pulumi.getter
@@ -307,6 +341,7 @@ class User(pulumi.CustomResource):
                  display_name: Optional[pulumi.Input[str]] = None,
                  email: Optional[pulumi.Input[str]] = None,
                  mobile_phone: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['UserTagArgs']]]]] = None,
                  user_name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -320,7 +355,13 @@ class User(pulumi.CustomResource):
         foo = volcengine.iam.User("foo",
             description="test",
             display_name="name",
-            user_name="tf-test")
+            email="test@example.com",
+            mobile_phone="+8618800000000",
+            tags=[volcengine.iam.UserTagArgs(
+                key="key1",
+                value="value1",
+            )],
+            user_name="jonny")
         ```
 
         ## Import
@@ -336,7 +377,8 @@ class User(pulumi.CustomResource):
         :param pulumi.Input[str] description: The description of the user.
         :param pulumi.Input[str] display_name: The display name of the user.
         :param pulumi.Input[str] email: The email of the user.
-        :param pulumi.Input[str] mobile_phone: The mobile phone of the user.
+        :param pulumi.Input[str] mobile_phone: The mobile phone of the user, reference: +8618088888888.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['UserTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] user_name: The name of the user.
         """
         ...
@@ -356,7 +398,13 @@ class User(pulumi.CustomResource):
         foo = volcengine.iam.User("foo",
             description="test",
             display_name="name",
-            user_name="tf-test")
+            email="test@example.com",
+            mobile_phone="+8618800000000",
+            tags=[volcengine.iam.UserTagArgs(
+                key="key1",
+                value="value1",
+            )],
+            user_name="jonny")
         ```
 
         ## Import
@@ -386,6 +434,7 @@ class User(pulumi.CustomResource):
                  display_name: Optional[pulumi.Input[str]] = None,
                  email: Optional[pulumi.Input[str]] = None,
                  mobile_phone: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['UserTagArgs']]]]] = None,
                  user_name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -400,6 +449,7 @@ class User(pulumi.CustomResource):
             __props__.__dict__["display_name"] = display_name
             __props__.__dict__["email"] = email
             __props__.__dict__["mobile_phone"] = mobile_phone
+            __props__.__dict__["tags"] = tags
             if user_name is None and not opts.urn:
                 raise TypeError("Missing required property 'user_name'")
             __props__.__dict__["user_name"] = user_name
@@ -428,6 +478,7 @@ class User(pulumi.CustomResource):
             email_is_verify: Optional[pulumi.Input[bool]] = None,
             mobile_phone: Optional[pulumi.Input[str]] = None,
             mobile_phone_is_verify: Optional[pulumi.Input[bool]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['UserTagArgs']]]]] = None,
             trn: Optional[pulumi.Input[str]] = None,
             update_date: Optional[pulumi.Input[str]] = None,
             user_id: Optional[pulumi.Input[str]] = None,
@@ -445,8 +496,9 @@ class User(pulumi.CustomResource):
         :param pulumi.Input[str] display_name: The display name of the user.
         :param pulumi.Input[str] email: The email of the user.
         :param pulumi.Input[bool] email_is_verify: Whether the email has been verified.
-        :param pulumi.Input[str] mobile_phone: The mobile phone of the user.
+        :param pulumi.Input[str] mobile_phone: The mobile phone of the user, reference: +8618088888888.
         :param pulumi.Input[bool] mobile_phone_is_verify: Whether the phone number has been verified.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['UserTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] trn: The trn of the user.
         :param pulumi.Input[str] update_date: The update date of the user.
         :param pulumi.Input[str] user_id: The id of the user.
@@ -464,6 +516,7 @@ class User(pulumi.CustomResource):
         __props__.__dict__["email_is_verify"] = email_is_verify
         __props__.__dict__["mobile_phone"] = mobile_phone
         __props__.__dict__["mobile_phone_is_verify"] = mobile_phone_is_verify
+        __props__.__dict__["tags"] = tags
         __props__.__dict__["trn"] = trn
         __props__.__dict__["update_date"] = update_date
         __props__.__dict__["user_id"] = user_id
@@ -522,7 +575,7 @@ class User(pulumi.CustomResource):
     @pulumi.getter(name="mobilePhone")
     def mobile_phone(self) -> pulumi.Output[Optional[str]]:
         """
-        The mobile phone of the user.
+        The mobile phone of the user, reference: +8618088888888.
         """
         return pulumi.get(self, "mobile_phone")
 
@@ -533,6 +586,14 @@ class User(pulumi.CustomResource):
         Whether the phone number has been verified.
         """
         return pulumi.get(self, "mobile_phone_is_verify")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.UserTag']]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter

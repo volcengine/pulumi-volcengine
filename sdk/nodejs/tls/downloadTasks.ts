@@ -15,10 +15,9 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  *
  * const foo = volcengine.tls.getDownloadTasks({
- *     topicId: "8ba48bd7-2493-4300-b1d0-cb760b89e51b",
- *     taskName: "tf-test-download-task",
+ *     taskName: "tf-test-download",
+ *     topicId: "3c57a110-399a-43b3-bc3c-5d60e065239a",
  * });
- * export const downloadTasks = foo.then(foo => foo.downloadTasks);
  * ```
  */
 /** @deprecated volcengine.tls.DownloadTasks has been deprecated in favor of volcengine.tls.getDownloadTasks */
@@ -93,10 +92,9 @@ export interface DownloadTasksResult {
  * import * as volcengine from "@pulumi/volcengine";
  *
  * const foo = volcengine.tls.getDownloadTasks({
- *     topicId: "8ba48bd7-2493-4300-b1d0-cb760b89e51b",
- *     taskName: "tf-test-download-task",
+ *     taskName: "tf-test-download",
+ *     topicId: "3c57a110-399a-43b3-bc3c-5d60e065239a",
  * });
- * export const downloadTasks = foo.then(foo => foo.downloadTasks);
  * ```
  */
 /** @deprecated volcengine.tls.DownloadTasks has been deprecated in favor of volcengine.tls.getDownloadTasks */

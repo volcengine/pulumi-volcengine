@@ -100,19 +100,7 @@ def user_group_policy_attachments(output_file: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_policy = volcengine.iam.Policy("fooPolicy",
-        policy_name="acc-test-policy",
-        description="acc-test",
-        policy_document="{\\"Statement\\":[{\\"Effect\\":\\"Allow\\",\\"Action\\":[\\"auto_scaling:DescribeScalingGroups\\"],\\"Resource\\":[\\"*\\"]}]}")
-    foo_user_group = volcengine.iam.UserGroup("fooUserGroup",
-        user_group_name="acc-test-group",
-        description="acc-test",
-        display_name="acc-test")
-    foo_user_group_policy_attachment = volcengine.iam.UserGroupPolicyAttachment("fooUserGroupPolicyAttachment",
-        policy_name=foo_policy.policy_name,
-        policy_type="Custom",
-        user_group_name=foo_user_group.user_group_name)
-    foo_user_group_policy_attachments = volcengine.iam.get_user_group_policy_attachments_output(user_group_name=foo_user_group_policy_attachment.user_group_name)
+    default = volcengine.iam.get_user_group_policy_attachments(user_group_name="xRqElT")
     ```
 
 
@@ -146,19 +134,7 @@ def user_group_policy_attachments_output(output_file: Optional[pulumi.Input[Opti
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_policy = volcengine.iam.Policy("fooPolicy",
-        policy_name="acc-test-policy",
-        description="acc-test",
-        policy_document="{\\"Statement\\":[{\\"Effect\\":\\"Allow\\",\\"Action\\":[\\"auto_scaling:DescribeScalingGroups\\"],\\"Resource\\":[\\"*\\"]}]}")
-    foo_user_group = volcengine.iam.UserGroup("fooUserGroup",
-        user_group_name="acc-test-group",
-        description="acc-test",
-        display_name="acc-test")
-    foo_user_group_policy_attachment = volcengine.iam.UserGroupPolicyAttachment("fooUserGroupPolicyAttachment",
-        policy_name=foo_policy.policy_name,
-        policy_type="Custom",
-        user_group_name=foo_user_group.user_group_name)
-    foo_user_group_policy_attachments = volcengine.iam.get_user_group_policy_attachments_output(user_group_name=foo_user_group_policy_attachment.user_group_name)
+    default = volcengine.iam.get_user_group_policy_attachments(user_group_name="xRqElT")
     ```
 
 

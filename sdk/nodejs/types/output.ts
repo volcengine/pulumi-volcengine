@@ -24333,6 +24333,21 @@ export namespace financial_relation {
 }
 
 export namespace iam {
+    export interface AccessKeyLastUsedsAccessKeyLastUsed {
+        /**
+         * The region of the last used.
+         */
+        region: string;
+        /**
+         * The request time of the last used.
+         */
+        requestTime: string;
+        /**
+         * The service of the last used.
+         */
+        service: string;
+    }
+
     export interface AccessKeysAccessKeyMetadata {
         /**
          * The user access key id.
@@ -24351,9 +24366,293 @@ export namespace iam {
          */
         updateDate: string;
         /**
-         * The user names.
+         * The user name.
          */
         userName: string;
+    }
+
+    export interface AccountSummariesAccountSummary {
+        /**
+         * The quota of access keys per account.
+         */
+        accessKeysPerAccountQuota: number;
+        /**
+         * The quota of access keys per user.
+         */
+        accessKeysPerUserQuota: number;
+        /**
+         * The quota of attached policies per group.
+         */
+        attachedPoliciesPerGroupQuota: number;
+        /**
+         * The quota of attached policies per role.
+         */
+        attachedPoliciesPerRoleQuota: number;
+        /**
+         * The quota of attached policies per user.
+         */
+        attachedPoliciesPerUserQuota: number;
+        /**
+         * The quota of attached system policies per group.
+         */
+        attachedSystemPoliciesPerGroupQuota: number;
+        /**
+         * The quota of attached system policies per role.
+         */
+        attachedSystemPoliciesPerRoleQuota: number;
+        /**
+         * The quota of attached system policies per user.
+         */
+        attachedSystemPoliciesPerUserQuota: number;
+        /**
+         * The quota of groups per user.
+         */
+        groupsPerUserQuota: number;
+        /**
+         * The quota of groups.
+         */
+        groupsQuota: number;
+        /**
+         * The usage of groups.
+         */
+        groupsUsage: number;
+        /**
+         * The quota of policies.
+         */
+        policiesQuota: number;
+        /**
+         * The usage of policies.
+         */
+        policiesUsage: number;
+        /**
+         * The size of policy.
+         */
+        policySize: number;
+        /**
+         * The quota of roles.
+         */
+        rolesQuota: number;
+        /**
+         * The usage of roles.
+         */
+        rolesUsage: number;
+        /**
+         * The quota of users.
+         */
+        usersQuota: number;
+        /**
+         * The usage of users.
+         */
+        usersUsage: number;
+    }
+
+    export interface AllowedIpAddressIpList {
+        /**
+         * The description of the IP address.
+         */
+        description?: string;
+        /**
+         * The IP address.
+         */
+        ip: string;
+    }
+
+    export interface AllowedIpAddressesAllowedIpAddress {
+        /**
+         * Whether to enable the IP whitelist.
+         */
+        enableIpList: boolean;
+        /**
+         * The IP whitelist list.
+         */
+        ipLists: outputs.iam.AllowedIpAddressesAllowedIpAddressIpList[];
+        /**
+         * The quota of the IP whitelist.
+         */
+        quota: number;
+    }
+
+    export interface AllowedIpAddressesAllowedIpAddressIpList {
+        /**
+         * The description of the IP address.
+         */
+        description: string;
+        /**
+         * The IP address.
+         */
+        ip: string;
+    }
+
+    export interface CallerIdentitiesCallerIdentity {
+        /**
+         * The account id.
+         */
+        accountId: string;
+        /**
+         * The identity id.
+         */
+        identityId: string;
+        /**
+         * The identity type.
+         */
+        identityType: string;
+        /**
+         * The trn.
+         */
+        trn: string;
+    }
+
+    export interface EntitiesPoliciesRole {
+        /**
+         * The attach date of the policy scope.
+         */
+        attachDate: string;
+        /**
+         * The description of the user.
+         */
+        description: string;
+        /**
+         * The display name of the user.
+         */
+        displayName: string;
+        /**
+         * The id of the user.
+         */
+        id: number;
+        /**
+         * The scope of the policy.
+         */
+        policyScopes: outputs.iam.EntitiesPoliciesRolePolicyScope[];
+        /**
+         * The name of the role.
+         */
+        roleName: string;
+    }
+
+    export interface EntitiesPoliciesRolePolicyScope {
+        /**
+         * The attach date of the policy scope.
+         */
+        attachDate: string;
+        /**
+         * The type of the policy scope.
+         */
+        policyScopeType: string;
+        /**
+         * The display name of the project.
+         */
+        projectDisplayName: string;
+        /**
+         * The name of the project.
+         */
+        projectName: string;
+    }
+
+    export interface EntitiesPoliciesUser {
+        /**
+         * The attach date of the policy scope.
+         */
+        attachDate: string;
+        /**
+         * The description of the user.
+         */
+        description: string;
+        /**
+         * The display name of the user.
+         */
+        displayName: string;
+        /**
+         * The id of the user.
+         */
+        id: number;
+        /**
+         * The scope of the policy.
+         */
+        policyScopes: outputs.iam.EntitiesPoliciesUserPolicyScope[];
+        /**
+         * The name of the user.
+         */
+        userName: string;
+    }
+
+    export interface EntitiesPoliciesUserGroup {
+        /**
+         * The attach date of the policy scope.
+         */
+        attachDate: string;
+        /**
+         * The description of the user.
+         */
+        description: string;
+        /**
+         * The display name of the user.
+         */
+        displayName: string;
+        /**
+         * The id of the user.
+         */
+        id: number;
+        /**
+         * The scope of the policy.
+         */
+        policyScopes: outputs.iam.EntitiesPoliciesUserGroupPolicyScope[];
+        /**
+         * The name of the user group.
+         */
+        userGroupName: string;
+    }
+
+    export interface EntitiesPoliciesUserGroupPolicyScope {
+        /**
+         * The attach date of the policy scope.
+         */
+        attachDate: string;
+        /**
+         * The type of the policy scope.
+         */
+        policyScopeType: string;
+        /**
+         * The display name of the project.
+         */
+        projectDisplayName: string;
+        /**
+         * The name of the project.
+         */
+        projectName: string;
+    }
+
+    export interface EntitiesPoliciesUserPolicyScope {
+        /**
+         * The attach date of the policy scope.
+         */
+        attachDate: string;
+        /**
+         * The type of the policy scope.
+         */
+        policyScopeType: string;
+        /**
+         * The display name of the project.
+         */
+        projectDisplayName: string;
+        /**
+         * The name of the project.
+         */
+        projectName: string;
+    }
+
+    export interface GetAccessKeyLastUsedsAccessKeyLastUsed {
+        /**
+         * The region of the last used.
+         */
+        region: string;
+        /**
+         * The request time of the last used.
+         */
+        requestTime: string;
+        /**
+         * The service of the last used.
+         */
+        service: string;
     }
 
     export interface GetAccessKeysAccessKeyMetadata {
@@ -24374,9 +24673,463 @@ export namespace iam {
          */
         updateDate: string;
         /**
-         * The user names.
+         * The user name.
          */
         userName: string;
+    }
+
+    export interface GetAccountSummariesAccountSummary {
+        /**
+         * The quota of access keys per account.
+         */
+        accessKeysPerAccountQuota: number;
+        /**
+         * The quota of access keys per user.
+         */
+        accessKeysPerUserQuota: number;
+        /**
+         * The quota of attached policies per group.
+         */
+        attachedPoliciesPerGroupQuota: number;
+        /**
+         * The quota of attached policies per role.
+         */
+        attachedPoliciesPerRoleQuota: number;
+        /**
+         * The quota of attached policies per user.
+         */
+        attachedPoliciesPerUserQuota: number;
+        /**
+         * The quota of attached system policies per group.
+         */
+        attachedSystemPoliciesPerGroupQuota: number;
+        /**
+         * The quota of attached system policies per role.
+         */
+        attachedSystemPoliciesPerRoleQuota: number;
+        /**
+         * The quota of attached system policies per user.
+         */
+        attachedSystemPoliciesPerUserQuota: number;
+        /**
+         * The quota of groups per user.
+         */
+        groupsPerUserQuota: number;
+        /**
+         * The quota of groups.
+         */
+        groupsQuota: number;
+        /**
+         * The usage of groups.
+         */
+        groupsUsage: number;
+        /**
+         * The quota of policies.
+         */
+        policiesQuota: number;
+        /**
+         * The usage of policies.
+         */
+        policiesUsage: number;
+        /**
+         * The size of policy.
+         */
+        policySize: number;
+        /**
+         * The quota of roles.
+         */
+        rolesQuota: number;
+        /**
+         * The usage of roles.
+         */
+        rolesUsage: number;
+        /**
+         * The quota of users.
+         */
+        usersQuota: number;
+        /**
+         * The usage of users.
+         */
+        usersUsage: number;
+    }
+
+    export interface GetAllowedIpAddressesAllowedIpAddress {
+        /**
+         * Whether to enable the IP whitelist.
+         */
+        enableIpList: boolean;
+        /**
+         * The IP whitelist list.
+         */
+        ipLists: outputs.iam.GetAllowedIpAddressesAllowedIpAddressIpList[];
+        /**
+         * The quota of the IP whitelist.
+         */
+        quota: number;
+    }
+
+    export interface GetAllowedIpAddressesAllowedIpAddressIpList {
+        /**
+         * The description of the IP address.
+         */
+        description: string;
+        /**
+         * The IP address.
+         */
+        ip: string;
+    }
+
+    export interface GetCallerIdentitiesCallerIdentity {
+        /**
+         * The account id.
+         */
+        accountId: string;
+        /**
+         * The identity id.
+         */
+        identityId: string;
+        /**
+         * The identity type.
+         */
+        identityType: string;
+        /**
+         * The trn.
+         */
+        trn: string;
+    }
+
+    export interface GetEntitiesPoliciesRole {
+        /**
+         * The attach date of the policy scope.
+         */
+        attachDate: string;
+        /**
+         * The description of the user.
+         */
+        description: string;
+        /**
+         * The display name of the user.
+         */
+        displayName: string;
+        /**
+         * The id of the user.
+         */
+        id: number;
+        /**
+         * The scope of the policy.
+         */
+        policyScopes: outputs.iam.GetEntitiesPoliciesRolePolicyScope[];
+        /**
+         * The name of the role.
+         */
+        roleName: string;
+    }
+
+    export interface GetEntitiesPoliciesRolePolicyScope {
+        /**
+         * The attach date of the policy scope.
+         */
+        attachDate: string;
+        /**
+         * The type of the policy scope.
+         */
+        policyScopeType: string;
+        /**
+         * The display name of the project.
+         */
+        projectDisplayName: string;
+        /**
+         * The name of the project.
+         */
+        projectName: string;
+    }
+
+    export interface GetEntitiesPoliciesUser {
+        /**
+         * The attach date of the policy scope.
+         */
+        attachDate: string;
+        /**
+         * The description of the user.
+         */
+        description: string;
+        /**
+         * The display name of the user.
+         */
+        displayName: string;
+        /**
+         * The id of the user.
+         */
+        id: number;
+        /**
+         * The scope of the policy.
+         */
+        policyScopes: outputs.iam.GetEntitiesPoliciesUserPolicyScope[];
+        /**
+         * The name of the user.
+         */
+        userName: string;
+    }
+
+    export interface GetEntitiesPoliciesUserGroup {
+        /**
+         * The attach date of the policy scope.
+         */
+        attachDate: string;
+        /**
+         * The description of the user.
+         */
+        description: string;
+        /**
+         * The display name of the user.
+         */
+        displayName: string;
+        /**
+         * The id of the user.
+         */
+        id: number;
+        /**
+         * The scope of the policy.
+         */
+        policyScopes: outputs.iam.GetEntitiesPoliciesUserGroupPolicyScope[];
+        /**
+         * The name of the user group.
+         */
+        userGroupName: string;
+    }
+
+    export interface GetEntitiesPoliciesUserGroupPolicyScope {
+        /**
+         * The attach date of the policy scope.
+         */
+        attachDate: string;
+        /**
+         * The type of the policy scope.
+         */
+        policyScopeType: string;
+        /**
+         * The display name of the project.
+         */
+        projectDisplayName: string;
+        /**
+         * The name of the project.
+         */
+        projectName: string;
+    }
+
+    export interface GetEntitiesPoliciesUserPolicyScope {
+        /**
+         * The attach date of the policy scope.
+         */
+        attachDate: string;
+        /**
+         * The type of the policy scope.
+         */
+        policyScopeType: string;
+        /**
+         * The display name of the project.
+         */
+        projectDisplayName: string;
+        /**
+         * The name of the project.
+         */
+        projectName: string;
+    }
+
+    export interface GetGroupUsersUserGroup {
+        /**
+         * The description of the user group.
+         */
+        description: string;
+        /**
+         * The display name of the user group.
+         */
+        displayName: string;
+        /**
+         * The join date of the user group.
+         */
+        joinDate: string;
+        /**
+         * The id of the user group.
+         */
+        userGroupId: number;
+        /**
+         * The name of the user group.
+         */
+        userGroupName: string;
+    }
+
+    export interface GetIdentityProvidersProvider {
+        /**
+         * The create date of the identity provider.
+         */
+        createDate: string;
+        /**
+         * The description of the identity provider.
+         */
+        description: string;
+        /**
+         * The type of the identity provider.
+         */
+        idpType: number;
+        /**
+         * The name of the identity provider.
+         */
+        providerName: string;
+        /**
+         * The SSO type of the identity provider.
+         */
+        ssoType: number;
+        /**
+         * The status of the identity provider.
+         */
+        status: number;
+        /**
+         * The TRN of the identity provider.
+         */
+        trn: string;
+        /**
+         * The update date of the identity provider.
+         */
+        updateDate: string;
+    }
+
+    export interface GetLoginProfilesLoginProfile {
+        /**
+         * The create date.
+         */
+        createDate: string;
+        /**
+         * The last login date.
+         */
+        lastLoginDate: string;
+        /**
+         * The last login ip.
+         */
+        lastLoginIp: string;
+        /**
+         * The last reset password time.
+         */
+        lastResetPasswordTime: number;
+        /**
+         * The flag of login allowed.
+         */
+        loginAllowed: boolean;
+        /**
+         * The flag of login locked.
+         */
+        loginLocked: boolean;
+        /**
+         * The password expire at.
+         */
+        passwordExpireAt: number;
+        /**
+         * Is required reset password when next time login in.
+         */
+        passwordResetRequired: boolean;
+        /**
+         * The duration of safe auth exempt.
+         */
+        safeAuthExemptDuration: number;
+        /**
+         * The flag of safe auth exempt required.
+         */
+        safeAuthExemptRequired: number;
+        /**
+         * The unit of safe auth exempt.
+         */
+        safeAuthExemptUnit: number;
+        /**
+         * The flag of safe auth.
+         */
+        safeAuthFlag: boolean;
+        /**
+         * The type of safe auth.
+         */
+        safeAuthType: string;
+        /**
+         * The update date.
+         */
+        updateDate: string;
+        /**
+         * The user id.
+         */
+        userId: number;
+        /**
+         * The user name.
+         */
+        userName: string;
+    }
+
+    export interface GetOauthProvidersProvider {
+        /**
+         * The authorize template of the OAuth provider.
+         */
+        authorizeTemplate: string;
+        /**
+         * The authorize url of the OAuth provider.
+         */
+        authorizeUrl: string;
+        /**
+         * The client id of the OAuth provider.
+         */
+        clientId: string;
+        /**
+         * The client secret of the OAuth provider.
+         */
+        clientSecret: string;
+        /**
+         * The create date of the OAuth provider.
+         */
+        createDate: string;
+        /**
+         * The description of the OAuth provider.
+         */
+        description: string;
+        /**
+         * The identity map type of the OAuth provider.
+         */
+        identityMapType: number;
+        /**
+         * The idp identity key of the OAuth provider.
+         */
+        idpIdentityKey: string;
+        /**
+         * The name of the OAuth provider.
+         */
+        oauthProviderName: string;
+        /**
+         * The id of the OAuth provider.
+         */
+        providerId: string;
+        /**
+         * The scope of the OAuth provider.
+         */
+        scope: string;
+        /**
+         * The SSO type of the OAuth provider.
+         */
+        ssoType: number;
+        /**
+         * The status of the OAuth provider.
+         */
+        status: number;
+        /**
+         * The token url of the OAuth provider.
+         */
+        tokenUrl: string;
+        /**
+         * The trn of the OAuth provider.
+         */
+        trn: string;
+        /**
+         * The update date of the OAuth provider.
+         */
+        updateDate: string;
+        /**
+         * The user info url of the OAuth provider.
+         */
+        userInfoUrl: string;
     }
 
     export interface GetOidcProvidersOidcProvider {
@@ -24420,6 +25173,14 @@ export namespace iam {
 
     export interface GetPoliciesPolicy {
         /**
+         * The attachment count of the Policy.
+         */
+        attachmentCount: number;
+        /**
+         * The category of the Policy.
+         */
+        category: string;
+        /**
          * The create time of the Policy.
          */
         createDate: string;
@@ -24431,6 +25192,10 @@ export namespace iam {
          * The ID of the Policy.
          */
         id: string;
+        /**
+         * Whether the Policy is a service role policy.
+         */
+        isServiceRolePolicy: number;
         /**
          * The document of the Policy.
          */
@@ -24448,25 +25213,55 @@ export namespace iam {
          */
         policyType: string;
         /**
-         * The role attach time of the Policy.The data show only query with role_name.
-         */
-        roleAttachDate: string;
-        /**
-         * The name of the IAM role.
-         */
-        roleName: string;
-        /**
          * The update time of the Policy.
          */
         updateDate: string;
+    }
+
+    export interface GetRolePolicyAttachmentsPolicy {
         /**
-         * The user attach time of the Policy.The data show only query with user_name.
+         * The attach date of the policy scope.
          */
-        userAttachDate: string;
+        attachDate: string;
         /**
-         * The name of the IAM user.
+         * The description of the policy.
          */
-        userName: string;
+        description: string;
+        /**
+         * The name of the policy.
+         */
+        policyName: string;
+        /**
+         * The scope of the policy.
+         */
+        policyScopes: outputs.iam.GetRolePolicyAttachmentsPolicyPolicyScope[];
+        /**
+         * The trn of the policy.
+         */
+        policyTrn: string;
+        /**
+         * The type of the policy.
+         */
+        policyType: string;
+    }
+
+    export interface GetRolePolicyAttachmentsPolicyPolicyScope {
+        /**
+         * The attach date of the policy scope.
+         */
+        attachDate: string;
+        /**
+         * The type of the policy scope.
+         */
+        policyScopeType: string;
+        /**
+         * The display name of the project.
+         */
+        projectDisplayName: string;
+        /**
+         * The name of the project.
+         */
+        projectName: string;
     }
 
     export interface GetRolesRole {
@@ -24479,13 +25274,29 @@ export namespace iam {
          */
         description: string;
         /**
-         * The ID of the Role.
+         * The display name of the Role.
          */
-        id: string;
+        displayName: string;
         /**
-         * The name of the Role, comma separated.
+         * Whether the Role is a service linked role.
+         */
+        isServiceLinkedRole: number;
+        /**
+         * The max session duration of the Role.
+         */
+        maxSessionDuration: number;
+        /**
+         * The id of the Role.
+         */
+        roleId: number;
+        /**
+         * The name of the Role.
          */
         roleName: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.iam.GetRolesRoleTag[];
         /**
          * The resource name of the Role.
          */
@@ -24494,6 +25305,21 @@ export namespace iam {
          * The trust policy document of the Role.
          */
         trustPolicyDocument: string;
+        /**
+         * The update time of the Role.
+         */
+        updateDate: string;
+    }
+
+    export interface GetRolesRoleTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface GetSamlProvidersProvider {
@@ -24531,9 +25357,74 @@ export namespace iam {
         updateDate: string;
     }
 
+    export interface GetSecurityConfigsSecurityConfig {
+        /**
+         * The status of safe auth.
+         */
+        safeAuthClose: number;
+        /**
+         * The exempt duration of safe auth.
+         */
+        safeAuthExemptDuration: number;
+        /**
+         * The type of safe auth.
+         */
+        safeAuthType: string;
+        /**
+         * The user id.
+         */
+        userId: number;
+        /**
+         * The user name.
+         */
+        userName: string;
+    }
+
+    export interface GetTagsResourceTag {
+        /**
+         * The name of the resource.
+         */
+        resourceName: string;
+        /**
+         * The type of the resource. Valid values: User, Role.
+         */
+        resourceType: string;
+        /**
+         * The key of the tag.
+         */
+        tagKey: string;
+        /**
+         * The value of the tag.
+         */
+        tagValue: string;
+    }
+
+    export interface GetUserGroupAttachmentsUser {
+        /**
+         * The description of the user.
+         */
+        description: string;
+        /**
+         * The display name of the user.
+         */
+        displayName: string;
+        /**
+         * The join date of the user.
+         */
+        joinDate: string;
+        /**
+         * The id of the user.
+         */
+        userId: number;
+        /**
+         * The name of the user.
+         */
+        userName: string;
+    }
+
     export interface GetUserGroupPolicyAttachmentsPolicy {
         /**
-         * Attached time.
+         * The attach date of the policy scope.
          */
         attachDate: string;
         /**
@@ -24545,6 +25436,10 @@ export namespace iam {
          */
         policyName: string;
         /**
+         * The scope of the policy.
+         */
+        policyScopes: outputs.iam.GetUserGroupPolicyAttachmentsPolicyPolicyScope[];
+        /**
          * Resource name of the strategy.
          */
         policyTrn: string;
@@ -24552,6 +25447,25 @@ export namespace iam {
          * The type of the policy.
          */
         policyType: string;
+    }
+
+    export interface GetUserGroupPolicyAttachmentsPolicyPolicyScope {
+        /**
+         * The attach date of the policy scope.
+         */
+        attachDate: string;
+        /**
+         * The type of the policy scope.
+         */
+        policyScopeType: string;
+        /**
+         * The display name of the project.
+         */
+        projectDisplayName: string;
+        /**
+         * The name of the project.
+         */
+        projectName: string;
     }
 
     export interface GetUserGroupsUserGroup {
@@ -24576,9 +25490,59 @@ export namespace iam {
          */
         updateDate: string;
         /**
+         * The id of the user group.
+         */
+        userGroupId: number;
+        /**
          * The name of the user group.
          */
         userGroupName: string;
+    }
+
+    export interface GetUserPolicyAttachmentsPolicy {
+        /**
+         * The attach date of the policy scope.
+         */
+        attachDate: string;
+        /**
+         * The description of the policy.
+         */
+        description: string;
+        /**
+         * The name of the policy.
+         */
+        policyName: string;
+        /**
+         * The scope of the policy.
+         */
+        policyScopes: outputs.iam.GetUserPolicyAttachmentsPolicyPolicyScope[];
+        /**
+         * The trn of the policy.
+         */
+        policyTrn: string;
+        /**
+         * The type of the policy.
+         */
+        policyType: string;
+    }
+
+    export interface GetUserPolicyAttachmentsPolicyPolicyScope {
+        /**
+         * The attach date of the policy scope.
+         */
+        attachDate: string;
+        /**
+         * The type of the policy scope.
+         */
+        policyScopeType: string;
+        /**
+         * The display name of the project.
+         */
+        projectDisplayName: string;
+        /**
+         * The name of the project.
+         */
+        projectName: string;
     }
 
     export interface GetUsersUser {
@@ -24615,6 +25579,10 @@ export namespace iam {
          */
         mobilePhoneIsVerify: boolean;
         /**
+         * Tags.
+         */
+        tags?: outputs.iam.GetUsersUserTag[];
+        /**
          * The trn of the user.
          */
         trn: string;
@@ -24630,6 +25598,213 @@ export namespace iam {
          * The name of the user.
          */
         userName: string;
+    }
+
+    export interface GetUsersUserTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GroupUsersUserGroup {
+        /**
+         * The description of the user group.
+         */
+        description: string;
+        /**
+         * The display name of the user group.
+         */
+        displayName: string;
+        /**
+         * The join date of the user group.
+         */
+        joinDate: string;
+        /**
+         * The id of the user group.
+         */
+        userGroupId: number;
+        /**
+         * The name of the user group.
+         */
+        userGroupName: string;
+    }
+
+    export interface IdentityProvidersProvider {
+        /**
+         * The create date of the identity provider.
+         */
+        createDate: string;
+        /**
+         * The description of the identity provider.
+         */
+        description: string;
+        /**
+         * The type of the identity provider.
+         */
+        idpType: number;
+        /**
+         * The name of the identity provider.
+         */
+        providerName: string;
+        /**
+         * The SSO type of the identity provider.
+         */
+        ssoType: number;
+        /**
+         * The status of the identity provider.
+         */
+        status: number;
+        /**
+         * The TRN of the identity provider.
+         */
+        trn: string;
+        /**
+         * The update date of the identity provider.
+         */
+        updateDate: string;
+    }
+
+    export interface LoginProfilesLoginProfile {
+        /**
+         * The create date.
+         */
+        createDate: string;
+        /**
+         * The last login date.
+         */
+        lastLoginDate: string;
+        /**
+         * The last login ip.
+         */
+        lastLoginIp: string;
+        /**
+         * The last reset password time.
+         */
+        lastResetPasswordTime: number;
+        /**
+         * The flag of login allowed.
+         */
+        loginAllowed: boolean;
+        /**
+         * The flag of login locked.
+         */
+        loginLocked: boolean;
+        /**
+         * The password expire at.
+         */
+        passwordExpireAt: number;
+        /**
+         * Is required reset password when next time login in.
+         */
+        passwordResetRequired: boolean;
+        /**
+         * The duration of safe auth exempt.
+         */
+        safeAuthExemptDuration: number;
+        /**
+         * The flag of safe auth exempt required.
+         */
+        safeAuthExemptRequired: number;
+        /**
+         * The unit of safe auth exempt.
+         */
+        safeAuthExemptUnit: number;
+        /**
+         * The flag of safe auth.
+         */
+        safeAuthFlag: boolean;
+        /**
+         * The type of safe auth.
+         */
+        safeAuthType: string;
+        /**
+         * The update date.
+         */
+        updateDate: string;
+        /**
+         * The user id.
+         */
+        userId: number;
+        /**
+         * The user name.
+         */
+        userName: string;
+    }
+
+    export interface OauthProvidersProvider {
+        /**
+         * The authorize template of the OAuth provider.
+         */
+        authorizeTemplate: string;
+        /**
+         * The authorize url of the OAuth provider.
+         */
+        authorizeUrl: string;
+        /**
+         * The client id of the OAuth provider.
+         */
+        clientId: string;
+        /**
+         * The client secret of the OAuth provider.
+         */
+        clientSecret: string;
+        /**
+         * The create date of the OAuth provider.
+         */
+        createDate: string;
+        /**
+         * The description of the OAuth provider.
+         */
+        description: string;
+        /**
+         * The identity map type of the OAuth provider.
+         */
+        identityMapType: number;
+        /**
+         * The idp identity key of the OAuth provider.
+         */
+        idpIdentityKey: string;
+        /**
+         * The name of the OAuth provider.
+         */
+        oauthProviderName: string;
+        /**
+         * The id of the OAuth provider.
+         */
+        providerId: string;
+        /**
+         * The scope of the OAuth provider.
+         */
+        scope: string;
+        /**
+         * The SSO type of the OAuth provider.
+         */
+        ssoType: number;
+        /**
+         * The status of the OAuth provider.
+         */
+        status: number;
+        /**
+         * The token url of the OAuth provider.
+         */
+        tokenUrl: string;
+        /**
+         * The trn of the OAuth provider.
+         */
+        trn: string;
+        /**
+         * The update date of the OAuth provider.
+         */
+        updateDate: string;
+        /**
+         * The user info url of the OAuth provider.
+         */
+        userInfoUrl: string;
     }
 
     export interface OidcProvidersOidcProvider {
@@ -24673,6 +25848,14 @@ export namespace iam {
 
     export interface PoliciesPolicy {
         /**
+         * The attachment count of the Policy.
+         */
+        attachmentCount: number;
+        /**
+         * The category of the Policy.
+         */
+        category: string;
+        /**
          * The create time of the Policy.
          */
         createDate: string;
@@ -24684,6 +25867,10 @@ export namespace iam {
          * The ID of the Policy.
          */
         id: string;
+        /**
+         * Whether the Policy is a service role policy.
+         */
+        isServiceRolePolicy: number;
         /**
          * The document of the Policy.
          */
@@ -24701,25 +25888,66 @@ export namespace iam {
          */
         policyType: string;
         /**
-         * The role attach time of the Policy.The data show only query with role_name.
-         */
-        roleAttachDate: string;
-        /**
-         * The name of the IAM role.
-         */
-        roleName: string;
-        /**
          * The update time of the Policy.
          */
         updateDate: string;
+    }
+
+    export interface RolePolicyAttachmentsPolicy {
         /**
-         * The user attach time of the Policy.The data show only query with user_name.
+         * The attach date of the policy scope.
          */
-        userAttachDate: string;
+        attachDate: string;
         /**
-         * The name of the IAM user.
+         * The description of the policy.
          */
-        userName: string;
+        description: string;
+        /**
+         * The name of the policy.
+         */
+        policyName: string;
+        /**
+         * The scope of the policy.
+         */
+        policyScopes: outputs.iam.RolePolicyAttachmentsPolicyPolicyScope[];
+        /**
+         * The trn of the policy.
+         */
+        policyTrn: string;
+        /**
+         * The type of the policy.
+         */
+        policyType: string;
+    }
+
+    export interface RolePolicyAttachmentsPolicyPolicyScope {
+        /**
+         * The attach date of the policy scope.
+         */
+        attachDate: string;
+        /**
+         * The type of the policy scope.
+         */
+        policyScopeType: string;
+        /**
+         * The display name of the project.
+         */
+        projectDisplayName: string;
+        /**
+         * The name of the project.
+         */
+        projectName: string;
+    }
+
+    export interface RoleTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface RolesRole {
@@ -24732,13 +25960,29 @@ export namespace iam {
          */
         description: string;
         /**
-         * The ID of the Role.
+         * The display name of the Role.
          */
-        id: string;
+        displayName: string;
         /**
-         * The name of the Role, comma separated.
+         * Whether the Role is a service linked role.
+         */
+        isServiceLinkedRole: number;
+        /**
+         * The max session duration of the Role.
+         */
+        maxSessionDuration: number;
+        /**
+         * The id of the Role.
+         */
+        roleId: number;
+        /**
+         * The name of the Role.
          */
         roleName: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.iam.RolesRoleTag[];
         /**
          * The resource name of the Role.
          */
@@ -24747,6 +25991,21 @@ export namespace iam {
          * The trust policy document of the Role.
          */
         trustPolicyDocument: string;
+        /**
+         * The update time of the Role.
+         */
+        updateDate: string;
+    }
+
+    export interface RolesRoleTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface SamlProvidersProvider {
@@ -24784,9 +26043,96 @@ export namespace iam {
         updateDate: string;
     }
 
+    export interface SecurityConfigsSecurityConfig {
+        /**
+         * The status of safe auth.
+         */
+        safeAuthClose: number;
+        /**
+         * The exempt duration of safe auth.
+         */
+        safeAuthExemptDuration: number;
+        /**
+         * The type of safe auth.
+         */
+        safeAuthType: string;
+        /**
+         * The user id.
+         */
+        userId: number;
+        /**
+         * The user name.
+         */
+        userName: string;
+    }
+
+    export interface ServiceLinkedRoleTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface TagTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface TagsResourceTag {
+        /**
+         * The name of the resource.
+         */
+        resourceName: string;
+        /**
+         * The type of the resource. Valid values: User, Role.
+         */
+        resourceType: string;
+        /**
+         * The key of the tag.
+         */
+        tagKey: string;
+        /**
+         * The value of the tag.
+         */
+        tagValue: string;
+    }
+
+    export interface UserGroupAttachmentsUser {
+        /**
+         * The description of the user.
+         */
+        description: string;
+        /**
+         * The display name of the user.
+         */
+        displayName: string;
+        /**
+         * The join date of the user.
+         */
+        joinDate: string;
+        /**
+         * The id of the user.
+         */
+        userId: number;
+        /**
+         * The name of the user.
+         */
+        userName: string;
+    }
+
     export interface UserGroupPolicyAttachmentsPolicy {
         /**
-         * Attached time.
+         * The attach date of the policy scope.
          */
         attachDate: string;
         /**
@@ -24798,6 +26144,10 @@ export namespace iam {
          */
         policyName: string;
         /**
+         * The scope of the policy.
+         */
+        policyScopes: outputs.iam.UserGroupPolicyAttachmentsPolicyPolicyScope[];
+        /**
          * Resource name of the strategy.
          */
         policyTrn: string;
@@ -24805,6 +26155,25 @@ export namespace iam {
          * The type of the policy.
          */
         policyType: string;
+    }
+
+    export interface UserGroupPolicyAttachmentsPolicyPolicyScope {
+        /**
+         * The attach date of the policy scope.
+         */
+        attachDate: string;
+        /**
+         * The type of the policy scope.
+         */
+        policyScopeType: string;
+        /**
+         * The display name of the project.
+         */
+        projectDisplayName: string;
+        /**
+         * The name of the project.
+         */
+        projectName: string;
     }
 
     export interface UserGroupsUserGroup {
@@ -24829,9 +26198,70 @@ export namespace iam {
          */
         updateDate: string;
         /**
+         * The id of the user group.
+         */
+        userGroupId: number;
+        /**
          * The name of the user group.
          */
         userGroupName: string;
+    }
+
+    export interface UserPolicyAttachmentsPolicy {
+        /**
+         * The attach date of the policy scope.
+         */
+        attachDate: string;
+        /**
+         * The description of the policy.
+         */
+        description: string;
+        /**
+         * The name of the policy.
+         */
+        policyName: string;
+        /**
+         * The scope of the policy.
+         */
+        policyScopes: outputs.iam.UserPolicyAttachmentsPolicyPolicyScope[];
+        /**
+         * The trn of the policy.
+         */
+        policyTrn: string;
+        /**
+         * The type of the policy.
+         */
+        policyType: string;
+    }
+
+    export interface UserPolicyAttachmentsPolicyPolicyScope {
+        /**
+         * The attach date of the policy scope.
+         */
+        attachDate: string;
+        /**
+         * The type of the policy scope.
+         */
+        policyScopeType: string;
+        /**
+         * The display name of the project.
+         */
+        projectDisplayName: string;
+        /**
+         * The name of the project.
+         */
+        projectName: string;
+    }
+
+    export interface UserTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface UsersUser {
@@ -24868,6 +26298,10 @@ export namespace iam {
          */
         mobilePhoneIsVerify: boolean;
         /**
+         * Tags.
+         */
+        tags?: outputs.iam.UsersUserTag[];
+        /**
          * The trn of the user.
          */
         trn: string;
@@ -24883,6 +26317,17 @@ export namespace iam {
          * The name of the user.
          */
         userName: string;
+    }
+
+    export interface UsersUserTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
 }
@@ -45231,6 +46676,17 @@ export namespace tls {
         severity: string;
     }
 
+    export interface CheckPointsCheckPoint {
+        /**
+         * The checkpoint value.
+         */
+        checkpoint: string;
+        /**
+         * The ID of the shard.
+         */
+        shardId: number;
+    }
+
     export interface ConsumerGroupsConsumerGroup {
         /**
          * The name of the consumer group.
@@ -46326,6 +47782,17 @@ export namespace tls {
         severity: string;
     }
 
+    export interface GetCheckPointsCheckPoint {
+        /**
+         * The checkpoint value.
+         */
+        checkpoint: string;
+        /**
+         * The ID of the shard.
+         */
+        shardId: number;
+    }
+
     export interface GetConsumerGroupsConsumerGroup {
         /**
          * The name of the consumer group.
@@ -47211,7 +48678,7 @@ export namespace tls {
          */
         modifyTime: string;
         /**
-         * The topic id of the tls index.
+         * The topic id of tls index.
          */
         topicId: string;
         /**
@@ -47237,6 +48704,10 @@ export namespace tls {
 
     export interface GetIndexesTlsIndexKeyValue {
         /**
+         * Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+         */
+        autoIndexFlag: boolean;
+        /**
          * Whether the value is case sensitive.
          */
         caseSensitive: boolean;
@@ -47249,15 +48720,19 @@ export namespace tls {
          */
         includeChinese: boolean;
         /**
-         * Whether to create indexes for all fields in JSON fields with text values.
+         * Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
          */
         indexAll: boolean;
+        /**
+         * Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+         */
+        indexSqlAll: boolean;
         /**
          * The JSON subfield key value index.
          */
         jsonKeys: outputs.tls.GetIndexesTlsIndexKeyValueJsonKey[];
         /**
-         * The key of the KeyValue index.
+         * The key of the KeyValueInfo.
          */
         key: string;
         /**
@@ -47265,7 +48740,7 @@ export namespace tls {
          */
         sqlFlag: boolean;
         /**
-         * The type of value.
+         * The type of value. Valid values: `long`, `double`, `text`, `json`.
          */
         valueType: string;
     }
@@ -47284,7 +48759,7 @@ export namespace tls {
          */
         includeChinese: boolean;
         /**
-         * The key of the KeyValue index.
+         * The key of the KeyValueInfo.
          */
         key: string;
         /**
@@ -47292,12 +48767,16 @@ export namespace tls {
          */
         sqlFlag: boolean;
         /**
-         * The type of value.
+         * The type of value. Valid values: `long`, `double`, `text`, `json`.
          */
         valueType: string;
     }
 
     export interface GetIndexesTlsIndexUserInnerKeyValue {
+        /**
+         * Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+         */
+        autoIndexFlag: boolean;
         /**
          * Whether the value is case sensitive.
          */
@@ -47311,11 +48790,19 @@ export namespace tls {
          */
         includeChinese: boolean;
         /**
+         * Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+         */
+        indexAll: boolean;
+        /**
+         * Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+         */
+        indexSqlAll: boolean;
+        /**
          * The JSON subfield key value index.
          */
         jsonKeys: outputs.tls.GetIndexesTlsIndexUserInnerKeyValueJsonKey[];
         /**
-         * The key of the KeyValue index.
+         * The key of the KeyValueInfo.
          */
         key: string;
         /**
@@ -47323,7 +48810,7 @@ export namespace tls {
          */
         sqlFlag: boolean;
         /**
-         * The type of value.
+         * The type of value. Valid values: `long`, `double`, `text`, `json`.
          */
         valueType: string;
     }
@@ -47342,7 +48829,7 @@ export namespace tls {
          */
         includeChinese: boolean;
         /**
-         * The key of the KeyValue index.
+         * The key of the KeyValueInfo.
          */
         key: string;
         /**
@@ -47350,7 +48837,7 @@ export namespace tls {
          */
         sqlFlag: boolean;
         /**
-         * The type of value.
+         * The type of value. Valid values: `long`, `double`, `text`, `json`.
          */
         valueType: string;
     }
@@ -47383,6 +48870,25 @@ export namespace tls {
          * Whether the previous logs are over.
          */
         prevOver: boolean;
+    }
+
+    export interface GetLogCursorsLogCursor {
+        /**
+         * The cursor value.
+         */
+        cursor: string;
+        /**
+         * The time point of the cursor. The value is a Unix timestamp in seconds, or "begin" or "end".
+         */
+        from: string;
+        /**
+         * The ID of the shard.
+         */
+        shardId: number;
+        /**
+         * The ID of the topic.
+         */
+        topicId: string;
     }
 
     export interface GetLogHistogramsHistogramInfo {
@@ -49251,7 +50757,7 @@ export namespace tls {
         /**
          * The delimiter of the FullTextInfo.
          */
-        delimiter?: string;
+        delimiter: string;
         /**
          * Whether the FullTextInfo include chinese.
          */
@@ -49259,6 +50765,10 @@ export namespace tls {
     }
 
     export interface IndexKeyValue {
+        /**
+         * Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+         */
+        autoIndexFlag?: boolean;
         /**
          * Whether the value is case sensitive.
          */
@@ -49275,6 +50785,10 @@ export namespace tls {
          * Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
          */
         indexAll?: boolean;
+        /**
+         * Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+         */
+        indexSqlAll?: boolean;
         /**
          * The JSON subfield key value index.
          */
@@ -49299,12 +50813,20 @@ export namespace tls {
          */
         key: string;
         /**
+         * Whether the filed is enabled for analysis.
+         */
+        sqlFlag?: boolean;
+        /**
          * The type of value. Valid values: `long`, `double`, `text`.
          */
         valueType: string;
     }
 
     export interface IndexUserInnerKeyValue {
+        /**
+         * Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+         */
+        autoIndexFlag?: boolean;
         /**
          * Whether the value is case sensitive.
          */
@@ -49317,6 +50839,14 @@ export namespace tls {
          * Whether the value include chinese.
          */
         includeChinese?: boolean;
+        /**
+         * Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+         */
+        indexAll?: boolean;
+        /**
+         * Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+         */
+        indexSqlAll?: boolean;
         /**
          * The JSON subfield key value index.
          */
@@ -49340,6 +50870,10 @@ export namespace tls {
          * The key of the subfield key value index.
          */
         key: string;
+        /**
+         * Whether the filed is enabled for analysis.
+         */
+        sqlFlag?: boolean;
         /**
          * The type of value. Valid values: `long`, `double`, `text`.
          */
@@ -49376,7 +50910,7 @@ export namespace tls {
          */
         modifyTime: string;
         /**
-         * The topic id of the tls index.
+         * The topic id of tls index.
          */
         topicId: string;
         /**
@@ -49402,6 +50936,10 @@ export namespace tls {
 
     export interface IndexesTlsIndexKeyValue {
         /**
+         * Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+         */
+        autoIndexFlag: boolean;
+        /**
          * Whether the value is case sensitive.
          */
         caseSensitive: boolean;
@@ -49414,15 +50952,19 @@ export namespace tls {
          */
         includeChinese: boolean;
         /**
-         * Whether to create indexes for all fields in JSON fields with text values.
+         * Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
          */
         indexAll: boolean;
+        /**
+         * Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+         */
+        indexSqlAll: boolean;
         /**
          * The JSON subfield key value index.
          */
         jsonKeys: outputs.tls.IndexesTlsIndexKeyValueJsonKey[];
         /**
-         * The key of the KeyValue index.
+         * The key of the KeyValueInfo.
          */
         key: string;
         /**
@@ -49430,7 +50972,7 @@ export namespace tls {
          */
         sqlFlag: boolean;
         /**
-         * The type of value.
+         * The type of value. Valid values: `long`, `double`, `text`, `json`.
          */
         valueType: string;
     }
@@ -49449,7 +50991,7 @@ export namespace tls {
          */
         includeChinese: boolean;
         /**
-         * The key of the KeyValue index.
+         * The key of the KeyValueInfo.
          */
         key: string;
         /**
@@ -49457,12 +50999,16 @@ export namespace tls {
          */
         sqlFlag: boolean;
         /**
-         * The type of value.
+         * The type of value. Valid values: `long`, `double`, `text`, `json`.
          */
         valueType: string;
     }
 
     export interface IndexesTlsIndexUserInnerKeyValue {
+        /**
+         * Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+         */
+        autoIndexFlag: boolean;
         /**
          * Whether the value is case sensitive.
          */
@@ -49476,11 +51022,19 @@ export namespace tls {
          */
         includeChinese: boolean;
         /**
+         * Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+         */
+        indexAll: boolean;
+        /**
+         * Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+         */
+        indexSqlAll: boolean;
+        /**
          * The JSON subfield key value index.
          */
         jsonKeys: outputs.tls.IndexesTlsIndexUserInnerKeyValueJsonKey[];
         /**
-         * The key of the KeyValue index.
+         * The key of the KeyValueInfo.
          */
         key: string;
         /**
@@ -49488,7 +51042,7 @@ export namespace tls {
          */
         sqlFlag: boolean;
         /**
-         * The type of value.
+         * The type of value. Valid values: `long`, `double`, `text`, `json`.
          */
         valueType: string;
     }
@@ -49507,7 +51061,7 @@ export namespace tls {
          */
         includeChinese: boolean;
         /**
-         * The key of the KeyValue index.
+         * The key of the KeyValueInfo.
          */
         key: string;
         /**
@@ -49515,7 +51069,7 @@ export namespace tls {
          */
         sqlFlag: boolean;
         /**
-         * The type of value.
+         * The type of value. Valid values: `long`, `double`, `text`, `json`.
          */
         valueType: string;
     }
@@ -49548,6 +51102,25 @@ export namespace tls {
          * Whether the previous logs are over.
          */
         prevOver: boolean;
+    }
+
+    export interface LogCursorsLogCursor {
+        /**
+         * The cursor value.
+         */
+        cursor: string;
+        /**
+         * The time point of the cursor. The value is a Unix timestamp in seconds, or "begin" or "end".
+         */
+        from: string;
+        /**
+         * The ID of the shard.
+         */
+        shardId: number;
+        /**
+         * The ID of the topic.
+         */
+        topicId: string;
     }
 
     export interface LogHistogramsHistogramInfo {

@@ -18,6 +18,10 @@ namespace Pulumi.Volcengine.Tls.Outputs
         /// </summary>
         public readonly string Key;
         /// <summary>
+        /// Whether the filed is enabled for analysis.
+        /// </summary>
+        public readonly bool? SqlFlag;
+        /// <summary>
         /// The type of value. Valid values: `long`, `double`, `text`.
         /// </summary>
         public readonly string ValueType;
@@ -26,9 +30,12 @@ namespace Pulumi.Volcengine.Tls.Outputs
         private IndexKeyValueJsonKey(
             string key,
 
+            bool? sqlFlag,
+
             string valueType)
         {
             Key = key;
+            SqlFlag = sqlFlag;
             ValueType = valueType;
         }
     }

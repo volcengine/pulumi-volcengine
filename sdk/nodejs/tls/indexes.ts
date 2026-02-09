@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  *
  * const default = volcengine.tls.getIndexes({
- *     ids: ["9b756385-1dfb-4306-a094-0c88e04b34a5"],
+ *     topicId: "c36ed436-84f1-467a-b00e-ba504db753ca",
  * });
  * ```
  */
@@ -25,8 +25,8 @@ export function indexes(args: IndexesArgs, opts?: pulumi.InvokeOptions): Promise
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:tls/indexes:Indexes", {
-        "ids": args.ids,
         "outputFile": args.outputFile,
+        "topicId": args.topicId,
     }, opts);
 }
 
@@ -35,13 +35,13 @@ export function indexes(args: IndexesArgs, opts?: pulumi.InvokeOptions): Promise
  */
 export interface IndexesArgs {
     /**
-     * The list of topic id of tls index.
-     */
-    ids: string[];
-    /**
      * File name where to save data source results.
      */
     outputFile?: string;
+    /**
+     * The topic id of tls index.
+     */
+    topicId: string;
 }
 
 /**
@@ -52,12 +52,15 @@ export interface IndexesResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    readonly ids: string[];
     readonly outputFile?: string;
     /**
      * The collection of tls index query.
      */
     readonly tlsIndexes: outputs.tls.IndexesTlsIndex[];
+    /**
+     * The topic id of the tls index.
+     */
+    readonly topicId: string;
     /**
      * The total count of tls index query.
      */
@@ -72,7 +75,7 @@ export interface IndexesResult {
  * import * as volcengine from "@pulumi/volcengine";
  *
  * const default = volcengine.tls.getIndexes({
- *     ids: ["9b756385-1dfb-4306-a094-0c88e04b34a5"],
+ *     topicId: "c36ed436-84f1-467a-b00e-ba504db753ca",
  * });
  * ```
  */
@@ -86,11 +89,11 @@ export function indexesOutput(args: IndexesOutputArgs, opts?: pulumi.InvokeOptio
  */
 export interface IndexesOutputArgs {
     /**
-     * The list of topic id of tls index.
-     */
-    ids: pulumi.Input<pulumi.Input<string>[]>;
-    /**
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
+    /**
+     * The topic id of tls index.
+     */
+    topicId: pulumi.Input<string>;
 }

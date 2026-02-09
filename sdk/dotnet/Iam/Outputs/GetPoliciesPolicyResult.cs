@@ -14,6 +14,14 @@ namespace Pulumi.Volcengine.Iam.Outputs
     public sealed class GetPoliciesPolicyResult
     {
         /// <summary>
+        /// The attachment count of the Policy.
+        /// </summary>
+        public readonly int AttachmentCount;
+        /// <summary>
+        /// The category of the Policy.
+        /// </summary>
+        public readonly string Category;
+        /// <summary>
         /// The create time of the Policy.
         /// </summary>
         public readonly string CreateDate;
@@ -25,6 +33,10 @@ namespace Pulumi.Volcengine.Iam.Outputs
         /// The ID of the Policy.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Whether the Policy is a service role policy.
+        /// </summary>
+        public readonly int IsServiceRolePolicy;
         /// <summary>
         /// The document of the Policy.
         /// </summary>
@@ -42,33 +54,23 @@ namespace Pulumi.Volcengine.Iam.Outputs
         /// </summary>
         public readonly string PolicyType;
         /// <summary>
-        /// The role attach time of the Policy.The data show only query with role_name.
-        /// </summary>
-        public readonly string RoleAttachDate;
-        /// <summary>
-        /// The name of the IAM role.
-        /// </summary>
-        public readonly string RoleName;
-        /// <summary>
         /// The update time of the Policy.
         /// </summary>
         public readonly string UpdateDate;
-        /// <summary>
-        /// The user attach time of the Policy.The data show only query with user_name.
-        /// </summary>
-        public readonly string UserAttachDate;
-        /// <summary>
-        /// The name of the IAM user.
-        /// </summary>
-        public readonly string UserName;
 
         [OutputConstructor]
         private GetPoliciesPolicyResult(
+            int attachmentCount,
+
+            string category,
+
             string createDate,
 
             string description,
 
             string id,
+
+            int isServiceRolePolicy,
 
             string policyDocument,
 
@@ -78,28 +80,19 @@ namespace Pulumi.Volcengine.Iam.Outputs
 
             string policyType,
 
-            string roleAttachDate,
-
-            string roleName,
-
-            string updateDate,
-
-            string userAttachDate,
-
-            string userName)
+            string updateDate)
         {
+            AttachmentCount = attachmentCount;
+            Category = category;
             CreateDate = createDate;
             Description = description;
             Id = id;
+            IsServiceRolePolicy = isServiceRolePolicy;
             PolicyDocument = policyDocument;
             PolicyName = policyName;
             PolicyTrn = policyTrn;
             PolicyType = policyType;
-            RoleAttachDate = roleAttachDate;
-            RoleName = roleName;
             UpdateDate = updateDate;
-            UserAttachDate = userAttachDate;
-            UserName = userName;
         }
     }
 }

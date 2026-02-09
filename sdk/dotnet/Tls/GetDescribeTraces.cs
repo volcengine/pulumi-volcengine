@@ -25,8 +25,8 @@ namespace Pulumi.Volcengine.Tls
         /// {
         ///     var example = Volcengine.Tls.GetDescribeTraces.Invoke(new()
         ///     {
-        ///         TraceId = "c415ff6a-7141-4fe9-9e6c-9ddce4e4c189",
-        ///         TraceInstanceId = "b28b19bd-a539-453a-8919-fda3ef6a22fe",
+        ///         TraceId = "b4de47438f9d052ca71106bb9bace34e",
+        ///         TraceInstanceId = "ac368174-2353-4e5d-859d-84c8bd255590",
         ///     });
         /// 
         /// });
@@ -49,8 +49,8 @@ namespace Pulumi.Volcengine.Tls
         /// {
         ///     var example = Volcengine.Tls.GetDescribeTraces.Invoke(new()
         ///     {
-        ///         TraceId = "c415ff6a-7141-4fe9-9e6c-9ddce4e4c189",
-        ///         TraceInstanceId = "b28b19bd-a539-453a-8919-fda3ef6a22fe",
+        ///         TraceId = "b4de47438f9d052ca71106bb9bace34e",
+        ///         TraceInstanceId = "ac368174-2353-4e5d-859d-84c8bd255590",
         ///     });
         /// 
         /// });

@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,10 +15,14 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@volcengine/pulumi";
  *
  * const foo = new volcengine.iam.Role("foo", {
- *     description: "acc-test",
- *     displayName: "acc-test",
+ *     description: "tf-test-modify",
+ *     displayName: "tf-test-modify",
  *     maxSessionDuration: 3600,
- *     roleName: "acc-test-role",
+ *     roleName: "tf-test-role",
+ *     tags: [{
+ *         key: "key-modify",
+ *         value: "value-modify",
+ *     }],
  *     trustPolicyDocument: "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"sts:AssumeRole\"],\"Principal\":{\"Service\":[\"auto_scaling\"]}}]}",
  * });
  * ```
@@ -64,15 +70,27 @@ export class Role extends pulumi.CustomResource {
     /**
      * The display name of the Role.
      */
-    public readonly displayName!: pulumi.Output<string>;
+    public readonly displayName!: pulumi.Output<string | undefined>;
+    /**
+     * Whether the Role is a service linked role.
+     */
+    public /*out*/ readonly isServiceLinkedRole!: pulumi.Output<number>;
     /**
      * The max session duration of the Role.
      */
     public readonly maxSessionDuration!: pulumi.Output<number | undefined>;
     /**
+     * The id of the Role.
+     */
+    public /*out*/ readonly roleId!: pulumi.Output<number>;
+    /**
      * The name of the Role.
      */
     public readonly roleName!: pulumi.Output<string>;
+    /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.iam.RoleTag[] | undefined>;
     /**
      * The resource name of the Role.
      */
@@ -80,7 +98,7 @@ export class Role extends pulumi.CustomResource {
     /**
      * The trust policy document of the Role.
      */
-    public readonly trustPolicyDocument!: pulumi.Output<string>;
+    public readonly trustPolicyDocument!: pulumi.Output<string | undefined>;
 
     /**
      * Create a Role resource with the given unique name, arguments, and options.
@@ -97,26 +115,26 @@ export class Role extends pulumi.CustomResource {
             const state = argsOrState as RoleState | undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["displayName"] = state ? state.displayName : undefined;
+            resourceInputs["isServiceLinkedRole"] = state ? state.isServiceLinkedRole : undefined;
             resourceInputs["maxSessionDuration"] = state ? state.maxSessionDuration : undefined;
+            resourceInputs["roleId"] = state ? state.roleId : undefined;
             resourceInputs["roleName"] = state ? state.roleName : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["trn"] = state ? state.trn : undefined;
             resourceInputs["trustPolicyDocument"] = state ? state.trustPolicyDocument : undefined;
         } else {
             const args = argsOrState as RoleArgs | undefined;
-            if ((!args || args.displayName === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'displayName'");
-            }
             if ((!args || args.roleName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'roleName'");
-            }
-            if ((!args || args.trustPolicyDocument === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'trustPolicyDocument'");
             }
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["displayName"] = args ? args.displayName : undefined;
             resourceInputs["maxSessionDuration"] = args ? args.maxSessionDuration : undefined;
             resourceInputs["roleName"] = args ? args.roleName : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["trustPolicyDocument"] = args ? args.trustPolicyDocument : undefined;
+            resourceInputs["isServiceLinkedRole"] = undefined /*out*/;
+            resourceInputs["roleId"] = undefined /*out*/;
             resourceInputs["trn"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -137,13 +155,25 @@ export interface RoleState {
      */
     displayName?: pulumi.Input<string>;
     /**
+     * Whether the Role is a service linked role.
+     */
+    isServiceLinkedRole?: pulumi.Input<number>;
+    /**
      * The max session duration of the Role.
      */
     maxSessionDuration?: pulumi.Input<number>;
     /**
+     * The id of the Role.
+     */
+    roleId?: pulumi.Input<number>;
+    /**
      * The name of the Role.
      */
     roleName?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.iam.RoleTag>[]>;
     /**
      * The resource name of the Role.
      */
@@ -165,7 +195,7 @@ export interface RoleArgs {
     /**
      * The display name of the Role.
      */
-    displayName: pulumi.Input<string>;
+    displayName?: pulumi.Input<string>;
     /**
      * The max session duration of the Role.
      */
@@ -175,7 +205,11 @@ export interface RoleArgs {
      */
     roleName: pulumi.Input<string>;
     /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.iam.RoleTag>[]>;
+    /**
      * The trust policy document of the Role.
      */
-    trustPolicyDocument: pulumi.Input<string>;
+    trustPolicyDocument?: pulumi.Input<string>;
 }

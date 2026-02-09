@@ -105,17 +105,9 @@ class UserGroupAttachment(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo_user = volcengine.iam.User("fooUser",
-            user_name="acc-test-user",
-            description="acc test",
-            display_name="name")
-        foo_user_group = volcengine.iam.UserGroup("fooUserGroup",
-            user_group_name="acc-test-group",
-            description="acc-test",
-            display_name="acctest")
-        foo_user_group_attachment = volcengine.iam.UserGroupAttachment("fooUserGroupAttachment",
-            user_group_name=foo_user_group.user_group_name,
-            user_name=foo_user.user_name)
+        foo = volcengine.iam.UserGroupAttachment("foo",
+            user_group_name="xRqElT",
+            user_name="jonny-tt")
         ```
 
         ## Import
@@ -145,17 +137,9 @@ class UserGroupAttachment(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo_user = volcengine.iam.User("fooUser",
-            user_name="acc-test-user",
-            description="acc test",
-            display_name="name")
-        foo_user_group = volcengine.iam.UserGroup("fooUserGroup",
-            user_group_name="acc-test-group",
-            description="acc-test",
-            display_name="acctest")
-        foo_user_group_attachment = volcengine.iam.UserGroupAttachment("fooUserGroupAttachment",
-            user_group_name=foo_user_group.user_group_name,
-            user_name=foo_user.user_name)
+        foo = volcengine.iam.UserGroupAttachment("foo",
+            user_group_name="xRqElT",
+            user_name="jonny-tt")
         ```
 
         ## Import

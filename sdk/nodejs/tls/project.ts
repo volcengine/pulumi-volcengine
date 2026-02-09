@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@volcengine/pulumi";
  *
  * const foo = new volcengine.tls.Project("foo", {
- *     description: "tf-desc",
+ *     description: "tf-desc-modify",
  *     iamProjectName: "default",
  *     projectName: "tf-project-m",
  *     region: "cn-guilin-boe",

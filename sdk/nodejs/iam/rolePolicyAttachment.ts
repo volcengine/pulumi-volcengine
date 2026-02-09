@@ -12,22 +12,10 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const role = new volcengine.iam.Role("role", {
- *     roleName: "TerraformTestRole",
- *     displayName: "terraform role",
- *     trustPolicyDocument: "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"sts:AssumeRole\"],\"Principal\":{\"Service\":[\"auto_scaling\"]}}]}",
- *     description: "created by terraform",
- *     maxSessionDuration: 43200,
- * });
- * const policy = new volcengine.iam.Policy("policy", {
- *     policyName: "TerraformResourceTest1",
- *     description: "created by terraform 1",
- *     policyDocument: "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"auto_scaling:DescribeScalingGroups\"],\"Resource\":[\"*\"]}]}",
- * });
  * const foo = new volcengine.iam.RolePolicyAttachment("foo", {
- *     roleName: role.id,
- *     policyName: policy.id,
- *     policyType: policy.policyType,
+ *     policyName: "AdministratorAccess",
+ *     policyType: "System",
+ *     roleName: "CustomRoleForPatchManager",
  * });
  * ```
  *

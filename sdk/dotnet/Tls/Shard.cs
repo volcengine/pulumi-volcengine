@@ -24,8 +24,8 @@ namespace Pulumi.Volcengine.Tls
     ///     var foo = new Volcengine.Tls.Shard("foo", new()
     ///     {
     ///         Number = 2,
-    ///         ShardId = 4,
-    ///         TopicId = "0b08389e-1617-4f64-b59d-81da2730e446",
+    ///         ShardId = 1,
+    ///         TopicId = "176b62c7-c482-4a6e-b983-4697fda9294a",
     ///     });
     /// 
     /// });

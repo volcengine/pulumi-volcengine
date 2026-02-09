@@ -28,7 +28,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := tls.NewProject(ctx, "foo", &tls.ProjectArgs{
-//				Description:    pulumi.String("tf-desc"),
+//				Description:    pulumi.String("tf-desc-modify"),
 //				IamProjectName: pulumi.String("default"),
 //				ProjectName:    pulumi.String("tf-project-m"),
 //				Region:         pulumi.String("cn-guilin-boe"),

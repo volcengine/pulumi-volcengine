@@ -22,16 +22,13 @@ class GetAccessKeysResult:
     """
     A collection of values returned by getAccessKeys.
     """
-    def __init__(__self__, access_key_metadatas=None, id=None, name_regex=None, output_file=None, total_count=None, user_name=None):
+    def __init__(__self__, access_key_metadatas=None, id=None, output_file=None, total_count=None, user_name=None):
         if access_key_metadatas and not isinstance(access_key_metadatas, list):
             raise TypeError("Expected argument 'access_key_metadatas' to be a list")
         pulumi.set(__self__, "access_key_metadatas", access_key_metadatas)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
-        if name_regex and not isinstance(name_regex, str):
-            raise TypeError("Expected argument 'name_regex' to be a str")
-        pulumi.set(__self__, "name_regex", name_regex)
         if output_file and not isinstance(output_file, str):
             raise TypeError("Expected argument 'output_file' to be a str")
         pulumi.set(__self__, "output_file", output_file)
@@ -57,11 +54,6 @@ class GetAccessKeysResult:
         The provider-assigned unique ID for this managed resource.
         """
         return pulumi.get(self, "id")
-
-    @property
-    @pulumi.getter(name="nameRegex")
-    def name_regex(self) -> Optional[str]:
-        return pulumi.get(self, "name_regex")
 
     @property
     @pulumi.getter(name="outputFile")
@@ -93,14 +85,12 @@ class AwaitableGetAccessKeysResult(GetAccessKeysResult):
         return GetAccessKeysResult(
             access_key_metadatas=self.access_key_metadatas,
             id=self.id,
-            name_regex=self.name_regex,
             output_file=self.output_file,
             total_count=self.total_count,
             user_name=self.user_name)
 
 
-def get_access_keys(name_regex: Optional[str] = None,
-                    output_file: Optional[str] = None,
+def get_access_keys(output_file: Optional[str] = None,
                     user_name: Optional[str] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAccessKeysResult:
     """
@@ -111,16 +101,14 @@ def get_access_keys(name_regex: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.iam.get_access_keys()
+    default = volcengine.iam.get_access_keys()
     ```
 
 
-    :param str name_regex: A Name Regex of IAM.
     :param str output_file: File name where to save data source results.
-    :param str user_name: The user names.
+    :param str user_name: The user name.
     """
     __args__ = dict()
-    __args__['nameRegex'] = name_regex
     __args__['outputFile'] = output_file
     __args__['userName'] = user_name
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -129,15 +117,13 @@ def get_access_keys(name_regex: Optional[str] = None,
     return AwaitableGetAccessKeysResult(
         access_key_metadatas=pulumi.get(__ret__, 'access_key_metadatas'),
         id=pulumi.get(__ret__, 'id'),
-        name_regex=pulumi.get(__ret__, 'name_regex'),
         output_file=pulumi.get(__ret__, 'output_file'),
         total_count=pulumi.get(__ret__, 'total_count'),
         user_name=pulumi.get(__ret__, 'user_name'))
 
 
 @_utilities.lift_output_func(get_access_keys)
-def get_access_keys_output(name_regex: Optional[pulumi.Input[Optional[str]]] = None,
-                           output_file: Optional[pulumi.Input[Optional[str]]] = None,
+def get_access_keys_output(output_file: Optional[pulumi.Input[Optional[str]]] = None,
                            user_name: Optional[pulumi.Input[Optional[str]]] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAccessKeysResult]:
     """
@@ -148,12 +134,11 @@ def get_access_keys_output(name_regex: Optional[pulumi.Input[Optional[str]]] = N
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.iam.get_access_keys()
+    default = volcengine.iam.get_access_keys()
     ```
 
 
-    :param str name_regex: A Name Regex of IAM.
     :param str output_file: File name where to save data source results.
-    :param str user_name: The user names.
+    :param str user_name: The user name.
     """
     ...

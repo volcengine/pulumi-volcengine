@@ -140,9 +140,9 @@ class UserGroup(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.iam.UserGroup("foo",
-            description="acc-test",
-            display_name="acctest",
-            user_group_name="acc-test-group")
+            description="acc",
+            display_name="modify-xx",
+            user_group_name="acc-test1")
         ```
 
         ## Import
@@ -174,9 +174,9 @@ class UserGroup(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.iam.UserGroup("foo",
-            description="acc-test",
-            display_name="acctest",
-            user_group_name="acc-test-group")
+            description="acc",
+            display_name="modify-xx",
+            user_group_name="acc-test1")
         ```
 
         ## Import

@@ -12,17 +12,10 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooUser = new volcengine.iam.User("fooUser", {
- *     userName: "acc-test-user",
- *     description: "acc-test",
- *     displayName: "name",
- * });
- * const fooAccessKey = new volcengine.iam.AccessKey("fooAccessKey", {
- *     userName: fooUser.userName,
- *     secretFile: "./sk",
+ * const foo = new volcengine.iam.AccessKey("foo", {
  *     status: "active",
+ *     userName: "jonny",
  * });
- * //  pgp_key = "keybase:some_person_that_exists"
  * ```
  *
  * ## Import
@@ -58,35 +51,27 @@ export class AccessKey extends pulumi.CustomResource {
     }
 
     /**
+     * The access key id.
+     */
+    public /*out*/ readonly accessKeyId!: pulumi.Output<string>;
+    /**
      * The create date of the access key.
      */
     public /*out*/ readonly createDate!: pulumi.Output<string>;
     /**
-     * The encrypted secret of the access key by pgp key, base64 encoded.
+     * The secret access key.
      */
-    public /*out*/ readonly encryptedSecret!: pulumi.Output<string>;
-    /**
-     * The key fingerprint of the encrypted secret.
-     */
-    public /*out*/ readonly keyFingerprint!: pulumi.Output<string>;
-    /**
-     * Either a base-64 encoded PGP public key, or a keybase username in the form `keybase:some_person_that_exists`.
-     */
-    public readonly pgpKey!: pulumi.Output<string | undefined>;
-    /**
-     * The secret of the access key.
-     */
-    public /*out*/ readonly secret!: pulumi.Output<string>;
-    /**
-     * The file to save the access id and secret. Strongly suggest you to specified it when you creating access key, otherwise, you wouldn't get its secret ever.
-     */
-    public readonly secretFile!: pulumi.Output<string | undefined>;
+    public /*out*/ readonly secretAccessKey!: pulumi.Output<string>;
     /**
      * The status of the access key, Optional choice contains `active` or `inactive`.
      */
     public readonly status!: pulumi.Output<string | undefined>;
     /**
-     * The user name.
+     * The update date of the access key.
+     */
+    public /*out*/ readonly updateDate!: pulumi.Output<string>;
+    /**
+     * The user name. If not specified, the current user is used.
      */
     public readonly userName!: pulumi.Output<string>;
 
@@ -103,27 +88,23 @@ export class AccessKey extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AccessKeyState | undefined;
+            resourceInputs["accessKeyId"] = state ? state.accessKeyId : undefined;
             resourceInputs["createDate"] = state ? state.createDate : undefined;
-            resourceInputs["encryptedSecret"] = state ? state.encryptedSecret : undefined;
-            resourceInputs["keyFingerprint"] = state ? state.keyFingerprint : undefined;
-            resourceInputs["pgpKey"] = state ? state.pgpKey : undefined;
-            resourceInputs["secret"] = state ? state.secret : undefined;
-            resourceInputs["secretFile"] = state ? state.secretFile : undefined;
+            resourceInputs["secretAccessKey"] = state ? state.secretAccessKey : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["updateDate"] = state ? state.updateDate : undefined;
             resourceInputs["userName"] = state ? state.userName : undefined;
         } else {
             const args = argsOrState as AccessKeyArgs | undefined;
-            resourceInputs["pgpKey"] = args ? args.pgpKey : undefined;
-            resourceInputs["secretFile"] = args ? args.secretFile : undefined;
             resourceInputs["status"] = args ? args.status : undefined;
             resourceInputs["userName"] = args ? args.userName : undefined;
+            resourceInputs["accessKeyId"] = undefined /*out*/;
             resourceInputs["createDate"] = undefined /*out*/;
-            resourceInputs["encryptedSecret"] = undefined /*out*/;
-            resourceInputs["keyFingerprint"] = undefined /*out*/;
-            resourceInputs["secret"] = undefined /*out*/;
+            resourceInputs["secretAccessKey"] = undefined /*out*/;
+            resourceInputs["updateDate"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["secret"] };
+        const secretOpts = { additionalSecretOutputs: ["secretAccessKey"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(AccessKey.__pulumiType, name, resourceInputs, opts);
     }
@@ -134,35 +115,27 @@ export class AccessKey extends pulumi.CustomResource {
  */
 export interface AccessKeyState {
     /**
+     * The access key id.
+     */
+    accessKeyId?: pulumi.Input<string>;
+    /**
      * The create date of the access key.
      */
     createDate?: pulumi.Input<string>;
     /**
-     * The encrypted secret of the access key by pgp key, base64 encoded.
+     * The secret access key.
      */
-    encryptedSecret?: pulumi.Input<string>;
-    /**
-     * The key fingerprint of the encrypted secret.
-     */
-    keyFingerprint?: pulumi.Input<string>;
-    /**
-     * Either a base-64 encoded PGP public key, or a keybase username in the form `keybase:some_person_that_exists`.
-     */
-    pgpKey?: pulumi.Input<string>;
-    /**
-     * The secret of the access key.
-     */
-    secret?: pulumi.Input<string>;
-    /**
-     * The file to save the access id and secret. Strongly suggest you to specified it when you creating access key, otherwise, you wouldn't get its secret ever.
-     */
-    secretFile?: pulumi.Input<string>;
+    secretAccessKey?: pulumi.Input<string>;
     /**
      * The status of the access key, Optional choice contains `active` or `inactive`.
      */
     status?: pulumi.Input<string>;
     /**
-     * The user name.
+     * The update date of the access key.
+     */
+    updateDate?: pulumi.Input<string>;
+    /**
+     * The user name. If not specified, the current user is used.
      */
     userName?: pulumi.Input<string>;
 }
@@ -172,19 +145,11 @@ export interface AccessKeyState {
  */
 export interface AccessKeyArgs {
     /**
-     * Either a base-64 encoded PGP public key, or a keybase username in the form `keybase:some_person_that_exists`.
-     */
-    pgpKey?: pulumi.Input<string>;
-    /**
-     * The file to save the access id and secret. Strongly suggest you to specified it when you creating access key, otherwise, you wouldn't get its secret ever.
-     */
-    secretFile?: pulumi.Input<string>;
-    /**
      * The status of the access key, Optional choice contains `active` or `inactive`.
      */
     status?: pulumi.Input<string>;
     /**
-     * The user name.
+     * The user name. If not specified, the current user is used.
      */
     userName?: pulumi.Input<string>;
 }

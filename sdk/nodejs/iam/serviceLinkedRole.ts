@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -12,7 +14,13 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = new volcengine.iam.ServiceLinkedRole("foo", {serviceName: "ecs"});
+ * const foo = new volcengine.iam.ServiceLinkedRole("foo", {
+ *     serviceName: "ecs",
+ *     tags: [{
+ *         key: "key-2",
+ *         value: "value-3",
+ *     }],
+ * });
  * ```
  *
  * ## Import
@@ -20,7 +28,7 @@ import * as utilities from "../utilities";
  * IamServiceLinkedRole can be imported using the id, e.g.
  *
  * ```sh
- * $ pulumi import volcengine:iam/serviceLinkedRole:ServiceLinkedRole default resource_id
+ * $ pulumi import volcengine:iam/serviceLinkedRole:ServiceLinkedRole default service_name:role_name
  * ```
  */
 export class ServiceLinkedRole extends pulumi.CustomResource {
@@ -67,6 +75,10 @@ export class ServiceLinkedRole extends pulumi.CustomResource {
      * The status of the role.
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
+    /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.iam.ServiceLinkedRoleTag[] | undefined>;
 
     /**
      * Create a ServiceLinkedRole resource with the given unique name, arguments, and options.
@@ -85,12 +97,14 @@ export class ServiceLinkedRole extends pulumi.CustomResource {
             resourceInputs["roleName"] = state ? state.roleName : undefined;
             resourceInputs["serviceName"] = state ? state.serviceName : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
         } else {
             const args = argsOrState as ServiceLinkedRoleArgs | undefined;
             if ((!args || args.serviceName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'serviceName'");
             }
             resourceInputs["serviceName"] = args ? args.serviceName : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["roleId"] = undefined /*out*/;
             resourceInputs["roleName"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
@@ -120,6 +134,10 @@ export interface ServiceLinkedRoleState {
      * The status of the role.
      */
     status?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.iam.ServiceLinkedRoleTag>[]>;
 }
 
 /**
@@ -130,4 +148,8 @@ export interface ServiceLinkedRoleArgs {
      * The name of the service.
      */
     serviceName: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.iam.ServiceLinkedRoleTag>[]>;
 }

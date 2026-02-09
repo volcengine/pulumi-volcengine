@@ -26,14 +26,13 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			foo, err := tls.GetDownloadTasks(ctx, &tls.GetDownloadTasksArgs{
-//				TopicId:  pulumi.StringRef("8ba48bd7-2493-4300-b1d0-cb760b89e51b"),
-//				TaskName: pulumi.StringRef("tf-test-download-task"),
+//			_, err := tls.GetDownloadTasks(ctx, &tls.GetDownloadTasksArgs{
+//				TaskName: pulumi.StringRef("tf-test-download"),
+//				TopicId:  pulumi.StringRef("3c57a110-399a-43b3-bc3c-5d60e065239a"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			ctx.Export("downloadTasks", foo.DownloadTasks)
 //			return nil
 //		})
 //	}

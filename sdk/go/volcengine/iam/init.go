@@ -23,20 +23,34 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "volcengine:iam/accessKey:AccessKey":
 		r = &AccessKey{}
+	case "volcengine:iam/allowedIpAddress:AllowedIpAddress":
+		r = &AllowedIpAddress{}
 	case "volcengine:iam/loginProfile:LoginProfile":
 		r = &LoginProfile{}
+	case "volcengine:iam/oauthProvider:OauthProvider":
+		r = &OauthProvider{}
 	case "volcengine:iam/oidcProvider:OidcProvider":
 		r = &OidcProvider{}
+	case "volcengine:iam/oidcProviderClient:OidcProviderClient":
+		r = &OidcProviderClient{}
+	case "volcengine:iam/oidcProviderThumbprint:OidcProviderThumbprint":
+		r = &OidcProviderThumbprint{}
 	case "volcengine:iam/policy:Policy":
 		r = &Policy{}
+	case "volcengine:iam/policyProject:PolicyProject":
+		r = &PolicyProject{}
 	case "volcengine:iam/role:Role":
 		r = &Role{}
 	case "volcengine:iam/rolePolicyAttachment:RolePolicyAttachment":
 		r = &RolePolicyAttachment{}
 	case "volcengine:iam/samlProvider:SamlProvider":
 		r = &SamlProvider{}
+	case "volcengine:iam/securityConfig:SecurityConfig":
+		r = &SecurityConfig{}
 	case "volcengine:iam/serviceLinkedRole:ServiceLinkedRole":
 		r = &ServiceLinkedRole{}
+	case "volcengine:iam/tag:Tag":
+		r = &Tag{}
 	case "volcengine:iam/user:User":
 		r = &User{}
 	case "volcengine:iam/userGroup:UserGroup":
@@ -67,7 +81,17 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
+		"iam/allowedIpAddress",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
 		"iam/loginProfile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"iam/oauthProvider",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -77,7 +101,22 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
+		"iam/oidcProviderClient",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"iam/oidcProviderThumbprint",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
 		"iam/policy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"iam/policyProject",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -97,7 +136,17 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
+		"iam/securityConfig",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
 		"iam/serviceLinkedRole",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"iam/tag",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

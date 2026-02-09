@@ -109,7 +109,10 @@ def get_search_traces(output_file: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    example = volcengine.tls.get_search_traces(trace_instance_id="b28b19bd-a539-453a-8919-fda3ef6a22fe")
+    default = volcengine.tls.get_search_traces(query=volcengine.tls.GetSearchTracesQueryArgs(
+            limit=10,
+        ),
+        trace_instance_id="ac368174-2353-4e5d-859d-84c8bd255590")
     ```
 
 
@@ -146,7 +149,10 @@ def get_search_traces_output(output_file: Optional[pulumi.Input[Optional[str]]] 
     import pulumi
     import pulumi_volcengine as volcengine
 
-    example = volcengine.tls.get_search_traces(trace_instance_id="b28b19bd-a539-453a-8919-fda3ef6a22fe")
+    default = volcengine.tls.get_search_traces(query=volcengine.tls.GetSearchTracesQueryArgs(
+            limit=10,
+        ),
+        trace_instance_id="ac368174-2353-4e5d-859d-84c8bd255590")
     ```
 
 

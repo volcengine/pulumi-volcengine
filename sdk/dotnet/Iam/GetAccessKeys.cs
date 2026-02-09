@@ -23,7 +23,7 @@ namespace Pulumi.Volcengine.Iam
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Iam.GetAccessKeys.Invoke();
+        ///     var @default = Volcengine.Iam.GetAccessKeys.Invoke();
         /// 
         /// });
         /// ```
@@ -43,7 +43,7 @@ namespace Pulumi.Volcengine.Iam
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Iam.GetAccessKeys.Invoke();
+        ///     var @default = Volcengine.Iam.GetAccessKeys.Invoke();
         /// 
         /// });
         /// ```
@@ -56,19 +56,13 @@ namespace Pulumi.Volcengine.Iam
     public sealed class GetAccessKeysArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// A Name Regex of IAM.
-        /// </summary>
-        [Input("nameRegex")]
-        public string? NameRegex { get; set; }
-
-        /// <summary>
         /// File name where to save data source results.
         /// </summary>
         [Input("outputFile")]
         public string? OutputFile { get; set; }
 
         /// <summary>
-        /// The user names.
+        /// The user name.
         /// </summary>
         [Input("userName")]
         public string? UserName { get; set; }
@@ -82,19 +76,13 @@ namespace Pulumi.Volcengine.Iam
     public sealed class GetAccessKeysInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// A Name Regex of IAM.
-        /// </summary>
-        [Input("nameRegex")]
-        public Input<string>? NameRegex { get; set; }
-
-        /// <summary>
         /// File name where to save data source results.
         /// </summary>
         [Input("outputFile")]
         public Input<string>? OutputFile { get; set; }
 
         /// <summary>
-        /// The user names.
+        /// The user name.
         /// </summary>
         [Input("userName")]
         public Input<string>? UserName { get; set; }
@@ -117,7 +105,6 @@ namespace Pulumi.Volcengine.Iam
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
-        public readonly string? NameRegex;
         public readonly string? OutputFile;
         /// <summary>
         /// The total count of user query.
@@ -134,8 +121,6 @@ namespace Pulumi.Volcengine.Iam
 
             string id,
 
-            string? nameRegex,
-
             string? outputFile,
 
             int totalCount,
@@ -144,7 +129,6 @@ namespace Pulumi.Volcengine.Iam
         {
             AccessKeyMetadatas = accessKeyMetadatas;
             Id = id;
-            NameRegex = nameRegex;
             OutputFile = outputFile;
             TotalCount = totalCount;
             UserName = userName;

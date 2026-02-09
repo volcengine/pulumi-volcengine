@@ -22,13 +22,29 @@ namespace Pulumi.Volcengine.Iam.Outputs
         /// </summary>
         public readonly string Description;
         /// <summary>
-        /// The ID of the Role.
+        /// The display name of the Role.
         /// </summary>
-        public readonly string Id;
+        public readonly string DisplayName;
         /// <summary>
-        /// The name of the Role, comma separated.
+        /// Whether the Role is a service linked role.
+        /// </summary>
+        public readonly int IsServiceLinkedRole;
+        /// <summary>
+        /// The max session duration of the Role.
+        /// </summary>
+        public readonly int MaxSessionDuration;
+        /// <summary>
+        /// The id of the Role.
+        /// </summary>
+        public readonly int RoleId;
+        /// <summary>
+        /// The name of the Role.
         /// </summary>
         public readonly string RoleName;
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetRolesRoleTagResult> Tags;
         /// <summary>
         /// The resource name of the Role.
         /// </summary>
@@ -37,6 +53,10 @@ namespace Pulumi.Volcengine.Iam.Outputs
         /// The trust policy document of the Role.
         /// </summary>
         public readonly string TrustPolicyDocument;
+        /// <summary>
+        /// The update time of the Role.
+        /// </summary>
+        public readonly string UpdateDate;
 
         [OutputConstructor]
         private GetRolesRoleResult(
@@ -44,20 +64,35 @@ namespace Pulumi.Volcengine.Iam.Outputs
 
             string description,
 
-            string id,
+            string displayName,
+
+            int isServiceLinkedRole,
+
+            int maxSessionDuration,
+
+            int roleId,
 
             string roleName,
 
+            ImmutableArray<Outputs.GetRolesRoleTagResult> tags,
+
             string trn,
 
-            string trustPolicyDocument)
+            string trustPolicyDocument,
+
+            string updateDate)
         {
             CreateDate = createDate;
             Description = description;
-            Id = id;
+            DisplayName = displayName;
+            IsServiceLinkedRole = isServiceLinkedRole;
+            MaxSessionDuration = maxSessionDuration;
+            RoleId = roleId;
             RoleName = roleName;
+            Tags = tags;
             Trn = trn;
             TrustPolicyDocument = trustPolicyDocument;
+            UpdateDate = updateDate;
         }
     }
 }

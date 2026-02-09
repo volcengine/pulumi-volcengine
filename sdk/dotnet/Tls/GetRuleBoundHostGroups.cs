@@ -25,7 +25,7 @@ namespace Pulumi.Volcengine.Tls
         /// {
         ///     var @default = Volcengine.Tls.GetRuleBoundHostGroups.Invoke(new()
         ///     {
-        ///         RuleId = "048dc010-6bb1-4189-858a-281d654d6686",
+        ///         RuleId = "83ac687a-0e2b-4788-b626-3dce18498740",
         ///     });
         /// 
         /// });
@@ -48,7 +48,7 @@ namespace Pulumi.Volcengine.Tls
         /// {
         ///     var @default = Volcengine.Tls.GetRuleBoundHostGroups.Invoke(new()
         ///     {
-        ///         RuleId = "048dc010-6bb1-4189-858a-281d654d6686",
+        ///         RuleId = "83ac687a-0e2b-4788-b626-3dce18498740",
         ///     });
         /// 
         /// });

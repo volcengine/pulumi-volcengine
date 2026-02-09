@@ -24,30 +24,34 @@ import * as utilities from "../utilities";
  *         includeChinese: false,
  *     },
  *     keyValues: [{
+ *         autoIndexFlag: false,
  *         caseSensitive: true,
  *         delimiter: "!",
  *         includeChinese: false,
  *         indexAll: true,
+ *         indexSqlAll: true,
  *         jsonKeys: [
  *             {
- *                 key: "name",
+ *                 key: "name-2",
  *                 valueType: "text",
  *             },
  *             {
- *                 key: "key",
+ *                 key: "key-2",
  *                 valueType: "long",
  *             },
  *         ],
- *         key: "k1",
+ *         key: "k21",
  *         sqlFlag: true,
  *         valueType: "json",
  *     }],
  *     maxTextLen: 2048,
- *     topicId: "b600dc34-503f-42fc-8e32-953af55463d1",
+ *     topicId: "c36ed436-84f1-467a-b00e-ba504db753ca",
  *     userInnerKeyValues: [{
- *         caseSensitive: false,
+ *         autoIndexFlag: false,
  *         delimiter: ",:-/ ",
  *         includeChinese: false,
+ *         indexAll: true,
+ *         indexSqlAll: true,
  *         jsonKeys: [
  *             {
  *                 key: "app",
@@ -59,7 +63,7 @@ import * as utilities from "../utilities";
  *             },
  *         ],
  *         key: "__content__",
- *         sqlFlag: false,
+ *         sqlFlag: true,
  *         valueType: "json",
  *     }],
  * });
@@ -70,7 +74,7 @@ import * as utilities from "../utilities";
  * Tls Index can be imported using the topic id, e.g.
  *
  * ```sh
- * $ pulumi import volcengine:tls/index:Index default index:edf051ed-3c46-49ba-9339-bea628fe****
+ * $ pulumi import volcengine:tls/index:Index default edf051ed-3c46-49ba-9339-bea628fe****
  * ```
  */
 export class Index extends pulumi.CustomResource {

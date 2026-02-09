@@ -6418,6 +6418,112 @@ func (o AlarmsAlarmTriggerConditionArrayOutput) Index(i pulumi.IntInput) AlarmsA
 	}).(AlarmsAlarmTriggerConditionOutput)
 }
 
+type CheckPointsCheckPoint struct {
+	// The checkpoint value.
+	Checkpoint string `pulumi:"checkpoint"`
+	// The ID of the shard.
+	ShardId int `pulumi:"shardId"`
+}
+
+// CheckPointsCheckPointInput is an input type that accepts CheckPointsCheckPointArgs and CheckPointsCheckPointOutput values.
+// You can construct a concrete instance of `CheckPointsCheckPointInput` via:
+//
+//	CheckPointsCheckPointArgs{...}
+type CheckPointsCheckPointInput interface {
+	pulumi.Input
+
+	ToCheckPointsCheckPointOutput() CheckPointsCheckPointOutput
+	ToCheckPointsCheckPointOutputWithContext(context.Context) CheckPointsCheckPointOutput
+}
+
+type CheckPointsCheckPointArgs struct {
+	// The checkpoint value.
+	Checkpoint pulumi.StringInput `pulumi:"checkpoint"`
+	// The ID of the shard.
+	ShardId pulumi.IntInput `pulumi:"shardId"`
+}
+
+func (CheckPointsCheckPointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CheckPointsCheckPoint)(nil)).Elem()
+}
+
+func (i CheckPointsCheckPointArgs) ToCheckPointsCheckPointOutput() CheckPointsCheckPointOutput {
+	return i.ToCheckPointsCheckPointOutputWithContext(context.Background())
+}
+
+func (i CheckPointsCheckPointArgs) ToCheckPointsCheckPointOutputWithContext(ctx context.Context) CheckPointsCheckPointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CheckPointsCheckPointOutput)
+}
+
+// CheckPointsCheckPointArrayInput is an input type that accepts CheckPointsCheckPointArray and CheckPointsCheckPointArrayOutput values.
+// You can construct a concrete instance of `CheckPointsCheckPointArrayInput` via:
+//
+//	CheckPointsCheckPointArray{ CheckPointsCheckPointArgs{...} }
+type CheckPointsCheckPointArrayInput interface {
+	pulumi.Input
+
+	ToCheckPointsCheckPointArrayOutput() CheckPointsCheckPointArrayOutput
+	ToCheckPointsCheckPointArrayOutputWithContext(context.Context) CheckPointsCheckPointArrayOutput
+}
+
+type CheckPointsCheckPointArray []CheckPointsCheckPointInput
+
+func (CheckPointsCheckPointArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CheckPointsCheckPoint)(nil)).Elem()
+}
+
+func (i CheckPointsCheckPointArray) ToCheckPointsCheckPointArrayOutput() CheckPointsCheckPointArrayOutput {
+	return i.ToCheckPointsCheckPointArrayOutputWithContext(context.Background())
+}
+
+func (i CheckPointsCheckPointArray) ToCheckPointsCheckPointArrayOutputWithContext(ctx context.Context) CheckPointsCheckPointArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CheckPointsCheckPointArrayOutput)
+}
+
+type CheckPointsCheckPointOutput struct{ *pulumi.OutputState }
+
+func (CheckPointsCheckPointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CheckPointsCheckPoint)(nil)).Elem()
+}
+
+func (o CheckPointsCheckPointOutput) ToCheckPointsCheckPointOutput() CheckPointsCheckPointOutput {
+	return o
+}
+
+func (o CheckPointsCheckPointOutput) ToCheckPointsCheckPointOutputWithContext(ctx context.Context) CheckPointsCheckPointOutput {
+	return o
+}
+
+// The checkpoint value.
+func (o CheckPointsCheckPointOutput) Checkpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v CheckPointsCheckPoint) string { return v.Checkpoint }).(pulumi.StringOutput)
+}
+
+// The ID of the shard.
+func (o CheckPointsCheckPointOutput) ShardId() pulumi.IntOutput {
+	return o.ApplyT(func(v CheckPointsCheckPoint) int { return v.ShardId }).(pulumi.IntOutput)
+}
+
+type CheckPointsCheckPointArrayOutput struct{ *pulumi.OutputState }
+
+func (CheckPointsCheckPointArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CheckPointsCheckPoint)(nil)).Elem()
+}
+
+func (o CheckPointsCheckPointArrayOutput) ToCheckPointsCheckPointArrayOutput() CheckPointsCheckPointArrayOutput {
+	return o
+}
+
+func (o CheckPointsCheckPointArrayOutput) ToCheckPointsCheckPointArrayOutputWithContext(ctx context.Context) CheckPointsCheckPointArrayOutput {
+	return o
+}
+
+func (o CheckPointsCheckPointArrayOutput) Index(i pulumi.IntInput) CheckPointsCheckPointOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CheckPointsCheckPoint {
+		return vs[0].([]CheckPointsCheckPoint)[vs[1].(int)]
+	}).(CheckPointsCheckPointOutput)
+}
+
 type ConsumerGroupsConsumerGroup struct {
 	// The name of the consumer group.
 	ConsumerGroupName string `pulumi:"consumerGroupName"`
@@ -12882,7 +12988,7 @@ type IndexFullText struct {
 	// Whether the FullTextInfo is case sensitive.
 	CaseSensitive bool `pulumi:"caseSensitive"`
 	// The delimiter of the FullTextInfo.
-	Delimiter *string `pulumi:"delimiter"`
+	Delimiter string `pulumi:"delimiter"`
 	// Whether the FullTextInfo include chinese.
 	IncludeChinese *bool `pulumi:"includeChinese"`
 }
@@ -12902,7 +13008,7 @@ type IndexFullTextArgs struct {
 	// Whether the FullTextInfo is case sensitive.
 	CaseSensitive pulumi.BoolInput `pulumi:"caseSensitive"`
 	// The delimiter of the FullTextInfo.
-	Delimiter pulumi.StringPtrInput `pulumi:"delimiter"`
+	Delimiter pulumi.StringInput `pulumi:"delimiter"`
 	// Whether the FullTextInfo include chinese.
 	IncludeChinese pulumi.BoolPtrInput `pulumi:"includeChinese"`
 }
@@ -12990,8 +13096,8 @@ func (o IndexFullTextOutput) CaseSensitive() pulumi.BoolOutput {
 }
 
 // The delimiter of the FullTextInfo.
-func (o IndexFullTextOutput) Delimiter() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v IndexFullText) *string { return v.Delimiter }).(pulumi.StringPtrOutput)
+func (o IndexFullTextOutput) Delimiter() pulumi.StringOutput {
+	return o.ApplyT(func(v IndexFullText) string { return v.Delimiter }).(pulumi.StringOutput)
 }
 
 // Whether the FullTextInfo include chinese.
@@ -13039,7 +13145,7 @@ func (o IndexFullTextPtrOutput) Delimiter() pulumi.StringPtrOutput {
 		if v == nil {
 			return nil
 		}
-		return v.Delimiter
+		return &v.Delimiter
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -13054,6 +13160,8 @@ func (o IndexFullTextPtrOutput) IncludeChinese() pulumi.BoolPtrOutput {
 }
 
 type IndexKeyValue struct {
+	// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+	AutoIndexFlag *bool `pulumi:"autoIndexFlag"`
 	// Whether the value is case sensitive.
 	CaseSensitive *bool `pulumi:"caseSensitive"`
 	// The delimiter of the value.
@@ -13062,6 +13170,8 @@ type IndexKeyValue struct {
 	IncludeChinese *bool `pulumi:"includeChinese"`
 	// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
 	IndexAll *bool `pulumi:"indexAll"`
+	// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+	IndexSqlAll *bool `pulumi:"indexSqlAll"`
 	// The JSON subfield key value index.
 	JsonKeys []IndexKeyValueJsonKey `pulumi:"jsonKeys"`
 	// The key of the KeyValueInfo.
@@ -13084,6 +13194,8 @@ type IndexKeyValueInput interface {
 }
 
 type IndexKeyValueArgs struct {
+	// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+	AutoIndexFlag pulumi.BoolPtrInput `pulumi:"autoIndexFlag"`
 	// Whether the value is case sensitive.
 	CaseSensitive pulumi.BoolPtrInput `pulumi:"caseSensitive"`
 	// The delimiter of the value.
@@ -13092,6 +13204,8 @@ type IndexKeyValueArgs struct {
 	IncludeChinese pulumi.BoolPtrInput `pulumi:"includeChinese"`
 	// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
 	IndexAll pulumi.BoolPtrInput `pulumi:"indexAll"`
+	// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+	IndexSqlAll pulumi.BoolPtrInput `pulumi:"indexSqlAll"`
 	// The JSON subfield key value index.
 	JsonKeys IndexKeyValueJsonKeyArrayInput `pulumi:"jsonKeys"`
 	// The key of the KeyValueInfo.
@@ -13153,6 +13267,11 @@ func (o IndexKeyValueOutput) ToIndexKeyValueOutputWithContext(ctx context.Contex
 	return o
 }
 
+// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+func (o IndexKeyValueOutput) AutoIndexFlag() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v IndexKeyValue) *bool { return v.AutoIndexFlag }).(pulumi.BoolPtrOutput)
+}
+
 // Whether the value is case sensitive.
 func (o IndexKeyValueOutput) CaseSensitive() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v IndexKeyValue) *bool { return v.CaseSensitive }).(pulumi.BoolPtrOutput)
@@ -13171,6 +13290,11 @@ func (o IndexKeyValueOutput) IncludeChinese() pulumi.BoolPtrOutput {
 // Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
 func (o IndexKeyValueOutput) IndexAll() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v IndexKeyValue) *bool { return v.IndexAll }).(pulumi.BoolPtrOutput)
+}
+
+// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+func (o IndexKeyValueOutput) IndexSqlAll() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v IndexKeyValue) *bool { return v.IndexSqlAll }).(pulumi.BoolPtrOutput)
 }
 
 // The JSON subfield key value index.
@@ -13216,6 +13340,8 @@ func (o IndexKeyValueArrayOutput) Index(i pulumi.IntInput) IndexKeyValueOutput {
 type IndexKeyValueJsonKey struct {
 	// The key of the subfield key value index.
 	Key string `pulumi:"key"`
+	// Whether the filed is enabled for analysis.
+	SqlFlag *bool `pulumi:"sqlFlag"`
 	// The type of value. Valid values: `long`, `double`, `text`.
 	ValueType string `pulumi:"valueType"`
 }
@@ -13234,6 +13360,8 @@ type IndexKeyValueJsonKeyInput interface {
 type IndexKeyValueJsonKeyArgs struct {
 	// The key of the subfield key value index.
 	Key pulumi.StringInput `pulumi:"key"`
+	// Whether the filed is enabled for analysis.
+	SqlFlag pulumi.BoolPtrInput `pulumi:"sqlFlag"`
 	// The type of value. Valid values: `long`, `double`, `text`.
 	ValueType pulumi.StringInput `pulumi:"valueType"`
 }
@@ -13294,6 +13422,11 @@ func (o IndexKeyValueJsonKeyOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v IndexKeyValueJsonKey) string { return v.Key }).(pulumi.StringOutput)
 }
 
+// Whether the filed is enabled for analysis.
+func (o IndexKeyValueJsonKeyOutput) SqlFlag() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v IndexKeyValueJsonKey) *bool { return v.SqlFlag }).(pulumi.BoolPtrOutput)
+}
+
 // The type of value. Valid values: `long`, `double`, `text`.
 func (o IndexKeyValueJsonKeyOutput) ValueType() pulumi.StringOutput {
 	return o.ApplyT(func(v IndexKeyValueJsonKey) string { return v.ValueType }).(pulumi.StringOutput)
@@ -13320,12 +13453,18 @@ func (o IndexKeyValueJsonKeyArrayOutput) Index(i pulumi.IntInput) IndexKeyValueJ
 }
 
 type IndexUserInnerKeyValue struct {
+	// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+	AutoIndexFlag *bool `pulumi:"autoIndexFlag"`
 	// Whether the value is case sensitive.
 	CaseSensitive *bool `pulumi:"caseSensitive"`
 	// The delimiter of the value.
 	Delimiter *string `pulumi:"delimiter"`
 	// Whether the value include chinese.
 	IncludeChinese *bool `pulumi:"includeChinese"`
+	// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+	IndexAll *bool `pulumi:"indexAll"`
+	// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+	IndexSqlAll *bool `pulumi:"indexSqlAll"`
 	// The JSON subfield key value index.
 	JsonKeys []IndexUserInnerKeyValueJsonKey `pulumi:"jsonKeys"`
 	// The key of the KeyValueInfo.
@@ -13348,12 +13487,18 @@ type IndexUserInnerKeyValueInput interface {
 }
 
 type IndexUserInnerKeyValueArgs struct {
+	// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+	AutoIndexFlag pulumi.BoolPtrInput `pulumi:"autoIndexFlag"`
 	// Whether the value is case sensitive.
 	CaseSensitive pulumi.BoolPtrInput `pulumi:"caseSensitive"`
 	// The delimiter of the value.
 	Delimiter pulumi.StringPtrInput `pulumi:"delimiter"`
 	// Whether the value include chinese.
 	IncludeChinese pulumi.BoolPtrInput `pulumi:"includeChinese"`
+	// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+	IndexAll pulumi.BoolPtrInput `pulumi:"indexAll"`
+	// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+	IndexSqlAll pulumi.BoolPtrInput `pulumi:"indexSqlAll"`
 	// The JSON subfield key value index.
 	JsonKeys IndexUserInnerKeyValueJsonKeyArrayInput `pulumi:"jsonKeys"`
 	// The key of the KeyValueInfo.
@@ -13415,6 +13560,11 @@ func (o IndexUserInnerKeyValueOutput) ToIndexUserInnerKeyValueOutputWithContext(
 	return o
 }
 
+// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+func (o IndexUserInnerKeyValueOutput) AutoIndexFlag() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v IndexUserInnerKeyValue) *bool { return v.AutoIndexFlag }).(pulumi.BoolPtrOutput)
+}
+
 // Whether the value is case sensitive.
 func (o IndexUserInnerKeyValueOutput) CaseSensitive() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v IndexUserInnerKeyValue) *bool { return v.CaseSensitive }).(pulumi.BoolPtrOutput)
@@ -13428,6 +13578,16 @@ func (o IndexUserInnerKeyValueOutput) Delimiter() pulumi.StringPtrOutput {
 // Whether the value include chinese.
 func (o IndexUserInnerKeyValueOutput) IncludeChinese() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v IndexUserInnerKeyValue) *bool { return v.IncludeChinese }).(pulumi.BoolPtrOutput)
+}
+
+// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+func (o IndexUserInnerKeyValueOutput) IndexAll() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v IndexUserInnerKeyValue) *bool { return v.IndexAll }).(pulumi.BoolPtrOutput)
+}
+
+// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+func (o IndexUserInnerKeyValueOutput) IndexSqlAll() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v IndexUserInnerKeyValue) *bool { return v.IndexSqlAll }).(pulumi.BoolPtrOutput)
 }
 
 // The JSON subfield key value index.
@@ -13473,6 +13633,8 @@ func (o IndexUserInnerKeyValueArrayOutput) Index(i pulumi.IntInput) IndexUserInn
 type IndexUserInnerKeyValueJsonKey struct {
 	// The key of the subfield key value index.
 	Key string `pulumi:"key"`
+	// Whether the filed is enabled for analysis.
+	SqlFlag *bool `pulumi:"sqlFlag"`
 	// The type of value. Valid values: `long`, `double`, `text`.
 	ValueType string `pulumi:"valueType"`
 }
@@ -13491,6 +13653,8 @@ type IndexUserInnerKeyValueJsonKeyInput interface {
 type IndexUserInnerKeyValueJsonKeyArgs struct {
 	// The key of the subfield key value index.
 	Key pulumi.StringInput `pulumi:"key"`
+	// Whether the filed is enabled for analysis.
+	SqlFlag pulumi.BoolPtrInput `pulumi:"sqlFlag"`
 	// The type of value. Valid values: `long`, `double`, `text`.
 	ValueType pulumi.StringInput `pulumi:"valueType"`
 }
@@ -13551,6 +13715,11 @@ func (o IndexUserInnerKeyValueJsonKeyOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v IndexUserInnerKeyValueJsonKey) string { return v.Key }).(pulumi.StringOutput)
 }
 
+// Whether the filed is enabled for analysis.
+func (o IndexUserInnerKeyValueJsonKeyOutput) SqlFlag() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v IndexUserInnerKeyValueJsonKey) *bool { return v.SqlFlag }).(pulumi.BoolPtrOutput)
+}
+
 // The type of value. Valid values: `long`, `double`, `text`.
 func (o IndexUserInnerKeyValueJsonKeyOutput) ValueType() pulumi.StringOutput {
 	return o.ApplyT(func(v IndexUserInnerKeyValueJsonKey) string { return v.ValueType }).(pulumi.StringOutput)
@@ -13591,7 +13760,7 @@ type IndexesTlsIndex struct {
 	MaxTextLen int `pulumi:"maxTextLen"`
 	// The modify time of the tls index.
 	ModifyTime string `pulumi:"modifyTime"`
-	// The topic id of the tls index.
+	// The topic id of tls index.
 	TopicId string `pulumi:"topicId"`
 	// The reserved field index configuration of the tls topic.
 	UserInnerKeyValues []IndexesTlsIndexUserInnerKeyValue `pulumi:"userInnerKeyValues"`
@@ -13623,7 +13792,7 @@ type IndexesTlsIndexArgs struct {
 	MaxTextLen pulumi.IntInput `pulumi:"maxTextLen"`
 	// The modify time of the tls index.
 	ModifyTime pulumi.StringInput `pulumi:"modifyTime"`
-	// The topic id of the tls index.
+	// The topic id of tls index.
 	TopicId pulumi.StringInput `pulumi:"topicId"`
 	// The reserved field index configuration of the tls topic.
 	UserInnerKeyValues IndexesTlsIndexUserInnerKeyValueArrayInput `pulumi:"userInnerKeyValues"`
@@ -13715,7 +13884,7 @@ func (o IndexesTlsIndexOutput) ModifyTime() pulumi.StringOutput {
 	return o.ApplyT(func(v IndexesTlsIndex) string { return v.ModifyTime }).(pulumi.StringOutput)
 }
 
-// The topic id of the tls index.
+// The topic id of tls index.
 func (o IndexesTlsIndexOutput) TopicId() pulumi.StringOutput {
 	return o.ApplyT(func(v IndexesTlsIndex) string { return v.TopicId }).(pulumi.StringOutput)
 }
@@ -13816,21 +13985,25 @@ func (o IndexesTlsIndexFullTextOutput) IncludeChinese() pulumi.BoolOutput {
 }
 
 type IndexesTlsIndexKeyValue struct {
+	// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+	AutoIndexFlag bool `pulumi:"autoIndexFlag"`
 	// Whether the value is case sensitive.
 	CaseSensitive bool `pulumi:"caseSensitive"`
 	// The delimiter of the value.
 	Delimiter string `pulumi:"delimiter"`
 	// Whether the value include chinese.
 	IncludeChinese bool `pulumi:"includeChinese"`
-	// Whether to create indexes for all fields in JSON fields with text values.
+	// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
 	IndexAll bool `pulumi:"indexAll"`
+	// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+	IndexSqlAll bool `pulumi:"indexSqlAll"`
 	// The JSON subfield key value index.
 	JsonKeys []IndexesTlsIndexKeyValueJsonKey `pulumi:"jsonKeys"`
-	// The key of the KeyValue index.
+	// The key of the KeyValueInfo.
 	Key string `pulumi:"key"`
 	// Whether the filed is enabled for analysis.
 	SqlFlag bool `pulumi:"sqlFlag"`
-	// The type of value.
+	// The type of value. Valid values: `long`, `double`, `text`, `json`.
 	ValueType string `pulumi:"valueType"`
 }
 
@@ -13846,21 +14019,25 @@ type IndexesTlsIndexKeyValueInput interface {
 }
 
 type IndexesTlsIndexKeyValueArgs struct {
+	// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+	AutoIndexFlag pulumi.BoolInput `pulumi:"autoIndexFlag"`
 	// Whether the value is case sensitive.
 	CaseSensitive pulumi.BoolInput `pulumi:"caseSensitive"`
 	// The delimiter of the value.
 	Delimiter pulumi.StringInput `pulumi:"delimiter"`
 	// Whether the value include chinese.
 	IncludeChinese pulumi.BoolInput `pulumi:"includeChinese"`
-	// Whether to create indexes for all fields in JSON fields with text values.
+	// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
 	IndexAll pulumi.BoolInput `pulumi:"indexAll"`
+	// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+	IndexSqlAll pulumi.BoolInput `pulumi:"indexSqlAll"`
 	// The JSON subfield key value index.
 	JsonKeys IndexesTlsIndexKeyValueJsonKeyArrayInput `pulumi:"jsonKeys"`
-	// The key of the KeyValue index.
+	// The key of the KeyValueInfo.
 	Key pulumi.StringInput `pulumi:"key"`
 	// Whether the filed is enabled for analysis.
 	SqlFlag pulumi.BoolInput `pulumi:"sqlFlag"`
-	// The type of value.
+	// The type of value. Valid values: `long`, `double`, `text`, `json`.
 	ValueType pulumi.StringInput `pulumi:"valueType"`
 }
 
@@ -13915,6 +14092,11 @@ func (o IndexesTlsIndexKeyValueOutput) ToIndexesTlsIndexKeyValueOutputWithContex
 	return o
 }
 
+// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+func (o IndexesTlsIndexKeyValueOutput) AutoIndexFlag() pulumi.BoolOutput {
+	return o.ApplyT(func(v IndexesTlsIndexKeyValue) bool { return v.AutoIndexFlag }).(pulumi.BoolOutput)
+}
+
 // Whether the value is case sensitive.
 func (o IndexesTlsIndexKeyValueOutput) CaseSensitive() pulumi.BoolOutput {
 	return o.ApplyT(func(v IndexesTlsIndexKeyValue) bool { return v.CaseSensitive }).(pulumi.BoolOutput)
@@ -13930,9 +14112,14 @@ func (o IndexesTlsIndexKeyValueOutput) IncludeChinese() pulumi.BoolOutput {
 	return o.ApplyT(func(v IndexesTlsIndexKeyValue) bool { return v.IncludeChinese }).(pulumi.BoolOutput)
 }
 
-// Whether to create indexes for all fields in JSON fields with text values.
+// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
 func (o IndexesTlsIndexKeyValueOutput) IndexAll() pulumi.BoolOutput {
 	return o.ApplyT(func(v IndexesTlsIndexKeyValue) bool { return v.IndexAll }).(pulumi.BoolOutput)
+}
+
+// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+func (o IndexesTlsIndexKeyValueOutput) IndexSqlAll() pulumi.BoolOutput {
+	return o.ApplyT(func(v IndexesTlsIndexKeyValue) bool { return v.IndexSqlAll }).(pulumi.BoolOutput)
 }
 
 // The JSON subfield key value index.
@@ -13940,7 +14127,7 @@ func (o IndexesTlsIndexKeyValueOutput) JsonKeys() IndexesTlsIndexKeyValueJsonKey
 	return o.ApplyT(func(v IndexesTlsIndexKeyValue) []IndexesTlsIndexKeyValueJsonKey { return v.JsonKeys }).(IndexesTlsIndexKeyValueJsonKeyArrayOutput)
 }
 
-// The key of the KeyValue index.
+// The key of the KeyValueInfo.
 func (o IndexesTlsIndexKeyValueOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v IndexesTlsIndexKeyValue) string { return v.Key }).(pulumi.StringOutput)
 }
@@ -13950,7 +14137,7 @@ func (o IndexesTlsIndexKeyValueOutput) SqlFlag() pulumi.BoolOutput {
 	return o.ApplyT(func(v IndexesTlsIndexKeyValue) bool { return v.SqlFlag }).(pulumi.BoolOutput)
 }
 
-// The type of value.
+// The type of value. Valid values: `long`, `double`, `text`, `json`.
 func (o IndexesTlsIndexKeyValueOutput) ValueType() pulumi.StringOutput {
 	return o.ApplyT(func(v IndexesTlsIndexKeyValue) string { return v.ValueType }).(pulumi.StringOutput)
 }
@@ -13982,11 +14169,11 @@ type IndexesTlsIndexKeyValueJsonKey struct {
 	Delimiter string `pulumi:"delimiter"`
 	// Whether the value include chinese.
 	IncludeChinese bool `pulumi:"includeChinese"`
-	// The key of the KeyValue index.
+	// The key of the KeyValueInfo.
 	Key string `pulumi:"key"`
 	// Whether the filed is enabled for analysis.
 	SqlFlag bool `pulumi:"sqlFlag"`
-	// The type of value.
+	// The type of value. Valid values: `long`, `double`, `text`, `json`.
 	ValueType string `pulumi:"valueType"`
 }
 
@@ -14008,11 +14195,11 @@ type IndexesTlsIndexKeyValueJsonKeyArgs struct {
 	Delimiter pulumi.StringInput `pulumi:"delimiter"`
 	// Whether the value include chinese.
 	IncludeChinese pulumi.BoolInput `pulumi:"includeChinese"`
-	// The key of the KeyValue index.
+	// The key of the KeyValueInfo.
 	Key pulumi.StringInput `pulumi:"key"`
 	// Whether the filed is enabled for analysis.
 	SqlFlag pulumi.BoolInput `pulumi:"sqlFlag"`
-	// The type of value.
+	// The type of value. Valid values: `long`, `double`, `text`, `json`.
 	ValueType pulumi.StringInput `pulumi:"valueType"`
 }
 
@@ -14082,7 +14269,7 @@ func (o IndexesTlsIndexKeyValueJsonKeyOutput) IncludeChinese() pulumi.BoolOutput
 	return o.ApplyT(func(v IndexesTlsIndexKeyValueJsonKey) bool { return v.IncludeChinese }).(pulumi.BoolOutput)
 }
 
-// The key of the KeyValue index.
+// The key of the KeyValueInfo.
 func (o IndexesTlsIndexKeyValueJsonKeyOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v IndexesTlsIndexKeyValueJsonKey) string { return v.Key }).(pulumi.StringOutput)
 }
@@ -14092,7 +14279,7 @@ func (o IndexesTlsIndexKeyValueJsonKeyOutput) SqlFlag() pulumi.BoolOutput {
 	return o.ApplyT(func(v IndexesTlsIndexKeyValueJsonKey) bool { return v.SqlFlag }).(pulumi.BoolOutput)
 }
 
-// The type of value.
+// The type of value. Valid values: `long`, `double`, `text`, `json`.
 func (o IndexesTlsIndexKeyValueJsonKeyOutput) ValueType() pulumi.StringOutput {
 	return o.ApplyT(func(v IndexesTlsIndexKeyValueJsonKey) string { return v.ValueType }).(pulumi.StringOutput)
 }
@@ -14118,19 +14305,25 @@ func (o IndexesTlsIndexKeyValueJsonKeyArrayOutput) Index(i pulumi.IntInput) Inde
 }
 
 type IndexesTlsIndexUserInnerKeyValue struct {
+	// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+	AutoIndexFlag bool `pulumi:"autoIndexFlag"`
 	// Whether the value is case sensitive.
 	CaseSensitive bool `pulumi:"caseSensitive"`
 	// The delimiter of the value.
 	Delimiter string `pulumi:"delimiter"`
 	// Whether the value include chinese.
 	IncludeChinese bool `pulumi:"includeChinese"`
+	// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+	IndexAll bool `pulumi:"indexAll"`
+	// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+	IndexSqlAll bool `pulumi:"indexSqlAll"`
 	// The JSON subfield key value index.
 	JsonKeys []IndexesTlsIndexUserInnerKeyValueJsonKey `pulumi:"jsonKeys"`
-	// The key of the KeyValue index.
+	// The key of the KeyValueInfo.
 	Key string `pulumi:"key"`
 	// Whether the filed is enabled for analysis.
 	SqlFlag bool `pulumi:"sqlFlag"`
-	// The type of value.
+	// The type of value. Valid values: `long`, `double`, `text`, `json`.
 	ValueType string `pulumi:"valueType"`
 }
 
@@ -14146,19 +14339,25 @@ type IndexesTlsIndexUserInnerKeyValueInput interface {
 }
 
 type IndexesTlsIndexUserInnerKeyValueArgs struct {
+	// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+	AutoIndexFlag pulumi.BoolInput `pulumi:"autoIndexFlag"`
 	// Whether the value is case sensitive.
 	CaseSensitive pulumi.BoolInput `pulumi:"caseSensitive"`
 	// The delimiter of the value.
 	Delimiter pulumi.StringInput `pulumi:"delimiter"`
 	// Whether the value include chinese.
 	IncludeChinese pulumi.BoolInput `pulumi:"includeChinese"`
+	// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+	IndexAll pulumi.BoolInput `pulumi:"indexAll"`
+	// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+	IndexSqlAll pulumi.BoolInput `pulumi:"indexSqlAll"`
 	// The JSON subfield key value index.
 	JsonKeys IndexesTlsIndexUserInnerKeyValueJsonKeyArrayInput `pulumi:"jsonKeys"`
-	// The key of the KeyValue index.
+	// The key of the KeyValueInfo.
 	Key pulumi.StringInput `pulumi:"key"`
 	// Whether the filed is enabled for analysis.
 	SqlFlag pulumi.BoolInput `pulumi:"sqlFlag"`
-	// The type of value.
+	// The type of value. Valid values: `long`, `double`, `text`, `json`.
 	ValueType pulumi.StringInput `pulumi:"valueType"`
 }
 
@@ -14213,6 +14412,11 @@ func (o IndexesTlsIndexUserInnerKeyValueOutput) ToIndexesTlsIndexUserInnerKeyVal
 	return o
 }
 
+// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+func (o IndexesTlsIndexUserInnerKeyValueOutput) AutoIndexFlag() pulumi.BoolOutput {
+	return o.ApplyT(func(v IndexesTlsIndexUserInnerKeyValue) bool { return v.AutoIndexFlag }).(pulumi.BoolOutput)
+}
+
 // Whether the value is case sensitive.
 func (o IndexesTlsIndexUserInnerKeyValueOutput) CaseSensitive() pulumi.BoolOutput {
 	return o.ApplyT(func(v IndexesTlsIndexUserInnerKeyValue) bool { return v.CaseSensitive }).(pulumi.BoolOutput)
@@ -14228,12 +14432,22 @@ func (o IndexesTlsIndexUserInnerKeyValueOutput) IncludeChinese() pulumi.BoolOutp
 	return o.ApplyT(func(v IndexesTlsIndexUserInnerKeyValue) bool { return v.IncludeChinese }).(pulumi.BoolOutput)
 }
 
+// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+func (o IndexesTlsIndexUserInnerKeyValueOutput) IndexAll() pulumi.BoolOutput {
+	return o.ApplyT(func(v IndexesTlsIndexUserInnerKeyValue) bool { return v.IndexAll }).(pulumi.BoolOutput)
+}
+
+// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+func (o IndexesTlsIndexUserInnerKeyValueOutput) IndexSqlAll() pulumi.BoolOutput {
+	return o.ApplyT(func(v IndexesTlsIndexUserInnerKeyValue) bool { return v.IndexSqlAll }).(pulumi.BoolOutput)
+}
+
 // The JSON subfield key value index.
 func (o IndexesTlsIndexUserInnerKeyValueOutput) JsonKeys() IndexesTlsIndexUserInnerKeyValueJsonKeyArrayOutput {
 	return o.ApplyT(func(v IndexesTlsIndexUserInnerKeyValue) []IndexesTlsIndexUserInnerKeyValueJsonKey { return v.JsonKeys }).(IndexesTlsIndexUserInnerKeyValueJsonKeyArrayOutput)
 }
 
-// The key of the KeyValue index.
+// The key of the KeyValueInfo.
 func (o IndexesTlsIndexUserInnerKeyValueOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v IndexesTlsIndexUserInnerKeyValue) string { return v.Key }).(pulumi.StringOutput)
 }
@@ -14243,7 +14457,7 @@ func (o IndexesTlsIndexUserInnerKeyValueOutput) SqlFlag() pulumi.BoolOutput {
 	return o.ApplyT(func(v IndexesTlsIndexUserInnerKeyValue) bool { return v.SqlFlag }).(pulumi.BoolOutput)
 }
 
-// The type of value.
+// The type of value. Valid values: `long`, `double`, `text`, `json`.
 func (o IndexesTlsIndexUserInnerKeyValueOutput) ValueType() pulumi.StringOutput {
 	return o.ApplyT(func(v IndexesTlsIndexUserInnerKeyValue) string { return v.ValueType }).(pulumi.StringOutput)
 }
@@ -14275,11 +14489,11 @@ type IndexesTlsIndexUserInnerKeyValueJsonKey struct {
 	Delimiter string `pulumi:"delimiter"`
 	// Whether the value include chinese.
 	IncludeChinese bool `pulumi:"includeChinese"`
-	// The key of the KeyValue index.
+	// The key of the KeyValueInfo.
 	Key string `pulumi:"key"`
 	// Whether the filed is enabled for analysis.
 	SqlFlag bool `pulumi:"sqlFlag"`
-	// The type of value.
+	// The type of value. Valid values: `long`, `double`, `text`, `json`.
 	ValueType string `pulumi:"valueType"`
 }
 
@@ -14301,11 +14515,11 @@ type IndexesTlsIndexUserInnerKeyValueJsonKeyArgs struct {
 	Delimiter pulumi.StringInput `pulumi:"delimiter"`
 	// Whether the value include chinese.
 	IncludeChinese pulumi.BoolInput `pulumi:"includeChinese"`
-	// The key of the KeyValue index.
+	// The key of the KeyValueInfo.
 	Key pulumi.StringInput `pulumi:"key"`
 	// Whether the filed is enabled for analysis.
 	SqlFlag pulumi.BoolInput `pulumi:"sqlFlag"`
-	// The type of value.
+	// The type of value. Valid values: `long`, `double`, `text`, `json`.
 	ValueType pulumi.StringInput `pulumi:"valueType"`
 }
 
@@ -14375,7 +14589,7 @@ func (o IndexesTlsIndexUserInnerKeyValueJsonKeyOutput) IncludeChinese() pulumi.B
 	return o.ApplyT(func(v IndexesTlsIndexUserInnerKeyValueJsonKey) bool { return v.IncludeChinese }).(pulumi.BoolOutput)
 }
 
-// The key of the KeyValue index.
+// The key of the KeyValueInfo.
 func (o IndexesTlsIndexUserInnerKeyValueJsonKeyOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v IndexesTlsIndexUserInnerKeyValueJsonKey) string { return v.Key }).(pulumi.StringOutput)
 }
@@ -14385,7 +14599,7 @@ func (o IndexesTlsIndexUserInnerKeyValueJsonKeyOutput) SqlFlag() pulumi.BoolOutp
 	return o.ApplyT(func(v IndexesTlsIndexUserInnerKeyValueJsonKey) bool { return v.SqlFlag }).(pulumi.BoolOutput)
 }
 
-// The type of value.
+// The type of value. Valid values: `long`, `double`, `text`, `json`.
 func (o IndexesTlsIndexUserInnerKeyValueJsonKeyOutput) ValueType() pulumi.StringOutput {
 	return o.ApplyT(func(v IndexesTlsIndexUserInnerKeyValueJsonKey) string { return v.ValueType }).(pulumi.StringOutput)
 }
@@ -14638,6 +14852,130 @@ func (o LogContextsLogContextArrayOutput) Index(i pulumi.IntInput) LogContextsLo
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogContextsLogContext {
 		return vs[0].([]LogContextsLogContext)[vs[1].(int)]
 	}).(LogContextsLogContextOutput)
+}
+
+type LogCursorsLogCursor struct {
+	// The cursor value.
+	Cursor string `pulumi:"cursor"`
+	// The time point of the cursor. The value is a Unix timestamp in seconds, or "begin" or "end".
+	From string `pulumi:"from"`
+	// The ID of the shard.
+	ShardId int `pulumi:"shardId"`
+	// The ID of the topic.
+	TopicId string `pulumi:"topicId"`
+}
+
+// LogCursorsLogCursorInput is an input type that accepts LogCursorsLogCursorArgs and LogCursorsLogCursorOutput values.
+// You can construct a concrete instance of `LogCursorsLogCursorInput` via:
+//
+//	LogCursorsLogCursorArgs{...}
+type LogCursorsLogCursorInput interface {
+	pulumi.Input
+
+	ToLogCursorsLogCursorOutput() LogCursorsLogCursorOutput
+	ToLogCursorsLogCursorOutputWithContext(context.Context) LogCursorsLogCursorOutput
+}
+
+type LogCursorsLogCursorArgs struct {
+	// The cursor value.
+	Cursor pulumi.StringInput `pulumi:"cursor"`
+	// The time point of the cursor. The value is a Unix timestamp in seconds, or "begin" or "end".
+	From pulumi.StringInput `pulumi:"from"`
+	// The ID of the shard.
+	ShardId pulumi.IntInput `pulumi:"shardId"`
+	// The ID of the topic.
+	TopicId pulumi.StringInput `pulumi:"topicId"`
+}
+
+func (LogCursorsLogCursorArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogCursorsLogCursor)(nil)).Elem()
+}
+
+func (i LogCursorsLogCursorArgs) ToLogCursorsLogCursorOutput() LogCursorsLogCursorOutput {
+	return i.ToLogCursorsLogCursorOutputWithContext(context.Background())
+}
+
+func (i LogCursorsLogCursorArgs) ToLogCursorsLogCursorOutputWithContext(ctx context.Context) LogCursorsLogCursorOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogCursorsLogCursorOutput)
+}
+
+// LogCursorsLogCursorArrayInput is an input type that accepts LogCursorsLogCursorArray and LogCursorsLogCursorArrayOutput values.
+// You can construct a concrete instance of `LogCursorsLogCursorArrayInput` via:
+//
+//	LogCursorsLogCursorArray{ LogCursorsLogCursorArgs{...} }
+type LogCursorsLogCursorArrayInput interface {
+	pulumi.Input
+
+	ToLogCursorsLogCursorArrayOutput() LogCursorsLogCursorArrayOutput
+	ToLogCursorsLogCursorArrayOutputWithContext(context.Context) LogCursorsLogCursorArrayOutput
+}
+
+type LogCursorsLogCursorArray []LogCursorsLogCursorInput
+
+func (LogCursorsLogCursorArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LogCursorsLogCursor)(nil)).Elem()
+}
+
+func (i LogCursorsLogCursorArray) ToLogCursorsLogCursorArrayOutput() LogCursorsLogCursorArrayOutput {
+	return i.ToLogCursorsLogCursorArrayOutputWithContext(context.Background())
+}
+
+func (i LogCursorsLogCursorArray) ToLogCursorsLogCursorArrayOutputWithContext(ctx context.Context) LogCursorsLogCursorArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogCursorsLogCursorArrayOutput)
+}
+
+type LogCursorsLogCursorOutput struct{ *pulumi.OutputState }
+
+func (LogCursorsLogCursorOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogCursorsLogCursor)(nil)).Elem()
+}
+
+func (o LogCursorsLogCursorOutput) ToLogCursorsLogCursorOutput() LogCursorsLogCursorOutput {
+	return o
+}
+
+func (o LogCursorsLogCursorOutput) ToLogCursorsLogCursorOutputWithContext(ctx context.Context) LogCursorsLogCursorOutput {
+	return o
+}
+
+// The cursor value.
+func (o LogCursorsLogCursorOutput) Cursor() pulumi.StringOutput {
+	return o.ApplyT(func(v LogCursorsLogCursor) string { return v.Cursor }).(pulumi.StringOutput)
+}
+
+// The time point of the cursor. The value is a Unix timestamp in seconds, or "begin" or "end".
+func (o LogCursorsLogCursorOutput) From() pulumi.StringOutput {
+	return o.ApplyT(func(v LogCursorsLogCursor) string { return v.From }).(pulumi.StringOutput)
+}
+
+// The ID of the shard.
+func (o LogCursorsLogCursorOutput) ShardId() pulumi.IntOutput {
+	return o.ApplyT(func(v LogCursorsLogCursor) int { return v.ShardId }).(pulumi.IntOutput)
+}
+
+// The ID of the topic.
+func (o LogCursorsLogCursorOutput) TopicId() pulumi.StringOutput {
+	return o.ApplyT(func(v LogCursorsLogCursor) string { return v.TopicId }).(pulumi.StringOutput)
+}
+
+type LogCursorsLogCursorArrayOutput struct{ *pulumi.OutputState }
+
+func (LogCursorsLogCursorArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LogCursorsLogCursor)(nil)).Elem()
+}
+
+func (o LogCursorsLogCursorArrayOutput) ToLogCursorsLogCursorArrayOutput() LogCursorsLogCursorArrayOutput {
+	return o
+}
+
+func (o LogCursorsLogCursorArrayOutput) ToLogCursorsLogCursorArrayOutputWithContext(ctx context.Context) LogCursorsLogCursorArrayOutput {
+	return o
+}
+
+func (o LogCursorsLogCursorArrayOutput) Index(i pulumi.IntInput) LogCursorsLogCursorOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogCursorsLogCursor {
+		return vs[0].([]LogCursorsLogCursor)[vs[1].(int)]
+	}).(LogCursorsLogCursorOutput)
 }
 
 type LogHistogramsHistogramInfo struct {
@@ -29075,6 +29413,112 @@ func (o GetAlarmsAlarmTriggerConditionArrayOutput) Index(i pulumi.IntInput) GetA
 	}).(GetAlarmsAlarmTriggerConditionOutput)
 }
 
+type GetCheckPointsCheckPoint struct {
+	// The checkpoint value.
+	Checkpoint string `pulumi:"checkpoint"`
+	// The ID of the shard.
+	ShardId int `pulumi:"shardId"`
+}
+
+// GetCheckPointsCheckPointInput is an input type that accepts GetCheckPointsCheckPointArgs and GetCheckPointsCheckPointOutput values.
+// You can construct a concrete instance of `GetCheckPointsCheckPointInput` via:
+//
+//	GetCheckPointsCheckPointArgs{...}
+type GetCheckPointsCheckPointInput interface {
+	pulumi.Input
+
+	ToGetCheckPointsCheckPointOutput() GetCheckPointsCheckPointOutput
+	ToGetCheckPointsCheckPointOutputWithContext(context.Context) GetCheckPointsCheckPointOutput
+}
+
+type GetCheckPointsCheckPointArgs struct {
+	// The checkpoint value.
+	Checkpoint pulumi.StringInput `pulumi:"checkpoint"`
+	// The ID of the shard.
+	ShardId pulumi.IntInput `pulumi:"shardId"`
+}
+
+func (GetCheckPointsCheckPointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCheckPointsCheckPoint)(nil)).Elem()
+}
+
+func (i GetCheckPointsCheckPointArgs) ToGetCheckPointsCheckPointOutput() GetCheckPointsCheckPointOutput {
+	return i.ToGetCheckPointsCheckPointOutputWithContext(context.Background())
+}
+
+func (i GetCheckPointsCheckPointArgs) ToGetCheckPointsCheckPointOutputWithContext(ctx context.Context) GetCheckPointsCheckPointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCheckPointsCheckPointOutput)
+}
+
+// GetCheckPointsCheckPointArrayInput is an input type that accepts GetCheckPointsCheckPointArray and GetCheckPointsCheckPointArrayOutput values.
+// You can construct a concrete instance of `GetCheckPointsCheckPointArrayInput` via:
+//
+//	GetCheckPointsCheckPointArray{ GetCheckPointsCheckPointArgs{...} }
+type GetCheckPointsCheckPointArrayInput interface {
+	pulumi.Input
+
+	ToGetCheckPointsCheckPointArrayOutput() GetCheckPointsCheckPointArrayOutput
+	ToGetCheckPointsCheckPointArrayOutputWithContext(context.Context) GetCheckPointsCheckPointArrayOutput
+}
+
+type GetCheckPointsCheckPointArray []GetCheckPointsCheckPointInput
+
+func (GetCheckPointsCheckPointArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCheckPointsCheckPoint)(nil)).Elem()
+}
+
+func (i GetCheckPointsCheckPointArray) ToGetCheckPointsCheckPointArrayOutput() GetCheckPointsCheckPointArrayOutput {
+	return i.ToGetCheckPointsCheckPointArrayOutputWithContext(context.Background())
+}
+
+func (i GetCheckPointsCheckPointArray) ToGetCheckPointsCheckPointArrayOutputWithContext(ctx context.Context) GetCheckPointsCheckPointArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCheckPointsCheckPointArrayOutput)
+}
+
+type GetCheckPointsCheckPointOutput struct{ *pulumi.OutputState }
+
+func (GetCheckPointsCheckPointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCheckPointsCheckPoint)(nil)).Elem()
+}
+
+func (o GetCheckPointsCheckPointOutput) ToGetCheckPointsCheckPointOutput() GetCheckPointsCheckPointOutput {
+	return o
+}
+
+func (o GetCheckPointsCheckPointOutput) ToGetCheckPointsCheckPointOutputWithContext(ctx context.Context) GetCheckPointsCheckPointOutput {
+	return o
+}
+
+// The checkpoint value.
+func (o GetCheckPointsCheckPointOutput) Checkpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCheckPointsCheckPoint) string { return v.Checkpoint }).(pulumi.StringOutput)
+}
+
+// The ID of the shard.
+func (o GetCheckPointsCheckPointOutput) ShardId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCheckPointsCheckPoint) int { return v.ShardId }).(pulumi.IntOutput)
+}
+
+type GetCheckPointsCheckPointArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCheckPointsCheckPointArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCheckPointsCheckPoint)(nil)).Elem()
+}
+
+func (o GetCheckPointsCheckPointArrayOutput) ToGetCheckPointsCheckPointArrayOutput() GetCheckPointsCheckPointArrayOutput {
+	return o
+}
+
+func (o GetCheckPointsCheckPointArrayOutput) ToGetCheckPointsCheckPointArrayOutputWithContext(ctx context.Context) GetCheckPointsCheckPointArrayOutput {
+	return o
+}
+
+func (o GetCheckPointsCheckPointArrayOutput) Index(i pulumi.IntInput) GetCheckPointsCheckPointOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCheckPointsCheckPoint {
+		return vs[0].([]GetCheckPointsCheckPoint)[vs[1].(int)]
+	}).(GetCheckPointsCheckPointOutput)
+}
+
 type GetConsumerGroupsConsumerGroup struct {
 	// The name of the consumer group.
 	ConsumerGroupName string `pulumi:"consumerGroupName"`
@@ -34047,7 +34491,7 @@ type GetIndexesTlsIndex struct {
 	MaxTextLen int `pulumi:"maxTextLen"`
 	// The modify time of the tls index.
 	ModifyTime string `pulumi:"modifyTime"`
-	// The topic id of the tls index.
+	// The topic id of tls index.
 	TopicId string `pulumi:"topicId"`
 	// The reserved field index configuration of the tls topic.
 	UserInnerKeyValues []GetIndexesTlsIndexUserInnerKeyValue `pulumi:"userInnerKeyValues"`
@@ -34079,7 +34523,7 @@ type GetIndexesTlsIndexArgs struct {
 	MaxTextLen pulumi.IntInput `pulumi:"maxTextLen"`
 	// The modify time of the tls index.
 	ModifyTime pulumi.StringInput `pulumi:"modifyTime"`
-	// The topic id of the tls index.
+	// The topic id of tls index.
 	TopicId pulumi.StringInput `pulumi:"topicId"`
 	// The reserved field index configuration of the tls topic.
 	UserInnerKeyValues GetIndexesTlsIndexUserInnerKeyValueArrayInput `pulumi:"userInnerKeyValues"`
@@ -34171,7 +34615,7 @@ func (o GetIndexesTlsIndexOutput) ModifyTime() pulumi.StringOutput {
 	return o.ApplyT(func(v GetIndexesTlsIndex) string { return v.ModifyTime }).(pulumi.StringOutput)
 }
 
-// The topic id of the tls index.
+// The topic id of tls index.
 func (o GetIndexesTlsIndexOutput) TopicId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetIndexesTlsIndex) string { return v.TopicId }).(pulumi.StringOutput)
 }
@@ -34272,21 +34716,25 @@ func (o GetIndexesTlsIndexFullTextOutput) IncludeChinese() pulumi.BoolOutput {
 }
 
 type GetIndexesTlsIndexKeyValue struct {
+	// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+	AutoIndexFlag bool `pulumi:"autoIndexFlag"`
 	// Whether the value is case sensitive.
 	CaseSensitive bool `pulumi:"caseSensitive"`
 	// The delimiter of the value.
 	Delimiter string `pulumi:"delimiter"`
 	// Whether the value include chinese.
 	IncludeChinese bool `pulumi:"includeChinese"`
-	// Whether to create indexes for all fields in JSON fields with text values.
+	// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
 	IndexAll bool `pulumi:"indexAll"`
+	// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+	IndexSqlAll bool `pulumi:"indexSqlAll"`
 	// The JSON subfield key value index.
 	JsonKeys []GetIndexesTlsIndexKeyValueJsonKey `pulumi:"jsonKeys"`
-	// The key of the KeyValue index.
+	// The key of the KeyValueInfo.
 	Key string `pulumi:"key"`
 	// Whether the filed is enabled for analysis.
 	SqlFlag bool `pulumi:"sqlFlag"`
-	// The type of value.
+	// The type of value. Valid values: `long`, `double`, `text`, `json`.
 	ValueType string `pulumi:"valueType"`
 }
 
@@ -34302,21 +34750,25 @@ type GetIndexesTlsIndexKeyValueInput interface {
 }
 
 type GetIndexesTlsIndexKeyValueArgs struct {
+	// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+	AutoIndexFlag pulumi.BoolInput `pulumi:"autoIndexFlag"`
 	// Whether the value is case sensitive.
 	CaseSensitive pulumi.BoolInput `pulumi:"caseSensitive"`
 	// The delimiter of the value.
 	Delimiter pulumi.StringInput `pulumi:"delimiter"`
 	// Whether the value include chinese.
 	IncludeChinese pulumi.BoolInput `pulumi:"includeChinese"`
-	// Whether to create indexes for all fields in JSON fields with text values.
+	// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
 	IndexAll pulumi.BoolInput `pulumi:"indexAll"`
+	// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+	IndexSqlAll pulumi.BoolInput `pulumi:"indexSqlAll"`
 	// The JSON subfield key value index.
 	JsonKeys GetIndexesTlsIndexKeyValueJsonKeyArrayInput `pulumi:"jsonKeys"`
-	// The key of the KeyValue index.
+	// The key of the KeyValueInfo.
 	Key pulumi.StringInput `pulumi:"key"`
 	// Whether the filed is enabled for analysis.
 	SqlFlag pulumi.BoolInput `pulumi:"sqlFlag"`
-	// The type of value.
+	// The type of value. Valid values: `long`, `double`, `text`, `json`.
 	ValueType pulumi.StringInput `pulumi:"valueType"`
 }
 
@@ -34371,6 +34823,11 @@ func (o GetIndexesTlsIndexKeyValueOutput) ToGetIndexesTlsIndexKeyValueOutputWith
 	return o
 }
 
+// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+func (o GetIndexesTlsIndexKeyValueOutput) AutoIndexFlag() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetIndexesTlsIndexKeyValue) bool { return v.AutoIndexFlag }).(pulumi.BoolOutput)
+}
+
 // Whether the value is case sensitive.
 func (o GetIndexesTlsIndexKeyValueOutput) CaseSensitive() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetIndexesTlsIndexKeyValue) bool { return v.CaseSensitive }).(pulumi.BoolOutput)
@@ -34386,9 +34843,14 @@ func (o GetIndexesTlsIndexKeyValueOutput) IncludeChinese() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetIndexesTlsIndexKeyValue) bool { return v.IncludeChinese }).(pulumi.BoolOutput)
 }
 
-// Whether to create indexes for all fields in JSON fields with text values.
+// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
 func (o GetIndexesTlsIndexKeyValueOutput) IndexAll() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetIndexesTlsIndexKeyValue) bool { return v.IndexAll }).(pulumi.BoolOutput)
+}
+
+// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+func (o GetIndexesTlsIndexKeyValueOutput) IndexSqlAll() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetIndexesTlsIndexKeyValue) bool { return v.IndexSqlAll }).(pulumi.BoolOutput)
 }
 
 // The JSON subfield key value index.
@@ -34396,7 +34858,7 @@ func (o GetIndexesTlsIndexKeyValueOutput) JsonKeys() GetIndexesTlsIndexKeyValueJ
 	return o.ApplyT(func(v GetIndexesTlsIndexKeyValue) []GetIndexesTlsIndexKeyValueJsonKey { return v.JsonKeys }).(GetIndexesTlsIndexKeyValueJsonKeyArrayOutput)
 }
 
-// The key of the KeyValue index.
+// The key of the KeyValueInfo.
 func (o GetIndexesTlsIndexKeyValueOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetIndexesTlsIndexKeyValue) string { return v.Key }).(pulumi.StringOutput)
 }
@@ -34406,7 +34868,7 @@ func (o GetIndexesTlsIndexKeyValueOutput) SqlFlag() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetIndexesTlsIndexKeyValue) bool { return v.SqlFlag }).(pulumi.BoolOutput)
 }
 
-// The type of value.
+// The type of value. Valid values: `long`, `double`, `text`, `json`.
 func (o GetIndexesTlsIndexKeyValueOutput) ValueType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetIndexesTlsIndexKeyValue) string { return v.ValueType }).(pulumi.StringOutput)
 }
@@ -34438,11 +34900,11 @@ type GetIndexesTlsIndexKeyValueJsonKey struct {
 	Delimiter string `pulumi:"delimiter"`
 	// Whether the value include chinese.
 	IncludeChinese bool `pulumi:"includeChinese"`
-	// The key of the KeyValue index.
+	// The key of the KeyValueInfo.
 	Key string `pulumi:"key"`
 	// Whether the filed is enabled for analysis.
 	SqlFlag bool `pulumi:"sqlFlag"`
-	// The type of value.
+	// The type of value. Valid values: `long`, `double`, `text`, `json`.
 	ValueType string `pulumi:"valueType"`
 }
 
@@ -34464,11 +34926,11 @@ type GetIndexesTlsIndexKeyValueJsonKeyArgs struct {
 	Delimiter pulumi.StringInput `pulumi:"delimiter"`
 	// Whether the value include chinese.
 	IncludeChinese pulumi.BoolInput `pulumi:"includeChinese"`
-	// The key of the KeyValue index.
+	// The key of the KeyValueInfo.
 	Key pulumi.StringInput `pulumi:"key"`
 	// Whether the filed is enabled for analysis.
 	SqlFlag pulumi.BoolInput `pulumi:"sqlFlag"`
-	// The type of value.
+	// The type of value. Valid values: `long`, `double`, `text`, `json`.
 	ValueType pulumi.StringInput `pulumi:"valueType"`
 }
 
@@ -34538,7 +35000,7 @@ func (o GetIndexesTlsIndexKeyValueJsonKeyOutput) IncludeChinese() pulumi.BoolOut
 	return o.ApplyT(func(v GetIndexesTlsIndexKeyValueJsonKey) bool { return v.IncludeChinese }).(pulumi.BoolOutput)
 }
 
-// The key of the KeyValue index.
+// The key of the KeyValueInfo.
 func (o GetIndexesTlsIndexKeyValueJsonKeyOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetIndexesTlsIndexKeyValueJsonKey) string { return v.Key }).(pulumi.StringOutput)
 }
@@ -34548,7 +35010,7 @@ func (o GetIndexesTlsIndexKeyValueJsonKeyOutput) SqlFlag() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetIndexesTlsIndexKeyValueJsonKey) bool { return v.SqlFlag }).(pulumi.BoolOutput)
 }
 
-// The type of value.
+// The type of value. Valid values: `long`, `double`, `text`, `json`.
 func (o GetIndexesTlsIndexKeyValueJsonKeyOutput) ValueType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetIndexesTlsIndexKeyValueJsonKey) string { return v.ValueType }).(pulumi.StringOutput)
 }
@@ -34574,19 +35036,25 @@ func (o GetIndexesTlsIndexKeyValueJsonKeyArrayOutput) Index(i pulumi.IntInput) G
 }
 
 type GetIndexesTlsIndexUserInnerKeyValue struct {
+	// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+	AutoIndexFlag bool `pulumi:"autoIndexFlag"`
 	// Whether the value is case sensitive.
 	CaseSensitive bool `pulumi:"caseSensitive"`
 	// The delimiter of the value.
 	Delimiter string `pulumi:"delimiter"`
 	// Whether the value include chinese.
 	IncludeChinese bool `pulumi:"includeChinese"`
+	// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+	IndexAll bool `pulumi:"indexAll"`
+	// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+	IndexSqlAll bool `pulumi:"indexSqlAll"`
 	// The JSON subfield key value index.
 	JsonKeys []GetIndexesTlsIndexUserInnerKeyValueJsonKey `pulumi:"jsonKeys"`
-	// The key of the KeyValue index.
+	// The key of the KeyValueInfo.
 	Key string `pulumi:"key"`
 	// Whether the filed is enabled for analysis.
 	SqlFlag bool `pulumi:"sqlFlag"`
-	// The type of value.
+	// The type of value. Valid values: `long`, `double`, `text`, `json`.
 	ValueType string `pulumi:"valueType"`
 }
 
@@ -34602,19 +35070,25 @@ type GetIndexesTlsIndexUserInnerKeyValueInput interface {
 }
 
 type GetIndexesTlsIndexUserInnerKeyValueArgs struct {
+	// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+	AutoIndexFlag pulumi.BoolInput `pulumi:"autoIndexFlag"`
 	// Whether the value is case sensitive.
 	CaseSensitive pulumi.BoolInput `pulumi:"caseSensitive"`
 	// The delimiter of the value.
 	Delimiter pulumi.StringInput `pulumi:"delimiter"`
 	// Whether the value include chinese.
 	IncludeChinese pulumi.BoolInput `pulumi:"includeChinese"`
+	// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+	IndexAll pulumi.BoolInput `pulumi:"indexAll"`
+	// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+	IndexSqlAll pulumi.BoolInput `pulumi:"indexSqlAll"`
 	// The JSON subfield key value index.
 	JsonKeys GetIndexesTlsIndexUserInnerKeyValueJsonKeyArrayInput `pulumi:"jsonKeys"`
-	// The key of the KeyValue index.
+	// The key of the KeyValueInfo.
 	Key pulumi.StringInput `pulumi:"key"`
 	// Whether the filed is enabled for analysis.
 	SqlFlag pulumi.BoolInput `pulumi:"sqlFlag"`
-	// The type of value.
+	// The type of value. Valid values: `long`, `double`, `text`, `json`.
 	ValueType pulumi.StringInput `pulumi:"valueType"`
 }
 
@@ -34669,6 +35143,11 @@ func (o GetIndexesTlsIndexUserInnerKeyValueOutput) ToGetIndexesTlsIndexUserInner
 	return o
 }
 
+// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+func (o GetIndexesTlsIndexUserInnerKeyValueOutput) AutoIndexFlag() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetIndexesTlsIndexUserInnerKeyValue) bool { return v.AutoIndexFlag }).(pulumi.BoolOutput)
+}
+
 // Whether the value is case sensitive.
 func (o GetIndexesTlsIndexUserInnerKeyValueOutput) CaseSensitive() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetIndexesTlsIndexUserInnerKeyValue) bool { return v.CaseSensitive }).(pulumi.BoolOutput)
@@ -34684,6 +35163,16 @@ func (o GetIndexesTlsIndexUserInnerKeyValueOutput) IncludeChinese() pulumi.BoolO
 	return o.ApplyT(func(v GetIndexesTlsIndexUserInnerKeyValue) bool { return v.IncludeChinese }).(pulumi.BoolOutput)
 }
 
+// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+func (o GetIndexesTlsIndexUserInnerKeyValueOutput) IndexAll() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetIndexesTlsIndexUserInnerKeyValue) bool { return v.IndexAll }).(pulumi.BoolOutput)
+}
+
+// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+func (o GetIndexesTlsIndexUserInnerKeyValueOutput) IndexSqlAll() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetIndexesTlsIndexUserInnerKeyValue) bool { return v.IndexSqlAll }).(pulumi.BoolOutput)
+}
+
 // The JSON subfield key value index.
 func (o GetIndexesTlsIndexUserInnerKeyValueOutput) JsonKeys() GetIndexesTlsIndexUserInnerKeyValueJsonKeyArrayOutput {
 	return o.ApplyT(func(v GetIndexesTlsIndexUserInnerKeyValue) []GetIndexesTlsIndexUserInnerKeyValueJsonKey {
@@ -34691,7 +35180,7 @@ func (o GetIndexesTlsIndexUserInnerKeyValueOutput) JsonKeys() GetIndexesTlsIndex
 	}).(GetIndexesTlsIndexUserInnerKeyValueJsonKeyArrayOutput)
 }
 
-// The key of the KeyValue index.
+// The key of the KeyValueInfo.
 func (o GetIndexesTlsIndexUserInnerKeyValueOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetIndexesTlsIndexUserInnerKeyValue) string { return v.Key }).(pulumi.StringOutput)
 }
@@ -34701,7 +35190,7 @@ func (o GetIndexesTlsIndexUserInnerKeyValueOutput) SqlFlag() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetIndexesTlsIndexUserInnerKeyValue) bool { return v.SqlFlag }).(pulumi.BoolOutput)
 }
 
-// The type of value.
+// The type of value. Valid values: `long`, `double`, `text`, `json`.
 func (o GetIndexesTlsIndexUserInnerKeyValueOutput) ValueType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetIndexesTlsIndexUserInnerKeyValue) string { return v.ValueType }).(pulumi.StringOutput)
 }
@@ -34733,11 +35222,11 @@ type GetIndexesTlsIndexUserInnerKeyValueJsonKey struct {
 	Delimiter string `pulumi:"delimiter"`
 	// Whether the value include chinese.
 	IncludeChinese bool `pulumi:"includeChinese"`
-	// The key of the KeyValue index.
+	// The key of the KeyValueInfo.
 	Key string `pulumi:"key"`
 	// Whether the filed is enabled for analysis.
 	SqlFlag bool `pulumi:"sqlFlag"`
-	// The type of value.
+	// The type of value. Valid values: `long`, `double`, `text`, `json`.
 	ValueType string `pulumi:"valueType"`
 }
 
@@ -34759,11 +35248,11 @@ type GetIndexesTlsIndexUserInnerKeyValueJsonKeyArgs struct {
 	Delimiter pulumi.StringInput `pulumi:"delimiter"`
 	// Whether the value include chinese.
 	IncludeChinese pulumi.BoolInput `pulumi:"includeChinese"`
-	// The key of the KeyValue index.
+	// The key of the KeyValueInfo.
 	Key pulumi.StringInput `pulumi:"key"`
 	// Whether the filed is enabled for analysis.
 	SqlFlag pulumi.BoolInput `pulumi:"sqlFlag"`
-	// The type of value.
+	// The type of value. Valid values: `long`, `double`, `text`, `json`.
 	ValueType pulumi.StringInput `pulumi:"valueType"`
 }
 
@@ -34833,7 +35322,7 @@ func (o GetIndexesTlsIndexUserInnerKeyValueJsonKeyOutput) IncludeChinese() pulum
 	return o.ApplyT(func(v GetIndexesTlsIndexUserInnerKeyValueJsonKey) bool { return v.IncludeChinese }).(pulumi.BoolOutput)
 }
 
-// The key of the KeyValue index.
+// The key of the KeyValueInfo.
 func (o GetIndexesTlsIndexUserInnerKeyValueJsonKeyOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetIndexesTlsIndexUserInnerKeyValueJsonKey) string { return v.Key }).(pulumi.StringOutput)
 }
@@ -34843,7 +35332,7 @@ func (o GetIndexesTlsIndexUserInnerKeyValueJsonKeyOutput) SqlFlag() pulumi.BoolO
 	return o.ApplyT(func(v GetIndexesTlsIndexUserInnerKeyValueJsonKey) bool { return v.SqlFlag }).(pulumi.BoolOutput)
 }
 
-// The type of value.
+// The type of value. Valid values: `long`, `double`, `text`, `json`.
 func (o GetIndexesTlsIndexUserInnerKeyValueJsonKeyOutput) ValueType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetIndexesTlsIndexUserInnerKeyValueJsonKey) string { return v.ValueType }).(pulumi.StringOutput)
 }
@@ -35096,6 +35585,130 @@ func (o GetLogContextsLogContextArrayOutput) Index(i pulumi.IntInput) GetLogCont
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLogContextsLogContext {
 		return vs[0].([]GetLogContextsLogContext)[vs[1].(int)]
 	}).(GetLogContextsLogContextOutput)
+}
+
+type GetLogCursorsLogCursor struct {
+	// The cursor value.
+	Cursor string `pulumi:"cursor"`
+	// The time point of the cursor. The value is a Unix timestamp in seconds, or "begin" or "end".
+	From string `pulumi:"from"`
+	// The ID of the shard.
+	ShardId int `pulumi:"shardId"`
+	// The ID of the topic.
+	TopicId string `pulumi:"topicId"`
+}
+
+// GetLogCursorsLogCursorInput is an input type that accepts GetLogCursorsLogCursorArgs and GetLogCursorsLogCursorOutput values.
+// You can construct a concrete instance of `GetLogCursorsLogCursorInput` via:
+//
+//	GetLogCursorsLogCursorArgs{...}
+type GetLogCursorsLogCursorInput interface {
+	pulumi.Input
+
+	ToGetLogCursorsLogCursorOutput() GetLogCursorsLogCursorOutput
+	ToGetLogCursorsLogCursorOutputWithContext(context.Context) GetLogCursorsLogCursorOutput
+}
+
+type GetLogCursorsLogCursorArgs struct {
+	// The cursor value.
+	Cursor pulumi.StringInput `pulumi:"cursor"`
+	// The time point of the cursor. The value is a Unix timestamp in seconds, or "begin" or "end".
+	From pulumi.StringInput `pulumi:"from"`
+	// The ID of the shard.
+	ShardId pulumi.IntInput `pulumi:"shardId"`
+	// The ID of the topic.
+	TopicId pulumi.StringInput `pulumi:"topicId"`
+}
+
+func (GetLogCursorsLogCursorArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLogCursorsLogCursor)(nil)).Elem()
+}
+
+func (i GetLogCursorsLogCursorArgs) ToGetLogCursorsLogCursorOutput() GetLogCursorsLogCursorOutput {
+	return i.ToGetLogCursorsLogCursorOutputWithContext(context.Background())
+}
+
+func (i GetLogCursorsLogCursorArgs) ToGetLogCursorsLogCursorOutputWithContext(ctx context.Context) GetLogCursorsLogCursorOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLogCursorsLogCursorOutput)
+}
+
+// GetLogCursorsLogCursorArrayInput is an input type that accepts GetLogCursorsLogCursorArray and GetLogCursorsLogCursorArrayOutput values.
+// You can construct a concrete instance of `GetLogCursorsLogCursorArrayInput` via:
+//
+//	GetLogCursorsLogCursorArray{ GetLogCursorsLogCursorArgs{...} }
+type GetLogCursorsLogCursorArrayInput interface {
+	pulumi.Input
+
+	ToGetLogCursorsLogCursorArrayOutput() GetLogCursorsLogCursorArrayOutput
+	ToGetLogCursorsLogCursorArrayOutputWithContext(context.Context) GetLogCursorsLogCursorArrayOutput
+}
+
+type GetLogCursorsLogCursorArray []GetLogCursorsLogCursorInput
+
+func (GetLogCursorsLogCursorArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLogCursorsLogCursor)(nil)).Elem()
+}
+
+func (i GetLogCursorsLogCursorArray) ToGetLogCursorsLogCursorArrayOutput() GetLogCursorsLogCursorArrayOutput {
+	return i.ToGetLogCursorsLogCursorArrayOutputWithContext(context.Background())
+}
+
+func (i GetLogCursorsLogCursorArray) ToGetLogCursorsLogCursorArrayOutputWithContext(ctx context.Context) GetLogCursorsLogCursorArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLogCursorsLogCursorArrayOutput)
+}
+
+type GetLogCursorsLogCursorOutput struct{ *pulumi.OutputState }
+
+func (GetLogCursorsLogCursorOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLogCursorsLogCursor)(nil)).Elem()
+}
+
+func (o GetLogCursorsLogCursorOutput) ToGetLogCursorsLogCursorOutput() GetLogCursorsLogCursorOutput {
+	return o
+}
+
+func (o GetLogCursorsLogCursorOutput) ToGetLogCursorsLogCursorOutputWithContext(ctx context.Context) GetLogCursorsLogCursorOutput {
+	return o
+}
+
+// The cursor value.
+func (o GetLogCursorsLogCursorOutput) Cursor() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLogCursorsLogCursor) string { return v.Cursor }).(pulumi.StringOutput)
+}
+
+// The time point of the cursor. The value is a Unix timestamp in seconds, or "begin" or "end".
+func (o GetLogCursorsLogCursorOutput) From() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLogCursorsLogCursor) string { return v.From }).(pulumi.StringOutput)
+}
+
+// The ID of the shard.
+func (o GetLogCursorsLogCursorOutput) ShardId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetLogCursorsLogCursor) int { return v.ShardId }).(pulumi.IntOutput)
+}
+
+// The ID of the topic.
+func (o GetLogCursorsLogCursorOutput) TopicId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLogCursorsLogCursor) string { return v.TopicId }).(pulumi.StringOutput)
+}
+
+type GetLogCursorsLogCursorArrayOutput struct{ *pulumi.OutputState }
+
+func (GetLogCursorsLogCursorArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLogCursorsLogCursor)(nil)).Elem()
+}
+
+func (o GetLogCursorsLogCursorArrayOutput) ToGetLogCursorsLogCursorArrayOutput() GetLogCursorsLogCursorArrayOutput {
+	return o
+}
+
+func (o GetLogCursorsLogCursorArrayOutput) ToGetLogCursorsLogCursorArrayOutputWithContext(ctx context.Context) GetLogCursorsLogCursorArrayOutput {
+	return o
+}
+
+func (o GetLogCursorsLogCursorArrayOutput) Index(i pulumi.IntInput) GetLogCursorsLogCursorOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLogCursorsLogCursor {
+		return vs[0].([]GetLogCursorsLogCursor)[vs[1].(int)]
+	}).(GetLogCursorsLogCursorOutput)
 }
 
 type GetLogHistogramsHistogramInfo struct {
@@ -41343,6 +41956,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AlarmsAlarmRequestCycleArrayInput)(nil)).Elem(), AlarmsAlarmRequestCycleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlarmsAlarmTriggerConditionInput)(nil)).Elem(), AlarmsAlarmTriggerConditionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlarmsAlarmTriggerConditionArrayInput)(nil)).Elem(), AlarmsAlarmTriggerConditionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CheckPointsCheckPointInput)(nil)).Elem(), CheckPointsCheckPointArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CheckPointsCheckPointArrayInput)(nil)).Elem(), CheckPointsCheckPointArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ConsumerGroupsConsumerGroupInput)(nil)).Elem(), ConsumerGroupsConsumerGroupArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ConsumerGroupsConsumerGroupArrayInput)(nil)).Elem(), ConsumerGroupsConsumerGroupArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DescribeTracesTraceInput)(nil)).Elem(), DescribeTracesTraceArgs{})
@@ -41452,6 +42067,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*KafkaConsumersDataArrayInput)(nil)).Elem(), KafkaConsumersDataArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LogContextsLogContextInput)(nil)).Elem(), LogContextsLogContextArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LogContextsLogContextArrayInput)(nil)).Elem(), LogContextsLogContextArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogCursorsLogCursorInput)(nil)).Elem(), LogCursorsLogCursorArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogCursorsLogCursorArrayInput)(nil)).Elem(), LogCursorsLogCursorArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LogHistogramsHistogramInfoInput)(nil)).Elem(), LogHistogramsHistogramInfoArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LogHistogramsHistogramInfoArrayInput)(nil)).Elem(), LogHistogramsHistogramInfoArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LogSearchesLogInput)(nil)).Elem(), LogSearchesLogArgs{})
@@ -41635,6 +42252,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAlarmsAlarmRequestCycleArrayInput)(nil)).Elem(), GetAlarmsAlarmRequestCycleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAlarmsAlarmTriggerConditionInput)(nil)).Elem(), GetAlarmsAlarmTriggerConditionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAlarmsAlarmTriggerConditionArrayInput)(nil)).Elem(), GetAlarmsAlarmTriggerConditionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCheckPointsCheckPointInput)(nil)).Elem(), GetCheckPointsCheckPointArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCheckPointsCheckPointArrayInput)(nil)).Elem(), GetCheckPointsCheckPointArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetConsumerGroupsConsumerGroupInput)(nil)).Elem(), GetConsumerGroupsConsumerGroupArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetConsumerGroupsConsumerGroupArrayInput)(nil)).Elem(), GetConsumerGroupsConsumerGroupArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDescribeTracesTraceInput)(nil)).Elem(), GetDescribeTracesTraceArgs{})
@@ -41720,6 +42339,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKafkaConsumersDataArrayInput)(nil)).Elem(), GetKafkaConsumersDataArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLogContextsLogContextInput)(nil)).Elem(), GetLogContextsLogContextArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLogContextsLogContextArrayInput)(nil)).Elem(), GetLogContextsLogContextArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLogCursorsLogCursorInput)(nil)).Elem(), GetLogCursorsLogCursorArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLogCursorsLogCursorArrayInput)(nil)).Elem(), GetLogCursorsLogCursorArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLogHistogramsHistogramInfoInput)(nil)).Elem(), GetLogHistogramsHistogramInfoArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLogHistogramsHistogramInfoArrayInput)(nil)).Elem(), GetLogHistogramsHistogramInfoArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLogSearchesLogInput)(nil)).Elem(), GetLogSearchesLogArgs{})
@@ -41893,6 +42514,8 @@ func init() {
 	pulumi.RegisterOutputType(AlarmsAlarmRequestCycleArrayOutput{})
 	pulumi.RegisterOutputType(AlarmsAlarmTriggerConditionOutput{})
 	pulumi.RegisterOutputType(AlarmsAlarmTriggerConditionArrayOutput{})
+	pulumi.RegisterOutputType(CheckPointsCheckPointOutput{})
+	pulumi.RegisterOutputType(CheckPointsCheckPointArrayOutput{})
 	pulumi.RegisterOutputType(ConsumerGroupsConsumerGroupOutput{})
 	pulumi.RegisterOutputType(ConsumerGroupsConsumerGroupArrayOutput{})
 	pulumi.RegisterOutputType(DescribeTracesTraceOutput{})
@@ -42002,6 +42625,8 @@ func init() {
 	pulumi.RegisterOutputType(KafkaConsumersDataArrayOutput{})
 	pulumi.RegisterOutputType(LogContextsLogContextOutput{})
 	pulumi.RegisterOutputType(LogContextsLogContextArrayOutput{})
+	pulumi.RegisterOutputType(LogCursorsLogCursorOutput{})
+	pulumi.RegisterOutputType(LogCursorsLogCursorArrayOutput{})
 	pulumi.RegisterOutputType(LogHistogramsHistogramInfoOutput{})
 	pulumi.RegisterOutputType(LogHistogramsHistogramInfoArrayOutput{})
 	pulumi.RegisterOutputType(LogSearchesLogOutput{})
@@ -42185,6 +42810,8 @@ func init() {
 	pulumi.RegisterOutputType(GetAlarmsAlarmRequestCycleArrayOutput{})
 	pulumi.RegisterOutputType(GetAlarmsAlarmTriggerConditionOutput{})
 	pulumi.RegisterOutputType(GetAlarmsAlarmTriggerConditionArrayOutput{})
+	pulumi.RegisterOutputType(GetCheckPointsCheckPointOutput{})
+	pulumi.RegisterOutputType(GetCheckPointsCheckPointArrayOutput{})
 	pulumi.RegisterOutputType(GetConsumerGroupsConsumerGroupOutput{})
 	pulumi.RegisterOutputType(GetConsumerGroupsConsumerGroupArrayOutput{})
 	pulumi.RegisterOutputType(GetDescribeTracesTraceOutput{})
@@ -42270,6 +42897,8 @@ func init() {
 	pulumi.RegisterOutputType(GetKafkaConsumersDataArrayOutput{})
 	pulumi.RegisterOutputType(GetLogContextsLogContextOutput{})
 	pulumi.RegisterOutputType(GetLogContextsLogContextArrayOutput{})
+	pulumi.RegisterOutputType(GetLogCursorsLogCursorOutput{})
+	pulumi.RegisterOutputType(GetLogCursorsLogCursorArrayOutput{})
 	pulumi.RegisterOutputType(GetLogHistogramsHistogramInfoOutput{})
 	pulumi.RegisterOutputType(GetLogHistogramsHistogramInfoArrayOutput{})
 	pulumi.RegisterOutputType(GetLogSearchesLogOutput{})

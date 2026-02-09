@@ -282,30 +282,34 @@ class Index(pulumi.CustomResource):
                 include_chinese=False,
             ),
             key_values=[volcengine.tls.IndexKeyValueArgs(
+                auto_index_flag=False,
                 case_sensitive=True,
                 delimiter="!",
                 include_chinese=False,
                 index_all=True,
+                index_sql_all=True,
                 json_keys=[
                     volcengine.tls.IndexKeyValueJsonKeyArgs(
-                        key="name",
+                        key="name-2",
                         value_type="text",
                     ),
                     volcengine.tls.IndexKeyValueJsonKeyArgs(
-                        key="key",
+                        key="key-2",
                         value_type="long",
                     ),
                 ],
-                key="k1",
+                key="k21",
                 sql_flag=True,
                 value_type="json",
             )],
             max_text_len=2048,
-            topic_id="b600dc34-503f-42fc-8e32-953af55463d1",
+            topic_id="c36ed436-84f1-467a-b00e-ba504db753ca",
             user_inner_key_values=[volcengine.tls.IndexUserInnerKeyValueArgs(
-                case_sensitive=False,
+                auto_index_flag=False,
                 delimiter=",:-/ ",
                 include_chinese=False,
+                index_all=True,
+                index_sql_all=True,
                 json_keys=[
                     volcengine.tls.IndexUserInnerKeyValueJsonKeyArgs(
                         key="app",
@@ -317,7 +321,7 @@ class Index(pulumi.CustomResource):
                     ),
                 ],
                 key="__content__",
-                sql_flag=False,
+                sql_flag=True,
                 value_type="json",
             )])
         ```
@@ -327,7 +331,7 @@ class Index(pulumi.CustomResource):
         Tls Index can be imported using the topic id, e.g.
 
         ```sh
-        $ pulumi import volcengine:tls/index:Index default index:edf051ed-3c46-49ba-9339-bea628fe****
+        $ pulumi import volcengine:tls/index:Index default edf051ed-3c46-49ba-9339-bea628fe****
         ```
 
         :param str resource_name: The name of the resource.
@@ -363,30 +367,34 @@ class Index(pulumi.CustomResource):
                 include_chinese=False,
             ),
             key_values=[volcengine.tls.IndexKeyValueArgs(
+                auto_index_flag=False,
                 case_sensitive=True,
                 delimiter="!",
                 include_chinese=False,
                 index_all=True,
+                index_sql_all=True,
                 json_keys=[
                     volcengine.tls.IndexKeyValueJsonKeyArgs(
-                        key="name",
+                        key="name-2",
                         value_type="text",
                     ),
                     volcengine.tls.IndexKeyValueJsonKeyArgs(
-                        key="key",
+                        key="key-2",
                         value_type="long",
                     ),
                 ],
-                key="k1",
+                key="k21",
                 sql_flag=True,
                 value_type="json",
             )],
             max_text_len=2048,
-            topic_id="b600dc34-503f-42fc-8e32-953af55463d1",
+            topic_id="c36ed436-84f1-467a-b00e-ba504db753ca",
             user_inner_key_values=[volcengine.tls.IndexUserInnerKeyValueArgs(
-                case_sensitive=False,
+                auto_index_flag=False,
                 delimiter=",:-/ ",
                 include_chinese=False,
+                index_all=True,
+                index_sql_all=True,
                 json_keys=[
                     volcengine.tls.IndexUserInnerKeyValueJsonKeyArgs(
                         key="app",
@@ -398,7 +406,7 @@ class Index(pulumi.CustomResource):
                     ),
                 ],
                 key="__content__",
-                sql_flag=False,
+                sql_flag=True,
                 value_type="json",
             )])
         ```
@@ -408,7 +416,7 @@ class Index(pulumi.CustomResource):
         Tls Index can be imported using the topic id, e.g.
 
         ```sh
-        $ pulumi import volcengine:tls/index:Index default index:edf051ed-3c46-49ba-9339-bea628fe****
+        $ pulumi import volcengine:tls/index:Index default edf051ed-3c46-49ba-9339-bea628fe****
         ```
 
         :param str resource_name: The name of the resource.

@@ -25,10 +25,7 @@ namespace Pulumi.Volcengine.Tls
         /// {
         ///     var @default = Volcengine.Tls.GetIndexes.Invoke(new()
         ///     {
-        ///         Ids = new[]
-        ///         {
-        ///             "9b756385-1dfb-4306-a094-0c88e04b34a5",
-        ///         },
+        ///         TopicId = "c36ed436-84f1-467a-b00e-ba504db753ca",
         ///     });
         /// 
         /// });
@@ -51,10 +48,7 @@ namespace Pulumi.Volcengine.Tls
         /// {
         ///     var @default = Volcengine.Tls.GetIndexes.Invoke(new()
         ///     {
-        ///         Ids = new[]
-        ///         {
-        ///             "9b756385-1dfb-4306-a094-0c88e04b34a5",
-        ///         },
+        ///         TopicId = "c36ed436-84f1-467a-b00e-ba504db753ca",
         ///     });
         /// 
         /// });
@@ -67,23 +61,17 @@ namespace Pulumi.Volcengine.Tls
 
     public sealed class GetIndexesArgs : global::Pulumi.InvokeArgs
     {
-        [Input("ids", required: true)]
-        private List<string>? _ids;
-
-        /// <summary>
-        /// The list of topic id of tls index.
-        /// </summary>
-        public List<string> Ids
-        {
-            get => _ids ?? (_ids = new List<string>());
-            set => _ids = value;
-        }
-
         /// <summary>
         /// File name where to save data source results.
         /// </summary>
         [Input("outputFile")]
         public string? OutputFile { get; set; }
+
+        /// <summary>
+        /// The topic id of tls index.
+        /// </summary>
+        [Input("topicId", required: true)]
+        public string TopicId { get; set; } = null!;
 
         public GetIndexesArgs()
         {
@@ -93,23 +81,17 @@ namespace Pulumi.Volcengine.Tls
 
     public sealed class GetIndexesInvokeArgs : global::Pulumi.InvokeArgs
     {
-        [Input("ids", required: true)]
-        private InputList<string>? _ids;
-
-        /// <summary>
-        /// The list of topic id of tls index.
-        /// </summary>
-        public InputList<string> Ids
-        {
-            get => _ids ?? (_ids = new InputList<string>());
-            set => _ids = value;
-        }
-
         /// <summary>
         /// File name where to save data source results.
         /// </summary>
         [Input("outputFile")]
         public Input<string>? OutputFile { get; set; }
+
+        /// <summary>
+        /// The topic id of tls index.
+        /// </summary>
+        [Input("topicId", required: true)]
+        public Input<string> TopicId { get; set; } = null!;
 
         public GetIndexesInvokeArgs()
         {
@@ -125,12 +107,15 @@ namespace Pulumi.Volcengine.Tls
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
-        public readonly ImmutableArray<string> Ids;
         public readonly string? OutputFile;
         /// <summary>
         /// The collection of tls index query.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetIndexesTlsIndexResult> TlsIndexes;
+        /// <summary>
+        /// The topic id of the tls index.
+        /// </summary>
+        public readonly string TopicId;
         /// <summary>
         /// The total count of tls index query.
         /// </summary>
@@ -140,18 +125,18 @@ namespace Pulumi.Volcengine.Tls
         private GetIndexesResult(
             string id,
 
-            ImmutableArray<string> ids,
-
             string? outputFile,
 
             ImmutableArray<Outputs.GetIndexesTlsIndexResult> tlsIndexes,
 
+            string topicId,
+
             int totalCount)
         {
             Id = id;
-            Ids = ids;
             OutputFile = outputFile;
             TlsIndexes = tlsIndexes;
+            TopicId = topicId;
             TotalCount = totalCount;
         }
     }

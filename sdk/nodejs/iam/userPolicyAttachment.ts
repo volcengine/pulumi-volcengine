@@ -12,19 +12,10 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const user = new volcengine.iam.User("user", {
- *     userName: "TfTest",
- *     description: "test",
- * });
- * const policy = new volcengine.iam.Policy("policy", {
- *     policyName: "TerraformResourceTest1",
- *     description: "created by terraform 1",
- *     policyDocument: "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"auto_scaling:DescribeScalingGroups\"],\"Resource\":[\"*\"]}]}",
- * });
  * const foo = new volcengine.iam.UserPolicyAttachment("foo", {
- *     userName: user.userName,
- *     policyName: policy.policyName,
- *     policyType: policy.policyType,
+ *     policyName: "AdministratorAccess",
+ *     policyType: "System",
+ *     userName: "jonny",
  * });
  * ```
  *

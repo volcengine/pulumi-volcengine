@@ -38,7 +38,7 @@ namespace Pulumi.Volcengine.Tls
     ///             },
     ///             new Volcengine.Tls.Inputs.EtlTaskTargetResourceArgs
     ///             {
-    ///                 Alias = "tf-test-2",
+    ///                 Alias = "tf-test-2-modify",
     ///                 TopicId = "bdf4f23b-a889-456c-ac5f-09d727427557",
     ///             },
     ///         },

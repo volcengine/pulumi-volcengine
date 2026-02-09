@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  *
  * const default = volcengine.tls.getRuleBoundHostGroups({
- *     ruleId: "048dc010-6bb1-4189-858a-281d654d6686",
+ *     ruleId: "83ac687a-0e2b-4788-b626-3dce18498740",
  * });
  * ```
  */
@@ -70,7 +70,7 @@ export interface GetRuleBoundHostGroupsResult {
  * import * as volcengine from "@pulumi/volcengine";
  *
  * const default = volcengine.tls.getRuleBoundHostGroups({
- *     ruleId: "048dc010-6bb1-4189-858a-281d654d6686",
+ *     ruleId: "83ac687a-0e2b-4788-b626-3dce18498740",
  * });
  * ```
  */

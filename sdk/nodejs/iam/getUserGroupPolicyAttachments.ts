@@ -13,25 +13,9 @@ import * as utilities from "../utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
- * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooPolicy = new volcengine.iam.Policy("fooPolicy", {
- *     policyName: "acc-test-policy",
- *     description: "acc-test",
- *     policyDocument: "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"auto_scaling:DescribeScalingGroups\"],\"Resource\":[\"*\"]}]}",
- * });
- * const fooUserGroup = new volcengine.iam.UserGroup("fooUserGroup", {
- *     userGroupName: "acc-test-group",
- *     description: "acc-test",
- *     displayName: "acc-test",
- * });
- * const fooUserGroupPolicyAttachment = new volcengine.iam.UserGroupPolicyAttachment("fooUserGroupPolicyAttachment", {
- *     policyName: fooPolicy.policyName,
- *     policyType: "Custom",
- *     userGroupName: fooUserGroup.userGroupName,
- * });
- * const fooUserGroupPolicyAttachments = volcengine.iam.getUserGroupPolicyAttachmentsOutput({
- *     userGroupName: fooUserGroupPolicyAttachment.userGroupName,
+ * const default = volcengine.iam.getUserGroupPolicyAttachments({
+ *     userGroupName: "xRqElT",
  * });
  * ```
  */
@@ -84,25 +68,9 @@ export interface GetUserGroupPolicyAttachmentsResult {
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
- * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooPolicy = new volcengine.iam.Policy("fooPolicy", {
- *     policyName: "acc-test-policy",
- *     description: "acc-test",
- *     policyDocument: "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"auto_scaling:DescribeScalingGroups\"],\"Resource\":[\"*\"]}]}",
- * });
- * const fooUserGroup = new volcengine.iam.UserGroup("fooUserGroup", {
- *     userGroupName: "acc-test-group",
- *     description: "acc-test",
- *     displayName: "acc-test",
- * });
- * const fooUserGroupPolicyAttachment = new volcengine.iam.UserGroupPolicyAttachment("fooUserGroupPolicyAttachment", {
- *     policyName: fooPolicy.policyName,
- *     policyType: "Custom",
- *     userGroupName: fooUserGroup.userGroupName,
- * });
- * const fooUserGroupPolicyAttachments = volcengine.iam.getUserGroupPolicyAttachmentsOutput({
- *     userGroupName: fooUserGroupPolicyAttachment.userGroupName,
+ * const default = volcengine.iam.getUserGroupPolicyAttachments({
+ *     userGroupName: "xRqElT",
  * });
  * ```
  */

@@ -23,9 +23,9 @@ namespace Pulumi.Volcengine.Iam
     /// {
     ///     var foo = new Volcengine.Iam.UserGroup("foo", new()
     ///     {
-    ///         Description = "acc-test",
-    ///         DisplayName = "acctest",
-    ///         UserGroupName = "acc-test-group",
+    ///         Description = "acc",
+    ///         DisplayName = "modify-xx",
+    ///         UserGroupName = "acc-test1",
     ///     });
     /// 
     /// });

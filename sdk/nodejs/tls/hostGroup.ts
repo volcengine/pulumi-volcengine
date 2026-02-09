@@ -14,7 +14,7 @@ import * as utilities from "../utilities";
  *
  * const foo = new volcengine.tls.HostGroup("foo", {
  *     autoUpdate: true,
- *     hostGroupName: "tfgroup-test-1",
+ *     hostGroupName: "tfgroup-test-x",
  *     hostGroupType: "Label",
  *     hostIdentifier: "hostlable",
  *     iamProjectName: "default",
@@ -24,7 +24,7 @@ import * as utilities from "../utilities";
  * });
  * const fooIp = new volcengine.tls.HostGroup("fooIp", {
  *     autoUpdate: true,
- *     hostGroupName: "tfgroup-ip-1",
+ *     hostGroupName: "tfgroup-ip-x",
  *     hostGroupType: "IP",
  *     hostIpLists: [
  *         "192.168.0.1",

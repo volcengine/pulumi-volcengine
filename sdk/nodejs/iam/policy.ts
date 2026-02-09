@@ -13,9 +13,9 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@volcengine/pulumi";
  *
  * const foo = new volcengine.iam.Policy("foo", {
- *     description: "acc-test",
+ *     description: "acc-modify",
  *     policyDocument: "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"auto_scaling:DescribeScalingGroups\"],\"Resource\":[\"*\"]}]}",
- *     policyName: "acc-test-policy",
+ *     policyName: "acc-test",
  * });
  * ```
  *
@@ -56,6 +56,14 @@ export class Policy extends pulumi.CustomResource {
     }
 
     /**
+     * The attachment count of the Policy.
+     */
+    public /*out*/ readonly attachmentCount!: pulumi.Output<number>;
+    /**
+     * The category of the Policy.
+     */
+    public /*out*/ readonly category!: pulumi.Output<string>;
+    /**
      * The create time of the Policy.
      */
     public /*out*/ readonly createDate!: pulumi.Output<string>;
@@ -63,6 +71,10 @@ export class Policy extends pulumi.CustomResource {
      * The description of the Policy.
      */
     public readonly description!: pulumi.Output<string | undefined>;
+    /**
+     * Whether the Policy is a service role policy.
+     */
+    public /*out*/ readonly isServiceRolePolicy!: pulumi.Output<number>;
     /**
      * The document of the Policy.
      */
@@ -97,8 +109,11 @@ export class Policy extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as PolicyState | undefined;
+            resourceInputs["attachmentCount"] = state ? state.attachmentCount : undefined;
+            resourceInputs["category"] = state ? state.category : undefined;
             resourceInputs["createDate"] = state ? state.createDate : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["isServiceRolePolicy"] = state ? state.isServiceRolePolicy : undefined;
             resourceInputs["policyDocument"] = state ? state.policyDocument : undefined;
             resourceInputs["policyName"] = state ? state.policyName : undefined;
             resourceInputs["policyTrn"] = state ? state.policyTrn : undefined;
@@ -115,7 +130,10 @@ export class Policy extends pulumi.CustomResource {
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["policyDocument"] = args ? args.policyDocument : undefined;
             resourceInputs["policyName"] = args ? args.policyName : undefined;
+            resourceInputs["attachmentCount"] = undefined /*out*/;
+            resourceInputs["category"] = undefined /*out*/;
             resourceInputs["createDate"] = undefined /*out*/;
+            resourceInputs["isServiceRolePolicy"] = undefined /*out*/;
             resourceInputs["policyTrn"] = undefined /*out*/;
             resourceInputs["policyType"] = undefined /*out*/;
             resourceInputs["updateDate"] = undefined /*out*/;
@@ -130,6 +148,14 @@ export class Policy extends pulumi.CustomResource {
  */
 export interface PolicyState {
     /**
+     * The attachment count of the Policy.
+     */
+    attachmentCount?: pulumi.Input<number>;
+    /**
+     * The category of the Policy.
+     */
+    category?: pulumi.Input<string>;
+    /**
      * The create time of the Policy.
      */
     createDate?: pulumi.Input<string>;
@@ -137,6 +163,10 @@ export interface PolicyState {
      * The description of the Policy.
      */
     description?: pulumi.Input<string>;
+    /**
+     * Whether the Policy is a service role policy.
+     */
+    isServiceRolePolicy?: pulumi.Input<number>;
     /**
      * The document of the Policy.
      */

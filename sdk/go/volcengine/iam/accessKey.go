@@ -26,18 +26,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooUser, err := iam.NewUser(ctx, "fooUser", &iam.UserArgs{
-//				UserName:    pulumi.String("acc-test-user"),
-//				Description: pulumi.String("acc-test"),
-//				DisplayName: pulumi.String("name"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = iam.NewAccessKey(ctx, "fooAccessKey", &iam.AccessKeyArgs{
-//				UserName:   fooUser.UserName,
-//				SecretFile: pulumi.String("./sk"),
-//				Status:     pulumi.String("active"),
+//			_, err := iam.NewAccessKey(ctx, "foo", &iam.AccessKeyArgs{
+//				Status:   pulumi.String("active"),
+//				UserName: pulumi.String("jonny"),
 //			})
 //			if err != nil {
 //				return err
@@ -54,21 +45,17 @@ import (
 type AccessKey struct {
 	pulumi.CustomResourceState
 
+	// The access key id.
+	AccessKeyId pulumi.StringOutput `pulumi:"accessKeyId"`
 	// The create date of the access key.
 	CreateDate pulumi.StringOutput `pulumi:"createDate"`
-	// The encrypted secret of the access key by pgp key, base64 encoded.
-	EncryptedSecret pulumi.StringOutput `pulumi:"encryptedSecret"`
-	// The key fingerprint of the encrypted secret.
-	KeyFingerprint pulumi.StringOutput `pulumi:"keyFingerprint"`
-	// Either a base-64 encoded PGP public key, or a keybase username in the form `keybase:some_person_that_exists`.
-	PgpKey pulumi.StringPtrOutput `pulumi:"pgpKey"`
-	// The secret of the access key.
-	Secret pulumi.StringOutput `pulumi:"secret"`
-	// The file to save the access id and secret. Strongly suggest you to specified it when you creating access key, otherwise, you wouldn't get its secret ever.
-	SecretFile pulumi.StringPtrOutput `pulumi:"secretFile"`
+	// The secret access key.
+	SecretAccessKey pulumi.StringOutput `pulumi:"secretAccessKey"`
 	// The status of the access key, Optional choice contains `active` or `inactive`.
 	Status pulumi.StringPtrOutput `pulumi:"status"`
-	// The user name.
+	// The update date of the access key.
+	UpdateDate pulumi.StringOutput `pulumi:"updateDate"`
+	// The user name. If not specified, the current user is used.
 	UserName pulumi.StringOutput `pulumi:"userName"`
 }
 
@@ -80,7 +67,7 @@ func NewAccessKey(ctx *pulumi.Context,
 	}
 
 	secrets := pulumi.AdditionalSecretOutputs([]string{
-		"secret",
+		"secretAccessKey",
 	})
 	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
@@ -106,40 +93,32 @@ func GetAccessKey(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering AccessKey resources.
 type accessKeyState struct {
+	// The access key id.
+	AccessKeyId *string `pulumi:"accessKeyId"`
 	// The create date of the access key.
 	CreateDate *string `pulumi:"createDate"`
-	// The encrypted secret of the access key by pgp key, base64 encoded.
-	EncryptedSecret *string `pulumi:"encryptedSecret"`
-	// The key fingerprint of the encrypted secret.
-	KeyFingerprint *string `pulumi:"keyFingerprint"`
-	// Either a base-64 encoded PGP public key, or a keybase username in the form `keybase:some_person_that_exists`.
-	PgpKey *string `pulumi:"pgpKey"`
-	// The secret of the access key.
-	Secret *string `pulumi:"secret"`
-	// The file to save the access id and secret. Strongly suggest you to specified it when you creating access key, otherwise, you wouldn't get its secret ever.
-	SecretFile *string `pulumi:"secretFile"`
+	// The secret access key.
+	SecretAccessKey *string `pulumi:"secretAccessKey"`
 	// The status of the access key, Optional choice contains `active` or `inactive`.
 	Status *string `pulumi:"status"`
-	// The user name.
+	// The update date of the access key.
+	UpdateDate *string `pulumi:"updateDate"`
+	// The user name. If not specified, the current user is used.
 	UserName *string `pulumi:"userName"`
 }
 
 type AccessKeyState struct {
+	// The access key id.
+	AccessKeyId pulumi.StringPtrInput
 	// The create date of the access key.
 	CreateDate pulumi.StringPtrInput
-	// The encrypted secret of the access key by pgp key, base64 encoded.
-	EncryptedSecret pulumi.StringPtrInput
-	// The key fingerprint of the encrypted secret.
-	KeyFingerprint pulumi.StringPtrInput
-	// Either a base-64 encoded PGP public key, or a keybase username in the form `keybase:some_person_that_exists`.
-	PgpKey pulumi.StringPtrInput
-	// The secret of the access key.
-	Secret pulumi.StringPtrInput
-	// The file to save the access id and secret. Strongly suggest you to specified it when you creating access key, otherwise, you wouldn't get its secret ever.
-	SecretFile pulumi.StringPtrInput
+	// The secret access key.
+	SecretAccessKey pulumi.StringPtrInput
 	// The status of the access key, Optional choice contains `active` or `inactive`.
 	Status pulumi.StringPtrInput
-	// The user name.
+	// The update date of the access key.
+	UpdateDate pulumi.StringPtrInput
+	// The user name. If not specified, the current user is used.
 	UserName pulumi.StringPtrInput
 }
 
@@ -148,25 +127,17 @@ func (AccessKeyState) ElementType() reflect.Type {
 }
 
 type accessKeyArgs struct {
-	// Either a base-64 encoded PGP public key, or a keybase username in the form `keybase:some_person_that_exists`.
-	PgpKey *string `pulumi:"pgpKey"`
-	// The file to save the access id and secret. Strongly suggest you to specified it when you creating access key, otherwise, you wouldn't get its secret ever.
-	SecretFile *string `pulumi:"secretFile"`
 	// The status of the access key, Optional choice contains `active` or `inactive`.
 	Status *string `pulumi:"status"`
-	// The user name.
+	// The user name. If not specified, the current user is used.
 	UserName *string `pulumi:"userName"`
 }
 
 // The set of arguments for constructing a AccessKey resource.
 type AccessKeyArgs struct {
-	// Either a base-64 encoded PGP public key, or a keybase username in the form `keybase:some_person_that_exists`.
-	PgpKey pulumi.StringPtrInput
-	// The file to save the access id and secret. Strongly suggest you to specified it when you creating access key, otherwise, you wouldn't get its secret ever.
-	SecretFile pulumi.StringPtrInput
 	// The status of the access key, Optional choice contains `active` or `inactive`.
 	Status pulumi.StringPtrInput
-	// The user name.
+	// The user name. If not specified, the current user is used.
 	UserName pulumi.StringPtrInput
 }
 
@@ -257,34 +228,19 @@ func (o AccessKeyOutput) ToAccessKeyOutputWithContext(ctx context.Context) Acces
 	return o
 }
 
+// The access key id.
+func (o AccessKeyOutput) AccessKeyId() pulumi.StringOutput {
+	return o.ApplyT(func(v *AccessKey) pulumi.StringOutput { return v.AccessKeyId }).(pulumi.StringOutput)
+}
+
 // The create date of the access key.
 func (o AccessKeyOutput) CreateDate() pulumi.StringOutput {
 	return o.ApplyT(func(v *AccessKey) pulumi.StringOutput { return v.CreateDate }).(pulumi.StringOutput)
 }
 
-// The encrypted secret of the access key by pgp key, base64 encoded.
-func (o AccessKeyOutput) EncryptedSecret() pulumi.StringOutput {
-	return o.ApplyT(func(v *AccessKey) pulumi.StringOutput { return v.EncryptedSecret }).(pulumi.StringOutput)
-}
-
-// The key fingerprint of the encrypted secret.
-func (o AccessKeyOutput) KeyFingerprint() pulumi.StringOutput {
-	return o.ApplyT(func(v *AccessKey) pulumi.StringOutput { return v.KeyFingerprint }).(pulumi.StringOutput)
-}
-
-// Either a base-64 encoded PGP public key, or a keybase username in the form `keybase:some_person_that_exists`.
-func (o AccessKeyOutput) PgpKey() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AccessKey) pulumi.StringPtrOutput { return v.PgpKey }).(pulumi.StringPtrOutput)
-}
-
-// The secret of the access key.
-func (o AccessKeyOutput) Secret() pulumi.StringOutput {
-	return o.ApplyT(func(v *AccessKey) pulumi.StringOutput { return v.Secret }).(pulumi.StringOutput)
-}
-
-// The file to save the access id and secret. Strongly suggest you to specified it when you creating access key, otherwise, you wouldn't get its secret ever.
-func (o AccessKeyOutput) SecretFile() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AccessKey) pulumi.StringPtrOutput { return v.SecretFile }).(pulumi.StringPtrOutput)
+// The secret access key.
+func (o AccessKeyOutput) SecretAccessKey() pulumi.StringOutput {
+	return o.ApplyT(func(v *AccessKey) pulumi.StringOutput { return v.SecretAccessKey }).(pulumi.StringOutput)
 }
 
 // The status of the access key, Optional choice contains `active` or `inactive`.
@@ -292,7 +248,12 @@ func (o AccessKeyOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AccessKey) pulumi.StringPtrOutput { return v.Status }).(pulumi.StringPtrOutput)
 }
 
-// The user name.
+// The update date of the access key.
+func (o AccessKeyOutput) UpdateDate() pulumi.StringOutput {
+	return o.ApplyT(func(v *AccessKey) pulumi.StringOutput { return v.UpdateDate }).(pulumi.StringOutput)
+}
+
+// The user name. If not specified, the current user is used.
 func (o AccessKeyOutput) UserName() pulumi.StringOutput {
 	return o.ApplyT(func(v *AccessKey) pulumi.StringOutput { return v.UserName }).(pulumi.StringOutput)
 }

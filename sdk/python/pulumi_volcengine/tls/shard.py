@@ -157,8 +157,8 @@ class Shard(pulumi.CustomResource):
 
         foo = volcengine.tls.Shard("foo",
             number=2,
-            shard_id=4,
-            topic_id="0b08389e-1617-4f64-b59d-81da2730e446")
+            shard_id=1,
+            topic_id="176b62c7-c482-4a6e-b983-4697fda9294a")
         ```
 
         ## Import
@@ -187,8 +187,8 @@ class Shard(pulumi.CustomResource):
 
         foo = volcengine.tls.Shard("foo",
             number=2,
-            shard_id=4,
-            topic_id="0b08389e-1617-4f64-b59d-81da2730e446")
+            shard_id=1,
+            topic_id="176b62c7-c482-4a6e-b983-4697fda9294a")
         ```
 
         ## Import

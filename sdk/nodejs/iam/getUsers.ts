@@ -13,15 +13,9 @@ import * as utilities from "../utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
- * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooUser = new volcengine.iam.User("fooUser", {
- *     userName: "acc-test-user",
- *     description: "acc test",
- *     displayName: "name",
- * });
- * const fooUsers = volcengine.iam.getUsersOutput({
- *     userNames: [fooUser.userName],
+ * const default = volcengine.iam.getUsers({
+ *     query: "jonny",
  * });
  * ```
  */
@@ -30,9 +24,8 @@ export function getUsers(args?: GetUsersArgs, opts?: pulumi.InvokeOptions): Prom
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:iam/getUsers:getUsers", {
-        "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
-        "userNames": args.userNames,
+        "query": args.query,
     }, opts);
 }
 
@@ -41,17 +34,13 @@ export function getUsers(args?: GetUsersArgs, opts?: pulumi.InvokeOptions): Prom
  */
 export interface GetUsersArgs {
     /**
-     * A Name Regex of IAM.
-     */
-    nameRegex?: string;
-    /**
      * File name where to save data source results.
      */
     outputFile?: string;
     /**
-     * A list of user names.
+     * Fuzzy query. Can query by user name, display name or description.
      */
-    userNames?: string[];
+    query?: string;
 }
 
 /**
@@ -62,13 +51,12 @@ export interface GetUsersResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    readonly nameRegex?: string;
     readonly outputFile?: string;
+    readonly query?: string;
     /**
      * The total count of user query.
      */
     readonly totalCount: number;
-    readonly userNames?: string[];
     /**
      * The collection of user.
      */
@@ -81,15 +69,9 @@ export interface GetUsersResult {
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
- * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooUser = new volcengine.iam.User("fooUser", {
- *     userName: "acc-test-user",
- *     description: "acc test",
- *     displayName: "name",
- * });
- * const fooUsers = volcengine.iam.getUsersOutput({
- *     userNames: [fooUser.userName],
+ * const default = volcengine.iam.getUsers({
+ *     query: "jonny",
  * });
  * ```
  */
@@ -102,15 +84,11 @@ export function getUsersOutput(args?: GetUsersOutputArgs, opts?: pulumi.InvokeOp
  */
 export interface GetUsersOutputArgs {
     /**
-     * A Name Regex of IAM.
-     */
-    nameRegex?: pulumi.Input<string>;
-    /**
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
     /**
-     * A list of user names.
+     * Fuzzy query. Can query by user name, display name or description.
      */
-    userNames?: pulumi.Input<pulumi.Input<string>[]>;
+    query?: pulumi.Input<string>;
 }

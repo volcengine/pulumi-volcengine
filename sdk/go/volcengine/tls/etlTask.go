@@ -40,7 +40,7 @@ import (
 //						TopicId: pulumi.String("a690a9b8-72c1-40a3-b8c6-f89a81d3748e"),
 //					},
 //					&tls.EtlTaskTargetResourceArgs{
-//						Alias:   pulumi.String("tf-test-2"),
+//						Alias:   pulumi.String("tf-test-2-modify"),
 //						TopicId: pulumi.String("bdf4f23b-a889-456c-ac5f-09d727427557"),
 //					},
 //				},

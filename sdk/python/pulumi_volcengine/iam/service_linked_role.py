@@ -8,18 +8,24 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['ServiceLinkedRoleArgs', 'ServiceLinkedRole']
 
 @pulumi.input_type
 class ServiceLinkedRoleArgs:
     def __init__(__self__, *,
-                 service_name: pulumi.Input[str]):
+                 service_name: pulumi.Input[str],
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceLinkedRoleTagArgs']]]] = None):
         """
         The set of arguments for constructing a ServiceLinkedRole resource.
         :param pulumi.Input[str] service_name: The name of the service.
+        :param pulumi.Input[Sequence[pulumi.Input['ServiceLinkedRoleTagArgs']]] tags: Tags.
         """
         pulumi.set(__self__, "service_name", service_name)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter(name="serviceName")
@@ -33,6 +39,18 @@ class ServiceLinkedRoleArgs:
     def service_name(self, value: pulumi.Input[str]):
         pulumi.set(self, "service_name", value)
 
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceLinkedRoleTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceLinkedRoleTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
 
 @pulumi.input_type
 class _ServiceLinkedRoleState:
@@ -40,13 +58,15 @@ class _ServiceLinkedRoleState:
                  role_id: Optional[pulumi.Input[int]] = None,
                  role_name: Optional[pulumi.Input[str]] = None,
                  service_name: Optional[pulumi.Input[str]] = None,
-                 status: Optional[pulumi.Input[str]] = None):
+                 status: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceLinkedRoleTagArgs']]]] = None):
         """
         Input properties used for looking up and filtering ServiceLinkedRole resources.
         :param pulumi.Input[int] role_id: The id of the role.
         :param pulumi.Input[str] role_name: The name of the role.
         :param pulumi.Input[str] service_name: The name of the service.
         :param pulumi.Input[str] status: The status of the role.
+        :param pulumi.Input[Sequence[pulumi.Input['ServiceLinkedRoleTagArgs']]] tags: Tags.
         """
         if role_id is not None:
             pulumi.set(__self__, "role_id", role_id)
@@ -56,6 +76,8 @@ class _ServiceLinkedRoleState:
             pulumi.set(__self__, "service_name", service_name)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter(name="roleId")
@@ -105,6 +127,18 @@ class _ServiceLinkedRoleState:
     def status(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "status", value)
 
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceLinkedRoleTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceLinkedRoleTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
 
 class ServiceLinkedRole(pulumi.CustomResource):
     @overload
@@ -112,6 +146,7 @@ class ServiceLinkedRole(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  service_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceLinkedRoleTagArgs']]]]] = None,
                  __props__=None):
         """
         Provides a resource to manage iam service linked role
@@ -121,7 +156,12 @@ class ServiceLinkedRole(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.iam.ServiceLinkedRole("foo", service_name="ecs")
+        foo = volcengine.iam.ServiceLinkedRole("foo",
+            service_name="ecs",
+            tags=[volcengine.iam.ServiceLinkedRoleTagArgs(
+                key="key-2",
+                value="value-3",
+            )])
         ```
 
         ## Import
@@ -129,12 +169,13 @@ class ServiceLinkedRole(pulumi.CustomResource):
         IamServiceLinkedRole can be imported using the id, e.g.
 
         ```sh
-        $ pulumi import volcengine:iam/serviceLinkedRole:ServiceLinkedRole default resource_id
+        $ pulumi import volcengine:iam/serviceLinkedRole:ServiceLinkedRole default service_name:role_name
         ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] service_name: The name of the service.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceLinkedRoleTagArgs']]]] tags: Tags.
         """
         ...
     @overload
@@ -150,7 +191,12 @@ class ServiceLinkedRole(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.iam.ServiceLinkedRole("foo", service_name="ecs")
+        foo = volcengine.iam.ServiceLinkedRole("foo",
+            service_name="ecs",
+            tags=[volcengine.iam.ServiceLinkedRoleTagArgs(
+                key="key-2",
+                value="value-3",
+            )])
         ```
 
         ## Import
@@ -158,7 +204,7 @@ class ServiceLinkedRole(pulumi.CustomResource):
         IamServiceLinkedRole can be imported using the id, e.g.
 
         ```sh
-        $ pulumi import volcengine:iam/serviceLinkedRole:ServiceLinkedRole default resource_id
+        $ pulumi import volcengine:iam/serviceLinkedRole:ServiceLinkedRole default service_name:role_name
         ```
 
         :param str resource_name: The name of the resource.
@@ -177,6 +223,7 @@ class ServiceLinkedRole(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  service_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceLinkedRoleTagArgs']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -189,6 +236,7 @@ class ServiceLinkedRole(pulumi.CustomResource):
             if service_name is None and not opts.urn:
                 raise TypeError("Missing required property 'service_name'")
             __props__.__dict__["service_name"] = service_name
+            __props__.__dict__["tags"] = tags
             __props__.__dict__["role_id"] = None
             __props__.__dict__["role_name"] = None
             __props__.__dict__["status"] = None
@@ -205,7 +253,8 @@ class ServiceLinkedRole(pulumi.CustomResource):
             role_id: Optional[pulumi.Input[int]] = None,
             role_name: Optional[pulumi.Input[str]] = None,
             service_name: Optional[pulumi.Input[str]] = None,
-            status: Optional[pulumi.Input[str]] = None) -> 'ServiceLinkedRole':
+            status: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceLinkedRoleTagArgs']]]]] = None) -> 'ServiceLinkedRole':
         """
         Get an existing ServiceLinkedRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -217,6 +266,7 @@ class ServiceLinkedRole(pulumi.CustomResource):
         :param pulumi.Input[str] role_name: The name of the role.
         :param pulumi.Input[str] service_name: The name of the service.
         :param pulumi.Input[str] status: The status of the role.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceLinkedRoleTagArgs']]]] tags: Tags.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -226,6 +276,7 @@ class ServiceLinkedRole(pulumi.CustomResource):
         __props__.__dict__["role_name"] = role_name
         __props__.__dict__["service_name"] = service_name
         __props__.__dict__["status"] = status
+        __props__.__dict__["tags"] = tags
         return ServiceLinkedRole(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -259,4 +310,12 @@ class ServiceLinkedRole(pulumi.CustomResource):
         The status of the role.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.ServiceLinkedRoleTag']]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 

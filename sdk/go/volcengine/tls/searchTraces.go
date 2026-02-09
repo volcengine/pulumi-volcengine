@@ -27,7 +27,10 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := tls.GetSearchTraces(ctx, &tls.GetSearchTracesArgs{
-//				TraceInstanceId: "b28b19bd-a539-453a-8919-fda3ef6a22fe",
+//				Query: tls.GetSearchTracesQuery{
+//					Limit: pulumi.IntRef(10),
+//				},
+//				TraceInstanceId: "ac368174-2353-4e5d-859d-84c8bd255590",
 //			}, nil)
 //			if err != nil {
 //				return err

@@ -22,19 +22,19 @@ class GetIndexesResult:
     """
     A collection of values returned by getIndexes.
     """
-    def __init__(__self__, id=None, ids=None, output_file=None, tls_indexes=None, total_count=None):
+    def __init__(__self__, id=None, output_file=None, tls_indexes=None, topic_id=None, total_count=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
-        if ids and not isinstance(ids, list):
-            raise TypeError("Expected argument 'ids' to be a list")
-        pulumi.set(__self__, "ids", ids)
         if output_file and not isinstance(output_file, str):
             raise TypeError("Expected argument 'output_file' to be a str")
         pulumi.set(__self__, "output_file", output_file)
         if tls_indexes and not isinstance(tls_indexes, list):
             raise TypeError("Expected argument 'tls_indexes' to be a list")
         pulumi.set(__self__, "tls_indexes", tls_indexes)
+        if topic_id and not isinstance(topic_id, str):
+            raise TypeError("Expected argument 'topic_id' to be a str")
+        pulumi.set(__self__, "topic_id", topic_id)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
@@ -48,11 +48,6 @@ class GetIndexesResult:
         return pulumi.get(self, "id")
 
     @property
-    @pulumi.getter
-    def ids(self) -> Sequence[str]:
-        return pulumi.get(self, "ids")
-
-    @property
     @pulumi.getter(name="outputFile")
     def output_file(self) -> Optional[str]:
         return pulumi.get(self, "output_file")
@@ -64,6 +59,14 @@ class GetIndexesResult:
         The collection of tls index query.
         """
         return pulumi.get(self, "tls_indexes")
+
+    @property
+    @pulumi.getter(name="topicId")
+    def topic_id(self) -> str:
+        """
+        The topic id of the tls index.
+        """
+        return pulumi.get(self, "topic_id")
 
     @property
     @pulumi.getter(name="totalCount")
@@ -81,14 +84,14 @@ class AwaitableGetIndexesResult(GetIndexesResult):
             yield self
         return GetIndexesResult(
             id=self.id,
-            ids=self.ids,
             output_file=self.output_file,
             tls_indexes=self.tls_indexes,
+            topic_id=self.topic_id,
             total_count=self.total_count)
 
 
-def get_indexes(ids: Optional[Sequence[str]] = None,
-                output_file: Optional[str] = None,
+def get_indexes(output_file: Optional[str] = None,
+                topic_id: Optional[str] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetIndexesResult:
     """
     Use this data source to query detailed information of tls indexes
@@ -98,30 +101,30 @@ def get_indexes(ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.get_indexes(ids=["9b756385-1dfb-4306-a094-0c88e04b34a5"])
+    default = volcengine.tls.get_indexes(topic_id="c36ed436-84f1-467a-b00e-ba504db753ca")
     ```
 
 
-    :param Sequence[str] ids: The list of topic id of tls index.
     :param str output_file: File name where to save data source results.
+    :param str topic_id: The topic id of tls index.
     """
     __args__ = dict()
-    __args__['ids'] = ids
     __args__['outputFile'] = output_file
+    __args__['topicId'] = topic_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('volcengine:tls/getIndexes:getIndexes', __args__, opts=opts, typ=GetIndexesResult).value
 
     return AwaitableGetIndexesResult(
         id=pulumi.get(__ret__, 'id'),
-        ids=pulumi.get(__ret__, 'ids'),
         output_file=pulumi.get(__ret__, 'output_file'),
         tls_indexes=pulumi.get(__ret__, 'tls_indexes'),
+        topic_id=pulumi.get(__ret__, 'topic_id'),
         total_count=pulumi.get(__ret__, 'total_count'))
 
 
 @_utilities.lift_output_func(get_indexes)
-def get_indexes_output(ids: Optional[pulumi.Input[Sequence[str]]] = None,
-                       output_file: Optional[pulumi.Input[Optional[str]]] = None,
+def get_indexes_output(output_file: Optional[pulumi.Input[Optional[str]]] = None,
+                       topic_id: Optional[pulumi.Input[str]] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetIndexesResult]:
     """
     Use this data source to query detailed information of tls indexes
@@ -131,11 +134,11 @@ def get_indexes_output(ids: Optional[pulumi.Input[Sequence[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.get_indexes(ids=["9b756385-1dfb-4306-a094-0c88e04b34a5"])
+    default = volcengine.tls.get_indexes(topic_id="c36ed436-84f1-467a-b00e-ba504db753ca")
     ```
 
 
-    :param Sequence[str] ids: The list of topic id of tls index.
     :param str output_file: File name where to save data source results.
+    :param str topic_id: The topic id of tls index.
     """
     ...

@@ -28,18 +28,22 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			foo, err := tls.NewDownloadTask(ctx, "foo", &tls.DownloadTaskArgs{
-//				TopicId:         pulumi.String("36be6c75-0733-4bee-b63d-48e0eae37f87"),
-//				TaskName:        pulumi.String("tf-test-download-task"),
+//				TopicId:         pulumi.String("3c57a110-399a-43b3-bc3c-5d60e065239a"),
+//				TaskName:        pulumi.String("tf-test-download"),
 //				Query:           pulumi.String("*"),
-//				StartTime:       pulumi.Int(1740426022),
-//				EndTime:         pulumi.Int(1740626022),
+//				StartTime:       pulumi.Int(1768448896),
+//				EndTime:         pulumi.Int(1768450896),
 //				Compression:     pulumi.String("gzip"),
 //				DataFormat:      pulumi.String("json"),
-//				Limit:           pulumi.Int(10000000),
-//				Sort:            pulumi.String("desc"),
+//				Limit:           pulumi.Int(1000000),
+//				Sort:            pulumi.String("asc"),
 //				AllowIncomplete: pulumi.Bool(false),
 //				TaskType:        pulumi.Int(1),
-//				LogContextInfos: nil,
+//				LogContextInfos: &tls.DownloadTaskLogContextInfosArgs{
+//					Source:        pulumi.String("your ip"),
+//					ContextFlow:   pulumi.String("1768450893021#4258909d8fc97e7d-286d6d5f6966623c-6943"),
+//					PackageOffset: pulumi.Int(4833728523),
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -53,10 +57,10 @@ import (
 //
 // ## Import
 //
-// tls download task can be imported using the id, e.g.
+// tls download task can be imported using the topic_id and task_id, e.g.
 //
 // ```sh
-// $ pulumi import volcengine:tls/downloadTask:DownloadTask default task-1234567890
+// $ pulumi import volcengine:tls/downloadTask:DownloadTask default topic-123456:task-1234567890
 // ```
 type DownloadTask struct {
 	pulumi.CustomResourceState

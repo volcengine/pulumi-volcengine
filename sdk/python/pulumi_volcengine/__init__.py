@@ -1149,10 +1149,26 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "iam/allowedIpAddress",
+  "fqn": "pulumi_volcengine.iam",
+  "classes": {
+   "volcengine:iam/allowedIpAddress:AllowedIpAddress": "AllowedIpAddress"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "iam/loginProfile",
   "fqn": "pulumi_volcengine.iam",
   "classes": {
    "volcengine:iam/loginProfile:LoginProfile": "LoginProfile"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "iam/oauthProvider",
+  "fqn": "pulumi_volcengine.iam",
+  "classes": {
+   "volcengine:iam/oauthProvider:OauthProvider": "OauthProvider"
   }
  },
  {
@@ -1165,10 +1181,34 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "iam/oidcProviderClient",
+  "fqn": "pulumi_volcengine.iam",
+  "classes": {
+   "volcengine:iam/oidcProviderClient:OidcProviderClient": "OidcProviderClient"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "iam/oidcProviderThumbprint",
+  "fqn": "pulumi_volcengine.iam",
+  "classes": {
+   "volcengine:iam/oidcProviderThumbprint:OidcProviderThumbprint": "OidcProviderThumbprint"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "iam/policy",
   "fqn": "pulumi_volcengine.iam",
   "classes": {
    "volcengine:iam/policy:Policy": "Policy"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "iam/policyProject",
+  "fqn": "pulumi_volcengine.iam",
+  "classes": {
+   "volcengine:iam/policyProject:PolicyProject": "PolicyProject"
   }
  },
  {
@@ -1197,10 +1237,26 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "iam/securityConfig",
+  "fqn": "pulumi_volcengine.iam",
+  "classes": {
+   "volcengine:iam/securityConfig:SecurityConfig": "SecurityConfig"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "iam/serviceLinkedRole",
   "fqn": "pulumi_volcengine.iam",
   "classes": {
    "volcengine:iam/serviceLinkedRole:ServiceLinkedRole": "ServiceLinkedRole"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "iam/tag",
+  "fqn": "pulumi_volcengine.iam",
+  "classes": {
+   "volcengine:iam/tag:Tag": "Tag"
   }
  },
  {

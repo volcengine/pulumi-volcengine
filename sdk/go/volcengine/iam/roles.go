@@ -19,8 +19,6 @@ import (
 //
 // import (
 //
-//	"fmt"
-//
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/iam"
 //
@@ -28,33 +26,12 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			foo1, err := iam.NewRole(ctx, "foo1", &iam.RoleArgs{
-//				Description:         pulumi.String("acc-test1"),
-//				DisplayName:         pulumi.String("acc-test1"),
-//				MaxSessionDuration:  pulumi.Int(3600),
-//				RoleName:            pulumi.String("acc-test-role1"),
-//				TrustPolicyDocument: pulumi.String("{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"sts:AssumeRole\"],\"Principal\":{\"Service\":[\"auto_scaling\"]}}]}"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			foo2, err := iam.NewRole(ctx, "foo2", &iam.RoleArgs{
-//				Description:         pulumi.String("acc-test2"),
-//				DisplayName:         pulumi.String("acc-test2"),
-//				MaxSessionDuration:  pulumi.Int(3600),
-//				RoleName:            pulumi.String("acc-test-role2"),
-//				TrustPolicyDocument: pulumi.String("{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"sts:AssumeRole\"],\"Principal\":{\"Service\":[\"ecs\"]}}]}"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_ = iam.GetRolesOutput(ctx, iam.GetRolesOutputArgs{
-//				RoleName: pulumi.All(foo1.RoleName, foo2.RoleName).ApplyT(func(_args []interface{}) (string, error) {
-//					foo1RoleName := _args[0].(string)
-//					foo2RoleName := _args[1].(string)
-//					return fmt.Sprintf("%v,%v", foo1RoleName, foo2RoleName), nil
-//				}).(pulumi.StringOutput),
+//			_, err := iam.GetRoles(ctx, &iam.GetRolesArgs{
+//				Query: pulumi.StringRef("CustomRoleForOOS"),
 //			}, nil)
+//			if err != nil {
+//				return err
+//			}
 //			return nil
 //		})
 //	}
@@ -78,10 +55,8 @@ type RolesArgs struct {
 	NameRegex *string `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
-	// The query field of Role.
+	// Fuzzy query. Can query by role name, display name or description.
 	Query *string `pulumi:"query"`
-	// The name of the Role, comma separated.
-	RoleName *string `pulumi:"roleName"`
 }
 
 // A collection of values returned by Roles.
@@ -91,8 +66,6 @@ type RolesResult struct {
 	NameRegex  *string `pulumi:"nameRegex"`
 	OutputFile *string `pulumi:"outputFile"`
 	Query      *string `pulumi:"query"`
-	// The name of the Role.
-	RoleName *string `pulumi:"roleName"`
 	// The collection of Role query.
 	Roles []RolesRole `pulumi:"roles"`
 	// The total count of Role query.
@@ -118,10 +91,8 @@ type RolesOutputArgs struct {
 	NameRegex pulumi.StringPtrInput `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
-	// The query field of Role.
+	// Fuzzy query. Can query by role name, display name or description.
 	Query pulumi.StringPtrInput `pulumi:"query"`
-	// The name of the Role, comma separated.
-	RoleName pulumi.StringPtrInput `pulumi:"roleName"`
 }
 
 func (RolesOutputArgs) ElementType() reflect.Type {
@@ -158,11 +129,6 @@ func (o RolesResultOutput) OutputFile() pulumi.StringPtrOutput {
 
 func (o RolesResultOutput) Query() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RolesResult) *string { return v.Query }).(pulumi.StringPtrOutput)
-}
-
-// The name of the Role.
-func (o RolesResultOutput) RoleName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v RolesResult) *string { return v.RoleName }).(pulumi.StringPtrOutput)
 }
 
 // The collection of Role query.

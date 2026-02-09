@@ -34,6 +34,10 @@ namespace Pulumi.Volcengine.Iam.Outputs
         /// </summary>
         public readonly string UpdateDate;
         /// <summary>
+        /// The id of the user group.
+        /// </summary>
+        public readonly int UserGroupId;
+        /// <summary>
         /// The name of the user group.
         /// </summary>
         public readonly string UserGroupName;
@@ -50,6 +54,8 @@ namespace Pulumi.Volcengine.Iam.Outputs
 
             string updateDate,
 
+            int userGroupId,
+
             string userGroupName)
         {
             AccountId = accountId;
@@ -57,6 +63,7 @@ namespace Pulumi.Volcengine.Iam.Outputs
             Description = description;
             DisplayName = displayName;
             UpdateDate = updateDate;
+            UserGroupId = userGroupId;
             UserGroupName = userGroupName;
         }
     }

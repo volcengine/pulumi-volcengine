@@ -27,11 +27,11 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := tls.GetRules(ctx, &tls.GetRulesArgs{
-//				LogType:   pulumi.StringRef("minimalist_log"),
+//				LogType:   pulumi.StringRef("delimiter_log"),
 //				Pause:     pulumi.IntRef(0),
-//				ProjectId: pulumi.StringRef("39ed1cf8-dbf3-41c3-939d-999bab54313d"),
-//				RuleId:    pulumi.StringRef("048dc010-6bb1-4189-858a-281d654d6686"),
-//				TopicId:   pulumi.StringRef("b600dc34-503f-42fc-8e32-953af55463d1"),
+//				ProjectId: pulumi.StringRef("47788404-8f1e-49fd-9472-aced5f4bf73f"),
+//				RuleId:    pulumi.StringRef("33b2607f-e213-42fb-a965-33a0f567ae23"),
+//				TopicId:   pulumi.StringRef("0a610439-d73f-4680-b365-24eefe98b4fc"),
 //			}, nil)
 //			if err != nil {
 //				return err

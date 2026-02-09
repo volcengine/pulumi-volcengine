@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  *
  * const foo = new volcengine.tls.DownloadTask("foo", {
  *     topicId: "36be6c75-0733-4bee-b63d-48e0eae37f87",
- *     taskName: "tf-test-download-task",
+ *     taskName: "tf-test-download-mm",
  *     query: "*",
  *     startTime: 1740426022,
  *     endTime: 1740626022,
@@ -76,7 +76,7 @@ export interface GetDownloadUrlsResult {
  *
  * const foo = new volcengine.tls.DownloadTask("foo", {
  *     topicId: "36be6c75-0733-4bee-b63d-48e0eae37f87",
- *     taskName: "tf-test-download-task",
+ *     taskName: "tf-test-download-mm",
  *     query: "*",
  *     startTime: 1740426022,
  *     endTime: 1740626022,

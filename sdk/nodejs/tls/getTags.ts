@@ -16,7 +16,7 @@ import * as utilities from "../utilities";
  *
  * const basic = volcengine.tls.getTags({
  *     maxResults: 10,
- *     resourceIds: ["6e6ea17f-ee1d-494f-83f7-c3ecc5c351ea"],
+ *     resourceIds: ["b01a99c0-cf7b-482f-b317-6563865111c6"],
  *     resourceType: "project",
  * });
  * ```
@@ -96,7 +96,7 @@ export interface GetTagsResult {
  *
  * const basic = volcengine.tls.getTags({
  *     maxResults: 10,
- *     resourceIds: ["6e6ea17f-ee1d-494f-83f7-c3ecc5c351ea"],
+ *     resourceIds: ["b01a99c0-cf7b-482f-b317-6563865111c6"],
  *     resourceType: "project",
  * });
  * ```

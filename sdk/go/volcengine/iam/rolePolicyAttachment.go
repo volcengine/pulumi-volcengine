@@ -27,28 +27,10 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			role, err := iam.NewRole(ctx, "role", &iam.RoleArgs{
-//				RoleName:            pulumi.String("TerraformTestRole"),
-//				DisplayName:         pulumi.String("terraform role"),
-//				TrustPolicyDocument: pulumi.String("{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"sts:AssumeRole\"],\"Principal\":{\"Service\":[\"auto_scaling\"]}}]}"),
-//				Description:         pulumi.String("created by terraform"),
-//				MaxSessionDuration:  pulumi.Int(43200),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			policy, err := iam.NewPolicy(ctx, "policy", &iam.PolicyArgs{
-//				PolicyName:     pulumi.String("TerraformResourceTest1"),
-//				Description:    pulumi.String("created by terraform 1"),
-//				PolicyDocument: pulumi.String("{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"auto_scaling:DescribeScalingGroups\"],\"Resource\":[\"*\"]}]}"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = iam.NewRolePolicyAttachment(ctx, "foo", &iam.RolePolicyAttachmentArgs{
-//				RoleName:   role.ID(),
-//				PolicyName: policy.ID(),
-//				PolicyType: policy.PolicyType,
+//			_, err := iam.NewRolePolicyAttachment(ctx, "foo", &iam.RolePolicyAttachmentArgs{
+//				PolicyName: pulumi.String("AdministratorAccess"),
+//				PolicyType: pulumi.String("System"),
+//				RoleName:   pulumi.String("CustomRoleForPatchManager"),
 //			})
 //			if err != nil {
 //				return err

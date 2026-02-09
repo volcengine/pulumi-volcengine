@@ -15,13 +15,13 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@volcengine/pulumi";
  *
  * const fooProject = new volcengine.tls.Project("fooProject", {
- *     projectName: "tf-test-project-ttt",
+ *     projectName: "tf-test-project-x",
  *     description: "tf-test-project-desc",
  *     region: "cn-guilin-boe",
  * });
  * const fooTopic = new volcengine.tls.Topic("fooTopic", {
  *     projectId: fooProject.id,
- *     topicName: "tf-test-topic-rule-1",
+ *     topicName: "tf-test-topic-rule-x",
  *     ttl: 60,
  *     shardCount: 2,
  *     autoSplit: true,
@@ -30,8 +30,8 @@ import * as utilities from "../utilities";
  *     timeKey: "request_time",
  *     timeFormat: "%Y-%m-%dT%H:%M:%S,%f",
  *     tags: [{
- *         key: "k1",
- *         value: "v1",
+ *         key: "k2",
+ *         value: "v3",
  *     }],
  *     logPublicIp: true,
  *     enableHotTtl: true,
@@ -115,16 +115,16 @@ import * as utilities from "../utilities";
  *         stream: "all",
  *         containerNameRegex: ".*test.*",
  *         includeContainerLabelRegex: {
- *             Key1: "Value12",
- *             Key2: "Value23",
+ *             Key1: "Value122",
+ *             Key2: "Value223",
  *         },
  *         excludeContainerLabelRegex: {
- *             Key1: "Value12",
- *             Key2: "Value22",
+ *             Key1: "Value312",
+ *             Key2: "Valu5e22",
  *         },
  *         includeContainerEnvRegex: {
- *             Key1: "Value1",
- *             Key2: "Value2",
+ *             Key1: "Val2ue1",
+ *             Key2: "Val2ue2",
  *         },
  *         excludeContainerEnvRegex: {
  *             Key1: "Value1",

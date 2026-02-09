@@ -25,17 +25,15 @@ namespace Pulumi.Volcengine.Iam
     ///     {
     ///         ClientIds = new[]
     ///         {
-    ///             "test-client-id-1",
-    ///             "test-client-id-2",
+    ///             "6c505fb67d32417c8de287ee1fa89fd2",
     ///         },
-    ///         Description = "acc-test-oidc",
-    ///         IssuanceLimitTime = 6,
-    ///         IssuerUrl = "test-issuer-url",
+    ///         Description = "acc-test-oidc-modify",
+    ///         IssuanceLimitTime = 10,
+    ///         IssuerUrl = "https://security-api.snssdk.com/qa/sso/oidc/6c505fb67d32417c8de287ee1fa89fc1",
     ///         OidcProviderName = "oidc_provider",
     ///         Thumbprints = new[]
     ///         {
-    ///             "test-thumbprint-1",
-    ///             "test-thumbprint-2",
+    ///             "9b1afaa2dfca349fe38c5ef3e72ee03cb0696d65ea2e11f597ea9aa55fcff44d",
     ///         },
     ///     });
     /// 

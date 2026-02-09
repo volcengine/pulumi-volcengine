@@ -23,7 +23,7 @@ namespace Pulumi.Volcengine.Tls
     /// {
     ///     var foo = new Volcengine.Tls.Project("foo", new()
     ///     {
-    ///         Description = "tf-desc",
+    ///         Description = "tf-desc-modify",
     ///         IamProjectName = "default",
     ///         ProjectName = "tf-project-m",
     ///         Region = "cn-guilin-boe",

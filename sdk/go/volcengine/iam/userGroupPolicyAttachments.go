@@ -26,33 +26,12 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooPolicy, err := iam.NewPolicy(ctx, "fooPolicy", &iam.PolicyArgs{
-//				PolicyName:     pulumi.String("acc-test-policy"),
-//				Description:    pulumi.String("acc-test"),
-//				PolicyDocument: pulumi.String("{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"auto_scaling:DescribeScalingGroups\"],\"Resource\":[\"*\"]}]}"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			fooUserGroup, err := iam.NewUserGroup(ctx, "fooUserGroup", &iam.UserGroupArgs{
-//				UserGroupName: pulumi.String("acc-test-group"),
-//				Description:   pulumi.String("acc-test"),
-//				DisplayName:   pulumi.String("acc-test"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			fooUserGroupPolicyAttachment, err := iam.NewUserGroupPolicyAttachment(ctx, "fooUserGroupPolicyAttachment", &iam.UserGroupPolicyAttachmentArgs{
-//				PolicyName:    fooPolicy.PolicyName,
-//				PolicyType:    pulumi.String("Custom"),
-//				UserGroupName: fooUserGroup.UserGroupName,
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_ = iam.GetUserGroupPolicyAttachmentsOutput(ctx, iam.GetUserGroupPolicyAttachmentsOutputArgs{
-//				UserGroupName: fooUserGroupPolicyAttachment.UserGroupName,
+//			_, err := iam.GetUserGroupPolicyAttachments(ctx, &iam.GetUserGroupPolicyAttachmentsArgs{
+//				UserGroupName: "xRqElT",
 //			}, nil)
+//			if err != nil {
+//				return err
+//			}
 //			return nil
 //		})
 //	}

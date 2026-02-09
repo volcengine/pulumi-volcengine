@@ -30,7 +30,15 @@ import (
 //			_, err := iam.NewUser(ctx, "foo", &iam.UserArgs{
 //				Description: pulumi.String("test"),
 //				DisplayName: pulumi.String("name"),
-//				UserName:    pulumi.String("tf-test"),
+//				Email:       pulumi.String("test@example.com"),
+//				MobilePhone: pulumi.String("+8618800000000"),
+//				Tags: iam.UserTagArray{
+//					&iam.UserTagArgs{
+//						Key:   pulumi.String("key1"),
+//						Value: pulumi.String("value1"),
+//					},
+//				},
+//				UserName: pulumi.String("jonny"),
 //			})
 //			if err != nil {
 //				return err
@@ -63,10 +71,12 @@ type User struct {
 	Email pulumi.StringPtrOutput `pulumi:"email"`
 	// Whether the email has been verified.
 	EmailIsVerify pulumi.BoolOutput `pulumi:"emailIsVerify"`
-	// The mobile phone of the user.
+	// The mobile phone of the user, reference: +8618088888888.
 	MobilePhone pulumi.StringPtrOutput `pulumi:"mobilePhone"`
 	// Whether the phone number has been verified.
 	MobilePhoneIsVerify pulumi.BoolOutput `pulumi:"mobilePhoneIsVerify"`
+	// Tags.
+	Tags UserTagArrayOutput `pulumi:"tags"`
 	// The trn of the user.
 	Trn pulumi.StringOutput `pulumi:"trn"`
 	// The update date of the user.
@@ -122,10 +132,12 @@ type userState struct {
 	Email *string `pulumi:"email"`
 	// Whether the email has been verified.
 	EmailIsVerify *bool `pulumi:"emailIsVerify"`
-	// The mobile phone of the user.
+	// The mobile phone of the user, reference: +8618088888888.
 	MobilePhone *string `pulumi:"mobilePhone"`
 	// Whether the phone number has been verified.
 	MobilePhoneIsVerify *bool `pulumi:"mobilePhoneIsVerify"`
+	// Tags.
+	Tags []UserTag `pulumi:"tags"`
 	// The trn of the user.
 	Trn *string `pulumi:"trn"`
 	// The update date of the user.
@@ -149,10 +161,12 @@ type UserState struct {
 	Email pulumi.StringPtrInput
 	// Whether the email has been verified.
 	EmailIsVerify pulumi.BoolPtrInput
-	// The mobile phone of the user.
+	// The mobile phone of the user, reference: +8618088888888.
 	MobilePhone pulumi.StringPtrInput
 	// Whether the phone number has been verified.
 	MobilePhoneIsVerify pulumi.BoolPtrInput
+	// Tags.
+	Tags UserTagArrayInput
 	// The trn of the user.
 	Trn pulumi.StringPtrInput
 	// The update date of the user.
@@ -174,8 +188,10 @@ type userArgs struct {
 	DisplayName *string `pulumi:"displayName"`
 	// The email of the user.
 	Email *string `pulumi:"email"`
-	// The mobile phone of the user.
+	// The mobile phone of the user, reference: +8618088888888.
 	MobilePhone *string `pulumi:"mobilePhone"`
+	// Tags.
+	Tags []UserTag `pulumi:"tags"`
 	// The name of the user.
 	UserName string `pulumi:"userName"`
 }
@@ -188,8 +204,10 @@ type UserArgs struct {
 	DisplayName pulumi.StringPtrInput
 	// The email of the user.
 	Email pulumi.StringPtrInput
-	// The mobile phone of the user.
+	// The mobile phone of the user, reference: +8618088888888.
 	MobilePhone pulumi.StringPtrInput
+	// Tags.
+	Tags UserTagArrayInput
 	// The name of the user.
 	UserName pulumi.StringInput
 }
@@ -311,7 +329,7 @@ func (o UserOutput) EmailIsVerify() pulumi.BoolOutput {
 	return o.ApplyT(func(v *User) pulumi.BoolOutput { return v.EmailIsVerify }).(pulumi.BoolOutput)
 }
 
-// The mobile phone of the user.
+// The mobile phone of the user, reference: +8618088888888.
 func (o UserOutput) MobilePhone() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *User) pulumi.StringPtrOutput { return v.MobilePhone }).(pulumi.StringPtrOutput)
 }
@@ -319,6 +337,11 @@ func (o UserOutput) MobilePhone() pulumi.StringPtrOutput {
 // Whether the phone number has been verified.
 func (o UserOutput) MobilePhoneIsVerify() pulumi.BoolOutput {
 	return o.ApplyT(func(v *User) pulumi.BoolOutput { return v.MobilePhoneIsVerify }).(pulumi.BoolOutput)
+}
+
+// Tags.
+func (o UserOutput) Tags() UserTagArrayOutput {
+	return o.ApplyT(func(v *User) UserTagArrayOutput { return v.Tags }).(UserTagArrayOutput)
 }
 
 // The trn of the user.

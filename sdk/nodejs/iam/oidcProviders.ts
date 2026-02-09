@@ -14,7 +14,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.iam.getOidcProviders({});
+ * const default = volcengine.iam.getOidcProviders({});
  * ```
  */
 /** @deprecated volcengine.iam.OidcProviders has been deprecated in favor of volcengine.iam.getOidcProviders */
@@ -64,7 +64,7 @@ export interface OidcProvidersResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.iam.getOidcProviders({});
+ * const default = volcengine.iam.getOidcProviders({});
  * ```
  */
 /** @deprecated volcengine.iam.OidcProviders has been deprecated in favor of volcengine.iam.getOidcProviders */

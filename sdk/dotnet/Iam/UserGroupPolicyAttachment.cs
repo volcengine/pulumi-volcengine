@@ -21,25 +21,11 @@ namespace Pulumi.Volcengine.Iam
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var fooPolicy = new Volcengine.Iam.Policy("fooPolicy", new()
+    ///     var foo = new Volcengine.Iam.UserGroupPolicyAttachment("foo", new()
     ///     {
-    ///         PolicyName = "acc-test-policy",
-    ///         Description = "acc-test",
-    ///         PolicyDocument = "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"auto_scaling:DescribeScalingGroups\"],\"Resource\":[\"*\"]}]}",
-    ///     });
-    /// 
-    ///     var fooUserGroup = new Volcengine.Iam.UserGroup("fooUserGroup", new()
-    ///     {
-    ///         UserGroupName = "acc-test-group",
-    ///         Description = "acc-test",
-    ///         DisplayName = "acc-test",
-    ///     });
-    /// 
-    ///     var fooUserGroupPolicyAttachment = new Volcengine.Iam.UserGroupPolicyAttachment("fooUserGroupPolicyAttachment", new()
-    ///     {
-    ///         PolicyName = fooPolicy.PolicyName,
+    ///         PolicyName = "test",
     ///         PolicyType = "Custom",
-    ///         UserGroupName = fooUserGroup.UserGroupName,
+    ///         UserGroupName = "tf-test",
     ///     });
     /// 
     /// });

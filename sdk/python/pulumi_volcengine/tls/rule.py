@@ -389,12 +389,12 @@ class Rule(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo_project = volcengine.tls.Project("fooProject",
-            project_name="tf-test-project-ttt",
+            project_name="tf-test-project-x",
             description="tf-test-project-desc",
             region="cn-guilin-boe")
         foo_topic = volcengine.tls.Topic("fooTopic",
             project_id=foo_project.id,
-            topic_name="tf-test-topic-rule-1",
+            topic_name="tf-test-topic-rule-x",
             ttl=60,
             shard_count=2,
             auto_split=True,
@@ -403,8 +403,8 @@ class Rule(pulumi.CustomResource):
             time_key="request_time",
             time_format="%Y-%m-%dT%H:%M:%S,%f",
             tags=[volcengine.tls.TopicTagArgs(
-                key="k1",
-                value="v1",
+                key="k2",
+                value="v3",
             )],
             log_public_ip=True,
             enable_hot_ttl=True,
@@ -487,16 +487,16 @@ class Rule(pulumi.CustomResource):
                 stream="all",
                 container_name_regex=".*test.*",
                 include_container_label_regex={
-                    "Key1": "Value12",
-                    "Key2": "Value23",
+                    "Key1": "Value122",
+                    "Key2": "Value223",
                 },
                 exclude_container_label_regex={
-                    "Key1": "Value12",
-                    "Key2": "Value22",
+                    "Key1": "Value312",
+                    "Key2": "Valu5e22",
                 },
                 include_container_env_regex={
-                    "Key1": "Value1",
-                    "Key2": "Value2",
+                    "Key1": "Val2ue1",
+                    "Key2": "Val2ue2",
                 },
                 exclude_container_env_regex={
                     "Key1": "Value1",
@@ -568,12 +568,12 @@ class Rule(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo_project = volcengine.tls.Project("fooProject",
-            project_name="tf-test-project-ttt",
+            project_name="tf-test-project-x",
             description="tf-test-project-desc",
             region="cn-guilin-boe")
         foo_topic = volcengine.tls.Topic("fooTopic",
             project_id=foo_project.id,
-            topic_name="tf-test-topic-rule-1",
+            topic_name="tf-test-topic-rule-x",
             ttl=60,
             shard_count=2,
             auto_split=True,
@@ -582,8 +582,8 @@ class Rule(pulumi.CustomResource):
             time_key="request_time",
             time_format="%Y-%m-%dT%H:%M:%S,%f",
             tags=[volcengine.tls.TopicTagArgs(
-                key="k1",
-                value="v1",
+                key="k2",
+                value="v3",
             )],
             log_public_ip=True,
             enable_hot_ttl=True,
@@ -666,16 +666,16 @@ class Rule(pulumi.CustomResource):
                 stream="all",
                 container_name_regex=".*test.*",
                 include_container_label_regex={
-                    "Key1": "Value12",
-                    "Key2": "Value23",
+                    "Key1": "Value122",
+                    "Key2": "Value223",
                 },
                 exclude_container_label_regex={
-                    "Key1": "Value12",
-                    "Key2": "Value22",
+                    "Key1": "Value312",
+                    "Key2": "Valu5e22",
                 },
                 include_container_env_regex={
-                    "Key1": "Value1",
-                    "Key2": "Value2",
+                    "Key1": "Val2ue1",
+                    "Key2": "Val2ue2",
                 },
                 exclude_container_env_regex={
                     "Key1": "Value1",

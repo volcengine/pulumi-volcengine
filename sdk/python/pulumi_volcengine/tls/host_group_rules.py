@@ -100,7 +100,7 @@ def host_group_rules(host_group_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.get_host_group_rules(host_group_id="59989043-5422-4440-a981-63d241563fc0")
+    default = volcengine.tls.get_host_group_rules(host_group_id="4af86d32-cb9c-4eac-adb1-75f2567789be")
     ```
 
 
@@ -134,7 +134,7 @@ def host_group_rules_output(host_group_id: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.get_host_group_rules(host_group_id="59989043-5422-4440-a981-63d241563fc0")
+    default = volcengine.tls.get_host_group_rules(host_group_id="4af86d32-cb9c-4eac-adb1-75f2567789be")
     ```
 
 

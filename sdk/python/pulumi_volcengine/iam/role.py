@@ -8,44 +8,40 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['RoleArgs', 'Role']
 
 @pulumi.input_type
 class RoleArgs:
     def __init__(__self__, *,
-                 display_name: pulumi.Input[str],
                  role_name: pulumi.Input[str],
-                 trust_policy_document: pulumi.Input[str],
                  description: Optional[pulumi.Input[str]] = None,
-                 max_session_duration: Optional[pulumi.Input[int]] = None):
+                 display_name: Optional[pulumi.Input[str]] = None,
+                 max_session_duration: Optional[pulumi.Input[int]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['RoleTagArgs']]]] = None,
+                 trust_policy_document: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Role resource.
-        :param pulumi.Input[str] display_name: The display name of the Role.
         :param pulumi.Input[str] role_name: The name of the Role.
-        :param pulumi.Input[str] trust_policy_document: The trust policy document of the Role.
         :param pulumi.Input[str] description: The description of the Role.
+        :param pulumi.Input[str] display_name: The display name of the Role.
         :param pulumi.Input[int] max_session_duration: The max session duration of the Role.
+        :param pulumi.Input[Sequence[pulumi.Input['RoleTagArgs']]] tags: Tags.
+        :param pulumi.Input[str] trust_policy_document: The trust policy document of the Role.
         """
-        pulumi.set(__self__, "display_name", display_name)
         pulumi.set(__self__, "role_name", role_name)
-        pulumi.set(__self__, "trust_policy_document", trust_policy_document)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if display_name is not None:
+            pulumi.set(__self__, "display_name", display_name)
         if max_session_duration is not None:
             pulumi.set(__self__, "max_session_duration", max_session_duration)
-
-    @property
-    @pulumi.getter(name="displayName")
-    def display_name(self) -> pulumi.Input[str]:
-        """
-        The display name of the Role.
-        """
-        return pulumi.get(self, "display_name")
-
-    @display_name.setter
-    def display_name(self, value: pulumi.Input[str]):
-        pulumi.set(self, "display_name", value)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+        if trust_policy_document is not None:
+            pulumi.set(__self__, "trust_policy_document", trust_policy_document)
 
     @property
     @pulumi.getter(name="roleName")
@@ -58,74 +54,6 @@ class RoleArgs:
     @role_name.setter
     def role_name(self, value: pulumi.Input[str]):
         pulumi.set(self, "role_name", value)
-
-    @property
-    @pulumi.getter(name="trustPolicyDocument")
-    def trust_policy_document(self) -> pulumi.Input[str]:
-        """
-        The trust policy document of the Role.
-        """
-        return pulumi.get(self, "trust_policy_document")
-
-    @trust_policy_document.setter
-    def trust_policy_document(self, value: pulumi.Input[str]):
-        pulumi.set(self, "trust_policy_document", value)
-
-    @property
-    @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[str]]:
-        """
-        The description of the Role.
-        """
-        return pulumi.get(self, "description")
-
-    @description.setter
-    def description(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "description", value)
-
-    @property
-    @pulumi.getter(name="maxSessionDuration")
-    def max_session_duration(self) -> Optional[pulumi.Input[int]]:
-        """
-        The max session duration of the Role.
-        """
-        return pulumi.get(self, "max_session_duration")
-
-    @max_session_duration.setter
-    def max_session_duration(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "max_session_duration", value)
-
-
-@pulumi.input_type
-class _RoleState:
-    def __init__(__self__, *,
-                 description: Optional[pulumi.Input[str]] = None,
-                 display_name: Optional[pulumi.Input[str]] = None,
-                 max_session_duration: Optional[pulumi.Input[int]] = None,
-                 role_name: Optional[pulumi.Input[str]] = None,
-                 trn: Optional[pulumi.Input[str]] = None,
-                 trust_policy_document: Optional[pulumi.Input[str]] = None):
-        """
-        Input properties used for looking up and filtering Role resources.
-        :param pulumi.Input[str] description: The description of the Role.
-        :param pulumi.Input[str] display_name: The display name of the Role.
-        :param pulumi.Input[int] max_session_duration: The max session duration of the Role.
-        :param pulumi.Input[str] role_name: The name of the Role.
-        :param pulumi.Input[str] trn: The resource name of the Role.
-        :param pulumi.Input[str] trust_policy_document: The trust policy document of the Role.
-        """
-        if description is not None:
-            pulumi.set(__self__, "description", description)
-        if display_name is not None:
-            pulumi.set(__self__, "display_name", display_name)
-        if max_session_duration is not None:
-            pulumi.set(__self__, "max_session_duration", max_session_duration)
-        if role_name is not None:
-            pulumi.set(__self__, "role_name", role_name)
-        if trn is not None:
-            pulumi.set(__self__, "trn", trn)
-        if trust_policy_document is not None:
-            pulumi.set(__self__, "trust_policy_document", trust_policy_document)
 
     @property
     @pulumi.getter
@@ -164,6 +92,134 @@ class _RoleState:
         pulumi.set(self, "max_session_duration", value)
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RoleTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RoleTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
+    @pulumi.getter(name="trustPolicyDocument")
+    def trust_policy_document(self) -> Optional[pulumi.Input[str]]:
+        """
+        The trust policy document of the Role.
+        """
+        return pulumi.get(self, "trust_policy_document")
+
+    @trust_policy_document.setter
+    def trust_policy_document(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "trust_policy_document", value)
+
+
+@pulumi.input_type
+class _RoleState:
+    def __init__(__self__, *,
+                 description: Optional[pulumi.Input[str]] = None,
+                 display_name: Optional[pulumi.Input[str]] = None,
+                 is_service_linked_role: Optional[pulumi.Input[int]] = None,
+                 max_session_duration: Optional[pulumi.Input[int]] = None,
+                 role_id: Optional[pulumi.Input[int]] = None,
+                 role_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['RoleTagArgs']]]] = None,
+                 trn: Optional[pulumi.Input[str]] = None,
+                 trust_policy_document: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering Role resources.
+        :param pulumi.Input[str] description: The description of the Role.
+        :param pulumi.Input[str] display_name: The display name of the Role.
+        :param pulumi.Input[int] is_service_linked_role: Whether the Role is a service linked role.
+        :param pulumi.Input[int] max_session_duration: The max session duration of the Role.
+        :param pulumi.Input[int] role_id: The id of the Role.
+        :param pulumi.Input[str] role_name: The name of the Role.
+        :param pulumi.Input[Sequence[pulumi.Input['RoleTagArgs']]] tags: Tags.
+        :param pulumi.Input[str] trn: The resource name of the Role.
+        :param pulumi.Input[str] trust_policy_document: The trust policy document of the Role.
+        """
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if display_name is not None:
+            pulumi.set(__self__, "display_name", display_name)
+        if is_service_linked_role is not None:
+            pulumi.set(__self__, "is_service_linked_role", is_service_linked_role)
+        if max_session_duration is not None:
+            pulumi.set(__self__, "max_session_duration", max_session_duration)
+        if role_id is not None:
+            pulumi.set(__self__, "role_id", role_id)
+        if role_name is not None:
+            pulumi.set(__self__, "role_name", role_name)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+        if trn is not None:
+            pulumi.set(__self__, "trn", trn)
+        if trust_policy_document is not None:
+            pulumi.set(__self__, "trust_policy_document", trust_policy_document)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        The description of the Role.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The display name of the Role.
+        """
+        return pulumi.get(self, "display_name")
+
+    @display_name.setter
+    def display_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "display_name", value)
+
+    @property
+    @pulumi.getter(name="isServiceLinkedRole")
+    def is_service_linked_role(self) -> Optional[pulumi.Input[int]]:
+        """
+        Whether the Role is a service linked role.
+        """
+        return pulumi.get(self, "is_service_linked_role")
+
+    @is_service_linked_role.setter
+    def is_service_linked_role(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "is_service_linked_role", value)
+
+    @property
+    @pulumi.getter(name="maxSessionDuration")
+    def max_session_duration(self) -> Optional[pulumi.Input[int]]:
+        """
+        The max session duration of the Role.
+        """
+        return pulumi.get(self, "max_session_duration")
+
+    @max_session_duration.setter
+    def max_session_duration(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_session_duration", value)
+
+    @property
+    @pulumi.getter(name="roleId")
+    def role_id(self) -> Optional[pulumi.Input[int]]:
+        """
+        The id of the Role.
+        """
+        return pulumi.get(self, "role_id")
+
+    @role_id.setter
+    def role_id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "role_id", value)
+
+    @property
     @pulumi.getter(name="roleName")
     def role_name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -174,6 +230,18 @@ class _RoleState:
     @role_name.setter
     def role_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "role_name", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RoleTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RoleTagArgs']]]]):
+        pulumi.set(self, "tags", value)
 
     @property
     @pulumi.getter
@@ -209,6 +277,7 @@ class Role(pulumi.CustomResource):
                  display_name: Optional[pulumi.Input[str]] = None,
                  max_session_duration: Optional[pulumi.Input[int]] = None,
                  role_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RoleTagArgs']]]]] = None,
                  trust_policy_document: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -220,10 +289,14 @@ class Role(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.iam.Role("foo",
-            description="acc-test",
-            display_name="acc-test",
+            description="tf-test-modify",
+            display_name="tf-test-modify",
             max_session_duration=3600,
-            role_name="acc-test-role",
+            role_name="tf-test-role",
+            tags=[volcengine.iam.RoleTagArgs(
+                key="key-modify",
+                value="value-modify",
+            )],
             trust_policy_document="{\\"Statement\\":[{\\"Effect\\":\\"Allow\\",\\"Action\\":[\\"sts:AssumeRole\\"],\\"Principal\\":{\\"Service\\":[\\"auto_scaling\\"]}}]}")
         ```
 
@@ -241,6 +314,7 @@ class Role(pulumi.CustomResource):
         :param pulumi.Input[str] display_name: The display name of the Role.
         :param pulumi.Input[int] max_session_duration: The max session duration of the Role.
         :param pulumi.Input[str] role_name: The name of the Role.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RoleTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] trust_policy_document: The trust policy document of the Role.
         """
         ...
@@ -258,10 +332,14 @@ class Role(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.iam.Role("foo",
-            description="acc-test",
-            display_name="acc-test",
+            description="tf-test-modify",
+            display_name="tf-test-modify",
             max_session_duration=3600,
-            role_name="acc-test-role",
+            role_name="tf-test-role",
+            tags=[volcengine.iam.RoleTagArgs(
+                key="key-modify",
+                value="value-modify",
+            )],
             trust_policy_document="{\\"Statement\\":[{\\"Effect\\":\\"Allow\\",\\"Action\\":[\\"sts:AssumeRole\\"],\\"Principal\\":{\\"Service\\":[\\"auto_scaling\\"]}}]}")
         ```
 
@@ -292,6 +370,7 @@ class Role(pulumi.CustomResource):
                  display_name: Optional[pulumi.Input[str]] = None,
                  max_session_duration: Optional[pulumi.Input[int]] = None,
                  role_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RoleTagArgs']]]]] = None,
                  trust_policy_document: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -303,16 +382,15 @@ class Role(pulumi.CustomResource):
             __props__ = RoleArgs.__new__(RoleArgs)
 
             __props__.__dict__["description"] = description
-            if display_name is None and not opts.urn:
-                raise TypeError("Missing required property 'display_name'")
             __props__.__dict__["display_name"] = display_name
             __props__.__dict__["max_session_duration"] = max_session_duration
             if role_name is None and not opts.urn:
                 raise TypeError("Missing required property 'role_name'")
             __props__.__dict__["role_name"] = role_name
-            if trust_policy_document is None and not opts.urn:
-                raise TypeError("Missing required property 'trust_policy_document'")
+            __props__.__dict__["tags"] = tags
             __props__.__dict__["trust_policy_document"] = trust_policy_document
+            __props__.__dict__["is_service_linked_role"] = None
+            __props__.__dict__["role_id"] = None
             __props__.__dict__["trn"] = None
         super(Role, __self__).__init__(
             'volcengine:iam/role:Role',
@@ -326,8 +404,11 @@ class Role(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             description: Optional[pulumi.Input[str]] = None,
             display_name: Optional[pulumi.Input[str]] = None,
+            is_service_linked_role: Optional[pulumi.Input[int]] = None,
             max_session_duration: Optional[pulumi.Input[int]] = None,
+            role_id: Optional[pulumi.Input[int]] = None,
             role_name: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RoleTagArgs']]]]] = None,
             trn: Optional[pulumi.Input[str]] = None,
             trust_policy_document: Optional[pulumi.Input[str]] = None) -> 'Role':
         """
@@ -339,8 +420,11 @@ class Role(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: The description of the Role.
         :param pulumi.Input[str] display_name: The display name of the Role.
+        :param pulumi.Input[int] is_service_linked_role: Whether the Role is a service linked role.
         :param pulumi.Input[int] max_session_duration: The max session duration of the Role.
+        :param pulumi.Input[int] role_id: The id of the Role.
         :param pulumi.Input[str] role_name: The name of the Role.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RoleTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] trn: The resource name of the Role.
         :param pulumi.Input[str] trust_policy_document: The trust policy document of the Role.
         """
@@ -350,8 +434,11 @@ class Role(pulumi.CustomResource):
 
         __props__.__dict__["description"] = description
         __props__.__dict__["display_name"] = display_name
+        __props__.__dict__["is_service_linked_role"] = is_service_linked_role
         __props__.__dict__["max_session_duration"] = max_session_duration
+        __props__.__dict__["role_id"] = role_id
         __props__.__dict__["role_name"] = role_name
+        __props__.__dict__["tags"] = tags
         __props__.__dict__["trn"] = trn
         __props__.__dict__["trust_policy_document"] = trust_policy_document
         return Role(resource_name, opts=opts, __props__=__props__)
@@ -366,11 +453,19 @@ class Role(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="displayName")
-    def display_name(self) -> pulumi.Output[str]:
+    def display_name(self) -> pulumi.Output[Optional[str]]:
         """
         The display name of the Role.
         """
         return pulumi.get(self, "display_name")
+
+    @property
+    @pulumi.getter(name="isServiceLinkedRole")
+    def is_service_linked_role(self) -> pulumi.Output[int]:
+        """
+        Whether the Role is a service linked role.
+        """
+        return pulumi.get(self, "is_service_linked_role")
 
     @property
     @pulumi.getter(name="maxSessionDuration")
@@ -379,6 +474,14 @@ class Role(pulumi.CustomResource):
         The max session duration of the Role.
         """
         return pulumi.get(self, "max_session_duration")
+
+    @property
+    @pulumi.getter(name="roleId")
+    def role_id(self) -> pulumi.Output[int]:
+        """
+        The id of the Role.
+        """
+        return pulumi.get(self, "role_id")
 
     @property
     @pulumi.getter(name="roleName")
@@ -390,6 +493,14 @@ class Role(pulumi.CustomResource):
 
     @property
     @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.RoleTag']]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter
     def trn(self) -> pulumi.Output[str]:
         """
         The resource name of the Role.
@@ -398,7 +509,7 @@ class Role(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="trustPolicyDocument")
-    def trust_policy_document(self) -> pulumi.Output[str]:
+    def trust_policy_document(self) -> pulumi.Output[Optional[str]]:
         """
         The trust policy document of the Role.
         """

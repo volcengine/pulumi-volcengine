@@ -13,15 +13,9 @@ import * as utilities from "../utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
- * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooUserGroup = new volcengine.iam.UserGroup("fooUserGroup", {
- *     description: "acc-test",
- *     displayName: "acc-test",
- *     userGroupName: "acc-test-group",
- * });
- * const fooUserGroups = volcengine.iam.getUserGroups({
- *     query: "acc-test",
+ * const default = volcengine.iam.getUserGroups({
+ *     query: "xRqElT",
  * });
  * ```
  */
@@ -44,7 +38,7 @@ export interface GetUserGroupsArgs {
      */
     outputFile?: string;
     /**
-     * Fuzzy search, supports searching for user group names, display names, and remarks.
+     * Fuzzy query. Can query by user group name, display name or description.
      */
     query?: string;
 }
@@ -75,15 +69,9 @@ export interface GetUserGroupsResult {
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
- * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooUserGroup = new volcengine.iam.UserGroup("fooUserGroup", {
- *     description: "acc-test",
- *     displayName: "acc-test",
- *     userGroupName: "acc-test-group",
- * });
- * const fooUserGroups = volcengine.iam.getUserGroups({
- *     query: "acc-test",
+ * const default = volcengine.iam.getUserGroups({
+ *     query: "xRqElT",
  * });
  * ```
  */
@@ -100,7 +88,7 @@ export interface GetUserGroupsOutputArgs {
      */
     outputFile?: pulumi.Input<string>;
     /**
-     * Fuzzy search, supports searching for user group names, display names, and remarks.
+     * Fuzzy query. Can query by user group name, display name or description.
      */
     query?: pulumi.Input<string>;
 }

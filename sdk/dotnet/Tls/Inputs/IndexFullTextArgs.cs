@@ -21,8 +21,8 @@ namespace Pulumi.Volcengine.Tls.Inputs
         /// <summary>
         /// The delimiter of the FullTextInfo.
         /// </summary>
-        [Input("delimiter")]
-        public Input<string>? Delimiter { get; set; }
+        [Input("delimiter", required: true)]
+        public Input<string> Delimiter { get; set; } = null!;
 
         /// <summary>
         /// Whether the FullTextInfo include chinese.

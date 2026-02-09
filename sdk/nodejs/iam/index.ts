@@ -10,15 +10,90 @@ export type AccessKey = import("./accessKey").AccessKey;
 export const AccessKey: typeof import("./accessKey").AccessKey = null as any;
 utilities.lazyLoad(exports, ["AccessKey"], () => require("./accessKey"));
 
+export { AccessKeyLastUsedsArgs, AccessKeyLastUsedsResult, AccessKeyLastUsedsOutputArgs } from "./accessKeyLastUseds";
+export const accessKeyLastUseds: typeof import("./accessKeyLastUseds").accessKeyLastUseds = null as any;
+export const accessKeyLastUsedsOutput: typeof import("./accessKeyLastUseds").accessKeyLastUsedsOutput = null as any;
+utilities.lazyLoad(exports, ["accessKeyLastUseds","accessKeyLastUsedsOutput"], () => require("./accessKeyLastUseds"));
+
 export { AccessKeysArgs, AccessKeysResult, AccessKeysOutputArgs } from "./accessKeys";
 export const accessKeys: typeof import("./accessKeys").accessKeys = null as any;
 export const accessKeysOutput: typeof import("./accessKeys").accessKeysOutput = null as any;
 utilities.lazyLoad(exports, ["accessKeys","accessKeysOutput"], () => require("./accessKeys"));
 
+export { AccountSummariesArgs, AccountSummariesResult, AccountSummariesOutputArgs } from "./accountSummaries";
+export const accountSummaries: typeof import("./accountSummaries").accountSummaries = null as any;
+export const accountSummariesOutput: typeof import("./accountSummaries").accountSummariesOutput = null as any;
+utilities.lazyLoad(exports, ["accountSummaries","accountSummariesOutput"], () => require("./accountSummaries"));
+
+export { AllowedIpAddressArgs, AllowedIpAddressState } from "./allowedIpAddress";
+export type AllowedIpAddress = import("./allowedIpAddress").AllowedIpAddress;
+export const AllowedIpAddress: typeof import("./allowedIpAddress").AllowedIpAddress = null as any;
+utilities.lazyLoad(exports, ["AllowedIpAddress"], () => require("./allowedIpAddress"));
+
+export { AllowedIpAddressesArgs, AllowedIpAddressesResult, AllowedIpAddressesOutputArgs } from "./allowedIpAddresses";
+export const allowedIpAddresses: typeof import("./allowedIpAddresses").allowedIpAddresses = null as any;
+export const allowedIpAddressesOutput: typeof import("./allowedIpAddresses").allowedIpAddressesOutput = null as any;
+utilities.lazyLoad(exports, ["allowedIpAddresses","allowedIpAddressesOutput"], () => require("./allowedIpAddresses"));
+
+export { CallerIdentitiesArgs, CallerIdentitiesResult, CallerIdentitiesOutputArgs } from "./callerIdentities";
+export const callerIdentities: typeof import("./callerIdentities").callerIdentities = null as any;
+export const callerIdentitiesOutput: typeof import("./callerIdentities").callerIdentitiesOutput = null as any;
+utilities.lazyLoad(exports, ["callerIdentities","callerIdentitiesOutput"], () => require("./callerIdentities"));
+
+export { EntitiesPoliciesArgs, EntitiesPoliciesResult, EntitiesPoliciesOutputArgs } from "./entitiesPolicies";
+export const entitiesPolicies: typeof import("./entitiesPolicies").entitiesPolicies = null as any;
+export const entitiesPoliciesOutput: typeof import("./entitiesPolicies").entitiesPoliciesOutput = null as any;
+utilities.lazyLoad(exports, ["entitiesPolicies","entitiesPoliciesOutput"], () => require("./entitiesPolicies"));
+
+export { GetAccessKeyLastUsedsArgs, GetAccessKeyLastUsedsResult, GetAccessKeyLastUsedsOutputArgs } from "./getAccessKeyLastUseds";
+export const getAccessKeyLastUseds: typeof import("./getAccessKeyLastUseds").getAccessKeyLastUseds = null as any;
+export const getAccessKeyLastUsedsOutput: typeof import("./getAccessKeyLastUseds").getAccessKeyLastUsedsOutput = null as any;
+utilities.lazyLoad(exports, ["getAccessKeyLastUseds","getAccessKeyLastUsedsOutput"], () => require("./getAccessKeyLastUseds"));
+
 export { GetAccessKeysArgs, GetAccessKeysResult, GetAccessKeysOutputArgs } from "./getAccessKeys";
 export const getAccessKeys: typeof import("./getAccessKeys").getAccessKeys = null as any;
 export const getAccessKeysOutput: typeof import("./getAccessKeys").getAccessKeysOutput = null as any;
 utilities.lazyLoad(exports, ["getAccessKeys","getAccessKeysOutput"], () => require("./getAccessKeys"));
+
+export { GetAccountSummariesArgs, GetAccountSummariesResult, GetAccountSummariesOutputArgs } from "./getAccountSummaries";
+export const getAccountSummaries: typeof import("./getAccountSummaries").getAccountSummaries = null as any;
+export const getAccountSummariesOutput: typeof import("./getAccountSummaries").getAccountSummariesOutput = null as any;
+utilities.lazyLoad(exports, ["getAccountSummaries","getAccountSummariesOutput"], () => require("./getAccountSummaries"));
+
+export { GetAllowedIpAddressesArgs, GetAllowedIpAddressesResult, GetAllowedIpAddressesOutputArgs } from "./getAllowedIpAddresses";
+export const getAllowedIpAddresses: typeof import("./getAllowedIpAddresses").getAllowedIpAddresses = null as any;
+export const getAllowedIpAddressesOutput: typeof import("./getAllowedIpAddresses").getAllowedIpAddressesOutput = null as any;
+utilities.lazyLoad(exports, ["getAllowedIpAddresses","getAllowedIpAddressesOutput"], () => require("./getAllowedIpAddresses"));
+
+export { GetCallerIdentitiesArgs, GetCallerIdentitiesResult, GetCallerIdentitiesOutputArgs } from "./getCallerIdentities";
+export const getCallerIdentities: typeof import("./getCallerIdentities").getCallerIdentities = null as any;
+export const getCallerIdentitiesOutput: typeof import("./getCallerIdentities").getCallerIdentitiesOutput = null as any;
+utilities.lazyLoad(exports, ["getCallerIdentities","getCallerIdentitiesOutput"], () => require("./getCallerIdentities"));
+
+export { GetEntitiesPoliciesArgs, GetEntitiesPoliciesResult, GetEntitiesPoliciesOutputArgs } from "./getEntitiesPolicies";
+export const getEntitiesPolicies: typeof import("./getEntitiesPolicies").getEntitiesPolicies = null as any;
+export const getEntitiesPoliciesOutput: typeof import("./getEntitiesPolicies").getEntitiesPoliciesOutput = null as any;
+utilities.lazyLoad(exports, ["getEntitiesPolicies","getEntitiesPoliciesOutput"], () => require("./getEntitiesPolicies"));
+
+export { GetGroupUsersArgs, GetGroupUsersResult, GetGroupUsersOutputArgs } from "./getGroupUsers";
+export const getGroupUsers: typeof import("./getGroupUsers").getGroupUsers = null as any;
+export const getGroupUsersOutput: typeof import("./getGroupUsers").getGroupUsersOutput = null as any;
+utilities.lazyLoad(exports, ["getGroupUsers","getGroupUsersOutput"], () => require("./getGroupUsers"));
+
+export { GetIdentityProvidersArgs, GetIdentityProvidersResult, GetIdentityProvidersOutputArgs } from "./getIdentityProviders";
+export const getIdentityProviders: typeof import("./getIdentityProviders").getIdentityProviders = null as any;
+export const getIdentityProvidersOutput: typeof import("./getIdentityProviders").getIdentityProvidersOutput = null as any;
+utilities.lazyLoad(exports, ["getIdentityProviders","getIdentityProvidersOutput"], () => require("./getIdentityProviders"));
+
+export { GetLoginProfilesArgs, GetLoginProfilesResult, GetLoginProfilesOutputArgs } from "./getLoginProfiles";
+export const getLoginProfiles: typeof import("./getLoginProfiles").getLoginProfiles = null as any;
+export const getLoginProfilesOutput: typeof import("./getLoginProfiles").getLoginProfilesOutput = null as any;
+utilities.lazyLoad(exports, ["getLoginProfiles","getLoginProfilesOutput"], () => require("./getLoginProfiles"));
+
+export { GetOauthProvidersArgs, GetOauthProvidersResult, GetOauthProvidersOutputArgs } from "./getOauthProviders";
+export const getOauthProviders: typeof import("./getOauthProviders").getOauthProviders = null as any;
+export const getOauthProvidersOutput: typeof import("./getOauthProviders").getOauthProvidersOutput = null as any;
+utilities.lazyLoad(exports, ["getOauthProviders","getOauthProvidersOutput"], () => require("./getOauthProviders"));
 
 export { GetOidcProvidersArgs, GetOidcProvidersResult, GetOidcProvidersOutputArgs } from "./getOidcProviders";
 export const getOidcProviders: typeof import("./getOidcProviders").getOidcProviders = null as any;
@@ -30,6 +105,11 @@ export const getPolicies: typeof import("./getPolicies").getPolicies = null as a
 export const getPoliciesOutput: typeof import("./getPolicies").getPoliciesOutput = null as any;
 utilities.lazyLoad(exports, ["getPolicies","getPoliciesOutput"], () => require("./getPolicies"));
 
+export { GetRolePolicyAttachmentsArgs, GetRolePolicyAttachmentsResult, GetRolePolicyAttachmentsOutputArgs } from "./getRolePolicyAttachments";
+export const getRolePolicyAttachments: typeof import("./getRolePolicyAttachments").getRolePolicyAttachments = null as any;
+export const getRolePolicyAttachmentsOutput: typeof import("./getRolePolicyAttachments").getRolePolicyAttachmentsOutput = null as any;
+utilities.lazyLoad(exports, ["getRolePolicyAttachments","getRolePolicyAttachmentsOutput"], () => require("./getRolePolicyAttachments"));
+
 export { GetRolesArgs, GetRolesResult, GetRolesOutputArgs } from "./getRoles";
 export const getRoles: typeof import("./getRoles").getRoles = null as any;
 export const getRolesOutput: typeof import("./getRoles").getRolesOutput = null as any;
@@ -39,6 +119,21 @@ export { GetSamlProvidersArgs, GetSamlProvidersResult, GetSamlProvidersOutputArg
 export const getSamlProviders: typeof import("./getSamlProviders").getSamlProviders = null as any;
 export const getSamlProvidersOutput: typeof import("./getSamlProviders").getSamlProvidersOutput = null as any;
 utilities.lazyLoad(exports, ["getSamlProviders","getSamlProvidersOutput"], () => require("./getSamlProviders"));
+
+export { GetSecurityConfigsArgs, GetSecurityConfigsResult, GetSecurityConfigsOutputArgs } from "./getSecurityConfigs";
+export const getSecurityConfigs: typeof import("./getSecurityConfigs").getSecurityConfigs = null as any;
+export const getSecurityConfigsOutput: typeof import("./getSecurityConfigs").getSecurityConfigsOutput = null as any;
+utilities.lazyLoad(exports, ["getSecurityConfigs","getSecurityConfigsOutput"], () => require("./getSecurityConfigs"));
+
+export { GetTagsArgs, GetTagsResult, GetTagsOutputArgs } from "./getTags";
+export const getTags: typeof import("./getTags").getTags = null as any;
+export const getTagsOutput: typeof import("./getTags").getTagsOutput = null as any;
+utilities.lazyLoad(exports, ["getTags","getTagsOutput"], () => require("./getTags"));
+
+export { GetUserGroupAttachmentsArgs, GetUserGroupAttachmentsResult, GetUserGroupAttachmentsOutputArgs } from "./getUserGroupAttachments";
+export const getUserGroupAttachments: typeof import("./getUserGroupAttachments").getUserGroupAttachments = null as any;
+export const getUserGroupAttachmentsOutput: typeof import("./getUserGroupAttachments").getUserGroupAttachmentsOutput = null as any;
+utilities.lazyLoad(exports, ["getUserGroupAttachments","getUserGroupAttachmentsOutput"], () => require("./getUserGroupAttachments"));
 
 export { GetUserGroupPolicyAttachmentsArgs, GetUserGroupPolicyAttachmentsResult, GetUserGroupPolicyAttachmentsOutputArgs } from "./getUserGroupPolicyAttachments";
 export const getUserGroupPolicyAttachments: typeof import("./getUserGroupPolicyAttachments").getUserGroupPolicyAttachments = null as any;
@@ -50,20 +145,60 @@ export const getUserGroups: typeof import("./getUserGroups").getUserGroups = nul
 export const getUserGroupsOutput: typeof import("./getUserGroups").getUserGroupsOutput = null as any;
 utilities.lazyLoad(exports, ["getUserGroups","getUserGroupsOutput"], () => require("./getUserGroups"));
 
+export { GetUserPolicyAttachmentsArgs, GetUserPolicyAttachmentsResult, GetUserPolicyAttachmentsOutputArgs } from "./getUserPolicyAttachments";
+export const getUserPolicyAttachments: typeof import("./getUserPolicyAttachments").getUserPolicyAttachments = null as any;
+export const getUserPolicyAttachmentsOutput: typeof import("./getUserPolicyAttachments").getUserPolicyAttachmentsOutput = null as any;
+utilities.lazyLoad(exports, ["getUserPolicyAttachments","getUserPolicyAttachmentsOutput"], () => require("./getUserPolicyAttachments"));
+
 export { GetUsersArgs, GetUsersResult, GetUsersOutputArgs } from "./getUsers";
 export const getUsers: typeof import("./getUsers").getUsers = null as any;
 export const getUsersOutput: typeof import("./getUsers").getUsersOutput = null as any;
 utilities.lazyLoad(exports, ["getUsers","getUsersOutput"], () => require("./getUsers"));
+
+export { GroupUsersArgs, GroupUsersResult, GroupUsersOutputArgs } from "./groupUsers";
+export const groupUsers: typeof import("./groupUsers").groupUsers = null as any;
+export const groupUsersOutput: typeof import("./groupUsers").groupUsersOutput = null as any;
+utilities.lazyLoad(exports, ["groupUsers","groupUsersOutput"], () => require("./groupUsers"));
+
+export { IdentityProvidersArgs, IdentityProvidersResult, IdentityProvidersOutputArgs } from "./identityProviders";
+export const identityProviders: typeof import("./identityProviders").identityProviders = null as any;
+export const identityProvidersOutput: typeof import("./identityProviders").identityProvidersOutput = null as any;
+utilities.lazyLoad(exports, ["identityProviders","identityProvidersOutput"], () => require("./identityProviders"));
 
 export { LoginProfileArgs, LoginProfileState } from "./loginProfile";
 export type LoginProfile = import("./loginProfile").LoginProfile;
 export const LoginProfile: typeof import("./loginProfile").LoginProfile = null as any;
 utilities.lazyLoad(exports, ["LoginProfile"], () => require("./loginProfile"));
 
+export { LoginProfilesArgs, LoginProfilesResult, LoginProfilesOutputArgs } from "./loginProfiles";
+export const loginProfiles: typeof import("./loginProfiles").loginProfiles = null as any;
+export const loginProfilesOutput: typeof import("./loginProfiles").loginProfilesOutput = null as any;
+utilities.lazyLoad(exports, ["loginProfiles","loginProfilesOutput"], () => require("./loginProfiles"));
+
+export { OauthProviderArgs, OauthProviderState } from "./oauthProvider";
+export type OauthProvider = import("./oauthProvider").OauthProvider;
+export const OauthProvider: typeof import("./oauthProvider").OauthProvider = null as any;
+utilities.lazyLoad(exports, ["OauthProvider"], () => require("./oauthProvider"));
+
+export { OauthProvidersArgs, OauthProvidersResult, OauthProvidersOutputArgs } from "./oauthProviders";
+export const oauthProviders: typeof import("./oauthProviders").oauthProviders = null as any;
+export const oauthProvidersOutput: typeof import("./oauthProviders").oauthProvidersOutput = null as any;
+utilities.lazyLoad(exports, ["oauthProviders","oauthProvidersOutput"], () => require("./oauthProviders"));
+
 export { OidcProviderArgs, OidcProviderState } from "./oidcProvider";
 export type OidcProvider = import("./oidcProvider").OidcProvider;
 export const OidcProvider: typeof import("./oidcProvider").OidcProvider = null as any;
 utilities.lazyLoad(exports, ["OidcProvider"], () => require("./oidcProvider"));
+
+export { OidcProviderClientArgs, OidcProviderClientState } from "./oidcProviderClient";
+export type OidcProviderClient = import("./oidcProviderClient").OidcProviderClient;
+export const OidcProviderClient: typeof import("./oidcProviderClient").OidcProviderClient = null as any;
+utilities.lazyLoad(exports, ["OidcProviderClient"], () => require("./oidcProviderClient"));
+
+export { OidcProviderThumbprintArgs, OidcProviderThumbprintState } from "./oidcProviderThumbprint";
+export type OidcProviderThumbprint = import("./oidcProviderThumbprint").OidcProviderThumbprint;
+export const OidcProviderThumbprint: typeof import("./oidcProviderThumbprint").OidcProviderThumbprint = null as any;
+utilities.lazyLoad(exports, ["OidcProviderThumbprint"], () => require("./oidcProviderThumbprint"));
 
 export { OidcProvidersArgs, OidcProvidersResult, OidcProvidersOutputArgs } from "./oidcProviders";
 export const oidcProviders: typeof import("./oidcProviders").oidcProviders = null as any;
@@ -80,6 +215,11 @@ export type Policy = import("./policy").Policy;
 export const Policy: typeof import("./policy").Policy = null as any;
 utilities.lazyLoad(exports, ["Policy"], () => require("./policy"));
 
+export { PolicyProjectArgs, PolicyProjectState } from "./policyProject";
+export type PolicyProject = import("./policyProject").PolicyProject;
+export const PolicyProject: typeof import("./policyProject").PolicyProject = null as any;
+utilities.lazyLoad(exports, ["PolicyProject"], () => require("./policyProject"));
+
 export { RoleArgs, RoleState } from "./role";
 export type Role = import("./role").Role;
 export const Role: typeof import("./role").Role = null as any;
@@ -89,6 +229,11 @@ export { RolePolicyAttachmentArgs, RolePolicyAttachmentState } from "./rolePolic
 export type RolePolicyAttachment = import("./rolePolicyAttachment").RolePolicyAttachment;
 export const RolePolicyAttachment: typeof import("./rolePolicyAttachment").RolePolicyAttachment = null as any;
 utilities.lazyLoad(exports, ["RolePolicyAttachment"], () => require("./rolePolicyAttachment"));
+
+export { RolePolicyAttachmentsArgs, RolePolicyAttachmentsResult, RolePolicyAttachmentsOutputArgs } from "./rolePolicyAttachments";
+export const rolePolicyAttachments: typeof import("./rolePolicyAttachments").rolePolicyAttachments = null as any;
+export const rolePolicyAttachmentsOutput: typeof import("./rolePolicyAttachments").rolePolicyAttachmentsOutput = null as any;
+utilities.lazyLoad(exports, ["rolePolicyAttachments","rolePolicyAttachmentsOutput"], () => require("./rolePolicyAttachments"));
 
 export { RolesArgs, RolesResult, RolesOutputArgs } from "./roles";
 export const roles: typeof import("./roles").roles = null as any;
@@ -105,10 +250,30 @@ export const samlProviders: typeof import("./samlProviders").samlProviders = nul
 export const samlProvidersOutput: typeof import("./samlProviders").samlProvidersOutput = null as any;
 utilities.lazyLoad(exports, ["samlProviders","samlProvidersOutput"], () => require("./samlProviders"));
 
+export { SecurityConfigArgs, SecurityConfigState } from "./securityConfig";
+export type SecurityConfig = import("./securityConfig").SecurityConfig;
+export const SecurityConfig: typeof import("./securityConfig").SecurityConfig = null as any;
+utilities.lazyLoad(exports, ["SecurityConfig"], () => require("./securityConfig"));
+
+export { SecurityConfigsArgs, SecurityConfigsResult, SecurityConfigsOutputArgs } from "./securityConfigs";
+export const securityConfigs: typeof import("./securityConfigs").securityConfigs = null as any;
+export const securityConfigsOutput: typeof import("./securityConfigs").securityConfigsOutput = null as any;
+utilities.lazyLoad(exports, ["securityConfigs","securityConfigsOutput"], () => require("./securityConfigs"));
+
 export { ServiceLinkedRoleArgs, ServiceLinkedRoleState } from "./serviceLinkedRole";
 export type ServiceLinkedRole = import("./serviceLinkedRole").ServiceLinkedRole;
 export const ServiceLinkedRole: typeof import("./serviceLinkedRole").ServiceLinkedRole = null as any;
 utilities.lazyLoad(exports, ["ServiceLinkedRole"], () => require("./serviceLinkedRole"));
+
+export { TagArgs, TagState } from "./tag";
+export type Tag = import("./tag").Tag;
+export const Tag: typeof import("./tag").Tag = null as any;
+utilities.lazyLoad(exports, ["Tag"], () => require("./tag"));
+
+export { TagsArgs, TagsResult, TagsOutputArgs } from "./tags";
+export const tags: typeof import("./tags").tags = null as any;
+export const tagsOutput: typeof import("./tags").tagsOutput = null as any;
+utilities.lazyLoad(exports, ["tags","tagsOutput"], () => require("./tags"));
 
 export { UserArgs, UserState } from "./user";
 export type User = import("./user").User;
@@ -124,6 +289,11 @@ export { UserGroupAttachmentArgs, UserGroupAttachmentState } from "./userGroupAt
 export type UserGroupAttachment = import("./userGroupAttachment").UserGroupAttachment;
 export const UserGroupAttachment: typeof import("./userGroupAttachment").UserGroupAttachment = null as any;
 utilities.lazyLoad(exports, ["UserGroupAttachment"], () => require("./userGroupAttachment"));
+
+export { UserGroupAttachmentsArgs, UserGroupAttachmentsResult, UserGroupAttachmentsOutputArgs } from "./userGroupAttachments";
+export const userGroupAttachments: typeof import("./userGroupAttachments").userGroupAttachments = null as any;
+export const userGroupAttachmentsOutput: typeof import("./userGroupAttachments").userGroupAttachmentsOutput = null as any;
+utilities.lazyLoad(exports, ["userGroupAttachments","userGroupAttachmentsOutput"], () => require("./userGroupAttachments"));
 
 export { UserGroupPolicyAttachmentArgs, UserGroupPolicyAttachmentState } from "./userGroupPolicyAttachment";
 export type UserGroupPolicyAttachment = import("./userGroupPolicyAttachment").UserGroupPolicyAttachment;
@@ -145,6 +315,11 @@ export type UserPolicyAttachment = import("./userPolicyAttachment").UserPolicyAt
 export const UserPolicyAttachment: typeof import("./userPolicyAttachment").UserPolicyAttachment = null as any;
 utilities.lazyLoad(exports, ["UserPolicyAttachment"], () => require("./userPolicyAttachment"));
 
+export { UserPolicyAttachmentsArgs, UserPolicyAttachmentsResult, UserPolicyAttachmentsOutputArgs } from "./userPolicyAttachments";
+export const userPolicyAttachments: typeof import("./userPolicyAttachments").userPolicyAttachments = null as any;
+export const userPolicyAttachmentsOutput: typeof import("./userPolicyAttachments").userPolicyAttachmentsOutput = null as any;
+utilities.lazyLoad(exports, ["userPolicyAttachments","userPolicyAttachmentsOutput"], () => require("./userPolicyAttachments"));
+
 export { UsersArgs, UsersResult, UsersOutputArgs } from "./users";
 export const users: typeof import("./users").users = null as any;
 export const usersOutput: typeof import("./users").usersOutput = null as any;
@@ -157,20 +332,34 @@ const _module = {
         switch (type) {
             case "volcengine:iam/accessKey:AccessKey":
                 return new AccessKey(name, <any>undefined, { urn })
+            case "volcengine:iam/allowedIpAddress:AllowedIpAddress":
+                return new AllowedIpAddress(name, <any>undefined, { urn })
             case "volcengine:iam/loginProfile:LoginProfile":
                 return new LoginProfile(name, <any>undefined, { urn })
+            case "volcengine:iam/oauthProvider:OauthProvider":
+                return new OauthProvider(name, <any>undefined, { urn })
             case "volcengine:iam/oidcProvider:OidcProvider":
                 return new OidcProvider(name, <any>undefined, { urn })
+            case "volcengine:iam/oidcProviderClient:OidcProviderClient":
+                return new OidcProviderClient(name, <any>undefined, { urn })
+            case "volcengine:iam/oidcProviderThumbprint:OidcProviderThumbprint":
+                return new OidcProviderThumbprint(name, <any>undefined, { urn })
             case "volcengine:iam/policy:Policy":
                 return new Policy(name, <any>undefined, { urn })
+            case "volcengine:iam/policyProject:PolicyProject":
+                return new PolicyProject(name, <any>undefined, { urn })
             case "volcengine:iam/role:Role":
                 return new Role(name, <any>undefined, { urn })
             case "volcengine:iam/rolePolicyAttachment:RolePolicyAttachment":
                 return new RolePolicyAttachment(name, <any>undefined, { urn })
             case "volcengine:iam/samlProvider:SamlProvider":
                 return new SamlProvider(name, <any>undefined, { urn })
+            case "volcengine:iam/securityConfig:SecurityConfig":
+                return new SecurityConfig(name, <any>undefined, { urn })
             case "volcengine:iam/serviceLinkedRole:ServiceLinkedRole":
                 return new ServiceLinkedRole(name, <any>undefined, { urn })
+            case "volcengine:iam/tag:Tag":
+                return new Tag(name, <any>undefined, { urn })
             case "volcengine:iam/user:User":
                 return new User(name, <any>undefined, { urn })
             case "volcengine:iam/userGroup:UserGroup":
@@ -187,13 +376,20 @@ const _module = {
     },
 };
 pulumi.runtime.registerResourceModule("volcengine", "iam/accessKey", _module)
+pulumi.runtime.registerResourceModule("volcengine", "iam/allowedIpAddress", _module)
 pulumi.runtime.registerResourceModule("volcengine", "iam/loginProfile", _module)
+pulumi.runtime.registerResourceModule("volcengine", "iam/oauthProvider", _module)
 pulumi.runtime.registerResourceModule("volcengine", "iam/oidcProvider", _module)
+pulumi.runtime.registerResourceModule("volcengine", "iam/oidcProviderClient", _module)
+pulumi.runtime.registerResourceModule("volcengine", "iam/oidcProviderThumbprint", _module)
 pulumi.runtime.registerResourceModule("volcengine", "iam/policy", _module)
+pulumi.runtime.registerResourceModule("volcengine", "iam/policyProject", _module)
 pulumi.runtime.registerResourceModule("volcengine", "iam/role", _module)
 pulumi.runtime.registerResourceModule("volcengine", "iam/rolePolicyAttachment", _module)
 pulumi.runtime.registerResourceModule("volcengine", "iam/samlProvider", _module)
+pulumi.runtime.registerResourceModule("volcengine", "iam/securityConfig", _module)
 pulumi.runtime.registerResourceModule("volcengine", "iam/serviceLinkedRole", _module)
+pulumi.runtime.registerResourceModule("volcengine", "iam/tag", _module)
 pulumi.runtime.registerResourceModule("volcengine", "iam/user", _module)
 pulumi.runtime.registerResourceModule("volcengine", "iam/userGroup", _module)
 pulumi.runtime.registerResourceModule("volcengine", "iam/userGroupAttachment", _module)

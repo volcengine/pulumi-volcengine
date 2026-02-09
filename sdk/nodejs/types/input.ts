@@ -4099,6 +4099,61 @@ export namespace financial_relation {
 }
 
 export namespace iam {
+    export interface AllowedIpAddressIpList {
+        /**
+         * The description of the IP address.
+         */
+        description?: pulumi.Input<string>;
+        /**
+         * The IP address.
+         */
+        ip: pulumi.Input<string>;
+    }
+
+    export interface RoleTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface ServiceLinkedRoleTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface TagTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface UserTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
 }
 
 export namespace kafka {
@@ -7728,7 +7783,7 @@ export namespace tls {
         /**
          * The delimiter of the FullTextInfo.
          */
-        delimiter?: pulumi.Input<string>;
+        delimiter: pulumi.Input<string>;
         /**
          * Whether the FullTextInfo include chinese.
          */
@@ -7736,6 +7791,10 @@ export namespace tls {
     }
 
     export interface IndexKeyValue {
+        /**
+         * Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+         */
+        autoIndexFlag?: pulumi.Input<boolean>;
         /**
          * Whether the value is case sensitive.
          */
@@ -7752,6 +7811,10 @@ export namespace tls {
          * Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
          */
         indexAll?: pulumi.Input<boolean>;
+        /**
+         * Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+         */
+        indexSqlAll?: pulumi.Input<boolean>;
         /**
          * The JSON subfield key value index.
          */
@@ -7776,12 +7839,20 @@ export namespace tls {
          */
         key: pulumi.Input<string>;
         /**
+         * Whether the filed is enabled for analysis.
+         */
+        sqlFlag?: pulumi.Input<boolean>;
+        /**
          * The type of value. Valid values: `long`, `double`, `text`.
          */
         valueType: pulumi.Input<string>;
     }
 
     export interface IndexUserInnerKeyValue {
+        /**
+         * Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+         */
+        autoIndexFlag?: pulumi.Input<boolean>;
         /**
          * Whether the value is case sensitive.
          */
@@ -7794,6 +7865,14 @@ export namespace tls {
          * Whether the value include chinese.
          */
         includeChinese?: pulumi.Input<boolean>;
+        /**
+         * Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+         */
+        indexAll?: pulumi.Input<boolean>;
+        /**
+         * Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+         */
+        indexSqlAll?: pulumi.Input<boolean>;
         /**
          * The JSON subfield key value index.
          */
@@ -7817,6 +7896,10 @@ export namespace tls {
          * The key of the subfield key value index.
          */
         key: pulumi.Input<string>;
+        /**
+         * Whether the filed is enabled for analysis.
+         */
+        sqlFlag?: pulumi.Input<boolean>;
         /**
          * The type of value. Valid values: `long`, `double`, `text`.
          */

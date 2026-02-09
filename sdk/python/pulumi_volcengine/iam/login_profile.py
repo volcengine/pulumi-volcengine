@@ -17,13 +17,23 @@ class LoginProfileArgs:
                  password: pulumi.Input[str],
                  user_name: pulumi.Input[str],
                  login_allowed: Optional[pulumi.Input[bool]] = None,
-                 password_reset_required: Optional[pulumi.Input[bool]] = None):
+                 password_reset_required: Optional[pulumi.Input[bool]] = None,
+                 safe_auth_exempt_duration: Optional[pulumi.Input[int]] = None,
+                 safe_auth_exempt_required: Optional[pulumi.Input[int]] = None,
+                 safe_auth_exempt_unit: Optional[pulumi.Input[int]] = None,
+                 safe_auth_flag: Optional[pulumi.Input[bool]] = None,
+                 safe_auth_type: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a LoginProfile resource.
         :param pulumi.Input[str] password: The password.
         :param pulumi.Input[str] user_name: The user name.
         :param pulumi.Input[bool] login_allowed: The flag of login allowed.
         :param pulumi.Input[bool] password_reset_required: Is required reset password when next time login in.
+        :param pulumi.Input[int] safe_auth_exempt_duration: The duration of safe auth exempt.
+        :param pulumi.Input[int] safe_auth_exempt_required: The flag of safe auth exempt required.
+        :param pulumi.Input[int] safe_auth_exempt_unit: The unit of safe auth exempt.
+        :param pulumi.Input[bool] safe_auth_flag: The flag of safe auth.
+        :param pulumi.Input[str] safe_auth_type: The type of safe auth.
         """
         pulumi.set(__self__, "password", password)
         pulumi.set(__self__, "user_name", user_name)
@@ -31,6 +41,16 @@ class LoginProfileArgs:
             pulumi.set(__self__, "login_allowed", login_allowed)
         if password_reset_required is not None:
             pulumi.set(__self__, "password_reset_required", password_reset_required)
+        if safe_auth_exempt_duration is not None:
+            pulumi.set(__self__, "safe_auth_exempt_duration", safe_auth_exempt_duration)
+        if safe_auth_exempt_required is not None:
+            pulumi.set(__self__, "safe_auth_exempt_required", safe_auth_exempt_required)
+        if safe_auth_exempt_unit is not None:
+            pulumi.set(__self__, "safe_auth_exempt_unit", safe_auth_exempt_unit)
+        if safe_auth_flag is not None:
+            pulumi.set(__self__, "safe_auth_flag", safe_auth_flag)
+        if safe_auth_type is not None:
+            pulumi.set(__self__, "safe_auth_type", safe_auth_type)
 
     @property
     @pulumi.getter
@@ -80,29 +100,189 @@ class LoginProfileArgs:
     def password_reset_required(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "password_reset_required", value)
 
+    @property
+    @pulumi.getter(name="safeAuthExemptDuration")
+    def safe_auth_exempt_duration(self) -> Optional[pulumi.Input[int]]:
+        """
+        The duration of safe auth exempt.
+        """
+        return pulumi.get(self, "safe_auth_exempt_duration")
+
+    @safe_auth_exempt_duration.setter
+    def safe_auth_exempt_duration(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "safe_auth_exempt_duration", value)
+
+    @property
+    @pulumi.getter(name="safeAuthExemptRequired")
+    def safe_auth_exempt_required(self) -> Optional[pulumi.Input[int]]:
+        """
+        The flag of safe auth exempt required.
+        """
+        return pulumi.get(self, "safe_auth_exempt_required")
+
+    @safe_auth_exempt_required.setter
+    def safe_auth_exempt_required(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "safe_auth_exempt_required", value)
+
+    @property
+    @pulumi.getter(name="safeAuthExemptUnit")
+    def safe_auth_exempt_unit(self) -> Optional[pulumi.Input[int]]:
+        """
+        The unit of safe auth exempt.
+        """
+        return pulumi.get(self, "safe_auth_exempt_unit")
+
+    @safe_auth_exempt_unit.setter
+    def safe_auth_exempt_unit(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "safe_auth_exempt_unit", value)
+
+    @property
+    @pulumi.getter(name="safeAuthFlag")
+    def safe_auth_flag(self) -> Optional[pulumi.Input[bool]]:
+        """
+        The flag of safe auth.
+        """
+        return pulumi.get(self, "safe_auth_flag")
+
+    @safe_auth_flag.setter
+    def safe_auth_flag(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "safe_auth_flag", value)
+
+    @property
+    @pulumi.getter(name="safeAuthType")
+    def safe_auth_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The type of safe auth.
+        """
+        return pulumi.get(self, "safe_auth_type")
+
+    @safe_auth_type.setter
+    def safe_auth_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "safe_auth_type", value)
+
 
 @pulumi.input_type
 class _LoginProfileState:
     def __init__(__self__, *,
+                 create_date: Optional[pulumi.Input[str]] = None,
+                 last_login_date: Optional[pulumi.Input[str]] = None,
+                 last_login_ip: Optional[pulumi.Input[str]] = None,
+                 last_reset_password_time: Optional[pulumi.Input[int]] = None,
                  login_allowed: Optional[pulumi.Input[bool]] = None,
+                 login_locked: Optional[pulumi.Input[bool]] = None,
                  password: Optional[pulumi.Input[str]] = None,
+                 password_expire_at: Optional[pulumi.Input[int]] = None,
                  password_reset_required: Optional[pulumi.Input[bool]] = None,
+                 safe_auth_exempt_duration: Optional[pulumi.Input[int]] = None,
+                 safe_auth_exempt_required: Optional[pulumi.Input[int]] = None,
+                 safe_auth_exempt_unit: Optional[pulumi.Input[int]] = None,
+                 safe_auth_flag: Optional[pulumi.Input[bool]] = None,
+                 safe_auth_type: Optional[pulumi.Input[str]] = None,
+                 update_date: Optional[pulumi.Input[str]] = None,
+                 user_id: Optional[pulumi.Input[int]] = None,
                  user_name: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering LoginProfile resources.
+        :param pulumi.Input[str] create_date: The create date.
+        :param pulumi.Input[str] last_login_date: The last login date.
+        :param pulumi.Input[str] last_login_ip: The last login ip.
+        :param pulumi.Input[int] last_reset_password_time: The last reset password time.
         :param pulumi.Input[bool] login_allowed: The flag of login allowed.
+        :param pulumi.Input[bool] login_locked: The flag of login locked.
         :param pulumi.Input[str] password: The password.
+        :param pulumi.Input[int] password_expire_at: The password expire at.
         :param pulumi.Input[bool] password_reset_required: Is required reset password when next time login in.
+        :param pulumi.Input[int] safe_auth_exempt_duration: The duration of safe auth exempt.
+        :param pulumi.Input[int] safe_auth_exempt_required: The flag of safe auth exempt required.
+        :param pulumi.Input[int] safe_auth_exempt_unit: The unit of safe auth exempt.
+        :param pulumi.Input[bool] safe_auth_flag: The flag of safe auth.
+        :param pulumi.Input[str] safe_auth_type: The type of safe auth.
+        :param pulumi.Input[str] update_date: The update date.
+        :param pulumi.Input[int] user_id: The user id.
         :param pulumi.Input[str] user_name: The user name.
         """
+        if create_date is not None:
+            pulumi.set(__self__, "create_date", create_date)
+        if last_login_date is not None:
+            pulumi.set(__self__, "last_login_date", last_login_date)
+        if last_login_ip is not None:
+            pulumi.set(__self__, "last_login_ip", last_login_ip)
+        if last_reset_password_time is not None:
+            pulumi.set(__self__, "last_reset_password_time", last_reset_password_time)
         if login_allowed is not None:
             pulumi.set(__self__, "login_allowed", login_allowed)
+        if login_locked is not None:
+            pulumi.set(__self__, "login_locked", login_locked)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_expire_at is not None:
+            pulumi.set(__self__, "password_expire_at", password_expire_at)
         if password_reset_required is not None:
             pulumi.set(__self__, "password_reset_required", password_reset_required)
+        if safe_auth_exempt_duration is not None:
+            pulumi.set(__self__, "safe_auth_exempt_duration", safe_auth_exempt_duration)
+        if safe_auth_exempt_required is not None:
+            pulumi.set(__self__, "safe_auth_exempt_required", safe_auth_exempt_required)
+        if safe_auth_exempt_unit is not None:
+            pulumi.set(__self__, "safe_auth_exempt_unit", safe_auth_exempt_unit)
+        if safe_auth_flag is not None:
+            pulumi.set(__self__, "safe_auth_flag", safe_auth_flag)
+        if safe_auth_type is not None:
+            pulumi.set(__self__, "safe_auth_type", safe_auth_type)
+        if update_date is not None:
+            pulumi.set(__self__, "update_date", update_date)
+        if user_id is not None:
+            pulumi.set(__self__, "user_id", user_id)
         if user_name is not None:
             pulumi.set(__self__, "user_name", user_name)
+
+    @property
+    @pulumi.getter(name="createDate")
+    def create_date(self) -> Optional[pulumi.Input[str]]:
+        """
+        The create date.
+        """
+        return pulumi.get(self, "create_date")
+
+    @create_date.setter
+    def create_date(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "create_date", value)
+
+    @property
+    @pulumi.getter(name="lastLoginDate")
+    def last_login_date(self) -> Optional[pulumi.Input[str]]:
+        """
+        The last login date.
+        """
+        return pulumi.get(self, "last_login_date")
+
+    @last_login_date.setter
+    def last_login_date(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "last_login_date", value)
+
+    @property
+    @pulumi.getter(name="lastLoginIp")
+    def last_login_ip(self) -> Optional[pulumi.Input[str]]:
+        """
+        The last login ip.
+        """
+        return pulumi.get(self, "last_login_ip")
+
+    @last_login_ip.setter
+    def last_login_ip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "last_login_ip", value)
+
+    @property
+    @pulumi.getter(name="lastResetPasswordTime")
+    def last_reset_password_time(self) -> Optional[pulumi.Input[int]]:
+        """
+        The last reset password time.
+        """
+        return pulumi.get(self, "last_reset_password_time")
+
+    @last_reset_password_time.setter
+    def last_reset_password_time(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "last_reset_password_time", value)
 
     @property
     @pulumi.getter(name="loginAllowed")
@@ -117,6 +297,18 @@ class _LoginProfileState:
         pulumi.set(self, "login_allowed", value)
 
     @property
+    @pulumi.getter(name="loginLocked")
+    def login_locked(self) -> Optional[pulumi.Input[bool]]:
+        """
+        The flag of login locked.
+        """
+        return pulumi.get(self, "login_locked")
+
+    @login_locked.setter
+    def login_locked(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "login_locked", value)
+
+    @property
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
         """
@@ -129,6 +321,18 @@ class _LoginProfileState:
         pulumi.set(self, "password", value)
 
     @property
+    @pulumi.getter(name="passwordExpireAt")
+    def password_expire_at(self) -> Optional[pulumi.Input[int]]:
+        """
+        The password expire at.
+        """
+        return pulumi.get(self, "password_expire_at")
+
+    @password_expire_at.setter
+    def password_expire_at(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "password_expire_at", value)
+
+    @property
     @pulumi.getter(name="passwordResetRequired")
     def password_reset_required(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -139,6 +343,90 @@ class _LoginProfileState:
     @password_reset_required.setter
     def password_reset_required(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "password_reset_required", value)
+
+    @property
+    @pulumi.getter(name="safeAuthExemptDuration")
+    def safe_auth_exempt_duration(self) -> Optional[pulumi.Input[int]]:
+        """
+        The duration of safe auth exempt.
+        """
+        return pulumi.get(self, "safe_auth_exempt_duration")
+
+    @safe_auth_exempt_duration.setter
+    def safe_auth_exempt_duration(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "safe_auth_exempt_duration", value)
+
+    @property
+    @pulumi.getter(name="safeAuthExemptRequired")
+    def safe_auth_exempt_required(self) -> Optional[pulumi.Input[int]]:
+        """
+        The flag of safe auth exempt required.
+        """
+        return pulumi.get(self, "safe_auth_exempt_required")
+
+    @safe_auth_exempt_required.setter
+    def safe_auth_exempt_required(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "safe_auth_exempt_required", value)
+
+    @property
+    @pulumi.getter(name="safeAuthExemptUnit")
+    def safe_auth_exempt_unit(self) -> Optional[pulumi.Input[int]]:
+        """
+        The unit of safe auth exempt.
+        """
+        return pulumi.get(self, "safe_auth_exempt_unit")
+
+    @safe_auth_exempt_unit.setter
+    def safe_auth_exempt_unit(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "safe_auth_exempt_unit", value)
+
+    @property
+    @pulumi.getter(name="safeAuthFlag")
+    def safe_auth_flag(self) -> Optional[pulumi.Input[bool]]:
+        """
+        The flag of safe auth.
+        """
+        return pulumi.get(self, "safe_auth_flag")
+
+    @safe_auth_flag.setter
+    def safe_auth_flag(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "safe_auth_flag", value)
+
+    @property
+    @pulumi.getter(name="safeAuthType")
+    def safe_auth_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The type of safe auth.
+        """
+        return pulumi.get(self, "safe_auth_type")
+
+    @safe_auth_type.setter
+    def safe_auth_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "safe_auth_type", value)
+
+    @property
+    @pulumi.getter(name="updateDate")
+    def update_date(self) -> Optional[pulumi.Input[str]]:
+        """
+        The update date.
+        """
+        return pulumi.get(self, "update_date")
+
+    @update_date.setter
+    def update_date(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "update_date", value)
+
+    @property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> Optional[pulumi.Input[int]]:
+        """
+        The user id.
+        """
+        return pulumi.get(self, "user_id")
+
+    @user_id.setter
+    def user_id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "user_id", value)
 
     @property
     @pulumi.getter(name="userName")
@@ -161,6 +449,11 @@ class LoginProfile(pulumi.CustomResource):
                  login_allowed: Optional[pulumi.Input[bool]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  password_reset_required: Optional[pulumi.Input[bool]] = None,
+                 safe_auth_exempt_duration: Optional[pulumi.Input[int]] = None,
+                 safe_auth_exempt_required: Optional[pulumi.Input[int]] = None,
+                 safe_auth_exempt_unit: Optional[pulumi.Input[int]] = None,
+                 safe_auth_flag: Optional[pulumi.Input[bool]] = None,
+                 safe_auth_type: Optional[pulumi.Input[str]] = None,
                  user_name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -171,15 +464,16 @@ class LoginProfile(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo_user = volcengine.iam.User("fooUser",
-            user_name="acc-test-user",
-            description="acc-test",
-            display_name="name")
-        foo_login_profile = volcengine.iam.LoginProfile("fooLoginProfile",
-            user_name=foo_user.user_name,
-            password="93f0cb0614Aab12",
+        foo = volcengine.iam.LoginProfile("foo",
             login_allowed=True,
-            password_reset_required=False)
+            password="",
+            password_reset_required=True,
+            safe_auth_exempt_duration=1,
+            safe_auth_exempt_required=1,
+            safe_auth_exempt_unit=1,
+            safe_auth_flag=True,
+            safe_auth_type="phone",
+            user_name="jonny")
         ```
 
         ## Import
@@ -195,6 +489,11 @@ class LoginProfile(pulumi.CustomResource):
         :param pulumi.Input[bool] login_allowed: The flag of login allowed.
         :param pulumi.Input[str] password: The password.
         :param pulumi.Input[bool] password_reset_required: Is required reset password when next time login in.
+        :param pulumi.Input[int] safe_auth_exempt_duration: The duration of safe auth exempt.
+        :param pulumi.Input[int] safe_auth_exempt_required: The flag of safe auth exempt required.
+        :param pulumi.Input[int] safe_auth_exempt_unit: The unit of safe auth exempt.
+        :param pulumi.Input[bool] safe_auth_flag: The flag of safe auth.
+        :param pulumi.Input[str] safe_auth_type: The type of safe auth.
         :param pulumi.Input[str] user_name: The user name.
         """
         ...
@@ -211,15 +510,16 @@ class LoginProfile(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo_user = volcengine.iam.User("fooUser",
-            user_name="acc-test-user",
-            description="acc-test",
-            display_name="name")
-        foo_login_profile = volcengine.iam.LoginProfile("fooLoginProfile",
-            user_name=foo_user.user_name,
-            password="93f0cb0614Aab12",
+        foo = volcengine.iam.LoginProfile("foo",
             login_allowed=True,
-            password_reset_required=False)
+            password="",
+            password_reset_required=True,
+            safe_auth_exempt_duration=1,
+            safe_auth_exempt_required=1,
+            safe_auth_exempt_unit=1,
+            safe_auth_flag=True,
+            safe_auth_type="phone",
+            user_name="jonny")
         ```
 
         ## Import
@@ -248,6 +548,11 @@ class LoginProfile(pulumi.CustomResource):
                  login_allowed: Optional[pulumi.Input[bool]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  password_reset_required: Optional[pulumi.Input[bool]] = None,
+                 safe_auth_exempt_duration: Optional[pulumi.Input[int]] = None,
+                 safe_auth_exempt_required: Optional[pulumi.Input[int]] = None,
+                 safe_auth_exempt_unit: Optional[pulumi.Input[int]] = None,
+                 safe_auth_flag: Optional[pulumi.Input[bool]] = None,
+                 safe_auth_type: Optional[pulumi.Input[str]] = None,
                  user_name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -263,9 +568,22 @@ class LoginProfile(pulumi.CustomResource):
                 raise TypeError("Missing required property 'password'")
             __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
             __props__.__dict__["password_reset_required"] = password_reset_required
+            __props__.__dict__["safe_auth_exempt_duration"] = safe_auth_exempt_duration
+            __props__.__dict__["safe_auth_exempt_required"] = safe_auth_exempt_required
+            __props__.__dict__["safe_auth_exempt_unit"] = safe_auth_exempt_unit
+            __props__.__dict__["safe_auth_flag"] = safe_auth_flag
+            __props__.__dict__["safe_auth_type"] = safe_auth_type
             if user_name is None and not opts.urn:
                 raise TypeError("Missing required property 'user_name'")
             __props__.__dict__["user_name"] = user_name
+            __props__.__dict__["create_date"] = None
+            __props__.__dict__["last_login_date"] = None
+            __props__.__dict__["last_login_ip"] = None
+            __props__.__dict__["last_reset_password_time"] = None
+            __props__.__dict__["login_locked"] = None
+            __props__.__dict__["password_expire_at"] = None
+            __props__.__dict__["update_date"] = None
+            __props__.__dict__["user_id"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(LoginProfile, __self__).__init__(
@@ -278,9 +596,22 @@ class LoginProfile(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            create_date: Optional[pulumi.Input[str]] = None,
+            last_login_date: Optional[pulumi.Input[str]] = None,
+            last_login_ip: Optional[pulumi.Input[str]] = None,
+            last_reset_password_time: Optional[pulumi.Input[int]] = None,
             login_allowed: Optional[pulumi.Input[bool]] = None,
+            login_locked: Optional[pulumi.Input[bool]] = None,
             password: Optional[pulumi.Input[str]] = None,
+            password_expire_at: Optional[pulumi.Input[int]] = None,
             password_reset_required: Optional[pulumi.Input[bool]] = None,
+            safe_auth_exempt_duration: Optional[pulumi.Input[int]] = None,
+            safe_auth_exempt_required: Optional[pulumi.Input[int]] = None,
+            safe_auth_exempt_unit: Optional[pulumi.Input[int]] = None,
+            safe_auth_flag: Optional[pulumi.Input[bool]] = None,
+            safe_auth_type: Optional[pulumi.Input[str]] = None,
+            update_date: Optional[pulumi.Input[str]] = None,
+            user_id: Optional[pulumi.Input[int]] = None,
             user_name: Optional[pulumi.Input[str]] = None) -> 'LoginProfile':
         """
         Get an existing LoginProfile resource's state with the given name, id, and optional extra
@@ -289,28 +620,94 @@ class LoginProfile(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] create_date: The create date.
+        :param pulumi.Input[str] last_login_date: The last login date.
+        :param pulumi.Input[str] last_login_ip: The last login ip.
+        :param pulumi.Input[int] last_reset_password_time: The last reset password time.
         :param pulumi.Input[bool] login_allowed: The flag of login allowed.
+        :param pulumi.Input[bool] login_locked: The flag of login locked.
         :param pulumi.Input[str] password: The password.
+        :param pulumi.Input[int] password_expire_at: The password expire at.
         :param pulumi.Input[bool] password_reset_required: Is required reset password when next time login in.
+        :param pulumi.Input[int] safe_auth_exempt_duration: The duration of safe auth exempt.
+        :param pulumi.Input[int] safe_auth_exempt_required: The flag of safe auth exempt required.
+        :param pulumi.Input[int] safe_auth_exempt_unit: The unit of safe auth exempt.
+        :param pulumi.Input[bool] safe_auth_flag: The flag of safe auth.
+        :param pulumi.Input[str] safe_auth_type: The type of safe auth.
+        :param pulumi.Input[str] update_date: The update date.
+        :param pulumi.Input[int] user_id: The user id.
         :param pulumi.Input[str] user_name: The user name.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _LoginProfileState.__new__(_LoginProfileState)
 
+        __props__.__dict__["create_date"] = create_date
+        __props__.__dict__["last_login_date"] = last_login_date
+        __props__.__dict__["last_login_ip"] = last_login_ip
+        __props__.__dict__["last_reset_password_time"] = last_reset_password_time
         __props__.__dict__["login_allowed"] = login_allowed
+        __props__.__dict__["login_locked"] = login_locked
         __props__.__dict__["password"] = password
+        __props__.__dict__["password_expire_at"] = password_expire_at
         __props__.__dict__["password_reset_required"] = password_reset_required
+        __props__.__dict__["safe_auth_exempt_duration"] = safe_auth_exempt_duration
+        __props__.__dict__["safe_auth_exempt_required"] = safe_auth_exempt_required
+        __props__.__dict__["safe_auth_exempt_unit"] = safe_auth_exempt_unit
+        __props__.__dict__["safe_auth_flag"] = safe_auth_flag
+        __props__.__dict__["safe_auth_type"] = safe_auth_type
+        __props__.__dict__["update_date"] = update_date
+        __props__.__dict__["user_id"] = user_id
         __props__.__dict__["user_name"] = user_name
         return LoginProfile(resource_name, opts=opts, __props__=__props__)
 
     @property
+    @pulumi.getter(name="createDate")
+    def create_date(self) -> pulumi.Output[str]:
+        """
+        The create date.
+        """
+        return pulumi.get(self, "create_date")
+
+    @property
+    @pulumi.getter(name="lastLoginDate")
+    def last_login_date(self) -> pulumi.Output[str]:
+        """
+        The last login date.
+        """
+        return pulumi.get(self, "last_login_date")
+
+    @property
+    @pulumi.getter(name="lastLoginIp")
+    def last_login_ip(self) -> pulumi.Output[str]:
+        """
+        The last login ip.
+        """
+        return pulumi.get(self, "last_login_ip")
+
+    @property
+    @pulumi.getter(name="lastResetPasswordTime")
+    def last_reset_password_time(self) -> pulumi.Output[int]:
+        """
+        The last reset password time.
+        """
+        return pulumi.get(self, "last_reset_password_time")
+
+    @property
     @pulumi.getter(name="loginAllowed")
-    def login_allowed(self) -> pulumi.Output[Optional[bool]]:
+    def login_allowed(self) -> pulumi.Output[bool]:
         """
         The flag of login allowed.
         """
         return pulumi.get(self, "login_allowed")
+
+    @property
+    @pulumi.getter(name="loginLocked")
+    def login_locked(self) -> pulumi.Output[bool]:
+        """
+        The flag of login locked.
+        """
+        return pulumi.get(self, "login_locked")
 
     @property
     @pulumi.getter
@@ -321,12 +718,76 @@ class LoginProfile(pulumi.CustomResource):
         return pulumi.get(self, "password")
 
     @property
+    @pulumi.getter(name="passwordExpireAt")
+    def password_expire_at(self) -> pulumi.Output[int]:
+        """
+        The password expire at.
+        """
+        return pulumi.get(self, "password_expire_at")
+
+    @property
     @pulumi.getter(name="passwordResetRequired")
-    def password_reset_required(self) -> pulumi.Output[Optional[bool]]:
+    def password_reset_required(self) -> pulumi.Output[bool]:
         """
         Is required reset password when next time login in.
         """
         return pulumi.get(self, "password_reset_required")
+
+    @property
+    @pulumi.getter(name="safeAuthExemptDuration")
+    def safe_auth_exempt_duration(self) -> pulumi.Output[int]:
+        """
+        The duration of safe auth exempt.
+        """
+        return pulumi.get(self, "safe_auth_exempt_duration")
+
+    @property
+    @pulumi.getter(name="safeAuthExemptRequired")
+    def safe_auth_exempt_required(self) -> pulumi.Output[int]:
+        """
+        The flag of safe auth exempt required.
+        """
+        return pulumi.get(self, "safe_auth_exempt_required")
+
+    @property
+    @pulumi.getter(name="safeAuthExemptUnit")
+    def safe_auth_exempt_unit(self) -> pulumi.Output[int]:
+        """
+        The unit of safe auth exempt.
+        """
+        return pulumi.get(self, "safe_auth_exempt_unit")
+
+    @property
+    @pulumi.getter(name="safeAuthFlag")
+    def safe_auth_flag(self) -> pulumi.Output[bool]:
+        """
+        The flag of safe auth.
+        """
+        return pulumi.get(self, "safe_auth_flag")
+
+    @property
+    @pulumi.getter(name="safeAuthType")
+    def safe_auth_type(self) -> pulumi.Output[str]:
+        """
+        The type of safe auth.
+        """
+        return pulumi.get(self, "safe_auth_type")
+
+    @property
+    @pulumi.getter(name="updateDate")
+    def update_date(self) -> pulumi.Output[str]:
+        """
+        The update date.
+        """
+        return pulumi.get(self, "update_date")
+
+    @property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> pulumi.Output[int]:
+        """
+        The user id.
+        """
+        return pulumi.get(self, "user_id")
 
     @property
     @pulumi.getter(name="userName")

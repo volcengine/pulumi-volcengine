@@ -20,7 +20,7 @@ namespace Pulumi.Volcengine.Tls.Outputs
         /// <summary>
         /// The delimiter of the FullTextInfo.
         /// </summary>
-        public readonly string? Delimiter;
+        public readonly string Delimiter;
         /// <summary>
         /// Whether the FullTextInfo include chinese.
         /// </summary>
@@ -30,7 +30,7 @@ namespace Pulumi.Volcengine.Tls.Outputs
         private IndexFullText(
             bool caseSensitive,
 
-            string? delimiter,
+            string delimiter,
 
             bool? includeChinese)
         {

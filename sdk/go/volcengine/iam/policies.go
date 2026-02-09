@@ -26,19 +26,12 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooPolicy, err := iam.NewPolicy(ctx, "fooPolicy", &iam.PolicyArgs{
-//				PolicyName:     pulumi.String("acc-test-policy"),
-//				Description:    pulumi.String("acc-test"),
-//				PolicyDocument: pulumi.String("{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"auto_scaling:DescribeScalingGroups\"],\"Resource\":[\"*\"]}]}"),
-//			})
+//			_, err := iam.GetPolicies(ctx, &iam.GetPoliciesArgs{
+//				Scope: pulumi.StringRef("Custom"),
+//			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			_ = fooPolicy.Description.ApplyT(func(description *string) (iam.GetPoliciesResult, error) {
-//				return iam.GetPoliciesOutput(ctx, iam.GetPoliciesOutputArgs{
-//					Query: description,
-//				}, nil), nil
-//			}).(iam.GetPoliciesResultOutput)
 //			return nil
 //		})
 //	}
@@ -58,39 +51,25 @@ func Policies(ctx *pulumi.Context, args *PoliciesArgs, opts ...pulumi.InvokeOpti
 
 // A collection of arguments for invoking Policies.
 type PoliciesArgs struct {
-	// A Name Regex of Policy.
-	NameRegex *string `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
-	// Query policies, support policy name or description.
-	Query *string `pulumi:"query"`
-	// The name of the IAM role.
-	RoleName *string `pulumi:"roleName"`
 	// The scope of the Policy.
 	Scope *string `pulumi:"scope"`
-	// The status of policy.
-	Status *string `pulumi:"status"`
-	// The name of the IAM user.
-	UserName *string `pulumi:"userName"`
+	// Whether to return the service role policy.
+	WithServiceRolePolicy *int `pulumi:"withServiceRolePolicy"`
 }
 
 // A collection of values returned by Policies.
 type PoliciesResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id         string  `pulumi:"id"`
-	NameRegex  *string `pulumi:"nameRegex"`
 	OutputFile *string `pulumi:"outputFile"`
 	// The collection of Policy query.
 	Policies []PoliciesPolicy `pulumi:"policies"`
-	Query    *string          `pulumi:"query"`
-	// The name of the IAM role.The data show only query with role_name.
-	RoleName *string `pulumi:"roleName"`
-	Scope    *string `pulumi:"scope"`
-	Status   *string `pulumi:"status"`
+	Scope    *string          `pulumi:"scope"`
 	// The total count of Policy query.
-	TotalCount int `pulumi:"totalCount"`
-	// The name of the IAM user.The data show only query with user_name.
-	UserName *string `pulumi:"userName"`
+	TotalCount            int  `pulumi:"totalCount"`
+	WithServiceRolePolicy *int `pulumi:"withServiceRolePolicy"`
 }
 
 func PoliciesOutput(ctx *pulumi.Context, args PoliciesOutputArgs, opts ...pulumi.InvokeOption) PoliciesResultOutput {
@@ -108,20 +87,12 @@ func PoliciesOutput(ctx *pulumi.Context, args PoliciesOutputArgs, opts ...pulumi
 
 // A collection of arguments for invoking Policies.
 type PoliciesOutputArgs struct {
-	// A Name Regex of Policy.
-	NameRegex pulumi.StringPtrInput `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
-	// Query policies, support policy name or description.
-	Query pulumi.StringPtrInput `pulumi:"query"`
-	// The name of the IAM role.
-	RoleName pulumi.StringPtrInput `pulumi:"roleName"`
 	// The scope of the Policy.
 	Scope pulumi.StringPtrInput `pulumi:"scope"`
-	// The status of policy.
-	Status pulumi.StringPtrInput `pulumi:"status"`
-	// The name of the IAM user.
-	UserName pulumi.StringPtrInput `pulumi:"userName"`
+	// Whether to return the service role policy.
+	WithServiceRolePolicy pulumi.IntPtrInput `pulumi:"withServiceRolePolicy"`
 }
 
 func (PoliciesOutputArgs) ElementType() reflect.Type {
@@ -148,10 +119,6 @@ func (o PoliciesResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v PoliciesResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-func (o PoliciesResultOutput) NameRegex() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v PoliciesResult) *string { return v.NameRegex }).(pulumi.StringPtrOutput)
-}
-
 func (o PoliciesResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v PoliciesResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
 }
@@ -161,21 +128,8 @@ func (o PoliciesResultOutput) Policies() PoliciesPolicyArrayOutput {
 	return o.ApplyT(func(v PoliciesResult) []PoliciesPolicy { return v.Policies }).(PoliciesPolicyArrayOutput)
 }
 
-func (o PoliciesResultOutput) Query() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v PoliciesResult) *string { return v.Query }).(pulumi.StringPtrOutput)
-}
-
-// The name of the IAM role.The data show only query with role_name.
-func (o PoliciesResultOutput) RoleName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v PoliciesResult) *string { return v.RoleName }).(pulumi.StringPtrOutput)
-}
-
 func (o PoliciesResultOutput) Scope() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v PoliciesResult) *string { return v.Scope }).(pulumi.StringPtrOutput)
-}
-
-func (o PoliciesResultOutput) Status() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v PoliciesResult) *string { return v.Status }).(pulumi.StringPtrOutput)
 }
 
 // The total count of Policy query.
@@ -183,9 +137,8 @@ func (o PoliciesResultOutput) TotalCount() pulumi.IntOutput {
 	return o.ApplyT(func(v PoliciesResult) int { return v.TotalCount }).(pulumi.IntOutput)
 }
 
-// The name of the IAM user.The data show only query with user_name.
-func (o PoliciesResultOutput) UserName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v PoliciesResult) *string { return v.UserName }).(pulumi.StringPtrOutput)
+func (o PoliciesResultOutput) WithServiceRolePolicy() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v PoliciesResult) *int { return v.WithServiceRolePolicy }).(pulumi.IntPtrOutput)
 }
 
 func init() {

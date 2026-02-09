@@ -68,8 +68,11 @@ class PolicyArgs:
 @pulumi.input_type
 class _PolicyState:
     def __init__(__self__, *,
+                 attachment_count: Optional[pulumi.Input[int]] = None,
+                 category: Optional[pulumi.Input[str]] = None,
                  create_date: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 is_service_role_policy: Optional[pulumi.Input[int]] = None,
                  policy_document: Optional[pulumi.Input[str]] = None,
                  policy_name: Optional[pulumi.Input[str]] = None,
                  policy_trn: Optional[pulumi.Input[str]] = None,
@@ -77,18 +80,27 @@ class _PolicyState:
                  update_date: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Policy resources.
+        :param pulumi.Input[int] attachment_count: The attachment count of the Policy.
+        :param pulumi.Input[str] category: The category of the Policy.
         :param pulumi.Input[str] create_date: The create time of the Policy.
         :param pulumi.Input[str] description: The description of the Policy.
+        :param pulumi.Input[int] is_service_role_policy: Whether the Policy is a service role policy.
         :param pulumi.Input[str] policy_document: The document of the Policy.
         :param pulumi.Input[str] policy_name: The name of the Policy.
         :param pulumi.Input[str] policy_trn: The resource name of the Policy.
         :param pulumi.Input[str] policy_type: The type of the Policy.
         :param pulumi.Input[str] update_date: The update time of the Policy.
         """
+        if attachment_count is not None:
+            pulumi.set(__self__, "attachment_count", attachment_count)
+        if category is not None:
+            pulumi.set(__self__, "category", category)
         if create_date is not None:
             pulumi.set(__self__, "create_date", create_date)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if is_service_role_policy is not None:
+            pulumi.set(__self__, "is_service_role_policy", is_service_role_policy)
         if policy_document is not None:
             pulumi.set(__self__, "policy_document", policy_document)
         if policy_name is not None:
@@ -99,6 +111,30 @@ class _PolicyState:
             pulumi.set(__self__, "policy_type", policy_type)
         if update_date is not None:
             pulumi.set(__self__, "update_date", update_date)
+
+    @property
+    @pulumi.getter(name="attachmentCount")
+    def attachment_count(self) -> Optional[pulumi.Input[int]]:
+        """
+        The attachment count of the Policy.
+        """
+        return pulumi.get(self, "attachment_count")
+
+    @attachment_count.setter
+    def attachment_count(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "attachment_count", value)
+
+    @property
+    @pulumi.getter
+    def category(self) -> Optional[pulumi.Input[str]]:
+        """
+        The category of the Policy.
+        """
+        return pulumi.get(self, "category")
+
+    @category.setter
+    def category(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "category", value)
 
     @property
     @pulumi.getter(name="createDate")
@@ -123,6 +159,18 @@ class _PolicyState:
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="isServiceRolePolicy")
+    def is_service_role_policy(self) -> Optional[pulumi.Input[int]]:
+        """
+        Whether the Policy is a service role policy.
+        """
+        return pulumi.get(self, "is_service_role_policy")
+
+    @is_service_role_policy.setter
+    def is_service_role_policy(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "is_service_role_policy", value)
 
     @property
     @pulumi.getter(name="policyDocument")
@@ -203,9 +251,9 @@ class Policy(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.iam.Policy("foo",
-            description="acc-test",
+            description="acc-modify",
             policy_document="{\\"Statement\\":[{\\"Effect\\":\\"Allow\\",\\"Action\\":[\\"auto_scaling:DescribeScalingGroups\\"],\\"Resource\\":[\\"*\\"]}]}",
-            policy_name="acc-test-policy")
+            policy_name="acc-test")
         ```
 
         ## Import
@@ -237,9 +285,9 @@ class Policy(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.iam.Policy("foo",
-            description="acc-test",
+            description="acc-modify",
             policy_document="{\\"Statement\\":[{\\"Effect\\":\\"Allow\\",\\"Action\\":[\\"auto_scaling:DescribeScalingGroups\\"],\\"Resource\\":[\\"*\\"]}]}",
-            policy_name="acc-test-policy")
+            policy_name="acc-test")
         ```
 
         ## Import
@@ -284,7 +332,10 @@ class Policy(pulumi.CustomResource):
             if policy_name is None and not opts.urn:
                 raise TypeError("Missing required property 'policy_name'")
             __props__.__dict__["policy_name"] = policy_name
+            __props__.__dict__["attachment_count"] = None
+            __props__.__dict__["category"] = None
             __props__.__dict__["create_date"] = None
+            __props__.__dict__["is_service_role_policy"] = None
             __props__.__dict__["policy_trn"] = None
             __props__.__dict__["policy_type"] = None
             __props__.__dict__["update_date"] = None
@@ -298,8 +349,11 @@ class Policy(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            attachment_count: Optional[pulumi.Input[int]] = None,
+            category: Optional[pulumi.Input[str]] = None,
             create_date: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
+            is_service_role_policy: Optional[pulumi.Input[int]] = None,
             policy_document: Optional[pulumi.Input[str]] = None,
             policy_name: Optional[pulumi.Input[str]] = None,
             policy_trn: Optional[pulumi.Input[str]] = None,
@@ -312,8 +366,11 @@ class Policy(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[int] attachment_count: The attachment count of the Policy.
+        :param pulumi.Input[str] category: The category of the Policy.
         :param pulumi.Input[str] create_date: The create time of the Policy.
         :param pulumi.Input[str] description: The description of the Policy.
+        :param pulumi.Input[int] is_service_role_policy: Whether the Policy is a service role policy.
         :param pulumi.Input[str] policy_document: The document of the Policy.
         :param pulumi.Input[str] policy_name: The name of the Policy.
         :param pulumi.Input[str] policy_trn: The resource name of the Policy.
@@ -324,14 +381,33 @@ class Policy(pulumi.CustomResource):
 
         __props__ = _PolicyState.__new__(_PolicyState)
 
+        __props__.__dict__["attachment_count"] = attachment_count
+        __props__.__dict__["category"] = category
         __props__.__dict__["create_date"] = create_date
         __props__.__dict__["description"] = description
+        __props__.__dict__["is_service_role_policy"] = is_service_role_policy
         __props__.__dict__["policy_document"] = policy_document
         __props__.__dict__["policy_name"] = policy_name
         __props__.__dict__["policy_trn"] = policy_trn
         __props__.__dict__["policy_type"] = policy_type
         __props__.__dict__["update_date"] = update_date
         return Policy(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="attachmentCount")
+    def attachment_count(self) -> pulumi.Output[int]:
+        """
+        The attachment count of the Policy.
+        """
+        return pulumi.get(self, "attachment_count")
+
+    @property
+    @pulumi.getter
+    def category(self) -> pulumi.Output[str]:
+        """
+        The category of the Policy.
+        """
+        return pulumi.get(self, "category")
 
     @property
     @pulumi.getter(name="createDate")
@@ -348,6 +424,14 @@ class Policy(pulumi.CustomResource):
         The description of the Policy.
         """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="isServiceRolePolicy")
+    def is_service_role_policy(self) -> pulumi.Output[int]:
+        """
+        Whether the Policy is a service role policy.
+        """
+        return pulumi.get(self, "is_service_role_policy")
 
     @property
     @pulumi.getter(name="policyDocument")

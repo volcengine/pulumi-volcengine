@@ -14,7 +14,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.iam.getAccessKeys({});
+ * const default = volcengine.iam.getAccessKeys({});
  * ```
  */
 export function getAccessKeys(args?: GetAccessKeysArgs, opts?: pulumi.InvokeOptions): Promise<GetAccessKeysResult> {
@@ -22,7 +22,6 @@ export function getAccessKeys(args?: GetAccessKeysArgs, opts?: pulumi.InvokeOpti
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:iam/getAccessKeys:getAccessKeys", {
-        "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
         "userName": args.userName,
     }, opts);
@@ -33,15 +32,11 @@ export function getAccessKeys(args?: GetAccessKeysArgs, opts?: pulumi.InvokeOpti
  */
 export interface GetAccessKeysArgs {
     /**
-     * A Name Regex of IAM.
-     */
-    nameRegex?: string;
-    /**
      * File name where to save data source results.
      */
     outputFile?: string;
     /**
-     * The user names.
+     * The user name.
      */
     userName?: string;
 }
@@ -58,7 +53,6 @@ export interface GetAccessKeysResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    readonly nameRegex?: string;
     readonly outputFile?: string;
     /**
      * The total count of user query.
@@ -77,7 +71,7 @@ export interface GetAccessKeysResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.iam.getAccessKeys({});
+ * const default = volcengine.iam.getAccessKeys({});
  * ```
  */
 export function getAccessKeysOutput(args?: GetAccessKeysOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAccessKeysResult> {
@@ -89,15 +83,11 @@ export function getAccessKeysOutput(args?: GetAccessKeysOutputArgs, opts?: pulum
  */
 export interface GetAccessKeysOutputArgs {
     /**
-     * A Name Regex of IAM.
-     */
-    nameRegex?: pulumi.Input<string>;
-    /**
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
     /**
-     * The user names.
+     * The user name.
      */
     userName?: pulumi.Input<string>;
 }

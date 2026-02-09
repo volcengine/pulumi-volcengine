@@ -26,16 +26,8 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := iam.NewUserGroup(ctx, "fooUserGroup", &iam.UserGroupArgs{
-//				Description:   pulumi.String("acc-test"),
-//				DisplayName:   pulumi.String("acc-test"),
-//				UserGroupName: pulumi.String("acc-test-group"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = iam.GetUserGroups(ctx, &iam.GetUserGroupsArgs{
-//				Query: pulumi.StringRef("acc-test"),
+//			_, err := iam.GetUserGroups(ctx, &iam.GetUserGroupsArgs{
+//				Query: pulumi.StringRef("xRqElT"),
 //			}, nil)
 //			if err != nil {
 //				return err
@@ -61,7 +53,7 @@ func UserGroups(ctx *pulumi.Context, args *UserGroupsArgs, opts ...pulumi.Invoke
 type UserGroupsArgs struct {
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
-	// Fuzzy search, supports searching for user group names, display names, and remarks.
+	// Fuzzy query. Can query by user group name, display name or description.
 	Query *string `pulumi:"query"`
 }
 
@@ -94,7 +86,7 @@ func UserGroupsOutput(ctx *pulumi.Context, args UserGroupsOutputArgs, opts ...pu
 type UserGroupsOutputArgs struct {
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
-	// Fuzzy search, supports searching for user group names, display names, and remarks.
+	// Fuzzy query. Can query by user group name, display name or description.
 	Query pulumi.StringPtrInput `pulumi:"query"`
 }
 

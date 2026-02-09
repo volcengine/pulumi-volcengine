@@ -90,7 +90,7 @@ def saml_providers(output_file: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.iam.get_saml_providers()
+    default = volcengine.iam.get_saml_providers()
     ```
 
 
@@ -120,7 +120,7 @@ def saml_providers_output(output_file: Optional[pulumi.Input[Optional[str]]] = N
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.iam.get_saml_providers()
+    default = volcengine.iam.get_saml_providers()
     ```
 
 

@@ -207,7 +207,7 @@ class Project(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.tls.Project("foo",
-            description="tf-desc",
+            description="tf-desc-modify",
             iam_project_name="default",
             project_name="tf-project-m",
             region="cn-guilin-boe",
@@ -254,7 +254,7 @@ class Project(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.tls.Project("foo",
-            description="tf-desc",
+            description="tf-desc-modify",
             iam_project_name="default",
             project_name="tf-project-m",
             region="cn-guilin-boe",

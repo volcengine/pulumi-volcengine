@@ -21,19 +21,17 @@ namespace Pulumi.Volcengine.Iam
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var fooUser = new Volcengine.Iam.User("fooUser", new()
+    ///     var foo = new Volcengine.Iam.LoginProfile("foo", new()
     ///     {
-    ///         UserName = "acc-test-user",
-    ///         Description = "acc-test",
-    ///         DisplayName = "name",
-    ///     });
-    /// 
-    ///     var fooLoginProfile = new Volcengine.Iam.LoginProfile("fooLoginProfile", new()
-    ///     {
-    ///         UserName = fooUser.UserName,
-    ///         Password = "93f0cb0614Aab12",
     ///         LoginAllowed = true,
-    ///         PasswordResetRequired = false,
+    ///         Password = "",
+    ///         PasswordResetRequired = true,
+    ///         SafeAuthExemptDuration = 1,
+    ///         SafeAuthExemptRequired = 1,
+    ///         SafeAuthExemptUnit = 1,
+    ///         SafeAuthFlag = true,
+    ///         SafeAuthType = "phone",
+    ///         UserName = "jonny",
     ///     });
     /// 
     /// });
@@ -51,10 +49,40 @@ namespace Pulumi.Volcengine.Iam
     public partial class LoginProfile : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// The create date.
+        /// </summary>
+        [Output("createDate")]
+        public Output<string> CreateDate { get; private set; } = null!;
+
+        /// <summary>
+        /// The last login date.
+        /// </summary>
+        [Output("lastLoginDate")]
+        public Output<string> LastLoginDate { get; private set; } = null!;
+
+        /// <summary>
+        /// The last login ip.
+        /// </summary>
+        [Output("lastLoginIp")]
+        public Output<string> LastLoginIp { get; private set; } = null!;
+
+        /// <summary>
+        /// The last reset password time.
+        /// </summary>
+        [Output("lastResetPasswordTime")]
+        public Output<int> LastResetPasswordTime { get; private set; } = null!;
+
+        /// <summary>
         /// The flag of login allowed.
         /// </summary>
         [Output("loginAllowed")]
-        public Output<bool?> LoginAllowed { get; private set; } = null!;
+        public Output<bool> LoginAllowed { get; private set; } = null!;
+
+        /// <summary>
+        /// The flag of login locked.
+        /// </summary>
+        [Output("loginLocked")]
+        public Output<bool> LoginLocked { get; private set; } = null!;
 
         /// <summary>
         /// The password.
@@ -63,10 +91,58 @@ namespace Pulumi.Volcengine.Iam
         public Output<string> Password { get; private set; } = null!;
 
         /// <summary>
+        /// The password expire at.
+        /// </summary>
+        [Output("passwordExpireAt")]
+        public Output<int> PasswordExpireAt { get; private set; } = null!;
+
+        /// <summary>
         /// Is required reset password when next time login in.
         /// </summary>
         [Output("passwordResetRequired")]
-        public Output<bool?> PasswordResetRequired { get; private set; } = null!;
+        public Output<bool> PasswordResetRequired { get; private set; } = null!;
+
+        /// <summary>
+        /// The duration of safe auth exempt.
+        /// </summary>
+        [Output("safeAuthExemptDuration")]
+        public Output<int> SafeAuthExemptDuration { get; private set; } = null!;
+
+        /// <summary>
+        /// The flag of safe auth exempt required.
+        /// </summary>
+        [Output("safeAuthExemptRequired")]
+        public Output<int> SafeAuthExemptRequired { get; private set; } = null!;
+
+        /// <summary>
+        /// The unit of safe auth exempt.
+        /// </summary>
+        [Output("safeAuthExemptUnit")]
+        public Output<int> SafeAuthExemptUnit { get; private set; } = null!;
+
+        /// <summary>
+        /// The flag of safe auth.
+        /// </summary>
+        [Output("safeAuthFlag")]
+        public Output<bool> SafeAuthFlag { get; private set; } = null!;
+
+        /// <summary>
+        /// The type of safe auth.
+        /// </summary>
+        [Output("safeAuthType")]
+        public Output<string> SafeAuthType { get; private set; } = null!;
+
+        /// <summary>
+        /// The update date.
+        /// </summary>
+        [Output("updateDate")]
+        public Output<string> UpdateDate { get; private set; } = null!;
+
+        /// <summary>
+        /// The user id.
+        /// </summary>
+        [Output("userId")]
+        public Output<int> UserId { get; private set; } = null!;
 
         /// <summary>
         /// The user name.
@@ -154,6 +230,36 @@ namespace Pulumi.Volcengine.Iam
         public Input<bool>? PasswordResetRequired { get; set; }
 
         /// <summary>
+        /// The duration of safe auth exempt.
+        /// </summary>
+        [Input("safeAuthExemptDuration")]
+        public Input<int>? SafeAuthExemptDuration { get; set; }
+
+        /// <summary>
+        /// The flag of safe auth exempt required.
+        /// </summary>
+        [Input("safeAuthExemptRequired")]
+        public Input<int>? SafeAuthExemptRequired { get; set; }
+
+        /// <summary>
+        /// The unit of safe auth exempt.
+        /// </summary>
+        [Input("safeAuthExemptUnit")]
+        public Input<int>? SafeAuthExemptUnit { get; set; }
+
+        /// <summary>
+        /// The flag of safe auth.
+        /// </summary>
+        [Input("safeAuthFlag")]
+        public Input<bool>? SafeAuthFlag { get; set; }
+
+        /// <summary>
+        /// The type of safe auth.
+        /// </summary>
+        [Input("safeAuthType")]
+        public Input<string>? SafeAuthType { get; set; }
+
+        /// <summary>
         /// The user name.
         /// </summary>
         [Input("userName", required: true)]
@@ -168,10 +274,40 @@ namespace Pulumi.Volcengine.Iam
     public sealed class LoginProfileState : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The create date.
+        /// </summary>
+        [Input("createDate")]
+        public Input<string>? CreateDate { get; set; }
+
+        /// <summary>
+        /// The last login date.
+        /// </summary>
+        [Input("lastLoginDate")]
+        public Input<string>? LastLoginDate { get; set; }
+
+        /// <summary>
+        /// The last login ip.
+        /// </summary>
+        [Input("lastLoginIp")]
+        public Input<string>? LastLoginIp { get; set; }
+
+        /// <summary>
+        /// The last reset password time.
+        /// </summary>
+        [Input("lastResetPasswordTime")]
+        public Input<int>? LastResetPasswordTime { get; set; }
+
+        /// <summary>
         /// The flag of login allowed.
         /// </summary>
         [Input("loginAllowed")]
         public Input<bool>? LoginAllowed { get; set; }
+
+        /// <summary>
+        /// The flag of login locked.
+        /// </summary>
+        [Input("loginLocked")]
+        public Input<bool>? LoginLocked { get; set; }
 
         [Input("password")]
         private Input<string>? _password;
@@ -190,10 +326,58 @@ namespace Pulumi.Volcengine.Iam
         }
 
         /// <summary>
+        /// The password expire at.
+        /// </summary>
+        [Input("passwordExpireAt")]
+        public Input<int>? PasswordExpireAt { get; set; }
+
+        /// <summary>
         /// Is required reset password when next time login in.
         /// </summary>
         [Input("passwordResetRequired")]
         public Input<bool>? PasswordResetRequired { get; set; }
+
+        /// <summary>
+        /// The duration of safe auth exempt.
+        /// </summary>
+        [Input("safeAuthExemptDuration")]
+        public Input<int>? SafeAuthExemptDuration { get; set; }
+
+        /// <summary>
+        /// The flag of safe auth exempt required.
+        /// </summary>
+        [Input("safeAuthExemptRequired")]
+        public Input<int>? SafeAuthExemptRequired { get; set; }
+
+        /// <summary>
+        /// The unit of safe auth exempt.
+        /// </summary>
+        [Input("safeAuthExemptUnit")]
+        public Input<int>? SafeAuthExemptUnit { get; set; }
+
+        /// <summary>
+        /// The flag of safe auth.
+        /// </summary>
+        [Input("safeAuthFlag")]
+        public Input<bool>? SafeAuthFlag { get; set; }
+
+        /// <summary>
+        /// The type of safe auth.
+        /// </summary>
+        [Input("safeAuthType")]
+        public Input<string>? SafeAuthType { get; set; }
+
+        /// <summary>
+        /// The update date.
+        /// </summary>
+        [Input("updateDate")]
+        public Input<string>? UpdateDate { get; set; }
+
+        /// <summary>
+        /// The user id.
+        /// </summary>
+        [Input("userId")]
+        public Input<int>? UserId { get; set; }
 
         /// <summary>
         /// The user name.

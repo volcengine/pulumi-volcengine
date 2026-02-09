@@ -36,32 +36,36 @@ import (
 //				},
 //				KeyValues: tls.IndexKeyValueArray{
 //					&tls.IndexKeyValueArgs{
+//						AutoIndexFlag:  pulumi.Bool(false),
 //						CaseSensitive:  pulumi.Bool(true),
 //						Delimiter:      pulumi.String("!"),
 //						IncludeChinese: pulumi.Bool(false),
 //						IndexAll:       pulumi.Bool(true),
+//						IndexSqlAll:    pulumi.Bool(true),
 //						JsonKeys: tls.IndexKeyValueJsonKeyArray{
 //							&tls.IndexKeyValueJsonKeyArgs{
-//								Key:       pulumi.String("name"),
+//								Key:       pulumi.String("name-2"),
 //								ValueType: pulumi.String("text"),
 //							},
 //							&tls.IndexKeyValueJsonKeyArgs{
-//								Key:       pulumi.String("key"),
+//								Key:       pulumi.String("key-2"),
 //								ValueType: pulumi.String("long"),
 //							},
 //						},
-//						Key:       pulumi.String("k1"),
+//						Key:       pulumi.String("k21"),
 //						SqlFlag:   pulumi.Bool(true),
 //						ValueType: pulumi.String("json"),
 //					},
 //				},
 //				MaxTextLen: pulumi.Int(2048),
-//				TopicId:    pulumi.String("b600dc34-503f-42fc-8e32-953af55463d1"),
+//				TopicId:    pulumi.String("c36ed436-84f1-467a-b00e-ba504db753ca"),
 //				UserInnerKeyValues: tls.IndexUserInnerKeyValueArray{
 //					&tls.IndexUserInnerKeyValueArgs{
-//						CaseSensitive:  pulumi.Bool(false),
+//						AutoIndexFlag:  pulumi.Bool(false),
 //						Delimiter:      pulumi.String(",:-/ "),
 //						IncludeChinese: pulumi.Bool(false),
+//						IndexAll:       pulumi.Bool(true),
+//						IndexSqlAll:    pulumi.Bool(true),
 //						JsonKeys: tls.IndexUserInnerKeyValueJsonKeyArray{
 //							&tls.IndexUserInnerKeyValueJsonKeyArgs{
 //								Key:       pulumi.String("app"),
@@ -73,7 +77,7 @@ import (
 //							},
 //						},
 //						Key:       pulumi.String("__content__"),
-//						SqlFlag:   pulumi.Bool(false),
+//						SqlFlag:   pulumi.Bool(true),
 //						ValueType: pulumi.String("json"),
 //					},
 //				},
@@ -92,7 +96,7 @@ import (
 // Tls Index can be imported using the topic id, e.g.
 //
 // ```sh
-// $ pulumi import volcengine:tls/index:Index default index:edf051ed-3c46-49ba-9339-bea628fe****
+// $ pulumi import volcengine:tls/index:Index default edf051ed-3c46-49ba-9339-bea628fe****
 // ```
 type Index struct {
 	pulumi.CustomResourceState

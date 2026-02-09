@@ -26,7 +26,7 @@ namespace Pulumi.Volcengine.Tls.Outputs
         /// </summary>
         public readonly bool IncludeChinese;
         /// <summary>
-        /// The key of the KeyValue index.
+        /// The key of the KeyValueInfo.
         /// </summary>
         public readonly string Key;
         /// <summary>
@@ -34,7 +34,7 @@ namespace Pulumi.Volcengine.Tls.Outputs
         /// </summary>
         public readonly bool SqlFlag;
         /// <summary>
-        /// The type of value.
+        /// The type of value. Valid values: `long`, `double`, `text`, `json`.
         /// </summary>
         public readonly string ValueType;
 

@@ -176,7 +176,7 @@ class TraceInstance(pulumi.CustomResource):
         # Example: Create a TLS trace instance
         foo = volcengine.tls.TraceInstance("foo",
             project_id="bdb87e4d-7dad-4b96-ac43-e1b09e9dc8ac",
-            trace_instance_name="tf-trace-instance",
+            trace_instance_name="tf-trace-instance-df",
             description="This is an example trace instance",
             backend_config=volcengine.tls.TraceInstanceBackendConfigArgs(
                 ttl=60,
@@ -224,7 +224,7 @@ class TraceInstance(pulumi.CustomResource):
         # Example: Create a TLS trace instance
         foo = volcengine.tls.TraceInstance("foo",
             project_id="bdb87e4d-7dad-4b96-ac43-e1b09e9dc8ac",
-            trace_instance_name="tf-trace-instance",
+            trace_instance_name="tf-trace-instance-df",
             description="This is an example trace instance",
             backend_config=volcengine.tls.TraceInstanceBackendConfigArgs(
                 ttl=60,

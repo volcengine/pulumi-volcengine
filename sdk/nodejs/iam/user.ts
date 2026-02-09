@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -15,7 +17,13 @@ import * as utilities from "../utilities";
  * const foo = new volcengine.iam.User("foo", {
  *     description: "test",
  *     displayName: "name",
- *     userName: "tf-test",
+ *     email: "test@example.com",
+ *     mobilePhone: "+8618800000000",
+ *     tags: [{
+ *         key: "key1",
+ *         value: "value1",
+ *     }],
+ *     userName: "jonny",
  * });
  * ```
  *
@@ -80,13 +88,17 @@ export class User extends pulumi.CustomResource {
      */
     public /*out*/ readonly emailIsVerify!: pulumi.Output<boolean>;
     /**
-     * The mobile phone of the user.
+     * The mobile phone of the user, reference: +8618088888888.
      */
     public readonly mobilePhone!: pulumi.Output<string | undefined>;
     /**
      * Whether the phone number has been verified.
      */
     public /*out*/ readonly mobilePhoneIsVerify!: pulumi.Output<boolean>;
+    /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.iam.UserTag[] | undefined>;
     /**
      * The trn of the user.
      */
@@ -125,6 +137,7 @@ export class User extends pulumi.CustomResource {
             resourceInputs["emailIsVerify"] = state ? state.emailIsVerify : undefined;
             resourceInputs["mobilePhone"] = state ? state.mobilePhone : undefined;
             resourceInputs["mobilePhoneIsVerify"] = state ? state.mobilePhoneIsVerify : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["trn"] = state ? state.trn : undefined;
             resourceInputs["updateDate"] = state ? state.updateDate : undefined;
             resourceInputs["userId"] = state ? state.userId : undefined;
@@ -138,6 +151,7 @@ export class User extends pulumi.CustomResource {
             resourceInputs["displayName"] = args ? args.displayName : undefined;
             resourceInputs["email"] = args ? args.email : undefined;
             resourceInputs["mobilePhone"] = args ? args.mobilePhone : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["userName"] = args ? args.userName : undefined;
             resourceInputs["accountId"] = undefined /*out*/;
             resourceInputs["createDate"] = undefined /*out*/;
@@ -181,13 +195,17 @@ export interface UserState {
      */
     emailIsVerify?: pulumi.Input<boolean>;
     /**
-     * The mobile phone of the user.
+     * The mobile phone of the user, reference: +8618088888888.
      */
     mobilePhone?: pulumi.Input<string>;
     /**
      * Whether the phone number has been verified.
      */
     mobilePhoneIsVerify?: pulumi.Input<boolean>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.iam.UserTag>[]>;
     /**
      * The trn of the user.
      */
@@ -223,9 +241,13 @@ export interface UserArgs {
      */
     email?: pulumi.Input<string>;
     /**
-     * The mobile phone of the user.
+     * The mobile phone of the user, reference: +8618088888888.
      */
     mobilePhone?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.iam.UserTag>[]>;
     /**
      * The name of the user.
      */

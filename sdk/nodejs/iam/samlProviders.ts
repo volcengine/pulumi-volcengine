@@ -14,7 +14,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.iam.getSamlProviders({});
+ * const default = volcengine.iam.getSamlProviders({});
  * ```
  */
 /** @deprecated volcengine.iam.SamlProviders has been deprecated in favor of volcengine.iam.getSamlProviders */
@@ -64,7 +64,7 @@ export interface SamlProvidersResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.iam.getSamlProviders({});
+ * const default = volcengine.iam.getSamlProviders({});
  * ```
  */
 /** @deprecated volcengine.iam.SamlProviders has been deprecated in favor of volcengine.iam.getSamlProviders */
