@@ -23,30 +23,9 @@ namespace Pulumi.Volcengine.Iam
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var fooPolicy = new Volcengine.Iam.Policy("fooPolicy", new()
+        ///     var @default = Volcengine.Iam.GetUserGroupPolicyAttachments.Invoke(new()
         ///     {
-        ///         PolicyName = "acc-test-policy",
-        ///         Description = "acc-test",
-        ///         PolicyDocument = "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"auto_scaling:DescribeScalingGroups\"],\"Resource\":[\"*\"]}]}",
-        ///     });
-        /// 
-        ///     var fooUserGroup = new Volcengine.Iam.UserGroup("fooUserGroup", new()
-        ///     {
-        ///         UserGroupName = "acc-test-group",
-        ///         Description = "acc-test",
-        ///         DisplayName = "acc-test",
-        ///     });
-        /// 
-        ///     var fooUserGroupPolicyAttachment = new Volcengine.Iam.UserGroupPolicyAttachment("fooUserGroupPolicyAttachment", new()
-        ///     {
-        ///         PolicyName = fooPolicy.PolicyName,
-        ///         PolicyType = "Custom",
-        ///         UserGroupName = fooUserGroup.UserGroupName,
-        ///     });
-        /// 
-        ///     var fooUserGroupPolicyAttachments = Volcengine.Iam.GetUserGroupPolicyAttachments.Invoke(new()
-        ///     {
-        ///         UserGroupName = fooUserGroupPolicyAttachment.UserGroupName,
+        ///         UserGroupName = "xRqElT",
         ///     });
         /// 
         /// });
@@ -67,30 +46,9 @@ namespace Pulumi.Volcengine.Iam
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var fooPolicy = new Volcengine.Iam.Policy("fooPolicy", new()
+        ///     var @default = Volcengine.Iam.GetUserGroupPolicyAttachments.Invoke(new()
         ///     {
-        ///         PolicyName = "acc-test-policy",
-        ///         Description = "acc-test",
-        ///         PolicyDocument = "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"auto_scaling:DescribeScalingGroups\"],\"Resource\":[\"*\"]}]}",
-        ///     });
-        /// 
-        ///     var fooUserGroup = new Volcengine.Iam.UserGroup("fooUserGroup", new()
-        ///     {
-        ///         UserGroupName = "acc-test-group",
-        ///         Description = "acc-test",
-        ///         DisplayName = "acc-test",
-        ///     });
-        /// 
-        ///     var fooUserGroupPolicyAttachment = new Volcengine.Iam.UserGroupPolicyAttachment("fooUserGroupPolicyAttachment", new()
-        ///     {
-        ///         PolicyName = fooPolicy.PolicyName,
-        ///         PolicyType = "Custom",
-        ///         UserGroupName = fooUserGroup.UserGroupName,
-        ///     });
-        /// 
-        ///     var fooUserGroupPolicyAttachments = Volcengine.Iam.GetUserGroupPolicyAttachments.Invoke(new()
-        ///     {
-        ///         UserGroupName = fooUserGroupPolicyAttachment.UserGroupName,
+        ///         UserGroupName = "xRqElT",
         ///     });
         /// 
         /// });

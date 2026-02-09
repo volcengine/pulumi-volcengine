@@ -22,37 +22,25 @@ class GetPoliciesResult:
     """
     A collection of values returned by getPolicies.
     """
-    def __init__(__self__, id=None, name_regex=None, output_file=None, policies=None, query=None, role_name=None, scope=None, status=None, total_count=None, user_name=None):
+    def __init__(__self__, id=None, output_file=None, policies=None, scope=None, total_count=None, with_service_role_policy=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
-        if name_regex and not isinstance(name_regex, str):
-            raise TypeError("Expected argument 'name_regex' to be a str")
-        pulumi.set(__self__, "name_regex", name_regex)
         if output_file and not isinstance(output_file, str):
             raise TypeError("Expected argument 'output_file' to be a str")
         pulumi.set(__self__, "output_file", output_file)
         if policies and not isinstance(policies, list):
             raise TypeError("Expected argument 'policies' to be a list")
         pulumi.set(__self__, "policies", policies)
-        if query and not isinstance(query, str):
-            raise TypeError("Expected argument 'query' to be a str")
-        pulumi.set(__self__, "query", query)
-        if role_name and not isinstance(role_name, str):
-            raise TypeError("Expected argument 'role_name' to be a str")
-        pulumi.set(__self__, "role_name", role_name)
         if scope and not isinstance(scope, str):
             raise TypeError("Expected argument 'scope' to be a str")
         pulumi.set(__self__, "scope", scope)
-        if status and not isinstance(status, str):
-            raise TypeError("Expected argument 'status' to be a str")
-        pulumi.set(__self__, "status", status)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
-        if user_name and not isinstance(user_name, str):
-            raise TypeError("Expected argument 'user_name' to be a str")
-        pulumi.set(__self__, "user_name", user_name)
+        if with_service_role_policy and not isinstance(with_service_role_policy, int):
+            raise TypeError("Expected argument 'with_service_role_policy' to be a int")
+        pulumi.set(__self__, "with_service_role_policy", with_service_role_policy)
 
     @property
     @pulumi.getter
@@ -61,11 +49,6 @@ class GetPoliciesResult:
         The provider-assigned unique ID for this managed resource.
         """
         return pulumi.get(self, "id")
-
-    @property
-    @pulumi.getter(name="nameRegex")
-    def name_regex(self) -> Optional[str]:
-        return pulumi.get(self, "name_regex")
 
     @property
     @pulumi.getter(name="outputFile")
@@ -82,26 +65,8 @@ class GetPoliciesResult:
 
     @property
     @pulumi.getter
-    def query(self) -> Optional[str]:
-        return pulumi.get(self, "query")
-
-    @property
-    @pulumi.getter(name="roleName")
-    def role_name(self) -> Optional[str]:
-        """
-        The name of the IAM role.The data show only query with role_name.
-        """
-        return pulumi.get(self, "role_name")
-
-    @property
-    @pulumi.getter
     def scope(self) -> Optional[str]:
         return pulumi.get(self, "scope")
-
-    @property
-    @pulumi.getter
-    def status(self) -> Optional[str]:
-        return pulumi.get(self, "status")
 
     @property
     @pulumi.getter(name="totalCount")
@@ -112,12 +77,9 @@ class GetPoliciesResult:
         return pulumi.get(self, "total_count")
 
     @property
-    @pulumi.getter(name="userName")
-    def user_name(self) -> Optional[str]:
-        """
-        The name of the IAM user.The data show only query with user_name.
-        """
-        return pulumi.get(self, "user_name")
+    @pulumi.getter(name="withServiceRolePolicy")
+    def with_service_role_policy(self) -> Optional[int]:
+        return pulumi.get(self, "with_service_role_policy")
 
 
 class AwaitableGetPoliciesResult(GetPoliciesResult):
@@ -127,24 +89,16 @@ class AwaitableGetPoliciesResult(GetPoliciesResult):
             yield self
         return GetPoliciesResult(
             id=self.id,
-            name_regex=self.name_regex,
             output_file=self.output_file,
             policies=self.policies,
-            query=self.query,
-            role_name=self.role_name,
             scope=self.scope,
-            status=self.status,
             total_count=self.total_count,
-            user_name=self.user_name)
+            with_service_role_policy=self.with_service_role_policy)
 
 
-def get_policies(name_regex: Optional[str] = None,
-                 output_file: Optional[str] = None,
-                 query: Optional[str] = None,
-                 role_name: Optional[str] = None,
+def get_policies(output_file: Optional[str] = None,
                  scope: Optional[str] = None,
-                 status: Optional[str] = None,
-                 user_name: Optional[str] = None,
+                 with_service_role_policy: Optional[int] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPoliciesResult:
     """
     Use this data source to query detailed information of iam policies
@@ -154,54 +108,34 @@ def get_policies(name_regex: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_policy = volcengine.iam.Policy("fooPolicy",
-        policy_name="acc-test-policy",
-        description="acc-test",
-        policy_document="{\\"Statement\\":[{\\"Effect\\":\\"Allow\\",\\"Action\\":[\\"auto_scaling:DescribeScalingGroups\\"],\\"Resource\\":[\\"*\\"]}]}")
-    foo_policies = foo_policy.description.apply(lambda description: volcengine.iam.get_policies_output(query=description))
+    default = volcengine.iam.get_policies(scope="Custom")
     ```
 
 
-    :param str name_regex: A Name Regex of Policy.
     :param str output_file: File name where to save data source results.
-    :param str query: Query policies, support policy name or description.
-    :param str role_name: The name of the IAM role.
     :param str scope: The scope of the Policy.
-    :param str status: The status of policy.
-    :param str user_name: The name of the IAM user.
+    :param int with_service_role_policy: Whether to return the service role policy.
     """
     __args__ = dict()
-    __args__['nameRegex'] = name_regex
     __args__['outputFile'] = output_file
-    __args__['query'] = query
-    __args__['roleName'] = role_name
     __args__['scope'] = scope
-    __args__['status'] = status
-    __args__['userName'] = user_name
+    __args__['withServiceRolePolicy'] = with_service_role_policy
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('volcengine:iam/getPolicies:getPolicies', __args__, opts=opts, typ=GetPoliciesResult).value
 
     return AwaitableGetPoliciesResult(
         id=pulumi.get(__ret__, 'id'),
-        name_regex=pulumi.get(__ret__, 'name_regex'),
         output_file=pulumi.get(__ret__, 'output_file'),
         policies=pulumi.get(__ret__, 'policies'),
-        query=pulumi.get(__ret__, 'query'),
-        role_name=pulumi.get(__ret__, 'role_name'),
         scope=pulumi.get(__ret__, 'scope'),
-        status=pulumi.get(__ret__, 'status'),
         total_count=pulumi.get(__ret__, 'total_count'),
-        user_name=pulumi.get(__ret__, 'user_name'))
+        with_service_role_policy=pulumi.get(__ret__, 'with_service_role_policy'))
 
 
 @_utilities.lift_output_func(get_policies)
-def get_policies_output(name_regex: Optional[pulumi.Input[Optional[str]]] = None,
-                        output_file: Optional[pulumi.Input[Optional[str]]] = None,
-                        query: Optional[pulumi.Input[Optional[str]]] = None,
-                        role_name: Optional[pulumi.Input[Optional[str]]] = None,
+def get_policies_output(output_file: Optional[pulumi.Input[Optional[str]]] = None,
                         scope: Optional[pulumi.Input[Optional[str]]] = None,
-                        status: Optional[pulumi.Input[Optional[str]]] = None,
-                        user_name: Optional[pulumi.Input[Optional[str]]] = None,
+                        with_service_role_policy: Optional[pulumi.Input[Optional[int]]] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPoliciesResult]:
     """
     Use this data source to query detailed information of iam policies
@@ -211,20 +145,12 @@ def get_policies_output(name_regex: Optional[pulumi.Input[Optional[str]]] = None
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_policy = volcengine.iam.Policy("fooPolicy",
-        policy_name="acc-test-policy",
-        description="acc-test",
-        policy_document="{\\"Statement\\":[{\\"Effect\\":\\"Allow\\",\\"Action\\":[\\"auto_scaling:DescribeScalingGroups\\"],\\"Resource\\":[\\"*\\"]}]}")
-    foo_policies = foo_policy.description.apply(lambda description: volcengine.iam.get_policies_output(query=description))
+    default = volcengine.iam.get_policies(scope="Custom")
     ```
 
 
-    :param str name_regex: A Name Regex of Policy.
     :param str output_file: File name where to save data source results.
-    :param str query: Query policies, support policy name or description.
-    :param str role_name: The name of the IAM role.
     :param str scope: The scope of the Policy.
-    :param str status: The status of policy.
-    :param str user_name: The name of the IAM user.
+    :param int with_service_role_policy: Whether to return the service role policy.
     """
     ...

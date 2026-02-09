@@ -24,7 +24,7 @@ namespace Pulumi.Volcengine.Tls
     /// {
     ///     var fooProject = new Volcengine.Tls.Project("fooProject", new()
     ///     {
-    ///         ProjectName = "tf-test-project-ttt",
+    ///         ProjectName = "tf-test-project-x",
     ///         Description = "tf-test-project-desc",
     ///         Region = "cn-guilin-boe",
     ///     });
@@ -32,7 +32,7 @@ namespace Pulumi.Volcengine.Tls
     ///     var fooTopic = new Volcengine.Tls.Topic("fooTopic", new()
     ///     {
     ///         ProjectId = fooProject.Id,
-    ///         TopicName = "tf-test-topic-rule-1",
+    ///         TopicName = "tf-test-topic-rule-x",
     ///         Ttl = 60,
     ///         ShardCount = 2,
     ///         AutoSplit = true,
@@ -44,8 +44,8 @@ namespace Pulumi.Volcengine.Tls
     ///         {
     ///             new Volcengine.Tls.Inputs.TopicTagArgs
     ///             {
-    ///                 Key = "k1",
-    ///                 Value = "v1",
+    ///                 Key = "k2",
+    ///                 Value = "v3",
     ///             },
     ///         },
     ///         LogPublicIp = true,
@@ -155,18 +155,18 @@ namespace Pulumi.Volcengine.Tls
     ///             ContainerNameRegex = ".*test.*",
     ///             IncludeContainerLabelRegex = 
     ///             {
-    ///                 { "Key1", "Value12" },
-    ///                 { "Key2", "Value23" },
+    ///                 { "Key1", "Value122" },
+    ///                 { "Key2", "Value223" },
     ///             },
     ///             ExcludeContainerLabelRegex = 
     ///             {
-    ///                 { "Key1", "Value12" },
-    ///                 { "Key2", "Value22" },
+    ///                 { "Key1", "Value312" },
+    ///                 { "Key2", "Valu5e22" },
     ///             },
     ///             IncludeContainerEnvRegex = 
     ///             {
-    ///                 { "Key1", "Value1" },
-    ///                 { "Key2", "Value2" },
+    ///                 { "Key1", "Val2ue1" },
+    ///                 { "Key2", "Val2ue2" },
     ///             },
     ///             ExcludeContainerEnvRegex = 
     ///             {

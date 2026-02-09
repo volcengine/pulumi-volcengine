@@ -13,6 +13,12 @@ namespace Pulumi.Volcengine.Tls.Inputs
     public sealed class IndexUserInnerKeyValueGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `value_type` is `json`.
+        /// </summary>
+        [Input("autoIndexFlag")]
+        public Input<bool>? AutoIndexFlag { get; set; }
+
+        /// <summary>
         /// Whether the value is case sensitive.
         /// </summary>
         [Input("caseSensitive")]
@@ -29,6 +35,18 @@ namespace Pulumi.Volcengine.Tls.Inputs
         /// </summary>
         [Input("includeChinese")]
         public Input<bool>? IncludeChinese { get; set; }
+
+        /// <summary>
+        /// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `value_type` is `json`.
+        /// </summary>
+        [Input("indexAll")]
+        public Input<bool>? IndexAll { get; set; }
+
+        /// <summary>
+        /// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `value_type` is `json`.
+        /// </summary>
+        [Input("indexSqlAll")]
+        public Input<bool>? IndexSqlAll { get; set; }
 
         [Input("jsonKeys")]
         private InputList<Inputs.IndexUserInnerKeyValueJsonKeyGetArgs>? _jsonKeys;

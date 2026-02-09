@@ -27,9 +27,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := tls.GetIndexes(ctx, &tls.GetIndexesArgs{
-//				Ids: []string{
-//					"9b756385-1dfb-4306-a094-0c88e04b34a5",
-//				},
+//				TopicId: "c36ed436-84f1-467a-b00e-ba504db753ca",
 //			}, nil)
 //			if err != nil {
 //				return err
@@ -51,20 +49,21 @@ func GetIndexes(ctx *pulumi.Context, args *GetIndexesArgs, opts ...pulumi.Invoke
 
 // A collection of arguments for invoking getIndexes.
 type GetIndexesArgs struct {
-	// The list of topic id of tls index.
-	Ids []string `pulumi:"ids"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
+	// The topic id of tls index.
+	TopicId string `pulumi:"topicId"`
 }
 
 // A collection of values returned by getIndexes.
 type GetIndexesResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id         string   `pulumi:"id"`
-	Ids        []string `pulumi:"ids"`
-	OutputFile *string  `pulumi:"outputFile"`
+	Id         string  `pulumi:"id"`
+	OutputFile *string `pulumi:"outputFile"`
 	// The collection of tls index query.
 	TlsIndexes []GetIndexesTlsIndex `pulumi:"tlsIndexes"`
+	// The topic id of the tls index.
+	TopicId string `pulumi:"topicId"`
 	// The total count of tls index query.
 	TotalCount int `pulumi:"totalCount"`
 }
@@ -84,10 +83,10 @@ func GetIndexesOutput(ctx *pulumi.Context, args GetIndexesOutputArgs, opts ...pu
 
 // A collection of arguments for invoking getIndexes.
 type GetIndexesOutputArgs struct {
-	// The list of topic id of tls index.
-	Ids pulumi.StringArrayInput `pulumi:"ids"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// The topic id of tls index.
+	TopicId pulumi.StringInput `pulumi:"topicId"`
 }
 
 func (GetIndexesOutputArgs) ElementType() reflect.Type {
@@ -114,10 +113,6 @@ func (o GetIndexesResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetIndexesResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-func (o GetIndexesResultOutput) Ids() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetIndexesResult) []string { return v.Ids }).(pulumi.StringArrayOutput)
-}
-
 func (o GetIndexesResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetIndexesResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
 }
@@ -125,6 +120,11 @@ func (o GetIndexesResultOutput) OutputFile() pulumi.StringPtrOutput {
 // The collection of tls index query.
 func (o GetIndexesResultOutput) TlsIndexes() GetIndexesTlsIndexArrayOutput {
 	return o.ApplyT(func(v GetIndexesResult) []GetIndexesTlsIndex { return v.TlsIndexes }).(GetIndexesTlsIndexArrayOutput)
+}
+
+// The topic id of the tls index.
+func (o GetIndexesResultOutput) TopicId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIndexesResult) string { return v.TopicId }).(pulumi.StringOutput)
 }
 
 // The total count of tls index query.

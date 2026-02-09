@@ -21,21 +21,12 @@ namespace Pulumi.Volcengine.Iam
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var fooUser = new Volcengine.Iam.User("fooUser", new()
+    ///     var foo = new Volcengine.Iam.AccessKey("foo", new()
     ///     {
-    ///         UserName = "acc-test-user",
-    ///         Description = "acc-test",
-    ///         DisplayName = "name",
-    ///     });
-    /// 
-    ///     var fooAccessKey = new Volcengine.Iam.AccessKey("fooAccessKey", new()
-    ///     {
-    ///         UserName = fooUser.UserName,
-    ///         SecretFile = "./sk",
     ///         Status = "active",
+    ///         UserName = "jonny",
     ///     });
     /// 
-    ///     //  pgp_key = "keybase:some_person_that_exists"
     /// });
     /// ```
     /// 
@@ -47,40 +38,22 @@ namespace Pulumi.Volcengine.Iam
     public partial class AccessKey : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// The access key id.
+        /// </summary>
+        [Output("accessKeyId")]
+        public Output<string> AccessKeyId { get; private set; } = null!;
+
+        /// <summary>
         /// The create date of the access key.
         /// </summary>
         [Output("createDate")]
         public Output<string> CreateDate { get; private set; } = null!;
 
         /// <summary>
-        /// The encrypted secret of the access key by pgp key, base64 encoded.
+        /// The secret access key.
         /// </summary>
-        [Output("encryptedSecret")]
-        public Output<string> EncryptedSecret { get; private set; } = null!;
-
-        /// <summary>
-        /// The key fingerprint of the encrypted secret.
-        /// </summary>
-        [Output("keyFingerprint")]
-        public Output<string> KeyFingerprint { get; private set; } = null!;
-
-        /// <summary>
-        /// Either a base-64 encoded PGP public key, or a keybase username in the form `keybase:some_person_that_exists`.
-        /// </summary>
-        [Output("pgpKey")]
-        public Output<string?> PgpKey { get; private set; } = null!;
-
-        /// <summary>
-        /// The secret of the access key.
-        /// </summary>
-        [Output("secret")]
-        public Output<string> Secret { get; private set; } = null!;
-
-        /// <summary>
-        /// The file to save the access id and secret. Strongly suggest you to specified it when you creating access key, otherwise, you wouldn't get its secret ever.
-        /// </summary>
-        [Output("secretFile")]
-        public Output<string?> SecretFile { get; private set; } = null!;
+        [Output("secretAccessKey")]
+        public Output<string> SecretAccessKey { get; private set; } = null!;
 
         /// <summary>
         /// The status of the access key, Optional choice contains `active` or `inactive`.
@@ -89,7 +62,13 @@ namespace Pulumi.Volcengine.Iam
         public Output<string?> Status { get; private set; } = null!;
 
         /// <summary>
-        /// The user name.
+        /// The update date of the access key.
+        /// </summary>
+        [Output("updateDate")]
+        public Output<string> UpdateDate { get; private set; } = null!;
+
+        /// <summary>
+        /// The user name. If not specified, the current user is used.
         /// </summary>
         [Output("userName")]
         public Output<string> UserName { get; private set; } = null!;
@@ -120,7 +99,7 @@ namespace Pulumi.Volcengine.Iam
                 PluginDownloadURL = "github://api.github.com/volcengine",
                 AdditionalSecretOutputs =
                 {
-                    "secret",
+                    "secretAccessKey",
                 },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
@@ -146,25 +125,13 @@ namespace Pulumi.Volcengine.Iam
     public sealed class AccessKeyArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Either a base-64 encoded PGP public key, or a keybase username in the form `keybase:some_person_that_exists`.
-        /// </summary>
-        [Input("pgpKey")]
-        public Input<string>? PgpKey { get; set; }
-
-        /// <summary>
-        /// The file to save the access id and secret. Strongly suggest you to specified it when you creating access key, otherwise, you wouldn't get its secret ever.
-        /// </summary>
-        [Input("secretFile")]
-        public Input<string>? SecretFile { get; set; }
-
-        /// <summary>
         /// The status of the access key, Optional choice contains `active` or `inactive`.
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
 
         /// <summary>
-        /// The user name.
+        /// The user name. If not specified, the current user is used.
         /// </summary>
         [Input("userName")]
         public Input<string>? UserName { get; set; }
@@ -178,50 +145,32 @@ namespace Pulumi.Volcengine.Iam
     public sealed class AccessKeyState : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The access key id.
+        /// </summary>
+        [Input("accessKeyId")]
+        public Input<string>? AccessKeyId { get; set; }
+
+        /// <summary>
         /// The create date of the access key.
         /// </summary>
         [Input("createDate")]
         public Input<string>? CreateDate { get; set; }
 
-        /// <summary>
-        /// The encrypted secret of the access key by pgp key, base64 encoded.
-        /// </summary>
-        [Input("encryptedSecret")]
-        public Input<string>? EncryptedSecret { get; set; }
+        [Input("secretAccessKey")]
+        private Input<string>? _secretAccessKey;
 
         /// <summary>
-        /// The key fingerprint of the encrypted secret.
+        /// The secret access key.
         /// </summary>
-        [Input("keyFingerprint")]
-        public Input<string>? KeyFingerprint { get; set; }
-
-        /// <summary>
-        /// Either a base-64 encoded PGP public key, or a keybase username in the form `keybase:some_person_that_exists`.
-        /// </summary>
-        [Input("pgpKey")]
-        public Input<string>? PgpKey { get; set; }
-
-        [Input("secret")]
-        private Input<string>? _secret;
-
-        /// <summary>
-        /// The secret of the access key.
-        /// </summary>
-        public Input<string>? Secret
+        public Input<string>? SecretAccessKey
         {
-            get => _secret;
+            get => _secretAccessKey;
             set
             {
                 var emptySecret = Output.CreateSecret(0);
-                _secret = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+                _secretAccessKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
-
-        /// <summary>
-        /// The file to save the access id and secret. Strongly suggest you to specified it when you creating access key, otherwise, you wouldn't get its secret ever.
-        /// </summary>
-        [Input("secretFile")]
-        public Input<string>? SecretFile { get; set; }
 
         /// <summary>
         /// The status of the access key, Optional choice contains `active` or `inactive`.
@@ -230,7 +179,13 @@ namespace Pulumi.Volcengine.Iam
         public Input<string>? Status { get; set; }
 
         /// <summary>
-        /// The user name.
+        /// The update date of the access key.
+        /// </summary>
+        [Input("updateDate")]
+        public Input<string>? UpdateDate { get; set; }
+
+        /// <summary>
+        /// The user name. If not specified, the current user is used.
         /// </summary>
         [Input("userName")]
         public Input<string>? UserName { get; set; }

@@ -23,10 +23,18 @@ namespace Pulumi.Volcengine.Iam
     /// {
     ///     var foo = new Volcengine.Iam.Role("foo", new()
     ///     {
-    ///         Description = "acc-test",
-    ///         DisplayName = "acc-test",
+    ///         Description = "tf-test-modify",
+    ///         DisplayName = "tf-test-modify",
     ///         MaxSessionDuration = 3600,
-    ///         RoleName = "acc-test-role",
+    ///         RoleName = "tf-test-role",
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Iam.Inputs.RoleTagArgs
+    ///             {
+    ///                 Key = "key-modify",
+    ///                 Value = "value-modify",
+    ///             },
+    ///         },
     ///         TrustPolicyDocument = "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"sts:AssumeRole\"],\"Principal\":{\"Service\":[\"auto_scaling\"]}}]}",
     ///     });
     /// 
@@ -54,7 +62,13 @@ namespace Pulumi.Volcengine.Iam
         /// The display name of the Role.
         /// </summary>
         [Output("displayName")]
-        public Output<string> DisplayName { get; private set; } = null!;
+        public Output<string?> DisplayName { get; private set; } = null!;
+
+        /// <summary>
+        /// Whether the Role is a service linked role.
+        /// </summary>
+        [Output("isServiceLinkedRole")]
+        public Output<int> IsServiceLinkedRole { get; private set; } = null!;
 
         /// <summary>
         /// The max session duration of the Role.
@@ -63,10 +77,22 @@ namespace Pulumi.Volcengine.Iam
         public Output<int?> MaxSessionDuration { get; private set; } = null!;
 
         /// <summary>
+        /// The id of the Role.
+        /// </summary>
+        [Output("roleId")]
+        public Output<int> RoleId { get; private set; } = null!;
+
+        /// <summary>
         /// The name of the Role.
         /// </summary>
         [Output("roleName")]
         public Output<string> RoleName { get; private set; } = null!;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<Outputs.RoleTag>> Tags { get; private set; } = null!;
 
         /// <summary>
         /// The resource name of the Role.
@@ -78,7 +104,7 @@ namespace Pulumi.Volcengine.Iam
         /// The trust policy document of the Role.
         /// </summary>
         [Output("trustPolicyDocument")]
-        public Output<string> TrustPolicyDocument { get; private set; } = null!;
+        public Output<string?> TrustPolicyDocument { get; private set; } = null!;
 
 
         /// <summary>
@@ -136,8 +162,8 @@ namespace Pulumi.Volcengine.Iam
         /// <summary>
         /// The display name of the Role.
         /// </summary>
-        [Input("displayName", required: true)]
-        public Input<string> DisplayName { get; set; } = null!;
+        [Input("displayName")]
+        public Input<string>? DisplayName { get; set; }
 
         /// <summary>
         /// The max session duration of the Role.
@@ -151,11 +177,23 @@ namespace Pulumi.Volcengine.Iam
         [Input("roleName", required: true)]
         public Input<string> RoleName { get; set; } = null!;
 
+        [Input("tags")]
+        private InputList<Inputs.RoleTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.RoleTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.RoleTagArgs>());
+            set => _tags = value;
+        }
+
         /// <summary>
         /// The trust policy document of the Role.
         /// </summary>
-        [Input("trustPolicyDocument", required: true)]
-        public Input<string> TrustPolicyDocument { get; set; } = null!;
+        [Input("trustPolicyDocument")]
+        public Input<string>? TrustPolicyDocument { get; set; }
 
         public RoleArgs()
         {
@@ -178,16 +216,40 @@ namespace Pulumi.Volcengine.Iam
         public Input<string>? DisplayName { get; set; }
 
         /// <summary>
+        /// Whether the Role is a service linked role.
+        /// </summary>
+        [Input("isServiceLinkedRole")]
+        public Input<int>? IsServiceLinkedRole { get; set; }
+
+        /// <summary>
         /// The max session duration of the Role.
         /// </summary>
         [Input("maxSessionDuration")]
         public Input<int>? MaxSessionDuration { get; set; }
 
         /// <summary>
+        /// The id of the Role.
+        /// </summary>
+        [Input("roleId")]
+        public Input<int>? RoleId { get; set; }
+
+        /// <summary>
         /// The name of the Role.
         /// </summary>
         [Input("roleName")]
         public Input<string>? RoleName { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.RoleTagGetArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.RoleTagGetArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.RoleTagGetArgs>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// The resource name of the Role.

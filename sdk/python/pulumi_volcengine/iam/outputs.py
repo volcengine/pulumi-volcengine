@@ -8,25 +8,121 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
 
 __all__ = [
+    'AccessKeyLastUsedsAccessKeyLastUsedResult',
     'AccessKeysAccessKeyMetadataResult',
+    'AccountSummariesAccountSummaryResult',
+    'AllowedIpAddressIpList',
+    'AllowedIpAddressesAllowedIpAddressResult',
+    'AllowedIpAddressesAllowedIpAddressIpListResult',
+    'CallerIdentitiesCallerIdentityResult',
+    'EntitiesPoliciesRoleResult',
+    'EntitiesPoliciesRolePolicyScopeResult',
+    'EntitiesPoliciesUserResult',
+    'EntitiesPoliciesUserGroupResult',
+    'EntitiesPoliciesUserGroupPolicyScopeResult',
+    'EntitiesPoliciesUserPolicyScopeResult',
+    'GroupUsersUserGroupResult',
+    'IdentityProvidersProviderResult',
+    'LoginProfilesLoginProfileResult',
+    'OauthProvidersProviderResult',
     'OidcProvidersOidcProviderResult',
     'PoliciesPolicyResult',
+    'RolePolicyAttachmentsPolicyResult',
+    'RolePolicyAttachmentsPolicyPolicyScopeResult',
+    'RoleTag',
     'RolesRoleResult',
+    'RolesRoleTagResult',
     'SamlProvidersProviderResult',
+    'SecurityConfigsSecurityConfigResult',
+    'ServiceLinkedRoleTag',
+    'TagTag',
+    'TagsResourceTagResult',
+    'UserGroupAttachmentsUserResult',
     'UserGroupPolicyAttachmentsPolicyResult',
+    'UserGroupPolicyAttachmentsPolicyPolicyScopeResult',
     'UserGroupsUserGroupResult',
+    'UserPolicyAttachmentsPolicyResult',
+    'UserPolicyAttachmentsPolicyPolicyScopeResult',
+    'UserTag',
     'UsersUserResult',
+    'UsersUserTagResult',
+    'GetAccessKeyLastUsedsAccessKeyLastUsedResult',
     'GetAccessKeysAccessKeyMetadataResult',
+    'GetAccountSummariesAccountSummaryResult',
+    'GetAllowedIpAddressesAllowedIpAddressResult',
+    'GetAllowedIpAddressesAllowedIpAddressIpListResult',
+    'GetCallerIdentitiesCallerIdentityResult',
+    'GetEntitiesPoliciesRoleResult',
+    'GetEntitiesPoliciesRolePolicyScopeResult',
+    'GetEntitiesPoliciesUserResult',
+    'GetEntitiesPoliciesUserGroupResult',
+    'GetEntitiesPoliciesUserGroupPolicyScopeResult',
+    'GetEntitiesPoliciesUserPolicyScopeResult',
+    'GetGroupUsersUserGroupResult',
+    'GetIdentityProvidersProviderResult',
+    'GetLoginProfilesLoginProfileResult',
+    'GetOauthProvidersProviderResult',
     'GetOidcProvidersOidcProviderResult',
     'GetPoliciesPolicyResult',
+    'GetRolePolicyAttachmentsPolicyResult',
+    'GetRolePolicyAttachmentsPolicyPolicyScopeResult',
     'GetRolesRoleResult',
+    'GetRolesRoleTagResult',
     'GetSamlProvidersProviderResult',
+    'GetSecurityConfigsSecurityConfigResult',
+    'GetTagsResourceTagResult',
+    'GetUserGroupAttachmentsUserResult',
     'GetUserGroupPolicyAttachmentsPolicyResult',
+    'GetUserGroupPolicyAttachmentsPolicyPolicyScopeResult',
     'GetUserGroupsUserGroupResult',
+    'GetUserPolicyAttachmentsPolicyResult',
+    'GetUserPolicyAttachmentsPolicyPolicyScopeResult',
     'GetUsersUserResult',
+    'GetUsersUserTagResult',
 ]
+
+@pulumi.output_type
+class AccessKeyLastUsedsAccessKeyLastUsedResult(dict):
+    def __init__(__self__, *,
+                 region: str,
+                 request_time: str,
+                 service: str):
+        """
+        :param str region: The region of the last used.
+        :param str request_time: The request time of the last used.
+        :param str service: The service of the last used.
+        """
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "request_time", request_time)
+        pulumi.set(__self__, "service", service)
+
+    @property
+    @pulumi.getter
+    def region(self) -> str:
+        """
+        The region of the last used.
+        """
+        return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter(name="requestTime")
+    def request_time(self) -> str:
+        """
+        The request time of the last used.
+        """
+        return pulumi.get(self, "request_time")
+
+    @property
+    @pulumi.getter
+    def service(self) -> str:
+        """
+        The service of the last used.
+        """
+        return pulumi.get(self, "service")
+
 
 @pulumi.output_type
 class AccessKeysAccessKeyMetadataResult(dict):
@@ -41,7 +137,7 @@ class AccessKeysAccessKeyMetadataResult(dict):
         :param str create_date: The user access key create date.
         :param str status: The user access key status.
         :param str update_date: The user access key update date.
-        :param str user_name: The user names.
+        :param str user_name: The user name.
         """
         pulumi.set(__self__, "access_key_id", access_key_id)
         pulumi.set(__self__, "create_date", create_date)
@@ -85,9 +181,1270 @@ class AccessKeysAccessKeyMetadataResult(dict):
     @pulumi.getter(name="userName")
     def user_name(self) -> str:
         """
-        The user names.
+        The user name.
         """
         return pulumi.get(self, "user_name")
+
+
+@pulumi.output_type
+class AccountSummariesAccountSummaryResult(dict):
+    def __init__(__self__, *,
+                 access_keys_per_account_quota: int,
+                 access_keys_per_user_quota: int,
+                 attached_policies_per_group_quota: int,
+                 attached_policies_per_role_quota: int,
+                 attached_policies_per_user_quota: int,
+                 attached_system_policies_per_group_quota: int,
+                 attached_system_policies_per_role_quota: int,
+                 attached_system_policies_per_user_quota: int,
+                 groups_per_user_quota: int,
+                 groups_quota: int,
+                 groups_usage: int,
+                 policies_quota: int,
+                 policies_usage: int,
+                 policy_size: int,
+                 roles_quota: int,
+                 roles_usage: int,
+                 users_quota: int,
+                 users_usage: int):
+        """
+        :param int access_keys_per_account_quota: The quota of access keys per account.
+        :param int access_keys_per_user_quota: The quota of access keys per user.
+        :param int attached_policies_per_group_quota: The quota of attached policies per group.
+        :param int attached_policies_per_role_quota: The quota of attached policies per role.
+        :param int attached_policies_per_user_quota: The quota of attached policies per user.
+        :param int attached_system_policies_per_group_quota: The quota of attached system policies per group.
+        :param int attached_system_policies_per_role_quota: The quota of attached system policies per role.
+        :param int attached_system_policies_per_user_quota: The quota of attached system policies per user.
+        :param int groups_per_user_quota: The quota of groups per user.
+        :param int groups_quota: The quota of groups.
+        :param int groups_usage: The usage of groups.
+        :param int policies_quota: The quota of policies.
+        :param int policies_usage: The usage of policies.
+        :param int policy_size: The size of policy.
+        :param int roles_quota: The quota of roles.
+        :param int roles_usage: The usage of roles.
+        :param int users_quota: The quota of users.
+        :param int users_usage: The usage of users.
+        """
+        pulumi.set(__self__, "access_keys_per_account_quota", access_keys_per_account_quota)
+        pulumi.set(__self__, "access_keys_per_user_quota", access_keys_per_user_quota)
+        pulumi.set(__self__, "attached_policies_per_group_quota", attached_policies_per_group_quota)
+        pulumi.set(__self__, "attached_policies_per_role_quota", attached_policies_per_role_quota)
+        pulumi.set(__self__, "attached_policies_per_user_quota", attached_policies_per_user_quota)
+        pulumi.set(__self__, "attached_system_policies_per_group_quota", attached_system_policies_per_group_quota)
+        pulumi.set(__self__, "attached_system_policies_per_role_quota", attached_system_policies_per_role_quota)
+        pulumi.set(__self__, "attached_system_policies_per_user_quota", attached_system_policies_per_user_quota)
+        pulumi.set(__self__, "groups_per_user_quota", groups_per_user_quota)
+        pulumi.set(__self__, "groups_quota", groups_quota)
+        pulumi.set(__self__, "groups_usage", groups_usage)
+        pulumi.set(__self__, "policies_quota", policies_quota)
+        pulumi.set(__self__, "policies_usage", policies_usage)
+        pulumi.set(__self__, "policy_size", policy_size)
+        pulumi.set(__self__, "roles_quota", roles_quota)
+        pulumi.set(__self__, "roles_usage", roles_usage)
+        pulumi.set(__self__, "users_quota", users_quota)
+        pulumi.set(__self__, "users_usage", users_usage)
+
+    @property
+    @pulumi.getter(name="accessKeysPerAccountQuota")
+    def access_keys_per_account_quota(self) -> int:
+        """
+        The quota of access keys per account.
+        """
+        return pulumi.get(self, "access_keys_per_account_quota")
+
+    @property
+    @pulumi.getter(name="accessKeysPerUserQuota")
+    def access_keys_per_user_quota(self) -> int:
+        """
+        The quota of access keys per user.
+        """
+        return pulumi.get(self, "access_keys_per_user_quota")
+
+    @property
+    @pulumi.getter(name="attachedPoliciesPerGroupQuota")
+    def attached_policies_per_group_quota(self) -> int:
+        """
+        The quota of attached policies per group.
+        """
+        return pulumi.get(self, "attached_policies_per_group_quota")
+
+    @property
+    @pulumi.getter(name="attachedPoliciesPerRoleQuota")
+    def attached_policies_per_role_quota(self) -> int:
+        """
+        The quota of attached policies per role.
+        """
+        return pulumi.get(self, "attached_policies_per_role_quota")
+
+    @property
+    @pulumi.getter(name="attachedPoliciesPerUserQuota")
+    def attached_policies_per_user_quota(self) -> int:
+        """
+        The quota of attached policies per user.
+        """
+        return pulumi.get(self, "attached_policies_per_user_quota")
+
+    @property
+    @pulumi.getter(name="attachedSystemPoliciesPerGroupQuota")
+    def attached_system_policies_per_group_quota(self) -> int:
+        """
+        The quota of attached system policies per group.
+        """
+        return pulumi.get(self, "attached_system_policies_per_group_quota")
+
+    @property
+    @pulumi.getter(name="attachedSystemPoliciesPerRoleQuota")
+    def attached_system_policies_per_role_quota(self) -> int:
+        """
+        The quota of attached system policies per role.
+        """
+        return pulumi.get(self, "attached_system_policies_per_role_quota")
+
+    @property
+    @pulumi.getter(name="attachedSystemPoliciesPerUserQuota")
+    def attached_system_policies_per_user_quota(self) -> int:
+        """
+        The quota of attached system policies per user.
+        """
+        return pulumi.get(self, "attached_system_policies_per_user_quota")
+
+    @property
+    @pulumi.getter(name="groupsPerUserQuota")
+    def groups_per_user_quota(self) -> int:
+        """
+        The quota of groups per user.
+        """
+        return pulumi.get(self, "groups_per_user_quota")
+
+    @property
+    @pulumi.getter(name="groupsQuota")
+    def groups_quota(self) -> int:
+        """
+        The quota of groups.
+        """
+        return pulumi.get(self, "groups_quota")
+
+    @property
+    @pulumi.getter(name="groupsUsage")
+    def groups_usage(self) -> int:
+        """
+        The usage of groups.
+        """
+        return pulumi.get(self, "groups_usage")
+
+    @property
+    @pulumi.getter(name="policiesQuota")
+    def policies_quota(self) -> int:
+        """
+        The quota of policies.
+        """
+        return pulumi.get(self, "policies_quota")
+
+    @property
+    @pulumi.getter(name="policiesUsage")
+    def policies_usage(self) -> int:
+        """
+        The usage of policies.
+        """
+        return pulumi.get(self, "policies_usage")
+
+    @property
+    @pulumi.getter(name="policySize")
+    def policy_size(self) -> int:
+        """
+        The size of policy.
+        """
+        return pulumi.get(self, "policy_size")
+
+    @property
+    @pulumi.getter(name="rolesQuota")
+    def roles_quota(self) -> int:
+        """
+        The quota of roles.
+        """
+        return pulumi.get(self, "roles_quota")
+
+    @property
+    @pulumi.getter(name="rolesUsage")
+    def roles_usage(self) -> int:
+        """
+        The usage of roles.
+        """
+        return pulumi.get(self, "roles_usage")
+
+    @property
+    @pulumi.getter(name="usersQuota")
+    def users_quota(self) -> int:
+        """
+        The quota of users.
+        """
+        return pulumi.get(self, "users_quota")
+
+    @property
+    @pulumi.getter(name="usersUsage")
+    def users_usage(self) -> int:
+        """
+        The usage of users.
+        """
+        return pulumi.get(self, "users_usage")
+
+
+@pulumi.output_type
+class AllowedIpAddressIpList(dict):
+    def __init__(__self__, *,
+                 ip: str,
+                 description: Optional[str] = None):
+        """
+        :param str ip: The IP address.
+        :param str description: The description of the IP address.
+        """
+        pulumi.set(__self__, "ip", ip)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+
+    @property
+    @pulumi.getter
+    def ip(self) -> str:
+        """
+        The IP address.
+        """
+        return pulumi.get(self, "ip")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        The description of the IP address.
+        """
+        return pulumi.get(self, "description")
+
+
+@pulumi.output_type
+class AllowedIpAddressesAllowedIpAddressResult(dict):
+    def __init__(__self__, *,
+                 enable_ip_list: bool,
+                 ip_lists: Sequence['outputs.AllowedIpAddressesAllowedIpAddressIpListResult'],
+                 quota: int):
+        """
+        :param bool enable_ip_list: Whether to enable the IP whitelist.
+        :param Sequence['AllowedIpAddressesAllowedIpAddressIpListArgs'] ip_lists: The IP whitelist list.
+        :param int quota: The quota of the IP whitelist.
+        """
+        pulumi.set(__self__, "enable_ip_list", enable_ip_list)
+        pulumi.set(__self__, "ip_lists", ip_lists)
+        pulumi.set(__self__, "quota", quota)
+
+    @property
+    @pulumi.getter(name="enableIpList")
+    def enable_ip_list(self) -> bool:
+        """
+        Whether to enable the IP whitelist.
+        """
+        return pulumi.get(self, "enable_ip_list")
+
+    @property
+    @pulumi.getter(name="ipLists")
+    def ip_lists(self) -> Sequence['outputs.AllowedIpAddressesAllowedIpAddressIpListResult']:
+        """
+        The IP whitelist list.
+        """
+        return pulumi.get(self, "ip_lists")
+
+    @property
+    @pulumi.getter
+    def quota(self) -> int:
+        """
+        The quota of the IP whitelist.
+        """
+        return pulumi.get(self, "quota")
+
+
+@pulumi.output_type
+class AllowedIpAddressesAllowedIpAddressIpListResult(dict):
+    def __init__(__self__, *,
+                 description: str,
+                 ip: str):
+        """
+        :param str description: The description of the IP address.
+        :param str ip: The IP address.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "ip", ip)
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the IP address.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def ip(self) -> str:
+        """
+        The IP address.
+        """
+        return pulumi.get(self, "ip")
+
+
+@pulumi.output_type
+class CallerIdentitiesCallerIdentityResult(dict):
+    def __init__(__self__, *,
+                 account_id: str,
+                 identity_id: str,
+                 identity_type: str,
+                 trn: str):
+        """
+        :param str account_id: The account id.
+        :param str identity_id: The identity id.
+        :param str identity_type: The identity type.
+        :param str trn: The trn.
+        """
+        pulumi.set(__self__, "account_id", account_id)
+        pulumi.set(__self__, "identity_id", identity_id)
+        pulumi.set(__self__, "identity_type", identity_type)
+        pulumi.set(__self__, "trn", trn)
+
+    @property
+    @pulumi.getter(name="accountId")
+    def account_id(self) -> str:
+        """
+        The account id.
+        """
+        return pulumi.get(self, "account_id")
+
+    @property
+    @pulumi.getter(name="identityId")
+    def identity_id(self) -> str:
+        """
+        The identity id.
+        """
+        return pulumi.get(self, "identity_id")
+
+    @property
+    @pulumi.getter(name="identityType")
+    def identity_type(self) -> str:
+        """
+        The identity type.
+        """
+        return pulumi.get(self, "identity_type")
+
+    @property
+    @pulumi.getter
+    def trn(self) -> str:
+        """
+        The trn.
+        """
+        return pulumi.get(self, "trn")
+
+
+@pulumi.output_type
+class EntitiesPoliciesRoleResult(dict):
+    def __init__(__self__, *,
+                 attach_date: str,
+                 description: str,
+                 display_name: str,
+                 id: int,
+                 policy_scopes: Sequence['outputs.EntitiesPoliciesRolePolicyScopeResult'],
+                 role_name: str):
+        """
+        :param str attach_date: The attach date of the policy scope.
+        :param str description: The description of the user.
+        :param str display_name: The display name of the user.
+        :param int id: The id of the user.
+        :param Sequence['EntitiesPoliciesRolePolicyScopeArgs'] policy_scopes: The scope of the policy.
+        :param str role_name: The name of the role.
+        """
+        pulumi.set(__self__, "attach_date", attach_date)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "policy_scopes", policy_scopes)
+        pulumi.set(__self__, "role_name", role_name)
+
+    @property
+    @pulumi.getter(name="attachDate")
+    def attach_date(self) -> str:
+        """
+        The attach date of the policy scope.
+        """
+        return pulumi.get(self, "attach_date")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the user.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> str:
+        """
+        The display name of the user.
+        """
+        return pulumi.get(self, "display_name")
+
+    @property
+    @pulumi.getter
+    def id(self) -> int:
+        """
+        The id of the user.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="policyScopes")
+    def policy_scopes(self) -> Sequence['outputs.EntitiesPoliciesRolePolicyScopeResult']:
+        """
+        The scope of the policy.
+        """
+        return pulumi.get(self, "policy_scopes")
+
+    @property
+    @pulumi.getter(name="roleName")
+    def role_name(self) -> str:
+        """
+        The name of the role.
+        """
+        return pulumi.get(self, "role_name")
+
+
+@pulumi.output_type
+class EntitiesPoliciesRolePolicyScopeResult(dict):
+    def __init__(__self__, *,
+                 attach_date: str,
+                 policy_scope_type: str,
+                 project_display_name: str,
+                 project_name: str):
+        """
+        :param str attach_date: The attach date of the policy scope.
+        :param str policy_scope_type: The type of the policy scope.
+        :param str project_display_name: The display name of the project.
+        :param str project_name: The name of the project.
+        """
+        pulumi.set(__self__, "attach_date", attach_date)
+        pulumi.set(__self__, "policy_scope_type", policy_scope_type)
+        pulumi.set(__self__, "project_display_name", project_display_name)
+        pulumi.set(__self__, "project_name", project_name)
+
+    @property
+    @pulumi.getter(name="attachDate")
+    def attach_date(self) -> str:
+        """
+        The attach date of the policy scope.
+        """
+        return pulumi.get(self, "attach_date")
+
+    @property
+    @pulumi.getter(name="policyScopeType")
+    def policy_scope_type(self) -> str:
+        """
+        The type of the policy scope.
+        """
+        return pulumi.get(self, "policy_scope_type")
+
+    @property
+    @pulumi.getter(name="projectDisplayName")
+    def project_display_name(self) -> str:
+        """
+        The display name of the project.
+        """
+        return pulumi.get(self, "project_display_name")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The name of the project.
+        """
+        return pulumi.get(self, "project_name")
+
+
+@pulumi.output_type
+class EntitiesPoliciesUserResult(dict):
+    def __init__(__self__, *,
+                 attach_date: str,
+                 description: str,
+                 display_name: str,
+                 id: int,
+                 policy_scopes: Sequence['outputs.EntitiesPoliciesUserPolicyScopeResult'],
+                 user_name: str):
+        """
+        :param str attach_date: The attach date of the policy scope.
+        :param str description: The description of the user.
+        :param str display_name: The display name of the user.
+        :param int id: The id of the user.
+        :param Sequence['EntitiesPoliciesUserPolicyScopeArgs'] policy_scopes: The scope of the policy.
+        :param str user_name: The name of the user.
+        """
+        pulumi.set(__self__, "attach_date", attach_date)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "policy_scopes", policy_scopes)
+        pulumi.set(__self__, "user_name", user_name)
+
+    @property
+    @pulumi.getter(name="attachDate")
+    def attach_date(self) -> str:
+        """
+        The attach date of the policy scope.
+        """
+        return pulumi.get(self, "attach_date")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the user.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> str:
+        """
+        The display name of the user.
+        """
+        return pulumi.get(self, "display_name")
+
+    @property
+    @pulumi.getter
+    def id(self) -> int:
+        """
+        The id of the user.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="policyScopes")
+    def policy_scopes(self) -> Sequence['outputs.EntitiesPoliciesUserPolicyScopeResult']:
+        """
+        The scope of the policy.
+        """
+        return pulumi.get(self, "policy_scopes")
+
+    @property
+    @pulumi.getter(name="userName")
+    def user_name(self) -> str:
+        """
+        The name of the user.
+        """
+        return pulumi.get(self, "user_name")
+
+
+@pulumi.output_type
+class EntitiesPoliciesUserGroupResult(dict):
+    def __init__(__self__, *,
+                 attach_date: str,
+                 description: str,
+                 display_name: str,
+                 id: int,
+                 policy_scopes: Sequence['outputs.EntitiesPoliciesUserGroupPolicyScopeResult'],
+                 user_group_name: str):
+        """
+        :param str attach_date: The attach date of the policy scope.
+        :param str description: The description of the user.
+        :param str display_name: The display name of the user.
+        :param int id: The id of the user.
+        :param Sequence['EntitiesPoliciesUserGroupPolicyScopeArgs'] policy_scopes: The scope of the policy.
+        :param str user_group_name: The name of the user group.
+        """
+        pulumi.set(__self__, "attach_date", attach_date)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "policy_scopes", policy_scopes)
+        pulumi.set(__self__, "user_group_name", user_group_name)
+
+    @property
+    @pulumi.getter(name="attachDate")
+    def attach_date(self) -> str:
+        """
+        The attach date of the policy scope.
+        """
+        return pulumi.get(self, "attach_date")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the user.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> str:
+        """
+        The display name of the user.
+        """
+        return pulumi.get(self, "display_name")
+
+    @property
+    @pulumi.getter
+    def id(self) -> int:
+        """
+        The id of the user.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="policyScopes")
+    def policy_scopes(self) -> Sequence['outputs.EntitiesPoliciesUserGroupPolicyScopeResult']:
+        """
+        The scope of the policy.
+        """
+        return pulumi.get(self, "policy_scopes")
+
+    @property
+    @pulumi.getter(name="userGroupName")
+    def user_group_name(self) -> str:
+        """
+        The name of the user group.
+        """
+        return pulumi.get(self, "user_group_name")
+
+
+@pulumi.output_type
+class EntitiesPoliciesUserGroupPolicyScopeResult(dict):
+    def __init__(__self__, *,
+                 attach_date: str,
+                 policy_scope_type: str,
+                 project_display_name: str,
+                 project_name: str):
+        """
+        :param str attach_date: The attach date of the policy scope.
+        :param str policy_scope_type: The type of the policy scope.
+        :param str project_display_name: The display name of the project.
+        :param str project_name: The name of the project.
+        """
+        pulumi.set(__self__, "attach_date", attach_date)
+        pulumi.set(__self__, "policy_scope_type", policy_scope_type)
+        pulumi.set(__self__, "project_display_name", project_display_name)
+        pulumi.set(__self__, "project_name", project_name)
+
+    @property
+    @pulumi.getter(name="attachDate")
+    def attach_date(self) -> str:
+        """
+        The attach date of the policy scope.
+        """
+        return pulumi.get(self, "attach_date")
+
+    @property
+    @pulumi.getter(name="policyScopeType")
+    def policy_scope_type(self) -> str:
+        """
+        The type of the policy scope.
+        """
+        return pulumi.get(self, "policy_scope_type")
+
+    @property
+    @pulumi.getter(name="projectDisplayName")
+    def project_display_name(self) -> str:
+        """
+        The display name of the project.
+        """
+        return pulumi.get(self, "project_display_name")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The name of the project.
+        """
+        return pulumi.get(self, "project_name")
+
+
+@pulumi.output_type
+class EntitiesPoliciesUserPolicyScopeResult(dict):
+    def __init__(__self__, *,
+                 attach_date: str,
+                 policy_scope_type: str,
+                 project_display_name: str,
+                 project_name: str):
+        """
+        :param str attach_date: The attach date of the policy scope.
+        :param str policy_scope_type: The type of the policy scope.
+        :param str project_display_name: The display name of the project.
+        :param str project_name: The name of the project.
+        """
+        pulumi.set(__self__, "attach_date", attach_date)
+        pulumi.set(__self__, "policy_scope_type", policy_scope_type)
+        pulumi.set(__self__, "project_display_name", project_display_name)
+        pulumi.set(__self__, "project_name", project_name)
+
+    @property
+    @pulumi.getter(name="attachDate")
+    def attach_date(self) -> str:
+        """
+        The attach date of the policy scope.
+        """
+        return pulumi.get(self, "attach_date")
+
+    @property
+    @pulumi.getter(name="policyScopeType")
+    def policy_scope_type(self) -> str:
+        """
+        The type of the policy scope.
+        """
+        return pulumi.get(self, "policy_scope_type")
+
+    @property
+    @pulumi.getter(name="projectDisplayName")
+    def project_display_name(self) -> str:
+        """
+        The display name of the project.
+        """
+        return pulumi.get(self, "project_display_name")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The name of the project.
+        """
+        return pulumi.get(self, "project_name")
+
+
+@pulumi.output_type
+class GroupUsersUserGroupResult(dict):
+    def __init__(__self__, *,
+                 description: str,
+                 display_name: str,
+                 join_date: str,
+                 user_group_id: int,
+                 user_group_name: str):
+        """
+        :param str description: The description of the user group.
+        :param str display_name: The display name of the user group.
+        :param str join_date: The join date of the user group.
+        :param int user_group_id: The id of the user group.
+        :param str user_group_name: The name of the user group.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "join_date", join_date)
+        pulumi.set(__self__, "user_group_id", user_group_id)
+        pulumi.set(__self__, "user_group_name", user_group_name)
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the user group.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> str:
+        """
+        The display name of the user group.
+        """
+        return pulumi.get(self, "display_name")
+
+    @property
+    @pulumi.getter(name="joinDate")
+    def join_date(self) -> str:
+        """
+        The join date of the user group.
+        """
+        return pulumi.get(self, "join_date")
+
+    @property
+    @pulumi.getter(name="userGroupId")
+    def user_group_id(self) -> int:
+        """
+        The id of the user group.
+        """
+        return pulumi.get(self, "user_group_id")
+
+    @property
+    @pulumi.getter(name="userGroupName")
+    def user_group_name(self) -> str:
+        """
+        The name of the user group.
+        """
+        return pulumi.get(self, "user_group_name")
+
+
+@pulumi.output_type
+class IdentityProvidersProviderResult(dict):
+    def __init__(__self__, *,
+                 create_date: str,
+                 description: str,
+                 idp_type: int,
+                 provider_name: str,
+                 sso_type: int,
+                 status: int,
+                 trn: str,
+                 update_date: str):
+        """
+        :param str create_date: The create date of the identity provider.
+        :param str description: The description of the identity provider.
+        :param int idp_type: The type of the identity provider.
+        :param str provider_name: The name of the identity provider.
+        :param int sso_type: The SSO type of the identity provider.
+        :param int status: The status of the identity provider.
+        :param str trn: The TRN of the identity provider.
+        :param str update_date: The update date of the identity provider.
+        """
+        pulumi.set(__self__, "create_date", create_date)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "idp_type", idp_type)
+        pulumi.set(__self__, "provider_name", provider_name)
+        pulumi.set(__self__, "sso_type", sso_type)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "trn", trn)
+        pulumi.set(__self__, "update_date", update_date)
+
+    @property
+    @pulumi.getter(name="createDate")
+    def create_date(self) -> str:
+        """
+        The create date of the identity provider.
+        """
+        return pulumi.get(self, "create_date")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the identity provider.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="idpType")
+    def idp_type(self) -> int:
+        """
+        The type of the identity provider.
+        """
+        return pulumi.get(self, "idp_type")
+
+    @property
+    @pulumi.getter(name="providerName")
+    def provider_name(self) -> str:
+        """
+        The name of the identity provider.
+        """
+        return pulumi.get(self, "provider_name")
+
+    @property
+    @pulumi.getter(name="ssoType")
+    def sso_type(self) -> int:
+        """
+        The SSO type of the identity provider.
+        """
+        return pulumi.get(self, "sso_type")
+
+    @property
+    @pulumi.getter
+    def status(self) -> int:
+        """
+        The status of the identity provider.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def trn(self) -> str:
+        """
+        The TRN of the identity provider.
+        """
+        return pulumi.get(self, "trn")
+
+    @property
+    @pulumi.getter(name="updateDate")
+    def update_date(self) -> str:
+        """
+        The update date of the identity provider.
+        """
+        return pulumi.get(self, "update_date")
+
+
+@pulumi.output_type
+class LoginProfilesLoginProfileResult(dict):
+    def __init__(__self__, *,
+                 create_date: str,
+                 last_login_date: str,
+                 last_login_ip: str,
+                 last_reset_password_time: int,
+                 login_allowed: bool,
+                 login_locked: bool,
+                 password_expire_at: int,
+                 password_reset_required: bool,
+                 safe_auth_exempt_duration: int,
+                 safe_auth_exempt_required: int,
+                 safe_auth_exempt_unit: int,
+                 safe_auth_flag: bool,
+                 safe_auth_type: str,
+                 update_date: str,
+                 user_id: int,
+                 user_name: str):
+        """
+        :param str create_date: The create date.
+        :param str last_login_date: The last login date.
+        :param str last_login_ip: The last login ip.
+        :param int last_reset_password_time: The last reset password time.
+        :param bool login_allowed: The flag of login allowed.
+        :param bool login_locked: The flag of login locked.
+        :param int password_expire_at: The password expire at.
+        :param bool password_reset_required: Is required reset password when next time login in.
+        :param int safe_auth_exempt_duration: The duration of safe auth exempt.
+        :param int safe_auth_exempt_required: The flag of safe auth exempt required.
+        :param int safe_auth_exempt_unit: The unit of safe auth exempt.
+        :param bool safe_auth_flag: The flag of safe auth.
+        :param str safe_auth_type: The type of safe auth.
+        :param str update_date: The update date.
+        :param int user_id: The user id.
+        :param str user_name: The user name.
+        """
+        pulumi.set(__self__, "create_date", create_date)
+        pulumi.set(__self__, "last_login_date", last_login_date)
+        pulumi.set(__self__, "last_login_ip", last_login_ip)
+        pulumi.set(__self__, "last_reset_password_time", last_reset_password_time)
+        pulumi.set(__self__, "login_allowed", login_allowed)
+        pulumi.set(__self__, "login_locked", login_locked)
+        pulumi.set(__self__, "password_expire_at", password_expire_at)
+        pulumi.set(__self__, "password_reset_required", password_reset_required)
+        pulumi.set(__self__, "safe_auth_exempt_duration", safe_auth_exempt_duration)
+        pulumi.set(__self__, "safe_auth_exempt_required", safe_auth_exempt_required)
+        pulumi.set(__self__, "safe_auth_exempt_unit", safe_auth_exempt_unit)
+        pulumi.set(__self__, "safe_auth_flag", safe_auth_flag)
+        pulumi.set(__self__, "safe_auth_type", safe_auth_type)
+        pulumi.set(__self__, "update_date", update_date)
+        pulumi.set(__self__, "user_id", user_id)
+        pulumi.set(__self__, "user_name", user_name)
+
+    @property
+    @pulumi.getter(name="createDate")
+    def create_date(self) -> str:
+        """
+        The create date.
+        """
+        return pulumi.get(self, "create_date")
+
+    @property
+    @pulumi.getter(name="lastLoginDate")
+    def last_login_date(self) -> str:
+        """
+        The last login date.
+        """
+        return pulumi.get(self, "last_login_date")
+
+    @property
+    @pulumi.getter(name="lastLoginIp")
+    def last_login_ip(self) -> str:
+        """
+        The last login ip.
+        """
+        return pulumi.get(self, "last_login_ip")
+
+    @property
+    @pulumi.getter(name="lastResetPasswordTime")
+    def last_reset_password_time(self) -> int:
+        """
+        The last reset password time.
+        """
+        return pulumi.get(self, "last_reset_password_time")
+
+    @property
+    @pulumi.getter(name="loginAllowed")
+    def login_allowed(self) -> bool:
+        """
+        The flag of login allowed.
+        """
+        return pulumi.get(self, "login_allowed")
+
+    @property
+    @pulumi.getter(name="loginLocked")
+    def login_locked(self) -> bool:
+        """
+        The flag of login locked.
+        """
+        return pulumi.get(self, "login_locked")
+
+    @property
+    @pulumi.getter(name="passwordExpireAt")
+    def password_expire_at(self) -> int:
+        """
+        The password expire at.
+        """
+        return pulumi.get(self, "password_expire_at")
+
+    @property
+    @pulumi.getter(name="passwordResetRequired")
+    def password_reset_required(self) -> bool:
+        """
+        Is required reset password when next time login in.
+        """
+        return pulumi.get(self, "password_reset_required")
+
+    @property
+    @pulumi.getter(name="safeAuthExemptDuration")
+    def safe_auth_exempt_duration(self) -> int:
+        """
+        The duration of safe auth exempt.
+        """
+        return pulumi.get(self, "safe_auth_exempt_duration")
+
+    @property
+    @pulumi.getter(name="safeAuthExemptRequired")
+    def safe_auth_exempt_required(self) -> int:
+        """
+        The flag of safe auth exempt required.
+        """
+        return pulumi.get(self, "safe_auth_exempt_required")
+
+    @property
+    @pulumi.getter(name="safeAuthExemptUnit")
+    def safe_auth_exempt_unit(self) -> int:
+        """
+        The unit of safe auth exempt.
+        """
+        return pulumi.get(self, "safe_auth_exempt_unit")
+
+    @property
+    @pulumi.getter(name="safeAuthFlag")
+    def safe_auth_flag(self) -> bool:
+        """
+        The flag of safe auth.
+        """
+        return pulumi.get(self, "safe_auth_flag")
+
+    @property
+    @pulumi.getter(name="safeAuthType")
+    def safe_auth_type(self) -> str:
+        """
+        The type of safe auth.
+        """
+        return pulumi.get(self, "safe_auth_type")
+
+    @property
+    @pulumi.getter(name="updateDate")
+    def update_date(self) -> str:
+        """
+        The update date.
+        """
+        return pulumi.get(self, "update_date")
+
+    @property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> int:
+        """
+        The user id.
+        """
+        return pulumi.get(self, "user_id")
+
+    @property
+    @pulumi.getter(name="userName")
+    def user_name(self) -> str:
+        """
+        The user name.
+        """
+        return pulumi.get(self, "user_name")
+
+
+@pulumi.output_type
+class OauthProvidersProviderResult(dict):
+    def __init__(__self__, *,
+                 authorize_template: str,
+                 authorize_url: str,
+                 client_id: str,
+                 client_secret: str,
+                 create_date: str,
+                 description: str,
+                 identity_map_type: int,
+                 idp_identity_key: str,
+                 oauth_provider_name: str,
+                 provider_id: str,
+                 scope: str,
+                 sso_type: int,
+                 status: int,
+                 token_url: str,
+                 trn: str,
+                 update_date: str,
+                 user_info_url: str):
+        """
+        :param str authorize_template: The authorize template of the OAuth provider.
+        :param str authorize_url: The authorize url of the OAuth provider.
+        :param str client_id: The client id of the OAuth provider.
+        :param str client_secret: The client secret of the OAuth provider.
+        :param str create_date: The create date of the OAuth provider.
+        :param str description: The description of the OAuth provider.
+        :param int identity_map_type: The identity map type of the OAuth provider.
+        :param str idp_identity_key: The idp identity key of the OAuth provider.
+        :param str oauth_provider_name: The name of the OAuth provider.
+        :param str provider_id: The id of the OAuth provider.
+        :param str scope: The scope of the OAuth provider.
+        :param int sso_type: The SSO type of the OAuth provider.
+        :param int status: The status of the OAuth provider.
+        :param str token_url: The token url of the OAuth provider.
+        :param str trn: The trn of the OAuth provider.
+        :param str update_date: The update date of the OAuth provider.
+        :param str user_info_url: The user info url of the OAuth provider.
+        """
+        pulumi.set(__self__, "authorize_template", authorize_template)
+        pulumi.set(__self__, "authorize_url", authorize_url)
+        pulumi.set(__self__, "client_id", client_id)
+        pulumi.set(__self__, "client_secret", client_secret)
+        pulumi.set(__self__, "create_date", create_date)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "identity_map_type", identity_map_type)
+        pulumi.set(__self__, "idp_identity_key", idp_identity_key)
+        pulumi.set(__self__, "oauth_provider_name", oauth_provider_name)
+        pulumi.set(__self__, "provider_id", provider_id)
+        pulumi.set(__self__, "scope", scope)
+        pulumi.set(__self__, "sso_type", sso_type)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "token_url", token_url)
+        pulumi.set(__self__, "trn", trn)
+        pulumi.set(__self__, "update_date", update_date)
+        pulumi.set(__self__, "user_info_url", user_info_url)
+
+    @property
+    @pulumi.getter(name="authorizeTemplate")
+    def authorize_template(self) -> str:
+        """
+        The authorize template of the OAuth provider.
+        """
+        return pulumi.get(self, "authorize_template")
+
+    @property
+    @pulumi.getter(name="authorizeUrl")
+    def authorize_url(self) -> str:
+        """
+        The authorize url of the OAuth provider.
+        """
+        return pulumi.get(self, "authorize_url")
+
+    @property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> str:
+        """
+        The client id of the OAuth provider.
+        """
+        return pulumi.get(self, "client_id")
+
+    @property
+    @pulumi.getter(name="clientSecret")
+    def client_secret(self) -> str:
+        """
+        The client secret of the OAuth provider.
+        """
+        return pulumi.get(self, "client_secret")
+
+    @property
+    @pulumi.getter(name="createDate")
+    def create_date(self) -> str:
+        """
+        The create date of the OAuth provider.
+        """
+        return pulumi.get(self, "create_date")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the OAuth provider.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="identityMapType")
+    def identity_map_type(self) -> int:
+        """
+        The identity map type of the OAuth provider.
+        """
+        return pulumi.get(self, "identity_map_type")
+
+    @property
+    @pulumi.getter(name="idpIdentityKey")
+    def idp_identity_key(self) -> str:
+        """
+        The idp identity key of the OAuth provider.
+        """
+        return pulumi.get(self, "idp_identity_key")
+
+    @property
+    @pulumi.getter(name="oauthProviderName")
+    def oauth_provider_name(self) -> str:
+        """
+        The name of the OAuth provider.
+        """
+        return pulumi.get(self, "oauth_provider_name")
+
+    @property
+    @pulumi.getter(name="providerId")
+    def provider_id(self) -> str:
+        """
+        The id of the OAuth provider.
+        """
+        return pulumi.get(self, "provider_id")
+
+    @property
+    @pulumi.getter
+    def scope(self) -> str:
+        """
+        The scope of the OAuth provider.
+        """
+        return pulumi.get(self, "scope")
+
+    @property
+    @pulumi.getter(name="ssoType")
+    def sso_type(self) -> int:
+        """
+        The SSO type of the OAuth provider.
+        """
+        return pulumi.get(self, "sso_type")
+
+    @property
+    @pulumi.getter
+    def status(self) -> int:
+        """
+        The status of the OAuth provider.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="tokenUrl")
+    def token_url(self) -> str:
+        """
+        The token url of the OAuth provider.
+        """
+        return pulumi.get(self, "token_url")
+
+    @property
+    @pulumi.getter
+    def trn(self) -> str:
+        """
+        The trn of the OAuth provider.
+        """
+        return pulumi.get(self, "trn")
+
+    @property
+    @pulumi.getter(name="updateDate")
+    def update_date(self) -> str:
+        """
+        The update date of the OAuth provider.
+        """
+        return pulumi.get(self, "update_date")
+
+    @property
+    @pulumi.getter(name="userInfoUrl")
+    def user_info_url(self) -> str:
+        """
+        The user info url of the OAuth provider.
+        """
+        return pulumi.get(self, "user_info_url")
 
 
 @pulumi.output_type
@@ -199,44 +1556,57 @@ class OidcProvidersOidcProviderResult(dict):
 @pulumi.output_type
 class PoliciesPolicyResult(dict):
     def __init__(__self__, *,
+                 attachment_count: int,
+                 category: str,
                  create_date: str,
                  description: str,
                  id: str,
+                 is_service_role_policy: int,
                  policy_document: str,
                  policy_name: str,
                  policy_trn: str,
                  policy_type: str,
-                 role_attach_date: str,
-                 role_name: str,
-                 update_date: str,
-                 user_attach_date: str,
-                 user_name: str):
+                 update_date: str):
         """
+        :param int attachment_count: The attachment count of the Policy.
+        :param str category: The category of the Policy.
         :param str create_date: The create time of the Policy.
         :param str description: The description of the Policy.
         :param str id: The ID of the Policy.
+        :param int is_service_role_policy: Whether the Policy is a service role policy.
         :param str policy_document: The document of the Policy.
         :param str policy_name: The name of the Policy.
         :param str policy_trn: The resource name of the Policy.
         :param str policy_type: The type of the Policy.
-        :param str role_attach_date: The role attach time of the Policy.The data show only query with role_name.
-        :param str role_name: The name of the IAM role.
         :param str update_date: The update time of the Policy.
-        :param str user_attach_date: The user attach time of the Policy.The data show only query with user_name.
-        :param str user_name: The name of the IAM user.
         """
+        pulumi.set(__self__, "attachment_count", attachment_count)
+        pulumi.set(__self__, "category", category)
         pulumi.set(__self__, "create_date", create_date)
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "is_service_role_policy", is_service_role_policy)
         pulumi.set(__self__, "policy_document", policy_document)
         pulumi.set(__self__, "policy_name", policy_name)
         pulumi.set(__self__, "policy_trn", policy_trn)
         pulumi.set(__self__, "policy_type", policy_type)
-        pulumi.set(__self__, "role_attach_date", role_attach_date)
-        pulumi.set(__self__, "role_name", role_name)
         pulumi.set(__self__, "update_date", update_date)
-        pulumi.set(__self__, "user_attach_date", user_attach_date)
-        pulumi.set(__self__, "user_name", user_name)
+
+    @property
+    @pulumi.getter(name="attachmentCount")
+    def attachment_count(self) -> int:
+        """
+        The attachment count of the Policy.
+        """
+        return pulumi.get(self, "attachment_count")
+
+    @property
+    @pulumi.getter
+    def category(self) -> str:
+        """
+        The category of the Policy.
+        """
+        return pulumi.get(self, "category")
 
     @property
     @pulumi.getter(name="createDate")
@@ -261,6 +1631,14 @@ class PoliciesPolicyResult(dict):
         The ID of the Policy.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="isServiceRolePolicy")
+    def is_service_role_policy(self) -> int:
+        """
+        Whether the Policy is a service role policy.
+        """
+        return pulumi.get(self, "is_service_role_policy")
 
     @property
     @pulumi.getter(name="policyDocument")
@@ -295,22 +1673,6 @@ class PoliciesPolicyResult(dict):
         return pulumi.get(self, "policy_type")
 
     @property
-    @pulumi.getter(name="roleAttachDate")
-    def role_attach_date(self) -> str:
-        """
-        The role attach time of the Policy.The data show only query with role_name.
-        """
-        return pulumi.get(self, "role_attach_date")
-
-    @property
-    @pulumi.getter(name="roleName")
-    def role_name(self) -> str:
-        """
-        The name of the IAM role.
-        """
-        return pulumi.get(self, "role_name")
-
-    @property
     @pulumi.getter(name="updateDate")
     def update_date(self) -> str:
         """
@@ -318,21 +1680,158 @@ class PoliciesPolicyResult(dict):
         """
         return pulumi.get(self, "update_date")
 
-    @property
-    @pulumi.getter(name="userAttachDate")
-    def user_attach_date(self) -> str:
+
+@pulumi.output_type
+class RolePolicyAttachmentsPolicyResult(dict):
+    def __init__(__self__, *,
+                 attach_date: str,
+                 description: str,
+                 policy_name: str,
+                 policy_scopes: Sequence['outputs.RolePolicyAttachmentsPolicyPolicyScopeResult'],
+                 policy_trn: str,
+                 policy_type: str):
         """
-        The user attach time of the Policy.The data show only query with user_name.
+        :param str attach_date: The attach date of the policy scope.
+        :param str description: The description of the policy.
+        :param str policy_name: The name of the policy.
+        :param Sequence['RolePolicyAttachmentsPolicyPolicyScopeArgs'] policy_scopes: The scope of the policy.
+        :param str policy_trn: The trn of the policy.
+        :param str policy_type: The type of the policy.
         """
-        return pulumi.get(self, "user_attach_date")
+        pulumi.set(__self__, "attach_date", attach_date)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "policy_name", policy_name)
+        pulumi.set(__self__, "policy_scopes", policy_scopes)
+        pulumi.set(__self__, "policy_trn", policy_trn)
+        pulumi.set(__self__, "policy_type", policy_type)
 
     @property
-    @pulumi.getter(name="userName")
-    def user_name(self) -> str:
+    @pulumi.getter(name="attachDate")
+    def attach_date(self) -> str:
         """
-        The name of the IAM user.
+        The attach date of the policy scope.
         """
-        return pulumi.get(self, "user_name")
+        return pulumi.get(self, "attach_date")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the policy.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="policyName")
+    def policy_name(self) -> str:
+        """
+        The name of the policy.
+        """
+        return pulumi.get(self, "policy_name")
+
+    @property
+    @pulumi.getter(name="policyScopes")
+    def policy_scopes(self) -> Sequence['outputs.RolePolicyAttachmentsPolicyPolicyScopeResult']:
+        """
+        The scope of the policy.
+        """
+        return pulumi.get(self, "policy_scopes")
+
+    @property
+    @pulumi.getter(name="policyTrn")
+    def policy_trn(self) -> str:
+        """
+        The trn of the policy.
+        """
+        return pulumi.get(self, "policy_trn")
+
+    @property
+    @pulumi.getter(name="policyType")
+    def policy_type(self) -> str:
+        """
+        The type of the policy.
+        """
+        return pulumi.get(self, "policy_type")
+
+
+@pulumi.output_type
+class RolePolicyAttachmentsPolicyPolicyScopeResult(dict):
+    def __init__(__self__, *,
+                 attach_date: str,
+                 policy_scope_type: str,
+                 project_display_name: str,
+                 project_name: str):
+        """
+        :param str attach_date: The attach date of the policy scope.
+        :param str policy_scope_type: The type of the policy scope.
+        :param str project_display_name: The display name of the project.
+        :param str project_name: The name of the project.
+        """
+        pulumi.set(__self__, "attach_date", attach_date)
+        pulumi.set(__self__, "policy_scope_type", policy_scope_type)
+        pulumi.set(__self__, "project_display_name", project_display_name)
+        pulumi.set(__self__, "project_name", project_name)
+
+    @property
+    @pulumi.getter(name="attachDate")
+    def attach_date(self) -> str:
+        """
+        The attach date of the policy scope.
+        """
+        return pulumi.get(self, "attach_date")
+
+    @property
+    @pulumi.getter(name="policyScopeType")
+    def policy_scope_type(self) -> str:
+        """
+        The type of the policy scope.
+        """
+        return pulumi.get(self, "policy_scope_type")
+
+    @property
+    @pulumi.getter(name="projectDisplayName")
+    def project_display_name(self) -> str:
+        """
+        The display name of the project.
+        """
+        return pulumi.get(self, "project_display_name")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The name of the project.
+        """
+        return pulumi.get(self, "project_name")
+
+
+@pulumi.output_type
+class RoleTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -340,24 +1839,39 @@ class RolesRoleResult(dict):
     def __init__(__self__, *,
                  create_date: str,
                  description: str,
-                 id: str,
+                 display_name: str,
+                 is_service_linked_role: int,
+                 max_session_duration: int,
+                 role_id: int,
                  role_name: str,
+                 tags: Sequence['outputs.RolesRoleTagResult'],
                  trn: str,
-                 trust_policy_document: str):
+                 trust_policy_document: str,
+                 update_date: str):
         """
         :param str create_date: The create time of the Role.
         :param str description: The description of the Role.
-        :param str id: The ID of the Role.
-        :param str role_name: The name of the Role, comma separated.
+        :param str display_name: The display name of the Role.
+        :param int is_service_linked_role: Whether the Role is a service linked role.
+        :param int max_session_duration: The max session duration of the Role.
+        :param int role_id: The id of the Role.
+        :param str role_name: The name of the Role.
+        :param Sequence['RolesRoleTagArgs'] tags: Tags.
         :param str trn: The resource name of the Role.
         :param str trust_policy_document: The trust policy document of the Role.
+        :param str update_date: The update time of the Role.
         """
         pulumi.set(__self__, "create_date", create_date)
         pulumi.set(__self__, "description", description)
-        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "is_service_linked_role", is_service_linked_role)
+        pulumi.set(__self__, "max_session_duration", max_session_duration)
+        pulumi.set(__self__, "role_id", role_id)
         pulumi.set(__self__, "role_name", role_name)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "trn", trn)
         pulumi.set(__self__, "trust_policy_document", trust_policy_document)
+        pulumi.set(__self__, "update_date", update_date)
 
     @property
     @pulumi.getter(name="createDate")
@@ -376,20 +1890,52 @@ class RolesRoleResult(dict):
         return pulumi.get(self, "description")
 
     @property
-    @pulumi.getter
-    def id(self) -> str:
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> str:
         """
-        The ID of the Role.
+        The display name of the Role.
         """
-        return pulumi.get(self, "id")
+        return pulumi.get(self, "display_name")
+
+    @property
+    @pulumi.getter(name="isServiceLinkedRole")
+    def is_service_linked_role(self) -> int:
+        """
+        Whether the Role is a service linked role.
+        """
+        return pulumi.get(self, "is_service_linked_role")
+
+    @property
+    @pulumi.getter(name="maxSessionDuration")
+    def max_session_duration(self) -> int:
+        """
+        The max session duration of the Role.
+        """
+        return pulumi.get(self, "max_session_duration")
+
+    @property
+    @pulumi.getter(name="roleId")
+    def role_id(self) -> int:
+        """
+        The id of the Role.
+        """
+        return pulumi.get(self, "role_id")
 
     @property
     @pulumi.getter(name="roleName")
     def role_name(self) -> str:
         """
-        The name of the Role, comma separated.
+        The name of the Role.
         """
         return pulumi.get(self, "role_name")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.RolesRoleTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
@@ -406,6 +1952,43 @@ class RolesRoleResult(dict):
         The trust policy document of the Role.
         """
         return pulumi.get(self, "trust_policy_document")
+
+    @property
+    @pulumi.getter(name="updateDate")
+    def update_date(self) -> str:
+        """
+        The update time of the Role.
+        """
+        return pulumi.get(self, "update_date")
+
+
+@pulumi.output_type
+class RolesRoleTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -504,23 +2087,259 @@ class SamlProvidersProviderResult(dict):
 
 
 @pulumi.output_type
+class SecurityConfigsSecurityConfigResult(dict):
+    def __init__(__self__, *,
+                 safe_auth_close: int,
+                 safe_auth_exempt_duration: int,
+                 safe_auth_type: str,
+                 user_id: int,
+                 user_name: str):
+        """
+        :param int safe_auth_close: The status of safe auth.
+        :param int safe_auth_exempt_duration: The exempt duration of safe auth.
+        :param str safe_auth_type: The type of safe auth.
+        :param int user_id: The user id.
+        :param str user_name: The user name.
+        """
+        pulumi.set(__self__, "safe_auth_close", safe_auth_close)
+        pulumi.set(__self__, "safe_auth_exempt_duration", safe_auth_exempt_duration)
+        pulumi.set(__self__, "safe_auth_type", safe_auth_type)
+        pulumi.set(__self__, "user_id", user_id)
+        pulumi.set(__self__, "user_name", user_name)
+
+    @property
+    @pulumi.getter(name="safeAuthClose")
+    def safe_auth_close(self) -> int:
+        """
+        The status of safe auth.
+        """
+        return pulumi.get(self, "safe_auth_close")
+
+    @property
+    @pulumi.getter(name="safeAuthExemptDuration")
+    def safe_auth_exempt_duration(self) -> int:
+        """
+        The exempt duration of safe auth.
+        """
+        return pulumi.get(self, "safe_auth_exempt_duration")
+
+    @property
+    @pulumi.getter(name="safeAuthType")
+    def safe_auth_type(self) -> str:
+        """
+        The type of safe auth.
+        """
+        return pulumi.get(self, "safe_auth_type")
+
+    @property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> int:
+        """
+        The user id.
+        """
+        return pulumi.get(self, "user_id")
+
+    @property
+    @pulumi.getter(name="userName")
+    def user_name(self) -> str:
+        """
+        The user name.
+        """
+        return pulumi.get(self, "user_name")
+
+
+@pulumi.output_type
+class ServiceLinkedRoleTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class TagTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class TagsResourceTagResult(dict):
+    def __init__(__self__, *,
+                 resource_name: str,
+                 resource_type: str,
+                 tag_key: str,
+                 tag_value: str):
+        """
+        :param str resource_name: The name of the resource.
+        :param str resource_type: The type of the resource. Valid values: User, Role.
+        :param str tag_key: The key of the tag.
+        :param str tag_value: The value of the tag.
+        """
+        pulumi.set(__self__, "resource_name", resource_name)
+        pulumi.set(__self__, "resource_type", resource_type)
+        pulumi.set(__self__, "tag_key", tag_key)
+        pulumi.set(__self__, "tag_value", tag_value)
+
+    @property
+    @pulumi.getter(name="resourceName")
+    def resource_name(self) -> str:
+        """
+        The name of the resource.
+        """
+        return pulumi.get(self, "resource_name")
+
+    @property
+    @pulumi.getter(name="resourceType")
+    def resource_type(self) -> str:
+        """
+        The type of the resource. Valid values: User, Role.
+        """
+        return pulumi.get(self, "resource_type")
+
+    @property
+    @pulumi.getter(name="tagKey")
+    def tag_key(self) -> str:
+        """
+        The key of the tag.
+        """
+        return pulumi.get(self, "tag_key")
+
+    @property
+    @pulumi.getter(name="tagValue")
+    def tag_value(self) -> str:
+        """
+        The value of the tag.
+        """
+        return pulumi.get(self, "tag_value")
+
+
+@pulumi.output_type
+class UserGroupAttachmentsUserResult(dict):
+    def __init__(__self__, *,
+                 description: str,
+                 display_name: str,
+                 join_date: str,
+                 user_id: int,
+                 user_name: str):
+        """
+        :param str description: The description of the user.
+        :param str display_name: The display name of the user.
+        :param str join_date: The join date of the user.
+        :param int user_id: The id of the user.
+        :param str user_name: The name of the user.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "join_date", join_date)
+        pulumi.set(__self__, "user_id", user_id)
+        pulumi.set(__self__, "user_name", user_name)
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the user.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> str:
+        """
+        The display name of the user.
+        """
+        return pulumi.get(self, "display_name")
+
+    @property
+    @pulumi.getter(name="joinDate")
+    def join_date(self) -> str:
+        """
+        The join date of the user.
+        """
+        return pulumi.get(self, "join_date")
+
+    @property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> int:
+        """
+        The id of the user.
+        """
+        return pulumi.get(self, "user_id")
+
+    @property
+    @pulumi.getter(name="userName")
+    def user_name(self) -> str:
+        """
+        The name of the user.
+        """
+        return pulumi.get(self, "user_name")
+
+
+@pulumi.output_type
 class UserGroupPolicyAttachmentsPolicyResult(dict):
     def __init__(__self__, *,
                  attach_date: str,
                  description: str,
                  policy_name: str,
+                 policy_scopes: Sequence['outputs.UserGroupPolicyAttachmentsPolicyPolicyScopeResult'],
                  policy_trn: str,
                  policy_type: str):
         """
-        :param str attach_date: Attached time.
+        :param str attach_date: The attach date of the policy scope.
         :param str description: The description.
         :param str policy_name: Name of the policy.
+        :param Sequence['UserGroupPolicyAttachmentsPolicyPolicyScopeArgs'] policy_scopes: The scope of the policy.
         :param str policy_trn: Resource name of the strategy.
         :param str policy_type: The type of the policy.
         """
         pulumi.set(__self__, "attach_date", attach_date)
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "policy_name", policy_name)
+        pulumi.set(__self__, "policy_scopes", policy_scopes)
         pulumi.set(__self__, "policy_trn", policy_trn)
         pulumi.set(__self__, "policy_type", policy_type)
 
@@ -528,7 +2347,7 @@ class UserGroupPolicyAttachmentsPolicyResult(dict):
     @pulumi.getter(name="attachDate")
     def attach_date(self) -> str:
         """
-        Attached time.
+        The attach date of the policy scope.
         """
         return pulumi.get(self, "attach_date")
 
@@ -549,6 +2368,14 @@ class UserGroupPolicyAttachmentsPolicyResult(dict):
         return pulumi.get(self, "policy_name")
 
     @property
+    @pulumi.getter(name="policyScopes")
+    def policy_scopes(self) -> Sequence['outputs.UserGroupPolicyAttachmentsPolicyPolicyScopeResult']:
+        """
+        The scope of the policy.
+        """
+        return pulumi.get(self, "policy_scopes")
+
+    @property
     @pulumi.getter(name="policyTrn")
     def policy_trn(self) -> str:
         """
@@ -566,6 +2393,57 @@ class UserGroupPolicyAttachmentsPolicyResult(dict):
 
 
 @pulumi.output_type
+class UserGroupPolicyAttachmentsPolicyPolicyScopeResult(dict):
+    def __init__(__self__, *,
+                 attach_date: str,
+                 policy_scope_type: str,
+                 project_display_name: str,
+                 project_name: str):
+        """
+        :param str attach_date: The attach date of the policy scope.
+        :param str policy_scope_type: The type of the policy scope.
+        :param str project_display_name: The display name of the project.
+        :param str project_name: The name of the project.
+        """
+        pulumi.set(__self__, "attach_date", attach_date)
+        pulumi.set(__self__, "policy_scope_type", policy_scope_type)
+        pulumi.set(__self__, "project_display_name", project_display_name)
+        pulumi.set(__self__, "project_name", project_name)
+
+    @property
+    @pulumi.getter(name="attachDate")
+    def attach_date(self) -> str:
+        """
+        The attach date of the policy scope.
+        """
+        return pulumi.get(self, "attach_date")
+
+    @property
+    @pulumi.getter(name="policyScopeType")
+    def policy_scope_type(self) -> str:
+        """
+        The type of the policy scope.
+        """
+        return pulumi.get(self, "policy_scope_type")
+
+    @property
+    @pulumi.getter(name="projectDisplayName")
+    def project_display_name(self) -> str:
+        """
+        The display name of the project.
+        """
+        return pulumi.get(self, "project_display_name")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The name of the project.
+        """
+        return pulumi.get(self, "project_name")
+
+
+@pulumi.output_type
 class UserGroupsUserGroupResult(dict):
     def __init__(__self__, *,
                  account_id: int,
@@ -573,6 +2451,7 @@ class UserGroupsUserGroupResult(dict):
                  description: str,
                  display_name: str,
                  update_date: str,
+                 user_group_id: int,
                  user_group_name: str):
         """
         :param int account_id: The id of the account.
@@ -580,6 +2459,7 @@ class UserGroupsUserGroupResult(dict):
         :param str description: The description of the user group.
         :param str display_name: The display name of the user group.
         :param str update_date: The update date of the user group.
+        :param int user_group_id: The id of the user group.
         :param str user_group_name: The name of the user group.
         """
         pulumi.set(__self__, "account_id", account_id)
@@ -587,6 +2467,7 @@ class UserGroupsUserGroupResult(dict):
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "display_name", display_name)
         pulumi.set(__self__, "update_date", update_date)
+        pulumi.set(__self__, "user_group_id", user_group_id)
         pulumi.set(__self__, "user_group_name", user_group_name)
 
     @property
@@ -630,12 +2511,173 @@ class UserGroupsUserGroupResult(dict):
         return pulumi.get(self, "update_date")
 
     @property
+    @pulumi.getter(name="userGroupId")
+    def user_group_id(self) -> int:
+        """
+        The id of the user group.
+        """
+        return pulumi.get(self, "user_group_id")
+
+    @property
     @pulumi.getter(name="userGroupName")
     def user_group_name(self) -> str:
         """
         The name of the user group.
         """
         return pulumi.get(self, "user_group_name")
+
+
+@pulumi.output_type
+class UserPolicyAttachmentsPolicyResult(dict):
+    def __init__(__self__, *,
+                 attach_date: str,
+                 description: str,
+                 policy_name: str,
+                 policy_scopes: Sequence['outputs.UserPolicyAttachmentsPolicyPolicyScopeResult'],
+                 policy_trn: str,
+                 policy_type: str):
+        """
+        :param str attach_date: The attach date of the policy scope.
+        :param str description: The description of the policy.
+        :param str policy_name: The name of the policy.
+        :param Sequence['UserPolicyAttachmentsPolicyPolicyScopeArgs'] policy_scopes: The scope of the policy.
+        :param str policy_trn: The trn of the policy.
+        :param str policy_type: The type of the policy.
+        """
+        pulumi.set(__self__, "attach_date", attach_date)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "policy_name", policy_name)
+        pulumi.set(__self__, "policy_scopes", policy_scopes)
+        pulumi.set(__self__, "policy_trn", policy_trn)
+        pulumi.set(__self__, "policy_type", policy_type)
+
+    @property
+    @pulumi.getter(name="attachDate")
+    def attach_date(self) -> str:
+        """
+        The attach date of the policy scope.
+        """
+        return pulumi.get(self, "attach_date")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the policy.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="policyName")
+    def policy_name(self) -> str:
+        """
+        The name of the policy.
+        """
+        return pulumi.get(self, "policy_name")
+
+    @property
+    @pulumi.getter(name="policyScopes")
+    def policy_scopes(self) -> Sequence['outputs.UserPolicyAttachmentsPolicyPolicyScopeResult']:
+        """
+        The scope of the policy.
+        """
+        return pulumi.get(self, "policy_scopes")
+
+    @property
+    @pulumi.getter(name="policyTrn")
+    def policy_trn(self) -> str:
+        """
+        The trn of the policy.
+        """
+        return pulumi.get(self, "policy_trn")
+
+    @property
+    @pulumi.getter(name="policyType")
+    def policy_type(self) -> str:
+        """
+        The type of the policy.
+        """
+        return pulumi.get(self, "policy_type")
+
+
+@pulumi.output_type
+class UserPolicyAttachmentsPolicyPolicyScopeResult(dict):
+    def __init__(__self__, *,
+                 attach_date: str,
+                 policy_scope_type: str,
+                 project_display_name: str,
+                 project_name: str):
+        """
+        :param str attach_date: The attach date of the policy scope.
+        :param str policy_scope_type: The type of the policy scope.
+        :param str project_display_name: The display name of the project.
+        :param str project_name: The name of the project.
+        """
+        pulumi.set(__self__, "attach_date", attach_date)
+        pulumi.set(__self__, "policy_scope_type", policy_scope_type)
+        pulumi.set(__self__, "project_display_name", project_display_name)
+        pulumi.set(__self__, "project_name", project_name)
+
+    @property
+    @pulumi.getter(name="attachDate")
+    def attach_date(self) -> str:
+        """
+        The attach date of the policy scope.
+        """
+        return pulumi.get(self, "attach_date")
+
+    @property
+    @pulumi.getter(name="policyScopeType")
+    def policy_scope_type(self) -> str:
+        """
+        The type of the policy scope.
+        """
+        return pulumi.get(self, "policy_scope_type")
+
+    @property
+    @pulumi.getter(name="projectDisplayName")
+    def project_display_name(self) -> str:
+        """
+        The display name of the project.
+        """
+        return pulumi.get(self, "project_display_name")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The name of the project.
+        """
+        return pulumi.get(self, "project_name")
+
+
+@pulumi.output_type
+class UserTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -652,7 +2694,8 @@ class UsersUserResult(dict):
                  trn: str,
                  update_date: str,
                  user_id: str,
-                 user_name: str):
+                 user_name: str,
+                 tags: Optional[Sequence['outputs.UsersUserTagResult']] = None):
         """
         :param str account_id: Main account ID to which the sub-user belongs.
         :param str create_date: The create date of the user.
@@ -666,6 +2709,7 @@ class UsersUserResult(dict):
         :param str update_date: The update date of the user.
         :param str user_id: The id of the user.
         :param str user_name: The name of the user.
+        :param Sequence['UsersUserTagArgs'] tags: Tags.
         """
         pulumi.set(__self__, "account_id", account_id)
         pulumi.set(__self__, "create_date", create_date)
@@ -679,6 +2723,8 @@ class UsersUserResult(dict):
         pulumi.set(__self__, "update_date", update_date)
         pulumi.set(__self__, "user_id", user_id)
         pulumi.set(__self__, "user_name", user_name)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter(name="accountId")
@@ -776,6 +2822,83 @@ class UsersUserResult(dict):
         """
         return pulumi.get(self, "user_name")
 
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.UsersUserTagResult']]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+
+@pulumi.output_type
+class UsersUserTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetAccessKeyLastUsedsAccessKeyLastUsedResult(dict):
+    def __init__(__self__, *,
+                 region: str,
+                 request_time: str,
+                 service: str):
+        """
+        :param str region: The region of the last used.
+        :param str request_time: The request time of the last used.
+        :param str service: The service of the last used.
+        """
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "request_time", request_time)
+        pulumi.set(__self__, "service", service)
+
+    @property
+    @pulumi.getter
+    def region(self) -> str:
+        """
+        The region of the last used.
+        """
+        return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter(name="requestTime")
+    def request_time(self) -> str:
+        """
+        The request time of the last used.
+        """
+        return pulumi.get(self, "request_time")
+
+    @property
+    @pulumi.getter
+    def service(self) -> str:
+        """
+        The service of the last used.
+        """
+        return pulumi.get(self, "service")
+
 
 @pulumi.output_type
 class GetAccessKeysAccessKeyMetadataResult(dict):
@@ -790,7 +2913,7 @@ class GetAccessKeysAccessKeyMetadataResult(dict):
         :param str create_date: The user access key create date.
         :param str status: The user access key status.
         :param str update_date: The user access key update date.
-        :param str user_name: The user names.
+        :param str user_name: The user name.
         """
         pulumi.set(__self__, "access_key_id", access_key_id)
         pulumi.set(__self__, "create_date", create_date)
@@ -834,9 +2957,1240 @@ class GetAccessKeysAccessKeyMetadataResult(dict):
     @pulumi.getter(name="userName")
     def user_name(self) -> str:
         """
-        The user names.
+        The user name.
         """
         return pulumi.get(self, "user_name")
+
+
+@pulumi.output_type
+class GetAccountSummariesAccountSummaryResult(dict):
+    def __init__(__self__, *,
+                 access_keys_per_account_quota: int,
+                 access_keys_per_user_quota: int,
+                 attached_policies_per_group_quota: int,
+                 attached_policies_per_role_quota: int,
+                 attached_policies_per_user_quota: int,
+                 attached_system_policies_per_group_quota: int,
+                 attached_system_policies_per_role_quota: int,
+                 attached_system_policies_per_user_quota: int,
+                 groups_per_user_quota: int,
+                 groups_quota: int,
+                 groups_usage: int,
+                 policies_quota: int,
+                 policies_usage: int,
+                 policy_size: int,
+                 roles_quota: int,
+                 roles_usage: int,
+                 users_quota: int,
+                 users_usage: int):
+        """
+        :param int access_keys_per_account_quota: The quota of access keys per account.
+        :param int access_keys_per_user_quota: The quota of access keys per user.
+        :param int attached_policies_per_group_quota: The quota of attached policies per group.
+        :param int attached_policies_per_role_quota: The quota of attached policies per role.
+        :param int attached_policies_per_user_quota: The quota of attached policies per user.
+        :param int attached_system_policies_per_group_quota: The quota of attached system policies per group.
+        :param int attached_system_policies_per_role_quota: The quota of attached system policies per role.
+        :param int attached_system_policies_per_user_quota: The quota of attached system policies per user.
+        :param int groups_per_user_quota: The quota of groups per user.
+        :param int groups_quota: The quota of groups.
+        :param int groups_usage: The usage of groups.
+        :param int policies_quota: The quota of policies.
+        :param int policies_usage: The usage of policies.
+        :param int policy_size: The size of policy.
+        :param int roles_quota: The quota of roles.
+        :param int roles_usage: The usage of roles.
+        :param int users_quota: The quota of users.
+        :param int users_usage: The usage of users.
+        """
+        pulumi.set(__self__, "access_keys_per_account_quota", access_keys_per_account_quota)
+        pulumi.set(__self__, "access_keys_per_user_quota", access_keys_per_user_quota)
+        pulumi.set(__self__, "attached_policies_per_group_quota", attached_policies_per_group_quota)
+        pulumi.set(__self__, "attached_policies_per_role_quota", attached_policies_per_role_quota)
+        pulumi.set(__self__, "attached_policies_per_user_quota", attached_policies_per_user_quota)
+        pulumi.set(__self__, "attached_system_policies_per_group_quota", attached_system_policies_per_group_quota)
+        pulumi.set(__self__, "attached_system_policies_per_role_quota", attached_system_policies_per_role_quota)
+        pulumi.set(__self__, "attached_system_policies_per_user_quota", attached_system_policies_per_user_quota)
+        pulumi.set(__self__, "groups_per_user_quota", groups_per_user_quota)
+        pulumi.set(__self__, "groups_quota", groups_quota)
+        pulumi.set(__self__, "groups_usage", groups_usage)
+        pulumi.set(__self__, "policies_quota", policies_quota)
+        pulumi.set(__self__, "policies_usage", policies_usage)
+        pulumi.set(__self__, "policy_size", policy_size)
+        pulumi.set(__self__, "roles_quota", roles_quota)
+        pulumi.set(__self__, "roles_usage", roles_usage)
+        pulumi.set(__self__, "users_quota", users_quota)
+        pulumi.set(__self__, "users_usage", users_usage)
+
+    @property
+    @pulumi.getter(name="accessKeysPerAccountQuota")
+    def access_keys_per_account_quota(self) -> int:
+        """
+        The quota of access keys per account.
+        """
+        return pulumi.get(self, "access_keys_per_account_quota")
+
+    @property
+    @pulumi.getter(name="accessKeysPerUserQuota")
+    def access_keys_per_user_quota(self) -> int:
+        """
+        The quota of access keys per user.
+        """
+        return pulumi.get(self, "access_keys_per_user_quota")
+
+    @property
+    @pulumi.getter(name="attachedPoliciesPerGroupQuota")
+    def attached_policies_per_group_quota(self) -> int:
+        """
+        The quota of attached policies per group.
+        """
+        return pulumi.get(self, "attached_policies_per_group_quota")
+
+    @property
+    @pulumi.getter(name="attachedPoliciesPerRoleQuota")
+    def attached_policies_per_role_quota(self) -> int:
+        """
+        The quota of attached policies per role.
+        """
+        return pulumi.get(self, "attached_policies_per_role_quota")
+
+    @property
+    @pulumi.getter(name="attachedPoliciesPerUserQuota")
+    def attached_policies_per_user_quota(self) -> int:
+        """
+        The quota of attached policies per user.
+        """
+        return pulumi.get(self, "attached_policies_per_user_quota")
+
+    @property
+    @pulumi.getter(name="attachedSystemPoliciesPerGroupQuota")
+    def attached_system_policies_per_group_quota(self) -> int:
+        """
+        The quota of attached system policies per group.
+        """
+        return pulumi.get(self, "attached_system_policies_per_group_quota")
+
+    @property
+    @pulumi.getter(name="attachedSystemPoliciesPerRoleQuota")
+    def attached_system_policies_per_role_quota(self) -> int:
+        """
+        The quota of attached system policies per role.
+        """
+        return pulumi.get(self, "attached_system_policies_per_role_quota")
+
+    @property
+    @pulumi.getter(name="attachedSystemPoliciesPerUserQuota")
+    def attached_system_policies_per_user_quota(self) -> int:
+        """
+        The quota of attached system policies per user.
+        """
+        return pulumi.get(self, "attached_system_policies_per_user_quota")
+
+    @property
+    @pulumi.getter(name="groupsPerUserQuota")
+    def groups_per_user_quota(self) -> int:
+        """
+        The quota of groups per user.
+        """
+        return pulumi.get(self, "groups_per_user_quota")
+
+    @property
+    @pulumi.getter(name="groupsQuota")
+    def groups_quota(self) -> int:
+        """
+        The quota of groups.
+        """
+        return pulumi.get(self, "groups_quota")
+
+    @property
+    @pulumi.getter(name="groupsUsage")
+    def groups_usage(self) -> int:
+        """
+        The usage of groups.
+        """
+        return pulumi.get(self, "groups_usage")
+
+    @property
+    @pulumi.getter(name="policiesQuota")
+    def policies_quota(self) -> int:
+        """
+        The quota of policies.
+        """
+        return pulumi.get(self, "policies_quota")
+
+    @property
+    @pulumi.getter(name="policiesUsage")
+    def policies_usage(self) -> int:
+        """
+        The usage of policies.
+        """
+        return pulumi.get(self, "policies_usage")
+
+    @property
+    @pulumi.getter(name="policySize")
+    def policy_size(self) -> int:
+        """
+        The size of policy.
+        """
+        return pulumi.get(self, "policy_size")
+
+    @property
+    @pulumi.getter(name="rolesQuota")
+    def roles_quota(self) -> int:
+        """
+        The quota of roles.
+        """
+        return pulumi.get(self, "roles_quota")
+
+    @property
+    @pulumi.getter(name="rolesUsage")
+    def roles_usage(self) -> int:
+        """
+        The usage of roles.
+        """
+        return pulumi.get(self, "roles_usage")
+
+    @property
+    @pulumi.getter(name="usersQuota")
+    def users_quota(self) -> int:
+        """
+        The quota of users.
+        """
+        return pulumi.get(self, "users_quota")
+
+    @property
+    @pulumi.getter(name="usersUsage")
+    def users_usage(self) -> int:
+        """
+        The usage of users.
+        """
+        return pulumi.get(self, "users_usage")
+
+
+@pulumi.output_type
+class GetAllowedIpAddressesAllowedIpAddressResult(dict):
+    def __init__(__self__, *,
+                 enable_ip_list: bool,
+                 ip_lists: Sequence['outputs.GetAllowedIpAddressesAllowedIpAddressIpListResult'],
+                 quota: int):
+        """
+        :param bool enable_ip_list: Whether to enable the IP whitelist.
+        :param Sequence['GetAllowedIpAddressesAllowedIpAddressIpListArgs'] ip_lists: The IP whitelist list.
+        :param int quota: The quota of the IP whitelist.
+        """
+        pulumi.set(__self__, "enable_ip_list", enable_ip_list)
+        pulumi.set(__self__, "ip_lists", ip_lists)
+        pulumi.set(__self__, "quota", quota)
+
+    @property
+    @pulumi.getter(name="enableIpList")
+    def enable_ip_list(self) -> bool:
+        """
+        Whether to enable the IP whitelist.
+        """
+        return pulumi.get(self, "enable_ip_list")
+
+    @property
+    @pulumi.getter(name="ipLists")
+    def ip_lists(self) -> Sequence['outputs.GetAllowedIpAddressesAllowedIpAddressIpListResult']:
+        """
+        The IP whitelist list.
+        """
+        return pulumi.get(self, "ip_lists")
+
+    @property
+    @pulumi.getter
+    def quota(self) -> int:
+        """
+        The quota of the IP whitelist.
+        """
+        return pulumi.get(self, "quota")
+
+
+@pulumi.output_type
+class GetAllowedIpAddressesAllowedIpAddressIpListResult(dict):
+    def __init__(__self__, *,
+                 description: str,
+                 ip: str):
+        """
+        :param str description: The description of the IP address.
+        :param str ip: The IP address.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "ip", ip)
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the IP address.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def ip(self) -> str:
+        """
+        The IP address.
+        """
+        return pulumi.get(self, "ip")
+
+
+@pulumi.output_type
+class GetCallerIdentitiesCallerIdentityResult(dict):
+    def __init__(__self__, *,
+                 account_id: str,
+                 identity_id: str,
+                 identity_type: str,
+                 trn: str):
+        """
+        :param str account_id: The account id.
+        :param str identity_id: The identity id.
+        :param str identity_type: The identity type.
+        :param str trn: The trn.
+        """
+        pulumi.set(__self__, "account_id", account_id)
+        pulumi.set(__self__, "identity_id", identity_id)
+        pulumi.set(__self__, "identity_type", identity_type)
+        pulumi.set(__self__, "trn", trn)
+
+    @property
+    @pulumi.getter(name="accountId")
+    def account_id(self) -> str:
+        """
+        The account id.
+        """
+        return pulumi.get(self, "account_id")
+
+    @property
+    @pulumi.getter(name="identityId")
+    def identity_id(self) -> str:
+        """
+        The identity id.
+        """
+        return pulumi.get(self, "identity_id")
+
+    @property
+    @pulumi.getter(name="identityType")
+    def identity_type(self) -> str:
+        """
+        The identity type.
+        """
+        return pulumi.get(self, "identity_type")
+
+    @property
+    @pulumi.getter
+    def trn(self) -> str:
+        """
+        The trn.
+        """
+        return pulumi.get(self, "trn")
+
+
+@pulumi.output_type
+class GetEntitiesPoliciesRoleResult(dict):
+    def __init__(__self__, *,
+                 attach_date: str,
+                 description: str,
+                 display_name: str,
+                 id: int,
+                 policy_scopes: Sequence['outputs.GetEntitiesPoliciesRolePolicyScopeResult'],
+                 role_name: str):
+        """
+        :param str attach_date: The attach date of the policy scope.
+        :param str description: The description of the user.
+        :param str display_name: The display name of the user.
+        :param int id: The id of the user.
+        :param Sequence['GetEntitiesPoliciesRolePolicyScopeArgs'] policy_scopes: The scope of the policy.
+        :param str role_name: The name of the role.
+        """
+        pulumi.set(__self__, "attach_date", attach_date)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "policy_scopes", policy_scopes)
+        pulumi.set(__self__, "role_name", role_name)
+
+    @property
+    @pulumi.getter(name="attachDate")
+    def attach_date(self) -> str:
+        """
+        The attach date of the policy scope.
+        """
+        return pulumi.get(self, "attach_date")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the user.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> str:
+        """
+        The display name of the user.
+        """
+        return pulumi.get(self, "display_name")
+
+    @property
+    @pulumi.getter
+    def id(self) -> int:
+        """
+        The id of the user.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="policyScopes")
+    def policy_scopes(self) -> Sequence['outputs.GetEntitiesPoliciesRolePolicyScopeResult']:
+        """
+        The scope of the policy.
+        """
+        return pulumi.get(self, "policy_scopes")
+
+    @property
+    @pulumi.getter(name="roleName")
+    def role_name(self) -> str:
+        """
+        The name of the role.
+        """
+        return pulumi.get(self, "role_name")
+
+
+@pulumi.output_type
+class GetEntitiesPoliciesRolePolicyScopeResult(dict):
+    def __init__(__self__, *,
+                 attach_date: str,
+                 policy_scope_type: str,
+                 project_display_name: str,
+                 project_name: str):
+        """
+        :param str attach_date: The attach date of the policy scope.
+        :param str policy_scope_type: The type of the policy scope.
+        :param str project_display_name: The display name of the project.
+        :param str project_name: The name of the project.
+        """
+        pulumi.set(__self__, "attach_date", attach_date)
+        pulumi.set(__self__, "policy_scope_type", policy_scope_type)
+        pulumi.set(__self__, "project_display_name", project_display_name)
+        pulumi.set(__self__, "project_name", project_name)
+
+    @property
+    @pulumi.getter(name="attachDate")
+    def attach_date(self) -> str:
+        """
+        The attach date of the policy scope.
+        """
+        return pulumi.get(self, "attach_date")
+
+    @property
+    @pulumi.getter(name="policyScopeType")
+    def policy_scope_type(self) -> str:
+        """
+        The type of the policy scope.
+        """
+        return pulumi.get(self, "policy_scope_type")
+
+    @property
+    @pulumi.getter(name="projectDisplayName")
+    def project_display_name(self) -> str:
+        """
+        The display name of the project.
+        """
+        return pulumi.get(self, "project_display_name")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The name of the project.
+        """
+        return pulumi.get(self, "project_name")
+
+
+@pulumi.output_type
+class GetEntitiesPoliciesUserResult(dict):
+    def __init__(__self__, *,
+                 attach_date: str,
+                 description: str,
+                 display_name: str,
+                 id: int,
+                 policy_scopes: Sequence['outputs.GetEntitiesPoliciesUserPolicyScopeResult'],
+                 user_name: str):
+        """
+        :param str attach_date: The attach date of the policy scope.
+        :param str description: The description of the user.
+        :param str display_name: The display name of the user.
+        :param int id: The id of the user.
+        :param Sequence['GetEntitiesPoliciesUserPolicyScopeArgs'] policy_scopes: The scope of the policy.
+        :param str user_name: The name of the user.
+        """
+        pulumi.set(__self__, "attach_date", attach_date)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "policy_scopes", policy_scopes)
+        pulumi.set(__self__, "user_name", user_name)
+
+    @property
+    @pulumi.getter(name="attachDate")
+    def attach_date(self) -> str:
+        """
+        The attach date of the policy scope.
+        """
+        return pulumi.get(self, "attach_date")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the user.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> str:
+        """
+        The display name of the user.
+        """
+        return pulumi.get(self, "display_name")
+
+    @property
+    @pulumi.getter
+    def id(self) -> int:
+        """
+        The id of the user.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="policyScopes")
+    def policy_scopes(self) -> Sequence['outputs.GetEntitiesPoliciesUserPolicyScopeResult']:
+        """
+        The scope of the policy.
+        """
+        return pulumi.get(self, "policy_scopes")
+
+    @property
+    @pulumi.getter(name="userName")
+    def user_name(self) -> str:
+        """
+        The name of the user.
+        """
+        return pulumi.get(self, "user_name")
+
+
+@pulumi.output_type
+class GetEntitiesPoliciesUserGroupResult(dict):
+    def __init__(__self__, *,
+                 attach_date: str,
+                 description: str,
+                 display_name: str,
+                 id: int,
+                 policy_scopes: Sequence['outputs.GetEntitiesPoliciesUserGroupPolicyScopeResult'],
+                 user_group_name: str):
+        """
+        :param str attach_date: The attach date of the policy scope.
+        :param str description: The description of the user.
+        :param str display_name: The display name of the user.
+        :param int id: The id of the user.
+        :param Sequence['GetEntitiesPoliciesUserGroupPolicyScopeArgs'] policy_scopes: The scope of the policy.
+        :param str user_group_name: The name of the user group.
+        """
+        pulumi.set(__self__, "attach_date", attach_date)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "policy_scopes", policy_scopes)
+        pulumi.set(__self__, "user_group_name", user_group_name)
+
+    @property
+    @pulumi.getter(name="attachDate")
+    def attach_date(self) -> str:
+        """
+        The attach date of the policy scope.
+        """
+        return pulumi.get(self, "attach_date")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the user.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> str:
+        """
+        The display name of the user.
+        """
+        return pulumi.get(self, "display_name")
+
+    @property
+    @pulumi.getter
+    def id(self) -> int:
+        """
+        The id of the user.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="policyScopes")
+    def policy_scopes(self) -> Sequence['outputs.GetEntitiesPoliciesUserGroupPolicyScopeResult']:
+        """
+        The scope of the policy.
+        """
+        return pulumi.get(self, "policy_scopes")
+
+    @property
+    @pulumi.getter(name="userGroupName")
+    def user_group_name(self) -> str:
+        """
+        The name of the user group.
+        """
+        return pulumi.get(self, "user_group_name")
+
+
+@pulumi.output_type
+class GetEntitiesPoliciesUserGroupPolicyScopeResult(dict):
+    def __init__(__self__, *,
+                 attach_date: str,
+                 policy_scope_type: str,
+                 project_display_name: str,
+                 project_name: str):
+        """
+        :param str attach_date: The attach date of the policy scope.
+        :param str policy_scope_type: The type of the policy scope.
+        :param str project_display_name: The display name of the project.
+        :param str project_name: The name of the project.
+        """
+        pulumi.set(__self__, "attach_date", attach_date)
+        pulumi.set(__self__, "policy_scope_type", policy_scope_type)
+        pulumi.set(__self__, "project_display_name", project_display_name)
+        pulumi.set(__self__, "project_name", project_name)
+
+    @property
+    @pulumi.getter(name="attachDate")
+    def attach_date(self) -> str:
+        """
+        The attach date of the policy scope.
+        """
+        return pulumi.get(self, "attach_date")
+
+    @property
+    @pulumi.getter(name="policyScopeType")
+    def policy_scope_type(self) -> str:
+        """
+        The type of the policy scope.
+        """
+        return pulumi.get(self, "policy_scope_type")
+
+    @property
+    @pulumi.getter(name="projectDisplayName")
+    def project_display_name(self) -> str:
+        """
+        The display name of the project.
+        """
+        return pulumi.get(self, "project_display_name")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The name of the project.
+        """
+        return pulumi.get(self, "project_name")
+
+
+@pulumi.output_type
+class GetEntitiesPoliciesUserPolicyScopeResult(dict):
+    def __init__(__self__, *,
+                 attach_date: str,
+                 policy_scope_type: str,
+                 project_display_name: str,
+                 project_name: str):
+        """
+        :param str attach_date: The attach date of the policy scope.
+        :param str policy_scope_type: The type of the policy scope.
+        :param str project_display_name: The display name of the project.
+        :param str project_name: The name of the project.
+        """
+        pulumi.set(__self__, "attach_date", attach_date)
+        pulumi.set(__self__, "policy_scope_type", policy_scope_type)
+        pulumi.set(__self__, "project_display_name", project_display_name)
+        pulumi.set(__self__, "project_name", project_name)
+
+    @property
+    @pulumi.getter(name="attachDate")
+    def attach_date(self) -> str:
+        """
+        The attach date of the policy scope.
+        """
+        return pulumi.get(self, "attach_date")
+
+    @property
+    @pulumi.getter(name="policyScopeType")
+    def policy_scope_type(self) -> str:
+        """
+        The type of the policy scope.
+        """
+        return pulumi.get(self, "policy_scope_type")
+
+    @property
+    @pulumi.getter(name="projectDisplayName")
+    def project_display_name(self) -> str:
+        """
+        The display name of the project.
+        """
+        return pulumi.get(self, "project_display_name")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The name of the project.
+        """
+        return pulumi.get(self, "project_name")
+
+
+@pulumi.output_type
+class GetGroupUsersUserGroupResult(dict):
+    def __init__(__self__, *,
+                 description: str,
+                 display_name: str,
+                 join_date: str,
+                 user_group_id: int,
+                 user_group_name: str):
+        """
+        :param str description: The description of the user group.
+        :param str display_name: The display name of the user group.
+        :param str join_date: The join date of the user group.
+        :param int user_group_id: The id of the user group.
+        :param str user_group_name: The name of the user group.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "join_date", join_date)
+        pulumi.set(__self__, "user_group_id", user_group_id)
+        pulumi.set(__self__, "user_group_name", user_group_name)
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the user group.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> str:
+        """
+        The display name of the user group.
+        """
+        return pulumi.get(self, "display_name")
+
+    @property
+    @pulumi.getter(name="joinDate")
+    def join_date(self) -> str:
+        """
+        The join date of the user group.
+        """
+        return pulumi.get(self, "join_date")
+
+    @property
+    @pulumi.getter(name="userGroupId")
+    def user_group_id(self) -> int:
+        """
+        The id of the user group.
+        """
+        return pulumi.get(self, "user_group_id")
+
+    @property
+    @pulumi.getter(name="userGroupName")
+    def user_group_name(self) -> str:
+        """
+        The name of the user group.
+        """
+        return pulumi.get(self, "user_group_name")
+
+
+@pulumi.output_type
+class GetIdentityProvidersProviderResult(dict):
+    def __init__(__self__, *,
+                 create_date: str,
+                 description: str,
+                 idp_type: int,
+                 provider_name: str,
+                 sso_type: int,
+                 status: int,
+                 trn: str,
+                 update_date: str):
+        """
+        :param str create_date: The create date of the identity provider.
+        :param str description: The description of the identity provider.
+        :param int idp_type: The type of the identity provider.
+        :param str provider_name: The name of the identity provider.
+        :param int sso_type: The SSO type of the identity provider.
+        :param int status: The status of the identity provider.
+        :param str trn: The TRN of the identity provider.
+        :param str update_date: The update date of the identity provider.
+        """
+        pulumi.set(__self__, "create_date", create_date)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "idp_type", idp_type)
+        pulumi.set(__self__, "provider_name", provider_name)
+        pulumi.set(__self__, "sso_type", sso_type)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "trn", trn)
+        pulumi.set(__self__, "update_date", update_date)
+
+    @property
+    @pulumi.getter(name="createDate")
+    def create_date(self) -> str:
+        """
+        The create date of the identity provider.
+        """
+        return pulumi.get(self, "create_date")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the identity provider.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="idpType")
+    def idp_type(self) -> int:
+        """
+        The type of the identity provider.
+        """
+        return pulumi.get(self, "idp_type")
+
+    @property
+    @pulumi.getter(name="providerName")
+    def provider_name(self) -> str:
+        """
+        The name of the identity provider.
+        """
+        return pulumi.get(self, "provider_name")
+
+    @property
+    @pulumi.getter(name="ssoType")
+    def sso_type(self) -> int:
+        """
+        The SSO type of the identity provider.
+        """
+        return pulumi.get(self, "sso_type")
+
+    @property
+    @pulumi.getter
+    def status(self) -> int:
+        """
+        The status of the identity provider.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def trn(self) -> str:
+        """
+        The TRN of the identity provider.
+        """
+        return pulumi.get(self, "trn")
+
+    @property
+    @pulumi.getter(name="updateDate")
+    def update_date(self) -> str:
+        """
+        The update date of the identity provider.
+        """
+        return pulumi.get(self, "update_date")
+
+
+@pulumi.output_type
+class GetLoginProfilesLoginProfileResult(dict):
+    def __init__(__self__, *,
+                 create_date: str,
+                 last_login_date: str,
+                 last_login_ip: str,
+                 last_reset_password_time: int,
+                 login_allowed: bool,
+                 login_locked: bool,
+                 password_expire_at: int,
+                 password_reset_required: bool,
+                 safe_auth_exempt_duration: int,
+                 safe_auth_exempt_required: int,
+                 safe_auth_exempt_unit: int,
+                 safe_auth_flag: bool,
+                 safe_auth_type: str,
+                 update_date: str,
+                 user_id: int,
+                 user_name: str):
+        """
+        :param str create_date: The create date.
+        :param str last_login_date: The last login date.
+        :param str last_login_ip: The last login ip.
+        :param int last_reset_password_time: The last reset password time.
+        :param bool login_allowed: The flag of login allowed.
+        :param bool login_locked: The flag of login locked.
+        :param int password_expire_at: The password expire at.
+        :param bool password_reset_required: Is required reset password when next time login in.
+        :param int safe_auth_exempt_duration: The duration of safe auth exempt.
+        :param int safe_auth_exempt_required: The flag of safe auth exempt required.
+        :param int safe_auth_exempt_unit: The unit of safe auth exempt.
+        :param bool safe_auth_flag: The flag of safe auth.
+        :param str safe_auth_type: The type of safe auth.
+        :param str update_date: The update date.
+        :param int user_id: The user id.
+        :param str user_name: The user name.
+        """
+        pulumi.set(__self__, "create_date", create_date)
+        pulumi.set(__self__, "last_login_date", last_login_date)
+        pulumi.set(__self__, "last_login_ip", last_login_ip)
+        pulumi.set(__self__, "last_reset_password_time", last_reset_password_time)
+        pulumi.set(__self__, "login_allowed", login_allowed)
+        pulumi.set(__self__, "login_locked", login_locked)
+        pulumi.set(__self__, "password_expire_at", password_expire_at)
+        pulumi.set(__self__, "password_reset_required", password_reset_required)
+        pulumi.set(__self__, "safe_auth_exempt_duration", safe_auth_exempt_duration)
+        pulumi.set(__self__, "safe_auth_exempt_required", safe_auth_exempt_required)
+        pulumi.set(__self__, "safe_auth_exempt_unit", safe_auth_exempt_unit)
+        pulumi.set(__self__, "safe_auth_flag", safe_auth_flag)
+        pulumi.set(__self__, "safe_auth_type", safe_auth_type)
+        pulumi.set(__self__, "update_date", update_date)
+        pulumi.set(__self__, "user_id", user_id)
+        pulumi.set(__self__, "user_name", user_name)
+
+    @property
+    @pulumi.getter(name="createDate")
+    def create_date(self) -> str:
+        """
+        The create date.
+        """
+        return pulumi.get(self, "create_date")
+
+    @property
+    @pulumi.getter(name="lastLoginDate")
+    def last_login_date(self) -> str:
+        """
+        The last login date.
+        """
+        return pulumi.get(self, "last_login_date")
+
+    @property
+    @pulumi.getter(name="lastLoginIp")
+    def last_login_ip(self) -> str:
+        """
+        The last login ip.
+        """
+        return pulumi.get(self, "last_login_ip")
+
+    @property
+    @pulumi.getter(name="lastResetPasswordTime")
+    def last_reset_password_time(self) -> int:
+        """
+        The last reset password time.
+        """
+        return pulumi.get(self, "last_reset_password_time")
+
+    @property
+    @pulumi.getter(name="loginAllowed")
+    def login_allowed(self) -> bool:
+        """
+        The flag of login allowed.
+        """
+        return pulumi.get(self, "login_allowed")
+
+    @property
+    @pulumi.getter(name="loginLocked")
+    def login_locked(self) -> bool:
+        """
+        The flag of login locked.
+        """
+        return pulumi.get(self, "login_locked")
+
+    @property
+    @pulumi.getter(name="passwordExpireAt")
+    def password_expire_at(self) -> int:
+        """
+        The password expire at.
+        """
+        return pulumi.get(self, "password_expire_at")
+
+    @property
+    @pulumi.getter(name="passwordResetRequired")
+    def password_reset_required(self) -> bool:
+        """
+        Is required reset password when next time login in.
+        """
+        return pulumi.get(self, "password_reset_required")
+
+    @property
+    @pulumi.getter(name="safeAuthExemptDuration")
+    def safe_auth_exempt_duration(self) -> int:
+        """
+        The duration of safe auth exempt.
+        """
+        return pulumi.get(self, "safe_auth_exempt_duration")
+
+    @property
+    @pulumi.getter(name="safeAuthExemptRequired")
+    def safe_auth_exempt_required(self) -> int:
+        """
+        The flag of safe auth exempt required.
+        """
+        return pulumi.get(self, "safe_auth_exempt_required")
+
+    @property
+    @pulumi.getter(name="safeAuthExemptUnit")
+    def safe_auth_exempt_unit(self) -> int:
+        """
+        The unit of safe auth exempt.
+        """
+        return pulumi.get(self, "safe_auth_exempt_unit")
+
+    @property
+    @pulumi.getter(name="safeAuthFlag")
+    def safe_auth_flag(self) -> bool:
+        """
+        The flag of safe auth.
+        """
+        return pulumi.get(self, "safe_auth_flag")
+
+    @property
+    @pulumi.getter(name="safeAuthType")
+    def safe_auth_type(self) -> str:
+        """
+        The type of safe auth.
+        """
+        return pulumi.get(self, "safe_auth_type")
+
+    @property
+    @pulumi.getter(name="updateDate")
+    def update_date(self) -> str:
+        """
+        The update date.
+        """
+        return pulumi.get(self, "update_date")
+
+    @property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> int:
+        """
+        The user id.
+        """
+        return pulumi.get(self, "user_id")
+
+    @property
+    @pulumi.getter(name="userName")
+    def user_name(self) -> str:
+        """
+        The user name.
+        """
+        return pulumi.get(self, "user_name")
+
+
+@pulumi.output_type
+class GetOauthProvidersProviderResult(dict):
+    def __init__(__self__, *,
+                 authorize_template: str,
+                 authorize_url: str,
+                 client_id: str,
+                 client_secret: str,
+                 create_date: str,
+                 description: str,
+                 identity_map_type: int,
+                 idp_identity_key: str,
+                 oauth_provider_name: str,
+                 provider_id: str,
+                 scope: str,
+                 sso_type: int,
+                 status: int,
+                 token_url: str,
+                 trn: str,
+                 update_date: str,
+                 user_info_url: str):
+        """
+        :param str authorize_template: The authorize template of the OAuth provider.
+        :param str authorize_url: The authorize url of the OAuth provider.
+        :param str client_id: The client id of the OAuth provider.
+        :param str client_secret: The client secret of the OAuth provider.
+        :param str create_date: The create date of the OAuth provider.
+        :param str description: The description of the OAuth provider.
+        :param int identity_map_type: The identity map type of the OAuth provider.
+        :param str idp_identity_key: The idp identity key of the OAuth provider.
+        :param str oauth_provider_name: The name of the OAuth provider.
+        :param str provider_id: The id of the OAuth provider.
+        :param str scope: The scope of the OAuth provider.
+        :param int sso_type: The SSO type of the OAuth provider.
+        :param int status: The status of the OAuth provider.
+        :param str token_url: The token url of the OAuth provider.
+        :param str trn: The trn of the OAuth provider.
+        :param str update_date: The update date of the OAuth provider.
+        :param str user_info_url: The user info url of the OAuth provider.
+        """
+        pulumi.set(__self__, "authorize_template", authorize_template)
+        pulumi.set(__self__, "authorize_url", authorize_url)
+        pulumi.set(__self__, "client_id", client_id)
+        pulumi.set(__self__, "client_secret", client_secret)
+        pulumi.set(__self__, "create_date", create_date)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "identity_map_type", identity_map_type)
+        pulumi.set(__self__, "idp_identity_key", idp_identity_key)
+        pulumi.set(__self__, "oauth_provider_name", oauth_provider_name)
+        pulumi.set(__self__, "provider_id", provider_id)
+        pulumi.set(__self__, "scope", scope)
+        pulumi.set(__self__, "sso_type", sso_type)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "token_url", token_url)
+        pulumi.set(__self__, "trn", trn)
+        pulumi.set(__self__, "update_date", update_date)
+        pulumi.set(__self__, "user_info_url", user_info_url)
+
+    @property
+    @pulumi.getter(name="authorizeTemplate")
+    def authorize_template(self) -> str:
+        """
+        The authorize template of the OAuth provider.
+        """
+        return pulumi.get(self, "authorize_template")
+
+    @property
+    @pulumi.getter(name="authorizeUrl")
+    def authorize_url(self) -> str:
+        """
+        The authorize url of the OAuth provider.
+        """
+        return pulumi.get(self, "authorize_url")
+
+    @property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> str:
+        """
+        The client id of the OAuth provider.
+        """
+        return pulumi.get(self, "client_id")
+
+    @property
+    @pulumi.getter(name="clientSecret")
+    def client_secret(self) -> str:
+        """
+        The client secret of the OAuth provider.
+        """
+        return pulumi.get(self, "client_secret")
+
+    @property
+    @pulumi.getter(name="createDate")
+    def create_date(self) -> str:
+        """
+        The create date of the OAuth provider.
+        """
+        return pulumi.get(self, "create_date")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the OAuth provider.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="identityMapType")
+    def identity_map_type(self) -> int:
+        """
+        The identity map type of the OAuth provider.
+        """
+        return pulumi.get(self, "identity_map_type")
+
+    @property
+    @pulumi.getter(name="idpIdentityKey")
+    def idp_identity_key(self) -> str:
+        """
+        The idp identity key of the OAuth provider.
+        """
+        return pulumi.get(self, "idp_identity_key")
+
+    @property
+    @pulumi.getter(name="oauthProviderName")
+    def oauth_provider_name(self) -> str:
+        """
+        The name of the OAuth provider.
+        """
+        return pulumi.get(self, "oauth_provider_name")
+
+    @property
+    @pulumi.getter(name="providerId")
+    def provider_id(self) -> str:
+        """
+        The id of the OAuth provider.
+        """
+        return pulumi.get(self, "provider_id")
+
+    @property
+    @pulumi.getter
+    def scope(self) -> str:
+        """
+        The scope of the OAuth provider.
+        """
+        return pulumi.get(self, "scope")
+
+    @property
+    @pulumi.getter(name="ssoType")
+    def sso_type(self) -> int:
+        """
+        The SSO type of the OAuth provider.
+        """
+        return pulumi.get(self, "sso_type")
+
+    @property
+    @pulumi.getter
+    def status(self) -> int:
+        """
+        The status of the OAuth provider.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="tokenUrl")
+    def token_url(self) -> str:
+        """
+        The token url of the OAuth provider.
+        """
+        return pulumi.get(self, "token_url")
+
+    @property
+    @pulumi.getter
+    def trn(self) -> str:
+        """
+        The trn of the OAuth provider.
+        """
+        return pulumi.get(self, "trn")
+
+    @property
+    @pulumi.getter(name="updateDate")
+    def update_date(self) -> str:
+        """
+        The update date of the OAuth provider.
+        """
+        return pulumi.get(self, "update_date")
+
+    @property
+    @pulumi.getter(name="userInfoUrl")
+    def user_info_url(self) -> str:
+        """
+        The user info url of the OAuth provider.
+        """
+        return pulumi.get(self, "user_info_url")
 
 
 @pulumi.output_type
@@ -948,44 +4302,57 @@ class GetOidcProvidersOidcProviderResult(dict):
 @pulumi.output_type
 class GetPoliciesPolicyResult(dict):
     def __init__(__self__, *,
+                 attachment_count: int,
+                 category: str,
                  create_date: str,
                  description: str,
                  id: str,
+                 is_service_role_policy: int,
                  policy_document: str,
                  policy_name: str,
                  policy_trn: str,
                  policy_type: str,
-                 role_attach_date: str,
-                 role_name: str,
-                 update_date: str,
-                 user_attach_date: str,
-                 user_name: str):
+                 update_date: str):
         """
+        :param int attachment_count: The attachment count of the Policy.
+        :param str category: The category of the Policy.
         :param str create_date: The create time of the Policy.
         :param str description: The description of the Policy.
         :param str id: The ID of the Policy.
+        :param int is_service_role_policy: Whether the Policy is a service role policy.
         :param str policy_document: The document of the Policy.
         :param str policy_name: The name of the Policy.
         :param str policy_trn: The resource name of the Policy.
         :param str policy_type: The type of the Policy.
-        :param str role_attach_date: The role attach time of the Policy.The data show only query with role_name.
-        :param str role_name: The name of the IAM role.
         :param str update_date: The update time of the Policy.
-        :param str user_attach_date: The user attach time of the Policy.The data show only query with user_name.
-        :param str user_name: The name of the IAM user.
         """
+        pulumi.set(__self__, "attachment_count", attachment_count)
+        pulumi.set(__self__, "category", category)
         pulumi.set(__self__, "create_date", create_date)
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "is_service_role_policy", is_service_role_policy)
         pulumi.set(__self__, "policy_document", policy_document)
         pulumi.set(__self__, "policy_name", policy_name)
         pulumi.set(__self__, "policy_trn", policy_trn)
         pulumi.set(__self__, "policy_type", policy_type)
-        pulumi.set(__self__, "role_attach_date", role_attach_date)
-        pulumi.set(__self__, "role_name", role_name)
         pulumi.set(__self__, "update_date", update_date)
-        pulumi.set(__self__, "user_attach_date", user_attach_date)
-        pulumi.set(__self__, "user_name", user_name)
+
+    @property
+    @pulumi.getter(name="attachmentCount")
+    def attachment_count(self) -> int:
+        """
+        The attachment count of the Policy.
+        """
+        return pulumi.get(self, "attachment_count")
+
+    @property
+    @pulumi.getter
+    def category(self) -> str:
+        """
+        The category of the Policy.
+        """
+        return pulumi.get(self, "category")
 
     @property
     @pulumi.getter(name="createDate")
@@ -1010,6 +4377,14 @@ class GetPoliciesPolicyResult(dict):
         The ID of the Policy.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="isServiceRolePolicy")
+    def is_service_role_policy(self) -> int:
+        """
+        Whether the Policy is a service role policy.
+        """
+        return pulumi.get(self, "is_service_role_policy")
 
     @property
     @pulumi.getter(name="policyDocument")
@@ -1044,22 +4419,6 @@ class GetPoliciesPolicyResult(dict):
         return pulumi.get(self, "policy_type")
 
     @property
-    @pulumi.getter(name="roleAttachDate")
-    def role_attach_date(self) -> str:
-        """
-        The role attach time of the Policy.The data show only query with role_name.
-        """
-        return pulumi.get(self, "role_attach_date")
-
-    @property
-    @pulumi.getter(name="roleName")
-    def role_name(self) -> str:
-        """
-        The name of the IAM role.
-        """
-        return pulumi.get(self, "role_name")
-
-    @property
     @pulumi.getter(name="updateDate")
     def update_date(self) -> str:
         """
@@ -1067,21 +4426,129 @@ class GetPoliciesPolicyResult(dict):
         """
         return pulumi.get(self, "update_date")
 
-    @property
-    @pulumi.getter(name="userAttachDate")
-    def user_attach_date(self) -> str:
+
+@pulumi.output_type
+class GetRolePolicyAttachmentsPolicyResult(dict):
+    def __init__(__self__, *,
+                 attach_date: str,
+                 description: str,
+                 policy_name: str,
+                 policy_scopes: Sequence['outputs.GetRolePolicyAttachmentsPolicyPolicyScopeResult'],
+                 policy_trn: str,
+                 policy_type: str):
         """
-        The user attach time of the Policy.The data show only query with user_name.
+        :param str attach_date: The attach date of the policy scope.
+        :param str description: The description of the policy.
+        :param str policy_name: The name of the policy.
+        :param Sequence['GetRolePolicyAttachmentsPolicyPolicyScopeArgs'] policy_scopes: The scope of the policy.
+        :param str policy_trn: The trn of the policy.
+        :param str policy_type: The type of the policy.
         """
-        return pulumi.get(self, "user_attach_date")
+        pulumi.set(__self__, "attach_date", attach_date)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "policy_name", policy_name)
+        pulumi.set(__self__, "policy_scopes", policy_scopes)
+        pulumi.set(__self__, "policy_trn", policy_trn)
+        pulumi.set(__self__, "policy_type", policy_type)
 
     @property
-    @pulumi.getter(name="userName")
-    def user_name(self) -> str:
+    @pulumi.getter(name="attachDate")
+    def attach_date(self) -> str:
         """
-        The name of the IAM user.
+        The attach date of the policy scope.
         """
-        return pulumi.get(self, "user_name")
+        return pulumi.get(self, "attach_date")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the policy.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="policyName")
+    def policy_name(self) -> str:
+        """
+        The name of the policy.
+        """
+        return pulumi.get(self, "policy_name")
+
+    @property
+    @pulumi.getter(name="policyScopes")
+    def policy_scopes(self) -> Sequence['outputs.GetRolePolicyAttachmentsPolicyPolicyScopeResult']:
+        """
+        The scope of the policy.
+        """
+        return pulumi.get(self, "policy_scopes")
+
+    @property
+    @pulumi.getter(name="policyTrn")
+    def policy_trn(self) -> str:
+        """
+        The trn of the policy.
+        """
+        return pulumi.get(self, "policy_trn")
+
+    @property
+    @pulumi.getter(name="policyType")
+    def policy_type(self) -> str:
+        """
+        The type of the policy.
+        """
+        return pulumi.get(self, "policy_type")
+
+
+@pulumi.output_type
+class GetRolePolicyAttachmentsPolicyPolicyScopeResult(dict):
+    def __init__(__self__, *,
+                 attach_date: str,
+                 policy_scope_type: str,
+                 project_display_name: str,
+                 project_name: str):
+        """
+        :param str attach_date: The attach date of the policy scope.
+        :param str policy_scope_type: The type of the policy scope.
+        :param str project_display_name: The display name of the project.
+        :param str project_name: The name of the project.
+        """
+        pulumi.set(__self__, "attach_date", attach_date)
+        pulumi.set(__self__, "policy_scope_type", policy_scope_type)
+        pulumi.set(__self__, "project_display_name", project_display_name)
+        pulumi.set(__self__, "project_name", project_name)
+
+    @property
+    @pulumi.getter(name="attachDate")
+    def attach_date(self) -> str:
+        """
+        The attach date of the policy scope.
+        """
+        return pulumi.get(self, "attach_date")
+
+    @property
+    @pulumi.getter(name="policyScopeType")
+    def policy_scope_type(self) -> str:
+        """
+        The type of the policy scope.
+        """
+        return pulumi.get(self, "policy_scope_type")
+
+    @property
+    @pulumi.getter(name="projectDisplayName")
+    def project_display_name(self) -> str:
+        """
+        The display name of the project.
+        """
+        return pulumi.get(self, "project_display_name")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The name of the project.
+        """
+        return pulumi.get(self, "project_name")
 
 
 @pulumi.output_type
@@ -1089,24 +4556,39 @@ class GetRolesRoleResult(dict):
     def __init__(__self__, *,
                  create_date: str,
                  description: str,
-                 id: str,
+                 display_name: str,
+                 is_service_linked_role: int,
+                 max_session_duration: int,
+                 role_id: int,
                  role_name: str,
+                 tags: Sequence['outputs.GetRolesRoleTagResult'],
                  trn: str,
-                 trust_policy_document: str):
+                 trust_policy_document: str,
+                 update_date: str):
         """
         :param str create_date: The create time of the Role.
         :param str description: The description of the Role.
-        :param str id: The ID of the Role.
-        :param str role_name: The name of the Role, comma separated.
+        :param str display_name: The display name of the Role.
+        :param int is_service_linked_role: Whether the Role is a service linked role.
+        :param int max_session_duration: The max session duration of the Role.
+        :param int role_id: The id of the Role.
+        :param str role_name: The name of the Role.
+        :param Sequence['GetRolesRoleTagArgs'] tags: Tags.
         :param str trn: The resource name of the Role.
         :param str trust_policy_document: The trust policy document of the Role.
+        :param str update_date: The update time of the Role.
         """
         pulumi.set(__self__, "create_date", create_date)
         pulumi.set(__self__, "description", description)
-        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "is_service_linked_role", is_service_linked_role)
+        pulumi.set(__self__, "max_session_duration", max_session_duration)
+        pulumi.set(__self__, "role_id", role_id)
         pulumi.set(__self__, "role_name", role_name)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "trn", trn)
         pulumi.set(__self__, "trust_policy_document", trust_policy_document)
+        pulumi.set(__self__, "update_date", update_date)
 
     @property
     @pulumi.getter(name="createDate")
@@ -1125,20 +4607,52 @@ class GetRolesRoleResult(dict):
         return pulumi.get(self, "description")
 
     @property
-    @pulumi.getter
-    def id(self) -> str:
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> str:
         """
-        The ID of the Role.
+        The display name of the Role.
         """
-        return pulumi.get(self, "id")
+        return pulumi.get(self, "display_name")
+
+    @property
+    @pulumi.getter(name="isServiceLinkedRole")
+    def is_service_linked_role(self) -> int:
+        """
+        Whether the Role is a service linked role.
+        """
+        return pulumi.get(self, "is_service_linked_role")
+
+    @property
+    @pulumi.getter(name="maxSessionDuration")
+    def max_session_duration(self) -> int:
+        """
+        The max session duration of the Role.
+        """
+        return pulumi.get(self, "max_session_duration")
+
+    @property
+    @pulumi.getter(name="roleId")
+    def role_id(self) -> int:
+        """
+        The id of the Role.
+        """
+        return pulumi.get(self, "role_id")
 
     @property
     @pulumi.getter(name="roleName")
     def role_name(self) -> str:
         """
-        The name of the Role, comma separated.
+        The name of the Role.
         """
         return pulumi.get(self, "role_name")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetRolesRoleTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
@@ -1155,6 +4669,43 @@ class GetRolesRoleResult(dict):
         The trust policy document of the Role.
         """
         return pulumi.get(self, "trust_policy_document")
+
+    @property
+    @pulumi.getter(name="updateDate")
+    def update_date(self) -> str:
+        """
+        The update time of the Role.
+        """
+        return pulumi.get(self, "update_date")
+
+
+@pulumi.output_type
+class GetRolesRoleTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -1253,23 +4804,201 @@ class GetSamlProvidersProviderResult(dict):
 
 
 @pulumi.output_type
+class GetSecurityConfigsSecurityConfigResult(dict):
+    def __init__(__self__, *,
+                 safe_auth_close: int,
+                 safe_auth_exempt_duration: int,
+                 safe_auth_type: str,
+                 user_id: int,
+                 user_name: str):
+        """
+        :param int safe_auth_close: The status of safe auth.
+        :param int safe_auth_exempt_duration: The exempt duration of safe auth.
+        :param str safe_auth_type: The type of safe auth.
+        :param int user_id: The user id.
+        :param str user_name: The user name.
+        """
+        pulumi.set(__self__, "safe_auth_close", safe_auth_close)
+        pulumi.set(__self__, "safe_auth_exempt_duration", safe_auth_exempt_duration)
+        pulumi.set(__self__, "safe_auth_type", safe_auth_type)
+        pulumi.set(__self__, "user_id", user_id)
+        pulumi.set(__self__, "user_name", user_name)
+
+    @property
+    @pulumi.getter(name="safeAuthClose")
+    def safe_auth_close(self) -> int:
+        """
+        The status of safe auth.
+        """
+        return pulumi.get(self, "safe_auth_close")
+
+    @property
+    @pulumi.getter(name="safeAuthExemptDuration")
+    def safe_auth_exempt_duration(self) -> int:
+        """
+        The exempt duration of safe auth.
+        """
+        return pulumi.get(self, "safe_auth_exempt_duration")
+
+    @property
+    @pulumi.getter(name="safeAuthType")
+    def safe_auth_type(self) -> str:
+        """
+        The type of safe auth.
+        """
+        return pulumi.get(self, "safe_auth_type")
+
+    @property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> int:
+        """
+        The user id.
+        """
+        return pulumi.get(self, "user_id")
+
+    @property
+    @pulumi.getter(name="userName")
+    def user_name(self) -> str:
+        """
+        The user name.
+        """
+        return pulumi.get(self, "user_name")
+
+
+@pulumi.output_type
+class GetTagsResourceTagResult(dict):
+    def __init__(__self__, *,
+                 resource_name: str,
+                 resource_type: str,
+                 tag_key: str,
+                 tag_value: str):
+        """
+        :param str resource_name: The name of the resource.
+        :param str resource_type: The type of the resource. Valid values: User, Role.
+        :param str tag_key: The key of the tag.
+        :param str tag_value: The value of the tag.
+        """
+        pulumi.set(__self__, "resource_name", resource_name)
+        pulumi.set(__self__, "resource_type", resource_type)
+        pulumi.set(__self__, "tag_key", tag_key)
+        pulumi.set(__self__, "tag_value", tag_value)
+
+    @property
+    @pulumi.getter(name="resourceName")
+    def resource_name(self) -> str:
+        """
+        The name of the resource.
+        """
+        return pulumi.get(self, "resource_name")
+
+    @property
+    @pulumi.getter(name="resourceType")
+    def resource_type(self) -> str:
+        """
+        The type of the resource. Valid values: User, Role.
+        """
+        return pulumi.get(self, "resource_type")
+
+    @property
+    @pulumi.getter(name="tagKey")
+    def tag_key(self) -> str:
+        """
+        The key of the tag.
+        """
+        return pulumi.get(self, "tag_key")
+
+    @property
+    @pulumi.getter(name="tagValue")
+    def tag_value(self) -> str:
+        """
+        The value of the tag.
+        """
+        return pulumi.get(self, "tag_value")
+
+
+@pulumi.output_type
+class GetUserGroupAttachmentsUserResult(dict):
+    def __init__(__self__, *,
+                 description: str,
+                 display_name: str,
+                 join_date: str,
+                 user_id: int,
+                 user_name: str):
+        """
+        :param str description: The description of the user.
+        :param str display_name: The display name of the user.
+        :param str join_date: The join date of the user.
+        :param int user_id: The id of the user.
+        :param str user_name: The name of the user.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "join_date", join_date)
+        pulumi.set(__self__, "user_id", user_id)
+        pulumi.set(__self__, "user_name", user_name)
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the user.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> str:
+        """
+        The display name of the user.
+        """
+        return pulumi.get(self, "display_name")
+
+    @property
+    @pulumi.getter(name="joinDate")
+    def join_date(self) -> str:
+        """
+        The join date of the user.
+        """
+        return pulumi.get(self, "join_date")
+
+    @property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> int:
+        """
+        The id of the user.
+        """
+        return pulumi.get(self, "user_id")
+
+    @property
+    @pulumi.getter(name="userName")
+    def user_name(self) -> str:
+        """
+        The name of the user.
+        """
+        return pulumi.get(self, "user_name")
+
+
+@pulumi.output_type
 class GetUserGroupPolicyAttachmentsPolicyResult(dict):
     def __init__(__self__, *,
                  attach_date: str,
                  description: str,
                  policy_name: str,
+                 policy_scopes: Sequence['outputs.GetUserGroupPolicyAttachmentsPolicyPolicyScopeResult'],
                  policy_trn: str,
                  policy_type: str):
         """
-        :param str attach_date: Attached time.
+        :param str attach_date: The attach date of the policy scope.
         :param str description: The description.
         :param str policy_name: Name of the policy.
+        :param Sequence['GetUserGroupPolicyAttachmentsPolicyPolicyScopeArgs'] policy_scopes: The scope of the policy.
         :param str policy_trn: Resource name of the strategy.
         :param str policy_type: The type of the policy.
         """
         pulumi.set(__self__, "attach_date", attach_date)
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "policy_name", policy_name)
+        pulumi.set(__self__, "policy_scopes", policy_scopes)
         pulumi.set(__self__, "policy_trn", policy_trn)
         pulumi.set(__self__, "policy_type", policy_type)
 
@@ -1277,7 +5006,7 @@ class GetUserGroupPolicyAttachmentsPolicyResult(dict):
     @pulumi.getter(name="attachDate")
     def attach_date(self) -> str:
         """
-        Attached time.
+        The attach date of the policy scope.
         """
         return pulumi.get(self, "attach_date")
 
@@ -1298,6 +5027,14 @@ class GetUserGroupPolicyAttachmentsPolicyResult(dict):
         return pulumi.get(self, "policy_name")
 
     @property
+    @pulumi.getter(name="policyScopes")
+    def policy_scopes(self) -> Sequence['outputs.GetUserGroupPolicyAttachmentsPolicyPolicyScopeResult']:
+        """
+        The scope of the policy.
+        """
+        return pulumi.get(self, "policy_scopes")
+
+    @property
     @pulumi.getter(name="policyTrn")
     def policy_trn(self) -> str:
         """
@@ -1315,6 +5052,57 @@ class GetUserGroupPolicyAttachmentsPolicyResult(dict):
 
 
 @pulumi.output_type
+class GetUserGroupPolicyAttachmentsPolicyPolicyScopeResult(dict):
+    def __init__(__self__, *,
+                 attach_date: str,
+                 policy_scope_type: str,
+                 project_display_name: str,
+                 project_name: str):
+        """
+        :param str attach_date: The attach date of the policy scope.
+        :param str policy_scope_type: The type of the policy scope.
+        :param str project_display_name: The display name of the project.
+        :param str project_name: The name of the project.
+        """
+        pulumi.set(__self__, "attach_date", attach_date)
+        pulumi.set(__self__, "policy_scope_type", policy_scope_type)
+        pulumi.set(__self__, "project_display_name", project_display_name)
+        pulumi.set(__self__, "project_name", project_name)
+
+    @property
+    @pulumi.getter(name="attachDate")
+    def attach_date(self) -> str:
+        """
+        The attach date of the policy scope.
+        """
+        return pulumi.get(self, "attach_date")
+
+    @property
+    @pulumi.getter(name="policyScopeType")
+    def policy_scope_type(self) -> str:
+        """
+        The type of the policy scope.
+        """
+        return pulumi.get(self, "policy_scope_type")
+
+    @property
+    @pulumi.getter(name="projectDisplayName")
+    def project_display_name(self) -> str:
+        """
+        The display name of the project.
+        """
+        return pulumi.get(self, "project_display_name")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The name of the project.
+        """
+        return pulumi.get(self, "project_name")
+
+
+@pulumi.output_type
 class GetUserGroupsUserGroupResult(dict):
     def __init__(__self__, *,
                  account_id: int,
@@ -1322,6 +5110,7 @@ class GetUserGroupsUserGroupResult(dict):
                  description: str,
                  display_name: str,
                  update_date: str,
+                 user_group_id: int,
                  user_group_name: str):
         """
         :param int account_id: The id of the account.
@@ -1329,6 +5118,7 @@ class GetUserGroupsUserGroupResult(dict):
         :param str description: The description of the user group.
         :param str display_name: The display name of the user group.
         :param str update_date: The update date of the user group.
+        :param int user_group_id: The id of the user group.
         :param str user_group_name: The name of the user group.
         """
         pulumi.set(__self__, "account_id", account_id)
@@ -1336,6 +5126,7 @@ class GetUserGroupsUserGroupResult(dict):
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "display_name", display_name)
         pulumi.set(__self__, "update_date", update_date)
+        pulumi.set(__self__, "user_group_id", user_group_id)
         pulumi.set(__self__, "user_group_name", user_group_name)
 
     @property
@@ -1379,12 +5170,144 @@ class GetUserGroupsUserGroupResult(dict):
         return pulumi.get(self, "update_date")
 
     @property
+    @pulumi.getter(name="userGroupId")
+    def user_group_id(self) -> int:
+        """
+        The id of the user group.
+        """
+        return pulumi.get(self, "user_group_id")
+
+    @property
     @pulumi.getter(name="userGroupName")
     def user_group_name(self) -> str:
         """
         The name of the user group.
         """
         return pulumi.get(self, "user_group_name")
+
+
+@pulumi.output_type
+class GetUserPolicyAttachmentsPolicyResult(dict):
+    def __init__(__self__, *,
+                 attach_date: str,
+                 description: str,
+                 policy_name: str,
+                 policy_scopes: Sequence['outputs.GetUserPolicyAttachmentsPolicyPolicyScopeResult'],
+                 policy_trn: str,
+                 policy_type: str):
+        """
+        :param str attach_date: The attach date of the policy scope.
+        :param str description: The description of the policy.
+        :param str policy_name: The name of the policy.
+        :param Sequence['GetUserPolicyAttachmentsPolicyPolicyScopeArgs'] policy_scopes: The scope of the policy.
+        :param str policy_trn: The trn of the policy.
+        :param str policy_type: The type of the policy.
+        """
+        pulumi.set(__self__, "attach_date", attach_date)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "policy_name", policy_name)
+        pulumi.set(__self__, "policy_scopes", policy_scopes)
+        pulumi.set(__self__, "policy_trn", policy_trn)
+        pulumi.set(__self__, "policy_type", policy_type)
+
+    @property
+    @pulumi.getter(name="attachDate")
+    def attach_date(self) -> str:
+        """
+        The attach date of the policy scope.
+        """
+        return pulumi.get(self, "attach_date")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the policy.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="policyName")
+    def policy_name(self) -> str:
+        """
+        The name of the policy.
+        """
+        return pulumi.get(self, "policy_name")
+
+    @property
+    @pulumi.getter(name="policyScopes")
+    def policy_scopes(self) -> Sequence['outputs.GetUserPolicyAttachmentsPolicyPolicyScopeResult']:
+        """
+        The scope of the policy.
+        """
+        return pulumi.get(self, "policy_scopes")
+
+    @property
+    @pulumi.getter(name="policyTrn")
+    def policy_trn(self) -> str:
+        """
+        The trn of the policy.
+        """
+        return pulumi.get(self, "policy_trn")
+
+    @property
+    @pulumi.getter(name="policyType")
+    def policy_type(self) -> str:
+        """
+        The type of the policy.
+        """
+        return pulumi.get(self, "policy_type")
+
+
+@pulumi.output_type
+class GetUserPolicyAttachmentsPolicyPolicyScopeResult(dict):
+    def __init__(__self__, *,
+                 attach_date: str,
+                 policy_scope_type: str,
+                 project_display_name: str,
+                 project_name: str):
+        """
+        :param str attach_date: The attach date of the policy scope.
+        :param str policy_scope_type: The type of the policy scope.
+        :param str project_display_name: The display name of the project.
+        :param str project_name: The name of the project.
+        """
+        pulumi.set(__self__, "attach_date", attach_date)
+        pulumi.set(__self__, "policy_scope_type", policy_scope_type)
+        pulumi.set(__self__, "project_display_name", project_display_name)
+        pulumi.set(__self__, "project_name", project_name)
+
+    @property
+    @pulumi.getter(name="attachDate")
+    def attach_date(self) -> str:
+        """
+        The attach date of the policy scope.
+        """
+        return pulumi.get(self, "attach_date")
+
+    @property
+    @pulumi.getter(name="policyScopeType")
+    def policy_scope_type(self) -> str:
+        """
+        The type of the policy scope.
+        """
+        return pulumi.get(self, "policy_scope_type")
+
+    @property
+    @pulumi.getter(name="projectDisplayName")
+    def project_display_name(self) -> str:
+        """
+        The display name of the project.
+        """
+        return pulumi.get(self, "project_display_name")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The name of the project.
+        """
+        return pulumi.get(self, "project_name")
 
 
 @pulumi.output_type
@@ -1401,7 +5324,8 @@ class GetUsersUserResult(dict):
                  trn: str,
                  update_date: str,
                  user_id: str,
-                 user_name: str):
+                 user_name: str,
+                 tags: Optional[Sequence['outputs.GetUsersUserTagResult']] = None):
         """
         :param str account_id: Main account ID to which the sub-user belongs.
         :param str create_date: The create date of the user.
@@ -1415,6 +5339,7 @@ class GetUsersUserResult(dict):
         :param str update_date: The update date of the user.
         :param str user_id: The id of the user.
         :param str user_name: The name of the user.
+        :param Sequence['GetUsersUserTagArgs'] tags: Tags.
         """
         pulumi.set(__self__, "account_id", account_id)
         pulumi.set(__self__, "create_date", create_date)
@@ -1428,6 +5353,8 @@ class GetUsersUserResult(dict):
         pulumi.set(__self__, "update_date", update_date)
         pulumi.set(__self__, "user_id", user_id)
         pulumi.set(__self__, "user_name", user_name)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter(name="accountId")
@@ -1524,5 +5451,42 @@ class GetUsersUserResult(dict):
         The name of the user.
         """
         return pulumi.get(self, "user_name")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.GetUsersUserTagResult']]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+
+@pulumi.output_type
+class GetUsersUserTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
 
 

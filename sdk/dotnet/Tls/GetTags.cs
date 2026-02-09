@@ -28,7 +28,7 @@ namespace Pulumi.Volcengine.Tls
         ///         MaxResults = 10,
         ///         ResourceIds = new[]
         ///         {
-        ///             "6e6ea17f-ee1d-494f-83f7-c3ecc5c351ea",
+        ///             "b01a99c0-cf7b-482f-b317-6563865111c6",
         ///         },
         ///         ResourceType = "project",
         ///     });
@@ -56,7 +56,7 @@ namespace Pulumi.Volcengine.Tls
         ///         MaxResults = 10,
         ///         ResourceIds = new[]
         ///         {
-        ///             "6e6ea17f-ee1d-494f-83f7-c3ecc5c351ea",
+        ///             "b01a99c0-cf7b-482f-b317-6563865111c6",
         ///         },
         ///         ResourceType = "project",
         ///     });

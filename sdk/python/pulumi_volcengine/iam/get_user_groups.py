@@ -98,16 +98,12 @@ def get_user_groups(output_file: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_user_group = volcengine.iam.UserGroup("fooUserGroup",
-        description="acc-test",
-        display_name="acc-test",
-        user_group_name="acc-test-group")
-    foo_user_groups = volcengine.iam.get_user_groups(query="acc-test")
+    default = volcengine.iam.get_user_groups(query="xRqElT")
     ```
 
 
     :param str output_file: File name where to save data source results.
-    :param str query: Fuzzy search, supports searching for user group names, display names, and remarks.
+    :param str query: Fuzzy query. Can query by user group name, display name or description.
     """
     __args__ = dict()
     __args__['outputFile'] = output_file
@@ -135,15 +131,11 @@ def get_user_groups_output(output_file: Optional[pulumi.Input[Optional[str]]] = 
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_user_group = volcengine.iam.UserGroup("fooUserGroup",
-        description="acc-test",
-        display_name="acc-test",
-        user_group_name="acc-test-group")
-    foo_user_groups = volcengine.iam.get_user_groups(query="acc-test")
+    default = volcengine.iam.get_user_groups(query="xRqElT")
     ```
 
 
     :param str output_file: File name where to save data source results.
-    :param str query: Fuzzy search, supports searching for user group names, display names, and remarks.
+    :param str query: Fuzzy query. Can query by user group name, display name or description.
     """
     ...

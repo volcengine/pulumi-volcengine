@@ -24,16 +24,9 @@ namespace Pulumi.Volcengine.Iam
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var fooPolicy = new Volcengine.Iam.Policy("fooPolicy", new()
+        ///     var @default = Volcengine.Iam.GetPolicies.Invoke(new()
         ///     {
-        ///         PolicyName = "acc-test-policy",
-        ///         Description = "acc-test",
-        ///         PolicyDocument = "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"auto_scaling:DescribeScalingGroups\"],\"Resource\":[\"*\"]}]}",
-        ///     });
-        /// 
-        ///     var fooPolicies = Volcengine.Iam.GetPolicies.Invoke(new()
-        ///     {
-        ///         Query = fooPolicy.Description,
+        ///         Scope = "Custom",
         ///     });
         /// 
         /// });
@@ -54,16 +47,9 @@ namespace Pulumi.Volcengine.Iam
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var fooPolicy = new Volcengine.Iam.Policy("fooPolicy", new()
+        ///     var @default = Volcengine.Iam.GetPolicies.Invoke(new()
         ///     {
-        ///         PolicyName = "acc-test-policy",
-        ///         Description = "acc-test",
-        ///         PolicyDocument = "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"auto_scaling:DescribeScalingGroups\"],\"Resource\":[\"*\"]}]}",
-        ///     });
-        /// 
-        ///     var fooPolicies = Volcengine.Iam.GetPolicies.Invoke(new()
-        ///     {
-        ///         Query = fooPolicy.Description,
+        ///         Scope = "Custom",
         ///     });
         /// 
         /// });
@@ -77,28 +63,10 @@ namespace Pulumi.Volcengine.Iam
     public sealed class PoliciesArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// A Name Regex of Policy.
-        /// </summary>
-        [Input("nameRegex")]
-        public string? NameRegex { get; set; }
-
-        /// <summary>
         /// File name where to save data source results.
         /// </summary>
         [Input("outputFile")]
         public string? OutputFile { get; set; }
-
-        /// <summary>
-        /// Query policies, support policy name or description.
-        /// </summary>
-        [Input("query")]
-        public string? Query { get; set; }
-
-        /// <summary>
-        /// The name of the IAM role.
-        /// </summary>
-        [Input("roleName")]
-        public string? RoleName { get; set; }
 
         /// <summary>
         /// The scope of the Policy.
@@ -107,16 +75,10 @@ namespace Pulumi.Volcengine.Iam
         public string? Scope { get; set; }
 
         /// <summary>
-        /// The status of policy.
+        /// Whether to return the service role policy.
         /// </summary>
-        [Input("status")]
-        public string? Status { get; set; }
-
-        /// <summary>
-        /// The name of the IAM user.
-        /// </summary>
-        [Input("userName")]
-        public string? UserName { get; set; }
+        [Input("withServiceRolePolicy")]
+        public int? WithServiceRolePolicy { get; set; }
 
         public PoliciesArgs()
         {
@@ -127,28 +89,10 @@ namespace Pulumi.Volcengine.Iam
     public sealed class PoliciesInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// A Name Regex of Policy.
-        /// </summary>
-        [Input("nameRegex")]
-        public Input<string>? NameRegex { get; set; }
-
-        /// <summary>
         /// File name where to save data source results.
         /// </summary>
         [Input("outputFile")]
         public Input<string>? OutputFile { get; set; }
-
-        /// <summary>
-        /// Query policies, support policy name or description.
-        /// </summary>
-        [Input("query")]
-        public Input<string>? Query { get; set; }
-
-        /// <summary>
-        /// The name of the IAM role.
-        /// </summary>
-        [Input("roleName")]
-        public Input<string>? RoleName { get; set; }
 
         /// <summary>
         /// The scope of the Policy.
@@ -157,16 +101,10 @@ namespace Pulumi.Volcengine.Iam
         public Input<string>? Scope { get; set; }
 
         /// <summary>
-        /// The status of policy.
+        /// Whether to return the service role policy.
         /// </summary>
-        [Input("status")]
-        public Input<string>? Status { get; set; }
-
-        /// <summary>
-        /// The name of the IAM user.
-        /// </summary>
-        [Input("userName")]
-        public Input<string>? UserName { get; set; }
+        [Input("withServiceRolePolicy")]
+        public Input<int>? WithServiceRolePolicy { get; set; }
 
         public PoliciesInvokeArgs()
         {
@@ -182,60 +120,38 @@ namespace Pulumi.Volcengine.Iam
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
-        public readonly string? NameRegex;
         public readonly string? OutputFile;
         /// <summary>
         /// The collection of Policy query.
         /// </summary>
         public readonly ImmutableArray<Outputs.PoliciesPolicyResult> Policies;
-        public readonly string? Query;
-        /// <summary>
-        /// The name of the IAM role.The data show only query with role_name.
-        /// </summary>
-        public readonly string? RoleName;
         public readonly string? Scope;
-        public readonly string? Status;
         /// <summary>
         /// The total count of Policy query.
         /// </summary>
         public readonly int TotalCount;
-        /// <summary>
-        /// The name of the IAM user.The data show only query with user_name.
-        /// </summary>
-        public readonly string? UserName;
+        public readonly int? WithServiceRolePolicy;
 
         [OutputConstructor]
         private PoliciesResult(
             string id,
 
-            string? nameRegex,
-
             string? outputFile,
 
             ImmutableArray<Outputs.PoliciesPolicyResult> policies,
 
-            string? query,
-
-            string? roleName,
-
             string? scope,
-
-            string? status,
 
             int totalCount,
 
-            string? userName)
+            int? withServiceRolePolicy)
         {
             Id = id;
-            NameRegex = nameRegex;
             OutputFile = outputFile;
             Policies = policies;
-            Query = query;
-            RoleName = roleName;
             Scope = scope;
-            Status = status;
             TotalCount = totalCount;
-            UserName = userName;
+            WithServiceRolePolicy = withServiceRolePolicy;
         }
     }
 }

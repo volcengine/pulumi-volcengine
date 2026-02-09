@@ -24,7 +24,7 @@ namespace Pulumi.Volcengine.Iam
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Iam.GetOidcProviders.Invoke();
+        ///     var @default = Volcengine.Iam.GetOidcProviders.Invoke();
         /// 
         /// });
         /// ```
@@ -44,7 +44,7 @@ namespace Pulumi.Volcengine.Iam
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Iam.GetOidcProviders.Invoke();
+        ///     var @default = Volcengine.Iam.GetOidcProviders.Invoke();
         /// 
         /// });
         /// ```

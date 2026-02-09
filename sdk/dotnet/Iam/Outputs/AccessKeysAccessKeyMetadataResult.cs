@@ -30,7 +30,7 @@ namespace Pulumi.Volcengine.Iam.Outputs
         /// </summary>
         public readonly string UpdateDate;
         /// <summary>
-        /// The user names.
+        /// The user name.
         /// </summary>
         public readonly string UserName;
 

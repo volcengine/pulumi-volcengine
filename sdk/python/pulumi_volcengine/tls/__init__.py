@@ -15,6 +15,7 @@ from .alarm_notify_groups import *
 from .alarm_webhook_integration import *
 from .alarm_webhook_integrations import *
 from .alarms import *
+from .check_points import *
 from .consumer_group import *
 from .consumer_groups import *
 from .describe_traces import *
@@ -28,6 +29,7 @@ from .get_alarm_content_templates import *
 from .get_alarm_notify_groups import *
 from .get_alarm_webhook_integrations import *
 from .get_alarms import *
+from .get_check_points import *
 from .get_consumer_groups import *
 from .get_describe_traces import *
 from .get_download_tasks import *
@@ -40,6 +42,7 @@ from .get_import_tasks import *
 from .get_indexes import *
 from .get_kafka_consumers import *
 from .get_log_contexts import *
+from .get_log_cursors import *
 from .get_log_histograms import *
 from .get_log_searches import *
 from .get_projects import *
@@ -66,6 +69,7 @@ from .indexes import *
 from .kafka_consumer import *
 from .kafka_consumers import *
 from .log_contexts import *
+from .log_cursors import *
 from .log_histograms import *
 from .log_searches import *
 from .project import *

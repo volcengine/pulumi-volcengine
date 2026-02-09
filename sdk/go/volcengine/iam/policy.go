@@ -28,9 +28,9 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := iam.NewPolicy(ctx, "foo", &iam.PolicyArgs{
-//				Description:    pulumi.String("acc-test"),
+//				Description:    pulumi.String("acc-modify"),
 //				PolicyDocument: pulumi.String("{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"auto_scaling:DescribeScalingGroups\"],\"Resource\":[\"*\"]}]}"),
-//				PolicyName:     pulumi.String("acc-test-policy"),
+//				PolicyName:     pulumi.String("acc-test"),
 //			})
 //			if err != nil {
 //				return err
@@ -51,10 +51,16 @@ import (
 type Policy struct {
 	pulumi.CustomResourceState
 
+	// The attachment count of the Policy.
+	AttachmentCount pulumi.IntOutput `pulumi:"attachmentCount"`
+	// The category of the Policy.
+	Category pulumi.StringOutput `pulumi:"category"`
 	// The create time of the Policy.
 	CreateDate pulumi.StringOutput `pulumi:"createDate"`
 	// The description of the Policy.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// Whether the Policy is a service role policy.
+	IsServiceRolePolicy pulumi.IntOutput `pulumi:"isServiceRolePolicy"`
 	// The document of the Policy.
 	PolicyDocument pulumi.StringOutput `pulumi:"policyDocument"`
 	// The name of the Policy.
@@ -103,10 +109,16 @@ func GetPolicy(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Policy resources.
 type policyState struct {
+	// The attachment count of the Policy.
+	AttachmentCount *int `pulumi:"attachmentCount"`
+	// The category of the Policy.
+	Category *string `pulumi:"category"`
 	// The create time of the Policy.
 	CreateDate *string `pulumi:"createDate"`
 	// The description of the Policy.
 	Description *string `pulumi:"description"`
+	// Whether the Policy is a service role policy.
+	IsServiceRolePolicy *int `pulumi:"isServiceRolePolicy"`
 	// The document of the Policy.
 	PolicyDocument *string `pulumi:"policyDocument"`
 	// The name of the Policy.
@@ -120,10 +132,16 @@ type policyState struct {
 }
 
 type PolicyState struct {
+	// The attachment count of the Policy.
+	AttachmentCount pulumi.IntPtrInput
+	// The category of the Policy.
+	Category pulumi.StringPtrInput
 	// The create time of the Policy.
 	CreateDate pulumi.StringPtrInput
 	// The description of the Policy.
 	Description pulumi.StringPtrInput
+	// Whether the Policy is a service role policy.
+	IsServiceRolePolicy pulumi.IntPtrInput
 	// The document of the Policy.
 	PolicyDocument pulumi.StringPtrInput
 	// The name of the Policy.
@@ -246,6 +264,16 @@ func (o PolicyOutput) ToPolicyOutputWithContext(ctx context.Context) PolicyOutpu
 	return o
 }
 
+// The attachment count of the Policy.
+func (o PolicyOutput) AttachmentCount() pulumi.IntOutput {
+	return o.ApplyT(func(v *Policy) pulumi.IntOutput { return v.AttachmentCount }).(pulumi.IntOutput)
+}
+
+// The category of the Policy.
+func (o PolicyOutput) Category() pulumi.StringOutput {
+	return o.ApplyT(func(v *Policy) pulumi.StringOutput { return v.Category }).(pulumi.StringOutput)
+}
+
 // The create time of the Policy.
 func (o PolicyOutput) CreateDate() pulumi.StringOutput {
 	return o.ApplyT(func(v *Policy) pulumi.StringOutput { return v.CreateDate }).(pulumi.StringOutput)
@@ -254,6 +282,11 @@ func (o PolicyOutput) CreateDate() pulumi.StringOutput {
 // The description of the Policy.
 func (o PolicyOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Policy) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// Whether the Policy is a service role policy.
+func (o PolicyOutput) IsServiceRolePolicy() pulumi.IntOutput {
+	return o.ApplyT(func(v *Policy) pulumi.IntOutput { return v.IsServiceRolePolicy }).(pulumi.IntOutput)
 }
 
 // The document of the Policy.

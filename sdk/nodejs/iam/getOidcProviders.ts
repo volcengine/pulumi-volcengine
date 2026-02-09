@@ -14,7 +14,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.iam.getOidcProviders({});
+ * const default = volcengine.iam.getOidcProviders({});
  * ```
  */
 export function getOidcProviders(args?: GetOidcProvidersArgs, opts?: pulumi.InvokeOptions): Promise<GetOidcProvidersResult> {
@@ -62,7 +62,7 @@ export interface GetOidcProvidersResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.iam.getOidcProviders({});
+ * const default = volcengine.iam.getOidcProviders({});
  * ```
  */
 export function getOidcProvidersOutput(args?: GetOidcProvidersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOidcProvidersResult> {

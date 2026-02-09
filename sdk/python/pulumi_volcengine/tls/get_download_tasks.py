@@ -124,9 +124,8 @@ def get_download_tasks(ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.tls.get_download_tasks(topic_id="8ba48bd7-2493-4300-b1d0-cb760b89e51b",
-        task_name="tf-test-download-task")
-    pulumi.export("downloadTasks", foo.download_tasks)
+    foo = volcengine.tls.get_download_tasks(task_name="tf-test-download",
+        topic_id="3c57a110-399a-43b3-bc3c-5d60e065239a")
     ```
 
 
@@ -167,9 +166,8 @@ def get_download_tasks_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.tls.get_download_tasks(topic_id="8ba48bd7-2493-4300-b1d0-cb760b89e51b",
-        task_name="tf-test-download-task")
-    pulumi.export("downloadTasks", foo.download_tasks)
+    foo = volcengine.tls.get_download_tasks(task_name="tf-test-download",
+        topic_id="3c57a110-399a-43b3-bc3c-5d60e065239a")
     ```
 
 

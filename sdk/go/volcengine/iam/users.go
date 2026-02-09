@@ -26,19 +26,12 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooUser, err := iam.NewUser(ctx, "fooUser", &iam.UserArgs{
-//				UserName:    pulumi.String("acc-test-user"),
-//				Description: pulumi.String("acc test"),
-//				DisplayName: pulumi.String("name"),
-//			})
+//			_, err := iam.GetUsers(ctx, &iam.GetUsersArgs{
+//				Query: pulumi.StringRef("jonny"),
+//			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			_ = iam.GetUsersOutput(ctx, iam.GetUsersOutputArgs{
-//				UserNames: pulumi.StringArray{
-//					fooUser.UserName,
-//				},
-//			}, nil)
 //			return nil
 //		})
 //	}
@@ -58,23 +51,20 @@ func Users(ctx *pulumi.Context, args *UsersArgs, opts ...pulumi.InvokeOption) (*
 
 // A collection of arguments for invoking Users.
 type UsersArgs struct {
-	// A Name Regex of IAM.
-	NameRegex *string `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
-	// A list of user names.
-	UserNames []string `pulumi:"userNames"`
+	// Fuzzy query. Can query by user name, display name or description.
+	Query *string `pulumi:"query"`
 }
 
 // A collection of values returned by Users.
 type UsersResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id         string  `pulumi:"id"`
-	NameRegex  *string `pulumi:"nameRegex"`
 	OutputFile *string `pulumi:"outputFile"`
+	Query      *string `pulumi:"query"`
 	// The total count of user query.
-	TotalCount int      `pulumi:"totalCount"`
-	UserNames  []string `pulumi:"userNames"`
+	TotalCount int `pulumi:"totalCount"`
 	// The collection of user.
 	Users []UsersUser `pulumi:"users"`
 }
@@ -94,12 +84,10 @@ func UsersOutput(ctx *pulumi.Context, args UsersOutputArgs, opts ...pulumi.Invok
 
 // A collection of arguments for invoking Users.
 type UsersOutputArgs struct {
-	// A Name Regex of IAM.
-	NameRegex pulumi.StringPtrInput `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
-	// A list of user names.
-	UserNames pulumi.StringArrayInput `pulumi:"userNames"`
+	// Fuzzy query. Can query by user name, display name or description.
+	Query pulumi.StringPtrInput `pulumi:"query"`
 }
 
 func (UsersOutputArgs) ElementType() reflect.Type {
@@ -126,21 +114,17 @@ func (o UsersResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v UsersResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-func (o UsersResultOutput) NameRegex() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v UsersResult) *string { return v.NameRegex }).(pulumi.StringPtrOutput)
-}
-
 func (o UsersResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v UsersResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
+}
+
+func (o UsersResultOutput) Query() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UsersResult) *string { return v.Query }).(pulumi.StringPtrOutput)
 }
 
 // The total count of user query.
 func (o UsersResultOutput) TotalCount() pulumi.IntOutput {
 	return o.ApplyT(func(v UsersResult) int { return v.TotalCount }).(pulumi.IntOutput)
-}
-
-func (o UsersResultOutput) UserNames() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v UsersResult) []string { return v.UserNames }).(pulumi.StringArrayOutput)
 }
 
 // The collection of user.

@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  *
  * const default = volcengine.tls.getHostGroupRules({
- *     hostGroupId: "59989043-5422-4440-a981-63d241563fc0",
+ *     hostGroupId: "4af86d32-cb9c-4eac-adb1-75f2567789be",
  * });
  * ```
  */
@@ -70,7 +70,7 @@ export interface GetHostGroupRulesResult {
  * import * as volcengine from "@pulumi/volcengine";
  *
  * const default = volcengine.tls.getHostGroupRules({
- *     hostGroupId: "59989043-5422-4440-a981-63d241563fc0",
+ *     hostGroupId: "4af86d32-cb9c-4eac-adb1-75f2567789be",
  * });
  * ```
  */

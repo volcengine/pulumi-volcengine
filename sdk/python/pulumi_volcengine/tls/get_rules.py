@@ -193,11 +193,11 @@ def get_rules(iam_project_name: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.get_rules(log_type="minimalist_log",
+    default = volcengine.tls.get_rules(log_type="delimiter_log",
         pause=0,
-        project_id="39ed1cf8-dbf3-41c3-939d-999bab54313d",
-        rule_id="048dc010-6bb1-4189-858a-281d654d6686",
-        topic_id="b600dc34-503f-42fc-8e32-953af55463d1")
+        project_id="47788404-8f1e-49fd-9472-aced5f4bf73f",
+        rule_id="33b2607f-e213-42fb-a965-33a0f567ae23",
+        topic_id="0a610439-d73f-4680-b365-24eefe98b4fc")
     ```
 
 
@@ -262,11 +262,11 @@ def get_rules_output(iam_project_name: Optional[pulumi.Input[Optional[str]]] = N
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.get_rules(log_type="minimalist_log",
+    default = volcengine.tls.get_rules(log_type="delimiter_log",
         pause=0,
-        project_id="39ed1cf8-dbf3-41c3-939d-999bab54313d",
-        rule_id="048dc010-6bb1-4189-858a-281d654d6686",
-        topic_id="b600dc34-503f-42fc-8e32-953af55463d1")
+        project_id="47788404-8f1e-49fd-9472-aced5f4bf73f",
+        rule_id="33b2607f-e213-42fb-a965-33a0f567ae23",
+        topic_id="0a610439-d73f-4680-b365-24eefe98b4fc")
     ```
 
 

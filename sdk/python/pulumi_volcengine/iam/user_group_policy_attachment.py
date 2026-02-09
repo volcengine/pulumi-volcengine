@@ -137,18 +137,10 @@ class UserGroupPolicyAttachment(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo_policy = volcengine.iam.Policy("fooPolicy",
-            policy_name="acc-test-policy",
-            description="acc-test",
-            policy_document="{\\"Statement\\":[{\\"Effect\\":\\"Allow\\",\\"Action\\":[\\"auto_scaling:DescribeScalingGroups\\"],\\"Resource\\":[\\"*\\"]}]}")
-        foo_user_group = volcengine.iam.UserGroup("fooUserGroup",
-            user_group_name="acc-test-group",
-            description="acc-test",
-            display_name="acc-test")
-        foo_user_group_policy_attachment = volcengine.iam.UserGroupPolicyAttachment("fooUserGroupPolicyAttachment",
-            policy_name=foo_policy.policy_name,
+        foo = volcengine.iam.UserGroupPolicyAttachment("foo",
+            policy_name="test",
             policy_type="Custom",
-            user_group_name=foo_user_group.user_group_name)
+            user_group_name="tf-test")
         ```
 
         ## Import
@@ -179,18 +171,10 @@ class UserGroupPolicyAttachment(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo_policy = volcengine.iam.Policy("fooPolicy",
-            policy_name="acc-test-policy",
-            description="acc-test",
-            policy_document="{\\"Statement\\":[{\\"Effect\\":\\"Allow\\",\\"Action\\":[\\"auto_scaling:DescribeScalingGroups\\"],\\"Resource\\":[\\"*\\"]}]}")
-        foo_user_group = volcengine.iam.UserGroup("fooUserGroup",
-            user_group_name="acc-test-group",
-            description="acc-test",
-            display_name="acc-test")
-        foo_user_group_policy_attachment = volcengine.iam.UserGroupPolicyAttachment("fooUserGroupPolicyAttachment",
-            policy_name=foo_policy.policy_name,
+        foo = volcengine.iam.UserGroupPolicyAttachment("foo",
+            policy_name="test",
             policy_type="Custom",
-            user_group_name=foo_user_group.user_group_name)
+            user_group_name="tf-test")
         ```
 
         ## Import

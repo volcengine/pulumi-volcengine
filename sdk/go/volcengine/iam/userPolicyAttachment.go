@@ -27,25 +27,10 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			user, err := iam.NewUser(ctx, "user", &iam.UserArgs{
-//				UserName:    pulumi.String("TfTest"),
-//				Description: pulumi.String("test"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			policy, err := iam.NewPolicy(ctx, "policy", &iam.PolicyArgs{
-//				PolicyName:     pulumi.String("TerraformResourceTest1"),
-//				Description:    pulumi.String("created by terraform 1"),
-//				PolicyDocument: pulumi.String("{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"auto_scaling:DescribeScalingGroups\"],\"Resource\":[\"*\"]}]}"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = iam.NewUserPolicyAttachment(ctx, "foo", &iam.UserPolicyAttachmentArgs{
-//				UserName:   user.UserName,
-//				PolicyName: policy.PolicyName,
-//				PolicyType: policy.PolicyType,
+//			_, err := iam.NewUserPolicyAttachment(ctx, "foo", &iam.UserPolicyAttachmentArgs{
+//				PolicyName: pulumi.String("AdministratorAccess"),
+//				PolicyType: pulumi.String("System"),
+//				UserName:   pulumi.String("jonny"),
 //			})
 //			if err != nil {
 //				return err

@@ -24,6 +24,14 @@ namespace Pulumi.Volcengine.Iam
     ///     var foo = new Volcengine.Iam.ServiceLinkedRole("foo", new()
     ///     {
     ///         ServiceName = "ecs",
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Iam.Inputs.ServiceLinkedRoleTagArgs
+    ///             {
+    ///                 Key = "key-2",
+    ///                 Value = "value-3",
+    ///             },
+    ///         },
     ///     });
     /// 
     /// });
@@ -34,7 +42,7 @@ namespace Pulumi.Volcengine.Iam
     /// IamServiceLinkedRole can be imported using the id, e.g.
     /// 
     /// ```sh
-    /// $ pulumi import volcengine:iam/serviceLinkedRole:ServiceLinkedRole default resource_id
+    /// $ pulumi import volcengine:iam/serviceLinkedRole:ServiceLinkedRole default service_name:role_name
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:iam/serviceLinkedRole:ServiceLinkedRole")]
@@ -63,6 +71,12 @@ namespace Pulumi.Volcengine.Iam
         /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<Outputs.ServiceLinkedRoleTag>> Tags { get; private set; } = null!;
 
 
         /// <summary>
@@ -117,6 +131,18 @@ namespace Pulumi.Volcengine.Iam
         [Input("serviceName", required: true)]
         public Input<string> ServiceName { get; set; } = null!;
 
+        [Input("tags")]
+        private InputList<Inputs.ServiceLinkedRoleTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.ServiceLinkedRoleTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.ServiceLinkedRoleTagArgs>());
+            set => _tags = value;
+        }
+
         public ServiceLinkedRoleArgs()
         {
         }
@@ -148,6 +174,18 @@ namespace Pulumi.Volcengine.Iam
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.ServiceLinkedRoleTagGetArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.ServiceLinkedRoleTagGetArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.ServiceLinkedRoleTagGetArgs>());
+            set => _tags = value;
+        }
 
         public ServiceLinkedRoleState()
         {

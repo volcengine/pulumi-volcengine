@@ -24,7 +24,7 @@ class RolesResult:
     """
     A collection of values returned by Roles.
     """
-    def __init__(__self__, id=None, name_regex=None, output_file=None, query=None, role_name=None, roles=None, total_count=None):
+    def __init__(__self__, id=None, name_regex=None, output_file=None, query=None, roles=None, total_count=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -37,9 +37,6 @@ class RolesResult:
         if query and not isinstance(query, str):
             raise TypeError("Expected argument 'query' to be a str")
         pulumi.set(__self__, "query", query)
-        if role_name and not isinstance(role_name, str):
-            raise TypeError("Expected argument 'role_name' to be a str")
-        pulumi.set(__self__, "role_name", role_name)
         if roles and not isinstance(roles, list):
             raise TypeError("Expected argument 'roles' to be a list")
         pulumi.set(__self__, "roles", roles)
@@ -71,14 +68,6 @@ class RolesResult:
         return pulumi.get(self, "query")
 
     @property
-    @pulumi.getter(name="roleName")
-    def role_name(self) -> Optional[str]:
-        """
-        The name of the Role.
-        """
-        return pulumi.get(self, "role_name")
-
-    @property
     @pulumi.getter
     def roles(self) -> Sequence['outputs.RolesRoleResult']:
         """
@@ -105,7 +94,6 @@ class AwaitableRolesResult(RolesResult):
             name_regex=self.name_regex,
             output_file=self.output_file,
             query=self.query,
-            role_name=self.role_name,
             roles=self.roles,
             total_count=self.total_count)
 
@@ -113,7 +101,6 @@ class AwaitableRolesResult(RolesResult):
 def roles(name_regex: Optional[str] = None,
           output_file: Optional[str] = None,
           query: Optional[str] = None,
-          role_name: Optional[str] = None,
           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableRolesResult:
     """
     Use this data source to query detailed information of iam roles
@@ -123,33 +110,19 @@ def roles(name_regex: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo1 = volcengine.iam.Role("foo1",
-        description="acc-test1",
-        display_name="acc-test1",
-        max_session_duration=3600,
-        role_name="acc-test-role1",
-        trust_policy_document="{\\"Statement\\":[{\\"Effect\\":\\"Allow\\",\\"Action\\":[\\"sts:AssumeRole\\"],\\"Principal\\":{\\"Service\\":[\\"auto_scaling\\"]}}]}")
-    foo2 = volcengine.iam.Role("foo2",
-        description="acc-test2",
-        display_name="acc-test2",
-        max_session_duration=3600,
-        role_name="acc-test-role2",
-        trust_policy_document="{\\"Statement\\":[{\\"Effect\\":\\"Allow\\",\\"Action\\":[\\"sts:AssumeRole\\"],\\"Principal\\":{\\"Service\\":[\\"ecs\\"]}}]}")
-    foo = volcengine.iam.get_roles_output(role_name=pulumi.Output.all(foo1.role_name, foo2.role_name).apply(lambda foo1Role_name, foo2Role_name: f"{foo1_role_name},{foo2_role_name}"))
+    default = volcengine.iam.get_roles(query="CustomRoleForOOS")
     ```
 
 
     :param str name_regex: A Name Regex of Role.
     :param str output_file: File name where to save data source results.
-    :param str query: The query field of Role.
-    :param str role_name: The name of the Role, comma separated.
+    :param str query: Fuzzy query. Can query by role name, display name or description.
     """
     pulumi.log.warn("""roles is deprecated: volcengine.iam.Roles has been deprecated in favor of volcengine.iam.getRoles""")
     __args__ = dict()
     __args__['nameRegex'] = name_regex
     __args__['outputFile'] = output_file
     __args__['query'] = query
-    __args__['roleName'] = role_name
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('volcengine:iam/roles:Roles', __args__, opts=opts, typ=RolesResult).value
 
@@ -158,7 +131,6 @@ def roles(name_regex: Optional[str] = None,
         name_regex=pulumi.get(__ret__, 'name_regex'),
         output_file=pulumi.get(__ret__, 'output_file'),
         query=pulumi.get(__ret__, 'query'),
-        role_name=pulumi.get(__ret__, 'role_name'),
         roles=pulumi.get(__ret__, 'roles'),
         total_count=pulumi.get(__ret__, 'total_count'))
 
@@ -167,7 +139,6 @@ def roles(name_regex: Optional[str] = None,
 def roles_output(name_regex: Optional[pulumi.Input[Optional[str]]] = None,
                  output_file: Optional[pulumi.Input[Optional[str]]] = None,
                  query: Optional[pulumi.Input[Optional[str]]] = None,
-                 role_name: Optional[pulumi.Input[Optional[str]]] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[RolesResult]:
     """
     Use this data source to query detailed information of iam roles
@@ -177,26 +148,13 @@ def roles_output(name_regex: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo1 = volcengine.iam.Role("foo1",
-        description="acc-test1",
-        display_name="acc-test1",
-        max_session_duration=3600,
-        role_name="acc-test-role1",
-        trust_policy_document="{\\"Statement\\":[{\\"Effect\\":\\"Allow\\",\\"Action\\":[\\"sts:AssumeRole\\"],\\"Principal\\":{\\"Service\\":[\\"auto_scaling\\"]}}]}")
-    foo2 = volcengine.iam.Role("foo2",
-        description="acc-test2",
-        display_name="acc-test2",
-        max_session_duration=3600,
-        role_name="acc-test-role2",
-        trust_policy_document="{\\"Statement\\":[{\\"Effect\\":\\"Allow\\",\\"Action\\":[\\"sts:AssumeRole\\"],\\"Principal\\":{\\"Service\\":[\\"ecs\\"]}}]}")
-    foo = volcengine.iam.get_roles_output(role_name=pulumi.Output.all(foo1.role_name, foo2.role_name).apply(lambda foo1Role_name, foo2Role_name: f"{foo1_role_name},{foo2_role_name}"))
+    default = volcengine.iam.get_roles(query="CustomRoleForOOS")
     ```
 
 
     :param str name_regex: A Name Regex of Role.
     :param str output_file: File name where to save data source results.
-    :param str query: The query field of Role.
-    :param str role_name: The name of the Role, comma separated.
+    :param str query: Fuzzy query. Can query by role name, display name or description.
     """
     pulumi.log.warn("""roles is deprecated: volcengine.iam.Roles has been deprecated in favor of volcengine.iam.getRoles""")
     ...

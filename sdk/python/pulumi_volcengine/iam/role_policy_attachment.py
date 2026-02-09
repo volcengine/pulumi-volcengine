@@ -137,20 +137,10 @@ class RolePolicyAttachment(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        role = volcengine.iam.Role("role",
-            role_name="TerraformTestRole",
-            display_name="terraform role",
-            trust_policy_document="{\\"Statement\\":[{\\"Effect\\":\\"Allow\\",\\"Action\\":[\\"sts:AssumeRole\\"],\\"Principal\\":{\\"Service\\":[\\"auto_scaling\\"]}}]}",
-            description="created by terraform",
-            max_session_duration=43200)
-        policy = volcengine.iam.Policy("policy",
-            policy_name="TerraformResourceTest1",
-            description="created by terraform 1",
-            policy_document="{\\"Statement\\":[{\\"Effect\\":\\"Allow\\",\\"Action\\":[\\"auto_scaling:DescribeScalingGroups\\"],\\"Resource\\":[\\"*\\"]}]}")
         foo = volcengine.iam.RolePolicyAttachment("foo",
-            role_name=role.id,
-            policy_name=policy.id,
-            policy_type=policy.policy_type)
+            policy_name="AdministratorAccess",
+            policy_type="System",
+            role_name="CustomRoleForPatchManager")
         ```
 
         ## Import
@@ -181,20 +171,10 @@ class RolePolicyAttachment(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        role = volcengine.iam.Role("role",
-            role_name="TerraformTestRole",
-            display_name="terraform role",
-            trust_policy_document="{\\"Statement\\":[{\\"Effect\\":\\"Allow\\",\\"Action\\":[\\"sts:AssumeRole\\"],\\"Principal\\":{\\"Service\\":[\\"auto_scaling\\"]}}]}",
-            description="created by terraform",
-            max_session_duration=43200)
-        policy = volcengine.iam.Policy("policy",
-            policy_name="TerraformResourceTest1",
-            description="created by terraform 1",
-            policy_document="{\\"Statement\\":[{\\"Effect\\":\\"Allow\\",\\"Action\\":[\\"auto_scaling:DescribeScalingGroups\\"],\\"Resource\\":[\\"*\\"]}]}")
         foo = volcengine.iam.RolePolicyAttachment("foo",
-            role_name=role.id,
-            policy_name=policy.id,
-            policy_type=policy.policy_type)
+            policy_name="AdministratorAccess",
+            policy_type="System",
+            role_name="CustomRoleForPatchManager")
         ```
 
         ## Import

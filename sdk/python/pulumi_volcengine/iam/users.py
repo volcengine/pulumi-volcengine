@@ -24,22 +24,19 @@ class UsersResult:
     """
     A collection of values returned by Users.
     """
-    def __init__(__self__, id=None, name_regex=None, output_file=None, total_count=None, user_names=None, users=None):
+    def __init__(__self__, id=None, output_file=None, query=None, total_count=None, users=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
-        if name_regex and not isinstance(name_regex, str):
-            raise TypeError("Expected argument 'name_regex' to be a str")
-        pulumi.set(__self__, "name_regex", name_regex)
         if output_file and not isinstance(output_file, str):
             raise TypeError("Expected argument 'output_file' to be a str")
         pulumi.set(__self__, "output_file", output_file)
+        if query and not isinstance(query, str):
+            raise TypeError("Expected argument 'query' to be a str")
+        pulumi.set(__self__, "query", query)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
-        if user_names and not isinstance(user_names, list):
-            raise TypeError("Expected argument 'user_names' to be a list")
-        pulumi.set(__self__, "user_names", user_names)
         if users and not isinstance(users, list):
             raise TypeError("Expected argument 'users' to be a list")
         pulumi.set(__self__, "users", users)
@@ -53,14 +50,14 @@ class UsersResult:
         return pulumi.get(self, "id")
 
     @property
-    @pulumi.getter(name="nameRegex")
-    def name_regex(self) -> Optional[str]:
-        return pulumi.get(self, "name_regex")
-
-    @property
     @pulumi.getter(name="outputFile")
     def output_file(self) -> Optional[str]:
         return pulumi.get(self, "output_file")
+
+    @property
+    @pulumi.getter
+    def query(self) -> Optional[str]:
+        return pulumi.get(self, "query")
 
     @property
     @pulumi.getter(name="totalCount")
@@ -69,11 +66,6 @@ class UsersResult:
         The total count of user query.
         """
         return pulumi.get(self, "total_count")
-
-    @property
-    @pulumi.getter(name="userNames")
-    def user_names(self) -> Optional[Sequence[str]]:
-        return pulumi.get(self, "user_names")
 
     @property
     @pulumi.getter
@@ -91,16 +83,14 @@ class AwaitableUsersResult(UsersResult):
             yield self
         return UsersResult(
             id=self.id,
-            name_regex=self.name_regex,
             output_file=self.output_file,
+            query=self.query,
             total_count=self.total_count,
-            user_names=self.user_names,
             users=self.users)
 
 
-def users(name_regex: Optional[str] = None,
-          output_file: Optional[str] = None,
-          user_names: Optional[Sequence[str]] = None,
+def users(output_file: Optional[str] = None,
+          query: Optional[str] = None,
           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableUsersResult:
     """
     Use this data source to query detailed information of iam users
@@ -110,39 +100,31 @@ def users(name_regex: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_user = volcengine.iam.User("fooUser",
-        user_name="acc-test-user",
-        description="acc test",
-        display_name="name")
-    foo_users = volcengine.iam.get_users_output(user_names=[foo_user.user_name])
+    default = volcengine.iam.get_users(query="jonny")
     ```
 
 
-    :param str name_regex: A Name Regex of IAM.
     :param str output_file: File name where to save data source results.
-    :param Sequence[str] user_names: A list of user names.
+    :param str query: Fuzzy query. Can query by user name, display name or description.
     """
     pulumi.log.warn("""users is deprecated: volcengine.iam.Users has been deprecated in favor of volcengine.iam.getUsers""")
     __args__ = dict()
-    __args__['nameRegex'] = name_regex
     __args__['outputFile'] = output_file
-    __args__['userNames'] = user_names
+    __args__['query'] = query
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('volcengine:iam/users:Users', __args__, opts=opts, typ=UsersResult).value
 
     return AwaitableUsersResult(
         id=pulumi.get(__ret__, 'id'),
-        name_regex=pulumi.get(__ret__, 'name_regex'),
         output_file=pulumi.get(__ret__, 'output_file'),
+        query=pulumi.get(__ret__, 'query'),
         total_count=pulumi.get(__ret__, 'total_count'),
-        user_names=pulumi.get(__ret__, 'user_names'),
         users=pulumi.get(__ret__, 'users'))
 
 
 @_utilities.lift_output_func(users)
-def users_output(name_regex: Optional[pulumi.Input[Optional[str]]] = None,
-                 output_file: Optional[pulumi.Input[Optional[str]]] = None,
-                 user_names: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
+def users_output(output_file: Optional[pulumi.Input[Optional[str]]] = None,
+                 query: Optional[pulumi.Input[Optional[str]]] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[UsersResult]:
     """
     Use this data source to query detailed information of iam users
@@ -152,17 +134,12 @@ def users_output(name_regex: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo_user = volcengine.iam.User("fooUser",
-        user_name="acc-test-user",
-        description="acc test",
-        display_name="name")
-    foo_users = volcengine.iam.get_users_output(user_names=[foo_user.user_name])
+    default = volcengine.iam.get_users(query="jonny")
     ```
 
 
-    :param str name_regex: A Name Regex of IAM.
     :param str output_file: File name where to save data source results.
-    :param Sequence[str] user_names: A list of user names.
+    :param str query: Fuzzy query. Can query by user name, display name or description.
     """
     pulumi.log.warn("""users is deprecated: volcengine.iam.Users has been deprecated in favor of volcengine.iam.getUsers""")
     ...

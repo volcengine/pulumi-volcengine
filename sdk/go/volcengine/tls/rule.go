@@ -30,7 +30,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			fooProject, err := tls.NewProject(ctx, "fooProject", &tls.ProjectArgs{
-//				ProjectName: pulumi.String("tf-test-project-ttt"),
+//				ProjectName: pulumi.String("tf-test-project-x"),
 //				Description: pulumi.String("tf-test-project-desc"),
 //				Region:      pulumi.String("cn-guilin-boe"),
 //			})
@@ -39,7 +39,7 @@ import (
 //			}
 //			fooTopic, err := tls.NewTopic(ctx, "fooTopic", &tls.TopicArgs{
 //				ProjectId:      fooProject.ID(),
-//				TopicName:      pulumi.String("tf-test-topic-rule-1"),
+//				TopicName:      pulumi.String("tf-test-topic-rule-x"),
 //				Ttl:            pulumi.Int(60),
 //				ShardCount:     pulumi.Int(2),
 //				AutoSplit:      pulumi.Bool(true),
@@ -49,8 +49,8 @@ import (
 //				TimeFormat:     pulumi.String("%Y-%m-%dT%H:%M:%S,%f"),
 //				Tags: tls.TopicTagArray{
 //					&tls.TopicTagArgs{
-//						Key:   pulumi.String("k1"),
-//						Value: pulumi.String("v1"),
+//						Key:   pulumi.String("k2"),
+//						Value: pulumi.String("v3"),
 //					},
 //				},
 //				LogPublicIp:  pulumi.Bool(true),
@@ -147,16 +147,16 @@ import (
 //					Stream:             pulumi.String("all"),
 //					ContainerNameRegex: pulumi.String(".*test.*"),
 //					IncludeContainerLabelRegex: pulumi.StringMap{
-//						"Key1": pulumi.String("Value12"),
-//						"Key2": pulumi.String("Value23"),
+//						"Key1": pulumi.String("Value122"),
+//						"Key2": pulumi.String("Value223"),
 //					},
 //					ExcludeContainerLabelRegex: pulumi.StringMap{
-//						"Key1": pulumi.String("Value12"),
-//						"Key2": pulumi.String("Value22"),
+//						"Key1": pulumi.String("Value312"),
+//						"Key2": pulumi.String("Valu5e22"),
 //					},
 //					IncludeContainerEnvRegex: pulumi.StringMap{
-//						"Key1": pulumi.String("Value1"),
-//						"Key2": pulumi.String("Value2"),
+//						"Key1": pulumi.String("Val2ue1"),
+//						"Key2": pulumi.String("Val2ue2"),
 //					},
 //					ExcludeContainerEnvRegex: pulumi.StringMap{
 //						"Key1": pulumi.String("Value1"),

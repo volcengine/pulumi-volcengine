@@ -137,17 +137,10 @@ class UserPolicyAttachment(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        user = volcengine.iam.User("user",
-            user_name="TfTest",
-            description="test")
-        policy = volcengine.iam.Policy("policy",
-            policy_name="TerraformResourceTest1",
-            description="created by terraform 1",
-            policy_document="{\\"Statement\\":[{\\"Effect\\":\\"Allow\\",\\"Action\\":[\\"auto_scaling:DescribeScalingGroups\\"],\\"Resource\\":[\\"*\\"]}]}")
         foo = volcengine.iam.UserPolicyAttachment("foo",
-            user_name=user.user_name,
-            policy_name=policy.policy_name,
-            policy_type=policy.policy_type)
+            policy_name="AdministratorAccess",
+            policy_type="System",
+            user_name="jonny")
         ```
 
         ## Import
@@ -178,17 +171,10 @@ class UserPolicyAttachment(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        user = volcengine.iam.User("user",
-            user_name="TfTest",
-            description="test")
-        policy = volcengine.iam.Policy("policy",
-            policy_name="TerraformResourceTest1",
-            description="created by terraform 1",
-            policy_document="{\\"Statement\\":[{\\"Effect\\":\\"Allow\\",\\"Action\\":[\\"auto_scaling:DescribeScalingGroups\\"],\\"Resource\\":[\\"*\\"]}]}")
         foo = volcengine.iam.UserPolicyAttachment("foo",
-            user_name=user.user_name,
-            policy_name=policy.policy_name,
-            policy_type=policy.policy_type)
+            policy_name="AdministratorAccess",
+            policy_type="System",
+            user_name="jonny")
         ```
 
         ## Import

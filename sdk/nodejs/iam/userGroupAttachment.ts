@@ -12,19 +12,9 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooUser = new volcengine.iam.User("fooUser", {
- *     userName: "acc-test-user",
- *     description: "acc test",
- *     displayName: "name",
- * });
- * const fooUserGroup = new volcengine.iam.UserGroup("fooUserGroup", {
- *     userGroupName: "acc-test-group",
- *     description: "acc-test",
- *     displayName: "acctest",
- * });
- * const fooUserGroupAttachment = new volcengine.iam.UserGroupAttachment("fooUserGroupAttachment", {
- *     userGroupName: fooUserGroup.userGroupName,
- *     userName: fooUser.userName,
+ * const foo = new volcengine.iam.UserGroupAttachment("foo", {
+ *     userGroupName: "xRqElT",
+ *     userName: "jonny-tt",
  * });
  * ```
  *

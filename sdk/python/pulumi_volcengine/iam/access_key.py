@@ -14,49 +14,17 @@ __all__ = ['AccessKeyArgs', 'AccessKey']
 @pulumi.input_type
 class AccessKeyArgs:
     def __init__(__self__, *,
-                 pgp_key: Optional[pulumi.Input[str]] = None,
-                 secret_file: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  user_name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a AccessKey resource.
-        :param pulumi.Input[str] pgp_key: Either a base-64 encoded PGP public key, or a keybase username in the form `keybase:some_person_that_exists`.
-        :param pulumi.Input[str] secret_file: The file to save the access id and secret. Strongly suggest you to specified it when you creating access key, otherwise, you wouldn't get its secret ever.
         :param pulumi.Input[str] status: The status of the access key, Optional choice contains `active` or `inactive`.
-        :param pulumi.Input[str] user_name: The user name.
+        :param pulumi.Input[str] user_name: The user name. If not specified, the current user is used.
         """
-        if pgp_key is not None:
-            pulumi.set(__self__, "pgp_key", pgp_key)
-        if secret_file is not None:
-            pulumi.set(__self__, "secret_file", secret_file)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if user_name is not None:
             pulumi.set(__self__, "user_name", user_name)
-
-    @property
-    @pulumi.getter(name="pgpKey")
-    def pgp_key(self) -> Optional[pulumi.Input[str]]:
-        """
-        Either a base-64 encoded PGP public key, or a keybase username in the form `keybase:some_person_that_exists`.
-        """
-        return pulumi.get(self, "pgp_key")
-
-    @pgp_key.setter
-    def pgp_key(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "pgp_key", value)
-
-    @property
-    @pulumi.getter(name="secretFile")
-    def secret_file(self) -> Optional[pulumi.Input[str]]:
-        """
-        The file to save the access id and secret. Strongly suggest you to specified it when you creating access key, otherwise, you wouldn't get its secret ever.
-        """
-        return pulumi.get(self, "secret_file")
-
-    @secret_file.setter
-    def secret_file(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "secret_file", value)
 
     @property
     @pulumi.getter
@@ -74,7 +42,7 @@ class AccessKeyArgs:
     @pulumi.getter(name="userName")
     def user_name(self) -> Optional[pulumi.Input[str]]:
         """
-        The user name.
+        The user name. If not specified, the current user is used.
         """
         return pulumi.get(self, "user_name")
 
@@ -86,41 +54,45 @@ class AccessKeyArgs:
 @pulumi.input_type
 class _AccessKeyState:
     def __init__(__self__, *,
+                 access_key_id: Optional[pulumi.Input[str]] = None,
                  create_date: Optional[pulumi.Input[str]] = None,
-                 encrypted_secret: Optional[pulumi.Input[str]] = None,
-                 key_fingerprint: Optional[pulumi.Input[str]] = None,
-                 pgp_key: Optional[pulumi.Input[str]] = None,
-                 secret: Optional[pulumi.Input[str]] = None,
-                 secret_file: Optional[pulumi.Input[str]] = None,
+                 secret_access_key: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
+                 update_date: Optional[pulumi.Input[str]] = None,
                  user_name: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering AccessKey resources.
+        :param pulumi.Input[str] access_key_id: The access key id.
         :param pulumi.Input[str] create_date: The create date of the access key.
-        :param pulumi.Input[str] encrypted_secret: The encrypted secret of the access key by pgp key, base64 encoded.
-        :param pulumi.Input[str] key_fingerprint: The key fingerprint of the encrypted secret.
-        :param pulumi.Input[str] pgp_key: Either a base-64 encoded PGP public key, or a keybase username in the form `keybase:some_person_that_exists`.
-        :param pulumi.Input[str] secret: The secret of the access key.
-        :param pulumi.Input[str] secret_file: The file to save the access id and secret. Strongly suggest you to specified it when you creating access key, otherwise, you wouldn't get its secret ever.
+        :param pulumi.Input[str] secret_access_key: The secret access key.
         :param pulumi.Input[str] status: The status of the access key, Optional choice contains `active` or `inactive`.
-        :param pulumi.Input[str] user_name: The user name.
+        :param pulumi.Input[str] update_date: The update date of the access key.
+        :param pulumi.Input[str] user_name: The user name. If not specified, the current user is used.
         """
+        if access_key_id is not None:
+            pulumi.set(__self__, "access_key_id", access_key_id)
         if create_date is not None:
             pulumi.set(__self__, "create_date", create_date)
-        if encrypted_secret is not None:
-            pulumi.set(__self__, "encrypted_secret", encrypted_secret)
-        if key_fingerprint is not None:
-            pulumi.set(__self__, "key_fingerprint", key_fingerprint)
-        if pgp_key is not None:
-            pulumi.set(__self__, "pgp_key", pgp_key)
-        if secret is not None:
-            pulumi.set(__self__, "secret", secret)
-        if secret_file is not None:
-            pulumi.set(__self__, "secret_file", secret_file)
+        if secret_access_key is not None:
+            pulumi.set(__self__, "secret_access_key", secret_access_key)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if update_date is not None:
+            pulumi.set(__self__, "update_date", update_date)
         if user_name is not None:
             pulumi.set(__self__, "user_name", user_name)
+
+    @property
+    @pulumi.getter(name="accessKeyId")
+    def access_key_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The access key id.
+        """
+        return pulumi.get(self, "access_key_id")
+
+    @access_key_id.setter
+    def access_key_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "access_key_id", value)
 
     @property
     @pulumi.getter(name="createDate")
@@ -135,64 +107,16 @@ class _AccessKeyState:
         pulumi.set(self, "create_date", value)
 
     @property
-    @pulumi.getter(name="encryptedSecret")
-    def encrypted_secret(self) -> Optional[pulumi.Input[str]]:
+    @pulumi.getter(name="secretAccessKey")
+    def secret_access_key(self) -> Optional[pulumi.Input[str]]:
         """
-        The encrypted secret of the access key by pgp key, base64 encoded.
+        The secret access key.
         """
-        return pulumi.get(self, "encrypted_secret")
+        return pulumi.get(self, "secret_access_key")
 
-    @encrypted_secret.setter
-    def encrypted_secret(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "encrypted_secret", value)
-
-    @property
-    @pulumi.getter(name="keyFingerprint")
-    def key_fingerprint(self) -> Optional[pulumi.Input[str]]:
-        """
-        The key fingerprint of the encrypted secret.
-        """
-        return pulumi.get(self, "key_fingerprint")
-
-    @key_fingerprint.setter
-    def key_fingerprint(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "key_fingerprint", value)
-
-    @property
-    @pulumi.getter(name="pgpKey")
-    def pgp_key(self) -> Optional[pulumi.Input[str]]:
-        """
-        Either a base-64 encoded PGP public key, or a keybase username in the form `keybase:some_person_that_exists`.
-        """
-        return pulumi.get(self, "pgp_key")
-
-    @pgp_key.setter
-    def pgp_key(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "pgp_key", value)
-
-    @property
-    @pulumi.getter
-    def secret(self) -> Optional[pulumi.Input[str]]:
-        """
-        The secret of the access key.
-        """
-        return pulumi.get(self, "secret")
-
-    @secret.setter
-    def secret(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "secret", value)
-
-    @property
-    @pulumi.getter(name="secretFile")
-    def secret_file(self) -> Optional[pulumi.Input[str]]:
-        """
-        The file to save the access id and secret. Strongly suggest you to specified it when you creating access key, otherwise, you wouldn't get its secret ever.
-        """
-        return pulumi.get(self, "secret_file")
-
-    @secret_file.setter
-    def secret_file(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "secret_file", value)
+    @secret_access_key.setter
+    def secret_access_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "secret_access_key", value)
 
     @property
     @pulumi.getter
@@ -207,10 +131,22 @@ class _AccessKeyState:
         pulumi.set(self, "status", value)
 
     @property
+    @pulumi.getter(name="updateDate")
+    def update_date(self) -> Optional[pulumi.Input[str]]:
+        """
+        The update date of the access key.
+        """
+        return pulumi.get(self, "update_date")
+
+    @update_date.setter
+    def update_date(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "update_date", value)
+
+    @property
     @pulumi.getter(name="userName")
     def user_name(self) -> Optional[pulumi.Input[str]]:
         """
-        The user name.
+        The user name. If not specified, the current user is used.
         """
         return pulumi.get(self, "user_name")
 
@@ -224,8 +160,6 @@ class AccessKey(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 pgp_key: Optional[pulumi.Input[str]] = None,
-                 secret_file: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  user_name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -237,15 +171,9 @@ class AccessKey(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo_user = volcengine.iam.User("fooUser",
-            user_name="acc-test-user",
-            description="acc-test",
-            display_name="name")
-        foo_access_key = volcengine.iam.AccessKey("fooAccessKey",
-            user_name=foo_user.user_name,
-            secret_file="./sk",
-            status="active")
-        #  pgp_key = "keybase:some_person_that_exists"
+        foo = volcengine.iam.AccessKey("foo",
+            status="active",
+            user_name="jonny")
         ```
 
         ## Import
@@ -254,10 +182,8 @@ class AccessKey(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] pgp_key: Either a base-64 encoded PGP public key, or a keybase username in the form `keybase:some_person_that_exists`.
-        :param pulumi.Input[str] secret_file: The file to save the access id and secret. Strongly suggest you to specified it when you creating access key, otherwise, you wouldn't get its secret ever.
         :param pulumi.Input[str] status: The status of the access key, Optional choice contains `active` or `inactive`.
-        :param pulumi.Input[str] user_name: The user name.
+        :param pulumi.Input[str] user_name: The user name. If not specified, the current user is used.
         """
         ...
     @overload
@@ -273,15 +199,9 @@ class AccessKey(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo_user = volcengine.iam.User("fooUser",
-            user_name="acc-test-user",
-            description="acc-test",
-            display_name="name")
-        foo_access_key = volcengine.iam.AccessKey("fooAccessKey",
-            user_name=foo_user.user_name,
-            secret_file="./sk",
-            status="active")
-        #  pgp_key = "keybase:some_person_that_exists"
+        foo = volcengine.iam.AccessKey("foo",
+            status="active",
+            user_name="jonny")
         ```
 
         ## Import
@@ -303,8 +223,6 @@ class AccessKey(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 pgp_key: Optional[pulumi.Input[str]] = None,
-                 secret_file: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  user_name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -316,15 +234,13 @@ class AccessKey(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = AccessKeyArgs.__new__(AccessKeyArgs)
 
-            __props__.__dict__["pgp_key"] = pgp_key
-            __props__.__dict__["secret_file"] = secret_file
             __props__.__dict__["status"] = status
             __props__.__dict__["user_name"] = user_name
+            __props__.__dict__["access_key_id"] = None
             __props__.__dict__["create_date"] = None
-            __props__.__dict__["encrypted_secret"] = None
-            __props__.__dict__["key_fingerprint"] = None
-            __props__.__dict__["secret"] = None
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["secret"])
+            __props__.__dict__["secret_access_key"] = None
+            __props__.__dict__["update_date"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["secretAccessKey"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(AccessKey, __self__).__init__(
             'volcengine:iam/accessKey:AccessKey',
@@ -336,13 +252,11 @@ class AccessKey(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            access_key_id: Optional[pulumi.Input[str]] = None,
             create_date: Optional[pulumi.Input[str]] = None,
-            encrypted_secret: Optional[pulumi.Input[str]] = None,
-            key_fingerprint: Optional[pulumi.Input[str]] = None,
-            pgp_key: Optional[pulumi.Input[str]] = None,
-            secret: Optional[pulumi.Input[str]] = None,
-            secret_file: Optional[pulumi.Input[str]] = None,
+            secret_access_key: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
+            update_date: Optional[pulumi.Input[str]] = None,
             user_name: Optional[pulumi.Input[str]] = None) -> 'AccessKey':
         """
         Get an existing AccessKey resource's state with the given name, id, and optional extra
@@ -351,28 +265,32 @@ class AccessKey(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] access_key_id: The access key id.
         :param pulumi.Input[str] create_date: The create date of the access key.
-        :param pulumi.Input[str] encrypted_secret: The encrypted secret of the access key by pgp key, base64 encoded.
-        :param pulumi.Input[str] key_fingerprint: The key fingerprint of the encrypted secret.
-        :param pulumi.Input[str] pgp_key: Either a base-64 encoded PGP public key, or a keybase username in the form `keybase:some_person_that_exists`.
-        :param pulumi.Input[str] secret: The secret of the access key.
-        :param pulumi.Input[str] secret_file: The file to save the access id and secret. Strongly suggest you to specified it when you creating access key, otherwise, you wouldn't get its secret ever.
+        :param pulumi.Input[str] secret_access_key: The secret access key.
         :param pulumi.Input[str] status: The status of the access key, Optional choice contains `active` or `inactive`.
-        :param pulumi.Input[str] user_name: The user name.
+        :param pulumi.Input[str] update_date: The update date of the access key.
+        :param pulumi.Input[str] user_name: The user name. If not specified, the current user is used.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _AccessKeyState.__new__(_AccessKeyState)
 
+        __props__.__dict__["access_key_id"] = access_key_id
         __props__.__dict__["create_date"] = create_date
-        __props__.__dict__["encrypted_secret"] = encrypted_secret
-        __props__.__dict__["key_fingerprint"] = key_fingerprint
-        __props__.__dict__["pgp_key"] = pgp_key
-        __props__.__dict__["secret"] = secret
-        __props__.__dict__["secret_file"] = secret_file
+        __props__.__dict__["secret_access_key"] = secret_access_key
         __props__.__dict__["status"] = status
+        __props__.__dict__["update_date"] = update_date
         __props__.__dict__["user_name"] = user_name
         return AccessKey(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="accessKeyId")
+    def access_key_id(self) -> pulumi.Output[str]:
+        """
+        The access key id.
+        """
+        return pulumi.get(self, "access_key_id")
 
     @property
     @pulumi.getter(name="createDate")
@@ -383,44 +301,12 @@ class AccessKey(pulumi.CustomResource):
         return pulumi.get(self, "create_date")
 
     @property
-    @pulumi.getter(name="encryptedSecret")
-    def encrypted_secret(self) -> pulumi.Output[str]:
+    @pulumi.getter(name="secretAccessKey")
+    def secret_access_key(self) -> pulumi.Output[str]:
         """
-        The encrypted secret of the access key by pgp key, base64 encoded.
+        The secret access key.
         """
-        return pulumi.get(self, "encrypted_secret")
-
-    @property
-    @pulumi.getter(name="keyFingerprint")
-    def key_fingerprint(self) -> pulumi.Output[str]:
-        """
-        The key fingerprint of the encrypted secret.
-        """
-        return pulumi.get(self, "key_fingerprint")
-
-    @property
-    @pulumi.getter(name="pgpKey")
-    def pgp_key(self) -> pulumi.Output[Optional[str]]:
-        """
-        Either a base-64 encoded PGP public key, or a keybase username in the form `keybase:some_person_that_exists`.
-        """
-        return pulumi.get(self, "pgp_key")
-
-    @property
-    @pulumi.getter
-    def secret(self) -> pulumi.Output[str]:
-        """
-        The secret of the access key.
-        """
-        return pulumi.get(self, "secret")
-
-    @property
-    @pulumi.getter(name="secretFile")
-    def secret_file(self) -> pulumi.Output[Optional[str]]:
-        """
-        The file to save the access id and secret. Strongly suggest you to specified it when you creating access key, otherwise, you wouldn't get its secret ever.
-        """
-        return pulumi.get(self, "secret_file")
+        return pulumi.get(self, "secret_access_key")
 
     @property
     @pulumi.getter
@@ -431,10 +317,18 @@ class AccessKey(pulumi.CustomResource):
         return pulumi.get(self, "status")
 
     @property
+    @pulumi.getter(name="updateDate")
+    def update_date(self) -> pulumi.Output[str]:
+        """
+        The update date of the access key.
+        """
+        return pulumi.get(self, "update_date")
+
+    @property
     @pulumi.getter(name="userName")
     def user_name(self) -> pulumi.Output[str]:
         """
-        The user name.
+        The user name. If not specified, the current user is used.
         """
         return pulumi.get(self, "user_name")
 

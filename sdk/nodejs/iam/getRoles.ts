@@ -13,24 +13,9 @@ import * as utilities from "../utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
- * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo1 = new volcengine.iam.Role("foo1", {
- *     description: "acc-test1",
- *     displayName: "acc-test1",
- *     maxSessionDuration: 3600,
- *     roleName: "acc-test-role1",
- *     trustPolicyDocument: "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"sts:AssumeRole\"],\"Principal\":{\"Service\":[\"auto_scaling\"]}}]}",
- * });
- * const foo2 = new volcengine.iam.Role("foo2", {
- *     description: "acc-test2",
- *     displayName: "acc-test2",
- *     maxSessionDuration: 3600,
- *     roleName: "acc-test-role2",
- *     trustPolicyDocument: "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"sts:AssumeRole\"],\"Principal\":{\"Service\":[\"ecs\"]}}]}",
- * });
- * const foo = volcengine.iam.getRolesOutput({
- *     roleName: pulumi.interpolate`${foo1.roleName},${foo2.roleName}`,
+ * const default = volcengine.iam.getRoles({
+ *     query: "CustomRoleForOOS",
  * });
  * ```
  */
@@ -42,7 +27,6 @@ export function getRoles(args?: GetRolesArgs, opts?: pulumi.InvokeOptions): Prom
         "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
         "query": args.query,
-        "roleName": args.roleName,
     }, opts);
 }
 
@@ -59,13 +43,9 @@ export interface GetRolesArgs {
      */
     outputFile?: string;
     /**
-     * The query field of Role.
+     * Fuzzy query. Can query by role name, display name or description.
      */
     query?: string;
-    /**
-     * The name of the Role, comma separated.
-     */
-    roleName?: string;
 }
 
 /**
@@ -79,10 +59,6 @@ export interface GetRolesResult {
     readonly nameRegex?: string;
     readonly outputFile?: string;
     readonly query?: string;
-    /**
-     * The name of the Role.
-     */
-    readonly roleName?: string;
     /**
      * The collection of Role query.
      */
@@ -99,24 +75,9 @@ export interface GetRolesResult {
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
- * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo1 = new volcengine.iam.Role("foo1", {
- *     description: "acc-test1",
- *     displayName: "acc-test1",
- *     maxSessionDuration: 3600,
- *     roleName: "acc-test-role1",
- *     trustPolicyDocument: "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"sts:AssumeRole\"],\"Principal\":{\"Service\":[\"auto_scaling\"]}}]}",
- * });
- * const foo2 = new volcengine.iam.Role("foo2", {
- *     description: "acc-test2",
- *     displayName: "acc-test2",
- *     maxSessionDuration: 3600,
- *     roleName: "acc-test-role2",
- *     trustPolicyDocument: "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"sts:AssumeRole\"],\"Principal\":{\"Service\":[\"ecs\"]}}]}",
- * });
- * const foo = volcengine.iam.getRolesOutput({
- *     roleName: pulumi.interpolate`${foo1.roleName},${foo2.roleName}`,
+ * const default = volcengine.iam.getRoles({
+ *     query: "CustomRoleForOOS",
  * });
  * ```
  */
@@ -137,11 +98,7 @@ export interface GetRolesOutputArgs {
      */
     outputFile?: pulumi.Input<string>;
     /**
-     * The query field of Role.
+     * Fuzzy query. Can query by role name, display name or description.
      */
     query?: pulumi.Input<string>;
-    /**
-     * The name of the Role, comma separated.
-     */
-    roleName?: pulumi.Input<string>;
 }

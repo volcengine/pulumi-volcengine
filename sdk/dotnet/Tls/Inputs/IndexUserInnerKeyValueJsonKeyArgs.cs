@@ -19,6 +19,12 @@ namespace Pulumi.Volcengine.Tls.Inputs
         public Input<string> Key { get; set; } = null!;
 
         /// <summary>
+        /// Whether the filed is enabled for analysis.
+        /// </summary>
+        [Input("sqlFlag")]
+        public Input<bool>? SqlFlag { get; set; }
+
+        /// <summary>
         /// The type of value. Valid values: `long`, `double`, `text`.
         /// </summary>
         [Input("valueType", required: true)]

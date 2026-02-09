@@ -25,7 +25,7 @@ namespace Pulumi.Volcengine.Tls
     ///     var foo = new Volcengine.Tls.TraceInstance("foo", new()
     ///     {
     ///         ProjectId = "bdb87e4d-7dad-4b96-ac43-e1b09e9dc8ac",
-    ///         TraceInstanceName = "tf-trace-instance",
+    ///         TraceInstanceName = "tf-trace-instance-df",
     ///         Description = "This is an example trace instance",
     ///         BackendConfig = new Volcengine.Tls.Inputs.TraceInstanceBackendConfigArgs
     ///         {

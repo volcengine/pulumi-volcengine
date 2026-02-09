@@ -21,24 +21,10 @@ namespace Pulumi.Volcengine.Iam
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var fooUser = new Volcengine.Iam.User("fooUser", new()
+    ///     var foo = new Volcengine.Iam.UserGroupAttachment("foo", new()
     ///     {
-    ///         UserName = "acc-test-user",
-    ///         Description = "acc test",
-    ///         DisplayName = "name",
-    ///     });
-    /// 
-    ///     var fooUserGroup = new Volcengine.Iam.UserGroup("fooUserGroup", new()
-    ///     {
-    ///         UserGroupName = "acc-test-group",
-    ///         Description = "acc-test",
-    ///         DisplayName = "acctest",
-    ///     });
-    /// 
-    ///     var fooUserGroupAttachment = new Volcengine.Iam.UserGroupAttachment("fooUserGroupAttachment", new()
-    ///     {
-    ///         UserGroupName = fooUserGroup.UserGroupName,
-    ///         UserName = fooUser.UserName,
+    ///         UserGroupName = "xRqElT",
+    ///         UserName = "jonny-tt",
     ///     });
     /// 
     /// });

@@ -27,7 +27,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := tls.GetRuleBoundHostGroups(ctx, &tls.GetRuleBoundHostGroupsArgs{
-//				RuleId: "048dc010-6bb1-4189-858a-281d654d6686",
+//				RuleId: "83ac687a-0e2b-4788-b626-3dce18498740",
 //			}, nil)
 //			if err != nil {
 //				return err

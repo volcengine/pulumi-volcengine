@@ -14,7 +14,7 @@ namespace Pulumi.Volcengine.Iam.Outputs
     public sealed class UserGroupPolicyAttachmentsPolicyResult
     {
         /// <summary>
-        /// Attached time.
+        /// The attach date of the policy scope.
         /// </summary>
         public readonly string AttachDate;
         /// <summary>
@@ -25,6 +25,10 @@ namespace Pulumi.Volcengine.Iam.Outputs
         /// Name of the policy.
         /// </summary>
         public readonly string PolicyName;
+        /// <summary>
+        /// The scope of the policy.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.UserGroupPolicyAttachmentsPolicyPolicyScopeResult> PolicyScopes;
         /// <summary>
         /// Resource name of the strategy.
         /// </summary>
@@ -42,6 +46,8 @@ namespace Pulumi.Volcengine.Iam.Outputs
 
             string policyName,
 
+            ImmutableArray<Outputs.UserGroupPolicyAttachmentsPolicyPolicyScopeResult> policyScopes,
+
             string policyTrn,
 
             string policyType)
@@ -49,6 +55,7 @@ namespace Pulumi.Volcengine.Iam.Outputs
             AttachDate = attachDate;
             Description = description;
             PolicyName = policyName;
+            PolicyScopes = policyScopes;
             PolicyTrn = policyTrn;
             PolicyType = policyType;
         }

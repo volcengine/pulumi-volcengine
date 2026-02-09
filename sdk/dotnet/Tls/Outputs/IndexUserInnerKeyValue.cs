@@ -14,6 +14,10 @@ namespace Pulumi.Volcengine.Tls.Outputs
     public sealed class IndexUserInnerKeyValue
     {
         /// <summary>
+        /// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `value_type` is `json`.
+        /// </summary>
+        public readonly bool? AutoIndexFlag;
+        /// <summary>
         /// Whether the value is case sensitive.
         /// </summary>
         public readonly bool? CaseSensitive;
@@ -25,6 +29,14 @@ namespace Pulumi.Volcengine.Tls.Outputs
         /// Whether the value include chinese.
         /// </summary>
         public readonly bool? IncludeChinese;
+        /// <summary>
+        /// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `value_type` is `json`.
+        /// </summary>
+        public readonly bool? IndexAll;
+        /// <summary>
+        /// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `value_type` is `json`.
+        /// </summary>
+        public readonly bool? IndexSqlAll;
         /// <summary>
         /// The JSON subfield key value index.
         /// </summary>
@@ -44,11 +56,17 @@ namespace Pulumi.Volcengine.Tls.Outputs
 
         [OutputConstructor]
         private IndexUserInnerKeyValue(
+            bool? autoIndexFlag,
+
             bool? caseSensitive,
 
             string? delimiter,
 
             bool? includeChinese,
+
+            bool? indexAll,
+
+            bool? indexSqlAll,
 
             ImmutableArray<Outputs.IndexUserInnerKeyValueJsonKey> jsonKeys,
 
@@ -58,9 +76,12 @@ namespace Pulumi.Volcengine.Tls.Outputs
 
             string valueType)
         {
+            AutoIndexFlag = autoIndexFlag;
             CaseSensitive = caseSensitive;
             Delimiter = delimiter;
             IncludeChinese = includeChinese;
+            IndexAll = indexAll;
+            IndexSqlAll = indexSqlAll;
             JsonKeys = jsonKeys;
             Key = key;
             SqlFlag = sqlFlag;

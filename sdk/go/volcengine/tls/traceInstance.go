@@ -30,7 +30,7 @@ import (
 //			// Example: Create a TLS trace instance
 //			foo, err := tls.NewTraceInstance(ctx, "foo", &tls.TraceInstanceArgs{
 //				ProjectId:         pulumi.String("bdb87e4d-7dad-4b96-ac43-e1b09e9dc8ac"),
-//				TraceInstanceName: pulumi.String("tf-trace-instance"),
+//				TraceInstanceName: pulumi.String("tf-trace-instance-df"),
 //				Description:       pulumi.String("This is an example trace instance"),
 //				BackendConfig: &tls.TraceInstanceBackendConfigArgs{
 //					Ttl:                pulumi.Int(60),

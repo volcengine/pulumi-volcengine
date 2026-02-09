@@ -27,19 +27,16 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooUser, err := iam.NewUser(ctx, "fooUser", &iam.UserArgs{
-//				UserName:    pulumi.String("acc-test-user"),
-//				Description: pulumi.String("acc-test"),
-//				DisplayName: pulumi.String("name"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = iam.NewLoginProfile(ctx, "fooLoginProfile", &iam.LoginProfileArgs{
-//				UserName:              fooUser.UserName,
-//				Password:              pulumi.String("93f0cb0614Aab12"),
-//				LoginAllowed:          pulumi.Bool(true),
-//				PasswordResetRequired: pulumi.Bool(false),
+//			_, err := iam.NewLoginProfile(ctx, "foo", &iam.LoginProfileArgs{
+//				LoginAllowed:           pulumi.Bool(true),
+//				Password:               pulumi.String(""),
+//				PasswordResetRequired:  pulumi.Bool(true),
+//				SafeAuthExemptDuration: pulumi.Int(1),
+//				SafeAuthExemptRequired: pulumi.Int(1),
+//				SafeAuthExemptUnit:     pulumi.Int(1),
+//				SafeAuthFlag:           pulumi.Bool(true),
+//				SafeAuthType:           pulumi.String("phone"),
+//				UserName:               pulumi.String("jonny"),
 //			})
 //			if err != nil {
 //				return err
@@ -60,12 +57,38 @@ import (
 type LoginProfile struct {
 	pulumi.CustomResourceState
 
+	// The create date.
+	CreateDate pulumi.StringOutput `pulumi:"createDate"`
+	// The last login date.
+	LastLoginDate pulumi.StringOutput `pulumi:"lastLoginDate"`
+	// The last login ip.
+	LastLoginIp pulumi.StringOutput `pulumi:"lastLoginIp"`
+	// The last reset password time.
+	LastResetPasswordTime pulumi.IntOutput `pulumi:"lastResetPasswordTime"`
 	// The flag of login allowed.
-	LoginAllowed pulumi.BoolPtrOutput `pulumi:"loginAllowed"`
+	LoginAllowed pulumi.BoolOutput `pulumi:"loginAllowed"`
+	// The flag of login locked.
+	LoginLocked pulumi.BoolOutput `pulumi:"loginLocked"`
 	// The password.
 	Password pulumi.StringOutput `pulumi:"password"`
+	// The password expire at.
+	PasswordExpireAt pulumi.IntOutput `pulumi:"passwordExpireAt"`
 	// Is required reset password when next time login in.
-	PasswordResetRequired pulumi.BoolPtrOutput `pulumi:"passwordResetRequired"`
+	PasswordResetRequired pulumi.BoolOutput `pulumi:"passwordResetRequired"`
+	// The duration of safe auth exempt.
+	SafeAuthExemptDuration pulumi.IntOutput `pulumi:"safeAuthExemptDuration"`
+	// The flag of safe auth exempt required.
+	SafeAuthExemptRequired pulumi.IntOutput `pulumi:"safeAuthExemptRequired"`
+	// The unit of safe auth exempt.
+	SafeAuthExemptUnit pulumi.IntOutput `pulumi:"safeAuthExemptUnit"`
+	// The flag of safe auth.
+	SafeAuthFlag pulumi.BoolOutput `pulumi:"safeAuthFlag"`
+	// The type of safe auth.
+	SafeAuthType pulumi.StringOutput `pulumi:"safeAuthType"`
+	// The update date.
+	UpdateDate pulumi.StringOutput `pulumi:"updateDate"`
+	// The user id.
+	UserId pulumi.IntOutput `pulumi:"userId"`
 	// The user name.
 	UserName pulumi.StringOutput `pulumi:"userName"`
 }
@@ -113,23 +136,75 @@ func GetLoginProfile(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LoginProfile resources.
 type loginProfileState struct {
+	// The create date.
+	CreateDate *string `pulumi:"createDate"`
+	// The last login date.
+	LastLoginDate *string `pulumi:"lastLoginDate"`
+	// The last login ip.
+	LastLoginIp *string `pulumi:"lastLoginIp"`
+	// The last reset password time.
+	LastResetPasswordTime *int `pulumi:"lastResetPasswordTime"`
 	// The flag of login allowed.
 	LoginAllowed *bool `pulumi:"loginAllowed"`
+	// The flag of login locked.
+	LoginLocked *bool `pulumi:"loginLocked"`
 	// The password.
 	Password *string `pulumi:"password"`
+	// The password expire at.
+	PasswordExpireAt *int `pulumi:"passwordExpireAt"`
 	// Is required reset password when next time login in.
 	PasswordResetRequired *bool `pulumi:"passwordResetRequired"`
+	// The duration of safe auth exempt.
+	SafeAuthExemptDuration *int `pulumi:"safeAuthExemptDuration"`
+	// The flag of safe auth exempt required.
+	SafeAuthExemptRequired *int `pulumi:"safeAuthExemptRequired"`
+	// The unit of safe auth exempt.
+	SafeAuthExemptUnit *int `pulumi:"safeAuthExemptUnit"`
+	// The flag of safe auth.
+	SafeAuthFlag *bool `pulumi:"safeAuthFlag"`
+	// The type of safe auth.
+	SafeAuthType *string `pulumi:"safeAuthType"`
+	// The update date.
+	UpdateDate *string `pulumi:"updateDate"`
+	// The user id.
+	UserId *int `pulumi:"userId"`
 	// The user name.
 	UserName *string `pulumi:"userName"`
 }
 
 type LoginProfileState struct {
+	// The create date.
+	CreateDate pulumi.StringPtrInput
+	// The last login date.
+	LastLoginDate pulumi.StringPtrInput
+	// The last login ip.
+	LastLoginIp pulumi.StringPtrInput
+	// The last reset password time.
+	LastResetPasswordTime pulumi.IntPtrInput
 	// The flag of login allowed.
 	LoginAllowed pulumi.BoolPtrInput
+	// The flag of login locked.
+	LoginLocked pulumi.BoolPtrInput
 	// The password.
 	Password pulumi.StringPtrInput
+	// The password expire at.
+	PasswordExpireAt pulumi.IntPtrInput
 	// Is required reset password when next time login in.
 	PasswordResetRequired pulumi.BoolPtrInput
+	// The duration of safe auth exempt.
+	SafeAuthExemptDuration pulumi.IntPtrInput
+	// The flag of safe auth exempt required.
+	SafeAuthExemptRequired pulumi.IntPtrInput
+	// The unit of safe auth exempt.
+	SafeAuthExemptUnit pulumi.IntPtrInput
+	// The flag of safe auth.
+	SafeAuthFlag pulumi.BoolPtrInput
+	// The type of safe auth.
+	SafeAuthType pulumi.StringPtrInput
+	// The update date.
+	UpdateDate pulumi.StringPtrInput
+	// The user id.
+	UserId pulumi.IntPtrInput
 	// The user name.
 	UserName pulumi.StringPtrInput
 }
@@ -145,6 +220,16 @@ type loginProfileArgs struct {
 	Password string `pulumi:"password"`
 	// Is required reset password when next time login in.
 	PasswordResetRequired *bool `pulumi:"passwordResetRequired"`
+	// The duration of safe auth exempt.
+	SafeAuthExemptDuration *int `pulumi:"safeAuthExemptDuration"`
+	// The flag of safe auth exempt required.
+	SafeAuthExemptRequired *int `pulumi:"safeAuthExemptRequired"`
+	// The unit of safe auth exempt.
+	SafeAuthExemptUnit *int `pulumi:"safeAuthExemptUnit"`
+	// The flag of safe auth.
+	SafeAuthFlag *bool `pulumi:"safeAuthFlag"`
+	// The type of safe auth.
+	SafeAuthType *string `pulumi:"safeAuthType"`
 	// The user name.
 	UserName string `pulumi:"userName"`
 }
@@ -157,6 +242,16 @@ type LoginProfileArgs struct {
 	Password pulumi.StringInput
 	// Is required reset password when next time login in.
 	PasswordResetRequired pulumi.BoolPtrInput
+	// The duration of safe auth exempt.
+	SafeAuthExemptDuration pulumi.IntPtrInput
+	// The flag of safe auth exempt required.
+	SafeAuthExemptRequired pulumi.IntPtrInput
+	// The unit of safe auth exempt.
+	SafeAuthExemptUnit pulumi.IntPtrInput
+	// The flag of safe auth.
+	SafeAuthFlag pulumi.BoolPtrInput
+	// The type of safe auth.
+	SafeAuthType pulumi.StringPtrInput
 	// The user name.
 	UserName pulumi.StringInput
 }
@@ -248,9 +343,34 @@ func (o LoginProfileOutput) ToLoginProfileOutputWithContext(ctx context.Context)
 	return o
 }
 
+// The create date.
+func (o LoginProfileOutput) CreateDate() pulumi.StringOutput {
+	return o.ApplyT(func(v *LoginProfile) pulumi.StringOutput { return v.CreateDate }).(pulumi.StringOutput)
+}
+
+// The last login date.
+func (o LoginProfileOutput) LastLoginDate() pulumi.StringOutput {
+	return o.ApplyT(func(v *LoginProfile) pulumi.StringOutput { return v.LastLoginDate }).(pulumi.StringOutput)
+}
+
+// The last login ip.
+func (o LoginProfileOutput) LastLoginIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *LoginProfile) pulumi.StringOutput { return v.LastLoginIp }).(pulumi.StringOutput)
+}
+
+// The last reset password time.
+func (o LoginProfileOutput) LastResetPasswordTime() pulumi.IntOutput {
+	return o.ApplyT(func(v *LoginProfile) pulumi.IntOutput { return v.LastResetPasswordTime }).(pulumi.IntOutput)
+}
+
 // The flag of login allowed.
-func (o LoginProfileOutput) LoginAllowed() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *LoginProfile) pulumi.BoolPtrOutput { return v.LoginAllowed }).(pulumi.BoolPtrOutput)
+func (o LoginProfileOutput) LoginAllowed() pulumi.BoolOutput {
+	return o.ApplyT(func(v *LoginProfile) pulumi.BoolOutput { return v.LoginAllowed }).(pulumi.BoolOutput)
+}
+
+// The flag of login locked.
+func (o LoginProfileOutput) LoginLocked() pulumi.BoolOutput {
+	return o.ApplyT(func(v *LoginProfile) pulumi.BoolOutput { return v.LoginLocked }).(pulumi.BoolOutput)
 }
 
 // The password.
@@ -258,9 +378,49 @@ func (o LoginProfileOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoginProfile) pulumi.StringOutput { return v.Password }).(pulumi.StringOutput)
 }
 
+// The password expire at.
+func (o LoginProfileOutput) PasswordExpireAt() pulumi.IntOutput {
+	return o.ApplyT(func(v *LoginProfile) pulumi.IntOutput { return v.PasswordExpireAt }).(pulumi.IntOutput)
+}
+
 // Is required reset password when next time login in.
-func (o LoginProfileOutput) PasswordResetRequired() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *LoginProfile) pulumi.BoolPtrOutput { return v.PasswordResetRequired }).(pulumi.BoolPtrOutput)
+func (o LoginProfileOutput) PasswordResetRequired() pulumi.BoolOutput {
+	return o.ApplyT(func(v *LoginProfile) pulumi.BoolOutput { return v.PasswordResetRequired }).(pulumi.BoolOutput)
+}
+
+// The duration of safe auth exempt.
+func (o LoginProfileOutput) SafeAuthExemptDuration() pulumi.IntOutput {
+	return o.ApplyT(func(v *LoginProfile) pulumi.IntOutput { return v.SafeAuthExemptDuration }).(pulumi.IntOutput)
+}
+
+// The flag of safe auth exempt required.
+func (o LoginProfileOutput) SafeAuthExemptRequired() pulumi.IntOutput {
+	return o.ApplyT(func(v *LoginProfile) pulumi.IntOutput { return v.SafeAuthExemptRequired }).(pulumi.IntOutput)
+}
+
+// The unit of safe auth exempt.
+func (o LoginProfileOutput) SafeAuthExemptUnit() pulumi.IntOutput {
+	return o.ApplyT(func(v *LoginProfile) pulumi.IntOutput { return v.SafeAuthExemptUnit }).(pulumi.IntOutput)
+}
+
+// The flag of safe auth.
+func (o LoginProfileOutput) SafeAuthFlag() pulumi.BoolOutput {
+	return o.ApplyT(func(v *LoginProfile) pulumi.BoolOutput { return v.SafeAuthFlag }).(pulumi.BoolOutput)
+}
+
+// The type of safe auth.
+func (o LoginProfileOutput) SafeAuthType() pulumi.StringOutput {
+	return o.ApplyT(func(v *LoginProfile) pulumi.StringOutput { return v.SafeAuthType }).(pulumi.StringOutput)
+}
+
+// The update date.
+func (o LoginProfileOutput) UpdateDate() pulumi.StringOutput {
+	return o.ApplyT(func(v *LoginProfile) pulumi.StringOutput { return v.UpdateDate }).(pulumi.StringOutput)
+}
+
+// The user id.
+func (o LoginProfileOutput) UserId() pulumi.IntOutput {
+	return o.ApplyT(func(v *LoginProfile) pulumi.IntOutput { return v.UserId }).(pulumi.IntOutput)
 }
 
 // The user name.

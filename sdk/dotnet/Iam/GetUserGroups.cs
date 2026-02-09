@@ -23,16 +23,9 @@ namespace Pulumi.Volcengine.Iam
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var fooUserGroup = new Volcengine.Iam.UserGroup("fooUserGroup", new()
+        ///     var @default = Volcengine.Iam.GetUserGroups.Invoke(new()
         ///     {
-        ///         Description = "acc-test",
-        ///         DisplayName = "acc-test",
-        ///         UserGroupName = "acc-test-group",
-        ///     });
-        /// 
-        ///     var fooUserGroups = Volcengine.Iam.GetUserGroups.Invoke(new()
-        ///     {
-        ///         Query = "acc-test",
+        ///         Query = "xRqElT",
         ///     });
         /// 
         /// });
@@ -53,16 +46,9 @@ namespace Pulumi.Volcengine.Iam
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var fooUserGroup = new Volcengine.Iam.UserGroup("fooUserGroup", new()
+        ///     var @default = Volcengine.Iam.GetUserGroups.Invoke(new()
         ///     {
-        ///         Description = "acc-test",
-        ///         DisplayName = "acc-test",
-        ///         UserGroupName = "acc-test-group",
-        ///     });
-        /// 
-        ///     var fooUserGroups = Volcengine.Iam.GetUserGroups.Invoke(new()
-        ///     {
-        ///         Query = "acc-test",
+        ///         Query = "xRqElT",
         ///     });
         /// 
         /// });
@@ -82,7 +68,7 @@ namespace Pulumi.Volcengine.Iam
         public string? OutputFile { get; set; }
 
         /// <summary>
-        /// Fuzzy search, supports searching for user group names, display names, and remarks.
+        /// Fuzzy query. Can query by user group name, display name or description.
         /// </summary>
         [Input("query")]
         public string? Query { get; set; }
@@ -102,7 +88,7 @@ namespace Pulumi.Volcengine.Iam
         public Input<string>? OutputFile { get; set; }
 
         /// <summary>
-        /// Fuzzy search, supports searching for user group names, display names, and remarks.
+        /// Fuzzy query. Can query by user group name, display name or description.
         /// </summary>
         [Input("query")]
         public Input<string>? Query { get; set; }

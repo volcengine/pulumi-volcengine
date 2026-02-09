@@ -14,6 +14,10 @@ namespace Pulumi.Volcengine.Tls.Outputs
     public sealed class GetIndexesTlsIndexUserInnerKeyValueResult
     {
         /// <summary>
+        /// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `value_type` is `json`.
+        /// </summary>
+        public readonly bool AutoIndexFlag;
+        /// <summary>
         /// Whether the value is case sensitive.
         /// </summary>
         public readonly bool CaseSensitive;
@@ -26,11 +30,19 @@ namespace Pulumi.Volcengine.Tls.Outputs
         /// </summary>
         public readonly bool IncludeChinese;
         /// <summary>
+        /// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `value_type` is `json`.
+        /// </summary>
+        public readonly bool IndexAll;
+        /// <summary>
+        /// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `value_type` is `json`.
+        /// </summary>
+        public readonly bool IndexSqlAll;
+        /// <summary>
         /// The JSON subfield key value index.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetIndexesTlsIndexUserInnerKeyValueJsonKeyResult> JsonKeys;
         /// <summary>
-        /// The key of the KeyValue index.
+        /// The key of the KeyValueInfo.
         /// </summary>
         public readonly string Key;
         /// <summary>
@@ -38,17 +50,23 @@ namespace Pulumi.Volcengine.Tls.Outputs
         /// </summary>
         public readonly bool SqlFlag;
         /// <summary>
-        /// The type of value.
+        /// The type of value. Valid values: `long`, `double`, `text`, `json`.
         /// </summary>
         public readonly string ValueType;
 
         [OutputConstructor]
         private GetIndexesTlsIndexUserInnerKeyValueResult(
+            bool autoIndexFlag,
+
             bool caseSensitive,
 
             string delimiter,
 
             bool includeChinese,
+
+            bool indexAll,
+
+            bool indexSqlAll,
 
             ImmutableArray<Outputs.GetIndexesTlsIndexUserInnerKeyValueJsonKeyResult> jsonKeys,
 
@@ -58,9 +76,12 @@ namespace Pulumi.Volcengine.Tls.Outputs
 
             string valueType)
         {
+            AutoIndexFlag = autoIndexFlag;
             CaseSensitive = caseSensitive;
             Delimiter = delimiter;
             IncludeChinese = includeChinese;
+            IndexAll = indexAll;
+            IndexSqlAll = indexSqlAll;
             JsonKeys = jsonKeys;
             Key = key;
             SqlFlag = sqlFlag;

@@ -23,9 +23,9 @@ namespace Pulumi.Volcengine.Iam
     /// {
     ///     var foo = new Volcengine.Iam.Policy("foo", new()
     ///     {
-    ///         Description = "acc-test",
+    ///         Description = "acc-modify",
     ///         PolicyDocument = "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"auto_scaling:DescribeScalingGroups\"],\"Resource\":[\"*\"]}]}",
-    ///         PolicyName = "acc-test-policy",
+    ///         PolicyName = "acc-test",
     ///     });
     /// 
     /// });
@@ -43,6 +43,18 @@ namespace Pulumi.Volcengine.Iam
     public partial class Policy : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// The attachment count of the Policy.
+        /// </summary>
+        [Output("attachmentCount")]
+        public Output<int> AttachmentCount { get; private set; } = null!;
+
+        /// <summary>
+        /// The category of the Policy.
+        /// </summary>
+        [Output("category")]
+        public Output<string> Category { get; private set; } = null!;
+
+        /// <summary>
         /// The create time of the Policy.
         /// </summary>
         [Output("createDate")]
@@ -53,6 +65,12 @@ namespace Pulumi.Volcengine.Iam
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
+
+        /// <summary>
+        /// Whether the Policy is a service role policy.
+        /// </summary>
+        [Output("isServiceRolePolicy")]
+        public Output<int> IsServiceRolePolicy { get; private set; } = null!;
 
         /// <summary>
         /// The document of the Policy.
@@ -158,6 +176,18 @@ namespace Pulumi.Volcengine.Iam
     public sealed class PolicyState : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The attachment count of the Policy.
+        /// </summary>
+        [Input("attachmentCount")]
+        public Input<int>? AttachmentCount { get; set; }
+
+        /// <summary>
+        /// The category of the Policy.
+        /// </summary>
+        [Input("category")]
+        public Input<string>? Category { get; set; }
+
+        /// <summary>
         /// The create time of the Policy.
         /// </summary>
         [Input("createDate")]
@@ -168,6 +198,12 @@ namespace Pulumi.Volcengine.Iam
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
+
+        /// <summary>
+        /// Whether the Policy is a service role policy.
+        /// </summary>
+        [Input("isServiceRolePolicy")]
+        public Input<int>? IsServiceRolePolicy { get; set; }
 
         /// <summary>
         /// The document of the Policy.

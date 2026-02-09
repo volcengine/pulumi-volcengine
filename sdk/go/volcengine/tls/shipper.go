@@ -40,7 +40,7 @@ import (
 //				},
 //				RoleTrn:          pulumi.String(""),
 //				ShipperEndTime:   pulumi.Int(1751255700021),
-//				ShipperName:      pulumi.String("tf-test-modify"),
+//				ShipperName:      pulumi.String("tf-test"),
 //				ShipperStartTime: pulumi.Int(1750737324521),
 //				ShipperType:      pulumi.String("tos"),
 //				TopicId:          pulumi.String("8ba48bd7-2493-4300-b1d0-cb760b89e51b"),

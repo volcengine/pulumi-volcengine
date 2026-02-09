@@ -24,7 +24,7 @@ namespace Pulumi.Volcengine.Tls
     ///     var foo = new Volcengine.Tls.HostGroup("foo", new()
     ///     {
     ///         AutoUpdate = true,
-    ///         HostGroupName = "tfgroup-test-1",
+    ///         HostGroupName = "tfgroup-test-x",
     ///         HostGroupType = "Label",
     ///         HostIdentifier = "hostlable",
     ///         IamProjectName = "default",
@@ -36,7 +36,7 @@ namespace Pulumi.Volcengine.Tls
     ///     var fooIp = new Volcengine.Tls.HostGroup("fooIp", new()
     ///     {
     ///         AutoUpdate = true,
-    ///         HostGroupName = "tfgroup-ip-1",
+    ///         HostGroupName = "tfgroup-ip-x",
     ///         HostGroupType = "IP",
     ///         HostIpLists = new[]
     ///         {

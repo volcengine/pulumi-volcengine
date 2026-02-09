@@ -14,6 +14,10 @@ namespace Pulumi.Volcengine.Tls.Outputs
     public sealed class IndexKeyValue
     {
         /// <summary>
+        /// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `value_type` is `json`.
+        /// </summary>
+        public readonly bool? AutoIndexFlag;
+        /// <summary>
         /// Whether the value is case sensitive.
         /// </summary>
         public readonly bool? CaseSensitive;
@@ -29,6 +33,10 @@ namespace Pulumi.Volcengine.Tls.Outputs
         /// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `value_type` is `json`.
         /// </summary>
         public readonly bool? IndexAll;
+        /// <summary>
+        /// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `value_type` is `json`.
+        /// </summary>
+        public readonly bool? IndexSqlAll;
         /// <summary>
         /// The JSON subfield key value index.
         /// </summary>
@@ -48,6 +56,8 @@ namespace Pulumi.Volcengine.Tls.Outputs
 
         [OutputConstructor]
         private IndexKeyValue(
+            bool? autoIndexFlag,
+
             bool? caseSensitive,
 
             string? delimiter,
@@ -55,6 +65,8 @@ namespace Pulumi.Volcengine.Tls.Outputs
             bool? includeChinese,
 
             bool? indexAll,
+
+            bool? indexSqlAll,
 
             ImmutableArray<Outputs.IndexKeyValueJsonKey> jsonKeys,
 
@@ -64,10 +76,12 @@ namespace Pulumi.Volcengine.Tls.Outputs
 
             string valueType)
         {
+            AutoIndexFlag = autoIndexFlag;
             CaseSensitive = caseSensitive;
             Delimiter = delimiter;
             IncludeChinese = includeChinese;
             IndexAll = indexAll;
+            IndexSqlAll = indexSqlAll;
             JsonKeys = jsonKeys;
             Key = key;
             SqlFlag = sqlFlag;

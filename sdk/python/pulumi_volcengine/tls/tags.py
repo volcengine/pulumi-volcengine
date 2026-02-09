@@ -133,7 +133,7 @@ def tags(max_results: Optional[int] = None,
     import pulumi_volcengine as volcengine
 
     basic = volcengine.tls.get_tags(max_results=10,
-        resource_ids=["6e6ea17f-ee1d-494f-83f7-c3ecc5c351ea"],
+        resource_ids=["b01a99c0-cf7b-482f-b317-6563865111c6"],
         resource_type="project")
     ```
 
@@ -184,7 +184,7 @@ def tags_output(max_results: Optional[pulumi.Input[Optional[int]]] = None,
     import pulumi_volcengine as volcengine
 
     basic = volcengine.tls.get_tags(max_results=10,
-        resource_ids=["6e6ea17f-ee1d-494f-83f7-c3ecc5c351ea"],
+        resource_ids=["b01a99c0-cf7b-482f-b317-6563865111c6"],
         resource_type="project")
     ```
 

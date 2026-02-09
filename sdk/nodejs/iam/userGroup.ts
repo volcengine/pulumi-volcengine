@@ -13,9 +13,9 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@volcengine/pulumi";
  *
  * const foo = new volcengine.iam.UserGroup("foo", {
- *     description: "acc-test",
- *     displayName: "acctest",
- *     userGroupName: "acc-test-group",
+ *     description: "acc",
+ *     displayName: "modify-xx",
+ *     userGroupName: "acc-test1",
  * });
  * ```
  *

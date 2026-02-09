@@ -29,7 +29,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := tls.NewHostGroup(ctx, "foo", &tls.HostGroupArgs{
 //				AutoUpdate:      pulumi.Bool(true),
-//				HostGroupName:   pulumi.String("tfgroup-test-1"),
+//				HostGroupName:   pulumi.String("tfgroup-test-x"),
 //				HostGroupType:   pulumi.String("Label"),
 //				HostIdentifier:  pulumi.String("hostlable"),
 //				IamProjectName:  pulumi.String("default"),
@@ -42,7 +42,7 @@ import (
 //			}
 //			_, err = tls.NewHostGroup(ctx, "fooIp", &tls.HostGroupArgs{
 //				AutoUpdate:    pulumi.Bool(true),
-//				HostGroupName: pulumi.String("tfgroup-ip-1"),
+//				HostGroupName: pulumi.String("tfgroup-ip-x"),
 //				HostGroupType: pulumi.String("IP"),
 //				HostIpLists: pulumi.StringArray{
 //					pulumi.String("192.168.0.1"),

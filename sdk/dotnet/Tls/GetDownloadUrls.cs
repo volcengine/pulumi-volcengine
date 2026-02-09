@@ -26,7 +26,7 @@ namespace Pulumi.Volcengine.Tls
         ///     var foo = new Volcengine.Tls.DownloadTask("foo", new()
         ///     {
         ///         TopicId = "36be6c75-0733-4bee-b63d-48e0eae37f87",
-        ///         TaskName = "tf-test-download-task",
+        ///         TaskName = "tf-test-download-mm",
         ///         Query = "*",
         ///         StartTime = 1740426022,
         ///         EndTime = 1740626022,
@@ -69,7 +69,7 @@ namespace Pulumi.Volcengine.Tls
         ///     var foo = new Volcengine.Tls.DownloadTask("foo", new()
         ///     {
         ///         TopicId = "36be6c75-0733-4bee-b63d-48e0eae37f87",
-        ///         TaskName = "tf-test-download-task",
+        ///         TaskName = "tf-test-download-mm",
         ///         Query = "*",
         ///         StartTime = 1740426022,
         ///         EndTime = 1740626022,

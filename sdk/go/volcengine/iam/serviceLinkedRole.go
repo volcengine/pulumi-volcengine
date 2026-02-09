@@ -29,6 +29,12 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := iam.NewServiceLinkedRole(ctx, "foo", &iam.ServiceLinkedRoleArgs{
 //				ServiceName: pulumi.String("ecs"),
+//				Tags: iam.ServiceLinkedRoleTagArray{
+//					&iam.ServiceLinkedRoleTagArgs{
+//						Key:   pulumi.String("key-2"),
+//						Value: pulumi.String("value-3"),
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -44,7 +50,7 @@ import (
 // IamServiceLinkedRole can be imported using the id, e.g.
 //
 // ```sh
-// $ pulumi import volcengine:iam/serviceLinkedRole:ServiceLinkedRole default resource_id
+// $ pulumi import volcengine:iam/serviceLinkedRole:ServiceLinkedRole default service_name:role_name
 // ```
 type ServiceLinkedRole struct {
 	pulumi.CustomResourceState
@@ -57,6 +63,8 @@ type ServiceLinkedRole struct {
 	ServiceName pulumi.StringOutput `pulumi:"serviceName"`
 	// The status of the role.
 	Status pulumi.StringOutput `pulumi:"status"`
+	// Tags.
+	Tags ServiceLinkedRoleTagArrayOutput `pulumi:"tags"`
 }
 
 // NewServiceLinkedRole registers a new resource with the given unique name, arguments, and options.
@@ -100,6 +108,8 @@ type serviceLinkedRoleState struct {
 	ServiceName *string `pulumi:"serviceName"`
 	// The status of the role.
 	Status *string `pulumi:"status"`
+	// Tags.
+	Tags []ServiceLinkedRoleTag `pulumi:"tags"`
 }
 
 type ServiceLinkedRoleState struct {
@@ -111,6 +121,8 @@ type ServiceLinkedRoleState struct {
 	ServiceName pulumi.StringPtrInput
 	// The status of the role.
 	Status pulumi.StringPtrInput
+	// Tags.
+	Tags ServiceLinkedRoleTagArrayInput
 }
 
 func (ServiceLinkedRoleState) ElementType() reflect.Type {
@@ -120,12 +132,16 @@ func (ServiceLinkedRoleState) ElementType() reflect.Type {
 type serviceLinkedRoleArgs struct {
 	// The name of the service.
 	ServiceName string `pulumi:"serviceName"`
+	// Tags.
+	Tags []ServiceLinkedRoleTag `pulumi:"tags"`
 }
 
 // The set of arguments for constructing a ServiceLinkedRole resource.
 type ServiceLinkedRoleArgs struct {
 	// The name of the service.
 	ServiceName pulumi.StringInput
+	// Tags.
+	Tags ServiceLinkedRoleTagArrayInput
 }
 
 func (ServiceLinkedRoleArgs) ElementType() reflect.Type {
@@ -233,6 +249,11 @@ func (o ServiceLinkedRoleOutput) ServiceName() pulumi.StringOutput {
 // The status of the role.
 func (o ServiceLinkedRoleOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *ServiceLinkedRole) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o ServiceLinkedRoleOutput) Tags() ServiceLinkedRoleTagArrayOutput {
+	return o.ApplyT(func(v *ServiceLinkedRole) ServiceLinkedRoleTagArrayOutput { return v.Tags }).(ServiceLinkedRoleTagArrayOutput)
 }
 
 type ServiceLinkedRoleArrayOutput struct{ *pulumi.OutputState }

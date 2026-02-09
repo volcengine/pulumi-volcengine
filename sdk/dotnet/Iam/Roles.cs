@@ -24,27 +24,9 @@ namespace Pulumi.Volcengine.Iam
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo1 = new Volcengine.Iam.Role("foo1", new()
+        ///     var @default = Volcengine.Iam.GetRoles.Invoke(new()
         ///     {
-        ///         Description = "acc-test1",
-        ///         DisplayName = "acc-test1",
-        ///         MaxSessionDuration = 3600,
-        ///         RoleName = "acc-test-role1",
-        ///         TrustPolicyDocument = "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"sts:AssumeRole\"],\"Principal\":{\"Service\":[\"auto_scaling\"]}}]}",
-        ///     });
-        /// 
-        ///     var foo2 = new Volcengine.Iam.Role("foo2", new()
-        ///     {
-        ///         Description = "acc-test2",
-        ///         DisplayName = "acc-test2",
-        ///         MaxSessionDuration = 3600,
-        ///         RoleName = "acc-test-role2",
-        ///         TrustPolicyDocument = "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"sts:AssumeRole\"],\"Principal\":{\"Service\":[\"ecs\"]}}]}",
-        ///     });
-        /// 
-        ///     var foo = Volcengine.Iam.GetRoles.Invoke(new()
-        ///     {
-        ///         RoleName = $"{foo1.RoleName},{foo2.RoleName}",
+        ///         Query = "CustomRoleForOOS",
         ///     });
         /// 
         /// });
@@ -65,27 +47,9 @@ namespace Pulumi.Volcengine.Iam
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo1 = new Volcengine.Iam.Role("foo1", new()
+        ///     var @default = Volcengine.Iam.GetRoles.Invoke(new()
         ///     {
-        ///         Description = "acc-test1",
-        ///         DisplayName = "acc-test1",
-        ///         MaxSessionDuration = 3600,
-        ///         RoleName = "acc-test-role1",
-        ///         TrustPolicyDocument = "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"sts:AssumeRole\"],\"Principal\":{\"Service\":[\"auto_scaling\"]}}]}",
-        ///     });
-        /// 
-        ///     var foo2 = new Volcengine.Iam.Role("foo2", new()
-        ///     {
-        ///         Description = "acc-test2",
-        ///         DisplayName = "acc-test2",
-        ///         MaxSessionDuration = 3600,
-        ///         RoleName = "acc-test-role2",
-        ///         TrustPolicyDocument = "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"sts:AssumeRole\"],\"Principal\":{\"Service\":[\"ecs\"]}}]}",
-        ///     });
-        /// 
-        ///     var foo = Volcengine.Iam.GetRoles.Invoke(new()
-        ///     {
-        ///         RoleName = $"{foo1.RoleName},{foo2.RoleName}",
+        ///         Query = "CustomRoleForOOS",
         ///     });
         /// 
         /// });
@@ -111,16 +75,10 @@ namespace Pulumi.Volcengine.Iam
         public string? OutputFile { get; set; }
 
         /// <summary>
-        /// The query field of Role.
+        /// Fuzzy query. Can query by role name, display name or description.
         /// </summary>
         [Input("query")]
         public string? Query { get; set; }
-
-        /// <summary>
-        /// The name of the Role, comma separated.
-        /// </summary>
-        [Input("roleName")]
-        public string? RoleName { get; set; }
 
         public RolesArgs()
         {
@@ -143,16 +101,10 @@ namespace Pulumi.Volcengine.Iam
         public Input<string>? OutputFile { get; set; }
 
         /// <summary>
-        /// The query field of Role.
+        /// Fuzzy query. Can query by role name, display name or description.
         /// </summary>
         [Input("query")]
         public Input<string>? Query { get; set; }
-
-        /// <summary>
-        /// The name of the Role, comma separated.
-        /// </summary>
-        [Input("roleName")]
-        public Input<string>? RoleName { get; set; }
 
         public RolesInvokeArgs()
         {
@@ -172,10 +124,6 @@ namespace Pulumi.Volcengine.Iam
         public readonly string? OutputFile;
         public readonly string? Query;
         /// <summary>
-        /// The name of the Role.
-        /// </summary>
-        public readonly string? RoleName;
-        /// <summary>
         /// The collection of Role query.
         /// </summary>
         public readonly ImmutableArray<Outputs.RolesRoleResult> Roles;
@@ -194,8 +142,6 @@ namespace Pulumi.Volcengine.Iam
 
             string? query,
 
-            string? roleName,
-
             ImmutableArray<Outputs.RolesRoleResult> roles,
 
             int totalCount)
@@ -204,7 +150,6 @@ namespace Pulumi.Volcengine.Iam
             NameRegex = nameRegex;
             OutputFile = outputFile;
             Query = query;
-            RoleName = roleName;
             Roles = roles;
             TotalCount = totalCount;
         }

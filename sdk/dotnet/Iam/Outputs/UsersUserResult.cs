@@ -46,6 +46,10 @@ namespace Pulumi.Volcengine.Iam.Outputs
         /// </summary>
         public readonly bool MobilePhoneIsVerify;
         /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.UsersUserTagResult> Tags;
+        /// <summary>
         /// The trn of the user.
         /// </summary>
         public readonly string Trn;
@@ -80,6 +84,8 @@ namespace Pulumi.Volcengine.Iam.Outputs
 
             bool mobilePhoneIsVerify,
 
+            ImmutableArray<Outputs.UsersUserTagResult> tags,
+
             string trn,
 
             string updateDate,
@@ -96,6 +102,7 @@ namespace Pulumi.Volcengine.Iam.Outputs
             EmailIsVerify = emailIsVerify;
             MobilePhone = mobilePhone;
             MobilePhoneIsVerify = mobilePhoneIsVerify;
+            Tags = tags;
             Trn = trn;
             UpdateDate = updateDate;
             UserId = userId;

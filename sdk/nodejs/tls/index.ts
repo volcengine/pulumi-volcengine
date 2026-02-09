@@ -55,6 +55,11 @@ export const alarms: typeof import("./alarms").alarms = null as any;
 export const alarmsOutput: typeof import("./alarms").alarmsOutput = null as any;
 utilities.lazyLoad(exports, ["alarms","alarmsOutput"], () => require("./alarms"));
 
+export { CheckPointsArgs, CheckPointsResult, CheckPointsOutputArgs } from "./checkPoints";
+export const checkPoints: typeof import("./checkPoints").checkPoints = null as any;
+export const checkPointsOutput: typeof import("./checkPoints").checkPointsOutput = null as any;
+utilities.lazyLoad(exports, ["checkPoints","checkPointsOutput"], () => require("./checkPoints"));
+
 export { ConsumerGroupArgs, ConsumerGroupState } from "./consumerGroup";
 export type ConsumerGroup = import("./consumerGroup").ConsumerGroup;
 export const ConsumerGroup: typeof import("./consumerGroup").ConsumerGroup = null as any;
@@ -120,6 +125,11 @@ export const getAlarms: typeof import("./getAlarms").getAlarms = null as any;
 export const getAlarmsOutput: typeof import("./getAlarms").getAlarmsOutput = null as any;
 utilities.lazyLoad(exports, ["getAlarms","getAlarmsOutput"], () => require("./getAlarms"));
 
+export { GetCheckPointsArgs, GetCheckPointsResult, GetCheckPointsOutputArgs } from "./getCheckPoints";
+export const getCheckPoints: typeof import("./getCheckPoints").getCheckPoints = null as any;
+export const getCheckPointsOutput: typeof import("./getCheckPoints").getCheckPointsOutput = null as any;
+utilities.lazyLoad(exports, ["getCheckPoints","getCheckPointsOutput"], () => require("./getCheckPoints"));
+
 export { GetConsumerGroupsArgs, GetConsumerGroupsResult, GetConsumerGroupsOutputArgs } from "./getConsumerGroups";
 export const getConsumerGroups: typeof import("./getConsumerGroups").getConsumerGroups = null as any;
 export const getConsumerGroupsOutput: typeof import("./getConsumerGroups").getConsumerGroupsOutput = null as any;
@@ -179,6 +189,11 @@ export { GetLogContextsArgs, GetLogContextsResult, GetLogContextsOutputArgs } fr
 export const getLogContexts: typeof import("./getLogContexts").getLogContexts = null as any;
 export const getLogContextsOutput: typeof import("./getLogContexts").getLogContextsOutput = null as any;
 utilities.lazyLoad(exports, ["getLogContexts","getLogContextsOutput"], () => require("./getLogContexts"));
+
+export { GetLogCursorsArgs, GetLogCursorsResult, GetLogCursorsOutputArgs } from "./getLogCursors";
+export const getLogCursors: typeof import("./getLogCursors").getLogCursors = null as any;
+export const getLogCursorsOutput: typeof import("./getLogCursors").getLogCursorsOutput = null as any;
+utilities.lazyLoad(exports, ["getLogCursors","getLogCursorsOutput"], () => require("./getLogCursors"));
 
 export { GetLogHistogramsArgs, GetLogHistogramsResult, GetLogHistogramsOutputArgs } from "./getLogHistograms";
 export const getLogHistograms: typeof import("./getLogHistograms").getLogHistograms = null as any;
@@ -309,6 +324,11 @@ export { LogContextsArgs, LogContextsResult, LogContextsOutputArgs } from "./log
 export const logContexts: typeof import("./logContexts").logContexts = null as any;
 export const logContextsOutput: typeof import("./logContexts").logContextsOutput = null as any;
 utilities.lazyLoad(exports, ["logContexts","logContextsOutput"], () => require("./logContexts"));
+
+export { LogCursorsArgs, LogCursorsResult, LogCursorsOutputArgs } from "./logCursors";
+export const logCursors: typeof import("./logCursors").logCursors = null as any;
+export const logCursorsOutput: typeof import("./logCursors").logCursorsOutput = null as any;
+utilities.lazyLoad(exports, ["logCursors","logCursorsOutput"], () => require("./logCursors"));
 
 export { LogHistogramsArgs, LogHistogramsResult, LogHistogramsOutputArgs } from "./logHistograms";
 export const logHistograms: typeof import("./logHistograms").logHistograms = null as any;

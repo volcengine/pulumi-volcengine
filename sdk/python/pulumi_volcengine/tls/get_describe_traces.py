@@ -111,8 +111,8 @@ def get_describe_traces(output_file: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    example = volcengine.tls.get_describe_traces(trace_id="c415ff6a-7141-4fe9-9e6c-9ddce4e4c189",
-        trace_instance_id="b28b19bd-a539-453a-8919-fda3ef6a22fe")
+    example = volcengine.tls.get_describe_traces(trace_id="b4de47438f9d052ca71106bb9bace34e",
+        trace_instance_id="ac368174-2353-4e5d-859d-84c8bd255590")
     ```
 
 
@@ -149,8 +149,8 @@ def get_describe_traces_output(output_file: Optional[pulumi.Input[Optional[str]]
     import pulumi
     import pulumi_volcengine as volcengine
 
-    example = volcengine.tls.get_describe_traces(trace_id="c415ff6a-7141-4fe9-9e6c-9ddce4e4c189",
-        trace_instance_id="b28b19bd-a539-453a-8919-fda3ef6a22fe")
+    example = volcengine.tls.get_describe_traces(trace_id="b4de47438f9d052ca71106bb9bace34e",
+        trace_instance_id="ac368174-2353-4e5d-859d-84c8bd255590")
     ```
 
 

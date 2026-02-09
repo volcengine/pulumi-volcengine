@@ -14,7 +14,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.iam.getAccessKeys({});
+ * const default = volcengine.iam.getAccessKeys({});
  * ```
  */
 /** @deprecated volcengine.iam.AccessKeys has been deprecated in favor of volcengine.iam.getAccessKeys */
@@ -24,7 +24,6 @@ export function accessKeys(args?: AccessKeysArgs, opts?: pulumi.InvokeOptions): 
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:iam/accessKeys:AccessKeys", {
-        "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
         "userName": args.userName,
     }, opts);
@@ -35,15 +34,11 @@ export function accessKeys(args?: AccessKeysArgs, opts?: pulumi.InvokeOptions): 
  */
 export interface AccessKeysArgs {
     /**
-     * A Name Regex of IAM.
-     */
-    nameRegex?: string;
-    /**
      * File name where to save data source results.
      */
     outputFile?: string;
     /**
-     * The user names.
+     * The user name.
      */
     userName?: string;
 }
@@ -60,7 +55,6 @@ export interface AccessKeysResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    readonly nameRegex?: string;
     readonly outputFile?: string;
     /**
      * The total count of user query.
@@ -79,7 +73,7 @@ export interface AccessKeysResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.iam.getAccessKeys({});
+ * const default = volcengine.iam.getAccessKeys({});
  * ```
  */
 /** @deprecated volcengine.iam.AccessKeys has been deprecated in favor of volcengine.iam.getAccessKeys */
@@ -92,15 +86,11 @@ export function accessKeysOutput(args?: AccessKeysOutputArgs, opts?: pulumi.Invo
  */
 export interface AccessKeysOutputArgs {
     /**
-     * A Name Regex of IAM.
-     */
-    nameRegex?: pulumi.Input<string>;
-    /**
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
     /**
-     * The user names.
+     * The user name.
      */
     userName?: pulumi.Input<string>;
 }

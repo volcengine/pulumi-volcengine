@@ -25,7 +25,17 @@ namespace Pulumi.Volcengine.Iam
     ///     {
     ///         Description = "test",
     ///         DisplayName = "name",
-    ///         UserName = "tf-test",
+    ///         Email = "test@example.com",
+    ///         MobilePhone = "+8618800000000",
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Iam.Inputs.UserTagArgs
+    ///             {
+    ///                 Key = "key1",
+    ///                 Value = "value1",
+    ///             },
+    ///         },
+    ///         UserName = "jonny",
     ///     });
     /// 
     /// });
@@ -79,7 +89,7 @@ namespace Pulumi.Volcengine.Iam
         public Output<bool> EmailIsVerify { get; private set; } = null!;
 
         /// <summary>
-        /// The mobile phone of the user.
+        /// The mobile phone of the user, reference: +8618088888888.
         /// </summary>
         [Output("mobilePhone")]
         public Output<string?> MobilePhone { get; private set; } = null!;
@@ -89,6 +99,12 @@ namespace Pulumi.Volcengine.Iam
         /// </summary>
         [Output("mobilePhoneIsVerify")]
         public Output<bool> MobilePhoneIsVerify { get; private set; } = null!;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<Outputs.UserTag>> Tags { get; private set; } = null!;
 
         /// <summary>
         /// The trn of the user.
@@ -180,10 +196,22 @@ namespace Pulumi.Volcengine.Iam
         public Input<string>? Email { get; set; }
 
         /// <summary>
-        /// The mobile phone of the user.
+        /// The mobile phone of the user, reference: +8618088888888.
         /// </summary>
         [Input("mobilePhone")]
         public Input<string>? MobilePhone { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.UserTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.UserTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.UserTagArgs>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// The name of the user.
@@ -236,7 +264,7 @@ namespace Pulumi.Volcengine.Iam
         public Input<bool>? EmailIsVerify { get; set; }
 
         /// <summary>
-        /// The mobile phone of the user.
+        /// The mobile phone of the user, reference: +8618088888888.
         /// </summary>
         [Input("mobilePhone")]
         public Input<string>? MobilePhone { get; set; }
@@ -246,6 +274,18 @@ namespace Pulumi.Volcengine.Iam
         /// </summary>
         [Input("mobilePhoneIsVerify")]
         public Input<bool>? MobilePhoneIsVerify { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.UserTagGetArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.UserTagGetArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.UserTagGetArgs>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// The trn of the user.

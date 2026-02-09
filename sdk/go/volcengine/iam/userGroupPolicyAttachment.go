@@ -27,26 +27,10 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooPolicy, err := iam.NewPolicy(ctx, "fooPolicy", &iam.PolicyArgs{
-//				PolicyName:     pulumi.String("acc-test-policy"),
-//				Description:    pulumi.String("acc-test"),
-//				PolicyDocument: pulumi.String("{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"auto_scaling:DescribeScalingGroups\"],\"Resource\":[\"*\"]}]}"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			fooUserGroup, err := iam.NewUserGroup(ctx, "fooUserGroup", &iam.UserGroupArgs{
-//				UserGroupName: pulumi.String("acc-test-group"),
-//				Description:   pulumi.String("acc-test"),
-//				DisplayName:   pulumi.String("acc-test"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = iam.NewUserGroupPolicyAttachment(ctx, "fooUserGroupPolicyAttachment", &iam.UserGroupPolicyAttachmentArgs{
-//				PolicyName:    fooPolicy.PolicyName,
+//			_, err := iam.NewUserGroupPolicyAttachment(ctx, "foo", &iam.UserGroupPolicyAttachmentArgs{
+//				PolicyName:    pulumi.String("test"),
 //				PolicyType:    pulumi.String("Custom"),
-//				UserGroupName: fooUserGroup.UserGroupName,
+//				UserGroupName: pulumi.String("tf-test"),
 //			})
 //			if err != nil {
 //				return err

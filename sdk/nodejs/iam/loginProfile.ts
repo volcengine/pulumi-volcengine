@@ -12,16 +12,16 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooUser = new volcengine.iam.User("fooUser", {
- *     userName: "acc-test-user",
- *     description: "acc-test",
- *     displayName: "name",
- * });
- * const fooLoginProfile = new volcengine.iam.LoginProfile("fooLoginProfile", {
- *     userName: fooUser.userName,
- *     password: "93f0cb0614Aab12",
+ * const foo = new volcengine.iam.LoginProfile("foo", {
  *     loginAllowed: true,
- *     passwordResetRequired: false,
+ *     password: "",
+ *     passwordResetRequired: true,
+ *     safeAuthExemptDuration: 1,
+ *     safeAuthExemptRequired: 1,
+ *     safeAuthExemptUnit: 1,
+ *     safeAuthFlag: true,
+ *     safeAuthType: "phone",
+ *     userName: "jonny",
  * });
  * ```
  *
@@ -62,17 +62,69 @@ export class LoginProfile extends pulumi.CustomResource {
     }
 
     /**
+     * The create date.
+     */
+    public /*out*/ readonly createDate!: pulumi.Output<string>;
+    /**
+     * The last login date.
+     */
+    public /*out*/ readonly lastLoginDate!: pulumi.Output<string>;
+    /**
+     * The last login ip.
+     */
+    public /*out*/ readonly lastLoginIp!: pulumi.Output<string>;
+    /**
+     * The last reset password time.
+     */
+    public /*out*/ readonly lastResetPasswordTime!: pulumi.Output<number>;
+    /**
      * The flag of login allowed.
      */
-    public readonly loginAllowed!: pulumi.Output<boolean | undefined>;
+    public readonly loginAllowed!: pulumi.Output<boolean>;
+    /**
+     * The flag of login locked.
+     */
+    public /*out*/ readonly loginLocked!: pulumi.Output<boolean>;
     /**
      * The password.
      */
     public readonly password!: pulumi.Output<string>;
     /**
+     * The password expire at.
+     */
+    public /*out*/ readonly passwordExpireAt!: pulumi.Output<number>;
+    /**
      * Is required reset password when next time login in.
      */
-    public readonly passwordResetRequired!: pulumi.Output<boolean | undefined>;
+    public readonly passwordResetRequired!: pulumi.Output<boolean>;
+    /**
+     * The duration of safe auth exempt.
+     */
+    public readonly safeAuthExemptDuration!: pulumi.Output<number>;
+    /**
+     * The flag of safe auth exempt required.
+     */
+    public readonly safeAuthExemptRequired!: pulumi.Output<number>;
+    /**
+     * The unit of safe auth exempt.
+     */
+    public readonly safeAuthExemptUnit!: pulumi.Output<number>;
+    /**
+     * The flag of safe auth.
+     */
+    public readonly safeAuthFlag!: pulumi.Output<boolean>;
+    /**
+     * The type of safe auth.
+     */
+    public readonly safeAuthType!: pulumi.Output<string>;
+    /**
+     * The update date.
+     */
+    public /*out*/ readonly updateDate!: pulumi.Output<string>;
+    /**
+     * The user id.
+     */
+    public /*out*/ readonly userId!: pulumi.Output<number>;
     /**
      * The user name.
      */
@@ -91,9 +143,22 @@ export class LoginProfile extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as LoginProfileState | undefined;
+            resourceInputs["createDate"] = state ? state.createDate : undefined;
+            resourceInputs["lastLoginDate"] = state ? state.lastLoginDate : undefined;
+            resourceInputs["lastLoginIp"] = state ? state.lastLoginIp : undefined;
+            resourceInputs["lastResetPasswordTime"] = state ? state.lastResetPasswordTime : undefined;
             resourceInputs["loginAllowed"] = state ? state.loginAllowed : undefined;
+            resourceInputs["loginLocked"] = state ? state.loginLocked : undefined;
             resourceInputs["password"] = state ? state.password : undefined;
+            resourceInputs["passwordExpireAt"] = state ? state.passwordExpireAt : undefined;
             resourceInputs["passwordResetRequired"] = state ? state.passwordResetRequired : undefined;
+            resourceInputs["safeAuthExemptDuration"] = state ? state.safeAuthExemptDuration : undefined;
+            resourceInputs["safeAuthExemptRequired"] = state ? state.safeAuthExemptRequired : undefined;
+            resourceInputs["safeAuthExemptUnit"] = state ? state.safeAuthExemptUnit : undefined;
+            resourceInputs["safeAuthFlag"] = state ? state.safeAuthFlag : undefined;
+            resourceInputs["safeAuthType"] = state ? state.safeAuthType : undefined;
+            resourceInputs["updateDate"] = state ? state.updateDate : undefined;
+            resourceInputs["userId"] = state ? state.userId : undefined;
             resourceInputs["userName"] = state ? state.userName : undefined;
         } else {
             const args = argsOrState as LoginProfileArgs | undefined;
@@ -106,7 +171,20 @@ export class LoginProfile extends pulumi.CustomResource {
             resourceInputs["loginAllowed"] = args ? args.loginAllowed : undefined;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
             resourceInputs["passwordResetRequired"] = args ? args.passwordResetRequired : undefined;
+            resourceInputs["safeAuthExemptDuration"] = args ? args.safeAuthExemptDuration : undefined;
+            resourceInputs["safeAuthExemptRequired"] = args ? args.safeAuthExemptRequired : undefined;
+            resourceInputs["safeAuthExemptUnit"] = args ? args.safeAuthExemptUnit : undefined;
+            resourceInputs["safeAuthFlag"] = args ? args.safeAuthFlag : undefined;
+            resourceInputs["safeAuthType"] = args ? args.safeAuthType : undefined;
             resourceInputs["userName"] = args ? args.userName : undefined;
+            resourceInputs["createDate"] = undefined /*out*/;
+            resourceInputs["lastLoginDate"] = undefined /*out*/;
+            resourceInputs["lastLoginIp"] = undefined /*out*/;
+            resourceInputs["lastResetPasswordTime"] = undefined /*out*/;
+            resourceInputs["loginLocked"] = undefined /*out*/;
+            resourceInputs["passwordExpireAt"] = undefined /*out*/;
+            resourceInputs["updateDate"] = undefined /*out*/;
+            resourceInputs["userId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["password"] };
@@ -120,17 +198,69 @@ export class LoginProfile extends pulumi.CustomResource {
  */
 export interface LoginProfileState {
     /**
+     * The create date.
+     */
+    createDate?: pulumi.Input<string>;
+    /**
+     * The last login date.
+     */
+    lastLoginDate?: pulumi.Input<string>;
+    /**
+     * The last login ip.
+     */
+    lastLoginIp?: pulumi.Input<string>;
+    /**
+     * The last reset password time.
+     */
+    lastResetPasswordTime?: pulumi.Input<number>;
+    /**
      * The flag of login allowed.
      */
     loginAllowed?: pulumi.Input<boolean>;
+    /**
+     * The flag of login locked.
+     */
+    loginLocked?: pulumi.Input<boolean>;
     /**
      * The password.
      */
     password?: pulumi.Input<string>;
     /**
+     * The password expire at.
+     */
+    passwordExpireAt?: pulumi.Input<number>;
+    /**
      * Is required reset password when next time login in.
      */
     passwordResetRequired?: pulumi.Input<boolean>;
+    /**
+     * The duration of safe auth exempt.
+     */
+    safeAuthExemptDuration?: pulumi.Input<number>;
+    /**
+     * The flag of safe auth exempt required.
+     */
+    safeAuthExemptRequired?: pulumi.Input<number>;
+    /**
+     * The unit of safe auth exempt.
+     */
+    safeAuthExemptUnit?: pulumi.Input<number>;
+    /**
+     * The flag of safe auth.
+     */
+    safeAuthFlag?: pulumi.Input<boolean>;
+    /**
+     * The type of safe auth.
+     */
+    safeAuthType?: pulumi.Input<string>;
+    /**
+     * The update date.
+     */
+    updateDate?: pulumi.Input<string>;
+    /**
+     * The user id.
+     */
+    userId?: pulumi.Input<number>;
     /**
      * The user name.
      */
@@ -153,6 +283,26 @@ export interface LoginProfileArgs {
      * Is required reset password when next time login in.
      */
     passwordResetRequired?: pulumi.Input<boolean>;
+    /**
+     * The duration of safe auth exempt.
+     */
+    safeAuthExemptDuration?: pulumi.Input<number>;
+    /**
+     * The flag of safe auth exempt required.
+     */
+    safeAuthExemptRequired?: pulumi.Input<number>;
+    /**
+     * The unit of safe auth exempt.
+     */
+    safeAuthExemptUnit?: pulumi.Input<number>;
+    /**
+     * The flag of safe auth.
+     */
+    safeAuthFlag?: pulumi.Input<boolean>;
+    /**
+     * The type of safe auth.
+     */
+    safeAuthType?: pulumi.Input<string>;
     /**
      * The user name.
      */

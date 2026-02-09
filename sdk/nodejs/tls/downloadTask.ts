@@ -15,28 +15,32 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@volcengine/pulumi";
  *
  * const foo = new volcengine.tls.DownloadTask("foo", {
- *     topicId: "36be6c75-0733-4bee-b63d-48e0eae37f87",
- *     taskName: "tf-test-download-task",
+ *     topicId: "3c57a110-399a-43b3-bc3c-5d60e065239a",
+ *     taskName: "tf-test-download",
  *     query: "*",
- *     startTime: 1740426022,
- *     endTime: 1740626022,
+ *     startTime: 1768448896,
+ *     endTime: 1768450896,
  *     compression: "gzip",
  *     dataFormat: "json",
- *     limit: 10000000,
- *     sort: "desc",
+ *     limit: 1000000,
+ *     sort: "asc",
  *     allowIncomplete: false,
  *     taskType: 1,
- *     logContextInfos: {},
+ *     logContextInfos: {
+ *         source: "your ip",
+ *         contextFlow: "1768450893021#4258909d8fc97e7d-286d6d5f6966623c-6943",
+ *         packageOffset: 4833728523,
+ *     },
  * });
  * export const tlsDownloadTaskId = foo.taskId;
  * ```
  *
  * ## Import
  *
- * tls download task can be imported using the id, e.g.
+ * tls download task can be imported using the topic_id and task_id, e.g.
  *
  * ```sh
- * $ pulumi import volcengine:tls/downloadTask:DownloadTask default task-1234567890
+ * $ pulumi import volcengine:tls/downloadTask:DownloadTask default topic-123456:task-1234567890
  * ```
  */
 export class DownloadTask extends pulumi.CustomResource {

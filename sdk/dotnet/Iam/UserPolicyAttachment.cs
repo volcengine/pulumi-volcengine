@@ -21,24 +21,11 @@ namespace Pulumi.Volcengine.Iam
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var user = new Volcengine.Iam.User("user", new()
-    ///     {
-    ///         UserName = "TfTest",
-    ///         Description = "test",
-    ///     });
-    /// 
-    ///     var policy = new Volcengine.Iam.Policy("policy", new()
-    ///     {
-    ///         PolicyName = "TerraformResourceTest1",
-    ///         Description = "created by terraform 1",
-    ///         PolicyDocument = "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"auto_scaling:DescribeScalingGroups\"],\"Resource\":[\"*\"]}]}",
-    ///     });
-    /// 
     ///     var foo = new Volcengine.Iam.UserPolicyAttachment("foo", new()
     ///     {
-    ///         UserName = user.UserName,
-    ///         PolicyName = policy.PolicyName,
-    ///         PolicyType = policy.PolicyType,
+    ///         PolicyName = "AdministratorAccess",
+    ///         PolicyType = "System",
+    ///         UserName = "jonny",
     ///     });
     /// 
     /// });

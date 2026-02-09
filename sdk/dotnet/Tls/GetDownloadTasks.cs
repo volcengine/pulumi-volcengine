@@ -25,14 +25,10 @@ namespace Pulumi.Volcengine.Tls
         /// {
         ///     var foo = Volcengine.Tls.GetDownloadTasks.Invoke(new()
         ///     {
-        ///         TopicId = "8ba48bd7-2493-4300-b1d0-cb760b89e51b",
-        ///         TaskName = "tf-test-download-task",
+        ///         TaskName = "tf-test-download",
+        ///         TopicId = "3c57a110-399a-43b3-bc3c-5d60e065239a",
         ///     });
         /// 
-        ///     return new Dictionary&lt;string, object?&gt;
-        ///     {
-        ///         ["downloadTasks"] = foo.Apply(getDownloadTasksResult =&gt; getDownloadTasksResult.DownloadTasks),
-        ///     };
         /// });
         /// ```
         /// </summary>
@@ -53,14 +49,10 @@ namespace Pulumi.Volcengine.Tls
         /// {
         ///     var foo = Volcengine.Tls.GetDownloadTasks.Invoke(new()
         ///     {
-        ///         TopicId = "8ba48bd7-2493-4300-b1d0-cb760b89e51b",
-        ///         TaskName = "tf-test-download-task",
+        ///         TaskName = "tf-test-download",
+        ///         TopicId = "3c57a110-399a-43b3-bc3c-5d60e065239a",
         ///     });
         /// 
-        ///     return new Dictionary&lt;string, object?&gt;
-        ///     {
-        ///         ["downloadTasks"] = foo.Apply(getDownloadTasksResult =&gt; getDownloadTasksResult.DownloadTasks),
-        ///     };
         /// });
         /// ```
         /// </summary>

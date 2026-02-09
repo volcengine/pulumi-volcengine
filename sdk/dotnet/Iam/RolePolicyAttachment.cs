@@ -21,27 +21,11 @@ namespace Pulumi.Volcengine.Iam
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var role = new Volcengine.Iam.Role("role", new()
-    ///     {
-    ///         RoleName = "TerraformTestRole",
-    ///         DisplayName = "terraform role",
-    ///         TrustPolicyDocument = "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"sts:AssumeRole\"],\"Principal\":{\"Service\":[\"auto_scaling\"]}}]}",
-    ///         Description = "created by terraform",
-    ///         MaxSessionDuration = 43200,
-    ///     });
-    /// 
-    ///     var policy = new Volcengine.Iam.Policy("policy", new()
-    ///     {
-    ///         PolicyName = "TerraformResourceTest1",
-    ///         Description = "created by terraform 1",
-    ///         PolicyDocument = "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"auto_scaling:DescribeScalingGroups\"],\"Resource\":[\"*\"]}]}",
-    ///     });
-    /// 
     ///     var foo = new Volcengine.Iam.RolePolicyAttachment("foo", new()
     ///     {
-    ///         RoleName = role.Id,
-    ///         PolicyName = policy.Id,
-    ///         PolicyType = policy.PolicyType,
+    ///         PolicyName = "AdministratorAccess",
+    ///         PolicyType = "System",
+    ///         RoleName = "CustomRoleForPatchManager",
     ///     });
     /// 
     /// });

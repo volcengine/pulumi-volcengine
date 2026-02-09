@@ -13,16 +13,10 @@ import * as utilities from "../utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
- * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooPolicy = new volcengine.iam.Policy("fooPolicy", {
- *     policyName: "acc-test-policy",
- *     description: "acc-test",
- *     policyDocument: "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"auto_scaling:DescribeScalingGroups\"],\"Resource\":[\"*\"]}]}",
+ * const default = volcengine.iam.getPolicies({
+ *     scope: "Custom",
  * });
- * const fooPolicies = fooPolicy.description.apply(description => volcengine.iam.getPoliciesOutput({
- *     query: description,
- * }));
  * ```
  */
 export function getPolicies(args?: GetPoliciesArgs, opts?: pulumi.InvokeOptions): Promise<GetPoliciesResult> {
@@ -30,13 +24,9 @@ export function getPolicies(args?: GetPoliciesArgs, opts?: pulumi.InvokeOptions)
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:iam/getPolicies:getPolicies", {
-        "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
-        "query": args.query,
-        "roleName": args.roleName,
         "scope": args.scope,
-        "status": args.status,
-        "userName": args.userName,
+        "withServiceRolePolicy": args.withServiceRolePolicy,
     }, opts);
 }
 
@@ -45,33 +35,17 @@ export function getPolicies(args?: GetPoliciesArgs, opts?: pulumi.InvokeOptions)
  */
 export interface GetPoliciesArgs {
     /**
-     * A Name Regex of Policy.
-     */
-    nameRegex?: string;
-    /**
      * File name where to save data source results.
      */
     outputFile?: string;
-    /**
-     * Query policies, support policy name or description.
-     */
-    query?: string;
-    /**
-     * The name of the IAM role.
-     */
-    roleName?: string;
     /**
      * The scope of the Policy.
      */
     scope?: string;
     /**
-     * The status of policy.
+     * Whether to return the service role policy.
      */
-    status?: string;
-    /**
-     * The name of the IAM user.
-     */
-    userName?: string;
+    withServiceRolePolicy?: number;
 }
 
 /**
@@ -82,27 +56,17 @@ export interface GetPoliciesResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    readonly nameRegex?: string;
     readonly outputFile?: string;
     /**
      * The collection of Policy query.
      */
     readonly policies: outputs.iam.GetPoliciesPolicy[];
-    readonly query?: string;
-    /**
-     * The name of the IAM role.The data show only query with role_name.
-     */
-    readonly roleName?: string;
     readonly scope?: string;
-    readonly status?: string;
     /**
      * The total count of Policy query.
      */
     readonly totalCount: number;
-    /**
-     * The name of the IAM user.The data show only query with user_name.
-     */
-    readonly userName?: string;
+    readonly withServiceRolePolicy?: number;
 }
 /**
  * Use this data source to query detailed information of iam policies
@@ -111,16 +75,10 @@ export interface GetPoliciesResult {
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
- * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooPolicy = new volcengine.iam.Policy("fooPolicy", {
- *     policyName: "acc-test-policy",
- *     description: "acc-test",
- *     policyDocument: "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"auto_scaling:DescribeScalingGroups\"],\"Resource\":[\"*\"]}]}",
+ * const default = volcengine.iam.getPolicies({
+ *     scope: "Custom",
  * });
- * const fooPolicies = fooPolicy.description.apply(description => volcengine.iam.getPoliciesOutput({
- *     query: description,
- * }));
  * ```
  */
 export function getPoliciesOutput(args?: GetPoliciesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPoliciesResult> {
@@ -132,31 +90,15 @@ export function getPoliciesOutput(args?: GetPoliciesOutputArgs, opts?: pulumi.In
  */
 export interface GetPoliciesOutputArgs {
     /**
-     * A Name Regex of Policy.
-     */
-    nameRegex?: pulumi.Input<string>;
-    /**
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
-    /**
-     * Query policies, support policy name or description.
-     */
-    query?: pulumi.Input<string>;
-    /**
-     * The name of the IAM role.
-     */
-    roleName?: pulumi.Input<string>;
     /**
      * The scope of the Policy.
      */
     scope?: pulumi.Input<string>;
     /**
-     * The status of policy.
+     * Whether to return the service role policy.
      */
-    status?: pulumi.Input<string>;
-    /**
-     * The name of the IAM user.
-     */
-    userName?: pulumi.Input<string>;
+    withServiceRolePolicy?: pulumi.Input<number>;
 }

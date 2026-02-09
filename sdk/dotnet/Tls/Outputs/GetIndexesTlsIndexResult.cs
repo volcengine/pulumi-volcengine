@@ -42,7 +42,7 @@ namespace Pulumi.Volcengine.Tls.Outputs
         /// </summary>
         public readonly string ModifyTime;
         /// <summary>
-        /// The topic id of the tls index.
+        /// The topic id of tls index.
         /// </summary>
         public readonly string TopicId;
         /// <summary>

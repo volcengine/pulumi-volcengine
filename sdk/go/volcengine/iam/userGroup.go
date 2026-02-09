@@ -28,9 +28,9 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := iam.NewUserGroup(ctx, "foo", &iam.UserGroupArgs{
-//				Description:   pulumi.String("acc-test"),
-//				DisplayName:   pulumi.String("acctest"),
-//				UserGroupName: pulumi.String("acc-test-group"),
+//				Description:   pulumi.String("acc"),
+//				DisplayName:   pulumi.String("modify-xx"),
+//				UserGroupName: pulumi.String("acc-test1"),
 //			})
 //			if err != nil {
 //				return err

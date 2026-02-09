@@ -24,19 +24,9 @@ namespace Pulumi.Volcengine.Iam
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var fooUser = new Volcengine.Iam.User("fooUser", new()
+        ///     var @default = Volcengine.Iam.GetUsers.Invoke(new()
         ///     {
-        ///         UserName = "acc-test-user",
-        ///         Description = "acc test",
-        ///         DisplayName = "name",
-        ///     });
-        /// 
-        ///     var fooUsers = Volcengine.Iam.GetUsers.Invoke(new()
-        ///     {
-        ///         UserNames = new[]
-        ///         {
-        ///             fooUser.UserName,
-        ///         },
+        ///         Query = "jonny",
         ///     });
         /// 
         /// });
@@ -57,19 +47,9 @@ namespace Pulumi.Volcengine.Iam
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var fooUser = new Volcengine.Iam.User("fooUser", new()
+        ///     var @default = Volcengine.Iam.GetUsers.Invoke(new()
         ///     {
-        ///         UserName = "acc-test-user",
-        ///         Description = "acc test",
-        ///         DisplayName = "name",
-        ///     });
-        /// 
-        ///     var fooUsers = Volcengine.Iam.GetUsers.Invoke(new()
-        ///     {
-        ///         UserNames = new[]
-        ///         {
-        ///             fooUser.UserName,
-        ///         },
+        ///         Query = "jonny",
         ///     });
         /// 
         /// });
@@ -83,28 +63,16 @@ namespace Pulumi.Volcengine.Iam
     public sealed class UsersArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// A Name Regex of IAM.
-        /// </summary>
-        [Input("nameRegex")]
-        public string? NameRegex { get; set; }
-
-        /// <summary>
         /// File name where to save data source results.
         /// </summary>
         [Input("outputFile")]
         public string? OutputFile { get; set; }
 
-        [Input("userNames")]
-        private List<string>? _userNames;
-
         /// <summary>
-        /// A list of user names.
+        /// Fuzzy query. Can query by user name, display name or description.
         /// </summary>
-        public List<string> UserNames
-        {
-            get => _userNames ?? (_userNames = new List<string>());
-            set => _userNames = value;
-        }
+        [Input("query")]
+        public string? Query { get; set; }
 
         public UsersArgs()
         {
@@ -115,28 +83,16 @@ namespace Pulumi.Volcengine.Iam
     public sealed class UsersInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// A Name Regex of IAM.
-        /// </summary>
-        [Input("nameRegex")]
-        public Input<string>? NameRegex { get; set; }
-
-        /// <summary>
         /// File name where to save data source results.
         /// </summary>
         [Input("outputFile")]
         public Input<string>? OutputFile { get; set; }
 
-        [Input("userNames")]
-        private InputList<string>? _userNames;
-
         /// <summary>
-        /// A list of user names.
+        /// Fuzzy query. Can query by user name, display name or description.
         /// </summary>
-        public InputList<string> UserNames
-        {
-            get => _userNames ?? (_userNames = new InputList<string>());
-            set => _userNames = value;
-        }
+        [Input("query")]
+        public Input<string>? Query { get; set; }
 
         public UsersInvokeArgs()
         {
@@ -152,13 +108,12 @@ namespace Pulumi.Volcengine.Iam
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
-        public readonly string? NameRegex;
         public readonly string? OutputFile;
+        public readonly string? Query;
         /// <summary>
         /// The total count of user query.
         /// </summary>
         public readonly int TotalCount;
-        public readonly ImmutableArray<string> UserNames;
         /// <summary>
         /// The collection of user.
         /// </summary>
@@ -168,21 +123,18 @@ namespace Pulumi.Volcengine.Iam
         private UsersResult(
             string id,
 
-            string? nameRegex,
-
             string? outputFile,
 
-            int totalCount,
+            string? query,
 
-            ImmutableArray<string> userNames,
+            int totalCount,
 
             ImmutableArray<Outputs.UsersUserResult> users)
         {
             Id = id;
-            NameRegex = nameRegex;
             OutputFile = outputFile;
+            Query = query;
             TotalCount = totalCount;
-            UserNames = userNames;
             Users = users;
         }
     }

@@ -28,10 +28,16 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := iam.NewRole(ctx, "foo", &iam.RoleArgs{
-//				Description:         pulumi.String("acc-test"),
-//				DisplayName:         pulumi.String("acc-test"),
-//				MaxSessionDuration:  pulumi.Int(3600),
-//				RoleName:            pulumi.String("acc-test-role"),
+//				Description:        pulumi.String("tf-test-modify"),
+//				DisplayName:        pulumi.String("tf-test-modify"),
+//				MaxSessionDuration: pulumi.Int(3600),
+//				RoleName:           pulumi.String("tf-test-role"),
+//				Tags: iam.RoleTagArray{
+//					&iam.RoleTagArgs{
+//						Key:   pulumi.String("key-modify"),
+//						Value: pulumi.String("value-modify"),
+//					},
+//				},
 //				TrustPolicyDocument: pulumi.String("{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"sts:AssumeRole\"],\"Principal\":{\"Service\":[\"auto_scaling\"]}}]}"),
 //			})
 //			if err != nil {
@@ -56,15 +62,21 @@ type Role struct {
 	// The description of the Role.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The display name of the Role.
-	DisplayName pulumi.StringOutput `pulumi:"displayName"`
+	DisplayName pulumi.StringPtrOutput `pulumi:"displayName"`
+	// Whether the Role is a service linked role.
+	IsServiceLinkedRole pulumi.IntOutput `pulumi:"isServiceLinkedRole"`
 	// The max session duration of the Role.
 	MaxSessionDuration pulumi.IntPtrOutput `pulumi:"maxSessionDuration"`
+	// The id of the Role.
+	RoleId pulumi.IntOutput `pulumi:"roleId"`
 	// The name of the Role.
 	RoleName pulumi.StringOutput `pulumi:"roleName"`
+	// Tags.
+	Tags RoleTagArrayOutput `pulumi:"tags"`
 	// The resource name of the Role.
 	Trn pulumi.StringOutput `pulumi:"trn"`
 	// The trust policy document of the Role.
-	TrustPolicyDocument pulumi.StringOutput `pulumi:"trustPolicyDocument"`
+	TrustPolicyDocument pulumi.StringPtrOutput `pulumi:"trustPolicyDocument"`
 }
 
 // NewRole registers a new resource with the given unique name, arguments, and options.
@@ -74,14 +86,8 @@ func NewRole(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.DisplayName == nil {
-		return nil, errors.New("invalid value for required argument 'DisplayName'")
-	}
 	if args.RoleName == nil {
 		return nil, errors.New("invalid value for required argument 'RoleName'")
-	}
-	if args.TrustPolicyDocument == nil {
-		return nil, errors.New("invalid value for required argument 'TrustPolicyDocument'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Role
@@ -110,10 +116,16 @@ type roleState struct {
 	Description *string `pulumi:"description"`
 	// The display name of the Role.
 	DisplayName *string `pulumi:"displayName"`
+	// Whether the Role is a service linked role.
+	IsServiceLinkedRole *int `pulumi:"isServiceLinkedRole"`
 	// The max session duration of the Role.
 	MaxSessionDuration *int `pulumi:"maxSessionDuration"`
+	// The id of the Role.
+	RoleId *int `pulumi:"roleId"`
 	// The name of the Role.
 	RoleName *string `pulumi:"roleName"`
+	// Tags.
+	Tags []RoleTag `pulumi:"tags"`
 	// The resource name of the Role.
 	Trn *string `pulumi:"trn"`
 	// The trust policy document of the Role.
@@ -125,10 +137,16 @@ type RoleState struct {
 	Description pulumi.StringPtrInput
 	// The display name of the Role.
 	DisplayName pulumi.StringPtrInput
+	// Whether the Role is a service linked role.
+	IsServiceLinkedRole pulumi.IntPtrInput
 	// The max session duration of the Role.
 	MaxSessionDuration pulumi.IntPtrInput
+	// The id of the Role.
+	RoleId pulumi.IntPtrInput
 	// The name of the Role.
 	RoleName pulumi.StringPtrInput
+	// Tags.
+	Tags RoleTagArrayInput
 	// The resource name of the Role.
 	Trn pulumi.StringPtrInput
 	// The trust policy document of the Role.
@@ -143,13 +161,15 @@ type roleArgs struct {
 	// The description of the Role.
 	Description *string `pulumi:"description"`
 	// The display name of the Role.
-	DisplayName string `pulumi:"displayName"`
+	DisplayName *string `pulumi:"displayName"`
 	// The max session duration of the Role.
 	MaxSessionDuration *int `pulumi:"maxSessionDuration"`
 	// The name of the Role.
 	RoleName string `pulumi:"roleName"`
+	// Tags.
+	Tags []RoleTag `pulumi:"tags"`
 	// The trust policy document of the Role.
-	TrustPolicyDocument string `pulumi:"trustPolicyDocument"`
+	TrustPolicyDocument *string `pulumi:"trustPolicyDocument"`
 }
 
 // The set of arguments for constructing a Role resource.
@@ -157,13 +177,15 @@ type RoleArgs struct {
 	// The description of the Role.
 	Description pulumi.StringPtrInput
 	// The display name of the Role.
-	DisplayName pulumi.StringInput
+	DisplayName pulumi.StringPtrInput
 	// The max session duration of the Role.
 	MaxSessionDuration pulumi.IntPtrInput
 	// The name of the Role.
 	RoleName pulumi.StringInput
+	// Tags.
+	Tags RoleTagArrayInput
 	// The trust policy document of the Role.
-	TrustPolicyDocument pulumi.StringInput
+	TrustPolicyDocument pulumi.StringPtrInput
 }
 
 func (RoleArgs) ElementType() reflect.Type {
@@ -259,8 +281,13 @@ func (o RoleOutput) Description() pulumi.StringPtrOutput {
 }
 
 // The display name of the Role.
-func (o RoleOutput) DisplayName() pulumi.StringOutput {
-	return o.ApplyT(func(v *Role) pulumi.StringOutput { return v.DisplayName }).(pulumi.StringOutput)
+func (o RoleOutput) DisplayName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Role) pulumi.StringPtrOutput { return v.DisplayName }).(pulumi.StringPtrOutput)
+}
+
+// Whether the Role is a service linked role.
+func (o RoleOutput) IsServiceLinkedRole() pulumi.IntOutput {
+	return o.ApplyT(func(v *Role) pulumi.IntOutput { return v.IsServiceLinkedRole }).(pulumi.IntOutput)
 }
 
 // The max session duration of the Role.
@@ -268,9 +295,19 @@ func (o RoleOutput) MaxSessionDuration() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *Role) pulumi.IntPtrOutput { return v.MaxSessionDuration }).(pulumi.IntPtrOutput)
 }
 
+// The id of the Role.
+func (o RoleOutput) RoleId() pulumi.IntOutput {
+	return o.ApplyT(func(v *Role) pulumi.IntOutput { return v.RoleId }).(pulumi.IntOutput)
+}
+
 // The name of the Role.
 func (o RoleOutput) RoleName() pulumi.StringOutput {
 	return o.ApplyT(func(v *Role) pulumi.StringOutput { return v.RoleName }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o RoleOutput) Tags() RoleTagArrayOutput {
+	return o.ApplyT(func(v *Role) RoleTagArrayOutput { return v.Tags }).(RoleTagArrayOutput)
 }
 
 // The resource name of the Role.
@@ -279,8 +316,8 @@ func (o RoleOutput) Trn() pulumi.StringOutput {
 }
 
 // The trust policy document of the Role.
-func (o RoleOutput) TrustPolicyDocument() pulumi.StringOutput {
-	return o.ApplyT(func(v *Role) pulumi.StringOutput { return v.TrustPolicyDocument }).(pulumi.StringOutput)
+func (o RoleOutput) TrustPolicyDocument() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Role) pulumi.StringPtrOutput { return v.TrustPolicyDocument }).(pulumi.StringPtrOutput)
 }
 
 type RoleArrayOutput struct{ *pulumi.OutputState }
