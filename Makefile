@@ -61,7 +61,6 @@ build_nodejs:: VERSION := $(shell pulumictl get version --language javascript)
 build_nodejs:: install_plugins tfgen # build the node sdk
 	$(WORKING_DIR)/bin/$(TFGEN) nodejs --overlays provider/overlays/nodejs --out sdk/nodejs/
 	cd sdk/nodejs/ && \
-# --frozen-lockfile禁止任何对yarn.lock的修改（不更新依赖版本）在GitHub Actions的CI/CD流程中可以保证所有环境安装的依赖版本完全一致，避免因依赖变动导致发布失败
         yarn install --frozen-lockfile && \
         yarn run tsc && \
         cp ../../README.md ../../LICENSE package.json yarn.lock ./bin/ && \
