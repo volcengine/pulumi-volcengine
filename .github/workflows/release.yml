@@ -109,6 +109,7 @@ jobs:
       - name: Build SDK
         run: make build_${{ matrix.language }}
       - name: Check worktree clean
+        # 检查工作树是否干净，排除yarn.lock文件（github中Action构建CI/CD执行的时候可能会有yarn.lock文件的变更）
         run: |
           git update-index -q --refresh
           if ! git diff-files --quiet -- ':(exclude)yarn.lock' ':(exclude)sdk/nodejs/yarn.lock'; then
